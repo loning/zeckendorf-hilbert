@@ -1,0 +1,45 @@
+[book]
+authors = ["Auric"]
+language = "en"
+src = "src"
+title = "Meta Theory of the Zeckendorf-Hilbert Universe"
+
+[preprocessor.mermaid]
+command = "mdbook-mermaid"
+
+[preprocessor.katex]
+after = ["links", "mermaid"]
+
+[output.html]
+git-repository-url = "https://github.com/loning/zeckendorf-hilbert"
+mathjax-support = true
+no-section-label = true
+additional-js = ["mermaid.min.js", "mermaid-init.js"]
+additional-css = []
+additional-head-tags = '''
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YJD1R6PLTV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YJD1R6PLTV');
+</script>
+'''
+
+[output.html.search]
+enable = true
+limit-results = 20
+teaser-word-count = 15
+use-boolean-and = true
+boost-title = 2
+boost-hierarchy = 1
+boost-paragraph = 1
+expand = true
+heading-split-level = 2
+copy-js = true
+
+[output.html.fold]
+enable = true   # 打开折叠
+level  = 0      # 默认展开到第 1 层，其他层可点击折叠
