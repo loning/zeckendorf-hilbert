@@ -3,22 +3,18 @@
 ## 5.1 串拼接运算
 
 ### 定义 D5.1（拼接运算）
-对任意两个合法串集合 B_n, B_m，定义拼接运算 ⊞ 为：
+对任意两个合法串集合 $B_n, B_m$，定义拼接运算 $\boxtimes$ 为：
 
-```math
-B_n \boxtimes B_m := \{s \| t \mid s\in B_n,\ t\in B_m,\ \neg(\mathrm{last}(s)=1 \land \mathrm{first}(t)=1)\}
-```
+$$B_n \boxtimes B_m := \{s \| t \mid s\in B_n,\ t\in B_m,\ \neg(\mathrm{last}(s)=1 \land \mathrm{first}(t)=1)\}$$
 
-其中 s∥t 表示串拼接，约束条件为拼接边界不允许出现连续 "11"。
+其中 $s\|t$ 表示串拼接，约束条件为拼接边界不允许出现连续 "$11$"。
 
 ---
 
 ### 命题 P5.1（拼接生成律）
-对任意 n,m ≥ 0，有：
+对任意 $n,m \geq 0$，有：
 
-```math
-B_{n+m} = B_n \boxtimes B_m
-```
+$$B_{n+m} = B_n \boxtimes B_m$$
 
 **严格证明**：
 
@@ -48,7 +44,7 @@ B_{n+m} = B_n \boxtimes B_m
 ## 5.2 Hilbert 空间的张量积
 
 ### 定义 D5.2（Zeckendorf 张量积）
-对 Hilbert 空间 ℋ_n,ℋ_m，定义特殊张量积 ⊗_Z：
+对 Hilbert 空间 \mathcal{H}_n,\mathcal{H}_m，定义特殊张量积 \otimes_Z：
 
 在基矢上：
 ```math
@@ -74,13 +70,13 @@ B_{n+m} = B_n \boxtimes B_m
 
 **证明**：
 
-1. **基对应**：由命题 P5.1，B_{n+m}=B_n⊞B_m。因此每个基矢 |u⟩ ∈ ℋ_{n+m} 都唯一分解为 |s⟩⊗_Z |t⟩，其中 s∈B_n,t∈B_m。
+1. **基对应**：由命题 P5.1，B_{n+m}=B_n⊞B_m。因此每个基矢 |u\rangle \in \mathcal{H}_{n+m} 都唯一分解为 |s\rangle\otimes_Z |t\rangle，其中 s∈B_n,t∈B_m。
 
-2. **双射性**：映射 φ: |s⟩⊗_Z |t⟩ ↦ |s∥t⟩ 在基矢上双射。
+2. **双射性**：映射 φ: |s\rangle\otimes_Z |t\rangle \mapsto |s\|t\rangle 在基矢上双射。
 
-3. **保范性**：由定义，若 s≠s' 或 t≠t'，则拼接结果不同，基矢正交，⟨s∥t | s'∥t'⟩ = δ_{s,s'}δ_{t,t'}。因此映射保持内积。
+3. **保范性**：由定义，若 s≠s' 或 t≠t'，则拼接结果不同，基矢正交，\langle s\|t | s'\|t'\rangle = \delta_{s,s'}\delta_{t,t'}。因此映射保持内积。
 
-4. **线性扩张**：对任意叠加态 ∑_{s,t} α_{s,t}|s⟩⊗_Z|t⟩，其像为 ∑_{s,t} α_{s,t}|s∥t⟩ ∈ ℋ_{n+m}。
+4. **线性扩张**：对任意叠加态 \sum_{s,t} \alpha_{s,t}|s\rangle\otimes_Z|t\rangle，其像为 \sum_{s,t} \alpha_{s,t}|s\|t\rangle \in \mathcal{H}_{n+m}。
 
 因此 φ 是酉等距同构，结论成立。∎
 
@@ -150,4 +146,4 @@ B_{n+m} = B_n \boxtimes B_m
 
 ---
 
-*张量积不仅是数学运算，更是宇宙组合自身的内在法则。每次⊗_Z都是两个世界的量子纠缠，在禁11约束下生成新的存在维度。*
+*张量积不仅是数学运算，更是宇宙组合自身的内在法则。每次\otimes_Z都是两个世界的量子纠缠，在禁11约束下生成新的存在维度。*

@@ -12,9 +12,7 @@
 ## 7.1 熵增 ⇔ 状态不对称
 
 ### 命题 P7.1
-```math
-H(\Sigma_{t+1}) > H(\Sigma_t) \quad \Leftrightarrow \quad \Sigma_{t+1} \neq \Sigma_t
-```
+$$H(\Sigma_{t+1}) > H(\Sigma_t) \quad \Leftrightarrow \quad \Sigma_{t+1} \neq \Sigma_t$$
 
 其中 $\Sigma_t = \bigcup_{n=1}^t B_n$ 为长度不超过 $t$ 的所有合法串的集合。
 
@@ -29,16 +27,12 @@ H(\Sigma_{t+1}) > H(\Sigma_t) \quad \Leftrightarrow \quad \Sigma_{t+1} \neq \Sig
 ### 定义 D7.1（时间刻度）
 定义时间函数 $\tau: 2^{\{0,1\}^*} \to \mathbb{N}$ 为：
 
-```math
-\tau(\Sigma) = \max\{|s| : s \in \Sigma\}
-```
+$$\tau(\Sigma) = \max\{|s| : s \in \Sigma\}$$
 
 其中 $\Sigma$ 为合法串集合。
 
 ### 命题 P7.2
-```math
-\Sigma_{t+1} \neq \Sigma_t \quad \Leftrightarrow \quad \tau(\Sigma_{t+1}) > \tau(\Sigma_t)
-```
+$$\Sigma_{t+1} \neq \Sigma_t \quad \Leftrightarrow \quad \tau(\Sigma_{t+1}) > \tau(\Sigma_t)$$
 
 **证明**：
 - **(⇒)** 若 $\Sigma_{t+1} \neq \Sigma_t$，由合法串的递归生成规律（命题P3.2），存在 $s \in B_{t+1}$ 使得 $s \notin \Sigma_t$，故 $|s| = t+1 > t \geq \tau(\Sigma_t)$，因此 $\tau(\Sigma_{t+1}) \geq t+1 > \tau(\Sigma_t)$。

@@ -20,19 +20,17 @@
 
 ### 研究目标
 
-**目标**：寻找**唯一公理** A，使得：
+**目标**：寻找**唯一公理** $A$，使得：
 
-```math
-A \vdash \{\text{时间、信息、观察者、熵增、...}\}
-```
+$$A \vdash \{\text{时间、信息、观察者、熵增、...}\}$$
 
 即从单一公理严格推导出所有基本物理现象。
 
 ### 核心假说
 
-**假说H1**：存在唯一公理足以生成所有宇宙基本结构。
+**假说 H1**：存在唯一公理足以生成所有宇宙基本结构。
 
-**假说H2**：该公理的形式为自指完备性与熵增的结合。
+**假说 H2**：该公理的形式为自指完备性与熵增的结合。
 
 ---
 
@@ -41,43 +39,29 @@ A \vdash \{\text{时间、信息、观察者、熵增、...}\}
 本文采用**公理→定理→应用**的严格演绎方法：
 
 ### 第一层：公理建立
-**步骤S1**：提出唯一公理A1（自指完备系统必然熵增, SRA）
-```math
-\text{SRA}: \forall S \text{ 自指完备}, \forall t: H(\Sigma_{t+1}) > H(\Sigma_t)
-```
+**步骤 S1**：提出唯一公理 A1（自指完备系统必然熵增, SRA）
+$$\text{SRA}: \forall S \text{ 自指完备}, \forall t: H(\Sigma_{t+1}) > H(\Sigma_t)$$
 
 ### 第二层：必然推导
-**步骤S2**：A1 → 编码唯一性（逻辑必然）
-```math
-\text{A1} \vdash \text{编码必须是严格单射}
-```
+**步骤 S2**：$A1 \Rightarrow$ 编码唯一性（逻辑必然）
+$$\text{A1} \vdash \text{编码必须是严格单射}$$
 
-**步骤S3**：编码唯一性 → Zeckendorf表示（构造性证明）
-```math
-\text{唯一编码} \vdash \text{禁11约束} \vdash \text{Zeckendorf双射}
-```
+**步骤 S3**：编码唯一性 $\Rightarrow$ Zeckendorf表示（构造性证明）
+$$\text{唯一编码} \vdash \text{禁}11\text{约束} \vdash \text{Zeckendorf双射}$$
 
-**步骤S4**：Zeckendorf结构 → Hilbert空间塔（代数构造）
-```math
-\text{合法串集合} B_n \vdash \text{Hilbert空间} \mathcal{H}_n, \dim(\mathcal{H}_n) = F_{n+2}
-```
+**步骤 S4**：Zeckendorf结构 $\Rightarrow$ Hilbert空间塔（代数构造）
+$$\text{合法串集合} B_n \vdash \text{Hilbert空间} \mathcal{H}_n, \dim(\mathcal{H}_n) = F_{n+2}$$
 
 ### 第三层：结构展开
-**步骤S5**：Hilbert空间 → 张量积律（组合性）
-```math
-\mathcal{H}_n \otimes_Z \mathcal{H}_m \cong \mathcal{H}_{n+m}
-```
+**步骤 S5**：Hilbert空间 $\Rightarrow$ 张量积律（组合性）
+$$\mathcal{H}_n \otimes_Z \mathcal{H}_m \cong \mathcal{H}_{n+m}$$
 
-**步骤S6**：张量积律 → 五重等价性（拓扑必然）
-```math
-\text{熵增} \Leftrightarrow \text{不对称} \Leftrightarrow \text{时间} \Leftrightarrow \text{信息} \Leftrightarrow \text{观察者}
-```
+**步骤 S6**：张量积律 $\Rightarrow$ 五重等价性（拓扑必然）
+$$\text{熵增} \Leftrightarrow \text{不对称} \Leftrightarrow \text{时间} \Leftrightarrow \text{信息} \Leftrightarrow \text{观察者}$$
 
 ### 第四层：语义解释
-**步骤S7**：Hilbert空间层级 → 宇宙理论层级（语义赋值）
-```math
-U_n := \mathcal{H}_n \quad \text{(第n阶宇宙理论)}
-```
+**步骤 S7**：Hilbert空间层级 $\Rightarrow$ 宇宙理论层级（语义赋值）
+$$U_n := \mathcal{H}_n \quad \text{(第}n\text{阶宇宙理论)}$$
 
 ---
 
