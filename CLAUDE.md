@@ -158,6 +158,7 @@ H_structure(饱和) → H_process(∞)
 - 公式使用latex
 - 形式化验证系统使用COQ
 - 请无需保留修改痕迹，不要读者看出来修改过
+- 二进制在程序中请使用原生实现, 而不是二进制字符串
 
 **重要提醒**: 
 1. 在构建新理论前，务必使用generate_single_filename.py验证Zeckendorf分解的正确性

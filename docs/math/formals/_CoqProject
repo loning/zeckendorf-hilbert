@@ -1,0 +1,193 @@
+# Zeckendorf-Hilbert Complete Bijective Equivalence Formal Verification Project
+# Zero Admitted Policy: All theorems must have complete proofs ending with Qed
+# Pure Binary Implementation: No string representations, native binary operations only
+
+# ===== COMPILER OPTIONS =====
+-arg -w -arg -notation-overridden
+-arg -w -arg -redundant-canonical-projection
+-arg -w -arg -several-object-files-to-stdout
+-arg -w -arg -deprecated-ident-entry
+-arg -w -arg -undeclared-scope
+-arg -w -arg -deprecated-hint-without-locality
+
+# Enable universe polymorphism for category theory
+-arg -univs
+
+# Enable automatic extraction
+-arg -extraction-flag
+
+# Strict mode - require complete proofs
+-arg -strict-proofs
+
+# ===== REQUIRED LIBRARIES =====
+
+# Standard Libraries
+-R . ZeckendorfHilbert
+
+# Mathematical Foundations
+-Q Coq.Reals Reals
+-Q Coq.Arith Arith
+-Q Coq.ZArith ZArith
+-Q Coq.QArith QArith
+-Q Coq.NArith NArith
+-Q Coq.Numbers Numbers
+-Q Coq.Logic Logic
+-Q Coq.Sets Sets
+-Q Coq.Lists Lists
+-Q Coq.Vectors Vectors
+
+# Advanced Mathematical Libraries
+-Q Coq.micromega.Psatz Psatz
+-Q Coq.omega.Omega Omega
+-Q Coq.Classes Classes
+-Q Coq.Relations Relations
+-Q Coq.Program Program
+
+# Complex Analysis and Real Analysis
+-Q Coq.Reals.Abstract Abstract
+-Q Coq.Reals.Cauchy Cauchy
+-Q Coq.Reals.Integration Integration
+
+# Category Theory Support (if available via external libraries)
+# Note: These may need to be installed separately
+# -Q Categories Categories
+# -Q HoTT HoTT
+
+# Linear Algebra and Matrix Operations
+# Note: May require external libraries like CoqMatrix or similar
+# -Q Matrix Matrix
+# -Q LinearAlgebra LinearAlgebra
+
+# ===== SOURCE FILES IN DEPENDENCY ORDER =====
+
+# === FOUNDATIONS LAYER ===
+# A1 Axiom and Basic Notations
+Foundations/A1_Axiom.v
+Foundations/BasicNotations.v
+Foundations/BinaryOperations.v
+
+# Fibonacci Sequences and φ-language
+Foundations/FibonacciSequence.v
+Foundations/PhiLanguage.v
+Foundations/ZeckendorfRepresentation.v
+
+# No-11 Constraint and Encoding
+Foundations/No11Constraint.v
+Foundations/EncodingSystem.v
+
+# Golden Ratio and Mathematical Constants
+Foundations/GoldenRatio.v
+Foundations/MathematicalConstants.v
+
+# === STRUCTURES LAYER ===
+# Language Encoding Theory
+Structures/LanguageEncoding.v
+Structures/PhiLanguageProperties.v
+Structures/UniqueDecomposition.v
+
+# Automata System
+Structures/TwoStateAutomaton.v
+Structures/StateTransition.v
+Structures/CountingMatrix.v
+
+# Initial Algebra
+Structures/GroupStructure.v
+Structures/RingStructure.v
+Structures/InitialAlgebra.v
+Structures/AlgebraicProperties.v
+
+# === ADVANCED LAYER ===
+# Dynamic Programming Theory
+Advanced/DynamicProgramming.v
+Advanced/FibonacciRecurrence.v
+Advanced/GeneratingFunctions.v
+
+# Hilbert Space Tower
+Advanced/HilbertSpaces.v
+Advanced/QuantumStates.v
+Advanced/HilbertTower.v
+Advanced/StateVectorSuperposition.v
+
+# Tensor Laws and Three-fold Unification
+Advanced/TensorOperations.v
+Advanced/ThreefoldUnification.v
+Advanced/TensorLaws.v
+Advanced/BoundaryFiltering.v
+
+# === DEEP LAYER ===
+# Spectral Decomposition
+Deep/SpectralTheory.v
+Deep/ZetaFunction.v
+Deep/FixedPoints.v
+Deep/ComplexAnalysis.v
+
+# Continuous Limits
+Deep/OstrowskiContinuity.v
+Deep/DiscreteToContiguous.v
+Deep/LimitTransitions.v
+Deep/ContinuousStructures.v
+
+# Entropy Rate Theory
+Deep/EntropyRate.v
+Deep/PhiSpiralGrowth.v
+Deep/EntropySlope.v
+Deep/GoldenConstant.v
+
+# === META LAYER ===
+# Categorical Equivalence
+Meta/CategoryTheory.v
+Meta/Functors.v
+Meta/NaturalTransformations.v
+Meta/UniverseBijection.v
+Meta/CategoricalEquivalence.v
+
+# Algorithm Verification
+Meta/AlgorithmFramework.v
+Meta/NumericalVerification.v
+Meta/ComputationalRealizability.v
+Meta/EffectiveAlgorithms.v
+
+# Circular Completeness
+Meta/SelfReference.v
+Meta/PsiFunction.v
+Meta/CircularCompleteness.v
+Meta/UniverseSelfCreation.v
+
+# Theory Bijection
+Meta/TheoryBijection.v
+Meta/CompleteEquivalence.v
+Meta/BijectionVerification.v
+
+# === MAIN INTEGRATION LAYER ===
+# Main Integration Theorems
+Main/MainTheorems.v
+Main/T27_Integration.v
+Main/CompleteSystem.v
+
+# Appendix Proofs
+Main/AppendixProofs.v
+Main/StrictMathematicalFoundations.v
+Main/ProofCompleteness.v
+
+# Final System Integration
+Main/SystemIntegration.v
+Main/ZeroAdmittedVerification.v
+Main/BijectiveEquivalenceProof.v
+
+# ===== DOCUMENTATION =====
+# Automatically generate documentation
+-arg -html
+-arg -d -arg html
+
+# ===== EXTRACTION TARGETS =====
+# For algorithm verification and computational realizability
+-arg -extraction
+-arg OCaml
+
+# ===== PROJECT METADATA =====
+# Project: Zeckendorf-Hilbert Complete Bijective Equivalence Formal Verification
+# Description: Complete formal verification of the mathematical theory in docs/math/
+# Architecture: Layered approach from A1 axiom to complete universe bijection
+# Goal: Zero Admitted policy with complete proofs for all theorems
+# Binary Implementation: Pure Coq binary operations, no string representations
+# Theory Correspondence: Full bijection with docs/math/ mathematical theory
