@@ -3,19 +3,24 @@
 ## 4.1 合法串与 Hilbert 空间
 
 ### 定义 D4.1（Hilbert 空间 ℋ_n）
-对每个长度 n ≥ 0，定义 Hilbert 空间
+对每个长度 n ≥ 0，定义复Hilbert空间
 
 ```math
-\mathcal{H}_n := \mathrm{Span}\{|w\rangle : w \in B_n\}
+\mathcal{H}_n := \mathrm{Span}_{\mathbb{C}}\{|w\rangle : w \in B_n\}
 ```
 
-其中 B_n 是长度为 n 的合法串集合（见定义 D3.1），|w⟩ 是对应的正交基向量。
-
-内积定义为：
+其中：
+- B_n 是长度为 n 的合法串集合（见定义 D3.1）
+- {|w⟩ : w ∈ B_n} 构成标准正交基
+- 内积定义为：
 ```math
-\langle w | w' \rangle = \delta_{w,w'}
+\langle w | w' \rangle = \delta_{w,w'} \quad (\text{Kronecker delta})
 ```
-即基向量两两正交且单位归一。
+
+**严格性质**：
+1. **正交性**：∀ w≠w' ∈ B_n, ⟨w|w'⟩ = 0
+2. **归一性**：∀ w ∈ B_n, ⟨w|w⟩ = 1  
+3. **完备性**：{|w⟩ : w ∈ B_n} 线性张成整个 ℋ_n
 
 ---
 
@@ -41,10 +46,15 @@
 其中 α_w ∈ ℂ，且满足归一化条件：
 
 ```math
-\sum_{w \in B_n} |\alpha_w|^2 = 1
+\langle \psi | \psi \rangle = \sum_{w \in B_n} |\alpha_w|^2 = 1
 ```
 
-这是 Hilbert 空间的叠加性，对应量子态的概率幅表示。
+**严格的内积计算**：
+```math
+\langle \psi | \phi \rangle = \sum_{w \in B_n} \overline{\alpha_w} \beta_w
+```
+
+其中 φ = ∑ β_w |w⟩，ˉα_w 表示 α_w 的复共轭。
 
 ---
 
@@ -66,11 +76,24 @@ P(w) = |\alpha_w|^2
 Hilbert 空间序列 {ℋ_n} 由以下递推关系生成：
 
 ```math
-\mathcal{H}_n = \mathrm{Span}\{ |s0\rangle : s\in B_{n-1} \} \cup \mathrm{Span}\{ |s10\rangle : s\in B_{n-2} \}, \quad n\ge 2
+\mathcal{H}_n = \mathrm{Span}\{ |s0\rangle : s\in B_{n-1} \} \oplus \mathrm{Span}\{ |s10\rangle : s\in B_{n-2} \}, \quad n\ge 2
 ```
 
-**证明**：
-由定义 D3.1 的递推规则，B_n 的元素必然为 B_{n-1} 元素拼接 0 或 B_{n-2} 元素拼接 10。取对应基矢，得空间分解。∎
+其中 ⊕ 表示直和（两个子空间的正交和）。
+
+**严格证明**：
+1. **基的分解**：由定义D3.1，B_n = {s0 : s∈B_{n-1}} ∪ {s10 : s∈B_{n-2}}
+2. **正交性**：设 v₁ = s₁0, v₂ = s₂10，则 |v₁| = n-1+1 = n，|v₂| = n-2+2 = n
+   - 但 v₁ 末尾为 0，v₂ 末尾为 10，因此 v₁ ≠ v₂
+   - 由基的正交性，⟨v₁|v₂⟩ = 0
+3. **维度验证**：
+   ```math
+   \dim(\mathcal{H}_n) = |B_{n-1}| + |B_{n-2}| = F_{(n-1)+2} + F_{(n-2)+2} = F_{n+1} + F_n = F_{n+2}
+   ```
+   这正确地使用了Fibonacci递推关系。
+4. **完备性**：两个子空间张成的基恰好覆盖了 B_n 的所有元素
+
+因此 ℋ_n 是两个正交子空间的直和。∎
 
 ---
 

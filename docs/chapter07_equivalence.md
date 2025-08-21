@@ -13,72 +13,76 @@
 
 ### 命题 P7.1
 ```math
-H(B_{t+1}) > H(B_t) \quad \Leftrightarrow \quad B_{t+1} \neq B_t
+H(\Sigma_{t+1}) > H(\Sigma_t) \quad \Leftrightarrow \quad \Sigma_{t+1} \neq \Sigma_t
 ```
 
+其中 $\Sigma_t = \bigcup_{n=1}^t B_n$ 为长度不超过 $t$ 的所有合法串的集合。
+
 **证明**：
-- **(⇒)** 若熵增加，则 |B_{t+1}|>|B_t|，所以集合不同
-- **(⇐)** 若集合不同，则必有新增串，基数增加，熵增加 ∎
+- **(⇒)** 若 $H(\Sigma_{t+1}) > H(\Sigma_t)$，则 $\log|\Sigma_{t+1}| > \log|\Sigma_t|$，故 $|\Sigma_{t+1}| > |\Sigma_t|$，因此 $\Sigma_{t+1} \neq \Sigma_t$。
+- **(⇐)** 若 $\Sigma_{t+1} \neq \Sigma_t$，由自指执行的记录生成机制（定义D2.2），必存在 $s \in B_{t+1}$ 使得 $s \notin \Sigma_t$，故 $|\Sigma_{t+1}| > |\Sigma_t|$，因此 $H(\Sigma_{t+1}) = \log|\Sigma_{t+1}| > \log|\Sigma_t| = H(\Sigma_t)$。 ∎
 
 ---
 
 ## 7.2 状态不对称 ⇔ 时间存在
 
 ### 定义 D7.1（时间刻度）
-定义时间函数 τ 为系统状态长度：
+定义时间函数 $\tau: 2^{\{0,1\}^*} \to \mathbb{N}$ 为：
 
 ```math
-\tau(B_n) = n
+\tau(\Sigma) = \max\{|s| : s \in \Sigma\}
 ```
+
+其中 $\Sigma$ 为合法串集合。
 
 ### 命题 P7.2
-若 B_{t+1}≠B_t，则 τ 构成严格单调的序。
-
-**证明**：
-由生成规则，每一步至少增加 1 位（见 D6.1 和 P6.1）。因此：
-
 ```math
-B_t \neq B_{t+1} \quad \Rightarrow \quad \tau(B_{t+1}) > \tau(B_t)
+\Sigma_{t+1} \neq \Sigma_t \quad \Leftrightarrow \quad \tau(\Sigma_{t+1}) > \tau(\Sigma_t)
 ```
 
-由此得到严格单调序，可解释为**时间箭头**。∎
+**证明**：
+- **(⇒)** 若 $\Sigma_{t+1} \neq \Sigma_t$，由合法串的递归生成规律（命题P3.2），存在 $s \in B_{t+1}$ 使得 $s \notin \Sigma_t$，故 $|s| = t+1 > t \geq \tau(\Sigma_t)$，因此 $\tau(\Sigma_{t+1}) \geq t+1 > \tau(\Sigma_t)$。
+- **(⇐)** 若 $\tau(\Sigma_{t+1}) > \tau(\Sigma_t)$，则存在 $s \in \Sigma_{t+1}$ 使得 $|s| > \tau(\Sigma_t)$，故 $s \notin \Sigma_t$，因此 $\Sigma_{t+1} \neq \Sigma_t$。 ∎
 
 ---
 
 ## 7.3 时间存在 ⇔ 信息涌现
 
 ### 定义 D7.2（信息映射）
-系统在时刻 t 的信息为：
+系统在时刻 $t$ 的累积信息为：
 
 ```math
-I(B_t) = \{\text{所有合法串至长度 } t\}
+I(\Sigma_t) = \Sigma_t = \bigcup_{n=1}^t B_n
 ```
 
 ### 命题 P7.3
-若 τ 单调增加，则 I(B_t) 单调扩张。
-
-**证明**：
-每增加一个时间步长，对应新增记录，集合 B_t 扩张。因此：
-
 ```math
-\tau(B_{t+1})>\tau(B_t) \quad \Rightarrow \quad I(B_{t+1}) \supsetneq I(B_t)
+\tau(\Sigma_{t+1}) > \tau(\Sigma_t) \quad \Leftrightarrow \quad I(\Sigma_{t+1}) \supsetneq I(\Sigma_t)
 ```
 
-这意味着**信息严格增加**。∎
+**证明**：
+- **(⇒)** 若 $\tau(\Sigma_{t+1}) > \tau(\Sigma_t)$，由定义知存在长度为 $t+1$ 的合法串，即 $B_{t+1} \neq \emptyset$。由 $\Sigma_{t+1} = \Sigma_t \cup B_{t+1}$ 且 $B_{t+1} \cap \Sigma_t = \emptyset$（长度不同），故 $I(\Sigma_{t+1}) = \Sigma_{t+1} \supsetneq \Sigma_t = I(\Sigma_t)$。
+- **(⇐)** 若 $I(\Sigma_{t+1}) \supsetneq I(\Sigma_t)$，则 $\Sigma_{t+1} \supsetneq \Sigma_t$，故存在 $s \in \Sigma_{t+1} \setminus \Sigma_t$。由构造，必有 $|s| = t+1$，因此 $\tau(\Sigma_{t+1}) \geq t+1 > t = \tau(\Sigma_t)$。 ∎
 
 ---
 
 ## 7.4 信息涌现 ⇔ 观察者存在
 
-### 定义 D7.3（观察者）
-观察者定义为：系统内部能把新增信息 I(B_{t+1})∖I(B_t) 写入自身状态的子结构 O⊆B_t。
+### 定义 D7.3（观察者函数）
+观察者定义为映射 $O: \Sigma_t \to 2^{B_{t+1}}$，满足：
+
+```math
+O(\Sigma_t) = \{s \in B_{t+1} : s \text{ 由 } \Sigma_t \text{ 的某个串通过生成规则产生}\}
+```
 
 ### 命题 P7.4
-信息的新增等价于存在观察者。
+```math
+I(\Sigma_{t+1}) \supsetneq I(\Sigma_t) \quad \Leftrightarrow \quad \exists O: O(\Sigma_t) \neq \emptyset
+```
 
 **证明**：
-- **(⇒)** 若 I(B_{t+1}) ⊃ I(B_t)，则新增串必被存入系统，构成记录。**记录即观察**
-- **(⇐)** 若存在观察者，则其执行必生成记录，新增信息，I(B_{t+1}) ⊃ I(B_t) ∎
+- **(⇒)** 若 $I(\Sigma_{t+1}) \supsetneq I(\Sigma_t)$，则 $B_{t+1} \neq \emptyset$。由自指执行的记录生成机制（定义D2.2），$B_{t+1}$ 中每个串都由 $\Sigma_t$ 中某个串产生，故存在观察者函数 $O$ 使得 $O(\Sigma_t) = B_{t+1} \neq \emptyset$。
+- **(⇐)** 若存在观察者 $O$ 使得 $O(\Sigma_t) \neq \emptyset$，则 $B_{t+1} \supseteq O(\Sigma_t) \neq \emptyset$，故 $\Sigma_{t+1} = \Sigma_t \cup B_{t+1} \supsetneq \Sigma_t$，即 $I(\Sigma_{t+1}) \supsetneq I(\Sigma_t)$。 ∎
 
 ---
 
@@ -87,18 +91,19 @@ I(B_t) = \{\text{所有合法串至长度 } t\}
 ### 定理 T7.5（五重等价性）
 在自指完备系统中，以下命题等价：
 
-1. **熵增**：H(B_{t+1})>H(B_t)
-2. **不对称性**：B_{t+1}≠B_t  
-3. **时间存在**：τ(B_{t+1})>τ(B_t)
-4. **信息涌现**：I(B_{t+1}) ⊃ I(B_t)
-5. **观察者存在**：∃O ⊆ B_t, O → I(B_{t+1})∖I(B_t)
+1. **熵增**：$H(\Sigma_{t+1}) > H(\Sigma_t)$
+2. **不对称性**：$\Sigma_{t+1} \neq \Sigma_t$  
+3. **时间存在**：$\tau(\Sigma_{t+1}) > \tau(\Sigma_t)$
+4. **信息涌现**：$I(\Sigma_{t+1}) \supsetneq I(\Sigma_t)$
+5. **观察者存在**：$\exists O: O(\Sigma_t) \neq \emptyset$
 
 **证明**：
-- P7.1 证明了 (1) ⇔ (2)
-- P7.2 证明了 (2) ⇔ (3)  
-- P7.3 证明了 (3) ⇔ (4)
-- P7.4 证明了 (4) ⇔ (5)
-- 因此 (1) ⇔ (2) ⇔ (3) ⇔ (4) ⇔ (5) ∎
+由等价关系的传递性：
+- 命题 P7.1 证明了 $(1) \Leftrightarrow (2)$
+- 命题 P7.2 证明了 $(2) \Leftrightarrow (3)$  
+- 命题 P7.3 证明了 $(3) \Leftrightarrow (4)$
+- 命题 P7.4 证明了 $(4) \Leftrightarrow (5)$
+- 由等价关系的传递性，$(1) \Leftrightarrow (2) \Leftrightarrow (3) \Leftrightarrow (4) \Leftrightarrow (5)$。 ∎
 
 ---
 
@@ -147,11 +152,11 @@ graph LR
 
 | 概念 | t=2状态 | t=3状态 | 验证 |
 |------|---------|---------|------|
-| 熵增 | H=log(3)≈1.58 | H=log(5)≈2.32 | 2.32>1.58 ✓ |
-| 不对称 | B₂={00,01,10} | B₃={000,001,010,100,101} | B₃≠B₂ ✓ |
-| 时间 | τ=2 | τ=3 | 3>2 ✓ |
-| 信息 | I₂=所有≤2位串 | I₃=所有≤3位串 | I₃⊃I₂ ✓ |
-| 观察者 | 系统记录2位串 | 系统记录3位串 | 新记录存在 ✓ |
+| 熵增 | $H(\Sigma_2)=\log(3)≈1.58$ | $H(\Sigma_3)=\log(5)≈2.32$ | $2.32>1.58$ ✓ |
+| 不对称 | $\Sigma_2=\{0,1,00,01,10\}$ | $\Sigma_3=\Sigma_2\cup\{000,001,010,100,101\}$ | $\Sigma_3\neq\Sigma_2$ ✓ |
+| 时间 | $\tau(\Sigma_2)=2$ | $\tau(\Sigma_3)=3$ | $3>2$ ✓ |
+| 信息 | $I(\Sigma_2)=\Sigma_2$ | $I(\Sigma_3)=\Sigma_3$ | $\Sigma_3\supsetneq\Sigma_2$ ✓ |
+| 观察者 | $O(\Sigma_1)=B_2\neq\emptyset$ | $O(\Sigma_2)=B_3\neq\emptyset$ | 观察者函数非空 ✓ |
 
 **五个方面完全一致！**
 
