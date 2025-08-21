@@ -149,35 +149,37 @@ $$\Phi\begin{pmatrix} p_0 \\ p_1 \end{pmatrix} = T^T \begin{pmatrix} p_0 \\ p_1 
 
 ### 4.2 不动点分析
 
-**定理4.1** (不动点存在性)  
-演化算子 $\Phi$ 在 $\mathcal{S}$ 上存在唯一不动点：
-$$\pi^* = \left(\frac{\varphi}{\varphi+1}, \frac{1}{\varphi+1}\right) = \left(\frac{1+\sqrt{5}}{3+\sqrt{5}}, \frac{2}{3+\sqrt{5}}\right)$$
+**定理4.1** (稳态分布存在性)  
+对于行规范化的转移矩阵 $\tilde{T} = \begin{pmatrix} 1/2 & 1/2 \\ 1 & 0 \end{pmatrix}$，存在唯一稳态分布：
+$$\pi^* = \left(\frac{2}{3}, \frac{1}{3}\right)$$
 
-**证明**：不动点满足 $\pi^* = T^T \pi^*$，即 $\pi^*$ 是 $T^T$ 的特征向量。
+**证明**：稳态分布满足 $\pi^* = \pi^* \tilde{T}$，即 $\pi^*$ 是 $\tilde{T}^T$ 的特征值为1的特征向量。
 
-由于 $T$ 和 $T^T$ 有相同的特征值，$T^T$ 的最大特征值是 $\varphi$，对应的特征向量满足：
-$$T^T \begin{pmatrix} x \\ y \end{pmatrix} = \varphi \begin{pmatrix} x \\ y \end{pmatrix}$$
+对于 $\tilde{T}^T = \begin{pmatrix} 1/2 & 1 \\ 1/2 & 0 \end{pmatrix}$，求解特征方程：
+$$\tilde{T}^T \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} x \\ y \end{pmatrix}$$
 
 即：
-$$\begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \varphi \begin{pmatrix} x \\ y \end{pmatrix}$$
+$$\begin{pmatrix} 1/2 & 1 \\ 1/2 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} x \\ y \end{pmatrix}$$
 
-解得 $x = \varphi y$。结合归一化条件 $x + y = 1$，得到上述结果。□
+解得 $x = 2y$。结合归一化条件 $x + y = 1$，得到 $\pi^* = (2/3, 1/3)$。□
 
 **定理4.2** (全局渐近稳定性)  
 对于任意初始分布 $\pi_0 \in \mathcal{S}$：
-$$\lim_{n \to \infty} \Phi^n(\pi_0) = \pi^*$$
+$$\lim_{n \to \infty} \tilde{\Phi}^n(\pi_0) = \pi^*$$
 
-**证明**：由于 $\varphi > |\psi|$，矩阵 $T^T$ 的最大特征值是简单的，对应的特征子空间是一维的。Perron-Frobenius定理保证了收敛性。□
+其中 $\tilde{\Phi}$ 是基于规范化转移矩阵 $\tilde{T}$ 的演化算子。
+
+**证明**：由于 $\tilde{T}$ 是随机矩阵且不可约，Perron-Frobenius定理保证存在唯一的稳态分布，且从任意初始分布都收敛到该稳态。□
 
 ### 4.3 收敛速度
 
 **定理4.3** (指数收敛)  
-存在常数 $C > 0$ 使得：
-$$\|\Phi^n(\pi_0) - \pi^*\|_2 \leq C \left|\frac{\psi}{\varphi}\right|^n \|\pi_0 - \pi^*\|_2$$
+对于规范化演化算子 $\tilde{\Phi}$，存在常数 $C > 0$ 使得：
+$$\|\tilde{\Phi}^n(\pi_0) - \pi^*\|_2 \leq C \left|\lambda_2\right|^n \|\pi_0 - \pi^*\|_2$$
 
-其中 $\left|\frac{\psi}{\varphi}\right| = \frac{|\psi|}{\varphi} = \frac{\sqrt{5}-1}{1+\sqrt{5}} \approx 0.382$。
+其中 $\lambda_2 = -1/2$ 是 $\tilde{T}$ 的次大特征值。
 
-**证明**：这是线性动力系统指数收敛的标准结果，收敛速度由次大特征值与最大特征值的比值决定。□
+**证明**：这是马尔可夫链收敛理论的标准结果，收敛速度由次大特征值的绝对值决定。□
 
 ## 5. 与Fibonacci递推的深层联系
 

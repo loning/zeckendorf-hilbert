@@ -62,20 +62,24 @@ $$|\psi_\varphi(n)\rangle = \frac{1}{\sqrt{F_{n+1}}} \sum_{s \in \mathcal{L}_\va
 φ-调制态满足归一化条件：
 $$\langle\psi_\varphi(n)|\psi_\varphi(n)\rangle = 1$$
 
-**证明**：
-$$\langle\psi_\varphi(n)|\psi_\varphi(n)\rangle = \frac{1}{F_{n+1}} \sum_{s \in \mathcal{L}_\varphi[n]} |\varphi^{w(s)}|^2 = \frac{1}{F_{n+1}} \sum_{s \in \mathcal{L}_\varphi[n]} \varphi^{2w(s)}$$
+**证明**：归一化条件要求：
+$$\sum_{s \in \mathcal{L}_\varphi[n]} |\alpha_s|^2 = 1$$
 
-需要证明 $\sum_{s \in \mathcal{L}_\varphi[n]} \varphi^{2w(s)} = F_{n+1}$。
+对于φ-调制态，归一化常数应为 $C_n = \sqrt{G_n}$，其中：
+$$G_n = \sum_{s \in \mathcal{L}_\varphi[n]} \varphi^{2w(s)}$$
 
-设 $G_n = \sum_{s \in \mathcal{L}_\varphi[n]} \varphi^{2w(s)}$。按最后一位分类：
-- 若最后一位是0：$G_n$ 包含所有长度为 $n-1$ 的合法字符串，贡献 $G_{n-1}$
-- 若最后一位是1：为避免11，倒数第二位必须是0，贡献 $\varphi^2 G_{n-2}$
+按最后一位分类分析：
+- 若最后一位是0：贡献 $G_{n-1}$
+- 若最后一位是1：为避免11约束，倒数第二位必须是0，贡献 $\varphi^2 G_{n-2}$
 
-因此：$G_n = G_{n-1} + \varphi^2 G_{n-2}$
+因此递推关系为：$G_n = G_{n-1} + \varphi^2 G_{n-2}$
 
-由于 $\varphi^2 = \varphi + 1$，并且初始条件 $G_1 = \varphi^0 + \varphi^2 = 1 + \varphi + 1 = 2 + \varphi = F_2$，$G_2 = 2 + \varphi + (\varphi+1) = 3 + 2\varphi = F_3$，
+由于 $\varphi^2 = \varphi + 1$，得到：$G_n = G_{n-1} + (\varphi + 1) G_{n-2}$
 
-通过归纳可证 $G_n = F_{n+1}$。□
+因此φ-调制态的正确定义为：
+$$|\psi_\varphi(n)\rangle = \frac{1}{\sqrt{G_n}} \sum_{s \in \mathcal{L}_\varphi[n]} \varphi^{w(s)} |s\rangle$$
+
+其中 $G_n$ 由上述递推关系确定。□
 
 ## 2. Hilbert塔的构造理论
 
