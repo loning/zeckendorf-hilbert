@@ -160,3 +160,4 @@ H_structure(饱和) → H_process(∞)
 1. 在构建新理论前，务必使用generate_single_filename.py验证Zeckendorf分解的正确性
 2. 理论命名要简洁，避免冗余的类型后缀
 3. 体现依赖关系中的核心概念组合
+4. mermaid中请使用引号包住字符串
