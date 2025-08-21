@@ -135,33 +135,27 @@ $$H(S) = \log_2 |S|$$
 $$H(B_n) = \log_2 |B_n| = \log_2 F_{n+1}$$
 
 ### 7.3 熵增性质
-由于 `Fₙ₊₁ < Fₙ₊₂`，有：
-```
-H(Bₙ) < H(Bₙ₊₁)
-```
+由于 $F_{n+1} < F_{n+2}$，有：
+$$H(B_n) < H(B_{n+1})$$
 即合法集合的熵严格单调递增。
 
 ### 7.4 渐近熵密度
-```
-lim(n→∞) H(Bₙ)/n = log₂φ ≈ 0.694
-```
+$$\lim_{n \to \infty} \frac{H(B_n)}{n} = \log_2 \varphi \approx 0.694$$
 
 ## 8. Zeckendorf表示
 
 ### 8.1 定义
 **Zeckendorf定理**: 每个正整数都有唯一的表示为不连续Fibonacci数之和：
-```
-n = Fᵢ₁ + Fᵢ₂ + ... + Fᵢₖ
-```
-其中 `i₁ > i₂ > ... > iₖ ≥ 2` 且 `iⱼ₊₁ - iⱼ ≥ 2` 对所有j成立。
+$$n = F_{i_1} + F_{i_2} + \cdots + F_{i_k}$$
+其中 $i_1 > i_2 > \cdots > i_k \geq 2$ 且 $i_{j+1} - i_j \geq 2$ 对所有$j$成立。
 
 ### 8.2 记号约定
-- `Z(n)`: 数n的Zeckendorf表示
-- `|Z(n)|`: Zeckendorf表示中项数
-- `Z⁻¹(F_{i₁} + ... + F_{iₖ})`: 从Fibonacci和到整数的逆映射
+- $Z(n)$: 数$n$的Zeckendorf表示
+- $|Z(n)|$: Zeckendorf表示中项数
+- $Z^{-1}(F_{i_1} + \cdots + F_{i_k})$: 从Fibonacci和到整数的逆映射
 
 ### 8.3 二进制编码
-Zeckendorf表示可编码为二进制字符串：若 `n = Σᵢ∈I Fᵢ`，则编码为长度为max(I)的二进制字符串，第i位为1当且仅当i∈I。
+Zeckendorf表示可编码为二进制字符串：若 $n = \sum_{i \in I} F_i$，则编码为长度为$\max(I)$的二进制字符串，第$i$位为1当且仅当$i \in I$。
 
 **重要性质**: 此编码产生的所有字符串都满足禁11约束。
 

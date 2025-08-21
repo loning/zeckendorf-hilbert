@@ -91,9 +91,11 @@ $$\mathcal{T} = \{\mathcal{H}_1 \subset \mathcal{H}_2 \subset \mathcal{H}_3 \sub
 定义嵌入映射 $\iota_{n,n+1}: \mathcal{H}_n \to \mathcal{H}_{n+1}$：
 
 对于 $s \in \mathcal{L}_\varphi[n]$，定义：
-$$\iota_{n,n+1}(|s\rangle) = |0s\rangle + |s0\rangle$$
-
-当且仅当两个扩展都是合法的φ-语言字符串。
+$$\iota_{n,n+1}(|s\rangle) = \begin{cases}
+|0s\rangle & \text{如果 } 0s \in \mathcal{L}_\varphi[n+1] \\
+|s0\rangle & \text{如果 } s0 \in \mathcal{L}_\varphi[n+1] \text{ 且 } 0s \notin \mathcal{L}_\varphi[n+1] \\
+\frac{1}{\sqrt{2}}(|0s\rangle + |s0\rangle) & \text{如果两者都合法}
+\end{cases}$$
 
 **定理2.1** (嵌入的等距性)  
 嵌入映射 $\iota_{n,n+1}$ 是等距映射：

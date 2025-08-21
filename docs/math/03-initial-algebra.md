@@ -166,11 +166,11 @@ $$F_\varphi(f): F_\varphi(X) \to F_\varphi(Y)$$
 
 **定理3.6** (同态定理)  
 对于任意 $F_\varphi$-代数同态 $h: (A, \alpha) \to (B, \beta)$，下图交换：
-$$\begin{array}{ccc}
-F_\varphi(A) & \xrightarrow{F_\varphi(h)} & F_\varphi(B) \\
-\downarrow \alpha & & \downarrow \beta \\
-A & \xrightarrow{h} & B
-\end{array}$$
+$$\begin{CD}
+F_\varphi(A) @>{F_\varphi(h)}>> F_\varphi(B) \\
+@V{\alpha}VV @VV{\beta}V \\
+A @>>{h}> B
+\end{CD}$$
 
 ## 4. 自指性的代数表示
 

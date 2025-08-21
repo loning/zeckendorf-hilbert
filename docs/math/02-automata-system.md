@@ -211,7 +211,7 @@ $$\varphi = 1 + \cfrac{1}{1 + \cfrac{1}{1 + \cfrac{1}{1 + \cdots}}}$$
 这个无限连分数的收敛子序列恰好是 $\left\{\frac{F_{n+1}}{F_n}\right\}$。
 
 **推论5.2** (最优逼近)  
-在所有分母不超过 $F_n$ 的有理数中，$\frac{F_{n-1}}{F_n}$ 是 $\varphi$ 的最佳有理逼近。
+在所有分母不超过 $F_n$ 的有理数中，$\frac{F_{n-1}}{F_n}$ 是 $\frac{1}{\varphi}$ 的最佳有理逼近。
 
 ## 6. 接受语言与φ-语言的等价性
 
@@ -301,15 +301,15 @@ $$\pi^*_\infty = \left(\frac{1}{\varphi}, \frac{1}{\varphi^2}, \frac{1}{\varphi^
 输入：字符串 w ∈ Σ*
 输出：w ∈ L_φ ?
 
-state := q₀
+state := q_0
 for each symbol σ in w do
-    if state = q₀ and σ = '0' then
-        state := q₀
-    else if state = q₀ and σ = '1' then  
-        state := q₁
-    else if state = q₁ and σ = '0' then
-        state := q₀
-    else if state = q₁ and σ = '1' then
+    if state = q_0 and σ = '0' then
+        state := q_0
+    else if state = q_0 and σ = '1' then  
+        state := q_1
+    else if state = q_1 and σ = '0' then
+        state := q_0
+    else if state = q_1 and σ = '1' then
         return REJECT
     end if
 end for

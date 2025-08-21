@@ -234,7 +234,7 @@ $$k - \log_\varphi \sqrt{5} \lesssim \log_\varphi n \lesssim k + 1 - \log_\varph
 
 **定理6.3** (长度密度定理)  
 在前 $N$ 个自然数中，Zeckendorf编码长度为 $k$ 的数的个数渐近于：
-$$\#\{n \leq N : |\mathcal{Z}(n)| = k\} \sim \frac{F_{k+1}}{\varphi} \cdot N^{1-\log_\varphi 2}$$
+$$\#\{n \leq N : |\mathcal{Z}(n)| = k\} \sim F_{k+1} \cdot \left(\frac{N}{\sum_{i=1}^{\lceil \log_\varphi N \rceil} F_{i+1}}\right)$$
 
 ## 7. 总结与展望
 

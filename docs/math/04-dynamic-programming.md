@@ -7,7 +7,7 @@
 ### 1.1 最优子结构原理
 
 **定义1.1** (最优子结构)  
-问题具有**最优子结构**，当且仅当问题的最优解包含子问题的最优解。形式化地，对于问题 $P(n)$ 和子问题 $P(k)$ ($k < n$)：
+问题具有**最优子结构**，当且仅当问题的最优解包含子问题的最优解。形式化地，对于问题 $P(n)$ 和子问题 $P(k)$（其中 $k < n$）：
 $$\text{OPT}(n) = f(\text{OPT}(k_1), \text{OPT}(k_2), \ldots, \text{OPT}(k_m))$$
 其中 $k_i < n$ 且 $f$ 是确定性函数。
 
@@ -78,15 +78,26 @@ $$\varphi = \frac{1 + \sqrt{5}}{2}, \quad \psi = \frac{1 - \sqrt{5}}{2}$$
 对于我们的Fibonacci约定：
 $$F_n = \frac{\varphi^{n+1} - \psi^{n+1}}{\sqrt{5}}$$
 
-**证明**：设 $F_n = A\varphi^n + B\psi^n$，代入初始条件：
-- $F_0 = 0$：$A + B = 0$，得 $B = -A$
-- $F_1 = 1$：$A\varphi - A\psi = 1$，得 $A = \frac{1}{\varphi - \psi} = \frac{1}{\sqrt{5}}$
+**证明**：设通解形式为 $F_n = A\varphi^n + B\psi^n$。
 
-因此：
-$$F_n = \frac{1}{\sqrt{5}}(\varphi^n - \psi^n)$$
+对于我们的约定 $F_1 = 1, F_2 = 2$：
+- $F_1 = 1$：$A\varphi + B\psi = 1$
+- $F_2 = 2$：$A\varphi^2 + B\psi^2 = 2$
 
-对于我们的约定 $F_1 = 1, F_2 = 2$，需要调整指标：
-$$F_n = \frac{\varphi^{n+1} - \psi^{n+1}}{\sqrt{5}}$$ □
+由于 $\varphi^2 = \varphi + 1$ 和 $\psi^2 = \psi + 1$：
+- $A\varphi + B\psi = 1$
+- $A(\varphi + 1) + B(\psi + 1) = 2$
+
+展开第二个方程：$A\varphi + A + B\psi + B = 2$
+将第一个方程代入：$1 + A + B = 2$，得 $A + B = 1$
+
+结合 $A\varphi + B\psi = 1$ 和 $A + B = 1$：
+$A(\varphi - 1) + B(\psi - 1) = 0$
+
+由于 $\varphi - 1 = \frac{1}{\varphi}$ 和 $\psi - 1 = \frac{1}{\psi} = -\varphi$：
+解得 $A = \frac{1}{\sqrt{5}}$，$B = -\frac{1}{\sqrt{5}}$
+
+因此：$$F_n = \frac{\varphi^{n+1} - \psi^{n+1}}{\sqrt{5}}$$ □
 
 ### 2.3 渐近行为分析
 
@@ -101,7 +112,9 @@ $$\lim_{n \to \infty} \frac{F_{n+1}}{F_n} = \varphi$$
 $$F_n = \frac{\varphi^{n+1} - \psi^{n+1}}{\sqrt{5}} \sim \frac{\varphi^{n+1}}{\sqrt{5}}$$
 
 比值极限：
-$$\lim_{n \to \infty} \frac{F_{n+1}}{F_n} = \lim_{n \to \infty} \frac{\varphi^{n+2}/\sqrt{5}}{\varphi^{n+1}/\sqrt{5}} = \varphi$$ □
+$$\lim_{n \to \infty} \frac{F_{n+1}}{F_n} = \lim_{n \to \infty} \frac{\varphi^{n+2}/\sqrt{5}}{\varphi^{n+1}/\sqrt{5}} = \varphi$$
+
+□
 
 ### 2.4 误差分析
 
@@ -114,7 +127,9 @@ $$\left|F_n - \frac{\varphi^{n+1}}{\sqrt{5}}\right| < \frac{1}{2}$$
 $$\left|F_n - \frac{\varphi^{n+1}}{\sqrt{5}}\right| = \left|\frac{-\psi^{n+1}}{\sqrt{5}}\right| = \frac{|\psi|^{n+1}}{\sqrt{5}}$$
 
 由于 $|\psi| = \frac{\sqrt{5}-1}{2} \approx 0.618$ 且 $\sqrt{5} > 2$：
-$$\frac{|\psi|^{n+1}}{\sqrt{5}} < \frac{1}{2}$$ □
+$$\frac{|\psi|^{n+1}}{\sqrt{5}} < \frac{1}{2}$$
+
+□
 
 ## 3. 生成函数理论
 
@@ -127,7 +142,7 @@ $$F(x) = \sum_{n=1}^{\infty} F_n x^n$$
 **定理3.1** (生成函数的闭式)  
 $$F(x) = \frac{x(1+x)}{1-x-x^2}$$
 
-**证明**：由递推关系 $F_n = F_{n-1} + F_{n-2}$ ($n \geq 3$)：
+**证明**：由递推关系 $F_n = F_{n-1} + F_{n-2}$（当 $n \geq 3$ 时）：
 $$\sum_{n=3}^{\infty} F_n x^n = \sum_{n=3}^{\infty} F_{n-1} x^n + \sum_{n=3}^{\infty} F_{n-2} x^n$$
 
 即：
@@ -141,7 +156,9 @@ $$F(x) - x - 2x^2 + x^2 = (x + x^2)F(x)$$
 
 $$F(x)(1 - x - x^2) = x + x^2$$
 
-$$F(x) = \frac{x + x^2}{1 - x - x^2} = \frac{x(1+x)}{1-x-x^2}$$ □
+$$F(x) = \frac{x + x^2}{1 - x - x^2} = \frac{x(1+x)}{1-x-x^2}$$
+
+□
 
 ### 3.2 部分分式分解
 
@@ -165,7 +182,9 @@ $$A = \frac{\varphi(1+\varphi)}{(\varphi - \psi)} = \frac{\varphi(\varphi + 1)}{
 经计算得：$A = \frac{1}{\sqrt{5}}$，$B = -\frac{1}{\sqrt{5}}$。
 
 因此：
-$$F(x) = \frac{1}{\sqrt{5}} \left(\frac{1}{1-\varphi x} - \frac{1}{1-\psi x}\right)$$ □
+$$F(x) = \frac{1}{\sqrt{5}} \left(\frac{1}{1-\varphi x} - \frac{1}{1-\psi x}\right)$$
+
+□
 
 ### 3.3 级数展开与系数提取
 
@@ -212,8 +231,8 @@ $$\hat{F}(x) = \frac{1}{\sqrt{5}} \left(e^{\varphi x} \frac{\varphi}{1!} - e^{\p
 因此：$T(n) = T(n-1) + T(n-2)$
 
 **初始条件**：
-- $T(1) = 1$（只能放一个 $1 \times 1$）
-- $T(2) = 2$（两个 $1 \times 1$ 或一个 $1 \times 2$）
+- $T(1) = 1$（只能放一个 $1 \times 1$ 瓷砖）
+- $T(2) = 2$（两个 $1 \times 1$ 瓷砖或一个 $1 \times 2$ 瓷砖）
 
 **结论**：$T(n) = F_n$，即铺砖方法数等于Fibonacci数。
 
