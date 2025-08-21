@@ -46,7 +46,7 @@ U_n := \mathcal{H}_n = \mathrm{Span}_\mathbb{C}\{|s\rangle : s \in B_n\}
 ```
 - **基数**：$|B_1| = 2 = F_3$（存在/不存在）  
 - **语义**：最原始的宇宙理论，只回答"存在吗？"
-- **叠加态**：\alpha|0\rangle + \beta|1\rangle 其中 |\alpha|^2 + |\beta|^2 = 1
+- **叠加态**：$\alpha|0\rangle + \beta|1\rangle$ 其中 $|\alpha|^2 + |\beta|^2 = 1$
 - **量子性质**：存在的概率幅叠加，非经典二元性
 
 ### U₂：时间萌芽（维度=3）
@@ -84,7 +84,7 @@ U_n := \mathcal{H}_n = \mathrm{Span}_\mathbb{C}\{|s\rangle : s \in B_n\}
 - **基数**：$|B_8| = 55 = F_{10}$
 - **语义**：复杂性足够高，系统出现心智与意识结构
 - **递归自指**：存在算符 $\Psi: \mathcal{H}_8 \to \mathcal{H}_8$ 使得 $\Psi = \Psi \circ \Psi$
-- **意识阈值**：设C_consciousness = $\phi^{10} \approx 122.99$ bits，当系统信息容量超越此阈值时，意识现象涌现
+- **意识阈值**：设 $C_{\text{consciousness}} = \varphi^{10} \approx 122.99$ bits，当系统信息容量超越此阈值时，意识现象涌现
 
 ### U₁₀：宇宙法则（维度=144）
 ```math
@@ -121,10 +121,10 @@ U_n := \mathcal{H}_n = \mathrm{Span}_\mathbb{C}\{|s\rangle : s \in B_n\}
 
 ### 推论 C8.4.3（复杂性递增律）
 ```math
-\lim_{n \to \infty} \frac{\dim(U_{n+1})}{\dim(U_n)} = \phi = \frac{1+\sqrt{5}}{2}
+\lim_{n \to \infty} \frac{\dim(U_{n+1})}{\dim(U_n)} = \varphi = \frac{1+\sqrt{5}}{2}
 ```
 
-因此复杂度按黄金比例增长，在有限步数内实现"存在 → 时间 → 信息 → 观察者→ 意识 → 法则"的质的跨越。
+因此复杂度按黄金比例 $\varphi$ 增长，在有限步数内实现"存在 → 时间 → 信息 → 观察者→ 意识 → 法则"的质的跨越。
 
 ---
 
@@ -221,7 +221,7 @@ graph TB
 ### 关键数学约束
 - **No-11 约束**：确保 Zeckendorf 编码的合法性
 - **维度单调性**：$F_{n+2} < F_{n+3}$ 保证复杂性递增
-- **黄金比例渐近**：$\lim_{n \to \infty} \frac{F_{n+3}}{F_{n+2}} = \phi$ 
+- **黄金比例渐近**：$\lim_{n \to \infty} \frac{F_{n+3}}{F_{n+2}} = \varphi$ 
 - **信息论界限**：每个层级的信息容量有明确的 bits 计算
 
 ### 涌现机制的数学基础

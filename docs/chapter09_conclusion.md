@@ -68,7 +68,7 @@ $$\text{Meta-Theory} = (\text{A1}, \text{Zeckendorf 编码}, \otimes_Z, H)$$
 1. 若 $E'$ 允许非唯一表示，则存在 $s_1 \neq s_2$ 使得 $E'(s_1) = E'(s_2)$
 2. 当系统生成 $s_1$ 后再生成 $s_2$ 时，状态集合不增加：$|\Sigma'_{t+1}| = |\Sigma'_t|$
 3. 故 $H(\Sigma'_{t+1}) = H(\Sigma'_t)$，违背A1
-4. 因此任何满足A1的编码必须是唯一的，由命题P3.3，必为Zeckendorf编码 ∎
+4. 因此任何满足A1的编码必须是唯一的，由唯一性定理，必为Zeckendorf编码 ∎
 
 **推论**：本论文构造的$(\{\mathcal{H}_n\},\otimes_Z)$是满足A1的**唯一模型**（到同构）。
 

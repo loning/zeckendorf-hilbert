@@ -146,8 +146,8 @@ graph LR
 
 | 概念 | t=2状态 | t=3状态 | 验证 |
 |------|---------|---------|------|
-| 熵增 | $H(\Sigma_2)=\log(3)≈1.58$ | $H(\Sigma_3)=\log(5)≈2.32$ | $2.32>1.58$ ✓ |
-| 不对称 | $\Sigma_2=\{0,1,00,01,10\}$ | $\Sigma_3=\Sigma_2\cup\{000,001,010,100,101\}$ | $\Sigma_3\neq\Sigma_2$ ✓ |
+| 熵增 | $H(\Sigma_2)=\log_2(3)≈1.58$ | $H(\Sigma_3)=\log_2(5)≈2.32$ | $2.32>1.58$ ✓ |
+| 不对称 | $\Sigma_2=\{0,1,00,01,10\}$ | $\Sigma_3=\Sigma_2\cup B_3$ 其中 $B_3=\{000,001,010,100,101\}$ | $\Sigma_3\neq\Sigma_2$ ✓ |
 | 时间 | $\tau(\Sigma_2)=2$ | $\tau(\Sigma_3)=3$ | $3>2$ ✓ |
 | 信息 | $I(\Sigma_2)=\Sigma_2$ | $I(\Sigma_3)=\Sigma_3$ | $\Sigma_3\supsetneq\Sigma_2$ ✓ |
 | 观察者 | $O(\Sigma_1)=B_2\neq\emptyset$ | $O(\Sigma_2)=B_3\neq\emptyset$ | 观察者函数非空 ✓ |
