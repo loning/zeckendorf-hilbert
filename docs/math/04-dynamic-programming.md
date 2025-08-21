@@ -166,7 +166,8 @@ $$F(x) = \frac{x + x^2}{1 - x - x^2} = \frac{x(1+x)}{1-x-x^2}$$
 $$F(x) = \frac{x(1+x)}{1-x-x^2} = \frac{1}{1-\varphi x} - \frac{1}{1-\psi x}$$
 
 **证明**：首先因式分解分母：
-$$1 - x - x^2 = -(x^2 + x - 1) = -(x - \varphi)(x - \psi) \cdot (-1) = (1 - \varphi x)(1 - \psi x)$$
+$$1 - x - x^2 = -(x^2 + x - 1)$$
+$$= -(x - \varphi)(x - \psi) \cdot (-1) = (1 - \varphi x)(1 - \psi x)$$
 
 所以：
 $$F(x) = \frac{x(1+x)}{(1-\varphi x)(1-\psi x)}$$
@@ -175,7 +176,8 @@ $$F(x) = \frac{x(1+x)}{(1-\varphi x)(1-\psi x)}$$
 $$\frac{x(1+x)}{(1-\varphi x)(1-\psi x)} = \frac{A}{1-\varphi x} + \frac{B}{1-\psi x}$$
 
 通过系数比较或留数法：
-$$A = \frac{\varphi(1+\varphi)}{(\varphi - \psi)} = \frac{\varphi(\varphi + 1)}{\sqrt{5}} = \frac{\varphi \cdot \varphi^2}{\sqrt{5}} = \frac{\varphi^3}{\sqrt{5}}$$
+$$A = \frac{\varphi(1+\varphi)}{(\varphi - \psi)} = \frac{\varphi(\varphi + 1)}{\sqrt{5}}$$
+$$= \frac{\varphi \cdot \varphi^2}{\sqrt{5}} = \frac{\varphi^3}{\sqrt{5}}$$
 
 由于 $\varphi^2 = \varphi + 1$，有 $\varphi^3 = \varphi(\varphi + 1) = \varphi^2 + \varphi = (\varphi + 1) + \varphi = 2\varphi + 1$。
 
@@ -334,7 +336,9 @@ $$F_n = \frac{\varphi^{n+1}}{\sqrt{5}} - \frac{\psi^{n+1}}{\sqrt{5}}$$
 当 $n$ 很大时：
 $$F_n = \frac{\varphi^{n+1}}{\sqrt{5}} \left(1 - \frac{\psi^{n+1}}{\varphi^{n+1}} \right) = \frac{\varphi^{n+1}}{\sqrt{5}} \left(1 + O\left(\left(\frac{\psi}{\varphi}\right)^{n+1}\right)\right)$$
 
-由于 $\left|\frac{\psi}{\varphi}\right| = \frac{|\psi|}{\varphi} = \frac{\sqrt{5}-1}{1+\sqrt{5}} \cdot \frac{1+\sqrt{5}}{1+\sqrt{5}} = \frac{(\sqrt{5}-1)(1+\sqrt{5})}{(1+\sqrt{5})^2} = \frac{\sqrt{5}+5-1-\sqrt{5}}{(1+\sqrt{5})^2} = \frac{4}{(1+\sqrt{5})^2} \approx 0.146$，
+由于：
+$$\left|\frac{\psi}{\varphi}\right| = \frac{|\psi|}{\varphi} = \frac{\sqrt{5}-1}{1+\sqrt{5}} \cdot \frac{1+\sqrt{5}}{1+\sqrt{5}} = \frac{(\sqrt{5}-1)(1+\sqrt{5})}{(1+\sqrt{5})^2}$$
+$$= \frac{\sqrt{5}+5-1-\sqrt{5}}{(1+\sqrt{5})^2} = \frac{4}{(1+\sqrt{5})^2} \approx 0.146$$
 
 误差项衰减很快。
 

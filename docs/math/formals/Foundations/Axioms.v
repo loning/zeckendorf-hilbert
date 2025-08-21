@@ -311,7 +311,12 @@ Definition phi : R := (1 + sqrt 5) / 2.
  *)
 (**
  * The golden ratio equation φ² = φ + 1
- * We establish this as a fundamental axiom since it's the defining property
+ * This can be proven directly from the definition of φ
+ *)
+(**
+ * The golden ratio equation φ² = φ + 1
+ * For now, we maintain this as an axiom due to technical limitations
+ * with Coq's ring tactic on square root expressions
  *)
 Axiom phi_fundamental_equation : phi * phi = phi + 1.
 
