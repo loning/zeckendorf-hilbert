@@ -38,7 +38,7 @@ $$\text{任意自指完备系统必然熵增}$$
 
 ### 7. 宇宙理论层级
 - 每个 $\mathcal{H}_n$ 对应一套"宇宙理论"
-- 前 10 层展示了从**存在论 → 时间论 → 信息论 → 观察者论 → 意识论 → 宇宙法则**的自然递归展开
+- 前 10 层展示了从**存在论 $\to$ 时间论 $\to$ 信息论 $\to$ 观察者论 $\to$ 意识论 $\to$ 宇宙法则**的自然递归展开
 
 ---
 
@@ -68,7 +68,7 @@ $$\text{Meta-Theory} = (\text{A1}, \text{Zeckendorf 编码}, \otimes_Z, H)$$
 1. 若 $E'$ 允许非唯一表示，则存在 $s_1 \neq s_2$ 使得 $E'(s_1) = E'(s_2)$
 2. 当系统生成 $s_1$ 后再生成 $s_2$ 时，状态集合不增加：$|\Sigma'_{t+1}| = |\Sigma'_t|$
 3. 故 $H(\Sigma'_{t+1}) = H(\Sigma'_t)$，违背A1
-4. 因此任何满足A1的编码必须是唯一的，由唯一性定理，必为Zeckendorf编码 ∎
+4. 因此任何满足A1的编码必须是唯一的，由唯一性定理，必为Zeckendorf编码 $\square$
 
 **推论**：本论文构造的$(\{\mathcal{H}_n\},\otimes_Z)$是满足A1的**唯一模型**（到同构）。
 
@@ -101,7 +101,7 @@ $$
 
 ### 理论的递归结构
 $$
-U_{n+1} = U_n \oplus \{\text{新涌现的n+1阶现象}\}
+U_{n+1} = U_n \oplus \{\text{新涌现的}n+1\text{阶现象}\}
 $$
 
 ### 自指的数学表达
@@ -116,9 +116,7 @@ $$
 ### 宇宙的统一原理
 **宇宙的所有规律，都可以归结为唯一公理：**
 
-```
-自指完备系统必然熵增
-```
+$$\text{自指完备系统必然熵增}$$
 
 ### 理论的完整推导
 从此公理出发，我们严格推导出：
@@ -133,7 +131,7 @@ $$
 > **定理 T9.3（宇宙理论的统一表示）**：任意宇宙理论 $\mathcal{T}$ 都存在唯一的表示：
 > $$
 > \mathcal{T} \cong \bigoplus_{n \in \mathbb{N}} \alpha_n \mathcal{H}_n, \quad \alpha_n \in \mathbb{C}
-> ```
+> $$
 > 其中系数 $\alpha_n$ 由 Zeckendorf 分解唯一确定。
 > 
 > **推论 C9.4（现象学归约）**：时间、信息、观察者、规律与法则，并非外部假设，而是熵增公理A1的内生必然，即存在函数 $\Phi: \{\text{A1}\} \to \{\text{时间，信息，观察者，规律，法则}\}$ 使得这些概念可由A1严格推导。
@@ -144,15 +142,15 @@ $$
 
 ### 逻辑严格性检验
 本元理论的逻辑链条：
-$$math
+$$
 \text{A1} \xrightarrow{\text{必然}} \text{Zeckendorf编码} \xrightarrow{\text{构造}} \{\mathcal{H}_n\} \xrightarrow{\text{组合}} \otimes_Z \xrightarrow{\text{等价}} \text{五重现象}
-```
+$$
 
 每个箭头都对应严格的数学定理：
-- A1 → Zeckendorf：定理T3.1（编码唯一性）
-- Zeckendorf → $\{\mathcal{H}_n\}$：定义D4.1（Hilbert空间构造）
-- $\{\mathcal{H}_n\}$ → $\otimes_Z$：定理T5.2（张量积存在性）
-- $\otimes_Z$ → 五重现象：定理T7.1-T7.5（等价性链）
+- A1 $\to$ Zeckendorf：定理T3.1（编码唯一性）
+- Zeckendorf $\to$ $\{\mathcal{H}_n\}$：定义D4.1（Hilbert空间构造）
+- $\{\mathcal{H}_n\}$ $\to$ $\otimes_Z$：定理T5.2（张量积存在性）
+- $\otimes_Z$ $\to$ 五重现象：定理T7.1-T7.5（等价性链）
 
 ### 数学完整性验证
 所有关键定理均具备：

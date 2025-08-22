@@ -1,8 +1,6 @@
 # Summary
 
 - [引言](./index.md)
-
-## 核心理论
 - [摘要](./abstract.md)
 - [第1章 引言](./chapter01_introduction.md)
 - [第2章 公理与基础定义](./chapter02_axioms.md)
@@ -13,7 +11,20 @@
 - [第7章 五重等价性](./chapter07_equivalence.md)
 - [第8章 宇宙理论层级](./chapter08_hierarchy.md)
 - [第9章 元理论总结](./chapter09_conclusion.md)
-
-## 附录
-- [数学验证与示例](./appendix_math.md)
-- [可视化与图表](./appendix_visual.md)
+- [Zeckendorf数学体系概览](./math/README.md)
+    - [基础记号与约定](./math/00-basic-notation.md)
+    - [φ-语言编码理论](./math/01-language-encoding.md)
+    - [自动机状态系统](./math/02-automata-system.md)
+    - [初始代数结构](./math/03-initial-algebra.md)
+    - [动态规划与递推](./math/04-dynamic-programming.md)
+    - [Hilbert塔构造](./math/05-hilbert-tower.md)
+    - [张量积定律](./math/06-tensor-law.md)
+    - [谱分解理论](./math/07-spectral-decomposition.md)
+    - [连续极限分析](./math/08-continuous-limit.md)
+    - [熵率增长理论](./math/09-entropy-rate.md)
+    - [范畴等价理论](./math/10-categorical-equivalence.md)
+    - [算法验证框架](./math/11-algorithms-verification.md)
+    - [自指循环完备性](./math/12-circular-completeness.md)
+    - [严格数学证明](./math/13-appendix-proofs.md)
+    - [数学验证与示例](./appendix_math.md)
+    - [可视化与图表](./appendix_visual.md)
