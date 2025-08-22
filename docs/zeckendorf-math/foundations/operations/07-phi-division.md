@@ -1,7 +1,7 @@
 # φ-除法运算理论
 
-## 定义 8.1（φ-整数除法运算）
-定义φ-整数除法运算 $\div_\phi: \mathbb{F}\mathbb{N} \times (\mathbb{F}\mathbb{N} \setminus \{\mathbf{0}_\phi\}) \to \mathbb{F}\mathbb{N} \times \mathbb{F}\mathbb{N}$ 为：
+## 定义 8.1（φ-除法运算）
+定义φ-除法运算 $\div_\phi: \mathbb{F}\mathbb{N} \times (\mathbb{F}\mathbb{N} \setminus \{\mathbf{0}_\phi\}) \to \mathbb{F}\mathbb{N} \times \mathbb{F}\mathbb{N}$ 为：
 $$s_1 \div_\phi s_2 = (\psi(q), \psi(r))$$
 
 其中 $q, r \in \mathbb{N}$ 满足：
@@ -110,21 +110,21 @@ $$\frac{s_1}{s_2} \sim \frac{\text{quot}_\phi(s_1, d)}{\text{quot}_\phi(s_2, d)}
 由于 $d \mid_\phi s_1$ 和 $d \mid_\phi s_2$，商均良定义。
 最简性由φ-最大公因数的性质保证。 ∎
 
-## 定理 8.7（φ-除法的算法复杂度特征）
+## 定理 8.7（φ-除法的计算特征）
 φ-除法运算包含以下计算步骤：
 
 1. **解码**：计算 $\omega(s_1)$ 和 $\omega(s_2)$
 2. **标准除法**：计算 $\omega(s_1) \div \omega(s_2) = (q, r)$  
 3. **编码**：计算 $\psi(q)$ 和 $\psi(r)$
 
-各步骤均可在有限时间内完成。
+各步骤均可通过有限步骤完成。
 
 **证明：**
 步骤1和3的有限性由定理5.4保证。
-步骤2的有限性由自然数除法算法的确定性保证。 ∎
+步骤2的有限性由自然数除法运算的确定性保证。 ∎
 
-## 定理 8.8（φ-除法环结构预备）
-φ-除法运算不形成群结构，但在非零元素上定义部分运算：
+## 定理 8.8（φ-倒数的存在性限制）
+在φ-自然数系统中，倒数运算受到限制：
 
 对 $s \in \mathbb{F}\mathbb{N} \setminus \{\mathbf{0}_\phi\}$，定义**φ-倒数存在条件**：
 当且仅当 $s = \mathbf{1}_\phi$ 时，存在 $s^{-1}_\phi = s$ 使得 $s \otimes_\phi s^{-1}_\phi = \mathbf{1}_\phi$。
@@ -133,11 +133,11 @@ $$\frac{s_1}{s_2} \sim \frac{\text{quot}_\phi(s_1, d)}{\text{quot}_\phi(s_2, d)}
 在 $\mathbb{F}\mathbb{N}$ 中，只有单位元1的倒数是自身。
 其他元素的倒数需要在φ-有理数扩张中定义。 ∎
 
-## 推论 8.2（整数环结构限制）
-$(\mathbb{F}\mathbb{N}, \oplus_\phi, \otimes_\phi)$ 构成整环结构，但不是域。
+## 推论 8.2（半环结构限制）
+$(\mathbb{F}\mathbb{N}, \oplus_\phi, \otimes_\phi)$ 构成交换半环结构，但不是环（缺乏加法逆元）。
 
 φ-除法运算为后续φ-有理数系统的构造奠定基础。
 
 **证明：**
-整环性由加法和乘法的交换律、结合律、分配律以及无零因子性保证。
-非域性由定理8.8的倒数存在限制得出。 ∎
+半环性由加法和乘法的交换律、结合律、分配律保证。
+非环性由$\mathbb{F}\mathbb{N}$中除$\mathbf{0}_\phi$外无元素具有加法逆元得出。 ∎

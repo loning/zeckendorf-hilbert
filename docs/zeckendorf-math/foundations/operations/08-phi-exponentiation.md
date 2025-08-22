@@ -54,7 +54,7 @@ $$s_1 \uparrow_\phi s_2 = \psi(\omega(s_1)^{\omega(s_2)})$$
 
 2. **单位指数律**：$s \uparrow_\phi \mathbf{1}_\phi = s$ 对所有 $s \in \mathbb{F}\mathbb{N}$
 
-3. **零底数律**：$\mathbf{0}_\phi \uparrow_\phi s = \mathbf{0}_\phi$ 对所有 $s \neq \mathbf{0}_\phi$
+3. **零底数律**：$\mathbf{0}_\phi \uparrow_\phi s = \mathbf{0}_\phi$ 对所有 $s \succ_\phi \mathbf{0}_\phi$
 
 4. **单位底数律**：$\mathbf{1}_\phi \uparrow_\phi s = \mathbf{1}_\phi$ 对所有 $s \in \mathbb{F}\mathbb{N}$
 
@@ -63,7 +63,7 @@ $$s_1 \uparrow_\phi s_2 = \psi(\omega(s_1)^{\omega(s_2)})$$
 
 2. $s \uparrow_\phi \mathbf{1}_\phi = \psi(\omega(s)^{\omega(\mathbf{1}_\phi)}) = \psi(\omega(s)^1) = \psi(\omega(s)) = s$
 
-3. $\mathbf{0}_\phi \uparrow_\phi s = \psi(0^{\omega(s)}) = \psi(0) = \mathbf{0}_\phi$（当$\omega(s) > 0$时）
+3. $\mathbf{0}_\phi \uparrow_\phi s = \psi(0^{\omega(s)}) = \psi(0) = \mathbf{0}_\phi$（当$\omega(s) \geq 1$时）
 
 4. $\mathbf{1}_\phi \uparrow_\phi s = \psi(1^{\omega(s)}) = \psi(1) = \mathbf{1}_\phi$ ∎
 
@@ -107,7 +107,7 @@ $$\psi(F_i) \uparrow_\phi \psi(F_j) = \psi(\omega(\psi(F_i))^{\omega(\psi(F_j))}
 对 $s_1 \in \mathbb{F}\mathbb{N}$ 和 $s_2 \neq \mathbf{0}_\phi$：
 $$s_1 \uparrow_\phi s_2 = s_1 \otimes_\phi (s_1 \uparrow_\phi (s_2 \ominus_\phi \mathbf{1}_\phi))$$
 
-其中 $\ominus_\phi$ 为φ-减法运算（当 $s_2 \succ_\phi \mathbf{1}_\phi$ 时）。
+其中定义φ-减法运算：当 $s_2 \succ_\phi \mathbf{1}_\phi$ 时，$s_2 \ominus_\phi \mathbf{1}_\phi = \psi(\omega(s_2) - 1)$。
 
 **证明：**
 设 $n_1 = \omega(s_1), n_2 = \omega(s_2)$。当 $n_2 \geq 1$ 时：
@@ -118,19 +118,19 @@ $$s_1 \uparrow_\phi s_2 = s_1 \otimes_\phi (s_1 \uparrow_\phi \psi(n_2-1))$$
 
 由于 $\psi(n_2-1) = \psi(\omega(s_2)-1) = s_2 \ominus_\phi \mathbf{1}_\phi$，递归性质成立。 ∎
 
-## 定理 9.7（φ-幂运算的计算复杂度特征）
+## 定理 9.7（φ-幂运算的计算特征）
 φ-幂运算的计算包含以下步骤：
 
 1. **解码**：计算 $\omega(s_1)$ 和 $\omega(s_2)$
 2. **标准幂运算**：计算 $\omega(s_1)^{\omega(s_2)}$
 3. **编码**：计算 $\psi(\omega(s_1)^{\omega(s_2)})$
 
-其中步骤2的复杂度增长极快，步骤3可能产生极长的φ-编码。
+所有步骤在理论上均可通过有限步骤完成。
 
 **证明：**
 步骤1和3的有限性由定理5.4保证。
-步骤2虽然确定，但结果大小为指数级增长。
-步骤3需处理可能非常大的自然数的Zeckendorf分解。 ∎
+步骤2的确定性由自然数幂运算的良定义性保证。
+步骤3的可行性由双射$\psi$的存在性保证。 ∎
 
 ## 引理 9.2（φ-幂运算的不可交换性）
 φ-幂运算不满足交换律：一般地，$s_1 \uparrow_\phi s_2 \neq s_2 \uparrow_\phi s_1$。

@@ -98,13 +98,11 @@ $$s_1 \preceq_\phi s_2 \Rightarrow s_1 \otimes_\phi t \preceq_\phi s_2 \otimes_\
 设 $F_i, F_j$ 为Fibonacci数，$i, j \geq 1$，则：
 $$\psi(F_i \cdot F_j) \in \mathbb{F}\mathbb{N}$$
 
-且存在有效算法计算其φ-编码表示。
-
 **证明：**
 由于 $F_i \cdot F_j \in \mathbb{N}$ 且 $\psi: \mathbb{N} \to \mathbb{F}\mathbb{N}$ 为双射，
 $\psi(F_i \cdot F_j)$ 必然存在且唯一属于 $\mathbb{F}\mathbb{N}$。
 
-算法存在性由定理5.2的构造性证明保证。 ∎
+存在性由定理5.2的构造性质保证。 ∎
 
 ## 定理 7.9（φ-乘法的Fibonacci乘积恒等式）
 对Fibonacci指标 $i, j \geq 1$：
@@ -130,13 +128,13 @@ $(\mathbb{F}\mathbb{N}, \oplus_\phi, \otimes_\phi, \mathbf{0}_\phi, \mathbf{1}_\
 由定理7.6知分配律成立；
 由定理7.5知零元的零化性质成立。 ∎
 
-## 定理 7.10（φ-乘法的计算复杂度特征）
-φ-乘法运算的计算涉及：
-1. 解码步骤的复杂度由输入φ-编码的长度决定
-2. 标准乘法的复杂度由解码得到的自然数大小决定  
-3. 编码步骤的复杂度由乘积结果的Zeckendorf分解决定
+## 定理 7.10（φ-乘法的计算特征）
+φ-乘法运算的计算过程包含：
+1. 解码步骤：计算$\omega(s_1)$和$\omega(s_2)$
+2. 标准乘法：计算$\omega(s_1) \cdot \omega(s_2)$
+3. 编码步骤：计算$\psi(\omega(s_1) \cdot \omega(s_2))$
 
 所有步骤在理论上均可通过有限步骤完成。
 
 **证明：**
-各步骤的有限性由定理5.4的算法复杂度分析和乘法运算的确定性保证。 ∎
+各步骤的有限性由定理5.4的构造性质和乘法运算的确定性保证。 ∎
