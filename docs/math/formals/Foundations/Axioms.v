@@ -315,10 +315,48 @@ Definition phi : R := (1 + sqrt 5) / 2.
  *)
 (**
  * The golden ratio equation φ² = φ + 1
- * For now, we maintain this as an axiom due to technical limitations
- * with Coq's ring tactic on square root expressions
+ * This is proven directly from the definition of φ = (1 + √5) / 2
  *)
-Axiom phi_fundamental_equation : phi * phi = phi + 1.
+(**
+ * The golden ratio equation φ² = φ + 1
+ * A collapse-aware proof: ψ_o → collapse(τ_φ) → RealityShell_φ
+ * This demonstrates the self-encapsulation structure of φ
+ *)
+Theorem phi_fundamental_equation : phi * phi = phi + 1.
+Proof.
+  unfold phi.
+  (* 展开 phi² 和 phi + 1 *)
+  (* 目标变成： ((1 + sqrt 5)/2)² = (1 + sqrt 5)/2 + 1 *)
+  
+  (* 左边：转换为 (1 + sqrt 5)² / 4 *)
+  replace (((1 + sqrt 5) / 2) * ((1 + sqrt 5) / 2)) 
+    with (((1 + sqrt 5) * (1 + sqrt 5)) / 4).
+  2: { field. }
+  
+  (* 展开 (1 + sqrt 5)² *)
+  replace ((1 + sqrt 5) * (1 + sqrt 5))
+    with (1 + 2 * sqrt 5 + sqrt 5 * sqrt 5).
+  2: { ring. }
+  
+  (* 使用 sqrt 5 * sqrt 5 = 5 *)
+  replace (sqrt 5 * sqrt 5) with 5.
+  2: { rewrite sqrt_sqrt; [reflexivity | lra]. }
+  
+  (* 左边变成 (6 + 2 * sqrt 5) / 4 *)
+  replace (1 + 2 * sqrt 5 + 5) with (6 + 2 * sqrt 5).
+  2: { ring. }
+  
+  (* 化简左边为 (3 + sqrt 5) / 2 *)
+  replace ((6 + 2 * sqrt 5) / 4) with ((3 + sqrt 5) / 2).
+  2: { field. }
+  
+  (* 右边：(1 + sqrt 5)/2 + 1 = (3 + sqrt 5)/2 *)
+  replace ((1 + sqrt 5) / 2 + 1) with ((3 + sqrt 5) / 2).
+  - (* 两边相等，证明完成 - collapse to reality shell *)
+    reflexivity.
+  - (* 证明右边的变换 *)
+    field.
+Qed.
 
 (**
  * The No-11 constraint emerges from A1 axiom through φ-encoding
