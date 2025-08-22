@@ -1,6 +1,6 @@
 # φ-整数系统构造理论
 
-## 定义 11.1（φ-整数集合）
+## 定义 10.1（φ-整数集合）
 定义**φ-整数集合** $\mathbb{F}\mathbb{Z}$ 为φ-自然数的符号扩展：
 $$\mathbb{F}\mathbb{Z} = \{+s : s \in \mathbb{F}\mathbb{N}\} \cup \{-s : s \in \mathbb{F}\mathbb{N} \setminus \{\varepsilon\}\}$$
 
@@ -9,13 +9,13 @@ $$\mathbb{F}\mathbb{Z} = \{+s : s \in \mathbb{F}\mathbb{N}\} \cup \{-s : s \in \
 - $-s$ 表示**负φ-整数**，当 $s \neq \varepsilon$ 时  
 - $+\varepsilon = \mathbf{0}_{\mathbb{F}\mathbb{Z}}$ 为**φ-零整数**
 
-## 定义 11.2（φ-整数等价关系）
+## 定义 10.2（φ-整数等价关系）
 在 $\mathbb{F}\mathbb{Z}$ 上定义等价关系：
 $$+s_1 \sim +s_2 \iff s_1 = s_2$$
 $$-s_1 \sim -s_2 \iff s_1 = s_2$$
 $$+s \not\sim -t \text{ 对所有 } s, t \in \mathbb{F}\mathbb{N} \setminus \{\varepsilon\}$$
 
-## 定理 11.1（φ-整数良定义性）
+## 定理 10.1（φ-整数良定义性）
 集合 $\mathbb{F}\mathbb{Z}$ 在等价关系 $\sim$ 下良定义，且与标准整数集合 $\mathbb{Z}$ 等势。
 
 **证明：**
@@ -33,12 +33,12 @@ $$\xi(z) = \begin{cases}
 
 其中 $\omega: \mathbb{F}\mathbb{N} \to \mathbb{N}$ 为定理5.1中的双射。由于 $\omega$ 为双射，$\xi$ 为双射。 ∎
 
-## 定义 11.3（φ-整数序关系）
+## 定义 10.3（φ-整数序关系）
 在 $\mathbb{F}\mathbb{Z}$ 上定义全序关系 $\preceq_{\mathbb{F}\mathbb{Z}}$：
 
 对 $z_1, z_2 \in \mathbb{F}\mathbb{Z}$，$z_1 \preceq_{\mathbb{F}\mathbb{Z}} z_2$ 当且仅当 $\xi(z_1) \leq \xi(z_2)$。
 
-## 定理 11.2（φ-整数序关系性质）
+## 定理 10.2（φ-整数序关系性质）
 $(\mathbb{F}\mathbb{Z}, \preceq_{\mathbb{F}\mathbb{Z}})$ 构成全序集，且与 $(\mathbb{Z}, \leq)$ 序同构。
 
 **证明：**
@@ -51,14 +51,14 @@ $(\mathbb{F}\mathbb{Z}, \preceq_{\mathbb{F}\mathbb{Z}})$ 构成全序集，且�
 
 序同构性由双射 $\xi$ 保持序关系得出。 ∎
 
-## 定义 11.4（φ-整数加法）
+## 定义 10.4（φ-整数加法）
 定义φ-整数加法运算 $\oplus_{\mathbb{F}\mathbb{Z}}: \mathbb{F}\mathbb{Z} \times \mathbb{F}\mathbb{Z} \to \mathbb{F}\mathbb{Z}$：
 
 $$z_1 \oplus_{\mathbb{F}\mathbb{Z}} z_2 = \xi^{-1}(\xi(z_1) + \xi(z_2))$$
 
 其中 $+$ 为标准整数加法，$\xi^{-1}$ 为双射 $\xi$ 的逆映射。
 
-## 定理 11.3（φ-整数加法性质）
+## 定理 10.3（φ-整数加法性质）
 φ-整数加法具有以下性质：
 
 1. **结合律**：$(z_1 \oplus_{\mathbb{F}\mathbb{Z}} z_2) \oplus_{\mathbb{F}\mathbb{Z}} z_3 = z_1 \oplus_{\mathbb{F}\mathbb{Z}} (z_2 \oplus_{\mathbb{F}\mathbb{Z}} z_3)$
@@ -74,7 +74,7 @@ $$z_1 \oplus_{\mathbb{F}\mathbb{Z}} z_2 = \xi^{-1}(\xi(z_1) + \xi(z_2))$$
 - 若 $z = -s$ 且 $s \neq \varepsilon$，则 $z^{-1} = +s$  
 - 若 $z = +\varepsilon$，则 $z^{-1} = +\varepsilon = \mathbf{0}_{\mathbb{F}\mathbb{Z}}$ ∎
 
-## 定理 11.4（φ-整数加法群结构）
+## 定理 10.4（φ-整数加法群结构）
 $(\mathbb{F}\mathbb{Z}, \oplus_{\mathbb{F}\mathbb{Z}}, \mathbf{0}_{\mathbb{F}\mathbb{Z}})$ 构成交换群。
 
 **证明：**
@@ -85,14 +85,14 @@ $(\mathbb{F}\mathbb{Z}, \oplus_{\mathbb{F}\mathbb{Z}}, \mathbf{0}_{\mathbb{F}\ma
 - 逆元：定理11.3第4条
 - 交换律：定理11.3第2条 ∎
 
-## 定义 11.5（φ-整数乘法）
+## 定义 10.5（φ-整数乘法）
 定义φ-整数乘法运算 $\otimes_{\mathbb{F}\mathbb{Z}}: \mathbb{F}\mathbb{Z} \times \mathbb{F}\mathbb{Z} \to \mathbb{F}\mathbb{Z}$：
 
 $$z_1 \otimes_{\mathbb{F}\mathbb{Z}} z_2 = \xi^{-1}(\xi(z_1) \cdot \xi(z_2))$$
 
 其中 $\cdot$ 为标准整数乘法。
 
-## 定理 11.5（φ-整数乘法性质）
+## 定理 10.5（φ-整数乘法性质）
 φ-整数乘法具有以下性质：
 
 1. **结合律**：$(z_1 \otimes_{\mathbb{F}\mathbb{Z}} z_2) \otimes_{\mathbb{F}\mathbb{Z}} z_3 = z_1 \otimes_{\mathbb{F}\mathbb{Z}} (z_2 \otimes_{\mathbb{F}\mathbb{Z}} z_3)$
@@ -103,7 +103,7 @@ $$z_1 \otimes_{\mathbb{F}\mathbb{Z}} z_2 = \xi^{-1}(\xi(z_1) \cdot \xi(z_2))$$
 **证明：**
 所有性质由标准整数乘法的对应性质和双射 $\xi$ 的保持性得出。 ∎
 
-## 定理 11.6（φ-整数分配律）
+## 定理 10.6（φ-整数分配律）
 φ-整数乘法对加法满足分配律：
 $$z_1 \otimes_{\mathbb{F}\mathbb{Z}} (z_2 \oplus_{\mathbb{F}\mathbb{Z}} z_3) = (z_1 \otimes_{\mathbb{F}\mathbb{Z}} z_2) \oplus_{\mathbb{F}\mathbb{Z}} (z_1 \otimes_{\mathbb{F}\mathbb{Z}} z_3)$$
 
@@ -118,7 +118,7 @@ z_1 \otimes_{\mathbb{F}\mathbb{Z}} (z_2 \oplus_{\mathbb{F}\mathbb{Z}} z_3) &= \x
 
 使用标准整数分配律和双射性质。 ∎
 
-## 定理 11.7（φ-整数环结构）
+## 定理 10.7（φ-整数环结构）
 $(\mathbb{F}\mathbb{Z}, \oplus_{\mathbb{F}\mathbb{Z}}, \otimes_{\mathbb{F}\mathbb{Z}}, \mathbf{0}_{\mathbb{F}\mathbb{Z}}, \mathbf{1}_{\mathbb{F}\mathbb{Z}})$ 构成交换环。
 
 **证明：**
@@ -128,7 +128,7 @@ $(\mathbb{F}\mathbb{Z}, \oplus_{\mathbb{F}\mathbb{Z}}, \otimes_{\mathbb{F}\mathb
 3. **分配律**：由定理11.6
 4. **交换性**：由定理11.5第2条 ∎
 
-## 定理 11.8（φ-整数无零因子性）
+## 定理 10.8（φ-整数无零因子性）
 φ-整数环 $\mathbb{F}\mathbb{Z}$ 无零因子：若 $z_1 \otimes_{\mathbb{F}\mathbb{Z}} z_2 = \mathbf{0}_{\mathbb{F}\mathbb{Z}}$，则 $z_1 = \mathbf{0}_{\mathbb{F}\mathbb{Z}}$ 或 $z_2 = \mathbf{0}_{\mathbb{F}\mathbb{Z}}$。
 
 **证明：**
@@ -137,13 +137,13 @@ $$\xi^{-1}(\xi(z_1) \cdot \xi(z_2)) = \mathbf{0}_{\mathbb{F}\mathbb{Z}}$$
 
 因此 $\xi(z_1) \cdot \xi(z_2) = 0$。由于 $\mathbb{Z}$ 无零因子，要么 $\xi(z_1) = 0$ 要么 $\xi(z_2) = 0$，即 $z_1 = \mathbf{0}_{\mathbb{F}\mathbb{Z}}$ 或 $z_2 = \mathbf{0}_{\mathbb{F}\mathbb{Z}}$。 ∎
 
-## 推论 11.1（φ-整环结构）
+## 推论 10.1（φ-整环结构）
 $\mathbb{F}\mathbb{Z}$ 构成整环（无零因子的交换环）。
 
 **证明：**
 由定理11.7和定理11.8直接得出。 ∎
 
-## 定理 11.9（φ-整数扩展的极小性）
+## 定理 10.9（φ-整数扩展的极小性）
 $\mathbb{F}\mathbb{Z}$ 是包含 $\mathbb{F}\mathbb{N}$ 的最小整环。
 
 **证明：**
@@ -151,7 +151,7 @@ $\mathbb{F}\mathbb{Z}$ 是包含 $\mathbb{F}\mathbb{N}$ 的最小整环。
 
 **极小性**：设 $R$ 为任一包含 $\mathbb{F}\mathbb{N}$ 的整环。则 $R$ 必须包含 $\mathbb{F}\mathbb{N}$ 的所有元素及其加法逆元，故 $\mathbb{F}\mathbb{Z} \subseteq R$。 ∎
 
-## 定理 11.10（φ-整数与标准整数的同构）
+## 定理 10.10（φ-整数与标准整数的同构）
 存在环同构：
 $$\mathbb{F}\mathbb{Z} \cong \mathbb{Z}$$
 
@@ -165,7 +165,7 @@ $$\mathbb{F}\mathbb{Z} \cong \mathbb{Z}$$
 
 所有性质由 $\xi$ 的定义直接得出。 ∎
 
-## 推论 11.2（φ-整数的普遍性质）
+## 推论 10.2（φ-整数的普遍性质）
 φ-整数环 $\mathbb{F}\mathbb{Z}$ 满足与标准整数环相同的普遍性质：它是φ-自然数半环的分式环。
 
 **证明：**

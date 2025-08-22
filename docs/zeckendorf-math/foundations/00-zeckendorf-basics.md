@@ -1,19 +1,19 @@
 # Zeckendorf基础理论
 
-## 定义 1.1（Fibonacci序列）
+## 定义 0.1（Fibonacci序列）
 定义Fibonacci序列 $(F_n)_{n \geq 1}$ 为：
 $$F_1 = 1, \quad F_2 = 2, \quad F_n = F_{n-1} + F_{n-2} \text{ for } n \geq 3$$
 
-## 定义 1.2（φ-编码）
+## 定义 0.2（φ-编码）
 设 $B = \{0,1\}^*$ 为有限二进制串集合。定义**φ-编码**为满足no-11约束的二进制串：
 $$\Phi = \{s \in B : s \text{ 不包含子串 } 11\}$$
 
-## 定义 1.3（Zeckendorf分解）
+## 定义 0.3（Zeckendorf分解）
 对于正整数 $n \in \mathbb{N}^+$，其**Zeckendorf分解**为：
 $$n = \sum_{i=1}^{k} F_{a_i}$$
 其中 $a_1 > a_2 > \cdots > a_k \geq 1$ 且 $a_i - a_{i+1} \geq 2$ 对所有 $i$ 成立。
 
-## 定理 1.1（Zeckendorf唯一性定理）
+## 定理 0.1（Zeckendorf唯一性定理）
 每个正整数 $n \in \mathbb{N}^+$ 具有唯一的Zeckendorf分解。
 
 **证明：** 
@@ -43,7 +43,7 @@ $$F_{a_1} \geq F_{b_1+2} > F_{b_1} + F_{b_1+1} \geq \sum_{j=1}^{s} F_{b_j}$$
 
 类似地可证明 $a_i = b_i$ 对所有 $i$ 成立，从而 $r = s$ 且两分解相同。 ∎
 
-## 定义 1.4（编码映射）
+## 定义 0.4（编码映射）
 定义映射 $\text{encode}: \mathbb{N}^+ \to \Phi \setminus \{\varepsilon\}$ 如下：
 
 对于 $n \in \mathbb{N}^+$ 的Zeckendorf分解 $n = \sum_{i=1}^{k} F_{a_i}$，
@@ -51,7 +51,7 @@ $$F_{a_1} \geq F_{b_1+2} > F_{b_1} + F_{b_1+1} \geq \sum_{j=1}^{s} F_{b_j}$$
 $$\text{encode}(n) = b_m b_{m-1} \cdots b_1$$
 其中 $b_j = 1$ 当且仅当 $F_j$ 出现在分解中（即存在 $i$ 使得 $a_i = j$）。
 
-## 定义 1.5（解码映射）
+## 定义 0.5（解码映射）
 定义映射 $\text{decode}: \Phi \to \mathbb{N}$ 如下：
 
 对于 $s = b_k b_{k-1} \cdots b_1 \in \Phi$，定义：
@@ -59,7 +59,7 @@ $$\text{decode}(s) = \sum_{i=1}^{k} b_i \cdot F_i$$
 
 特别地，$\text{decode}(\varepsilon) = 0$，其中 $\varepsilon$ 为空串。
 
-## 引理 1.1（编码保持no-11约束）
+## 引理 0.1（编码保持no-11约束）
 对于任意 $n \in \mathbb{N}^+$，$\text{encode}(n) \in \Phi$。
 
 **证明：** 
@@ -73,7 +73,7 @@ $$\text{decode}(s) = \sum_{i=1}^{k} b_i \cdot F_i$$
 
 因此 $\text{encode}(n)$ 不包含子串11，即 $\text{encode}(n) \in \Phi$。 ∎
 
-## 定理 1.2（双射定理）
+## 定理 0.2（双射定理）
 映射 $\text{encode}: \mathbb{N}^+ \to \Phi \setminus \{\varepsilon\}$ 与 $\text{decode}: \Phi \setminus \{\varepsilon\} \to \mathbb{N}^+$ 
 构成双射，且互为逆映射。
 
@@ -106,12 +106,12 @@ $$\text{decode}(s) = \sum_{j=1}^{m} b_j \cdot F_j = \sum_{\{j: b_j=1\}} F_j = \s
 
 因此 $\text{encode}(n) = s$。 ∎
 
-## 推论 1.1（φ-自然数）
+## 推论 0.1（φ-自然数）
 定义 **φ-自然数集合** $\mathbb{F}\mathbb{N} = \Phi$，则存在双射：
 $$\psi: \mathbb{N} \to \mathbb{F}\mathbb{N}$$
 其中 $\psi(0) = \varepsilon$ 且 $\psi(n) = \text{encode}(n)$ 对 $n \geq 1$。
 
-## 定理 1.3（Fibonacci计数）
+## 定理 0.3（Fibonacci计数）
 对于每个 $k \geq 0$，长度恰好为 $k$ 的φ-编码串的数量为 $F_{k+1}$。
 
 **证明：** 

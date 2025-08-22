@@ -1,6 +1,6 @@
 # Zeckendorf双射的构造性证明
 
-## 定义 5.1（扩展的φ-编码映射）
+## 定义 4.1（扩展的φ-编码映射）
 定义映射 $\psi: \mathbb{N} \to \mathbb{F}\mathbb{N}$ 为：
 $$\psi(n) = \begin{cases}
 \varepsilon & \text{若 } n = 0 \\
@@ -9,7 +9,7 @@ $$\psi(n) = \begin{cases}
 
 其中 $\text{encode}: \mathbb{N}^+ \to \Phi \setminus \{\varepsilon\}$ 如定义1.4所定义。
 
-## 定义 5.2（扩展的解码映射）
+## 定义 4.2（扩展的解码映射）
 定义映射 $\omega: \mathbb{F}\mathbb{N} \to \mathbb{N}$ 为：
 $$\omega(s) = \begin{cases}
 0 & \text{若 } s = \varepsilon \\
@@ -18,7 +18,7 @@ $$\omega(s) = \begin{cases}
 
 其中 $\text{decode}: \Phi \setminus \{\varepsilon\} \to \mathbb{N}^+$ 如定义1.5所定义。
 
-## 定理 5.1（扩展双射定理）
+## 定理 4.1（扩展双射定理）
 映射 $\psi: \mathbb{N} \to \mathbb{F}\mathbb{N}$ 与 $\omega: \mathbb{F}\mathbb{N} \to \mathbb{N}$ 构成双射，且互为逆映射。
 
 **证明：**
@@ -38,7 +38,7 @@ $$\omega(s) = \begin{cases}
 
 因此 $\psi$ 和 $\omega$ 互为逆映射。 ∎
 
-## 定理 5.2（双射的构造性质）
+## 定理 4.2（双射的构造性质）
 双射 $\psi$ 和 $\omega$ 具有构造性：存在有限步骤的计算过程实现这两个映射。
 
 **证明：**
@@ -46,7 +46,7 @@ $\psi$ 的构造性：对任意 $n \in \mathbb{N}$，若 $n = 0$ 则 $\psi(n) = 
 
 $\omega$ 的构造性：对任意 $s \in \mathbb{F}\mathbb{N}$，若 $s = \varepsilon$ 则 $\omega(s) = 0$；否则 $\omega(s) = \sum_{i=1}^{|s|} s_i \cdot F_i$ 为有限和，可在有限步骤内计算。 ∎
 
-## 定理 5.3（双射的函数方程特征化）
+## 定理 4.3（双射的函数方程特征化）
 双射 $\psi: \mathbb{N} \to \mathbb{F}\mathbb{N}$ 是满足以下条件的唯一映射：
 
 1. $\psi(0) = \varepsilon$
@@ -63,7 +63,7 @@ $\omega$ 的构造性：对任意 $s \in \mathbb{F}\mathbb{N}$，若 $s = \varep
 由条件2，$\psi'(1) = \psi(1) = 1$。
 由条件3和归纳法，$\psi'(n) = \psi(n)$ 对所有 $n \geq 0$。 ∎
 
-## 推论 5.1（计数性质保持）
+## 推论 4.1（计数性质保持）
 双射 $\psi$ 保持计数性质：设 $A_k = \{n \in \mathbb{N} : |\psi(n)| = k\}$，则：
 $$|A_k| = F_{k+1}$$
 
@@ -72,7 +72,7 @@ $A_k$ 对应所有长度为 $k$ 的φ-编码串的原像。
 由定理1.3，长度为 $k$ 的φ-编码串恰有 $F_{k+1}$ 个，
 故 $|A_k| = F_{k+1}$。 ∎
 
-## 定理 5.4（双射的有限性特征）
+## 定理 4.4（双射的有限性特征）
 双射 $\psi$ 和 $\omega$ 的计算过程具有有限性：
 
 1. 对任意 $n \in \mathbb{N}$，$\psi(n)$ 可在有限步骤内确定
@@ -83,13 +83,13 @@ $A_k$ 对应所有长度为 $k$ 的φ-编码串的原像。
 
 2. $\omega(s) = \sum_{i=1}^{|s|} s_i \cdot F_i$ 为有限和，且 $|s|$ 有限，故可在有限步骤内计算。 ∎
 
-## 定义 5.3（双射的逆向构造）
+## 定义 4.3（双射的逆向构造）
 给定φ-编码串 $s \in \Phi$，定义**逆向Zeckendorf分解**为从低位到高位的贪心算法：
 
 设 $s = b_k b_{k-1} \cdots b_1$，则：
 $$\text{value}(s) = \sum_{i: b_i=1} F_i$$
 
-## 定理 5.5（逆向构造的等价性）
+## 定理 4.5（逆向构造的等价性）
 逆向Zeckendorf分解与标准Zeckendorf分解等价。
 
 **证明：**
@@ -100,6 +100,6 @@ $$\text{value}(s) = \sum_{i: b_i=1} F_i$$
 若 $i - j = 1$，则 $b_i = b_{i-1} = 1$，形成"11"模式，与 $s \in \Phi$ 矛盾。
 故必有 $i - j \geq 2$，满足Zeckendorf分解的非连续性约束。 ∎
 
-## 推论 5.2（双射的完备性）
+## 推论 4.2（双射的完备性）
 双射 $\psi: \mathbb{N} \to \mathbb{F}\mathbb{N}$ 建立了自然数与φ-自然数系统的完全等价性，
 使得所有自然数的性质都可在φ-系统中得到对应表述。

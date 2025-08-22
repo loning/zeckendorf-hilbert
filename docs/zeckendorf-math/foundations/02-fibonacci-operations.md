@@ -1,13 +1,13 @@
 # Fibonacci运算理论
 
-## 定义 3.1（Fibonacci递推性质）
+## 定义 2.1（Fibonacci递推性质）
 Fibonacci序列满足以下性质：
 
 **递推关系**：$F_n = F_{n-1} + F_{n-2}$ 对所有 $n \geq 3$
 
 **边界条件**：$F_1 = 1, F_2 = 2$
 
-## 引理 3.1（Fibonacci单调性）
+## 引理 2.1（Fibonacci单调性）
 对所有 $n \geq 1$，有 $F_{n+1} > F_n$。
 
 **证明：** 
@@ -18,7 +18,7 @@ Fibonacci序列满足以下性质：
 归纳步骤：假设对所有 $k \leq n$ 有 $F_{k+1} > F_k$。
 则 $F_{n+2} = F_{n+1} + F_n > F_n$（因为 $F_{n+1} > 0$）。 ∎
 
-## 引理 3.2（Fibonacci指数增长下界）
+## 引理 2.2（Fibonacci指数增长下界）
 对所有 $n \geq 1$，有 $F_n \geq \phi^{n-2}$，其中 $\phi = \frac{1+\sqrt{5}}{2}$。
 
 **证明：** 
@@ -32,7 +32,7 @@ Fibonacci序列满足以下性质：
 $$F_{n+1} = F_n + F_{n-1} \geq \phi^{n-2} + \phi^{n-3} = \phi^{n-3}(\phi + 1) = \phi^{n-3} \cdot \phi^2 = \phi^{n-1}$$
 ∎
 
-## 定理 3.1（Fibonacci与黄金比例关系）
+## 定理 2.1（Fibonacci与黄金比例关系）
 $$F_n = \frac{\phi^{n+1} - \psi^{n+1}}{\sqrt{5}}$$
 其中 $\phi = \frac{1+\sqrt{5}}{2}$，$\psi = \frac{1-\sqrt{5}}{2}$。
 
@@ -60,7 +60,7 @@ $$= \frac{(\phi^{n+1} + \phi^n) - (\psi^{n+1} + \psi^n)}{\sqrt{5}} = G_n + G_{n-
 
 因此 $G_n$ 满足与 $F_n$ 相同的递推关系和初始条件，故 $G_n = F_n$。 ∎
 
-## 推论 3.1（Fibonacci渐近行为）
+## 推论 2.1（Fibonacci渐近行为）
 $$\lim_{n \to \infty} \frac{F_n}{\phi^n} = \frac{\phi}{\sqrt{5}}$$
 
 **证明：** 
@@ -70,7 +70,7 @@ $$\lim_{n \to \infty} \frac{F_n}{\phi^n} = \frac{\phi}{\sqrt{5}}$$
 $$\lim_{n \to \infty} \frac{F_n}{\phi^n} = \lim_{n \to \infty} \frac{\phi^{n+1} - \psi^{n+1}}{\sqrt{5} \phi^n} = \frac{\phi}{\sqrt{5}} \lim_{n \to \infty} \left(1 - \left(\frac{\psi}{\phi}\right)^{n+1}\right) = \frac{\phi}{\sqrt{5}}$$ 
 ∎
 
-## 定理 3.2（Fibonacci恒等式）
+## 定理 2.2（Fibonacci恒等式）
 以下恒等式成立：
 
 1. **修正Cassini恒等式**：$F_{n+1}F_{n-1} - F_n^2 = (-1)^{n+1} \cdot F_1$ 对 $n \geq 2$
@@ -86,19 +86,19 @@ $$\lim_{n \to \infty} \frac{F_n}{\phi^n} = \lim_{n \to \infty} \frac{\phi^{n+1} 
 
 3. 从倍数性质和递推关系推导。 ∎
 
-## 定义 3.2（Fibonacci运算的代数性质）
+## 定义 2.2（Fibonacci运算的代数性质）
 定义Fibonacci指标上的运算：
 
 **指标序关系**：$a \triangleleft b \iff F_a < F_b$
 
-## 定理 3.3（Fibonacci在Zeckendorf分解中的分离性）
+## 定理 2.3（Fibonacci在Zeckendorf分解中的分离性）
 若 $n$ 的Zeckendorf分解包含 $F_i$ 和 $F_j$，其中 $i > j$，则 $i - j \geq 2$。
 
 **证明：** 
 假设 $i - j = 1$，即分解中包含相邻的Fibonacci数 $F_{j+1}$ 和 $F_j$。
 但 $F_{j+1} + F_j = F_{j+2}$，这违反了Zeckendorf分解的贪心性质（应选择更大的 $F_{j+2}$）。 ∎
 
-## 推论 3.2（no-11约束的Fibonacci解释）
+## 推论 2.2（no-11约束的Fibonacci解释）
 φ-编码中的no-11约束等价于Zeckendorf分解中相邻Fibonacci数不能同时出现的约束。
 
 **证明：** 

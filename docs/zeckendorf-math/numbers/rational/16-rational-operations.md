@@ -1,6 +1,6 @@
 # φ-有理数运算理论
 
-## 定义 17.1（φ-有理数四则运算）
+## 定义 16.1（φ-有理数四则运算）
 基于φ-有理数域 $(\mathbb{F}\mathbb{Q}, \oplus_{\mathbb{F}\mathbb{Q}}, \otimes_{\mathbb{F}\mathbb{Q}}, \mathbf{0}_{\mathbb{F}\mathbb{Q}}, \mathbf{1}_{\mathbb{F}\mathbb{Q}})$，定义四则运算：
 
 对 $r_1 = \frac{a_1}{b_1}, r_2 = \frac{a_2}{b_2} \in \mathbb{F}\mathbb{Q}$（规范形式）：
@@ -13,7 +13,7 @@ $$r_1 \otimes_{\mathbb{F}\mathbb{Q}} r_2 = \frac{a_1 \otimes_{\mathbb{F}\mathbb{
 
 其中所有运算结果都约简为规范形式。
 
-## 定理 17.1（φ-有理数减法运算）
+## 定理 16.1（φ-有理数减法运算）
 定义φ-有理数减法 $\ominus_{\mathbb{F}\mathbb{Q}}: \mathbb{F}\mathbb{Q} \times \mathbb{F}\mathbb{Q} \to \mathbb{F}\mathbb{Q}$：
 
 $$r_1 \ominus_{\mathbb{F}\mathbb{Q}} r_2 = r_1 \oplus_{\mathbb{F}\mathbb{Q}} (-r_2)$$
@@ -27,7 +27,7 @@ $$r_1 \ominus_{\mathbb{F}\mathbb{Q}} r_2 = \frac{a_1 \otimes_{\mathbb{F}\mathbb{
 由定理15.4，每个φ-有理数都有唯一的加法逆元。
 减法运算的良定义性由φ-整数减法的良定义性（定理13.1）保证。 ∎
 
-## 定理 17.2（φ-有理数除法运算）
+## 定理 16.2（φ-有理数除法运算）
 定义φ-有理数除法 $\div_{\mathbb{F}\mathbb{Q}}: \mathbb{F}\mathbb{Q} \times (\mathbb{F}\mathbb{Q} \setminus \{\mathbf{0}_{\mathbb{F}\mathbb{Q}}\}) \to \mathbb{F}\mathbb{Q}$：
 
 $$r_1 \div_{\mathbb{F}\mathbb{Q}} r_2 = r_1 \otimes_{\mathbb{F}\mathbb{Q}} r_2^{-1}$$
@@ -43,7 +43,7 @@ $$\frac{a_1}{b_1} \div_{\mathbb{F}\mathbb{Q}} \frac{a_2}{b_2} = \frac{a_1 \otime
 由定理15.5，每个非零φ-有理数都有唯一的乘法逆元。
 除法运算的良定义性由φ-整数乘法的良定义性保证。 ∎
 
-## 定义 17.2（φ-有理数幂运算）
+## 定义 16.2（φ-有理数幂运算）
 定义φ-有理数幂运算 $\uparrow_{\mathbb{F}\mathbb{Q}}: \mathbb{F}\mathbb{Q} \times \mathbb{F}\mathbb{Z} \to \mathbb{F}\mathbb{Q}$：
 
 对 $r = \frac{a}{b} \in \mathbb{F}\mathbb{Q}$ 和 $n \in \mathbb{F}\mathbb{Z}$：
@@ -53,7 +53,7 @@ $$r \uparrow_{\mathbb{F}\mathbb{Q}} n = \begin{cases}
 \frac{b \uparrow_{\mathbb{F}\mathbb{Z}} |n|_{\mathbb{F}\mathbb{Z}}}{a \uparrow_{\mathbb{F}\mathbb{Z}} |n|_{\mathbb{F}\mathbb{Z}}} & \text{若 } n \prec_{\mathbb{F}\mathbb{Z}} \mathbf{0}_{\mathbb{F}\mathbb{Z}} \text{ 且 } a \neq \mathbf{0}_{\mathbb{F}\mathbb{Z}}
 \end{cases}$$
 
-## 定理 17.3（φ-有理数幂运算的性质）
+## 定理 16.3（φ-有理数幂运算的性质）
 φ-有理数幂运算满足：
 
 1. **零指数性质**：$r \uparrow_{\mathbb{F}\mathbb{Q}} \mathbf{0}_{\mathbb{F}\mathbb{Z}} = \mathbf{1}_{\mathbb{F}\mathbb{Q}}$ 对所有 $r \neq \mathbf{0}_{\mathbb{F}\mathbb{Q}}$
@@ -65,7 +65,7 @@ $$r \uparrow_{\mathbb{F}\mathbb{Q}} n = \begin{cases}
 **证明：**
 所有性质都由φ-整数幂运算的对应性质（定理13.3）和分数运算的定义直接得出。 ∎
 
-## 定理 17.4（φ-有理数运算的封闭性）
+## 定理 16.4（φ-有理数运算的封闭性）
 φ-有理数四则运算在 $\mathbb{F}\mathbb{Q}$ 中封闭：
 
 1. **加法封闭性**：$r_1, r_2 \in \mathbb{F}\mathbb{Q} \Rightarrow r_1 \oplus_{\mathbb{F}\mathbb{Q}} r_2 \in \mathbb{F}\mathbb{Q}$
@@ -77,7 +77,7 @@ $$r \uparrow_{\mathbb{F}\mathbb{Q}} n = \begin{cases}
 所有封闭性都由φ-整数运算的封闭性（定理13.7）和分数运算的定义保证。
 结果的规范化不改变其属于 $\mathbb{F}\mathbb{Q}$ 的性质。 ∎
 
-## 定理 17.5（φ-有理数运算与标准有理数运算的等价性）
+## 定理 16.5（φ-有理数运算与标准有理数运算的等价性）
 存在自然的运算保持同构 $\eta: \mathbb{F}\mathbb{Q} \to \mathbb{Q}$，使得：
 
 $$\eta(r_1 \oplus_{\mathbb{F}\mathbb{Q}} r_2) = \eta(r_1) + \eta(r_2)$$
@@ -100,7 +100,7 @@ $$= \frac{\xi(a_1) \cdot \xi(b_2) + \xi(a_2) \cdot \xi(b_1)}{\xi(b_1) \cdot \xi(
 
 其他运算的等价性类似证明。 ∎
 
-## 定理 17.6（φ-有理数运算的代数性质）
+## 定理 16.6（φ-有理数运算的代数性质）
 φ-有理数运算满足域的所有代数律：
 
 **加法代数律**：
@@ -121,7 +121,7 @@ $$r_1 \otimes_{\mathbb{F}\mathbb{Q}} (r_2 \oplus_{\mathbb{F}\mathbb{Q}} r_3) = (
 **证明：**
 所有性质都由域同构 $\eta: \mathbb{F}\mathbb{Q} \to \mathbb{Q}$ 和标准有理数域的对应性质保证。 ∎
 
-## 定理 17.7（φ-有理数序关系运算相容性）
+## 定理 16.7（φ-有理数序关系运算相容性）
 φ-有理数的序关系与运算相容：
 
 1. **加法单调性**：若 $r_1 \preceq_{\mathbb{F}\mathbb{Q}} r_2$，则 $r_1 \oplus_{\mathbb{F}\mathbb{Q}} r \preceq_{\mathbb{F}\mathbb{Q}} r_2 \oplus_{\mathbb{F}\mathbb{Q}} r$
@@ -131,7 +131,7 @@ $$r_1 \otimes_{\mathbb{F}\mathbb{Q}} (r_2 \oplus_{\mathbb{F}\mathbb{Q}} r_3) = (
 **证明：**
 由定理15.8的序同构性质和标准有理数的序运算相容性直接得出。 ∎
 
-## 定理 17.8（φ-有理数绝对值运算）
+## 定理 16.8（φ-有理数绝对值运算）
 定义φ-有理数绝对值函数 $|\cdot|_{\mathbb{F}\mathbb{Q}}: \mathbb{F}\mathbb{Q} \to \mathbb{F}\mathbb{Q}_{\geq 0}$：
 
 $$\left|\frac{a}{b}\right|_{\mathbb{F}\mathbb{Q}} = \frac{|a|_{\mathbb{F}\mathbb{Z}}}{|b|_{\mathbb{F}\mathbb{Z}}}$$
@@ -147,7 +147,7 @@ $$\left|\frac{a}{b}\right|_{\mathbb{F}\mathbb{Q}} = \frac{|a|_{\mathbb{F}\mathbb
 **证明：**
 所有性质都由φ-整数绝对值的对应性质和分数运算的定义得出。 ∎
 
-## 定理 17.9（φ-有理数距离函数）
+## 定理 16.9（φ-有理数距离函数）
 定义φ-有理数距离函数 $d_{\mathbb{F}\mathbb{Q}}: \mathbb{F}\mathbb{Q} \times \mathbb{F}\mathbb{Q} \to \mathbb{F}\mathbb{Q}_{\geq 0}$：
 
 $$d_{\mathbb{F}\mathbb{Q}}(r_1, r_2) = |r_1 \ominus_{\mathbb{F}\mathbb{Q}} r_2|_{\mathbb{F}\mathbb{Q}}$$
@@ -161,7 +161,7 @@ $$d_{\mathbb{F}\mathbb{Q}}(r_1, r_2) = |r_1 \ominus_{\mathbb{F}\mathbb{Q}} r_2|_
 **证明：**
 所有性质都由φ-有理数绝对值的性质（定理17.8）和减法的定义得出。 ∎
 
-## 定理 17.10（φ-有理数运算的连续性）
+## 定理 16.10（φ-有理数运算的连续性）
 所有φ-有理数运算在距离度量 $d_{\mathbb{F}\mathbb{Q}}$ 下连续：
 
 对于 $\varepsilon \succ_{\mathbb{F}\mathbb{Q}} \mathbf{0}_{\mathbb{F}\mathbb{Q}}$，存在 $\delta \succ_{\mathbb{F}\mathbb{Q}} \mathbf{0}_{\mathbb{F}\mathbb{Q}}$ 使得：
@@ -179,7 +179,7 @@ $$\Rightarrow d_{\mathbb{F}\mathbb{Q}}(r_1 \otimes_{\mathbb{F}\mathbb{Q}} r_2, r
 **证明：**
 由域同构 $\eta: \mathbb{F}\mathbb{Q} \to \mathbb{Q}$ 和标准有理数运算的连续性直接得出。 ∎
 
-## 定理 17.11（φ-有理数编码运算）
+## 定理 16.11（φ-有理数编码运算）
 φ-有理数的编码运算可通过编码直接进行：
 
 设 $r_1, r_2 \in \mathbb{F}\mathbb{Q}$ 的编码分别为：
@@ -202,7 +202,7 @@ $$\Rightarrow d_{\mathbb{F}\mathbb{Q}}(r_1 \otimes_{\mathbb{F}\mathbb{Q}} r_2, r
 **证明：**
 算法的正确性由定理17.1和16.2（编码的双射性）保证。 ∎
 
-## 推论 17.1（φ-有理数运算系统的完备性）
+## 推论 16.1（φ-有理数运算系统的完备性）
 φ-有理数运算系统 $(\mathbb{F}\mathbb{Q}, \oplus_{\mathbb{F}\mathbb{Q}}, \ominus_{\mathbb{F}\mathbb{Q}}, \otimes_{\mathbb{F}\mathbb{Q}}, \div_{\mathbb{F}\mathbb{Q}})$ 构成了与标准有理数运算完全等价的完备域：
 
 1. **域结构**：满足域的所有公理

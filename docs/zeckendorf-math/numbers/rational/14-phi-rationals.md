@@ -1,16 +1,16 @@
 # φ-有理数系统构造理论
 
-## 定义 15.1（φ-有理数集合）
+## 定义 14.1（φ-有理数集合）
 定义**φ-有理数集合** $\mathbb{F}\mathbb{Q}$ 为φ-整数的分式集合：
 $$\mathbb{F}\mathbb{Q} = \left\{\frac{a}{b} : a, b \in \mathbb{F}\mathbb{Z}, b \neq \mathbf{0}_{\mathbb{F}\mathbb{Z}}\right\}$$
 
 其中 $\frac{a}{b}$ 表示有序对 $(a, b)$ 在等价关系下的等价类。
 
-## 定义 15.2（φ-有理数等价关系）
+## 定义 14.2（φ-有理数等价关系）
 在 $\mathbb{F}\mathbb{Z} \times (\mathbb{F}\mathbb{Z} \setminus \{\mathbf{0}_{\mathbb{F}\mathbb{Z}}\})$ 上定义等价关系 $\sim$：
 $$(a_1, b_1) \sim (a_2, b_2) \Leftrightarrow a_1 \otimes_{\mathbb{F}\mathbb{Z}} b_2 = a_2 \otimes_{\mathbb{F}\mathbb{Z}} b_1$$
 
-## 引理 15.1（φ-有理数等价关系的性质）
+## 引理 14.1（φ-有理数等价关系的性质）
 关系 $\sim$ 是 $\mathbb{F}\mathbb{Z} \times (\mathbb{F}\mathbb{Z} \setminus \{\mathbf{0}_{\mathbb{F}\mathbb{Z}}\})$ 上的等价关系。
 
 **证明：**
@@ -30,7 +30,7 @@ $a_1 \otimes_{\mathbb{F}\mathbb{Z}} (b_2 \otimes_{\mathbb{F}\mathbb{Z}} b_3) = (
 
 因此 $a_1 \otimes_{\mathbb{F}\mathbb{Z}} b_3 = a_3 \otimes_{\mathbb{F}\mathbb{Z}} b_1$，即 $(a_1, b_1) \sim (a_3, b_3)$。 ∎
 
-## 定理 15.1（φ-有理数的良定义性）
+## 定理 14.1（φ-有理数的良定义性）
 φ-有理数集合 $\mathbb{F}\mathbb{Q}$ 良定义且与标准有理数集合 $\mathbb{Q}$ 等势。
 
 **证明：**
@@ -48,11 +48,11 @@ $$\rho\left(\frac{a}{b}\right) = \frac{\xi(a)}{\xi(b)}$$
 
 **双射性**：由 $\xi$ 为双射且保持分式结构，$\rho$ 为双射。 ∎
 
-## 定义 15.3（φ-有理数加法）
+## 定义 14.3（φ-有理数加法）
 定义φ-有理数加法运算 $\oplus_{\mathbb{F}\mathbb{Q}}: \mathbb{F}\mathbb{Q} \times \mathbb{F}\mathbb{Q} \to \mathbb{F}\mathbb{Q}$：
 $$\frac{a_1}{b_1} \oplus_{\mathbb{F}\mathbb{Q}} \frac{a_2}{b_2} = \frac{(a_1 \otimes_{\mathbb{F}\mathbb{Z}} b_2) \oplus_{\mathbb{F}\mathbb{Z}} (a_2 \otimes_{\mathbb{F}\mathbb{Z}} b_1)}{b_1 \otimes_{\mathbb{F}\mathbb{Z}} b_2}$$
 
-## 定理 15.2（φ-有理数加法的良定义性）
+## 定理 14.2（φ-有理数加法的良定义性）
 φ-有理数加法运算良定义。
 
 **证明：**
@@ -69,17 +69,17 @@ $$[(a_1 \otimes_{\mathbb{F}\mathbb{Z}} b_2) \oplus_{\mathbb{F}\mathbb{Z}} (a_2 \
 
 通过分配律和已知等价条件的代换，等式成立。 ∎
 
-## 定义 15.4（φ-有理数乘法）
+## 定义 14.4（φ-有理数乘法）
 定义φ-有理数乘法运算 $\otimes_{\mathbb{F}\mathbb{Q}}: \mathbb{F}\mathbb{Q} \times \mathbb{F}\mathbb{Q} \to \mathbb{F}\mathbb{Q}$：
 $$\frac{a_1}{b_1} \otimes_{\mathbb{F}\mathbb{Q}} \frac{a_2}{b_2} = \frac{a_1 \otimes_{\mathbb{F}\mathbb{Z}} a_2}{b_1 \otimes_{\mathbb{F}\mathbb{Z}} b_2}$$
 
-## 定理 15.3（φ-有理数乘法的良定义性）
+## 定理 14.3（φ-有理数乘法的良定义性）
 φ-有理数乘法运算良定义。
 
 **证明：**
 类似于定理15.2的证明方法，利用等价关系的性质和φ-整数乘法的性质。 ∎
 
-## 定理 15.4（φ-有理数加法群性质）
+## 定理 14.4（φ-有理数加法群性质）
 $(\mathbb{F}\mathbb{Q}, \oplus_{\mathbb{F}\mathbb{Q}})$ 构成交换群。
 
 **证明：**
@@ -99,7 +99,7 @@ $$\frac{a}{b} \oplus_{\mathbb{F}\mathbb{Q}} \mathbf{0}_{\mathbb{F}\mathbb{Q}} = 
 **逆元存在性**：对 $\frac{a}{b} \in \mathbb{F}\mathbb{Q}$（$a \neq \mathbf{0}_{\mathbb{F}\mathbb{Z}}$），
 其加法逆元为 $-\frac{a}{b} = \frac{-a}{b}$。 ∎
 
-## 定理 15.5（φ-有理数乘法群性质）
+## 定理 14.5（φ-有理数乘法群性质）
 $(\mathbb{F}\mathbb{Q} \setminus \{\mathbf{0}_{\mathbb{F}\mathbb{Q}}\}, \otimes_{\mathbb{F}\mathbb{Q}})$ 构成交换群。
 
 **证明：**
@@ -111,7 +111,7 @@ $$\frac{a}{b} \otimes_{\mathbb{F}\mathbb{Q}} \mathbf{1}_{\mathbb{F}\mathbb{Q}} =
 **逆元存在性**：对 $\frac{a}{b} \in \mathbb{F}\mathbb{Q}$（$a \neq \mathbf{0}_{\mathbb{F}\mathbb{Z}}$），
 其乘法逆元为 $\left(\frac{a}{b}\right)^{-1} = \frac{b}{a}$。 ∎
 
-## 定理 15.6（φ-有理数域结构）
+## 定理 14.6（φ-有理数域结构）
 $(\mathbb{F}\mathbb{Q}, \oplus_{\mathbb{F}\mathbb{Q}}, \otimes_{\mathbb{F}\mathbb{Q}}, \mathbf{0}_{\mathbb{F}\mathbb{Q}}, \mathbf{1}_{\mathbb{F}\mathbb{Q}})$ 构成域。
 
 **证明：**
@@ -126,7 +126,7 @@ $$\frac{a_1}{b_1} \otimes_{\mathbb{F}\mathbb{Q}} \left(\frac{a_2}{b_2} \oplus_{\
 
 因此 $\mathbb{F}\mathbb{Q}$ 构成域。 ∎
 
-## 定理 15.7（φ-有理数与标准有理数的同构）
+## 定理 14.7（φ-有理数与标准有理数的同构）
 存在域同构：
 $$\mathbb{F}\mathbb{Q} \cong \mathbb{Q}$$
 
@@ -145,11 +145,11 @@ $$\rho\left(\frac{a_1}{b_1} \otimes_{\mathbb{F}\mathbb{Q}} \frac{a_2}{b_2}\right
 
 所有性质由 $\xi$ 的环同构性质和分式运算的定义直接得出。 ∎
 
-## 定义 15.5（φ-有理数序关系）
+## 定义 14.5（φ-有理数序关系）
 在 $\mathbb{F}\mathbb{Q}$ 上定义序关系 $\preceq_{\mathbb{F}\mathbb{Q}}$：
 $$\frac{a_1}{b_1} \preceq_{\mathbb{F}\mathbb{Q}} \frac{a_2}{b_2} \Leftrightarrow \rho\left(\frac{a_1}{b_1}\right) \leq \rho\left(\frac{a_2}{b_2}\right)$$
 
-## 定理 15.8（φ-有理数有序域结构）
+## 定理 14.8（φ-有理数有序域结构）
 $(\mathbb{F}\mathbb{Q}, \oplus_{\mathbb{F}\mathbb{Q}}, \otimes_{\mathbb{F}\mathbb{Q}}, \preceq_{\mathbb{F}\mathbb{Q}})$ 构成有序域。
 
 **证明：**
@@ -163,7 +163,7 @@ $(\mathbb{F}\mathbb{Q}, \oplus_{\mathbb{F}\mathbb{Q}}, \otimes_{\mathbb{F}\mathb
 
 所有性质由标准有理数有序域的性质和同构的保持性得出。 ∎
 
-## 推论 15.1（φ-有理数的阿基米德性质）
+## 推论 14.1（φ-有理数的阿基米德性质）
 φ-有理数域 $\mathbb{F}\mathbb{Q}$ 满足阿基米德公理：
 
 对任意 $r_1, r_2 \in \mathbb{F}\mathbb{Q}$ 且 $\mathbf{0}_{\mathbb{F}\mathbb{Q}} \prec_{\mathbb{F}\mathbb{Q}} r_1, r_2$，
@@ -174,7 +174,7 @@ $(\mathbb{F}\mathbb{Q}, \oplus_{\mathbb{F}\mathbb{Q}}, \otimes_{\mathbb{F}\mathb
 **证明：**
 由标准有理数的阿基米德性质和同构 $\rho$ 的保持性直接得出。 ∎
 
-## 推论 15.2（φ-有理数域的完备性）
+## 推论 14.2（φ-有理数域的完备性）
 φ-有理数域 $\mathbb{F}\mathbb{Q}$ 具有与标准有理数域 $\mathbb{Q}$ 完全相同的代数和序理论性质：
 
 1. 域结构的完整性

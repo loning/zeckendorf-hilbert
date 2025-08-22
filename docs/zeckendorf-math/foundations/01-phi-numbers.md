@@ -1,9 +1,9 @@
 # φ-数字系统理论
 
-## 定义 2.1（φ-自然数集合）
+## 定义 1.1（φ-自然数集合）
 定义 **φ-自然数集合** $\mathbb{F}\mathbb{N} = \Phi$，其中 $\Phi$ 为所有满足no-11约束的二进制串集合。
 
-## 定义 2.2（φ-自然数值函数）
+## 定义 1.2（φ-自然数值函数）
 定义值函数 $\text{val}: \mathbb{F}\mathbb{N} \to \mathbb{N}$ 为：
 $$\text{val}(s) = \begin{cases}
 0 & \text{若 } s = \varepsilon \\
@@ -12,7 +12,7 @@ $$\text{val}(s) = \begin{cases}
 
 其中 $s_i$ 表示串 $s$ 的第 $i$ 个字符（从右向左计数）。
 
-## 定理 2.1（φ-自然数双射性）
+## 定理 1.1（φ-自然数双射性）
 值函数 $\text{val}: \mathbb{F}\mathbb{N} \to \mathbb{N}$ 是双射。
 
 **证明：** 
@@ -29,29 +29,29 @@ $$\psi(n) = \begin{cases}
 
 则 $\text{val} \circ \psi = \text{id}_{\mathbb{N}}$ 且 $\psi \circ \text{val} = \text{id}_{\mathbb{F}\mathbb{N}}$。 ∎
 
-## 定义 2.3（φ-零元和φ-单位元）
+## 定义 1.3（φ-零元和φ-单位元）
 定义：
 - **φ-零元**：$\mathbf{0}_\phi = \varepsilon$
 - **φ-单位元**：$\mathbf{1}_\phi = 1$（对应 $\text{val}(1) = F_1 = 1$）
 
-## 定义 2.4（φ-自然数序关系）
+## 定义 1.4（φ-自然数序关系）
 在 $\mathbb{F}\mathbb{N}$ 上定义全序关系 $\preceq_\phi$ 为：
 $$s_1 \preceq_\phi s_2 \iff \text{val}(s_1) \leq \text{val}(s_2)$$
 
-## 定理 2.2（φ-序关系的良序性）
+## 定理 1.2（φ-序关系的良序性）
 $(\mathbb{F}\mathbb{N}, \preceq_\phi)$ 是良序集。
 
 **证明：** 
 由于 $\text{val}: \mathbb{F}\mathbb{N} \to \mathbb{N}$ 是双射且 $(\mathbb{N}, \leq)$ 是良序集，
 $(\mathbb{F}\mathbb{N}, \preceq_\phi)$ 与 $(\mathbb{N}, \leq)$ 同构，因此也是良序集。 ∎
 
-## 定义 2.5（φ-后继函数）
+## 定义 1.5（φ-后继函数）
 定义后继函数 $S_\phi: \mathbb{F}\mathbb{N} \to \mathbb{F}\mathbb{N}$ 为：
 $$S_\phi(s) = \psi(\text{val}(s) + 1)$$
 
 其中 $\psi: \mathbb{N} \to \mathbb{F}\mathbb{N}$ 为$\text{val}$的逆映射。
 
-## 定理 2.3（φ-后继函数性质）
+## 定理 1.3（φ-后继函数性质）
 后继函数 $S_\phi$ 满足以下性质：
 1. **单射性**：$S_\phi(s_1) = S_\phi(s_2) \Rightarrow s_1 = s_2$
 2. **无像点为零**：$\nexists s \in \mathbb{F}\mathbb{N}$ 使得 $S_\phi(s) = \mathbf{0}_\phi$
@@ -69,7 +69,7 @@ $$S_\phi(s) = \psi(\text{val}(s) + 1)$$
 3. 对任意 $t \in \mathbb{F}\mathbb{N} \setminus \{\mathbf{0}_\phi\}$，有 $\text{val}(t) \geq 1$。
    设 $s = \psi(\text{val}(t) - 1)$，则 $S_\phi(s) = \psi(\text{val}(t) - 1 + 1) = \psi(\text{val}(t)) = t$。 ∎
 
-## 定理 2.4（φ-Peano公理）
+## 定理 1.4（φ-Peano公理）
 $(\mathbb{F}\mathbb{N}, \mathbf{0}_\phi, S_\phi)$ 满足Peano公理的φ-版本：
 
 1. $\mathbf{0}_\phi \in \mathbb{F}\mathbb{N}$
@@ -100,7 +100,7 @@ $(\mathbb{F}\mathbb{N}, \mathbf{0}_\phi, S_\phi)$ 满足Peano公理的φ-版本�
 由 $\text{val}$ 的双射性，$s = t$，因此 $t \in P$。
 故 $P = \mathbb{F}\mathbb{N}$。 ∎
 
-## 推论 2.1（φ-自然数的结构同构）
+## 推论 1.1（φ-自然数的结构同构）
 $(\mathbb{F}\mathbb{N}, \mathbf{0}_\phi, S_\phi) \cong (\mathbb{N}, 0, s)$，其中 $s$ 为标准后继函数。
 
 **证明：** 

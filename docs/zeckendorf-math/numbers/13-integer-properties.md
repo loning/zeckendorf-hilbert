@@ -1,6 +1,6 @@
 # φ-整数代数性质理论
 
-## 定理 14.1（φ-整数环的完整刻画）
+## 定理 13.1（φ-整数环的完整刻画）
 φ-整数环 $(\mathbb{F}\mathbb{Z}, \oplus_{\mathbb{F}\mathbb{Z}}, \otimes_{\mathbb{F}\mathbb{Z}}, \mathbf{0}_{\mathbb{F}\mathbb{Z}}, \mathbf{1}_{\mathbb{F}\mathbb{Z}})$ 是主理想整环。
 
 **证明：**
@@ -12,7 +12,7 @@
 由于 $\mathbb{Z}$ 是主理想整环，存在 $d \in \mathbb{Z}$ 使得 $\xi(I) = (d)$。
 因此 $I = (\xi^{-1}(d))$，即 $\mathbb{F}\mathbb{Z}$ 是主理想整环。 ∎
 
-## 定理 14.2（φ-整数的素元分解）
+## 定理 13.2（φ-整数的素元分解）
 每个非零非单位的φ-整数都有唯一的素元分解（差一个单位倍数）。
 
 **证明：**
@@ -29,11 +29,11 @@ $$z = \xi^{-1}(\pm 1) \prod_{i=1}^k (\xi^{-1}(p_i))^{e_i}$$
 
 其中 $\xi^{-1}(p_i)$ 为φ-素元，$\xi^{-1}(\pm 1)$ 为φ-单位。 ∎
 
-## 定义 14.1（φ-素元与φ-单位）
+## 定义 13.1（φ-素元与φ-单位）
 - **φ-素元**：$p \in \mathbb{F}\mathbb{Z}$ 称为φ-素元，若 $\xi(p)$ 为素数
 - **φ-单位**：$u \in \mathbb{F}\mathbb{Z}$ 称为φ-单位，若 $\xi(u) \in \{+1, -1\}$
 
-## 引理 14.1（φ-单位群结构）
+## 引理 13.1（φ-单位群结构）
 φ-整数的单位群为：
 $$U(\mathbb{F}\mathbb{Z}) = \{\mathbf{1}_{\mathbb{F}\mathbb{Z}}, -\mathbf{1}_{\mathbb{F}\mathbb{Z}}\} \cong \mathbb{Z}_2$$
 
@@ -44,7 +44,7 @@ $z \in \mathbb{F}\mathbb{Z}$ 为单位当且仅当存在 $z' \in \mathbb{F}\math
 
 因此 $U(\mathbb{F}\mathbb{Z}) = \{\xi^{-1}(1), \xi^{-1}(-1)\} = \{\mathbf{1}_{\mathbb{F}\mathbb{Z}}, -\mathbf{1}_{\mathbb{F}\mathbb{Z}}\}$。 ∎
 
-## 定理 14.3（φ-整数的欧几里得算法性质）
+## 定理 13.3（φ-整数的欧几里得算法性质）
 $\mathbb{F}\mathbb{Z}$ 上的欧几里得算法具有与标准整数相同的收敛性质。
 
 设 $z_1, z_2 \in \mathbb{F}\mathbb{Z}$ 且 $z_2 \neq \mathbf{0}_{\mathbb{F}\mathbb{Z}}$，欧几里得算法序列：
@@ -58,7 +58,7 @@ $$r_i = \xi^{-1}(\text{rem}(\xi(z_1), \xi(z_2))_i)$$
 
 因此收敛性和正确性由标准欧几里得算法保证。 ∎
 
-## 定理 14.4（φ-整数的贝祖恒等式）
+## 定理 13.4（φ-整数的贝祖恒等式）
 对任意 $z_1, z_2 \in \mathbb{F}\mathbb{Z}$，存在 $x, y \in \mathbb{F}\mathbb{Z}$ 使得：
 $$\gcd_{\mathbb{F}\mathbb{Z}}(z_1, z_2) = x \otimes_{\mathbb{F}\mathbb{Z}} z_1 \oplus_{\mathbb{F}\mathbb{Z}} y \otimes_{\mathbb{F}\mathbb{Z}} z_2$$
 
@@ -72,7 +72,7 @@ $$\xi^{-1}(\gcd(\xi(z_1), \xi(z_2))) = \xi^{-1}(a) \otimes_{\mathbb{F}\mathbb{Z}
 即 $\gcd_{\mathbb{F}\mathbb{Z}}(z_1, z_2) = x \otimes_{\mathbb{F}\mathbb{Z}} z_1 \oplus_{\mathbb{F}\mathbb{Z}} y \otimes_{\mathbb{F}\mathbb{Z}} z_2$，
 其中 $x = \xi^{-1}(a), y = \xi^{-1}(b)$。 ∎
 
-## 定理 14.5（φ-整数的中国剩余定理）
+## 定理 13.5（φ-整数的中国剩余定理）
 设 $z_1, z_2, \ldots, z_k \in \mathbb{F}\mathbb{Z}$ 两两互素，即 $\gcd_{\mathbb{F}\mathbb{Z}}(z_i, z_j) = \mathbf{1}_{\mathbb{F}\mathbb{Z}}$ 对所有 $i \neq j$。
 
 则对任意 $a_1, a_2, \ldots, a_k \in \mathbb{F}\mathbb{Z}$，同余方程组：
@@ -89,7 +89,7 @@ x \equiv a_k \pmod{z_k}
 由同构 $\xi$，φ-整数的同余关系对应标准整数的同余关系。
 标准中国剩余定理给出唯一解的存在性，φ-整数情形由同构性质直接得出。 ∎
 
-## 定理 14.6（φ-整数的威尔逊定理）
+## 定理 13.6（φ-整数的威尔逊定理）
 对φ-素元 $p \in \mathbb{F}\mathbb{Z}$：
 $$\prod_{i=1}^{\xi(p)-1} \xi^{-1}(i) \equiv -\mathbf{1}_{\mathbb{F}\mathbb{Z}} \pmod{p}$$
 
@@ -106,7 +106,7 @@ $$\xi^{-1}((q-1)!) \equiv \xi^{-1}(-1) \pmod{\xi^{-1}(q)}$$
 $$\prod_{i=1}^{q-1} \xi^{-1}(i) \equiv -\mathbf{1}_{\mathbb{F}\mathbb{Z}} \pmod{p}$$ 
 ∎
 
-## 定理 14.7（φ-整数的费马小定理）
+## 定理 13.7（φ-整数的费马小定理）
 设 $p \in \mathbb{F}\mathbb{Z}$ 为φ-素元，$z \in \mathbb{F}\mathbb{Z}$ 且 $p \nmid z$，则：
 $$z^{\uparrow_{\mathbb{F}\mathbb{Z}} (\xi(p)-1)} \equiv \mathbf{1}_{\mathbb{F}\mathbb{Z}} \pmod{p}$$
 
@@ -122,7 +122,7 @@ $$\xi(z^{\uparrow_{\mathbb{F}\mathbb{Z}} (q-1)}) = \xi(z)^{q-1} = n^{q-1} \equiv
 $$z^{\uparrow_{\mathbb{F}\mathbb{Z}} (q-1)} \equiv \mathbf{1}_{\mathbb{F}\mathbb{Z}} \pmod{p}$$
 ∎
 
-## 定理 14.8（φ-整数环的理想分类）
+## 定理 13.8（φ-整数环的理想分类）
 $\mathbb{F}\mathbb{Z}$ 中的理想完全由其生成元刻画：
 
 1. **零理想**：$(0) = \{\mathbf{0}_{\mathbb{F}\mathbb{Z}}\}$
@@ -136,7 +136,7 @@ $\mathbb{F}\mathbb{Z}$ 中的理想完全由其生成元刻画：
 由定理14.1，$\mathbb{F}\mathbb{Z}$ 是主理想整环，故每个理想都是主理想。
 理想的分类直接由同构 $\xi$ 和标准整数理想分类得出。 ∎
 
-## 推论 14.1（φ-整数的模算术）
+## 推论 13.1（φ-整数的模算术）
 φ-整数的模算术与标准整数模算术完全等价：
 
 对任意 $m \in \mathbb{F}\mathbb{Z}$，商环 $\mathbb{F}\mathbb{Z}/(m) \cong \mathbb{Z}/(\xi(m))$。
@@ -146,7 +146,7 @@ $\mathbb{F}\mathbb{Z}$ 中的理想完全由其生成元刻画：
 **证明：**
 由第一同构定理和双射 $\xi$ 的保持性直接得出。 ∎
 
-## 定理 14.9（φ-整数的二次剩余理论）
+## 定理 13.9（φ-整数的二次剩余理论）
 设 $p \in \mathbb{F}\mathbb{Z}$ 为奇φ-素元，$z \in \mathbb{F}\mathbb{Z}$ 且 $p \nmid z$。
 
 定义**φ-勒让德符号**：
@@ -159,7 +159,7 @@ $$\left(\frac{z}{p}\right)_\phi = \left(\frac{\xi(z)}{\xi(p)}\right)$$
 **证明：**
 由同构性质，φ-整数的二次剩余理论与标准整数二次剩余理论一一对应。 ∎
 
-## 推论 14.2（φ-整数代数结构的完备性）
+## 推论 13.2（φ-整数代数结构的完备性）
 φ-整数环 $\mathbb{F}\mathbb{Z}$ 具有与标准整数环 $\mathbb{Z}$ 完全相同的代数性质：
 
 1. 主理想整环结构
