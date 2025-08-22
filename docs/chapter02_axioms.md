@@ -14,6 +14,8 @@
 3. **执行封闭性**：
    $$\forall p, x \in S, \quad \mathsf{eval}(p,x) \text{ 收敛} \Rightarrow \mathsf{eval}(p,x) \in S$$
 
+**理论补充**：定义D2.1的抽象性得到[自动机系统理论](math/02-automata-system.md)的具体支撑。该理论提供了3状态自动机 $\mathcal{A}_\varphi = (Q, \Sigma, \delta, q_0, F)$ 作为自指完备系统的可操作实现，其中状态转移精确对应自指执行的语义，使得抽象定义获得了计算模型的严格基础。
+
 ---
 
 ### 定义 D2.2（执行轨迹与记录生成）
@@ -59,6 +61,8 @@ $$\boxed{\forall t \geq 0: H_{t+1} > H_t}$$
 
 **等价形式**：
 $$\forall t \geq 0: |\Sigma_{t+1}| > |\Sigma_t| \wedge \log_2|\Sigma_{t+1}| > \log_2|\Sigma_t|$$
+
+**理论补充**：A1公理的非假设性得到[自指循环完备性理论](math/12-circular-completeness.md)的严格证明。该理论通过自指算子的不动点分析，证明了当系统满足ψ = ψ(ψ)的循环完备条件时，熵增不是外加的假设，而是自指结构在数学上的必然结果，为公理提供了逻辑必然性的坚实基础。
 
 **公理的逻辑结构**：
 
