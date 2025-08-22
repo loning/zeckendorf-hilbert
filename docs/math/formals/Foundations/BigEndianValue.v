@@ -176,8 +176,16 @@ Theorem one_prefix_larger :
     s <> [] ->
     big_endian_value (one :: s) > big_endian_value (zero :: s).
 Proof.
-  (* TODO: Complete with mathcomp ssrnat + ring tactics *)
-Admitted. (* COLLAPSE TRACE: arithmetic inequality proof *)
+  intros s Hs.
+  simpl.
+  destruct s as [|b s']; [contradiction | idtac].
+  simpl.
+  (* Goal: 1 * 2^k + val > 0 * 2^k + val *)
+  (* This simplifies to: 2^k > 0 *)
+  (* Use the well-known fact that 2^k > 0 *)
+  assert (H: 2 ^ length s' > 0) by (apply pow_pos).
+  lia.
+Qed.
 
 (** * Computational Examples *)
 
