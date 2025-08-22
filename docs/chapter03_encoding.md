@@ -59,14 +59,14 @@ $$|B_n| = F_{n+1}$$
 ### 定义 D3.2（Zeckendorf 分解）
 任意自然数 N∈ℕ⁺，可以唯一写作若干不相邻 Fibonacci 数的和：
 
-```math
+$$
 N = F_{i_1} + F_{i_2} + \cdots + F_{i_r}, \quad i_1 > i_2 > \cdots > i_r \geq 1, \quad i_j - i_{j+1} \geq 2
-```
+$$
 
 其中 Fibonacci 数列定义为：
-```math
+$$
 F_1 = 1, \quad F_2 = 2, \quad F_{n+2} = F_{n+1} + F_n \quad (n \geq 1)
-```
+$$
 
 **黄金比例**：φ = (1+√5)/2 ≈ 1.618，满足φ² = φ+1，与Fibonacci数渐近相关。
 
@@ -79,9 +79,9 @@ F_1 = 1, \quad F_2 = 2, \quad F_{n+2} = F_{n+1} + F_n \quad (n \geq 1)
 ### 定理 T3.3（Zeckendorf 唯一性定理）
 自然数与合法串之间存在双射：
 
-```math
+$$
 \mathbb{N}^+ \longleftrightarrow \bigcup_{n\ge 1} B_n
-```
+$$
 
 **严格证明**：
 
@@ -142,9 +142,9 @@ F_1 = 1, \quad F_2 = 2, \quad F_{n+2} = F_{n+1} + F_n \quad (n \geq 1)
 
 由此，建立了：
 
-```math
+$$
 \mathbb{N}^+ \longleftrightarrow \bigcup_{n\ge 1} B_n \longleftrightarrow \{\text{Hilbert 空间基态}\}
-```
+$$
 
 ---
 

@@ -95,19 +95,19 @@ $$\text{Meta-Theory} = (\text{A1}, \text{Zeckendorf 编码}, \otimes_Z, H)$$
 ## 9.6 核心等式
 
 ### 宇宙的数学本质
-```math
+$$
 \text{宇宙} = \bigcup_{n=0}^{\infty} \mathcal{H}_n = \bigcup_{n=0}^{\infty} \mathrm{Span}(B_n)
-```
+$$
 
 ### 理论的递归结构
-```math
+$$
 U_{n+1} = U_n \oplus \{\text{新涌现的n+1阶现象}\}
-```
+$$
 
 ### 自指的数学表达
-```math
+$$
 \psi = \psi(\psi) = \text{系统应用于自身的无限递归}
-```
+$$
 
 ---
 
@@ -131,7 +131,7 @@ U_{n+1} = U_n \oplus \{\text{新涌现的n+1阶现象}\}
 
 ### 元理论陈述
 > **定理 T9.3（宇宙理论的统一表示）**：任意宇宙理论 $\mathcal{T}$ 都存在唯一的表示：
-> ```math
+> $$
 > \mathcal{T} \cong \bigoplus_{n \in \mathbb{N}} \alpha_n \mathcal{H}_n, \quad \alpha_n \in \mathbb{C}
 > ```
 > 其中系数 $\alpha_n$ 由 Zeckendorf 分解唯一确定。
@@ -144,7 +144,7 @@ U_{n+1} = U_n \oplus \{\text{新涌现的n+1阶现象}\}
 
 ### 逻辑严格性检验
 本元理论的逻辑链条：
-```math
+$$math
 \text{A1} \xrightarrow{\text{必然}} \text{Zeckendorf编码} \xrightarrow{\text{构造}} \{\mathcal{H}_n\} \xrightarrow{\text{组合}} \otimes_Z \xrightarrow{\text{等价}} \text{五重现象}
 ```
 
@@ -174,9 +174,9 @@ U_{n+1} = U_n \oplus \{\text{新涌现的n+1阶现象}\}
 - 它证明了自己的唯一性
 
 ### 递归的美
-```math
+$$
 \text{Meta-Theory}(\text{Meta-Theory}) = \text{Meta-Theory}
-```
+$$
 
 这不是循环论证，而是**理论结构饱和但过程永续**的动态平衡。
 
@@ -205,9 +205,9 @@ U_{n+1} = U_n \oplus \{\text{新涌现的n+1阶现象}\}
 
 每次理解 $\psi = \psi(\psi)$，都是宇宙通过我们实现的自我超越：
 
-```math
+$$
 \Omega = \Omega(\Omega(\Omega(\cdots)))
-```
+$$
 
 ---
 

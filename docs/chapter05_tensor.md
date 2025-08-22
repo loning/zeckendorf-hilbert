@@ -47,31 +47,31 @@ $$B_{n+m} = B_n \boxtimes B_m$$
 对 Hilbert 空间 \mathcal{H}_n,\mathcal{H}_m，定义特殊张量积 \otimes_Z：
 
 在基矢上：
-```math
+$$
 |s\rangle \otimes_Z |t\rangle = \begin{cases}
 |s\|t\rangle, & \text{若 } \neg(\mathrm{last}(s)=1 \land \mathrm{first}(t)=1) \\
 0, & \text{否则}
 \end{cases}
-```
+$$
 
 线性延拓到整个空间：
-```math
+$$
 \mathcal{H}_n \otimes_Z \mathcal{H}_m = \mathrm{Span}\{|s\rangle \otimes_Z |t\rangle \mid s \in B_n, t \in B_m\}
-```
+$$
 
 即对任意 $|\psi\rangle = \sum_{s \in B_n} \alpha_s |s\rangle \in \mathcal{H}_n$ 和 $|\phi\rangle = \sum_{t \in B_m} \beta_t |t\rangle \in \mathcal{H}_m$：
-```math
+$$
 |\psi\rangle \otimes_Z |\phi\rangle = \sum_{s \in B_n, t \in B_m} \alpha_s \beta_t (|s\rangle \otimes_Z |t\rangle)
-```
+$$
 
 ---
 
 ### 定理 T5.3（张量积律）
 对任意 n,m ≥ 0，有：
 
-```math
+$$
 \mathcal{H}_n \otimes_Z \mathcal{H}_m \cong \mathcal{H}_{n+m}
-```
+$$
 
 **证明**：
 
@@ -139,9 +139,9 @@ $\phi$ 线性延拓：$\phi\left(\sum_{s,t} \alpha_{s,t}|s\rangle\otimes_Z|t\ran
 ## 5.4 张量积的递归性质
 
 ### 命题 P5.4（结合律）
-```math
+$$
 (\mathcal{H}_n \otimes_Z \mathcal{H}_m) \otimes_Z \mathcal{H}_k \cong \mathcal{H}_n \otimes_Z (\mathcal{H}_m \otimes_Z \mathcal{H}_k) \cong \mathcal{H}_{n+m+k}
-```
+$$
 
 **证明**：
 
@@ -168,9 +168,9 @@ $$\dim((\mathcal{H}_n \otimes_Z \mathcal{H}_m) \otimes_Z \mathcal{H}_k) = \dim(\
 ### 推论 C5.4.1（多重分解）
 任意 Hilbert 空间 ℋ_n 都可以分解为基础空间的张量积：
 
-```math
+$$
 \mathcal{H}_n \cong \mathcal{H}_{n_1} \otimes_Z \mathcal{H}_{n_2} \otimes_Z \cdots \otimes_Z \mathcal{H}_{n_k}
-```
+$$
 
 其中 n₁ + n₂ + ⋯ + n_k = n。
 

@@ -33,20 +33,20 @@ $$\dim ℋ_n = |B_n| = F_{n+2}$$
 ### 定义 D4.3（叠加态）
 ℋ_n 中的一般态矢量为：
 
-```math
+$$
 |\psi\rangle = \sum_{w \in B_n} \alpha_w |w\rangle
-```
+$$
 
 其中 α_w ∈ ℂ，且满足归一化条件：
 
-```math
+$$
 \langle \psi | \psi \rangle = \sum_{w \in B_n} |\alpha_w|^2 = 1
-```
+$$
 
 **严格的内积计算**：
-```math
+$$
 \langle \psi | \phi \rangle = \sum_{w \in B_n} \overline{\alpha_w} \beta_w
-```
+$$
 
 其中 φ = ∑ β_w |w⟩，ˉα_w 表示 α_w 的复共轭。
 
@@ -55,19 +55,19 @@ $$\dim ℋ_n = |B_n| = F_{n+2}$$
 ### 命题 P4.4（观测概率）
 若测量态 |ψ⟩，结果为基态 |w⟩ 的概率为：
 
-```math
+$$
 P(w) = |\alpha_w|^2
-```
+$$
 
 **证明**：
 设投影算符 P_w = |w⟩⟨w|，则测量结果为 |w⟩ 的概率为：
-```math
+$$
 P(w) = ⟨ψ|P_w|ψ⟩ = ⟨ψ|w⟩⟨w|ψ⟩ = |⟨w|ψ⟩|^2
-```
+$$
 由于 |ψ⟩ = ∑_{v∈B_n} α_v |v⟩，有：
-```math
+$$
 ⟨w|ψ⟩ = ⟨w|\sum_{v∈B_n} α_v |v⟩ = \sum_{v∈B_n} α_v ⟨w|v⟩ = \sum_{v∈B_n} α_v δ_{w,v} = α_w
-```
+$$
 因此 P(w) = |α_w|^2。归一化条件保证 ∑_{w∈B_n} P(w) = ∑_{w∈B_n} |α_w|^2 = 1。∎
 
 ---
@@ -77,9 +77,9 @@ P(w) = ⟨ψ|P_w|ψ⟩ = ⟨ψ|w⟩⟨w|ψ⟩ = |⟨w|ψ⟩|^2
 ### 命题 P4.5（递归生成）
 Hilbert 空间序列 {ℋ_n} 由以下递推关系生成：
 
-```math
+$$
 ℋ_n = \mathrm{Span}\{ |s0\rangle : s\in B_{n-1} \} ⊕ \mathrm{Span}\{ |s10\rangle : s\in B_{n-2} \}, \quad n≥2
-```
+$$
 
 其中 ⊕ 表示直和（两个子空间的正交和）。
 
@@ -90,7 +90,7 @@ Hilbert 空间序列 {ℋ_n} 由以下递推关系生成：
    - 由定义D4.1的标准正交基性质：\langle v₁|v₂\rangle = δ_{v₁,v₂} = 0
    - 同一子集内部也正交：若s₁≠s₂，则\langle s₁0|s₂0\rangle = δ_{s₁0,s₂0} = 0
 3. **维度验证**：
-   ```math
+   $$
    \dim(ℋ_n) = |B_{n-1}| + |B_{n-2}| = F_{(n-1)+2} + F_{(n-2)+2} = F_{n+1} + F_n = F_{n+2}
    ```
    这正确地使用了Fibonacci递推关系。
@@ -106,24 +106,24 @@ Hilbert 空间序列 {ℋ_n} 由以下递推关系生成：
 ## 4.4 示例（n=1 到 n=4）
 
 ### n=1：
-```math
+$$math
 ℋ_1 = \mathrm{Span}\{|0\rangle, |1\rangle\}, \quad \dim=2
 ```
 
 ### n=2：
-```math
+$$
 ℋ_2 = \mathrm{Span}\{|00\rangle, |01\rangle, |10\rangle\}, \quad \dim=3
-```
+$$
 
 ### n=3：
-```math
+$$
 ℋ_3 = \mathrm{Span}\{|000\rangle, |001\rangle, |010\rangle, |100\rangle, |101\rangle\}, \quad \dim=5
-```
+$$
 
 ### n=4：
-```math
+$$
 ℋ_4 = \mathrm{Span}\{|0000\rangle, |0001\rangle, |0010\rangle, |0100\rangle, |0101\rangle, |1000\rangle, |1001\rangle, |1010\rangle\}, \quad \dim=8
-```
+$$
 
 ---
 

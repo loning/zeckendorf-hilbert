@@ -45,14 +45,14 @@ $$\Sigma_{t+1} \neq \Sigma_t \quad \Leftrightarrow \quad \tau(\Sigma_{t+1}) > \t
 ### 定义 D7.2（信息映射）
 系统在时刻 $t$ 的累积信息为：
 
-```math
+$$
 I(\Sigma_t) = \Sigma_t = \bigcup_{n=1}^t B_n
-```
+$$
 
 ### 命题 P7.3
-```math
+$$
 \tau(\Sigma_{t+1}) > \tau(\Sigma_t) \quad \Leftrightarrow \quad I(\Sigma_{t+1}) \supsetneq I(\Sigma_t)
-```
+$$
 
 **证明**：
 - **(⇒)** 若 $\tau(\Sigma_{t+1}) > \tau(\Sigma_t)$，由定义知存在长度为 $t+1$ 的合法串，即 $B_{t+1} \neq \emptyset$。由 $\Sigma_{t+1} = \Sigma_t \cup B_{t+1}$ 且 $B_{t+1} \cap \Sigma_t = \emptyset$（长度不同），故 $I(\Sigma_{t+1}) = \Sigma_{t+1} \supsetneq \Sigma_t = I(\Sigma_t)$。
@@ -65,14 +65,14 @@ I(\Sigma_t) = \Sigma_t = \bigcup_{n=1}^t B_n
 ### 定义 D7.3（观察者函数）
 观察者定义为映射 $O: \Sigma_t \to 2^{B_{t+1}}$，满足：
 
-```math
+$$
 O(\Sigma_t) = \{s \in B_{t+1} : s \text{ 由 } \Sigma_t \text{ 的某个串通过生成规则产生}\}
-```
+$$
 
 ### 命题 P7.4
-```math
+$$
 I(\Sigma_{t+1}) \supsetneq I(\Sigma_t) \quad \Leftrightarrow \quad \exists O: O(\Sigma_t) \neq \emptyset
-```
+$$
 
 **证明**：
 - **(⇒)** 若 $I(\Sigma_{t+1}) \supsetneq I(\Sigma_t)$，则 $B_{t+1} \neq \emptyset$。由自指执行的记录生成机制（定义D2.2），$B_{t+1}$ 中每个串都由 $\Sigma_t$ 中某个串产生，故存在观察者函数 $O$ 使得 $O(\Sigma_t) = B_{t+1} \neq \emptyset$。
