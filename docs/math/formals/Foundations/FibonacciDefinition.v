@@ -1,211 +1,145 @@
 (**
- * FibonacciDefinition - Fibonacci Sequence Definition with F₁=1, F₂=2 Convention
+ * FibonacciDefinition - Infinite Fibonacci Sequence Definition with F₁=1, F₂=2 Convention
  * 
  * This module defines the Fibonacci sequence using our specific convention:
- * F₁=1, F₂=2, F₃=3, F₄=5, F₅=8, F₆=13, ...
+ * F₀=0, F₁=1, F₂=2, F₃=3, F₄=5, F₅=8, F₆=13, ...
  * 
  * SINGLE THEOREM POLICY: This file contains only the Fibonacci sequence definition.
  * ZERO ADMITTED POLICY: All theorems proven with complete proofs ending in Qed.
- * PURE COMPUTATIONAL POLICY: Definition based on explicit computation table.
+ * INFINITE RANGE: Works for all natural numbers through Equations plugin.
  * 
  * Mathematical Correspondence:
  * - docs/math/00-basic-notation.md § 2.1 Fibonacci序列系统
  * - docs/math/04-dynamic-programming.md § 2.1 标准Fibonacci递推
  * 
- * Dependencies: None (only Coq standard library)
+ * Dependencies: Equations plugin for Coq 9.0
  *)
 
-(** Standard Coq imports *)
-From Coq Require Import Arith.Arith.
-From Coq Require Import micromega.Lia.
+(** Use Equations for better recursive definitions *)
+From Equations Require Import Equations.
+From Stdlib Require Import Arith.Arith.
+From Stdlib Require Import Lia.
 
 Module FibonacciDefinition.
 
-(** * Fibonacci Sequence Definition *)
+(** * Fibonacci Sequence Definition using Equations *)
 
 (**
- * Fibonacci sequence with our convention: F₁=1, F₂=2, F₃=3, F₄=5, F₅=8, ...
- * 
- * Using explicit computation table for efficiency and complete determinism.
- * This avoids recursion issues and provides immediate computational verification.
+ * Fibonacci sequence with our convention: F₀=0, F₁=1, F₂=2, F₃=3, F₄=5, F₅=8, ...
+ * Using Equations for well-founded recursion on all natural numbers.
  *)
-Definition fibonacci (n : nat) : nat :=
-  match n with
-  | 0 => 0          (* F₀ = 0 (extended definition) *)
-  | 1 => 1          (* F₁ = 1 *)
-  | 2 => 2          (* F₂ = 2 *)
-  | 3 => 3          (* F₃ = 3 *)
-  | 4 => 5          (* F₄ = 5 *)
-  | 5 => 8          (* F₅ = 8 *)
-  | 6 => 13         (* F₆ = 13 *)
-  | 7 => 21         (* F₇ = 21 *)
-  | 8 => 34         (* F₈ = 34 *)
-  | 9 => 55         (* F₉ = 55 *)
-  | 10 => 89        (* F₁₀ = 89 *)
-  | 11 => 144       (* F₁₁ = 144 *)
-  | 12 => 233       (* F₁₂ = 233 *)
-  | 13 => 377       (* F₁₃ = 377 *)
-  | 14 => 610       (* F₁₄ = 610 *)
-  | 15 => 987       (* F₁₅ = 987 *)
-  | 16 => 1597      (* F₁₆ = 1597 *)
-  | _ => 2584       (* F₁₇ = 2584 (fallback for larger values) *)
-  end.
+Equations fibonacci (n : nat) : nat by wf n lt :=
+  fibonacci 0 := 0;
+  fibonacci 1 := 1;
+  fibonacci 2 := 2;
+  fibonacci (S (S (S n'))) := fibonacci (S (S n')) + fibonacci (S n').
 
-(**
- * Notation for Fibonacci numbers
- *)
-Notation "F( n )" := (fibonacci n) (at level 40).
+(** * Basic Properties *)
 
-(** * Basic Fibonacci Properties *)
-
-(**
- * Initial conditions verification
- *)
-Theorem fibonacci_initial_conditions : F(1) = 1 /\ F(2) = 2.
+(** Verify initial values *)
+Theorem fibonacci_initial_values :
+  fibonacci 0 = 0 /\
+  fibonacci 1 = 1 /\
+  fibonacci 2 = 2 /\
+  fibonacci 3 = 3 /\
+  fibonacci 4 = 5 /\
+  fibonacci 5 = 8 /\
+  fibonacci 6 = 13 /\
+  fibonacci 7 = 21 /\
+  fibonacci 8 = 34 /\
+  fibonacci 9 = 55 /\
+  fibonacci 10 = 89.
 Proof.
-  split; reflexivity.
+  repeat split; simp fibonacci; reflexivity.
 Qed.
 
-(**
- * First few Fibonacci values verification
- *)
-Theorem fibonacci_first_values : 
-  F(1) = 1 /\ F(2) = 2 /\ F(3) = 3 /\ F(4) = 5 /\ F(5) = 8 /\ 
-  F(6) = 13 /\ F(7) = 21 /\ F(8) = 34 /\ F(9) = 55 /\ F(10) = 89.
+(** Recurrence equation for n ≥ 1 *)
+Theorem fibonacci_equation : forall n : nat,
+  n >= 1 -> fibonacci (S (S n)) = fibonacci (S n) + fibonacci n.
 Proof.
-  repeat split; reflexivity.
+  intros n Hn.
+  destruct n as [|n']; [lia |].
+  (* n = S n' >= 1 *)
+  simp fibonacci. reflexivity.
 Qed.
 
-(**
- * Extended verification up to F₁₆
- *)
-Theorem fibonacci_extended_values :
-  F(11) = 144 /\ F(12) = 233 /\ F(13) = 377 /\ F(14) = 610 /\ 
-  F(15) = 987 /\ F(16) = 1597.
+(** Alternative recurrence for n ≥ 3 *)
+Theorem fibonacci_recurrence : forall n : nat,
+  n >= 1 -> fibonacci (n + 2) = fibonacci (n + 1) + fibonacci n.
 Proof.
-  repeat split; reflexivity.
-Qed.
-
-(**
- * Fibonacci numbers are positive for n > 0
- *)
-Theorem fibonacci_positive : forall n : nat, (n > 0) -> (F(n) > 0).
-Proof.
-  intro n. intro H.
-  destruct n as [| n']; [lia |].
-  destruct n' as [| n'']; [simpl; lia |].
-  destruct n'' as [| n''']; [simpl; lia |].
-  destruct n''' as [| n'''']; [simpl; lia |].
-  destruct n'''' as [| n''''']; [simpl; lia |].
-  destruct n''''' as [| n'''''']; [simpl; lia |].
-  destruct n'''''' as [| n''''''']; [simpl; lia |].
-  destruct n''''''' as [| n'''''''']; [simpl; lia |].
-  destruct n'''''''' as [| n''''''''']; [simpl; lia |].
-  destruct n''''''''' as [| n'''''''''']; [simpl; lia |].
-  destruct n'''''''''' as [| n''''''''''']; [simpl; lia |].
-  destruct n''''''''''' as [| n'''''''''''']; [simpl; lia |].
-  destruct n'''''''''''' as [| n''''''''''''']; [simpl; lia |].
-  destruct n''''''''''''' as [| n'''''''''''''']; [simpl; lia |].
-  destruct n'''''''''''''' as [| n''''''''''''''']; [simpl; lia |].
-  destruct n''''''''''''''' as [| n'''''''''''''''']; [simpl; lia |].
-  destruct n'''''''''''''''' as [| n''''''''''''''''']; [simpl; lia |].
-  (* n >= 17 *) simpl; lia.
-Qed.
-
-(**
- * F(0) = 0 (extended definition)
- *)
-Theorem fibonacci_zero : F(0) = 0.
-Proof.
+  intros n Hn.
+  destruct n as [|n']; [lia |].
+  replace (S n' + 2) with (S (S (S n'))) by lia.
+  replace (S n' + 1) with (S (S n')) by lia.
+  simp fibonacci.
   reflexivity.
 Qed.
 
-(**
- * Fibonacci function is well-defined for all natural numbers
- *)
-Theorem fibonacci_well_defined : forall n : nat, exists val : nat, F(n) = val.
+(** * Positivity *)
+
+(** Fibonacci is positive for n ≥ 1 *)
+Theorem fibonacci_positive : forall n : nat,
+  n >= 1 -> fibonacci n > 0.
 Proof.
-  intro n.
-  exists (fibonacci n).
-  reflexivity.
+  intros n Hn.
+  (* Use strong induction *)
+  induction n as [n IHn] using (well_founded_induction lt_wf).
+  destruct n as [|n']; [lia |].
+  destruct n' as [|n''].
+  - (* n = 1 *)
+    simp fibonacci. lia.
+  - destruct n'' as [|n'''].
+    + (* n = 2 *)
+      simp fibonacci. lia.
+    + (* n ≥ 3 *)
+      simp fibonacci.
+      assert (H1: fibonacci (S (S n''')) > 0).
+      { apply IHn; lia. }
+      assert (H2: fibonacci (S n''') > 0).
+      { apply IHn; lia. }
+      lia.
 Qed.
 
-(** * Computational Verification Examples *)
+(** * Non-negativity *)
 
-(**
- * Small value verification
- *)
-Example fibonacci_small_examples :
-  F(0) = 0 /\ F(1) = 1 /\ F(2) = 2 /\ F(3) = 3 /\ F(4) = 5.
+(** Fibonacci is non-negative for all n *)
+Theorem fibonacci_nonnegative : forall n : nat,
+  fibonacci n >= 0.
 Proof.
-  repeat split; reflexivity.
+  intros n.
+  destruct n as [|n'].
+  - simp fibonacci. lia.
+  - apply Nat.lt_le_incl.
+    apply fibonacci_positive.
+    lia.
 Qed.
 
-(**
- * Medium value verification
- *)
-Example fibonacci_medium_examples :
-  F(8) = 34 /\ F(9) = 55 /\ F(10) = 89 /\ F(11) = 144 /\ F(12) = 233.
-Proof.
-  repeat split; reflexivity.
-Qed.
+(** * Export Interface *)
 
-(**
- * Large value verification
- *)
-Example fibonacci_large_examples :
-  F(13) = 377 /\ F(14) = 610 /\ F(15) = 987 /\ F(16) = 1597.
-Proof.
-  repeat split; reflexivity.
-Qed.
-
-(**
- * Fallback value verification
- *)
-Example fibonacci_fallback_example : F(17) = 2584 /\ F(100) = 2584.
-Proof.
-  split; reflexivity.
-Qed.
-
-(** * Interface Export *)
-
-(**
- * Core Fibonacci interface
- *)
-Module FibonacciInterface.
-  Definition exported_fibonacci := fibonacci.
-  Definition exported_fibonacci_initial_conditions := fibonacci_initial_conditions.
-  Definition exported_fibonacci_first_values := fibonacci_first_values.
-  Definition exported_fibonacci_positive := fibonacci_positive.
-  Definition exported_fibonacci_zero := fibonacci_zero.
-End FibonacciInterface.
+Module FibonacciDefinitionInterface.
+  Definition fibonacci := fibonacci.
+  Definition fibonacci_initial_values := fibonacci_initial_values.
+  Definition fibonacci_equation := fibonacci_equation.
+  Definition fibonacci_recurrence := fibonacci_recurrence.
+  Definition fibonacci_positive := fibonacci_positive.
+  Definition fibonacci_nonnegative := fibonacci_nonnegative.
+End FibonacciDefinitionInterface.
 
 End FibonacciDefinition.
 
 (**
  * Module Summary:
  * 
- * This FibonacciDefinition module provides the atomic foundation for all
- * Fibonacci sequence operations in the Zeckendorf-Hilbert formal verification project.
+ * This module provides the foundational definition of the Fibonacci sequence
+ * with our specific F₁=1, F₂=2 convention, working for ALL natural numbers.
  * 
- * Key Properties:
- * ✓ Single focus: Fibonacci sequence definition only
- * ✓ Zero dependencies: Only uses Coq standard library
- * ✓ Complete proofs: All theorems end with Qed
- * ✓ Computational verification: All values are explicitly computable
- * ✓ Explicit table implementation: Avoids recursion complexity
- * ✓ Mathematical correspondence: Direct mapping to F₁=1, F₂=2 convention
- * ✓ Extended range: Covers F₀ through F₁₆ with fallback
+ * Key Achievements:
+ * ✓ Infinite range: Works for all natural numbers
+ * ✓ Uses Equations: Clean, well-founded recursive definition
+ * ✓ Complete proofs: All theorems end with Qed (no Admitted)
+ * ✓ Verified consistency: Initial values match our convention
+ * ✓ Clean interface: Single fibonacci function for all uses
  * 
- * This atomic module provides the Fibonacci foundation for:
- * - Fibonacci recurrence relation verification
- * - String counting bijection proofs
- * - Golden ratio emergence theory
- * - Dynamic programming applications
- * - All higher-level Fibonacci-based constructions
- * 
- * The explicit table approach ensures immediate computational verification
- * and eliminates potential recursion-related proof complications.
+ * The definition serves as the foundation for all Fibonacci-related proofs
+ * in the Zeckendorf-Hilbert theory.
  *)
-
-(** End of FibonacciDefinition module *)

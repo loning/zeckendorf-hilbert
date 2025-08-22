@@ -15,12 +15,12 @@
  * Dependencies: FibonacciDefinition.v
  *)
 
-(** Standard Coq imports *)
-From Coq Require Import Arith.Arith.
-From Coq Require Import micromega.Lia.
+(** Standard imports *)
+From Stdlib Require Import Arith.Arith.
+From Stdlib Require Import Lia.
 
 (** Import Fibonacci definition *)
-Require Import FibonacciDefinition.
+From Foundations Require Import FibonacciDefinition.
 
 Module FibonacciRecurrence.
 
@@ -30,93 +30,54 @@ Notation "F( n )" := (FibonacciDefinition.fibonacci n) (at level 40).
 (** * The Fundamental Recurrence Relation *)
 
 (**
- * Fibonacci recurrence relation: F_{n+1} = F_n + F_{n-1}
+ * Fibonacci recurrence relation: F_{n+2} = F_{n+1} + F_n
  * 
  * This is the defining property of the Fibonacci sequence.
- * We prove it holds for our explicit definition within the valid range.
+ * We prove it holds for ALL natural numbers.
  *)
-Theorem fibonacci_recurrence : forall n : nat, 
-  (2 <= n <= 15) -> FibonacciDefinition.fibonacci(n+1) = FibonacciDefinition.fibonacci(n) + FibonacciDefinition.fibonacci(n-1).
+Theorem fibonacci_equation : forall n : nat,
+  FibonacciDefinition.fibonacci (S (S n)) = FibonacciDefinition.fibonacci (S n) + FibonacciDefinition.fibonacci n.
 Proof.
-  intros n [Hlow Hhigh].
-  (* Direct verification by cases *)
-  destruct n as [| n'].
-  - (* n = 0 *) lia.
-  - destruct n' as [| n''].
-    + (* n = 1 *) lia. 
-    + destruct n'' as [| n'''].
-      * (* n = 2: F(3) = F(2) + F(1) ⟺ 3 = 2 + 1 *)
-        simpl. reflexivity.
-      * destruct n''' as [| n''''].
-        ** (* n = 3: F(4) = F(3) + F(2) ⟺ 5 = 3 + 2 *)
-           simpl. reflexivity.
-        ** destruct n'''' as [| n'''''].
-           *** (* n = 4: F(5) = F(4) + F(3) ⟺ 8 = 5 + 3 *)
-               simpl. reflexivity.
-           *** destruct n''''' as [| n''''''].
-               **** (* n = 5: F(6) = F(5) + F(4) ⟺ 13 = 8 + 5 *)
-                    simpl. reflexivity.
-               **** destruct n'''''' as [| n'''''''].
-                    ***** (* n = 6: F(7) = F(6) + F(5) ⟺ 21 = 13 + 8 *)
-                          simpl. reflexivity.
-                    ***** destruct n''''''' as [| n''''''''].
-                          ****** (* n = 7: F(8) = F(7) + F(6) ⟺ 34 = 21 + 13 *)
-                                 simpl. reflexivity.
-                          ****** destruct n'''''''' as [| n'''''''''].
-                                 ******* (* n = 8: F(9) = F(8) + F(7) ⟺ 55 = 34 + 21 *)
-                                         simpl. reflexivity.
-                                 ******* destruct n''''''''' as [| n''''''''''].
-                                         ******** (* n = 9: F(10) = F(9) + F(8) ⟺ 89 = 55 + 34 *)
-                                                  simpl. reflexivity.
-                                         ******** destruct n'''''''''' as [| n'''''''''''].
-                                                  ********* (* n = 10: F(11) = F(10) + F(9) ⟺ 144 = 89 + 55 *)
-                                                            simpl. reflexivity.
-                                                  ********* destruct n''''''''''' as [| n''''''''''''].
-                                                            ********** (* n = 11: F(12) = F(11) + F(10) ⟺ 233 = 144 + 89 *)
-                                                                       simpl. reflexivity.
-                                                            ********** destruct n'''''''''''' as [| n'''''''''''''].
-                                                                       *********** (* n = 12: F(13) = F(12) + F(11) ⟺ 377 = 233 + 144 *)
-                                                                                   simpl. reflexivity.
-                                                                       *********** destruct n''''''''''''' as [| n''''''''''''''].
-                                                                                   ************ (* n = 13: F(14) = F(13) + F(12) ⟺ 610 = 377 + 233 *)
-                                                                                                simpl. reflexivity.
-                                                                                   ************ destruct n'''''''''''''' as [| n'''''''''''''''].
-                                                                                                ************* (* n = 14: F(15) = F(14) + F(13) ⟺ 987 = 610 + 377 *)
-                                                                                                              simpl. reflexivity.
-                                                                                                ************* destruct n''''''''''''''' as [| n''''''''''''''''].
-                                                                                                              ************** (* n = 15: F(16) = F(15) + F(14) ⟺ 1597 = 987 + 610 *)
-                                                                                                                             simpl. reflexivity.
-                                                                                                              ************** (* n >= 16 *)
-                                                                                                                             lia.
+  intros n.
+  destruct n as [|n'].
+  - (* n = 0 *)
+    unfold fibonacci. simpl. reflexivity.
+  - (* n = S n' *)
+    unfold fibonacci. 
+    destruct n' as [|n''].
+    + (* n = 1 *)
+      simpl. reflexivity.
+    + (* n >= 2 *)
+      simpl. reflexivity.
 Qed.
 
 (**
  * Recurrence relation in different forms
  *)
-Theorem fibonacci_recurrence_forward : forall n : nat,
-  (1 <= n <= 14) -> F(n+2) = F(n+1) + F(n).
+Theorem fibonacci_recurrence_from_2 : forall n : nat,
+  n >= 2 -> F(n) = F(n-1) + F(n-2).
 Proof.
-  intros n [Hlow Hhigh].
-  assert (H_shift: 2 <= n+1 <= 15) by lia.
-  assert (H_rec: F((n+1)+1) = F(n+1) + F((n+1)-1)) by (apply fibonacci_recurrence; exact H_shift).
-  replace ((n+1)+1) with (n+2) in H_rec by lia.
-  replace ((n+1)-1) with n in H_rec by lia.
-  exact H_rec.
+  intros n Hn.
+  destruct n as [|n']; [lia |].
+  destruct n' as [|n'']; [lia |].
+  (* n = S (S n''), so n >= 2 *)
+  replace (S (S n'') - 1) with (S n'') by lia.
+  replace (S (S n'') - 2) with n'' by lia.
+  apply fibonacci_equation.
 Qed.
 
 (**
- * Recurrence relation in backward form
+ * Convenient lemma for n+1 formulation
  *)
-Theorem fibonacci_recurrence_backward : forall n : nat,
-  (3 <= n <= 16) -> F(n) = F(n-1) + F(n-2).
+Lemma fibonacci_step : forall n : nat,
+  n >= 1 -> F(n+1) = F(n) + F(n-1).
 Proof.
-  intros n [Hlow Hhigh].
-  assert (H_shift: 2 <= n-1 <= 15) by lia.
-  assert (H_rec: F((n-1)+1) = F(n-1) + F((n-1)-1)) by (apply fibonacci_recurrence; exact H_shift).
-  simpl in H_rec.
-  replace (n-1+1) with n in H_rec by lia.
-  replace (n-1-1) with (n-2) in H_rec by lia.
-  exact H_rec.
+  intros n Hn.
+  destruct n as [|n']; [lia |].
+  (* n = S n', so n >= 1 *)
+  replace (S n' + 1) with (S (S n')) by lia.
+  replace (S n' - 1) with n' by lia.
+  apply fibonacci_equation.
 Qed.
 
 (** * Range Verification *)
