@@ -16,9 +16,10 @@
  *)
 
 (** Standard Coq imports *)
-From Coq Require Import Arith.Arith.
-From Coq Require Import Lia.
-From Coq Require Import Program.Wf.
+From Equations Require Import Equations.
+From Stdlib Require Import Arith.Arith.
+From Stdlib Require Import Lia.
+From Stdlib Require Import Program.Wf.
 
 (** Import Fibonacci definition and recurrence *)
 From Foundations Require Import FibonacciDefinition.
@@ -45,16 +46,18 @@ Proof.
   - (* n = S n' *)
     destruct n' as [|n''].
     + (* n = 1 *)
-      unfold fibonacci. simpl. lia.
+      simp fibonacci. lia.
     + (* n = S (S n'') >= 2 *)
-      rewrite fibonacci_equation.
-      assert (H1: F(S n'') > 0).
-      { apply IHn; lia. }
-      assert (H2: F(n'') > 0).
-      { destruct n''.
-        - simpl. unfold fibonacci. simpl. lia.
-        - apply IHn; lia. }
-      lia.
+      destruct n'' as [|n'''].
+      * (* n = 2 *)
+        simp fibonacci. lia.
+      * (* n = S (S (S n''')) >= 3 *)
+        simp fibonacci.
+        assert (H1: F(S (S n''')) > 0).
+        { apply IHn; lia. }
+        assert (H2: F(S n''') > 0).
+        { apply IHn; lia. }
+        lia.
 Qed.
 
 (** * Main Theorem: Fibonacci sequence is strictly increasing for n ≥ 1 *)
@@ -71,25 +74,45 @@ Proof.
   - (* n = S n' >= 1 *)
     destruct n' as [|n''].
     + (* n = 1: F(2) > F(1) *)
-      unfold fibonacci. simpl. lia.
+      (* Need to prove F(2) > F(1), i.e., 2 > 1 *)
+      change (F(2) > F(1)).
+      (* Manually verify using the definition values *)
+      assert (F(1) = 1) by (simp fibonacci; reflexivity).
+      assert (F(2) = 2) by (simp fibonacci; reflexivity).
+      lia.
     + (* n = S (S n'') >= 2 *)
-      (* F(n+1) = F(S(S(S n''))) = F(S(S n'')) + F(S n'') *)
-      rewrite fibonacci_equation.
-      (* F(n) = F(S(S n'')) = F(S n'') + F(n'') *)
-      assert (Heq: F(S (S n'')) = F(S n'') + F(n'')).
-      { apply fibonacci_equation. }
-      rewrite Heq.
-      (* Need to show: F(S(S n'')) + F(S n'') > F(S n'') + F(n'') *)
-      (* Equivalently: F(S(S n'')) > F(n'') *)
+      (* We need to prove F(S(S n'') + 1) > F(S(S n'')) *)
+      replace (S (S n'') + 1) with (S (S (S n''))) by lia.
+      (* F(S(S(S n''))) = F(S(S n'')) + F(S n'') *)
+      assert (Heq1: F(S (S (S n''))) = F(S (S n'')) + F(S n'')).
+      { simp fibonacci. reflexivity. }
+      rewrite Heq1.
+      (* F(S(S n'')) = F(S n'') + F(n'') - need to case split first *)
       destruct n'' as [|n'''].
-      * (* n'' = 0, so n = 2 *)
-        simpl. unfold fibonacci. simpl. lia.
-      * (* n'' = S n''' >= 1 *)
-        (* Use IH twice to get F(S(S n''')) > F(S n''') > F(n''') *)
-        assert (H1: F(S (S n''')) > F(S n''')).
-        { apply IHn; lia. }
-        assert (H2: F(S n''') > F(n''')).
-        { apply IHn; lia. }
+      * (* n'' = 0, so n = 2, we need to prove F(3) > F(2) *)
+        (* F(3) = F(2) + F(1) = 2 + 1 = 3 from Heq1 *)
+        (* F(2) = 2 from initial values *)
+        assert (HInit := FibonacciDefinition.fibonacci_initial_values).
+        destruct HInit as [_ [H1 [H2 _]]].
+        rewrite H1 in Heq1.
+        rewrite H2 in Heq1.
+        (* Now Heq1 says F(3) = 2 + 1 = 3 *)
+        assert (H3: F(2) = 2) by (exact H2).
+        lia.
+      * (* n'' = S n''' *)
+        (* Now F(S(S(S n'''))) = F(S(S n''')) + F(S n''') works *)
+        assert (Heq2: F(S (S (S n'''))) = F(S (S n''')) + F(S n''')).
+        { simp fibonacci. reflexivity. }
+        rewrite Heq2.
+        (* Need to show: F(S(S(S n'''))) + F(S(S n''')) > F(S(S n''')) + F(S n''') *)
+        (* Equivalently: F(S(S(S n'''))) > F(S n''') *)
+        (* Use IH twice to get F(S(S(S n'''))) > F(S(S n''')) > F(S n''') *)
+        assert (H1: F(S (S (S n'''))) > F(S (S n'''))).
+        { replace (S (S (S n'''))) with (S (S n''') + 1) by lia.
+          apply IHn; lia. }
+        assert (H2: F(S (S n''')) > F(S n''')).
+        { replace (S (S n''')) with (S n''' + 1) by lia.
+          apply IHn; lia. }
         (* By transitivity *)
         lia.
 Qed.
@@ -103,17 +126,26 @@ Proof.
   (* Use trichotomy *)
   destruct (Nat.lt_trichotomy m n) as [Hlt | [Heq' | Hgt]].
   - (* m < n *)
-    (* Apply strong monotonicity *)
+    (* Apply strong monotonicity using transitivity *)
     assert (H_mono: F(m) < F(n)).
     { clear Heq.
-      induction Hlt as [|n' Hlt' IH].
-      - (* m < S m = n *)
-        apply fibonacci_strictly_increasing. exact Hm.
-      - (* m < n' < n *)
-        apply Nat.lt_trans with (F(n')).
-        + apply IH.
-        + assert (Hn': n' >= 1) by lia.
-          apply fibonacci_strictly_increasing. exact Hn'.
+      (* Use that n = m + k for some k > 0 *)
+      assert (exists k, k > 0 /\ n = m + k) as [k [Hk Hnk]].
+      { exists (n - m). split; lia. }
+      subst n.
+      (* Prove by induction on k that F(m) < F(m+k) *)
+      clear Hlt Hn.
+      induction k as [|k' IHk].
+      - lia. (* k = 0 contradicts k > 0 *)
+      - (* k = S k' *)
+        destruct k' as [|k''].
+        + (* k = 1, so prove F(m) < F(m+1) *)
+          apply fibonacci_strictly_increasing. exact Hm.
+        + (* k = S (S k''), so use transitivity *)
+          apply Nat.lt_trans with (F(m + S k'')).
+          * apply IHk; lia.
+          * replace (m + S (S k'')) with ((m + S k'') + 1) by lia.
+            apply fibonacci_strictly_increasing. lia.
     }
     rewrite Heq in H_mono. lia.
   - (* m = n *)
@@ -121,14 +153,23 @@ Proof.
   - (* m > n *)
     assert (H_mono: F(n) < F(m)).
     { clear Heq.
-      induction Hgt as [|m' Hgt' IH].
-      - (* n < S n = m *)
-        apply fibonacci_strictly_increasing. exact Hn.
-      - (* n < m' < m *)
-        apply Nat.lt_trans with (F(m')).
-        + apply IH.
-        + assert (Hm': m' >= 1) by lia.
-          apply fibonacci_strictly_increasing. exact Hm'.
+      (* Use that m = n + k for some k > 0 *)
+      assert (exists k, k > 0 /\ m = n + k) as [k [Hk Hmk]].
+      { exists (m - n). split; lia. }
+      subst m.
+      (* Prove by induction on k that F(n) < F(n+k) *)
+      clear Hgt Hm.
+      induction k as [|k' IHk].
+      - lia. (* k = 0 contradicts k > 0 *)
+      - (* k = S k' *)
+        destruct k' as [|k''].
+        + (* k = 1, so prove F(n) < F(n+1) *)
+          apply fibonacci_strictly_increasing. exact Hn.
+        + (* k = S (S k''), so use transitivity *)
+          apply Nat.lt_trans with (F(n + S k'')).
+          * apply IHk; lia.
+          * replace (n + S (S k'')) with ((n + S k'') + 1) by lia.
+            apply fibonacci_strictly_increasing. lia.
     }
     rewrite <- Heq in H_mono. lia.
 Qed.
@@ -145,12 +186,21 @@ Proof.
   - lia.
   - destruct n' as [|n''].
     + (* n = 1 *)
-      unfold fibonacci. simpl. lia.
+      (* Need to prove F(1) >= 1 *)
+      assert (HInit := FibonacciDefinition.fibonacci_initial_values).
+      destruct HInit as [_ [H1 _]].
+      rewrite H1. lia.
     + destruct n'' as [|n'''].
       * (* n = 2 *)
-        unfold fibonacci. simpl. lia.
+        (* Need to prove F(2) >= 2 *)
+        assert (HInit := FibonacciDefinition.fibonacci_initial_values).
+        destruct HInit as [_ [_ [H2 _]]].
+        rewrite H2. lia.
       * (* n >= 3 *)
-        rewrite fibonacci_equation.
+        (* F(S(S(S n'''))) = F(S(S n''')) + F(S n''') *)
+        assert (Heq: F(S (S (S n'''))) = F(S (S n''')) + F(S n''')).
+        { simp fibonacci. reflexivity. }
+        rewrite Heq.
         assert (H1: F(S (S n''')) >= S (S n''')).
         { apply IHn; lia. }
         assert (H2: F(S n''') >= S n''').
@@ -171,16 +221,8 @@ Proof.
   (* F(n) grows approximately as φ^n/√5 where φ ≈ 1.618 *)
   (* For large enough n, exponential growth dominates linear *)
   
-  (* We prove by strong induction that growth accelerates *)
-  assert (H_accel: F(n) >= F(n-1) + F(n-2) + 1).
-  { destruct n as [|n']; [lia |].
-    destruct n' as [|n'']; [lia |].
-    rewrite fibonacci_equation.
-    assert (Hpos1: F(S n'') > 0) by (apply fibonacci_positive; lia).
-    assert (Hpos2: F(n'') > 0).
-    { destruct n''; [simpl; unfold fibonacci; simpl; lia | apply fibonacci_positive; lia]. }
-    lia.
-  }
+  (* Note: For n >= 3, F(n) = F(n-1) + F(n-2) exactly by definition *)
+  (* The only special case is F(2) = 2 ≠ F(1) + F(0) = 1 + 0 = 1 *)
   
   (* Since F grows faster than any linear function, the claim holds *)
   (* A complete proof would require establishing the exponential growth rate *)
@@ -189,7 +231,10 @@ Proof.
   (* Simplified proof using doubling property *)
   assert (H_doubling: forall k, k >= 5 -> F(k+2) > 2 * F(k)).
   { intros k Hk.
-    rewrite fibonacci_equation.
+    (* F(k+2) = F(k+1) + F(k) by recurrence *)
+    assert (Heq: F(k+2) = F(k+1) + F(k)).
+    { apply FibonacciRecurrence.fibonacci_equation. lia. }
+    rewrite Heq.
     assert (H_mono: F(k+1) > F(k)) by (apply fibonacci_strictly_increasing; lia).
     lia.
   }
@@ -201,11 +246,10 @@ Proof.
   (* This is satisfied for n >= (a+1)*(b+1) + 10 *)
   
   (* Complete formal proof would require logarithmic analysis *)
-  (* We establish the weaker but sufficient property *)
-  assert (F(n) > n * n) by admit. (* Would need logarithmic growth analysis *)
-  
-  (* Since n² > a*n + b for n >= a+b+1, we have our result *)
-  lia.
+  (* Since F(n) grows exponentially (approximately φ^n), 
+     while a*n + b grows linearly, the result holds for large enough N.
+     The precise value of N depends on the golden ratio analysis. *)
+  admit.
 Admitted. (* This requires deeper analysis of exponential growth *)
 
 (** * Non-decreasing property *)
@@ -222,6 +266,7 @@ Proof.
     + apply IH.
     + apply Nat.lt_le_incl.
       assert (Hn': n' >= 1) by lia.
+      replace (S n') with (n' + 1) by lia.
       apply fibonacci_strictly_increasing.
       exact Hn'.
 Qed.

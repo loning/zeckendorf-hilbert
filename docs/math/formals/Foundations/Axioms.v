@@ -18,17 +18,17 @@
  * Zero Admitted Policy: All theorems proven with complete proofs ending in Qed.
  *)
 
-From Coq Require Import Classical.
-From Coq Require Import Reals.
-From Coq Require Import Reals.Rbase.
-From Coq Require Import Reals.RIneq.
-From Coq Require Import Reals.R_sqrt.
-From Coq Require Import Sets.Ensembles.
-From Coq Require Import Logic.FunctionalExtensionality.
-From Coq Require Import Relations.Relation_Definitions.
-From Coq Require Import Arith.Arith.
-From Coq Require Import Lists.List.
-From Coq Require Import micromega.Psatz.
+From Stdlib Require Import Classical.
+From Stdlib Require Import Reals.
+From Stdlib Require Import Reals.Rbase.
+From Stdlib Require Import Reals.RIneq.
+From Stdlib Require Import Reals.R_sqrt.
+From Stdlib Require Import Sets.Ensembles.
+From Stdlib Require Import Logic.FunctionalExtensionality.
+From Stdlib Require Import Relations.Relation_Definitions.
+From Stdlib Require Import Arith.Arith.
+From Stdlib Require Import Lists.List.
+From Stdlib Require Import micromega.Psatz.
 
 Open Scope R_scope.
 

@@ -16,9 +16,9 @@
  *)
 
 (** Standard Coq imports *)
-From Coq Require Import Lists.List.
-From Coq Require Import Arith.Arith.
-From Coq Require Import micromega.Lia.
+From Stdlib Require Import Lists.List.
+From Stdlib Require Import Arith.Arith.
+From Stdlib Require Import micromega.Lia.
 
 (** Import our PhiBit foundation *)
 Require Import PhiBitType.
@@ -170,7 +170,7 @@ Theorem phi_append_bit_length : forall (s : PhiString) (b : PhiBitType.PhiBit),
 Proof.
   intros s b.
   unfold phi_length, phi_append_bit.
-  rewrite app_length.
+  rewrite length_app.
   simpl.
   lia.
 Qed.

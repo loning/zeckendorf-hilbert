@@ -14,9 +14,9 @@
  *)
 
 (** Standard Coq imports *)
-From Coq Require Import Bool.Bool.
-From Coq Require Import Arith.Arith.
-From Coq Require Import Logic.Decidable.
+From Stdlib Require Import Bool.Bool.
+From Stdlib Require Import Arith.Arith.
+From Stdlib Require Import Logic.Decidable.
 
 Module PhiBitType.
 
