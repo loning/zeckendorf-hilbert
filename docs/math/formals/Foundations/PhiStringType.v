@@ -21,7 +21,7 @@ From Stdlib Require Import Arith.Arith.
 From Stdlib Require Import micromega.Lia.
 
 (** Import our PhiBit foundation *)
-Require Import PhiBitType.
+From Foundations Require Import PhiBitType.
 
 Module PhiStringType.
 
