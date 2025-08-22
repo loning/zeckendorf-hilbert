@@ -90,10 +90,10 @@ $$(\varphi^{-1})^s + (\varphi^{-2})^s = 1$$
 
 解得：$t = \frac{\sqrt{5} - 1}{2} = \varphi^{-1}$
 
-因此：$\varphi^{-s} = \varphi^{-1}$，得 $s = 1$。
+因此：$\varphi^{-s} = 2 \cdot \varphi^{-1}$，得 $s = \log_\varphi 2$。
 
-实际上，由于禁11约束的特殊性，维数计算需要更精细的分析。通过直接计算盒计数维数：
-$$s = \lim_{r \to 0} \frac{\log N(r)}{\log(1/r)} = \frac{\log 2}{\log \varphi} = \log_\varphi 2 \approx 0.694$$
+通过禁11约束的自相似结构分析：
+$$\dim_H(C_\varphi) = \frac{\log 2}{\log \varphi} = \log_\varphi 2 \approx 0.694$$
 □
 
 ### 1.3 Ostrowski数系统
