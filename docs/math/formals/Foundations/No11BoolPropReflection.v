@@ -63,11 +63,9 @@ Lemma bool_false_implies_prop_false :
     No11BooleanCheck.no_11_check s = false ->
     ~No11PropositionalDef.no_11_prop s.
 Proof.
-  intros s H_false.
-  (* We'll prove by contradiction using the reflection *)
-  intro H_prop.
-  (* We need to show that if the propositional version holds, 
-     then the boolean version should be true *)
+  intros s H_false H_prop.
+  (* We'll prove by contradiction - if the propositional version holds, 
+     then the boolean version should be true, contradicting H_false *)
   induction H_prop.
   - (* no_11_nil: [] should give true *)
     simpl in H_false. discriminate H_false.
@@ -76,20 +74,23 @@ Proof.
   - (* no_11_cons_zero: zero :: s should preserve truth *)
     simpl in H_false.
     destruct s as [|b' s'].
-    + inversion H_false.
-    + unfold No11BooleanCheck.is_consecutive_ones in H_false.
-      destruct b'; [inversion H_false | exact (IHH_prop H_false)].
+    + discriminate.
+    + (* no_11_check (zero :: b' :: s') = ... *)
+      destruct b'; simpl in H_false; exact (IHH_prop H_false).
   - (* no_11_cons_one_not_one: one :: s where s doesn't start with one *)
     simpl in H_false.
     destruct s as [|b' s'].
-    + inversion H_false.
-    + unfold No11BooleanCheck.is_consecutive_ones in H_false.
+    + discriminate.
+    + (* no_11_check (one :: b' :: s') = ... *)
       destruct H as [Hempty | Hcons].
-      * subst s. simpl in H_false. inversion H_false.
+      * (* s = [] case - but we know s = b' :: s' from destruct above *)
+        discriminate.
       * destruct Hcons as [b [s'' [Heq Hb_neq]]].
         injection Heq as Hb_eq Hs''_eq.
         subst b s''.
-        destruct b'; [exact (IHH_prop H_false) | exfalso; exact (Hb_neq eq_refl)].
+        destruct b'; simpl in H_false.
+        -- exact (IHH_prop H_false).
+        -- contradiction (Hb_neq eq_refl).
 Qed.
 
 (**
@@ -111,20 +112,23 @@ Proof.
     + (* b = zero *)
       simpl in H_bool.
       destruct s' as [|b' s''].
-      * apply No11PropositionalDef.no_11_single.
-      * apply No11PropositionalDef.no_11_cons_zero.
-        unfold No11BooleanCheck.is_consecutive_ones in H_bool.
-        destruct b'; [exact (IHs' H_bool) | inversion H_bool].
+      -- apply No11PropositionalDef.no_11_single.
+      -- apply No11PropositionalDef.no_11_cons_zero.
+         exact (IHs' H_bool).
     + (* b = one *)
       simpl in H_bool.
       destruct s' as [|b' s''].
-      * apply No11PropositionalDef.no_11_single.
-      * apply No11PropositionalDef.no_11_cons_one_not_one.
-        -- unfold No11BooleanCheck.is_consecutive_ones in H_bool.
-           destruct b'; [exact (IHs' H_bool) | inversion H_bool].
-        -- right. exists b', s''. split; [reflexivity|].
-           unfold No11BooleanCheck.is_consecutive_ones in H_bool.
-           destruct b'; [intro; inversion 1 | intro Hcontra; subst; inversion H_bool].
+      -- apply No11PropositionalDef.no_11_single.
+      -- destruct b'.
+         ++ (* b' = zero: one :: zero :: s'' *)
+            simpl in H_bool.
+            apply No11PropositionalDef.no_11_cons_one_not_one.
+            ** exact (IHs' H_bool).
+            ** right. exists zero, s''. split; [reflexivity|].
+               intro; discriminate.
+         ++ (* b' = one: one :: one :: s'' - this violates no-11 *)
+            simpl in H_bool.
+            discriminate.
 Qed.
 
 (**

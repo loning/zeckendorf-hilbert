@@ -36,8 +36,8 @@ Qed.
 Lemma pow2_ge1 : forall n : nat, 1 <= 2 ^ n.
 Proof.
   intro n.
-  apply Nat.lt_le_incl.
-  apply pow2_gt0.
+  pose proof (pow2_gt0 n) as H.
+  lia.
 Qed.
 
 (**
@@ -69,7 +69,9 @@ Qed.
 Lemma mul_pos_strict : forall a b c : nat, 0 < a -> b < c -> a * b < a * c.
 Proof.
   intros a b c Ha Hbc.
-  lia.
+  apply Nat.mul_lt_mono_pos_l.
+  - exact Ha.
+  - exact Hbc.
 Qed.
 
 (** * Constructive Tactics Database *)
