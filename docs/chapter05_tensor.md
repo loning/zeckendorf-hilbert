@@ -44,7 +44,7 @@ $$B_{n+m} = B_n \boxtimes B_m$$
 ## 5.2 Hilbert 空间的张量积
 
 ### 定义 D5.2（Zeckendorf 张量积）
-对 Hilbert 空间 \mathcal{H}_n,\mathcal{H}_m，定义特殊张量积 \otimes_Z：
+对 Hilbert 空间 $\mathcal{H}_n, \mathcal{H}_m$，定义特殊张量积 $\otimes_Z$：
 
 在基矢上：
 $$
@@ -67,7 +67,7 @@ $$
 ---
 
 ### 定理 T5.3（张量积律）
-对任意 n,m ≥ 0，有：
+对任意 $n,m \geq 0$，有：
 
 $$
 \mathcal{H}_n \otimes_Z \mathcal{H}_m \cong \mathcal{H}_{n+m}
@@ -100,15 +100,18 @@ $\phi$ 线性延拓：$\phi\left(\sum_{s,t} \alpha_{s,t}|s\rangle\otimes_Z|t\ran
 
 **理论补充**：上述证明得到[张量法则理论](math/06-tensor-law.md)和[初始代数理论](math/03-initial-algebra.md)的深层支撑。张量法则理论的Zeckendorf张量积理论提供了边界过滤机制的代数基础，而初始代数理论证明了φ-结构在张量运算下的代数封闭性，确保这不是偶然的运算规则，而是φ-结构的代数必然。
 
+因此 $\phi$ 是酉等距同构，$\mathcal{H}_n \otimes_Z \mathcal{H}_m \cong \mathcal{H}_{n+m}$。$\square$
+
 因此 $\phi$ 是酉等距同构，$\mathcal{H}_n \otimes_Z \mathcal{H}_m \cong \mathcal{H}_{n+m}$。∎
+>>>>>>> feature-theory
 
 ---
 
-## 5.3 示例：ℋ₂ ⊗_Z ℋ₁ ≅ ℋ₃
+## 5.3 示例：$\mathcal{H}_2 \otimes_Z \mathcal{H}_1 \cong \mathcal{H}_3$
 
 ### 输入空间
-- B₂ = {00, 01, 10}
-- B₁ = {0, 1}
+- $B_2 = \{00, 01, 10\}$
+- $B_1 = \{0, 1\}$
 
 ### 拼接过程
 完整的拼接计算表：
@@ -122,19 +125,19 @@ $\phi$ 线性延拓：$\phi\left(\sum_{s,t} \alpha_{s,t}|s\rangle\otimes_Z|t\ran
 | 10 | 0 | 0 | 0 | ¬(0=1 ∧ 0=1) ✓ | 100 | 合法 |
 | 10 | 1 | 0 | 1 | ¬(0=1 ∧ 1=1) ✓ | 101 | 合法 |
 
-**边界条件分析**：只有当 last(s)=1 且 first(t)=1 时拼接被禁止，这正好对应 "01" ⊕ "1" → "011" 包含连续"11"的情况。
+**边界条件分析**：只有当 $\mathrm{last}(s)=1$ 且 $\mathrm{first}(t)=1$ 时拼接被禁止，这正好对应 "01" $\oplus$ "1" $\to$ "011" 包含连续"11"的情况。
 
 ### 结果验证
-- **拼接结果**：B₂ ⊞ B₁ = {000, 001, 010, 100, 101}
-- **目标空间**：B₃ = {000, 001, 010, 100, 101}  
-- **维度验证**：|B₂ ⊞ B₁| = 5 = |B₃| = F₅
+- **拼接结果**：$B_2 \boxtimes B_1 = \{000, 001, 010, 100, 101\}$
+- **目标空间**：$B_3 = \{000, 001, 010, 100, 101\}$  
+- **维度验证**：$|B_2 \boxtimes B_1| = 5 = |B_3| = F_5$
 - **完全一致**！因此 $\mathcal{H}_2 \otimes_Z \mathcal{H}_1 \cong \mathcal{H}_3$
 
 **Fibonacci维度关系确认**：
 - $\dim(\mathcal{H}_2) = |B_2| = 3 = F_4$
 - $\dim(\mathcal{H}_1) = |B_1| = 2 = F_3$  
 - $\dim(\mathcal{H}_3) = |B_3| = 5 = F_5$
-- 验证：$F_3 \times F_4 \not= F_5$，但通过 No-11 约束投影后维度正确匹配
+- 验证：$F_3 \times F_4 \neq F_5$，但通过 No-11 约束投影后维度正确匹配
 
 ---
 
@@ -154,7 +157,7 @@ $$
 由于 Zeckendorf 张量积 $\otimes_Z$ 本质上由串拼接和边界约束定义，我们需要验证：
 
 对任意合法的基矢组合：
-$$((|s\rangle \otimes_Z |t\rangle) \otimes_Z |u\rangle = |s\rangle \otimes_Z (|t\rangle \otimes_Z |u\rangle)$$
+$$(|s\rangle \otimes_Z |t\rangle) \otimes_Z |u\rangle = |s\rangle \otimes_Z (|t\rangle \otimes_Z |u\rangle)$$
 
 **第三步：边界条件的传递性**
 - 左结合：$(s\|t)\|u$ 要求 $\neg(\text{last}(s)=1 \land \text{first}(t)=1)$ 且 $\neg(\text{last}(s\|t)=1 \land \text{first}(u)=1)$
@@ -165,16 +168,16 @@ $$((|s\rangle \otimes_Z |t\rangle) \otimes_Z |u\rangle = |s\rangle \otimes_Z (|t
 **第四步：维度验证**
 $$\dim((\mathcal{H}_n \otimes_Z \mathcal{H}_m) \otimes_Z \mathcal{H}_k) = \dim(\mathcal{H}_n \otimes_Z (\mathcal{H}_m \otimes_Z \mathcal{H}_k)) = \dim(\mathcal{H}_{n+m+k})$$
 
-因此结合律成立。∎
+因此结合律成立。$\square$
 
 ### 推论 C5.4.1（多重分解）
-任意 Hilbert 空间 ℋ_n 都可以分解为基础空间的张量积：
+任意 Hilbert 空间 $\mathcal{H}_n$ 都可以分解为基础空间的张量积：
 
 $$
 \mathcal{H}_n \cong \mathcal{H}_{n_1} \otimes_Z \mathcal{H}_{n_2} \otimes_Z \cdots \otimes_Z \mathcal{H}_{n_k}
 $$
 
-其中 n₁ + n₂ + ⋯ + n_k = n。
+其中 $n_1 + n_2 + \cdots + n_k = n$。
 
 ---
 
@@ -183,14 +186,10 @@ $$
 本章我们证明了：
 
 1. **拼接生成律**：
-   ```math
-   B_{n+m} = B_n \boxtimes B_m
-   ```
+   $$B_{n+m} = B_n \boxtimes B_m$$
 
 2. **张量积律**：
-   ```math
-   \mathcal{H}_n \otimes_Z \mathcal{H}_m \cong \mathcal{H}_{n+m}
-   ```
+   $$\mathcal{H}_n \otimes_Z \mathcal{H}_m \cong \mathcal{H}_{n+m}$$
 
 3. **高维 Hilbert 空间由低维 Hilbert 空间递归生成**，且新空间继续遵守"禁止连续 11"的约束。
 
@@ -198,4 +197,4 @@ $$
 
 ---
 
-*张量积不仅是数学运算，更是宇宙组合自身的内在法则。每次\otimes_Z都是两个世界的量子纠缠，在禁11约束下生成新的存在维度。*
+*张量积不仅是数学运算，更是宇宙组合自身的内在法则。每次$\otimes_Z$都是两个世界的量子纠缠，在禁11约束下生成新的存在维度。*

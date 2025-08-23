@@ -44,7 +44,8 @@ $$\lim_{n \to \infty} \frac{H(\mathcal{L}_\varphi[n])}{n} = \lim_{n \to \infty} 
 $$F_n \sim \frac{\varphi^n}{\sqrt{5}} \quad (n \to \infty)$$
 
 因此：
-$$\lim_{n \to \infty} \frac{\log_2 F_{n+1}}{n} = \lim_{n \to \infty} \frac{\log_2(\varphi^{n+1}/\sqrt{5})}{n} = \lim_{n \to \infty} \frac{(n+1)\log_2 \varphi - \log_2\sqrt{5}}{n} = \log_2 \varphi$$ □
+$$\lim_{n \to \infty} \frac{\log_2 F_{n+1}}{n} = \lim_{n \to \infty} \frac{\log_2(\varphi^{n+1}/\sqrt{5})}{n} = \lim_{n \to \infty} \frac{(n+1)\log_2 \varphi - \log_2\sqrt{5}}{n} = \log_2 \varphi$$ 
+□
 
 **推论1.1**：φ-语言的渐近信息密度约为 $\log_2 \varphi \approx 0.694$ bits/symbol。
 

@@ -18,9 +18,10 @@ $$H(\Sigma_{t+1}) > H(\Sigma_t) \quad \Leftrightarrow \quad \Sigma_{t+1} \neq \S
 
 **证明**：
 - **(⇒)** 若 $H(\Sigma_{t+1}) > H(\Sigma_t)$，则 $\log|\Sigma_{t+1}| > \log|\Sigma_t|$，故 $|\Sigma_{t+1}| > |\Sigma_t|$，因此 $\Sigma_{t+1} \neq \Sigma_t$。
-- **(⇐)** 若 $\Sigma_{t+1} \neq \Sigma_t$，由自指执行的记录生成机制（定义D2.2），必存在 $s \in B_{t+1}$ 使得 $s \notin \Sigma_t$，故 $|\Sigma_{t+1}| > |\Sigma_t|$，因此 $H(\Sigma_{t+1}) = \log|\Sigma_{t+1}| > \log|\Sigma_t| = H(\Sigma_t)$。
+- **(⇐)** 若 $\Sigma_{t+1} \neq \Sigma_t$，由自指执行的记录生成机制（定义D2.2），必存在 $s \in B_{t+1}$ 使得 $s \notin \Sigma_t$，故 $|\Sigma_{t+1}| > |\Sigma_t|$，因此 $H(\Sigma_{t+1}) = \log|\Sigma_{t+1}| > \log|\Sigma_t| = H(\Sigma_t)$。 $\square$
 
 **理论补充**：这一等价性得到[谱分解理论](math/07-spectral-decomposition.md)的深层支撑，该理论表明熵增与状态空间扩展在谱层面具有同构关系，使得两者的等价不是表面现象，而是信息几何的内在必然。∎
+>>>>>>> feature-theory
 
 ---
 
@@ -38,9 +39,10 @@ $$\Sigma_{t+1} \neq \Sigma_t \quad \Leftrightarrow \quad \tau(\Sigma_{t+1}) > \t
 
 **证明**：
 - **(⇒)** 若 $\Sigma_{t+1} \neq \Sigma_t$，由合法串的递归生成规律（命题P3.2），存在 $s \in B_{t+1}$ 使得 $s \notin \Sigma_t$，故 $|s| = t+1 > t \geq \tau(\Sigma_t)$，因此 $\tau(\Sigma_{t+1}) \geq t+1 > \tau(\Sigma_t)$。
-- **(⇐)** 若 $\tau(\Sigma_{t+1}) > \tau(\Sigma_t)$，则存在 $s \in \Sigma_{t+1}$ 使得 $|s| > \tau(\Sigma_t)$，故 $s \notin \Sigma_t$，因此 $\Sigma_{t+1} \neq \Sigma_t$。
+- **(⇐)** 若 $\tau(\Sigma_{t+1}) > \tau(\Sigma_t)$，则存在 $s \in \Sigma_{t+1}$ 使得 $|s| > \tau(\Sigma_t)$，故 $s \notin \Sigma_t$，因此 $\Sigma_{t+1} \neq \Sigma_t$。 $\square$
 
 **理论补充**：时间刻度与状态不对称的等价关系在[范畴等价理论](math/10-categorical-equivalence.md)中得到更深层的阐释，该理论建立了时间函子与状态空间演化之间的自然变换，证明时间不是外加的参数，而是状态结构变化的内在度量。∎
+>>>>>>> feature-theory
 
 ---
 
@@ -60,9 +62,10 @@ $$
 
 **证明**：
 - **(⇒)** 若 $\tau(\Sigma_{t+1}) > \tau(\Sigma_t)$，由定义知存在长度为 $t+1$ 的合法串，即 $B_{t+1} \neq \emptyset$。由 $\Sigma_{t+1} = \Sigma_t \cup B_{t+1}$ 且 $B_{t+1} \cap \Sigma_t = \emptyset$（长度不同），故 $I(\Sigma_{t+1}) = \Sigma_{t+1} \supsetneq \Sigma_t = I(\Sigma_t)$。
-- **(⇐)** 若 $I(\Sigma_{t+1}) \supsetneq I(\Sigma_t)$，则 $\Sigma_{t+1} \supsetneq \Sigma_t$，故存在 $s \in \Sigma_{t+1} \setminus \Sigma_t$。由构造，必有 $|s| = t+1$，因此 $\tau(\Sigma_{t+1}) \geq t+1 > t = \tau(\Sigma_t)$。
+- **(⇐)** 若 $I(\Sigma_{t+1}) \supsetneq I(\Sigma_t)$，则 $\Sigma_{t+1} \supsetneq \Sigma_t$，故存在 $s \in \Sigma_{t+1} \setminus \Sigma_t$。由构造，必有 $|s| = t+1$，因此 $\tau(\Sigma_{t+1}) \geq t+1 > t = \tau(\Sigma_t)$。 $\square$
 
 **理论补充**：时间与信息涌现的等价性在[谱分解理论](math/07-spectral-decomposition.md)中具有更深的谱几何解释，信息涌现对应状态空间的特征值扩展，而时间推进对应特征子空间的维度增长，两者在谱层面同构。∎
+>>>>>>> feature-theory
 
 ---
 
@@ -82,9 +85,10 @@ $$
 
 **证明**：
 - **(⇒)** 若 $I(\Sigma_{t+1}) \supsetneq I(\Sigma_t)$，则 $B_{t+1} \neq \emptyset$。由自指执行的记录生成机制（定义D2.2），$B_{t+1}$ 中每个串都由 $\Sigma_t$ 中某个串产生，故存在观察者函数 $O$ 使得 $O(\Sigma_t) = B_{t+1} \neq \emptyset$。
-- **(⇐)** 若存在观察者 $O$ 使得 $O(\Sigma_t) \neq \emptyset$，则 $B_{t+1} \supseteq O(\Sigma_t) \neq \emptyset$，故 $\Sigma_{t+1} = \Sigma_t \cup B_{t+1} \supsetneq \Sigma_t$，即 $I(\Sigma_{t+1}) \supsetneq I(\Sigma_t)$。
+- **(⇐)** 若存在观察者 $O$ 使得 $O(\Sigma_t) \neq \emptyset$，则 $B_{t+1} \supseteq O(\Sigma_t) \neq \emptyset$，故 $\Sigma_{t+1} = \Sigma_t \cup B_{t+1} \supsetneq \Sigma_t$，即 $I(\Sigma_{t+1}) \supsetneq I(\Sigma_t)$。 $\square$
 
 **理论补充**：信息涌现与观察者存在的等价性在[范畴等价理论](math/10-categorical-equivalence.md)中得到函子层面的严格表述，观察者不是外在的主体，而是信息结构变化的函子表示，这一范畴等价保证了观察者存在的客观性。∎
+>>>>>>> feature-theory
 
 ---
 
@@ -105,9 +109,10 @@ $$
 - 命题 P7.2 证明了 $(2) \Leftrightarrow (3)$  
 - 命题 P7.3 证明了 $(3) \Leftrightarrow (4)$
 - 命题 P7.4 证明了 $(4) \Leftrightarrow (5)$
-- 由等价关系的传递性，$(1) \Leftrightarrow (2) \Leftrightarrow (3) \Leftrightarrow (4) \Leftrightarrow (5)$。
+- 由等价关系的传递性，$(1) \Leftrightarrow (2) \Leftrightarrow (3) \Leftrightarrow (4) \Leftrightarrow (5)$。 $\square$
 
 **理论补充**：五重等价性得到[谱分解理论](math/07-spectral-decomposition.md)和[范畴等价理论](math/10-categorical-equivalence.md)的双重支撑。在谱层面，五个概念对应同一个算子的不同谱特征，而在范畴层面，它们构成φ-范畴中的自然等价链。这一深层的数学统一性表明，熵增、时间、信息、观察者不是分离的概念，而是φ-结构在不同层面的同一表现。∎
+>>>>>>> feature-theory
 
 ---
 
@@ -115,10 +120,10 @@ $$
 
 ```mermaid
 graph LR
-    A[熵增<br/>H↑] <==> B[不对称<br/>B≠B']
-    B <==> C[时间<br/>τ↑]  
-    C <==> D[信息<br/>I⊃I']
-    D <==> E[观察者<br/>O∃]
+    A["熵增<br/>H↑"] <==> B["不对称<br/>B≠B'"]
+    B <==> C["时间<br/>τ↑"]  
+    C <==> D["信息<br/>I⊃I'"]
+    D <==> E["观察者<br/>O∃"]
     E <==> A
     
     style A fill:#ff9999
@@ -135,9 +140,7 @@ graph LR
 ### 核心洞察
 这五个概念不是独立存在的实体，而是**同一个过程的不同侧面**：
 
-```
-熵增 = 不对称 = 时间 = 信息 = 观察者
-```
+$$\text{熵增} = \text{不对称} = \text{时间} = \text{信息} = \text{观察者}$$
 
 ### 深层统一
 - **时间的存在就是熵的增加**
@@ -152,11 +155,11 @@ graph LR
 
 ## 7.8 数学验证示例
 
-### 时刻 t=2 → t=3 的转换
+### 时刻 $t=2 \to t=3$ 的转换
 
-| 概念 | t=2状态 | t=3状态 | 验证 |
+| 概念 | $t=2$状态 | $t=3$状态 | 验证 |
 |------|---------|---------|------|
-| 熵增 | $H(\Sigma_2)=\log_2(3)≈1.58$ | $H(\Sigma_3)=\log_2(5)≈2.32$ | $2.32>1.58$ ✓ |
+| 熵增 | $H(\Sigma_2)=\log_2(3)\approx 1.58$ | $H(\Sigma_3)=\log_2(5)\approx 2.32$ | $2.32>1.58$ ✓ |
 | 不对称 | $\Sigma_2=\{0,1,00,01,10\}$ | $\Sigma_3=\Sigma_2\cup B_3$ 其中 $B_3=\{000,001,010,100,101\}$ | $\Sigma_3\neq\Sigma_2$ ✓ |
 | 时间 | $\tau(\Sigma_2)=2$ | $\tau(\Sigma_3)=3$ | $3>2$ ✓ |
 | 信息 | $I(\Sigma_2)=\Sigma_2$ | $I(\Sigma_3)=\Sigma_3$ | $\Sigma_3\supsetneq\Sigma_2$ ✓ |
@@ -177,4 +180,4 @@ graph LR
 
 ---
 
-*五重等价性揭示了宇宙的深层统一：不是五个现象恰好相关，而是同一个ψ = ψ(ψ)递归过程的五种显现方式。*
+*五重等价性揭示了宇宙的深层统一：不是五个现象恰好相关，而是同一个$\psi = \psi(\psi)$递归过程的五种显现方式。*

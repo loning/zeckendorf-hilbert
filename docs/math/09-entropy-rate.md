@@ -33,12 +33,14 @@ $$\log_2 F_{n+1} = \log_2 \frac{\varphi^{n+2}}{\sqrt{5}} + O(\psi^n)$$
 $$= (n+2) \log_2 \varphi - \frac{1}{2} \log_2 5 + O(\psi^n)$$
 
 故：
-$$\lim_{n \to \infty} \frac{\log_2 F_{n+1}}{n} = \log_2 \varphi$$ □
+$$\lim_{n \to \infty} \frac{\log_2 F_{n+1}}{n} = \log_2 \varphi$$ 
+□
 
 ### 1.2 熵率的渐近分析
 
 **定理1.2** (熵率的二阶修正)  
 φ-熵率的精确渐近展开为：
+
 $$\frac{H(B_n)}{n} = \log_2 \varphi + \frac{2 \log_2 \varphi}{n} - \frac{\log_2 5}{2n} + O\left(\left(\frac{\psi}{\varphi}\right)^n\right)$$
 
 **证明**：
@@ -53,7 +55,8 @@ $$\log_2\left(1 - \left(\frac{\psi}{\varphi}\right)^{n+2}\right) \approx -\frac{
 
 因此：
 $$\frac{H(B_n)}{n} = \frac{(n+2)\log_2 \varphi}{n} - \frac{\log_2 5}{2n} - \frac{1}{n\ln 2}\left(\frac{\psi}{\varphi}\right)^{n+2}$$
-$$= \log_2 \varphi + \frac{2 \log_2 \varphi}{n} - \frac{\log_2 5}{2n} + O\left(\left(\frac{\psi}{\varphi}\right)^n\right)$$ □
+$$= \log_2 \varphi + \frac{2 \log_2 \varphi}{n} - \frac{\log_2 5}{2n} + O\left(\left(\frac{\psi}{\varphi}\right)^n\right)$$
+□
 
 ### 1.3 条件熵与互信息
 
@@ -238,7 +241,8 @@ $$H_μ(\xi_n) = \log_2 F_{n+1}$$
 时间-n分割的元素个数等于长度为n的φ-合法序列个数，即 $|B_n| = F_{n+1}$。
 
 在均匀分布假设下（这对于φ-平衡态测度近似成立）：
-$$H_μ(\xi_n) = \log_2 |\xi_n| = \log_2 F_{n+1}$$ □
+$$H_μ(\xi_n) = \log_2 |\xi_n| = \log_2 F_{n+1}$$ 
+□
 
 ### 4.2 条件熵的递归结构
 
@@ -456,7 +460,8 @@ $$S(ρ_\varphi) = \log_2 F_{n+1}$$
 
 **证明**：
 由于 $ρ_\varphi$ 是最大混合态（在φ-约束下），所有特征值相等：
-$$S(ρ_\varphi) = -\text{Tr}(ρ_\varphi \log ρ_\varphi) = -F_{n+1} \cdot \frac{1}{F_{n+1}} \log \frac{1}{F_{n+1}} = \log F_{n+1}$$ □
+$$S(ρ_\varphi) = -\text{Tr}(ρ_\varphi \log ρ_\varphi) = -F_{n+1} \cdot \frac{1}{F_{n+1}} \log \frac{1}{F_{n+1}} = \log F_{n+1}$$ 
+□
 
 ### 9.2 量子φ-信道
 
