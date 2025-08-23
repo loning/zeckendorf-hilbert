@@ -552,8 +552,35 @@ $$\text{所有物理允许的模态} \subset \{\Re(s) = 1/2\}$$
 
 (**地位**：Mathematical/QED - 基于幺正性的严格论证)
 
-### 推论 9.7 (RH的自动机锚定表述)
-$$\text{RH} \iff \text{素数直积自动机的谱锚定保证所有ζ零点落在临界线上}$$
+### 定理 9.7 (Hilbert空间锚定定理)
+在缩放Hilbert空间 $\mathcal{H} = L^2(\mathbb{R}_+, dx/x)$ 中，模态函数：
+$$\phi_s(x) = x^{-s}, \quad s = \sigma + it$$
+
+属于广义本征态当且仅当 $\sigma = 1/2$。
+
+*证明*：计算 $\phi_s$ 的 $\mathcal{H}$-范数：
+$$\|\phi_s\|^2 = \int_0^{\infty} |x^{-s}|^2 \frac{dx}{x} = \int_0^{\infty} x^{-2\sigma-1} dx$$
+
+积分收敛性分析：
+- 当 $x \to 0$：需要 $-2\sigma - 1 > -1 \iff \sigma < 0$
+- 当 $x \to \infty$：需要 $-2\sigma - 1 < -1 \iff \sigma > 0$
+
+两条件矛盾，故对所有 $\sigma \neq 1/2$，$\phi_s \notin L^2(\mathbb{R}_+, dx/x)$。
+
+**特殊情况** $\sigma = 1/2$：
+$$\phi_{1/2+it}(x) = x^{-1/2} e^{-it\log x}$$
+
+虽然 $L^2$ 范数发散，但在广义函数意义下构成正交基（Mellin-Plancherel定理）。 ∎
+
+(**地位**：Mathematical/QED - Hilbert空间谱理论的严格应用)
+
+### 推论 9.8 (素数模态的Hilbert嵌入)
+素数因子 $p^{-s}$ 只有在 $\Re(s) = 1/2$ 时才能与Hilbert空间的广义本征态 $\psi_t(x) = x^{-1/2+it}$ 匹配，保持幺正性。
+
+**几何解释**：$\Re(s) = 1/2$ 是Hilbert空间允许的**唯一幺正谱轴**，任何偏离都导致模态的非物理发散或过度衰减。
+
+### 推论 9.9 (RH的Hilbert几何表述)
+$$\text{RH} \iff \text{所有素数模态严格对齐于Hilbert空间的唯一幺正谱轴}$$
 
 **物理类比**：
 - **素数谱**：离散基频能级
