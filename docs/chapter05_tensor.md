@@ -98,7 +98,12 @@ $$\phi(|s\rangle \otimes_Z |t\rangle) = \begin{cases}
 **步骤5：线性扩张**
 $\phi$ 线性延拓：$\phi\left(\sum_{s,t} \alpha_{s,t}|s\rangle\otimes_Z|t\rangle\right) = \sum_{s,t} \alpha_{s,t}|s\|t\rangle \in \mathcal{H}_{n+m}$
 
+**理论补充**：上述证明得到[张量法则理论](math/06-tensor-law.md)和[初始代数理论](math/03-initial-algebra.md)的深层支撑。张量法则理论的Zeckendorf张量积理论提供了边界过滤机制的代数基础，而初始代数理论证明了φ-结构在张量运算下的代数封闭性，确保这不是偶然的运算规则，而是φ-结构的代数必然。
+
 因此 $\phi$ 是酉等距同构，$\mathcal{H}_n \otimes_Z \mathcal{H}_m \cong \mathcal{H}_{n+m}$。$\square$
+
+因此 $\phi$ 是酉等距同构，$\mathcal{H}_n \otimes_Z \mathcal{H}_m \cong \mathcal{H}_{n+m}$。∎
+>>>>>>> feature-theory
 
 ---
 

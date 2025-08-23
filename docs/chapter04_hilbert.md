@@ -24,7 +24,9 @@ $$\langle w | w' \rangle = \delta_{w,w'} \quad (\text{Kronecker delta})$$
 $$\dim \mathcal{H}_n = |B_n| = F_{n+2}$$
 
 **证明**：
-由定义D3.1的递推构造和初值条件：$|B_0|=1, |B_1|=2, |B_n|=|B_{n-1}|+|B_{n-2}|$，可得$|B_n|=F_{n+2}$（其中$F_1=1, F_2=2, F_3=3, F_4=5\ldots$）。由于$\{|w\rangle: w\in B_n\}$构成$\mathcal{H}_n$的正交基，其维度即为$|B_n|=F_{n+2}$。$\square$
+由定义D3.1的递推构造和初值条件：$|B_0|=1, |B_1|=2, |B_n|=|B_{n-1}|+|B_{n-2}|$，可得$|B_n|=F_{n+2}$（其中$F_1=1, F_2=2, F_3=3, F_4=5\ldots$）。由于$\{|w\rangle: w\in B_n\}$构成$\mathcal{H}_n$的正交基，其维度即为$|B_n|=F_{n+2}$。
+
+**理论补充**：维度的Fibonacci增长得到[Hilbert塔理论](math/05-hilbert-tower.md)和[动态规划理论](math/04-dynamic-programming.md)的深层解释。Hilbert塔理论揭示了塔构造的代数必然性，而动态规划理论证明了递推关系 $F_{n+2} = F_{n+1} + F_n$ 对应信息空间的最优分割策略，使得维度增长不是偶然，而是φ-结构的数学必然。$\square$
 
 ---
 
@@ -98,6 +100,8 @@ $$
    - 两集合不相交：$\{s0: s\in B_{n-1}\} \cap \{s10: s\in B_{n-2}\} = \emptyset $
    - 并集完备：$\{s0: s\in B_{n-1}\} \cup \{s10: s\in B_{n-2}\} = B_n $
    - 因此两个子空间的基正交且完备地张成$\mathcal{H}_n$
+
+**理论补充**：这一递归生成规律得到[Hilbert塔理论](math/05-hilbert-tower.md)和[动态规划理论](math/04-dynamic-programming.md)的深层解释。Hilbert塔理论的塔分解理论证明了这种直和分解的代数必然性，而动态规划理论的最优子结构原理揭示了为什么这是信息空间的最优组织方式。
 
 因此 $\mathcal{H}_n$ 是两个正交子空间的直和。$\square$
 

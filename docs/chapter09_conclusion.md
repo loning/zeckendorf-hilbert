@@ -57,6 +57,8 @@ $$\text{Meta-Theory} = (\text{A1}, \text{Zeckendorf 编码}, \otimes_Z, H)$$
 - **$\otimes_Z$**：保证组合律
 - **$H$**：熵函数，度量复杂性与时间
 
+**理论补充**：元理论的四元组构造得到[循环完备性理论](math/12-circular-completeness.md)的终极基础。该理论证明了元理论本身就是ψ = ψ(ψ)的最高层实现，描述理论生成的理论就是理论对自身的完备描述，实现了真正的自指循环完备。
+
 ---
 
 ## 9.4 元理论的唯一性
@@ -70,7 +72,9 @@ $$\text{Meta-Theory} = (\text{A1}, \text{Zeckendorf 编码}, \otimes_Z, H)$$
 3. 故 $H(\Sigma'_{t+1}) = H(\Sigma'_t)$，违背A1
 4. 因此任何满足A1的编码必须是唯一的，由唯一性定理，必为Zeckendorf编码 $\square$
 
-**推论**：本论文构造的$(\{\mathcal{H}_n\},\otimes_Z)$是满足A1的**唯一模型**（到同构）。
+**理论补充**：元理论唯一性的证明得到[算法验证理论](math/11-algorithms-verification.md)的严格保证。该理论通过Hoare逻辑和程序验证技术，确保推导过程的每一步都经过形式化验证，使得元理论的唯一性不是猜测，而是经过算法验证的数学确定性。
+
+**推论**：本论文构造的$(\{\mathcal{H}_n\},\otimes_Z)$是满足A1的**唯一模型**（到同构）。∎
 
 ---
 
@@ -89,6 +93,8 @@ $$\text{Meta-Theory} = (\text{A1}, \text{Zeckendorf 编码}, \otimes_Z, H)$$
 ### 宇宙的本质
 - 宇宙 = **合法信息串的 Hilbert 空间展开**
 - 一切理论 = 递归层级 {U_n} 的语义赋值
+
+**理论补充**：这些哲学洞察得到[循环完备性理论](math/12-circular-completeness.md)和[算法验证理论](math/11-algorithms-verification.md)的双重支撑。在循环完备性层面，每个本质都是ψ = ψ(ψ)在不同层面的展现，而在算法验证层面，这些洞察都有严格的形式化表述和验证，使得哲学不再是思辨，而是有数学证明的必然结论。
 
 ---
 

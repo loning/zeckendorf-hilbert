@@ -535,7 +535,7 @@ Key files:
 
 Key files:
 - `MainTheorems.v`: Integration of all major theorems
-- `T27_Integration.v`: Formal verification of all T27 theorems
+- `TheoryIntegration.v`: Formal verification of all core theorems
 - `BijectiveEquivalenceProof.v`: Final completeness proof
 
 ## Compilation Instructions
