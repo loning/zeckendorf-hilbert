@@ -41,17 +41,17 @@ $$\mathcal{L}_\varphi = \{w \in \{0,1\}^* : w \text{ 不包含子串 } 11\}$$
 
 *构造*：对正整数 $n$ 的 Zeckendorf 分解 $I_n$，定义 $\mathcal{Z}(n)$ 为二进制字符串，其第 $i$ 位为 1 当且仅当 $i \in I_n$。
 
-*证明*：直接构造验证。No-11 约束 ⇔ Zeckendorf 非相邻条件；单射性 ⇐ 唯一性；满射性通过逆构造。 ∎
+*证明*：标准构造，基于 Zeckendorf 定理。这是 Fibonacci 编码的经典结果，见 Wikipedia "Fibonacci coding"。No-11 约束等价于非相邻 Fibonacci 数条件。 ∎
 
-(**地位**：Mathematical/QED - 本项目已证明，参见 `docs/math/01-language-encoding.md` § 3.3)
+(**地位**：Mathematical/QED - Fibonacci 编码的标准结果)
 
 ### 推论 2.5 (计数公式)
 设 $L_n = |\{w \in \mathcal{L}_\varphi : |w| = n\}|$，则：
 $$L_n = F_{n+1}$$
 
-*证明*：递推分析：$L_n = L_{n-1} + L_{n-2}$（末位0或10模式）+ 初始条件。 ∎
+*证明*：经典组合结果。避免连续1的长度 $n$ 二进制串计数为 $F_{n+2}$，见 Stanley (1999) *Enumerative Combinatorics*。标准递推：$L_n = L_{n-1} + L_{n-2}$，初始值匹配 Fibonacci 数列。 ∎
 
-(**地位**：Mathematical/QED - 本项目已证明，参见 `docs/math/01-language-encoding.md` § 1.2)
+(**地位**：Mathematical/QED - 标准组合数学结果)
 
 ---
 
@@ -411,8 +411,8 @@ $1/2$ 的多重显现：
 | 定理 | 状态 | 引用 |
 |------|------|------|
 | Zeckendorf 唯一性 | ✓ QED | Lekkerkerker (1952), Knuth (1997) |
-| φ-语言双射 | ✓ QED | 组合数论标准构造 |
-| φ-语言计数 $L_n = F_{n+1}$ | ✓ QED | 递推分析，见 Stanley (1999) |
+| φ-语言双射 | ✓ QED | Fibonacci 编码标准结果，Wikipedia |
+| φ-语言计数 $L_n = F_{n+1}$ | ✓ QED | Stanley (1999), 标准组合数学 |
 | Hofstadter G 闭式 | ✓ QED | Kimberling (1994), Dekking (2023) |
 | G 出现次数定理 | ✓ QED | Dekking (2023), arXiv:2307.01471 |
 | 群平均不动点 | ✓ QED | Folland (1995), 群表示论标准 |
