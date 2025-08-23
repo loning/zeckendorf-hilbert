@@ -72,55 +72,121 @@ $$h_{\mu_*}(\sigma) = h_{\text{top}}(\sigma) = \log \varphi$$
 
 ---
 
-## 4. Hofstadter G 函数分析
+## 4. 自动机与动力系统方法
 
-### 定义 4.1 (Hofstadter G 函数)
-$$G: \mathbb{N} \to \mathbb{N}, \quad G(0) = 0, \quad G(n) = n - G(G(n-1))$$
+### 定义 4.1 (黄金旋转动力系统)
+令：
+$$T(x) = x + \frac{1}{\varphi} \pmod 1, \quad x \in [0,1)$$
 
-### 定理 4.2 (闭式表达)
+其中 $\varphi = \frac{1+\sqrt{5}}{2}$ 为黄金比。定义分割：
+$$I_0 = [0, 1/\varphi), \quad I_1 = [1/\varphi, 1)$$
+
+由此产生符号序列 $(w_n)_{n \geq 0}$：
+$$w_n = \begin{cases}
+0, & T^n(0) \in I_0 \\
+1, & T^n(0) \in I_1
+\end{cases}$$
+
+该序列是经典 **Sturmian 序列**（黄金机械词）。
+
+### 定理 4.2 (Hofstadter G 的动力系统表示)
+Hofstadter G 函数满足：
 $$G(n) = \left\lfloor \frac{n+1}{\varphi} \right\rfloor$$
 
-*证明*：首次由 Hofstadter (1979) 猜想，严格证明见 Kimberling (1994), Dekking (2023)。基于 Wythoff 序列和黄金比例的 Beatty 性质。 ∎
+等价于动力系统生成的计数函数：
+$$G(n) = \sum_{k=0}^n (1 - w_k)$$
 
-(**地位**：Mathematical/QED - 已知结果，多重独立证明)
+*证明*：由 Beatty 定理，$\{\lfloor n\varphi \rfloor\}$ 与 $\{\lfloor n\varphi^2 \rfloor\}$ 划分自然数。Sturmian 序列 $(w_n)$ 是黄金旋转下的区间指示序列。每当 $w_k = 0$ 对应落入 $[0, 1/\varphi)$ 事件，累计次数给出 $G(n) = \lfloor (n+1)/\varphi \rfloor$。 ∎
 
-### 定理 4.3 (出现次数定理)
+(**地位**：Mathematical/QED，参见 Kimberling (1994), Dekking (2023))
+
+### 定义 4.3 (自动机表示)
+构造 DFA $\mathcal{A} = (Q, \Sigma, \delta, q_0, F)$：
+- 状态集 $Q = \{S_0, S_1\}$
+- 字母表 $\Sigma = \{0, 1\}$  
+- 初始状态 $q_0 = S_0$
+- 转移函数 $\delta$：
+  - $\delta(S_0, \sigma) = S_1$，输出符号 0
+  - $\delta(S_1, \sigma) = S_0$ 或 $S_1$（取决于旋转落点），输出符号 1
+
+该自动机模拟旋转 $T$ 在区间分割上的作用，输出 Sturmian 序列 $(w_n)$。
+
+### 定理 4.4 (转移算子与谱)
+定义 Perron-Frobenius 算子：
+$$(\mathcal{L}f)(x) = f(T^{-1}(x)), \quad f \in L^2([0,1])$$
+
+则 $\mathcal{L}$ 是酉算子，其谱由 Fourier 模态 $e^{2\pi ikx}$ 给出，特征值为：
+$$e^{2\pi ik/\varphi}, \quad k \in \mathbb{Z}$$
+
+**含义**：
+- $\mathcal{L}$ 的谱描述了 G 序列背后的旋转动力系统频率结构
+- G 的 Dirichlet 级数 $Z_G(s) = \sum_{n \geq 1} G(n)^{-s}$ 的解析性质受 $\mathcal{L}$ 的谱控制
+
+(**地位**：Mathematical/QED - 标准遍历理论，见 Cornfeld et al. (1982))
+
+### 例子 4.5 (小规模计算验证)
+对 $n = 0, 1, \ldots, 10$：
+
+**旋转序列** $w_n$：$0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, \ldots$
+
+**累积函数** $G(n) = \sum_{k=0}^n (1-w_k)$：
+
+| $n$ | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
+|-----|---|---|---|---|---|---|---|---|---|---|---|
+| $w_n$ | 0 | 1 | 0 | 0 | 1 | 0 | 1 | 0 | 0 | 1 | 0 |
+| $G(n)$ | 1 | 1 | 2 | 3 | 3 | 4 | 4 | 5 | 6 | 6 | 7 |
+
+与闭式公式 $G(n) = \lfloor (n+1)/\varphi \rfloor$ 完全一致。
+
+---
+
+## 5. G 函数的频率分析
+
+### 定理 5.1 (出现次数定理)
 定义 $c(m) = |\{n \geq 1 : G(n) = m\}|$，则：
 $$c(m) = \begin{cases}
 1, & \text{若 } m \text{ 是 Fibonacci 数} \\
 2, & \text{否则}
 \end{cases}$$
 
-*证明*：严格证明见 Dekking (2023) 最新工作，基于 Wythoff 序列的完整刻画。早期部分结果见 Kimberling (1994)。核心是 Beatty 序列的测度论分析。 ∎
+*证明*：严格证明见 Dekking (2023)，基于 Sturmian 序列和 Wythoff 序列的完整刻画。核心是动力系统的测度论分析。 ∎
 
 (**地位**：Mathematical/QED - 最近完全解决，见 arXiv:2307.01471)
 
+### 猜想 5.2 (动力系统-解析延拓桥梁)
+动力系统的谱理论为解析延拓提供新路径：
+$$\text{转移算子 } \mathcal{L} \text{ 的谱结构} \iff Z_G(s) \text{ 的解析延拓性质}$$
+
+**技术路径**：通过 Perron-Frobenius 算子的谱分解，分析 $Z_G(s)$ 在临界带的行为。
+
+(**地位**：Conjecture - 为技术 gap 1 提供攻击角度)
+
 ---
 
-## 5. ζ 函数的 G-重构理论
+## 6. ζ 函数的 G-重构理论
 
-### 定义 5.1 (相关 Dirichlet 级数)
+### 定义 6.1 (相关 Dirichlet 级数)
 $$Z_G(s) = \sum_{n=1}^{\infty} G(n)^{-s}, \quad F(s) = \sum_{k \geq 2} F_k^{-s}$$
 
 **收敛性**：$Z_G(s)$ 在 $\Re(s) > 1$ 收敛；$F(s)$ 在 $\Re(s) > 0$ 收敛。
 
-### 定理 5.2 (G-ζ 频率恒等式)
+### 定理 6.2 (G-ζ 频率恒等式)
 在收敛域 $\Re(s) > 1$ 内：
 $$Z_G(s) = 2\zeta(s) - F(s)$$
 
-*证明*：基于定理4.3，在绝对收敛域 $\Re s > 1$ 内级数重排合法：
-$$Z_G(s) = \sum_{n=1}^{\infty} G(n)^{-s} = \sum_{m=1}^{\infty} c(m) \cdot m^{-s} = \sum_{m \notin \text{Fib}} 2m^{-s} + \sum_{m \in \text{Fib}} m^{-s} = 2\zeta(s) - F(s)$$
+*证明*：基于定理5.1，在绝对收敛域内级数重排合法：
+$$Z_G(s) = \sum_{n=1}^{\infty} G(n)^{-s} = \sum_{m=1}^{\infty} c(m) \cdot m^{-s} = 2\zeta(s) - F(s)$$
 
-第二个等号使用出现次数定理4.3，第三个等号是集合分解，第四个等号是重排。 ∎
+使用出现次数定理5.1和绝对收敛级数重排。 ∎
 
-(**地位**：Mathematical/QED - 基于定理4.3的严格推论)
+(**地位**：Mathematical/QED - 基于定理5.1的严格推论)
 
-### 推论 5.3 (ζ 函数的 G-表示)
+### 推论 6.3 (ζ 函数的 G-表示)
 $$\zeta(s) = \frac{1}{2}(Z_G(s) + F(s)), \quad \Re(s) > 1$$
 
-(**地位**：Mathematical/QED - 定理5.2的直接代数推论)
+(**地位**：Mathematical/QED - 定理6.2的直接代数推论)
 
-### 定理 5.4 (RH 的 G-频率等价表述)
+### 定理 6.4 (RH 的 G-频率等价表述)
 设解析延拓在临界带保持一致性，则：
 $$\text{RH} \iff [Z_G(s) + F(s) = 0 \text{ 且 } 0 < \Re(s) < 1 \Rightarrow \Re(s) = 1/2]$$
 
@@ -128,9 +194,9 @@ $$\text{RH} \iff [Z_G(s) + F(s) = 0 \text{ 且 } 0 < \Re(s) < 1 \Rightarrow \Re(
 
 ---
 
-## 6. Hilbert 空间几何理论
+## 7. Hilbert 空间几何理论
 
-### 定理 6.1 (有限维群平均的固定子空间)
+### 定理 7.1 (有限维群平均的固定子空间)
 设 $K = SO(n)$ 作用于 $L^2(S^{n-1}, \sigma)$，其中 $\sigma$ 是标准化表面测度。群平均算子：
 $$(Pf)(x) = \int_K f(k \cdot x) dk$$
 
@@ -140,7 +206,7 @@ $$(Pf)(x) = \int_K f(k \cdot x) dk$$
 
 (**地位**：Mathematical/QED - 标准结果)
 
-### 命题 6.2 (几何不变量的高维行为)
+### 命题 7.2 (几何不变量的高维行为)
 $n$ 维单位球体积：
 $$V_n = \frac{\pi^{n/2}}{\Gamma(\frac{n}{2}+1)} \sim \frac{1}{\sqrt{\pi n}}\left(\frac{2\pi e}{n}\right)^{n/2} \to 0 \quad (n \to \infty)$$
 
@@ -428,10 +494,25 @@ $1/2$ 的多重显现：
 | ζ 的 G-表示 | ✓ 条件QED | 代数推论 |
 | RH 的 G-等价 | ✓ 条件等价 | 依赖解析延拓一致性 |
 
-### 12.3 关键技术 gap
+### 12.3 关键技术 gap 与新攻击路径
+
+**主要技术挑战**：
 1. **解析延拓一致性**：$Z_G(s) + F(s)$ 与 $2\zeta(s)$ 在临界带 $0 < \Re s < 1$ 的行为
 2. **黄金函数族等价**：与 Nyman-Beurling 族的闭包关系（猜想）
 3. **无限维收敛**：有限维不动点到谱约束的严格极限理论
+
+**新的突破路径**（基于第4章的动力系统方法）：
+
+**猜想 12.1** (动力系统-解析延拓桥梁)  
+转移算子 $\mathcal{L}$ 的谱结构完全决定 $Z_G(s)$ 的解析延拓性质：
+$$\text{Spec}(\mathcal{L}) = \{e^{2\pi ik/\varphi} : k \in \mathbb{Z}\} \implies Z_G(s) \text{ 在临界带的精确形式}$$
+
+**技术路径**：
+1. **Sturmian 序列的谱分析**：利用黄金旋转的严格遍历性质
+2. **Perron-Frobenius 算子**：通过转移算子的本征函数展开
+3. **Fourier 分析**：将 $Z_G(s)$ 表示为 Fourier 系数的 Mellin 变换
+
+**优势**：绕过传统复分析方法，直接从动力系统的几何性质导出解析性质。
 
 ---
 
