@@ -724,8 +724,15 @@ $$\{\text{ζ非平凡零点}\} \equiv \{\text{素数干涉暗点}\} \subset \{\R
 | **Gaussian投影** | $L^2(\mathbb{R}, e^{-x^2}dx)$ | $\hat{a}^\dagger\hat{a}$ | $H_n(x)e^{-x^2/2}$ | $e = \lim_{n\to\infty}(1+\frac{1}{n})^n$ | 谐振子梯级算子 |
 | **缩放投影** | $L^2(\mathbb{R}_+, dx/x)$ | $\hat{D} = -i(x\frac{d}{dx}+\frac{1}{2})$ | $x^{-1/2+it}$ | $\zeta(s) = \sum n^{-s}$ | 素数干涉谱 |
 | **自对偶投影** | $L^2(\mathbb{R}, e^{-\pi x^2}dx)$ | $\mathcal{F}$ | Hermite-Gaussian | $\theta(x) = \sum e^{-\pi n^2 x}$ | 时间反演对称 |
-| **耦合投影** | $L^2(\mathbb{R}^2)$ | $(\hat{H}_1, \hat{H}_2)$ | 二维基底积 | $e^{i\pi} + 1 = 0$ | 复平面量子态 |
+| **欧拉投影** | $L^2(\mathbb{C})$ | $\hat{R} = e^{i\theta}$ | $e^{in\theta}$ | $e^{i\pi} + 1 = 0$ | 复平面旋转量子态 |
 | **黄金-欧拉统一** | $L^2(\mathbb{C}) \cap L^2([0,1])$ | $\hat{U} = e^{i\pi}\hat{I} + \varphi^2\hat{P}$ | 复-实耦合基 | $e^{i\pi} + \varphi^2 = \varphi$ | 指数相位+递推代数的量子统一 |
+| **Fibonacci递推投影** | $l^2(\mathbb{N})$ | $\hat{F}: F_n \mapsto F_{n+1}$ | $\{F_n\}_{n \geq 1}$ | $F_{n+1} = F_n + F_{n-1}$ | 离散量子递推系统 |
+| **素数投影** | $L^2(\mathbb{P}, d\mu_p)$ | $\hat{P} = \sum_p \log p \cdot \|p\rangle\langle p\|$ | $\{\|p\rangle\}_{p \in \mathbb{P}}$ | $\sum_p p^{-s}$ (素数ζ) | 素数量子基底的对角化 |
+| **整数加法投影** | $L^2(\mathbb{Z}, dx)$ | $\hat{T}: n \mapsto n+1$ | $\{\delta_n\}_{n \in \mathbb{Z}}$ | $\zeta(s) = \sum_{n=1}^{\infty} n^{-s}$ | 离散平移不变系统 |
+| **模形式投影** | $L^2(\mathbb{H}, d\mu)$ | $\hat{S}, \hat{T}$ (模群) | 模形式基底 | $j(\tau), \Delta(\tau)$ | 双曲几何的量子对称性 |
+| **Wythoff投影** | $L^2(\{\lfloor k\varphi \rfloor\})$ | $\hat{W}: k \mapsto \lfloor k\varphi \rfloor$ | Beatty序列基 | $c(m) \in \{1,2\}$ | 准晶体的量子对称破缺 |
+| **临界线投影** | $L^2(\{1/2 + it\})$ | $\hat{C} = \frac{1}{2}\hat{I} + it\hat{J}$ | 临界线基态 | $\Re(s) = 1/2$ | 量子临界现象的普适类 |
+| **零点投影** | $L^2(\{\rho_n\})$ | $\hat{Z} = \sum_n \gamma_n \|\rho_n\rangle\langle\rho_n\|$ | ζ零点基 | $\zeta(\rho_n) = 0$ | 量子混沌谱的干涉暗点 |
 
 ### 观察 11.1 (投影机制的统一性)
 **母空间理论**：$H_\infty$可理解为所有$L^2$空间的"直和"或"Fock空间式扩展"，包含所有可能的算子谱和正交基。
