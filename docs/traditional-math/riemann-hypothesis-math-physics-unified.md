@@ -115,18 +115,20 @@ $$e^{2\pi ik/\varphi}, \quad k \in \mathbb{Z}$$
 
 ## 5. G函数的频率分析
 
-### 定理 5.1 (出现次数定理)
-定义$c(m) = |\{n \geq 1 : G(n) = m\}|$，则：
-$$c(m) = \begin{cases}
-1, & \text{若}m\text{是Fibonacci数} \\
-2, & \text{否则}
-\end{cases}$$
+### 定理 5.1 (出现次数的Wythoff刻画)
+记 $c(m) := |\{n \geq 1 : G(n) = m\}|$，则：
 
-*证明*：严格证明见Dekking (2023)，基于Sturmian序列和Wythoff序列的完整刻画。核心是动力系统的测度论分析。 ∎
+$$c(m) = \lfloor (m+1)\varphi \rfloor - \lfloor m\varphi \rfloor \in \{1,2\}$$
 
-(**地位**：Mathematical/QED - 最近完全解决，见arXiv:2307.01471)
+进一步：
+$$c(m) = 1 \iff m \in U := \{\lfloor k\varphi^2 \rfloor : k \geq 1\}$$
+$$c(m) = 2 \iff m \in L := \{\lfloor k\varphi \rfloor : k \geq 1\}$$
 
-**物理解释**：量子能级的简并度统计，Fibonacci对应的特殊能级为非简并态，其他为二重简并。
+*证明要点*：由 $m \leq \frac{n+1}{\varphi} < m+1$ 得 $n \in [m\varphi-1, (m+1)\varphi-1)$；区间长度 $\varphi \in (1,2)$ 给出 $\{1,2\}$。与Beatty-Wythoff互补分割一致（Kimberling等；Dekking 2023）。 ∎
+
+(**地位**：Mathematical/QED - 基于Wythoff序列的完整分析)
+
+**物理解释**：量子能级的简并度由Wythoff几何分割决定，体现准周期系统的特殊统计性质。
 
 ### 猜想 5.2 (动力系统-解析延拓桥梁)
 动力系统的谱理论为解析延拓提供新路径：
@@ -147,33 +149,32 @@ $$Z_G(s) = \sum_{n=1}^{\infty} G(n)^{-s}, \quad F(s) = \sum_{k \geq 2} F_k^{-s}$
 
 **收敛性**：$Z_G(s)$在$\Re(s) > 1$收敛；$F(s)$在$\Re(s) > 0$收敛。
 
-### 定理 6.2 (G-ζ频率恒等式)
-在收敛域$\Re(s) > 1$内：
-$$Z_G(s) = 2\zeta(s) - F(s)$$
+### 定理 6.2 (G-ζ恒等式的Wythoff表示)
+利用Wythoff划分 $\mathbb{N} = L \sqcup U$，在收敛域 $\Re(s) > 1$ 内：
 
-*证明*：基于定理5.1，在绝对收敛域内级数重排合法：
-$$Z_G(s) = \sum_{n=1}^{\infty} G(n)^{-s} = \sum_{m=1}^{\infty} c(m) \cdot m^{-s} = \sum_{m \notin \text{Fib}} 2m^{-s} + \sum_{m \in \text{Fib}} m^{-s} = 2\zeta(s) - F(s)$$
+$$Z_G(s) = \sum_{m \geq 1} c(m) m^{-s} = \zeta(s) + \sum_{k \geq 1} \lfloor k\varphi \rfloor^{-s}$$
 
-其中第二个等号使用出现次数定理，第三个等号使用绝对收敛级数的重排。 ∎
+等价地：
+$$\zeta(s) = Z_G(s) - \sum_{k \geq 1} \lfloor k\varphi \rfloor^{-s}$$
 
-(**地位**：Mathematical/QED - 基于定理5.1的严格推论)
+*证明*：按 $c(m) \in \{1,2\}$ 重排，并以Wythoff L 识别出额外一份 $\sum \lfloor k\varphi \rfloor^{-s}$。绝对收敛域内重排合法。 ∎
+
+(**地位**：Mathematical/QED - 基于Wythoff划分的严格推论)
 
 **物理解释**：ζ函数作为两个频率分量的量子叠加：$Z_G(s)$对应基本激发模式，$F(s)$对应Fibonacci共振模式。
 
 ### 推论 6.3 (ζ函数的G-表示)
-$$\zeta(s) = \frac{1}{2}(Z_G(s) + F(s)), \quad \Re(s) > 1$$
+基于定理6.2：
+$$\zeta(s) = Z_G(s) - \sum_{k \geq 1} \lfloor k\varphi \rfloor^{-s}, \quad \Re(s) > 1$$
 
 (**地位**：Mathematical/QED - 定理6.2的直接代数推论)
 
-### 定理 6.4 (RH的G-频率等价表述)
-设解析延拓在临界带保持一致性，则：
-$$\text{RH} \iff [Z_G(s) + F(s) = 0 \text{ 且 } 0 < \Re(s) < 1 \Rightarrow \Re(s) = 1/2]$$
+### 备注 6.4 (解析延拓的技术挑战)
+上述恒等式严格成立于 $\Re(s) > 1$。将其延拓到临界带的分析需分别控制两项的延拓与界性，此处不作断言。
 
-**技术挑战**：解析延拓一致性是主要技术gap
+**物理洞察**：在量子场论中，Green函数的解析延拓（Wick旋转）是标准操作，幺正性自动保证全纯性。Wythoff级数的延拓行为类似QFT重整化群方程，物理上提供自然机制。
 
-**物理洞察**：在量子场论中，Green函数的解析延拓（Wick旋转）是标准操作，幺正性自动保证全纯性。$Z_G(s) + F(s) = 2\zeta(s)$的延拓类似QFT重整化群方程，物理上自然成立。
-
-(**地位**：Mathematical/条件等价 - 数学上需要解析延拓假设，物理上有自然机制)
+(**地位**：Technical Challenge - 数学上需要解析延拓分析，物理上有支撑机制)
 
 ---
 
@@ -233,58 +234,17 @@ $$f_p(n) = \begin{cases}
 
 **物理类比**：每个素数对应一个量子振荡器，频率为$\log p$，自动机模拟其量子演化过程。
 
-### 定理 7.4 (素数直积自动机的Euler乘积实现)
-定义素数直积自动机：
-$$\mathcal{A} = \bigotimes_{p \text{ prime}} \mathcal{A}_p$$
+### 讨论 7.4 (从单素数到Euler乘积的启发式桥接)
+直接"直积"将造成重计数与发散；标准做法是考虑：
+$$\log\zeta(s) = \sum_{p}\sum_{m \geq 1}\frac{p^{-ms}}{m}, \quad \Re(s) > 1$$
 
-**状态空间**：$Q = \prod_{p \text{ prime}} \{0, 1, \ldots, p-1\}$，每个状态记录所有素数模的余数
+并以容斥/正规化整合单素数信息。
 
-**联合转移**：$T((n_p)_p) = (n_p + 1 \bmod p)_p$，所有素数模同步递增
+**本文立场**：我们**不声称**自动机直积与Euler乘积的严格等价；仅将其视作启发式桥接，为理解素数谱结构提供计算模型。
 
-**输出函数**：
-$$f((n_p)_p) = \begin{cases}
-1, & \exists p: n_p = 0 \\
-0, & \text{否则}
-\end{cases}$$
+(**地位**：Heuristic/Interpretive - 启发性构造，非严格等价)
 
-**生成函数与Euler乘积的关系**：
-$$Z(s) = \sum_{n=1}^{\infty} f(n) \cdot n^{-s} = \sum_{p \text{ prime}} p^{-s}\zeta(s)$$
-
-正规化后恢复Euler乘积：
-$$\zeta(s) = \prod_{p \text{ prime}} \frac{1}{1 - p^{-s}}$$
-
-*证明*：
-1. **单素数贡献**：每个$\mathcal{A}_p$在$n \equiv 0 \pmod p$时输出1，生成$p^{-s}\zeta(s)$
-2. **直积结构**：联合输出捕获所有素数整除事件
-3. **Euler恢复**：通过容斥原理和无穷乘积的重新组合 ∎
-
-(**地位**：Mathematical/QED - 显式构造，直接验证)
-
-**物理类比**：多体量子系统的直积Hilbert空间，每个子系统对应素数量子振荡器，总配分函数通过量子统计恢复经典形式。
-
-### 定理 7.5 (素数直积的正规化)
-素数直积自动机的生成函数需要正规化处理以避免发散：
-
-**原始形式**：
-$$\prod_p Z_p(s) = \prod_p p^{-s}\zeta(s) = \zeta(s) \cdot \prod_p p^{-s}$$
-
-其中$\prod_p p^{-s}$发散。
-
-**正规化处理**：使用Euler乘积的对数展开：
-$$\log \zeta(s) = \sum_p \sum_{m=1}^{\infty} \frac{1}{m} p^{-ms}, \quad \Re(s) > 1$$
-
-**正规化生成函数**：
-$$\tilde{Z}(s) = \exp\left(\sum_p \sum_{m=1}^{\infty} \frac{1}{m} p^{-ms}\right) = \zeta(s)$$
-
-*证明*：
-1. **对数正规化**：$\log \prod_p Z_p(s) = \sum_p \log Z_p(s) = \sum_p \log(p^{-s}\zeta(s))$
-2. **发散分离**：$= \sum_p (-s \log p) + \sum_p \log \zeta(s)$，第一项发散
-3. **Euler展开重写**：直接使用$\log \zeta(s) = \sum_p \sum_m \frac{p^{-ms}}{m}$避免发散项
-4. **正规化完成**：$\tilde{Z}(s) = \exp(\log \zeta(s)) = \zeta(s)$ ∎
-
-(**地位**：Mathematical/QED - 标准正规化技术)
-
-**物理类比**：量子场论中的重整化程序，通过减除发散项恢复物理可观测量的有限结果。
+**物理类比**：量子多体系统的近似处理，单粒子图像为复杂相互作用提供直观理解。
 
 ---
 
@@ -722,15 +682,16 @@ $$\mathcal{F}_\varphi = \{\chi_w(x) = \mathbf{1}_{I_w}(x) : w \in \mathcal{L}_\v
 - **结构数学与物理直觉**的完美结合
 
 **理论边界**：
-- 本文并未数值意义上解决RH
-- 我们建立的是统一解释框架
-- 核心价值在于跨学科深层联系的揭示
+- **本文并未解决Riemann假设**
+- **我们建立的是统一解释框架**，在不引入新概念的前提下梳理已知结果
+- **核心价值在于严谨数学与物理诠释的清晰分界**
 
 **历史意义**：首次建立RH的**完整数学-物理统一理论**，为理解千年难题的跨学科本质、探索数学与物理的深层联系提供了重要的理论范例。
 
 ---
 
 **跨学科研究声明**：本工作展示了数学与物理在Hilbert空间框架中的深层统一，为Riemann假设提供了前所未有的跨学科理解视角，开辟了数学-物理统一理论研究的新方向。
+
 
 **我们建立的统一原理**：
 
