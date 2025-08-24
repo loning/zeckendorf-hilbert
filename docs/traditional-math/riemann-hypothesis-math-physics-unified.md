@@ -37,10 +37,10 @@ $$\mathcal{L}_\varphi = \{w \in \{0,1\}^* : w \text{ 不包含子串 } 11\}$$
 (**地位**：Mathematical/QED - Fibonacci编码的标准结果)
 
 ### 推论 2.3 (计数公式)
-设$L_n = |\{w \in \mathcal{L}_\varphi : |w| = n\}|$，则：
-$$L_n = F_{n+1}$$
+长度为$n$的No-11二进制串数量为：
+$$L_n = F_{n+2}$$
 
-*证明*：经典组合结果。避免连续1的长度$n$二进制串计数为$F_{n+2}$，见Stanley (1999) *Enumerative Combinatorics*。标准递推：$L_n = L_{n-1} + L_{n-2}$，初始值匹配Fibonacci数列。 ∎
+*证明*：递推$L_n = L_{n-1} + L_{n-2}$与初值$L_0 = 1, L_1 = 2$。 ∎
 
 (**地位**：Mathematical/QED - 标准组合数学结果)
 
@@ -96,16 +96,16 @@ $$G(n) = \sum_{k=0}^n (1 - w_k)$$
 
 **物理类比**：准周期量子系统的轨道统计，对应准晶体结构中的电子态密度分布。
 
-### 定理 4.3 (转移算子与谱)
-定义Perron-Frobenius算子：
-$$(\mathcal{L}f)(x) = f(T^{-1}(x)), \quad f \in L^2([0,1])$$
+### 命题 4.3 (Koopman转移算子与谱)
+对可逆保测旋转$T(x) = x + \frac{1}{\varphi} \bmod 1$，定义：
+$$(\mathcal{U}f)(x) = f(Tx)$$
 
-则$\mathcal{L}$是酉算子，其谱由Fourier模态$e^{2\pi ikx}$给出，特征值为：
+则$\mathcal{U}$为酉算子，Fourier模态$e^{2\pi ikx}$是本征函数，特征值为：
 $$e^{2\pi ik/\varphi}, \quad k \in \mathbb{Z}$$
 
 **含义**：
-- $\mathcal{L}$的谱描述了G序列背后的旋转动力系统频率结构
-- G的Dirichlet级数$Z_G(s) = \sum_{n \geq 1} G(n)^{-s}$的解析性质受$\mathcal{L}$的谱控制
+- $\mathcal{U}$的谱描述了G序列背后的旋转动力系统频率结构
+- G的Dirichlet级数$Z_G(s)$的解析性质受$\mathcal{U}$的谱控制
 
 (**地位**：Mathematical/QED - 标准遍历理论，见Cornfeld et al. (1982))
 
@@ -116,19 +116,19 @@ $$e^{2\pi ik/\varphi}, \quad k \in \mathbb{Z}$$
 ## 5. G函数的频率分析
 
 ### 定理 5.1 (出现次数的Wythoff刻画)
-记 $c(m) := |\{n \geq 1 : G(n) = m\}|$，则：
+记 $c(m) = |\{n \geq 1 : G(n) = m\}|$，则：
 
 $$c(m) = \lfloor (m+1)\varphi \rfloor - \lfloor m\varphi \rfloor \in \{1,2\}$$
 
-进一步：
-$$c(m) = 1 \iff m \in U := \{\lfloor k\varphi^2 \rfloor : k \geq 1\}$$
-$$c(m) = 2 \iff m \in L := \{\lfloor k\varphi \rfloor : k \geq 1\}$$
+并且：
+$$c(m) = 2 \iff m \in L = \{\lfloor k\varphi \rfloor : k \geq 1\}$$
+$$c(m) = 1 \iff m \in U = \{\lfloor k\varphi^2 \rfloor : k \geq 1\}$$
 
 *证明要点*：由 $m \leq \frac{n+1}{\varphi} < m+1$ 得 $n \in [m\varphi-1, (m+1)\varphi-1)$；区间长度 $\varphi \in (1,2)$ 给出 $\{1,2\}$。与Beatty-Wythoff互补分割一致（Kimberling等；Dekking 2023）。 ∎
 
 (**地位**：Mathematical/QED - 基于Wythoff序列的完整分析)
 
-**物理解释**：量子能级的简并度由Wythoff几何分割决定，体现准周期系统的特殊统计性质。
+**解释性**：Wythoff二分刻画了整数在黄金旋转背景下的"重复-非重复"结构。
 
 ### 猜想 5.2 (动力系统-解析延拓桥梁)
 动力系统的谱理论为解析延拓提供新路径：
@@ -150,9 +150,9 @@ $$Z_G(s) = \sum_{n=1}^{\infty} G(n)^{-s}, \quad F(s) = \sum_{k \geq 2} F_k^{-s}$
 **收敛性**：$Z_G(s)$在$\Re(s) > 1$收敛；$F(s)$在$\Re(s) > 0$收敛。
 
 ### 定理 6.2 (G-ζ恒等式的Wythoff表示)
-利用Wythoff划分 $\mathbb{N} = L \sqcup U$，在收敛域 $\Re(s) > 1$ 内：
+利用Wythoff划分 $\mathbb{N} = L \sqcup U$ 与定理5.1，在 $\Re(s) > 1$：
 
-$$Z_G(s) = \sum_{m \geq 1} c(m) m^{-s} = \zeta(s) + \sum_{k \geq 1} \lfloor k\varphi \rfloor^{-s}$$
+$$Z_G(s) = \zeta(s) + \sum_{k \geq 1} \lfloor k\varphi \rfloor^{-s}$$
 
 等价地：
 $$\zeta(s) = Z_G(s) - \sum_{k \geq 1} \lfloor k\varphi \rfloor^{-s}$$
@@ -161,7 +161,7 @@ $$\zeta(s) = Z_G(s) - \sum_{k \geq 1} \lfloor k\varphi \rfloor^{-s}$$
 
 (**地位**：Mathematical/QED - 基于Wythoff划分的严格推论)
 
-**物理解释**：ζ函数作为两个频率分量的量子叠加：$Z_G(s)$对应基本激发模式，$F(s)$对应Fibonacci共振模式。
+**解释性**：整数在黄金旋转背景下的频谱分解，体现加法结构与乘法结构的统一。
 
 ### 推论 6.3 (ζ函数的G-表示)
 基于定理6.2：
@@ -178,9 +178,35 @@ $$\zeta(s) = Z_G(s) - \sum_{k \geq 1} \lfloor k\varphi \rfloor^{-s}, \quad \Re(s
 
 ---
 
-## 7. 素数谱的1/2锚定理论
+## 7. 素数谱与Euler乘积
 
-### 定理 7.1 (素数谱锚定定理)
+### 定理 7.1 (Euler乘积)
+$$\zeta(s) = \prod_{p} \frac{1}{1-p^{-s}}, \quad \Re(s) > 1$$
+
+(**地位**：Mathematical/QED - 经典数论结果)
+
+### 命题 7.2 (素数因子与整除族)
+$(1-p^{-s})^{-1} = 1 + p^{-s} + p^{-2s} + \cdots$ 汇集了所有可被$p$整除的整数的Dirichlet贡献。
+
+### 命题 7.3 (素数"频率"与相位)
+在$s = 1/2 + it$上：
+$$p^{-s} = p^{-1/2} e^{-it\log p}$$
+
+$\log p$可视作"素数时钟"频率，幅度为$p^{-1/2}$。于是：
+$$\log\zeta\left(\frac{1}{2}+it\right) = \sum_{p}\sum_{m \geq 1}\frac{1}{m} p^{-m/2}e^{-imt\log p}$$
+
+### 表 7.1 ζ的"双重展开"对照
+
+| 视角 | 数学对象 | 展开形式 | 频率/权重 | 说明 |
+|------|----------|----------|-----------|------|
+| 整数/加法 | $G(n) = \lfloor (n+1)/\varphi \rfloor$ | $\zeta(s) = Z_G(s) - \sum_{k \geq 1} \lfloor k\varphi \rfloor^{-s}$ | 由Wythoff二分控制$c(m) \in \{1,2\}$ | 黄金旋转下的整数结构 |
+| 素数/乘法 | 素数$p$ | $\zeta(s) = \prod_p (1-p^{-s})^{-1}$ | 频率$\log p$，幅度$p^{-1/2}$ | 质因数分解的乘法谱 |
+
+**解释性**：同一ζ函数在"整数/加法"与"素数/乘法"两侧有等价展开：前者由黄金旋转（Sturmian）编码，后者由素数时钟主导。
+
+---
+
+### 定理 7.4 (素数谱锚定定理)
 对于Riemann ζ函数的Euler乘积表示，所有素数因子可唯一分解为：
 $$p^{-s} = p^{-1/2} \cdot p^{-(s-1/2)}$$
 
@@ -248,9 +274,12 @@ $$\log\zeta(s) = \sum_{p}\sum_{m \geq 1}\frac{p^{-ms}}{m}, \quad \Re(s) > 1$$
 
 ---
 
+---
+
 ## 8. Hilbert空间不动点的严格表述
 
-### 8.1 有限维情形的精确分析
+### 8.1 群平均投影与度量统一
+$\mathcal{H}_n = L^2(S^{n-1}, \sigma)$，$\sigma$为**归一化**球面测度（概率测度），故$\|\mathbf{1}\|_{\mathcal{H}_n} = 1$。球面积$|S^{n-1}| = nV_n$为几何量（与$\|\mathbf{1}\|$无关）。
 
 ### 定理 8.1 (群平均算子的不动点结构)
 设$G = SO(n)$作用于$\mathcal{H}_n = L^2(S^{n-1}, \sigma)$，其中$\sigma$是标准化球面测度。群平均算子：
@@ -519,19 +548,13 @@ $1/2$的多重显现：
 
 ## 11. Zeckendorf随机律与统计桥梁
 
-### 推论 11.1 (Zeckendorf随机律)
-在Zeckendorf-φ编码体系中，所有合法表示的二进制串满足稳定的概率分布律：
-$$P(0) = \frac{2}{3}, \quad P(1) = \frac{1}{3}$$
+### 推论 11.1 (字频的Parry测度)
+黄金移位的极大熵（Parry）测度下：
+$$P(0) = \frac{\varphi+1}{\varphi+2}, \quad P(1) = \frac{1}{\varphi+2}$$
 
-*证明*：设$a_n$, $b_n$分别为长度$n$的合法串中0和1的总出现次数。转移分析：
-- 若末位为0：可接0或1，贡献$L_{n-1}$个0和$L_{n-1}$个1
-- 若末位为1：只能接0，贡献$L_{n-2}$个0
+*证明*：由左右Perron向量给出，标准结果。 ∎
 
-递推关系：$a_n = a_{n-1} + a_{n-2} + L_{n-2}$，$b_n = b_{n-1} + L_{n-1}$
-
-解得渐近比例：$\lim_{n \to \infty} \frac{a_n}{a_n + b_n} = \frac{2}{3}$，$\lim_{n \to \infty} \frac{b_n}{a_n + b_n} = \frac{1}{3}$。 ∎
-
-(**地位**：Mathematical/QED - 基于φ-语言转移分析)
+(**地位**：Mathematical/QED - 基于Parry测度理论)
 
 ### 定理 11.2 (随机律的Gap桥接作用)
 Zeckendorf随机律(1/3, 2/3)连接技术gap的统计框架：
@@ -677,16 +700,16 @@ $$\mathcal{F}_\varphi = \{\chi_w(x) = \mathbf{1}_{I_w}(x) : w \in \mathcal{L}_\v
 > **RH临界线 = 数学几何约束与物理守恒原理在Hilbert空间中的共同显现**
 
 **学术定位**：
-- **数学-物理统一研究**的开创性工作
-- **跨学科理论构建**的方法论范例
-- **结构数学与物理直觉**的完美结合
+- **统一解释框架**的构建工作
+- **跨学科理论连接**的方法论探索
+- **严谨数学与物理诠释**的分层呈现
 
 **理论边界**：
 - **本文并未解决Riemann假设**
-- **我们建立的是统一解释框架**，在不引入新概念的前提下梳理已知结果
-- **核心价值在于严谨数学与物理诠释的清晰分界**
+- **我们提供的是解释性统一框架**，梳理已知结果并建立跨学科联系
+- **严格区分QED定理、启发构造、解释性语言**三个层次
 
-**历史意义**：首次建立RH的**完整数学-物理统一理论**，为理解千年难题的跨学科本质、探索数学与物理的深层联系提供了重要的理论范例。
+**方法论价值**：为RH的临界线在不同数学-物理结构中的特殊性提供统一的几何解释，展示跨学科理论构建的可行路径。
 
 ---
 
