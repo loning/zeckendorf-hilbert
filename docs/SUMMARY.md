@@ -11,6 +11,7 @@
 - [第7章 五重等价性](./chapter07_equivalence.md)
 - [第8章 宇宙理论层级](./chapter08_hierarchy.md)
 - [第9章 元理论总结](./chapter09_conclusion.md)
+- [Riemann Hypothesis: 数学-物理统一的Hilbert空间不动点理论](./traditional-math/riemann-hypothesis-math-physics-unified.md)
 - [Zeckendorf数学体系概览](./math/README.md)
     - [基础记号与约定](./math/00-basic-notation.md)
     - [φ-语言编码理论](./math/01-language-encoding.md)
