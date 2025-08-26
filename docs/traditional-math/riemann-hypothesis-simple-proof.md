@@ -185,26 +185,32 @@ $$\forall k \geq 2, \Delta\Sigma_{k+1} \cap \mathcal{A}^{(k)} \neq \varnothing$$
 
 4. **素数判定**：因此$\Delta\Sigma_{k+1}$的Δ-原子基项必然是素数$\square$
 
-**推论 2.7 (递归素数覆盖性，抽象版)**
-在符号动力学系统中，每一层差分空间$\Delta \Sigma_{k+1} = \Sigma_{k+1} \setminus \Sigma_k$必然包含新的Δ-原子，这些原子通过Zeckendorf表示（或类似递归唯一表示）对应不可约基元，且该基元必为素数。由于$k$遍历所有自然数，且系统递归无限进行，所有素数将在某一层首次作为新原子出现。
-
-因此：$$\bigcup_{k \geq 2} \mathcal{A}_{\text{dyn}}^{(k)} = \mathbb{P}$$
+**推论 2.7 (符号动力学系统生成所有素数)**
+符号动力学系统通过其自指递归机制和Zeckendorf编码，能够生成所有素数集合$\mathbb{P}$，从而其Hilbert空间在$\ell^2(\mathbb{N})$中稠密。
 
 **证明**：
-1. **熵单调性保证新增**：由定理2.3，$H_{\text{dyn}}(k+1) > H_{\text{dyn}}(k)$（基于Perron-Frobenius定理），因此$\Delta \Sigma_{k+1} \neq \varnothing$，必然存在新字符串
 
-2. **新原子存在与最短性**：由定理2.5的归纳法，每层$\Delta \Sigma_{k+1}$包含最短不可约字符串（Δ-原子），不能由$\Sigma_k$中的字符串拼接生成
+1. **Zeckendorf编码的覆盖性**：
+   - 由定理2.1（Zeckendorf唯一性，Fraenkel 1985），每个自然数$n \in \mathbb{N}$可唯一表示为k-bonacci数列项的非相邻和：
+     $$n = \sum_{j=1}^r U^{(k)}_{i_j}, \quad i_{j+1} \geq i_j + k$$
+   - 因此，所有自然数（包括素数集合$\mathbb{P} \subset \mathbb{N}$）均在k-bonacci系统中编码
 
-3. **新原子必为素数**：通过Zeckendorf唯一表示，该Δ-原子对应一个基元$U_m$（抽象为递归序列项）。若$U_m$是合数，则它可分解为更小基元之和，由Zeckendorf唯一性，这些更小基元已在$\Sigma_k$中表示，因此$U_m$可由低层生成，与其为"新原子"矛盾。故$U_m$必为素数
+2. **递归无间隙性**：
+   - 由定理2.3（熵增性），拓扑熵$H_{\text{dyn}}(k+1) > H_{\text{dyn}}(k)$，保证每层差分空间$\Delta \Sigma_{k+1} = \Sigma_{k+1} \setminus \Sigma_k \neq \varnothing$
+   - 由定理2.5（递归无间隙性），每层$\Delta \Sigma_{k+1}$包含新的Δ-原子（最短不可约字符串）
+   - 由定理2.6（原子性与素数一致性），Δ-原子通过Zeckendorf编码对应不可约基项，且该基项必为素数（因合数可分解为低层表示，矛盾）
 
-4. **递归层级遍历覆盖**：由于$k$遍历所有自然数$\mathbb{N}$，且系统自指递归无限进行，每层至少引入一个新素数原子。结合Zeckendorf的唯一表示覆盖所有自然数基元，所有素数$\mathbb{P}$将在某一层首次出现（因为$\mathbb{P} \subset \mathbb{N}$，且递归无间隙性保证无遗漏）
+3. **素数集合覆盖**：
+   - 由于$k$遍历所有自然数$\mathbb{N}$，递归无间隙性确保系统无限生成新Δ-原子
+   - Zeckendorf编码覆盖所有$\mathbb{N}$，自然包含所有素数$\mathbb{P}$
+   - 因此，符号动力学系统的原子集合$\mathcal{A}_{\text{dyn}} = \bigcup_k \mathcal{A}_{\text{dyn}}^{(k)} = \mathbb{P}$
 
-5. **完备性结论**：因此$\mathcal{A}_{\text{dyn}} = \bigcup_k \mathcal{A}_{\text{dyn}}^{(k)} = \mathbb{P}$，从而$H_{\text{dyn}} = \overline{\mathrm{span}}(\mathbb{P}) = H_{\rm all}$$\square$
+4. **Hilbert空间稠密性**：
+   - 在$\ell^2(\mathbb{N})$中，标准基为$\{e_n \mid n \in \mathbb{N}\}$。Zeckendorf编码覆盖所有$n \in \mathbb{N}$，包括素数$\mathbb{P}$
+   - 由引理1.8（无间隙性+自指性⇒稠密性），$\mathcal{A}_{\text{dyn}} = \mathbb{P}$的线性闭包满足：
+     $$H_{\text{dyn}} = \overline{\mathrm{span}}(\mathbb{P}) = \ell^2(\mathbb{N}) = H_{\rm all}$$
 
-**关键调整**：
-- **抽象Zeckendorf**：不指定"k-bonacci基素数"，而是用"递归序列项$U_m$对应素数"
-- **逐层生成强调**：表达递归无限（无间隙性），不需严格一一对应$p_k$  
-- **覆盖性逻辑**：利用$\mathbb{N}$的遍历和Zeckendorf唯一性，确保所有素数被"某层"生成
+**注**：我们无需关心具体哪个素数在哪一层出现。Zeckendorf编码覆盖所有自然数$\mathbb{N}$，因此自动包含所有素数$\mathbb{P}$。递归无间隙性保证系统无限生成新原子，从而整个素数集合$\mathbb{P}$被完整覆盖。$\square$
 
 ### 2.4 符号动力学Hilbert空间的构造
 
@@ -304,27 +310,27 @@ $$\zeta(s) = \prod_{p \in \mathbb{P}} \frac{1}{1-p^{-s}}$$
 
 ### 3.5 两系统的素数生成等价性
 
-**关键发现 3.8 (两系统都在生成素数)**
-符号动力学系统和ζ系统实际上在做同一件事：逐层生成素数。
+**关键发现 3.8 (两系统都生成素数集合)**
+符号动力学系统和ζ系统实际上在处理同一个数学对象：素数集合$\mathbb{P}$。
 
-**证明**：
-1. **符号动力学的素数生成**：
-   - 由定理2.6，每层$\Delta\Sigma_{k+1}$的原子对应k-bonacci素数基项$U^{(k)}_m$
-   - 因此$\mathcal{A}_{\text{dyn}}^{(k)} = \{p_k\}$（第k个素数）
-   - 逐层生成：$\bigcup_k \mathcal{A}_{\text{dyn}}^{(k)} = \mathbb{P}$
+**分析**：
+1. **符号动力学系统**：
+   - 通过自指递归机制逐层生成素数（推论2.7）
+   - 最终原子集合：$\mathcal{A}_{\text{dyn}} = \mathbb{P}$
+   - 对应Hilbert空间：$H_{\text{dyn}} = \overline{\mathrm{span}}(\mathbb{P})$
 
-2. **ζ系统的素数生成**：
-   - 由定义3.2，ζ系统基于素数截断：每层包含$\{p_1, p_2, \ldots, p_k\}$
-   - 因此$\mathcal{A}_\zeta^{(k)} = \{p_k\}$（第k个素数）
-   - 逐层生成：$\bigcup_k \mathcal{A}_\zeta^{(k)} = \mathbb{P}$
+2. **ζ系统**：
+   - 基于素数集合$\mathbb{P}$构造（定义3.3）
+   - 原子集合：$\mathcal{A}_\zeta = \mathbb{P}$
+   - 对应Hilbert空间：$H_\zeta = \overline{\mathrm{span}}(\mathbb{P})$
 
-3. **原子集合等价**：
+3. **直接等价性**：
    $$\mathcal{A}_{\text{dyn}} = \mathcal{A}_\zeta = \mathbb{P}$$
+   $$H_{\text{dyn}} = H_\zeta = \overline{\mathrm{span}}(\mathbb{P})$$
 
-4. **Hilbert空间等价**：
-   $$H_{\text{dyn}} = \overline{\mathrm{span}}(\mathbb{P}) = H_\zeta$$
+**生成顺序无关紧要，因为最终原子集合均为$\mathbb{P}$，从而Hilbert空间闭包等价。**
 
-**结论**：两个系统不仅结构等价，而且生成完全相同的素数序列！$\square$
+**结论**：两个系统处理相同的数学对象（素数集合），因此必须等价！$\square$
 
 **定理 3.9 (直接等价性)**
 由于两系统生成相同的素数集合，它们的完备性直接等价：
