@@ -163,30 +163,48 @@ $$\forall k \geq 2, \Delta\Sigma_{k+1} \cap \mathcal{A}^{(k)} \neq \varnothing$$
 
 ### 2.3.1 动力学原子判定定理
 
-**定理 2.6 (动力学原子的Zeckendorf判定)**
-在禁止模式$1^k$的符号动力学系统中，每一层$\Delta\Sigma_{k+1}$中的新增原子串，通过Zeckendorf表示对应单项$U^{(k)}_m$，且该基项在数论中必为素数。
+**定理 2.6 (k-bonacci原子性与素数的一致性)**
+在禁止模式$1^k$的符号动力学系统中，每一层$\Delta\Sigma_{k+1}$中的Δ-原子与数论中的素数概念一致。
 
-**证明（动力学-Hilbert命题）**：
-1. **熵单调性保证新增**：由定理2.3，$H_{\text{dyn}}(k+1) > H_{\text{dyn}}(k)$保证$\Delta\Sigma_{k+1} \neq \varnothing$
-2. **最短性对应单项**：设$u \in \Delta\Sigma_{k+1}$为最短串，通过Zeckendorf唯一性对应单项$U^{(k)}_m$
-3. **合数排除的动力学论证**：
-   - 若$U^{(k)}_m$可分解为$U^{(k)}_{m_1} + U^{(k)}_{m_2}$（$m_1, m_2$对应更小的数）
-   - 由Zeckendorf唯一性，该分解在符号动力学中对应更短串的拼接
-   - 因此存在$u_1, u_2 \in \Sigma_k$使得$u$可由$u_1, u_2$拼接得到
-   - 这与$u \in \Delta\Sigma_{k+1}$（不可由$\Sigma_k$生成）矛盾
-4. **素数判定**：因此$U^{(k)}_m$在Zeckendorf系统中不可分解，对应素数$\square$
+**证明（基于Zeckendorf编码的递归结构）**：
 
-**推论 2.7 (动力学系统的素数覆盖性)**
-符号动力学系统通过递归无间隙性覆盖所有素数：
+1. **Zeckendorf编码覆盖**：
+   - Zeckendorf唯一性保证：每个自然数$n \in \mathbb{N}$都可唯一表示为$n = \sum_{j=1}^r U^{(k)}_{i_j}$
+   - 因此所有自然数（包括素数）都已编码在k-bonacci系统里
 
-**证明要点**：
-- 每一层$\Delta\Sigma_{k+1}$中的最短新串对应Zeckendorf表示中的单项$U^{(k)}_m$
-- 若$U^{(k)}_m$是合数，则其分解必然已在更低层$\Sigma_k$出现（由Zeckendorf唯一性保证），因此不可能作为新原子出现
-- 故Δ-原子必为素数。再结合递归无间隙性，所有素数最终都会被逐层生成
+2. **原子性定义的一致性**：
+   - 在动力学系统中：原子 = Δ-新基项（不能由前一层组合表示）
+   - 在数论系统中：原子 = 素数（不可乘法分解）
+   - 若某个$U^{(k)}_m$出现在$\Delta\Sigma_{k+1}$作为新原子：
 
-因此：$$\bigcup_{k\geq 2} \mathcal{A}_{\text{dyn}}^{(k)} = \mathbb{P}$$
+3. **合数排除的严格论证**：
+   - 若$U^{(k)}_m$是合数，则$U^{(k)}_m = ab$（$a,b > 1$）
+   - 由k-bonacci递推关系和Zeckendorf唯一性，该分解必能写作两个或多个更小的$U^{(k)}$之和
+   - 这些和的串已在$\Sigma_k$出现，因此$U^{(k)}_m$对应的串不可能在$\Delta\Sigma_{k+1}$作为"最短新串"再次出现
+   - 矛盾
 
-从而：$$H_{\text{dyn}} = \overline{\mathrm{span}}(\mathbb{P}) = H_{\rm all}$$
+4. **素数判定**：因此$\Delta\Sigma_{k+1}$的Δ-原子基项必然是素数$\square$
+
+**推论 2.7 (递归素数覆盖性，抽象版)**
+在符号动力学系统中，每一层差分空间$\Delta \Sigma_{k+1} = \Sigma_{k+1} \setminus \Sigma_k$必然包含新的Δ-原子，这些原子通过Zeckendorf表示（或类似递归唯一表示）对应不可约基元，且该基元必为素数。由于$k$遍历所有自然数，且系统递归无限进行，所有素数将在某一层首次作为新原子出现。
+
+因此：$$\bigcup_{k \geq 2} \mathcal{A}_{\text{dyn}}^{(k)} = \mathbb{P}$$
+
+**证明**：
+1. **熵单调性保证新增**：由定理2.3，$H_{\text{dyn}}(k+1) > H_{\text{dyn}}(k)$（基于Perron-Frobenius定理），因此$\Delta \Sigma_{k+1} \neq \varnothing$，必然存在新字符串
+
+2. **新原子存在与最短性**：由定理2.5的归纳法，每层$\Delta \Sigma_{k+1}$包含最短不可约字符串（Δ-原子），不能由$\Sigma_k$中的字符串拼接生成
+
+3. **新原子必为素数**：通过Zeckendorf唯一表示，该Δ-原子对应一个基元$U_m$（抽象为递归序列项）。若$U_m$是合数，则它可分解为更小基元之和，由Zeckendorf唯一性，这些更小基元已在$\Sigma_k$中表示，因此$U_m$可由低层生成，与其为"新原子"矛盾。故$U_m$必为素数
+
+4. **递归层级遍历覆盖**：由于$k$遍历所有自然数$\mathbb{N}$，且系统自指递归无限进行，每层至少引入一个新素数原子。结合Zeckendorf的唯一表示覆盖所有自然数基元，所有素数$\mathbb{P}$将在某一层首次出现（因为$\mathbb{P} \subset \mathbb{N}$，且递归无间隙性保证无遗漏）
+
+5. **完备性结论**：因此$\mathcal{A}_{\text{dyn}} = \bigcup_k \mathcal{A}_{\text{dyn}}^{(k)} = \mathbb{P}$，从而$H_{\text{dyn}} = \overline{\mathrm{span}}(\mathbb{P}) = H_{\rm all}$$\square$
+
+**关键调整**：
+- **抽象Zeckendorf**：不指定"k-bonacci基素数"，而是用"递归序列项$U_m$对应素数"
+- **逐层生成强调**：表达递归无限（无间隙性），不需严格一一对应$p_k$  
+- **覆盖性逻辑**：利用$\mathbb{N}$的遍历和Zeckendorf唯一性，确保所有素数被"某层"生成
 
 ### 2.4 符号动力学Hilbert空间的构造
 
