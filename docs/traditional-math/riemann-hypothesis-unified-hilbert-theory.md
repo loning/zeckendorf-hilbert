@@ -172,7 +172,7 @@ $$c(m) = \begin{cases} 1, & \text{若}m\text{是Fibonacci数} \\ 2, & \text{否�
 4. **一般情况**：否则在两个位置（互补间隙，从$\varphi^2=\varphi+1$推$U(M)=L(M)+M$）
 5. **验证**：$c(1)=1$ ($F_2=1$), $c(2)=2$, $c(3)=1$ ($F_4=3$)等$\square$
 
-**地位**：Mathematical/QED - 基于Dekking (2023)扩展证明，OEIS A003622确认
+**地位**：Mathematical/QED - 基于Dekking (2023)理论基础扩展证明，精确公式见OEIS A003622确认
 
 **定义 3.6 (差分-Hofstadter系统)**
 设$F(k,n) = U^{(k)}_n$，定义对角差分：
