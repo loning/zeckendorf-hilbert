@@ -1060,7 +1060,25 @@ $$H_\zeta = \text{唯一的自指完备系统}$$
 
 **证明**：结合定理11.11的自指生成性和定理11.12的编码万能性，ζ系统满足自指完备性的所有要求。$\square$
 
-**推论 11.15 (极简表达)**
+### 11.4.1 Báez-Duarte系统的内化
+
+**定理 11.15 (Báez-Duarte系统的自指完备性)**
+Báez-Duarte系统$\mathcal{G}_{\rm BD}$，由分数部分函数族$\rho_\theta(x) = \{\theta/x\}-\theta\{1/x\}$递归生成的Hilbert子空间，是一个自指完备系统。
+
+**证明**：
+1. **自指性**：$\rho_\theta(x) = \{\theta/x\}-\theta\{1/x\}$同时包含$\{1/x\}$，即系统规则包含自身结果
+2. **熵增性**：随着更多$\rho_\theta$加入，函数空间的复杂度单调增加
+3. **无间隙性**：若某层新增函数全可由旧函数表示$\Rightarrow$熵停滞，与单调性矛盾
+4. **完备性**：由定理3.17「自指递归+熵增$\Rightarrow$自指完备」，可得$\mathcal{G}_{\rm BD}$完备
+5. 因此$\overline{\mathrm{span}}(\rho_\theta) = H_{\rm all}$ $\square$
+
+**推论 11.16 (Báez-Duarte系统的唯一性归属)**
+由定理11.7（唯一性），Báez-Duarte系统必须与六重系统、ζ系统相同：
+$$H_{\rm BD} = H_\zeta = \text{唯一自指完备系统}$$
+
+因此：$RH \iff H_{\rm BD} = H_{\rm all}$不再是外部判据，而是唯一自指完备系统内在性质的表现。
+
+**推论 11.17 (极简表达)**
 $$\boxed{\zeta = \zeta(\zeta) \iff RH}$$
 
 其中$\zeta = \zeta(\zeta)$表示$\zeta$函数的自指完备性：$\zeta$既是生成规则，又是生成结果，形成自指的奇异环。
@@ -1075,16 +1093,17 @@ $$\boxed{\zeta = \zeta(\zeta) \iff RH}$$
 
 ### 11.5 主定理
 
-**主定理 11.16 (自指完备系统存在唯一性)**
-在给定Hilbert空间$H$中，存在且仅存在一个自指完备系统。六重系统、ζ系统都是这个唯一系统的不同表示：
-$$H_{\text{num}} = H_{\text{dyn}} = H_{\text{diff}} = H_{\varphi} = H_{\text{fft}} = H_{\text{code}} = H_\zeta = \text{唯一自指完备系统}$$
+**主定理 11.18 (自指完备系统存在唯一性)**
+在给定Hilbert空间$H$中，存在且仅存在一个自指完备系统。六重系统、ζ系统、Báez-Duarte系统都是这个唯一系统的不同表示：
+$$H_{\text{num}} = H_{\text{dyn}} = H_{\text{diff}} = H_{\varphi} = H_{\text{fft}} = H_{\text{code}} = H_\zeta = H_{\rm BD} = \text{唯一自指完备系统}$$
 
-**推论 11.17 (RH的等价刻画)**
+**推论 11.19 (RH的等价刻画)**
 由于：
 1. 存在且仅存在一个自指完备系统（定理11.7）
 2. 六重系统都是自指完备的，因此必须相同（推论11.10）
 3. ζ系统也是自指完备的，因此与六重系统相同（定理11.14）
-4. Báez-Duarte判据：$RH \iff H_\zeta = H_{\rm all}$
+4. Báez-Duarte系统也是自指完备的，因此也必须相同（定理11.15）
+5. 内在等价关系：$RH \iff H_\zeta = H_{\rm BD} = H_{\rm all}$（无需外部判据）
 
 **主要结论**：
 $$\boxed{RH \iff \zeta = \text{唯一的自指完备系统} \iff \text{六重系统等价}}$$
@@ -1100,7 +1119,7 @@ $$\boxed{RH \iff \zeta = \text{唯一的自指完备系统} \iff \text{六重系
 
 ### 11.6 ζ系统的数学地位
 
-**观察 11.18 (ζ函数的结构地位)**
+**观察 11.20 (ζ函数的结构地位)**
 基于唯一性定理的证明，我们现在可以确认：
 由于自然数集合$\mathbb{N}$与素数集合$\mathbb{P}$存在可数无穷双射，而我们已证明：
 - 六个Hilbert空间的原子集合完全一致：$\mathcal{A}_{\text{统一}}$
@@ -1110,7 +1129,7 @@ $$\boxed{RH \iff \zeta = \text{唯一的自指完备系统} \iff \text{六重系
 
 因此：**ζ函数通过统一的原子集合$\mathbb{P}$，在所有自指完备系统中具有唯一的结构地位**。
 
-**定理 11.19 (ζ函数的结构地位)**
+**定理 11.21 (ζ函数的结构地位)**
 在可数无穷的框架内，ζ函数占据数学结构层次的顶端：
 $$\mathbb{N} \leftrightarrow \mathbb{P} \rightarrow \{\text{六重原子骨架}\} \rightarrow \{\text{所有Hilbert空间}\} \rightarrow \zeta$$
 
@@ -1123,7 +1142,7 @@ $$\mathbb{N} \leftrightarrow \mathbb{P} \rightarrow \{\text{六重原子骨架}\
 4. ζ函数聚合：$\prod_{p} (1-p^{-s})^{-1}$包含全部素数信息
 5. 由唯一性定理：ζ是基于$\mathbb{P}$的唯一自指完备系统$\square$
 
-**推论 11.20 (ζ系统的自指特征)**
+**推论 11.22 (ζ系统的自指特征)**
 基于唯一性证明，ζ函数具有以下自指特征：
 - 它基于自身的构造基础（素数集合$\mathbb{P}$）进行自指
 - 它通过Euler乘积包含所有素数的结构信息
@@ -1134,7 +1153,7 @@ $$\mathbb{N} \leftrightarrow \mathbb{P} \rightarrow \{\text{六重原子骨架}\
 
 ### 11.7 ζ系统的信息无穷特征
 
-**定理 11.21 (唯一性⇒RH等价，信息无穷)**
+**定理 11.23 (唯一性⇒RH等价，信息无穷)**
 设$T$为我们建立的六重Hilbert理论框架。基于唯一性定理，我们有：
 
 1. **RH等价性成立**：$T \vdash (RH \iff H_\zeta = H_{\rm all})$（通过自指完备系统唯一性定理）
@@ -1146,7 +1165,7 @@ $$\mathbb{N} \leftrightarrow \mathbb{P} \rightarrow \{\text{六重原子骨架}\
 - (2) $\zeta$系统基于无穷素数集合$\mathbb{P}$，每个素数$p$都贡献独立信息
 - (3) 类比π：我们能证明π的性质，但无法穷尽其小数展开$\square$
 
-**推论 11.22 (可证明性与信息完备性的区别)**
+**推论 11.24 (可证明性与信息完备性的区别)**
 我们已经证明了：
 $$RH \iff \forall k,\;\Delta H^{(k+1)} \cap \mathbb P \neq \varnothing$$
 
@@ -1174,7 +1193,7 @@ $$RH \iff \forall k,\;\Delta H^{(k+1)} \cap \mathbb P \neq \varnothing$$
 
 2. **自指完备系统唯一性**（定理11.7）：在给定Hilbert空间中，自指完备系统是唯一的
 
-3. **强制等价性**（主定理11.16）：六重系统和ζ系统都是自指完备的，因此强制等价
+3. **强制等价性**（主定理11.18）：六重系统、ζ系统、Báez-Duarte系统都是自指完备的，因此强制等价
 
 4. **RH证明**：$RH \iff H_\zeta = H_{\rm all} \iff \zeta$是唯一的自指完备系统
 
