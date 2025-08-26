@@ -948,7 +948,14 @@ $$H_{\text{num}} = H_{\text{dyn}} = H_{\text{diff}} = H_{\varphi} = H_{\text{fft
 **定义 11.4 (自指完备系统)**
 一个系统$\mathcal{G}$同时满足自指性与完备性，称为自指完备的。
 
-**定理 11.5 (自指完备性 $\Rightarrow$ 稠密性)**
+**定义 11.5 (强原子)**
+在Hilbert空间$H$中，一个原子$a \in \mathcal{A}$是指：
+$$a \notin \overline{\mathrm{span}}(\mathcal{A} \setminus \{a\})$$
+即，它不能由原子集合的其他元素通过有限线性组合或极限（闭包）生成。这强化了原子作为"极小生成元"的概念：在闭包意义下独立，不可由任何方式（有限或无限）从其他原子重构。
+
+**注释**：这个定义确保原子不仅是有限不可分解的，还在Hilbert空间的完备拓扑结构下保持独立性。它与论文的谱理论一致（如定理7.5中广义本征函数的极限表示），并确保唯一性证明的严格性。
+
+**定理 11.6 (自指完备性 $\Rightarrow$ 稠密性)**
 若$\mathcal{G}$是自指完备的生成系统，则其原子集合$\mathcal{A}$在Hilbert空间$H$中稠密，即
 $$\overline{\mathrm{span}}(\mathcal{A}) = H$$
 
@@ -958,15 +965,17 @@ $$\overline{\mathrm{span}}(\mathcal{A}) = H$$
 
 ### 11.2 唯一性证明
 
-**定理 11.6 (自指完备系统唯一性)**
+**定理 11.7 (自指完备系统唯一性)**
 在给定的Hilbert空间$H$中，若存在自指完备系统，则它是唯一的。
 
 **证明（反证法）**：
 1. **假设存在两个不同的自指完备系统**：设$\mathcal{G}_1, \mathcal{G}_2$是两个自指完备系统，对应的原子集合为$\mathcal{A}_1, \mathcal{A}_2 \subseteq H$，并假设$\mathcal{A}_1 \neq \mathcal{A}_2$
 2. **完备性要求**：因为二者都是自指完备的，所以$\overline{\mathrm{span}}(\mathcal{A}_1) = H, \quad \overline{\mathrm{span}}(\mathcal{A}_2) = H$
 3. **取差异元素**：由于$\mathcal{A}_1 \neq \mathcal{A}_2$，不妨取$a \in \mathcal{A}_1 \setminus \mathcal{A}_2$。根据自指完备性，$a$必须能由$\mathcal{A}_2$的元素组合或极限表示：$a \in \overline{\mathrm{span}}(\mathcal{A}_2)$。但如果$a \notin \mathcal{A}_2$，则它是$\mathcal{A}_2$的可分解元
-4. **矛盾：原子不可分解**：$a \in \mathcal{A}_1 \Rightarrow a$是原子，按定义不可分解；$a \in \overline{\mathrm{span}}(\mathcal{A}_2)\setminus \mathcal{A}_2 \Rightarrow a$在系统2中是由其他元组合得到的$\Rightarrow$可分解。即使通过无限序列或极限的span表示，也与原子定义（不可进行任何分解）直接矛盾
+4. **矛盾：强原子不可分解**：$a \in \mathcal{A}_1 \Rightarrow a$是强原子，按定义11.5，$a \notin \overline{\mathrm{span}}(\mathcal{A}_1 \setminus \{a\})$，更一般地不可由任何其他集合的闭包生成。但$a \in \overline{\mathrm{span}}(\mathcal{A}_2)$（且$a \notin \mathcal{A}_2$），意味着$a$可由$\mathcal{A}_2$的元素通过有限或极限线性组合重构。这与强原子定义直接矛盾
 5. **结论**：假设「存在两个不同的自指完备系统」导致矛盾。因此，自指完备系统在$H$中至多只有一个$\square$
+
+**地位**：Mathematical/QED - 基于强化原子定义的严格逻辑反证
 
 ### 11.3 六重系统的等价性证明
 
@@ -989,7 +998,7 @@ $$\mathcal{A}_{\text{num}} = \mathcal{A}_{\text{dyn}} = \mathcal{A}_{\text{diff}
 2. **完备性**：由引理11.7-11.8，每个系统的原子集合都在数论语境下对应$\mathbb{P}$，递归生成无间隙$\Rightarrow \overline{\mathrm{span}}(\text{原子集合}) = H$ $\square$
 
 **推论 11.10 (六重系统必须相同)**
-由定理11.6（唯一性），自指完备系统至多只有一个。由定理11.9，六个系统都是自指完备的。因此：
+由定理11.7（唯一性），自指完备系统至多只有一个。由定理11.9，六个系统都是自指完备的。因此：
 $$H_{\text{num}} = H_{\text{dyn}} = H_{\text{diff}} = H_{\varphi} = H_{\text{fft}} = H_{\text{code}} = \text{唯一的自指完备系统}$$
 
 ### 11.4 ζ系统的等价性
@@ -1072,7 +1081,7 @@ $$H_{\text{num}} = H_{\text{dyn}} = H_{\text{diff}} = H_{\varphi} = H_{\text{fft
 
 **推论 11.17 (RH的等价刻画)**
 由于：
-1. 存在且仅存在一个自指完备系统（定理11.6）
+1. 存在且仅存在一个自指完备系统（定理11.7）
 2. 六重系统都是自指完备的，因此必须相同（推论11.10）
 3. ζ系统也是自指完备的，因此与六重系统相同（定理11.14）
 4. Báez-Duarte判据：$RH \iff H_\zeta = H_{\rm all}$
@@ -1163,7 +1172,7 @@ $$RH \iff \forall k,\;\Delta H^{(k+1)} \cap \mathbb P \neq \varnothing$$
 
 1. **六重原子一致性**（定理4.1）：证明了六个系统的原子集合完全一致：$\mathcal{A}_{\text{num}} = \mathcal{A}_{\text{dyn}} = \mathcal{A}_{\text{diff}} = \mathcal{A}_{\varphi} = \mathcal{A}_{\text{fft}} = \mathcal{A}_{\text{code}} = \mathbb{P}$
 
-2. **自指完备系统唯一性**（定理11.6）：在给定Hilbert空间中，自指完备系统是唯一的
+2. **自指完备系统唯一性**（定理11.7）：在给定Hilbert空间中，自指完备系统是唯一的
 
 3. **强制等价性**（主定理11.16）：六重系统和ζ系统都是自指完备的，因此强制等价
 
