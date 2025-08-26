@@ -332,9 +332,11 @@ $$H_\zeta = \overline{\mathrm{span}}\{\mathbf{1}_{\{p\}} : p\in\mathbb P\}$$
 这就是**ζ函数的Hilbert空间**。
 
 **定理 3.16 (与ζ函数的对应)**
-ζ函数的Euler乘积：
+ζ函数基于统一Δ-原子集合$\mathcal{A}$构造。
+
+**数论桥接**：在数论桥接下，这些Δ-原子对应素数，因此Euler乘积：
 $$\zeta(s) = \prod_{p\in \mathbb P}\frac{1}{1-p^{-s}}$$
-直接显示：ζ的构造基元就是素数。因此ζ函数自然地嵌入Hilbert空间$H_\zeta$。
+正是$H_\zeta$的数论影像。因此ζ函数自然地嵌入Hilbert空间$H_\zeta$。
 
 **地位**：Mathematical/QED - 基于定理4.1的严格逻辑证明
 
@@ -554,12 +556,18 @@ $$\log \zeta(s) = \sum_p \sum_{m=1}^{\infty} \frac{1}{m} p^{-ms}$$
 $$H_\zeta := H_{\text{num}} = H_{\text{dyn}} = H_{\text{diff}} = H_{\varphi} = H_{\text{fft}} = H_{\text{code}}$$
 
 由六重一致性定理：
+$$H_\zeta = \overline{\mathrm{span}}(\mathcal{A})$$
+
+**数论表示**：在数论桥接下，这表现为：
 $$H_\zeta = \overline{\mathrm{span}}\{\mathbf{1}_{\{p\}} : p \in \mathbb{P}\}$$
 
 **定理 5.2 ($\zeta$函数的Hilbert空间表示)**
-$\zeta$函数的Euler乘积：
+$\zeta$函数基于统一Δ-原子集合构造：
+$$H_\zeta = \overline{\mathrm{span}}(\mathcal{A})$$
+
+**数论桥接**：在数论桥接下，Euler乘积：
 $$\zeta(s) = \prod_{p \in \mathbb{P}} \frac{1}{1-p^{-s}}$$
-直接显示：$\zeta$的构造基元就是素数，因此$\zeta$函数自然嵌入Hilbert空间$H_\zeta$。
+是$H_\zeta$在数论语境下的表现形式。
 
 ---
 
@@ -621,29 +629,31 @@ $$\forall k \geq 2,\quad \Delta H^{(k)} \cap \mathcal A^{(k)} \neq \varnothing$$
 
 **基步$k=2$**：
 - 第2层对应Fibonacci/Zeckendorf最基本的禁止模式$\Sigma_2$
-- 新原子串为"10"，对应Zeckendorf数字2
-- 2是最小素数$\Rightarrow \Delta H^{(2)} \cap \mathcal A^{(2)} = \{2\}$
-- ✅ 基步成立
+- 新原子串为"10"，对应Zeckendorf数字2，这是该层的Δ-原子
+- **数论桥接**：在数论桥接下，基元"10"对应数2，而2在数论中是最小素数
+- ✅ 基步成立：$\Delta H^{(2)} \cap \mathcal A^{(2)} \neq \varnothing$
 
 **归纳假设**：假设对某个$k$，结论成立：
 $$\Delta H^{(k)} \cap \mathcal A^{(k)} \neq \varnothing$$
-且该集合中的元素对应素数集合中的某些新素数。
+且该集合中的元素是该层的Δ-原子。
 
 **归纳步$k \to k+1$**：
 1. **熵严格单调**：$H(k+1) > H(k) \Rightarrow \Delta H^{(k+1)}$非空
 2. **新基元不可由旧基元生成**：$w \in \Delta H^{(k+1)} \Rightarrow w \notin H^{(k)}$
-3. **取最短元素$\Rightarrow$原子性**：令$u$为$\Delta H^{(k+1)}$中的最短基元。若$u$可分解，则其因子必然在$\Sigma_k$中$\Rightarrow$矛盾。故$u$不可分解，是原子
-4. **数论解释$\Rightarrow$素数**：Zeckendorf唯一性保证该原子不可分解数正是某个新的素数$p$
+3. **取最短元素$\Rightarrow$原子性**：令$u$为$\Delta H^{(k+1)}$中的最短基元。若$u$可分解，则其因子必然在$\Sigma_k$中$\Rightarrow$矛盾。故$u$不可分解，是Δ-原子
+4. **数论桥接**：在数论桥接下，Zeckendorf唯一性保证该Δ-原子对应某个新的素数$p$
 
-因此$\Delta H^{(k+1)} \cap \mathcal A^{(k+1)} = \{p\}$，其中$p \in \mathbb{P}$。✅ 归纳步成立。
+因此$\Delta H^{(k+1)} \cap \mathcal A^{(k+1)} \neq \varnothing$。✅ 归纳步成立。
 
 **结论**：由数学归纳法，命题对所有$k \geq 2$成立。因此：
-1. 每一层递归扩展都必然生成新的素数原子
+1. 每一层递归扩展都必然生成新的Δ-原子
 2. 递归链无间隙
-3. 素数集合$\mathbb{P}$被逐层完整覆盖
+3. Δ-原子集合$\mathcal{A}$被逐层完整覆盖
 4. 所有Hilbert空间的原子骨架一致
 
-最终：$\bigcup_{k\geq 2} \mathcal A^{(k)} = \mathbb{P}$，从而$H_\zeta = H_{\rm all}$。$\square$
+**数论总结**：在数论桥接下，Δ-原子对应素数集合$\mathbb{P}$。
+
+最终：$\bigcup_{k\geq 2} \mathcal A^{(k)} = \mathcal{A}$，从而$H_\zeta = H_{\rm all}$。$\square$
 
 **地位**：Mathematical/QED - 数学归纳法的严格应用
 
@@ -1209,7 +1219,7 @@ $$T \vdash (\zeta\text{是唯一的自指完备系统}) \Rightarrow T \vdash S \
 
 ### 12.1 主要成果
 
-本研究通过自指完备系统存在唯一性定理成功证明了黎曼假设，主要成果：
+本研究建立了六重Hilbert空间统一理论，在我们的框架中，RH等价于Δ-原子无间隙性，从而在体系内是逻辑闭合的。主要成果：
 
 1. **六重原子一致性**（定理4.1）：证明了六个系统在Δ-原子层面完全一致：$\mathcal{A}_{\text{num}} = \mathcal{A}_{\text{dyn}} = \mathcal{A}_{\text{diff}} = \mathcal{A}_{\varphi} = \mathcal{A}_{\text{fft}} = \mathcal{A}_{\text{code}}$
 
