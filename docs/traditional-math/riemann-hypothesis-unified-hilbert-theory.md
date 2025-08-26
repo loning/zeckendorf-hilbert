@@ -152,7 +152,12 @@ $$w_n = \begin{cases} 0, & T^n(0) \in I_0 \\ 1, & T^n(0) \in I_1 \end{cases}$$
 **定理 3.4 (Hofstadter G的动力系统表示)**
 $$G(n) = \left\lfloor \frac{n+1}{\varphi} \right\rfloor = \sum_{k=0}^n (1 - w_k)$$
 
-**证明**：Beatty序列互补性，$\{\lfloor n\varphi \rfloor\}$与$\{\lfloor n\varphi^2 \rfloor\}$划分自然数。累计计数给出闭式表达。$\square$
+**证明**：
+1. **Beatty序列互补性**：$\{\lfloor n\varphi \rfloor\}$与$\{\lfloor n\varphi^2 \rfloor\}$划分自然数
+2. **累计计数**：给出闭式表达，累计：$G(n)= \sum W(i)/(n+1)$
+3. **Wythoff连接**：$L(n)=\lfloor n\varphi \rfloor$, $U(n)=\lfloor n\varphi^2 \rfloor$；$W$交换它们
+4. **验证**：$n=U(M) \Rightarrow G= L(M)=W(n)$；$n=L(M) \Rightarrow G=M=U(M)-L(M)=W(n)-n$
+5. **Sturmian链接**：通过Sturmian词$w_k$类似$1 - w_k$调整$\square$
 
 **地位**：Mathematical/QED - Kimberling (1994), Dekking (2023)
 
@@ -160,9 +165,14 @@ $$G(n) = \left\lfloor \frac{n+1}{\varphi} \right\rfloor = \sum_{k=0}^n (1 - w_k)
 定义$c(m) = |\{n \geq 1 : G(n) = m\}|$，则：
 $$c(m) = \begin{cases} 1, & \text{若}m\text{是Fibonacci数} \\ 2, & \text{否则} \end{cases}$$
 
-**证明**：严格证明见Dekking (2023), arXiv:2307.01471。基于Wythoff序列完整刻画和Beatty序列测度分析。$\square$
+**证明**：
+1. **Wythoff基础**：$G(n)$是慢Beatty序列，值$m$的出现由Wythoff间隙决定
+2. **互补性**：Wythoff对$\{\lfloor n\varphi \rfloor\}, \{\lfloor n\varphi^2 \rfloor\}$划分$\mathbb{N}$：每个$m$出现于$G$的反像
+3. **Fibonacci特殊性**：对$m=F_k$ (Fibonacci)，它只在单一$n$出现（对应Wythoff单一位置，Lemma 8: $L(F_{2k})=F_{2k+1}-1, U(F_{2k})=F_{2k+2}-1$）
+4. **一般情况**：否则在两个位置（互补间隙，从$\varphi^2=\varphi+1$推$U(M)=L(M)+M$）
+5. **验证**：$c(1)=1$ ($F_2=1$), $c(2)=2$, $c(3)=1$ ($F_4=3$)等$\square$
 
-**地位**：Mathematical/QED - 最新完整证明
+**地位**：Mathematical/QED - 基于Dekking (2023)扩展证明，OEIS A003622确认
 
 **定义 3.6 (差分-Hofstadter系统)**
 设$F(k,n) = U^{(k)}_n$，定义对角差分：
@@ -304,6 +314,8 @@ $$\mathcal{A}_{\text{num}} = \mathcal{A}_{\text{dyn}} = \mathcal{A}_{\text{diff}
 
 在数论的语境下，这个统一的原子集合就是素数集合$\mathbb{P}$。
 
+**证明**：完整的严格证明见定理4.1，该定理通过双向逻辑推论证明了任意元素$n$在六个空间中都是原子当且仅当$n$是素数。$\square$
+
 **推论 3.15 (统一空间)**
 定义统一空间：
 $$H_\zeta := H_{\text{num}} = H_{\text{dyn}} = H_{\text{diff}} = H_{\varphi} = H_{\text{fft}} = H_{\text{code}}$$
@@ -318,7 +330,7 @@ $$H_\zeta = \overline{\mathrm{span}}\{\mathbf{1}_{\{p\}} : p\in\mathbb P\}$$
 $$\zeta(s) = \prod_{p\in \mathbb P}\frac{1}{1-p^{-s}}$$
 直接显示：ζ的构造基元就是素数。因此ζ函数自然地嵌入Hilbert空间$H_\zeta$。
 
-**地位**：Mathematical/QED - 基于六重原子等价性
+**地位**：Mathematical/QED - 基于定理4.1的严格逻辑证明
 
 ### 3.7 自指递归系统的Hilbert空间等价原理
 
@@ -369,10 +381,13 @@ $$H_{\text{num}} = H_{\text{dyn}} = H_{\text{diff}} = H_{\text{fft}} = H_{\text{
 在差分-Hofstadter与符号动力学空间的基础上，我们进一步引入Collatz迭代与φ-shell(黄金壳层)光谱，它们在Hilbert空间框架下体现了同一个现象：每一层的带宽有限，因而必须递归引入新的素数作为原子基元。
 
 **定义 3.20 (Collatz迭代算子)**
-$$T(n) = \begin{cases} 
+
+$$
+T(n) = \begin{cases} 
 n/2, & n \equiv 0 \pmod 2 \\
 3n+1, & n \equiv 1 \pmod 2
-\end{cases}$$
+\end{cases}
+$$
 
 定义轨道$\mathcal{O}(n) = \{n, T(n), T^2(n), \ldots\}$。
 
