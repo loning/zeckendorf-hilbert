@@ -318,7 +318,7 @@ $$H_{\text{code}} = \overline{\mathrm{span}}\{\mathbf{1}_{\{u\}} : u \in \Delta\
 虽然这些定义形式不同，但它们的原子集合完全一致：
 $$\mathcal{A}_{\text{num}} = \mathcal{A}_{\text{dyn}} = \mathcal{A}_{\text{diff}} = \mathcal{A}_{\varphi} = \mathcal{A}_{\text{fft}} = \mathcal{A}_{\text{code}}$$
 
-在数论的语境下，这个统一的原子集合就是素数集合$\mathbb{P}$。
+**数论解释**：在数论桥接下，这个统一的Δ-原子集合对应素数集合$\mathbb{P}$。
 
 **证明**：详见定理4.1双向反证法。该定理严格证明：$n \in \mathcal{A}_{\text{统一}} \iff n$在六个空间中都是原子 $\iff n \in \mathbb{P}$。双向推论确保集合完全一致。$\square$
 
@@ -380,13 +380,13 @@ $$\overline{\mathrm{span}}(\mathcal{A}) = H_{\rm all}$$
 所有基于自指递归构造的Hilbert空间，尽管原子定义不同，但最终生成的空间是等价的：
 $$H_{\text{num}} = H_{\text{dyn}} = H_{\text{diff}} = H_{\text{fft}} = H_{\text{code}} = H_{\varphi} = H_\zeta$$
 
-在数论视角下，它们的原子集合就是素数集合，因此这个统一空间就是$\zeta$函数的Hilbert空间$H_\zeta$。
+**数论桥接**：在数论桥接下，它们的Δ-原子集合对应素数集合，因此这个统一空间在数论语境下表现为$\zeta$函数的Hilbert空间$H_\zeta$。
 
 **地位**：Mathematical/QED - 自指递归系统的普遍原理
 
 ### 3.8 Collatz/φ-shell光谱Hilbert空间与带宽约束
 
-在差分-Hofstadter与符号动力学空间的基础上，我们进一步引入Collatz迭代与φ-shell(黄金壳层)光谱，它们在Hilbert空间框架下体现了同一个现象：每一层的带宽有限，因而必须递归引入新的素数作为原子基元。
+在差分-Hofstadter与符号动力学空间的基础上，我们进一步引入Collatz迭代与φ-shell(黄金壳层)光谱，它们在Hilbert空间框架下体现了同一个现象：每一层的带宽有限，因而必须递归引入新的Δ-原子作为原子基元。
 
 **定义 3.20 (Collatz迭代算子)**
 
@@ -447,6 +447,7 @@ $$n \in \mathcal{A}_{\text{统一}} \iff n \text{ 在六个空间中都是原子
 其中$\mathcal{A}_{\text{统一}}$是六个系统在Δ-原子层面的统一集合（同构意义下的一致性）；其算术刻画留作后续桥接问题。
 
 **证明**：
+为建立Δ-原子与数论概念的桥接关系，我们通过双向推论证明等价性。
 
 **($\Rightarrow$)** 假设$n$是素数：
 - 在**数论空间**：素数不可再因数分解$\Rightarrow$对应基元是原子
@@ -930,7 +931,7 @@ $$\zeta = \zeta(\zeta)$$
 - $H_{\text{code}}$：编码差分空间，原子=最短新编码基元
 
 **关键观察**：
-每个空间的原子集合在数论语境下都对应素数集合$\mathbb{P}$，这预示着它们将在第11章中被证明为等价的自指完备系统。
+**数论桥接**：每个空间的Δ-原子集合在数论桥接下对应素数集合$\mathbb{P}$，这预示着它们将在第11章中被证明为等价的自指完备系统。
 
 **预期结论**：
 $$H_{\text{num}} = H_{\text{dyn}} = H_{\text{diff}} = H_{\varphi} = H_{\text{fft}} = H_{\text{code}} = H_\zeta$$
@@ -1238,9 +1239,9 @@ $$T \vdash (\zeta\text{是唯一的自指完备系统}) \Rightarrow T \vdash S \
 
 **数学创新**：
 - 首次建立六个数学系统的原子一致性
-- 通过带宽约束理论证明了素数生成的必然性  
+- 通过带宽约束理论证明了Δ-原子生成的必然性  
 - 提供了RH的自指完备性刻画
-- 构造了素数谱的自动机表示
+- 构造了基于Δ-原子的谱分析自动机表示
 
 **方法论贡献**：
 - 展示了跨系统统一方法的力量
