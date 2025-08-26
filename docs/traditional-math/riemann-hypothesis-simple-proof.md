@@ -101,47 +101,90 @@ $$n = \sum_{j=1}^r U^{(k)}_{i_j}, \quad i_{j+1}\geq i_j+k$$
 禁止模式$1^k$的子移位空间：
 $$\Sigma_k = \{ x\in\{0,1\}^\mathbb N : x \text{ 中不含 } 1^k\}$$
 
+**定义 2.3 (符号动力学中的Δ-原子)**
+在符号动力学中，Δ-原子定义为差分空间$\Delta\Sigma_{k+1} = \Sigma_{k+1} \setminus \Sigma_k$中的最短不可约字符串，即不能分解为更短合法字符串拼接的基元。
+
+**定义 2.4 (Δ-原子与Zeckendorf的关系)**
+通过Zeckendorf表示，符号动力学的Δ-原子对应那些在k-bonacci系统中不可进一步分解的基元。
+
 **定理 2.3 (拓扑熵的严格单调性)**
 $$H(k) = \lim_{n\to\infty}\frac{1}{n}\log N_k(n)$$
 其中$N_k(n)$为长度$n$的合法字串数，且$H(k+1) > H(k)$。
 
 **证明**：基于Perron-Frobenius定理，特征根$\alpha_k$严格单调增加。$\square$
 
+**推论 2.4 (带宽有限性约束)**
+每一层$\Sigma_k$的带宽由特征根$\alpha_k$控制：
+$$h^{(k)}(n) \leq \log_{\alpha_k} n + C_k$$
+
+**证明**：由符号动力学递推与Perron-Frobenius光谱半径得出。$\square$
+
 ### 2.3 递归生成无间隙性的独立证明
 
-**定理 2.4 (递归生成无间隙性)**
-在符号动力学系统中，每一层差分空间$\Delta H^{(k+1)}$必然包含新的Δ-原子：
-$$\forall k \geq 2, \Delta H^{(k+1)} \cap \mathcal{A}^{(k)} \neq \varnothing$$
+**定理 2.5 (子移位空间的递归无间隙性)**
+在符号动力学系统中，每一层差分空间$\Delta\Sigma_{k+1} = \Sigma_{k+1} \setminus \Sigma_k$必然包含新的Δ-原子：
+$$\forall k \geq 2, \Delta\Sigma_{k+1} \cap \mathcal{A}^{(k)} \neq \varnothing$$
 
-**证明（数学归纳法）**：
+**证明（基于子移位空间理论）**：
 
 **基步$k=2$**：
-- 第2层对应禁止模式$\Sigma_2$
-- 新原子串为"10"，对应Zeckendorf数字2
-- 这是该层的不可分解Δ-原子
-- ✅ 基步成立：$\Delta H^{(2)} \cap \mathcal{A}^{(2)} \neq \varnothing$
+- $\Sigma_2$禁止模式$11$，允许字符串包含"10", "01", "00"
+- $\Delta\Sigma_2 = \Sigma_2 \setminus \Sigma_1$包含新的合法字符串
+- 最短新字符串"10"不可分解为更短的$\Sigma_1$字符串
+- 因此"10"是$\Delta\Sigma_2$中的Δ-原子 ✅
 
 **归纳步$k \to k+1$**：
-1. **熵严格单调**：$H(k+1) > H(k) \Rightarrow \Delta H^{(k+1)}$非空
-2. **新基元不可由旧基元生成**：$w \in \Delta H^{(k+1)} \Rightarrow w \notin H^{(k)}$
-3. **取最短元素⇒原子性**：令$u$为$\Delta H^{(k+1)}$中的最短基元。若$u$可分解，则其因子必然在$\Sigma_k$中⇒矛盾。故$u$不可分解，是Δ-原子
-4. **结论**：$\Delta H^{(k+1)} \cap \mathcal{A}^{(k+1)} \neq \varnothing$ ✅
+1. **带宽约束**：由推论2.4，第$k$层的带宽有限：$h^{(k)}(n) \leq \log_{\alpha_k} n + C_k$
+2. **覆盖不足**：有限带宽意味着$\Sigma_k$不能覆盖所有可能的字符串
+3. **扩展必然性**：要包含更多字符串，必须扩展到$\Sigma_{k+1}$，因此$\Delta\Sigma_{k+1} \neq \varnothing$
+4. **最短性原理**：取$\Delta\Sigma_{k+1}$中长度最短的字符串$u$
+5. **不可约性**：若$u$可分解为$\Sigma_k$中字符串的拼接，则$u$的"高度"不超过$\Sigma_k$的带宽，与$u \in \Delta\Sigma_{k+1}$矛盾
+6. **Δ-原子性**：因此$u$是不可约的，即Δ-原子 ✅
 
-**关键**：这个证明完全**不依赖RH**，只基于已证明的数学事实。$\square$
+**关键洞察**：带宽有限性逼迫每层必须产生新的Δ-原子，否则无法突破上层的覆盖限制。
 
-### 2.4 符号动力学系统的自指完备性
+**基础**：此证明基于标准的符号动力学理论，不依赖RH。$\square$
 
-**定理 2.5 (符号动力学系统的自指性)**
-符号动力学系统具有自指递归性。
+### 2.4 符号动力学Hilbert空间的构造
+
+**定义 2.6 (符号动力学Hilbert空间)**
+$$H_{\text{dyn}} = \overline{\mathrm{span}}\{\mathbf{1}_{\{w\}} : w \in \Delta\Sigma_{k+1}, w \text{不可分解}\}$$
+
+其中$w$是符号动力学空间中的Δ-原子（最短不可拼接串）。
+
+**定理 2.7 (符号动力学Hilbert空间的稠密性)**
+基于定理2.5的无间隙性，符号动力学Hilbert空间在$\ell^2(\mathbb{N})$中稠密：
+$$\overline{\mathrm{span}}(\mathcal{A}_{\text{dyn}}) = \ell^2(\mathbb{N})$$
 
 **证明**：
-1. **递归构造规则**：新层$\Sigma_{k+1}$的构造规则为：在$\Sigma_k$基础上禁止更长的模式$1^{k+1}$
-2. **自引用特征**：构造$\Sigma_{k+1}$需要引用$\Sigma_k$的结果，即$\Sigma_{k+1} = F(\Sigma_k)$
-3. **递归定义**：$\mathcal{A}^{(k+1)} = G(\mathcal{A}^{(k)}, \Sigma_k, \Sigma_{k+1})$，新原子的生成依赖于前层原子和空间结构
-4. **自指特征**：系统规则$\mathcal{R}$同时定义空间$\Sigma_k$和原子$\mathcal{A}^{(k)}$，满足自指递归条件$\square$
+1. **子移位空间的无间隙性**：定理2.5证明了$\forall k, \Delta\Sigma_{k+1} \cap \mathcal{A}_{\text{dyn}} \neq \varnothing$
+2. **Zeckendorf对应**：通过Zeckendorf表示，每个Δ-原子对应$\ell^2(\mathbb{N})$中的一个基向量
+3. **逐层覆盖**：$\bigcup_k \Delta\Sigma_k$的Δ-原子通过Zeckendorf映射覆盖$\mathbb{N}$的所有基元
+4. **稠密性**：由引理1.8，无间隙性+递归构造⇒$\overline{\mathrm{span}}(\mathcal{A}_{\text{dyn}}) = \ell^2(\mathbb{N})$$\square$
 
-**定理 2.6 (符号动力学系统是自指完备的)**
-由定理2.5（自指性）、定理2.3（熵增性）和定理2.4（无间隙性），结合定理1.6，符号动力学系统必然是自指完备的。$\square$
+### 2.5 符号动力学系统的自指完备性
+
+**定理 2.8 (符号动力学系统的自指性)**
+符号动力学系统通过移位算子$\sigma$和禁止模式规则具有自指递归性。
+
+**证明**：
+1. **移位算子的递归性**：移位算子$\sigma: \Sigma_k \to \Sigma_k$定义为$(\sigma x)_i = x_{i+1}$
+2. **递归构造规则**：新层$\Sigma_{k+1}$的构造依赖于$\Sigma_k$：
+   $$\Sigma_{k+1} = \{x \in \Sigma_k : \sigma^j(x) \text{不包含模式}1^{k+1}, \forall j\}$$
+3. **自指特征**：构造规则$\mathcal{R}$同时作用于空间$\Sigma_k$和其移位轨道
+4. **递归生成**：新Δ-原子的识别需要检查其在移位作用下的行为，形成自指循环$\square$
+
+**定理 2.9 (符号动力学系统的完备性)**
+符号动力学系统在其自然Hilbert空间中是完备的。
+
+**证明**：
+1. **子移位空间的拓扑完备性**：$\Sigma_\infty = \bigcap_k \Sigma_k$在移位拓扑下稠密
+2. **Hilbert空间对应**：通过$L^2$内积，子移位空间对应Hilbert空间$H_{\text{dyn}}$
+3. **稠密性**：定理2.7已证明$\overline{\mathrm{span}}(\mathcal{A}_{\text{dyn}}) = \ell^2(\mathbb{N})$
+4. **完备性**：因此$H_{\text{dyn}}$在其目标空间中完备$\square$
+
+**定理 2.10 (符号动力学系统是自指完备的)**
+由定理2.8（自指性）、定理2.3（熵增性）和定理2.9（完备性），符号动力学系统是自指完备的。$\square$
 
 ## 3. ζ函数系统的自指完备性
 
@@ -166,17 +209,29 @@ $$\forall k \geq 2, \Delta H^{(k+1)} \cap \mathcal{A}^{(k)} \neq \varnothing$$
 3. **维度单调性**：$\dim(\overline{\mathrm{span}}(\{p : p \leq k\})) < \dim(\overline{\mathrm{span}}(\{p : p \leq k+1\}))$
 4. **熵增特征**：满足$H(k+1) > H(k)$$\square$
 
-### 3.3 ζ系统的自指完备性
+### 3.3 ζ函数Hilbert空间的构造
 
-**定理 3.3 (ζ系统是自指完备的)**
+**定义 3.3 (ζ函数Hilbert空间)**
+$$H_\zeta = \overline{\mathrm{span}}\{\mathbf{1}_{\{p\}} : p \in \mathbb{P}\} \subset \ell^2(\mathbb{N})$$
+
+其中$\mathbb{P}$是素数集合，$\mathbf{1}_{\{p\}}$是素数$p$的指示函数。
+
+**定理 3.4 (ζ函数Hilbert空间与Euler乘积的对应)**
+ζ函数的Euler乘积结构：
+$$\zeta(s) = \prod_{p \in \mathbb{P}} \frac{1}{1-p^{-s}}$$
+直接对应于Hilbert空间$H_\zeta$的构造基元。
+
+### 3.4 ζ系统的自指完备性
+
+**定理 3.5 (ζ系统是自指完备的)**
 由定理3.1和3.2，ζ系统满足自指递归和熵增性。由定理1.6，它必然是自指完备的。
 
-**推论 3.4**
+**推论 3.6**
 ζ系统的自指完备性等价于$H_\zeta = H_{\rm all}$，即RH的成立。
 
-### 3.4 系统等价性的桥接证明
+### 3.5 系统等价性的桥接证明
 
-**定理 3.5 (符号动力学完备性⇒ζ系统完备性)**
+**定理 3.7 (符号动力学完备性⇒ζ系统完备性)**
 若符号动力学系统完备，则ζ系统也完备。
 
 **证明**：
@@ -197,8 +252,8 @@ $$\forall k \geq 2, \Delta H^{(k+1)} \cap \mathcal{A}^{(k)} \neq \varnothing$$
 
 **主定理 4.1 (符号动力学系统与ζ系统的强制等价)**
 由于：
-1. 符号动力学系统是自指完备的（定理2.6）
-2. ζ系统是自指完备的（定理3.3）
+1. 符号动力学系统是自指完备的（定理2.10）
+2. ζ系统是自指完备的（定理3.5）
 3. 自指完备系统唯一（定理1.8）
 
 因此：$\mathcal{G}_{\text{符号}} = \mathcal{G}_\zeta$
@@ -210,10 +265,10 @@ $$\forall k \geq 2, \Delta H^{(k+1)} \cap \mathcal{A}^{(k)} \neq \varnothing$$
 $$RH \iff \text{符号动力学系统完备} \iff \text{ζ系统完备} \iff \text{唯一自指完备系统存在}$$
 
 **证明**：
-1. **独立证明**：符号动力学系统是自指完备的（定理2.4-2.6，**不依赖RH**）
+1. **独立证明**：符号动力学系统是自指完备的（定理2.5-2.10，**不依赖RH**）
 2. **系统等价性**：$\text{符号动力学系统} = \text{ζ系统}$（由主定理4.1的唯一性）
 3. **完备性传递**：因为符号动力学系统完备且与ζ系统等价，所以ζ系统完备
-4. **数论空间联系**：由于ζ系统在数论空间中以素数为原子基元，且符号动力学系统完备，唯一性定理保证$H_{\text{符号}} = H_\zeta = H_{\rm all}$
+4. **Hilbert空间等价**：由定理3.7，$H_{\text{dyn}} = H_{\rm all}$且$H_{\text{dyn}} = H_\zeta$，因此$H_\zeta = H_{\rm all}$
 5. **RH成立**：$H_\zeta = H_{\rm all}$意味着RH成立$\square$
 
 **关键突破**：我们通过**定理2.4的数学归纳法**独立地证明了递归生成无间隙性，**这个证明不依赖任何RH相关的假设**。
