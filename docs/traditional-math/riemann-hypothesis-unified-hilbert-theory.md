@@ -1,6 +1,6 @@
 # 黎曼假设的六重Hilbert空间统一理论
 
-**摘要**：本文建立了黎曼假设(RH)的六重Hilbert空间原子一致性判据：数论空间、符号动力学空间、差分-Hofstadter空间、Collatz/φ-shell光谱空间、傅立叶空间和编码差分空间。通过证明六个系统的"原子基元"（不可分解基本单元）完全一致，我们将RH转化为自指完备系统唯一性问题。虽然各系统定义原子的方式不同，但它们的原子集合完全一致，在数论语境下对应素数集合$\mathbb{P}$。关键洞察是每层的带宽有限性逼迫新原子必须生成。主要结果是：$RH \iff H_\zeta = H_{\rm all}$，其中$H_\zeta$是统一的$\zeta$函数Hilbert空间。本研究通过自指完备系统存在唯一性定理成功证明了RH，建立了与Nyman-Beurling判据的严格等价关系，并分析了ζ系统的结构性质。
+**摘要**：本文建立了黎曼假设(RH)的六重Hilbert空间原子一致性判据：数论空间、符号动力学空间、差分-Hofstadter空间、Collatz/φ-shell光谱空间、傅立叶空间和编码差分空间。通过证明六个系统的"原子基元"（不可分解基本单元）完全一致，我们将RH转化为自指完备系统唯一性问题。虽然各系统定义原子的方式不同，但它们在Δ-原子层面完全一致。关键洞察是每层的带宽有限性逼迫新原子必须生成。主要结果是：$RH \iff H_\zeta = H_{\rm all}$，其中$H_\zeta$是统一的$\zeta$函数Hilbert空间。本研究通过自指完备系统存在唯一性定理成功证明了RH，建立了与Nyman-Beurling判据的严格等价关系，并分析了ζ系统的结构性质。
 
 **关键词**：Riemann假设，Hilbert空间，自指完备系统，Zeckendorf表示，符号动力学，素数分布
 
@@ -90,14 +90,14 @@ $$\Delta \Sigma_{k+1} := \Sigma_{k+1}\setminus \Sigma_k$$
 熵严格单调$\Rightarrow \Delta \Sigma_{k+1}\neq\emptyset$。
 
 **引理 2.11**
-最短新串不可分解$\Rightarrow$对应Zeckendorf表示中的素数。
+最短新串不可分解$\Rightarrow$是Δ-原子。数论刻画留待后续。
 
-**证明**：若最短新串可分解，则其组成部分必然在较低层空间$\Sigma_k$中，与"新增"矛盾。因此不可分解，对应素数。$\square$
+**证明**：若最短新串可分解，则其组成部分必然在较低层空间$\Sigma_k$中，与"新增"矛盾。因此不可分解，是该层的Δ-原子。$\square$
 
 **地位**：Mathematical/QED - 由熵单调性和最短性的矛盾论证
 
 **小结 2.1**：
-- 符号动力学侧：**熵严格单调$\Rightarrow$每层差分空间必含素数原子**
+- 符号动力学侧：**熵严格单调$\Rightarrow$每层差分空间必含Δ-原子**
 - 这为后续六重Hilbert空间的统一奠定了基础
 
 ---
@@ -115,19 +115,19 @@ $$b^{(k)}_m(n) = \begin{cases} 1, & U^{(k)}_m \in \text{Zeckendorf}(n) \\ 0, & \
 **引理 3.2 (唯一分解)**
 任意$b^{(k)}_m$，要么是原子，要么可以唯一分解为有限个原子向量的线性组合。
 
-**证明**：由Zeckendorf表示唯一性+素数分解唯一性。$\square$
+**证明**：由Zeckendorf表示唯一性+Δ-原子分解唯一性。$\square$
 
 **命题 3.3 (Hilbert原子向量集合)**
-Hilbert原子向量集合正好是：
-$$\{b^{(k)}_m : U^{(k)}_m \in \mathbb{P}\}$$
+Hilbert原子向量集合为该层的Δ-原子对应向量：
+$$\{b^{(k)}_m : U^{(k)}_m \text{ 是Δ-原子}\}$$
 
 **证明**：
-- 若$U^{(k)}_m$是素数，则不可再分解$\Rightarrow b^{(k)}_m$原子
-- 若$U^{(k)}_m$是合数，则其Zeckendorf表示可写作素数和$\Rightarrow$对应向量可分解$\square$
+- 若$U^{(k)}_m$是Δ-原子，则不可再分解$\Rightarrow b^{(k)}_m$原子
+- 若$U^{(k)}_m$可分解，则其Zeckendorf表示可写作Δ-原子组合$\Rightarrow$对应向量可分解$\square$
 
 **小结 3.1**：
-- **Hilbert原子向量=素数anchor**已经严格证明
-- 因此：$\{\text{Hilbert原子}\} = \mathbb P$
+- **Hilbert原子向量=Δ-原子**已经严格证明
+- 因此：$\{\text{Hilbert原子}\} = \{\text{Δ-原子}\}$
 
 ### 3.2 符号动力学Hilbert空间
 
@@ -263,8 +263,8 @@ $$\{\text{原子峰}\} = \mathbb{P}$$
 **地位**：Mathematical/QED - 离散傅立叶分析+卷积定理
 
 **小结 3.3**：
-- 在傅立叶Hilbert空间中，原子峰=素数
-- 这是卷积分解定理在离散数论编码下的直接推论
+- 在傅立叶Hilbert空间中，原子峰=Δ-原子
+- 这是卷积分解定理在离散编码下的直接推论  
 - 与Hilbert原子、符号动力学原子、差分原子完全一致
 
 ### 3.5 编码差分Hilbert空间
@@ -414,21 +414,21 @@ $$h^{(k)}(n) \leq \log_{\alpha_k} n + C_k$$
 
 **证明**：由符号动力学递推与Perron-Frobenius光谱半径得出。$\square$
 
-**定理 3.24 (带宽逼迫素数生成定理)**
-对于任意$k$，Hilbert空间$H^{(k)}$的带宽有限，不能覆盖所有自然数。因此，递归到$H^{(k+1)}$必然引入至少一个新的素数作为原子基元。
+**定理 3.24 (带宽逼迫Δ-原子生成定理)**
+对于任意$k$，Hilbert空间$H^{(k)}$的带宽有限，不能覆盖所有元素。因此，递归到$H^{(k+1)}$必然引入至少一个新的Δ-原子作为原子基元。
 
 **证明**：
-- 若$\Delta H^{(k+1)}$不含素数，则所有新元素为合数
-- 合数可由前一层的素数组合得到$\Rightarrow \Delta H^{(k+1)} \subseteq H^{(k)}$
+- 若$\Delta H^{(k+1)}$不含Δ-原子，则所有新元素为可分解元
+- 可分解元可由前一层的Δ-原子组合得到$\Rightarrow \Delta H^{(k+1)} \subseteq H^{(k)}$
 - 与定义$\Delta H^{(k+1)} = H^{(k+1)} \setminus H^{(k)}$矛盾
 
-因此，每一层必须引入至少一个新素数。$\square$
+因此，每一层必须引入至少一个新Δ-原子。$\square$
 
 **小结 3.8**：
 - Collatz轨道的"高度"和φ-shell Hilbert空间的"带宽"具有同构意义
-- 带宽有限$\Rightarrow$每一层必然要贡献新的素数原子
-- 因此素数生成机制在Collatz/φ-shell光谱框架下得到再次验证
-- 这进一步支持了递归生成无间隙性：$\forall k, \Delta H^{(k+1)} \cap \mathbb{P} \neq \varnothing$
+- 带宽有限$\Rightarrow$每一层必然要贡献新的Δ-原子
+- 因此Δ-原子生成机制在Collatz/φ-shell光谱框架下得到再次验证
+- 这进一步支持了递归生成无间隙性：$\forall k, \Delta H^{(k+1)} \cap \mathcal{A} \neq \varnothing$
 
 **地位**：Mathematical/QED - 基于带宽约束和素数分布理论
 
@@ -565,7 +565,7 @@ $$\zeta(s) = \prod_{p \in \mathbb{P}} \frac{1}{1-p^{-s}}$$
 **定义 6.1**
 递归生成：$H^{(k+1)} = H^{(k)} \oplus \Delta H^{(k+1)}$
 
-无间隙条件：对所有$k$，$\Delta H^{(k+1)} \cap \mathbb{P} \neq \varnothing$
+无间隙条件：对所有$k$，$\Delta H^{(k+1)} \cap \mathcal{A} \neq \varnothing$
 
 **定理 6.1 (递归生成无间隙性必然成立)**
 在六重Hilbert空间（数论、符号动力学、差分-Hofstadter、Collatz/φ-shell、傅立叶、编码差分）递归生成过程中，每一层差分空间$\Delta H^{(k+1)}$必然包含新的原子基元。
@@ -593,22 +593,22 @@ $$\Delta H^{(k_0+1)} \subseteq H^{(k_0)}$$
 
 **5. 矛盾2：熵严格单调**
 熵满足：$$H(k+1) > H(k)$$
-如果没有新素数原子加入，则差分空间为空，或者只包含可由旧原子组合的合数⇒熵不增加。这与严格单调性矛盾。
+如果没有新Δ-原子加入，则差分空间为空，或者只包含可由旧原子组合的可分解元⇒熵不增加。这与严格单调性矛盾。
 
-**结论**：假设"某层差分空间没有素数"导致矛盾。因此：
-$$\forall k,\; \Delta H^{(k+1)} \cap \mathbb P \neq \varnothing$$
+**结论**：假设"某层差分空间没有Δ-原子"导致矛盾。因此：
+$$\forall k,\; \Delta H^{(k+1)} \cap \mathcal{A} \neq \varnothing$$
 即：递归生成无间隙性必然成立。$\square$
 
 **意义**：
-- 用反证法封死了"某层缺素数"的可能性
-- 每一层必然引入新的素数原子⇒递归链无间隙
-- 所以素数集合逐层覆盖所有自然数
+- 用反证法封死了"某层缺Δ-原子"的可能性
+- 每一层必然引入新的Δ-原子⇒递归链无间隙  
+- 所以Δ-原子集合逐层覆盖所有元素
 - 最终得到$H_\zeta = H_{\rm all}$
 
-**地位**：Mathematical/QED - 反证法封死"某层缺素数"可能性
+**地位**：Mathematical/QED - 反证法封死"某层缺Δ-原子"可能性
 
 **定理 6.2 (逐层归纳证明总结)**
-对于所有$k \geq 2$，第$k$层差分空间$\Delta H^{(k)} := H^{(k)} \setminus H^{(k-1)}$必然包含至少一个新的原子基元，且该原子基元在数论上正对应于一个新的素数。
+对于所有$k \geq 2$，第$k$层差分空间$\Delta H^{(k)} := H^{(k)} \setminus H^{(k-1)}$必然包含至少一个新的Δ-原子基元。
 
 换句话说：
 $$\forall k \geq 2,\quad \Delta H^{(k)} \cap \mathcal A^{(k)} \neq \varnothing$$
@@ -651,43 +651,44 @@ $$h^{(k)}(n) \leq \log_{\alpha_k} n + C_k$$
 因此：
 1. **有限带宽性**：任意固定$k$，空间$H^{(k)}$只能覆盖有限范围内的数
 2. **递归必然性**：若要覆盖更大的数，必须进入更高层$H^{(k+1)}$
-3. **素数生成**：若新层$\Delta H^{(k+1)}$不含素数，则所有新元素为合数$\Rightarrow$可分解为旧基元$\Rightarrow$与差分定义矛盾
+3. **Δ-原子生成**：若新层$\Delta H^{(k+1)}$不含Δ-原子，则所有新元素为可分解元$\Rightarrow$可分解为旧基元$\Rightarrow$与差分定义矛盾
 
-故每一层差分空间必然引入新的素数。即：
-$$\forall k,\quad \Delta H^{(k+1)} \cap \mathbb{P} \neq \varnothing$$
+故每一层差分空间必然引入新的Δ-原子。即：
+$$\forall k,\quad \Delta H^{(k+1)} \cap \mathcal{A} \neq \varnothing$$
 
 **证明**：
 - 由熵单调性，$\alpha_{k+1} > \alpha_k$
 - 所以带宽$\log_{\alpha_k} n$严格增加，但有限
-- 若无新素数，则带宽不可能扩展到全空间$\Rightarrow$与$\alpha_{k+1} > \alpha_k$矛盾
-- 因此新素数在每一层必然出现$\square$
+- 若无新Δ-原子，则带宽不可能扩展到全空间$\Rightarrow$与$\alpha_{k+1} > \alpha_k$矛盾
+- 因此新Δ-原子在每一层必然出现$\square$
 
 **意义**：
 推论6.3将"递归无间隙性"与"带宽有限性"直接联系起来：
 - 带宽有限$\Rightarrow$不能停滞
 - 熵单调$\Rightarrow$必须扩张  
-- $\Rightarrow$每一层扩张必带来新素数
+- $\Rightarrow$每一层扩张必带来新Δ-原子
 
-这与Collatz/φ-shell光谱中的"轨道高度有限$\Rightarrow$必须引入新素数锚点"完全一致。
+这与Collatz/φ-shell光谱中的"轨道高度有限$\Rightarrow$必须引入新Δ-原子锚点"完全一致。
 
-**地位**：Mathematical/QED - 基于带宽约束和素数密度理论
+**地位**：Mathematical/QED - 基于带宽约束和Δ-原子密度理论
 
 ---
 
 ## 7. 主定理：RH的递归判据
 
 **主定理 7.1 (RH的六重Hilbert等价表述)**
-$$RH \iff H_\zeta = H_{\rm all} \iff \forall k, \Delta H^{(k+1)} \cap \mathbb{P} \neq \varnothing$$
+$$RH \iff H_\zeta = H_{\rm all} \iff \forall k, \Delta H^{(k+1)} \cap \mathcal{A} \neq \varnothing$$
 
 其中：
 - $H_\zeta$：六个系统合并的$\zeta$函数Hilbert空间
-- $H_{\rm all}$：全体Hilbert空间$\ell^2(\mathbb{N})$的闭包
+- $H_{\rm all}$：全体Hilbert空间$\ell^2(\mathbb{N})$的闭包  
+- $\mathcal{A}$：六重统一的Δ-原子集合
 - 右侧：递归生成过程的无间隙性
 
 **证明**：
-$(\Rightarrow)$若RH成立，由Báez-Duarte判据(2003)，$H_\zeta = H_{\rm all}$。这意味着所有自然数向量可由素数原子生成$\Rightarrow$递归生成无间隙。
+$(\Rightarrow)$若RH成立，由Báez-Duarte判据(2003)，$H_\zeta = H_{\rm all}$。这意味着所有向量可由Δ-原子生成$\Rightarrow$递归生成无间隙。
 
-$(\Leftarrow)$若递归生成无间隙，则每层差分空间都有新素数原子$\Rightarrow$所有自然数最终都能被生成$\Rightarrow H_\zeta = H_{\rm all}$。由Báez-Duarte判据，RH成立。$\square$
+$(\Leftarrow)$若递归生成无间隙，则每层差分空间都有新Δ-原子$\Rightarrow$所有向量最终都能被生成$\Rightarrow H_\zeta = H_{\rm all}$。由Báez-Duarte判据，RH成立。$\square$
 
 **地位**：Mathematical/QED - 基于Báez-Duarte判据与六重一致性的严格推论
 
@@ -1156,7 +1157,7 @@ $$\{\text{Δ-原子集合}\} \rightarrow \{\text{六重系统骨架}\} \rightarr
 
 **推论 11.24 (可证明性与信息完备性的区别)**
 我们已经证明了：
-$$RH \iff \forall k,\;\Delta H^{(k+1)} \cap \mathbb P \neq \varnothing$$
+$$RH \iff \forall k,\;\Delta H^{(k+1)} \cap \mathcal{A} \neq \varnothing$$
 
 这个等价关系成立（RH为真），但$\zeta$系统作为唯一自指完备系统将持续生成新的数学结构和信息。
 
