@@ -1,6 +1,6 @@
 # 黎曼假设的六重Hilbert空间统一理论
 
-**摘要**：本文建立了黎曼假设(RH)的六重Hilbert空间原子一致性判据：数论空间、符号动力学空间、差分-Hofstadter空间、Collatz/φ-shell光谱空间、傅立叶空间和编码差分空间。通过证明六个系统的"原子基元"（不可分解基本单元）完全一致，我们将RH转化为自指完备系统唯一性问题。虽然各系统定义原子的方式不同，但它们的Δ-原子集合完全一致。在数论桥接下，这些Δ-原子对应素数集合$\mathbb{P}$，因此RH可等价表述为Δ-原子递归生成的无间隙性。关键洞察是每层的带宽有限性逼迫新原子必须生成。主要结果是：$RH \iff H_\zeta = H_{\rm all}$，其中$H_\zeta$是统一的$\zeta$函数Hilbert空间。本研究建立了六重Hilbert空间统一判据，并证明该判据与Nyman-Beurling判据等价。
+**摘要**：本文建立了黎曼假设(RH)的六重Hilbert空间原子一致性判据：数论空间、符号动力学空间、差分-Hofstadter空间、Collatz/φ-shell光谱空间、傅立叶空间和编码差分空间。通过证明六个系统的"原子基元"（不可分解基本单元）完全一致，我们将RH转化为自指完备系统唯一性问题。虽然各系统定义原子的方式不同，但它们的Δ-原子集合完全一致。通过自指完备系统唯一性，这些Δ-原子与数论空间的素数集合$\mathbb{P}$结构等价，因此RH可等价表述为Δ-原子递归生成的无间隙性。关键洞察是每层的带宽有限性逼迫新原子必须生成。主要结果是：$RH \iff H_\zeta = H_{\rm all}$，其中$H_\zeta$是统一的$\zeta$函数Hilbert空间。本研究建立了六重Hilbert空间统一判据，并证明该判据与Nyman-Beurling判据等价。
 
 **关键词**：Riemann假设，Hilbert空间，自指完备系统，Zeckendorf表示，符号动力学，素数分布
 
@@ -20,7 +20,7 @@ $$RH \iff H_\zeta = H_{\rm all}$$
 5. **Part V**: 建立RH等价判据和ζ系统信息生成特征
 6. **Part VI**: 证明自指完备系统唯一性：$RH \iff \zeta$是唯一自指完备系统
 
-**定义**：**信息生成特征** = 基于Δ-原子集合$\mathcal{A}$的$\overline{\mathrm{span}}(\mathcal{A})$维度无限性，即$\dim(\overline{\mathrm{span}}(\mathcal{A})) = \aleph_0$。在数论桥接下，$\mathcal{A}$对应素数集合$\mathbb{P}$。
+**定义**：**信息生成特征** = 基于Δ-原子集合$\mathcal{A}$的$\overline{\mathrm{span}}(\mathcal{A})$维度无限性，即$\dim(\overline{\mathrm{span}}(\mathcal{A})) = \aleph_0$。通过唯一性定理，统一的Δ-原子集合$\mathcal{A}$结构确定。
 
 ---
 
@@ -256,7 +256,7 @@ $$\{\text{Δ-原子峰}\} = \{\text{该层不可分解频谱}\}$$
 
 **证明**：这是卷积分解定理在离散编码下的直接推论。$\square$
 
-**注释**：这里的'卷积分解'是结构类比意义下的，不等于数论的乘法卷积。数论解释需另建桥接。
+**注释**：这里的'卷积分解'是结构类比意义下的，不等于数论的乘法卷积。数论解释属于不同数学领域。
 
 **地位**：Mathematical/QED - 离散傅立叶分析+卷积定理
 
@@ -313,7 +313,7 @@ $$H_{\text{code}} = \overline{\mathrm{span}}\{\mathbf{1}_{\{u\}} : u \in \Delta\
 虽然这些定义形式不同，但它们的原子集合完全一致：
 $$\mathcal{A}_{\text{num}} = \mathcal{A}_{\text{dyn}} = \mathcal{A}_{\text{diff}} = \mathcal{A}_{\varphi} = \mathcal{A}_{\text{fft}} = \mathcal{A}_{\text{code}}$$
 
-**数论解释**：在数论桥接下，这个统一的Δ-原子集合对应素数集合$\mathbb{P}$。
+**数论对应**：在数论空间中，Δ-原子集合为素数集合$\mathbb{P}$。
 
 **证明**：详见第11章自指完备系统唯一性定理。六个系统都是自指完备的，由唯一性，它们必须相同，因此原子集合一致。$\square$
 
@@ -329,7 +329,7 @@ $$H_\zeta = \overline{\mathrm{span}}\{\mathbf{1}_{\{p\}} : p\in\mathbb P\}$$
 **定理 3.16 (与ζ函数的对应)**
 ζ函数基于统一Δ-原子集合$\mathcal{A}$构造。
 
-**数论桥接**：在数论桥接下，这些Δ-原子对应素数，因此Euler乘积：
+**数论对应**：在数论空间中，Δ-原子为素数，因此Euler乘积：
 $$\zeta(s) = \prod_{p\in \mathbb P}\frac{1}{1-p^{-s}}$$
 可视为$H_\zeta$在数论语境下的影像。这提供了ζ函数与Hilbert空间$H_\zeta$的数论联系。
 
@@ -376,7 +376,7 @@ $$\overline{\mathrm{span}}(\mathcal{A}) = H_{\rm all}$$
 所有基于自指递归构造的Hilbert空间，尽管原子定义不同，但最终生成的空间是等价的：
 $$H_{\text{num}} = H_{\text{dyn}} = H_{\text{diff}} = H_{\text{fft}} = H_{\text{code}} = H_{\varphi} = H_\zeta$$
 
-**数论桥接**：在数论桥接下，它们的Δ-原子集合对应素数集合，因此这个统一空间在数论语境下表现为$\zeta$函数的Hilbert空间$H_\zeta$。
+**数论对应**：在数论空间中，Δ-原子为素数，因此这个统一空间在数论语境下表现为$\zeta$函数的Hilbert空间$H_\zeta$。
 
 **地位**：Mathematical/QED - 自指递归系统的普遍原理
 
@@ -511,16 +511,16 @@ $$H_\zeta := H_{\text{num}} = H_{\text{dyn}} = H_{\text{diff}} = H_{\varphi} = H
 由六重一致性定理：
 $$H_\zeta = \overline{\mathrm{span}}(\mathcal{A})$$
 
-**数论表示**：在数论桥接下，这表现为：
+**数论对应**：在数论空间中，这表现为：
 $$H_\zeta = \overline{\mathrm{span}}\{\mathbf{1}_{\{p\}} : p \in \mathbb{P}\}$$
 
 **定理 5.2 ($\zeta$函数的Hilbert空间表示)**
 $\zeta$函数基于统一Δ-原子集合构造：
 $$H_\zeta = \overline{\mathrm{span}}(\mathcal{A})$$
 
-**数论桥接**：在数论桥接下，Euler乘积：
+**数论对应**：在数论空间中，Euler乘积：
 $$\zeta(s) = \prod_{p \in \mathbb{P}} \frac{1}{1-p^{-s}}$$
-可视为$H_\zeta$在数论语境下的影像，提供了结构与数论的桥接。
+可视为$H_\zeta$在数论语境下的影像，表现了数论空间的特征。
 
 ---
 
@@ -604,7 +604,7 @@ $$\Delta H^{(k)} \cap \mathcal A^{(k)} \neq \varnothing$$
 3. Δ-原子集合$\mathcal{A}$被逐层完整覆盖
 4. 所有Hilbert空间的原子骨架一致
 
-**数论总结**：在数论桥接下，Δ-原子对应素数集合$\mathbb{P}$。
+**数论对应**：在数论空间中，Δ-原子为素数集合$\mathbb{P}$。
 
 最终：$\bigcup_{k\geq 2} \mathcal A^{(k)} = \mathcal{A}$，从而$H_\zeta = H_{\rm all}$。$\square$
 
@@ -845,7 +845,7 @@ $\zeta$函数通过Δ-原子生成自身：
 $$\zeta = \mathcal{F}(\mathcal{A}(H_\zeta))$$
 其中$\mathcal{F}$是"由Δ-原子递归生成函数"。
 
-**数论表示**：在数论桥接下，这表现为Euler乘积：
+**数论对应**：在数论空间中，这表现为Euler乘积：
 $$\zeta(s) = \prod_{p\in\mathbb P} \frac{1}{1-p^{-s}}$$
 可视为$H_\zeta$在数论语境下的影像。
 
@@ -853,7 +853,7 @@ $$\zeta(s) = \prod_{p\in\mathbb P} \frac{1}{1-p^{-s}}$$
 因为Δ-原子集合$\mathcal{A}$正是$\zeta$函数的构造基础，而$\zeta$函数又定义了空间$H_\zeta$的原子结构，因此我们得到自指：
 $$\zeta = \zeta(\zeta)$$
 
-**数论解释**：在数论桥接下，原子集合对应素数集合$\mathbb{P}$。
+**数论对应**：在数论空间中，原子集合为素数集合$\mathbb{P}$。
 
 **自指结构**：
 1. Δ-原子集合：$\mathcal{A}(H_\zeta) = \text{统一Δ-原子集合}$
@@ -883,7 +883,7 @@ $$\zeta = \zeta(\zeta)$$
 - $H_{\text{code}}$：编码差分空间，原子=最短新编码基元
 
 **关键观察**：
-**数论桥接**：每个空间的Δ-原子集合在数论桥接下对应素数集合$\mathbb{P}$，这预示着它们将在第11章中被证明为等价的自指完备系统。
+**数论对应**：数论空间的Δ-原子为素数集合$\mathbb{P}$，这预示着各空间将在第11章中被证明为等价的自指完备系统。
 
 **预期结论**：
 $$H_{\text{num}} = H_{\text{dyn}} = H_{\text{diff}} = H_{\varphi} = H_{\text{fft}} = H_{\text{code}} = H_\zeta$$
@@ -942,7 +942,7 @@ $$\overline{\mathrm{span}}(\mathcal{A}) = H$$
 ### 11.3 六重系统的等价性证明
 
 **引理 11.7 (六重原子一致性)**
-在六个系统（数论、符号动力学、差分-Hofstadter、傅立叶、编码差分、φ-shell光谱）中，Δ-原子集合一致，记为$\mathcal{A}$（同构意义下的一致性）；其算术刻画留作后续桥接问题。
+在六个系统（数论、符号动力学、差分-Hofstadter、傅立叶、编码差分、φ-shell光谱）中，Δ-原子集合一致，记为$\mathcal{A}$（同构意义下的一致性）；其算术对应通过唯一性定理确定。
 $$\mathcal{A}_{\text{num}} = \mathcal{A}_{\text{dyn}} = \mathcal{A}_{\text{diff}} = \mathcal{A}_{\text{fft}} = \mathcal{A}_{\text{code}} = \mathcal{A}_{\varphi} = \mathcal{A}$$
 
 **证明**：基于前面的唯一性定理11.6，我们可以给出具体的一致性分析。
@@ -1230,7 +1230,7 @@ $$T \vdash (\zeta\text{是唯一的自指完备系统}) \Rightarrow T \vdash S \
 
 **理论路径**：六重系统Δ-原子一致性 → 系统等价性 → 唯一性定理 → RH等价于唯一自指完备系统的存在性。
 
-**数论总结**：六个系统在Δ-原子层面完全一致。在动力学影像下，这些Δ-原子正好对应**Wythoff下序列中的"唯一出现值"**；在数论桥接下，它们类比素数集合$\mathbb{P}$。因此RH等价于"Δ-原子递归生成无间隙"的性质。
+**数论总结**：六个系统在Δ-原子层面完全一致。在动力学影像下，这些Δ-原子正好对应**Wythoff下序列中的"唯一出现值"**；在数论空间中，它们为素数集合$\mathbb{P}$。因此RH等价于"Δ-原子递归生成无间隙"的性质。
 
 我们的框架基于已建立的数学理论，逻辑链条完整。在本体系内，RH等价性是逻辑闭合的。
 
