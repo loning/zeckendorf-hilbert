@@ -20,7 +20,7 @@ $$RH \iff H_\zeta = H_{\rm all}$$
 5. **Part V**: 建立RH等价判据和ζ系统信息生成特征
 6. **Part VI**: 证明自指完备系统唯一性：$RH \iff \zeta$是唯一自指完备系统
 
-**定义**：**信息生成特征** = 基于素数集合$\mathbb{P}$的$\overline{\mathrm{span}}(\mathbb{P})$维度无限性，即$\dim(\overline{\mathrm{span}}(\mathbb{P})) = \aleph_0$。
+**定义**：**信息生成特征** = 基于Δ-原子集合$\mathcal{A}$的$\overline{\mathrm{span}}(\mathcal{A})$维度无限性，即$\dim(\overline{\mathrm{span}}(\mathcal{A})) = \aleph_0$。在数论桥接下，$\mathcal{A}$对应素数集合$\mathbb{P}$。
 
 ---
 
@@ -336,7 +336,7 @@ $$H_\zeta = \overline{\mathrm{span}}\{\mathbf{1}_{\{p\}} : p\in\mathbb P\}$$
 
 **数论桥接**：在数论桥接下，这些Δ-原子对应素数，因此Euler乘积：
 $$\zeta(s) = \prod_{p\in \mathbb P}\frac{1}{1-p^{-s}}$$
-正是$H_\zeta$的数论影像。因此ζ函数自然地嵌入Hilbert空间$H_\zeta$。
+可视为$H_\zeta$在数论语境下的影像。这提供了ζ函数与Hilbert空间$H_\zeta$的数论联系。
 
 **地位**：Mathematical/QED - 基于定理4.1的严格逻辑证明
 
@@ -567,7 +567,7 @@ $$H_\zeta = \overline{\mathrm{span}}(\mathcal{A})$$
 
 **数论桥接**：在数论桥接下，Euler乘积：
 $$\zeta(s) = \prod_{p \in \mathbb{P}} \frac{1}{1-p^{-s}}$$
-是$H_\zeta$在数论语境下的表现形式。
+可视为$H_\zeta$在数论语境下的影像，提供了结构与数论的桥接。
 
 ---
 
@@ -894,6 +894,7 @@ $$\zeta = \mathcal{F}(\mathcal{A}(H_\zeta))$$
 
 **数论表示**：在数论桥接下，这表现为Euler乘积：
 $$\zeta(s) = \prod_{p\in\mathbb P} \frac{1}{1-p^{-s}}$$
+可视为$H_\zeta$在数论语境下的影像。
 
 **4. 奇异环刻画**
 因为Δ-原子集合$\mathcal{A}$正是$\zeta$函数的构造基础，而$\zeta$函数又定义了空间$H_\zeta$的原子结构，因此我们得到自指：
@@ -1227,7 +1228,7 @@ $$T \vdash (\zeta\text{是唯一的自指完备系统}) \Rightarrow T \vdash S \
 
 3. **强制等价性**（主定理11.18）：六重系统、ζ系统、Báez-Duarte系统都是自指完备的，因此强制等价
 
-4. **RH证明**：$RH \iff H_\zeta = H_{\rm BD} = H_{\rm all} \iff \zeta$是唯一的自指完备系统（完全内化，无外部依赖）
+4. **RH等价性**：在该框架内，$RH \iff H_\zeta = H_{\rm BD} = H_{\rm all} \iff \zeta$是唯一的自指完备系统，因此在体系内逻辑闭合（完全内化，无外部依赖）
 
 ### 12.2 学术定位
 
