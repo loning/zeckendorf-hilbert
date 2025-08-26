@@ -459,7 +459,7 @@ $$n \in \mathcal{A}_{\text{统一}} \iff n \text{ 在六个空间中都是原子
 
 ---
 
-## 4.2 G-ζ函数重构与素数谱锚定
+### 4.2 G-ζ函数重构与素数谱锚定
 
 **定义 4.2 (G-Dirichlet级数)**
 $$Z_G(s) = \sum_{n=1}^{\infty} G(n)^{-s}, \quad F(s) = \sum_{k \geq 2} F_k^{-s}$$
@@ -687,7 +687,7 @@ $(\Leftarrow)$若递归生成无间隙，则每层差分空间都有新素数原
 
 ---
 
-## 7.2 Hilbert空间几何与Mellin-Plancherel理论
+### 7.2 Hilbert空间几何与Mellin-Plancherel理论
 
 **定义 7.2 (缩放Hilbert空间)**
 $$\mathcal{H}_{\text{phys}} = L^2(\mathbb{R}_+, \frac{dx}{x})$$
@@ -737,7 +737,7 @@ $$\mathcal{M} \hat{D} \mathcal{M}^{-1} = \text{乘法算子}t$$
 
 ---
 
-## 7.3 几何-谱转化定理
+### 7.3 几何-谱转化定理
 
 **定理 7.6 (有限维群平均不动点)**
 设$K = SO(n)$作用于$L^2(S^{n-1}, \sigma)$，群平均算子：
