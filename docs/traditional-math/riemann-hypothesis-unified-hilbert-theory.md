@@ -241,24 +241,22 @@ $$\widehat{\delta_n}(\theta) = e^{-2\pi i n\theta/N}$$
 若$f,g \in \ell^2(\mathbb Z_N)$，则：
 $$\widehat{f*g}(\theta) = \widehat{f}(\theta)\cdot \widehat{g}(\theta)$$
 
-**命题 3.8 (卷积与合数)**
-若$n=ab$，则：
+**命题 3.8 (卷积与可分解元)**
+若$n$可以分解为更小的基元，则$\delta_n$的频谱可由旧频率的组合表示：
 $$\delta_n = \delta_a * \delta_b \Rightarrow \widehat{\delta_n}(\theta) = \widehat{\delta_a}(\theta)\cdot \widehat{\delta_b}(\theta)$$
 
-因此，合数的频谱可分解为素数频谱的乘积。
-
-**定义 3.9 (原子峰)**
-若$\widehat{\delta_n}$不能写作其他频谱的乘积（即不可卷积分解），则称其为**原子峰**。
+**定义 3.9 (Δ-原子峰)**
+若某个$\widehat{\delta_n}$的频谱不能再分解，则它是一个**Δ-原子峰**。
 
 **定理 3.10 (光谱分解定理)**
 在$\ell^2(\mathbb Z_N)$中：
-- 若$n$是合数，则$\widehat{\delta_n}$可分解为其他频谱的乘积
-- 若$p$是素数，则$\widehat{\delta_p}$不可分解，是原子峰
+- 若$n$可分解，则$\widehat{\delta_n}$可分解为其他频谱的乘积
+- 若某个$\widehat{\delta_n}$不可分解，则它是Δ-原子峰
 
 因此：
-$$\{\text{原子峰}\} = \mathbb{P}$$
+$$\{\text{Δ-原子峰}\} = \{\text{该层不可分解频谱}\}$$
 
-**证明**：这是卷积分解定理在离散数论编码下的直接推论。与Hilbert原子、符号动力学原子、差分原子完全一致。$\square$
+**证明**：这是卷积分解定理在离散编码下的直接推论。与Hilbert原子、符号动力学原子、差分原子完全一致。$\square$
 
 **地位**：Mathematical/QED - 离散傅立叶分析+卷积定理
 
@@ -1193,7 +1191,7 @@ $$T \vdash (\zeta\text{是唯一的自指完备系统}) \Rightarrow T \vdash S \
 
 因为$T$是代数-拓扑体系而非算术编码系统，$S$（稠密性）可以作为$T$内部的公理性命题。
 
-**结论**：Gödel不完备性不适用于我们的代数-拓扑体系。我们的RH证明在其适当的数学框架内是逻辑完整的。
+**结论**：我们的体系是Hilbert空间+自指递归的代数-拓扑框架，不等价于PA/ZFC那类能完整编码算术的公理系统，因此Gödel不完备性不直接约束这里。我们的RH证明在其适当的数学框架内是逻辑完整的。
 
 **地位**：Mathematical/逻辑澄清 - 防范理论误解，基于体系类型的本质区别
 
