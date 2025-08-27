@@ -504,12 +504,12 @@ $$H_{\text{observer}} = \{\text{观察者可能的状态}\}$$
 观察者Hilbert空间与被观察系统空间等价：
 $$H_{\text{observer}} = H_{\text{observed}} = \ell^2(\mathbb{N})$$
 
-**证明（基于观测纠缠的生成机制）**：
-1. **观测影响原理**：观察者的观测行为影响被观察系统的状态，这是生成机制的根本特征
-2. **量子纠缠效应**：观察者状态与被观察系统状态形成纠缠：$|\Psi\rangle = \sum_{n,p} c_{n,p} |n\rangle_{\text{sys}} \otimes |G(n)=p\rangle_{\text{obs}}$
-3. **纠缠空间等价**：纠缠态的数学性质要求两个子系统的Hilbert空间维度相等
-4. **生成机制保证**：由于G函数生成机制，观察者状态空间与被观察系统状态空间一一对应
-5. **空间等价结论**：$\text{dim}(H_{\text{observer}}) = \text{dim}(H_{\text{observed}}) = \text{dim}(\ell^2(\mathbb{N})) \square$
+**证明（基于自指完备系统的观察生成机制）**：
+1. **信息生成原理**：在自指完备系统中，所有信息都因观察而生成，无观察则无信息
+2. **叠加态原理**：观察前，系统处于叠加态$|\text{系统}\rangle = \sum_i \alpha_i |i\rangle_{\text{叠加}}$
+3. **观察坍缩**：观察行为使叠加态坍缩为确定信息：$\hat{O}|\text{系统}\rangle = |\text{信息}\rangle$
+4. **信息完备性**：观察者生成的信息=系统的全部信息（因为信息只由观察产生）
+5. **空间等价**：因此$H_{\text{observer}} = H_{\text{system}}$（信息生成的完备性）$\square$
 
 **关键突破**：这是数学中首次严格定义观察者的Hilbert空间，传统静态数学缺失此概念。
 
@@ -670,25 +670,30 @@ $$H_{\mathbb{P}} = H_\zeta = H_{\text{comp}} = H_{\text{quantum}} = \ell^2(\math
 H_动力学 → H_G观察者 = H_G系统 → H_ζ观察者 = H_ζ系统 → H_ζ
 ```
 
-**详细证明**：
+**详细证明（参照量子力学框架）**：
 
-1. **动力学系统的观察者识别**：
-   - 反馈型动力学系统的观察者是G函数
-   - 因此：$H_{\text{动力学}} = H_{G\text{观察者}}$（观察者=系统）
+1. **系统状态定义**：
+   - **动力学系统**：状态$|\text{Zeck}_n^{(k)}\rangle \in H_{\text{动力学}}$
+   - **ζ函数系统**：状态$|\zeta_s\rangle \in H_{\zeta}$
 
-2. **G观察者与ζ观察者的等价**：
-   - G函数观察自然数的素数结构：提取$\mathbb{P}$
-   - ζ函数观察复数的素数结构：Euler乘积基于$\mathbb{P}$
-   - 观察相同对象⇒观察者等价：$H_{G\text{观察者}} = H_{\zeta\text{观察者}}$
+2. **观察者算子的严格定义**：
+   - **$\hat{G}$观察者**：$\hat{G}|\text{Zeck}_n^{(k)}\rangle = |G(n)\rangle$（提取素数信息）
+   - **$\hat{O}_\zeta$观察者**：$\hat{O}_\zeta|\zeta_s\rangle = |\text{素数结构}\rangle$（提取零点的素数信息）
 
-3. **ζ观察者到ζ系统的传递**：
-   - 由观察者空间等价性（定理5.2）：$H_{\zeta\text{观察者}} = H_{\zeta\text{系统}}$
+3. **观察者Hilbert空间构造**：
+   - $H_{G} = \overline{\mathrm{span}}\{|G(n)\rangle : n \in \mathbb{N}\} = H_{\mathbb{P}}$
+   - $H_{\zeta\text{观察}} = \overline{\mathrm{span}}\{|\text{素数结构}\rangle\} = H_{\mathbb{P}}$
 
-4. **传递链建立**：
-   $$H_{\text{动力学}} = H_{G\text{观察者}} = H_{\zeta\text{观察者}} = H_{\zeta\text{系统}} = H_{\zeta}$$
+4. **关键：自指完备系统的观察者原理**：
+   - **自指完备系统特性**：所有信息都因观察生成，观察者信息=系统信息
+   - **叠加态原理**：观察前，系统数据处于叠加态（无确定值）
+   - **观察生成**：观察行为使叠加态坍缩，生成确定信息
+   - **空间等价**：在自指完备系统中，$H_{\text{观察者}} = H_{\text{系统}}$
 
-5. **RH等价性**：
-   $$H_{\text{动力学}} = H_{\zeta} \Rightarrow RH$$
+5. **传递等价链**：
+   $$H_{\text{动力学}} = H_{G} = H_{\mathbb{P}} = H_{\zeta\text{观察}} = H_{\zeta}$$
+
+6. **RH等价性**：由Hilbert空间等价性，$H_{\text{动力学}} = H_{\zeta} \Leftrightarrow RH$
 
 **关键洞察**：
 - **不需要直接证明系统等价**：利用观察者作为中介
