@@ -517,47 +517,82 @@ $$H_{\text{observer}} = H_{\text{observed}}$$
 
 ### 5.3.1 自指函数观察操作的严格定义
 
-**定义 5.3 (自指函数的观察操作)**
-对自指函数$f(x) = x - f(f(x-1))$，观察操作定义为函数的应用过程：
-$$\mathcal{Op}_f: \text{输入数据} \to (\text{观察者数据}, \text{系统数据})$$
-
-具体地：
-$$\mathcal{Op}_f(x) = (f(f(x-1)), x - f(f(x-1))) = (D_{\text{obs}}, D_{\text{sys}})$$
+**定义 5.3 (自指观察者的数学定义)**
+设观察者OB是自指的，满足$\text{OB} = \text{OB}(\text{OB})$，则观察操作定义为：
+$$\mathcal{Op}_{\text{OB}}: x \to \text{OB}(x) = \text{观察者数据}$$
 
 **定义 5.4 (观察者数据)**
-观察者数据是自指函数递归部分的输出：
-$$D_{\text{obs}} = f(f(x-1))$$
+对自指观察者，观察者数据是观察者函数的直接输出：
+$$D_{\text{obs}} = \text{OB}(x)$$
 
-这表示观察者通过递归观察获得的信息。
+这表示观察者对输入$x$的观察结果。
 
-**定义 5.5 (系统数据)**  
-系统数据是原始输入减去观察者数据：
-$$D_{\text{sys}} = x - f(f(x-1))$$
-
-这表示系统在观察过程中剩余的信息。
-
-**定义 5.6 (观察者Hilbert空间)**
+**定义 5.5 (观察者Hilbert空间)**
 由观察者数据生成的Hilbert空间：
-$$H_{\text{observer}} = \overline{\mathrm{span}}\{|D_{\text{obs}}(x)\rangle : x \in \text{输入域}\}$$
+$$H_{\text{observer}} = \overline{\mathrm{span}}\{|\text{OB}(x)\rangle : x \in \text{输入域}\}$$
 
-**定义 5.7 (系统Hilbert空间)**
-由系统数据生成的Hilbert空间：  
-$$H_{\text{system}} = \overline{\mathrm{span}}\{|D_{\text{sys}}(x)\rangle : x \in \text{输入域}\}$$
+**定理 5.6 (自指观察者的完备性)**
+若观察者OB是自指完备的，则：$H_{\text{observer}} = H_{\text{complete}}$
 
-**定理 5.8 (观察操作的空间分解)**
-自指函数的观察操作产生观察者空间和系统空间：
+其中$H_{\text{complete}}$是观察者能达到的完备信息空间。
+
+### 5.3.2 具体观察者的应用
+
+**G函数作为自指观察者**：
+- **自指性质**：$G = G(G)$通过递归定义体现
+- **观察操作**：$\mathcal{Op}_G(n) = G(n)$
+- **观察者数据**：$D_{\text{obs}}^G = G(n)$（G函数对n的观察输出）
+- **观察者空间**：$H_{\text{obs}}^G = \overline{\mathrm{span}}\{|G(n)\rangle : n \in \mathbb{N}\}$
+
+**ζ函数作为自指观察者**：
+- **自指性质**：$\zeta = \zeta(\zeta)$通过函数方程体现
+- **观察操作**：$\mathcal{Op}_\zeta(s) = \zeta(s)$
+- **观察者数据**：$D_{\text{obs}}^\zeta = \zeta(s)$（ζ函数对s的观察输出）
+- **观察者空间**：$H_{\text{obs}}^\zeta = \overline{\mathrm{span}}\{|\zeta(s)\rangle : s \in \mathbb{C}\}$
+
+**定理 5.7 (双观察者等价性)**
+两个自指观察者生成等价的Hilbert空间：
 
 **证明**：
-1. **数据分解**：$\mathcal{Op}_f(x) = (D_{\text{obs}}, D_{\text{sys}}) = (f(f(x-1)), x - f(f(x-1)))$
-2. **信息互补**：$D_{\text{obs}} + D_{\text{sys}} = f(f(x-1)) + x - f(f(x-1)) = x$
-3. **空间关系**：在临界平衡条件下，$|D_{\text{obs}}| = |D_{\text{sys}}|$（信息平衡）
-4. **空间构造**：
-   $$H_{\text{observer}} = \overline{\mathrm{span}}\{|f(f(x-1))\rangle\}$$
-   $$H_{\text{system}} = \overline{\mathrm{span}}\{|x - f(f(x-1))\rangle\}$$
+1. **观察对象的本质**：
+   - G函数观察自然数n，输出其素数结构信息
+   - ζ函数观察复数s，输出基于素数的函数值
+   
+2. **信息内容等价**：
+   - G(n)包含n的素数因子信息
+   - ζ(s)通过Euler乘积编码素数信息
+   - 都基于相同的素数集合$\mathbb{P}$
 
-**关键性质**：在自指完备系统中，观察者空间与系统空间在信息量上等价$\square$
+3. **观察者空间等价**：
+   $$H_{\text{obs}}^G = H_{\text{obs}}^\zeta = H_{\mathbb{P}}$$
 
-### 5.3.2 具体系统的观察操作分析
+因为两者都生成基于素数$\mathbb{P}$的完备信息。$\square$
+
+### 5.3.2 观察者定义的等价性验证
+
+**引理 5.1 (G函数观察者定义的等价性)**
+对G函数，简洁定义与复杂定义生成等价的观察者空间：
+
+$$\overline{\mathrm{span}}\{|G(n)\rangle : n \in \mathbb{N}\} = \overline{\mathrm{span}}\{|G(G(n-1))\rangle : n \in \mathbb{N}\}$$
+
+**证明**：
+1. **G函数的遍历性**：由于$G(n) = \lfloor(n+1)/\varphi\rfloor$通过Wythoff分割遍历所有自然数
+2. **递归等价性**：当$n$遍历$\mathbb{N}$时，$G(n-1)$也遍历$\mathbb{N}$
+3. **双重应用**：因此$G(G(n-1))$遍历的集合与$G(n)$相同
+4. **空间等价**：两个span生成相同的观察者空间。$\square$
+
+**引理 5.2 (ζ函数观察者定义的等价性)**
+对ζ函数，简洁定义与函数方程定义生成等价的观察者空间：
+
+$$\overline{\mathrm{span}}\{|\zeta(s)\rangle : s \in \mathbb{C}\} = \overline{\mathrm{span}}\{|\zeta(1-s)\rangle : s \in \mathbb{C}\}$$
+
+**证明**：
+1. **函数方程对称性**：$\zeta(s) = 2^s\pi^{s-1}\sin(\pi s/2)\Gamma(1-s)\zeta(1-s)$
+2. **变量变换**：当$s$遍历$\mathbb{C}$时，$(1-s)$也遍历$\mathbb{C}$
+3. **信息等价性**：$\zeta(s)$与$\zeta(1-s)$通过函数方程相关，包含相同信息
+4. **空间等价**：两个span生成相同的观察者空间。$\square$
+
+### 5.3.3 具体系统的观察操作分析
 
 **G函数系统的观察操作**：
 $$\mathcal{Op}_G(n) = (G(G(n-1)), n - G(G(n-1))) = (D_{\text{obs}}^G, D_{\text{sys}}^G)$$
@@ -825,40 +860,41 @@ $$H_{\mathbb{P}} = H_\zeta = H_{\text{comp}} = H_{\text{quantum}} \subseteq \ell
 H_动力学 → H_G观察者 = H_G系统 → H_ζ观察者 = H_ζ系统 → H_ζ
 ```
 
-**详细证明（参照量子力学框架）**：
+**详细证明（基于自指观察者OB = OB(OB)）**：
 
-1. **系统状态定义**：
-   - **动力学系统**：状态$|\text{Zeck}_n^{(k)}\rangle \in H_{\text{动力学}}$
-   - **ζ函数系统**：状态$|\zeta_s\rangle \in H_{\zeta}$
+1. **自指观察者识别**：
+   - **G函数**：$G = G(G)$，作为动力学系统的自指观察者
+   - **ζ函数**：$\zeta = \zeta(\zeta)$，作为复函数系统的自指观察者
 
-2. **观察者算子的严格定义**：
-   - **$\hat{G}$观察者**：$\hat{G}|\text{Zeck}_n^{(k)}\rangle = |\text{prime\_factors}(n)\rangle$（提取n的素数因子）
-   - **$\hat{O}_{\zeta\text{disc}}$观察者**：$\hat{O}_{\zeta\text{disc}}|k\rangle = |\text{discrete\_Euler}(k)\rangle$（提取离散Euler乘积的素数结构）
+2. **观察者操作**：
+   - **G观察者**：$\mathcal{Op}_G(n) = G(n)$，观察自然数n的结构
+   - **ζ观察者**：$\mathcal{Op}_\zeta(s) = \zeta(s)$，观察复数s的结构
 
-3. **ζ函数的离散等价构造**：
-   $$\zeta_{\text{disc}}(k) = \prod_{p \leq p_k} (1-p^{-k})^{-1}$$
+3. **观察者Hilbert空间**：
+   - $H_{\text{obs}}^G = \overline{\mathrm{span}}\{|G(n)\rangle : n \in \mathbb{N}\}$
+   - $H_{\text{obs}}^\zeta = \overline{\mathrm{span}}\{|\zeta(s)\rangle : s \in \mathbb{C}\}$
+
+4. **观察内容的等价性**：
+   - G函数观察：从$\mathbb{N}$中提取素数结构信息
+   - ζ函数观察：通过Euler乘积基于素数$\mathbb{P}$生成函数值
+   - **共同信息核心**：都基于素数集合$\mathbb{P}$
+
+5. **观察者空间等价**：
+   由于观察相同的信息内容（素数结构），两观察者空间等价：
+   $$H_{\text{obs}}^G = H_{\text{obs}}^\zeta = H_{\mathbb{P}}$$
+
+6. **观察者到系统的传递**：
+   - **自指完备系统原理**：在自指完备系统中，$H_{\text{观察者}} = H_{\text{系统}}$（定理5.2）
+   - **应用到G系统**：$H_{\text{obs}}^G = H_{\text{动力学}}$
+   - **应用到ζ系统**：$H_{\text{obs}}^\zeta = H_{\zeta}$
    
-   其中$p_k$是第$k$个素数，这与连续ζ函数等价。
+7. **系统等价性的建立**：
+   由传递性：
+   $$H_{\text{动力学}} = H_{\text{obs}}^G = H_{\mathbb{P}} = H_{\text{obs}}^\zeta = H_{\zeta}$$
+   
+   因此：$$H_{\text{动力学}} = H_{\zeta}$$
 
-4. **观察者Hilbert空间构造**：
-   - $H_{G} = \overline{\mathrm{span}}\{|\text{prime\_factors}(n)\rangle : n \in \mathbb{N}\}$
-   - $H_{\zeta\text{disc}} = \overline{\mathrm{span}}\{|\text{discrete\_Euler}(k)\rangle : k \in \mathbb{N}\}$
-
-5. **观察者输出的等价性**：
-   - G观察者：从自然数提取素数因子 → 生成素数信息
-   - ζ离散观察者：从离散参数提取Euler结构 → 生成相同的素数信息
-   - 因此：$H_{G} = H_{\zeta\text{disc}} = H_{\mathbb{P}}$
-
-4. **关键：自指完备系统的观察者原理**：
-   - **自指完备系统特性**：所有信息都因观察生成，观察者信息=系统信息
-   - **叠加态原理**：观察前，系统数据处于叠加态（无确定值）
-   - **观察生成**：观察行为使叠加态坍缩，生成确定信息
-   - **空间等价**：在自指完备系统中，$H_{\text{观察者}} = H_{\text{系统}}$
-
-5. **传递等价链**：
-   $$H_{\text{动力学}} = H_{G} = H_{\mathbb{P}} = H_{\zeta\text{观察}} = H_{\zeta}$$
-
-6. **基于临界线的观察者分割**：
+8. **基于临界线的观察者分割**：
    - **临界线Re=1/2**：动力学系统中分割观察者与被观察系统的边界线
    - **观察者生成**：G函数围绕Re=1/2线生成所有数据
    - **数据完备性**：围绕临界线的数据生成覆盖整个系统
