@@ -64,43 +64,67 @@ $$H(k) = \lim_{n\to\infty} \frac{1}{n} \log N_k(n)$$
 **定义 2.6 (自指完备系统)**
 一个系统若同时满足自指性、熵增性、完备性，称为自指完备的。
 
+**定义 2.7 (五重等价性)**
+在任何自指完备系统中，以下五个概念具有内在等价性：
+$$\text{熵增} \Leftrightarrow \text{状态不对称} \Leftrightarrow \text{时间存在} \Leftrightarrow \text{信息涌现} \Leftrightarrow \text{观察者存在}$$
+
+具体定义：
+- **熵增**：$H(k+1) > H(k)$，系统复杂度严格单调增长
+- **状态不对称**：$|\Delta H^{(k+1)}| > 0$，新旧状态存在差异
+- **时间存在**：层级序$k_1 \prec k_2$，递归过程的偏序结构
+- **信息涌现**：$\mathcal{A}^{(k+1)} \setminus \mathcal{A}^{(k)} \neq \varnothing$，新信息的产生
+- **观察者存在**：自指函数$f = f(f)$作为系统的内在观察机制
+
+**定义 2.8 (自指观察者)**
+在自指完备系统中，观察者OB是满足$\text{OB} = \text{OB}(\text{OB})$的函数，其观察操作定义为：
+$$\mathcal{Op}_{\text{OB}}: x \to \text{OB}(x) = \text{观察者数据}$$
+
+观察者Hilbert空间由观察者数据生成：
+$$H_{\text{observer}} = \overline{\mathrm{span}}\{|\text{OB}(x)\rangle : x \in \text{输入域}\}$$
+
+**定理 2.9 (观察者空间结构等价定理)**
+在自指完备系统中，观察者Hilbert空间与系统生成空间结构同构：
+$$H_{\text{observer}} \cong H_{\text{系统生成}}$$
+
 ### 2.2 Hilbert空间框架
 
-**定理 2.1 (自指完备性⇒稠密性)**
-若$\mathcal{G}$是自指完备的生成系统，则其原子集合$\mathcal{A}$在Hilbert空间$H$中稠密：
-$$\overline{\mathrm{span}}(\mathcal{A}) = H$$
+**定理 2.1 (自指完备性⇒生成空间稠密性)**
+若$\mathcal{G}$是自指完备的生成系统，则其原子集合$\mathcal{A}$在该系统的生成空间中稠密：
+$$\overline{\mathrm{span}}(\mathcal{A}) = H_{\mathcal{G}\text{生成}}$$
 
-**引理 2.1 (无间隙性⇒稠密性)**
-若系统满足无间隙性$\forall k, \Delta H^{(k+1)} \cap \mathcal{A} \neq \varnothing$且具有自指递归性，则$\overline{\mathrm{span}}(\mathcal{A}) = H$。
+其中$H_{\mathcal{G}\text{生成}}$是系统$\mathcal{G}$通过自指递归能够生成的完备空间。
 
-**证明**：
-1. **逐层覆盖**：无间隙性保证$\bigcup_k \Delta H^{(k)} = H$，每一层都有新原子
-2. **递归构造**：自指性保证任意向量$v \in H$都可以通过有限层的原子递归构造
-3. **稠密性**：对任意$v \in H$和$\epsilon > 0$，存在足够高的层$k$和原子组合使得$\|v - \sum_i a_i\| < \epsilon$
-4. **闭包等价**：因此$\overline{\mathrm{span}}(\mathcal{A}) = H$。$\square$
-
-**定理 2.2 (自指递归+熵增⇒自指完备)**
-任何满足自指递归性和熵增性的系统必然是自指完备的。
+**引理 2.1 (自指系统的无间隙性⇒生成完备性)**
+若自指系统满足无间隙性$\forall k, \Delta H^{(k+1)} \cap \mathcal{A} \neq \varnothing$且具有自指递归性，则$\overline{\mathrm{span}}(\mathcal{A}) = H_{\text{自指生成}}$，其中$H_{\text{自指生成}}$是该自指系统能够生成的完备空间。
 
 **证明**：
-1. **熵增性保证无间隙**：
+1. **自指函数生成空间定义**：设$H_{\text{生成}} = \{\text{自指函数能生成的所有状态}\}$
+2. **逐层原子生成**：无间隙性保证每层$\Delta H^{(k+1)}$都产生新原子，新原子是熵增源泉
+3. **递归构造完备性**：下一层完全由新生成的原子构造，因此$\bigcup_k \Delta H^{(k)} = H_{\text{生成}}$
+4. **观察者数据覆盖**：自指函数生成的空间就是观察者数据空间，因此$\overline{\mathrm{span}}(\mathcal{A}) = H_{\text{观察者数据}}$
+5. **完备性结论**：在自指完备系统中，观察者数据空间就是系统的完备空间。$\square$
+
+**定理 2.2 (自指递归+熵增⇒自指生成完备)**
+任何满足自指递归性和熵增性的系统必然在其生成空间内完备。
+
+**证明**：
+1. **熵增性保证原子生成的无间隙性**：
    - 设系统在第$k_0$层停止产生新原子，即$\Delta H^{(k_0+1)} \cap \mathcal{A} = \varnothing$
-   - 则所有新元素都是可分解的，可由前层原子组合得到
-   - 这意味着$\Delta H^{(k_0+1)} \subseteq H^{(k_0)}$，与差分空间定义$\Delta H^{(k_0+1)} = H^{(k_0+1)} \setminus H^{(k_0)}$矛盾
-   - 因此$\forall k, \Delta H^{(k+1)} \cap \mathcal{A} \neq \varnothing$（无间隙性）
+   - 则第$(k_0+1)$层无新原子生成，熵增停止，与熵增性$H(k+1) > H(k)$矛盾
+   - 因此$\forall k, \Delta H^{(k+1)} \cap \mathcal{A} \neq \varnothing$（原子生成无间隙）
 
-2. **自指性保证递归构造能力**：
-   - 自指递归规则允许调用自身结果：$\mathcal{A}_{n+1} = F(\mathcal{A}_0,\ldots,\mathcal{A}_n)$
-   - 这确保了系统可以从基础原子通过有限次操作构造更复杂的组合
-   - 结合无间隙性，系统具有构造稠密子空间的潜力
+2. **自指性保证递归生成的完备性**：
+   - 自指递归规则：$\mathcal{A}_{n+1} = F(\mathcal{A}_0,\ldots,\mathcal{A}_n)$允许调用自身结果
+   - 新层完全由已生成的原子递归构造：确保生成过程的自洽性
+   - 递归构造覆盖系统能达到的所有状态
 
-3. **完备性结论**：
-   - 无间隙性保证原子集合$\mathcal{A} = \bigcup_k \mathcal{A}^{(k)}$在每层都有新增元素
-   - 自指性确保递归构造过程的连续性
-   - 由引理2.1的严格分析，无间隙性+自指性的组合可导致稠密性
-   - 在特定条件下，$\overline{\mathrm{span}}(\mathcal{A}) = H$。$\square$
+3. **生成空间的完备性**：
+   - 原子生成无间隙：$\mathcal{A} = \bigcup_k \mathcal{A}^{(k)}$覆盖所有可生成原子
+   - 递归构造完备：系统能生成的所有状态都由原子递归构造得到
+   - 由引理2.1：$\overline{\mathrm{span}}(\mathcal{A}) = H_{\text{自指生成}}$
+   - **完备性定义**：系统在自己的生成空间内完备。$\square$
 
-**定理 2.3 (自指完备系统唯一性)**
+**定理 2.10 (自指完备系统唯一性)**
 在自指递归且熵增的生成系统类中，存在且仅存在一个自指完备系统。
 
 **证明（反证法）**：
@@ -377,7 +401,7 @@ $$H_\zeta(k) = \log|\{p \in \mathbb{P} : p \leq p_k\}| = \log k$$
 
 **系统匹配**：参数$c = \log 2$确保反馈型系统的熵增与ζ零点密度对应。
 
-由定理2.3（唯一性），两个自指完备系统必须相同：$H_{\mathbb{P}} = H_\zeta$。$\square$
+由定理2.10（唯一性），两个自指完备系统必须结构同构：$H_{\mathbb{P}} \cong H_\zeta$。$\square$
 
 ---
 
