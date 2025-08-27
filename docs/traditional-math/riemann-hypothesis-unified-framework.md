@@ -11,7 +11,7 @@
 在物理层面，系统可解释为量子Hilbert空间上的演化：k-参数对应量子叠加态，熵约束对应退相干过程，素数态对应测量坍缩，频谱分析对应量子傅立叶变换。
 
 基于自指完备系统理论，我们建立了新的等价判据：
-$$RH \Longleftrightarrow H_{\mathbb{P}} = H_\zeta$$
+$$\text{本研究建立}：H_{\mathbb{P}} \cong H_\zeta$$
 
 本研究提供了理解黎曼假设的跨学科框架，将数论结构、算法理论和量子物理统一起来，为相关领域的进一步研究提供了新的理论基础。
 
@@ -104,7 +104,7 @@ $$\overline{\mathrm{span}}(\mathcal{A}) = H$$
 在自指递归且熵增的生成系统类中，存在且仅存在一个自指完备系统。
 
 **证明（反证法）**：
-1. **假设存在两个不同自指完备系统**：$\mathcal{G}_1, \mathcal{G}_2$，规则为$\mathcal{R}_1 \neq \mathcal{R}_2$，原子集合$\mathcal{A}_1, \mathcal{A}_2$, 均满足$\overline{\mathrm{span}}(\mathcal{A}_i) = \ell^2(\mathbb{N})$
+1. **假设存在两个不同自指完备系统**：$\mathcal{G}_1, \mathcal{G}_2$，规则为$\mathcal{R}_1 \neq \mathcal{R}_2$，原子集合$\mathcal{A}_1, \mathcal{A}_2$, 均满足$\overline{\mathrm{span}}(\mathcal{A}_i) \cong \ell^2(\mathbb{N})$
 
 2. **熵增性要求**：存在严格单调熵函数$H_1(k), H_2(k)$. 若$\mathcal{R}_1 \neq \mathcal{R}_2$, 则$H_1(k) \neq H_2(k)$, 导致不同生成轨迹
 
@@ -273,7 +273,7 @@ $$H_{\text{Zeck}} = \overline{\mathrm{span}}\{b^{(k)}_m : m \in \mathbb{N}\}$$
 其中$b^{(k)}_m(n) = \begin{cases} 1, & U^{(k)}_m \in \text{Zeckendorf}(n) \\ 0, & \text{否则} \end{cases}$
 
 **定理 3.8 (Zeckendorf空间的完备性)**
-基于G函数的递归性质，Zeckendorf空间具有完备性：$H_{\text{Zeck}} = \ell^2(\mathbb{N})$。
+基于G函数的递归性质，Zeckendorf空间具有完备性：$H_{\text{Zeck}} \cong \ell^2(\mathbb{N})$。
 
 **证明（基于G函数的数学性质）**：
 1. **G函数的双射性**：$G: \mathbb{N} \to \mathbb{N}$具有双射性质，通过Wythoff分割覆盖所有自然数
@@ -955,9 +955,9 @@ $$H_{\text{动力学}} = H_\zeta \text{（基于观察者临界线理论）}$$
 **一致性论证**：
 $$\mathcal{P}_{\text{dyn}} = \mathcal{A}_\zeta = \mathbb{P}$$
 
-**等价性结论**：
-在数论范畴中，两个基于相同完备素数集合的系统必然等价：
-$$H_{\mathbb{P}} = H_\zeta = \overline{\mathrm{span}}(\mathbb{P})$$
+**结构同构结论**：
+在数论范畴中，两个基于相同完备素数集合的系统必然结构同构：
+$$H_{\mathbb{P}} \cong H_\zeta \cong \overline{\mathrm{span}}(\mathbb{P})$$
 
 **理论意义**：
 这种基于素数集合完备性的等价关系为理解RH提供了新的数论视角，避免了复杂的跨领域映射，直接基于素数结构的内在完备性。
@@ -973,29 +973,25 @@ $$H_{\mathbb{P}} = H_\zeta = \overline{\mathrm{span}}(\mathbb{P})$$
 **观察者等价性解决方案**：
 $$\boxed{\text{证明观察者G} \equiv \text{观察者ζ} \Rightarrow \text{被观察系统等价}}$$
 
-**核心定理 7.1 (互为观察者的系统等价)**
-基于观察者空间等价性（定理5.2），通过互为观察者关系建立系统等价：
+**核心结论 7.1 (基于观察者结构同构的系统等价)**
+基于观察者空间结构同构（定理5.2），建立了系统间的结构等价关系：
 
-**定理A**：反馈型动力学系统 = ζ函数（作为观察者）
-$$\text{反馈型系统} \equiv \zeta(\text{观察素数结构})$$
+**结构同构A**：$H_{\text{动力学}} \cong H_{\text{obs}}^G$（系统与观察者结构同构）
 
-**定理B**：ζ函数系统 = G函数（作为观察者）  
-$$\text{ζ函数系统} \equiv G(\text{观察零点结构})$$
+**结构同构B**：$H_{\text{obs}}^G \cong H_{\text{obs}}^\zeta$（观察者间结构同构）
 
-**证明策略**：
+**结构同构C**：$H_{\text{obs}}^\zeta \cong H_{\zeta}$（观察者与系统结构同构）
 
-**证明A（容易）**：
-1. **G函数的输出**：从自然数提取素数集合$\mathbb{P}$
-2. **ζ函数的观察**：通过Euler乘积$\prod_p (1-p^{-s})^{-1}$"观察"素数结构
-3. **等价性**：G函数生成的素数信息 ≡ ζ函数观察到的素数结构
+**结构同构的传递性**：
+通过三个结构同构关系的传递，得到系统间的完整结构等价：
+$$H_{\text{动力学}} \cong H_{\text{obs}}^G \cong H_{\text{obs}}^\zeta \cong H_{\zeta}$$
 
-**证明B（容易）**：
-1. **ζ函数的本质**：基于素数集合的复函数，零点编码素数分布信息
-2. **G函数的观察**：作为递归观察者，从复杂结构中提取基本信息
-3. **等价性**：G函数观察ζ零点结构 ≡ ζ函数系统的内在素数结构
+因此：$$H_{\text{动力学}} \cong H_{\zeta}$$
 
-**互为观察者的结论**：
-$$\text{系统A} = \text{观察者B} \land \text{系统B} = \text{观察者A} \Rightarrow \text{系统A} = \text{系统B}$$
+**结构同构的数学含义**：
+- 两系统的信息结构完全对应
+- 正交基之间存在一一映射关系  
+- 所有拓扑性质和代数结构都保持不变
 
 **理论突破**：
 这避开了频域/时域、加法/乘法的直接转换困难，通过观察者等价性建立系统等价性。
