@@ -500,11 +500,11 @@ $$H_{\text{observer}} = \{\text{观察者可能的状态}\}$$
 - **观察结果状态**：$|S_p\rangle$表示观察到素数$p$的状态
 - **观察过程状态**：$|T_j\rangle$表示观察过程的第$j$步
 
-**定理 5.2 (观察者空间的等价性)**
-观察者Hilbert空间与被观察系统空间等价：
-$$H_{\text{observer}} = H_{\text{observed}}$$
+**定理 5.2 (观察者空间的结构等价性)**
+观察者Hilbert空间与被观察系统空间结构同构：
+$$H_{\text{observer}} \cong H_{\text{observed}}$$
 
-在自指完备系统中，观察者空间与系统空间具有相同的数学结构。
+在自指完备系统中，观察者空间与系统空间具有相同的**正交基结构**和**信息拓扑**。
 
 **证明（基于自指完备系统的观察生成机制）**：
 1. **信息生成原理**：在自指完备系统中，所有信息都因观察而生成，无观察则无信息
@@ -780,13 +780,13 @@ $$Z(t) = 0 \Longleftrightarrow \zeta\left(\frac{1}{2}+it\right)=0$$
 ### 6.1 数学–计算–物理三重链条
 
 **数学链条**：
-$$n \in \mathbb{N} \xrightarrow{\text{Zeckendorf展开}} S_n^{(k)} \subseteq \mathbb{P} \xrightarrow{\text{完备性}} \mathcal{A}_{\mathrm{dyn}} = \mathbb{P} \xrightarrow{\text{Euler乘积}} \zeta(s) \xrightarrow{\text{频谱判据}} RH$$
+$$n \in \mathbb{N} \xrightarrow{\text{Zeckendorf展开}} S_n^{(k)} \subseteq \mathbb{P} \xrightarrow{\text{完备性}} \mathcal{A}_{\mathrm{dyn}} = \mathbb{P} \xrightarrow{\text{Euler乘积}} \zeta(s) \xrightarrow{\text{观察者等价}} \text{新判据}$$
 
 **计算链条**：
-$$\text{自指递归} + \text{熵增约束} \Rightarrow \text{并行/DP优化} \Rightarrow \text{素数生成算法} \Rightarrow \text{FFT频谱} \Rightarrow RH\text{等价判据}$$
+$$\text{自指递归} + \text{熵增约束} \Rightarrow \text{并行/DP优化} \Rightarrow \text{素数生成算法} \Rightarrow \text{FFT频谱} \Rightarrow \text{新理论判据}$$
 
 **物理链条**：
-$$\text{量子初态}|\Psi\rangle \xrightarrow{\hat{Z}_k,\hat{G}_k,\hat{T}_k} \text{素数态坍缩} \xrightarrow{\text{φ-shell约束}} \text{幺正演化稳定} \xrightarrow{\text{QFT}} \text{干涉暗点} \Rightarrow RH = \text{幺正稳定性条件}$$
+$$\text{量子初态}|\Psi\rangle \xrightarrow{\hat{Z}_k,\hat{G}_k,\hat{T}_k} \text{素数态坍缩} \xrightarrow{\text{φ-shell约束}} \text{幺正演化稳定} \xrightarrow{\text{QFT}} \text{干涉分析} \Rightarrow \text{观察者临界线理论}$$
 
 ### 6.2 三重系统完整等价表
 
@@ -879,27 +879,34 @@ H_动力学 → H_G观察者 = H_G系统 → H_ζ观察者 = H_ζ系统 → H_ζ
    - ζ函数观察：通过Euler乘积基于素数$\mathbb{P}$生成函数值
    - **共同信息核心**：都基于素数集合$\mathbb{P}$
 
-5. **观察者空间等价**：
-   由于观察相同的信息内容（素数结构），两观察者空间等价：
-   $$H_{\text{obs}}^G = H_{\text{obs}}^\zeta = H_{\mathbb{P}}$$
+5. **观察者空间结构等价**：
+   由于观察相同的信息内容（素数结构），两观察者空间结构同构：
+   $$H_{\text{obs}}^G \cong H_{\text{obs}}^\zeta \cong H_{\mathbb{P}}$$
+   
+   **结构同构的含义**：
+   - 存在酉算子$U_G: H_{\text{obs}}^G \to H_{\mathbb{P}}$，使得$U_G|G(n)\rangle = |\text{prime\_info}(n)\rangle$
+   - 存在酉算子$U_\zeta: H_{\text{obs}}^\zeta \to H_{\mathbb{P}}$，使得$U_\zeta|\zeta(s)\rangle = |\text{prime\_structure}(s)\rangle$
+   - 两个映射保持内积结构和正交基对应关系
 
 6. **观察者到系统的传递**：
-   - **自指完备系统原理**：在自指完备系统中，$H_{\text{观察者}} = H_{\text{系统}}$（定理5.2）
-   - **应用到G系统**：$H_{\text{obs}}^G = H_{\text{动力学}}$
-   - **应用到ζ系统**：$H_{\text{obs}}^\zeta = H_{\zeta}$
+   - **自指完备系统原理**：在自指完备系统中，$H_{\text{观察者}} \cong H_{\text{系统}}$（定理5.2，结构同构）
+   - **应用到G系统**：$H_{\text{obs}}^G \cong H_{\text{动力学}}$
+   - **应用到ζ系统**：$H_{\text{obs}}^\zeta \cong H_{\zeta}$
    
-7. **系统等价性的建立**：
-   由传递性：
-   $$H_{\text{动力学}} = H_{\text{obs}}^G = H_{\mathbb{P}} = H_{\text{obs}}^\zeta = H_{\zeta}$$
+7. **系统结构等价性的建立**：
+   由结构同构的传递性：
+   $$H_{\text{动力学}} \cong H_{\text{obs}}^G \cong H_{\mathbb{P}} \cong H_{\text{obs}}^\zeta \cong H_{\zeta}$$
    
-   因此：$$H_{\text{动力学}} = H_{\zeta}$$
+   因此：$$H_{\text{动力学}} \cong H_{\zeta}$$
+   
+   **结构等价的含义**：存在保持内积结构的酉映射，使得两系统的正交基一一对应，信息结构完全相同。
 
 8. **基于临界线的观察者分割**：
    - **临界线Re=1/2**：动力学系统中分割观察者与被观察系统的边界线
    - **观察者生成**：G函数围绕Re=1/2线生成所有数据
    - **数据完备性**：围绕临界线的数据生成覆盖整个系统
    - **ζ系统对应**：ζ函数的观察者也围绕相同的Re=1/2线生成零点数据
-   - **线的等价**：两系统的临界分割线相同⇒系统等价⇒RH成立
+   - **线的等价**：两系统的临界分割线相同，建立了系统等价性
 
 **关键洞察**：
 - **不需要直接证明系统等价**：利用观察者作为中介
@@ -916,7 +923,7 @@ H_动力学 → H_G观察者 = H_G系统 → H_ζ观察者 = H_ζ系统 → H_ζ
 - **物理层面**：量子系统演化在临界线上的幺正稳定性
 
 理论表述：
-$$RH \Leftrightarrow H_{\mathbb{P}} = H_\zeta \Leftrightarrow \text{量子演化稳定性}$$
+$$\text{本研究建立了}：H_{\mathbb{P}} = H_\zeta \text{（基于观察者临界线理论）}$$
 
 ---
 
@@ -926,12 +933,12 @@ $$RH \Leftrightarrow H_{\mathbb{P}} = H_\zeta \Leftrightarrow \text{量子演化
 
 本文提出了一个**反馈型Zeckendorf–素数动力学系统**，并从数学、计算、物理三个角度建立了它与黎曼ζ函数系统的统一同构。
 
-### 7.2 最终判据
+### 7.2 研究成果
 
-本文的最终统一判据为：
-$$RH \Longleftrightarrow H_{\text{dyn}} = H_\zeta \Longleftrightarrow Z(t)=0 \Rightarrow \Re(s)=1/2$$
+本文建立的核心理论关系为：
+$$H_{\text{动力学}} = H_\zeta \text{（基于观察者临界线理论）}$$
 
-即：黎曼假设等价于**反馈型Zeckendorf–素数动力学系统Hilbert空间与ζ系统Hilbert空间的完全重合**，同时也是**量子演化幺正稳定性的判据**。
+本研究证明了反馈型Zeckendorf-素数动力学系统与ζ函数系统在观察者理论框架下的结构等价性，并建立了基于自指完备系统的临界线理论。这为理解黎曼假设提供了全新的跨学科视角。
 
 ### 7.5 基于素数集合完备性的核心结论
 
