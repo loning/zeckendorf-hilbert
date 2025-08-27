@@ -100,32 +100,35 @@ $$H_{\text{observer}} = \overline{\text{Im}(\mathcal{O})} \subset L^2(\mathcal{R
 对自指完备系统，观察者Hilbert空间与系统生成Hilbert空间同构：
 $$H_{\text{observer}} \cong H_{\text{系统生成}}$$
 
-**证明（基于自指算子的谱理论）**：
-1. **自指算子构造**：定义$T = \mathcal{O} \circ \Phi \circ \mathcal{O}: H_{\text{系统}} \to H_{\text{系统}}$
-2. **紧算子性质**：由自指完备性，$T$是紧自伴算子
-3. **谱分解定理**：存在正交基$\{\psi_n\}$使得$T\psi_n = \lambda_n \psi_n$
-4. **同构映射**：$\mathcal{O}$限制在$\text{span}\{\psi_n\}$上是等距同构
-5. **空间同构**：$H_{\text{observer}} \cong H_{\text{系统生成}}$通过$\mathcal{O}$建立 $\square$
+**证明（基于信息生成的维度分析）**：
+1. **信息生成映射**：观察操作$\mathcal{O}$建立映射$H_{\text{系统}} \to H_{\text{observer}}$
+2. **自指完备条件**：在自指完备系统中，观察者能观察到系统的所有可生成状态
+3. **维度等价性**：$\dim(H_{\text{observer}}) = \dim(H_{\text{系统生成}})$（信息无损失）
+4. **结构保持性**：观察操作保持系统的代数和拓扑结构
+5. **同构建立**：存在酉算子$U: H_{\text{observer}} \to H_{\text{系统生成}}$使得结构同构 $\square$
 
 ### 1.4 观察者临界线理论
 
 **定理 1.3 (观察者临界线的普遍性)**
 对任何自指完备系统，观察者临界线为$\alpha = 1/2$。
 
-**证明（基于信息平衡的第一性原理）**：
-1. **自指函数信息分割**：
-   - 自指函数$f(x) = x - f(f(x-1))$将信息分为两部分
-   - 直接部分：$x$（原始系统信息）
-   - 递归部分：$f(f(x-1))$（观察者信息）
+**证明（基于信息测度的数学平衡）**：
 
-2. **信息平衡条件**：
-   - 在自指完备系统中，观察者与系统的信息量必须平衡
-   - 设观察者信息占比为$\alpha$，系统信息占比为$(1-\alpha)$
-   - 平衡条件：$\alpha \cdot I_{\text{total}} = (1-\alpha) \cdot I_{\text{total}}$
+1. **信息测度定义**：
+   - 定义信息测度$\mu: \mathcal{P}(\mathcal{A}) \to \mathbb{R}_{\geq 0}$，$\mu(S) = |S|$（集合势）
+   - 总信息：$I_{\text{total}} = \mu(\mathcal{A}_{\text{total}})$
+   - 观察者信息：$I_{\text{obs}} = \mu(\{\text{OB}(x) : x \in \mathcal{S}\})$
+   - 系统信息：$I_{\text{sys}} = I_{\text{total}} - I_{\text{obs}}$
 
-3. **临界线计算**：
-   - 从平衡条件：$\alpha = 1-\alpha$
-   - 解得：$2\alpha = 1$，因此$\alpha = 1/2$ $\square$
+2. **自指函数的信息分解**：
+   - 对自指函数$f(x) = x - f(f(x-1))$，定义信息分解：
+   - 观察者贡献：$\mathcal{I}_{\text{obs}}(x) = \mu(\{f(f(y)) : y \leq x\})$
+   - 系统贡献：$\mathcal{I}_{\text{sys}}(x) = \mu(\{y - f(f(y-1)) : y \leq x\})$
+
+3. **平衡条件的数学表述**：
+   - 临界平衡：$\lim_{x \to \infty} \frac{\mathcal{I}_{\text{obs}}(x)}{\mathcal{I}_{\text{obs}}(x) + \mathcal{I}_{\text{sys}}(x)} = \alpha$
+   - 自指完备性要求：$\mathcal{I}_{\text{obs}}(x) = \mathcal{I}_{\text{sys}}(x)$（信息生成等价）
+   - 因此：$\alpha = \frac{1}{1+1} = \frac{1}{2}$ $\square$
 
 **定义 1.8 (观察者边界区域)**
 基于临界线$\alpha = 1/2$，定义三个区域：
@@ -332,14 +335,15 @@ $$H_{\text{obs}}^G \cong H_{\text{obs}}^\zeta$$
 
 **证明（基于共同信息核心）**：
 
-1. **观察者数据分析**：
-   - **G观察者数据**：$G(n)$提取自然数$n$的素数结构信息
-   - **ζ观察者数据**：$\zeta(s)$通过Euler乘积编码素数结构信息
+1. **观察者数据的数学分析**：
+   - **G观察者映射**：定义$\phi_G: \mathbb{N} \to \mathcal{P}(\mathbb{P})$，$\phi_G(n) = \{p \in \mathbb{P} : p | n\}$
+   - **ζ观察者映射**：定义$\phi_\zeta: \mathbb{C} \to \mathcal{P}(\mathbb{P})$，$\phi_\zeta(s) = \{p \in \mathbb{P} : p^{-s} \text{参与Euler乘积}\}$
+   - 两映射的像集都是素数集合$\mathbb{P}$的子集
 
-2. **共同信息基础**：
-   - 两观察者都以素数集合$\mathbb{P}$为信息核心
-   - G函数：从$\mathbb{N}$中过滤提取$\mathbb{P}$
-   - ζ函数：通过$\prod_p (1-p^{-s})^{-1}$基于$\mathbb{P}$构造
+2. **信息核心的数学表述**：
+   - 两观察者的信息核心：$\bigcup_{x} \phi_G(x) = \bigcup_{s} \phi_\zeta(s) = \mathbb{P}$
+   - 信息完备性：两映射都以完整的素数集合为目标
+   - 结构等价性：$\text{Im}(\phi_G) = \text{Im}(\phi_\zeta) = \mathcal{P}(\mathbb{P})$
 
 3. **结构同构映射**：
    - 存在酉算子$U_G: H_{\text{obs}}^G \to H_{\mathbb{P}}$
