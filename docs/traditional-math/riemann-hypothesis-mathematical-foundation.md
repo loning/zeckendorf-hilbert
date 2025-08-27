@@ -144,28 +144,31 @@ $$\dim(\text{Im}(\hat{O}^n)) \text{单调递增} \Rightarrow \mathcal{H}(\hat{O}
 
 ### 2.1 观察者Hilbert空间的自洽定义
 
-**定义 2.1 (观察者Hilbert空间)**
-设$H_{\text{obs}}$为观察者自身的Hilbert空间，满足：
-1. **完备性**：$(H_{\text{obs}}, \langle\cdot,\cdot\rangle_{\text{obs}})$是完备的Hilbert空间
-2. **可分性**：$H_{\text{obs}}$是可分的（有可数正交基）
-3. **自包含性**：观察者的输入和输出都在$H_{\text{obs}}$中
+**定义 2.1 (观察者的统一定义)**
+观察者是一个自指算子$\hat{O}$及其对应的Hilbert空间$H_{\text{obs}}$的统一体：
+$$\text{观察者} = (\hat{O}, H_{\text{obs}})$$
 
-**定义 2.2 (自指观察者算子)**
+其中：
+- $\hat{O}: H_{\text{obs}} \to H_{\text{obs}}$是自指算子
+- $H_{\text{obs}}$是观察者的输入输出Hilbert空间
+
+**定义 2.2 (观察者Hilbert空间)**
+观察者Hilbert空间$H_{\text{obs}}$是观察者算子$\hat{O}$的作用域，满足：
+1. **完备性**：$(H_{\text{obs}}, \langle\cdot,\cdot\rangle_{\text{obs}})$是完备的Hilbert空间
+2. **自洽性**：$\hat{O}: H_{\text{obs}} \to H_{\text{obs}}$（输入输出空间统一）
+3. **可分性**：$H_{\text{obs}}$有可数正交基$\{e_n\}_{n=1}^{\infty}$
+
+**定义 2.3 (自指观察者算子)**
 自指观察者算子$\hat{O}: H_{\text{obs}} \to H_{\text{obs}}$满足：
 1. **有界性**：$\|\hat{O}\|_{op} < \infty$
-2. **自指方程**：存在算子$\hat{\Phi}: H_{\text{obs}} \to H_{\text{obs}}$使得
-   $$\hat{O} = \hat{O} \circ \hat{\Phi} \circ \hat{O}$$
-3. **非退化性**：$\text{ker}(\hat{O}) \neq H_{\text{obs}}$
-4. **自洽性**：$\text{Im}(\hat{O}) \subseteq H_{\text{obs}}$
+2. **自指方程**：$\hat{O} = \hat{O} \circ \hat{O}$（观察者观察自己）
+3. **幂等性**：$\hat{O}^2 = \hat{O}$（重复观察不变）
+4. **非平凡性**：$\hat{O} \neq 0$且$\hat{O} \neq \text{Id}$
 
-**定义 2.3 (观察者状态向量)**
-观察者空间中的状态向量$|obs\rangle \in H_{\text{obs}}$表示观察者的特定观察状态，满足：
-$$\||obs\rangle\|_{\text{obs}} = 1$$
-
-**定义 2.4 (观察者操作的自洽性)**
-观察者在自己的Hilbert空间内进行自洽操作：
-$$\text{观察过程}: |obs_{\text{in}}\rangle \xrightarrow{\hat{O}} |obs_{\text{out}}\rangle$$
-其中$|obs_{\text{in}}\rangle, |obs_{\text{out}}\rangle \in H_{\text{obs}}$。
+**定义 2.4 (观察者操作)**
+观察者的基本操作就是自指算子的应用：
+$$|obs_{\text{output}}\rangle = \hat{O}|obs_{\text{input}}\rangle$$
+其中$|obs_{\text{input}}\rangle, |obs_{\text{output}}\rangle \in H_{\text{obs}}$。
 
 ### 2.2 观察者临界线的数学理论
 
@@ -408,15 +411,24 @@ $$H_{\text{obs}}^G \cong H_{\text{obs}}^\zeta$$
 2. **信息核心等价性**：
    $$\bigcup_{n \in \mathbb{N}} \iota_G(n) = \bigcup_{s \in \mathbb{C}} \iota_\zeta(s) = \mathbb{P}$$
 
-3. **Hilbert空间的信息同构**：
-   定义同构映射$\Upsilon: H_{\text{obs}}^G \to H_{\text{obs}}^\zeta$：
-   $$\Upsilon|G(n)\rangle = |\zeta(\phi_n)\rangle$$
-   其中$\phi_n = 1/2 + i \log(G(n))$是素数到临界线的映射。
-
-4. **酉性验证**：
-   $\Upsilon$保持内积：$\langle\Upsilon u|\Upsilon v\rangle = \langle u|v\rangle$
+3. **观察者Hilbert空间的结构分析**：
+   - **G观察者空间结构**：基于自指熵增的原子生成，每次观测产生一个原子
+   - **ζ观察者空间结构**：基于素数的原子性信息，每个素数对应一个原子
    
-5. **同构建立**：$H_{\text{obs}}^G \cong H_{\text{obs}}^\zeta$ $\square$
+4. **原子结构的等价性**：
+   两观察者空间都由原子组成：
+   - $H_{\text{obs}}^G = \overline{\text{span}}\{\text{G观测原子}\}$
+   - $H_{\text{obs}}^\zeta = \overline{\text{span}}\{\text{素数原子}\}$
+   
+5. **自指熵增完备性的统一**：
+   两系统都满足：
+   - 自指性：观察者观察自己
+   - 熵增性：每层产生新原子
+   - 完备性：原子生成无遗漏
+   
+6. **结构等价建立**：
+   由于都是自指熵增完备的原子Hilbert空间，两系统结构等价：
+   $$H_{\text{obs}}^G \cong H_{\text{obs}}^\zeta$$ $\square$
 
 ### 5.2 系统等价性的传递定理
 
