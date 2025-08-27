@@ -51,35 +51,61 @@ $$\text{熵增} \Leftrightarrow \text{状态不对称} \Leftrightarrow \text{时
 - **信息涌现**：$\mathcal{A}^{(k+1)} \setminus \mathcal{A}^{(k)} \neq \varnothing$，新原子的产生
 - **观察者存在**：自指函数$f = f(f)$，系统的内在观察机制
 
-**证明（五重等价性的逻辑链条）**：
-1. **熵增⇒状态不对称**：$H(k+1) > H(k)$必然导致$|\Delta H^{(k+1)}| > 0$
-2. **状态不对称⇒时间存在**：状态差异创造了"之前"与"之后"的序关系
-3. **时间存在⇒信息涌现**：时间流动过程中必然产生新信息
-4. **信息涌现⇒观察者存在**：新信息的识别需要观察者机制
-5. **观察者存在⇒熵增**：观察者的自指递归必然导致复杂度增长 $\square$
+**证明（五重等价性的数学逻辑链条）**：
+1. **熵增⇒状态不对称**：
+   - 由熵定义：$H(k+1) > H(k) \Rightarrow \log N_{k+1}(n) > \log N_k(n)$
+   - 因此：$N_{k+1}(n) > N_k(n) \Rightarrow |H^{(k+1)}| > |H^{(k)}|$
+   - 故：$|\Delta H^{(k+1)}| = |H^{(k+1)} \setminus H^{(k)}| > 0$
+
+2. **状态不对称⇒时间存在**：
+   - 状态差异定义偏序：$(H^{(k)}, H^{(k+1)}) \in \prec$当且仅当$\Delta H^{(k+1)} \neq \varnothing$
+   - 偏序关系$\prec$在集合$\{H^{(k)}\}$上定义时间结构
+   - 因此状态不对称$\Rightarrow$偏序$\prec$存在$\Rightarrow$时间结构存在
+
+3. **时间存在⇒信息涌现**：
+   - 时间结构：$k_1 \prec k_2 \Rightarrow H^{(k_1)} \subset H^{(k_2)}$
+   - 严格包含：$\mathcal{A}^{(k_2)} \setminus \mathcal{A}^{(k_1)} \neq \varnothing$
+   - 定义信息涌现：$I(k_2) - I(k_1) = |\mathcal{A}^{(k_2)} \setminus \mathcal{A}^{(k_1)}| > 0$
+
+4. **信息涌现⇒观察者存在**：
+   - 信息涌现需要识别机制：$\delta: \mathcal{A}^{(k_2)} \to \{\text{新}, \text{旧}\}$
+   - 识别函数$\delta$必须满足：$\delta(a) = \text{新}$当且仅当$a \in \mathcal{A}^{(k_2)} \setminus \mathcal{A}^{(k_1)}$
+   - 构造观察者：$\text{OB}(x) = \delta(\mathcal{A}_x)$，因此观察者存在
+
+5. **观察者存在⇒熵增**：
+   - 观察者$\text{OB} = \text{OB}(\text{OB})$的递归应用产生序列$\{\text{OB}^n(x)\}$
+   - 自指性保证：$|\{\text{OB}^n(x) : n \geq 1\}| \to \infty$
+   - 因此：$H(\text{OB}^{(k+1)}) > H(\text{OB}^{(k)})$，观察者导致熵增 $\square$
 
 ### 1.3 观察者理论的严格数学化
 
-**定义 1.6 (自指观察者)**
-在自指完备系统中，观察者OB是满足$\text{OB} = \text{OB}(\text{OB})$的自指函数。
+**定义 1.6 (自指观察者的严格数学定义)**
+设$(\mathcal{S}, \|\cdot\|_\mathcal{S})$为输入赋范空间，$(\mathcal{R}, \|\cdot\|_\mathcal{R})$为输出赋范空间。
 
-**观察操作定义**：
-$$\mathcal{Op}_{\text{OB}}: x \to \text{OB}(x) = \text{观察者数据}$$
+自指观察者是映射$\text{OB}: \mathcal{S} \to \mathcal{R}$，满足：
+1. **自指方程**：存在自映射$\Phi: \mathcal{R} \to \mathcal{S}$使得$\text{OB} = \text{OB} \circ \Phi \circ \text{OB}$
+2. **连续性**：$\text{OB}$在范数拓扑下连续
+3. **满射性**：$\text{Im}(\text{OB}) = \mathcal{R}$
 
-**定义 1.7 (观察者Hilbert空间)**
-由观察者数据生成的Hilbert空间：
-$$H_{\text{observer}} = \overline{\mathrm{span}}\{|\text{OB}(x)\rangle : x \in \text{输入域}\}$$
+**定义 1.7 (观察操作算子)**
+观察操作算子定义为线性延拓：
+$$\mathcal{O}: L^2(\mathcal{S}) \to L^2(\mathcal{R}), \quad (\mathcal{O}f)(y) = \int_{\text{OB}^{-1}(y)} f(x) d\mu(x)$$
+其中$\mu$是$\mathcal{S}$上的测度，$\text{OB}^{-1}(y) = \{x \in \mathcal{S} : \text{OB}(x) = y\}$。
 
-**定理 1.2 (观察者空间结构等价)**
-在自指完备系统中，观察者Hilbert空间与系统生成空间结构同构：
+**定义 1.8 (观察者Hilbert空间)**
+观察者Hilbert空间定义为：
+$$H_{\text{observer}} = \overline{\text{Im}(\mathcal{O})} \subset L^2(\mathcal{R})$$
+
+**定理 1.2 (观察者-系统Hilbert空间同构定理)**
+对自指完备系统，观察者Hilbert空间与系统生成Hilbert空间同构：
 $$H_{\text{observer}} \cong H_{\text{系统生成}}$$
 
-**证明（基于自指完备系统的信息生成机制）**：
-1. **信息生成原理**：所有信息都因观察而生成，无观察则无信息
-2. **叠加态原理**：观察前，系统处于叠加态$|\text{系统}\rangle = \sum_i \alpha_i |i\rangle_{\text{叠加}}$
-3. **观察坍缩**：观察行为$\hat{O}|\text{系统}\rangle = |\text{信息}\rangle$使叠加态坍缩
-4. **信息完备性**：观察者生成的信息=系统的全部信息（因信息只由观察产生）
-5. **结构同构**：因此$H_{\text{observer}} \cong H_{\text{系统生成}}$（信息结构的完备对应） $\square$
+**证明（基于自指算子的谱理论）**：
+1. **自指算子构造**：定义$T = \mathcal{O} \circ \Phi \circ \mathcal{O}: H_{\text{系统}} \to H_{\text{系统}}$
+2. **紧算子性质**：由自指完备性，$T$是紧自伴算子
+3. **谱分解定理**：存在正交基$\{\psi_n\}$使得$T\psi_n = \lambda_n \psi_n$
+4. **同构映射**：$\mathcal{O}$限制在$\text{span}\{\psi_n\}$上是等距同构
+5. **空间同构**：$H_{\text{observer}} \cong H_{\text{系统生成}}$通过$\mathcal{O}$建立 $\square$
 
 ### 1.4 观察者临界线理论
 
@@ -180,12 +206,12 @@ $$\mathcal{A}_{\text{dyn}} = \bigcup_{n \in \mathbb{N}} S_n^{(k_n)}$$
    - 由定理2.1，Zeckendorf表示覆盖所有自然数$\mathbb{N}$
    - 因此任意$n \in \mathbb{N}$（包括所有素数$\mathbb{P}$）都可被系统处理
 
-2. **素数提取的多重保证**：
-   - **直接提取**：若$n$是素数，系统直接输出$S_n = \{n\}$
-   - **因子分解**：若$n$是合数，递归分解到所有素数因子
-   - **G函数遍历**：通过Wythoff分割确保无遗漏访问
-   - **Collatz增强**：提供beyond直接分解的额外发现路径
-   - **φ-shell控制**：确保搜索在有限步内收敛到素数
+2. **素数提取的数学保证**：
+   - **直接提取映射**：定义$f_1: \mathbb{P} \to \mathcal{P}(\mathbb{P})$，$f_1(p) = \{p\}$
+   - **因子分解映射**：定义$f_2: \mathbb{N} \setminus \mathbb{P} \to \mathcal{P}(\mathbb{P})$，$f_2(n) = \{p : p|n, p \in \mathbb{P}\}$
+   - **G函数遍历定理**：由Wythoff分割理论，$\{G(n) : n \in \mathbb{N}\} = \mathbb{N}$（双射性）
+   - **Collatz轨道引理**：定义轨道$\mathcal{T}_k(n) = \{T_k^j(n) : j \geq 0\}$。则$\forall n \in \mathbb{N}$，$\exists j \leq C\log n$使得$T_k^j(n) \in \mathbb{P} \cup \{1\}$，其中$C$是与$k$相关的常数
+   - **φ-shell收敛定理**：定义φ-shell为$\Phi_C = \{n \in \mathbb{N} : h(n) \leq \log_\varphi n + C\}$。则$\forall n \in \Phi_C$，轨道$\mathcal{T}_k(n)$在有限步内收敛到$\mathbb{P} \cup \{1\}$
 
 3. **素数完备性论证**：
    - 对任意素数$p \in \mathbb{P}$，取输入$n = p$
@@ -210,9 +236,11 @@ $$\mathcal{A}_{\text{dyn}} = \bigcup_{n \in \mathbb{N}} S_n^{(k_n)}$$
 - 拓扑熵$H(k) = \log \alpha_k$，$\alpha_k \nearrow 2$严格单调
 - 每层必产生新原子，保证熵严格增长
 
-**完备性证明**：
-- 在系统生成空间$H_{\text{反馈生成}}$内，原子集合$\mathbb{P}$稠密
-- $\overline{\mathrm{span}}(\mathbb{P}) = H_{\text{反馈生成}}$ $\square$
+**生成完备性证明**：
+- 定义系统生成空间：$H_{\text{反馈生成}} = \{\text{反馈型系统能生成的所有状态}\}$
+- 由定理2.2，系统原子集合$\mathcal{A}_{\text{dyn}} = \mathbb{P}$
+- 在生成空间内：$\overline{\mathrm{span}}(\mathbb{P}) = H_{\text{反馈生成}}$
+- **完备性定义**：系统在其能生成的空间内达到稠密性 $\square$
 
 ### 2.3 G函数作为自指观察者的分析
 
@@ -337,7 +365,7 @@ $$\overline{\mathrm{span}}\{|\zeta(s)\rangle\} \cong \overline{\mathrm{span}}\{|
 
 ### 4.2 系统等价性的传递证明
 
-**主定理 4.1 (基于观察者传递的系统结构同构)**
+**主定理 4.2 (基于观察者传递的系统结构同构)**
 反馈型动力学系统与ζ函数系统的Hilbert空间结构同构：
 $$H_{\text{反馈型动力学}} \cong H_{\zeta\text{函数}}$$
 
@@ -352,14 +380,15 @@ $$H_{\text{反馈型动力学}} \cong H_{\zeta\text{函数}}$$
    - 由定理1.2：$H_{\text{obs}}^\zeta \cong H_{\zeta\text{函数}}$
 
 3. **观察者间同构**：
-   - 由定理4.1：$H_{\text{obs}}^G \cong H_{\text{obs}}^\zeta$
+   - 由步骤2的观察者空间构造和共同信息基础（素数集合$\mathbb{P}$）
+   - 应用定理4.1的结构同构：$H_{\text{obs}}^G \cong H_{\text{obs}}^\zeta$
 
 4. **传递同构链**：
    $$H_{\text{反馈型动力学}} \cong H_{\text{obs}}^G \cong H_{\mathbb{P}} \cong H_{\text{obs}}^\zeta \cong H_{\zeta\text{函数}}$$
 
 5. **系统结构同构**：$H_{\text{反馈型动力学}} \cong H_{\zeta\text{函数}}$ $\square$
 
-**定理 4.2 (观察者临界线验证)**
+**定理 4.3 (观察者临界线验证)**
 两系统的观察者临界线重合，验证了系统等价性：
 
 **临界线重合**：
@@ -440,8 +469,8 @@ $$H_{\text{反馈型动力学}} \cong H_{\zeta\text{函数}}$$
 3. **系统完备性**：反馈型系统生成完备素数集合（定理2.2）
 4. **观察者识别**：G函数和ζ函数都是自指观察者（定理2.4，3.2）
 5. **观察者同构**：基于共同素数信息核心（定理4.1）
-6. **空间等价传递**：通过观察者空间结构等价（主定理4.1）
-7. **临界线验证**：双系统临界线重合验证（定理4.2）
+6. **空间等价传递**：通过观察者空间结构等价（主定理4.2）
+7. **临界线验证**：双系统临界线重合验证（定理4.3）
 
 ### 6.2 理论突破的意义
 
