@@ -142,48 +142,50 @@ $$\dim(\text{Im}(\hat{O}^n)) \text{单调递增} \Rightarrow \mathcal{H}(\hat{O}
 
 ## 2. 观察者理论的严格数学基础
 
-### 2.1 观察者算子的泛函分析定义
+### 2.1 观察者Hilbert空间的自洽定义
 
-**定义 2.1 (观察者作用域)**
-设$(\mathcal{S}, \|\cdot\|_\mathcal{S})$为输入Banach空间，$(\mathcal{R}, \|\cdot\|_\mathcal{R})$为输出Banach空间。
+**定义 2.1 (观察者Hilbert空间)**
+设$H_{\text{obs}}$为观察者自身的Hilbert空间，满足：
+1. **完备性**：$(H_{\text{obs}}, \langle\cdot,\cdot\rangle_{\text{obs}})$是完备的Hilbert空间
+2. **可分性**：$H_{\text{obs}}$是可分的（有可数正交基）
+3. **自包含性**：观察者的输入和输出都在$H_{\text{obs}}$中
 
 **定义 2.2 (自指观察者算子)**
-自指观察者是有界线性算子$\hat{O}: L^2(\mathcal{S}) \to L^2(\mathcal{R})$，满足：
+自指观察者算子$\hat{O}: H_{\text{obs}} \to H_{\text{obs}}$满足：
 1. **有界性**：$\|\hat{O}\|_{op} < \infty$
-2. **自指方程**：存在算子$\hat{\Phi}: L^2(\mathcal{R}) \to L^2(\mathcal{S})$使得
+2. **自指方程**：存在算子$\hat{\Phi}: H_{\text{obs}} \to H_{\text{obs}}$使得
    $$\hat{O} = \hat{O} \circ \hat{\Phi} \circ \hat{O}$$
-3. **非退化性**：$\text{ker}(\hat{O}) \neq L^2(\mathcal{S})$
+3. **非退化性**：$\text{ker}(\hat{O}) \neq H_{\text{obs}}$
+4. **自洽性**：$\text{Im}(\hat{O}) \subseteq H_{\text{obs}}$
 
-**定义 2.3 (观察者核心映射)**
-对自指观察者$\hat{O}$，定义核心映射$\phi: \mathcal{S} \to \mathcal{R}$：
-$$\phi(x) = (\hat{O}\delta_x)(x)$$
-其中$\delta_x$是$x$处的Dirac测度。
+**定义 2.3 (观察者状态向量)**
+观察者空间中的状态向量$|obs\rangle \in H_{\text{obs}}$表示观察者的特定观察状态，满足：
+$$\||obs\rangle\|_{\text{obs}} = 1$$
 
-**定义 2.4 (观察者数据空间)**
-观察者数据空间定义为核心映射的像：
-$$\mathcal{D}_{\text{obs}} = \text{Im}(\phi) = \{\phi(x) : x \in \mathcal{S}\} \subset \mathcal{R}$$
-
-**定义 2.5 (观察者Hilbert空间)**
-观察者Hilbert空间是观察者算子像空间的完备化：
-$$H_{\text{observer}} = \overline{\text{Im}(\hat{O})} = \overline{\text{span}}\{\hat{O}v : v \in L^2(\mathcal{S})\}$$
+**定义 2.4 (观察者操作的自洽性)**
+观察者在自己的Hilbert空间内进行自洽操作：
+$$\text{观察过程}: |obs_{\text{in}}\rangle \xrightarrow{\hat{O}} |obs_{\text{out}}\rangle$$
+其中$|obs_{\text{in}}\rangle, |obs_{\text{out}}\rangle \in H_{\text{obs}}$。
 
 ### 2.2 观察者临界线的数学理论
 
-**定义 2.6 (信息测度)**
-在自指观察者系统中，定义信息测度$\mu_I: \mathcal{P}(\mathcal{D}_{\text{obs}}) \to \mathbb{R}_+$：
-$$\mu_I(S) = \sum_{d \in S} \|\hat{O}^{-1}(d)\|_{L^2}^2$$
-其中$\hat{O}^{-1}(d) = \{v \in L^2(\mathcal{S}) : \hat{O}v = d\}$。
+**定义 2.5 (观察者Hilbert空间的信息测度)**
+在观察者Hilbert空间$H_{\text{obs}}$中，定义信息测度：
+$$\mu_{\text{obs}}: \mathcal{P}(H_{\text{obs}}) \to \mathbb{R}_+, \quad \mu_{\text{obs}}(S) = \sum_{v \in S} \|v\|_{\text{obs}}^2$$
 
-**定义 2.7 (观察者信息与系统信息)**
-- **观察者信息量**：$I_{\text{obs}} = \mu_I(\mathcal{D}_{\text{obs}})$
-- **系统总信息量**：$I_{\text{total}} = \|L^2(\mathcal{S})\|^2$（空间的$L^2$范数）
-- **系统剩余信息量**：$I_{\text{sys}} = I_{\text{total}} - I_{\text{obs}}$
+**定义 2.6 (观察者自指信息分解)**
+基于自指方程$\hat{O} = \hat{O} \circ \hat{\Phi} \circ \hat{O}$，定义：
+- **观察者直接信息**：$I_{\text{direct}} = \|\text{Im}(\hat{O})\|_{\text{obs}}^2$
+- **观察者递归信息**：$I_{\text{recursive}} = \|\text{Im}(\hat{O} \circ \hat{\Phi})\|_{\text{obs}}^2$
+- **信息平衡条件**：$I_{\text{direct}} = I_{\text{recursive}}$（自指完备性要求）
 
-**定义 2.8 (观察者临界线)**
-观察者临界线$\alpha$定义为观察者信息在总信息中的比例：
-$$\alpha = \frac{I_{\text{obs}}}{I_{\text{total}}}$$
+**定义 2.7 (观察者临界线)**
+观察者临界线$\alpha$定义为信息平衡点：
+$$\alpha = \frac{I_{\text{direct}}}{I_{\text{direct}} + I_{\text{recursive}}}$$
 
-**定理 2.1 (观察者临界线的普遍性)**
+当$I_{\text{direct}} = I_{\text{recursive}}$时，$\alpha = 1/2$。
+
+**定理 2.8 (观察者临界线的普遍性)**
 对任何自指完备系统，观察者临界线$\alpha = 1/2$。
 
 **证明（基于自指方程的信息分析）**：
