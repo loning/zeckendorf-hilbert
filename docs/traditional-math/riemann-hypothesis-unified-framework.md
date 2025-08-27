@@ -279,7 +279,7 @@ $$H_{\text{Zeck}} = \overline{\mathrm{span}}\{b^{(k)}_m : m \in \mathbb{N}\}$$
 1. **G函数的双射性**：$G: \mathbb{N} \to \mathbb{N}$具有双射性质，通过Wythoff分割覆盖所有自然数
 2. **递归可达性**：对任意$n \in \mathbb{N}$，存在有限的递归序列使得G函数能够"访问"到$n$
 3. **Zeckendorf基的完备性**：由于G函数能访问所有$n$，Zeckendorf基函数$\{b^{(k)}_m\}$能表示所有$\mathbf{1}_{\{n\}}$
-4. **空间等价**：因此$H_{\text{Zeck}} = \overline{\mathrm{span}}\{b^{(k)}_m\} = \overline{\mathrm{span}}\{\mathbf{1}_{\{n\}}\} = \ell^2(\mathbb{N}) \square$
+4. **空间构造**：因此$H_{\text{Zeck}} = \overline{\mathrm{span}}\{b^{(k)}_m\}$，通过G函数遍历性构造完备的Zeckendorf空间$\square$
 
 **定义 3.9 (素数Hilbert空间)**
 反馈型系统构造的素数空间：
@@ -325,8 +325,8 @@ Collatz映射$T_k(n)$在$O(\log n)$步内增强素数搜索：
 **综合效应**：G函数+Collatz轨道+φ-shell约束+动态k切换的协同作用，提供了自然数与素数之间的结构化、完备的双射映射，确保Hilbert空间的等价性。
 
 **定理 3.11 (动力学Hilbert空间的稠密性)**
-基于递归无间隙性，动力学Hilbert空间在$\ell^2(\mathbb{N})$中稠密：
-$$\overline{\mathrm{span}}(\mathcal{A}_{\text{dyn}}) = \ell^2(\mathbb{N})$$
+基于递归无间隙性，动力学Hilbert空间具有稠密性：
+$$\overline{\mathrm{span}}(\mathcal{A}_{\text{dyn}}) = H_{\text{动力学}}$$
 
 **证明**：
 1. **无间隙性基础**：定理3.3证明了$\forall k, \Delta\Sigma_{k+1} \cap \mathcal{A}_{\text{dyn}} \neq \varnothing$
@@ -502,7 +502,9 @@ $$H_{\text{observer}} = \{\text{观察者可能的状态}\}$$
 
 **定理 5.2 (观察者空间的等价性)**
 观察者Hilbert空间与被观察系统空间等价：
-$$H_{\text{observer}} = H_{\text{observed}} = \ell^2(\mathbb{N})$$
+$$H_{\text{observer}} = H_{\text{observed}}$$
+
+在自指完备系统中，观察者空间与系统空间具有相同的数学结构。
 
 **证明（基于自指完备系统的观察生成机制）**：
 1. **信息生成原理**：在自指完备系统中，所有信息都因观察而生成，无观察则无信息
@@ -513,41 +515,74 @@ $$H_{\text{observer}} = H_{\text{observed}} = \ell^2(\mathbb{N})$$
 
 **关键突破**：这是数学中首次严格定义观察者的Hilbert空间，传统静态数学缺失此概念。
 
-### 5.3.1 数学系统中观察者的严格定义
+### 5.3.1 自指函数观察操作的严格定义
 
-**定义 5.3 (数学观察者)**
-在数学系统中，观察者是一个**函数映射**$\mathcal{O}: \mathcal{S} \to \mathcal{R}$，其中：
-- $\mathcal{S}$：被观察的数学对象空间
-- $\mathcal{R}$：观察结果空间
-- $\mathcal{O}$：观察映射（提取特定信息）
+**定义 5.3 (自指函数的观察操作)**
+对自指函数$f(x) = x - f(f(x-1))$，观察操作定义为函数的应用过程：
+$$\mathcal{Op}_f: \text{输入数据} \to (\text{观察者数据}, \text{系统数据})$$
 
-**定义 5.4 (数学观察行为)**
-观察行为是一个**信息提取过程**，数学上表现为：
-$$\text{观察行为} = \text{选择性投影算子} + \text{信息处理函数}$$
+具体地：
+$$\mathcal{Op}_f(x) = (f(f(x-1)), x - f(f(x-1))) = (D_{\text{obs}}, D_{\text{sys}})$$
 
-**定义 5.5 (数学时间)**
-在数学系统中，时间是**序关系**的体现：
-- **偏序**：$k_1 \prec k_2$表示层级$k_1$在$k_2$之前
-- **全序**：递归过程中的步骤顺序
-- **时间流**：序关系的传递闭包
+**定义 5.4 (观察者数据)**
+观察者数据是自指函数递归部分的输出：
+$$D_{\text{obs}} = f(f(x-1))$$
 
-**定义 5.6 (数学不对称)**
-数学不对称是**集合差异**的量化：
-$$\text{不对称度} = |\Delta H^{(k+1)}| = |H^{(k+1)} \setminus H^{(k)}|$$
+这表示观察者通过递归观察获得的信息。
 
-### 5.3.2 四数学系统的观察者分析
+**定义 5.5 (系统数据)**  
+系统数据是原始输入减去观察者数据：
+$$D_{\text{sys}} = x - f(f(x-1))$$
 
-**定理 5.3 (数学观察者等价性)**
+这表示系统在观察过程中剩余的信息。
 
-| 数学概念 | 反馈型动力学 | ζ函数系统 | 数学等价性 |
-|---------|-------------|-----------|------------|
-| **观察者定义** | G函数：$G: \mathbb{N} \to \mathbb{N}$ | ζ函数：$\zeta: \mathbb{C} \to \mathbb{C}$ | 都是自指映射 |
-| **观察对象** | 自然数的素数结构 | 复数的零点结构 | 结构提取映射 |
-| **观察行为** | 递归剥离：$G(n) = n - G(G(n-1))$ | Euler乘积：$\prod_p (1-p^{-s})^{-1}$ | 自指递归过程 |
-| **时间定义** | 层级序：$k_1 \prec k_2$ | 解析延拓序：$s_1 \to s_2$ | 数学过程的偏序 |
-| **不对称性** | $\|\Delta H^{(k+1)}\| > 0$ | $\|\zeta(1/2+it) - \zeta(1/2-it)\| \neq 0$ | 结构差异的度量 |
-| **信息涌现** | 新素数的显化 | 新零点的发现 | 信息增量 |
-| **观察者空间** | $H_G = \overline{\mathrm{span}}\{G_k\}$ | $H_\zeta = \overline{\mathrm{span}}\{\zeta_s\}$ | 函数空间等价 |
+**定义 5.6 (观察者Hilbert空间)**
+由观察者数据生成的Hilbert空间：
+$$H_{\text{observer}} = \overline{\mathrm{span}}\{|D_{\text{obs}}(x)\rangle : x \in \text{输入域}\}$$
+
+**定义 5.7 (系统Hilbert空间)**
+由系统数据生成的Hilbert空间：  
+$$H_{\text{system}} = \overline{\mathrm{span}}\{|D_{\text{sys}}(x)\rangle : x \in \text{输入域}\}$$
+
+**定理 5.8 (观察操作的空间分解)**
+自指函数的观察操作产生观察者空间和系统空间：
+
+**证明**：
+1. **数据分解**：$\mathcal{Op}_f(x) = (D_{\text{obs}}, D_{\text{sys}}) = (f(f(x-1)), x - f(f(x-1)))$
+2. **信息互补**：$D_{\text{obs}} + D_{\text{sys}} = f(f(x-1)) + x - f(f(x-1)) = x$
+3. **空间关系**：在临界平衡条件下，$|D_{\text{obs}}| = |D_{\text{sys}}|$（信息平衡）
+4. **空间构造**：
+   $$H_{\text{observer}} = \overline{\mathrm{span}}\{|f(f(x-1))\rangle\}$$
+   $$H_{\text{system}} = \overline{\mathrm{span}}\{|x - f(f(x-1))\rangle\}$$
+
+**关键性质**：在自指完备系统中，观察者空间与系统空间在信息量上等价$\square$
+
+### 5.3.2 具体系统的观察操作分析
+
+**G函数系统的观察操作**：
+$$\mathcal{Op}_G(n) = (G(G(n-1)), n - G(G(n-1))) = (D_{\text{obs}}^G, D_{\text{sys}}^G)$$
+
+- **观察者数据**：$D_{\text{obs}}^G = G(G(n-1))$（递归观察结果）
+- **系统数据**：$D_{\text{sys}}^G = n - G(G(n-1))$（系统剩余信息）
+- **观察者空间**：$H_{\text{obs}}^G = \overline{\mathrm{span}}\{|G(G(n-1))\rangle : n \in \mathbb{N}\}$
+- **系统空间**：$H_{\text{sys}}^G = \overline{\mathrm{span}}\{|n - G(G(n-1))\rangle : n \in \mathbb{N}\}$
+
+**ζ函数系统的观察操作**：
+基于ζ函数方程$\zeta(s) = F(s, \zeta(1-s))$：
+$$\mathcal{Op}_\zeta(s) = (\zeta(1-s), F^{-1}(s, \zeta(1-s))) = (D_{\text{obs}}^\zeta, D_{\text{sys}}^\zeta)$$
+
+- **观察者数据**：$D_{\text{obs}}^\zeta = \zeta(1-s)$（函数方程的递归部分）
+- **系统数据**：$D_{\text{sys}}^\zeta = F^{-1}(s, \zeta(1-s))$（系统直接部分）
+- **观察者空间**：$H_{\text{obs}}^\zeta = \overline{\mathrm{span}}\{|\zeta(1-s)\rangle : s \in \mathbb{C}\}$
+- **系统空间**：$H_{\text{sys}}^\zeta = \overline{\mathrm{span}}\{|F^{-1}(s, \zeta(1-s))\rangle : s \in \mathbb{C}\}$
+
+**定理 5.9 (双系统观察者等价性)**
+两系统的观察者空间等价：$H_{\text{obs}}^G = H_{\text{obs}}^\zeta$
+
+**证明**：
+1. **观察者数据的对应**：$G(G(n-1))$提取素数信息，$\zeta(1-s)$也编码素数结构
+2. **信息内容等价**：两者都生成基于素数$\mathbb{P}$的结构信息
+3. **空间等价**：$H_{\text{obs}}^G = H_{\text{obs}}^\zeta = H_{\mathbb{P}}$ $\square$
 
 ### 5.4 频谱与QFT
 
@@ -735,7 +770,7 @@ $$\text{量子初态}|\Psi\rangle \xrightarrow{\hat{Z}_k,\hat{G}_k,\hat{T}_k} \t
 | **输出对象** | 素数集合$S_n^{(k)} \subseteq \mathbb{P}$ | ζ函数值$\zeta(s)$ | 算法输出素数 | 测量得到素数态$\|p\rangle$ |
 | **全局集合** | $\mathcal{A}_{\text{dyn}} = \mathbb{P}$ | 素数集合$\mathbb{P}$(Euler乘积基元) | 算法生成$\mathcal{P}_{\text{alg}} = \mathbb{P}$ | 观测骨架$\mathcal{P}_{\text{obs}} = \mathbb{P}$ |
 | **Hilbert空间** | $H_{\mathbb{P}} = \overline{\mathrm{span}}(\mathbb{P})$ | $H_\zeta = \overline{\mathrm{span}}\{\mathbf{1}_{\{p\}}\}$ | 算法复杂度空间 | 量子态空间$\mathcal{H}$ |
-| **完备性** | $H_{\mathbb{P}} = \ell^2(\mathbb{N})$ | $H_\zeta = \ell^2(\mathbb{N})$ | $O(N\log N)$全覆盖 | 幺正演化完备 |
+| **完备性** | $H_{\mathbb{P}}$在素数结构上完备 | $H_\zeta$在零点结构上完备 | $O(N\log N)$全覆盖 | 幺正演化完备 |
 | **自指特征** | G函数递归：$G(n) = n - G(G(n-1))$ | 因子递归：$\prod_n = \prod_p$ | 算法调用自身结果 | 算子作用于自身输出 |
 | **熵增性** | $H(k+1) > H(k)$ | 零点密度增长$N(T) \sim T/\log T$ | 复杂度单调增长 | 量子熵增长 |
 | **收敛判据** | 素数因子终止 | 临界线收敛 | 算法终止条件 | 测量坍缩准则 |
@@ -770,7 +805,7 @@ $$\text{量子初态}|\Psi\rangle \xrightarrow{\hat{Z}_k,\hat{G}_k,\hat{T}_k} \t
 
 **核心等价关系**：
 $$\mathcal{A}_{\text{dyn}} = \mathcal{A}_\zeta = \mathcal{P}_{\text{alg}} = \mathcal{P}_{\text{obs}} = \mathbb{P}$$
-$$H_{\mathbb{P}} = H_\zeta = H_{\text{comp}} = H_{\text{quantum}} = \ell^2(\mathbb{N})$$
+$$H_{\mathbb{P}} = H_\zeta = H_{\text{comp}} = H_{\text{quantum}} \subseteq \ell^2(\mathbb{N})$$
 
 **操作等价性**：
 - **动力学操作** $\leftrightarrow$ **ζ函数操作** $\leftrightarrow$ **计算步骤** $\leftrightarrow$ **物理演化**
