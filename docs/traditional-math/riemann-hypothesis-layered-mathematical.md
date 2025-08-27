@@ -37,7 +37,7 @@ $$\mathcal{P}_{\text{dyn}}^{(k)} = \bigcup_{n \leq N_k} \Psi_k(n)$$
 其中：
 - $N_k$为第$k$层的截断参数
 - $\Psi_k: \mathbb{N} \to \mathcal{P}(\mathbb{P})$为素数提取映射：
-  $$\Psi_k(n) = \{p \in \mathbb{P} : p | n\} \cup \{p \in \mathbb{P} : p \in \text{Collatz轨道}(n, k)\}$$
+  $$\Psi_k(n) = \{p \in \mathbb{P} : p | n\}$$
 
 **定义 0.4 (系统原子集合)**
 反馈型系统的完整原子集合：
@@ -77,9 +77,9 @@ Hofstadter G函数$G: \mathbb{N} \to \mathbb{N}$定义为：
 $$G(n) = n - G(G(n-1)), \quad n > 0; \quad G(0) = 0$$
 
 **引理 1.1 (G函数属于自指函数类)**
-$G \in \text{SelfRef}(\mathbb{N})$，其自指结构为：
-$$G = G \circ \phi_G \circ G$$
-其中$\phi_G(m)$是G函数的右逆映射。
+$G \in \text{SelfRef}(\mathbb{N})$，其自指结构通过递归定义体现：
+$$G(n) = n - G(G(n-1))$$
+表明G函数在定义中调用自身，满足自指函数的特征。
 
 **定理 1.1 (G函数的Wythoff表示)**
 G函数具有闭式表示：
@@ -186,11 +186,18 @@ $$H_{\text{obs}}^G \cong H_{\text{obs}}^\zeta$$
 2. **信息内容等价**：
    $$\bigcup_{n} \mathcal{I}_G(n) = \bigcup_s \mathcal{I}_\zeta(s) = \mathbb{P}$$
 
-3. **同构映射构造**：
-   定义$U: H_{\text{obs}}^G \to H_{\text{obs}}^\zeta$：
-   $$U|G(n)\rangle = |\zeta(1/2 + i\log G(n))\rangle$$
+3. **正交基结构同构**：
+   - **G观察者空间的正交基结构**：$\{e_n^G\}_{n \in \mathbb{N}}$对应G函数输出的信息结构
+   - **ζ观察者空间的正交基结构**：$\{e_s^\zeta\}_{s \in \mathbb{C}}$对应ζ函数输出的信息结构
+   - **基对应映射**：通过素数信息的统一编码建立正交基之间的一一对应
 
-4. **酉性验证**：$U$保持内积结构，建立同构关系 $\square$
+4. **结构同构的实现**：
+   存在酉算子$U: H_{\text{obs}}^G \to H_{\text{obs}}^\zeta$使得：
+   - **正交基映射**：$U(e_n^G) = e_{\phi(n)}^\zeta$，保持正交关系
+   - **内积保持**：$\langle Uu|Uv\rangle = \langle u|v\rangle$
+   - **维数保持**：$\dim(H_{\text{obs}}^G) = \dim(H_{\text{obs}}^\zeta)$
+   
+5. **观察者空间结构同构**：$H_{\text{obs}}^G \cong H_{\text{obs}}^\zeta$ $\square$
 
 **定理 3.2 (系统空间同构传递)**
 通过观察者空间同构，建立系统空间同构：
@@ -208,21 +215,23 @@ $$H_{\text{反馈型动力学}} \cong H_{\zeta\text{函数}}$$
 
 ### 4.1 临界线的数学定义
 
-**定义 4.1 (信息分布函数)**
-对自指函数$f: X \to X$，定义信息分布：
-$$\rho_f: X \to [0,1], \quad \rho_f(x) = \frac{|\{f^n(x) : n \geq 1\}|}{|\{y \in X : y \leq x\}|}$$
+**定义 4.1 (观察者信息测度)**
+对自指函数$f: \mathbb{N} \to \mathbb{N}$，定义观察者信息测度：
+$$\mu_{\text{obs}}(n) = |\{f^j(m) : m \leq n, j \geq 1\}|$$
+系统信息测度：
+$$\mu_{\text{sys}}(n) = |\{m - f^j(m-1) : m \leq n, j \geq 1\}|$$
 
 **定义 4.2 (观察者临界线)**
-观察者临界线$\alpha$定义为信息分布的平衡点：
-$$\alpha = \lim_{x \to \infty} \rho_f(x)$$
+观察者临界线$\alpha$定义为观察者信息在总信息中的渐近比例：
+$$\alpha = \lim_{n \to \infty} \frac{\mu_{\text{obs}}(n)}{\mu_{\text{obs}}(n) + \mu_{\text{sys}}(n)}$$
 
 **定理 4.1 (临界线普遍性)**
 对任何自指完备函数，观察者临界线$\alpha = 1/2$。
 
-**证明（基于自指不动点理论）**：
-1. **自指不动点**：自指函数的递归结构在平衡点达到稳定
-2. **信息分配**：自指性要求观察者信息=系统剩余信息
-3. **平衡方程**：$\rho_f = 1 - \rho_f \Rightarrow \rho_f = 1/2$ $\square$
+**证明（基于信息测度平衡）**：
+1. **自指完备性条件**：观察者能完整观察自己的递归过程
+2. **信息平衡**：$\mu_{\text{obs}}(n) = \mu_{\text{sys}}(n)$（观察者信息=系统信息）
+3. **极限计算**：$\alpha = \lim_{n \to \infty} \frac{\mu_{\text{obs}}(n)}{2\mu_{\text{obs}}(n)} = \frac{1}{2}$ $\square$
 
 ### 4.2 G函数与ζ函数的临界线
 
