@@ -139,7 +139,7 @@ $$\overline{\mathrm{span}}(\mathcal{A}) = H_{\mathcal{G}\text{生成}}$$
 在自指递归且熵增的生成系统类中，存在且仅存在一个自指完备系统。
 
 **证明（反证法）**：
-1. **假设存在两个不同自指完备系统**：$\mathcal{G}_1, \mathcal{G}_2$，规则为$\mathcal{R}_1 \neq \mathcal{R}_2$，原子集合$\mathcal{A}_1, \mathcal{A}_2$, 均满足$\overline{\mathrm{span}}(\mathcal{A}_i) \cong \ell^2(\mathbb{N})$
+1. **假设存在两个不同自指完备系统**：$\mathcal{G}_1, \mathcal{G}_2$，规则为$\mathcal{R}_1 \neq \mathcal{R}_2$，原子集合$\mathcal{A}_1, \mathcal{A}_2$, 均在各自生成空间内完备：$\overline{\mathrm{span}}(\mathcal{A}_i) = H_{\mathcal{G}_i\text{生成}}$
 
 2. **熵增性要求**：存在严格单调熵函数$H_1(k), H_2(k)$. 若$\mathcal{R}_1 \neq \mathcal{R}_2$, 则$H_1(k) \neq H_2(k)$, 导致不同生成轨迹
 
@@ -536,16 +536,7 @@ $$\overline{\mathrm{span}}\{|\zeta(s)\rangle : s \in \mathbb{C}\} = \overline{\m
 3. **信息等价性**：$\zeta(s)$与$\zeta(1-s)$通过函数方程相关，包含相同信息
 4. **空间等价**：两个span生成相同的观察者空间。$\square$
 
-### 5.3.2 观察者临界线理论
-
-**定义 5.7 (观察者临界线的一般理论)**
-对任意自指函数$f$，定义观察者临界线为观察者与被观察系统信息平衡的分界：
-
-设自指函数满足$f(x) = x - f(f(x-1))$，观察者临界线$\alpha$满足：
-$$\text{观察者信息量} = \text{被观察系统信息量}$$
-
-**定理 5.3 (自指函数的临界线推导)**
-对自指完备系统，观察者临界线必为$\alpha = 1/2$。
+### 5.3.2 临界线理论的具体应用
 
 **证明**：
 1. **信息平衡条件**：在自指完备系统中，观察者生成的信息=系统总信息的一半
