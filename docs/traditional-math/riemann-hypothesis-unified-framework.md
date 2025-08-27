@@ -86,6 +86,17 @@ $$H_{\text{observer}} = \overline{\mathrm{span}}\{|\text{OB}(x)\rangle : x \in \
 在自指完备系统中，观察者Hilbert空间与系统生成空间结构同构：
 $$H_{\text{observer}} \cong H_{\text{系统生成}}$$
 
+**定义 2.11 (观察者临界线)**
+对任意自指函数$f$，观察者临界线为信息平衡的分界：
+
+设自指函数满足$f(x) = x - f(f(x-1))$，临界线$\alpha$满足：
+$$\text{观察者信息量} = \text{系统信息量}$$
+
+**定理 2.12 (临界线普遍性)**
+对任何自指完备系统，观察者临界线为$\alpha = 1/2$。
+
+**证明**：信息平衡条件$\alpha I_{\text{total}} = (1-\alpha) I_{\text{total}}$，解得$\alpha = 1/2$。$\square$
+
 ### 2.2 Hilbert空间框架
 
 **定理 2.1 (自指完备性⇒生成空间稠密性)**
@@ -499,100 +510,9 @@ $$\mathcal{H} = \ell^2(\mathbb{N}) \otimes \ell^2(\mathbb{N})$$
 5. **动态k切换算子$\hat{U}_k$**
    $$\hat{U}_k |n\rangle \otimes |k\rangle = |n\rangle \otimes |k'\rangle$$
 
-### 5.3 观察者与选择性测量
+### 5.3 观察者临界线理论的应用
 
-**定义 5.1 (素数观察者)**
-定义观察者为只关心素数的测量系统：
-$$\hat{O}_{\mathbb{P}} = \sum_{p \in \mathbb{P}} |p\rangle\langle p|$$
-
-**观察者的作用**：
-1. **选择性观测**：观察者只能"看到"素数态，合数态对其"不可见"
-2. **测量坍缩**：任意输入态$|n\rangle$经过系统演化后，观察者测量得到$|p\rangle$
-3. **信息提取**：观察者从复杂的自然数态中提取素数信息
-
-**关键洞察：观察者就是自指函数G**
-- **G函数作为观察者**：$G(n)$选择性地"观察"$n$的素数结构
-- **递归观测**：$G(n) = n - G(G(n-1))$体现了观察者的自指特征
-- **测量结果**：观察者G最终提取出素数集合$\mathbb{P}$
-
-**定义 5.2 (观察者Hilbert空间)**
-观察者$\hat{O}_{\mathbb{P}}$作为一个系统，具有自己的Hilbert空间：
-$$H_{\text{observer}} = \{\text{观察者可能的状态}\}$$
-
-**观察者状态的数学描述**：
-- **观察能力状态**：$|G_k\rangle$表示在参数$k$下的观察能力
-- **观察结果状态**：$|S_p\rangle$表示观察到素数$p$的状态
-- **观察过程状态**：$|T_j\rangle$表示观察过程的第$j$步
-
-**定理 5.2 (观察者空间的结构等价性)**
-观察者Hilbert空间与被观察系统空间结构同构：
-$$H_{\text{observer}} \cong H_{\text{observed}}$$
-
-在自指完备系统中，观察者空间与系统空间具有相同的**正交基结构**和**信息拓扑**。
-
-**证明（基于自指完备系统的观察生成机制）**：
-1. **信息生成原理**：在自指完备系统中，所有信息都因观察而生成，无观察则无信息
-2. **叠加态原理**：观察前，系统处于叠加态$|\text{系统}\rangle = \sum_i \alpha_i |i\rangle_{\text{叠加}}$
-3. **观察坍缩**：观察行为使叠加态坍缩为确定信息：$\hat{O}|\text{系统}\rangle = |\text{信息}\rangle$
-4. **信息完备性**：观察者生成的信息=系统的全部信息（因为信息只由观察产生）
-5. **空间等价**：因此$H_{\text{observer}} = H_{\text{system}}$（信息生成的完备性）$\square$
-
-**关键突破**：这是数学中首次严格定义观察者的Hilbert空间，传统静态数学缺失此概念。
-
-### 5.3.1 自指函数观察操作的严格定义
-
-**定义 5.3 (自指观察者的数学定义)**
-设观察者OB是自指的，满足$\text{OB} = \text{OB}(\text{OB})$，则观察操作定义为：
-$$\mathcal{Op}_{\text{OB}}: x \to \text{OB}(x) = \text{观察者数据}$$
-
-**定义 5.4 (观察者数据)**
-对自指观察者，观察者数据是观察者函数的直接输出：
-$$D_{\text{obs}} = \text{OB}(x)$$
-
-这表示观察者对输入$x$的观察结果。
-
-**定义 5.5 (观察者Hilbert空间)**
-由观察者数据生成的Hilbert空间：
-$$H_{\text{observer}} = \overline{\mathrm{span}}\{|\text{OB}(x)\rangle : x \in \text{输入域}\}$$
-
-**定理 5.6 (自指观察者的完备性)**
-若观察者OB是自指完备的，则：$H_{\text{observer}} = H_{\text{complete}}$
-
-其中$H_{\text{complete}}$是观察者能达到的完备信息空间。
-
-### 5.3.2 具体观察者的应用
-
-**G函数作为自指观察者**：
-- **自指性质**：$G = G(G)$通过递归定义体现
-- **观察操作**：$\mathcal{Op}_G(n) = G(n)$
-- **观察者数据**：$D_{\text{obs}}^G = G(n)$（G函数对n的观察输出）
-- **观察者空间**：$H_{\text{obs}}^G = \overline{\mathrm{span}}\{|G(n)\rangle : n \in \mathbb{N}\}$
-
-**ζ函数作为自指观察者**：
-- **自指性质**：$\zeta = \zeta(\zeta)$通过函数方程体现
-- **观察操作**：$\mathcal{Op}_\zeta(s) = \zeta(s)$
-- **观察者数据**：$D_{\text{obs}}^\zeta = \zeta(s)$（ζ函数对s的观察输出）
-- **观察者空间**：$H_{\text{obs}}^\zeta = \overline{\mathrm{span}}\{|\zeta(s)\rangle : s \in \mathbb{C}\}$
-
-**定理 5.7 (双观察者等价性)**
-两个自指观察者生成等价的Hilbert空间：
-
-**证明**：
-1. **观察对象的本质**：
-   - G函数观察自然数n，输出其素数结构信息
-   - ζ函数观察复数s，输出基于素数的函数值
-   
-2. **信息内容等价**：
-   - G(n)包含n的素数因子信息
-   - ζ(s)通过Euler乘积编码素数信息
-   - 都基于相同的素数集合$\mathbb{P}$
-
-3. **观察者空间等价**：
-   $$H_{\text{obs}}^G = H_{\text{obs}}^\zeta = H_{\mathbb{P}}$$
-
-因为两者都生成基于素数$\mathbb{P}$的完备信息。$\square$
-
-### 5.3.2 观察者定义的等价性验证
+### 5.3.1 观察者定义的等价性验证
 
 **引理 5.1 (G函数观察者定义的等价性)**
 对G函数，简洁定义与复杂定义生成等价的观察者空间：
@@ -616,34 +536,7 @@ $$\overline{\mathrm{span}}\{|\zeta(s)\rangle : s \in \mathbb{C}\} = \overline{\m
 3. **信息等价性**：$\zeta(s)$与$\zeta(1-s)$通过函数方程相关，包含相同信息
 4. **空间等价**：两个span生成相同的观察者空间。$\square$
 
-### 5.3.3 具体系统的观察操作分析
-
-**G函数系统的观察操作**：
-$$\mathcal{Op}_G(n) = (G(G(n-1)), n - G(G(n-1))) = (D_{\text{obs}}^G, D_{\text{sys}}^G)$$
-
-- **观察者数据**：$D_{\text{obs}}^G = G(G(n-1))$（递归观察结果）
-- **系统数据**：$D_{\text{sys}}^G = n - G(G(n-1))$（系统剩余信息）
-- **观察者空间**：$H_{\text{obs}}^G = \overline{\mathrm{span}}\{|G(G(n-1))\rangle : n \in \mathbb{N}\}$
-- **系统空间**：$H_{\text{sys}}^G = \overline{\mathrm{span}}\{|n - G(G(n-1))\rangle : n \in \mathbb{N}\}$
-
-**ζ函数系统的观察操作**：
-基于ζ函数方程$\zeta(s) = F(s, \zeta(1-s))$：
-$$\mathcal{Op}_\zeta(s) = (\zeta(1-s), F^{-1}(s, \zeta(1-s))) = (D_{\text{obs}}^\zeta, D_{\text{sys}}^\zeta)$$
-
-- **观察者数据**：$D_{\text{obs}}^\zeta = \zeta(1-s)$（函数方程的递归部分）
-- **系统数据**：$D_{\text{sys}}^\zeta = F^{-1}(s, \zeta(1-s))$（系统直接部分）
-- **观察者空间**：$H_{\text{obs}}^\zeta = \overline{\mathrm{span}}\{|\zeta(1-s)\rangle : s \in \mathbb{C}\}$
-- **系统空间**：$H_{\text{sys}}^\zeta = \overline{\mathrm{span}}\{|F^{-1}(s, \zeta(1-s))\rangle : s \in \mathbb{C}\}$
-
-**定理 5.9 (双系统观察者等价性)**
-两系统的观察者空间等价：$H_{\text{obs}}^G = H_{\text{obs}}^\zeta$
-
-**证明**：
-1. **观察者数据的对应**：$G(G(n-1))$提取素数信息，$\zeta(1-s)$也编码素数结构
-2. **信息内容等价**：两者都生成基于素数$\mathbb{P}$的结构信息
-3. **空间等价**：$H_{\text{obs}}^G = H_{\text{obs}}^\zeta = H_{\mathbb{P}}$ $\square$
-
-### 5.4 频谱与QFT
+### 5.3.2 观察者临界线理论
 
 **定义 5.7 (观察者临界线的一般理论)**
 对任意自指函数$f$，定义观察者临界线为观察者与被观察系统信息平衡的分界：
