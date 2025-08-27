@@ -569,13 +569,16 @@ $$\text{观察者信息量} = \text{被观察系统信息量}$$
    - 直接部分：$x$（原始信息）
    - 递归部分：$f(f(x-1))$（观察者信息）
 
-3. **平衡点计算**：
-   - 设信息平衡点为$\alpha$，则：$\alpha \cdot I_{\text{total}} + (1-\alpha) \cdot I_{\text{total}} = I_{\text{total}}$
-   - 观察者信息：$\alpha \cdot I_{\text{total}}$
-   - 系统信息：$(1-\alpha) \cdot I_{\text{total}}$
-   - 平衡条件：$\alpha = 1-\alpha$
+3. **临界平衡条件**：
+   - 在自指完备系统中，观察者与被观察系统的信息量必须平衡
+   - 设观察者信息占比为$\alpha$，则系统信息占比为$(1-\alpha)$
+   - 信息守恒：$\alpha \cdot I_{\text{total}} + (1-\alpha) \cdot I_{\text{total}} = I_{\text{total}}$（恒成立）
+   - **平衡条件**：观察者信息=系统信息，即$\alpha \cdot I_{\text{total}} = (1-\alpha) \cdot I_{\text{total}}$
 
-4. **临界线解**：$\alpha = 1/2$ $\square$
+4. **临界线计算**：
+   - 从平衡条件：$\alpha = 1-\alpha$
+   - 解得：$2\alpha = 1$
+   - 因此：$\alpha = 1/2$ $\square$
 
 **推论 5.4 (G函数的临界线)**
 G函数作为自指函数，其观察者临界线为$\Re = 1/2$。
