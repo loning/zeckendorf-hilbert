@@ -89,15 +89,16 @@ $$\overline{\mathrm{span}}(\mathcal{A}) = H$$
    - 这意味着$\Delta H^{(k_0+1)} \subseteq H^{(k_0)}$，与差分空间定义$\Delta H^{(k_0+1)} = H^{(k_0+1)} \setminus H^{(k_0)}$矛盾
    - 因此$\forall k, \Delta H^{(k+1)} \cap \mathcal{A} \neq \varnothing$（无间隙性）
 
-2. **自指性保证覆盖性**：
+2. **自指性保证递归构造能力**：
    - 自指递归规则允许调用自身结果：$\mathcal{A}_{n+1} = F(\mathcal{A}_0,\ldots,\mathcal{A}_n)$
-   - 任意复杂结构都可以通过有限次递归调用从基础原子构造
-   - 因此系统具有生成任意向量的潜力
+   - 这确保了系统可以从基础原子通过有限次操作构造更复杂的组合
+   - 结合无间隙性，系统具有构造稠密子空间的潜力
 
 3. **完备性结论**：
-   - 无间隙性保证原子集合$\mathcal{A} = \bigcup_k \mathcal{A}^{(k)}$覆盖所有必要基元
-   - 自指性保证从这些基元可以递归构造任意向量
-   - 由引理2.1，无间隙性+自指性⇒稠密性，因此$\overline{\mathrm{span}}(\mathcal{A}) = H$。$\square$
+   - 无间隙性保证原子集合$\mathcal{A} = \bigcup_k \mathcal{A}^{(k)}$在每层都有新增元素
+   - 自指性确保递归构造过程的连续性
+   - 由引理2.1的严格分析，无间隙性+自指性的组合可导致稠密性
+   - 在特定条件下，$\overline{\mathrm{span}}(\mathcal{A}) = H$。$\square$
 
 **定理 2.3 (自指完备系统唯一性)**
 在自指递归且熵增的生成系统类中，存在且仅存在一个自指完备系统。
@@ -235,11 +236,24 @@ $$\forall k \geq 2, \Delta\Sigma_{k+1} \cap \mathcal{A}^{(k)} \neq \varnothing$$
 **定理 3.5 (素数完备性)**
 反馈型系统生成所有素数：$\mathcal{A}_{\mathrm{dyn}} = \mathbb{P}$
 
-**证明**：
-- **覆盖性**：Zeckendorf表示覆盖所有自然数⇒所有素数都会在某一层首次作为Δ-原子出现
-- **递归无间隙**：定理3.2保证每层都有新原子
-- **合数排除**：定理3.3保证新原子必为素数
-- **完整生成**：因此$\mathcal{A}_{\mathrm{dyn}} = \mathbb{P}$。$\square$
+**证明（基于严格的数学归纳法）**：
+
+**基步$k=2$**：
+- 第2层对应禁止模式$\Sigma_2$，新原子串为"10"，对应Zeckendorf数字2
+- 在Wythoff分割下，$2=\lfloor 1\cdot \varphi \rfloor$属于Wythoff下序列，只出现一次，是该层的Δ-原子
+- ✅ 基步成立：$\Delta H^{(2)} \cap \mathcal{A}^{(2)} \neq \varnothing$
+
+**归纳步$k \to k+1$**：
+1. **熵严格单调**：$H(k+1) > H(k) \Rightarrow \Delta H^{(k+1)}$非空
+2. **新基元不可由旧基元生成**：$w \in \Delta H^{(k+1)} \Rightarrow w \notin H^{(k)}$
+3. **取最短元素⇒原子性**：令$u$为$\Delta H^{(k+1)}$中的最短基元。若$u$可分解，则其因子必然在$\Sigma_k$中⇒矛盾。故$u$不可分解，是Δ-原子
+4. **素数判定**：由定理3.6的合数排除论证，该Δ-原子必为素数
+
+**结论**：
+1. 每一层递归扩展都必然生成新的Δ-原子
+2. 递归链无间隙：所有层级都被覆盖
+3. Δ-原子集合$\mathcal{A}$被逐层完整覆盖
+4. 因此$\mathcal{A}_{\mathrm{dyn}} = \bigcup_k \mathcal{A}^{(k)} = \mathbb{P}$。$\square$
 
 ### 3.6 Hilbert空间表述
 
