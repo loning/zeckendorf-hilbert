@@ -11,7 +11,7 @@
 在物理层面，系统可解释为量子Hilbert空间上的演化：k-参数对应量子叠加态，熵约束对应退相干过程，素数态对应测量坍缩，频谱分析对应量子傅立叶变换。
 
 基于自指完备系统理论，我们建立了新的等价判据：
-$$RH \Longleftrightarrow H_{\text{dyn}} = H_\zeta$$
+$$RH \Longleftrightarrow H_{\mathbb{P}} = H_\zeta$$
 
 本研究提供了理解黎曼假设的跨学科框架，将数论结构、算法理论和量子物理统一起来，为相关领域的进一步研究提供了新的理论基础。
 
@@ -149,7 +149,12 @@ $$N_k^{\mathrm{eff}} = \min(N_k, \theta(k)), \quad \theta(k) = c \cdot k, \quad 
 
 反馈限制避免低层过密，确保熵增长近似线性：$H(k) \approx \log (c \cdot k)$。
 
-**定义 3.4 (动态k切换规则)**
+**定义 3.4 (φ-shell熵约束)**
+φ-shell是基于黄金比例φ的熵约束机制：
+$$\text{φ-shell约束} = \{n : h(n) \leq \log_\varphi n + C\}$$
+其中$\varphi = (1+\sqrt{5})/2$是黄金比例，用于控制系统演化的熵增边界。
+
+**定义 3.5 (动态k切换规则)**
 对每步输入$n$，若输出素数集为$S_n^{(k)}$，更新$k$：
 $$k_{t+1} = \begin{cases}
 \min(n,10), & n \in \mathbb{P} \\
@@ -292,7 +297,7 @@ $$H_\zeta(k) = \log|\{p \in \mathbb{P} : p \leq p_k\}| = \log k$$
 反馈型动力学系统和ζ函数系统都基于素数集合$\mathbb{P}$：
 
 **直接等价**：
-- **反馈型动力学**：$\mathcal{P}_{\text{dyn}} = \mathbb{P}$（定理3.4）
+- **反馈型动力学**：$\mathcal{P}_{\text{dyn}} = \mathbb{P}$（定理3.5）
 - **ζ系统**：$\mathcal{A}_\zeta = \mathbb{P}$（定义）
 - **Hilbert空间**：$H_{\mathbb{P}} = H_\zeta = \overline{\mathrm{span}}(\mathbb{P})$
 
@@ -509,7 +514,7 @@ $$RH \Longleftrightarrow H_{\text{dyn}} = H_\zeta \Longleftrightarrow Z(t)=0 \Ri
 ### 7.3 方法论价值
 
 **技术突破**：
-- **反馈型素数专属系统**：解决了类型匹配问题，避免自然数→素数的复杂映射
+- **反馈型素数专属系统**：处理了类型匹配问题，避免自然数→素数的复杂映射
 - **参数优化理论**：$c = \log 2$与ζ零点密度的理论匹配，确保系统与数论的深层联系
 - **唯一性强制等价**：避免复杂的系统比较，通过逻辑必然性得出等价性
 - **k=2编码简化**：经典Fibonacci基就足够，无需高阶k-bonacci的复杂性
