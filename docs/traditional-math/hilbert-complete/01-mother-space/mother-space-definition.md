@@ -86,16 +86,16 @@ $$F(t) := \xi\left(\frac{1}{2} + it\right), \quad t \in \mathbb{R}$$
 **证明**：
 需要验证$\|F\|_{\mathcal{H}}^2 = \int_{-\infty}^{\infty} |\xi(1/2+it)|^2 \frac{1}{\frac{1}{4}+t^2}\,dt < \infty$。
 
-1. **ξ函数的增长估计**：根据Riemann-ξ函数的已知性质（参考Titchmarsh《ζ函数理论》），在临界线上：
-   $$|\xi(1/2 + it)| = O(|t|^{1/4+\epsilon})$$
+1. **ξ函数的增长估计**：根据无条件结果（参考Titchmarsh《ζ函数理论》第5章无条件界），在临界线上：
+   $$|\xi(1/2 + it)| = O(|t|^{13/84 + 1.75 + \epsilon} e^{-\pi |t| / 4})$$
    对任意$\epsilon > 0$当$|t| \to \infty$时。
 
 2. **可积性验证**：
-   $$\int_{-\infty}^{\infty} |\xi(1/2+it)|^2 \frac{1}{\frac{1}{4}+t^2}\,dt \leq C \int_{-\infty}^{\infty} |t|^{1/2+2\epsilon} \frac{1}{\frac{1}{4}+t^2}\,dt$$
+   $$\int_{-\infty}^{\infty} |\xi(1/2+it)|^2 \frac{1}{\frac{1}{4}+t^2}\,dt \leq C \int_{-\infty}^{\infty} |t|^{13/42 + 3.5 + 2\epsilon} e^{-\pi |t| / 2} \frac{1}{\frac{1}{4}+t^2}\,dt$$
    
-   渐近分析：被积函数行为为$O(|t|^{1/2+2\epsilon}) \cdot O(t^{-2}) = O(|t|^{-3/2+2\epsilon})$当$|t| \to \infty$。
+   渐近分析：被积函数行为为$O(|t|^{1.809 + 2\epsilon - 2} e^{-\pi |t| / 2}) = O(|t|^{-0.191 + 2\epsilon} e^{-\pi |t| / 2})$当$|t| \to \infty$。
    
-   收敛条件：需要$-3/2+2\epsilon < -1$，即$\epsilon < 1/4$。选择$\epsilon = 1/8$确保积分收敛。$\square$
+   由于指数衰减主导多项式增长，对任意$\epsilon > 0$，积分收敛。$\square$
 
 ## 推论 1.2.1 (函数方程在母空间中的体现)
 

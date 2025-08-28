@@ -4,7 +4,7 @@
 
 完成函数定义为：
 
-$$\xi(s) = \pi^{-s/2}\Gamma\left(\frac{s}{2}\right)\zeta(s)$$
+$$\xi(s) = \frac{1}{2} s(s-1) \pi^{-s/2}\Gamma\left(\frac{s}{2}\right)\zeta(s)$$
 
 此函数满足**函数方程**：
 
@@ -17,7 +17,7 @@ $$\xi(s) = \xi(1-s)$$
 1. **整函数性**：$\xi(s)$是整个复平面上的整函数（无极点）
 2. **实轴对称**：$\overline{\xi(\overline{s})} = \xi(s)$
 3. **函数方程**：$\xi(s) = \xi(1-s)$
-4. **增长估计**：在临界线$\Re(s) = 1/2$上，$|\xi(1/2+it)| = O(|t|^{1/4+\epsilon})$对任意$\epsilon > 0$当$|t| \to \infty$
+4. **增长估计**：在临界线$\Re(s) = 1/2$上，$|\xi(1/2+it)| = O(|t|^{13/84 + 1.75 + \epsilon} e^{-\pi |t| / 4})$对任意$\epsilon > 0$当$|t| \to \infty$（基于$|\zeta(1/2+it)|$的无条件界和$\Gamma(s/2)$的Stirling逼近）
 
 ## 定义 1.2.3 (母空间的基态函数)
 
@@ -32,18 +32,18 @@ $$F(t) := \xi\left(\frac{1}{2} + it\right), \quad t \in \mathbb{R}$$
 **证明**：
 需要验证$\|F\|_{\mathcal{H}}^2 = \int_{-\infty}^{\infty} |\xi(1/2+it)|^2 \frac{1}{\frac{1}{4}+t^2}\,dt < \infty$。
 
-1. **ξ函数的增长估计**：根据Riemann-ξ函数的已知性质（参考Titchmarsh《ζ函数理论》第5.17节），在临界线$\Re(s) = 1/2$上：
-   $$|\xi(1/2 + it)| = O(|t|^{1/4+\epsilon})$$
+1. **ξ函数的增长估计**：根据无条件结果（参考Titchmarsh《ζ函数理论》第5章无条件界），在临界线$\Re(s) = 1/2$上：
+   $$|\xi(1/2 + it)| = O(|t|^{13/84 + 1.75 + \epsilon} e^{-\pi |t| / 4})$$
    对任意$\epsilon > 0$当$|t| \to \infty$时。
 
 2. **可积性验证**：
    $$\int_{-\infty}^{\infty} |F(t)|^2 w(t)\,dt = \int_{-\infty}^{\infty} |\xi(1/2 + it)|^2 \frac{1}{\frac{1}{4}+t^2}\,dt$$
    
-   由增长估计：$|\xi(1/2+it)|^2 = O(|t|^{1/2+2\epsilon})$，权函数$w(t) = \frac{1}{\frac{1}{4}+t^2} = O(t^{-2})$。
+   由增长估计：$|\xi(1/2+it)|^2 = O(|t|^{13/42 + 3.5 + 2\epsilon} e^{-\pi |t| / 2})$，权函数$w(t) = \frac{1}{\frac{1}{4}+t^2} = O(t^{-2})$。
    
-   被积函数渐近行为：$O(|t|^{1/2+2\epsilon}) \cdot O(t^{-2}) = O(|t|^{-3/2+2\epsilon})$。
+   被积函数渐近行为：$O(|t|^{13/42 + 3.5 + 2\epsilon - 2} e^{-\pi |t| / 2}) = O(|t|^{1.809 + 2\epsilon} e^{-\pi |t| / 2})$。
    
-   收敛条件：$-3/2+2\epsilon < -1$，即$\epsilon < 1/4$。选择$\epsilon = 1/8$确保积分收敛。$\square$
+   由于指数衰减主导多项式增长，对任意$\epsilon > 0$，积分收敛。$\square$
 
 ## 推论 1.2.1 (函数方程在母空间中的体现)
 
@@ -58,9 +58,9 @@ $$F(t) = F(-t)$$
 **完成函数的数学意义**：
 
 ### 1. 整函数性的实现
-$\xi(s) = \pi^{-s/2}\Gamma(s/2)\zeta(s)$通过精确的因子补偿消除了$\zeta(s)$的极点：
-- $\zeta(s)$在$s=1$的简单极点被$\Gamma(s/2)$的零点抵消
-- $\Gamma(s/2)$在$s=0,-2,-4,\ldots$的极点被$\zeta(s)$的trivial zero抵消
+$\xi(s) = \frac{1}{2} s(s-1) \pi^{-s/2}\Gamma(s/2)\zeta(s)$通过精确的因子补偿消除了所有极点：
+- $\frac{1}{2}s(s-1)$在$s=0$和$s=1$提供零点，抵消了$\pi^{-s/2}\Gamma(s/2)\zeta(s)$在$s=1$（来自$\zeta(s)$的极点）和$s=0$（来自$\Gamma(s/2)$的极点）的潜在极点
+- $\Gamma(s/2)$在$s=-2,-4,-6,\ldots$的极点被$\zeta(s)$的trivial zero抵消
 - 结果：$\xi(s)$成为整函数，简化了分析（参考Edwards《Riemann的ζ函数》第1.4节）
 
 ### 2. 函数方程的对称性
