@@ -10,9 +10,9 @@ $$\mathcal{H} := L^2(\mathbb{R}, w(t)\,dt)$$
 
 其中权函数$w(t)$满足以下条件：
 
-1. **正性条件**：$w(t) > 0$ 几乎处处于 $\mathbb{R}$
+1. **正性条件**：$w(t) > 0$ 几乎处处
 2. **局部可积性条件**：$w(t)$ 在 $\mathbb{R}$ 上局部可积
-3. **对称性条件**：$w(t) = w(-t)$ 几乎处处于 $\mathbb{R}$
+3. **对称性条件**：$w(t) = w(-t)$ 几乎处处
 4. **衰减条件**：存在$\alpha \geq 2$使得$w(t) = O(|t|^{-\alpha})$当$|t| \to \infty$
 5. **标准实现**：$w(t) = \frac{1}{\frac{1}{4}+t^2}$ (临界线权函数)
 
@@ -93,7 +93,9 @@ $$F(t) := \xi\left(\frac{1}{2} + it\right), \quad t \in \mathbb{R}$$
 2. **可积性验证**：
    $$\int_{-\infty}^{\infty} |\xi(1/2+it)|^2 \frac{1}{\frac{1}{4}+t^2}\,dt \leq C \int_{-\infty}^{\infty} |t|^{1/2+2\epsilon} \frac{1}{\frac{1}{4}+t^2}\,dt$$
    
-   由于权函数$w(t) = O(t^{-2})$而被积函数增长为$O(|t|^{1/2+2\epsilon})$，选择$\epsilon < 3/4$使得积分收敛。$\square$
+   渐近分析：被积函数行为为$O(|t|^{1/2+2\epsilon}) \cdot O(t^{-2}) = O(|t|^{-3/2+2\epsilon})$当$|t| \to \infty$。
+   
+   收敛条件：需要$-3/2+2\epsilon < -1$，即$\epsilon < 1/4$。选择$\epsilon = 1/8$确保积分收敛。$\square$
 
 ## 推论 1.2.1 (函数方程在母空间中的体现)
 
