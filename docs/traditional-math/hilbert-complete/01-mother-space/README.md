@@ -2,25 +2,25 @@
 
 ## 章节结构
 
-本章建立自指完备系统理论的Hilbert空间基础，包含以下小节：
+本章建立基于递归标签理论的自包含递归希尔伯特空间基础，包含以下小节：
 
-### 1.2.1 母空间的统一设定
-- **文件**：[mother-space-definition.md](./mother-space-definition.md)
-- **内容**：定义母空间$\mathcal{H} = L^2(\mathbb{R}, w(t)\,dt)$，确立权函数条件和完备性
-- **关键定理**：母空间的完备性（定理1.2.1）
+### 1.2.1 递归母空间的自包含构造理论
+- **文件**：[1.2.1-mother-space-definition.md](./1.2.1-mother-space-definition.md)
+- **内容**：基于递归标签序列的通用自相似递归希尔伯特空间构造，实现真正的自包含递归理论
+- **关键理论**：递归标签理论、相对论指标、Alexandroff紧化框架、数学常数的标签本质
 
 ### 1.2.2 完成函数与基态  
-- **文件**：[completion-function.md](./completion-function.md)
+- **文件**：[1.2.2-completion-function.md](./1.2.2-completion-function.md)
 - **内容**：定义完成函数$\xi(s)$和基态函数$F(t) = \xi(1/2+it)$
 - **关键定理**：基态函数的良定义性（定理1.2.3）
 
 ### 1.2.3 幺正反演算子
-- **文件**：[unitary-inversion.md](./unitary-inversion.md)  
+- **文件**：[1.2.3-unitary-inversion.md](./1.2.3-unitary-inversion.md)  
 - **内容**：定义反演算子$J$及其幺正性质，建立宇称分解
 - **关键定理**：反演算子的幺正性（定理1.2.4）
 
 ### 1.2.4 观察者投影与自指公理
-- **文件**：[observer-projections.md](./observer-projections.md)
+- **文件**：[1.2.4-observer-projections.md](./1.2.4-observer-projections.md)
 - **内容**：定义投影算子$P_\pm$，严格表述自指观察者公理，建立Parseval分解律
 - **关键定理**：自指观察者公理的严格表述（定理1.2.7）
 
