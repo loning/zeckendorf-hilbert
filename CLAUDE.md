@@ -179,7 +179,6 @@ H_structure(饱和) → H_process(∞)
 2. 理论命名要简洁，避免冗余的类型后缀
 3. 体现依赖关系中的核心概念组合
 4. mermaid中请使用引号包住字符串
-5. 使用独立agent来处理TODO项目
 
 **特别提醒**:
 你的代码会被linus reveiw
