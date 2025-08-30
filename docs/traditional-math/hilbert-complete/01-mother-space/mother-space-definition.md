@@ -44,9 +44,9 @@ $$\mathcal{H}^{(R)} = \overline{\bigcup_{n=0}^\infty \mathcal{H}_n^{(R)}}$$
 ### 定义 1.2.2 (加法递归操作符)
 
 定义**加法递归操作符**$R_{\text{add}}$为二元非退化：
-$$R_{\text{add}}(\mathcal{H}_{n-1}, \mathcal{H}_{n-2}) = \text{embed}(\mathcal{H}_{n-1} \oplus_{\text{tag}} \mathcal{H}_{n-2})$$
+$$R_{\text{add}}(\mathcal{H}_{n-1}, \mathcal{H}_{n-2}) = \text{embed}(\mathcal{H}_{n-1} \oplus_{\text{tag}} \mathbb{C} e_{n-2})$$
 
-其中$\oplus_{\text{tag}}$独立拷贝$\mathcal{H}_{n-2}$作为新标签子结构嵌入$\mathcal{H}_{n-1}$外，确保二元依赖。
+其中$\oplus_{\text{tag}}$仅拷贝一维原子$e_{n-2}$作为标签子结构，确保二元依赖仅添加有限标签参考。
 
 ### 定理 1.2.2 (加法坐标系的标签模式)
 
@@ -65,26 +65,26 @@ $$\gamma^{(\text{add})}(n) = F_\phi(\{a_k\}_{k=1}^n) = \lim \frac{a_n}{a_{n-1}} 
 ### 定义 1.2.3 (级数递归操作符)
 
 定义**级数递归操作符**$R_{\text{series}}$为二元非退化：
-$$R_{\text{series}}(\mathcal{H}_{n-1}, \mathcal{H}_{n-2}) = \text{embed}(\mathcal{H}_{n-1} \oplus_{\text{tag}} \mathcal{H}_{n-2})$$
+$$R_{\text{series}}(\mathcal{H}_{n-1}, \mathcal{H}_{n-2}) = \text{embed}(\mathcal{H}_{n-1} \oplus_{\text{tag}} \mathbb{C} e_{n-2})$$
 
 ### 定理 1.2.3 (级数坐标系的标签模式)
 
-在级数坐标系下，标签系数为调整后的Leibniz级数：
+在级数坐标系下，标签系数为Leibniz级数：
 
-$$a_k = \frac{1}{2k-1}$$
+$$a_k = \frac{(-1)^{k-1}}{2k-1}$$
 
 **标签模式收敛**：
-$$\gamma^{(\text{series})}(n) = F_\pi(\{a_k\}_{k=1}^n) = \lim 4\sum_{k=1}^n a_k = \pi$$
+$$F_\pi(\{a_k\}_{k=1}^n) = \lim 4\sum_{k=1}^n a_k = \pi$$
 
 **证明**：
-级数操作符$R_{\text{series}}$的二元标签依赖参数化使得标签系数收敛到$\pi/4$，累积收敛到$\pi$。$\square$
+级数操作符$R_{\text{series}}$的二元标签依赖参数化使得标签系数遵循Leibniz级数，累积收敛到$\pi$。$\square$
 
 ## 实例3：指数自相似坐标系
 
 ### 定义 1.2.4 (指数递归操作符)
 
 定义**指数递归操作符**$R_{\text{exp}}$为二元非退化：
-$$R_{\text{exp}}(\mathcal{H}_{n-1}, \mathcal{H}_{n-2}) = \text{embed}(\mathcal{H}_{n-1} \oplus_{\text{tag}} \mathcal{H}_{n-2})$$
+$$R_{\text{exp}}(\mathcal{H}_{n-1}, \mathcal{H}_{n-2}) = \text{embed}(\mathcal{H}_{n-1} \oplus_{\text{tag}} \mathbb{C} e_{n-2})$$
 
 ### 定理 1.2.4 (指数坐标系的标签模式)
 
@@ -126,9 +126,9 @@ $$\rho_n = P_n + \Delta \rho_n$$
 常数通过$\Delta S_{n+1} = g(\gamma^{(\text{const})}(n)) > 0$参数化新增混合，其中$g$为标签函数。
 
 **证明**：
-新增正交基$e_{n+1}$的熵贡献通过绝对正标签函数调制：
+新增正交基$e_{n+1}$的熵贡献通过标签函数调制：
 - **φ模式**：$g_\phi(n) = \phi^{-n} > 0$熵贡献
-- **π模式**：$g_\pi(n) = \frac{|(-1)^{n-1}|}{2n-1} = \frac{1}{2n-1} > 0$熵贡献
+- **π模式**：$g_\pi(n) = \frac{|(-1)^{n-1}|}{2n-1} = \frac{1}{2n-1} > 0$熵贡献（逻辑分离标签收敛与熵正性）
 - **e模式**：$g_e(n) = \frac{1}{n!} > 0$熵贡献
 
 确保$\Delta S_{n+1} = g(\gamma^{(\text{const})}(n)) > 0$通过正标签均匀化严格递增。$\square$
@@ -151,7 +151,7 @@ $$\eta^{(R)}(k; m) = \frac{\text{标签模式}^{(R)}(m+k)}{\text{标签模式}^{
 #### 相对论指标的实现
 
 - **φ模式**：$F_\phi = \lim \frac{a_n}{a_{n-1}}$，相对指标$\eta^{(\phi)}(k; m) = \frac{a_{m+k}}{a_m} \to \phi^k$
-- **π模式**：$F_\pi = \lim 4\sum a_k$，相对指标$\eta^{(\pi)}(k; m) = \frac{4 \sum_{j=m+1}^{m+k} \frac{1}{2j-1}}{4 \sum_{j=1}^{m} \frac{1}{2j-1}}$
+- **π模式**：$F_\pi = \lim 4\sum a_k$，相对指标$\eta^{(\pi)}(k; m) = \frac{4 \sum_{j=m+1}^{m+k} \frac{(-1)^{j-1}}{2j-1}}{4 \sum_{j=1}^{m} \frac{(-1)^{j-1}}{2j-1}}$
 - **e模式**：$F_e = \lim \sum a_k$，相对指标$\eta^{(e)}(k; m) = \frac{\sum_{j=m+1}^{m+k} \frac{1}{j!}}{\sum_{j=0}^{m} \frac{1}{j!}}$
 
 #### 相对计算规则
@@ -171,7 +171,7 @@ $$\Delta S_{k+1}^{(m)} = g(\eta^{(\text{const})}(k; m)) > 0$$
 **模式函数**：$F_\phi = \lim \frac{a_n}{a_{n-1}} = \phi$
 
 #### 2. π标签模式  
-**系数定义**：$a_k = \frac{|(-1)^{k-1}|}{2k-1} = \frac{1}{2k-1}$（移除负号）
+**系数定义**：$a_k = \frac{(-1)^{k-1}}{2k-1}$（保持交替符号）
 
 **模式函数**：$F_\pi = \lim 4\sum_{k=1}^n a_k = \pi$
 
@@ -205,24 +205,22 @@ $$f_k^{(m)} = \sum_{j=1}^k \zeta(m+j) a_{m+j} e_{m+j}$$
 
 $$\text{数学常数} = \lim_{n \to \infty} \text{标签模式}^{(R)}(n)$$
 
-### 标签模式的定义
+### 标签模式的统一定义
 
-对于递归标签序列$f_n = e_n + \sum_{k=1}^{n-1} a_k f_k$：
-
-**泛化定理**：常数 = $\lim_{n \to \infty} \gamma^{(R)}(n)$，其中$\gamma^{(R)}(n) = F(\{a_k\}_{k=1}^n)$为统一模式函数。
+**泛化定理**：常数 = $\lim_{n \to \infty} F(\{a_k\}_{k=1}^n)$，其中$F$为统一模式函数。
 
 **二元非退化递归操作符**：
-$$R(\mathcal{H}_{n-1}, \mathcal{H}_{n-2}) = \text{embed}(\mathcal{H}_{n-1} \oplus_{\text{tag}} \mathcal{H}_{n-2})$$
+$$R(\mathcal{H}_{n-1}, \mathcal{H}_{n-2}) = \text{embed}(\mathcal{H}_{n-1} \oplus_{\text{tag}} \mathbb{C} e_{n-2})$$
 
-其中$\oplus_{\text{tag}}$为标签直和（独立拷贝$\mathcal{H}_{n-2}$作为新标签子结构嵌入$\mathcal{H}_{n-1}$外），确保二元依赖体现自包含的非嵌套部分拷贝。
+其中$\oplus_{\text{tag}}$仅拷贝一维原子$e_{n-2}$作为标签子结构（非全$\mathcal{H}_{n-2}$），确保二元依赖仅添加有限标签参考，兼容无限维每次仅一维新增$e_n$。
 
 ### 统一标签模式谱系
 
 | 常数 | 标签系数$a_k$ | 统一模式函数$F$ | 收敛行为 |
 |------|-------------|----------------|----------|
 | $\phi$ | Fibonacci递归$a_k = a_{k-1} + a_{k-2}$ | $F = \lim \frac{a_n}{a_{n-1}}$ | $\to \phi$ |
-| $\pi$ | $\frac{(-1)^{k-1}}{2k-1}$ | $F = \lim 4\sum b_k a_k$（$b_k=1$） | $\to \pi$ |
-| $e$ | $\frac{1}{k!}$ | $F = \lim \sum c_k a_k$（$c_k=1$） | $\to e$ |
+| $\pi$ | $\frac{(-1)^{k-1}}{2k-1}$ | $F = \lim 4\sum a_k$ | $\to \pi$ |
+| $e$ | $\frac{1}{k!}$ | $F = \lim \sum a_k$ | $\to e$ |
 
 使泛化定理一致：常数 = $\lim \gamma^{(R)}(n) = \lim F(\{a_k\}_{k=1}^n)$。
 
