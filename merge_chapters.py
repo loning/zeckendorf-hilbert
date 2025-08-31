@@ -28,6 +28,11 @@ def get_chapter_order():
         ("13-recursive-logic-foundations", "第十三章：递归数理逻辑基础"),
         ("14-recursive-algebraic-topology", "第十四章：递归代数拓扑"),
         ("15-recursive-number-theory", "第十五章：递归数论"),
+        ("16-recursive-holographic-universe", "第十六章：递归全息宇宙论"),
+        ("P17-recursive-quantum-mechanics", "P17章：递归量子力学"),
+        ("P18-recursive-relativity-spacetime", "P18章：递归相对论与时空几何"),
+        ("P19-recursive-cosmology-unification", "P19章：递归宇宙学与统一理论"),
+        ("P20-recursive-observer-physics", "P20章：递归观察者物理学"),
     ]
 
 def find_markdown_files(chapter_dir):
