@@ -22,25 +22,25 @@
 - **文件**：[P20.1-recursive-bell-states.md](./P20.1-recursive-bell-states.md)
 - **数学基础**：第1章多层标签参考的原子化嵌入理论
 - **核心内容**：Bell态的多层标签嵌入表示、纠缠的原子化嵌入机制、Schmidt分解的递归形式
-- **关键洞察**：纠缠$= $(a_{n-1}, a_{n-2}, \ldots)$调制的$\eta$嵌入，确保单一维新增
+- **关键洞察**：纠缠通过多层标签参考调制的η嵌入实现，确保单一维新增
 
 ### P20.2 模式特定渐近性质的纠缠
 - **文件**：[P20.2-mode-specific-asymptotic-entanglement.md](./P20.2-mode-specific-asymptotic-entanglement.md)
 - **数学基础**：第1章相对论指标的模式特定渐近性质
 - **核心内容**：不同模式的纠缠渐近行为、长程纠缠的模式分类、纠缠纯化的模式机制
-- **关键洞察**：φ模式$\to \infty$发散，e/π模式$\to$有限值，决定纠缠的长程性质
+- **关键洞察**：φ模式发散到无穷，e/π模式收敛到有限值，决定纠缠的长程性质
 
 ### P20.3 紧化拓扑下的纠缠连续性
 - **文件**：[P20.3-compactification-entanglement-continuity.md](./P20.3-compactification-entanglement-continuity.md)
 - **数学基础**：第1章Alexandroff紧化框架$\mathcal{I}^{(R)} = \mathbb{N} \cup \{\infty\}$
 - **核心内容**：纠缠的紧化表示、非局域性的紧化基础、Bell不等式违反的紧化机制
-- **关键洞察**：$\eta(\infty; m)$定义为极限，确保无限递归中的非局域性
+- **关键洞察**：η函数在无穷点的极限定义，确保无限递归中的非局域性
 
 ### P20.4 熵增与纠缠统一
 - **文件**：[P20.4-entropy-entanglement-unification.md](./P20.4-entropy-entanglement-unification.md)
 - **数学基础**：第1章严格熵增理论与纠缠的统一机制
 - **核心内容**：纠缠熵增的标签调制、纠缠演化的熵增约束、纠缠热力学的递归基础
-- **关键洞察**：纠缠贡献$g(\text{纠缠}) > 0$保证严格递增，统一熵增与纠缠
+- **关键洞察**：纠缠贡献通过正调制函数保证严格递增，统一熵增与纠缠
 
 ## 理论成就
 
