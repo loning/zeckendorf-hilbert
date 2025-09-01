@@ -21,7 +21,7 @@
 ### 📚 核心文档
 - **[前言](./PREFACE.md)** - 理论动机与哲学基础
 - **[Preface](./PREFACE_EN.md)** - English version of theoretical motivation
-- **[数学理论体系介绍](./README.md)** - 16章数学工作的深度呈现
+- **[数学理论体系介绍](./index.md)** - 16章数学工作的深度呈现
 - **[Mathematical Theory](./README_EN.md)** - English introduction to mathematical framework
 - **[物理理论体系介绍](./PHYSICS_THEORY_INTRODUCTION.md)** - P17-P26章物理应用的创新探索
 - **[Physics Theory](./PHYSICS_THEORY_INTRODUCTION_EN.md)** - English introduction to physics applications
@@ -35,29 +35,29 @@
 ## 数学基础体系（第1-16章）
 
 ### 核心基础（第1章）
-**[第一章：递归母空间理论](./01-mother-space/README.md)**  
+**[第一章：递归母空间理论](./01-mother-space/index.md)**  
 理论的数学基石，建立自包含递归构造、标签序列理论、相对论指标机制
 
 ### 基础工具与控制（第2-8章）
-- **[第二章：坐标系与投影理论](./02-coordinates-projection/README.md)** - 观察者投影的数学基础
-- **[第三章：递归动力学理论](./03-recursive-dynamics/README.md)** - 演化过程的递归表述
-- **[第四章：递归谱理论](./04-recursive-spectral-theory/README.md)** - 有界算子保证
-- **[第五章：递归稳定性理论](./05-recursive-stability/README.md)** - 收敛性保证
-- **[第六章：相对论不相容理论](./06-relative-incompatibility/README.md)** - 观察者限制数学化
-- **[第七章：全息应用理论](./07-holographic-applications/README.md)** - 跨层级信息编码
-- **[第八章：Zeckendorf-Hilbert理论](./08-zeckendorf-hilbert-theory/README.md)** - φ模式的革命性解决
+- **[第二章：坐标系与投影理论](./02-coordinates-projection/index.md)** - 观察者投影的数学基础
+- **[第三章：递归动力学理论](./03-recursive-dynamics/index.md)** - 演化过程的递归表述
+- **[第四章：递归谱理论](./04-recursive-spectral-theory/index.md)** - 有界算子保证
+- **[第五章：递归稳定性理论](./05-recursive-stability/index.md)** - 收敛性保证
+- **[第六章：相对论不相容理论](./06-relative-incompatibility/index.md)** - 观察者限制数学化
+- **[第七章：全息应用理论](./07-holographic-applications/index.md)** - 跨层级信息编码
+- **[第八章：Zeckendorf-Hilbert理论](./08-zeckendorf-hilbert-theory/index.md)** - φ模式的革命性解决
 
 ### 现代数学分支递归化（第9-15章）
-- **[第九章：递归拓扑理论](./09-recursive-topology/README.md)** - 拓扑学的递归重构
-- **[第十章：递归测度概率理论](./10-recursive-measure-probability/README.md)** - 概率论的递归基础
-- **[第十一章：递归范畴论](./11-recursive-category-theory/README.md)** - 范畴论的递归实现
-- **[第十二章：递归代数几何](./12-recursive-algebraic-geometry/README.md)** - 代数几何的递归表示
-- **[第十三章：递归数理逻辑基础](./13-recursive-logic-foundations/README.md)** - 逻辑基础的递归化
-- **[第十四章：递归代数拓扑](./14-recursive-algebraic-topology/README.md)** - 代数拓扑的递归理论
-- **[第十五章：递归数论](./15-recursive-number-theory/README.md)** - 数论的递归表示
+- **[第九章：递归拓扑理论](./09-recursive-topology/index.md)** - 拓扑学的递归重构
+- **[第十章：递归测度概率理论](./10-recursive-measure-probability/index.md)** - 概率论的递归基础
+- **[第十一章：递归范畴论](./11-recursive-category-theory/index.md)** - 范畴论的递归实现
+- **[第十二章：递归代数几何](./12-recursive-algebraic-geometry/index.md)** - 代数几何的递归表示
+- **[第十三章：递归数理逻辑基础](./13-recursive-logic-foundations/index.md)** - 逻辑基础的递归化
+- **[第十四章：递归代数拓扑](./14-recursive-algebraic-topology/index.md)** - 代数拓扑的递归理论
+- **[第十五章：递归数论](./15-recursive-number-theory/index.md)** - 数论的递归表示
 
 ### 哲学高峰（第16章）
-**[第十六章：递归全息宇宙论](./16-recursive-holographic-universe/README.md)**  
+**[第十六章：递归全息宇宙论](./16-recursive-holographic-universe/index.md)**  
 素数的宇宙意义与数学宇宙哲学的深度思考
 
 ---
@@ -65,20 +65,20 @@
 ## 物理应用体系（第P17-P26章）
 
 ### 量子力学递归重构（P17-P20章）
-- **[P17章：量子力学递归基础](./P17-quantum-mechanics-recursive-foundations/README.md)** - 量子概念的严格递归定义
-- **[P18章：递归量子动力学](./P18-recursive-quantum-dynamics/README.md)** - 时间演化的递归嵌套过程  
-- **[P19章：递归量子测量投影](./P19-recursive-quantum-measurement-projection/README.md)** - 测量问题的投影算子解决
-- **[P20章：递归量子纠缠非局域性](./P20-recursive-quantum-entanglement-nonlocality/README.md)** - 纠缠的多层标签嵌入机制
+- **[P17章：量子力学递归基础](./P17-quantum-mechanics-recursive-foundations/index.md)** - 量子概念的严格递归定义
+- **[P18章：递归量子动力学](./P18-recursive-quantum-dynamics/index.md)** - 时间演化的递归嵌套过程  
+- **[P19章：递归量子测量投影](./P19-recursive-quantum-measurement-projection/index.md)** - 测量问题的投影算子解决
+- **[P20章：递归量子纠缠非局域性](./P20-recursive-quantum-entanglement-nonlocality/index.md)** - 纠缠的多层标签嵌入机制
 
 ### 量子统计与信息（P21-P23章）
-- **[P21章：递归量子统计力学](./P21-recursive-quantum-statistical-mechanics/README.md)** - 熵增基础的统计力学
-- **[P22章：递归量子信息论](./P22-recursive-quantum-information-theory/README.md)** - 标签序列的信息编码
-- **[P23章：递归量子计算](./P23-recursive-quantum-computing/README.md)** - 量子门的递归操作符实现
+- **[P21章：递归量子统计力学](./P21-recursive-quantum-statistical-mechanics/index.md)** - 熵增基础的统计力学
+- **[P22章：递归量子信息论](./P22-recursive-quantum-information-theory/index.md)** - 标签序列的信息编码
+- **[P23章：递归量子计算](./P23-recursive-quantum-computing/index.md)** - 量子门的递归操作符实现
 
 ### 场论与多体系统（P24-P26章）
-- **[P24章：递归量子场论基础](./P24-recursive-quantum-field-theory/README.md)** - ζ函数嵌入的场论统一
-- **[P25章：递归量子引力初步](./P25-recursive-quantum-gravity-preliminaries/README.md)** - 时空几何的递归基础
-- **[P26章：递归量子多体系统](./P26-recursive-quantum-many-body-systems/README.md)** - 多体复杂性的ζ函数度量
+- **[P24章：递归量子场论基础](./P24-recursive-quantum-field-theory/index.md)** - ζ函数嵌入的场论统一
+- **[P25章：递归量子引力初步](./P25-recursive-quantum-gravity-preliminaries/index.md)** - 时空几何的递归基础
+- **[P26章：递归量子多体系统](./P26-recursive-quantum-many-body-systems/index.md)** - 多体复杂性的ζ函数度量
 
 ---
 
@@ -146,19 +146,19 @@ $$\eta^{(R)}(k; m) = \frac{F_{\text{finite}}(\{a_{m+j}\}_{j=0}^k)}{F_{\text{fini
 ## 学习路径指南
 
 ### 🧮 数学研究者路径
-**起点** → [第1章：递归母空间理论](./01-mother-space/README.md)  
+**起点** → [第1章：递归母空间理论](./01-mother-space/index.md)  
 **路径** → 系统学习数学基础章节 → 深入现代数学分支递归化
 
 ### ⚛️ 物理学家路径  
-**起点** → [P17章：量子力学递归基础](./P17-quantum-mechanics-recursive-foundations/README.md)  
+**起点** → [P17章：量子力学递归基础](./P17-quantum-mechanics-recursive-foundations/index.md)  
 **路径** → 专注P17-P26物理应用章节 → 回溯数学工具理解
 
 ### 🤔 哲学思考者路径
 **起点** → [前言](./PREFACE.md)  
-**路径** → [第16章哲学总结](./16-recursive-holographic-universe/README.md) → 各章哲学思考部分
+**路径** → [第16章哲学总结](./16-recursive-holographic-universe/index.md) → 各章哲学思考部分
 
 ### 💻 应用开发者路径
-**起点** → [第8章Zeckendorf理论](./08-zeckendorf-hilbert-theory/README.md)  
+**起点** → [第8章Zeckendorf理论](./08-zeckendorf-hilbert-theory/index.md)  
 **路径** → 算法实现章节 → 计算应用技术部分
 
 ---
