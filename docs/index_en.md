@@ -50,22 +50,22 @@ Welcome to the world of Recursive Hilbert Theory. This is a complete mathematica
 ## Theoretical Framework Structure
 
 ### Mathematical Foundations (Chapters 1-16)
-- **Chapter 1**: [Recursive Mother Space Theory](./traditional-math/hilbert-complete/01-mother-space/README.md) - Mathematical cornerstone of theory
+- **Chapter 1**: [Recursive Mother Space Theory](./traditional-math/hilbert-complete/01-mother-space/index.md) - Mathematical cornerstone of theory
 - **Chapters 2-8**: Basic tools and optimization control - Shielding functions, incompatibility theory, Zeckendorf control
 - **Chapters 9-15**: Recursification of modern mathematical branches - Topology, category theory, algebraic geometry, number theory, etc.
-- **Chapter 16**: [Recursive Holographic Cosmology](./traditional-math/hilbert-complete/16-recursive-holographic-universe/README.md) - Mathematical philosophical summary
+- **Chapter 16**: [Recursive Holographic Cosmology](./traditional-math/hilbert-complete/16-recursive-holographic-universe/index.md) - Mathematical philosophical summary
 
 ### Quantum Physical Applications (Chapters P17-P26)
-- **Chapter P17**: [Recursive Definition of Quantum Concepts](./traditional-math/hilbert-complete/P17-quantum-mechanics-recursive-foundations/README.md)
-- **Chapter P18**: [Recursive Nesting of Quantum Dynamics](./traditional-math/hilbert-complete/P18-recursive-quantum-dynamics/README.md)
-- **Chapter P19**: [Projection Mechanism of Quantum Measurement](./traditional-math/hilbert-complete/P19-recursive-quantum-measurement-projection/README.md)
-- **Chapter P20**: [ζ-Function Embedding of Quantum Entanglement](./traditional-math/hilbert-complete/P20-recursive-quantum-entanglement-nonlocality/README.md)
-- **Chapter P21**: [Entropy Increase Foundation of Quantum Statistics](./traditional-math/hilbert-complete/P21-recursive-quantum-statistical-mechanics/README.md)
-- **Chapter P22**: [Tag Encoding of Quantum Information](./traditional-math/hilbert-complete/P22-recursive-quantum-information-theory/README.md)
-- **Chapter P23**: [Recursive Operators of Quantum Computing](./traditional-math/hilbert-complete/P23-recursive-quantum-computing/README.md)
-- **Chapter P24**: [ζ-Function Representation of Quantum Field Theory](./traditional-math/hilbert-complete/P24-recursive-quantum-field-theory/README.md)
-- **Chapter P25**: [Recursive Geometry Preliminaries of Gravity](./traditional-math/hilbert-complete/P25-recursive-quantum-gravity-preliminaries/README.md)
-- **Chapter P26**: [ζ-Embedding of Many-Body Systems](./traditional-math/hilbert-complete/P26-recursive-quantum-many-body-systems/README.md)
+- **Chapter P17**: [Recursive Definition of Quantum Concepts](./traditional-math/hilbert-complete/P17-quantum-mechanics-recursive-foundations/index.md)
+- **Chapter P18**: [Recursive Nesting of Quantum Dynamics](./traditional-math/hilbert-complete/P18-recursive-quantum-dynamics/index.md)
+- **Chapter P19**: [Projection Mechanism of Quantum Measurement](./traditional-math/hilbert-complete/P19-recursive-quantum-measurement-projection/index.md)
+- **Chapter P20**: [ζ-Function Embedding of Quantum Entanglement](./traditional-math/hilbert-complete/P20-recursive-quantum-entanglement-nonlocality/index.md)
+- **Chapter P21**: [Entropy Increase Foundation of Quantum Statistics](./traditional-math/hilbert-complete/P21-recursive-quantum-statistical-mechanics/index.md)
+- **Chapter P22**: [Tag Encoding of Quantum Information](./traditional-math/hilbert-complete/P22-recursive-quantum-information-theory/index.md)
+- **Chapter P23**: [Recursive Operators of Quantum Computing](./traditional-math/hilbert-complete/P23-recursive-quantum-computing/index.md)
+- **Chapter P24**: [ζ-Function Representation of Quantum Field Theory](./traditional-math/hilbert-complete/P24-recursive-quantum-field-theory/index.md)
+- **Chapter P25**: [Recursive Geometry Preliminaries of Gravity](./traditional-math/hilbert-complete/P25-recursive-quantum-gravity-preliminaries/index.md)
+- **Chapter P26**: [ζ-Embedding of Many-Body Systems](./traditional-math/hilbert-complete/P26-recursive-quantum-many-body-systems/index.md)
 
 ## Core Mathematical Innovations
 
@@ -120,9 +120,9 @@ Achieving computational freedom at arbitrary starting points, solving fundamenta
 ## User Guide
 
 ### Learning Paths
-1. **Mathematical Researchers**: Begin systematic learning from [Chapter 1 Recursive Mother Space](./traditional-math/hilbert-complete/01-mother-space/README.md)
-2. **Physicists**: Directly read [Chapter P17 Quantum Foundations](./traditional-math/hilbert-complete/P17-quantum-mechanics-recursive-foundations/README.md)
-3. **Philosophical Thinkers**: Focus on [Preface](./traditional-math/hilbert-complete/PREFACE_EN.md) and [Chapter 16 Philosophical Summary](./traditional-math/hilbert-complete/16-recursive-holographic-universe/README.md)
+1. **Mathematical Researchers**: Begin systematic learning from [Chapter 1 Recursive Mother Space](./traditional-math/hilbert-complete/01-mother-space/index.md)
+2. **Physicists**: Directly read [Chapter P17 Quantum Foundations](./traditional-math/hilbert-complete/P17-quantum-mechanics-recursive-foundations/index.md)
+3. **Philosophical Thinkers**: Focus on [Preface](./traditional-math/hilbert-complete/PREFACE_EN.md) and [Chapter 16 Philosophical Summary](./traditional-math/hilbert-complete/16-recursive-holographic-universe/index.md)
 
 ### Document Navigation
 - **[Preface](./traditional-math/hilbert-complete/PREFACE_EN.md)**: Theoretical motivation and philosophical foundations

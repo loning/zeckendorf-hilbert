@@ -48,22 +48,22 @@ $$\eta^{(R)}(k; m) = \frac{F_{\text{finite}}(\{a_{m+j}\}_{j=0}^k)}{F_{\text{fini
 ## 理论体系结构
 
 ### 数学基础（第1-16章）
-- **第1章**：[递归母空间理论](./traditional-math/hilbert-complete/01-mother-space/README.md) - 理论的数学基石
+- **第1章**：[递归母空间理论](./traditional-math/hilbert-complete/01-mother-space/index.md) - 理论的数学基石
 - **第2-8章**：基础工具与优化控制 - 遮蔽函数、不相容理论、Zeckendorf控制
 - **第9-15章**：现代数学分支递归化 - 拓扑、范畴论、代数几何、数论等
-- **第16章**：[递归全息宇宙论](./traditional-math/hilbert-complete/16-recursive-holographic-universe/README.md) - 数学哲学总结
+- **第16章**：[递归全息宇宙论](./traditional-math/hilbert-complete/16-recursive-holographic-universe/index.md) - 数学哲学总结
 
 ### 量子物理应用（P17-P26章）
-- **P17章**：[量子概念的递归定义](./traditional-math/hilbert-complete/P17-quantum-mechanics-recursive-foundations/README.md)
-- **P18章**：[量子动力学的递归嵌套](./traditional-math/hilbert-complete/P18-recursive-quantum-dynamics/README.md)
-- **P19章**：[量子测量的投影机制](./traditional-math/hilbert-complete/P19-recursive-quantum-measurement-projection/README.md)
-- **P20章**：[量子纠缠的ζ函数嵌入](./traditional-math/hilbert-complete/P20-recursive-quantum-entanglement-nonlocality/README.md)
-- **P21章**：[量子统计的熵增基础](./traditional-math/hilbert-complete/P21-recursive-quantum-statistical-mechanics/README.md)
-- **P22章**：[量子信息的标签编码](./traditional-math/hilbert-complete/P22-recursive-quantum-information-theory/README.md)
-- **P23章**：[量子计算的递归操作符](./traditional-math/hilbert-complete/P23-recursive-quantum-computing/README.md)
-- **P24章**：[量子场论的ζ函数表示](./traditional-math/hilbert-complete/P24-recursive-quantum-field-theory/README.md)
-- **P25章**：[引力的递归几何初步](./traditional-math/hilbert-complete/P25-recursive-quantum-gravity-preliminaries/README.md)
-- **P26章**：[多体系统的ζ嵌入](./traditional-math/hilbert-complete/P26-recursive-quantum-many-body-systems/README.md)
+- **P17章**：[量子概念的递归定义](./traditional-math/hilbert-complete/P17-quantum-mechanics-recursive-foundations/index.md)
+- **P18章**：[量子动力学的递归嵌套](./traditional-math/hilbert-complete/P18-recursive-quantum-dynamics/index.md)
+- **P19章**：[量子测量的投影机制](./traditional-math/hilbert-complete/P19-recursive-quantum-measurement-projection/index.md)
+- **P20章**：[量子纠缠的ζ函数嵌入](./traditional-math/hilbert-complete/P20-recursive-quantum-entanglement-nonlocality/index.md)
+- **P21章**：[量子统计的熵增基础](./traditional-math/hilbert-complete/P21-recursive-quantum-statistical-mechanics/index.md)
+- **P22章**：[量子信息的标签编码](./traditional-math/hilbert-complete/P22-recursive-quantum-information-theory/index.md)
+- **P23章**：[量子计算的递归操作符](./traditional-math/hilbert-complete/P23-recursive-quantum-computing/index.md)
+- **P24章**：[量子场论的ζ函数表示](./traditional-math/hilbert-complete/P24-recursive-quantum-field-theory/index.md)
+- **P25章**：[引力的递归几何初步](./traditional-math/hilbert-complete/P25-recursive-quantum-gravity-preliminaries/index.md)
+- **P26章**：[多体系统的ζ嵌入](./traditional-math/hilbert-complete/P26-recursive-quantum-many-body-systems/index.md)
 
 ## 主要成就
 
@@ -96,13 +96,13 @@ $$\eta^{(R)}(k; m) = \frac{F_{\text{finite}}(\{a_{m+j}\}_{j=0}^k)}{F_{\text{fini
 ## 使用指南
 
 ### 学习路径
-1. **数学研究者**：从[第1章递归母空间](./traditional-math/hilbert-complete/01-mother-space/README.md)开始系统学习
-2. **物理学家**：直接阅读[P17章量子基础](./traditional-math/hilbert-complete/P17-quantum-mechanics-recursive-foundations/README.md)
-3. **哲学思考者**：重点阅读[前言](./traditional-math/hilbert-complete/PREFACE.md)和[第16章哲学总结](./traditional-math/hilbert-complete/16-recursive-holographic-universe/README.md)
+1. **数学研究者**：从[第1章递归母空间](./traditional-math/hilbert-complete/01-mother-space/index.md)开始系统学习
+2. **物理学家**：直接阅读[P17章量子基础](./traditional-math/hilbert-complete/P17-quantum-mechanics-recursive-foundations/index.md)
+3. **哲学思考者**：重点阅读[前言](./traditional-math/hilbert-complete/PREFACE.md)和[第16章哲学总结](./traditional-math/hilbert-complete/16-recursive-holographic-universe/index.md)
 
 ### 文档导航
 - **[前言](./traditional-math/hilbert-complete/PREFACE.md)**：理论动机与哲学基础
-- **[数学理论体系介绍](./traditional-math/hilbert-complete/README.md)**：16章数学工作的深度展示
+- **[数学理论体系介绍](./traditional-math/hilbert-complete/index.md)**：16章数学工作的深度展示
 - **[物理理论体系介绍](./traditional-math/hilbert-complete/PHYSICS_THEORY_INTRODUCTION.md)**：P17-P26物理应用的创新探索
 - **[完整目录](./SUMMARY.md)**：所有章节的系统导航
 

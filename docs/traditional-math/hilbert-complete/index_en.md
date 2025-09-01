@@ -22,7 +22,7 @@
 - **[Preface](./PREFACE_EN.md)** - Theoretical motivation and philosophical foundations
 - **[前言](./PREFACE.md)** - Chinese version of theoretical motivation
 - **[Mathematical Theory](./README_EN.md)** - In-depth presentation of 16-chapter mathematical work
-- **[数学理论体系介绍](./README.md)** - Chinese introduction to mathematical framework
+- **[数学理论体系介绍](./index.md)** - Chinese introduction to mathematical framework
 - **[Physics Theory](./PHYSICS_THEORY_INTRODUCTION_EN.md)** - Innovative exploration of P17-P26 physics applications
 - **[物理理论体系介绍](./PHYSICS_THEORY_INTRODUCTION.md)** - Chinese introduction to physics applications
 - **[Comprehensive Theory Summary](./COMPREHENSIVE_THEORY_SUMMARY.md)** - Complete overview of the 32-chapter theory
@@ -35,29 +35,29 @@
 ## Mathematical Foundation System (Chapters 1-16)
 
 ### Core Foundation (Chapter 1)
-**[Chapter 1: Recursive Mother Space Theory](./01-mother-space/README.md)**  
+**[Chapter 1: Recursive Mother Space Theory](./01-mother-space/index.md)**  
 Mathematical cornerstone of theory, establishing self-contained recursive construction, tag sequence theory, relativistic index mechanism
 
 ### Foundation Tools & Control (Chapters 2-8)
-- **[Chapter 2: Coordinate Systems & Projection Theory](./02-coordinates-projection/README.md)** - Mathematical foundation of observer projections
-- **[Chapter 3: Recursive Dynamics Theory](./03-recursive-dynamics/README.md)** - Recursive representation of evolution processes
-- **[Chapter 4: Recursive Spectral Theory](./04-recursive-spectral-theory/README.md)** - Bounded operator guarantees
-- **[Chapter 5: Recursive Stability Theory](./05-recursive-stability/README.md)** - Convergence guarantees
-- **[Chapter 6: Relativistic Incompatibility Theory](./06-relative-incompatibility/README.md)** - Mathematization of observer limitations
-- **[Chapter 7: Holographic Applications Theory](./07-holographic-applications/README.md)** - Cross-level information encoding
-- **[Chapter 8: Zeckendorf-Hilbert Theory](./08-zeckendorf-hilbert-theory/README.md)** - Revolutionary solution for φ-mode
+- **[Chapter 2: Coordinate Systems & Projection Theory](./02-coordinates-projection/index.md)** - Mathematical foundation of observer projections
+- **[Chapter 3: Recursive Dynamics Theory](./03-recursive-dynamics/index.md)** - Recursive representation of evolution processes
+- **[Chapter 4: Recursive Spectral Theory](./04-recursive-spectral-theory/index.md)** - Bounded operator guarantees
+- **[Chapter 5: Recursive Stability Theory](./05-recursive-stability/index.md)** - Convergence guarantees
+- **[Chapter 6: Relativistic Incompatibility Theory](./06-relative-incompatibility/index.md)** - Mathematization of observer limitations
+- **[Chapter 7: Holographic Applications Theory](./07-holographic-applications/index.md)** - Cross-level information encoding
+- **[Chapter 8: Zeckendorf-Hilbert Theory](./08-zeckendorf-hilbert-theory/index.md)** - Revolutionary solution for φ-mode
 
 ### Modern Mathematics Branch Recursification (Chapters 9-15)
-- **[Chapter 9: Recursive Topology Theory](./09-recursive-topology/README.md)** - Recursive reconstruction of topology
-- **[Chapter 10: Recursive Measure Probability Theory](./10-recursive-measure-probability/README.md)** - Recursive foundations of probability theory
-- **[Chapter 11: Recursive Category Theory](./11-recursive-category-theory/README.md)** - Recursive implementation of category theory
-- **[Chapter 12: Recursive Algebraic Geometry](./12-recursive-algebraic-geometry/README.md)** - Recursive representation of algebraic geometry
-- **[Chapter 13: Recursive Mathematical Logic Foundations](./13-recursive-logic-foundations/README.md)** - Recursification of logical foundations
-- **[Chapter 14: Recursive Algebraic Topology](./14-recursive-algebraic-topology/README.md)** - Recursive theory of algebraic topology
-- **[Chapter 15: Recursive Number Theory](./15-recursive-number-theory/README.md)** - Recursive representation of number theory
+- **[Chapter 9: Recursive Topology Theory](./09-recursive-topology/index.md)** - Recursive reconstruction of topology
+- **[Chapter 10: Recursive Measure Probability Theory](./10-recursive-measure-probability/index.md)** - Recursive foundations of probability theory
+- **[Chapter 11: Recursive Category Theory](./11-recursive-category-theory/index.md)** - Recursive implementation of category theory
+- **[Chapter 12: Recursive Algebraic Geometry](./12-recursive-algebraic-geometry/index.md)** - Recursive representation of algebraic geometry
+- **[Chapter 13: Recursive Mathematical Logic Foundations](./13-recursive-logic-foundations/index.md)** - Recursification of logical foundations
+- **[Chapter 14: Recursive Algebraic Topology](./14-recursive-algebraic-topology/index.md)** - Recursive theory of algebraic topology
+- **[Chapter 15: Recursive Number Theory](./15-recursive-number-theory/index.md)** - Recursive representation of number theory
 
 ### Philosophical Summit (Chapter 16)
-**[Chapter 16: Recursive Holographic Cosmology](./16-recursive-holographic-universe/README.md)**  
+**[Chapter 16: Recursive Holographic Cosmology](./16-recursive-holographic-universe/index.md)**  
 Cosmic significance of primes and deep contemplation of mathematical universe philosophy
 
 ---
@@ -65,20 +65,20 @@ Cosmic significance of primes and deep contemplation of mathematical universe ph
 ## Physics Application System (Chapters P17-P26)
 
 ### Quantum Mechanics Recursive Reconstruction (P17-P20)
-- **[P17: Recursive Quantum Mechanics Foundations](./P17-quantum-mechanics-recursive-foundations/README.md)** - Rigorous recursive definitions of quantum concepts
-- **[P18: Recursive Quantum Dynamics](./P18-recursive-quantum-dynamics/README.md)** - Time evolution as recursive nesting processes
-- **[P19: Recursive Quantum Measurement Projection](./P19-recursive-quantum-measurement-projection/README.md)** - Projection operator solution to measurement problem
-- **[P20: Recursive Quantum Entanglement Nonlocality](./P20-recursive-quantum-entanglement-nonlocality/README.md)** - Multi-layer tag embedding mechanism of entanglement
+- **[P17: Recursive Quantum Mechanics Foundations](./P17-quantum-mechanics-recursive-foundations/index.md)** - Rigorous recursive definitions of quantum concepts
+- **[P18: Recursive Quantum Dynamics](./P18-recursive-quantum-dynamics/index.md)** - Time evolution as recursive nesting processes
+- **[P19: Recursive Quantum Measurement Projection](./P19-recursive-quantum-measurement-projection/index.md)** - Projection operator solution to measurement problem
+- **[P20: Recursive Quantum Entanglement Nonlocality](./P20-recursive-quantum-entanglement-nonlocality/index.md)** - Multi-layer tag embedding mechanism of entanglement
 
 ### Quantum Statistics & Information (P21-P23)
-- **[P21: Recursive Quantum Statistical Mechanics](./P21-recursive-quantum-statistical-mechanics/README.md)** - Statistical mechanics with entropy increase foundations
-- **[P22: Recursive Quantum Information Theory](./P22-recursive-quantum-information-theory/README.md)** - Information encoding via tag sequences
-- **[P23: Recursive Quantum Computing](./P23-recursive-quantum-computing/README.md)** - Quantum gates as recursive operator implementations
+- **[P21: Recursive Quantum Statistical Mechanics](./P21-recursive-quantum-statistical-mechanics/index.md)** - Statistical mechanics with entropy increase foundations
+- **[P22: Recursive Quantum Information Theory](./P22-recursive-quantum-information-theory/index.md)** - Information encoding via tag sequences
+- **[P23: Recursive Quantum Computing](./P23-recursive-quantum-computing/index.md)** - Quantum gates as recursive operator implementations
 
 ### Field Theory & Many-Body Systems (P24-P26)
-- **[P24: Recursive Quantum Field Theory Foundations](./P24-recursive-quantum-field-theory/README.md)** - Field theory unification via ζ-function embedding
-- **[P25: Recursive Quantum Gravity Preliminaries](./P25-recursive-quantum-gravity-preliminaries/README.md)** - Recursive foundations of spacetime geometry
-- **[P26: Recursive Quantum Many-Body Systems](./P26-recursive-quantum-many-body-systems/README.md)** - ζ-function measure of many-body complexity
+- **[P24: Recursive Quantum Field Theory Foundations](./P24-recursive-quantum-field-theory/index.md)** - Field theory unification via ζ-function embedding
+- **[P25: Recursive Quantum Gravity Preliminaries](./P25-recursive-quantum-gravity-preliminaries/index.md)** - Recursive foundations of spacetime geometry
+- **[P26: Recursive Quantum Many-Body Systems](./P26-recursive-quantum-many-body-systems/index.md)** - ζ-function measure of many-body complexity
 
 ---
 
@@ -146,19 +146,19 @@ Achieving computational freedom at arbitrary starting points, solving fundamenta
 ## Learning Path Guide
 
 ### 🧮 Mathematical Researcher Path
-**Starting Point** → [Chapter 1: Recursive Mother Space Theory](./01-mother-space/README.md)  
+**Starting Point** → [Chapter 1: Recursive Mother Space Theory](./01-mother-space/index.md)  
 **Path** → Systematically study mathematical foundation chapters → Delve into modern mathematical branch recursification
 
 ### ⚛️ Physicist Path
-**Starting Point** → [P17: Recursive Quantum Mechanics Foundations](./P17-quantum-mechanics-recursive-foundations/README.md)  
+**Starting Point** → [P17: Recursive Quantum Mechanics Foundations](./P17-quantum-mechanics-recursive-foundations/index.md)  
 **Path** → Focus on P17-P26 physics application chapters → Trace back to mathematical tool understanding
 
 ### 🤔 Philosophical Thinker Path
 **Starting Point** → [Preface](./PREFACE_EN.md)  
-**Path** → [Chapter 16 Philosophical Summary](./16-recursive-holographic-universe/README.md) → Philosophical reflection sections in each chapter
+**Path** → [Chapter 16 Philosophical Summary](./16-recursive-holographic-universe/index.md) → Philosophical reflection sections in each chapter
 
 ### 💻 Application Developer Path
-**Starting Point** → [Chapter 8 Zeckendorf Theory](./08-zeckendorf-hilbert-theory/README.md)  
+**Starting Point** → [Chapter 8 Zeckendorf Theory](./08-zeckendorf-hilbert-theory/index.md)  
 **Path** → Algorithm implementation chapters → Computational application technical sections
 
 ---
@@ -248,8 +248,8 @@ From "The Matrix" level transitions to "Life of Pi" infinite descriptions, recur
 
 ### 🎯 Recommended Entry Points
 1. **Philosophical Motivation** → [Preface](./PREFACE_EN.md) Understand theoretical philosophical foundations
-2. **Mathematical Core** → [Chapter 1 Recursive Mother Space](./01-mother-space/README.md) Master core mathematical tools
-3. **Physics Applications** → [P17 Quantum Foundations](./P17-quantum-mechanics-recursive-foundations/README.md) Understand physics reconstruction
+2. **Mathematical Core** → [Chapter 1 Recursive Mother Space](./01-mother-space/index.md) Master core mathematical tools
+3. **Physics Applications** → [P17 Quantum Foundations](./P17-quantum-mechanics-recursive-foundations/index.md) Understand physics reconstruction
 
 ### 🗺️ Complete Navigation
 For detailed navigation of all 32 chapters, please refer to: **[Complete Directory](../../SUMMARY.md)**
