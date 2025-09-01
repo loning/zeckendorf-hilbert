@@ -1,6 +1,9 @@
 # Summary
 
 - [Recurse Hilbert Math System]()
+    - [前言 / Preface](./traditional-math/hilbert-complete/PREFACE.md) | [English](./traditional-math/hilbert-complete/PREFACE_EN.md)
+    - [数学理论体系介绍 / Mathematical Theory](./traditional-math/hilbert-complete/README.md) | [English](./traditional-math/hilbert-complete/README_EN.md)
+    - [物理理论体系介绍 / Physics Theory](./traditional-math/hilbert-complete/PHYSICS_THEORY_INTRODUCTION.md) | [English](./traditional-math/hilbert-complete/PHYSICS_THEORY_INTRODUCTION_EN.md)
     - [第一章：递归母空间理论](./traditional-math/hilbert-complete/01-mother-space/README.md)
         - [1.2.1 递归母空间定义](./traditional-math/hilbert-complete/01-mother-space/1.2.1-mother-space-definition.md)
         - [1.2.2 完成函数理论](./traditional-math/hilbert-complete/01-mother-space/1.2.2-completion-function.md)
