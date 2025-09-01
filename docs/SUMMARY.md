@@ -1,7 +1,8 @@
 # Summary
 - [首页](./index.md)
 - [INDEX](./index_en.md)
-- [Recurse Hilbert Math System]()
+- [Recurse Hilbert Math System](./index.md)
+    - [English Index](./index_en.md)
     - [前言](./traditional-math/hilbert-complete/PREFACE.md) 
     - [Preface](./traditional-math/hilbert-complete/PREFACE_EN.md)
     - [数学理论体系介绍](./traditional-math/hilbert-complete/README.md)
