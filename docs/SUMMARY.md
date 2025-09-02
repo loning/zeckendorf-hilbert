@@ -158,6 +158,10 @@
 - [Riemann Hypothesis: 数学-物理统一的Hilbert空间不动点理论](./traditional-math/riemann-hypothesis-unified-reorganized.md)
 - [Riemann Hypothesis: Mathematical-Physical Unification via Hilbert Space Interference Theory](./traditional-math/riemann-hypothesis-unified-reorganized_en.md)
 
+- [理论文章]()
+    - [万物皆变：复杂系统相变中的人类处境与机遇](./traditional-math/articles/2025-09-02-universal-phase-transitions.md)
+    - [Everything Changes: Humanity's Condition and Opportunities in Universal Phase Transitions](./traditional-math/articles/2025-09-02-universal-phase-transitions-en.md)
+
 - [自指完备墒增系统(未全面验证)]()
     - [摘要](./abstract.md)
     - [第1章 引言](./chapter01_introduction.md)
