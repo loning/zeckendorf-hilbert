@@ -15,7 +15,7 @@
 | **存在** | 我的标签序列空间 $\text{span}\{e_k\}_{k=0}^n$ | 递归希尔伯特母空间 $\mathcal{H}^{(R)}$ | 绝对时空背景 | 量子状态空间 | 宇宙的整体结构 | [第1章定义1.2.1.1](./01-mother-space/1.2.1-mother-space-definition.md) |
 | **个体性** | 我的标签系数 $\{a_k\}_{k=0}^n$ | 标签序列 $f_n = \sum_{k=0}^n a_k e_k$ | 经典粒子轨道 | 量子态 | 宇宙中的星系团结构 | [第1章定义1.2.1.2](./01-mother-space/1.2.1-mother-space-definition.md) |
 | **关系性** | 我与他者的系数比较 | 相对论指标 $\eta^{(R)}(k; m)$ | 经典场强度 | 量子关联测量 | 宇宙大尺度结构关联 | [第1章定义1.2.1.4](./01-mother-space/1.2.1-mother-space-definition.md) |
-| **能力** | 我的可能行动 $\{a_k 演化\}$ | 二元递归操作符 $R(\mathcal{H}_{n-1}, \mathcal{H}_{n-2})$ | 经典力与能量 | 哈密顿量 | 宇宙膨胀动力学 | [第1章定义1.2.1.5](./01-mother-space/1.2.1-mother-space-definition.md) |
+| **能力** | 我的可能行动 $\{a_k 演化\}$ | 可观测量 $R(\mathcal{H}_{n-1}, \mathcal{H}_{n-2})$ | 经典可观测量 | 量子可观测量 | 宇宙可观测性 | [P17.1定义3](./P17-quantum-mechanics-recursive-foundations/P17.1-quantum-concepts-recursive-definitions.md) |
 | **观察** | 我的感知范围 $\{k \leq n\}$ | 投影算子 $\tilde{P}_n^{(R)}(f_m)$ | 经典测量 | 量子测量 | 宇宙视界与可观测性 | [第1章定义1.2.4.2](./01-mother-space/1.2.4-observer-projections.md) |
 | **复杂性** | 我与宇宙的深层关联感 | ζ函数嵌入 $f_k^{(m)}$ | 经典多体问题 | 量子纠缠 | 暗物质暗能量结构 | [第1章定义1.2.1.7](./01-mother-space/1.2.1-mother-space-definition.md) |
 
@@ -28,10 +28,10 @@
 | 哲学概念 | 观察者内部体验 | 递归母空间分析 | 经典物理现象 | 量子力学现象 | 宇宙学现象 | 文档定位 |
 |----------|----------------|----------------|-------------|-------------|-----------|----------|
 | **变化** | 我感受到的成长与衰老 | 严格熵增 $S_{n+1} > S_n$ | 热力学第二定律 | 量子熵增 | 宇宙熵增与演化 | [第1章定理1.2.1.4](./01-mother-space/1.2.1-mother-space-definition.md) |
-| **时间** | 我的主观时间流 | 递归层级序列 $\{n\}_{n=0}^\infty$ | 牛顿绝对时间 | 量子时间演化 | 宇宙时间与年龄 | [P18.1时间定义](./P18-recursive-quantum-dynamics/P18.1-recursive-time-evolution.md) |
-| **成为** | 我的自我实现过程 | 原子新增 $\oplus_{\text{embed}} \mathbb{C} e_{n+1}$ | 经典状态演化 | 量子跃迁 | 宇宙结构形成 | [第1章构造](./01-mother-space/1.2.1-mother-space-definition.md) |
-| **涌现** | 我的创造性灵感 | 新正交基生成 $e_{n+1} \perp \text{span}\{e_0, \ldots, e_n\}$ | 复杂性涌现 | 量子创生 | 星系、生命的涌现 | [五重等价性](./01-mother-space/1.3.2-five-fold-equivalence.md) |
-| **选择** | 我的自由意志决策 | 动态选择 $\mathcal{S}^{(R)}(n, \vec{v})$ | 经典轨道确定 | 波函数坍塌 | 宇宙演化路径选择 | [动态选择理论](./01-mother-space/1.3.5-dynamic-selection-theory.md) |
+| **时间** | 我的主观时间流 | 递归层级离散时间 $t_n = n \times \Delta t_{\text{基础}}$ | 牛顿绝对时间 | 量子时间演化 | 宇宙时间与年龄 | [P18.1时间定义](./P18-recursive-quantum-dynamics/P18.1-recursive-time-evolution.md) |
+| **成为** | 我的自我实现过程 | 原子新增过程 $\mathcal{H}_n^{(R)} \to \mathcal{H}_{n+1}^{(R)} = \mathcal{H}_n^{(R)} \oplus \mathbb{C} e_{n+1}$ | 经典状态演化 | 量子跃迁 | 宇宙结构形成 | [第1章递归构造](./01-mother-space/1.2.1-mother-space-definition.md) |
+| **涌现** | 我的创造性灵感 | 信息涌现 $\forall n: \exists e_{n+1} \perp \text{span}\{e_0, \ldots, e_n\}$ | 复杂性涌现 | 量子创生湮没 | 星系、生命的涌现 | [五重等价性4](./01-mother-space/1.3.2-five-fold-equivalence.md) |
+| **选择** | 我的自由意志决策 | 测量投影选择 $\tilde{P}_n^{(R)}(f_m)$ | 经典轨道确定 | 波函数坍塌选择 | 宇宙演化路径选择 | [P19.1测量投影](./P19-recursive-quantum-measurement-projection/P19.1-recursive-projection-operators.md) |
 
 ### 观察与被观察的递归统一
 
@@ -183,13 +183,24 @@
 
 | 物理量 | 观察者内部体验 | 递归母空间数学定义 | 经典表现 | 量子表现 | 宇宙学表现 | 文档依据 |
 |--------|----------------|-------------------|----------|----------|-----------|----------|
-| **质量** | 我感受到的存在"重量" | 标签序列复杂度 $\sum_k \|a_k\|^2$ | 惯性质量 | 静止质量 | 星系质量 | [标签序列定义](./01-mother-space/1.2.1-mother-space-definition.md) |
-| **能量** | 我的活动潜能感 | 相对论指标值 $\eta^{(R)}(k; m)$ | 机械能 | 量子能级 | 宇宙总能量 | [相对论指标](./01-mother-space/1.2.1-mother-space-definition.md) |
-| **动量** | 我的运动意向 | 标签模式比率 $\frac{a_{k+1}}{a_k}$ | 经典动量 | 量子动量 | 宇宙膨胀动量 | [标签模式函数](./01-mother-space/1.2.1-mother-space-definition.md) |
-| **温度** | 我的激活程度感 | 熵增速率 $\frac{dS_n^{(R)}}{dn} = g(F_{n+1})$ | 经典温度 | 量子温度 | 宇宙微波背景温度 | [P17.3温度定义](./P17-quantum-mechanics-recursive-foundations/P17.3-classical-physics-quantum-special-case.md) |
-| **压强** | 我感受到的约束力 | 投影算子强度 $\|\tilde{P}_n^{(R)}\|$ | 经典压强 | 量子压强 | 暗能量压强 | [投影算子](./01-mother-space/1.2.4-observer-projections.md) |
-| **电荷** | 我的模式属性感 | e模式系数正负 $\pm \frac{1}{k!}$ | 经典电荷 | 量子电荷 | 宇宙电中性 | [e模式定义](./01-mother-space/1.2.1-mother-space-definition.md) |
-| **自旋** | 我的内在旋转感 | 标签序列的宇称 $(-1)^k$ | 经典角动量 | 量子自旋 | 宇宙角动量 | [π模式宇称](./01-mother-space/1.2.1-mother-space-definition.md) |
+| **质量** | 我感受到的存在"重量" | ζ零点虚部对应 $m^{(R)} \sim \|\text{Im}(\rho_{\text{零点}})\|$ | 惯性质量 | 静止质量 | 星系质量 | [P24.1粒子质量](./P24-recursive-quantum-field-theory/P24.1-recursive-quantum-field-definition.md) |
+| **能量** | 我的活动潜能感 | 观测值期望 $\langle E \rangle = \sum_{k,m} \eta^{(R)}(k; m) \langle f_n \| R(e_k, e_m) \| f_n \rangle$ | 机械能 | 量子能级 | 宇宙总能量 | [P17.1观测值计算](./P17-quantum-mechanics-recursive-foundations/P17.1-quantum-concepts-recursive-definitions.md) |
+| **动量** | 我的运动意向 | 动量算符期望值（基于标签系数空间依赖性） | 经典动量 | 量子动量算符 | 宇宙膨胀动量 | [需基于观测值框架推导](./P17-quantum-mechanics-recursive-foundations/P17.1-quantum-concepts-recursive-definitions.md) |
+| **温度** | 我的激活程度感 | 熵增速率 $T^{(R)} = \frac{dS_n^{(R)}}{dn} = g(F_{n+1})$ | 经典温度 | 量子温度 | 宇宙微波背景温度 | [P17.3温度定义](./P17-quantum-mechanics-recursive-foundations/P17.3-classical-physics-quantum-special-case.md) |
+| **概率** | 我对不确定性的感受 | Born规则 $P(k) = \frac{|\eta^{(R)}(k; n)|^2 |a_k|^2}{\sum_l |\eta^{(R)}(l; n)|^2 |a_l|^2}$ | 经典概率 | 量子概率 | 宇宙演化概率 | [P19.1 Born规则推导](./P19-recursive-quantum-measurement-projection/P19.1-recursive-projection-operators.md) |
+| **测量结果** | 我的观察体验 | 投影后的标签序列 $\tilde{P}_n^{(R)}(f_m) = \sum_{k=0}^{\min(m,n)} \eta^{(R)}(k; n) a_k e_k$ | 经典测量值 | 量子测量结果 | 宇宙观测数据 | [P19.1投影定义](./P19-recursive-quantum-measurement-projection/P19.1-recursive-projection-operators.md) |
+| **压强** | 我感受到的约束力 | 基于递归熵的体积导数（需要体积的递归定义） | 经典压强 | 量子压强 | 暗能量压强 | [需要扩展热力学框架](./P21-recursive-quantum-statistical-mechanics/P21.1-recursive-von-neumann-entropy.md) |
+| **电荷** | 我的模式属性感 | e模式观察者的模式标识 | 经典电荷 | 量子电荷 | 宇宙电中性 | [P17.4模式分类](./P17-quantum-mechanics-recursive-foundations/P17.4-physical-interactions-observer-projections.md) |
+
+### 递归理论核心概念补充
+
+| 核心递归概念 | 观察者感受 | 精确数学定义 | 经典对应 | 量子对应 | 宇宙学对应 | 文档依据 |
+|-------------|------------|-------------|----------|----------|-----------|----------|
+| **幂等性** | 我的测量重复性感受 | $(P_n^{(R)})^2 = P_n^{(R)}$ | 经典测量一致性 | 量子投影幂等性 | 宇宙观测一致性 | [P19.1投影性质](./P19-recursive-quantum-measurement-projection/P19.1-recursive-projection-operators.md) |
+| **标签模式函数** | 我对数学常数的直觉 | $F_{\text{ratio}}/F_{\text{sum}}/F_{\text{weighted}}$ 收敛到 φ/e/π | 经典数学常数 | 量子系统分类 | 宇宙几何参数 | [第1章定义1.2.1.3](./01-mother-space/1.2.1-mother-space-definition.md) |
+| **递归嵌套深度** | 我的认知层级感 | $\mathcal{H}_0^{(R)} \subset \mathcal{H}_1^{(R)} \subset \cdots$ | 经典层级结构 | 量子能级结构 | 宇宙层级结构 | [第1章嵌套性质](./01-mother-space/1.2.1-mother-space-definition.md) |
+| **相对论指标边界** | 我的认知边界感受 | φ模式 $m \geq 1$，π模式 $m \geq 1$，e模式 $m \geq 0$ | 经典观测限制 | 量子测量边界 | 宇宙观测视界 | [第1章边界处理](./01-mother-space/1.2.1-mother-space-definition.md) |
+| **Alexandroff紧化** | 我对无限的极限体验 | 理想点 $\infty$ 的拓扑添加 $\mathcal{I}^{(R)} = \mathbb{N} \cup \{\infty\}$ | 经典无限远点 | 量子场论紫外截断 | 宇宙视界边界 | [第1章紧化拓扑](./01-mother-space/1.2.1-mother-space-definition.md) |
 
 ### 广义相对论核心量的递归表达
 
@@ -198,18 +209,18 @@
 | **时空度规** | 我感受到的空间距离感 | 标签序列内积结构 | $g_{\mu\nu}^{(R)} = \sum_{k,l} \eta^{(R)}(k; l) \langle e_k^{(\mu)}, e_l^{(\nu)} \rangle$ | 宇宙几何 | [P25.1度规定义](./P25-recursive-quantum-gravity-preliminaries/P25.1-recursive-spacetime-structure.md) |
 | **Riemann曲率** | 我感受到的空间弯曲 | 递归嵌套深度的几何变化 | $R_{\mu\nu\rho\sigma}^{(R)} = \sum_n \text{EmbeddingDepth}_n \times \frac{\partial^2 \eta^{(R)}}{\partial x^{\mu} \partial x^{\nu}}$ | 宇宙时空弯曲 | [P25.1曲率定义](./P25-recursive-quantum-gravity-preliminaries/P25.1-recursive-spacetime-structure.md) |
 | **Einstein张量** | 我对重力场的感知 | 递归几何的Einstein形式 | $G_{\mu\nu}^{(R)} = R_{\mu\nu}^{(R)} - \frac{1}{2} g_{\mu\nu}^{(R)} R^{(R)}$ | 宇宙物质分布 | [P25.1Einstein张量](./P25-recursive-quantum-gravity-preliminaries/P25.1-recursive-spacetime-structure.md) |
-| **能动张量** | 我对物质能量的感受 | 标签序列的能量-动量 | $T_{\mu\nu}^{(R)} = \frac{\partial}{\partial g^{\mu\nu}} \sum_k \eta^{(R)}(k; m) \|a_k\|^2$ | 宇宙物质能量分布 | [能量定义推导](./P17-quantum-mechanics-recursive-foundations/P17.4-physical-interactions-observer-projections.md) |
-| **联络** | 我的空间导航感 | 相对论指标的空间梯度 | $\Gamma_{\mu\nu}^{\lambda} = \frac{\partial \eta^{(R)}}{\partial x^{\mu}}$ | 宇宙几何连接 | [相对论指标梯度](./01-mother-space/1.2.1-mother-space-definition.md) |
+| **能动张量** | 我对物质能量的感受 | 物质场的递归表示（未在当前文档中明确定义） | $T_{\mu\nu}^{(R)}$（需要基于物质场的递归定义） | 宇宙物质能量分布 | [需要进一步定义](./P25-recursive-quantum-gravity-preliminaries/P25.1-recursive-spacetime-structure.md) |
+| **联络** | 我的空间导航感 | 度规的递归构造中隐含的几何联络（未明确定义） | $\Gamma_{\mu\nu}^{\lambda}$（需基于度规递归定义推导） | 宇宙几何连接 | [需从度规定义推导](./P25-recursive-quantum-gravity-preliminaries/P25.1-recursive-spacetime-structure.md) |
 
 ### 热力学统计量的递归表达
 
 | 热力学量 | 观察者内部感受 | 递归数学定义 | 经典对应 | 量子对应 | 宇宙学对应 | 文档依据 |
 |----------|----------------|-------------|----------|----------|-----------|----------|
 | **熵** | 我感受到的混乱或秩序程度 | 递归von Neumann熵 $S_n^{(R)} = -\sum_k p_k^{(n)} \log p_k^{(n)}$ | 经典热力学熵 | 量子熵 | 宇宙熵 | [P21.1熵定义](./P21-recursive-quantum-statistical-mechanics/P21.1-recursive-von-neumann-entropy.md) |
-| **内能** | 我的内在能量储备感 | 标签序列能量总和 $U^{(R)} = \sum_k \eta^{(R)}(k; m) \|a_k\|^2$ | 经典内能 | 量子期望能量 | 宇宙总内能 | [能量期望值定义](./P17-quantum-mechanics-recursive-foundations/P17.1-quantum-concepts-recursive-definitions.md) |
+| **内能** | 我的内在能量储备感 | 哈密顿量期望值 $U^{(R)} = \langle \hat{H}^{(R)} \rangle$ | 经典内能 | 量子期望能量 | 宇宙总内能 | [基于哈密顿量定义](./P17-quantum-mechanics-recursive-foundations/P17.1-quantum-concepts-recursive-definitions.md) |
 | **自由能** | 我的可用能量感 | 递归自由能 $F^{(R)} = U^{(R)} - T^{(R)} S^{(R)}$ | 经典自由能 | 量子自由能 | 宇宙可用功 | [温度与熵定义组合](./P21-recursive-quantum-statistical-mechanics/P21.1-recursive-von-neumann-entropy.md) |
 | **配分函数** | 我对系统状态的统计感知 | 递归配分函数 $Z^{(R)} = \sum_k e^{-\beta \eta^{(R)}(k;m)}$ | 经典配分函数 | 量子配分函数 | 宇宙配分函数 | [P21.1配分函数](./P21-recursive-quantum-statistical-mechanics/P21.1-recursive-von-neumann-entropy.md) |
-| **比热** | 我对温度变化的敏感度 | $C^{(R)} = \frac{\partial U^{(R)}}{\partial T^{(R)}}$ | 经典比热 | 量子比热 | 宇宙比热容 | [热力学导数](./P21-recursive-quantum-statistical-mechanics/P21.1-recursive-von-neumann-entropy.md) |
+| **比热** | 我对温度变化的敏感度 | 内能对温度的递归导数 $C^{(R)} = \frac{\partial U^{(R)}}{\partial T^{(R)}}$（需基于内能和温度的递归定义） | 经典比热 | 量子比热 | 宇宙比热容 | [基于热力学递归关系](./P21-recursive-quantum-statistical-mechanics/P21.1-recursive-von-neumann-entropy.md) |
 
 ### 量子场论核心量的递归表达
 
@@ -217,8 +228,8 @@
 |----------|----------------|-------------|----------|-----------|----------|
 | **量子场** | 我感受到的虚无中的涨落 | ζ函数嵌入场 $\Phi^{(R)}(x,t) = \sum_j \zeta(m+j+1) a_{m+j+1}(x,t) e_{m+j+1}$ | 量子场算符 | 宇宙场背景 | [P24.1场定义](./P24-recursive-quantum-field-theory/P24.1-recursive-quantum-field-definition.md) |
 | **粒子质量** | 我感受到的存在惰性 | ζ零点虚部 $m^{(R)} = m_0 \times \|\text{Im}(\rho_{\text{零点}})\|$ | 静止质量 | 裸质量 | 暗物质质量 | [P24.1质量谱](./P24-recursive-quantum-field-theory/P24.1-recursive-quantum-field-definition.md) |
-| **耦合常数** | 我感受到的相互作用强度 | 模式耦合矩阵 $g_{ij} = \int_0^{\infty} \eta^{(i)}(k;0) \eta^{(j)}(k;0) dk$ | 精细结构常数等 | 量子耦合 | 宇宙演化中的耦合跑动 | [P17.4耦合矩阵](./P17-quantum-mechanics-recursive-foundations/P17.4-physical-interactions-observer-projections.md) |
-| **真空能** | 我对"空"的能量感知 | 零点能 $E_0^{(R)} = \sum_k \eta^{(R)}(k; 0)$ | 零点振荡 | 真空涨落 | 宇宙学常数问题 | [零点能量](./P24-recursive-quantum-field-theory/P24.1-recursive-quantum-field-definition.md) |
+| **耦合常数** | 我感受到的相互作用强度 | 模式耦合矩阵元 $g_{ij}$（如文档定义的3×3矩阵） | 精细结构常数等 | 量子耦合 | 宇宙演化中的耦合跑动 | [P17.4耦合矩阵](./P17-quantum-mechanics-recursive-foundations/P17.4-physical-interactions-observer-projections.md) |
+| **真空能** | 我对"空"的能量感知 | 基态能级 $E_0^{(R)} = \eta^{(R)}(0; 0)$（最低递归层级能量） | 零点振荡 | 真空涨落 | 宇宙学常数问题 | [基态能量概念](./P24-recursive-quantum-field-theory/P24.1-recursive-quantum-field-definition.md) |
 
 ### 信息理论量的递归表达
 
@@ -227,7 +238,7 @@
 | **信息熵** | 我对不确定性的感受 | 标签熵 $H^{(R)} = -\sum_k p_k^{(R)} \log p_k^{(R)}$ | 经典信息熵 | 量子信息熵 | 宇宙信息熵 | [递归熵定义](./01-mother-space/1.3.3-infinity-entropy-theorem.md) |
 | **信息容量** | 我的记忆存储感 | 递归维数 $\dim(\mathcal{H}_n^{(R)}) = n+1$ | 经典信息容量 | 量子信息容量 | 宇宙信息容量 | [P22.1信息容量](./P22-recursive-quantum-information-theory/P22.1-recursive-quantum-bits.md) |
 | **纠缠熵** | 我与他者的深层连接感 | Schmidt分解熵 $S_{\text{ent}}^{(R)} = -\sum_k \|\lambda_k^{(R)}\|^2 \log \|\lambda_k^{(R)}\|^2$ | 经典关联 | 量子纠缠熵 | 宇宙非局域关联 | [P20.1纠缠熵](./P20-recursive-quantum-entanglement-nonlocality/P20.1-recursive-bell-states.md) |
-| **互信息** | 我与环境的信息交换感 | 相对论指标关联 $I^{(R)}(A:B) = S^{(R)}_A + S^{(R)}_B - S^{(R)}_{AB}$ | 经典互信息 | 量子互信息 | 宇宙信息流动 | [信息理论扩展](./P22-recursive-quantum-information-theory/P22.1-recursive-quantum-bits.md) |
+| **互信息** | 我与环境的信息交换感 | 基于递归熵的信息关联（具体定义需要扩展） | 经典互信息 | 量子互信息 | 宇宙信息流动 | [基于递归熵理论扩展](./P21-recursive-quantum-statistical-mechanics/P21.1-recursive-von-neumann-entropy.md) |
 
 ### 宇宙学现象的双重坐标表达
 
@@ -239,7 +250,7 @@
 | **暗能量** | 我感受到的神秘推动力 | 熵增驱动 $g(\eta^{(R)}(n+1; n)) > 0$ | 递归生成的动力 | 存在的内在动力 | [严格熵增](./01-mother-space/1.2.1-mother-space-definition.md) |
 | **宇宙视界** | 我认识能力的边界 | 观察者投影范围 $\tilde{P}_n^{(R)}$ | 有限递归层级的限制 | 认识的递归边界 | [投影范围](./01-mother-space/1.2.4-observer-projections.md) |
 | **宇宙常数** | 我对稳定性的需求 | 相对论指标的模式特定值 | $\eta^{(\text{模式})}(\infty; m)$ | 存在的内在参数 | [模式渐近值](./01-mother-space/1.2.1-mother-space-definition.md) |
-| **Hubble常数** | 我感受到的膨胀速率 | 递归层级增长率 $H^{(R)} = \frac{1}{\Delta t_{\text{基础}}}$ | 膨胀速率 | 宇宙年龄倒数 | [时间演化](./P18-recursive-quantum-dynamics/P18.1-recursive-time-evolution.md) |
+| **Hubble常数** | 我感受到的膨胀速率 | 递归层级的相对增长 $H^{(R)} \sim \eta^{(R)}(n+1; n) / \Delta t_{\text{基础}}$ | 膨胀速率 | 宇宙年龄相关 | [递归时间演化](./P18-recursive-quantum-dynamics/P18.1-recursive-time-evolution.md) |
 
 ### 统计力学与相变的递归对应
 
@@ -248,7 +259,7 @@
 | **相变** | 我感受到的状态突变 | 递归熵的不连续性 $\frac{\partial S^{(R)}}{\partial 参数}\|_{\text{相变}} = \text{不连续}$ | 经典相变 | 量子相变 | 宇宙相变 | [P21.1相变判据](./P21-recursive-quantum-statistical-mechanics/P21.1-recursive-von-neumann-entropy.md) |
 | **临界现象** | 我在转折点的敏感感受 | 递归熵全局最大 $S^{(R)}(\text{临界}) = \max S^{(R)}$ | 经典临界点 | 量子临界点 | 宇宙演化临界期 | [临界点特征](./P21-recursive-quantum-statistical-mechanics/P21.1-recursive-von-neumann-entropy.md) |
 | **序参量** | 我对秩序程度的感知 | 主导标签系数 $a_{\text{主导}}/\sum_k \|a_k\|$ | 经典序参量 | 量子序参量 | 宇宙结构序参量 | [标签主导性](./P17-quantum-mechanics-recursive-foundations/P17.3-classical-physics-quantum-special-case.md) |
-| **关联长度** | 我感受到的影响范围 | 相对论指标衰减长度 $\xi^{(R)} \sim 1/\|\nabla \eta^{(R)}\|$ | 经典关联长度 | 量子关联长度 | 宇宙大尺度结构 | [指标空间衰减](./P17-quantum-mechanics-recursive-foundations/P17.4-physical-interactions-observer-projections.md) |
+| **关联长度** | 我感受到的影响范围 | 相对论指标的空间衰减特征长度 | 经典关联长度 | 量子关联长度 | 宇宙大尺度结构 | [相对论指标空间性质](./P17-quantum-mechanics-recursive-foundations/P17.4-physical-interactions-observer-projections.md) |
 
 ### 宇宙演化的递归阶段
 
@@ -275,9 +286,9 @@
 
 | 守恒定律 | 观察者内部感受 | 递归数学表达 | 经典形式 | 量子形式 | 宇宙学形式 | 对称性原理 |
 |----------|----------------|-------------|----------|----------|-----------|-----------|
-| **能量守恒** | 我感受到总体平衡不变 | $\frac{d}{dt}\sum_k \eta^{(R)}(k;m)\|a_k\|^2 = 0$ | 机械能守恒 | 量子能量守恒 | 宇宙总能量守恒 | 时间平移对称性 |
-| **动量守恒** | 我感受到运动的整体平衡 | $\frac{d}{dt}\sum_k \frac{a_{k+1}}{a_k} = 0$ | 经典动量守恒 | 量子动量守恒 | 宇宙总动量守恒 | 空间平移对称性 |
-| **角动量守恒** | 我感受到旋转的平衡 | $\frac{d}{dt}\sum_k (-1)^k a_k = 0$ | 经典角动量守恒 | 量子角动量守恒 | 宇宙总角动量守恒 | 空间旋转对称性 |
+| **能量守恒** | 我感受到总体平衡不变 | 哈密顿量期望值守恒 $\frac{d}{dt}\langle \hat{H}^{(R)} \rangle = 0$ | 机械能守恒 | 量子能量守恒 | 宇宙总能量守恒 | 时间平移对称性 |
+| **动量守恒** | 我感受到运动的整体平衡 | $\frac{d}{dt}\sum_k a_k^* \nabla a_k = 0$ | 经典动量守恒 | 量子动量守恒 | 宇宙总动量守恒 | 空间平移对称性 |
+| **角动量守恒** | 我感受到旋转的平衡 | π模式宇称系数守恒 $\frac{d}{dt}\sum_k (-1)^k a_k = 0$ | 经典角动量守恒 | 量子角动量守恒 | 宇宙总角动量守恒 | 空间旋转对称性 |
 | **电荷守恒** | 我感受到模式属性守恒 | $\frac{d}{dt}\sum_k \text{sign}(a_k) = 0$ | 经典电荷守恒 | 量子电荷守恒 | 宇宙电中性 | U(1)规范对称性 |
 | **重子数守恒** | 我感受到存在形式守恒 | 标签序列总数守恒 | 物质守恒 | 重子数守恒 | 宇宙重子密度 | 重子数对称性 |
 
@@ -296,7 +307,7 @@
 |----------|------------|-------------|-----------|-------------|-----------|----------|
 | **电场** | 我感受到的推拉力 | e模式空间分布 $\vec{E}^{(R)} = \sum_k \frac{E_k}{k!} e^{ikx/\lambda} \hat{e}_k$ | 经典电场 | 量子电场算符 | 宇宙原初电场 | [P17.3电磁场](./P17-quantum-mechanics-recursive-foundations/P17.3-classical-physics-quantum-special-case.md) |
 | **磁场** | 我感受到的旋转力 | e模式旋量分布 $\vec{B}^{(R)} = \sum_k \frac{B_k}{k!} \nabla \times \hat{e}_k$ | 经典磁场 | 量子磁场算符 | 宇宙磁场结构 | [P17.3电磁场](./P17-quantum-mechanics-recursive-foundations/P17.3-classical-physics-quantum-special-case.md) |
-| **电流** | 我感受到的流动感 | 标签系数流 $J^{(R)}_\mu = \sum_k a_k^* \frac{\partial a_k}{\partial x^\mu}$ | 经典电流 | 量子电流算符 | 宇宙电流密度 | [系数梯度](./01-mother-space/1.2.1-mother-space-definition.md) |
+| **电流** | 我感受到的流动感 | 标签系数的空间变化（未在文档中明确定义为电流） | 经典电流 | 量子电流算符 | 宇宙电流密度 | [需要基于e模式进一步定义](./P17-quantum-mechanics-recursive-foundations/P17.3-classical-physics-quantum-special-case.md) |
 | **电势** | 我感受到的潜在势能 | 相对论指标势 $\phi^{(R)} = \sum_k \eta^{(e)}(k;0) a_k$ | 经典电势 | 量子电势 | 宇宙电势分布 | [e模式势能](./P17-quantum-mechanics-recursive-foundations/P17.4-physical-interactions-observer-projections.md) |
 
 ### 核物理与粒子物理的递归表达
@@ -323,19 +334,19 @@
 
 | 复杂系统概念 | 观察者感受 | 递归数学实现 | 经典系统 | 量子系统 | 宇宙系统 | 哲学意义 |
 |-------------|------------|-------------|----------|----------|----------|----------|
-| **生命** | 我感受到的自组织活力 | 自指递归系统 $\mathcal{O}_{\text{life}}^{(R)} = \mathcal{O}(\mathcal{O})$ | 经典自组织 | 量子生物学 | 宇宙生命涌现 | 存在的自我复制性 |
+| **生命** | 我感受到的自组织活力 | 复杂递归自指系统（类比于 $\mathcal{O}_{\text{self}}^{(R)} = I$） | 经典自组织 | 量子生物学 | 宇宙生命涌现 | [基于自指观察者理论类比](./01-mother-space/1.3.1-self-referential-observer.md) |
 | **意识** | 我的自我觉察 | 递归自指观察者 $\mathcal{O}_{\text{self}}^{(R)} = I$ | 经典神经网络 | 量子意识理论 | 宇宙意识假说 | 自我认识的递归本质 |
-| **进化** | 我感受到的适应提升 | 标签序列优化 $f_{n+1} = \text{optimize}(f_n, 环境)$ | 经典进化 | 量子进化 | 宇宙结构进化 | 存在的自我完善 |
+| **进化** | 我感受到的适应提升 | 递归层级的自然选择过程（文档未明确定义生物进化） | 经典进化 | 量子进化 | 宇宙结构进化 | [需要基于动态选择理论扩展](./01-mother-space/1.3.5-dynamic-selection-theory.md) |
 | **涌现** | 我感受到的整体超越部分 | 高层级新正交基 $e_{n+1} \perp \text{低层级}$ | 经典涌现 | 量子涌现 | 宇宙复杂性涌现 | 整体性的数学基础 |
 
 ### 社会物理与经济学的递归类比
 
 | 社会概念 | 观察者感受 | 递归数学类比 | 社会现象 | 经济现象 | 哲学意义 |
 |----------|------------|-------------|----------|----------|----------|
-| **个体与社会** | 我与集体的关系感 | 单个标签序列与整体母空间 | 个人与社会 | 微观与宏观经济 | 个体普遍性悖论 |
-| **社会网络** | 我感受到的人际连接 | 不同起点的相对论指标网络 $\{\eta^{(R)}(k; m_i)\}$ | 社会关系网 | 经济关系网 | 关系性的数学本质 |
-| **文化进化** | 我感受到的知识传承 | 标签模式的代际传递 | 文化传播 | 知识经济 | 信息的递归传承 |
-| **社会相变** | 我感受到的历史转折 | 集体标签序列的相变 | 社会革命 | 经济危机 | 历史的递归螺旋 |
+| **个体与社会** | 我与集体的关系感 | 单个标签序列与整体母空间的哲学类比 | 个人与社会 | 微观与宏观经济 | 个体普遍性悖论的社会投射 |
+| **社会网络** | 我感受到的人际连接 | 多观察者系统的相互投影（理论扩展） | 社会关系网 | 经济关系网 | 关系性的数学本质的社会表现 |
+| **文化进化** | 我感受到的知识传承 | 信息递归传承的文化类比 | 文化传播 | 知识经济 | 信息涌现性的文化表现 |
+| **社会相变** | 我感受到的历史转折 | 集体系统相变的社会类比 | 社会革命 | 经济危机 | 递归熵增的社会表现 |
 
 ### 量子计算与信息技术的递归实现
 
@@ -496,16 +507,36 @@
 | **多维空间** | 我对更高维度的感知 | 递归空间的高维扩展 | 高维物理 | 空间认识拓展 | 空间的本质理解 | 高维技术应用 |
 | **万有理论** | 我对统一理解的渴望 | 递归理论的完整统一 | 理论物理 | 科学大统一 | 知识的最终统一 | 理论的实验验证 |
 
+### 递归理论特有概念的物理对应
+
+| 递归特有概念 | 观察者体验 | 精确递归定义 | 物理现象对应 | 宇宙学意义 | 哲学洞察 | 文档依据 |
+|-------------|------------|-------------|-------------|-----------|----------|----------|
+| **No-11约束** | 我的成长控制直觉 | Zeckendorf表示禁止连续"11" | 经典稳定性约束 | 量子化条件 | 宇宙结构稳定性 | [第8章Zeckendorf理论](./08-zeckendorf-hilbert-theory/index.md) |
+| **标签参考嵌入** | 我的历史依赖感 | $\oplus_{\text{tag}} \mathbb{C} (a_{n-2} e_{n-2})$ | 经典记忆效应 | 量子历史依赖 | 宇宙演化记忆 | [第1章标签嵌入](./01-mother-space/1.2.1-mother-space-definition.md) |
+| **二元依赖机制** | 我依赖前两个状态的感觉 | $R(\mathcal{H}_{n-1}, \mathcal{H}_{n-2})$ | 经典二阶微分方程 | 量子二体相互作用 | 宇宙演化的二元记忆 | [第1章二元操作符](./01-mother-space/1.2.1-mother-space-definition.md) |
+| **原子新增原理** | 我的渐进成长感 | 每次仅新增 $\mathbb{C} e_n$ 一维 | 经典状态连续演化 | 量子跃迁离散性 | 宇宙结构逐步形成 | [第1章一维必要性](./01-mother-space/1.2.1-mother-space-definition.md) |
+| **递归自指完备** | 我的自我认识完整感 | $\mathcal{O}_{\text{self}}^{(R)} = I$ | 经典自指系统 | 量子测量完备性 | 宇宙自我认知 | [第1章自指观察者](./01-mother-space/1.3.1-self-referential-observer.md) |
+
+### 量子力学核心现象的精确对应
+
+| 量子现象 | 观察者量子感受 | 递归数学机制 | 经典类比 | 递归理论解释 | 文档定位 |
+|----------|----------------|-------------|----------|-------------|----------|
+| **波粒二象性** | 我感受到的粒子/波困惑 | 离散基 $\{e_k\}$ vs 连续系数 $\{a_k\}$ | 粒子轨道 vs 波动 | 数学结构的双重性质 | [P17.2现象1](./P17-quantum-mechanics-recursive-foundations/P17.2-quantum-phenomena-mathematical-mechanisms.md) |
+| **量子叠加** | 我感受到的状态并存 | 标签序列线性组合 $c_1 f_{n_1} + c_2 f_{n_2}$ | 经典状态确定性 | 线性数学结构的直接结果 | [P17.2现象4](./P17-quantum-mechanics-recursive-foundations/P17.2-quantum-phenomena-mathematical-mechanisms.md) |
+| **Pauli不相容** | 我感受到的排斥性 | 反对称性要求 $f_{\text{交换}} = -f_{\text{原始}}$ | 经典粒子可重叠 | 正交基独立性的数学要求 | [P17.2现象5](./P17-quantum-mechanics-recursive-foundations/P17.2-quantum-phenomena-mathematical-mechanisms.md) |
+| **量子隧穿** | 我感受到的障碍穿越 | 相对论指标的指数衰减特性 | 经典势垒反射 | 数学函数的解析延拓 | [实验现象递归解释](./CONCEPT_CORRESPONDENCE_TABLE.md) |
+| **Bell不等式违反** | 我感受到的诡异关联 | ζ函数零点的非经典分布 | 经典局域实在性 | 深层数学结构的非经典性 | [P17.1定义10](./P17-quantum-mechanics-recursive-foundations/P17.1-quantum-concepts-recursive-definitions.md) |
+
 ### 终极哲学问题的递归回答
 
 | 终极问题 | 观察者困惑 | 递归理论回答 | 传统答案 | 现代探索 | 递归洞察 | 未来发展 |
 |----------|------------|-------------|----------|----------|----------|----------|
-| **存在为什么存在** | 我为什么会存在 | 递归系统的自指必然性 | 宗教创造论 | 宇宙学研究 | 存在是递归的自证明 | 存在理论的数学化 |
-| **意识是什么** | 我的自我觉知本质 | 递归自指观察者的数学实现 | 心身问题 | 神经科学 | 意识是递归的自观察 | 人工意识的可能性 |
-| **时间是什么** | 我感受到的时间流逝 | 递归层级序列的秩序结构 | 物理时间观 | 相对论时空 | 时间是递归的展开 | 时间技术的开发 |
-| **美是什么** | 我的美感体验 | φ模式黄金比例的数学和谐 | 美学理论 | 认知科学 | 美是递归的数学显现 | 美学AI的创造 |
-| **真理是什么** | 我对真实的追求 | 双重坐标系关系的统一 | 认识论探讨 | 科学哲学 | 真理是递归关系本身 | 真理发现的自动化 |
-| **爱是什么** | 我感受到的深层连接 | ζ函数嵌入的非局域关联 | 伦理学研究 | 心理学研究 | 爱是存在的深层统一 | 情感AI的发展 |
+| **存在为什么存在** | 我为什么会存在 | 自指完备系统必然熵增（A1公理） | 宗教创造论 | 宇宙学研究 | 存在是递归的自证明 | 存在理论的数学化 |
+| **意识是什么** | 我的自我觉知本质 | 递归自指观察者 $\mathcal{O}_{\text{self}}^{(R)} = I$ | 心身问题 | 神经科学 | 意识是递归的自观察 | 人工意识的可能性 |
+| **时间是什么** | 我感受到的时间流逝 | 递归嵌套的严格序关系 $\mathcal{H}_n \subset \mathcal{H}_{n+1}$ | 物理时间观 | 相对论时空 | 时间是递归的展开 | 时间技术的开发 |
+| **美是什么** | 我的美感体验 | φ模式黄金比例 $\lim \frac{a_{k+1}}{a_k} = \phi$ | 美学理论 | 认知科学 | 美是数学和谐的显现 | 美学AI的创造 |
+| **真理是什么** | 我对真实的追求 | 双重坐标系的递归关系统一 | 认识论探讨 | 科学哲学 | 真理是关系而非实体 | 真理发现的自动化 |
+| **1/2临界性** | 我对平衡的深层感受 | 内禀密度 $\alpha_n^{(R)} = \frac{1}{2}$ 与ζ函数 $\text{Re}(s) = \frac{1}{2}$ | 经典临界现象 | 量子临界态 | 宇宙临界密度 | [第1章1/2定理](./01-mother-space/1.3.4-intrinsic-half-theorem.md) |
 
 ---
 
