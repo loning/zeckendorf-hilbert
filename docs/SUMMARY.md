@@ -9,6 +9,8 @@
     - [Mathematical Theory](./traditional-math/hilbert-complete/MATH_THEORY_INTRODUCTION_EN.md)
     - [物理理论体系介绍](./traditional-math/hilbert-complete/PHYSICS_THEORY_INTRODUCTION.md)
     - [Physics Theory](./traditional-math/hilbert-complete/PHYSICS_THEORY_INTRODUCTION_EN.md)
+    - [概念对应关系表](./traditional-math/hilbert-complete/CONCEPT_CORRESPONDENCE_TABLE.md)
+    - [Concept Correspondence Table](./traditional-math/hilbert-complete/CONCEPT_CORRESPONDENCE_TABLE_EN.md)
     - [单页所有定义定理](./traditional-math/hilbert-complete/DEFINITIONS_THEOREMS_CLEAN.md)
     - [第一章：递归母空间理论](./traditional-math/hilbert-complete/01-mother-space/index.md)
         - [1.2.1 递归母空间定义](./traditional-math/hilbert-complete/01-mother-space/1.2.1-mother-space-definition.md)
