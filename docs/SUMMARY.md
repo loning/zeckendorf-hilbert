@@ -165,6 +165,8 @@
 - [理论文章]()
     - [万物皆变：复杂系统相变中的人类处境与机遇](./traditional-math/articles/2025-09-02-universal-phase-transitions.md)
     - [Everything Changes: Humanity's Condition and Opportunities in Universal Phase Transitions](./traditional-math/articles/2025-09-02-universal-phase-transitions-en.md)
+    - [光明与觉醒：宇宙自我认知的千年回音](./traditional-math/articles/2025-09-03-light-awakening-cosmic-self-cognition.md)
+    - [Light and Awakening: The Millennial Echo of Cosmic Self-Cognition](./traditional-math/articles/2025-09-03-light-awakening-cosmic-self-cognition-en.md)
 
 - [自指完备墒增系统(未全面验证)]()
     - [摘要](./abstract.md)
