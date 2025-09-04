@@ -16,6 +16,7 @@
     - [研究论文]()
         - [递归希尔伯特母空间与光学结构的数学等价性](./traditional-math/hilbert-complete/papers/hilbert-light-equivalence.md)
         - [基于递归希尔伯特空间的全息信息编码理论](./traditional-math/hilbert-complete/papers/holographic-information-encoding.md)
+        - [黎曼假设与递归希尔伯特空间中的信息编码优化理论](./traditional-math/hilbert-complete/papers/riemann-hypothesis-information-encoding-optimization.md)
     - [第一章：递归母空间理论](./traditional-math/hilbert-complete/01-mother-space/index.md)
         - [1.2.1 递归母空间定义](./traditional-math/hilbert-complete/01-mother-space/1.2.1-mother-space-definition.md)
         - [1.2.2 完成函数理论](./traditional-math/hilbert-complete/01-mother-space/1.2.2-completion-function.md)
