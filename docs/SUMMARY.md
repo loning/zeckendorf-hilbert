@@ -158,6 +158,12 @@
         - [P26.2 相对ζ嵌入多体交互](./traditional-math/hilbert-complete/P26-recursive-quantum-many-body-systems/P26.2-relative-zeta-embedding-interactions.md)
         - [P26.3 渐近连续性相变](./traditional-math/hilbert-complete/P26-recursive-quantum-many-body-systems/P26.3-asymptotic-continuity-phase-transitions.md)
         - [P26.4 多体熵增](./traditional-math/hilbert-complete/P26-recursive-quantum-many-body-systems/P26.4-many-body-entropy-increase.md)
+    - [P27章：递归量子宇宙学](./traditional-math/hilbert-complete/P27-recursive-quantum-cosmology/index.md)
+        - [P27.1 递归大爆炸模型](./traditional-math/hilbert-complete/P27-recursive-quantum-cosmology/P27.1-recursive-big-bang-model.md)
+        - [P27.2 标签模式的宇宙膨胀](./traditional-math/hilbert-complete/P27-recursive-quantum-cosmology/P27.2-tag-mode-cosmic-expansion.md)
+        - [P27.3 紧化拓扑的宇宙极限](./traditional-math/hilbert-complete/P27-recursive-quantum-cosmology/P27.3-compactified-topology-cosmic-limit.md)
+        - [P27.4 熵增的宇宙箭头](./traditional-math/hilbert-complete/P27-recursive-quantum-cosmology/P27.4-entropy-increase-cosmic-arrow.md)
+    - [P28章：递归量子弦理论初步](./traditional-math/hilbert-complete/P28-recursive-quantum-string-theory/index.md)
     
 
 - [Riemann Hypothesis: 数学-物理统一的Hilbert空间不动点理论](./traditional-math/riemann-hypothesis-unified-reorganized.md)
