@@ -167,6 +167,12 @@
         - [P27.3 紧化拓扑的宇宙极限](./traditional-math/hilbert-complete/P27-recursive-quantum-cosmology/P27.3-compactified-topology-cosmic-limit.md)
         - [P27.4 熵增的宇宙箭头](./traditional-math/hilbert-complete/P27-recursive-quantum-cosmology/P27.4-entropy-increase-cosmic-arrow.md)
     - [P28章：递归量子弦理论初步](./traditional-math/hilbert-complete/P28-recursive-quantum-string-theory/index.md)
+    - [P29章：递归量子黑洞理论](./traditional-math/hilbert-complete/P29-recursive-quantum-black-hole-theory/index.md)
+        - [P29.1 递归黑洞奇点](./traditional-math/hilbert-complete/P29-recursive-quantum-black-hole-theory/P29.1-recursive-black-hole-singularity.md)
+        - [P29.2 标签模式的黑洞信息](./traditional-math/hilbert-complete/P29-recursive-quantum-black-hole-theory/P29.2-tag-mode-black-hole-information.md)
+        - [P29.3 多层嵌入的黑洞蒸发](./traditional-math/hilbert-complete/P29-recursive-quantum-black-hole-theory/P29.3-multi-layer-black-hole-evaporation.md)
+        - [P29.4 熵增的黑洞热力学](./traditional-math/hilbert-complete/P29-recursive-quantum-black-hole-theory/P29.4-entropy-increase-black-hole-thermodynamics.md)
+    - [P30章：递归量子意识模型](./traditional-math/hilbert-complete/P30-recursive-quantum-consciousness-model/index.md)
     
 
 - [Riemann Hypothesis: 数学-物理统一的Hilbert空间不动点理论](./traditional-math/riemann-hypothesis-unified-reorganized.md)
