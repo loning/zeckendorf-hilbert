@@ -19,6 +19,7 @@
         - [黎曼假设与递归希尔伯特空间中的信息编码优化理论](./traditional-math/hilbert-complete/papers/riemann-hypothesis-information-encoding-optimization.md)
         - [ζ函数作为宇宙内在频谱：递归希尔伯特空间的自包含生成理论](./traditional-math/hilbert-complete/papers/zeta-as-cosmic-intrinsic-spectrum.md)
         - [宇宙内在透明性与观测遮蔽效应：基于递归希尔伯特空间的观察者理论](./traditional-math/hilbert-complete/papers/cosmic-intrinsic-transparency-observation-shielding.md)
+        - [ζ函数的信息编码最大化与全息压缩效率理论](./traditional-math/hilbert-complete/papers/zeta-holographic-information-maximization.md)
     - [第一章：递归母空间理论](./traditional-math/hilbert-complete/01-mother-space/index.md)
         - [1.2.1 递归母空间定义](./traditional-math/hilbert-complete/01-mother-space/1.2.1-mother-space-definition.md)
         - [1.2.2 完成函数理论](./traditional-math/hilbert-complete/01-mother-space/1.2.2-completion-function.md)
