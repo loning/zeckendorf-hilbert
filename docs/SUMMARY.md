@@ -12,6 +12,7 @@
     - [概念对应关系表](./traditional-math/hilbert-complete/CONCEPT_CORRESPONDENCE_TABLE.md)
     - [Concept Correspondence Table](./traditional-math/hilbert-complete/CONCEPT_CORRESPONDENCE_TABLE_EN.md)
     - [可视化教程](./traditional-math/hilbert-complete/visualizations/tutorial/index.md)
+    - [Visualization Tutorial](./traditional-math/hilbert-complete/visualizations/tutorial/index_en.md)
     - [单页所有定义定理](./traditional-math/hilbert-complete/DEFINITIONS_THEOREMS_CLEAN.md)
     - [研究论文]()
         - [递归希尔伯特母空间与光学结构的数学等价性](./traditional-math/hilbert-complete/papers/hilbert-light-equivalence.md)
