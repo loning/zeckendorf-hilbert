@@ -173,6 +173,10 @@
         - [P29.3 多层嵌入的黑洞蒸发](./traditional-math/hilbert-complete/P29-recursive-quantum-black-hole-theory/P29.3-multi-layer-black-hole-evaporation.md)
         - [P29.4 熵增的黑洞热力学](./traditional-math/hilbert-complete/P29-recursive-quantum-black-hole-theory/P29.4-entropy-increase-black-hole-thermodynamics.md)
     - [P30章：递归量子意识模型](./traditional-math/hilbert-complete/P30-recursive-quantum-consciousness-model/index.md)
+        - [P30.1 递归意识投影](./traditional-math/hilbert-complete/P30-recursive-quantum-consciousness-model/P30.1-recursive-consciousness-projection.md)
+        - [P30.2 标签模式的决策统一](./traditional-math/hilbert-complete/P30-recursive-quantum-consciousness-model/P30.2-tag-mode-decision-unification.md)
+        - [P30.3 紧化拓扑的意识连续性](./traditional-math/hilbert-complete/P30-recursive-quantum-consciousness-model/P30.3-compactified-topology-consciousness-continuity.md)
+        - [P30.4 熵增的自由意志](./traditional-math/hilbert-complete/P30-recursive-quantum-consciousness-model/P30.4-entropy-increase-free-will.md)
     
 
 - [Riemann Hypothesis: 数学-物理统一的Hilbert空间不动点理论](./traditional-math/riemann-hypothesis-unified-reorganized.md)
