@@ -22,7 +22,7 @@
         - [宇宙内在透明性与观测遮蔽效应：基于递归希尔伯特空间的观察者理论](./traditional-math/hilbert-complete/papers/cosmic-intrinsic-transparency-observation-shielding.md)
         - [ζ函数的信息编码最大化与全息压缩效率理论](./traditional-math/hilbert-complete/papers/zeta-holographic-information-maximization.md)
         - [波粒二象性的递归希尔伯特空间解释：光的自观测干涉理论](./traditional-math/hilbert-complete/papers/wave-particle-duality-recursive-interpretation.md)
-        - [量子力学与递归希尔伯特母空间的数学等价关系：传统量子难题的递归解决方案](./traditional-math/hilbert-complete/papers/quantum-mechanics-recursive-hilbert-equivalence.md)
+        - [量子力学的坐标轴遮蔽本质：递归希尔伯特母空间的透明源头理论](./traditional-math/hilbert-complete/papers/quantum-mechanics-recursive-hilbert-equivalence.md)
         - [递归希尔伯特母空间为源头：传统量子力学作为投影子理论的数学证明](./traditional-math/hilbert-complete/papers/recursive-mother-space-as-source-traditional-projection.md)
     - [第一章：递归母空间理论](./traditional-math/hilbert-complete/01-mother-space/index.md)
         - [1.2.1 递归母空间定义](./traditional-math/hilbert-complete/01-mother-space/1.2.1-mother-space-definition.md)
