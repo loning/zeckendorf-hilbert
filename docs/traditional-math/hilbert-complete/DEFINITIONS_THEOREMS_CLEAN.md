@@ -641,7 +641,7 @@ $$\rho_n^{(\eta)} = \frac{1}{\|\tilde{f}_n\|^2} \sum_{k=0}^n |\eta^{(R)}(k; n) a
 
 **修正相对论指标**：使用后向相对$\eta^{(R)}(k; n) = \frac{F_{\text{finite}}(\{a_j\}_{j=0}^k)}{F_{\text{finite}}(\{a_j\}_{j=0}^n)} = \frac{a_k / a_0}{a_n / a_0} \approx \phi^{k-n}$（衰减方向），体现自包含递归拷贝。
 
-**边界处理**：对$a_0 = 0$模式，明确设$a_0 = \varepsilon > 0$，确保所有模式从$k=0$起始自包含，无需特殊处理。
+**边界处理**：基于第20章标准化，φ模式使用标准Fibonacci序列$a_0 = 0, a_1 = 1, a_2 = 1, a_3 = 2, \ldots$，确保递归定义的数学一致性。
 
 ## 定义 1.3.3.2 (递归熵密度函数)
 定义**递归熵密度函数**：
@@ -1440,7 +1440,9 @@ $$\phi_{l,m}^{(R)}(f) = \left(\frac{\langle f, e_m \rangle}{\eta^{(R)}(0; m)}, \
 $$\mathcal{C}_{\phi}^{(R)} = \{\eta^{(\phi)}(k; m) e_k : \eta^{(\phi)}(k; m) = \frac{F_{m+k}}{F_m}\}$$
 
 **Fibonacci坐标映射**：
-$$\phi_{\phi}^{(R)}(f_n) = \left(\frac{F_0}{F_0} a_0, \frac{F_1}{F_0} a_1, \ldots, \frac{F_n}{F_0} a_n\right)$$
+$$\phi_{\phi}^{(R)}(f_n) = \left(a_0, \frac{F_1}{F_1} a_1, \frac{F_2}{F_1} a_2, \ldots, \frac{F_n}{F_1} a_n\right)$$
+
+基于标准Fibonacci序列$F_0 = 0, F_1 = 1, F_2 = 1, F_3 = 2, \ldots$，从$F_1$开始避免除零。
 
 ### e模式坐标系
 $$\mathcal{C}_{e}^{(R)} = \{\eta^{(e)}(k; m) e_k : \eta^{(e)}(k; m) = \frac{\sum_{j=m}^{m+k} \frac{1}{j!}}{\sum_{j=0}^m \frac{1}{j!}}\}$$
@@ -2934,7 +2936,7 @@ $$\rho_n^{(\eta)} = \frac{1}{\|\tilde{f}_n\|^2} \sum_{k=0}^n |\eta^{(R)}(k; n) a
 
 **修正相对论指标**：使用后向相对$\eta^{(R)}(k; n) = \frac{F_{\text{finite}}(\{a_j\}_{j=0}^k)}{F_{\text{finite}}(\{a_j\}_{j=0}^n)} = \frac{a_k / a_0}{a_n / a_0} \approx \phi^{k-n}$（衰减方向），体现自包含递归拷贝。
 
-**边界处理**：对$a_0 = 0$模式，明确设$a_0 = \varepsilon > 0$，确保所有模式从$k=0$起始自包含，无需特殊处理。
+**边界处理**：基于第20章标准化，φ模式使用标准Fibonacci序列$a_0 = 0, a_1 = 1, a_2 = 1, a_3 = 2, \ldots$，确保递归定义的数学一致性。
 
 ## 定义 1.3.3.2 (递归熵密度函数)
 定义**递归熵密度函数**：
@@ -3270,7 +3272,9 @@ $$\phi_{l,m}^{(R)}(f) = \left(\frac{\langle f, e_m \rangle}{\eta^{(R)}(0; m)}, \
 $$\mathcal{C}_{\phi}^{(R)} = \{\eta^{(\phi)}(k; m) e_k : \eta^{(\phi)}(k; m) = \frac{F_{m+k}}{F_m}\}$$
 
 **Fibonacci坐标映射**：
-$$\phi_{\phi}^{(R)}(f_n) = \left(\frac{F_0}{F_0} a_0, \frac{F_1}{F_0} a_1, \ldots, \frac{F_n}{F_0} a_n\right)$$
+$$\phi_{\phi}^{(R)}(f_n) = \left(a_0, \frac{F_1}{F_1} a_1, \frac{F_2}{F_1} a_2, \ldots, \frac{F_n}{F_1} a_n\right)$$
+
+基于标准Fibonacci序列$F_0 = 0, F_1 = 1, F_2 = 1, F_3 = 2, \ldots$，从$F_1$开始避免除零。
 
 ### e模式坐标系
 $$\mathcal{C}_{e}^{(R)} = \{\eta^{(e)}(k; m) e_k : \eta^{(e)}(k; m) = \frac{\sum_{j=m}^{m+k} \frac{1}{j!}}{\sum_{j=0}^m \frac{1}{j!}}\}$$

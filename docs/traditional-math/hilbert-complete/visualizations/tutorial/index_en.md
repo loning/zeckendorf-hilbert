@@ -95,7 +95,7 @@ This is the core insight of recursive Hilbert mother space:
 
 ![Phi Operation Mode](./fig11_phi_operation_mode.png)
 
-**φ mode: Creative growth information extraction**: Observer path modulated by Fibonacci sequence [1,1,2,3,5,8,13,21...], showing golden ratio convergence characteristics. φ operations correspond to creative, dynamic, self-similar information patterns.
+**φ mode: Creative growth information extraction**: Observer path modulated by standard Fibonacci sequence [0,1,1,2,3,5,8,13...], showing golden ratio convergence characteristics. φ operations correspond to creative, dynamic, self-similar information patterns.
 
 ### Figure 12: e (Factorial) Operation Mode
 

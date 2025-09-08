@@ -19,15 +19,17 @@ class RecursiveMathFunctions:
     # ============ BASIC RECURSIVE FUNCTIONS ============
     
     def fibonacci_sequence(self, n_terms: int) -> List[int]:
-        """Generate exact Fibonacci sequence: a_k = a_(k-1) + a_(k-2)"""
+        """Generate standard Fibonacci sequence: F0=0, F1=1, F2=1, F3=2, F4=3, F5=5, ..."""
         if n_terms <= 0:
             return []
         elif n_terms == 1:
-            return [1]
+            return [0]
         elif n_terms == 2:
-            return [1, 1]
+            return [0, 1]
+        elif n_terms == 3:
+            return [0, 1, 1]
         
-        fib = [1, 1]
+        fib = [0, 1, 1]
         for i in range(2, n_terms):
             fib.append(fib[i-1] + fib[i-2])
         return fib

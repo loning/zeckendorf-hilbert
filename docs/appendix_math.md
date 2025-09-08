@@ -212,7 +212,7 @@ def verify_universe_hierarchy():
 ## 错误检测与边界情况
 
 ### 常见错误
-1. **错误的Fibonacci序列**: $F_1=1, F_2=1$ → **正确**: $F_1=1, F_2=2, F_3=3, F_4=5, \ldots$
+**标准Fibonacci序列**: $F_0=0, F_1=1, F_2=1, F_3=2, F_4=3, F_5=5, \ldots$（基于第20章统一标准）
 2. **错误的维度公式**: $\dim(\mathcal{H}_n)=F_n$ → **正确**: $\dim(\mathcal{H}_n)=F_{n+2}$
 3. **忽略禁11约束**: 直接张量积 $\otimes$ → **正确**: Zeckendorf张量积 $\otimes_Z$
 

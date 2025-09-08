@@ -43,7 +43,7 @@ def create_atomic_operations_control():
                bbox=dict(boxstyle='round,pad=0.2', facecolor='pink', alpha=0.7))
     
     ax1.set_title('φ Operations: Only Red Spectrum Allowed', fontsize=12, weight='bold')
-    ax1.text(2.5, 0.5, 'Fibonacci: [1,1,2,3,5] → Red Gradient', ha='center', va='center')
+    ax1.text(2.5, 0.5, 'Fibonacci: [0,1,1,2,3,5] → Red Gradient', ha='center', va='center')
     ax1.axis('off')
     
     # Panel 2: e operation (Factorial decay) - Green spectrum only  
