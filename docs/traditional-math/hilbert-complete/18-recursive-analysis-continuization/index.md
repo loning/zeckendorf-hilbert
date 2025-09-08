@@ -21,6 +21,9 @@ $$\frac{d\mathcal{H}^{(R)}(t)}{dt} = R(\mathcal{H}^{(R)}(t), \mathcal{H}^{(R)}(t
 ### [18.4 连续熵增与微分演化](./18.4-continuous-entropy-increase-differential-evolution.md)
 建立连续版本的严格熵增：$\frac{dS(t)}{dt} = g(F(t)) > 0$，发展连续递归过程的微分动力学理论，连接离散熵增与连续熵增密度。
 
+### [18.5 连续对象包含扩展](./18.5-continuous-object-inclusion-extension.md)
+扩展第1.6节的离散对象包含原理到连续域。建立连续时间参数$t$、连续张量场、连续物理场在连续递归母空间中的包含机制，完善双重包含框架的连续部分。
+
 ---
 
 ## 与其他章节的联系

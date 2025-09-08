@@ -126,6 +126,7 @@
         - [18.2 连续递归空间构造](./traditional-math/hilbert-complete/18-recursive-analysis-continuization/18.2-continuous-recursive-space-construction.md)
         - [18.3 连续相对论指标与标签函数](./traditional-math/hilbert-complete/18-recursive-analysis-continuization/18.3-continuous-relativistic-indicators-tag-functions.md)
         - [18.4 连续熵增与微分演化](./traditional-math/hilbert-complete/18-recursive-analysis-continuization/18.4-continuous-entropy-increase-differential-evolution.md)
+        - [18.5 连续对象包含扩展](./traditional-math/hilbert-complete/18-recursive-analysis-continuization/18.5-continuous-object-inclusion-extension.md)
     - [第十九章：递归算子代数](./traditional-math/hilbert-complete/19-recursive-operator-algebra/index.md)
         - [19.1 递归C*代数](./traditional-math/hilbert-complete/19-recursive-operator-algebra/19.1-recursive-cstar-algebra.md)
         - [19.2 递归von Neumann代数](./traditional-math/hilbert-complete/19-recursive-operator-algebra/19.2-recursive-von-neumann-algebra.md)
