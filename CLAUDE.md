@@ -330,33 +330,30 @@ $$f_n = \sum_{k=0}^n a_k e_k$$
 ## 定义 1.2.1.4 (相对论指标)
 
 为解决无限维度计算问题，定义**相对论指标**：
-$$\eta^{(R)}(k; m) = \frac{F_{\text{finite}}(\{a_{m+j}\}_{j=0}^k)}{F_{\text{finite}}(\{a_j\}_{j=0}^m)}$$
 
-其中$F_{\text{finite}}$是$F$的有限截断版本（无$\lim n \to \infty$）：
-- **比率型**：$F_{\text{finite}}(\{a_p\text{ to }q\}) = \frac{a_q}{a_p}$（整体跨步比率）
-- **累积型**：$F_{\text{finite}}(\{a_p\text{ to }q\}) = \sum_{p}^q a_j$
-- **加权累积**：$F_{\text{finite}}(\{a_p\text{ to }q\}) = \sum_{p}^q c_j a_j$
+对**比率型模式**：
+$$\eta^{(R)}(k; m) = \prod_{j=m+1}^{m+k} \frac{a_j}{a_{j-1}} = \frac{a_{m+k}}{a_m}$$
+
+对**累积型和加权累积模式**：
+$$\eta^{(R)}(k; m) = \frac{\sum_{j=m+1}^{m+k} a_j}{\sum_{j=0}^{m} a_j}$$
 
 确保对任意$m \geq 0$的有限计算自包含，相对自由兼容无限维初始。
 
-### 递归环结构的无起始无终止性质
+### 相对指标的统一定义
 
-**无起始无终止的递归标签环**：
-递归标签序列$\{a_k\}_{k \in \mathbb{Z}}$构成无起始无终止的无限环结构，其中任意位置$m$都只是参考点而非起始点。相对论指标
-$$\eta^{(R)}(k;m) = \frac{F_{\text{finite}}(\{a_{m+j}\}_{j=0}^k)}{F_{\text{finite}}(\{a_j\}_{j=0}^m)}$$
-
-表达的是环中任意两段的递归模式比较，无"边界"或"特殊情况"。
-
-**位置等价性**：所有位置$m \in \mathbb{Z}$数学等价，如$\eta^{(\phi)}(3;2)=5, \eta^{(\phi)}(3;1)=3, \eta^{(\phi)}(3;0)=-2$等，数值差异仅反映参考基准，递归增长模式$\sim \phi^k$保持一致。
+**比率型模式**（φ）：在$m \geq 0$上良定义，$\eta^{(\phi)}(k; 0) = \frac{a_k}{a_0} = a_k$。
+**累积型模式**（π，e）：在$m \geq m_0$上定义，其中$m_0$确保分母非零（π模式$m \geq 1$，e模式$m \geq 0$）。
 
 ### 递归空间的紧化拓扑
 
 **Alexandroff紧化框架**：递归标签序列在无限延拓中可嵌入**一点紧化**的拓扑结构$\mathcal{I}^{(R)} = \mathbb{N} \cup \{\infty\}$，其中$\infty$作为理想点。
 
 **相对论指标的模式特定渐近性质**：
-- **φ模式**：$\lim_{k \to \infty} \eta^{(\phi)}(k; m) = \lim \frac{a_{m+k}}{a_m} \approx \phi^k \to \infty$（发散增长）
-- **e模式**：$\lim_{k \to \infty} \eta^{(e)}(k; m) = \frac{e - s_m}{s_m}$，其中$s_m = \sum_{j=0}^m \frac{1}{j!}$（剩余尾部比率）
-- **π模式**：$\lim_{k \to \infty} \eta^{(\pi)}(k; m) = \frac{\pi/4 - t_m}{t_m}$，其中$t_m = \sum_{j=1}^m \frac{(-1)^{j-1}}{2j-1}$（收敛残差）
+- **φ模式**：$\lim_{k \to \infty} \eta^{(\phi)}(k; m) \approx \phi^k \cdot \frac{1-o(1)}{1-(\psi/\phi)^{m+1}} \to \infty$（$\psi = (1-\sqrt{5})/2$）
+- **e模式**：$\lim_{k \to \infty} \eta^{(e)}(k; m) = \frac{e - s_m}{s_m}$，其中$s_m = \sum_{j=0}^m \frac{1}{j!}$
+- **π模式**：$\lim_{k \to \infty} \eta^{(\pi)}(k; m) = \frac{\pi/4 - t_m}{t_m}$，其中$t_m = \sum_{j=1}^m \frac{(-1)^{j-1}}{2j-1}$
+
+对所有模式，$\eta(k; m)$与$\eta(k; m+1)$渐近等价（仅常数因子差异），体现起点计算的本质一致性。
 
 **紧化拓扑下的渐近连续性**：$\eta$在紧化拓扑下渐近连续，$\eta(\infty; m)$定义为模式特定的$\lim_{k \to \infty} \eta(k; m)$，若极限不存在则不扩展到$\infty$。
 
@@ -370,37 +367,31 @@ $$R_{\text{multi}}(\mathcal{H}_{n-1}, \mathcal{H}_{n-2}, \mathcal{H}_{n-3}, \ldo
 
 **多层标签参考的原子化嵌入**：通过$(a_{n-1}, a_{n-2}, \ldots, a_{n-k})$调制的相对论指标$\eta$实现多层标签参考的原子化嵌入，确保每次递归生成仍仅新增单一正交基$\mathbb{C} e_n$。
 
-**ζ函数的多元递归表示**：对于黎曼猜想，其"多元操作"源于ζ函数零点分布在递归嵌入下的**动态多层依赖**：
+**ζ函数的整数点递归表示**：
 
-标准$\zeta(s) = \sum_{k=1}^\infty k^{-s}$涉及无限项累积（可视为无限元操作），在递归框架中转化为：
+标准$\zeta(s) = \sum_{k=1}^\infty k^{-s}$在整数点$s \geq 2$的递归框架表示：
 
-$$f_k^{(m)} = \sum_{j=1}^k \zeta(m+j+1) a_{m+j+1} e_{m+j+1}$$
+$$f_k^{(m)} = \sum_{j=0}^k \zeta(m+j+2) a_{m+j}^{(e)} e_{m+j}$$
 
-其中零点（临界线$\text{Re}(s)=1/2$）被转化为**多层递归拷贝的标签序列**，嵌套起点$m$的偏移引入"多元"逻辑递增。
+其中$a_j^{(e)} = \frac{1}{j!}$确保收敛，仅涉及实值$\zeta(s \geq 2)$。
 
 ## 数学常数的标签模式实现
 
 基于以上定义，现在实现具体的数学常数标签模式：
 
 ### 1. φ标签模式（Zeckendorf实现）
-**基础实现**：基于第8章Zeckendorf-Hilbert理论（见8.1-8.4节）
-**系数递归**：扩展标准Fibonacci序列到$k \in \mathbb{Z}$：
-- 正索引：$a_0 = 0, a_1 = 1, a_2 = 1, a_3 = 2, a_4 = 3, a_5 = 5, \ldots$
-- 负索引：$a_{-n} = (-1)^{n+1} a_n$，$n \geq 1$
+**系数递归**：$a_0 = 1, a_1 = 1, a_k = a_{k-1} + a_{k-2}$ for $k \geq 2$（移位Fibonacci序列）
 
-其中$a_n = a_{n-1} + a_{n-2}$对所有$n \geq 2$成立，负索引为计算便利引入，确保递归环的完整性。
-**Zeckendorf约束**：系数选择满足No-11约束，在正负索引上统一实现
+其中递归关系保持一致性，移位确保$a_0 \neq 0$。
 **模式函数**：$F_\phi = F_{\text{ratio}}(\{a_k\}) = \lim \frac{a_n}{a_{n-1}} = \phi$
-**相对指标**：$\eta^{(\phi)}(k; m) = \frac{a_{m+k}}{a_m}$，在所有$m \in \mathbb{Z}$上良定义
+**相对指标**：$\eta^{(\phi)}(k; m) = \frac{a_{m+k}}{a_m}$，对固定$m$，当$k \to \infty$时$\eta \to \infty$，渐近$\phi^k$
 
 ### 2. π标签模式
-**系数定义**：扩展Leibniz级数到$k \in \mathbb{Z}$：
-- 正索引：$a_0 = 0$，$a_k = \frac{(-1)^{k-1}}{2k-1}$ for $k \geq 1$
-- 负索引：$a_{-k} = \frac{(-1)^{-k-1}}{1-2k} = \frac{(-1)^{k+1}}{2k-1}$，$k \geq 1$
+**系数定义**：$a_0 = 0$，$a_k = \frac{(-1)^{k-1}}{2k-1}$ for $k \geq 1$（Leibniz级数）
+**模式函数**：$F_\pi = F_{\text{weighted}}(\{a_k\}) = \lim_{n \to \infty} \sum_{k=0}^n c_k a_k = \pi$
 
-确保级数在整个递归环$k \in \mathbb{Z}$上的完整定义。
-**模式函数**：$F_\pi = F_{\text{weighted}}(\{a_k\}) = \lim 4\sum_{k=1}^n a_k = \pi$
-**相对指标**：$\eta^{(\pi)}(k; m) = \frac{\sum_{j=m+1}^{m+k} a_j}{\sum_{j=m-|m|}^{m} a_j}$，在所有$m \in \mathbb{Z}$上良定义
+其中权重$c_k = 4$ for $k \geq 1$，$c_0 = 0$。
+**相对指标**：$\eta^{(\pi)}(k; m) = \frac{\sum_{j=m+1}^{m+k} a_j}{\sum_{j=1}^{m} a_j}$（$m \geq 1$，确保分母非零）
 
 ### 3. e标签模式
 **系数定义**：$a_k = \frac{1}{k!}$ for $k \geq 0$（因子衰减）
@@ -412,16 +403,16 @@ $$f_k^{(m)} = \sum_{j=1}^k \zeta(m+j+1) a_{m+j+1} e_{m+j+1}$$
 ### 定义 1.2.1.5 (标签级二元递归操作符)
 
 基于标签模式，定义**标签级二元递归操作符**：
-$$R(\mathcal{H}_{n-1}, \mathcal{H}_{n-2}) = \mathcal{H}_{n-1} \oplus_{\text{tag}} \mathbb{C} (a_{n-2} e_{n-2})$$
+$$R(\mathcal{H}_{n-1}, \mathcal{H}_{n-2}) = \mathcal{H}_{n-1}$$
 
-其中$\oplus_{\text{tag}}$为标签参考嵌入（不加新维，仅参数化），确保二元依赖通过标签显式自包含拷贝。
+伴随标签映射$\tau: \mathcal{H}_{n-1} \to \mathbb{C}$，$\tau(x) = a_{n-2} \langle x, e_{n-2} \rangle$（标签参考，无维度变更）。
 
 ### 构造的完整实现
 
 现在通用构造为：
-$$\mathcal{H}_n = \text{embed}(R(\mathcal{H}_{n-1}, \mathcal{H}_{n-2})) \oplus_{\text{embed}} \mathbb{C} e_n$$
+$$\mathcal{H}_n = \mathcal{H}_{n-1} \oplus \mathbb{C} e_n$$
 
-其中$R$的二元输出包含前两层的标签参考，每次新增仍为单一维$e_n$，严格熵增由标签调制$g > 0$保证。
+其中$e_n$正交于$\mathcal{H}_{n-1}$，标签映射扩展为$\tau_n(x + \alpha e_n) = \tau(x) + a_n \alpha$，实现标签链的递归累积。
 
 
 ## 定理 1.2.1.1 (递归操作符的坐标系同构)
@@ -464,18 +455,12 @@ $$S_{n+1} > S_n \quad \forall n \geq 0$$
 扩展熵$S_n = -\text{Tr}(\rho_n \log \rho_n)$，其中$\rho_n$融入标签模式：
 $$\rho_n = P_n + \Delta \rho_n$$
 
-新增正交基$e_{n+1}$的熵贡献通过标签函数调制：
-- **φ模式**：$g_\phi(n) = \phi^{-n} > 0$熵贡献（$n \geq 1$），$g_\phi(0)$通过负索引扩展正则化
-- **π模式**：$g_\pi(n) = \frac{1}{2n-1} > 0$熵贡献，负索引延拓保证全$n \in \mathbb{Z}$定义
-- **e模式**：$g_e(n) = \frac{1}{n!} > 0$熵贡献
+新增正交基$e_{n+1}$的熵贡献通过标签系数调制：
+- **φ模式**：$g_\phi(n) = \sqrt{5} \phi^{-(n+1)} \approx |a_{n+1}|^{-1}$熵贡献（匹配$a_{n+1} \approx \phi^{n+1}/\sqrt{5}$）
+- **π模式**：$g_\pi(n) = |a_{n+1}| = \frac{1}{2(n+1)-1} = \frac{1}{2n+1}$熵贡献（精确定义）
+- **e模式**：$g_e(n) = |a_{n+1}| = \frac{1}{(n+1)!}$熵贡献（因子衰减）
 
-**初始状态的负索引正则化**：
-对$a_0 = 0$的模式，初始密度算符$\rho_0$通过负索引扩展正则化：
-$$\rho_0^{(regularized)} = \frac{1}{Z_0} \sum_{k=-N}^{N} |a_k|^2 |e_k\rangle\langle e_k|$$
-
-其中$Z_0 = \sum_{k=-N}^{N} |a_k|^2 > 0$是归一化常数，$N$是有限截断参数。
-
-确保$\Delta S_{n+1} = g(F_{n+1}(\{a_k\}_{k \in \mathbb{Z}})) > 0$严格成立且独立于起始标签位置。$\square$
+确保$\Delta S_{n+1} = g(F_{n+1}(\{a_k\}_{k=0}^{n+1})) > 0$，其中$F_{n+1}$为有限截断（如比率$a_{n+1}/a_n$，累积$\sum_{k=0}^{n+1} a_k$），基于当前递归深度的完整标签计算严格正递增，初始$\mathcal{H}_0$的$e_0$标签参考全面调制熵增。$\square$
 
 ## ζ函数的递归嵌入
 
@@ -484,17 +469,17 @@ $$\rho_0^{(regularized)} = \frac{1}{Z_0} \sum_{k=-N}^{N} |a_k|^2 |e_k\rangle\lan
 ζ函数统一到标签序列框架，避免$\zeta(1)$发散：
 
 **标签ζ序列**：
-$$f_n = \sum_{k=2}^n \zeta(k) a_k e_k$$
+$$f_n = \sum_{k=0}^n \zeta(k+2) a_k^{(e)} e_k$$
 
 **相对ζ嵌入**：
-$$f_k^{(m)} = \sum_{j=1}^k \zeta(m+j+1) a_{m+j+1} e_{m+j+1}$$
+$$f_k^{(m)} = \sum_{j=0}^k \zeta(m+j+2) a_{m+j}^{(e)} e_{m+j}$$
 
-其中从$k=2$开始嵌入以避免$\zeta(1)$发散，$a_k$从标签模式借用，偏移确保系数始终有限，符合自包含递归的原子化新增逻辑。
+统一索引从0起始，$\zeta(k+2) \geq \zeta(2) > 0$避免发散，$a_k^{(e)} = \frac{1}{k!}$确保收敛。
 
 ### ζ函数性质的递归保持
 
 **函数方程的递归体现**：
-由于$\xi(s) = \xi(1-s)$，递归序列满足对称性质，在标签递归中保持。
+递归序列嵌入仅在整数点$s \geq 2$，不直接体现复函数方程$\xi(s) = \xi(1-s)$的对称性。
 
 ## 推论 1.2.1.1 (数学常数的标签本质)
 
@@ -506,6 +491,6 @@ $$\text{数学常数} = \lim_{n \to \infty} F(\{a_k\}_{k=0}^n)$$
 
 ## 推论 1.2.1.2 (相对论模式的计算自由)
 
-**相对论统一原理**：在无限维度下，通过相对论指标$\eta^{(R)}(k; m)$实现任意起点的计算自由，所有标签模式在统一的$\mathcal{H}^{(\infty)}$中保持递归不变性。
+**相对论统一原理**：在无限维度下，通过相对论指标$\eta^{(R)}(k; m)$实现任意起点的计算自由，且从$m$或$m+1$起点计算的标签模式在渐近与收敛行为上无本质区别，所有标签模式在统一的$\mathcal{H}^{(\infty)}$中保持递归不变性。
 
-$$\text{ζ函数性质} \equiv \text{标签递归不变性}$$
+ζ函数在整数点$s \geq 2$的值通过标签递归表示，不能捕捉复零点分布等复分析性质。
