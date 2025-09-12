@@ -45,6 +45,7 @@
         - [1.8 发散映射的熵增保证机制](./traditional-math/hilbert-complete/01-mother-space/1.8-divergent-mapping-entropy-mechanism.md)
         - [1.9 高阶相对论指标理论](./traditional-math/hilbert-complete/01-mother-space/1.9-higher-order-relativistic-indicators.md)
         - [1.10 相对论指标的代数结构](./traditional-math/hilbert-complete/01-mother-space/1.10-relativistic-indicators-algebraic-structure.md)
+        - [1.11 递归收敛性的统一理论](./traditional-math/hilbert-complete/01-mother-space/1.11-recursive-convergence-unification.md)
     - [第二章：坐标系与投影理论](./traditional-math/hilbert-complete/02-coordinates-projection/index.md)
         - [2.1 坐标定义](./traditional-math/hilbert-complete/02-coordinates-projection/2.1-coordinate-definitions.md)
         - [2.2 图册覆盖](./traditional-math/hilbert-complete/02-coordinates-projection/2.2-atlas-coverage.md)
