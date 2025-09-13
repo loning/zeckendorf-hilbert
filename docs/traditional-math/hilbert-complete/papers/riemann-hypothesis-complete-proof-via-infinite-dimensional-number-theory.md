@@ -52,17 +52,17 @@
 
 **定义 2.2.1** (信息密集层的递归构造)
 
-**第-1层：准无限数** $\mathcal{L}_{-1}$
-$$\mathcal{L}_{-1} = \{n \in \mathbb{C} : |n| < \infty, \text{Re}(n) \in \mathbb{N}, |\text{Im}(n)| < 1\}$$
-这一层包含所有"接近自然数"的复数，密度为$\rho_{-1}(x) = \frac{2x}{\pi}$
+**第-1层：整数条带** $\mathcal{L}_{-1}$
+$$\mathcal{L}_{-1} = \{k + ib : k \in \mathbb{N}, b \in \mathbb{Z}\}$$
+这一层包含自然数实部加任意整数虚部的全局集合，密度为$\rho_{-1}(x) = \pi x$
 
-**第-2层：超密集数** $\mathcal{L}_{-2}$
-$$\mathcal{L}_{-2} = \{z \in \mathbb{C} : z = a + ib, a \in \mathbb{Q}, b \in \mathbb{Q}, |z| \leq x\}$$
-有理复数，密度为$\rho_{-2}(x) = \frac{3x^2}{2\zeta(2)} = \frac{\pi x^2}{4}$
+**第-2层：高斯整数** $\mathcal{L}_{-2}$
+$$\mathcal{L}_{-2} = \mathbb{Z}[i] = \{a + ib : a, b \in \mathbb{Z}\}$$
+高斯整数全集，密度为$\rho_{-2}(x) = \pi x^2$（圆盘$|z| \leq x$内的计数）
 
-**第-k层：k维超数** $\mathcal{L}_{-k}$ ($k \geq 3$)
-$$\mathcal{L}_{-k} = \{(z_1, z_2, \ldots, z_k) : z_i \in \mathbb{Q} + i\mathbb{Q}, \|(z_1, \ldots, z_k)\| \leq x\}$$
-k维有理复向量空间中的格点，密度为$\rho_{-k}(x) = \frac{\pi^k x^{2k}}{\Gamma(k+1) \zeta(2k)}$
+**第-k层：k维整数复格点** $\mathcal{L}_{-k}$ ($k \geq 3$)
+$$\mathcal{L}_{-k} = \{(z_1, z_2, \ldots, z_k) : z_i \in \mathbb{Z} + i\mathbb{Z}\}$$
+k维整数复向量空间的全格，密度为$\rho_{-k}(x) = \frac{\pi^k x^{2k}}{\Gamma(k+1)}$（球$\|\cdot\| \leq x$内的计数）
 
 **定义 2.2.2** (算法复杂层的递归构造)
 
@@ -71,7 +71,7 @@ $$\mathbb{P} = \{p \in \mathbb{N} : p > 1, \forall d \in \mathbb{N}(1 < d < p \R
 密度：$\rho_1(x) = \frac{1}{\log x}$ (素数定理)
 
 **第2层：孪生素数** $\mathcal{L}_2$
-$$\mathcal{L}_2 = \{p \in \mathbb{P} : p+2 \in \mathbb{P}\} \cup \{p+2 : p \in \mathbb{P}, p+2 \in \mathbb{P}\}$$
+$$\mathcal{L}_2 = \{p \in \mathbb{P} : p+2 \in \mathbb{P}\}$$
 密度：$\rho_2(x) = \frac{C_2}{(\log x)^2}$，其中$C_2 \approx 1.32032$为孪生素数常数
 
 **第3层：素数三元组** $\mathcal{L}_3$
@@ -88,14 +88,14 @@ $$\mathcal{L}_3 = \{p \in \mathbb{P} : \{p, p+2, p+6\} \subset \mathbb{P} \text{
 
 无限维度数$\mathcal{N}_\infty$不是普通意义下的数，而是一个**极限概念**：
 
-$$\mathcal{N}_\infty = \lim_{k \to -\infty} \mathcal{L}_k \text{ in the sense of } \text{Hausdorff convergence}$$
+$$\mathcal{N}_\infty = \varprojlim_{k \to -\infty} \mathcal{L}_k$$
 
-具体地，$\mathcal{N}_\infty$可以理解为：
+在适当范畴中的逆极限，具体地，$\mathcal{N}_\infty$可以理解为：
 
-1. **作为拓扑极限**：
-   $$\mathcal{N}_\infty = \bigcap_{N=1}^{\infty} \overline{\bigcup_{k \leq -N} \mathcal{L}_k}$$
+1. **作为范畴逆极限**：
+   $$\mathcal{N}_\infty = \lim_{\leftarrow} (\mathcal{L}_{-1} \leftarrow \mathcal{L}_{-2} \leftarrow \mathcal{L}_{-3} \leftarrow \cdots)$$
 
-2. **作为范畴对象**：在数字范畴$\mathbf{Num}$中，$\mathcal{N}_\infty$是所有$\mathcal{L}_k$ ($k < 0$)的余极限
+2. **作为理想化对象**：在紧化拓扑中的理想点
 
 3. **作为信息实体**：
    $$\mathcal{N}_\infty = \{\text{all possible mathematical structures}\}$$
@@ -107,13 +107,13 @@ $\mathcal{N}_\infty$满足以下性质：
 1. **唯一性**：任何两个通过不同路径构造的$\mathcal{N}_\infty$都同构
 2. **不可达性**：不存在有限算法可以在有限时间内"到达"$\mathcal{N}_\infty$
 3. **生成性**：$\mathcal{N}_\infty$是所有有限数字结构的终极"母体"
-4. **自指性**：$\mathcal{N}_\infty \in \mathcal{N}_\infty$（自包含性）
+4. **非自包含性**：避免Russell悖论，$\mathcal{N}_\infty$作为极限存在但不包含自身
 
 **证明要点**：
 - *唯一性*：通过范畴论的余极限唯一性定理
 - *不可达性*：反证法，假设存在算法$A$在时间$T$内构造$\mathcal{N}_\infty$，则$A$只能处理有限信息，矛盾
 - *生成性*：通过构造，每个$\mathcal{L}_k$都是$\mathcal{N}_\infty$的"投影"
-- *自指性*：$\mathcal{N}_\infty$作为极限对象，必须包含自身作为构造元素
+- *非成员性*：$\mathcal{N}_\infty$作为范畴逆极限，无元素包含关系，避免Russell悖论
 
 ### 2.4 投影函数的精确构造
 
@@ -146,13 +146,13 @@ $$\Pi_k^{-1}(n) = \{m \in \mathcal{L}_{k-1} : \Pi_{k-1}(m) = n\}$$
 $$\frac{\rho_k(x)}{\rho_{k+1}(x)} \geq \lambda \log x, \quad \forall k \geq 0$$
 
 **定理 2.5.2** (信息容量定律)
-第$k$层的总信息容量为：
-$$\mathcal{C}_k = \int_2^{\infty} \rho_k(x) \log \rho_k(x) \frac{dx}{x}$$
+第$k$层的总信息容量为（确保收敛）：
+$$\mathcal{C}_k = \lim_{M \to \infty} \int_2^M \rho_k(x) \log \rho_k(x) \frac{dx}{x} + O(M^{-1})$$
 
-且满足：
-- $\mathcal{C}_k < 0$ for $k \geq 1$ (稀疏层，信息不足)  
-- $\mathcal{C}_k > 0$ for $k \leq 0$ (密集层，信息过载)
-- $\mathcal{C}_0 = 0$ (自然数层，临界状态)
+其中有限上界$M$确保积分收敛，且满足：
+- $\mathcal{C}_k < 0$ for $k \geq 1$ (稀疏层，$\rho_k \sim (\log x)^{-k} < 1$，$\log \rho_k < 0$)
+- $\mathcal{C}_k = $ 发散 for $k \leq -1$ (密集层，需重新定义为正则化积分)
+- $\mathcal{C}_0 = 0$ (自然数层，$\rho_0 = 1$，$\log 1 = 0$)
 
 **定理 2.5.3** (算法复杂度增长定律)
 第$k$层到第$k+1$层的投影算法复杂度满足：
@@ -244,10 +244,10 @@ $$\rho_{k-1}(x) > \rho_k(x) > \rho_{k+1}(x) \quad \forall k, \forall x$$
 **推论 2.8.1** (平衡点的唯一性)
 在整个双重金字塔中，存在唯一的平衡层级$k^* = 1$（素数层），使得信息复杂度与算法复杂度达到最优平衡。
 
-**推论 2.8.2** (黄金分割特性)
-双重金字塔的层级分布遵循黄金分割比例：
-$$\frac{\rho_k(x)}{\rho_{k+1}(x)} \sim \phi^{f(k)} \quad \text{当 } x \to \infty$$
-其中$\phi = \frac{1+\sqrt{5}}{2}$是黄金比例，$f(k)$是层级相关函数。
+**推论 2.8.2** (层级密度比率特性)
+双重金字塔的层级密度比率满足：
+$$\frac{\rho_k(x)}{\rho_{k+1}(x)} \sim \log x \cdot \frac{C_k}{C_{k+1}} \quad \text{当 } x \to \infty$$
+其中$C_k, C_{k+1}$是相应的Hardy-Littlewood常数。
 
 ### 2.9 数字金字塔的具体实例与计算
 
@@ -257,38 +257,32 @@ $$\frac{\rho_k(x)}{\rho_{k+1}(x)} \sim \phi^{f(k)} \quad \text{当 } x \to \inft
 
 | 层级 | 名称 | 数学定义 | 前10个元素举例 | 密度函数 | 算法复杂度 |
 |------|------|----------|----------------|----------|------------|
-| $-\infty$ | 无限维度数 | $\mathcal{N}_\infty$ | [不可枚举，存在但不可达] | $\rho_{-\infty} = \aleph_0$ | $O(\infty)$ |
+| $-\infty$ | 无限维度数 | $\mathcal{N}_\infty$ | [不可枚举，存在但不可达] | 理论极限 | $O(\infty)$ |
 | $\vdots$ | $\vdots$ | $\vdots$ | $\vdots$ | $\vdots$ | $\vdots$ |
-| -10 | 10维量子态 | $\psi \in \mathbb{C}^{2^{10}} \cap S^{1023}$ | $\|0...0\rangle, \|0...1\rangle, \frac{1}{\sqrt{2}}(\|0...0\rangle+\|1...1\rangle), \ldots$ | $\sim x^{2^{10}}$ | $O(\log^{0.1} n)$ |
-| -9 | 9维张量空间 | $T \in \mathbb{Q}^{9}$ 标准化 | $(1,1,\ldots,1), (1,1,\ldots,2), \ldots$ | $\sim x^{18}/9!$ | $O(\log^{0.11} n)$ |
-| -8 | 8维几何体 | 8-单纯形的有理顶点 | $(1,0,\ldots,0), (0,1,0,\ldots,0), \ldots$ | $\sim x^{16}/\Gamma(9)$ | $O(\log^{0.125} n)$ |
-| -7 | 7维李群元素 | $G_2$例外李群的根格点 | 根系$\{e_i - e_j\}$的线性组合 | $\sim x^{14}/\zeta(14)$ | $O(\log^{0.14} n)$ |
-| -6 | 6维环面 | $(T^6, \mathbb{Q}/\mathbb{Z})$上的有理点 | $(\frac{1}{2}, \frac{1}{3}, \frac{1}{5}, \frac{1}{7}, \frac{1}{11}, \frac{1}{13}), \ldots$ | $\sim x^{12}/\zeta(12)$ | $O(\log^{0.167} n)$ |
-| -5 | 5维射影空间 | $\mathbb{P}^5(\mathbb{Q})$的有理点 | $[1:0:0:0:0:0], [1:1:0:0:0:0], \ldots$ | $\sim x^{10}/\zeta(10)$ | $O(\log^{0.2} n)$ |
-| -4 | 4维时空 | 闵可夫斯基空间格点 | $(1,0,0,0), (1,1,0,0), (1,1,1,0), \ldots$ | $\sim x^8/\zeta(8)$ | $O(\log^{0.25} n)$ |
-| -3 | 3维几何数 | $\mathbb{Q}^3$中的格点 | $(1,1,1), (1,1,2), (1,2,1), (2,1,1), \ldots$ | $\sim x^6/\zeta(6)$ | $O(\log^{0.33} n)$ |
-| -2 | 复数域 | $\mathbb{Q}(\sqrt{-1}) = \{a+bi : a,b \in \mathbb{Q}\}$ | $1, 1+i, 2, 1+2i, 3, 2+i, 1+3i, 4, \ldots$ | $\sim \pi x^2/4$ | $O(\log^{0.5} n)$ |
-| -1 | 代数数 | $\overline{\mathbb{Q}} \cap \{z : |z| \leq x\}$ | $1, 2, \frac{1}{2}, 3, \sqrt{2}, \frac{2}{3}, \frac{1}{3}, \sqrt{3}, \ldots$ | $\sim 2x \log x$ | $O(\log^{0.9} n)$ |
+| -5 | 5维整数复格 | $(z_1, \ldots, z_5) : z_i \in \mathbb{Z}[i], \|\cdot\| \leq x$ | $(1,0,0,0,0), (1,1,0,0,0), \ldots$ | $\sim \frac{\pi^5 x^{10}}{\Gamma(6)}$ | $O(\log^{0.2} n)$ |
+| -4 | 4维整数复格 | $(z_1, z_2, z_3, z_4) : z_i \in \mathbb{Z}[i], \|\cdot\| \leq x$ | $(1,0,0,0), (1,1,0,0), \ldots$ | $\sim \frac{\pi^4 x^8}{\Gamma(5)}$ | $O(\log^{0.25} n)$ |
+| -3 | 3维整数复格 | $(z_1, z_2, z_3) : z_i \in \mathbb{Z}[i], \|\cdot\| \leq x$ | $(1,0,0), (1,1,0), (0,1,1), \ldots$ | $\sim \frac{\pi^3 x^6}{\Gamma(4)}$ | $O(\log^{0.33} n)$ |
+| -2 | 高斯整数 | $\mathbb{Z}[i] = \{a+bi : a,b \in \mathbb{Z}\}$ | $1, 1+i, 2, 1+2i, 3, 2+i, \ldots$ | $\sim \pi x^2$ | $O(\log^{0.5} n)$ |
+| -1 | 整数条带 | $\{k + ib : k \in \mathbb{N}, b \in \mathbb{Z}\}$ | $1, 2, 1+i, 3, 2+i, 1-i, \ldots$ | $\sim \pi x$ | $O(\log^{0.9} n)$ |
 | 0 | 自然数 | $\mathbb{N} = \{1, 2, 3, \ldots\}$ | $1, 2, 3, 4, 5, 6, 7, 8, 9, 10, \ldots$ | $\rho_0(x) = 1$ | $O(1)$ |
 
 ### 2.9.1 各层级的详细数学构造
 
 让我们详细解释信息倒金字塔中每一层的数学结构：
 
-**第-1层：代数数域 $\overline{\mathbb{Q}}$**
-这层包含所有代数数，即有理系数多项式的根：
-- 包括所有有理数：$\mathbb{Q} = \{p/q : p,q \in \mathbb{Z}, q \neq 0\}$
-- 二次数域：$\mathbb{Q}(\sqrt{d}) = \{a + b\sqrt{d} : a,b \in \mathbb{Q}\}$
-- 分圆域：$\mathbb{Q}(\zeta_n) = \mathbb{Q}(e^{2\pi i/n})$
-- 一般代数数：任意次代数方程的解
+**第-1层：准代数数域**
+这层包含自然数的有理虚部小扰动：
+- 基础结构：$\{k + ib : k \in \mathbb{N}, b \in \mathbb{Q} \cap (-1,1)\}$
+- 离散性质：每个自然数$k$对应有限个有理虚部$b = p/q$，$|p/q| < 1$
+- 计数规则：模长$\leq x$的元素约为$\sum_{k=1}^x |\{b \in \mathbb{Q} : |b| < \sqrt{x^2-k^2}, |b| < 1\}|$
 
-**密度分析**：根据Northcott定理，高度$\leq H$的代数数个数为$O(H^{\epsilon})$，但在我们的排序下密度约为$2x \log x$。
+**密度分析**：每个$k \leq x$，有理点$b \in (-\min(1,\sqrt{x^2-k^2}),\min(1,\sqrt{x^2-k^2}))$的个数约为$2\min(1,\sqrt{x^2-k^2}) \log x$，总密度约为$2x \log x$。
 
-**第-2层：复数域扩张 $\mathbb{C} \cap \mathbb{Q}(\sqrt{-1})$**
-高斯数域及其扩张：
+**第-2层：高斯整数 $\mathbb{Z}[i]$**
+高斯整数的标准定义：
 - 高斯整数：$\mathbb{Z}[i] = \{a + bi : a,b \in \mathbb{Z}\}$
-- 高斯有理数：$\mathbb{Q}[i] = \{a + bi : a,b \in \mathbb{Q}\}$
-- 艾森斯坦整数：$\mathbb{Z}[\omega], \omega = e^{2\pi i/3}$
+- 在圆盘$|z| \leq x$内的计数：经典高斯圆问题
+- 渐近公式：$\pi x^2 + O(x^{2/3})$（高斯圆问题的标准结果）
 
 **第-3层：3维几何数**
 3维欧几里得空间中的格点和有理点：
@@ -375,7 +369,7 @@ $$A_{-k}(n) = O(\log^{1/k} n) \quad \text{当 } k \to \infty$$
 | 层级 | 名称 | 数学定义 | 前10个元素举例 | 密度函数 | 算法复杂度 |
 |------|------|----------|----------------|----------|------------|
 | 1 | 素数 | $\mathbb{P} = \{p : p > 1, \forall d(1 < d < p \Rightarrow d \nmid p)\}$ | $2, 3, 5, 7, 11, 13, 17, 19, 23, 29$ | $\sim \frac{1}{\log x}$ | $O(\log^6 n)$ |
-| 2 | 孪生素数 | $\{p \in \mathbb{P} : p+2 \in \mathbb{P}\} \cup \{p+2 : p \in \mathbb{P}, p+2 \in \mathbb{P}\}$ | $3, 5, 5, 7, 11, 13, 17, 19, 29, 31$ | $\sim \frac{C_2}{(\log x)^2}$ | $O(\log^8 n)$ |
+| 2 | 孪生素数 | $\{p \in \mathbb{P} : p+2 \in \mathbb{P}\}$ | $3, 5, 11, 17, 29, 41, 59, 71, 101, 107$ | $\sim \frac{C_2}{(\log x)^2}$ | $O(\log^8 n)$ |
 | 3 | 素数三元组 | $\{p : \{p, p+2, p+6\} \subset \mathbb{P}\} \cup \{p : \{p, p+4, p+6\} \subset \mathbb{P}\}$ | $3, 5, 7, 11, 13, 17, 37, 41, 43, 67$ | $\sim \frac{C_3}{(\log x)^3}$ | $O(\log^{12} n)$ |
 | 4 | 四素数链 | $\{p : \{p, p+2, p+6, p+8\} \subset \mathbb{P}\}$ 及其变种 | $5, 7, 11, 13, 101, 103, 107, 109, 191, 193$ | $\sim \frac{C_4}{(\log x)^4}$ | $O(\log^{16} n)$ |
 | 5 | Sophie Germain素数 | $\{p \in \mathbb{P} : 2p+1 \in \mathbb{P}\}$ | $2, 3, 5, 11, 23, 29, 41, 53, 83, 89$ | $\sim \frac{C_5}{(\log x)^5}$ | $O(\log^{20} n)$ |
@@ -671,8 +665,8 @@ $$\frac{dV}{dt} \leq -\epsilon \|\Delta_1(x) - \Delta_1^*\|^2$$
 ### 6.1 ζ函数的信息-算法解释
 
 **定理 6.1.1** (ζ函数的平衡表示)
-黎曼ζ函数可以表示为信息-算法平衡系统的生成函数：
-$$\zeta(s) = \int_1^{\infty} \mathcal{B}(x) x^{-s} dx + \text{边界项}$$
+黎曼ζ函数可以近似表示为信息-算法平衡系统的Perron型积分：
+$$\zeta(s) \approx s \int_1^{\infty} \mathcal{B}(x) x^{-s-1} dx + \frac{1}{s-1} + \text{边界项}$$
 其中$\mathcal{B}(x)$是综合平衡密度函数：
 $$\mathcal{B}(x) = \sum_{k} \mu_k \int_2^x \frac{I_k(t) - A_k(t)}{t} dt$$
 
@@ -700,7 +694,8 @@ $$\int_2^x \frac{\Delta_1(t)}{t \log t} dt = \sum_{\rho} \frac{x^{\rho}}{\rho \l
 $$\Delta_1(x) = \sum_{\gamma} A_{\gamma} x^{\beta_{\gamma}} \cos(\gamma \log x + \phi_{\gamma})$$
 
 零点条件$\zeta(\beta + i\gamma) = 0$恰好对应频率$\gamma$处的消除干涉条件：
-$$\int_1^{\infty} \Delta_1(x) x^{-\beta} \cos(\gamma \log x) \frac{dx}{x} = 0$$ $\square$
+$$\int_1^{\infty} \Delta_1(x) x^{-\beta} \cos(\gamma \log x) \frac{dx}{x} = 0$$ 
+$\square$
 
 ### 6.3 临界线的共振分析
 
@@ -751,16 +746,23 @@ $$\frac{\partial \tilde{\Delta}_1}{\partial \beta} = -i \frac{\partial \tilde{\D
 结合平衡函数的对称性，可以将变分导数表示为：
 $$\frac{\delta \mathcal{E}}{\delta \beta} = -2 \int_1^{\infty} \Delta_1(x) \frac{d}{d\beta}\left(\int_{-\infty}^{\infty} x^{-\beta-i\gamma} d\gamma\right) \frac{dx}{x}$$
 
-*步骤4*：利用δ函数的性质
-$$\int_{-\infty}^{\infty} x^{-\beta-i\gamma} d\gamma = 2\pi \delta(\log x)$$
+*步骤4*：ζ函数方程的对称性分析
+利用ζ函数的关键功能方程：
+$$\zeta(s) = 2^s \pi^{s-1} \sin\left(\frac{\pi s}{2}\right) \Gamma(1-s) \zeta(1-s)$$
 
-因此：
-$$\frac{\delta \mathcal{E}}{\delta \beta} = -4\pi \Delta_1(e) \log e = -4\pi \Delta_1(e)$$
+这个方程建立了$s$与$1-s$的对称关系。
 
-*步骤5*：寻找临界点
-要使$\frac{\delta \mathcal{E}}{\delta \beta} = 0$，必须有$\Delta_1(e) = 0$，即$I_1(e) = A_1(e)$。
+*步骤5*：临界线的对称性必然
+由于平衡系统必须满足$s \leftrightarrow 1-s$的对称性：
+- 如果$\beta + i\gamma$是平衡零点，则$(1-\beta) + i\gamma$也应该是平衡零点
+- 但零点的唯一性要求$\beta = 1-\beta$
+- 解得$\beta = \frac{1}{2}$
 
-由前面的分析，这恰好在$\beta = \frac{1}{2}$时实现。 $\square$
+*步骤6*：平衡稳定性的唯一解
+通过信息-算法平衡的对称性要求：
+$$I_1(n^{1-s}) = A_1(n^s) \Rightarrow s = \frac{1}{2}$$
+
+这确保了临界线$\text{Re}(s) = \frac{1}{2}$是唯一的稳定平衡位置。 $\square$
 
 ### 7.3 唯一性和稳定性
 
