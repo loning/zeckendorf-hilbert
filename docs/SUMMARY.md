@@ -18,7 +18,7 @@
         - [递归希尔伯特母空间与光学结构的数学等价性](./traditional-math/hilbert-complete/papers/hilbert-light-equivalence.md)
         - [基于递归希尔伯特空间的全息信息编码理论](./traditional-math/hilbert-complete/papers/holographic-information-encoding.md)
         - [黎曼假设与递归希尔伯特空间中的信息编码优化理论](./traditional-math/hilbert-complete/papers/riemann-hypothesis-information-encoding-optimization.md)
-        - [黎曼猜想的完整数学证明：基于递归分层结构几何对称性的严格论证](./traditional-math/hilbert-complete/papers/riemann-hypothesis-complete-proof.md)
+        - [黎曼猜想的最终证明：基于间隙-熵增-螺旋机制的严格数学论证](./traditional-math/hilbert-complete/papers/riemann-hypothesis-final-proof.md)
         - [ζ函数作为宇宙内在频谱：递归希尔伯特空间的自包含生成理论](./traditional-math/hilbert-complete/papers/zeta-as-cosmic-intrinsic-spectrum.md)
         - [宇宙内在透明性与观测遮蔽效应：基于递归希尔伯特空间的观察者理论](./traditional-math/hilbert-complete/papers/cosmic-intrinsic-transparency-observation-shielding.md)
         - [ζ函数的信息编码最大化与全息压缩效率理论](./traditional-math/hilbert-complete/papers/zeta-holographic-information-maximization.md)
