@@ -26,6 +26,7 @@
         - [量子力学的坐标轴遮蔽本质：递归希尔伯特母空间的透明源头理论](./traditional-math/hilbert-complete/papers/quantum-mechanics-recursive-hilbert-equivalence.md)
         - [递归希尔伯特母空间为源头：传统量子力学作为投影子理论的数学证明](./traditional-math/hilbert-complete/papers/recursive-mother-space-as-source-traditional-projection.md)
         - [黎曼猜想的递归数字生成统一理论：从螺旋上升到永恒回归](./traditional-math/hilbert-complete/papers/riemann-hypothesis-recursive-number-generation-unification.md)
+        - [黎曼猜想的完整证明：基于无限维数论与信息-计算平衡](./traditional-math/hilbert-complete/papers/riemann-hypothesis-complete-proof-via-infinite-dimensional-number-theory.md)
     - [第一章：递归母空间理论](./traditional-math/hilbert-complete/01-mother-space/index.md)
         - [1.2.1 递归母空间定义](./traditional-math/hilbert-complete/01-mother-space/1.2.1-mother-space-definition.md)
         - [1.2.2 完成函数理论](./traditional-math/hilbert-complete/01-mother-space/1.2.2-completion-function.md)
