@@ -250,6 +250,7 @@
         - [Q01.5 k-bonacci编码的连续化理论](./traditional-math/hilbert-complete/Q01-k-bonacci-encoding-theory/Q01.5-continuous-k-bonacci-theory.md)
     - [Q02章：ZkT量子力学理论](./traditional-math/hilbert-complete/Q02-discrete-quantum-mechanics-k-bonacci-theory/index.md)
         - [Q02.1 ZkT量子态：无限链张量表示](./traditional-math/hilbert-complete/Q02-discrete-quantum-mechanics-k-bonacci-theory/Q02.1-quantum-states-infinite-chain-tensor-representation.md)
+        - [Q02.2 ZkT量子测量：重新定义](./traditional-math/hilbert-complete/Q02-discrete-quantum-mechanics-k-bonacci-theory/Q02.2-zkt-quantum-measurement-redefinition.md)
     - [第34章：k-bonacci推广理论](./traditional-math/hilbert-complete/34-k-bonacci-generalization/index.md)
         - [34.1 k-bonacci序列的数学基础](./traditional-math/hilbert-complete/34-k-bonacci-generalization/34.1-k-bonacci-mathematical-foundations.md)
         - [34.2 生物系统的k-bonacci编码理论](./traditional-math/hilbert-complete/34-k-bonacci-generalization/34.2-biological-k-bonacci-encoding.md)
