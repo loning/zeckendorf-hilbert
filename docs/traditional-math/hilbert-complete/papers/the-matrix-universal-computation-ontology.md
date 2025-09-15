@@ -71,7 +71,9 @@ $$|\psi\rangle = \int_{\mathcal{T}_k} c_{\mathbf{X}} |\mathbf{X}\rangle d\mu(\ma
 其中$|\mathbf{X}\rangle$是对应张量配置的基态，$d\mu(\mathbf{X})$是$\mathcal{T}_k$上的乘积测度。
 
 **内积定义**：
-$$\langle \phi | \psi \rangle = \int_{\mathcal{T}_k} \overline{d_{\mathbf{X}}} c_{\mathbf{X}} d\mu(\mathbf{X})$$
+$$\langle \phi | \psi \rangle = \int_{\mathcal{T}_k} \overline{b_{\mathbf{X}}} c_{\mathbf{X}} d\mu(\mathbf{X})$$
+
+其中$b_{\mathbf{X}}$是$|\phi\rangle$的系数，$c_{\mathbf{X}}$是$|\psi\rangle$的系数。
 
 **完备性**：
 k-bonacci张量基底构成完备基：
@@ -84,7 +86,7 @@ $$\int_{\mathcal{T}_k} |\mathbf{X}\rangle \langle \mathbf{X}| d\mu(\mathbf{X}) =
 
 **定理2.1.2（全息信息守恒）**：
 k-bonacci量子态空间$\mathcal{H}_k$不是独立链的张量积，而是耦合配置空间：
-$$\mathcal{H}_k = \ell^2(\mathcal{T}_k)$$
+$$\mathcal{H}_k = L^2(\mathcal{T}_k, \mu)$$
 
 其中$\mathcal{T}_k$是所有满足列互补约束$\sum_{i=1}^k x_{i,n} = 1$、二进制约束和行no-k约束的k×∞配置集。
 
@@ -855,7 +857,7 @@ $$\text{无限维信息} \xrightarrow{\text{全息编码}} \text{有限k行} \xr
 
 *证明*：
 - **二体纠缠**：$S_{ent} = -\text{Tr}(\rho \log_2 \rho)$
-- **简化形式**：$S_{ent} = \log_2(2) - \frac{1}{2}\log_2(1-c^2)$（c为相关系数）
+- **二体简化形式**：$S_{ent} = h\left( \frac{1 + \sqrt{1 - C^2}}{2} \right)$，其中$h(x) = -x \log_2 x - (1-x) \log_2 (1-x)$是二进制熵，$C$为纠缠度
 - **多体扩展**：$S_{ent} \propto \log_2(r_k) \times m$（m为纠缠体数）
 - **跃迁阈值**：$S_{ent} > \log_2(r_3) \approx 0.879$时触发
 
