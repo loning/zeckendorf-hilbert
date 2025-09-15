@@ -40,9 +40,68 @@
 
 ## 2. 数学框架
 
-### 2.1 无限维矩阵的形式化定义
+### 2.1 ZkT量子张量表示的数学基础
 
-考虑一个二值矩阵$\mathcal{M} = (m_{ij})_{i,j \in \mathbb{N}}$，其中$m_{ij} \in \{0,1\}$。该矩阵满足以下基本约束：
+The Matrix的数学本质基于Zeckendorf-k-bonacci张量（ZkT）理论。我们首先建立k×∞张量的严格数学框架，然后扩展到∞×∞维系统。
+
+**定义2.1.1（ZkT量子态的张量结构）**：ZkT量子系统的状态由k×∞张量描述：
+$$\mathbf{X} = \begin{pmatrix}
+x_{1,1} & x_{1,2} & x_{1,3} & \cdots \\
+x_{2,1} & x_{2,2} & x_{2,3} & \cdots \\
+\vdots & \vdots & \vdots & \ddots \\
+x_{k,1} & x_{k,2} & x_{k,3} & \cdots
+\end{pmatrix}$$
+
+**张量约束条件**：
+1. **二进制约束**：$x_{i,n} \in \{0,1\}$ for all $i,n$
+2. **列互补约束**：$\sum_{i=1}^k x_{i,n} = 1$ for all $n$（每个位置恰好一条链激活）
+3. **行no-k约束**：每行$(x_{i,1}, x_{i,2}, x_{i,3}, \ldots)$满足no-k连续1约束
+
+**定义2.1.2（合法张量空间）**：合法k-bonacci张量空间：
+$$\mathcal{T}_k = \{\mathbf{X} : \text{满足上述三个约束条件}\}$$
+
+该空间是真正的无限维连续集合，每个张量$\mathbf{X}$代表k条无限链的完整配置。
+
+**定理2.1.1（Hilbert空间的k-bonacci构造）**：
+
+**量子态的张量表示**：
+量子态对应带复系数的k-bonacci张量：
+$$|\psi\rangle = \int_{\mathcal{T}_k} c_{\mathbf{X}} |\mathbf{X}\rangle d\mu(\mathbf{X})$$
+
+其中$|\mathbf{X}\rangle$是对应张量配置的基态，$d\mu(\mathbf{X})$是$\mathcal{T}_k$上的乘积测度。
+
+**内积定义**：
+$$\langle \phi | \psi \rangle = \int_{\mathcal{T}_k} \overline{d_{\mathbf{X}}} c_{\mathbf{X}} d\mu(\mathbf{X})$$
+
+**完备性**：
+k-bonacci张量基底构成完备基：
+$$\int_{\mathcal{T}_k} |\mathbf{X}\rangle \langle \mathbf{X}| d\mu(\mathbf{X}) = \hat{I}$$
+
+**空间的可分性分析**：
+- **k=2**：$\mathcal{H}_2$有限维（dim=2，对应两种严格交替模式），故可分
+- **k≥3**：$\mathcal{H}_k$已有连续统基（$|\mathcal{T}_k| = 2^{\aleph_0}$），故不可分
+- **k→∞**：进一步强化不可分性，但不可分性从$k≥3$即成立
+
+**定理2.1.2（全息信息守恒）**：
+k-bonacci量子态空间$\mathcal{H}_k$不是独立链的张量积，而是耦合配置空间：
+$$\mathcal{H}_k = \ell^2(\mathcal{T}_k)$$
+
+其中$\mathcal{T}_k$是所有满足列互补约束$\sum_{i=1}^k x_{i,n} = 1$、二进制约束和行no-k约束的k×∞配置集。
+
+**信息重分配守恒定律**：
+在k→∞极限下，无限信息通过归一化条件精确守恒：
+$$\int_{\mathcal{T}_{\infty}} |c_{\mathbf{X}}(t)|^2 d\mu(\mathbf{X}) = 1 \quad \forall t$$
+
+**von Neumann熵的k-bonacci形式**：
+对于密度算符$\hat{\rho} = \int |c_{\mathbf{X}}|^2 |\mathbf{X}\rangle\langle\mathbf{X}| d\mu$：
+$$S(\hat{\rho}) = -\int_{\mathcal{T}_k} |c_{\mathbf{X}}|^2 \log_2 |c_{\mathbf{X}}|^2 d\mu(\mathbf{X})$$
+
+### 2.2 无限维矩阵的形式化定义
+
+基于ZkT理论，考虑一个二值矩阵$\mathcal{M} = (m_{ij})_{i,j \in \mathbb{N}}$，其中$m_{ij} \in \{0,1\}$。The Matrix是k×∞张量的无限扩展：
+$$\mathcal{M} = \lim_{k \to \infty} \mathbf{X}_k$$
+
+该矩阵满足以下基本约束：
 
 **约束2.1（单点激活）**：对任意时刻$j \in \mathbb{N}$，
 $$\sum_{i=1}^{\infty} m_{ij} = 1$$
@@ -70,7 +129,7 @@ $$\lim_{N \to \infty} \frac{1}{N} \sum_{j=1}^{N} \frac{\log_2(s_j + 1)}{\log_2(N
 $$\sum_{i \in \mathbb{N}} m_{ij^*} + m_{i^*j^*} = 1 + 1 = 2$$
 矛盾。因此不存在外部激活。$\square$
 
-### 2.2 演化算子与稳定性分析
+### 2.3 演化算子与稳定性分析
 
 定义演化算子$\mathcal{T}: \mathcal{M}_t \to \mathcal{M}_{t+1}$，描述矩阵的时间演化。该算子保持单点激活约束。
 
@@ -80,7 +139,7 @@ $$\sum_{i \in \mathbb{N}} m_{ij^*} + m_{i^*j^*} = 1 + 1 = 2$$
 
 **推论2.1**：在适当的不可约性条件下，系统维持稳定的激活动态。
 
-### 2.3 k-bonacci递推与激活序列
+### 2.4 k-bonacci递推与激活序列
 
 激活序列$(s_j)$定义为时刻$j$被激活的行索引，满足$m_{s_j,j} = 1$。观察者通过k-bonacci递推预测未来激活位置。
 
