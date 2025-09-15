@@ -55,7 +55,7 @@ $$\sum_{i=1}^{\infty} m_{ij} = 1$$
    $$\nexists n: \forall j \in [n, n+k-1], s_j \in I_{\mathcal{O}}$$
 
 2. **熵增要求**：观察者的预测序列必须贡献于全局熵增：
-   $$\frac{dS_{\mathcal{O}}}{dt} = \log_2(r_k) > 0 \quad (k \geq 3)$$
+   $$\frac{dS_{\mathcal{O}}}{dt} = \log_2(r_k) > 0 \quad (k \geq 2)$$
 
 这确保了系统避免平凡循环并持续增加复杂度。顶层观察者直接满足这些约束，而嵌套观察者还需上层承认。
 
