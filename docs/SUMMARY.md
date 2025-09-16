@@ -31,6 +31,7 @@
         - [黎曼猜想的完整证明：基于无限维数论与信息-计算平衡](./traditional-math/hilbert-complete/papers/riemann-hypothesis-complete-proof-via-infinite-dimensional-number-theory.md)
         - [信息宇宙完整理论](./traditional-math/hilbert-complete/papers/information-universe-complete-theory.md)
         - [宇宙作为无限维矩阵系统：基于ZkT框架的计算本体论](./traditional-math/hilbert-complete/papers/the-matrix-universal-computation-ontology.md)
+        - [递归希尔伯特嵌入理论：可计算数与素数性质的统一框架](./traditional-math/papers/recursive-hilbert-embedding-theory.md)
     - [The Matrix: 基于ZkT框架的计算本体论](./the-matrix/index.md)
         - [01. 基础数学结构](./the-matrix/01-foundations/1.1-zkt-tensor-representation.md)
             - [1.1 ZkT量子张量表示](./the-matrix/01-foundations/1.1-zkt-tensor-representation.md)
