@@ -38,6 +38,7 @@
             - [1.2 无限维矩阵定义](./the-matrix/01-foundations/1.2-infinite-matrix-definition.md)
             - [1.3 演化算子理论](./the-matrix/01-foundations/1.3-evolution-operators.md)
             - [1.4 k-bonacci递推结构](./the-matrix/01-foundations/1.4-k-bonacci-recursion.md)
+            - [1.6 与递归希尔伯特嵌入理论的统一](./the-matrix/01-foundations/1.6-hilbert-embedding-unification.md)
         - [02. 观察者理论](./the-matrix/02-observer-theory/2.1-observer-definition.md)
             - [2.1 观察者的数学定义](./the-matrix/02-observer-theory/2.1-observer-definition.md)
             - [2.2 预测机制](./the-matrix/02-observer-theory/2.2-prediction-mechanisms.md)
