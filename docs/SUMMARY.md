@@ -40,6 +40,7 @@
             - [1.6 与递归希尔伯特嵌入理论的统一](./the-matrix/01-foundations/1.6-hilbert-embedding-unification.md)
             - [1.7 行-算法同一性：计算本质](./the-matrix/01-foundations/1.7-row-algorithm-identity.md)
             - [1.8 傅里叶变换：计算-数据对偶的本体机制](./the-matrix/01-foundations/1.8-fourier-computation-data-duality.md)
+            - [1.9 渐近收敛理论：算法纠缠的数学基础](./the-matrix/01-foundations/1.9-asymptotic-convergence-theory.md)
         - [02. 观察者理论]()
             - [2.1 观察者的数学定义](./the-matrix/02-observer-theory/2.1-observer-definition.md)
             - [2.2 预测机制](./the-matrix/02-observer-theory/2.2-prediction-mechanisms.md)
