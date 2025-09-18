@@ -59,7 +59,6 @@
             - [5.1 哥德尔不完备性](./the-matrix/05-philosophical-unity/5.1-godel-incompleteness.md)
             - [5.2 奇异环理论](./the-matrix/05-philosophical-unity/5.2-strange-loops.md)
             - [5.3 GEB统一](./the-matrix/05-philosophical-unity/5.3-geb-unification.md)
-            - [2.4 意识条件](./the-matrix/02-observer-theory/2.4-consciousness-conditions.md)
     - [第一章：递归母空间理论](./traditional-math/hilbert-complete/01-mother-space/index.md)
         - [1.2.1 递归母空间定义](./traditional-math/hilbert-complete/01-mother-space/1.2.1-mother-space-definition.md)
         - [1.2.2 完成函数理论](./traditional-math/hilbert-complete/01-mother-space/1.2.2-completion-function.md)
