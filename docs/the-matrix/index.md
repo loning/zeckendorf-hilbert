@@ -17,26 +17,23 @@
   - 约束2.2: no-k约束与熵增
   - 定理2.1: 完备性
 
-- [1.3 约束条件系统](01-foundations/1.3-constraints-system.md)
-  - 约束2.3: 信息密度归一化
-  - 约束相容性分析
-  - 约束的自洽性证明
-
-- [1.4 演化算子理论](01-foundations/1.4-evolution-operators.md)
+- [1.3 演化算子与稳定性分析](01-foundations/1.3-evolution-operators.md)
   - 演化算子的形式化定义
   - 定理2.2: 谱性质
   - 稳定性分析
 
-- [1.5 k-bonacci递推结构](01-foundations/1.5-k-bonacci-recursion.md)
+- [1.4 k-bonacci递推结构](01-foundations/1.4-k-bonacci-recursion.md)
   - 定义2.1: 激活序列递推
   - 定理2.3: 观察者的配置复杂度
   - 特征根性质
 
+- 1.5 约束条件系统（整理中，核心约束目前汇总于1.2节）
+
 - [1.6 与递归希尔伯特嵌入理论的统一](01-foundations/1.6-hilbert-embedding-unification.md)
-  - 定理1.5.1: 观察者-正交基对应
-  - 定理1.5.2: 观察者必需指数
-  - 定理1.5.3: 嵌套几何对应
-  - 定理1.5.4: 纠缠态的嵌入表示
+  - 定理1.6.1: 观察者-正交基对应
+  - 定理1.6.2: 观察者必需指数
+  - 定理1.6.3: 嵌套几何对应
+  - 定理1.6.4: 纠缠态的嵌入表示
 
 - [1.7 行-算法同一性：计算本质](01-foundations/1.7-row-algorithm-identity.md)
   - 定理1.7.1: 行-算法同一性
@@ -121,25 +118,10 @@
   - 定理7.8: 哥德尔句的构造
   - no-k约束与不完备性
 
-- [5.2 奇异环理论](05-philosophical-unity/5.2-strange-loops.md)
-  - 定义7.1: 奇异环
-  - 定理7.5: 奇异环的必要条件
-  - 定理7.6: 奇异环与意识
-
-- [5.3 GEB统一](05-philosophical-unity/5.3-geb-unification.md)
-  - 定理7.12: GEB同构
-  - 巴赫的赋格对应
-  - 埃舍尔的视觉悖论
-
-- [5.4 全息性原理](05-philosophical-unity/5.4-holographic-principle.md)
-  - 定理7.16: 全息性涌现
-  - 定理7.17: 全息重构原理
-  - 局部-全局耦合
-
-- [5.5 信息编码理论](05-philosophical-unity/5.5-information-encoding.md)
-  - 定理7.19: 编码唯一性
-  - 定理7.20: 无限信息的有限编码
-  - 素数在编码中的作用
+- 5.2 奇异环理论（待补充）
+- 5.3 GEB统一（待补充）
+- 5.4 全息性原理（待补充）
+- 5.5 信息编码理论（待补充）
 
 ## 核心定理索引
 
