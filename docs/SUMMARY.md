@@ -16,6 +16,7 @@
         - [2.2 预测机制](./the-matrix/02-observer-theory/2.2-prediction-mechanisms.md)
         - [2.3 拓扑结构](./the-matrix/02-observer-theory/2.3-topology-structure.md)
         - [2.4 意识条件](./the-matrix/02-observer-theory/2.4-consciousness-conditions.md)
+        - [2.5 观察者网络拓扑](./the-matrix/02-observer-theory/2.5-observer-network-topology.md)
     - [03. 动力学机制]()
         - [3.1 生命周期机制](./the-matrix/03-dynamics/3.1-lifecycle-mechanisms.md)
         - [3.2 通信协议](./the-matrix/03-dynamics/3.2-communication-protocols.md)
