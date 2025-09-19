@@ -34,6 +34,8 @@
     - [哲思长文]()
         - [永恒的金色编织：哥德尔-埃舍尔-巴赫在计算宇宙中的三重回归](./articles/2025-09-19-eternal-golden-braid-geb-in-computational-universe.md)
         - [The Eternal Golden Braid: The Triple Return of Gödel-Escher-Bach in the Computational Universe](./articles/2025-09-19-eternal-golden-braid-geb-in-computational-universe-en.md)
+        - [GEB·显化篇：计算理解框架下的《哥德尔、埃舍尔、巴赫》重新解读](./articles/2025-09-19-geb-manifestation-computational-understanding-framework.md)
+        - [GEB: The Manifestation - Reinterpreting "Gödel, Escher, Bach" Through the Computational Understanding Framework](./articles/2025-09-19-geb-manifestation-computational-understanding-framework-en.md)
     - [The Matrix: 基于ZkT框架的计算本体论](./the-matrix/index.md)
         - [01. 基础数学结构]()
             - [1.1 ZkT量子张量表示](./the-matrix/01-foundations/1.1-zkt-tensor-representation.md)
