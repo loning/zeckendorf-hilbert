@@ -115,7 +115,7 @@
 - [4.3 复杂度与记忆](04-emergence/4.3-complexity-memory.md)
   - 定理9.7: 记忆的实现
   - 定理9.8: 历史编码
-  - 计算复杂度分析
+  - 记忆模型：直接窗口$k$，可重构长度$k+\alpha n_{\text{active}}$
 
 - [4.4 物理现象对应](04-emergence/4.4-physical-correspondence.md)
   - 定理6.1: 波函数与频率
