@@ -1,5 +1,7 @@
 # The Matrix: 基于ZkT框架的计算本体论
 
+> **前言**：[计算理解本体论的诞生](preface.md)
+
 ## 理论结构索引
 
 ### 01. 基础数学结构 (Foundations)

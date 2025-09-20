@@ -2,6 +2,7 @@
 - [首页](./index.md)
 - [INDEX](./index_en.md)
 - [The Matrix: 基于ZkT框架的计算本体论](./the-matrix/index.md)
+    - [前言：计算理解本体论的诞生](./the-matrix/preface.md)
     - [01. 基础数学结构]()
         - [1.1 ZkT量子张量表示](./the-matrix/01-foundations/1.1-zkt-tensor-representation.md)
         - [1.2 无限维矩阵定义](./the-matrix/01-foundations/1.2-infinite-matrix-definition.md)
