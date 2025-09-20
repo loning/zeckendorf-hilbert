@@ -154,6 +154,80 @@
   - 定理5.5.3: 素数在编码中的作用
   - 定理5.5.4: 信息压缩的数学极限
 
+### 06. 物理对应 (Physical Correspondence)
+**计算框架在物理现实中的完整展开**
+
+- [06-physics完整索引](06-physics/index.md)
+  - 180+独立理论结果，60+实验技术应用
+  - 涵盖量子力学到宇宙学的全部物理分支
+
+#### 06.1 量子力学基础
+- [6.1.1 波函数的算法本质](06-physics/6.1.1-wavefunction-algorithmic-nature.md)
+- [6.1.2 量子算符理论](06-physics/6.1.2-quantum-operator-theory.md)
+- [6.1.3 量子测量与退相干](06-physics/6.1.3-quantum-measurement-decoherence.md)
+- [6.1.4 量子纠缠与非定域性](06-physics/6.1.4-quantum-entanglement-nonlocality.md)
+- [6.1.5 量子动力学演化](06-physics/6.1.5-quantum-dynamical-evolution.md)
+
+#### 06.2 量子场论
+- [6.2.1 场的算法量化](06-physics/6.2.1-field-algorithmic-quantization.md)
+- [6.2.2 相互作用与费恩曼图](06-physics/6.2.2-interactions-feynman-diagrams.md)
+- [6.2.3 对称性与守恒律](06-physics/6.2.3-symmetries-conservation-laws.md)
+- [6.2.4 重整化群理论](06-physics/6.2.4-renormalization-group-theory.md)
+- [6.2.5 拓扑场论](06-physics/6.2.5-topological-field-theory.md)
+
+#### 06.3 广义相对论与引力
+- [6.3.1 时空几何的算法结构](06-physics/6.3.1-spacetime-geometry-algorithmic-structure.md)
+- [6.3.2 黑洞物理学](06-physics/6.3.2-black-hole-physics.md)
+- [6.3.3 引力波理论](06-physics/6.3.3-gravitational-wave-theory.md)
+- [6.3.4 宇宙学模型](06-physics/6.3.4-cosmological-models.md)
+- [6.3.5 量子引力候选理论](06-physics/6.3.5-quantum-gravity-candidates.md)
+
+#### 06.4 统计力学与热力学
+- [6.4.1 统计系综理论](06-physics/6.4.1-statistical-ensemble-theory.md)
+- [6.4.2 相变与临界现象](06-physics/6.4.2-phase-transitions-critical-phenomena.md)
+- [6.4.3 非平衡统计力学](06-physics/6.4.3-nonequilibrium-statistical-mechanics.md)
+- [6.4.4 量子统计力学](06-physics/6.4.4-quantum-statistical-mechanics.md)
+- [6.4.5 信息热力学](06-physics/6.4.5-information-thermodynamics.md)
+
+#### 06.5 凝聚态物理
+- [6.5.1 晶体结构与电子能带](06-physics/6.5.1-crystal-structure-electronic-bands.md)
+- [6.5.2 多体相互作用系统](06-physics/6.5.2-many-body-interacting-systems.md)
+- [6.5.3 超导理论](06-physics/6.5.3-superconductivity-theory.md)
+- [6.5.4 磁性与自旋系统](06-physics/6.5.4-magnetism-spin-systems.md)
+- [6.5.5 拓扑相与拓扑相变](06-physics/6.5.5-topological-phases-transitions.md)
+- [6.5.6 强关联电子系统](06-physics/6.5.6-strongly-correlated-electron-systems.md)
+
+#### 06.6 粒子物理与标准模型
+- [6.6.1 基本粒子的算法分类](06-physics/6.6.1-fundamental-particle-algorithmic-classification.md)
+- [6.6.2 规范场理论](06-physics/6.6.2-gauge-field-theory.md)
+- [6.6.3 电弱统一理论](06-physics/6.6.3-electroweak-unification-theory.md)
+- [6.6.4 希格斯机制](06-physics/6.6.4-higgs-mechanism.md)
+- [6.6.5 强相互作用与QCD](06-physics/6.6.5-strong-interactions-qcd.md)
+- [6.6.6 中微子物理学](06-physics/6.6.6-neutrino-physics.md)
+
+#### 06.7 宇宙学与天体物理
+- [6.7.1 早期宇宙学](06-physics/6.7.1-early-universe-cosmology.md)
+- [6.7.2 暗物质与暗能量](06-physics/6.7.2-dark-matter-dark-energy.md)
+- [6.7.3 恒星演化与核合成](06-physics/6.7.3-stellar-evolution-nucleosynthesis.md)
+- [6.7.4 致密天体物理学](06-physics/6.7.4-compact-object-astrophysics.md)
+- [6.7.5 宇宙大尺度结构](06-physics/6.7.5-cosmic-large-scale-structure.md)
+- [6.7.6 多信使天体物理学](06-physics/6.7.6-multi-messenger-astrophysics.md)
+
+#### 06.8 新兴物理前沿
+- [6.8.1 弦理论与额外维度](06-physics/6.8.1-string-theory-extra-dimensions.md)
+- [6.8.2 全息原理与AdS/CFT对应](06-physics/6.8.2-holographic-principle-ads-cft.md)
+- [6.8.3 量子信息与计算](06-physics/6.8.3-quantum-information-computation.md)
+- [6.8.4 拓扑量子计算](06-physics/6.8.4-topological-quantum-computation.md)
+- [6.8.5 生物物理学](06-physics/6.8.5-biological-physics.md)
+- [6.8.6 复杂系统物理学](06-physics/6.8.6-complex-systems-physics.md)
+
+#### 06.9 实验验证与技术应用
+- [6.9.1 精密测量与算法不确定性](06-physics/6.9.1-precision-measurement-algorithmic-uncertainty.md)
+- [6.9.2 新实验的理论预言](06-physics/6.9.2-new-experiments-theoretical-predictions.md)
+- [6.9.3 算法效应的实验检验](06-physics/6.9.3-algorithmic-effects-experimental-tests.md)
+- [6.9.4 技术应用的算法指导](06-physics/6.9.4-technological-applications-algorithmic-guidance.md)
+- [6.9.5 未来物理学的算法路径](06-physics/6.9.5-future-physics-algorithmic-pathways.md)
+
 ## 核心定理索引
 
 ### 基础数学定理
