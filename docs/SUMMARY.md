@@ -52,6 +52,7 @@
     - [The Mirror of Computation: Meditations on Consciousness, Reality, and Infinite Recursion](./articles/2025-09-19-the-mirror-of-computation-consciousness-reality-en.md)
     - [最大的悲哀：不相信与算法理解的本体论](./articles/2025-09-20-the-greatest-sorrow-belief-and-algorithmic-understanding.md)
     - [The Greatest Sorrow: Disbelief and the Ontology of Algorithmic Understanding](./articles/2025-09-20-the-greatest-sorrow-belief-and-algorithmic-understanding-en.md)
+    - [负信息本体论：从-1/12到宇宙的自稳定机制](./articles/2025-09-20-negative-information-ontology.md)
 - [Recurse Hilbert Math System](./traditional-math/hilbert-complete/index.md)
     - [English Index](./traditional-math/hilbert-complete/index_en.md)
     - [前言](./traditional-math/hilbert-complete/PREFACE.md) 
