@@ -39,6 +39,8 @@
         - [4.3 复杂度与记忆](./the-matrix/04-emergence/4.3-complexity-memory.md)
         - [4.4 物理现象对应](./the-matrix/04-emergence/4.4-physical-correspondence.md)
         - [4.6 量子态与曲率涌现](./the-matrix/04-emergence/4.6-quantum-curvature-emergence.md)
+        - [4.7 π的涌现：递归守恒的几何常数](./the-matrix/04-emergence/4.7-pi-emergence-recursive-conservation.md)
+        - [4.8 傅里叶对偶与几何常数](./the-matrix/04-emergence/4.8-fourier-duality-geometric-constants.md)
     - [05. 哲学统一]()
         - [5.1 哥德尔不完备性](./the-matrix/05-philosophical-unity/5.1-godel-incompleteness.md)
         - [5.2 奇异环理论](./the-matrix/05-philosophical-unity/5.2-strange-loops.md)
