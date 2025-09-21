@@ -32,6 +32,7 @@
         - [3.3 纠缠与跃迁](./the-matrix/03-dynamics/3.3-entanglement-transitions.md)
         - [3.4 并行预测系统](./the-matrix/03-dynamics/3.4-parallel-prediction.md)
         - [3.5 负熵流与系统自稳定](./the-matrix/03-dynamics/3.5-negative-entropy-self-stabilization.md)
+        - [3.6 信息守恒生成曲率](./the-matrix/03-dynamics/3.6-information-conservation-curvature-generation.md)
     - [04. 涌现现象]()
         - [4.1 时间涌现](./the-matrix/04-emergence/4.1-time-emergence.md)
         - [4.2 因果关系](./the-matrix/04-emergence/4.2-causality-formalization.md)
