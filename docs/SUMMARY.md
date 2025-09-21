@@ -15,6 +15,7 @@
         - [1.10 无限级数正规化与负信息守恒](./the-matrix/01-foundations/1.10-infinite-series-regularization.md)
         - [1.11 谱曲率与负信息几何](./the-matrix/01-foundations/1.11-spectral-curvature-negative-geometry.md)
         - [1.12 递归模形式与自指闭包](./the-matrix/01-foundations/1.12-recursive-modular-forms.md)
+        - [1.13 正规化作为本体论基础](./the-matrix/01-foundations/1.13-regularization-as-ontological-foundation.md)
     - [附录：核心符号表](./the-matrix/APPENDIX-symbols.md)
     - [附录：验证清单](./the-matrix/APPENDIX-verification-plan.md)
     - [02. 观察者理论]()
