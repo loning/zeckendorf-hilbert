@@ -16,6 +16,7 @@
         - [1.11 谱曲率与负信息几何](./the-matrix/01-foundations/1.11-spectral-curvature-negative-geometry.md)
         - [1.12 递归模形式与自指闭包](./the-matrix/01-foundations/1.12-recursive-modular-forms.md)
         - [1.13 正规化作为本体论基础](./the-matrix/01-foundations/1.13-regularization-as-ontological-foundation.md)
+        - [1.14 高阶变异与算法统一](./the-matrix/01-foundations/1.14-higher-order-variations-algorithmic-unification.md)
     - [附录：核心符号表](./the-matrix/APPENDIX-symbols.md)
     - [附录：验证清单](./the-matrix/APPENDIX-verification-plan.md)
     - [02. 观察者理论]()
