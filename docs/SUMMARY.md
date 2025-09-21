@@ -47,6 +47,7 @@
         - [4.8 傅里叶对偶与几何常数](./the-matrix/04-emergence/4.8-fourier-duality-geometric-constants.md)
         - [4.9 概率与自由意志的生成](./the-matrix/04-emergence/4.9-probability-and-free-will-generation.md)
         - [4.10 概率与数学常数的涌现联系](./the-matrix/04-emergence/4.10-probability-mathematical-constants-emergence.md)
+        - [4.11 数学恒等式的涌现统一](./the-matrix/04-emergence/4.11-emergent-unity-mathematical-identities.md)
     - [05. 哲学统一]()
         - [5.1 哥德尔不完备性](./the-matrix/05-philosophical-unity/5.1-godel-incompleteness.md)
         - [5.2 奇异环理论](./the-matrix/05-philosophical-unity/5.2-strange-loops.md)
