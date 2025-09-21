@@ -20,6 +20,7 @@
         - [1.15 概率作为递归守恒的量化](./the-matrix/01-foundations/1.15-probability-recursive-conservation-quantization.md)
         - [1.16 概率与素数的全息统一](./the-matrix/01-foundations/1.16-probability-primes-holographic-unity.md)
         - [1.17 欧拉公式的计算本体论](./the-matrix/01-foundations/1.17-euler-formula-computational-ontology.md)
+        - [1.18 高阶欧拉公式与量子代数](./the-matrix/01-foundations/1.18-higher-order-euler-quantum-algebras.md)
     - [附录：核心符号表](./the-matrix/APPENDIX-symbols.md)
     - [附录：验证清单](./the-matrix/APPENDIX-verification-plan.md)
     - [02. 观察者理论]()
