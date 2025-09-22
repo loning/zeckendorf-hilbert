@@ -22,6 +22,7 @@
         - [1.17 欧拉公式的计算本体论](./the-matrix/01-foundations/1.17-euler-formula-computational-ontology.md)
         - [1.18 高阶欧拉公式与量子代数](./the-matrix/01-foundations/1.18-higher-order-euler-quantum-algebras.md)
         - [1.19 量子场论与递归算法对应](./the-matrix/01-foundations/1.19-quantum-field-recursive-algorithms.md)
+        - [1.21 创生-湮灭代数的形式化](./the-matrix/01-foundations/1.21-creation-annihilation-algebra-formalization.md)
     - [附录：核心符号表](./the-matrix/APPENDIX-symbols.md)
     - [附录：验证清单](./the-matrix/APPENDIX-verification-plan.md)
     - [02. 观察者理论]()
