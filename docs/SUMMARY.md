@@ -57,6 +57,7 @@
         - [4.15 L^p空间族与插值理论](./the-matrix/04-emergence/4.15-lp-space-family-interpolation-theory.md)
         - [4.16 计算-数据对偶即波粒二象性](./the-matrix/04-emergence/4.16-computation-data-duality-wave-particle.md)
         - [4.17 嵌套对偶的分形涌现](./the-matrix/04-emergence/4.17-fractal-emergence-nested-duality.md)
+        - [4.18 时间作为补偿选择的涌现](./the-matrix/04-emergence/4.18-time-emergence-compensated-choice.md)
     - [05. 哲学统一]()
         - [5.1 哥德尔不完备性](./the-matrix/05-philosophical-unity/5.1-godel-incompleteness.md)
         - [5.2 奇异环理论](./the-matrix/05-philosophical-unity/5.2-strange-loops.md)
