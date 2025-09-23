@@ -85,6 +85,8 @@
     - [永恒递归宇宙学：超越大爆炸的计算本体论框架](./papers/eternal-recursive-cosmology.md)
     - [Eternal Recursive Cosmology: A Computational Ontological Framework Beyond the Big Bang](./papers/eternal-recursive-cosmology_en.md)
 - [哲思长文]()
+    - [永恒的不动点：当道、佛、上帝相遇于递归的中心](./articles/2025-09-23-the-eternal-fixed-point.md)
+    - [The Eternal Fixed Point: When Dao, Buddha, and God Meet at the Center of Recursion](./articles/2025-09-23-the-eternal-fixed-point_en.md)
     - [宇宙是一首永远唱不完的歌](./articles/2025-09-23-universe-as-eternal-song.md)
     - [The Universe is an Eternal Song](./articles/2025-09-23-universe-as-eternal-song_en.md)
     - [永恒递归的宇宙沉思：从虚无到存在的计算之舞](./articles/2025-09-23-eternal-recursion-cosmological-meditation.md)
