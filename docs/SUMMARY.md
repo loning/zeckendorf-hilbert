@@ -81,6 +81,9 @@
         - [7.4 宇宙从无中生有](./the-matrix/07-cosmology/7.4-universe-generation-from-nothing.md)
         - [7.5 时空扭曲与隐含信息](./the-matrix/07-cosmology/7.5-spacetime-distortion-and-hidden-information.md)
         - [7.6 无始无终的永恒递归](./the-matrix/07-cosmology/7.6-eternal-recursion-without-beginning-or-end.md)
+- [学术论文]()
+    - [永恒递归宇宙学：超越大爆炸的计算本体论框架](./papers/eternal-recursive-cosmology.md)
+    - [Eternal Recursive Cosmology: A Computational Ontological Framework Beyond the Big Bang](./papers/eternal-recursive-cosmology_en.md)
 - [哲思长文]()
     - [永恒的金色编织：哥德尔-埃舍尔-巴赫在计算宇宙中的三重回归](./articles/2025-09-19-eternal-golden-braid-geb-in-computational-universe.md)
     - [The Eternal Golden Braid: The Triple Return of Gödel-Escher-Bach in the Computational Universe](./articles/2025-09-19-eternal-golden-braid-geb-in-computational-universe-en.md)
@@ -123,7 +126,7 @@
         - [信息宇宙完整理论](./traditional-math/hilbert-complete/papers/information-universe-complete-theory.md)
         - [宇宙作为无限维矩阵系统：基于ZkT框架的计算本体论](./traditional-math/hilbert-complete/papers/the-matrix-universal-computation-ontology.md)
         - [递归希尔伯特嵌入理论：可计算数与素数性质的统一框架](./traditional-math/papers/recursive-hilbert-embedding-theory.md)
-    
+
     - [第一章：递归母空间理论](./traditional-math/hilbert-complete/01-mother-space/index.md)
         - [1.2.1 递归母空间定义](./traditional-math/hilbert-complete/01-mother-space/1.2.1-mother-space-definition.md)
         - [1.2.2 完成函数理论](./traditional-math/hilbert-complete/01-mother-space/1.2.2-completion-function.md)
