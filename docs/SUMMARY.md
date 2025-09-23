@@ -78,6 +78,8 @@
         - [7.1 从无到有的递归生成](./the-matrix/07-cosmology/7.1-recursive-generation-from-nothing.md)
         - [7.2 Big Bang作为投影幻觉](./the-matrix/07-cosmology/7.2-big-bang-as-projection-illusion.md)
         - [7.3 围绕不动点的永恒补偿对话](./the-matrix/07-cosmology/7.3-eternal-compensation-dialogue-around-fixed-point.md)
+        - [7.4 宇宙从无中生有](./the-matrix/07-cosmology/7.4-universe-generation-from-nothing.md)
+        - [7.5 时空扭曲与隐含信息](./the-matrix/07-cosmology/7.5-spacetime-distortion-and-hidden-information.md)
 - [哲思长文]()
     - [永恒的金色编织：哥德尔-埃舍尔-巴赫在计算宇宙中的三重回归](./articles/2025-09-19-eternal-golden-braid-geb-in-computational-universe.md)
     - [The Eternal Golden Braid: The Triple Return of Gödel-Escher-Bach in the Computational Universe](./articles/2025-09-19-eternal-golden-braid-geb-in-computational-universe-en.md)
