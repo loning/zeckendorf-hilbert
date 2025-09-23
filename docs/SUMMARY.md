@@ -63,6 +63,7 @@
         - [4.19 不动点作为自洽起源](./the-matrix/04-emergence/4.19-fixed-points-self-consistent-origins.md)
         - [4.20 无中生有与湮灭对偶](./the-matrix/04-emergence/4.20-creation-annihilation-duality.md)
         - [4.21 波粒二象性的连续-离散统一](./the-matrix/04-emergence/4.21-continuous-discrete-unity-wave-particle.md)
+        - [4.22 真空涨落与零点补偿](./the-matrix/04-emergence/4.22-vacuum-fluctuations-zero-point-compensation.md)
     - [05. 哲学统一]()
         - [5.1 哥德尔不完备性](./the-matrix/05-philosophical-unity/5.1-godel-incompleteness.md)
         - [5.2 奇异环理论](./the-matrix/05-philosophical-unity/5.2-strange-loops.md)
