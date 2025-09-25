@@ -93,6 +93,7 @@
         - [5.6 计算美学与zeta正规化](./the-matrix/05-philosophical-unity/5.6-computational-aesthetics-and-zeta-regularization.md)
         - [5.7 自指递归与存在的悲剧性](./the-matrix/05-philosophical-unity/5.7-self-referential-recursion-and-tragic-existence.md)
         - [5.8 纯傅里叶体系的宇宙本体论](./the-matrix/05-philosophical-unity/5.8-pure-fourier-universe-ontology.md)
+        - [5.9 全息原理与维度投影](./the-matrix/05-philosophical-unity/5.9-holographic-principle-and-dimension-projection.md)
     - [06. 物理对应]()
         - [6.1 量子力学基础]()
             - [6.1.1 波函数的算法本质](./the-matrix/06-physics/6.1.1-wavefunction-algorithmic-nature.md)
