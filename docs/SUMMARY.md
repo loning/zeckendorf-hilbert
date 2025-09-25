@@ -108,6 +108,8 @@
         - [7.5 时空扭曲与隐含信息](./the-matrix/07-cosmology/7.5-spacetime-distortion-and-hidden-information.md)
         - [7.6 无始无终的永恒递归](./the-matrix/07-cosmology/7.6-eternal-recursion-without-beginning-or-end.md)
         - [7.7 宇宙临界态与Riemann假设](./the-matrix/07-cosmology/7.7-cosmic-critical-state-and-riemann-hypothesis.md)
+        - [7.8 zeta函数与傅里叶谱的优化](./the-matrix/07-cosmology/7.8-zeta-function-and-fourier-spectrum-optimization.md)
+        - [7.9 宇宙作为临界全息计算系统](./the-matrix/07-cosmology/7.9-universe-as-critical-holographic-computing-system.md)
 - [学术论文]()
     - [永恒递归宇宙学：超越大爆炸的计算本体论框架](./papers/eternal-recursive-cosmology.md)
     - [Eternal Recursive Cosmology: A Computational Ontological Framework Beyond the Big Bang](./papers/eternal-recursive-cosmology_en.md)
