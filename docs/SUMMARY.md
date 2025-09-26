@@ -135,6 +135,7 @@
 - [学术论文]()
     - [永恒递归宇宙学：超越大爆炸的计算本体论框架](./papers/eternal-recursive-cosmology.md)
     - [Eternal Recursive Cosmology: A Computational Ontological Framework Beyond the Big Bang](./papers/eternal-recursive-cosmology_en.md)
+    - [曲率大统一理论：基于The Matrix框架的信息-几何-计算统一场论](./papers/curvature-grand-unified-theory.md)
 - [哲思长文]()
     - [永恒的不动点：当道、佛、上帝相遇于递归的中心](./articles/2025-09-23-the-eternal-fixed-point.md)
     - [The Eternal Fixed Point: When Dao, Buddha, and God Meet at the Center of Recursion](./articles/2025-09-23-the-eternal-fixed-point_en.md)
