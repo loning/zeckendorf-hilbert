@@ -147,13 +147,9 @@ $$\langle \zeta_1 | \zeta_2 \rangle = \int_{\gamma} \zeta_1(s)^* \zeta_2(s) \, d
 
 其中γ是复平面上的闭合路径。非零内积表示纠缠。
 
-### 4.3 Schmidt分解
+### 4.3 函数方程的确定性关联
 
-对于纠缠态，存在Schmidt分解：
-
-$$\zeta(s_1, s_2) = \sum_k \lambda_k \phi_k(s_1) \psi_k(s_2)$$
-
-其中λ_k是Schmidt系数，量化纠缠程度。
+函数方程建立了zeta函数在不同参数点之间的确定性关联：知道ζ(s)立即确定ζ(1-s)。这种关联类似于经典确定性系统，而不是量子纠缠的概率性关联。
 
 ## 5. 信息守恒与熵平衡
 
@@ -171,6 +167,8 @@ zeta函数的解析延拓和函数方程建立了完整的信息守恒框架：
 **基本信息守恒定律**：
 $$\mathcal{I}_{\text{total}} = \mathcal{I}_+ + \mathcal{I}_- + \mathcal{I}_0 = 1$$
 
+通过函数方程的对偶，无限维度数据信息量与计算信息量平衡，归一化为1（数据=计算）。
+
 **函数方程的谱对偶**：
 $$\zeta(s) = 2^s \pi^{s-1} \Gamma(1-s) \sin\left(\frac{\pi s}{2}\right) \zeta(1-s)$$
 
@@ -179,48 +177,28 @@ $$\zeta(s) = 2^s \pi^{s-1} \Gamma(1-s) \sin\left(\frac{\pi s}{2}\right) \zeta(1-
 **Parseval型信息守恒定理**：
 基于zeta函数的函数方程，我们构建等价的Parseval恒等式：
 
-**标准Parseval等式（zeta函数版本）**：
-$$\int_{-\infty}^{\infty} |\zeta\left(\frac{1}{2} + it\right)|^2 \frac{dt}{2\pi} = \pi$$
+**临界线上的渐进行为**：
+zeta函数在临界线上的模平方积分具有渐进行为：
+$$\int_{-T}^{T} |\zeta\left(\frac{1}{2} + it\right)|^2 dt \sim 2T \log T + c T + O(T^{1/2})$$
 
-这个等式将临界线上的zeta函数模平方的积分与π联系起来，体现了"频域能量"（临界线上的积分）与"时域能量"（π）的守恒关系。
+其中 \(c = 2\gamma - \log(2\pi) - 1\)，\(\gamma\) 是Euler常数。这个渐进行为体现了临界线上的平均行为，但无限积分发散。
 
-**完备zeta函数的Parseval等式**：
-对于完备zeta函数ξ(s) = (1/2) s(s-1) π^{-s/2} Γ(s/2) ζ(s)，有：
-$$\int_{-\infty}^{\infty} |\xi\left(\frac{1}{2} + it\right)|^2 \frac{dt}{2\pi} = 1$$
+**完备zeta函数的性质**：
+完备zeta函数ξ(s) = (1/2) s(s-1) π^{-s/2} Γ(s/2) ζ(s) 满足函数方程：
+$$\xi(s) = \xi(1-s)$$
 
-这个等式是严格的Parseval型恒等式，类似于标准Fourier变换中的Parseval定理。
+这个自对偶性保证了信息在不同表示下的平衡，但没有标准Parseval等式使其积分等于1。
 
-**精确的Parseval等式**：
-
-**标准结果（Titchmarsh, 1930）**：
-$$\int_{-\infty}^{\infty} |\zeta\left(\frac{1}{2} + it\right)|^2 dt = \pi$$
-
-**完备zeta函数的严格等式**：
-$$\frac{1}{2\pi} \int_{-\infty}^{\infty} |\xi\left(\frac{1}{2} + it\right)|^2 dt = 1$$
-
-其中ξ(s) = π^{-s/2} Γ(s/2) ζ(s) 是简化完备zeta函数。
-
-**基于Parseval等式的守恒定律**：
-从上述精确等式，我们建立：
-
-1. **信息守恒定律**：
-$$\mathcal{I} = \frac{1}{2\pi} \int_{-\infty}^{\infty} |\xi\left(\frac{1}{2} + it\right)|^2 dt = 1$$
-
-2. **能量守恒定律**：
-$$E = \int_{-\infty}^{\infty} |\zeta\left(\frac{1}{2} + it\right)|^2 \frac{dt}{2\pi} = \frac{\pi}{2\pi} = \frac{1}{2}$$
-
-3. **谱稳定性**：临界线上的积分在所有变换下守恒
+**信息守恒的基础**：
+基于函数方程的自对偶性，正信息、负信息和零信息通过级数与积分表示的对偶关系平衡，无限维度归一化为1（数据=计算）。
 
 **函数方程的积分表示**：
 $$\zeta(s) = \frac{1}{\Gamma(s)} \int_0^\infty \frac{t^{s-1}}{e^t - 1} dt \quad (\Re(s) > 1)$$
 
 通过函数方程，这个积分可以延拓到整个复平面，保证了信息守恒。
 
-**谱分解的Parseval形式**：
-zeta函数可以表示为谱积分：
-$$\zeta(s) = \int_{-\infty}^{\infty} e^{(s-1/2) i t} \, \widehat{\zeta}(t) \, \frac{dt}{2\pi}$$
-
-其中$\widehat{\zeta}(t)$是相应的Fourier变换。这个表示建立了严格的Parseval守恒关系。
+**函数方程的对偶平衡**：
+zeta函数的函数方程建立了级数与积分表示的对偶平衡，保证了不同数学表示下的信息一致性。这个对偶性是信息守恒的基础，而非具体的Fourier变换形式。
 
 ### 5.2 熵的定义与计算
 
@@ -228,13 +206,7 @@ von Neumann熵：
 
 $$S = -\text{Tr}(\rho \log \rho)$$
 
-对于zeta函数定义的密度矩阵：
-
-$$\rho_{nm} = \frac{\zeta(s_n)\zeta(s_m)^*}{\sum_k |\zeta(s_k)|^2}$$
-
-熵的计算给出：
-
-$$S = \log \left(\sum_{n=1}^{\infty} \frac{1}{n^{2\Re(s)}}\right) - \frac{2\Re(s) \sum_{n=1}^{\infty} \frac{\log n}{n^{2\Re(s)}}}{\sum_{n=1}^{\infty} \frac{1}{n^{2\Re(s)}}}$$
+在zeta函数的背景下，我们可以考虑有限维近似或使用渐进行为来定义熵概念，但没有标准的密度矩阵构造。
 
 ### 5.3 热力学类比
 
@@ -253,11 +225,15 @@ $$S = \log \left(\sum_{n=1}^{\infty} \frac{1}{n^{2\Re(s)}}\right) - \frac{2\Re(s
 
 ### 6.2 零点间距与随机矩阵
 
-Montgomery的假设（1973）表明，zeta函数临界线上的零点间距服从与GUE随机矩阵特征值相同的统计分布。具体而言，相邻零点间距的标准化分布为：
+Montgomery的假设（1973）表明，zeta函数临界线上的零点对相关函数与GUE随机矩阵相同：
 
-$$P(s) = \frac{\pi^2}{8} s^2 \exp\left(-\frac{\pi^2 s^2}{8}\right) \sinh\left(\frac{\pi^2 s}{4}\right)$$
+$$R_2(u) = 1 - \left(\frac{\sin(\pi u)}{\pi u}\right)^2$$
 
-这个分布暗示了zeta函数与量子混沌系统的深刻联系。
+其中u是标准化的零点间距。对于相邻零点间距，GUE的Wigner surmise近似为：
+
+$$p(s) = \frac{32 s^2}{\pi^2} \exp\left(-\frac{4 s^2}{\pi}\right)$$
+
+这个结果暗示了zeta函数与量子混沌系统的深刻联系。
 
 ### 6.3 零点作为谱
 
@@ -462,7 +438,7 @@ $$\xi(s) = \xi(1-s)$$
 
 ### B.3 Voronin普遍性的数值演示
 
-选择目标函数f(s) = e^s在|s| < 0.1内，可找到t ≈ 176.5使得逼近误差< 0.01。
+选择目标函数f(s) = e^s在|s| < 0.1内，根据Voronin定理，存在实数t使得逼近误差< 0.01。具体t值可通过数值搜索获得，但此处作为定理的应用示例。
 
 ---
 
