@@ -162,16 +162,16 @@ $$\forall x, \quad \mathbf{R}(x) \leq R_{\max}(k)$$
 
 **推导**：基础曲率对应zeta函数在负整数点的特殊值，这些值通过解析延拓与临界线上的值相关联。
 
-$$\mathbf{R}_0(x) = |\zeta(-1)| \int_{-\infty}^{\infty} |\hat{s}(\omega, x)|^2 \, d\omega = \frac{1}{12} \mathcal{I}(x)$$
+$$\mathbf{R}_0(x) = |\zeta(-1)| \left[ \int_{-\infty}^{\infty} |\hat{\mathcal{I}}_+(\omega, x)|^2 \, d\omega - \int_{-\infty}^{\infty} |\hat{\mathcal{I}}_-(\omega, x)|^2 \, d\omega \right] = \frac{1}{12} [\mathcal{I}_+(x) - \mathcal{I}_-(x)]$$
 
 - ζ(-1) = -1/12：基础维度补偿权重（取绝对值保证正性）
-- $\mathcal{I}(x)$：局部信息密度
+- $\mathcal{I}_\pm(x)$：正/负信息密度
 
 #### 2.2.2 中频曲率：ζ(-3)权重的振荡模式
-$$\mathbf{R}_1(x) = \zeta(-3) \int_{\omega_c}^{\infty} |\partial_\omega \hat{s}(\omega, x)|^2 \, d\omega = \frac{1}{120} \mathcal{F}(x)$$
+$$\mathbf{R}_1(x) = \zeta(-3) \left[ \int_{\omega_c}^{\infty} |\partial_\omega \hat{\mathcal{I}}_+(\omega, x)|^2 \, d\omega - \int_{\omega_c}^{\infty} |\partial_\omega \hat{\mathcal{I}}_-(\omega, x)|^2 \, d\omega \right] = \frac{1}{120} [\mathcal{F}_+(x) - \mathcal{F}_-(x)]$$
 
 - ζ(-3) = 1/120：中频振荡权重
-- $\mathcal{F}(x)$：频域梯度强度
+- $\mathcal{F}_\pm(x)$：正/负信息频域梯度强度
 
 #### 2.2.3 高阶曲率：多zeta权重的合成
 $$\mathbf{R}_{total}(x) = \sum_{n=0}^{\infty} \zeta(-2n-1) \mathbf{R}_n(x)$$
@@ -222,10 +222,7 @@ $$\eta(x) = \frac{\int_{-\infty}^{\infty} |\hat{\mathcal{I}}_+(\omega, x)|^2 d\o
 **低压缩率**（η ≪ 1）：负信息主导，系统处于补偿状态
 **单位压缩率**（η = 1）：正负信息平衡，系统处于临界状态
 
-从信息守恒可以推导：
-$$\mathcal{I}_+(x) = \frac{\mathbf{R}(x) + \eta(x)}{2\eta(x)}, \quad \mathcal{I}_-(x) = \frac{\mathbf{R}(x) - \eta(x)}{2}$$
-
-其中$\mathbf{R}(x)$是曲率。
+压缩率与曲率的关系通过信息密度关系间接建立（详见第四部分）。
 
 #### 3.1.2 压缩率的no-k约束限制
 
@@ -335,42 +332,50 @@ $$\eta(s) = 2^{1-s} \pi^{-s} \sin(\pi s/2) \Gamma(s) \eta(1-s)$$
 从信息守恒：
 $$\mathcal{I}_+(x) + \mathcal{I}_-(x) + \mathcal{I}_0(x) = 1$$
 
-结合曲率和压缩率的定义，我们可以推导出：
+我们定义归一化参数：
+$$\mathbf{N}(x) = \mathbf{R}(x) \cdot \eta(x)$$
+
+则信息密度可以表示为：
 
 **正信息密度**：
-$$\mathcal{I}_+(x) = \frac{\mathbf{R}(x) \cdot \eta(x) + 1}{2}$$
+$$\mathcal{I}_+(x) = \frac{1 + \mathbf{N}(x)}{2}$$
 
 **负信息密度**：
-$$\mathcal{I}_-(x) = \frac{1 - \mathbf{R}(x) \cdot \eta(x)}{2}$$
+$$\mathcal{I}_-(x) = \frac{1 - \mathbf{N}(x)}{2}$$
 
 **零信息密度**：
-$$\mathcal{I}_0(x) = \frac{1 - \mathbf{R}(x) \cdot \eta(x)}{2}$$
+$$\mathcal{I}_0(x) = 0$$
 
-其中$\mathbf{R}(x)$是曲率，$\eta(x)$是压缩率。
+其中$\mathbf{R}(x)$是曲率，$\eta(x)$是压缩率，$\mathbf{N}(x) = \mathbf{R}(x) \cdot \eta(x)$是归一化参数。
 
 #### 4.1.2 临界平衡条件
 
 当系统处于临界平衡状态时：
 - $\mathbf{R}(x) = 0$（零曲率）
 - $\eta(x) = 1$（单位压缩率）
-- $\mathcal{I}_+(x) = \mathcal{I}_-(x) = \frac{1}{2}$（正负信息相等）
-- $\mathcal{I}_0(x) = 0$（无零信息缓冲）
+- $\mathbf{N}(x) = 0$（零归一化参数）
+- $\mathcal{I}_+(x) = \mathcal{I}_-(x) = \frac{1}{2}$（正负信息完美平衡）
+- $\mathcal{I}_0(x) = 0$（无平衡缓冲，完美对称）
 
 #### 4.1.3 熵增主导状态
 
 当系统处于熵增状态时：
 - $\mathbf{R}(x) > 0$（正曲率）
 - $\eta(x) > 1$（高压缩率）
-- $\mathcal{I}_+(x) > \mathcal{I}_-(x)$（正信息主导）
-- $\mathcal{I}_0(x)$相应调整以维持守恒
+- $\mathbf{N}(x) > 0$（正归一化参数）
+- $\mathcal{I}_+(x) > \frac{1}{2}$（正信息主导）
+- $\mathcal{I}_-(x) < \frac{1}{2}$（负信息被压缩）
+- $\mathcal{I}_0(x) = 0$（无缓冲，直接竞争）
 
 #### 4.1.4 补偿主导状态
 
 当系统处于补偿状态时：
 - $\mathbf{R}(x) < 0$（负曲率）
 - $\eta(x) < 1$（低压缩率）
-- $\mathcal{I}_+(x) < \mathcal{I}_-(x)$（负信息主导）
-- $\mathcal{I}_0(x)$相应调整以维持守恒
+- $\mathbf{N}(x) < 0$（负归一化参数）
+- $\mathcal{I}_+(x) < \frac{1}{2}$（正信息被压缩）
+- $\mathcal{I}_-(x) > \frac{1}{2}$（负信息主导）
+- $\mathcal{I}_0(x) = 0$（无缓冲，直接竞争）
 
 ### 4.2 多维度负信息在曲率中的体现
 
@@ -512,7 +517,7 @@ $$\boxed{\mathbf{R}(x) = \int_{-\infty}^{\infty} \Re\left[ \zeta\left(\frac{1}{2
 $$\boxed{\eta(x) = \frac{\int_{-\infty}^{\infty} |\hat{\mathcal{I}}_+(\omega, x)|^2 d\omega}{\int_{-\infty}^{\infty} \Re\left[ \zeta\left(\frac{1}{2} + i\omega\right) \right] |\hat{\mathcal{I}}_-(\omega, x)|^2 d\omega}}$$
 
 **信息密度关系**：
-$$\boxed{\mathcal{I}_+(x) = \frac{\mathbf{R}(x) \cdot \eta(x) + 1}{2}, \quad \mathcal{I}_-(x) = \frac{1 - \mathbf{R}(x) \cdot \eta(x)}{2}, \quad \mathcal{I}_0(x) = \frac{1 - \mathbf{R}(x) \cdot \eta(x)}{2}}$$
+$$\boxed{\mathcal{I}_+(x) = \frac{1 + \mathbf{R}(x) \cdot \eta(x)}{2}, \quad \mathcal{I}_-(x) = \frac{1 - \mathbf{R}(x) \cdot \eta(x)}{2}, \quad \mathcal{I}_0(x) = 0}$$
 
 这个基础框架建立了：
 1. **信息守恒三态**：正信息、负信息、零信息的完整分类
