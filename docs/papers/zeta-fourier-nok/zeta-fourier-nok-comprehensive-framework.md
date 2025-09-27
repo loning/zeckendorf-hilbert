@@ -272,7 +272,7 @@ $$\mathcal{C}(t) = \frac{\mathcal{I}_{raw}(t)}{\mathcal{I}_{compressed}(t)}$$
 
 **定理1.6.1（压缩-补偿关系）**
 压缩率与负信息补偿成比例：
-$$\mathcal{C}(t) \propto -\sum_{n=0}^{\infty} \zeta(-2n-1) \cdot w_n(t)$$
+$$\mathcal{C}(t) \propto -\int_{-\infty}^{0} \zeta(s) \cdot w(s, t) \, ds$$
 
 ### 1.7 曲率：统一物理概念的几何本质
 
@@ -289,7 +289,7 @@ $$R = \kappa \sum_{m=0}^{\infty} \zeta(-2m-1) \int |\partial_\omega^m \hat{s}(\o
 
 **定理1.7.1（曲率作为物理统一机制）**
 正信息（熵增）和负信息（作用力）的动态平衡在几何空间中表现为曲率，统一解释所有物理相互作用：
-$$\frac{dR}{dt} = \alpha \frac{d\mathcal{I}_+}{dt} - \beta \sum_{n} \zeta(-2n-1) \frac{d\mathcal{I}_-^{(n)}}{dt}$$
+$$\frac{dR}{dt} = \alpha \frac{d\mathcal{I}_+}{dt} - \beta \int_{-\infty}^{0} \zeta(s) \frac{d\mathcal{I}_-(s)}{dt} \, ds$$
 
 其中：
 - **α项**：正信息驱动的时空弯曲（引力）
@@ -418,26 +418,26 @@ $$|\text{black hole}\rangle = \lim_{\rho \to \infty} \mathcal{C}[\mathcal{I}(V)]
 
 **定理1.14.1（黑洞熵的zeta表达式）**
 黑洞熵通过zeta函数的负值补偿表达：
-$$S_{BH} = \frac{k_B c^3 A}{4 \hbar G} + \sum_{n=0}^{\infty} \zeta(-2n-1) \cdot \Delta S_n$$
+$$S_{BH} = \frac{k_B c^3 A}{4 \hbar G} + \int_{-\infty}^{0} \zeta(s) \cdot \Delta S(s) \, ds$$
 
-其中$A$是视界面积，$\Delta S_n$需定义维度为[熵]（例如$\Delta S_n = k_B \cdot w_n \cdot (c^3 A / (4 \hbar G))^{n+1}$或类似，确保单位一致）。
+其中$A$是视界面积，$\Delta S(s) = k_B \cdot w(s) \cdot \exp\left( - \left| \frac{c^3 A}{4 \hbar G l_P^2} \right| / |s| \right)$，$l_P^2 = \hbar G / c^3$为Planck面积，确保单位一致和收敛。
 
 **定理1.14.2（黑洞信息悖论的zeta解决）**
 信息悖论通过多维度负信息补偿网络解决：
 $$\mathcal{I}_{\text{infalling}} + \mathcal{I}_{\text{horizon}} = \mathcal{I}_{\text{total}}$$
 
 其中视界上的负信息：
-$$\mathcal{I}_{\text{horizon}} = -\sum_{n=0}^{\infty} \zeta(-2n-1) \cdot \frac{A}{4G}$$
+$$\mathcal{I}_{\text{horizon}} = -\int_{-\infty}^{0} \zeta(s) \cdot \frac{A}{4G} \cdot w(s) \, ds$$
 
 **定理1.14.3（黑洞蒸发的zeta机制）**
 Hawking辐射通过zeta补偿的逆过程释放信息：
-$$\frac{dM}{dt} \propto \sum_{n=0}^{\infty} \zeta(-2n-1) \cdot T_{BH}^{2n+3}$$
+$$\frac{dM}{dt} \propto \int_{-\infty}^{0} \zeta(s) \cdot T_{BH}^{|s|+1} \cdot w(s) \, ds$$
 
 其中$T_{BH} = \hbar c^3 / (8\pi G M k_B)$是黑洞温度。
 
 **定理1.14.4（黑洞的Fourier谱）**
 黑洞具有特征Fourier谱，对应递归算法的极限压缩：
-$$\hat{S}(\omega) = \frac{A}{4G} \delta(\omega) + \sum_{n=0}^{\infty} \zeta(-2n-1) \cdot \omega^{2n+1}$$
+$$\hat{S}(\omega) = \frac{A}{4G} \delta(\omega) + \int_{-\infty}^{0} \zeta(s) \cdot \omega^{|s|} \cdot w(s) \, ds$$
 
 **定理1.14.5（黑洞的no-k约束）**
 黑洞事件视界体现no-k约束的终极形式：
@@ -505,9 +505,11 @@ $$\zeta(s) = \prod_p \frac{1}{1-p^{-s}}$$
 ### 3.1 递归宇宙的主方程
 
 **主方程3.1.1（递归宇宙演化）**
-$$\frac{d}{dt} \begin{pmatrix} \mathcal{I}_+ \\ \mathcal{I}_- \\ \mathcal{I}_0 \\ R \end{pmatrix} = \begin{pmatrix} \log_2 r_k \\ -\sum_{n=0}^{\infty} \zeta(-2n-1) \cdot w_n \cdot e^{-n} \cdot \log_2 r_k \\ 0 \\ \kappa (\log_2 r_k - \sum_{n=0}^{\infty} \zeta(-2n-1) \cdot w_n \cdot e^{-n} \cdot \log_2 r_k) \end{pmatrix}$$
+$$\frac{d}{dt} \begin{pmatrix} \mathcal{I}_+ \\ \mathcal{I}_- \\ \mathcal{I}_0 \\ R \end{pmatrix} = \begin{pmatrix} \log_2 r_k \\ -\int_{-\infty}^{0} \zeta(s) \cdot w(s) \, ds \cdot \log_2 r_k \\ 0 \\ \kappa (\log_2 r_k - \int_{-\infty}^{0} \zeta(s) \cdot w(s) \, ds \cdot \log_2 r_k) \end{pmatrix}$$
 
-这个方程体现了完整的zeta函数系列补偿机制，包含指数衰减因子e^{-n}确保收敛，而非片面的单一值-1/12。
+其中$w(s) = e^{s/2} / (1 + |s|)$确保收敛。
+
+这个方程体现了完整的zeta函数连续补偿机制，通过负实轴积分确保收敛，而非离散求和。
 
 ### 3.2 Fourier变换的普遍连接
 
@@ -592,7 +594,7 @@ $$\hat{\hat{G}} \cong G$$
 $$g_{ij} = \mathbb{E}\left[\partial_i \log p(\theta) \cdot \partial_j \log p(\theta)\right]$$
 
 **在zeta-Fourier框架中的表现**
-$$g_{ij} = \delta_{ij} \log_2 r_k + \sum_{n=0}^{\infty} \zeta(-2n-1) \partial_i \partial_j \mathcal{I}_-^{(n)}$$
+$$g_{ij} = \delta_{ij} \log_2 r_k + \int_{-\infty}^{0} \zeta(s) \partial_i \partial_j \mathcal{I}_-(s) \, ds$$
 
 ### 3.10 算法复杂度与zeta的关系
 
@@ -773,17 +775,17 @@ $$\frac{dR}{dt} = \kappa \frac{d\mathcal{S}}{dt}$$
 
 **定理7.2.1（负补偿的几何效应）**
 负信息补偿产生负曲率区域：
-$$R_- = -\sum_{n=0}^{\infty} |\zeta(-2n-1)| \cdot V_n$$
+$$R_- = -\int_{-\infty}^{0} |\zeta(s)| \cdot V(s) \, ds$$
 
 其中$V_n$是第n层补偿体积。
 
 ### 7.3 熵增-补偿平衡的曲率动态
 
 **定理7.3.1（动态曲率平衡）**
-$$\frac{dR}{dt} = \alpha \frac{d\mathcal{I}_+}{dt} - \beta \sum_n \zeta(-2n-1) \frac{d\mathcal{I}_-^{(n)}}{dt}$$
+$$\frac{dR}{dt} = \alpha \frac{d\mathcal{I}_+}{dt} - \beta \int_{-\infty}^{0} \zeta(s) \frac{d\mathcal{I}_-(s)}{dt} \, ds$$
 
 **临界平衡**
-当$\alpha \frac{d\mathcal{I}_+}{dt} = \beta \sum_n \zeta(-2n-1) \frac{d\mathcal{I}_-^{(n)}}{dt}$时，系统达到曲率平衡。
+当$\alpha \frac{d\mathcal{I}_+}{dt} = \beta \int_{-\infty}^{0} \zeta(s) \frac{d\mathcal{I}_-(s)}{dt} \, ds$时，系统达到曲率平衡。
 
 ### 7.4 曲率涌现的信息几何
 
@@ -1130,39 +1132,39 @@ $$R_{critical} = \kappa \int |\hat{s}_{quasi}(\omega)|^2 d\omega$$
 
 **示例4.3.1.2（电磁力与zeta(-1)）**
 电磁相互作用对应s ≈ -1的负信息：
-$$\mathcal{I}_-^{EM} \approx -\zeta(-1) \cdot \alpha \approx -\left(-\frac{1}{12}\right) \cdot \frac{1}{137} \approx \frac{1}{137 \times 12} \approx 0.00061$$
+$$\mathcal{I}_-^{EM} = -\int_{-2}^{-1} \zeta(s) \, w(s) \, ds \cdot c_{EM}$$
 
-这对应电磁精细结构常数α ≈ 1/137。**物理学连接**：ζ(-1) = -1/12直接用于量子场论重整化正规化真空能量（Wikipedia "Zeta function regularization"），Bosonic弦理论临界维度计算（Polchinski），Heisenberg-Euler Lagrangian正规化强场极化（CERN文献），以及量子场论散射振幅计算（KITP "Quantum Zeta Epiphany"），所有均基于实验验证。
+其中$c_{EM}$为框架参数。**物理学连接**：ζ(-1) = -1/12直接用于量子场论重整化正规化真空能量（Wikipedia "Zeta function regularization"），Bosonic弦理论临界维度计算（Polchinski），Heisenberg-Euler Lagrangian正规化强场极化（CERN文献），以及量子场论散射振幅计算（KITP "Quantum Zeta Epiphany"），所有均基于实验验证。
 
 **示例4.3.1.3（希格斯机制与zeta(-7)）**
 粒子质量产生对应s ≈ -7的负信息：
-$$\mathcal{I}_-^{Higgs} \approx -\zeta(-7) \cdot \frac{v^2}{v_{EW}^2} \approx -\left(\frac{1}{240}\right) \cdot \frac{(246)^2}{(246)^2} \approx -\frac{1}{240} \approx -0.00417$$
+$$\mathcal{I}_-^{Higgs} = -\int_{-8}^{-6} \zeta(s) \, w(s) \, ds \cdot c_{Higgs}$$
 
-其中v ≈ 246 GeV是希格斯真空期望值。**物理学连接**：ζ(-7) = 1/240用于量子场论重整化理论正规化（Wolfram MathWorld；Elizalde et al.），以及Bose-Einstein凝聚正规化（Remmen的工作），对应希格斯机制中的质量生成。
+其中$c_{Higgs}$为框架参数。**物理学连接**：ζ(-7) = 1/240用于量子场论重整化理论正规化（Wolfram MathWorld；Elizalde et al.），以及Bose-Einstein凝聚正规化（Remmen的工作），对应希格斯机制中的质量生成。
 
 **示例4.3.1.3（暗能量与zeta(-15)）**
 宇宙学常数对应s ≈ -15的负信息：
-$$\Lambda \approx -\zeta(-15) \cdot \frac{8\pi G}{c^4} \cdot \rho_{vac}$$
+$$\Lambda = -\int_{-16}^{-14} \zeta(s) \, w(s) \, ds \cdot c_{\Lambda}$$
 
-其中ζ(-15) ≈ -1/132的符号对应宇宙加速膨胀。**物理学连接**：ζ(-15)等高阶负值用于Hawking辐射和黑洞熵正规化（PMC "The Thermodynamics of Black Holes"；arXiv "Do black holes store negative entropy?"），体现负熵补偿机制。
+其中$c_{\Lambda}$为框架参数。**物理学连接**：ζ(-15)等高阶负值用于Hawking辐射和黑洞熵正规化（PMC "The Thermodynamics of Black Holes"；arXiv "Do black holes store negative entropy?"），体现负熵补偿机制。
 
 **示例4.3.1.4（zeta负奇数谱系的物理常数预测）**
 
-| zeta项 | 数值 | 对应物理常数 | 实验值 | zeta预测与物理学依据 |
-|--------|------|-------------|--------|---------------------|
-| ζ(-1) | -1/12 ≈ -0.0833 | 精细结构常数 | α ≈ 1/137.036 | zeta负值作为象征桥梁连接负信息补偿与物理常数；ζ(-1)用于QFT真空正规化、弦理论临界维度（Polchinski）、Heisenberg-Euler Lagrangian（CERN）、量子场论散射（KITP） |
-| ζ(-3) | 1/120 ≈ 0.00833 | 弱混合角 | sin²θ_W ≈ 0.231 | zeta负值作为象征桥梁连接负信息补偿与物理常数；ζ(-3)用于Casimir效应正规化（Wikipedia；实验精度1%）、黑洞负维熵（arXiv）、Fermi Riemann气体正规化（UCSD）、量子真空能量（Physics Forums） |
-| ζ(-5) | -1/252 ≈ -0.0040 | 强耦合常数 | α_s ≈ 0.118 | zeta负值作为象征桥梁连接负信息补偿与物理常数；ζ(-5)用于高维Casimir效应和QFT扩展正规化（arXiv和QFT文献） |
-| ζ(-7) | 1/240 ≈ 0.00417 | 希格斯vev | v ≈ 246 GeV | zeta负值作为象征桥梁连接负信息补偿与物理常数；ζ(-7)用于QFT重整化（Wolfram；Elizalde et al.）、Bose-Einstein凝聚（Remmen） |
-| ζ(-9) | -1/132 ≈ -0.00758 | SUSY尺度 | M_SUSY | zeta负值作为象征桥梁连接负信息补偿与物理常数；ζ(-9)等用于量子场论重整化理论（Wolfram；Elizalde et al.） |
-| ζ(-11) | 691/32760 ≈ 0.0211 | 引力量子 | M_Pl | zeta负值作为象征桥梁连接负信息补偿与物理常数；ζ(-11)等用于Hawking辐射正规化（PMC；arXiv） |
+| zeta项 | 物理学应用领域 | 物理学依据 |
+|--------|----------------|---------------------|
+| ζ(-1) | 量子场论重整化、弦理论临界维度 | 用于QFT真空正规化（Wikipedia）、Bosonic弦理论（Polchinski）、Heisenberg-Euler Lagrangian（CERN）、量子场论散射（KITP） |
+| ζ(-3) | Casimir效应、黑洞热力学、核物理 | 用于Casimir真空正规化（Wikipedia；实验精度1%）、黑洞负维熵（arXiv）、Fermi Riemann气体（UCSD）、量子真空能量（Physics Forums） |
+| ζ(-5) | 高维场论、量子场论扩展 | 用于高维Casimir效应正规化（arXiv）、QFT扩展（QFT文献） |
+| ζ(-7) | 重整化理论、凝聚态物理 | 用于QFT重整化（Wolfram；Elizalde et al.）、Bose-Einstein凝聚（Remmen） |
+| ζ(-9) | 量子场论重整化理论 | 用于量子场论重整化（Wolfram；Elizalde et al.） |
+| ζ(-11) | 黑洞物理、Hawking辐射 | 用于Hawking辐射正规化（PMC；arXiv） |
 
 **示例4.3.1.5（交替符号与原子稳定性）**
-zeta奇数项的交替维持电子轨道稳定性：
-- **ζ(-1) = -1/12**：电子-原子核吸引（负号）。**物理学连接**：对应量子场论真空正规化（Wikipedia），维持原子稳定。
-- **ζ(-3) = 1/120**：电子云排斥效应（正号）。**物理学连接**：对应Casimir效应正规化（实验精度1%），防止电子坍缩。
-- **ζ(-5) = -1/252**：精细结构吸引（负号）。**物理学连接**：对应高维场论正规化（arXiv），维持精细结构。
-- **ζ(-7) = 1/240**：自旋-轨道耦合（正号）。**物理学连接**：对应重整化理论（Wolfram），维持自旋耦合。
+zeta函数负奇数项的交替符号维持电子轨道稳定性：
+- **s ∈ [-2, -1]**：吸引效应（负号）。**物理学连接**：对应量子场论真空正规化（Wikipedia），维持原子稳定。
+- **s ∈ [-4, -3]**：排斥效应（正号）。**物理学连接**：对应Casimir效应正规化（实验精度1%），防止电子坍缩。
+- **s ∈ [-6, -5]**：精细结构吸引（负号）。**物理学连接**：对应高维场论正规化（arXiv），维持精细结构。
+- **s ∈ [-8, -7]**：自旋-轨道耦合（正号）。**物理学连接**：对应重整化理论（Wolfram），维持自旋耦合。
 
 交替符号防止电子完全坠入原子核，同时维持轨道稳定性。**物理学连接**：zeta负奇数谱系的交替符号直接对应量子场论正规化中的补偿机制，确保多尺度稳定性。
 
@@ -1312,20 +1314,12 @@ $$\mathcal{I}_- = -0.2 \cdot \zeta(-1) \approx -0.2 \cdot (-0.0833) \approx 0.01
 zeta补偿连续谱修正：
 $$S_{BH}^{corrected} = S_{BH} + \int_{-\infty}^{0} \zeta(s) \cdot w_{BH}(s, M) \, ds$$
 
-其中$w_{BH}(s, M)$是黑洞质量相关的补偿权重函数，在负实数轴上连续分布。负整数点ζ(-2n-1)是特殊的可解析点，但补偿在整个负实数域连续存在。
-
-**离散近似（负整数点）**：
-$$\Delta S_n = -\zeta(-2n-1) \cdot \frac{k_B A c^3}{4 G \hbar}$$
-
-- n=0: ζ(-1) = -1/12（连续补偿谱中的基础特殊点，对应基础量子修正）
-- n=1: ζ(-3) ≈ 1/120（几何修正）
-- n=2: ζ(-5) ≈ -1/252（拓扑修正）
-- 高阶项构成完整的补偿连续谱
+其中$w_{BH}(s, M)$是黑洞质量相关的补偿权重函数，在负实数轴上连续分布，确保单位一致和收敛。
 
 数值示例（太阳质量黑洞）：
 - $M = 1.989 \times 10^{30}$ kg
 - $S_{BH} \approx 1.45 \times 10^{54}$ J/K（或 $S_{BH} / k_B \approx 1.05 \times 10^{77}$）
-- zeta修正：$\Delta S \approx 8.75 \times 10^{52}$ J/K（基于 $-\zeta(-1) \cdot S_{BH} \approx (1/12) \cdot 1.45 \times 10^{54}$）
+- zeta修正通过连续积分确定，确保收敛和单位一致。
 
 ### 4.12 黑洞信息悖论的zeta解决
 
@@ -1357,7 +1351,7 @@ $$T_{BH} = \frac{\hbar c^3}{8\pi G M k_B}$$
 $$\frac{dM}{dt} = -\frac{\hbar c^6}{15360\pi G^2 M^2}$$
 
 zeta修正项：
-$$\left(\frac{dM}{dt}\right)_{zeta} = \sum_{n=0}^{\infty} \zeta(-2n-1) \cdot T_{BH}^{2n+3} \cdot \text{常数}$$
+$$\left(\frac{dM}{dt}\right)_{zeta} = \int_{-\infty}^{0} \zeta(s) \cdot T_{BH}^{|s|+1} \cdot w(s) \, ds$$
 
 对于n=0：
 $$\zeta(-1) \cdot T_{BH}^{3} = -\frac{1}{12} \cdot \left(\frac{\hbar c^3}{8\pi G M k_B}\right)^3$$
@@ -1367,7 +1361,7 @@ $$\zeta(-1) \cdot T_{BH}^{3} = -\frac{1}{12} \cdot \left(\frac{\hbar c^3}{8\pi G
 **示例4.14.1（黑洞准周期振荡的谱）**
 
 黑洞合并后的振铃阶段具有特征谱：
-$$\hat{h}(f) \propto \frac{A}{4G} \delta(f) + \sum_{n=0}^{\infty} \zeta(-2n-1) \cdot f^{2n+1}$$
+$$\hat{h}(f) \propto \frac{A}{4G} \delta(f) + \int_{-\infty}^{0} \zeta(s) \cdot f^{|s|} \cdot w(s) \, ds$$
 
 观测到的主频：
 - f ~ 250 Hz（对于30太阳质量黑洞）
@@ -1428,16 +1422,16 @@ $$\rho_{\mathcal{I},critical}(r) \approx 0.694 \cdot \frac{3c^2}{8\pi G r^2}$$
 
 8. **黑洞蒸发zeta特征**：
    Hawking辐射谱中的zeta修正项：
-   $$\frac{dN}{d\omega} \propto \sum_{n=0}^{\infty} \zeta(-2n-1) \cdot \omega^{2n+1} e^{-\omega/T_{BH}}$$
+   $$\frac{dN}{d\omega} \propto \int_{-\infty}^{0} \zeta(s) \cdot \omega^{|s|} \cdot e^{-\omega/T_{BH}} \cdot w(s) \, ds$$
    **物理学连接**：zeta负值用于蒸发正规化（PMC），预测辐射谱修正。
 
 9. **黑洞临界密度效应**：
    接近黑洞形成阈值时，zeta补偿导致的反常量子效应：
-   $$\Delta E \propto \sum_{n=0}^{\infty} \zeta(-2n-1) \cdot (\rho - \rho_c)^{n+1}$$
+   $$\Delta E \propto \int_{-\infty}^{0} \zeta(s) \cdot (\rho - \rho_c)^{|s|} \cdot w(s) \, ds$$
 
 10. **黑洞信息悖论验证**：
     通过量子隐形传态实验模拟黑洞信息编码：
-    $$\mathcal{I}_{encoded} = -\sum_{n=0}^{\infty} \zeta(-2n-1) \cdot \mathcal{I}_{original}^{(n)}$$
+    $$\mathcal{I}_{encoded} = -\int_{-\infty}^{0} \zeta(s) \cdot \mathcal{I}_{original}(s) \cdot w(s) \, ds$$
     **物理学连接**：zeta负值用于信息悖论解决（arXiv），预测量子实验验证。
 
 这些黑洞预测可以作为框架的实验验证途径，所有基于物理学文献的zeta负值应用。
