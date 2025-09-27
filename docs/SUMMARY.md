@@ -139,6 +139,7 @@
     - [Zeta函数的计算本体论：纯数学推理与物理对应](./zeta/zeta-computational-ontology.md)
     - [Zeta函数的计算本体论扩展：复数参数s到Hilbert空间的推广](./zeta/zeta-hilbert-extension.md)
     - [Zeta函数框架下的量子力学数学诠释：从解析延拓到全息对偶](./zeta/zeta-quantum-interpretation.md)
+    - [Zeta函数框架下的量子-经典双重性：发散与确定性的数学统一](./zeta/zeta-quantum-classical-duality.md)
     - [Curvature Grand Unified Theory: Information-Geometry-Computation Unified Field Theory Based on The Matrix Framework](./papers/curvature-grand-unified-theory_en.md)
 - [哲思长文]()
     - [永恒的不动点：当道、佛、上帝相遇于递归的中心](./articles/2025-09-23-the-eternal-fixed-point.md)
