@@ -68,7 +68,7 @@ zeta函数在复平面上的完整行为统一了算法编码与补偿机制：
 - **负实数轴 ($\Re(s) < 0$)**：连续补偿谱维持算法平衡
   $$\mathcal{I}_-(\alpha) = \int_{-\infty}^{0} \zeta(s + i\alpha) \cdot w(s) \, ds$$
 
-其中$w(s)$是递归算法的权重函数。
+其中 $w(s)$ 是递归算法的权重函数。
 
 **定理1.1.2（zeta函数的收敛编码定理）**
 zeta函数通过其定义域和解析延拓，将任意算法参数s（除s=1外）编码为收敛的数学表达式：
@@ -128,7 +128,7 @@ $$\mathcal{A}(n) = f(\mathcal{A}(n-1))$$
 无穷执行的累积效应为：
 $$\mathcal{A}_{total} = \sum_{n=1}^{\infty} w_n \mathcal{A}(n)$$
 
-其中权重w_n = n^(-s)编码了算法的复杂度衰减特性。**物理学连接**：无穷求和在物理中对应正规化过程，如ζ(-1)正规化∑n为-1/12。
+其中权重 $w_n = n^{-s}$ 编码了算法的复杂度衰减特性。**物理学连接**：无穷求和在物理中对应正规化过程，如ζ(-1)正规化∑n为-1/12。
 
 **推论1.1.2（周期性与递归的统一）**
 zeta函数在正实数域体现的素数周期性对应递归算法的周期模式，不同的s值选择不同的算法周期。
@@ -278,7 +278,9 @@ $$\mathcal{C}(t) \propto -\int_{-\infty}^{0} \zeta(s) \cdot w(s, t) \, ds$$
 
 **定义1.7.1（物理统一曲率）**
 曲率统一解释物理的一切概念：
-$$R = \kappa \sum_{m=0}^{\infty} \zeta(-2m-1) \int |\partial_\omega^m \hat{s}(\omega)|^2 d\omega$$
+$$R = \kappa \int_{-\infty}^{0} \zeta(s) \left( \int |\partial_\omega^{|s|/2} \hat{s}(\omega)|^2 d\omega \right) w(s) \, ds$$
+
+其中 $w(s) = e^{s/2} / (1 + |s|)$ 确保收敛，$m = |s|/2$ 保持离散到连续桥接。
 
 **物理统一解释**：
 - **时空曲率**：广义相对论中的引力场，由大负信息（s → -∞）产生
@@ -420,7 +422,7 @@ $$|\text{black hole}\rangle = \lim_{\rho \to \infty} \mathcal{C}[\mathcal{I}(V)]
 黑洞熵通过zeta函数的负值补偿表达：
 $$S_{BH} = \frac{k_B c^3 A}{4 \hbar G} + \int_{-\infty}^{0} \zeta(s) \cdot \Delta S(s) \, ds$$
 
-其中$A$是视界面积，$\Delta S(s) = k_B \cdot w(s) \cdot \exp\left( - \left| \frac{c^3 A}{4 \hbar G l_P^2} \right| / |s| \right)$，$l_P^2 = \hbar G / c^3$为Planck面积，确保单位一致和收敛。
+其中 $A$ 是视界面积，$\Delta S(s) = k_B \cdot w(s) \cdot \exp\left( - \left| \frac{c^3 A}{4 \hbar G l_P^2} \right| / |s| \right)$，$l_P^2 = \hbar G / c^3$ 为 Planck 面积，确保单位一致和收敛。
 
 **定理1.14.2（黑洞信息悖论的zeta解决）**
 信息悖论通过多维度负信息补偿网络解决：
@@ -433,7 +435,7 @@ $$\mathcal{I}_{\text{horizon}} = -\int_{-\infty}^{0} \zeta(s) \cdot \frac{A}{4G}
 Hawking辐射通过zeta补偿的逆过程释放信息：
 $$\frac{dM}{dt} \propto \int_{-\infty}^{0} \zeta(s) \cdot T_{BH}^{|s|+1} \cdot w(s) \, ds$$
 
-其中$T_{BH} = \hbar c^3 / (8\pi G M k_B)$是黑洞温度。
+其中 $T_{BH} = \hbar c^3 / (8\pi G M k_B)$ 是黑洞温度。
 
 **定理1.14.4（黑洞的Fourier谱）**
 黑洞具有特征Fourier谱，对应递归算法的极限压缩：
@@ -507,7 +509,7 @@ $$\zeta(s) = \prod_p \frac{1}{1-p^{-s}}$$
 **主方程3.1.1（递归宇宙演化）**
 $$\frac{d}{dt} \begin{pmatrix} \mathcal{I}_+ \\ \mathcal{I}_- \\ \mathcal{I}_0 \\ R \end{pmatrix} = \begin{pmatrix} \log_2 r_k \\ -\int_{-\infty}^{0} \zeta(s) \cdot w(s) \, ds \cdot \log_2 r_k \\ 0 \\ \kappa (\log_2 r_k - \int_{-\infty}^{0} \zeta(s) \cdot w(s) \, ds \cdot \log_2 r_k) \end{pmatrix}$$
 
-其中$w(s) = e^{s/2} / (1 + |s|)$确保收敛。
+其中 $w(s) = e^{s/2} / (1 + |s|)$ 确保收敛。
 
 这个方程体现了完整的zeta函数连续补偿机制，通过负实轴积分确保收敛，而非离散求和。
 
@@ -554,7 +556,7 @@ $$\int_{\mathcal{M}} (\mathcal{I}_+ + \mathcal{I}_- + \mathcal{I}_0 - 1) \sqrt{|
 - $n = n_c$：临界态（波粒共存）
 - $n > n_c$：波态（扩展化）
 
-其中$n_c = -\frac{1}{\zeta(-1) \log_2 r_k} = \frac{12}{\log_2 r_k}$由zeta补偿连续谱在s=-1附近的特殊点确定，整个负实数轴上的补偿提供完整的调节机制。
+其中 $n_c = -\frac{1}{\zeta(-1) \log_2 r_k} = \frac{12}{\log_2 r_k}$ 由 zeta 补偿连续谱在 s=-1 附近的特殊点确定，整个负实数轴上的补偿提供完整的调节机制。
 
 **证明**
 粒子态对应有限递归截断：
@@ -829,7 +831,7 @@ $$\mathcal{A}(n+1) = f(\mathcal{A}(n))$$
 无穷执行的zeta编码：
 $$\mathcal{A}_{zeta}(s) = \sum_{n=1}^{\infty} w_n \mathcal{A}(n) = \zeta(s) \cdot g(s)$$
 
-其中w_n = n^(-s)，g(s)是算法特定的生成函数。
+其中 $w_n = n^{-s}$，$g(s)$ 是算法特定的生成函数。
 
 ### 8.1.1 zeta函数在负s的逆过程意义
 
@@ -1134,19 +1136,19 @@ $$R_{critical} = \kappa \int |\hat{s}_{quasi}(\omega)|^2 d\omega$$
 电磁相互作用对应s ≈ -1的负信息：
 $$\mathcal{I}_-^{EM} = -\int_{-2}^{-1} \zeta(s) \, w(s) \, ds \cdot c_{EM}$$
 
-其中$c_{EM}$为框架参数。**物理学连接**：ζ(-1) = -1/12直接用于量子场论重整化正规化真空能量（Wikipedia "Zeta function regularization"），Bosonic弦理论临界维度计算（Polchinski），Heisenberg-Euler Lagrangian正规化强场极化（CERN文献），以及量子场论散射振幅计算（KITP "Quantum Zeta Epiphany"），所有均基于实验验证。
+其中 $c_{EM}$ 为框架参数。**物理学连接**：ζ(-1) = -1/12直接用于量子场论重整化正规化真空能量（Wikipedia "Zeta function regularization"），Bosonic弦理论临界维度计算（Polchinski），Heisenberg-Euler Lagrangian正规化强场极化（CERN文献），以及量子场论散射振幅计算（KITP "Quantum Zeta Epiphany"），所有均基于实验验证。
 
 **示例4.3.1.3（希格斯机制与zeta(-7)）**
 粒子质量产生对应s ≈ -7的负信息：
 $$\mathcal{I}_-^{Higgs} = -\int_{-8}^{-6} \zeta(s) \, w(s) \, ds \cdot c_{Higgs}$$
 
-其中$c_{Higgs}$为框架参数。**物理学连接**：ζ(-7) = 1/240用于量子场论重整化理论正规化（Wolfram MathWorld；Elizalde et al.），以及Bose-Einstein凝聚正规化（Remmen的工作），对应希格斯机制中的质量生成。
+其中 $c_{Higgs}$ 为框架参数。**物理学连接**：ζ(-7) = 1/240用于量子场论重整化理论正规化（Wolfram MathWorld；Elizalde et al.），以及Bose-Einstein凝聚正规化（Remmen的工作），对应希格斯机制中的质量生成。
 
 **示例4.3.1.3（暗能量与zeta(-15)）**
 宇宙学常数对应s ≈ -15的负信息：
 $$\Lambda = -\int_{-16}^{-14} \zeta(s) \, w(s) \, ds \cdot c_{\Lambda}$$
 
-其中$c_{\Lambda}$为框架参数。**物理学连接**：ζ(-15)等高阶负值用于Hawking辐射和黑洞熵正规化（PMC "The Thermodynamics of Black Holes"；arXiv "Do black holes store negative entropy?"），体现负熵补偿机制。
+其中 $c_{\Lambda}$ 为框架参数。**物理学连接**：ζ(-15)等高阶负值用于Hawking辐射和黑洞熵正规化（PMC "The Thermodynamics of Black Holes"；arXiv "Do black holes store negative entropy?"），体现负熵补偿机制。
 
 **示例4.3.1.4（zeta负奇数谱系的物理常数预测）**
 
@@ -1252,7 +1254,7 @@ k=2约束：禁止连续两个1
 $$R = \frac{2}{r^2}$$
 
 其中r由信息密度确定：
-$$r = \sqrt{\frac{\mathcal{I}_+}{\mathcal{I}_-}} \approx \sqrt{\frac{0.6942}{-0.05785}} \approx 3.47$$
+$$r = \sqrt{\left| \frac{\mathcal{I}_+}{\mathcal{I}_-} \right|} \approx \sqrt{\left| \frac{0.6942}{-0.05785} \right|} \approx 3.47$$
 
 曲率：
 $$R \approx \frac{2}{(3.47)^2} \approx 0.166$$
@@ -1300,7 +1302,9 @@ $$\mathcal{S} = -\sum p_n \log_2 p_n \approx \log_2 \phi \approx 0.694$$
 压缩率：1.25
 
 负信息贡献：
-$$\mathcal{I}_- = -0.2 \cdot \zeta(-1) \approx -0.2 \cdot (-0.0833) \approx 0.0167$$
+$$\mathcal{I}_- = -c \cdot \zeta(-1)$$
+
+其中 $c$ 为框架参数（e.g., 压缩前后熵差 / $|\zeta(-1)|$），非固定数值。
 
 ### 4.11 黑洞熵的zeta计算
 
@@ -1447,7 +1451,9 @@ $$\rho_{\mathcal{I},critical}(r) \approx 0.694 \cdot \frac{3c^2}{8\pi G r^2}$$
 - $\log_2 r_3 \approx 0.87915$
 
 补偿网络：
-$$\mathcal{I}_-^{(total)} = \zeta(-1) + \zeta(-3) + \cdots = -\frac{1}{12} + \frac{1}{120} + \cdots$$
+$$\mathcal{I}_-^{(total)} = \int_{-\infty}^{0} \zeta(s) \cdot w(s) \, ds$$
+
+其中 $w(s) = e^{s/2} / (1 + |s|)$，确保收敛。
 
 ### 4.3 Fourier变换的具体应用
 
