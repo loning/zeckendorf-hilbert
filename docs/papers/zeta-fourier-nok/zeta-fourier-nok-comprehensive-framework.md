@@ -478,9 +478,9 @@ $$\zeta(s) = \prod_p \frac{1}{1-p^{-s}}$$
 ### 3.1 递归宇宙的主方程
 
 **主方程3.1.1（递归宇宙演化）**
-$$\frac{d}{dt} \begin{pmatrix} \mathcal{I}_+ \\ \mathcal{I}_- \\ \mathcal{I}_0 \\ R \end{pmatrix} = \begin{pmatrix} \log_2 r_k \\ -\frac{1}{12} \log_2 r_k \\ 0 \\ \kappa (\log_2 r_k + \frac{1}{12} \log_2 r_k) \end{pmatrix}$$
+$$\frac{d}{dt} \begin{pmatrix} \mathcal{I}_+ \\ \mathcal{I}_- \\ \mathcal{I}_0 \\ R \end{pmatrix} = \begin{pmatrix} \log_2 r_k \\ -\sum_{n=0}^{\infty} \zeta(-2n-1) \cdot w_n \cdot e^{-n} \cdot \log_2 r_k \\ 0 \\ \kappa (\log_2 r_k - \sum_{n=0}^{\infty} \zeta(-2n-1) \cdot w_n \cdot e^{-n} \cdot \log_2 r_k) \end{pmatrix}$$
 
-这个方程统一了所有概念的演化。
+这个方程体现了完整的zeta函数系列补偿机制，包含指数衰减因子e^{-n}确保收敛，而非片面的单一值-1/12。
 
 ### 3.2 Fourier变换的普遍连接
 
