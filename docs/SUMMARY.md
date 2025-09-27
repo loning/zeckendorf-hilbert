@@ -136,6 +136,7 @@
     - [永恒递归宇宙学：超越大爆炸的计算本体论框架](./papers/eternal-recursive-cosmology.md)
     - [Eternal Recursive Cosmology: A Computational Ontological Framework Beyond the Big Bang](./papers/eternal-recursive-cosmology_en.md)
     - [曲率大统一理论：基于The Matrix框架的信息-几何-计算统一场论](./papers/curvature-grand-unified-theory.md)
+    - [Zeta函数的计算本体论：纯数学推理与物理对应](./papers/zeta-computational-ontology.md)
     - [Curvature Grand Unified Theory: Information-Geometry-Computation Unified Field Theory Based on The Matrix Framework](./papers/curvature-grand-unified-theory_en.md)
 - [哲思长文]()
     - [永恒的不动点：当道、佛、上帝相遇于递归的中心](./articles/2025-09-23-the-eternal-fixed-point.md)
