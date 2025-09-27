@@ -1221,7 +1221,7 @@ $$\int \rho_{particle} dx = 1, \quad \int \rho_{wave} dk = 1$$
 能量密度：
 $$\mathcal{E} = -\frac{\pi^2 \hbar c}{720 d^3}$$
 
-在zeta正规化框架中，可视为与ζ(-3) ≈ 1/120相关的象征桥梁（非精确等价），例如在标量场计算中\mathcal{E} \propto \zeta(-3) \frac{\hbar c}{d^3}但系数需调整为约0.00833 \hbar c / d^3（具体视边界条件）。
+在zeta正规化框架中，可视为与ζ(-3) ≈ 1/120相关的象征桥梁（非精确等价），例如在标量场计算中\mathcal{E} \propto \zeta(-3) \frac{\hbar c}{d^3}但系数需根据边界条件调整。
 
 这表明zeta正规化捕捉了Casimir效应的本质。
 
@@ -1373,13 +1373,16 @@ $$\hat{h}(f) \propto \frac{A}{4G} \delta(f) + \sum_{n=0}^{\infty} \zeta(-2n-1) \
 **示例4.15.1（黑洞形成阈值）**
 
 临界密度计算：
-$$\rho_{critical} = \frac{3c^2}{8\pi G} \approx 1.61 \times 10^{26} \text{ kg/m}^3$$
+黑洞形成阈值密度为尺度依赖：
+$$\rho_{critical}(r) = \frac{3c^2}{8\pi G r^2}$$
+
+其中r为系统尺度。
 
 在信息密度中：
-$$\rho_{\mathcal{I},critical} = \log_2 r_k \cdot \frac{3c^2}{8\pi G}$$
+$$\rho_{\mathcal{I},critical}(r) = \log_2 r_k \cdot \frac{3c^2}{8\pi G r^2}$$
 
 对于k=2（Fibonacci）：
-$$\rho_{\mathcal{I},critical} \approx 0.694 \cdot 1.61 \times 10^{26} \approx 1.12 \times 10^{26} \text{ bits/m}^3$$
+$$\rho_{\mathcal{I},critical}(r) \approx 0.694 \cdot \frac{3c^2}{8\pi G r^2}$$
 
 ## 第九部分：实验验证与预测
 
@@ -1458,7 +1461,7 @@ $$\psi_{wave}(x) = e^{ik_0 x} \xrightarrow{\mathcal{F}^{-1}} \tilde{\psi}(k) = \
 真空能量密度：
 $$\mathcal{E} = -\frac{\pi^2 \hbar c}{720 d^3}$$
 
-在zeta正规化框架中，可视为与ζ(-3) ≈ 1/120相关的象征桥梁（非精确等价），例如在标量场计算中\mathcal{E} \propto \zeta(-3) \frac{\hbar c}{d^3}但系数需调整为约0.00833 \hbar c / d^3（具体视边界条件）。
+在zeta正规化框架中，可视为与ζ(-3) ≈ 1/120相关的象征桥梁（非精确等价），例如在标量场计算中\mathcal{E} \propto \zeta(-3) \frac{\hbar c}{d^3}但系数需根据边界条件调整。
 
 这直接来自于zeta函数的负值补偿。
 
