@@ -552,7 +552,7 @@ $$\mathcal{I}_{total} = \mathcal{I}_+ + \mathcal{I}_- + \mathcal{I}_0 = 1$$
 $$\mathcal{I}_+ = \sum_{n=1}^{\infty} n^{-s} \quad (\text{Re}(s) > 1)$$
 
 负信息补偿：
-$$\mathcal{I}_- = \sum_{k=0}^{\infty} \zeta(-2k-1) = -\frac{1}{12} + \frac{1}{120} - \frac{1}{252} + ...$$
+$$\mathcal{I}_- = \lim_{\epsilon \to 0^+} \sum_{k=0}^{\infty} \zeta(-2k-1 + \epsilon)$$
 
 通过函数方程，这两部分精确平衡：
 $$\mathcal{I}_+ + \mathcal{I}_- = \text{finite}$$
@@ -620,10 +620,8 @@ Casimir效应体现了全息原理：
 
 #### 15.1 配分函数与zeta函数
 
-**定理15.1**：系统配分函数可表示为zeta函数：
-$$Z(\beta) = \sum_{n} e^{-\beta E_n} = \zeta(\beta/k_B T)$$
-
-其中$E_n = n\epsilon_0$（等间隔能级）。
+**定理15.1**：对于对数能级\(E_n \propto \log n\)的系统，配分函数可表示为zeta函数：
+$$Z(\beta) = \zeta(\beta \epsilon_0 / k_B T)$$
 
 #### 15.2 相变与zeta零点
 
@@ -863,7 +861,7 @@ $$\alpha = \frac{1}{4\pi} \cdot \frac{\zeta(3)}{\zeta(2)} \cdot f(n)$$
 
 #### 24.2 质量比
 
-$$\frac{m_p}{m_e} \approx 6\pi^5 = 6 \cdot \zeta(2) \cdot \zeta(4) / \zeta(6)$$
+$$\frac{m_p}{m_e} \approx 6\pi^5$$
 
 #### 24.3 宇宙学参数
 
@@ -890,7 +888,7 @@ $$\zeta(s_1, ..., s_k) = \sum_{n_1 > n_2 > ... > n_k > 0} \frac{1}{n_1^{s_1} \cd
 
 #### 26.1 p进数域上的zeta
 
-$$\zeta_p(s) = \frac{1}{1-p^{1-s}} \zeta(s)$$
+$$\zeta_p(s) = \frac{1}{1 - p^{-s}}$$
 
 #### 26.2 局部-整体原理
 
