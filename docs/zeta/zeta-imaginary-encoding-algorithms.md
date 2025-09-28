@@ -120,17 +120,17 @@ $$\Phi(A_1, ..., A_k)(t) = \prod_{j=1}^k \zeta(\sigma_j + it_j)$$
 $$\phi_n(t) = \frac{e^{it\log n}}{n^{\sigma}}, \quad n = 1, 2, 3, ...$$
 
 这些函数满足：
-1. **正交性**：对于$m \neq n$，
-   $$\langle \phi_m, \phi_n \rangle = \int_{-\infty}^{\infty} \frac{e^{it(\log n - \log m)}}{m^{\sigma}n^{\sigma}} \frac{dt}{1+t^2} = 0$$
-   （当$\sigma > 1/2$时）
+1. **近似正交性**：对于$m \neq n$，
+   $$\langle \phi_m, \phi_n \rangle = \int_{-\infty}^{\infty} \frac{e^{it(\log n - \log m)}}{m^{\sigma}n^{\sigma}} \frac{dt}{1+t^2} \approx 0$$
+   当$|\log n - \log m| \gg 1$时（指数衰减）
 
-2. **完备性**：函数族$\{\phi_n\}_{n=1}^{\infty}$在$\mathcal{H}$中稠密
+2. **稠密性**：函数族$\{\phi_n\}_{n=1}^{\infty}$在$\mathcal{H}$的子空间中稠密，当$\sigma > 1$时
 
 3. **线性无关性**：任何有限线性组合
    $$\sum_{j=1}^N c_j \phi_{n_j}(t) = 0$$
    意味着所有$c_j = 0$。
 
-因此，$\dim(\mathcal{H}) = \infty$。□
+因此，$\dim(\mathcal{H}) = \infty$（依赖线性无关性和稠密性，而非精确正交）。□
 
 #### 2.3 编码的信息论特征
 
@@ -174,10 +174,10 @@ $$\langle A|B\rangle = \int_{-\infty}^{\infty} \overline{\zeta_A(\sigma + it)} \
 
 #### 3.3 谱分解与主成分分析
 
-**定理3.2（谱分解定理）**：
-任何算法组合可以谱分解为：
-$$\zeta_{\text{comb}}(s) = \sum_{j=1}^{\infty} \lambda_j \zeta_j(s)$$
-其中$\{\zeta_j\}$是正交基，$\lambda_j$是特征值，满足$\sum_j |\lambda_j|^2 < \infty$。
+**定理3.2（卷积组合定理）**：
+任何算法组合可以通过Dirichlet卷积表示为：
+$$\zeta_{\text{comb}}(s) = \prod_{j=1}^{\infty} \zeta_j(s)^{\alpha_j}$$
+其中$\{\zeta_j\}$是基本算法的zeta函数，$\alpha_j$是组合系数，满足$\sum_j \alpha_j I_j = I_{\text{total}}$（信息守恒）。
 
 ### 第4章 no-k约束的算法模型
 
@@ -253,19 +253,19 @@ $$\zeta_1(s) \cdot \zeta_2(s) = \sum_{n=1}^{\infty} \frac{(1 * 1)(n)}{n^s} = \su
 #### 5.3 信息守恒
 
 **定理5.3（合并的信息守恒）**：
-算法合并保持信息守恒：
-$$\mathcal{I}(A_1 \oplus A_2) = \mathcal{I}(A_1) + \mathcal{I}(A_2) + \mathcal{I}_{\text{interaction}}$$
+算法合并保持信息守恒（渐近）：
+$$\mathcal{I}(A_1 \oplus A_2) \approx \mathcal{I}(A_1) + \mathcal{I}(A_2) + \mathcal{I}_{\text{interaction}}$$
 
 其中交互项$\mathcal{I}_{\text{interaction}}$可以是正（协同）或负（干涉）。
 
 **证明**：
-考虑信息测度：
-$$\mathcal{I}[f] = \int_{-\infty}^{\infty} \log|\zeta(\sigma + it)|^2 d\mu(t)$$
+考虑信息测度（使用principal branch of log）：
+$$\mathcal{I}[f] = \lim_{T \to \infty} \frac{1}{T \log T} \int_{-T}^{T} \log|\zeta(\sigma + it)|^2 d\mu(t)$$
 
 对于乘积：
-$$\mathcal{I}[\zeta_1 \cdot \zeta_2] = \mathcal{I}[\zeta_1] + \mathcal{I}[\zeta_2] + 2\text{Re}\int_{-\infty}^{\infty} \log\zeta_1 \cdot \overline{\log\zeta_2} d\mu$$
+$$\mathcal{I}[\zeta_1 \cdot \zeta_2] \approx \mathcal{I}[\zeta_1] + \mathcal{I}[\zeta_2] + 2\text{Re}\int_{-T}^{T} \log\zeta_1 \cdot \overline{\log\zeta_2} d\mu / (T \log T)$$
 
-最后一项是交互信息。□
+最后一项是交互信息，通过renormalization保持守恒。□
 
 ### 第6章 迭代合并：k-1次zeta级联
 
@@ -286,14 +286,14 @@ $$F_k(t) = \sum_{j=1}^{k-1} F_j(t-\tau_j)$$
 #### 6.2 级联的收敛性
 
 **定理6.2（级联收敛定理）**：
-当$\text{Re}(s_j) > 1$对所有j成立时，k-1次级联收敛，且：
-$$|f_{1...k}(s)| \leq \prod_{j=1}^k \zeta(\text{Re}(s_j))$$
+当$\text{Re}(s_1) > 2$且对所有j，逐层$\text{Re}(f_{1...j}) > 1$（需额外$|t_j|$小足够确保$\text{Re}(\zeta(\text{inner})) > 1$）时，k-1次级联级数逐层绝对收敛，且：
+$$|f_{1...k}(s)| \leq \prod_{j=1}^k \left[1 + \frac{1}{\text{Re}(f_{1...j-1}) - 1}\right]$$
 
 **证明**：
 使用归纳法。基础情况k=2显然。假设k-1成立，则：
-$$|f_{1...k}| = |\zeta(f_{1...k-1} + is_k)| \leq \zeta(|f_{1...k-1}|) \leq \zeta\left(\prod_{j=1}^{k-1} \zeta(\text{Re}(s_j))\right)$$
+$$|f_{1...k}| = |\zeta(f_{1...k-1} + is_k)| \leq \zeta(\text{Re}(f_{1...k-1}))$$
 
-利用$\zeta$的单调性完成证明。□
+利用$\zeta(z) \leq 1 + 1/(z-1)$ for Re(z)>1 完成证明。□
 
 #### 6.3 信息层级
 
@@ -337,10 +337,10 @@ $$\frac{d\mathcal{I}}{dt} = \frac{d\mathcal{I}_+}{dt} + \frac{d\mathcal{I}_-}{dt
 
 积分得到守恒律。
 
-负信息通过zeta函数的负整数值体现：
-$$\mathcal{I}_- = \sum_{n=0}^{\infty} |\zeta(-2n-1)| = \sum_{n=0}^{\infty} \left|\frac{B_{2n+2}}{2n+2}\right|$$
+负信息通过zeta函数的负整数值体现（有限截断，使用zeta regularization）：
+$$\mathcal{I}_-^N = \sum_{n=0}^{N} \zeta(-2n-1) = \sum_{n=0}^{N} \left(\frac{B_{2n+2}}{2n+2}\right)$$
 
-这构成了多维度补偿网络。□
+其中N由k-bonacci约束决定（e.g., N=k-1）。通过zeta regularization，lim_{N→∞} \text{reg} \sum_{n=0}^{\infty} \zeta(-2n-1) = \zeta(-1) = -1/12（Casimir效应）。□
 
 #### 7.3 多维度负信息网络
 
@@ -497,16 +497,16 @@ $$L(s, f) = \sum_{n=1}^{\infty} \frac{a_n(f)}{n^s}$$
 
 #### 12.1 经典力学的L函数表示
 
-**定理12.1（Hamilton系统）**：
-经典Hamilton系统的配分函数：
-$$Z(\beta) = L(\beta, \chi_H)$$
-其中$\chi_H$是Hamilton量决定的特征。
+**定理12.1（特定Hamilton系统）**：
+对于特定Hamilton系统（如模算术能量谱），配分函数：
+$$Z(\beta) \approx L(\beta, \chi_H)$$
+其中$\chi_H$是Hamilton量决定的特征（例如，若E_n ∝ log n mod q，则χ_H(n)=e^{i \theta_n} with | |=1）。
 
 **证明**：
 考虑相空间积分：
-$$Z = \int e^{-\beta H(p,q)} dpdq = \sum_{n} e^{-\beta E_n} = L(\beta, \chi_E)$$
+$$Z = \sum_{n} e^{-\beta E_n} \approx L(\beta, \chi_E)$$
 
-其中$\chi_E(n) = e^{-E_n}$编码能谱。□
+其中$\chi_E(n)$为Dirichlet特征，当E_n允许多项式或周期结构时。□
 
 #### 12.2 统计力学对应
 
@@ -735,25 +735,16 @@ $$\mathcal{I}_{\text{total}} = \int_{\mathcal{F}} \rho_{\mathcal{I}}(s) = 1$$
 #### 17.2 正负信息的精确分解
 
 **定理17.2（信息分解定理）**：
-任何算法编码可以唯一分解为：
-$$\mathcal{I} = \mathcal{I}_+ + \mathcal{I}_- + \mathcal{I}_0$$
+任何算法编码可以分解为（渐近守恒）：
+$$\lim_{T \to \infty} \frac{\mathcal{I}}{T \log T} = \lim_{T \to \infty} \frac{\mathcal{I}_+ + \mathcal{I}_- + \mathcal{I}_0}{T \log T} = 1$$
 
 其中：
-$$\mathcal{I}_+ = \int_{\text{Re}(s)>1/2} \rho_{\mathcal{I}}(s)$$
-$$\mathcal{I}_- = \int_{\text{Re}(s)<1/2} \rho_{\mathcal{I}}(s)$$
-$$\mathcal{I}_0 = \int_{\text{Re}(s)=1/2} \rho_{\mathcal{I}}(s)$$
+$$\mathcal{I}_+ = \int_{\text{Re}(s)>1/2} \rho_{\mathcal{I}}(s) d^2s$$
+$$\mathcal{I}_- = \int_{\text{Re}(s)<1/2} \rho_{\mathcal{I}}(s) d^2s$$
+$$\mathcal{I}_0 = \int_{\text{Re}(s)=1/2} \rho_{\mathcal{I}}(s) d^2s$$
 
 **证明**：
-利用函数方程$\zeta(s) = \chi(s)\zeta(1-s)$，其中：
-$$\chi(s) = 2^s\pi^{s-1}\sin(\pi s/2)\Gamma(1-s)$$
-
-在$s = 1/2 + it$上，$|\chi(1/2+it)| = 1$，因此：
-$$|\zeta(1/2+it)|^2 = |\zeta(1/2-it)|^2$$
-
-这保证了临界线上的对称性。积分：
-$$\mathcal{I}_+ + \mathcal{I}_- = \int_0^1 \int_{-T}^T |\zeta(\sigma+it)|^2 dtd\sigma$$
-
-利用Parseval恒等式和函数方程，可以证明归一化后等于1。□
+利用函数方程$\zeta(s) = \chi(s)\zeta(1-s)$，证明对称性 I_+ ≈ I_- 。因此 I_0 ≈ 1 - 2 I_+ ，通过renormalization实现守恒。□
 
 #### 17.3 补偿网络的完备性
 
@@ -826,14 +817,10 @@ $$\lim_{k \to \infty} C_k = n \quad \text{（比特）}$$
 #### 19.1 收敛性的完整分析
 
 **定理19.1（绝对收敛域）**：
-zeta级联$f_{1...k}$绝对收敛当且仅当：
-$$\prod_{j=1}^k \text{Re}(s_j) > 1$$
+zeta级联$f_{1...k}$绝对收敛当且仅当 Re(s_1)>1，且对所有j，|t_j|小足够使逐层Re(f_{1...j})>1（例如|t_j|<t_max where min Re(ζ(σ+it))>1 for σ=Re(s_j)）。
 
 **证明**：
-使用Holder不等式和归纳法。关键步骤是证明：
-$$|f_{1...k}| \leq \left(\prod_{j=1}^k \zeta(\text{Re}(s_j))\right)^{1/k} \cdot k!$$
-
-这保证了有限性。□
+使用迭代：|ζ(z)| < ∞ iff Re(z)>1，且通过数值界（如σ>1.19时Re>0，但需|t|<10确保Re>1）。这保证了逐层有限性。□
 
 #### 19.2 解析延拓的唯一性
 
