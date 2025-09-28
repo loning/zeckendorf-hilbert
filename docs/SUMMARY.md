@@ -145,6 +145,7 @@
     - [复平面Zeta函数作为波粒二象性的根源：Hilbert空间推广的本质等价性](./zeta/zeta-wave-particle-duality-origin.md)
     - [no-k约束在Zeta函数中的数学体现：补偿层级的自洽统一](./zeta/zeta-no-k-constraint-embodiment.md)
     - [Zeta函数与k-bonacci序列及Zeckendorf表示的关系分析](./zeta/zeta-kbonacci-zeckendorf-relationship.md)
+    - [Zeta函数框架下的宇宙扭曲拓扑：从时间涌现到粒子层次的统一理论](./zeta/zeta-cosmic-distortion-topology.md)
     - [基于自指编码思路证明黎曼假设不可被证明的可能性分析](./zeta/zeta-self-reference-riemann-unprovability.md)
     - [无限维度Zeckendorf-k-bonacci张量（The Matrix）与Zeta计算理论的等价性证明](./zeta/zeta-matrix-equivalence.md)
     - [Zeta函数素数分布与随机矩阵理论在The Matrix框架中的体现](./zeta/zeta-prime-distribution-random-matrix.md)
