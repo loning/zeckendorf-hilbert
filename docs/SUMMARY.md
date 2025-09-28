@@ -146,6 +146,7 @@
     - [no-k约束在Zeta函数中的数学体现：补偿层级的自洽统一](./zeta/zeta-no-k-constraint-embodiment.md)
     - [Zeta函数与k-bonacci序列及Zeckendorf表示的关系分析](./zeta/zeta-kbonacci-zeckendorf-relationship.md)
     - [无限维度Zeckendorf-k-bonacci张量（The Matrix）与Zeta计算理论的等价性证明](./zeta/zeta-matrix-equivalence.md)
+    - [Zeta函数素数分布与随机矩阵理论在The Matrix框架中的体现](./zeta/zeta-prime-distribution-random-matrix.md)
     - [Curvature Grand Unified Theory: Information-Geometry-Computation Unified Field Theory Based on The Matrix Framework](./papers/curvature-grand-unified-theory_en.md)
 - [哲思长文]()
     - [永恒的不动点：当道、佛、上帝相遇于递归的中心](./articles/2025-09-23-the-eternal-fixed-point.md)
