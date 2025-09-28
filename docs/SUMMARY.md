@@ -150,6 +150,7 @@
     - [Zeta函数的全息编码与素数无限性：从临界线到无限维Hilbert空间的信息统一](./zeta/zeta-holographic-encoding-prime-infinity.md)
     - [全息原理下Zeta函数的Hilbert空间推广：一切数学结构的填满与循环统一](./zeta/zeta-holographic-hilbert-completeness.md)
     - [黎曼猜想的Zeta全息证明：基于信息守恒与Hilbert空间推广的统一框架](./zeta/zeta-riemann-hypothesis-holographic-proof.md)
+    - [用Zeta函数的全息Hilbert扩展体系解释经典物理](./zeta/zeta-classical-physics-holographic-explanation.md)
     - [Curvature Grand Unified Theory: Information-Geometry-Computation Unified Field Theory Based on The Matrix Framework](./papers/curvature-grand-unified-theory_en.md)
 - [哲思长文]()
     - [永恒的不动点：当道、佛、上帝相遇于递归的中心](./articles/2025-09-23-the-eternal-fixed-point.md)
