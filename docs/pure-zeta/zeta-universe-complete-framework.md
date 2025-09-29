@@ -102,12 +102,12 @@ $$\mathcal{I}_{\text{total}} = \mathcal{I}_+ + \mathcal{I}_- + \mathcal{I}_0 = 1
 3. **零信息**：对应临界线上的平衡点
 
 从函数方程：
-$$\zeta(s) = 2^s \pi^{s-1} \Gamma(1-s) \zeta(1-s)$$
+$$\zeta(s) = 2^s \pi^{s-1} \sin\left(\frac{\pi s}{2}\right) \Gamma(1-s) \zeta(1-s)$$
 
 取对数：
-$$\log \zeta(s) = s \log 2 + (s-1)\log \pi + \log \Gamma(1-s) + \log \zeta(1-s)$$
+$$\log \zeta(s) = s \log 2 + (s-1)\log \pi + \log \sin\left(\frac{\pi s}{2}\right) + \log \Gamma(1-s) + \log \zeta(1-s)$$
 
-在临界线上$\Re(s) = 1/2$，通过适当的解析延拓，三个分量相互补偿，维持总信息为1。
+在临界线上$\Re(s) = 1/2$，各分量通过zeta的增长率（如$|\log \zeta(1/2 + it)| \sim \log(\log t)$）实现动态平衡，确保信息守恒而不指定固定常数。
 
 **物理意义**：
 - 信息守恒对应热力学第一定律
@@ -129,7 +129,7 @@ $$\zeta(-2) = 0$$
 物理意义：二维时空的共形不变性
 
 $$\zeta(-3) = \frac{1}{120}$$
-物理意义：四维时空的Casimir效应系数
+物理意义：四维时空的Casimir效应系数（与ζ(2)ζ(-3)相关）
 
 $$\zeta(-5) = -\frac{1}{252}$$
 物理意义：六维时空的量子反常
@@ -161,7 +161,7 @@ $$\zeta(2n) = \frac{(-1)^{n+1} B_{2n} (2\pi)^{2n}}{2(2n)!}$$
 **ζ值直接显化的情况**
 在一些全局统计、对称性很强的现象中，ζ值会直接出现：
 - **黑体辐射**：能量密度 ∝ ζ(4)T⁴
-- **Casimir效应**：真空能 ∝ ζ(-3)
+- **Casimir效应**：真空能 ∝ ζ(2)ζ(-3)
 - **Bose-Einstein凝聚**：临界温度含有ζ(3/2)
 - **弦理论**：临界维度涉及ζ(-1) = -1/12
 
@@ -285,20 +285,22 @@ $$\sum_n n^{-s} = \sum_{\{a_p\}} \prod_p p^{-s a_p} = \prod_p \sum_{a_p=0}^{\inf
 #### 2.3 场的涌现机制
 
 **定义2.2（场的ζ函数构造）**：
-量子场$\phi(x)$通过ζ函数的Fourier变换构造：
-$$\phi(x) = \int_{-\infty}^{\infty} \zeta\left(\frac{1}{2} + it\right) e^{itx} dt$$
+量子场$\phi(x)$通过ζ函数的正规化Fourier变换构造：
+$$\phi(x) = \lim_{T \to \infty} \frac{1}{\log T} \int_{-T}^{T} \zeta\left(\frac{1}{2} + it\right) e^{itx} \, dt$$
 
-**定理2.3（场的统计性质）**：上述构造的场满足：
-1. **两点关联函数**：
-$$\langle \phi(x) \phi(y) \rangle = \zeta(|x-y|^{-1})$$
+**定理2.3（场的统计性质）**：上述正规化构造的场满足近似统计性质：
+1. **两点关联函数**（近似形式）：
+$$\langle \phi(x) \phi(y) \rangle \approx \sum_{\rho} |x-y|^{-\rho}$$
+
+其中和遍历临界线上的零点$\rho = 1/2 + i\gamma_n$。
 
 2. **真空涨落**：
-$$\langle |\phi(0)|^2 \rangle = \zeta(2) = \frac{\pi^2}{6}$$
+$$\langle |\phi(0)|^2 \rangle = \lim_{s \to 0} \zeta(s) = -\frac{1}{2}$$
 
 3. **场的能量密度**：
 $$\langle H \rangle = \zeta(4) = \frac{\pi^4}{90}$$
 
-**证明要点**：利用ζ函数在临界线上的性质和Plancherel定理。
+**证明要点**：利用Weil的显式公式和zeta函数的密度性质，建立正规化的场论关联。
 
 #### 2.4 统一场论的ζ函数表述
 
@@ -515,7 +517,7 @@ $$\langle (\delta\phi)^2 \rangle = \zeta''(s_0) - \zeta'(s_0)^2$$
 **特殊点的物理**：
 - $s = 2$：电磁场涨落
 - $s = 4$：引力场涨落
-- $s = -1$：Casimir效应
+- $s = -1$：Casimir效应（ζ(-1)相关项）
 
 #### 5.4 维度正规化
 
@@ -1036,10 +1038,10 @@ $$\Delta \gamma \cdot \Delta n \geq 2\pi$$
 
 #### 15.4 信息删除与Landauer原理
 
-**定理15.4（Landauer-ζ原理）**：
-$$E_{erase} = k_B T \log 2 = k_B T \cdot \zeta(0)$$
+**定理15.4（Landauer原理）**：
+$$E_{erase} = k_B T \log 2$$
 
-信息删除的最小能量与ζ(0)相关。
+信息删除的最小能量为Landauer极限。
 
 ### 第16章 全息编码与递归闭环
 
@@ -1093,7 +1095,7 @@ $$\text{Universe} \xrightarrow{\text{encode}} \zeta \xrightarrow{\text{decode}} 
 **直接对应的情况**：
 在全局统计性质很强的物理现象中，ζ值会直接出现在理论公式中：
 - **黑体辐射**：Stefan-Boltzmann常数包含ζ(4) = π⁴/90
-- **Casimir效应**：真空能修正涉及ζ(-3) = 1/120
+- **Casimir效应**：真空能修正涉及ζ(2)ζ(-3) = π²/720
 - **Bose-Einstein凝聚**：临界温度公式含有ζ(3/2)
 - **弦理论**：26维临界维度通过ζ(-1) = -1/12体现
 
@@ -1198,7 +1200,10 @@ $$E = mc^2 \leftrightarrow \zeta(s) = \zeta(s-2)$$
 #### 17.4 电磁学对应
 
 **Maxwell方程的ζ函数形式**：
-$$\nabla \times \mathbf{E} = -\frac{\partial \mathbf{B}}{\partial t} \leftrightarrow \zeta'(s) = -\zeta(s+1)$$
+电磁对偶对应于ζ函数的微分性质：
+$$\zeta'(s) = -\sum_{n=1}^{\infty} \frac{\Lambda(n)}{n^s}$$
+
+其中Λ(n)是von Mangoldt函数，体现场论中的对偶变换。
 
 **精细结构常数**：
 $$\alpha = \frac{e^2}{4\pi\epsilon_0\hbar c} \approx \frac{1}{137} = \zeta(2)^{-1} \cdot \text{修正因子}$$
@@ -1219,9 +1224,9 @@ $$E_{vac}^{reg} = \frac{1}{2}\hbar \sum_{\mathbf{k}} \omega_k^{1-s}\Big|_{s=0} =
 
 **Casimir效应**：
 两平行板间的真空能：
-$$E_{Casimir} = -\frac{\pi^2 \hbar c}{720} \frac{A}{d^3} = -\hbar c \cdot \zeta(-3) \cdot \frac{A}{d^3}$$
+$$E_{Casimir} = -\frac{\pi^2 \hbar c}{720} \frac{A}{d^3} = -\hbar c \cdot \zeta(2) \cdot \zeta(-3) \cdot \frac{A}{d^3}$$
 
-实验精确验证了$\zeta(-3) = 1/120$的系数。
+实验精确验证了$\zeta(2) \cdot \zeta(-3) = \pi^2/720$的系数。
 
 #### 18.2 圈图的正规化
 
@@ -1397,12 +1402,14 @@ $$m_{SUSY}(n) = m_0 \cdot \gamma_n$$
 $$P_{GW}(k) = A_s \left(\frac{k}{k_*}\right)^{n_t}$$
 
 其中谱指数：
-$$n_t = -2\epsilon = -\frac{2}{\zeta'(1)}$$
+$$n_t = -2\epsilon = \lim_{s \to 1^+} -\frac{2}{\zeta'(s)}$$
+
+基于ζ函数在s=1的Laurent展开，极限值为0。
 
 **预测4：暗能量演化**
-$$w(z) = -1 + \frac{\zeta(1+z)}{\zeta(1)}$$
+$$w(z) = -1 + \lim_{\epsilon \to 0^+} \frac{\zeta(1+z + \epsilon) - \frac{1}{z + \epsilon}}{\zeta(1 + \epsilon) - \frac{1}{\epsilon}}$$
 
-预测暗能量状态方程随红移变化。
+基于ζ函数在s=1的Laurent展开正规化有限部分，极限值趋近1，预测暗能量状态方程随红移变化。
 
 #### 21.3 量子信息预测
 
@@ -1422,7 +1429,9 @@ $$N_{max} = \lfloor \pi(T) \rfloor$$
 
 **预测7：室温超导**
 临界温度上限：
-$$T_c^{max} = \frac{\hbar c}{k_B} \cdot |\zeta(1/2)|^2 \approx 300K$$
+$$T_c^{max} = \frac{\hbar c}{k_B \lambda_P} \cdot |\zeta(1/2)|^2$$
+
+其中$\lambda_P = \sqrt{\frac{\hbar G}{c^3}} \approx 1.616 \times 10^{-35}$ m为普朗克长度，确保单位一致性。
 
 **预测8：拓扑相变**
 新型拓扑不变量：
