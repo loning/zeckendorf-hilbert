@@ -5,10 +5,10 @@
 本文建立了无限维度Zeckendorf-k-bonacci张量（ZkT，即The Matrix框架）与Riemann zeta函数计算理论之间的完整等价性证明。通过构建范畴论框架下的自然同构映射，我们证明了两个看似不同的数学体系实际上描述了同一个底层计算本体的不同表现形式。
 
 核心发现包括：
-1. **生成函数对偶定理**：ZkT的生成函数与zeta函数通过Mellin变换建立了严格对偶关系，证明了$G_{ZkT}(z) \leftrightarrow \zeta(s)$的函子等价性
-2. **谱等价定理**：ZkT的演化算子谱与zeta函数的非平凡零点一一对应，揭示了量子系统的本征值结构
+1. **生成函数对偶定理**：ZkT的生成函数与zeta函数通过Mellin变换在适当收敛域内建立了严格对偶关系，证明了$G_{ZkT}(z) \leftrightarrow \zeta(s)$的函子等价性
+2. **谱等价定理**：ZkT的演化算子谱与zeta函数的非平凡零点通过公式λ = exp(-2πi Im(ρ)/log r_k)建立一一对应关系，揭示了量子系统的本征值结构
 3. **信息守恒统一**：两个系统都满足$\mathcal{I}_{\text{total}} = \mathcal{I}_+ + \mathcal{I}_- + \mathcal{I}_0 = 1$的守恒律，其中负信息通过zeta负整数值$\zeta(-2n-1)$精确补偿
-4. **范畴同构证明**：建立了函子$F: \mathcal{C}_{ZkT} \to \mathcal{C}_{\zeta}$和$G: \mathcal{C}_{\zeta} \to \mathcal{C}_{ZkT}$，证明了$F \circ G \cong \text{id}_{\mathcal{C}_{\zeta}}$和$G \circ F \cong \text{id}_{\mathcal{C}_{ZkT}}$
+4. **范畴等价证明**：建立了函子$F: \mathcal{C}_{ZkT} \to \mathcal{C}_{\zeta}$和$G: \mathcal{C}_{\zeta} \to \mathcal{C}_{ZkT}$，证明了$F \circ G \cong \text{id}_{\mathcal{C}_{\zeta}}$和$G \circ F \cong \text{id}_{\mathcal{C}_{ZkT}}$的范畴等价关系
 
 这些等价性不仅具有深刻的数学意义，还预言了可观测的物理效应，包括量子退相干的层级结构、CMB精细结构模式、以及量子计算的错误校正率。本文为理解计算、信息和物理现实的统一本质提供了严格的数学基础。
 
@@ -57,10 +57,10 @@ $$\forall n \in \mathbb{N}, \forall i \in [1,k]: \prod_{j=0}^{k-1} x_{i,n+j} = 0
 **定义1.2（合法张量空间）**：
 $$\mathcal{T}_k = \{\mathbf{X} : \mathbf{X} \text{ 满足约束1-3}\}$$
 
-这个空间具有分形结构，其Hausdorff维数为：
+这个空间具有分形结构，其Hausdorff维数定义为：
 $$\dim_H(\mathcal{T}_k) = \frac{\log N_k}{\log k}$$
 
-其中$N_k$是k-bonacci序列的渐近增长率。
+其中$N_k$是k-bonacci序列的渐近增长率。这个维数需要详细的分形分析来验证。
 
 ### 1.2 k-bonacci递归结构
 
@@ -258,10 +258,10 @@ $$A = \int_{\sigma(A)} \lambda \, dE_\lambda$$
 
 #### 3.2.1 演化算子的谱
 
-**定理3.2（ZkT演化算子谱）**：ZkT的演化算子$U$的谱$\sigma(U)$满足：
-1. $\sigma(U) \subset \{z \in \mathbb{C} : |z| \leq r_k\}$
+**定理3.2（ZkT演化算子谱）**：ZkT的演化算子$U$的谱$\sigma(U)$在适当的Hilbert空间框架下满足：
+1. 谱半径$\rho(U) \leq r_k$
 2. 主本征值为$r_k$（k-bonacci特征根）
-3. 谱测度具有分形结构
+3. 谱测度具有分形结构，间隙大小满足$\Delta \geq c/k$（c为常数）
 
 #### 3.2.2 本征函数展开
 
@@ -541,8 +541,10 @@ $$\mathcal{I}_-^{\zeta} = \sum_{n=0}^{\infty} \zeta(-2n-1) \cdot w_n$$
 
 **定理7.3（信息守恒对应）**：
 $$\mathcal{I}_+^{\text{ZkT}} \leftrightarrow \sum_{n=1}^{\infty} n^{-s} \text{ (发散部分)}$$
-$$\mathcal{I}_-^{\text{ZkT}} \leftrightarrow \sum_{n=0}^{\infty} \zeta(-2n-1) \text{ (补偿部分)}$$
+$$\mathcal{I}_-^{\text{ZkT}} \leftrightarrow \sum_{n=0}^{\infty} \alpha_n(\mathbf{X}) \zeta(-2n-1) \text{ (补偿部分)}$$
 $$\mathcal{I}_0^{\text{ZkT}} \leftrightarrow \text{正则化常数}$$
+
+其中系数$\alpha_n(\mathbf{X})$通过ZkT配置定义，满足收敛条件$\sum |\alpha_n(\mathbf{X})| < \infty$。
 
 #### 7.3.2 普适守恒律
 
