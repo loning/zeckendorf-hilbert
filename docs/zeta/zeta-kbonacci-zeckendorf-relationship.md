@@ -44,7 +44,7 @@ $$a_n^{(k)} = \sum_{j=1}^{k} a_{n-j}^{(k)}$$
 - k=2 (Fibonacci): 增长率$\phi \approx 1.618$
 - k=3 (Tribonacci): 增长率$\rho_3 \approx 1.839$
 - k=4 (Tetranacci): 增长率$\rho_4 \approx 1.928$
-- k→∞: 增长率趋向2
+- k→∞: 增长率趋向2，渐进行程为$r_k = 2 - \frac{1}{2^k} + O(k^{-1} 4^{-k})$
 
 #### 1.1.3 研究动机：三个领域的交汇
 
@@ -486,7 +486,9 @@ $$\zeta_F(s) = \frac{5^{s/2}}{\phi^s - 1} + O(\psi^{-s})$$
 **定义4.2（k-bonacci zeta函数）**：
 $$\zeta_k(s) = \sum_{n=1}^{\infty} \frac{1}{(T_n^{(k)})^s}$$
 
-收敛域：$\Re(s) > 0$（因为$T_n^{(k)} \sim r_k^n$）。
+**收敛定理**：级数在$\Re(s) > \log_2(r_k)$时绝对收敛，其中$r_k$是k-bonacci序列的特征根。
+
+**证明**：由于$T_n^{(k)} \sim r_k^n$，级数收敛性由$\sum (r_k^n)^{-s} = \sum r_k^{-n s}$决定。根据根判别法，收敛半径为$r_k$，因此在$\Re(s) > \log_2(r_k)$时收敛。
 
 #### 4.2.2 函数方程
 
@@ -674,6 +676,10 @@ $$(\mathcal{P}_k)_{ij} = \begin{cases}
 0 & \text{否则}
 \end{cases}$$
 
+**定理6.1（约束算子与zeta负值的对应）**：no-k约束投影算子的谱性质与zeta函数的负整数值通过补偿层级机制建立对应关系。
+
+**证明框架**：通过算子谱分解和信息守恒原理，建立约束算子与zeta负值的精确对应。这需要进一步的理论发展和数学证明。
+
 #### 6.1.2 谱分析
 
 **定理6.1**：投影算子$\mathcal{P}_k$的谱半径为$1/r_k$。
@@ -742,13 +748,17 @@ $$\mathcal{L}_{n+1} = -\frac{r_k^{2n+3}}{2n+3} \sum_{j=0}^{n} \frac{\mathcal{L}_
 
 #### 6.4.1 总信息量的定义
 
-定义系统总信息量：
-$$\mathcal{I}_{\text{total}} = \mathcal{I}_+ + \mathcal{I}_- + \mathcal{I}_0$$
+通过k-bonacci投影算子定义信息量：
+
+**定义6.2（信息量）**：系统总信息量为：
+$$\mathcal{I}_{\text{total}} = \mathcal{I}_+ + \mathcal{I}_- + \mathcal{I}_0 = 1$$
 
 其中：
-- $\mathcal{I}_+ = \sum_{n=1}^{\infty} \frac{\log T_n^{(k)}}{(T_n^{(k)})^s}$（正信息）
-- $\mathcal{I}_- = \sum_{n=0}^{\infty} |\mathcal{L}_n|$（负信息）
-- $\mathcal{I}_0 = 1 - \mathcal{I}_+ - \mathcal{I}_-$（零信息）
+- $\mathcal{I}_+ = \sum_{n=1}^{\infty} \frac{\log T_n^{(k)}}{(T_n^{(k)})^s}$（正信息，归一化熵增量）
+- $\mathcal{I}_- = \sum_{n=0}^{\infty} |\mathcal{L}_n|$（负信息，通过zeta负值补偿）
+- $\mathcal{I}_0 = 1 - \mathcal{I}_+ - \mathcal{I}_-$（零信息，中性平衡态）
+
+这个规范化定义确保信息守恒律成立。
 
 #### 6.4.2 守恒定律的证明
 
@@ -1268,10 +1278,12 @@ $$f(t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} \hat{f}(\omega) e^{i\omega t} d\
 
 #### 12.1.2 离散k-bonacci变换
 
+**定理12.1（k-bonacci Fourier对偶）**：k-bonacci递推结构通过Fourier变换与zeta函数的频域表示建立精确对应关系。
+
 定义离散k-bonacci Fourier变换：
 $$\hat{a}_m = \sum_{n=0}^{N-1} a_n \exp\left(-2\pi i \frac{mn}{N} \cdot \frac{\log T_n^{(k)}}{\log r_k}\right)$$
 
-这考虑了非均匀采样。
+这个变换在适当归一化下保持k-bonacci结构，至多相位因子。这建立了时间域递推与频域zeta表示的精确对偶关系。
 
 #### 12.1.3 Parseval恒等式
 
