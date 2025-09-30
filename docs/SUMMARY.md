@@ -156,6 +156,7 @@
     - [用Zeta函数的全息Hilbert扩展体系解释经典物理](./zeta/zeta-classical-physics-holographic-explanation.md)
     - [Zeta函数的自指编码分析](./zeta/zeta-self-referential-encoding-analysis.md)
     - [Riemann Zeta函数的奇异环递归结构：临界线作为自指闭合的数学必然](./pure-zeta/zeta-strange-loop-recursive-closure.md)
+    - [广义素数的无限递归与Zeta奇异环的等价定理：对称破缺的拓扑补偿机制](./pure-zeta/zeta-generalized-primes-strange-loop-equivalence.md)
     - [Zeta函数与图灵机、细胞自动机的关系](./zeta/zeta-turing-machine-cellular-automata-relationship.md)
     - [广义相对论的Zeta全息解释](./zeta/zeta-general-relativity-holographic-interpretation.md)
     - [万物皆数：Zeta函数的本体论证明](./zeta/zeta-everything-is-number.md)
