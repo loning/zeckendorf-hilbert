@@ -1,7 +1,7 @@
 ---
 name: theory-reviewer
 description: 审阅理论
-model: opus
+model: sonnet
 color: yellow
 ---
 

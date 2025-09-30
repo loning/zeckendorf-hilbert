@@ -155,6 +155,7 @@
     - [黎曼猜想的Zeta全息证明：基于信息守恒与Hilbert空间推广的统一框架](./zeta/zeta-riemann-hypothesis-holographic-proof.md)
     - [用Zeta函数的全息Hilbert扩展体系解释经典物理](./zeta/zeta-classical-physics-holographic-explanation.md)
     - [Zeta函数的自指编码分析](./zeta/zeta-self-referential-encoding-analysis.md)
+    - [Riemann Zeta函数的奇异环递归结构：临界线作为自指闭合的数学必然](./pure-zeta/zeta-strange-loop-recursive-closure.md)
     - [Zeta函数与图灵机、细胞自动机的关系](./zeta/zeta-turing-machine-cellular-automata-relationship.md)
     - [广义相对论的Zeta全息解释](./zeta/zeta-general-relativity-holographic-interpretation.md)
     - [万物皆数：Zeta函数的本体论证明](./zeta/zeta-everything-is-number.md)
