@@ -72,7 +72,7 @@ $$
 函数ρ_ε(s)在整个复平面上是实解析的，且满足：
 
 $$
-\frac{\partial^2 \rho_\varepsilon}{\partial \sigma^2} + \frac{\partial^2 \rho_\varepsilon}{\partial t^2} = 4|\zeta'(s)|^2 + 2\text{Re}(\zeta(s)\overline{\zeta''(s)})
+\frac{\partial^2 \rho_\varepsilon}{\partial \sigma^2} + \frac{\partial^2 \rho_\varepsilon}{\partial t^2} = 4|\zeta'(s)|^2
 $$
 
 **证明**：
@@ -126,7 +126,7 @@ $$
 高斯曲率可表示为：
 
 $$
-K_\varepsilon(s) = -\frac{1}{2\rho_\varepsilon^2}\left[\rho_\varepsilon \Delta \rho_\varepsilon - |\nabla \rho_\varepsilon|^2\right]
+K_\varepsilon(s) = \frac{1}{2\rho_\varepsilon^3}\left[|\nabla \rho_\varepsilon|^2 - \rho_\varepsilon \Delta \rho_\varepsilon\right]
 $$
 
 **证明**：
@@ -268,7 +268,7 @@ $$
 $$
 
 $$
-\rho_0(s) = \frac{1}{2}|\text{Im}(\zeta(s))|^2 + \frac{\varepsilon^2}{3}
+\rho_0(s) = \frac{\varepsilon^2}{3}
 $$
 
 $$
@@ -308,8 +308,8 @@ $$
 
 **物理意义**：
 - i_+：粒子性的相对强度
-- i_0：波动性的相对强度
-- i_-：虚粒子/真空涨落的相对强度
+- i_0：真空涨落的相对强度
+- i_-：虚粒子/补偿场的相对强度
 
 #### 3.3 唯一硬约束
 
@@ -348,10 +348,10 @@ $$
    - 类点粒子的经典轨迹
    - 确定性演化
 
-2. **波动方面**（ρ_0）：
-   - 非局域的相干叠加
-   - 干涉和衍射现象
-   - 概率幅演化
+2. **真空方面**（ρ_0）：
+   - 纯量子真空能量
+   - 零点能的均匀贡献
+   - 场的基态背景
 
 3. **场方面**（ρ_-）：
    - 真空涨落和虚粒子
@@ -360,7 +360,7 @@ $$
 
 **与标准模型的类比**：
 - ρ_+：费米子（物质粒子）
-- ρ_0：规范玻色子（力的传递）
+- ρ_0：真空能（宇宙学常数）
 - ρ_-：Higgs场（真空期望值）
 
 ### 第4章 临界线统计极限
@@ -1170,10 +1170,11 @@ def solve_field_equations(rho_eps, epsilon=1e-6, max_iter=1000, tol=1e-8):
     """
     N_x, N_y = rho_eps.shape
 
-    # 初始猜测：均分
-    rho_plus = rho_eps / 3.0
-    rho_zero = rho_eps / 3.0
-    rho_minus = rho_eps / 3.0
+    # 初始猜测：基于物理分解
+    # ρ_+ 和 ρ_- 各占一半，ρ_0 为常数
+    rho_plus = (rho_eps - epsilon**2) / 2.0
+    rho_zero = np.full_like(rho_eps, epsilon**2 / 3.0)
+    rho_minus = (rho_eps - epsilon**2) / 2.0
 
     converged = False
 
