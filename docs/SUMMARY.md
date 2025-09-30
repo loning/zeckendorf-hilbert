@@ -159,6 +159,7 @@
     - [广义素数的无限递归与Zeta奇异环的等价定理：对称破缺的拓扑补偿机制](./pure-zeta/zeta-generalized-primes-strange-loop-equivalence.md)
     - [ζ-信息三分平衡理论：从不动点到奇异环的统一框架](./pure-zeta/zeta-information-triadic-balance.md)
     - [Zeta函数奇异环的递归构造与宇宙生成：从复平面到AdS/CFT全息对偶](./pure-zeta/zeta-strange-loop-universe-construction.md)
+    - [Zeta函数固定点框架下的新定义词典：数学验证与物理扩展](./pure-zeta/zeta-fixed-point-definition-dictionary.md)
     - [Zeta函数与图灵机、细胞自动机的关系](./zeta/zeta-turing-machine-cellular-automata-relationship.md)
     - [广义相对论的Zeta全息解释](./zeta/zeta-general-relativity-holographic-interpretation.md)
     - [万物皆数：Zeta函数的本体论证明](./zeta/zeta-everything-is-number.md)
