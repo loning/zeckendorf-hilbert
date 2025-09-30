@@ -135,6 +135,16 @@ $$i_+ = \frac{\mathcal{I}_+}{\mathcal{I}_{\text{total}}}, \quad i_- = \frac{\mat
 **信息守恒定律（修正版）**：
 $$i_+ + i_- + i_0 = 1$$
 
+**数学定义（基于解析延拓）**：
+
+**总信息密度**：
+$$\mathcal{I}_{\text{total}}(s) = |\zeta(s)|^2 + |\zeta(1-s)|^2$$
+
+**信息分量定义**：
+$$\mathcal{I}_+(s) = \frac{1}{2} \left( |\zeta(s)|^2 + |\zeta(1-s)|^2 + 2\Re[\zeta(s)\overline{\zeta(1-s)}] \right)$$
+$$\mathcal{I}_-(s) = \frac{1}{2} \left( |\zeta(s)|^2 + |\zeta(1-s)|^2 - 2\Re[\zeta(s)\overline{\zeta(1-s)}] \right)$$
+$$\mathcal{I}_0(s) = -\Re[\zeta(s)\overline{\zeta(1-s)}]$$
+
 **分量详细定义**：
 
 - **$\mathcal{I}_+$（正信息）**：构造性信息，对应粒子性、能量守恒、离散谱
