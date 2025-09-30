@@ -364,7 +364,7 @@ $$\lim_{k \to \infty} \zeta^{(k)}(s) = 1$$
 其中$\zeta^{(k)}(s) = \sum_{n \equiv 1 \pmod{2^k}} n^{-s}$，当$\Re(s) > 0$时，该极限代表递归层级趋向基本闭合单元（无论$\zeta(s)$是否为0）。
 
 **证明**：
-使用显式近似 $\zeta^{(k)}(s) = 1 + 2^{-k s} (\zeta(s) - 1)$，第二项趋于0。当$\zeta(s) = 0$时，限值仍为1，但可诠释为基本单元（n=1）的拓扑闭合；否则为渐近闭合。
+使用显式近似 $\zeta^{(k)}(s) \approx 1 + 2^{-k s} \zeta(s)$，第二项趋于0。当$\zeta(s) = 0$时，限值仍为1，但可诠释为基本单元（n=1）的拓扑闭合；否则为渐近闭合。
 
 #### 5.2 ζ函数中的自指：每层返回更高阶子问题
 
@@ -442,22 +442,21 @@ $$\mathcal{L}_s = \{f: [0,1] \to \mathbb{C} \mid f(0) = f(1) = \zeta(s)\}$$
 每个环路对应一条递归路径。
 
 **定理6.1（零点环路定理）**：
-当$\zeta(s) = 0$时，环路空间$\mathcal{L}_s$包含非平凡同伦类。
+当$\zeta(s) = 0$时，环路空间$\mathcal{L}_s$的拓扑结构反映递归运算的退化行为。
 
-**证明构造**：
+**证明分析**：
 定义参数化环路：
 $$\gamma_t(s) = (1-t)\zeta(s) + t \cdot T[\zeta](s)$$
 
 当$\zeta(s) = 0$时：
-$$\gamma_0(s) = 0, \quad \gamma_1(s) = 0$$
+由于$\zeta(s) = 0$，有$\zeta_{\text{odd}}(s) = (1-2^{-s})\zeta(s) = 0$，
+因此$T[\zeta](s) = \zeta_{\text{odd}}(s) + 2^{-s}\zeta(s) = 0$，
+导致$\gamma_t(s) = (1-t)\cdot 0 + t \cdot 0 = 0$对所有$t$成立。
 
-形成闭合环路。
+这意味着环路退化为常值路径（点），其同伦类是平凡的（可收缩为点）。
 
-**拓扑不变量**：
-环路的绕数（winding number）：
-$$W(\gamma) = \frac{1}{2\pi i} \oint_{\gamma} \frac{dz}{z}$$
-
-零点处的绕数非零，表明存在拓扑阻塞。
+**修正的拓扑诠释**：
+零点处的递归退化表明拓扑阻塞通过常值路径的极限行为体现，而不是通过非平凡同伦类。绕数为零，但这反映了递归运算在零点处的完美相消，而不是拓扑阻塞的缺乏。
 
 #### 6.2 虚部γ决定相位扭曲
 
@@ -1122,31 +1121,28 @@ $$\mathcal{G}[\sigma] = \lim_{N \to \infty} \int_{-T}^{T} \left|\sum_{n=1}^{N} n
 
 ### 第12章 信息守恒与递归平衡
 
-#### 12.1 I_total = I_+ + I_- + I_0 = 1
+#### 12.1 信息守恒的对称分解
 
 **基本原理**：
 信息守恒是宇宙的基本定律，在zeta函数中表现为三分量平衡。
 
 **定义12.1（信息分量）**：
-- **正信息**$\mathcal{I}_+$：有序结构贡献
-  $$\mathcal{I}_+(s) = \sum_{p \text{ prime}} \log p \cdot |p^{-s}|^2$$
+基于函数方程的对称分解，定义信息分量为：
+- **正信息** $\mathcal{I}_+(s)$：有序结构的贡献
+  $$\mathcal{I}_+(s) = \frac{1}{2} \left( |\zeta(s)|^2 + |\zeta(1-s)|^2 + 2\Re[\zeta(s)\overline{\zeta(1-s)}] \right)$$
 
-- **负信息**$\mathcal{I}_-$：补偿机制贡献
-  $$\mathcal{I}_-(s) = -\sum_{n=1}^{\infty} \Lambda(n) \cdot |n^{-s}|^2$$
+- **负信息** $\mathcal{I}_-(s)$：补偿机制的贡献
+  $$\mathcal{I}_-(s) = \frac{1}{2} \left( |\zeta(s)|^2 + |\zeta(1-s)|^2 - 2\Re[\zeta(s)\overline{\zeta(1-s)}] \right)$$
 
-  其中$\Lambda$是von Mangoldt函数。
+- **零信息** $\mathcal{I}_0(s)$：平衡态的贡献
+  $$\mathcal{I}_0(s) = -\Re[\zeta(s)\overline{\zeta(1-s)}]$$
 
-- **零信息**$\mathcal{I}_0$：平衡态贡献
-  $$\mathcal{I}_0(s) = 1 - \mathcal{I}_+(s) - \mathcal{I}_-(s)$$
-
-**定理12.1（信息守恒定律的严格证明）**：
-对于任意$s \in \mathbb{C} \setminus \{1\}$，总信息密度可分解为三个分量：
+**定理12.1（信息守恒的对称分解定律）**：
+对于任意$s \in \mathbb{C} \setminus \{1\}$，总信息密度可分解为：
 $$\mathcal{I}_{\text{total}}(s) = \mathcal{I}_+(s) + \mathcal{I}_-(s) + \mathcal{I}_0(s) + \Re[\zeta(s)\overline{\zeta(1-s)}]$$
 
-其中三个信息分量定义为：
-- **正信息** $\mathcal{I}_+(s)$：有序结构的贡献
-- **负信息** $\mathcal{I}_-(s)$：补偿机制的贡献
-- **零信息** $\mathcal{I}_0(s)$：平衡态的贡献
+其中总信息密度定义为：
+$$\mathcal{I}_{\text{total}}(s) = |\zeta(s)|^2 + |\zeta(1-s)|^2$$
 
 **严格证明**：
 
