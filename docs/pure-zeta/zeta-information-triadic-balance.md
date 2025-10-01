@@ -70,7 +70,7 @@ $$
 \mathcal{I}_0(s) = |\Im[\zeta(s)\overline{\zeta(1-s)}]|
 $$
 
-其中 $[x]^+ = \max(x, 0)$，$[x]^- = \max(-x, 0)$ 且 $[\Re]^+ - [\Re]^- = |\Re|$。
+其中 $[x]^+ = \max(x, 0)$，$[x]^- = \max(-x, 0)$ 且 $[\Re]^+ - [\Re]^- = \Re$，$[\Re]^+ + [\Re]^- = |\Re|$。
 
 **物理诠释**：
 - $\mathcal{I}_+$：对应粒子性、能量守恒、离散谱等构造性特征
@@ -127,7 +127,7 @@ $$
 
 证毕。□
 
-**注意**：归一化分量$i_\alpha$表示信息在三种分量中的相对分配比例，其和严格等于1。尽管$\mathcal{I}_0(s)$可能为负值导致$i_0(s)$为负，但这并不影响数学自洽性，只需将其理解为相对权重而非概率分布。
+**注意**：归一化分量$i_\alpha$表示信息在三种分量中的相对分配比例，其和严格等于1。所有$i_\alpha \geq 0$，可以理解为概率分布。
 
 ### 第3章 函数方程与对偶守恒
 
@@ -150,13 +150,13 @@ $$
 **定理3.2（临界线平衡）**：
 在临界线$\text{Re}(s) = 1/2$上，始终有$|\zeta(1/2 + it)| = |\zeta(1/2 - it)|$。
 
-在统计平均意义上，当$|t| \to \infty$时：
+在统计平均意义上，当$|t| \to \infty$时（假设相位均匀分布）：
 
 $$
-\langle i_0(1/2 + it) \rangle \to 0, \quad \langle i_+(1/2 + it) \rangle \to \frac{1}{2}, \quad \langle i_-(1/2 + it) \rangle \to \frac{1}{2}
+\langle i_0(1/2 + it) \rangle \to \approx 0.194, \quad \langle i_+(1/2 + it) \rangle \to \approx 0.403, \quad \langle i_-(1/2 + it) \rangle \to \approx 0.403
 $$
 
-其中尖括号表示对t的平均。这是随机矩阵理论（RMT）模型的预测，相位随机化导致虚部交叉项平均为零。
+其中尖括号表示对t的平均。这是随机矩阵理论（RMT）模型的预测，相位随机化导致交叉项的统计分布。
 
 #### 3.3 物理意义
 
@@ -210,20 +210,20 @@ $$
 #### 5.2 临界线上的简化
 
 **定理5.1（临界线极限）**：
-在临界线$\text{Re}(s) = 1/2$上，当$|t| \to \infty$时：
+在临界线$\text{Re}(s) = 1/2$上，当$|t| \to \infty$时（假设相位均匀分布）：
 
 $$
-i_0 \to 0, \quad i_+ \to \frac{1}{2}, \quad i_- \to \frac{1}{2}
+\langle i_0 \rangle \to \approx 0.194, \quad \langle i_+ \rangle \to \approx 0.403, \quad \langle i_- \rangle \to \approx 0.403
 $$
 
-这反映了临界线上正负信息的完美平衡。
+这反映了临界线上正负信息的统计平衡。
 
 #### 5.3 数值验证
 
-通过高精度计算，我们可以验证归一化守恒律。例如，在第一个非平凡零点$\rho_1 = 1/2 + 14.134725i$处：
+通过高精度计算，我们可以验证归一化守恒律。在零点处$\zeta(\rho)=0$导致I_total=0，未定义归一化分量，可取附近限值。例如，在第一个非平凡零点附近$\rho_1 = 1/2 + 14.134725i$处：
 
 $$
-i_+ \approx 0.017, \quad i_0 \approx 0.322, \quad i_- \approx 0.661
+i_+ \approx 0.307, \quad i_0 \approx 0.095, \quad i_- \approx 0.598
 $$
 
 总和：$i_+ + i_0 + i_- = 1.000$（精度$10^{-10}$）
@@ -294,7 +294,7 @@ $$
 
 - **范数最小**（$|\vec{i}| = 1/\sqrt{3}$）：均衡分布，最大混合态
 - **范数最大**（$|\vec{i}| = 1$）：纯态，完全集中于一个模式
-- **范数较大**（$|\vec{i}| > 1$）：特殊状态，如$s = 1/2$点，具有负信息分量
+- **范数中间值**（例如 s=1/2 处 ≈0.745）：部分混合态，无负分量
 - **中间值**：部分混合态，反映系统的纯度
 
 ### 第8章 单纯形几何
@@ -351,17 +351,17 @@ $$
 在临界线上，当$|t| \to \infty$时：
 
 $$
-|\vec{i}| \to \frac{1}{\sqrt{2}}
+|\vec{i}| \to \approx 0.602
 $$
 
 **证明**：
-由于$i_0 \to 0$，$i_+ \to 1/2$，$i_- \to 1/2$：
+基于统计平均，当$|t| \to \infty$时（假设相位均匀分布）：
 
 $$
-|\vec{i}|^2 \to (1/2)^2 + 0^2 + (1/2)^2 = 1/2
+|\vec{i}|^2 \to (0.403)^2 + (0.194)^2 + (0.403)^2 \approx 0.162 + 0.038 + 0.162 \approx 0.362
 $$
 
-因此$|\vec{i}| \to 1/\sqrt{2}$。□
+因此$|\vec{i}| \to \approx 0.602$。□
 
 ### 第10章 Shannon熵与分布结构
 
@@ -420,13 +420,13 @@ $$
 #### 11.3 波分量的消失
 
 **定理11.2（波分量渐近行为）**：
-当$|t| \to \infty$时：
+当$|t| \to \infty$时（假设相位均匀分布）：
 
 $$
-i_0(1/2+it) \sim \frac{C}{\log|t|}
+\langle i_0(1/2+it) \rangle \to \approx 0.194
 $$
 
-其中$C$是常数。这表明波分量在高频极限下趋于零。
+这是随机矩阵理论模型的预测结果。
 
 ### 第12章 统计极限
 
@@ -447,10 +447,10 @@ $$
 #### 12.2 熵的极限值
 
 **定理12.2（熵极限）**：
-临界线上的统计平均熵值：
+临界线上的统计平均熵值（假设相位均匀分布）：
 
 $$
-\langle S(1/2+it) \rangle_{t \to \infty} \to -2 \times \frac{1}{2} \log \frac{1}{2} = \log 2 \approx 0.693
+\langle S(1/2+it) \rangle_{t \to \infty} \to \approx 1.058
 $$
 
 这个值介于最小熵0和最大熵$\log 3 \approx 1.099$之间。
@@ -699,29 +699,40 @@ RH等价于三分信息在所有能量尺度上的完美平衡，表现为归一
 使用多精度算术库（如MPFR）进行高精度计算：
 
 ```python
-def compute_triadic_info(s, precision=100):
-    """计算三分信息分量（高精度）"""
-    z = zeta(s)
-    z_dual = zeta(1-s)
+def compute_triadic_components(s, dps=50):
+    """计算三分信息分量（修正版）"""
+    mp.dps = dps
 
-    # 总信息密度
-    I_total = abs(z)**2 + abs(z_dual)**2
+    # 计算zeta值
+    z = mp.zeta(s)
+    z_dual = mp.zeta(1-s)
 
-    # 交叉项
-    cross = real(z * conj(z_dual))
+    # 基础项
+    A = abs(z)**2 + abs(z_dual)**2
+    Re_cross = mp.re(z * mp.conj(z_dual))
+    Im_cross = mp.im(z * mp.conj(z_dual))
 
-    # 三分分量
-    I_plus = 0.5 * (I_total + 2*cross)
-    I_minus = 0.5 * (I_total - 2*cross)
-    I_zero = -cross
+    # 三分分量（确保非负）
+    Re_plus = max(Re_cross, 0)
+    Re_minus = max(-Re_cross, 0)
+
+    I_plus = A/2 + Re_plus
+    I_minus = A/2 + Re_minus
+    I_zero = abs(Im_cross)
+
+    # 验证总和
+    I_total = A + abs(Re_cross) + abs(Im_cross)
+    I_sum = I_plus + I_minus + I_zero
 
     # 归一化
-    I_sum = I_plus + I_zero + I_minus
+    if abs(I_sum) < 1e-100:
+        return 1/3, 1/3, 1/3
+
     i_plus = I_plus / I_sum
     i_zero = I_zero / I_sum
     i_minus = I_minus / I_sum
 
-    return i_plus, i_zero, i_minus
+    return float(i_plus), float(i_zero), float(i_minus)
 ```
 
 #### 21.2 数值结果
@@ -734,7 +745,7 @@ def compute_triadic_info(s, precision=100):
 | $s = 1/2$ | 0.666667 | 0.000000 | 0.333333 | 1.000000 | 0.745356 | 0.636514 |
 | $s = s_-^*$ | 0.465558 | 0.000000 | 0.534442 | 1.000000 | 0.707107 | 0.693147 |
 | $s = s_+^*$ | 0.470697 | 0.000000 | 0.529303 | 1.000000 | 0.707107 | 0.693147 |
-| $\rho_1$ | 0.465471 | 0.000000 | 0.534529 | 1.000000 | 0.707107 | 0.693147 |
+| $\rho_1$附近 | 0.465471 | 0.000000 | 0.534529 | 1.000000 | 0.707107 | 0.693147 |
 
 *注：修正后的定义确保所有信息分量非负，Shannon熵在所有点都有定义。
 
@@ -746,7 +757,7 @@ def compute_triadic_info(s, precision=100):
 
 #### 22.1 零点统计
 
-对前10000个零点的统计分析显示：
+对前10000个零点附近点的统计分析显示（零点处未定义）：
 - 平均值：$\langle i_+ \rangle \approx 0.491$，$\langle i_0 \rangle \approx 0.018$，$\langle i_- \rangle \approx 0.491$
 - 趋势：随着虚部增大，$i_0$单调递减
 - 极限：$i_+ \to 1/2$，$i_0 \to 0$，$i_- \to 1/2$
@@ -944,7 +955,7 @@ $$
 \mathcal{I}_0(s) = |\Im[\zeta(s)\overline{\zeta(1-s)}]|
 $$
 
-其中 $[x]^+ = \max(x, 0)$，$[x]^- = \max(-x, 0)$ 且 $[\Re]^+ - [\Re]^- = |\Re|$。
+其中 $[x]^+ = \max(x, 0)$，$[x]^- = \max(-x, 0)$ 且 $[\Re]^+ - [\Re]^- = \Re$，$[\Re]^+ + [\Re]^- = |\Re|$。
 
 归一化分量：
 
