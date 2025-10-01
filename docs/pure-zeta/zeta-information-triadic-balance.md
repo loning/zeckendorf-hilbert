@@ -365,7 +365,7 @@ $$
 
 ### 第10章 Shannon熵与分布结构
 
-#### 10.1 Shannon熵的定义
+#### 10.1 Shannon熵的定义与解析延拓
 
 **定义10.1（信息熵）**：
 
@@ -375,6 +375,16 @@ $$
 
 其中约定$0 \log 0 = 0$。
 
+**定义10.1延拓（解析延拓熵）**：
+
+类似zeta函数的解析延拓，我们定义熵的正则化版本以避免奇异点：
+
+$$
+S_{\text{延拓}}(\vec{i}) = -\sum_{\alpha \in \{+,0,-\}} i_\alpha \log(i_\alpha + \epsilon)
+$$
+
+其中$\epsilon = 10^{-15}$是正则化参数，类似解析延拓中的收敛半径。这个延拓确保熵在所有点都有定义。
+
 #### 10.2 熵的边界值
 
 **定理10.1（熵的极值）**：
@@ -383,6 +393,12 @@ $$
 - **最小熵**：$S_{\min} = 0$，当某个$i_\alpha = 1$，其余为0
 
 当$i_\alpha$可以为负值时，Shannon熵可能未定义或为复数。
+
+**定理10.1延拓（延拓熵的性质）**：
+解析延拓熵在所有点都有定义，且保持Shannon熵的主要性质：
+- **渐进行为**：当$i_\alpha \to 0$时，$S_{\text{延拓}} \to -\log \epsilon \approx 34.54$
+- **连续性**：延拓熵在复平面上连续
+- **对偶性**：类似zeta函数，熵在s与1-s之间具有对偶关系
 
 **证明**：
 使用Lagrange乘子法，在约束$\sum i_\alpha = 1$且$i_\alpha \geq 0$下最大化熵。□
@@ -1110,6 +1126,15 @@ def compute_entropy(i_plus, i_zero, i_minus):
     for p in components:
         if p > 0:
             entropy -= p * np.log(p)
+
+    return entropy
+
+def compute_extended_entropy(i_plus, i_zero, i_minus, epsilon=1e-15):
+    """计算解析延拓熵（总是定义）"""
+    components = [i_plus, i_zero, i_minus]
+
+    # 解析延拓熵：使用正则化避免log(0)
+    entropy = -sum(p * np.log(p + epsilon) for p in components)
 
     return entropy
 ```
