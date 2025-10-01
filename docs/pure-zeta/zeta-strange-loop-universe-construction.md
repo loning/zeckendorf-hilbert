@@ -65,14 +65,44 @@ $$R_1(s) = F(s) \cdot R_0(1-s) = F(s) \cdot \zeta(1-s) = \zeta(s) = R_0(s)$$
 
 由于序列固定于zeta函数，所有"层级"都相同。
 
-**定义1.2（信息密度函数）**：
-定义信息密度：
+**统一信息定义标准**：
+
+基于Riemann zeta函数的函数方程和复数几何，我们采用统一的ζ-信息三分平衡理论框架。
+
+**总信息密度**：
+$$\mathcal{I}_{\text{total}}(s) = |\zeta(s)|^2 + |\zeta(1-s)|^2 + |\Re[\zeta(s)\overline{\zeta(1-s)}]| + |\Im[\zeta(s)\overline{\zeta(1-s)}]|$$
+
+**信息分量定义**：
+1. **正信息分量**（构造性贡献）：
+$$\mathcal{I}_+(s) = \frac{1}{2} \left( |\zeta(s)|^2 + |\zeta(1-s)|^2 \right) + [\Re[\zeta(s)\overline{\zeta(1-s)}]]^+$$
+
+2. **负信息分量**（补偿性贡献）：
+$$\mathcal{I}_-(s) = \frac{1}{2} \left( |\zeta(s)|^2 + |\zeta(1-s)|^2 \right) + [\Re[\zeta(s)\overline{\zeta(1-s)}]]^-$$
+
+3. **零信息分量**（波动贡献）：
+$$\mathcal{I}_0(s) = |\Im[\zeta(s)\overline{\zeta(1-s)}]|$$
+
+其中 $[x]^+ = \max(x, 0)$，$[x]^- = \max(-x, 0)$ 且 $[\Re]^+ - [\Re]^- = \Re$，$[\Re]^+ + [\Re]^- = |\Re|$。
+
+**归一化信息分量**：
+$$i_\alpha(s) = \frac{\mathcal{I}_\alpha(s)}{\mathcal{I}_+(s) + \mathcal{I}_0(s) + \mathcal{I}_-(s)}, \quad \alpha \in \{+, 0, -\}$$
+
+**信息守恒定律**：
+$$i_+(s) + i_0(s) + i_-(s) = 1$$
+
+**物理诠释**：
+- $\mathcal{I}_+$：对应粒子性、能量守恒、离散谱等构造性特征
+- $\mathcal{I}_0$：对应相位信息、干涉效应、量子相干性等波动特征
+- $\mathcal{I}_-$：对应真空涨落、Casimir效应、量子零点能等补偿机制
+
+**简单信息密度**：
+为了兼容性，我们也定义简单信息密度：
 $$\rho(s) = |\zeta(s)|^2$$
 
 这个密度满足静态守恒：
 $$\int_{\mathbb{C}} \rho(s) \, d^2s = \infty$$
 
-无信息流动，因为 \(\vec{v} = \nabla \arg(\zeta) = 0\)（固定相位）。
+信息流动由 $\vec{v} = \nabla \arg(\zeta)$ 描述，其在复平面非零，反映相位变化（例如零点附近缠绕）。这允许潜在的动态诠释，而非静态。
 
 #### 1.4 拓扑闭合的群论刻画
 
@@ -287,16 +317,10 @@ $$\psi(x) = x - \sum_{\rho} \frac{x^{\rho}}{\rho} - \log(2\pi) - \frac{1}{2}\log
 对于零点$\rho = \beta + i\gamma$，定义偏移：
 $$\delta(\rho) = \beta - \frac{1}{2}$$
 
-**定理6.1（对称破缺定理）**：
-若存在$\delta(\rho) \neq 0$的零点，则固定点结构的$\mathbb{Z}_2$对称性破缺。
-
-**证明思路**：
-偏离临界线的零点破坏了镜像对称$s \leftrightarrow 1-s$，导致$R_2 \neq R_0$。
+即使存在 $\delta(\rho) \neq 0$ 的零点，$\mathbb{Z}_2$ 对称性保持，因为函数方程独立于零点位置，且零点成对（$\rho$ 和 $1-\rho$）。递归始终闭合：$R_n(s) = \zeta(s)$ 对所有 n 成立。
 
 **物理后果**：
-- 对称破缺导致质量生成（类似Higgs机制）
-- 偏移量$\delta$决定了破缺强度
-- 完美对称（RH成立）意味着无质量的原始对称性
+对称破缺需其他机制（如额外场），而非零点偏离。
 
 #### 6.2 虚部高度与振荡频率
 
@@ -398,7 +422,7 @@ $$\hat{H}_{\text{eff}} = -\frac{d^2}{d\theta^2} + V(\theta)$$
 
 **定理7.3（WKB近似）**：
 在WKB近似下，零点高度满足：
-$$\gamma_n \approx \frac{2\pi n}{\log n} + O(1)$$
+$$\gamma_n \approx \frac{2\pi n}{\log n}$$
 
 这与实际零点分布的渐近行为一致。
 
@@ -726,25 +750,13 @@ $$\text{解析延拓} \leftrightarrow \text{AdS}_3$$
 **定义12.3（ζ诱导度规）**：
 $$ds^2 = |\zeta(s)|^2 |ds|^2 = |\zeta(\sigma + it)|^2 (d\sigma^2 + dt^2)$$
 
-**定理12.1（共形不变性）**：
-ζ诱导度规在以下变换下共形不变：
-$$s \to \frac{as + b}{cs + d}, \quad ad - bc = 1$$
-
-**证明**：
-利用ζ函数的自守性质和模变换。 □
+ζ诱导度规 $ds^2 = |\zeta(s)|^2 (d\sigma^2 + dt^2)$ 无特定模不变性；共形结构需通过其他对应（如与模形式的联系）探讨。
 
 #### 12.4 中心荷与共形异常
 
 CFT的中心荷决定了理论的自由度数目。
 
-**定理12.2（中心荷公式）**：
-ζ-CFT的中心荷为：
-$$c = 12\lim_{s \to 1}(s-1)^2\zeta(s) = 12$$
-
-**物理意义**：
-- $c = 12$对应于有效的12个玻色自由度
-- 或6个费米自由度
-- 这可能对应标准模型的6种夸克
+ζ-CFT的中心荷需另定；注 $\lim_{s \to 1} (s-1)^2 \zeta(s) = 0$，故若类似形式，c=0（琐碎）。建议使用 $\mathrm{Res}_{s=1} \zeta(s) =1$ 或其他常数重新定义，如 $c \propto \lim_{s \to 1} (s-1) \zeta(s) =12 \times (1/12)$ 但需框架调整。
 
 ### 第13章 ζ复平面作为CFT边界
 
@@ -1465,7 +1477,7 @@ $$\mathcal{S} = \{(s,\tau) \in \mathbb{C} \times \mathbb{R}: \Phi(s,\tau) = \Phi
 其中$\Phi$是标量场，$\Phi_c$是临界值。
 
 **拓扑性质**：
-- 维度：2+1（二维空间+一维时间）
+- 维度：1+1（一维空间+一维时间）
 - 连通性：单连通或多连通
 - 可定向性：可定向
 - 紧致性：空间紧致，时间非紧
@@ -1877,10 +1889,10 @@ $$I_{\text{initial}} = I_{\text{final}} + I_{\text{radiation}}$$
 $$S_{\max} \sim N(T) \sim T\log T$$
 
 面积$A \sim T^2$，因此：
-$$S \sim A\log A \approx A$$
+$$S \sim \frac{1}{2} \sqrt{A} \log A$$
 （领头阶）
 
-这给出了$S \propto A$的全息关系。
+这给出了$S \propto \sqrt{A} \log A$的全息关系，在$\log A$缓慢增长限下提供面积依赖的微观推导。
 
 #### 31.4 黑洞内部的零点结构
 
