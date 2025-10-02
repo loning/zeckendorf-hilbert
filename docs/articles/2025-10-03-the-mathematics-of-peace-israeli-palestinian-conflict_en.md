@@ -466,16 +466,16 @@ This is not for our generation, but so future quantum states don't collapse into
 
 An obvious fact forgotten in anger: economic prosperity requires stability.
 
-Israel's GDP per capita is about $55,000, but each Gaza war costs billions of dollars, not to mention loss of human capital, decline in innovation capacity, withdrawal of international investment. Israel can have world-leading tech industry, but it has to spend a huge proportion of GDP on military (about 5.3%).
+Israel's GDP per capita is about USD 55,000, but each Gaza war costs billions of dollars, not to mention loss of human capital, decline in innovation capacity, withdrawal of international investment. Israel can have world-leading tech industry, but it has to spend a huge proportion of GDP on military (about 5.3%).
 
-Palestine's GDP per capita is about $3,600 (Gaza lower at $1,600), but this is not "natural poverty"; it's the result of conflict and blockade. With a stable environment, Palestine has an educated population, strategic geographic location, rich cultural resources—all can be converted to economic development.
+Palestine's GDP per capita is about USD 3,600 (Gaza lower at USD 1,600), but this is not "natural poverty"; it's the result of conflict and blockade. With a stable environment, Palestine has an educated population, strategic geographic location, rich cultural resources—all can be converted to economic development.
 
 From information theory perspective: conflict is a massive entropy-increasing process. Every war burns ordered structure (buildings, infrastructure, social networks, trust capital), converting it to disorder (rubble, refugees, hatred, chaos). This is pure thermodynamic waste.
 
 If Israel-Palestine can achieve stability:
 
-- Israel can redirect military spending to education and innovation; GDP per capita might reach $70,000+
-- Palestine can develop tourism, agriculture, tech; GDP per capita might reach $15,000+
+- Israel can redirect military spending to education and innovation; GDP per capita might reach USD 70,000+
+- Palestine can develop tourism, agriculture, tech; GDP per capita might reach USD 15,000+
 - Regional economic integration (like the EU) might create hundreds of thousands of jobs, GDP growth of tens of billions
 
 This is not utopian fantasy; this is mathematical calculation: compound returns of stability vs exponential losses of conflict.

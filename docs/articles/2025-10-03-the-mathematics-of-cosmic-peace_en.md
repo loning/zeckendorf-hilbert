@@ -296,7 +296,7 @@ Conflict is pure entropy-increasing process:
 
 Every war is entropy's massive increase. Energy wasted to heat, matter dispersed to dust, information confused to noise. This is unidirectional, irreversible degeneration.
 
-Economic calculation: Israeli-Palestinian conflict has consumed estimated over $1 trillion in direct and indirect costs in past 75 years. These resources could have made entire Middle East reach developed country level. But they were burned to entropy—literally heat and debris.
+Economic calculation: Israeli-Palestinian conflict has consumed estimated over USD 1 trillion in direct and indirect costs in past 75 years. These resources could have made entire Middle East reach developed country level. But they were burned to entropy—literally heat and debris.
 
 Biological calculation: Hundreds of thousands lives terminated. Each person is highly ordered information system—decades learning, experience, relationships, creative potential. Death is irreversible information annihilation. All this complexity regresses to physics' basic particles. Universe's total entropy increases.
 
