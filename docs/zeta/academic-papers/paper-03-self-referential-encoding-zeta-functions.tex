@@ -121,7 +121,9 @@ Key observation: For $\Re(s_{\cA}) > 1$, define the moment sequence:
 M_k = \sum_{n=1}^{\infty} \frac{(\log n)^k}{n^{s_{\cA}}}
 \end{equation}
 
-By the uniqueness theorem for Dirichlet series, the sequence $\{M_k\}$ uniquely determines the measure $\mu(n) = n^{-s_{\cA}}$, thereby uniquely determining $s_{\cA}$. For the case $\Re(s_{\cA}) \leq 1$, the result extends to the entire complex plane (except the pole at $s=1$) through analytic continuation.
+For a bounded measure with compact support, the moment problem has a unique solution when the moment sequence satisfies Carleman's condition:
+$$\sum_{k=1}^{\infty} M_{2k}^{-1/(2k)} = \infty$$
+This ensures that the sequence $\{M_k\}$ uniquely determines the measure $\mu(n) = n^{-s_{\cA}}$, thereby uniquely determining $s_{\cA}$. For the case $\Re(s_{\cA}) \leq 1$, the result extends to the entire complex plane (except the pole at $s=1$) through analytic continuation, provided the appropriate conditions for uniqueness are verified.
 \end{proof}
 
 \begin{proposition}[Topological Structure of Encoding Space]
@@ -179,7 +181,7 @@ There exists a complex number $s^* \in \{s \in \C: 1/2 < \Re(s) < 1\}$ and a rea
 \item Such $s^*_{\infty}$ are fixed points of self-referential encoding.
 \end{enumerate}
 
-Note: This extension is limited to the strip where Voronin's theorem applies. For $\Re(s) \leq 1/2$ or $\Re(s) \geq 1$, extension through analytic continuation is conjectured but lacks rigorous proof.
+Note: This extension is rigorously valid only within the strip $1/2 < \Re(s) < 1$ where Voronin's classical theorem applies. For $\Re(s) \leq 1/2$ or $\Re(s) \geq 1$, such extensions would require additional theoretical development beyond the current scope of Voronin's universality results.
 \end{proof}
 
 \section{Self-Referential Encoding Mechanisms}
@@ -224,7 +226,7 @@ Let $F: \C \to \C$ be the self-referential encoding operator defined by:
 \begin{equation}
 F(s) = E(\text{Algorithm}(\zeta, s))
 \end{equation}
-If $F$ is a contraction mapping on some domain $D \subset \C$, then there exists a unique fixed point $s^* \in D$ such that $F(s^*) = s^*$.
+If $F$ is a contraction mapping on some complete metric space $(D, d) \subset \C$, then by the Banach fixed point theorem, there exists a unique fixed point $s^* \in D$ such that $F(s^*) = s^*$. The existence of such a contraction property for self-referential encoding operators requires verification through explicit construction or topological arguments.
 \end{theorem}
 
 \subsubsection{Strange Loop Structure}
@@ -331,7 +333,7 @@ A zeta horizon is a critical line in the complex plane where self-referential en
 Self-referential encoding exhibits properties similar to quantum entanglement:
 
 \begin{theorem}[Algorithmic Entanglement]
-Two algorithms encoded in complex numbers $s_1$ and $s_2$ are entangled if modification of the algorithm at $s_1$ instantaneously affects the convergence properties at $s_2$.
+Two algorithms encoded in complex numbers $s_1$ and $s_2$ exhibit algorithmic correlation if there exists a measurable dependency between their computational behaviors. Formally, this occurs when the joint probability distribution of convergence properties cannot be factored as a product of individual distributions: $P(C_1, C_2) \neq P(C_1) \cdot P(C_2)$ where $C_i$ denotes convergence events for algorithm $i$.
 \end{theorem}
 
 \section{Applications and Future Directions}
@@ -374,17 +376,122 @@ We thank the anonymous reviewers for their valuable feedback and suggestions. Th
 
 \begin{thebibliography}{99}
 
-\bibitem{voronin1975} Voronin, S.M. (1975). Theorem on the 'universality' of the Riemann zeta-function. \emph{Izv. Akad. Nauk SSSR Ser. Mat.}, 39(3), 475-486.
-
+% Historical Foundations
 \bibitem{riemann1859} Riemann, B. (1859). Über die Anzahl der Primzahlen unter einer gegebenen Größe. \emph{Monatsberichte der Berliner Akademie}, 671-680.
 
+\bibitem{euler1748} Euler, L. (1748). \emph{Introductio in analysin infinitorum}. Lausanne: Bousquet.
+
+\bibitem{hardy1916} Hardy, G.H., Littlewood, J.E. (1916). Contributions to the theory of the Riemann zeta-function and the theory of the distribution of primes. \emph{Acta Mathematica}, 41(1), 119-196.
+
+% Zeta Function Theory
+\bibitem{voronin1975} Voronin, S.M. (1975). Theorem on the 'universality' of the Riemann zeta-function. \emph{Izv. Akad. Nauk SSSR Ser. Mat.}, 39(3), 475-486.
+
+\bibitem{titchmarsh1986} Titchmarsh, E.C. (1986). \emph{The Theory of the Riemann Zeta-Function}. 2nd edition, Oxford University Press.
+
+\bibitem{karatsuba1992} Karatsuba, A.A. (1992). On the zeros of the function $\zeta(s)$ on short intervals of the critical line. \emph{Izv. Ross. Akad. Nauk Ser. Mat.}, 56(1), 207-214.
+
+\bibitem{bombieri2000} Bombieri, E. (2000). Problems of the millennium: The Riemann hypothesis. \emph{Clay Mathematics Institute}.
+
+\bibitem{montgomery1973} Montgomery, H.L. (1973). The pair correlation of zeros of the zeta function. \emph{Proceedings of Symposia in Pure Mathematics}, 24, 181-193.
+
+% Voronin Universality and Extensions
+\bibitem{bagchi1981} Bagchi, B. (1981). The statistical behaviour and universality properties of the Riemann zeta-function and other allied Dirichlet series. PhD thesis, Indian Statistical Institute.
+
+\bibitem{steuding2007} Steuding, J. (2007). \emph{Value-Distribution of L-Functions}. Springer Lecture Notes in Mathematics, 1877.
+
+\bibitem{laurincikas2002} Laurinčikas, A. (2002). The universality of zeta-functions. \emph{Acta Applicandae Mathematicae}, 72(3), 299-317.
+
+\bibitem{garunkstis2000} Garunkštis, R. (2000). On the Voronin's universality theorem for the Riemann zeta-function. \emph{Fizikos ir Matematikos Fakulteto Mokslų Darbai}, 3, 21-27.
+
+% Mathematical Logic and Computability
 \bibitem{godel1931} Gödel, K. (1931). Über formal unentscheidbare Sätze der Principia Mathematica und verwandter Systeme. \emph{Monatshefte für Mathematik}, 38, 173-198.
 
 \bibitem{turing1936} Turing, A.M. (1936). On computable numbers, with an application to the Entscheidungsproblem. \emph{Proceedings of the London Mathematical Society}, 42(2), 230-265.
 
+\bibitem{church1936} Church, A. (1936). An unsolvable problem of elementary number theory. \emph{American Journal of Mathematics}, 58(2), 345-363.
+
+\bibitem{kleene1936} Kleene, S.C. (1936). General recursive functions of natural numbers. \emph{Mathematische Annalen}, 112(1), 727-742.
+
+\bibitem{post1936} Post, E.L. (1936). Finite combinatory processes-formulation 1. \emph{Journal of Symbolic Logic}, 1(3), 103-105.
+
+% Fixed Point Theory
+\bibitem{banach1922} Banach, S. (1922). Sur les opérations dans les ensembles abstraits et leur application aux équations intégrales. \emph{Fundamenta Mathematicae}, 3, 133-181.
+
+\bibitem{brouwer1911} Brouwer, L.E.J. (1911). Über Abbildung von Mannigfaltigkeiten. \emph{Mathematische Annalen}, 71(1), 97-115.
+
+\bibitem{schauder1930} Schauder, J. (1930). Der Fixpunktsatz in Funktionalräumen. \emph{Studia Mathematica}, 2(1), 171-180.
+
+\bibitem{tarski1955} Tarski, A. (1955). A lattice-theoretical fixpoint theorem and its applications. \emph{Pacific Journal of Mathematics}, 5(2), 285-309.
+
+% Moment Problems and Measure Theory
+\bibitem{carleman1926} Carleman, T. (1926). Les fonctions quasi analytiques. \emph{Collection Borel}, Gauthier-Villars, Paris.
+
+\bibitem{hausdorff1921} Hausdorff, F. (1921). Summationsmethoden und Momentfolgen. \emph{Mathematische Zeitschrift}, 9(1-2), 74-109.
+
+\bibitem{shohat1943} Shohat, J.A., Tamarkin, J.D. (1943). \emph{The Problem of Moments}. American Mathematical Society Mathematical Surveys, No. 1.
+
+\bibitem{riesz1909} Riesz, F. (1909). Sur les opérations fonctionnelles linéaires. \emph{Comptes Rendus de l'Académie des Sciences}, 149, 974-977.
+
+% Self-Reference and Strange Loops
 \bibitem{hofstadter1979} Hofstadter, D.R. (1979). \emph{Gödel, Escher, Bach: An Eternal Golden Braid}. Basic Books.
 
-\bibitem{banach1922} Banach, S. (1922). Sur les opérations dans les ensembles abstraits et leur application aux équations intégrales. \emph{Fundamenta Mathematicae}, 3, 133-181.
+\bibitem{hofstadter2007} Hofstadter, D.R. (2007). \emph{I Am a Strange Loop}. Basic Books.
+
+\bibitem{barwise1987} Barwise, J., Moss, L. (1987). \emph{Vicious Circles: On the Mathematics of Non-Wellfounded Phenomena}. CSLI Publications.
+
+\bibitem{smullyan1985} Smullyan, R.M. (1985). \emph{To Mock a Mockingbird}. Alfred A. Knopf.
+
+% Functional Analysis and Operator Theory
+\bibitem{reed1972} Reed, M., Simon, B. (1972). \emph{Methods of Modern Mathematical Physics I: Functional Analysis}. Academic Press.
+
+\bibitem{kato1995} Kato, T. (1995). \emph{Perturbation Theory for Linear Operators}. 2nd edition, Springer-Verlag.
+
+\bibitem{dunford1958} Dunford, N., Schwartz, J.T. (1958). \emph{Linear Operators Part I: General Theory}. Interscience Publishers.
+
+\bibitem{yosida1980} Yosida, K. (1980). \emph{Functional Analysis}. 6th edition, Springer-Verlag.
+
+% Information Theory and Computational Complexity
+\bibitem{shannon1948} Shannon, C.E. (1948). A mathematical theory of communication. \emph{Bell System Technical Journal}, 27(3), 379-423.
+
+\bibitem{kolmogorov1965} Kolmogorov, A.N. (1965). Three approaches to the quantitative definition of information. \emph{Problems of Information Transmission}, 1(1), 1-7.
+
+\bibitem{chaitin1966} Chaitin, G.J. (1966). On the length of programs for computing finite binary sequences. \emph{Journal of the ACM}, 13(4), 547-569.
+
+\bibitem{sipser2012} Sipser, M. (2012). \emph{Introduction to the Theory of Computation}. 3rd edition, Cengage Learning.
+
+% Holographic Principle and Theoretical Physics
+\bibitem{thooft1993} 't Hooft, G. (1993). Dimensional reduction in quantum gravity. \emph{arXiv:gr-qc/9310026}.
+
+\bibitem{susskind1995} Susskind, L. (1995). The world as a hologram. \emph{Journal of Mathematical Physics}, 36(11), 6377-6396.
+
+\bibitem{maldacena1998} Maldacena, J. (1998). The large-N limit of superconformal field theories and supergravity. \emph{Advances in Theoretical and Mathematical Physics}, 2(2), 231-252.
+
+\bibitem{witten1998} Witten, E. (1998). Anti de Sitter space and holography. \emph{Advances in Theoretical and Mathematical Physics}, 2(2), 253-291.
+
+% Quantum Information and Entanglement
+\bibitem{nielsen2000} Nielsen, M.A., Chuang, I.L. (2000). \emph{Quantum Computation and Quantum Information}. Cambridge University Press.
+
+\bibitem{bell1964} Bell, J.S. (1964). On the Einstein Podolsky Rosen paradox. \emph{Physics Physique Физика}, 1(3), 195-200.
+
+\bibitem{aspect1982} Aspect, A., Grangier, P., Roger, G. (1982). Experimental realization of Einstein-Podolsky-Rosen-Bohm Gedankenexperiment. \emph{Physical Review Letters}, 49(2), 91-94.
+
+\bibitem{einstein1935} Einstein, A., Podolsky, B., Rosen, N. (1935). Can quantum-mechanical description of physical reality be considered complete? \emph{Physical Review}, 47(10), 777-780.
+
+% Algorithmic Information Theory
+\bibitem{li1997} Li, M., Vitányi, P. (1997). \emph{An Introduction to Kolmogorov Complexity and Its Applications}. 2nd edition, Springer-Verlag.
+
+\bibitem{calude2002} Calude, C.S. (2002). \emph{Information and Randomness: An Algorithmic Perspective}. 2nd edition, Springer-Verlag.
+
+\bibitem{downey2010} Downey, R.G., Hirschfeldt, D.R. (2010). \emph{Algorithmic Randomness and Complexity}. Springer-Verlag.
+
+% Number Theory and Analytic Continuation
+\bibitem{apostol1976} Apostol, T.M. (1976). \emph{Introduction to Analytic Number Theory}. Springer-Verlag.
+
+\bibitem{davenport2000} Davenport, H. (2000). \emph{Multiplicative Number Theory}. 3rd edition, Springer-Verlag.
+
+\bibitem{ivic2003} Ivić, A. (2003). \emph{The Riemann Zeta-Function: Theory and Applications}. Dover Publications.
+
+\bibitem{edwards1974} Edwards, H.M. (1974). \emph{Riemann's Zeta Function}. Academic Press.
 
 \end{thebibliography}
 
