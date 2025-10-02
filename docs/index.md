@@ -105,6 +105,8 @@ $$\eta^{(R)}(k; m) = \frac{F_{\text{finite}}(\{a_{m+j}\}_{j=0}^k)}{F_{\text{fini
 - **[数学理论体系介绍](./traditional-math/hilbert-complete/index.md)**：16章数学工作的深度展示
 - **[物理理论体系介绍](./traditional-math/hilbert-complete/PHYSICS_THEORY_INTRODUCTION.md)**：P17-P26物理应用的创新探索
 - **[完整目录](./SUMMARY.md)**：所有章节的系统导航
+- **[临界线信息分量实验报告](./zeta-publish/zeta-critical-line-appendix.md)** / [English](./zeta-publish/zeta-critical-line-appendix_en.md)
+- **[临界线$Re(s)=1/2$作为量子-经典边界](./zeta-publish/zeta-triadic-duality.md)** / [English](./zeta-publish/zeta-triadic-duality_en.md)
 
 ### 核心概念快速索引
 - **递归母空间**：[第1章定义1.2.1.1](./traditional-math/hilbert-complete/01-mother-space/1.2.1-mother-space-definition.md)

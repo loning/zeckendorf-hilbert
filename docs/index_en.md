@@ -129,6 +129,8 @@ Achieving computational freedom at arbitrary starting points, solving fundamenta
 - **[Mathematical Theory Introduction](./traditional-math/hilbert-complete/README_EN.md)**: Deep presentation of 16-chapter mathematical work
 - **[Physics Theory Introduction](./traditional-math/hilbert-complete/PHYSICS_THEORY_INTRODUCTION_EN.md)**: Innovative exploration of P17-P26 physical applications
 - **[Complete Directory](./SUMMARY.md)**: Systematic navigation of all chapters
+- **[Critical-Line Information Components Experiment Report](./zeta-publish/zeta-critical-line-appendix.md)** / [English](./zeta-publish/zeta-critical-line-appendix_en.md)
+- **[The Critical Line $\Re(s)=1/2$ as the Quantum-Classical Boundary](./zeta-publish/zeta-triadic-duality.md)** / [English](./zeta-publish/zeta-triadic-duality_en.md)
 
 ### Core Concept Quick Index
 - **Recursive Mother Space**: [Chapter 1 Definition 1.2.1.1](./traditional-math/hilbert-complete/01-mother-space/1.2.1-mother-space-definition.md)
