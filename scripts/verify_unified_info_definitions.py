@@ -9,7 +9,6 @@
 import mpmath as mp
 import numpy as np
 from mpmath import zeta, gamma, pi, sin, log, exp, sqrt
-import matplotlib.pyplot as plt
 import sys
 import os
 
