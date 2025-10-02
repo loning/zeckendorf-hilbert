@@ -195,6 +195,8 @@
     - [负信息本体论：从-1/12到宇宙的自稳定机制](./articles/2025-09-20-negative-information-ontology.md)
     - [宇宙作为傅里叶交响曲：频率、约束与意识的永恒之舞](./articles/2025-09-26-universe-as-fourier-symphony.md)
     - [The Universe as a Fourier Symphony: The Eternal Dance of Frequency, Constraints, and Consciousness](./articles/2025-09-26-universe-as-fourier-symphony_en.md)
+    - [那条隐秘的分界线：一个160年数学谜题背后的宇宙真相](./articles/2025-10-03-understanding-riemann-hypothesis-simple.md)
+    - [The Hidden Boundary: The Cosmic Truth Behind a 160-Year Mathematical Mystery](./articles/2025-10-03-understanding-riemann-hypothesis-simple_en.md)
     - [曲率的沉思：从平坦虚无到弯曲存在的宇宙之舞](./articles/2025-09-27-meditations-on-curvature-from-flat-nothingness-to-curved-existence.md)
     - [Meditation on Curvature: The Cosmic Dance from Flat Nothingness to Curved Existence](./articles/2025-09-27-meditations-on-curvature-from-flat-nothingness-to-curved-existence_en.md)
 - [Recurse Hilbert Math System](./traditional-math/hilbert-complete/index.md)
