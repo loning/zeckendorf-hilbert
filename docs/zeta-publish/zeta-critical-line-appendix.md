@@ -20,7 +20,10 @@
 
 ## 统计摘要
 
-理论极限：$\langle i_+ angle = 0.403$，$\langle i_0 angle = 0.194$，$\langle i_- angle = 0.403$。
+理论极限：$\langle i_+ 
+angle = 0.403$，$\langle i_0 
+angle = 0.194$，$\langle i_- 
+angle = 0.403$。
 
 | 样本集 | $\overline{i_+}$ | $\overline{i_0}$ | $\overline{i_-}$ | 备注 |
 | --- | --- | --- | --- | --- |
