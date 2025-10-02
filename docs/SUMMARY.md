@@ -172,6 +172,8 @@
     - [AdS/CFT对偶在Zeta与The Matrix体系中的融合](./zeta/zeta-ads-cft-correspondence.md)
     - [Riemann零点在约束系统中的应用：no-k约束与zeta函数的深层耦合](./zeta/zeta-riemann-zeros-constraint-applications.md)
     - [no-k约束、复数s算法与Riemann Zeta函数零点对称性：ζ(s)与ζ(1-s)的统一框架](./zeta/zeta-zeros-symmetry-correspondence.md)
+    - [附录：临界线信息分量实验报告](./zeta-publish/zeta-critical-line-appendix.md)
+    - [临界线$Re(s)=1/2$作为量子-经典边界：基于Riemann Zeta三分平衡的信息论证明](./zeta-publish/zeta-triadic-duality.md)
     - [Curvature Grand Unified Theory: Information-Geometry-Computation Unified Field Theory Based on The Matrix Framework](./papers/curvature-grand-unified-theory_en.md)
 - [哲思长文]()
     - [永恒的不动点：当道、佛、上帝相遇于递归的中心](./articles/2025-09-23-the-eternal-fixed-point.md)
