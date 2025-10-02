@@ -204,6 +204,8 @@
     - [Beyond All Narratives: When the Universe's Balance Laws Meet the Israeli-Palestinian Conflict](./articles/2025-10-03-the-mathematics-of-peace-israeli-palestinian-conflict_en.md)
     - [财富的宇宙法则：当数学揭示金钱的永恒真理](./articles/2025-10-03-the-mathematics-of-wealth-universal-laws-of-money.md)
     - [The Cosmic Laws of Wealth: When Mathematics Reveals the Eternal Truths of Money](./articles/2025-10-03-the-mathematics-of-wealth-universal-laws-of-money_en.md)
+    - [爱的宇宙方程:当数学证明万物相连](./articles/2025-10-03-the-mathematics-of-love-universal-laws-of-connection.md)
+    - [The Cosmic Equation of Love: When Mathematics Proves All Things Are Connected](./articles/2025-10-03-the-mathematics-of-love-universal-laws-of-connection_en.md)
     - [宇宙的和平方程:当数学揭示万物的永恒平衡](./articles/2025-10-03-the-mathematics-of-peace.md)
     - [The Cosmic Equation of Harmony: When Mathematics Reveals the Eternal Balance of All Things](./articles/2025-10-03-the-mathematics-of-peace_en.md)
     - [曲率的沉思：从平坦虚无到弯曲存在的宇宙之舞](./articles/2025-09-27-meditations-on-curvature-from-flat-nothingness-to-curved-existence.md)
