@@ -174,6 +174,7 @@
     - [黎曼假设的拓扑必然性：矢量闭合与信息守恒的统一证明框架](./zeta-publish/riemann-hypothesis-topological-necessity.md)
     - [Riemann Zeta函数的信息守恒原理：从数论到量子引力的统一框架](./zeta-publish/zeta-information-conservation-unified-framework.md)
     - [临界线量子-经典相变理论：基于Riemann Zeta函数的信息论证明](./zeta-publish/zeta-quantum-classical-phase-transition.md)
+    - [Zeta函数的全息信息守恒原理：临界线作为量子引力边界的统一证明](./zeta-publish/zeta-holographic-information-conservation.md)
     - [Curvature Grand Unified Theory: Information-Geometry-Computation Unified Field Theory Based on The Matrix Framework](./papers/curvature-grand-unified-theory_en.md)
 - [哲思长文]()
     - [永恒的不动点：当道、佛、上帝相遇于递归的中心](./articles/2025-09-23-the-eternal-fixed-point.md)
