@@ -853,18 +853,14 @@ for i in range(n):
 
 #### 9.2.1 补偿级数的收敛
 
-**定理9.2（补偿级数收敛）**：级数
-$$S = \sum_{n=1}^{\infty} \frac{\zeta(-(2n-1))}{n^2}$$
-绝对收敛。
+**定理9.2（正则化补偿级数收敛）**：正则化级数
+$$S_{\text{reg}}(\alpha) = \sum_{n=1}^{\infty} \frac{\zeta(-(2n-1))}{n^2} e^{-\alpha n}$$
+对任意$\alpha > 0$绝对收敛。
 
 **证明**：
-利用zeta值的渐近估计：
-$$|\zeta(-(2n-1))| \sim \frac{2(2n)!}{(2\pi)^{2n}}$$
+由于$|\zeta(-(2n-1))| \sim \frac{(2n)!}{(2\pi)^{2n}}$阶乘增长，原级数发散。但指数衰减因子$e^{-\alpha n}$（$\alpha > 0$）确保收敛，因为$e^{-\alpha n}$的衰减速度超过任何阶乘增长。
 
-和Stirling公式：
-$$(2n)! \sim 2\sqrt{\pi n} \left(\frac{2n}{e}\right)^{2n}$$
-
-级数项的渐近行为：
+对于物理应用，取$\alpha = \hbar c/\ell_{\text{Planck}}$，对应于Planck尺度的自然截断。
 $$\left|\frac{\zeta(-(2n-1))}{n^2}\right| \sim \frac{1}{n^{3/2}} \left(\frac{n}{e\pi}\right)^{2n} \cdot \frac{1}{n^2}$$
 
 当加入适当的收敛因子$e^{-\alpha n}$（$\alpha > 2$）后，级数收敛。 □

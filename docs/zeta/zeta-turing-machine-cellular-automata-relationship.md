@@ -52,11 +52,11 @@ $$\sum_{p \text{ prime}} p^{-s} \approx \log \zeta(s) - \sum_{p} \sum_{k=2}^{\in
 
 #### 1.3 算法编码的信息论基础
 
-从信息论角度，zeta函数可视为所有自然数信息的生成泛函。定义信息内容：
+从信息论角度，zeta函数可视为所有自然数信息的生成泛函。首先通过计算系统的谱特征独立定义参数$s$，然后导出概率分布$p_n = \frac{n^{-s}}{\zeta(s)}$（当$\Re(s) > 1$），最后定义信息内容：
 
-$$\mathcal{I}_n = -\log_2 p_n = s \log_2 n$$
+$$\mathcal{I}_n = -\log_2 p_n = s \log_2 n + \log_2 \zeta(s)$$
 
-其中$p_n = n^{-s}$是归一化概率（在有限和近似下）。zeta函数的配分函数形式：
+zeta函数的配分函数形式：
 
 $$Z(s) = \zeta(s) = \sum_{n=1}^{\infty} e^{-s \log n}$$
 

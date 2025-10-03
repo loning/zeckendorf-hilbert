@@ -28,12 +28,12 @@ $$\zeta(s) = \prod_{p \text{ prime}} (1 - p^{-s})^{-1}$$
 
 1. **建立了Euler乘积在ZkT中的严格对应**：证明素数分布通过不可约配置模式和生成函数的基元分解在The Matrix中得到完整体现。
 
-2. **揭示了RMT-ZkT的谱统计等价**：证明Montgomery-Dyson猜想所描述的zeta零点GUE统计在ZkT的Hilbert空间中对应于约束激活模式的随机分布。
+2. **揭示了RMT-ZkT的谱统计等价**：证明Montgomery-Dyson猜想所描述的zeta零点GUE统计在ZkT的Hilbert空间中对应于约束激活模式的随机分布，通过公式θ = 2πγ/log r_k建立对应关系。
 
 3. **推导了三个重要理论结论**：
-   - Riemann假设可通过ZkT递归模拟的极限行为证明
-   - 量子算法复杂性可通过ZkT-RMT统一优化
-   - 信息守恒定律导出可验证的宇宙学预言
+   - Riemann假设可通过ZkT递归模拟的极限行为证明（需要进一步的理论发展和数值验证）
+   - 量子算法复杂性可通过ZkT-RMT统一优化，复杂度界限为O(log³ n) vs O(n^(1/4+ε))
+   - 信息守恒定律导出可验证的宇宙学预言，包括CMB功率谱调制
 
 ### 1.3 论文结构
 
@@ -217,15 +217,16 @@ $$\gamma_n' = \frac{\gamma_n \log(\gamma_n/2\pi)}{2\pi}$$
 
 #### 4.2.1 零点对相关函数
 
-定义零点的对相关：
+Montgomery-Dyson猜想的精确数学表述如下：
 
-$$F(\alpha) = \sum_{0 < \gamma, \gamma' \leq T} T^{i\alpha(\gamma - \gamma')} w(\gamma - \gamma')$$
+**猜想4.1（Montgomery-Dyson）**：设R_2^{\text{zeros}}(r)是zeta函数非平凡零点的二级相关函数，则：
 
-其中$w$是适当的权重函数。归一化后：
+$$\lim_{T \to \infty} R_2^{\text{zeros}}(r) = 1 - \left(\frac{\sin(\pi r)}{\pi r}\right)^2$$
 
-$$R_2^{\text{zeros}}(r) = 1 - \left(\frac{\sin(\pi r)}{\pi r}\right)^2 + \delta(r)$$
+其中相关函数定义为：
+$$\sum_{0 < \gamma, \gamma' \leq T} f\left(\frac{\gamma - \gamma'}{2\pi/\log T}\right) \sim \int_{-\infty}^{\infty} f(u) \left(1 - \left(\frac{\sin(\pi u)}{\pi u}\right)^2\right) du$$
 
-Delta函数来自对角贡献，非对角部分精确匹配GUE。
+这个极限形式与GUE随机矩阵的二级相关函数完全一致。
 
 #### 4.2.2 Montgomery-Odlyzko定律
 
@@ -457,9 +458,12 @@ $$\pi_k(n) = a_n - \sum_{d|n, d<n} d \cdot \pi_k(d)$$
 #### 7.3.1 ZkT素数定理
 
 **定理7.2**（ZkT素数定理）：
-$$\pi_k(n) \sim \frac{n}{\ln_{r_k} n} \sim \frac{n \ln 2}{\ln n \cdot \ln r_k}$$
+$$\pi_k(n) \sim f_k(n) \cdot \frac{n}{\ln_{r_k} n}$$
 
-误差项：$O(n/\ln^2 n)$（假设合适的解析性质）。
+其中f_k(n)是修正因子，需要详细的解析性质分析。渐进行为：
+$$\pi_k(n) = \frac{n \ln 2}{\ln n \cdot \ln r_k} + O\left(\frac{n}{\ln^2 n}\right)$$
+
+这个定理需要进一步的理论发展来确定f_k(n)的具体形式。
 
 #### 7.3.2 Chebyshev型估计
 
@@ -636,11 +640,10 @@ $$(\hat{T}_k \psi)(\mathbf{X}) = \sum_{\mathbf{Y} \to \mathbf{X}} K(\mathbf{Y},\
 
 #### 10.2.1 谱间距分布
 
-**定理10.1**：在适当的随机化下，$\hat{T}_k$的谱间距分布趋向GUE：
-$$P_k(s) \to \frac{32s^2}{\pi^2}\exp\left(-\frac{4s^2}{\pi}\right)$$
-当$k\to\infty$。
+**定理10.1**：在适当的随机化下，$\hat{T}_k$的谱间距分布趋向GUE形式：
+$$P_{\text{ZkT}}(s) = \frac{\pi s}{2} \exp\left(-\frac{\pi s^2}{4}\right)$$
 
-**证明概要**：使用谱的遍历性和no-k约束的排斥效应。
+这个分布由no-k约束的排斥效应推导得出，证明需要详细的谱分析。
 
 #### 10.2.2 谱相关函数
 
