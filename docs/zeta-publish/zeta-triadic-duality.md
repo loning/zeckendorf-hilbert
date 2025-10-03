@@ -695,6 +695,7 @@ $$
 使用Python的mpmath库进行高精度计算：
 
 ```python
+from builtins import abs, max
 from mpmath import mp, zeta
 
 # 设置精度
