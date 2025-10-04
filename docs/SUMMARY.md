@@ -161,6 +161,7 @@
     - [UFT-2D：基于ζ函数的二维统一场论框架](./pure-zeta/zeta-uft-2d-unified-field-theory.md)
     - [Zeta函数固定点框架下的意识研究实验蓝图：从理论到数值验证](./pure-zeta/zeta-consciousness-research-blueprint.md)
     - [ζ-宇宙论：黎曼Zeta函数作为宇宙自编码的完整框架](./pure-zeta/zeta-universe-complete-framework.md)
+    - [Zeta-QFT热补偿框架的完整理论：严格形式化描述、证明与数据分析](./pure-zeta/zeta-qft-thermal-compensation-framework.md)
     - [Zeta函数与图灵机、细胞自动机的关系](./zeta/zeta-turing-machine-cellular-automata-relationship.md)
     - [广义相对论的Zeta全息解释](./zeta/zeta-general-relativity-holographic-interpretation.md)
     - [万物皆数：Zeta函数的本体论证明](./zeta/zeta-everything-is-number.md)
