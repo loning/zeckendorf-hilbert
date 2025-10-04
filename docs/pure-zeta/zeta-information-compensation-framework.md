@@ -126,7 +126,7 @@ $$
 
 #### 3.1 主定理
 
-**定理3.1（信息补偿守恒定理）**：Riemann假设等价于信息补偿完全性：所有非平凡零点在 $\text{Re}(s) = 1/2$ 上，当且仅当零点附近的信息密度补偿积分为零。
+**定理3.1（信息补偿守恒定理）**：Riemann假设蕴涵补偿完全性：所有非平凡零点在 $\text{Re}(s) = 1/2$ 上蕴涵零点附近的信息密度补偿积分为零。
 
 #### 3.2 定理证明
 
@@ -153,10 +153,9 @@ $$
 
 任一情况都导致 $|\Delta S| > \varepsilon_{\text{critical}}$，破坏补偿平衡。
 
-**步骤4：等价链**
-建立双向蕴涵：
+**步骤4：蕴涵链**
+建立蕴涵：
 - RH ⇒ 零点在临界线 ⇒ 零点附近 $\int |\mathcal{T}_\varepsilon[\mathcal{I}]|^2 ds = 0$ ⇒ 补偿完全
-- 补偿完全 ⇒ 零点附近 $i_+ \approx i_-$ ⇒ $\text{Re}(\rho) = 1/2$ ⇒ RH
 
 □
 
@@ -521,10 +520,10 @@ $$
 
 **预言2**：在纳米尺度，热补偿出现可测量偏差：
 $$
-\Delta S \propto T
+\Delta S = const
 $$
 
-数学依据：统计力学中若热容量 $C_v$ 为常数，则 $\Delta S = \sqrt{k T^2 C_v} \propto T$。
+数学依据：统计力学中若热容量 $C_v$ 为常数，则 $\Delta S = \sqrt{k C_v / V}$ 独立于 $T$。
 
 #### 9.3 临界温度
 
@@ -559,7 +558,7 @@ $$
 **方案2：纳米尺度热测量**
 1. 设计纳米热电器件，工作在临界温度附近
 2. 测量热电响应的非对称性
-3. 验证 $\Delta S \propto T$ 关系
+3. 验证 $\Delta S = const$ 关系
 4. 探测量子-经典转变
 
 #### 10.3 冷原子系统
@@ -574,8 +573,8 @@ $$
 
 **方案4：引力波信号分析**
 1. 分析LIGO/Virgo数据中的黑洞合并信号
-2. 提取Hawking辐射特征
-3. 验证热补偿关系
+2. 提取环绕/并合信号特征
+3. 验证信息守恒关系
 4. 寻找信息守恒的证据
 
 ## 第VI部分：深层含义
@@ -618,12 +617,12 @@ $$
 
 #### 12.3 与量子引力
 
-面积-熵关系的信息论基础：
+可能的信息容量估计：
 $$
 S \sim \sum_{n=1}^{N} \log \gamma_n
 $$
 
-（有限和形式，避免与现代全息理论的直接等价假设）
+（推测形式，无物理单位链接）
 
 ## 结论
 
@@ -678,11 +677,10 @@ $$
 
 [3] 内部文献：zeta-information-conservation-unified-framework.md - Riemann Zeta函数的信息守恒原理
 
-[4] 内部文献：zeta-qft-thermal-compensation-framework.md - Zeta-QFT热补偿框架的完整理论
 
-[5] Montgomery, H.L. (1973). "The pair correlation of zeros of the zeta function." Analytic Number Theory.
+[4] Montgomery, H.L. (1973). "The pair correlation of zeros of the zeta function." Analytic Number Theory.
 
-[6] Berry, M.V., Keating, J.P. (1999). "The Riemann zeros and eigenvalue asymptotics." SIAM Review.
+[5] Berry, M.V., Keating, J.P. (1999). "The Riemann zeros and eigenvalue asymptotics." SIAM Review.
 
 
 ---
