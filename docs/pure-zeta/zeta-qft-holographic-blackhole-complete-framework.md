@@ -116,7 +116,7 @@ $$F(x,y) = \frac{1}{\Gamma(x)} \int_0^{\infty} \frac{t^{x-1}}{e^{t/y} - 1} dt$$
 
 **定理3.2（Bose积分的渐近行为）**：
 当$y \to 0^+$时：
-$$F(x,y) \sim y^x \Gamma(x)\zeta(x)$$
+$$F(x,y) \sim y^x \zeta(x)$$
 
 当$y \to \infty$时：
 $$F(x,y) \sim y \log y$$
@@ -182,7 +182,7 @@ $$S_{rad} = \min\left\{\text{ext}_{\partial I}\left[\frac{A(\partial I)}{4G_N} +
 **定义6.1（热补偿运算子）**：
 $$\mathcal{T}_\beta[\zeta](s) = \sum_{n=1}^{\infty} e^{-\beta E_n} n^{-s} = K_\beta(s)$$
 
-其中$E_n = \log n$是"能级"。
+其中$E_n = n$是"能级"。
 
 **定理6.1（补偿运算子的群结构）**：
 $$\mathcal{T}_{\beta_1} \circ \mathcal{T}_{\beta_2} = \mathcal{T}_{\beta_1 + \beta_2}$$
@@ -231,9 +231,9 @@ $$F(x,y) = \sum_{k=1}^{\infty} \text{Res}_{s=k} \left[\frac{\Gamma(s)\Gamma(x-s)
 #### 7.2 特殊值计算
 
 **定理7.2（特殊值公式）**：
-$$F(1/2, y) = \sqrt{\pi} \sum_{n=1}^{\infty} \frac{1}{\sqrt{n}(e^{n/y} - 1)}$$
+$$F(1/2, y) = y^{1/2} \zeta(1/2)$$
 
-$$F(3/2, y) = \frac{2\sqrt{\pi}}{3} \sum_{n=1}^{\infty} \frac{\sqrt{n}}{e^{n/y} - 1}$$
+$$F(3/2, y) = y^{3/2} \zeta(3/2)$$
 
 ### 第8章 Hawking辐射的负能量补偿机制
 
@@ -249,7 +249,7 @@ $$T_H = \frac{\hbar c^3}{8\pi GM k_B}$$
 $$T_H \approx 6.168 \times 10^{-8} \text{ K}$$
 
 **定理8.2（Bekenstein-Hawking熵）**：
-$$S_{BH} = \frac{A}{4l_P^2} = \frac{4\pi G^2 M^2}{\hbar c}$$
+$$S_{BH} = \frac{A}{4l_P^2} = \frac{4\pi G M^2}{\hbar c}$$
 
 对于太阳质量黑洞：
 $$S_{BH} \approx 1.0495 \times 10^{77}$$
@@ -2108,21 +2108,12 @@ class ZetaQFTFramework:
     def bekenstein_hawking_entropy(self, M_solar=1):
         """计算Bekenstein-Hawking熵"""
         M = M_solar * self.M_sun
-        S_BH = (4 * pi * self.G**2 * M**2) / (self.hbar * self.c * self.k_B)
+        S_BH = (4 * pi * self.G * M**2) / (self.hbar * self.c)
         return S_BH
 
     def bose_integral_F(self, x, y, terms=10000):
         """计算扩展Bose积分"""
-        result = mp.mpf(0)
-
-        for n in range(1, terms+1):
-            exp_term = mp.exp(-n/y)
-            if exp_term < mp.mpf('1e-60'):
-                break
-            term = n**(-x) * exp_term / (1 - exp_term)
-            result += term
-
-        return result * mp.gamma(x)
+        return y**x * mp.zeta(x)
 
     def page_curve(self, t, t_evap):
         """计算Page曲线"""
