@@ -181,6 +181,7 @@
     - [Zeta-Fractal统一框架：分形在量子引力、弦论、LQG、黑洞信息悖论与熵计算中的完整应用](./pure-zeta/zeta-fractal-unified-frameworks.md)
     - [Zeta-Information Compensation Framework: 严格形式化描述与证明](./pure-zeta/zeta-information-compensation-framework.md)
     - [P/NP问题的Riemann Zeta信息论框架：基于三分信息守恒的计算复杂度理论](./pure-zeta/zeta-pnp-information-theoretic-framework.md)
+    - [递归-分形-编码统一理论（RFET）：基于Zeta函数三分信息守恒的计算本质](./pure-zeta/zeta-recursive-fractal-encoding-unified-theory.md)
     - [Zeta-QFT全息黑洞补偿框架的完整理论：从三分信息到岛屿公式的统一](./pure-zeta/zeta-qft-holographic-blackhole-complete-framework.md)
     - [Zeta-QFT-QES位置计算框架的完整理论：严格形式化描述、证明与数据分析](./pure-zeta/zeta-qft-qes-position-framework.md)
     - [Zeta-Information Compensation Framework (ZICF) 在 Planck TT 功率谱的应用](./pure-zeta/zicf-planck-tt-application.md)
