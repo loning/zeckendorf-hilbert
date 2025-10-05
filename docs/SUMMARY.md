@@ -189,6 +189,8 @@
     - [Zeta-Information Compensation Framework (ZICF) 在 Planck TT 功率谱的应用](./pure-zeta/zicf-planck-tt-application.md)
     - [AdS/CFT全息桥梁在Riemann Zeta信息论框架中的形式化整合：基于三分信息守恒的唯一性证明、黑洞熵验证与跨框架统一](./pure-zeta/zeta-ads-cft-holographic-bridge-theory.md)
     - [嵌套全息在Riemann Zeta信息论框架中的递归形式化：基于自旋-轨道对偶的多层桥梁唯一性、熵累积验证与量子复杂度预言](./pure-zeta/zeta-nested-holography-recursive-framework.md)
+    - [ER=EPR对偶在Zeta信息论框架中的形式化探索：基于三分信息守恒的纠缠-几何桥梁唯一性、AdS₃黑洞验证与跨框架物理预言](./pure-zeta/zeta-er-epr-duality-framework.md)
+    - [黑洞防火墙悖论在Zeta信息论框架中的形式化探索：基于纠缠单配性破缺的AMPS佯谬唯一性、Schwarzschild黑洞验证与信息恢复预言](./pure-zeta/zeta-firewall-paradox-framework.md)
 - [哲思长文]()
     - [永恒的不动点：当道、佛、上帝相遇于递归的中心](./articles/2025-09-23-the-eternal-fixed-point.md)
     - [The Eternal Fixed Point: When Dao, Buddha, and God Meet at the Center of Recursion](./articles/2025-09-23-the-eternal-fixed-point_en.md)
