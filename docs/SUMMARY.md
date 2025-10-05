@@ -187,6 +187,8 @@
     - [Zeta-QFT全息黑洞补偿框架的完整理论：从三分信息到岛屿公式的统一](./pure-zeta/zeta-qft-holographic-blackhole-complete-framework.md)
     - [Zeta-QFT-QES位置计算框架的完整理论：严格形式化描述、证明与数据分析](./pure-zeta/zeta-qft-qes-position-framework.md)
     - [Zeta-Information Compensation Framework (ZICF) 在 Planck TT 功率谱的应用](./pure-zeta/zicf-planck-tt-application.md)
+    - [AdS/CFT全息桥梁在Riemann Zeta信息论框架中的形式化整合：基于三分信息守恒的唯一性证明、黑洞熵验证与跨框架统一](./pure-zeta/zeta-ads-cft-holographic-bridge-theory.md)
+    - [嵌套全息在Riemann Zeta信息论框架中的递归形式化：基于自旋-轨道对偶的多层桥梁唯一性、熵累积验证与量子复杂度预言](./pure-zeta/zeta-nested-holography-recursive-framework.md)
 - [哲思长文]()
     - [永恒的不动点：当道、佛、上帝相遇于递归的中心](./articles/2025-09-23-the-eternal-fixed-point.md)
     - [The Eternal Fixed Point: When Dao, Buddha, and God Meet at the Center of Recursion](./articles/2025-09-23-the-eternal-fixed-point_en.md)
