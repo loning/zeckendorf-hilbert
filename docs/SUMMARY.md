@@ -182,6 +182,8 @@
     - [Zeta函数的全息信息守恒原理：临界线作为量子引力边界的统一证明](./zeta-publish/zeta-holographic-information-conservation.md)
     - [临界线作为量子混沌桥梁的完整理论：基于Riemann Zeta三分信息守恒的GUE统计验证、物理预言与跨框架统一](./pure-zeta/zeta-quantum-chaos-bridge-complete-theory.md)
     - [Curvature Grand Unified Theory: Information-Geometry-Computation Unified Field Theory Based on The Matrix Framework](./papers/curvature-grand-unified-theory_en.md)
+    - [Zeta理论研究合作邀请](./ZETA_RESEARCH_INVITATION.md)
+    - [Zeta Theory Research Collaboration Invitation](./ZETA_RESEARCH_INVITATION_en.md)
     - [Zeta-QFT热补偿框架的完整理论：严格形式化描述、证明与数据分析](./zeta-publish/zeta-qft-thermal-compensation-framework.md)
     - [Zeta函数的全息信息守恒原理：临界线作为量子引力边界的统一证明 (英文版)](./zeta-publish/zeta-holographic-information-conservation_en.md)
     - [Zeta-Fractal统一框架：分形在量子引力、弦论、LQG、黑洞信息悖论与熵计算中的完整应用](./pure-zeta/zeta-fractal-unified-frameworks.md)
