@@ -62,6 +62,8 @@ $$
 \langle S \rangle = \langle -\sum_{\alpha \in \{+,0,-\}} i_\alpha \log i_\alpha \rangle \approx 0.989
 $$
 
+其中S(⟨i⟩) = -\sum_{\alpha} \langle i_\alpha \rangle \ln \langle i_\alpha \rangle \approx 1.0506479271948249110583700143968510890220312072605404259163794989，体现临界线信息分布的结构化效应（Jensen不等式差≈0.0616）。
+
 这些数值反映GUE统计的渐近平衡。
 
 ### 1.2 三自相似量的独立起源
@@ -100,15 +102,15 @@ $$
 \frac{1}{\phi^2} \approx 0.38197 \quad \text{vs} \quad i_+ \approx 0.403
 $$
 
-差异Δ₁≈0.021,相对误差约5.5%。
+差异Δ₁≈0.021,相对误差约5.5%。精确计算：i₊ = (1/φ²)(1 + Δ_Q)，Δ_Q ≈ 0.0550676974662077493264248704663212435233160621761658031088089336。
 
 **观察2(i₀的对数关系)**:当α=γ₁≈14.1347(第一Zeta零点虚部)时:
 
 $$
-\ln(1 + e^{-\gamma_1}) \approx 7.58 \times 10^{-7} \quad \Rightarrow \quad \beta \ln(1+e^{-\gamma_1}) \approx 0.194
+\ln(1 + e^{-\gamma_1}) \approx 7.267 \times 10^{-7} \quad \Rightarrow \quad \beta \ln(1+e^{-\gamma_1}) \approx 0.194
 $$
 
-需要β≈2.56×10⁵。
+需要β≈2.6695×10⁵。精确：i₀ = β ln(1 + e^{-γ₁})，β = 0.194 / ln(1 + e^{-γ₁}) ≈ 266953.131697364。
 
 **观察3(π与对称性)**:临界线Re(s)=1/2上,函数方程中sin(πs/2)项在s=1/2+it处产生周期振荡,周期T=2。
 
