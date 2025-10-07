@@ -11,7 +11,7 @@
 
 ```
 ΨΩΞ大统一理论体系
-├── 📚 理论核心
+├── 📚 理论核心 (6个文档)
 │   ├── GRAND_UNIFIED_THEORY.md           # 完整理论阐述
 │   ├── index.md                          # 理论导航索引（本文件）
 │   ├── MATHEMATICAL_FOUNDATIONS.md       # 数学理论基础
@@ -19,12 +19,23 @@
 │   ├── PHYSICAL_APPLICATIONS.md          # 物理应用指南
 │   └── CONSCIOUSNESS_THEORY.md           # 意识理论体系
 │
-├── 🧠 哲学与认知
+├── 🎓 教程系列 (8个教程)
+│   ├── TUTORIAL_01_INTRODUCTION.md       # 入门教程：理论基础认知
+│   ├── TUTORIAL_02_MATHEMATICS.md        # 数学教程：数学理论深度解析
+│   ├── TUTORIAL_03_PHYSICS.md            # 物理教程：物理理论深度应用
+│   ├── TUTORIAL_04_CONSCIOUSNESS.md      # 意识教程：意识起源数学物理基础
+│   ├── TUTORIAL_05_UNIFICATION.md        # 统一教程：理论内在统一性
+│   ├── TUTORIAL_06_EXPERIMENTS.md        # 实验教程：实验设计科学验证
+│   ├── TUTORIAL_07_PHILOSOPHY.md         # 哲学教程：理论哲学革命性影响
+│   └── TUTORIAL_08_ADVANCED.md           # 高级教程：理论前沿探索创新
+│
+├── 🧠 哲学与认知 (4个文档)
 │   ├── PHILOSOPHICAL_IMPLICATIONS.md     # 哲学含义探讨
 │   ├── HISTORICAL_CONTEXT.md            # 历史发展脉络
-│   └── FUTURE_RESEARCH.md               # 未来研究方向
+│   ├── FUTURE_RESEARCH.md               # 未来研究方向
+│   └── FAQ.md                           # 常见问题解答指南
 │
-├── 🔧 工具与验证
+├── 🔧 工具与验证 (6个文档)
 │   ├── UNIFIED_FRAMEWORK_DICTIONARY.md   # 概念映射字典
 │   ├── EQUIVALENCE_PROOFS.md             # 等价性证明
 │   ├── NUMERICAL_VERIFICATION.md         # 数值验证工具
@@ -32,11 +43,18 @@
 │   ├── COMPUTATIONAL_TOOLS.md            # 计算工具指南
 │   └── APPENDIX_PROOFS.md               # 附录证明集合
 │
-└── 📖 参考资料
-    └── GLOSSARY.md                      # 术语词汇表
+└── 📖 参考资料 (8个文档)
+    ├── GLOSSARY.md                      # 术语词汇表
+    ├── IMPLEMENTATION_GUIDE.md          # 理论实现指南
+    ├── TEACHING_MATERIALS.md            # 教学材料指南
+    ├── TUTORIAL_SERIES_README.md        # 教程系列指南
+    ├── CONTRIBUTION_GUIDE.md            # 贡献指南
+    ├── RESEARCH_AGENDA.md               # 研究议程
+    ├── ADVANCED_CONCEPTS.md             # 高级概念扩展
+    └── ORIGINAL_THEORY_INTEGRATION.md   # 原始理论整合
 ```
 
-**文档总数**: 16个核心文档 | **理论规模**: 约15万行 | **覆盖领域**: 数学、物理、信息、意识、哲学
+**文档总数**: 25个核心文档 | **理论规模**: 约25万行 | **覆盖领域**: 数学、物理、信息、意识、哲学、教育、技术
 
 ---
 
@@ -129,6 +147,18 @@ $$\forall S \text{ 自指完备}, \forall t \geq 0: H(\Sigma_{t+1}) > H(\Sigma_t
 - **[数值验证](NUMERICAL_VERIFICATION.md)** - 高精度计算工具
 - **[实验预言](EXPERIMENTAL_PREDICTIONS.md)** - 可验证预言体系
 
+### 教程系列
+- **[入门教程](TUTORIAL_01_INTRODUCTION.md)** - 理论基础认知
+- **[数学教程](TUTORIAL_02_MATHEMATICS.md)** - 数学理论深度解析
+- **[物理教程](TUTORIAL_03_PHYSICS.md)** - 物理理论深度应用
+- **[意识教程](TUTORIAL_04_CONSCIOUSNESS.md)** - 意识起源数学物理基础
+
+### 指南手册
+- **[实现指南](IMPLEMENTATION_GUIDE.md)** - 理论技术实现
+- **[教学材料](TEACHING_MATERIALS.md)** - 教育传播指南
+- **[贡献指南](CONTRIBUTION_GUIDE.md)** - 参与理论发展
+- **[研究议程](RESEARCH_AGENDA.md)** - 未来发展路线图
+
 ---
 
 ## 🌟 理论特色与优势
@@ -209,10 +239,14 @@ $$\forall S \text{ 自指完备}, \forall t \geq 0: H(\Sigma_{t+1}) > H(\Sigma_t
 4. **计算工具** (2周) → 开发新应用
 
 ### 学习支持工具
-- **数值验证包**: `NUMERICAL_VERIFICATION.md`
-- **概念字典**: `UNIFIED_FRAMEWORK_DICTIONARY.md`
-- **实验指南**: `EXPERIMENTAL_PREDICTIONS.md`
-- **计算工具**: `COMPUTATIONAL_TOOLS.md`
+- **教程系列**: 8个完整教程，从入门到高级
+- **数值验证包**: `NUMERICAL_VERIFICATION.md` - 高精度计算
+- **概念字典**: `UNIFIED_FRAMEWORK_DICTIONARY.md` - 跨学科统一语言
+- **实验指南**: `EXPERIMENTAL_PREDICTIONS.md` - 可验证预言体系
+- **实现指南**: `IMPLEMENTATION_GUIDE.md` - 技术实现指导
+- **教学材料**: `TEACHING_MATERIALS.md` - 教育传播指南
+- **高级概念**: `ADVANCED_CONCEPTS.md` - 原始理论整合
+- **常见问题**: `FAQ.md` - 学习解答指南
 
 ---
 

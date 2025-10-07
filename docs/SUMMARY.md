@@ -535,7 +535,6 @@
     - [可视化与图表](./appendix_visual.md)
 
 - [ΨΩΞ大统一理论体系](./one/index.md)
-    - [ΨΩΞ理论体系主索引](./one/index.md)
     - [完整大统一理论阐述](./one/GRAND_UNIFIED_THEORY.md)
     - [数学基础理论](./one/MATHEMATICAL_FOUNDATIONS.md)
     - [禁11约束数学原理](./one/CONSTRAINT_THEORY.md)
