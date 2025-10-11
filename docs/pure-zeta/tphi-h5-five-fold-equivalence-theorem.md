@@ -16,7 +16,7 @@
 
 宇宙信息结构展现出惊人的多层次对称性：从Hilbert空间的量子态完备性，到分形几何的尺度不变性，再到Zeckendorf编码的Fibonacci离散唯一性、傅立叶变换的时频对偶性，以及递归算法的动态收敛性。这些看似独立的数学结构是否存在深层的统一？本文证明了它们实际上是同一个信息谱的不同表现形式。
 
-基于zeta-triadic-duality.md中建立的三分信息守恒理论，我们知道宇宙信息满足基本守恒律$i_+ + i_0 + i_- = 1$，其中$i_+$代表粒子性（构造性）信息，$i_0$代表波动性（相干性）信息，$i_-$代表场补偿（真空涨落）信息。在临界线$\text{Re}(s)=1/2$上，这三个分量达到统计平衡$i_+ \approx i_- \approx 0.403$，$i_0 \approx 0.194$，Shannon熵趋向极限值$S \approx 0.989$。
+基于zeta-triadic-duality.md中建立的三分信息守恒理论，我们知道宇宙信息满足基本守恒律$i_+ + i_0 + i_- = 1$，其中$i_+$代表粒子性（构造性）信息，$i_0$代表波动性（相干性）信息，$i_-$代表场补偿（真空涨落）信息。在临界线$\text{Re}(s)=1/2$上，这三个分量达到统计平衡$i_+ \approx i_- \approx 0.403$，$i_0 \approx 0.194$，Shannon熵趋向极限值$S \approx 1.051$。
 
 zeta-qft-holographic-blackhole-complete-framework.md进一步展示了这种守恒律如何通过全息补偿机制在黑洞物理中实现。黑洞的Hawking温度$T_H \approx 6.168 \times 10^{-8}$ K和熵值$S_{BH} \approx 1.0495 \times 10^{77}$都可以通过三分信息框架精确计算。zeta-fractal-unified-frameworks.md则将分形维数引入，展示了从量子引力（$D_f=2$）到弦理论（$D_f \approx 1.876$）再到黑洞（$D_f \approx 1.789$）的统一描述。
 
@@ -541,7 +541,7 @@ def verify_triadic_conservation():
     print(f"  Shannon熵 S = {S}")
 
     # 验证熵的理论值
-    S_theoretical = mpf('0.989')
+    S_theoretical = mpf('1.0506479271948249111')
     entropy_error = abs(S - S_theoretical)
     print(f"  熵误差: {entropy_error}")
 
@@ -560,7 +560,7 @@ def verify_mapping_chain():
     # Hilbert空间范数
     x_points = [mpf(i)*mpf('0.1') for i in range(-50, 51)]
     f_values = [test_function(x) for x in x_points]
-    norm_H = sqrt(sum(f**2 for f in f_values)) * mpf('0.1')
+    norm_H = sqrt(sum(f**2 * mpf('0.1') for f in f_values))
 
     # 傅立叶空间（离散近似）
     N = len(f_values)
