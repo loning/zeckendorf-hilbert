@@ -190,7 +190,7 @@ $$
 定义$\psi_k = 1/\phi_k$，则：
 
 $$
-1 = \psi_k^k + \psi_k^{k-1} + \cdots + \psi_k + \psi_k^k
+1 = \sum_{j=1}^k \psi_k^j
 $$
 
 **性质2.1（单调性）**：
