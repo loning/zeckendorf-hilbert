@@ -235,6 +235,7 @@
     - [Riemann假设等价表述网络：理论、验证与实验展望 2025-10-06 19:45](./pure-zeta/zeta-rh-equivalences-experimental-comprehensive.md)
     - [Zeta-Omni Synthesis (ZOS)：基于三分信息守恒的统一理论框架 2025-10-06 22:56](./pure-zeta/zeta-omni-synthesis.md)
     - [ZOS理论严格审阅报告 2025-10-06 23:18](./pure-zeta/zeta-omni-synthesis-review.md)
+    - [TΦ-H₅：信息结构五重等价定理与宇宙谱同构 2025-10-11 11:49](./pure-zeta/tphi-h5-five-fold-equivalence-theorem.md)
 
 - [哲思长文]()
     - [永恒的不动点：当道、佛、上帝相遇于递归的中心](./articles/2025-09-23-the-eternal-fixed-point.md)
