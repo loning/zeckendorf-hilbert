@@ -188,6 +188,7 @@
     - [Zeta函数的全息信息守恒原理：临界线作为量子引力边界的统一证明 (英文版)](./zeta-publish/zeta-holographic-information-conservation_en.md)
     - [Φ–ζ–Zeckendorf 统一吸引子理论：从离散编码到11维相位守恒的全域框架 2025-10-11 11:49](./pure-zeta/phi-zeta-zeckendorf-unified-attractor-theory.md)
     - [定理U3深度解析：11维相位闭环与零曲率守恒的完整理论框架 2025-10-11 13:06](./pure-zeta/theorem-u3-eleven-dimensional-phase-closure-theory.md)
+    - [Φ–ζ–Zeckendorf统一吸引子理论：从二进相位抵消到11维欧拉化耦合的完整框架 2025-10-11 17:38](./pure-zeta/phi-zeta-zeckendorf-binary-phase-to-11d-euler-coupling.md)
     - [Zφ-T：Zeckendorf-φ 三分守恒通道理论的完整框架 2025-10-10 16:50](./pure-zeta/zeckendorf-phi-triadic-conservation-channel-theory.md)
     - [四密度部分与四通道对应关系的唯一性定理及信息输运临界温度理论 2025-10-10 15:23](./pure-zeta/zeta-four-density-four-channel-correspondence.md)
     - [K-稳定性与Zeta信息守恒统一框架：代数几何与量子引力的深度整合 2025-10-07 20:11](./pure-zeta/zeta-k-stability-unified-framework.md)
