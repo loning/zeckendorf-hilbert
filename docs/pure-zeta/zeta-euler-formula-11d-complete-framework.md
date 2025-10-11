@@ -288,6 +288,102 @@ $$
 
 这是2维推广的核心对称。
 
+#### 3.1.5 欧拉–Γ–sinh 桥梁定理
+
+**定义3.1.5（欧拉–Γ–sinh 桥梁）**：
+
+在从 1 维欧拉公式 $e^{i\pi}+1=0$ 向 2 维 ζ-谱对称 $\Xi(s)=\Xi(-s)$ 的过渡过程中，存在唯一的实域模态守恒式：
+
+$$
+\boxed{\prod_{n=1}^{\infty}\left(1+\frac{1}{n^2}\right)
+=\frac{\sinh\pi}{\pi}
+=\frac{e^{\pi}-e^{-\pi}}{2\pi}}
+$$
+
+它是欧拉相位闭环的模值投影，构成 1 维相位守恒与 2 维频谱守恒之间的解析桥梁。
+
+**证明**：
+
+由欧拉的 Γ 函数乘积展开：
+
+$$
+\frac{1}{\Gamma(z)} = ze^{\gamma z}
+\prod_{n=1}^{\infty}\left(1+\frac{z}{n}\right)e^{-z/n}.
+$$
+
+取 $z=i$ 并利用反射公式
+
+$$
+\Gamma(z)\Gamma(1-z)=\frac{\pi}{\sin(\pi z)},
+$$
+
+得：
+
+$$
+\Gamma(i)\Gamma(1-i)=\frac{\pi}{\sin(\pi i)}
+=\frac{\pi}{i\sinh\pi}.
+$$
+
+结合 $\Gamma(1+i)=i\Gamma(i)$，可得：
+
+$$
+\prod_{n=1}^{\infty}\left(1+\frac{1}{n^2}\right)
+=\frac{\Gamma(1+i)\Gamma(1-i)}{\Gamma(i)\Gamma(-i)}
+=\frac{i\Gamma(i)\Gamma(1-i)}{\Gamma(i)\Gamma(-i)}
+=\frac{\sinh\pi}{\pi}.
+$$
+
+证毕。□
+
+**信息论解释**：
+
+此式是欧拉公式的振幅平方平均态，表示相位 (π 通道) 与尺度 (e 通道) 的能量平衡：
+
+$$
+I_\pi + I_e + I_\phi = 0,
+\qquad
+I_\phi\to0\ \text{时化为}\ I_\pi+I_e=0.
+$$
+
+因此：
+
+$$
+\frac{\sinh\pi}{\pi}
+\quad\text{是}\quad
+I_+=I_-,
+\ i_0=0
+$$
+
+的**实模平衡点**，即三分信息守恒在纯实域的显化形式。
+
+**物理与collapse-aware意义**：
+
+- 在 ζ-函数函数方程 $\zeta(s)=2^s\pi^{s-1}\sin\frac{\pi s}{2}\Gamma(1-s)\zeta(1-s)$ 中，$\sin(\frac{\pi s}{2})$ 与 $\Gamma(1-s)$ 的模结构在 $s=i$ 处即生成此式；
+- 它代表量子–经典边界的**首个实域守恒态**，是临界线 $\text{Re}(s)=1/2$ 的前身；
+- collapse-aware 诠释下，$\sinh\pi/\pi$ 是 RealityShell 在零相位差时的塌缩极限，描述相位能量全局归一化。
+
+**注释**：
+
+1. 该恒等式的数值验证：
+
+$$
+\prod_{n=1}^{\infty}\left(1+\frac{1}{n^2}\right)
+=3.676077\ldots,\quad
+\frac{e^{\pi}-e^{-\pi}}{2\pi}=3.676077\ldots,
+$$
+
+精确一致。
+
+2. 它在11维链条中处于 **1D → 2D** 桥梁位置，建立了
+
+$$
+e^{i\pi}+1=0
+\;\Rightarrow\;
+\frac{\sinh\pi}{\pi}
+\;\Rightarrow\;
+\Xi(s)=\Xi(-s).
+$$
+
 #### 3.2 零参数表示A：核-Mellin 形式
 
 **定义3.2（核函数 h(u)）**：
