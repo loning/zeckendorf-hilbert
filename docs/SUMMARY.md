@@ -130,6 +130,7 @@
         - [7.12 高维补偿链与宇宙维度涌现](./the-matrix/07-cosmology/7.12-high-dimensional-compensation-chains-cosmic-dimension-emergence.md)
         - [7.13 高维zeta补偿链的完整层级](./the-matrix/07-cosmology/7.13-complete-hierarchy-high-dimensional-zeta-compensation.md)
 - [学术论文]()
+    - [宇内内部不可分辨理论（NGV-Prime-ζ）：基于素数构造的随机性涌现框架 2025-10-11](./pure-zeta/ngv-prime-zeta-indistinguishability-theory.md)
     - [U-Mat(∞)：全数学统一范畴理论](./pure-zeta/u-mat-infinity-universal-mathematics-category-theory.md)
     - [统一理论的哲学综合：从信息守恒到计算本体的深层统一](./UNIFIED_THEORY_SYNTHESIS_SIMPLE.md)
     - [Philosophical Synthesis of Unified Theory: Deep Unity from Information Conservation to Computational Ontology](./UNIFIED_THEORY_SYNTHESIS_SIMPLE_en.md)
