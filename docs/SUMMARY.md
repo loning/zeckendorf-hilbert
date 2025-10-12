@@ -131,6 +131,7 @@
         - [7.13 高维zeta补偿链的完整层级](./the-matrix/07-cosmology/7.13-complete-hierarchy-high-dimensional-zeta-compensation.md)
 - [学术论文]()
     - [宇内内部不可分辨理论（NGV-Prime-ζ）：基于素数构造的随机性涌现框架 2025-10-11](./pure-zeta/ngv-prime-zeta-indistinguishability-theory.md)
+    - [信息论重构的量子力学：NGV 随机、物种素数、双观察者共显化与三观察者混沌 2025-10-12](./pure-zeta/information-theoretic-quantum-mechanics-ngv.md)
     - [U-Mat(∞)：全数学统一范畴理论](./pure-zeta/u-mat-infinity-universal-mathematics-category-theory.md)
     - [统一理论的哲学综合：从信息守恒到计算本体的深层统一](./UNIFIED_THEORY_SYNTHESIS_SIMPLE.md)
     - [Philosophical Synthesis of Unified Theory: Deep Unity from Information Conservation to Computational Ontology](./UNIFIED_THEORY_SYNTHESIS_SIMPLE_en.md)
