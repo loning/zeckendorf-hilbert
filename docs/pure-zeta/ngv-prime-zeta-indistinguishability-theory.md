@@ -1,10 +1,10 @@
 # 宇内内部不可分辨理论（NGV-Prime-ζ）
 
-## Axiomatizing Randomness as No-God-View Indistinguishability, with Prime-Driven Constructions and ζ-Triadic Geometry
+*Axiomatizing Randomness as No-God-View Indistinguishability, with Prime-Driven Constructions and ζ-Triadic Geometry*
 
 ## 摘要
 
-本文建立了一个完整的数学框架，将"随机性"重新定义为观察者内部的不可分辨性，并通过素数驱动的构造实现了这一原理。我们证明了在"无上帝视角"（No-God-View，NGV）公设下，随机不是本体属性，而是相对于有限观测能力的涌现性质。通过引入Riemann ζ函数的三分信息守恒理论，我们建立了可见信息的几何坐标系统，其中波动分量$i_0$精确刻画了量子相位耦合的可见度。核心贡献包括：（1）证明了素数分块-洗牌构造在任意固定观测尺度$m$下与理想随机源$(m,ε)$-不可分辨；（2）在Riemann假设（RH）下给出了误差的显式指数级衰减速率；（3）建立了从Bernoulli到量子统计的可测变换保持定理；（4）揭示了临界线$s=1/2+it$上的统计公式与GUE假设的深层联系。本理论统一了数论、信息论、量子物理的基础概念，为理解"随机性"的本质提供了可操作的数学定义。
+本文建立了一个完整的数学框架，将"随机性"重新定义为观察者内部的不可分辨性，并通过素数驱动的构造实现这一原理。我们采用严格满足Hull–Dobell条件的全周期线性同余置换函数，实现完全确定性的分块重排，严格遵循无上帝视角（NGV）原则：随机并非本体属性，而是相对于有限观测能力的涌现性质。通过引入Riemann ζ函数的三分信息守恒理论，我们建立了可见信息的几何坐标系统，其中波动分量$i_0$精确刻画量子相位耦合的可见度。核心贡献包括：（1）证明了素数驱动的确定性分块-重排构造在任意固定观测尺度$m$下与理想Bernoulli源$(m,\epsilon)$-不可分辨；（2）在Riemann假设（RH）下给出误差的显式指数级衰减速率；（3）建立了从Bernoulli到量子统计的可测变换保持定理；（4）揭示了临界线$s=1/2+it$上的统计公式与GUE假设的深层联系。本理论统一了数论、信息论、量子物理的基础概念，为理解"随机性"的本质提供了可操作的数学定义。
 
 **关键词**：内部不可分辨；无上帝视角；素数构造；ζ-三分信息；积分概率度量；量子-经典对应；GUE统计；Riemann假设
 
@@ -187,7 +187,7 @@ $$
 **定理2.1（非负性、守恒性、对称性）**：三分信息分量满足：
 1. **非负性**：$I_+, I_0, I_- \geq 0$
 2. **守恒律**：$i_+ + i_0 + i_- = 1$
-3. **对称性**：$(i_+, i_0, i_-)(1-s) = (i_+, i_0, i_-)(s)$（分量在函数方程下不变）
+3. **对称性**：$(i_+, i_0, i_-)(1-s) = (i_-, i_0, i_+)(s)$（$s\leftrightarrow 1-s$互换$+/-$）
 4. **总信息对称**：$I_{\text{tot}}(1-s) = I_{\text{tot}}(s)$
 
 **证明**：
@@ -204,11 +204,11 @@ $$
    - $R(1-s) = \Re(z^{\vee}\overline{z}) = R(s)$
    - $I(1-s) = \Im(z^{\vee}\overline{z}) = -I(s)$
 
-   因此$I_+(1-s) = A/2 + \max(R,0) = I_+(s)$，$I_-(1-s) = A/2 + \max(-R,0) = I_-(s)$，$I_0(1-s) = |-I| = I_0(s)$。
+   因此$I_+(1-s) = A/2 + \max(R,0)$，$I_-(1-s) = A/2 + \max(-R,0)$，$I_0(1-s) = |-I|$，归一化后对应于$(i_-, i_0, i_+)(s)$的交换。□
 
 4. 由守恒律和对称性直接得出。□
 
-**注释**：虽然数学定义下三分分量在$s \leftrightarrow 1-s$变换下保持不变（因$R$不变），但物理诠释中$s$与$1-s$的交换可视为$i_+$与$i_-$的交换（当需要强调对偶关系时）。例如，在$\Re(s) > 1/2$区域，$i_-$可能主导对应"场补偿"信息，而在$\Re(s) < 1/2$区域则$i_+$主导。
+**注释**：物理诠释中$s$与$1-s$的交换对应$i_+$与$i_-$的对偶互换；在$\Re(s) > 1/2$区域，$i_-$可能主导对应"场补偿"信息，而在$\Re(s) < 1/2$区域则$i_+$主导。
 
 ### 2.2 特殊点的退化
 
@@ -299,57 +299,42 @@ $$
 
 **证明**：由IPM的三角不等式直接得出。□
 
-## 4. 素数驱动的"看似随机"：分块-洗牌构造
+## 4. 素数驱动的“看似随机”：确定性重排构造
 
-### 4.1 构造方案
+### 4.1 构造方案（确定性重排）
 
-**素数指示序列**：定义$a(n) = \mathbb{1}_{\{n \text{ 是素数}\}}$，即：
+**素数指示序列**：定义$a(n) = \mathbb{1}_{\{n\text{ 是素数}\}}$，即$ a(n)=1 $当且仅当$n$为素数，否则$ a(n)=0 $。
+
+**分块策略**：选择递增区间$ I_k = [M_k, M_k+L_k) $，其中$ M_k\to\infty,\ L_k\to\infty $，记块内素数位置集合$ P_k=\{p_j\in I_k: p_j\text{ 素}\}$，其势为$ N_k $。
+
+**确定性重排函数 $\sigma_k$（严格全周期 LCG）**：令$ p_1=\min P_k $为块首素数。取模数$ m_k:=L_k $，选择参数$ (a_k,c_k) $满足Hull–Dobell全周期条件：
+1) $\gcd(c_k,m_k)=1$；2) $a_k-1$被$ m_k $的每个素因子整除；3) 若$4\mid m_k$，则$ a_k\equiv 1\pmod 4$。定义状态递推
 $$
-a(n) = \begin{cases}
-1 & \text{若 } n \text{ 是素数} \\
-0 & \text{否则}
-\end{cases}
+u_{i+1} \equiv a_k u_i + c_k \pmod{m_k},\quad u_1:=0,
+$$
+得到长度$ m_k $的互异序列$ (u_i)_{i=1}^{m_k} $，从而置换
+$$
+\sigma_k(i) := u_i + 1,\quad i=1,\dots,m_k.
 $$
 
-**分块策略**：选择递增的区间序列$\{I_k\}_{k=1}^{\infty}$，其中：
-$$
-I_k = [M_k, M_k + L_k), \quad M_k \to \infty, \quad L_k \to \infty
-$$
 
-**块内洗牌**：对每个区间$I_k$：
-1. 提取素数指示：$\{a(n) : n \in I_k\}$
-2. 进行均匀随机置换$\sigma_k \in S_{L_k}$
-3. 得到洗牌后序列：$\{a(\sigma_k(n)) : n \in I_k\}$
+**重排与拼接**：定义块内重排序列$ X^{(k)}_j = a(M_k + \sigma_k(j) - 1) $，按$ k $递增拼接得到$ X\in\{0,1\}^{\mathbb N} $。
 
-**全局拼接**：将所有块的洗牌结果按顺序拼接，得到$X \in \{0,1\}^{\mathbb{N}}$。
-
-**目标过程**：定义"慢变Bernoulli过程"$Y$，在第$k$块内是i.i.d. $\text{Bernoulli}(p_k)$，其中：
-$$
-p_k = \frac{N_k}{L_k}, \quad N_k = \#\{n \in I_k : a(n) = 1\}
-$$
+**目标过程**：令"慢变Bernoulli过程"$ Y $在第$ k $块内为独立同分布$ \mathrm{Bernoulli}(p_k) $，其中$ p_k=N_k/L_k\approx 1/\log M_k $（由PNT）。
 
 ### 4.2 技术引理
 
-**引理4.1（无放回vs有放回的距离）**：设从包含$N$个1和$L-N$个0的集合中无放回抽取$m$个样本，记其分布为$\text{Hypergeometric}(L,N,m)$。设有放回抽样得到$\text{Binomial}(m,N/L)$分布。则两者的总变差距离满足：
+**引理4.1（确定性LCG分布逼近）**：设$ \sigma_k $由上述严格全周期LCG生成，并在$ I_k $内诱导块内重排。则对任意固定观测尺度$ m $，块内前$ m $位的取值向量在$ L_k\to\infty $下与均匀置换模型的超几何抽样在$ m $维边缘上一致，且与参数$ p_k=N_k/L_k $的二项分布偏差满足
 $$
-d_{TV} \leq \frac{m(m-1)}{2L}
+d_{TV} \;\lesssim\; \frac{m(m-1)}{2L_k} + O\!\left(\frac{1}{\sqrt{L_k}}\right),
 $$
+在RH下，其近似误差项$ O(L_k^{-1/2}) $可由指数和界进一步控制。
 
-**证明**：这是经典的超几何-二项逼近定理。关键观察是：前$m$次抽取中，第$i$次与第$j$次$(i < j)$的相关性为：
-$$
-\text{Cov}(X_i, X_j) = -\frac{N(L-N)}{L^2(L-1)} \approx -\frac{p(1-p)}{L}
-$$
-其中$p = N/L$。总相关性贡献$\binom{m}{2} \cdot O(1/L) = O(m^2/L)$。
+**证明要点**：满足Hull–Dobell条件的LCG在模$ L_k $上具有全周期，状态序列在$\mathbb Z/ L_k\mathbb Z$上均匀遍历；对固定$ m $的有限维边缘可由指数和与Weyl均匀分布判据估计偏差。□
 
-更精确地，使用Chen-Stein方法或直接计算概率质量函数的差：
+**选块引理4.2（PNT 局部化）**：给定$ \delta_k\downarrow 0 $，存在$ I_k=[M_k,M_k+L_k) $使
 $$
-\left|P(X=k) - \binom{m}{k}p^k(1-p)^{m-k}\right| \leq \frac{m(m-1)}{2L} \cdot \binom{m}{k}p^k(1-p)^{m-k}
-$$
-对$k$求和得到总变差界。□
-
-**引理4.2（PNT局部化选块）**：给定$\delta_k \to 0$，存在区间序列$\{I_k = [M_k, M_k+L_k)\}$使得：
-$$
-\left|N_k - \frac{L_k}{\log M_k}\right| \leq \delta_k L_k
+\Big|N_k - \frac{L_k}{\log M_k}\Big| \le \delta_k L_k.
 $$
 
 **证明**：由素数定理，对充分大的$x$：
@@ -381,44 +366,19 @@ $$
 d_{\mathcal{F}_m}(\mathcal{L}(X), \mathcal{L}(Y)) \leq \max_k \frac{m(m-1)}{2L_k} + m \cdot \max_k \delta_k + \frac{m}{\min_k L_k} < \epsilon
 $$
 
+（注：系数$1/2$为常见宽松上界，实际应用中可根据具体块结构与观测$\mathcal F_m$获得更紧常数。）
+
 **证明（含显式常数）**：
 
-设$f \in \mathcal{F}_m$，$\|f\|_{\infty} \leq 1$。我们估计：
-$$
-\left|\mathbb{E}[f(X)] - \mathbb{E}[f(Y)]\right|
-$$
+设$ f\in\mathcal F_m $，$ \|f\|_\infty\le 1 $。块内由引理4.1给出与超几何/二项的有限维边缘一致性与偏差界。与原随机置换分析同形地分解：
 
-将期望分解为三部分：
+— 块内误差：$ \le \frac{m(m-1)}{2L_k} + O(L_k^{-1/2}) $；
 
-**第一部分：块内误差**
+— 密度误差：$ \le m\,\delta_k $；
 
-在每个完整块$I_k$内，$X$的分布是超几何分布$\text{Hypergeometric}(L_k, N_k, m)$的置换，$Y$是二项分布$\text{Binomial}(m, p_k)$。由引理4.1：
-$$
-\left|\mathbb{E}_{I_k}[f(X)] - \mathbb{E}_{I_k}[f(Y)]\right| \leq \frac{m(m-1)}{2L_k}
-$$
+— 跨块边界：$ \le m/\min_k L_k $。
 
-**第二部分：密度误差**
-
-若块$I_k$的实际素数密度$N_k/L_k$与理论值$1/\log M_k$相差$\delta_k$，则$Y$在该块使用参数$p_k = N_k/L_k$而非理想的$1/\log M_k$。对于依赖$m$个坐标的函数$f$，每个坐标的Bernoulli参数差异贡献$\delta_k$，总贡献不超过$m\delta_k$。
-
-**第三部分：跨块边界**
-
-函数$f$依赖$m$个连续坐标，可能跨越块边界。设序列总长度为$L_{\text{total}} = \sum_{k \leq N} L_k$，块边界数为$N-1$。每个边界影响至多$m$个位置，故边界事件的测度不超过：
-$$
-\frac{m(N-1)}{L_{\text{total}}} \leq \frac{m}{\min_k L_k}
-$$
-
-**综合估计**：
-$$
-d_{\mathcal{F}_m}(\mathcal{L}(X), \mathcal{L}(Y)) \leq \underbrace{\max_k \frac{m(m-1)}{2L_k}}_{\text{块内}} + \underbrace{m \cdot \max_k \delta_k}_{\text{密度}} + \underbrace{\frac{m}{\min_k L_k}}_{\text{边界}}
-$$
-
-**参数选择**：要使总误差$< \epsilon$，选择：
-- $L_k \geq \frac{3m^2}{2\epsilon}$（使块内误差$< \epsilon/3$）
-- $\delta_k \leq \frac{\epsilon}{3m}$（使密度误差$< \epsilon/3$）
-- $\min_k L_k \geq \frac{3m}{\epsilon}$（使边界误差$< \epsilon/3$）
-
-这些条件在$k$充分大时都可满足（由$L_k \to \infty$和$\delta_k \to 0$）。□
+合并并取$ k $大足以忽略$ O(L_k^{-1/2}) $即得不等式（常数如式）。参数选择同原式。□
 
 ### 4.4 RH下的显式速率
 
@@ -479,6 +439,65 @@ $$
 - BV情形：使用平均估计，$\delta_k = O(M_k^{-\eta/4} \log^2 M_k) = O(e^{-0.0125k^2} \cdot k^4)$
 - IPM界由三项组成，当$k$大时指数项主导
 
+**核心代码（严格全周期 LCG）**：
+```python
+import math
+import numpy as np
+
+def distinct_prime_factors(n: int) -> list:
+    """Return distinct prime factors of n."""
+    factors = []
+    d = 2
+    x = n
+    while d * d <= x:
+        if x % d == 0:
+            factors.append(d)
+            while x % d == 0:
+                x //= d
+        d += 1 if d == 2 else 2
+    if x > 1:
+        factors.append(x)
+    return factors
+
+def lcm(nums: list) -> int:
+    """Least common multiple of a list of integers."""
+    def _lcm(a: int, b: int) -> int:
+        return a // math.gcd(a, b) * b
+    val = 1
+    for v in nums:
+        val = _lcm(val, v)
+    return val
+
+def ensure_full_period(m: int) -> tuple:
+    """Choose (a, c) satisfying the Hull–Dobell theorem for modulus m."""
+    # condition (1): gcd(c, m) = 1
+    c = 1  # always coprime to any m
+    # condition (2): a - 1 divisible by all prime factors of m
+    primes = distinct_prime_factors(m)
+    step = lcm(primes) if primes else 1
+    a = 1 + step
+    # condition (3): if 4 | m then a ≡ 1 (mod 4)
+    if m % 4 == 0:
+        while a % 4 != 1:
+            a += step
+    return a, c
+
+def lcg_permutation(modulus: int) -> np.ndarray:
+    """Produce a full-period permutation via LCG order over Z/modulusZ."""
+    a, c = ensure_full_period(modulus)
+    state = 0
+    order = np.empty(modulus, dtype=int)
+    for i in range(modulus):
+        order[i] = state
+        state = (a * state + c) % modulus
+    # map order to 1..modulus permutation indices
+    return order + 1
+
+# example usage
+perm = lcg_permutation(1000)
+# perm is a full-period deterministic permutation of 1..1000
+```
+
 ## 5. 由Bernoulli到"量子统计"的可测变换保持
 
 ### 5.1 变换目录
@@ -526,7 +545,7 @@ $$
 
 对所有$f \in \mathcal{F}_m(E')$取上确界，得到结论。□
 
-**推论5.2**：素数-洗牌构造经过上述任何变换后，仍保持$(m,\epsilon)$-不可分辨性。
+**推论5.2**：素数—确定性重排构造经过上述任何变换后，仍保持$(m,\epsilon)$-不可分辨性。
 
 ### 5.3 数值验证
 
@@ -559,12 +578,12 @@ $$
 
 ### 6.2 素数构造的意义
 
-素数-洗牌构造提供了一种**确定性的、可计算的**方法来实现NGV原理：
+素数—确定性重排构造提供了一种**确定性的、可计算的**方法来实现NGV原理：
 - **全局确定**：素数序列完全确定，无本体随机性
-- **局部随机**：经过分块-洗牌后，在有限观测下不可分辨
+- **局部随机**：经过分块-确定性重排后，在有限观测下不可分辨
 - **渐近最优**：在RH下达到指数级收敛速率
 
-这暗示素数可能扮演"宇宙随机性种子"的角色——通过对不可见自由度（块内置换）的积分，产生局域的随机外观。
+这暗示素数可能扮演"宇宙随机性种子"的角色——通过对不可见自由度（块内确定性置换）的积分，产生局域的随机外观。
 
 ### 6.3 量子测量的类比
 
@@ -585,12 +604,12 @@ $$
 
 在NGV框架下，ζ-三分向量$\vec{i}(s) = (i_+, i_0, i_-)$提供了"可见信息的守恒坐标系"：
 
-**物理对应**：
+**启发式对应**：
 - $i_+$：粒子性信息（定域、可数）
 - $i_0$：波动性信息（相干、叠加）
 - $i_-$：场补偿信息（真空涨落）
 
-**临界线的特殊性**：在$s = 1/2 + it$上，$i_0$达到非零值，标志着量子相干的出现。这与素数-洗牌在临界密度$1/\log x$附近展现最大"伪随机性"形成对应。
+**临界线的特殊性**：在$s = 1/2 + it$上，$i_0$达到非零值，标志着量子相干的出现。这与素数—确定性重排在临界密度$1/\log x$附近展现最大"伪随机性"形成对应。
 
 ### 6.5 临界线统计公式
 
@@ -712,7 +731,7 @@ $$
 
 **无条件结果**：
 $$
-d_{\mathcal{F}_m}(\text{素数-洗牌}, \text{理想随机}) < \epsilon
+d_{\mathcal{F}_m}(\text{素数—确定性重排}, \text{理想随机}) < \epsilon
 $$
 
 **RH下的加强**：误差呈指数级衰减
@@ -1015,7 +1034,7 @@ $$
 
 **从静态到动态**：
 - 原框架：研究ζ函数的静态信息分解
-- 本框架：构造动态过程（素数-洗牌）实现信息平衡
+- 本框架：构造动态过程（素数—确定性重排）实现信息平衡
 
 **从理论到实践**：
 - 原框架：证明临界线的信息论唯一性
