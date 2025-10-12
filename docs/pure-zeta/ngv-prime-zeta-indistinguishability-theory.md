@@ -30,7 +30,7 @@
 - 全局有规律：素数定理$\pi(x) \sim x/\log x$给出渐近密度
 - 深层结构：Riemann假设将素数分布与ζ函数零点联系
 
-我们将证明，通过适当的分块-洗牌构造，素数序列可以生成在任意有限观测尺度下与真随机不可分辨的过程。这不仅是技术结果，更暗示了素数作为"宇宙随机性种子"的深层角色。
+我们将证明，通过适当的分块-洗牌构造，素数序列可以生成在任意有限观测尺度下与真随机不可分辨的过程（严格意义见§4）。关于“素数作为‘宇宙随机性种子’”的更强表述，我们将在§6.2以猜想C1形式提出，并以启发式与数值证据支持，而非作为既成定理。
 
 ### ζ-三分信息的几何意义
 
@@ -68,6 +68,18 @@ $$
 - §6：NGV等价原理与量子类比
 - §7：可分辨的边界条件（Bell-CHSH）
 - §8-9：结论与未来方向
+
+### 严谨性声明与术语规范
+
+- 定理/引理/命题：给出或可追溯到文献的严格证明。
+- 假设：外部前提（如RH、BV、GUE）明确标注，仅在相应段落内使用。
+- 启发式：基于直觉或常用近似的非严格论断，用于解释或指引，不作为证明。
+- 猜想：作者提出的未证断言，需未来工作验证。
+
+本文据此统一标注：
+- “素数作为宇宙随机性种子”标记为猜想C1（见§6.2）。
+- 第4节中LCG置换达到均匀置换同等边缘逼近的论断标记为猜想4.A；本节提供在“均匀/有限独立置换”模型下的严格版定理。
+- 第6.5节关于GUE/零点相位的对应采用假设与启发式标注，并给出经典参考文献。
 
 ## 0. 记号与背景
 
@@ -322,15 +334,24 @@ $$
 
 **目标过程**：令"慢变Bernoulli过程"$ Y $在第$ k $块内为独立同分布$ \mathrm{Bernoulli}(p_k) $，其中$ p_k=N_k/L_k\approx 1/\log M_k $（由PNT）。
 
-### 4.2 技术引理
+### 4.2 技术引理（严格版与猜想）
 
-**引理4.1（确定性LCG分布逼近）**：设$ \sigma_k $由上述严格全周期LCG生成，并在$ I_k $内诱导块内重排。则对任意固定观测尺度$ m $，块内前$ m $位的取值向量在$ L_k\to\infty $下与均匀置换模型的超几何抽样在$ m $维边缘上一致，且与参数$ p_k=N_k/L_k $的二项分布偏差满足
+**引理4.1（均匀置换下的超几何-二项TV界，严格）**：设块大小为$L$，块内有$N$个1（素数指示为1），随机从$L$个位置中无放回抽取$m$个，则$K\sim\mathrm{Hypergeo}(L,N,m)$；若改为有放回且成功概率$p=N/L$，则$K'\sim\mathrm{Binom}(m,p)$。则其总变差距离满足
 $$
-d_{TV} \;\lesssim\; \frac{m(m-1)}{2L_k} + O\!\left(\frac{1}{\sqrt{L_k}}\right),
+\mathrm{TV}(\mathrm{Hypergeo}(L,N,m),\ \mathrm{Binom}(m,N/L)) \le \frac{m-1}{L-1}.
 $$
-在RH下，其近似误差项$ O(L_k^{-1/2}) $可由指数和界进一步控制。
 
-**证明要点**：满足Hull–Dobell条件的LCG在模$ L_k $上具有全周期，状态序列在$\mathbb Z/ L_k\mathbb Z$上均匀遍历；对固定$ m $的有限维边缘可由指数和与Weyl均匀分布判据估计偏差。□
+该界为标准结果，可由交换性与依赖衰减估计得到，并可见于Stein方法或采样无放回近似的经典文献（例如Diaconis–Freedman类型论证）。
+
+**证明思路（略）**：构造耦合，使得超几何抽样与二项抽样仅在第2次及以后抽取时产生依赖偏差，累计偏差至多线性于$m$且按$1/(L-1)$缩放，即得上界。□
+
+**猜想4.A（LCG置换的有限维均匀性启发式）**：设$\sigma_k$由满足Hull–Dobell条件的全周期LCG生成。对任意固定$m$，当$L_k\to\infty$时，$m$维边缘的经验分布与均匀置换模型的一致性误差满足
+$$
+\mathrm{TV}\Big(\mathcal{L}\big((X^{(k)}_{1},\ldots,X^{(k)}_{m})\big),\ \mathcal{L}_{\text{unif perm}}\Big) = o(1),
+$$
+并进一步与二项边缘的偏差满足与引理4.1同阶的$O(m/L_k)$级上界。
+
+注：该猜想可望由指数和与Weyl准则在适当混合假设下建立，但完整严格证明超出本文范围，留待后续工作。
 
 **选块引理4.2（PNT 局部化）**：给定$ \delta_k\downarrow 0 $，存在$ I_k=[M_k,M_k+L_k) $使
 $$
@@ -359,26 +380,18 @@ $$
 
 选择$M_k$使得$L_k/M_k + C/\log^2 M_k < \delta_k$即可。□
 
-### 4.3 主要定理
+### 4.3 主要定理（严格版与LCG版猜想）
 
-**定理4.3（内部不可分辨）**：给定观测尺度$m \in \mathbb{N}$和误差容限$\epsilon > 0$。选择满足引理4.2的区间序列$\{I_k\}$，且$L_k \to \infty$。则存在$K$使得对所有$N \geq K$，在前$\sum_{k \leq N} L_k$个位置上：
+**定理4.3（严格版，均匀/有限独立置换模型）**：给定观测尺度$m \in \mathbb{N}$和误差容限$\epsilon > 0$。选择满足引理4.2的区间序列$\{I_k\}$，且$L_k \to \infty$。设每块使用独立均匀随机置换（或$k$-独立置换，$k\ge m$）。则存在$K$使得对所有$N \ge K$，在前$\sum_{k \le N} L_k$个位置上：
 $$
-d_{\mathcal{F}_m}(\mathcal{L}(X), \mathcal{L}(Y)) \leq \max_k \frac{m(m-1)}{2L_k} + m \cdot \max_k \delta_k + \frac{m}{\min_k L_k} < \epsilon
+d_{\mathcal{F}_m}(\mathcal{L}(X), \mathcal{L}(Y)) \le \max_k \frac{m-1}{L_k-1} + m\, \max_k \delta_k + \frac{m}{\min_k L_k} < \epsilon.
 $$
 
-（注：系数$1/2$为常见宽松上界，实际应用中可根据具体块结构与观测$\mathcal F_m$获得更紧常数。）
+注：$\frac{m-1}{L_k-1}$来自引理4.1的超几何-二项TV严格上界；跨块边界项和密度误差项与原式相同级别。
 
-**证明（含显式常数）**：
+**证明**：对任意$ f\in\mathcal F_m $、$ \|f\|_\infty\le 1 $，将贡献分解为（i）块内抽样的无放回-有放回差异（由引理4.1控制）；（ii）$p_k=N_k/L_k$与$1/\log M_k$的差异（由引理4.2控制，累积至多$m\,\delta_k$）；（iii）观测窗口跨块的截断误差（至多$m/\min_k L_k$）。逐项上界并取最大即得结论。□
 
-设$ f\in\mathcal F_m $，$ \|f\|_\infty\le 1 $。块内由引理4.1给出与超几何/二项的有限维边缘一致性与偏差界。与原随机置换分析同形地分解：
-
-— 块内误差：$ \le \frac{m(m-1)}{2L_k} + O(L_k^{-1/2}) $；
-
-— 密度误差：$ \le m\,\delta_k $；
-
-— 跨块边界：$ \le m/\min_k L_k $。
-
-合并并取$ k $大足以忽略$ O(L_k^{-1/2}) $即得不等式（常数如式）。参数选择同原式。□
+**猜想4.B（LCG版）**：若在每块采用满足Hull–Dobell的全周期LCG置换，则在猜想4.A成立下，定理4.3中的块内误差$\frac{m-1}{L_k-1}$仍为主导项，因而同样结论成立。
 
 ### 4.4 RH下的显式速率
 
@@ -543,7 +556,7 @@ $$
 = \left|\int g \, dP - \int g \, dQ\right| \leq d_{\mathcal{F}_m}(P,Q)
 $$
 
-对所有$f \in \mathcal{F}_m(E')$取上确界，得到结论。□
+对所有$f \in \mathcal{F}_m(E')$取上确界，得到结论。□ 注：该性质为IPM的标准闭包/非扩张性，可参见[1,2,3]。
 
 **推论5.2**：素数—确定性重排构造经过上述任何变换后，仍保持$(m,\epsilon)$-不可分辨性。
 
@@ -583,7 +596,7 @@ $$
 - **局部随机**：经过分块-确定性重排后，在有限观测下不可分辨
 - **渐近最优**：在RH下达到指数级收敛速率
 
-这暗示素数可能扮演"宇宙随机性种子"的角色——通过对不可见自由度（块内确定性置换）的积分，产生局域的随机外观。
+我们提出猜想C1（宇宙随机性种子）：素数—确定性重排通过对不可见自由度（块内确定性置换）的积分，在给定观测族下产生与随机源不可分辨的统计外观；并在适当变换闭包下，作为“通用随机性种子”逼近广泛物理分布。说明：本项为启发式与数值支持（见§4.5、§6.5），严格证明留待未来工作。
 
 ### 6.3 量子测量的类比
 
@@ -621,10 +634,12 @@ $$
 i_0 = \frac{|\sin(2\theta)|}{2 + |\cos(2\theta)| + |\sin(2\theta)|}
 $$
 
-若假设$2\theta \sim \text{Uniform}[0, 2\pi)$（GUE假设的简化版），则：
+在假设H1（GUE相位均匀性）下，设$2\theta \sim \text{Uniform}[0, 2\pi)$，则：
 $$
 \mathbb{E}[\Delta] = 0, \quad \mathbb{E}[i_+] = \mathbb{E}[i_-] = \frac{1 - \mathbb{E}[i_0]}{2}
 $$
+
+注：假设H1与蒙哥马利配对相关猜想、Keating–Snaith的随机矩阵理论以及Odlyzko的大规模数值证据相呼应，参见[6,7,8]。
 
 **证明**：在临界线上，$z^{\vee} = \overline{z}$，故$z\overline{z^{\vee}} = z^2 = |z|^2 e^{2i\theta}$。代入三分信息定义：
 $$
@@ -1065,3 +1080,21 @@ $$
 ---
 
 *本文献给所有追求真理的探索者，愿我们共同揭示宇宙的数学奥秘。*
+
+## 参考文献
+
+[1] Müller, M., & Gretton, A. On Integral Probability Metrics and Maximum Mean Discrepancy. Tutorial/Survey.
+
+[2] Sriperumbudur, B. K., et al. On integral probability metrics, φ-divergences and binary classification. arXiv:0901.2698.
+
+[3] Villani, C. Optimal Transport: Old and New. Springer, 2009.（关于Wasserstein/IPM关系）
+
+[4] Diaconis, P., & Freedman, D. Partial exchangeability and sufficiency. Proc. AMS, 1980.（无放回/有放回近似与Stein方法背景）
+
+[5] Barbour, A. D., Holst, L., & Janson, S. Poisson Approximation. Oxford, 1992.（TV距离与耦合技巧）
+
+[6] Montgomery, H. L. The pair correlation of zeros of the zeta function. Proc. Symp. Pure Math., 1973.
+
+[7] Keating, J. P., & Snaith, N. C. Random matrix theory and ζ(1/2 + it). Commun. Math. Phys., 2000.
+
+[8] Odlyzko, A. M. The 10^20-th zero of the Riemann zeta function and RMT.（数值证据）
