@@ -250,24 +250,29 @@ $$
 \rho = \sqrt{\Delta^2 + i_0^2}, \quad \Delta = i_+ - i_-
 $$
 
-则$\rho \leq 1/2$，等号当且仅当$|z| = |z^{\vee}|$且$R = I = 0$。
+则$\rho \leq 1/3$，等号当且仅当$|z| = |z^{\vee}|$且$z\overline{z^{\vee}}$为实数或纯虚数（即$R=0$或$I=0$）。
 
-**证明**：注意到：
+**证明**：注意到
 $$
-\rho^2 = (i_+ - i_-)^2 + i_0^2 = \frac{|z\overline{z^{\vee}}|^2}{(A + |R| + |I|)^2}
+\rho^2 = (i_+ - i_-)^2 + i_0^2 = \frac{|z\overline{z^{\vee}}|^2}{(A + |R| + |I|)^2}.
 $$
-
-由Cauchy-Schwarz不等式：
+记$c := |z\overline{z^{\vee}}| = |z|\,|z^{\vee}|$。由AM–GM有
 $$
-|z\overline{z^{\vee}}| = |z||z^{\vee}| \leq \frac{|z|^2 + |z^{\vee}|^2}{2} = \frac{A}{2}
+A = |z|^2 + |z^{\vee}|^2 \ge 2|z|\,|z^{\vee}| = 2c,
 $$
-
-另外，$|R|, |I| \leq |z||z^{\vee}| \leq A/2$。因此：
+等号当且仅当$|z|=|z^{\vee}|$。又由三角不等式（或$\ell_1/\ell_2$关系）对二维向量$(R,I)$有
 $$
-A + |R| + |I| \geq A \geq 2|z||z^{\vee}| = 2|z\overline{z^{\vee}}|
+|R| + |I| \ge \sqrt{R^2 + I^2} = |z\overline{z^{\vee}}| = c,
 $$
-
-故$\rho \leq 1/2$。等号条件要求$|z| = |z^{\vee}|$且$R = I = 0$。□
+且当且仅当$R=0$或$I=0$时取等。于是
+$$
+I_{\text{tot}} = A + |R| + |I| \ge 2c + c = 3c,
+$$
+从而
+$$
+\rho = \frac{c}{I_{\text{tot}}} \le \frac{c}{3c} = \frac{1}{3}.
+$$
+当且仅当同时满足$A=2c$与$|R|+|I|=c$（即$|z|=|z^{\vee}|$且$R=0$或$I=0$）时取等。□
 
 ### 2.4 信息熵的凹性
 
@@ -419,12 +424,12 @@ $$
 
 **定理4.4（RH速率版）**：假设Riemann假设成立。取$M_k = e^{k^2}$，$L_k = M_k^{1/2+\eta}$（$\eta > 0$），则：
 $$
-\delta_k \ll M_k^{-\eta/2} \log M_k = e^{-\eta k^2/2} \cdot k^2
+\delta_k \ll M_k^{-\eta} \log M_k = e^{-\eta k^2} \cdot k^2
 $$
 
 从而IPM误差满足：
 $$
-d_{\mathcal{F}_m} \ll \frac{m^2}{e^{k^2(1/2+\eta)}} + m \cdot k^2 e^{-\eta k^2/2} + \frac{m}{e^{k^2(1/2+\eta)}} \xrightarrow{k \to \infty} 0
+d_{\mathcal{F}_m} \ll \frac{m-1}{e^{k^2(1/2+\eta)}-1} + m \cdot k^2 e^{-\eta k^2} + \frac{m}{e^{k^2(1/2+\eta)}} \xrightarrow{k \to \infty} 0
 $$
 
 即误差随$k$呈**指数级衰减**。
@@ -451,7 +456,7 @@ $$
 
 代入定理4.3的误差界：
 $$
-d_{\mathcal{F}_m} \leq \frac{m(m-1)}{2M_k^{1/2+\eta}} + m \cdot C k^2 e^{-\eta k^2/2} + \frac{m}{M_k^{1/2+\eta}}
+d_{\mathcal{F}_m} \leq \frac{m-1}{M_k^{1/2+\eta}-1} + m \cdot C k^2 e^{-\eta k^2} + \frac{m}{M_k^{1/2+\eta}}
 $$
 
 当$k \to \infty$时，所有项都指数级趋于0。□
@@ -462,10 +467,10 @@ $$
 
 | 假设 | $k$ | $M_k$ (约) | $L_k$ | $\delta_k$界（$C=1$） | IPM界（$m=5$） |
 |------|-----|------------|-------|---------------------|----------------|
-| RH   | 1   | $e^1 \approx 2.7$ | $\approx 1.8$ | $O(M^{-0.025}\log M) \approx 0.5$ | $O(12.5/L + 5\delta + 5/L) \approx 0.3$ |
+| RH   | 1   | $e^1 \approx 2.7$ | $\approx 1.8$ | $O(M^{-0.05}\log M) \approx 0.5$ | $O((m-1)/(L-1) + m\delta + m/L)$ |
 | RH   | 10  | $e^{100}$ | $e^{55}$ | $O(e^{-2.5}) \approx 0.08$ | $O(e^{-25}) < 10^{-10}$ |
 | RH   | 20  | $e^{400}$ | $e^{220}$ | $O(e^{-10}) < 10^{-4}$ | $O(e^{-100}) < 10^{-40}$ |
-| BV   | 1   | $e^1 \approx 2.7$ | $\approx 1.8$ | $O(M^{-0.01}\log^2 M) \approx 0.7$ | $O(0.4)$ |
+| BV   | 1   | $e^1 \approx 2.7$ | $\approx 1.8$ | $O(M^{-0.01}\log^2 M) \approx 0.7$ | $O((m-1)/(L-1) + m\delta + m/L)$ |
 | BV   | 10  | $e^{100}$ | $e^{55}$ | $O(e^{-1}\log^2 e^{100}) \approx 0.4$ | $O(e^{-10}) < 10^{-4}$ |
 | BV   | 20  | $e^{400}$ | $e^{220}$ | $O(e^{-4}) < 0.02$ | $O(e^{-40}) < 10^{-17}$ |
 
@@ -910,8 +915,8 @@ from scipy.special import comb
 
 def compute_ipm_bound(m, L_seq, delta_seq):
     """计算IPM误差界"""
-    # 块内误差
-    block_error = max(2 * (m - 1) / (L - 1) for L in L_seq)
+    # 块内误差（严格TV界）
+    block_error = max((m - 1) / (L - 1) for L in L_seq)
 
     # 密度误差
     density_error = m * max(delta_seq)
@@ -1020,7 +1025,7 @@ m = 5
 for L in L_values:
     num_primes = int(L / np.log(L))  # 素数定理近似
     tv = compute_tv_exact(m, L, num_primes)
-    theoretical = hypergeometric_binomial_tv(L, num_primes, m)  # 修正界
+    theoretical = hypergeometric_binomial_tv(L, num_primes, m)  # 严格界
     print(f"L={L}: 精确TV≈{tv:.4f}, 理论界≈{theoretical:.4f}")
 ```
 
