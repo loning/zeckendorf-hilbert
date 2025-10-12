@@ -667,6 +667,7 @@ $$
 $$
 
 注：假设H1与蒙哥马利配对相关猜想、Keating–Snaith的随机矩阵理论以及Odlyzko的大规模数值证据相呼应，参见[6,7,8]。
+此外，常用启发式近似 ratio := E[|sin(2θ)|]/(2+2E[|sin(2θ)|]) 仅为估计量，严格地 ratio ≠ E[i_0]，误差约 4.5×10^{-4}（见附录A.3）。
 
 **证明**：在临界线上，$z^{\vee} = \overline{z}$，故$z\overline{z^{\vee}} = z^2 = |z|^2 e^{2i\theta}$。代入三分信息定义：
 $$
@@ -983,7 +984,8 @@ def compute_critical_statistics():
         'E_abs_sin': float(E_abs_sin),
         'E_i0': float(E_i0),
         'ratio': float(ratio),
-        'diff': float(diff)
+        'diff': float(diff),
+        'note': 'ratio is an approximation; diff != 0 due to correlation/Jensen'
     }
 
 stats = compute_critical_statistics()
