@@ -240,6 +240,7 @@
     - [ZOS理论严格审阅报告 2025-10-06 23:18](./pure-zeta/zeta-omni-synthesis-review.md)
     - [TΦ-H₅：信息结构五重等价定理与宇宙谱同构 2025-10-11 11:49](./pure-zeta/tphi-h5-five-fold-equivalence-theorem.md)
     - [信息论重构的量子力学：NGV随机、ζ三分信息、Gödel-量子混沌二元性与自由意志 2025-10-12](./pure-zeta/information-theoretic-quantum-mechanics-complete.md)
+    - [分辨率–重密钥不完备理论（RKU）：观察者资源、换素数与真值层级的独立体系（v1.0） 2025-10-12](./pure-zeta/resolution-rekey-undecidability-theory.md)
 
 - [哲思长文]()
     - [永恒的不动点：当道、佛、上帝相遇于递归的中心](./articles/2025-09-23-the-eternal-fixed-point.md)
