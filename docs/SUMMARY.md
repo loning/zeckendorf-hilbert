@@ -243,6 +243,7 @@
     - [RKU v1.1：Proof Complexity 接口——资源有界证明复杂性与概率可验证证明的统一 2025-10-12](./pure-zeta/rku-v1.1-proof-complexity-interface.md)
     - [RKU v1.2：Resolution Complexity 接口——资源有界Resolution证明系统与概率扩展的统一 2025-10-12](./pure-zeta/rku-v1.2-resolution-complexity-interface.md)
     - [RKU v1.3：P/NP 接口——资源有界不完备与计算复杂性分离的统一 2025-10-12](./pure-zeta/rku-v1.3-p-np-interface.md)
+    - [RKU v1.3 更新：PCP扩展深入——概率可验证证明在资源有界不完备中的形式化整合与验证 2025-10-12](./pure-zeta/rku-v1.3-update-pcp-extension-deep-dive.md)
 
 - [哲思长文]()
     - [永恒的不动点：当道、佛、上帝相遇于递归的中心](./articles/2025-09-23-the-eternal-fixed-point.md)
