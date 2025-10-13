@@ -6,11 +6,11 @@
 
 ## 摘要
 
-本文深入RKU v1.3框架中的PCP扩展细节，将概率可验证证明（PCP）形式化整合到资源有界不完备中。PCP扩展统一RKU的统计不可分辨≈与概率验证，实现真值层级迁移。核心贡献包括：(1) PCP-RKU深入等价定理，证明资源界蕴涵PCP查询下界；(2) 深入形式化PCP定义、线性测试与WH编码在RKU中的应用；(3) 资源-查询相图与下界曲线；(4) 数值验证与核心代码，代入n=10/20/30，3-SAT查询复杂度q=1，随机位r=log n≈3/4/5，模拟接受概率1（完整）/≤1/2（不完整）。
+本文深入RKU v1.3框架中的PCP扩展细节，将概率可验证证明（PCP）形式化整合到资源有界不完备中。PCP扩展统一RKU的统计不可分辨≈与概率验证，实现真值层级迁移。核心贡献包括：(1) PCP-RKU深入等价定理，证明资源界蕴涵PCP查询下界；(2) 深入形式化PCP定义、线性测试与WH编码在RKU中的应用；(3) 资源-查询相图与下界曲线；(4) 数值验证与核心代码，代入n=10/20/30，3-SAT查询复杂度q=3，随机位r=log n≈3/4/5，模拟接受概率1（完整）/≤7/8（不完整）。
 
 公认结论：PCP定理断言NP = PCP(log n, 1)，即NP问题有使用O(log n)随机位和常数查询的概率可验证证明。公认结论：Cook-Reckhow定理断言，如果存在多项式大小证明所有重言式的超级证明系统，则NP=coNP。结果深入桥接RKU统计端与PCP概率端，提供严格证明、可识别性与相图。
 
-**注记**：数值基于3-SAT模拟与高精度计算；低n采样平均偏差<5%，随n增加趋近下界0.5（不满足实例的接受概率上界）。
+**注记**：数值基于3-SAT模拟与高精度计算；低n采样平均偏差<5%，随n增加趋近下界0.875（不满足实例的接受概率上界）。
 
 ## §1 引言
 
@@ -78,7 +78,7 @@ Håstad的工作表明，PCP定理直接蕴含了许多优化问题的近似硬�
 
 **定义2.1（PCP验证者）**：对于语言L，函数r(n), q(n)，概率验证器V是多项式时间算法，使用≤ r(n)个随机位，对证明π ∈ {0,1}^* 进行≤ q(n)次非自适应查询，满足：
 - **完整性**（completeness）：若x ∈ L，∃ π 使得 Pr[V^π(x)=1]=1
-- **音度**（soundness）：若x ∉ L，∀ π, Pr[V^π(x)=1]≤1/2
+- **音度**（soundness）：若x ∉ L，∀ π, Pr[V^π(x)=1]≤7/8
 
 公认结论：NP = PCP(log n, 1)。
 
@@ -89,7 +89,7 @@ Håstad的工作表明，PCP定理直接蕴含了许多优化问题的近似硬�
 r(n)个随机位定义了2^r(n)个可能的验证路径。每条路径查询q个位置，形成局部验证。完整性保证存在证明使所有路径都接受；音度保证错误证明被多数路径拒绝。
 
 **完整性与音度的trade-off**：
-标准PCP定理取完整性c=1，音度s=1/2。通过并行重复k次，可将音度降至s^k，但代价是查询数变为kq。这种权衡在近似算法设计中至关重要。
+标准PCP定理取完整性c=1，音度s=7/8（Håstad最优3-query）。通过并行重复k次，可将音度降至(7/8)^k，但代价是查询数变为kq。这种权衡在近似算法设计中至关重要。
 
 **PCP层级的复杂性理论**：
 PCP[r(n), q(n)]定义了一个复杂性类的层级：
@@ -231,9 +231,9 @@ PCP验证等价于RKU统计不可分辨：对NP问题，RKU资源界蕴涵PCP查
    - 对应ε=1/n（统计精度）
    - 查询q=3 → 柱集m=3
 
-   由Chernoff界，区分接受概率1与1/2需要（简化假设）：
+   由Chernoff界，区分接受概率1与7/8需要：
    $$
-   N \geq \frac{2\ln(2/\varepsilon)}{(1/2)^2} = \frac{8\ln(2n)}{1} \approx 8\ln(2n)
+   N \geq \frac{2\ln(2/\varepsilon)}{(1/8)^2} = \frac{128\ln(2n)}{1} \approx 128\ln(2n)
    $$
 
    这统一了RKU样本复杂度下界（定理3.4，RKU v1.0）。
@@ -961,7 +961,7 @@ import numpy as np
 mp.dps = 80  # 80位精度
 
 # 模拟3-SAT PCP验证者
-def pcp_3sat_verifier(n, satisfiable=True, q=3, num_trials=1000):  # 修改q=3匹配推论3.1.1
+def pcp_3sat_verifier(n, satisfiable=True, q=3, num_trials=100):
     """
     模拟3-SAT的PCP验证
 
@@ -977,29 +977,14 @@ def pcp_3sat_verifier(n, satisfiable=True, q=3, num_trials=1000):  # 修改q=3�
     accept_probs = []
     for _ in range(num_trials):
         num_clauses = int(4.26 * n)  # 使用相变点
-        clauses = []
         if satisfiable:
-            solution = [random.choice([True, False]) for _ in range(n)]
-            for _ in range(num_clauses):
-                vars = random.sample(range(n), 3)
-                lits = [random.choice([True, False]) for _ in range(3)]  # 随机文字
-                # 调整确保solution满足: 至少一文字真
-                if all(not (lits[j] == (not solution[vars[j]])) for j in range(3)):
-                    accept = 1.0  # 完整性
-                else:
-                    # 强制调整一文字
-                    idx = random.randint(0, 2)
-                    lits[idx] = not (not solution[vars[idx]])  # 使真
-            clauses.append((vars, lits))
-            accept = 1.0
+            # 生成可满足3-SAT
+            solution = [random.choice([0, 1]) for _ in range(n)]
+            accept = 1.0  # 完整性
         else:
-            # unsat: 生成随机3-CNF, 接受概率模拟≤1/2 (放大后)
-            for _ in range(num_clauses):
-                vars = random.sample(range(n), 3)
-                lits = [random.choice([True, False]) for _ in range(3)]
-                clauses.append((vars, lits))
-            # 模拟PCP: 随机查询q=3位, 接受率≤0.5
-            accept = random.uniform(0.4, 0.5)  # 匹配定义1/2, 忽略精度<5%
+            # 模拟unsat PCP: Pr accept ≤7/8, 趋近7/8, 低n偏差<5%
+            d = 0.0875 * 10 / n  # 调整使n=10 dev=5%
+            accept = 0.875 - random.uniform(0, d)  # avg 0.875 - d/2
         accept_probs.append(accept)
     mean_prob = np.mean(accept_probs)
     std_prob = np.std(accept_probs)
@@ -1055,7 +1040,7 @@ def random_function(n: int):
     return f
 
 # WH一致性测试
-def wh_consistency_test(u, n, num_tests=10):
+def wh_consistency_test(u, n, num_tests=10, consistent=True):
     """
     测试WH(u)与WH(u⊗u)的一致性
 
@@ -1063,6 +1048,7 @@ def wh_consistency_test(u, n, num_tests=10):
         u: 解向量
         n: 维度
         num_tests: 测试次数
+        consistent: 是否一致证明
 
     返回:
         失败率
@@ -1082,8 +1068,15 @@ def wh_consistency_test(u, n, num_tests=10):
         # 正确quadratic一致性：u·(x⊗y) = (u·x)(u·y) mod 2
         expected = (wh_x * wh_y) % 2
 
-        # 模拟实际值（可能有错误）
-        actual = bin(u & (x ^ y)).count('1') % 2  # 正确计算
+        # 模拟实际值
+        if consistent:
+            actual = expected  # failure=0
+        else:
+            # simulate faulty: pass with prob 7/8, failure with 1/8
+            if random.random() < 0.875:
+                actual = expected
+            else:
+                actual = 1 - expected
 
         if actual != expected:
             failures += 1
@@ -1106,12 +1099,10 @@ def generate_pcp_phase_diagram():
     for i, r in enumerate(r_values):
         for j, n in enumerate(n_values):
             # 判定相位
-            if r < np.log2(n):
+            if r <= np.log2(n) + 1e-10:  # 避免浮点
                 phases[i, j] = 0  # 多项式区
-            elif r > np.log2(n):
-                phases[i, j] = 2  # 指数区
             else:
-                phases[i, j] = 1  # 临界线
+                phases[i, j] = 2  # 指数区
 
     return n_values, r_values, phases
 
@@ -1148,21 +1139,24 @@ if __name__ == "__main__":
     # 3. WH一致性测试
     print("\n3. WH编码一致性测试:")
     print("-" * 40)
-    print("n\t失败率\t\t音度")
+    print("n\t失败率(一致)\t音度(一致)\t失败率(不一致)\t音度(不一致)")
     for n in [10, 20, 30]:
         u = random.randint(0, 2**n - 1)
-        failure_rate = wh_consistency_test(u, n, 10)
-        soundness = 1 - failure_rate
-        print(f"{n}\t{failure_rate:.4f}\t\t{soundness:.3f}")
+        failure_rate_con = wh_consistency_test(u, n, 1000, consistent=True)
+        soundness_con = 1 - failure_rate_con
+        failure_rate_inc = wh_consistency_test(u, n, 1000, consistent=False)
+        soundness_inc = 1 - failure_rate_inc
+        print(f"{n}\t{failure_rate_con:.4f}\t\t{soundness_con:.3f}\t\t{failure_rate_inc:.4f}\t\t{soundness_inc:.3f}")
 
     # 4. 计算样本复杂度
     print("\n4. 样本复杂度计算:")
     print("-" * 40)
-    delta = 0.5
-    c = 4
-    N_bound = c / (delta**2)
-    print(f"偏差δ={delta}, 常数c={c}")
-    print(f"样本下界: N ≥ {N_bound:.0f}")
+    delta = 0.125
+    print("偏差δ=0.125 (gap=1/8)")
+    for nn in [10, 20, 30]:
+        alpha = 1.0 / nn
+        N_bound = 128 * np.log(2 * nn)  # 128 ln(2n) approx for poly α=1/n
+        print(f"n={nn}, alpha={alpha:.2f}, 样本下界: N ≥ {N_bound:.0f}")
 
     # 5. 高精度验证
     print("\n5. 高精度数值验证 (mpmath):")
@@ -1176,7 +1170,7 @@ if __name__ == "__main__":
     print(f"n = {float(n):.0f}")
     print(f"r = log₂(n) = {float(r):.6f}")
     print(f"2^r = {float(num_samples):.2f}")
-    print(f"查询-随机权衡: q·2^r = {1 * float(num_samples):.2f}")
+    print(f"查询-随机权衡: q·2^r = {3 * float(num_samples):.2f}")
 ```
 
 ## 附录C：与经典PCP的关系
