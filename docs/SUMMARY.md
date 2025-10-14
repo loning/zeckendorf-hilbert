@@ -178,6 +178,7 @@
     - [Zeta Theory Research Collaboration Invitation](./ZETA_RESEARCH_INVITATION_en.md)
     - [Zeta-QFT热补偿框架的完整理论：严格形式化描述、证明与数据分析](./zeta-publish/zeta-qft-thermal-compensation-framework.md)
     - [Zeta函数的全息信息守恒原理：临界线作为量子引力边界的统一证明 (英文版)](./zeta-publish/zeta-holographic-information-conservation_en.md)
+    - [量子纠缠与密钥共享的信息论重构：RKU扩展到QKD框架](./pure-zeta/rku-qkd-quantum-entanglement-key-distribution-interface.md)
     - [Zeta函数奇异环的递归构造与宇宙生成：从复平面到AdS/CFT全息对偶 2025-10-01 16:03](./pure-zeta/zeta-strange-loop-universe-construction.md)
     - [解析延拓的信息守恒与形式不可逆：混沌系统与三体运动的Zeta函数本质 2025-10-01 16:47](./pure-zeta/zeta-analytic-continuation-chaos.md)
     - [ζ-信息三分平衡理论：从不动点到奇异环的统一框架 2025-10-01 16:56](./pure-zeta/zeta-information-triadic-balance.md)
