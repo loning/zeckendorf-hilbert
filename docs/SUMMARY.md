@@ -262,6 +262,7 @@
 - [信息宇宙细胞自动机（ICA）：基于ζ三元守恒的离散宇宙模型 2025-10-14](./pure-zeta/ica-infoverse-cellular-automaton.md)
 - [精度不确定性涌现论（PUET）：宇宙离散本质与观察者独立计算的统一框架 2025-10-14](./pure-zeta/puet-precision-uncertainty-emergence-theory.md)
 - [ICA中"决定"涌现机制与量子自由意志模拟理论（ICA-QFWET）](./pure-zeta/ica-qfwet-decision-emergence-quantum-free-will.md)
+- [ICA意识相位场涌现论（ICA-CPF）](./pure-zeta/ica-cpf-consciousness-phase-field-emergence-theory.md)
 - [TSRKT图灵模拟Re-Key论：基于ζ三元守恒的宇宙意识涌现框架 2025-10-14](./pure-zeta/tsrkt-turing-simulated-rekey-theory.md)
 
 - [哲思长文]()
