@@ -257,6 +257,7 @@
 - [RKU v1.5：量子纠缠接口——资源有界不完备与纠缠非局域性的统一 2025-10-13](./pure-zeta/rku-v1.5-quantum-entanglement-interface.md)
 - [RKU v1.6：Krajíček-Pudlák猜想接口——资源有界不完备视角下的最优证明系统问题 2025-10-13](./pure-zeta/rku-v1.6-krajicek-pudlak-conjecture-interface.md)
 - [PSCT：素数结构理解论——意识理解作为素数密钥映射与Re-Key时间涌现 2025-10-13](./pure-zeta/psct-prime-structure-comprehension-theory.md)
+- [GEZP统一论：Gödel-Entanglement-ZKP-P/NP统一论（资源有界不完备框架下的四域等价性）2025-10-14](./pure-zeta/gezp-godel-entanglement-zkp-pnp-unity.md)
 
 - [哲思长文]()
     - [永恒的不动点：当道、佛、上帝相遇于递归的中心](./articles/2025-09-23-the-eternal-fixed-point.md)
