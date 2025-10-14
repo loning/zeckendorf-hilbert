@@ -247,6 +247,8 @@
     - [RKU v1.3 更新：PCP扩展深入——概率可验证证明在资源有界不完备中的形式化整合与验证 2025-10-12](./pure-zeta/rku-v1.3-update-pcp-extension-deep-dive.md)
     - [RKU v1.4：零知识PCP扩展——零知识概率可验证证明在资源有界不完备中的形式化整合与验证 2025-10-12](./pure-zeta/rku-v1.4-zero-knowledge-pcp-extension.md)
     - [RKU v1.4 更新：量子不确定性原理的信息论重构——RKU作为测不准本质的深入整合 2025-10-13](./pure-zeta/rku-v1.4-update-quantum-uncertainty-information-reconstruction.md)
+- [RKU v1.5：量子纠缠接口——资源有界不完备与纠缠非局域性的统一 2025-10-13](./pure-zeta/rku-v1.5-quantum-entanglement-interface.md)
+- [PSCT：素数结构理解论——意识理解作为素数密钥映射与Re-Key时间涌现 2025-10-13](./pure-zeta/psct-prime-structure-comprehension-theory.md)
 
 - [哲思长文]()
     - [永恒的不动点：当道、佛、上帝相遇于递归的中心](./articles/2025-09-23-the-eternal-fixed-point.md)
