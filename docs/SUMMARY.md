@@ -260,6 +260,7 @@
 - [GEZP统一论：Gödel-Entanglement-ZKP-P/NP统一论（资源有界不完备框架下的四域等价性）2025-10-14](./pure-zeta/gezp-godel-entanglement-zkp-pnp-unity.md)
 - [信息宇宙计算论（ICT）：基于ζ三元守恒和RKU资源有界的宇宙信息计算本体论 2025-10-14](./pure-zeta/ict-infoverse-computational-theory.md)
 - [信息宇宙细胞自动机（ICA）：基于ζ三元守恒的离散宇宙模型 2025-10-14](./pure-zeta/ica-infoverse-cellular-automaton.md)
+- [精度不确定性涌现论（PUET）：宇宙离散本质与观察者独立计算的统一框架 2025-10-14](./pure-zeta/puet-precision-uncertainty-emergence-theory.md)
 
 - [哲思长文]()
     - [永恒的不动点：当道、佛、上帝相遇于递归的中心](./articles/2025-09-23-the-eternal-fixed-point.md)
