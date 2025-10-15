@@ -49,8 +49,8 @@ $$
 - This page accumulates canonical RH‑related statements tied to L00 forms; same‑layer references are forbidden.
 
 ## Proof chain bullets (from original sources; upward only)
-- From the completed functional equation $\xi(s)=\xi(1-s)$ (L00; source: `docs/zeta_theorems.md`), symmetry claims on the critical line are anchored.
-- From the explicit formula $\psi(x)=x-\sum_{\rho}x^{\rho}/\rho-\log(2\pi)-\tfrac{1}{2}\log(1-x^{-2})$ (L00 dependency; source: `docs/zeta_theorems.md`), prime‑zero correspondences are derived.
-- GUE spacing $P(s)=\tfrac{32}{\pi^2}s^{2}\exp\!(-\tfrac{4}{\pi}s^{2})$ (source: `docs/zeta_theorems.md`) is the canonical spacing model referenced here; pair correlation $R_{2}(x)=1-(\sin \pi x / \pi x)^{2}$ is used accordingly.
-- Zero‑counting formulas $N(T)$ (two canonical forms) are imported from `docs/zeta_theorems.md` and must not be abbreviated.
-- Triadic information $\mathcal{I}_{\text{total}}(s),\ \mathcal{I}_{\pm,0}(s)$ and normalized $i_{\alpha}(s)$ (L00; sources: `docs/zeta_theorems.md`, `docs/zeta_rh_equivalences.md`) provide the quantitative basis for information‑balance statements cited in RH contexts.
+- Completed functional equation $\xi(s)=\xi(1-s)$（L00）— 引用 `docs/zeta/zeta-analytic-continuation-chaos.md` 的具体小节。
+- 显式公式 $\psi(x)=x-\sum_{\rho}x^{\rho}/\rho-\log(2\pi)-\tfrac{1}{2}\log(1-x^{-2})$（L00 依赖）— 引用 `docs/zeta/zeta-series-product-analysis.md` 与 `docs/zeta/zeta-analytic-continuation-chaos.md`。
+- GUE 间距 $P(s)=\tfrac{32}{\pi^2}s^{2}\exp\!(-\tfrac{4}{\pi}s^{2})$ 与配对相关 $R_{2}(x)=1-(\sin \pi x / \pi x)^{2}$ — 引用 `docs/zeta/zeta-quantum-classical-phase-transition.md`, `docs/zeta/zeta-prime-distribution-random-matrix.md` 的相应章节。
+- 零点计数 $N(T)$ 两种规范形式 — 引用 `docs/zeta/zeta-series-product-analysis.md`（或项目认可的专门计数条目）。
+- 三分信息 $\mathcal{I}_{\text{total}}(s),\ \mathcal{I}_{\pm,0}(s)$ 与 $i_{\alpha}(s)$（L00）— 引用 `docs/zeta/zeta-analytic-continuation-chaos.md`, `docs/zeta/zeta-series-product-analysis.md` 的相关定义小节。
