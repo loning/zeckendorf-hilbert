@@ -3,6 +3,7 @@
 ## Dependencies (Upward)
 - L02 · ../L02/explicit_formula_compendium_en.md
 - L02 · ../L02/montgomery_unfolding_en.md
+- L02 · ../L02/classical_criteria_chains_en.md
 - L01 · ../L01/riemann_von_mangoldt_en.md
 - L00 · ../L00/zeta_foundations_en.md
 

@@ -45,3 +45,6 @@
 - Robin Criterion (canonical page drawing from L00 foundations)
 - Farey Sequence Deviations (canonical page drawing from L00 foundations)
 - de Branges Spaces (canonical page drawing from L00 foundations)
+- Beurling Generalized Primes (canonical page drawing from L00 foundations)
+- Koopman Operator & Spectrum (canonical page drawing from L00 foundations)
+- Argument Principle (canonical page drawing from L00 foundations)
