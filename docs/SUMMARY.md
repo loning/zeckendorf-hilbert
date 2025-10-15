@@ -264,6 +264,7 @@
 - [ICA中"决定"涌现机制与量子自由意志模拟理论（ICA-QFWET）](./pure-zeta/ica-qfwet-decision-emergence-quantum-free-will.md)
 - [ICA意识相位场涌现论（ICA-CPF）](./pure-zeta/ica-cpf-consciousness-phase-field-emergence-theory.md)
 - [TSRKT图灵模拟Re-Key论：基于ζ三元守恒的宇宙意识涌现框架 2025-10-14](./pure-zeta/tsrkt-turing-simulated-rekey-theory.md)
+- [ICA Re-Key预测模型与意识论（ICA-RPM）：预测模型、Re-Key选择、信息守恒、意识相位场、预测自由度、NGV不可分辨、11维相位闭合、und模式、固定vs随机策略 2025-10-15](./pure-zeta/ica-rpm-rekey-prediction-model-consciousness.md)
 
 - [哲思长文]()
     - [永恒的不动点：当道、佛、上帝相遇于递归的中心](./articles/2025-09-23-the-eternal-fixed-point.md)
