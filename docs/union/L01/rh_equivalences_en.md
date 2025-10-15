@@ -48,9 +48,12 @@ $$
 ## Dense Summary (non‑canonical)
 - This page accumulates canonical RH‑related statements tied to L00 forms; same‑layer references are forbidden.
 
+## Pair-correlation derivations context (reference note)
+This page uses the canonical pair‑correlation form alongside GUE spacing. For derivation contexts and normalization choices, see the original non‑summary files under `docs/zeta/zeta-prime-distribution-random-matrix.md` and the project’s admitted physics bridge `docs/zeta-publish/zeta-quantum-classical-phase-transition.md`.
+
 ## Proof chain bullets (from original sources; upward only)
-- Completed functional equation $\xi(s)=\xi(1-s)$（L00）— 引用 `docs/zeta/zeta-analytic-continuation-chaos.md` 的具体小节。
-- 显式公式 $\psi(x)=x-\sum_{\rho}x^{\rho}/\rho-\log(2\pi)-\tfrac{1}{2}\log(1-x^{-2})$（L00 依赖）— 引用 `docs/zeta/zeta-series-product-analysis.md` 与 `docs/zeta/zeta-analytic-continuation-chaos.md`。
-- GUE 间距 $P(s)=\tfrac{32}{\pi^2}s^{2}\exp\!(-\tfrac{4}{\pi}s^{2})$ 与配对相关 $R_{2}(x)=1-(\sin \pi x / \pi x)^{2}$ — 引用 `docs/zeta/zeta-quantum-classical-phase-transition.md`, `docs/zeta/zeta-prime-distribution-random-matrix.md` 的相应章节。
-- 零点计数 $N(T)$ 两种规范形式 — 引用 `docs/zeta/zeta-series-product-analysis.md`（或项目认可的专门计数条目）。
-- 三分信息 $\mathcal{I}_{\text{total}}(s),\ \mathcal{I}_{\pm,0}(s)$ 与 $i_{\alpha}(s)$（L00）— 引用 `docs/zeta/zeta-analytic-continuation-chaos.md`, `docs/zeta/zeta-series-product-analysis.md` 的相关定义小节。
+- Completed functional equation $\xi(s)=\xi(1-s)$ — cite `docs/pure-zeta/zeta-analytic-continuation-chaos.md` (derivation and completion details).
+- Explicit formula for $\psi(x)$ — cite `docs/zeta/zeta-series-product-analysis.md` (canonical grouping) together with `docs/pure-zeta/zeta-analytic-continuation-chaos.md`.
+- GUE spacing $P(s)=\tfrac{32}{\pi^2}s^{2}\exp(-\tfrac{4}{\pi}s^{2})$ and pair correlation $R_2(x)=1-(\sin \pi x/\pi x)^2$ — cite `docs/zeta/zeta-prime-distribution-random-matrix.md` and `docs/zeta-publish/zeta-quantum-classical-phase-transition.md`.
+- Zero counting $N(T)$ (both canonical forms recorded) — cite `docs/zeta/zeta-series-product-analysis.md`.
+- Triadic information $\mathcal{I}_{\text{total}},\ \mathcal{I}_{\pm,0},\ i_{\alpha}$ — cite `docs/pure-zeta/zeta-analytic-continuation-chaos.md` and `docs/zeta/zeta-series-product-analysis.md` (exact definitions).

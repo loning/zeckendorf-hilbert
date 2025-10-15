@@ -18,4 +18,4 @@ Negative‑information “compensation” is recorded at the operator/entropy le
 
 ## Proof chain bullets (from original sources; upward only)
 - Cite `docs/the-matrix/01-foundations/1.22-negative-information-compensation-mechanism.md` for the project’s admitted compensation mechanism.
-- Bernoulli values must cite L01/bernoulli_neg_values_en.md and the upstream canonical entries in `docs/zeta/zeta-series-product-analysis.md`.
+- Bernoulli values must cite the upstream canonical entries in `docs/zeta/zeta-series-product-analysis.md` (Bernoulli generating function and negative values); avoid same‑layer cross‑links.

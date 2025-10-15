@@ -24,6 +24,6 @@ Non‑divergent embeddings and balanced spectral distributions are used to ancho
 - No same‑layer referencing is permitted; each mapping is stated with full formulas where applicable and cites L00 pages.
 
 ## Proof chain bullets (from original sources; upward only)
-- M1 aligns triadic components $i_{\alpha}(s)$ (L00; sources: `docs/zeta_theorems.md`, `docs/zeta_rh_equivalences.md`) with computational semantics; the alignment is an identity‑style correspondence, not a reformulation of the canonical formulas.
+- M1 aligns triadic components $i_{\alpha}(s)$ (L00; sources: `docs/pure-zeta/zeta-analytic-continuation-chaos.md`, `docs/zeta/zeta-series-product-analysis.md`) with computational semantics; the alignment is an identity‑style correspondence, not a reformulation of the canonical formulas.
 - M2 uses generating‑function and normalized vector mapping; cite L00 Hilbert (Gram–Schmidt, norms) and Matrix foundations (`docs/the-matrix/01-foundations/` for generating functions/rows).
-- M3 refers to critical‑line symmetry $\xi(s)=\xi(1-s)$ and explicit‑formula boundary data (L00 Zeta foundations; `docs/zeta_theorems.md`). Any spectral interpretation must remain in multi‑view notes unless explicitly canonized.
+- M3 refers to critical‑line symmetry $\xi(s)=\xi(1-s)$ and explicit‑formula boundary data (L00 Zeta foundations); any spectral interpretation must remain in multi‑view notes unless explicitly canonized.

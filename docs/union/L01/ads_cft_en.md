@@ -27,7 +27,7 @@ $$
 \,ds^{2} = \frac{L^{2}}{z^{2}}\,\big( dz^{2} + \eta_{\mu\nu}\,dx^{\mu}\,dx^{\nu} \big),\qquad z>0.
 $$
 
-## Fefferman–Graham Expansion (canonical schematic)
+## Fefferman–Graham Expansion (canonical form)
 $$
 \,ds^{2} = \frac{L^{2}}{z^{2}}\,\Big( dz^{2} + g_{ij}(x,z)\,dx^{i}\,dx^{j} \Big),\qquad g_{ij}(x,z) = g_{ij}^{(0)}(x) + z^{2}\,g_{ij}^{(2)}(x) + \cdots.
 $$
@@ -39,4 +39,4 @@ $$
 ## Proof chain bullets (from original sources; upward only)
 - GKPW and RT/HRT must cite the source documents under `docs/zeta/zeta-ads-cft-correspondence*.md` (and physics references admitted by the project), keeping formulas in full.
 - AdS metric and FG expansion in Poincaré patch must cite canonical AdS references and the admitted project pages (e.g., `docs/zeta/zeta-ads-cft-correspondence.md`).
-- Any linkage to boundary symmetry must cite the completed functional equation $\xi(s)=\xi(1-s)$ recorded in L00 (`docs/zeta_theorems.md`).
+- Any linkage to boundary symmetry must cite the completed functional equation $\xi(s)=\xi(1-s)$ recorded in L00 (`docs/union/L00/zeta_foundations_en.md`).

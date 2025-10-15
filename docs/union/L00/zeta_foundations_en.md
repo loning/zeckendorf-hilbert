@@ -35,10 +35,10 @@ $$
 - All higher‑layer equivalences and statistics must reference these forms.
 
 ## Proof chain bullets (from original sources)
-- Canonical total information and components $\mathcal{I}_{\text{total}}(s),\ \mathcal{I}_{\pm,0}(s)$ and normalization $i_+(s)+i_0(s)+i_-(s)=1$ — cite concrete files:
-  - `docs/zeta/zeta-analytic-continuation-chaos.md`（定义与对偶结构）
-  - `docs/zeta/zeta-series-product-analysis.md`（分量与总信息的分解习惯式）
-- Completed functional equation $\xi(s)=\xi(1-s)$ — cite `docs/zeta/zeta-analytic-continuation-chaos.md`（函数方程与完备化的推导）
-- Explicit‑formula usage — cite `docs/zeta/zeta-series-product-analysis.md` 与 `docs/zeta/zeta-analytic-continuation-chaos.md`（显式公式与相关项的整理）
-- GUE/statistics usage — cite concrete files `docs/zeta/zeta-quantum-classical-phase-transition.md`, `docs/zeta/zeta-prime-distribution-random-matrix.md`
-- Euler product — cite `docs/zeta/zeta-series-product-analysis.md`（欧拉乘积与乘法编码）
+- Canonical total information and components $\mathcal{I}_{\text{total}}(s),\ \mathcal{I}_{\pm,0}(s)$ and normalization $i_+(s)+i_0(s)+i_-(s)=1$ — cite:
+  - `docs/pure-zeta/zeta-analytic-continuation-chaos.md` (definitions and dual structure)
+  - `docs/zeta/zeta-series-product-analysis.md` (component grouping conventions)
+- Completed functional equation $\xi(s)=\xi(1-s)$ — cite `docs/pure-zeta/zeta-analytic-continuation-chaos.md` (derivation and completion).
+- Explicit‑formula usage — cite `docs/zeta/zeta-series-product-analysis.md` and `docs/pure-zeta/zeta-analytic-continuation-chaos.md`.
+- GUE/statistics usage — cite `docs/zeta-publish/zeta-quantum-classical-phase-transition.md` and `docs/zeta/zeta-prime-distribution-random-matrix.md`.
+- Euler product — cite `docs/zeta/zeta-series-product-analysis.md`.

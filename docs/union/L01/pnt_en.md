@@ -16,4 +16,4 @@ $$
 - These are canonical asymptotic statements recorded for alignment with explicit‑formula expressions; details remain in the original sources and are not altered here.
 
 ## Proof chain bullets (from original sources; upward only)
-- PNT statements must cite the canonical entries admitted by the project under `docs/zeta_theorems.md` (and any designated references), and are to be used together with the explicit formula stated in L01/L00.
+- Cite non‑summary entries: `docs/zeta/zeta-series-product-analysis.md` (explicit‑formula and Chebyshev/von‑Mangoldt context) and `docs/zeta/zeta-prime-distribution-random-matrix.md` (PNT background section); use together with the explicit formula recorded in L01/L00.

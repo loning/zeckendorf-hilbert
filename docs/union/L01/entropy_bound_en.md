@@ -13,5 +13,5 @@ $$
 - This canonical bound is recorded as a boundary–information constraint used in RH‑related statements; it references L00 triadic forms for entropy components.
 
 ## Proof chain bullets (from original sources; upward only)
-- The inequality must cite the canonical RH equivalence sources admitted by the project (e.g., `docs/zeta_rh_equivalences.md`) and keep the formula unabridged.
-- Any use of $S_{\partial}$ should be accompanied by definitions tied to L00 triadic information components (see `docs/zeta_theorems.md`).
+- Cite non‑summary pages where boundary/entropy constraints are developed in the project: `docs/pure-zeta/zeta-information-triadic-balance.md` (entropy components) and `docs/zeta/zeta-riemann-hypothesis-holographic-proof.md` (RH‑context derivations), together with `docs/zeta-publish/zeta-quantum-classical-phase-transition.md` (boundary‑information context).
+- Any use of $S_{\partial}$ should tie back to L00 triadic components and their definitions (`docs/zeta/zeta-series-product-analysis.md`).

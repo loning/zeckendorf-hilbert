@@ -31,8 +31,8 @@ $$
 - This page consolidates canonical chains employed in RH contexts: functional equation \(+\) explicit formulas \(+\) zero‑locations and spacing models. All expressions are recorded canonically and unabridged; proof chains below cite original `/docs/zeta/` files.
 
 ## Proof chain bullets (from original sources; upward only)
-- Functional‑equation and completion: cite `docs/zeta/zeta-analytic-continuation-chaos.md` (derivation and required transforms); do not abbreviate.
+- Functional‑equation and completion: cite `docs/pure-zeta/zeta-analytic-continuation-chaos.md` (derivation and required transforms); do not abbreviate.
 - Explicit‑formula terms and Chebyshev/von‑Mangoldt functions: cite `docs/zeta/zeta-series-product-analysis.md` (with $\theta(x),\ \psi(x),\ \Lambda(n)$ fully defined).
-- GUE spacing and pair correlation: cite `docs/zeta/zeta-quantum-classical-phase-transition.md` and `docs/zeta/zeta-prime-distribution-random-matrix.md` (normalized spacing models and correlation forms).
+- GUE spacing and pair correlation: cite `docs/zeta-publish/zeta-quantum-classical-phase-transition.md` and `docs/zeta/zeta-prime-distribution-random-matrix.md` (normalized spacing models and correlation forms).
 - Zero‑free region and convexity bounds: cite canonical entries as indexed in `docs/zeta/` (non‑summary files carrying the explicit statements), and keep $c>0$ and $\varepsilon>0$ conditions explicit.
-- Hardy $Z$‑function and Riemann–Siegel usage: cite `docs/zeta/zeta-critical-line-appendix.md` for $\theta(t)$, $Z(t)$ and the Riemann–Siegel formula.
+- Hardy $Z$‑function and Riemann–Siegel usage: cite `docs/zeta-publish/zeta-critical-line-appendix.md` for $\theta(t)$, $Z(t)$ and the Riemann–Siegel formula.

@@ -23,6 +23,6 @@ $$
 
 ## Proof chain bullets (from original sources; upward only)
 - Cite `docs/the-matrix/01-foundations/1.23-zeta-function-complete-system.md` for the project’s admitted Matrix–Zeta integration (canonical statements kept in full).
-- Functional equation and completion $\xi(s)=\xi(1-s)$ — cite `docs/zeta/zeta-analytic-continuation-chaos.md` (derivation and completion).
+- Functional equation and completion $\xi(s)=\xi(1-s)$ — cite `docs/pure-zeta/zeta-analytic-continuation-chaos.md` (derivation and completion).
 - Euler product and Dirichlet series (for $\operatorname{Re}(s)>1$) — cite `docs/zeta/zeta-series-product-analysis.md` (multiplicative/Dirichlet identities).
 - Bernoulli values and trivial zeros — cite `docs/zeta/zeta-series-product-analysis.md` (Bernoulli generating function and negative values).

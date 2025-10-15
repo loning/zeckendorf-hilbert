@@ -18,5 +18,5 @@ which provides analytic continuation of $\zeta(s)$ away from $s=1$.
 - The canonical identity $\eta(s)=(1-2^{1-s})\zeta(s)$ is recorded to support analytic‑continuation arguments without altering source formulas.
 
 ## Proof chain bullets (from original sources; upward only)
-- Cite `docs/zeta/zeta-analytic-continuation-chaos.md` for the alternating series and its relation to $\zeta(s)$; keep the $(1-2^{1-s})$ factor explicit.
-- Any use in functional‑equation derivations must reference L01/functional_equation_derivation_en.md and L00 $\xi(s)$.
+- Cite `docs/pure-zeta/zeta-analytic-continuation-chaos.md` for the alternating series and its relation to $\zeta(s)$; keep the $(1-2^{1-s})$ factor explicit.
+- Any use in functional‑equation derivations should cite `docs/pure-zeta/zeta-analytic-continuation-chaos.md` (functional‑equation context) and the completed function in L00; avoid same‑layer cross‑links.

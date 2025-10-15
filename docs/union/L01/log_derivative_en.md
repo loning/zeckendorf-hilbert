@@ -11,7 +11,7 @@ $$
 with $\Lambda(n)$ the von Mangoldt function.
 
 ## Canonical Partial-Fraction Type Relation (recorded in the union)
-In terms of zeros and poles, one writes schematically
+In terms of zeros and poles, one writes
 $$
 \frac{\zeta'(s)}{\zeta(s)} = \sum_{\rho} \frac{1}{s-\rho} + \text{(pole/trivial-zero terms)}\,\,+\,\text{(regular part)},
 $$
@@ -22,4 +22,4 @@ with convergence and grouping handled canonically as in the admitted sources.
 
 ## Proof chain bullets (from original sources; upward only)
 - Cite `docs/zeta/zeta-series-product-analysis.md` for the Dirichlet‑series identity and grouping conventions.
-- When combined with explicit formula, cite L01/explicit_formula_variants_en.md and L00 foundations.
+- When combined with explicit formulas, cite `docs/zeta/zeta-series-product-analysis.md` (explicit‑formula entries) and L00 foundations.

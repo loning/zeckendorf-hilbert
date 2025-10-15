@@ -21,5 +21,5 @@ $$
 - Canonical steps are collected here to reference analytic continuation without changing source expressions; all uses must cite original files.
 
 ## Proof chain bullets (from original sources; upward only)
-- Cite `docs/zeta/zeta-analytic-continuation-chaos.md` for the derivations involving $\Gamma$ reflection and the functional equation.
-- Cite the Mellin representation and its conditions from `docs/zeta/zeta-analytic-continuation-chaos.md`.
+- Cite `docs/pure-zeta/zeta-analytic-continuation-chaos.md` for the derivations involving $\Gamma$ reflection and the functional equation.
+- Cite the Mellin representation and its conditions from `docs/pure-zeta/zeta-analytic-continuation-chaos.md`.

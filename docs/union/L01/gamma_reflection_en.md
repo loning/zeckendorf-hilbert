@@ -13,4 +13,4 @@ $$
 - The reflection formula is recorded canonically for use with functional equations and analytic continuation; usage must keep the formula unabridged.
 
 ## Proof chain bullets (from original sources; upward only)
-- Cite `docs/zeta/zeta-analytic-continuation-chaos.md` where the reflection formula is employed in deriving the functional equation.
+- Cite `docs/pure-zeta/zeta-analytic-continuation-chaos.md` where the reflection formula is employed in deriving the functional equation.

@@ -14,5 +14,5 @@ with trivial‑zero and pole contributions recorded as the logarithmic terms.
 - This page stores canonical variants of the explicit formula to avoid restating them elsewhere; use as the anchor for prime‑oscillation arguments.
 
 ## Proof chain bullets (from original sources; upward only)
-- 引用 `docs/zeta/zeta-series-product-analysis.md`（显式公式的组分与整理）与 `docs/zeta/zeta-analytic-continuation-chaos.md`（解析延拓下的等价形式）。
-- 必须保持对数项、平凡零与极点的分配形式完整，不得缩写或改写。
+- Cite `docs/zeta/zeta-series-product-analysis.md` (explicit‑formula components and grouping) and `docs/pure-zeta/zeta-analytic-continuation-chaos.md` (equivalent forms under analytic continuation).
+- Keep logarithmic terms, trivial zeros and pole contributions exactly as in the source; no abbreviation or reshuffling.

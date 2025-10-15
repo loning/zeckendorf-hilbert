@@ -26,6 +26,6 @@ $$
 - All formulas remain canonical and unmodified; any complexity‑class claim is deferred to discussion.
 
 ## Proof chain bullets (from original sources; upward only)
-- Triadic canonical formulas must cite `docs/zeta_theorems.md` and `docs/zeta_rh_equivalences.md`.
+- Triadic canonical formulas must cite `docs/pure-zeta/zeta-analytic-continuation-chaos.md` and `docs/zeta/zeta-series-product-analysis.md` (definitions and grouping).
 - Any use of “polynomial verification / exponential solving” must cite the project’s admitted pages under `docs/pure-zeta/zeta-pnp-information-theoretic-framework.md` (or designated complexity references), and remain as a mapping record, not a formal proof.
 - If upper layers employ Matrix growth/entropy‑rate forms, they must cite L00 Matrix foundations and `docs/the-matrix/01-foundations/1.4-k-bonacci-recursion.md`.

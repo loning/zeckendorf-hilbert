@@ -20,5 +20,5 @@ used to normalize oscillatory terms in the Riemann–Siegel formula.
 - $\theta(t)$ is stored canonically for use with $Z(t)$ and critical‑line evaluations; bounds and refinements must cite the admitted analytic references in the project.
 
 ## Proof chain bullets (from original sources; upward only)
-- Cite `docs/zeta/zeta-critical-line-appendix.md` for the canonical definitions and asymptotics recorded by the project.
-- When pairing with $Z(t)$, cite L01/hardy_z_en.md; for explicit‑formula coupling, cite L01/explicit_formula_variants_en.md.
+- Cite `docs/zeta-publish/zeta-critical-line-appendix.md` for the canonical definitions and asymptotics recorded by the project.
+- For explicit‑formula coupling, cite `docs/zeta/zeta-series-product-analysis.md`; avoid same‑layer references by linking directly to original sources.

@@ -14,4 +14,4 @@ with refinements available in the admitted sources.
 - Stirling’s formula is recorded canonically to support functional‑equation and theta‑function analyses.
 
 ## Proof chain bullets (from original sources; upward only)
-- Cite `docs/zeta/zeta-analytic-continuation-chaos.md` where Stirling’s formula is invoked for $\Gamma$‑function estimates.
+- Cite `docs/pure-zeta/zeta-analytic-continuation-chaos.md` where Stirling’s formula is invoked for $\Gamma$‑function estimates.

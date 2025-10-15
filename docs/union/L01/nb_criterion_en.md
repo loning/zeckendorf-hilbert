@@ -19,5 +19,5 @@ is dense in $L^{2}(0,1)$ under the constraint that $\sum_{k} c_{k}/\alpha_{k} = 
 - This is a canonical functional‑analytic equivalence for RH; in the union it is recorded to align geometry–information forms without altering the statement.
 
 ## Proof chain bullets (from original sources; upward only)
-- Cite the canonical NB references admitted by the project (`docs/zeta_theorems.md` indexing the criterion) and keep formulas in full.
+- Cite non‑summary NB discussions admitted by the project: `docs/pure-zeta/tphi-h5-five-fold-equivalence-theorem_en.md` (Beurling–Nyman density criterion context) and `docs/pure-zeta/zeta-strange-loop-recursive-closure.md` (L² approximation framing); keep the canonical statement in full.
 - Any mapping to Hilbert embeddings must cite L00 Hilbert foundations and remain in multi‑view notes.

@@ -18,5 +18,5 @@ $$
 - The operator captures a balance of entropy components at zeros; all symbols must be defined via L00 canonical triadic forms; the equivalence is recorded as canonical usage and does not alter the original statements.
 
 ## Proof chain bullets (from original sources; upward only)
-- Cite the canonical sources that formulate the compensation operator and the equivalence (e.g., `docs/zeta_rh_equivalences.md`), keeping formulas in full.
-- Entropy terms $S_{\alpha}(\rho)$ and normalized $i_{\alpha}(s)$ must cite L00 (`docs/zeta_theorems.md`).
+- Cite non‑summary sources where the compensation/operator framing appears in the project and RH context is discussed: `docs/pure-zeta/zeta-information-triadic-balance.md` and `docs/zeta/zeta-riemann-hypothesis-holographic-proof.md`; keep formulas in full.
+- Entropy terms $S_{\alpha}(\rho)$ and normalized $i_{\alpha}(s)$ must cite L00 and the explicit component definitions in `docs/zeta/zeta-series-product-analysis.md`.

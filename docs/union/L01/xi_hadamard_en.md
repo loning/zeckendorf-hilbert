@@ -22,5 +22,5 @@ with convergence understood in the canonical sense by zero pairing; this is used
 - The Hadamard product encodes the zeros of $\xi(s)$ as an entire function; the union records it canonically for use in zero‑counting and explicit‑formula arguments.
 
 ## Proof chain bullets (from original sources; upward only)
-- The product and its convergence scheme must cite the canonical Hadamard factorization entries admitted in `docs/zeta_theorems.md`.
-- Any use of the logarithmic derivative for zero statistics must explicitly reference this canonical product and the explicit formula recorded in L00/L01 pages.
+- Cite non‑summary entries where Hadamard product usage is recorded in the project, e.g., `docs/zeta/zeta-series-product-analysis.md` (Hadamard product mention) and related canonical pages; keep the convergence pairing scheme intact.
+- Any use of the logarithmic derivative for zero statistics must reference this canonical product and the explicit formula recorded in L00/L01 pages.

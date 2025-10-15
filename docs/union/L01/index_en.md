@@ -41,3 +41,7 @@
 - Explicit Formula for $\theta(x)$ (canonical page drawing from L00 foundations)
 - Quantum–Classical Duality (canonical page drawing from L00 foundations)
 - Zeta–Hilbert Extension (canonical page drawing from L00 foundations)
+- Lagarias Criterion (canonical page drawing from L00 foundations)
+- Robin Criterion (canonical page drawing from L00 foundations)
+- Farey Sequence Deviations (canonical page drawing from L00 foundations)
+- de Branges Spaces (canonical page drawing from L00 foundations)

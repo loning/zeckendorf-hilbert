@@ -14,5 +14,5 @@ $$
 - This page stores the canonical Mellin integral used to connect $\zeta(s)$ with analytic transforms; all usage must keep the integral and $\Gamma(s)$ factor intact.
 
 ## Proof chain bullets (from original sources; upward only)
-- Cite `docs/zeta/zeta-analytic-continuation-chaos.md` for the integral representation and $\Gamma$‑function identities involved.
-- When combining with explicit formulas, cite L01/explicit_formula_variants_en.md and L00 Zeta foundations.
+- Cite `docs/pure-zeta/zeta-analytic-continuation-chaos.md` for the integral representation and $\Gamma$‑function identities involved.
+- When combining with explicit formulas, cite `docs/zeta/zeta-series-product-analysis.md`; keep the $\Gamma(s)^{-1}$ factor explicit.
