@@ -229,6 +229,7 @@
     - [Riemann Zeta函数的多基数混沌极限统一理论：从φ到r^-的普适对数周期相变 2025-10-08 22:30](./pure-zeta/zeta-multi-base-chaos-limits.md)
     - [Zeckendorf表示在Zeta零点分形框架中的严格整合理论 2025-10-09 05:02](./pure-zeta/zeta-zeckendorf-fractal-integration.md)
     - [k阶黄金比与π-e-φ三元自相似统一框架 2025-10-10 11:56](./pure-zeta/zeta-k-bonacci-pi-e-phi-unified-framework.md)
+    - [k-Order Golden Ratio and π-e-φ Triadic Self-Similar Unified Framework](./pure-zeta/zeta-k-bonacci-pi-e-phi-unified-framework_en.md)
     - [质量-意识时空扭曲等价理论的完整框架 2025-10-10 12:49](./pure-zeta/zeta-mass-consciousness-spacetime-equivalence.md)
     - [The Complete Framework for Mass-Consciousness Spacetime Equivalence Theory 2025-10-10 12:49](./pure-zeta/zeta-mass-consciousness-spacetime-equivalence_en.md)
     - [ζ-宇宙信息守恒理论的完整框架：基于Riemann ζ函数的四通道与三分信息整合 2025-10-10 14:11](./pure-zeta/zeta-universe-information-conservation-unified.md)
