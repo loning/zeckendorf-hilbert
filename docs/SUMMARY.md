@@ -276,6 +276,8 @@
     - [ICA Re-Key预测模型与意识论（ICA-RPM）：预测模型、Re-Key选择、信息守恒、意识相位场、预测自由度、NGV不可分辨、11维相位闭合、und模式、固定vs随机策略 2025-10-15](./pure-zeta/ica-rpm-rekey-prediction-model-consciousness.md)
 - [统一静态信息宇宙理论（USIT）：从ICA细胞自动机到无限嵌套11维结构的完备框架 2025-10-16](./pure-zeta/unified-static-infoverse-theory.md)
 - [Unified Static Infoverse Theory (USIT): A Complete Framework from ICA Cellular Automata to Infinite 11-Dimensional Nested Structures 2025-10-16](./pure-zeta/unified-static-infoverse-theory_en.md)
+- [统一静态信息平衡宇宙理论（USIBU v2.0）](./pure-zeta/unified-static-information-balanced-universe-theory.md)
+- [Unified Static Information-Balanced Universe Theory (USIBU v2.0)](./pure-zeta/unified-static-information-balanced-universe-theory_en.md)
 
 - [哲思长文]()
     - [永恒的不动点：当道、佛、上帝相遇于递归的中心](./articles/2025-09-23-the-eternal-fixed-point.md)
