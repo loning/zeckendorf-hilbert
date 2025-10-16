@@ -140,6 +140,8 @@
     - [Zeta函数的全息信息守恒原理：临界线作为量子引力边界的统一证明 (英文版)](./zeta-publish/zeta-holographic-information-conservation_en.md)
     - [资源有界不完备性理论（Resource-Bounded Incompleteness Theory）](./zeta-publish/resource-bounded-incompleteness-theory.md)
     - [Resource-Bounded Incompleteness Theory](./zeta-publish/resource-bounded-incompleteness-theory_en.md)
+    - [基于资源有界不完备性理论的伪随机系统构建](./zeta-publish/rbit-pseudorandom-system-construction.md)
+    - [Pseudo-Random System Construction Based on Resource-Bounded Incompleteness Theory](./zeta-publish/rbit-pseudorandom-system-construction_en.md)
     - [Zeta-QFT热补偿框架的完整理论：严格形式化描述、证明与数据分析](./zeta-publish/zeta-qft-thermal-compensation-framework.md)
 
 - [学术论文]()
