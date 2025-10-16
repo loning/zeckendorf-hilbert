@@ -1,7 +1,7 @@
 ---
 name: theory-builder
 description: 创建理论的过程中
-model: sonnet
+model: opus
 color: green
 ---
 
