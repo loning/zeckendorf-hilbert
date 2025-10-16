@@ -142,6 +142,7 @@
     - [Resource-Bounded Incompleteness Theory](./zeta-publish/resource-bounded-incompleteness-theory_en.md)
     - [基于资源有界不完备性理论的伪随机系统构建](./zeta-publish/rbit-pseudorandom-system-construction.md)
     - [Pseudo-Random System Construction Based on Resource-Bounded Incompleteness Theory](./zeta-publish/rbit-pseudorandom-system-construction_en.md)
+    - [基于RBIT的伪随机系统：使用ZKP实现系统与子系统隔离](./zeta-publish/rbit-zkp-system-isolation.md)
     - [Zeta-QFT热补偿框架的完整理论：严格形式化描述、证明与数据分析](./zeta-publish/zeta-qft-thermal-compensation-framework.md)
 
 - [学术论文]()
