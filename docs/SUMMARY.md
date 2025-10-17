@@ -146,6 +146,8 @@
     - [Zeta-QFT热补偿框架的完整理论：严格形式化描述、证明与数据分析](./zeta-publish/zeta-qft-thermal-compensation-framework.md)
     - [静态块元胞自动机理论：从动态演化到全时空图的形式化重构](./zeta-publish/static-block-cellular-automata-theory.md)
     - [Static Block Cellular Automata Theory: A Formal Reconstruction from Dynamic Evolution to Spacetime Graphs](./zeta-publish/static-block-cellular-automata-theory_en.md)
+    - [静态块量子元胞自动机理论：从动态演化到全时空量子图的形式化重构](./zeta-publish/static-block-quantum-cellular-automata-theory.md)
+    - [Static Block Quantum Cellular Automata Theory: A Formal Reconstruction from Dynamic Evolution to Full Spacetime Quantum Graphs](./zeta-publish/static-block-quantum-cellular-automata-theory_en.md)
 
 - [学术论文]()
     - [Zeta函数相关文档导航索引](./zeta_index.md)
