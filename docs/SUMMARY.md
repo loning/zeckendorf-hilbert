@@ -152,6 +152,8 @@
     - [Static Block Quantum Field Theory: A Formal Generalization from Discrete Quantum Cellular Automata to Continuous Spacetime](./zeta-publish/static-block-quantum-field-theory_en.md)
     - [静态块量子力学：从动态演化到永恒量子历史的全局表述与三分信息诠释](./zeta-publish/static-block-quantum-mechanics.md)
     - [Static Block Quantum Mechanics: A Global Formulation from Dynamic Evolution to Eternal Quantum Histories with Tripartite Information Interpretation](./zeta-publish/static-block-quantum-mechanics_en.md)
+    - [计算完备性与静态块元胞自动机的等价性：从计算封闭到时空静态结构的统一表述](./zeta-publish/computational-completeness-static-block-equivalence.md)
+    - [Computational Completeness and Static Block Cellular Automata Equivalence: A Unified Formulation from Computational Closure to Spatiotemporal Static Structure](./zeta-publish/computational-completeness-static-block-equivalence_en.md)
 
 - [学术论文]()
     - [Zeta函数相关文档导航索引](./zeta_index.md)
