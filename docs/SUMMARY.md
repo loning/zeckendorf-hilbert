@@ -144,6 +144,8 @@
     - [Pseudo-Random System Construction Based on Resource-Bounded Incompleteness Theory](./zeta-publish/rbit-pseudorandom-system-construction_en.md)
     - [基于RBIT的伪随机系统：使用ZKP实现系统与子系统隔离](./zeta-publish/rbit-zkp-system-isolation.md)
     - [Zeta-QFT热补偿框架的完整理论：严格形式化描述、证明与数据分析](./zeta-publish/zeta-qft-thermal-compensation-framework.md)
+    - [静态块元胞自动机理论：从动态演化到全时空图的形式化重构](./zeta-publish/static-block-cellular-automata-theory.md)
+    - [Static Block Cellular Automata Theory: A Formal Reconstruction from Dynamic Evolution to Spacetime Graphs](./zeta-publish/static-block-cellular-automata-theory_en.md)
 
 - [学术论文]()
     - [Zeta函数相关文档导航索引](./zeta_index.md)
@@ -274,6 +276,8 @@
     - [ICA意识相位场涌现论（ICA-CPF）](./pure-zeta/ica-cpf-consciousness-phase-field-emergence-theory.md)
     - [TSRKT图灵模拟Re-Key论：基于ζ三元守恒的宇宙意识涌现框架 2025-10-14](./pure-zeta/tsrkt-turing-simulated-rekey-theory.md)
     - [ICA Re-Key预测模型与意识论（ICA-RPM）：预测模型、Re-Key选择、信息守恒、意识相位场、预测自由度、NGV不可分辨、11维相位闭合、und模式、固定vs随机策略 2025-10-15](./pure-zeta/ica-rpm-rekey-prediction-model-consciousness.md)
+    - [静态全息图与观察者的Re-Key：宇宙作为永恒信息场的沉思 2025-10-16](./articles/2025-10-16-static-hologram-observer-key-cosmic-meditation.md)
+    - [Static Hologram and Observer Re-Key: Meditation on the Universe as Eternal Information Field 2025-10-16](./articles/2025-10-16-static-hologram-observer-key-cosmic-meditation_en.md)
 - [统一静态信息宇宙理论（USIT）：从ICA细胞自动机到无限嵌套11维结构的完备框架 2025-10-16](./pure-zeta/unified-static-infoverse-theory.md)
 - [Unified Static Infoverse Theory (USIT): A Complete Framework from ICA Cellular Automata to Infinite 11-Dimensional Nested Structures 2025-10-16](./pure-zeta/unified-static-infoverse-theory_en.md)
 - [统一静态信息平衡宇宙理论（USIBU v2.0）](./pure-zeta/unified-static-information-balanced-universe-theory.md)
