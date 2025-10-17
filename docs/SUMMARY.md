@@ -148,6 +148,8 @@
     - [Static Block Cellular Automata Theory: A Formal Reconstruction from Dynamic Evolution to Spacetime Graphs](./zeta-publish/static-block-cellular-automata-theory_en.md)
     - [静态块量子元胞自动机理论：从动态演化到全时空量子图的形式化重构](./zeta-publish/static-block-quantum-cellular-automata-theory.md)
     - [Static Block Quantum Cellular Automata Theory: A Formal Reconstruction from Dynamic Evolution to Full Spacetime Quantum Graphs](./zeta-publish/static-block-quantum-cellular-automata-theory_en.md)
+    - [静态块量子场论：从离散量子元胞自动机到连续时空的形式化推广](./zeta-publish/static-block-quantum-field-theory.md)
+    - [Static Block Quantum Field Theory: A Formal Generalization from Discrete Quantum Cellular Automata to Continuous Spacetime](./zeta-publish/static-block-quantum-field-theory_en.md)
 
 - [学术论文]()
     - [Zeta函数相关文档导航索引](./zeta_index.md)
