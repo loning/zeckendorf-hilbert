@@ -154,6 +154,8 @@
     - [Static Block Quantum Mechanics: A Global Formulation from Dynamic Evolution to Eternal Quantum Histories with Tripartite Information Interpretation](./zeta-publish/static-block-quantum-mechanics_en.md)
     - [计算完备性与静态块元胞自动机的等价性：从计算封闭到时空静态结构的统一表述](./zeta-publish/computational-completeness-static-block-equivalence.md)
     - [Computational Completeness and Static Block Cellular Automata Equivalence: A Unified Formulation from Computational Closure to Spatiotemporal Static Structure](./zeta-publish/computational-completeness-static-block-equivalence_en.md)
+    - [静态块计算的封闭宇宙统一理论（含图灵机对偶术语）](./zeta-publish/closed-world-static-block-unified-theory.md)
+    - [Unified Theory of Closed-World Static-Block Computation (with Turing-Machine Dual Terminology)](./zeta-publish/closed-world-static-block-unified-theory_en.md)
 
 - [学术论文]()
     - [Zeta函数相关文档导航索引](./zeta_index.md)
