@@ -159,6 +159,8 @@
     - [Computational Completeness and Static Block Cellular Automata Equivalence: A Unified Formulation from Computational Closure to Spatiotemporal Static Structure](./ca/computational-completeness-static-block-equivalence_en.md)
     - [静态块计算的封闭宇宙统一理论（含图灵机对偶术语）](./ca/closed-world-static-block-unified-theory.md)
     - [Unified Theory of Closed-World Static-Block Computation (with Turing-Machine Dual Terminology)](./ca/closed-world-static-block-unified-theory_en.md)
+- [EBOC：永恒-静态块观察-计算统一理论](./ca/eboc-unified-theory.md)
+    - [EBOC: Eternal-Block Observer-Computing Unified Theory](./ca/eboc-unified-theory_en.md)
 
 - [学术论文]()
     - [Zeta函数相关文档导航索引](./zeta_index.md)
