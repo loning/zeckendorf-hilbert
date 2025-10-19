@@ -93,7 +93,11 @@ $$
 \; +\;\big[\mathrm e^{-s t}N_{\mathbf v}(t)\big]_{0^+}^{\infty},
 $$
 
-当 $\Re s>\gamma_{\mathrm{abs}}+\varepsilon$ 时右端有界且边界项消失，得 (i)。反向取子列 $t_k\to\infty$ 使 $N_{\mathbf v}(t_k)\ge \mathrm e^{(\gamma_{\mathrm{abs}}-\varepsilon)t_k}$，与几何级数对比得 (ii)。$\square$
+当 $\Re s>\gamma_{\mathrm{abs}}+\varepsilon$ 时右端有界且边界项消失，得 (i)。反向取子列 $t_k\to\infty$ 使 $N_{\mathbf v}(t_k)\ge \mathrm e^{(\gamma_{\mathrm{abs}}-\varepsilon)t_k}$，与几何级数对比得 (ii)。该阈值等价于 Laplace–Stieltjes 变换的**收敛边界（abscissa）定理**：
+$$
+\sigma_a\;=\;\limsup_{t\to\infty}\frac{1}{t}\log N_{\mathbf v}(t),
+$$
+参见 Widder《The Laplace Transform》或 Doetsch《Laplace Transformation》。$\square$
 
 ---
 
@@ -131,7 +135,7 @@ $$
 
 其中 $H$ 在 $\Re s>\gamma_\ast-\eta$ 全纯。
 
-*证明*。记 $\mathrm dM_{\mathbf v}$ 为 $M_{\mathbf v}$ 的 Stieltjes 测度。对 $\Re s>\gamma_\ast$ 有
+*证明（补充与引用）。* 记 $\mathrm dM_{\mathbf v}$ 为 $M_{\mathbf v}$ 的 Stieltjes 测度。对 $\Re s>\gamma_\ast$ 有
 
 $$
 \mathcal L_{\mathbf v}(s)=\int_0^\infty \mathrm e^{-s t}\,\mathrm dM_{\mathbf v}(t)
@@ -145,7 +149,7 @@ s\,a_{\ell,r}\int_0^\infty t^r\,\mathrm e^{-(s-\gamma_\ell)t}\,\mathrm dt
 =s\,a_{\ell,r}\,\frac{r!}{(s-\gamma_\ell)^{r+1}},
 $$
 
-由解析延拓唯一性得结论。$\square$
+由解析延拓唯一性得结论。这可视为 Abelian/传递定理的直接实例：$\int_0^\infty t^r\mathrm e^{-(s-\gamma)t}\,dt=r!/(s-\gamma)^{r+1}$ 给出极点结构（参见 Flajolet–Sedgewick《Analytic Combinatorics》；Widder；Doetsch）。$\square$
 
 **计数版。** 对 $\mathscr N_{\mathbf v}$ 结论相同；若 $N_{\mathbf v}$ 的主项系数非负，则主部最高阶系数亦非负。
 
@@ -190,18 +194,18 @@ $$
 其中 $H$ 在该邻域全纯并沿垂线多项式增长。若 $N_{\mathbf v}$ 非减（或最终非减），则
 
 $$
-N_{\mathbf v}(t)=\frac{A_{-m}}{(m-1)!}\,\mathrm e^{\gamma_0 t}\,t^{m-1}
+N_{\mathbf v}(t)=\frac{A_{-m}}{\gamma_0\,(m-1)!}\,\mathrm e^{\gamma_0 t}\,t^{m-1}
 +o\!\big(\mathrm e^{\gamma_0 t}t^{m-1}\big)\qquad (t\to\infty).
 $$
 
-*证明要点。* 取 $\sigma>\gamma_0$，用 Laplace–Stieltjes 反演
+*证明要点（补充与引用）。* 取 $\sigma>\gamma_0$，用 Laplace–Stieltjes 反演
 
 $$
 \frac{N_{\mathbf v}(t+)+N_{\mathbf v}(t-)}{2}
 =\frac{1}{2\pi\mathrm i}\int_{\Re s=\sigma}\frac{\mathscr N_{\mathbf v}(s)}{s}\,\mathrm e^{s t}\,\mathrm ds,
 $$
 
-向左移路至 $\Re s=\gamma_0+\varepsilon$ 并取环绕 $s=\gamma_0$ 的小圆，主部来自该极点的留数；其余边界在单调性与 $H$ 的垂线增长控制下为低阶项。$\square$
+向左移路至 $\Re s=\gamma_0+\varepsilon$ 并取环绕 $s=\gamma_0$ 的小圆，主部来自该极点的留数；其余边界在单调性与 $H$ 的垂线增长控制下为低阶项。此为一侧 Tauberian 范畴的典型结论：对非减（或最终非减）$N_{\mathbf v}$，在 $s=\gamma_0$ 的有限阶极点蕴含 $N_{\mathbf v}(t)\sim c\,\mathrm e^{\gamma_0 t}t^{m-1}$（参见 Korevaar, Tauberian Theory；Feller, Vol. II）。$\square$
 
 *注。* 若失去单调性，可在全变差有界与局部平均化条件下得到 $\ll \mathrm e^{\gamma_0 t}t^{m-1}$ 的上界；等号型结论需更强 Tauberian 工具。
 
@@ -309,3 +313,13 @@ $$
 ## 结语
 
 沿方向的计数/加权累积将母映射的谱—尺度数据压缩为一元可检对象；当其呈有限的**指数–多项式**增长时，沿方向的 Laplace–Stieltjes 变换在适当半平面内**亚纯**，其**极点完全由主尺度决定**：位置等于指数率，阶至多为相应多项式次数加一。该方向版解析结构与 S4 的 EM 范式严格一致，并与 S2 的零集几何、S3 的完成函数模板互补，为后续 S6 的信息刻度与 S7 的 $L$-函数接口提供了可检、可拼接的极点—增长基线。
+
+---
+
+## 参考文献（指引性）
+
+1. D. V. Widder, The Laplace Transform, Princeton Univ. Press.
+2. G. Doetsch, Introduction to the Theory and Application of the Laplace Transformation.
+3. J. Korevaar, Tauberian Theory: A Century of Developments, Springer.
+4. W. Feller, An Introduction to Probability Theory and Its Applications, Vol. II, Wiley.
+5. P. Flajolet, R. Sedgewick, Analytic Combinatorics, Cambridge Univ. Press.

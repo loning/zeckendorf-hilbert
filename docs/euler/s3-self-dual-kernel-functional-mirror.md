@@ -167,7 +167,7 @@ $$
 
 $$
 \boxed{\ \pi^{-s/2}\,\Gamma\Big(\frac{s}{2}\Big)\,\zeta(s)
-:=\tfrac{1}{2}\,\Phi_\vartheta(s)+\frac{1}{s(s-1)}\ }\quad\text{（其中 }\tfrac{1}{s(s-1)}\text{ 正由 }x\to0^+\text{ 的常数主项产生）}
+:=\tfrac{1}{2}\,\Phi_\vartheta(s)+\frac{1}{s(s-1)}\ }\quad\text{（其中 }\tfrac{1}{s(s-1)}\text{ 由两端的主项（}x\to0^+\text{ 的常数项与 }x\to\infty\text{ 的幂主项）合并产生）}
 $$
 
 据此定义
@@ -197,7 +197,7 @@ $$
 K(x):=\frac{1}{2\pi i}\int_{\Re s=\sigma} F(s)\,x^{-s}\,ds.
 $$
 
-则（在分布意义下）有 $K(x)=x^{-a}K(1/x)$，且 $\mathcal M[K](s)=F(s)$ 在该条带成立；若进一步有 $F(\sigma+it)=O(|t|^{-1-\varepsilon})$（或等价的 $L^1$ 条件），则 $K$ 在函数意义下成立同样结论。
+则（在分布意义下）有 $K(x)=x^{-a}K(1/x)$，且 $\mathcal M[K](s)=F(s)$ 在该条带成立；若进一步有 $F(\sigma+it)=O(|t|^{-1-\varepsilon})$（或充分的 $L^1$ 条件），则 $K$ 在函数意义下成立同样结论。
 
 **证明要点。** 由增长界合法移线至 $\Re s=a-\sigma$，并用镜像 $F(s)=F(a-s)$ 与柯西定理，得自反关系与 Mellin 互逆。若要求在函数意义下直接移线，可补充 $F(\sigma+it)=O(|t|^{-1-\varepsilon})$（任一闭条带内）等 Phragmén–Lindelöf 型控制；否则按文中所述取分布意义。∎
 

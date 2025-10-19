@@ -102,7 +102,7 @@ $$
 $$
 \sup_{s\in K}\big|f^{(2m-1)}(a+N\Delta;s)\big|\xrightarrow[N\to\infty]{}0,
 $$
-从而 $\sum_{m=1}^{M-1}\mathcal B_m[f(\cdot;s)]$ 在 $N\to\infty$ 收敛且对 $s\in U$ 局部一致。等价可选：存在 $\eta>0$ 使 $\sup_{s\in K} e^{\eta x}\,\big|f^{(k)}(x;s)\big|$ 有界（$0\le k\le 2M-1$）。
+从而 $\sum_{m=1}^{M-1}\mathcal B_m[f(\cdot;s)]$ 在 $N\to\infty$ 收敛且对 $s\in U$ 局部一致。充分可选：存在 $\eta>0$ 使 $\sup_{s\in K} e^{\eta x}\,\big|f^{(k)}(x;s)\big|$ 有界（$0\le k\le 2M-1$）。
 
 ### 定理 T4.2（极点仅出自主尺度项）
 
