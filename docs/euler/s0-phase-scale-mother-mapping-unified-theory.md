@@ -55,7 +55,11 @@ $$
 \mathcal{T}:=\Bigl\{\rho\in\mathbb{C}^n:\ \int e^{\,\Re\langle\gamma,\rho\rangle}\,d|\mu|(\omega,\gamma)<\infty\Bigr\}.
 $$
 
-则 $\mathcal{T}$ **凸**，其**内部** $\mathrm{int}\,\mathcal{T}$ 为开且为全纯域，并且 $\rho\mapsto\mathcal{M}[\mu](\theta,\rho)$ 在 $\mathrm{int}\,\mathcal{T}$ 上全纯；对每个固定 $\rho\in\mathcal{T}$，$\theta\mapsto\mathcal{M}[\mu](\theta,\rho)$ 为 $\mathbb{R}^m$ 上的有界连续函数。在离散情形，$\sum_j |c_j|e^{\,\Re\langle\beta_j,\rho\rangle}$ 在任意紧集 $K\Subset\mathrm{int}\,\mathcal{T}$ 上绝对一致收敛，从而由 Weierstrass 判别法得到全纯性。
+则 $\mathcal{T}$ **凸**，其**内部** $\mathrm{int}\,\mathcal{T}$ 为开且为全纯域，并且 $\rho\mapsto\mathcal{M}[\mu](\theta,\rho)$ 在 $\mathrm{int}\,\mathcal{T}$ 上全纯；对每个固定 $\rho\in\mathcal{T}$，$\theta\mapsto\mathcal{M}[\mu](\theta,\rho)$ 为 $\mathbb{R}^m$ 上的有界连续函数。在离散情形，若对每个紧集 $K\Subset\mathrm{int}\,\mathcal{T}$ 有
+$$
+\sum_j |c_j|\,e^{\,\sup_{\rho\in K}\Re\langle\beta_j,\rho\rangle}<\infty,
+$$
+则在 $K$ 上绝对一致收敛，从而由 Weierstrass 判别法得全纯；一般情形无需该一致收敛结论，可直接由积分形式配合主导收敛/Morera 得到关于 $\rho$ 的全纯性。
 
 ---
 
@@ -83,7 +87,7 @@ $$
 
 上述充要条件适用于 $\alpha_2\neq\alpha_1$ **且** $\beta_2\neq\beta_1$。
 若 $\alpha_2=\alpha_1$，则 $F=0 \iff c_1 e^{\langle\beta_1,\rho\rangle}+c_2 e^{\langle\beta_2,\rho\rangle}=0$（仅约束 $\rho$）；
-若 $\beta_2=\beta_1$，则 $F=0 \iff c_1+c_2 e^{,i\langle\alpha_2-\alpha_1,\theta\rangle}=0$（仅约束 $\theta$）；
+若 $\beta_2=\beta_1$，则 $F=0 \iff c_1+c_2 e^{\,i\langle\alpha_2-\alpha_1,\theta\rangle}=0$（仅约束 $\theta$）；
 若二者皆等，则 $F=0 \iff c_1+c_2=0$。
 
 **定理 3.2（零集余维 $2$）.** 若 $F(p)=0$ 且 $\mathrm{rank}\,DG(p)=2$，则零集 $\{F=0\}$ 在 $p$ 邻域为维数 $m+n-2$ 的实解析子流形（隐函数定理）。当 $\rho$ 取复值时需同时配平 $\Im\langle\beta_2-\beta_1,\rho\rangle$ 以保持秩为 2。
@@ -154,18 +158,18 @@ $$
 |R_M|\le \frac{|B_{2M}|}{(2M)!}\,(b-a)\,\sup_{x\in[a,b]}|f^{(2M)}(x)|.
 $$
 
-取 $f(x)=a(x)\,x^{-s}$ 并假设存在 $\epsilon>0$ 使 $a^{(r)}(x)=O(x^{-1-\epsilon-r})$。为保证余项 $R_M(s)$ 关于 $s$ 的整函数性，引入可积性与条带一致性条件：存在 $M\ge1$ 与实数 $\sigma_1<\sigma_2$，使
+取 $f(x)=a(x)\,x^{-s}$ 并假设存在 $\epsilon>0$ 使 $a^{(r)}(x)=O(x^{-1-\epsilon-r})$。为保证余项 $R_M(s)$ 关于 $s$ 的条带内全纯，引入可积性与条带一致性条件：存在 $M\ge1$ 与实数 $\sigma_1<\sigma_2$，使
 
 $$
 \int_{1}^{\infty}\bigl|f^{(2M)}(x)\bigr|\,dx<\infty
 \quad\text{且对}\ \sigma\in[\sigma_1,\sigma_2]\ \text{一致成立}.
 $$
 
-则 $R_M(s)$ 为整函数；极点全部来自主尺度积分项对 $s$ 的解析延拓。
+则 $R_M(s)$ 在上述条带 $\sigma\in[\sigma_1,\sigma_2]$ 上全纯（等价地：在满足可积性的区域内全纯）；极点全部来自主尺度积分项对 $s$ 的解析延拓。
 
 ### 6.1 延拓范式（极点源自主尺度积分）
 
-在上述假设下，$\sum_{n\ge1} f(n)$ 的极点由 $\int_1^\infty f(x)\,dx$ 的解析延拓产生，余项整函数化。伯努利层给出离散端点的系统校正。
+在上述假设下，$\sum_{n\ge1} f(n)$ 的极点由 $\int_1^\infty f(x)\,dx$ 的解析延拓产生，余项在上述条带内全纯。伯努利层给出离散端点的系统校正。
 
 ### 6.2 方向化解析延拓（带权累积分布与拉普拉斯–Stieltjes 变换）
 
@@ -270,7 +274,7 @@ $$
 满足
 
 $$
-\Lambda(s)=\varepsilon\,\overline{\Lambda}(1-\overline s),
+\Lambda(s)=\varepsilon\,\overline{\Lambda}(1-\overline{s}),
 $$
 
 并有欧拉积
@@ -288,7 +292,7 @@ $$
 取尺度步长 $\Delta>0$，记 $b=e^{\Delta}$。对相位带限（$\le B$）的三角多项式，在 $q>2B$ 的等距采样（Nyquist）下无失真重构。定义离散逼近
 
 $$
-\boxed{\ F_q(\mathbf{j},\ell)=\sum_{r} c_r\,\big(b^{\langle\beta_r,\mathbf v\rangle}\big)^{\ell}\,
+\boxed{\ F_q(\mathbf{j},\ell)=\sum_{r} c_r\,e^{\,\langle\beta_r,\rho_0\rangle}\,\big(b^{\langle\beta_r,\mathbf v\rangle}\big)^{\ell}\,
 \exp\!\Bigl(\tfrac{2\pi i}{q}\,\langle\alpha_r,\mathbf{j}\rangle\Bigr)\ }
 $$
 
@@ -306,13 +310,13 @@ $$
 在此前提下，在尺度维数 $n=1$ 的情形下，固定 $\mathbf{j}$ 的序列 $\ell\mapsto F_q(\mathbf{j},\ell)$ 为有限项几何级数，其一个差分湮灭算子为
 
 $$
-\boxed{\ \prod_{r}\bigl(S-\rho_r I\bigr)=0\ },\qquad (Sf)(\ell)=f(\ell+1),\quad
-\rho_r=b^{\,\langle\beta_r,\mathbf v\rangle}=e^{\Delta\langle\beta_r,\mathbf v\rangle}.
+\boxed{\ \prod_{r}\bigl(S-\lambda_r I\bigr)=0\ },\qquad (Sf)(\ell)=f(\ell+1),\quad
+\lambda_r=b^{\,\langle\beta_r,\mathbf v\rangle}=e^{\Delta\langle\beta_r,\mathbf v\rangle}.
 $$
 
-验证：对单项 $f_r(\ell)=\rho_r^{\,\ell}$，有 $(S-\rho_r I)f_r(\ell)=\rho_r^{\ell+1}-\rho_r\cdot\rho_r^{\ell}=0$。
+验证：对单项 $f_r(\ell)=\lambda_r^{\,\ell}$，有 $(S-\lambda_r I)f_r(\ell)=\lambda_r^{\ell+1}-\lambda_r\cdot\lambda_r^{\ell}=0$。
 
-一维特例取 $\Delta=1$ 时，$\rho_r=b^{\,\langle\beta_r,\mathbf v\rangle}$。
+一维特例取 $\Delta=1$ 时，$\lambda_r=b^{\,\langle\beta_r,\mathbf v\rangle}$。
 
 ---
 
