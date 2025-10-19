@@ -365,6 +365,116 @@ $$
 
 ---
 
+### T21（信息不增律：一般 CA 与观察因子）
+
+**命题.** 设 $F$ 为半径 $r$ 的 $d$ 维 CA，取任意 Følner 窗口族 $\{W_k\}$（轴对齐平行多面体满足 $K(W_k)=O(\log|W_k|)$）。定义信息密度
+$$
+I(x):=\limsup_{k\to\infty}\frac{K\big(x|_{W_k}\big)}{|W_k|},\qquad
+I_\pi(x):=\limsup_{k\to\infty}\frac{K\big(\pi(x|_{W_k})\big)}{|W_k|}.
+$$
+则对每个固定的 $T\in\mathbb N$ 与配置 $x$，有
+$$
+I\big(F^T x\big)\ \le\ I(x),\qquad I_\pi\big(F^T x\big)\ \le\ I\big(F^T x\big)\ \le\ I(x).
+$$
+
+**证明.** 厚边界与传播锥给出依赖域：存在 $W_k^{+rT}$ 使 $\big(F^T x\big)|_{W_k}$ 可由 $x|_{W_k^{+rT}}$ 可计算恢复（见引理 5.3 的 $r,T$ 控制）。由可计算变换的复杂度上界，
+$$
+K\big((F^T x)|_{W_k}\big)\ \le\ K\big(x|_{W_k^{+rT}}\big)+O(\log|W_k|).
+$$
+Følner 性给出 $|W_k^{+rT}|/|W_k|\to1$，取 $\limsup$ 得 $I(F^T x)\le I(x)$。因子译码不增信息（A3，或引理 5.1 的可计算变换），得 $I_\pi(F^T x)\le I(F^T x)$。合并即得结论。$\square$
+
+---
+
+### T22（信息守恒律：可逆 CA）
+
+**命题.** 若 $F$ 可逆且 $F^{-1}$ 亦为 CA（可逆元胞自动机），则对每个固定的 $T\in\mathbb N$ 与配置 $x$，
+$$
+I\big(F^T x\big)=I(x),\qquad I_\pi\big(F^T x\big)\ \le\ I(x),
+$$
+其中等号在 $\pi=\mathrm{id}$ 或与 $F$ 共轭的无损因子下成立。若 $\mu$ 为移位不变遍历测度，则 Brudno 极限与熵不变性给出 $h_\mu= h_{F_\ast\mu}$，因而 $\mu$-几乎处处信息密度守恒。
+
+**证明.** 由 T21 对 $F$ 与 $F^{-1}$ 分别应用得 $I(F^T x)\le I(x)$ 与 $I(x)\le I(F^T x)$，合并即 $I(F^T x)=I(x)$。关于 $\pi$ 的不增由 A3 给出。测度论版本由 $(X_f,\sigma_{\mathrm{time}})\cong(\Omega(F),\sigma_\Omega)$ 的共轭与可逆性下熵保持（T8），配合 Brudno（引理 5.5）得出。$\square$
+
+---
+
+### T23（观测压力函数与信息几何）
+
+**定义.** 取一组可见类目（由译码/计数规则给出）索引为 $j=1,\dots,J$，赋权 $a_j>0$ 与向量 $\beta_j\in\mathbb R^n$。定义
+$$
+Z(\rho)=\sum_{j=1}^{J} a_j\,e^{\,\langle\beta_j,\Re\rho\rangle},\qquad
+P(\rho)=\log Z(\rho),\qquad
+p_j(\rho)=\frac{a_j e^{\,\langle\beta_j,\Re\rho\rangle}}{Z(\rho)}.
+$$
+在 $Z(\rho)$ 收敛的域内，且满足局部一致收敛从而允许求和/微分互换的标准条件，有
+$$
+\nabla_{\rho}P(\rho)=\mathbb E_p[\beta]=\sum_j p_j\,\beta_j,\qquad
+\nabla_{\rho}^2 P(\rho)=\mathrm{Cov}_p(\beta)\succeq 0.
+$$
+因此 $P$ **凸**，其 Hessian 即 Fisher 信息。沿方向 $\rho(s)=\rho_\perp+s\mathbf v$，
+$$
+\frac{d^2}{ds^2}P\big(\rho(s)\big)=\mathrm{Var}_p\big(\langle\beta,\mathbf v\rangle\big)\ge0.
+$$
+若再记香农熵 $H(\rho)=-\sum_j p_j\log p_j$，则
+$$
+H(\rho)=P(\rho)-\sum_j p_j\log a_j-\big\langle\Re\rho,\,\mathbb E_p[\beta]\big\rangle.
+$$
+
+**证明要点.** 由 log-sum-exp 的标准求导（在前述局部一致收敛条件下可交换求和与微分），得梯度与 Hessian 表达；方向二阶导即方差。熵恒等式由 $p_j\propto a_j e^{\langle\beta_j,\Re\rho\rangle}$ 代入 $H=-\sum p_j\log p_j$ 展开并整理得到。$\square$
+
+---
+
+### T24（相变/主导切换的判别）
+
+**命题.** 令幅度 $A_j(\rho):=a_j e^{\langle\beta_j,\rho\rangle}$，并定义
+$$
+H_{jk}=\Big\{\rho:\ \langle\beta_j-\beta_k,\rho\rangle=\log\frac{a_k}{a_j}\Big\},\qquad
+\delta(\rho):=\min_{j<k}\Big|\ \langle\beta_j-\beta_k,\rho\rangle-\log\frac{a_k}{a_j}\ \Big|.
+$$
+若 $\delta(\rho)>\log(J-1)$，则存在唯一索引 $j_\star$ 使 $A_{j_\star}(\rho)=\max_j A_j(\rho)$ 且
+$$
+\sum_{k\ne j_\star}A_k(\rho)<A_{j_\star}(\rho),
+$$
+因而无主导切换；主导切换仅可能发生在 $\{\rho:\ \delta(\rho)\le\log(J-1)\}$ 的薄带内，其骨架为超平面族 $\{H_{jk}\}$。
+
+**证明.** 由 $\delta(\rho)$ 的定义，$\log A_{j_\star}-\log A_k\ge\delta(\rho)$，故 $A_k\le e^{-\delta(\rho)}A_{j_\star}$，再求和得结论。$\square$
+
+---
+
+### T25（方向化极点 = 增长指数）
+
+**命题.** 固定方向 $\mathbf v$ 与分解 $\rho=\rho_\perp+s\mathbf v$。设沿 $\mathbf v$ 的带权累积分布
+$$
+M_{\mathbf v}(t)=\sum_{t_j\le t} w_j,\qquad t_j:=\langle-\beta_j,\mathbf v\rangle,\quad w_j:=a_j e^{\langle\beta_j,\rho_\perp\rangle},
+$$
+当 $t\to+\infty$ 具有指数–多项式渐近
+$$
+M_{\mathbf v}(t)=\sum_{\ell=0}^{L} Q_\ell(t)\,e^{\gamma_\ell t}+O\!\big(e^{(\gamma_L-\delta)t}\big),\qquad \gamma_0>\cdots>\gamma_L,
+$$
+且 $M_{\mathbf v}$ 具界变差并满足温和增长。则其拉普拉斯–Stieltjes 变换
+$$
+\mathcal L_{\mathbf v}(s):=\int_{(-\infty,+\infty)} e^{-s t}\,dM_{\mathbf v}(t)=\sum_j w_j e^{-s t_j}
+$$
+在 $\Re s>\gamma_0$ 收敛，并可亚纯延拓至 $\Re s>\gamma_L-\delta$，在 $s=\gamma_\ell$ 处至多出现 $\deg Q_\ell+1$ 阶极点。特别地，右端收敛垂线的实部等于最大增长指数 $\gamma_0$。
+
+**证明要点.** 属于经典的拉普拉斯–Stieltjes Tauberian 词典：对指数–多项式渐近逐段积分并使用分部积分/留数控制，得极点位置与阶；绝对收敛域的临界由 $\gamma_0$ 给出。$\square$
+
+---
+
+### T26（可逆与非可逆：判据与后果）
+
+**命题（判据）.** 全局映射 $F: \Sigma^{\mathbb Z^d}\to\Sigma^{\mathbb Z^d}$ 为 CA 可逆 $\iff$ 它为双射且 $F^{-1}$ 也是 CA（存在有限半径的逆局部规则）。在 $\mathbb Z^d$ 上，Garden-of-Eden 定理给出：$F$ 满射 $\iff$ $F$ 预单射；可逆等价于同时满射与单射。
+
+**命题（后果）.** 若 $F$ 可逆，则：
+1) 信息密度守恒：$I(F^T x)=I(x)$（见 T22）；
+2) 观察因子下不增：$I_\pi(F^T x)\le I(x)$；
+3) 无真吸引子：不存在把开集压入真子集的单向吸引（每点具双向轨道，可能存在周期但无信息耗散到单一固定点的不可逆坍缩）。
+
+**证明.** 判据为标准结论；后果 1–2 由 T21–T22 立即推出；后果 3 由可逆性与双向可达性给出（若存在真吸引子则与双射矛盾）。$\square$
+
+---
+
+
+
 ## 7. 构造与算法
 
 **7.1 从规则到 SFT**：由 $f$ 的局部一致性导出禁形集 $\mathcal F$，得 $X_f$。

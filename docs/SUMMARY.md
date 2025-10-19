@@ -162,6 +162,14 @@
 - [EBOC：永恒-静态块观察-计算统一理论](./ca/eboc-unified-theory.md)
     - [EBOC: Eternal-Block Observer-Computing Unified Theory](./ca/eboc-unified-theory_en.md)
 
+- [Euler 系列]()
+    - [S0. 相位–尺度母映射与欧拉–ζ–素数的镜像统一](./euler/s0-phase-scale-mother-mapping-unified-theory.md)
+    - [S1. 母映射的解析域与可积性基线](./euler/s1-mother-mapping-analytic-domain-integrability.md)
+    - [S2. 加法镜像与零集几何](./euler/s2-additive-mirror-zero-set-geometry.md)
+    - [S3. 自反核与函数镜像](./euler/s3-self-dual-kernel-functional-mirror.md)
+    - [S4. 伯努利层与解析延拓范式](./euler/s4-bernoulli-layers-analytic-continuation.md)
+    - [S5. 沿方向的亚纯化与极点定位](./euler/s5-directional-meromorphization-pole-localization.md)
+
 - [学术论文]()
     - [Zeta函数相关文档导航索引](./zeta_index.md)
     - [U-Mat(∞)：全数学统一范畴理论](./pure-zeta/u-mat-infinity-universal-mathematics-category-theory.md)
