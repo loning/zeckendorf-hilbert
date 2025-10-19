@@ -54,8 +54,6 @@ $$
 \mathcal T(\tau):=\Bigl\{\rho\in\mathbb C^n:\ \Re\langle\gamma,\rho\rangle < \langle\gamma,\tau\rangle\ \text{对所有 $(\omega,\gamma)\in\operatorname{supp}\mu$ 且 $\gamma\ne 0$}\Bigr\}.
 $$
 
-若 $\operatorname{proj}_\gamma(\operatorname{supp}\mu)\subset C$，其中 $C$ 为锐锥（$C\cap(-C)=\{0\}$），则对任意 $K\Subset\mathcal T(\tau)$ 存在统一余量 $\varepsilon_K>0$，并且 $\mathcal T(\tau)\neq\varnothing$（用于定理 3.1 的一致主导）。
-
 （注：若支撑含 $\gamma=0$ 的点，则上述严格不等式按“对所有 $\gamma\ne 0$ 的支撑”理解；$\{\gamma=0\}$ 上 $e^{\langle\gamma,\rho\rangle}\equiv1$ 仅贡献与 $\rho$ 无关的常数项。若 $|\mu|(\{\gamma=0\})=\infty$ 则 $\int e^{\langle\gamma,\tau\rangle}d|\mu|$ 本已发散，与 C1 不相容。）
 
 ---
