@@ -46,7 +46,7 @@ $$
 定义参与率 $N_2(\sigma):=\Bigl(\sum_{n\ge1}p_n(\sigma)^2\Bigr)^{-1}=\zeta(\sigma)^2/\zeta(2\sigma)$。典型能量尺度
 
 $$
-A_\sigma(X):=\Bigl(\sum_{n\le X}n^{-2\sigma}\Bigr)^{1/2}\asymp \zeta(2\sigma)^{1/2}.
+A_\sigma(X):=\Bigl(\sum_{n\le X}n^{-2\sigma}\Bigr)^{1/2},\qquad A_\sigma(X)\nearrow \zeta(2\sigma)^{1/2},\ \ A_\sigma(X)\le \zeta(2\sigma)^{1/2}.
 $$
 
 **有限阶 EM 与 Nyquist/Poisson（S4+S8）**。全文所有"和–积/和–积–积分"换序仅使用**有限阶** Euler–Maclaurin（伯努利层），其余项在 $s$ 上整/全纯且可显式上界；频域交叉项以 Nyquist/Poisson 别名控制。为便于引用，列出本篇的**可检正则条件**：
@@ -56,7 +56,7 @@ $$
 
   (a) **频率分离**：存在 $\Omega>0$ 使 $\min_{m\ne n\le X}|\log(m/n)|\ge \Omega/T$；或
 
-  (b) **平滑窗抑制**：取 $W\in C^K_c(\mathbb R)$（$K$ 足够大）置换指示窗，其傅里叶变换 $\widehat W$ 满足 $\sup_{u\ne0}|\widehat W(uT)|\le \delta\ll1$。
+  (b) **平滑窗抑制**：取 $W\in C^K_c(\mathbb R)$（$K$ 足够大）置换指示窗，存在 $\Omega>0$ 与 $\delta\in(0,1)$ 使 $|\widehat W(\xi)|\le \delta$（对所有 $|\xi|\ge \Omega$）。能量估计时仅对满足 $|T(\log m-\log n)|\ge \Omega$ 的交叉项使用该尾部小量；其余近零频项按 (a) 的频率分离或并入误差统一处理（见 A.2/A.2′）。
 * **C9.3**：伯努利层阶数 $K$ 至少覆盖所用导数与端点项，余项由 S4 的整函数性与 S8 的窗尾上界控制。
 
 ---
@@ -73,6 +73,12 @@ $$
 
 **证明**。直接由定义与欧拉素因子分离得到。∎
 
+**σ-加权 Pretentious 距离（本篇用）**。固定 $\sigma>1$ 与 $t\in\mathbb R$，定义
+
+$$
+\mathbb D_{\sigma,X}(f;t)^2:=\inf_{\chi,\tau}\sum_{p\le X}\frac{1-\Re\!\bigl(f(p)\,\overline{\chi(p)}\,p^{-i(t+\tau)}\bigr)}{p^{\sigma}}.
+$$
+
 ---
 
 ## 2. 非 Pretentious 区的统一上界（Halasz–Pretentious 型）
@@ -85,20 +91,25 @@ $$
 
 $$
 \bigl|P_f(X;\sigma,t)\bigr|
-\ \le\ C_\sigma\Bigl(\sum_{n\le X}n^{-\sigma}\Bigr)\exp\!\bigl(-c_\sigma\,\mathbb D_X(f)^2\bigr)\ +\ C_\sigma\,X^{-\eta_\sigma}.
+\ \le\ C_\sigma\Bigl(\sum_{n\le X}n^{-\sigma}\Bigr)\exp\!\bigl(-c_\sigma\,\mathbb D_{\sigma,X}(f;t)^2\bigr)\ +\ C_\sigma\,X^{1-\sigma}.
 \tag{9.1}
 $$
 
-**证明（纲要）**。取 $g(n)=\chi(n)\,n^{i\tau}\in\mathcal G$ 使 $\mathbb D_X(f)$ 近似取到。比较局部欧拉积
-
+**证明（纲要）**。先用硬截断—全级数桥（由尾和估计或 A.1 的有限阶 EM）得
 $$
-\biggl|\prod_{p\le X}\frac{1-f(p)\,p^{-(\sigma+it)}}{1-g(p)\,p^{-(\sigma+it)}}\biggr|
-\ \le\ \exp\!\Bigl(-c_\sigma\,\mathbb D(f,g;X)^2+O(1)\Bigr),
+|P_f(X;\sigma,t)|\ \le\ |F_f(\sigma+it)|\ +\ O_\sigma(X^{1-\sigma}).
 $$
+对任意使 $\mathbb D_{\sigma,X}(f;t)$ 近取下确界的 $g(n)=\chi(n)\,n^{i\tau}\in\mathcal G$，由附录 A.4（欧拉因子比较，吸收 $p>X$ 的贡献于 $O(1)$）得到
+$$
+|F_f(\sigma+it)|\ \le\ C_\sigma\,\exp\!\Big(-c_\sigma\,\mathbb D_{\sigma,X}(f;t)^2\Big)\,|F_g(\sigma+it)|.
+$$
+再以
+$$
+|F_g(\sigma+it)|\ \le\ |P_g(X;\sigma,t)|\ +\ O_\sigma(X^{1-\sigma})\ \le\ \sum_{n\le X}n^{-\sigma}\ +\ O_\sigma(X^{1-\sigma}),
+$$
+合并即得（9.1）。∎
 
-由附录 A.4 直接得到指数衰减因子 $\exp(-c_\sigma\mathbb D_X(f)^2)$。再由 $|P_g|\le C_\sigma\sum_{n\le X}n^{-\sigma}$ 与伯努利层余项上界得（9.1）。∎
-
-**注 2.1**。当 $f$ 来源于 $L$-函数欧拉积（S7），可借助完成函数的 $\Gamma/\pi$ 正规化（S3）获得更细的垂线增长配平；但对（9.1）的结构仅改变常数，不改变指数型衰减。
+**注 2.1**。当 $f$ 来源于 $L$-函数欧拉积（S7），可借助完成函数的 $\Gamma/\pi$ 正规化（S3）获得更细的垂线增长配平；这仅改变常数与 $\sigma$-权重的具体形状，不改变“指数衰减/几乎周期/小球概率”三类结论的结构。
 
 ---
 
@@ -114,7 +125,7 @@ $$
 \bigl|P_f(X;\sigma,t)\bigr|\ \ge\ c_\sigma\,A_\sigma(X)\,e^{-C_\sigma D_0^2}\qquad (t\in\mathcal T_{\mathrm{big}}).
 $$
 
-**证明（纲要）**。写 $P_f=P_g+E$。在 C9.2 下，$P_g(X;\sigma,t)$ 是"准带限"的几乎周期信号，其二次能量 $\asymp A_\sigma(X)^2$。误差 $E$ 由（9.1）与 S4/S8 的窗尾三分解给出上界。应用 Paley–Zygmund 不等式得结论。∎
+**证明（纲要）**。不必分解 $P_f=P_g+E$ 做点态误差。直接对 $P_f$ 使用 A.2/A.2′（二次/四次能量）与 Paley–Zygmund，可在窗 $|t+\tau^\star|\le T$ 内得到正比例的大值集合，其阈值为 $c_\sigma A_\sigma(X)$。此外，若 $\mathbb D\bigl(f,\chi^\star(\cdot)(\cdot)^{i\tau^\star};X\bigr)\le D_0$，则用附录 A.4 仅作阈值校正：在与 $-\tau^\star$ 对齐的同窗内将阈值稳定为 $c_\sigma A_\sigma(X)\,e^{-C_\sigma D_0^2}$（不涉及点态的 $P_f-P_g$ 差值估计）。∎
 
 **注 3.1**。当 $f=\chi$ 或 $f(n)=\chi(n)\,n^{i\tau}$ 时为严格几乎周期；一般 Pretentious 情形等价于在此基础上的有界扰动。
 
@@ -128,31 +139,36 @@ $$
 \mathcal Z_\varepsilon:=\Bigl\{t\in[-T,T]:\ |P_f(X;\sigma,t)|\le \varepsilon\,A_\sigma(X)\Bigr\}.
 $$
 
+为便于引用，记窗域下界距离
+$$
+\mathbb D^{\star}_{\sigma,X}(f;T):=\inf_{|t|\le T}\ \mathbb D_{\sigma,X}(f;t).
+$$
+
 ### 定理 9.3（小球上界：正交 + Pretentious 稀释）
 
 在 C9.2 下，存在常数 $C_{\sigma,\Omega},c_\sigma>0$ 使
 
 $$
-\operatorname{meas}\bigl(\mathcal Z_\varepsilon\bigr)\ \le\ C_{\sigma,\Omega}\,\Bigl(\varepsilon^2+e^{-c_\sigma\,\mathbb D_X(f)^2}\Bigr)\,T.
+\operatorname{meas}\bigl(\mathcal Z_\varepsilon\bigr)\ \le\ C_{\sigma,\Omega}\,\Bigl(\varepsilon^2+\bigl(1-e^{-c_\sigma\,\bigl(\mathbb D^{\star}_{\sigma,X}(f;T)\bigr)^2}\bigr)\Bigr)\,T.
 \tag{9.2}
 $$
 
-**证明（纲要）**。记 $a_n=f(n)n^{-\sigma}$。能量恒等式给出
-
+**证明（纲要）**。记 $a_n=f(n)n^{-\sigma}$。在 C9.2(b) 下，采用 A.2 的加窗能量恒等式：
 $$
-\int_{-T}^{T}\!\bigl|P_f\bigr|^2\,dt
-:=2T\sum_{n\le X}|a_n|^2 + O\!\Bigl(\sum_{m\ne n}|a_m a_n|\min\{T,\,1/|\log(m/n)|\}\Bigr),
+\int_{\mathbb R} W\!\Bigl(\frac{t}{T}\Bigr)\,\bigl|P_f(X;\sigma,t)\bigr|^2 dt
+=T\!\!\sum_{m,n\le X}\! a_m\overline{a_n}\,\widehat W\!\bigl(T(\log m-\log n)\bigr).
 $$
-
-在 C9.2 下交叉项被吸收为 $O\bigl(T\sum |a_n|^2\bigr)$。其中分母估计匹配标准振荡积分的界
+取 $W\in C_c^K$ 且 $W\ge c\,\mathbf{1}_{[-1,1]}$，则
 $$
-\min\{T,\,1/|\log(m/n)|\}\ =\ \frac{1}{\max\{1/T,\,|\log(m/n)|\}},
+\int_{-T}^{T}\!|P_f|^2 dt\ \le\ c^{-1}\!\int_{\mathbb R}\! W\!\Bigl(\frac{t}{T}\Bigr)\,|P_f|^2 dt.
 $$
-从而给出 $O\!\Bigl(\sum_{m\ne n}\frac{|a_m a_n|}{\max\{1/T,\,|\log(m/n)|\}}\Bigr)$，并在 C9.2 下被整体吸收。由二次能量恒等式与附录 A.2′ 的四次能量上界结合 Paley–Zygmund，可得 $\operatorname{meas}\{t:\ |P_f|\le \varepsilon A_\sigma(X)\}\ll \varepsilon^2 T$。另一方面，若 $|P_f|$ 在大子集上显著小于 $A_\sigma(X)$，以（9.1）反推得到 $\mathbb D_X(f)$ 必须小，从而以 $e^{-c_\sigma\mathbb D_X(f)^2}$ 稀释异常密集的小值，合并即得（9.2）。∎
+交叉项在 $|T(\log m-\log n)|\ge\Omega$ 处由 $|\widehat W|$ 的尾部小量吸收（A.2），其余近零频项并入误差或用 C9.2(a) 处理。由此配合 A.2′ 与 Paley–Zygmund，得 $\operatorname{meas}\{t:\ |P_f|\le \varepsilon A_\sigma(X)\}\ll \varepsilon^2 T$。另一方面，由（9.1）知对任意 $t$ 有统一阈值控制因子 $\exp\{-c_\sigma\,\mathbb D_{\sigma,X}(f;t)^2\}$；取窗内下确界 $\mathbb D^{\star}_{\sigma,X}(f;T)$ 得到 $e^{-c_\sigma(\mathbb D^{\star}_{\sigma,X}(f;T))^2}$ 的阈值修正。将其与前述能量—Paley–Zygmund 链接，得到（9.2）的 $\varepsilon^2+$ Pretentious 稀释结构。∎
 
 ### 推论 9.4（近零复访率）
 
-在 C9.2 下，单位时间内 $P_f$ 落入相对半径 $\varepsilon$ 的小球的复访率 $\ll \varepsilon^2+e^{-c_\sigma\mathbb D_X(f)^2}$。
+在 C9.2 下，单位时间内 $P_f$ 落入相对半径 $\varepsilon$ 的小球的复访率 $\ll \varepsilon^2+\bigl(1-e^{-c_\sigma(\mathbb D^{\star}_{\sigma,X}(f;T))^2}\bigr)$。
+
+其中隐常数仅依赖于 $(\sigma,\Omega)$ 与窗参数，不依赖 $T,X$。
 
 ---
 
@@ -185,7 +201,7 @@ $$
 
 ## 6. 与零集几何的一致性（S2 接口）
 
-在 S2 的二项闭合局部，主导两项满足"幅度平衡 + 相位对径"的横截方程，零集在 $(\theta,\rho)$ 空间为余维 $2$ 的实解析流形；在一维 $t$-切片上给出离散且通常简单的零。定理 9.3 的频率分离/非退化前提正是该横截非退化性的可检替身：**Pretentious 稀释**将"稠密小值"排至 $e^{-c\mathbb D_X(f)^2}$ 级，**几乎周期窗口**在 Pretentious 端提供稳定大值，与零集局部结构兼容。
+在 S2 的二项闭合局部，主导两项满足"幅度平衡 + 相位对径"的横截方程，零集在 $(\theta,\rho)$ 空间为余维 $2$ 的实解析流形；在一维 $t$-切片上给出离散且通常简单的零。定理 9.3 的频率分离/非退化前提正是该横截非退化性的可检替身：**Pretentious 稀释**将"稠密小值"排至 $e^{-c_\sigma\,(\mathbb D^{\star}_{\sigma,X}(f;T))^2}$ 级，**几乎周期窗口**在 Pretentious 端提供稳定大值，与零集局部结构兼容。
 
 ---
 
@@ -201,9 +217,9 @@ $$
 ## 8. 统一"可检清单"（本篇最小充分条件）
 
 1. **竖条与管域**：固定 $\sigma>1$，一切换序与边界仅用**有限阶 EM**（S4），余项整/全纯。
-2. **Pretentious 距离**：计算 $\mathbb D_X(f)$。若 $\mathbb D_X(f)\ge D$，套用（9.1）得指数衰减上界；若 $\mathbb D_X(f)\le D_0$，进入定理 9.2 的大值窗口情形。
+2. **Pretentious 距离**：计算 $\mathbb D_{\sigma,X}(f;t)$（用于（9.1））与 $\mathbb D_X(f)$（用于定理 9.2 的中心频率识别）。若 $\displaystyle \inf_{|t|\le T}\mathbb D_{\sigma,X}(f;t)\ge D$，则由（9.1）在整个窗内给出指数衰减；若 $\mathbb D_X(f)\le D_0$，则进入定理 9.2 的大值窗口情形（取 $t\approx-\tau^\star$）。
 3. **Nyquist/Poisson**：验证 C9.2 的频率分离或平滑窗抑制；否则先行窗化或调整 $X,T$。
-4. **信息刻度**：以 $A_\sigma(X)$ 与 $N_2(\sigma)$ 估算典型幅度与小球阈值，并与 $e^{-c\mathbb D_X(f)^2}$ 项合并（定理 9.3）。
+4. **信息刻度**：以 $A_\sigma(X)$ 与 $N_2(\sigma)$ 估算典型幅度与小球阈值，并与 $e^{-c_\sigma(\mathbb D^{\star}_{\sigma,X}(f;T))^2}$ 项合并（定理 9.3）。
 5. **几何一致性**：在局部两项主导区核对 S2 的横截非退化；排除方向退化与零簇。
 6. **完成函数（按需）**：当 $f$ 来自 $L$-函数欧拉积，使用 S3/S7 的 $\Gamma/\pi$ 正规化与显式公式选择试验核，改善垂线配平，不改变（9.1）–（9.2）的结构。
 
@@ -235,14 +251,23 @@ $$
 
 ### A.2（平滑窗能量恒等式）
 
+在本节固定傅里叶规范 $\widehat W(\xi):=\int_{\mathbb R}e^{-i\xi t}W(t)\,dt$。
+
 取 $W\in C_c^K(\mathbb R)$；记
 
 $$
 \mathcal I:=\int_{\mathbb R}\!W\!\Bigl(\frac{t}{T}\Bigr)\,\Bigl|\sum_{n\le X}a_n\,e^{-it\log n}\Bigr|^2 dt
-=2\pi T\sum_{m,n\le X}a_m\overline{a_n}\,\widehat W\!\bigl(T(\log m-\log n)\bigr).
+:=T\sum_{m,n\le X}a_m\overline{a_n}\,\widehat W\!\bigl(T(\log m-\log n)\bigr).
 $$
 
-若 $\sup_{u\ne0}|\widehat W(u)|\le \delta\ll1$，则 $\mathcal I=(2\pi T\widehat W(0)+O(\delta T))\sum_{n\le X}|a_n|^2$。
+若存在 $\Omega>0,\delta\in(0,1)$ 使 $|\widehat W(\xi)|\le\delta$（对所有 $|\xi|\ge\Omega$），则
+$$
+\mathcal I
+=T\widehat W(0)\sum_{n\le X}|a_n|^2
++O\!\Bigl(\delta T\sum_{n\le X}|a_n|^2\Bigr)
++O\!\Bigl(\!\!\sum_{\substack{m\ne n\\ |T(\log m-\log n)|<\Omega}}\!\!|a_m a_n|\Bigr).
+$$
+近对角项按 C9.2(a) 或并入误差处理；A.2′ 的四次能量同理以 $\Omega,\delta$ 吸收远离零频的四重交叉项。
 
 ### A.2′（平滑窗四次能量上界）
 
@@ -266,11 +291,11 @@ $$
 
 ### A.4（Pretentious 欧拉积比较）
 
-对 $\sigma>1$ 与 $g\in\mathcal G$，有
+对 $\sigma>1$ 与 $g\in\mathcal G$，令本地因子 $E_p(f;s):=\sum_{k\ge0}f(p^k)p^{-ks}$ 与 $E_p(g;s):=(1-g(p)p^{-s})^{-1}$。则有
 
 $$
-\biggl|\prod_{p\le X}\frac{1-f(p)\,p^{-(\sigma+it)}}{1-g(p)\,p^{-(\sigma+it)}}\biggr|
-\ \le\ \exp\!\Bigl(-c_\sigma\,\mathbb D(f,g;X)^2+O(1)\Bigr).
+\biggl|\prod_{p\le X}\frac{E_p(f;\sigma+it)}{E_p(g;\sigma+it)}\biggr|
+\ \le\ \exp\!\Bigl(-c_\sigma\sum_{p\le X}\frac{1-\Re\!\bigl(f(p)\overline{g(p)}p^{-it}\bigr)}{p^{\sigma}}+O(1)\Bigr).
 $$
 
 与 A.1–A.2 合并给出定理 9.1 的指数衰减因子。
