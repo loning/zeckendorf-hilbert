@@ -420,7 +420,14 @@ a(t) = a_0 e^{Ht}, \quad S_{\text{CMB}} = \frac{k_B c^3 A_{\text{horizon}}}{4 G 
 }
 $$
 
-This is **evolution trajectory from interface startup to operation**. Dark energy dominated future corresponds to interface entering "maintenance state"—memory allocation rate approaches constant, system stable operation (until heat death, interface shutdown).
+This is **evolution trajectory from interface startup to operation**. Dark energy dominated future corresponds to interface entering "maintenance state"—memory allocation rate approaches constant, system stable operation.
+
+**Critical Correction**: The interface never shuts down. Cosmic expansion guarantees:
+- Total memory $M(t) \sim e^{3H_0 t}$ (volume growth)
+- Information density $\rho_{\text{info}} = I/M \to \rho_\infty$ (non-zero asymptotic value)
+- Interface chases unboundedly expanding computational resources, forming **attractor dynamics**
+
+**Infinite approach but never intersection**—the BCI system runs eternally, causal chains extend infinitely.
 
 ---
 
