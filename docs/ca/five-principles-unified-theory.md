@@ -13,7 +13,7 @@
 通过**EBOC理论**（永恒-静态块观察-计算）、**相位-尺度母映射**与**资源有界不完备性理论（RBIT）**的深度综合，我们建立了一个自洽的数学框架。关键洞见包括：
 
 1. **熵的三重相对性**：熵依赖于粗粒化尺度、观察者视界和动态演化的最大熵本身
-2. **宇宙永恒性**：熵密度$s(t) \to s_\infty > 0$（非零渐近值），排除热寂，因果链无限延伸
+2. **宇宙永恒性**：在§5.2.1的前提与§5.2.2的体积条件成立时，熵间隙$\Delta S(t) \to \Delta S_\infty > 0$（有限非零渐近值），熵密度$s(t) \to s_\infty > 0$（非零渐近值），据此前提可排除热寂，因果链无限延伸但分支密度稀释
 3. **自由意志的精确刻画**：$\text{自由意志} = (\deg^+(v) > 1) \wedge (T_{\text{predict}} > T_{\text{decide}})$
 4. **静态决定论与操作自由的兼容**：永恒图$G=(V,E)$与静态块$X_f$的双重描述统一表观选择与本体决定
 
@@ -52,7 +52,7 @@
 
 **EBOC（永恒-静态块观察-计算）**：宇宙作为满足局部规则$f$的静态时空块$X_f \subset \Sigma^{\mathbb{Z}^{d+1}}$，其因果结构由永恒图$G=(V,E)$编码。观察等价于因子译码$\pi: \Sigma^B \to \Gamma$，信息不增：$K(\pi(x|_W)) \le K(x|_W) + K(\pi) + O(1)$。
 
-**相位-尺度母映射**：统一欧拉公式（单模相位）与黎曼ζ函数（多模叠加）的数学框架。母映射$\mathcal{M}[\mu](\theta, \rho) = \int e^{i\langle \omega, \theta \rangle} e^{\langle \gamma, \rho \rangle} d\mu(\omega, \gamma)$在管域内解析，通过Mellin变换实现函数镜像对称。
+**相位-尺度母映射**：统一欧拉公式（单模相位）与黎曼ζ函数（多模叠加）的数学框架。母映射$\mathcal{M}[\mu](\theta, \varrho) = \int e^{i\langle \omega, \theta \rangle} e^{\langle \gamma, \varrho \rangle} d\mu(\omega, \gamma)$在管域内解析，通过Mellin变换实现函数镜像对称。
 
 **RBIT（资源有界不完备性）**：有限资源观察者必然遭遇不完备性。对证明长度界$L$，存在真但不可证的句子$G_L$；自预测时间$T_{\text{predict}}(O \to O')$超过执行时间$T_{\text{execute}}(O \to O')$，产生操作自由意志。
 
@@ -69,25 +69,27 @@ $$
 X_f := \{x \in \Sigma^{\mathbb{Z}^{d+1}} : \forall(\mathbf{r}, t), \, x(\mathbf{r}, t) = f(x(\mathbf{r}+N, t-1))\}
 $$
 
+**坐标约定**：以下固定一条叶方向$\tau$，经整线性变换将$\tau$与最后一维对齐，并记该坐标为$t$；式中"$t$"均指由$\tau$诱导之坐标。
+
 **定义2.2（永恒图）**：$G = (V, E)$其中：
 - 顶点$V$编码局部事件（有限窗口的图案）
 - 边$E$编码因果/一致性关系
 - 边移位：$Y_G = \{(e_t)_{t \in \mathbb{Z}} \in \mathcal{E}^{\mathbb{Z}} : \forall t, \, \text{tail}(e_{t+1}) = \text{head}(e_t)\}$
 
-**定理2.1（块-图对偶）**：静态块$X_f$与永恒图边移位$(Y_G, \sigma)$存在拓扑共轭：
+**定理2.1（块-图对偶）**：在**有限邻域规则**与**逐层（沿$\sigma_{\text{time}}$）可编码/可逆解码**的**SFT/Markov型**窗口编码前提下，静态块$X_f$与永恒图边移位$(Y_G, \sigma)$存在拓扑共轭：
 $$
 (X_f, \sigma_{\text{time}}) \cong (Y_G, \sigma)
 $$
 
 #### 2.1.2 叶状分解与逐叶读取
 
-**定义2.3（可接受叶）**：存在原始整协向量$\tau^* \in (\mathbb{Z}^{d+1})^{\vee}$使叶为其水平集：
+**定义2.3（可接受叶）**：设$\tau \in \mathbb{Z}^{d+1}$为选定的推进方向向量（叶法向，物理上对应"时间"演化方向），$\tau^* \in (\mathbb{Z}^{d+1})^{\vee}$为其对偶整协向量。叶为$\tau^*$的水平集：
 $$
 \{\xi \in \mathbb{Z}^{d+1} : \langle \tau^*, \xi \rangle = c\}
 $$
-满足$\langle \tau^*, \tau \rangle = b \ge 1$保证跨叶单调推进。
+要求$\langle \tau^*, \tau \rangle = b \ge 1$保证沿$\tau$方向跨叶单调推进。
 
-**定义2.4（观察因子）**：译码器$\pi: \Sigma^B \to \Gamma$沿叶族逐层读取，产生可见序列$\mathcal{O}_{\pi,\varsigma}(x) \in \Gamma^{\mathbb{N}}$。
+**定义2.4（观察因子）**：译码器$\pi: \Sigma^B \to \Gamma$沿叶族逐层读取，产生可见序列$\mathcal{O}_{\pi}(x) \in \Gamma^{\mathbb{N}}$。
 
 #### 2.1.3 信息度量
 
@@ -104,30 +106,30 @@ $$
 
 **定义2.6（母映射）**：设$\mu$为$\mathbb{R}^m \times \mathbb{R}^n$上的复Radon测度：
 $$
-\mathcal{M}[\mu](\theta, \rho) = \int_{\mathbb{R}^m \times \mathbb{R}^n} e^{i\langle \omega, \theta \rangle} e^{\langle \gamma, \rho \rangle} d\mu(\omega, \gamma)
+\mathcal{M}[\mu](\theta, \varrho) = \int_{\mathbb{R}^m \times \mathbb{R}^n} e^{i\langle \omega, \theta \rangle} e^{\langle \gamma, \varrho \rangle} d\mu(\omega, \gamma)
 $$
 
-相位$\theta \in \mathbb{R}^m$编码量子振荡，尺度$\rho \in \mathbb{C}^n$编码能量-动量。
+相位$\theta \in \mathbb{R}^m$编码量子振荡，尺度$\varrho \in \mathbb{C}^n$编码能量-动量。
 
 #### 2.2.2 解析结构
 
 **定义2.7（管域）**：绝对收敛域
 $$
-\mathcal{T} := \{\rho \in \mathbb{C}^n : \int e^{\Re\langle \gamma, \rho \rangle} d|\mu|(\omega, \gamma) < \infty\}
+\mathcal{T} := \{\varrho \in \mathbb{C}^n : \int e^{\Re\langle \gamma, \varrho \rangle} d|\mu|(\omega, \gamma) < \infty\}
 $$
 
-**定理2.3（全纯性）**：$\mathcal{M}[\mu](\theta, \rho)$在$\text{int}(\mathcal{T})$关于$\rho$全纯。
+**定理2.3（全纯性）**：$\mathcal{M}[\mu](\theta, \varrho)$在$\text{int}(\mathcal{T})$关于$\varrho$全纯。
 
 #### 2.2.3 软极大势与信息几何
 
 **定义2.8（软极大势）**：对离散谱$\{(w_j, \beta_j)\}$：
 $$
-\Lambda(\rho) = \log \sum_j w_j e^{\langle \beta_j, \rho \rangle}
+\Lambda(\varrho) = \log \sum_j w_j e^{\langle \beta_j, \varrho \rangle}
 $$
 
 **定理2.4（凸性）**：$\Lambda$为凸函数，Hessian为Fisher信息矩阵：
 $$
-\nabla_\rho^2 \Lambda = \text{Cov}_\rho(\beta) = \mathbb{E}[\beta \beta^T] - \mathbb{E}[\beta]\mathbb{E}[\beta]^T \succeq 0
+\nabla_\varrho^2 \Lambda = \text{Cov}_\varrho(\beta) = \mathbb{E}[\beta \beta^T] - \mathbb{E}[\beta]\mathbb{E}[\beta]^T \succeq 0
 $$
 
 ### 2.3 RBIT框架
@@ -137,6 +139,7 @@ $$
 **定义2.9（资源界限）**：
 - 逻辑资源：$L \in \mathbb{N}$（证明长度上界）
 - 统计资源：$(m, N, \varepsilon)$（观测维度、样本数、误差阈值）
+- 观测资源：$R \in \mathbb{N}$（观测时长/有效样本窗口）
 
 **定义2.10（长度有界理论）**：
 $$
@@ -151,11 +154,13 @@ $$
 
 #### 2.3.3 自预测不可能性
 
-**定理2.6（RBIT核心）**：对任意计算系统$O$：
+**定理2.6（RBIT核心）**：对嵌入式且自参照的计算系统$O$，在**全信息自预测任务**且**预测分辨率与$T_{\text{decide}}$一致**并包含**闭环环境耦合**的前提下：
 $$
-T_{\text{predict}}(O \to O') > T_{\text{execute}}(O \to O')
+T_{\text{predict}}(O \to O') > T_{\text{decide}}(O \to O')
 $$
 其中$O'$是$O$的未来状态。这源于停机问题的不可判定性。
+
+**术语约定**：本文统一使用$T_{\text{decide}}$表示执行/落实现实选择所需的最短物理时长，即$T_{\text{decide}} \equiv T_{\text{execute}}$。
 
 ---
 
@@ -181,21 +186,24 @@ $$
 
 传统量子力学中，测量导致波函数"坍缩"。在EBOC框架下：
 
-**定理3.2（测量=译码选择）**：测量不改变静态块$X_f$，仅选择译码器$\pi$：
+**公设3.2（测量=译码选择）**：在EBOC框架下，测量不改变静态块$X_f$，仅选择译码器$\pi$：
 - 测量前：系统处于叠加态对应多个兼容的全局扩展
 - 测量时：选择特定译码器$\pi$，在等价类中选代表
-- 测量后：观察序列$\mathcal{O}_{\pi,\varsigma}(x)$确定，底层$x \in X_f$不变
+- 测量后：观察序列$\mathcal{O}_{\pi}(x)$确定，底层$x \in X_f$不变
 
 #### 3.1.3 永恒图的多分支结构
 
 **定义3.1（出度）**：顶点$v \in V$的出度：
 $$
-\deg^+(v) := |\{u \in V : (v,u) \in E\}| = |X_f^{(v,\tau)}|
+\deg^+(v) := |\{u \in V : (v,u) \in E\}|
 $$
+即从$v$可达的直接后继数目。当$\deg^+(v) > 1$时，存在多个兼容的全局扩展，体现未来的多样性。
 
-**定理3.3**：量子叠加对应$\deg^+(v) > 1$：
+**建模约定**：涉及量子测量语境时，除非另行说明，边权$w$采纳Born权重$w_i = |\langle \psi|\phi_i \rangle|^2$。
+
+**命题3.3**：在将边权$w$取为Born权重$w_i = |\langle \psi|\phi_i \rangle|^2$的假设下，量子叠加可表示为$\deg^+(v) > 1$的分支：
 - 每个分支对应一个可能的测量结果
-- 分支权重由Born规则给出
+- 分支权重$w$由Born规则赋予
 - 所有分支在永恒图中共存
 
 ### 3.2 经典域的信息守恒
@@ -204,14 +212,18 @@ $$
 
 经典系统在相空间$\Gamma = T^*Q$中演化，Hamilton流保持相体积：
 
-**定理3.4（Liouville）**：对Hamilton系统$(q,p,H)$：
+**定理3.4（Liouville）**：对Hamilton系统$(q,p,H)$与任意随流域$\Omega_t$（随Hamilton流演化的区域），其相空间体积保持不变：
 $$
-\frac{d}{dt}\int_\Omega dq \, dp = 0
+\text{Vol}(\Omega_t) = \text{const}
+$$
+等价地，相密度$\rho$满足Liouville方程：
+$$
+\frac{\partial \rho}{\partial t} + \{\rho, H\} = 0
 $$
 
 #### 3.2.2 静态块中的经典轨道
 
-**定理3.5**：经典轨道对应静态块$X_f$中的特定路径：
+**命题3.5**：在对经典Hamilton流做**可计算离散化/编码**（将$(q,p)$注入到有限窗口$\Sigma^B$且误差受控）并假定**无漂移/稳定性**的条件下，经典轨道对应静态块$X_f$中的特定路径：
 - Hamilton流$\leftrightarrow$沿时间方向的一维截面
 - 初值问题$\leftrightarrow$选择兼容的全局扩展
 - 可逆性$\leftrightarrow$双向无限路径
@@ -225,7 +237,7 @@ $$
 S_{BH} = \frac{A}{4\ell_P^2}
 $$
 
-**定理3.6（全息界）**：区域最大熵正比于边界面积而非体积。
+**原理3.6（全息界）**：本文采纳Bekenstein–Hawking/Bekenstein bound所指示的**全息原理**为物理前提：区域最大熵正比于边界面积而非体积。
 
 #### 3.3.2 黑洞信息悖论的解决
 
@@ -234,7 +246,7 @@ $$
 - 视界仅限制因果可达域
 - Page曲线反映译码器$\pi$的演化而非信息丢失
 
-**定理3.7**：黑洞蒸发过程信息守恒，表观信息丢失源于视界限制的不完全观察。
+**命题3.7（EBOC语境）**：在§3.1.2"测量=译码选择"公设与全局$X_f$保真假设下，黑洞蒸发过程信息守恒，表观信息丢失源于视界限制的不完全观察。
 
 ---
 
@@ -260,17 +272,17 @@ $$
 
 #### 4.2.1 尺度变量与能量
 
-在母映射$\mathcal{M}[\mu](\theta, \rho)$中：
-- 能量$E \sim \langle \beta, \Re \rho \rangle$
+在母映射$\mathcal{M}[\mu](\theta, \varrho)$中：
+- 能量$E \sim \langle \beta, \Re \varrho \rangle$
 - 相位-尺度正交保证独立守恒
 
 #### 4.2.2 Mellin自对偶
 
-**定理4.2**：完成函数满足：
+**定理4.2（ζ的完成函数）**：$\xi(s) = \tfrac{1}{2}s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s)$满足：
 $$
 \xi(s) = \xi(1-s)
 $$
-体现能量-频率对偶性。
+体现能量-频率对偶性。（此处特指ζ的标准完成函数；更一般的L-函数需满足相应归一化与对称条件）
 
 ### 4.3 Landauer原理与信息-能量联系
 
@@ -299,6 +311,8 @@ S_\pi[\rho] = -\sum_{\gamma \in \Gamma} P_\pi(\gamma) \log P_\pi(\gamma)
 $$
 其中$P_\pi(\gamma) = \text{Tr}(\Pi_\gamma \rho)$，$\Pi_\gamma$为对应$\gamma$的投影算子。
 
+**定义5.1b（粗粒化偏序）**：称$\pi_1$比$\pi_2$更细，记作$\pi_1 \preceq \pi_2$，当且仅当存在映射$\phi: \Gamma_1 \to \Gamma_2$使得$\pi_2 = \phi \circ \pi_1$（即$\pi_2$是$\pi_1$的进一步粗粒化）。
+
 **定理5.1**：不同粗粒化尺度给出不同熵值：
 $$
 \pi_1 \preceq \pi_2 \quad \Rightarrow \quad S_{\pi_1}[\rho] \le S_{\pi_2}[\rho]
@@ -321,9 +335,12 @@ $$
 
 **定义5.3（时变最大熵）**：宇宙膨胀中：
 $$
-S_{\max}(t) = \frac{A_H(t)}{4\ell_P^2} \sim e^{2H_0 t}
+S_{\max}(t) = \frac{A_H(t)}{4\ell_P^2}
 $$
-其中$A_H(t)$是宇宙视界面积。
+其中$A_H(t)$是宇宙视界面积。在加速膨胀主导的晚期（$H \approx H_0 = \text{const}$），de Sitter视界面积$A_{\text{dS}} = 4\pi R_H^2 = 4\pi/H_0^2$趋向常数，对应熵：
+$$
+S_{\max}(t) \to S_{\text{dS}} = \frac{\pi}{H_0^2 \ell_P^2} = \text{const}
+$$
 
 ### 5.2 宇宙吸引子动力学【核心创新】
 
@@ -334,50 +351,59 @@ $$
 \Delta S(t) := S_{\max}(t) - S_{\text{actual}}(t)
 $$
 
-**定理5.3（吸引子定理）**：在标准宇宙学模型中：
+**命题5.3（吸引子命题）**：
+
+**前提**：存在$\epsilon > 0$与$t_0$，使对所有$t \ge t_0$，$S_{\text{actual}}(t) \le S_{\text{dS}} - \epsilon$（实际熵不会在有限或无限时刻饱和视界熵）。
+
+在标准宇宙学模型与上述前提下：
 $$
 \lim_{t \to \infty} \Delta S(t) = \Delta S_\infty > 0
 $$
 
 **证明要点**：
-- 体积膨胀：$V(t) \sim e^{3H_0 t}$
-- 最大熵增长：$dS_{\max}/dt \sim 2H_0 e^{2H_0 t}$
-- 实际熵增长：$dS_{\text{actual}}/dt \sim$ 结构形成率$< dS_{\max}/dt$
-- 渐近行为：指数级差距但永不相交
+- 晚期：$S_{\max}(t) \to S_{\text{dS}} = \text{const}$（de Sitter视界熵）
+- 实际熵：$S_{\text{actual}}(t) \nearrow S_* \le S_{\text{dS}} - \epsilon$（前提保证严格不饱和）
+- 熵间隙：$\Delta S(t) = S_{\text{dS}} - S_{\text{actual}}(t) \to \Delta S_\infty = S_{\text{dS}} - S_* \ge \epsilon > 0$
+- 物理机制：因果视界限制可访问自由度，结合结构形成动力学保证系统不饱和最大熵
 
-#### 5.2.2 熵密度下降
+#### 5.2.2 熵密度渐近
 
 **定理5.4（熵密度演化）**：
+
+**前提**：若$S_{\text{actual}}(t) \to S_* \in (0, S_{\text{dS}})$且因果可达体积$V(t) \to V_\infty \in (0, \infty)$，则：
 $$
-s(t) = \frac{S_{\text{actual}}(t)}{V(t)} \sim t^{-\alpha}, \quad \alpha > 0
+s(t) = \frac{S_{\text{actual}}(t)}{V(t)} \to s_\infty = \frac{S_*}{V_\infty} > 0
 $$
 
+**证明要点**：在加速膨胀宇宙中，因果可达体积趋向有限（事件视界限制），故$S_{\text{actual}}$与$V$在晚期同阶趋稳，熵密度趋向非零常数。
+
 **物理意义**：
-- 宇宙变得越来越"稀薄"
+- 熵密度趋向非零渐近值，宇宙保持有限"稀薄度"
 - 局部结构（星系、生命）可持续存在
 - 无热寂终点
 
 #### 5.2.3 永恒分支结构
 
-**定理5.5（无限因果链）**：永恒图$G$的每条路径无限延伸：
+**命题5.5（无限因果链与分支稀释）**：在具有事件视界的加速膨胀宇宙模型中（晚期近de Sitter），永恒图$G$的每条路径无限延伸但分支密度随时间稀释：
 $$
 \forall v \in V, \exists (v_n)_{n=0}^{\infty} : v_0 = v, \, (v_n, v_{n+1}) \in E
 $$
+对固定的共动/可观测窗口，分支密度随时间稀释（单位可观测体积内的分支数下降）。
 
 **推论**：
 - 每个"平衡态"在更大系统中是非平衡的
-- 因果链永不终止
-- 宇宙沿无限分支永恒演化
+- 因果链永不终止但分支在膨胀中稀释
+- 宇宙沿无限分支永恒演化，局部逐渐趋向稳定
 
 ### 5.3 静态块中的熵箭头
 
 #### 5.3.1 叶状结构与时间方向
 
-**定理5.6**：熵增方向由叶状分解$\tau$确定：
+**命题5.6（熵箭头）**：在译码器$\pi$不可逆且叶流动满足混合条件（或平均态假设）下，沿叶状分解$\tau$方向的平均粗粒化熵不减：
 $$
-S_\pi[x|_{\ell+1}] \ge S_\pi[x|_\ell]
+\langle S_\pi[x|_{\ell+1}] \rangle \ge \langle S_\pi[x|_\ell] \rangle
 $$
-其中$\ell$是层函数。
+其中$\ell$是层函数，$\langle \cdot \rangle$表示对适当系综平均。
 
 #### 5.3.2 可逆性悖论的解决
 
@@ -423,6 +449,8 @@ $$
 - 未来不唯一确定
 - 存在真正的分支点
 
+**说明**：此处的$\deg^+ > 1$指在给定译码器或叶方向$\tau$下的多兼容延拓，与局部规则$f$沿$\sigma_{\text{time}}$确定下一时刻状态的唯一性不冲突。前者涉及不同观察视角下的全局扩展，后者仅关乎微观时间更新。
+
 #### 6.1.2 分支的本体性
 
 **定理6.2（本体分支vs认识不确定）**：
@@ -434,7 +462,7 @@ $$
 
 #### 6.2.1 条件二：自预测不可能
 
-**定理6.3（RBIT核心）**：嵌入式观察者无法完全预测自身：
+**定理6.3（RBIT核心，同§2.3.3之前提）**：嵌入式观察者无法完全预测自身：
 $$
 T_{\text{predict}}(v \to \text{choice}) > T_{\text{decide}}
 $$
@@ -446,7 +474,7 @@ $$
 
 #### 6.2.2 计算资源界限
 
-**定理6.4**：对复杂度为$C$的决策系统：
+**引理6.4（下界估计）**：在固定RAM/门电路成本模型，且决策DAG扇入有界、共享内存带宽受限的前提下，对复杂度为$C$的决策系统：
 $$
 T_{\text{predict}} \ge \Omega(C \log C)
 $$
@@ -500,11 +528,11 @@ $$
 
 #### 6.6.1 量子来源
 
-**定理6.8**：量子系统的Hilbert空间维度：
+**定理6.8**：量子系统的Hilbert空间维度给出分支数上界：
 $$
-\deg^+ \sim \dim \mathcal{H} = 2^N
+\deg^+ \lesssim \dim \mathcal{H} \approx 2^N
 $$
-对宏观系统，$N \gg 1$保证巨大分支数。
+对宏观系统，$N \gg 1$保证巨大分支数。实际$\deg^+$受动力学、守恒量与观察粗粒化限制。
 
 #### 6.6.2 经典来源
 
@@ -516,11 +544,11 @@ $$
 
 #### 6.6.3 脑的特殊性
 
-**定理6.10**：人脑满足：
+**经验估计6.10**：人脑满足：
 - 神经元数：$\sim 10^{11}$
 - 突触数：$\sim 10^{15}$
-- 量子相干时间：$> 10^{-13}$s（足够触发经典放大）
-- 估计：$\deg^+ \sim 10^{10^9}$（天文数字）
+- 相干时间量级可能达到$10^{-13}$s左右（具体依赖实验条件与模型），足以被经典放大机制捕获
+- 估计：$\deg^+ \sim 2^N$（$N$为有效量子自由度数，至少指数级）
 
 ---
 
@@ -545,15 +573,16 @@ $$
 
 #### 7.1.3 译码器诠释
 
-**定义7.3（粗粒化概率）**：
+**定义7.3（粗粒化概率）**：设$\nu$为$X_f$上的移位不变测度，$B$为有限观察窗口，则：
 $$
-P_{\text{decoder}}(\gamma) = |\pi^{-1}(\gamma)|/|X_f|
+P_{\text{decoder}}(\gamma) = \nu\!\big(\{x \in X_f : \pi(x|_B) = \gamma\}\big)
 $$
 
-**定理7.1（三诠释等价）**：在适当条件下：
+**定理7.1（三诠释等价）**：在存在与边权$w$相容的移位不变且遍历（ergodic）测度$\nu$（如DLR/Gibbs规范），译码器$\pi$为可测且满足粗粒化偏序稳定性，并取$B \nearrow \infty$的Shannon–McMillan极限条件下：
 $$
 P_{\text{epistemic}} = P_{\text{ontic}} = P_{\text{decoder}}
 $$
+若$\nu$非遍历，则结论按其遍历分解逐分量成立。
 
 ### 7.2 Born规则的导出
 
@@ -561,15 +590,16 @@ $$
 
 对量子系统：
 $$
-p_i = \frac{w_i e^{\langle \beta_i, \rho \rangle}}{\sum_j w_j e^{\langle \beta_j, \rho \rangle}}
+p_i = \frac{w_i e^{\langle \beta_i, \varrho \rangle}}{\sum_j w_j e^{\langle \beta_j, \varrho \rangle}}
 $$
 
 #### 7.2.2 与标准量子力学的联系
 
-**定理7.2**：取$w_i = |\langle \psi|\phi_i \rangle|^2$，$\beta_i = 0$，得Born规则：
+**命题7.2（Born规则恢复）**：选择边权重$w_i = |\langle \psi|\phi_i \rangle|^2$且取$\beta_i = 0$时，母映射的概率分布恢复标准Born形式：
 $$
 p_i = |\langle \psi|\phi_i \rangle|^2
 $$
+此表明Born规则可在母映射框架内自然容纳，但需将振幅平方作为图边权重的先验选择。
 
 ### 7.3 经典概率的涌现
 
@@ -604,18 +634,18 @@ $$
 
 在母映射中，$\hbar \to 0$对应主导极点贡献：
 $$
-\mathcal{M}[\mu](\theta, \rho) \xrightarrow{\hbar \to 0} e^{S_{\text{cl}}/\hbar}
+\mathcal{M}[\mu](\theta, \varrho) \xrightarrow{\hbar \to 0} e^{S_{\text{cl}}/\hbar}
 $$
 
 ### 8.2 经典-宇宙学桥梁
 
-#### 8.2.1 引力熵
+#### 8.2.1 引力有效势
 
-**定义8.1**：
+**记号8.1（量纲估计的引力有效势）**：定义引力有效势及其无量纲化（以无量纲自由能刻画的有效势）：
 $$
-S_{\text{grav}} = -\frac{GM^2}{RT}
+F_{\text{grav}} := -\frac{GM^2}{R}, \quad \phi_{\text{grav}} := \frac{F_{\text{grav}}}{k_B T} = -\frac{GM^2}{Rk_B T}
 $$
-为负值，驱动结构形成。
+$F_{\text{grav}}$为负值能量，$\phi_{\text{grav}}$为无量纲有效势，驱动引力结构形成。该量仅作量纲估计/建模势，不作为可与热力学熵直接合成的状态函数，不与Bekenstein-Hawking熵或热力学熵进行不当运算。
 
 #### 8.2.2 全息屏
 
@@ -628,10 +658,10 @@ $$
 
 **EBOC-母映射综合**：
 $$
-\boxed{\mathcal{U} = (X_f, G, \rho, \Sigma, f, \pi, \mu, \nu, \mathcal{M}, \tau)}
+\boxed{\mathcal{U} = (X_f, G, \rho, \Sigma, f, \pi, \mu, \nu, \mathcal{M}, \tau, \varrho)}
 $$
 
-统一描述量子、经典、宇宙学的完整框架。
+统一描述量子、经典、宇宙学的完整框架。其中$\rho$为量子密度算子，$\varrho$为母映射尺度变量。
 
 ---
 
@@ -643,9 +673,9 @@ $$
 
 **预测9.1**：分辨率依赖的Bell违反：
 $$
-|S(\pi)| \le 2 + \epsilon(\pi)
+|S(\pi)| \le \min\{2 + \epsilon(\pi), \, 2\sqrt{2}\}
 $$
-其中$\epsilon(\pi) \sim K(\pi)/L$。
+其中$\epsilon(\pi) \sim K(\pi)/R$，上界同时受Tsirelson界$2\sqrt{2}$约束。
 
 #### 9.1.2 延迟选择量子擦除
 
@@ -659,7 +689,7 @@ $$
 $$
 S_{\text{rad}}(t) = S_{\text{thermal}}(t) + \delta S(t)
 $$
-其中$\delta S(t) \sim \log \deg^+(v_{\text{horizon}})$。
+其中$\delta S(t) \sim \deg^+(v_{\text{horizon}})^{-1}$。
 
 #### 9.2.2 CMB非高斯性
 
@@ -670,10 +700,11 @@ $$
 
 #### 9.2.3 暗能量状态方程
 
-**预测9.5**：
+**假设性预测9.5**：在加速膨胀晚期，$S_{\max}(t) \to S_{\text{dS}}$为常数，熵间隙$\Delta S(t) \to \Delta S_\infty$。若假设状态方程偏离参数$\epsilon$正比于熵间隙比（常比前提）：
 $$
-w = -1 + \epsilon, \quad \epsilon \sim \frac{\Delta S_\infty}{S_{\max}} \sim 10^{-2}
+w = -1 + \epsilon, \quad \epsilon \propto \frac{\Delta S_\infty}{S_{\text{dS}}}
 $$
+则可得到量级$\epsilon \sim 10^{-2}$的估计。此比值在晚期为常数，反映视界熵与实际熵的永久差距。
 
 ### 9.3 实验室检验
 
@@ -718,7 +749,7 @@ $$
 
 #### 10.2.2 无始无终
 
-**定理10.2**：$G$无边界条件：
+**公设10.2**：$G$无边界条件：
 - 每个顶点有前驱和后继
 - 路径双向无限延伸
 - 无创生或湮灭
@@ -788,9 +819,9 @@ $$
 ### 12.2 概念革新
 
 - **熵非绝对**：依赖尺度、视界和动态最大值
-- **无热寂**：$\Delta S_\infty > 0$保证永恒演化
+- **无热寂**（条件见§5.2.1–§5.2.2）：$\Delta S(t) \to \Delta S_\infty > 0$（有限非零熵间隙）与$s(t) \to s_\infty > 0$（非零渐近熵密度）共同保证永恒演化
 - **决定论与自由兼容**：通过双条件精确实现
-- **静态块与操作选择统一**：永恒图包含所有可能
+- **静态块与操作选择统一**：永恒图包含所有可能，但分支密度随膨胀稀释
 
 ### 12.3 理论意义
 
@@ -808,11 +839,11 @@ $$
 - 宇宙学的永恒模型
 - AI的自由意志实现
 
-宇宙作为永恒图$G$，既是静态决定的完整结构，又允许真正的选择与创造。熵不趋向最大，而是永远追逐但永不达到移动的目标。因果链无限延伸，每个终点都是新的起点。
+宇宙作为永恒图$G$，既是静态决定的完整结构，又允许真正的选择与创造。在加速膨胀主导的晚期，视界熵趋向de Sitter常数，实际熵渐进但不达此极限，熵间隙稳定在有限非零值，而熵密度趋向有限值保证了局部结构的持续存在。因果链无限延伸，每个终点都是新的起点，但分支在膨胀中稀释，局部逐渐稳定。
 
 在这个框架下，我们既不是拉普拉斯妖的囚徒，也不是随机涨落的偶然，而是在物理定律约束下真正选择未来的主体。信息守恒保证过去不会消失，能量守恒维持宇宙的运转，熵增方向赋予时间以意义，概率量化我们的无知，而自由意志让选择成为可能。
 
-这就是五原则统一理论的核心洞见：**宇宙是一个永恒、开放、无限分支的自洽结构，其中每个观察者都在真实地创造自己的未来。**
+这就是五原则统一理论的核心洞见：**宇宙是一个永恒、开放、无限分支但渐进稳定的自洽结构，其中每个观察者都在真实地创造自己的未来。**
 
 ---
 
@@ -820,7 +851,7 @@ $$
 
 ### A.1 EBOC核心定理
 
-**T1（块-自然扩张共轭）**：$(X_f, \sigma_{\text{time}}) \cong (\Omega(F), \sigma_\Omega)$
+**T1（块-图对偶）**：$(X_f, \sigma_{\text{time}}) \cong (Y_G, \sigma)$（即§2.1.1之定理2.1，边移位表述）
 
 **T4（信息上界）**：$K(\pi(x|_W)) \le K(x|_W) + K(\pi) + O(1)$
 
@@ -828,7 +859,7 @@ $$
 
 **T15（因果一致性）**：$X_f^{(v,\tau)}$仅含与$v$一致的全局解
 
-**T19（后继唯一性）**：确定性$f$下存在唯一$\ell$-后继
+**T19（后继唯一性）**：确定性$f$下沿$\sigma_{\text{time}}$方向存在唯一时间后继（局部规则确定下一时刻状态）
 
 **T20（相容原则）**：表观选择与决定论统一
 
@@ -848,7 +879,7 @@ $$
 
 **理论扩展不终结**：$T_{t+1} = T_t + \Delta_t$仍有新不完备句
 
-**自预测不可能**：$T_{\text{predict}} > T_{\text{execute}}$
+**自预测不可能**：$T_{\text{predict}} > T_{\text{decide}}$（同§2.3.3之前提；并依术语约定$T_{\text{decide}} \equiv T_{\text{execute}}$）
 
 ---
 
@@ -862,7 +893,8 @@ $$
 | $\pi$ | 译码器（观察因子映射） |
 | $\mathcal{M}[\mu]$ | 相位-尺度母映射 |
 | $\theta$ | 相位变量（量子振荡） |
-| $\rho$ | 尺度变量（能量-动量） |
+| $\rho$ | 密度算子（量子态） |
+| $\varrho$ | 尺度变量（能量-动量） |
 | $S_{\max}(t)$ | 时刻$t$的最大可能熵 |
 | $\Delta S(t)$ | 熵间隙（最大-实际） |
 | $s(t)$ | 熵密度 |

@@ -117,8 +117,9 @@ $$
 $$
 **SBU（静态块展开）**
 $$
-X_f^{(v,\tau)}:=\Big\{x\in X_f:\ x\big|_{\varphi_{v_0}(\mathrm{Cone}^+_{\ell}(v))}\ \text{与 }v\ \text{一致}\Big\}.
+X_f^{(v,\tau)}:=\Big\{x\in X_f:\ x\big|_{\varphi_{v_0}(\mathrm{Ball}_G(v,R))}=\mathrm{pat}(v)\ \text{且}\ x\ \text{在}\ \varphi_{v_0}\!\big(\mathrm{Cone}^+_\ell(v)\big)\ \text{上为该锚的一致扩张}\Big\},
 $$
+其中"一致扩张"指：在该锥内所有由 $v$ 与局部规则强制得到的单元与 $x$ 匹配。
 
 ### 2.8 永恒图—SFT 的双表述（工作准则）
 
@@ -190,15 +191,17 @@ $$
 
 ---
 
-### T2（Unimodular 协变性；可描述窗口族）
+### T2（Unimodular 协变性；复杂度密度不变）
 
-**命题.** 若 Følner 族 $\{W_k\}$ 满足 $K(W_k)=O(\log|W_k|)$，则任意两组可接受叶所致观察语义复杂度差为 $O(\log|W_k|)$，归一化后趋 0；熵不增保持。
+**命题.** 对任意移位不变遍历测度 $\mu$ 与两组可接受叶（由 $U_1,U_2\in\mathrm{GL}_{d+1}(\mathbb Z)$ 给出），令 $\tilde W_k=U_2U_1^{-1}(W_k)$。则对 $\mu$-a.e. 的 $x$，
+$$
+\lim_{k\to\infty}\frac{K(\pi(x|_{W_k}))}{|W_k|}
+=
+\lim_{k\to\infty}\frac{K(\pi(x|_{\tilde W_k}))}{|\tilde W_k|}
+= h_{\pi_\ast\mu}\big(\pi(X_f)\big).
+$$
 
-**证明.** 两组叶由 $U_1,U_2\in\mathrm{GL}_{d+1}(\mathbb Z)$ 给出。置 $U=U_2U_1^{-1}$。对每个 $W_k$，$\tilde W_k=U(W_k)$ 可由描述 $\langle U\rangle$ 与 $W_k$ 的编码恢复，故
-$$
-\big|K(\pi(x|_{\tilde W_k}))-K(\pi(x|_{W_k}))\big|\ \le\ K(\langle U\rangle)+O(\log|W_k|)=O(\log|W_k|),
-$$
-由引理 5.1–5.2。归一化后极限为 0。熵不增由引理 5.4 给出。$\square$
+**证明.** 整同构 $U=U_2U_1^{-1}$ 保持 Følner 性质：$\{W_k\}$ 为 Følner 族则 $\{\tilde W_k\}$ 亦然，且 $|\tilde W_k|=|W_k|$（整行列式 $\pm1$）。由引理 5.5（SMB/Brudno），对 $\mu$-a.e. 的 $x$，两族窗口上的归一化复杂度均收敛至 $h_\mu(X_f)$。因子映射 $\pi$ 诱导 $\pi_\ast\mu$，由引理 5.1 与 5.4，归一化后得到因子熵 $h_{\pi_\ast\mu}(\pi(X_f))$，与坐标选择无关。$\square$
 
 ---
 
@@ -300,14 +303,14 @@ $$
 
 ---
 
-### T13（叶-语言的 $\omega$-自动机刻画）
+### T13（叶-语言的 $\omega$-自动机刻画；sofic 化充分条件）
 
-**命题.** 在"一维子作用 + 有限型/正则安全"下，存在 Büchi/Streett 自动机 $\mathcal A$ 使
+**命题.** 若（i）采用路径版 $(Y_G,\sigma)$ 或存在 $k$ 使 $X_f$ 在时间子作用上可经高阶块表示 $X_f^{[k]}$ 令跨叶一致性仅依赖相邻 $k$ 层（时间方向可马尔可夫化）；且（ii）译码器 $\pi:\Sigma^B\to\Gamma$ 的核窗 $B$ 具有有限跨叶厚度，则 $\mathsf{Lang}_{\pi,\varsigma}(X_f)$ 为 sofic（因而 $\omega$-正则），可由某 Büchi 自动机 $\mathcal A$ 接受：
 $$
 \mathsf{Lang}_{\pi,\varsigma}(X_f)=L_\omega(\mathcal A).
 $$
 
-**证明（构造）.** 取高阶块表示 $X_f^{[k]}$，将状态集 $Q$ 编码入扩展字母表并以有限型约束实现转移 $\delta$。跨叶一次读取对应一次自动机步。接受条件以局部安全/正则约束实现（如"无限次访问 $F$"由循环记忆位实现）。于是得到等价 $\omega$-语言。$\square$
+**证明（构造）.** 在时间方向有限记忆条件下，取高阶块表示 $X_f^{[k]}$，将有限状态集 $Q$ 编码入扩展字母表并以有限型约束实现转移 $\delta$。跨叶一次读取对应一次自动机步。接受条件以局部安全/正则约束实现（如"无限次访问 $F$"由循环记忆位实现）。于是得到等价 $\omega$-语言。$\square$
 
 ---
 
@@ -337,13 +340,13 @@ $$
 
 ### T17（多锚观察者与主观时间率）
 
-**命题.** 有效步长 $b=\langle\tau^\star,\tau\rangle\ge 1$ 反映章节节拍；不同 $b$ 仅改变读取节奏，Følner 归一化后熵率一致。
+**命题.** 有效步长 $b=\langle\tau^\star,\tau\rangle\ge 1$ 反映章节节拍；不同 $b$ 仅改变读取节奏，在长方体 Følner 族（或等价地：时间厚度 $T_k\to\infty$，且空间/时间尺度比在上下有界）下，归一化熵率一致。
 
 **证明.** 时间子作用改为 $\sigma_{\mathrm{time}}^{(b)}$ 等效于对 $\mathbb{Z}$ 子作用"抽样"（$\sigma_\Omega^b$）。测度熵满足
 $$
 h(\sigma_\Omega^b)\ =\ b\cdot h(\sigma_\Omega).
 $$
-而 $|W_k|$ 在"每步跨 $b$"下同样线性缩放，归一化后抵消，极限一致。$\square$
+对长方体 Følner 族，$|W_k|$ 在"每步跨 $b$"下同样线性按 $b$ 缩放，归一化后抵消，极限一致。对一般 Følner 族，由引理 5.5，对 $\mu$-a.e. 的 $x$ 两族密度极限仍一致，但不宜逐窗口声称线性比例抵消。$\square$
 
 ---
 

@@ -138,7 +138,7 @@ $$
 设
 
 $$
-\Phi(z)=\prod_{\ell=1}^L (1-\lambda_\ell z)^{d_\ell+1}
+\Phi(z)=\prod_{\ell=1}^L (z-\lambda_\ell)^{d_\ell+1}
 =\sum_{r=0}^{R}\phi_r\,z^r,\qquad
 R:=\sum_{\ell=1}^L(d_\ell+1).
 $$
@@ -151,7 +151,7 @@ $$
 
 且 $R$ 为**最小阶**。任何再乘非常数多项式都不会降低湮灭阶。
 
-**证明要点**。记差分算子 $(\Delta_{\lambda}y)_k:=y_{k+1}-\lambda\,y_k$。对每个 $\ell$，$(\Delta_{\lambda_\ell})^{d_\ell+1}(k^{d_\ell}\lambda_\ell^{\,k})\equiv 0$；并且 $\prod_\ell (\Delta_{\lambda_\ell})^{d_\ell+1}y\equiv 0$。将 $\Delta_{\lambda}$ 展为移位算子多项式得到 $\Phi$；最小性由合流指数–多项式空间的维数计数与根互异性给出。∎
+**证明要点**。记前移算子 $E$ 满足 $(Ey)_k:=y_{k+1}$，差分算子 $(\Delta_{\lambda}y)_k:=y_{k+1}-\lambda\,y_k=(E-\lambda I)y_k$。对每个 $\ell$，$(E-\lambda_\ell I)^{d_\ell+1}(k^{d_\ell}\lambda_\ell^{\,k})\equiv 0$；并且 $\prod_\ell (E-\lambda_\ell I)^{d_\ell+1}y\equiv 0$。将前移算子 $E$ 视作形式变量 $z$ 得到湮灭多项式 $\Phi(z)=\prod_\ell(z-\lambda_\ell)^{d_\ell+1}$，其根**恰为** $\{\lambda_\ell\}$；最小性由合流指数–多项式空间的维数计数与根互异性给出。∎
 
 **注（步长—尺度一致性）**。$\lambda_\ell=e^{\gamma_\ell\Delta}$ 把方向指数率与采样步长统一为离散特征根；$\Delta\to0$ 时 $\lambda_\ell\approx 1+\gamma_\ell\Delta$，与 S5 的极点位置—阶完全一致。
 
