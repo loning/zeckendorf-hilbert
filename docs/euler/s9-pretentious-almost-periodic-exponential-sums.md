@@ -54,9 +54,9 @@ $$
 * **C9.1**：固定 $\sigma>1$。涉及换序与边界项的所有操作满足 S1/S4 的管域与有限阶 EM 约束。
 * **C9.2**（观测窗与截断）：窗 $[-T,T]$ 与截断 $X$ 满足下述之一：
 
-  (a) **频率分离**：存在 $\Omega>0$ 使 $\min_{m\ne n\le X}|\log(m/n)|\ge \Omega/T$；或
+  (a) **近对角计数/误差并入**：对满足 $|T(\log m-\log n)|<\Omega$ 的近零频对 $(m,n\le X)$，统一作为**受控误差项**按 A.2 的最后一项处理（或给出其**局部计数/上界**)；不要求全体 $m\ne n$ 的全局最小分离；或
 
-  (b) **平滑窗抑制**：取 $W\in C^K_c(\mathbb R)$（$K$ 足够大）置换指示窗，存在 $\Omega>0$ 与 $\delta\in(0,1)$ 使 $|\widehat W(\xi)|\le \delta$（对所有 $|\xi|\ge \Omega$）。能量估计时仅对满足 $|T(\log m-\log n)|\ge \Omega$ 的交叉项使用该尾部小量；其余近零频项按 (a) 的频率分离或并入误差统一处理（见 A.2/A.2′）。
+  (b) **平滑窗抑制**：取 $W\in C^K_c(\mathbb R)$（$K$ 足够大）置换指示窗，存在 $\Omega>0$ 与 $\delta\in(0,1)$ 使 $|\widehat W(\xi)|\le \delta$（对所有 $|\xi|\ge \Omega$）。能量估计时仅对满足 $|T(\log m-\log n)|\ge \Omega$ 的交叉项使用该尾部小量；其余近零频项按 (a) 的近对角误差并入处理（见 A.2/A.2′）。
 * **C9.3**：伯努利层阶数 $K$ 至少覆盖所用导数与端点项，余项由 S4 的整函数性与 S8 的窗尾上界控制。
 
 ---
@@ -78,6 +78,12 @@ $$
 $$
 \mathbb D_{\sigma,X}(f;t)^2:=\inf_{\chi,\tau}\sum_{p\le X}\frac{1-\Re\!\bigl(f(p)\,\overline{\chi(p)}\,p^{-i(t+\tau)}\bigr)}{p^{\sigma}}.
 $$
+
+（记号关系说明）对固定 $\sigma>1$ 与任意 $t$，有
+$$
+\mathbb D_{\sigma,X}(f;t)\ \le\ \mathbb D_X(f),
+$$
+因为 $p^{-\sigma}\le p^{-1}$。故以 $\mathbb D_X(f)\le D_0$ 的 Pretentious 假设强于以 $\mathbb D_{\sigma,X}$ 表述的版本，与定理 9.1 的使用相容。
 
 ---
 
@@ -121,11 +127,17 @@ $$
 
 固定 $\sigma>1$。若存在 $X\ge2$、$(\chi^\star,\tau^\star)$ 使 $\mathbb D\bigl(f,\chi^\star(\cdot)\,(\cdot)^{i\tau^\star};X\bigr)\le D_0$，并且 C9.2 的 Nyquist 条件对 $|t+\tau^\star|\le T$ 成立，则存在常数 $c_\sigma,C_\sigma>0$ 与集合 $\mathcal T_{\mathrm{big}}\subset[-T,T]$（测度 $\ge c_\sigma T$），使
 
+（括注：由 $\mathbb D_{\sigma,X}(f;t)\le \mathbb D_X(f)$（$\sigma>1$）知，此 Pretentious 假设强于定理 9.1 使用的 $\mathbb D_{\sigma,X}$ 版本。）
+
 $$
 \bigl|P_f(X;\sigma,t)\bigr|\ \ge\ c_\sigma\,A_\sigma(X)\,e^{-C_\sigma D_0^2}\qquad (t\in\mathcal T_{\mathrm{big}}).
 $$
 
-**证明（纲要）**。不必分解 $P_f=P_g+E$ 做点态误差。直接对 $P_f$ 使用 A.2/A.2′（二次/四次能量）与 Paley–Zygmund，可在窗 $|t+\tau^\star|\le T$ 内得到正比例的大值集合，其阈值为 $c_\sigma A_\sigma(X)$。此外，若 $\mathbb D\bigl(f,\chi^\star(\cdot)(\cdot)^{i\tau^\star};X\bigr)\le D_0$，则用附录 A.4 仅作阈值校正：在与 $-\tau^\star$ 对齐的同窗内将阈值稳定为 $c_\sigma A_\sigma(X)\,e^{-C_\sigma D_0^2}$（不涉及点态的 $P_f-P_g$ 差值估计）。∎
+**证明（纲要）**。不必分解 $P_f=P_g+E$ 做点态误差。先对模型 $g(n)=\chi^\star(n)\,n^{i\tau^\star}$ 用 A.2/A.2′ 与 Paley–Zygmund 得到以 $t\approx-\tau^\star$ 为中心的**大值集合**；然后在同窗 $|t+\tau^\star|\le T$ 内使用**引理 A.5（窗内 $L^2$ 比较）**：
+$$
+\int_{\mathbb R} W\!\Big(\tfrac{t}{T}\Big)\,\big|P_f(X;\sigma,t)-P_g(X;\sigma,t)\big|^2 dt\ \le\ C_\sigma\,e^{-c_\sigma D_0^2}\,T\,A_\sigma(X)^2,
+$$
+其中 $D_0$ 为 Pretentious 距离上界，$W$ 来自 C9.2(b)。由此将 $P_g$ 的大值通过 $L^2$ 误差**稳健转移**到 $P_f$，得到窗内正比例的大值集合，其阈值为 $c_\sigma A_\sigma(X)\,e^{-C_\sigma D_0^2}$。上述阈值校正亦可由附录 A.4 的欧拉因子比较得到等价表述。∎
 
 **注 3.1**。当 $f=\chi$ 或 $f(n)=\chi(n)\,n^{i\tau}$ 时为严格几乎周期；一般 Pretentious 情形等价于在此基础上的有界扰动。
 
@@ -149,7 +161,7 @@ $$
 在 C9.2 下，存在常数 $C_{\sigma,\Omega},c_\sigma>0$ 使
 
 $$
-\operatorname{meas}\bigl(\mathcal Z_\varepsilon\bigr)\ \le\ C_{\sigma,\Omega}\,\Bigl(\varepsilon^2+\bigl(1-e^{-c_\sigma\,\bigl(\mathbb D^{\star}_{\sigma,X}(f;T)\bigr)^2}\bigr)\Bigr)\,T.
+\operatorname{meas}\bigl(\mathcal Z_\varepsilon\bigr)\ \le\ C_{\sigma,\Omega}\,\Bigl(\varepsilon+\bigl(1-e^{-c_\sigma\,\bigl(\mathbb D^{\star}_{\sigma,X}(f;T)\bigr)^2}\bigr)\Bigr)\,T.
 \tag{9.2}
 $$
 
@@ -162,11 +174,11 @@ $$
 $$
 \int_{-T}^{T}\!|P_f|^2 dt\ \le\ c^{-1}\!\int_{\mathbb R}\! W\!\Bigl(\frac{t}{T}\Bigr)\,|P_f|^2 dt.
 $$
-交叉项在 $|T(\log m-\log n)|\ge\Omega$ 处由 $|\widehat W|$ 的尾部小量吸收（A.2），其余近零频项并入误差或用 C9.2(a) 处理。由此配合 A.2′ 与 Paley–Zygmund，得 $\operatorname{meas}\{t:\ |P_f|\le \varepsilon A_\sigma(X)\}\ll \varepsilon^2 T$。另一方面，由（9.1）知对任意 $t$ 有统一阈值控制因子 $\exp\{-c_\sigma\,\mathbb D_{\sigma,X}(f;t)^2\}$；取窗内下确界 $\mathbb D^{\star}_{\sigma,X}(f;T)$ 得到 $e^{-c_\sigma(\mathbb D^{\star}_{\sigma,X}(f;T))^2}$ 的阈值修正。将其与前述能量—Paley–Zygmund 链接，得到（9.2）的 $\varepsilon^2+$ Pretentious 稀释结构。∎
+交叉项在 $|T(\log m-\log n)|\ge\Omega$ 处由 $|\widehat W|$ 的尾部小量吸收（A.2），其余近零频项并入误差或用 C9.2(a) 处理。由此配合 A.2′ 与 Paley–Zygmund，得 $\operatorname{meas}\{t:\ |P_f|\le \varepsilon A_\sigma(X)\}\ll \varepsilon\, T$。另一方面，由（9.1）知对任意 $t$ 有统一阈值控制因子 $\exp\{-c_\sigma\,\mathbb D_{\sigma,X}(f;t)^2\}$；取窗内下确界 $\mathbb D^{\star}_{\sigma,X}(f;T)$ 得到 $e^{-c_\sigma(\mathbb D^{\star}_{\sigma,X}(f;T))^2}$ 的阈值修正。将其与前述能量—Paley–Zygmund 链接，得到（9.2）的 $\varepsilon+$ Pretentious 稀释结构。∎
 
 ### 推论 9.4（近零复访率）
 
-在 C9.2 下，单位时间内 $P_f$ 落入相对半径 $\varepsilon$ 的小球的复访率 $\ll \varepsilon^2+\bigl(1-e^{-c_\sigma(\mathbb D^{\star}_{\sigma,X}(f;T))^2}\bigr)$。
+在 C9.2 下，单位时间内 $P_f$ 落入相对半径 $\varepsilon$ 的小球的复访率 $\ll \varepsilon+\bigl(1-e^{-c_\sigma(\mathbb D^{\star}_{\sigma,X}(f;T))^2}\bigr)$。
 
 其中隐常数仅依赖于 $(\sigma,\Omega)$ 与窗参数，不依赖 $T,X$。
 
@@ -195,7 +207,7 @@ A_\sigma(X)\ \le\ \frac{\zeta(\sigma)}{\sqrt{N_2(\sigma)}}=\zeta(2\sigma)^{1/2},
 \lim_{X\to\infty}A_\sigma(X)=\frac{\zeta(\sigma)}{\sqrt{N_2(\sigma)}}=\zeta(2\sigma)^{1/2}.
 $$
 
-这与定理 9.3 的 $\varepsilon^2$ 量级相容（有限窗能量由 $A_\sigma(X)^2$ 给出，Pretentious 稀释项另行单独计入）。
+这与定理 9.3 的 $\varepsilon$ 量级相容（有限窗能量由 $A_\sigma(X)^2$ 给出，Pretentious 稀释项另行单独计入）。
 
 ---
 
@@ -253,6 +265,8 @@ $$
 
 在本节固定傅里叶规范 $\widehat W(\xi):=\int_{\mathbb R}e^{-i\xi t}W(t)\,dt$。
 
+（说明）本节使用**不含 $2\pi$** 的傅里叶规范；下式中的**$T$ 缩放因子**来自变量代换 $u=t/T$。
+
 取 $W\in C_c^K(\mathbb R)$；记
 
 $$
@@ -299,6 +313,19 @@ $$
 $$
 
 与 A.1–A.2 合并给出定理 9.1 的指数衰减因子。
+
+### A.5（窗内 $L^2$ 比较）
+
+在 C9.2(b) 与 $\mathbb D\bigl(f,g;X\bigr)\le D_0$ 下，取与 A.2 同一平滑窗 $W\in C_c^K(\mathbb R)$，则对固定 $\sigma>1$ 有
+
+$$
+\int_{\mathbb R} W\!\Big(\tfrac{t}{T}\Big)\,\big|P_f(X;\sigma,t)-P_g(X;\sigma,t)\big|^2 dt
+\ \le\ C_\sigma\,e^{-c_\sigma D_0^2}\,T\,A_\sigma(X)^2,
+$$
+
+其中常数仅依赖于 $\sigma$ 与窗/分离参数 $(\Omega,\delta)$。由此可将模型 $P_g$ 的大值窗口在同一观测窗内**稳健转移**到 $P_f$（见定理 9.2）。
+
+（证明提要）写成素因子比较并用 A.4 在 $\sigma>1$ 竖条内给出点态对数型控制；截断误差由 A.1 的有限阶 EM 与 A.2 的能量恒等式吸收，得出上式。∎
 
 ---
 
