@@ -72,7 +72,7 @@ $$
 \sum_{m\in\mathbb Z\setminus\{0\}}\Bigl|\widehat g\!\Bigl(\tfrac{2\pi m}{\Delta}\Bigr)\Bigr|<\infty.
 $$
 
-则对任意 $T>0,\ \Delta>0,\ M\in\mathbb N$，记 $K:=\lfloor T/\Delta\rfloor$，成立
+则给定步长 $\Delta>0$ 满足上式（别名可和性），且在上述正则性假设下，对任意 $T>0$、$M\in\mathbb N$（记 $K:=\lfloor T/\Delta\rfloor$）成立
 
 $$
 \Bigl|\,\mathcal I[g]-\mathcal Q_{\Delta,T}[g]\,\Bigr|
@@ -90,7 +90,7 @@ $$
 
 **说明**。
 
-* 第一项由 Poisson 求和公式与 $\widehat g\in L^1$ 得来，是对"积分 ↔ 无穷采样和"差异的**精确尾和**上界。
+* 第一项由 Poisson 求和公式与 $\widehat g\in L^1$ 得来，是对"积分 ↔ 无穷采样和"差异的**尾和的绝对值上界**。
 * 第二项是把无穷和换为有限和（区间 $[-K\Delta,\,K\Delta]$）时的**有限阶 EM 校正**（含端点半权、有限伯努利层与有限阶余项）；只用到至 $B_{2(M-1)}$ 的伯努利层，**不存在无穷伯努利级数**。
 * 第三项是**窗化截断**的体积分尾项。三者叠加，给出**非渐近、可计算**的误差预算。
 
@@ -120,7 +120,7 @@ y_k=\sum_{\ell=1}^L P_\ell(k)\,\lambda_\ell^{\,k},\qquad
 \lambda_\ell=e^{\gamma_\ell\,\Delta}.
 $$
 
-若对一切 $\ell\ne j$ 有 $\gamma_\ell\not\equiv\gamma_j\ (\mathrm{mod}\ 2\pi i/\Delta)$，则 $\lambda_\ell$ 两两不同；否则可能发生 $\lambda$ 折叠。若 $d_\ell=0$ 则为纯指数和。当步长 $\Delta$ 满足 Nyquist 型限制，使 $|\Im(\gamma_\ell-\gamma_j)|<\pi/\Delta$（或等价的带宽约束）时，上述条件自动满足。该结构与定理 8.1 的误差三分解**正交**：别名、端点校正与截断**不改变** $\{\gamma_\ell,d_\ell\}$ 的解析地位，保持 S4 的"**极点 = 主尺度**"。
+若对一切 $\ell\ne j$ 有 $\gamma_\ell\not\equiv\gamma_j\ (\mathrm{mod}\ 2\pi i/\Delta)$，则 $\lambda_\ell$ 两两不同；否则可能发生 $\lambda$ 折叠。若 $d_\ell=0$ 则为纯指数和。**若** 连续极点 $\{\gamma_\ell\}$ **本身互异，且** $\Delta$ **满足** $|\Im(\gamma_\ell-\gamma_j)|<\pi/\Delta$（或等价的带宽约束），**则** $\lambda_\ell$ **两两不同**；若存在合流（$\gamma_\ell=\gamma_j$），仍可能发生 $\lambda$ 折叠，应以多重性并入 $d_\ell$ 处理。该结构与定理 8.1 的误差三分解**正交**：别名、端点校正与截断**不改变** $\{\gamma_\ell,d_\ell\}$ 的解析地位，保持 S4 的"**极点 = 主尺度**"。
 
 ---
 
@@ -163,16 +163,16 @@ $$
 
 ### 定理 8.5（可识别性与样本复杂度）
 
-若 $\lambda_\ell$ 两两不同且取**连续的** $2R$ 个等距样本（或等价地构造满秩的 Hankel/Toeplitz 预测矩阵），则在无噪声下由 $\{y_k\}_{k=0}^{N-1}$（$N\ge 2R$）**唯一**确定 $\Phi$（进而 $\{\lambda_\ell\}$ 与 $\{P_\ell\}$）。在噪声存在且预测矩阵满秩时，最小二乘解存在且唯一。
+若 $\lambda_\ell$ 两两不同且取**连续的** $2R$ 个等距样本（或等价地构造满秩的 Hankel/Toeplitz 预测矩阵），则在无噪声下由 $\{y_k\}_{k=0}^{N-1}$（$N\ge 2R$）**唯一**确定 $\Phi$；为消除尺度不定性，取 $\Phi$ 为首一多项式（令 $\phi_R=1$）。否则仅唯一至非零整体尺度。进而可唯一恢复 $\{\lambda_\ell\}$ 与 $\{P_\ell\}$。在噪声存在且预测矩阵满秩时，最小二乘解存在且唯一。
 
-**稳定性（定性上界）**。设 $V$ 为**（合流）Vandermonde** 矩阵，$\kappa(V)$ 其条件数，$\delta:=\min_{\ell\ne j}|\lambda_\ell-\lambda_j|$ 为最小根间距。对小噪声 $\eta$ 有
+**稳定性（定性上界）**。设 $V$ 为**（合流）Vandermonde** 矩阵，$\kappa(V)$ 其条件数，$\delta_{\mathrm{sep}}:=\min_{\ell\ne j}|\lambda_\ell-\lambda_j|$ 为最小根间距。对小噪声 $\eta$ 有
 
 $$
-\max_\ell \frac{|\delta\lambda_\ell|}{|\lambda_\ell|}
-\ \lesssim\ \kappa(V)\cdot \frac{\eta}{|\mathbf y|},
+\max_\ell \frac{|\Delta\lambda_\ell|}{|\lambda_\ell|}
+\ \lesssim\ \kappa(V)\cdot \frac{\eta}{\|\mathbf y\|},
 $$
 
-并随 $\delta\downarrow0$ 恶化。故**模态聚集**与**小样本**导致不适定；在信息刻度（S6）上，**有效模态数** $N_{\mathrm{eff}}$ 越小，所需样本越少。
+并随 $\delta_{\mathrm{sep}}\downarrow 0$ 恶化。故**模态聚集**与**小样本**导致不适定；在信息刻度（S6）上，**有效模态数** $N_{\mathrm{eff}}$ 越小，所需样本越少。上式中 $\|\cdot\|$ 可取 $\ell_2$ 范数，$\eta$ 为对应范数下的噪声上界；亦可改为 $\ell_\infty$ 一致上界，常数相应变化。
 
 **可检策略（与 S6/S7 对齐）**。
 (i) 先用 S6 的 $H,\ N_{\mathrm{eff}},\ N_2$ 估计"有效模态数"，据此选 $N$ 与窗宽 $T$。
