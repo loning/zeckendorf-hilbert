@@ -31,11 +31,13 @@ $$
 使
 
 $$
-\Lambda(s):=Q^{s/2}\,r(s)\,L(s)\quad\text{满足}\quad
-\Lambda(s)=\varepsilon\,\Lambda(a-s),\qquad |\varepsilon|=1.
+\Lambda_{L}(s):=Q^{s/2}\,r(s)\,L(s)\quad\text{满足}\quad
+\boxed{\ \Lambda_{L}(s)=\varepsilon\,\Lambda_{\tilde L}(a-s),\qquad |\varepsilon|=1\ }.
 $$
 
-称直线 $\Re s=\tfrac a2$ 为**中心轴**。必要时亦可采用对称化因子 $r_{\mathrm{sym}}(s):=r(s)r(a-s)$ 以实现 S3 的"自反核—完成函数"表征。为避免误解，$r_{\mathrm{sym}}$ 自身满足 $r_{\mathrm{sym}}(s)=r_{\mathrm{sym}}(a-s)$，可用于对称化估计；若需构造真正偶的对象，可取 $\Xi_{\mathrm{sym}}(s):=Q^{a/2}r_{\mathrm{sym}}(s)L(s)L(a-s)$（或直接使用 $\Lambda$ 的偶性），并不替代满足 $\Lambda(s)=\varepsilon\Lambda(a-s)$ 的标准完成因子 $r(s)$。
+其中 $\tilde L$ 为 $L$ 的**对偶/伴随**对象（Dirichlet 场景为复共轭特征 $\bar\chi$；$\mathrm{GL}(d)$ 场景为对偶表示 $\tilde\pi$）。
+
+称直线 $\Re s=\tfrac a2$ 为**中心轴**。必要时亦可采用对称化因子 $r_{\mathrm{sym}}(s):=r(s)r(a-s)$ 以实现 S3 的"自反核—完成函数"表征。为避免误解，$r_{\mathrm{sym}}$ 自身满足 $r_{\mathrm{sym}}(s)=r_{\mathrm{sym}}(a-s)$，可用于对称化估计；若需构造真正偶的对象，可取 $\boxed{\ \Xi_{\mathrm{sym}}(s):=Q^{a/2}r_{\mathrm{sym}}(s)\,L(s)\,\tilde L(a-s)\ }$（或直接使用完成功能方程），并不替代满足 $\Lambda_{L}(s)=\varepsilon\,\Lambda_{\tilde L}(a-s)$ 的标准完成因子 $r(s)$。
 
 **有限阶 EM 与"极点 = 主尺度"。** 全流程仅使用**有限阶** Euler–Maclaurin（S4），确保端点与离散—连续桥的余项为整/全纯层，从而极点仅由主尺度项引入。
 
@@ -77,21 +79,21 @@ $$
 给定 $Q>0$、$a\in\mathbb R$ 与无穷处参数 $\{\lambda_j\},\{\mu_k\}$，定义
 
 $$
-\Lambda(s)=Q^{s/2}\Big(\prod_{j=1}^{r_1}\Gamma_{\mathbb R}(s+\lambda_j)\Big)
+\Lambda_{L}(s)=Q^{s/2}\Big(\prod_{j=1}^{r_1}\Gamma_{\mathbb R}(s+\lambda_j)\Big)
 \Big(\prod_{k=1}^{r_2}\Gamma_{\mathbb C}(s+\mu_k)\Big)L(s),
 $$
 
-并要求存在 $|\varepsilon|=1$ 使 $\Lambda(s)=\varepsilon\,\Lambda(a-s)$。
+并要求存在 $|\varepsilon|=1$ 使 $\Lambda_{L}(s)=\varepsilon\,\Lambda_{\tilde L}(a-s)$。
 
 ### 定理 2.2（垂线增长配平）
 
-假设 $\deg L=r_1+2r_2\ge 1$（存在至少一个 $\Gamma_{\mathbb R}$ 或 $\Gamma_{\mathbb C}$ 因子）。若 $L(s)$ 在任意闭竖条至多多项式增长，则对任意 $\sigma\in\mathbb R$ 存在 $c(\sigma)>0$ 使
+假设 $\deg L=r_1+2r_2\ge 1$（存在至少一个 $\Gamma_{\mathbb R}$ 或 $\Gamma_{\mathbb C}$ 因子）。若 $L(s)$ 在任意闭竖条至多多项式增长，则对任意**避开 $\Lambda_{L}$ 极点的** $\sigma\in\mathbb R$（或更一般的不穿越 $\Lambda_{L}$ 极点的闭竖条）存在 $c(\sigma)>0$ 使
 
 $$
-\big|\Lambda(\sigma+it)\big|\ \ll_{\sigma}\ e^{-c(\sigma)|t|}\quad(|t|\to\infty),
+\big|\Lambda_{L}(\sigma+it)\big|\ \ll_{\sigma}\ e^{-c(\sigma)|t|}\quad(|t|\to\infty),
 $$
 
-其中指数衰减由 $\Gamma/\pi$ 因子的 Stirling 估计提供。中心轴 $\Re s=\tfrac a2$ 上 $|\Lambda|$ 的对称由功能方程给出。
+其中指数衰减由 $\Gamma/\pi$ 因子的 Stirling 估计提供。中心轴 $\Re s=\tfrac a2$ 上的对称由完成功能方程 $\Lambda_{L}(s)=\varepsilon\,\Lambda_{\tilde L}(a-s)$ 给出。
 
 *证明要点。* Stirling 估计与至少一个 $\Gamma$ 因子相乘给出指数级配平；$L(s)$ 的多项式增长不改变指数主导；功能方程由局部—整体匹配成立。
 
@@ -115,7 +117,7 @@ $$
 
 ### 3.2 显式公式（统一模板）
 
-设 $\Lambda(s)$ 满足 §2 的完成功能方程与增长条件。默认 $\Lambda$ 在所用移线邻域全纯（或已知极点集与阶）；若存在极点，则 (EF) 右端需加上相应留数项（模板不改变其它项的记账方式）。记 $\mathcal Z$ 为 $\Lambda(s)$ 的所有非平凡零（按重数），则有恒等式
+设 $\Lambda_{L}(s)$ 满足 §2 的完成功能方程与增长条件（一般情形配对对象为 $\Lambda_{\tilde L}$）。默认 $\Lambda_{L}$ 在所用移线邻域全纯（或已知极点集与阶）；若存在极点，则 (EF) 右端需加上相应留数项（模板不改变其它项的记账方式）。记 $\mathcal Z$ 为 $\Lambda_{L}(s)$ 的所有非平凡零（按重数），则有恒等式
 
 $$
 \boxed{\
@@ -140,7 +142,7 @@ $$
 *证明要点。* 在 $\Re s=\sigma$ 上考虑
 
 $$
-\boxed{\ -\frac{\Lambda'}{\Lambda}(s)
+\boxed{\ -\frac{\Lambda_{L}'}{\Lambda_{L}}(s)
 :=-\frac{1}{2}\log Q-\frac{r'}{r}(s)+\sum_{p}\sum_{m\ge1}\frac{\Big(\sum_{j=1}^{d_p}\alpha_{p,j}^{\,m}\Big)\log p}{p^{ms}}\ },
 $$
 
@@ -173,7 +175,7 @@ $$
 $$
 
 $$
-\Lambda(\chi,s)=\varepsilon(\chi)\,\Lambda(\chi,1-s),\qquad |\varepsilon(\chi)|=1.
+\boxed{\ \Lambda(\chi,s)=\varepsilon(\chi)\,\Lambda(\bar\chi,1-s),\qquad |\varepsilon(\chi)|=1\ }.
 $$
 
 (EF) 专化为
@@ -216,7 +218,7 @@ $$
 
 ## 7. 统一"可检清单"（最小充分条件）
 
-1. **完成功能方程。** 给出 $Q>0$、$a\in\mathbb R$、$r(s)$ 使 $\Lambda(s)=Q^{s/2}r(s)L(s)$ 且 $\Lambda(a-s)=\varepsilon\Lambda(s)$。
+1. **完成功能方程。** 给出 $Q>0$、$a\in\mathbb R$、$r(s)$ 使 $\Lambda_{L}(s)=Q^{s/2}r(s)L(s)$ 且 $\Lambda_{L}(s)=\varepsilon\,\Lambda_{\tilde L}(a-s)$（$\tilde L$ 为 $L$ 的对偶/伴随）。
 2. **欧拉积合法域。** 在 S1 管域/条带内明确绝对收敛与换序；素数端与 $\Gamma$-端求和/积分满足主导/一致条件。
 3. **有限阶 EM。** 端点与离散—连续桥仅用**有限阶** EM；伯努利层与余项为整/全纯层，"极点 = 主尺度"。
 4. **试验核。** $h$ 偶、带内全纯，$\widehat h$ 紧支撑或指数衰减；确保 (EF) 可交换与素数端可控。
