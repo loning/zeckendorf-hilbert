@@ -31,7 +31,7 @@ $$
 $$
 \sum_{k=0}^{N-1} f(a+k\Delta)
 = \frac{1}{\Delta}\!\int_{a}^{a+N\Delta}\! f(x)\,dx
-+ \frac{f(a)+f(a+N\Delta)}{2}
++ \frac{f(a)-f(a+N\Delta)}{2}
 + \sum_{m=1}^{M-1}\frac{B_{2m}}{(2m)!}\,\Delta^{2m-1}\!\bigl(f^{(2m-1)}(a+N\Delta)-f^{(2m-1)}(a)\bigr)
 + R_M,
 $$
@@ -98,41 +98,50 @@ $$
 
 与有限阶伯努利校正 $\sum_{m=1}^{M-1}\mathcal B_m[f(\cdot;s)]$ 及极限余项 $R_M(s)$（在 $N\to\infty$ 的意义下定义良好）。在众多母映射/拉普拉斯—Mellin 场景中（如 $f(x;s)=e^{-\sigma x}g(x;s)$ 且 $\sigma>0$），$\mathcal I(\Delta;s)$ 是 $s$ 的解析（亚纯）函数，而 $\mathcal B_m$ 与 $R_M$ 在 $s$ 上全纯/整函数。
 
-* **(H3)**（无穷端点衰减）对每个 $1\le m\le M-1$ 与任意紧集 $K\subset U$，有
+* **(H3')**（无穷端点衰减，含 $k=0$）对任意紧集 $K\subset U$，有
 $$
-\sup_{s\in K}\big|f^{(2m-1)}(a+N\Delta;s)\big|\xrightarrow[N\to\infty]{}0,
+\sup_{s\in K}\big|f^{(k)}(a+N\Delta;s)\big|\xrightarrow[N\to\infty]{}0,\quad k\in\{0,1,3,\dots,2M-1\}.
 $$
-从而 $\sum_{m=1}^{M-1}\mathcal B_m[f(\cdot;s)]$ 在 $N\to\infty$ 收敛且对 $s\in U$ 局部一致。充分可选：存在 $\eta>0$ 使 $\sup_{s\in K} e^{\eta x}\,\big|f^{(k)}(x;s)\big|$ 有界（$0\le k\le 2M-1$）。
+从而 $\sum_{m=1}^{M-1}\mathcal B_m[f(\cdot;s)]$ 的上端点导数项在 $N\to\infty$ 衰减消失，可定义**极限伯努利层** $\mathcal B_m^{(\infty)}[f(\cdot;s)]$（仅依赖于 $x=a$ 处的有限阶导数），并且**余项层极限** $R_M^{(\infty)}(s)$ 存在且对 $s\in U$ 局部一致。充分可选条件：存在 $\eta>0$ 使 $\sup_{s\in K} e^{\eta x}\,\big|f^{(k)}(x;s)\big|$ 在 $0\le k\le 2M-1$ 有界，则 (H3') 自动成立。
 
 ### 定理 T4.2（极点仅出自主尺度项）
 
-设 $f(\cdot;s)$ 满足 T4.1 的 (H0)–(H2)，并对某竖条
+设 $f(\cdot;s)$ 满足 T4.1 的 (H0)–(H2)，并取竖条 $V\subset U$
 
 $$
-V=\{\sigma_0<\Re s<\sigma_1\}
+V=\{\sigma_0<\Re s<\sigma_1\}.
 $$
 
 存在：
 
-* **(A0)**（极限存在性）在 (H0)–(H3) 下，$\sum_{m=1}^{M-1}\mathcal B_m[f(\cdot;\cdot)]$ 与 $R_M$ 的 $N\to\infty$ 极限在 $V$ 内一致存在，从而右侧表示良定义；
+* **(A0)**（通常极限的存在）存在非空**收敛竖条** $W\subset V$，使得在 (H0)–(H3') 下，$\sum_{m=1}^{M-1}\mathcal B_m[f(\cdot;\cdot)]$ 与 $R_M$ 的 $N\to\infty$ 极限在 $W$ 内一致存在，且上端点各阶（含 $k=0$）满足 (H3') 的衰减；据此定义
+  $\mathcal B_m^{(\infty)}[f(\cdot;s)]$、$R_M^{(\infty)}(s)$，并保留端点平均项 $\tfrac12 f(a;s)$；
 * **(A1)** $\mathcal I(\Delta;s)$ 在 $V$ 内可解析延拓为**亚纯函数**，其极点集合 $\mathcal P\subset V$ 可数且无聚点；
 * **(A2)** 每层伯努利层与余项在 $s\in V$ 上全纯（由 T4.1 保证）。
 
-则在 $V$ 内，
+则：
 
+* **（通常极限）** 在 $W$ 内，
 $$
-\lim_{N\to\infty}S_N(\Delta;s)=\mathcal I(\Delta;s)+\sum_{m=1}^{M-1}\mathcal B_m[f(\cdot;s)]+R_M(s),
+\lim_{N\to\infty}S_N(\Delta;s)
+=\mathcal I(\Delta;s)
++\tfrac12 f(a;s)
++\sum_{m=1}^{M-1}\mathcal B_m^{(\infty)}[f(\cdot;s)]
++R_M^{(\infty)}(s).
 $$
 
-并且
-
+* **（解析延拓）** 在 $V$ 内，以右端定义
+$$
+S(\Delta;s):=\mathcal I(\Delta;s)+\tfrac12 f(a;s)+\sum_{m=1}^{M-1}\mathcal B_m^{(\infty)}[f(\cdot;s)]+R_M^{(\infty)}(s),
+$$
+从而 $S(\Delta;\cdot)$ 为 $V$ 内的亚纯延拓，且
 $$
 \mathrm{Sing}_V\!\bigl(S(\Delta;\cdot)\bigr)=\mathrm{Sing}_V\!\bigl(\mathcal I(\Delta;\cdot)\bigr)=\mathcal P.
 $$
 
-即在该竖条内，**极点仅由主尺度项 $\mathcal I$ 产生**；伯努利层与余项不引入新极点。
+即在解析延拓的意义下，**极点仅由主尺度项 $\mathcal I$ 产生**；伯努利层与余项不引入新极点。
 
-**注（与 S3 的完成函数拼接）**：若 $\mathcal I$ 的极点由端点主项诱发，则可按 S3 选择对称因子 $r(s)$（$\Gamma/\pi$ 因子）使 $r(s)\mathcal I(\Delta;s)$ 消极点；结合 (A2) 即得**整的完成函数**。
+**注（与 S3 的完成函数拼接）**：若 $\mathcal I$ 的端点主项可归约为 Gamma/指数—多项式型，可按 S3 提供的模板选择对称因子 $r(s)$（$\Gamma/\pi$ 因子）使 $r(s)\mathcal I(\Delta;s)$ 消极点；结合 (A2) 即得在 $V$ 内**全纯（无极点）的完成函数**。
 
 ---
 
@@ -159,7 +168,7 @@ $$
 \Phi(s)=\sum_{n\ge1} K(n)\,n^{-s}\quad\text{或}\quad \int_{1}^{\infty} K(x)\,x^{-s}\,dx.
 $$
 
-当仅具有限阶端点展开（而非 Schwartz 级）时，对 $\sum_{n\ge1}K(n)n^{-s}$ 施行有限阶 EM；主尺度项由 $\int K(x)x^{-s}dx$ 及其端点导数构成，余项全纯。由 T4.2，极点仅出自主尺度项。依 S3 选取 $r(s)$（$\Gamma/\pi$ 因子）可得整的完成函数 $\Xi=r\Phi$。
+当仅具有限阶端点展开（而非 Schwartz 级）时，对 $\sum_{n\ge1}K(n)n^{-s}$ 施行有限阶 EM；主尺度项由 $\int K(x)x^{-s}dx$ 及其端点导数构成，余项全纯。由 T4.2，极点仅出自主尺度项。依 S3 选取 $r(s)$（$\Gamma/\pi$ 因子）可得在工作竖条内全纯（无极点）的完成函数 $\Xi=r\Phi$。
 
 ### 框架 B（方向化采样—Nyquist/Poisson + EM）
 
@@ -211,7 +220,7 @@ $$
 r(s)\!\left(\sum_{m<M}\mathcal B_m+R_M\right)
 $$
 
-至多多项式增长；若 $r(s)\mathcal I(\Delta;s)$ 消极点，则完成函数整体为整函数。
+至多多项式增长；若 $r(s)\mathcal I(\Delta;s)$ 在 $V$ 内消极点，则完成函数在 $V$ 内全纯（无极点）。
 
 ---
 
