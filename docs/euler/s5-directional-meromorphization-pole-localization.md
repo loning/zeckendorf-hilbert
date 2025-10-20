@@ -4,7 +4,7 @@
 
 ## 摘要（定性）
 
-在 S1 的管域/换序基线与 S2/S3/S4 的镜像—延拓范式之上，建立沿给定方向的计数/加权累积与其 Laplace–Stieltjes 变换之间的统一解析结构：当方向计数或加权累积具有限的指数–多项式渐近时，其沿方向的拉普拉斯–Stieltjes 变换在适当竖条或半平面内亚纯，全部极点由最大指数率项的主尺度产生，极点位置由指数率决定、阶数受对应多项式次数的上界约束；在自然的单调/非负或变差控制下，反向可由变换的极点型奇性回推出计数的指数–多项式主项。该结果与 S4 的"极点 = 主尺度"原则一致，并与 S2 的二项闭合—横截几何、S3 的完成函数模板（$\Gamma/\pi$ 正规化）相互拼接。
+在 S1 的管域/换序基线与 S2/S3/S4 的镜像—延拓范式之上，建立沿给定方向的计数/加权累积与其 Laplace–Stieltjes 变换之间的统一解析结构：当方向计数或加权累积具有限的指数–多项式渐近时，其沿方向的拉普拉斯–Stieltjes 变换在适当半平面内亚纯，全部极点由各指数率项的主尺度产生，极点位置由指数率决定、阶数受对应多项式次数的上界约束；在自然的单调/非负或变差控制下，反向可由变换的极点型奇性回推出计数的指数–多项式主项。该结果与 S4 的"极点 = 主尺度"原则一致，并与 S2 的二项闭合—横截几何、S3 的完成函数模板（$\Gamma/\pi$ 正规化）相互拼接。
 
 ---
 
@@ -13,7 +13,7 @@
 **方向切片与参数化。** 固定方向 $\mathbf v\in\mathbb S^{n-1}$ 与横向偏置 $\rho_\perp$（$\langle\rho_\perp,\mathbf v\rangle=0$），记
 
 $$
-\rho=\rho_\perp+s\,\mathbf v,\qquad s\in\mathbb R .
+\rho=\rho_\perp+s\,\mathbf v,\qquad s\in\mathbb C\ \text{（随后在绝对收敛半平面内按管域准则复化使用）} .
 $$
 
 对离散谱
@@ -58,7 +58,7 @@ $$
 =\sum_{t_j\ge0} c_j\,\mathrm e^{\,\langle\beta_j,\rho_\perp+s\mathbf v\rangle}\,\mathrm e^{\,\mathrm i\langle\alpha_j,\theta\rangle}.
 $$
 
-因此在绝对收敛竖条内（并在上述规范化下），
+因此在绝对收敛半平面内（并在上述规范化下），
 
 $$
 \mathcal L_{\mathbf v}(s;\theta,\rho_\perp)=F\big(\theta,\rho_\perp+s\,\mathbf v\big).
@@ -82,7 +82,7 @@ $$
 
 则：
 (i) 当 $\Re s>\gamma_{\mathrm{abs}}$ 时，$\mathscr N_{\mathbf v}(s)$ 绝对收敛；
-(ii) 若 $\Re s<\gamma_{\mathrm{abs}}$，则 $\mathscr N_{\mathbf v}(s)$ 发散。
+(ii) **若存在无穷多跳点**（即 $N_{\mathbf v}(t)\to\infty$），且 $\Re s<\gamma_{\mathrm{abs}}$，则 $\mathscr N_{\mathbf v}(s)$ 发散。**若仅有限个跳点**，则 $\mathscr N_{\mathbf v}(s)$ 为有限和因而在 $s$ 平面整，断言 (ii) 不适用。
 在命题 5.3 的**局部多项式有界**前提下（权重在单位长度区间内受控），$\mathcal L_{\mathbf v}(s)$ 与 $\mathscr N_{\mathbf v}(s)$ 具有相同的方向绝对收敛半平面与阈值；否则权重可能改变绝对收敛阈值。
 
 *证明*。对任意 $\varepsilon>0$，存在 $T$ 使 $N_{\mathbf v}(t)\le C\,\mathrm e^{(\gamma_{\mathrm{abs}}+\varepsilon)t}$（$t\ge T$）。分部积分得
@@ -93,17 +93,17 @@ $$
 \; +\;\big[\mathrm e^{-s t}N_{\mathbf v}(t)\big]_{0^+}^{\infty},
 $$
 
-当 $\Re s>\gamma_{\mathrm{abs}}+\varepsilon$ 时右端有界且边界项消失，得 (i)。反向取子列 $t_k\to\infty$ 使 $N_{\mathbf v}(t_k)\ge \mathrm e^{(\gamma_{\mathrm{abs}}-\varepsilon)t_k}$，与几何级数对比得 (ii)。该阈值等价于 Laplace–Stieltjes 变换的**收敛边界（abscissa）定理**：
+当 $\Re s>\gamma_{\mathrm{abs}}+\varepsilon$ 时右端有界且边界项消失，得 (i)。反向取子列 $t_k\to\infty$ 使 $N_{\mathbf v}(t_k)\ge \mathrm e^{(\gamma_{\mathrm{abs}}-\varepsilon)t_k}$，与几何级数对比得 (ii)。当且仅当存在无穷多跳点（$N_{\mathbf v}(t)\to\infty$）时，收敛边界（abscissa）满足
 $$
 \sigma_a\;=\;\limsup_{t\to\infty}\frac{1}{t}\log N_{\mathbf v}(t),
 $$
-参见 Widder《The Laplace Transform》或 Doetsch《Laplace Transformation》。$\square$
+参见 Widder《The Laplace Transform》或 Doetsch《Laplace Transformation》。若仅有限跳点，则约定 $\sigma_a:=-\infty$（此时 $\mathscr N_{\mathbf v}$ 为整函数）。此外，在命题 5.3 的**局部多项式有界**前提下，$\mathcal L_{\mathbf v}$ 与 $\mathscr N_{\mathbf v}$ 具有相同的方向绝对收敛半平面；若仅有限跳点，则二者在 $s$ 平面整，收敛边界按约定取 $-\infty$。$\square$
 
 ---
 
 ## 2. 指数–多项式主项 $\Rightarrow$ 亚纯延拓与极点上界
 
-**定义 5.2（方向指数–多项式渐近）。** 称 $M_{\mathbf v}(t)$ 在 $t\to\infty$ 具有**有限指数–多项式渐近**，若存在有限指标集 $\mathcal I$、实数 $\gamma_\ell$（可重复）、多项式 $Q_\ell$ 及 $\eta>0$，使
+**定义 5.2（方向指数–多项式渐近）。** 称 $M_{\mathbf v}(t)$ 在 $t\to\infty$ 具有**有限指数–多项式渐近**，若存在有限指标集 $\mathcal I$、实数 $\gamma_\ell$（允许重复）、多项式 $Q_\ell$ 及 $\eta>0$，使
 
 $$
 M_{\mathbf v}(t)=\sum_{\ell\in\mathcal I} Q_\ell(t)\,\mathrm e^{\gamma_\ell t}
@@ -112,25 +112,33 @@ $$
 
 且 $M_{\mathbf v}$ 局部有界变差、右连续。将此定义用于非加权计数 $N_{\mathbf v}$ 时，$Q_\ell$ 取实多项式且系数非负。
 
-**定理 T5.1（Abelian 方向亚纯化与极点上界）。** 若 $M_{\mathbf v}$ 满足定义 5.2，则 $\mathcal L_{\mathbf v}(s)$ 在半平面 $\Re s>\gamma_\ast-\eta$ **亚纯**，其全部极点均位于 $\{s=\gamma_\ell:\ \ell\in\mathcal I\}$，并且
+为处理重复速率，记唯一速率集合 $\Gamma:=\{\gamma:\ \exists\,\ell\in\mathcal I,\ \gamma_\ell=\gamma\}$，并对每个 $\gamma\in\Gamma$ 定义聚合多项式
+$$
+Q_\gamma(t):=\sum_{\ell:\,\gamma_\ell=\gamma} Q_\ell(t)
+=\sum_{r=0}^{d_\gamma} a_{\gamma,r}\,t^r,\qquad d_\gamma:=\deg Q_\gamma.
+$$
+
+**定理 T5.1（Abelian 方向亚纯化与极点上界）。** 若 $M_{\mathbf v}$ 满足定义 5.2，则 $\mathcal L_{\mathbf v}(s)$ 在半平面 $\Re s>\gamma_\ast-\eta$ **亚纯**，其全部极点均位于 $\{s=\gamma:\ \gamma\in\Gamma\}$，并且
 
 $$
-\operatorname{ord}_{\,s=\gamma_\ell}\mathcal L_{\mathbf v}\ \le\ \deg Q_\ell+1 .
+\operatorname{ord}_{\,s=\gamma}\mathcal L_{\mathbf v}\ \le\ d_\gamma+1\qquad(\gamma\ne0),
+$$
+当 $\gamma=0$ 时，整体 $s$ 因子消去一阶，进一步有
+$$
+\operatorname{ord}_{\,s=0}\mathcal L_{\mathbf v}\ \le\ d_0.
 $$
 
 更具体地，若
 
 $$
-Q_\ell(t)=\sum_{r=0}^{d_\ell} a_{\ell,r}\,t^r,\qquad d_\ell=\deg Q_\ell,
+Q_\gamma(t)=\sum_{r=0}^{d_\gamma} a_{\gamma,r}\,t^r,
 $$
 
-则在 $s=\gamma_\ell$ 邻域有主部展开
+则在 $s=\gamma$ 邻域有主部展开
 
 $$
 \mathcal L_{\mathbf v}(s)
-=\sum_{\ell\in\mathcal I}\left[
-\,s\sum_{r=0}^{d_\ell} a_{\ell,r}\,\frac{r!}{(s-\gamma_\ell)^{r+1}}
-\right]\;+\;H(s),
+=\sum_{\gamma\in\Gamma}\left[\,s\sum_{r=0}^{d_\gamma} a_{\gamma,r}\,\frac{r!}{(s-\gamma)^{r+1}}\right]\;+\;H(s),
 $$
 
 其中 $H$ 在 $\Re s>\gamma_\ast-\eta$ 全纯。
@@ -151,15 +159,15 @@ $$
 
 由解析延拓唯一性得结论。这可视为 Abelian/传递定理的直接实例：$\int_0^\infty t^r\mathrm e^{-(s-\gamma)t}\,dt=r!/(s-\gamma)^{r+1}$ 给出极点结构（参见 Flajolet–Sedgewick《Analytic Combinatorics》；Widder；Doetsch）。$\square$
 
-**计数版。** 对 $\mathscr N_{\mathbf v}$ 结论相同；若 $N_{\mathbf v}$ 的主项系数非负，则主部最高阶系数亦非负。
+**计数版。** 对 $\mathscr N_{\mathbf v}$ 结论相同；在率 $\gamma$ 处最高阶主部系数为 $\gamma\,a_{\gamma,d_\gamma}\,d_\gamma!$（$\gamma\ne0$）。若 $\gamma\ge 0$ 则该系数非负；$\gamma=0$ 时为 $0$；$\gamma<0$ 时为非正。
 
 **与 S4 的一致性。** 伯努利层与余项在 $s$ 上全纯，仅主尺度项可能产生极点，故"极点 = 主尺度"。
 
 ---
 
-## 3. 从计数到加权：极点位置不变（阶至多增加 $\kappa$）
+## 3. 从计数到加权：极点位置不右移（阶至多增加 $\kappa$）
 
-**命题 5.3（权重不改变极点位置；阶的上界）。** 设 $M_{\mathbf v}$ 与 $N_{\mathbf v}$ 的跳点相同，且存在常数 $C,\kappa\ge0$ 使
+**命题 5.3（位置不右移；阶的上界）。** 设 $M_{\mathbf v}$ 与 $N_{\mathbf v}$ 的跳点相同，且存在常数 $C,\kappa\ge0$ 使
 
 $$
 \sup_{t<\tau\le t+1}\big|M_{\mathbf v}(\tau)-M_{\mathbf v}(t)\big|
@@ -167,15 +175,30 @@ $$
 \sup_{t<\tau\le t+1}\big(N_{\mathbf v}(\tau)-N_{\mathbf v}(t)\big).
 $$
 
-若 $N_{\mathbf v}$ 满足定义 5.2，则 $M_{\mathbf v}$ 亦满足定义 5.2，且其**指数率集合不变**；对每个率 $\gamma_\ell$，有
+若 $N_{\mathbf v}$ 满足定义 5.2，则 $M_{\mathbf v}$ 满足上界
 $$
-\deg Q_\ell(M_{\mathbf v})\ \le\ \deg Q_\ell(N_{\mathbf v})+\kappa,
+M_{\mathbf v}(t)\ \ll\ \sum_{\ell}\,(1+t)^{\deg Q_\ell(N_{\mathbf v})+\kappa}\,\mathrm e^{\gamma_\ell t},
 $$
-从而
+因而其**最大指数率不大于**计数侧（极点位置不右移），并且**绝对收敛半平面不右移**。仅凭上述上界**不能**断言极点阶。
+
+若**进一步假设** $M_{\mathbf v}$ **亦满足定义 5.2**（例如：权重最终非负、单位区间内多项式有界且**无系统性抵消**，使其拥有与计数侧相同的速率集并存在带隙 $\eta>0$），**则**由 T5.1 可得
 $$
-\operatorname{ord}_{\,s=\gamma_\ell}\mathcal L_{\mathbf v}\ \le\ \operatorname{ord}_{\,s=\gamma_\ell}\mathscr N_{\mathbf v}+\kappa.
+\operatorname{ord}_{\,s=\gamma}\mathcal L_{\mathbf v}\ \le\ d_\gamma(N_{\mathbf v})+\kappa+1\qquad(\gamma\ne 0),
 $$
-特例：当 $\kappa=0$（单位区间内权重一致有界）时，$\deg Q_\ell(M_{\mathbf v})\le\deg Q_\ell(N_{\mathbf v})$，故极点**位置不变且阶一致**（仅主部系数改变）。
+且在 $\gamma=0$ 时
+$$
+\operatorname{ord}_{\,s=0}\mathcal L_{\mathbf v}\ \le\ d_0(N_{\mathbf v})+\kappa .
+$$
+
+特例：当 $\kappa=0$（单位区间内权重一致有界）时，有
+$$
+\operatorname{ord}_{\,s=\gamma_\ell}\mathcal L_{\mathbf v}\ \le\ \deg Q_\ell(N_{\mathbf v})+1,\qquad\text{且极点位置不右移}.
+$$
+若并且计数侧在 $s=\gamma_\ell$ 处**达到上界**（例如非负/无系统性抵消，使 $\operatorname{ord}_{\,s=\gamma_\ell}\mathscr N_{\mathbf v}=\deg Q_\ell(N_{\mathbf v})+1$），则进一步有（阶不增）
+$$
+\operatorname{ord}_{\,s=\gamma_\ell}\mathcal L_{\mathbf v}\ \le\ \operatorname{ord}_{\,s=\gamma_\ell}\mathscr N_{\mathbf v}\qquad\text{（阶不增）},
+$$
+并且位置与阶与计数侧一致（仅主部系数改变）。
 
 *证明略*（分部求和与局部有界振幅控制）。$\square$
 
@@ -185,17 +208,20 @@ $$
 
 ## 4. 方向 Tauberian：极点 $\Rightarrow$ 指数–多项式主项
 
-**定理 T5.2（单极点的 Tauberian 反演，简化型）。** 设 $\mathscr N_{\mathbf v}(s)$ 在 $\Re s>\gamma_0$ 全纯并可延拓至 $\Re s\ge\gamma_0$ 的邻域，且在 $s=\gamma_0$ 有阶 $m\ge1$ 的极点：
-
+**定理 T5.2（单极点的 Tauberian 反演，Ikehara–Delange 型）。** 设 $\mathscr N_{\mathbf v}(s)$ 在 $\Re s>\gamma_0$ 全纯并可延拓至包含 $\Re s\ge\gamma_0$ 的开邻域，在 $s=\gamma_0$ 有阶 $m\ge1$ 的极点，且
 $$
-\mathscr N_{\mathbf v}(s)=\frac{A_{-m}}{(s-\gamma_0)^m}+\cdots+\frac{A_{-1}}{s-\gamma_0}+H(s),
+G(s):=\mathscr N_{\mathbf v}(s)-\sum_{r=1}^{m}\frac{A_{-r}}{(s-\gamma_0)^r}
 $$
+在上述邻域内有界（例如：在 $\Re s=\gamma_0$ 具有连续且有界的边界值，且 $G(\gamma_0+iy)=o(1)$ 当 $|y|\to\infty$）。若 $N_{\mathbf v}$ 非减（或最终非减），则
 
-其中 $H$ 在该邻域全纯并沿垂线多项式增长。若 $N_{\mathbf v}$ 非减（或最终非减），则
-
+若 $\gamma_0\ne 0$，则
 $$
 N_{\mathbf v}(t)=\frac{A_{-m}}{\gamma_0\,(m-1)!}\,\mathrm e^{\gamma_0 t}\,t^{m-1}
 +o\!\big(\mathrm e^{\gamma_0 t}t^{m-1}\big)\qquad (t\to\infty).
+$$
+若 $\gamma_0=0$，则
+$$
+N_{\mathbf v}(t)=\frac{A_{-m}}{m!}\,t^{m}\,+o\!\big(t^{m}\big)\qquad (t\to\infty).
 $$
 
 *证明要点（补充与引用）。* 取 $\sigma>\gamma_0$，用 Laplace–Stieltjes 反演
@@ -205,7 +231,7 @@ $$
 =\frac{1}{2\pi\mathrm i}\int_{\Re s=\sigma}\frac{\mathscr N_{\mathbf v}(s)}{s}\,\mathrm e^{s t}\,\mathrm ds,
 $$
 
-向左移路至 $\Re s=\gamma_0+\varepsilon$ 并取环绕 $s=\gamma_0$ 的小圆，主部来自该极点的留数；其余边界在单调性与 $H$ 的垂线增长控制下为低阶项。此为一侧 Tauberian 范畴的典型结论：对非减（或最终非减）$N_{\mathbf v}$，在 $s=\gamma_0$ 的有限阶极点蕴含 $N_{\mathbf v}(t)\sim c\,\mathrm e^{\gamma_0 t}t^{m-1}$（参见 Korevaar, Tauberian Theory；Feller, Vol. II）。$\square$
+向左移路至 $\Re s=\gamma_0+\varepsilon$ 并取环绕 $s=\gamma_0$ 的小圆，主部来自该极点的留数；其余边界在单调性与 $G$ 的垂线增长控制下为低阶项。此为一侧 Tauberian 范畴的典型结论：对非减（或最终非减）$N_{\mathbf v}$，在 $s=\gamma_0$ 的有限阶极点蕴含 $N_{\mathbf v}(t)\sim c\,\mathrm e^{\gamma_0 t}t^{m-1}$（参见 Korevaar, Tauberian Theory；Feller, Vol. II）。$\square$
 
 *注。* 若失去单调性，可在全变差有界与局部平均化条件下得到 $\ll \mathrm e^{\gamma_0 t}t^{m-1}$ 的上界；等号型结论需更强 Tauberian 工具。
 
@@ -239,6 +265,16 @@ $$
 a_{d}=\frac{A_{-m}}{\gamma_0\,d!}
 $$
 
+若 $\gamma_0=0$，则 $m=d$，并且
+$$
+a_{d}=\frac{A_{-d}}{d!}.
+$$
+
+当 $\gamma_\ell=0$ 时，由于主部存在整体 $s$ 因子，极点阶自动降一阶，普遍上界可收紧为
+$$
+\operatorname{ord}_{\,s=\gamma_\ell}\mathcal L_{\mathbf v}\ \le\ d_\ell\qquad(\gamma_\ell=0).
+$$
+
 给出主项最高次系数。
 
 ---
@@ -263,7 +299,7 @@ $$
 \Xi_{\mathbf v}(s):=r(s)\,\mathcal L_{\mathbf v}(s).
 $$
 
-在 T5.1 的半平面内，$\Xi_{\mathbf v}$ 仍亚纯；借助 Stirling 估计，沿垂线的指数增长得到配平。若 $r$ 同时消去主尺度极点，则 $\Xi_{\mathbf v}$ 甚至整。
+在 T5.1 的半平面内，$\Xi_{\mathbf v}$ 仍亚纯；借助 Stirling 估计，沿垂线的指数增长得到配平。若 $r$ 同时消去主尺度极点，则 $\Xi_{\mathbf v}$ 在该半平面内全纯（无极点）。
 
 ---
 
@@ -281,8 +317,8 @@ $$
 1. **收敛半平面**：计算 $\gamma_{\mathrm{abs}}=\limsup_{t\to\infty}t^{-1}\log N_{\mathbf v}(t)$，在 $\Re s>\gamma_{\mathrm{abs}}$ 起步。
 2. **指数–多项式主项**：给出 $M_{\mathbf v}$ 或 $N_{\mathbf v}$ 的有限指数–多项式渐近（指数率 $\gamma_\ell$、次数 $d_\ell$、间隙 $\eta>0$）。
 3. **亚纯化**：由 T5.1 得到 $\mathcal L_{\mathbf v}/\mathscr N_{\mathbf v}$ 的极点位置 $s=\gamma_\ell$ 与阶上界 $d_\ell+1$。
-4. **权重稳健性**：核对命题 5.3 的局部多项式有界条件，保证极点**位置不变**；极点**阶**在 $\kappa=0$ 时不变，否则**至多增加 $\kappa$**。
-5. **Tauberian 反演（按需）**：满足单调/非负或全变差有界等前提时，应用 T5.2 由极点回推出计数主项。
+4. **权重稳健性（上界向）**：核对命题 5.3 的局部多项式有界条件，保证极点位置**不右移**（指数率不大于计数侧）；极点**阶**在 $\kappa=0$ 时**不增**。如需“位置/阶一致”，需另加“无系统性抵消”（如非负权重）假设。
+5. **Tauberian 反演（等号型）**：在单调/非负等前提且满足 T5.2 的 Ikehara–Delange 边界条件时，由极点得到指数–多项式主项；若缺少该边界条件，仅可得上界，不保证等号型主项。
 6. **EM 拼接**：任何离散—连续互换均以 S4 的有限阶 EM 执行；伯努利层与余项在 $s$ 上全纯。
 7. **几何一致性**：主导两项区间内与 S2 的二项闭合—横截模板一致（零的简单性与退化分支）。
 8. **增长配平（可选）**：需要镜像/增长控制时，选用 S3 的对称 $\Gamma/\pi$ 因子构造完成函数。
