@@ -175,6 +175,8 @@
     - [S9. Pretentious 与近周期–指数和](./euler/s9-pretentious-almost-periodic-exponential-sums.md)
     - [S10. Amoeba 几何与增长论](./euler/s10-amoeba-geometry-growth-theory.md)
 
+
+
 - [学术论文]()
     - [Zeta函数相关文档导航索引](./zeta_index.md)
     - [U-Mat(∞)：全数学统一范畴理论](./pure-zeta/u-mat-infinity-universal-mathematics-category-theory.md)
@@ -306,10 +308,19 @@
     - [ICA Re-Key预测模型与意识论（ICA-RPM）：预测模型、Re-Key选择、信息守恒、意识相位场、预测自由度、NGV不可分辨、11维相位闭合、und模式、固定vs随机策略 2025-10-15](./pure-zeta/ica-rpm-rekey-prediction-model-consciousness.md)
     - [静态全息图与观察者的Re-Key：宇宙作为永恒信息场的沉思 2025-10-16](./articles/2025-10-16-static-hologram-observer-key-cosmic-meditation.md)
     - [Static Hologram and Observer Re-Key: Meditation on the Universe as Eternal Information Field 2025-10-16](./articles/2025-10-16-static-hologram-observer-key-cosmic-meditation_en.md)
-- [统一静态信息宇宙理论（USIT）：从ICA细胞自动机到无限嵌套11维结构的完备框架 2025-10-16](./pure-zeta/unified-static-infoverse-theory.md)
-- [Unified Static Infoverse Theory (USIT): A Complete Framework from ICA Cellular Automata to Infinite 11-Dimensional Nested Structures 2025-10-16](./pure-zeta/unified-static-infoverse-theory_en.md)
-- [统一静态信息平衡宇宙理论（USIBU v2.0）](./pure-zeta/unified-static-information-balanced-universe-theory.md)
-- [Unified Static Information-Balanced Universe Theory (USIBU v2.0)](./pure-zeta/unified-static-information-balanced-universe-theory_en.md)
+    - [统一静态信息宇宙理论（USIT）：从ICA细胞自动机到无限嵌套11维结构的完备框架 2025-10-16](./pure-zeta/unified-static-infoverse-theory.md)
+    - [Unified Static Infoverse Theory (USIT): A Complete Framework from ICA Cellular Automata to Infinite 11-Dimensional Nested Structures 2025-10-16](./pure-zeta/unified-static-infoverse-theory_en.md)
+    - [统一静态信息平衡宇宙理论（USIBU v2.0）](./pure-zeta/unified-static-information-balanced-universe-theory.md)
+    - [Unified Static Information-Balanced Universe Theory (USIBU v2.0)](./pure-zeta/unified-static-information-balanced-universe-theory_en.md)
+
+- [永恒图元胞自动机系列哲思文章]()
+    - [宇宙即脑-机接口：五原理的计算诠释](./article/universe-brain-computer-interface.md)
+    - [The Universe as Brain-Computer Interface: A Computational Interpretation of the Five Principles](./article/universe-brain-computer-interface_en.md)
+    - [守恒的三重奏鸣：从量子涟漪到宇宙洪流的信息-能量-熵统一叙事](./article/universe-unified-conservation-principles.md)
+    - [The Triple Symphony of Conservation: A Unified Narrative of Information-Energy-Entropy from Quantum Ripples to Cosmic Torrents](./article/universe-unified-conservation-principles_en.md)
+    - [五原则统一理论：量子-经典-宇宙学的完整框架](./union/five-principles-unified-theory.md)
+    - [宇宙终极RPG：五大游戏机制破解现实密码](./article/universe-rpg-game-analogy.md)
+    - [Universe Ultimate RPG: Cracking Reality's Code with Five Game Mechanisms](./article/universe-rpg-game-analogy_en.md)
 
 - [哲思长文]()
     - [永恒的不动点：当道、佛、上帝相遇于递归的中心](./articles/2025-09-23-the-eternal-fixed-point.md)
@@ -349,11 +360,7 @@
     - [The Cosmic Equation of Harmony: When Mathematics Reveals the Eternal Balance of All Things](./articles/2025-10-03-the-mathematics-of-peace_en.md)
     - [曲率的沉思：从平坦虚无到弯曲存在的宇宙之舞](./articles/2025-09-27-meditations-on-curvature-from-flat-nothingness-to-curved-existence.md)
     - [Meditation on Curvature: The Cosmic Dance from Flat Nothingness to Curved Existence](./articles/2025-09-27-meditations-on-curvature-from-flat-nothingness-to-curved-existence_en.md)
-    - [宇宙即脑-机接口：五原理的计算诠释](./article/universe-brain-computer-interface.md)
-    - [The Universe as Brain-Computer Interface: A Computational Interpretation of the Five Principles](./article/universe-brain-computer-interface_en.md)
-    - [守恒的三重奏鸣：从量子涟漪到宇宙洪流的信息-能量-熵统一叙事](./article/universe-unified-conservation-principles.md)
-    - [The Triple Symphony of Conservation: A Unified Narrative of Information-Energy-Entropy from Quantum Ripples to Cosmic Torrents](./article/universe-unified-conservation-principles_en.md)
-    - [五原则统一理论：量子-经典-宇宙学的完整框架](./union/five-principles-unified-theory.md)
+ 
 - [Recurse Hilbert Math System](./traditional-math/hilbert-complete/index.md)
     - [English Index](./traditional-math/hilbert-complete/index_en.md)
     - [前言](./traditional-math/hilbert-complete/PREFACE.md) 
