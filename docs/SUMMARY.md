@@ -352,6 +352,7 @@
     - [宇宙即脑-机接口：五原理的计算诠释](./article/universe-brain-computer-interface.md)
     - [The Universe as Brain-Computer Interface: A Computational Interpretation of the Five Principles](./article/universe-brain-computer-interface_en.md)
     - [守恒的三重奏鸣：从量子涟漪到宇宙洪流的信息-能量-熵统一叙事](./article/universe-unified-conservation-principles.md)
+    - [The Triple Symphony of Conservation: A Unified Narrative of Information-Energy-Entropy from Quantum Ripples to Cosmic Torrents](./article/universe-unified-conservation-principles_en.md)
     - [五原则统一理论：量子-经典-宇宙学的完整框架](./union/five-principles-unified-theory.md)
 - [Recurse Hilbert Math System](./traditional-math/hilbert-complete/index.md)
     - [English Index](./traditional-math/hilbert-complete/index_en.md)
