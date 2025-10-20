@@ -39,9 +39,15 @@ $$
 **基本可积域假设（S1 管域对齐）。** 存在非空开集 $\mathcal T\subset\mathbb R^n$ 使得对所有 $\rho\in\mathcal T$，有 $\sum_j w_j e^{\langle \beta_j,\rho\rangle}<\infty$。本文一律在 $\mathcal T$ 内讨论。并且，为保证对 $\rho$ 的一、二阶导数与求和（或极限）可交换，存在包含 $\rho$ 的邻域 $\mathcal U\subset\mathcal T$，使
 $$
 \sum_j w_j\,|\beta_j|\,e^{\langle\beta_j,\rho'\rangle}<\infty,\qquad
-\sum_j w_j\,|\beta_j|^2\,e^{\langle\beta_j,\rho'\rangle}<\infty\quad(\forall\rho'\in\mathcal U).
+\sum_j w_j\,|\beta_j|^2\,e^{\langle\beta_j,\rho'\rangle}<\infty,
 $$
-据此，§2 的梯度—Hessian 恒等式与 §5 的方向导数/方差律严格成立。
+
+$$
+\sum_j w_j\,|y_j|\,e^{\langle\beta_j,\rho'\rangle}<\infty,\qquad
+\sum_j w_j\,|\beta_j|\,|y_j|\,e^{\langle\beta_j,\rho'\rangle}<\infty\quad(\forall\rho'\in\mathcal U),
+$$
+
+其中 $y_j=\log w_j$。据此，§2 的梯度—Hessian 恒等式与 §5 的方向导数/方差律严格成立。
 
 ---
 
@@ -107,7 +113,7 @@ $$
 
 ## 4. $\Lambda$ 的变分表征与对偶 $\Lambda^\ast$
 
-【适用域说明】本节假定 $J<\infty$；或 $J$ 可数但 $W:=\sum_j w_j<\infty$（从而 $\pi$ 为良定义的基准分布）。当 $W=\infty$ 时，以下变分/对偶式不直接适用（需改以 $\sigma$-有限基准测度的连续型表述，本文不展开）。
+【适用域说明】本节假定 $J<\infty$；或 $J$ 可数但 $W:=\sum_j w_j<\infty$（从而 $\pi$ 为良定义的基准分布）。当 $W=\infty$ 时，以下变分/对偶式不直接适用（需改以 $\sigma$-有限基准测度的连续型表述，本文不展开）。在可数 $J$ 且 $W<\infty$ 的情形，以上变分/对偶式中的最优解 $q^\star$ 存在且唯一；若允许 $u$ 在闭凸包边界，见上文关于相对内部/边界的补充说明。
 
 记 $W:=\sum_{j=1}^J w_j$、$\pi_j:=w_j/W$（基准分布），$\Delta_J$ 为 $J$ 维概率单纯形。
 
@@ -125,7 +131,7 @@ $$
 
 $$
 \Lambda^\ast(u):=\sup_{\rho\in\mathbb R^n}\big\{\langle u,\rho\rangle-\Lambda(\rho)\big\},\qquad
-u\in\operatorname{conv}\{\beta_1,\dots,\beta_J\}.
+u\in\overline{\operatorname{conv}}\{\beta_1,\dots,\beta_J\}\text{（闭凸包）}.
 $$
 
 ### 定理 6.7（$\Lambda^\ast$ 的熵型表示）
@@ -134,7 +140,7 @@ $$
 \Lambda^\ast(u)=\ \inf_{\substack{q\in\Delta_J\\ \mathbb E_q[\beta]=u}}\Big\{D(q\,|\,\pi)\Big\}\ -\ \log W.
 $$
 
-极小解与满足 $\nabla\Lambda(\rho)=u$ 的 $\rho$ 通过 $q=p(\rho)$ 对偶对应。
+当 $u$ 落在 $\overline{\operatorname{conv}}\{\beta_j\}$ 的**相对内部**时，存在 $\rho$ 使 $\nabla\Lambda(\rho)=u$；**若** $\operatorname{aff}\{\beta_j\}$ **张满** $\mathbb R^n$，则该 $\rho$ **唯一**；**一般情形** $\rho$ 仅在 $\operatorname{aff}\{\beta_j\}$ 上唯一（沿其正交补的平移不改变 $p(\rho)$ 与 $\nabla\Lambda(\rho)$），而极小解 $q^\star$ 仍唯一。此时极小解由 $q^\star=p(\rho)$ 给出；若 $u$ 在边界上，则一般不存在有限的 $\rho$ 使 $\nabla\Lambda(\rho)=u$，但极小化问题仍有解（可由逼近序列 $\rho_k\to\infty$ 获得极限分布 $q^\star$）。
 
 *证明.* 对定理 6.5 作 Fenchel 变换并引入线性约束 $\mathbb E_q[\beta]=u$。∎
 
