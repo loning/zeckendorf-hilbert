@@ -36,7 +36,7 @@ $$
 
 其中 $r_j\in i\,(0,\tfrac{1}{2}]$ 对应小本征值 $0\le \lambda_j<\tfrac{1}{4}$（含常值本征态 $\lambda=0$ 时 $r=i/2$）。
 
-【归一声明（散射归一）】本文约定 $\phi(s)$ 为去除 $\Gamma/\pi$ 因子的散射行列式（纯算术部分）；相应地，在抛物项中保留 $\tfrac{\Gamma'}{\Gamma}$。
+【归一声明（散射归一）】本文约定 $\phi(s)$ 为去除 $\Gamma/\pi$ 因子的散射行列式（纯算术部分）；相应地，在抛物项中保留 $\tfrac{\Gamma'}{\Gamma}$。因此本文的连续谱项号记为“正号 $\phi'/\phi$”，相应的 $\Gamma'/\Gamma$ 归并入抛物项 $P_{\mathrm{par}}[h]$。
 
 ### 0.3 Hecke–Kloosterman 与 Bessel（Kuznetsov 侧）
 
@@ -54,6 +54,7 @@ Maass 形式 $u_j$ 的 Fourier–Whittaker 展开系数记作 $\rho_j(n)$，满�
 $$
 \rho_j(n)=\rho_j(1)\,\lambda_j(n),\qquad |u_j|_2=1,\ \lambda_j(1)=1.
 $$
+此处 $n\ge1$。
 
 ### 0.4 核—变换对
 
@@ -140,7 +141,7 @@ $$
 $$
 \begin{aligned}
 E_{\mathrm{ell}}[h]\ &=\ \sum_{[R]} \sum_{m=1}^{m_R-1}\frac{1}{2m_R\sin(\pi m/m_R)}
-\int_{-\infty}^{\infty} h(r)\,\frac{\cosh\!\left((1-\tfrac{2m}{m_R}) \pi r\right)}{\sinh(\pi r)}\,dr,\\[2pt]
+\int_{-\infty}^{\infty} h(r)\,\frac{\cosh\!\left((1-\tfrac{2m}{m_R}) \pi r\right)}{\cosh(\pi r)}\,dr,\\[2pt]
 P_{\mathrm{par}}[h]\ &=\ \frac{\kappa}{4\pi}\int_{-\infty}^{\infty} h(r)\,\frac{\Gamma'}{\Gamma}\!\left(\tfrac{1}{2}+ir\right)\,dr\ +\ c_\kappa\,h(0),
 \end{aligned}
 $$
@@ -169,6 +170,8 @@ $$
 
 其中 $\tau(n,r)=\sum_{ab=n}(a/b)^{ir}$ 为 Eisenstein 级联系数；$\mathcal{H}_0[h]$ 为对角（单位）项的线性泛函（仅由 $h$ 的低频决定）。
 
+（实现提示）在本规范下，$\mathcal{H}_0[h]$ 可由 Poincaré 系列 $P_m$ 的零频项配平直接计算得到，实现时只需保留 $h$ 的低频矩。
+
 *证明要点*：对 Poincaré 系列 $P_m$ 施加核 $h$ 的谱加权，一方面作 Hecke–Maass 谱展开得左侧；另一方面作几何展开，经 Poisson summation formula 与 Bessel–Fourier 分解得到右侧的 Kloosterman–Bessel 侧。换序与端点由 (H4) 与有限阶 EM 保证；$\mathcal{B}^\pm$ 的带限/指数窗控制模长 $c$ 的非渐近衰减。
 
 ---
@@ -178,21 +181,25 @@ $$
 **命题 11.5（信息—变分核选择）**
 
 给定**谱窗**与**几何窗**权函数 $W_{\mathrm{spec}},W_{\mathrm{geom}}\ge0$。对 $h\in \mathscr{H}_{\mathcal{K}}$ 定义泛函
-
 $$
 \mathcal{J}[h]=\int W_{\mathrm{spec}}(r)\,|h(r)|^2\,d\mu_{\mathrm{spec}}(r)\ -\ \lambda\int W_{\mathrm{geom}}(x)\,|\mathcal{K} h(x)|^2\,dx\ +\ \tau\int |h^{(M)}(t)|^2\,dt,
 $$
 
 其中 $d\mu_{\mathrm{spec}}$ 为相应谱测度（Selberg：$r\,\tanh\pi r\,dr$；Kuznetsov：$dr$）。则：
 
-1. $\lambda,\tau>0$ 时 $\mathcal{J}$ 在 $\mathscr{H}_{\mathcal{K}}$ 上**严格凸**，存在唯一极小 $h_\star$；
-2. $h_\star$ 满足 Euler–Lagrange 方程
-
+1. 当 $\tau>0$ 且 $0<\lambda<\lambda_\ast$ 时，$\mathcal{J}$ 在 $\mathscr{H}_{\mathcal{K}}$ 上**严格凸**，且唯一极小元为 $h_\star\equiv 0$，其中
 $$
-\big(\mathcal{L}_{\mathrm{spec}}+\tau D^{2M}\big)h_\star=\lambda\,\mathcal{K}^\ast\!\left(W_{\mathrm{geom}}\cdot \mathcal{K} h_\star\right),
+\lambda_\ast^{-1}=\Big\|\big(\mathcal{L}_{\mathrm{spec}}+\tau D^{2M}\big)^{-1/2}\,\mathcal{K}^*\,W_{\mathrm{geom}}\,\mathcal{K}\,\big(\mathcal{L}_{\mathrm{spec}}+\tau D^{2M}\big)^{-1/2}\Big\|_{\mathrm{op}}\,.
 $$
-
-其中 $\mathcal{L}_{\mathrm{spec}}$ 为由 $W_{\mathrm{spec}},d\mu_{\mathrm{spec}}$ 诱导的正定自伴算子，$\mathcal{K}^\ast$ 为 $\mathcal{K}$ 的伴随；
+2. 为获得**非零核**用于选择/设计，采用**约束式 Rayleigh 商**
+$$
+\mathcal{R}[h]:=\frac{\big\langle \mathcal{K}h,\ W_{\mathrm{geom}}\,\mathcal{K}h\big\rangle}{\big\langle h,\ \mathcal{L}_{\mathrm{spec}}h\big\rangle\ +\ \tau\,\|D^{M}h\|_{L^{2}}^{2}},\qquad h\neq 0,
+$$
+其极值问题等价于广义特征值问题
+$$
+\big(\mathcal{L}_{\mathrm{spec}}+\tau D^{2M}\big)h=\mu\,\mathcal{K}^*\!\left(W_{\mathrm{geom}}\cdot \mathcal{K} h\right),
+$$
+最大本征对 $(\mu_{\max},h_\star)$ 给出最优核，且 $\mu_{\max}=\sup_{h\neq0}\mathcal{R}[h]$；
 
 3. 若以 S6 的信息势 $\Lambda$ 与对偶 $\Lambda^\ast$ 度量目标窗，则上式等价于**在信息预算约束下最大化几何灵敏度**的问题；$\nabla^2\Lambda$ 给出方向方差，S10 的"主导子和区"使 $\mathcal{L}_{\mathrm{spec}}$ 分段仿射近似良好。
 
@@ -212,6 +219,8 @@ $$
 \ +\ \underbrace{\sum_{k=1}^{M-1} C_k\,\Delta^{2k}\cdot \max_{0\le j\le 2k-1} \big| g^{(j)} \big|}_{\text{伯努利层（有限阶 EM）}}
 \ +\ \underbrace{\int_{|s|>T}\!|g(s)|\,ds}_{\text{截断（窗尾）}}.
 $$
+
+其中 $\widehat{g}(\xi):=\int_{\mathbb{R}} g(s)\,e^{-i s\xi}\,ds$（此处的傅里叶规范与 §0.4 的 $\mathcal{C}$ 记号无关）。
 
 若 $\operatorname{supp}(\mathcal{C} h)\subset[-\Omega,\Omega]$ 且 $\Delta\le \pi/\Omega$，则**别名项为零**（Nyquist 达成）。
 
@@ -299,6 +308,8 @@ $$
 =\frac{1}{\pi}\int_{0}^{\infty} r\,h(r)\,\Big(i\,\sinh(\pi r)\,J_{2ir}(x)+\cosh(\pi r)\,Y_{2ir}(x)\Big)\,dr.
 $$
 （注：此写法需同时包含 $Y_{2ir}$ 项方与 0.4 节的规范一致；保持 0.4 节 $\mathcal{B}^{+}$ 的主定义不变最为简洁。）
+
+切勿在实现中将上述 $\widetilde{\mathcal{B}}$ 与 §0.4 的 $\mathcal{B}^{+}$ 互代；两者需按各自规范选择核窗，参数可换算但表达式不可直接互替。
 
 $K$-窗与 $\mathcal{B}^{-}$ 在相应规范下等价。
 
