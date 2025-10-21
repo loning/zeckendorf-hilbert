@@ -74,9 +74,10 @@ $$
 T \upharpoonright L := \{\varphi \in \mathcal{L} : \exists \pi (\pi \vdash_T \varphi \wedge \text{len}(\pi) \le L)\}.
 $$
 
-统计资源单独记作 $(m,N,\varepsilon)$，相应的不可分辨关系记为 $\equiv_{(m,N,\varepsilon)}$.
+统计资源单独记作 $(m,N,\varepsilon)$；相应的不可分辨关系仅依赖 $(m,\varepsilon)$，记为 $\equiv_{(m,\varepsilon)}$。
 
 编码约定：固定一种标准哥德尔编码与证明串字母表，$|x|$ 表示证明串长度；不同合理编码之间的长度在常数因子内等价，不影响后文长度门槛结论。
+当仅讨论 $\equiv_{(m,\varepsilon)}$ 时，记 $(m',\varepsilon')\ge(m,\varepsilon)\iff (m'\!\ge m\ \wedge\ \varepsilon'\!\le\varepsilon)$。
 
 ### 2.3 距离度量
 
@@ -94,13 +95,13 @@ $$
 
 **定义2.7（统计不可分辨）**
 
-若 $d_{\mathcal{F}_m}(\mu,\nu) \le \varepsilon$，则称 $\mu$ 与 $\nu$ 在 $(m,N,\varepsilon)$ 下不可分辨（记作 $\mu \equiv_{(m,N,\varepsilon)} \nu$）。
+若 $d_{\mathcal{F}_m}(\mu,\nu) \le \varepsilon$，则称 $\mu$ 与 $\nu$ 在 $(m,\varepsilon)$ 下不可分辨（记作 $\mu \equiv_{(m,\varepsilon)} \nu$）。
 
 ### 2.4 真值层级
 
 **定义2.8（分层状态系统）**：
 
-语义层：Truth($\varphi$) $\in \{\top, \bot, \text{undefined}\}$
+语义层：Truth($\varphi$) $\in \{\top, \bot\}$（按 A4，在算术语言上二值完备）
 
 证明层：ProvStatus($\varphi$) $\in \{\text{proved}, \text{refuted}, \text{undecided}\}$
 
@@ -114,7 +115,7 @@ $$
 
 **A1（可计算性）**：所有观察与生成过程可由可计算函数表示。
 
-**A2（有限分辨率）**：实际观察者在给定的逻辑资源 $L$ 与统计资源 $(m,N,\varepsilon)$ 下运作；记号分别为 $T\upharpoonright L$ 与 $\equiv_{(m,N,\varepsilon)}$。
+**A2（有限分辨率）**：实际观察者在给定的逻辑资源 $L$ 与统计资源 $(m,N,\varepsilon)$ 下运作；记号分别为 $T\upharpoonright L$ 与 $\equiv_{(m,\varepsilon)}$。
 
 **A3（理论扩展）**：理论扩展通过添加可计算公理片段实现： $T' = T + \Delta$，其中 $\Delta$ 是可计算的。
 
@@ -126,16 +127,16 @@ $$
 
 （逻辑）若 $L' \ge L$，则 $T\upharpoonright L \subseteq T\upharpoonright L'$。
 
-（统计）若 $(m',N',\varepsilon')\ge(m,N,\varepsilon)$（即 $m'\ge m$， $N'\ge N$， $\varepsilon'\le\varepsilon$），则
+（统计）若 $(m',\varepsilon')\ge(m,\varepsilon)$（即 $m'\ge m$， $\varepsilon'\le\varepsilon$），则
 
 $$
-\mu\equiv_{(m',N',\varepsilon')}\nu \Rightarrow \mu\equiv_{(m,N,\varepsilon)}\nu .
+\mu\equiv_{(m',\varepsilon')}\nu \Rightarrow \mu\equiv_{(m,\varepsilon)}\nu .
 $$
 
 （"不可分辨"对资源向下封闭。）
 
 **P2（状态迁移）**：
-- 理论扩展可能使 undecided $\to \{\top, \bot, \text{undecided}\}$。
+-（证明层）理论扩展可能使 $\mathrm{ProvStatus}:\ \text{undecided}\to\{\text{proved},\text{refuted},\text{undecided}\}$。
 - 分辨率提升可能使 indistinguishable $\to \{\text{distinguishable}, \text{indistinguishable}\}$.
 
 ## 4. 主要定理
@@ -144,12 +145,12 @@ $$
 
 **定理4.1（严格版）**：存在可计算函数$f$，使得对每个$L$，$G_L = f(L)$满足：
 1. $G_L \equiv \forall x (|x| \le L \to \neg \text{Proof}_T(x, \ulcorner G_L \urcorner))$
-2. $G_L$ 为 $\Delta_0$（因而亦属 $\Pi_1$）句子；
+2. $G_L$ 为 $\Delta_1$（即 $\Sigma_1\cap\Pi_1$）句子；
 3. 如果$T$一致，则$\mathbb{N} \models G_L$且$G_L$在$T$中没有长度$\le L$的证明
 
-说明：此长度门槛版不完备命题 $G_L$ 使用有界量词，因而落在 $\Delta_0$ 层级；我们强调其"有限可检"性质而非层级强度。
+说明：长度门槛版不完备命题 $G_L$ 以有界量词围绕可证性谓词的 $\Delta_1$ 表达构造，因而整体落在 $\Delta_1$ 层级；我们强调其“有限可检”性质而非层级强度。
 
-注记：在标准哥德尔编码与充足的函数符号/$\Delta_0$-归纳下，$\text{Proof}_T(x,y)$ 为原始递归谓词，因而在 PA 中 $\Delta_0$-可定义；这与常见以 $\Sigma_1$ 形式表述"存在证明"的谓词并不冲突——此处我们使用的是"给定串为证明"的决定性谓词，从而 $G_L$ 采用有界量词即可落在 $\Delta_0$ 层级。
+注记：在标准 PA 语言下，$\text{Proof}_T(x,y)$ 为原始递归关系，因而在 PA 中 $\Delta_1$ 可定义（并对有界量词封闭）；这与常见以 $\Sigma_1$ 形式表述“存在证明”的谓词并不冲突——此处我们使用的是“给定串为证明”的决定性谓词，以有界量词包裹仍保持 $\Delta_1$ 层级。
 
 **证明**：应用哥德尔自指引理构造 $G_L$。由于长度 $\le L$ 的证明仅有限多个，命题"存在长度 $\le L$ 的 $T$-证明"可在标准模型中作有限检验；结合 $T$ 的一致性与构造，本可导出若存在此类短证/短反证则致矛盾，故 $\mathbb N\models G_L$ 且 $\ell_T(G_L)>L$。□
 
@@ -169,7 +170,7 @@ $$
 T_t \nvdash G^{(t)} \quad \text{且} \quad T_t \nvdash \neg G^{(t)}.
 $$
 
-**证明**：对每个固定 $T_t$ 应用经典哥德尔第一定理，由于 $\Delta_t$ 可计算，不改变理论的基本性质，自指对角化在扩展后仍适用。
+**证明**：对每个固定 $T_t$ 应用 **Rosser 版不完备定理**（一致性前提即足以推出双向不可判定）。由于 $\Delta_t$ 可计算，不改变理论的基本性质，自指对角化在扩展后仍适用。
 
 **意义**：无论添加多少可计算公理，不完备性永远重新出现。
 
@@ -177,7 +178,7 @@ $$
 
 **统一定理4.3**：资源增加时：
 - 可判定命题集合单调增加；
-- 不可分辨关系对资源向下封闭：若在更强资源$(m',N',\varepsilon')\ge(m,N,\varepsilon)$下仍有$\mu\equiv_{(m',N',\varepsilon')}\nu$，则在更弱资源$(m,N,\varepsilon)$下也有$\mu\equiv_{(m,N,\varepsilon)}\nu$。
+- 不可分辨关系对资源向下封闭：若在更强统计资源 $(m',\varepsilon')\ge(m,\varepsilon)$ 下仍有 $\mu\equiv_{(m',\varepsilon')}\nu$，则在更弱资源 $(m,\varepsilon)$ 下也有 $\mu\equiv_{(m,\varepsilon)}\nu$。
 
 **推论4.3.1**：在固定一致的 $T$ 下，随 $L \to \infty$ 的 undecidable 集合形成单调递减序列，其交集非空。
 
@@ -212,17 +213,17 @@ $$
 **公式**：
 
 $$
-N \approx \frac{\log(2/\alpha)}{2 (\eta p)^2},\qquad p = \frac{1}{\ln M},\ \alpha=0.05.
+\boxed{\ N \approx \frac{3\,\log(2/\alpha)}{\eta^2\,p}\ },\qquad p = \frac{1}{\ln M},\ \alpha=0.05.
 $$
 
-**计算结果**（基于置信度95%，α=0.05）：
+**计算结果**（基于置信度95%，$\alpha=0.05$）：
 
-| $M$    | $p \approx 1/\ln M$ | $\eta$ | 需要样本 $N$ |
-|------------|--------------------------|------------|------------------|
-| $10^6$ | 0.07238                 | 50%       | 1409            |
-| $10^6$ | 0.07238                 | 10%       | 35205           |
-| $10^9$ | 0.04826                 | 10%       | 79211           |
-| $10^{24}$ | 0.01810              | 10%       | 563273          |
+| $M$      | $p \approx 1/\ln M$ | $\eta$ | 需要样本 $N$ |
+|----------|---------------------:|-------:|--------------:|
+| $10^6$   |              0.072382|    50% |           612 |
+| $10^6$   |              0.072382|    10% |        15,290 |
+| $10^9$   |              0.048255|    10% |        22,934 |
+| $10^{24}$|              0.018096|    10% |        61,157 |
 
 ### 5.2 理论扩展的局限性
 
@@ -238,7 +239,7 @@ $$
 
 统计端与逻辑端在资源需求上展现相同模式：
 - 统计： $N \sim (\ln M)/ \eta^2$ （样本复杂度）。
-- 逻辑： $L \sim 2^{O(n)}$ （证明复杂度）。
+- 逻辑：在若干典型难例族与常见证明系统中，$L$ 可能呈指数级增长；因此两端均可表现出超线性乃至指数型资源需求。
 
 两者都随问题规模呈超线性增长。
 
@@ -280,7 +281,7 @@ RBIT 作为独立自洽的理论：
 - 建立在经典数理逻辑与复杂性理论基础上。
 - 提供可检验的预测与数值界限。
 
-Related Work（极简）：本工作与可行不完备、bounded arithmetic 与 proof complexity（如 Buss、Pudlák 等）同属"资源化"脉络；我们的差异在于以"长度门槛"的 $\Delta_0$ 自指族直接给出 $L \mapsto$ 不可证性的构造，并与统计侧的 IPM/样本复杂度框架在同一资源坐标上对齐。
+Related Work（极简）：本工作与可行不完备、bounded arithmetic 与 proof complexity（如 Buss、Pudlák 等）同属"资源化"脉络；我们的差异在于以"长度门槛"的 $\Delta_1$ 自指族直接给出 $L \mapsto$ 不可证性的构造，并与统计侧的 IPM/样本复杂度框架在同一资源坐标上对齐。
 
 ### 7.3 未来方向
 
@@ -322,18 +323,17 @@ Related Work（极简）：本工作与可行不完备、bounded arithmetic 与 
 from math import log, ceil
 
 def sample_complexity(M, eta, alpha=0.05):
-    """Calculate sample complexity for relative error (small p approximation)"""
+    """Relative-error sample size: N ≈ 3 log(2/alpha) / (eta^2 * p), p ≈ 1/ln M"""
     p = 1 / log(M)
-    delta = eta * p
-    N = log(2 / alpha) / (2 * delta**2)
+    N = 3 * log(2 / alpha) / (eta**2 * p)
     return ceil(N)
 
 # Example calculations
-M_values = [10**6, 10**9, 10**12, 10**18, 10**24]
+M_values = [10**6, 10**9, 10**24]
 for M in M_values:
-    for eta in [0.5, 0.2, 0.1]:
+    for eta in [0.5, 0.1]:
         N = sample_complexity(M, eta)
-        print(f"M={M:.0e}, η={eta*100}% -> N={N:,}")
+        print(f"M={M:.0e}, η={eta*100:.0f}% -> N={N:,}")
 ```
 
 ### B.2 资源单调性验证
@@ -435,7 +435,7 @@ def plot_resource_curves():
 
 **定理4.1（资源有界不完备定理）**：存在可计算函数$f$，使得对每个$L$，$G_L = f(L)$满足：
 1. $G_L \equiv \forall x (|x| \le L \to \neg \text{Proof}_T(x, \ulcorner G_L \urcorner))$
-2. $G_L$ 为 $\Delta_0$ 句子
+2. $G_L$ 为 $\Delta_1$（即 $\Sigma_1\cap\Pi_1$）句子
 3. 如果$T$一致，则$\mathbb{N} \models G_L$且$G_L$在$T$中没有长度$\le L$的证明
 
 **完整证明**：
@@ -446,7 +446,7 @@ $$
 T \vdash G_L \leftrightarrow \forall x (|x| \le L \to \neg \text{Proof}_T(x, \ulcorner G_L \urcorner))
 $$
 
-步骤2（层级）：谓词 $\text{Proof}_T(x,y)$ 在标准编码下为 $\Delta_0$，因为它是有界量词的原始递归谓词。因此 $G_L$ 的右侧也是 $\Delta_0$，从而 $G_L$ 本身可取为 $\Delta_0$ 句子。
+步骤2（层级）：$\text{Proof}_T(x,y)$ 为原始递归关系，故在 PA 中 $\Delta_1$ 可定义；有界量词不提升层级，整体仍为 $\Delta_1$，从而 $G_L$ 可取为 $\Delta_1$（即 $\Sigma_1\cap\Pi_1$）句子。
 
 步骤3（真值）：假设 $T$ 一致。我们证明 $\mathbb{N} \models G_L$。
 
@@ -476,7 +476,7 @@ $$
 
 **构造性证明**：
 
-步骤1（归纳基础）：对 $t=0$，$T_0$ 一致且表达 PA。由哥德尔第一定理，存在 $G^{(0)}$ 使得 $T_0 \nvdash G^{(0)}$ 且 $T_0 \nvdash \neg G^{(0)}$。
+步骤1（归纳基础）：对 $t=0$，$T_0$ 一致且表达 PA。由 **Rosser 版不完备定理**（一致性前提即足够），存在 $G^{(0)}$ 使得 $T_0 \nvdash G^{(0)}$ 且 $T_0 \nvdash \neg G^{(0)}$。
 
 步骤2（归纳假设）：假设对某个 $t$，$T_t$ 一致且表达 PA，且存在 $G^{(t)}$ 使得 $T_t \nvdash G^{(t)}$ 且 $T_t \nvdash \neg G^{(t)}$。
 
@@ -487,13 +487,9 @@ $$
 - 如果 $T_t$ 表达 PA，且 $\Delta_t$ 不引入新的非逻辑符号，则 $T_{t+1}$ 也表达 PA。
 - 假设 $T_{t+1}$ 保持一致（否则定理平凡成立）。
 
-步骤4（新不完备句子）：对 $T_{t+1}$ 应用哥德尔第一定理，存在 $G^{(t+1)}$ 使得：
+步骤4（新不完备句子）：对 $T_{t+1}$ 应用 **Rosser 版不完备定理**，存在 Rosser 句 $R^{(t+1)}$，使得在仅假设一致性的前提下有 $T_{t+1} \nvdash R^{(t+1)}$ 且 $T_{t+1} \nvdash \neg R^{(t+1)}$。此处无需给出哥德尔式的 $(\leftrightarrow\neg\mathrm{Prov})$ 等价式。
 
-$$
-T_{t+1} \vdash G^{(t+1)} \leftrightarrow \neg \text{Prov}_{T_{t+1}}(\ulcorner G^{(t+1)} \urcorner)
-$$
-
-由哥德尔定理，$T_{t+1} \nvdash G^{(t+1)}$ 且 $T_{t+1} \nvdash \neg G^{(t+1)}$。
+由 Rosser 定理，$T_{t+1} \nvdash R^{(t+1)}$ 且 $T_{t+1} \nvdash \neg R^{(t+1)}$。
 
 步骤5（本质差异）：$G^{(t+1)}$ 与 $G^{(t)}$ 本质不同，因为：
 - $G^{(t)}$ 涉及 $T_t$ 的可证性谓词
