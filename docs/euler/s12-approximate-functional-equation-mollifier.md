@@ -31,7 +31,7 @@ $\Re s=\tfrac{a}{2}$ 为中心轴。对偶对象 $L^\ast$ 的 Dirichlet 系数�
 2. **母映射与信息刻度.** 离散谱写作 $\sum_j c_j e^{i\langle\alpha_j,\theta\rangle}e^{\langle\beta_j,\rho\rangle}$。信息势
 
 $$
-\mathcal{L}(\rho)=\log\!\sum_j |c_j|\,e^{\langle\beta_j,\rho\rangle},
+\mathcal{L}(\rho)=\log\sum_j |c_j|\,e^{\langle\beta_j,\rho\rangle},
 $$
 
 其梯度—Hessian 给出"有效质心—方差"度量与自然度量；$\mathcal{L}^\ast$ 表示其 Fenchel 对偶（S6）。

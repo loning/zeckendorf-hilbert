@@ -225,7 +225,7 @@ $$
 等价地，存在 $u,v\in\mathbb R^{m+n}$ 使
 
 $$
-\det\!\begin{pmatrix}
+\det\begin{pmatrix}
 \Re\langle u,\nabla F\rangle & \Re\langle v,\nabla F\rangle\\[2pt]
 \Im\langle u,\nabla F\rangle & \Im\langle v,\nabla F\rangle
 \end{pmatrix}\neq 0.

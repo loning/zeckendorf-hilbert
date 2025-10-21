@@ -49,7 +49,7 @@ $$
 * **信息势与软最大**。定义
 
 $$
-\Lambda(\rho):=\log\!\Bigl(\sum_{j=1}^J |c_j|e^{\langle\beta_j,\rho\rangle}\Bigr),\qquad
+\Lambda(\rho):=\log\Bigl(\sum_{j=1}^J |c_j|e^{\langle\beta_j,\rho\rangle}\Bigr),\qquad
 p_j(\rho):=\frac{|c_j|e^{\langle\beta_j,\rho\rangle}}{e^{\Lambda(\rho)}} .
 $$
 
@@ -107,7 +107,7 @@ $\sup_{\theta}\log|F(\theta,\rho+r\mathbf u)|\le \log\sum_j |c_j|e^{\langle\beta
 
 $$
 \Bigl|\,N_F(\rho)-\bigl(\langle\beta_{j_\star},\rho\rangle+\log|c_{j_\star}|\bigr)\Bigr|
-\ \le\ \log\!\frac{1}{1-(J-1)\,e^{-D}} ,
+\ \le\ \log\frac{1}{1-(J-1)\,e^{-D}} ,
 $$
 
 其中右端仅依赖于 $(J,D)$，与 $\{\alpha_j\}$ 无关。

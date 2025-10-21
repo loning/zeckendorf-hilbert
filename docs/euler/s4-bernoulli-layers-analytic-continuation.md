@@ -13,7 +13,7 @@
 * **尺度切片**：固定方向 $\mathbf v\in\mathbb S^{n-1}$ 与横向偏置 $\rho_\perp$，令
 
 $$
-f(x;s)\;:=\;F\!\bigl(\theta,\rho_\perp+x\,\mathbf v; s\bigr),\qquad x\in\mathbb R_{\ge0},
+f(x;s)\;:=\;F\bigl(\theta,\rho_\perp+x\,\mathbf v; s\bigr),\qquad x\in\mathbb R_{\ge0},
 $$
 
 其中 $\theta$ 固定（相位层），$s$ 为（Mellin/拉普拉斯）复参。所有换序、逐项微分与收敛均在 S1 的管域/条带契约下进行（C0–C3）。
@@ -30,22 +30,22 @@ $$
 
 $$
 \sum_{k=0}^{N-1} f(a+k\Delta)
-= \frac{1}{\Delta}\!\int_{a}^{a+N\Delta}\! f(x)\,dx
+= \frac{1}{\Delta}\int_{a}^{a+N\Delta} f(x)\,dx
 + \frac{f(a)-f(a+N\Delta)}{2}
-+ \sum_{m=1}^{M-1}\frac{B_{2m}}{(2m)!}\,\Delta^{2m-1}\!\bigl(f^{(2m-1)}(a+N\Delta)-f^{(2m-1)}(a)\bigr)
++ \sum_{m=1}^{M-1}\frac{B_{2m}}{(2m)!}\,\Delta^{2m-1}\bigl(f^{(2m-1)}(a+N\Delta)-f^{(2m-1)}(a)\bigr)
 + R_M,
 $$
 
 其中
 
 $$
-R_M=\frac{\Delta^{2M-1}}{(2M)!}\int_{a}^{a+N\Delta} B_{2M}\!\left(\Bigl\{\tfrac{x-a}{\Delta}\Bigr\}\right)\, f^{(2M)}(x)\,dx.
+R_M=\frac{\Delta^{2M-1}}{(2M)!}\int_{a}^{a+N\Delta} B_{2M}\left(\Bigl\{\tfrac{x-a}{\Delta}\Bigr\}\right)\, f^{(2M)}(x)\,dx.
 $$
 
 记
 
 $$
-\mathcal B_m[f]\;:=\;\frac{B_{2m}}{(2m)!}\,\Delta^{2m-1}\!\bigl(f^{(2m-1)}(a+N\Delta)-f^{(2m-1)}(a)\bigr),\qquad 1\le m\le M-1,
+\mathcal B_m[f]\;:=\;\frac{B_{2m}}{(2m)!}\,\Delta^{2m-1}\bigl(f^{(2m-1)}(a+N\Delta)-f^{(2m-1)}(a)\bigr),\qquad 1\le m\le M-1,
 $$
 
 为**第 $m$ 层伯努利层**，$R_M$ 为**余项层**。其中 $B_{2m}$ 为伯努利数，$B_{2M}(\cdot)$ 为伯努利多项式，$\{\cdot\}$ 表示小数部分。
@@ -75,7 +75,7 @@ $$
 **证明（略要）**。由定义，
 
 $$
-R_M(s)=\frac{\Delta^{2M-1}}{(2M)!}\int_{a}^{a+N\Delta} B_{2M}\!\left(\Bigl\{\tfrac{x-a}{\Delta}\Bigr\}\right)\, f^{(2M)}(x;s)\,dx.
+R_M(s)=\frac{\Delta^{2M-1}}{(2M)!}\int_{a}^{a+N\Delta} B_{2M}\left(\Bigl\{\tfrac{x-a}{\Delta}\Bigr\}\right)\, f^{(2M)}(x;s)\,dx.
 $$
 
 固定 $K\subset U$ 紧集，$B_{2M}$ 有界且 $\sup_{s\in K}|f^{(2M)}(x;s)|\le w_M(x)\in L^1$。由受控/主导收敛与 Morera 定理（或 Weierstrass 一致收敛判别）可交换"积分—极限/微分"，得 $R_M$ 在 $U$ 内全纯；若 (H0)–(H2) 在 $\mathbb C$ 成立，则 $R_M$ 为整函数。伯努利层的全纯性同理（端点值与有限阶导数在 (H0)–(H2) 下对 $s$ 全纯）。$\square$
@@ -136,7 +136,7 @@ S(\Delta;s):=\mathcal I(\Delta;s)+\tfrac12 f(a;s)+\sum_{m=1}^{M-1}\mathcal B_m^{
 $$
 从而 $S(\Delta;\cdot)$ 为 $V$ 内的亚纯延拓，且
 $$
-\mathrm{Sing}_V\!\bigl(S(\Delta;\cdot)\bigr)=\mathrm{Sing}_V\!\bigl(\mathcal I(\Delta;\cdot)\bigr)=\mathcal P.
+\mathrm{Sing}_V\bigl(S(\Delta;\cdot)\bigr)=\mathrm{Sing}_V\bigl(\mathcal I(\Delta;\cdot)\bigr)=\mathcal P.
 $$
 
 即在解析延拓的意义下，**极点仅由主尺度项 $\mathcal I$ 产生**；伯努利层与余项不引入新极点。
@@ -214,10 +214,10 @@ $$
 
 ## 附录 B：Stirling 与完成函数的垂线增长
 
-取 S3 的对称因子 $r(s)$（$\Gamma/\pi$ 因子）。由 Stirling 估计，在任意闭竖条上 $|r(s)|$ 以 $\exp\!\bigl(-\tfrac{\pi}{2}J|t|\bigr)$ 衰减（$J$ 为成对 $\Gamma_{\mathbb R}$ 因子数目），故
+取 S3 的对称因子 $r(s)$（$\Gamma/\pi$ 因子）。由 Stirling 估计，在任意闭竖条上 $|r(s)|$ 以 $\exp\bigl(-\tfrac{\pi}{2}J|t|\bigr)$ 衰减（$J$ 为成对 $\Gamma_{\mathbb R}$ 因子数目），故
 
 $$
-r(s)\!\left(\sum_{m<M}\mathcal B_m+R_M\right)
+r(s)\left(\sum_{m<M}\mathcal B_m+R_M\right)
 $$
 
 至多多项式增长；若 $r(s)\mathcal I(\Delta;s)$ 在 $V$ 内消极点，则完成函数在 $V$ 内全纯（无极点）。

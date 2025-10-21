@@ -20,7 +20,7 @@ $$
 上定义
 
 $$
-\Lambda(\rho):=\log\!\Big(\sum_{j=1}^J w_j\,e^{\langle \beta_j,\rho\rangle}\Big),\qquad
+\Lambda(\rho):=\log\Big(\sum_{j=1}^J w_j\,e^{\langle \beta_j,\rho\rangle}\Big),\qquad
 p_j(\rho):=\frac{w_j\,e^{\langle \beta_j,\rho\rangle}}{e^{\Lambda(\rho)}}.
 $$
 
@@ -73,7 +73,7 @@ $$
 
 $$
 \nabla_\rho \Lambda(\rho)=\sum_{j=1}^J p_j(\rho)\,\beta_j=:\mathbb E_\rho[\beta],\qquad
-\nabla_\rho^2 \Lambda(\rho)=\operatorname{Cov}_\rho(\beta):=\mathbb E_\rho\!\big[(\beta-\mathbb E_\rho\beta)(\beta-\mathbb E_\rho\beta)^\top\big]\succeq 0.
+\nabla_\rho^2 \Lambda(\rho)=\operatorname{Cov}_\rho(\beta):=\mathbb E_\rho\big[(\beta-\mathbb E_\rho\beta)(\beta-\mathbb E_\rho\beta)^\top\big]\succeq 0.
 $$
 
 因此 $\Lambda$ 凸；$\nabla\Lambda$ 给出以 $p(\rho)$ 为权的"有效模态质心"，Hessian 为"协方差度量"。
@@ -85,7 +85,7 @@ $$
 沿 S5 的方向切片 $\rho=\rho_\perp+s\mathbf v$ 有
 
 $$
-\frac{d^2}{ds^2}\Lambda(\rho_\perp+s\mathbf v)=\operatorname{Var}_\rho\!\big(\langle \beta,\mathbf v\rangle\big)\ge 0.
+\frac{d^2}{ds^2}\Lambda(\rho_\perp+s\mathbf v)=\operatorname{Var}_\rho\big(\langle \beta,\mathbf v\rangle\big)\ge 0.
 $$
 
 故 $\Lambda$ 关于 $s$ 的凸性由投影方差控制；解析侧的"极点由主尺度决定"（S4/S5）与几何侧的"增长由方差给界"互补。

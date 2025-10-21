@@ -15,8 +15,6 @@
 
 ## 0. 记号与前置
 
-> **乘号记号约定**：本文按既有习惯以逗号 "," 表示乘积（如 $(A,B)$ 读作 $AB$）。
-
 ### 0.1 完成函数与功能方程
 
 设
@@ -73,7 +71,7 @@ $$
 +\varepsilon\sum_{n\ge1}\frac{a_n^\ast}{n^{a-s}}\,V_-\!\Big(\frac{n}{Q^{1/2}};s\Big)+R(s;h),
 $$
 
-**算术侧**：$(a_n^\ast)$ 为对偶 $L^\ast$ 的 Dirichlet 系数；自对偶时依标准归一有 $a_n^\ast=\overline{a_n}$。本文所有换序与端点处理**一律采用有限阶 EM**；余项全纯/整，极点仅由主尺度项产生。
+**算术侧**：$(a_n^\ast)$ 为对偶 $L^\ast$ 的 Dirichlet 系数；自对偶时依标准归一有 $a_n^\ast=\overline{a_n}$。**一般情形下 $\overline{L}$ 的交叉项涉及 $\overline{a_n^\ast}$，非 $a_n^\ast$**，相应出现在 $K_{mn}$ 的 $+\!-$ 与 $-\!+$ 行。本文所有换序与端点处理**一律采用有限阶 EM**；余项全纯/整，极点仅由主尺度项产生。
 
 **余项 $R(s;h)$ 的整性**：若**变换** $H\in\mathrm{PW}_B$（Paley–Wiener 类，即带限）且 $V_\pm$ 由 Mellin–Barnes 表达并在以 $r(s)$ 配平 $\Gamma$-增长后不再引入新的 $s$-方向指数增长，则 $R(\cdot;h)$ 为指数型（$\le B$）的整函数；若 $h\in\mathcal S(\mathbb R)$（快衰窗），则仅保证 $R$ 全纯且在竖条上次指数增长。
 
@@ -153,13 +151,7 @@ $$
 为书写简洁，记
 
 $$
-d\mu_w(t):=\frac{w(t)\,dt}{\int_{\mathbb R} w},\qquad \mathbb P_w(\cdot)\ \text{为由 }d\mu_w\text{ 诱导的概率测度},
-$$
-
-则 Paley–Zygmund 给出
-
-$$
-\mathbb P_w\!\big(|Z|\ge (1-\theta)|Z|_{w}\big)\ \ge\ \frac{(1-\theta)^2}{M_4(w,h;Y)}.
+d\mu_w(t):=\frac{w(t)\,dt}{\int_{\mathbb R} w},\qquad \mathbb P_w(\cdot)\ \text{为由 }d\mu_w\text{ 诱导的概率测度}.
 $$
 
 **证明**。一方面，
@@ -168,17 +160,36 @@ $$
 |L\,\mathcal R^\star|_{w}^{2}=\langle r^\star,\mathsf K r^\star\rangle=\lambda_{\max}\langle r^\star,Gr^\star\rangle=\lambda_{\max}.
 $$
 
-由均值不超过上确界（$|Z|_{w}\le \sup_{\mathrm{supp}(w)}|Z|$）得第一不等式。另一方面取 $X:=|Z|^{2}\ge0$，Paley–Zygmund 与上述四次能量假设即得概率下界。□
+由二次均值（RMS）不超过上确界（$|Z|_{w}=\big(\mathbb E_w[|Z|^2]\big)^{1/2}\le |Z|_{L^\infty(\mathrm{supp}\,w)}$）得第一不等式。另一方面取 $X:=|Z|^{2}\ge0$，令 $\alpha\in(0,1)$，Paley–Zygmund 给出
+
+$$
+\mathbb P_w\!\big(|Z|\ge \alpha\,|Z|_{w}\big)\ \ge\ \frac{\big(1-\alpha^2\big)^{2}}{M_4(w,h;Y)}.
+$$
+
+取阈值 $\alpha=1-\theta$ 时，
+
+$$
+\mathbb P_w\!\big(|Z|\ge (1-\theta)\,|Z|_{w}\big)\ \ge\ \frac{\big(2\theta-\theta^2\big)^2}{M_4(w,h;Y)}.
+$$
+
+□
 
 ### 推论 1.2（转化为 $|L|$ 的下界）
 
-若在 $\mathrm{supp}(w)$ 上 $|\mathcal R^\star(\sigma+it)|\le B$（如用 $\ell^2$ 归一与 Cauchy–Schwarz 得 $B\le |r^\star|_{\ell^2}(\sum_{n\le Y}n^{-2\sigma})^{1/2}$），则
+若在 $\mathrm{supp}(w)$ 上 $|\mathcal R^\star(\sigma+it)|\le B$，其中可用 Cauchy–Schwarz 给出
+
+$$
+\sup_{t\in\mathrm{supp}(w)}\big|\mathcal R(\sigma+it)\big|
+\le \Big(\sum_{n\le Y}|r_n|^2\Big)^{1/2}\Big(\sum_{n\le Y}n^{-2\sigma}\Big)^{1/2},
+$$
+
+则
 
 $$
 \sup_{t\in\mathrm{supp}(w)}|L(\sigma+it)|\ \ge\ B^{-1}\sqrt{\lambda_{\max}}.
 $$
 
-**说明**：若将 $B$ 规模化为 1，则需在优化问题中显式约束 $|\mathcal R|_{L^\infty(\mathrm{supp}\,w)}\le1$（见 §8.A）。
+**说明**：该界与广义本征归一 $\langle r,Gr\rangle=1$ 无冲突（缩放不改变 Rayleigh 商），只需报告实际解得的 $B$ 或采用 $\ell^2$ 归一的保守界。若将 $B$ 规模化为 1，则需在优化问题中显式约束 $|\mathcal R|_{L^\infty(\mathrm{supp}\,w)}\le1$（见 §8.A）。
 
 ---
 
@@ -186,7 +197,7 @@ $$
 
 ### 引理 2.1（$\mathsf K$ 的显式表达）
 
-在 §0.3 的 AFE 下，
+记 $\rho:=m/n$、$x=\tfrac{k}{Q^{1/2}},y=\tfrac{\ell}{Q^{1/2}}$。在 §0.3 的 AFE 下，
 
 $$
 |L\,\mathcal R|_{w}^{2}
@@ -196,24 +207,33 @@ $$
 其中
 
 $$
-K_{mn}=\sum_{k\ge1}\frac{a_k}{k^\sigma}A_+\!\Big(\frac{k}{Q^{1/2}},\frac{m}{n};\sigma\Big)
-+\sum_{k\ge1}\frac{a_k^\ast}{k^{a-\sigma}}A_-\!\Big(\frac{k}{Q^{1/2}},\frac{m}{n};\sigma\Big),
+\begin{aligned}
+K_{mn}
+&=\sum_{k,\ell\ge1}\frac{a_k\overline{a_\ell}}{(k\ell)^\sigma}\,B_{++}(x,y,\rho;\sigma)\\
+&\quad+\sum_{k,\ell\ge1}\frac{a_k\,\overline{a_\ell^\ast}}{k^\sigma\,\ell^{a-\sigma}}\,B_{+-}(x,y,\rho;\sigma)\\
+&\quad+\sum_{k,\ell\ge1}\frac{a_k^\ast\,\overline{a_\ell}}{k^{a-\sigma}\,\ell^\sigma}\,B_{-+}(x,y,\rho;\sigma)\\
+&\quad+\sum_{k,\ell\ge1}\frac{a_k^\ast\,\overline{a_\ell^\ast}}{(k\ell)^{a-\sigma}}\,B_{--}(x,y,\rho;\sigma),
+\end{aligned}
 $$
 
-而
+其中
 
 $$
-A_\pm(x,\rho;\sigma):=\int_{\mathbb R}\! V_\pm(x;\sigma+it)\,\rho^{it}\,w(t)\,dt
+B_{\circ\circ'}(x,y,\rho;\sigma)=\int_{\mathbb R}V_\circ(x;\sigma+it)\,\overline{V_{\circ'}(y;\sigma+it)}\,\rho^{it}\,w(t)\,dt,\quad \circ,\circ'\in\{+,-\}.
 $$
 
-是由 $V_\pm$ 与 $\widehat w$ 组成的 Mellin–Fourier 组合核。"整层校正"指由 AFE 余项与有限阶 EM 端点项诱导的**有界扰动**；记扰动矩阵为 $\Delta$，则谱半径的稳定性由
+**备注**：自对偶（$a_n^\ast=\overline{a_n}$）时，第二与第三行可合并为 $2\,\Re\big[\sum a_k\overline{a_\ell}\,\cdots B_{+-}\big]$ 的等价写法，但为保持一般性与自伴性，建议保留四项显式展开。**按上式四项展开，$K_{nm}=\overline{K_{mn}}$**。
+
+"整层校正"由 AFE 余项与有限阶 EM 端点项诱导，给出一个有界的自伴扰动矩阵 $\Delta$。故
 
 $$
 \big|\lambda_{\max}(\mathsf K+\Delta)-\lambda_{\max}(\mathsf K)\big|
-\ \le\ \|\Delta\|_{\mathrm{op}}
+\ \le\ \|\Delta\|_{\mathrm{op}},
 $$
 
-给出，其中 $\|\Delta\|_{\mathrm{op}}$ 由 §2.2 的四次能量常数 $M_4$ 与 §6 的"别名+伯努利层+窗尾"三项给出显式上界。□
+且 $\|\Delta\|_{\mathrm{op}}$ 可由 §2.2 的四次能量常数与 §6 的"别名 + 伯努利层 + 窗尾"三项**显式**上界。
+
+**说明**：此处补全 $|L|^2$ 展开后对 $(k,\ell)$ 的双重和与 $+$/$-$ 交叉项（含正确的共轭结构），使 $\langle r,\mathsf K r\rangle=\mathbb E_w[|L\mathcal R|^2]$ 成立。□
 
 ### 引理 2.2（四次能量的可检上界）
 
@@ -233,11 +253,11 @@ $$
 
 ---
 
-## 3. Pretentious 相干链路（GL(1) 适用）
+## 3. Pretentious 相干链路（**GL(1) 适用**）
 
 ### 定理 3.1（Pretentious 小距离 $\Rightarrow$ 窗口大值）
 
-以下结论在**取共振器长度 $Y\asymp X$**（或至少 $Y\ge X$）的约定下成立，统一以 $A_\sigma(\min\{X,Y\})$ 计。取 $\sigma>1$。若存在 $X\ge2$ 与配准 $(\chi^\star,\tau^\star)$ 使 $\mathbb D_{\sigma,X}(f;\tau^\star)\le D_0$，且 $w$ 在 $|t-\tau^\star|\le T$ 平滑，则对谱最优 $\mathcal R^\star$ 有
+**本节仅适用于 GL(1)**。以下结论在**取共振器长度 $Y\asymp X$**（或至少 $Y\ge X$）的约定下成立，统一以 $A_\sigma(\min\{X,Y\})$ 计。取 $\sigma>1$。若存在 $X\ge2$ 与配准 $(\chi^\star,\tau^\star)$ 使 $\mathbb D_{\sigma,X}(f;\tau^\star)\le D_0$，且 $w$ 在 $|t-\tau^\star|\le T$ 平滑，则对谱最优 $\mathcal R^\star$ 有
 
 $$
 \sup_{|t-\tau^\star|\le T}|L(\sigma+it)\,\mathcal R^\star(\sigma+it)|
@@ -250,9 +270,17 @@ $$
 
 ## 4. 非相干链路的 Ω-下界（Rayleigh 测试向量法）
 
+**定义（AFE 主系数向量）**：取
+
+$$
+c_n(\sigma;h):=\overline{a_n}\,V_+\!\Big(\frac{n}{Q^{1/2}};\sigma\Big),\qquad n\ge1.
+$$
+
+（直观：以 AFE 主和的"形状"作同相测试向量。）
+
 ### 定理 4.1（非相干 $\Rightarrow$ Ω-下界）
 
-以下结论在**取共振器长度 $Y\asymp X$**（或至少 $Y\ge X$）的约定下成立。设 $\inf_{|t|\le T}\mathbb D_{\sigma,X}(f;t)\ge D>0$ 并满足 §0 的窗/AFE/EM 条件。令 $c=(c_n(\sigma;h))$ 为 AFE 主系数向量。则存在常数 $\kappa=\kappa(\sigma,w,h)>0$ 使
+以下结论在**取共振器长度 $Y\asymp X$**（或至少 $Y\ge X$）的约定下成立。设 $\inf_{|t|\le T}\mathbb D_{\sigma,X}(f;t)\ge D>0$ 并满足 §0 的窗/AFE/EM 条件。令 $c=(c_n(\sigma;h))$ 为按上式定义的 AFE 主系数向量。则存在常数 $\kappa=\kappa(\sigma,w,h)>0$ 使
 
 $$
 \lambda_{\max}\ \ge\ \frac{\langle c,\mathsf K c\rangle}{\langle c,G c\rangle}
@@ -283,13 +311,19 @@ $$
 \sup_{t\in\mathrm{supp}(w)}|\Xi(\tfrac a2+it)|\ \gg\ \sqrt{\lambda_{\max}\big(\tfrac a2\big)}.
 $$
 
-带限窗时，$\lambda_{\max}$ 的误差完全由 §6 的三分解给出显式上界。此处误差仅指数值离散与 EM 端点；与 $L$ 解析增长相关的常数仍由 §2 的 $M_4$ 与 §7 的方向上包控制。
+带限窗时，$\lambda_{\max}$ 的误差**主要**由 §6 的三分解给出显式上界；此外仍受 §2 的四次能量常数与 §7 的方向上包常数控制。此处误差指数值离散与 EM 端点；与 $L$ 解析增长相关的常数由 §2 的 $M_4$ 与 §7 的方向上包控制。
 
 ---
 
 ## 6. 非渐近误差预算：Nyquist–Poisson–EM 三分解
 
-令 $g$ 为窗口化 integrand，步长 $\Delta$、EM 阶 $M$、截断 $T$。则
+令 $g_\rho(t)$ 为窗口化 integrand，具体形式为
+
+$$
+g_\rho(t):=|L(\sigma+it)|^2\,\rho^{it}\quad\text{或}\quad g_\rho(t):=|L(\sigma+it)\mathcal R(\sigma+it)|^2\,\rho^{it}
+$$
+
+（分别用于计算 $K_{mn}$ 或含 $\mathcal R$ 的能量）。取步长 $\Delta$、EM 阶 $M$、截断 $T$。则
 
 $$
 \boxed{
@@ -299,11 +333,19 @@ $$
 +\underbrace{\int_{|t|>T}\!|g(t)|\,dt}_{\text{窗尾}}\ }.
 $$
 
-当 $w,h$ 带限且 $\Delta$ 满足 Nyquist 条件（步长 $\le$ 带宽倒数），**别名项严格为 0**；否则按上式给出显式上界。完成函数的垂线配平与 S10 的支持函数上包共同给出窗尾指数衰减。常数 $C_k$ 与 $|g^{(j)}|_\infty$ 可由 $h,w$ 的带宽与伯努利数**显式**给出。
+**带宽规则**：当 $h,w$ 均带限时，$g_\rho$ 的带宽由两者带宽的**卷积**上界给出。当 $\Delta$ 满足 Nyquist 条件（步长 $\le$ 带宽倒数）时，**别名项严格为 0**；否则按上式给出显式上界。完成函数的垂线配平与 S10 的支持函数上包共同给出窗尾指数衰减。常数 $C_k$ 与 $|g^{(j)}|_\infty$ 可由 $h,w$ 的带宽与伯努利数**显式**给出。
 
 ---
 
 ## 7. 极点—增长兼容性
+
+**方向上包的可检定义**：存在凸函数 $H:\mathbb R\to[0,\infty)$（称为**方向上包**），使得对固定 $\sigma$ 与所有 $t$，有
+
+$$
+|\Xi(\sigma+it)|\ \le\ C(\sigma)\,\exp\big(H(t)\big).
+$$
+
+当 $h,w$ 带限且数值积分满足 Nyquist 条件时，上包 $H$ 与带宽常数给出 $|L\mathcal R|_{w,4}$ 的有限性与 §6 "窗尾"的指数衰减常数。
 
 ### 命题 7.1（"极点 = 主尺度""方向增长 = 支持函数上包"保持）
 

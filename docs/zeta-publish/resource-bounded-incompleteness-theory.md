@@ -22,10 +22,10 @@
 ### 1.1 核心主张
 
 $$
-\boxed{\text{不完备性源于资源限制而非本体缺陷}}
+\boxed{\text{不完备性在资源受限视角下获得可操作化刻画}}
 $$
 
-传统哥德尔不完备定理假设无限资源观察者，而实际系统受限于有限资源。本理论将不完备性重构为资源鸿沟的表现：
+传统哥德尔不完备定理假设无限资源观察者，而实际系统受限于有限资源。本理论将不完备性重构为资源鸿沟的表现：资源限制使不完备性在实际系统中显性化。
 - **不可判定** = 证明长度超出预算 $L$。
 - **不可分辨** = 统计检验在有限样本下无法区分。
 - **理论扩展** = 添加可计算公理，无法终结不完备。
@@ -76,10 +76,13 @@ $$
 
 统计资源单独记作 $(m,N,\varepsilon)$；相应的不可分辨关系仅依赖 $(m,\varepsilon)$，记为 $\equiv_{(m,\varepsilon)}$。
 
-编码约定：固定一种标准哥德尔编码与证明串字母表，$|x|$ 表示证明串长度；不同合理编码之间的长度在常数因子内等价，不影响后文长度门槛结论。
+编码约定：固定一种标准哥德尔编码与证明串字母表，$\text{Len}(x)$ 表示证明串长度；结论对成本函数的线性（或多项式）伸缩不变，即在等价类意义下保持。本文一律在此等价意义下比较 $L$。下文采用 $\Delta_0^E$ 或等价的定义性扩展，将"$\text{Len}(x)\le L$"内部化为有界公式；在纯 PA 语言中等价改写为 $\forall x\le \text{Bound}(L)$ 的形式。
+
 当仅讨论 $\equiv_{(m,\varepsilon)}$ 时，记 $(m',\varepsilon')\ge(m,\varepsilon)\iff (m'\!\ge m\ \wedge\ \varepsilon'\!\le\varepsilon)$。
 
 ### 2.3 距离度量
+
+记 $E = X^{\mathbb{N}}$ 或 $X^N$ 为样本空间，其中 $X$ 为基础状态空间。
 
 **定义2.5（积分概率度量）**：对函数族 $\mathcal{F} \subseteq L^\infty(E)$,
 
@@ -96,6 +99,8 @@ $$
 **定义2.7（统计不可分辨）**
 
 若 $d_{\mathcal{F}_m}(\mu,\nu) \le \varepsilon$，则称 $\mu$ 与 $\nu$ 在 $(m,\varepsilon)$ 下不可分辨（记作 $\mu \equiv_{(m,\varepsilon)} \nu$）。
+
+注：$\equiv_{(m,\varepsilon)}$ 描述信息论极限下的不可分辨性；$N$ 作为样本量控制检验功效与统计波动，在第4.4节通过样本复杂度进入，不影响 $\equiv$ 的语义定义。
 
 ### 2.4 真值层级
 
@@ -117,9 +122,9 @@ $$
 
 **A2（有限分辨率）**：实际观察者在给定的逻辑资源 $L$ 与统计资源 $(m,N,\varepsilon)$ 下运作；记号分别为 $T\upharpoonright L$ 与 $\equiv_{(m,\varepsilon)}$。
 
-**A3（理论扩展）**：理论扩展通过添加可计算公理片段实现： $T' = T + \Delta$，其中 $\Delta$ 是可计算的。
+**A3（理论扩展）**：理论扩展通过添加可计算公理片段实现： $T' = T + \Delta$，其中 $\Delta$ 是可计算的。下文仅考虑使 $T'$ 保持递归可枚举、一致且可解释 PA（可允许定义性扩展）的扩展。
 
-**A4（真值客观性）**：标准模型 $\mathbb{N}$ 为算术语句提供确定的真值。
+**A4（真值客观性）**：标准模型 $\mathbb{N}$ 为算术语句提供确定的真值。Truth(·) 为元层语义标注；本文不在对象理论内部引入全域真值谓词。
 
 ### 3.2 推导原则
 
@@ -133,24 +138,34 @@ $$
 \mu\equiv_{(m',\varepsilon')}\nu \Rightarrow \mu\equiv_{(m,\varepsilon)}\nu .
 $$
 
-（"不可分辨"对资源向下封闭。）
+（"不可分辨"对资源向下封闭；此处的偏序理解为对 $(m,\varepsilon)$ 的坐标偏序。）
 
 **P2（状态迁移）**：
 -（证明层）理论扩展可能使 $\mathrm{ProvStatus}:\ \text{undecided}\to\{\text{proved},\text{refuted},\text{undecided}\}$。
 - 分辨率提升可能使 indistinguishable $\to \{\text{distinguishable}, \text{indistinguishable}\}$.
 
+### 3.3 资源有界可判定集
+
+**定义3.1（资源有界可判定集）**：
+
+$$
+\text{Dec}_L(T) := \{\varphi:\ \exists\pi\ ( \pi\vdash_T \varphi \ \text{且}\ \text{len}(\pi)\le L)\ \ \text{或}\ \ \exists\pi'\ (\pi'\vdash_T \neg\varphi \ \text{且}\ \text{len}(\pi')\le L)\ \}.
+$$
+
+此集合包含在资源 $L$ 内可证明或可反驳的命题。
+
 ## 4. 主要定理
+
+注：定理4.1与4.2仅需假设理论的一致性（而非 $\omega$-一致性）；定理4.2采用 Rosser 版不完备定理，一致性前提即足以保证双向不可判定性。
 
 ### 4.1 资源有界不完备定理
 
 **定理4.1（严格版）**：存在可计算函数$f$，使得对每个$L$，$G_L = f(L)$满足：
-1. $G_L \equiv \forall x (|x| \le L \to \neg \text{Proof}_T(x, \ulcorner G_L \urcorner))$
-2. 在纯 PA 语言下，$G_L$ 可保守地表述为 $\Pi_1$ 句子；若语言显式增添指数/长度函数符号（或采用 $\Delta_0^E$ 约定，使“$|x|\le L$”等价为项界），则 $G_L$ 为有界公式（从而属于 $\Delta_1$）。
+1. $G_L \equiv \forall x (\text{Len}(x) \le L \to \neg \text{Proof}_T(x, \ulcorner G_L \urcorner))$
+2. 在纯 PA 语言中，选取 $\neg\text{Proof}_T$ 的 $\Pi_1$ 表达，故 $G_L$ 可取为 $\mathbf{\Pi_1}$；若采用 $\Delta_0^E$ 或引入指数/长度函数的定义性扩展，则 $G_L$ 为有界公式（$\Delta_0^E\subseteq\Delta_1$）。因此一般可说 $G_L\in\Delta_1$，并需注明所用语言。
 3. 如果$T$一致，则$\mathbb{N} \models G_L$且$G_L$在$T$中没有长度$\le L$的证明
 
-说明：长度门槛版不完备命题 $G_L$ 以有界量词围绕可证性谓词的 $\Delta_1$ 表达构造，因而整体落在 $\Delta_1$ 层级；我们强调其“有限可检”性质而非层级强度。
-
-注记：在标准 PA 语言下，$\text{Proof}_T(x,y)$ 为原始递归关系，因而在 PA 中 $\Delta_1$ 可定义（并对有界量词封闭）；这与常见以 $\Sigma_1$ 形式表述“存在证明”的谓词并不冲突——此处我们使用的是“给定串为证明”的决定性谓词，以有界量词包裹仍保持 $\Delta_1$ 层级。
+说明：$\text{Proof}_T(x,y)$ 为原始递归关系，在 PA 中可以 $\Delta_1$ 形式定义；本文采用 $\Delta_0^E$ 约定或等价的定义性扩展，使长度条件 $\text{Len}(x)\le L$ 内部化为有界公式。
 
 **证明**：应用哥德尔自指引理构造 $G_L$。由于长度 $\le L$ 的证明仅有限多个，命题"存在长度 $\le L$ 的 $T$-证明"可在标准模型中作有限检验；结合 $T$ 的一致性与构造，本可导出若存在此类短证/短反证则致矛盾，故 $\mathbb N\models G_L$ 且 $\ell_T(G_L)>L$。□
 
@@ -164,7 +179,7 @@ $$
 T_{t+1} = T_t + \Delta_t \quad (\Delta_t \text{ 为可计算公理片段})。
 $$
 
-若每个 $T_t$ 一致且表达 PA，则对每个 $t$ 都存在 $G^{(t)}$ 使：
+假设每个扩展保持 $T_{t+1}$ 递归可枚举、一致且可解释 PA（允许定义性扩展）。则对每个 $t$ 都存在 $G^{(t)}$ 使：
 
 $$
 T_t \nvdash G^{(t)} \quad \text{且} \quad T_t \nvdash \neg G^{(t)}.
@@ -177,10 +192,10 @@ $$
 ### 4.3 分辨率单调性定理
 
 **统一定理4.3**：资源增加时：
-- 可判定命题集合单调增加；
+- 可判定命题集合单调增加：$\text{Dec}_L(T) \subseteq \text{Dec}_{L'}(T)$（$L' \ge L$）；
 - 不可分辨关系对资源向下封闭：若在更强统计资源 $(m',\varepsilon')\ge(m,\varepsilon)$ 下仍有 $\mu\equiv_{(m',\varepsilon')}\nu$，则在更弱资源 $(m,\varepsilon)$ 下也有 $\mu\equiv_{(m,\varepsilon)}\nu$。
 
-**推论4.3.1**：在固定一致的 $T$ 下，随 $L \to \infty$ 的 undecidable 集合形成单调递减序列；其交集恰包含在 $T$ 中（无论资源如何扩大）均不可判定的句子，其非空性由定理4.2（Rosser 版不完备，假设一致性）保证。
+**推论4.3.1**：在固定一致的 $T$ 下，对每个 $L$，存在在长度 $\le L$ 内不可证的真句（如 $G_L$）；$\text{Dec}_L(T)$ 随 $L$ 增加单调扩展，其补集单调递减；全局不可判定集 $\bigcap_{L\in\mathbb{N}} (\mathcal{L}\setminus\text{Dec}_L(T))$ 的非空性由定理4.2（Rosser 版不完备）保证。
 
 说明：此处取固定一致的 $T$，并令 $L\to\infty$。
 
@@ -239,7 +254,7 @@ $$
 
 统计端与逻辑端在资源需求上展现相同模式：
 - 统计： $N \sim (\ln M)/ \eta^2$ （样本复杂度）。
-- 逻辑：在若干典型难例族与常见证明系统中，$L$ 可能呈指数级增长；因此两端均可表现出超线性乃至指数型资源需求。
+- 逻辑：在若干已知证明系统与难例族中观察到超多项式乃至指数增长；两端均可表现出超线性资源需求。
 
 两者都随问题规模呈超线性增长。
 
@@ -299,7 +314,7 @@ Related Work（极简）：本工作与可行不完备、bounded arithmetic 与 
 - $\text{Rules}$：推理规则集合；
 - $\text{Cost}$：证明成本函数，默认取 $\text{Cost}(\pi)=\text{len}(\pi)$。
 
-更一般地，允许与长度线性等价（或多项式等价）的成本记号；下文定理在此等价类下不变。
+更一般地，允许与长度线性等价（或多项式等价）的成本记号；下文定理在此等价类下不变。这与2.4节的编码约定一致：结论对成本函数的线性（或多项式）伸缩不变，在等价类意义下保持。
 
 **定义A.2**：$T\upharpoonright L=\{\varphi:\exists\pi\,.\,(\pi\vdash_T\varphi)\wedge \text{Cost}(\pi)\le L\}$。
 
@@ -434,8 +449,8 @@ def plot_resource_curves():
 ### C.1 定理4.1的完整证明
 
 **定理4.1（资源有界不完备定理）**：存在可计算函数$f$，使得对每个$L$，$G_L = f(L)$满足：
-1. $G_L \equiv \forall x (|x| \le L \to \neg \text{Proof}_T(x, \ulcorner G_L \urcorner))$
-2. $G_L$ 为 $\Delta_1$（即 $\Sigma_1\cap\Pi_1$）句子
+1. $G_L \equiv \forall x (\text{Len}(x) \le L \to \neg \text{Proof}_T(x, \ulcorner G_L \urcorner))$
+2. 在纯 PA 语言中 $G_L$ 为 $\Pi_1$；在采用 $\Delta_0^E$ 或等价的定义性扩展时为有界公式（$\Delta_0^E\subseteq\Delta_1$）
 3. 如果$T$一致，则$\mathbb{N} \models G_L$且$G_L$在$T$中没有长度$\le L$的证明
 
 **完整证明**：
@@ -443,62 +458,55 @@ def plot_resource_curves():
 步骤1（构造）：应用哥德尔对角引理，对每个固定的 $L$，存在句子 $G_L$ 使得：
 
 $$
-T \vdash G_L \leftrightarrow \forall x (|x| \le L \to \neg \text{Proof}_T(x, \ulcorner G_L \urcorner))
+T \vdash G_L \leftrightarrow \forall x (\text{Len}(x) \le L \to \neg \text{Proof}_T(x, \ulcorner G_L \urcorner))
 $$
 
-步骤2（层级）：$\text{Proof}_T(x,y)$ 为原始递归关系，故在 PA 中 $\Delta_1$ 可定义；有界量词不提升层级，整体仍为 $\Delta_1$，从而 $G_L$ 可取为 $\Delta_1$（即 $\Sigma_1\cap\Pi_1$）句子。
+步骤2（层级）：$\text{Proof}_T(x,y)$ 为原始递归关系，在 PA 中可以 $\Delta_1$ 形式定义。在采用 $\Delta_0^E$ 或等价的定义性扩展时，长度条件 $\text{Len}(x)\le L$ 可表为有界公式，整体保持在 $\Delta_1$ 层级。
 
 步骤3（真值）：假设 $T$ 一致。我们证明 $\mathbb{N} \models G_L$。
 
-反证：假设 $\mathbb{N} \models \neg G_L$，则存在 $x_0$ 使得 $|x_0| \le L$ 且 $\text{Proof}_T(x_0, \ulcorner G_L \urcorner)$ 在 $\mathbb{N}$ 中为真。
+反证：假设 $\mathbb{N} \models \neg G_L$，则存在 $x_0$ 使得 $\text{Len}(x_0) \le L$ 且 $\mathbb{N} \models \text{Proof}_T(x_0, \ulcorner G_L \urcorner)$。
 
-这意味着 $x_0$ 编码了 $G_L$ 的一个长度 $\le L$ 的证明。因此 $T \vdash G_L$ 且证明长度 $\le L$。
+由算术化可得 $T \vdash \text{Proof}_T(\overline{x_0}, \ulcorner G_L \urcorner)$。
 
-但根据对角引理，$T \vdash G_L \leftrightarrow \forall x (|x| \le L \to \neg \text{Proof}_T(x, \ulcorner G_L \urcorner))$。
+另一方面，由对角化 $T \vdash G_L \leftrightarrow \forall x (\text{Len}(x) \le L \to \neg \text{Proof}_T(x, \ulcorner G_L \urcorner))$。
 
-既然 $T \vdash G_L$，也必有 $T \vdash \forall x (|x| \le L \to \neg \text{Proof}_T(x, \ulcorner G_L \urcorner))$。
+由于 $\mathbb{N} \models \text{Proof}_T(x_0, \ulcorner G_L \urcorner)$ 且 $\text{Len}(x_0) \le L$，这意味着 $x_0$ 确实编码了 $G_L$ 的证明。因此 $T \vdash G_L$。
 
-但这与 $x_0$ 是 $G_L$ 的证明矛盾。因此 $\mathbb{N} \models G_L$。
+从而 $T \vdash \forall x (\text{Len}(x) \le L \to \neg \text{Proof}_T(x, \ulcorner G_L \urcorner))$，于是 $T \vdash \neg \text{Proof}_T(\overline{x_0}, \ulcorner G_L \urcorner)$。
 
-步骤4（不可证）：假设存在长度 $\le L$ 的证明 $\pi$ 使得 $T \vdash_\pi G_L$。
+这与 $T \vdash \text{Proof}_T(\overline{x_0}, \ulcorner G_L \urcorner)$ 在 $T$ 内直接矛盾，违背一致性。故 $\mathbb{N} \models G_L$。
 
-由步骤3，$\mathbb{N} \models G_L$，即 $\mathbb{N} \models \forall x (|x| \le L \to \neg \text{Proof}_T(x, \ulcorner G_L \urcorner))$。
-
-特别地，对 $x = \ulcorner \pi \urcorner$，有 $|\ulcorner \pi \urcorner| \le L$ 且 $\mathbb{N} \models \neg \text{Proof}_T(\ulcorner \pi \urcorner, \ulcorner G_L \urcorner)$。
-
-但 $\pi$ 是 $G_L$ 的证明，因此 $\mathbb{N} \models \text{Proof}_T(\ulcorner \pi \urcorner, \ulcorner G_L \urcorner)$，矛盾。
-
-因此不存在长度 $\le L$ 的证明。□
+步骤4（不可证）：假设存在长度 $\le L$ 的证明 $\pi$ 使得 $T \vdash_\pi G_L$。由步骤3的论证（其中全程在对象理论内导出矛盾），这将违背 $T$ 的一致性。因此不存在长度 $\le L$ 的证明。□
 
 ### C.2 定理4.2的构造性证明
 
-**定理4.2（理论扩展不终结定理）**：令 $T_0$ 为一致理论，构造理论链 $T_{t+1} = T_t + \Delta_t$。若每个 $T_t$ 一致且表达 PA，则对每个 $t$ 都存在 $G^{(t)}$ 使得 $T_t \nvdash G^{(t)}$ 且 $T_t \nvdash \neg G^{(t)}$。
+**定理4.2（理论扩展不终结定理）**：令 $T_0$ 为一致理论，构造理论链 $T_{t+1} = T_t + \Delta_t$。假设每个扩展保持 $T_{t+1}$ 递归可枚举、一致且可解释 PA（允许定义性扩展）。则对每个 $t$ 都存在 $G^{(t)}$ 使得 $T_t \nvdash G^{(t)}$ 且 $T_t \nvdash \neg G^{(t)}$。
 
 **构造性证明**：
 
-步骤1（归纳基础）：对 $t=0$，$T_0$ 一致且表达 PA。由 **Rosser 版不完备定理**（一致性前提即足够），存在 $G^{(0)}$ 使得 $T_0 \nvdash G^{(0)}$ 且 $T_0 \nvdash \neg G^{(0)}$。
+步骤1（归纳基础）：对 $t=0$，$T_0$ 一致且表达 PA。由 **Rosser 版不完备定理**（一致性前提即足够），存在 Rosser 句 $R^{(0)}$ 使得 $T_0 \nvdash R^{(0)}$ 且 $T_0 \nvdash \neg R^{(0)}$。取 $G^{(0)} = R^{(0)}$。
 
-步骤2（归纳假设）：假设对某个 $t$，$T_t$ 一致且表达 PA，且存在 $G^{(t)}$ 使得 $T_t \nvdash G^{(t)}$ 且 $T_t \nvdash \neg G^{(t)}$。
+步骤2（归纳假设）：假设对某个 $t$，$T_t$ 递归可枚举、一致且可解释 PA。
 
 步骤3（扩展性质）：$T_{t+1} = T_t + \Delta_t$，其中 $\Delta_t$ 是可计算公理片段。
 
 关键观察：
 - 如果 $T_t$ 是递归可枚举的，且 $\Delta_t$ 可计算，则 $T_{t+1}$ 也是递归可枚举的。
-- 如果 $T_t$ 表达 PA，且 $\Delta_t$ 不引入新的非逻辑符号，则 $T_{t+1}$ 也表达 PA。
-- 假设 $T_{t+1}$ 保持一致（否则定理平凡成立）。
+- 如果 $T_t$ 可解释 PA，且 $\Delta_t$ 为定义性扩展或保守扩展，则 $T_{t+1}$ 也可解释 PA。
+- 假设 $T_{t+1}$ 保持一致。
 
-步骤4（新不完备句子）：对 $T_{t+1}$ 应用 **Rosser 版不完备定理**，存在 Rosser 句 $R^{(t+1)}$，使得在仅假设一致性的前提下有 $T_{t+1} \nvdash R^{(t+1)}$ 且 $T_{t+1} \nvdash \neg R^{(t+1)}$。此处无需给出哥德尔式的 $(\leftrightarrow\neg\mathrm{Prov})$ 等价式。
+步骤4（新不完备句子）：对 $T_{t+1}$ 应用 **Rosser 版不完备定理**，存在 Rosser 句 $R^{(t+1)}$，使得在仅假设一致性的前提下：
 
-由 Rosser 定理，$T_{t+1} \nvdash R^{(t+1)}$ 且 $T_{t+1} \nvdash \neg R^{(t+1)}$。
+$$
+T_{t+1} \nvdash R^{(t+1)} \quad \text{且} \quad T_{t+1} \nvdash \neg R^{(t+1)}.
+$$
 
-步骤5（本质差异）：$G^{(t+1)}$ 与 $G^{(t)}$ 本质不同，因为：
-- $G^{(t)}$ 涉及 $T_t$ 的可证性谓词
-- $G^{(t+1)}$ 涉及 $T_{t+1}$ 的可证性谓词
-- 两者的自指结构针对不同理论
+取 $G^{(t+1)} = R^{(t+1)}$。
 
-因此扩展 $T_t \to T_{t+1}$ 可能解决 $G^{(t)}$ 的地位（使其可证或可反证），但必然产生新的不可判定句子 $G^{(t+1)}$。
+步骤5（本质差异）：$G^{(t+1)}$ 针对 $T_{t+1}$ 的可证性谓词构造，与 $G^{(t)}$（针对 $T_t$ 构造）本质不同。扩展 $T_t \to T_{t+1}$ 可能解决 $G^{(t)}$ 的地位，但必然产生新的不可判定句子 $G^{(t+1)}$。
 
-步骤6（归纳结论）：对任意 $t$，只要 $T_t$ 保持一致且表达 PA，都存在在 $T_t$ 中不可判定的句子。□
+步骤6（归纳结论）：对任意 $t$，只要 $T_t$ 保持递归可枚举、一致且可解释 PA，都存在在 $T_t$ 中不可判定的句子。□
 
 ### C.3 定理4.4的概率论证明
 

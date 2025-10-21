@@ -44,7 +44,7 @@ $$
 
 $$
 S(m,n;c)=\sum_{\substack{d\bmod c\\ \gcd(d,c)=1}}
-e\!\left(\frac{m\bar{d}+nd}{c}\right),
+e\left(\frac{m\bar{d}+nd}{c}\right),
 \quad e(x):=e^{2\pi i x},\ \bar{d} d\equiv 1\pmod c .
 $$
 
@@ -130,7 +130,7 @@ $$
 \begin{aligned}
 &\sum_j h(r_j)\ +\ \frac{1}{4\pi}\int_{-\infty}^{\infty} h(r)\,\frac{\phi'(1/2+ir)}{\phi(1/2+ir)}\,dr \\
 &=\ \underbrace{\frac{\mathrm{Area}}{4\pi}\int_{-\infty}^{\infty} r\,h(r)\tanh(\pi r)\,dr}_{\text{单位（体积）项}}
-\ +\ \underbrace{\sum_{[\gamma]_{\mathrm{hyp}}}\ \sum_{k\ge1}\frac{\ell(\gamma_0)}{2\sinh\!\left(\tfrac{k \ell(\gamma_0)}{2}\right)}\,g\!\left(k \ell(\gamma_0)\right)}_{\text{双曲项}}\\
+\ +\ \underbrace{\sum_{[\gamma]_{\mathrm{hyp}}}\ \sum_{k\ge1}\frac{\ell(\gamma_0)}{2\sinh\left(\tfrac{k \ell(\gamma_0)}{2}\right)}\,g\left(k \ell(\gamma_0)\right)}_{\text{双曲项}}\\
 &\quad+\ \underbrace{E_{\mathrm{ell}}[h]}_{\text{椭圆项}}
 \ +\ \underbrace{P_{\mathrm{par}}[h]}_{\text{抛物/散射项}}.
 \end{aligned}}
@@ -141,8 +141,8 @@ $$
 $$
 \begin{aligned}
 E_{\mathrm{ell}}[h]\ &=\ \sum_{[R]} \sum_{m=1}^{m_R-1}\frac{1}{2m_R\sin(\pi m/m_R)}
-\int_{-\infty}^{\infty} h(r)\,\frac{\cosh\!\left((1-\tfrac{2m}{m_R}) \pi r\right)}{\cosh(\pi r)}\,dr,\\[2pt]
-P_{\mathrm{par}}[h]\ &=\ \frac{\kappa}{4\pi}\int_{-\infty}^{\infty} h(r)\,\frac{\Gamma'}{\Gamma}\!\left(\tfrac{1}{2}+ir\right)\,dr\ +\ c_\kappa\,h(0),
+\int_{-\infty}^{\infty} h(r)\,\frac{\cosh\left((1-\tfrac{2m}{m_R}) \pi r\right)}{\cosh(\pi r)}\,dr,\\[2pt]
+P_{\mathrm{par}}[h]\ &=\ \frac{\kappa}{4\pi}\int_{-\infty}^{\infty} h(r)\,\frac{\Gamma'}{\Gamma}\left(\tfrac{1}{2}+ir\right)\,dr\ +\ c_\kappa\,h(0),
 \end{aligned}
 $$
 
@@ -163,8 +163,8 @@ $$
 \begin{aligned}
 &\sum_j |\rho_j(1)|^2\,\lambda_j(m)\overline{\lambda_j(n)}\,h(r_j)\ +\ \frac{1}{4\pi}\int_{-\infty}^{\infty} \frac{\tau(m,r)\,\overline{\tau(n,r)}}{\bigl|\zeta(1+2ir)\bigr|^{2}}\,h(r)\,dr\\
 &=\ \delta_{m=n}\,\mathcal{H}_0[h]\ +
-\sum_{c\ge1}\frac{S(m,n;c)}{c}\,(\mathcal{B}^{+} h)\!\left(\tfrac{4\pi \sqrt{m n}}{c}\right)\\
-&\quad+\ \sum_{c\ge1}\frac{S(m,-n;c)}{c}\,(\mathcal{B}^{-} h)\!\left(\tfrac{4\pi \sqrt{m n}}{c}\right).
+\sum_{c\ge1}\frac{S(m,n;c)}{c}\,(\mathcal{B}^{+} h)\left(\tfrac{4\pi \sqrt{m n}}{c}\right)\\
+&\quad+\ \sum_{c\ge1}\frac{S(m,-n;c)}{c}\,(\mathcal{B}^{-} h)\left(\tfrac{4\pi \sqrt{m n}}{c}\right).
 \end{aligned}}
 $$
 
@@ -197,7 +197,7 @@ $$
 $$
 其极值问题等价于广义特征值问题
 $$
-\big(\mathcal{L}_{\mathrm{spec}}+\tau D^{2M}\big)h=\mu\,\mathcal{K}^*\!\left(W_{\mathrm{geom}}\cdot \mathcal{K} h\right),
+\big(\mathcal{L}_{\mathrm{spec}}+\tau D^{2M}\big)h=\mu\,\mathcal{K}^*\left(W_{\mathrm{geom}}\cdot \mathcal{K} h\right),
 $$
 最大本征对 $(\mu_{\max},h_\star)$ 给出最优核，且 $\mu_{\max}=\sup_{h\neq0}\mathcal{R}[h]$；
 
@@ -217,7 +217,7 @@ $$
 \big|\text{真值}-\text{近似}\big|
 \ \le\ \underbrace{\sum_{m\ne0}\big|\widehat{g}(2\pi m/\Delta)\big|}_{\text{别名（Poisson）}}
 \ +\ \underbrace{\sum_{k=1}^{M-1} C_k\,\Delta^{2k}\cdot \max_{0\le j\le 2k-1} \big| g^{(j)} \big|}_{\text{伯努利层（有限阶 EM）}}
-\ +\ \underbrace{\int_{|s|>T}\!|g(s)|\,ds}_{\text{截断（窗尾）}}.
+\ +\ \underbrace{\int_{|s|>T}|g(s)|\,ds}_{\text{截断（窗尾）}}.
 $$
 
 其中 $\widehat{g}(\xi):=\int_{\mathbb{R}} g(s)\,e^{-i s\xi}\,ds$（此处的傅里叶规范与 §0.4 的 $\mathcal{C}$ 记号无关）。
@@ -229,7 +229,7 @@ $$
 $$
 \big|\text{真值}-\text{近似}\big|
 \ \le\ \underbrace{C_q\,\Delta^{\,q}\,|h^{(q)}|_{L^1}}_{\text{离散化误差（平滑度控制）}}
-\ +\ \underbrace{\int_{x>X}\!|\mathcal{B}^\pm h(x)|\,w(x)\,dx}_{\text{窗尾截断}}\ +\ \underbrace{\sum_{k=1}^{M-1} C_k\,\Delta^{2k}\cdot \max_{0\le j\le 2k-1}\big|g^{(j)}\big|}_{\text{伯努利层}},
+\ +\ \underbrace{\int_{x>X}|\mathcal{B}^\pm h(x)|\,w(x)\,dx}_{\text{窗尾截断}}\ +\ \underbrace{\sum_{k=1}^{M-1} C_k\,\Delta^{2k}\cdot \max_{0\le j\le 2k-1}\big|g^{(j)}\big|}_{\text{伯努利层}},
 $$
 
 其中 $q\ge1$ 可选，权 $w(x)$ 为与所用求和/求积一致的正权（如 $x^{-1/2}$ 或常权）；若 $|\mathcal{B}^\pm h(x)|\ll e^{-\mu x}$ 或超多项衰减，则"窗尾截断"呈对应速率衰减。此处**无精确 Nyquist 消失律**，仅给出随平滑度与尾界的快速衰减控制。

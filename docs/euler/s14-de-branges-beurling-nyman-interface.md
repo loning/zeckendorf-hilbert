@@ -70,7 +70,10 @@ $$
 \text{(A1)}\ K\in \mathcal H_a\cap L^1_{\mathrm{loc}}(\mathbb R_+),\\[2pt]
 \text{(A2)}\ K(x)=x^{-a}K(1/x)\quad(\text{自反}),\\[2pt]
 \text{(A3)}\ \exists\ \text{含中心轴的开竖条 }\Sigma\ \text{，}\ \mathcal M_a[K]\ \text{在 }\Sigma\ \text{全纯，且在 }\Re s=\tfrac a2\ \text{几乎处处非零；}\\
-\hphantom{\text{(A3)}}\ \text{使用 }\log|\mathcal M_a[K]|\ \text{的次调和性（对全纯函数自然成立），以引入竖条 }H^2\text{ 的 Poisson–Jensen 控制；}\\[2pt]
+\hphantom{\text{(A3)}}\ \text{使用 }\log|\mathcal M_a[K]|\ \text{的次调和性（对全纯函数自然成立），以引入竖条 }H^2\text{ 的 Poisson–Jensen 控制}\\
+\hphantom{\text{(A3)}}\ \text{（此处仅作增长控制，不作内点零点排除的替代）；}\\[2pt]
+\text{(A3′)}\ \Xi/\mathcal M_a[K]\in H^2(\Sigma)\text{；等价地，}\mathcal M_a[K]\ \text{在 }\Sigma\ \text{内部零点要么不存在，}\\
+\hphantom{\text{(A3′)}}\ \text{要么 }\Xi\ \text{在这些点以不低于相同阶数消失（可去奇性）；}\\[2pt]
 \text{(A4)}\ K\ \text{带限或指数衰减（与显式/迹公式核族一致）}.
 \end{cases}
 $$
@@ -125,18 +128,19 @@ $$
 T_K:\ \mathcal H_a\to \mathscr H_K,\qquad (T_KF)(s):=\mathcal M_a[K](s)\,\mathcal M_a[F](s).
 $$
 
-把 $T_K$ 定义在 $\mathrm{dom}(T_K):=\{F\in\mathcal H_a:\ \mathcal M_a[F]\in H^2(\Sigma)\}$ 上，则 $T_K$ 在此定义域内有界且 $T_KF\in\mathscr H_K$。对一般 $F\in\mathcal H_a$，$T_KF$ 先在中心轴按 $L^2$ 边界值理解；涉及内点取值时，经其 $H^2$ 代表作 Poisson–Hardy 延拓后再讨论。记 $\mathscr H_K$ 的 reproducing kernel 为
+把 $T_K$ 定义在 $\mathrm{dom}(T_K):=\{F\in\mathcal H_a:\ \mathcal M_a[F]\in H^2(\Sigma)\}$ 上，则 $T_K$ 在此定义域内有界且 $T_KF\in\mathscr H_K$。为避免不必要的边界可积性讨论，以下均在 $\mathrm{dom}(T_K)$ 内工作；对更一般 $F$ 的 $L^2$ 边界乘子与 Poisson–Hardy 延拓仅作启发性说明，不在本文使用。记 $\mathscr H_K$ 的 reproducing kernel 为
 
 $$
 \mathbf K_{\mathscr H_K}(w,s)=\overline{\mathcal M_a[K](\bar w)}\,\mathcal M_a[K](s)\,\mathbf K_{H^2}(w,s),
 $$
 
-其中 $\mathbf K_{H^2}$ 为 $H^2(\Sigma)$ 的核。定义**点向量**
+其中 $\mathbf K_{H^2}$ 为 $H^2(\Sigma)$ 的核。定义**点向量** $k_s\in\mathcal H_a$ 为 Riesz 表示向量，使得对所有 $F\in\mathrm{dom}(T_K)$ 有
 
 $$
-k_s:=T_K^\ast\!\big(\mathbf K_{\mathscr H_K}(\cdot,s)\big)\in\mathcal H_a,\qquad
-(T_KF)(s)=\langle F,k_s\rangle_a.
+(T_KF)(s)=\langle F,k_s\rangle_a;
 $$
+
+在 $\mathrm{dom}(T_K)$ 稠密时亦可写作 $k_s=T_K^\ast\!\big(\mathbf K_{\mathscr H_K}(\cdot,s)\big)$。
 
 ### 定理 14.3（镜像对称）
 
@@ -159,7 +163,7 @@ $$
 
 并保持镜像 $\Xi(a-s)=\varepsilon\,\Xi(s)$。
 
-**证明。** 令 $H(s):=\Xi(s)/\mathcal M_a[K](s)$。由 (A3) 知 $H\in H^2(\Sigma)$（$\Xi$ 在 $\Sigma$ 内解析且 $\mathcal M_a[K]$ 在中心轴 a.e. 非零）。取 $F\in\mathcal H_a$ 使 $\mathcal M_a[F](\tfrac a2+it)=H(\tfrac a2+it)$（由 Plancherel–Mellin 存在且唯一）。按定义 $T_KF(s)=\mathcal M_a[K](s)\,H(s)\equiv \Xi(s)$（在 $\Sigma$ 内成立）。常数 $C$ 可由归一化自由选择。镜像由定理 14.3 传递。∎
+**证明。** 令 $H(s):=\Xi(s)/\mathcal M_a[K](s)$。由 **(A3′)**（配合 $\Xi$ 在 $\Sigma$ 内解析）知 $H\in H^2(\Sigma)$。取 $F\in\mathcal H_a$ 使 $\mathcal M_a[F](\tfrac a2+it)=H(\tfrac a2+it)$（由 Plancherel–Mellin 存在且唯一）。按定义 $T_KF(s)=\mathcal M_a[K](s)\,H(s)\equiv \Xi(s)$（在 $\Sigma$ 内成立）。常数 $C$ 可由归一化自由选择。镜像由定理 14.3 传递。∎
 
 ---
 
@@ -182,7 +186,7 @@ $$
 
 ### 3.2 最小能量 mollifier 与正交投影
 
-给定 $s_0\in\Sigma$。称 $M^\star\in\mathscr B$ 为**最小能量 mollifier**，若
+给定 $s_0\in\Sigma$。称 $M^\star\in\mathscr B$ 为**最小能量 mollifier**（即满足 $\langle M,k_{s_0}\rangle_a=1$ 的最小范数元），若
 
 $$
 \langle M^\star,k_{s_0}\rangle_a=1,\qquad
@@ -204,7 +208,7 @@ M^\star=\sum_{j=1}^m \beta_j^\star\,\phi_{n_j},\qquad
 |M^\star|_a^{\,2}=\frac{1}{c^\ast G^{-1}c}.
 $$
 
-**可行性（非退化）说明。** 为保证约束可行，需 $\mathcal M_a[\psi](s_0)\neq 0$。若采用 $\mathcal M_a[\psi](\tfrac a2)=0$ 去 DC，则应取 $s_0\neq\tfrac a2$，或在字典中加入一枚不消 DC 的向量专用于约束。
+**可行性（非退化）说明。** 为保证约束可行，需 $\mathcal M_a[\psi](s_0)\neq 0$。若采用 $\mathcal M_a[\psi](\tfrac a2)=0$ 去 DC，则应取 $s_0\neq\tfrac a2$，或在字典中加入一枚不消 DC 的向量专用于约束。同时需要求 $\mathcal M_a[K](s_0)\neq 0$，因为 $c_j=\langle\phi_{n_j},k_{s_0}\rangle_a=(T_K\phi_{n_j})(s_0)$ 包含因子 $\mathcal M_a[K](s_0)$。采用 §7 的对称化 $\mathcal M_a[K](s)=\big(r(s)r(a-s)\big)^{1/2}$ 时，在临界条带内该条件自然满足。
 
 ---
 
@@ -236,6 +240,8 @@ $$
 $$
 
 其中 $\pi\propto (w_j)$ 为基准权的概率化。（该对齐为**假设**，在"窗—频谱字典与母映射同源"的设置中自然成立。）
+
+在本文所用 dilate 字典 $\phi_n(x)=\psi(nx)$ 下，$\langle\phi_n,k_{s_0}\rangle_a=\mathcal M_a[K](s_0)\,\mathcal M_a[\psi](s_0)\,e^{-\langle(\log n),s_0\rangle}$。令 $\beta_n:=-\log n$、取 $w_n>0$ 吸收常数因子，则 (A5) 具体化为 $c_n(\rho)=\gamma\,w_n\,e^{\langle\beta_n,\rho\rangle}$（可取 $\rho=\Re s_0$；若需考虑相位，则把 $\rho$ 扩展为二维向量 $(\Re s_0,\Im s_0)$）。由此 $u_0:=\nabla\Lambda(\rho^\star)$ 为对偶解 $\rho^\star$ 的软最大势梯度（期望充分统计），并用于右侧矩约束 $\mathbb E_q[\beta]=u_0$。
 
 ### 定理 14.6（BN 最小能量 $\Longleftrightarrow$ 最小 KL）
 
@@ -281,11 +287,13 @@ $$
 
 在 S4 的**有限阶** EM 与 S5 的方向亚纯化前提下：
 
-(i) 用带限/指数核 $K$ 对 $F$ 作卷积/窗化，仅在 $s$ 上叠加整/全纯层，不改变 $(T_KF)(s)$ 的极点位置与阶。
+(i) 用带限/指数核 $K$ 对 $F$ 作卷积/窗化，仅在 $s$ 上叠加整/全纯层，不引入新极点；若 $\mathcal M_a[K]$ 在极点处消零，则至多降低（含消除）该极点的阶，因此新极点集合包含于原集合。
 
-(ii) $\mathcal M_a[K]$ 在 $\Sigma$ 全纯，作为乘子不会引入极点；其零点至多导致"乘以零"，不产生新奇性，因而不改变极点集合与阶。有限阶 EM 的伯努利层与端点余项在参数上全纯/整，故 BN 投影与 RKHS 表示的解析结构保持不变。
+(ii) $\mathcal M_a[K]$ 在 $\Sigma$ 全纯，作为乘子不会引入极点；其零点至多导致"乘以零"，不引入新极点；若 $\mathcal M_a[K]$ 在极点处消零，则至多降低（含消除）该极点的阶，因此新极点集合包含于原集合。有限阶 EM 的伯努利层与端点余项在参数上全纯/整，故 BN 投影与 RKHS 表示的解析结构保持不变。
 
-**证明要点。** 乘子为全纯函数时，乘积的极点由被乘函数决定；有限阶 EM 的余项为受控 Stieltjes 型积分，对参数全纯。∎
+**证明要点。** 乘子为全纯函数时，乘积的极点由被乘函数决定；有限阶 EM 的余项为受控 Stieltjes 型积分，对参数全纯。
+
+上述"对参数全纯/整"均指对复变量 $s$ 的性质，且以固定有限阶 EM（不令阶数随 $s$ 变动）与端点正则条件为前提；条带 $\Sigma$ 的选取需避开 EM 端点参数潜在的离散奇性。∎
 
 ---
 
@@ -300,20 +308,32 @@ $$
 
 ### 7.1 Riemann $\xi$（$a=1$）
 
-取 $r(s)=\pi^{-s/2}\Gamma(\tfrac s2)$，令 $\mathcal M_a[K]=r$。则
+取 $r(s)=\pi^{-s/2}\Gamma(\tfrac s2)$，令 $\mathcal M_a[K](s)=\big(r(s)\,r(1-s)\big)^{1/2}$（在所选竖条 $\Sigma$ 内取连续外因子分支），于是 $\mathcal M_a[K](1-s)=\mathcal M_a[K](s)$ 成立。相应地
 
 $$
-\xi(s)=\langle F,k_s\rangle_1,\qquad k_{1-s}=Jk_s,
+\mathcal M_a[F](s)=\frac{\xi(s)}{\mathcal M_a[K](s)}=\Big(\frac{r(s)}{r(1-s)}\Big)^{1/2}\zeta(s),
+$$
+
+从而
+
+$$
+\xi(s)=\mathcal M_a[K](s)\,\mathcal M_a[F](s)=\langle F,k_s\rangle_1,\qquad k_{1-s}=Jk_s,
 $$
 
 并以 dilate 字典 $\{\psi(nx)\}$ 构造 $\mathscr B$，得到最小能量—KL 等价。
 
 ### 7.2 Dirichlet $L(\chi,\cdot)$（$a=1$）
 
-就奇偶性选 $\Gamma_{\mathbb R}$ 因子 $r_\chi$，取 $\mathcal M_a[K_\chi]=r_\chi$。同得
+就奇偶性选 $\Gamma_{\mathbb R}$ 因子 $r_\chi$，令 $\mathcal M_a[K_\chi](s)=\big(r_\chi(s)\,r_\chi(1-s)\big)^{1/2}$（在所选竖条 $\Sigma$ 内取连续外因子分支），于是 $\mathcal M_a[K_\chi](1-s)=\mathcal M_a[K_\chi](s)$ 成立。相应地
 
 $$
-\Xi_\chi(s)=\langle F_\chi,k^{(\chi)}_s\rangle_1,\qquad k^{(\chi)}_{1-s}=Jk^{(\chi)}_s,
+\mathcal M_a[F_\chi](s)=\frac{\Xi_\chi(s)}{\mathcal M_a[K_\chi](s)}=\Big(\frac{r_\chi(s)}{r_\chi(1-s)}\Big)^{1/2}L(\chi,s),
+$$
+
+从而
+
+$$
+\Xi_\chi(s)=\mathcal M_a[K_\chi](s)\,\mathcal M_a[F_\chi](s)=\langle F_\chi,k^{(\chi)}_s\rangle_1,\qquad k^{(\chi)}_{1-s}=Jk^{(\chi)}_s,
 $$
 
 并在 BN–信息框架下获得同样等价。
@@ -323,7 +343,13 @@ $$
 令 $\Xi_f(s)=Q_f^{s/2}\,r_f(s)\,L(f,s)$，其中 $r_f(s)$ 为标准阿基米德因子：
 • 若 $f$ 为权 $k$ 的全纯新形式，则 $r_f(s)=(2\pi)^{-(s+\frac{k-1}{2})}\Gamma\!\big(s+\tfrac{k-1}{2}\big)$；
 • 若 $f$ 为权 $0$ 的 Maaß 形式（谱参 $t$），则 $r_f(s)=\pi^{-s}\Gamma\!\big(\tfrac{s+it}{2}\big)\Gamma\!\big(\tfrac{s-it}{2}\big)$。
-在本文框架中取 $\mathcal M_a[K_f]=r_f(s)$。与 Kuznetsov 核—窗一致的 $\mathscr B_f$ 给出投影—信息等价与增长控制。
+在本文框架中令 $\mathcal M_a[K_f](s)=\big(r_f(s)\,r_f(a-s)\big)^{1/2}$（在所选竖条 $\Sigma$ 内取连续外因子分支），于是 $\mathcal M_a[K_f](a-s)=\mathcal M_a[K_f](s)$ 成立。相应地
+
+$$
+\mathcal M_a[F_f](s)=\frac{\Xi_f(s)}{\mathcal M_a[K_f](s)}=\Big(\frac{r_f(s)}{r_f(a-s)}\Big)^{1/2}Q_f^{s/2}\,L(f,s),
+$$
+
+从而 $\Xi_f(s)=\mathcal M_a[K_f](s)\,\mathcal M_a[F_f](s)=\langle F_f,k^{(f)}_s\rangle_a$，镜像对称 $k^{(f)}_{a-s}=Jk^{(f)}_s$ 保持。与 Kuznetsov 核—窗一致的 $\mathscr B_f$ 给出投影—信息等价与增长控制。
 
 ---
 
@@ -340,7 +366,7 @@ $$
 
 1. **完成函数模板**：给出 $(Q,a,r)$，验证 $\Xi(a-s)=\varepsilon\Xi(s)$。
 2. **镜像 Hilbert 空间**：$\mathcal H_a=L^2(\mathbb R_+;x^{a-1}dx)$，$Jf=x^{-a}f(1/x)$ 酉；Plancherel–Mellin 于 $\Re s=\tfrac a2$ 成立。
-3. **可采镜像核**：$K$ 满足 (A1)–(A4)，$\mathcal M_a[K]$ 在中心轴 a.e. 非零。
+3. **可采镜像核**：$K$ 满足 **(A1)–(A4) 与 (A3′)**，$\mathcal M_a[K]$ 在中心轴 a.e. 非零。
 4. **RKHS 表示**：定义 $T_K$、$\mathscr H_K$ 与 $k_s=T_K^\ast\mathbf K_{\mathscr H_K}(\cdot,s)$；验证 $k_{a-s}=Jk_s$。
 5. **BN 子空间**：以与显式/迹公式一致的窗 $\psi$ 生成 $\mathscr B$；构造 Gram 算子与 $M^\star$。
 6. **信息对偶**：在 IG-Align（A5–A6）下建立 $|M^\star|_a^2=\min D(q|\pi)$。

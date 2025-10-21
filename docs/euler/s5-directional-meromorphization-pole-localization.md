@@ -48,13 +48,13 @@ $$
 **方向 Laplace–Stieltjes 变换（收敛半平面内）。**
 
 $$
-\mathscr N_{\mathbf v}(s):=\int_{0}^{\infty}\! \mathrm e^{-s t}\,\mathrm dN_{\mathbf v}(t)
+\mathscr N_{\mathbf v}(s):=\int_{0}^{\infty} \mathrm e^{-s t}\,\mathrm dN_{\mathbf v}(t)
 =\sum_{t_j\ge0}\mathrm e^{-s t_j}
 =\sum_{t_j\ge0} \mathrm e^{\,s\langle\beta_j,\mathbf v\rangle},
 $$
 
 $$
-\mathcal L_{\mathbf v}(s;\theta,\rho_\perp):=\int_{0}^{\infty}\! \mathrm e^{-s t}\,\mathrm dM_{\mathbf v}(t;\theta,\rho_\perp)
+\mathcal L_{\mathbf v}(s;\theta,\rho_\perp):=\int_{0}^{\infty} \mathrm e^{-s t}\,\mathrm dM_{\mathbf v}(t;\theta,\rho_\perp)
 =\sum_{t_j\ge0} c_j\,\mathrm e^{\,\langle\beta_j,\rho_\perp+s\mathbf v\rangle}\,\mathrm e^{\,\mathrm i\langle\alpha_j,\theta\rangle}.
 $$
 
@@ -107,7 +107,7 @@ $$
 
 $$
 M_{\mathbf v}(t)=\sum_{\ell\in\mathcal I} Q_\ell(t)\,\mathrm e^{\gamma_\ell t}
-\;+\; O\!\left(\mathrm e^{(\gamma_\ast-\eta)t}\right),\qquad \gamma_\ast:=\max_{\ell}\gamma_\ell ,
+\;+\; O\left(\mathrm e^{(\gamma_\ast-\eta)t}\right),\qquad \gamma_\ast:=\max_{\ell}\gamma_\ell ,
 $$
 
 且 $M_{\mathbf v}$ 局部有界变差、右连续。将此定义用于非加权计数 $N_{\mathbf v}$ 时，$Q_\ell$ 取实多项式且系数非负。
@@ -217,11 +217,11 @@ $$
 若 $\gamma_0\ne 0$，则
 $$
 N_{\mathbf v}(t)=\frac{A_{-m}}{\gamma_0\,(m-1)!}\,\mathrm e^{\gamma_0 t}\,t^{m-1}
-+o\!\big(\mathrm e^{\gamma_0 t}t^{m-1}\big)\qquad (t\to\infty).
++o\big(\mathrm e^{\gamma_0 t}t^{m-1}\big)\qquad (t\to\infty).
 $$
 若 $\gamma_0=0$，则
 $$
-N_{\mathbf v}(t)=\frac{A_{-m}}{m!}\,t^{m}\,+o\!\big(t^{m}\big)\qquad (t\to\infty).
+N_{\mathbf v}(t)=\frac{A_{-m}}{m!}\,t^{m}\,+o\big(t^{m}\big)\qquad (t\to\infty).
 $$
 
 *证明要点（补充与引用）。* 取 $\sigma>\gamma_0$，用 Laplace–Stieltjes 反演

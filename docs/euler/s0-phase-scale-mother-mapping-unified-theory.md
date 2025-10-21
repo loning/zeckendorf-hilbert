@@ -119,7 +119,7 @@ $$
 当 $a=1$ 时给出标准的 $s\mapsto1-s$ 对称。完成函数
 
 $$
-\xi(s)=\tfrac12\,s(s-1)\,\pi^{-s/2}\,\Gamma\!\bigl(\tfrac s2\bigr)\,\zeta(s)
+\xi(s)=\tfrac12\,s(s-1)\,\pi^{-s/2}\,\Gamma\bigl(\tfrac s2\bigr)\,\zeta(s)
 $$
 
 满足 $\xi(s)=\xi(1-s)$。
@@ -190,7 +190,7 @@ $$
 
 $$
 M_{\mathbf v}(t)=\sum_{\ell=0}^{L} Q_\ell(t)\,e^{\,\gamma_\ell t}
-\ +\ O\!\big(e^{(\gamma_L-\delta)t}\big),
+\ +\ O\big(e^{(\gamma_L-\delta)t}\big),
 $$
 
 并且存在常数 $A,a\ge0$ 使 $|w_j|\le A\,e^{a t_j}$（温和增长），以及存在 $t_*\in\mathbb{R}$ 使 $t_j\ge t_*$ 对所有 $j$ 成立，从而**以级数** $\sum_j w_j e^{-s t_j}$ 为**主定义**；当 $M_{\mathbf v}$ 具有**界变差**时，与 Stieltjes 积分记号等价。
@@ -293,7 +293,7 @@ $$
 
 $$
 \boxed{\ F_q(\mathbf{j},\ell)=\sum_{r} c_r\,e^{\,\langle\beta_r,\rho_0\rangle}\,\big(b^{\langle\beta_r,\mathbf v\rangle}\big)^{\ell}\,
-\exp\!\Bigl(\tfrac{2\pi i}{q}\,\langle\alpha_r,\mathbf{j}\rangle\Bigr)\ }
+\exp\Bigl(\tfrac{2\pi i}{q}\,\langle\alpha_r,\mathbf{j}\rangle\Bigr)\ }
 $$
 
 在给定相位/尺度**窗口中仅保留有限个**指标 $r$（或 $\mu$ 的支撑本身有限）时，定义采样格点 $\theta_{\mathbf{j}}=\frac{2\pi}{q}\mathbf{j}$，
