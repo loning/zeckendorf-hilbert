@@ -26,7 +26,7 @@ $$
 $$
 \Lambda^\ast(s)=Q^{s/2}\,r^\ast(s)\,L^\ast(s).
 $$
-$\Re s=\tfrac{a}{2}$ 为中心轴。对偶对象 $L^\ast$ 的 Dirichlet 系数记为 $a_n^\ast$；在自对偶/实系数情形 $a_n^\ast=a_n$。本文默认工作于 $r$ 与 $r^\ast$ 的零/极点之外的开子域（以及 $a-s$ 的对应子域）。
+$\Re s=\tfrac{a}{2}$ 为中心轴。对偶对象 $L^\ast$ 的 Dirichlet 系数记为 $a_n^\ast$；在自对偶/实系数情形 $a_n^\ast=a_n$。本文默认工作于 $r$ 与 $r^\ast$ 的极点之外的开子域（以及 $a-s$ 的对应子域）。
 
 2. **母映射与信息刻度.** 离散谱写作 $\sum_j c_j e^{i\langle\alpha_j,\theta\rangle}e^{\langle\beta_j,\rho\rangle}$。信息势
 
@@ -36,7 +36,7 @@ $$
 
 其梯度—Hessian 给出"有效质心—方差"度量与自然度量；$\mathcal{L}^\ast$ 表示其 Fenchel 对偶（S6）。
 
-3. **有限阶 EM 与结构不变性.** 一切"和—积—积分—移线"均在**有限阶** EM 纪律下操作；伯努利层与余项对 $u$ **整**（带限窗时），对 $s$ 在工作域 $D=\{s:\ r(s)\ne0,\ r^{\ast}(a-s)\ne0\}$ 上**全纯**，极点仅来自主尺度项（S4）。
+3. **有限阶 EM 与结构不变性.** 一切"和—积—积分—移线"均在**有限阶** EM 纪律下操作；伯努利层与余项对 $u$ **整**（带限窗时），对 $s$ 在工作域 $D$（去掉 $r$ 与 $r^{\ast}$ 的极点及其在 $a-s$ 下的对应点的开集）上**全纯**，极点仅来自主尺度项（S4）。
 
 4. **非渐近误差三分解.** 数值窗/截断/采样误差按**别名（Poisson）+ 伯努利层（有限阶 EM）+ 窗尾（截断）**三分解（S8）。
 
@@ -50,7 +50,7 @@ $$
 
 ## 1. 软窗型近似功能方程（AFE）
 
-令 $h:\mathbb{R}\to\mathbb{C}$ 为偶窗，$\widehat{h}$ 或带限，或具指数衰减。为进行移线与 Poisson/EM 操作，设 $h$ 在实轴上具有一条包含积分路径的**竖条解析延拓** $H$（当 $\widehat h$ 带限时由 Paley–Wiener 可知 $H$ 为整函数）。下文一律以 $H$ 记其解析延拓；并在实轴上约定 $H|_{\mathbb R}\equiv h$（即对一切 $t\in\mathbb R$，$H(t)=h(t)$）。记
+令 $h:\mathbb{R}\to\mathbb{C}$ 为偶窗，$\widehat{h}$ 或带限，或具指数衰减。为进行移线与 Poisson/EM 操作，设 $h$ 在实轴上具有一条包含积分路径的**开竖条**上的解析延拓 $H$（当 $\widehat h$ 带限时由 Paley–Wiener 可知 $H$ 为整函数）。下文一律以 $H$ 记其解析延拓；并在实轴上约定 $H|_{\mathbb R}\equiv h$（即对一切 $t\in\mathbb R$，$H(t)=h(t)$），且取 $H$ 为偶的解析延拓并归一化 $H(0)=1$。记
 
 $$
 \mathcal{H}_s(u):=H(u)\,\frac{r(s+u)}{r(s)},\qquad
@@ -60,8 +60,8 @@ $$
 定义
 
 $$
-V_{+}(x;s):=\frac{1}{2\pi i}\int_{(\sigma)} \mathcal{H}_{s}(u)\,x^{-u}\,du,\qquad
-V_{-}(x;s):=\frac{1}{2\pi i}\int_{(\sigma)} \mathcal{H}_{a-s}^{\ast}(u)\,x^{-u}\,du,
+V_{+}(x;s):=\frac{1}{2\pi i}\int_{(\sigma)} \frac{H(u)}{u}\,\frac{r(s+u)}{r(s)}\,x^{-u}\,du,\qquad
+V_{-}(x;s):=\frac{1}{2\pi i}\int_{(\sigma)} \frac{H(u)}{u}\,\frac{r^{\ast}(a-s+u)}{r^{\ast}(a-s)}\,x^{-u}\,du,
 $$
 
 其中 $\Re u=\sigma$ 取在工作竖条内。
@@ -83,9 +83,9 @@ V_{-}\!\Big(\frac{n}{Q^{1/2}};s\Big)\ +\ R(s;h).
 }
 $$
 
-其中 $R(\cdot;h)$ 在 $D:=\{s:\ r(s)\ne0,\ r^{\ast}(a-s)\ne0\}$ 上**全纯**；若 $\widehat{h}$ 带限，则 $R$ 在垂线方向具有由带宽控制的**指数型增长上界**（对紧致竖条一致）。
+其中 $R(\cdot;h)$ 在 $D$ 上**全纯**；若 $\widehat{h}$ 带限，则 $R$ 在垂线方向具有由带宽控制的**指数型增长上界**（对紧致竖条一致）。当 $L$ 含极点（例如 $s=1$）时，其极点及其阶**完全由 $u=0$ 留数对应的主尺度项给出**；$R(s;h)$ 仅由移线与有限阶 EM 产生的全纯/整层组成，不引入新的极点。
 
-*证明要点.* 对 $\Lambda(s+u)$ 插入 $H(u)$ 的 Mellin 核并移线至 $\Re u=\pm \eta$；功能方程将"上半窗"转化为"下半窗"，得到双窗结构。欧拉积与和—积—积分互换在 S7 的合法域与 S4 的有限阶 EM 纪律下成立；伯努利层与余项全纯/整，归入 $R$。
+*证明要点.* 对 $\Lambda(s+u)$ 插入 $H(u)/u$ 的 Mellin 核并移线至 $\Re u=\pm \eta$；跨越 $u=0$ 处的留数（因 $H(0)=1$ 且核含 $1/u$）产生主尺度项；功能方程将"上半窗"转化为"下半窗"，得到双窗结构。欧拉积与和—积—积分互换在 S7 的合法域与 S4 的有限阶 EM 纪律下成立；伯努利层与余项全纯/整，归入 $R$。
 
 ---
 
@@ -117,7 +117,7 @@ $$
 在上述假设下，$G=[G_{mn}]$ **半正定**。为确保可逆，增加可检假设
 
 $$
-\boxed{\ \widehat w(\xi)\ge c_w>0\quad\text{于 }|\xi|\le\log X\ }\quad\text{（或至少 $\widehat w(\log(n/m))\ne0$ 对所有 $1\le m,n\le X$）},
+\boxed{\ |\widehat w(\xi)|\ge c_w>0\quad\text{于 }|\xi|\le\log X\ }\quad\text{（或至少 $\widehat w(\log(n/m))\ne0$ 对所有 $1\le m,n\le X$）},
 $$
 
 据此 $G$ 正定且可逆。**能量预算**采用同一 $L^2(w)$ 范数：
@@ -125,6 +125,8 @@ $$
 $$
 \langle b,G b\rangle\ \le\ 1.
 $$
+
+（此处 $G$ 由 $\widehat w$ 给定，尺度由 $\int w$ 统一，见“期望与内积的归一化”。）
 
 ### 定理 12.2（最优 mollifier 的谱准则）
 
@@ -170,14 +172,14 @@ $$
 
 ### 定理 12.5（最优共振器：广义本征问题）
 
-在预算 $\langle r,G r\rangle\le 1$ 且 $G$ 正定（由上文 $\widehat w$ 的下界假设保证）下，使 $\mathcal{Q}[r]$ 取极大的 $r^\star$ 满足
+设 $\mathsf K$ 关于 $\langle\cdot,\cdot\rangle_w$ 为**自伴随**（等价地 $G^{-1}\mathsf K$ 为厄米）且半正定。在预算 $\langle r,G r\rangle\le 1$ 且 $G$ 正定（由上文 $\widehat w$ 的下界假设保证）下，使 $\mathcal{Q}[r]$ 取极大的 $r^\star$ 满足
 
 $$
 \boxed{\ \mathsf{K}\,r^\star=\lambda_{\max}\,G\,r^\star\ },\qquad
 \mathcal{Q}[r^\star]=\lambda_{\max}.
 $$
 
-*证明要点.* Rayleigh–Ritz 原理在正定约束下给出广义本征问题；当 $G=I$ 时退化为"$\mathsf{K}$ 的主特征向量"。
+*证明要点.* 由厄米性可用广义 Rayleigh 商极大化；Rayleigh–Ritz 原理在正定约束下给出广义本征问题。当 $G=I$ 时退化为"$\mathsf{K}$ 的主特征向量"。
 
 **Pretentious 区的大值窗口与稳健性.** 当 pretentious 距离在某尺度小且中心频率 $t\approx -\tau^\star$ 时，存在与谱间隙成比例的**大值窗口**使 $|L(s)\,\mathcal R^\star(s)|$ 达到 $A_\sigma$ 级放大；稳健性由 $\mathsf{K}$ 的谱间隙与窗带宽联合控制。
 
@@ -193,19 +195,21 @@ $$
 
 （Fourier 规范）本节沿用 §2 的傅里叶记号：$\widehat f(\xi)=\int_{\mathbb R} f(t) e^{-i\xi t}\,dt$（不含 $2\pi$），据此 Nyquist 判据写作 $\Delta\le \pi/\Omega$。
 
-为统一误差判据，本文在竖线积分中使用的"窗口化 integrand" 定义为
+为统一误差判据，本文在竖线积分中使用的"窗口化 integrand" 定义为（令积分线 $\Re u=c$ 取在工作竖条内，避开 $r(\cdot)$、$r^\ast(a-\cdot)$ 的极点；此条件已在定理 12.1 中陈述）
 $$
-g_{+}(t; s,x):=H(it)\,\frac{r(s+it)}{r(s)}\,x^{-it},\qquad
-g_{-}(t; s,x):=H(it)\,\frac{r^{\ast}(a-s+it)}{r^{\ast}(a-s)}\,x^{-it},
+\boxed{
+g_{+}(t;s,x;c):=\frac{H(c+it)}{c+it}\,\frac{r(s+c+it)}{r(s)}\,x^{-c}\,x^{-it},\qquad
+g_{-}(t;s,x;c):=\frac{H(c+it)}{c+it}\,\frac{r^\ast(a-s+c+it)}{r^\ast(a-s)}\,x^{-c}\,x^{-it}
+}
 $$
 其中 $H$ 为 $h$ 的解析延拓，用作 Mellin 因子；在实轴上 $H(t)=h(t)$（$t\in\mathbb R$）。下文凡提及 $g$，一律指上述 $g_{\pm}$ 类型在 $t$ 变量下的 integrand；别名与 EM 估计均以其傅里叶变换 $\widehat g$ 与 $t$-导数有界性为准。
 
 ### 定理 12.7（AFE + 放大器的三分解误差）
 
-假设 $g\in C^{2M}(\mathbb R)$ 且导数满足给定的有界/衰减条件（例如 $g^{(j)}\in L^\infty$ 或按需要的有权 $L^1$ 可积，$0\le j\le 2M-1$）。对任意窗 $h$、采样步长 $\Delta$、截断 $T$ 与 EM 阶 $M$，AFE 展开与 $M,\mathcal R$ 的插入所致误差满足
+将“近似”具体取为：对 $\int_{\mathbb R} g(t)\,dt$ 采用**等距步长 $\Delta$ 的梯形求积**并**截断于 $[-T,T]$**，再加入**$M$ 阶 Euler–Maclaurin 端点校正**；记其结果为 $\mathcal A_{\Delta,T,M}[g]$。假设 $g\in C^{2M}(\mathbb R)$ 且导数满足给定的有界/衰减条件（例如 $g^{(j)}\in L^\infty$ 或按需要的有权 $L^1$ 可积，$0\le j\le 2M-1$）。对任意窗 $h$、采样步长 $\Delta$、截断 $T$ 与 EM 阶 $M$，AFE 展开与 $M,\mathcal R$ 的插入所致误差满足
 
 $$
-\big|\text{真值}-\text{近似}\big|
+\Big|\int_{\mathbb R}g(t)\,dt\ -\ \mathcal A_{\Delta,T,M}[g]\Big|
 \ \le
 \underbrace{\sum_{m\ne0}\big|\widehat{g}(2\pi m/\Delta)\big|}_{\text{别名}}
 +\underbrace{\sum_{k=1}^{M-1} C_k\Delta^{2k}\cdot\max_{0\le j\le 2k-1}\!|g^{(j)}|_{\infty}}_{\text{伯努利层}}
@@ -214,11 +218,11 @@ $$
 
 若 $\operatorname{supp}\widehat{g}\subset[-\Omega,\Omega]$ 且 $\Delta\le\pi/\Omega$，别名项消失。
 
-（注）此处 $\widehat g$ 为关于 $t$ 的傅里叶变换。即便 $\widehat h$ 带限，因含有 $r(s+it)/r(s)$ 与 $r^{\ast}(a-s+it)/r^{\ast}(a-s)$ 的比值，$\widehat g$ 仍可能不具紧支撑；实际选取步长 $\Delta$ 时应结合 Stirling 型增长界与带宽上界。
+（注）此处 $\widehat g$ 为关于 $t$ 的傅里叶变换。即便 $\widehat h$ 带限，因含有 $1/(c+it)$ 以及 $r(s+c+it)/r(s)$ 与 $r^{\ast}(a-s+c+it)/r^{\ast}(a-s)$ 的比值，$\widehat g$ 仍可能不具紧支撑；实际选取步长 $\Delta$ 时应结合 Stirling 型增长界与带宽上界。
 
 ### 命题 12.8（"极点 = 主尺度"的保持）
 
-AFE 双窗、mollifier/共振器插入与有限阶 EM 的端点校正仅改变整/全纯层，不改变 $L(s)$ 或方向切片的**极点位置与阶**；极点仍由主尺度项决定（S4, S5）。
+在含 $1/u$ 的软窗 AFE 与有限阶 EM 框架下，双窗、mollifier/共振器插入与 EM 端点校正仅改变全纯/整层；**一切极点及其阶完全由 $u=0$ 留数对应的主尺度项决定**，不被 $R$ 或离散化校正改变（S4, S5）。
 
 ---
 

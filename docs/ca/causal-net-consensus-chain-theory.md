@@ -65,7 +65,8 @@ $$
 定义**依赖预序**
 
 $$
-H_1\preceq^\star H_2\ \Longleftrightarrow\ \exists S\in[H_1],\ \exists T\in[H_2]\ \text{使}\ S\in \downarrow T,
+\downarrow[H]\ :=\ \bigcup_{T\in[H]}\downarrow T,\qquad
+H_1\preceq^\star H_2\ \Longleftrightarrow\ [H_1]\subseteq \downarrow[H_2].
 $$
 
 其中 $\downarrow T:=\{U\in\mathsf{Sub}_f(\mathcal{G}):V(U)\subseteq\{x:\exists y\in V(T),\,x\to^\ast y\}\}$。
@@ -74,7 +75,7 @@ $$
 
 $\preceq^\star$ 与代表无关，且自反、传递。
 
-*证明.* 同构不变与存在式保证与代表无关；自反性由 $S\in\downarrow S$；传递性：若 $S\in\downarrow T$ 且 $T\in\downarrow U$，则 $V(S)\subseteq\{x:\exists y\in V(T),\,x\to^\ast y\}\subseteq\{x:\exists z\in V(U),\,x\to^\ast z\}$，故 $S\in\downarrow U$。∎
+*证明.* 由定义 $\downarrow[H]$ 对代表替换不变，故与代表无关；自反性：任意 $S\in[H]$ 有 $S\in\downarrow S\subseteq\downarrow[H]$，从而 $[H]\subseteq\downarrow[H]$；传递性：若 $[H_1]\subseteq\downarrow[H_2]$ 且 $[H_2]\subseteq\downarrow[H_3]$，则利用下闭包幂等 $\downarrow(\downarrow[H_3])=\downarrow[H_3]$ 得 $[H_1]\subseteq\downarrow[H_3]$。∎
 
 记 $H_1\equiv^\star H_2\iff(H_1\preceq^\star H_2\ \land\ H_2\preceq^\star H_1)$。商集 $\mathcal{Q}/{\equiv^\star}$ 上诱导**偏序** $\preceq^\star/{\equiv^\star}$。
 
@@ -170,6 +171,22 @@ $$
 
 据此得到**确定自动机** $\Gamma_{\!\mathsf{Sel}}$：每顶点唯一后继。
 
+为避免 $(+\infty-\infty)$ 与发散和，加入如下局部假设：
+
+**(LF-Ψ) 局部可和/有界性** 对每个顶点 $v$，记
+
+$$
+\Psi_v:=\{\psi:\ \exists\,e\text{（自 }v\text{ 出发）使 }\phi_\psi(e)\ne 0\}.
+$$
+
+要求 $\Psi_v$ 有限；或更弱地，
+
+$$
+\sum_{\psi\in\Psi_v}\alpha_\psi<\infty,\qquad \sup_{\psi\in\Psi_v,\ e:v\to\cdot}|\phi_\psi(e)|<\infty.
+$$
+
+则对每个 $v$ 及其出边 $e$，$\Phi(e)<\infty$；若存在平手则 $\Delta^{\max}(v)=0$，若仅一条出边则 $\Delta^{\max}(v)=+\infty$，因而不发生 $(+\infty-\infty)$。
+
 ### 4.2 客观集合
 
 给定阈值 $\vartheta>0$，定义
@@ -223,10 +240,10 @@ $\Gamma_{\!\mathsf{Sel}}$ 的任一连通分量恰为下述三类之一：
 在存在双向轨道的分量中：
 
 1. **(b) 型**：沿主干双向直线本身的双向轨道唯一，至多相差一个全局平移；
-2. **(a) 型**：仅限于环本身的双向轨道唯一，至多相差一个全局平移；若分量含有无限入向枝，则分量内还存在其它双向轨道（可沿无限枝向过去延展），因此不能主张“分量内（全体）双向轨道唯一”；
+2. **(a) 型**：仅限于环本身的双向轨道唯一，至多相差一个全局平移；若分量内存在一条从环上某点出发的**无限前驱链**（即存在 $(\cdots\to x_{-2}\to x_{-1}\to x_0\in C)$），则分量内还存在其它双向轨道（沿该链向过去、沿环向未来），因此不能主张“分量内（全体）双向轨道唯一”；
 3. **(c) 型**：从任一点出发的前向轨道唯一，但不存在双向无限轨道。
 
-*证明.* 函数图上前向像唯一；(b) 型的主干同构于 $(\mathbb{Z},n\mapsto n+1)$，双向轨道由主干确定，改变起点仅致平移；(a) 型的环本身为周期性双向轨道，改变起点亦仅致循环平移，但若存在无限入向枝，可将环点的前驱延伸至过去构造与环不同的双向轨道；(c) 型仅有单向前向轨道而无双向轨道。∎
+*证明.* 函数图上前向像唯一；(b) 型的主干同构于 $(\mathbb{Z},n\mapsto n+1)$，双向轨道由主干确定，改变起点仅致平移；(a) 型的环本身为周期性双向轨道，改变起点亦仅致循环平移，但若存在从环上一点出发的无限前驱链，可将环点的前驱延伸至过去构造与环不同的双向轨道；(c) 型仅有单向前向轨道而无双向轨道。∎
 
 ---
 
@@ -242,26 +259,34 @@ S([q])\ :=\ \{t\in\mathbb{Z}:\ [X_t]=[q]\},\qquad
 r([q])\ :=\ \sup S([q])\ \in\ \mathbb{Z}\cup\{+\infty\}.
 $$
 
-则由 (CC) 的逐步保序与偏序反对称性可知：每个 $S([q])$ 为一个（可能无界的）**整数区间**，且不同等价类的区间两两**不相交**。据此定义
+则由 (CC) 的逐步保序与偏序反对称性可知：每个 $S([q])$ 为一个（可能无界的）**整数区间**，且不同等价类的区间两两**不相交**。据此定义严格与非严格次序：
 
 $$
-[p]\ \le_X\ [q]\quad\Longleftrightarrow\quad r([p])\ \le\ \ell([q]).
+[p]\ <_X\ [q]\quad\Longleftrightarrow\quad r([p])\ <\ \ell([q])\ (\,[p]\ne[q] \,),
+$$
+
+并定义
+
+$$
+[p]\ \le_X\ [q]\quad\Longleftrightarrow\quad [p]=[q]\ \text{或}\ [p]<_X[q].
 $$
 
 （若像集单点，即常值环情形，则 $\le_X$ 为该单点上的平凡次序。）
 
-**结论 A（线性扩展）** 以上定义给出 $\big(\operatorname{Im}([X]),\le_X\big)$ 的**全序**，且为 $\big(\operatorname{Im}([X]),\preceq^\star\big)$ 的**线性扩展**：若 $[p]\preceq^\star[q]$，则 $r([p])\le \ell([q])$，从而 $[p]\le_X[q]$。
+**结论 A（线性扩展）** 以上定义给出 $\big(\operatorname{Im}([X]),\le_X\big)$ 的**全序**，且为 $\big(\operatorname{Im}([X]),\preceq^\star\big)$ 的**线性扩展**：若 $[p]\preceq^\star[q]$ 且 $[p]\ne[q]$，则 $[p]<_X[q]$，从而 $[p]\le_X[q]$；若 $[p]=[q]$ 则平凡成立。
 
 **结论 B（索引单调）** 若 $[X_i]\ne[X_j]$ 且 $X_i\preceq^\star X_j$，则必有 $i<j$（因 $i\le r([X_i])<\ell([X_j])\le j$）。
 
 *证明要点.*
 
-1. **区间性与不相交**：若 $t_1<t_2$ 且 $[X_{t_1}]=[X_{t_2}]=[q]$，由逐步保序得 $[X_{t_1}]\preceq^\star\cdots\preceq^\star[X_{t_2}]$；反对称性给出区间内全等，从而 $S([q])$ 为整数区间。若两类区间相交，则交点时刻给出等类相等，矛盾。
+1. **区间性与不相交**：若 $t_1<t_2$ 且 $[X_{t_1}]=[X_{t_2}]=[q]$，由逐步保序得 $[X_{t_1}]\preceq^\star\cdots\preceq^\star[X_{t_2}]$；更具体地，对任意 $k\in[t_1,t_2]$，有 $[X_{t_1}]\preceq^\star[X_k]\preceq^\star[X_{t_2}]=[X_{t_1}]$，由反对称性得 $[X_k]=[X_{t_1}]$，从而 $S([q])$ 为整数区间。若两类区间相交，则交点时刻给出等类相等，矛盾。
 2. **线性与扩展**：区间在 $\mathbb{Z}$ 上全序排列，定义的 $\le_X$ 为其自然线性次序。若 $[p]\preceq^\star[q]$ 且出现 $r([p])>\ell([q])$，取 $t\in S([q])$、$s\in S([p])$ 使 $t<s$。由 (CC) 得 $[X_t]\preceq^\star[X_s]$，结合 $[p]\preceq^\star[q]$ 推出 $[p]\equiv^\star[q]$，与区间不相交矛盾；故 $r([p])\le \ell([q])$。结论 B 由不等式链直接得出。∎
 
 ---
 
 ## 7 阈值稳定性：权重扰动与偏好扰动
+
+*约定.* 若顶点 $v$ 仅一条出边，则定义 $\Delta_{\phi}^{(\infty)}(v):=0$（此时按定义 $\Delta^{\max}(v)=+\infty$，§7 的阈值不等式自动成立）。
 
 定义顶点 $v$ 的**局部极值间隙**
 
@@ -274,8 +299,10 @@ $$
 定义**局部偏好幅度**
 
 $$
-\Delta_{\phi}^{(\infty)}(v)\ :=\ \max_{e\ne e^\ast(v)}\ \max_{\psi}\ |\phi_\psi(e^\ast(v))-\phi_\psi(e)|\ \in[0,\infty),
+\Delta_{\phi}^{(\infty)}(v)\ :=\ \max_{e\ne e^\ast(v)}\ \sup_{\psi}\ |\phi_\psi(e^\ast(v))-\phi_\psi(e)|\ \in[0,\infty),
 $$
+
+（当采用 (LF-Ψ) 的强形式（$\Psi_v$ 有限）时，“$\sup$”可等价替换为“$\max$”。）
 
 以及**局域参与者集合**
 
@@ -445,10 +472,7 @@ S:=\bigcup_{k\ge 0} f^{-k}(C_1),\qquad
 T:=\bigcup_{k\ge 0} f^{-k}(C_2).
 $$
 则 $S\cap T=\varnothing$，且对任意 $x\in S$ 有 $f(x)\in S$（同理 $x\in T\Rightarrow f(x)\in T$），即二者对前向像封闭。若底层无向图中存在跨集边 $\{u,v\}$ 使 $u\in S,\ v\in T$，则要么 $u\to v$ 要么 $v\to u$：
-* 若 $u\to v$，则 $v=f(u)\in S$，与 $v\in T$ 矛盾；
-* 若 $v\to u$，则 $u=f(v)\in T$，与 $u\in S$ 矛盾。
-
-故无向图中不存在连接 $S$ 与 $T$ 的边，这与假设 $C_1,C_2$ 处于同一无向连通分量矛盾。于是同分量至多一环。∎
+并且 $S\neq\varnothing$ 且 $S\neq V$。由于底层无向图连通，必存在无向跨割边 $\{u,v\}$ 使 $u\in S,\ v\in V\setminus S$。若 $u\to v$，则 $v=f(u)\in S$，与 $v\in V\setminus S$ 矛盾；若 $v\to u$，则 $u=f(v)\in S$，从而存在 $m\ge 0$ 使得 $f^{m}(u)\in C_1$，于是 $f^{m+1}(v)=f^{m}(u)\in C_1$，故 $v\in S$，亦与 $v\in V\setminus S$ 矛盾。于是该连通分量不可能同时包含两条不相交有向环。∎
 
 **引理 A.2（分量结构）**
 

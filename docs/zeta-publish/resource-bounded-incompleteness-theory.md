@@ -145,7 +145,7 @@ $$
 
 **定理4.1（严格版）**：存在可计算函数$f$，使得对每个$L$，$G_L = f(L)$满足：
 1. $G_L \equiv \forall x (|x| \le L \to \neg \text{Proof}_T(x, \ulcorner G_L \urcorner))$
-2. $G_L$ 为 $\Delta_1$（即 $\Sigma_1\cap\Pi_1$）句子；
+2. 在纯 PA 语言下，$G_L$ 可保守地表述为 $\Pi_1$ 句子；若语言显式增添指数/长度函数符号（或采用 $\Delta_0^E$ 约定，使“$|x|\le L$”等价为项界），则 $G_L$ 为有界公式（从而属于 $\Delta_1$）。
 3. 如果$T$一致，则$\mathbb{N} \models G_L$且$G_L$在$T$中没有长度$\le L$的证明
 
 说明：长度门槛版不完备命题 $G_L$ 以有界量词围绕可证性谓词的 $\Delta_1$ 表达构造，因而整体落在 $\Delta_1$ 层级；我们强调其“有限可检”性质而非层级强度。
@@ -154,7 +154,7 @@ $$
 
 **证明**：应用哥德尔自指引理构造 $G_L$。由于长度 $\le L$ 的证明仅有限多个，命题"存在长度 $\le L$ 的 $T$-证明"可在标准模型中作有限检验；结合 $T$ 的一致性与构造，本可导出若存在此类短证/短反证则致矛盾，故 $\mathbb N\models G_L$ 且 $\ell_T(G_L)>L$。□
 
-**推论4.1.1**：不可判定命题的数量随 $L$ 单调递减但永不为空。
+**推论4.1.1**：在预算 $L$ 内不可证的命题数量随 $L$ 单调递减但永不为空。
 
 ### 4.2 理论扩展不终结定理
 
@@ -180,7 +180,7 @@ $$
 - 可判定命题集合单调增加；
 - 不可分辨关系对资源向下封闭：若在更强统计资源 $(m',\varepsilon')\ge(m,\varepsilon)$ 下仍有 $\mu\equiv_{(m',\varepsilon')}\nu$，则在更弱资源 $(m,\varepsilon)$ 下也有 $\mu\equiv_{(m,\varepsilon)}\nu$。
 
-**推论4.3.1**：在固定一致的 $T$ 下，随 $L \to \infty$ 的 undecidable 集合形成单调递减序列，其交集非空。
+**推论4.3.1**：在固定一致的 $T$ 下，随 $L \to \infty$ 的 undecidable 集合形成单调递减序列；其交集恰包含在 $T$ 中（无论资源如何扩大）均不可判定的句子，其非空性由定理4.2（Rosser 版不完备，假设一致性）保证。
 
 说明：此处取固定一致的 $T$，并令 $L\to\infty$。
 
@@ -307,12 +307,12 @@ Related Work（极简）：本工作与可行不完备、bounded arithmetic 与 
 
 **命题A.1**（$\mathcal{F}_m$-IPM 的伪度量性质）
 
-假设 $\mathcal{F}_m$ 对取负封闭（若 $f \in \mathcal{F}_m$ 则 $-f \in \mathcal{F}_m$），则 $d_{\mathcal{F}_m}$ 满足非负性、对称性与三角不等式，因而是伪度量。
+$d_{\mathcal{F}_m}(P,Q)=\sup_{f\in\mathcal{F}_m}\lvert\mathbb E_P f-\mathbb E_Q f\rvert$ 满足非负性、对称性与三角不等式，因而是伪度量。（若改为 $\sup_f(\mathbb E_P f-\mathbb E_Q f)$ 的非对称形式，则需 $\mathcal{F}_m$ 对取负封闭。）
 
 ### A.3 状态迁移的形式规则
 
 **定义A.3**：对命题 $\varphi$，理论 $T$，逻辑资源 $L$ 与统计资源 $(m,N,\varepsilon)$，定义：
-- $\text{extend}(T,\Delta,\varphi)$：将 $T$ 扩展为 $T' = T+\Delta$ 后，$\text{ProvStatus}(\varphi)$ 可能发生 $\text{undecided}\to\{\top,\bot,\text{undecided}\}$ 的迁移；
+- $\text{extend}(T,\Delta,\varphi)$：将 $T$ 扩展为 $T' = T+\Delta$ 后，$\text{ProvStatus}(\varphi)$ 可能发生 $\text{undecided}\to\{\text{proved},\text{refuted},\text{undecided}\}$ 的迁移；
 - $\text{refine}((m,N,\varepsilon),(m',N',\varepsilon'),\varphi)$：当 $(m',N',\varepsilon')\ge(m,N,\varepsilon)$ 时，$\text{StatStatus}(\varphi)$ 可能发生 $\text{indist.}\to\{\text{dist.},\text{indist.}\}$ 的迁移。
 
 ## 附录B：计算示例
