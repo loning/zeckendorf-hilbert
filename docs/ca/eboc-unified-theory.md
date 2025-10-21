@@ -189,6 +189,7 @@ $$
 $$
 此为针对时间子作用 $\sigma_{\mathrm{time}}$ 或等价地 $(\Omega(F),\sigma_\Omega)$ 的一维SMB/Brudno定理。**窗口形状必须为时间片长方体族**（或满足等价"时间均匀切片"条件），以保证柱集 $[x|_{W_k}]$ 由时间子作用的一维生成划分迭代生成，从而归一化与作用匹配。若采用一般 $W_k$，仅能保证以 $|W_k|$ 归一化时极限为 $\mathbb{Z}^{d+1}$ 作用熵 $h_\mu^{(d+1)}$，或在附加均匀切片/密度假设下再得时间熵极限。$\square$
 此外，对于固定有限 $R$，上述极限等于 $h_\mu(\sigma_{\mathrm{time}},\alpha_R)$；取 $\sup_R$ 恢复 $h_\mu(\sigma_{\mathrm{time}})$。若改用 $|R_k|\to\infty$ 且生成的截面族（从而对应生成分割），则极限直接等于完整的 $h_\mu(\sigma_{\mathrm{time}})$（此情形为补充说明，不在本引理的固定 $R$ 前提内）。
+【注】仅当 $\alpha_R$ 为时间子作用的**生成分割**（例如采用 $R_k\uparrow$ 的生成截面族）时，极限才等于完整的 $h_\mu(\sigma_{\mathrm{time}})$；固定有限 $R$ 时极限为 $h_\mu(\sigma_{\mathrm{time}},\alpha_R)$。
 
 ---
 
@@ -209,7 +210,7 @@ $$
 
 ### T2（Unimodular 协变性；复杂度密度不变）
 
-**命题.** 对任意移位不变遍历测度 $\mu$ 与两组可接受叶（由 $U_1,U_2\in\mathrm{GL}_{d+1}(\mathbb Z)$ 给出），令 $\tilde W_k=U_2U_1^{-1}(W_k)$。**假设 $\{W_k\}$ 与 $\{\tilde W_k\}$ 皆为时间片长方体Følner族，且空间截面 $R\subset\mathbb{Z}^d$ 固定有限**。则对 $\mu$-a.e. 的 $x$，
+**命题.** 对任意移位不变遍历测度 $\mu$ 与两组可接受叶（由 $U_1,U_2\in\mathrm{GL}_{d+1}(\mathbb Z)$ 给出），令 $\tilde W_k=U_2U_1^{-1}(W_k)$。**假设**：（i）$\{W_k\}$ 与 $\{\tilde W_k\}$ 皆为时间片长方体Følner族，且空间截面 $R\subset\mathbb{Z}^d$ 为**固定有限集合**且不随 $k$ 变化；（ii）两组叶族分别由原始整协向量–时间向量对 $(\tau_i^\star,\tau_i)$ 给出，配对常数 $b_i=\langle\tau_i^\star,\tau_i\rangle\ge1$ 为与 $k$ **无关的常数**。则对 $\mu$-a.e. 的 $x$，
 $$
 \limsup_{k\to\infty}\frac{K(\pi(x|_{W_k}))}{L(W_k)}
 = h_{\pi_\ast\mu}\big(\sigma_{\mathrm{time}},\alpha_R^\pi\big),\qquad
@@ -217,7 +218,7 @@ $$
 = h_{\pi_\ast\mu}\big(\sigma_{\mathrm{time}},\tilde\alpha_R^\pi\big).
 $$
 
-**证明.** 整同构 $U=U_2U_1^{-1}$ 保持 Følner 性质：$\{W_k\}$ 为 Følner 族则 $\{\tilde W_k\}$ 亦然，且 $|\tilde W_k|=|W_k|$（整行列式 $\pm1$）。**在时间片长方体族假设下**，叶计数（时间厚度）$L(W_k)=T_k$ 与 $L(\tilde W_k)=\tilde T_k$ 在整同构下仅差有界因子（由 $\tau^\star_1, \tau^\star_2$ 的配对常数 $b_1, b_2$ 给出），因而 $L(\tilde W_k)$ 与 $L(W_k)$ **可比**（存在 $c_-,c_+>0$ 使 $c_-L(W_k)\le L(\tilde W_k)\le c_+L(W_k)$）。分别对两窗族将引理 5.5 应用于因子系统，得到相对于各自观察分割的时间熵极限：$h_{\pi_\ast\mu}(\sigma_{\mathrm{time}},\alpha_R^\pi)$ 与 $h_{\pi_\ast\mu}(\sigma_{\mathrm{time}},\tilde\alpha_R^\pi)$。若两观察方案由沿时间子作用的**有限记忆可逆块码**互为同构，则两者等价并给出相同熵率；在此条件下坐标选择不改变极限值。$\square$
+**证明.** 整同构 $U=U_2U_1^{-1}$ 保持 Følner 性质：$\{W_k\}$ 为 Følner 族则 $\{\tilde W_k\}$ 亦然，且 $|\tilde W_k|=|W_k|$（整行列式 $\pm1$；此处 $\tilde W_k$ 指格点像集 $U(W_k)$，即使形状非轴对齐，格点数仍相等）。**在时间片长方体族假设下**，存在仅依赖于 $\big(U,\tau_1^\star,\tau_1,\tau_2^\star,\tau_2\big)$ 的常数 $c_-,c_+>0$（与 $k$ 无关），使得叶计数（时间厚度）满足 $c_-L(W_k)\le L(\tilde W_k)\le c_+L(W_k)$。分别对两窗族将引理 5.5 应用于因子系统，得到相对于各自观察分割的时间熵极限：$h_{\pi_\ast\mu}(\sigma_{\mathrm{time}},\alpha_R^\pi)$ 与 $h_{\pi_\ast\mu}(\sigma_{\mathrm{time}},\tilde\alpha_R^\pi)$。若两观察方案由沿时间子作用的**有限记忆可逆块码**互为同构，则两者等价并给出相同熵率；在此条件下坐标选择不改变极限值。$\square$
 
 ---
 
@@ -233,6 +234,7 @@ $$
 \boxed{ K\Big(\ \pi(x|_{W})\ \Big|\ x\big|_{\partial_{\downarrow}^{(r,T)} W^-}\Big)\ \le\ K(f)+K(W)+K(\pi)+O(\log |W|) }.
 $$
 其中 $T$ 为穿越的时间层数（与 §2.4 的 $L(W)$ 一致）。
+【前提说明】以下上界在 §2.2 的**单步时间依赖**前提下成立；若规则对过去 $m>1$ 层有依赖，则将过去因果输入边界改为 $\{t_- -1,\dots,t_- -m\}$ 的对应厚边界，并把 $rT$ 替换为 $r\,(T+m-1)$，其余推理不变。
 
 **证明.** 构造通用程序 $\mathsf{Dec}$：
 
@@ -250,7 +252,7 @@ $$
 
 ### T5（Brudno 对齐与因子熵）
 
-**命题.** 对 $\mu$-几乎处处的 $x$ 与**时间片长方体族** $\{W_k = R \times [t_k, t_k+T_k-1]\}$（其中 $T_k\to\infty$，且 $R\subset\mathbb{Z}^d$ 为固定有限集合，满足引理5.5的窗口前提），以时间厚度 $L(W_k)=T_k$ 归一化：
+**命题.** 对**固定有限的空间截面 $R$** 与**时间片长方体族** $\{W_k = R \times [t_k, t_k+T_k-1]\}$（其中 $T_k\to\infty$，且满足引理5.5的窗口前提），以时间厚度 $L(W_k)=T_k$ 归一化（【注】仅当 $\alpha_R$ 为**生成分割**时，极限等于完整 $h_\mu(\sigma_{\mathrm{time}})$；固定有限 $R$ 时为 $h_\mu(\sigma_{\mathrm{time}},\alpha_R)$）：
 $$
 \limsup_{k\to\infty}\frac{K(x|_{W_k})}{T_k}\ =\ h_\mu(\sigma_{\mathrm{time}},\alpha_R),\qquad
 \limsup_{k\to\infty}\frac{K(\pi(x|_{W_k}))}{T_k}\ =\ h_{\pi_\ast\mu}(\sigma_{\mathrm{time}},\alpha_R^\pi)\ \le\ h_\mu(\sigma_{\mathrm{time}}).
@@ -262,7 +264,7 @@ $$
 
 ### T6（程序涌现：宏块-强制；SB-CA $\Rightarrow$ TM）
 
-**命题.** （允许经有限高阶块表示/字母扩展）存在宏块-强制嵌入方案 $\mathsf{Emb}(M)$，使得当且仅当该方案的有限型约束族全局相容（即所得扩展 SFT 非空）时，存在 $x^{\mathrm{ext}}\in X_f^{\mathrm{ext}}$（若仅采用高阶块而无字母扩展，则写作 $x^{[k]}\in X_f^{[k]}\cong X_f$）在译码器 $\pi$ 下实现图灵机 $M$ 的运行并可被译读。
+**命题.** （允许经有限高阶块表示/字母扩展）存在宏块-强制嵌入方案 $\mathsf{Emb}(M)$，使得**若**该方案的有限型约束族**非空**（扩展 SFT 非空），**则**存在 $x^{\mathrm{ext}}\in X_f^{\mathrm{ext}}$（若仅采用高阶块而无字母扩展，则写作 $x^{[k]}\in X_f^{[k]}\cong X_f$）可在译码器 $\pi$ 下译读为某一条（预期的）图灵机 $M$ 的运行轨迹。**若进一步假设嵌入约束完备且无伪解**，则得到“若且唯若”。
 
 **证明（构造）.** 取宏块大小 $k$。扩展字母表为 $\Sigma'=\Sigma\times Q\times D\times S$（机状态、带符号、头移动、同步相位）。在宏块尺度上以有限型局部约束实现转移 $(q,a)\mapsto (q',a',\delta)$，并以相位信号实现跨宏块同步。记由上述有限型约束得到的扩展 SFT 为 $X_f^{\mathrm{ext}}$，并记忘却投影 $\rho: \Sigma'\to\Sigma$（如需将扩展配置关联回底层）。译码器 $\pi$ 读取宏块中心行输出带内容。若这些有限型约束族全局相容（扩展 SFT 非空），则由紧致性可取极限得到全局配置 $x^{\mathrm{ext}}$；非空性因此依赖于相容性前提，而非由紧致性自动推出。$\square$
 
@@ -433,7 +435,9 @@ $$
 
 ### T23（观测压力函数与信息几何）
 
-**定义.** 为避免与 §2 中的叶族记号 $\rho$ 混淆，以下以 $\eta$ 记参数。取一组可见类目（由译码/计数规则给出）索引为 $j=1,\dots,J$，赋权 $a_j>0$ 与向量 $\beta_j\in\mathbb R^n$。定义
+【来源映射】对每个可见类目 $j$，令 $a_j$ 为译码后在单位时间片的先验权（或计数权），$\beta_j$ 为对应**逐叶统计特征**（如频率向量/能量代价）的固定向量；当在窗口族 $W_k$ 上取极限时，$\{p_j(\eta)\}$ 即为这些观测统计的指数族重加权。
+
+**定义.** 为避免与 §2 中的叶族记号 $\rho$ 混淆，以下以 $\eta$ 记参数。取一组可见类目（由译码/计数规则给出）索引为 $j=1,\dots,J$（此处取 $J<\infty$），赋权 $a_j>0$ 与向量 $\beta_j\in\mathbb R^n$。定义
 $$
 Z(\eta)=\sum_{j=1}^{J} a_j\,e^{\,\langle\beta_j,\Re\eta\rangle},\qquad
 P(\eta)=\log Z(\eta),\qquad
@@ -457,7 +461,7 @@ $$
 
 ---
 
-### T24（相变/主导切换的判别）
+### T24（相变/主导切换的判别；有限 J 版）
 
 **命题.** 令幅度 $A_j(\eta):=a_j e^{\langle\beta_j,\eta\rangle}$，并定义
 $$
@@ -474,13 +478,13 @@ $$
 
 ---
 
-### T25（方向化极点 = 增长指数）
+### T25（方向化极点 = 增长指数；可数无限版）
 
-**命题.** 固定方向 $\mathbf v$ 与分解 $\eta=\eta_\perp+s\mathbf v$。设沿 $\mathbf v$ 的带权累积分布
+**命题.** 固定方向 $\mathbf v$ 与分解 $\eta=\eta_\perp+s\mathbf v$。令索引族 $\{(a_j,\beta_j)\}_{j\ge1}$ 为**可数无限**，并假设存在 $\eta_0$ 使得 $\sum_{j\ge1} a_j e^{\langle\beta_j,\Re\eta_0\rangle}<\infty$。设沿 $\mathbf v$ 的带权累积分布
 $$
 M_{\mathbf v}(t)=\sum_{t_j\le t} w_j,\qquad t_j:=\langle-\beta_j,\mathbf v\rangle,\quad w_j:=a_j e^{\langle\beta_j,\eta_\perp\rangle},
 $$
-当 $t\to+\infty$ 具有指数–多项式渐近
+当 $t\to+\infty$ 具有指数–多项式渐近（并假设 $M_{\mathbf v}$ 具界变差与温和增长）
 $$
 M_{\mathbf v}(t)=\sum_{\ell=0}^{L} Q_\ell(t)\,e^{\gamma_\ell t}+O\!\big(e^{(\gamma_L-\delta)t}\big),\qquad \gamma_0>\cdots>\gamma_L,
 $$
@@ -488,7 +492,7 @@ $$
 $$
 \mathcal L_{\mathbf v}(s):=\int_{(-\infty,+\infty)} e^{-s t}\,dM_{\mathbf v}(t)=\sum_j w_j e^{-s t_j}
 $$
-在 $\Re s>\gamma_0$ 收敛，并可亚纯延拓至 $\Re s>\gamma_L-\delta$，在 $s=\gamma_\ell$ 处至多出现 $\deg Q_\ell+1$ 阶极点。特别地，右端收敛垂线的实部等于最大增长指数 $\gamma_0$。
+在 $\Re s>\gamma_0$ 收敛，并可亚纯延拓至 $\Re s>\gamma_L-\delta$，在 $s=\gamma_\ell$ 处至多出现 $\deg Q_\ell+1$ 阶极点。特别地，右端收敛垂线的实部等于最大增长指数 $\gamma_0$。若 $J<\infty$，则上述和式为有限和，不出现极点情形。
 
 **证明要点.** 属于经典的拉普拉斯–Stieltjes Tauberian 词典：对指数–多项式渐近逐段积分并使用分部积分/留数控制，得极点位置与阶；绝对收敛域的临界由 $\gamma_0$ 给出。$\square$
 
@@ -526,7 +530,7 @@ c_k=\mathrm{compress}(y_k),\quad
 r_k=\frac{\lvert c_k\rvert}{\lvert W_k\rvert},\quad
 \mathrm{plot}(r_k)\ \ (k=1,2,\ldots).
 $$
-**注**：此处用 $|W_k|$ 归一化便于实验操作；理论上对应时间子作用熵应改用时间厚度 $L(W_k)=T_k$ 归一化（见T5，需采用时间片长方体族）。
+**注**：此处用 $|W_k|$ 归一化便于实验操作；理论上对应时间子作用熵应改用时间厚度 $L(W_k)=T_k$ 归一化（见T5，需采用时间片长方体族）。为与 T5 的时间熵对齐，应保持 $R$ 固定并同时报告 $|c_k|/T_k$；若 $|R_k|$ 变化或采用一般 Følner 窗，则 $r_k$ 反映的是 $h_\mu^{(d+1)}$ 量级而非时间熵。
 
 **7.6 从事件节点构造 SBU（强制域传播）**
 **输入**：可实现 $v$、取向 $\tau$、容许误差 $\epsilon$。
