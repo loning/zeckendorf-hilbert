@@ -50,6 +50,11 @@ $$
 
 Bessel 记号：第一类 $J_\nu$、修正第二类 $K_\nu$。
 
+Maass 形式 $u_j$ 的 Fourier–Whittaker 展开系数记作 $\rho_j(n)$，满足
+$$
+\rho_j(n)=\rho_j(1)\,\lambda_j(n),\qquad |u_j|_2=1,\ \lambda_j(1)=1.
+$$
+
 ### 0.4 核—变换对
 
 设 $h:\mathbb{R}\to\mathbb{C}$ 为**偶**函数。Selberg 侧取余弦傅里叶变换
@@ -155,7 +160,7 @@ $$
 $$
 \boxed{
 \begin{aligned}
-&\sum_j \lambda_j(m)\overline{\lambda_j(n)}\,h(r_j)\ +\ \frac{1}{4\pi}\int_{-\infty}^{\infty} \tau(m,r)\,\overline{\tau(n,r)}\,h(r)\,dr\\
+&\sum_j |\rho_j(1)|^2\,\lambda_j(m)\overline{\lambda_j(n)}\,h(r_j)\ +\ \frac{1}{4\pi}\int_{-\infty}^{\infty} \frac{\tau(m,r)\,\overline{\tau(n,r)}}{\bigl|\zeta(1+2ir)\bigr|^{2}}\,h(r)\,dr\\
 &=\ \delta_{m=n}\,\mathcal{H}_0[h]\ +
 \sum_{c\ge1}\frac{S(m,n;c)}{c}\,(\mathcal{B}^{+} h)\!\left(\tfrac{4\pi \sqrt{m n}}{c}\right)\\
 &\quad+\ \sum_{c\ge1}\frac{S(m,-n;c)}{c}\,(\mathcal{B}^{-} h)\!\left(\tfrac{4\pi \sqrt{m n}}{c}\right).
@@ -276,13 +281,24 @@ $$
 ## 附：归一与等价写法速记
 
 * Selberg 侧 $g=\mathcal{C} h$ 亦可写 $g(\ell)=\dfrac{1}{\pi}\int_0^\infty h(r)\cos(r\ell)\,dr$。
-* 常用等价 $J$-窗写法（与 0.4 的 $\mathcal{B}^{+}$ 同一规范）
+* 常用等价 $J$-窗写法（与 0.4 的 $\mathcal{B}^{+}$ 规范对齐说明）
 
 $$
 \widetilde{\mathcal{B}}(x)
-=\frac{1}{\pi}\int_{0}^{\infty}\frac{r\,h(r)}{\sinh(\pi r)}\cdot\frac{J_{2ir}(x)-J_{-2ir}(x)}{2i}\,dr
-=\frac{2i}{\pi}\int_{0}^{\infty}\frac{r\,h(r)}{\cosh(\pi r)}\,J_{2ir}(x)\,dr.
+=\frac{1}{\pi}\int_{0}^{\infty}\frac{r\,h(r)}{\sinh(\pi r)}\cdot\frac{J_{2ir}(x)-J_{-2ir}(x)}{2i}\,dr.
 $$
+
+并可用恒等式
+$$
+\frac{J_{2ir}(x)-J_{-2ir}(x)}{2i\,\sinh(\pi r)}
+= i\,\sinh(\pi r)\,J_{2ir}(x)+\cosh(\pi r)\,Y_{2ir}(x),\qquad r\in\mathbb R,
+$$
+将其改写为
+$$
+\widetilde{\mathcal{B}}(x)
+=\frac{1}{\pi}\int_{0}^{\infty} r\,h(r)\,\Big(i\,\sinh(\pi r)\,J_{2ir}(x)+\cosh(\pi r)\,Y_{2ir}(x)\Big)\,dr.
+$$
+（注：此写法需同时包含 $Y_{2ir}$ 项方与 0.4 节的规范一致；保持 0.4 节 $\mathcal{B}^{+}$ 的主定义不变最为简洁。）
 
 $K$-窗与 $\mathcal{B}^{-}$ 在相应规范下等价。
 
