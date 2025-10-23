@@ -59,7 +59,7 @@ $$
 Z_G(u):=\prod_{[C]}\bigl(1-u^{\ell(C)}\bigr)^{-1},\qquad |u|\ \text{充分小},
 $$
 
-其中 $[C]$ 按循环位移等价（不识别反向）遍历原始非回溯回路。本稿约定原始回路仅按循环位移并类，**不**按反向并类；相应重排式 $N_k=\sum_{d\mid k}d\,\pi_d$ 与行列式展开一致。若改为并入反向（部分文献采用），则 $Z_G(u)$ 仅差一个幂次的规范化，本文主结论与 Bass 公式不受影响。
+其中 $[C]$ 按循环位移等价（不识别反向）遍历原始非回溯回路。本稿约定原始回路仅按循环位移并类，**不**按反向并类；相应重排式 $N_k=\sum_{d\mid k}d\,\pi_d$ 与行列式展开一致。若改为并入反向（部分文献采用），则 $\pi_d$ 改记为 $\tilde\pi_d$ 且重排式变为 $N_k=\sum_{d\mid k}d\,(2\tilde\pi_d)$（除去回文异常的零测情形），等价地 $Z_G(u)$ 仅差一个幂次的规范化，Bass 公式与后续结论不受影响。
 
 ### 定理 1.2（行列式表达）
 
@@ -105,7 +105,7 @@ $$
 \end{aligned}
 $$
 
-利用 $R^2=I\Rightarrow (I+uR)^{-1}=(1-u^2)^{-1}(I-uR)$ 以及
+利用 $R^2=I\Rightarrow (I+uR)^{-1}=(1-u^2)^{-1}(I-uR)$（因此 $u=\pm1$ 处由多项式恒等延拓）以及
 
 $$
 O^{\top}H=A,\qquad O^{\top}RH=O^{\top}O=D,
@@ -117,7 +117,7 @@ $$
 O^{\top}(I+uR)^{-1}H=(1-u^2)^{-1}(A-uD).
 $$
 
-上述等式先在 $u\notin\{\pm1\}$ 成立即可；结论由多项式恒等作解析延拓。
+上述等式先在 $u\notin\{\pm1\}$ 成立，结论由多项式恒等作解析延拓至全复平面。
 
 由 $\det(I+uR)=(1-u^2)^m$ 与 **Sylvester 行列式恒等式** $\det(I-XY)=\det(I-YX)$ 得
 
@@ -174,7 +174,7 @@ $\square$
 
 ### 定义 2.2（完成函数）
 
-置 $u=q^{-s}$，定义
+置 $u=q^{-s}$，定义（$s\in\mathbb C$）
 
 $$
 \boxed{\,\Xi_G(s):=q^{\,n\left(s-\tfrac12\right)}\,P_G\!\bigl(q^{-s}\bigr)\,.}
@@ -186,7 +186,7 @@ $$
 \boxed{\,\Xi_G(s)=\Xi_G(1-s)\,.}
 $$
 
-**证明.** 由定理 2.1 得 $P_G(q^{-(1-s)})=q^{\,n(2s-1)}P_G(q^{-s})$，代回定义即得。 $\square$
+**证明.** 由定理 2.1 得 $P_G(q^{-(1-s)})=q^{\,n(2s-1)}P_G(q^{-s})$，代回定义即得。功能方程在全复平面按代数恒等成立。 $\square$
 
 ### 备注 2.4（Ramanujan 判据）
 
@@ -237,18 +237,20 @@ $$
 
 $$
 \bigl|\,\mathcal S_{\mathrm{spec}}(h;R)-\mathcal S_{\mathrm{orb}}^{\star}(h;R)\,\bigr|
-\ \le\ C\Bigl(\mathrm{alias}+\mathrm{EM\text{-}layer}+\mathrm{tail}\Bigr),
+\ \le\ C\sum_{X\in\{\mathrm{spec},\mathrm{orb}\}}\Bigl(\mathrm{alias}_{X}+\mathrm{EM\text{-}layer}_{X}+\mathrm{tail}_{X}\Bigr),
 $$
 
-其中分别对谱侧定义 $g_{\mathrm{spec}}:=h\cdot w_R$、对轨道侧定义 $g_{\mathrm{orb}}:=\widehat h*\widehat w_R$。误差项定义为
+其中分别对谱侧定义 $g_{\mathrm{spec}}:=h\cdot w_R$、对轨道侧定义 $g_{\mathrm{orb}}:=\widehat h*\widehat w_R$，各侧误差项定义为（$X\in\{\mathrm{spec},\mathrm{orb}\}$）
 
 $$
-\mathrm{alias}=\sum_{r\neq 0}\bigl|\widehat g(2\pi r/\Delta)\bigr|,\qquad
-\mathrm{EM\text{-}layer}=\sum_{j=1}^{M-1}\frac{|B_{2j}|}{(2j)!}\,\Delta^{2j}\,\bigl|g^{(2j)}\bigr|_{L^1},\qquad
-\mathrm{tail}=\int_{|t|>T}\!|g(t)|\,dt.
+\begin{aligned}
+&\mathrm{alias}_{X}:=\sum_{r\neq 0}\bigl|\widehat{g_X}(2\pi r/\Delta)\bigr|,\\
+&\mathrm{EM\text{-}layer}_{X}:=\sum_{j=1}^{M-1}\frac{|B_{2j}|}{(2j)!}\,\Delta^{2j}\,\bigl|g_X^{(2j)}\bigr|_{L^1},\\
+&\mathrm{tail}_{X}:=\int_{|t|>T}\!|g_X(t)|\,dt.
+\end{aligned}
 $$
 
-当 $g$ 带限且 $\Delta\le \pi/\Omega$（Nyquist 步长）时 $\mathrm{alias}=0$。
+当 $g_X$ 带限且 $\Delta\le \pi/\Omega$（Nyquist 步长）时 $\mathrm{alias}_X=0$。
 
 **变换约定.** 本文傅里叶变换取 $\widehat g(\omega)=\int_{\mathbb R}g(t)e^{-i\omega t}\,dt$（角频率制），故别名频谱复制间隔为 $2\pi/\Delta$，带限 $\Omega$ 时 Nyquist 步长为 $\Delta\le\pi/\Omega$。在本约定下
 $$
