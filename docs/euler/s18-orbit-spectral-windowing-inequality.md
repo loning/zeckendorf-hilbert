@@ -59,7 +59,7 @@ $$
 
 由 Leibniz 法则与 $h\in W^{2M,1}$、$w_R^{(k)}\in L^\infty$，得谱侧 $g_1:=h\cdot w_R$ 满足 $g_1^{(2M)}\in L^1$；轨道侧卷积核 $g_2:=\widehat h*\widehat w_R$ 可积且具所需平滑度。
 
-* **指数窗**：存在 $\kappa>0$ 与 $0<\kappa'<\kappa$ 使
+* **指数窗**：存在 $\kappa'>0$ 使
 
 $$
 w\in C^{2M}(\mathbb R),\qquad
@@ -84,7 +84,7 @@ $$
 
 本文仅使用 (TF) 的**线性**结构与可检核类的闭合性，不涉及具体问题中的谱—几何细节。
 
-**约定（Lebesgue 主项）**：假设几何主项具 Lebesgue 表示 $I_0[h]=\int_{\mathbb R} h(x)\,\phi_0(x)\,dx$，其中 $\phi_0\in L^1\cap L^\infty$ 为密度函数。
+**约定（Lebesgue 主项）**：假设几何主项具 Lebesgue 表示 $I_0[h]=\int_{\mathbb R} h(x)\,\phi_0(x)\,dx$，其中 $\phi_0\in L^1\cap L^\infty$ 为密度函数。下文统一按 §0.4 之绝对连续约定使用 $\mu$。
 
 ### 0.4 规范系统、谱测度与镜像接口（记号约定）
 
@@ -150,7 +150,7 @@ $$
 其中 $\rho$ 为 §0.4 的谱密度、$\phi_0$ 为 §0.3 的几何主项密度。则：
 
 * **谱侧**：纯点求和 $\sum_j h(z_j)w_R(z_j)$ 保持精确；连续谱 $\int h\,w_R\,d\mu=\int g_{\mathrm{spec}}(x)\,dx$ 以 $g_{\mathrm{spec}}$ 为核应用 $S_T(\cdot;\Delta)$；
-* **几何侧**：$I_0[h\cdot w_R]=\int g_0(x)\,dx$ 以 $g_0$ 为核应用 $S_T(\cdot;\Delta)$；轨道和项 $\sum_{\gamma\ne e}A_\gamma(\widehat h*\widehat w_R)(\ell_\gamma)$ 作为对**离散测度** $\nu_{\mathrm{orb}}=\sum_\gamma A_\gamma\delta_{\ell_\gamma}$ 的积分**保持精确**（或按轨道计数函数给出显式截断，见 §3.4）。
+* **几何侧**：$I_0[h\cdot w_R]=\int g_0(x)\,dx$ 以 $g_0$ 为核应用 $S_T(\cdot;\Delta)$；轨道和项 $\sum_{\gamma\ne e}A_\gamma(\widehat h*\widehat w_R)(\ell_\gamma)$ 作为对**离散测度** $\nu_{\mathrm{orb}}=\sum_\gamma A_\gamma\delta_{\ell_\gamma}$ 的积分**保持精确**（或按轨道计数函数给出显式截断，见 §3.4）。若按长度截断，误差优先用**采样无关**的 $\mathcal E_{\mathrm{orb}}(T)$（§3.4）控制；该项与 $\Delta,M$ 无耦合。
 
 误差的非渐近三分解（术语对照：**别名 + 伯努利层 + 截断** $\equiv$ **Nyquist–Poisson–EM 三分解**）见第 3 节。
 
@@ -166,7 +166,7 @@ $$
 \tag{2.1}
 $$
 
-对偶窗与偶核保持镜像 $x\mapsto -x$ 下的一致性；根数相位仅体现在常相位上，不影响非负性与范数估计。
+只要 $h,w_R\ge0$ 且 $\rho=(1/\pi)\Im m(x+i0)\ge0$，即得 (2.1) 的非负性；镜像/相位不影响该结论。
 
 ---
 
@@ -186,10 +186,10 @@ $$
 
 $$
 \Delta\sum_{k\in\mathbb Z}g(k\Delta)
-=\sum_{m\in\mathbb Z}\widehat g\!\left(\frac{2\pi m}{\Delta}\right),
+=\sum_{m\in\mathbb Z}\widehat g\!\left(\frac{2\pi m}{\Delta}\right)
 $$
 
-故
+（等式在 $\mathcal S$ 或满足 Poisson 条件时成立；本文实际只用到**不等式**版，详见附录 A.1 注记），故
 
 $$
 I(g)-S_\infty(g;\Delta)
@@ -205,36 +205,48 @@ $$
 \tag{3.1a}
 $$
 
-若 $\widehat g\subset[-\Omega,\Omega]$ 且 $\Delta<\pi/\Omega$，则右端为零；在临界 $\Delta=\pi/\Omega$ 时若 $\widehat g$ 在边界点取零，亦得零别名。
+若 $\widehat g\subset[-\Omega,\Omega]$ 且 $\Delta<2\pi/\Omega$，则右端为零；在临界 $\Delta=2\pi/\Omega$ 时若 $\widehat g$ 在 $\pm\Omega$ 取零，亦得零别名。
 
 ### 3.2 有限阶 EM 层与截断
 
-**使用条件**：以下界式在 $g\in C^{2M}$ 且 $g^{(2M)}\in L^1(\mathbb R)$（并按 §A.2 处理端点项）时成立；若不满足，可令 $M=1$ 退化为纯尾项界 $|S_\infty-S_T|\le\int_{|u|>T}|g(u)|\,du$。
+**使用条件**：以下界式在 $g\in C^{2M}$ 且 $g^{(2M)}\in L^1(\mathbb R)$（并按 §A.2 处理端点项）时成立。**仅当 $g^{(2M)}\in L^1$ 时使用有限阶 EM；否则不使用 EM 层**（可视作形式上 $M=0$），此时仅采用"别名+尾项"的两项上界。
+
+定义**采样尾和**（对任意可积 $g$ 总成立）：
+
+$$
+\mathcal{T}_\Delta(g;T):=\Delta\sum_{|k|>\lfloor T/\Delta\rfloor}|g(k\Delta)|.
+$$
+
+若 $|g|$ 在外侧单调/BV/$W^{1,1}$，则采样尾和还可以内侧积分上包：$\mathcal{T}_\Delta(g;T)\le \int_{|u|>T-\Delta}|g(u)|\,du$。
 
 以有限阶 EM 对 $S_\infty-S_T$ 的尾和作估计，有
 
 $$
+\boxed{\
 \bigl|S_\infty(g;\Delta)-S_T(g;\Delta)\bigr|
 \le \sum_{j=1}^{M-1}\frac{|B_{2j}|}{(2j)!}\,\Delta^{2j}\,\bigl|g^{(2j)}\bigr|_{L^1}
-+\int_{|u|>T} |g(u)|\,du .
++\underbrace{C_M\,\Delta^{2M}\,\bigl|g^{(2M)}\bigr|_{L^1}}_{\text{EM 余项}}
++\mathcal{T}_\Delta(g;T),\quad C_M=\frac{2\,\zeta(2M)}{(2\pi)^{2M}}.}
 \tag{3.1b}
 $$
 
 ### 3.3 统一的非渐近上界
 
-综合 (3.1a)–(3.1b)，对满足 §0.2 正则的 $g$ 有
+在满足 §3.2 的使用条件时，综合 (3.1a)–(3.1b) 有
 
 $$
 \boxed{\
 \Bigl|I(g)-S_T(g;\Delta)\Bigr|
 \le
 \underbrace{\sum_{m\ne0}\left|\widehat g\!\left(\frac{2\pi m}{\Delta}\right)\right|}_{\mathrm{alias}}
-+\underbrace{\sum_{j=1}^{M-1}\frac{|B_{2j}|}{(2j)!}\,\Delta^{2j}\,|g^{(2j)}|_{L^1}}_{\mathrm{EM\ layer}}
-+\underbrace{\int_{|u|>T} |g(u)|\,du}_{\mathrm{tail}} .
++\underbrace{\sum_{j=1}^{M-1}\frac{|B_{2j}|}{(2j)!}\,\Delta^{2j}\,|g^{(2j)}|_{L^1}\ +\ C_M\,\Delta^{2M}\,|g^{(2M)}|_{L^1}}_{\mathrm{EM\ layer\ (含余项)}}
++\underbrace{\mathcal{T}_\Delta(g;T)}_{\mathrm{tail}} .
 }\tag{3.1}
 $$
 
-> **注（Nyquist 常数规范）**：上式采用角频率 Fourier 规范 $\widehat g(\xi)=\int g(x)e^{-ix\xi}dx$，别名频率为 $2\pi m/\Delta$。零别名条件 $\mathrm{supp}(\widehat g)\subset[-\Omega,\Omega]$ 在 $2\pi/\Delta>2\Omega$ 时成立，即 $\Delta<\pi/\Omega$（采样定理标准阈值）；临界 $\Delta=\pi/\Omega$ 时需边界取零。与普通频率规范 $\check g(f)=\int g(x)e^{-2\pi i xf}dx$ 的关系为 $\widehat g(\xi)=\check g(\xi/(2\pi))$。
+若不满足 §3.2 的 EM 使用条件，则不使用 EM 层（形式上 $M=0$），此时仅用"别名 + $\mathcal{T}_\Delta$"两项。
+
+> **注（Nyquist 常数规范）**：上式采用角频率 Fourier 规范 $\widehat g(\xi)=\int g(x)e^{-ix\xi}dx$，别名频率为 $2\pi m/\Delta$。零别名条件 $\mathrm{supp}(\widehat g)\subset[-\Omega,\Omega]$ 在 $2\pi/\Delta>\Omega$ 时成立（即 $\Delta<2\pi/\Omega$）；临界 $\Delta=2\pi/\Omega$ 时需边界取零。与普通频率规范 $\check g(f)=\int g(x)e^{-2\pi i xf}dx$ 的关系为 $\widehat g(\xi)=\check g(\xi/(2\pi))$，因而零别名阈值对应 $\Delta<1/B$（$B=\Omega/2\pi$），区别于 Shannon 的 $\Delta\le 1/(2B)$。此处只需 Poisson 求和中非零谐波的采样点落在带宽外（从而 $\widehat g(2\pi m/\Delta)=0$ 对 $m\ne0$），比"从样本重构 $g$"的 Shannon 条件更弱，故阈值不同。
 
 ### 3.4 轨道和截断误差
 
@@ -270,13 +282,15 @@ $$
 }\tag{4.1}
 $$
 
-其中 $g_{\mathrm{spec}}=g_1\cdot\rho$、$g_0=g_1\cdot\phi_0$（$g_1=h\cdot w_R$）为 §1.2 定义的**被采样 integrand**，
+其中 $g_{\mathrm{spec}}=g_1\cdot\rho$、$g_0=g_1\cdot\phi_0$（$g_1=h\cdot w_R$）为 §1.2 定义的**被采样 integrand**。下述 $\mathfrak E$ 取含 EM 或无 EM 版本，分别对应 §3.2 的两种正则情形；尾项统一记为采样尾和 $\mathcal{T}_\Delta$（在 $|g|$ 外侧单调/BV/$W^{1,1}$ 时可再以内侧积分尾界上包）。
 
 $$
+\boxed{\
 \mathfrak E(g;\Delta,M,T)
 =\sum_{m\ne0}\left|\widehat g\!\left(\frac{2\pi m}{\Delta}\right)\right|
 +\sum_{j=1}^{M-1}\frac{|B_{2j}|}{(2j)!}\,\Delta^{2j}\,|g^{(2j)}|_{L^1}
-+\int_{|u|>T}|g(u)|\,du,
++\ C_M\,\Delta^{2M}\,|g^{(2M)}|_{L^1}
++\mathcal{T}_\Delta(g;T),\quad C_M=\frac{2\,\zeta(2M)}{(2\pi)^{2M}},}
 $$
 
 并且 $\mathcal E_{\mathrm{orb}}(T)$ 为轨道和截断误差（若保持精确则取零；若按长度 $T$ 截断，则由 §3.4 给出上界）。
@@ -299,11 +313,11 @@ $$
 取步长
 
 $$
-\Delta\le \frac{\pi}{\max\{\Omega_{\mathrm{spec}},\Omega_0\}}
+\Delta\le \frac{2\pi}{\max\{\Omega_{\mathrm{spec}},\Omega_0\}}
 \quad\text{（临界时要求边界取零）},
 $$
 
-则 $\mathrm{alias}(g_{\mathrm{spec}})=\mathrm{alias}(g_0)=0$，从而
+则 $\mathrm{alias}(g_{\mathrm{spec}})=\mathrm{alias}(g_0)=0$。记 $\mathfrak E_{\mathrm{EM+tail}}(g;\Delta,M,T):=\mathfrak E(g;\Delta,M,T)$ **去掉别名项后的两层**（EM 层 + $\mathcal{T}_\Delta$），从而
 
 $$
 \bigl|\mathcal S_{\mathrm{spec}}^{\Delta,M,T}-\mathcal S_{\mathrm{geo}}^{\Delta,M,T}\bigr|
@@ -342,14 +356,7 @@ $$
 
 ### 命题 5.2（散射相位导数与密度：比例关系）
 
-设散射矩阵通道特征值写作 $e^{\pm i\varphi(x)}$。在常见的单通道归一化下，
-
-$$
-\rho(x)=\frac1\pi\,\Im m(x+i0),\qquad
-\partial_x\arg\det S(x)=-2\pi\,\rho(x),
-$$
-
-因此存在常数 $c\ne0$（由通道归一与 $S$ 的定义唯一确定）使
+设散射矩阵通道特征值写作 $e^{\pm i\varphi(x)}$。在**单通道且选定合适的自由基准与归一化**下，有 $\det S=e^{-2\pi i\,\xi}$ 且 $\partial_x\arg\det S(x)=-2\pi\,\xi'(x)$。当所选规范使 $\rho$ 与 $\xi'$ 对应同一密度（或仅差常数因子）时，$\partial_x\arg\det S(x)=-2\pi\,\rho(x)$；在此匹配下存在常数 $c\ne0$（由通道归一与 $S$ 的定义唯一确定）使
 
 $$
 \boxed{\ \varphi'(x)=c\cdot \Im m(x+i0)\ }.
@@ -357,7 +364,7 @@ $$
 
 比例常数不影响 §2 的非负性与 §4 的不等式结构。
 
-> **注**：对多通道情形应理解为特征相位的**归一常数**可能不同；上式为单通道典型情形。
+> **注**：对多通道情形应理解为特征相位的**归一常数**可能不同；上式为单通道且基准归一化匹配时的典型情形。
 
 ---
 
@@ -382,13 +389,13 @@ $$
 ## 8. 可检清单（最小充分条件）
 
 1. **迹公式与密度**：核对 (TF) 在所选试验核类成立，给出 $I_0$、$\{A_\gamma,\ell_\gamma\}$、$\mu$ 的表达或上界；验证几何主项 $I_0[h]=\int h(x)\phi_0(x)\,dx$ 与谱密度 $\rho=\pi^{-1}\Im m$ 的 $L^1\cap L^\infty$ 性质。
-2. **窗/核正则**：核 $h\in W^{2M,1}$ 且 $\widehat h\in L^1$；窗 $w$ 满足 $\widehat w\in L^1\cap C^{2M}$（带限，记带宽 $\Omega$）或 $\sup_t e^{\kappa'|t|}|w^{(k)}(t)|<\infty$ ($0\le k\le 2M$，指数型，记常数 $\kappa,\kappa'$）。
+2. **窗/核正则**：核 $h\in W^{2M,1}$ 且 $\widehat h\in L^1$；窗 $w$ 满足 $\widehat w\in L^1\cap C^{2M}$（带限，记带宽 $\Omega$）或 $\sup_t e^{\kappa'|t|}|w^{(k)}(t)|<\infty$ ($0\le k\le 2M$，指数型，记常数 $\kappa'$）。
 3. **数值约定与误差结构**：
    - 被采样 integrand：$g_{\mathrm{spec}}=g_1\cdot\rho$、$g_0=g_1\cdot\phi_0$（$g_1=h\cdot w_R$）；
    - Lebesgue 型积分按 §3.1–§3.3 应用三分解误差 $\mathfrak E(g_{\mathrm{spec}};\Delta,M,T)$ 与 $\mathfrak E(g_0;\Delta,M,T)$；
    - 轨道和作为离散测度保持精确或按 §3.4（加权计数 $N_A$）给出截断误差 $\mathcal E_{\mathrm{orb}}(T)$。
-4. **Nyquist 与采样**：仅当**被采样 integrand** $g_{\mathrm{spec}},g_0$ 频域带限时可消别名；步长 $\Delta\le\pi/\max\{\mathrm{bw}(\widehat{g_{\mathrm{spec}}}),\mathrm{bw}(\widehat{g_0})\}$（定理 18.2）。若密度不带限，即使 $\widehat h,\widehat w$ 紧支亦不能保证零别名。
-5. **EM 阶与端点**：固定 $M$，验证 §3.2 的使用条件 $g^{(2M)}\in L^1$；不满足时可令 $M=1$ 退化为纯尾项界。
+4. **Nyquist 与采样**：仅当**被采样 integrand** $g_{\mathrm{spec}},g_0$ 频域带限时可消别名；步长 $\Delta\le 2\pi/\max\{\mathrm{bw}(\widehat{g_{\mathrm{spec}}}),\mathrm{bw}(\widehat{g_0})\}$（定理 18.2）。若密度不带限，即使 $\widehat h,\widehat w$ 紧支亦不能保证零别名。
+5. **EM 阶与端点**：固定 $M$，验证 §3.2 的使用条件 $g^{(2M)}\in L^1$；不满足时不使用 EM 层（形式上 $M=0$），仅用"别名 + $\mathcal{T}_\Delta$"两项。
 6. **连续谱**：以 Herglotz–Weyl 表示验证 $\rho=\pi^{-1}\Im m\ge0$，并核对镜像与根数相位。
 7. **不等式输出（常数依赖）**：误差项常数依赖于 $\{|h^{(j)}|_{L^1}\}_{0\le j\le 2M}$、$|\widehat h|_{L^1}$、$|\rho|_{L^\infty}$、$|\phi_0|_{L^\infty}$、窗的平滑阶常数及缩放律。
 8. **方向增长**：用支持函数上包控制轨道侧指数权增长，确保卷积绝对收敛。
@@ -422,7 +429,7 @@ $$
 \le \sum_{m\ne0}\left|\widehat g\!\left(\frac{2\pi m}{\Delta}\right)\right|.
 $$
 
-若 $\widehat g\subset[-\Omega,\Omega]$ 且 $\Delta\le\pi/\Omega$（边界取零），则 $\Delta\sum_k g(k\Delta)=\int_{\mathbb R} g$。
+若 $\widehat g\subset[-\Omega,\Omega]$ 且 $\Delta\le 2\pi/\Omega$（边界取零），则 $\Delta\sum_k g(k\Delta)=\int_{\mathbb R} g$。
 
 > **注1**：本文实际只用到 $g,\widehat g\in L^1$ 情形的**不等式版**（而非恒等式在 $\mathcal S$ 中的充分条件）；上述 $\mathcal S$ 陈述仅为标准教科书参考形式。
 
@@ -480,4 +487,4 @@ $\det S(\lambda)=e^{-2\pi i \xi(\lambda)}$，并与密度或相位导数相联�
 
 ## 结语
 
-在镜像—规范—散射的统一接口下，窗化迹式在分布意义下给出**精确恒等**；其**数值实现**区分 Lebesgue 型积分与离散轨道和：前者以**被采样 integrand** $g_{\mathrm{spec}}=g_1\cdot\rho$（谱侧连续谱）与 $g_0=g_1\cdot\phi_0$（几何主项）为核，偏差由**别名 + 伯努利层 + 截断**三项**非渐近**上界（$\mathfrak E(g_{\mathrm{spec}};\Delta,M,T)+\mathfrak E(g_0;\Delta,M,T)$）控制，仅当 $g_{\mathrm{spec}},g_0$ 频域带限并取 Nyquist 步长时可消去别名；后者作为离散测度保持精确或按加权计数函数 $N_A$ 给出显式截断误差（$\mathcal E_{\mathrm{orb}}(T)$）。**有限阶** EM 纪律确保"**极点=主尺度**"与奇性保持；连续谱以 Herglotz 密度与酉对称给出非负与相位一致性。该结果为核与窗的优化、谱能量分配与数值基准提供逻辑闭合的支架，并与 S15–S17 无缝对齐。
+在镜像—规范—散射的统一接口下，窗化迹式在分布意义下给出**精确恒等**；其**数值实现**区分 Lebesgue 型积分与离散轨道和：前者以**被采样 integrand** $g_{\mathrm{spec}}=g_1\cdot\rho$（谱侧连续谱）与 $g_0=g_1\cdot\phi_0$（几何主项）为核，偏差由**别名 + 伯努利层 + 采样尾和**三项**非渐近**上界（$\mathfrak E(g_{\mathrm{spec}};\Delta,M,T)+\mathfrak E(g_0;\Delta,M,T)$）控制，仅当 $g_{\mathrm{spec}},g_0$ 频域带限并取 Nyquist 步长时可消去别名；后者作为离散测度保持精确或按加权计数函数 $N_A$ 给出显式截断误差（$\mathcal E_{\mathrm{orb}}(T)$，与 $\Delta,M$ 无耦合）。**有限阶** EM 纪律确保"**极点=主尺度**"与奇性保持；连续谱以 Herglotz 密度与酉对称给出非负与相位一致性。该结果为核与窗的优化、谱能量分配与数值基准提供逻辑闭合的支架，并与 S15–S17 无缝对齐。
