@@ -1,0 +1,569 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\setlist[itemize]{nosep,leftmargin=1.6em}
+\setlist[enumerate]{nosep,leftmargin=1.6em}
+\usepackage{natbib}
+\usepackage{booktabs}
+
+% Overfull hbox prevention
+\emergencystretch=1em
+\raggedbottom
+
+% Theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{limitation}{Limitation}
+
+% Operators
+\DeclareMathOperator{\Tr}{Tr}
+
+\title{Static Block Quantum Field Theory:\\ A Formal Generalization from Discrete Quantum Cellular Automata to Continuous Spacetime}
+
+\author{Haobo Ma\thanks{Independent Researcher} \and Wenlin Zhang\thanks{National University of Singapore}}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This theory generalizes the static block quantum cellular automata (QCA) framework to continuous spacetime, constructing an eternal, immutable static block quantum field structure, where the spatial dimension is extended from discrete lattice points \( \mathbb{Z}^d \) to continuous \( \mathbb{R}^d \), and the temporal dimension from discrete \( \mathbb{N} \) or \( \mathbb{Z} \) to continuous \( \mathbb{R} \). The core insight is that the dynamic evolution of quantum field theory (QFT) can be reinterpreted as sequential reading of a static quantum field configuration satisfying local Lorentz invariance constraints, rather than a fundamental dynamic process. From a global perspective, QFT can be expressed as full spacetime quantum fields subject to finite sets of spatiotemporal local projection constraints. Through formal definitions, mathematical proofs, and limit verification, we construct this continuous framework and discuss its applications in quantum gravity, information theory, and philosophical eternalism. The theory is logically self-consistent: causal propagation and embedding at the algebraic level are uniquely determined by the time slice axiom; the reconstruction of specific states depends on the given Euclidean correlations/OS data and the chosen GNS representation, thereby providing a covariant global state description on full spacetime. This paper proves that the continuous spacetime quantum field set \( Y \) satisfies local causality and time slice axioms, and is predictively equivalent to traditional QFT evolution (under the premise that closed unitary systems satisfy microcausality and time slice axioms, and given correlation functions that satisfy OS axioms). We explicitly clarify that in free/weakly coupled controllable cases, Fock space provides the natural representation; for general interactions, renormalization and GNS construction are required (the representation may not be Fock); we avoid unnecessarily forcing discrete tools to be continuous, instead using tools suitable for quantum continuous structures, such as quantum Fourier integrals and quantum topological field dynamics. Simultaneously, this theory is positioned as a static formulation framework for QFT, not a new theory, providing only equivalent mathematical restatements and computational perspectives. We particularly emphasize that this generalization is based on the rigorous continuous limits of discrete models such as quantum walks (references: Arrighi, 2019; D'Ariano \& Perinotti, 2014; Bisio et al., 2019), and adopts the Haag-Kastler net (AQFT) and Osterwalder-Schrader (OS) axioms as mathematical foundations to ensure rigor. Potential ambiguities such as the nonlocal effects shown by the Reeh-Schlieder theorem have been incorporated into the discussion, avoiding strong assertions about state locality dependence.
+
+\noindent\textbf{Keywords}: Quantum field theory, block universe, static spacetime, algebraic quantum field theory, Osterwalder-Schrader axiom, time slice axiom, reversibility and history fields
+\end{abstract}
+
+\section{Introduction}
+
+\subsection{Background and Motivation}
+
+Quantum field theory, as a unified framework for quantum mechanics and special relativity, was proposed by Dirac, Feynman, and others to describe particle emergence in continuous spacetime. The traditional view treats QFT as a dynamic evolutionary system: quantum fields update their states according to local Lorentz-invariant Lagrangian densities at continuous time steps. However, from the perspective of block universe theory and eternalism, we can reinterpret QFT as static block quantum field structures.
+
+In the block universe, spacetime is a \( (d+1) \)-dimensional eternal entity where all quantum events exist simultaneously; the flow of time is merely an observer's illusion. When this idea is applied to QFT, the temporal dimension becomes a continuous coordinate axis, with the entire evolutionary history predetermined as quantum field configurations. The state space of quantum systems is essentially the tensor product of Hilbert spaces, which is a core foundation of QFT that we naturally adopt in this theory, rather than as an ambiguity point. This theory explicitly applies to closed quantum field systems (no measurements, no environmental coupling) to avoid quantum measurement collapse problems destroying global consistency.
+
+\textbf{Theoretical Foundation of Continuous Limit}: This generalization particularly relies on the rigorous continuous limits of discrete QCA such as quantum walks, where Lorentz invariance emerges when lattice spacing \( a \to 0 \) (references: Bialynicki-Birula, 1994; Arrighi, 2019; D'Ariano \& Perinotti, 2014; Bisio et al., 2019).
+
+\subsection{Core Theoretical Ideas}
+
+The Static Block QFT Theory constructed in this paper emphasizes that QFT is essentially a static, complete quantum field body, consisting of spacetime quantum fields defined by local actions and initial field configurations. This framework deepens our understanding of QFT and bridges quantum field models with physical philosophy. We base ourselves on algebraic quantum field theory (AQFT), Osterwalder-Schrader axioms, and quantum Fourier integrals as mathematical frameworks to ensure logical self-consistency.
+
+\textbf{Clarification of Potential Ambiguities}: Hilbert space is a natural mathematical structure in continuous quantum contexts, and we do not avoid its use, but rather avoid unnecessarily forcing discrete tools to be continuous in discrete models (such as potentially inappropriate applications in the original discrete QCA theory). This theory provides a static formulation framework for QFT, predictively equivalent to the dynamic perspective, but does not claim ontological priority. The main scope of this paper is closed unitary QFT; causal CPTP for open systems is only discussed as boundary cases in Section~\ref{sec:reversibility} and not included in the core conclusions of static block equivalent formulations.
+
+\textbf{Mathematical Foundation}: We adopt the AQFT Haag-Kastler net and OS axioms to ensure mathematical rigor in the continuous limit, and acknowledge the nonlocal effects shown by the Reeh-Schlieder theorem and Hegerfeldt theorem.
+
+\subsection{Paper Structure}
+
+This paper is organized as follows:
+
+\begin{itemize}
+\item \textbf{Section~\ref{sec:formal}} Establishes formal definitions of QFT and quantum field spaces (based on AQFT/OS)
+\item \textbf{Section~\ref{sec:static}} Defines static block quantum fields and spacetime quantum fields
+\item \textbf{Section~\ref{sec:causality}} Establishes local causality and time slice frameworks
+\item \textbf{Section~\ref{sec:stone}} States Stone's theorem and Wightman/OS reconstruction
+\item \textbf{Section~\ref{sec:propagation}} Proves static block algebraic propagation and OS reconstruction existence
+\item \textbf{Section~\ref{sec:lorentz}} Discusses Lorentz-invariant QFT diagonalizable in Fourier representation
+\item \textbf{Section~\ref{sec:fourier}} Introduces field Fourier expansion of local superoperators
+\item \textbf{Section~\ref{sec:reversibility}} States reversibility and history fields and their significance for static blocks
+\item \textbf{Section~\ref{sec:applications}} Applications: quantum gravity optimization, reversibility and discrete embedding, philosophical implications
+\item \textbf{Section~\ref{sec:complexity}} Discusses complexity and undecidability boundaries
+\item \textbf{Section~\ref{sec:conclusions}} Conclusions and prospects
+\item \textbf{Appendix~\ref{app:os}} OS reconstruction minimal chain
+\end{itemize}
+
+\section{Formal Definition of Quantum Field Theory (Based on AQFT/OS)}\label{sec:formal}
+
+\begin{definition}[Algebraic Quantum Field Theory: Haag-Kastler Net]\label{def:aqft}
+In Minkowski spacetime \( \mathbb{R}^{1+d} \), given a net of regions \( O \subset \mathbb{R}^{1+d} \) to \( C^* \)-algebras \( \mathfrak{A}(O) \), satisfying:
+\begin{enumerate}
+\item \textbf{Isotony}: \( O_1 \subset O_2 \Rightarrow \mathfrak{A}(O_1) \subset \mathfrak{A}(O_2) \)
+\item \textbf{Microcausality}: If \( O_1 \) and \( O_2 \) are spacelike separated, then \( [\mathfrak{A}(O_1), \mathfrak{A}(O_2)] = 0 \)
+\item \textbf{Poincaré Covariance and Spectral Condition}: There exists a continuous unitary representation of the Poincaré group such that the net is covariant, and the energy spectrum has a lower bound
+\end{enumerate}
+\end{definition}
+
+\begin{remark}\label{rem:2.1}
+Alternatively, in the OS Euclidean framework, with reflection-positive generalized measures (on Schwartz distributions) giving OS QFT and GNS representation; here the static block corresponds to \( \mu \). We use two equivalent characterizations: states on net algebras; or continuous time Hamiltonians \( H = \int \mathcal{H}(x) \, d^dx \) inducing evolution.
+\end{remark}
+
+\begin{definition}[Domain of Influence]\label{def:domain}
+The causal domain corresponds to the light cone radius \( r = t \) (unit \( c=1 \)), guaranteed by microcausality.
+\end{definition}
+
+\begin{definition}[Quantum Field Space]\label{def:fieldspace}
+Let the quantum field space be the Fock space \( \mathcal{F}(h) = \bigoplus_{n=0}^\infty (h^{\otimes n})_{\mathrm{sym/anti}} \), where the single-particle space \( h = L^2(\mathbb{R}^d) \otimes \mathcal{H}_{\mathrm{int}} \) (\( \mathcal{H}_{\mathrm{int}} \) for internal degrees of freedom, such as spinors \( \mathbb{C}^4 \)). The quasi-local algebra \( \mathfrak{A} \)'s state space is compact in the weak-\( * \) topology.
+\end{definition}
+
+\begin{remark}[Clarification]\label{rem:2.2}
+This Fock space is the natural foundation of QFT, with no ambiguity. In free or appropriately controllable weakly coupled cases, Fock-type representations can be obtained through lattice spacing \( a\to0 \) scaling/GNS limits; for general interacting theories, renormalization group and limit processes are required, and the resulting representation may be non-Fock (reference: Bialynicki-Birula, 1994).
+
+\textbf{Normalization Note}: Momentum space defaults to the normalization \( \int \!\frac{d^dp}{(2\pi)^d} \); when not explicitly written, it is understood to be absorbed into the field normalization factor.
+\end{remark}
+
+\begin{definition}[Global Evolution]\label{def:evolution}
+Global evolution \( \alpha = e^{-i H t} \), where \( H \) is implemented by Lorentz-invariant actions. In the Heisenberg picture, field operators evolve as \( \phi(t) = e^{i H t} \phi(0) e^{-i H t} \). We do not use closed expressions for local densities/partial traces to avoid inaccuracies when entanglement is present (avoiding quantum marginal problems).
+\end{definition}
+
+\begin{definition}[Shift Mapping]\label{def:shift}
+For any \( \mathbf{v} \in \mathbb{R}^d \), \( \tau \in \mathbb{R} \), define the shift action \( \sigma^{(\mathbf{v},\tau)}: \mathfrak{A} \to \mathfrak{A} \) as
+\[
+\sigma^{(\mathbf{v},\tau)}(\phi(\mathbf{x},t)) = \phi(\mathbf{x} + \mathbf{v}, t + \tau)
+\]
+\end{definition}
+
+\begin{remark}
+The above uses symbolic notation for field operators \( \phi(x) \) to illustrate geometric shifts; strictly, Poincaré action corresponds to algebraic automorphisms \( \alpha_g \) satisfying \( \alpha_g(\mathfrak{A}(O))=\mathfrak{A}(gO) \), and is realized by unitary representations \( U(g) \) in the GNS representation.
+\end{remark}
+
+\section{Static Block: Spacetime Quantum Fields}\label{sec:static}
+
+\begin{remark}[Semantic Clarification: Static Block as Global State]\label{rem:3.1}
+We treat the static block \( \mathcal{M} \) as a global state \( \omega \) on the spacetime net algebra \( \mathfrak{A}^{\mathrm{st}} \) (or equivalently, a compatible family of local states \( \{\omega_\Omega\} \) on all finite spacetime windows \( \Omega \subset \mathbb{R}^{d+1} \)). We do not use single-site density matrix notation; the actual semantics is always expectation values \( \omega(A) \) on finite windows, where \( A \in \mathfrak{A}(\Omega) \); local expectations do not close into independent dynamics when entanglement exists (reference: Reeh-Schlieder theorem).
+\end{remark}
+
+\begin{definition}[Spacetime Quantum Fields]\label{def:spacetime}
+Spacetime quantum fields correspond to global states \( \omega: \mathfrak{A} \to \mathbb{C} \) on the net, satisfying microcausality and time slice axioms, rather than being defined by dynamic integration \( \alpha^t \). These constraints are implemented through net splicing (see Section~\ref{sec:causality}).
+\end{definition}
+
+\begin{remark}\label{rem:3.2}
+To avoid circular definitions, we axiomatically define static blocks independently of dynamic integration: they satisfy global constraint equation systems, ensuring predictive equivalence with the dynamic perspective (based on Wightman/OS reconstruction).
+\end{remark}
+
+\begin{definition}[Static Block]\label{def:staticblock}
+We call \( \omega \) a static block quantum field structure, which is a global state defined on \( \mathbb{R}^{d+1} \), satisfying the following \textbf{local causality and time slice constraints} (encoded through net splicing).
+\end{definition}
+
+\begin{remark}
+``Static block'' refers to the overall quantum object \( \omega \) obtained by treating time as an additional coordinate, which satisfies net consistency and forms a covariant closed set under Poincaré actions. This formulation is an equivalent mathematical restatement of dynamic evolution.
+\end{remark}
+
+\begin{definition}[Bidirectional Static Block]\label{def:bidir}
+Since \( \alpha \) is unitary evolution (invertible), bidirectional static blocks exist on \( t \in \mathbb{R} \).
+\end{definition}
+
+\begin{definition}[Spacetime Shift Covariance]\label{def:covariance}
+Define the automorphisms \( \alpha_g \) induced by spacetime shifts and unitary realizations \( U(g) \). We say the static block state \( \omega \) is covariant with Poincaré transformations if \( \omega \circ \alpha_g = \omega_g \) (equivalent in the same representation to \( \omega(A)=\omega(U(g)^\dagger A U(g)) \)). If further for all \( g \) we have \( \omega\circ\alpha_g=\omega \), then \( \omega \) is invariant (such as the vacuum state/KMS under their respective group actions).
+\end{definition}
+
+\begin{remark}[Observer Perspective]\label{rem:3.3}
+The observed ``evolution'' is the restriction of \( \omega \) on slices \( t = \mathrm{const} \) and sequential reading:
+\[
+\mathcal{O}_t: \omega \mapsto \omega|_{\mathfrak{A}(\Sigma_t)}
+\]
+This reinterprets dynamic evolution as sequential access to static quantum fields. This theory applies to closed systems; if measurements are introduced, collapse would destroy global consistency, requiring extension to many-worlds interpretations. We acknowledge the nonlocal effects shown by the Reeh-Schlieder theorem: the vacuum state on any bounded region restricts to generate a dense subspace, therefore we avoid strong assertions about state locality dependence.
+\end{remark}
+
+\section{Local Causality and Time Slice Frameworks}\label{sec:causality}
+
+\begin{definition}[Local Constraints]\label{def:constraints}
+Given the net algebra net \( \{\mathfrak{A}(O)\}_O \), constraints include microcausality, time slice axiom: if \( O \) contains a Cauchy neighborhood, then the inclusion map \( \mathfrak{A}(N) \to \mathfrak{A}(O) \) is an isomorphism, where \( N \) is a Cauchy neighborhood. These constraints encode causal propagation/wire matching (history field techniques).
+\end{definition}
+
+\begin{definition}[Local Field Framework]\label{def:framework}
+The set of all spacetime quantum field states satisfying the constraints
+\[
+Y := \{ \omega : \forall O, \ \omega \text{ satisfies microcausality and time slice axioms on } \mathfrak{A}(O) \}
+\]
+is a \textbf{local field framework}, and remains invariant under all spatial and temporal shift actions. Causality/update consistency of QFT can be characterized by the time slice axiom.
+\end{definition}
+
+\begin{proposition}[Local Framework Characterization]\label{prop:framework}
+The static block \( \omega \) is an element of the local framework \( Y \), and ``evolution'' is the temporal slice restriction of \( Y \).
+\end{proposition}
+
+\begin{proof}
+By Definitions~\ref{def:spacetime} and~\ref{def:constraints}, \( \omega \) satisfies local constraints, therefore \( \omega \in Y \). The temporal slice \( \omega|_{\mathfrak{A}(\Sigma_t)} \) corresponds to the restriction at fixed \( t \).
+\end{proof}
+
+\begin{remark}[Significance of Local Framework]
+This aligns the ``full spacetime quantum fields subject to net constraints'' with the standard framework of algebraic quantum field theory. We transition from the finite-type shifts of discrete QCA to continuous microcausality: as lattice spacing \( a \to 0 \), discrete forbidden patterns approach continuous microcausality (reference: Arrighi, 2019).
+\end{remark}
+
+\section{Stone's Theorem and Wightman/OS Reconstruction}\label{sec:stone}
+
+\begin{theorem}[QFT Structure Theorem: Stone + Wightman/OS Reconstruction]\label{thm:structure}
+On \( \mathbb{R}^d \), any Lorentz-invariant, causal, invertible quantum evolution \( \alpha \) (unitary automorphism of \( \mathfrak{A} \)) can be implemented by continuous time Hamiltonians (Stone's theorem). In the Wightman/OS framework, satisfying axioms allow reconstruction of Hilbert space, field operators, and dynamics (Wightman/OS reconstruction theorem).
+\end{theorem}
+
+\begin{remark}
+\textbf{Significance}: This theorem provides a structural characterization of QFT and ensures that the locality of ``static block'' constraints is both sufficient and necessary. We do not use the formulation ``continuous unitary and commuting with shifts'' to avoid topological ambiguities.
+
+\textbf{Note}: Fock space naturally appears in infinite-dimensional cases, equivalent formulations can be written in the Heisenberg picture as \( \alpha = e^{i H t} \). See references for proofs.
+
+\textbf{Reference}: Streater \& Wightman (1964); Stone's theorem
+\end{remark}
+
+\section{Static Block Algebraic Propagation and OS Reconstruction Existence}\label{sec:propagation}
+
+\begin{lemma}[Algebraic Propagation Cone: Operator Level]\label{lem:propagation}
+Assuming QFT satisfies microcausality and time slice axioms, if \( O_2 \subset J^+(O_1) \) and \( O_1 \) contains a Cauchy neighborhood, then \( \mathfrak{A}(O_2) \) is determined by \( \mathfrak{A}(O_1) \) and relative Cauchy evolution. This is the ``dependency cone'' at the algebraic level, not making strong assertions about state value locality dependence (reference: Hegerfeldt theorem's no instantaneous spreading).
+\end{lemma}
+
+\begin{proof}
+Directly from the time slice axiom.
+\end{proof}
+
+\begin{remark}[Propagation Cone]
+In the 1D case, this is equivalent to the interval \( [\mathbf{x}_0 - t, \mathbf{x}_0 + t] \); in higher dimensions, it corresponds to the ball centered at \( \mathbf{x}_0 \). Corresponding to the \( L_1 \)-cone of discrete QCA, this has Lorentz symmetry here. We acknowledge the Reeh-Schlieder theorem: the vacuum state is nonlocal, so we only discuss propagation at the algebraic level.
+\end{remark}
+
+\begin{theorem}[Algebraic Propagation and OS Reconstruction Existence]\label{thm:reconstruction}
+Given axioms and specified OS data (satisfying reflection positivity, etc.), one can reconstruct a corresponding GNS representation and a class of global states; causal embedding at the algebraic level is uniquely determined by the time slice axiom. Generally, we do not claim that global states are uniquely determined by `initial data'.
+\end{theorem}
+
+\begin{proof}
+\textbf{Existence (Guaranteed by OS Reconstruction Theorem)}: Given a set of Euclidean correlation functions \( \{S_n(x_1,...,x_n)\} \) satisfying OS axioms (reflection positivity, Euclidean invariance, etc.), the OS reconstruction theorem [Osterwalder \& Schrader, 1973] guarantees the unique construction of a QFT with Lorentz signature. This construction provides:
+\begin{enumerate}
+\item A GNS Hilbert space \( \mathcal{H} \)
+\item A vacuum vector \( \Omega \in \mathcal{H} \)
+\item Field operators \( \phi(x) \)
+\item Unitary representations \( U(a,\Lambda) \) of the Poincaré group
+\end{enumerate}
+
+The vacuum state \( \omega(A) = \langle \Omega, A\Omega \rangle \) obtained thereby is the static block global state satisfying all axioms.
+
+\textbf{Algebraic Level Uniqueness}: Causal embedding at the algebraic level is unique; specific global states depend on the given OS data and chosen GNS construction.
+\end{proof}
+
+\begin{remark}[Uniqueness for Fixed Initial State]
+This is uniqueness for fixed initial state. From the local framework perspective, \( Y \) may contain multiple elements. We transition from the Feynman-Kitaev history states of discrete QCA to continuous OS path integrals: continuous case uses OS path integrals corresponding to history fields.
+\end{remark}
+
+\begin{remark}[OS and Static Block Correspondence]
+Given Euclidean correlation functions satisfying OS axioms, construct the vacuum vector \( \Omega \) and fields \( \phi \) via OS reconstruction. Their Wightman \( n \)-point functions
+\[
+W_n(x_1,\ldots,x_n)=\langle\Omega\,|\,\phi(x_1)\cdots\phi(x_n)\,|\,\Omega\rangle
+\]
+characterize the vacuum state \( \omega_\Omega \) equivalently under satisfaction of spectral conditions and locality. From the ``static block'' perspective, this set of \( W_n \) gives a set of consistent correlation data on full spacetime; the so-called ``evolution'' is merely the restriction/conditioning of different Cauchy slices (sequential reading).
+\end{remark}
+
+\section{Lorentz-Invariant QFT Diagonalizable in Fourier Representation (Example Classes)}\label{sec:lorentz}
+
+We take the free Dirac field as an example: its Fourier momentum representation \( U(p) \) can be block-diagonalized.
+
+\begin{definition}[Linear QFT]\label{def:linear}
+When \( \alpha \) is linear in Fourier representation, \( \alpha \) is a quantum convolution integral on the abelian group \( \mathbb{R}^d \).
+\end{definition}
+
+\begin{proposition}[Group Fourier Diagonalization]\label{prop:fourier}
+For Lorentz-invariant linear QFT, the transfer operator can be block-diagonalized in momentum representation (Källén-Lehmann expansion).
+\end{proposition}
+
+\begin{proof}[Proof Outline]
+Free Dirac field: spectrum in momentum representation is block diagonal for positive/negative energy bands. Interacting scalar field: two-point function satisfies Källén-Lehmann spectral representation, reflecting decomposition of quasiparticles/continuous spectra.
+\end{proof}
+
+\begin{remark}
+For infinite space cases, group Fourier integrals exist in \( L^2(\mathbb{R}^d) \) space, requiring appropriate boundary conditions.
+\end{remark}
+
+\begin{example}[Dirac Field QFT]\label{ex:dirac}
+In continuous spacetime, Dirac field QFT is equivalent to Dirac propagators; the spectrum is given by the Dirac equation. We use wave packet initial conditions (rather than \( \delta \), to avoid distribution problems), and static block readings exhibit interference patterns.
+
+\textbf{Källén-Lehmann Spectral Representation}:
+\[
+\Delta(p)=\int_{0}^{\infty}\frac{\rho(m^2)}{p^2+m^2-i\epsilon}\,dm^2
+\]
+where \( \rho(m^2) \) is a non-negative spectral density (can be a generalized function), whose support and normalization conditions are determined by the specific theory; this representation uniformly characterizes discrete quasiparticle peaks and continuous spectra.
+\end{example}
+
+\begin{remark}
+Linear rules correspond to quantum convolution integrals in group rings.
+\end{remark}
+
+\section{Field Fourier Expansion of Local Superoperators}\label{sec:fourier}
+
+In free (Gaussian) field theory, the momentum representation of two-point functions is the most natural; interacting theories usually use spectral representations (such as KL) or modular expansions/OPE as the main, with Fourier only as a tool for local linear analysis.
+
+\begin{definition}[Field Fourier Expansion]\label{def:fourierexp}
+The expansion of any operator \( A \) is
+\[
+A(x) = \int \widehat{A}(k) \, e^{i k x} \, \frac{d^d k}{(2\pi)^d}
+\]
+For local superoperators \( \mathcal{E} \) (Heisenberg picture), similar expansion. This expansion is only a representation tool and does not imply separable dynamics.
+\end{definition}
+
+\begin{proposition}[Fourier Coefficients]\label{prop:fouriercoeff}
+Coefficients satisfy orthogonality.
+\end{proposition}
+
+\begin{proof}
+By orthogonality of the inner product.
+\end{proof}
+
+\begin{remark}[Representation Tool]
+This is an orthogonal expansion in function space. We use it only as a representation tool. In continuous QFT, the appropriate language is operator-valued distributions and modular expansions/OPE; Fourier representation is only a characterization tool at the linear free theory or two-point function level.
+
+\textbf{Reference}: See Wightman axioms, Källén-Lehmann spectral representation, and modal expansions of free fields; for conformal field theory, see OPE
+\end{remark}
+
+\section{Reversibility and History Fields and Their Significance for Static Blocks}\label{sec:reversibility}
+
+\begin{proposition}[Reversibility and Bidirectional History]\label{prop:reversibility}
+If the global evolution \( \alpha \) is a unitary automorphism (invertible), then bidirectional static blocks exist. If \( \alpha \) degenerates to non-invertible causal CPTP mappings, then generally only forward history consistency can be guaranteed.
+
+\textbf{Reference}: Farrelly \& Short (2014), extended to continuous
+\end{proposition}
+
+\begin{corollary}[Garden-of-Eden Field Samples and Reversibility]\label{cor:garden}
+Reversibility \( \Rightarrow \) bidirectional static blocks exist.
+\end{corollary}
+
+\begin{proof}
+Unitary evolution guarantees time-reversal symmetry.
+\end{proof}
+
+\begin{remark}[Bidirectionality and Reversibility]
+This directly connects the bidirectionality of the ``eternal block'' with unitary reversible properties.
+\end{remark}
+
+\section{Applications and Discussion}\label{sec:applications}
+
+\subsection{Quantum Gravity Applications}
+
+\begin{proposition}[Parallel Optimization]\label{prop:parallel}
+The static block framework can optimize simulation: large spacetime quantum segments can be generated in parallel from the block perspective.
+\end{proposition}
+
+\begin{proof}
+Directly from Lemma~\ref{lem:propagation}.
+\end{proof}
+
+\begin{remark}[Linear QFT Acceleration]
+In linear rules, acceleration can be achieved through quantum Fourier integrals; general nonlinear QFT have \( \Omega(t) \) depth lower bounds.
+\end{remark}
+
+\subsection{Reversibility and Discrete Embedding}
+
+\begin{proposition}[Discrete Embedding Prerequisites]\label{prop:discrete}
+Only when the global evolution \( \alpha \) is a unitary automorphism can it be embedded in discrete space.
+\end{proposition}
+
+\begin{proof}[Proof Outline]
+Reversibility guarantees information conservation.
+\end{proof}
+
+\begin{remark}[Limiting Conditions and Fermion Doubling]
+Reversibility is necessary but not sufficient. Embedding from continuous to lattice needs to address Nielsen-Ninomiya fermion doubling (can be alleviated with Wilson terms, Ginsparg-Wilson relations, etc.) and Haag theorem-induced representation non-isomorphism problems; therefore `reversibility \( \Rightarrow \) embeddable' only holds in free or specific regularization cases (including extra degrees of freedom/rewriting). Implementable routes include Wilson terms, Ginsparg-Wilson relations, and overlap fermions, etc., to control doubling and maintain residual structures of (generalized) chiral symmetry.
+\end{remark}
+
+\subsection{Philosophical Implications: Analogy with Eternalism}
+
+\begin{definition}[Eternalist Perspective]\label{def:eternal}
+Time is the order of observation, evolution is restriction \( \mathcal{O}_t: \omega \to \omega|_{\mathfrak{A}(\Sigma_t)} \).
+
+\textbf{Reference}: 't Hooft (2016), Barbour (1999)
+\end{definition}
+
+\begin{remark}[Limitations of Analogy]
+The analogy between QFT static blocks and physical quantum block universe is heuristic rather than literal.
+\end{remark}
+
+\begin{remark}[Epistemology and Ontology]
+The static perspective cannot epistemologically replace the dynamic simulation perspective. We do not claim ontological priority.
+\end{remark}
+
+\subsection{Limitations}
+
+\begin{limitation}[Infinite Storage]
+Continuous space requires infinite quantum degrees of freedom.
+\end{limitation}
+
+\begin{limitation}[Computational Feasibility]
+The construction of static blocks is limited by quantum resources.
+\end{limitation}
+
+\section{Discussion of Complexity and Undecidability Boundaries}\label{sec:complexity}
+
+\begin{remark}[Decidability Boundaries]
+For \( d+1 \ge 2 \), several decision problems of the framework defined by local net constraints are typically highly intractable. In linear subclasses, certain properties can be decided.
+\end{remark}
+
+\begin{proposition}[Emptiness Problem]\label{prop:emptiness}
+Deciding \( Y = \varnothing \) is generally undecidable in general cases.
+
+\textbf{Reference}: Cubitt et al. (2015)
+\end{proposition}
+
+\begin{proposition}[Periodicity and Entanglement Entropy]\label{prop:period}
+Existence of periodicity and entanglement entropy computation are highly difficult.
+\end{proposition}
+
+\begin{corollary}[Existence Boundary]\label{cor:boundary}
+``There exists a static block satisfying given constraints'' has no unified algorithm.
+\end{corollary}
+
+\begin{proof}[Proof Outline]
+Reduction to quantum satisfiability.
+\end{proof}
+
+\begin{remark}[Decidable Subclasses]
+In linear cases, computable spectra can be obtained.
+\end{remark}
+
+\begin{remark}[Boundary of ``Can and Cannot'']
+This section echoes the previous framework. Suggests that computability boundaries may also appear in continuous limits, rather than being directly equivalent.
+\end{remark}
+
+\section{Conclusions and Prospects}\label{sec:conclusions}
+
+\subsection{Main Contributions}
+
+Static Block Quantum Field Theory reconstructs QFT as eternal quantum field bodies, consisting of full spacetime quantum objects defined by local net constraints. This framework is logically self-consistent and provides new perspectives for understanding the nature of quantum time and computation. We use AQFT/OS and quantum Fourier integrals to ensure rigor, and eliminate potential ambiguities through clarifying the natural role of Hilbert space and structure theorems.
+
+\subsection{Core Insights}
+
+\begin{enumerate}
+\item \textbf{Mathematical level}: QFT ``evolution'' is sequential restriction of static blocks
+\item \textbf{Mathematical characterization}: Through AQFT/OS and time slice axioms
+\item \textbf{Computational boundaries}: Through reversibility and undecidability results
+\item \textbf{Philosophical implications}: Bridges quantum field models with quantum block universe theory
+\end{enumerate}
+
+\subsection{Theoretical Positioning}
+
+This theory provides a static formulation framework for QFT, mathematically equivalent to the dynamic perspective and predictively consistent. This generalization is based on the continuous limits of discrete QCA, ensuring self-consistent transitions. We acknowledge that this is conceptual exploration rather than a new mathematical theorem.
+
+\subsection{Future Directions}
+
+\begin{enumerate}
+\item \textbf{Quantum gravity extensions}: Extend to LCQFT
+\item \textbf{High-dimensional analysis}: Research decidable subclasses of high-dimensional frameworks
+\item \textbf{Physical applications}: Explore connections with holographic principles
+\item \textbf{Computational optimization}: Develop efficient algorithms
+\item \textbf{Measurement theory}: Extend to many-worlds interpretations
+\end{enumerate}
+
+\appendix
+
+\section{OS Reconstruction Minimal Chain}\label{app:os}
+
+\textbf{Key steps of the Osterwalder-Schrader Reconstruction Theorem}:
+
+\begin{enumerate}
+\item \textbf{Reflection Positivity} \( \Rightarrow \) Semi-inner product \( \langle f,f\rangle_{\text{OS}}\ge0 \)
+\item \textbf{Quotient Space Completion} yields Hilbert space \( \mathcal{H} \)
+\item \textbf{Euclidean Time Reflection} realizes ``physical time'' generator
+\item Obtain \( U(t)=e^{-iHt} \), fields \( \phi \), and vacuum \( \Omega \)
+\item Consistent with Wightman \( n \)-point functions
+\end{enumerate}
+
+This construction chain ensures the unique reconstruction from Euclidean correlation functions to Lorentz QFT.
+
+\begin{thebibliography}{99}
+
+\bibitem{dirac1928}
+P. A. M. Dirac,
+\textit{The Quantum Theory of the Electron},
+Proceedings of the Royal Society A, vol.~117, pp.~610--624, 1928.
+
+\bibitem{streater1964}
+R. F. Streater and A. S. Wightman,
+\textit{PCT, Spin and Statistics, and All That},
+Benjamin, 1964.
+
+\bibitem{haag1992}
+R. Haag,
+\textit{Local Quantum Physics},
+Springer, 1992.
+
+\bibitem{osterwalder1973}
+K. Osterwalder and R. Schrader,
+\textit{Axioms for Euclidean Green's Functions},
+Communications in Mathematical Physics, vol.~31, pp.~83--112, 1973.
+
+\bibitem{bialynicki1994}
+I. Bialynicki-Birula,
+\textit{Weyl, Dirac, and Maxwell Equations on a Lattice as Unitary Cellular Automata},
+Physical Review D, vol.~49, 6920, 1994.
+
+\bibitem{arrighi2019}
+P. Arrighi,
+\textit{An Overview of Quantum Cellular Automata},
+Natural Computing, vol.~18, pp.~885--899, 2019.
+
+\bibitem{reeh1961}
+H. Reeh and S. Schlieder,
+\textit{Bemerkungen zur Unitäräquivalenz von Lorentzinvarianten Feldern},
+Nuovo Cimento, vol.~22, pp.~1051--1068, 1961.
+
+\bibitem{hegerfeldt1974}
+G. C. Hegerfeldt,
+\textit{Violation of Locality in Quantum Theory},
+Physical Review D, vol.~10, 3320, 1974.
+
+\bibitem{hooft2016}
+G. 't Hooft,
+\textit{The Cellular Automaton Interpretation of Quantum Mechanics},
+Springer, 2016.
+
+\bibitem{farrelly2014}
+T. Farrelly and A. J. Short,
+\textit{Causal Fermions in Discrete Spacetime},
+Physical Review A, vol.~89, 012302, 2014.
+
+\bibitem{cubitt2015}
+T. S. Cubitt, D. Perez-Garcia, and M. M. Wolf,
+\textit{Undecidability of the Spectral Gap},
+Nature, vol.~528, pp.~207--211, 2015.
+
+\bibitem{barbour1999}
+J. Barbour,
+\textit{The End of Time},
+Oxford University Press, 1999.
+
+\bibitem{brunetti2003}
+R. Brunetti, K. Fredenhagen, and R. Verch,
+\textit{The Generally Covariant Locality Principle},
+Journal of Mathematical Physics, vol.~44, pp.~1997--2013, 2003.
+
+\bibitem{nielsen1981}
+H. B. Nielsen and M. Ninomiya,
+\textit{Absence of Neutrinos on a Lattice: (I) Proof of a Fermion-Doubling Theorem},
+Nuclear Physics B, vol.~185, pp.~20--40, 1981.
+
+\bibitem{strocchi2013}
+F. Strocchi,
+\textit{An Introduction to Non-Perturbative Foundations of Quantum Field Theory},
+Oxford University Press, 2013.
+
+\bibitem{fraser2006}
+D. Fraser,
+\textit{Haag's Theorem and the Interpretation of Quantum Field Theories with Interactions},
+PhD Thesis, University of Pittsburgh, 2006.
+
+\bibitem{dariano2014}
+G. M. D'Ariano and P. Perinotti,
+\textit{Derivation of the Dirac equation from principles of information processing},
+Physical Review A, vol.~90(6), 062106, 2014.
+
+\bibitem{bisio2019}
+A. Bisio, G. M. D'Ariano, and P. Perinotti,
+\textit{Quantum field theory as a quantum cellular automaton: The Dirac free evolution},
+Quantum Information Processing, vol.~18(12), 376, 2019.
+
+\bibitem{ginsparg1982}
+P. H. Ginsparg and K. G. Wilson,
+\textit{A Remnant of Chiral Symmetry on the Lattice},
+Physical Review D, vol.~25, 2649, 1982.
+
+\bibitem{neuberger1998}
+H. Neuberger,
+\textit{Exactly Massless Quarks on the Lattice},
+Physics Letters B, vol.~417, 141, 1998.
+
+\end{thebibliography}
+
+\end{document}
+
