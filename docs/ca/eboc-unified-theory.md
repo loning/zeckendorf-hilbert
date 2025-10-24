@@ -79,7 +79,7 @@ $$
 \langle\tau^\star, \tau\rangle=b\ge 1,
 $$
 以保证**跨叶的单调推进**。
-* **逐叶读取**：采用块码 $\pi:\Sigma^B\to\Gamma$，按叶层 $c\mapsto c+b$ 逐叶推进，对相应窗口应用 $\pi$ 产出可见序列。
+* **逐叶读取**：采用块码 $\pi:\Sigma^B\to\Gamma$，按叶层 $c\mapsto c+b$ 逐叶推进，对相应窗口应用 $\pi$ 产出可见序列。$\pi$ 的核窗 $B$ 在时间方向的厚度为有限常数，与步长 $b$ 无需相等；只要有限即可由一次读取得到一个可见字母。
 * **叶计数与时间片长方体族**：对时间片长方体族窗口 $W=R\times[t_0, t_0+T-1]$（$R\subset\mathbb{Z}^d$），定义 $L(W)=T$ 为时间厚度（穿越的叶层数）。在步长 $b$ 的协议下，**观察步数**为 $\lfloor L(W)/b\rfloor$；边界效应 $O(1)$ 对熵/复杂度密度极限无影响。此类窗口族与时间子作用 $\sigma_{\mathrm{time}}$ 的一维Følner理论相容。
 * **时间子作用记号**：记 $\sigma_{\mathrm{time}}$ 为 $X_f$ 沿时间坐标的**一维子作用**，$\sigma_\Omega$ 为 $\Omega(F)$ 的时间移位。
 
@@ -115,12 +115,24 @@ t_+=\max\Big\{t:(\mathbf r,t)\in W\Big\},\quad
 T=t_+-t_-+1.
 $$
 * 底层 $\mathrm{base}(W)=\Big\{(\mathbf r,t_-)\in W\Big\}$。
-* **底层过去因果输入边界（标准坐标）**
+
+* **逐层依赖域（一般窗口）**：对任意窗口 $W\subset\mathbb{Z}^{d+1}$，记 $s$ 层的空间投影为
 $$
-\partial_{\downarrow}^{(r,T)}W^-\ :=\ \Big\{(\mathbf r+\mathbf n,\ t_--1)\ :\ (\mathbf r,t_-)\in\mathrm{base}(W),\ \mathbf n\in[-rT,\,rT]^d\cap\mathbb{Z}^d\Big\}.
+\mathrm{Proj}_s(W):=\Big\{\mathbf r\in\mathbb{Z}^d:\ (\mathbf r,s)\in W\Big\}.
 $$
+定义逐层过去因果依赖域为
+$$
+\Delta_{\mathrm{dep}}^-(W)\ :=\ \Big(\ \bigcup_{s=t_-}^{t_+}\big(\mathrm{Proj}_s(W)+[-r(s-t_-+1),\,r(s-t_-+1)]^d\big)\ \Big)\times\{t_--1\}.
+$$
+这覆盖了 $x|_W$ 的全部因果依赖。对可描述窗口族，有 $K(\Delta_{\mathrm{dep}}^-(W))=O(K(W)+\log|W|)$。
+
+* **时间片长方体特例**：当 $W=R\times[t_-,t_+]$ 为时间片长方体时，
+$$
+\Delta_{\mathrm{dep}}^-(W)=\big(R+[-rT,\,rT]^d\big)\times\{t_--1\}=:\partial_{\downarrow}^{(r,T)}W^-.
+$$
+
 约定：本节及后续 T4 中的 $T$ 皆指穿越的时间层数（与 §2.4 的 $L(W)$ 一致）。
-非标准叶情形先用 $U^{-1}$ 回到标准坐标后取像。
+非标准叶情形先用 $U^{-1}$ 回到标准坐标后取像。本文一律按固定的规范编码记 $K(W)$，其中包含可能的坐标切换描述。
 
 ### 2.7 永恒图的坐标相对化（Anchored Chart）
 
@@ -134,7 +146,7 @@ $$
 $$
 X_f^{(v,\tau)}:=\Big\{x\in X_f:\ x\big|_{\varphi_{v_0}(\mathrm{Ball}_G(v,R_0))}=\mathrm{pat}(v)\ \text{且}\ x\ \text{在}\ \varphi_{v_0}\!\big(\mathrm{Cone}^+_\ell(v)\big)\ \text{上为该锚的一致扩张}\Big\},
 $$
-其中"一致扩张"指：在该锥内所有由 $v$ 与局部规则强制得到的单元与 $x$ 匹配。此处"**强制**"指：仅凭锚 $v$ 在所给锥域内经**有限步局部约束闭包**后**唯一决定**的格点取值；SBU 仅要求与这些唯一定值匹配。
+其中"一致扩张"指：在该锥内所有由 $v$ 与局部规则强制得到的单元与 $x$ 匹配。此处"**强制**"指：仅凭锚 $v$ 在所给锥域内经**有限步局部约束闭包**后**唯一决定**的格点取值；SBU 仅要求与这些唯一定值匹配。"有限步闭包"可实现为半径单调扩张的迭代过程；若某单元在有限迭代步内仍未唯一确定，则不计入强制域。
 
 ### 2.8 永恒图—SFT 的双表述（工作准则）
 
@@ -178,18 +190,22 @@ $\square$
 
 **引理 5.2（可描述窗口族）.** 对 $d+1$ 维轴对齐平行多面体或以 $O(\log |W|)$ 个参数描述的规则窗口，有 $K(W)=O(\log|W|)$。$\square$
 
-**引理 5.3（厚边界覆盖性）.** 半径 $r=\max_{\mathbf n\in N}|\mathbf n|_\infty$ 与时间跨度 $T$ 下，计算 $x|_W$ 仅需 $\mathrm{base}(W)$ 的前一层在 $[-rT,\,rT]^d$ 的过去输入；即 $\partial_{\downarrow}^{(r,T)}W^-$ 覆盖所有依赖（**传播半径以 $|\cdot|_\infty$ 计**）。$\square$
+**引理 5.3（因果依赖域覆盖性）.** 对任意窗口 $W\subset\mathbb{Z}^{d+1}$，半径 $r=\max_{\mathbf n\in N}|\mathbf n|_\infty$ 与时间跨度 $T$ 下，$\Delta_{\mathrm{dep}}^-(W)$（见 §2.6）覆盖计算 $x|_W$ 的全部因果依赖（**传播半径以 $|\cdot|_\infty$ 计**）。对时间片长方体 $W=R\times[t_-,t_+]$，该域退化为 $\partial_{\downarrow}^{(r,T)}W^-$。$\square$
 
 **引理 5.4（因子熵不增）.** 若 $\phi:(X,T)\to(Y,S)$ 为因子，则 $h_\mu(T)\ge h_{\phi_\ast\mu}(S)$。$\square$
 
-**引理 5.5（时间子作用版 SMB/Brudno）.** 对**$\sigma_{\mathrm{time}}$-不变且遍历**的 $\mu$ 与**时间片长方体族** $W_k = R \times [t_k, t_k+T_k-1]$，其中 $T_k\to\infty$，且 **$R\subset\mathbb{Z}^d$ 为固定的有限集合**。记 $L(W_k)=T_k$（时间厚度），有
+**引理 5.5（时间子作用版 SMB/Brudno）.** 对**$\sigma_{\mathrm{time}}$-不变且遍历**的 $\mu$ 与**时间片长方体族** $W_k = R \times [t_k, t_k+T_k-1]$，其中 $T_k\to\infty$，且 **$R\subset\mathbb{Z}^d$ 为固定的有限集合**。
+
+**编码约定.** 以下将 $x|_{W_k}=x|_{R\times[t_k,t_k+T_k-1]}$ 按时间推进顺序串接为长度 $T_k$ 的字母表 $\Sigma^R$ 序列，采用固定可逆的规范编码；由此二维块与序列的相互变换仅带来 $O(\log T_k)$ 的描述开销，不影响密度极限。
+
+记 $L(W_k)=T_k$（时间厚度），有
 $$
 -\frac1{T_k}\log \mu\big([x|_{W_k}]\big)\ \to\ h_\mu(\sigma_{\mathrm{time}},\alpha_R)\quad (\mu\text{-a.e.}),\qquad
 \limsup_{k\to\infty}\frac{K(x|_{W_k})}{T_k}\ =\ h_\mu(\sigma_{\mathrm{time}},\alpha_R)\quad (\mu\text{-a.e.}).
 $$
 此为针对时间子作用 $\sigma_{\mathrm{time}}$ 或等价地 $(\Omega(F),\sigma_\Omega)$ 的一维SMB/Brudno定理。**窗口形状必须为时间片长方体族**（或满足等价"时间均匀切片"条件），以保证柱集 $[x|_{W_k}]$ 由时间子作用的一维生成划分迭代生成，从而归一化与作用匹配。若采用一般 $W_k$，仅能保证以 $|W_k|$ 归一化时极限为 $\mathbb{Z}^{d+1}$ 作用熵 $h_\mu^{(d+1)}$，或在附加均匀切片/密度假设下再得时间熵极限。$\square$
-此外，对于固定有限 $R$，上述极限等于 $h_\mu(\sigma_{\mathrm{time}},\alpha_R)$；取 $\sup_R$ 恢复 $h_\mu(\sigma_{\mathrm{time}})$。若改用 $|R_k|\to\infty$ 且生成的截面族（从而对应生成分割），则极限直接等于完整的 $h_\mu(\sigma_{\mathrm{time}})$（此情形为补充说明，不在本引理的固定 $R$ 前提内）。
-【注】仅当 $\alpha_R$ 为时间子作用的**生成分割**（例如采用 $R_k\uparrow$ 的生成截面族）时，极限才等于完整的 $h_\mu(\sigma_{\mathrm{time}})$；固定有限 $R$ 时极限为 $h_\mu(\sigma_{\mathrm{time}},\alpha_R)$。
+此外，对于固定有限 $R$，上述极限等于 $h_\mu(\sigma_{\mathrm{time}},\alpha_R)$；取 $\sup_R$ 恢复 $h_\mu(\sigma_{\mathrm{time}})$。若改用空间增长截面族 $R_k\uparrow\mathbb{Z}^d$ 且 $\bigvee_{i\in\mathbb{Z}}\sigma_{\mathrm{time}}^i\alpha_{R_k}$ 生成整个 $\sigma$-代数（从而对应生成分割），则极限直接等于完整的 $h_\mu(\sigma_{\mathrm{time}})$（此情形为补充说明，不在本引理的固定 $R$ 前提内）。
+【注】仅当采用空间增长截面族 $R_k\uparrow\mathbb{Z}^d$，使得 $\bigvee_{i\in\mathbb{Z}}\sigma_{\mathrm{time}}^i\alpha_{R_k}$ 生成整个 $\sigma$-代数（或等价地对生成分割取上确界）时，极限才等于完整的 $h_\mu(\sigma_{\mathrm{time}})$；固定有限 $R$ 时，极限为相对熵 $h_\mu(\sigma_{\mathrm{time}},\alpha_R)$。
 
 ---
 
@@ -208,17 +224,27 @@ $$
 
 ---
 
-### T2（Unimodular 协变性；复杂度密度不变）
+### T2（Unimodular 协变性；复杂度密度的坐标对齐表达）
 
-**命题.** 对任意移位不变遍历测度 $\mu$ 与两组可接受叶（由 $U_1,U_2\in\mathrm{GL}_{d+1}(\mathbb Z)$ 给出），令 $\tilde W_k=U_2U_1^{-1}(W_k)$。**假设**：（i）$\{W_k\}$ 与 $\{\tilde W_k\}$ 皆为时间片长方体Følner族，且空间截面 $R\subset\mathbb{Z}^d$ 为**固定有限集合**且不随 $k$ 变化；（ii）两组叶族分别由原始整协向量–时间向量对 $(\tau_i^\star,\tau_i)$ 给出，配对常数 $b_i=\langle\tau_i^\star,\tau_i\rangle\ge1$ 为与 $k$ **无关的常数**；（iii）存在由 $(U,\tau_1^\star,\tau_1,\tau_2^\star,\tau_2)$ 决定且与 $k$ 无关的常数 $c_-,c_+>0$，使得 $c_-L(W_k)\le L(\tilde W_k)\le c_+L(W_k)$。则对 $\mu$-a.e. 的 $x$，
+**命题.** 对任意移位不变遍历测度 $\mu$ 与两组可接受叶（由 $U_1,U_2\in\mathrm{GL}_{d+1}(\mathbb Z)$ 给出），令 $\tilde W_k=U_2U_1^{-1}(W_k)$。**假设**：（i）$\{W_k\}$ 与 $\{\tilde W_k\}$ 分别为各自时间方向上的时间片长方体Følner族：$W_k=R\times[t_k,t_k+T_k-1]$、$\tilde W_k=\tilde R\times[\tilde t_k,\tilde t_k+\tilde T_k-1]$，其中 $R,\tilde R$ 各自为**固定有限集合**且均不随 $k$ 变化；（ii）两组叶族分别由原始整协向量–时间向量对 $(\tau_i^\star,\tau_i)$ 给出，配对常数 $b_i=\langle\tau_i^\star,\tau_i\rangle\ge1$ 为与 $k$ **无关的常数**；（iii）存在由 $(U,\tau_1^\star,\tau_1,\tau_2^\star,\tau_2)$ 决定且与 $k$ 无关的常数 $c_-,c_+>0$，使得 $c_-L(W_k)\le L(\tilde W_k)\le c_+L(W_k)$。
+
+**假设说明.** 上述假设等价于：两组整变换分别将标准时间轴 $e_{d+1}$ 送至各自的时间方向 $\tau_i$，并选取与之对齐的切片坐标，使像集仍为与各自 $\tau_i$ 对齐的时间片长方体。
+
+则对 $\mu$-a.e. 的 $x$，
 $$
 \limsup_{k\to\infty}\frac{K(\pi(x|_{W_k}))}{L(W_k)}
 = h_{\pi_\ast\mu}\big(\sigma_{\mathrm{time}},\alpha_R^\pi\big),\qquad
 \limsup_{k\to\infty}\frac{K(\pi(x|_{\tilde W_k}))}{L(\tilde W_k)}
-= h_{\pi_\ast\mu}\big(\sigma_{\mathrm{time}},\tilde\alpha_R^\pi\big).
+= h_{\pi_\ast\mu}\big(\sigma_{\mathrm{time}},\alpha_{\tilde R}^\pi\big).
 $$
 
-**证明.** 整同构 $U=U_2U_1^{-1}$ 保持 Følner 性质：$\{W_k\}$ 为 Følner 族则 $\{\tilde W_k\}$ 亦然，且 $|\tilde W_k|=|W_k|$（整行列式 $\pm1$；此处 $\tilde W_k$ 指格点像集 $U(W_k)$，即使形状非轴对齐，格点数仍相等）。由假设（iii），叶计数（时间厚度）按常数倍缩放，该界由线性映射对叶法向量的作用与固定截面 $R$ 的有界几何畸变给出。分别对两窗族将引理 5.5 应用于因子系统，得到相对于各自观察分割的时间熵极限：$h_{\pi_\ast\mu}(\sigma_{\mathrm{time}},\alpha_R^\pi)$ 与 $h_{\pi_\ast\mu}(\sigma_{\mathrm{time}},\tilde\alpha_R^\pi)$。若两观察方案由沿时间子作用的**有限记忆可逆块码**互为同构，则两者等价并给出相同熵率；在此条件下坐标选择不改变极限值。$\square$
+**证明.** 整同构 $U=U_2U_1^{-1}$ 保持 Følner 性质：$\{W_k\}$ 为 Følner 族则 $\{\tilde W_k\}$ 亦然，且 $|\tilde W_k|=|W_k|$（整行列式 $\pm1$；此处 $\tilde W_k$ 指格点像集 $U(W_k)$，即使形状非轴对齐，格点数仍相等）。由假设（iii），叶计数（时间厚度）按常数倍缩放，该界由线性映射对叶法向量的作用与固定截面 $R,\tilde R$ 的有界几何畸变给出。
+
+**（技术澄清）** 应用引理 5.5 时，我们分别在由 $U_1$、$U_2$ 确定的切片坐标中判断"时间片长方体"形状；在统一的标准坐标下，$U(W_k)$ 通常为倾斜多面体，但这不影响在各自坐标中使用引理 5.5 的正确性。
+
+分别对两窗族将引理 5.5 应用于因子系统，得到相对于各自观察分割的时间熵极限：$h_{\pi_\ast\mu}(\sigma_{\mathrm{time}},\alpha_R^\pi)$ 与 $h_{\pi_\ast\mu}(\sigma_{\mathrm{time}},\alpha_{\tilde R}^\pi)$。若两观察方案由沿时间子作用的**有限记忆可逆块码**互为同构，则两者等价并给出相同熵率；在此条件下坐标选择不改变极限值。
+
+**附注.** 若 $U$ 不使像集保持时间片长方体，可改以与 $\tau_2$ 对齐的新坐标系重写 $\tilde W_k=\tilde R\times[\tilde t_k,\tilde t_k+\tilde T_k-1]$，从而可对 $\tilde W_k$ 直接应用引理 5.5；结论依然遵循引理 5.5 的窗口前提（改用对齐坐标）。$\square$
 
 ---
 
@@ -231,14 +257,14 @@ $$
 ### T4（信息上界：条件复杂度版）
 
 $$
-\boxed{ K\Big(\ \pi(x|_{W})\ \Big|\ x\big|_{\partial_{\downarrow}^{(r,T)} W^-}\Big)\ \le\ K(f)+K(W)+K(\pi)+O(\log |W|) }.
+\boxed{ K\Big(\ \pi(x|_{W})\ \Big|\ x\big|_{\Delta_{\mathrm{dep}}^-(W)}\Big)\ \le\ K(f)+K(W)+K(\pi)+O(\log |W|) }.
 $$
-其中 $T$ 为穿越的时间层数（与 §2.4 的 $L(W)$ 一致；见 §2.6 约定）。
-【前提说明】以下上界在 §2.2 的**单步时间依赖**前提下成立；若规则对过去 $m>1$ 层有依赖，则将过去因果输入边界改为 $\{t_- -1,\dots,t_- -m\}$ 的对应厚边界，并把 $rT$ 替换为 $r\,(T+m-1)$，其余推理不变。
+其中 $\Delta_{\mathrm{dep}}^-(W)$ 为逐层因果依赖域（见 §2.6）。对时间片长方体 $W=R\times[t_-,t_+]$，该域退化为 $\partial_{\downarrow}^{(r,T)}W^-$。
+【前提说明】以下上界在 §2.2 的**单步时间依赖**前提下成立；若规则对过去 $m>1$ 层有依赖，则将逐层依赖域相应扩展为前 $m$ 层的联合，并调整传播半径，其余推理不变。
 
 **证明.** 构造通用程序 $\mathsf{Dec}$：
 
-1. **输入**：$f$ 的编码、窗口 $W$ 的编码（含 $(t_-,T)$ 与几何参数）、$\pi$ 的编码，以及条件串 $x|_{\partial_{\downarrow}^{(r,T)}W^-}$。
+1. **输入**：$f$ 的编码、窗口 $W$ 的编码（含 $(t_-,T)$ 与几何参数）、$\pi$ 的编码，以及条件串 $x|_{\Delta_{\mathrm{dep}}^-(W)}$。
 2. **递推**：自 $t_-$ 层起按时间子作用逐层生成。对任一 $(\mathbf r,s)\in W$，以
 $$
 x(\mathbf r,s)=f\big(x(\mathbf r+N,s-1)\big)
@@ -246,20 +272,20 @@ $$
 计算之；所需右端由前一层已生成或来自条件边界（引理 5.3）。**按 $s=t_-,t_-+1,\dots,t_+$ 逐层生成**，避免依赖循环。对每个层 $s$，**先在传播锥内生成 $W$ 的前向闭包所需的全部单元（允许临时产生 $W$ 之外但位于 $[-r(s-t_-)$, $r(s-t_-)]^d \times \{s\}$ 内的值），最终再限制到 $W$**。
 3. **译码**：按协议在 $W$ 内应用 $\pi$ 得 $\pi(x|_W)$。
 
-程序体积为常数，输入长度为 $K(f)+K(W)+K(\pi)+O(\log|W|)$（$\log|W|$ 为层深/对齐成本）。由前缀复杂度定义即得上界。$\square$
+程序体积为常数，输入长度为 $K(f)+K(W)+K(\pi)+O(\log|W|)$（$\log|W|$ 为层深/对齐成本）。若需坐标切换/整仿射 $U$，其描述长度并入 $K(W)$ 或常数项，整体仍为 $K(f)+K(W)+K(\pi)+O(\log|W|)$。由前缀复杂度定义即得上界。$\square$
 
 ---
 
 ### T5（Brudno 对齐与因子熵）
 
-**命题.** 对**固定有限的空间截面 $R$** 与**时间片长方体族** $\{W_k = R \times [t_k, t_k+T_k-1]\}$（其中 $T_k\to\infty$，且满足引理5.5的窗口前提），以时间厚度 $L(W_k)=T_k$ 归一化：
+**命题.** 对**固定有限的空间截面 $R$** 与**时间片长方体族** $\{W_k = R \times [t_k, t_k+T_k-1]\}$（其中 $T_k\to\infty$，且满足引理5.5的窗口前提），采用引理 5.5 的编码约定（将二维块按时间推进顺序串接为序列），以时间厚度 $L(W_k)=T_k$ 归一化：
 $$
 \limsup_{k\to\infty}\frac{K(x|_{W_k})}{T_k}\ =\ h_\mu(\sigma_{\mathrm{time}},\alpha_R),\qquad
 \limsup_{k\to\infty}\frac{K(\pi(x|_{W_k}))}{T_k}\ =\ h_{\pi_\ast\mu}(\sigma_{\mathrm{time}},\alpha_R^\pi)\ \le\ h_\mu(\sigma_{\mathrm{time}}).
 $$
-**注**：固定有限 $R$ 情形；仅当 $\alpha_R$ 为**生成分割**（或采用 $|R_k|\to\infty$ 的增长截面族）时，极限等于完整 $h_\mu(\sigma_{\mathrm{time}})$。
+**注**：固定有限 $R$ 情形，上述等式指向相对熵 $h_\mu(\sigma_{\mathrm{time}},\alpha_R)$。仅当采用空间增长截面族 $R_k\uparrow\mathbb{Z}^d$，使得 $\bigvee_{i\in\mathbb{Z}}\sigma_{\mathrm{time}}^i\alpha_{R_k}$ 生成整个 $\sigma$-代数（或等价地对生成分割取上确界）时，极限才等于完整的 $h_\mu(\sigma_{\mathrm{time}})$。
 
-**证明.** 由引理 5.5（时间子作用版SMB/Brudno，窗口族形状与归一化匹配），第一条的 limsup 等式成立。对因子像，$\pi$ 为可计算变换且因子熵不增（引理 5.4），故第二条的 limsup 等式成立且不超过 $h_\mu(\sigma_{\mathrm{time}})$。此外，对因子系统 $\big(\pi(X_f),\sigma_{\mathrm{time}},\pi_\ast\mu\big)$ 应用引理 5.5（同一窗口前提），得 $(\pi_\ast\mu)$-a.e. 的 limsup 值为 $h_{\pi_\ast\mu}(\sigma_{\mathrm{time}},\alpha_R^\pi)$；由 $\mu(\pi^{-1}A)=\pi_\ast\mu(A)$ 可知上述 limsup 等式对 $\mu$-a.e. 的 $x$ 亦成立。若选用生成分割（或采用 $|R_k|\to\infty$ 的增长截面族），则右侧可直接写作 $h_{\pi_\ast\mu}(\sigma_{\mathrm{time}})$。$\square$
+**证明.** 由引理 5.5（时间子作用版SMB/Brudno，窗口族形状与归一化匹配），第一条的 limsup 等式成立。对因子像，$\pi$ 为可计算变换且因子熵不增（引理 5.4），故第二条的 limsup 等式成立且不超过 $h_\mu(\sigma_{\mathrm{time}})$。此外，对因子系统 $\big(\pi(X_f),\sigma_{\mathrm{time}},\pi_\ast\mu\big)$ 应用引理 5.5（同一窗口前提），得 $(\pi_\ast\mu)$-a.e. 的 limsup 值为 $h_{\pi_\ast\mu}(\sigma_{\mathrm{time}},\alpha_R^\pi)$；由 $\mu(\pi^{-1}A)=\pi_\ast\mu(A)$ 可知上述 limsup 等式对 $\mu$-a.e. 的 $x$ 亦成立。若采用空间增长截面族 $R_k\uparrow\mathbb{Z}^d$ 形成生成分割，则右侧可逼近完整的 $h_{\pi_\ast\mu}(\sigma_{\mathrm{time}})$。$\square$
 
 ---
 
@@ -291,9 +317,9 @@ $$
 
 ### T9（停机见证的静态化）
 
-**命题.** 在 T6 的相容嵌入方案下（即对应扩展 SFT 非空），$M$ 停机当且仅当存在 $x^{\mathrm{ext}}\in X_f^{\mathrm{ext}}$ 与有限窗口 $W$，使得可见图案 $\pi\big(x^{\mathrm{ext}}\big|_W\big)$ 包含"终止标记" $\square$；反之亦然。
+**命题.** 在 T6 的**相容且无伪解**的嵌入方案下（即对应扩展 SFT 非空且嵌入约束完备无伪解），$M$ 停机当且仅当存在 $x^{\mathrm{ext}}\in X_f^{\mathrm{ext}}$ 与有限窗口 $W$，使得可见图案 $\pi\big(x^{\mathrm{ext}}\big|_W\big)$ 包含"终止标记" $\square$；反之亦然。
 
-**证明.** "若"向：若 $M$ 在步 $\hat t$ 停机，则宏块中央的译码输出出现 $\square$，形成有限可见图案。"唯若"向：若可见层出现 $\square$，由局部一致性回溯至停机转移；构造保证 $\square$ 非他因产生。上述等价均以嵌入方案全局相容（扩展 SFT 非空）为前提。$\square$
+**证明.** "若"向：若 $M$ 在步 $\hat t$ 停机，则宏块中央的译码输出出现 $\square$，形成有限可见图案。"唯若"向：若可见层出现 $\square$，由无伪解可知 $\square$ 仅由停机转移产生；由局部一致性回溯至停机转移。上述等价均以嵌入方案全局相容（扩展 SFT 非空）且无伪解为前提。$\square$
 
 ---
 
@@ -301,7 +327,7 @@ $$
 
 **命题.** 若窗口族满足 $K(W_k)=O(\log|W_k|)$，则任意整变换 $U\in\mathrm{GL}_{d+1}(\mathbb{Z})$ 下，T4 上界与 T3 语义保持；变换后窗口的窗口描述复杂度差 $O(\log|W_k|)$，不涉及数据复杂度 $K(x|_{W_k})$ 或 $K(\pi(x|_{W_k}))$ 的逐样本上界。
 
-**证明.** 由引理 5.1–5.2，窗口描述复杂度 $K(W)$ 为生成窗口几何参数的最短程序长度。整变换 $U$ 与平移的编码仅增加 $O(1)$ 常数；厚边界 $\partial_{\downarrow}^{(r,T)}W^-$ 在 $U$ 下的有界畸变吸收进 $O(\log|W_k|)$。由 T2 的测度论版本，数据复杂度密度在归一化后与坐标无关。$\square$
+**证明.** 由引理 5.1–5.2，窗口描述复杂度 $K(W)$ 为生成窗口几何参数的最短程序长度。整变换 $U$ 与平移的编码仅增加 $O(1)$ 常数；厚边界 $\partial_{\downarrow}^{(r,T)}W^-$ 在 $U$ 下的有界畸变吸收进 $O(\log|W_k|)$。由 T2 可知：在各自与时间方向对齐的时间片长方体族与相应观测分割下，归一化复杂度密度分别等于对应的相对熵；仅当两观察方案由沿时间的有限记忆可逆块码互为同构时，二者数值相同；否则一般不同。$\square$
 
 ---
 
@@ -326,7 +352,7 @@ $$
 
 ### T13（叶-语言的 $\omega$-自动机刻画；sofic 化充分条件）
 
-**命题.** 若（i）采用路径版 $(Y_G,\sigma)$ 或存在 $k$ 使 $X_f$ 在时间子作用上可经高阶块表示 $X_f^{[k]}$ 令跨叶一致性仅依赖相邻 $k$ 层（时间方向可马尔可夫化）；且（ii）译码器 $\pi:\Sigma^B\to\Gamma$ 的核窗 $B$ 具有有限跨叶厚度，则 $\mathsf{Lang}_{\pi,\varsigma}(X_f)$ 为 sofic（因而 $\omega$-正则），可由某 Büchi 自动机 $\mathcal A$ 接受：
+**命题.** 若（i）采用路径版 $(Y_G,\sigma)$ 或存在 $k$ 使 $X_f$ 在时间子作用上可经高阶块表示 $X_f^{[k]}$ 令跨叶一致性仅依赖相邻 $k$ 层（时间方向可马尔可夫化）；且（ii）译码器 $\pi:\Sigma^B\to\Gamma$ 的核窗 $B$ 具有有限跨叶厚度（见 §2.4，$B$ 在时间方向的厚度为有限常数），则 $\mathsf{Lang}_{\pi,\varsigma}(X_f)$ 为 sofic（因而 $\omega$-正则），可由某 Büchi 自动机 $\mathcal A$ 接受：
 $$
 \mathsf{Lang}_{\pi,\varsigma}(X_f)=L_\omega(\mathcal A).
 $$
@@ -361,23 +387,23 @@ $$
 
 ### T17（多锚观察者与主观时间率）
 
-**命题.** 有效步长 $b=\langle\tau^\star,\tau\rangle\ge 1$ 反映章节节拍；不同 $b$ 仅改变读取节奏，在时间片长方体Følner族且空间截面固定或一致有界的前提下，以时间厚度 $L(W_k)=T_k$ 归一化的熵率一致。
+**命题.** 有效步长 $b=\langle\tau^\star,\tau\rangle\ge 1$ 反映章节节拍。对时间片长方体Følner族且固定有限空间截面 $R$，以时间厚度 $L(W_k)=T_k$ 归一化的熵率为
+$$
+h_{\pi_\ast\mu}\!\Big(\sigma_{\mathrm{time}},\ \bigvee_{i=0}^{b-1}\sigma_{\mathrm{time}}^{-i}\alpha_R^\pi\Big),
+$$
+因而依赖 $b$ 并随 $b$ 非递减。若采用空间增长截面族 $R_k\uparrow\mathbb{Z}^d$ 形成生成分割，则该值可逼近完整的 $h_{\pi_\ast\mu}(\sigma_{\mathrm{time}})$，在此意义下与 $b$ 的选择无关（见下述证明）。
 
-**证明.** 时间子作用改为 $\sigma_{\mathrm{time}}^{(b)}$ 等效于对 $\mathbb{Z}$ 子作用"抽样"（$\sigma_\Omega^b$）。测度熵满足（相对于所选分割的版本亦成立）
+**证明.** 时间子作用改为 $\sigma_{\mathrm{time}}^b$ 等效于对 $\mathbb{Z}$ 子作用"抽样"（$\sigma_\Omega^b$）。对时间片长方体 $W$，**观察步数**为 $\lfloor L(W)/b\rfloor$（见 §2.4），而归一化采用**时间厚度** $L(W)=T$。因而对固定有限截面 $R$，
 $$
-h_\mu(\sigma_\Omega^b)\ =\ b\cdot h_\mu(\sigma_\Omega).
+\frac{K\big(\pi(x|_W)\big)}{L(W)}\ \sim\ \frac{\lfloor L(W)/b\rfloor}{L(W)}\cdot h_{\pi_\ast\mu}\big(\sigma_{\mathrm{time}}^{b},\alpha_R^\pi\big)
+\ =\ \frac1b\cdot h_{\pi_\ast\mu}\!\Big(\sigma_{\mathrm{time}}^{b},\alpha_R^\pi\Big)
+\ =\ h_{\pi_\ast\mu}\!\Big(\sigma_{\mathrm{time}},\ \bigvee_{i=0}^{b-1}\sigma_{\mathrm{time}}^{-i}\alpha_R^\pi\Big).
 $$
-对时间片长方体 $W$，**观察步数**为 $\lfloor L(W)/b\rfloor$（见 §2.4），而归一化采用**时间厚度** $L(W)=T$。因而
-$$
-\frac{K\big(\pi(x|_W)\big)}{L(W)}\ \sim\ \frac{\lfloor L(W)/b\rfloor}{L(W)}\cdot h_{\pi_\ast\mu}\big(\sigma_{\mathrm{time}}^{b}\big)\ =\ \frac1b\cdot b\,h_{\pi_\ast\mu}(\sigma_{\mathrm{time}})\ =\ h_{\pi_\ast\mu}(\sigma_{\mathrm{time}}),
-$$
-其中 $h_{\pi_\ast\mu}(\sigma_{\mathrm{time}}^{b})=b\,h_{\pi_\ast\mu}(\sigma_{\mathrm{time}})$。**若使用固定有限截面 $R$，则应写作**
-$$
-h_{\pi_\ast\mu}(\sigma_{\mathrm{time}}^{b},\alpha_R^\pi)=b\,h_{\pi_\ast\mu}\!\Big(\sigma_{\mathrm{time}},\ \bigvee_{i=0}^{b-1}\sigma_{\mathrm{time}}^{-i}\alpha_R^\pi\Big),
-$$
-**并且仅当**上述联结分割生成（或存在沿时间的有限记忆可逆块码同构）**时**，才可写作 $b\,h_{\pi_\ast\mu}(\sigma_{\mathrm{time}},\alpha_R^\pi)$。观察步数计数 $\lfloor L(W)/b\rfloor$ 的 $1/b$ 因子与 $b$ 正好抵消，归一化后熵率不依赖于 $b$ 的选择。由引理 5.5，对 $\mu$-a.e. 的 $x$ 两族密度极限一致。
+该极限**依赖于步长 $b$**，且随 $b$ 非递减。此外，因 $b$ 增大时 $\bigvee_{i=0}^{b-1}\sigma_{\mathrm{time}}^{-i}\alpha_R^\pi$ 随 $b$ 单调增细，故 $h_{\pi_\ast\mu}\big(\sigma_{\mathrm{time}},\bigvee_{i=0}^{b-1}\sigma_{\mathrm{time}}^{-i}\alpha_R^\pi\big)$ 关于 $b$ 非递减。若改用空间增长截面族 $R_k\uparrow\mathbb{Z}^d$ 使 $\bigvee_{i\in\mathbb{Z}}\sigma_{\mathrm{time}}^i\alpha_{R_k}$ 生成整个 $\sigma$-代数（或等价地对生成分割取上确界），则上式的右端可逼近并上界于完整的 $h_{\pi_\ast\mu}(\sigma_{\mathrm{time}})$；在此意义下，当观察粒度与记忆足够丰富时，与 $b$ 的抵消可恢复到 $h_{\pi_\ast\mu}(\sigma_{\mathrm{time}})$ 的不变性。本文后续均在明确指明的分割/截面族语境下使用该等式，不再声称对固定有限 $R$ 的 $b$-不变性。
 
-**补充说明.** 上述抵消在**固定有限截面**并以**时间厚度 $L(W)$**归一化的情形下成立；若改用体素数归一化或非时间片长方体窗族，则对应的是 $h_\mu^{(d+1)}$ 而非时间熵（见 §2.5 与 §7.5 的注释）。$\square$
+由引理 5.5，对 $\mu$-a.e. 的 $x$ 两族密度极限一致。
+
+**补充说明.** 上述分析在以**时间厚度 $L(W)$**归一化的情形下成立；若改用体素数归一化或非时间片长方体窗族，则对应的是 $h_\mu^{(d+1)}$ 而非时间熵（见 §2.5 与 §7.5 的注释）。$\square$
 
 ---
 
@@ -422,7 +448,7 @@ $$
 $$
 K\big((F^T x)|_{W_k}\big)\ \le\ K\big(x|_{W_k^{+rT}}\big)+O(\log|W_k|).
 $$
-Følner 性给出 $|W_k^{+rT}|/|W_k|\to1$，取 $\limsup$ 得 $I(F^T x)\le I(x)$。因子译码不增信息（A3，或引理 5.1 的可计算变换），得 $I_\pi(F^T x)\le I(F^T x)$。合并即得结论。$\square$
+Følner 性给出 $|W_k^{+rT}|/|W_k|\to1$。此处用到了 Følner 族对常数厚度膨胀的稳定性（Minkowski 之厚边界/体积比→0）。取 $\limsup$ 得 $I(F^T x)\le I(x)$。因子译码不增信息（A3，或引理 5.1 的可计算变换），得 $I_\pi(F^T x)\le I(F^T x)$。合并即得结论。$\square$
 
 ---
 
@@ -527,7 +553,7 @@ $$
 
 **7.3 译码器设计**：选核窗 $B$、块码 $\pi:\Sigma^B\to\Gamma$；定义**按 $\ell$ 分层的逐叶读取**协议 $\varsigma$。
 
-**7.4 宏块-强制程序盒**：自相似平铺嵌入"状态-控制-带"并可译读（见 T6）。
+**7.4 宏块-强制程序盒**：自相似平铺嵌入"状态-控制-带"并可译读（见 T6）。本文在涉及停机见证的"当且仅当"结论处，均**默认采用无伪解的嵌入方案**；若仅有相容性（非空）而**未**验证无伪解，则结论退化为"停机 ⇒ 终止标记出现"。
 
 **7.5 压缩-熵实验（可复现）**
 $$
@@ -536,7 +562,7 @@ c_k=\mathrm{compress}(y_k),\quad
 r_k=\frac{\lvert c_k\rvert}{\lvert W_k\rvert},\quad
 \mathrm{plot}(r_k)\ \ (k=1,2,\ldots).
 $$
-**注**：此处用 $|W_k|$ 归一化便于实验操作；理论上对应时间子作用熵应改用时间厚度 $L(W_k)=T_k$ 归一化（见T5，需采用时间片长方体族）。为与 T5 的时间熵对齐，应保持 $R$ 固定并**同时报告 $|c_k|/T_k$（固定有限 $R$）**；若 $|R_k|$ 变化或采用一般 Følner 窗，则 $r_k$ 反映的是 $h_\mu^{(d+1)}$ 量级而非时间熵。
+**注**：此处用 $|W_k|$ 归一化便于实验操作；理论上对应时间子作用熵应改用时间厚度 $L(W_k)=T_k$ 归一化（见T5，需采用时间片长方体族）。**若对齐时间子作用熵，宜以** $|c_k|/T_k$ **为主报告**（保持 $R$ 固定有限），并将 $|c_k|/|W_k|$ 作为补充（对应 $h_\mu^{(d+1)}$ 量级）。若 $|R_k|$ 变化或采用一般 Følner 窗，则 $r_k$ 反映的是 $h_\mu^{(d+1)}$ 量级而非时间熵。
 
 **7.6 从事件节点构造 SBU（强制域传播）**
 **输入**：可实现 $v$、取向 $\tau$、容许误差 $\epsilon$。
@@ -593,7 +619,11 @@ $\pi$ 读出二维块为可见二进制串——"下一步"仅读出，不增信
 
 **层次分离**：**操作层**（观察/译码/逐叶推进/代表选择）与**本体层**（静态几何/唯一一致扩张）。
 **相容原则**：把 $X_f$ 视为**RPG 的完整数据与规则**；**逐叶推进**如按**既定章节节拍 $b$** 解锁剧情。玩家"选择"是在同层兼容分支中**选代表**并**排除**其它分支；**剧情本体**（静态块）早已写定，选择不生成新信息（A3），与决定论相容（T20）。
-**主观时间率**：有效步长 $b=\langle\tau^\star,\tau\rangle$ 体现"章节节拍"；Følner 归一化后熵率一致（T2/T5/T17）。
+**主观时间率**：有效步长 $b=\langle\tau^\star,\tau\rangle$ 体现"章节节拍"；对**固定有限 $R$**，以时间厚度归一化的熵率为
+$$
+h_{\pi_\ast\mu}\!\Big(\sigma_{\mathrm{time}},\ \bigvee_{i=0}^{b-1}\sigma_{\mathrm{time}}^{-i}\alpha_R^\pi\Big),
+$$
+因而**依赖 $b$** 并随 $b$ **非递减**（分割单调增细）。若采用**空间增长截面族** $R_k\uparrow\mathbb{Z}^d$ 使 $\bigvee_{i\in\mathbb{Z}}\sigma_{\mathrm{time}}^i\alpha_{R_k}$ 生成整个 $\sigma$-代数，则该值可逼近完整的 $h_{\pi_\ast\mu}(\sigma_{\mathrm{time}})$，在此意义下与 $b$ 的选择无关（见 T17）。
 
 ---
 
