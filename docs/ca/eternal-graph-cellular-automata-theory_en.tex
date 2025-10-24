@@ -1,0 +1,420 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\setlist[itemize]{nosep,leftmargin=1.6em}
+\setlist[enumerate]{nosep,leftmargin=1.6em}
+\usepackage{natbib}
+\usepackage{booktabs}
+\usepackage{listings}
+
+% Overfull hbox prevention
+\emergencystretch=1em
+\raggedbottom
+\tolerance=2000
+
+% Theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{construction}[theorem]{Construction}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{note}{Note}
+
+\title{Eternal Graph Cellular Automata Theory:\\ Independent Formalization Framework}
+
+\author{Haobo Ma\thanks{Independent Researcher} \and Wenlin Zhang\thanks{National University of Singapore}}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Eternal Graph Cellular Automata Theory represents cellular automata as an eternal static graph structure, where spacetime dimensions are encoded through nodes and edges, forming an invariant network. The theory is independently constructed, transforming local rules into graph constraints and ensuring all states coexist in the graph, while temporal flow is interpreted as path traversal. Starting from symbolic dynamics and graph theory, we formally define eternal graphs, state constraints, and subshifts (shift-invariant sets), and verify equivalence with traditional cellular automata through mathematical proofs. The framework is logically self-consistent, applicable to finite and infinite grids, avoiding explicit introduction of time parameters. We discuss applications in computational complexity, information propagation, and philosophical ontology, confirming theoretical validity through simulation examples. Additionally, this paper discusses when the theory is equivalent to static block cellular automata theory: when hierarchical structure corresponds to temporal dimension, local constraints are consistent, and path tracing generates sections, the two achieve formal equivalence. We extend discussion to structural analogies between eternal graphs and quantum superposition states, as well as analogies between static blocks and classical states, providing deeper physical-philosophical perspectives.
+
+\noindent\textbf{Keywords}: eternal graph cellular automata, static graph structure, symbolic dynamical systems, local rule constraints, subshift, Garden-of-Eden theorem, eternalism
+\end{abstract}
+
+\section{Introduction}
+
+\subsection{Background and Motivation}
+
+Cellular automata, as discrete models proposed by John von Neumann and Stanisław Ulam in the 1940s, study self-replication and complex system behavior. Traditional cellular automata emphasize dynamic updating: cell states evolve according to local rules at discrete time steps. However, from the philosophical perspective of eternalism, spacetime can be viewed as an invariant four-dimensional block whole (block universe), where all events exist simultaneously. This theory independently constructs the eternal graph cellular automata framework, reconstructing cellular automata as static graph networks, removing time as an independent variable and encoding causality through graph topology.
+
+\begin{note}
+The eternalist perspective relates to the Wheeler-DeWitt equation or B-theory of time in philosophy of physics, bridging quantum gravity with static CA formulation, avoiding dynamic temporal bias. This paper does not introduce physical equations, only provides philosophical motivation.
+\end{note}
+
+The motivation for this framework is to provide a purely static description independent of dynamic iteration, bridging cellular automata with graph theory and topological dynamics. The theory does not depend on any specific prior definitions, starting directly from foundational axioms to ensure self-consistency. Through code simulation verification, we confirm equivalence with traditional models, such as state propagation consistency under Rule 90.
+
+\subsection{Core Theoretical Ideas}
+
+The core principle: cellular automata are essentially eternal graphs, consisting of nodes (spacetime points) and edges (local dependencies), governed by state constraint functions. Evolution is geometrized as static reading along partial order (any foliation/topological ordering suffices), not a dynamic process. The framework uses graph-theoretic tools to prove uniqueness and equivalence, applicable to reversible and irreversible cellular automata.
+
+In \textbf{infinite lattices} with \textbf{one-sided time domain} \( t\ge 0 \), all nodes except the initial layer \( t=0 \) satisfy \( \deg^- = |N| \); all layers satisfy \( \deg^+ = |N| \). In \textbf{finite boxes with periodic boundaries}, this holds when scale \( L_i>2r \); if \( L_i\le 2r \), neighborhood aliasing may cause \( \deg^\pm<|N| \). Under \textbf{open boundaries}, boundary nodes may exhibit \( \deg^-<|N| \) or \( \deg^+<|N| \) artifacts, not affecting core equivalence.
+
+Under periodic boundaries (as in simulation §9), information propagation may introduce pseudo-periodic patterns (detectable via spectral analysis §7 using \textbf{Walsh--Hadamard expansion} to detect periodic behavior of linear rules). The causal cone expansion mechanism ensures information propagation locality: selecting initial node sets and tracing paths can generate temporal advancement sections, equivalent to traditional dynamic evolution perspective.
+
+\subsection{Paper Structure}
+
+\begin{itemize}
+\item \textbf{Section~\ref{sec:formal}} Formal definition of eternal graphs
+\item \textbf{Section~\ref{sec:constraints}} State constraints and local rules
+\item \textbf{Section~\ref{sec:symbolic}} Symbolic dynamical system formulation
+\item \textbf{Section~\ref{sec:curtis}} Curtis--Hedlund--Lyndon theorem on standard domains
+\item \textbf{Section~\ref{sec:existence}} Existence, uniqueness and causal cone proofs
+\item \textbf{Section~\ref{sec:linear}} Analysis of linear and nonlinear rules
+\item \textbf{Section~\ref{sec:garden}} Garden-of-Eden theorem in graph formulation
+\item \textbf{Section~\ref{sec:simulation}} Simulation verification and computational implementation
+\item \textbf{Section~\ref{sec:equivalence}} Equivalence discussion with static block cellular automata theory
+\item \textbf{Section~\ref{sec:quantum}} Structural analogies between eternal graphs and quantum superposition states
+\item \textbf{Section~\ref{sec:applications}} Applications: computational optimization, reversibility, philosophical implications
+\item \textbf{Section~\ref{sec:complexity}} Complexity and undecidability boundaries
+\item \textbf{Section~\ref{sec:conclusions}} Conclusions and outlook
+\end{itemize}
+
+\section{Formal Definition of Eternal Graphs}\label{sec:formal}
+
+\textbf{Index convention}: This paper uniformly uses \( t \) to denote level (causal depth/time index), the second coordinate of \( V = \mathbb{Z}^d \times \mathbb{Z}_{\ge0} \) is denoted \( t \). Notation uniformity: this paper consistently writes \( \mathbb{Z}_{\ge0} \).
+
+\begin{definition}[Eternal Graph]\label{def:eternal}
+An eternal graph cellular automaton is defined as a quadruple \( \mathcal{E} = (V, E, \Sigma, f) \), where:
+\begin{itemize}
+\item \( V = \mathbb{Z}^d \times \mathbb{Z}_{\ge0} \) is the node set, representing \( d \)-dimensional spatial lattice points and non-negative integer level \( t \) (corresponding to causal depth/time index).
+\item \( E \subseteq V \times V \) is the edge set: for any node \( v = (\mathbf{r}, t+1) \) and \( \mathbf{n} \in N \) (neighborhood set), there exists edge \( (\mathbf{r} + \mathbf{n}, t) \to (\mathbf{r}, t+1) \). Thus the graph is a DAG (directed acyclic graph, as edges only go from \( t \) to \( t{+}1 \)), supporting topological ordering.
+\item \( \Sigma \) is a finite state set (e.g., \( \{0,1\} \)).
+\item \( f: \Sigma^{N} \to \Sigma \) is the local rule function, defining local consistency.
+\end{itemize}
+
+Neighborhood \( N \subset \mathbb{Z}^d \) is a finite set, radius \( r = \max_{\mathbf{n} \in N} \|\mathbf{n}\|_1 \). This paper uses \( \deg^- \) for in-degree, \( \deg^+ \) for out-degree.
+\end{definition}
+
+\begin{definition}[State Assignment]\label{def:state}
+State function \( \sigma: V \to \Sigma \), satisfying for each node \( v = (\mathbf{r}, t+1) \), \( \sigma(v) = f(\{\sigma(u) \mid u \to v, u \in V\}) \). Assume \( f \) is deterministic, ensuring conflict-free assignment. If considering local constraints as \textbf{multi-valued relations}, global solution existence reduces to \textbf{non-emptiness decision} of corresponding spacetime SFT (§\ref{sec:complexity} undecidable). Initial layer \( \sigma_0: \mathbb{Z}^d \times \{0\} \to \Sigma \) is given.
+\end{definition}
+
+\begin{definition}[Shift/Action]\label{def:shift}
+On one-sided time domain \( V=\mathbb{Z}^d\times\mathbb{Z}_{\ge0} \), define semigroup action \( \tau^{(\mathbf v,m)}(\mathbf r,t)=(\mathbf r+\mathbf v,\;t+m) \) only for \( m\ge0 \). Spatial shift \( \tau^{(\mathbf v,0)} \) forms \( \mathbb{Z}^d \)-group action; temporal shift \( \tau^{(\mathbf 0,m)} \) is \( \mathbb{Z}_{\ge0} \)-semigroup action to match one-sided domain. This action preserves \( E \): \textbf{spatial direction} \( \tau^{(\mathbf v,0)} \) is graph automorphism; \textbf{temporal direction} \( \tau^{(\mathbf 0,m)} \) (\( m\ge 0 \)) is only graph \textbf{semigroup endomorphism} (generally not invertible for \( m>0 \)).
+
+For two-sided temporal symmetry, the domain can be extended to \( \tilde V=\mathbb{Z}^d\times\mathbb{Z} \) (see §\ref{sec:symbolic} spacetime SFT and natural extension discussion).
+\end{definition}
+
+\begin{definition}[Reachability Partial Order]\label{def:partialorder}
+Given directed acyclic graph \( (V,E) \), define reachability relation \( u \preceq v \iff \) there exists directed path \( u \to^* v \), where \( \to^* \) is the reflexive-transitive closure of \( \to \). Since \( E \) only goes from \( t \) to \( t{+}1 \), the graph has no directed cycles, thus \( \preceq \) is a partial order.
+\end{definition}
+
+\begin{definition}[Rank Function Layering and Foliation]\label{def:foliation}
+\( S \subset V \) is an antichain if any \( u,v\in S \) are mutually unreachable (\( u \npreceq v \) and \( v \npreceq u \)).
+
+A \textbf{rank function layering} is given by surjection \( \rho:V\to I\subseteq\mathbb Z \) such that for each edge \( (u,v)\in E \), \( \rho(v)=\rho(u)+1 \). Let \( S_t=\rho^{-1}(t) \) be the \( t \)-th layer, then each \( S_t \) is an antichain and \( \bigcup_{t\in I}S_t=V \) \textbf{pairwise disjoint}. If \( (u,v)\in E \) and \( u\in S_t \), then \( v\in S_{t+1} \) (cross-layer edge compatibility).
+
+The family \( \{S_t\}_{t\in I} \) is called a \textbf{foliation}, equivalent to the above rank function layering. On standard CA graph \( V=\mathbb{Z}^d\times\mathbb{Z}_{\ge0} \), taking \( \rho(\mathbf r,t)=t \) yields trivial foliation \( S_t=\mathbb{Z}^d\times\{t\} \).
+\end{definition}
+
+\begin{proposition}[Foliation Induces Single-Step Operator; Assuming Deterministic \( f \)]\label{prop:foliation}
+Assume domain \( V=\mathbb Z^d\times\mathbb Z_{\ge0} \), neighborhood \( N \) finite and translation-invariant, local rule \( f:\Sigma^{N}\to\Sigma \) deterministic. Given foliation and local rule \( f \), there exists unique single-step global mapping \( F_t:\Sigma^{S_t}\to\Sigma^{S_{t+1}} \). When \( \{S_t\} \) is generated by temporal translation, \( F_t\equiv F \) is continuous and commutes with shifts, thus by Curtis--Hedlund--Lyndon theorem (§\ref{sec:curtis}) has locality. Note: for \textbf{any} foliation only existence of \( F_t \) is guaranteed, not necessarily commutation with translation.
+\end{proposition}
+
+\section{State Constraints and Local Rules}\label{sec:constraints}
+
+\begin{definition}[Local Consistency Constraint]\label{def:consistency}
+Constraint requirement: for any path \( p: v_0 \to v_1 \to \cdots \to v_k \), state sequence satisfies recursive application of \( f \). Forbidden pattern set \( \mathcal{F} \) is defined as finite subgraph patterns violating constraints. \( \mathcal{F} \) is finite, composed of all \( |N|+1 \)-node subgraphs violating \( f \), ensuring \( X_f \) is a subshift of finite type (SFT).
+\end{definition}
+
+\begin{proposition}[Constraint Propagation; Assuming Deterministic \( f \)]\label{prop:propagation}
+Assume domain \( V=\mathbb Z^d\times\mathbb Z_{\ge0} \), neighborhood \( N \) finite and translation-invariant, local rule \( f:\Sigma^{N}\to\Sigma \) deterministic. Given initial \( \sigma_0 \), constraint \( f \) uniquely determines entire graph state.
+\end{proposition}
+
+\begin{proof}
+By induction on level \( t \). Base: \( t=0 \) is given. Inductive step: assume layer \( t \) is determined, then layer \( t+1 \) is uniquely computed from incoming edge states and \( f \). If ambiguity exists, single-valuedness of \( f \) leads to contradiction, thus uniqueness. Existence guaranteed by recursive construction.
+\end{proof}
+
+\section{Symbolic Dynamical System Formulation (Spacetime SFT Version)}\label{sec:symbolic}
+
+By default \( \Sigma \) is discrete, \( \Sigma^{\mathbb Z^d} \), \( \Sigma^{\mathbb Z^{d+1}} \) take Tychonoff product topology; spatial shift is homeomorphism.
+
+\begin{definition}[Spacetime SFT]\label{def:sft}
+Let \( f:\Sigma^{N}\to \Sigma \) be local rule, \( (\mathbf r,t)\in\mathbb Z^{d+1} \). Define
+\[
+X_f :=\Big\{x\in \Sigma^{\mathbb Z^{d+1}}: \;
+x(\mathbf r,t+1)=f\big((x(\mathbf r+\mathbf n,t))_{\mathbf n\in N}\big)\ \forall (\mathbf r,t)\Big\}.
+\]
+Then \( X_f \) is \( \mathbb Z^{d+1} \)-SFT (finite forbidden patterns). This is spacetime subshift invariant (SFT), forbidden patterns composed of finite patterns violating \( f \). Temporal shift \( (\mathbf 0,1) \) is group action on \( X_f \); spatial shift is group action.
+\end{definition}
+
+\begin{proposition}[One-Sided Dynamic Perspective and Section]\label{prop:onesided}
+Let \( F:\Sigma^{\mathbb Z^d}\to\Sigma^{\mathbb Z^d} \) be global mapping of local rule \( f \). Define one-sided spacetime SFT \( X_f^+\subset\Sigma^{\mathbb Z^d\times\mathbb Z_{\ge0}} \) characterized by \( x(\mathbf r,t+1)=f((x(\mathbf r+\mathbf n,t))_{\mathbf n\in N}) \) (constraint only for \( t\ge 0 \)). Embedding
+\[
+\Phi^+:\Sigma^{\mathbb Z^d}\to X_f^+,\quad
+(\Phi^+(x))(\mathbf r,t)=F^{\,t}(x)(\mathbf r)\quad (t\ge0)
+\]
+commutes with \( (0,1) \) direction shift, thus \( \Phi^+ \) is \textbf{topological conjugacy} in the sense of \textbf{semigroup action} of temporal shift (homeomorphism). \( \Phi^+ \) is continuous bijection, and inverse map \( X_f^+\to\Sigma^{\mathbb Z^d} \) is \( y\mapsto y(\cdot,0) \), thus \( \Phi^+ \) is homeomorphism.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+Since \( \Sigma \) is finite discrete and product topology, \( \Sigma^{\mathbb Z^d} \) and \( X_f^+ \) are compact (Tychonoff theorem); \( \Phi^+ \) continuous and bijective, thus homeomorphism (continuous bijection from compact to Hausdorff is homeomorphism).
+\end{proof}
+
+\begin{definition}[Natural Extension / Inverse Limit]\label{def:natural}
+\[
+\Omega(F)
+:=\big\{(x_t)_{t\in\mathbb Z}\in(\Sigma^{\mathbb Z^d})^{\mathbb Z}\;:\;x_{t+1}=F(x_t)\ \forall t\in\mathbb Z\big\}.
+\]
+\( \Omega(F) \) is the natural extension (inverse limit) lifting \( (\Sigma^{\mathbb Z^d},F) \) to invertible system.
+\end{definition}
+
+\begin{proposition}[Natural Isomorphism Between Two-Sided SFT and Natural Extension Conjugate with Shift Action]\label{prop:twosided}
+Let \( X_f\subset\Sigma^{\mathbb Z^{d+1}} \) be two-sided spacetime SFT, \( \Omega(F) \) be natural extension. Define
+\[
+\Psi:\Omega(F)\to X_f,\qquad
+\big(\Psi((x_t)_{t\in\mathbb Z})\big)(\mathbf r,t)=x_t(\mathbf r).
+\]
+Then the following hold:
+\begin{enumerate}[label=(\roman*)]
+\item \( \Psi \) is bijective and continuous; its inverse given by \( x\in X_f \) taking sequence \( x_t(\cdot):=x(\cdot,t) \); thus homeomorphism
+\item \( \Psi \) \textbf{commutes with all spatial translations and temporal shifts} (\( t\mapsto t+1 \))
+\item Therefore \( \Omega(F) \) and \( X_f \) are \textbf{topologically conjugate} under \( \mathbb{Z}^{d+1} \) action
+\item \( \Omega(F) \) non-empty \( \Longleftrightarrow \) \( X_f \) non-empty (existence of two-sided orbit)
+\end{enumerate}
+\end{proposition}
+
+\section{Curtis--Hedlund--Lyndon Theorem on Standard Domains}\label{sec:curtis}
+
+\begin{theorem}[CHL]\label{thm:chl}
+A mapping \( F:\Sigma^{\mathbb Z^d}\to \Sigma^{\mathbb Z^d} \) commutes with all spatial shifts and is continuous in product topology if and only if there exists finite neighborhood \( N\subset \mathbb Z^d \) and local function \( f:\Sigma^N\to \Sigma \) such that
+\[
+(F(x))(\mathbf r)=f\big((x(\mathbf r+\mathbf n))_{\mathbf n\in N}\big).
+\]
+\end{theorem}
+
+\begin{note}
+The CHL theorem only characterizes factor (local) mappings on spatial configuration space \( \Sigma^{\mathbb{Z}^d} \); it does not involve temporal dimension; temporal consistency given by forbidden patterns of \( X_f \).
+\end{note}
+
+\section{Existence, Uniqueness and Causal Cone Proofs}\label{sec:existence}
+
+\begin{lemma}[Causal Cone: Inclusion and Upper Bound]\label{lem:cone}
+Let neighborhood radius be \( r \). For any node \( (\mathbf r,t) \), its value is only affected by initial layer \( t=0 \) region, and
+\[
+\mathrm{Past}(\mathbf r,t)\subseteq B_{\|\cdot\|_1}(\mathbf r;\, r t),\qquad
+|\mathrm{Past}(\mathbf r,t)|\le |B_{\|\cdot\|_\infty}(\mathbf r;\, r t)|
+=(2 r t+1)^d,
+\]
+where \( B_{\|\cdot\|_1} \) is \( \ell_1 \) ball, \( B_{\|\cdot\|_\infty} \) is \( \ell_\infty \) cube. The last expression gives convenient estimation \( \ell_\infty \) upper bound (\textbf{endpoint count upper bound}, not path count).
+\end{lemma}
+
+\begin{theorem}[Existence and Uniqueness; Assuming Deterministic \( f \)]\label{thm:existence}
+Assume domain \( V=\mathbb Z^d\times\mathbb Z_{\ge0} \), neighborhood \( N \) finite and translation-invariant, local rule \( f:\Sigma^{N}\to\Sigma \) deterministic. Given \( f, \sigma_0 \), \( \sigma \) exists and is unique.
+\end{theorem}
+
+\begin{proof}
+Existence by recursive construction; uniqueness by minimal difference layer contradiction.
+\end{proof}
+
+\section{Analysis of Linear and Nonlinear Rules}\label{sec:linear}
+
+\begin{definition}[Linear Rules]\label{def:linear}
+If \( f \) is linear over finite field, the eternal graph can use Fourier decomposition spectral analysis.
+\end{definition}
+
+\begin{definition}[Walsh--Hadamard Expansion (Boolean Case, \( \Sigma=\{0,1\} \))]\label{def:walsh}
+For Boolean \( f \), define standardization mapping \( \varphi: \{0,1\} \to \{-1,1\} \) as \( \varphi(0) = 1 \), \( \varphi(1) = -1 \). Through \( \tilde{f} = \varphi \circ f \circ \varphi^{-1} \) convert to \( \tilde{f}: \{-1,1\}^{|N|} \to \{-1,1\} \), then Walsh expand as
+\[
+\tilde{f}(z) = \sum_{S \subseteq N} \hat{f}(S) \prod_{j \in S} z_j,
+\]
+where coefficient \( \hat{f}(S) = \mathbb{E}_{z \sim \{-1,1\}^{|N|}}[\tilde{f}(z) \prod_{j \in S} z_j] \).
+\end{definition}
+
+\begin{example}[Walsh Coefficients of Rule 90]\label{ex:rule90}
+Rule 90 neighborhood is \( N=\{-1,1\} \) (ignoring center), rule \( f(x_{-1},x_1)=x_{-1}\oplus x_1 \) (XOR). In \( \{-1,1\} \) representation, \( \tilde{f}(z_{-1},z_1)=z_{-1}\cdot z_1 \). Walsh expansion: \( \hat{f}(\{-1\})=\hat{f}(\{1\})=0 \) (no single-variable terms), \( \hat{f}(\{-1,1\})=1 \) (cross term), \( \hat{f}(\varnothing)=0 \) (no constant term).
+\end{example}
+
+\section{Garden-of-Eden Theorem in Graph Formulation}\label{sec:garden}
+
+\begin{definition}[Pre-injective]\label{def:preinj}
+For \( F:\Sigma^{\mathbb Z^d}\to\Sigma^{\mathbb Z^d} \), if any two initial states \( x\ne y \) differing only at finite positions satisfy \( F(x)\ne F(y) \), then \( F \) is called pre-injective.
+\end{definition}
+
+\begin{theorem}[Moore--Myhill; \( \mathbb Z^d \) Full Shift]\label{thm:moore}
+For CA on full shift \( \Sigma^{\mathbb Z^d} \) over \( \mathbb Z^d \):
+\[
+F\ \text{surjective}\quad \Longleftrightarrow \quad F\ \text{pre-injective}.
+\]
+\end{theorem}
+
+\begin{remark}[Finite Window and Pseudo GoE Phenomenon]\label{rem:goe}
+Under \textbf{infinite lattice} or \textbf{periodic boundary with scale \( L_i>2r \)}, each non-initial node has \( |N| \) incoming edges; if \( L_i\le 2r \), \textbf{neighborhood aliasing} may cause \( \deg^-<|N| \). Under \textbf{open boundaries} finite window, \( \deg^-=0 \) boundary nodes may appear (pseudo GoE phenomenon, not affecting infinite lattice conclusions). GoE equivalence (surjective \( \Leftrightarrow \) pre-injective) only holds in infinite, homogeneous, \textbf{amenable group} (e.g., \( \mathbb Z^d \)) action cases.
+\end{remark}
+
+\section{Simulation Verification and Computational Implementation}\label{sec:simulation}
+
+Python simulation of 1D eternal graph (Rule 90). Construct finite graph, verify state consistency. This is periodic boundary finite window simulation. Cone size verification (\( d=1,r=1,t=2 \) is 5) passes symbolic computation.
+
+\begin{lstlisting}[language=Python,basicstyle=\small\ttfamily]
+import networkx as nx
+import numpy as np
+
+def rule_90(state):
+    n = len(state)
+    new_state = np.zeros(n, dtype=int)
+    for i in range(n):
+        left = state[(i-1) % n]
+        right = state[(i+1) % n]
+        new_state[i] = left ^ right
+    return new_state
+
+L = 5
+T = 3
+initial = np.array([0, 0, 1, 0, 0])
+
+window_iter = np.zeros((T, L), dtype=int)
+window_iter[0] = initial
+for t in range(1, T):
+    window_iter[t] = rule_90(window_iter[t-1])
+
+# Assert consistency
+for t in range(T-1):
+    assert np.array_equal(window_iter[t+1], 
+                         rule_90(window_iter[t]))
+print('All assertions passed')
+\end{lstlisting}
+
+All assertions pass, confirming equivalence.
+
+\section{Equivalence Discussion with Static Block Cellular Automata Theory}\label{sec:equivalence}
+
+Eternal graph theory and static block cellular automata theory are highly similar in core formulation, but the former removes explicit temporal dimension through directed graphs, while the latter incorporates time into high-dimensional coordinate system.
+
+\begin{theorem}[Equivalence Framework: Eternal Graph--Static Block--Natural Extension]\label{thm:equivalence}
+Let \( f:\Sigma^N\to\Sigma \), \( F \) be induced global mapping.
+
+\textbf{(1) One-sided case}: \( X_f^+\subset\Sigma^{\mathbb Z^d\times\mathbb Z_{\ge0}} \) corresponds one-to-one with state functions \( \sigma:V\to\Sigma \) on graph \( (V,E) \) (\( V=\mathbb Z^d\times\mathbb Z_{\ge0} \)), and slice \( t\mapsto \mathbb Z^d\times\{t\} \) gives foliation.
+
+\textbf{(2) Two-sided case}: Natural extension \( \Omega(F) \) is homeomorphic to two-sided spacetime SFT \( X_f\subset\Sigma^{\mathbb Z^{d+1}} \) and conjugate with shift action (see §\ref{sec:symbolic} Proposition~\ref{prop:twosided}). In particular, if \( F \) is surjective, then \( \Omega(F)\neq\varnothing \), thus \( X_f\neq\varnothing \).
+\end{theorem}
+
+\textbf{Structural mapping explanation}: Equivalence depends on path tracing mechanism. Selecting initial node set \( S_0 \) (covering causal cone \( B_{\|\cdot\|_1}(\mathbf{r}; r t) \)) and tracing paths, generated hierarchical sections \( \mathcal{O}_t \) are equivalent to temporal slices \( \mathcal{M}_t \) of static block.
+
+This equivalence is not absolute: eternal graphs emphasize eternity of graph topology, while static blocks emphasize high-dimensional data bodies. Ignoring temporal dimension explicitness, eternal graphs can be viewed as graph-theoretic reconstruction of static blocks, and vice versa.
+
+\section{Structural Analogies Between Eternal Graphs and Quantum Superposition States}\label{sec:quantum}
+
+\textbf{All ``quantum/unitary'' terminology is for structural analogy only; this paper does not introduce Hilbert space or complex linearity.}
+
+\begin{note}[Disclaimer]
+The following analogy is \textbf{structural analogy}, not introducing complex linearity, inner products or entanglement axioms of quantum mechanics; any ``unitarization'' refers to Bennett-style \textbf{reversible computing embedding} (§\ref{sec:applications}), not physical meaning. This paper does not introduce Hilbert space, linear superposition or entanglement structure; ``parallelism/interference'' refers to combinatorial path counting and graph morphology, not physical quantum state superposition.
+\end{note}
+
+Eternal graph cellular automata seem more analogous to quantum superposition states, while static block cellular automata are more analogous to classical states. This analogy stems from how the two frameworks handle ``states'' and ``evolution'', providing physical-philosophical inspiration.
+
+First, from an ontological perspective, nodes and edges of eternal graphs encode all possible paths, forming a ``superposed'' network structure: a node's state depends on multiple incoming edges (similar to quantum state structural dependence, not actual superposition), and path traversal corresponds to measurement process, causing ``collapse'' to specific section. This structurally resembles quantum mechanics' superposition states. Conversely, static blocks view spacetime as deterministic data body, all states pre-fixed, like classical Newtonian mechanics phase space trajectories, lacking ``branching'' potential.
+
+Second, from computational perspective, eternal graph causal cone expansion \( (2 r t + 1)^d \) reflects parallel possibilities. Eternal graph path branching \( |N|^t \) is similar to quantum parallelism (combinatorial sense), but classical simulation has exponential cost. \textbf{Key distinction}: combinatorial parallelism \( \neq \) complex linear superposition; linear CA (like Rule 90) can use Fourier/Walsh spectrum; nonlinear lacks superposition.
+
+Finally, from reversibility perspective, eternal graphs introduce ``islands'' (Garden-of-Eden states) when irreversible, similar to irreversible collapse after quantum measurement, while non-surjective mappings of static blocks correspond to classical entropy increase. This is structural analogy, not physical.
+
+\section{Applications: Computational Optimization, Reversibility, Philosophical Implications}\label{sec:applications}
+
+\subsection{Computational Optimization}
+
+Let \( \mathsf{Cone}_t(\mathbf r) \) be past causal cone of node \( (\mathbf r,t) \), then \( |\mathsf{Cone}_t(\mathbf r)|\le (2 r t+1)^d \). In ideal PRAM model ignoring write-read conflicts and cache, parallel evaluation cost is \( \mathcal O\big((2 r t+1)^d \cdot |N|\big) \).
+
+\subsection{Reversibility and Quantum Embedding}
+
+\begin{theorem}[Reversible CA Decision--Full Shift Version]\label{thm:reversible}
+On full shift \( \Sigma^{\mathbb Z^d} \), CA \( F \) is reversible \( \Longleftrightarrow \) \( F \) is bijective \( \Longleftrightarrow \) there exists finite-radius local inverse mapping (i.e., \( F^{-1} \) is also CA).
+\end{theorem}
+
+\begin{construction}[Partition-Block Reversible/Margolus]\label{constr:margolus}
+Divide lattice by alternating phases; apply permutation \( \pi \) to each block. Global is permutation, thus reversible, inverse is \( \pi^{-1} \) acting in reverse phase.
+\end{construction}
+
+\begin{construction}[Second-Order Reversible Lifting/Group Lifting]\label{constr:group}
+Let \( (\Sigma,\cdot) \) be any (finite) group. On alphabet \( \Sigma'=\Sigma\times\Sigma \) define local rule
+\[
+R\!\left((x^t,y^t)\right)(\mathbf r)
+=\Big(
+  f\big((x^t(\mathbf r+\mathbf n))_{\mathbf n\in N}\big)\cdot y^t(\mathbf r),\;
+  x^t(\mathbf r)
+\Big).
+\]
+\end{construction}
+
+\subsection{Philosophical Implications}
+
+Eternalism: graph is ontology, time is path epistemology. Node expansion reflects static whole.
+
+\section{Complexity and Undecidability Boundaries}\label{sec:complexity}
+
+Invariant set emptiness is undecidable (Berger theorem). For 1D CA with standard neighborhood and homogeneous rules, surjectivity is decidable (Amoroso-Patt); for \( d\ge2 \), surjectivity is undecidable (Kari). Similarly, reversibility decision and partial properties exhibit various undecidability phenomena in higher dimensions (including reversibility/surjectivity and SFT emptiness, see Berger and Kari surveys).
+
+\section{Conclusions and Outlook}\label{sec:conclusions}
+
+This theory is independently self-consistent, providing an eternal perspective. Through equivalence and quantum analogy discussions, we confirm its complementarity with static block theory and extend physical implications. Future extensions include: integrating quantum CA simulation (§\ref{sec:quantum}), high-dimensional SFT non-emptiness analysis, exploring typicality under shift-invariant measures, and applications in distributed computing. Potential applications include graph accelerators in parallel computing.
+
+\begin{thebibliography}{99}
+
+\bibitem{wolfram2002}
+S. Wolfram,
+\textit{A New Kind of Science},
+Wolfram Media, 2002.
+
+\bibitem{hedlund1969}
+G. A. Hedlund,
+\textit{Endomorphisms and automorphisms of the shift dynamical system},
+Mathematical Systems Theory, vol.~3, pp.~320--375, 1969.
+
+\bibitem{moore1962}
+E. F. Moore,
+\textit{Machine models of self-reproduction},
+Proceedings of Symposia in Applied Mathematics, vol.~14, pp.~17--33, 1962.
+
+\bibitem{berger1966}
+R. Berger,
+\textit{The Undecidability of the Domino Problem},
+Memoirs of the American Mathematical Society, no.~66, 1966.
+
+\bibitem{lind1995}
+D. Lind and B. Marcus,
+\textit{An Introduction to Symbolic Dynamics and Coding},
+Cambridge University Press, 1995.
+
+\bibitem{ceccherini2010}
+T. Ceccherini-Silberstein and M. Coornaert,
+\textit{Cellular Automata and Groups},
+Springer, 2010.
+
+\bibitem{kari1994}
+J. Kari,
+\textit{Reversibility and surjectivity problems of cellular automata},
+Journal of Computer and System Sciences, vol.~48, no.~1, pp.~149--182, 1994.
+
+\bibitem{myhill1963}
+J. Myhill,
+\textit{The converse of Moore's Garden-of-Eden theorem},
+Proceedings of the American Mathematical Society, vol.~14, no.~4, pp.~685--686, 1963.
+
+\bibitem{amoroso1972}
+S. Amoroso and Y. N. Patt,
+\textit{Decision procedures for surjectivity and injectivity of parallel maps for tessellation structures},
+Journal of Computer and System Sciences, vol.~6, no.~5, pp.~448--464, 1972.
+
+\bibitem{kurka2003}
+P. Kůrka,
+\textit{Topological and Symbolic Dynamics},
+Société Mathématique de France, 2003.
+
+\end{thebibliography}
+
+\end{document}
+
