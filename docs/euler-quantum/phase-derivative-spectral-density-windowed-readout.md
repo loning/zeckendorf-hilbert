@@ -38,13 +38,15 @@ $$
 \Im m(E+i0)=\pi\,\rho_m(E)\qquad(\rho_m\ge 0\ \text{a.e.}) .
 $$
 
-给定参照算子 $H_0$ 与 $m_0$，定义**相对（谱移）密度**
+给定参照算子 $H_0$，定义**相对（谱移）密度**
 
 $$
-\rho_{\mathrm{rel}}(E):=\rho_m(E)-\rho_{m_0}(E)=\xi'(E),
+\rho_{\mathrm{rel}}(E):=\xi'(E),
 $$
 
-其中 $\xi$ 为谱移函数（SSF）。凡与散射相位直接对应者，统一采用 $\rho_{\mathrm{rel}}$。
+其中 $\xi$ 为谱移函数（SSF）。
+
+**说明**：当 $(H,H_0)$ 源自同一边界三元组/半直线设定且端口 Weyl–Titchmarsh 函数 $m,m_0$ 存在时，在 a.e. $E$ 上有等价式 $\xi'(E)=\rho_m(E)-\rho_{m_0}(E)$（见定理 2.1）。凡与散射相位直接对应者，统一采用 $\rho_{\mathrm{rel}}$。
 
 **散射相位**：单通道 $S(E)=e^{2i\varphi(E)}$。Wigner–Smith 矩阵 $\mathsf Q(E)$ 的定义见下文"单位约定"。
 
@@ -72,9 +74,11 @@ $$
 
 单通道时 $\tau_{\mathrm{WS}}(E)=2\hbar\,\varphi'(E)=2\pi\hbar\,\rho_{\mathrm{rel}}(E)$。
 
-**a.e. 范围声明**：凡含 $S'(E)$、$\varphi'(E)$、$\xi'(E)$ 或边界值 $\Im m(E+i0)$ 的等式，均在**几乎处处**能量上成立。
+**a.e. 范围声明**：凡含 $S'(E)$、$\varphi'(E)$、$\xi'(E)$ 或边界值 $\Im m(E+i0)$ 的等式，均在**几乎处处**能量上成立。盒装等式右上角的"a.e."标注提醒读者在共振点/不可导点按测度零处理。
 
 **符号约定备注**：若采用他书的 $\det S=e^{-2\pi i\xi}$ 负号约定，同时置换 $\varphi\mapsto-\varphi$ 可保持 $\varphi'=\pi\rho_{\mathrm{rel}}$ 不变（详见附录 A）。
+
+**参考**：Wigner (1955); Smith (1960) 定义与性质；Birman–Kreĭn 公式见 Yafaev (1992/2010) 与 Pushnitski (2006)，据此得 $\operatorname{tr}\mathsf Q$ 与 $\xi'$ 的关系。
 
 **LDOS 约定**："LDOS"指端口/边界意义下的 m-测度密度及其相对版（$\rho_m$ 或 $\rho_{\mathrm{rel}}$）。单/多通道时本文以 $\rho_{\mathrm{rel}}:=\xi'(E)$ 为准；在可由端口 m-函数实现的情形，它与边界 m-测度差一致；否则以 $\xi'$ 的定义为主。当读者只关心**非负主项**时，应选用 $\rho_m$ 而非 $\rho_{\mathrm{rel}}$（见推论 2.2 与 §4）。
 
@@ -98,7 +102,7 @@ $$
 
 > **符号约定前置**：本文固定采用 Birman–Kreĭn 正号约定 $\det S(E)=e^{+2\pi i\,\xi(E)}$；若读者沿用负号流派（$\det S=e^{-2\pi i\xi}$），同时令 $S\mapsto S^{-1}$（或 $\varphi\mapsto -\varphi$）可恢复相同物理结论 $\varphi'=\pi\rho_{\mathrm{rel}}$（详见附录 A）。
 
-### 定理 2.1（相位导数 = 相对谱密度；迹类假设）
+### 定理 2.1（相位导数 = SSF 导数；迹类假设）
 
 在单通道散射且**满足**：
 (i) $(H-i)^{-1}-(H_0-i)^{-1}\in\mathfrak S_1$（迹类）且波算子存在；
@@ -107,8 +111,16 @@ $$
 则 a.e. $E$ 上
 
 $$
-\boxed{\ \varphi'(E)=\pi\,\rho_{\mathrm{rel}}(E)=\pi\bigl(\rho_m(E)-\rho_{m_0}(E)\bigr)=\pi\,\xi'(E)\ }.
+\boxed{\ \varphi'(E)=\pi\,\xi'(E)\ }.
 $$
+
+若再假设 $(H,H_0)$ 源自同一边界三元组/半直线情形且存在对应 Weyl–Titchmarsh $m,m_0$，则 a.e. $E$ 上
+
+$$
+\boxed{\ \xi'(E)=\rho_m(E)-\rho_{m_0}(E)\ },
+$$
+
+因而 $\varphi'(E)=\pi(\rho_m-\rho_{m_0})=\pi\,\rho_{\mathrm{rel}}(E)$，其中 $\rho_{\mathrm{rel}}:=\xi'$。
 
 **证明**（分三步）：
 
@@ -203,7 +215,7 @@ $$
 
 #### 命题 3.1（Poisson 求和与 Nyquist 关断）
 
-设 $g\in L^1(\mathbb R)\cap \mathcal S'(\mathbb R)$ 且采用非角频率傅里叶对 $\widehat g(\nu)=\int g(E)e^{-2\pi i\nu E}dE$。则
+设 $g$ 可积且 $\widehat g$ 连续（数值实现时取带外快速衰减）；一般情形下式子也可在**温和分布**（tempered distributions）框架下解释。采用非角频率傅里叶对 $\widehat g(\nu)=\int g(E)e^{-2\pi i\nu E}dE$。则
 
 $$
 \boxed{\ \Delta\sum_{n\in\mathbb Z} g(n\Delta)=\sum_{k\in\mathbb Z}\widehat g\!\left(\frac{k}{\Delta}\right)\ }.
@@ -267,7 +279,7 @@ $$
 
 （b）**高斯尾**：$|\widehat g(k/\Delta)|\le C e^{-\alpha k^2/\Delta^2}$。用积分比较 $\sum_{k=1}^\infty e^{-\beta k^2}\le \tfrac{1}{2}\bigl(\sqrt{\tfrac{\pi}{\beta}}-1\bigr)\le \sqrt{\tfrac{\pi}{4\beta}}$（$\beta>0$），取 $\beta=\alpha/\Delta^2$ 得到陈述的不等式。证毕。
 
-**注（松紧性）**：上述指数/高斯尾上界是**保守**（$\mathcal O(\Delta)$ 级别）估计，便于非渐近报告；数值实现可用更紧的 Jacobi $\vartheta$-和或 Poisson-外推界，但不影响本框架的非渐近闭合。
+**注（收敛性与上界）**：上述指数/高斯尾上界给出**可用 $\mathcal O(\Delta)$ 上界**报告（保守）；实际别名项对指数/高斯尾常呈**超指数**收敛（$\sim e^{-\alpha/\Delta}$ 或 $\sim e^{-\alpha/\Delta^2}$）。数值实现可用更紧的 Jacobi $\vartheta$-和或 Poisson-外推界，但不影响本框架的非渐近闭合。
 
 ### 3.2 Euler–Maclaurin（EM）伯努利层与尾项
 
@@ -308,6 +320,8 @@ $$
 
 证毕。
 
+**常数来源**：伯努利多项式 Fourier 展开 + 经典界 $|B_{2M}(t)|\le \frac{2(2M)!}{(2\pi)^{2M}}\zeta(2M)$，见标准参考文献（DLMF、Euler–Maclaurin 公式条目）。
+
 **奇/偶情形注记**：对偶阶 $2M$ 取法，伯努利项只含偶阶 $B_{2k}$；对奇函数 $g$ 且对称区间 $[-T,T]$ 时，端点项与奇阶导数项在对称端点处相消（见附录 B 自检基准）。
 
 **尾项控制**：定义
@@ -317,7 +331,9 @@ $$
 \varepsilon_{\mathrm{tail}}(R):=\int_{|E|>T}\!|g(E)|\,dE .
 $$
 
-若 $w_R(E)\le C\,e^{-\kappa |E|/R}$（指数尾），则 $\varepsilon_{\mathrm{tail}}(R)\le \dfrac{2CR}{\kappa}\,|h\!\star\!\rho_\star|_\infty\,e^{-\kappa T/R}$。对严格带限窗（如某些 Fejér 变体），尾项呈多项式衰减，需按所选窗的已知大 $|E|$ 渐近给出具体界。
+若 $w_R(E)\le C\,e^{-\kappa |E|/R}$（指数尾），则 $\varepsilon_{\mathrm{tail}}(R)\le \dfrac{2CR}{\kappa}\,|h\!\star\!\rho_\star|_\infty\,e^{-\kappa T/R}$。
+
+**严格带限窗的尾项**：若在**频域采用三角谱窗（非周期 Fourier 对偶）**，则时域窗 $w_R$ 为 $\operatorname{sinc}^2$ 形（$\mathcal F\{\mathrm{tri}\}=\mathrm{sinc}^2$），**严格带限**且尾项呈多项式衰减（$\sim |E|^{-2}$），需按所选窗的已知大 $|E|$ 渐近给出具体界。
 
 ### 3.3 非渐近误差闭合
 
@@ -347,7 +363,7 @@ $$
 ## 4. 物理诠释：延迟、隧穿与"负延迟"
 
 在**幺正**体系中，Wigner–Smith 矩阵
-$\mathsf Q(E)=-i\,S(E)^\dagger \tfrac{d}{dE}S(E)$ 为 Hermitian（自伴），故其固有延迟（特征值）为**实数**但**不必非负**；并且
+$\mathsf Q(E)=-i\,S(E)^\dagger \tfrac{d}{dE}S(E)$（Wigner 1955, Smith 1960）为 Hermitian（自伴），故其固有延迟（特征值）为**实数**但**不必非负**；并且
 
 $$
 \frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)=\rho_{\mathrm{rel}}(E)
@@ -357,7 +373,7 @@ $$
 
 **密度选择提醒**：若需要"非负主项"及能量计数解释，请选 $\rho_m$；与相位导数/Friedel 关系配对时选 $\rho_{\mathrm{rel}}$（其可取负）。见推论 2.2。
 
-次幺正（有损/增益）体系中，延迟可为复数，需要在相应广义框架下解释。
+**次幺正（有损/增益）体系**：延迟可为复数，需要在相应广义框架下解释。可参见近年来对**亚幺正散射**延迟的推广（Chen et al., 2021 等）。
 
 **数值解读纪律**：在别名未关断或 EM/尾项未压低到目标阈值前，数值读数的正负号不应作物理解读。按 §3 的纪律（先 Nyquist 控制，再提 $M,T$ 或改善窗衰减）将数值误差压至阈值后，方可对"负延迟"作物理解读。
 
@@ -422,12 +438,17 @@ $$
 
 **次幺正情形**：在**次幺正**体系（有损/增益）中，延迟可为复数，本文窗化与 Nyquist–Poisson–EM 闭合仍按迹/实部进行；读数解释需结合具体通道模型。
 
+**符号对照**：本文采用 $\det S(E)=e^{+2\pi i\,\xi(E)}$ 正号约定，与 $\tfrac{1}{2\pi}\operatorname{tr}\mathsf Q=\xi'$ 同号一致。不同作者的 BK 号记可能相反（见附录 A），读者需对照文献时注意符号对应。
+
 ---
 
 ## 7. 可复现实验协议（最小版）
 
 **输入**：$(\mathcal B_h,\ \mathcal B_w^0,\ R,\ \Delta,\ M,\ T)$。
-**选择**：非负、带限或带外快速衰减核 $h$（BL/Gauss-BL/Exp-BL）；**逐点非负窗** $w_R$（如 Fejér/高斯；若用 DPSS/PSWF，**仅 0阶本征函数在 $[-T,T]$ 上可取单符号**（实作常取正），高阶本征函数呈振荡并非逐点非负；且 DPSS 为**近**带限而非真带限）。
+**选择**：非负、带限或带外快速衰减核 $h$（BL/Gauss-BL/Exp-BL）；**逐点非负窗** $w_R$：
+  - **高斯**：指数尾，逐点非负；
+  - **DPSS/PSWF**：**第 0 模态在区间内无零点**（可全正归一）；高阶本征函数出现振荡并非逐点非负（PSWF 第 $n$ 阶在 $(-1,1)$ 内恰有 $n$ 个零点）；DPSS/PSWF 为**近**带限（能量集中）而**非真带限**；
+  - **频域三角谱窗（非周期对偶）**：时域为 $\operatorname{sinc}^2$ 形（$\mathcal F\{\mathrm{tri}\}=\mathrm{sinc}^2$），**严格带限**且尾项呈多项式衰减。
 **纪律**：$\Delta\le 1/\bigl(2(\mathcal B_h+\mathcal B_w(R))\bigr)$；$M\ge 2$；$T$ 使 $\varepsilon_{\mathrm{tail}}$ 达到目标阈值。
 **报告**：输出
 
@@ -505,6 +526,10 @@ $$
 4. A. Pushnitski, *The Birman–Kreĭn Formula for Unitary Operators*, St. Petersburg Math. J. **17** (2006).
 5. E. P. Wigner, *Lower Limit for the Energy Derivative of the Scattering Phase Shift*, Phys. Rev. **98** (1955)；F. T. Smith, *Lifetime Matrix in Collision Theory*, Phys. Rev. **118** (1960).
 6. C. A. A. de Carvalho & H. M. Nussenzveig, *Time Delay*, Phys. Rep. **364** (2002).
-7. L. de Branges, *Hilbert Spaces of Entire Functions*, Prentice-Hall, 1968；R. Romanov, *Canonical Systems and de Branges Spaces*, 综述。
-8. E. M. Stein & R. Shakarchi, *Fourier Analysis*, Princeton, 2003（Poisson 求和与采样定理）。
-9. T. M. Apostol, *Introduction to Analytic Number Theory*（Euler–Maclaurin 与伯努利数上界）。
+7. J. Behrndt, F. Gesztesy, H. Holden & R. Nichols, *Spectral Shift Functions and Dirichlet-to-Neumann Maps*, Math. Ann. **371** (2018).
+8. Bo-Wen Chen et al., *Generalization of Wigner Time Delay to Subunitary Scattering Systems*, Phys. Rev. E **103** (2021).
+9. D. Slepian & H. O. Pollak, *Prolate Spheroidal Wave Functions, I*, Bell Syst. Tech. J. **40** (1961).
+10. L. de Branges, *Hilbert Spaces of Entire Functions*, Prentice-Hall, 1968；R. Romanov, *Canonical Systems and de Branges Spaces*, 综述。
+11. E. M. Stein & R. Shakarchi, *Fourier Analysis*, Princeton, 2003（Poisson 求和与采样定理）。
+12. T. M. Apostol, *Introduction to Analytic Number Theory*（Euler–Maclaurin 与伯努利数上界）。
+13. DLMF（Digital Library of Mathematical Functions），§24.8，伯努利多项式与余项常数。
