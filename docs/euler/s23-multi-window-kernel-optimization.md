@@ -70,6 +70,8 @@ $$
 
 **定义 0.1（Parseval on $\mathcal V$）**：若 $\mathcal S_W=P_{\mathcal V}$，称 $W$ 为紧帧（Parseval on $\mathcal V$）。
 
+**注**：本文"紧帧"仅指在张成子空间 $\mathcal V$ 上 Parseval；当 $\mathcal V=H$ 时退化为经典 Parseval 帧。
+
 **命题 0.2（广义双正交与重构）**
 设 $\widetilde{\mathbf w}:=(\widehat{\widetilde w}^{(1)},\dots,\widehat{\widetilde w}^{(K)})= \mathbf w\,G^\dagger$（矩阵作用于窗索引），则
 
@@ -91,7 +93,7 @@ $$
 \frac{1}{2\pi}\int_{-\Omega}^{\Omega}\widehat w^{(\ell)}\,\overline{\widehat{\widetilde w}^{(q)}}\,d\xi=\delta_{\ell q}.
 $$
 
-**说明**：Parseval on $\mathcal V$ 仅保证 $P_{\mathcal V}$ 型重构；只有当窗族线性无关（$\dim\mathcal V=K$）时，才出现 δ-型双正交；存在冗余时为 $G G^\dagger$ 型广义双正交。数值实现建议监控 $\kappa(G)$ 并保持其有界，以确保谱投影与重构稳定。
+**说明**：此处 $G^\dagger$ 指 Moore–Penrose 伪逆；由 $F(F^*F)^\dagger F^*=P_{\mathcal V}$（其中 $F=T_W^*$）可得结论。Parseval on $\mathcal V$ 仅保证 $P_{\mathcal V}$ 型重构；只有当窗族线性无关（$\dim\mathcal V=K$）时，才出现 δ-型双正交；存在冗余时为 $G G^\dagger$ 型广义双正交。数值实现建议监控 $\kappa(G)$ 并保持其有界，以确保谱投影与重构稳定。
 
 ---
 
@@ -114,7 +116,7 @@ $$
 +\beta_\ell\,\mathfrak E(g^{(\ell)}_{0})\Big)
 $$
 
-的极小元皆为帕累托点。若进一步 $\mathbf J(\mathcal C)$（$\mathcal C$ 为可行集）为凸闭，则每个帕累托点均由某组正权实现；一般情形下，加权和刻画所有**支持的**帕累托点，非支持点可由 ε-约束法得到。
+的极小元皆为帕累托点。若进一步 $\mathbf J(\mathcal C)$（$\mathcal C$ 为可行集）为凸闭，则每个帕累托点均由某组正权实现。一般非凸像集下，加权和方法仅覆盖支持型帕累托点；非支持点可采用 $\varepsilon$-约束法求解。
 
 ---
 
@@ -122,13 +124,15 @@ $$
 
 ### 2.1 强凸模型与工作域
 
-取整数 $M\ge2$、系数 $\gamma_j>0$、$\lambda>0$，定义
+取整数 $M\ge2$、系数 $\gamma_j>0$（$j=0,1,\dots,M-1$）、$\lambda>0$，定义
 
 $$
 \mathcal J_{\mathrm{BL}}(W)
-=\sum_{\ell=1}^K\Big(\sum_{j=1}^{M-1}\gamma_j| (P_\Omega w_R^{(\ell)})^{(2j)}|_{L^2}^2
+=\sum_{\ell=1}^K\Big(\sum_{j=0}^{M-1}\gamma_j| (P_\Omega w_R^{(\ell)})^{(2j)}|_{L^2}^2
 +\lambda|\mathbf 1_{\{|t|>T\}}\,P_\Omega w_R^{(\ell)}|_{L^2}^2\Big).
 $$
+
+**说明**：加入 $j=0$ 项（即 $\gamma_0|P_\Omega w_R^{(\ell)}|_{L^2}^2$）确保低频控制与整体强凸/胁迫性。
 
 帧惩罚取 Hilbert–Schmidt 型
 
@@ -138,36 +142,40 @@ $$
 \Psi(W)=\big|\mathcal S_W-P_{\mathcal V_0}\big|_{\mathrm{HS}}^2,
 $$
 
-其中 $\mathcal V_0$ 为预设目标子空间。工作域内假设 $\{\widehat w^{(\ell)}\}$ 线性无关且 Gram 矩阵一致可逆，使 $\dim\mathcal V$ 固定，$W\mapsto P_{\mathcal V}$ 在该域内 Fréchet 可微。数值实现中建议监控 $\kappa(G)$ 并保持 $\kappa(G)$ 有界，以免 $P_{\mathcal V}(W)$ 的导数不稳。
+其中 $\mathcal V_0$ 为预设目标子空间。
 
 **定理 2.1（存在唯一）**
-在上述条件与假设 A 下，$\mathcal J_{\mathrm{BL}}+\Psi$ 在可行集 $\mathcal C=\{W\in(\mathrm{PW}^{\mathrm{even}}_\Omega)^K:\ w^{(\ell)}(0)=1\}$ 上存在极小元；若 $\gamma_j,\lambda>0$ 且 $\Psi$ 二次凸，则极小元唯一。
+在上述条件与假设 A 下，若 $\Psi$ 弱下半连续（例如 $\Psi$ 凸，或由对 $W$ 弱连续的有界线性算子与凸函数复合而得），则 $\mathcal J_{\mathrm{BL}}+\Psi$ 在可行集 $\mathcal C=\{W\in(\mathrm{PW}^{\mathrm{even}}_\Omega)^K:\ w^{(\ell)}(0)=1\}$ 上存在极小元。若 $\gamma_j>0$（$j=0,\dots,M-1$）、$\lambda>0$，且 $\Psi$ 与 $\mathcal J_{\mathrm{BL}}$ 共同强凸，则极小元唯一。
+
+**注**：上述 Hilbert–Schmidt 型 $\Psi(W)=|\mathcal S_W-P_{\mathcal V}|_{\mathrm{HS}}^2$ 对 $W$ 一般非凸；若采用此类结构正则化，则仅讨论/处理局部极小（不主张全局存在与唯一性）。必要条件（§2.2/2.3）的推导对局部极小同样有效。
+
+**工作域说明**：在必要条件的推导与数值实现中，假设 $\{\widehat w^{(\ell)}\}$ 线性无关且 Gram 矩阵一致可逆，使 $\dim\mathcal V$ 固定，$W\mapsto P_{\mathcal V}$ 在该域内 Fréchet 可微。数值实现中建议监控 $\kappa(G)$ 并保持 $\kappa(G)$ 有界，以免 $P_{\mathcal V}(W)$ 的导数不稳。
 
 ### 2.2 频域必要条件（核型形式）
 
-存在常数乘子 $\eta\in\mathbb C^K$ 与自伴核 $\Gamma(\xi,\eta)$（来自帧惩罚/约束）使在 $|\xi|\le\Omega$ 上
+存在常数乘子 $\eta\in\mathbb C^K$（与 $\xi$ 无关）与自伴核 $\Gamma(\xi,\eta)$（来自帧惩罚/约束）使在 $|\xi|\le\Omega$ 上
 
 $$
-\Big(\sum_{j=1}^{M-1}\gamma_j\,\xi^{4j}\Big)\,\widehat{\mathbf w}_R(\xi)
+\Big(\sum_{j=0}^{M-1}\gamma_j\,\xi^{4j}\Big)\,\widehat{\mathbf w}_R(\xi)
 +\lambda\big(\widehat{\mathbf 1_{\{|t|>T\}}}\star \widehat{\mathbf w}_R\big)(\xi)
 +\int_{-\Omega}^{\Omega}\Gamma(\xi,\eta)\,\widehat{\mathbf w}_R(\eta)\,\frac{d\eta}{2\pi}
 =\eta ,
 $$
 
-其中 $\widehat{\mathbf w}_R=(\widehat{P_\Omega w_R^{(1)}},\dots,\widehat{P_\Omega w_R^{(K)}})^\top$。当惩罚取**点态标量**型时，$\Gamma(\xi,\eta)=\Lambda(\xi)\,2\pi\,\delta(\xi-\eta)$，从而通道解耦并可同时对角化。典型例子：
-$\Psi(W)=\int \lambda_0(\xi)\big[\sum_\ell|\widehat w^{(\ell)}(\xi)|^2-c(\xi)\big]^2\frac{d\xi}{2\pi}$。
+其中 $\widehat{\mathbf w}_R=(\widehat{P_\Omega w_R^{(1)}},\dots,\widehat{P_\Omega w_R^{(K)}})^\top$；$\eta\in\mathbb C^K$ 为与 $\xi$ 无关的常数向量，其时域对应 $\eta_\ell\delta_0$。当惩罚取**点态标量**型时，$\Gamma(\xi,\eta)=\Lambda(\xi)\,2\pi\,\delta(\xi-\eta)$，从而通道解耦并可同时对角化。典型例子：
+$\Psi(W)=\int \lambda_0(\xi)\big[\sum_\ell|\widehat w^{(\ell)}(\xi)|^2-c(\xi)\big]^2\frac{d\xi}{2\pi}$；若再加 $\sigma\int\sum_\ell|\widehat w^{(\ell)}(\xi)|^2\frac{d\xi}{2\pi}$ 并**取 $\sigma(\xi)\ge 2\lambda_0(\xi)c(\xi)$（a.e.）**，则 $\Psi+\sigma\int\sum_\ell|\widehat w^{(\ell)}|^2$ 对 $W$ 凸（逐点 integrand 为 $u\mapsto \lambda_0(u-c)^2+\sigma u$，其对 $u\ge0$ 凸且单调不减；由凸函数复合规则知整体凸）；配合 $j=0$ 项得强凸。
 
 ### 2.3 时域 Euler–Lagrange 与界面条件
 
 记 $\mathcal L_{\ell q}$ 为帧惩罚导出的零阶耦合算子（时域卷积-零阶）。则在分布意义下
 
 $$
-\sum_{j=1}^{M-1}\gamma_j\,\partial_t^{4j}\,P_\Omega w_R^{(\ell)}
+\sum_{j=0}^{M-1}\gamma_j\,\partial_t^{4j}\,P_\Omega w_R^{(\ell)}
 +\lambda\,\mathbf 1_{\{|t|>T\}}\,P_\Omega w_R^{(\ell)}
 +\sum_{q=1}^K (\mathcal L_{\ell q}\,P_\Omega w_R^{(q)})+\eta_\ell\,\delta_0=0 .
 $$
 
-在 $|t|<T$ 内为常系数 ODE（阶 $4(M-1)$），外侧附加零阶质量项；在 $t=\pm T$ 处由分部积分得到连续到阶 $4(M-1)-1$ 的**自然匹配条件**，避免伪 Dirac 项产生。
+在 $|t|<T$ 内为常系数 ODE（最高阶 $4(M-1)$），外侧附加零阶质量项；在 $t=\pm T$ 处由分部积分得到连续到阶 $4(M-1)-1$ 的**自然匹配条件**。匹配条件来自分部积分消去界面分布项，保证无伪 Dirac 残留。
 
 ---
 
@@ -177,7 +185,7 @@ $$
 
 $$
 \min_{W\in\mathcal C}\
-\sum_{\ell=1}^K\Big(\sum_{j=1}^{M-1}\alpha_j| (P_\Omega w_R^{(\ell)})^{(2j)}|_{L^1}
+\sum_{\ell=1}^K\Big(\sum_{j=0}^{M-1}\alpha_j| (P_\Omega w_R^{(\ell)})^{(2j)}|_{L^1}
 +\beta |\mathbf 1_{\{|t|>T\}}\,P_\Omega w_R^{(\ell)}|_{L^1}\Big).
 $$
 
@@ -188,7 +196,7 @@ $\nu^{(\ell)}\in \operatorname{sign}\big(\mathbf 1_{\{|t|>T\}}\,P_\Omega w_R^{(\
 
 $$
 P_{(\mathrm{PW}^{\mathrm{even}}_\Omega)^K}
-\Big(\sum_{j=1}^{M-1}\alpha_j\,\partial_t^{2j}\boldsymbol\mu_j
+\Big(\sum_{j=0}^{M-1}\alpha_j\,\partial_t^{2j}\boldsymbol\mu_j
 +\beta\,\mathbf 1_{\{|t|>T\}}\boldsymbol\nu
 +\mathcal L^\sharp W+\eta\,\delta_0\Big)=0,
 $$
@@ -197,11 +205,13 @@ $$
 $\sum_{\ell,j}\alpha_j\int \mu_j^{(\ell)}(\Delta w_R^{(\ell)})^{(2j)}\,dt
 +\beta\sum_\ell\int \nu^{(\ell)}\mathbf 1_{\{|t|>T\}}\,\Delta w_R^{(\ell)}\,dt\ge0$。
 
+**注（Fenchel–Rockafellar 对偶证书）**：上述 KKT 条件等价于 Fenchel–Rockafellar 对偶的鞍点条件；数值实现时可通过监控原始—对偶残差与对偶间隙验证收敛性。$\mathcal L^\sharp$ 的定义域应与 $(\mathrm{PW}^{\mathrm{even}}_\Omega)^K$ 在 $L^2$ 内积下对偶。
+
 ---
 
 ## 4. BN–Bregman 软化、Γ-极限与稳定
 
-令 $\Phi$ 为 Legendre 型势，$\mathcal T$ 为线性映射（逐窗或跨窗），考虑
+令 $\Phi$ 为 Legendre 型势（下半连续、真、严格可积），$\mathcal T$ 为有界线性映射（逐窗或跨窗），考虑
 
 $$
 \min_{W\in\mathcal C}\ \mathcal J_\Sigma(W)+\tau\,\Phi^\ast(\mathcal T W)\qquad (\tau>0),
@@ -210,7 +220,7 @@ $$
 并以 Bregman 距离 $D_\Phi$ 度量软/硬偏差。
 
 **定理 4.1（Γ-极限）**
-当 $\tau_n\downarrow 0$ 时，$\mathcal J_\Sigma+\tau_n\Phi^\ast$ 在 $((L^2)^K)\!$-拓扑 对 $\mathcal J_\Sigma$ Γ-收敛；任一极小序列存在收敛子列趋于硬问题极小元，且目标值收敛。
+假设 $\Phi$ 为下半连续、真、严格可积的 Legendre 型势，$\mathcal T$ 有界线性，$\mathcal J_\Sigma$ 强凸且与 $\Phi^*\circ\mathcal T$ 共同给出等胁迫族。则当 $\tau_n\downarrow 0$ 时，$\mathcal J_\Sigma+\tau_n\Phi^\ast\circ\mathcal T$ 在 $((L^2)^K)$-拓扑下对 $\mathcal J_\Sigma$ Γ-收敛；任一极小序列存在收敛子列趋于硬问题极小元，且目标值收敛。
 
 **定理 4.2（对数据的李普希茨稳定）**
 若 $\mathcal J_\Sigma,\widehat{\mathcal J}_\Sigma$ 在可行域上同为 $\mu$-强凸，且梯度 $L$-Lipschitz，则其极小元 $W^\star,\widehat W^\star$ 满足
@@ -230,7 +240,7 @@ $$
 在 Parseval on $\mathcal V$ 的约束或惩罚下，极小对 $(W^\star,\widetilde W^\star)$ 满足：
 (i) 各自满足 §2 的频域核型—时域必要条件；
 (ii) 若帧惩罚为点态标量型，则 $\mathcal S_{W^\star}$ 在 $\mathcal V^\star$ 上对角化，$\{\widehat w^{(\ell)}\}$、$\{\widehat{\widetilde w}^{(\ell)}\}$ 同时对角化给出 Parseval 结构；
-(iii) 当 $K=1$、$\lambda\to0$ 且仅保留带限与能量/集中约束时，精确回收 Slepian–Pollak/PSWF 经典变分。
+(iii) 当 $K=1$ 且把截断改为**硬约束**（或其权重趋于无穷），并仅保留带限与时间/能量集中约束时，精确回收 Slepian–Pollak/PSWF 经典变分。
 
 ---
 
@@ -246,23 +256,33 @@ $$
 
 其中 $\mathcal T_\ell$ 为由窗化、Poisson 求和与**有限阶** EM 换序生成的线性算子。
 
+假设满足以下条件：
+
+**(H1) 整函数指数型窗**：各 $P_\Omega w_R^{(\ell)}$ 为 Paley–Wiener 带限函数，在复平面为指数型整函数。
+
+**(H2) Nyquist 匹配与可交换性**：Nyquist 条件满足，使得别名项不将奇性搬移到新位置；Poisson 求和与有限阶 EM 的换序操作在 $\Xi$ 的解析带内合法且可交换。
+
+**(H3) 通道主部非相消**：对任意极点 $p\in\operatorname{Sing}(\Xi)$，若至少有一窗在对应通道上非零，则各通道极点主系数的线性组合不为 0。
+
 **定理 6.1（奇性不增、极阶不升）**
-在 Nyquist 约束与有限阶 EM 下，
+在条件 (H1)–(H2) 下，
 
 $$
-\operatorname{Sing}(\Xi_W)=\operatorname{Sing}(\Xi),\qquad
-\operatorname{ord}_{p}(\Xi_W)\le \operatorname{ord}_{p}(\Xi)\ \ (\forall p\in \operatorname{Sing}(\Xi)),
+\operatorname{Sing}(\Xi_W)\subseteq\operatorname{Sing}(\Xi),\qquad
+\operatorname{ord}_{p}(\Xi_W)\le \operatorname{ord}_{p}(\Xi)\ \ (\forall p\in \operatorname{Sing}(\Xi)).
 $$
 
-且若对某奇点 $p$ 至少有一窗在其通道上非零，则 $\operatorname{ord}_{p}(\Xi_W)= \operatorname{ord}_{p}(\Xi)$。
+若再满足 (H3)，则对存在非零通道的极点 $p$ 有 $\operatorname{ord}_{p}(\Xi_W)= \operatorname{ord}_{p}(\Xi)$。
 
 ### 6.2 相位—谱密度词典在多窗下的稳定
 
-设 $m$ 为 Weyl–Titchmarsh 函数，$\rho=\frac1\pi\Im m$ 为谱密度，$\varphi$ 为 de Branges 相位（或散射相位 $\delta$ 的等价表示），则 a.e. 有
+设 $m$ 为 Weyl–Titchmarsh 函数，$\rho=\frac1\pi\Im m$ 为谱密度，$\varphi$ 为 de Branges 相位（或散射相位 $\delta$ 的等价表示）。在 trace-normalized 规范系统/标准 de Branges 规范下，a.e. 有
 
 $$
 \varphi'(x)=\pi\,\rho(x).
 $$
+
+**注**：此关系依赖于规范选择。在标准 de Branges 空间中，$\varphi'(x)dx$ 给出自然测度密度；Weyl–Titchmarsh 函数 $m$ 为 Herglotz 函数，满足 $\Im m(x+i0)=\pi\rho(x)$。
 
 定义
 
@@ -286,10 +306,10 @@ $$
 **例 7.1（频带划分的 Parseval-on-span）**
 将 $[-\Omega,\Omega]$ 划为 $K$ 个子带，取 $\widehat w^{(\ell)}$ 为各子带指示的平滑化，校准使
 $\sum_{\ell}|\widehat w^{(\ell)}(\xi)|^2\approx 2\pi\,\mathbf 1_{[-\Omega,\Omega]}(\xi)$。
-帧惩罚取点态标量型，必要条件通道解耦。
+帧惩罚取点态标量型，必要条件通道解耦。数值实现中监控 $\kappa(G)$ 并做能量均衡以保持稳定性。
 
 **例 7.2（PSWF 单窗极限）**
-$K=1$、$\lambda\to0$，仅保留带限与时间/能量集中约束，得到 Slepian–Pollak 的 PSWF 变分问题。
+$K=1$，将截断改为硬约束（或其权重趋于无穷，等价于 $\lambda\to\infty$ 的软—硬极限），并仅保留带限与时间/能量集中约束，得到 Slepian–Pollak 的 PSWF 变分问题。
 
 **例 7.3（两窗协同：伯努利层 vs. 截断）**
 低频窗采用高阶导数罚抑制 EM 伯努利层，高频窗用指数尾抑制截断项；以 BN–Bregman 软化耦合取帕累托前沿点。
@@ -298,7 +318,7 @@ $K=1$、$\lambda\to0$，仅保留带限与时间/能量集中约束，得到 Sle
 
 ## 8. 失效边界与工作纪律
 
-1. **有限阶换序**：仅使用固定阶 EM，避免无限阶引入的伪奇性与非法换序。
+1. **有限阶换序**：仅使用固定阶 EM（$M$ 固定），**明示不使用无穷阶 EM**。无限阶会引入伪奇性与非法换序，破坏解析结构。
 2. **带限维护**：缩放后统一以 $P_\Omega w_R$ 入模；或仅取 $R\ge1$。
 3. **帧退化**：靠近线性相关/秩突变时 $P_{\mathcal V}$ 的导数不稳；需保持 $\kappa(G)$ 受控，或改用固定 $\mathcal V_0$ 的惩罚。
 4. **Nyquist 失配**：别名主导误差；需增大带宽/采样或提高窗平滑度。
@@ -312,9 +332,9 @@ $K=1$、$\lambda\to0$，仅保留带限与时间/能量集中约束，得到 Sle
 3. **三分解参数**：$(\Delta,M,T)$ 与 $|h|_{\mathfrak H}\le1$；显式验证 Nyquist 条件。
 4. **强凸版**：给出频域核型 EL 与时域 ODE + 自然匹配条件。
 5. **稀疏版**：给出投影式 KKT/证书与亚梯度饱和集合。
-6. **帧结构**：计算 $G$、$G^\dagger$，展示 $GG^\dagger$ 型双正交重构；线性无关时验证 δ-型。
+6. **帧结构**：计算 $G$、$G^\dagger$，展示 $GG^\dagger$ 型双正交重构；线性无关时验证 δ-型。数值上用 SVD/截断伪逆与阈值策略，控制 $\kappa(G)$ 以保持稳定性。
 7. **稳定性**：验证 Γ-极限与解映射 Lipschitz 不等式的数值实例。
-8. **奇性保持**：在标准测试族上检验"奇性不增、极阶不升"与阈值偏移上界。
+8. **奇性保持**：在标准测试族上检验条件 (H1)–(H3) 下的"奇性不增、极阶不升"与阈值偏移上界。
 
 ---
 
