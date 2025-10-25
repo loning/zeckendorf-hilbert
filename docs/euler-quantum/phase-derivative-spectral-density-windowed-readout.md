@@ -46,14 +46,7 @@ $$
 
 其中 $\xi$ 为谱移函数（SSF）。凡与散射相位直接对应者，统一采用 $\rho_{\mathrm{rel}}$。
 
-**散射相位与延迟（单通道）**：$S(E)=e^{2i\varphi(E)}$，并约定
-
-$$
-\mathsf Q_\omega(E):=-i\,S(E)^\dagger \frac{dS}{dE}\quad\Rightarrow\quad
-\operatorname{tr}\mathsf Q_\omega(E)=2\,\varphi'(E).
-$$
-
-下文一律以 $\mathsf Q_\omega$ 为准；如需 SI 量纲的 Wigner–Smith 时间，用 $\tau_{\mathrm{WS}}(E)=\hbar\,\operatorname{tr}\mathsf Q_\omega(E)$。
+**散射相位**：单通道 $S(E)=e^{2i\varphi(E)}$。Wigner–Smith 矩阵 $\mathsf Q(E)$ 的定义见下文"单位约定"。
 
 **傅里叶对（非角频率）**：
 
@@ -64,29 +57,26 @@ $$
 
 若 $\operatorname{supp}\widehat h\subset[-\mathcal B_h,\mathcal B_h]$、$\operatorname{supp}\widehat w_R\subset[-\mathcal B_w(R),\mathcal B_w(R)]$，则 $\widehat w_R(\nu)=R\,\widehat w(R\nu)$、$\mathcal B_w(R)=\mathcal B_w^0/R$，并记角频率 $\Omega=2\pi\mathcal B$。
 
-**单位约定（统一）**：本文**统一**采用"频率版"Wigner–Smith 矩阵
+**单位约定（统一）**：本文**统一**采用 Wigner–Smith 矩阵（对能量 $E$ 求导）
 
 $$
-\boxed{\ \mathsf Q_\omega(E):=-i\,S(E)^\dagger \frac{dS}{dE}\ }\quad(\text{不含 }\hbar),
+\boxed{\ \mathsf Q(E):=-i\,S(E)^\dagger \frac{dS}{dE}\ },\qquad
+\boxed{\ \tau_{\mathrm{WS}}(E):=\hbar\,\operatorname{tr}\mathsf Q(E)\ }.
 $$
 
-其中下标 $\omega$ 仅表示"频率版/不含 $\hbar$"，导数变量仍为能量 $E$。则 a.e. $E$ 有
+则 a.e. $E$ 有
 
 $$
-\boxed{\ \frac{1}{2\pi}\operatorname{tr}\mathsf Q_\omega(E)=\rho_{\mathrm{rel}}(E)\ },\qquad \text{单通道： }\operatorname{tr}\mathsf Q_\omega(E)=2\,\varphi'(E).
+\boxed{\ \frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)=\rho_{\mathrm{rel}}(E)=\xi'(E)\ },\qquad \text{单通道： }\operatorname{tr}\mathsf Q(E)=2\,\varphi'(E).
 $$
 
-**本文所有等式与误差账本均以 $\mathsf Q_\omega$ 为准**。若需标准 Wigner–Smith 时间（SI 量纲），定义
+单通道时 $\tau_{\mathrm{WS}}(E)=2\hbar\,\varphi'(E)=2\pi\hbar\,\rho_{\mathrm{rel}}(E)$。
 
-$$
-\boxed{\ \tau_{\mathrm{WS}}(E):=\hbar\,\operatorname{tr}\mathsf Q_\omega(E)\ } \quad\Rightarrow\quad \tau_{\mathrm{WS}}(E)=2\pi\hbar\,\rho_{\mathrm{rel}}(E).
-$$
-
-单通道时 $\tau_{\mathrm{WS}}(E)=2\hbar\,\varphi'(E)$。
+**a.e. 范围声明**：凡含 $S'(E)$、$\varphi'(E)$、$\xi'(E)$ 或边界值 $\Im m(E+i0)$ 的等式，均在**几乎处处**能量上成立。
 
 **符号约定备注**：若采用他书的 $\det S=e^{-2\pi i\xi}$ 负号约定，同时置换 $\varphi\mapsto-\varphi$ 可保持 $\varphi'=\pi\rho_{\mathrm{rel}}$ 不变（详见附录 A）。
 
-**LDOS 约定**："LDOS"指端口/边界意义下的 m-测度密度及其相对版（$\rho_m$ 或 $\rho_{\mathrm{rel}}$），将按上下文明确。当读者只关心**非负主项**时，应选用 $\rho_m$ 而非 $\rho_{\mathrm{rel}}$（见推论 2.2 与 §4）。
+**LDOS 约定**："LDOS"指端口/边界意义下的 m-测度密度及其相对版（$\rho_m$ 或 $\rho_{\mathrm{rel}}$）。单/多通道时本文以 $\rho_{\mathrm{rel}}:=\xi'(E)$ 为准；在可由端口 m-函数实现的情形，它与边界 m-测度差一致；否则以 $\xi'$ 的定义为主。当读者只关心**非负主项**时，应选用 $\rho_m$ 而非 $\rho_{\mathrm{rel}}$（见推论 2.2 与 §4）。
 
 ---
 
@@ -108,12 +98,16 @@ $$
 
 > **符号约定前置**：本文固定采用 Birman–Kreĭn 正号约定 $\det S(E)=e^{+2\pi i\,\xi(E)}$；若读者沿用负号流派（$\det S=e^{-2\pi i\xi}$），同时令 $S\mapsto S^{-1}$（或 $\varphi\mapsto -\varphi$）可恢复相同物理结论 $\varphi'=\pi\rho_{\mathrm{rel}}$（详见附录 A）。
 
-### 定理 2.1（相位导数 = 相对谱密度）
+### 定理 2.1（相位导数 = 相对谱密度；迹类假设）
 
-在单通道散射、单位通量归一及参照算子 $H_0$ 既定的前提下，
+在单通道散射且**满足**：
+(i) $(H-i)^{-1}-(H_0-i)^{-1}\in\mathfrak S_1$（迹类）且波算子存在；
+(ii) $S(E)$ 在 a.e. $E$ 可微；
+(iii) 采用固定的 BK 号记 $\det S(E)=e^{+2\pi i\,\xi(E)}$；
+则 a.e. $E$ 上
 
 $$
-\boxed{\ \varphi'(E)=\pi\,\rho_{\mathrm{rel}}(E)=\pi\bigl(\rho_m(E)-\rho_{m_0}(E)\bigr)\quad(\text{a.e. }E)\ }.
+\boxed{\ \varphi'(E)=\pi\,\rho_{\mathrm{rel}}(E)=\pi\bigl(\rho_m(E)-\rho_{m_0}(E)\bigr)=\pi\,\xi'(E)\ }.
 $$
 
 **证明**（分三步）：
@@ -189,7 +183,7 @@ $$
 =\mathcal S+\varepsilon_{\mathrm{alias}}+\varepsilon_{\mathrm{EM}}+\varepsilon_{\mathrm{tail}}\ },
 $$
 
-其中 $\varepsilon_{\mathrm{alias}}$ 来自 Poisson 求和的带外复制（命题 3.1），$\varepsilon_{\mathrm{EM}}$ 与 $\varepsilon_{\mathrm{tail}}$ 分别由定理 3.3 的余项与截断给出；若满足 Nyquist 条件，则 $\varepsilon_{\mathrm{alias}}=0$。
+其中 $\varepsilon_{\mathrm{alias}}$ 来自 Poisson 求和的带外复制（命题 3.1），$\varepsilon_{\mathrm{EM}}$ 与 $\varepsilon_{\mathrm{tail}}$ 分别由定理 3.3 的余项与截断给出。当 **(h,w_R) 严格带限**且 $\Delta\le \dfrac{1}{2(\mathcal B_h+\mathcal B_w(R))}$ 时，$\varepsilon_{\mathrm{alias}}=0$；对**近带限**核/窗，$\varepsilon_{\mathrm{alias}}$ 由 §3.1 的指数/高斯尾界**随 $\Delta$** 连续逼近 0。
 
 **证明**：
 （i）**离散化**：将 $\mathbb R$ 分割为长度 $\Delta$ 的小区间并截至 $[-T,T]$，得
@@ -314,6 +308,8 @@ $$
 
 证毕。
 
+**奇/偶情形注记**：对偶阶 $2M$ 取法，伯努利项只含偶阶 $B_{2k}$；对奇函数 $g$ 且对称区间 $[-T,T]$ 时，端点项与奇阶导数项在对称端点处相消（见附录 B 自检基准）。
+
 **尾项控制**：定义
 
 $$
@@ -321,14 +317,22 @@ $$
 \varepsilon_{\mathrm{tail}}(R):=\int_{|E|>T}\!|g(E)|\,dE .
 $$
 
-若 $w_R(E)\le C\,e^{-\kappa |E|/R}$，则 $\varepsilon_{\mathrm{tail}}(R)\le \dfrac{2CR}{\kappa}\,|h\!\star\!\rho_\star|_\infty\,e^{-\kappa T/R}$。
+若 $w_R(E)\le C\,e^{-\kappa |E|/R}$（指数尾），则 $\varepsilon_{\mathrm{tail}}(R)\le \dfrac{2CR}{\kappa}\,|h\!\star\!\rho_\star|_\infty\,e^{-\kappa T/R}$。对严格带限窗（如某些 Fejér 变体），尾项呈多项式衰减，需按所选窗的已知大 $|E|$ 渐近给出具体界。
 
 ### 3.3 非渐近误差闭合
 
-在 3.1 的 Nyquist 条件下，
+**一般情形（含近带限）**：
 
 $$
-\boxed{\ \bigl|\mathcal S-\mathcal S_{\Delta,M,T}\bigr|\ \le\ \varepsilon_{\mathrm{EM}}(M)+\varepsilon_{\mathrm{tail}}(R)\ },
+\boxed{\ \bigl|\mathcal S-\mathcal S_{\Delta,M,T}\bigr|\ \le\ \varepsilon_{\mathrm{alias}}(\Delta)+\varepsilon_{\mathrm{EM}}(M)+\varepsilon_{\mathrm{tail}}(R)\ },
+$$
+
+其中 $\varepsilon_{\mathrm{alias}}(\Delta)$ 取 §3.1 的闭式上界（指数尾或高斯尾）。
+
+**严格带限 + Nyquist**：
+
+$$
+\boxed{\ \bigl|\mathcal S-\mathcal S_{\Delta,M,T}\bigr|\ \le\ \varepsilon_{\mathrm{EM}}(M)+\varepsilon_{\mathrm{tail}}(R)\ }.
 $$
 
 从而读数的系统误差**逐项可控且可报告**。
@@ -343,10 +347,10 @@ $$
 ## 4. 物理诠释：延迟、隧穿与"负延迟"
 
 在**幺正**体系中，Wigner–Smith 矩阵
-$\mathsf Q_\omega(E)=-i\,S(E)^\dagger \tfrac{d}{dE}S(E)$ 为 Hermitian（自伴），故其固有延迟（特征值）为**实数**但**不必非负**；并且
+$\mathsf Q(E)=-i\,S(E)^\dagger \tfrac{d}{dE}S(E)$ 为 Hermitian（自伴），故其固有延迟（特征值）为**实数**但**不必非负**；并且
 
 $$
-\frac{1}{2\pi}\operatorname{tr}\mathsf Q_\omega(E)=\rho_{\mathrm{rel}}(E)
+\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)=\rho_{\mathrm{rel}}(E)
 $$
 
 的符号一般不定。
@@ -371,7 +375,7 @@ $$
 
 **说明**：此处 $\approx$ 表示把统计噪声忽略到系统误差可控阈值以下的工程近似；$\mathsf{SNR}$ 用于基的相对比较而非严格概率意义。
 
-若满足 Nyquist，$\varepsilon_{\mathrm{alias}}=0$。当 $\Delta$ 自不合规降至 Nyquist 临界时，$\varepsilon_{\mathrm{alias}}$ **骤然归零**，$\mathsf{SNR}$ 出现**台阶式提高**；使 $\mathsf{SNR}$ 极大的谱基即为**指针基**。
+当满足 Nyquist 条件且 **(h,w_R) 严格带限**时，$\varepsilon_{\mathrm{alias}}=0$；对**近带限**核/窗，$\varepsilon_{\mathrm{alias}}$ 随 $\Delta$ **连续**逼近 0（§3.1 给出 $\mathcal O(\Delta)$ 上界），从而 $\mathsf{SNR}$ 将出现**显著提升**。使 $\mathsf{SNR}$ 极大的谱基即为**指针基**。
 
 ---
 
@@ -382,13 +386,13 @@ $$
 在**幺正**多通道散射 $S(E)\in\mathrm U(N)$ 下，定义 Wigner–Smith 矩阵
 
 $$
-\mathsf Q_\omega(E)=-i\,S(E)^\dagger \frac{d}{dE}S(E).
+\mathsf Q(E)=-i\,S(E)^\dagger \frac{d}{dE}S(E).
 $$
 
-则 $\mathsf Q_\omega(E)$ 为 Hermitian（自伴），其特征值（固有延迟）**可正可负**；并且 a.e. $E$,
+则 $\mathsf Q(E)$ 为 Hermitian（自伴），其特征值（固有延迟）**可正可负**；并且 a.e. $E$,
 
 $$
-\boxed{\ \frac{1}{2\pi}\operatorname{tr}\mathsf Q_\omega(E)=\rho_{\mathrm{rel}}(E)\ }.
+\boxed{\ \frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)=\rho_{\mathrm{rel}}(E)=\xi'(E)\ }.
 $$
 
 **证明**：矩阵初等微分恒等式给出
@@ -400,13 +404,13 @@ $$
 据此
 
 $$
-\operatorname{tr}\mathsf Q_\omega(E)=-i\,\operatorname{tr}\bigl(S^\dagger S'\bigr)=-i\,\frac{d}{dE}\log\det S(E).
+\operatorname{tr}\mathsf Q(E)=-i\,\operatorname{tr}\bigl(S^\dagger S'\bigr)=-i\,\frac{d}{dE}\log\det S(E).
 $$
 
 由 BK（多通道情形同样成立）$\det S(E)=e^{+2\pi i\,\xi(E)}$，于是
 
 $$
-\operatorname{tr}\mathsf Q_\omega(E)
+\operatorname{tr}\mathsf Q(E)
 =-i\cdot 2\pi i\,\xi'(E)=2\pi\,\xi'(E)=2\pi\,\rho_{\mathrm{rel}}(E).
 $$
 
@@ -414,7 +418,7 @@ $$
 
 **a.e. 说明**：以上等式于 $E$ 的**几乎处处**成立（a.e.），在离散共振点或不可导点按测度零处理。
 
-**Hermitian 性与固有延迟**：由 $S^\dagger S=I$ 得 $(S^\dagger S)'=S'^\dagger S+S^\dagger S'=0$，故 $\mathsf Q_\omega^\dagger=i\,S'^\dagger S=-i\,S^\dagger S'=\mathsf Q_\omega$。特征值为实但可正可负。
+**Hermitian 性与固有延迟**：由 $S^\dagger S=I$ 得 $(S^\dagger S)'=S'^\dagger S+S^\dagger S'=0$，故 $\mathsf Q^\dagger=i\,S'^\dagger S=-i\,S^\dagger S'=\mathsf Q$。特征值为实但可正可负。
 
 **次幺正情形**：在**次幺正**体系（有损/增益）中，延迟可为复数，本文窗化与 Nyquist–Poisson–EM 闭合仍按迹/实部进行；读数解释需结合具体通道模型。
 
@@ -423,7 +427,7 @@ $$
 ## 7. 可复现实验协议（最小版）
 
 **输入**：$(\mathcal B_h,\ \mathcal B_w^0,\ R,\ \Delta,\ M,\ T)$。
-**选择**：非负、带限或带外快速衰减核 $h$（BL/Gauss-BL/Exp-BL）；**逐点非负窗** $w_R$（如 Fejér/高斯；若用 DPSS，请选满足逐点非负的参数/实例）。
+**选择**：非负、带限或带外快速衰减核 $h$（BL/Gauss-BL/Exp-BL）；**逐点非负窗** $w_R$（如 Fejér/高斯；若用 DPSS/PSWF，**仅 0阶本征函数在 $[-T,T]$ 上可取单符号**（实作常取正），高阶本征函数呈振荡并非逐点非负；且 DPSS 为**近**带限而非真带限）。
 **纪律**：$\Delta\le 1/\bigl(2(\mathcal B_h+\mathcal B_w(R))\bigr)$；$M\ge 2$；$T$ 使 $\varepsilon_{\mathrm{tail}}$ 达到目标阈值。
 **报告**：输出
 
@@ -457,7 +461,7 @@ $$
 \det S(E)=e^{+2\pi i\,\xi(E)}\quad(\text{a.e. }E),
 $$
 
-配合单通道 $S(E)=e^{2i\varphi(E)}$，得 $\varphi'=\pi\xi'$。该选择与部分教材的 $\det S=e^{-2\pi i\xi}$ 约定相差一个全局负号，但只要同时调整 $S=e^{-2i\varphi}$，物理结论 $\varphi'=\pi\rho_{\mathrm{rel}}$ 保持不变。本文采用正号约定以确保与多通道迹公式 $\tfrac{1}{2\pi}\operatorname{tr}\mathsf Q_\omega=\rho_{\mathrm{rel}}$ 及 Friedel 关系的同号一致性。
+配合单通道 $S(E)=e^{2i\varphi(E)}$，得 $\varphi'=\pi\xi'$。该选择与部分教材的 $\det S=e^{-2\pi i\xi}$ 约定相差一个全局负号，但只要同时调整 $S=e^{-2i\varphi}$，物理结论 $\varphi'=\pi\rho_{\mathrm{rel}}$ 保持不变。本文采用正号约定以确保与多通道迹公式 $\tfrac{1}{2\pi}\operatorname{tr}\mathsf Q=\rho_{\mathrm{rel}}$ 及 Friedel 关系的同号一致性。
 
 **定理 2.1、定理 6.1 的完整证明**见正文 §2 与 §6。
 
