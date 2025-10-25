@@ -58,14 +58,14 @@ $$
 >
 > 亦为 Herglotz/Nevanlinna 函数。但因 $|U(x)|=1$ a.e.，故 $M(x)\in\mathbb R$ a.e.，$\Im M(x+i0)=0$。$M$ 的 Aleksandrov–Clark 测度 $\sigma_\alpha$ 一般纯奇或奇/绝对连续混合，不等于 Weyl–Herglotz 表示中的 $\mu$；二者仅在特殊规范与正则性下可比较。本文所用的谱测度 $\mu$ 与密度 $\rho$ 来自下述 Weyl–Titchmarsh 函数 $m$ 的 Herglotz 表示，**一律以 $\mu$ 定义 $\rho$，不以 $M$ 定义**。
 
-在与所给规范系统配对的**标准 de Branges 生成元** $E$ 下，存在 Weyl–Titchmarsh 函数 $m\in\mathcal N$（Nevanlinna/Herglotz 类，$\Im m(z)>0$ 于 $\mathbb C^+$），其非切边界值满足
+在与所给规范系统配对的**标准 de Branges 生成元** $E$ 下，存在 Weyl–Titchmarsh 函数 $m\in\mathcal N$（Nevanlinna/Herglotz 类，$\Im m(z)>0$ 于 $\mathbb C^+$），其非切（nontangential）边界值满足
 
 $$
 \boxed{~\varphi'(x)=\Im m(x+i0)=\pi\,\rho(x)\quad\text{（a.e.\ }x).~}
 \tag{0.1}
 $$
 
-**当且仅当** $E$ 来自该规范系统的**标准归一**且在 $\mathbb R$ 上无零时，有 $m(z)=-E'(z)/E(z)$；否则仅在实轴上有 $\Im(-E'/E)(x)=\varphi'(x)$ 的边界关系，不能据此认定 $-E'/E$ 为 Herglotz。更换 Weyl 边界将使 $m$ 发生 Möbius 变换 $m\mapsto(\alpha m+\beta)/(\gamma m+\delta)$，本同一式需随规范重申。
+若选取与该规范系统相匹配的**标准生成元** $E$（实轴无零），则 $m(z)=-E'(z)/E(z)$；在更一般的规范下仅保证 $\Im(-E'/E)(x)=\varphi'(x)$ 的边界关系，不能据此断言 $-E'/E$ 属 Herglotz。更换 Weyl 边界将使 $m$ 发生 Möbius 变换 $m\mapsto(\alpha m+\beta)/(\gamma m+\delta)$，本同一式需随规范重申。
 
 并且由再生核 $K(\cdot,\cdot)$ 的经典公式得到
 
@@ -74,7 +74,9 @@ $$
 \tag{0.2}
 $$
 
-从而相位在非奇异区间严格单调，并有 $\delta'(x)=-2\pi\rho(x)\le0$（**物理上相位随能量非增**）。
+从而 **de Branges 相位 $\varphi$** 在非奇异区间严格递增。
+
+> **术语约定**：为避免混淆，下文统一称 $\varphi$ 为"de Branges 相位"、$\delta$ 为"散射总相位"；由 §0.3 可知散射总相位满足 $\delta'(x)=-2\pi\rho(x)\le0$（物理上相位随能量非增）。
 
 ### 0.3 散射矩阵与总相位（单通道归一）
 
@@ -90,6 +92,8 @@ $$
 上式在上述短程性/限制性条件与 Wronskian 归一下成立；在更一般场景中应改用谱移函数 $\xi$ 表述：$\det S=e^{-2\pi i\xi}$、$\xi'=\rho$，从而仍得 $\delta'=-2\pi\rho$。
 
 > **多通道推广**：多通道情形下 $\partial_x\arg\det S=-2\pi\,\mathrm{tr}\,\rho$（或用 $\xi'=\mathrm{tr}\,\rho$），其余结论逐点沿用。
+>
+> **适用范围**：若实轴酉性或镜像对称不满足（如存在吸收/非自伴扰动），则用谱移函数 $\xi$ 的一般形式替代：$\det S=e^{-2\pi i\xi}$、$\xi'=\rho$，结论改述为 $\partial_x\arg\det S=-2\pi\rho$。
 
 ### 0.4 窗化与**有限阶** EM 三分解
 
@@ -106,7 +110,7 @@ $$
 \tag{0.4}
 $$
 
-在"带限 + Nyquist"条件下 $\text{alias}=0$。
+在"带限 + Nyquist"条件下 $\text{alias}=0$；指数型整窗时 alias 被吸收到同一条带内的整函数误差。
 
 ### 0.5 信息几何与灵敏度
 
@@ -164,6 +168,8 @@ $$
 
 则在工作条带内，$\Xi_\psi$ 与 $\Xi$ 具有相同的奇性集合（极点/本性/分支不增），且极点阶不升；若 $\psi$ 在奇点处非零，则极阶保持不变。
 
+> **注（奇性对象）**：定理 21.6 的"奇性"系指所考察的解析对象（如 $E'/E$、$\Xi(s)$ 等）的极点/分支/本性奇性；若以 $E$ 作对象，则对应考虑 $1/E$ 或 $E'/E$ 的奇性。
+
 *证明*：有限阶 EM 仅引入有限个端点差分（伯努利层）与整函数余项；带限 + Nyquist 使 $\text{alias}=0$；指数衰减使 alias 进入整函数误差并给出显式上界。故 $\Xi_\psi-\Xi$ 在**同一工作条带**内解析；当输入窗/核与母对象在 $s$ 上为整时，差值才为整。因而**奇性集合不增、极阶不升**的结论在工作条带内成立。由洛朗首项不变性得极阶结论。$\square$
 
 > **EM 纪律强调**：将 EM 误作无穷级并逐项外推会引入伪奇性并破坏"极点不增"。本文固定有限阶 $M$，并统一用 (0.4) 给出非渐近上界。**严禁把 EM 当作渐近无穷级逐项外推**。在可检清单中需记录所用阶数 $M$ 与端点导数阶。
@@ -195,6 +201,8 @@ $$
 *证明*：Rouché 定理结合 (0.4)。$\square$
 
 > 注（可检操作性）：$\inf_{\partial D}|E|$ 可由**带限窗 + 最大模估计 + 采样阈值检验**给出下界；三分解三项均可逐项给出显式上界。推荐检查步骤：(1) 选择条带边界 $\partial D$；(2) 对 $E$ 在 $\partial D$ 上采样，计算 $\inf|E|$；(3) 用窗范数、核 Sobolev 界与尾截断距离分别估计别名、伯努利层与截断项（引用 S18 §3.3 的统一非渐近上界）；(4) 验证 $\eta<\inf|E|$ 以确保 Rouché 条件。
+>
+> 若另有 $\inf_{\partial D}|E'|>0$ 或零点与 $\partial D$ 有正距离，则零点位移 $\lesssim \eta/\inf_{\partial D}|E'|$。本文仍以计数不变为主要结论，位移界只作可检上界指引。
 
 ---
 
@@ -202,7 +210,7 @@ $$
 
 令 $X^\ast=\arg\min g(X)$。窗化/数据扰动给出 $\widehat F,\widehat\nu$、极小元 $\widehat X$。
 
-**归一化假设**：将窗化谱密度在工作区间 $I$ 上归一化为概率密度；若存在截断尾项，则 KL/TV 在同一截断支撑上计算，并计入尾项占比 $\epsilon_{\text{tail}}$ 的校正常数。
+**归一化假设**：将窗化谱密度在工作区间 $I$ 上归一化为概率密度；若存在截断尾项，则 KL/TV 在同一截断支撑上计算，并计入尾项占比 $\epsilon_{\text{tail}}$ 的校正常数。为得到 $\mathrm{KL}\le C\,\mathrm{TV}^2$ 的控制，默认在工作区间内相关密度上下有界，$C$ 依赖于该界与 $(\mu,L)$。
 
 **定理 21.9（信息—能量—阈值稳定链）**
 在上述归一化与 $(\mu,L)$-凸平滑条件下，存在常数 $C_j=C_j(\mu,L,\mathcal C)$ 使
@@ -226,18 +234,18 @@ $$
 ## 6. 阈值正规形与共振靠近
 
 **定理 21.10（边界正规形与阈值阶）**
-设 $\mu$ 在 $x_0$ 的 Lebesgue 分解具有密度 $\rho\in C^{\kappa,\alpha}(I)$（某邻域 $I$），且奇异部分在 $x_0$ 无原子。则当 $x\to x_0$（实轴非切）时，
+设 $\mu$ 在 $x_0$ 的 Lebesgue 分解具有密度 $\rho\in C^{\kappa,\alpha}(I)$（某邻域 $I$），且奇异部分在 $x_0$ 无原子，**并假设在某邻域 $I$ 上 $\mu_{\rm s}|_I\equiv0$**（即 $x_0$ 的邻域内纯绝对连续）。则当 $x\to x_0$（实轴非切）时，
 
 $$
 \Im m(x+i0)\sim c\,|x-x_0|^\kappa,\qquad
 \Re m(x+i0)=\mathcal H[\Im m(\cdot+i0)](x)+\text{平滑项},
 $$
 
-其中 $\mathcal H$ 为 Hilbert 变换。阈值阶即 $\kappa$。**有限阶**窗化与 EM 不改变 $\kappa$。
+其中 $\mathcal H$ 为 Hilbert 变换，平滑项来自 $a x+b$ 与远离 $x_0$ 的部分。阈值阶即 $\kappa$。**有限阶**窗化与 EM 不改变 $\kappa$。
 *证明*：Herglotz—Nevanlinna 类局部结构与 (0.1)，结合定理 21.6。$\square$
 
 **命题 21.11（临界共振靠近与计数不变）**
-设 $z_j$ 为下半平面共振，若 $\rho$ 在 $x_0$ 一阶接触且 $\rho'(x_0)\neq0$，则在任一 Rouché 圆盘 $D$（$\partial D$ 与实轴交角非零）内，
+设 $z_j$ 为下半平面共振。若 $\rho$ 在 $x_0$ 为一阶消失（$\kappa=1$），且存在常数 $c,c'>0$ 使得 $\rho(x)=c(x-x_0)_+ + c'(x_0-x)_+ +o(|x-x_0|)$，其中至少一侧单侧导数非零（例如 $\rho'_+(x_0)=c\neq0$ 或 $\rho'_-(x_0)=-c'\neq0$），则在任一 Rouché 圆盘 $D$（$\partial D$ 与实轴交角非零）内，
 
 $$
 \mathrm{dist}(z_j,\mathbb R)\ \ll\ \sup_{\partial D}\frac{|E_\natural-E|}{|E|},
@@ -252,7 +260,7 @@ $$
 
 **(i) 完成的 $\xi$ 函数**（如 $\xi(s)=\tfrac12s(s-1)\pi^{-s/2}\Gamma(\tfrac s2)\zeta(s)$）：由于 $\xi(\tfrac12+iz)$ 的零点（若 RH 成立）位于**实轴**，其并非严格 HB 函数（HB 需上半平面内 $|E^\sharp|<|E|$、**无实零**）。可采用**偏移正则化** $E_\varepsilon(z)=\xi(\tfrac12+\varepsilon+iz)$（$\varepsilon>0$），此时由 (0.1)(0.2) 得 $\varphi'(x)=\pi\rho(x)>0$，由 (0.3) 得 $\delta'=-2\pi\rho$。定理 21.6–21.8 与 21.9 给出窗化稳定与零集的可检稳定半径。极限 $\varepsilon\downarrow0$ 的边界过程只在**边界值层面**继承 (0.1)，非严格 HB。或直接以**规范系统生成的** de Branges 链 $E_t$ 为例，而非直接取 $\xi$。
 
-**(ii) Dirichlet $L(\chi,\cdot)$**：完成后根数吸收入通道特征值，仍满足 $\delta'=-2\pi\rho$。在带限/采样达 Nyquist 时别名项消失，伯努利层与尾项提供显式误差。
+**(ii) Dirichlet $L(\chi,\cdot)$**：完成后的常数因子并入能量无关的相位常数（或通道特征值），仍有 $\delta'=-2\pi\rho$。在带限/采样达 Nyquist 时别名项消失，伯努利层与尾项提供显式误差。
 
 **(iii) 离散图对照**：$(q+1)$-正则图的 Ihara–Bass 行列式给出离散"完成函数"与自倒数镜像；"离散阈值"由谱多项式零—极结构指示（等价于谱多项式的接触/重零点），窗化误差结构沿用 (0.4)。端点（$\pm 2\sqrt q$）处的'阈值阶'等价于 Chebyshev 型因子的重合阶。
 
