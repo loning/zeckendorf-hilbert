@@ -1,4 +1,4 @@
-# S25. 非平稳 Weyl–Mellin 框架：带限—镜像一致下的 tight/dual 构造与稳定性
+# S25. 非平稳 Weyl–Heisenberg 框架（对数/Mellin 模型）：带限—镜像一致下的 tight/dual 构造与稳定性
 
 **—— Paley–Wiener 偶子空间上的分块调制—伸缩系统、Calderón 和与规范系统采样**
 
@@ -28,7 +28,7 @@ $$
 =\bigl\{w\in L^2(\mathbb R):\ \operatorname{supp}\widehat w\subset[-\Omega,\Omega],\ w(t)=w(-t)\bigr\}.
 $$
 
-### 0.2 Weyl–Mellin 酉表示与格点
+### 0.2 Weyl–Heisenberg 酉表示（对数/Mellin 模型）
 
 在对数模型 $\mathcal H=L^2(\mathbb R)$（由 Mellin—对数变换与 $L^2(\mathbb R_+,x^{a-1}dx)$ 酉等价）上，取
 
@@ -36,7 +36,9 @@ $$
 U_\tau g(t)=e^{i\tau t}g(t),\qquad V_\sigma g(t)=g(t+\sigma),
 $$
 
-满足 Weyl 关系 $V_\sigma U_\tau=e^{i\tau\sigma}U_\tau V_\sigma$。这是 Heisenberg 群的标准酉表示（Stone–von Neumann 唯一性），为时—频平移的算子论背景。
+满足 Weyl 关系 $V_\sigma U_\tau=e^{i\tau\sigma}U_\tau V_\sigma$。这是 **Weyl–Heisenberg 群**的标准酉表示（Stone–von Neumann 唯一性），与通常 $L^2(\mathbb R)$ Schrödinger 表示同构，为时—频平移的算子论背景。[^1] 本文所用"**Weyl–Heisenberg（对数/Mellin 模型）**"与文中其他地方可能出现的"Weyl–Mellin"术语等价（均指此表示）。
+
+[^1]: 对数/Mellin 变换将乘性群上的伸缩映为加性平移，但酉表示保持 Heisenberg 代数结构不变。
 
 ### 0.3 Poisson 与 Euler–Maclaurin（有限阶）纪律
 
@@ -62,7 +64,9 @@ $$
 
 它确保频域平移族 $\{\widehat{\psi_n}(\cdot-k\Delta\tau_n)\}_{k\in\mathbb Z}$ **互不重叠**，从而后述能量分解无混叠（"painless"）。该条件与非平稳 Gabor 框架的对角化定理一致。
 
-> **注**：$\Delta\tau_n\ge 2\Omega_n$ 是**调制采样**的无混叠条件；不同于**时域 Nyquist**（对时间采样带限信号 $h\le \pi/\Omega$），两者作用变量不同，勿混。
+为避免端点别名，除非另行声明，以下均假定 $2\Omega_n<\Delta\tau_n$；若取极限情形 $2\Omega_n=\Delta\tau_n$，则约定 $\{\xi:\widehat\psi_n(\xi)\neq0\}$ 与其 $\Delta\tau_n$-移位仅在零测集合上接触，因而不影响 (1.1) 与 (1.2) 的等式成立。
+
+> **注**：$\Delta\tau_n\ge 2\Omega_n$ 是**调制采样**的无混叠条件；不同于**时域 Nyquist**（对时间采样带限信号 $h\le \pi/\Omega$），两者作用变量不同，勿混。本文频率变量为**弧频**（$e^{i\tau t}$），故与以 Hz 计的工程文献相比，所有 Nyquist/步长条件与 $2\pi$ 因子存在一一换算关系。
 
 ### 1.2 单块 Walnut–Poisson 能量恒等式
 
@@ -116,11 +120,11 @@ $$
 
 ### 定理 2.2（tight 条件与 $\varepsilon$-tight）
 
-若在**工作带** $\bigcup_n I_n$ 上 $\mathcal C(\xi)\equiv 1$（a.e.），则 $\{\psi_{n,k}\}$ 为 tight，
+若在**工作带** $\bigcup_n I_n$ 上 $\mathcal C(\xi)\equiv 1$（a.e.），则 $\{\psi_{n,k}\}$ 在 $\mathcal H_{\rm work}:=\overline{\operatorname{span}}\{\psi_{n,k}\}$ 上为 tight，且
 
 $$
 \sum_{n,k}|\langle f,\psi_{n,k}\rangle|^2=\|f\|_2^2,\qquad
-f=\sum_{n,k}\langle f,\psi_{n,k}\rangle\,\psi_{n,k}\quad(L^2\text{ 收敛}).
+f=\sum_{n,k}\langle f,\psi_{n,k}\rangle\,\psi_{n,k}\quad(L^2,\ \forall f\in\mathcal H_{\rm work}).
 $$
 
 若 $|\mathcal C-1|_{L^\infty}\le \varepsilon<1$，则帧界可取 $(1-\varepsilon,1+\varepsilon)$。
@@ -156,7 +160,13 @@ $$
 
 **证明**：频域分析—合成乘子为 $\sum_n \tfrac{2\pi}{\Delta\tau_n}\widehat{\psi_n}\overline{\widehat{\gamma_n}}=\mathcal C\cdot\mathcal C^{-1}\equiv 1$。这正是非平稳"painless"情形对偶窗的标准公式。∎
 
-**正则性（Wiener 型引理）**：**若** $\mathcal C$ 属于 Wiener–amalgam 等谱不变代数（如 $W(L^\infty,\ell^1)$ 或 $C^{0,\alpha}$）且 $\operatorname*{ess\,inf}_\xi\mathcal C(\xi)>0$，**则** $1/\mathcal C$ 与 $\mathcal C$ 同类，从而对偶窗 $\widehat{\gamma_n}$ 与 $\widehat{\psi_n}$ 属于同一类函数空间；这是 Gabor/扭卷积 Wiener–代数的**谱不变性**所致。否则仅主张 $L^2$-层面的对偶存在性。
+**正则性（点乘代数情形）**：在 (1.2) 的对角化情形，帧算子为乘子 $\mathcal C$。若 $\mathcal C\in L^\infty$ 且 $\operatorname*{ess\,inf}_\xi\mathcal C(\xi)>0$，则 $1/\mathcal C\in L^\infty$，并且当 $\mathcal C$ 具有 $C^r$ 或 $W^{s,\infty}$ 正则性时，$1/\mathcal C$ 继承相同阶的正则性。于是
+
+$$
+\widehat{\gamma_n}=\frac{\overline{\widehat{\psi_n}}}{\mathcal C}\in \text{与 }\widehat{\psi_n}\text{ 同类的函数空间}.
+$$
+
+> **备注**：对于一般（非对角化）Gabor 框架，需要更强的 Wiener–Gabor 谱不变性（如 Gröchenig–Leinert 的扭卷积 Wiener 引理）；在本文"无混叠"情形下，上述点乘代数足够。
 
 ---
 
@@ -176,18 +186,30 @@ $$
 
 ### 定理 4.2（步长轻微非均匀化）
 
-将块内步长 $\Delta\tau_n$ 改为近似均匀族 $\Delta\tau_{n,k}$，满足
+令步长列 $\{\Delta\tau_{n,k}\}_{k\in\mathbb Z}$ 有界且正，**以递推**
 
 $$
-\sup_k|\Delta\tau_{n,k}-\Delta\tau_n|\le \varepsilon_n,\qquad
-\inf_k\Delta\tau_{n,k}\ge 2\Omega_n.
+\tau_{n,0}:=0,\qquad \tau_{n,k+1}-\tau_{n,k}=\Delta\tau_{n,k+1}\quad(\forall\,k\in\mathbb Z),
 $$
 
-（若已知 $\Delta\tau_n\ge 2\Omega_n+\varepsilon_n$，则由上式自动推出 $\inf_k\Delta\tau_{n,k}\ge 2\Omega_n$。）
+从而
 
-若 $\sum_n \varepsilon_n|\widehat{\psi_n}|_{L^\infty}^2$ 充分小，则 Gram 矩阵相对基准为小扰动，帧界偏移为 $\mathcal O(\sum_n \varepsilon_n)$。
+$$
+\tau_{n,k}=\sum_{j=1}^{k}\Delta\tau_{n,j}\ (k>0),\qquad
+\tau_{n,k}=-\sum_{j=k+1}^{0}\Delta\tau_{n,j}\ (k<0).
+$$
 
-**证明要点**：单块 Walnut 展开给出"几乎对角"结构，非均匀性仅进入对角外行列；以 Schur 测试/有界扰动法则控制。参见帧扰动一般理论。∎
+仍取 $\psi_{n,k}:=U_{\tau_{n,k}}V_{\sigma_n}\psi_n$。假设存在全局分离常数 $d_n>0$ 使
+
+$$
+\inf_{k\neq\ell}|\tau_{n,k}-\tau_{n,\ell}|\ge d_n\ge 2\Omega_n .
+$$
+
+等价地，可写成**扰动型均匀格**：$\tau_{n,k}=k\Delta\tau_n+\delta_{n,k}$，且 $\sup_k|\delta_{n,k}-\delta_{n,k-1}|\le\varepsilon_n$ 与 $\Delta\tau_n-2\Omega_n>\varepsilon_n$。
+
+在此分离假设下，Walnut 展开只剩小的"近对角"带，Gram 矩阵相对基准为小扰动；以 Schur 测试控制，得帧界偏移为 $\mathcal O(\sum_n \varepsilon_n)$（该估计在 $\sum_n \varepsilon_n\,|\widehat{\psi_n}|_{L^\infty}^2<\infty$ 或 $\sup_n\varepsilon_n\le\varepsilon$ 且仅有限多块非零等可检情形下有意义；见 §8‑4）。
+
+**证明要点**：分离条件保证频域移位的全局最小间距，从而 Walnut 展开给出"几乎对角"结构，非均匀性仅进入对角外行列；以 Schur 测试/有界扰动法则控制。参见帧扰动一般理论。∎
 
 > **软化与灵敏度**：以 Bregman 软目标在频域拟合 $\mathcal C\approx 1$，其最优解对数据与窗的扰动具 Lipschitz 连续依赖；$\tau\downarrow 0$ 时由 $\Gamma$-收敛回到硬约束问题。
 
@@ -201,7 +223,13 @@ $$
 K(x,x)=\frac{1}{\pi}\,\varphi'(x)\,|E(x)|^2 \qquad(x\in\mathbb R),
 $$
 
-故 $\varphi'(x)=\pi\,\frac{K(x,x)}{|E(x)|^2}$。该恒等式乃 de Branges 论的基本结论。另一方面，Weyl–Titchmarsh $m$ 函数为 Herglotz 函数，其边界虚部给出谱测度密度：$d\mu_{\mathrm{ac}}(x)=\pi^{-1}\Im m(x+i0)\,dx$。**当 $m$ 来自与 $E$ 相同的规范系统时**，有 $\rho(x):=\frac{1}{\pi}\Im m(x+i0)=\frac{1}{\pi}\varphi'(x)$（核对角与 Stieltjes 反演一致）。
+故 $\varphi'(x)=\pi\,\frac{K(x,x)}{|E(x)|^2}$。该恒等式乃 de Branges 论的基本结论（参见 Antezana–Marzo–Olsen, IMRN 2016）。另一方面，Weyl–Titchmarsh $m$ 函数为 Herglotz 函数，其边界虚部通过 Stieltjes 反演给出谱测度绝对连续部分的密度：
+
+$$
+\frac{d\mu_{\mathrm{ac}}}{dx}(x)=\frac{1}{\pi}\,\Im m(x+i0)\quad\text{(a.e.)}.
+$$
+
+**在采用与 $m$ 的 Herglotz 表示一致的规范化时**，当 $m$ 来自与 $E$ 相同的规范系统，两侧密度是一致刻度的，从而有 $\rho(x):=\frac{1}{\pi}\Im m(x+i0)=\frac{1}{\pi}\varphi'(x)$（核对角与 Stieltjes 反演一致）。若采用不同的相位/谱归一化，需在常数上做相应换元。
 
 ### 定理 5.1（相位等间隔的采样帧与 $\varepsilon$-tight 归一）
 
@@ -217,7 +245,7 @@ $$
 \varphi(x_{n,k+1})-\varphi(x_{n,k})=\pi\quad(\text{每块内等间隔于相位}),
 $$
 
-等价于局部步长 $\Delta x\approx \pi/\varphi'(x)=1/\rho(x)$。则 $\{K(\cdot,x_{n,k})\}_{n,k}$ 在 $\mathcal H(E)$ 中**构成采样帧**；若取权重 $w_{n,k}:=\pi/\varphi'(x_{n,k})$ 并用归一核 $\kappa_x:=K(\cdot,x)/\sqrt{K(x,x)}$，则在相位网格**准均匀**时可达 **$\varepsilon$-tight**（帧界 $1\pm\varepsilon$），其能量通过 $\varphi'=\pi\rho$ 与 Fourier 侧的 tight 条件严格匹配。
+等价于局部步长 $\Delta x\approx \pi/\varphi'(x)=1/\rho(x)$。则 $\{K(\cdot,x_{n,k})\}_{n,k}$ 在 $\mathcal H(E)$ 中**构成稳定采样帧**；当相位严格等间隔 $\Delta\varphi=\pi$（除至多一个相位偏移）时，归一核序列 $\kappa_x:=K(\cdot,x)/\sqrt{K(x,x)}$ 构成**正交基**（因此 tight）。在相位网格**准均匀**（doubling 条件）时形成**稳定帧**，可达 **$\varepsilon$-tight**（帧界 $1\pm\varepsilon$），其能量通过 $\varphi'=\pi\rho$ 与 Fourier 侧的 tight 条件严格匹配。
 
 **证明概略**：频域 tight 使 Fourier 侧帧算子为恒等；规范侧用再生核与相位导数的核对角公式将能量归一化到单位密度刻度，取相位等间距即得采样帧；加权归一后在准均匀网格下可达 $\varepsilon$-tight 逼近；两侧借标准词典对齐。∎
 
@@ -229,15 +257,17 @@ $$
 
 ### 定理 6.1（分析—合成不引入新奇性）
 
+**技术假设**：对相关参数 $s$ 的条带 $\mathcal S$，被积函数与 $k$-求和项在 $t,\xi$ 上受一个 $s$-一致可积的主函数控制，且有限阶 EM 余项在 $\mathcal S$ 内一致有界；Poisson 求和仅在**带限**情形使用。于是所有换序与微分—求和交换均由主导收敛或 Fubini–Tonelli 支撑。
+
 取偶带限或指数衰减窗，所有连续—离散换序仅用**有限阶** EM；假定窗与被测函数对参数 $s$ 的依赖在工作条带内解析/全纯。则对任意参数族 $h(\cdot;s)$ 的分析/合成泛函，在工作条带内的奇性位置与阶数与未窗化时相同；若窗在奇点处非零，则极阶保持。
 
 **证明要点**：单块 Poisson 的混叠在"无混叠"下消失；有限阶 EM 的 Bernoulli 层与余项为整/全纯函数；分析—合成只叠加整/全纯层，故不改变原有奇性集合与阶。∎
 
 ---
 
-## 7. 离散图并行一瞥
+## 7. 离散图并行的直觉类比（展望）
 
-在 $(q+1)$-正则图的 Ihara ζ 场景中，频域由谱多项式的自倒数性支配；按回路长度分块采样的 tight 条件与 Bass–Ihara 行列式恒等存在平行结构，可视作离散谱域的 Calderón 和。
+在 $(q+1)$-正则图的 Ihara ζ 场景中，频域由谱多项式的自倒数性支配；按回路长度分块采样的 tight 条件与 Bass–Ihara 行列式恒等存在**直觉上的平行结构**，可视作离散谱域的 Calderón 和。该类比尚需严格化，此处仅作为未来研究方向的提示。
 
 ---
 
@@ -348,6 +378,7 @@ $$
 
 - 本文**频域无混叠**用于调制步长 $\Delta\tau$，要求 $\Delta\tau\ge 2\Omega$（窗的频域支撑宽度不超过步长）。这是**使 Walnut 对角化成立的几何充分条件**，在 Gabor/NSGF 文献的"painless"情形下为核心假设。
 - **时域 Nyquist**针对**时间采样**带限信号，步长 $h\le \pi/\Omega$。两者对象不同，条件方向相反，需区分。
+- **单位与换算**：本文频率变量为**弧频**（$e^{i\tau t}$），故与以 Hz 计的工程文献相比，所有 Nyquist/步长条件与 $2\pi$ 因子存在一一换算关系。式 (1.1) 的常数因子 $2\pi/\Delta\tau_n$ 与 NSGF "painless" 对角化中的 $a_k^{-1}$ 乘子（工程单位酉傅里叶）互相匹配。
 
 ---
 
