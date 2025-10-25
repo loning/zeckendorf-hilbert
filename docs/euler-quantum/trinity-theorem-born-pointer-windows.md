@@ -3,8 +3,8 @@
 **—— Born = 信息投影（当且仅当），Pointer = 光谱极小（当且仅当），Windows = 极大极小最优**
 
 **作者**：Auric
-**版本**：v1.0（预印本）
-**日期**：2025-10-25
+**版本**：v1.1（预印本，符号修正版）
+**日期**：2025-10-25（修订）
 
 ---
 
@@ -25,7 +25,7 @@ $\mathcal H$ 可分；纯态 $\psi\in\mathcal H$、$|\psi|=1$。PVM 情形取互
 
 ### 0.2 DBK 规范系统与 Weyl–Titchmarsh
 
-对一维通道，Weyl–Titchmarsh 函数 $m$ 为 Herglotz 函数，其边界虚部给出谱测度；DBK 理论在 Herglotz 类与规范系统之间给出光谱表示与评估嵌入。
+对一维通道，**Weyl–Titchmarsh 函数** $m(z)$ 为 **Herglotz–Nevanlinna 函数**（即在上半平面解析且虚部非负），其边界值的虚部给出谱测度 $d\rho$：$\Im m(E+i0^+)=\pi\,d\rho/dE$（几乎处处）。**de Branges–Kreĭn（DBK）理论**在 Herglotz 类与**正则系统**（canonical system）之间给出一一对应：每个 Herglotz 函数唯一对应一个正则系统（传递矩阵 $M(t,z)$ 满足 $J$-酉性），从而建立了光谱表示与评估嵌入（参见 de Branges 1968; Remling, *Spectral Theory of Canonical Systems*, 综述）。本文利用此对应将窗化核 $h(E)w_R(E)$ 与谱测度 $\rho_{\rm rel}$ 的卷积联系到谱投影 $\Pi_A$。
 
 ### 0.3 散射—功能方程词典与相位—谱移
 
@@ -34,22 +34,24 @@ $$
 \frac{d}{dE}\arg\det S(E)=-2\pi\,\xi'(E).
 $$
 
-若规范 $\det S(E)=c_0\,e^{-2i\varphi(E)}$，则
+若规范 $\det S(E)=c_0\,e^{-2i\varphi(E)}$，则 $\varphi(E)=\pi\,\xi(E)$（差常数），从而
 
 $$
-\boxed{\ \varphi'(E)=\pi\,\xi'(E)=\pi\,\rho_{\rm rel}(E)\ }.
+\boxed{\ \varphi'(E)=\pi\,\xi'(E)=-\pi\,\rho_{\rm rel}(E)\ }.
 $$
 
-**规范声明**：我们固定 $\det S(E)=c_0e^{-2i\varphi(E)}$；据 Birman–Kreĭn，$\det S=e^{-2\pi i\xi}$，故 $\varphi'=\pi\xi'$；由 $Q=-iS^\dagger S'$ 与 $\frac{d}{dE}\arg\det S=\operatorname{tr}Q$，得 $\operatorname{tr}Q=-2\varphi'=-2\pi\xi'$。
+**规范声明**：我们固定 $\det S(E)=c_0e^{-2i\varphi(E)}$ 且 $|c_0|=1$；据 Birman–Kreĭn，$\det S=e^{-2\pi i\xi}$，故 $\varphi'=\pi\xi'$；由 $Q=-iS^\dagger S'$ 与 $\frac{d}{dE}\arg\det S=\operatorname{tr}Q$，得 $\operatorname{tr}Q=-2\varphi'=-2\pi\xi'$。取 $\theta(E)=\arg\det S(E)$ 的连续支，使 $\theta'=\operatorname{tr}Q$ 与 BK 对齐。
+
+**记号对齐**：令 $\theta(E):=\arg\det S(E)$、$\delta_{\rm tot}(E):=\theta(E)/2$。则 $\theta'=\operatorname{tr}Q=-2\pi\,\xi'(E)$、$\delta'_{\rm tot}=\tfrac{1}{2}\operatorname{tr}Q=-\pi\,\xi'(E)=\pi\,\rho_{\rm rel}(E)$。本文取 $\det S(E)=c_0e^{-2i\varphi(E)}$，故 $\varphi=-\delta_{\rm tot}$（差常数）且 $\varphi'=-\delta'_{\rm tot}=-\pi\,\rho_{\rm rel}=\pi\,\xi'$。这与标准散射相位定义 $\sigma(\lambda)=\frac{1}{2\pi i}\log\det S(\lambda)$ 完全一致（Pushnitski, arXiv:1006.0639；Galkowski–Marchand–Wang–Zworski）。以下恒等式在远离通道门槛与嵌入特征值处按分布意义成立；必要时对 $\log\det S$ 取连续分支并加上束缚态的原子项（Krein–Friedel–Lloyd 标准正则化）。
 
 ### 0.4 Wigner–Smith 矩阵
 
 $$
 Q(E)=-\,i\,S^\dagger(E)\,\frac{dS}{dE}(E)\quad\text{为自伴（特征值一般不保证非负）},\qquad
-\boxed{\ \frac{1}{2\pi}\operatorname{tr}Q(E)=-\xi'(E)\ }.
+\boxed{\ \frac{1}{2\pi}\operatorname{tr}Q(E)=\rho_{\rm rel}(E)=-\xi'(E)\ }.
 $$
 
-与 §0.3 之 $\det S(E)=e^{-2\pi i\xi(E)}$ 相容，且由 $\operatorname{tr}Q=\frac{d}{dE}\arg\det S$ 得。
+与 §0.3 之 $\det S(E)=e^{-2\pi i\xi(E)}$ 相容，且由 $\operatorname{tr}Q=\frac{d}{dE}\arg\det S$ 得。关键恒等式：$-iS^\dagger \partial_E S$ 的迹等于 $\partial_E\arg\det S$（Friedel 相位导数），这是标准的 Wigner–Smith 延迟理论（Texier 综述；Wigner 1955, Smith 1960）。由 Krein–Friedel–Lloyd 公式，$\rho_{\rm rel}(E)=\frac{1}{2\pi i}\frac{d}{dE}\log\det S(E)=\frac{1}{2\pi}\operatorname{tr}Q(E)$；结合 Birman–Kreĭn 得 $\rho_{\rm rel}(E)=-\xi'(E)$（ChaosBook §35；Pushnitski arXiv:1006.0639）。
 
 ### 0.5 窗化迹、三分解误差与可分辨窗族
 
@@ -65,7 +67,7 @@ $$
 \text{alias（Poisson）}+\text{EM（有限阶伯努利层）}+\text{tail}.
 $$
 
-"可分辨窗族" $\mathcal W$ 指使得 $\{E\mapsto h(E)w_R(E): w\in\mathcal W\}\subset C_0(\sigma(A))$ 在谱上分离点的窗族；若该族复共轭封闭且连同常数函数生成的交换 $*$-代数在 $C_0(\sigma(A))$ 中稠密（Stone–Weierstrass），则可刻画谱结构。
+"可分辨窗族" $\mathcal W$ 指：存在窗集合 $\mathcal W$ 与有限核集合 $\mathcal H$，使 $\{E\mapsto h(E)w_R(E): w\in\mathcal W,h\in\mathcal H\}\subset C_0(\sigma(A))$ 在谱上分离点；若该族**在复共轭与乘法下封闭**，且连同常数函数生成的交换 $*$-代数在 $C_0(\sigma(A))$ 中稠密（Stone–Weierstrass），则 $\{K_{w,h}\}$ 在**直接积分意义**下同时可对角化，并与 $\Pi_A$ 的谱分解一致（纯点谱时退化为本征基，模退化）。
 
 ### 0.6 Paley–Wiener 带限偶窗与 Fourier 规范
 
@@ -128,17 +130,23 @@ $$
 \boxed{\ \text{Born 概率}\ \Longleftrightarrow\ \text{I-投影（在线性对齐族上）}\ }.
 $$
 
+**说明**：PVM 情形下，$\{\phi_i\}$ 彼此正交源于 $\mathrm{Ran}\,P_i\perp \mathrm{Ran}\,P_j\ (i\neq j)$；当 $|P_i\psi|=0$ 时，所选 $\phi_i\in\mathrm{Ran}\,P_i$ 仍与其余 $\phi_j$ 正交。因此线性对齐族 $\mathcal M=\{w\}$ 为单点，故此处 I-投影为**退化情形**，是把**几何最优**与**信息最优**对齐到同一点的等价刻画，而非常规的非平凡投影问题。
+
+POVM 情形通过 **Naimark 扩张** 归约为 PVM：存在等距嵌入 $V:\mathcal H\to\mathcal H\otimes\mathcal K$ 与扩张空间上的 PVM $\{\Pi_i\}$ 使得 $E_i=V^\dagger\Pi_iV$。在 $\mathcal H\otimes\mathcal K$ 上对 $\{\Pi_i\}$ 与态 $V\psi$ 应用上述 PVM 论证，再投回原空间，结论逐项成立（标准构造参见 Naimark 定理，arXiv:1509.06999；Petz & Ghinea, *Introduction to Quantum Fisher Information*, §3）。
+
 ### 证明（提纲）
 
 （1）几何版：$|X(p)|^2=\sum_i p_i=1$，故
 
 $$
 \mathcal D(p)=1-\langle\psi,X(p)\rangle
+=1-\sum_i \langle\psi,\phi_i\rangle\sqrt{p_i}
 =1-\sum_i |P_i\psi|\sqrt{p_i}
 $$
 
-由 Cauchy–Schwarz 取等当且仅当 $\sqrt{p_i}\propto |P_i\psi|$；由 CS 等号条件与 $\sum p_i=1$ 唯一化常数，故 $p=w$。
-（2）信息版：在线性对齐族 $\mathcal M$ 上，因 $\{\phi_i\}$ 正交且单位，约束 $\sum_i p_i\phi_i=\sum_i w_i\phi_i$ 逐系数给出 $p_i=w_i$，即 $\mathcal M=\{w\}$；因此 I-投影在本设定下**退化为单点**，$p^\star=w$。此处的"Born = I-投影"是把**几何最优**与**信息最优**对齐到**同一点**的**等价刻画**，并非一般意义下的非平凡投影问题。
+（注意 $\langle\psi,\phi_i\rangle=|P_i\psi|$ 当 $|P_i\psi|>0$，来自 $P_i\psi=|P_i\psi|\phi_i$ 与正交投影性质）。由 Cauchy–Schwarz 取等当且仅当 $\sqrt{p_i}\propto |P_i\psi|$；由 CS 等号条件与 $\sum p_i=1$ 唯一化常数，故 $p=w$。
+
+（2）信息版：在线性对齐族 $\mathcal M$ 上，因 $\{\phi_i\}$ 正交（源于 $\mathrm{Ran}\,P_i\perp \mathrm{Ran}\,P_j$）且单位，约束 $\sum_i p_i\phi_i=\sum_i w_i\phi_i$ 逐系数给出 $p_i=w_i$，即 $\mathcal M=\{w\}$，因此 $p^\star=w$。
 （3）POVM 情形用 **Naimark 扩张**：存在等距嵌入 $V:\mathcal H\to\mathcal H\otimes\mathcal K$ 与扩张 PVM $\{\Pi_i\}$ 使 $E_i=V^\dagger\Pi_iV$。在 $\mathcal H\otimes\mathcal K$ 上对 $\{\Pi_i\}$ 与态 $V\psi$ 重复上述 PVM 论证即得结论，再投回原空间。∎
 
 ---
@@ -163,14 +171,21 @@ $$
 
 ### 定理 2.1（Ky Fan–Rayleigh–Ritz）
 
-假设 $K_{w,h}$ 自伴（已满足），并假设 $K_{w,h}$ 为**紧自伴**（例如 $A$ 具纯点谱且 $h(\cdot)w_R(\cdot)$ 使 $f(A)$ 紧）**或**以下"有限维谱投影极限"处理：先在有限谱投影 $P_\Lambda$ 上研究 $P_\Lambda K_{w,h}P_\Lambda$ 的 Ky Fan–Rayleigh–Ritz，再令 $\Lambda\uparrow\sigma(A)$。对每个 $m$,
+假设 $K_{w,h}$ 自伴（已满足）。**Ky Fan 变分原则**（Ky Fan, PNAS 35, 652 (1949)）给出：对每个 $m$,
 
 $$
 \inf_{\{e_k\},\text{正交基}}\ \mathcal Q^{(m)}_{w,h}(\{e_k\})
 =\sum_{k=1}^m\lambda_k^{\uparrow}(K_{w,h}),
 $$
 
-**在紧/离散谱前提下**等号当且仅当 $\{e_k\}_{k\le m}$ 张成最小 $m$ 个特征值对应的特征子空间；若含连续谱，则只得到**下确界**版本。若存在一族可分辨窗 $\mathcal W$，使同一基 $\{e_k\}$ 对所有 $w\in\mathcal W$ 与所有 $m$ 上式均取到下确界，则 $\{e_k\}$ 同时对角化 $\{K_{w,h}:w\in\mathcal W\}$。当 $\{E\mapsto h(E)w_R(E):w\in\mathcal W\}$ 复共轭封闭且连同常数函数生成的交换 $*$-代数在 $C_0(\sigma(A))$ 中稠密（Stone–Weierstrass）时，$\{e_k\}$ 亦对角化 $\Pi_A$，即与 $A$ 的谱分解一致（直接积分意义；纯点谱时为"本征基（**模退化**，不能区分退化子空间内的基）"）。∎
+其中 $\lambda_1^{\uparrow}\le\lambda_2^{\uparrow}\le\cdots$ 为 $K_{w,h}$ 的特征值（非降序，按重数计）。**适用域**：
+
+1. **紧自伴**情形（例如 $A$ 具纯点谱且 $h(\cdot)w_R(\cdot)$ 使 $f(A)$ 紧）：等号当且仅当 $\{e_k\}_{k\le m}$ 张成最小 $m$ 个特征值对应的特征子空间（可达极小）。
+2. **一般自伴**情形（含连续谱）：先在有限谱投影 $P_\Lambda$ 上研究 $P_\Lambda K_{w,h}P_\Lambda$ 的 Ky Fan 极值，再令 $\Lambda\uparrow\sigma(A)$；此时上式给出**下确界**，可能无可达极小基。
+
+**同时对角化判据**：若存在一族可分辨窗 $\mathcal W$，使同一基 $\{e_k\}$ 对所有 $w\in\mathcal W$ 与所有 $m$ 上式均取到下确界，则 $\{e_k\}$ 为 $\{K_{w,h}:w\in\mathcal W\}$ 的**公共本征向量系**（在紧/离散谱前提下）。**关键**：此要求意味着存在同时对角化所有 $K_{w,h}$ 的基；当 $A$ 有简并时，仅能确定简并子空间的选择而非子空间内的唯一基（**模退化**）。
+
+**交换性与谱分解一致**：因 $K_{w,h}=\int h(E)w_R(E)\,d\Pi_A(E)=f_{w,h}(A)$ 为 $A$ 的**功能演算**，故 $\{K_{w,h}\}$ 两两交换。当 $\{E\mapsto h(E)w_R(E):w\in\mathcal W,h\in\mathcal H\}$ 复共轭封闭且连同常数函数生成的交换 $*$-代数在 $C_0(\sigma(A))$ 中稠密（Stone–Weierstrass）时，$\{K_{w,h}\}$ 在**直接积分意义**下与 $\Pi_A$ 的谱分解一致（纯点谱时为本征基（模退化），连续谱时为乘法算子模型）。参见 Ky Fan (PNAS 1949, 1951); Bach (EECS Tech Report CSD-03-1249, 2003); arXiv:2410.18254。∎
 
 ---
 
@@ -192,7 +207,7 @@ $$
 +\int_{|E|>T}\!\!\big|g(E)\big|\,dE.
 $$
 
-此三项上界需 $g$ 至少具 $M$ 阶可积导数与足够衰减（Schwartz 情形最安全）；若 $\mathrm{supp}\,\widehat g\subset(-\pi/\Delta,\pi/\Delta)$（即 Nyquist 充分条件），则**别名项为零**。
+此三项上界需 $g$ 至少具 $M$ 阶可积导数与足够衰减（Schwartz 情形最安全）。**带限条件澄清**：即便 $\widehat{w_R}$ 带限（$\operatorname{supp}\widehat{w_R}\subset[-\Omega/R,\Omega/R]$），$\widehat{g}$ 的支撑满足 $\operatorname{supp}\widehat{g}\subset \operatorname{supp}\widehat{w_R}+\operatorname{supp}\widehat{h}+\operatorname{supp}\widehat{\rho_{\rm rel}}$（频域卷积），因此**$\widehat{g}$ 未必带限**（$\rho_{\rm rel}$ 通常非带限）。若 $\mathrm{supp}\,\widehat g\subset(-\pi/\Delta,\pi/\Delta)$（即 Nyquist 充分条件，**严格不等式**），则**别名项为零**（Nyquist–Shannon 采样定理：当支持带宽 $B$ 满足 $B<f_s/2$ 严格时无混叠；边界情形 $B=f_s/2$ 不保证无混叠，参见 Wikipedia: Nyquist–Shannon sampling theorem; 一般文献：Oppenheim & Schafer, *Discrete-Time Signal Processing*）。
 
 据此定义对手—鲁棒目标
 
@@ -201,7 +216,7 @@ $$
 \qquad w\in\mathsf{PW}^{\rm even}_\Omega,\ w(0)=1,
 $$
 
-其中 $\mathfrak E(\cdot)$ 为上式右端误差泛函，$|h|_{\mathfrak H}$ 为核函数的适当范数（例如取 $|h|_{\mathfrak H}=\sum_{j=0}^{M-1}\alpha_j|h^{(j)}|_{L^1}$ 或 $L^2$ 形式，以确保上确界良定）。**本节的鲁棒上界为构造性上界**，非最优上界；采样满足 Nyquist 时别名项可忽略。
+其中 $\mathfrak E(\cdot)$ 为上式右端误差泛函，$|h|_{\mathfrak H}$ 为核函数的适当范数（例如取 $|h|_{\mathfrak H}=\sum_{j=0}^{M-1}\alpha_j|h^{(j)}|_{L^1}$ 或 $L^2$ 形式，以确保上确界良定）。本节鲁棒上界为**构造性上界**（非最优上界）；参数：$\Delta$（采样步长）、$T$（截断阈值）、$M$（Euler–Maclaurin 阶数）。关于 Poisson 求和与 Euler–Maclaurin 余项标准表述，参见 SCIPP UCSC 讲义；Bernoulli 数性质见 Abramowitz & Stegun §23。
 
 ### 3.2 强凸代理、存在唯一与 KKT
 
@@ -225,8 +240,17 @@ $$
 }
 $$
 
-其中 $\eta$ 为归一约束的拉格朗日乘子常数，$B=[-\Omega/R,\Omega/R]$，且 $\widehat{w_R}(\xi)=R\,\widehat w(R\xi)$。**常数规范**：在本文的非角频率规范下，导数项前有系数 $2$（来自 $L^2$ 泛函的梯度），尾部罚系数为 $\tfrac{2\lambda}{2\pi}$（来自时域指示函数乘积的频域单卷积与 Parseval）。
-**意义**：前项为"曲率惩罚"$(2j)$ 阶导数的频域像（$\xi^{4j}$），"尾项罚"源于能量域乘法，故在频域表现为**单卷积**；带限约束通过频域投影 $\chi_B$ 表达。有限阶 EM 确保"奇性不增、极阶不升"。
+其中 $\eta$ 为归一约束 $w_R(0)=1$ 的拉格朗日乘子常数，$B=[-\Omega/R,\Omega/R]$，且 $\widehat{w_R}(\xi)=R\,\widehat w(R\xi)$。
+
+**归一约束在频域的表述**：$w_R(0)=\frac{1}{2\pi}\int_{\mathbb R}\widehat{w_R}(\xi)\,d\xi=\frac{1}{2\pi}\int_B\widehat{w_R}(\xi)\,d\xi=1$（带限性）。拉格朗日乘子 $\eta$ 对应此线性约束，因此 KKT 方程右端为常数 $\eta\,\chi_B(\xi)$。
+
+**系数来源**（非角频率规范 $\widehat f(\xi)=\int e^{-iE\xi}f(E)\,dE$）：
+1. **导数罚**：Parseval $\langle f^{(2j)},f^{(2j)}\rangle=\frac{1}{2\pi}\langle(i\xi)^{2j}\widehat f,(i\xi)^{2j}\widehat f\rangle$ 给出频域权重 $\xi^{4j}$；$L^2$ 变分的梯度有系数 $2$。
+2. **尾部罚**：$\langle\mathbf 1_{|E|>T}w_R,\mathbf 1_{|E|>T}w_R\rangle=\frac{1}{2\pi}\langle\widehat{\mathbf 1_{|E|>T}}\!\ast\widehat{w_R},\widehat{w_R}\rangle$ 导出卷积形式；系数 $\tfrac{2\lambda}{2\pi}$ 来自 Parseval 因子与梯度系数 2。
+
+**分布论细节**：矩形窗的 Fourier 变换为 $\widehat{\mathbf 1_{|E|\le T}}(\xi)=\frac{2\sin(T\xi)}{\xi}$（sinc），故 $\widehat{\mathbf 1_{|E|>T}}(\xi)=2\pi\delta(\xi)-\frac{2\sin(T\xi)}{\xi}$（温和分布）。因 $\widehat{w_R}$ 带限且 $L^2$，卷积在 $L^2$ 中良定（标准 Fourier 变换对见 Bracewell, *The Fourier Transform and Its Applications*; Wikipedia: Fourier transform）。
+
+**意义**：前项为"曲率惩罚"（$(2j)$ 阶导数的频域像 $\xi^{4j}$），后项为"尾部罚"（能量域乘法对应频域卷积）；带限约束通过频域投影 $\chi_B$ 表达。有限阶 Euler–Maclaurin 确保"奇性不增、极阶不升"（参见 SCIPP UCSC 讲义；Abramowitz & Stegun §23）。
 
 ---
 
@@ -236,10 +260,10 @@ $$
 
 $$
 \det S(E)=\exp\!\bigl(-2\pi i\,\xi(E)\bigr),\qquad
-\varphi'(E)=\pi\,\xi'(E)=\pi\,\rho_{\rm rel}(E),
+\varphi'(E)=\pi\,\xi'(E)=-\pi\,\rho_{\rm rel}(E),
 $$
 
-结合 §0.4 的 Wigner–Smith 关系 $\tfrac{1}{2\pi}\operatorname{tr}Q(E)=-\xi'(E)$，在本文规范下 $\operatorname{tr}Q=-2\varphi'(E)$。得"窗化读数方程"
+结合 §0.4 的 Wigner–Smith 关系 $\tfrac{1}{2\pi}\operatorname{tr}Q(E)=\rho_{\rm rel}(E)=-\xi'(E)$（Krein–Friedel–Lloyd），在本文规范下 $\operatorname{tr}Q=-2\varphi'(E)=2\pi\rho_{\rm rel}(E)$。得"窗化读数方程"
 
 $$
 \mathcal S(h;R)
@@ -256,10 +280,21 @@ $$
 ### 5.1 延迟/驻留时间与 LDOS
 
 $$
-\boxed{\ \tfrac{1}{2\pi}\operatorname{tr}Q(E)=-\xi'(E)=-\rho_{\rm rel}(E)\ }.
+\boxed{\ \tfrac{1}{2\pi}\operatorname{tr}Q(E)=\rho_{\rm rel}(E)=-\xi'(E)\ }.
 $$
 
-（与 $\varphi'=\pi\xi'$ 一致，因而 $\operatorname{tr}Q=-2\varphi'$；与 §0.3–0.4 的规范声明一致。）该等式对单通道与多通道的 $\operatorname{tr}Q$ 同样成立。由 §4 窗化读数主项即相对 LDOS；指针极小与能量/信息读数在本征基上最干净一致。
+**恒等式链**（整合 §0.3–0.4 规范）：
+1. **Krein–Friedel–Lloyd**：$\rho_{\rm rel}(E)=\frac{1}{2\pi i}\frac{d}{dE}\log\det S(E)=\frac{1}{2\pi}\operatorname{tr}Q(E)$（ChaosBook §35, eq. (35.17)–(35.19)）。
+2. **Birman–Kreĭn**：$\det S(E)=e^{-2\pi i\xi(E)}\Rightarrow \frac{1}{2\pi i}\frac{d}{dE}\log\det S(E)=-\xi'(E)$（Pushnitski arXiv:1006.0639）。
+3. **合并**：$\rho_{\rm rel}(E)=\frac{1}{2\pi}\operatorname{tr}Q(E)=-\xi'(E)$。
+4. **Friedel 相位表述**：令 $\theta(E)=\arg\det S(E)=-2\pi\xi(E)$、$\delta_{\rm tot}(E)=\theta(E)/2$，则
+$$
+\delta'_{\rm tot}(E)=\tfrac{1}{2}\operatorname{tr}Q(E)=\pi\rho_{\rm rel}(E)=-\pi\xi'(E).
+$$
+这是物理文献中常见的"Friedel 相位导数 = $\pi$ × 态密度"（Friedel sum rule; 参见 ChaosBook §35.3; Texier, *Wigner Time Delay and Related Concepts*, arXiv:1608.03981）。
+5. **与 $\varphi$ 规范的对应**：取 $\det S(E)=c_0e^{-2i\varphi(E)}$ 得 $\varphi=-\delta_{\rm tot}$（差常数），故 $\varphi'=-\delta'_{\rm tot}=-\pi\rho_{\rm rel}=\pi\xi'$（与 §0.3 一致）。
+
+**物理意义**：该等式对单通道与多通道的 $\operatorname{tr}Q$ 同样成立；$\rho_{\rm rel}$ 为相对态密度（相对于自由系统），$\operatorname{tr}Q/(2\pi)$ 为 Wigner–Smith 延迟（能量导数单位）。由 §4 窗化读数主项即相对 LDOS；指针极小与能量/信息读数在本征基上最干净一致。
 
 ### 5.2 POVM 与噪声
 
@@ -306,24 +341,35 @@ POVM 情形先经 **Naimark 扩张** $E_i=V^\dagger\Pi_iV$ 至扩张空间的 PV
 ## 参考文献（选）
 
 * de Branges, **Hilbert Spaces of Entire Functions**, Prentice-Hall, 1968.
+* Remling, **Spectral Theory of Canonical Systems**, in *De Branges Spaces and Kreĭn's Theory of Entire Operators* (综述).
 * Wigner, **Lower Limit for the Energy Derivative of the Scattering Phase Shift**, Phys. Rev. 98, 145 (1955).
 * Smith, **Lifetime Matrix in Collision Theory**, Phys. Rev. 118, 349 (1960).
 * Birman–Kreĭn, **On the theory of wave operators and scattering operators**, Dokl. Akad. Nauk SSSR 144, 475 (1962).
+* Pushnitski, **The spectral shift function and the invariance principle**, arXiv:1006.0639 (2010).
 * Ky Fan, **On a theorem of Weyl concerning eigenvalues of linear transformations I**, Proc. Natl. Acad. Sci. USA 35, 652 (1949).
+* Ky Fan, **Maximum properties and inequalities for the eigenvalues of completely continuous operators**, Proc. Natl. Acad. Sci. USA 37, 760 (1951).
 * Csiszár, **I-divergence geometry of probability distributions and minimization problems**, Ann. Probab. 3, 146 (1975).
 * Slepian–Pollak, **Prolate Spheroidal Wave Functions, I**, Bell Syst. Tech. J. 40, 43 (1961).
+* Cvitanović et al., **Chaos: Classical and Quantum** (ChaosBook.org), Chapter 35: Quantum scattering.
+* Texier, **Wigner Time Delay and Related Concepts: Application to Transport in Coherent Conductors**, arXiv:1608.03981 (2016).
+* Petz & Ghinea, **Introduction to Quantum Fisher Information**, in *Quantum Probability and Related Topics*, World Scientific, 2011.
+* Abramowitz & Stegun, **Handbook of Mathematical Functions**, NBS, 1964 (§23: Bernoulli and Euler polynomials).
+* Bracewell, **The Fourier Transform and Its Applications**, 3rd ed., McGraw-Hill, 2000.
+* Oppenheim & Schafer, **Discrete-Time Signal Processing**, 3rd ed., Prentice-Hall, 2009.
 
 ---
 
 ## 附录：术语索引与公式索引（便于检索）
 
-* **DBK 光谱表示**、**Weyl–Titchmarsh**：Herglotz–Weyl 词典与规范系统。
-* **Birman–Kreĭn 公式**：$\det S=e^{-2\pi i\,\xi}$，$\dfrac{d}{dE}\arg\det S=-2\pi\,\xi'$。
-* **Wigner–Smith 延迟**：$Q=-\,i\,S^\dagger\dfrac{dS}{dE}$ 自伴，$\boxed{\tfrac{1}{2\pi}\operatorname{tr}Q=-\,\xi'(E)=-\,\rho_{\rm rel}(E)}$；与 §0.3 之 $\varphi'(E)=\pi\,\xi'(E)$ 一致，故 $\operatorname{tr}Q=-2\,\varphi'(E)$。
-* **Ky Fan–Rayleigh–Ritz**：部分和极值与最小特征子空间（模退化）。
-* **I-投影/指数族–Bregman 对偶**：线性对齐族上的存在唯一性；POVM 用 Naimark 扩张。
-* **三分解误差**：alias + 有限阶 EM（伯努利层） + tail；带限 + Nyquist 下 alias 消失。
-* **KKT（带限投影）**：$\chi_B(\xi)\!\cdot\!\Big( \underbrace{2\sum_{j=1}^{M-1}\gamma_j\,\xi^{4j}\,\widehat{w_R^\star}(\xi)}_{\text{导数罚}}+\underbrace{\tfrac{2\lambda}{2\pi}\,(\widehat{\mathbf 1_{|E|>T}}\!\ast\widehat{w_R^\star})(\xi)}_{\text{尾部罚（单卷积）}} \Big)=\eta\,\chi_B(\xi)$，其中 $B=[-\Omega/R,\Omega/R]$。
+* **DBK 光谱表示**、**Weyl–Titchmarsh**：Herglotz–Weyl 词典与规范系统（de Branges 1968）。
+* **Birman–Kreĭn 公式**：$\det S=e^{-2\pi i\,\xi}$，$\dfrac{d}{dE}\arg\det S=-2\pi\,\xi'$（Pushnitski arXiv:1006.0639）。
+* **Krein–Friedel–Lloyd**：$\rho_{\rm rel}(E)=\frac{1}{2\pi i}\frac{d}{dE}\log\det S(E)=\frac{1}{2\pi}\operatorname{tr}Q(E)$（ChaosBook §35）。
+* **Wigner–Smith 延迟**：$Q=-\,i\,S^\dagger\dfrac{dS}{dE}$ 自伴，$\boxed{\tfrac{1}{2\pi}\operatorname{tr}Q(E)=\rho_{\rm rel}(E)=-\,\xi'(E)}$；与 §0.3 之 $\varphi'(E)=\pi\,\xi'(E)=-\pi\,\rho_{\rm rel}(E)$ 一致，故 $\operatorname{tr}Q=-2\,\varphi'(E)$。
+* **Friedel 相位**：$\delta'_{\rm tot}(E)=\tfrac{1}{2}\operatorname{tr}Q(E)=\pi\rho_{\rm rel}(E)=-\pi\xi'(E)$（Friedel sum rule）。
+* **Ky Fan 变分原则**：$\inf_{\{e_k\}}\sum_{k=1}^m\langle e_k,K\,e_k\rangle=\sum_{k=1}^m\lambda_k^{\uparrow}(K)$；紧/离散谱时取等（Ky Fan, PNAS 1949）。
+* **I-投影/指数族–Bregman 对偶**：线性对齐族上的存在唯一性；POVM 用 Naimark 扩张（Csiszár 1975）。
+* **三分解误差**：alias（Poisson 求和） + 有限阶 EM（Bernoulli 数） + tail；带限 + Nyquist 下 alias 消失。
+* **KKT（带限投影）**：$\chi_B(\xi)\!\cdot\!\Big( \underbrace{2\sum_{j=1}^{M-1}\gamma_j\,\xi^{4j}\,\widehat{w_R^\star}(\xi)}_{\text{导数罚}}+\underbrace{\tfrac{2\lambda}{2\pi}\,(\widehat{\mathbf 1_{|E|>T}}\!\ast\widehat{w_R^\star})(\xi)}_{\text{尾部罚}} \Big)=\eta\,\chi_B(\xi)$，其中 $B=[-\Omega/R,\Omega/R]$、$\eta$ 为归一约束 $w_R(0)=1$ 的拉格朗日乘子。
 
 ---
 
