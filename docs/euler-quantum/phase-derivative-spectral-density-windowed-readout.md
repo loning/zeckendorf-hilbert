@@ -57,7 +57,7 @@ $$
 f(E)=\int_{\mathbb R}\widehat f(\nu)\,e^{2\pi i\nu E}\,d\nu .
 $$
 
-若 $\operatorname{supp}\widehat h\subset[-\mathcal B_h,\mathcal B_h]$、$\operatorname{supp}\widehat w_R\subset[-\mathcal B_w(R),\mathcal B_w(R)]$，则 $\widehat w_R(\nu)=R\,\widehat w(R\nu)$、$\mathcal B_w(R)=\mathcal B_w^0/R$，并记角频率 $\Omega=2\pi\mathcal B$。
+若 $\operatorname{supp}\widehat h\subset[-\mathcal B_h,\mathcal B_h]$、$\operatorname{supp}\widehat w_R\subset[-\mathcal B_w(R),\mathcal B_w(R)]$，则 $\widehat w_R(\nu)=R\,\widehat w(R\nu)$、$\mathcal B_w(R)=\mathcal B_w^0/R$（对应 $w_R(E)=w(E/R)$ 的定义），并记角频率 $\Omega=2\pi\mathcal B$。
 
 **单位约定（统一）**：本文**统一**采用 Wigner–Smith 矩阵（对能量 $E$ 求导）
 
@@ -72,15 +72,15 @@ $$
 \boxed{\ \frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)=\rho_{\mathrm{rel}}(E)=\xi'(E)\ },\qquad \text{单通道： }\operatorname{tr}\mathsf Q(E)=2\,\varphi'(E).
 $$
 
-单通道时 $\tau_{\mathrm{WS}}(E)=2\hbar\,\varphi'(E)=2\pi\hbar\,\rho_{\mathrm{rel}}(E)$。
+单通道时 $\tau_{\mathrm{WS}}(E)=2\hbar\,\varphi'(E)=2\pi\hbar\,\rho_{\mathrm{rel}}(E)$。**注**：单通道下与文献中常用的 $\tau=\partial_E \arg\det S$ 一致。
 
-**a.e. 范围声明**：凡含 $S'(E)$、$\varphi'(E)$、$\xi'(E)$ 或边界值 $\Im m(E+i0)$ 的等式，均在**几乎处处**能量上成立。盒装等式右上角的"a.e."标注提醒读者在共振点/不可导点按测度零处理。
+**a.e. 范围声明**：凡含 $S'(E)$、$\varphi'(E)$、$\xi'(E)$ 或边界值 $\Im m(E+i0)$ 的等式，均在**几乎处处**（a.e.）能量上成立；共振/不可导点按测度零处理。$\arg\det S$ 可于 a.e. $E$ 选取连续支，故导数在 a.e. 成立（参见 BK 公式与 SSF 的 a.e. 定义）。盒装等式右上角的"a.e."标注提醒读者此约束。
 
-**符号约定备注**：若采用他书的 $\det S=e^{-2\pi i\xi}$ 负号约定，同时置换 $\varphi\mapsto-\varphi$ 可保持 $\varphi'=\pi\rho_{\mathrm{rel}}$ 不变（详见附录 A）。
+**符号约定备注**：BK 采用 $\det S(E)=e^{+2\pi i\,\xi(E)}$ 号记，对应 $\frac{1}{2\pi}\operatorname{tr}\mathsf Q=\xi'(E)$。若采用他书的反号文献（$\det S=e^{-2\pi i\xi}$），请同时作 $\varphi\mapsto-\varphi$ 的一致置换（详见附录 A）。
 
 **参考**：Wigner (1955); Smith (1960) 定义与性质；Birman–Kreĭn 公式见 Yafaev (1992/2010) 与 Pushnitski (2006)，据此得 $\operatorname{tr}\mathsf Q$ 与 $\xi'$ 的关系。
 
-**LDOS 约定**："LDOS"指端口/边界意义下的 m-测度密度及其相对版（$\rho_m$ 或 $\rho_{\mathrm{rel}}$）。单/多通道时本文以 $\rho_{\mathrm{rel}}:=\xi'(E)$ 为准；在可由端口 m-函数实现的情形，它与边界 m-测度差一致；否则以 $\xi'$ 的定义为主。当读者只关心**非负主项**时，应选用 $\rho_m$ 而非 $\rho_{\mathrm{rel}}$（见推论 2.2 与 §4）。
+**LDOS 约定**："LDOS"指端口/边界意义下的 m-测度密度及其相对版（$\rho_m$ 或 $\rho_{\mathrm{rel}}$）。单/多通道时本文以 $\rho_{\mathrm{rel}}:=\xi'(E)$ 为准；在可由端口 m-函数实现的情形（边界三元组/半直线设定且**绝对连续谱部分**可由端口 m-函数实现时），它与边界 m-测度差一致；否则以 $\xi'$ 的定义为主。**若要保障被积主项逐点非负性**（配合 $h\ge 0,w_R\ge 0$）建议选 $\rho_m$；$\rho_{\mathrm{rel}}$ 与相位/Friedel 关系配对更自然，但其**符号不定**（见推论 2.2 与 §4）。
 
 ---
 
@@ -114,7 +114,7 @@ $$
 \boxed{\ \varphi'(E)=\pi\,\xi'(E)\ }.
 $$
 
-若再假设 $(H,H_0)$ 源自同一边界三元组/半直线情形且存在对应 Weyl–Titchmarsh $m,m_0$，则 a.e. $E$ 上
+若再假设 $(H,H_0)$ 源自同一边界三元组/半直线情形且存在对应 Weyl–Titchmarsh $m,m_0$（可用边界三元组描述且**绝对连续谱部分**可由端口 m-函数实现），则 a.e. $E$ 上
 
 $$
 \boxed{\ \xi'(E)=\rho_m(E)-\rho_{m_0}(E)\ },
@@ -215,7 +215,9 @@ $$
 
 #### 命题 3.1（Poisson 求和与 Nyquist 关断）
 
-设 $g$ 可积且 $\widehat g$ 连续（数值实现时取带外快速衰减）；一般情形下式子也可在**温和分布**（tempered distributions）框架下解释。采用非角频率傅里叶对 $\widehat g(\nu)=\int g(E)e^{-2\pi i\nu E}dE$。则
+设 $g$ 可积且 $\widehat g$ 连续（数值实现时取带外快速衰减）；一般情形下式子也可在**温和分布**（tempered distributions）框架下解释。
+
+**非角频率对约定**：本文固定采用非角频率对 $\widehat f(\nu)=\int f(E)e^{-2\pi i\nu E}\,dE$，据此 Poisson 求和式写成
 
 $$
 \boxed{\ \Delta\sum_{n\in\mathbb Z} g(n\Delta)=\sum_{k\in\mathbb Z}\widehat g\!\left(\frac{k}{\Delta}\right)\ }.
@@ -277,7 +279,21 @@ $$
 \le 2C\int_0^\infty e^{-\alpha x/\Delta}\,dx = \frac{2C\,\Delta}{\alpha}.
 $$
 
-（b）**高斯尾**：$|\widehat g(k/\Delta)|\le C e^{-\alpha k^2/\Delta^2}$。用积分比较 $\sum_{k=1}^\infty e^{-\beta k^2}\le \tfrac{1}{2}\bigl(\sqrt{\tfrac{\pi}{\beta}}-1\bigr)\le \sqrt{\tfrac{\pi}{4\beta}}$（$\beta>0$），取 $\beta=\alpha/\Delta^2$ 得到陈述的不等式。证毕。
+（b）**高斯尾**：$|\widehat g(k/\Delta)|\le C e^{-\alpha k^2/\Delta^2}$。由积分比较
+
+$$
+\sum_{k=1}^\infty e^{-\beta k^2}\ \le\ \int_0^\infty e^{-\beta x^2}\,dx\ =\ \tfrac{1}{2}\sqrt{\tfrac{\pi}{\beta}},\qquad \beta>0,
+$$
+
+故
+
+$$
+\bigl|\varepsilon_{\mathrm{alias}}\bigr|
+\le 2C\sum_{k=1}^\infty e^{-\alpha k^2/\Delta^2}
+\le C\sqrt{\tfrac{\pi}{\alpha}}\,\Delta.
+$$
+
+证毕。
 
 **注（收敛性与上界）**：上述指数/高斯尾上界给出**可用 $\mathcal O(\Delta)$ 上界**报告（保守）；实际别名项对指数/高斯尾常呈**超指数**收敛（$\sim e^{-\alpha/\Delta}$ 或 $\sim e^{-\alpha/\Delta^2}$）。数值实现可用更紧的 Jacobi $\vartheta$-和或 Poisson-外推界，但不影响本框架的非渐近闭合。
 
@@ -340,16 +356,18 @@ $$
 **一般情形（含近带限）**：
 
 $$
-\boxed{\ \bigl|\mathcal S-\mathcal S_{\Delta,M,T}\bigr|\ \le\ \varepsilon_{\mathrm{alias}}(\Delta)+\varepsilon_{\mathrm{EM}}(M)+\varepsilon_{\mathrm{tail}}(R)\ },
+\boxed{\ \bigl|\mathcal S-\mathrm{Obs}(R,\Delta,M,T)\bigr|\ \le\ \varepsilon_{\mathrm{alias}}(\Delta)+\varepsilon_{\mathrm{EM}}(M)+\varepsilon_{\mathrm{tail}}(R)\ },
 $$
 
 其中 $\varepsilon_{\mathrm{alias}}(\Delta)$ 取 §3.1 的闭式上界（指数尾或高斯尾）。
 
-**严格带限 + Nyquist**：
+**严格带限 + Nyquist**（别名完全关断）：
 
 $$
-\boxed{\ \bigl|\mathcal S-\mathcal S_{\Delta,M,T}\bigr|\ \le\ \varepsilon_{\mathrm{EM}}(M)+\varepsilon_{\mathrm{tail}}(R)\ }.
+\boxed{\ \bigl|\mathcal S-\mathrm{Obs}(R,\Delta,M,T)\bigr|\ \le\ \varepsilon_{\mathrm{EM}}(M)+\varepsilon_{\mathrm{tail}}(R)\ }.
 $$
+
+**框注**：当 $(h,w_R)$ 严格带限且 $\Delta\le \dfrac{1}{2(\mathcal B_h+\mathcal B_w(R))}$ 时，$\varepsilon_{\mathrm{alias}}=0$，工程实现者可直接按上式设计误差账本。
 
 从而读数的系统误差**逐项可控且可报告**。
 
@@ -375,7 +393,7 @@ $$
 
 **次幺正（有损/增益）体系**：延迟可为复数，需要在相应广义框架下解释。可参见近年来对**亚幺正散射**延迟的推广（Chen et al., 2021 等）。
 
-**数值解读纪律**：在别名未关断或 EM/尾项未压低到目标阈值前，数值读数的正负号不应作物理解读。按 §3 的纪律（先 Nyquist 控制，再提 $M,T$ 或改善窗衰减）将数值误差压至阈值后，方可对"负延迟"作物理解读。
+**数值解读纪律**：仅在满足 Nyquist 条件并把 $\varepsilon_{\mathrm{alias}},\varepsilon_{\mathrm{EM}},\varepsilon_{\mathrm{tail}}$ 压至目标阈值后，"负延迟"数值方可作物理解读；幺正系统下 $\mathsf Q$ 自伴但特征值可正可负，次幺正系统则需用广义复延迟框架。按 §3 的纪律（先 Nyquist 控制，再提 $M,T$ 或改善窗衰减）将数值误差压至阈值后，方可对读数作物理解读。
 
 ---
 
@@ -447,7 +465,8 @@ $$
 **输入**：$(\mathcal B_h,\ \mathcal B_w^0,\ R,\ \Delta,\ M,\ T)$。
 **选择**：非负、带限或带外快速衰减核 $h$（BL/Gauss-BL/Exp-BL）；**逐点非负窗** $w_R$：
   - **高斯**：指数尾，逐点非负；
-  - **DPSS/PSWF**：**第 0 模态在区间内无零点**（可全正归一）；高阶本征函数出现振荡并非逐点非负（PSWF 第 $n$ 阶在 $(-1,1)$ 内恰有 $n$ 个零点）；DPSS/PSWF 为**近**带限（能量集中）而**非真带限**；
+  - **PSWF（连续）**：**严格带限**（$\widehat\psi$ 支撑在 $[-W,W]$），并在带限函数空间中完备，且第 $n$ 阶在 $(-1,1)$ 内恰有 $n$ 个零点（故第 0 阶可全正归一）；
+  - **DPSS（离散、有限长度）**：**时间限幅**，在离散频带 $[-W,W]$ **能量最优集中**（通常称"近带限"），作为多锥谱估计的标准 tapers；
   - **频域三角谱窗（非周期对偶）**：时域为 $\operatorname{sinc}^2$ 形（$\mathcal F\{\mathrm{tri}\}=\mathrm{sinc}^2$），**严格带限**且尾项呈多项式衰减。
 **纪律**：$\Delta\le 1/\bigl(2(\mathcal B_h+\mathcal B_w(R))\bigr)$；$M\ge 2$；$T$ 使 $\varepsilon_{\mathrm{tail}}$ 达到目标阈值。
 **报告**：输出
