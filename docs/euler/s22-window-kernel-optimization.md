@@ -4,7 +4,7 @@
 
 ## 摘要（定性）
 
-在 S15–S17 的表示—规范—散射统一框架与 S18 的"别名/伯努利层/截断"三分解误差准则上，把窗/核设计铸造成带限偶子空间上的凸—变分最优化问题。给出 L² 强凸版（唯一极小元与 Euler–Lagrange 条件）与 L¹ 稀疏版（弱式 KKT/频域弱式证书）。采用归一约束 $w(0)=1$。频域必要条件呈现为"多项式乘子 + 卷积核"的带限偶投影强式；时域 Euler–Lagrange 为 $4j$ 阶常系数算子在内外区的耦合界面问题。引入 BN–Bregman 软化并证明对硬约束的 Γ-极限收敛；在 S21 的阈值判据下，强凸或软化情形获得极小元与最小值的李普希茨稳定，而纯 L¹ 情形保留最小值稳定与解集外半连续。全程坚持**有限阶** Euler–Maclaurin 与 Nyquist–Poisson–EM 三分解，不引入新奇点，保持"极点 = 主尺度"。离散图 Ihara ζ 给出并行模板。
+在 S15–S17 的表示—规范—散射统一框架与 S18 的"别名/伯努利层/截断"三分解误差准则上，把窗/核设计铸造成带限偶子空间上的凸—变分最优化问题。给出 L² 强凸版（唯一极小元与 Euler–Lagrange 条件）与 L¹ 稀疏版（弱式 KKT/频域弱式证书）。采用归一约束 $w(0)=1$。频域必要条件呈现为"多项式乘子 + 卷积核"的带限偶投影强式；时域 Euler–Lagrange 为带限偶投影下的非局部方程（"内/外区常系数 ODE + 界面条件"仅作启发性描述）。引入 BN–Bregman 软化并证明对硬约束的 Γ-极限收敛；在 S21 的阈值判据下，强凸或软化 + 小 Hilbert 正则情形获得极小元与最小值的李普希茨稳定，而纯 L¹ 情形保留最小值稳定与解集外半连续。全程坚持**有限阶** Euler–Maclaurin 与 Nyquist–Poisson–EM 三分解，不引入新奇点，保持"极点 = 主尺度"。离散图 Ihara ζ 给出并行模板。
 
 ---
 
@@ -53,7 +53,7 @@ $$
 +\underbrace{\int_{|t|>T}|g(t)|\,dt}_{\text{tail}}.
 $$
 
-若 $\operatorname{supp}\widehat g\subset[-\Omega_g,\Omega_g]$ 且 $\Delta\le\pi/\Omega_g$，则 $\mathrm{alias}=0$；在临界 $\Delta=\pi/\Omega_g$ 亦成立（取样点落在支集外）。
+若 $\operatorname{supp}\widehat g\subset[-\Omega_g,\Omega_g]$ 且 $\Delta\le\pi/\Omega_g$，则 $\mathrm{alias}=0$；在临界 $\Delta=\pi/\Omega_g$ 亦成立（此处将 $\operatorname{supp}\widehat g$ 视为闭集；采样谐波 $|2\pi m/\Delta|\ge 2\Omega_g$ 落在支集外）。
 
 ---
 
@@ -121,20 +121,25 @@ $$
 
 $$
 \boxed{\ \chi_{[-\Omega,\Omega]}(\xi)\Big(\sum_{j=1}^{M-1}\gamma_j\,\xi^{4j}\,\widehat{w^\star_R}(\xi)
-+\lambda\,(\widehat{\mathbf 1_{|t|>T}}*\widehat{w^\star_R})(\xi)\Big)=\eta\,\chi_{[-\Omega,\Omega]}(\xi)\ .}
++\tfrac{\lambda}{2\pi}\,(\widehat{\mathbf 1_{|t|>T}}*\widehat{w^\star_R})(\xi)\Big)=\eta\,\chi_{[-\Omega,\Omega]}(\xi)\ .}
 \tag{2.2}
 $$
 
-其中导数项为点乘乘子 $\xi^{4j}$，尾部项为卷积。$\widehat{\mathbf 1_{|t|>T}}$ 含 $\delta$-型分量，应作温和分布卷积；指数窗时另见§4。
+其中导数项为点乘乘子 $\xi^{4j}$，尾部项为卷积。$\widehat{\mathbf 1_{|t|>T}}$ 含 $\delta$-型分量，应作温和分布卷积；指数窗时另见§4。投影核的显式形状为 $\mathbf P_\Omega\delta_0(t)=\tfrac{1}{2\pi}\int_{-\Omega}^{\Omega}e^{it\xi}\,d\xi=\tfrac{\sin(\Omega t)}{\pi t}$（$t=0$ 取极限），故频域右端为常数频带。因 $w\in\mathsf{PW}_\Omega$ 而 $w_R\in\mathsf{PW}_{\Omega/R}$，投影作用于 $[-\Omega,\Omega]$ 但 $\widehat{w_R}$ 本身仅支撑于更窄频带；卷积项可能把能量带入 $[-\Omega,\Omega]\setminus[-\Omega/R,\Omega/R]$。
 
-### 2.4 时域方程与界面条件
+### 2.4 时域投影方程
+
+对任意 $\varphi\in\mathsf{PW}_\Omega^{\mathrm{even}}$，有
 
 $$
-\sum_{j=1}^{M-1}\gamma_j\,\partial_t^{4j}w_R
-+\lambda\,\mathbf 1_{|t|>T}\,w_R+\eta\,\delta_0=0.
+\Big\langle \sum_{j=1}^{M-1}\gamma_j\,\partial_t^{4j}w_R^\star
++\lambda\,\mathbf 1_{|t|>T}\,w_R^\star+\eta\,\delta_0,\ \varphi\Big\rangle=0.
 $$
 
-$|t|<T$：$\sum_j\gamma_j\,\partial_t^{4j}w_R=0$；$|t|>T$：$\sum_j\gamma_j\,\partial_t^{4j}w_R+\lambda w_R=0$。在 $t=\pm T$ 处，由分部积分得到至 $\partial_t^{4(M-1)-1}$ 的连续性；$\lambda\mathbf 1_{|t|>T}\,w_R$ 不引入额外跳跃条件。为使分布方程无界面奇性，需连续到 $\partial_t^{4(M-1)-1}$。$t=0$ 处由偶性得 $w^{(2k+1)}(0)=0$。
+等价地，$\mathbf P_{\Omega}^{\mathrm{even}}\!\Big[\sum_j\gamma_j\,\partial_t^{4j}w_R^\star
++\lambda\,\mathbf 1_{|t|>T}\,w_R^\star\Big]=\eta\,\mathbf P_{\Omega}^{\mathrm{even}}\delta_0$。
+
+**说明.** 由于带限投影的存在，上式应理解为**非局部**的投影方程；"内/外区常系数 ODE + 界面条件"的描写仅作启发，避免将其当作在 $\mathcal S'$ 上的逐点/分段等式。由偶性仍有 $w^{(2k+1)}(0)=0$，且 $w_R$ 为解析函数，因而各阶导数在 $t=\pm T$ 处自然连续。
 
 ---
 
@@ -148,6 +153,8 @@ $$
 +\beta\,|\mathbf 1_{|t|>T}\,w_R|_{L^1}\quad(\alpha_j,\beta>0)\ .}
 \tag{3.1}
 $$
+
+**注.** 以下 KKT/证书针对目标**有限**的可行 $w$（特别是 $|\mathbf 1_{|t|>T}w_R|_{L^1}<\infty$）陈述；若需存在性，可在可行类上加入轻度衰减或以 $L^2$ 尾项近似。
 
 ### 3.2 一阶条件
 
@@ -174,7 +181,7 @@ $$
 \boxed{\
 \chi_{[-\Omega,\Omega]}(\xi)\Big(
 \sum_{j=1}^{M-1}\alpha_j\,(-1)^j\,\xi^{2j}\,\widehat{\mu_j}(\xi)
-+\beta\,(\widehat{\mathbf 1_{|t|>T}}*\widehat{\nu})(\xi)\Big)
++\tfrac{\beta}{2\pi}\,(\widehat{\mathbf 1_{|t|>T}}*\widehat{\nu})(\xi)\Big)
 =\eta\,\chi_{[-\Omega,\Omega]}(\xi)\quad\text{in }\mathcal S'.}
 \tag{3.2'}
 $$
@@ -192,7 +199,7 @@ $$
 +\lambda|e^{\kappa'|\cdot|}w_R|_{L^2}^2,
 $$
 
-频域必要条件与（2.2）同型，但需将 $\widehat{\mathbf 1_{|t|>T}}$ 替换为 $\widehat{e^{2\kappa'|\cdot|}}$ 并按温和分布卷积理解（非 $L^1$ 核）；带限投影保证表达良定。由于仅用**有限阶** EM，卷积与带限投影不改变主尺度项，工作条带内奇性集合不增、极阶不升。
+Euler–Lagrange 的"尾部"项在时域变为 $e^{2\kappa'|t|}w_R$ 的乘子；在频域表示仅在**形式上**可理解为带限投影后的卷积表达。为避免额外的分布层级假设，本文对指数窗保留**时域**表述；如需频域核，可改用 $e^{-\kappa|t|}$（此时卷积核为 $L^1$）并添加 $\tfrac{1}{2\pi}$ 因子。带限投影保证表达良定。由于仅用**有限阶** EM，卷积与带限投影不改变主尺度项，工作条带内奇性集合不增、极阶不升。
 
 ---
 
@@ -205,7 +212,7 @@ $$
 $$
 
 **定理 5.1（Γ-极限）.** 若 $\tau_n\downarrow0$，则极小值
-$\min(\mathcal J+\tau\Lambda^\ast)\downarrow\min\mathcal J$，且存在极小元 $w_{\tau_n}\to w^\star$（弱/强拓扑），其中 $w^\star$ 为硬问题（2.1）或（3.1）的极小元。当 $\tau>0$ 时，$\Lambda^\ast$ 的 $\mu$-强凸性与 $\mathcal T$ 的单射性确保目标强凸，极小元唯一并对数据李普希茨稳定。
+$\min(\mathcal J+\tau\Lambda^\ast)\downarrow\min\mathcal J$，且存在极小元 $w_{\tau_n}\to w^\star$（弱/强拓扑），其中 $w^\star$ 为硬问题（2.1）或（3.1）的极小元。当 $\tau>0$ 时，$\mathcal J+\tau\Lambda^\ast(\mathcal T\cdot)$ **严格凸**，极小元唯一；若进一步加入小的 Hilbert 正则，可得解的李普希茨稳定。
 
 ---
 
@@ -214,12 +221,14 @@ $\min(\mathcal J+\tau\Lambda^\ast)\downarrow\min\mathcal J$，且存在极小元
 阈值判据 $\varphi'=\pi\rho$、$\delta'=-2\pi\rho$ 与**有限阶** EM、Nyquist–Poisson–EM 纪律保证窗化不改变奇性集合与极阶。若数据扰动满足
 $|\widehat F-\widehat F_0|_\infty\le\varepsilon$、$\operatorname{TV}(\widehat\nu,\nu)\le\delta$，则
 
-**强凸/软化.** 存在 $C>0$ 使
+**强凸/软化 + 小 Hilbert 正则.** 存在 $C>0$ 使
 
 $$
 |w^\star-\widetilde w^\star|_{L^2}\le C(\varepsilon+\delta),\qquad
 \big|\min\mathcal J-\min\widetilde{\mathcal J}\big|\le C(\varepsilon+\delta).
 $$
+
+（其中"强凸"指 $\mathcal T$ 具有界下界或等价设定；"软化"指 §5 的 BN–Bregman 情形并**叠加小的 Hilbert 正则**。）
 
 **纯 L¹.** $\min\mathcal J$ 李普希茨稳定，解集外半连续；增添微小强凸正则或选择规则可得解的李普希茨稳定。阈值位置与零集计数在 Rouché 半径内不变，其偏移受 $|\widehat{\varphi'}-\varphi'|_{L^1}$ 控制。
 
@@ -243,11 +252,11 @@ $$
 
 1. **可行类**：偶；带限或指数衰减；$w(0)=1$。
 2. **误差目标**：$\mathfrak E(\cdot;\Delta,M,T)$；$\Delta\le\pi/\Omega_g$ 时 $\mathrm{alias}=0$。
-3. **L² 版**：强凸 (2.1)；弱式与频域强式（2.2）；时域为 $4j$ 阶算子 + 界面条件。
+3. **L² 版**：强凸 (2.1)；弱式与频域强式（2.2）；时域投影方程（§2.4）。
 4. **L¹ 版**：弱式 KKT 与频域弱式（3.2'）；对偶饱和决定稀疏拼接。
 5. **软化与 Γ**：$\tau>0$ 唯一极小元；$\tau\downarrow0$ 回收硬约束解。
-6. **稳定性**：强凸/软化下解与最小值李普希茨；纯 L¹ 下最小值李普希茨、解集外半连续。
-7. **卷积核**：$\widehat{\mathbf 1_{|t|>T}}$ 为温和分布卷积；指数窗同为温和分布卷积（非 $L^1$ 核）。若改用 $e^{-\kappa|t|}$ 才得到 $L^1$ 卷积核。
+6. **稳定性**：强凸/软化 + 小 Hilbert 正则下解与最小值李普希茨；纯 L¹ 下最小值李普希茨、解集外半连续。
+7. **卷积核**：频域卷积须携带 $\tfrac{1}{2\pi}$ 因子（见§0.1 傅里叶规范）；$\widehat{\mathbf 1_{|t|>T}}$ 为温和分布卷积；指数窗同为温和分布卷积（非 $L^1$ 核）。若改用 $e^{-\kappa|t|}$ 才得到 $L^1$ 卷积核。
 
 ---
 
@@ -278,4 +287,4 @@ $$
 
 ## 结语
 
-以带限偶子空间 $\mathsf{PW}_\Omega^{\mathrm{even}}$ 为几何基础，本文把 Nyquist–Poisson–EM 三分解误差的最小化铸造成 L² 强凸（唯一解与频域强式）与 L¹ 稀疏（弱式 KKT 与频域弱式证书）两条可检主线：频域必要条件为"多项式乘子 + 卷积核"的带限偶投影，时域 Euler–Lagrange 为高阶常系数算子的界面问题；BN–Bregman 软化提供 Γ-极限通路与李普希茨稳定；S21 阈值判据下奇性集合与极阶保持不变（"极点 = 主尺度"）。所建变分框架为自适应窗/核设计、多窗协同优化与算子级稳定域的后续研究提供统一且可验证的数学基础，并在离散图（Ihara ζ）上给出自然并行。
+以带限偶子空间 $\mathsf{PW}_\Omega^{\mathrm{even}}$ 为几何基础，本文把 Nyquist–Poisson–EM 三分解误差的最小化铸造成 L² 强凸（唯一解与频域强式）与 L¹ 稀疏（弱式 KKT 与频域弱式证书）两条可检主线：频域必要条件为"多项式乘子 + 卷积核"的带限偶投影，时域 Euler–Lagrange 为带限偶投影下的非局部方程；BN–Bregman 软化提供 Γ-极限通路，配合小 Hilbert 正则可得李普希茨稳定；S21 阈值判据下奇性集合与极阶保持不变（"极点 = 主尺度"）。所建变分框架为自适应窗/核设计、多窗协同优化与算子级稳定域的后续研究提供统一且可验证的数学基础，并在离散图（Ihara ζ）上给出自然并行。
