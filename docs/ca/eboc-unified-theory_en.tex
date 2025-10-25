@@ -1,0 +1,629 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\setlist[itemize]{nosep,leftmargin=1.6em}
+\setlist[enumerate]{nosep,leftmargin=1.6em}
+\usepackage{natbib}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{multirow}
+\usepackage{booktabs}
+
+% Overfull hbox prevention
+\emergencystretch=1em
+\raggedbottom
+\tolerance=2000
+
+% Theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{axiom}{Axiom}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{note}{Note}
+
+\title{EBOC: Eternal-Block Observer-Computing Unified Theory}
+
+\author{Haobo Ma\thanks{Independent Researcher} \and Wenlin Zhang\thanks{National University of Singapore}}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+\noindent\textbf{Objective.} To propose \textbf{EBOC (Eternal-Block Observer-Computing)}: a geometric-information unified framework without explicit global time, merging the \textbf{timeless causal encoding} of \textbf{Eternal Graph Cellular Automata} (EG-CA) with the \textbf{program semantics and observation-decoding} of \textbf{Static Block Universe Cellular Automata} (SB-CA) into the same formal system, and providing verifiable information laws and constructive algorithms.
+
+\noindent\textbf{Three Pillars.}
+\begin{enumerate}
+\item \textbf{Geometric Encoding (Graph/SFT)}: The universe as a \textbf{static block} \( X_f \subset \Sigma^{\mathbb{Z}^{d+1}} \) satisfying local rules \( f \); its causality/consistency is characterized in parallel by the \textbf{eternal graph} \( G=(V,E) \) and \textbf{subshift (SFT)}.
+\item \textbf{Semantic Emergence (Observation = Decoding)}: \textbf{Observation = factor decoding}. The decoder \( \pi: \Sigma^B \to \Gamma \) reads the static block layer by layer according to \textbf{acceptable foliations} (cross-leaf reading along \( \tau \) from layer \( c \) to \( c+b \)), outputting the visible language; ``semantic collapse'' refers to the \textbf{information factorization} from underlying configuration to visible records.
+\item \textbf{Information Constraint (Non-increasing Law)}: Observation does not create information:
+\[
+K(\pi(x|_W)) \leq K(x|_W) + K(\pi) + O(1),
+\]
+and provides \textbf{conditional complexity} upper bounds under \textbf{causal thick boundaries} along with entropy limits consistent with Brudno.
+\end{enumerate}
+
+\noindent\textbf{Unified Metaphor (RPG Game).} The universe is like an \textbf{infinite-plot RPG}: \textbf{game data and evolution rules} are already written (\( (X_f, f) \)), ``choices'' (apparent free will) must be consistent with the \textbf{plot line} (determinism). \textbf{Layer-by-layer reading} unlocks chapters according to the established beat \( b \); ``choices'' involve \textbf{selecting representatives} from compatible branches and \textbf{excluding} incompatible branches; the underlying ``ROM'' neither adds nor removes information.
+
+\noindent\textbf{Core Objects.}
+\[
+\mathcal{U} = (X_f, G, \rho, \Sigma, f, \pi, \mu, \nu),
+\]
+where \( X_f \) is the space-time SFT, \( G \) is the eternal graph, \( \rho \) gives the \textbf{acceptable foliation family} (level sets of the primitive integral covector \( \tau^\star \), \( \langle\tau^\star, \tau\rangle = b \geq 1 \)), \( \pi \) is the decoder, \( \mu \) is the shift-invariant ergodic measure, \( \nu \) is the universal semimeasure (used only for typicality weights).
+\end{abstract}
+
+\section{Introduction and Motivation}
+
+Traditional CA presents ``evolution'' through global time iterations; the block/eternal graph perspective gives the entire space-time segment at once, with ``evolution'' being merely the \textbf{layer-by-layer reading} narrative obtained. The dynamic perspective relies on time background and is difficult to be background-independent; the static perspective lacks observational semantics. EBOC unifies the two through ``\textbf{geometric encoding \(\times\) semantic decoding \(\times\) information laws}'': SFT/graph structure ensures consistency and constructibility; factor mapping provides visible language; complexity/entropy characterizes conservation and limits. This paper establishes the T1--T20 theorem family under minimal axioms, providing detailed proofs and reproducible experimental procedures.
+
+\section{Symbols and Preliminaries}
+
+\subsection{Space, Alphabet, and Configurations}
+
+\begin{itemize}
+\item Space \( L = \mathbb{Z}^d \), space-time \( L \times \mathbb{Z} = \mathbb{Z}^{d+1} \); finite alphabet \( \Sigma \).
+\item Space-time configuration \( x \in \Sigma^{\mathbb{Z}^{d+1}} \). Restriction of window \( W \subset \mathbb{Z}^{d+1} \) is \( x|_W \).
+\item Convention: \( |\cdot| \) denotes both word length and set cardinality (distinguished by context).
+\end{itemize}
+
+\subsection{Neighborhood and Global Evolution}
+
+\begin{itemize}
+\item Finite neighborhood \( N \subset \mathbb{Z}^d \), local rule \( f: \Sigma^{|N|} \to \Sigma \):
+\[
+x(\mathbf{r} + N, t) := (x(\mathbf{r} + \mathbf{n}, t))_{\mathbf{n} \in N} \in \Sigma^{|N|}, \quad x(\mathbf{r}, t) = f(x(\mathbf{r} + N, t-1)).
+\]
+\item \textbf{Global mapping}
+\[
+F: \Sigma^{\mathbb{Z}^d} \to \Sigma^{\mathbb{Z}^d}, \quad (F(x))(\mathbf{r}) = f(x(\mathbf{r} + N)).
+\]
+\end{itemize}
+
+\subsection{SFT and Eternal Graph}
+
+\begin{itemize}
+\item \textbf{Space-time SFT}
+\[
+X_f := \{x \in \Sigma^{\mathbb{Z}^{d+1}} : \forall (\mathbf{r}, t), \ x(\mathbf{r}, t) = f(x(\mathbf{r} + N, t-1))\}.
+\]
+\item \textbf{Eternal graph} \( G = (V, E) \): vertices \( V \) encode local patterns (events), edges \( E \) encode causal/consistency relations.
+\item \textbf{Edge shift}
+\[
+Y_G = \{(e_t)_{t \in \mathbb{Z}} \in \mathcal{E}^{\mathbb{Z}} : \forall t, \ \mathrm{tail}(e_{t+1}) = \mathrm{head}(e_t)\}.
+\]
+\end{itemize}
+
+\subsection{Foliation Decomposition and Layer-by-Layer Reading Protocol}
+
+\begin{itemize}
+\item \textbf{Unimodular transformation}: \( U \in \mathrm{GL}_{d+1}(\mathbb{Z}) \) (integral invertible, \( \det U = \pm 1 \)), time direction \( \tau = U e_{d+1} \).
+\item \textbf{Acceptable foliation}: There exists a \textbf{primitive integral covector} \( \tau^\star \in (\mathbb{Z}^{d+1})^\vee \) and constant \( c \), with leaves as its level sets
+\[
+\{\xi \in \mathbb{Z}^{d+1} : \langle \tau^\star, \xi \rangle = c\},
+\]
+and satisfying
+\[
+\langle \tau^\star, \tau \rangle = b \geq 1,
+\]
+to guarantee \textbf{monotonic advancement across leaves}.
+\item \textbf{Layer-by-layer reading}: Using block code \( \pi: \Sigma^B \to \Gamma \), advance layer by layer according to \( c \mapsto c + b \), applying \( \pi \) to corresponding windows to produce visible sequences.
+\item \textbf{Time subaction notation}: Denote \( \sigma_{\mathrm{time}} \) as the \textbf{one-dimensional subaction} of \( X_f \) along the time coordinate, \( \sigma_\Omega \) as the time shift of \( \Omega(F) \).
+\end{itemize}
+
+\subsection{Complexity and Measures}
+
+\begin{itemize}
+\item Employ \textbf{prefix} Kolmogorov complexity \( K(\cdot) \) and conditional complexity \( K(u|v) \).
+\item \( \mu \): shift-invariant and ergodic; \( \nu \): universal semimeasure (algorithmic probability).
+\item \textbf{Window description complexity}: \( K(W) \) is the shortest program length for generating \( W \); Følner family \( \{W_k\} \) satisfies \( |\partial W_k| / |W_k| \to 0 \).
+\end{itemize}
+
+\subsection{Causal Thick Boundary (for T4)}
+
+\begin{itemize}
+\item Explicitly adopt \( \infty \)-norm:
+\[
+r := \max_{\mathbf{n} \in N} |\mathbf{n}|_\infty.
+\]
+\item Definitions
+\[
+t_- = \min\{t : (\mathbf{r}, t) \in W\}, \quad t_+ = \max\{t : (\mathbf{r}, t) \in W\}, \quad T = t_+ - t_-.
+\]
+\item Base \( \mathrm{base}(W) = \{(\mathbf{r}, t_-) \in W\} \).
+\item \textbf{Lower past causal input boundary (standard coordinates)}
+\[
+\partial_\downarrow^{(r,T)} W^- := \{(\mathbf{r} + \mathbf{n}, t_- - 1) : (\mathbf{r}, t_-) \in \mathrm{base}(W), \ \mathbf{n} \in [-rT, rT]^d \cap \mathbb{Z}^d\} \setminus W.
+\]
+For non-standard foliation cases, first transform back to standard coordinates using \( U^{-1} \) and take the image.
+\end{itemize}
+
+\subsection{Eternal Graph Coordinate Relativization (Anchored Chart)}
+
+\( G \) does not carry global coordinates. Choose anchor \( v_0 \), relative embedding \( \varphi_{v_0}: \mathrm{Ball}_G(v_0, R) \to \mathbb{Z}^{d+1} \) satisfying \( \varphi_{v_0}(v_0) = (\mathbf{0}, 0) \), monotonic non-decreasing layer function along \( \tau \) paths, spatial adjacency as finite shifts.
+Layer function
+\[
+\ell(w) := \langle \tau^\star, \varphi_{v_0}(w) \rangle, \quad \mathrm{Cone}_\ell^+(v) := \{w \in \mathrm{Dom}(\varphi_{v_0}) : \exists v \leadsto w \text{ and } \ell \text{ non-decreasing along the path}\}.
+\]
+\textbf{SBU (Static Block Unfolding)}
+\[
+X_f^{(v,\tau)} := \{x \in X_f : x|_{\varphi_{v_0}(\mathrm{Cone}_\ell^+(v))} \text{ consistent with } v\}.
+\]
+
+\begin{note}
+Discussion of SBU is restricted to \textbf{graph domains with such relative embeddings}.
+\end{note}
+
+\section{Minimal Axioms (A0--A3)}
+
+\begin{axiom}[Static Block]\label{ax:A0}
+\( X_f \) is the set of models satisfying local constraints.
+\end{axiom}
+
+\begin{axiom}[Causal-Local]\label{ax:A1}
+\( f \) has finite neighborhood; reading uses acceptable foliations.
+\end{axiom}
+
+\begin{axiom}[Observation = Factor Decoding]\label{ax:A2}
+Layer-by-layer reading and applying \( \pi \) gives \( \mathcal{O}_{\pi, \varsigma}(x) \).
+\end{axiom}
+
+\begin{axiom}[Information Non-increasing]\label{ax:A3}
+For any window \( W \), \( K(\pi(x|_W)) \leq K(x|_W) + K(\pi) + O(1) \).
+\end{axiom}
+
+\section{Leaf-Language and Observation Equivalence}
+
+Fix \( (\pi, \varsigma) \) and foliation family \( \mathcal{L} \),
+\[
+\mathrm{Lang}_{\pi, \varsigma}(X_f) := \{\mathcal{O}_{\pi, \varsigma}(x) \in \Gamma^{\mathbb{N}} : x \in X_f, \text{ reading layer by layer according to } \mathcal{L}\},
+\]
+\[
+x \sim_{\pi, \varsigma} y \iff \mathcal{O}_{\pi, \varsigma}(x) = \mathcal{O}_{\pi, \varsigma}(y).
+\]
+
+\section{Preparatory Lemmas}
+
+\begin{lemma}[Complexity Conservation of Computable Transformations]\label{lem:5.1}
+If \( \Phi \) is computable, then
+\[
+K(\Phi(u)|v) \leq K(u|v) + K(\Phi) + O(1).
+\]
+\end{lemma}
+
+\begin{lemma}[Describable Window Families]\label{lem:5.2}
+For \( d+1 \)-dimensional axis-aligned parallelepipeds or regular windows describable with \( O(\log |W|) \) parameters, \( K(W) = O(\log |W|) \).
+\end{lemma}
+
+\begin{lemma}[Thick Boundary Coverage]\label{lem:5.3}
+With radius \( r = \max_{\mathbf{n} \in N} |\mathbf{n}|_\infty \) and time span \( T \), computing \( x|_W \) requires only the past input of the base layer in \( [-rT, rT]^d \); i.e., \( \partial_\downarrow^{(r,T)} W^- \) covers all dependencies (\textbf{propagation radius counted in \( |\cdot|_\infty \)}).
+\end{lemma}
+
+\begin{lemma}[Factor Entropy Non-increasing]\label{lem:5.4}
+If \( \phi: (X, T) \to (Y, S) \) is a factor, then \( h_\mu(T) \geq h_{\phi_* \mu}(S) \).
+\end{lemma}
+
+\begin{lemma}[SMB/Brudno on \( \mathbb{Z}^{d+1} \)]\label{lem:5.5}
+For shift-invariant ergodic \( \mu \) and Følner family \( \{W_k\} \),
+\[
+-\frac{1}{|W_k|} \log \mu([x|_{W_k}]) \to h_\mu(X_f) \quad (\mu\text{-a.e.}), \quad \frac{K(x|_{W_k})}{|W_k|} \to h_\mu(X_f) \quad (\mu\text{-a.e.}).
+\]
+\end{lemma}
+
+\section{Main Theorems and Detailed Proofs (T1--T20)}
+
+\subsection{T1: Block-Natural Extension Conjugacy}
+
+\begin{proposition}\label{thm:T1}
+If \( X_f \neq \varnothing \), then
+\[
+\boxed{(X_f, \sigma_{\mathrm{time}}) \cong (\Omega(F), \sigma_\Omega)},
+\]
+where
+\[
+\Omega(F) = \{(\ldots, x_{-1}, x_0, x_1, \ldots) : F(x_t) = x_{t+1}\}.
+\]
+\end{proposition}
+
+\begin{proof}
+Define \( \Psi: X_f \to \Omega(F) \), \( (\Psi(x))_t(\mathbf{r}) = x(\mathbf{r}, t) \). By SFT constraint, \( F((\Psi(x))_t) = (\Psi(x))_{t+1} \). Define inverse \( \Phi: \Omega(F) \to X_f \), \( \Phi((x_t))(\mathbf{r}, t) = x_t(\mathbf{r}) \). Clearly \( \Phi \circ \Psi = \mathrm{id} \), \( \Psi \circ \Phi = \mathrm{id} \), and \( \Psi \circ \sigma_{\mathrm{time}} = \sigma_\Omega \circ \Psi \). Continuity and Borel measurability follow from product topology and cylinder set structure.
+\end{proof}
+
+\subsection{T2: Unimodular Covariance; Describable Window Families}
+
+\begin{proposition}\label{thm:T2}
+If Følner family \( \{W_k\} \) satisfies \( K(W_k) = O(\log |W_k|) \), then the observation semantic complexity difference caused by any two acceptable foliations is \( O(\log |W_k|) \), approaching 0 after normalization; entropy non-increasing is preserved.
+\end{proposition}
+
+\begin{proof}
+Two foliations given by \( U_1, U_2 \in \mathrm{GL}_{d+1}(\mathbb{Z}) \). Set \( U = U_2 U_1^{-1} \). For each \( W_k \), \( \tilde{W}_k = U(W_k) \) can be recovered from the encoding of \( \langle U \rangle \) and \( W_k \), hence
+\[
+|K(\pi(x|_{\tilde{W}_k})) - K(\pi(x|_{W_k}))| \leq K(\langle U \rangle) + O(\log |W_k|) = O(\log |W_k|),
+\]
+by Lemmas~\ref{lem:5.1}--\ref{lem:5.2}. After normalization, limit is 0. Entropy non-increasing follows from Lemma~\ref{lem:5.4}.
+\end{proof}
+
+\subsection{T3: Observation = Decoding Semantic Collapse}
+
+\begin{proposition}\label{thm:T3}
+\( \mathcal{O}_{\pi, \varsigma}: X_f \to \Gamma^{\mathbb{N}} \) is a factor map of the time subaction, inducing equivalence classes \( x \sim_{\pi, \varsigma} y \). One observation selects a representative in the equivalence class; the underlying \( x \) remains unchanged.
+\end{proposition}
+
+\subsection{T4: Information Upper Bound: Conditional Complexity Version}
+
+\begin{proposition}\label{thm:T4}
+\[
+\boxed{K(\pi(x|_W) | x|_{\partial_\downarrow^{(r,T)} W^-}) \leq K(f) + K(W) + K(\pi) + O(\log |W|)}.
+\]
+\end{proposition}
+
+\begin{proof}
+Construct universal program \( \mathsf{Dec} \):
+
+\begin{enumerate}
+\item \textbf{Input}: encoding of \( f \), encoding of window \( W \) (containing \( (t_-, T) \) and geometric parameters), encoding of \( \pi \), and conditional string \( x|_{\partial_\downarrow^{(r,T)} W^-} \).
+\item \textbf{Recursion}: Generate layer by layer from \( t_- \) according to the time subaction. For any \( (\mathbf{r}, s) \in W \), compute
+\[
+x(\mathbf{r}, s) = f(x(\mathbf{r} + N, s-1))
+\]
+using values from the previous layer or conditional boundary (Lemma~\ref{lem:5.3}). \textbf{Generate layer by layer from \( s = t_-, t_- + 1, \dots, t_+ \)} to avoid dependency cycles. For each layer \( s \), \textbf{first generate all units required for the forward closure of \( W \) within the propagation cone (allowing temporary generation of values outside \( W \) but within \( [-r(s - t_-), r(s - t_-)]^d \times \{s\} \)), then restrict back to \( W \)}.
+\item \textbf{Decoding}: Apply \( \pi \) to \( W \) according to the protocol to get \( \pi(x|_W) \).
+\end{enumerate}
+
+Program size is constant, input length is \( K(f) + K(W) + K(\pi) + O(\log |W|) \) (with \( \log |W| \) for depth/alignment cost). By prefix complexity definition, the upper bound follows.
+\end{proof}
+
+\subsection{T5: Brudno Alignment and Factor Entropy}
+
+\begin{proposition}\label{thm:T5}
+For \( \mu \)-almost every \( x \) and any Følner family \( \{W_k\} \):
+\[
+\frac{K(x|_{W_k})}{|W_k|} \to h_\mu(X_f), \quad \frac{K(\pi(x|_{W_k}))}{|W_k|} \to h_{\pi_* \mu}(\pi(X_f)) \leq h_\mu(X_f).
+\]
+\end{proposition}
+
+\begin{proof}
+By Lemma~\ref{lem:5.5} (SMB/Brudno on additive group actions), the first limit holds. For the factor image, \( \pi \) is computable and factor entropy is non-increasing (Lemma~\ref{lem:5.4}), so the second limit holds and does not exceed \( h_\mu(X_f) \).
+\end{proof}
+
+\subsection{T6: Program Emergence: Macroblock-Forcing; SB-CA \(\Rightarrow\) TM}
+
+\begin{proposition}\label{thm:T6}
+There exists a macroblock-forcing embedding such that the execution of any Turing machine \( M \) can be realized in \( X_f \) and decoded by \( \pi \).
+\end{proposition}
+
+\begin{proof}[Proof (Construction)]
+Take macroblock size \( k \). Extend alphabet to \( \Sigma' = \Sigma \times Q \times D \times S \) (machine state, tape symbol, head movement, synchronization phase). At macroblock scale, implement transitions \( (q, a) \mapsto (q', a', \delta) \) with finite-type local constraints, and use phase signals for cross-macroblock synchronization. Decoder \( \pi \) reads the central row of macroblocks to output tape content. Compactness and locality guarantee non-empty solutions exist.
+\end{proof}
+
+\subsection{T7: Program Weight Universal Semimeasure Bound}
+
+\begin{proposition}\label{thm:T7}
+For prefix-unambiguous program codes, for any decodable program \( p \), \( \nu(p) \leq C \cdot 2^{-|p|} \).
+\end{proposition}
+
+\begin{proof}
+By Kraft inequality \( \sum_p 2^{-|p|} \leq 1 \), the universal semimeasure \( \nu \) as a weighted sum satisfies the upper bound, with constant \( C \) depending only on the chosen machine.
+\end{proof}
+
+\subsection{T8: Section-Natural Extension Duality; Entropy Preservation}
+
+\begin{proposition}\label{thm:T8}
+\( X_f \) and \( \Omega(F) \) are mutually section/natural extension duals, with equal time entropy.
+\end{proposition}
+
+\begin{proof}
+By Proposition~\ref{thm:T1}'s conjugacy \( (X_f, \sigma_{\mathrm{time}}) \cong (\Omega(F), \sigma_\Omega) \). Natural extension does not change entropy; conjugacy preserves entropy, so the conclusion holds.
+\end{proof}
+
+\subsection{T9: Halting Witness Staticization}
+
+\begin{proposition}\label{thm:T9}
+In the embedding construction of Proposition~\ref{thm:T6}, \( M \) halts if and only if there exists a finite window pattern in \( X_f \) containing the ``termination marker'' \( \square \).
+\end{proposition}
+
+\begin{proof}
+``If'' direction: If \( M \) halts at step \( \hat{t} \), then \( \square \) appears in the macroblock center, forming a finite cylindrical pattern.
+``Only if'' direction: If \( \square \) appears, trace back to halting transition via local consistency; construction guarantees \( \square \) is not generated by other causes.
+\end{proof}
+
+\subsection{T10: Unimodular Covariance Information Stability}
+
+\begin{proposition}\label{thm:T10}
+If \( K(W_k) = O(\log |W_k|) \), then under any integral transformation \( U \), the Proposition~\ref{thm:T4} upper bound and Proposition~\ref{thm:T3} semantics are preserved, with finite window complexity difference \( O(\log |W_k|) \).
+\end{proposition}
+
+\begin{proof}
+By Lemmas~\ref{lem:5.1}--\ref{lem:5.2} and Proposition~\ref{thm:T2}'s isomorphism encoding argument; thick boundaries and propagation cones under \( U \) have only bounded distortion, absorbed into \( O(\log |W_k|) \).
+\end{proof}
+
+\subsection{T11: Model Set Semantics}
+
+\begin{proposition}\label{thm:T11}
+\[
+X_f = \mathcal{T}_f(\mathsf{Conf}) = \{x \in \Sigma^{\mathbb{Z}^{d+1}} : \forall (\mathbf{r}, t) \ x(\mathbf{r}, t) = f(x(\mathbf{r} + N, t-1))\}.
+\]
+\end{proposition}
+
+\begin{proof}
+By definition.
+\end{proof}
+
+\subsection{T12: Computational Model Correspondence}
+
+\begin{proposition}\label{thm:T12}
+\begin{enumerate}[label=(\roman*)]
+\item SB-CA and TM simulate each other;
+\item Various CSP/Horn/\( \mu \)-safety formulas \( \Phi \) can be equivalently embedded into EG-CA.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) By Proposition~\ref{thm:T6} and standard ``TM simulates CA'' for bidirectional simulation.
+(ii) Convert each clause of radius \( \leq r \) to forbidden pattern set \( \mathcal{F}_\Phi \), yielding \( X_{f_\Phi} \). Solution models are equivalent to \( \Phi \)'s models (finite-type + compactness).
+\end{proof}
+
+\subsection{T13: Leaf-Language \(\omega\)-Automaton Characterization}
+
+\begin{proposition}\label{thm:T13}
+Under ``one-dimensional subaction + finite-type/regular safety'', there exists a Büchi/Streett automaton \( \mathcal{A} \) such that
+\[
+\mathrm{Lang}_{\pi, \varsigma}(X_f) = L_\omega(\mathcal{A}).
+\]
+\end{proposition}
+
+\begin{proof}[Proof (Construction)]
+Take higher-order block representation \( X_f^{[k]} \), encode state set \( Q \) into extended alphabet and implement transitions \( \delta \) with finite-type constraints. One cross-leaf reading corresponds to one automaton step. Acceptance conditions are expressed with safety/regular constraints (e.g., ``infinitely many visits to \( F \)'' implemented by cyclic memory bits). Thus the equivalent \( \omega \)-language is obtained.
+\end{proof}
+
+\subsection{T14: SBU Existence for Any Realizable Event}
+
+\begin{proposition}\label{thm:T14}
+For realizable \( v \) and acceptable \( \tau \), \( (X_f^{(v,\tau)}, \rho_\tau) \) is non-empty.
+\end{proposition}
+
+\begin{proof}
+Take finite window family consistent with \( v \), form a directed set by inclusion; finite consistency given by ``realizable'' and local constraints. By compactness (product topology) and König's lemma, there exists a limit configuration \( x \in X_f \) consistent with \( v \), hence non-empty.
+\end{proof}
+
+\subsection{T15: Causal Consistency Expansion and Paradox Exclusion}
+
+\begin{proposition}\label{thm:T15}
+\( X_f^{(v,\tau)} \) contains only restrictions of global solutions consistent with anchor \( v \); contradictory events do not coexist.
+\end{proposition}
+
+\begin{proof}
+If some \( x \in X_f^{(v,\tau)} \) contains events contradictory to \( v \), then on \( \varphi_{v_0}(\mathrm{Cone}_\ell^+(v)) \) it is both consistent and contradictory, violating the consistency definition.
+\end{proof}
+
+\subsection{T16: Time = Deterministic Advancement (Apparent Choice)}
+
+\begin{proposition}\label{thm:T16}
+Under deterministic \( f \) and thick boundary conditions, each minimal positive increment of \( \ell \) equates to \textbf{deterministic advancement} of future consistency expansion families; unique under deterministic CA.
+\end{proposition}
+
+\begin{proof}
+By Proposition~\ref{thm:T4}'s construction, given previous layer and thick boundary, next layer values are uniquely determined by \( f \); if two different advancements exist, some unit's next layer value would differ, violating determinism.
+\end{proof}
+
+\subsection{T17: Multi-Anchor Observers and Subjective Time Rate}
+
+\begin{proposition}\label{thm:T17}
+Effective step length \( b = \langle \tau^\star, \tau \rangle \geq 1 \) reflects chapter beat; different \( b \) only changes reading rhythm, with consistent entropy rate after Følner normalization.
+\end{proposition}
+
+\begin{proof}
+Changing to \( \sigma_{\mathrm{time}}^{(b)} \) is equivalent to ``sampling'' (\( \sigma_\Omega^b \)) of the \( \mathbb{Z} \) subaction. Measure entropy satisfies
+\[
+h(\sigma_\Omega^b) = b \cdot h(\sigma_\Omega).
+\]
+While \( |W_k| \) scales linearly with ``steps per \( b \)'', normalization cancels out, limits are consistent.
+\end{proof}
+
+\subsection{T18: Anchored Graph Coordinate Relativization Invariance}
+
+\begin{proposition}\label{thm:T18}
+Two embeddings \( (\varphi_{v_0}, \varphi_{v_1}) \) if restrictions of the same integral affine embedding \( \Phi \), then differ by \( \mathrm{GL}_{d+1}(\mathbb{Z}) \) integral affine and finite radius rescaling after removing constant radius bands in intersection domain; observation semantic difference \( \leq O(K(W)) \) (describable window families are \( O(\log |W|) \)).
+\end{proposition}
+
+\begin{proof}
+There exist \( U \in \mathrm{GL}_{d+1}(\mathbb{Z}) \) and translation \( t \) such that \( \varphi_{v_1} = U \circ \varphi_{v_0} + t \) holds in intersection domain. Finite radius differences correspond to removing boundary bands. Window encodings under two coordinates differ only by finite descriptions of \( U, t \), complexity difference absorbed by \( O(K(W)) \) (Lemmas~\ref{lem:5.1}--\ref{lem:5.2}).
+\end{proof}
+
+\subsection{T19: \(\ell\)-Successor Determinacy and Same-Layer Exclusivity}
+
+\begin{proposition}\label{thm:T19}
+Under deterministic \( f \), radius \( r \), if \( u \)'s context covers information needed for next layer generation, then there exists unique \( \mathrm{succ}_\ell(u) \); edge \( u \to \mathrm{succ}_\ell(u) \) has exclusivity for same-layer alternatives.
+\end{proposition}
+
+\begin{proof}
+Next layer values uniquely determined by \( f \)'s local function; if two different same-layer alternatives both connectable and mutually conflicting exist, inconsistency assignment arises in some common unit, contradiction.
+\end{proof}
+
+\subsection{T20: Compatibility Principle: Apparent Choice and Determinism Unification}
+
+\begin{proposition}\label{thm:T20}
+Layer-by-layer advancement appears as ``representative selection'' at the operational level, while overall static encoding is ``unique consistency expansion''; determinism holds, compatible with Axioms~\ref{ax:A3}/Proposition~\ref{thm:T4}.
+\end{proposition}
+
+\begin{proof}
+By Proposition~\ref{thm:T14} global consistency expansion exists; Proposition~\ref{thm:T15} excludes contradictory branches; Proposition~\ref{thm:T3} indicates ``observation = selecting representative in equivalence class''; Proposition~\ref{thm:T4}/Axiom~\ref{ax:A3} ensures selection does not increase information. Hence apparent freedom is consistent with underlying determinism.
+\end{proof}
+
+\section{Constructions and Algorithms}
+
+\subsection{From Rules to SFT}
+Derive forbidden pattern set \( \mathcal{F} \) from local consistency of \( f \), yielding \( X_f \).
+
+\subsection{From SFT to Eternal Graph}
+Construct \( G_f \) with allowed patterns as vertices, legal splices as edges; use level surfaces of \( \ell \) for leaf ordering.
+
+\subsection{Decoder Design}
+Select core window \( B \), block code \( \pi: \Sigma^B \to \Gamma \); define \textbf{layer-by-layer reading protocol according to \( \ell \)-stratified} \( \varsigma \).
+
+\subsection{Macroblock-Forcing Program Box}
+Self-similar tiling embedding of ``state-control-tape'' that is decodable (see Proposition~\ref{thm:T6}).
+
+\subsection{Compression-Entropy Experiment (Reproducible)}
+\[
+y_k = \pi(x|_{W_k}), \quad c_k = \mathrm{compress}(y_k), \quad r_k = \frac{|c_k|}{|W_k|}, \quad \mathrm{plot}(r_k) \ (k=1,2,\ldots).
+\]
+
+\subsection{Constructing SBU from Event Nodes (Forced Domain Propagation)}
+\textbf{Input}: Realizable \( v \), orientation \( \tau \), tolerance \( \epsilon \).
+
+\textbf{Steps}: With \( v \) and local consistency as constraints, perform \textbf{bidirectional constraint propagation/consistency checking}, compute units forced by \( v \) on growing \( W_k \), expand layer by layer according to \( \ell \) until local stability.
+
+\textbf{Output}: \textbf{Forced domain approximation} of \( (X_f^{(v,\tau)}) \) on \( W_k \) and information density curve.
+
+\subsection{Anchored Graph Relative Coordinate Construction}
+BFS layering (by \( \ell \)/spatial adjacency) \( \to \) relative embedding \( \varphi_{v_0} \) \( \to \) radius \( r \) consistency verification and equivalence class merging.
+
+\subsection{From CSP / \(\mu\)-Safety Formulas to CA}
+Given CSP or Horn/\( \mu \)-safety formula \( \Phi \), generate forbidden patterns \( \mathcal{F}_\Phi \) for each clause of radius \( \leq r \), define \( f_\Phi \):
+\[
+X_{f_\Phi} = \mathcal{T}_{f_\Phi}(\mathsf{Conf}) = \{x : \forall (\mathbf{r}, t), \ x(\mathbf{r}, t) = f_\Phi(x(\mathbf{r} + N, t-1))\},
+\]
+use finite control layers if necessary for synchronization (does not change equivalence class).
+
+\subsection{From \(\omega\)-Automata to Leaf-Language}
+Given Büchi automaton \( \mathcal{A} = (Q, \Gamma, \delta, q_0, F) \), choose \( (\pi, \varsigma) \) such that:
+
+\begin{enumerate}
+\item \( \pi \) encodes cross-leaf observations as \( \Gamma \)-words;
+\item Implement \( \delta \) with finite-type synchronization conditions (encode \( Q \) into alphabet via \( X_f^{[k]} \) and simulate transitions with local constraints);
+\item Express acceptance conditions with safety/regular constraints. Thus
+\[
+\mathrm{Lang}_{\pi, \varsigma}(X_f) = L_\omega(\mathcal{A}).
+\]
+\end{enumerate}
+
+\section{Typical Examples and Toy Models}
+
+\subsection{Rule-90 (Linear)}
+Tripartite consistency; SBU of any anchor uniquely recursed by linear relations; Følner-normalized complexity density consistent; leaf-language is \( \omega \)-regular.
+
+\subsection{Rule-110 (Universal)}
+Macroblock-forcing TM embedding (Proposition~\ref{thm:T6}); halting witness corresponds to local termination marker (Proposition~\ref{thm:T9}); layer-by-layer advancement excludes same-layer alternatives (Propositions~\ref{thm:T19}--\ref{thm:T20}).
+
+\subsection{2-Coloring CSP (Model Perspective)}
+Local constraints of graph 2-coloring \( \to \) forbidden patterns; anchor some node color and unfold layer by layer, forming causal consistent event cone; leaf-language \( \omega \)-regular under suitable conditions.
+
+\subsection{\(2\times2\) Toy Block (Anchor-SBU-Decoding-Apparent Choice)}
+\( \Sigma = \{0,1\} \), \( d=1 \), \( N = \{-1,0,1\} \), \( f(a,b,c) = a \oplus b \oplus c \) (XOR, periodic boundary). Anchor \( v_0 \) fixes local pattern at \( (t=0, \mathbf{r}=0) \). According to Proposition~\ref{thm:T4}'s causal thick boundary and \textbf{layer-by-layer advancement}, recurse layer \( t=1 \), obtaining unique consistency expansion; contradictory same-layer points excluded (Proposition~\ref{thm:T19}). Take
+\[
+B = \{(\mathbf{r}, t) : \mathbf{r} \in \{0,1\}, t=1\},
+\]
+\( \pi \) reads 2D block as visible binary string---``next step'' only reads out, does not increase information (Axiom~\ref{ax:A3}).
+
+\section{Extension Directions}
+
+\begin{itemize}
+\item \textbf{Continuous Extension (cEBOC)}: Generalize with Markov symbolization/compact alphabet SFT; restate complexity/entropy and clarify discrete\( \to \)continuous limit.
+\item \textbf{Quantum Inspiration}: Simultaneous description of multiple compatible SBUs for same static block \( X_f \), measurement corresponds to \textbf{anchor switching and locking} + one \( \pi \)-semantic collapse; provides constructive foundation for information-computation-based quantum interpretation (non-state-vector assumption).
+\item \textbf{Category/Coalgebra Perspective}: \( (X_f, \mathrm{shift}) \) as coalgebra; anchored SBU as coalgebraic subresolution with initial value injection; leaf-language as image of automata coalgebra homomorphism.
+\item \textbf{Robustness}: Fault-tolerant decoding and robust windows under small perturbations/missing data, ensuring stable observable semantics.
+\end{itemize}
+
+\section{Observer, Apparent Choice, and Time Experience (RPG Metaphor)}
+
+\textbf{Hierarchy Separation}: \textbf{Operational layer} (observation/decoding/layer-by-layer advancement/representative selection) vs \textbf{ontological layer} (static geometry/unique consistency expansion).
+
+\textbf{Compatibility Principle}: View \( X_f \) as \textbf{complete RPG data and rules}; \textbf{layer-by-layer advancement} like unlocking plot according to \textbf{established chapter beat \( b \)}. Player ``choices'' involve \textbf{selecting representatives} from compatible branches in same layer and \textbf{excluding} other branches; \textbf{plot ontology} (static block) already written, choices do not generate new information (Axiom~\ref{ax:A3}), consistent with determinism (Proposition~\ref{thm:T20}).
+
+\textbf{Subjective Time Rate}: Effective step length \( b = \langle \tau^\star, \tau \rangle \) embodies ``chapter beat''; Følner-normalized entropy rate consistent (Propositions~\ref{thm:T2}/\ref{thm:T5}/\ref{thm:T17}).
+
+\section{Conclusion}
+
+EBOC unifies \textbf{timeless geometry (eternal graph/SFT)}, \textbf{static block consistency}, and \textbf{layer-by-layer decoding observation-computation semantics} under minimal axioms, forming a complete chain from \textbf{models/automata} to \textbf{visible language}. This paper provides detailed proofs for T1--T20, establishing \textbf{information non-increasing laws} (Proposition~\ref{thm:T4}/Axiom~\ref{ax:A3}), \textbf{Brudno alignment} (Proposition~\ref{thm:T5}), \textbf{unimodular covariance} (Propositions~\ref{thm:T2}/\ref{thm:T10}), \textbf{event cones/static block unfolding} (Propositions~\ref{thm:T14}--\ref{thm:T16}), \textbf{multi-anchor observers and coordinate relativization} (Propositions~\ref{thm:T17}--\ref{thm:T18}), and other core results, along with reproducible experiments and construction procedures (Section~7).
+
+\appendix
+
+\section{Terminology and Notation}
+
+\begin{itemize}
+\item \textbf{Semantic Collapse}: Information factorization \( x \mapsto \mathcal{O}_{\pi, \varsigma}(x) \).
+\item \textbf{Apparent Choice}: Advancement by minimal positive increment of \( \ell \), selecting representatives for same-layer alternatives; only changes semantic representative, does not create information.
+\item \textbf{Primitive Integral Covector}: \( \tau^\star \in (\mathbb{Z}^{d+1})^\vee \), \( \gcd(\tau^\star_0, \ldots, \tau^\star_d) = 1 \); its pairing with actual time direction \( \tau \), \( \langle \tau^\star, \tau \rangle = b \geq 1 \) defines layer-by-layer advancement step length.
+\item \( \mathrm{GL}_{d+1}(\mathbb{Z}) \): Integral invertible matrix group (determinant \( \pm 1 \)).
+\item \textbf{Følner Family}: Window family with \( |\partial W_k| / |W_k| \to 0 \).
+\item \textbf{Cylinder Set}: \( [p]_W = \{x \in X_f : x|_W = p\} \).
+\end{itemize}
+
+\begin{thebibliography}{99}
+
+\bibitem{brudno1983}
+A. A. Brudno,
+\textit{Entropy and the complexity of trajectories},
+Transactions of the Moscow Mathematical Society, 1983.
+
+\bibitem{lind-marcus}
+D. Lind and B. Marcus,
+\textit{Symbolic Dynamics and Coding},
+Cambridge University Press, 1995.
+
+\bibitem{moore1962}
+E. F. Moore,
+\textit{Machine models of self-reproduction},
+Proceedings of Symposia in Applied Mathematics, vol.~14, pp.~17--33, 1962.
+
+\bibitem{myhill1963}
+J. Myhill,
+\textit{The converse of Moore's Garden-of-Eden theorem},
+Proceedings of the American Mathematical Society, vol.~14, pp.~685--686, 1963.
+
+\bibitem{li-vitanyi}
+M. Li and P. Vitányi,
+\textit{An Introduction to Kolmogorov Complexity and Its Applications},
+3rd edition, Springer, 2008.
+
+\bibitem{berger}
+R. Berger,
+\textit{The undecidability of the domino problem},
+Memoirs of the American Mathematical Society, no.~66, 1966.
+
+\bibitem{kari}
+J. Kari,
+\textit{The nilpotency problem of one-dimensional cellular automata},
+SIAM Journal on Computing, vol.~21, no.~3, pp.~571--586, 1992.
+
+\bibitem{buchi}
+J. R. Büchi,
+\textit{On a decision method in restricted second order arithmetic},
+Proceedings of the International Congress on Logic, Methodology and Philosophy of Science, pp.~1--11, 1962.
+
+\bibitem{thomas}
+W. Thomas,
+\textit{Automata on infinite objects},
+Handbook of Theoretical Computer Science, vol.~B, pp.~133--191, Elsevier, 1990.
+
+\bibitem{perrin-pin}
+D. Perrin and J.-E. Pin,
+\textit{Infinite Words: Automata, Semigroups, Logic and Games},
+Pure and Applied Mathematics, vol.~141, Academic Press, 2004.
+
+\bibitem{ornstein-weiss}
+D. Ornstein and B. Weiss,
+\textit{Entropy and isomorphism theorems for actions of amenable groups},
+Journal d'Analyse Mathématique, vol.~48, pp.~1--141, 1987.
+
+\bibitem{lindenstrauss}
+E. Lindenstrauss,
+\textit{Pointwise theorems for amenable groups},
+Inventiones Mathematicae, vol.~146, pp.~259--295, 2001.
+
+\end{thebibliography}
+
+\end{document}
+

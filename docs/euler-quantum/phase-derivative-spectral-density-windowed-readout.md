@@ -16,15 +16,14 @@ $$
 \boxed{\ \varphi'(E)=\pi\,\rho_{\mathrm{rel}}(E)=\pi\bigl(\rho_m(E)-\rho_{m_0}(E)\bigr)\ },
 $$
 
-其中 $m,m_0$ 分别为待测算子与参照算子的 Weyl–Titchmarsh 函数，$\rho_m,\rho_{m_0}$ 为其 Herglotz–Weyl 边界虚部密度。由此导出**窗口化读数方程**：
+其中 $m,m_0$ 分别为待测算子与参照算子的 Weyl–Titchmarsh 函数，$\rho_m,\rho_{m_0}$ 为其 Herglotz–Weyl 边界虚部密度。由此导出**窗口化读数方程**（上界形式）：
 
 $$
-\mathrm{Obs}(R,\Delta,M,T)
-=\int_{\mathbb R} w_R(E)\,\bigl[h\!\star\!\rho_\star\bigr](E)\,dE
-+\varepsilon_{\mathrm{alias}}+\varepsilon_{\mathrm{EM}}+\varepsilon_{\mathrm{tail}},
+\Bigl|\mathrm{Obs}(R,\Delta,M,T)-\int_{\mathbb R} w_R(E)\,\bigl[h\!\star\!\rho_\star\bigr](E)\,dE\Bigr|
+\le \bigl|\varepsilon_{\mathrm{alias}}\bigr|+\bigl|\varepsilon_{\mathrm{EM}}\bigr|+\bigl|\varepsilon_{\mathrm{tail}}\bigr|,
 $$
 
-其中 $w_R$ 为能量窗、$h$ 为带限前端核、$\rho_\star$ 按场景为 $\rho_m$ 或 $\rho_{\mathrm{rel}}$。在 Nyquist–Poisson–EM 纪律下可实现**别名关断/压阈**与**非渐近误差闭合**。该框架把"延迟/隧穿时间""负延迟"与"指针基"统一为**窗—核—采样—误差账本**的可设计问题。
+其中 $w_R$ 为能量窗、$h$ 为带限前端核、$\rho_\star$ 按场景为 $\rho_m$ 或 $\rho_{\mathrm{rel}}$；$\varepsilon_{\mathrm{alias}},\varepsilon_{\mathrm{EM}},\varepsilon_{\mathrm{tail}}$ 分别为别名、Euler–Maclaurin 与截断尾项误差。在 Nyquist–Poisson–EM 纪律下可实现**别名关断/压阈**与**非渐近误差闭合**。该框架把"延迟/隧穿时间""负延迟"与"指针基"统一为**窗—核—采样—误差账本**的可设计问题。
 
 ---
 
@@ -72,15 +71,15 @@ $$
 \boxed{\ \frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)=\rho_{\mathrm{rel}}(E)=\xi'(E)\ },\qquad \text{单通道： }\operatorname{tr}\mathsf Q(E)=2\,\varphi'(E).
 $$
 
-单通道时 $\tau_{\mathrm{WS}}(E)=2\hbar\,\varphi'(E)=2\pi\hbar\,\rho_{\mathrm{rel}}(E)$。**注**：单通道下与文献中常用的 $\tau=\partial_E \arg\det S$ 一致。
+单通道时 $\tau_{\mathrm{WS}}(E)=2\hbar\,\varphi'(E)=2\pi\hbar\,\rho_{\mathrm{rel}}(E)$。**注**：单通道下 $\tau_{\mathrm{WS}}=\hbar\,\partial_E \arg\det S$（因 $\arg\det S=2\varphi$）。
 
-**a.e. 范围声明**：凡含 $S'(E)$、$\varphi'(E)$、$\xi'(E)$ 或边界值 $\Im m(E+i0)$ 的等式，均在**几乎处处**（a.e.）能量上成立；共振/不可导点按测度零处理。$\arg\det S$ 可于 a.e. $E$ 选取连续支，故导数在 a.e. 成立（参见 BK 公式与 SSF 的 a.e. 定义）。盒装等式右上角的"a.e."标注提醒读者此约束。
+**a.e. 范围声明**：凡含 $S'(E)$、$\varphi'(E)$、$\xi'(E)$ 或边界值 $\Im m(E+i0)$ 的等式，均在**几乎处处**（a.e.）能量上成立；共振/不可导点按测度零处理。$\arg\det S$ 可于 a.e. $E$ 选取连续支，故导数在 a.e. 成立（参见 BK 公式与 SSF 的 a.e. 定义）。盒装等式右上角的"a.e."标注提醒读者此约束。对可能的 $\det S(E)=-1$ 交叉点，$\arg\det S$ 之跳跃导致的**不可导点属测度零**，与本文 a.e. 导数陈述一致。
 
 **符号约定备注**：BK 采用 $\det S(E)=e^{+2\pi i\,\xi(E)}$ 号记，对应 $\frac{1}{2\pi}\operatorname{tr}\mathsf Q=\xi'(E)$。若采用他书的反号文献（$\det S=e^{-2\pi i\xi}$），请同时作 $\varphi\mapsto-\varphi$ 的一致置换（详见附录 A）。
 
 **参考**：Wigner (1955); Smith (1960) 定义与性质；Birman–Kreĭn 公式见 Yafaev (1992/2010) 与 Pushnitski (2006)，据此得 $\operatorname{tr}\mathsf Q$ 与 $\xi'$ 的关系。
 
-**LDOS 约定**："LDOS"指端口/边界意义下的 m-测度密度及其相对版（$\rho_m$ 或 $\rho_{\mathrm{rel}}$）。单/多通道时本文以 $\rho_{\mathrm{rel}}:=\xi'(E)$ 为准；在可由端口 m-函数实现的情形（边界三元组/半直线设定且**绝对连续谱部分**可由端口 m-函数实现时），它与边界 m-测度差一致；否则以 $\xi'$ 的定义为主。**若要保障被积主项逐点非负性**（配合 $h\ge 0,w_R\ge 0$）建议选 $\rho_m$；$\rho_{\mathrm{rel}}$ 与相位/Friedel 关系配对更自然，但其**符号不定**（见推论 2.2 与 §4）。
+**LDOS 约定**："LDOS"指端口/边界意义下的 m-测度密度及其相对版（$\rho_m$ 或 $\rho_{\mathrm{rel}}$）。单/多通道时本文以 $\rho_{\mathrm{rel}}:=\xi'(E)$ 为准；在可由端口 m-函数实现的情形（边界三元组/半直线设定且**绝对连续谱部分**可由端口 m-函数实现时），它与边界 m-测度差一致；否则以 $\xi'$ 的定义为主。**若要保障被积主项逐点非负性**建议选 $\rho_m$（需 $h\ge0,w_R\ge0$；见推论 2.2）；$\rho_{\mathrm{rel}}$ 与相位/Friedel 关系配对更自然，但其**符号不定**（见推论 2.2 与 §4）。
 
 ---
 
@@ -191,21 +190,35 @@ $$
 将连续读数以步长 $\Delta$ 采样、在 $[-T,T]$ 截断并以 EM 校正至 $2M$ 阶，得到
 
 $$
-\boxed{\ \mathrm{Obs}(R,\Delta,M,T)
-=\mathcal S+\varepsilon_{\mathrm{alias}}+\varepsilon_{\mathrm{EM}}+\varepsilon_{\mathrm{tail}}\ },
+\boxed{\ \bigl|\mathrm{Obs}(R,\Delta,M,T)-\mathcal S\bigr|
+\ \le\ \bigl|\varepsilon_{\mathrm{alias}}\bigr|
++\bigl|\varepsilon_{\mathrm{EM}}\bigr|
++\bigl|\varepsilon_{\mathrm{tail}}\bigr|\ },
 $$
 
 其中 $\varepsilon_{\mathrm{alias}}$ 来自 Poisson 求和的带外复制（命题 3.1），$\varepsilon_{\mathrm{EM}}$ 与 $\varepsilon_{\mathrm{tail}}$ 分别由定理 3.3 的余项与截断给出。当 **(h,w_R) 严格带限**且 $\Delta\le \dfrac{1}{2(\mathcal B_h+\mathcal B_w(R))}$ 时，$\varepsilon_{\mathrm{alias}}=0$；对**近带限**核/窗，$\varepsilon_{\mathrm{alias}}$ 由 §3.1 的指数/高斯尾界**随 $\Delta$** 连续逼近 0。
 
-**证明**：
-（i）**离散化**：将 $\mathbb R$ 分割为长度 $\Delta$ 的小区间并截至 $[-T,T]$，得
+**误差分解（操作性定义）**：设原始离散读数 $\mathrm{Obs}_{\text{raw}}:=\Delta\sum_{|n|\le N}g(n\Delta)$。定义
 
 $$
-\mathcal S=\Delta\!\!\sum_{|n|\le T/\Delta}\! g(n\Delta)+\text{EM 校正}+\int_{|E|>T}\! g(E)\,dE .
+\begin{aligned}
+\varepsilon_{\mathrm{alias}}(\Delta)&:=\underbrace{\Bigl[\Delta\!\sum_{n\in\mathbb Z}g(n\Delta)-\int_{\mathbb R}g(E)\,dE\Bigr]}_{\text{Poisson 给出的复制差}=\sum_{k\ne0}\widehat g(k/\Delta)},\\
+\varepsilon_{\mathrm{EM}}(\Delta,M)&:=\underbrace{\Bigl[\int_{-T}^{T}g-\Delta\!\sum_{|n|\le N} g(n\Delta)\Bigr]}_{\text{用 EM 偶阶展开到 }2M\text{ 并以 }R_{2M}\text{ 界定}},\\
+\varepsilon_{\mathrm{tail}}(T)&:=\int_{|E|>T}\!|g(E)|\,dE\quad(\ge 0).
+\end{aligned}
+$$
+
+于是 $\bigl|\mathcal S-\mathrm{Obs}_{\text{raw}}\bigr|\le \bigl|\varepsilon_{\mathrm{EM}}\bigr|+\bigl|\varepsilon_{\mathrm{tail}}\bigr|$，若再以 Poisson 表达 $\int_{\mathbb R}g-\Delta\!\sum_{n\in\mathbb Z}g$ 的复制差，则有 $\bigl|\mathcal S-\mathrm{Obs}_{\text{raw}}\bigr|\le \bigl|\varepsilon_{\mathrm{alias}}\bigr|+\bigl|\varepsilon_{\mathrm{EM}}\bigr|+\bigl|\varepsilon_{\mathrm{tail}}\bigr|$。采用 EM 校正到 $2M$ 阶后的 $\mathrm{Obs}$ 满足上界版盒装式。
+
+**证明**：
+（i）**离散化**：令 $N:=\bigl\lfloor T/\Delta\bigr\rfloor$（并取 $T=N\Delta$ 实现网格对齐）。将 $\mathbb R$ 分割为长度 $\Delta$ 的小区间并截至 $[-T,T]$，得
+
+$$
+\mathcal S=\Delta\!\!\sum_{|n|\le N}\! g(n\Delta)+\text{EM 校正}+\int_{|E|>T}\! g(E)\,dE .
 $$
 
 （ii）**Poisson/别名项**：用命题 3.1 将无限和改写为 $\sum_k \widehat g(k/\Delta)$，与 $\widehat g(0)=\int g$ 的差即为 $\varepsilon_{\mathrm{alias}}$。当 $\Delta\le 1/\bigl(2(\mathcal B_h+\mathcal B_w(R))\bigr)$ 时别名项为零。
-（iii）**EM 与尾项**：定理 3.3 与 $w_R$ 的尾衰减给出 $\varepsilon_{\mathrm{EM}},\varepsilon_{\mathrm{tail}}$ 的上界。三项相加即得陈述。证毕。
+（iii）**EM 与尾项**：定理 3.3 与 $w_R$ 的尾衰减给出 $\varepsilon_{\mathrm{EM}},\varepsilon_{\mathrm{tail}}$ 的上界。三项上界相加即得陈述。证毕。
 
 ---
 
@@ -240,7 +253,7 @@ $$
 
 若 $\operatorname{supp}\widehat g\subset[-B,B]$，当 $\Delta\le(2B)^{-1}$ 时，所有 $k\neq 0$ 的采样点 $k/\Delta$ 都落在带外，因而 $\widehat g(k/\Delta)=0$。证毕。
 
-**应用于窗—核复合**：当 $g=w_R\cdot(h\!\star\!\rho_\star)$ 时，卷积—乘积与支撑给出：$\widehat{h\!\star\!\rho_\star}=\widehat h\cdot\widehat{\rho_\star}$，故 $\operatorname{supp}\widehat{(h\!\star\!\rho_\star)}\subset[-\mathcal B_h,\mathcal B_h]$；再由 $\widehat g=\widehat w_R*\widehat{(h\!\star\!\rho_\star)}$，得
+**应用于窗—核复合**：当 $g=w_R\cdot(h\!\star\!\rho_\star)$ 时，卷积—乘积与支撑给出：$\widehat{h\!\star\!\rho_\star}=\widehat h\cdot\widehat{\rho_\star}$。此处在**温和分布**意义下解释：因 $\widehat h$ 为**有界且紧支**函数（带限核），乘积按分布对试验函数之乘子作用良定义，支撑随 $\widehat h$ 受限于 $[-\mathcal B_h,\mathcal B_h]$，故 $\operatorname{supp}\widehat{(h\!\star\!\rho_\star)}\subset[-\mathcal B_h,\mathcal B_h]$；再由 $\widehat g=\widehat w_R*\widehat{(h\!\star\!\rho_\star)}$，得
 
 $$
 \operatorname{supp}\widehat g\subset\bigl[-(\mathcal B_h+\mathcal B_w(R)),\,\mathcal B_h+\mathcal B_w(R)\bigr].
@@ -295,13 +308,13 @@ $$
 
 证毕。
 
-**注（收敛性与上界）**：上述指数/高斯尾上界给出**可用 $\mathcal O(\Delta)$ 上界**报告（保守）；实际别名项对指数/高斯尾常呈**超指数**收敛（$\sim e^{-\alpha/\Delta}$ 或 $\sim e^{-\alpha/\Delta^2}$）。数值实现可用更紧的 Jacobi $\vartheta$-和或 Poisson-外推界，但不影响本框架的非渐近闭合。
+**注（收敛性与上界）**：上述指数/高斯尾上界给出**可用 $\mathcal O(\Delta)$ 上界**报告（保守）作为**可保证的**闭式上界。当 $\widehat g$ 由解析延拓与指数/高斯衰减控制时，数值上常见到 $\sim e^{-\alpha/\Delta}$ 或 $\sim e^{-\alpha/\Delta^2}$ 的**经验收敛**。数值实现可用更紧的 Jacobi $\vartheta$-和或 Poisson-外推界，但不影响本框架的非渐近闭合。
 
 ### 3.2 Euler–Maclaurin（EM）伯努利层与尾项
 
 #### 定理 3.3（Euler–Maclaurin 偶阶公式及余项上界）
 
-设 $g\in C^{2M}([-T,T])$（或分段 $C^{2M}$ 且端点可控）。记 $N:=\lfloor T/\Delta\rfloor$。则
+设 $g\in C^{2M}([-T,T])$（或分段 $C^{2M}$ 且端点可控）。记 $N:=\lfloor T/\Delta\rfloor$，且 $T=N\Delta$（网格对齐）。则
 
 $$
 \begin{aligned}
@@ -338,16 +351,16 @@ $$
 
 **常数来源**：伯努利多项式 Fourier 展开 + 经典界 $|B_{2M}(t)|\le \frac{2(2M)!}{(2\pi)^{2M}}\zeta(2M)$，见标准参考文献（DLMF、Euler–Maclaurin 公式条目）。
 
-**奇/偶情形注记**：对偶阶 $2M$ 取法，伯努利项只含偶阶 $B_{2k}$；对奇函数 $g$ 且对称区间 $[-T,T]$ 时，端点项与奇阶导数项在对称端点处相消（见附录 B 自检基准）。
+**奇/偶情形注记**：对偶阶 $2M$ 取法，伯努利项只含偶阶 $B_{2k}$；对奇函数 $g$（且取对称区间 $[-T,T]$ 与等距网格）时，端点项与奇阶导数项在对称端点处相消（见附录 B 自检基准）。
 
 **尾项控制**：定义
 
 $$
 \varepsilon_{\mathrm{EM}}(M):=|R_{2M}|,\qquad
-\varepsilon_{\mathrm{tail}}(R):=\int_{|E|>T}\!|g(E)|\,dE .
+\varepsilon_{\mathrm{tail}}(T):=\int_{|E|>T}\!|g(E)|\,dE .
 $$
 
-若 $w_R(E)\le C\,e^{-\kappa |E|/R}$（指数尾），则 $\varepsilon_{\mathrm{tail}}(R)\le \dfrac{2CR}{\kappa}\,|h\!\star\!\rho_\star|_\infty\,e^{-\kappa T/R}$。
+若 $w_R(E)\le C\,e^{-\kappa |E|/R}$（指数尾），则 $\varepsilon_{\mathrm{tail}}(T)\le \dfrac{2CR}{\kappa}\,|h\!\star\!\rho_\star|_\infty\,e^{-\kappa T/R}$。
 
 **严格带限窗的尾项**：若在**频域采用三角谱窗（非周期 Fourier 对偶）**，则时域窗 $w_R$ 为 $\operatorname{sinc}^2$ 形（$\mathcal F\{\mathrm{tri}\}=\mathrm{sinc}^2$），**严格带限**且尾项呈多项式衰减（$\sim |E|^{-2}$），需按所选窗的已知大 $|E|$ 渐近给出具体界。
 
@@ -356,15 +369,15 @@ $$
 **一般情形（含近带限）**：
 
 $$
-\boxed{\ \bigl|\mathcal S-\mathrm{Obs}(R,\Delta,M,T)\bigr|\ \le\ \varepsilon_{\mathrm{alias}}(\Delta)+\varepsilon_{\mathrm{EM}}(M)+\varepsilon_{\mathrm{tail}}(R)\ },
+\boxed{\ \bigl|\mathcal S-\mathrm{Obs}(R,\Delta,M,T)\bigr|\ \le\ \varepsilon_{\mathrm{alias}}(\Delta)+\varepsilon_{\mathrm{EM}}(M)+\varepsilon_{\mathrm{tail}}(T)\ },
 $$
 
-其中 $\varepsilon_{\mathrm{alias}}(\Delta)$ 取 §3.1 的闭式上界（指数尾或高斯尾）。
+其中 $\varepsilon_{\mathrm{alias}}(\Delta)$ 取 §3.1 的闭式上界（指数尾或高斯尾）；$\varepsilon_{\mathrm{tail}}(T)$ 的上界常数依赖窗参数 $R$，见 §3.2。
 
 **严格带限 + Nyquist**（别名完全关断）：
 
 $$
-\boxed{\ \bigl|\mathcal S-\mathrm{Obs}(R,\Delta,M,T)\bigr|\ \le\ \varepsilon_{\mathrm{EM}}(M)+\varepsilon_{\mathrm{tail}}(R)\ }.
+\boxed{\ \bigl|\mathcal S-\mathrm{Obs}(R,\Delta,M,T)\bigr|\ \le\ \varepsilon_{\mathrm{EM}}(M)+\varepsilon_{\mathrm{tail}}(T)\ }.
 $$
 
 **框注**：当 $(h,w_R)$ 严格带限且 $\Delta\le \dfrac{1}{2(\mathcal B_h+\mathcal B_w(R))}$ 时，$\varepsilon_{\mathrm{alias}}=0$，工程实现者可直接按上式设计误差账本。
@@ -404,10 +417,10 @@ $$
 $$
 \mathsf{SNR}(\mathcal B;h,w_R,\Delta,M)\ \approx
 \frac{\displaystyle\int_{\mathbb R} w_R(E)\,(h\!\star\!\rho_{\mathcal B,\star})(E)\,dE}
-{\sqrt{\varepsilon_{\mathrm{alias}}^2+\varepsilon_{\mathrm{EM}}^2+\varepsilon_{\mathrm{tail}}^2}} .
+{|\varepsilon_{\mathrm{alias}}|+\varepsilon_{\mathrm{EM}}+\varepsilon_{\mathrm{tail}}} .
 $$
 
-**说明**：此处 $\approx$ 表示把统计噪声忽略到系统误差可控阈值以下的工程近似；$\mathsf{SNR}$ 用于基的相对比较而非严格概率意义。
+**说明**：此处分母采用三项**和**（保守上界版本），与 §3.3 非渐近闭合一致；其中 $\varepsilon_{\mathrm{EM}},\varepsilon_{\mathrm{tail}}$ 已按定义为非负量。若用于经验比较，也可采用 $\sqrt{|\varepsilon_{\mathrm{alias}}|^2+\varepsilon_{\mathrm{EM}}^2+\varepsilon_{\mathrm{tail}}^2}$（RMS），但严格上界应使用三项和。$\approx$ 表示把统计噪声忽略到系统误差可控阈值以下的工程近似；$\mathsf{SNR}$ 用于基的相对比较而非严格概率意义。
 
 当满足 Nyquist 条件且 **(h,w_R) 严格带限**时，$\varepsilon_{\mathrm{alias}}=0$；对**近带限**核/窗，$\varepsilon_{\mathrm{alias}}$ 随 $\Delta$ **连续**逼近 0（§3.1 给出 $\mathcal O(\Delta)$ 上界），从而 $\mathsf{SNR}$ 将出现**显著提升**。使 $\mathsf{SNR}$ 极大的谱基即为**指针基**。
 
@@ -417,7 +430,7 @@ $$
 
 ### 定理 6.1（多通道迹公式）
 
-在**幺正**多通道散射 $S(E)\in\mathrm U(N)$ 下，定义 Wigner–Smith 矩阵
+在满足定理 2.1 的 (i)(ii)（以确保 SSF/BK 的存在与 a.e. 可微）并且 $S(E)\in\mathrm U(N)$ 的前提下，定义 Wigner–Smith 矩阵
 
 $$
 \mathsf Q(E)=-i\,S(E)^\dagger \frac{d}{dE}S(E).
@@ -463,12 +476,12 @@ $$
 ## 7. 可复现实验协议（最小版）
 
 **输入**：$(\mathcal B_h,\ \mathcal B_w^0,\ R,\ \Delta,\ M,\ T)$。
-**选择**：非负、带限或带外快速衰减核 $h$（BL/Gauss-BL/Exp-BL）；**逐点非负窗** $w_R$：
+**选择**：非负、带限或带外快速衰减核 $h$（BL/Gauss-BL/Exp-BL；**释义**：BL=严格带限；Gauss-BL/Exp-BL=频域近带限，带外分别为高斯/指数尾）；**逐点非负窗** $w_R$：
   - **高斯**：指数尾，逐点非负；
-  - **PSWF（连续）**：**严格带限**（$\widehat\psi$ 支撑在 $[-W,W]$），并在带限函数空间中完备，且第 $n$ 阶在 $(-1,1)$ 内恰有 $n$ 个零点（故第 0 阶可全正归一）；
+  - **PSWF（连续）**：**严格带限**（$\widehat\psi$ 支撑在 $[-W,W]$），并在带限函数空间中完备，且第 $n$ 阶在 $(-1,1)$ 内恰有 $n$ 个零点（故第 0 阶在 $(-1,1)$ **区间内**可取全正归一；全轴不作非负保证）；
   - **DPSS（离散、有限长度）**：**时间限幅**，在离散频带 $[-W,W]$ **能量最优集中**（通常称"近带限"），作为多锥谱估计的标准 tapers；
   - **频域三角谱窗（非周期对偶）**：时域为 $\operatorname{sinc}^2$ 形（$\mathcal F\{\mathrm{tri}\}=\mathrm{sinc}^2$），**严格带限**且尾项呈多项式衰减。
-**纪律**：$\Delta\le 1/\bigl(2(\mathcal B_h+\mathcal B_w(R))\bigr)$；$M\ge 2$；$T$ 使 $\varepsilon_{\mathrm{tail}}$ 达到目标阈值。
+**纪律**：$\Delta\le 1/\bigl(2(\mathcal B_h+\mathcal B_w(R))\bigr)$；$M\ge 2$；$T$ 使 $\varepsilon_{\mathrm{tail}}$ 达到目标阈值；**并取 $T=N\Delta$（网格对齐，$N:=\lfloor T/\Delta\rfloor$）**。
 **报告**：输出
 
 $$
@@ -518,12 +531,12 @@ $$
 **尾项**：若 $w_R(E)\le C\,e^{-\kappa |E|/R}$，则
 
 $$
-\varepsilon_{\mathrm{tail}}(R)\ \le\ \frac{2CR}{\kappa}\,|h\!\star\!\rho_\star|_\infty\,e^{-\kappa T/R}.
+\boxed{\ \varepsilon_{\mathrm{tail}}(T)\ \le\ \frac{2CR}{\kappa}\,|h\!\star\!\rho_\star|_\infty\,e^{-\kappa T/R}\ }.
 $$
 
 **别名误差**（命题 3.2）：指数尾 $|\widehat g(\nu)|\le C e^{-\alpha|\nu|}$ 时，$|\varepsilon_{\mathrm{alias}}|\le \dfrac{2C\,\Delta}{\alpha}$；高斯尾 $|\widehat g(\nu)|\le C e^{-\alpha\nu^2}$ 时，$|\varepsilon_{\mathrm{alias}}|\le C\sqrt{\tfrac{\pi}{\alpha}}\,\Delta$。
 
-**自检基准**（定理 3.3 符号验证）：取常函数 $g\equiv c$，则左端 $\int_{-T}^{T}g=2Tc$；右端：求和项 $\Delta\sum_{|n|\le N}c\approx (2N+1)\Delta c \approx 2Tc+\Delta c$；端点修正 $-\frac{\Delta}{2}(c+c)=-\Delta c$；伯努利层与余项均为零。总和 $\approx 2Tc+\Delta c - \Delta c = 2Tc$ ✓。取线性 $g(E)=aE$（奇函数）时，求和与端点项均为零，伯努利奇阶项亦为零（奇导数在对称端点相消），验证通过。
+**自检基准**（定理 3.3 符号验证）：在 $T=N\Delta$（网格对齐）下，取常函数 $g\equiv c$，则左端 $\int_{-T}^{T}g=2Tc$；右端：求和项 $\Delta\sum_{|n|\le N}c=(2N+1)\Delta c = 2Tc+\Delta c$；端点修正 $-\frac{\Delta}{2}(c+c)=-\Delta c$；伯努利层与余项均为零。总和 $= 2Tc+\Delta c - \Delta c = 2Tc$ ✓。取线性 $g(E)=aE$（奇函数）时，求和与端点项均为零，伯努利奇阶项亦为零（奇导数在对称端点相消），验证通过。
 
 ---
 

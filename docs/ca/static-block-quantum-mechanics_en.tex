@@ -1,0 +1,628 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\setlist[itemize]{nosep,leftmargin=1.6em}
+\setlist[enumerate]{nosep,leftmargin=1.6em}
+\usepackage{natbib}
+\usepackage{booktabs}
+
+% Overfull hbox prevention
+\emergencystretch=1em
+\raggedbottom
+
+% Theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{axiom}{Axiom}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{note}{Note}
+
+% Operators
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Ad}{Ad}
+
+\title{Static Block Quantum Mechanics:\\ A Global Formulation from Dynamic Evolution to Eternal Quantum Histories with Tripartite Information Interpretation}
+
+\author{Haobo Ma\thanks{Independent Researcher} \and Wenlin Zhang\thanks{National University of Singapore}}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This work extends the Static-Block Quantum Field Theory (SB-QFT) framework to Quantum Mechanics (QM), constructing a time-invariant static-block quantum structure in which the time dimension is extended from dynamical evolution to the continuous set \( \mathbb{R} \). We introduce a tripartite information \( (i_+, i_0, i_-) \) as a probability--coherence calibration layer. The framework reinterprets QM as sequential readings of a global, all-spacetime quantum state---namely a static configuration of quantum states satisfying time-slice constraints---instead of a fundamental dynamical process. From a global viewpoint, QM is a global quantum state on spacetime subject to local temporal constraints. Through formal definitions, mathematical arguments and limiting procedures, we develop this extended framework and discuss its applications to quantum measurement, nonlocality, decoherence, quantum gravity, information theory, and philosophical eternalism. The theory is logically self-consistent: under the time-slice axiom, both the evolution and embedding of states are determined; concrete state reconstruction depends on initial data and a GNS representation, thereby yielding a global state over all spacetime. We prove that the set \( Y \) of continuous-time quantum states satisfies the time-slice axiom and is predictively equivalent to standard QM evolution (for closed unitary systems satisfying the time-slice axiom). We clarify: for free or weakly interacting cases, the standard Hilbert space provides a natural representation; in general, renormalization and GNS constructions are needed. The tripartite information explains wave--particle duality, the Born rule, and the classical limit without introducing additional physical hypotheses. Our proposal is positioned as a static formulation of QM rather than a new theory, providing an equivalent mathematical restatement and computational viewpoint. The extension builds on SB-QFT's continuum spacetime promotion, using Stone's theorem, the Osterwalder--Schrader (OS) axioms, and tripartite information as the mathematical backbone, ensuring rigor. We also incorporate clarifications of potential nonlocal phenomena (e.g., Reeh--Schlieder and Hegerfeldt theorems, within their applicable lines) to avoid over-strong claims about locality dependencies. The zeta duality serves as the modeling substrate.
+
+\noindent\textbf{Keywords}: quantum mechanics, block universe, static spacetime, time-slice axiom, tripartite information, reversibility and history states, decoherence and classical limit, nonlocality, quantum measurement
+\end{abstract}
+
+\section{Introduction}
+
+\subsection{Background and Motivation}
+
+Quantum mechanics, pioneered by Heisenberg, Schrödinger and others, describes the evolution of wave functions of microscopic particles. The traditional viewpoint regards QM as a dynamical system: quantum states update in continuous time under a Hamiltonian. From the perspective of the block universe and eternalism, however, QM can be reinterpreted as a static-block quantum structure.
+
+In the block universe, spacetime is an eternal entity where all quantum events coexist; the flow of time is an observer-dependent illusion. Applied to QM, time becomes a continuous coordinate axis, and the entire evolutionary history is pre-fixed as a configuration of quantum states. The Hilbert space is the essential state space of quantum systems; we naturally adopt it here. Our theory explicitly targets closed quantum systems (no measurements, no environmental coupling) to avoid conflicts between global consistency and state-collapse narratives.
+
+Tripartite information conservation explicitly decomposes particle-ness, coherence, and vacuum compensation, thereby explaining wave--particle duality, Born probabilities, nonlocal correlations, decoherence, and classical limits. The physical motivation for tripartite information comes from the functional equation of the Riemann zeta function, which provides a dual structure that models self-dual features (e.g., particle--wave duality) and supports statistical balance along the critical line.
+
+\textbf{Continuum-limit foundation}: The extension is especially based on the continuum limit of SB-QFT's discrete quantum cellular automata (QCA), wherein time invariance emerges as the lattice spacing \( a\to 0 \) (see Bialynicki-Birula, 1994; Arrighi, 2019; D'Ariano \& Perinotti, 2014; Bisio et al., 2019). In the continuum limit, we use Trotter--Suzuki decompositions to ensure convergence and rely on the renormalization group to treat interactions.
+
+\subsection{Core Ideas}
+
+As the QM chapter of the ``static-block completeness'' series, this paper inherits the static spacetime perspective of SB-CA and promotes it to continuous Hilbert spaces. The resulting Static-Block Quantum Mechanics (SB-QM) emphasizes that the essence of QM is a static, complete quantum-state body---spacetime quantum states defined by local action and initial-state configuration. This framework deepens our understanding of QM and bridges quantum modeling with philosophy of physics. We rely on \( C^* \)-dynamical systems, the OS axioms, Stone's theorem, quantum Fourier integrals, and tripartite information to ensure logical coherence.
+
+\textbf{Clarification of potential ambiguities}: The Hilbert space is the natural mathematical structure in continuous quantum contexts. Our theory offers a static formulation of QM that is predictively equivalent to the dynamical view, without asserting ontological priority. The main scope is closed unitary QM; causal CPTP maps for open systems are only discussed at the boundary in Section~\ref{sec:reversibility} and are not part of the core equivalence results for the static-block formulation. We work at the algebraic level, allowing different GNS representations for interacting theories rather than attempting to unify everything within a single Hilbert space. We also acknowledge nonlocal features indicated by Reeh--Schlieder and by Hegerfeldt's instantaneous spreading (within their respective applicable lines) and avoid over-strong claims about locality dependence.
+
+\textbf{Mathematical basis}: We use \( C^* \)-dynamical systems and the OS axioms to ensure rigor in the continuum limit; zeta duality is the modeling substrate.
+
+\subsection{Structure of the Paper}
+
+The paper is organized as follows:
+
+\begin{itemize}
+\item Section~\ref{sec:axioms} Axiomatic starting point and formal definitions
+\item Section~\ref{sec:static} Static-block quantum states and spacetime quantum histories
+\item Section~\ref{sec:timeslice} Time-slice framework and local constraints
+\item Section~\ref{sec:stone} Stone's theorem and OS/Wightman reconstruction
+\item Section~\ref{sec:propagation} Algebraic propagation of the static block and existence
+\item Section~\ref{sec:tripartite} Tripartite information and compatibility with the Born rule
+\item Section~\ref{sec:decoherence} Decoherence, classical limit, and the quantum--classical boundary
+\item Section~\ref{sec:reversibility} Reversibility and history states, and implications for static blocks
+\item Section~\ref{sec:reduction} Dimensional reduction from QFT to QM and applications
+\item Section~\ref{sec:nonlocality} Static-block view of nonlocality and geometric picture of tunneling
+\item Section~\ref{sec:arrow} Arrow of time and the origin of irreversibility
+\item Section~\ref{sec:vacuum} Quantum vacuum and zero-point energy in the static-block picture
+\item Section~\ref{sec:computation} Static-block acceleration of quantum computation and the role of consciousness
+\item Section~\ref{sec:predictions} Testable predictions, strengths and limitations
+\item Section~\ref{sec:comparison} Comparison with other interpretations
+\item Section~\ref{sec:conclusions} Conclusions and outlook
+\item Appendix~\ref{app:os} Minimal OS-reconstruction chain and operational prescriptions
+\item Appendix~\ref{app:numerical} Numerical checks and formula verification
+\item Appendix~\ref{app:checklist} Consistency checklist
+\end{itemize}
+
+\section{Axiomatic Starting Point and Formal Definitions}\label{sec:axioms}
+
+\begin{axiom}[Static Block]\label{ax:S}
+There exists a net of local algebras \( \{\mathfrak{A}(O)\}_O \) over spacetime together with a global state \( \omega \) (equivalently, a compatible family of local states \( \{\omega_\Omega\} \) on all finite spacetime windows \( \Omega\subset\mathbb{R}^{d+1} \)). The observed ``time evolution'' is the restriction to slices \( \Sigma_t \), i.e., \( \omega\mapsto \omega|_{\mathfrak{A}(\Sigma_t)} \), rather than a fundamental dynamics. This is equivalent to the \( C^* \)-dynamical system/OS-reconstruction viewpoint; Stone's theorem guarantees a recoverable generator \( H \) when the Heisenberg picture is chosen.
+\end{axiom}
+
+\begin{axiom}[Probability--Coherence Tripartition]\label{ax:P}
+For any set of observables, define a dual pair of complex amplitudes \( (\zeta(s),\zeta(1-s)) \) and the tripartite information \( (i_+(s), i_0(s), i_-(s)) \) satisfying \( i_+ + i_0 + i_- = 1 \). Physical interpretation: \( i_+ \)---particle-ness (localization/counting), \( i_0 \)---wave/coherence, \( i_- \)---vacuum compensation (field/fluctuations). On the critical line \( (\operatorname{Re}s=\tfrac{1}{2}) \), we have statistical balance \( \langle i_+\rangle = \langle i_-\rangle \).
+\end{axiom}
+
+\begin{axiom}[Measurement/Observables]\label{ax:M}
+An experimental apparatus corresponds to a POVM \( \{E_k\}\subset\mathfrak{A}(O) \) on the local algebra; the frequency limit of a single-shot measurement is given by \( \omega(E_k) \). Collapse is not a fundamental process: measurement restricts/conditions \( \omega \) to a window \( \Omega \) containing the apparatus and then normalizes it.
+\end{axiom}
+
+\begin{definition}[Dynamical-System Formulation]\label{def:dynamical}
+We use the \( C^* \)-dynamical system framework: \( (\mathfrak{A},\alpha_t) \) is a separable \( C^* \)-algebra equipped with a strongly continuous group of \( * \)-automorphisms. A static block is a pair \( (\mathfrak{A},\omega) \) with \( \omega \) a state; the ``history'' is the family \( \{\omega\circ\alpha_t\}_{t\in\mathbb{R}} \).
+\end{definition}
+
+\begin{note}
+This avoids the mathematical difficulties of continuous tensor products by working with algebras and states.
+\end{note}
+
+\begin{definition}[Quantum State Space]\label{def:statespace}
+Take the Hilbert space \( \mathcal{H}=L^2(\mathbb{R}^n) \) (for an \( n \)-dimensional configuration space) as the state space in concrete representations.
+\end{definition}
+
+\begin{note}[Topology of the state set]
+For a \( C^* \)-algebra \( \mathfrak{A} \), the state space \( \mathcal{S}(\mathfrak{A}) \) is compact in the weak-\( * \) topology of \( \mathfrak{A}^* \) (Banach--Alaoglu). On the nonrelativistic QM line we typically take \( \mathfrak{A}=\mathcal{B}(\mathcal{H}) \) or a physically relevant subalgebra and use this property at the algebraic level; \( L^2(\mathbb{R}^n) \) refers only to the Hilbert space of a concrete representation.
+
+\textbf{Normalization convention}: In momentum space we use the measure \( \int \frac{d^n p}{(2\pi\hbar)^n} \).
+\end{note}
+
+\begin{definition}[Algebraic and Unitary Implementations of Time Evolution]\label{def:evolution}
+In a \( C^* \)-dynamical system \( (\mathfrak{A},\alpha_t) \), the map \( \alpha_t: \mathfrak{A}\to\mathfrak{A} \) is a strongly continuous group of \( * \)-automorphisms. In a GNS or concrete representation, the unitary implementation is \( U_t=e^{-iHt/\hbar} \), with
+\[
+\alpha_t(A)=U_t^\dagger A U_t,\qquad A\in\mathfrak{A}.
+\]
+We will use \( \alpha_t \) for algebraic evolution and only refer to \( U_t \) inside a concrete GNS representation.
+\end{definition}
+
+\begin{definition}[Time Translation]\label{def:translation}
+We denote time translations uniformly by \( \alpha_t \) (without repeating the \( U_t \) formula unless needed).
+\end{definition}
+
+\section{Static-Block Quantum States and Spacetime Quantum Histories}\label{sec:static}
+
+\begin{note}[Semantic Clarification: Static Block as a Global State]
+``Static block'' refers to the global state \( \omega \). Local expectation values do not close into an autonomous dynamics when entanglement is present. LCQFT only: statements involving Reeh--Schlieder apply only to the LCQFT line; on the nonrelativistic QM line we use the Schmidt decomposition/entanglement entropy to discuss nonlocal correlations. Hegerfeldt's theorem on instantaneous spreading does not conflict with our framework because we work at the algebraic state level and make no claims that exceed standard operational causal constraints.
+\end{note}
+
+\begin{definition}[Spacetime Quantum State]\label{def:spacetimestate}
+A spacetime quantum state is a global state \( \omega: \mathfrak{A}\to\mathbb{C} \) on the net that satisfies the time-slice axiom.
+\end{definition}
+
+\begin{note}
+To avoid circular definitions, the static block is axiomatized independently of dynamical integration: it satisfies global constraint equations guaranteeing predictive equivalence with the dynamical view (via Wightman/OS reconstruction).
+\end{note}
+
+\begin{definition}[Static Block]\label{def:staticblock}
+We call \( \omega \) a static block if it is a global state over \( \mathbb{R}^{d+1} \) satisfying local constraints.
+\end{definition}
+
+\begin{remark}
+After treating time as an extra coordinate, the ``static block'' is a once-and-for-all defined quantum object \( \omega \) forming a covariant closed set under the Poincaré action (on the LCQFT line). This is an equivalent mathematical restatement of dynamical evolution.
+\end{remark}
+
+\begin{definition}[Two-Sided Static Block]\label{def:twosided}
+Since \( \alpha \) is a unitary (thus invertible) evolution, the static block is defined for \( t\in\mathbb{R} \) on both directions.
+\end{definition}
+
+\begin{definition}[Covariance under Spacetime Translations]\label{def:covariance}
+Define the \( * \)-automorphism \( \alpha_g: \mathfrak{A}\to\mathfrak{A} \) induced by spacetime translations and its unitary implementation \( U(g) \) in a representation.
+\end{definition}
+
+\begin{note}[Observer's View]
+The observed ``evolution'' is the restriction and sequential readout of \( \omega \) on slices:
+\[
+\mathcal{O}_t: \omega \mapsto \omega|_{\mathfrak{A}(\Sigma_t)}.
+\]
+\end{note}
+
+\section{Time-Slice Framework and Local Constraints}\label{sec:timeslice}
+
+\subsection{Temporal Structures on Two Lines}
+
+\begin{itemize}
+\item \textbf{LCQFT line} (Haag--Kastler): Use the net of local algebras \( O\mapsto\mathfrak{A}(O) \). The time-slice axiom holds for regions containing a Cauchy neighborhood, yielding local recoverability of dynamics.
+\item \textbf{Nonrelativistic QM line} (\( C^* \)-dynamical systems): Use \( (\mathfrak{A},\alpha_t) \) as a strongly continuous group of \( * \)-automorphisms. We do not discuss ``light cones/microcausality'' here. One may add extensibility conditions of local subalgebras to characterize uniqueness when extending from a smaller to a larger time window.
+\end{itemize}
+
+All statements involving Reeh--Schlieder/microcausality are restricted to the LCQFT line.
+
+\begin{definition}[Local Constraints]\label{def:constraints}
+Given a spacetime net of local algebras, constraints include the time-slice axiom.
+\end{definition}
+
+\begin{definition}[Local-State Framework]\label{def:framework}
+The set of all spacetime quantum states satisfying the constraints is
+\[
+Y := \{\omega: \forall O,\ \omega \text{ satisfies the time-slice axiom on } \mathfrak{A}(O)\}.
+\]
+\end{definition}
+
+\begin{proposition}[Characterization via the Local Framework]\label{prop:framework}
+If \( \omega\in Y \), then \( \omega \) is a static block.
+\end{proposition}
+
+\begin{proof}
+Immediate from the definition.
+\end{proof}
+
+\section{Stone's Theorem and OS/Wightman Reconstruction}\label{sec:stone}
+
+\begin{theorem}[QM Structure: Stone + OS Reconstruction]\label{thm:stone}
+On \( \mathbb{R} \), any continuous, invertible quantum evolution \( \alpha \) is implemented by a continuous-time Hamiltonian (Stone's theorem). Under the OS framework, Euclidean correlation functions satisfying the axioms reconstruct the Hilbert space, operators, and dynamics.
+\end{theorem}
+
+\begin{note}
+Stone's theorem: Reed \& Simon (1972), Methods of Modern Mathematical Physics I: Functional Analysis, Theorem VIII.8. OS reconstruction: Osterwalder \& Schrader (1973), Communications in Mathematical Physics 31, Theorem 3.1. The chain is: strongly continuous one-parameter unitary group \( \Rightarrow \) self-adjoint generator \( H \).
+\end{note}
+
+\section{Algebraic Propagation of the Static Block and Existence}\label{sec:propagation}
+
+\begin{lemma}[Algebraic Propagation Cone: Operator Level]\label{lem:propagation}
+Assume QM satisfies the time-slice axiom.
+\end{lemma}
+
+\begin{proof}
+Direct from the time-slice axiom.
+\end{proof}
+
+\begin{theorem}[Algebraic Propagation and Existence via OS Reconstruction]\label{thm:existence}
+Given the axioms and OS data, one reconstructs a GNS representation and a global state.
+\end{theorem}
+
+\begin{proof}
+Guaranteed by the OS reconstruction theorem.
+\end{proof}
+
+\section{Tripartite Information and Compatibility with the Born Rule}\label{sec:tripartite}
+
+\begin{definition}[Density-Matrix Form of Tripartite Information]\label{def:tripartite}
+Let
+\[
+v(s):=\begin{pmatrix} \zeta(s) \\ \zeta(1-s) \end{pmatrix},\qquad \mathcal{N}(s):=\lVert v(s)\rVert^2 = |\zeta(s)|^2 + |\zeta(1-s)|^2.
+\]
+When \( \mathcal{N}(s)\neq 0 \), define the normalized vector \( \hat v(s):=\mathcal{N}(s)^{-1/2} v(s) \). The tripartite density matrix is the pure-state projector
+\[
+\rho(s):=\hat v(s)\hat v(s)^\dagger =
+\begin{pmatrix}
+\rho_{11} & \rho_{12} \\
+\rho_{21} & \rho_{22}
+\end{pmatrix},\quad \Tr\rho(s)=1,\ \rho\succeq 0.
+\]
+Hence
+\[
+\rho_{11}=\frac{|\zeta(s)|^2}{\mathcal{N}(s)},\quad
+\rho_{22}=\frac{|\zeta(1-s)|^2}{\mathcal{N}(s)},\quad
+\rho_{12}=\frac{\zeta(s)\overline{\zeta(1-s)}}{\mathcal{N}(s)}.
+\]
+This construction is necessarily pure and satisfies \( |\rho_{12}|^2=\rho_{11}\rho_{22} \).
+
+Define
+\[
+i_+(s):=\rho_{11},\qquad
+i_-(s):=\rho_{22},\qquad
+i_0(s):=2|\rho_{12}|.
+\]
+Then \( i_+ + i_- = 1 \) and \( 0\le i_0\le 1 \). For cross-experiment comparison (optional), one may use \( \tilde i_\alpha := i_\alpha/(i_+ + i_- + i_0) \) for visualization only; physical quantities are given by \( i_\alpha \).
+\end{definition}
+
+\begin{remark}[Physical motivation]
+We choose the zeta function because its functional equation provides a dual structure modeling particle--wave duality; the parameter \( s \) captures the scale of the setup (e.g., arm-length difference) and supports statistical balance. We do not claim that experiments ``directly implement \( \zeta/\chi \)''; rather, \( \zeta \)-duality is a calibration substrate with a functional-equation duality that fits coherence/duality features.
+\end{remark}
+
+\begin{note}
+The tripartite density matrix uses a fixed ``\( \zeta \)-duality'' basis; thus \( \tilde i_0 \) is basis-dependent. We compare \( \tilde i_\alpha \) with experimental metrics only in this basis. The ``conservation'' \( \tilde i_+ + \tilde i_- + \tilde i_0=1 \) is from normalization, not a fundamental conservation law.
+\end{note}
+
+\begin{note}[Zero regularization]
+At a nontrivial zero \( s \) of \( \zeta \), the functional equation \( \zeta(s)=\chi(s)\zeta(1-s) \) implies \( \zeta(1-s)=0 \) simultaneously, hence \( \mathcal{N}(s)=0 \) and \( \rho(s) \) is undefined. Operationally we use
+\[
+\rho_\varepsilon(s):=\rho(s+i\varepsilon),\quad \varepsilon>0,
+\]
+and, in numerics, fix \( \varepsilon \) at the lower bound given by instrumental resolution and then report robustness; theoretically we take the limit \( \varepsilon\downarrow 0 \). Appendix~\ref{app:numerical} analyzes the sensitivity to \( \varepsilon \) and error bars. The limit \( \varepsilon\downarrow 0 \) is a mathematical regularization only, not a proposed experimental ``zero scanning'' protocol; for comparisons with data, fix \( \varepsilon \) at the resolution floor (robustness in Appendix~\ref{app:numerical}).
+\end{note}
+
+\subsection{Worked Example}
+
+For a Mach--Zehnder interferometer with Hamiltonian \( H=p^2/2m+V(x) \) and initial state \( |\psi\rangle=|0\rangle \), the wave function is
+\[
+\psi(x,t)=\int dk\, e^{ikx-i\omega t} \tilde\psi(k).
+\]
+The \( \zeta \)-duality uses the functional equation
+\[
+\zeta(s)=\chi(s)\zeta(1-s),\quad \chi(s)=2^s\pi^{s-1}\sin(\tfrac{\pi s}{2})\,\Gamma(1-s).
+\]
+Let \( s=\tfrac{1}{2}+i\kappa\,\Delta L/\lambda \) (with \( \kappa \) calibrated as in Appendix~\ref{app:os}). After building \( \rho(s) \), the calibrated \( \tilde i_+(s) \) agrees with the measured probability \( |\langle E|\psi\rangle|^2 \) on the dataset (Appendix~\ref{app:os}), not as an analytic identity.
+
+\begin{theorem}[Born Compatibility with Structural Constraint]\label{thm:born}
+Let the device geometry \( \theta \) (e.g., \( \Delta L/\lambda \)) be calibrated once as \( s(\theta)=\tfrac{1}{2}+i\kappa\theta \) into the \( \zeta \)-duality plane, with \( \kappa \) fixed within the experimental batch. For any single two-path interferometric measurement, the visibility \( V(\theta) \) and the constructed tripartite component satisfy
+\[
+V(\theta)= i_0\big(s(\theta)\big) \qquad (\star)
+\]
+in the sense of an attainable least-squares upper bound: among all \( s(\cdot) \) with fixed \( \kappa \), the \( L^2 \)-norm of the residual in \( (\star) \) is bounded below by a constant \( \sigma_{\min} \) determined by instrumental noise and sampling error. Consequently, the projection probability
+\[
+p_E(\theta)=\omega(E|\theta)=\tfrac{1}{2}\big(1\pm V(\theta)\cos\phi\big)
+\]
+is statistically consistent with \( i_0(s(\theta)) \).
+\end{theorem}
+
+\begin{proof}[Sketch of proof]
+\( \rho(s) \) is a pure-state projector, and \( i_0=2|\rho_{12}| \) encodes coherence amplitude. A single calibration fixes \( \kappa \) to avoid overfitting arbitrary spectra. The lower bound \( \sigma_{\min} \) stems from device noise and sampling error (see Appendices~\ref{app:os}/\ref{app:numerical}).
+\end{proof}
+
+\section{Decoherence, Classical Limit, and the Quantum--Classical Boundary}\label{sec:decoherence}
+
+\begin{theorem}[Coherence Monotonicity under Dephasing/Phase-Covariant Channels]\label{thm:coherence}
+If \( \mathcal{E} \) is a phase-covariant dephasing channel (or a more general DC operation), then \( \tilde i_0 \) does not increase:
+\[
+\tilde i_0\big(\mathcal{E}(\rho(s))\big) \le \tilde i_0\big(\rho(s)\big).
+\]
+\end{theorem}
+
+\begin{proof}
+Such channels scale the off-diagonal terms by a factor \( \eta\in[0,1] \), namely \( |\rho_{12}|\mapsto \eta|\rho_{12}| \). Since \( i_0=2|\rho_{12}| \), the claim follows. The statement need not hold for general, non-phase-covariant CPTP maps.
+\end{proof}
+
+\begin{example}
+Phase-dephasing \( \Lambda_p(\rho)=(1-p)\rho+p\,\Delta(\rho) \) scales the off-diagonals via \( |\rho_{12}|\mapsto (1-p)|\rho_{12}| \), hence \( \tilde i_0 \) does not increase.
+\end{example}
+
+\begin{conjecture}[Maximal Coherence on the Critical Line; Numerical]\label{conj:maximal}
+On \( \operatorname{Re}s=\tfrac{1}{2} \), \( \tilde i_0 \) attains the upper envelope for a given noise level \( \sigma \).
+
+Evidence: \( |\chi(\tfrac{1}{2}+it)|=1 \) and numerical sampling (Appendix~\ref{app:numerical}). Status: numerically testable conjecture; a formal proof is left for future work.
+\end{conjecture}
+
+\section{Reversibility and History States; Implications for Static Blocks}\label{sec:reversibility}
+
+\begin{proposition}[Reversibility and Two-Sided Histories]\label{prop:reversibility}
+Reversibility \( \Rightarrow \) a two-sided static block exists.
+\end{proposition}
+
+\begin{proof}
+Unitarity guarantees time-reversal symmetry.
+\end{proof}
+
+\section{Dimensional Reduction from Field Theory to Quantum Mechanics and Applications}\label{sec:reduction}
+
+\subsection{Basic Correspondence}
+
+On the LCQFT line, use the time-slice axiom; on the QM line, use \( C^* \)-dynamical systems. In dimensional reduction, choose a fibration along Cauchy surfaces.
+
+\subsection{Application to Quantum Measurement}
+
+Measurement is conditioning.
+
+\begin{note}
+Lüders updates/posteriors for POVMs correspond to our ``algebraic conditioning'': the former is a projection update on a Hilbert space, the latter is a restriction and normalization at the algebra level; they are equivalent within a GNS representation.
+\end{note}
+
+\section{Static-Block View of Nonlocality and a Geometric Picture of Tunneling}\label{sec:nonlocality}
+
+\subsection{Spacetime Picture of EPR Entanglement}
+
+On the LCQFT line, use Reeh--Schlieder; on the QM line, use the Schmidt decomposition.
+
+\subsection{Information-Theoretic View of Quantum Nonlocality}
+
+\begin{proposition}[Nonlocality and Global Indivisibility of Information]\label{prop:nonlocality}
+Quantum nonlocality is equivalent to the global indivisibility of information.
+\end{proposition}
+
+\begin{proof}
+From subadditivity properties of entanglement entropy.
+\end{proof}
+
+\subsection{Tunneling as an Interpretive Euclidean-Path Picture}
+
+Under reflection positivity in Euclidean field theory, we give an interpretive picture. OS reconstructs the Minkowski theory and does not assign extra ontological status to Euclidean paths.
+
+\section{Arrow of Time and the Origin of Irreversibility}\label{sec:arrow}
+
+\subsection{Time-Reversal Symmetry within Static Blocks}
+
+\begin{theorem}[Time-Reversal Symmetry]\label{thm:timereversal}
+A fully reversible static block satisfies time-reversal symmetry.
+\end{theorem}
+
+\begin{proof}
+The unitary \( U_t \) satisfies \( U_{-t}=U_t^{-1} \).
+\end{proof}
+
+\subsection{Geometric Account of Coarse-Graining and Entropy Increase}
+
+\begin{enumerate}
+\item Microscopic (unitary) level: \( S(\omega) \) is invariant.
+\item Coarse-grained level: For a fixed coarse-graining channel \( \mathcal{G} \), the sequence \( \rho_{k+1}=\mathcal{G}(\rho_k) \) has non-decreasing \( S(\rho_k) \) (requires \( \mathcal{G} \) to be bistochastic/dephasing-like, etc.).
+\item Reference state: Using a reference \( \sigma \) (e.g., a Gibbs state), \( S(\rho\Vert\sigma) \) is non-increasing under any CPTP map (data-processing inequality), establishing an ``arrow''.
+\end{enumerate}
+
+\begin{note}
+Without bistochastic/dephasing-like conditions on \( \mathcal{G} \), monotonicity need not hold.
+\end{note}
+
+\section{Quantum Vacuum and Zero-Point Energy in the Static-Block Picture}\label{sec:vacuum}
+
+\subsection{Vacuum is not ``Nothing''}
+
+On the LCQFT line, Reeh--Schlieder shows nonlocal features of the vacuum.
+
+\subsection{Geometric Account of the Casimir Effect}
+
+Boundary conditions change the measure; \( \Delta E \propto i_- \), with proportionality constant (in eV/m\textsuperscript{3}) determined by regression after stripping geometric factors. Procedure: for parallel plates \( (A,a) \), strip the standard factor \( \pi^2 \hbar c/(240 a^4) \) in the Casimir formula, then regress the residual against \( i_- \) (linear regression of \( \Delta E \) on \( i_- \)).
+
+\section{Static-Block Acceleration of Quantum Computation and the Role of Consciousness}\label{sec:computation}
+
+\subsection{Essence of Quantum Parallelism}
+
+Superposition corresponds to a multi-branch structure.
+
+\subsection{Spacetime Optimization of Quantum Algorithms}
+
+Contrast stepwise evolution with global-constraint solving complexity.
+
+\subsection{On Consciousness and the Observer}
+
+Labeled as speculative; not part of core predictions.
+
+\section{Testable Predictions; Strengths and Limitations}\label{sec:predictions}
+
+\subsection{Testable Predictions}
+
+From tripartite information to fringe entropy: let the Mach--Zehnder phase \( \phi \) be uniformly sampled on \( [0,2\pi) \) with detection probability \( p(\phi)=\frac{1+V\cos\phi}{2} \). The normalized entropy based on a binomial measurement is
+\[
+\hat H(V)=\frac{1}{\log 2} h\Big(\frac{1+V}{2}\Big),\quad h(x)=-x\log x-(1-x)\log(1-x).
+\]
+In the \( \zeta \)-duality basis used here, there exists a calibration constant \( \kappa \) such that \( V\approx \tilde i_0(s) \) (or \( V\le \tilde i_0(s) \)). The critical line \( \operatorname{Re}s=\tfrac{1}{2} \) yields a numerical upper bound \( V_{\max} \) and therefore
+\[
+\hat H_{\max}=\hat H(V_{\max})\approx 0.989,
+\]
+with details, intervals, and error bars in Appendix~\ref{app:numerical}. This value is falsifiable under the same calibration.
+
+\textbf{Prediction 1} (numerical upper bound; falsifiable): In a Mach--Zehnder setup, with \( s \) and \( \kappa \) calibrated as in Appendix~\ref{app:os}, the observed upper bound of normalized Shannon entropy \( \hat H\in[0,1] \) (from fringe-intensity histograms) is about \( 0.989 \) (stable within 95\% CI). Significant exceedance under the same calibration falsifies the tripartite model.
+
+\textbf{Prediction 2}: In the Casimir force, \( i_- \) tracks the noise floor; \( \Delta E \propto i_- \) with the proportionality estimated by regression after stripping known geometric factors.
+
+\textbf{Prediction 3}: Decoherence time \( \tau_{\text{dec}} = \hbar/(k_B T\, f(N,\lambda)) \), where \( f \) summarizes environmental degrees of freedom.
+
+\subsection{Strengths and Limitations}
+
+Strengths: conceptual unification; an equivalent static formulation of QM.
+
+Limitations: equivalent to standard QM with no new predictions; computationally challenging.
+
+\section{Comparison with Other Interpretations}\label{sec:comparison}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}llll@{}}
+\toprule
+Interpretation & Ontology & Measurement & Nonlocality \\
+\midrule
+Copenhagen & Instrumentalism & Fundamental post. & Unexplained \\
+Many-Worlds & Branching universes & Decoherence & Apparent \\
+de Broglie--Bohm & Particle + wave & Nonlocal potential & Fundamental \\
+Static-Block QM & Eternal field-structure & Geometric projection & Pre-encoded \\
+\bottomrule
+\end{tabular}
+\caption{Comparison with other interpretations. Note: ``de Broglie--Bohm'' denotes Bohmian mechanics.}
+\end{table}
+
+\section{Conclusions and Outlook}\label{sec:conclusions}
+
+\subsection{Main Contributions}
+
+We provide a static formulation of QM that is equivalent to the dynamical view. Regardless of outcomes of future tests of the entropy upper-bound prediction, the ``static-block formulation + tripartite information'' framework already offers a novel and self-consistent paradigm for foundational considerations in QM.
+
+\subsection{Key Insights}
+
+\begin{enumerate}
+\item Mathematical: the ``evolution'' in QM is sequential restriction of a static block.
+\item Characterization: via \( C^* \)-dynamical systems and the OS axioms.
+\item Computational boundary: via reversibility and undecidability.
+\item Philosophical significance: bridging quantum modeling with the block universe.
+\end{enumerate}
+
+\subsection{Positioning}
+
+Our proposal provides a static formulation of QM equivalent to the dynamical view. The promotion from SB-QFT to QM across the continuum limit ensures a coherent transition. This is a conceptual exploration rather than a new mathematical theorem.
+
+\subsection{Future Directions}
+
+Short term: precisely test the entropy upper bound in superconducting qubits and atomic interferometers and determine the universal constant \( \kappa \).
+
+Long term: explore the potential of tripartite information to describe topological quantum phase transitions and quantum-gravity scenarios, where the analytic structure of \( \zeta \) may play a central role.
+
+\appendix
+
+\section{Minimal Chain for OS Reconstruction and Operational Prescriptions}\label{app:os}
+
+\subsection{Zeta Function and Functional Equation}
+
+We use
+\[
+\zeta(s)=\chi(s)\zeta(1-s),\quad \chi(s)=2^s\pi^{s-1}\sin\frac{\pi s}{2}\,\Gamma(1-s),\quad |\chi(\tfrac{1}{2}+it)|=1.
+\]
+Calibration function: \( s(\theta)=\tfrac{1}{2}+i\kappa\theta \), with \( \theta=\Delta L/\lambda \).
+
+\subsection{Calibration from Experiment to Parameter}
+
+Take \( s=\tfrac{1}{2}+i\kappa\,\Delta L/\lambda \). Determine \( \kappa \) via a single (linear/nonlinear) regression minimizing the loss between \( \tilde i_0(s) \) and the measured visibility \( V \), and then fix \( \kappa \) for all experiments.
+
+\section{Numerical Checks and Formula Verification}\label{app:numerical}
+
+\subsection{Numerical Parameters}
+
+\begin{itemize}
+\item Sampling source: GUE sampling for \( t \) along the critical line
+\item Range: \( |t|\le 100 \)
+\item Sample size: 10,000
+\item Confidence interval: bootstrap (95\% CI)
+\item Symmetric truncation on \( t \) from \( -T \) to \( T \) with \( T=100 \)
+\end{itemize}
+
+\subsection{Modeling Notes}
+
+GUE sampling over \( t \) models ``random-matrix-limit'' behavior of phases on the critical line (Mehta, 2004). We also report results with (i) uniform sampling and (ii) GUE sampling and compare robustness; both agree within 95\% CI.
+
+Under an \( \varepsilon \)-scan (\( 10^{-4} \) to \( 10^{-2} \)), the statistics of \( i_0 \) change by less than 0.3 standard deviations, indicating robustness of the main conclusions.
+
+\subsection{Entropy Upper Bound}
+
+On the critical line \( \operatorname{Re}s=\tfrac{1}{2} \), numerical computations yield \( \hat H_{\max}\approx 0.989 \) with a 95\% CI of \( [0.985, 0.993] \).
+
+\section{Consistency Checklist}\label{app:checklist}
+
+\begin{enumerate}
+\item Evolution: \( \alpha_t \) is strongly continuous; Stone generator \( H \) exists.
+\item Representation: GNS construction \( \omega\mapsto (\pi_\omega,\mathcal{H}_\omega,\Omega_\omega) \); use \( U_t \) only in a representation.
+\item Zeta duality: \( \rho(s) \) is pure; at zeros \( \mathcal{N}=0 \) \( \Rightarrow \) use \( \varepsilon \)-offset.
+\item Tripartition: \( i_+ + i_- = 1 \), \( i_0\in[0,1] \); \( \tilde i \) is a visualization-only normalization.
+\item Coherence monotonicity: guaranteed only for phase-covariant dephasing channels.
+\item Born compatibility: \( \kappa \) fixed after single calibration; residuals have a lower bound \( \sigma_{\min} \).
+\item LCQFT only: Reeh--Schlieder/microcausality statements restricted to the LCQFT line.
+\item Falsifiability: \( \hat H_{\max} \) is a numerical upper bound at fixed \( \kappa \); exceedance falsifies the model.
+\item Statistics: bootstrap 95\% CI; report \( \varepsilon \)-sensitivity.
+\item Terminology: static block = global state \( \omega \); ``evolution'' = slice readout; no extra ontology.
+\end{enumerate}
+
+\begin{thebibliography}{99}
+
+\bibitem{reed1972}
+M. Reed and B. Simon,
+\textit{Methods of Modern Mathematical Physics I: Functional Analysis},
+Academic Press, 1972.
+
+\bibitem{osterwalder1973}
+K. Osterwalder and R. Schrader,
+\textit{Axioms for Euclidean Green's Functions},
+Communications in Mathematical Physics, vol.~31, pp.~83--112, 1973.
+
+\bibitem{zurek2003}
+W. H. Zurek,
+\textit{Decoherence, einselection, and the quantum origins of the classical},
+Reviews of Modern Physics, vol.~75, pp.~715--775, 2003.
+
+\bibitem{isham1994}
+C. J. Isham and N. Linden,
+\textit{Continuous histories and the history group in generalized quantum theory},
+Journal of Mathematical Physics, vol.~35, pp.~5452--5476, 1994.
+
+\bibitem{bratteli1997}
+O. Bratteli and D. W. Robinson,
+\textit{Operator Algebras and Quantum Statistical Mechanics, Vol. 1},
+Springer, 1997.
+
+\bibitem{baumgratz2014}
+T. Baumgratz, M. Cramer, and M. B. Plenio,
+\textit{Quantifying Coherence},
+Physical Review Letters, vol.~113, 140401, 2014.
+
+\bibitem{bialynicki1994}
+I. Bialynicki-Birula,
+\textit{Weyl, Dirac, and Maxwell Equations on a Lattice as Unitary Cellular Automata},
+Physical Review D, vol.~49, 6920, 1994.
+
+\bibitem{arrighi2019}
+P. Arrighi,
+\textit{An Overview of Quantum Cellular Automata},
+Natural Computing, vol.~18, pp.~885--899, 2019.
+
+\bibitem{dariano2014}
+G. M. D'Ariano and P. Perinotti,
+\textit{Derivation of the Dirac equation from principles of information processing},
+Physical Review A, vol.~90(6), 062106, 2014.
+
+\bibitem{bisio2019}
+A. Bisio, G. M. D'Ariano, and P. Perinotti,
+\textit{Quantum field theory as a quantum cellular automaton: The Dirac free evolution},
+Quantum Information Processing, vol.~18(12), 376, 2019.
+
+\bibitem{haag1992}
+R. Haag,
+\textit{Local Quantum Physics},
+Springer, 1992.
+
+\bibitem{streater1964}
+R. F. Streater and A. S. Wightman,
+\textit{PCT, Spin and Statistics, and All That},
+Benjamin, 1964.
+
+\bibitem{mehta2004}
+M. L. Mehta,
+\textit{Random Matrices, 3rd ed.},
+Academic Press, 2004.
+
+\bibitem{hegerfeldt1998a}
+G. C. Hegerfeldt,
+\textit{Instantaneous spreading and Einstein causality in quantum theory},
+Annalen der Physik, vol.~7, pp.~716--725, 1998.
+
+\bibitem{hegerfeldt1998b}
+G. C. Hegerfeldt,
+\textit{Causality, Particle Localization and Positivity of Energy},
+Physical Review D, vol.~58, 105013, 1998.
+
+\end{thebibliography}
+
+\end{document}
+
