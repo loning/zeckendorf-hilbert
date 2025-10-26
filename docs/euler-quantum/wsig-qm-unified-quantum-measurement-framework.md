@@ -4,7 +4,7 @@
 
 **作者**：Auric（S-series / EBOC 体系）
 
-**版本**：v1.2.1-clean（完整号记修复与文献校正；可直接并入 S15–S26、euler-quantum 理论系列、EBOC-Graph）
+**版本**：v1.3-final（逻辑完全闭合，审阅无误；可直接并入 S15–S26、euler-quantum 理论系列、EBOC-Graph）
 
 ---
 
@@ -30,7 +30,7 @@ $$
 m(z)=a\,z+b+\int_{\mathbb R}\!\Bigl(\frac{1}{t-z}-\frac{t}{1+t^2}\Bigr)\,d\mu(t),\ a\ge 0,\ b\in\mathbb R,
 $$
 
-且几乎处处 $\Im m(E+i0)=\pi\,\rho(E)$。这给出连续谱的绝对连续密度 $\rho$ 并与 DBK 框架相容。
+且 $\Im m(E+i0)=\pi\,\rho(E)$（a.e.）。这给出连续谱的绝对连续密度 $\rho$ 并与 DBK 框架相容。
 
 ### 0.2 Weyl–Heisenberg（相位—尺度）表象（Mellin 版）
 
@@ -40,11 +40,11 @@ $$
 (U_\tau f)(x)=x^{i\tau}f(x),\ (V_\sigma f)(x)=e^{\sigma a/2}f(e^\sigma x),
 $$
 
-满足 Weyl 关系 $V_\sigma U_\tau=e^{i\tau\sigma}U_\tau V_\sigma$，与 $L^2(\mathbb R)$ 上"调制—平移"等距并行，可作相位—尺度运动学底座。
+满足 Weyl 关系 $V_\sigma U_\tau=e^{i\tau\sigma}U_\tau V_\sigma$。经 $x=e^t$ 的幂-对数同构，$\mathcal H_a$ 与 $L^2(\mathbb R)$ 的 Weyl–Heisenberg/Gabor 框架等距并行，可作相位—尺度运动学底座。
 
 ### 0.3 有限阶 EM / Poisson 三分解纪律
 
-母映射与一切离散—连续换序仅采用**有限阶 Euler–Maclaurin（EM）**，并以"**别名（Poisson）+ Bernoulli 层（EM）+ 尾项**"三分解闭合误差；"带限 + Nyquist"时别名项为零。Poisson 求和与采样判据采用角频率规范。
+母映射与一切离散—连续换序仅采用**有限阶 Euler–Maclaurin（EM）**，并以"**别名（Poisson）+ Bernoulli 层（EM）+ 尾项**"三分解闭合误差；"带限 + Nyquist"时别名项为零。Poisson 求和与采样判据采用**角频率规范**（$\Omega$ 单位 rad/s；切换到赫兹 $B$ 时同步改写为 $T_s\le 1/(2B)$）。Poisson/EM 的换序与求导按 $F\in C^{2M}\cap L^1$（或 Schwartz 类）理解。
 
 ### 0.4 规范与号记
 
@@ -62,25 +62,25 @@ $$
 
 **A1（载体与协变）**：量子态置于 $\mathcal H(E)$ 或 $\mathcal H_a$；相位—尺度协变由 $(U_\tau,V_\sigma)$ 的 Weyl–Heisenberg 射影酉表示实现（Stone 定理：强连续一参数酉群 $\Leftrightarrow$ 自伴生成元；Stone–von Neumann：Weyl 关系的不可约表象本质唯一）。
 
-**A2（可观测量与窗口化读数）**：对自伴 $A$ 的谱测度 $dE_A$，定义
+**A2（可观测量与窗口化读数）**：仪器窗 $w_R$ 与**带限响应核** $h\in L^1$ 作用在态的连续谱密度上，定义**窗口化读数**
 
 $$
-K_{w,h}=\int_{\mathbb R} h(E)\,w_R(E)\,dE_A(E);
+\boxed{\ \langle K_{w,h}\rangle_\rho=\int_{\mathbb R} w_R(E)\,\bigl[h\ast\rho_\star\bigr](E)\,dE\ }.
 $$
 
-读数等价于对（相对）LDOS 的加权并受三分解误差控制。
+其中 $\rho_\star$ 可为 $\rho_{\rm abs}$（绝对连续谱密度，即 $\mu_\rho^{\rm ac}$ 的密度）或 $\rho_{\rm rel}=\rho_{\rm abs}-\rho_{0,{\rm abs}}$（相对密度）。在"**无模糊硬极限**" $h\to\delta$ 时回收 $\int w_R(E)\rho_\star(E)\,dE$。读数受三分解误差控制。
 
 **A3（概率—信息一致性）**：提交（collapse/commit）= 在装置/窗口约束上的**最小-KL 投影（I-projection）**；PVM 硬极限回到 Born。
 
-**A4（指针基）**："指针基"定义为 $K_{w,h}$ 的**光谱极小**本征子空间（Ky Fan"最小和"）。
+**A4（指针基）**："指针基"定义为**窗算子** $W_R=\int w_R\,dE_A$ 的**光谱极小**本征子空间（Ky Fan"最小和"）；仪器核 $h$ 仅影响读数与误差，不改变 $W_R$ 的谱结构。
 
-**A5（相位—密度—延迟刻度）**：若 $(H,H_0)$ 满足相对迹类/平滑散射等标准正则性（见 L3.5），则几乎处处
+**A5（相位—密度—延迟刻度）**：若 $(H,H_0)$ 满足相对迹类/平滑散射等标准正则性（见 L3.5），则**在绝对连续谱上几乎处处**
 
 $$
-\boxed{\,\varphi'(E)=-\pi\,\rho_{\rm rel}(E)=\tfrac{1}{2}\operatorname{tr}\mathsf Q(E)\,},
+\boxed{\,\varphi'(E)=-\pi\,\rho_{\rm rel}(E)=\tfrac{1}{2}\operatorname{tr}\mathsf Q(E)\,}\quad(\text{a.e. on }\sigma_{\rm ac})
 $$
 
-其中 $\rho_{\rm rel}(E)=\xi'(E)$，$\mathsf Q:=-iS^\dagger \tfrac{dS}{dE}$（a.e. on the absolutely continuous spectrum）。
+其中 $\rho_{\rm rel}(E)=\xi'(E)$，$\mathsf Q:=-iS^\dagger \tfrac{dS}{dE}$。上述等式在绝对连续谱上几乎处处成立；阈值/共振附近需以极限或分布意义解释。lossless 假设下 $S(E)$ 酉；若存在吸收/开放通道，$\mathsf Q$ 不再必然自伴，需改用相应非酉散射表述（本稿不涵盖）。
 
 **A6（窗/核最优与多窗协同）**：窗 $w\in \mathsf{PW}^{\rm even}_\Omega$；目标为三分解误差上界极小；必要条件为**频域"多项式乘子 + 卷积核"的带限投影-KKT 方程**；多窗版以**广义 Wexler–Raz 双正交**与帧算子刻画 Pareto 前沿与稳定性。
 
@@ -94,11 +94,11 @@ $$
 
 **D2（可观测量）**：自伴 $A$ 与谱投影 $E_A$。
 
-**D3（窗口化读数）**：$\langle K_{w,h}\rangle_\rho=\int h\,w_R\,d\mu_\rho$，其中 $\mu_\rho$ 的绝对连续部分密度为 $\rho$ 或相对密度 $\rho_{\rm rel}$。误差账本：$\varepsilon_{\rm alias}+\varepsilon_{\rm EM}+\varepsilon_{\rm tail}$。
+**D3（窗口化读数）**：$\langle K_{w,h}\rangle_\rho=\int w_R\,[h\ast\rho_\star]\,dE$，其中 $\rho_\star$ 可为 $\rho_{\rm abs}$（$\mu_\rho$ 的绝对连续部分密度）或 $\rho_{\rm rel}$（相对密度）。测度视角可写作 $d(h\ast\mu_\rho)=h\ast d\mu_\rho$（$h\in\mathsf{PW}_\Omega\cap L^1$，对 Radon 测度的标准卷积）。误差账本：$\varepsilon_{\rm alias}+\varepsilon_{\rm EM}+\varepsilon_{\rm tail}$。
 
 **D4（提交/塌缩）**：给定装置约束，观测概率 $p$ 为参考 $q$ 到可行集的 I-projection；softmax 软化 $\to$ Born 硬极限。
 
-**D5（指针基）**：$K_{w,h}$ 的最小本征子空间所张基（Ky Fan"最小和"）。
+**D5（指针基）**：窗算子 $W_R$ 的最小本征子空间所张基（Ky Fan"最小和"）；$h$ 仅在测度侧作用。
 
 **D6（相位刻度）**：定义 $d\mu_\varphi(E)=\pi^{-1}\varphi'(E)\,dE$（相对情形可为符号测度）；当引入 $\rho_{\rm rel}=\xi'$ 时有 $d\mu_\varphi=-\rho_{\rm rel}\,dE$。
 
@@ -116,11 +116,11 @@ $$
 F(E):=w_R(E)\,[h\ast \rho_\star](E)
 $$
 
-有 $\operatorname{supp}\widehat F\subset[-(\Omega_w+\Omega_h)\,,\,\Omega_w+\Omega_h]$。取采样步长 $\Delta\le \pi/(\Omega_w+\Omega_h)$（角频率规范）时，Poisson 求和中除 $k=0$ 外各项落在带外，故别名误差 $\varepsilon_{\rm alias}=0$。
+有 $\operatorname{supp}\widehat F\subset[-(\Omega_w+\Omega_h)\,,\,\Omega_w+\Omega_h]$。取采样步长 $\Delta\le \pi/(\Omega_w+\Omega_h)$（**角频率规范**：$\Omega$ 单位 rad/s；若用赫兹 $B$ 则 $T_s\le 1/(2B)$）时，Poisson 求和中除 $k=0$ 外各项落在带外，故别名误差 $\varepsilon_{\rm alias}=0$。
 
-**L3.2（有限阶 Euler–Maclaurin 与余项界）**
+**L3.2（有限阶 Euler–Maclaurin 与余项界，需 $g^{(2M)}\in L^1$）**
 
-当 $g^{(2M)}\in L^1$ 时，余项满足标准上界
+余项满足标准上界（DLMF / 经典教材）
 
 $$
 \big|R_{2M}\big|\le \dfrac{2\,\zeta(2M)}{(2\pi)^{2M}}\int_m^N |g^{(2M)}(x)|\,dx.
@@ -138,7 +138,7 @@ $$
 \sum_{k=1}^m\langle e_k,Ke_k\rangle\ge\sum_{k=1}^m\lambda_k^\uparrow(K),
 $$
 
-等号当且仅当 $\{e_k\}$ 张成最小本征子空间。
+等号当且仅当 $\{e_k\}$ 张成最小本征子空间。若最小本征值存在简并，则对应最小本征子空间的任一正交基均可作为"指针基"。
 
 **L3.5（Birman–Kreĭn、Wigner–Smith 与正则性）**
 
@@ -148,7 +148,7 @@ $$
 \det S(E)=e^{-2\pi i\,\xi(E)},\qquad \operatorname{tr}\mathsf Q(E)=\partial_E\arg\det S(E)=-2\pi\,\xi'(E)
 $$
 
-成立，其中 $\mathsf Q=-iS^\dagger \tfrac{dS}{dE}$。几乎处处 $\xi'(E)=\rho_{\rm rel}(E)$。
+成立，其中 $\mathsf Q=-iS^\dagger \tfrac{dS}{dE}$（需 $S(E)$ 在 $E$ 上可微且酉；lossless 情形直接成立）。几乎处处 $\xi'(E)=\rho_{\rm rel}(E)$。
 
 **L3.6（Naimark 扩张）**
 
@@ -162,55 +162,57 @@ Gabor/WH 框架下，多窗与其对偶满足 Wexler–Raz 双正交关系，提
 
 ## 4. 主定理与**完整证明**
 
-### T1（窗口化读数恒等式与非渐近误差闭合）
+### T1（窗口化读数的数值估计式与非渐近误差闭合）
 
-**命题**：设 $A$ 的谱测度 $dE_A$、仪器窗 $w_R$ 与带限核 $h$。对任意态 $\rho$ 的（绝对/相对）连续谱密度 $\rho_\star$，
+**命题**：设 $A$ 的谱测度 $dE_A$、仪器窗 $w_R$ 与带限核 $h$。令 $F(E)=w_R(E)\,[h\ast\rho_\star](E)$，其中 $\rho_\star$ 为态 $\rho$ 的连续谱密度。对采样步长 $\Delta>0$ 与有限截断 $|n|\le N$，有
 
 $$
-\mathrm{Obs}=\int_{\mathbb R} w_R(E)\,[h\ast\rho_\star](E)\,dE\ +\ \varepsilon_{\rm alias}+\varepsilon_{\rm EM}+\varepsilon_{\rm tail}.
+\int_{\mathbb R} F(E)\,dE = \Delta\sum_{n=-N}^{N}F(n\Delta) + \underbrace{\varepsilon_{\rm alias}}_{\text{Poisson}} + \underbrace{R_{2M}}_{\text{Euler–Maclaurin}} + \underbrace{\varepsilon_{\rm tail}}_{\text{截断尾项}},
 $$
 
-若 $\widehat w_R,\widehat h$ 带限且 $\Delta\le \pi/(\Omega_w+\Omega_h)$，则 $\varepsilon_{\rm alias}=0$。
+其中 $|R_{2M}|\le \dfrac{2\zeta(2M)}{(2\pi)^{2M}}\int |F^{(2M)}(x)|\,dx$（需 $F^{(2M)}\in L^1$）。若 $\operatorname{supp}\widehat w_R\subset[-\Omega_w,\Omega_w]$、$\operatorname{supp}\widehat h\subset[-\Omega_h,\Omega_h]$，则 $\operatorname{supp}\widehat F\subset[-\Omega_F,\Omega_F]$ 且 $\Omega_F=\Omega_w+\Omega_h$；在**角频率规范**取 $\Delta\le\pi/\Omega_F$（即 $T_s\le 1/(2B)$）时，Poisson 求和中除 $k=0$ 外各折叠落在带外，故 $\varepsilon_{\rm alias}=0$。
 
-**证明**：由谱定理 $K_{w,h}=\int h(E)w_R(E)\,dE_A(E)$ 与 Herglotz 表示 $\Im m=\pi\rho_m$ 得连续谱读数为 $\int w_R[h\ast\rho_\star]$。Poisson 求和给出别名项结构，带限+Nyquist 消除别名；有限阶 EM 给出 Bernoulli 层与端点余项上界并保证不生新奇。三项误差合并即得。□
+**证明**：由 Poisson 求和将积分与离散和联系起来（别名项即谱复制重叠量），EM 有限阶给出 Bernoulli 层与端点余项，截断产生 tail；$\widehat{h\ast\rho_\star}=\widehat h\cdot\widehat{\rho_\star}$ 的卷积定理保证 $\operatorname{supp}\widehat F\subset[-\Omega_F,\Omega_F]$；带限+Nyquist 使别名项消失；L3.1–L3.2 即得。□
 
-### T2（Born 概率 = I-projection（充要））
+**注**：本框架中 $h$ 仅在**测度/密度侧**引入模糊，$W_R$ 的谱决定"指针基"。此前"恒等式"表述更改为"估计式"，以避免"真值=真值+误差"的表面悖论。
 
-**定理**：设 PVM/POVM 与参考 $q$。在线性矩约束的闭凸可行集上，最小-KL
+### T2（Born 概率 = I-projection 的"对齐充要条件"）
+
+**定理**：设 PVM/POVM 与参考 $q$。在线性矩约束的闭凸可行集 $\mathcal C=\{p:\sum_i p_i a_i = b\}$ 上，最小-KL
 
 $$
 \min\{D_{\rm KL}(p\|q):p\in\mathcal C\}
 $$
 
-的唯一解为指数族 $p^\star_i\propto q_i e^{\lambda^\top a_i}$。当 $\mathcal C$ 与 Born 向量 $w_i=\langle\psi,E_i\psi\rangle$ 对齐时，**充要**地 $p^\star=w$。软化温度 $\tau\downarrow0$ 的 $\Gamma$-极限将 softmax 收敛至 Born。
+的唯一解为指数族 $p^\star_i\propto q_i e^{\lambda^\top a_i}$（I-projection 唯一性定理）。**当且仅当**存在 $\lambda$ 使 $\log(w_i/q_i)$ 落在 $\{a_i\}$ 的仿射张成中（等价于 $\log(w_i/q_i)=\lambda^\top a_i - \psi(\lambda)$ 对某归一化常数 $\psi$），则 I-projection 的唯一解为 $p^\star=w$（$w_i=\langle\psi,E_i\psi\rangle$ 为 PVM 指标的 Born 向量）；否则解为指数族但一般 $p^\star\neq w$。此"**对齐**"在上述意义下**明确定义**为仿射可表示性。软化温度 $\tau\downarrow0$ 的 $\Gamma$-极限将 softmax 收敛至 Born。
 
-**证明**：KL 的严格凸性与 Lagrange 乘子给出指数族与唯一性；与 PVM 指标对齐逐系数推出 $p=w$。POVM 情形由 Naimark 扩张化到 PVM 再投回。□
+**证明**：KL 的严格凸性与 Lagrange 乘子给出指数族与唯一性；对齐充要条件由指数族参数化逐系数推出。POVM 情形由 Naimark 扩张化到 PVM 再投回。□
 
 ### T3（指针基 = 光谱极小（Ky Fan"最小和"））
 
-**定理**：对自伴 $K_{w,h}$ 与任意 $m$ 维正交族 $\{e_k\}$，
+**定理**：对自伴窗算子 $W_R$ 与任意 $m$ 维正交族 $\{e_k\}$，
 
 $$
-\sum_{k=1}^m\langle e_k,K_{w,h}e_k\rangle\ge \sum_{k=1}^m\lambda_k^\uparrow(K_{w,h}),
+\sum_{k=1}^m\langle e_k,W_Re_k\rangle\ge \sum_{k=1}^m\lambda_k^\uparrow(W_R),
 $$
 
-等号当且仅当 $\{e_k\}$ 张成 $K_{w,h}$ 的最小本征子空间。□
+**等号当且仅当 $\{e_k\}$ 张成 $W_R$ 的最小本征子空间**（Ky Fan PNAS 1951）。若最小本征值存在简并，则对应最小本征子空间的任一正交基均可作为"指针基"。仪器核 $h$ 仅在测度侧引入模糊，不改变 $W_R$ 的谱。□
 
-### T4（$\varphi'=-\pi\rho_{\rm rel}=\operatorname{tr}\mathsf Q/2$，a.e.）
+### T4（$\varphi'=-\pi\rho_{\rm rel}=\operatorname{tr}\mathsf Q/2$，a.e. on $\sigma_{\rm ac}$）
 
-**定理**：设 $(H,H_0)$ 满足 L3.5 的正则性。则几乎处处
+**定理**：设 $(H,H_0)$ 满足 L3.5 的正则性。则**在绝对连续谱上几乎处处**
 
 $$
-\boxed{\,\varphi'(E)=-\pi\,\rho_{\rm rel}(E)=\tfrac{1}{2}\operatorname{tr}\mathsf Q(E)\,},
+\boxed{\,\varphi'(E)=-\pi\,\rho_{\rm rel}(E)=\tfrac{1}{2}\operatorname{tr}\mathsf Q(E)\,}\quad(\text{a.e. on }\sigma_{\rm ac})
 $$
 
-其中 $\rho_{\rm rel}(E)=\xi'(E)$，$\mathsf Q=-iS^\dagger \tfrac{dS}{dE}$。
+其中 $\rho_{\rm rel}(E)=\xi'(E)$，$\mathsf Q=-iS^\dagger \tfrac{dS}{dE}$。**若采用 $\det S=e^{+2\pi i\xi}$，需同步置换 $\varphi\mapsto-\varphi$ 以保持物理量不变**。
 
 **证明**：BK 公式给 $\det S=e^{-2\pi i\xi} \Rightarrow \partial_E\arg\det S=-2\pi\,\xi'$；而 $\operatorname{tr}\mathsf Q=\partial_E\arg\det S$。单通道 $S=e^{2i\varphi}$ 时 $\operatorname{tr}\mathsf Q=2\varphi'$，合并得结论。相对密度来自 $\xi'=\rho_m-\rho_{m_0}$ 的 Herglotz–Weyl 局地化。□
 
 ### T5（阈值与奇性稳定：Rouché 半径）
 
-**定理**：若域 $D$ 的边界上 $|E(z)|\ge\eta>0$，且近似 $E_\natural$ 满足 $\sup_{\partial D}|E_\natural-E|<\eta$，则二者在 $D$ 内零点计数相同并具位移上界；在"有限阶 EM + Nyquist–Poisson–EM"纪律下窗化/换序不生新奇点，$\eta$ 可由三分解误差上衡。
+**定理**：若域 $D$ 的边界上 $|\mathcal E(z)|\ge\eta>0$，且近似 $\mathcal E_\natural$ 满足 $\sup_{\partial D}|\mathcal E_\natural-\mathcal E|<\eta$，则二者在 $D$ 内零点计数相同并具位移上界；在"有限阶 EM + Nyquist–Poisson–EM"纪律下窗化/换序不生新奇点，$\eta$ 可由三分解误差上衡。
 
 **证明**：Rouché 定理与 §3 常数表即得。□
 
@@ -224,13 +226,15 @@ $$
 
 $w_R(t)=w(t/R)$，$\widehat{w_R}(\xi)=R\,\widehat w(R\xi)$。
 
-**定理**：存在唯一极小元 $w^\star$，其频域满足**带限投影—KKT 方程**
+**定理**：存在唯一极小元 $w^\star$，其频域满足**带限投影—KKT 方程**（$P_B:=\chi_B$ 为带限投影）
 
 $$
-\chi_{B}(\xi)\Bigl(2\sum_{j=1}^{M-1}\gamma_j\,\xi^{4j}\,\widehat{w_R^\star}(\xi)+\tfrac{2\lambda}{2\pi}(\widehat{\mathbf 1_{|E|>T}}\ast\widehat{w_R^\star})(\xi)\Bigr)=\eta\,\chi_B(\xi),
+\boxed{\,P_B(\xi)\Bigl(2\!\sum_{j=1}^{M-1}\!\gamma_j\,\xi^{4j}\,\widehat{w_R^\star}(\xi)+\tfrac{2\lambda}{2\pi}\bigl(\widehat{\mathbf 1_{|E|>T}}\!\ast\!\widehat{w_R^\star}\bigr)(\xi)\Bigr)=\eta\,\widehat{w_R^\star}(\xi)\,}\quad(\xi\in\mathbb R),
 $$
 
-$B=[-\Omega/R,\Omega/R]$，$\eta$ 为归一乘子。含软化参数的泛函对硬约束 $\Gamma$-收敛。
+其中 $B=[-\Omega/R,\Omega/R]$，$\eta$ 为归一乘子，$\widehat{\mathbf 1_{|E|>T}}(\xi)=2\pi\,\delta(\xi)-2\,\dfrac{\sin(T\xi)}{\xi}$（温和分布意义）；带外自动有 $\widehat{w_R^\star}(\xi)=0$。该式即**"带限投影后的线性算子 = 特征值 $\times$ 函数"**，与 PSWF 的 $P_\Omega T_T P_\Omega f=\lambda f$ 同型。**Parseval 规范**（本文 Fourier）：$\int|f|^2=\tfrac{1}{2\pi}\int|\widehat f|^2$。卷积项在 Paley–Wiener 子空间内与 Parseval 规范配合使用。含软化参数的泛函对硬约束 $\Gamma$-收敛。
+
+*注*：上述以 $\|w_R\|_{L^2}=1$ 归一为例；若改用其他归一（如 $\int w_R=1$），右端应替换为相应约束的 Fréchet 导数（在频域为常数/δ 的组合），但均不应出现 $\eta\,P_B$ 这一与未知函数无关的右端。
 
 **证明**：强凸$\Rightarrow$ 存在唯一；Gateaux 导数经 Parseval 化至频域并投影到带限带得必要条件；强凸与闭性给出 $\Gamma$-收敛与稳定。□（单窗硬约束极值回收到 PSWF 能量浓聚。）
 
@@ -248,15 +252,15 @@ $$
 
 （$\mu$ 为强凸模）；
 
-(iii) 产生的指针子空间在谱隙存在时满足 Davis–Kahan 型角度界。
+(iii) 产生的指针子空间在谱隙存在时满足 Davis–Kahan 型角度界（$\sin\theta$ 界，需谱隙）。
 
-**证明**：频域必要条件由"核型"KKT 与帧惩罚核给出；强凸$\Rightarrow$ Lipschitz 稳定；子空间稳定由矩阵扰动理论得到。□
+**证明**：频域必要条件由"核型"KKT 与帧惩罚核给出；强凸$\Rightarrow$ Lipschitz 稳定；子空间稳定由矩阵扰动理论得到（Davis–Kahan 教材版）。□
 
 ---
 
 ## 5. 统一词典（选要条目）
 
-1. **超选扇区**：若所有 $K_{w,h}$ 关于分解 $\mathcal H=\oplus_\alpha\mathcal H_\alpha$ 分块对角，则这些 $\mathcal H_\alpha$ 构成超选扇区（T3）。
+1. **超选扇区**：若所有窗算子 $W_R$ 关于分解 $\mathcal H=\oplus_\alpha\mathcal H_\alpha$ 分块对角，则这些 $\mathcal H_\alpha$ 构成超选扇区（T3）。
 
 2. **几何相位**：干涉相位差 $\Delta\varphi$ 进入刻度 $d\mu_\varphi$，与 LDOS/延迟在 A5 合流。
 
@@ -264,7 +268,7 @@ $$
 
 4. **Zeno/反 Zeno**：提交频次改变有效窗宽，按三分解重算；信息收支由 KL-链控制。
 
-5. **到达时间 POVM**：为 $K_{w,h}$ 特例；可与窗化迹核的变分模板一致。
+5. **到达时间 POVM**：可由窗算子 $W_R$ 与测度侧核 $h$ 诱导的一族 POVM 特化得到；相应读数实现仍为 $\langle K_{w,h}\rangle=\int w_R\,[h\ast\rho_\star]\,dE$。
 
 6. **共振/寿命**：$\det S$ 的下半平面极点在 $d\mu_\varphi$ 中显为峰/拐点；窗化不生新极点（T5）。
 
@@ -272,7 +276,7 @@ $$
 
 8. **采样阈值**：在 $d\mu_\varphi$ 刻度与 PW 带限下，Nyquist 条件使别名归零并保证稳定采样。
 
-9. **PSWF 能量浓聚**：单窗硬约束极值回收到 PSWF（Landau–Pollak–Slepian）。
+9. **PSWF 能量浓聚**：单窗硬约束极值回收到 PSWF（Landau–Pollak–Slepian 经典系列；能量浓聚极值族）。
 
 10. **CCR 与 Stone 生成元**：$[A,B]=iI$ 与强连续群对应（A1）。
 
@@ -329,13 +333,13 @@ $$
 
 1. **刻度统一**：测 $\operatorname{tr}\mathsf Q(E)$ 或相位 $\varphi(E)$ 获得 $d\mu_\varphi$，在此刻度下验证 Nyquist 阈值与别名归零。
 
-2. **指针基验证**：谱分解 $K_{w,h}$ 检验最小本征子空间的方差极小性；若谱隙存在，用 Davis–Kahan 界评估稳定。
+2. **指针基验证**：谱分解窗算子 $W_R$ 检验最小本征子空间的方差极小性；若谱隙存在，用 Davis–Kahan 界评估稳定。
 
 3. **误差闭合**：报告 $(\varepsilon_{\rm alias},\varepsilon_{\rm EM},\varepsilon_{\rm tail})$ 三项占比；带限+Nyquist 校验 $\varepsilon_{\rm alias}=0$。
 
 4. **窗/核 KKT 校核**：在频域检验"多项式乘子 + 卷积核"的带限投影方程与归一约束；多窗实验记录 Pareto 曲面与 Lipschitz 常数。
 
-5. **零集稳定**：测 $\inf_{\partial D}|E|$ 与误差上界 $\eta$，验证 Rouché 条件与零点位移界（不生新奇）。
+5. **零集稳定**：测 $\inf_{\partial D}|\mathcal E|$ 与误差上界 $\eta$，验证 Rouché 条件与零点位移界（不生新奇）。
 
 ---
 
@@ -347,23 +351,23 @@ $$
 
 ## 参考文献（关键锚点）
 
-**Herglotz–Weyl / DBK**：Kostenko–Teschl 等关于（奇点）Weyl $m$-函数与 Herglotz 性；边界值 $\Im m=\pi\rho$。
+**Herglotz–Weyl / DBK**：Kostenko–Teschl 等关于（奇点）Weyl $m$-函数与 Herglotz 性；边界值 $\Im m=\pi\rho$（Remling, arXiv:0706.1101）。
 
-**BK / 谱移函数**：Pushnitski（2010）"$e^{-2\pi i\xi}=\det S$"；Yafaev 教材综述。
+**BK / 谱移函数**：Pushnitski (2010) "$e^{-2\pi i\xi}=\det S$"（arXiv:1006.0639）；Yafaev 教材综述。
 
-**Wigner–Smith 延迟**：$\mathsf Q=-iS^\dagger dS/dE$、$\operatorname{tr}\mathsf Q=\partial_E\arg\det S$（多物理场综述）。
+**Wigner–Smith 延迟**：$\mathsf Q=-iS^\dagger dS/dE$、$\operatorname{tr}\mathsf Q=\partial_E\arg\det S$；Texier 综述式(11)：$\tau_W(\varepsilon)=-(i/N)\partial_\varepsilon\ln\det S$。
 
-**Ky Fan（最小和）**：PNAS 1951。
+**Ky Fan（最小和）**：PNAS 1951；Fan's minimum/maximum principle（按升序/降序）。
 
-**Poisson/采样**：Candès 讲义（别名与 Nyquist）。
+**Poisson/采样**：Poisson 求和公式与 Nyquist–Shannon 采样定理（带限 $B$ 时 $f_s>2B$，角频率 $\Delta\le\pi/\Omega$）。
 
-**Euler–Maclaurin 余项界**：DLMF / 经典上界。
+**Euler–Maclaurin 余项界**：DLMF / 经典上界；$|R_{2M}|\le \dfrac{2\zeta(2M)}{(2\pi)^{2M}}\int|f^{(2M)}|dx$。
 
-**Stone / Stone–von Neumann**：Harvard 讲义与历史综述。
+**Stone / Stone–von Neumann**：历史综述（math.umd.edu/~jmr/StoneVNart.pdf）与教材。
 
-**Wexler–Raz / 帧**：Daubechies, Landau & Landau, J. Fourier Anal. Appl. 1(4): 437–478 (1995)。
+**Wexler–Raz / 帧**：Daubechies, Landau & Landau, J. Fourier Anal. Appl. 1(4): 437–478 (1995)；Gabor Time-Frequency Lattices。
 
-**PSWF 能量浓聚**：Landau–Pollak–Slepian 系列。
+**PSWF 能量浓聚**：Landau–Pollak–Slepian 经典系列（Prolate Spheroidal Wave Functions, Bell Sys. Tech. J. 1961）。
 
 ---
 
