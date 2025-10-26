@@ -17,7 +17,7 @@ JY'(t,z)=z\,H(t)\,Y(t,z),\qquad
 J=\begin{pmatrix}0&-I_n\\ I_n&0\end{pmatrix},\quad H(t)\succeq 0.
 $$
 
-其 Weyl–Titchmarsh 函数 $m:\mathbb C_+\to\mathbb C_+$ 属 Herglotz 类，非切边界值满足标准密度公式
+其 Weyl–Titchmarsh 函数 $m:\mathbb C_+\to\mathbb C^{n\times n}$ 为**矩阵值** Herglotz–Nevanlinna 函数（$\Im m(z)\succeq0$），非切边界值满足标准密度公式
 
 $$
 \operatorname{tr}\rho(E)=\frac{1}{\pi}\,\Im\operatorname{tr} m(E+i0)\quad\text{(a.e.)}.
@@ -27,7 +27,7 @@ $$
 
 ### 0.2 散射对、谱移与 Wigner–Smith
 
-设 $(H,H_0)$ 为可散射对，且 $(H-i)^{-1}-(H_0-i)^{-1}\in\mathfrak S_1$。令 $S(E)\in U(n)$ 为散射矩阵、$\xi(E)$ 为谱移函数（SSF）。**Birman–Kreĭn 公式**给出
+设 $(H,H_0)$ 为可散射对，且 $(H-i)^{-1}-(H_0-i)^{-1}\in\mathfrak S_1$。令 $S(E)$ 为多通道散射矩阵；**无耗散**时 $S(E)\in U(n)$（酉），存在损耗/开系统时 $S(E)$ 次酉。本文在酉情形下采用 $\partial_E\arg\det S=\operatorname{tr}Q$；一般（次酉）情形以 $\Im\log\det S$ 与复时间延迟推广。令 $\xi(E)$ 为谱移函数（SSF）。**Birman–Kreĭn 公式**给出
 
 $$
 \det S(E)=\exp\!\big(\pm 2\pi i\,\xi(E)\big),\qquad
@@ -42,7 +42,14 @@ $$
 Q(E)=-\,i\,S(E)^\dagger\,\tfrac{dS}{dE}(E),
 $$
 
-在**酉散射**时 $Q(E)$ 为 Hermite，且 $\frac{1}{2\pi}\operatorname{tr}Q(E)=\xi'(E)$；存在耗散时需用**复时间延迟**推广（Chen–Anlage–Fyodorov, Phys. Rev. E, 2021），$Q$ 不再必为 Hermite/半正定。
+在**酉**散射时 $Q(E)=-iS^\dagger S'(E)$ 为 Hermitian（自伴），并且
+
+$$
+\partial_E\arg\det S(E)=\operatorname{tr}Q(E),\qquad
+\frac{1}{2\pi}\operatorname{tr}Q(E)=\xi'(E)=\operatorname{tr}(\rho-\rho_0)(E).
+$$
+
+存在耗散（$S$ 次酉）时改用 $\Im\log\det S$ 与复时间延迟推广（Chen–Anlage–Fyodorov, Phys. Rev. E, 2021）。
 
 **号记规范（统一取 $\hbar=1$）**：本文固定 **BK 正号**
 
@@ -99,9 +106,11 @@ $$
 :=-\frac{1}{2\pi i}\int_{\mathbb R}\!\big[h'(E)w_R(E)+h(E)w_R'(E)\big]\log\det S(E)\,dE,
 $$
 
-等价相位式：$\mathcal S_{\mathrm{scat}}(h;R)= -\frac{1}{2\pi}\int [h'(E) w_R(E)+h(E)\,w_R'(E)]\arg\det S(E)\,dE$。
+无条件取虚部：$\mathcal S_{\mathrm{scat}}(h;R)= -\frac{1}{2\pi}\int [h'(E) w_R(E)+h(E)\,w_R'(E)]\Im\log\det S(E)\,dE$。
 
-其中 $\log\det S$ 取沿实轴的连续分支；阈值/共振点按分段与极限理解。因 $h\in C_c^1$（或 $W^{1,1}$）且 $w_R\in \mathrm{PW}\subset L^\infty$（带限 $L^2$ 函数按 Paley–Wiener/Bernstein 不等式天然有界：$|f(x)|\le \tfrac{1}{2\pi}|\widehat f|_1\le \sqrt{\tfrac{\Omega}{\pi}}|f|_2$），分部积分的两端边界项为 0。束缚态原子项可按 Lloyd–Kreĭn 正则化并入；束缚能级 $E_b$ 贡献为 $\sum_b h(E_b)w_R(E_b)$ 离散项。
+（若已知**酉散射**，可用 $\arg\det S(E)$ 替代 $\Im\log\det S(E)$。）
+
+其中 $\log\det S$ 取沿实轴的连续分支；阈值/共振点按分段与极限理解。因 $h\in C_c^1$（或 $W^{1,1}$）且 $w_R\in \mathrm{PW}\subset L^\infty$（带限 $L^2$ 函数按 Paley–Wiener/Bernstein 不等式天然有界：$|f(x)|\le \frac{1}{2\pi}\|\widehat f\|_{1}\le \frac{1}{2\pi}\sqrt{2\Omega}\,\|\widehat f\|_{2}= \sqrt{\frac{\Omega}{\pi}}\ \|f\|_{2}$，其中用到 Plancherel $\|f\|_2^2=(2\pi)^{-1}\|\widehat f\|_2^2$），分部积分的两端边界项为 0。束缚态原子项可按 Lloyd–Kreĭn 正则化并入；束缚能级 $E_b$ 贡献为 $\sum_b h(E_b)w_R(E_b)$ 离散项。
 
 ---
 
@@ -109,7 +118,7 @@ $$
 
 ### 定理 A0（窗化 Birman–Kreĭn 恒等式；精确型）
 
-在 §0 假设下，取 $h\in C_c^1(\mathbb R)$（或 $W^{1,1}$），带限偶窗 $w_R\in L^\infty$。若 $(H-i)^{-1}-(H_0-i)^{-1}\in\mathfrak S_1$，则存在可积的谱移函数 $\xi$（适当权重下）与谱移测度 $d\xi$，使 Birman–Kreĭn 公式
+在 §0 假设下，取 $h\in C_c^1(\mathbb R)$（或 $W^{1,1}$），**偶窗** $w_R\in L^\infty$（若需 Nyquist/无混叠判据，则进一步假设 $w_R\in\mathsf{PW}$ 且为带限偶窗）。若 $(H-i)^{-1}-(H_0-i)^{-1}\in\mathfrak S_1$，则存在可积的谱移函数 $\xi$（适当权重下）与谱移测度 $d\xi$，使 Birman–Kreĭn 公式
 
 $$
 \det S(E)=\exp(2\pi i\,\xi(E))
@@ -128,7 +137,7 @@ $$
 =-\frac{1}{2\pi i}\int_{\mathbb R}\!\big[h'(E)w_R(E)+h(E)w_R'(E)\big]\log\det S(E)\,dE.
 $$
 
-若取**常值窗** $w_R\equiv 1$，则 $w_R'=0$，得 $\mathcal S_{\mathrm{spec}}(h;R)=-\frac{1}{2\pi i}\int h'(E)\log\det S(E)\,dE$。其中束缚态的原子项以 Lloyd–Kreĭn 正则化并入，$\log\det S$ 取沿实轴的连续分支。此外几乎处处
+若取**常值窗** $w_R\equiv 1$，则 $w_R'=0$，得 $\mathcal S_{\mathrm{spec}}(h;R)=-\frac{1}{2\pi i}\int h'(E)\log\det S(E)\,dE$。其中束缚态的原子项以 Lloyd–Kreĭn 正则化并入，$\log\det S$ 取沿实轴的连续分支。（注：该特例**不具带限性**，仅用于理论校核，不参与 Nyquist/Poisson 的"无混叠"判别。）此外在**酉散射**下几乎处处有
 
 $$
 \boxed{\ \partial_E\arg\det S(E)=\operatorname{tr}Q(E)=2\pi\,\operatorname{tr}\big(\rho-\rho_0\big)(E)\ }.
@@ -164,7 +173,7 @@ $$
 F(E):=w_R(E)\,g_h(E)=w_R(E)\,(h\!\star\!g)(E).
 $$
 
-（连续积分的理论恒等式仍以 $h\cdot g$ 记，滤波仅作用于采样与 alias 判据。）若 $\operatorname{supp}\widehat{w_R}\subset[-\Omega_w,\Omega_w]$、$\operatorname{supp}\widehat h\subset[-\Omega_h,\Omega_h]$，则因 $\operatorname{supp}(\widehat h\cdot \widehat g)\subset\operatorname{supp}\widehat h\cap\operatorname{supp}\widehat g$，被观测量的频域支集满足
+（连续积分的理论恒等式仍以 $h\times g$（点乘）记；采样/alias 分析采用 $g_h=h\!\star\!g$。）若 $\operatorname{supp}\widehat{w_R}\subset[-\Omega_w,\Omega_w]$、$\operatorname{supp}\widehat h\subset[-\Omega_h,\Omega_h]$，则因 $\operatorname{supp}(\widehat h\cdot \widehat g)\subset\operatorname{supp}\widehat h\cap\operatorname{supp}\widehat g$，被观测量的频域支集满足
 
 $$
 \operatorname{supp}\widehat F
@@ -230,7 +239,19 @@ $$
 L_\varphi(I):=\int_I \varphi'(E)\,dE=\pi\int_I \operatorname{tr}(\rho-\rho_0)(E)\,dE.
 $$
 
-**相位与正性假设**：定义 $\varphi(E)=\tfrac12\arg\det S(E)$，则 $\varphi'(E)=\pi\,\operatorname{tr}(\rho-\rho_0)(E)$。假设在所考察区间 $I$ 上 $\varphi'(E)\ge c_0\ge0$ 几乎处处；据此 $u=\varphi(E)/\pi$ 单调。在**相位坐标** $u=\varphi(E)/\pi$ 下，对应函数族等价于**带宽 $\pi$** 的 Paley–Wiener 模型（归一化后阈值常数为 1），从而可直接调用 Landau 的**必要**密度结论与 Balian–Low 的**不可能性**（临界密度下单窗良好局域 $\Rightarrow$ 无 Riesz 基/紧框架）。详见 Landau 原文（Acta Math., 1967）与 Encyclopedia of Math/Heil 的综述。
+**相位与正性假设**：定义
+
+$$
+\Theta(E):=\begin{cases}
+\arg\det S(E), & \text{酉散射},\\[2pt]
+\Im\log\det S(E), & \text{次酉（复时间延迟）},
+\end{cases}
+\qquad \varphi(E):=\tfrac12\,\Theta(E).
+$$
+
+在**酉**情形几乎处处有 $\varphi'(E)=\pi\,\operatorname{tr}(\rho-\rho_0)(E)$；次酉时 $\varphi$ 作为**相位刻度**使用，与密度的点态等式需按 §3 的推广理解（仍由窗化主等式得到积分/窗口化层面的等价）。为避免阈值/共振导致的相位跃迁，请将能段 $I$ 细分为若干子段，在每段内满足 $\varphi'(E)\ge c_0\ge 0$（必要时剔除零测集）。据此 $u=\varphi(E)/\pi$ 在每段内单调。
+
+在**相位坐标** $u=\varphi(E)/\pi$ 下，对应函数族等价于**带宽 $\pi$** 的 Paley–Wiener 模型（归一化后阈值常数为 1），从而可直接调用 Landau 的**必要**密度结论与 Balian–Low 的**不可能性**（临界密度下单窗良好局域 $\Rightarrow$ 无 Riesz 基/紧框架）。详见 Landau 原文（Acta Math., 1967）与 Encyclopedia of Math/Heil 的综述。
 
 ### 定理 D（Landau 必要密度：相位刻度版）
 
@@ -264,17 +285,25 @@ $$
 
 在 $\mathsf{PW}^{\mathrm{even}}_{\Omega}$ 上取 $K$ 个窗 $W=(w^{(1)},\dots,w^{(K)})$。对应的分析/合成算子诱导 Gram 矩阵 $G$。存在对偶窗族 $\widetilde W$ 使得重构稳定，且满足广义 Wexler–Raz 双正交；当 $K=1$ 且仅施加带限与区间能量集中约束时，频域收敛到 Slepian–Pollak（PSWF）情形。
 
-**稳定半径（奇性不增）**
+**稳定半径（条带解析与 Rouché 定理）**
 
-**条带全纯前提（沿用 §2）**：在 $(H-i)^{-1}-(H_0-i)^{-1}\in\mathfrak S_1$ 下，存在谱移测度 $d\xi$ 使 $\det S=\exp(2\pi i\,\xi)$ 与迹公式成立；其绝对连续部分满足 $\xi'(E)=\operatorname{tr}(\rho-\rho_0)(E)$（a.e.），离散原子对应束缚态。把 $\operatorname{tr}(\rho-\rho_0)=\xi'$ 视为谱移测度（分布）之密度；对 $h$ 的合适测试族，以**分布卷积**
+若 $(H-i)^{-1}-(H_0-i)^{-1}\in\mathfrak S_1$、谱移测度 $d\xi$ 在有界区间上全变差有限，且 $h,w_R\in\mathsf{PW}\cap L^1$，则分布卷积
 
 $$
 g_h(z):=\langle \xi',\,h(z-\cdot)\rangle
 $$
 
-定义 $g_h$。因 $h,w_R\in \mathrm{PW}$ 为指数型整函数，$g_h$ 与 $F(z)=w_R(z)\,g_h(z)$ 在任意有界条带域内给出**全纯延拓**；因此下述 **Rouché 型稳定半径** 适用于任意有界条带域 $D$。
+在任意有界条带 $\{z:\,|\Im z|<\tau\}$ 内解析，且 $F(z)=w_R(z)\,g_h(z)$ 同样在该条带解析并指数型增长有界。
 
-在**有限阶** EM 与 Nyquist–Poisson–EM 纪律下，窗化与近似不引入新奇点，极阶不升；对被观测函数 $F$ 与扰动 $\delta F$，若在有界条带域 $D$ 上 $\min_{\partial D}|F|>|\delta F|_{L^\infty(\partial D)}$（即 $|\delta F|_{L^\infty(\partial D)}<\min_{\partial D}|F|$），则 $D$ 内零点计数不变，个数与位置仅作 Rouché 型小偏移，据此得到零/极点的**稳定半径**（可用于相位跃迁与谱线定位的鲁棒性评估）。
+因此若在某有界条带域 $D$ 上
+
+$$
+\min_{\partial D}|F|> \|\delta F\|_{L^\infty(\partial D)},
+$$
+
+则由 **Rouché 定理**得 $D$ 内零点计数不变，从而得到零/极点位置的**稳定半径**（可用于相位跃迁与谱线定位的鲁棒性评估）。
+
+在**有限阶** EM 与 Nyquist–Poisson–EM 纪律下，窗化与近似不引入新奇点，极阶不升。
 
 ---
 
@@ -299,7 +328,7 @@ $$
 
 （i）$\delta'(E)=\partial_E\arg\det S(E)$：由多端口 S 参数频扫与相位展开获得；
 
-（ii）LDOS：$\mathrm{LDOS}_i(E)=-\frac{1}{\pi}\Im G^r_{ii}(E)$，由隧穿谱或场点读数获得（电/声/电磁体系适用）。标准公式为 $\mathrm{LDOS}(\mathbf r,E)=-(\pi)^{-1}\Im G^r(\mathbf r,\mathbf r;E)$；其与散射相位/矩阵的联系可由 Green 函数或 S 参数两路推得，参见 Souma–Niu（Phys. Rev. B **65**, 115307 (2002)）。光子/声子体系的 LDOS 亦沿用该定义（参见 Phys. Rev. E **63**, 046612 (2001) 及 **69**, 016609 (2004) 光子晶体实例）。
+（ii）LDOS：$\mathrm{LDOS}_i(E)=-\frac{1}{\pi}\Im G^r_{ii}(E)$，由隧穿谱或场点读数获得（电/声/电磁体系适用）。标准公式为 $\mathrm{LDOS}(\mathbf r,E)=-(\pi)^{-1}\Im G^r(\mathbf r,\mathbf r;E)$；其与散射相位/矩阵的联系可由 Green 函数或 S 参数两路推得，参见 Souma–Suzuki（Phys. Rev. B **65**, 115307 (2002)）。光子/声子体系的 LDOS 亦沿用该定义（参见 Phys. Rev. E **63**, 046612 (2001) 及 **69**, 016609 (2004) 光子晶体实例）。
 
 **采样管线约定**：进行等距采样与 Poisson-alias 检验时，先构造 $g_h:=h\!\star\!\mathrm{LDOS}_{\mathrm{rel}}$，实际被采样函数为 $F=w_R\cdot g_h$。
 
@@ -321,10 +350,10 @@ $$
 
 $$
 \boxed{\ \int h(E)\,\mathrm{LDOS}_{\mathrm{rel}}(E)\,w_R(E)\,dE
-=-\frac{1}{2\pi}\int \big[h'(E) w_R(E)+h(E)\,w_R'(E)\big]\arg\det S(E)\,dE\ +\ \mathcal E_R\ }.
+=-\frac{1}{2\pi}\int \big[h'(E) w_R(E)+h(E)\,w_R'(E)\big]\Im\log\det S(E)\,dE\ +\ \mathcal E_R\ }.
 $$
 
-**注**：$\mathrm{LDOS}_{\mathrm{rel}}=\operatorname{tr}(\rho-\rho_0)$，相位—LDOS 关系参见 Souma–Suzuki（Phys. Rev. B **65**, 115307 (2002)）。若 $w_R\equiv 1$，得 $\int h\,\mathrm{LDOS}_{\mathrm{rel}} = -\frac{1}{2\pi}\int h'\arg\det S + \mathcal E_R$。
+**注**：$\mathrm{LDOS}_{\mathrm{rel}}=\operatorname{tr}(\rho-\rho_0)$，相位—LDOS 关系参见 Souma–Suzuki（Phys. Rev. B **65**, 115307 (2002)）。**酉散射**时可用 $\arg\det S$ 替代 $\Im\log\det S$。若 $w_R\equiv 1$，得 $\int h\,\mathrm{LDOS}_{\mathrm{rel}} = -\frac{1}{2\pi}\int h'\,\Im\log\det S + \mathcal E_R$。
 
 并在（a）亚 Nyquist（有 alias）与（b）满足 Nyquist（无 alias）两端对比三分解误差的关断/收敛；"Wigner–Smith 均时延 = 开放体系 DOS"提供独立交叉核验。
 
