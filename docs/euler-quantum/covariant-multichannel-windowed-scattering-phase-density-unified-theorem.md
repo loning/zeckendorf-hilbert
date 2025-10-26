@@ -96,43 +96,63 @@ $$
 
 $$
 \mathcal S_{\mathrm{scat}}(h;R)
-:=\frac{1}{2\pi i}\int_{\mathbb R} h'(E)\,\log\det S(E)\,w_R(E)\,dE,
+:=-\frac{1}{2\pi i}\int_{\mathbb R}\!\big[h'(E)w_R(E)+h(E)w_R'(E)\big]\log\det S(E)\,dE,
 $$
 
-其中 $\log\det S$ 取沿实轴的连续分支；阈值/共振点按分段与极限理解。因 $h\in C_c^1$（或 $W^{1,1}$）且 $w_R\in \mathrm{PW}\subset L^\infty$（带限 $L^2$ 函数按 Paley–Wiener/Bernstein 不等式天然有界），分部积分的两端边界项为 0。束缚态原子项可按 Lloyd–Kreĭn 正则化并入；束缚能级 $E_b$ 贡献为 $\sum_b h(E_b)w_R(E_b)$ 离散项。
+等价相位式：$\mathcal S_{\mathrm{scat}}(h;R)= -\frac{1}{2\pi}\int [h'(E) w_R(E)+h(E)\,w_R'(E)]\arg\det S(E)\,dE$。
+
+其中 $\log\det S$ 取沿实轴的连续分支；阈值/共振点按分段与极限理解。因 $h\in C_c^1$（或 $W^{1,1}$）且 $w_R\in \mathrm{PW}\subset L^\infty$（带限 $L^2$ 函数按 Paley–Wiener/Bernstein 不等式天然有界：$|f(x)|\le \tfrac{1}{2\pi}|\widehat f|_1\le \sqrt{\tfrac{\Omega}{\pi}}|f|_2$），分部积分的两端边界项为 0。束缚态原子项可按 Lloyd–Kreĭn 正则化并入；束缚能级 $E_b$ 贡献为 $\sum_b h(E_b)w_R(E_b)$ 离散项。
 
 ---
 
 ## 2. 主定理（CCS）：窗化 Birman–Kreĭn 恒等与非渐近误差闭合
 
-### 定理 A（窗化 CCS 恒等式与三分解）
+### 定理 A0（窗化 Birman–Kreĭn 恒等式；精确型）
 
-在 §0 假设与带限窗设定下，并假设 $h\in C_c^1(\mathbb R)$（或 $W^{1,1}$）、$w_R\in L^\infty$、$(H-i)^{-1}-(H_0-i)^{-1}\in\mathfrak S_1$，则由 SSF/Lifshitz–Kreĭn 理论 $\int_{\mathbb R}\!|\operatorname{tr}(\rho-\rho_0)(E)|\,dE<\infty$，积分绝对收敛并有
-
-$$
-\boxed{\ \mathcal S_{\mathrm{spec}}(h;R)=\mathcal S_{\mathrm{scat}}(h;R)+\mathcal E_R\ },
-$$
-
-且几乎处处
+在 §0 假设下，取 $h\in C_c^1(\mathbb R)$（或 $W^{1,1}$），带限偶窗 $w_R\in L^\infty$。若 $(H-i)^{-1}-(H_0-i)^{-1}\in\mathfrak S_1$，则存在可积的谱移函数 $\xi$（适当权重下）与谱移测度 $d\xi$，使 Birman–Kreĭn 公式
 
 $$
-\boxed{\
-\frac{d}{dE}\arg\det S(E)=2\pi\,\xi'(E)=2\pi\,\operatorname{tr}\big(\rho-\rho_0\big)(E)\ }.
+\det S(E)=\exp(2\pi i\,\xi(E))
 $$
 
-其中误差 $\mathcal E_R$ 具有**Poisson–EM–Tail 三分解**：
+与 Lifshitz–Kreĭn 迹公式成立。其绝对连续部分满足 $\xi'(E)=\operatorname{tr}(\rho-\rho_0)(E)$（a.e.），离散原子对应束缚态。据此有**精确恒等式**
 
 $$
-\boxed{\ \mathcal E_R=\mathcal E_{\mathrm{alias}}+\mathcal E_{\mathrm{EM}}+\mathcal E_{\mathrm{tail}}.\ }
+\boxed{\ \mathcal S_{\mathrm{spec}}(h;R)=\mathcal S_{\mathrm{scat}}(h;R)\ },
 $$
 
-**证明要点（提纲）**
+即
+
+$$
+\int_{\mathbb R} h(E)\,\operatorname{tr}(\rho-\rho_0)(E)\,w_R(E)\,dE
+=-\frac{1}{2\pi i}\int_{\mathbb R}\!\big[h'(E)w_R(E)+h(E)w_R'(E)\big]\log\det S(E)\,dE.
+$$
+
+若取**常值窗** $w_R\equiv 1$，则 $w_R'=0$，得 $\mathcal S_{\mathrm{spec}}(h;R)=-\frac{1}{2\pi i}\int h'(E)\log\det S(E)\,dE$。其中束缚态的原子项以 Lloyd–Kreĭn 正则化并入，$\log\det S$ 取沿实轴的连续分支。此外几乎处处
+
+$$
+\boxed{\ \partial_E\arg\det S(E)=\operatorname{tr}Q(E)=2\pi\,\operatorname{tr}\big(\rho-\rho_0\big)(E)\ }.
+$$
+
+**说明**：这是**理论等式**，不含数值误差。其来源为 BK 公式 $\det S=\exp(2\pi i\,\xi)$ 与 $\xi'=\operatorname{tr}(\rho-\rho_0)$，以及 $\operatorname{tr}Q=-i\,\operatorname{tr}(S^\dagger S')=-i\,\partial_E\log\det S$（酉散射）。号记正负见 Borthwick 与 Strohmaier 等综述；本文统一取"BK 正号"，相应式子一致改号即可。
+
+**证明要点**：
 
 (i) 谱侧：由 Herglotz 表示与非切边界值 $\operatorname{tr}\rho=\pi^{-1}\Im\operatorname{tr} m(\cdot+i0)$ 得 $\mathcal S_{\mathrm{spec}}$ 的 Stieltjes 形式。
 
-(ii) 散射侧：由 Birman–Kreĭn $\det S=\exp(2\pi i\xi)$ 与 $\xi'=\operatorname{tr}(\rho-\rho_0)$ 对 $\int h'(E)\log\det S\,w_R$ 作分部；因 $h\in C_c^1$（或 $W^{1,1}$）且 $w_R\in L^\infty$，两端边界项为零，匹配即得主恒等式。
+(ii) 散射侧：由 $\partial_E\log\det S(E)=2\pi i\,\operatorname{tr}(\rho-\rho_0)(E)$（BK 与 WS 链）得到 $\mathcal S_{\mathrm{spec}}=\frac{1}{2\pi i}\int h\,w_R\,\partial_E\log\det S$。对 $\int h'w_R\log\det S$ 分部积分：$\int h'w_R\log\det S = -\int hw_R\,\partial_E\log\det S - \int hw_R'\log\det S$（因 $h\in C_c^1$ 且 $h|_{\partial\operatorname{supp}h}=0$，边界项为零）。据此得上述恒等式。∎
 
-(iii) 误差闭合：等距采样 + Poisson 求和（DLMF §1.8(iv)）给出 alias 折叠项；有限阶 EM 公式（DLMF §2.10(i)）给出和–积之差；窗外截断给出尾项；带限与 Nyquist 条件下 $\mathcal E_{\mathrm{alias}}=0$。∎
+### 定理 A1（离散化/采样估计的非渐近三分解误差）
+
+当用**等距采样 + 有限和**近似 $\mathcal S_{\mathrm{spec}}$ 或 $\mathcal S_{\mathrm{scat}}$ 时，近似误差分解为
+
+$$
+\boxed{\ \mathcal E_R=\mathcal E_{\mathrm{alias}}+\mathcal E_{\mathrm{EM}}+\mathcal E_{\mathrm{tail}}\ },
+$$
+
+其中 $\mathcal E_{\mathrm{alias}}$ 来自 Poisson 折叠（Nyquist 条件下可为 0），$\mathcal E_{\mathrm{EM}}$ 由 Euler–Maclaurin 公式给出有限阶余项上界，$\mathcal E_{\mathrm{tail}}$ 由窗外截断产生。Poisson 与 EM 条目见 NIST DLMF §1.8(iv), §2.10。
+
+**工作定义**：令 $F(E)=w_R(E)\,(h\!\star\!g)(E)$，$g(E)=\operatorname{tr}(\rho-\rho_0)(E)$。用步长 $\Delta$ 在 $[a,b]$ 等距采样，取有限和 $\Delta\sum_{k:\,E_k\in[a,b]}F(E_k)$ 近似 $\int_a^b F(E)\,dE$。其近似误差分解为别名项 $\mathcal E_{\mathrm{alias}}$（由 Poisson 给出，Nyquist 下为 0）、EM 余项 $\mathcal E_{\mathrm{EM}}$（要求 $F\in C^{2p}([a,b])$ 或足够光滑）、以及尾项 $\mathcal E_{\mathrm{tail}}$（由 $|E|>T$ 的截断引入）。带限与 Nyquist 条件下 $\mathcal E_{\mathrm{alias}}=0$。∎
 
 ### 命题 A.1（alias 消失的带宽判据）
 
@@ -158,7 +178,7 @@ $$
 \boxed{\ \Delta<\frac{\pi}{\Omega_w+\Omega_h}\ },
 $$
 
-（或"$\le$"且端点强零）则 $\mathcal E_{\mathrm{alias}}=0$。该 Nyquist 条件与 Poisson 折叠阈值 $|\xi|=\pi/\Delta$ 一致（DLMF §1.8(iv)）。
+（或"$\le$"且端点强零）则 $\mathcal E_{\mathrm{alias}}=0$。更一般地，若 $\operatorname{supp}\widehat F\subset[-\Omega_F,\Omega_F]$ 且 $\Delta<\pi/\Omega_F$（或 $\le$ 且端点强零），则 $\mathcal E_{\mathrm{alias}}=0$。在本文框架下 $\Omega_F\le \Omega_w+\Omega_h$。该 Nyquist 条件与 Poisson 折叠阈值 $|\xi|=\pi/\Delta$ 一致（DLMF §1.8(iv)）。
 
 ### 命题 A.2（EM 余项与尾项上界）
 
@@ -171,7 +191,7 @@ $$
 \le \|h\|_{L^1}\,\|w_R\mathbf 1_{|E|>T}\|_{L^\infty}\,\|\operatorname{tr}(\rho-\rho_0)\|_{L^1(|E|>T)}.
 $$
 
-其中 $C_{2p}$ 由 Bernoulli 数给定（DLMF §2.10.E1）；Bernoulli 多项式与常数均取自 DLMF。
+其中 $C_{2p}$ 由 Bernoulli 数 $B_{2p}$ 给定（DLMF §2.10.E1；Bernoulli 数规范见 §4.19）；Bernoulli 多项式与常数均取自 DLMF。
 
 ---
 
@@ -189,16 +209,16 @@ $$
 
 ### 定理 C（Friedel/WS 链：相位导数 = 相对密度）
 
-在 §0.2 条件与本文号记规范下，几乎处处
+在 §0.2 条件与本文号记规范下，**当 $S(E)$ 酉时**，$Q(E)=-iS^\dagger S'(E)$ 为 Hermitian，且几乎处处
 
 $$
 \boxed{
-\frac{1}{2\pi}\operatorname{tr}Q(E)=\xi'(E)=\operatorname{tr}\big(\rho-\rho_0\big)(E),\qquad
-\partial_E\arg\det S(E)=\operatorname{tr}Q(E)=2\pi\,\operatorname{tr}\big(\rho-\rho_0\big)(E).
+\partial_E\arg\det S(E)=\operatorname{tr}Q(E),\qquad
+\frac{1}{2\pi}\operatorname{tr}Q(E)=\xi'(E)=\operatorname{tr}\big(\rho-\rho_0\big)(E).
 }
 $$
 
-注：酉散射下 $Q$ 为 Hermite，但不保证半正定；有耗散时需用复时间延迟推广（Chen–Anlage–Fyodorov, Phys. Rev. E, 2021），$Q$ 不再必为 Hermite/半正定。
+**酉/非酉条件分叉**：当 $S(E)$ **酉**时，$Q(E)$ 为 Hermitian，且 $\partial_E\arg\det S(E)=\operatorname{tr}Q(E)$，$\tfrac{1}{2\pi}\operatorname{tr}Q(E)=\xi'(E)=\operatorname{tr}(\rho-\rho_0)(E)$。$Q$ 为 Hermitian 但不必半正定（混合通道、阈值附近可能出现负特征值）。当存在损耗（$S$ 次酉）时，采用 Chen–Anlage–Fyodorov 的**复时间延迟**推广（Phys. Rev. E **103**, L050203 (2021)），此时 $Q$ 不再必为 Hermitian/半正定，相关等价需要相应解释。
 
 ---
 
@@ -210,7 +230,7 @@ $$
 L_\varphi(I):=\int_I \varphi'(E)\,dE=\pi\int_I \operatorname{tr}(\rho-\rho_0)(E)\,dE.
 $$
 
-**相位与正性假设**：定义 $\varphi(E)=\tfrac12\arg\det S(E)$，则 $\varphi'(E)=\pi\,\operatorname{tr}(\rho-\rho_0)(E)$。假设在所考察区间 $I$ 上 $\varphi'(E)\ge c_0\ge0$ 几乎处处；据此 $u=\varphi(E)/\pi$ 单调，Landau 阈值常数为 1（$\mathrm{PW}_\pi$ 模型）。
+**相位与正性假设**：定义 $\varphi(E)=\tfrac12\arg\det S(E)$，则 $\varphi'(E)=\pi\,\operatorname{tr}(\rho-\rho_0)(E)$。假设在所考察区间 $I$ 上 $\varphi'(E)\ge c_0\ge0$ 几乎处处；据此 $u=\varphi(E)/\pi$ 单调。在**相位坐标** $u=\varphi(E)/\pi$ 下，对应函数族等价于**带宽 $\pi$** 的 Paley–Wiener 模型（归一化后阈值常数为 1），从而可直接调用 Landau 的**必要**密度结论与 Balian–Low 的**不可能性**（临界密度下单窗良好局域 $\Rightarrow$ 无 Riesz 基/紧框架）。详见 Landau 原文（Acta Math., 1967）与 Encyclopedia of Math/Heil 的综述。
 
 ### 定理 D（Landau 必要密度：相位刻度版）
 
@@ -234,7 +254,7 @@ $$
 
 ### 推论 D.1（Balian–Low 不可能性与多窗必要性）
 
-临界密度下（等价于 Gabor 条件 $ab=1$ 或 $\underline D_\varphi=1$）若要求单窗良好相位—频率局域，则不能形成 Riesz 基/紧框架；稳定采样需**多窗/超采样**或放宽局域性。该版本为**帧/基不可兼得**型 Balian–Low 定理（参见 Encyclopedia of Math；Heil–Powell 综述）。
+临界密度下（即 $\underline D_\varphi=1$；在**相位坐标归一化模型**下对应于 Gabor 临界密度 $ab=1$ 的情形）若要求单窗良好相位—频率局域，则不能形成 Riesz 基/紧框架；稳定采样需**多窗/超采样**或放宽局域性。该版本为**帧/基不可兼得**型 Balian–Low 定理（参见 Encyclopedia of Math；Heil 综述关于密度定理的历史与演变，以及 Landau (Acta Math., 1967)）。
 
 ---
 
@@ -246,15 +266,15 @@ $$
 
 **稳定半径（奇性不增）**
 
-**条带全纯前提（沿用 §2）**：由 $(H-i)^{-1}-(H_0-i)^{-1}\in\mathfrak S_1$ 得 $g(E)=\operatorname{tr}(\rho-\rho_0)(E)\in L^1(\mathbb R)$。又因 $h,w_R\in \mathrm{PW}$ 为指数型整函数，定义
+**条带全纯前提（沿用 §2）**：在 $(H-i)^{-1}-(H_0-i)^{-1}\in\mathfrak S_1$ 下，存在谱移测度 $d\xi$ 使 $\det S=\exp(2\pi i\,\xi)$ 与迹公式成立；其绝对连续部分满足 $\xi'(E)=\operatorname{tr}(\rho-\rho_0)(E)$（a.e.），离散原子对应束缚态。把 $\operatorname{tr}(\rho-\rho_0)=\xi'$ 视为谱移测度（分布）之密度；对 $h$ 的合适测试族，以**分布卷积**
 
 $$
-g_h(z):=\int_{\mathbb R}h(z-E')\,g(E')\,dE'
+g_h(z):=\langle \xi',\,h(z-\cdot)\rangle
 $$
 
-于任意有界条带内收敛并给出 $g_h$ 的全纯延拓，$F(z)=w_R(z)\,g_h(z)$ 亦全纯；因此下述 **Rouché 型稳定半径** 适用于任意有界条带域 $D$。
+定义 $g_h$。因 $h,w_R\in \mathrm{PW}$ 为指数型整函数，$g_h$ 与 $F(z)=w_R(z)\,g_h(z)$ 在任意有界条带域内给出**全纯延拓**；因此下述 **Rouché 型稳定半径** 适用于任意有界条带域 $D$。
 
-在**有限阶** EM 与 Nyquist–Poisson–EM 纪律下，窗化与近似不引入新奇点，极阶不升；对被观测函数 $F$ 与扰动 $\delta F$，若 $|\delta F|_{L^\infty(\partial D)}<\min_{\partial D}|F|$，则 $D$ 内零点个数与位置仅作 Rouché 型小偏移，据此得到零/极点的**稳定半径**（可用于相位跃迁与谱线定位的鲁棒性评估）。
+在**有限阶** EM 与 Nyquist–Poisson–EM 纪律下，窗化与近似不引入新奇点，极阶不升；对被观测函数 $F$ 与扰动 $\delta F$，若在有界条带域 $D$ 上 $\min_{\partial D}|F|>|\delta F|_{L^\infty(\partial D)}$（即 $|\delta F|_{L^\infty(\partial D)}<\min_{\partial D}|F|$），则 $D$ 内零点计数不变，个数与位置仅作 Rouché 型小偏移，据此得到零/极点的**稳定半径**（可用于相位跃迁与谱线定位的鲁棒性评估）。
 
 ---
 
@@ -279,7 +299,7 @@ $$
 
 （i）$\delta'(E)=\partial_E\arg\det S(E)$：由多端口 S 参数频扫与相位展开获得；
 
-（ii）LDOS：$\mathrm{LDOS}_i(E)=-\frac{1}{\pi}\Im G^r_{ii}(E)$，由隧穿谱或场点读数获得（电/声/电磁体系适用）。此式为标准局部态密度公式，在多物理体系广泛使用；电磁/声学情形需按场型/规范做相应解释。LDOS 与散射矩阵/相位的关系可由 Green 函数或 S 参数两路核验（参见 Phys. Rev. B **65**, 115307 (2002)）。
+（ii）LDOS：$\mathrm{LDOS}_i(E)=-\frac{1}{\pi}\Im G^r_{ii}(E)$，由隧穿谱或场点读数获得（电/声/电磁体系适用）。标准公式为 $\mathrm{LDOS}(\mathbf r,E)=-(\pi)^{-1}\Im G^r(\mathbf r,\mathbf r;E)$；其与散射相位/矩阵的联系可由 Green 函数或 S 参数两路推得，参见 Souma–Niu（Phys. Rev. B **65**, 115307 (2002)）。光子/声子体系的 LDOS 亦沿用该定义（参见 Phys. Rev. E **63**, 046612 (2001) 及 **69**, 016609 (2004) 光子晶体实例）。
 
 **采样管线约定**：进行等距采样与 Poisson-alias 检验时，先构造 $g_h:=h\!\star\!\mathrm{LDOS}_{\mathrm{rel}}$，实际被采样函数为 $F=w_R\cdot g_h$。
 
@@ -300,9 +320,11 @@ $$
 **主等式验证（单/多通道）**
 
 $$
-\int h(E)\,\mathrm{LDOS}_{\mathrm{rel}}(E)\,w_R(E)\,dE
-=\frac{1}{2\pi}\int h'(E)\,\arg\det S(E)\,w_R(E)\,dE\ +\ \mathcal E_R,
+\boxed{\ \int h(E)\,\mathrm{LDOS}_{\mathrm{rel}}(E)\,w_R(E)\,dE
+=-\frac{1}{2\pi}\int \big[h'(E) w_R(E)+h(E)\,w_R'(E)\big]\arg\det S(E)\,dE\ +\ \mathcal E_R\ }.
 $$
+
+**注**：$\mathrm{LDOS}_{\mathrm{rel}}=\operatorname{tr}(\rho-\rho_0)$，相位—LDOS 关系参见 Souma–Suzuki（Phys. Rev. B **65**, 115307 (2002)）。若 $w_R\equiv 1$，得 $\int h\,\mathrm{LDOS}_{\mathrm{rel}} = -\frac{1}{2\pi}\int h'\arg\det S + \mathcal E_R$。
 
 并在（a）亚 Nyquist（有 alias）与（b）满足 Nyquist（无 alias）两端对比三分解误差的关断/收敛；"Wigner–Smith 均时延 = 开放体系 DOS"提供独立交叉核验。
 
@@ -401,17 +423,18 @@ $$
 1. Louis de Branges, *Hilbert Spaces of Entire Functions*, Prentice-Hall, 1968（HB/EB 空间原典）。
 2. Christian Remling, *Spectral Theory of Canonical Systems*, De Gruyter, 2018（规范系统现代教科书）。
 3. A. Strohmaier 等, *The Birman–Kreĭn formula for differential forms and electromagnetic scattering*, Bull. London Math. Soc., 2023（BK 现代处理；含号记说明）。
-4. D. Borthwick, *Birman–Kreĭn and scattering phase*, arXiv:2110.06370（BK 与相位/波迹联系）。
-5. A. Grabsch, D.V. Savin, C. Texier, *Wigner–Smith time-delay matrix in chaotic cavities with non-ideal contacts*, Phys. Rev. E, 2018（WS 矩阵综述/统计与 DOS 关系）。
-6. NIST DLMF, §1.8(iv)（Poisson）、§2.10（Euler–Maclaurin）。
-7. H. J. Landau, *Necessary density conditions for sampling and interpolation of certain entire functions*, Acta Math., 1967（采样/插值必要密度）。
-8. Encyclopedia of Mathematics, *Balian–Low theorem*；C. Heil, *History and evolution of the density theorem*, 2012（B–L 不可能性与 Gabor 密度）。
-9. D. Slepian, H. O. Pollak, *Prolate Spheroidal Wave Functions, Fourier Analysis and Uncertainty*, Bell Syst. Tech. J., 1961（PSWF；能量集中与带限极值）。
-10. A. Asatryan 等, *Two-dimensional Green's function and local density of states in photonic crystals*, Phys. Rev. E, 2001（$\mathrm{LDOS}=-(\pi)^{-1}\Im G^r_{ii}$ 实例）。
+4. D. Borthwick, *Birman–Kreĭn and scattering phase*, arXiv:2110.06370（BK 与相位/波迹联系；号记差异与相位导数关系）。
+5. J. Behrndt, M. Malamud, H. Neidhardt, *Trace formulae for dissipative and coupled scattering systems*（解算子差为迹类时 SSF 的存在与 BK 成立）。
+6. A. Grabsch, D.V. Savin, C. Texier, *Wigner–Smith time-delay matrix in chaotic cavities with non-ideal contacts*, Phys. Rev. E, 2018（WS 矩阵综述/统计与 DOS 关系）。
+7. NIST DLMF, §1.8(iv)（Poisson 求和）、§2.10（Euler–Maclaurin；含常数与 Bernoulli 数）、§4.19（Bernoulli 数规范 $B_{2p}$）、§3.5（复合求积应用）。
+8. H. J. Landau, *Necessary density conditions for sampling and interpolation of certain entire functions*, Acta Math. **117** (1967)（采样/插值必要密度；阈值常数）。
+9. Encyclopedia of Mathematics, *Balian–Low theorem*；C. Heil, *History and evolution of the density theorem* (2012)（B–L 不可能性与 Gabor 密度；密度定理历史）。
+10. D. Slepian, H. O. Pollak, *Prolate Spheroidal Wave Functions, Fourier Analysis and Uncertainty*, Bell Syst. Tech. J., 1961（PSWF；能量集中与带限极值）。
 11. L. Chen, A. M. Fyodorov, S. M. Anlage, *Generalization of Wigner time delay to subunitary scattering systems*, Phys. Rev. E **103**, L050203 (2021)（耗散/非酉体系之复时间延迟）。
 12. I. Daubechies, *Gabor Time-Frequency Lattices and the Wexler–Raz Identity*, J. Fourier Anal. Appl., 1995（广义 Wexler–Raz）。
 13. Y. V. Fyodorov, D. V. Savin, *Resonance scattering of waves in chaotic systems*, in *The Oxford Handbook of Random Matrix Theory* (2011)（DOS–散射矩阵关系综述）。
-14. T. Kottos, U. Smilansky, *Quantum Chaos on Graphs*, Phys. Rev. Lett. **79**, 4794 (1997)；A. A. Clerk 等, *Local density of states and scattering matrix in quasi-one-dimensional systems*, Phys. Rev. B **65**, 115307 (2002)（LDOS 与 S 矩阵/相位联系）。
+14. S. Souma, A. Suzuki, *Local density of states and scattering matrix in quasi-one-dimensional systems*, Phys. Rev. B **65**, 115307 (2002)（LDOS 与 S 矩阵/相位联系的标准公式）。
+15. A. Asatryan 等, *Two-dimensional Green's function and local density of states in photonic crystals*, Phys. Rev. E **63**, 046612 (2001)；A. A. Asatryan 等, *Density of states functions for photonic crystals*, Phys. Rev. E **69**, 016609 (2004)（光子晶体中 LDOS 的 Green 函数定义与实算）。
 
 ---
 
