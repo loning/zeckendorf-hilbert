@@ -162,6 +162,9 @@
 - [EBOC：永恒-静态块观察-计算统一理论](./ca/eboc-unified-theory.md)
     - [EBOC: Eternal-Block Observer-Computing Unified Theory](./ca/eboc-unified-theory_en.md)
 
+- [EBOC-Graph 图论扩展]()
+    - [EBOC-Graph：静态块宇宙的测量—提交统一理论](./graph/eboc-graph-measurement-commit-unified-theory.md)
+
 - [Euler-Quantum 统一量子理论]()
     - [窗化信息几何量子测量统一框架](./euler-quantum/wsig-qm-unified-quantum-measurement-framework.md)
     - [宇宙数学结构理论](./euler-quantum/ums-mathematical-structure-of-universe.md)
