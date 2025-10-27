@@ -162,6 +162,14 @@
 - [EBOC：永恒-静态块观察-计算统一理论](./ca/eboc-unified-theory.md)
     - [EBOC: Eternal-Block Observer-Computing Unified Theory](./ca/eboc-unified-theory_en.md)
 
+- [Euler-Quantum 统一量子理论]()
+    - [窗化信息几何量子测量统一框架](./euler-quantum/wsig-qm-unified-quantum-measurement-framework.md)
+    - [宇宙数学结构理论](./euler-quantum/ums-mathematical-structure-of-universe.md)
+    - [协变多通道窗化散射相位密度统一定理](./euler-quantum/covariant-multichannel-windowed-scattering-phase-density-unified-theorem.md)
+    - [Born-Pointer-Windows三位一体定理](./euler-quantum/trinity-theorem-born-pointer-windows.md)
+    - [测量-Born-KL-Pointer基础统一理论](./euler-quantum/unified-measurement-born-kl-pointer-basis.md)
+    - [相位导数谱密度窗化读出理论](./euler-quantum/phase-derivative-spectral-density-windowed-readout.md)
+
 - [Euler 系列]()
     - [S0. 相位–尺度母映射与欧拉–ζ–素数的镜像统一](./euler/s0-phase-scale-mother-mapping-unified-theory.md)
     - [S1. 母映射的解析域与可积性基线](./euler/s1-mother-mapping-analytic-domain-integrability.md)
@@ -174,6 +182,22 @@
     - [S8. 离散一致逼近与湮灭](./euler/s8-discrete-uniform-approximation-annihilation.md)
     - [S9. Pretentious 与近周期–指数和](./euler/s9-pretentious-almost-periodic-exponential-sums.md)
     - [S10. Amoeba 几何与增长论](./euler/s10-amoeba-geometry-growth-theory.md)
+    - [S11. 迹公式接口（Selberg / Kuznetsov）](./euler/s11-trace-formula-interface.md)
+    - [S12. 近似功能方程、mollifier 与共振法](./euler/s12-approximate-functional-equation-mollifier.md)
+    - [S13. 大值与 Ω-下界](./euler/s13-large-values-omega-lower-bounds.md)
+    - [S14. de Branges / Beurling–Nyman 界面](./euler/s14-de-branges-beurling-nyman-interface.md)
+    - [S15. Weyl–Heisenberg 酉系统与完成功能方程的算子等价](./euler/s15-weyl-heisenberg-unitary-system.md)
+    - [S16. de Branges–Krein 规范系统与完成函数的谱模型](./euler/s16-de-branges-krein-canonical-system.md)
+    - [S17. 散射算子与完成功能方程的算子化等价](./euler/s17-scattering-operator-functional-equation.md)
+    - [S18. 轨道—谱窗化不等式](./euler/s18-orbit-spectral-windowing-inequality.md)
+    - [S19. 谱图与 Ihara ζ](./euler/s19-spectral-graph-ihara-zeta.md)
+    - [S20. 交换算子的信息几何：BN 投影—KL 代价—灵敏度不等式](./euler/s20-bregman-kl-sensitivity-inequality.md)
+    - [S21. 连续谱阈值与奇性稳定性](./euler/s21-continuous-spectrum-threshold-singularity-stability.md)
+    - [S22. 窗/核最优化](./euler/s22-window-kernel-optimization.md)
+    - [S23. 多窗/多核协同优化](./euler/s23-multi-window-kernel-optimization.md)
+    - [S24. 带限偶子空间上的紧框架与对偶窗](./euler/s24-tight-frames-dual-windows-band-limited.md)
+    - [S25. 非平稳 Weyl–Heisenberg 框架（对数/Mellin 模型）](./euler/s25-nonstationary-weyl-mellin-frames-tight-dual.md)
+    - [S26. 相位密度与稳定性：de Branges–Mellin 框架下的采样—插值—帧障碍](./euler/s26-phase-density-sampling-interpolation-frame-barriers.md)
 
 
 
