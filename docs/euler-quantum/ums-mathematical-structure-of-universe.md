@@ -15,11 +15,11 @@ $$
 \boxed{\, d\mu_{\varphi}(E)\ :=\ \frac{\varphi'(E)}{\pi}\,dE\ =\ \frac{1}{2\pi}\,\operatorname{tr}\mathsf Q(E)\,dE\ =\ \rho_{\mathrm{rel}}(E)\,dE\ }\ \ \text{（a.c. 谱上 a.e.）}\,
 $$
 
-（上式在 a.c. 谱上 a.e. 成立，$\operatorname{Arg}\det S$ 取**连续分支**；跨阈值/原子点以 $\Delta\mu_\varphi=\mu_\varphi(\{E_*\})$ **跳跃拼接**。）
+（上式在 a.c. 谱上 a.e. 成立，$\operatorname{Arg}\det S$ 取**连续分支**；跨阈值/原子点以 $\Delta\mu_\varphi=\mu_\varphi(\{E_*\})$ **跳跃拼接**，对应谱移函数 $\xi(E)$ 的跳跃与束缚态/阈值多重度一致——在 Levinson 型定理语境下，谱移 $\xi$ 的跳跃量等于该能量处的束缚态/半束缚态个数。）
 
 其中 $\mathsf Q(E)=-i\,S^\dagger(E)\,S'(E)$ 为 Wigner–Smith 群延迟矩阵，$\rho_{\mathrm{rel}}(E)=-\xi'(E)$ 为 Birman–Kreĭn 谱移密度（采用 $\det S(E)=e^{-2\pi i\,\xi(E)}$ 的约定）。在多通道情形，总相位定义为 $\varphi(E):=\frac{1}{2}\operatorname{Arg}\det S(E)$（取连续分支）。
 
-**规范化说明（统一）**：本文将 $\mu_\varphi$ 视为**局部有限的有符号 Radon 测度**，作 Lebesgue 分解 $\mu_\varphi=\mu_\varphi^{\mathrm{ac}}+\mu_\varphi^{\mathrm{s}}+\mu_\varphi^{\mathrm{pp}}$，并作 Jordan 分解 $\mu_\varphi=\mu_+-\mu_-$（$\mu_\pm\ge0$）。**当且仅当** $\mu_- \equiv 0$（即 $\mu_\varphi\ge0$）时，存在 Herglotz 函数 $m$ 使 $\pi^{-1}\Im m(E+i0)=\rho_{\mathrm{rel}}(E)$（a.e.），并由**trace-normed** DBK 规范系统实现**全局**表示；否则仅在 $\rho_{\mathrm{rel}}>0$ 的 a.c. 分段建立**局部**表示。其**绝对连续部分**满足
+**规范化说明（统一）**：本文将 $\mu_\varphi$ 视为**局部有限的有符号 Radon 测度**，作 Lebesgue 分解 $\mu_\varphi=\mu_\varphi^{\mathrm{ac}}+\mu_\varphi^{\mathrm{s}}+\mu_\varphi^{\mathrm{pp}}$，并作 Jordan 分解 $\mu_\varphi=\mu_+-\mu_-$（$\mu_\pm\ge0$）。当 $\mu_\varphi$ 为非负 Borel 测度且满足 Herglotz 表示的标准增长/可积条件（例如 $\int (1+E^2)^{-1}\,d\mu_\varphi(E)<\infty$，超出部分吸收到 $a+bz$ 项）时，存在 Herglotz 函数 $m$ 使 $\pi^{-1}\Im m(E+i0)=\rho_{\mathrm{rel}}(E)$（a.e.），并在恰当规范化下（消去 $a+bz$ 自由度）由**trace-normed** DBK 规范系统实现**全局**表示；若 $\mu_\varphi$ 含负部，仅能在 $\rho_{\mathrm{rel}}>0$ 的 a.c. 分段建立**局部**表示。其**绝对连续部分**满足
 
 $$
 \boxed{\ d\mu_\varphi^{\mathrm{ac}}(E)=\rho_{\mathrm{rel}}(E)\,dE=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)\,dE=\frac{\varphi'(E)}{\pi}\,dE\ \ \text{(a.e.)}\ }\,.
@@ -39,15 +39,15 @@ $$
 
 ## 0. 预备与号记
 
-**0.1 散射与群延迟。** 设 $S(E)\in U(N)$ 可微，Wigner–Smith 群延迟矩阵定义为 $\mathsf Q(E)=-i\,S^\dagger(E)\,S'(E)$。对酉 $S$ 有 $S^\dagger S'=(S^{-1}S')$ 反厄米，故迹纯虚。由 Jacobi 公式 $\tfrac{d}{dE}\log\det S=\operatorname{tr}(S^{-1}S')$，且 $S^{-1}=S^\dagger$（酉），得 $\tfrac{d}{dE}\operatorname{Arg}\det S=\Im\,\operatorname{tr}(S^\dagger S')$；于是
+**0.1 散射与群延迟。** 设 $S(E)\in U(N)$ 在 a.c. 谱上具**弱导数**或**有界变差**，Wigner–Smith 群延迟矩阵定义为 $\mathsf Q(E)=-i\,S^\dagger(E)\,S'(E)$，其中 $S'(E)$ 按**分布导数**理解。对酉 $S$ 有 $S^\dagger S'=(S^{-1}S')$ 反厄米，故迹纯虚。由 Jacobi 公式 $\tfrac{d}{dE}\log\det S=\operatorname{tr}(S^{-1}S')$，且 $S^{-1}=S^\dagger$（酉），得 $\tfrac{d}{dE}\operatorname{Arg}\det S=\Im\,\operatorname{tr}(S^\dagger S')$；于是
 
 $$
 \operatorname{tr}\mathsf Q(E)=-i\,\operatorname{tr}\!\big(S^\dagger S'(E)\big)=\Im\,\operatorname{tr}\!\big(S^\dagger S'(E)\big)=\frac{d}{dE}\operatorname{Arg}\det S(E)\ \ \text{（取连续分支，a.c. 谱上 a.e. 成立）},
 $$
 
-单通道 $S(E)=e^{2i\varphi(E)}$ 时 $\operatorname{tr}\mathsf Q(E)=2\,\varphi'(E)$。
+单通道 $S(E)=e^{2i\varphi(E)}$ 时 $\operatorname{tr}\mathsf Q(E)=2\,\varphi'(E)$。跨阈值/原子点时不要求处处可微，而是通过跳跃 $\Delta\mu_\varphi$ 拼接。
 
-**记号约定**：下文中"a.c."表绝对连续谱区；"a.e."指相对于 Lebesgue 测度的几乎处处。
+**记号约定**：下文中"a.c."表绝对连续谱区；"a.e."指相对于 Lebesgue 测度的几乎处处。$\mathsf Q$ 的定义域为 a.c. 谱区的 a.e. 点集，在该区间外（阈值、原子点）用谱测度的跳跃部分 $\mu_\varphi^{\mathrm{pp}}$ 描述。
 
 **多通道刻度化相位**：令 $\varphi(E):=\frac{1}{2}\operatorname{Arg}\det S(E)$（选取连续分支，a.c. 谱上 a.e. 可导），则
 
@@ -57,7 +57,7 @@ $$
 
 单通道退化为 $S=e^{2i\varphi}$。$\operatorname{Arg}\det S$ 取局部连续分支，仅在 a.c. 谱上 a.e. 可微；跨越阈值与原子点时以跳跃补偿。
 
-**单位说明**：本文以 $\mathsf Q(E)=-i\,S^\dagger S'(E)$ 作为**无量纲化延迟刻度**（对能量求导）；若需物理时间延迟，可取 $\tau=\hbar\,\mathrm{eig}(\mathsf Q)$，该 $\tau$ 为**Wigner–Smith 时间延迟**（而非共振寿命）。在孤立 Breit–Wigner 共振处，由 $\tau(E)=2\hbar\,\delta'(E)$ 与 $\delta'(E_0)=2/\Gamma$ 得 $\tau_{\max}(E_0)=4\hbar/\Gamma$，而寿命 $\tau_{\text{life}}=\hbar/\Gamma$，二者**相差因子 4**。该约定与电磁及量子散射文献一致；本文默认 $\mathsf Q=-i\,S^\dagger S'$ 为能量刻度下的无量纲延迟矩阵，时间量由 $\tau=\hbar\,\mathrm{eig}(\mathsf Q)$ 给出（与 §6.2 的非厄米扩展照应）。
+**单位说明**：本文取 $\mathsf Q(E)=-i\,S^\dagger(E)S'(E)$，其量纲为**能量$^{-1}$**（$S'(E)$ 对能量求导产生 $1/\text{能量}$ 的量纲）；物理时间延迟为 $\tau=\hbar\,\mathrm{eig}(\mathsf Q)$，该 $\tau$ 为**Wigner–Smith 时间延迟**（而非共振寿命）。在孤立 Breit–Wigner 共振处，由 $\tau(E)=2\hbar\,\delta'(E)$ 与 $\delta'(E_0)=2/\Gamma$ 得 $\tau_{\max}(E_0)=4\hbar/\Gamma$，而寿命 $\tau_{\text{life}}=\hbar/\Gamma$，二者**相差因子 4**。**宽度记号说明**：本文统一以极点 $E_0-i\Gamma/2$ 计宽度；若参考采用 $E_0-i\Gamma$ 的文献，请将本文 $\tau$ 数值整体乘以 $1/2$ 对齐（峰值由 $4\hbar/\Gamma$ 变为 $2\hbar/\Gamma$）。该约定与电磁及量子散射文献一致（与 §6.2 的非厄米扩展照应）。
 
 **0.2 谱移与 Birman–Kreĭn。** 采用 BK 的**负号约定**：$\ \det S(E)=e^{-2\pi i\,\xi(E)}$，则
 
@@ -67,7 +67,11 @@ $$
 
 因此 $\tfrac{1}{2\pi}\operatorname{tr}\mathsf Q(E)=\rho_{\mathrm{rel}}(E)$（a.e.）。负群延迟与谱移密度变号在多类波动散射中可观测，与脉冲整形/共振背景有关（见电磁与非厄米散射体系中的负 Wigner–Smith 延迟与复延迟实测/数值报道，含亚酉散射近作）。
 
-**0.3 DBK 规范系统与 Herglotz 词典。** 一维 de Branges–Kreĭn 规范系统 $JY'(t,z)=zH(t)Y(t,z)$ 的 Weyl–Titchmarsh 函数 $m:\mathbb C^+\to\mathbb C^+$ 为 Herglotz 函数，其边界虚部给出绝对连续谱密度 $\rho_{\mathrm{ac}}(E)=\pi^{-1}\Im m(E+i0)$（a.e.）；此处 $\rho_{\mathrm{ac}}$ 指**绝对连续部分**的谱密度（此 $\rho_{\mathrm{ac}}$ 非本文的相对谱密度 $\rho_{\mathrm{rel}}$），若存在奇异/原子部分，其贡献体现在相应的谱测度分解中。与 de Branges 空间存在经典等价。
+**散射对前提（BK 公式适用性）**：上述 BK 恒等式 $\det S(E)=e^{-2\pi i\xi(E)}$ 及其导出关系 $\tfrac{1}{2\pi}\operatorname{tr}\mathsf Q=\rho_{\mathrm{rel}}=-\xi'$ 在**自伴散射对** $(H,H_0)$ 下成立，其中 $H_0$ 为自由哈密顿量，$H=H_0+V$ 为全哈密顿量，并假设 $(H-z)^{-1}-(H_0-z)^{-1}$ 属 **trace class**（或等价的可加条件，如 $V(H_0-z)^{-1}$ 属 trace class），从而保证波算子 $W_\pm=\mathrm{s-lim}_{t\to\pm\infty}e^{iHt}e^{-iH_0 t}$ 存在、完备，散射算子 $S=W_+^\dagger W_-$ 酉，且谱移函数 $\xi$ 定义良好；非厄米/耗散情形需在最大耗散扩张或自伴扩张框架下单列（参见 Pushnitski, A., arXiv:1006.0639；Behrndt–Malamud–Neidhardt, arXiv:0712.3120）。
+
+**0.3 DBK 规范系统与 Herglotz 词典。** 一维 de Branges–Kreĭn 规范系统 $JY'(t,z)=zH(t)Y(t,z)$ 的 Weyl–Titchmarsh 函数 $m:\mathbb C^+\to\mathbb C^+$ 为 Herglotz 函数，其标准表示 $m(z)=a+bz+\int\!\big(\frac{1}{t-z}-\frac{t}{1+t^2}\big)\,d\nu(t)$ 中 $d\nu\ge0$ 为非负 Borel 测度且满足 $\int (1+t^2)^{-1}\,d\nu(t)<\infty$（超出部分吸收到 $a+bz$ 项），边界虚部给出绝对连续谱密度 $\rho_{\mathrm{ac}}(E)=\pi^{-1}\Im m(E+i0)=\pi^{-1}\frac{d\nu^{\mathrm{ac}}}{dE}$（a.e.）；此处 $\rho_{\mathrm{ac}}$ 指**被考察算子的绝对连续谱部分**的谱密度（此 $\rho_{\mathrm{ac}}$ 非本文的相对谱密度 $\rho_{\mathrm{rel}}$），若存在奇异/原子部分，其贡献体现在相应的谱测度分解中。在恰当规范化下（消去 $a+bz$ 自由度），**trace-normed** 规范系统与 Herglotz 函数及 de Branges 空间存在**一一对应且唯一**（至自然等价）（参见 Remling, C., Hur, I., arXiv:1501.01268；de Branges, L., Hilbert Spaces of Entire Functions）。
+
+**符号测度情形的分段拼接**：当 $\mu_\varphi$ 含负部（即 $\rho_{\mathrm{rel}}$ 变号）时，仅能在 $\rho_{\mathrm{rel}}>0$ 的各 a.c. 分段 $I_j$ 上分别构造 trace-normed 规范系统 $(H_j,J_j)$ 与对应 Herglotz 函数 $m_j$，使 $\pi^{-1}\Im m_j(E+i0)=\rho_{\mathrm{rel}}(E)$ a.e. 在 $I_j$ 上成立；各分段按谱测度 $\mu_\varphi$ 的 Lebesgue 分解与 Jordan 分解逐段拼接，唯一性与一致性在**每个分段内**由 trace-normed 规范保证，但**全局不存在单一规范系统**的 Herglotz 表示。
 
 **0.4 采样、帧与门槛。** Paley–Wiener 类的稳定采样/插值服从 Landau 必要密度（Landau 1967，见参考文献 [4]）；Gabor 系的对偶窗满足 Wexler–Raz 双正交（Daubechies–Landau–Landau 1995，见参考文献 [5]）；临界密度下满足 Balian–Low 不可能性（见参考文献 [6]）。
 
@@ -75,17 +79,23 @@ $$
 
 **0.6 开放系统与信息界。** 马尔可夫开放演化由 GKSL（Lindblad）主方程描述；量子相对熵在**正迹保持**映射下单调不增（DPI）；量子信道的无助理经典容量由 HSW 正则化公式给出。
 
-**0.7 Nyquist–Poisson–EM（有限阶非渐近误差学）。** 带限信号在采样率 $f_s>2B$ 下别名项消失；Euler–Maclaurin（EM）用于离散—连续换序时，取 $m\in\mathbb N$ 使被积/被和函数 $F\in C^{2m}$ 且 $F^{(2m)}$ 有界或具有限总变差，则余项具**显式积分上界**（参见 Isabelle/AFP 形式化条目 **The Euler–MacLaurin Formula (AFP)** 与文档）。EM 余项采用 AFP-Isabelle 'Euler_MacLaurin' 的**形式化上界**，在实现中显式指明所取阶数 $m$ 与被积/被和函数的正则性（$C^{2m}$ 或有限总变差）以复现上界。
+**0.7 Nyquist–Poisson–EM（有限阶非渐近误差学）。** 带限信号在采样率 $f_s>2B$ 下别名项消失；Euler–Maclaurin（EM）用于离散—连续换序时，取 $m\in\mathbb N$ 使被积/被和函数 $F\in C^{2m}$ 且 $F^{(2m)}$ 有界或具有限总变差，则余项具**显式积分上界**。EM 余项采用 Archive of Formal Proofs (AFP-Isabelle) 条目 **The Euler–MacLaurin Formula** 的形式化上界（Eberl, M., 见参考文献 [11]），在实现中显式指明所取阶数 $m$ 与被积/被和函数的正则性（$C^{2m}$ 或有限总变差）以复现上界。
+
+**选择 $m$ 的经验指引**（实现可操作性）：
+- $m=1$（2 阶校正）：被积函数 $F\in C^2$，适用于分段线性窗或低光滑度核；
+- $m=2$（4 阶校正）：$F\in C^4$，适用于多数光滑窗函数（如高斯窗、Hann 窗）与谱积分；
+- $m=3$（6 阶校正）：$F\in C^6$，适用于高精度要求或需控制尾部振荡的情形。
+实践中先验证 $F^{(2m)}$ 的 $L^\infty$ 范数或总变差有限，再将其代入 AFP-Isabelle 的余项界公式得可执行上界。
 
 ---
 
 ## 1. 公理体系（Axioms）
 
-**A1（双表象与协变）。** $\mathcal H(E)$（能量表象）与 $\mathcal H_a=L^2(\mathbb R_+,x^{a-1}dx)$（相位—尺度表象，其中 $a>0$ 由所用 Mellin 权确定）等距等价；离散—连续换序使用**有限阶** EM，按 0.7 的光滑与（有界或有限变差）前提控制余项。此"等距等价"系指在所用 DBK 规范系统/Weyl–Mellin 变换**已构造到位**时的单位算子实现；读者不应将其理解为任意系统之间的无条件同构。**实施前提**：存在**非负 Borel 测度 $\nu$** 使得 Herglotz 函数 $m$ 与**trace-normed** DBK 规范系统成立；此时 $\mu_\varphi^{\mathrm{ac}}$ 满足 $\rho_{\mathrm{rel}}=\pi^{-1}\Im m$（a.e.）。当且仅当 $\mu_- \equiv 0$ 时，$\mu_\varphi$ 与之对应的非负 Borel 测度 $\nu$ **一致**，并获得**全局** DBK 表示与等距等价；若 $\mu_- \not\equiv 0$，则仅在 $\rho_{\mathrm{rel}}>0$ 的 a.c. 分段逐段实现等距等价，**不**保证单一规范系统的全局实现。（**括注**：$\rho_{\mathrm{rel}}=-\xi'$ 为相对态密度，**一般可变号**；故 $\mu_\varphi$ 常为**符号测度**，仅其非负情形可由 Herglotz–DBK **全局**表示，参见定理 3.1。）
+**A1（双表象与协变）。** $\mathcal H(E)$（能量表象）与 $\mathcal H_a=L^2(\mathbb R_+,x^{a-1}dx)$（相位—尺度表象，其中 $a>0$ 由所用 Mellin 权确定）等距等价；离散—连续换序使用**有限阶** EM，按 0.7 的光滑与（有界或有限变差）前提控制余项。此"等距等价"系指在所用 DBK 规范系统/Weyl–Mellin 变换**已构造到位**时的单位算子实现；读者不应将其理解为任意系统之间的无条件同构。**实施前提**：当 $\mu_\varphi$ 为非负 Borel 测度且满足 Herglotz 条件（标准增长/可积性，例如 $\int (1+E^2)^{-1}\,d\mu_\varphi(E)<\infty$）时，存在 Herglotz 函数 $m$ 使得在恰当规范化下（消去 $a+bz$ 自由度）由**trace-normed** DBK 规范系统实现**全局** DBK 表示与等距等价；此时 $\mu_\varphi^{\mathrm{ac}}$ 满足 $\rho_{\mathrm{rel}}=\pi^{-1}\Im m$（a.e.）。若 $\mu_\varphi$ 含负部，则仅在 $\rho_{\mathrm{rel}}>0$ 的 a.c. 分段逐段实现等距等价，**不**保证单一规范系统的全局实现。（**括注**：$\rho_{\mathrm{rel}}=-\xi'$ 为相对态密度，**一般可变号**；故 $\mu_\varphi$ 常为**符号测度**，仅其非负情形可由 Herglotz–DBK **全局**表示，参见定理 3.1。）
 
 **A2（有限窗口读数）。** 任一次"可实现读数"写作窗—核谱积分 $K_{w,h}=\int h(E)\,w_R(E)\,d\Pi_A(E)$。为确保 $K_{w,h}$ 在**所有密度算子** $\rho$ 上的期望值 $\operatorname{Tr}(\rho K_{w,h})$ 良定义并一致有界，本文**限定** $g(E):=h(E)w_R(E)\in L^\infty(\mathbb R;\mathbb R)$ 且为 Borel 可测，据此 $K_{w,h}$ 为**有界自伴**算子；误差以"别名（Poisson）+ 伯努利层（EM）+ 截断"三项**非渐近闭合**（带限且 $f_s>2B$ 时别名为 0）。一次"读数"的数值为 $\operatorname{Tr}(\rho K_{w,h})$。**记号约定**：下文一律用 $\Pi_A$ 表示投影值谱测度（避免与能量变量 $E$ 产生符号歧义）。
 
-**A3（概率—信息一致性）。** 对 PVM $\{P_j\}$ 与态 $\rho$，线性约束 $p_j=\operatorname{Tr}(\rho P_j)$ 使可行集为单点 $\{p^\star\}$，任意严格凸 Bregman/KL 的 I-projection 唯一取于 $p^\star$；POVM 情形先作 Naimark 扩张到 PVM 再回推。Gleason（$\dim\mathcal H\ge3$）确保此概率形式的唯一性。
+**A3（概率—信息一致性）。** 对 PVM $\{P_j\}$ 与态 $\rho$，线性约束 $p_j=\operatorname{Tr}(\rho P_j)$ 使可行集为单点 $\{p^\star\}$，任意严格凸 Bregman/KL 的 I-projection 唯一取于 $p^\star$；POVM 情形先作 Naimark 扩张到 PVM 再回推。Gleason（$\dim\mathcal H\ge3$）确保此概率形式的唯一性。**维度条件**：二能级体系（$\dim\mathcal H=2$）需用 Busch–Gleason 的 POVM 版补足（Busch, P., Phys. Rev. Lett., 2003）。
 
 **A4（指针基）。** 指针基为 $K_{w,h}$ 的**光谱极小**本征基（Ky Fan 变分原则：固定秩子空间上的迹极小取于本征子空间）。
 
@@ -94,6 +104,8 @@ $$
 $$
 \boxed{\, \frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)=\rho_{\mathrm{rel}}(E)=\frac{\varphi'(E)}{\pi}\ \ \text{(a.e.)}\ }\,.
 $$
+
+**前提**：见 §0.2『散射对前提（BK 公式适用性）』。
 
 **A6（采样—帧门槛）。** 稳定采样满足 Landau 必要密度；多窗对偶由 Wexler–Raz 描述；临界密度触发 Balian–Low 不可能性。
 
@@ -120,13 +132,13 @@ $$
 
 （上式在 a.c. 谱上 a.e. 成立，$\operatorname{Arg}\det S$ 取**连续分支**；跨阈值/原子点以 $\Delta\mu_\varphi=\mu_\varphi(\{E_*\})$ **跳跃拼接**。）
 
-**规范化说明（统一）**：本文将 $\mu_\varphi$ 视为**局部有限的有符号 Radon 测度**，作 Lebesgue 分解 $\mu_\varphi=\mu_\varphi^{\mathrm{ac}}+\mu_\varphi^{\mathrm{s}}+\mu_\varphi^{\mathrm{pp}}$，并作 Jordan 分解 $\mu_\varphi=\mu_+-\mu_-$（$\mu_\pm\ge0$）。**当且仅当** $\mu_- \equiv 0$（即 $\mu_\varphi\ge0$）时，存在 Herglotz 函数 $m$ 使 $\pi^{-1}\Im m(E+i0)=\rho_{\mathrm{rel}}(E)$（a.e.），并由**trace-normed** DBK 规范系统实现**全局**表示；否则仅在 $\rho_{\mathrm{rel}}>0$ 的 a.c. 分段建立**局部**表示。其**绝对连续部分**满足
+**规范化说明（统一）**：本文将 $\mu_\varphi$ 视为**局部有限的有符号 Radon 测度**，作 Lebesgue 分解 $\mu_\varphi=\mu_\varphi^{\mathrm{ac}}+\mu_\varphi^{\mathrm{s}}+\mu_\varphi^{\mathrm{pp}}$，并作 Jordan 分解 $\mu_\varphi=\mu_+-\mu_-$（$\mu_\pm\ge0$）。当 $\mu_\varphi$ 为非负 Borel 测度且满足 Herglotz 表示的标准增长/可积条件（例如 $\int (1+E^2)^{-1}\,d\mu_\varphi(E)<\infty$，超出部分吸收到 $a+bz$ 项）时，存在 Herglotz 函数 $m$ 使 $\pi^{-1}\Im m(E+i0)=\rho_{\mathrm{rel}}(E)$（a.e.），并在恰当规范化下（消去 $a+bz$ 自由度）由**trace-normed** DBK 规范系统实现**全局**表示；若 $\mu_\varphi$ 含负部，仅能在 $\rho_{\mathrm{rel}}>0$ 的 a.c. 分段建立**局部**表示。其**绝对连续部分**满足
 
 $$
 d\mu_\varphi^{\mathrm{ac}}(E)=\rho_{\mathrm{rel}}(E)\,dE=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)\,dE=\frac{\varphi'(E)}{\pi}\,dE\ \ \text{(a.e.)}\,.
 $$
 
-若存在奇异/原子部分，则分别记为 $\mu_\varphi^{\mathrm{s}}, \mu_\varphi^{\mathrm{pp}}$，并在跨阈值/原子能级时通过 $\Delta\mu_\varphi=\mu_\varphi(\{E_*\})$ 体现跳跃。因此仅当 $\mu_\varphi\ge 0$ 时，$\rho_{\mathrm{rel}}(E)=\pi^{-1}\Im m(E+i0)$（a.e.）可由单一 trace-normed 规范系统**全局**实现。
+若存在奇异/原子部分，则分别记为 $\mu_\varphi^{\mathrm{s}}, \mu_\varphi^{\mathrm{pp}}$，并在跨阈值/原子能级时通过 $\Delta\mu_\varphi=\mu_\varphi(\{E_*\})$ 体现跳跃。
 
 **定义 2.3（态射）。** 对象间态射为保持 (i)–(vi) 的结构映射；态间态射默认取 **CPTP（量子信道）**；仅当陈述 DPI 时，可放宽为**正迹保持（PTP）**映射（DPI 在此范围内仍成立，但 HSW 容量定理需要 CPTP）。
 
@@ -146,17 +158,17 @@ $$
 
 **证明。**
 (1) **散射—相位—密度统一。** 由 0.1 得 $\operatorname{tr}\mathsf Q=\tfrac{d}{dE}\operatorname{Arg}\det S$；由 0.2 得 $\tfrac{1}{2\pi}\operatorname{tr}\mathsf Q=\rho_{\mathrm{rel}}$；单通道再与 $\operatorname{tr}\mathsf Q=2\varphi'$ 合并，得统一刻度。
-(2) **Herglotz—规范系统—de Branges。** **当且仅当** $\mu_{\varphi}$ **全体无负部**时，存在 Herglotz $m$ 使 $\pi^{-1}\Im m=\rho_{\mathrm{rel}}$（a.e.），并由 de Branges–Kreĭn 规范系统确定该刻度；de Branges 理论在 Herglotz $m$、trace-normed 规范系统与 de Branges 空间间建立等价。**一般情形**下 $d\mu_{\varphi}$ 为符号测度，可在 $\rho_{\mathrm{rel}}>0$ 的 a.c. 分段上分别构造并按相应分片拼接。**参考根据**：DBK 逆谱理论对非负测度给出全局（trace-normed）表述与唯一性。
-(3) **窗口化读数与有限阶闭合。** Poisson 在 Nyquist 阈值上别名 0；EM 在 0.7 假设下给出伯努利层与余项上界，故 A2 成立。
+(2) **Herglotz—规范系统—de Branges。** 当 $\mu_{\varphi}$ 为非负 Borel 测度且满足 Herglotz 表示的标准增长/可积条件（例如 $\int (1+E^2)^{-1}\,d\mu_\varphi(E)<\infty$，超出部分吸收到 $a+bz$ 项）时，存在 Herglotz $m$ 使 $\pi^{-1}\Im m=\rho_{\mathrm{rel}}$（a.e.），并在恰当规范化下（消去 $a+bz$ 自由度）由 de Branges–Kreĭn 规范系统确定该刻度；de Branges 理论在 Herglotz $m$、trace-normed 规范系统与 de Branges 空间间建立等价。**一般情形**下 $d\mu_{\varphi}$ 为符号测度，可在 $\rho_{\mathrm{rel}}>0$ 的 a.c. 分段上分别构造并按相应分片拼接。**参考根据**：DBK 逆谱理论对满足 Herglotz 条件的非负测度给出全局（trace-normed）表述与唯一性。
+(3) **窗口化读数与有限阶闭合。** 在**闭集带限且理想滤波**前提下 $f_s\ge2B$ 可使基带别名为 0；工程稳健通常取 $f_s>2B$（见定理 4.1）；EM 在 0.7 假设下给出伯努利层与余项上界，故 A2 成立。
 (4) **概率一致性。** POVM 由 Naimark 扩张为 PVM；Gleason 保证 Born 形式唯一；严格凸散度的 I-projection 在单点可行集上退化为 Born。
 (5) **帧与门槛。** Landau 必要密度、Wexler–Raz 双正交与 Balian–Low 不可能性分别给出阈值、对偶与临界障碍。
-综上得证。∎
+综上得证。**若 $\mu_\varphi$ 含负部，以下结论按分段解释**（见 §0.3/A1）。∎
 
 ---
 
 ### 定理 3.2（刻度唯一性）
 
-**命题。** （**在 $\mu_\varphi$ 全体无负部的情形**；所用 BK 约定为 $\det S=e^{-2\pi i\xi}$，参见 0.2）若两套构形具有相同 $\operatorname{tr}\mathsf Q(E)$（a.e.）且其测量的 Naimark 扩张同型，则二者于 $\mathbf{UMS}$ 中酉等价；于是
+**命题。** （**在 $\mu_\varphi$ 全体无负部且满足 Herglotz 条件的情形**；所用 BK 约定为 $\det S=e^{-2\pi i\xi}$，参见 0.2）若两套构形具有相同 $\operatorname{tr}\mathsf Q(E)$（a.e.）且其测量的 Naimark 扩张同型，并约定 $m$ 取与 trace-normed 规范系统一致的规范化（消去 $a+bz$ 自由度），$\operatorname{Arg}\det S$ 取同一连续分支（差常数），则二者于 $\mathbf{UMS}$ 中酉等价；于是
 
 $$
 d\mu_\varphi(E)=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)\,dE
@@ -164,7 +176,9 @@ $$
 
 为读数几何的**唯一刻度**（至零测集与单调重参数化）。
 
-**证明。** $\operatorname{tr}\mathsf Q$ 相同 $\Rightarrow$ $\operatorname{Arg}\det S$ 差常数；由 BK 得同一 $\xi'$ 与 $\rho_{\mathrm{rel}}$。在 $\mu_\varphi$ 全体无负部且扩张同型的前提下，酉等价为**充分条件**；由 **trace-normed** 规范系统的逆谱理论得到唯一确定（至自然重参数化）的 $m$，进而确定规范系统与 de Branges 空间；Naimark 同型确保 POVM 层一致，故存在酉等价。若去除此同型假设，仅能得局部等价。∎
+**前提说明**：本定理要求 $\mu_\varphi$ 全体无负部且满足 Herglotz 表示的标准增长/可积条件（例如 $\int (1+E^2)^{-1}\,d\mu_\varphi(E)<\infty$，超出部分吸收到 $a+bz$ 项）；所用 Herglotz 函数 $m$ 取与 trace-normed 规范系统一致的规范化（消去 $a+bz$ 自由度）；$\operatorname{Arg}\det S$ 取同一连续分支（差常数）。
+
+**证明。** $\operatorname{tr}\mathsf Q$ 相同 $\Rightarrow$ $\operatorname{Arg}\det S$ 差常数；由 BK 得同一 $\xi'$ 与 $\rho_{\mathrm{rel}}$。在 $\mu_\varphi$ 全体无负部且满足 Herglotz 条件、扩张同型、规范化一致的前提下，酉等价为**充分条件**；由 **trace-normed** 规范系统的逆谱理论得到唯一确定（至自然重参数化）的 $m$，进而确定规范系统与 de Branges 空间；Naimark 同型确保 POVM 层一致，故存在酉等价。若去除此同型假设，仅能得局部等价。∎
 
 ---
 
@@ -174,7 +188,7 @@ $$
 
 **(ii) Pointer = 光谱极小（Ky Fan）。** 对自伴 $K_{w,h}$，$\min_{U^\dagger U=I_r}\operatorname{tr}(U^\dagger K_{w,h}U)=\sum_{k=n-r+1}^{n}\lambda_k(K_{w,h})$，极小子空间由 $K_{w,h}$ 的**最小** $r$ 个本征向量张成；若需"最大能量指针"，对应上式取 $\max$ 与前 $r$ 个本征值之和。
 
-**参考根据**：Ky Fan 变分原理（"最小 $r$ 个本征值之和 = 压缩迹的极小"）。参见 Horn–Johnson《Matrix Analysis》或等价教材/讲义对 Fan 最大/最小原理的系统表述。∎
+**参考根据**：Ky Fan 变分原理（"最小 $r$ 个本征值之和 = 压缩迹的极小"）。见 Horn, R. A. & Johnson, C. R., *Matrix Analysis*, 2nd ed., Cambridge University Press, 2013，第 4 章定理 4.3.4（Ky Fan 极大极小原理）与推论 4.3.3（迹极小）；或等价教材对 Fan 最大/最小原理的系统表述。∎
 
 **(iii) Windows = 极大极小（带限最坏情形，良定版）。** 设
 
@@ -218,7 +232,15 @@ $$
 T(E)=\int_{E_0}^E \rho_{\mathrm{rel}}(u)\,du=\frac{\varphi(E)-\varphi(E_0)}{\pi}.
 $$
 
-当 $(2\pi)^{-1}\operatorname{tr}\mathsf Q$ 在所考察区间 a.e. **非负**时，$T$ **单调不减**并可作（可能退化的）重参数化；当其在该区间 a.e. **严格为正**时，$T$ **严格单调**并给出**可逆**的重参数化。此时稳定采样/插值满足 Landau 必要密度（见参考文献 [4]）；当 $(2\pi)^{-1}\operatorname{tr}\mathsf Q\ge 0$ a.e. 时，$T$ 单调不减使 Landau 必要密度在 $T$ 轴与 $E$ 轴间保持等价；$>0$ 时单调可逆。多窗可重构性由帧算子与 Wexler–Raz 双正交刻画；临界密度下满足 Balian–Low 不可能性。∎
+当 $(2\pi)^{-1}\operatorname{tr}\mathsf Q$ 在所考察区间 a.e. **非负**时，$T$ **单调不减**并可作（可能退化的）重参数化；当其在该区间 a.e. **严格为正**时，$T$ **严格单调**并给出**可逆**的重参数化。
+
+**Landau 密度的尺度传递条件**：Landau 必要密度（见参考文献 [4]，Landau, H. J., Acta Math. 117, 37–52, 1967）原本针对**等距线性尺度** $E$ 轴上的 Paley–Wiener 空间。若 $E\mapsto T$ 重参数化为**非线性**，则在下列**附加正则条件**下 Landau 阈值在 $T$ 轴与 $E$ 轴间等价：
+(i) $T$ 在所考察 a.c. 区间上**绝对连续**且**双 Lipschitz**（即存在 $0<c\le C<\infty$ 使 $c\le T'(E)\le C$ a.e.），或更一般地，
+(ii) $T'(E)=(2\pi)^{-1}\operatorname{tr}\mathsf Q(E)$ 在该区间上下有**正界**：$\inf_{E\in I}T'(E)>0$ 且 $\sup_{E\in I}T'(E)<\infty$。
+
+在此正则条件下，$E$ 轴的带宽 $B_E$ 与 $T$ 轴的带宽 $B_T$ 经拉回/推前保持等价（至有界因子），从而 Landau 密度阈值不失真。若不满足上述正则性（如 $T'$ 可任意趋零或发散），则仅能保证**单调性诱导的序关系**，不能无条件继承 Landau 阈值的定量表述。
+
+多窗可重构性由帧算子与 Wexler–Raz 双正交刻画；临界密度下满足 Balian–Low 不可能性。∎
 
 ---
 
@@ -264,11 +286,20 @@ $$
 T'(E)=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)=\rho_{\mathrm{rel}}(E)\quad\text{(a.e.)}.
 $$
 
-当 $(2\pi)^{-1}\operatorname{tr}\mathsf Q$ 在所考察区间 a.e. **非负**时，$T$ **单调不减**并可作（可能退化的）重参数化；当其在该区间 a.e. **严格为正**时，$T$ **严格单调**并给出**可逆**的重参数化。当 $(2\pi)^{-1}\operatorname{tr}\mathsf Q\ge 0$ a.e. 时，$T$ 单调不减使 Landau 必要密度在 $T$ 轴与 $E$ 轴间保持等价（见参考文献 [4]）；$>0$ 时单调可逆。**单通道**时 $S=e^{2i\varphi}$，故 $T(E)=\dfrac{\varphi(E)-\varphi(E_0)}{\pi}$，表征可测群延迟并与部分密度态联系。
+当 $(2\pi)^{-1}\operatorname{tr}\mathsf Q$ 在所考察区间 a.e. **非负**时，$T$ **单调不减**并可作（可能退化的）重参数化；当其在该区间 a.e. **严格为正**时，$T$ **严格单调**并给出**可逆**的重参数化。当 $(2\pi)^{-1}\operatorname{tr}\mathsf Q\ge 0$ a.e. 时，$T$ 单调不减；**仅在 §3.4 的正则性条件（i）或（ii）成立**时，Landau 必要密度在 $T$ 与 $E$ 轴之间**定量等价**；若条件不满足，则仅保留由单调性诱导的序关系（见 §3.4『Landau 密度的尺度传递条件』及参考文献 [4]）。**单通道**时 $S=e^{2i\varphi}$，故 $T(E)=\dfrac{\varphi(E)-\varphi(E_0)}{\pi}$，表征可测群延迟并与部分密度态联系。
 
-**6.2 非厄米/耗散与共振寿命。** 耗散（非酉）系统存在"修正 BK"与相应时间延迟推广。单通道 Breit–Wigner 近似下 $\delta'(E_0)=\tfrac{2}{\Gamma}$，以 $\tau=\hbar\,\mathrm{eig}(\mathsf Q)=2\hbar\,\delta'(E)$ 定义时间延迟，则 $\boxed{\tau_{\max}(E_0)=\tfrac{4\hbar}{\Gamma}}$。若改用极点 $E_0-i\Gamma$（而非 $E_0-i\Gamma/2$）的宽度记号，则 $\tau_{\max}(E_0)=\tfrac{2\hbar}{\Gamma}$。本文**统一采用**极点 $E_0-i\Gamma/2$ 之记号以避免歧义。共振寿命为 $\tau_{\text{life}}=\hbar/\Gamma$，二者概念不同，不应混同。
+**6.2 非厄米/耗散与共振寿命。** 耗散（非酉）系统存在"修正 BK"与相应时间延迟推广。单通道 Breit–Wigner 近似下 $\delta'(E_0)=\tfrac{2}{\Gamma}$，以 $\tau=\hbar\,\mathrm{eig}(\mathsf Q)=2\hbar\,\delta'(E)$ 定义时间延迟，则 $\boxed{\tau_{\max}(E_0)=\tfrac{4\hbar}{\Gamma}}$。共振寿命为 $\tau_{\text{life}}=\hbar/\Gamma$，二者概念不同，不应混同。
 
-**负群延迟与复时间延迟**：在非厄米/亚酉散射系统中，$\operatorname{tr}\mathsf Q$ 可变号并取复值，对应可观测的脉冲整形与超前/延迟效应；近年电磁超材料、光子晶体与开放量子系统的实验与数值研究（含亚波长阵列的负群延迟与复 Wigner 时间延迟统计）均证实此现象，并与谱移密度 $\rho_{\mathrm{rel}}$ 变号相互印证。
+**宽度记号的双约定对照**（避免文献换算歧义）：散射理论与共振物理中存在**两种常用极点记号**，对应不同的 $\tau_{\max}$ 公式：
+
+| 极点记号 | 相位导数 $\delta'(E_0)$ | 峰值延迟 $\tau_{\max}(E_0)$ | 寿命 $\tau_{\text{life}}$ | 备注 |
+|:--------:|:------------------------:|:---------------------------:|:-------------------------:|:-----|
+| $E_0-i\Gamma/2$ | $2/\Gamma$ | $4\hbar/\Gamma$ | $\hbar/\Gamma$ | 本文统一采用 |
+| $E_0-i\Gamma$ | $1/\Gamma$ | $2\hbar/\Gamma$ | $\hbar/\Gamma$ | 部分电磁/量子文献采用 |
+
+二者差异源于 $S$-矩阵极点虚部的**归一化约定**：以 $E_0-i\Gamma/2$ 计宽度时 $\delta'(E_0)=2/\Gamma$，以 $E_0-i\Gamma$ 计宽度时 $\delta'(E_0)=1/\Gamma$；由 $\tau=2\hbar\delta'$ 即得上表第三列。**本文统一采用**极点 $E_0-i\Gamma/2$ 之记号，与量子散射及电磁散射多数文献一致（例如 Phys. Rev. E 103, L050203, 2021 以 $E_0-i\Gamma$ 记号得 $\tau_{\max}=2\hbar/\Gamma$；换算至本文记号即 $\Gamma_{\text{本文}}=\Gamma_{\text{该文}}/2$，峰值 $4\hbar/\Gamma_{\text{本文}}=2\hbar/\Gamma_{\text{该文}}$ 一致）。
+
+**负群延迟与复时间延迟**：在非厄米/亚酉散射系统中，$\operatorname{tr}\mathsf Q$ 可变号并取复值，对应可观测的脉冲整形与超前/延迟效应。亚酉散射下可取 $\mathsf Q(E)=-i\,S^{-1}(E)\,S'(E)$（一般非自伴），此时 $\operatorname{tr}\mathsf Q$ 允许为复数；其**实部/虚部**分别刻画驻留与耗散相关量（具体选择依赖所用**最大耗散扩张/自伴扩张**，详见 §0.2 之框架）。非厄米/有耗系统的复时间延迟已在微波/光学平台实验与理论中系统研究；近年电磁超材料、光子晶体与开放量子系统的实验与数值研究（含亚波长阵列的负群延迟与复 Wigner 时间延迟统计）均证实此现象，并与谱移密度 $\rho_{\mathrm{rel}}$ 变号相互印证（例如 Phys. Rev. E 103, L050203, 2021；Patel et al., arXiv:2005.03211, 2020/2021）。
 
 可在"**最大耗散扩张/耦合散射**"的框架下以谱移与广义 Weyl 函数精确表达。上述耗散/耦合情形可参见 **Behrndt–Malamud–Neidhardt** 对 BK 变体与迹公式的系统化表述（见参考文献 [12]），该框架把"谱移—Weyl 函数—散射矩阵"的关系与变体公式锚定到统一理论。
 
@@ -276,8 +307,8 @@ $$
 
 ## 7. 可检清单（实验/数值）
 
-1. **相位—延迟一致性**：计算 $\operatorname{Arg}\det S(E)$ 与 $\mathsf Q(E)$，验证 $\operatorname{tr}\mathsf Q(E)=\tfrac{d}{dE}\operatorname{Arg}\det S(E)$ 与单通道下 $\varphi'(E)$。
-2. **刻度化采样**：以 $T(E)=\mu_\varphi((E_0,E])$（无原子时等于 $\int_{E_0}^E(2\pi)^{-1}\operatorname{tr}\mathsf Q$）重参数化能量，在 $T$ 轴执行 Landau 阈值检验与插值实验，再映回 $E$ 轴（参见定理 3.4 对 $T'(E)$ 的相位化表达）。**最小工作示例**：对单通道、单峰 $\operatorname{tr}\mathsf Q(E)$ 情形（如 Breit–Wigner 共振），绘制 $(E,T(E))$ 曲线并验证 $T'(E)=(2\pi)^{-1}\operatorname{tr}\mathsf Q(E)>0$ 区间上的单调性。
+1. **相位—延迟一致性**：计算 $\operatorname{Arg}\det S(E)$ 与 $\mathsf Q(E)$，验证 $\operatorname{tr}\mathsf Q(E)=\tfrac{d}{dE}\operatorname{Arg}\det S(E)$ 与单通道下 $\varphi'(E)$。单位验证：确认 $\mathsf Q$ 量纲为能量$^{-1}$，$\tau=\hbar\,\mathrm{eig}(\mathsf Q)$ 为时间量纲。**电磁散射算例**：对电磁散射体（如介质球、谐振腔、亚波长阵列），采用 Patel et al. (arXiv:2005.03211, 2020) 的 WS 群延迟矩阵定义 $\mathsf Q=-i S^\dagger S'$ 并与 $\det S$ 导数对比；对单极/多极散射的 $S$ 矩阵以频率 $\omega$ 或能量 $E=\hbar\omega$ 为自变量，验证 $\operatorname{tr}\mathsf Q$ 与相位导数一致性；数值/实验平台见 Phys. Rev. E 103, L050203 (2021) 等亚酉散射报道。
+2. **刻度化采样**：以 $T(E)=\mu_\varphi((E_0,E])$（无原子时等于 $\int_{E_0}^E(2\pi)^{-1}\operatorname{tr}\mathsf Q$）重参数化能量，在 $T$ 轴执行 Landau 阈值检验与插值实验，再映回 $E$ 轴（参见定理 3.4 对 $T'(E)$ 的相位化表达）。**最小工作示例**：对单通道、单峰 $\operatorname{tr}\mathsf Q(E)$ 情形（如 Breit–Wigner 共振），绘制 $(E,T(E))$ 曲线并验证在 $T'(E)=(2\pi)^{-1}\operatorname{tr}\mathsf Q(E)>0$ 区间上的单调性。
 3. **指针基极小性**：比较任意正交基与 $K_{w,h}$ 本征基的 Ky Fan 部分和。
 4. **窗/核最优与 WR**：带限与归一约束下，用 KKT 条件求最优窗；验证与 Wexler–Raz 对偶一致。
 5. **三分解误差闭合**：报告"别名 + 伯努利层 + 截断"三项；在带限+Nyquist 下别名 0；EM 余项给出显式上界。
@@ -333,7 +364,7 @@ $$
 
 ## 附录 C：EM 余项的有限阶上界
 
-在 0.7 的假设下（$F\in C^{2m}$ 及 $F^{(2m)}$ 有界/有限变差），EM 公式给出到 $2m$ 阶的伯努利层与**显式**积分余项；AFP–Isabelle 对余项的构造与收敛作了形式化验证，因而在数值实施中可据以选择有限阶 $m$ 并给出可执行上界。∎
+在 0.7 的假设下（$F\in C^{2m}$ 及 $F^{(2m)}$ 有界/有限变差），EM 公式给出到 $2m$ 阶的伯努利层与**显式**积分余项；AFP–Isabelle 对余项的构造与收敛作了形式化验证，因而在数值实施中可据以选择有限阶 $m$ 并给出可执行上界。EM 余项采用 Archive of Formal Proofs (AFP-Isabelle) 条目 **The Euler–MacLaurin Formula** 的形式化上界（Eberl, M., https://www.isa-afp.org/entries/Euler_MacLaurin.html），在实现中显式指明所取阶数 $m$ 与被积/被和函数的正则性（$C^{2m}$ 或有限总变差）以复现上界。∎
 
 ---
 
