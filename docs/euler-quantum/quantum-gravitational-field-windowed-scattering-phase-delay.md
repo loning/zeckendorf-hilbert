@@ -85,13 +85,15 @@ $$
 =\frac{\Delta E\,\Delta t}{2\pi\hbar}\,\delta_{m0}\,\delta_{n0}.
 $$
 
+**规范化注记**：在标准文献的 $(a,b)$ 表示（不带度量因子的内积）下，上式写为 $ab\le 1$（必要密度）与 $ab=1$（Riesz 基临界密度）。本文采用带度量因子 $1/(2\pi\hbar)$ 的规范化内积，因此密度条件表为 $\Delta E\,\Delta t/(2\pi\hbar)\le 1$；此处 $a=\Delta E$，$b=\Delta t/(2\pi\hbar)$。完整 Gabor 帧密度理论参见 Daubechies (1992, *Ten Lectures on Wavelets*, SIAM) 与 Gröchenig (2001, *Foundations of Time-Frequency Analysis*, Birkhäuser)。
+
 窗化读数定义为
 
 $$
 \mathcal N_{w}[g;E_0]=\int_{\mathbb R} w(E-E_0)\,\rho_{\mathrm{rel},g}(E)\,dE.
 $$
 
-Gabor 帧的**必要密度**条件为 $\Delta E\,\Delta t/(2\pi\hbar)\le 1$（帧的必要条件）；**Riesz 基**情形取等号（$=1$）并受 Balian–Low 限制。
+Gabor 帧的**必要密度**条件为 $\Delta E\,\Delta t/(2\pi\hbar)\le 1$（帧的必要条件）；**Riesz 基**情形取等号（$=1$）并受 Balian–Low 限制（时—频同时紧支撑不可能）。
 
 ---
 
@@ -115,11 +117,11 @@ $\mathrm{tr}(S^\dagger \partial_E S)=-2\pi i\,\xi_g'(E)$，得第一与第三等
 
 $$
 \int h(E)\,\rho_{\mathrm{rel},g}(E)\,dE
-= -\frac{1}{2\pi i}\int h(E)\,\partial_E\log\det S_g(E)\,dE
+= \frac{1}{2\pi i}\int h(E)\,\partial_E\log\det S_g(E)\,dE
 = \frac{1}{2\pi}\int h'(E)\,\arg\det S_g(E)\,dE.
 $$
 
-**证明**：由定理 3.1 与分部积分，端点由紧支撑保证消失。此处 $\log\det S$ 取连续解卷绕的 $\arg\det S$ 分支；阈值/束缚态处的跳变以分布意义计入窗化积分。∎
+**证明**：由定理 3.1（$\rho_{\mathrm{rel}}=\frac{1}{2\pi i}\mathrm{tr}(S^\dagger\partial_E S)$）与分部积分，端点由紧支撑保证消失。此处 $\log\det S$ 取连续解卷绕的 $\arg\det S$ 分支；阈值/束缚态处的跳变以分布意义计入窗化积分。窗函数的紧支撑与光滑性保证跳变项并入 $h'$ 的分布贡献；在数值实现中需对 $\arg\det S$ 执行相位解卷绕处理。∎
 
 ### 定理 3.3（级联可加性）
 
@@ -153,7 +155,7 @@ $$
 
 (iv) **辐射边界条件**：在无穷远处波场满足 Sommerfeld 出射条件。
 
-在此假设下，散射矩阵 $S_g(E)$ 是与无穷远处测地流在时间 $\pi$（对应半波群 $e^{-i\pi\sqrt{\Delta}}$）的典范变换相关的 Fourier 积分算子（FIO）；此结构与 Melrose–Zworski、Christiansen–Joshi、Hassell–Vasy 等结果一致。该 FIO 结构保证了散射矩阵在能量纤维上的微局部性质与几何不变性。
+在此假设下，散射矩阵 $S_g(E)$ 是与无穷远处测地流在时间 $\pi$（对应半波群 $e^{-i\pi\sqrt{\Delta}}$）的典范变换相关的 Fourier 积分算子（FIO）；此结构与 Melrose–Zworski、Christiansen–Joshi、Hassell–Vasy 等结果一致。该 FIO 结构保证了散射矩阵在能量纤维上的微局部性质与几何不变性。在渐近平直/短程扰动、合适维数与非陷波等假设下，$S(\lambda)$ 为与边界上测地流时间 $\pi$ 关联的 FIO（参见 Christiansen 2000, Annales de l'Institut Fourier **50**, 1473；Melrose–Zworski 在渐近欧氏流形上的散射微积分框架；Hassell 2004, J. Funct. Anal. **210**, 321）。
 
 ### 4.2 波迹与周期测地流（Poisson 关系）
 
@@ -179,11 +181,13 @@ $$
 \Delta t \;\approx\; (1+\gamma)\frac{GM}{c^3}\log\frac{4r_1 r_2}{b^2},
 $$
 
-其中 $b$ 为最近逼近距（冲量参数），$r_1,r_2$ 为初/末位置的径向距离，$\gamma$ 为 PPN 参数（广义相对论中 $\gamma=1$）。Cassini 实验（Bertotti et al. 2003, Nature **425**, 374）通过雷达回波精确测量了日面掠射引力时延，得到 $\gamma=1+(2.1\pm2.3)\times10^{-5}$，验证了广义相对论至 $10^{-5}$ 量级；此结果与本文窗化 rDOS 的低频极限相吻合。完整的参考时校准与 PPN 系数计量见 Ashby (2010, NIST Special Publication 1198)。
+其中 $b$ 为最近逼近距（冲量参数），$r_1,r_2$ 为初/末位置的径向距离，$\gamma$ 为 PPN 参数（广义相对论中 $\gamma=1$）。Cassini 实验（Bertotti, Iess, Tortora 2003, Nature **425**, 374–376）通过雷达回波精确测量了日面掠射引力时延，得到 $\gamma-1=(2.1\pm2.3)\times10^{-5}$，即 $\gamma=1+(2.1\pm2.3)\times10^{-5}$，验证了广义相对论至 $10^{-5}$ 量级；此结果与本文窗化 rDOS 的低频极限相吻合。完整的参考时校准与 PPN 系数计量见 Ashby & Allison (2015, Phys. Rev. D **92**, 062001) 及 Ashby (2010, NIST Special Publication 1198) 的技术综述。
 
 ---
 
 ## 5. 非幺正散射与复时间延迟
+
+> **单位与符号约定**（重要提示）：本节复时间延迟 $\tau(E)$ 与延迟算子 $Q_g(E)$ 的**自然单位为能量$^{-1}$**；对应的**物理时间延迟**为 $\hbar\tau(E)$ 与 $\hbar Q_g(E)$，单位为时间。所有公式中未标注 $\hbar$ 的延迟量均采用能量倒数单位。
 
 在存在吸收/泄露（如黑洞外区、耗散开口系统）时，$S_g(E)$ 非幺正，$S^{-1}\neq S^\dagger$。此时**复时间延迟**定义为
 
@@ -191,7 +195,7 @@ $$
 \tau(E)=-\frac{i}{N}\,\partial_E\log\det S_g(E)\in\mathbb C,
 $$
 
-等价地可写为 $\tau(E)=\frac{1}{N}\,\mathrm{tr}(S_g^{-1}\partial_E S_g)$。其实部 $\mathrm{Re}\,\tau=\frac{1}{N}\partial_E\arg\det S$ 对应相位导数与驻留时间，虚部 $\mathrm{Im}\,\tau=\frac{1}{N}\partial_E\log|\det S|$ 刻画吸收度。当 $S$ 为次幺正时，$\rho_{\mathrm{rel}}^{(\mathrm{eff})}=\frac{1}{2\pi}\partial_E\arg\det S$ 仅刻画"相位"部分；$\mathrm{Im}\,\tau$ 刻画吸收强度，与 $S$-矩阵极点/共振及**相干完美吸收**（CPA）条件直接相关。**CPA 条件**要求 $\det S(E_0)=0$（Chong et al. 2010, Phys. Rev. Lett. **105**, 053901），此时共振能量 $E_0$ 处 $\mathrm{Re}\,\tau$ 与 $\mathrm{Im}\,\tau$ 的峰—峰对齐指示共振零—极互补。rDOS $\nu(E)=\tfrac{1}{2\pi}\mathrm{tr}\,Q(E)$ 与 $S$-矩阵极点/零点的统计分布存在定量联系，在随机矩阵理论与开口腔体系统中已有系统性结果（Brouwer–Beenakker 1997; Cunden et al. 2015; Chen et al. 2021）。
+等价地可写为 $\tau(E)=\frac{1}{N}\,\mathrm{tr}(S_g^{-1}\partial_E S_g)$。其实部 $\mathrm{Re}\,\tau=\frac{1}{N}\partial_E\arg\det S$ 对应相位导数与驻留时间，虚部 $\mathrm{Im}\,\tau=\frac{1}{N}\partial_E\log|\det S|$ 刻画吸收度。当 $S$ 为次幺正时，$\rho_{\mathrm{rel}}^{(\mathrm{eff})}=\frac{1}{2\pi}\partial_E\arg\det S$ 仅刻画"相位"部分（排除吸收幅度信息）；$\mathrm{Im}\,\tau$ 刻画吸收强度，与 $S$-矩阵极点/共振及**相干完美吸收**（CPA）条件直接相关。**CPA 条件**要求 $\det S(E_0)=0$（Chong, Ge, Cao, Stone 2010, Phys. Rev. Lett. **105**, 053901, doi:10.1103/PhysRevLett.105.053901），此时共振能量 $E_0$ 处 $\mathrm{Re}\,\tau$ 与 $\mathrm{Im}\,\tau$ 的峰—峰对齐指示共振零—极互补。rDOS $\nu(E)=\tfrac{1}{2\pi}\mathrm{tr}\,Q(E)$ 与 $S$-矩阵极点/零点的统计分布存在定量联系，在随机矩阵理论与开口腔体系统中已有系统性结果（Brouwer, Frahm, Beenakker 1997, Phys. Rev. Lett. **78**, 4737; Texier & Majumdar 2013, Phys. Rev. Lett. **110**, 250602; Cunden et al. 2015; Chen et al. 2021）。
 
 相应地，定义**有效 rDOS** 为
 
@@ -199,7 +203,7 @@ $$
 \rho_{\mathrm{rel},g}^{(\mathrm{eff})}(E)=\frac{1}{2\pi}\,\partial_E\arg\det S_g(E)=\frac{1}{2\pi}\,\mathrm{Im}\,\partial_E\log\det S_g(E),
 $$
 
-在幺正极限 $S^\dagger S=I$ 时，$|\det S|=1$ 且上式退化为定理 3.1。注：此处复延迟 $\tau$ 的自然单位为能量$^{-1}$，物理时间延迟为 $\hbar\tau$。
+在幺正极限 $S^\dagger S=I$ 时，$|\det S|=1$ 且上式退化为定理 3.1。
 
 ---
 
@@ -221,7 +225,7 @@ e^{\,i2\pi k E_0/\Delta E}\,
 \quad\text{（Poisson）},
 $$
 
-其中 $\widehat{f}(t)=\frac{1}{2\pi\hbar}\int f(E)e^{-iEt/\hbar}\,dE$。非零 $k$ 项即**混叠**；对有限求和/积分差，Euler–Maclaurin（EM）给出**伯努利层**显式余项（适用条件：$f^{(2m)}\in L^\infty$、端点可导，以 $B_{2m}$ 与边界高阶导数表出至 $2m$ 阶）；截断带来第三类误差。三者相加即总误差的**非渐近闭合**。
+其中 $\widehat{f}(t)=\frac{1}{2\pi\hbar}\int f(E)e^{-iEt/\hbar}\,dE$。**维度注记**：此处 $t$ 具有时间维度，$E$ 具有能量维度，因此频率栅点间距为 $\frac{2\pi\hbar}{\Delta E}$（单位为时间），与能量采样步长 $\Delta E$ 互为 Fourier 对偶。非零 $k$ 项即**混叠**；对有限求和/积分差，Euler–Maclaurin（EM）给出**伯努利层**显式余项（适用条件：$f^{(2m)}\in L^\infty$、端点可导，以 $B_{2m}$ 与边界高阶导数表出至 $2m$ 阶）；截断带来第三类误差。三者相加即总误差的**非渐近闭合**。
 
 ---
 
@@ -261,7 +265,7 @@ $$
 
 ### 8.4 非幺正推广与统计性质
 
-对次幺正 $S$，定义复延迟 $\tau$ 并建立与 $S$-矩阵极点分布的统计联系；在随机矩阵理论与开口腔体实验中，$\mathrm{Re}\,\tau$ 的分布与零点—极点统计存在定量关系（Brouwer 1997, Phys. Rev. Lett. **78**, 4737; Cunden et al. 2015; Chen et al. 2021），可用于推断共振寿命与吸收通道结构。
+对次幺正 $S$，定义复延迟 $\tau$ 并建立与 $S$-矩阵极点分布的统计联系；在随机矩阵理论与开口腔体实验中，$\mathrm{Re}\,\tau$ 的分布与零点—极点统计存在定量关系。关于 Wigner–Smith 延迟矩阵在多通道散射中的统计性质，经典结果见 Brouwer, Frahm, Beenakker (1997, Phys. Rev. Lett. **78**, 4737, doi:10.1103/PhysRevLett.78.4737)，该文建立了混沌散射中延迟时间的普适分布；后续工作 Texier & Majumdar (2013, Phys. Rev. Lett. **110**, 250602) 与 Cunden et al. (2015) 进一步探讨了延迟—极点统计联系及其在开腔体共振中的实验验证（Chen et al. 2021）。这些结果可用于从窗化 rDOS 推断共振寿命与吸收通道结构。
 
 ### 8.5 窗化采样与误差界
 
@@ -348,15 +352,15 @@ Wexler–Raz 身份刻画对偶窗；Landau 密度给出必要下界。Poisson �
 
 ### 参考要点与依据（按主题摘引）
 
-* **BK 公式与谱移函数**：$\det S=e^{-2\pi i\xi}$、$\xi'(E)=-\tfrac{1}{2\pi i}\mathrm{tr}(S^\dagger S')$ 的数学物理严格化与相对迹类条件。
-* **Wigner–Smith 延迟**：$Q=-iS^\dagger \partial_E S$ 的定义、物理解释与多物理场推广（电磁/声学、含色散与损耗）。
-* **几何散射**：渐近平直/长程情形的散射微积分与 $S(E)$ 的 FIO 结构。
-* **波迹与长度谱/Poisson**：双曲背景与 $0$-trace 的 Poisson-/Selberg-型公式。
-* **非幺正/复延迟与极点统计**：复延迟的理论与实验、极点计数联系。
-* **Wexler–Raz 与 Landau 采样下界**：窗对的双正交与必要密度。
+* **BK 公式与谱移函数**：$\det S=e^{-2\pi i\xi}$、$\xi'(E)=-\tfrac{1}{2\pi i}\mathrm{tr}(S^\dagger S')$ 的数学物理严格化与相对迹类条件（Pushnitski 2010, arXiv:1006.0639）。
+* **Wigner–Smith 延迟**：$Q=-iS^\dagger \partial_E S$ 的定义、物理解释与多物理场推广（电磁/声学、含色散与损耗）；多通道统计性质（Brouwer et al. 1997, Phys. Rev. Lett. **78**, 4737; Texier & Majumdar 2013, Phys. Rev. Lett. **110**, 250602）。
+* **几何散射**：渐近平直/长程情形的散射微积分与 $S(E)$ 的 FIO 结构（Christiansen 2000, Ann. Inst. Fourier **50**, 1473; Melrose–Zworski 散射微积分；Hassell 2004, J. Funct. Anal. **210**, 321）。
+* **波迹与长度谱/Poisson**：双曲背景与 $0$-trace 的 Poisson-/Selberg-型公式（Duistermaat–Guillemin; Colin de Verdière; Borthwick; Guillarmou–Naud）。
+* **非幺正/复延迟与极点统计**：复延迟的理论与实验、极点计数联系；CPA 条件与零—极互补（Chong et al. 2010, Phys. Rev. Lett. **105**, 053901）。
+* **Wexler–Raz 与 Landau 采样下界**：窗对的双正交与必要密度（Daubechies 1992; Gröchenig 2001; Balian–Low 定理）。
 * **Poisson 求和与 Euler–Maclaurin**：误差三分解的基础与非渐近界。
-* **Shapiro 引力时延（宏观极限）**：历史测试与公式来源。
-* **Levinson-型结论**：相位台阶/束缚态计数之拓扑化综述。
+* **Shapiro 引力时延（宏观极限）**：历史测试与公式来源（Bertotti et al. 2003, Nature **425**, 374; Ashby & Allison 2015, Phys. Rev. D **92**, 062001; Ashby 2010, NIST SP 1198）。
+* **Levinson-型结论**：相位台阶/束缚态计数之拓扑化综述（Martin 2006, J. Phys. A **39**, R625）。
 * **数据处理不等式/相对熵单调性**：粗粒化/通道下可判别度单调降低之严密依据。
 
 ---
@@ -367,7 +371,7 @@ Wexler–Raz 身份刻画对偶窗；Landau 密度给出必要下界。Poisson �
 
 $$
 \int h\,\rho_{\mathrm{rel}}\,dE
-= -\frac{1}{2\pi i}\int h\,\partial_E\log\det S\,dE
+= \frac{1}{2\pi i}\int h\,\partial_E\log\det S\,dE
 = \frac{1}{2\pi i}\int h'\,\log\det S\,dE.
 $$
 
@@ -393,9 +397,9 @@ $$
 
 ## 附录 C：非幺正情形的 rDOS 与复延迟
 
-定义 $\rho_{\mathrm{rel}}^{(\mathrm{eff})}=\tfrac{1}{2\pi}\,\partial_E\arg\det S$。对非幺正 $S$，复时间延迟 $\tau=-\frac{i}{N}\partial_E\log\det S$ 分为实部（相位导数，对应驻留时间）与虚部（吸收率导数）。$\mathrm{Re}\,\tau$ 的分布统计与 $S$-矩阵零点—极点结构存在定量联系，在随机矩阵理论与开口腔体中已有系统性实验验证（Brouwer 1997; Cunden et al. 2015）。
+定义 $\rho_{\mathrm{rel}}^{(\mathrm{eff})}=\tfrac{1}{2\pi}\,\partial_E\arg\det S$。对非幺正 $S$，复时间延迟 $\tau=-\frac{i}{N}\partial_E\log\det S$ 分为实部（相位导数，对应驻留时间）与虚部（吸收率导数）。$\mathrm{Re}\,\tau$ 的分布统计与 $S$-矩阵零点—极点结构存在定量联系，在随机矩阵理论与开口腔体中已有系统性实验验证（Brouwer, Frahm, Beenakker 1997, Phys. Rev. Lett. **78**, 4737; Texier & Majumdar 2013, Phys. Rev. Lett. **110**, 250602; Cunden et al. 2015）。
 
-**CPA 条件与双洛伦兹形**：在共振能量 $E_0$ 附近，当 $\det S(E_0)=0$（相干完美吸收），$\tau(E)$ 展现**双洛伦兹**结构：$\mathrm{Re}\,\tau$ 在 $E_0$ 处峰值（Breit–Wigner 型），$\mathrm{Im}\,\tau$ 在同一位置呈现吸收极大；此时 $S$-矩阵在复平面的零点与极点互补。
+**CPA 条件与双洛伦兹形**：在共振能量 $E_0$ 附近，当 $\det S(E_0)=0$（相干完美吸收，Chong et al. 2010, Phys. Rev. Lett. **105**, 053901），$\tau(E)$ 展现**双洛伦兹**结构：$\mathrm{Re}\,\tau$ 在 $E_0$ 处峰值（Breit–Wigner 型），$\mathrm{Im}\,\tau$ 在同一位置呈现吸收极大；此时 $S$-矩阵在复平面的零点与极点互补。
 
 **复现实验指引**：对 $\det S(E)$ 的幅相同测，$\mathrm{Re}\,\tau$ 与 $\mathrm{Im}\,\tau$ 的峰-峰对齐指示 CPA/共振零极互补。数值上可通过测量 $S(E)$ 的幅相并以复步差分求 $\partial_E S$ 得到，或直接对 $\arg\det S$ 解卷绕后差分；二者可交叉校核稳健性。
 
