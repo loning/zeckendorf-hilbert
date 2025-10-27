@@ -53,6 +53,8 @@ $$
 
 单通道退化为 $S=e^{2i\varphi}$。$\operatorname{Arg}\det S$ 取局部连续分支，仅在 a.c. 谱上 a.e. 可微；跨越阈值与原子点时以跳跃补偿。
 
+**单位说明**：本文以 $\mathsf Q(E)=-i\,S^\dagger S'(E)$ 作为**无量纲化延迟刻度**（对能量求导）；若需物理时间延迟，可取 $\tau=\hbar\,\mathrm{eig}(\mathsf Q)$。该约定与电磁及量子散射文献一致。
+
 **0.2 谱移与 Birman–Kreĭn。** 采用 BK 的**负号约定**：$\ \det S(E)=e^{-2\pi i\,\xi(E)}$，则
 
 $$
@@ -75,9 +77,9 @@ $$
 
 ## 1. 公理体系（Axioms）
 
-**A1（双表象与协变）。** $\mathcal H(E)$（能量表象）与 $\mathcal H_a=L^2(\mathbb R_+,x^{a-1}dx)$（相位—尺度表象）等距等价；离散—连续换序使用**有限阶** EM，按 0.7 的光滑与（有界或有限变差）前提控制余项。此"等距等价"系指在所用 DBK 规范系统/Weyl–Mellin 变换**已构造到位**时的单位算子实现；读者不应将其理解为任意系统之间的无条件同构。**实施前提**：存在**非负**谱测度 $d\mu_\varphi$ 使 Herglotz 函数 $m$ 与 trace‑normed DBK 规范系统成立；此时 Weyl–Mellin 变换给出 $\mathcal H(E)\leftrightarrow \mathcal H_a$ 的单位算子。
+**A1（双表象与协变）。** $\mathcal H(E)$（能量表象）与 $\mathcal H_a=L^2(\mathbb R_+,x^{a-1}dx)$（相位—尺度表象）等距等价；离散—连续换序使用**有限阶** EM，按 0.7 的光滑与（有界或有限变差）前提控制余项。此"等距等价"系指在所用 DBK 规范系统/Weyl–Mellin 变换**已构造到位**时的单位算子实现；读者不应将其理解为任意系统之间的无条件同构。**实施前提**：存在**非负 Borel 测度 $\nu$** 使得 Herglotz 函数 $m$ 与**trace-normed** DBK 规范系统成立；此时 $\mu_\varphi^{\mathrm{ac}}$ 满足 $\rho_{\mathrm{rel}}=\pi^{-1}\Im m$（a.e.）。当且仅当 $\mu_\varphi\ge0$ 时，$\mu_\varphi$ 与 $\nu$ **一致**并获**全局** DBK 表示；$\mu_\varphi$ 含负部时，仅能在 $\rho_{\mathrm{rel}}>0$ 的 a.c. 分段得到**局部**表示。此时 Weyl–Mellin 变换给出 $\mathcal H(E)\leftrightarrow \mathcal H_a$ 的单位算子。
 
-**A2（有限窗口读数）。** 任一次"可实现读数"写作窗—核谱积分 $K_{w,h}=\int h(E)\,w_R(E)\,d\Pi_A(E)$；误差以"别名（Poisson）+ 伯努利层（EM）+ 截断"三项**非渐近闭合**；带限且 $f_s>2B$ 时别名为 0。为确保 $K_{w,h}$ 自伴，要求 $h(\cdot)\,w_R(\cdot)\in L^\infty(\mathbb R;\mathbb R)$（充分且必要）；一次"读数"的数值为 $\operatorname{Tr}(\rho K_{w,h})$。记号约定：下文 $E_A$ 与 $\Pi_A$ 同指同一投影值谱测度。
+**A2（有限窗口读数）。** 任一次"可实现读数"写作窗—核谱积分 $K_{w,h}=\int h(E)\,w_R(E)\,d\Pi_A(E)$。为确保 $K_{w,h}$ 在**所有密度算子** $\rho$ 上的期望值 $\operatorname{Tr}(\rho K_{w,h})$ 良定义并一致有界，本文**限定** $g(E):=h(E)w_R(E)\in L^\infty(\mathbb R;\mathbb R)$，据此 $K_{w,h}$ 为**有界自伴**算子；误差以"别名（Poisson）+ 伯努利层（EM）+ 截断"三项**非渐近闭合**（带限且 $f_s>2B$ 时别名为 0）。一次"读数"的数值为 $\operatorname{Tr}(\rho K_{w,h})$。记号约定：下文 $E_A$ 与 $\Pi_A$ 同指同一投影值谱测度。
 
 **A3（概率—信息一致性）。** 对 PVM $\{P_j\}$ 与态 $\rho$，线性约束 $p_j=\operatorname{Tr}(\rho P_j)$ 使可行集为单点 $\{p^\star\}$，任意严格凸 Bregman/KL 的 I-projection 唯一取于 $p^\star$；POVM 情形先作 Naimark 扩张到 PVM 再回推。Gleason（$\dim\mathcal H\ge3$）确保此概率形式的唯一性。
 
@@ -164,7 +166,9 @@ $$
 
 **(i) Born = I-projection（严格）。** 在 PVM $\{P_j\}$ 下，可行集为单点 $\{p^\star\}$；任意严格凸 Bregman/KL 的 I-projection 唯一取于 $\,p^\star$。POVM 先作 Naimark 扩张，再回推。∎
 
-**(ii) Pointer = 光谱极小（Ky Fan）。** 对自伴 $K_{w,h}$，$\min_{U^\dagger U=I_r}\operatorname{tr}(U^\dagger K_{w,h}U)=\sum_{k=n-r+1}^{n}\lambda_k(K_{w,h})$，极小子空间由 $K_{w,h}$ 的**最小** $r$ 个本征向量张成；若需"最大能量指针"，对应上式取 $\max$ 与前 $r$ 个本征值之和。∎
+**(ii) Pointer = 光谱极小（Ky Fan）。** 对自伴 $K_{w,h}$，$\min_{U^\dagger U=I_r}\operatorname{tr}(U^\dagger K_{w,h}U)=\sum_{k=n-r+1}^{n}\lambda_k(K_{w,h})$，极小子空间由 $K_{w,h}$ 的**最小** $r$ 个本征向量张成；若需"最大能量指针"，对应上式取 $\max$ 与前 $r$ 个本征值之和。
+
+**参考根据**：Ky Fan 变分原理（"最小 $r$ 个本征值之和 = 压缩迹的极小"）。参见 Horn–Johnson《Matrix Analysis》或等价教材/讲义对 Fan 最大/最小原理的系统表述。∎
 
 **(iii) Windows = 极大极小（带限最坏情形，良定版）。** 设
 
@@ -208,7 +212,7 @@ $$
 T(E)=\int_{E_0}^E \rho_{\mathrm{rel}}(u)\,du=\frac{\varphi(E)-\varphi(E_0)}{\pi}.
 $$
 
-当 $(2\pi)^{-1}\operatorname{tr}\mathsf Q$ 在所考察区间 a.e. **非负**时，$T$ **单调不减**并可作（可能退化的）重参数化；当其在该区间 a.e. **严格为正**时，$T$ **严格单调**并给出**可逆**的重参数化。此时稳定采样/插值满足 Landau 必要密度；多窗可重构性由帧算子与 Wexler–Raz 双正交刻画；临界密度下满足 Balian–Low 不可能性。∎
+当 $(2\pi)^{-1}\operatorname{tr}\mathsf Q$ 在所考察区间 a.e. **非负**时，$T$ **单调不减**并可作（可能退化的）重参数化；当其在该区间 a.e. **严格为正**时，$T$ **严格单调**并给出**可逆**的重参数化。此时稳定采样/插值满足 Landau 必要密度（见参考文献 [4]）；当 $(2\pi)^{-1}\operatorname{tr}\mathsf Q\ge 0$ a.e. 时，$T$ 单调不减使 Landau 必要密度在 $T$ 轴与 $E$ 轴间保持等价；$>0$ 时单调可逆。多窗可重构性由帧算子与 Wexler–Raz 双正交刻画；临界密度下满足 Balian–Low 不可能性。∎
 
 ---
 
@@ -216,7 +220,7 @@ $$
 
 **定理 4.1（Poisson—Nyquist：基带无混叠）。** 若 $\operatorname{supp}\widehat f\subset[-B,B]$ 且采样率 $f_s>2B$，则 Poisson 复制频带**互不重叠**，故在**基带/重构域**内仅 $k=0$ 贡献，别名项对重构**为 0**；若 $f_s<2B$ 则越界频谱重叠产生混叠。∎
 
-**定理 4.2（Euler–Maclaurin：有限阶伯努利层与余项）。** 当 $F\in C^{2m}([a,b])$ 且 $F^{(2m)}$ 有界或具有限总变差时，EM 给出到 $2m$ 阶的伯努利校正与**显式**积分余项；AFP-Isabelle 对余项与收敛条件给出形式化证明，由此可在实现中**择定有限阶 $m$** 并得到可执行上界。∎
+**定理 4.2（Euler–Maclaurin：有限阶伯努利层与余项）。** 当 $F\in C^{2m}([a,b])$ 且 $F^{(2m)}$ 有界或具有限总变差时，EM 给出到 $2m$ 阶的伯努利校正与**显式**积分余项；AFP-Isabelle 对余项与收敛条件给出形式化证明，由此可在实现中**择定有限阶 $m$** 并得到可执行上界。当 $F^{(2m)}$ 有界或具有限总变差时，EM 余项可用周期化伯努利多项式的积分表示给出**显式上界**；详细的可检实现见 AFP-Isabelle。∎
 
 **定理 4.3（三分解闭合）。** $K_{w,h}$ 的实现可写为：离散求和（Nyquist）$+$ EM 有限阶校正（伯努利层）$+$ 余项（别名+截断）。当带限且 $f_s>2B$ 时别名层为 0；EM 余项由 4.2 的上界控制，故得**有限阶、非渐近闭合**。∎
 
@@ -224,13 +228,15 @@ $$
 
 ## 5. 信息单调与容量上界
 
-**定理 5.1（DPI：相对熵在正迹保持映射下单调）。** DPI 需要**正且迹保持（PTP）**线性映射；HSW 容量结论仍以**CPTP 信道**为语境。对任意正迹保持映射 $\Phi$（适用范围：任何**正迹保持（PTP）**线性映射，不必完全正），
+**定理 5.1（DPI：相对熵在正迹保持映射下单调）。** 对任意正迹保持映射 $\Phi$，
 
 $$
 D\!\left(\Phi(\rho)\,\middle\Vert\,\Phi(\sigma)\right)\le D(\rho\Vert\sigma).
 $$
 
-**证明要点。** Müller-Hermes–Reeb 以"夹态 Rényi 发散 + 复插值"证明 DPI 在**正迹保持**（不必 CP）下成立，并以 Petz 恢复映射刻画等号情形。Müller-Hermes–Reeb 证明 Umegaki 相对熵在**正迹保持（PTP）**线性映射下单调；但**容量（HSW）**等编码结论仍在 **CPTP 信道**框架下陈述与达成。∎
+**证明要点。** Müller-Hermes–Reeb 以"夹态 Rényi 发散 + 复插值"证明 DPI 在**正迹保持**（不必 CP）下成立，并以 Petz 恢复映射刻画等号情形。
+
+**（括注）** Umegaki 相对熵的 DPI **对任意正且迹保持的线性映射**皆成立；这是 Müller-Hermes–Reeb 的结果，并不要求 CP/2-positive/Schwarz 条件。本文在陈述 HSW 等容量结论时仍**限定信道为 CPTP**。∎
 
 **定理 5.2（HSW：无助理经典容量的正则化公式）。** 量子信道 $\mathcal N$ 的无助理经典容量满足
 
@@ -264,9 +270,9 @@ $$
 T(E)=\int_{E_0}^{E}\frac{1}{2\pi}\operatorname{tr}\mathsf Q(u)\,du.
 $$
 
-当 $(2\pi)^{-1}\operatorname{tr}\mathsf Q$ 在所考察区间 a.e. **非负**时，$T$ **单调不减**并可作（可能退化的）重参数化；当其在该区间 a.e. **严格为正**时，$T$ **严格单调**并给出**可逆**的重参数化。**单通道**时 $S=e^{2i\varphi}$，故 $T(E)=\dfrac{\varphi(E)-\varphi(E_0)}{\pi}$，表征可测群延迟并与部分密度态联系。（与 §3.4 的定义与分片黏合完全一致。）
+当 $(2\pi)^{-1}\operatorname{tr}\mathsf Q$ 在所考察区间 a.e. **非负**时，$T$ **单调不减**并可作（可能退化的）重参数化；当其在该区间 a.e. **严格为正**时，$T$ **严格单调**并给出**可逆**的重参数化。当 $(2\pi)^{-1}\operatorname{tr}\mathsf Q\ge 0$ a.e. 时，$T$ 单调不减使 Landau 必要密度在 $T$ 轴与 $E$ 轴间保持等价（见参考文献 [4]）；$>0$ 时单调可逆。**单通道**时 $S=e^{2i\varphi}$，故 $T(E)=\dfrac{\varphi(E)-\varphi(E_0)}{\pi}$，表征可测群延迟并与部分密度态联系。（与 §3.4 的定义与分片黏合完全一致。）
 
-**6.2 非厄米/耗散与共振寿命。** 耗散（非酉）系统存在"修正 BK"与相应时间延迟推广；**在存在孤立的 Breit–Wigner 型共振极点** $E_0-i\Gamma/2$ 的近共振区间内，$\operatorname{tr}\mathsf Q$ 呈峰并给出寿命 $\tau=\hbar/\Gamma$。可在"最大耗散扩张/耦合散射"的框架下以谱移与广义 Weyl 函数精确表达。上述耗散/耦合情形可参见 Behrndt–Malamud–Neidhardt 对 BK 变体与迹公式的系统化表述（见参考文献 [12]）。
+**6.2 非厄米/耗散与共振寿命。** 耗散（非酉）系统存在"修正 BK"与相应时间延迟推广；**在存在孤立的 Breit–Wigner 型共振极点** $E_0-i\Gamma/2$ 的近共振区间内，$\operatorname{tr}\mathsf Q$ 呈峰并给出寿命 $\tau=\hbar/\Gamma$。可在"**最大耗散扩张/耦合散射**"的框架下以谱移与广义 Weyl 函数精确表达。上述耗散/耦合情形可参见 **Behrndt–Malamud–Neidhardt** 对 BK 变体与迹公式的系统化表述（见参考文献 [12]），该框架把"谱移—Weyl 函数—散射矩阵"的关系与变体公式锚定到统一理论。
 
 ---
 
