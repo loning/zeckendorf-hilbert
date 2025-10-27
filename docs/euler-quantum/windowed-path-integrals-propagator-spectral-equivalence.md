@@ -42,7 +42,7 @@ $$
 
 **泛化记号.** 对一般谱密度/测度 $\rho_\star$（可为 $\rho_{\rm abs}$、$\rho_{\rm rel}$ 或其他），记 $K_{\rho_\star}(t):=\widehat{\rho_\star}(t)=\int_{\mathbb R} e^{-iEt}\,d\rho_\star(E)$。当 $\rho_\star$ 来自某迹类 $\rho$ 的谱测度 $\nu_\rho$ 时，$K_{\rho_\star}(t)=K_\rho(t):=\operatorname{Tr}(\rho e^{-iHt})$；一般地仍取 Stieltjes/分布意义。
 
-**（0.4）窗与核.** 取**偶窗** $w_R(E)=w(E/R)$，其中 $w\in \mathsf{PW}^{\rm even}_\Omega$（带宽 $\Omega$ 的 Paley–Wiener 偶函数类），则 $\widehat{w_R}(\xi)=R\,\widehat w(R\xi)$ 亦为偶函数且支撑在 $[-\Omega/R,\Omega/R]$。**注：** "支撑缩放（$\Omega/R$）"与"幅值因子（$R$）"需区分——例如 $R=2$ 时支撑变为原来的 $1/2$，而峰值变为原来的 $2$ 倍，使 $L^1$ 范数保持。前端核 $h\in W^{2M,1}(\mathbb R)\cap L^1(\mathbb R)$（无偶性要求，必要时可带限），保证卷积与换序。
+**（0.4）窗与核.** 取**偶窗** $w_R(E)=w(E/R)$，其中 $w\in \mathsf{PW}^{\rm even}_\Omega$（带宽 $\Omega$ 的 Paley–Wiener 偶函数类，此处取 $L^2$ Paley–Wiener：紧支撑傅里叶变换的 $L^2$ 函数），则 $\widehat{w_R}(\xi)=R\,\widehat w(R\xi)$ 亦为偶函数且支撑在 $[-\Omega/R,\Omega/R]$。**注：** "支撑缩放（$\Omega/R$）"与"幅值因子（$R$）"需区分——例如 $R=2$ 时支撑变为原来的 $1/2$，而峰值变为原来的 $2$ 倍，使 $\|\widehat w_R\|_{L^1}$ 保持不变。测试核 $h\in W^{2M,1}(\mathbb R)\cap L^1(\mathbb R)$（无偶性要求，必要时可带限），保证卷积与换序。
 
 **（0.5）相位—密度—延迟刻度.** 设对参照 $H_0$ 的散射矩阵为 $S(E)$（单/多通道）。本文固定 Birman–Kreĭn 号记
 
@@ -50,7 +50,21 @@ $$
 \det S(E)=e^{+2\pi i\,\xi(E)}\quad (\text{a.e. }E),
 $$
 
-并引入 Wigner–Smith 延迟矩阵 $\mathsf Q(E):=-i\,S^\dagger(E)\,S'(E)$。由 BK 公式对数导数可得
+并引入 Wigner–Smith 延迟矩阵。**量纲与 $\hbar$ 统一：** 定义
+
+$$
+\mathsf Q_\hbar(E):=-i\,\hbar\,S^\dagger(E)\,\partial_E S(E),\qquad
+\mathsf Q(E):=\frac{1}{\hbar}\,\mathsf Q_\hbar(E)=-i\,S^\dagger(E)\,\partial_E S(E).
+$$
+
+则对任意 a.e. 可微的散射能量 $E$，
+
+$$
+\operatorname{tr}\mathsf Q_\hbar(E)=2\,\hbar\,\varphi'(E)=2\pi\hbar\,\xi'(E),\qquad
+\rho_{\rm rel}(E)=\xi'(E)=\frac{1}{2\pi\hbar}\operatorname{tr}\mathsf Q_\hbar(E).
+$$
+
+在全文中取 $\hbar=1$，默认 $\mathsf Q=\mathsf Q_\hbar/\hbar$，从而
 
 $$
 \xi'(E)=\dfrac{1}{2\pi}\operatorname{tr}\mathsf Q(E),\qquad
@@ -63,7 +77,7 @@ $$
 \varphi'(E)=\pi\,\xi'(E)=\dfrac{1}{2}\operatorname{tr}\mathsf Q(E)=\pi\,\rho_{\rm rel}(E).
 $$
 
-**适用条件：** 上述关系在 §4.1 的散射正则性条件下（例如相对迹类或 Hilbert–Schmidt 条件，使 $S(E)$ a.e. 可微且 BK 公式适用）a.e. 成立，并统一了作用量相位与谱移密度的刻度。恢复 $\hbar$ 时有 $2\hbar\,\delta'(E)=\operatorname{tr}\mathsf Q(E)$，其中 $\det S=e^{2i\delta}$。详见 §4.1 与附录 A。
+**适用条件：** 上述关系在 §4.1 的散射正则性条件下（例如相对迹类或 Hilbert–Schmidt 条件，使 $S(E)$ a.e. 可微且 BK 公式适用）a.e. 成立，并统一了作用量相位与谱移密度的刻度。详见 §4.1 与附录 A。
 
 ---
 
@@ -103,7 +117,7 @@ $$
 
 其中 $K_{\rho_\star}(t)=\widehat{\rho_\star}(t)$；当 $\rho_\star=\nu_\rho$ 时与 $K_\rho(t):=\operatorname{Tr}(\rho e^{-iHt})$ 一致。当 $w_R(E)=e^{+iEt_0}$（从而 $\widehat w_R(t)=2\pi\delta(t-t_0)$）、$h=\delta$ 时，右端化为 $K_{\rho_\star}(t_0)$（详见附录 B.2 对傅里叶规范的讨论）。
 
-**证明.** 记 $g(E)=w_R(E)\,(h\!\ast\!\rho_\star)(E)$。由 Parseval，$\int g=\widehat g(0)$。再由卷积—乘积对偶
+**证明.** 记 $g(E)=w_R(E)\,(h\!\ast\!\rho_\star)(E)$。由假设 A1–A3，当 $\rho_\star$ 为有限符号测度时，$h\!\ast\!\rho_\star\in C_0(\mathbb R)\cap L^\infty(\mathbb R)$，故 $g=w_R\cdot(h\!\ast\!\rho_\star)\in L^\infty(\mathbb R)\cap \mathcal M(\mathbb R)$（有界可积函数）。由 Parseval，$\int g=\widehat g(0)$。再由卷积—乘积对偶
 
 $$
 \widehat g(\xi)=\frac{1}{2\pi}\int_{\mathbb R}\widehat w_R(\tau)\,\widehat h(\xi-\tau)\,\widehat{\rho_\star}(\xi-\tau)\,d\tau.
@@ -115,13 +129,24 @@ $$
 \widehat g(0)=\frac{1}{2\pi}\int_{\mathbb R}\widehat w_R(-t)\,\widehat h(t)\,\widehat{\rho_\star}(t)\,dt.
 $$
 
-因 $w_R$ 为偶函数（0.4），其傅里叶变换 $\widehat w_R$ 亦偶，从而 $\widehat w_R(-t)=\widehat w_R(t)$。又由记号 0.3，$\widehat{\rho_\star}(t)=K_{\rho_\star}(t)$（Stieltjes/分布意义），即得所述。此处采用分布型 Parseval/Plancherel；假设 $\rho_\star$ 为有限 Borel 测度，$h\in L^1(\mathbb R)$ 使 $h\!\ast\!\rho_\star$ 有界且（广义）可积，从而 Fubini/Tonelli 与换序成立。换序由 $w_R\in L^\infty\cap C^{2M}$、$h\in W^{2M,1}$ 及 $\rho_\star$ 在 Fubini/Tonelli 意义下的可积性（对紧支撑与绝对连续部分分解处理）保证。□
+因 $w_R$ 为偶函数（0.4），其傅里叶变换 $\widehat w_R$ 亦偶，从而 $\widehat w_R(-t)=\widehat w_R(t)$。又由记号 0.3，$\widehat{\rho_\star}(t)=K_{\rho_\star}(t)$（Stieltjes/分布意义），即得所述。换序由 $w_R\in L^\infty\cap C^{2M}$、$h\in W^{2M,1}$ 及 $\rho_\star$ 在 Fubini/Tonelli 意义下的可积性（对紧支撑与绝对连续部分分解处理）保证。□
 
 > **诠释.** 左端是**能量侧**"窗—核—密度"读数；右端是**时间侧**传播子时间迹在相同窗/核下的乘积积分。这就是"**路径积分核（传播子）↔ 能量窗化谱读数**"的精确傅里叶对偶，依赖的仅是谱定理与 Plancherel（Stone 定理确保 $e^{-itH}$ 的一参单位群）。
 
 > **偶窗假设与去偶化.** 本定理陈述采用偶窗 $w_R$（从而 $\widehat w_R(-t)=\widehat w_R(t)$）以简化证明中的符号；对非偶窗（例如恢复点时刻传播子时取 $w_R(E)=e^{\pm iEt_0}$）或需去偶化处理的情形，见附录 B.2 对傅里叶规范与号记的讨论——结论保持，仅需配合规范调整。
 
 > **提示.** 当需恢复点时刻传播子 $K_{\rho_\star}(t_0)$ 时，取 $w_R(E)=e^{\pm iEt_0}$ 与 $h=\delta$ 的极限，见附录 B.2。
+
+### 推论 2.2（分布版本/点窗与 $\delta$ 核）
+
+令 $w\in\mathcal S'(\mathbb R)$、$h\in\mathcal S'(\mathbb R)$、$\rho_\star\in\mathcal S'(\mathbb R)$ 为温和分布，并假设 $\widehat w$ 为有界有限测度（容许 $\widehat w=2\pi\,\delta(\cdot-t_0)$）、$h$ 可由 $h_\epsilon\in W^{2M,1}\cap L^1$ 逼近。则定理 2.1 的恒等式
+
+$$
+\int_{\mathbb R} w(E)\,(h\!\ast\!\rho_\star)(E)\,dE
+=\frac{1}{2\pi}\int_{\mathbb R}\widehat w(t)\,\widehat h(t)\,K_{\rho_\star}(t)\,dt
+$$
+
+在 $\mathcal S'$ 中成立。特别地，取 $w(E)=e^{+iEt_0}$、$h=\delta$ 得 $\int_{\mathbb R} e^{+iEt_0}\,d\rho_\star(E)=K_{\rho_\star}(-t_0)$，与附录 B.2 完全一致（不同傅里叶规范下仅表现为符号变换）。
 
 ---
 
@@ -135,17 +160,25 @@ $$
 \underbrace{\text{tail}}_{\text{截断}}\ }.
 $$
 
-**别名=0 判据（Nyquist 条件）：** 记 $g(E):=w_R(E)\,(h\!\ast\!\rho_\star)(E)$ 为能量侧被采样的量。若 $\widehat w_R$ 与 $\widehat h$ **严格带限**于 $[-\Omega_w,\Omega_w]$ 与 $[-\Omega_h,\Omega_h]$（角频率规范），则由傅里叶卷积—乘积对偶 $\widehat g=\frac{1}{2\pi}\,\widehat w_R\ast\big(\widehat h\cdot\widehat{\rho_\star}\big)$ 及支撑卷积规则知：
-- 若 $\widehat h$ 带限于 $[-\Omega_h,\Omega_h]$，则 $\operatorname{supp}(\widehat h\cdot\widehat{\rho_\star})\subseteq [-\Omega_h,\Omega_h]$（无论 $\widehat{\rho_\star}$ 是否带限）；
-- 进而 $\operatorname{supp}\widehat g\subseteq \operatorname{supp}\widehat w_R + \operatorname{supp}\widehat h\subseteq [-(\Omega_w+\Omega_h),\Omega_w+\Omega_h]$。
+**侧别统一与别名=0 判据.** 为避免变量混用，定义
+- **时间侧函数**：$G_t(t):=\dfrac{1}{2\pi}\,\widehat w_R(t)\,\widehat h(t)\,K_{\rho_\star}(t)$。
+- **能量侧函数**：$G_E(E):=w_R(E)\,(h\!\ast\!\rho_\star)(E)$。
 
-**因此，当且仅当 $g(E)$ 的角频域支撑在 $[-(\Omega_w+\Omega_h),\Omega_w+\Omega_h]$ 内时，** 若等距采样步长（时间侧）满足
+**（i）若在时间侧采样** $G_t$（步长 $\Delta_t$）且 $\operatorname{supp}\widehat w_R\subset[-\Omega_w,\Omega_w]$、$\operatorname{supp}\widehat h\subset[-\Omega_h,\Omega_h]$，则由傅里叶卷积—乘积对偶，$\widehat G_t$ 的支撑在 $[-(\Omega_w+\Omega_h),\Omega_w+\Omega_h]$ 内（角频率规范），故
 
 $$
-\Delta\ \le\ \frac{\pi}{\Omega_w+\Omega_h},
+\boxed{\ \Delta_t\ \le\ \frac{\pi}{\Omega_w+\Omega_h}\ \Rightarrow\ \text{alias}=0\ }.
 $$
 
-则由 Nyquist–Shannon 采样定理，**别名项严格为 0**（Poisson 求和之非零模项消失）。近带限情形，别名由出带能量与 $\Delta$ 的显式上界控制。EM 层只依赖有限阶导数，尾项由窗外 $L^1/L^2$ 能量给界。EM 层取自 Euler–Maclaurin 公式的带余项版本；对解析/周期情形，梯形规则呈指数收敛。
+EM 余项：$\lesssim \dfrac{1}{(2M)!}\,\max\limits_{|t|\le T}\big|G_t^{(2M)}(t)\big|\,\Delta_t^{2M}$；截断尾项 $\lesssim \|\widehat G_t\|_{L^1(|t|>T)}$。
+
+**（ii）若在能量侧采样** $G_E$（步长 $\Delta_E$），令 $\Omega_g$ 为 $\widehat G_E$ 的角频域半宽，则
+
+$$
+\boxed{\ \Delta_E\ \le\ \frac{\pi}{\Omega_g}\ \Rightarrow\ \text{alias}=0\ }.
+$$
+
+其余 EM/尾项对称给出（用 $G_E$ 替换 $G_t$）。近带限情形，别名由出带能量与 $\Delta$ 的显式上界控制。EM 层取自 Euler–Maclaurin 公式的带余项版本；对解析/周期情形，梯形规则呈指数收敛。
 
 **误差账本实施清单（数值实现者速查）：**
 
@@ -153,16 +186,18 @@ $$
 |---------|------|------------|
 | 窗带宽（角频率） | $\Omega_w$ | rad/time |
 | 核带宽（角频率） | $\Omega_h$ | rad/time |
-| 采样步长（时间侧） | $\Delta$ | time |
-| 截断半宽 | $T$ | time |
+| 采样步长（时间侧） | $\Delta_t$ | time |
+| 采样步长（能量侧） | $\Delta_E$ | energy |
+| 截断半宽 | $T$ | time 或 energy |
 | EM 阶数 | $2M$ | 偶数，≥2 |
 
 | 输出/判据 | 表达式 | 注释 |
 |---------|--------|------|
-| **别名=0 条件** | $\Delta \le \pi/(\Omega_w+\Omega_h)$ | 严格带限时成立 |
-| **别名上界（近带限）** | $\lesssim \|\widehat g\|_{L^1(|\xi|>\pi/\Delta)}$ | 出带能量 |
-| **EM 余项上界** | $\lesssim \frac{1}{(2M)!} \max\limits_{|t|\le T} |g^{(2M)}(t)| \cdot \Delta^{2M}$ | Bernoulli 层 |
-| **截断尾项上界** | $\lesssim \|\widehat g\|_{L^1(|t|>T)}$ 或 $\lesssim e^{-cT}$（解析） | 窗外能量 |
+| **别名=0 条件（时间侧）** | $\Delta_t \le \pi/(\Omega_w+\Omega_h)$ | 严格带限时成立 |
+| **别名=0 条件（能量侧）** | $\Delta_E \le \pi/\Omega_g$ | $\Omega_g$ 为 $\widehat G_E$ 半宽 |
+| **别名上界（近带限）** | $\lesssim \|\widehat G\|_{L^1(|\xi|>\pi/\Delta)}$ | 出带能量 |
+| **EM 余项上界** | $\lesssim \frac{1}{(2M)!} \max\limits_{|x|\le T} |G^{(2M)}(x)| \cdot \Delta^{2M}$ | Bernoulli 层，$x$ 为时间或能量 |
+| **截断尾项上界** | $\lesssim \|\widehat G\|_{L^1(|x|>T)}$ 或 $\lesssim e^{-cT}$（解析） | 窗外能量 |
 
 **注.** Poisson 求和与近似采样、Parseval 分解之间的等价与互推，参见 Butzer–Gessinger 等综述。
 
@@ -172,18 +207,17 @@ $$
 
 ### 定理 4.1（BK + Wigner–Smith）
 
-设 $(H,H_0)$ 满足常规散射正则性（例如 $V\in L^1(\langle x\rangle,dx)$ 或相应相对迹类/Hilbert–Schmidt 条件，使谱移函数与 $S(E)$ 的可微性、BK 公式适用；参见 Yafaev 或 Sobolev 对散射理论的综述），使得 a.e. $E$ 上 $S(E)$ 存在并酉。若取 BK 号记 $\det S(E)=e^{2\pi i\xi(E)}$，并记 $\varphi(E):=\pi\,\xi(E)$（即 $\det S=e^{2i\varphi}$），则
+设 $(H,H_0)$ 满足常规散射正则性（例如 $V\in L^1(\langle x\rangle,dx)$ 或相应相对迹类/Hilbert–Schmidt 条件，使谱移函数与 $S(E)$ 的可微性、BK 公式适用；参见 Yafaev 或 Sobolev 对散射理论的综述），使得 a.e. $E$ 上 $S(E)$ 存在并酉。若取 BK 号记 $\det S(E)=e^{2\pi i\xi(E)}$，并按 0.5 定义 $\mathsf Q(E):=-i\,S^\dagger(E)\,\partial_E S(E)$（取 $\hbar=1$ 后的记号），则
 
 $$
 \xi'(E)=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E),\qquad
-\mathsf Q(E):=-i\,S^\dagger(E)\,S'(E),
+\rho_{\rm rel}(E):=\xi'(E)=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E).
 $$
 
-从而
+记 $\varphi(E):=\pi\,\xi(E)$（即 $\det S=e^{2i\varphi}$），从而
 
 $$
-\boxed{\ \varphi'(E)=\frac{1}{2}\operatorname{tr}\mathsf Q(E)=\pi\,\rho_{\rm rel}(E)\ },\qquad
-\rho_{\rm rel}(E):=\xi'(E).
+\boxed{\ \varphi'(E)=\frac{1}{2}\operatorname{tr}\mathsf Q(E)=\pi\,\rho_{\rm rel}(E)\ }.
 $$
 
 **证明（要点）.** 由 BK 公式 $\det S(E)=e^{2\pi i\xi(E)}$（a.e.）取对数并微分，得 $\dfrac{d}{dE}\log\det S(E)=\operatorname{tr}(S^{-1}S')=2\pi i\,\xi'(E)$。又因 $S$ 酉，$S^{-1}=S^\dagger$，于是 $\operatorname{tr}(-iS^\dagger S')=2\pi\,\xi'(E)$，即 $\operatorname{tr}\mathsf Q(E)=2\pi\,\xi'(E)$。定义 $\varphi(E):=\pi\,\xi(E)$，则 $\varphi'(E)=\pi\,\xi'(E)=\dfrac{1}{2}\operatorname{tr}\mathsf Q(E)$，即得结论。
@@ -290,8 +324,8 @@ $$
 ### 附录 A：规范切换与 $\hbar$ 恢复
 
 * 若取对称 Fourier 规范 $\widehat f=(2\pi)^{-1/2}\int f e^{-ix\xi}$，则（2.1）右端无 $1/(2\pi)$ 因子。
-* 恢复 $\hbar$：以 $\xi=t/\hbar$ 改写 $\widehat w_R,\widehat h,K_{\rho_\star}$ 的自变量并配套雅可比。
-* BK 号记改为 $\det S=e^{-2\pi i\xi}$ 时，$\xi'$ 与 $\operatorname{tr}\mathsf Q$ 共同变号；相应地 $\varphi'=\tfrac{1}{2}\operatorname{tr}\mathsf Q$ 与 $\rho_{\rm rel}=\tfrac{1}{2\pi}\operatorname{tr}\mathsf Q$ 的比例关系 $\varphi'=\pi\,\rho_{\rm rel}$ 保持不变，等式结构不变。
+* 恢复 $\hbar$：以 $\xi=t/\hbar$ 改写 $\widehat w_R,\widehat h,K_{\rho_\star}$ 的自变量并配套雅可比；按 0.5 中 $\mathsf Q_\hbar$ 的定义，含 $\hbar$ 的关系式为 $\operatorname{tr}\mathsf Q_\hbar(E)=2\,\hbar\,\varphi'(E)=2\pi\hbar\,\xi'(E)$。
+* BK 号记改为 $\det S=e^{-2\pi i\xi}$ 时，$\xi'$ 与 $\operatorname{tr}\mathsf Q_\hbar$（或 $\operatorname{tr}\mathsf Q$）共同变号；相应地 $\varphi'=\tfrac{1}{2\hbar}\operatorname{tr}\mathsf Q_\hbar$ 与 $\rho_{\rm rel}=\tfrac{1}{2\pi\hbar}\operatorname{tr}\mathsf Q_\hbar$ 的比例关系 $\varphi'=\pi\,\rho_{\rm rel}$ 保持不变，等式结构不变。
 
 ---
 
