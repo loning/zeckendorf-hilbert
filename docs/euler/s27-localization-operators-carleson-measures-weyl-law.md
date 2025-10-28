@@ -2,7 +2,7 @@
 
 **—— de Branges–Mellin 框架中的核论证、迹恒等与非渐近窗化误差**
 
-Version: 1.11
+Version: 1.12
 
 ## 摘要（定性）
 
@@ -155,17 +155,17 @@ $$
 \boxed{\ \operatorname{Tr}\,T_{a,R}\ =\ \int_{\mathbb R} a(x)\,w_R(x)\ \frac{\varphi'(x)}{\pi}\,dx\ }.\tag{2.3}
 $$
 
-**证明（修订）.** 当 $a,w_R\ge 0$ 时，$|K_x\rangle\langle K_x|/K(x,x)$ 的迹为 1，利用单调收敛与分解 $T_{a,R}=\int f(x)\,|k_x\rangle\langle k_x|\,d\nu_0$ 得 $\operatorname{Tr}T_{a,R}=\int f\,d\nu_0$。一般实值时，在 $|a|\,w_R\in L^1(d\nu_0)$ 下，$x\mapsto f(x)\,|k_x\rangle\langle k_x|$ 在迹范数下可积，故可按 Bochner/Fubini 换序并得同式。∎
+**证明（修订）.** 当 $a,w_R\ge 0$ 时，$|k_x\rangle\langle k_x|$ 的迹为 1（此处 $|k_x\rangle:=K(\cdot,x)/\sqrt{K(x,x)}$），利用单调收敛与分解 $T_{a,R}=\int f(x)\,|k_x\rangle\langle k_x|\,d\nu_0$ 得 $\operatorname{Tr}T_{a,R}=\int f\,d\nu_0$。一般实值时，在 $|a|\,w_R\in L^1(d\nu_0)$ 下，$x\mapsto f(x)\,|k_x\rangle\langle k_x|$ 在迹范数下可积，故可按 Bochner/Fubini 换序并得同式。∎
 
 ### 2.4 Ky Fan 原理与层集上界
 
 记 $\{\lambda_j(T_{a,R})\}$ 为特征值降序列。
 
 **命题 2.2（Ky Fan 上界——修订）.**
-*假设 $T_{a,R}\ge 0$。* 记 $f(x):=a(x)\,w_R(x)$，并以 $d\nu_0$ 为参照定义其非增重排 $f^*$。则对任意 $N\in\mathbb N$，
+*假设 $T_{a,R}\ge 0$。* 记 $f(x):=a(x)\,w_R(x)$，并以 $d\nu_0$ 为参照定义其非增重排 $f^*$ 于区间 $[0,M_R]$，其中 $M_R:=\int w_R\,\frac{\varphi'}{\pi}dx$。则对任意 $N\in\mathbb N$，
 
 $$
-\sum_{j=1}^{N} \lambda_j(T_{a,R})\ \le\ \int_{0}^{N} f^*(t)\,dt.
+\sum_{j=1}^{N} \lambda_j(T_{a,R})\ \le\ \int_{0}^{\min\{N,M_R\}} f^*(t)\,dt.
 $$
 
 **证意.** 用分解 $T_{a,R}=\int f(x)\,|k_x\rangle\langle k_x|\,d\nu_0$ 与连续帧的分辨率恒等式，结合 Ky Fan 最大化原理与 Hardy–Littlewood 重排不等式得之。∎
@@ -173,7 +173,7 @@ $$
 ### 2.5 Weyl 型谱分布（弱极限）
 
 **定理 2.3（Weyl 定律，弱收敛版）.** *在 $0\le a\le 1$、$0\le w_R\le 1$ 且 $M_R\to\infty$ 下成立。* 设 $a\in L^\infty$；$w_R\to 1$ 于每个有界区间且满足 §3 的有限阶 EM 纪律。记
-$M_R:=\int w_R\,\frac{\varphi'}{\pi}dx$。则对任意满足 $\phi\in C([0,1])$、$\phi(0)=0$ 且 $\phi$ 为 Lipschitz 的函数，
+$M_R:=\int w_R\,\frac{\varphi'}{\pi}dx$。由于对每个固定 $R$ 有 $M_R<\infty$，且 $\|a\|_\infty<\infty$，故 $\operatorname{Tr}T_{a,R}\le \|a\|_\infty M_R<\infty$，从而 $T_{a,R}\in\mathcal S_1$；由 $\phi(0)=0$ 且 $\phi$ 为 Lipschitz，得 $\phi(T_{a,R})\in\mathcal S_1$。则对任意满足 $\phi\in C([0,1])$、$\phi(0)=0$ 且 $\phi$ 为 Lipschitz 的函数，
 
 $$
 \frac{1}{M_R}\sum_{j\ge1}\phi\!\big(\lambda_j(T_{a,R})\big)\ \longrightarrow\
@@ -204,14 +204,14 @@ $$
 其中
 $\mathcal E_{\rm alias}$ 由 Poisson 公式的"离带镜像"项显式给出（Nyquist 条件下可为 0）；
 
-$\mathcal E_{\rm EM}(p)$ 由 Euler–Maclaurin 余项控制。取 $p=2m\ge2$，$f(x):=a(x)\,w_R(x)\,\frac{\varphi'(x)}{\pi}$。则
+$\mathcal E_{\rm EM}(p):=|R_p|$ 为 Euler–Maclaurin 余项的绝对值；$\mathcal E_{\rm tail}$ 取决于 $a,w_R,\varphi'$ 的支集与衰减。
+
+取 $p=2m\ge2$，令 $f(x):=a(x)\,w_R(x)\,\frac{\varphi'(x)}{\pi}$。则
 $$
 R_p\ =\ -\frac{\Delta^{p}}{p!}\int_{\mathbb R} f^{(p)}(x)\,B_p\!\left(\left\{\frac{x}{\Delta}\right\}\right)dx,\qquad
 |R_p|\ \le\ \frac{\Delta^{p}\|B_p\|_{L^\infty}}{p!}\|f^{(p)}\|_{L^1}.
 $$
-其中 $B_p(\{x/\Delta\})$ 为**周期化 Bernoulli 多项式**（$\{x/\Delta\}$ 为 $x/\Delta$ 的分数部分）；
-
-$\mathcal E_{\rm tail}$ 取决于 $a,w_R,\varphi'$ 的支集与衰减。
+其中 $B_p(\{x/\Delta\})$ 为**周期化 Bernoulli 多项式**（$\{x/\Delta\}$ 为 $x/\Delta$ 的分数部分）；此处要求 $f^{(p)}\in L^1(\mathbb R)$。
 
 > **实现建议**：保持 **有限阶** EM（严禁逐项无穷外推），并优先选择带限/指数衰减的偶窗以压低 $\mathcal E_{\rm alias},\mathcal E_{\rm tail}$。
 
