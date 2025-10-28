@@ -2,7 +2,7 @@
 
 **—— de Branges–Mellin 框架中的核论证、迹恒等与非渐近窗化误差**
 
-Version: 1.12
+Version: 1.13
 
 ## 摘要（定性）
 
@@ -78,15 +78,17 @@ $$
 
 **若（A）不成立**，则 (i)$\Rightarrow$(ii) 仍成立，而反向蕴含一般不保证。
 
-**证明要点（修订）.** 设嵌入 $J:\mathcal H(E)\to L^2(\nu)$。在 (ii) 下，定义
+**证明要点（修订）.** 设嵌入 $J:\mathcal H(E)\to L^2(\nu)$，$(JF)(x):=F(x)$。定义
 $$
-Q(F,G):=\int_{\mathbb R}\langle F,k_x\rangle\,\overline{\langle G,k_x\rangle}\,d\nu(x)\qquad(F,G\in\mathcal H(E)),
+Q(F,G):=\int_{\mathbb R}\langle F,K(\cdot,x)\rangle\,\overline{\langle G,K(\cdot,x)\rangle}\,d\nu(x)
+=\int_{\mathbb R}F(x)\,\overline{G(x)}\,d\nu(x).
 $$
-则 $Q$ 为有界正半双线性型，故存在唯一正有界算子 $S\in\mathcal B(\mathcal H(E))$ 使得 $\langle SF,G\rangle=Q(F,G)$。进一步可得 $J^*J=S$，并由此
+则 $Q$ 为有界正半双线性型，存在唯一正有界算子 $S\in\mathcal B(\mathcal H(E))$ 使得 $\langle SF,G\rangle=Q(F,G)$，且 $S=J^*J$。于是
 $$
-\|J\|^{2}=\|S\|=\sup_{\|f\|=1}\int_{\mathbb R}|\langle f,k_x\rangle|^{2}\,d\nu(x).
+\|J\|^2=\|S\|=\sup_{\|F\|=1}\int_{\mathbb R}|F(x)|^2\,d\nu(x)\ \ge\ \sup_{t\in\mathbb R}\frac{\|J K_t\|_{L^2(\nu)}^{2}}{\|K_t\|^2}
+=\sup_{t\in\mathbb R}\int_{\mathbb R}\frac{|K(x,t)|^2}{K(t,t)}\,d\nu(x).
 $$
-在（A）下，$\{k_t\}$ 对应 $d\nu_0=\tfrac{\varphi'}{\pi}dx$ 构成连续帧，$\nu$ 的核测试控制嵌入算子 $J$ 的范数，故得等价；一般情形仅得必要性。∎
+在（A）下，利用标准的 reproducing‑kernel thesis 引理（连续帧/覆盖估计），可由右端上界控制左端，从而得 (ii)$\Rightarrow$(i)；一般情形仍有 (i)$\Rightarrow$(ii)。∎
 
 > **注**：在 $\varphi'(x)\,dx$ 为**Doubling** 的情形，真实轴采样/插值可得**密度刻画**，见 §4。
 
@@ -101,7 +103,11 @@ $$
 
 当且仅当 $\nu$ 为下 Carleson。
 
-**证略.** $J:\mathcal H(E)\to L^2(\nu)$ 有下界 $\Leftrightarrow\ S=\int |k_x\rangle\langle k_x|\,d\nu(x)\ge cI$。以 $F=k_t$ 代入即得上式；反向同理。∎
+**证略.** $J:\mathcal H(E)\to L^2(\nu)$ 有下界 $\Leftrightarrow\ S=\int |K_x\rangle\langle K_x|\,d\nu(x)\ge cI$。以 $F=k_t$ 代入得
+$$
+\langle Sk_t,k_t\rangle=\int_{\mathbb R}\frac{|K(x,t)|^2}{K(t,t)}\,d\nu(x)\ \ge\ c,
+$$
+反向同理。∎
 
 ### 1.4 离散测度与分离序列
 
@@ -173,14 +179,14 @@ $$
 ### 2.5 Weyl 型谱分布（弱极限）
 
 **定理 2.3（Weyl 定律，弱收敛版）.** *在 $0\le a\le 1$、$0\le w_R\le 1$ 且 $M_R\to\infty$ 下成立。* 设 $a\in L^\infty$；$w_R\to 1$ 于每个有界区间且满足 §3 的有限阶 EM 纪律。记
-$M_R:=\int w_R\,\frac{\varphi'}{\pi}dx$。由于对每个固定 $R$ 有 $M_R<\infty$，且 $\|a\|_\infty<\infty$，故 $\operatorname{Tr}T_{a,R}\le \|a\|_\infty M_R<\infty$，从而 $T_{a,R}\in\mathcal S_1$；由 $\phi(0)=0$ 且 $\phi$ 为 Lipschitz，得 $\phi(T_{a,R})\in\mathcal S_1$。则对任意满足 $\phi\in C([0,1])$、$\phi(0)=0$ 且 $\phi$ 为 Lipschitz 的函数，
+$M_R:=\int w_R\,\frac{\varphi'}{\pi}dx$。由于对每个固定 $R$ 有 $M_R<\infty$，且 $\|a\|_\infty<\infty$，故 $\operatorname{Tr}T_{a,R}\le \|a\|_\infty M_R<\infty$，从而 $T_{a,R}\in\mathcal S_1$；由 $\psi(0)=0$ 且 $\psi$ 为 Lipschitz，得 $\psi(T_{a,R})\in\mathcal S_1$。则对任意满足 $\psi\in C([0,1])$、$\psi(0)=0$ 且 $\psi$ 为 Lipschitz 的函数，
 
 $$
-\frac{1}{M_R}\sum_{j\ge1}\phi\!\big(\lambda_j(T_{a,R})\big)\ \longrightarrow\
-\frac{1}{M_R}\int_{\mathbb R}\phi\!\big(a(x)\big)\,w_R(x)\,\frac{\varphi'(x)}{\pi}\,dx\quad(R\to\infty).
+\frac{1}{M_R}\sum_{j\ge1}\psi\!\big(\lambda_j(T_{a,R})\big)\ \longrightarrow\
+\frac{1}{M_R}\int_{\mathbb R}\psi\!\big(a(x)\big)\,w_R(x)\,\frac{\varphi'(x)}{\pi}\,dx\quad(R\to\infty).
 $$
 
-**证明思路.** 由 $\phi(0)=0$ 与 Lipschitz 得 $|\phi(s)|\le Ls$，故 $\phi(T_{a,R})$ 迹类且 $\operatorname{Tr}\phi(T_{a,R})=\sum_j\phi(\lambda_j(T_{a,R}))$（Lidskii）。结合定理 2.1 的迹恒等式、Ky Fan 原理与 $w_R$ 的近似恒等性质，得弱收敛。∎
+**证明思路.** 由 $\psi(0)=0$ 与 Lipschitz 得 $|\psi(s)|\le Ls$，故 $\psi(T_{a,R})\in\mathcal S_1$ 且 $\operatorname{Tr}\psi(T_{a,R})=\sum_j\psi(\lambda_j(T_{a,R}))$（Lidskii）。结合定理 2.1 的迹恒等式、Ky Fan 原理与 $w_R$ 的近似恒等性质，得弱收敛。∎
 
 > **散射接口**：在散射/完成函数等价下，$\varphi'=\pi\rho$ 为相位导数，故 $\operatorname{Tr}T_{a,R}$ 等价于"$a\cdot w_R$"对散射密度的加权积分，与 Birman–Kreĭn 公式一致。
 
