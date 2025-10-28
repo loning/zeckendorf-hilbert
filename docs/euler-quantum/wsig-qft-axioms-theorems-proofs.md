@@ -1,6 +1,6 @@
 # WSIG-QFT：窗口化散射与信息几何的场论公理、定理与证明
 
-Version: 1.0
+Version: 1.3
 
 **作者**：Auric（S-series / EBOC）
 **关键词**：窗口化读数；de Branges–Kreĭn 规范系统；Weyl–Heisenberg 表象；Birman–Kreĭn；Wigner–Smith 延迟；I-投影；Wexler–Raz；Nyquist–Poisson–Euler–Maclaurin（NPE）误差闭合
@@ -45,10 +45,10 @@ $$
 **A3（相位—密度刻度）.** 在 BK 与 WS 链下，几乎处处
 
 $$
-\frac{1}{2\pi}\operatorname{tr}Q(E)=\xi'(E)=\operatorname{tr}\big(\rho-\rho_0\big)(E),\qquad \det S(E)=e^{-2\pi i\,\xi(E)},
+\frac{1}{2\pi}\operatorname{tr}Q(E)=\xi'(E)=\operatorname{tr}\big(\rho-\rho_0\big)(E),\qquad \boxed{\det S(E)=e^{2\pi i\,\xi(E)}},
 $$
 
-单通道化简为 $\varphi'(E)=\pi\,\rho_{\rm rel}(E)$（$S=e^{2i\varphi}$）。
+其中正号约定与 $\xi'=\tfrac{1}{2\pi}\operatorname{tr}Q$ 以及单通道 $\varphi'(E)=\pi\,\rho_{\rm rel}(E)$（$S=e^{2i\varphi}$）完全一致。
 
 **A4（概率—信息一致性）.** 线性矩约束族上最小化 KL-散度的解等价于 Born 概率；其充要条件由 Csiszár 的 I-投影几何与勾股恒等式给出。
 
@@ -81,7 +81,7 @@ $$(Af)(x)=(\log x)f(x),\qquad (Bf)(x)=-i\big(x\partial_x+\tfrac a2\big)f(x).$$
 设 $(H_0,H)$ 为自伴对且 $H-H_0\in \mathfrak S_1$。记谱移函数 $\xi$ 与 S-矩阵 $S(E)$。则 a.e. $E$ 有
 
 $$
-\det S(E)=e^{-2\pi i\,\xi(E)},\qquad \xi'(E)=\frac{1}{2\pi}\operatorname{tr}Q(E)=\operatorname{tr}(\rho-\rho_0)(E),
+\boxed{\det S(E)=e^{2\pi i\,\xi(E)}},\qquad \xi'(E)=\frac{1}{2\pi}\operatorname{tr}Q(E)=\operatorname{tr}(\rho-\rho_0)(E),
 $$
 
 单通道时 $S(E)=e^{2i\varphi(E)}$ 并 $\varphi'(E)=\pi\,\rho_{\rm rel}(E)$。
@@ -111,7 +111,7 @@ $$
 
 ### 定理 5.2（窗化 Birman–Kreĭn 恒等式）
 
-在定理 5.1 前提下，分部积分并用 $\det S(E)=e^{-2\pi i\,\xi(E)}$ 得
+在定理 5.1 前提下，分部积分并用 $\boxed{\det S(E)=e^{2\pi i\,\xi(E)}}$ 得
 
 $$
 \int_{\mathbb R} F(E)\,\xi'(E)\,dE
@@ -120,6 +120,8 @@ $$
 $$
 
 若 $h,w_R$ 带限且光滑，右端有限并给出窗化 BK 账本。
+
+**前提补充**：取与 $\xi$ 对齐的连续分支 $\boxed{\log\det S(E):=2\pi i\,\xi(E)}$。若 $F\in W^{1,1}\cap L^1$ 且 $\boxed{F(E)\,\xi(E)\to 0\ (E\to\pm\infty)}$（或 $F$ 具紧支撑），则分部积分无边界项，上式成立并与 Nyquist 带限情形的采样无混叠相容。
 
 **证明**：由定理 5.1 写作 $\int f'\xi$，以 $f'=F$，分部积分并代入 BK 公式即证。∎
 
@@ -135,7 +137,7 @@ $$
 
 ### 定理 6.2（指针基 = 光谱极小（充要））
 
-设读数二次型 $Q_X=\operatorname{tr}(X^*AX)$（或窗算子谱半正）并限制在秩 $k$ 正交投影集合。则最小值为 $\sum_{j=1}^k\lambda_j^\downarrow(A)$ 于 $A$ 的最小 $k$ 维本征子空间处取得（Ky-Fan 原理）；谱隙 $\delta$ 下，该子空间对扰动 $|A-\tilde A|\le \varepsilon$ 的偏转由 Davis–Kahan 给出 $\sin\Theta\lesssim \varepsilon/\delta$。
+设读数二次型 $Q_X=\operatorname{tr}(X^*AX)$（或窗算子谱半正）并限制在秩 $k$ 正交投影集合。则最小值为 $\boxed{\sum_{j=1}^k\lambda_j^\uparrow(A)}$ 于 $A$ 的最小 $k$ 维本征子空间处取得（Ky-Fan 原理）；谱隙 $\delta$ 下，该子空间对扰动 $|A-\tilde A|\le \varepsilon$ 的偏转由 Davis–Kahan 给出 $\sin\Theta\lesssim \varepsilon/\delta$。
 
 **证明**：Ky-Fan 迹极小与 Rayleigh–Ritz；稳定性由 Davis–Kahan。∎
 
@@ -198,9 +200,13 @@ $$
 =-\frac{1}{2\pi i}\int_{\mathbb R}\!\big(h' * w_R\big)(E)\,\log\det S(E)\,dE\,.
 $$
 
-若 $h,w_R$ 带限且 $\Delta\le\pi/(\Omega_h+\Omega_w)$，则数值采样的别名为零。
+若 $h,w_R$ 带限且 $\boxed{\Delta\le \pi/\min\{\Omega_h,\Omega_w\}}$，则数值采样的别名为零。
 
-**证明**：第一行由定理 4.1；第二行由定理 5.2；Nyquist 结论由定理 7.1 在 $\widehat F=\widehat h*\widehat w_R$ 上的支撑和宽推得。∎
+**证明**：第一行由定理 4.1；第二行由定理 5.2；Nyquist 结论由定理 7.1 作用在 $\boxed{\widehat F=\widehat h\cdot\widehat w_R}$ 的支持上推得。若 $\operatorname{supp}\widehat h\subset[-\Omega_h,\Omega_h]$、$\operatorname{supp}\widehat w_R\subset[-\Omega_w,\Omega_w]$，则
+$$
+\operatorname{supp}\widehat F\subset[-\Omega_F,\Omega_F],\quad \Omega_F:=\min\{\Omega_h,\Omega_w\},
+$$
+从而取 $\boxed{\Delta\le \pi/\Omega_F}$ 时采样别名项为零。∎
 
 ---
 
@@ -211,7 +217,7 @@ $$
 在"频域对角化/单块无混叠"设定下（即 $\{\widehat w_\alpha\}$ 按 $b\mathbb Z$ 平移的支撑互不重叠，使帧算子在频域对角化），族 $\{M_{mb}T_{na}w_\alpha\}$ 为 Parseval 的充要条件是
 
 $$
-\frac{1}{ab}\sum_\alpha \big|\widehat w_\alpha(\xi)\big|^2\equiv 1\quad (\text{a.e. }\xi),
+\boxed{\frac{1}{a}\sum_\alpha \big|\widehat w_\alpha(\xi)\big|^2\equiv 1\quad(\text{a.e. }\xi)}.
 $$
 
 在一般情形，上式为充分条件；必要条件需同时满足 Wexler–Raz 双正交的交错约束。
@@ -250,7 +256,7 @@ $$
 
 ## 12. 复现实验清单（Minimal Working Example）
 
-1. 选偶窗 $w_R\in \mathsf{PW}^{\rm even}_\Omega$、核 $h\in W^{2M,1}$；取 $\Delta\le \pi/(\Omega_h+\Omega_w)$ 与 EM 阶 $M\ge2$，截断半径 $T$。
+1. 选偶窗 $w_R\in \mathsf{PW}^{\rm even}_\Omega$、核 $h\in W^{2M,1}$；取 $\boxed{\Delta\le \pi/\min\{\Omega_h,\Omega_w\}}$ 与 EM 阶 $M\ge2$，截断半径 $T$。
 2. 由散射数据计算 $\rho$ 或 $\rho_{\rm rel}$，评估 $\int (h\!*\!w_R)\,\rho_\star$ 与窗化 BK。
 3. 构造多窗 Parseval 帧（定理 9.1），必要时解定理 9.3 的 KKT 方程以微调带宽分配。
 4. 决策层以 I-投影完成概率校准（定理 6.1），软/硬温度切换由 $\beta$ 控制。
@@ -317,7 +323,7 @@ $$
 
 ### 附录 A：若干证明细节
 
-**A.1 Lifshits–Kreĭn 迹公式到窗化 BK.** 由 $\operatorname{tr}\big(f(H)-f(H_0)\big)=\int f'\xi$（$f\in\mathrm{OL}$）与 $\det S=e^{-2\pi i\xi}$ 得 $\int F\,\xi'=-\tfrac{1}{2\pi i}\int F'\log\det S$。将 $F=h\!*\!w_R$ 展开，可得定理 5.2。
+**A.1 Lifshits–Kreĭn 迹公式到窗化 BK.** 由 $\operatorname{tr}\big(f(H)-f(H_0)\big)=\int f'\xi$（$f\in\mathrm{OL}$）与 $\boxed{\det S=e^{2\pi i\xi}}$ 得 $\int F\,\xi'=-\tfrac{1}{2\pi i}\int F'\log\det S$。将 $F=h\!*\!w_R$ 展开，可得定理 5.2。
 
 **A.2 Born = I-投影的充要条件.** 设 $\mathcal L=\{p:\langle \phi_j,p\rangle=c_j\}$。极小化 $D_{\rm KL}(p\Vert q)$ 的拉格朗日子问题解为 $p^\star\propto q\,e^{\sum_j\lambda_j\phi_j}$。若 $p^{\rm Born}$ 满足同一矩并且 $\log p^{\rm Born}-\log q\in{\rm span}\{\phi_j\}\oplus\mathbb R$，则 KKT 满足；反向由勾股恒等式唯一性推出。
 
