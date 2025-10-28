@@ -3,7 +3,7 @@
 **—— 有限窗口协变的"散射—信息—几何"统一理论（正式学术论文，含完整证明）**
 
 **作者**：Auric（S-series / EBOC 体系）
-**版本**：v2.1（可并入 S15–S26、S21、EBOC-Graph）
+**版本**：v2.5（由 v2.4 递增）
 
 ---
 
@@ -57,12 +57,14 @@ $$
 
 单通道退化为 $S=e^{2i\varphi}$。$\operatorname{Arg}\det S$ 取局部连续分支，仅在 a.c. 谱上 a.e. 可微；跨越阈值与原子点时以跳跃补偿。
 
-**单位说明**：本文取 $\mathsf Q(E)=-i\,S^\dagger(E)S'(E)$，其量纲为**能量$^{-1}$**（$S'(E)$ 对能量求导产生 $1/\text{能量}$ 的量纲）；物理时间延迟为 $\tau=\hbar\,\mathrm{eig}(\mathsf Q)$，该 $\tau$ 为**Wigner–Smith 时间延迟**（而非共振寿命）。在孤立 Breit–Wigner 共振处，由 $\tau(E)=2\hbar\,\delta'(E)$ 与 $\delta'(E_0)=2/\Gamma$ 得 $\tau_{\max}(E_0)=4\hbar/\Gamma$，而寿命 $\tau_{\text{life}}=\hbar/\Gamma$，二者**相差因子 4**。**宽度记号说明**：本文统一以极点 $E_0-i\Gamma/2$ 计宽度；若参考采用 $E_0-i\Gamma$ 的文献，请将本文 $\tau$ 数值整体乘以 $1/2$ 对齐（峰值由 $4\hbar/\Gamma$ 变为 $2\hbar/\Gamma$）。该约定与电磁及量子散射文献一致（与 §6.2 的非厄米扩展照应）。
+**单位说明**：本文取 $\mathsf Q(E)=-i\,S^\dagger(E)S'(E)$，其量纲为**能量$^{-1}$**（$S'(E)$ 对能量求导产生 $1/\text{能量}$ 的量纲）；在**酉散射**情形，物理时间延迟取**Wigner–Smith 延迟**：$\tau=\hbar\,\mathrm{eig}(\mathsf Q)$；**非酉/耗散**时 $\mathsf Q$ 一般非自伴（特征值可为复数），$\tau$ 的定义需按 §6.2 指定（例如取 $\Re\,\mathrm{eig}(\mathsf Q)$ 作为驻留相关量），本文不将二者混同。在孤立 Breit–Wigner 共振处，由 $\tau(E)=2\hbar\,\delta'(E)$ 与 $\delta'(E_0)=2/\Gamma$ 得 $\tau_{\max}(E_0)=4\hbar/\Gamma$，而寿命 $\tau_{\text{life}}=\hbar/\Gamma$，二者**相差因子 4**。**宽度记号说明**：本文统一以极点 $E_0-i\Gamma/2$ 计宽度；若参考采用 $E_0-i\Gamma$ 的文献，请将本文 $\tau$ 数值整体乘以 $1/2$ 对齐（峰值由 $4\hbar/\Gamma$ 变为 $2\hbar/\Gamma$）。该约定与电磁及量子散射文献一致（与 §6.2 的非厄米扩展照应）。
 
-**0.2 谱移与 Birman–Kreĭn。** 采用 BK 的**负号约定**：$\ \det S(E)=e^{-2\pi i\,\xi(E)}$，则
+**0.2 谱移与 Birman–Kreĭn。** 采用 BK 的**负号约定**：$\ \det S(E)=e^{-2\pi i\,\xi(E)}$。
+
+**行列式约定（BK/Fredholm）**：本文中的 $\det S(E)$ 指 **Birman–Kreĭn 意义下的 Fredholm 行列式** $\det_{\mathrm F}S(E)$。在 $(H-z)^{-1}-(H_0-z)^{-1}\in\mathfrak S_1$（等价地，a.e. $E$ 上 $S(E)-I\in\mathfrak S_1$）的前提下，$\det_{\mathrm F}S(E)$ 良定义，$\operatorname{Arg}\det_{\mathrm F}S(E)$ 可选取**连续分支**并在 a.c. 谱上 **a.e. 可导**，从而
 
 $$
-\frac{d}{dE}\operatorname{Arg}\det S(E)=-2\pi\,\xi'(E),\qquad \rho_{\mathrm{rel}}(E):=-\xi'(E),
+\frac{d}{dE}\operatorname{Arg}\det_{\mathrm F}S(E)=-2\pi\,\xi'(E),\qquad \rho_{\mathrm{rel}}(E):=-\xi'(E),
 $$
 
 因此 $\tfrac{1}{2\pi}\operatorname{tr}\mathsf Q(E)=\rho_{\mathrm{rel}}(E)$（a.e.）。负群延迟与谱移密度变号在多类波动散射中可观测，与脉冲整形/共振背景有关（见电磁与非厄米散射体系中的负 Wigner–Smith 延迟与复延迟实测/数值报道，含亚酉散射近作）。
@@ -79,7 +81,7 @@ $$
 
 **0.6 开放系统与信息界。** 马尔可夫开放演化由 GKSL（Lindblad）主方程描述；量子相对熵在**正迹保持**映射下单调不增（DPI）；量子信道的无助理经典容量由 HSW 正则化公式给出。
 
-**0.7 Nyquist–Poisson–EM（有限阶非渐近误差学）。** 带限信号在采样率 $f_s>2B$ 下别名项消失；Euler–Maclaurin（EM）用于离散—连续换序时，取 $m\in\mathbb N$ 使被积/被和函数 $F\in C^{2m}$ 且 $F^{(2m)}$ 有界或具有限总变差，则余项具**显式积分上界**。EM 余项采用 Archive of Formal Proofs (AFP-Isabelle) 条目 **The Euler–MacLaurin Formula** 的形式化上界（Eberl, M., 见参考文献 [11]），在实现中显式指明所取阶数 $m$ 与被积/被和函数的正则性（$C^{2m}$ 或有限总变差）以复现上界。
+**0.7 Nyquist–Poisson–EM（有限阶非渐近误差学）。** 带限信号在**理想采样与理想重构滤波**前提下，当采样率 $f_s\ge 2B$ 时别名项消失；工程稳健通常取 $f_s>2B$。Euler–Maclaurin（EM）用于离散—连续换序时，取 $m\in\mathbb N$ 使被积/被和函数 $F\in C^{2m}$ 且 $F^{(2m)}$ 有界或具有限总变差，则余项具**显式积分上界**。EM 余项采用 Archive of Formal Proofs (AFP-Isabelle) 条目 **The Euler–MacLaurin Formula** 的形式化上界（Eberl, M., 见参考文献 [11]），在实现中显式指明所取阶数 $m$ 与被积/被和函数的正则性（$C^{2m}$ 或有限总变差）以复现上界。
 
 **选择 $m$ 的经验指引**（实现可操作性）：
 - $m=1$（2 阶校正）：被积函数 $F\in C^2$，适用于分段线性窗或低光滑度核；
@@ -93,11 +95,28 @@ $$
 
 **A1（双表象与协变）。** $\mathcal H(E)$（能量表象）与 $\mathcal H_a=L^2(\mathbb R_+,x^{a-1}dx)$（相位—尺度表象，其中 $a>0$ 由所用 Mellin 权确定）等距等价；离散—连续换序使用**有限阶** EM，按 0.7 的光滑与（有界或有限变差）前提控制余项。此"等距等价"系指在所用 DBK 规范系统/Weyl–Mellin 变换**已构造到位**时的单位算子实现；读者不应将其理解为任意系统之间的无条件同构。**实施前提**：当 $\mu_\varphi$ 为非负 Borel 测度且满足 Herglotz 条件（标准增长/可积性，例如 $\int (1+E^2)^{-1}\,d\mu_\varphi(E)<\infty$）时，存在 Herglotz 函数 $m$ 使得在恰当规范化下（消去 $a+bz$ 自由度）由**trace-normed** DBK 规范系统实现**全局** DBK 表示与等距等价；此时 $\mu_\varphi^{\mathrm{ac}}$ 满足 $\rho_{\mathrm{rel}}=\pi^{-1}\Im m$（a.e.）。若 $\mu_\varphi$ 含负部，则仅在 $\rho_{\mathrm{rel}}>0$ 的 a.c. 分段逐段实现等距等价，**不**保证单一规范系统的全局实现。（**括注**：$\rho_{\mathrm{rel}}=-\xi'$ 为相对态密度，**一般可变号**；故 $\mu_\varphi$ 常为**符号测度**，仅其非负情形可由 Herglotz–DBK **全局**表示，参见定理 3.1。）
 
-**A2（有限窗口读数）。** 任一次"可实现读数"写作窗—核谱积分 $K_{w,h}=\int h(E)\,w_R(E)\,d\Pi_A(E)$。为确保 $K_{w,h}$ 在**所有密度算子** $\rho$ 上的期望值 $\operatorname{Tr}(\rho K_{w,h})$ 良定义并一致有界，本文**限定** $g(E):=h(E)w_R(E)\in L^\infty(\mathbb R;\mathbb R)$ 且为 Borel 可测，据此 $K_{w,h}$ 为**有界自伴**算子；误差以"别名（Poisson）+ 伯努利层（EM）+ 截断"三项**非渐近闭合**（带限且 $f_s>2B$ 时别名为 0）。一次"读数"的数值为 $\operatorname{Tr}(\rho K_{w,h})$。**记号约定**：下文一律用 $\Pi_A$ 表示投影值谱测度（避免与能量变量 $E$ 产生符号歧义）。
+**A2（有限窗口读数）。** 任一次"可实现读数"写作窗—核谱积分 $K_{w,h}=\int h(E)\,w_R(E)\,d\Pi_A(E)$。为确保 $K_{w,h}$ 在**所有密度算子** $\rho$ 上的期望值 $\operatorname{Tr}(\rho K_{w,h})$ 良定义并一致有界，本文**限定** $g(E):=h(E)w_R(E)\in L^\infty(\mathbb R;\mathbb R)$ 且为 Borel 可测，据此 $K_{w,h}$ 为**有界自伴**算子；误差以"别名（Poisson）+ 伯努利层（EM）+ 截断"三项**非渐近闭合**（理想采样下带限且 $f_s\ge 2B$ 时别名为 0）。一次"读数"的数值为 $\operatorname{Tr}(\rho K_{w,h})$。**记号约定**：下文一律用 $\Pi_A$ 表示投影值谱测度（避免与能量变量 $E$ 产生符号歧义）。
 
 **A3（概率—信息一致性）。** 对 PVM $\{P_j\}$ 与态 $\rho$，线性约束 $p_j=\operatorname{Tr}(\rho P_j)$ 使可行集为单点 $\{p^\star\}$，任意严格凸 Bregman/KL 的 I-projection 唯一取于 $p^\star$；POVM 情形先作 Naimark 扩张到 PVM 再回推。Gleason（$\dim\mathcal H\ge3$）确保此概率形式的唯一性。**维度条件**：二能级体系（$\dim\mathcal H=2$）需用 Busch–Gleason 的 POVM 版补足（Busch, P., Phys. Rev. Lett., 2003）。
 
-**A4（指针基）。** 指针基为 $K_{w,h}$ 的**光谱极小**本征基（Ky Fan 变分原则：固定秩子空间上的迹极小取于本征子空间）。
+**A4（指针子空间 / 光谱极小的下确界版）**。
+
+**（记号约定）** 对任意 $r\in\mathbb N$：
+1. $U:\mathbb C^r\to\mathcal H$ 表示**等距嵌入**（柱向量 $(u_1,\dots,u_r)$ 正交归一），故 $U^\dagger U=I_r$，且 $\mathrm{tr}(U^\dagger K_{w,h}U)=\sum_{j=1}^r\langle u_j,K_{w,h}u_j\rangle$。
+2. $P_M$ 为 $\mathcal H$ 上到 $r$ 维子空间 $M$ 的**正交投影**，并有 $\mathrm{tr}_M(P_M K_{w,h}P_M)=\mathrm{tr}(U^\dagger K_{w,h}U)$（$U$ 的像即 $M$）。
+
+于是以下"压缩迹/变分式"完全等价。
+
+令 $K_{w,h}=\int g(E)\,d\Pi_A(E)$ 为**有界自伴**。对任意 $r\in\mathbb N$，记谱投影 $P_t:=\mathbf{1}_{(-\infty,t]}(K_{w,h})$。定义
+$$
+m_r:=\inf_{U^\dagger U=I_r}\mathrm{tr}\!\big(U^\dagger K_{w,h}U\big).
+$$
+（**迹约定**：此处 $\mathrm{tr}(P_M K_{w,h}P_M)$ 为 $M$ 上的**有限维迹** $\mathrm{tr}_M$，与 $\mathrm{tr}(U^\dagger K_{w,h}U)$ 等价，其中 $U:\mathbb C^r\to\mathcal H$ 为 $M$ 的等距嵌入。）
+则对任意 $t\in\mathbb R$ 与任意 $r$ 维子空间 $M\subset\mathrm{Ran}\,P_t$ 有 $\mathrm{tr}_M(P_M K_{w,h}P_M)\le r\,t$，且
+$$
+m_r=\inf_{t\in\mathbb R}\ \inf_{\substack{M\subset\mathrm{Ran}\,P_t \\ \dim M=r}}\mathrm{tr}_M(P_M K_{w,h}P_M),
+$$
+**一般仅取得下确界**（不保证取到）。**若** $K_{w,h}$ 为**紧**或在**有限维截断**上（**或**其底谱阈值 $t_0:=\inf\sigma(K_{w,h})$ 处存在至少 $r$ 个**本征值**，可为**嵌入**本征值，计重数），则该下确界**可达**，且极小子空间由**最小 $r$** 个本征值的本征向量张成。
 
 **A5（相位—密度—延迟刻度）。** 采用 BK 约定，
 
@@ -186,9 +205,19 @@ $$
 
 **(i) Born = I-projection（严格）。** 在 PVM $\{P_j\}$ 下，可行集为单点 $\{p^\star\}$；任意严格凸 Bregman/KL 的 I-projection 唯一取于 $\,p^\star$。POVM 先作 Naimark 扩张，再回推。∎
 
-**(ii) Pointer = 光谱极小（Ky Fan）。** 对自伴 $K_{w,h}$，$\min_{U^\dagger U=I_r}\operatorname{tr}(U^\dagger K_{w,h}U)=\sum_{k=n-r+1}^{n}\lambda_k(K_{w,h})$，极小子空间由 $K_{w,h}$ 的**最小** $r$ 个本征向量张成；若需"最大能量指针"，对应上式取 $\max$ 与前 $r$ 个本征值之和。
+**(ii) Pointer = 光谱极小（谱投影版 Ky Fan，含可达性）**。设 $K_{w,h}$ 为有界自伴，$P_t:=\mathbf{1}_{(-\infty,t]}(K_{w,h})$。对任意 $r\in\mathbb N$，
+$$
+\inf_{U^\dagger U=I_r}\mathrm{tr}(U^\dagger K_{w,h}U)=\inf_{t\in\mathbb R}\ \inf_{\substack{M\subset\mathrm{Ran}\,P_t \\ \dim M=r}}\mathrm{tr}_M(P_M K_{w,h}P_M),
+$$
+**一般仅为下确界**；**若** $K_{w,h}$ 为**紧**或在**有限维截断**上（**或**其底谱阈值 $t_0:=\inf\sigma(K_{w,h})$ 处存在至少 $r$ 个**本征值**，可为**嵌入**本征值，计重数），则该下确界**可达**，并等价于
+$$
+\min_{U^\dagger U=I_r}\mathrm{tr}(U^\dagger K_{w,h}U)=\sum_{k=1}^{r}\lambda^{\uparrow}_k(K_{w,h}),
+$$
+其中 $\lambda^{\uparrow}_1\le\lambda^{\uparrow}_2\le\cdots$ 为（含重数的）**升序**本征值序列。**有限维特例**：若 $K_{w,h}$ 为 $n\times n$ 矩阵且按降序 $\lambda_1\ge\cdots\ge\lambda_n$ 记谱，则 $\sum_{k=1}^{r}\lambda^{\uparrow}_k=\sum_{k=n-r+1}^{n}\lambda_k$。
 
-**参考根据**：Ky Fan 变分原理（"最小 $r$ 个本征值之和 = 压缩迹的极小"）。见 Horn, R. A. & Johnson, C. R., *Matrix Analysis*, 2nd ed., Cambridge University Press, 2013，第 4 章定理 4.3.4（Ky Fan 极大极小原理）与推论 4.3.3（迹极小）；或等价教材对 Fan 最大/最小原理的系统表述。∎
+极小子空间由最小 $r$ 个本征值的本征向量张成。上述两种表述在各自适用域内等价。
+
+**参考根据**：Ky Fan 变分原理（"最小 $r$ 个本征值之和 = 压缩迹的极小"）适用于有限维/紧算子情形；一般有界自伴算子采用谱投影表述。见 Horn, R. A. & Johnson, C. R., *Matrix Analysis*, 2nd ed., Cambridge University Press, 2013，第 4 章定理 4.3.4（Ky Fan 极大极小原理）与推论 4.3.3（迹极小）；或等价教材对 Fan 最大/最小原理的系统表述。∎
 
 **(iii) Windows = 极大极小（带限最坏情形，良定版）。** 设
 
@@ -246,11 +275,13 @@ $$
 
 ## 4. 有限阶非渐近误差学（Nyquist–Poisson–EM）
 
-**定理 4.1（Poisson—Nyquist：基带无混叠）。** 若 $\operatorname{supp}\widehat f\subset[-B,B]$ 且采样率 $f_s>2B$，则 Poisson 复制频带**互不重叠**，故在**基带/重构域**内仅 $k=0$ 贡献，别名项对重构**为 0**；若 $f_s<2B$ 则越界频谱重叠产生混叠。∎
+**定理 4.1（Poisson—Nyquist：基带无混叠）。** 设 $\operatorname{supp}\widehat f\subset[-B,B]$。在**理想采样与理想重构**前提下：
+- 当 $f_s\ge 2B$ 时，Poisson 复制频带互不重叠，故在**基带/重构域**内仅 $k=0$ 贡献，别名项为 0；
+- 当 $f_s<2B$ 时，越界频谱重叠产生混叠。∎
 
 **定理 4.2（Euler–Maclaurin：有限阶伯努利层与余项）。** 当 $F\in C^{2m}([a,b])$ 且 $F^{(2m)}$ 有界或具有限总变差时，EM 给出到 $2m$ 阶的伯努利校正与**显式**积分余项；AFP-Isabelle 对余项与收敛条件给出形式化证明，由此可在实现中**择定有限阶 $m$** 并得到可执行上界。EM 余项采用 AFP-Isabelle 'Euler_MacLaurin' 的**形式化上界**，在实现中显式指明所取阶数 $m$ 与被积/被和函数的正则性（$C^{2m}$ 或有限总变差）以复现上界。∎
 
-**定理 4.3（三分解闭合）。** $K_{w,h}$ 的实现可写为：离散求和（Nyquist）$+$ EM 有限阶校正（伯努利层）$+$ 余项（别名+截断）。当带限且 $f_s>2B$ 时别名层为 0；EM 余项由 4.2 的上界控制，故得**有限阶、非渐近闭合**。∎
+**定理 4.3（三分解闭合）。** $K_{w,h}$ 的实现可写为：离散求和（Nyquist）$+$ EM 有限阶校正（伯努利层）$+$ 余项（别名+截断）。在理想采样与重构下，当带限且 $f_s\ge 2B$ 时别名层为 0；EM 余项由 4.2 的上界控制，故得**有限阶、非渐近闭合**。∎
 
 ---
 
@@ -351,12 +382,16 @@ $$
 
 ## 附录 B：Ky Fan 变分与指针极小
 
-令 $K$ 自伴，$\lambda_1\ge\cdots\ge\lambda_n$ 为本征值。Ky Fan 原理给出
+令 $K$ 自伴，$\lambda^{\uparrow}_1\le\lambda^{\uparrow}_2\le\cdots$ 为（含重数的）**升序**本征值序列。Ky Fan 原理给出
 
 $$
 \sum_{k=1}^r\lambda_k=\max_{U^\dagger U=I_r}\operatorname{tr}(U^\dagger K\,U),\quad
-\sum_{k=n-r+1}^{n}\lambda_k=\min_{U^\dagger U=I_r}\operatorname{tr}(U^\dagger K\,U).
+\sum_{k=1}^{r}\lambda^{\uparrow}_k=\min_{U^\dagger U=I_r}\operatorname{tr}(U^\dagger K\,U).
 $$
+
+（此处第 1 式为降序记号：$\lambda_1\ge\cdots\ge\lambda_r\ge\cdots$；第 2 式用升序记号 $\lambda^{\uparrow}$。）
+
+**有限维特例**：若 $K$ 为 $n\times n$ 矩阵且按降序 $\lambda_1\ge\cdots\ge\lambda_n$ 记谱，则 $\sum_{k=1}^{r}\lambda^{\uparrow}_k=\sum_{k=n-r+1}^{n}\lambda_k$。
 
 最大迹取于由前 $r$ 个本征向量张成的子空间，最小迹取于由最小 $r$ 个本征向量张成的子空间。∎
 
