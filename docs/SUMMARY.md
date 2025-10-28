@@ -48,6 +48,8 @@
         - [检验标准（进阶）：九个高级工具](./euler-article/article/book-f-02-experimental-standards-continued.md)
         - [Verification Standards Advanced (EN)](./euler-article/article/book-f-02-experimental-standards-continued_en.md)
         - [数学原典：标准F-6至F-14](./euler-article/math/book-f-02-experimental-standards-continued.md)
+    - [太极—八卦专题]()
+        - [太极—八卦的相位—密度—信息几何解释（WSIG 版）](./euler-article/tai-chi/wsig-taiji-bagua-complete.md)
 
 - [The Matrix: 基于ZkT框架的计算本体论](./the-matrix/index.md)
     - [前言：计算理解本体论的诞生](./the-matrix/preface.md)
