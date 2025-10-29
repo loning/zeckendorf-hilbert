@@ -1,6 +1,6 @@
 # WLRC：窗口—局部可逆嵌入的独立正式理论
 
-Version: 1.4
+Version: 1.5
 
 （面向 EBOC / RCCA-Min / S-series 的信息守恒–窗化测量内核）
 
@@ -62,6 +62,14 @@ $$
 k_{\max}=\max_{u\in\mathcal X_W}k(u).
 $$
 
+**时间 $t$ 步窗读数（逐步外延约定）**：令 $y^{(0)}(u):=u$。对 $t\ge1$，递归定义
+
+$$
+y^{(t)}(u)\ :=\ C_{i,W}\!\big(F(\mathrm{extend}_{\mathsf{Bdry}}(y^{(t-1)}(u)))\big).
+$$
+
+若无特别说明，本文均采用该逐步外延约定。
+
 **定义 3（最小簿记熵与最小字母表）。** 为使**限制映射** $u\mapsto\Phi_{i,W}(u,a_\star)$ 成为**单射**且满足 $\pi\big(\Phi_{i,W}(u,a_\star)\big)=y(u)$，所需最小信息量为
 
 $$
@@ -90,7 +98,13 @@ $$
 T:=\mathcal S_W\setminus\big\{(y(u),\iota_j(e_j(u))):u\in\mathcal X_W\big\}
 $$
 
-的任意固定双射（例如按字典序配对的枚举 $\tau^{-1}\!\circ\rho$），从而成全局双射；不采用补集恒等。则 $\Phi$ 为双射，且 $\pi\big(\Phi(u,a_\star)\big)=y(u)$。$\square$
+的双射。注意 $|\{(y(u),\iota_j(e_j(u))):u\in\mathcal X_W\}|=|\mathcal X_W|=2^W$，故
+
+$$
+|R|=|\mathcal X_W|(|\mathcal A|-1)=2^W(|\mathcal A|-1)=|T|=|\mathcal S_W|-2^W,
+$$
+
+从而存在双射 $\tau^{-1}\!\circ\rho: R\to T$（例如按字典序配对的枚举）；不采用补集恒等。由此成全局双射，且 $\pi\big(\Phi(u,a_\star)\big)=y(u)$。$\square$
 
 **定理 2（最小簿记熵下界与可达上界）。** 令 $H_{\text{aux}}:=\log_2|\mathcal A|$。任一实现 WLRC 的方案，其边带信息量满足
 
@@ -110,7 +124,7 @@ $$
 
 ## 3. 时间复合与多窗一致性
 
-**定理 3（时间复合）。** 令一步 WLRC 的置换为 $P_W$。则 $t$ 步窗口—局部演化等价于 $P_W^t$ 的右作用；其可逆性由置换群封闭性保证，且位宽不增长。
+**定理 3（时间复合与位宽）。** 令一步 WLRC 的置换为 $P_W$。则对任意 $t\in\mathbb N$，$\Phi_{i,W}^{\circ t}$ 等价于右乘 $P_W^t$ 的置换，因而可逆。**在不引入额外临时寄存器的前提下**，边带位宽保持为 $\ell$。若进一步要求每一步均满足 $\pi\big(\Phi_{i,W}^{\circ t}(u,a_\star)\big)=y^{(t)}(u)$，则需在各步之间插入可逆重规范化 $R:\mathcal S_W\to\mathcal S_W$（可暂用不超过 $\lceil\log_2|\mathcal A|\rceil$ 位或借助跨窗搬移实现）。
 
 **证明。** $\Phi_{i,W}$ 为置换，时间 $t$ 步即 $\Phi_{i,W}^{\circ t}$，对应矩阵幂 $P_W^t$。一般地，单纯迭代 $P_W^t$ 仅保证可逆性；除 $t=1$ 外**不保证** $\pi\!\big(\Phi^t(u,a_\star)\big)=y^{(t)}(u)$。若需每步对齐，须在每步之后插入**可逆重规范化** $R:\mathcal S_W\to\mathcal S_W$，将标签统一为 $a_\star$（如借助额外 $\ge\!\log_2|\mathcal A|$ 位的辅助寄存器循环移位，或利用**重叠窗**之间的跨窗置换来搬移标签）。在**不增广内存且无跨窗机制**时无法实现全局对齐。$\square$
 
