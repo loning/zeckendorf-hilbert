@@ -6,13 +6,13 @@
 
 **MSC**：03F40；11M26；46E22；47B36；81U05
 
-**Version**: 1.1
+**Version**: 1.5
 
 ---
 
 ## 摘要
 
-本文以 de Branges–Kreĭn 规范系统与完成函数为底座，将《GEB》中三大母题——**MIU/形式系统、奇异环（Strange Loop）、自指与意义的涌现**——译为**母映射—镜像—窗化测量**的一套严格数学语法。核心桥梁是**自反核**与**完成函数**所定义的**相位场** $U=E^\sharp/E$。我们证明并量化
+本文以 de Branges–Kreĭn 规范系统与完成函数为底座，将《GEB》中三大母题——**MIU/形式系统、奇异环（Strange Loop）、自指与意义的涌现**——译为**母映射—镜像—窗化测量**的一套严格数学语法。核心桥梁是**自反核**与**完成函数**所定义的**相位场** $U_E=E^\sharp/E$。我们证明并量化
 $$
 \boxed{\ \text{奇异环（层级回路）}\ \Longleftrightarrow\ \text{镜像本征 } (JF=\varepsilon F)\ \Longleftrightarrow\ \text{相位回绕 = 谱密度积分}\ } ,
 $$
@@ -24,29 +24,41 @@ $$
 
 **完成函数与镜像。** 给定满足函数方程的完成函数 $\Xi(s)$ 与对合 $s\mapsto a-s$，写
 $$
-E(z):=\Xi\!\left(\tfrac a2+iz\right),\qquad E^\sharp(z):=\overline{E(\bar z)},\qquad U(z):=\frac{E^\sharp(z)}{E(z)} .
+E(z):=\Xi\!\left(\tfrac a2+iz\right),\qquad E^\sharp(z):=\overline{E(\bar z)},\qquad U_E(z):=\frac{E^\sharp(z)}{E(z)} .
 $$
-若 $E$ 属 Hermite–Biehler 类，则 $U$ 在实轴为内函数（单位模），并生成一条 de Branges 空间链 $\mathcal H(E)$ 及其子空间序。([普渡大学数学系][1])
+若 $E$ 属 Hermite–Biehler 类，则 $U_E$ 在实轴为内函数（单位模），并生成一条 de Branges 空间链 $\mathcal H(E)$ 及其子空间序。([普渡大学数学系][1])
 
-**de Branges–Kreĭn 规范系统。** 取规范系统 $\mathbf J Y'(t)=z H(t) Y(t)$（$H\succeq 0$），其 Weyl–Titchmarsh 函数 $m(z)$ 为 Herglotz，边界虚部给出谱测度密度 $\rho(x)=\pi^{-1}\Im m(x+i0)$。任意 Herglotz–Nevanlinna 函数都是某规范系统的 $m$-函数。([arXiv][2])
+**de Branges–Kreĭn 规范系统。** 取规范系统 $\mathbf J Y'(t)=z H(t) Y(t)$（$H\succeq 0$），其 Weyl–Titchmarsh 函数 $m(z)$ 为 Herglotz，边界虚部给出谱测度密度 $\tilde\rho(x)=\pi^{-1}\Im m(x+i0)$。任意 Herglotz–Nevanlinna 函数都是某规范系统的 $m$-函数。([arXiv][2])
 
-**散射相位与谱移。** 对多通道散射矩阵 $S(E)$，Wigner–Smith 矩阵 $Q(E)=-i\,S(E)^\dagger \tfrac{d}{dE}S(E)$ 之迹满足 Birman–Kreĭn 约定 $\det S(E)=e^{-2\pi i \xi(E)}$，其中 $\xi$ 为谱移函数，则（Lebesgue-a.e. 或作分布）
+**散射相位与谱移。** 对多通道散射矩阵 $S(\mathcal{E})$，Wigner–Smith 矩阵 $Q(\mathcal{E})=-i\,S(\mathcal{E})^\dagger \tfrac{d}{d\mathcal{E}}S(\mathcal{E})$ 之迹满足 Birman–Kreĭn 约定 $\det S(\mathcal{E})=e^{-2\pi i \xi(\mathcal{E})}$，其中 $\xi$ 为谱移函数，则（Lebesgue-a.e. 或作分布）
 $$
-\frac{d}{dE}\arg\det S(E)=\mathrm{tr}\,Q(E)=-2\pi\,\xi'(E),
+\frac{d}{d\mathcal{E}}\arg\det S(\mathcal{E})=\mathrm{tr}\,Q(\mathcal{E})=-2\pi\,\xi'(\mathcal{E}),
 $$
 其中
 $$
-\xi'(E)=\xi'_{\mathrm{ac}}(E)+\sum_j m_j\,\delta(E-E_j),
+\xi'(\mathcal{E})=\xi'_{\mathrm{ac}}(\mathcal{E})+\sum_j m_j\,\delta(\mathcal{E}-\mathcal{E}_j),
 $$
-$\{E_j\}$ 为束缚态（或阈值）能级，$m_j>0$。在窗口化读数下，上式按分布与测试函数耦合后等价。([理研][3])
+$\{\mathcal{E}_j\}$ 为束缚态（或阈值）能级，$m_j>0$。在窗口化读数下，上式按分布与测试函数耦合后等价。等价地，记 $U_S(\mathcal{E}):=\det S(\mathcal{E})$，则
+$$
+\Im\!\frac{U_S'(\mathcal{E})}{U_S(\mathcal{E})}=-2\pi\,\xi'(\mathcal{E}),\qquad \rho_S(\mathcal{E}):=-\xi'(\mathcal{E}).
+$$
+([理研][3])
 
-**窗化读数与 NPE 三分解。** 设窗 $w_R$ 及可检核 $h$，定义读数
+**窗化读数与 NPE 三分解。** 设窗 $w_R$ 及可检核 $h$，定义
 $$
-\mathrm{Obs}=\int_{\mathbb R} w_R(E)\,(h\!\star\!\rho)(E)\,dE\;+\;\varepsilon_{\rm alias}+\varepsilon_{\rm EM}+\varepsilon_{\rm tail},
+\mathrm{Obs}=\int_{\mathbb R} w_R(\mathcal{E})\,(h\!\star\!\rho_\bullet)(\mathcal{E})\,d\mathcal{E}+\varepsilon_{\rm alias}+\varepsilon_{\rm EM}+\varepsilon_{\rm tail}.
 $$
-其中三项误差分别由 Nyquist–Shannon、Poisson 求和与 Euler–Maclaurin（EM）纪律控制；带限且满足 Nyquist 取样时 $\varepsilon_{\rm alias}=0$。([维基百科][4])
+一般的 $w_R\in C^{2M}_c$ 会使 $\widehat{w_R f}$ 非带限，故 $\varepsilon_{\rm alias}\neq 0$。仅在（i）无窗 $w_R\equiv1$ 且 $\widehat f$ 支持于 $[-\Omega,\Omega]$ 并满足 $T\le\pi/\Omega$，或（ii）额外令 $w_R$ 亦带限并使 $\widehat{w_R f}$ 带限且满足 Nyquist 时，$\varepsilon_{\rm alias}=0$。([维基百科][4])
 
-**记号统一。** 全文谱密度统一记作 $\rho$。
+**记号统一（密度，情境化）。** 令 $U_E(x):=\dfrac{E^\sharp(x)}{E(x)}=e^{2i\varphi(x)}$（$E\in$ Hermite–Biehler）。de Branges 相位—核恒等式给出
+$$
+\varphi'(x)=\pi\,\frac{K(x,x)}{|E(x)|^2}\quad\text{(a.e.)},
+$$
+其中 $K$ 为 $\mathcal H(E)$ 的再生核，定义
+$$
+\rho_E(x):=\frac{K(x,x)}{|E(x)|^2}=\frac{1}{\pi}\varphi'(x).
+$$
+为避免多源密度混用，本文将观测密度统一记为 $\rho_\bullet$：默认 $\rho_\bullet=\rho_E$；**散射情形**取 $\rho_\bullet=\rho_S(\mathcal{E}):=-\xi'(\mathcal{E})$；**规范系统**情形取 $\rho_\bullet=\tilde\rho(x):=\pi^{-1}\Im m(x+i0)$。此后所有 $h\!\star\!\rho$ 一律改写为 $h\!\star\!\rho_\bullet$。
 
 ---
 
@@ -83,20 +95,26 @@ $$
 
 ## 3. 奇异环 = 相位—波包回路（定量）
 
-**定义 3.1（相位场与回绕）。** 写 $U(x)=E^\sharp(x)/E(x)=e^{2i\varphi(x)}$（实轴上单位模），定义区间 $I$ 上的回绕数
+**定义 3.1（相位场与回绕）。** 设 $U_E(x)=E^\sharp(x)/E(x)=e^{2i\varphi(x)}$（实轴单位模）。定义区间 $I$ 上的回绕数
 $$
-\operatorname{Wind}_I(U):=\tfrac{1}{2\pi}\int_I \partial_x\arg U(x)\,dx=\tfrac{1}{\pi}\int_I \varphi'(x)\,dx .
+\operatorname{Wind}_I(U_E):=\frac{1}{2\pi}\int_I \Im\!\frac{U_E'(x)}{U_E(x)}\,dx=\frac{1}{\pi}\int_I \varphi'(x)\,dx .
 $$
+上式等价的分布表述为：对任意 $\psi\in C_c^\infty(I)$，
+$$
+\big\langle \partial_x\arg U_E,\psi\big\rangle=\int_I \psi(x)\,\Im\!\frac{U_E'(x)}{U_E(x)}\,dx .
+$$
+因此 $\operatorname{Wind}_I(U_E)=\int_I \rho_E(x)\,dx$ 与分支选择无关。
 
-**定理 3.2（Strange Loop $\Longleftrightarrow$ 相位回绕 $\Longleftrightarrow$ 谱密度）。** 在规范系统的相位—密度词典下，$\varphi'$ 与谱密度满足 $\varphi'(x)=\pi\,\rho(x)$（a.e.），故
+**定理 3.2（Strange Loop $\Longleftrightarrow$ 相位回绕 $\Longleftrightarrow$ de Branges 密度）。** 由上式设 $\rho(x):=\rho_E(x)$，则
 $$
-\operatorname{Wind}_I(U)=\int_I \rho(x)\,dx .
+\operatorname{Wind}_I(U_E)=\frac{1}{2\pi}\int_I \Im\!\frac{U_E'(x)}{U_E(x)}\,dx=\frac{1}{\pi}\int_I \varphi'(x)\,dx=\int_I \rho(x)\,dx .
 $$
-若 $U$ 来源于散射矩阵行列式 $U(E)=\det S(E)$，则（a.e. 或分布意义）
+若取散射相位 $U_S(\mathcal{E}):=\det S(\mathcal{E})$，则（a.e. 或作分布）
 $$
-\partial_E\arg U(E)=\mathrm{tr}\,Q(E)=-2\pi\,\xi'(E),
+\Im\!\frac{U_S'(\mathcal{E})}{U_S(\mathcal{E})}=-2\pi\,\xi'(\mathcal{E}),\qquad
+\operatorname{Wind}_I(U_S)=\frac{1}{2\pi}\int_I\Im\!\frac{U_S'}{ U_S}\,d\mathcal{E}=\int_I \rho_S(\mathcal{E})\,d\mathcal{E} .
 $$
-回绕即为该区间的谱移总量。于是**「层级上升又返根」的奇异环被量化为「相位—密度回路的闭合」**。([数学学院][7])
+因而散射与 de Branges 两侧的"回绕 = 密度积分"在同一无分支形式下完全对齐。回绕即为该区间的谱移总量。于是**「层级上升又返根」的奇异环被量化为「相位—密度回路的闭合」**。([数学学院][7])
 
 **推论 3.3（环带聚束与临界采样）。** 若 $\varphi$ 严格单调且存在常数 $0<c\le C<\infty$ 使 $c\le \varphi'(x)\le C$（a.e.），则在 Weyl–Heisenberg / 非平稳帧下，按等相位层 $\Delta\varphi=\pi$ 的采样在相位刻度 $d\mu=\pi^{-1}\varphi'(x)\,dx$ 下诱导紧帧；临界密度由 Landau 必要密度与 Wexler–Raz 正交给出，Balian–Low 定理刻画不可兼得的「极端集中 + 非冗余」。([Project Euclid][8])
 
@@ -106,7 +124,7 @@ $$
 
 **定义 4.1（窗化读数与误差账本）。** 读数
 $$
-\mathrm{Obs}(R,\Delta)=\int w_R\,(h\!\star\!\rho)\, +\ \varepsilon_{\rm alias}+\varepsilon_{\rm EM}+\varepsilon_{\rm tail},
+\mathrm{Obs}(R,\Delta)=\int w_R(\mathcal{E})\,(h\!\star\!\rho_\bullet)(\mathcal{E})\,d\mathcal{E}+\varepsilon_{\rm alias}+\varepsilon_{\rm EM}+\varepsilon_{\rm tail},
 $$
 其中 $\varepsilon_{\rm alias}$ 由取样频率与带宽决定（Nyquist），$\varepsilon_{\rm EM}$ 由 EM 余项与伯努利层控制，$\varepsilon_{\rm tail}$ 为带外衰减项。([维基百科][4])
 
@@ -128,11 +146,11 @@ $$
 
 ## 5. NPE：Nyquist–Poisson–Euler–Maclaurin 的非渐近闭合
 
-**定理 5.1（NPE 三分解界）。** 设 $w_R\in C^{2M}_c(\mathbb R)$，且存在常数 $C_k$ 使 $|w_R^{(k)}|_\infty\le C_k R^{-k}$（$0\le k\le 2M$）；取 $f=h\!\star\!\rho$ 为 Schwartz，或 $f\in C^{2M}$ 且 $f^{(2M)}$ 可积。若 $\widehat f$ 支持于 $[-\Omega,\Omega]$ 且采样步长 $T\le \tfrac{\pi}{\Omega}$，则
+**定理 5.1（NPE 三分解界）。** 设 $w_R\in C^{2M}_c(\mathbb R)$，且存在常数 $C_k$ 使 $|w_R^{(k)}|_\infty\le C_k R^{-k}$（$0\le k\le 2M$）；取 $f=h\!\star\!\rho_\bullet$ 为 Schwartz，或 $f\in C^{2M}$ 且 $f^{(2M)}$ 可积。若 $\widehat f$ 支持于 $[-\Omega,\Omega]$ 且采样步长 $T\le \tfrac{\pi}{\Omega}$，则
 $$
-\mathrm{Obs}=\sum_{n} w_R(nT)f(nT)\ =\ \int w_R f\ +\ \underbrace{\sum_{k\neq 0}\widehat{w_R}\!\left(\tfrac{2\pi k}{T}\right)\widehat f\!\left(\tfrac{2\pi k}{T}\right)}_{\varepsilon_{\rm alias}}\ +\ \underbrace{R_{2M}(w_R f)}_{\varepsilon_{\rm EM}},
+\sum_{n\in\mathbb Z} w_R(nT)\,f(nT)=\int_{\mathbb R} w_R f+\underbrace{\frac{1}{T}\sum_{k\neq 0}\bigl(\widehat{w_R f}\bigr)\!\left(\tfrac{2\pi k}{T}\right)}_{\varepsilon_{\rm alias}}+\underbrace{R_{2M}(w_R f)}_{\varepsilon_{\rm EM}},
 $$
-其中 $\varepsilon_{\rm alias}=0$（带限+Nyquist），且 $|R_{2M}(w_R f)|\le C\,R^{-2M}$；尾项 $\varepsilon_{\rm tail}$ 由 $\widehat f$ 的带外衰减给出。([维基百科][4])
+其中一般的 $w_R\in C^{2M}_c$ 使 $\widehat{w_R f}$ 非带限，故 $\varepsilon_{\rm alias}\neq 0$；$\varepsilon_{\rm alias}=0$ 仅在（i）$w_R\equiv 1$（无窗）且 $f$ 带限并满足 Nyquist，或（ii）额外令 $w_R$ 亦带限并使 $\widehat{w_R f}$ 带限且满足 Nyquist 时成立。仍有 $|R_{2M}(w_R f)|\le C\,R^{-2M}$。([维基百科][4])
 
 **证明。** 先用 Poisson 求和将离散和写为频域周期化；带限+Nyquist 消灭别名；对有限窗，把积分—和的差用 EM 公式展开，余项为 $O(R^{-2M})$（或由最新形式化文献给出精确余项表达）。([形式证明档案][12])
 
@@ -168,7 +186,7 @@ $$
 
 ## 9. 可检清单（把 GEB 变成实验/数值任务）
 
-1. **奇异环读数**：测 $\partial_E\arg\det S$ 或 $\mathrm{tr}\,Q$，在 $d\mu_\varphi$ 刻度下核对 $\operatorname{Wind}_I(U)=\int_I\rho$。([理研][3])
+1. **奇异环读数**：测 $\partial_\mathcal{E}\arg\det S$ 或 $\mathrm{tr}\,Q$，在 $d\mu_\varphi$ 刻度下核对 $\operatorname{Wind}_I(U_S)=\int_I\rho_S$；或对 de Branges 情形验证 $\operatorname{Wind}_I(U_E)=\int_I\rho_E$。([理研][3])
 2. **自指本征**：在 $\mathcal H(E)$ 中数值构造 $JF=\varepsilon F$ 的本征态，检验 $\Xi(a-s)=\varepsilon\Xi(s)$。([普渡大学数学系][1])
 3. **意义三位一体一致性**：对同一数据流分别做（i）KL 最小的 $I$-投影；（ii）Ky Fan 极小的指针子空间；（iii）窗/核 KKT 极大极小；验证三者读数落入 NPE 误差预算。([Stern School of Business][9])
 4. **扩展即素点**：在 AFE/显式公式框架中，人工增删某局部因子参数，监测 $m\log p$ 处读数脉冲与相位回绕跃迁。([aimath.org][13])
