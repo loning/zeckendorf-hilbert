@@ -1,0 +1,325 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\setlist[itemize]{nosep,leftmargin=1.6em}
+\setlist[enumerate]{nosep,leftmargin=1.6em}
+
+\geometry{margin=1in}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+\DeclareMathOperator{\Re}{Re}
+\DeclareMathOperator{\Im}{Im}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\ord}{ord}
+
+\raggedbottom
+
+\title{Discrete Uniform Approximation and Annihilation}
+
+\author{Haobo Ma\thanks{Independent Researcher} \and Wenlin Zhang\thanks{National University of Singapore}}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{center}
+\textit{Error Tri-Decomposition via Poisson/Nyquist + Finite-Order EM; Annihilation Operators for Exponential--Polynomial Sequences and Identifiability via Prony/Moment Methods}
+\end{center}
+
+\begin{abstract}
+We establish a \textbf{discrete uniform approximation--inversion} framework fully aligned with S3--S7: composing \textbf{Poisson/Nyquist aliasing}, \textbf{finite-order Euler--Maclaurin (EM) Bernoulli layers}, and \textbf{windowed truncation tail terms} into a ``\textbf{non-asymptotic error tri-decomposition}'', ensuring computable upper bounds in engineering contexts with finite samples and fixed window widths. When the spectrum is a \textbf{finite exponential--polynomial} superposition (confluent line spectrum), we construct \textbf{finite-order difference annihilation operators} and provide \textbf{minimal order} and \textbf{uniqueness}; under small noise, we establish qualitative upper bounds for \textbf{identifiability--stability}, with \textbf{(confluent) Vandermonde condition number} and \textbf{modality separation} as core indicators. Finally, we provide a \textbf{procedural workflow} and \textbf{verifiable checklist} for the mother mapping. This framework directly splices with S3's $\Gamma/\pi$ normalization and completed function template, S4's ``pole = main scale'', S5's directional meromorphization, S6's information calibration, and S7's explicit formula interface.
+\end{abstract}
+
+\section{Notation and Prerequisites (Aligned with S3--S7)}
+
+\begin{itemize}
+\item \textbf{Directional slice and sampling grid.} Fix direction $\mathbf{v}\in\mathbb{S}^{n-1}$ and transverse offset $\rho_\perp$; let
+\begin{equation}
+\rho=\rho_\perp+s\mathbf{v},\qquad f(s):=F\bigl(\theta,\rho_\perp+s\mathbf{v}\bigr).
+\end{equation}
+Take step size $\Delta>0$; write $b:=e^{\Delta}$ and sampling points $s_k:=k\Delta$ ($k\in\mathbb{Z}$ or finite segment). The interchange of ``multiplicative step'' $b$ and ``additive step'' $\Delta$ follows S4's additive--multiplicative EM duality.
+
+\item \textbf{Fourier transform convention (Poisson consistency).}
+\begin{equation}
+\widehat{g}(\xi):=\int_{\mathbb{R}} g(s)\,e^{-i\xi s}\,ds,\qquad
+\Delta\!\sum_{k\in\mathbb{Z}} g(k\Delta)=\sum_{m\in\mathbb{Z}}\widehat{g}\!\Bigl(\tfrac{2\pi m}{\Delta}\Bigr).
+\end{equation}
+
+\item \textbf{Directional exponential--polynomial sequence.} When the spectrum satisfies S5's exponential--polynomial law, the sampling sequence
+\begin{equation}
+y_k:=f(s_k)=\sum_{\ell=1}^L\Bigl(\sum_{r=0}^{d_\ell} a_{\ell,r}\,k^r\Bigr)\lambda_\ell^{\,k},
+\qquad \lambda_\ell:=e^{\langle\beta_\ell,\mathbf{v}\rangle\,\Delta},
+\end{equation}
+is a \textbf{finite exponential--polynomial} (confluent line spectrum) sequence. Pole locations and orders of the directional Laplace--Stieltjes transform are determined by $\{\langle\beta_\ell,\mathbf{v}\rangle,d_\ell\}$.
+
+\item \textbf{Endpoint one-sided derivatives.} For endpoints $\pm T$ used subsequently, write
+\begin{equation}
+g^{(j)}(T_-):=\lim_{s\uparrow T}g^{(j)}(s),\qquad
+g^{(j)}(-T_+):=\lim_{s\downarrow -T}g^{(j)}(s).
+\end{equation}
+
+\item \textbf{Completed function and growth balancing (optional).} When necessary, use S3's $a$-symmetric $\Gamma/\pi$ factor $r(s)$ to construct completed function
+\begin{equation}
+\Xi(s):=r(s)\,F\bigl(\theta,\rho_\perp+s\mathbf{v}\bigr),
+\end{equation}
+to control vertical-line growth; if $r(s)$ is \textbf{holomorphic and nowhere vanishing} in the working vertical strip, it does not alter spectral locations and orders; if $r$ contains zeros/poles, they should be \textbf{incorporated} into S5's pole template for synchronous processing (cancellation or addition) before performing discrete approximation and inversion.
+
+\item \textbf{Explicit formula interface.} S7's test kernel $\widehat{h}$ is a window function on the scale side; this paper's sampling and windowing error metrics are compatible with summation interchange at the prime--prime-power side in the explicit formula (EF).
+\end{itemize}
+
+\section{Non-Asymptotic Error Tri-Decomposition via Poisson--EM (Unified Theorem)}
+
+For
+\begin{equation}
+\mathcal{Q}_{\Delta,T}[g]\ :=\ \Delta\!\sum_{|k|\le \lfloor T/\Delta\rfloor}\! g(k\Delta),\qquad
+\mathcal{I}[g]\ :=\ \int_{\mathbb{R}} g(s)\,ds,
+\end{equation}
+we provide non-asymptotic upper bounds via \textbf{aliasing (Poisson) + Bernoulli layers (finite-order EM) + truncation tail terms}.
+
+\begin{theorem}[Error Tri-Decomposition]\label{thm:tri_decomp}
+Let $g\in C^{2M}(\mathbb{R})\cap L^1(\mathbb{R})$, with Fourier transform $\widehat{g}\in L^1(\mathbb{R})$ and $g^{(2M)}\in L^1(\mathbb{R})$; and for the chosen step size $\Delta$,
+\begin{equation}
+\sum_{m\in\mathbb{Z}\setminus\{0\}}\Bigl|\widehat{g}\!\Bigl(\tfrac{2\pi m}{\Delta}\Bigr)\Bigr|<\infty.
+\end{equation}
+Then given step size $\Delta>0$ satisfying the above formula (alias summability), and under the above regularity assumptions, for any $T>0$, $M\in\mathbb{N}$ (write $K:=\lfloor T/\Delta\rfloor$), we have
+\begin{align}
+&\Bigl|\,\mathcal{I}[g]-\mathcal{Q}_{\Delta,T}[g]\,\Bigr|
+\ \le\
+\underbrace{\sum_{m\in\mathbb{Z}\setminus\{0\}}\Bigl|\widehat{g}\!\Bigl(\tfrac{2\pi m}{\Delta}\Bigr)\Bigr|}_{\textbf{Aliasing / Poisson}}
+\ + \notag \\
+&\underbrace{\tfrac{\Delta}{2}\bigl(|g(K\Delta)|+|g(-K\Delta)|\bigr)
+\ +\ \sum_{m=1}^{M-1}\frac{|B_{2m}|}{(2m)!}\,\Delta^{2m}\!\Bigl(\bigl|g^{(2m-1)}((K\Delta)_{-})\bigr|+\bigl|g^{(2m-1)}((-K\Delta)_{+})\bigr|\Bigr)}_{\textbf{Bernoulli layers (finite-order EM)}} \notag \\
+&\ +\ \underbrace{C_M\,\Delta^{2M}\!\!\int_{-K\Delta}^{K\Delta}\! |g^{(2M)}(s)|\,ds}_{\textbf{Bernoulli layers (continued)}}
+\ +
+\underbrace{\int_{|s|>K\Delta}\! |g(s)|\,ds}_{\textbf{Truncation tail}},
+\end{align}
+where $C_M:=\frac{2\zeta(2M)}{(2\pi)^{2M}}$.
+\end{theorem}
+
+\begin{remark}
+\begin{itemize}
+\item The first term comes from the Poisson summation formula with $\widehat{g}\in L^1$; it is an \textbf{absolute value upper bound of the tail sum} for the discrepancy ``integral $\leftrightarrow$ infinite sampling sum''.
+\item The second term is the \textbf{finite-order EM correction} when replacing the infinite sum with a finite sum (interval $[-K\Delta,\,K\Delta]$) (including endpoint half-weight, finite Bernoulli layers, and finite-order remainder); only uses Bernoulli layers up to $B_{2(M-1)}$, \textbf{no infinite Bernoulli series}.
+\item The third term is the \textbf{windowed truncation} volume integral tail term. The three superimpose to give \textbf{non-asymptotic, computable} error budget.
+\end{itemize}
+\end{remark}
+
+\begin{corollary}[Band-Limited and Quasi-Band-Limited]\label{cor:band_limited}
+\begin{enumerate}
+\item[(i)] If $\supp\widehat{g}\subset[-\Omega,\Omega]$ and $\Delta\le \pi/\Omega$ (Nyquist), the aliasing term is zero; error is controlled only by finite-order EM and truncation terms.
+\item[(ii)] If $|\widehat{g}(\xi)|\le C e^{-\mu|\xi|}$, then
+\begin{equation}
+\sum_{m\ne0}\Bigl|\widehat{g}\!\Bigl(\tfrac{2\pi m}{\Delta}\Bigr)\Bigr|
+\ \le\ \frac{2C\,e^{-2\pi\mu/\Delta}}{1-e^{-2\pi\mu/\Delta}},
+\end{equation}
+exhibiting \textbf{exponential-level} anti-aliasing. Both conclusions are compatible with S3's vertical-line growth balancing and S7's kernel-window selection.
+\end{enumerate}
+\end{corollary}
+
+\section{Exponential--Polynomial Model for Directional Samples and ``Pole = Main Scale''}
+
+Let $f(s)=F(\theta,\rho_\perp+s\mathbf{v})$ come from discrete spectrum. By S5, poles of the directional Laplace--Stieltjes transform are located at $s=\gamma_\ell$, with order $\le d_\ell+1$. Let $y_k=f(k\Delta)$.
+
+\begin{proposition}[Exponential--Polynomial Sampling Sequence]\label{prop:exp_poly_sample}
+There exist finite set $\{\lambda_\ell\}$ and polynomials $P_\ell(k)$ such that
+\begin{equation}
+y_k=\sum_{\ell=1}^L P_\ell(k)\,\lambda_\ell^{\,k},\qquad
+\lambda_\ell=e^{\gamma_\ell\,\Delta}.
+\end{equation}
+If $\gamma_\ell\not\equiv\gamma_j\ (\mathrm{mod}\ 2\pi i/\Delta)$ for all $\ell\ne j$, then $\lambda_\ell$ are pairwise distinct; otherwise $\lambda$ folding may occur. If $d_\ell=0$, it is a pure exponential sum. \textbf{If} the continuous poles $\{\gamma_\ell\}$ \textbf{themselves are distinct, and} $\Delta$ \textbf{satisfies} $|\Im(\gamma_\ell-\gamma_j)|<\pi/\Delta$ (or equivalent bandwidth constraint), \textbf{then} $\lambda_\ell$ \textbf{are pairwise distinct}; if confluence exists ($\gamma_\ell=\gamma_j$), $\lambda$ folding may still occur and should be handled by incorporating multiplicity into $d_\ell$. This structure is \textbf{orthogonal} to Theorem~\ref{thm:tri_decomp}'s error tri-decomposition: aliasing, endpoint correction, and truncation \textbf{do not alter} the analytic status of $\{\gamma_\ell,d_\ell\}$, preserving S4's ``\textbf{pole = main scale}''.
+\end{proposition}
+
+\section{Difference Annihilation: Existence, Uniqueness, and Minimal Order}
+
+\begin{theorem}[Finite-Order Difference Annihilation for Exponential--Polynomial Sequences]\label{thm:annihilation}
+Let
+\begin{equation}
+y_k=\sum_{\ell=1}^L\Bigl(\sum_{r=0}^{d_\ell} a_{\ell,r}\,k^r\Bigr)\lambda_\ell^{\,k},
+\qquad \lambda_\ell\ \text{pairwise distinct}.
+\end{equation}
+Set
+\begin{equation}
+\Phi(z)=\prod_{\ell=1}^L (z-\lambda_\ell)^{d_\ell+1}
+=\sum_{r=0}^{R}\phi_r\,z^r,\qquad
+R:=\sum_{\ell=1}^L(d_\ell+1).
+\end{equation}
+Then for all $k$,
+\begin{equation}
+\sum_{r=0}^{R}\phi_r\,y_{k+r}=0,
+\end{equation}
+and $R$ is the \textbf{minimal order}. Multiplying by any non-constant polynomial will not reduce the annihilation order.
+\end{theorem}
+
+\begin{proof}[Key points]
+Write forward shift operator $E$ satisfying $(Ey)_k:=y_{k+1}$; difference operator $(\Delta_{\lambda}y)_k:=y_{k+1}-\lambda\,y_k=(E-\lambda I)y_k$. For each $\ell$, $(E-\lambda_\ell I)^{d_\ell+1}(k^{d_\ell}\lambda_\ell^{\,k})\equiv 0$; and $\prod_\ell (E-\lambda_\ell I)^{d_\ell+1}y\equiv 0$. Viewing the forward shift operator $E$ as formal variable $z$ yields the annihilation polynomial $\Phi(z)=\prod_\ell(z-\lambda_\ell)^{d_\ell+1}$, whose roots are \textbf{exactly} $\{\lambda_\ell\}$; minimality is given by dimension counting in the confluent exponential--polynomial space and root distinctness.
+\end{proof}
+
+\begin{remark}[Step size--scale consistency]
+$\lambda_\ell=e^{\gamma_\ell\Delta}$ unifies directional exponential rate and sampling step into discrete eigenvalues; as $\Delta\to0$, $\lambda_\ell\approx 1+\gamma_\ell\Delta$, completely consistent with S5's pole location--order.
+\end{remark}
+
+\section{Identifiability and Stability of Prony/Moment Methods (Small Noise)}
+
+Write observation vector $\mathbf{y}=(y_0,\dots,y_{N-1})^\top$, noise bound $|\varepsilon|\le \eta$. Estimate coefficients $\{\phi_r\}$ of $\Phi$ using Hankel/Toeplitz prediction equations.
+
+\begin{theorem}[Identifiability and Sample Complexity]\label{thm:identifiability}
+If $\lambda_\ell$ are pairwise distinct and we take \textbf{consecutive} $2R$ equidistant samples (or equivalently construct full-rank Hankel/Toeplitz prediction matrix), then under no noise, $\Phi$ is \textbf{uniquely} determined by $\{y_k\}_{k=0}^{N-1}$ ($N\ge 2R$); to eliminate scale indeterminacy, take $\Phi$ as monic polynomial (setting $\phi_R=1$). Otherwise unique only up to nonzero overall scale. Then $\{\lambda_\ell\}$ and $\{P_\ell\}$ can be uniquely recovered. When noise exists and the prediction matrix is full rank, the least-squares solution exists and is unique.
+
+\textbf{Stability (qualitative upper bound).} Let $V$ be the \textbf{(confluent) Vandermonde} matrix, $\kappa(V)$ its condition number, $\delta_{\mathrm{sep}}:=\min_{\ell\ne j}|\lambda_\ell-\lambda_j|$ the minimal root separation. For small noise $\eta$,
+\begin{equation}
+\max_\ell \frac{|\Delta\lambda_\ell|}{|\lambda_\ell|}
+\ \lesssim\ \kappa(V)\cdot \frac{\eta}{\|\mathbf{y}\|},
+\end{equation}
+deteriorating as $\delta_{\mathrm{sep}}\downarrow 0$. Thus \textbf{modality clustering} and \textbf{small sample} lead to ill-posedness; on the information calibration (S6), the smaller the \textbf{effective modality count} $N_{\mathrm{eff}}$, the fewer samples needed. In the above formula, $\|\cdot\|$ can take $\ell_2$ norm, $\eta$ the noise bound under corresponding norm; can also change to $\ell_\infty$ uniform bound, with constants adjusted accordingly.
+\end{theorem}
+
+\begin{remark}[Verifiable strategies (aligned with S6/S7)]
+\begin{enumerate}
+\item[(i)] First use S6's $H,\ N_{\mathrm{eff}},\ N_2$ to estimate ``effective modality count'', accordingly choose $N$ and window width $T$.
+\item[(ii)] Adopt multi-start/sub-sampling robustification (ESPRIT/moment method variants) to mitigate $\kappa(V)$; Tikhonov regularization when necessary.
+\item[(iii)] Mitigate clustering by adjusting $\Delta$ (equivalently changing relative separation of $\lambda_\ell$).
+\end{enumerate}
+\end{remark}
+
+\section{Procedural Workflow (Pseudocode)}
+
+\textbf{Input}: Direction $\mathbf{v}$, offset $\rho_\perp$, samples $y_k=f(k\Delta)$ ($|k|\le K$ or $0\le k<N$), EM order $M$, window width $T=K\Delta$.
+
+\textbf{Output}: $\{(\widehat{\gamma}_\ell,\widehat{d}_\ell,\widehat{a}_{\ell,r})\}$ or reconstructed $\widehat{f}$.
+
+\begin{enumerate}
+\item \textbf{Windowing and alias control}: Choose even window $w$ (e.g., Gaussian/band-limited Paley--Wiener), set $g(s)=w(s/T)f(s)$. Compute $\mathcal{Q}_{\Delta,T}[g]$, estimate aliasing and truncation by Theorem~\ref{thm:tri_decomp}; if aliasing term is too large, reduce $\Delta$ or switch to steeper window.
+
+\item \textbf{Finite-order EM endpoint correction}: Apply \textbf{finite-order EM (up to $B_{2(M-1)}$)} to $\{g(k\Delta)\}$ and record Bernoulli layer error share; remainder viewed as holomorphic/entire-function layer (S4).
+
+\item \textbf{Construct annihilation equation}: From (corrected) samples, assemble Hankel/Toeplitz prediction equations, solve for $\Phi(z)=\sum_{r=0}^{R}\phi_r z^r$.
+
+\item \textbf{Root and order estimation}: Take $\{\widehat{\lambda}_\ell\}$ as roots of $\Phi$, multiplicity gives $\widehat{d}_\ell$; set $\widehat{\gamma}_\ell=\Delta^{-1}\log \widehat{\lambda}_\ell$ (take \textbf{principal branch}, and eliminate $\frac{2\pi i}{\Delta}$ branch ambiguity according to Nyquist constraint; for real sequences, unify root set by conjugate pairing).
+
+\item \textbf{Amplitude and polynomial coefficient regression}: Solve linear equations to estimate $\{\widehat{a}_{\ell,r}\}$.
+
+\item \textbf{Unification and verification}:
+\begin{itemize}
+\item Use S5's pole template (location $\widehat{\gamma}_\ell$, order $\le \widehat{d}_\ell+1$) to verify directional meromorphy;
+\item Use S6's $\Lambda$--$\Lambda^\ast$ duality and $N_{\mathrm{eff}},N_2$ to assess ``information sufficiency''.
+\end{itemize}
+\end{enumerate}
+
+\section{Error Budget and Balancing Strategy (Summary)}
+
+\begin{equation}
+\boxed{
+\text{Total error}\ \le\
+\underbrace{\text{Aliasing}}_{\text{Poisson}}\ +
+\underbrace{\text{Bernoulli layers}}_{\text{Finite-order EM}}\ +
+\underbrace{\text{Truncation}}_{\text{Window tail}}\ +
+\underbrace{\text{Inversion noise}}_{\kappa(V)\cdot \text{SNR}}
+}
+\end{equation}
+
+\begin{itemize}
+\item \textbf{Aliasing}: Measured by $\sum_{m\ne0}\bigl|\widehat{g}(2\pi m/\Delta)\bigr|$; controlled by small step size/band-limited window.
+\item \textbf{Bernoulli layers}: Controlled by endpoint derivatives and $\Delta^{2m}$ weights; decay by endpoint regularity as $M$ increases (S4).
+\item \textbf{Truncation}: Controlled by $\int_{|s|>T}|g(s)|\,ds$; increase $T$ or switch to steeper window.
+\item \textbf{Inversion noise}: Controlled by $\kappa(V)$ and $|\varepsilon|/|\mathbf{y}|$; balance with redundant samples, tuning $\Delta$, regularization/subspace methods.
+\item \textbf{Completed function balancing (optional)}: Choose S3's $r(s)$ to reduce vertical-line growth, indirectly lowering window tail and aliasing terms.
+\end{itemize}
+
+\section{Counterexamples and Boundary Families (Failure Reasons Annotated)}
+
+\begin{itemize}
+\item \textbf{R8.1 (Infinite Bernoulli sum)}: Using EM as an \textbf{infinite series} destroys uniform summability and creates spurious poles; must \textbf{fix finite order}.
+
+\item \textbf{R8.2 (Quasi-band-limited failure)}: $\widehat{g}$ decays slowly while $\Delta$ is too large; aliasing dominates, Prony recovery destabilizes.
+
+\item \textbf{R8.3 (Modality clustering)}: $\min_{\ell\ne j}|\lambda_\ell-\lambda_j|$ extremely small causes $\kappa(V)$ explosion; tiny noise induces root cluster splitting.
+
+\item \textbf{R8.4 (Directional degeneracy)}: If $\langle\beta_\ell-\beta_j,\mathbf{v}\rangle\equiv 0$, the one-dimensional model degenerates ($\lambda_\ell=\lambda_j$); need to change direction or use multi-direction/multi-phase joint estimation (consistent with S2's transversality).
+
+\item \textbf{R8.5 (Completed function misuse)}: Treating $\Gamma/\pi$ normalization as term-by-term weight introduced into $y_k$ destroys information calibration and identifiability; normalization serves only as \textbf{global multiplier}.
+\end{itemize}
+
+\section{Unified Verifiable Checklist (Minimal Sufficient Conditions)}
+
+\begin{enumerate}
+\item \textbf{Finite-order EM}: Fix $M$, use only Bernoulli layers up to $B_{2(M-1)}$; remainder viewed as holomorphic/entire-function layer (S4).
+
+\item \textbf{Poisson interchangeability}: Window $w$ and $g$ make $\widehat{g}\in L^1$; aliasing term $\widehat{g}(2\pi m/\Delta)$ computable or upper-boundable.
+
+\item \textbf{Exponential--polynomial model}: Verify samples can be generated by $\sum_\ell P_\ell(k)\lambda_\ell^k$ (or use S5's exponential rate/pole order as prior).
+
+\item \textbf{Sample complexity}: Pre-estimate $R=\sum_\ell(d_\ell+1)$; take $N\ge 2R$ and leave redundancy for robustification.
+
+\item \textbf{Condition number/separation}: Evaluate $\kappa(V)$ and $\delta=\min|\lambda_\ell-\lambda_j|$; if imbalanced, tune $\Delta$, add redundancy, or use multi-direction.
+
+\item \textbf{Information calibration consistency}: Use $N_{\mathrm{eff}},N_2$ and $\Lambda$--$\Lambda^\ast$ to assess ``effective modality count'', guide $N,T,\Delta$; normalization and phase operations do not enter probability weights (S6).
+
+\item \textbf{Completed function (optional)}: When vertical-line growth balancing is needed, adopt S3's $a$-symmetric $\Gamma/\pi$ factor, not altering spectral locations and orders.
+\end{enumerate}
+
+\section{Interface with Other Sections}
+
+\begin{itemize}
+\item \textbf{$\leftarrow$ S2 (Additive mirror)}: Binomial closure and transversality provide geometric criteria for identifiability of \textbf{multi-direction joint sampling} (avoiding directional degeneracy).
+
+\item \textbf{$\leftarrow$ S3 (Completed function)}: $\Gamma/\pi$ normalization provides vertical-line growth balancing, not altering discrete spectrum identifiable information.
+
+\item \textbf{$\leftarrow$ S4 (Finite-order EM)}: ``Bernoulli layers + holomorphic remainder'' directly support error tri-decomposition and ensure ``\textbf{pole = main scale}'' is not polluted in discrete approximation.
+
+\item \textbf{$\leftrightarrow$ S5 (Directional meromorphization)}: Annihilation eigenvalues $\lambda_\ell$ and pole locations $\gamma_\ell$ satisfy $\lambda_\ell=e^{\gamma_\ell\Delta}$; order bound $\ord\le d_\ell+1$ consistent.
+
+\item \textbf{$\leftrightarrow$ S6 (Information calibration)}: $N_{\mathrm{eff}},N_2$ assess identifiable ``effective modality count''; $\Lambda$--$\Lambda^\ast$ duality guides window/bandwidth selection.
+
+\item \textbf{$\leftrightarrow$ S7 ($L$-function interface)}: Kernel $\widehat{h}$ in explicit formula is the window function; prime--prime-power terms in EF form equidistant point sequence on scale side, usable with this section's error tri-decomposition and difference annihilation for numerical verification and line-spectrum extraction.
+\end{itemize}
+
+\section*{Concluding Remarks}
+
+This section grounds S3--S5's \textbf{continuous mirror--analytic continuation} into S8's \textbf{discrete uniform approximation--difference inversion}: Poisson/Nyquist controls aliasing, \textbf{finite-order EM} ensures holomorphic legitimacy of endpoints and interchange (``\textbf{pole = main scale}'' remains invariant), windowing truncation makes error \textbf{non-asymptotic computable}; when samples exhibit \textbf{exponential--polynomial} structure, \textbf{finite-order difference annihilation} and Prony/moment methods provide an \textbf{identifiable--stable} parameter inversion path. Combined with S6's information calibration and S7's explicit formula interface, this framework constitutes a \textbf{verifiable, spliceable, portable} theory--algorithm baseline for subsequent numerical verification and experimental benchmarking.
+
+\begin{thebibliography}{9}
+
+\bibitem{poisson_summation}
+G.~H. Hardy, \emph{Divergent Series}, Clarendon Press, 1949.
+
+\bibitem{euler_maclaurin}
+K.~Knopp, \emph{Theory and Application of Infinite Series}, Dover, 1990.
+
+\bibitem{prony_method}
+R.~Prony, \emph{Essai Exp\'erimental et Analytique}, J. \'Ecole Polytech., 1795.
+
+\bibitem{sturm_liouville}
+E.~C. Titchmarsh, \emph{Eigenfunction Expansions Associated with Second-Order Differential Equations}, Clarendon Press, 1946.
+
+\bibitem{vandermonde_condition}
+G.~Golub and C.~Van Loan, \emph{Matrix Computations}, Johns Hopkins University Press, 1996.
+
+\bibitem{approximation_theory}
+N.~I. Akhiezer, \emph{Lectures on Approximation Theory}, Dover, 1992.
+
+\bibitem{spectral_analysis}
+D.~Slepian, \emph{Prolate Spheroidal Wave Functions, Fourier Analysis and Uncertainty -- V: The Discrete Case}, Bell System Technical Journal, 1978.
+
+\bibitem{time_frequency_analysis}
+L.~Cohen, \emph{Time-Frequency Analysis}, Prentice Hall, 1995.
+
+\bibitem{numerical_linear_algebra}
+G.~W. Stewart, \emph{Introduction to Matrix Computations}, Academic Press, 1973.
+
+\end{thebibliography}
+
+\end{document}
+

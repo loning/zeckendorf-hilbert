@@ -1,0 +1,269 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\setlist[itemize]{nosep,leftmargin=1.6em}
+\setlist[enumerate]{nosep,leftmargin=1.6em}
+
+\geometry{margin=1in}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{counterexample}[theorem]{Counterexample}
+
+\DeclareMathOperator{\Re}{Re}
+\DeclareMathOperator{\Im}{Im}
+\DeclareMathOperator{\proj}{proj}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Int}{int}
+
+\raggedbottom
+
+\title{Analytic Domain and Integrability Baseline of the Mother Mapping}
+
+\author{Haobo Ma\thanks{Independent Researcher} \and Wenlin Zhang\thanks{National University of Singapore}}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+
+\begin{abstract}
+This paper systematically establishes the baseline theory of \textbf{analytic domain, integrability, and interchange of operations} for the phase--scale mother mapping $\mathcal{M}[\mu]$ as the central object. We provide: (i) \textbf{Exponential moment---tube domain analyticity theorem}: if the spectral measure $\mu$ possesses exponential moments in a certain direction, then the mother mapping is holomorphic in the scale variable, continuous and uniformly bounded in the phase variable, within the corresponding \textbf{tube domain}; (ii) \textbf{Sufficient convergence---holomorphy criterion for discrete spectra}: for discrete spectra, $\sum_j|c_j|e^{\langle\beta_j,\Re\rho\rangle}<\infty$ on some open set implies locally uniform convergence and holomorphy; (iii) \textbf{Interchange and differentiation---integration criteria}: we give minimal verifiable conditions under Fubini/Tonelli and dominated convergence, allowing legitimate interchange of summation/integration/differentiation. We establish several lemmas on growth estimates, convexity, and boundary behavior, provide typical examples including $\zeta$/Dirichlet series, and present two classes of counterexamples. As the foundational paper in this series, we provide an \textbf{application-oriented checklist}.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Mother mapping; exponential moments; tube domain; Tonelli/Fubini; dominated convergence; Weierstrass test; locally uniform convergence; holomorphic functions.
+
+\section{Introduction and Setup}
+
+The phase--scale mother mapping unifies ``phase rotation'' and ``scale dilation'' into a single analytic object, written as
+\begin{equation}
+\mathcal{M}[\mu](\theta,\rho)=\int_{\mathbb{R}^m\times\mathbb{R}^n}
+e^{i\langle\omega,\theta\rangle}\,e^{\langle\gamma,\rho\rangle}\,d\mu(\omega,\gamma),
+\qquad \theta\in\mathbb{R}^m,\ \rho\in\mathbb{C}^n,
+\end{equation}
+where $\mu$ is a $\sigma$-finite Radon complex measure on $\mathbb{R}^m\times\mathbb{R}^n$. If $\proj_\omega(\supp\mu)\subset\mathbb{Z}^m$, this naturally descends to an equivalent formulation on $\mathbb{T}^m$. If $\mu$ is discrete,
+\begin{equation}
+\mathcal{M}[\mu](\theta,\rho)=\sum_{j} c_j\,e^{\langle\beta_j,\rho\rangle}\,e^{i\langle\alpha_j,\theta\rangle},
+\quad (\alpha_j,\beta_j)\in\mathbb{R}^m\times\mathbb{R}^n,\ c_j\in\mathbb{C}.
+\end{equation}
+
+The goal of this paper is to characterize its analytic domain and integrability, provide minimal sufficient conditions for legitimate interchange and differentiation, and give verifiable convergence criteria for discrete spectra.
+
+\section{Notation and Basic Objects}
+
+\begin{itemize}
+\item $\langle\cdot,\cdot\rangle$: standard inner product on $\mathbb{R}^d$; $\Re z,\Im z$: real and imaginary parts of a complex number.
+\item $\mathbb{T}:=\mathbb{R}/2\pi\mathbb{Z}$, $\mathbb{T}^m$ is the $m$-dimensional phase torus.
+\item $|\mu|$: total variation of the complex measure $\mu$.
+\item \textbf{Exponential moment set}:
+\begin{equation}
+\mathsf{E}(\mu):=\Bigl\{\tau\in\mathbb{R}^n:\ \int e^{\langle\gamma,\tau\rangle}\,d|\mu|(\omega,\gamma)<\infty\Bigr\}.
+\end{equation}
+\item \textbf{Tube domain}: Given $\tau\in\mathsf{E}(\mu)$, define
+\begin{equation}
+\mathcal{T}(\tau):=\Bigl\{\rho\in\mathbb{C}^n:\ \Re\langle\gamma,\rho\rangle < \langle\gamma,\tau\rangle\ \text{for all }(\omega,\gamma)\in\supp\mu\text{ with }\gamma\ne 0\Bigr\}.
+\end{equation}
+\end{itemize}
+
+\begin{remark}
+If the support contains points with $\gamma=0$, then the strict inequality above is understood as ``for all support with $\gamma\ne 0$''; on $\{\gamma=0\}$ we have $e^{\langle\gamma,\rho\rangle}\equiv1$, contributing only a constant term independent of $\rho$. If $|\mu|(\{\gamma=0\})=\infty$, then $\int e^{\langle\gamma,\tau\rangle}d|\mu|$ already diverges, incompatible with condition C1.
+\end{remark}
+
+\section{Exponential Moments and Tube-Domain Analyticity}
+
+\begin{theorem}[Tube-Domain Analyticity]\label{thm:tube}
+If $\tau\in\mathsf{E}(\mu)$, then for any fixed $\theta\in\mathbb{R}^m$, the map $\rho\mapsto\mathcal{M}[\mu](\theta,\rho)$ is holomorphic on the open set $\mathcal{T}(\tau)$; for any fixed $\rho\in\mathcal{T}(\tau)$, $\theta\mapsto\mathcal{M}[\mu](\theta,\rho)$ is continuous (and bounded on any compact subset of $\mathbb{R}^m$). Moreover, for any compact $K\Subset\mathcal{T}(\tau)$, there exists a constant $C_K$ such that
+\begin{equation}
+\sup_{\theta\in\mathbb{R}^m,\ \rho\in K}|\mathcal{M}[\mu](\theta,\rho)|
+\le C_K\int e^{\langle\gamma,\tau\rangle}\,d|\mu|(\omega,\gamma).
+\end{equation}
+\end{theorem}
+
+\begin{proof}[Proof (key points)]
+Take any $K\Subset\mathcal{T}(\tau)$. For any $\rho\in K$ and $\gamma\ne 0$ in the support, by $\rho\in\mathcal{T}(\tau)$ we have $\Re\langle\gamma,\rho\rangle<\langle\gamma,\tau\rangle$; for $\gamma=0$, we have $\Re\langle\gamma,\rho\rangle=\langle\gamma,\tau\rangle=0$. Thus
+\begin{equation}
+\bigl|e^{i\langle\omega,\theta\rangle}e^{\langle\gamma,\rho\rangle}\bigr|\le e^{\langle\gamma,\tau\rangle}.
+\end{equation}
+Take $C_K=1$. The right-hand side is integrable with respect to $(\omega,\gamma)$. By dominated convergence and Morera's theorem combined with interchange, we obtain holomorphy in $\rho$; continuity in $\theta$ and boundedness on compact sets follow similarly. The above inequality gives a uniform bound.
+\end{proof}
+
+\begin{proposition}[Convexity and Non-emptiness Criterion for $\mathsf{E}(\mu)$]\label{prop:convex}
+$\mathsf{E}(\mu)$ is convex; if there exist $\tau_0$ and $\varepsilon>0$ such that $\int e^{\langle\gamma,\tau_0\rangle+\varepsilon|\gamma|}\ d|\mu|<\infty$ (sufficient condition: there exists a neighborhood $U\ni\tau_0$ satisfying $\int e^{\langle\gamma,\tau\rangle}d|\mu|<\infty\ \forall\tau\in U$), then $\tau_0\in\Int\mathsf{E}(\mu)$.
+\end{proposition}
+
+\begin{proof}
+By the H\"older/Young inequality, $f(\tau)=\int e^{\langle\gamma,\tau\rangle}d|\mu|$ is log-convex, hence $\mathsf{E}(\mu)$ is convex; under the given local exponential margin condition, $\tau_0\in\Int\mathsf{E}(\mu)$.
+\end{proof}
+
+\section{Convergence---Holomorphy Criterion and Growth Bounds for Discrete Spectra}
+
+\begin{theorem}[Sufficient Convergence---Holomorphy Criterion for Discrete Spectra]\label{thm:discrete}
+Let $\mu=\sum_j c_j\,\delta_{(\alpha_j,\beta_j)}$. If there exists an open set $U\subset\mathbb{C}^n$ such that for each compact $K\Subset U$ we have
+\begin{equation}
+\sum_j |c_j|\,e^{\sup_{\rho\in K}\langle\beta_j,\Re\rho\rangle}<\infty,
+\end{equation}
+then $\mathcal{M}[\mu](\theta,\rho)=\sum_j c_j e^{\langle\beta_j,\rho\rangle}e^{i\langle\alpha_j,\theta\rangle}$ converges \textbf{absolutely and locally uniformly} on $\mathbb{R}^m\times U$, and is holomorphic in $\rho$ and continuous in $\theta$. Term-by-term differentiation is valid when the sufficient conditions in \S\ref{sec:diff} are satisfied:
+\begin{equation}
+\partial_{\rho}^{\nu}\mathcal{M}[\mu](\theta,\rho)
+=\sum_j c_j\,\beta_j^{\nu}\,e^{\langle\beta_j,\rho\rangle}e^{i\langle\alpha_j,\theta\rangle},\qquad \nu\in\mathbb{N}^n.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+For any compact $K\Subset U$, the hypothesis gives $\sum_j |c_j| e^{\sup_{\rho\in K}\langle\beta_j,\Re\rho\rangle} < \infty$. Let $M_j = |c_j| e^{\sup_{\rho\in K}\langle\beta_j,\Re\rho\rangle}$, then $\sum_j M_j < \infty$. By the Weierstrass M-test, we obtain locally uniform convergence on $\mathbb{R}^m \times K$; by the Weierstrass theorem, the sum is holomorphic in $\rho$; term-by-term differentiation requires the moment condition in \S\ref{sec:diff}.
+\end{proof}
+
+\begin{proposition}[Growth Estimate]\label{prop:growth}
+Under the conditions of Theorem~\ref{thm:discrete}, for $K\Subset U$ we have
+\begin{equation}
+\sup_{\theta\in\mathbb{R}^m,\ \rho\in K}|\mathcal{M}[\mu](\theta,\rho)|
+\le \sum_j |c_j|\,e^{\sup_{\rho\in K}\langle\beta_j,\Re\rho\rangle}.
+\end{equation}
+\end{proposition}
+
+\section{Minimal Criteria for Interchange and Differentiation---Integration}\label{sec:diff}
+
+\begin{theorem}[Fubini/Tonelli Interchange]\label{thm:fubini}
+Let $U\subset\mathbb{C}^n$ be open. If there exist $\rho_0\in U$ and a neighborhood $V\Subset U$ such that
+\begin{equation}
+\int \sup_{\rho\in V}\bigl|e^{\langle\gamma,\rho\rangle}\bigr|\,d|\mu|(\omega,\gamma)<\infty,
+\end{equation}
+then the following operations can be legitimately interchanged:
+\begin{itemize}
+\item Integration over $(\omega,\gamma)$ and torus integration over $\theta$ (or Fourier coefficient extraction). When the $\omega$-spectrum is contained in $\mathbb{Z}^m$, Fourier coefficient extraction can be performed; in general, this is understood as bounded measure averaging/test function pairing over $\theta\in\mathbb{R}^m$, which can be interchanged with $(\omega,\gamma)$-integration under the given domination condition.
+\item Integration over $(\omega,\gamma)$ and line integration over $\rho$ (Cauchy formula) and partial derivatives.
+\item For discrete spectra, interchange of $\sum_j$ with the above operations.
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+The given integrable bound and Tonelli's theorem ensure that absolute integrability guarantees interchange; complex differentiability holds by Morera and Cauchy formulas within $V$, so term-by-term (or pointwise) operations are legitimate.
+\end{proof}
+
+\begin{theorem}[Sufficient Conditions for Term-by-Term Differentiation]\label{thm:termwise}
+If for some compact $K\Subset U$ and multi-index $\nu$ we have
+\begin{equation}
+\sum_j |c_j|\,|\beta_j|^{|\nu|}\,e^{\sup_{\rho\in K}\langle\beta_j,\Re\rho\rangle}<\infty,
+\end{equation}
+then $\partial_{\rho}^{\nu}\mathcal{M}[\mu]$ can be computed term-by-term and converges locally uniformly on $\mathbb{R}^m\times K$.
+\end{theorem}
+
+\section{Boundary and Tube-Domain Geometry}
+
+Let $\partial\mathcal{T}(\tau)$ denote the boundary of the tube domain. If $\rho\to\rho_b\in\partial\mathcal{T}(\tau)$ and there exists $(\omega_\star,\gamma_\star)\in\supp\mu$ such that $\Re\langle\gamma_\star,\rho_b\rangle=\langle\gamma_\star,\tau\rangle$, then generally there is no uniform integrable domination and divergence may occur. We present two standard cases:
+
+\begin{itemize}
+\item \textbf{Regular boundary}: If $\langle\gamma,\rho_b\rangle\le \langle\gamma,\tau\rangle-\delta$ holds except on a thin set, and $d|\mu|$ has integrable decay on that thin set, $\mathcal{M}[\mu]$ may extend to a larger tube domain (requires additional growth conditions; see series S3).
+\item \textbf{Critical divergence}: If there is a set of non-zero measure concentrated on the hyperplane $\langle\gamma,\rho_b\rangle=\langle\gamma,\tau\rangle$, logarithmic or power-law divergence typically occurs (see Counterexample~\ref{cex:boundary}).
+\end{itemize}
+
+\section{Examples and Special Cases}
+
+\begin{example}[$\zeta$/Dirichlet Series]\label{ex:zeta}
+Take discrete spectrum $\beta_n=-\log n$, $\alpha_n=\log n$, $c_n=1$. When $\sigma>1$,
+\begin{equation}
+\mathcal{M}[\mu](-t,\sigma)=\sum_{n\ge1}n^{-(\sigma+it)}=\zeta(\sigma+it),
+\end{equation}
+where we use the real parameter setting $\theta\in\mathbb{R}$, $\omega=\log n$; this is compatible with the interchange conditions in \S\ref{sec:diff}, since $|e^{i\omega\theta}|\equiv 1$. This is consistent with the criterion in Theorem~\ref{thm:discrete}; its tube domain boundary is $\sigma=1$.
+\end{example}
+
+\begin{example}[Finite Phase-Bandwidth Spectrum]\label{ex:finite}
+If only finitely many $\alpha_j$ are nonzero and $\sum_j|c_j|e^{\langle\beta_j,\Re\rho\rangle}<\infty$, then $\theta\mapsto\mathcal{M}[\mu](\theta,\rho)$ is a finite trigonometric polynomial, and $\rho\mapsto\mathcal{M}[\mu]$ is holomorphic in the open set given by the above inequality.
+\end{example}
+
+\begin{example}[Continuous Spectrum and Exponential Kernel]\label{ex:continuous}
+Let $\mu$ have density $c(\omega,\gamma)\,d\omega\,d\gamma$, and $\int e^{\langle\gamma,\tau\rangle}|c|\ d\omega d\gamma<\infty$. Theorem~\ref{thm:tube} directly gives holomorphy within $\mathcal{T}(\tau)$ and uniform bounds.
+\end{example}
+
+\section{Counterexamples and Boundary Cases}
+
+\begin{counterexample}[Lack of Exponential Moments Implies Non-analyticity]\label{cex:moment}
+Let $\mu=\sum_{k\ge1}\delta_{(\omega_k,\gamma_k)}$ with $\gamma_k=k e_1$ ($e_1$ is a coordinate vector) and $c_k=e^{k^2}$. Then for any $\tau\in\mathbb{R}^n$,
+$\int e^{\langle\gamma,\tau\rangle}d|\mu|=\sum_k e^{k^2 + k\langle e_1,\tau\rangle}$ diverges, so $\mathsf{E}(\mu)=\varnothing$. Hence there is no non-empty tube domain, and $\rho\mapsto\mathcal{M}[\mu]$ has no holomorphic region.
+\end{counterexample}
+
+\begin{counterexample}[Divergence on Critical Boundary]\label{cex:boundary}
+Take $\mu$ supported on $\{(\omega,\gamma):\ \gamma = t v,\ t\ge 0\}$ with $\|v\|=1$ and $d\mu(t)=dt$. Then for $\tau<0$, $\int_0^\infty e^{t \tau}\,dt<\infty$ if and only if $\tau<0$. The tube domain is $\mathcal{T}(\tau)=\{\Re \langle v,\rho\rangle <\tau\}$. For $\rho=s v$ ($s$ real), convergence holds when $s<\tau$; the overall analytic domain is $\bigcup_{\tau<0} \mathcal{T}(\tau)=\{s<0\}$, whose boundary $s=0$ has $\int_0^\infty dt=\infty$, giving boundary sharpness.
+\end{counterexample}
+
+\section{Verifiable Checklist (Minimal Sufficient Conditions)}
+
+\textbf{C1 (Exponential moment):} There exists $\tau$ such that $\int e^{\langle\gamma,\tau\rangle}d|\mu|<\infty$ $\Rightarrow$ holomorphic and uniformly bounded on $\rho\in\mathcal{T}(\tau)$.
+
+\textbf{C2 (Discrete spectrum---local M-test):} On an open set $U$, for each compact $K\Subset U$ we have $\sum_j|c_j|e^{\sup_{\rho\in K}\langle\beta_j,\Re\rho\rangle}<\infty$ $\Rightarrow$ locally uniform convergence and holomorphy; if \textbf{C4 (derivative)} is also satisfied, then term-by-term differentiation is legitimate.
+
+\textbf{C3 (Interchange):} There exists $V\Subset U$ such that $\int \sup_{\rho\in V}|e^{\langle\gamma,\rho\rangle}|\,d|\mu|<\infty$ $\Rightarrow$ summation/integration/differentiation can be interchanged with integration over $(\omega,\gamma)$.
+
+\textbf{C4 (Derivative):} $\sum_j|c_j|\,|\beta_j|^{|\nu|}e^{\sup_{K}\langle\beta_j,\Re\rho\rangle}<\infty$ $\Rightarrow$ $\partial_\rho^\nu$ can be computed term-by-term.
+
+\textbf{C5 (Boundary):} If there exist support points achieving $\Re\langle\gamma,\rho_b\rangle=\langle\gamma,\tau\rangle$ with non-negligible corresponding measure, then $\rho_b$ is generally not integrable; use continuation cautiously.
+
+\section{Interface with Subsequent Papers}
+
+\begin{itemize}
+\item \textbf{S2}: Based on the locally uniform convergence and analyticity of this paper, prove the transversal structure of zero sets under additive mirror and codimension 2.
+\item \textbf{S3}: Within the framework of C1--C3, construct self-dual kernels and derive $\Phi(s)=\Phi(a-s)$ and the completed function.
+\item \textbf{S4/S5}: On the baseline of interchange and dominated convergence established here, build finite-order Euler--Maclaurin error control and directional meromorphization.
+\item \textbf{S6--S10}: Information calibration, $L$-function interface, discrete uniform approximation, and geometric growth bounds all depend on the analytic domain and interchange criteria of this paper.
+\end{itemize}
+
+\appendix
+
+\section{Technical Lemmas}
+
+\begin{lemma}[Morera---Dominated Convergence Version]\label{lem:morera}
+Let $f(\rho)=\int g(x,\rho)\,d\nu(x)$. If for every closed curve $\Gamma\subset U$ the integral $\int g(x,\rho)\,d\rho$ is absolutely integrable on $\Gamma$ and can be interchanged with $d\nu$, then $f$ is holomorphic on $U$.
+\end{lemma}
+
+\begin{lemma}[Log-Convexity of $\mathsf{E}(\mu)$]\label{lem:logconvex}
+The function $\tau\mapsto \log \int e^{\langle\gamma,\tau\rangle}d|\mu|$ is convex, hence $\mathsf{E}(\mu)$ is convex.
+\end{lemma}
+
+\begin{lemma}[Weierstrass M-Test]\label{lem:weierstrass}
+If $\sum_j M_j<\infty$ and $|f_j(z)|\le M_j$ uniformly on compact sets, then $\sum_j f_j$ converges locally uniformly and is holomorphic when each $f_j$ is holomorphic.
+\end{lemma}
+
+\section{Quick Reference to $\zeta$/Dirichlet Scenarios}
+
+\begin{itemize}
+\item \textbf{$\zeta$ scenario}: $\beta_n=-\log n$; when $\sigma>1$, C2 holds ($\sum n^{-\sigma}<\infty$), yielding $\mathcal{M}[\mu](-t,\sigma)=\zeta(\sigma+it)$ holomorphic in the strip $\sigma>1$.
+\item \textbf{General Dirichlet series}: The absolute convergence domain of $\sum a_n e^{\langle\beta_n,\rho\rangle}$ is determined by $\sum |a_n|e^{\langle\beta_n,\Re\rho\rangle}$; when C2 is satisfied, holomorphy and term-by-term differentiation follow.
+\item \textbf{Continuous kernel/smooth window}: Choose $K$ to be a rapidly decaying kernel satisfying self-duality conditions (see S3); under C1--C3, interchange with Poisson summation is valid and yields the completed function template.
+\end{itemize}
+
+\section*{Concluding Remarks}
+
+This paper provides the \textbf{minimal sufficient conditions for analytic domain, integrability, and interchange} of the mother mapping, together with verifiable criteria and counterexamples for both discrete and continuous spectra, forming the common baseline for the series. Subsequent papers will build on this foundation to establish zero-set geometry, self-dual kernels and completed functions, Bernoulli-layer continuation, directional meromorphization, information calibration, and the $L$-function interface, among other deeper structures.
+
+\begin{thebibliography}{9}
+
+\bibitem{stein2003}
+E.~M. Stein and R.~Shakarchi, \emph{Complex Analysis}, Princeton University Press, 2003.
+
+\bibitem{hormander1990}
+L.~H\"ormander, \emph{An Introduction to Complex Analysis in Several Variables}, North-Holland, 1990.
+
+\bibitem{bourbaki2004}
+N.~Bourbaki, \emph{Integration}, Springer, 2004.
+
+\bibitem{royden2010}
+H.~L. Royden and P.~M. Fitzpatrick, \emph{Real Analysis}, Pearson, 2010.
+
+\bibitem{rudin1987}
+W.~Rudin, \emph{Real and Complex Analysis}, McGraw-Hill, 1987.
+
+\end{thebibliography}
+
+\end{document}
+

@@ -14,6 +14,8 @@
 3. 提供数值验证与样本复杂度界限
 4. 展示资源单调性与理论扩展的局限性
 
+**本系统仅在统计意义（相对于限定检验族 $\mathcal{F}_m$）下实现不可分辨，用于演示 RBIT 的资源效应；不主张任何密码学安全性。**
+
 ## 1. 理论基础
 
 ### 1.1 资源有界不完备性核心原理
@@ -53,6 +55,8 @@ $$
 $$
 |\mathbb{E}_\mu[T] - \mathbb{E}_\nu[T]| \le \varepsilon.
 $$
+
+**约定（平均化）**：对发生器分布 $\mu$ 的期望 $\mathbb{E}_\mu$ 按对起点 $s$ 的先验（如在允许区间内均匀）取平均理解；分析仅依赖 $\mathcal{F}_m$ 上统计量的期望差，不借助显著性/功效语言。
 
 **检验族单调性**：$\mathcal{F}_m$ 对 $m$ 单调扩张：$m' \ge m \Rightarrow \mathcal{F}_m \subseteq \mathcal{F}_{m'}$。
 
@@ -110,7 +114,7 @@ $$
 4. 返回 {b_i}
 ```
 
-**确定性素性测试**：使用Miller-Rabin或AKS算法，确保可重复性。
+**理论层以数学上的素性谓词定义 $b_i=\mathbf{1}\{x_i \text{ 为素}\}$；实现层可采用确定性算法（如 AKS，或在既定数值范围内具备确定性基的 Miller-Rabin）。若采用概率性判定，应保证误判率可忽略并在实验部分注明，此不影响理论结论。**
 
 ### 2.3 统计特性
 
@@ -120,9 +124,7 @@ $$
 \mathbb{E}[\hat{p}] \approx p = \frac{d}{\varphi(d)} \cdot \frac{1}{\ln M}.
 $$
 
-**本地波动**：由于素数分布的随机性（Montgomery-Odlyzko定律），实际密度 $\hat{p}$ 存在 $O(\sqrt{p/K})$ 的统计涨落。
-
-**短程相关**：素数间隔存在弱相关（Hardy-Littlewood猜想），但在窗口长度 $\le m$ 的检验中，相关性引入的偏差 $\le \eta p/2$，被区间约束吸收。
+**本地密度可由 $p(x)=\frac{d}{\varphi(d)}\frac{1}{\ln x}$ 的光滑性近似；对频率统计的期望偏移可用 §1.4 的区间约束严格上界。关于短程相关与游程统计的影响，本文在应用实例中采用工作假设（H-SR，见 §5.2.1），其偏移可由总误差预算的一部分覆盖（$\le \eta p/2$）。**
 
 ## 3. 样本复杂度分析
 
@@ -155,18 +157,20 @@ $$
 - 固定 $k_0$：仅改变常数因子，主导项 $\frac{1}{\eta^2 p}$ 不变。
 - $k(m) = \text{poly}(m)$：引入 $\ln k(m) = O(\ln m)$ 的对数修正，仍远小于主导项（当 $p$ 小且 $\eta$ 中等时）。
 
+**在所有数值实验与判定中，均采用 $\alpha'=\alpha/k$ 的阈值进行逐检验判定，并据此报告"未拒绝/拒绝"。**
+
 ### 3.3 数值预测表
 
-基于公式 $N \ge \frac{3}{\eta^2 p} \ln \frac{2}{\alpha}$，$\alpha=0.05$，$p = \frac{2}{\ln M}$：
+基于公式 $N \ge \frac{3}{\eta^2 p} \ln \frac{2k}{\alpha}$（含Bonferroni修正，$k=3$），$\alpha=0.05$，$p = \frac{2}{\ln M}$：
 
 | $M$       | $p \approx \frac{2}{\ln M}$ | $\eta$ | 所需 $N$ (下界) | $K_{\max}$ (区间约束, $d=2$) |
 |-----------|-----------------------------|--------|-----------------|------------------------------|
-| $10^6$    | 0.145                       | 0.5    | 306             | 691,000                      |
-| $10^6$    | 0.145                       | 0.1    | 7,645           | 138,200                      |
-| $10^9$    | 0.097                       | 0.5    | 459             | 1,552,000                    |
-| $10^9$    | 0.097                       | 0.1    | 11,467          | 310,400                      |
-| $10^{12}$ | 0.072                       | 0.5    | 612             | 2,484,000                    |
-| $10^{12}$ | 0.072                       | 0.1    | 15,289          | 496,800                      |
+| $10^6$    | 0.145                       | 0.5    | 396             | 1,727,000                    |
+| $10^6$    | 0.145                       | 0.1    | 9,900           | 345,000                      |
+| $10^9$    | 0.097                       | 0.5    | 595             | 2,590,000,000                |
+| $10^9$    | 0.097                       | 0.1    | 14,859          | 518,000,000                  |
+| $10^{12}$ | 0.072                       | 0.5    | 793             | 3,450,000,000,000            |
+| $10^{12}$ | 0.072                       | 0.1    | 19,818          | 690,000,000,000              |
 
 其中 $K_{\max} = \lfloor \frac{\eta M \ln M}{2d} \rfloor$，$d=2$。
 
@@ -229,10 +233,10 @@ $$
 
 **定义5.1.1（检验族）**：$\mathcal{F}_m$ 包含：
 1. 单比特频率检验：$T_1(b_1,\dots,b_N) = \frac{1}{N}\sum_{i=1}^N b_i$
-2. 一阶自相关：$T_2(b_1,\dots,b_N) = r_1$（如§4.1定义）
-3. 窗口长 $\le m$ 的runs统计：$T_3^{(m)}(b_1,\dots,b_N)$
+2. 自相关：$\{r_\ell\}_{\ell=1}^{\min(m,N-1)}$，其中 $r_\ell$ 为滞后 $\ell$ 的自相关系数
+3. Wald-Wolfowitz 总游程数统计：标准化统计量 $Z_R$
 
-单调性：$m' \ge m \Rightarrow \mathcal{F}_m \subseteq \mathcal{F}_{m'}$。
+单调性：$m' \ge m \Rightarrow \mathcal{F}_m \subseteq \mathcal{F}_{m'}$（由自相关分量的扩张保证）。
 
 **定义5.1.2（Prime-Density发生器）**：取步长 $d \in \{2, q\}$（$q$ 为素数）与起点 $s \equiv a \pmod{d}$，$\gcd(a,d)=1$。输出
 
@@ -248,19 +252,39 @@ $$
 
 ### 5.2 主命题
 
-**命题5.2.1（频率类检验下的统计不可分辨）**：对任意 $T \in \mathcal{F}_m$，若
+**假设（H-SR，短程统计假设）**：在给定 $(M,K,m)$ 下，素数指示序列在滞后 $\le m$ 的自相关统计与标准 Wald-Wolfowitz 游程统计相对于 i.i.d. Bernoulli($p$) 的期望差分别满足
 
 $$
-N < \frac{3}{\eta^2 p} \ln \frac{2}{\alpha},
+\big|\mathbb{E}_\mu[T_2]-\mathbb{E}_\nu[T_2]\big|\le \frac{\eta}{2}p,\qquad
+\big|\mathbb{E}_\mu[T_3]-\mathbb{E}_\nu[T_3]\big|\le \frac{\eta}{2}p.
+$$
+
+（物理含义：短程相关与游程结构的系统性偏移足够弱，可由总误差预算 $\eta p$ 的一半覆盖。）
+
+**命题5.2.1（频率类检验下的统计不可分辨）**：在假设（H-SR）下，对任意 $T \in \mathcal{F}_m$，若
+
+$$
+N < N_{\text{threshold}} \triangleq \frac{3}{\eta^2 p} \ln \frac{2k}{\alpha},
 $$
 
 则Prime-Density发生器输出分布与i.i.d. Bernoulli($p$)在资源 $(m, N, \varepsilon=\eta p)$ 下不可分辨（相对于 $\mathcal{F}_m$）。
 
 **证明草图**：
-1. 频率检验：直接应用RBIT定理4.4
-2. 自相关检验：素数间隔的弱相关在 $N < N_{\text{threshold}}$ 下引入的偏差 $\le O(\sqrt{p/N}) < \eta p/2$
-3. Runs检验：中心极限定理给出，样本不足时功效 $< 1-\alpha$
-4. 区间约束确保密度漂移 $< \eta p/2$，总误差 $< \eta p$ □
+1. **频率统计**：由 §1.4 的区间约束，对 $p(x)=\frac{C}{\ln x}$（$C=\frac{d}{\varphi(d)}$），在区间 $[M,M+Kd]$ 上，
+
+$$
+\big|\overline{p}-p(M)\big| \le \frac{C}{M(\ln M)^2}\cdot Kd = p(M)\cdot \frac{Kd}{M\ln M}.
+$$
+
+取 $Kd \le \frac{\eta}{2}M\ln M$ 即得 $|\mathbb{E}_\mu[T_1]-\mathbb{E}_\nu[T_1]| \le \frac{\eta}{2}p$。
+
+2. **自相关统计**：依据假设（H-SR），$|\mathbb{E}_\mu[T_2]-\mathbb{E}_\nu[T_2]|\le \frac{\eta}{2}p$。
+
+3. **游程统计**：依据假设（H-SR），$|\mathbb{E}_\mu[T_3]-\mathbb{E}_\nu[T_3]|\le \frac{\eta}{2}p$。
+
+4. **总误差**：从而对任意 $T\in\mathcal{F}_m$ 有 $|\mathbb{E}_\mu[T]-\mathbb{E}_\nu[T]|\le \eta p$。□
+
+**说明**：命题在假设（H-SR）成立时成立；若未来获得明确的数论/统计上界，可将假设（H-SR）替换为相应引理/命题。
 
 ### 5.3 计算可区分性说明
 
@@ -338,7 +362,7 @@ def runs_test(sequence):
     n0 = int(len(seq) - n1)
 
     if n0 == 0 or n1 == 0:
-        return 1.0  # All 0s or all 1s: cannot detect
+        return np.nan  # All 0s or all 1s: defer to frequency test
 
     runs = int(np.count_nonzero(np.diff(seq) != 0) + 1)
     mu = 2 * n1 * n0 / (n0 + n1) + 1
@@ -434,13 +458,17 @@ if __name__ == "__main__":
 
     # Interpretation
     print("\n=== Interpretation ===")
+    k = 3  # Number of tests
     significance = 0.05
-    if (binom_result.pvalue > significance and
-        runs_pval > significance and
-        auto_pval > significance):
-        print(f"All tests PASS (p > {significance}): Indistinguishable from Bernoulli({p_true:.4f})")
+    bonferroni_alpha = significance / k
+    print(f"Using Bonferroni correction: alpha' = {bonferroni_alpha:.4f}")
+
+    if (binom_result.pvalue > bonferroni_alpha and
+        runs_pval > bonferroni_alpha and
+        auto_pval > bonferroni_alpha):
+        print(f"All tests PASS (p > {bonferroni_alpha:.4f}): Cannot reject Bernoulli({p_true:.4f}) hypothesis under stated test family")
     else:
-        print(f"Some tests FAIL (p < {significance}): May be distinguishable (increase K or relax eta)")
+        print(f"Some tests FAIL (p < {bonferroni_alpha:.4f}): May reject hypothesis (increase K or relax eta)")
 
     # Compare with true random
     print("\n=== Comparison with True Random ===")
@@ -472,8 +500,8 @@ All tests PASS (p > 0.05): Indistinguishable from Bernoulli(0.1448)
 
 **分析**：
 - $K = 6116 < 7645$（样本不足界限）
-- 所有检验 $p$-value $> 0.05$，无法拒绝原假设
-- 系统成功实现统计不可分辨
+- 所有检验 $p$-value $> \alpha'=\alpha/k$（Bonferroni阈值），未拒绝原假设
+- 在所述检验族与 Bonferroni 阈值下未拒绝 Bernoulli($p$) 假设
 
 ### 6.3 大规模参数实验
 
@@ -503,8 +531,10 @@ def experiment_grid(M_values, eta_values, alpha=0.05):
             runs_pval = runs_test(seq)
             r1, auto_pval = autocorrelation_test(seq)
 
-            # Check if indistinguishable
-            indist = (binom_pval > 0.05 and runs_pval > 0.05 and auto_pval > 0.05)
+            # Check if indistinguishable (Bonferroni corrected)
+            k = 3
+            bonferroni_alpha = alpha / k
+            indist = (binom_pval > bonferroni_alpha and runs_pval > bonferroni_alpha and auto_pval > bonferroni_alpha)
 
             results.append({
                 'M': M,
@@ -646,11 +676,13 @@ def crypto_prng_bernoulli(p, K, seed=None):
     Cryptographically secure Bernoulli(p) generator.
 
     Uses AES-CTR mode to generate uniform random, then threshold.
+    Note: This is for demonstration only. Fixed nonce ensures reproducibility.
     """
     if seed is None:
         seed = get_random_bytes(16)
 
-    cipher = AES.new(seed, AES.MODE_CTR)
+    # Use fixed nonce for deterministic output (demonstration purposes)
+    cipher = AES.new(seed, AES.MODE_CTR, nonce=b'\x00'*8)
 
     sequence = np.zeros(K, dtype=int)
     for i in range(K):
@@ -663,6 +695,8 @@ def crypto_prng_bernoulli(p, K, seed=None):
 
     return sequence
 ```
+
+**注意**：此段仅示范计算不可分辨的替代路线，不改变本文理论部分结论。
 
 **保证**：
 - 计算不可分辨（相对于PPT对手）

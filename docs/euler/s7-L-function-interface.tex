@@ -1,0 +1,294 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\setlist[itemize]{nosep,leftmargin=1.6em}
+\setlist[enumerate]{nosep,leftmargin=1.6em}
+
+\geometry{margin=1in}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+\DeclareMathOperator{\Re}{Re}
+\DeclareMathOperator{\Im}{Im}
+\DeclareMathOperator{\Arch}{Arch}
+
+\raggedbottom
+
+\title{$L$-Function Interface}
+
+\author{Haobo Ma\thanks{Independent Researcher} \and Wenlin Zhang\thanks{National University of Singapore}}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{center}
+\textit{Unified Template for Degree / Conductor / Completed Function / Explicit Formula and Test Kernels}
+\end{center}
+
+\begin{abstract}
+Building on the geometric--analytic--information foundation of S2--S6, we establish an interface template for general $L$-functions (including Dirichlet, elliptic curves, etc.): organized around ``Euler product--completed function--functional equation'', we provide categorical bookkeeping for degree and conductor; under S3's $\Gamma/\pi$ normalization, we construct the completed function and clarify the symmetry of the ``central axis'' parameter $a$; using S4's finite-order Euler--Maclaurin as the technical base, we ensure holomorphy/entire-function nature and ``pole = main scale'' for interchange and endpoint handling; we give a unified statement of the Weil explicit formula and verifiable test kernel conditions, dualizing prime-side local data $\{\alpha_{p,j}\}$ and zero-side spectrum $\{\rho\}$ under the same mother-mapping syntax; finally, we provide template instances with Dirichlet $L$ and elliptic curve $L$.
+\end{abstract}
+
+\section{Notation and Prerequisites (Aligned with S2--S6)}
+
+\textbf{Euler product and Dirichlet series.} Let
+\begin{equation}
+L(s)=\sum_{n\ge1}\frac{a_n}{n^s}\quad(\Re s>\sigma_0),\qquad
+L(s)=\prod_{p}\prod_{j=1}^{d_p}\bigl(1-\alpha_{p,j}p^{-s}\bigr)^{-1},
+\end{equation}
+where each prime's local factor is encoded by a finite set of complex numbers $\alpha_{p,j}$ (allowing standard corrections for finitely many bad primes). Write \textbf{local degree upper bound} $d_{\mathrm{loc}}:=\sup_p d_p$ (constant in standard cases), and \textbf{conductor} $Q>0$ as an abstract scale parameter.
+
+\textbf{Completed function and central axis.} Take $a\in\mathbb{R}$. Suppose there exist $\Gamma/\pi$ factors
+\begin{equation}
+r(s)=\prod_{j=1}^{r_1}\Gamma_{\mathbb{R}}(s+\lambda_j)\prod_{k=1}^{r_2}\Gamma_{\mathbb{C}}(s+\mu_k),
+\quad
+\Gamma_{\mathbb{R}}(s)=\pi^{-s/2}\Gamma\!\Big(\frac{s}{2}\Big),\ \
+\Gamma_{\mathbb{C}}(s)=(2\pi)^{-s}\Gamma(s),
+\end{equation}
+such that
+\begin{equation}
+\Lambda_{L}(s):=Q^{s/2}\,r(s)\,L(s)\quad\text{satisfies}\quad
+\boxed{\ \Lambda_{L}(s)=\varepsilon\,\Lambda_{\tilde{L}}(a-s),\qquad |\varepsilon|=1\ }.
+\end{equation}
+Here $\tilde{L}$ is the \textbf{dual/adjoint} object of $L$ (in Dirichlet setting, complex conjugate character $\bar{\chi}$; in $\mathrm{GL}(d)$ setting, dual representation $\tilde{\pi}$).
+
+The line $\Re s=\frac{a}{2}$ is called the \textbf{central axis}. When necessary, one can also adopt symmetrized factor $r_{\mathrm{sym}}(s):=r(s)r(a-s)$ to realize S3's ``self-dual kernel--completed function'' characterization. To avoid misunderstanding, $r_{\mathrm{sym}}$ itself satisfies $r_{\mathrm{sym}}(s)=r_{\mathrm{sym}}(a-s)$ and can be used for symmetric estimates; to construct truly even objects, take $\boxed{\ \Xi_{\mathrm{sym}}(s):=Q^{a/2}r_{\mathrm{sym}}(s)\,L(s)\,\tilde{L}(a-s)\ }$ (or directly use the completed functional equation), not replacing the standard completion factor $r(s)$ satisfying $\Lambda_{L}(s)=\varepsilon\,\Lambda_{\tilde{L}}(a-s)$.
+
+\textbf{Finite-order EM and ``pole = main scale''.} The entire workflow uses only \textbf{finite-order} Euler--Maclaurin (S4), ensuring remainders at endpoints and discrete--continuous bridges are entire/holomorphic layers, so poles are introduced only by main-scale terms.
+
+\textbf{Directionalization and growth.} Use S5's ``directional meromorphization--exponential--polynomial law'' to control vertical-line growth; $\Gamma/\pi$ factors provide Stirling-level exponential decay balancing (aligned with S3).
+
+\textbf{Information calibration and kernel selection.} S6's $\Lambda(\rho)$--$\Lambda^\ast$ duality provides a variational criterion for test kernel selection (qualitative).
+
+\section{Euler Product's Mother-Mapping Embedding and Metric Parameters}
+
+\subsection{Mother-Mapping Embedding (Phase--Scale Encoding)}
+
+For each prime $p$ and exponent $m\ge1$, the local term
+\begin{equation}
+\sum_{j=1}^{d_p}\alpha_{p,j}^{\,m}\,p^{-ms}
+\end{equation}
+is viewed as a family of modalities in the mother mapping's discrete spectrum: scale displacement $-m\log p$, phase weight provided by $\alpha_{p,j}^{\,m}$ (amplitude-phase separation possible if unitarization exists). Thus $\{p^m\}$ forms an equidistant point sequence $\{\rho=-m\log p\}$ in scale space, compatible with S2's ``amplitude balance hyperplanes'' and transversal geometry under local binomial closure. The multiplicative Euler product is thus transcribed as discrete spectral superposition on the scale.
+
+\subsection{Interface Definition of Degree and Conductor}
+
+At the interface layer, define
+\begin{equation}
+\deg L:=r_1+2r_2,\qquad
+Q:=\text{global bookkeeping parameter for finite-place local scales},
+\end{equation}
+where $\deg L$ is taken from bookkeeping of infinite-place $(\Gamma_{\mathbb{R}},\Gamma_{\mathbb{C}})$ factors (consistent with general degree in $\mathrm{GL}(d)$ type), and $Q$ uniformly records the ``scale density'' after normalization at finite places (including bad primes). To avoid ambiguity, henceforth degree specifically refers to infinite-place degree $\deg L=r_1+2r_2$; the notation $d_{\mathrm{loc}}:=\sup_p d_p$ in Section~0 serves only as an upper-bound marker (equal to each other in standard $\mathrm{GL}(d)$ cases). Moreover, we adopt the convention that scale corrections and norm normalization at bad primes are incorporated into the global $Q$ bookkeeping (consistent with the origin of $\widehat{h}(0)\log Q$ in Section~3.2). This definition is consistent with S3's $a$-symmetry template and S4's ``main scale'' principle.
+
+\section{Completed Function Template and Vertical-Line Growth (Aligned with S3)}
+
+\begin{definition}[Completed Function]\label{def:completed}
+Given $Q>0$, $a\in\mathbb{R}$, and infinite-place parameters $\{\lambda_j\},\{\mu_k\}$, define
+\begin{equation}
+\Lambda_{L}(s)=Q^{s/2}\Big(\prod_{j=1}^{r_1}\Gamma_{\mathbb{R}}(s+\lambda_j)\Big)
+\Big(\prod_{k=1}^{r_2}\Gamma_{\mathbb{C}}(s+\mu_k)\Big)L(s),
+\end{equation}
+and require there exists $|\varepsilon|=1$ such that $\Lambda_{L}(s)=\varepsilon\,\Lambda_{\tilde{L}}(a-s)$.
+\end{definition}
+
+\begin{theorem}[Vertical-Line Growth Balancing]\label{thm:growth}
+Assume $\deg L=r_1+2r_2\ge 1$ (there exists at least one $\Gamma_{\mathbb{R}}$ or $\Gamma_{\mathbb{C}}$ factor). If $L(s)$ has at most polynomial growth in any closed vertical strip, then for any $\sigma\in\mathbb{R}$ \textbf{avoiding poles of $\Lambda_{L}$} (or more generally, closed vertical strips not crossing poles of $\Lambda_{L}$), there exists $c(\sigma)>0$ such that
+\begin{equation}
+\big|\Lambda_{L}(\sigma+it)\big|\ \ll_{\sigma}\ e^{-c(\sigma)|t|}\quad(|t|\to\infty),
+\end{equation}
+where exponential decay is provided by Stirling estimates of $\Gamma/\pi$ factors. The symmetry on the central axis $\Re s=\frac{a}{2}$ is given by the completed functional equation $\Lambda_{L}(s)=\varepsilon\,\Lambda_{\tilde{L}}(a-s)$.
+\end{theorem}
+
+\begin{proof}[Key points]
+Stirling estimates multiplied by at least one $\Gamma$ factor yield exponential-level balancing; polynomial growth of $L(s)$ does not alter exponential dominance; functional equation holds by local--global matching.
+\end{proof}
+
+\section{Weil Explicit Formula (Interface Version)}
+
+\subsection{Test Kernel and Fourier--Laplace Transform}
+
+Take an even function $h:\mathbb{C}\to\mathbb{C}$ satisfying:
+\begin{itemize}
+\item (H1) $h$ is even and holomorphic on $\mathbb{C}$ (or at least holomorphic on all strips containing $i(\rho-\frac{a}{2})$), and satisfies $|h(t)|\ll (1+|t|)^M$ on the real axis (for some $M\ge 0$);
+
+\item (H2) Its Fourier transform
+\begin{equation}
+\widehat{h}(x):=\frac{1}{2\pi}\int_{-\infty}^{\infty} h(t)e^{-itx}\,dt
+\end{equation}
+is compactly supported or exponentially decaying (Paley--Wiener type);
+
+\item (H3) Compatible with S4's finite-order EM: all summation--integration--line-shifting are guaranteed by S1's C0--C3 and S4's domination/uniformity conditions.
+\end{itemize}
+
+\subsection{Explicit Formula (Unified Template)}
+
+Let $\Lambda_{L}(s)$ satisfy the completed functional equation and growth conditions in Section~2 (in general case, the paired object is $\Lambda_{\tilde{L}}$). By default, $\Lambda_{L}$ is holomorphic in the line-shifting neighborhood used (or the pole set and orders are known); if poles exist, the right-hand side of (EF) needs to add corresponding residue terms (template does not alter the bookkeeping of other terms). Write $\mathcal{Z}$ for all non-trivial zeros of $\Lambda_{L}(s)$ (counted with multiplicity), then we have the identity
+\begin{equation}
+\boxed{\
+\sum_{\rho\in\mathcal{Z}} h\!\left(i\big(\rho-\tfrac{a}{2}\big)\right)
+= \widehat{h}(0)\,\log Q\;+\;\sum_{\text{Arch}}\mathcal{A}_{r}[h]\;-
+\sum_{p}\sum_{m\ge1}\frac{\log p}{p^{m a/2}}\Big(\sum_{j=1}^{d_p}\alpha_{p,j}^{\,m}\Big)\,\widehat{h}\!\big(m\log p\big)\ .
+}
+\tag{EF}
+\end{equation}
+If $\Lambda$ has poles in the domain involved in integral line-shifting, the right-hand side needs additional corresponding residue terms (standard bookkeeping given with instances); this term does not affect the structure of $\widehat{h}(0)\log Q$, $\mathcal{A}_r[h]$, and prime-side summation.
+
+Here $\mathcal{A}_{r}[h]$ is the infinite-place term induced by logarithmic derivatives of $\Gamma$-factors in $r(s)$ and $h$, which can be written as
+\begin{equation}
+\mathcal{A}_{r}[h]
+:=\frac{1}{2\pi}\int_{-\infty}^{\infty}h(t)\,\Re\!\left(\frac{r'}{r}\!\left(\tfrac{a}{2}+it\right)\right)dt
+\end{equation}
+as a linear combination (bookkeeping by $\Gamma_{\mathbb{R}},\Gamma_{\mathbb{C}}$ terms). The prime side features von Mangoldt-type weight $\log p$ and local trace $\sum_j\alpha_{p,j}^{\,m}$.
+
+\begin{proof}[Key points]
+Consider on $\Re s=\sigma$
+\begin{equation}
+\boxed{\ -\frac{\Lambda_{L}'}{\Lambda_{L}}(s)
+:=-\frac{1}{2}\log Q-\frac{r'}{r}(s)+\sum_{p}\sum_{m\ge1}\frac{\Big(\sum_{j=1}^{d_p}\alpha_{p,j}^{\,m}\Big)\log p}{p^{ms}}\ },
+\end{equation}
+multiply by kernel $H(s):=h\!\big(i(s-\frac{a}{2})\big)$ and integrate along vertical line; under finite-order EM and growth control, shift line to $\Re s=\frac{a}{2}\pm\eta$, collect residues from zeros to obtain the left-hand side; the right-hand side corresponds respectively to the $\log Q$ term, infinite-place $\Gamma$-term, and prime--prime-power term, yielding (EF).
+\end{proof}
+
+\begin{remark}[Splicing with S2--S6]
+The prime--prime-power structure of (EF) forms an equidistant point sequence on the scale side; the support/decay of $\widehat{h}$ gives a window function along the scale direction; the left-hand side's symmetric sampling of zeros is based on the central axis (S2's transversality, S5's directional meromorphization); kernel selection can refer to S6's variational criterion.
+\end{remark}
+
+\section{Verifiable Criteria for Test Kernel Selection (Interface Version)}
+
+\begin{itemize}
+\item \textbf{(K1) Central symmetry.} $h$ must be an even function, so sampling is symmetric along $\Re s=\frac{a}{2}$, compatible with the functional equation.
+
+\item \textbf{(K2) Interchangeability.} The decay/support of $\widehat{h}$ should make the double sum over $(p,m)$ and infinite-place terms in (EF) \textbf{legally interchangeable} within S1+S4's tube domain.
+
+\item \textbf{(K3) Directional matching.} The principal mass center and variance of $\widehat{h}$ can match S5's ``exponential rate--pole'' and S6's variance law to enhance sensitivity to specific spectral bands (qualitative).
+
+\item \textbf{(K4) Binomial localization.} To highlight a pair of local conjugate parameters, one can concentrate $\widehat{h}$ in the neighborhood of the corresponding $m\log p$, using S2's binomial closure to form ``local cancellation/enhancement''.
+\end{itemize}
+
+\textbf{Common families.} Gaussian type $h(t)=e^{-t^2/2}P(t^2)$ ($\widehat{h}$ exponentially decaying of same type); Paley--Wiener type band-limited kernel ($\widehat{h}$ compactly supported); convolution encapsulation of smooth windows facilitates (K2).
+
+\section{Interface Instances}
+
+\subsection{Dirichlet $L(\chi,s)$ (Degree $1$)}
+
+Take primitive character $\chi$ and modulus $q$. Under $a=1$ normalization,
+\begin{equation}
+\Lambda(\chi,s)=q^{s/2}\,\Gamma_{\mathbb{R}}(s+\lambda_\chi)\,L(\chi,s),\qquad
+\lambda_\chi\in\{0,1\}\ \text{determined by parity},
+\end{equation}
+\begin{equation}
+\boxed{\ \Lambda(\chi,s)=\varepsilon(\chi)\,\Lambda(\bar{\chi},1-s),\qquad |\varepsilon(\chi)|=1\ }.
+\end{equation}
+(EF) specializes to
+\begin{equation}
+\sum_{\rho} h\!\left(i\big(\rho-\tfrac{1}{2}\big)\right)
+=\widehat{h}(0)\log q+\mathcal{A}_{\Gamma_{\mathbb{R}}}[h;\lambda_\chi]
+-\sum_{p}\sum_{m\ge1}\frac{\log p}{p^{m/2}}\chi(p^m)\,\widehat{h}(m\log p).
+\end{equation}
+
+\subsection{Elliptic Curve $L(E,s)$ (Degree $2$)}
+
+For the Hasse--Weil function of $E/\mathbb{Q}$, take $a=2$
+\begin{equation}
+\Lambda(E,s)=N_E^{s/2}\,(2\pi)^{-s}\Gamma(s)\,L(E,s),\qquad
+\Lambda(E,s)=\varepsilon(E)\,\Lambda(E,2-s),\ \ |\varepsilon(E)|=1,
+\end{equation}
+where $N_E$ is the conductor. Let local trace $a_{p^m}(E)$ be appropriately normalized, then
+\begin{equation}
+\sum_{\rho} h\!\left(i\big(\rho-1\big)\right)
+=\widehat{h}(0)\log N_E+\mathcal{A}_{\Gamma_{\mathbb{C}}}[h]
+-\sum_{p}\sum_{m\ge1}\frac{\log p}{p^{m}}\,a_{p^m}(E)\,\widehat{h}(m\log p).
+\end{equation}
+Degree $2$ arises from one $\Gamma_{\mathbb{C}}$ factor, and splicing with S3--S4 template is consistent.
+
+\section{Counterexamples and Boundary Families (Failure Reasons Annotated)}
+
+\begin{itemize}
+\item \textbf{R7.1 (Non-finite-order EM).} Using infinite-order Bernoulli expansion destroys uniform summability and introduces spurious singularities; should adhere to \textbf{finite-order} version.
+
+\item \textbf{R7.2 (Illegal interchange).} If the triple summation/integration over prime--prime-power--infinite-place is not constrained by S1+S4, line-shifting and residue calculations lose legitimacy.
+
+\item \textbf{R7.3 (Kernel non-symmetric/insufficient decay).} $h$ non-even or $\widehat{h}$ with insufficient decay destroys central-axis symmetry and prime-side convergence.
+
+\item \textbf{R7.4 (Directional degeneracy).} If normalized $\alpha_{p,j}$ move at the same speed on the scale side, directional discrimination degrades (see S5's discussion of degeneracy).
+\end{itemize}
+
+\section{Unified Verifiable Checklist (Minimal Sufficient Conditions)}
+
+\begin{enumerate}
+\item \textbf{Completed functional equation.} Provide $Q>0$, $a\in\mathbb{R}$, $r(s)$ such that $\Lambda_{L}(s)=Q^{s/2}r(s)L(s)$ and $\Lambda_{L}(s)=\varepsilon\,\Lambda_{\tilde{L}}(a-s)$ ($\tilde{L}$ is the dual/adjoint of $L$).
+
+\item \textbf{Euler product legitimate domain.} Clarify absolute convergence and interchange within S1 tube domain/strip; prime-side and $\Gamma$-side summation/integration satisfy domination/uniformity conditions.
+
+\item \textbf{Finite-order EM.} Use only \textbf{finite-order} EM for endpoints and discrete--continuous bridges; Bernoulli layers and remainder are entire/holomorphic layers, ``pole = main scale''.
+
+\item \textbf{Test kernel.} $h$ even, holomorphic in strip, $\widehat{h}$ compactly supported or exponentially decaying; ensure (EF) interchangeability and prime-side controllability.
+
+\item \textbf{Directionalization/growth.} Use $\Gamma/\pi$ decay and exponential--polynomial framework to control vertical-line growth and pole localization (S3+S5).
+
+\item \textbf{Information calibration (optional).} Guide kernel spectral-band localization and window-width selection using S6's $\Lambda$--$\Lambda^\ast$ variational formula (qualitative).
+\end{enumerate}
+
+\section{Interface with Other Sections}
+
+\begin{itemize}
+\item \textbf{$\leftarrow$ S2 (Additive mirror and transversality).} Local binomial closure and ``balance hyperplanes'' provide geometric picture for localization of prime-side window functions.
+
+\item \textbf{$\leftarrow$ S3 (Self-dual kernel--completed function).} $\Gamma/\pi$ normalization and symmetry of central axis $a$ constitute the completed function template.
+
+\item \textbf{$\leftarrow$ S4 (Finite-order EM).} Interchange, endpoints, and discrete--continuous bridges are all guaranteed by \textbf{finite-order} EM; ``pole = main scale'' naturally appears in the derivation of (EF).
+
+\item \textbf{$\leftrightarrow$ S5 (Directional meromorphization).} Directional pole/zero structure complements prime-side decay/amplification strategy; exponential--polynomial law characterizes pole order and location.
+
+\item \textbf{$\leftrightarrow$ S6 (Information calibration).} Variance law and duality of $\Lambda$ provide information--geometric metrics for kernel selection and spectral-band localization (qualitative).
+\end{itemize}
+
+\section*{Concluding Remarks}
+
+This section interfaces ``Euler product--completed function--explicit formula'' using mother-mapping syntax: degree and conductor receive unified bookkeeping in $\Gamma/\pi$ normalization and global scale $Q$; the completed function realizes the functional equation via symmetry about central axis $a$; the explicit formula dually stitches zero-set spectrum and prime-side local data with the same kernel $h$; finite-order EM ensures analytic legitimacy and ``pole = main scale''. Together with S2--S6's geometric, symmetry, continuation, directional, and information structures, this constitutes a \textbf{verifiable, spliceable, portable} unified interface for general $L$-functions.
+
+\begin{thebibliography}{9}
+
+\bibitem{titchmarsh1986}
+E.~C. Titchmarsh, \emph{The Theory of the Riemann Zeta-function} (2nd ed.), Oxford University Press, 1986.
+
+\bibitem{edwards1974}
+H.~M. Edwards, \emph{Riemann's Zeta Function}, Academic Press, 1974.
+
+\bibitem{iwaniec-kowalski}
+H.~Iwaniec and E.~Kowalski, \emph{Analytic Number Theory}, American Mathematical Society, 2004.
+
+\bibitem{davenport}
+H.~Davenport, \emph{Multiplicative Number Theory} (3rd ed.), Springer, 2000.
+
+\bibitem{weil1952}
+A.~Weil, \emph{Sur les formules explicites de la th\'eorie des nombres premiers}, Meddelanden fr\aa n Lunds Universitets Matematiska Seminarium, 1952.
+
+\bibitem{hida}
+H.~Hida, \emph{Elementary Theory of $L$-Functions and Eisenstein Series}, Cambridge University Press, 1993.
+
+\bibitem{neukirch}
+J.~Neukirch, \emph{Algebraic Number Theory}, Springer, 1999.
+
+\bibitem{lang-elliptic}
+S.~Lang, \emph{Elliptic Functions}, Springer, 1987.
+
+\bibitem{silverman-arithmetic}
+J.~H. Silverman, \emph{The Arithmetic of Elliptic Curves}, Springer, 1986.
+
+\end{thebibliography}
+
+\end{document}
+

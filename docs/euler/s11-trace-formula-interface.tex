@@ -1,0 +1,360 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\setlist[itemize]{nosep,leftmargin=1.6em}
+\setlist[enumerate]{nosep,leftmargin=1.6em}
+
+\geometry{margin=1in}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+\DeclareMathOperator{\Re}{Re}
+\DeclareMathOperator{\Im}{Im}
+\DeclareMathOperator{\Area}{Area}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\spec}{spec}
+\DeclareMathOperator{\Cov}{Cov}
+
+\raggedbottom
+
+\title{Trace Formula Interface (Selberg / Kuznetsov)}
+
+\author{Haobo Ma\thanks{Independent Researcher} \and Wenlin Zhang\thanks{National University of Singapore}}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{center}
+\textit{Unified Paradigm of Test Kernels for Spectral--Geometric Sides, Non-Asymptotic Error and Mother-Mapping Syntax}
+\end{center}
+
+\begin{abstract}
+We construct a \textbf{trace formula interface template} fully aligned with S2--S10: through even kernels $h$ satisfying verifiable conditions and their ``geometric-side transform'' $\mathcal{K} h$, we realize stitching of the \textbf{spectral side} (discrete eigenmodes and continuous spectrum) with the \textbf{geometric side} (closed geodesic length spectrum / Kloosterman sums). At the analytic level, we strictly adopt S4's \textbf{finite-order Euler--Maclaurin (EM)}, maintaining ``\textbf{pole = main scale}''; directional--growth is uniformly controlled by S5's \textbf{directional meromorphization} and S10's \textbf{support function upper bound}; kernel selection is given by S6's \textbf{information potential $\Lambda$} and convex duality providing variational criteria; numerically, S8's \textbf{Nyquist--Poisson--EM tri-decomposition} provides \textbf{non-asymptotic} error budget; achieving \textbf{window-form consistency} and \textbf{error homology} with S7's explicit formula at the ``prime--zero/spectrum--geometry'' ends. The paper is organized by \textbf{definition--lemma--theorem--proof outline--verifiable checklist}.
+\end{abstract}
+
+\section{Notation and Prerequisites (Aligned with S2--S10)}
+
+\subsection{Mother Mapping and Directionalization (Inheriting S2/S5)}
+
+Fix mother mapping
+\begin{equation}
+F(\theta,\rho)=\sum_{j} c_j\,e^{i\langle\alpha_j,\theta\rangle} e^{\langle\beta_j,\rho\rangle},
+\end{equation}
+The Laplace--Stieltjes transform along directional slice $\rho=\rho_\perp+s\mathbf{v}$ is \textbf{meromorphic} in the appropriate vertical strip, with all poles determined by \textbf{main-scale terms} (S5). All interchange, truncation, endpoints executed only with \textbf{finite-order} EM (S4).
+
+\subsection{Hyperbolic Surface and Spectral Decomposition (Selberg Side)}
+
+Let $\Gamma\subset \mathrm{PSL}_2(\mathbb{R})$ be a cofinite Fuchsian group of the first kind; $\Gamma\backslash\mathbb{H}$ has finite volume (may contain parabolic cusps). The spectrum of Laplace operator $\Delta$ is
+\begin{equation}
+\spec(\Delta)=\bigl\{\tfrac{1}{4}+r_j^2\bigr\}_{j\ge1}\ \cup\ \spec_{\mathrm{cts}},\qquad
+r_j\in \mathbb{R}_{\ge0}\ \cup\ i\,(0,\tfrac{1}{2}] .
+\end{equation}
+Here $r_j\in i\,(0,\tfrac{1}{2}]$ corresponds to small eigenvalues $0\le \lambda_j<\tfrac{1}{4}$ (including constant eigenstate $\lambda=0$ when $r=i/2$).
+
+\textbf{Normalization declaration (scattering normalization)}: We adopt the convention that $\phi(s)$ is the scattering determinant with $\Gamma/\pi$ factors removed (purely arithmetic part); correspondingly, $\tfrac{\Gamma'}{\Gamma}$ is retained in parabolic terms. Thus the continuous spectrum term in this paper is denoted ``positive sign $\phi'/\phi$'', with corresponding $\Gamma'/\Gamma$ incorporated into parabolic term $P_{\mathrm{par}}[h]$.
+
+\subsection{Hecke--Kloosterman and Bessel (Kuznetsov Side)}
+
+Under $\Gamma=\mathrm{SL}_2(\mathbb{Z})$ (weight $0$), let $\{u_j\}$ be Hecke--Maass eigenbasis ($|u_j|_2=1$), spectral parameter $\tfrac{1}{4}+r_j^2$, Hecke eigenvalues $\lambda_j(n)$ with standard normalization $\lambda_j(1)=1$. Kloosterman sum
+\begin{equation}
+S(m,n;c)=\sum_{\substack{d\bmod c\\ \gcd(d,c)=1}}
+e\left(\frac{m\bar{d}+nd}{c}\right),
+\quad e(x):=e^{2\pi i x},\ \bar{d} d\equiv 1\pmod c .
+\end{equation}
+Bessel notation: first kind $J_\nu$, modified second kind $K_\nu$.
+
+Fourier--Whittaker expansion coefficients of Maass form $u_j$ are written $\rho_j(n)$, satisfying
+\begin{equation}
+\rho_j(n)=\rho_j(1)\,\lambda_j(n),\qquad |u_j|_2=1,\ \lambda_j(1)=1.
+\end{equation}
+Here $n\ge1$.
+
+\subsection{Kernel--Transform Pairs}
+
+Let $h:\mathbb{R}\to\mathbb{C}$ be an \textbf{even} function. On Selberg side, take cosine Fourier transform
+\begin{equation}
+(\mathcal{C} h)(\ell)=\frac{1}{2\pi}\int_{-\infty}^{\infty} h(r)\,e^{i r\ell}\,dr
+=\frac{1}{\pi}\int_0^\infty h(r)\,\cos(r\ell)\,dr,
+\end{equation}
+On Kuznetsov side, take Bessel dual transform (normalization fixed as)
+\begin{equation}
+\begin{aligned}
+(\mathcal{B}^{+}h)(x)&:=\frac{2i}{\pi}\int_0^\infty \frac{r\, h(r)}{\cosh(\pi r)}\,J_{2ir}(x)\,dr,\\[2pt]
+(\mathcal{B}^{-}h)(x)&:=\frac{4}{\pi}\int_0^\infty r\, h(r)\,K_{2ir}(x)\,dr.
+\end{aligned}
+\end{equation}
+
+\subsection{Information Potential and Growth (Inheriting S6/S10)}
+
+S6's log-sum-exp potential $\Lambda(\rho)=\log\sum_j |c_j| e^{\langle\beta_j,\rho\rangle}$ has Hessian giving \textbf{directional variance}; S10's support function upper bound gives Phragmén--Lindelöf indicator $\le \max_j\langle\beta_j,\mathbf{v}\rangle$ along direction $\mathbf{v}$.
+
+\subsection{EM Discipline and ``Pole = Main Scale'' (Inheriting S4)}
+
+All expansions use only \textbf{finite-order} EM; endpoint/Bernoulli layers bring entire/holomorphic corrections, \textbf{not introducing new poles}. This preserves the analytic discipline ``poles only from main-scale terms'' in trace formula derivation.
+
+\section{Verifiable Test Kernels}
+
+\begin{definition}[$\mathcal{K}$-Verifiable Kernel Family]\label{def:kernel}
+Write $\mathcal{K}\in\{\mathcal{C},\mathcal{B}^{+},\mathcal{B}^{-}\}$. Even function $h$ belongs to $\mathscr{H}_{\mathcal{K}}(M,\sigma,\Omega)$ ($M\ge2$, $\sigma>1$, bandwidth $\Omega>0$) if:
+\begin{itemize}
+\item \textbf{(H1) Strip holomorphy and decay}: $h$ is holomorphic in $|\Im r|<\sigma$ and $|h(r)|\ll (1+|r|)^{-2-\varepsilon}$ (uniform in this strip; $\sigma>1$ already covers purely imaginary points like $r=i/2$);
+
+\item \textbf{(H2) Smoothness and integrability}: $h\in C^M(\mathbb{R})$ and $h^{(k)}\in L^1(\mathbb{R})$ $(0\le k\le M)$;
+
+\item \textbf{(H3) Geometric-side band-limitation/exponential decay}:
+\begin{equation}
+\supp(\mathcal{K} h)\subset[-\Omega,\Omega]\quad\text{or}\quad
+|\mathcal{K} h(x)|\le C e^{-\mu|x|}\ (\mu>0);
+\end{equation}
+
+\item \textbf{(H4) EM compatibility}: Sum--integral--integration involving $h$ and line-shifting are interchangeable within fixed vertical strip; EM remainder is holomorphic/entire in parameters.
+\end{itemize}
+\end{definition}
+
+\begin{lemma}[Transform Well-Defined and Energy Estimates]\label{lem:transform}
+If $h\in \mathscr{H}_{\mathcal{K}}$, then $\mathcal{C} h,\mathcal{B}^\pm h$ are continuous, with
+\begin{equation}
+|\mathcal{C} h|_{L^\infty}\ll |h|_{L^1},\qquad
+|\mathcal{B}^{\pm}h|_{L^\infty}\ll |h|_{W^{1,1}},\quad
+|h|_{W^{1,1}}:=|h|_{L^1}+|h'|_{L^1}.
+\end{equation}
+In particular, if $\mathcal{K}=\mathcal{C}$ and $\supp(\mathcal{C} h)\subset[-\Omega,\Omega]$, when sampling step $\Delta\le \pi/\Omega$, discrete reconstruction has \textbf{no aliasing error} (Nyquist). For $\mathcal{K}=\mathcal{B}^{\pm}$, there is no exact Nyquist vanishing law; only \textbf{rapid decay} discretization error control can be given according to tail bounds and smoothness of $|\mathcal{B}^{\pm}h|$.
+\end{lemma}
+
+\begin{proof}[Key points]
+Integration by parts and Paley--Wiener control from (H1)--(H2); (H3) ensures absolute convergence of geometric-side convolution/summation; (H4) guarantees legitimacy of line-shifting and EM interchange.
+\end{proof}
+
+\section{Selberg Trace Formula (Interface Paradigm)}
+
+Standard measure normalization adopted: volume term is $\dfrac{\Area(\Gamma\backslash\mathbb{H})}{4\pi}\int r\,h(r)\tanh(\pi r)\,dr$.
+
+\begin{theorem}[Selberg Trace Formula · Cofinite Group General Formula]\label{thm:selberg}
+Let $\Gamma$ be a cofinite Fuchsian group of the first kind, $h\in \mathscr{H}_{\mathcal{C}}(M,\sigma,\Omega)$ even kernel; write $g:=\mathcal{C} h$. Then
+\begin{equation}
+\boxed{
+\begin{aligned}
+&\sum_j h(r_j)\ +\ \frac{1}{4\pi}\int_{-\infty}^{\infty} h(r)\,\frac{\phi'(1/2+ir)}{\phi(1/2+ir)}\,dr \\
+&=\ \underbrace{\frac{\Area}{4\pi}\int_{-\infty}^{\infty} r\,h(r)\tanh(\pi r)\,dr}_{\text{Identity (volume) term}}
+\ +\ \underbrace{\sum_{[\gamma]_{\mathrm{hyp}}}\ \sum_{k\ge1}\frac{\ell(\gamma_0)}{2\sinh\left(\tfrac{k \ell(\gamma_0)}{2}\right)}\,g\left(k \ell(\gamma_0)\right)}_{\text{Hyperbolic term}}\\
+&\quad+\ \underbrace{E_{\mathrm{ell}}[h]}_{\text{Elliptic term}}
+\ +\ \underbrace{P_{\mathrm{par}}[h]}_{\text{Parabolic/scattering term}}.
+\end{aligned}}
+\end{equation}
+Here $\phi(s)$ is the scattering determinant. Elliptic and parabolic terms are
+\begin{equation}
+\begin{aligned}
+E_{\mathrm{ell}}[h]\ &=\ \sum_{[R]} \sum_{m=1}^{m_R-1}\frac{1}{2m_R\sin(\pi m/m_R)}
+\int_{-\infty}^{\infty} h(r)\,\frac{\cosh\left((1-\tfrac{2m}{m_R}) \pi r\right)}{\cosh(\pi r)}\,dr,\\[2pt]
+P_{\mathrm{par}}[h]\ &=\ \frac{\kappa}{4\pi}\int_{-\infty}^{\infty} h(r)\,\frac{\Gamma'}{\Gamma}\left(\tfrac{1}{2}+ir\right)\,dr\ +\ c_\kappa\,h(0),
+\end{aligned}
+\end{equation}
+where $\kappa$ is the number of cusps, $c_\kappa$ a fixed constant (depending on normalization).
+\end{theorem}
+
+\begin{proof}[Key points]
+Take spherically symmetric kernel $k$ corresponding to $h$'s Harish-Chandra transform; construct operator $Kf(z)=\int_{\Gamma\backslash\mathbb{H}}k(d(z,w))f(w)\,d\mu(w)$; expand both sides and take trace: spectral side gives $\sum h(r_j)+$ continuous spectrum integral; geometric side decomposes by conjugacy classes into identity/hyperbolic/elliptic/parabolic contributions. Interchange, line-shifting, endpoints guaranteed by (H4) and finite-order EM; vertical-strip growth balanced by $\tanh(\pi r)$ and S10 support function upper bound.
+\end{proof}
+
+\section{Kuznetsov (Bruggeman--Kuznetsov) Formula (Interface Paradigm)}
+
+\begin{theorem}[Kuznetsov Trace Formula · Weight 0 · Level 1]\label{thm:kuznetsov}
+Let $h\in \mathscr{H}_{\mathcal{B}^\pm}(M,\sigma,\Omega)$ be even kernel. For any $m,n\ge1$,
+\begin{equation}
+\boxed{
+\begin{aligned}
+&\sum_j |\rho_j(1)|^2\,\lambda_j(m)\overline{\lambda_j(n)}\,h(r_j)\ +\ \frac{1}{4\pi}\int_{-\infty}^{\infty} \frac{\tau(m,r)\,\overline{\tau(n,r)}}{\bigl|\zeta(1+2ir)\bigr|^{2}}\,h(r)\,dr\\
+&=\ \delta_{m=n}\,\mathcal{H}_0[h]\ +
+\sum_{c\ge1}\frac{S(m,n;c)}{c}\,(\mathcal{B}^{+} h)\left(\tfrac{4\pi \sqrt{m n}}{c}\right)\\
+&\quad+\ \sum_{c\ge1}\frac{S(m,-n;c)}{c}\,(\mathcal{B}^{-} h)\left(\tfrac{4\pi \sqrt{m n}}{c}\right).
+\end{aligned}}
+\end{equation}
+Here $\tau(n,r)=\sum_{ab=n}(a/b)^{ir}$ is Eisenstein series coefficient; $\mathcal{H}_0[h]$ is diagonal (identity) term's linear functional (determined only by low-frequency of $h$).
+
+(Implementation note) Under this normalization, $\mathcal{H}_0[h]$ can be directly computed from zero-frequency term of Poincaré series $P_m$ balancing; in implementation, only retain low-frequency moments of $h$.
+\end{theorem}
+
+\begin{proof}[Key points]
+Apply spectral weighting of kernel $h$ to Poincaré series $P_m$; one side expands in Hecke--Maass spectrum yielding left side; other side performs geometric expansion, via Poisson summation formula and Bessel--Fourier decomposition yielding right side's Kloosterman--Bessel side. Interchange and endpoints guaranteed by (H4) and finite-order EM; band-limitation/exponential window of $\mathcal{B}^\pm$ controls non-asymptotic decay in modulus $c$.
+\end{proof}
+
+\section{Variational Criterion for Test Kernels (Aligned with Information Potential)}
+
+\begin{proposition}[Information--Variational Kernel Selection]\label{prop:variational}
+Given \textbf{spectral window} and \textbf{geometric window} weight functions $W_{\mathrm{spec}},W_{\mathrm{geom}}\ge0$. For $h\in \mathscr{H}_{\mathcal{K}}$, define functional
+\begin{equation}
+\mathcal{J}[h]=\int W_{\mathrm{spec}}(r)\,|h(r)|^2\,d\mu_{\mathrm{spec}}(r)\ -\ \lambda\int W_{\mathrm{geom}}(x)\,|\mathcal{K} h(x)|^2\,dx\ +\ \tau\int |h^{(M)}(t)|^2\,dt,
+\end{equation}
+where $d\mu_{\mathrm{spec}}$ is corresponding spectral measure (Selberg: $r\,\tanh\pi r\,dr$; Kuznetsov: $dr$). Then:
+\begin{enumerate}
+\item When $\tau>0$ and $0<\lambda<\lambda_\ast$, $\mathcal{J}$ is \textbf{strictly convex} on $\mathscr{H}_{\mathcal{K}}$, with unique minimizer $h_\star\equiv 0$, where
+\begin{equation}
+\lambda_\ast^{-1}=\Big\|\big(\mathcal{L}_{\mathrm{spec}}+\tau D^{2M}\big)^{-1/2}\,\mathcal{K}^*\,W_{\mathrm{geom}}\,\mathcal{K}\,\big(\mathcal{L}_{\mathrm{spec}}+\tau D^{2M}\big)^{-1/2}\Big\|_{\mathrm{op}}\,.
+\end{equation}
+
+\item To obtain \textbf{nonzero kernel} for selection/design, use \textbf{constrained Rayleigh quotient}
+\begin{equation}
+\mathcal{R}[h]:=\frac{\big\langle \mathcal{K}h,\ W_{\mathrm{geom}}\,\mathcal{K}h\big\rangle}{\big\langle h,\ \mathcal{L}_{\mathrm{spec}}h\big\rangle\ +\ \tau\,\|D^{M}h\|_{L^{2}}^{2}},\qquad h\neq 0,
+\end{equation}
+whose extremal problem is equivalent to generalized eigenvalue problem
+\begin{equation}
+\big(\mathcal{L}_{\mathrm{spec}}+\tau D^{2M}\big)h=\mu\,\mathcal{K}^*\left(W_{\mathrm{geom}}\cdot \mathcal{K} h\right),
+\end{equation}
+maximum eigenpair $(\mu_{\max},h_\star)$ gives optimal kernel, and $\mu_{\max}=\sup_{h\neq0}\mathcal{R}[h]$;
+
+\item If measuring target window with S6's information potential $\Lambda$ and dual $\Lambda^\ast$, the above is equivalent to \textbf{maximizing geometric sensitivity under information budget constraint}; $\nabla^2\Lambda$ gives directional variance; S10's ``dominant subsum region'' makes $\mathcal{L}_{\mathrm{spec}}$ piecewise affine approximation good.
+\end{enumerate}
+\end{proposition}
+
+\section{Non-Asymptotic Error (Nyquist--Poisson--EM Tri-Decomposition)}
+
+\begin{theorem}[Finite Window/Discretization Error Budget]\label{thm:error}
+Discretize spectral integral/sum with step $\Delta$, tail threshold $T$, EM order $M$ for endpoint handling. Write windowed object in Selberg/Kuznetsov expansion as $g$; there are two types of unified upper bounds:
+
+\textbf{(i) Cosine/Fourier pair ($\mathcal{K}=\mathcal{C}$)}
+\begin{equation}
+\big|\text{true value}-\text{approx}\big|
+\ \le\ \underbrace{\sum_{m\ne0}\big|\widehat{g}(2\pi m/\Delta)\big|}_{\text{Aliasing (Poisson)}}
+\ +\ \underbrace{\sum_{k=1}^{M-1} C_k\,\Delta^{2k}\cdot \max_{0\le j\le 2k-1} \big| g^{(j)} \big|}_{\text{Bernoulli layers (finite-order EM)}}
+\ +\ \underbrace{\int_{|s|>T}|g(s)|\,ds}_{\text{Truncation (window tail)}}.
+\end{equation}
+Here $\widehat{g}(\xi):=\int_{\mathbb{R}} g(s)\,e^{-i s\xi}\,ds$ (this Fourier convention is unrelated to $\mathcal{C}$ notation in Section~0.4).
+
+If $\supp(\mathcal{C} h)\subset[-\Omega,\Omega]$ and $\Delta\le \pi/\Omega$, then \textbf{aliasing term is zero} (Nyquist achieved).
+
+\textbf{(ii) Bessel dual transform ($\mathcal{K}=\mathcal{B}^\pm$)}
+\begin{equation}
+\begin{aligned}
+\big|\text{true value}-\text{approx}\big|
+\ \le\ &\underbrace{C_q\,\Delta^{\,q}\,|h^{(q)}|_{L^1}}_{\text{Discretization error (smoothness control)}}
+\ +\ \underbrace{\int_{x>X}|\mathcal{B}^\pm h(x)|\,w(x)\,dx}_{\text{Window tail truncation}}\\
+&+\ \underbrace{\sum_{k=1}^{M-1} C_k\,\Delta^{2k}\cdot \max_{0\le j\le 2k-1}\big|g^{(j)}\big|}_{\text{Bernoulli layers}},
+\end{aligned}
+\end{equation}
+where $q\ge1$ optional, weight $w(x)$ positive weight consistent with summation/quadrature used (e.g., $x^{-1/2}$ or constant weight); if $|\mathcal{B}^\pm h(x)|\ll e^{-\mu x}$ or super-polynomial decay, then ``window tail truncation'' decays at corresponding rate. Here \textbf{no exact Nyquist vanishing law}, only rapid decay control with smoothness and tail bounds.
+\end{theorem}
+
+\begin{proof}[Key points]
+$\mathcal{C}$ case directly invokes Poisson summation; $\mathcal{B}^\pm$ case uses Filon/asymptotic-type quadrature or integration by parts to construct discretization error upper bound, controlling truncation with tail bounds of $\mathcal{B}^\pm h$; S4's finite-order EM introduces only entire/holomorphic correction, not altering pole structure.
+\end{proof}
+
+\section{Pretentious--Spectral Interaction (Interface with S9)}
+
+\begin{proposition}[Window-Form Effect of Coherence/Anti-Coherence]\label{prop:pretentious}
+Let Pretentious distance $\mathbb{D}$ measure coherence degree of $\{\lambda_j(\cdot)\}$ at prime side. Then:
+\begin{itemize}
+\item \textbf{Non-Pretentious region} ($\mathbb{D}\gtrsim 1$): $\sum_j \lambda_j(m)\overline{\lambda_j(n)}h(r_j)$ has \textbf{energy averaging} over window; geometric side has \textbf{bandwidth suppression} on Kloosterman sums by band-limitation/exponential window of $\mathcal{B}^\pm h$;
+
+\item \textbf{Pretentious region} ($\mathbb{D}\ll 1$): There exists \textbf{large-value window} with $|t-\tau^\star|\le \delta$ (S9's almost-periodic effect), corresponding on geometric side to \textbf{local enhancement} at certain moduli $c$, with amplitude controlled by window-form upper bound of $\mathcal{B}^\pm h$ and error budget in Section~5.
+\end{itemize}
+\end{proposition}
+
+\section{Failure Boundaries and Countermeasures}
+
+\begin{itemize}
+\item \textbf{Kernel disqualified}: Insufficient evenness/decay/smoothness causes series non-absolutely convergent or interchange illegal. Countermeasure: increase $M$, switch to band-limited/exponential window.
+
+\item \textbf{EM misused as infinite series}: Infinite Bernoulli stacking destroys summability and forges singularities. Countermeasure: use only \textbf{finite-order} EM.
+
+\item \textbf{Directional degeneracy}: Geometric or spectral parameters moving at same speed causes identification degeneracy. Countermeasure: change direction or multi-directional tomography (S10/S5/S8).
+
+\item \textbf{Vertical-strip growth out of control}: Line-shifting without $(\Gamma/\pi)$ normalization balancing. Countermeasure: normalize first.
+
+\item \textbf{Extreme Pretentious}: Near-complete coherence on spectral side deteriorates effective convexity of $\mathcal{J}[h]$. Countermeasure: reset weights or increase regularization $\tau$.
+\end{itemize}
+
+\section{Unified Verifiable Checklist (Minimally Sufficient Conditions)}
+
+\begin{enumerate}
+\item \textbf{Kernel}: $h\in\mathscr{H}_{\mathcal{K}}(M,\sigma,\Omega)$ (evenness, strip holomorphy, decay, band-limitation/exponential window).
+
+\item \textbf{Interchange}: Sum--integral--integration interchange within S4's \textbf{finite-order EM} framework; remainder entire/holomorphic, \textbf{poles only from main scale}.
+
+\item \textbf{Growth}: Apply $(\Gamma/\pi)$ normalization and S10 support function upper bound to control vertical-strip/directional growth.
+
+\item \textbf{Direction}: Choose $\mathbf{v}$ and use S5's meromorphization to identify pole location/order.
+
+\item \textbf{Error}: Decompose error per Section~5 into
+\begin{itemize}
+\item ($\mathcal{K}=\mathcal{C}$) \textbf{Aliasing + Bernoulli layers + truncation};
+\item ($\mathcf{K}=\mathcal{B}^\pm$) \textbf{Discretization (smoothness) + Bernoulli layers + window tail truncation}.
+\end{itemize}
+
+\item \textbf{Variational}: Use Section~4's $\mathcal{J}[h]$ or S6's $\Lambda$--$\Lambda^\ast$ duality to select kernel (target window, regularization, budget).
+
+\item \textbf{Dual-track alignment}: Use S7 explicit formula and this section's trace formula jointly on same kernel family, ensuring \textbf{window-form consistency} and \textbf{error homology} of ``prime--zero/spectrum--geometry''.
+\end{enumerate}
+
+\section{Interface with Existing Sections}
+
+\begin{itemize}
+\item \textbf{$\leftrightarrow$ S2 (Zero-set geometry)}: Binomial closure and amplitude balance hyperplanes provide localization skeleton for length spectrum/Kloosterman.
+
+\item \textbf{$\leftrightarrow$ S3 (Self-dual kernel/completed function)}: $(\Gamma/\pi)$ normalization for vertical-line balancing and mirroring; compatible with trace formula kernel.
+
+\item \textbf{$\leftrightarrow$ S4 (Finite-order EM)}: Ensures interchange and endpoints in derivation generate only entire/holomorphic layers, maintaining ``pole = main scale''.
+
+\item \textbf{$\leftrightarrow$ S5 (Directional meromorphization)}: Identifies poles and growth indicators in geometric/spectral variable directions.
+
+\item \textbf{$\leftrightarrow$ S6 (Information calibration)}: $\Lambda$ and variance law guide kernel window width and sensitivity; Bregman--KL as cost function for kernel update.
+
+\item \textbf{$\leftrightarrow$ S7 ($L$-function interface)}: Explicit formula and trace formula used complementarily on same kernel family, realizing dual-channel observation of ``prime--zero/spectrum--geometry''.
+
+\item \textbf{$\leftrightarrow$ S8 (Discrete uniform approximation)}: Nyquist--Poisson--EM tri-decomposition provides non-asymptotic error constants and implementation workflow.
+
+\item \textbf{$\leftrightarrow$ S9 (Pretentious/exponential sums)}: Interface description of spectral coherence/anti-coherence and Pretentious distance, guiding $(m,n)$ and twist strategies.
+
+\item \textbf{$\leftrightarrow$ S10 (Amoeba geometry and growth)}: Support function upper bound and piecewise affine of ``dominant subsum region'' improve stability of kernel selection.
+\end{itemize}
+
+\section*{Concluding Remarks}
+
+Through the trace formula interface fully aligned with S2--S10, we realize unified stitching of spectral side (eigenmodes and continuous spectrum) with geometric side (geodesic lengths/Kloosterman sums): analytically, finite-order EM maintains ``pole = main scale''; directionally, meromorphization and support function upper bounds provide growth control; numerically, Nyquist--Poisson--EM tri-decomposition provides non-asymptotic error budget; variationally, information potential and convex duality guide kernel selection. This establishes a \textbf{verifiable, spliceable, portable} unified framework for spectral geometry, achieving window-form consistency and error homology with the explicit formula, providing a complete theory--algorithm baseline for spectrum--geometry mixed problems.
+
+\begin{thebibliography}{9}
+
+\bibitem{selberg}
+A.~Selberg, \emph{Harmonic analysis and discontinuous groups in weakly symmetric Riemannian spaces with applications to Dirichlet series}, J. Indian Math. Soc., 1956.
+
+\bibitem{hejhal}
+D.~A. Hejhal, \emph{The Selberg trace formula for $\mathrm{PSL}(2,\mathbb{R})$}, Lecture Notes in Mathematics, Springer, 1976.
+
+\bibitem{kuznetsov}
+N.~V. Kuznetsov, \emph{Petersson's conjecture for cusp forms of weight zero and Linnik's conjecture}, Mat. Sb., 1980.
+
+\bibitem{bruggeman}
+R.~W. Bruggeman, \emph{Fourier coefficients of cusp forms}, Invent. Math., 1978.
+
+\bibitem{iwaniec-spectral}
+H.~Iwaniec, \emph{Spectral methods of automorphic forms}, American Mathematical Society, 2002.
+
+\bibitem{sarnak}
+P.~Sarnak, \emph{Some applications of modular forms}, Cambridge University Press, 1990.
+
+\bibitem{blomer}
+V.~Blomer, \emph{On the 4-norm of an automorphic form}, J. Eur. Math. Soc., 2013.
+
+\bibitem{soundararajan-young}
+K.~Soundararajan and M.~P. Young, \emph{The second moment of quadratic Dirichlet $L$-functions}, J. Eur. Math. Soc., 2010.
+
+\bibitem{good}
+A.~Good, \emph{The square mean of Dirichlet series associated with cusp forms}, Mathematika, 1982.
+
+\end{thebibliography}
+
+\end{document}
+
+

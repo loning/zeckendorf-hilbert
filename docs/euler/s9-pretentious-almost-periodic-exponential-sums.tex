@@ -1,0 +1,386 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\setlist[itemize]{nosep,leftmargin=1.6em}
+\setlist[enumerate]{nosep,leftmargin=1.6em}
+
+\geometry{margin=1in}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+\DeclareMathOperator{\Re}{Re}
+\DeclareMathOperator{\Im}{Im}
+\DeclareMathOperator{\meas}{meas}
+\DeclareMathOperator*{\argmin}{argmin}
+
+\raggedbottom
+
+\title{Pretentious--Almost-Periodic--Exponential Sums}
+
+\author{Haobo Ma\thanks{Independent Researcher} \and Wenlin Zhang\thanks{National University of Singapore}}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{center}
+\textit{Near-Zero Revisiting Rate, Pretentious Distance, and Non-Asymptotic Bounds for Directional Exponential Sums}
+\end{center}
+
+\begin{abstract}
+We establish a unified framework for Pretentious distance, almost-periodic signals, and directional exponential sums: taking the mother mapping's one-dimensional slice as the core object, we provide uniform upper bounds in the non-Pretentious region and large-value (almost-periodic) windows in the Pretentious region; within finite observation windows, combining Nyquist/Poisson and finite-order Euler--Maclaurin (``Bernoulli layers''), we give non-asymptotic control of small-ball probability and near-zero revisiting rate for exponential sums, and characterize ``typical amplitude'' via information measures. All hypotheses are expressed as verifiable conditions whenever possible, splicing with S2's transversal geometry, S4's finite-order EM, S5's directional meromorphization, S6's information calibration, S7's $L$-function interface, and S8's discrete uniform approximation one by one.
+\end{abstract}
+
+\section{Notation and Framework (Aligned with S1--S8)}
+
+Let $f:\mathbb{N}\to\mathbb{C}$ be a multiplicative function with $|f(n)|\le 1$. For $s=\sigma+it$ ($\sigma>1$), define the mother mapping slice (Dirichlet series and its truncation):
+\begin{equation}
+F_f(s):=\sum_{n\ge1}\frac{f(n)}{n^{s}},\qquad
+P_f(X;\sigma,t):=\sum_{n\le X}\frac{f(n)}{n^{\sigma+it}}.
+\end{equation}
+This is a univariate slice along direction $(\theta,\rho)=(-t,\sigma)$ on the discrete spectrum $\beta_n=-\log n$ (S5's ``directionalization'').
+
+\textbf{Pretentious model and distance.} Let the model family be
+\begin{equation}
+\mathcal{G}:=\bigl\{g(n)=\chi(n)\,n^{i\tau}:\ \chi\ \text{Dirichlet character},\ \tau\in\mathbb{R}\bigr\}.
+\end{equation}
+For $X\ge2$, define Pretentious distance
+\begin{equation}
+\mathbb{D}(f,g;X)^2:=\sum_{p\le X}\frac{1-\Re\!\bigl(f(p)\,\overline{g(p)}\bigr)}{p}.
+\end{equation}
+Write
+\begin{equation}
+\mathbb{D}_X(f):=\inf_{\chi,\tau}\mathbb{D}\bigl(f,\chi(\cdot)\,(\cdot)^{i\tau};X\bigr).
+\end{equation}
+
+\textbf{Information measure calibration (S6).} Take
+\begin{equation}
+p_n(\sigma):=\frac{n^{-\sigma}}{\zeta(\sigma)}\qquad(\sigma>1),
+\end{equation}
+define participation ratio $N_2(\sigma):=\Bigl(\sum_{n\ge1}p_n(\sigma)^2\Bigr)^{-1}=\zeta(\sigma)^2/\zeta(2\sigma)$. Typical energy scale
+\begin{equation}
+A_\sigma(X):=\Bigl(\sum_{n\le X}n^{-2\sigma}\Bigr)^{1/2},\qquad A_\sigma(X)\nearrow \zeta(2\sigma)^{1/2},\ \ A_\sigma(X)\le \zeta(2\sigma)^{1/2}.
+\end{equation}
+
+\textbf{Finite-order EM and Nyquist/Poisson (S4+S8).} All ``sum--integral/sum--integral--integral'' interchanges use only \textbf{finite-order} Euler--Maclaurin (Bernoulli layers), with remainder entire/holomorphic in $s$ and explicitly upper-bounded; frequency-domain cross-terms are controlled by Nyquist/Poisson aliasing. For reference, we list this section's \textbf{verifiable regularity conditions}:
+
+\begin{itemize}
+\item \textbf{C9.1}: Fix $\sigma>1$. All operations involving interchange and boundary terms satisfy S1/S4's tube domain and finite-order EM constraints.
+
+\item \textbf{C9.2} (Observation window and truncation): Window $[-T,T]$ and truncation $X$ satisfy one of the following:
+\begin{enumerate}
+\item[(a)] \textbf{Near-diagonal counting/error incorporation}: For near-zero frequency pairs $(m,n\le X)$ satisfying $|T(\log m-\log n)|<\Omega$, uniformly treat as \textbf{controlled error term} handled by the last term in A.2 (or provide their \textbf{local count/upper bound}); does not require global minimal separation over all $m\ne n$; or
+
+\item[(b)] \textbf{Smooth window suppression}: Take $W\in C^K_c(\mathbb{R})$ ($K$ sufficiently large) replacing the indicator window; there exist $\Omega>0$ and $\delta\in(0,1)$ such that $|\widehat{W}(\xi)|\le \delta$ (for all $|\xi|\ge \Omega$). In energy estimation, use this tail smallness only for cross-terms satisfying $|T(\log m-\log n)|\ge \Omega$; remaining near-zero frequency terms are incorporated as near-diagonal error via (a) (see A.2/A.2$'$).
+\end{enumerate}
+
+\item \textbf{C9.3}: Bernoulli layer order $K$ at least covers used derivatives and endpoint terms; remainder is controlled by S4's entire-function nature and S8's window-tail upper bound.
+\end{itemize}
+
+\section{Pretentious Preliminaries: Invariance and Best-Fit Parameters}
+
+\begin{lemma}[Invariance and Monotonicity]\label{lem:pretentious_prelim}
+\begin{enumerate}
+\item[(1)] $\mathbb{D}(f,\chi(\cdot)\,(\cdot)^{i\tau};X)=\mathbb{D}\bigl(f\,\overline{\chi}(\cdot)\,(\cdot)^{-i\tau},1;X\bigr)$.
+
+\item[(2)] $X\mapsto \mathbb{D}_X(f)$ is monotonically non-decreasing.
+
+\item[(3)] If $(\chi^\star,\tau^\star)$ attains the infimum of $\mathbb{D}_X(f)$, call it the \textbf{best-fit parameter}, and say $f$ is \textbf{Pretentious} at scale $X$ ($\mathbb{D}_X(f)$ small) or \textbf{non-Pretentious} ($\mathbb{D}_X(f)$ large).
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Direct from definition and Euler prime-factor separation.
+\end{proof}
+
+\textbf{$\sigma$-weighted Pretentious distance (used in this section).} Fix $\sigma>1$ and $t\in\mathbb{R}$; define
+\begin{equation}
+\mathbb{D}_{\sigma,X}(f;t)^2:=\inf_{\chi,\tau}\sum_{p\le X}\frac{1-\Re\!\bigl(f(p)\,\overline{\chi(p)}\,p^{-i(t+\tau)}\bigr)}{p^{\sigma}}.
+\end{equation}
+(Notational relationship) For fixed $\sigma>1$ and any $t$,
+\begin{equation}
+\mathbb{D}_{\sigma,X}(f;t)\ \le\ \mathbb{D}_X(f),
+\end{equation}
+because $p^{-\sigma}\le p^{-1}$. Thus the Pretentious hypothesis with $\mathbb{D}_X(f)\le D_0$ is stronger than the version expressed in $\mathbb{D}_{\sigma,X}$, compatible with use in Theorem~\ref{thm:non_pretentious}.
+
+\section{Uniform Upper Bound in Non-Pretentious Region (Halasz--Pretentious Type)}
+
+The following theorem provides non-asymptotic upper bounds for \textbf{truncated exponential sums}; its amplitude scale is of the same order as $\sum_{n\le X}n^{-\sigma}\sim \zeta(\sigma)$, with error contributed only by finite-order EM and window tail.
+
+\begin{theorem}[Non-Pretentious Upper Bound, $\sigma>1$ Fixed]\label{thm:non_pretentious}
+There exist constants $C_\sigma,c_\sigma,\eta_\sigma>0$ depending only on $\sigma$ such that for any $X\ge2$, $t\in\mathbb{R}$,
+\begin{equation}
+\bigl|P_f(X;\sigma,t)\bigr|
+\ \le\ C_\sigma\Bigl(\sum_{n\le X}n^{-\sigma}\Bigr)\exp\!\bigl(-c_\sigma\,\mathbb{D}_{\sigma,X}(f;t)^2\bigr)\ +\ C_\sigma\,X^{1-\sigma}.
+\tag{9.1}
+\end{equation}
+\end{theorem}
+
+\begin{proof}[Proof (outline)]
+First use hard truncation--full series bridge (by tail sum estimate or A.1's finite-order EM) to get
+\begin{equation*}
+|P_f(X;\sigma,t)|\ \le\ |F_f(\sigma+it)|\ +\ O_\sigma(X^{1-\sigma}).
+\end{equation*}
+For any $g(n)=\chi(n)\,n^{i\tau}\in\mathcal{G}$ nearly attaining the infimum of $\mathbb{D}_{\sigma,X}(f;t)$, by Appendix A.4 (Euler factor comparison, absorbing contribution from $p>X$ into $O(1)$),
+\begin{equation*}
+|F_f(\sigma+it)|\ \le\ C_\sigma\,\exp\!\Big(-c_\sigma\,\mathbb{D}_{\sigma,X}(f;t)^2\Big)\,|F_g(\sigma+it)|.
+\end{equation*}
+Then by
+\begin{equation*}
+|F_g(\sigma+it)|\ \le\ |P_g(X;\sigma,t)|\ +\ O_\sigma(X^{1-\sigma})\ \le\ \sum_{n\le X}n^{-\sigma}\ +\ O_\sigma(X^{1-\sigma}),
+\end{equation*}
+combining yields (9.1).
+\end{proof}
+
+\begin{remark}
+When $f$ arises from $L$-function Euler products (S7), one can borrow the completed function's $\Gamma/\pi$ normalization (S3) to obtain finer vertical-line growth balancing; this only changes constants and the specific shape of $\sigma$-weighting, not altering the structure of the three types of conclusions ``exponential decay/almost-periodic/small-ball probability''.
+\end{remark}
+
+\section{Almost-Periodicity and Large-Value Windows in Pretentious Region}
+
+In the Pretentious region, $f$ is coherent with some model $g(n)=\chi^\star(n)\,n^{i\tau^\star}$ at the prime side, inducing \textbf{large-value windows} and \textbf{almost-periodicity} phenomena near $t\approx -\tau^\star$.
+
+\begin{theorem}[Pretentious Large-Value Window]\label{thm:pretentious_large}
+Fix $\sigma>1$. If there exist $X\ge2$, $(\chi^\star,\tau^\star)$ such that $\mathbb{D}\bigl(f,\chi^\star(\cdot)\,(\cdot)^{i\tau^\star};X\bigr)\le D_0$, and C9.2's Nyquist condition holds for $|t+\tau^\star|\le T$, then there exist constants $c_\sigma,C_\sigma>0$ and set $\mathcal{T}_{\mathrm{big}}\subset[-T,T]$ (measure $\ge c_\sigma T$) such that
+
+(Note: By $\mathbb{D}_{\sigma,X}(f;t)\le \mathbb{D}_X(f)$ ($\sigma>1$), this Pretentious hypothesis is stronger than the $\mathbb{D}_{\sigma,X}$ version used in Theorem~\ref{thm:non_pretentious}.)
+\begin{equation}
+\bigl|P_f(X;\sigma,t)\bigr|\ \ge\ c_\sigma\,A_\sigma(X)\,e^{-C_\sigma D_0^2}\qquad (t\in\mathcal{T}_{\mathrm{big}}).
+\end{equation}
+\end{theorem}
+
+\begin{proof}[Proof (outline)]
+No need to decompose $P_f=P_g+E$ for pointwise error. First for model $g(n)=\chi^\star(n)\,n^{i\tau^\star}$, use A.2/A.2$'$ and Paley--Zygmund to obtain \textbf{large-value set} centered at $t\approx-\tau^\star$; then within the same window $|t+\tau^\star|\le T$, use \textbf{Lemma A.5 (window-internal $L^2$ comparison)}:
+\begin{equation*}
+\int_{\mathbb{R}} W\!\Big(\tfrac{t}{T}\Big)\,\big|P_f(X;\sigma,t)-P_g(X;\sigma,t)\big|^2 dt\ \le\ C_\sigma\,e^{-c_\sigma D_0^2}\,T\,A_\sigma(X)^2,
+\end{equation*}
+where $D_0$ is the Pretentious distance upper bound, $W$ from C9.2(b). From this, \textbf{robustly transfer} $P_g$'s large values to $P_f$ via $L^2$ error, obtaining a proportional large-value set within the window, with threshold $c_\sigma A_\sigma(X)\,e^{-C_\sigma D_0^2}$. The above threshold calibration can also be equivalently expressed via Appendix A.4's Euler factor comparison.
+\end{proof}
+
+\begin{remark}
+When $f=\chi$ or $f(n)=\chi(n)\,n^{i\tau}$, it is strictly almost-periodic; the general Pretentious case is equivalent to a bounded perturbation on this basis.
+\end{remark}
+
+\section{Small-Ball Probability and Near-Zero Revisiting Rate (Finite Window, Non-Asymptotic)}
+
+For finite window $[-T,T]$ and truncated polynomial $P_f(X;\sigma,t)$, define ``$\varepsilon$-small ball'' set
+\begin{equation}
+\mathcal{Z}_\varepsilon:=\Bigl\{t\in[-T,T]:\ |P_f(X;\sigma,t)|\le \varepsilon\,A_\sigma(X)\Bigr\}.
+\end{equation}
+For reference, write window-domain lower-bound distance
+\begin{equation}
+\mathbb{D}^{\star}_{\sigma,X}(f;T):=\inf_{|t|\le T}\ \mathbb{D}_{\sigma,X}(f;t).
+\end{equation}
+
+\begin{theorem}[Small-Ball Upper Bound: Orthogonality + Pretentious Dilution]\label{thm:small_ball}
+Under C9.2, there exist constants $C_{\sigma,\Omega},c_\sigma>0$ such that
+\begin{equation}
+\meas\bigl(\mathcal{Z}_\varepsilon\bigr)\ \le\ C_{\sigma,\Omega}\,\Bigl(\varepsilon+\bigl(1-e^{-c_\sigma\,\bigl(\mathbb{D}^{\star}_{\sigma,X}(f;T)\bigr)^2}\bigr)\Bigr)\,T.
+\tag{9.2}
+\end{equation}
+\end{theorem}
+
+\begin{proof}[Proof (outline)]
+Write $a_n=f(n)n^{-\sigma}$. Under C9.2(b), adopt A.2's windowed energy identity:
+\begin{equation*}
+\int_{\mathbb{R}} W\!\Bigl(\frac{t}{T}\Bigr)\,\bigl|P_f(X;\sigma,t)\bigr|^2 dt
+=T\!\!\sum_{m,n\le X}\! a_m\overline{a_n}\,\widehat{W}\!\bigl(T(\log m-\log n)\bigr).
+\end{equation*}
+Take $W\in C_c^K$ with $W\ge c\,\mathbf{1}_{[-1,1]}$, then
+\begin{equation*}
+\int_{-T}^{T}\!|P_f|^2 dt\ \le\ c^{-1}\!\int_{\mathbb{R}}\! W\!\Bigl(\frac{t}{T}\Bigr)\,|P_f|^2 dt.
+\end{equation*}
+Cross-terms at $|T(\log m-\log n)|\ge\Omega$ are absorbed by $|\widehat{W}|$'s tail smallness (A.2); remaining near-zero frequency terms are incorporated into error or handled by C9.2(a). Combined with A.2$'$ and Paley--Zygmund, we get $\meas\{t:\ |P_f|\le \varepsilon A_\sigma(X)\}\ll \varepsilon\, T$. On the other hand, by (9.1), for any $t$ there is uniform threshold control factor $\exp\{-c_\sigma\,\mathbb{D}_{\sigma,X}(f;t)^2\}$; taking window-internal infimum $\mathbb{D}^{\star}_{\sigma,X}(f;T)$ yields threshold correction $e^{-c_\sigma(\mathbb{D}^{\star}_{\sigma,X}(f;T))^2}$. Linking this with the aforementioned energy--Paley--Zygmund yields (9.2)'s $\varepsilon+$ Pretentious dilution structure.
+\end{proof}
+
+\begin{corollary}[Near-Zero Revisiting Rate]\label{cor:revisiting}
+Under C9.2, the revisiting rate per unit time for $P_f$ falling into a small ball of relative radius $\varepsilon$ is $\ll \varepsilon+\bigl(1-e^{-c_\sigma(\mathbb{D}^{\star}_{\sigma,X}(f;T))^2}\bigr)$.
+
+The implicit constant depends only on $(\sigma,\Omega)$ and window parameters, independent of $T,X$.
+\end{corollary}
+
+\section{Information Calibration and ``Typical Amplitude''}
+
+\begin{theorem}[Information Calibration Controls Typical Amplitude]\label{thm:typical_amplitude}
+Under C9.2,
+\begin{equation}
+\frac{1}{2T}\int_{-T}^{T}\Bigl|\sum_{n\le X}\frac{f(n)}{n^{\sigma+it}}\Bigr|^2dt\ \asymp\ \sum_{n\le X}n^{-2\sigma}=A_\sigma(X)^2.
+\end{equation}
+Therefore ``typical amplitude'' satisfies
+\begin{equation}
+A_\sigma(X)=\Bigl(\sum_{n\le X}n^{-2\sigma}\Bigr)^{1/2}.
+\end{equation}
+Furthermore, there are uniform upper bound and limit equality
+\begin{equation}
+A_\sigma(X)\ \le\ \frac{\zeta(\sigma)}{\sqrt{N_2(\sigma)}}=\zeta(2\sigma)^{1/2},\qquad
+\lim_{X\to\infty}A_\sigma(X)=\frac{\zeta(\sigma)}{\sqrt{N_2(\sigma)}}=\zeta(2\sigma)^{1/2}.
+\end{equation}
+This is compatible with the $\varepsilon$ scale in Theorem~\ref{thm:small_ball} (finite-window energy is given by $A_\sigma(X)^2$; Pretentious dilution term is separately incorporated).
+\end{theorem}
+
+\section{Consistency with Zero-Set Geometry (S2 Interface)}
+
+In S2's binomial-closure local setting, the dominant two terms satisfy transversal equations of ``amplitude balance + phase antipodality''; the zero set is a codimension-2 real-analytic manifold in $(\theta,\rho)$ space, giving discrete and typically simple zeros on the one-dimensional $t$-slice. The frequency separation/non-degeneracy premise of Theorem~\ref{thm:small_ball} is precisely the verifiable substitute for this transversal non-degeneracy: \textbf{Pretentious dilution} pushes ``dense small values'' to $e^{-c_\sigma\,(\mathbb{D}^{\star}_{\sigma,X}(f;T))^2}$ level; \textbf{almost-periodic windows} at the Pretentious end provide stable large values, compatible with local zero-set structure.
+
+\section{Boundary Families and Counterexamples (Failure Reasons Annotated)}
+
+\begin{itemize}
+\item \textbf{R9.1 (Severe aliasing)}: If C9.2 fails, cross-energy is non-negligible, small-ball estimate may be overestimated; need to shorten window length or adopt higher-order smooth window to suppress aliasing (S8).
+
+\item \textbf{R9.2 (Infinite Bernoulli layers)}: Misusing EM as an infinite series destroys uniform summability, remainder loses entireness, so error budget of (9.1)--(9.2) becomes uncontrollable; must adhere to \textbf{finite order}.
+
+\item \textbf{R9.3 (Extreme Pretentious)}: When $\mathbb{D}_X(f)$ is extremely small and $f$ almost term-by-term matches some $g$, small-ball probability is dominated by $\varepsilon^2$, and a stable large-value plateau appears in a neighborhood of $t\approx -\tau^\star$ (Theorem~\ref{thm:pretentious_large}).
+
+\item \textbf{R9.4 (Directional degeneracy)}: If many $m\ne n$ have $\log m\approx\log n$ (scale degeneracy), may produce ``zero clusters''; need to handle via S2's degenerate branches or switch to smooth window to increase effective separation.
+\end{itemize}
+
+\section{Unified Verifiable Checklist (Minimal Sufficient Conditions for This Section)}
+
+\begin{enumerate}
+\item \textbf{Vertical strip and tube domain}: Fix $\sigma>1$; all interchange and boundaries use only \textbf{finite-order EM} (S4), with remainder entire/holomorphic.
+
+\item \textbf{Pretentious distance}: Compute $\mathbb{D}_{\sigma,X}(f;t)$ (for (9.1)) and $\mathbb{D}_X(f)$ (for central frequency identification in Theorem~\ref{thm:pretentious_large}). If $\displaystyle \inf_{|t|\le T}\mathbb{D}_{\sigma,X}(f;t)\ge D$, then by (9.1) exponential decay throughout the window; if $\mathbb{D}_X(f)\le D_0$, enter large-value window case of Theorem~\ref{thm:pretentious_large} (take $t\approx-\tau^\star$).
+
+\item \textbf{Nyquist/Poisson}: Verify C9.2's frequency separation or smooth window suppression; otherwise perform windowing first or adjust $X,T$.
+
+\item \textbf{Information calibration}: Estimate typical amplitude and small-ball threshold using $A_\sigma(X)$ and $N_2(\sigma)$, combining with $e^{-c_\sigma(\mathbb{D}^{\star}_{\sigma,X}(f;T))^2}$ term (Theorem~\ref{thm:small_ball}).
+
+\item \textbf{Geometric consistency}: Verify S2's transversal non-degeneracy in locally two-term dominant regions; exclude directional degeneracy and zero clusters.
+
+\item \textbf{Completed function (as needed)}: When $f$ comes from $L$-function Euler products, use S3/S7's $\Gamma/\pi$ normalization and explicit formula to choose test kernel, improving vertical-line balancing without altering (9.1)--(9.2) structure.
+\end{enumerate}
+
+\section{Interface with Other Sections}
+
+\begin{itemize}
+\item \textbf{$\leftrightarrow$ S2 (Zero-set geometry)}: Binomial closure--transversality provides geometric interpretation of local non-degeneracy and frequency separation.
+
+\item \textbf{$\leftrightarrow$ S4 (Finite-order EM)}: Ensures endpoint/derivative terms only serve as entire-function correction; ``pole=main scale'' not misused for truncation error.
+
+\item \textbf{$\leftrightarrow$ S5 (Directional meromorphization)}: Large-scale structure (poles/growth) determined by main scale; small-scale window-internal fluctuations controlled by Pretentious vs non-Pretentious.
+
+\item \textbf{$\leftrightarrow$ S6 (Information calibration)}: Participation ratio $N_2(\sigma)$ and typical amplitude $A_\sigma(X)$ consistently enter small-ball and revisiting rate.
+
+\item \textbf{$\leftrightarrow$ S7 ($L$-function interface)}: Pretentious small values correspond to insufficient prime-side coherence; spectral--prime duality in explicit formula can be used for targeted window selection.
+
+\item \textbf{$\leftrightarrow$ S8 (Discrete uniform approximation)}: Small-ball and revisiting rate depend on error tri-decomposition of Nyquist/Poisson and finite-order EM; Prony/moment methods used for numerical verification of almost-periodic windows and Pretentious dilution.
+\end{itemize}
+
+\appendix
+
+\section{Technical Lemmas and Standard Tools}
+
+\subsection{A.1 (Bernoulli-Layer Version EM)}
+
+Let $f\in C^{K}[1,\infty)$ with appropriate decay and endpoint regularity, then
+\begin{equation}
+\sum_{n\le X}f(n)=\int_{1}^{X}f(x)\,dx+\frac{f(1)+f(X)}{2}
++\sum_{k=1}^{K-1}\frac{B_{2k}}{(2k)!}\bigl(f^{(2k-1)}(X)-f^{(2k-1)}(1)\bigr)+R_K,
+\end{equation}
+where $R_K$ is entire/holomorphic in parameter $s$ (when $f(\cdot;s)$ depends holomorphically on $s$) and $|R_K|\ll_K \int_{1}^{X}|f^{(K)}(x)|\,dx$.
+
+\subsection{A.2 (Smooth Window Energy Identity)}
+
+In this section, we fix the Fourier convention $\widehat{W}(\xi):=\int_{\mathbb{R}}e^{-i\xi t}W(t)\,dt$.
+
+(Explanation) This section uses Fourier convention \textbf{without $2\pi$}; the \textbf{$T$ scaling factor} in the formula below comes from variable substitution $u=t/T$.
+
+Take $W\in C_c^K(\mathbb{R})$; write
+\begin{equation}
+\mathcal{I}:=\int_{\mathbb{R}}\!W\!\Bigl(\frac{t}{T}\Bigr)\,\Bigl|\sum_{n\le X}a_n\,e^{-it\log n}\Bigr|^2 dt
+:=T\sum_{m,n\le X}a_m\overline{a_n}\,\widehat{W}\!\bigl(T(\log m-\log n)\bigr).
+\end{equation}
+If there exist $\Omega>0,\delta\in(0,1)$ such that $|\widehat{W}(\xi)|\le\delta$ (for all $|\xi|\ge\Omega$), then
+\begin{equation}
+\mathcal{I}
+=T\widehat{W}(0)\sum_{n\le X}|a_n|^2
++O\!\Bigl(\delta T\sum_{n\le X}|a_n|^2\Bigr)
++O\!\Bigl(\!\!\sum_{\substack{m\ne n\\ |T(\log m-\log n)|<\Omega}}\!\!|a_m a_n|\Bigr).
+\end{equation}
+Near-diagonal terms are handled by C9.2(a) or incorporated into error; A.2$'$'s quartic energy similarly uses $\Omega,\delta$ to absorb four-fold cross-terms far from zero frequency.
+
+\subsection{A.2$'$ (Smooth Window Quartic Energy Upper Bound)}
+
+Take $W\in C_c^K(\mathbb{R})$ with same hypothesis as A.2; write
+\begin{equation}
+\mathcal{I}_4:=\int_{\mathbb{R}}\!W\!\Bigl(\frac{t}{T}\Bigr)\,\Bigl|\sum_{n\le X}a_n\,e^{-it\log n}\Bigr|^4 dt.
+\end{equation}
+Then
+\begin{equation}
+\mathcal{I}_4\ \ll\ T\Bigl(\sum_{n\le X}|a_n|^2\Bigr)^{2},
+\end{equation}
+where the constant depends only on $\sigma,K$ and separation/window parameters of C9.2. Proof idea same as A.2: expand quartic sum and use $\widehat{W}$ (or $\widehat{W\!*\!W}$) smallness at non-zero frequencies, and oscillatory integral bound $\min\{T,1/|\sum\pm\log n|\}$ to absorb four-fold cross-terms.
+
+\subsection{A.3 (Paley--Zygmund)}
+
+If $Z\ge0$ and $\mathbb{E}[Z^2]\le C\,\mathbb{E}[Z]^2$, then $\mathbb{P}(Z\ge \theta\,\mathbb{E}[Z])\ge (1-\theta)^2/C$ ($0<\theta<1$).
+
+\subsection{A.4 (Pretentious Euler Product Comparison)}
+
+For $\sigma>1$ and $g\in\mathcal{G}$, let local factor $E_p(f;s):=\sum_{k\ge0}f(p^k)p^{-ks}$ and $E_p(g;s):=(1-g(p)p^{-s})^{-1}$. Then
+\begin{equation}
+\biggl|\prod_{p\le X}\frac{E_p(f;\sigma+it)}{E_p(g;\sigma+it)}\biggr|
+\ \le\ \exp\!\Bigl(-c_\sigma\sum_{p\le X}\frac{1-\Re\!\bigl(f(p)\overline{g(p)}p^{-it}\bigr)}{p^{\sigma}}+O(1)\Bigr).
+\end{equation}
+Combined with A.1--A.2 gives Theorem~\ref{thm:non_pretentious}'s exponential decay factor.
+
+\subsection{A.5 (Window-Internal $L^2$ Comparison)}
+
+Under C9.2(b) and $\mathbb{D}\bigl(f,g;X\bigr)\le D_0$, take same smooth window $W\in C_c^K(\mathbb{R})$ as A.2, then for fixed $\sigma>1$,
+\begin{equation}
+\int_{\mathbb{R}} W\!\Big(\tfrac{t}{T}\Big)\,\big|P_f(X;\sigma,t)-P_g(X;\sigma,t)\big|^2 dt
+\ \le\ C_\sigma\,e^{-c_\sigma D_0^2}\,T\,A_\sigma(X)^2,
+\end{equation}
+where constants depend only on $\sigma$ and window/separation parameters $(\Omega,\delta)$. This allows \textbf{robust transfer} of model $P_g$'s large-value windows to $P_f$ within the same observation window (see Theorem~\ref{thm:pretentious_large}).
+
+(Proof sketch) Write as prime-factor comparison and use A.4 to give pointwise logarithmic-type control in the $\sigma>1$ strip; truncation error is absorbed by A.1's finite-order EM and A.2's energy identity, yielding the above formula.
+
+\section*{Concluding Remarks}
+
+Pretentious distance characterizes the ``coherence--anti-coherence'' structure of multiplicative signals at the prime side; combined with mother-mapping directionalization, information measure calibration, and discrete uniform approximation, we obtain a \textbf{non-asymptotic, verifiable} framework for exponential-sum behavior: exponential decay upper bound in the non-Pretentious region, almost-periodic large-value windows in the Pretentious region, and small-ball probability with near-zero revisiting rate in finite windows. This framework closes on S2--S8's geometric--analytic--information--discrete architecture and provides unified syntax and toolbox for spectrum--prime mixed problems and numerical verification after S10.
+
+\begin{thebibliography}{9}
+
+\bibitem{halasz}
+G.~Hal\'asz, \emph{\"{U}ber die Mittelwerte multiplikativer zahlentheoretischer Funktionen}, Acta Math. Acad. Sci. Hungar., 1968.
+
+\bibitem{pretorius}
+J.~Pretorius, \emph{A quantitative version of the Hal\'asz-Montgomery theorem}, Acta Arith., 2010.
+
+\bibitem{montgomery}
+H.~L. Montgomery, \emph{Extreme values of the Riemann zeta function}, Comment. Math. Helv., 1973.
+
+\bibitem{soundararajan}
+K.~Soundararajan, \emph{Moments of the Riemann zeta function}, Ann. of Math., 2009.
+
+\bibitem{granville}
+A.~Granville and K.~Soundararajan, \emph{Large character sums}, J. Amer. Math. Soc., 2007.
+
+\bibitem{dyatlov-smith}
+S.~Dyatlov and M.~Zworski, \emph{Mathematical theory of scattering resonances}, 2019.
+
+\bibitem{bourgain}
+J.~Bourgain, \emph{Decoupling and applications}, 2017.
+
+\bibitem{tao-vu}
+T.~Tao and V.~Vu, \emph{Additive combinatorics}, Cambridge University Press, 2006.
+
+\bibitem{iwaniec-kowalski}
+H.~Iwaniec and E.~Kowalski, \emph{Analytic number theory}, American Mathematical Society, 2004.
+
+\end{thebibliography}
+
+\end{document}
+

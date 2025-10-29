@@ -1,0 +1,308 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\setlist[itemize]{nosep,leftmargin=1.6em}
+\setlist[enumerate]{nosep,leftmargin=1.6em}
+
+\geometry{margin=1in}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+\DeclareMathOperator{\Re}{Re}
+\DeclareMathOperator{\Im}{Im}
+\DeclareMathOperator{\conv}{conv}
+\DeclareMathOperator{\New}{New}
+\DeclareMathOperator{\Cov}{Cov}
+
+\raggedbottom
+
+\title{Amoeba Geometry and Growth Theory}
+
+\author{Haobo Ma\thanks{Independent Researcher} \and Wenlin Zhang\thanks{National University of Singapore}}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{center}
+\textit{Ronkin Convexity, Phragm\'en--Lindel\"of Indicator and Unification of Mirror--Geometry--Information}
+\end{center}
+
+\begin{abstract}
+We establish a unified \textbf{amoeba--Ronkin--growth} framework centered on finite exponential sums: outside the amoeba in scale space, the Ronkin potential exhibits \textbf{approximate piecewise affine} behavior, with directional growth controlled by the \textbf{Newton support function}; near the ``balance skeleton'', binomial closure determines bending and small-value distribution; at the analytic level, seamless splicing with \textbf{finite-order Euler--Maclaurin} and the ``\textbf{pole = main scale}'' principle is achieved. To realize mirror balancing about central axis $a$ (taking $r(s)=r(a-s)$ with same-order exponential decay on both vertical lines), one must possess the completed functional equation; without functional equation, $\Gamma/\pi$ factors can only improve single-side vertical-line growth, generally unable to guarantee mirror balancing. At the numerical level, Nyquist--Poisson--EM tri-decomposition and Pretentious small-ball control provide non-asymptotic, computable error and thresholds. The paper provides verifiable conditions and rigorous proof outlines.
+\end{abstract}
+
+\section{Notation, Objects and Prerequisites}
+
+\begin{itemize}
+\item \textbf{Exponential sum and parameters.} Let
+\begin{equation}
+F(\theta,\rho)=\sum_{j=1}^J c_j\,e^{i\langle\alpha_j,\theta\rangle}\,e^{\langle\beta_j,\rho\rangle},
+\qquad \theta\in\mathbb{T}^m,\ \rho\in\mathbb{R}^n,
+\end{equation}
+where $\alpha_j\in\mathbb{R}^m,\ \beta_j\in\mathbb{R}^n,\ c_j\in\mathbb{C}\setminus\{0\}$, inner product in standard Euclidean form. Write \textbf{Newton polytope}
+\begin{equation}
+\New(F):=\conv\{\beta_1,\dots,\beta_J\}\subset\mathbb{R}^n,
+\end{equation}
+its \textbf{support function}
+\begin{equation}
+H_{\New(F)}(\mathbf{v}):=\max_{1\le j\le J}\langle\beta_j,\mathbf{v}\rangle,\qquad \mathbf{v}\in\mathbb{S}^{n-1}.
+\end{equation}
+
+\item \textbf{Amoeba and Ronkin potential.} Define \textbf{amoeba}
+\begin{equation}
+\mathcal{A}(F):=\bigl\{\rho\in\mathbb{R}^n:\ \exists\,\theta\in\mathbb{T}^m,\ F(\theta,\rho)=0\bigr\},
+\end{equation}
+and \textbf{Ronkin-type potential}
+\begin{equation}
+N_F(\rho):=\fint_{\mathbb{T}^m}\log|F(\theta,\rho)|\,d\theta
+=\frac{1}{(2\pi)^m}\int_{\mathbb{T}^m}\log|F(\theta,\rho)|\,d\theta .
+\end{equation}
+Logarithmic singularities of zeros are integrable on the compact torus. To ensure $N_F(\rho)$ is finite for any $\rho$, we make the following object assumptions:
+(i) $m\ge 1$ ($\theta$ torus non-empty);
+(ii) For each group with identical $\alpha$, first aggregate $\sum_k c_k e^{\langle\beta_k,\rho\rangle}$, and stipulate that there does not exist $\rho$ such that all group coefficients simultaneously vanish (otherwise $F(\cdot,\rho)\equiv 0$ leads to average $-\infty$).
+
+\item \textbf{Information potential and log-sum-exp.} Define
+\begin{equation}
+\Lambda(\rho):=\log\Bigl(\sum_{j=1}^J |c_j|e^{\langle\beta_j,\rho\rangle}\Bigr),\qquad
+p_j(\rho):=\frac{|c_j|e^{\langle\beta_j,\rho\rangle}}{e^{\Lambda(\rho)}} .
+\end{equation}
+Then $\Lambda$ is convex, and $\nabla\Lambda(\rho)=\sum_j p_j(\rho)\beta_j,\
+\nabla^2\Lambda(\rho)=\Cov_\rho(\beta)\succeq0$.
+
+\item \textbf{Amplitude balance skeleton.} For $j\neq k$, define hyperplane
+\begin{equation}
+H_{jk}:=\Bigl\{\rho\in\mathbb{R}^n:\ \langle\beta_j-\beta_k,\rho\rangle=\log\frac{|c_k|}{|c_j|}\Bigr\},
+\end{equation}
+and measure distance from $\rho$ to the balance skeleton (in natural scale) by
+\begin{equation}
+\delta(\rho):=\min_{j<k}\Bigl|\langle\beta_j-\beta_k,\rho\rangle-\log\tfrac{|c_k|}{|c_j|}\Bigr|.
+\end{equation}
+The following discussion from Proposition~\ref{prop:piecewise} to Theorem~\ref{thm:info_limit} all take $J\ge 2$. If $J=1$, then $\delta$ need not be defined and relevant conclusions hold trivially.
+
+\item \textbf{Analytic interchange discipline.} All ``summation--integration--differentiation'' interchanges are used only within S1/S4's tube domain using \textbf{finite-order} Euler--Maclaurin (only finite Bernoulli layers; remainder entire/holomorphic), ensuring meromorphic/entire-function nature and pole structure are not polluted by error layers.
+\end{itemize}
+
+\section{Ronkin Upper Bound, Convexity and Near Piecewise Affine}
+
+\begin{theorem}[Upper Envelope and Gradient Inclusion]\label{thm:upper_envelope}
+For all $\rho\in\mathbb{R}^n$,
+\begin{equation}
+N_F(\rho)\ \le\ \Lambda(\rho),\qquad
+\partial N_F(\rho)\ \subseteq\ \New(F).
+\end{equation}
+Moreover, $\rho\mapsto N_F(\rho)$ is convex and locally Lipschitz.
+\end{theorem}
+
+\begin{proof}[Key points]
+Fix $\rho$; write $A_j(\theta,\rho):=c_j e^{i\langle\alpha_j,\theta\rangle}e^{\langle\beta_j,\rho\rangle}$. Triangle inequality gives $|F(\theta,\rho)|\le\sum_j|A_j|=\sum_j|c_j|e^{\langle\beta_j,\rho\rangle}$; taking logarithm and averaging over $\theta$ yields $N_F\le\Lambda$. First prove convexity and local Lipschitz: fix direction $\mathbf{v}$; let $G_\theta(z):=F(\theta,\rho+z\mathbf{v})$. Then $z\mapsto\log|G_\theta(z)|$ is subharmonic, with Riesz mass (zero counting measure) non-negative; by univariate Jensen--Poisson formula, the \textbf{distributional second derivative} of $t\mapsto N_F(\rho+t\mathbf{v})=\fint_{\mathbb{T}^m}\log|G_\theta(t)|\,d\theta$ equals the above non-negative measure averaged over $\theta$, hence is a non-negative measure, so $t\mapsto N_F(\rho+t\mathbf{v})$ is convex. Convex along any line $\Rightarrow$ $N_F$ convex in $\rho$, and by general theory of convex functions obtains local Lipschitz. Based on proven convexity (secant slope monotonicity), for any unit vector $\mathbf{u}$, there is chain upper bound
+\begin{equation}
+D^{+}N_F(\rho;\mathbf{u})
+\ \le\ \limsup_{r\to\infty}\frac{N_F(\rho+r\mathbf{u})-N_F(\rho)}{r}
+\ \le\ \limsup_{r\to\infty}\frac{\sup_{\theta}\log|F(\theta,\rho+r\mathbf{u})|}{r}
+\ \le\ H_{\New(F)}(\mathbf{u}),
+\end{equation}
+where the last step follows from triangle inequality and
+$\sup_{\theta}\log|F(\theta,\rho+r\mathbf{u})|\le \log\sum_j |c_j|e^{\langle\beta_j,\rho+r\mathbf{u}\rangle}
+\le r\,H_{\New(F)}(\mathbf{u})+O(1)$. By Lemma~\ref{lem:convex_analysis} (convex analysis: directional derivative upper bound $\Rightarrow$ subdifferential inclusion) we obtain $\partial N_F(\rho)\subseteq\New(F)$.
+\end{proof}
+
+\begin{proposition}[Dominant Subsum Region: Near Piecewise Affine]\label{prop:piecewise}
+If $\delta(\rho)\ge D>\log(J-1)$, then there exists unique index $j_\star$ such that
+\begin{equation}
+\Bigl|\,N_F(\rho)-\bigl(\langle\beta_{j_\star},\rho\rangle+\log|c_{j_\star}|\bigr)\Bigr|
+\ \le\ \log\frac{1}{1-(J-1)\,e^{-D}} ,
+\end{equation}
+where the right-hand side depends only on $(J,D)$, independent of $\{\alpha_j\}$.
+\end{proposition}
+
+\begin{proof}[Key points]
+Single-term amplitude dominance: write $F=A_{j_\star}(1+R)$ with $|R(\theta,\rho)|\le\sum_{j\ne j_\star}\frac{|A_j|}{|A_{j_\star}|}\le(J-1)e^{-D}$, so $|(J-1)e^{-D}|<1$. By standard inequality for integrable logarithm
+\begin{equation*}
+\fint_{\mathbb{T}^m}\bigl|\log|1+R|\bigr|\,d\theta\ \le\ -\log\bigl(1-(J-1)e^{-D}\bigr)
+\end{equation*}
+yields stated absolute error bound.
+\end{proof}
+
+\textbf{Geometric conclusion.} In each ``deep'' connected component of $\mathbb{R}^n\setminus\mathcal{A}(F)$, $N_F$ approximates some affine function $\langle\beta_{j_\star},\rho\rangle+\log|c_{j_\star}|$ with exponential precision; near skeleton $H_{jk}$, bending driven by two dominant terms determines local shape of amoeba boundary.
+
+\section{Phragm\'en--Lindel\"of Indicator and Support Function}
+
+Define \textbf{directional growth indicator}
+\begin{equation}
+h_F(\mathbf{v}):=\limsup_{r\to\infty}\frac{1}{r}\ \sup_{\theta\in\mathbb{T}^m}\log\bigl|F(\theta,\rho_0+r\mathbf{v})\bigr|,
+\qquad \mathbf{v}\in\mathbb{S}^{n-1}.
+\end{equation}
+This definition is independent of base point $\rho_0$.
+
+\begin{theorem}[PL Upper Bound = Support Function Upper Bound]\label{thm:pl_upper}
+\begin{equation}
+h_F(\mathbf{v})\ \le\ H_{\New(F)}(\mathbf{v})=\max_{j}\langle\beta_j,\mathbf{v}\rangle.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+$|F|\le\sum_j|c_j|e^{\langle\beta_j,\rho_0+r\mathbf{v}\rangle}$; take $\log$, $\sup_\theta$, normalize and let $r\to\infty$.
+\end{proof}
+
+\begin{theorem}[Generic Direction Equality]\label{thm:pl_equality}
+If $\langle\beta_{j_\star},\mathbf{v}\rangle>\max_{j\ne j_\star}\langle\beta_j,\mathbf{v}\rangle$, then
+\begin{equation}
+h_F(\mathbf{v})=\langle\beta_{j_\star},\mathbf{v}\rangle.
+\end{equation}
+\end{theorem}
+
+\begin{proof}[Key points]
+In this direction, amplitude is uniquely dominant; by Proposition~\ref{prop:piecewise}'s near piecewise affine and uniformity of $\sup_\theta$, obtain lower bound matching Theorem~\ref{thm:pl_upper}'s upper bound.
+\end{proof}
+
+\textbf{Analytic interface.} S5's directional Laplace--Stieltjes transform pole location is given by main-scale exponential rate; Theorems~\ref{thm:pl_upper}--\ref{thm:pl_equality} thus strictly align \textbf{geometric support function} with \textbf{analytic pole/growth}.
+
+\section{Ronkin--Information Potential Comparison and Variational Limit}
+
+\begin{theorem}[Information Upper Envelope and Gradient Convergence]\label{thm:info_limit}
+For any $\rho$, $\Lambda(\rho)-N_F(\rho)\ge0$. If $\rho_k=\rho_0+r_k\mathbf{v}$ with $r_k\to\infty$, and direction $\mathbf{v}$ satisfies Theorem~\ref{thm:pl_equality}'s uniqueness, then
+\begin{equation}
+\nabla\Lambda(\rho_k)\ \to\ \beta_{j_\star},\qquad
+N_F(\rho_k)-\bigl(\langle\beta_{j_\star},\rho_k\rangle+\log|c_{j_\star}|\bigr)\ \to\ 0 .
+\end{equation}
+\end{theorem}
+
+\begin{proof}[Key points]
+First formula is Theorem~\ref{thm:upper_envelope}. Second formula follows from Proposition~\ref{prop:piecewise} and $\nabla\Lambda=\sum_j p_j\beta_j$: in dominant subsum region $p_{j_\star}\to1$ and other $p_j\to0$.
+\end{proof}
+
+\textbf{Interpretation.} $\Lambda$ is the ``information upper envelope'' (log-sum-exp), $N_F$ is the true potential of ``phase averaging''; their difference measures amplitude reduction caused by phase coherence: difference vanishes in dominant subsum region, increases near balance skeleton.
+
+\section{Splicing Amoeba with Vertical Strip Meromorphy--Growth}
+
+\begin{itemize}
+\item \textbf{Pole = main scale}. Along directional slice $\rho=\rho_\perp+s\mathbf{v}$, use \textbf{finite-order} Euler--Maclaurin for discrete--continuous bridging; Bernoulli layers contribute only entire/holomorphic terms, pole set unchanged; pole location and order determined by exponential--polynomial law (main-scale exponential rate determines location, order not exceeding corresponding polynomial degree plus one).
+
+\item \textbf{Completed function and vertical-line growth}. To realize mirror balancing about central axis $a$ (taking $r(s)=r(a-s)$ with same-order exponential decay on both vertical lines), one must possess corresponding completed functional equation. Conversely, without functional equation, one can still choose appropriate $\Gamma/\pi$ factors to improve \textbf{single-side} vertical-line growth, but generally cannot guarantee mirror-symmetric ``balancing''. Combined with Theorem~\ref{thm:pl_upper}'s support function upper bound, one can unify growth outside amoeba with central-axis mirror discipline within vertical strip, consistent with $L$-function explicit formula interface.
+\end{itemize}
+
+\section{Sampling, Band-Limitation and Numerical Verification}
+
+\begin{itemize}
+\item \textbf{Nyquist--Poisson--EM tri-decomposition}. Separate $\theta$-averaging, truncation and endpoint error to obtain non-asymptotic error constants for $N_F$; in dominant subsum region, piecewise affine improves inversion condition number.
+
+\item \textbf{Spectral extraction and directional identification}. Prony/moment methods can recover $\beta_{j_\star}$ from directional samples, consistent with Theorem~\ref{thm:pl_equality}'s directional indicator; use multi-directional joint when necessary to overcome plateau degeneracy.
+\end{itemize}
+
+\section{Boundary Families and Failure Mechanisms (Annotated)}
+
+\begin{itemize}
+\item \textbf{R10.1 (Multiple balance)}: When $\rho$ approaches intersection of multiple $H_{jk}$, multiple terms have nearly equal amplitude; near piecewise affine fails; need to return to binomial closure's local model.
+
+\item \textbf{R10.2 (Infinite Bernoulli layers)}: Using EM as infinite series destroys meromorphic/entire-function nature, causing ``pole = main scale'' and growth estimates to be distorted.
+
+\item \textbf{R10.3 (Directional degeneracy)}: If there exist $j\ne k$ such that $\langle\beta_j-\beta_k,\mathbf{v}\rangle\equiv0$, then $h_F(\mathbf{v})$ may exhibit plateau; should change direction or use multi-directional joint.
+
+\item \textbf{R10.4 (Near-zero revisiting)}: Within finite window, if phase highly Pretentious, $|F|$ small-ball events more frequent, $N_F$ numerical estimation more sensitive; need to combine with small-ball probability upper bound and window function robustification.
+
+\item \textbf{R10.5 (Normalization misuse)}: Mixing $\Gamma/\pi$ normalization into coefficients $c_j$ destroys comparison of $\Lambda$ and $N_F$; normalization serves only as global multiplier for mirror/growth balancing.
+\end{itemize}
+
+\section{Unified Verifiable Checklist (Minimally Sufficient)}
+
+\begin{enumerate}
+\item \textbf{Geometric skeleton}: Compute $H_{jk}$ and $\delta(\rho)$; determine whether in dominant subsum region ($\delta>\log(J-1)$).
+
+\item \textbf{Information upper bound}: Use $\Lambda,\ \nabla\Lambda,\ \nabla^2\Lambda\succeq0$ to assess upper envelope and directional variance.
+
+\item \textbf{Ronkin comparison}: $N_F\le\Lambda$; in dominant subsum region use Proposition~\ref{prop:piecewise} for near affine and deviation bound.
+
+\item \textbf{PL indicator}: Use Theorems~\ref{thm:pl_upper}--\ref{thm:pl_equality} to assess $h_F(\mathbf{v})$ and verify consistency with directional pole location.
+
+\item \textbf{Meromorphic--growth discipline}: Discrete--continuous interchange uses only \textbf{finite-order} EM; if mirror balancing needed ($r(s)=r(a-s)$ with same-order vertical-line decay on both sides), must possess completed functional equation; otherwise only single-side growth adjustment, generally not guaranteeing mirror balancing.
+
+\item \textbf{Numerical robustness}: Set step size and window function per Nyquist--Poisson--EM; when Pretentious behavior detected, calibrate threshold using small-ball/revisiting upper bound.
+\end{enumerate}
+
+\section{Structural Interface with Related Sections}
+
+\begin{itemize}
+\item \textbf{Zero-set geometry (S2)}: Scale projection of $\mathcal{A}(F)$ consistent with $H_{jk}$ skeleton; Ronkin bending location corresponds to binomial closure's transversality.
+
+\item \textbf{Self-dual kernel and completed function (S3)}: When object possesses completed functional equation, $\Gamma/\pi$ normalization provides unified control of mirror balancing and vertical-line decay.
+
+\item \textbf{Finite-order EM (S4)}: Ensures interchange legitimacy and implements ``pole = main scale''.
+
+\item \textbf{Directional meromorphization (S5)}: Directional indicator consistent with pole location/order; dominant subsum $\Rightarrow$ single-pole dominance.
+
+\item \textbf{Information calibration (S6)}: Gradient/covariance of $\Lambda$ gives information-geometric interpretation of ``centroid--variance--log-sum-exp'', controlling upper envelope and sensitivity.
+
+\item \textbf{$L$-function interface (S7)}: Kernel window of explicit formula can target scale band of amoeba skeleton; vertical-strip growth cooperatively controlled by PL indicator.
+
+\item \textbf{Discrete uniform approximation (S8)}: Tri-decomposition provides non-asymptotic error for numerical evaluation of $N_F$ and directional indicator.
+
+\item \textbf{Pretentious/exponential sums (S9)}: Near-zero revisiting in Pretentious region consistent with increase of $\Lambda-N_F$.
+\end{itemize}
+
+\section*{Concluding Remarks}
+
+With \textbf{amoeba--Ronkin--growth} as the main thread, we complete unified stitching of ``geometric skeleton ($H_{jk}$) --- information upper envelope ($\Lambda$) --- analytic growth (PL/pole)'': \textbf{far from balance skeleton}, $N_F$ is near affine with exponential precision, directional growth equals support function; \textbf{near skeleton}, binomial closure determines bending and small values; \textbf{at vertical-strip analytic level}, finite-order EM and directional meromorphization ensure ``pole = main scale'', completed function provides mirror/growth balancing; \textbf{at numerical level}, Nyquist--Poisson--EM and Pretentious small-ball control provide non-asymptotic, reproducible experimental error and thresholds. Thus S10 gathers structural achievements of S2--S9 into an integrated \textbf{geometry--growth--mirror} baseline.
+
+\appendix
+
+\section{Technical Lemmas (Verifiable Version)}
+
+\begin{lemma}[Convex Analysis: Directional Derivative Upper Bound $\Rightarrow$ Subdifferential Inclusion]\label{lem:convex_analysis}
+Let $f: \mathbb{R}^n\to\mathbb{R}$ be convex, $K\subset\mathbb{R}^n$ a non-empty closed convex set, $H_K$ its support function. If for point $x$ and all unit vectors $u$,
+\begin{equation}
+D^{+}f(x;u)\ :=\ \limsup_{t\downarrow0}\frac{f(x+tu)-f(x)}{t}\ \le\ H_K(u),
+\end{equation}
+then $\partial f(x)\subseteq K$.
+\end{lemma}
+
+\begin{proof}[Key points]
+Take any $g\in\partial f(x)$. By subdifferential definition, $D^{+}f(x;u)\ge \langle g,u\rangle$ holds for all unit $u$. If $g\notin K$, then there exists $u$ such that $\langle g,u\rangle>H_K(u)$ (separation property of support function), contradicting $D^{+}f(x;u)\le H_K(u)$. Thus must have $g\in K$.
+\end{proof}
+
+\begin{thebibliography}{9}
+
+\bibitem{gelfand}
+I.~M. Gelfand, M.~M. Kapranov, and A.~V. Zelevinsky, \emph{Discriminants, Resultants and Multidimensional Determinants}, Birkh\"auser, 1994.
+
+\bibitem{passare}
+M.~Passare and H.~Rullg\r{a}rd, \emph{Amoebas, Monge-Amp\`ere measures, and triangulations of the Newton polytope}, Duke Math. J., 2004.
+
+\bibitem{ronkin}
+L.~I. Ronkin, \emph{Introduction to the Theory of Entire Functions of Several Variables}, American Mathematical Society, 1974.
+
+\bibitem{purbhoo}
+K.~Purbhoo, \emph{A Nullstellensatz for amoebas}, Duke Math. J., 2008.
+
+\bibitem{mikhalkin}
+G.~Mikhalkin, \emph{Enumerative tropical algebraic geometry}, J. Amer. Math. Soc., 2005.
+
+\bibitem{forsberg}
+M.~Forsberg, M.~Passare, and A.~Tsikh, \emph{Laurent determinants and arrangements of hyperplane amoebas}, Adv. Math., 2000.
+
+\bibitem{theobald}
+T.~Theobald, \emph{Computing amoebas}, Experiment. Math., 2002.
+
+\bibitem{hormander}
+L.~H\"ormander, \emph{Notions of Convexity}, Birkh\"auser, 1994.
+
+\bibitem{bost}
+J.-B. Bost, H.~Gillet, and C.~Soul\'e, \emph{Heights of projective varieties and positive Green forms}, J. Amer. Math. Soc., 1994.
+
+\end{thebibliography}
+
+\end{document}
+
+
