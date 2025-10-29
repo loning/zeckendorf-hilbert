@@ -4,7 +4,7 @@
 
 **（定义—定理—证明要点—可检判据—工程蓝图）**
 
-**Version: 1.4**
+**Version: 1.5**
 
 **作者**：Auric（S-series / EBOC）
 
@@ -20,7 +20,7 @@
 
 **（II）记录/推断层（CID）**：封闭自译码器以**追加式日志**记录自身变更；在最小记录策略下其"记录熵"沿时间滤过**单调（通常严格）上升**，并与"**停机**/**I-投影定点**/**KL 不再下降**"互相等价（Csiszár 的 I-几何与毕达哥拉斯恒等式）。([pages.stern.nyu.edu][2])
 
-**（III）测量层（WSIG）**：把一切读数统一为对"相位导数=谱移密度=Wigner–Smith 延迟迹"的**窗化积分**；并以 Nyquist–Poisson–Euler–Maclaurin 三分解给出**非渐近误差闭合**。([imo.universite-paris-saclay.fr][3])
+**（III）测量层（WSIG）**：把一切读数统一为对**"相位导数 = Wigner–Smith 延迟迹 = −2π·谱移密度"**的**窗化积分**；并以 Nyquist–Poisson–Euler–Maclaurin 三分解给出**非渐近误差闭合**。([imo.universite-paris-saclay.fr][3])
 
 **（IV）图谱层（EBOC-Graph）**：以图拉普拉斯谱为频域、用**Chebyshev 多项式**实现局部化滤波与指数型尾界，非回溯谱经 Ihara–Hashimoto–Bass 行列式与闭路计数同构，支撑"叶-读取/提交"的工程实现。([科学直通车][4])
 
@@ -110,7 +110,7 @@ $$
 
 ### 定理 3.3（Kraft〔前缀码〕充要；McMillan〔唯一可译码〕必要）
 
-对前缀码，若且唯若 $\sum_w 2^{-|w|}\le 1$，存在满足给定码长的前缀码；对一般唯一可译码，上式仅为必要条件（通常并非充分）。本文在 CID 中显式采用前缀码，以保证**流式可解**与**拼接无歧义**。([维基百科][6])
+对前缀码，若且唯若 $\sum_w 2^{-|w|}\le 1$，存在满足给定码长的前缀码（Kraft）。McMillan 证明：对任一唯一可译码，该不等式必成立（必要）；结合 Kraft，可知**对"存在某个唯一可译码以这些码长实现"同样是充要**（取其前缀实现即可）。本文在 CID 中显式采用前缀码，以保证**流式可解**与**拼接无歧义**。([维基百科][6])
 
 ---
 
@@ -118,15 +118,13 @@ $$
 
 ### 定理 4.1（嵌入定理）
 
-对任意 RCA $F$ 与满足"前缀+唯一规范形"的编码器，存在扩展字母表 $\tilde\Sigma=\Sigma\times\mathcal A$ 与扩展 RCA $F^\sharp$：
+对任意 RCA $F$ 与满足"前缀+唯一规范形"的编码器，存在扩展字母表 $\tilde\Sigma=\Sigma\times\mathcal A\times\mathcal H$（$\mathcal A$：**分布式日志轨**；$\mathcal H$：**写头/时钟轨**）与可逆分块 CA $F^\sharp$，使
 $$
-F^\sharp(Z,R)=\big(F(Z)\,,\,R\circ C(Z,R)\big),\qquad \pi\!\circ F^\sharp=F\!\circ\pi,
+F^\sharp(Z,R,H)=\Big(F(Z),\ \Gamma\big([Z]_{r_C},[R]_{r_C},[H]_{r_H}\big),\ H'\Big),\qquad \pi\!\circ F^\sharp=F\!\circ\pi,
 $$
-其中 $C(Z,R)$ 由半径 $r_C$ 的局部可逆转导器 $\mathcal T$ 产生：
-$$
-C(Z,R)=\mathcal T\big([Z]_{r_C},[R]_{r_C}\big),
-$$
-故 $F^\sharp$ 的半径 $r^\sharp=\max\{r_F,r_C\}$。此外，对任意 CA $F$ 可定义**二阶可逆化**
+其中 $\Gamma$ 为**局部可逆转导器**：每步在 $R$ 的局部缓冲区写入至多 $b$ 个码元，并由 $H$ 控制有限距离移位/提交；于是**逻辑上的**"$R_{t+1}=R_t\circ C_t$"由若干步的局部写入/移位实现（带宽受 $b$ 限制）。因此 $r^\sharp=\max\{r_F,r_C,r_H\}$ 仍有限，保持 CA 的局部性与可逆性。
+
+此外，对任意 CA $F$ 可定义**二阶可逆化**
 $$
 \Phi(X,Y):=\big(F(X)\oplus Y,\ X\big)\quad\text{于}\ \tilde\Sigma=\Sigma\times\Sigma,
 $$
@@ -248,7 +246,7 @@ $$
 $$
 \pi\circ F^\sharp = F\circ \pi .
 $$
-若 $F$ 本身可逆，则 $\pi$ 为同胚，从而给出真正同构；若 $F$ 不可逆，则 $F^\sharp$ 为其可逆包络，仅有**半共轭**而非全同构。
+即便 $F$ 可逆，$\pi$ **一般也仅为满射的因子映射而非同胚**（因扩展轨 $\mathcal A$ 的信息被遗忘）；仅在采取**平凡扩展**（$\mathcal A$ 为单元集）时，$\pi$ 才与恒等同胚。若 $F$ 不可逆，则 $F^\sharp$ 是其可逆包络，仅有半共轭而非同构。
 
 **证明要点**：De Bruijn 图把局部规则嵌入非回溯路径；Toffoli–Margolus 分区给出可逆块实现；Durand-Lose 证明可逆 CA 可由可逆块 CA 复合表达；因子映射 $\pi$ 的构造沿用 §4.1。([wpmedia.wolfram.com][12])
 
