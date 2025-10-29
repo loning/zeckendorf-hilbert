@@ -1,6 +1,6 @@
 # S28. de Branges–Mellin 局部化算子的强型 Szegő–Widom 极限
 
-Version: 1.8
+Version: 1.13
 
 **—— 对数行列式、二次型 $H^{1/2}$ 与有限阶 Euler–Maclaurin 的边界改正**
 
@@ -10,7 +10,7 @@ Version: 1.8
 
 $$
 \log\det\!\big(I+\lambda T_{a,R}\big)
-= \int \!\log\!\big(1+\lambda a\, w_R\big)\,d\mu
+= \int w_R\,\log\!\big(1+\lambda a\big)\,d\mu
 +\tfrac12\,\mathcal Q_R\!\big(\log(1+\lambda a)\big) + o(1),
 $$
 
@@ -28,11 +28,11 @@ $$
 
 相位函数 $\varphi$ 严增且 $E^\sharp/E=e^{2i\varphi}$。上述恒等式见 de Branges 文献与以相位标度写出的核公式（亦见 $\sin(\varphi(x)-\varphi(y))$-型归一式）。
 
-**尺度与窗（强制设定）.** 设相位坐标 $u:=\varphi(x)/\pi$。取固定偶函数 $W\in L^\infty(\mathbb R)$ 满足 $0\le W\le 1$、$W(0)=1$，且 $\widehat W$ 紧支（带限）或 $W\in C_c^\infty$。定义随尺度的窗
+**尺度与窗（强制设定）.** 设相位坐标 $u:=\varphi(x)/\pi$。取固定偶函数 $W\in L^1\cap L^\infty(\mathbb R)$ 满足 $0\le W\le 1$、$W(0)=1$，且 $\widehat W$ 紧支（带限）或 $W\in C_c^\infty$。定义随尺度的窗
 
 $$
 w_R(x):=W\!\big(u/R\big),\qquad M_R=\!\int w_R\,d\mu
-=R\!\int_{\mathbb R}\!W(u)\,du+o(R)\to\infty.
+=R\!\int_{\mathbb R}\!W(u)\,du\ \to\ \infty.
 $$
 
 由 $W(0)=1$ 知在任意固定紧集上 $w_R\to 1$ 均匀成立。
@@ -45,42 +45,41 @@ $$
 
 如不致混淆，可简记为 $\langle f\rangle_\mu$；所有平均均指上述 $R$ 依赖的加权平均。
 
-**局部化算子与正则化行列式.** 给定**实值** $a\in L^\infty(\mathbb R)$ 与偶窗 $w_R\ge 0$（带限或指数衰减），定义
+**局部化算子与正则化行列式.** 给定实值 $a\in L^\infty$、偶窗 $w_R\ge0$（由 $W\in L^1\cap L^\infty$ 生成），则
 
 $$
-T_{a,R}:=\int a(x)\,w_R(x)\ \frac{|K(\cdot,x)\rangle\langle K(\cdot,x)|}{K(x,x)}\,d\mu(x).
+T_{a,R}=\int a(t)\,w_R(t)\,|e_t\rangle\langle e_t|\,d\mu(t)\in\mathfrak S_1,
 $$
 
-当 $0\le a\le C$ 且 $w_R$ 有界紧支（或充分衰减），$T_{a,R}$ 为迹类；一般 $a$ 用 Carleman–Fredholm 正则化 $\det_2$ 定义 $\log\det(I+\lambda T_{a,R})$。关于 Fredholm/正则化行列式、迹级数展开与扰动理论的背景，详见文末"参考文献（选）"。
+其中 $e_t:=K(\cdot,t)/\sqrt{K(t,t)}$ 为归一核。有 $\|T_{a,R}\|_1\le \|a\|_\infty M_R$，$\operatorname{Tr}T_{a,R}=\int a\,w_R\,d\mu$。本文统一使用 Fredholm 行列式。关于 Fredholm/正则化行列式、迹级数展开与扰动理论的背景，详见文末"参考文献（选）"。
 
-**行列式与可逆性约定.** 若 $T_{a,R}\in \mathfrak S_1$ 则取 Fredholm 行列式 $\det(I+\lambda T_{a,R})$；若 $T_{a,R}\in \mathfrak S_2\setminus \mathfrak S_1$ 则取 Carleman–Fredholm 行列式 $\det_2(I+\lambda T_{a,R})$。两者统一记为
-
-$$
-\mathrm{LDet}(I+\lambda T_{a,R}),
-$$
-
-且本文中出现的 $\log\det(I+\lambda T_{a,R})$ 一律理解为 $\log \mathrm{LDet}(I+\lambda T_{a,R})$。在 $\lambda\in\mathbb R$、$a$ 实值且 $\inf_x(1+\lambda a(x))>0$ 下，存在 $R_0$ 使对所有 $R\ge R_0$ 有 $-1\notin \lambda\,\sigma(T_{a,R})$（等价于 $I+\lambda T_{a,R}$ 可逆），从而 $\log$ 分支一致且良定。
+**行列式与可逆性约定.** 下文 $\log\det(I+\lambda T_{a,R})$ 一律指 Fredholm 行列式的对数。在 $\lambda\in\mathbb R$、$a$ 实值且 $\inf_x(1+\lambda a(x))>0$ 下，存在 $R_0$ 使对所有 $R\ge R_0$ 有 $-1\notin \lambda\,\sigma(T_{a,R})$（等价于 $I+\lambda T_{a,R}$ 可逆），从而 $\log$ 分支一致且良定。
 
 **窗化核与相位标度.** 记规模 $M_R=\int w_R\,d\mu$，并设
 
 $$
-\Pi_R(x,y):=\int w_R(t)\,\frac{K(x,t)\,\overline{K(y,t)}}{\sqrt{K(x,x)K(y,y)}}\,d\mu(t).
+\Pi_R(x,y):=\int w_R(t)\,\frac{K(x,t)\,\overline{K(y,t)}}{K(t,t)}\,d\mu(t).
 $$
 
-并约定 $0\le w_R\le 1$，从而 $\|\Pi_R\|\le 1$。$\Pi_R$ 为正算子核，**一般不是正交投影**。设相位坐标 $u=\varphi(x)/\pi$，定义带限正交投影核
+由 $0\le w_R\le 1$ 与连续 Parseval 帧可得 $\|\Pi_R\|\le1$，且 $\operatorname{Tr}\Pi_R=\int w_R\,d\mu=M_R$。$\Pi_R$ 为正算子核，**一般不是正交投影**。设相位坐标 $u=\varphi(x)/\pi$，定义带限正交投影核
 
 $$
 P_R^{\mathrm{BL}}(u,v):=\frac{\sin\!\big(\pi R(u-v)\big)}{\pi(u-v)}.
 $$
 
-设 $U:L^2(d\mu)\to L^2(du)$ 为保范同构 $(Uf)(u)=f(\varphi^{-1}(\pi u))$。当 $w_R(x)=\mathbf 1_{|u|\le R}$ 或其 $C^\infty$ 近似且 $R\to\infty$ 时，有
+记相位坐标下的核 $[\Pi_R]_u(u,v):=\Pi_R(\varphi^{-1}(\pi u),\varphi^{-1}(\pi v))$。则有
 
 $$
-\big\|\,U\Pi_R U^{-1}-P_R^{\mathrm{BL}}\,\big\|_{\mathfrak S_2}\xrightarrow[R\to\infty]{}0,\qquad
-\operatorname{Tr}(\Pi_R-\Pi_R^{\,2})=O(1).
+\big\|\,w_R^{1/2}\,([\Pi_R]_u-P_R^{\mathrm{BL}})\,w_R^{1/2}\big\|_{\mathfrak S_2(du)}\xrightarrow[R\to\infty]{}0,
 $$
 
-因而"带限正交投影"对象与逼近意义均被固定。
+尤其在硬窗 $w_R=\mathbf 1_{|u|\le R}$ 时，
+
+$$
+\left\|\,\mathbf 1_{|u|\le R}\,([\Pi_R]_u-P_R^{\mathrm{BL}})\,\mathbf 1_{|u|\le R}\right\|_{\mathfrak S_2(du)}\xrightarrow[R\to\infty]{}0.
+$$
+
+并有 $\operatorname{Tr}(\Pi_R-\Pi_R^{\,2})=o(M_R)$。因而"带限正交投影"对象与逼近意义均被固定。
 
 在相位坐标 $u=\varphi(x)/\pi$ 中，$K$ 的局部极限与 Paley–Wiener/sine 核等价，从而 $\Pi_R$ 渐近为带宽与 $M_R$ 可比的带限投影核（de Branges–Paley–Wiener 的普适极限）。
 
@@ -94,7 +93,7 @@ $$
 
 $$
 \frac{1}{M_R}\,\log\det\!\big(I+\lambda T_{a,R}\big)
-\ \longrightarrow\ \frac{1}{M_R}\int \log\!\big(1+\lambda a(x)w_R(x)\big)\,d\mu(x).
+\ \longrightarrow\ \frac{1}{M_R}\int w_R\,\log\!\big(1+\lambda a\big)\,d\mu.
 $$
 
 *证明要点.* 设 $h=\log(1+\lambda a)$。用正则化行列式的**累积量**展开
@@ -105,7 +104,7 @@ $$
 
 在 $0\le w_R\le 1$ 且满足**近投影估计**的假设下，有
 
-$\displaystyle \kappa_1=\int \log\!\big(1+\lambda\,a(x)\,w_R(x)\big)\,d\mu(x)\,+\,o(1)$，
+$\displaystyle \kappa_1=\int w_R\,\log\!\big(1+\lambda\,a\big)\,d\mu\,+\,o(1)$，
 
 $\kappa_2=\mathcal Q_R(h)+o(1)$，
 
@@ -121,10 +120,10 @@ $$
 \mathcal Q_R(h):=\iint \frac{\big(h(x)-h(y)\big)^2}{2}\,|\Pi_R(x,y)|^2\,d\mu(x)\,d\mu(y).
 $$
 
-在相位坐标极限下，$\Pi_R$ 渐近为带限投影核 $\Pi^{\mathrm{BL}}$，从而
+在相位坐标极限下，$\Pi_R$ 渐近为带限投影核 $P^{\mathrm{BL}}$，从而
 
 $$
-\mathcal Q_R(h)\ \longrightarrow\ \mathcal Q(h):=\frac{1}{2\pi}\int_{\mathbb R} |\widehat{h\circ\varphi^{-1}}(\xi)|^2\,|\xi|\,d\xi,
+\mathcal Q_R(h)\ \longrightarrow\ \mathcal Q(h):=\frac{1}{2\pi^{2}}\int_{\mathbb R} |\widehat{h\circ\varphi^{-1}}(\xi)|^2\,|\xi|\,d\xi,
 $$
 
 其中 $h\circ\varphi^{-1}$ 表示在相位坐标上的函数 $u\mapsto h(\varphi^{-1}(\pi u))$，$\xi$ 为其对应的傅里叶变量。
@@ -137,7 +136,7 @@ $$
 
 $$
 \log\det\!\big(I+\lambda T_{a,R}\big)
-=\int \log(1+\lambda a\,w_R)\,d\mu+\frac12\,\mathcal Q_R\!\big(h\big)+o(1).
+=\int w_R\,\log(1+\lambda a)\,d\mu+\frac12\,\mathcal Q_R\!\big(h\big)+o(1).
 $$
 
 若 $w_R\to 1$ 局部一致，则 $\mathcal Q_R\to\mathcal Q$，且
@@ -165,7 +164,7 @@ $$
 
 其中 $\mathcal S_R$ 为相位坐标下被采样的 integrand。带限 + 采样步长满足 Nyquist 时别名项严格为零（见文末"参考文献（选）"），其余两项由有限阶 EM 给出非渐近界，整体为 $o(M_R)$。
 
-**Nyquist 设定**：设相位坐标下被采样函数的频域支集包含于 $[-\Omega,\Omega]$，取步长 $\Delta\le (\pi\Omega)^{-1}$（或等价的 $\Delta<1/(2\Omega)$ 归一化），则别名项严格为 $0$。
+**Nyquist 设定**：设相位坐标下被采样函数的频域支集包含于 $[-\Omega,\Omega]$，取步长 $\Delta\le \pi/\Omega$（等价 $\Delta\le 1/(2B)$，其中 $B=\Omega/2\pi$），则别名项严格为 $0$。
 
 ---
 
@@ -218,9 +217,9 @@ $$
 ## 9. 可检清单（最小充分条件）
 
 * **相位—密度**：核对 $K(x,x)=\frac{1}{\pi}\varphi'(x)|E(x)|^2>0$，取 $d\mu=\frac{\varphi'}{\pi}dx$。
-* **算子可积/正则化**：$T_{a,R}$ 迹类或以 $\det_2$ 合理定义 $\log\det(I+\lambda T_{a,R})$。
-* **一阶极限**：$\displaystyle \frac{1}{M_R}\log\det(I+\lambda T_{a,R})\ \to\ \frac{1}{M_R}\int \log(1+\lambda a\,w_R)\,d\mu$；在硬窗或 $w_R\to1$ 局部一致下，上式等于 $\langle \log(1+\lambda a)\rangle_{\mu,R}$。
-* **二阶极限**：$\mathcal Q_R(h)\to \frac{1}{2\pi}\!\int |\widehat{h\circ\varphi^{-1}}(\xi)|^2|\xi|\,d\xi$。
+* **算子可积/正则化**：$T_{a,R}\in\mathfrak S_1$，$\|T_{a,R}\|_1\le \|a\|_\infty M_R$。
+* **一阶极限**：$\displaystyle \frac{1}{M_R}\log\det(I+\lambda T_{a,R})\ \to\ \frac{1}{M_R}\int w_R\,\log(1+\lambda a)\,d\mu$；在硬窗或 $w_R\to1$ 局部一致下，上式等于 $\langle \log(1+\lambda a)\rangle_{\mu,R}$。
+* **二阶极限**：$\mathcal Q_R(h)\to \frac{1}{2\pi^{2}}\!\int |\widehat{h\circ\varphi^{-1}}(\xi)|^2|\xi|\,d\xi$。
 * **EM 纪律**：带限+Nyquist $\Rightarrow$ 别名 $=0$；伯努利层与尾项按已选阶 $M_{\mathrm{EM}}$ 给出非渐近界。
 * **多窗/非平稳**：Parseval 紧帧下多窗求和保持二次型极限；非 Parseval 以帧乘子修正，**误差为 $o(1)$**。
 * **奇性保持**：窗化与有限阶换序不增工作条带内奇性与极阶。
@@ -244,7 +243,7 @@ $$
 
 ### 附：与经典强型 Szegő–Widom 的一致性说明（框架对齐）
 
-在圆或实线的 Toeplitz/Wiener–Hopf 情形，强型 Szegő给出 $\log\det T_n(e^{h})=n\,h_0+\sum_{k\ge1}k\,h_k h_{-k}+o(1)$。我们在 de Branges 相位坐标中得到的二次型极限 $\frac12\,\mathcal Q(h)=\frac{1}{2\pi}\int |\widehat{h\circ\varphi^{-1}}|^2|\xi|\,d\xi$ 与 $\sum_{k\ge1}k\,|h_k|^2$ 等价（Fourier 权 $|\xi|$），从而二阶常数完全一致；这与 Widom 的 Wiener–Hopf 两项式在直线侧的陈述相匹配，亦与 DPP 线性统计的 $H^{1/2}$ 方差普适律一致。
+在圆或实线的 Toeplitz/Wiener–Hopf 情形，强型 Szegő给出 $\log\det T_n(e^{h})=n\,h_0+\sum_{k\ge1}k\,h_k h_{-k}+o(1)$。我们在 de Branges 相位坐标中得到的二次型极限 $\frac12\,\mathcal Q(h)=\frac{1}{4\pi^{2}}\int_{\mathbb R}|\widehat{h\circ\varphi^{-1}}(\xi)|^2\,|\xi|\,d\xi$ 与 $\sum_{k\ge1}k\,|h_k|^2$ 等价（Fourier 权 $|\xi|$），从而二阶常数完全一致；这与 Widom 的 Wiener–Hopf 两项式在直线侧的陈述相匹配，亦与 DPP 线性统计的 $H^{1/2}$ 方差普适律一致。
 
 ---
 
