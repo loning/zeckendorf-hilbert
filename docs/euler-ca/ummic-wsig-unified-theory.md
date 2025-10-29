@@ -1,7 +1,7 @@
 # UMMIC–WSIG：窗口化测量—信息几何—Mellin/de Branges—可逆 CA 的统一正式理论（对外版）
 
 **作者**：Auric（S-series / EBOC）
-**版本**：v1.6（2025-10-29，阿联酋时区）
+**版本**：v1.17（2025-10-29，阿联酋时区）
 **关键词**：窗口化读数；Nyquist–Poisson–Euler–Maclaurin；镜像核；Mellin 完成函数；de Branges–Kreĭn 规范系统；相位密度；Carleson 测度；Toeplitz/Berezin 局域化；Born=I-投影；可逆 CA；信息守恒
 **MSC**：42C15；46E22；47B35；11Mxx；68Q80；81Txx
 
@@ -9,21 +9,21 @@
 
 ## 摘要（定性）
 
-在"有限窗—有限阶 Euler–Maclaurin（EM）—镜像不引入新奇点"的纪律下，本文从母映射—Mellin 嵌入出发构造完成函数 $Z(s)$，在 de Branges–Kreĭn 规范系统与散射词典中，严格建立**相位导数 = 相对谱密度**的窗口化一致性 $\varphi'(\omega)=\pi\rho(\omega)$（窗平均意义），并给出任意有限窗读数的**Nyquist–Poisson–Euler–Maclaurin（NPEM）**非渐近误差闭合。进一步，以 reproducing-kernel 论证与 Carleson 测度刻画 de Branges 类空间的采样/插值门槛，并在 Toeplitz/Berezin 局域化框架中给出迹—Weyl 型恒等式。信息几何层面，证明"**Born 概率 = KL/I-投影；指针基 = 谱统计极小化子；窗口 = 极小极大最优**"的三位一体定理，并将"自由意志"刻画为可逆 CA 层间的**边界行动**，其代价为窗口化分布的 KL 跃迁量，满足全局信息守恒。
+在"有限窗—有限阶 Euler–Maclaurin（EM）—镜像不引入新奇点"的纪律下，本文从母映射—Mellin 嵌入出发构造完成函数 $Z(s)$，在 de Branges–Kreĭn 规范系统与散射词典中，严格建立**相位导数 = $(2\pi\times)$相对谱密度**的窗口化一致性 $\varphi'(\omega)=2\pi\rho(\omega)$（窗平均意义），其中 $\rho(\omega)=\frac{1}{2\pi}\partial_\omega\arg\det S(\omega)=-\partial_\omega\xi(\omega)$，并给出任意有限窗读数的**Nyquist–Poisson–Euler–Maclaurin（NPEM）**非渐近误差闭合。进一步，以 reproducing-kernel 论证与 Carleson 测度刻画 de Branges 类空间的采样/插值门槛，并在 Toeplitz/Berezin 局域化框架中给出迹—Weyl 型恒等式。信息几何层面，证明"**Born 概率 = KL/I-投影；指针基 = 谱统计极小化子；窗口 = 极小极大最优**"的三位一体定理，并将"自由意志"刻画为可逆 CA 层间的**边界行动**，其代价为窗口化分布的 KL 跃迁量，满足全局信息守恒。
 
 ---
 
 ## 0. 公设、记号与对象
 
-**A0（有限窗纪律）**：可观测量仅通过支持有限或快速衰减的窗 $W$ 读出；只允许有限阶 EM 展开。误差预算由**三项**封顶：$\mathrm{Err}=\mathrm{Alias}+\mathrm{Poisson}+\mathrm{EM}$，其中 **EM** 指有限阶 Euler–Maclaurin 的"伯努利层 + 截断尾"（见 §2、§3）。
+**A0（有限窗纪律）**：可观测量仅通过支持有限或快速衰减的窗 $W$ 读出；只允许有限阶 EM 展开。**窗函数正则性**：除支持/衰减条件外，本文默认 $W\in W^{1,1}(\mathbb R)$（或等价地 $W\in C^1$ 且 $W,W'\in L^1$），以确保 $\partial_u\langle\varphi\rangle_{W,u}=\langle\varphi'\rangle_{W,u}$ 的合法性。误差预算由**三项**封顶：$\mathrm{Err}=\mathrm{Alias}+\mathrm{Poisson}+\mathrm{EM}$，其中 **EM** 指有限阶 Euler–Maclaurin 的"伯努利层 + 截断尾"（见 §2、§3）。**适用域澄清**：§2 的滑移窗恒等式 $\langle\varphi'\rangle_{W,u}=2\pi\langle\rho\rangle_{W,u}$ 为**分布作用的精确等式，不含误差**；本节误差预算**仅**用于 §3 中的离散化（采样/求和）与有限阶 EM 截断分析。
 
 **A1（相位—密度守恒，滑移窗平均）**：归一化相位 $\varphi$ 与相对谱密度 $\rho$ 满足
 
 $$
-\langle\varphi'\rangle_{W,u}=\pi\langle\rho\rangle_{W,u}\qquad(\forall u\in\mathbb R),
+\langle\varphi'\rangle_{W,u}=2\pi\langle\rho\rangle_{W,u}\qquad(\forall u\in\mathbb R),
 $$
 
-其证明见 §2"定理 2"。该等式源于 Birman–Kreĭn 公式与 Wigner–Smith 延迟矩阵的散射理论结构。([arXiv][1])
+其中 $\rho=\frac{1}{2\pi}\partial_\omega\arg\det S=-\xi'$。其证明见 §2"定理 2"。该等式源于 Birman–Kreĭn 公式与 Wigner–Smith 延迟矩阵的散射理论结构。([arXiv][1])
 
 **A2（镜像核）**：存在核 $K$ 与标度 $a$ 使 $K(x)=x^{-a}K(1/x)$。其 Mellin 变换 $\Phi(s)=\int_0^\infty x^{s-1}K(x)\,dx$ 满足 $\Phi(s)=\Phi(a-s)$，且镜像不引入新奇点（端点经有限阶 EM 控制）。一般 Mellin 工具见。([people.mpim-bonn.mpg.de][2])
 
@@ -47,8 +47,14 @@ $$
 
 ## 1. 基本构造与词典
 
-**定义 1（镜像—Mellin 完成）**
-若 $K(x)=x^{-a}K(1/x)$ 且其 Mellin 变换 $\Phi(s)=\int_0^\infty x^{s-1}K(x)\,dx$ 在所需条带存在（例如 $K\in L^1(\mathbb R_+,dx/x)$ 可保成立），则 $\Phi(s)=\Phi(a-s)$。镜像不引入新奇点（端点由有限阶 EM 尾项吸收），并据此定义 $Z(s)$ 如上。镜像对称的标准推导见 Mellin 变换通论。([people.mpim-bonn.mpg.de][2])
+**定义 1（镜像—Mellin 完成，带正则前提）**
+设 $K\in L^1(\mathbb R_+,dx/x)\cap BV_{\mathrm{loc}}(\mathbb R_+)$，并在 $0$ 与 $\infty$ 处具有与所选 EM 阶 $M$ 相匹配的 $2M$ 阶可积渐近展开（使有限阶 EM 余项收敛）。若 $K(x)=x^{-a}K(1/x)$，则在绝对收敛条带内 $\Phi(s)=\Phi(a-s)$；镜像延拓**不新增除端点型外的奇性**，端点贡献由有限阶 EM 尾项统一吸收，因而
+
+$$
+Z(s)=M_f(s)\Phi(s),\qquad M_f(s)=\int_0^\infty x^{s-1}f(x)\,dx .
+$$
+
+镜像对称的标准推导见 Mellin 变换通论。([people.mpim-bonn.mpg.de][2])
 
 **定义 2（相位—谱词典，含相对归一化）**
 选定"自由"参考对 $(H_0,f_0,K_0)$，记
@@ -57,15 +63,23 @@ $$
 Z_{\mathrm{rel}}(s):=\frac{Z(s)}{Z_0(s)},\qquad Z_0(s):=M_{f_0}(s)\Phi_0(s).
 $$
 
-假设沿临界线存在散射矩阵 $S(\omega)$ 使
+**单位模归一化与散射决定子**：选择参考使 $|Z_{\mathrm{rel}}(\tfrac{a}{2}+i\omega)|=1$（a.e.）。据此定义
 
 $$
-\det S(\omega)=Z_{\mathrm{rel}}\big(\tfrac12+i\omega\big).
+D(\omega):=Z_{\mathrm{rel}}\bigl(\tfrac{a}{2}+i\omega\bigr)\quad(\text{scattering determinant}),
 $$
 
-据此定义相对相位 $\varphi(\omega):=\arg Z_{\mathrm{rel}}(\tfrac12+i\omega)$，并由 $\det S(\omega)=e^{-2\pi i\xi(\omega)}$ 取 $\pi\rho(\omega):=\partial_\omega\xi(\omega)$。在 §0 的窗与正则前提下，§2 将证明 $\langle\varphi'\rangle_W=\pi\langle\rho\rangle_W$（滑移窗平均）。([arXiv][1])
+并以 $\theta(\omega):=\arg D(\omega)$ 计量相位。若存在矩阵散射 $S_{\mathrm{mat}}(\omega)$，约定 $\det S_{\mathrm{mat}}(\omega)=D(\omega)$。于是
 
-**相位展开与零点处理**：取参考点 $\omega_0$ 连续展开 $\varphi$，并将零点处的跳变以 $\mu_Z=\sum_j m_j\delta(\omega-\omega_j)$ 记账；本文中的 $\varphi'$ 指展开后之绝对连续部分，离散部分在窗平均下计入 $\langle\mu_Z\rangle_{W,u}$ 并并入 $\pi\langle\rho\rangle_{W,u}$ 的右端审计。
+$$
+\rho(\omega)=\frac{1}{2\pi}\partial_\omega\theta(\omega)=-\partial_\omega\xi(\omega),
+$$
+
+而 $Q(\omega)=-iS_{\mathrm{mat}}(\omega)^\dagger\partial_\omega S_{\mathrm{mat}}(\omega)$ 满足 $\partial_\omega\arg\det S_{\mathrm{mat}}(\omega)=\mathrm{Tr}Q(\omega)=\partial_\omega\theta(\omega)$；若仅有决定子通道，则理解为 $\mathrm{Tr}Q=\partial_\omega\theta$。
+
+在 §0 的窗与正则前提下，§2 将证明 $\langle\varphi'\rangle_W=2\pi\langle\rho\rangle_W$（滑移窗平均）。([arXiv][1])
+
+**相位导数（分布/测度意义）**：记 $\theta(\omega):=\arg D(\omega)$。定义 $\varphi'(\omega):=\partial_\omega \theta(\omega)$ 为分布（有限符号测度）导数，其 Lebesgue–Radon–Nikodym 分解为 $\partial_\omega \theta = (\partial_\omega \theta)_{\mathrm{ac}} + 2\pi\sum_j m_j\delta(\omega-\omega_j)$。令 $\rho:=(1/2\pi)\partial_\omega \theta=-\partial_\omega\xi$。于是对任意窗 $W$，$\langle\varphi'\rangle_{W,u}:=\langle \partial_\omega \theta,W(\cdot-u)\rangle = 2\pi\langle \rho\rangle_{W,u}$，无需另设 $\mu_Z$ 审计项。
 
 **定义 3（NPEM 三分解）**
 任何有限窗读数的误差拆分为
@@ -74,7 +88,7 @@ $$
 \mathrm{Err}=\mathrm{Alias}+\mathrm{Poisson}+\mathrm{EM},
 $$
 
-其中别名来自欠采样频栅越 Nyquist；Poisson 为格点重排项；EM 为有限阶伯努利层与尾项，常数由 DLMF 的 Bernoulli 多项式与 EM 误差界给出。([Massachusetts Institute of Technology][6])
+其中别名来自欠采样频栅越 Nyquist；Poisson 为格点重排项；EM 为有限阶伯努利层与尾项，常数由 DLMF 的 Bernoulli 多项式与 EM 误差界给出。([DLMF][16])
 
 **定义 4（EBOC 边界行动的 KL 度量）**
 层 $L$ 的行动 $u_L$ 将边界更新为 $B_L^+=\mathcal A_L(B_L,u_L)$。以内层观测分布 $p_{L+1}$ 定义
@@ -106,31 +120,47 @@ $$
 Z(s)=M_f(s)\Phi(s),\qquad M_f(s):=\int_0^\infty x^{s-1}f(x)\,dx .
 $$
 
-一般情形仅有 $\Phi$ 的镜像对称；**若另加** $f(x)=x^{-a}f(1/x)$，则对临界线
+一般情形仅有 $\Phi$ 的镜像对称；**若另加** $f(x)=x^{-a}f(1/x)$，则关于镜像中心 $\Re s=a/2$ 的临界线有
 
 $$
-\Big\langle Z\big(\tfrac12+i\omega\big)\Big\rangle_W=\Big\langle Z\big(a-\tfrac12-i\omega\big)\Big\rangle_W+O(\mathrm{Err}),\quad \langle F\rangle_W:=\int_{\mathbb R}F(\omega)W(\omega)\,d\omega .
+\Big\langle Z\big(\tfrac{a}{2}+i\omega\big)\Big\rangle_W=\Big\langle Z\big(\tfrac{a}{2}-i\omega\big)\Big\rangle_W,\quad \langle F\rangle_W:=\int_{\mathbb R}F(\omega)W(\omega)\,d\omega ,
 $$
 
-镜像不引入新奇点（端点由有限阶 EM 尾项吸收）。
+其中镜像 $s\mapsto a-s$ 将 $a/2+i\omega$ 映至 $a/2-i\omega$；镜像不引入新奇点（端点由有限阶 EM 尾项吸收）。
 **证明**：作变元 $x\mapsto 1/x$，由 $K$ 的镜像对称得到功能方程；端点奇性经有限阶 EM 的伯努利层与尾项控制。([people.mpim-bonn.mpg.de][2])
 
 ### 定理 2（信息通量连续方程；窗平均一致）
 
 **定义（滑移窗平均）**：$\langle X\rangle_{W,u}:=\int_{\mathbb R}X(\omega)W(\omega-u)\,d\omega$。
 
-在 trace-class 散射/规范系统假设下，并要求 $W\in W^{1,1}(\mathbb R)$（或 $W\in C^1$ 且 $W,W'\in L^1$），且 $\lim_{|\omega|\to\infty}\varphi(\omega)W(\omega-u)=0$，于是 $\partial_u\langle \varphi\rangle_{W,u}=\langle \varphi'\rangle_{W,u}$。此处 $B_W$ 为 $\widehat W$ 的有效带宽（角频率制）。有
+**解释**：下文 $\langle\varphi'\rangle_{W,u}$ 以**分布导数**理解，并与 $\rho=(1/2\pi)\partial_\omega\theta=-\xi'$ 的测度定义匹配；因此等式 $\langle\varphi'\rangle_{W,u}=2\pi\langle\rho\rangle_{W,u}$ 以分布对 $W(\cdot-u)$ 的作用成立。
+
+**单位约定**：统一以 $\omega$ 为谱参量（或取 $E\equiv\omega$ 的单位化），于是 $Q=-iS_{\mathrm{mat}}^\dagger\partial_\omega S_{\mathrm{mat}}$ 且 $\partial_\omega\theta=\mathrm{Tr}Q$；由 Birman–Kreĭn 得 $\rho=(1/2\pi)\partial_\omega\theta=-\xi'$。
+
+在 trace-class 散射/规范系统假设下，并要求 $W\in W^{1,1}(\mathbb R)$（或 $W\in C^1$ 且 $W,W'\in L^1$），$\varphi\in BV_{\mathrm{loc}}(\mathbb R)$，且 $\lim_{|\omega|\to\infty}\varphi(\omega)W(\omega-u)=0$，于是 $\partial_u\langle \varphi\rangle_{W,u}=\langle \varphi'\rangle_{W,u}$。此处 $B_W$ 为 $\widehat W$ 的有效带宽（角频率制）。有
 
 $$
-\langle \varphi'\rangle_{W,u} = \partial_u\langle \varphi\rangle_{W,u} = \pi\langle \rho\rangle_{W,u}\quad(\forall u\in\mathbb R).
+\langle \varphi'\rangle_{W,u} = \partial_u\langle \varphi\rangle_{W,u} = 2\pi\langle \rho\rangle_{W,u}\quad(\forall u\in\mathbb R)\ \ \text{（分布恒等式）}.
 $$
 
-故窗平均意义下 $\varphi'=\pi\rho$。
-**证明**：Birman–Kreĭn 给出 $\det S(\lambda)=e^{-2\pi i \xi(\lambda)}$；Wigner–Smith 延迟 $Q=-iS^\dagger\partial_E S$ 使得 $\partial_\omega\arg\det S$ 等于谱移 $\xi$ 的导数，进而与相对密度一致；窗口化由 Poisson/EM 将离散化与边界误差归入 $\mathrm{Err}$。([arXiv][1])
+故窗平均意义下 $\varphi'=2\pi\rho$ 为**分布恒等式**。
+**证明**：Birman–Kreĭn 给出 $D(\omega)=e^{-2\pi i\xi(\omega)}$（或矩阵情形 $\det S_{\mathrm{mat}}(\omega)=D(\omega)=e^{-2\pi i\xi(\omega)}$）。Wigner–Smith 延迟
+
+$$
+Q(\omega)=-iS_{\mathrm{mat}}(\omega)^\dagger\partial_\omega S_{\mathrm{mat}}(\omega)
+$$
+
+从而 $\partial_\omega\theta(\omega)=\mathrm{Tr}Q(\omega)=-2\pi\xi'(\omega)$。据此 $\rho(\omega)=(1/2\pi)\partial_\omega\theta(\omega)=-\xi'(\omega)$。**因此，在 §0 的正则与窗条件下，上式对任意 $u$ 以分布作用于 $W(\cdot-u)$ 时恰等成立，**
+
+$$
+\langle\varphi'\rangle_{W,u}=2\pi\langle\rho\rangle_{W,u},
+$$
+
+**不含任何误差项**；Poisson 与 EM 仅用于 §3 的离散化/求和近似分析。([arXiv][1])
 
 ### 定理 3（NPEM 非渐近误差闭合）
 
-设 $W\in C^{r}$（且 $W,W'\in L^1$）且其傅里叶变换 $\widehat W$ 的有效带宽为 $B_W$（角频率制）；定义 Nyquist 阈值 $\Delta\omega_{\mathrm{Nyq}}:=\pi/B_W$，并取 $\Delta\omega\le\Delta\omega_{\mathrm{Nyq}}$。取 EM 阶 $M\le r/2$，并要求 $X\in C^{2M}$ 且 $X^{(2M)}\in L^{1}(|W|,d\omega)$。设窗泄露预算 $L>0$，定义 $\Omega_W$ 使 $\int_{|\omega|>\Omega_W}\!|W(\omega)|\,d\omega\le L$。另取 $X\in L^\infty$ 或 $\widehat X\in L^1$ 以启用别名上界。
+设 $W\in C^{r}$（且 $W,W'\in L^1$）且其傅里叶变换 $\widehat W$ 的有效带宽为 $B_W$（角频率制）。**Nyquist 阈值（区分带限/非带限）**：若 $\widehat W$ **带限**于 $[-B_W,B_W]$，则定义严格 Nyquist 阈值 $\Delta\omega_{\mathrm{Nyq}}:=\pi/B_W$ 并取 $\Delta\omega\le\Delta\omega_{\mathrm{Nyq}}$；若 $\widehat W$ **非带限**，则 $\Delta\omega_{\mathrm{Nyq}}$ 仅为**名义阈值**，零别名不被保证，误差由 $\sum_{k\neq 0}|\widehat{XW}(2\pi k/\Delta\omega)|$ 项显式控制，并与泄露预算 $L$ 与 $\widehat X$ 的可积/衰减性共同决定。取 EM 阶 $M\le r/2$，并要求 $X\in C^{2M}$ 且 $X^{(2M)}\in L^{1}(|W|,d\omega)$。设窗泄露预算 $L>0$，定义 $\Omega_W$ 使 $\int_{|\omega|>\Omega_W}\!|W(\omega)|\,d\omega\le L$。另取 $\widehat X\in L^1$ 以启用别名上界（若仅有 $X\in L^\infty$，须附加光滑度并以分部积分获得频域衰减后再求和）。
 
 令 $\langle X\rangle_{W}:=\int_{\mathbb R}X(\omega)W(\omega)\,d\omega$（理想值），$\langle X\rangle_{\mathrm{disc}}:=\Delta\omega\sum_{n\in\mathbb Z}X(n\Delta\omega)W(n\Delta\omega)$（离散值）。则
 
@@ -141,7 +171,13 @@ C_1\!\!\sum_{k\neq0}\! \big|\widehat{XW}(2\pi k/\Delta\omega)\big|
 + C_3\!\int_{|\omega|>\Omega_W}\! |X||W|.
 $$
 
-其上界可取：若 $X\in L^\infty$，上述首项 $\le C_1|X|_\infty\sum_{k\neq0}|\widehat W(2\pi k/\Delta\omega)|$；或若 $\widehat X\in L^1$，则 $\le C_1|\widehat X|_{L^1}\sup_\eta\sum_{k\neq0}|\widehat W(2\pi k/\Delta\omega-\eta)|$。常数 $C_i$ 仅依赖于 $W$ 的平滑阶、有效带宽 $B_W$ 与泄露预算/衰减常数，以及支集（如适用）。
+其上界可取：**若 $\widehat X\in L^1$**，则
+
+$$
+\sum_{k\neq0}\! \big|\widehat{XW}\big(\tfrac{2\pi k}{\Delta\omega}\big)\big|\ \le\ C_1\ |\widehat X|_{L^1}\ \sup_{\eta\in\mathbb R}\sum_{k\neq0}\big|\widehat W\big(\tfrac{2\pi k}{\Delta\omega}-\eta\big)\big| .
+$$
+
+（如需仅以 $X\in L^\infty$ 立界，须附加 $X$ 的平滑度并改用分部积分衰减界。）常数 $C_i$ 仅依赖于 $W$ 的平滑阶、有效带宽 $B_W$ 与泄露预算/衰减常数，以及支集（如适用）。
 **证明**：欠采样导致别名项；Poisson 求和将离散误差重排为频域格点级数；有限阶 EM 以 Bernoulli 多项式与显式余项控制边界与尾项；各项相加即得。([kryakin.site][8])
 
 ### 定理 4（三位一体：Born = I-投影；Pointer = 谱极小；Window = 极小极大）
@@ -166,7 +202,7 @@ $$
 \mathrm{Tr}\,T_{W,\sigma}=\int \sigma(\omega)W(\omega)K(\omega,\omega)\,d\omega .
 $$
 
-上述可积条件为实现上的充分条件；亦可用 $M_{\sigma W}P\in\mathcal S_1$ 作等价检验标准。
+上述可积条件为实现上的**充分条件**。**充分但不必要的检验**：若 $M_{\sigma W}P\in\mathcal S_1$（或 $PM_{\sigma W}\in\mathcal S_1$），则 $T_{W,\sigma}\in\mathcal S_1$ 并满足上式；一般 RKHS 中二者不必等价，需按具体核与权衡量核查。
 **证明**：迹类积分算子之迹等于核的对角积分（Brislawn 与 Simon 的迹理想理论）；此处核为投影核经乘法符号件的压缩；可由 Berezin 变换视角理解为"符号在核对角上的加权积分"。([projecteuclid.org][9])
 
 ### 定理 6（采样—插值的 Carleson 判据）
@@ -195,7 +231,7 @@ $$
 
 ## 3. 门槛、不可兼得与最优窗
 
-**采样下界（Landau 型）**：若 $\mathrm{supp}\,\rho\subset[-B,B]$（$B$ 以角频率计），则必要样本密度 $\delta_\omega:=1/\Delta\omega\ge B/\pi$（等价于 $\Delta\omega\le \pi/B$）。若以 Hz 计的带宽 $B_{\mathrm{Hz}}=B/2\pi$，则必要采样率 $f_s\ge 2B_{\mathrm{Hz}}$。否则 $\mathrm{Alias}$ 主导误差。([numdam.org][12])
+**采样下界（Landau 型）**：若 $\mathrm{supp}\,\widehat\rho\subset[-B,B]$（$\xi$ 域），则必要样本密度 $\delta_\omega:=1/\Delta\omega\ge B/\pi$（等价于 $\Delta\omega\le \pi/B$）。若以 Hz 计的带宽 $B_{\mathrm{Hz}}=B/2\pi$，则必要采样率 $f_s\ge 2B_{\mathrm{Hz}}$。否则 $\mathrm{Alias}$ 主导误差。([numdam.org][12])
 
 **Balian–Low 不可能性**：时频紧集中与正交紧帧不可兼得，需以 $(W,W^\sharp)$ 的近紧折中实现稳定—分辨率平衡。([科学直通车][13])
 
@@ -219,7 +255,7 @@ $$
 
 ## 5. 例证（最小可核验）
 
-**E1（带限谱）**：设 $\rho(\omega)=\mathbf 1_{[-B,B]}$。取 Chebyshev 窗，$\Delta\omega\le \pi/B$，数值验证 $\langle\varphi'\rangle_W=\pi\langle\rho\rangle_W$ 与定理 3 的非渐近上界。([journals.ametsoc.org][14])
+**E1（有限支撑谱）**：设 $\rho(\omega)=\mathbf 1_{[-B,B]}$。取 Chebyshev 窗，按数值实验选择 $\Delta\omega$（别名不可为零，仅由窗抑制）；验证 $\langle\varphi'\rangle_W=2\pi\langle\rho\rangle_W$ 及定理 3 的非渐近上界。**若需零别名**之 Nyquist 结论，则改用带限假设 $\mathrm{supp}\,\widehat\rho\subset[-B,B]$，并取 $\Delta\omega\le\pi/B$。([journals.ametsoc.org][14])
 
 **E2（母映射—Mellin）**：由母指数和取片得到 $f$，构造 $Z(s)$ 与镜像核 $\Phi(s)$，检验 $\Phi(s)=\Phi(a-s)$ 与临界线相位—谱一致性。([people.mpim-bonn.mpg.de][2])
 
@@ -255,7 +291,13 @@ UMMIC–WSIG 在可检验、可复现的有限窗纪律下，将**散射相位�
 
 * **镜像与完成**：$K(x)=x^{-a}K(1/x)\Rightarrow \Phi(s)=\Phi(a-s)$,
   $Z(s)=\big(\int_0^\infty x^{s-1}f(x)\,dx\big)\Phi(s)$。([people.mpim-bonn.mpg.de][2])
-* **相位—谱一致**：$\langle \varphi' \rangle_W=\pi\langle \rho\rangle_W$（窗平均，一致性由"定理 2"给出），由 $\det S=e^{-2\pi i\xi}$、$Q=-iS^\dagger S'$ 推出。([arXiv][1])
+* **相位—谱一致**：$\langle \varphi' \rangle_W=2\pi\langle \rho\rangle_W$，且 $\rho=\frac{1}{2\pi}\partial_\omega\theta=-\xi'$（窗平均，一致性由"定理 2"给出）。并且
+
+$$
+Q(\omega)=-iS_{\mathrm{mat}}(\omega)^\dagger\partial_\omega S_{\mathrm{mat}}(\omega),\quad \partial_\omega\theta(\omega)=\mathrm{Tr}Q(\omega),
+$$
+
+与 $D(\omega)=e^{-2\pi i\xi}$（或 $\det S_{\mathrm{mat}}=e^{-2\pi i\xi}$）一致，从而 $\rho=(1/2\pi)\partial_\omega\theta=-\xi'$。([arXiv][1])
 * **NPEM 误差界**：见定理 3（Poisson + EM + 别名）。([kryakin.site][8])
 * **I-投影**：$q=\arg\min_{r\in\mathcal C(W,T)}D_{\mathrm{KL}}(r\|p)$，Pythagoras 成立。([pages.stern.nyu.edu][5])
 * **Wexler–Raz 对偶**：近-tight 对偶窗最小化最坏误差。([sites.math.duke.edu][15])
