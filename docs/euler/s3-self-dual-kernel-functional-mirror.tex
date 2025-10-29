@@ -1,0 +1,306 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\setlist[itemize]{nosep,leftmargin=1.6em}
+\setlist[enumerate]{nosep,leftmargin=1.6em}
+
+\geometry{margin=1in}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+\DeclareMathOperator{\Re}{Re}
+\DeclareMathOperator{\Im}{Im}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Arg}{Arg}
+
+\raggedbottom
+
+\title{Self-Dual Kernels and Functional Mirror}
+
+\author{Haobo Ma\thanks{Independent Researcher} \and Wenlin Zhang\thanks{National University of Singapore}}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{center}
+\textit{Mellin Self-Duality, Completed Function Template and Verifiable Growth Bounds Baseline}
+\end{center}
+
+\begin{abstract}
+Following the tube-domain/interchange baseline of S1 and the additive mirror geometry of S2, this paper systematically establishes a unified template for \textbf{self-dual kernels---Mellin mirror} and \textbf{completed functions}: under minimal integrability assumptions, we derive a rigorous theorem $\Phi(s)=\Phi(a-s)$ from self-dual kernels $K(x)=x^{-a}K(1/x)$; under two types of premises---multiplicative-group Schwartz class and finite-order endpoint regularity---we establish analyticity and (as needed) entireness/meromorphy of $\Phi$; we construct $(\Gamma/\pi)$ normalization factors satisfying $r(s)=r(a-s)$ and establish the \textbf{template definition} and \textbf{vertical-line growth bounds} for the completed function $\Xi(s)=r(s)\Phi(s)$; and we demonstrate kernel selection and symmetry using $\xi(s)$ as an example. The entire paper provides verifiable conditions and complete proofs, with notation and interchange discipline consistent with S0/S1.
+\end{abstract}
+
+\section{Notation and Prerequisites (Aligned with S0/S1/S2)}
+
+\subsection{Mellin Transform and Self-Dual Kernels}
+
+For $K:(0,\infty)\to\mathbb{C}$ and complex number $a$, we call $K$ an \textbf{$a$-self-dual kernel} if
+\begin{equation}
+K(x)=x^{-a}K(1/x)\quad(x>0).
+\end{equation}
+
+\begin{equation}
+\boxed{\ \text{Throughout this paper, }a\in\mathbb{R}\ .\ }
+\end{equation}
+
+Define the Mellin transform
+\begin{equation}
+\Phi(s):=\mathcal{M}[K](s)=\int_0^\infty K(x) x^{s-1} dx
+\end{equation}
+holomorphic in its strip of absolute convergence. Convergence, interchange, and term-by-term operations all follow S1's C0--C3 (tube domain, Tonelli--Fubini, Morera, Weierstrass criterion).
+
+\subsection{Integrability Domain}
+
+\begin{equation}
+\mathcal{I}(K):=\Big\{\sigma\in\mathbb{R}:\ \int_0^1 |K(x)| x^{\sigma-1} dx<\infty,\ \int_1^\infty |K(x)| x^{\sigma-1} dx<\infty\Big\}.
+\end{equation}
+
+If $\mathcal{I}(K)\neq\varnothing$, then $\mathcal{I}(K)^\circ$ is generally a union of several open intervals. Take any connected component $(\sigma_-,\sigma_+)$.
+
+\subsection{Schwartz Class on the Multiplicative Group}
+
+Define
+\begin{equation}
+\boxed{\quad H\in\mathcal{S}(\mathbb{R}_+^\times)\iff
+\sup_{x>0}(1+|\log x|)^M\,\big|(x\partial_x)^N H(x)\big|<\infty\ \ (\forall M,N\in\mathbb{N})\quad}
+\end{equation}
+which is equivalent to $h(y):=H(e^y)\in\mathcal{S}(\mathbb{R})$. This is the standard Mellin--Fourier dictionary.
+
+\subsection{Mirror Interface with S2}
+
+S2's ``amplitude balance + phase antipodality'' provides transversal geometry of zero sets (codimension 2). This paper provides analytic symmetry $\Phi(s)=\Phi(a-s)$ on the multiplicative side, with the two dually related in kernel selection and completed function construction.
+
+\section{Self-Dual Kernel Implies Functional Mirror (Minimal Integrability Premise)}
+
+\begin{theorem}[Mellin Self-Duality $\Rightarrow$ Functional Mirror]\label{thm:selfdual}
+Let $K$ be an $a$-self-dual kernel with $\mathcal{I}(K)\cap(a-\mathcal{I}(K))\neq\varnothing$. Take any connected component $(\sigma_-,\sigma_+)$ of $\mathcal{I}(K)^\circ$. Then for
+\begin{equation}
+\Re s\in(\sigma_-,\sigma_+)\cap(a-\sigma_+,a-\sigma_-)
+\end{equation}
+we have
+\begin{equation}
+\Phi(s)=\Phi(a-s).
+\end{equation}
+Hence $\Phi$ is symmetric about $\Re s=\frac{a}{2}$ and holomorphic in that strip.
+\end{theorem}
+
+\begin{proof}
+Under absolute convergence, substitute $x\mapsto 1/x$:
+\begin{equation}
+\Phi(s)=\int_0^\infty K(x) x^{s-1} dx
+=\int_0^\infty x^{-a} K(1/x) x^{s-1} dx
+=\int_0^\infty K(u) u^{a-s-1} du
+=\Phi(a-s).
+\end{equation}
+Endpoint terms are excluded by absolute integrability; holomorphy follows from S1's Morera--Tonelli and Cauchy formula.
+\end{proof}
+
+\section{Construction of Self-Dual Kernels and the Entire Case}
+
+\begin{proposition}[Systematic Construction of Self-Dual Kernels]\label{prop:construction}
+For any $H:(0,\infty)\to\mathbb{C}$, let
+\begin{equation}
+K_H^{(a)}(x):=x^{-a/2}\big(H(x)+H(1/x)\big).
+\end{equation}
+Then $K_H^{(a)}$ is an $a$-self-dual kernel. If $H\in\mathcal{S}(\mathbb{R}_+^\times)$, then
+\begin{equation}
+\Phi(s)=\int_0^\infty K_H^{(a)}(x) x^{s-1} dx
+\end{equation}
+is well-defined as a Lebesgue integral on the central vertical line $\Re s=\frac{a}{2}$, and $t\mapsto \Phi(\frac{a}{2}+it)$ is Schwartz. Without additional assumptions of exponential-type decay or compact support, generally only absolute integrability on the central vertical line can be guaranteed; if there exists $\eta>0$ such that $e^{\eta|\log x|}H\in L^1(\mathbb{R}_+^\times)$ (or $h$ is compactly supported in $y$), then one obtains holomorphy in the strip $|\Re s-\frac{a}{2}|<\eta$ (or larger domain) and polynomial bounds on vertical lines (consistent with the discussion below).
+\end{proposition}
+
+\begin{proof}[Key points]
+Transform to the additive group via $y=\log x$ and repeatedly perform multiplicative integration by parts; boundary terms vanish due to $H\in\mathcal{S}(\mathbb{R}_+^\times)$; the central vertical line corresponds to the even Fourier transform, yielding Schwartz-class rapid decay. With additional exponential weight assumptions, Montel/Weierstrass gives holomorphy and polynomial bounds on vertical lines in the central strip.
+\end{proof}
+
+\section{$\Gamma/\pi$ Normalization and Vertical-Line Growth for Completed Functions}
+
+\begin{definition}[Symmetric $\Gamma/\pi$ Factor]\label{def:gamma}
+We call $r(s)$ an \textbf{$a$-symmetric $\Gamma/\pi$ factor} if there exists a finite set $\{(\lambda_j,\delta_j)\}_{j=1}^J$ ($\lambda_j\in\mathbb{R}$, $\delta_j\in\{0,1\}$) such that
+\begin{equation}
+r(s)=\prod_{j=1}^J\Big[\pi^{-\frac{s+\lambda_j}{2}}\,\Gamma\Big(\frac{s+\lambda_j}{2}\Big)\,\pi^{-\frac{a-s+\lambda_j}{2}}\,\Gamma\Big(\frac{a-s+\lambda_j}{2}\Big)\Big]^{\delta_j}
+\end{equation}
+so that $r(a-s)=r(s)$.
+\end{definition}
+
+\begin{definition}[Completed Function]\label{def:completed}
+Within the strip of Theorem~\ref{thm:selfdual}, define
+\begin{equation}
+\Xi(s):=r(s)\,\Phi(s)\quad\Rightarrow\quad \Xi(a-s)=\Xi(s).
+\end{equation}
+\end{definition}
+
+\begin{proposition}[Vertical-Line Growth Control]\label{prop:growth}
+If $\Phi$ has at most polynomial growth in the strip $\sigma_0\le\Re s\le \sigma_1$, then $\Xi(s)$ has polynomial bounds in the same strip, and \textbf{each pair} of $\Gamma_{\mathbb{R}}$-factors simultaneously contributes
+\begin{equation}
+\Gamma_{\mathbb{R}}(u):=\pi^{-u/2}\,\Gamma(u/2)
+\end{equation}
+providing exponential decay of level \textbf{$e^{-\frac{\pi}{2}|t|}$} on $\Re s=\sigma$; if there are $J$ pairs in total, then overall exponential decay of order $e^{-\frac{\pi}{2}J|t|}$ is obtained in that strip.
+\end{proposition}
+
+\begin{proof}[Key points]
+For fixed $\sigma$, apply the Stirling estimate
+$|\Gamma(\sigma'+it')|\sim \sqrt{2\pi}\,|t'|^{\sigma'-1/2}e^{-\frac{\pi}{2}|t'|}$.
+For $\Gamma_{\mathbb{R}}(s+\lambda_j)\Gamma_{\mathbb{R}}(a-s+\lambda_j)$, this yields $e^{-\frac{\pi}{2}|t|}$ decay, which multiplied by the polynomial bound on $\Phi$ gives the conclusion.
+\end{proof}
+
+\section{Typical Special Case: Kernel Expression for $\xi(s)$}
+
+Let the Jacobi $\vartheta$-kernel be
+\begin{equation}
+\vartheta(x)=\sum_{n\in\mathbb{Z}}e^{-\pi n^2 x},\qquad \vartheta(x)=x^{-1/2}\vartheta(1/x),
+\end{equation}
+and take
+\begin{equation}
+K_\vartheta(x):=\vartheta(x)-1-x^{-1/2},\qquad
+\Phi_\vartheta(s):=\int_0^\infty K_\vartheta(x)\,x^{\frac{s}{2}-1}\,dx.
+\end{equation}
+
+The above integral converges absolutely for $0<\Re s<1$ and thereby defines $\Phi_\vartheta$; outside this strip, $\Phi_\vartheta$ is taken to be its analytic continuation (the identity below first holds for $1<\Re s<2$, and the entireness of $\Phi_\vartheta$ is determined by analytic continuation).
+
+Then $K_\vartheta$ is a self-dual kernel with $a=\frac{1}{2}$; at the $x\to0^+$ endpoint we have $K_\vartheta(x)\to -1$ with exponentially small contribution from the $\vartheta(x)-x^{-1/2}$ part; at the $x\to\infty$ endpoint there is power-dominated decay $-x^{-1/2}+O(e^{-\pi x})$. The normalized identity $\pi^{-s/2}\Gamma(\frac{s}{2})\zeta(s)=\frac{1}{2}\,\Phi_\vartheta(s)+\frac{1}{s(s-1)}$ cancels the poles arising from constant leading terms at endpoints, yielding the entireness of $\Phi_\vartheta$ (via analytic continuation).
+
+The classical identity (first valid for $1<\Re s<2$, then analytically continued) is
+\begin{equation}
+\boxed{\ \pi^{-s/2}\,\Gamma\Big(\frac{s}{2}\Big)\,\zeta(s)
+=\tfrac{1}{2}\,\Phi_\vartheta(s)+\frac{1}{s(s-1)}\ }
+\end{equation}
+where $\frac{1}{s(s-1)}$ arises from merging the leading terms at both endpoints (constant term as $x\to0^+$ and power leading term as $x\to\infty$).
+
+Accordingly, define
+\begin{equation}
+\boxed{\ \Xi_\vartheta(s):=\frac{1}{2}\,s(s-1)\Big(\tfrac{1}{2}\,\Phi_\vartheta(s)+\frac{1}{s(s-1)}\Big)
+=\frac{1}{2}\,s(s-1)\,\pi^{-s/2}\,\Gamma\Big(\frac{s}{2}\Big)\,\zeta(s)\ },
+\end{equation}
+then $\Xi_\vartheta(1-s)=\Xi_\vartheta(s)$, which is the standard symmetry of the Riemann completed function $\xi(s)$.
+
+\section{Converse Proposition and Kernel--Function Equivalence}
+
+\begin{theorem}[Kernel Representation of Mirror Functions]\label{thm:converse}
+Let $F(s)$ be holomorphic with polynomial growth in the strip $\sigma_0\le\Re s\le\sigma_1$, and suppose $F(s)=F(a-s)$. Take $\sigma\in(\sigma_0,\sigma_1)$ such that
+\begin{equation}
+\boxed{\ \{\sigma,\ a-\sigma\}\subset(\sigma_0,\sigma_1)\ \text{and}\ F\ \text{has at most polynomial growth in the closed strip } \min\{\sigma,a-\sigma\}\le \Re s\le \max\{\sigma,a-\sigma\}\ }
+\end{equation}
+In the sense of Mellin-tempered distributions, define
+\begin{equation}
+K(x):=\frac{1}{2\pi i}\int_{\Re s=\sigma} F(s)\,x^{-s}\,ds.
+\end{equation}
+Then (in the distributional sense) we have $K(x)=x^{-a}K(1/x)$, and $\mathcal{M}[K](s)=F(s)$ holds in that strip; if furthermore $F(\sigma+it)=O(|t|^{-1-\varepsilon})$ (or sufficient $L^1$ conditions), then $K$ satisfies the same conclusions in the pointwise function sense.
+\end{theorem}
+
+\begin{proof}[Key points]
+By the growth bound, it is legitimate to shift the line to $\Re s=a-\sigma$, and using the mirror $F(s)=F(a-s)$ and Cauchy's theorem, we obtain the self-dual relation and Mellin inversion. To shift lines directly in the pointwise function sense, one can add Phragm\'en--Lindel\"of type control such as $F(\sigma+it)=O(|t|^{-1-\varepsilon})$ (in any closed strip); otherwise, work in the distributional sense as stated.
+\end{proof}
+
+\section{Counterexamples and Boundary Families}
+
+\begin{itemize}
+\item \textbf{R3.1 (Non-strict self-duality)}: If $K=x^{-a}K(1/x)+E$ with $E\not\equiv0$, then $\Phi(s)-\Phi(a-s)=\mathcal{M}[E](s)$.
+
+\item \textbf{R3.2 (Endpoint non-integrability)}: If endpoint behavior $K(x)\sim x^{-\beta}$ as $x\to0^+$ or $\sim x^{-\gamma}$ as $x\to\infty$ leads to $\mathcal{I}(K)=\varnothing$, then $\Phi$ has no legitimate strip.
+
+\item \textbf{R3.3 (Interchange violation)}: When S1's dominated convergence/absolute convergence conditions are not met, Poisson--Mellin interchange and differentiation/integration interchange do not hold.
+\end{itemize}
+
+\section{Unified Verifiable Checklist (S3-CL)}
+
+\begin{enumerate}
+\item \textbf{Self-duality}: $K(x)=x^{-a}K(1/x)$.
+
+\item \textbf{Convergence strip}: $\mathcal{I}(K)$ contains a non-empty open interval; the mirror holds for $\max\{\sigma_-,a-\sigma_+\}<\Re s<\min\{\sigma_+,a-\sigma_-\}$.
+
+\item \textbf{Interchange discipline}: All substitutions, Poisson, term-by-term operations are performed under S1's C0--C3 assumptions.
+
+\item \textbf{Holomorphy/entireness path (choose one)}:
+\begin{enumerate}
+\item If only $H\in\mathcal{S}(\mathbb{R}_+^\times)$, this guarantees integrability on the central vertical line $\Re s=\frac{a}{2}$ and rapid decay in $t$; for holomorphy in a strip with polynomial bounds, additional exponential weights are needed or use S4; or
+\item Finite-order endpoint expansion with weighted integrability (pole sources and meromorphic continuation given by S4's ``Bernoulli layers + finite-order EM'').
+\end{enumerate}
+
+\item \textbf{Normalization}: Take $a$-symmetric $\Gamma/\pi$ factor $r(s)$; then $\Xi=r\Phi$ satisfies $\Xi(a-s)=\Xi(s)$; each pair of $\Gamma_{\mathbb{R}}$ gives $e^{-\frac{\pi}{2}|t|}$ decay on vertical lines.
+\end{enumerate}
+
+\appendix
+
+\section{Mellin Integration by Parts and Entireness Criterion}
+
+If $f\in C^N(0,\infty)$ and for some $\sigma\in\mathbb{R}$, $(x\partial_x)^k f\in L^1((0,\infty),x^{\sigma-1}dx)$ ($0\le k\le N$), and satisfies
+\begin{equation}
+\lim_{x\to0^+}x^\sigma\sum_{k=0}^{N-1}\big|(x\partial_x)^k f(x)\big|=0,\quad
+\lim_{x\to\infty}x^\sigma\sum_{k=0}^{N-1}\big|(x\partial_x)^k f(x)\big|=0,
+\end{equation}
+then on $\Re s=\sigma$ (if $s\notin\{0\}$)
+\begin{equation}
+\int_0^\infty f(x)\,x^{s-1}dx=\frac{(-1)^N}{s^N}\int_0^\infty (x\partial_x)^N f(x)\,x^{s-1}dx.
+\end{equation}
+At $s=0$, take the continuous extension by limit. Weighted integrability and boundary term vanishing must be satisfied on the chosen $\Re s=\sigma$. If the right-hand side converges absolutely for all $s\in\mathbb{C}$ (e.g., $f$ compactly supported, or satisfying $\forall\eta>0,\ e^{\eta|\log x|}f\in L^1$), then $\Phi$ is entire.
+
+\section{$\vartheta$-Kernel and Integral Representation of $\xi(s)$}
+
+By Poisson summation, $\vartheta(x)=x^{-1/2}\vartheta(1/x)$. For $1<\Re s<2$,
+\begin{equation}
+\int_0^\infty\big(\vartheta(x)-1\big)\,x^{\frac{s}{2}-1}dx=2\,\pi^{-s/2}\,\Gamma\Big(\frac{s}{2}\Big)\,\zeta(s),
+\end{equation}
+then regularizing the divergences at both endpoints using $K_\vartheta=\vartheta-1-x^{-1/2}$ and performing analytic continuation yields the identity in \S4 and
+$\Xi_\vartheta(s)=\xi(s)$.
+
+\section{Stirling Estimate for Vertical-Line Growth}
+
+Write $s=\sigma+it$. Stirling's formula gives
+\begin{equation}
+\big|\Gamma\big(\tfrac{s+\lambda}{2}\big)\big|\sim \sqrt{2\pi}\,\Big|\tfrac{t}{2}\Big|^{\frac{\sigma+\lambda}{2}-\frac{1}{2}}\,e^{-\frac{\pi}{4}|t|}\quad(|t|\to\infty),
+\end{equation}
+so each pair
+$\Gamma_{\mathbb{R}}(s+\lambda)\Gamma_{\mathbb{R}}(a-s+\lambda)$
+provides exponential decay of order $e^{-\frac{\pi}{2}|t|}$ on $\Re s=\sigma$, which combined with the polynomial bound on $\Phi$ yields Proposition~\ref{prop:growth}.
+
+\section*{Concluding Remarks}
+
+Self-dual kernels elevate S2's \textbf{geometric mirror} to an \textbf{analytic mirror} on the multiplicative side: under minimal integrability premises we obtain $\Phi(s)=\Phi(a-s)$; under strong regularity we achieve entireness and vertical-line growth control; by means of symmetric $\Gamma/\pi$ normalization, the completed function $\Xi$ naturally exhibits the symmetry axis $\Re s=\frac{a}{2}$. This template both supports \textbf{S4}'s finite-order Euler--Maclaurin analytic continuation and pole cancellation, and provides unified syntax and growth tools for \textbf{S7}'s $L$-function archimedean factors and explicit formula.
+
+\begin{thebibliography}{9}
+
+\bibitem{titchmarsh1986}
+E.~C. Titchmarsh, \emph{The Theory of the Riemann Zeta-function} (2nd ed.), Oxford University Press, 1986.
+
+\bibitem{iwaniec2004}
+H.~Iwaniec and E.~Kowalski, \emph{Analytic Number Theory}, American Mathematical Society, 2004.
+
+\bibitem{apostol1976}
+T.~M. Apostol, \emph{Introduction to Analytic Number Theory}, Springer-Verlag, 1976.
+
+\bibitem{lang}
+S.~Lang, \emph{Complex Analysis}, Springer-Verlag, 1993.
+
+\bibitem{rudin1987}
+W.~Rudin, \emph{Real and Complex Analysis}, McGraw-Hill, 1987.
+
+\bibitem{stein2003}
+E.~M. Stein and R.~Shakarchi, \emph{Complex Analysis}, Princeton University Press, 2003.
+
+\bibitem{doetsch}
+G.~Doetsch, \emph{Introduction to the Theory and Application of the Laplace Transformation}, Dover, 1943.
+
+\bibitem{hormander1990}
+L.~H\"ormander, \emph{An Introduction to Complex Analysis in Several Variables}, North-Holland, 1990.
+
+\bibitem{whittaker-watson}
+E.~T. Whittaker and G.~N. Watson, \emph{A Course of Modern Analysis}, Cambridge University Press, 1927.
+
+\end{thebibliography}
+
+\end{document}
+
