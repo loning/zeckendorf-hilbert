@@ -1,6 +1,6 @@
 # WLRC：窗口—局部可逆嵌入的独立正式理论
 
-Version: 1.6
+Version: 1.8
 
 （面向 EBOC / RCCA-Min / S-series 的信息守恒–窗化测量内核）
 
@@ -31,7 +31,19 @@ $$
 C_{i,W}(x)=(x_{i-m},\dots,x_{i+m})\in\mathcal X_W:=\{0,1\}^W .
 $$
 
-**外部邻域模型（确定性）**：固定 $\mathsf{Bdry}:\mathcal X_W\to\{0,1\}^{2r}$。若采用"枚举"策略，需指定**规范化选择**（如按字典序极小），使 $\mathrm{extend}_{\mathsf{Bdry}}(u)$ 对每个 $u$ 唯一，从而 $y(u)$ 单值。
+**外部邻域模型（确定性）**：固定 $\mathsf{Bdry}:\mathcal X_W\to\{0,1\}^{2r}$，记 $\mathsf{Bdry}(u)=(b^-,b^+)$，其中 $b^\pm\in\{0,1\}^r$。若采用"枚举"策略，需指定规范化选择（如按字典序极小），使 $\mathsf{Bdry}(u)$ 对每个 $u$ 唯一，从而一步窗读数单值。
+
+**局部一步窗更新算子与 $y(u)$ 的正确定义**：令 $\tilde u:=b^-\,\Vert\,u\,\Vert\,b^+$（连接），定义 $Y_{\mathsf{Bdry}}:\mathcal X_W\to\mathcal X_W$ 为
+
+$$
+\big(Y_{\mathsf{Bdry}}(u)\big)_j \ :=\ f\!\big(\tilde u_{\,j:\,j+2r}\big),\qquad j=1,\dots,W,
+$$
+
+其中 $\tilde u_{\,j:\,j+2r}=(\tilde u_j,\ldots,\tilde u_{j+2r})$。据此**定义**
+
+$$
+y(u)\ :=\ Y_{\mathsf{Bdry}}(u).
+$$
 
 **边带与扩展态。** 引入有限**边带字母表** $\mathcal A$，其位宽 $\ell=\lceil\log_2|\mathcal A|\rceil$。扩展窗口态空间为 $\mathcal S_W=\mathcal X_W\times\mathcal A$，读出映射 $\pi:\mathcal S_W\to\mathcal X_W,(u,a)\mapsto u$。
 
@@ -50,22 +62,16 @@ $$
 
 则称 $F$ 在 $(i,W)$ 上**窗口—局部可逆**。**下文均采用此固定标签版。**
 
-**定义 2（冲突等价与类大小）。** 固定外部邻域模型 $\mathsf{Bdry}$。定义确定性像
-
-$$
-y(u):=C_{i,W}\!\big(F(\mathrm{extend}_{\mathsf{Bdry}}(u))\big)\in\mathcal X_W .
-$$
-
-由此给出等价关系 $u_1\sim u_2\iff y(u_1)=y(u_2)$。记类大小 $k(u):=|\{u':u'\sim u\}|$，以及最大类大小
+**定义 2（冲突等价与类大小）。** 固定外部邻域模型 $\mathsf{Bdry}$，并记 $y(u):=Y_{\mathsf{Bdry}}(u)\in\mathcal X_W$。由此定义等价关系 $u_1\sim u_2\iff y(u_1)=y(u_2)$，记类大小 $k(u):=|\{u':u'\sim u\}|$，以及最大类大小
 
 $$
 k_{\max}=\max_{u\in\mathcal X_W}k(u).
 $$
 
-**时间 $t$ 步窗读数（逐步外延约定）**：令 $y^{(0)}(u):=u$。对 $t\ge1$，递归定义
+**时间 $t$ 步窗读数（逐步外延约定）**：令 $y^{(0)}(u):=u$，对 $t\ge1$ 递归定义
 
 $$
-y^{(t)}(u)\ :=\ C_{i,W}\!\big(F(\mathrm{extend}_{\mathsf{Bdry}}(y^{(t-1)}(u)))\big).
+y^{(t)}(u)\ :=\ Y_{\mathsf{Bdry}}^{\circ t}(u).
 $$
 
 若无特别说明，本文均采用该逐步外延约定。
@@ -145,19 +151,20 @@ $$
 **步骤**：
 
 1. 对每个 $u\in\{0,1\}^W$，令 $b:=\mathsf{Bdry}(u)$，拼接得 $\tilde u\in\{0,1\}^{W+2r}$。
-2. 施行一步 $F$ 得 $\tilde v$，回裁 $v=C_{i,W}(\tilde v)$。
+2. 直接计算 $v := Y_{\mathsf{Bdry}}(u)$（无需构造 $\tilde v$ 与裁剪）。
 3. 以 $v$ 分箱得到等价类，记 $k_{\max}$。
 4. 设 $a_\star\in\mathcal A$ 固定。对每类 $\mathcal C_j$ 的 $u$，置 $\Phi_{i,W}(u,a_\star)=\big(y(u),\iota_j(e_j(u))\big)$。令 $R=\mathcal X_W\times\big(\mathcal A\setminus\{a_\star\}\big)$，$T=\mathcal S_W\setminus\big\{(y(u),\iota_j(e_j(u))):u\in\mathcal X_W\big\}$。取枚举 $\rho:R\to\{1,\dots,|R|\}$、$\tau:T\to\{1,\dots,|T|\}$，并定义 $\Phi_{i,W}(u,a)=\tau^{-1}\!\big(\rho(u,a)\big)$（$a\neq a_\star$）。由此可组装 $P_W$ 并自动满足 $P_W^{-1}=P_W^\top$。
 5. 校验 $\pi\big(\Phi_{i,W}(u,a_\star)\big)=y(u)$。
    **输出**：$|\mathcal A|=k_{\max}$、置换 $P_W$、读出 $\pi$。
 
-**复杂度。** 由于 $\mathsf{Bdry}$ 为确定性映射，仅需枚举 $u\in\{0,1\}^W$。每个 $u$ 的一步演化在窗内涉及 $W$ 个格点的局部更新（$r$ 为常数），故总时间复杂度为
+**复杂度。** 对每个 $u\in\{0,1\}^W$ 计算一步窗读数 $v=Y_{\mathsf{Bdry}}(u)$ 的代价为 $O(W)$（$r$ 视为常数），因而像计算合计 $O(W\,2^W)$。用哈希/桶分箱得到等价类合计 $O(2^W)$ 级别。组装置换 $\Phi_{i,W}$ 分两部分：其一，在 $\mathcal X_W\times\{a_\star\}$ 上的映射为线性时间 $O(2^W)$；其二，在补集 $R=\mathcal X_W\times(\mathcal A\!\setminus\!\{a_\star\})$ 与 $T=\mathcal S_W\setminus\{(y(u),\iota_j(e_j(u)))\}$ 之间配对，需要 $O(|R|)=O\!\big(2^W(|\mathcal A|-1)\big)$ 时间。故**总时间复杂度**
 
 $$
-O\!\big(W\,2^{W}\big).
+O\!\big(W\,2^{W}\big)\ +\ O\!\big(2^W|\mathcal A|\big)
+\ =\ O\!\big(2^W(W+|\mathcal A|)\big).
 $$
 
-若采用最小字母表 $|\mathcal A|=k_{\max}$，则稀疏置换存储规模为 $O(2^{W}k_{\max})$；一般情形为 $O(2^{W}|\mathcal A|)$。
+**空间复杂度**（稀疏置换存储）为 $O(2^W|\mathcal A|)$；在取最小字母表 $|\mathcal A|=k_{\max}$ 时，时间与空间分别为 $O\!\big(2^W(W+k_{\max})\big)$ 与 $O\!\big(2^W k_{\max}\big)$。
 
 > 计算 $k_{\max}$ 与前像结构可借助**de Bruijn 图**及其矩阵/闭路计数方法高效实现（广泛用于 1D CA 的前像计数与可逆性分析）。([sfi-edu.s3.amazonaws.com][3])
 
@@ -174,7 +181,7 @@ $$
 
 与 WLRC 约束一致的集合上，最小化 $D_{\mathrm{KL}}(p\Vert \mathcal P)$ 的 (I)-投影给出最"非偏置"的测度更新，即**Born = (I)-投影**的离散化实例。此为 Csiszár 的 (I)-散度极小几何与 Jaynes 最大熵原理在本框架的特化。([Project Euclid][4])
 
-**相位—通量守恒。** 因 $\Phi_{i,W}$ 为双射，对任意分布 $p(u,a)$ 有 $(U',A')=\Phi(U,A)$ 满足 $H(U',A')=H(U,A)$。一般地，互信息 $I(U';A')$ 既可能增亦可能减，因此不对 $H_{\text{win}}$ 断言单调性；本文将"通量守恒"限定为**联合熵不变**这一可逆性不变量。
+**相位—通量守恒。** 记 $H_{\text{win}}:=H(U')$ 为窗读出的边缘熵。因 $\Phi_{i,W}$ 为双射，对任意分布 $p(u,a)$ 有 $(U',A')=\Phi(U,A)$ 满足 $H(U',A')=H(U,A)$。一般地，互信息 $I(U';A')$ 既可能增亦可能减，因此不对 $H_{\text{win}}$ 断言单调性；本文将"通量守恒"限定为**联合熵不变**这一可逆性不变量。
 
 ---
 
@@ -296,8 +303,11 @@ WLRC 把任意一维有限半径 CA 的不可逆性，在**有限观测窗**的�
   ```
   for u in {0,1}^W:
       b := Bdry(u)          # 确定性外部邻域
-      u_tilde = extend(u,b)
-      v = crop(F(u_tilde), W)
+      u_tilde = extend(u, b)          # 连接 b^- || u || b^+
+      # 基于局部规则的一步窗更新
+      for j in 1..W:
+          v[j] = f(u_tilde[j : j+2*r])
+      # 或等价地：v = Y_Bdry(u)
       record class[u] by canonical v
   compute k_max = max_class_size()
   assign enumerations e_j and embeddings iota_j for each class
