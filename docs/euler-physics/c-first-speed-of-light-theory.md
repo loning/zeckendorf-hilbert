@@ -1,6 +1,6 @@
 # $(c)$-FIRST：光速常数的严格定义、等价层、误差账本与完整证明（全文）
 
-**Version: 1.15**（2025-10-30，Asia/Dubai）
+**Version: 1.19**（2025-10-30，Asia/Dubai）
 
 **作者**：Auric（EBOC / WSIG / S-series）
 
@@ -102,15 +102,15 @@ $$
 $$
 在该条件下频谱重复项不重叠，从而 $\varepsilon_{\mathrm{alias}}=0$。若仅具"有效带宽"（存在带外尾项，非严格带限），则一般 $\varepsilon_{\mathrm{alias}}\neq0$，其量级由带外能量与 $\Delta E$ 给出，应按 §8.1 的上界并入误差账本。([fab.cba.mit.edu][6])
 
-3. **Poisson—EM（端点与尾项）**：为应用下述 Euler–Maclaurin 上界，取整数 $m\ge 1$，并假设 $g(E):=w_R(E)\,[h\!\star\!\operatorname{tr}Q_L](E)\in C^{2m}[a,b]$ 且 $g^{(2m)}$ 可积（或有界）；在真空链路下因 $h\!\star\!\operatorname{tr}Q_L$ 为常值，选择 $w_R\in C^{2m}_c$ 即可满足该条件。有限窗口与数值积分引入的端点/尾项由 Euler–Maclaurin 余项显式控制。对上述光滑 $g$，有
+3. **Poisson—EM（端点与尾项）**：为应用下述 Euler–Maclaurin 上界，取整数 $m\ge 1$，并假设 $g(E):=w_R(E)\,[h\!\star\!\operatorname{tr}Q_L](E)\in C^{2m}[a,b]$ 且 $g^{(2m)}$ 可积（或有界）；在真空链路下因 $h\!\star\!\operatorname{tr}Q_L$ 为常值，选择 $w_R\in C^{2m}_c$ 即可满足该条件。**设能量步长为 $\Delta E$，节点 $E_n=a+n\,\Delta E$**，则对应的 Euler–Maclaurin 余项上界为
 $$
 \bigl|\varepsilon_{\mathrm{EM}}^{(m)}\bigr|
-\ \le\ \frac{2\,\zeta(2m)}{(2\pi)^{2m}}
+\ \le\ \frac{2\,\zeta(2m)}{(2\pi)^{2m}}\,(\Delta E)^{2m}
 \int_{a}^{b}\!\bigl|g^{(2m)}(E)\bigr|\,dE
-\ \le\ \frac{2\,\zeta(2m)}{(2\pi)^{2m}}\,(b-a)\,
-\sup_{E\in[a,b]}\bigl|g^{(2m)}(E)\bigr|,
+\ \le\ \frac{2\,\zeta(2m)}{(2\pi)^{2m}}\,(\Delta E)^{2m}(b-a)\,
+\sup_{E\in[a,b]}\bigl|g^{(2m)}(E)\bigr|.
 $$
-其中 $g(E):=w_R(E)\,[h\!\star\!\operatorname{tr}Q_L](E)$。因而随观测带宽 $(b-a)$ 与阶数 $m$ 的选择，上界按上式受控并收敛（**详见 §8.2**）。([carmamaths.org][7])
+因此随 $\Delta E\downarrow$ 与阶数 $m\uparrow$，端点/尾项误差受控并收敛（**详见 §8.2**）。([carmamaths.org][7])
 
 4. **极限与唯一性（理论项）**：综合 1)–3)，在真空链路下
 $$
@@ -165,11 +165,11 @@ $$
 
 ### 6.2 光锥前沿
 
-对 3 维波/Maxwell，推迟格林函数为
+对三维**标量**波动方程，推迟格林函数为
 $$
-G_{\mathrm{ret}}(t,\mathbf r)=\frac{\delta\!\bigl(t-|\mathbf r|/c\bigr)}{4\pi |\mathbf r|},
+G_{\mathrm{ret}}(t,\mathbf r)=\frac{\delta\!\bigl(t-|\mathbf r|/c\bigr)}{4\pi|\mathbf r|},
 $$
-支撑恰位于**光锥** $t=r/c$。因此任意因果驱动的**最早非零响应**满足 $t_{\min}=L/c$，前沿速度为 $c$。—证毕。([solar.physics.montana.edu][9])
+其支撑严格位于**光锥** $t=r/c$。对于 **Maxwell** 方程，时域格林函数为**dyadic（张量）**核，可由对 $\delta(t-r/c)/(4\pi r)$ 的张量—微分算子作用（含 $\delta$ 及其导数）构成；其**支撑同样仅在光锥上**。因此任意因果驱动的**最早非零响应**满足 $t_{\min}=L/c$，前沿速度为 $c$。—证毕。([solar.physics.montana.edu][9]; dyadic 结构见 [ETH Zürich][15])
 
 ### 6.3 快/慢光与前驱
 
@@ -206,7 +206,13 @@ $$
 \mathsf T:=\frac{\hbar}{2\pi}\!\int_{\mathbb R} w_R(E)\,[h\!\star\!\operatorname{tr}Q](E)\,dE.
 $$
 
-**实际观测（离散）估计量**记为 $\mathrm{Obs}$。由有限采样与有限带宽/阶数，
+令 $g(E):=w_R(E)\,[h\!\star\!\operatorname{tr}Q](E)$，取等距能量网格 $E_n=a+n\,\Delta E$（$n=0,\dots,N$，$b=a+N\,\Delta E$）。定义**梯形法**的离散估计量
+$$
+\mathrm{Obs}:=\frac{\hbar}{2\pi}\,\Delta E\left[\frac{g(E_0)+g(E_N)}{2}+\sum_{n=1}^{N-1} g(E_n)\right],
+$$
+与连续量 $\displaystyle \mathsf T=\frac{\hbar}{2\pi}\int_{a}^{b}\!g(E)\,dE$ 对应。其偏差由 $\varepsilon_{\text{alias}}$、$\varepsilon_{\text{EM}}$ 与 $\varepsilon_{\text{tail}}$ 构成，详见下文。
+
+由有限采样与有限带宽/阶数，
 $$
 \mathrm{Obs}=\mathsf T+\varepsilon_{\text{alias}}+\varepsilon_{\text{EM}}+\varepsilon_{\text{tail}}
 =\frac{L}{c}+\varepsilon_{\text{alias}}+\varepsilon_{\text{EM}}+\varepsilon_{\text{tail}},
@@ -232,14 +238,15 @@ $$
 
 **无混叠（alias-free）充要条件**：若 $\widehat f(\tau)=0$ 当 $|\tau|\ge \pi/\Delta E$，则所有 $k\neq 0$ 项为零，别名项消失。
 
-**别名误差上界（非严格带限时）**：
+**别名误差上界（非严格带限时；针对梯形估计量）**：
 $$
 \boxed{\
-\bigl|\varepsilon_{\mathrm{alias}}\bigr|
-\le \frac{1}{\Delta E}\sum_{k\neq 0}
+\bigl|\varepsilon_{\mathrm{alias}}^{\text{trap}}\bigr|
+\le \sum_{k\neq 0}
 \left|\widehat f\!\Bigl(\frac{2\pi k}{\Delta E}\Bigr)\right|
 \ }.
 $$
+此处把 Poisson 周期化后的 $\Delta E\sum f$ 与 $\int f$ 之差写为 $k\neq0$ 频谱重复的和；有限区间的端点/权重误差由 §8.2 的 EM 上界单独计入，不在此项重复记账。
 
 与频率域的**等价换元**：令 $\omega:=E/\hbar,\ \Delta\omega:=\Delta E/\hbar,\ g(\omega):=f(\hbar\omega),\ \widehat g(t):=\!\int g(\omega)e^{-i\omega t}d\omega$（此时 $t=\hbar\tau$），则
 $$
@@ -261,22 +268,35 @@ $$
 
 ### 8.2 Euler–Maclaurin（端点与尾项）
 
-对光滑 $g$ 与整数 $m\ge1$，Euler–Maclaurin 给出
+对光滑 $g$ 与整数 $m\ge1$，**步长 $\Delta E$** 的 Euler–Maclaurin 给出
 $$
-\sum_{n=a}^{b} g(n)=\!\int_a^b g(x)\,dx+\frac{g(a)+g(b)}{2}
-+\sum_{k=1}^{m}\frac{B_{2k}}{(2k)!}\bigl(g^{(2k-1)}(b)-g^{(2k-1)}(a)\bigr)+R_{2m},
+\sum_{n=0}^{N} g(E_n)=\frac{1}{\Delta E}\int_{a}^{b}\!g(x)\,dx+\frac{g(a)+g(b)}{2}
++\sum_{k=1}^{m}\frac{B_{2k}}{(2k)!}\,(\Delta E)^{2k-1}\!\Bigl(g^{(2k-1)}(b)-g^{(2k-1)}(a)\Bigr)+R_{2m},
 $$
-余项满足可用上界
+其中 $E_n=a+n\,\Delta E,\ N=(b-a)/\Delta E$。余项满足可用上界
 $$
 \bigl|R_{2m}\bigr|
-\ \le\ \frac{2\,\zeta(2m)}{(2\pi)^{2m}}
+\ \le\ \frac{2\,\zeta(2m)}{(2\pi)^{2m}}\,(\Delta E)^{2m-1}
 \int_{a}^{b}\!\bigl|g^{(2m)}(x)\bigr|\,dx
-\ \le\ \frac{2\,\zeta(2m)}{(2\pi)^{2m}}\,(b-a)\,
-\sup_{x\in[a,b]}\bigl|g^{(2m)}(x)\bigr|,
+\ \le\ \frac{2\,\zeta(2m)}{(2\pi)^{2m}}\,(\Delta E)^{2m-1}(b-a)\,
+\sup_{x\in[a,b]}\bigl|g^{(2m)}(x)\bigr|.
 $$
-因此：对**固定的 $m$**，余项上界一般**不**随带宽 $(b-a)$ 单调下降；若选用随带宽伸缩且满足 $\sup_{x\in[a,b]}\!\bigl|g^{(2m)}(x)\bigr|$ 随带宽足够快衰减的窗族，上界方可随带宽下降。相反，在**固定带宽**下，**提高阶数 $m$** 时，上界按 $\dfrac{2\,\zeta(2m)}{(2\pi)^{2m}}$ 因子**单调**下降。由此，通过合适的窗族选择与增大 $m$，端点/尾项误差**可控并收敛至 0**。
-
-取 $g=w_R\,[h\!\star\!\operatorname{tr}Q]$ 即得 $\varepsilon_{\text{EM}}$ 的显式上界。—证毕。([carmamaths.org][7])
+**针对梯形积分的误差阶**：将上式两边乘以 $\Delta E$ 并整理得
+$$
+\underbrace{\Delta E\left[\frac{g(a)+g(b)}{2}+\sum_{n=1}^{N-1} g(E_n)\right]}_{\text{梯形法}}
+=\int_a^b g(x)\,dx
++\sum_{k=1}^{m}\frac{B_{2k}}{(2k)!}\,(\Delta E)^{2k}\!\Bigl[g^{(2k-1)}(b)-g^{(2k-1)}(a)\Bigr]
++\Delta E\,R_{2m}.
+$$
+由 $|R_{2m}|\le \dfrac{2\zeta(2m)}{(2\pi)^{2m}}(\Delta E)^{2m-1}\!\int_a^b |g^{(2m)}|$，得到
+$$
+\bigl|\mathrm{Obs}-\mathsf T\bigr|
+\le \frac{\hbar}{2\pi}\left[
+\sum_{k=1}^{m}\frac{|B_{2k}|}{(2k)!}\,(\Delta E)^{2k}\cdot\bigl|g^{(2k-1)}(b)-g^{(2k-1)}(a)\bigr|
++\frac{2\zeta(2m)}{(2\pi)^{2m}}\,(\Delta E)^{2m}\!\int_a^b |g^{(2m)}(x)|\,dx
+\right].
+$$
+因此在**固定带宽**下，端点/尾项误差随 $m\uparrow$ 或 $\Delta E\downarrow$ 按 **$(\Delta E)^{2m}$** 收敛（$m=1$ 时即 $O((\Delta E)^2)$）。取 $g=w_R\,[h\!\star\!\operatorname{tr}Q]$ 即得 $\varepsilon_{\text{EM}}$ 的显式上界。—证毕。([carmamaths.org][7])
 
 ### 8.3 尾项（有限带宽截断）
 
@@ -322,7 +342,7 @@ $(\mathrm A)$ 相位斜率/谱移密度、$(\mathrm B)$ 因果前沿、$(\mathrm
 
 ## 12. 与相对论/场论的相容性（要点证明）
 
-* **洛伦兹协变**：波/Maxwell 的推迟格林函数支撑在 $t=r/c$（第 6.2 节），保证"光锥前沿= $c$" 与协变性一致。—证毕。([solar.physics.montana.edu][9])
+* **洛伦兹协变**：标量波动方程与 Maxwell 方程的推迟格林函数支撑均在 $t=r/c$（第 6.2 节），保证"光锥前沿= $c$" 与协变性一致。—证毕。([solar.physics.montana.edu][9])
 * **微因果**：Soulas 证明"无超信号性 $\Rightarrow$ 微因果"；结合 6.1–6.2，所得前沿与信息光锥一致。—证毕。([arXiv][11])
 
 ---
@@ -339,7 +359,7 @@ $(\mathrm A)$ 相位斜率/谱移密度、$(\mathrm B)$ 因果前沿、$(\mathrm
 
 ### 13.3 光锥支撑的直接校验
 
-将 $G_{\mathrm{ret}}(t,\mathbf r)=\delta(t-r/c)/(4\pi r)$ 代入波算符 $(\frac{1}{c^2}\partial_t^2-\nabla^2)$ 的分布意义计算，可得 $(\frac{1}{c^2}\partial_t^2-\nabla^2)G_{\mathrm{ret}}=\delta(t)\delta(\mathbf r)$；支撑仅在 $t=r/c$。—证毕。([solar.physics.montana.edu][9])
+对**标量**波动方程，将 $G_{\mathrm{ret}}(t,\mathbf r)=\delta(t-r/c)/(4\pi r)$ 代入波算符 $(\frac{1}{c^2}\partial_t^2-\nabla^2)$ 的分布意义计算，可得 $(\frac{1}{c^2}\partial_t^2-\nabla^2)G_{\mathrm{ret}}=\delta(t)\delta(\mathbf r)$；支撑仅在 $t=r/c$。对 **Maxwell** 方程，其 dyadic 格林函数虽需张量—微分算子构造，但**支撑同样仅在光锥上**，故前沿速度结论相同。—证毕。([solar.physics.montana.edu][9]; [ETH Zürich][15])
 
 ### 13.4 信息阈值与误差指数
 
@@ -369,6 +389,7 @@ $(\mathrm A)$ 相位斜率/谱移密度、$(\mathrm B)$ 因果前沿、$(\mathrm
 **12.** P. Woit, "Notes on the Poisson Summation Formula"（2020，讲义）。
 **13.** Curtis–Hedlund–Lyndon theorem（CHL 定理）条目与综述（维基）。
 **14.** BIPM，"SI 基本单位：米（metre）"页面。
+**15.** ETH Zürich, "Radiation" lecture notes, Ch. 6（时域 dyadic 格林函数）。
 
 ---
 
@@ -378,7 +399,7 @@ $(\mathrm A)$ 相位斜率/谱移密度、$(\mathrm B)$ 因果前沿、$(\mathrm
 * Wigner–Smith 定义与跨域应用：Smith 1960；JASA 近作（声学版）。([APS链接][1])
 * Birman–Kreĭn 与 $\det S$ 的谱移表述与导数关系：Pushnitski（2010）；Borthwick（2021/2022）。([arXiv][3])
 * KK—因果等价：Toll 1956。([APS链接][4])
-* 3D 推迟格林函数的光锥支撑：标准波动方程讲义。([solar.physics.montana.edu][9])
+* 3D 推迟格林函数的光锥支撑：标量波动方程讲义；Maxwell dyadic 格林函数。([solar.physics.montana.edu][9]; [ETH Zürich][15])
 * 快/慢光与信息速度：Stenner–Gauthier–Neifeld（2003）；Dorrah–Mojahedi（2014）；前驱分析（2012）。([PubMed][10])
 * NPE 误差账本的三支：Shannon（Nyquist）、Poisson（Woit 讲义）、EM（Bailey–Borwein）。([fab.cba.mit.edu][6])
 * CHL 定理与离散光锥：维基条目与 CA 专著。([维基百科][13])
@@ -401,3 +422,4 @@ $(\mathrm A)$ 相位斜率/谱移密度、$(\mathrm B)$ 因果前沿、$(\mathrm
 [12]: https://www.math.columbia.edu/~woit/fourier-analysis/theta-zeta.pdf?utm_source=chatgpt.com "Notes on the Poisson Summation Formula, Theta Functions ..."
 [13]: https://en.wikipedia.org/wiki/Curtis%E2%80%93Hedlund%E2%80%93Lyndon_theorem?utm_source=chatgpt.com "Curtis–Hedlund–Lyndon theorem"
 [14]: https://www.bipm.org/en/si-base-units/metre?utm_source=chatgpt.com "SI base unit: metre (m)"
+[15]: https://ethz.ch/content/dam/ethz/special-interest/itet/photonics-dam/documents/lectures/EandM/Radiation.pdf?utm_source=chatgpt.com "Chapter 6 Radiation - ETH Zürich"
