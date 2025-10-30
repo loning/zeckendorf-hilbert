@@ -1,6 +1,6 @@
 # $(c)$-FIRST：光速常数的严格定义、等价层、误差账本与完整证明（全文）
 
-**Version: 1.10**（2025-10-30，Asia/Dubai）
+**Version: 1.14**（2025-10-30，Asia/Dubai）
 
 **作者**：Auric（EBOC / WSIG / S-series）
 
@@ -34,7 +34,7 @@ $$
 
 * （A）**相位斜率 / 谱移密度**：$\ \partial_E\arg\det S=\operatorname{tr}Q=-2\pi\,\xi'(E)$（BK 公式），故 $\mathsf T=\hbar\langle \partial_E\arg\det S\rangle$。([arXiv][3])
 * （B）**因果前沿**：严格因果 $\Leftrightarrow$ 频响上半平面解析（KK），3D 推迟格林函数支撑在光锥 $t=r/c$ 上，故**最早非零响应速度**为 $c$。([APS链接][4])
-* （C）**信息光锥**：互信息首次可检阈值速度的上确界等于 $c$。([APS链接][5])
+* （C）**信息光锥（在假设 7.0 下）**：互信息首次可检阈值速度的上确界等于 $c$。([APS链接][5])
 * （D）**SI 实现互逆**："以时定长"（SI）与"以延迟计长"（本文）互为实现。([BIPM][2])
 
 此外给出**Nyquist–Poisson–Euler–Maclaurin（NPE）**非渐近误差账本，实现工程可检。([fab.cba.mit.edu][6])
@@ -102,7 +102,7 @@ $$
 $$
 在该条件下频谱重复项不重叠，从而 $\varepsilon_{\mathrm{alias}}=0$。若仅具"有效带宽"（存在带外尾项，非严格带限），则一般 $\varepsilon_{\mathrm{alias}}\neq0$，其量级由带外能量与 $\Delta E$ 给出，应按 §8.1 的上界并入误差账本。([fab.cba.mit.edu][6])
 
-3. **Poisson—EM（端点与尾项）**：有限窗口与数值积分引入的端点/尾项由 Euler–Maclaurin 余项显式控制。对任意整数 $m\ge 1$ 与光滑 $g$，有
+3. **Poisson—EM（端点与尾项）**：为应用下述 Euler–Maclaurin 上界，取整数 $m\ge 1$，并假设 $g(E):=w_R(E)\,[h\!\star\!\operatorname{tr}Q_L](E)\in C^{2m}[a,b]$ 且 $g^{(2m)}$ 可积（或有界）；在真空链路下因 $h\!\star\!\operatorname{tr}Q_L$ 为常值，选择 $w_R\in C^{2m}_c$ 即可满足该条件。有限窗口与数值积分引入的端点/尾项由 Euler–Maclaurin 余项显式控制。对上述光滑 $g$，有
 $$
 \bigl|\varepsilon_{\mathrm{EM}}^{(m)}\bigr|
 \ \le\ \frac{2\,\zeta(2m)}{(2\pi)^{2m}}
@@ -112,7 +112,21 @@ $$
 $$
 其中 $g(E):=w_R(E)\,[h\!\star\!\operatorname{tr}Q_L](E)$。因而随观测带宽 $(b-a)$ 与阶数 $m$ 的选择，上界按上式受控并收敛（**详见 §8.2**）。([carmamaths.org][7])
 
-4. **极限与唯一性**：综合 1)–3)，$\mathsf T[w_R,h;L]=L/c+\varepsilon_{\text{alias}}+\varepsilon_{\text{EM}}+\varepsilon_{\text{tail}}$，且 $\varepsilon$ 随带宽 $\uparrow$ 与阶次 $\uparrow$ 收敛至 0。故 $\lim_{\text{带宽}\uparrow}\mathsf T=L/c$ 存在且与 $w_R,h$ 无关，从而 $\lim_{\text{带宽}\uparrow} L/\mathsf T=c$ 存在且唯一。—证毕。
+4. **极限与唯一性（理论项）**：综合 1)–3)，在真空链路下
+$$
+\mathsf T[w_R,h;L]
+=\frac{\hbar}{2\pi}\!\int_{\mathbb R} w_R(E)\,[h\!\star\!\operatorname{tr}Q_L](E)\,dE
+=\frac{L}{c}.
+$$
+因此 $\lim_{\text{带宽}\uparrow}\mathsf T=L/c$ 存在且与 $w_R,h$ 无关，从而 $\lim_{\text{带宽}\uparrow} L/\mathsf T=c$ 唯一。
+
+**与实测值的区分**：有限采样与有限带宽下，观测量
+$$
+\mathrm{Obs}
+=\mathsf T[w_R,h;L]
++\varepsilon_{\mathrm{alias}}+\varepsilon_{\mathrm{EM}}+\varepsilon_{\mathrm{tail}},
+$$
+其中各 $\varepsilon$ 的上界如 §8 所述，随带宽↑、步长↓、阶数↑ 而收敛至 0。—证毕。
 
 ---
 
@@ -163,7 +177,9 @@ $$
 
 ---
 
-## 7. 等价层（三）：信息光锥（完整证明）
+## 7. 等价层（三）：信息光锥（在下述通信模型假设下的证明）
+
+**假设 7.0（通信模型）**：信道为严格因果的 LTI 真空链路；接收端在时刻 $\Delta t$ 之前仅基于局域操作与本地噪声（包含经典与量子噪声）生成观测，且这些噪声与发送端输入 $X$ 独立，不允许在单次试验中通过预共享变量使 $Y_{\Delta t}$ 直接携带 $X$ 的信息。
 
 定义"首次可检互信息时间"
 $$
@@ -171,11 +187,11 @@ T_\delta(L):=\inf\bigl\{\Delta t\ge0:\ \exists\ \text{协议使}\ I(X;Y_{\Delta 
 c_{\mathrm{info}}:=\lim_{\delta\downarrow0}\sup_{L>0}\frac{L}{T_\delta(L)}.
 $$
 
-**定理 7.1**：$c_{\mathrm{info}}=c$。
+**定理 7.1（在假设 7.0 下）**：$c_{\mathrm{info}}=c$。
 
 **证明**：
 
-**上界**：若 $\Delta t<L/c$，由 6.2 光锥支撑，因果系统在该时刻的输出与输入独立，故 $I(X;Y_{\Delta t})=0$，从而 $\sup L/T_\delta(L)\le c$。
+**上界**：在假设 7.0 下，若 $\Delta t<L/c$，由 §6.2 的光锥支撑与独立噪声/局域性条件，$Y_{\Delta t}$ 与 $X$ 独立，故 $I(X;Y_{\Delta t})=0$，从而 $\sup L/T_\delta(L)\le c$。
 
 **下界**：真空链路上第 3–5 节给出 $\mathsf T=L/c$。设接收端做能量或相干阈值检验（考虑信道+探测器总噪声），则当 $\Delta t=L/c+\varepsilon$ 时，窗口积累的信噪随带宽/时间线性增长，存在阈值 $\delta(\varepsilon)\downarrow0$ 使 $I\ge\delta(\varepsilon)$。Dorrah–Mojahedi 用"可检测信息速度"以 SNR 阈值在总噪声模型下形式化了该事实。令 $\varepsilon,\delta\downarrow0$，得 $\sup L/T_\delta(L)\ge c$。合并即 $c_{\mathrm{info}}=c$。—证毕。([APS链接][5])
 
@@ -185,14 +201,17 @@ $$
 
 ## 8. NPE 误差账本（非渐近上界与证明）
 
-令实际观测量
+令**理论（连续）聚合量**
 $$
-\mathrm{Obs}=\frac{\hbar}{2\pi}\!\int w_R(E)\,[h\!\star\!\operatorname{tr}Q](E)\,dE,
+\mathsf T:=\frac{\hbar}{2\pi}\!\int_{\mathbb R} w_R(E)\,[h\!\star\!\operatorname{tr}Q](E)\,dE.
 $$
-有限采样与有限带宽导致
+
+**实际观测（离散）估计量**记为 $\mathrm{Obs}$。由有限采样与有限带宽/阶数，
 $$
-\mathrm{Obs}=\frac{L}{c}+\varepsilon_{\text{alias}}+\varepsilon_{\text{EM}}+\varepsilon_{\text{tail}}.
+\mathrm{Obs}=\mathsf T+\varepsilon_{\text{alias}}+\varepsilon_{\text{EM}}+\varepsilon_{\text{tail}}
+=\frac{L}{c}+\varepsilon_{\text{alias}}+\varepsilon_{\text{EM}}+\varepsilon_{\text{tail}},
 $$
+其中第二个等号在真空链路下由 $\mathsf T=L/c$（见 §3–§4）给出。
 
 ### 8.1 Nyquist 与 Poisson（变量与单位已显式化）
 
@@ -283,7 +302,7 @@ $$
 
 **定理 10.1**：光速常数 $c$ 可由窗口化群延迟的 Nyquist 极限**唯一**定义；且与
 
-$(\mathrm A)$ 相位斜率/谱移密度、$(\mathrm B)$ 因果前沿、$(\mathrm C)$ 信息光锥、$(\mathrm D)$ SI 实现
+$(\mathrm A)$ 相位斜率/谱移密度、$(\mathrm B)$ 因果前沿、$(\mathrm C)$ 信息光锥（在假设 7.0 下）、$(\mathrm D)$ SI 实现
 
 **两两等价**。—证毕（综上第 3–9 节）。
 
