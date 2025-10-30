@@ -1,6 +1,6 @@
 # $(c)$-FIRST：光速常数的严格定义、等价层、误差账本与完整证明（全文）
 
-**Version: 1.9**（2025-10-30，Asia/Dubai）
+**Version: 1.10**（2025-10-30，Asia/Dubai）
 
 **作者**：Auric（EBOC / WSIG / S-series）
 
@@ -96,7 +96,11 @@ $$
 
 1. **常值结构**：由第 3 节，$\operatorname{tr}Q_L(E)\equiv L/(\hbar c)$。卷积 $h\!\star\!\operatorname{tr}Q_L$ 与加窗平均均不改变常值。
 
-2. **Nyquist（别名项）**：若被测与窗—核的总频谱**严格带限**，即 $\widehat f(\omega)$ 支撑于 $|\omega|<\Omega_{\max}$ 且采样频率 $\Omega_s>2\Omega_{\max}$，则 Poisson 求和显示频谱重复项不重叠，从而 $\varepsilon_{\mathrm{alias}}=0$。若仅具"**有效带宽**"（存在带外尾项，非严格带限），则一般 $\varepsilon_{\mathrm{alias}}\neq0$，其量级由带外能量与 $\Omega_s$ 给出，应按 §8.1 的上界并入误差账本。([fab.cba.mit.edu][6])
+2. **Nyquist（别名项）**：若被测与窗—核的总频谱在**能量的共轭变量** $\tau$（单位：$\mathrm{J}^{-1}$）上**严格带限**，即 $\widehat f(\tau)$ 支撑于 $|\tau|<\tau_{\max}$，则 Poisson 求和给出**无混叠的充要条件**
+$$
+\boxed{\ \frac{2\pi}{\Delta E}>2\,\tau_{\max}\ \Longleftrightarrow\ \Delta E<\frac{\pi}{\tau_{\max}}\ }.
+$$
+在该条件下频谱重复项不重叠，从而 $\varepsilon_{\mathrm{alias}}=0$。若仅具"有效带宽"（存在带外尾项，非严格带限），则一般 $\varepsilon_{\mathrm{alias}}\neq0$，其量级由带外能量与 $\Delta E$ 给出，应按 §8.1 的上界并入误差账本。([fab.cba.mit.edu][6])
 
 3. **Poisson—EM（端点与尾项）**：有限窗口与数值积分引入的端点/尾项由 Euler–Maclaurin 余项显式控制。对任意整数 $m\ge 1$ 与光滑 $g$，有
 $$
@@ -218,19 +222,23 @@ $$
 \ }.
 $$
 
-与频率域的**等价换元**：令 $\omega:=E/\hbar$、$\Delta\omega:=\Delta E/\hbar$、$g(\omega):=f(\hbar\omega)$、$\widehat g(t):=\int g(\omega)e^{-i\omega t}d\omega$（此时 $t=\hbar\tau$），则上式等价于
+与频率域的**等价换元**：令 $\omega:=E/\hbar,\ \Delta\omega:=\Delta E/\hbar,\ g(\omega):=f(\hbar\omega),\ \widehat g(t):=\!\int g(\omega)e^{-i\omega t}d\omega$（此时 $t=\hbar\tau$），则
 $$
 \sum_{n} g\!\bigl(\omega_0+n\,\Delta\omega\bigr)
-=\frac{1}{\Delta\omega}\sum_{k}\widehat g(k\,\Omega_s)\,e^{\,ik\Omega_s\,\omega_0},\quad
-\Omega_s:=\frac{2\pi}{\Delta\omega},
+=\frac{1}{\Delta\omega}\sum_{k\in\mathbb Z}\widehat g\!\bigl(k\,T_s\bigr)\,
+e^{\,i\,k\,T_s\,\omega_0},\qquad T_s:=\frac{2\pi}{\Delta\omega}\ \text{（时间采样周期）}.
 $$
 
-因而标准 Nyquist 条件 $\Omega_s>2\,\Omega_{\max}$ 对应到能量域为
+**无混叠条件**在 $(\omega,t)$ 变量下等价为
 $$
-\boxed{\ \Delta E<\frac{\pi\hbar}{\Omega_{\max}}\ }.
+\boxed{\ T_s>2\,t_{\max}\ \Longleftrightarrow\ \Delta\omega<\frac{\pi}{t_{\max}}\ },
+$$
+其中 $t_{\max}$ 为 $\widehat g(t)$ 的支持上界；在能量域对应为
+$$
+\boxed{\ \Delta E<\frac{\pi\,\hbar}{t_{\max}}\ }.
 $$
 
-在本文应用中可取 $f(E)=w_R(E)\,[h\!\star\!\operatorname{tr}Q](E)$。上述单位与变量的显式化，保证 §4 与 §8 的 NPE 误差账本在**能量采样**与**频率采样**两种实现之间严格一致，可检且无歧义。—证毕。([math.columbia.edu][12])
+在本文应用中可取 $f(E)=w_R(E)\,[h\!\star\!\operatorname{tr}Q](E)$。上述单位与变量的显式化保证 §4 与 §8 的 NPE 误差账本在**能量采样**与**频率采样**两种实现之间严格一致、可检且无歧义。—证毕。([math.columbia.edu][12])
 
 ### 8.2 Euler–Maclaurin（端点与尾项）
 
