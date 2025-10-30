@@ -1,6 +1,6 @@
 # $(c)$-FIRST：光速常数的严格定义、等价层、误差账本与完整证明（全文）
 
-**Version: 1.14**（2025-10-30，Asia/Dubai）
+**Version: 1.15**（2025-10-30，Asia/Dubai）
 
 **作者**：Auric（EBOC / WSIG / S-series）
 
@@ -274,9 +274,9 @@ $$
 \ \le\ \frac{2\,\zeta(2m)}{(2\pi)^{2m}}\,(b-a)\,
 \sup_{x\in[a,b]}\bigl|g^{(2m)}(x)\bigr|,
 $$
-因而当带宽与阶数上升时，上界随 $(b-a)$ 与 $\sup|g^{(2m)}|$ 的联合控制而单调收敛，确保端点/尾项误差可严格纳入误差账本。
+因此：对**固定的 $m$**，余项上界一般**不**随带宽 $(b-a)$ 单调下降；若选用随带宽伸缩且满足 $\sup_{x\in[a,b]}\!\bigl|g^{(2m)}(x)\bigr|$ 随带宽足够快衰减的窗族，上界方可随带宽下降。相反，在**固定带宽**下，**提高阶数 $m$** 时，上界按 $\dfrac{2\,\zeta(2m)}{(2\pi)^{2m}}$ 因子**单调**下降。由此，通过合适的窗族选择与增大 $m$，端点/尾项误差**可控并收敛至 0**。
 
-取 $g=w_R\,[h\!\star\!\operatorname{tr}Q]$ 即得 $\varepsilon_{\text{EM}}$ 的显式上界；随 $m$ 与带宽增长单调减小。—证毕。([carmamaths.org][7])
+取 $g=w_R\,[h\!\star\!\operatorname{tr}Q]$ 即得 $\varepsilon_{\text{EM}}$ 的显式上界。—证毕。([carmamaths.org][7])
 
 ### 8.3 尾项（有限带宽截断）
 
