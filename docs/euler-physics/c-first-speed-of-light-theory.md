@@ -1,6 +1,6 @@
-# $(c)$-FIRST：光速常数的严格定义、等价层、误差账本与完整证明（全文）
+# $(c)$-FIRST：光速常数的窗口化群延迟表述、等价层、误差账本与完整证明（全文）
 
-**Version: 1.19**（2025-10-30，Asia/Dubai）
+**Version: 1.24**（2025-10-31，Asia/Dubai）
 
 **作者**：Auric（EBOC / WSIG / S-series）
 
@@ -10,7 +10,23 @@
 
 ---
 
-## 0. 记号与单位
+## 0.0 立场声明
+
+本文不对光速常数 $c$ 作任何重新定义或数值调整。$c$ 的常数地位与数值属于既定理论与度量学体系之内容。本文仅提供一种**窗口化群延迟**视角下对 $c$ 的**新表述**：在严格指明的理想模型与条件下，相关群延迟量与路径长度之比呈现为 $c$ 的等价刻画。这一表述是数学—物理结构的重述，而非对常数的重定标。
+
+---
+
+## 0.1 误差 = 解析余项（用语与符号约定）
+
+本文中**误差**一词严格指**数学逼近的解析余项**，与实验测量误差或统计不确定度无关。典型情形包括（但不限于）：
+$$
+\mathsf{Err}=\underbrace{\mathsf{err}_{\mathrm{alias}}}_{\text{采样与混叠项}}+\underbrace{\mathsf{err}_{\mathrm{EM}}^{(N)}}_{\text{Euler–Maclaurin 有限阶余项}}+\underbrace{\mathsf{err}_{\mathrm{tail}}}_{\text{窗/频带外尾项}}.
+$$
+上式各项均为**确定性**（可上界/可控制）量；若无特别说明，本文所有"误差""误差账本"均作如上**解析意义**理解。
+
+---
+
+## 0.2 记号与单位
 
 设能量变量为 $E=\hbar \omega$，散射矩阵 $S(E)\in\mathrm U(N)$ 可对能量求导。**Wigner–Smith 延迟矩阵**定义为 $Q(E):=-\,i\,S(E)^\dagger\,\frac{dS}{dE}(E)$；它是厄米矩阵，**总群延迟**记为 $\tau_{\mathrm{WS}}(E):=\hbar\,\operatorname{tr}Q(E)$（单位：秒）。**Smith（1960）原始"寿命矩阵"将 $\hbar$ 并入矩阵定义，记 $Q_{\text{Smith}}:=-\,i\,\hbar\,S^\dagger \frac{dS}{dE}$；本文采用不含 $\hbar$ 的 $Q$ 约定，并以 $\tau_{\mathrm{WS}}=\hbar\,\operatorname{tr}Q$ 表示总群延迟，二者仅差一个 $\hbar$ 因子（量纲与 §13.1 一致）。**这一构造在电磁、声学等多域广泛使用。([APS链接][1])
 
@@ -18,19 +34,27 @@
 
 ---
 
-## 1. 主定义（WSIG）与要证目标
+## 1. 主表述（WSIG）与要证目标
+
+### 1.1 窗口化群延迟读数（定义）
 
 **窗口化群延迟读数**定义为
 $$
 \mathsf T[w_R,h;L]\ :=\ \frac{\hbar}{2\pi}\int_{\mathbb R} w_R(E)\,\bigl[h\!\star\!\operatorname{tr}Q_L\bigr](E)\,dE,
 $$
-上式诱导记号：$\ \displaystyle \langle f\rangle_{w,h}:=\frac{1}{2\pi}\int_{\mathbb R} w_R(E)\,[h\!\star\! f](E)\,dE,$，于是 $\ \mathsf T=\hbar\,\langle \operatorname{tr}Q_L\rangle_{w,h}$。其中 $L$ 是端点的欧氏几何距。**光速常数**定义为
-$$
-\boxed{\quad c\ :=\ \lim_{\text{带宽}\uparrow}\ \frac{L}{\mathsf T[w_R,h;L]}\quad}
-$$
-（极限需证明存在、唯一、与窗/核无关）。
+上式诱导记号：$\ \displaystyle \langle f\rangle_{w,h}:=\frac{1}{2\pi}\int_{\mathbb R} w_R(E)\,[h\!\star\! f](E)\,dE,$，于是 $\ \mathsf T=\hbar\,\langle \operatorname{tr}Q_L\rangle_{w,h}$。其中 $L$ 是端点的欧氏几何距。
 
-**本文主线**：证明上式定义之 $c$ 与下列四类结构**互为等价**：
+### 1.2 表述（光速的窗口化群延迟基线）
+
+在自由空间（真空、均匀、无界、无耗散）的理想模型下，对长度 $L$ 的真空链路与任意满足 $\int_{\mathbb R}w_R(E)\,dE=2\pi$ 与 $\int_{\mathbb R}h(E)\,dE=1$ 的窗口/前端核对 $(w_R,h)$，窗口化群延迟读数满足
+$$
+\boxed{\quad \mathsf T[w_R,h;L]=\frac{L}{c}\quad}
+$$
+为便于后文引用，可记 $\bar{\tau}_{\mathrm{vac}}[w_R,h;L]:=\mathsf T[w_R,h;L]$。该表述仅为对既定常数 $c$ 的结构性重述，不涉及对 $c$ 的重定义或数值调整。
+
+### 1.3 要证目标
+
+**本文主线**：证明上式表述之 $c$ 与下列四类结构**互为等价**：
 
 * （A）**相位斜率 / 谱移密度**：$\ \partial_E\arg\det S=\operatorname{tr}Q=-2\pi\,\xi'(E)$（BK 公式），故 $\mathsf T=\hbar\langle \partial_E\arg\det S\rangle$。([arXiv][3])
 * （B）**因果前沿**：严格因果 $\Leftrightarrow$ 频响上半平面解析（KK），3D 推迟格林函数支撑在光锥 $t=r/c$ 上，故**最早非零响应速度**为 $c$。([APS链接][4])
@@ -84,13 +108,13 @@ $$
 =\frac{\hbar}{2\pi}\cdot 2\pi\cdot \frac{L}{\hbar c}=\frac{L}{c}.
 $$
 
-因此若忽略采样与带宽截断误差，则主定义直接给出 $c=L/\mathsf T$。下面用 NPE 误差账本严格控制有限带宽与离散观测误差（第 8 节）。关于 $Q$、$\tau_{\mathrm{WS}}$ 的物理与测量见 Smith 原文与当代综述。([APS链接][1])
+因此若忽略采样与带宽截断误差，则主表述直接给出 $c=L/\mathsf T$。下面用 NPE 误差账本严格控制有限带宽与离散观测误差（第 8 节）。关于 $Q$、$\tau_{\mathrm{WS}}$ 的物理与测量见 Smith 原文与当代综述。([APS链接][1])
 
 ---
 
-## 4. 主定义的**存在—唯一**与窗/核无关性（完整证明）
+## 4. 主表述的**存在—唯一**与窗/核无关性（完整证明）
 
-**命题 4.1**：在真空链路上，极限 $\displaystyle c=\lim_{\text{带宽}\uparrow}\frac{L}{\mathsf T[w_R,h;L]}$ 存在，且与窗 $w_R$ 与前端核 $h$ 的具体形状无关。
+**命题 4.1**：在真空链路上，窗口化群延迟读数 $\mathsf T[w_R,h;L]=L/c$ 的关系存在且唯一，与窗 $w_R$ 与前端核 $h$ 的具体形状无关。
 
 **证明**：
 
@@ -102,15 +126,15 @@ $$
 $$
 在该条件下频谱重复项不重叠，从而 $\varepsilon_{\mathrm{alias}}=0$。若仅具"有效带宽"（存在带外尾项，非严格带限），则一般 $\varepsilon_{\mathrm{alias}}\neq0$，其量级由带外能量与 $\Delta E$ 给出，应按 §8.1 的上界并入误差账本。([fab.cba.mit.edu][6])
 
-3. **Poisson—EM（端点与尾项）**：为应用下述 Euler–Maclaurin 上界，取整数 $m\ge 1$，并假设 $g(E):=w_R(E)\,[h\!\star\!\operatorname{tr}Q_L](E)\in C^{2m}[a,b]$ 且 $g^{(2m)}$ 可积（或有界）；在真空链路下因 $h\!\star\!\operatorname{tr}Q_L$ 为常值，选择 $w_R\in C^{2m}_c$ 即可满足该条件。**设能量步长为 $\Delta E$，节点 $E_n=a+n\,\Delta E$**，则对应的 Euler–Maclaurin 余项上界为
+3. **Poisson—EM（端点与尾项）**：为应用 Euler–Maclaurin 上界，取整数 $m\ge 1$，并假设 $g(E):=w_R(E)\,[h\!\star\!\operatorname{tr}Q_L](E)\in C^{2m}[a,b]$ 且 $g^{(2m)}$ 可积；在真空链路下因 $h\!\star\!\operatorname{tr}Q_L$ 为常值，选择 $w_R\in C^{2m}_c$ 即可满足该条件。设能量步长为 $\Delta E$，节点 $E_n=a+n\,\Delta E$。则**求和公式**的 Euler–Maclaurin 余项满足
 $$
-\bigl|\varepsilon_{\mathrm{EM}}^{(m)}\bigr|
-\ \le\ \frac{2\,\zeta(2m)}{(2\pi)^{2m}}\,(\Delta E)^{2m}
+\bigl|R_{2m}\bigr|
+\ \le\ \frac{2\,\zeta(2m)}{(2\pi)^{2m}}\,(\Delta E)^{2m-1}
 \int_{a}^{b}\!\bigl|g^{(2m)}(E)\bigr|\,dE
-\ \le\ \frac{2\,\zeta(2m)}{(2\pi)^{2m}}\,(\Delta E)^{2m}(b-a)\,
+\ \le\ \frac{2\,\zeta(2m)}{(2\pi)^{2m}}\,(\Delta E)^{2m-1}(b-a)\,
 \sup_{E\in[a,b]}\bigl|g^{(2m)}(E)\bigr|.
 $$
-因此随 $\Delta E\downarrow$ 与阶数 $m\uparrow$，端点/尾项误差受控并收敛（**详见 §8.2**）。([carmamaths.org][7])
+将其与**梯形积分**联系起来（两边乘以 $\Delta E$ 并整理），得到对 $\displaystyle \int_a^b g(E)\,dE$ 的**梯形法**误差上界为 $O\!\bigl((\Delta E)^{2m}\bigr)$。因此在**固定带宽**下，端点/尾项误差随 $m\uparrow$ 或 $\Delta E\downarrow$ 按 $(\Delta E)^{2m}$ 收敛（$m=1$ 时即 $O((\Delta E)^2)$），与 §8.2 的严格推导保持一致。—证毕。([carmamaths.org][7])
 
 4. **极限与唯一性（理论项）**：综合 1)–3)，在真空链路下
 $$
@@ -118,7 +142,7 @@ $$
 =\frac{\hbar}{2\pi}\!\int_{\mathbb R} w_R(E)\,[h\!\star\!\operatorname{tr}Q_L](E)\,dE
 =\frac{L}{c}.
 $$
-因此 $\lim_{\text{带宽}\uparrow}\mathsf T=L/c$ 存在且与 $w_R,h$ 无关，从而 $\lim_{\text{带宽}\uparrow} L/\mathsf T=c$ 唯一。
+因此 $\lim_{\text{带宽}\uparrow}\mathsf T=L/c$ 存在且与 $w_R,h$ 无关，从而窗口化群延迟表述给出 $c=L/\mathsf T$ 的唯一关系。
 
 **与实测值的区分**：有限采样与有限带宽下，观测量
 $$
@@ -155,21 +179,28 @@ $$
 
 ### 6.1 KK—因果等价（Toll）
 
-**定理 6.1（Toll）**：稳定线性时不变系统的**严格因果性**（$h(t)=0,\ t<0$）与其频率响应 $H(\omega)$ 的**上半平面解析性**与 **Kramers–Kronig 色散关系**逻辑等价。([APS链接][4])
+为避免与 §1.1 的能量域前端核 $h(E)$ 混淆，本节将**时域脉冲响应**记为 $\kappa(t)$，其频率（复频）响应记为
+$$
+K(z):=\int_{0}^{\infty}\kappa(t)\,e^{izt}\,dt,\qquad \Im z>0.
+$$
+
+**定理 6.1（Toll）**：稳定线性时不变系统的严格因果性（$\kappa(t)=0,\ t<0$）与其频率响应 $K(\omega)$ 的上半平面解析性及 **Kramers–Kronig** 色散关系逻辑等价。([APS链接][4])
 
 **证明要点**：
 
-(i) 若 $h$ 支持于 $[0,\infty)$，则 $H(z)=\int_0^\infty h(t)e^{izt}dt$ 在 $\Im z>0$ 全纯，边界值满足 Hilbert 变换，得 KK 关系；
+(i) 若 $\operatorname{supp}\kappa\subset[0,\infty)$，则 $K(z)$ 在 $\Im z>0$ 全纯，边界值满足 Hilbert 变换，得 KK 关系；
 
-(ii) 反向由 Paley–Wiener–Titchmarsh 定理：若 $H$ 可在上半平面解析并满足适当增长条件，逆变换得 $h(t)$ 支持于非负半轴。因此**严格因果 $\Leftrightarrow$ KK**。—证毕。([APS链接][4])
+(ii) 反向由 Paley–Wiener–Titchmarsh 定理：若 $K$ 可在上半平面解析并满足适当增长条件，逆变换得 $\kappa(t)$ 支持于非负半轴。因此**严格因果 $\Leftrightarrow$ KK**。—证毕。([APS链接][4])
 
-### 6.2 光锥前沿
+### 6.2 光锥前沿（仅适用于自由空间）
 
-对三维**标量**波动方程，推迟格林函数为
+对三维**标量**波动方程，在**自由空间（真空、均匀、无界、无耗散）**模型下，推迟格林函数为
 $$
 G_{\mathrm{ret}}(t,\mathbf r)=\frac{\delta\!\bigl(t-|\mathbf r|/c\bigr)}{4\pi|\mathbf r|},
 $$
-其支撑严格位于**光锥** $t=r/c$。对于 **Maxwell** 方程，时域格林函数为**dyadic（张量）**核，可由对 $\delta(t-r/c)/(4\pi r)$ 的张量—微分算子作用（含 $\delta$ 及其导数）构成；其**支撑同样仅在光锥上**。因此任意因果驱动的**最早非零响应**满足 $t_{\min}=L/c$，前沿速度为 $c$。—证毕。([solar.physics.montana.edu][9]; dyadic 结构见 [ETH Zürich][15])
+其支撑严格位于**光锥** $t=r/c$。对于 **Maxwell** 方程，在同样条件下，时域 **dyadic（张量）**格林函数可由标量核 $\delta(t-r/c)/(4\pi r)$ 经张量微分算子生成，因而为**分布级**的 $\delta$ 及其导数在 $t=r/c$ 上的组合；据此**最早非零前沿**为 $t=r/c$。
+
+**适用限制**：在存在色散/耗散或边界的介质中通常出现 $t>r/c$ 的尾项；但在无超信号性的理论中**前沿不早于** $r/c$。—证毕。([solar.physics.montana.edu][9]; dyadic 结构见 [ETH Zürich][15])
 
 ### 6.3 快/慢光与前驱
 
@@ -179,21 +210,23 @@ $$
 
 ## 7. 等价层（三）：信息光锥（在下述通信模型假设下的证明）
 
-**假设 7.0（通信模型）**：信道为严格因果的 LTI 真空链路；接收端在时刻 $\Delta t$ 之前仅基于局域操作与本地噪声（包含经典与量子噪声）生成观测，且这些噪声与发送端输入 $X$ 独立，不允许在单次试验中通过预共享变量使 $Y_{\Delta t}$ 直接携带 $X$ 的信息。
+**假设 7.0（通信模型，允许预共享资源）**：信道为严格因果的真空 LTI 链路；允许发送端与接收端**预共享**经典随机数或量子纠缠；在时间窗口 $\Delta t$ 内，若 $\Delta t<L/c$ 则**不存在**任何跨区通信（无超信号性）。
 
 定义"首次可检互信息时间"
 $$
-T_\delta(L):=\inf\bigl\{\Delta t\ge0:\ \exists\ \text{协议使}\ I(X;Y_{\Delta t})\ge\delta\bigr\},\quad
-c_{\mathrm{info}}:=\lim_{\delta\downarrow0}\sup_{L>0}\frac{L}{T_\delta(L)}.
+T_\delta(L):=\inf\Bigl\{\Delta t\ge0:\ \exists\ \text{协议使}\ I(X;Y_{\Delta t})\ge\delta\Bigr\},\qquad
+\boxed{\ c_{\mathrm{info}}:=\limsup_{\delta\downarrow0}\ \sup_{L>0}\frac{L}{T_\delta(L)}\ }.
 $$
 
-**定理 7.1（在假设 7.0 下）**：$c_{\mathrm{info}}=c$。
+**定理 7.1（信息光锥）**：在假设 7.0 下，有 $c_{\mathrm{info}}=c$。
 
 **证明**：
 
-**上界**：在假设 7.0 下，若 $\Delta t<L/c$，由 §6.2 的光锥支撑与独立噪声/局域性条件，$Y_{\Delta t}$ 与 $X$ 独立，故 $I(X;Y_{\Delta t})=0$，从而 $\sup L/T_\delta(L)\le c$。
+**上界**：由无超信号性与微因果，$\Delta t<L/c$ 时，接收端观测 $Y_{\Delta t}$ 不能携带发送端输入 $X$ 的信息，故 $I(X;Y_{\Delta t})=0$，从而 $\sup_{L} L/T_\delta(L)\le c\ \forall\delta>0\Rightarrow \limsup_{\delta\downarrow0}\le c$。
 
-**下界**：真空链路上第 3–5 节给出 $\mathsf T=L/c$。设接收端做能量或相干阈值检验（考虑信道+探测器总噪声），则当 $\Delta t=L/c+\varepsilon$ 时，窗口积累的信噪随带宽/时间线性增长，存在阈值 $\delta(\varepsilon)\downarrow0$ 使 $I\ge\delta(\varepsilon)$。Dorrah–Mojahedi 用"可检测信息速度"以 SNR 阈值在总噪声模型下形式化了该事实。令 $\varepsilon,\delta\downarrow0$，得 $\sup L/T_\delta(L)\ge c$。合并即 $c_{\mathrm{info}}=c$。—证毕。([APS链接][5])
+**下界**：真空链路上第 3–5 节给出 $\mathsf T=L/c$。设接收端做能量或相干阈值检验（考虑信道+探测器总噪声），则当 $\Delta t=L/c+\varepsilon$ 且满足宽带—门限准则时，窗口积累的信噪随带宽/时间线性增长，存在阈值 $\delta(\varepsilon)\downarrow0$ 使 $I\ge\delta(\varepsilon)$。Dorrah–Mojahedi 用"可检测信息速度"以 SNR 阈值在总噪声模型下形式化了该事实。对任意 $\varepsilon>0$ 存在 $\delta(\varepsilon)\downarrow0$ 使 $\sup_{L}\frac{L}{T_{\delta(\varepsilon)}(L)}\ge c-\varepsilon\Rightarrow \liminf_{\delta\downarrow0}\ge c$。
+
+**收束**：由上界与构造性下界并用，$\limsup_{\delta\downarrow0}=\liminf_{\delta\downarrow0}=c$ 因而极限存在且等于 $c$，即 $c_{\mathrm{info}}=c$。—证毕。([APS链接][5])
 
 > 注：量子场论视角下，"无超信号性 $\Rightarrow$ 微因果"的当代证明为上界提供了独立逻辑支撑。([arXiv][11])
 
@@ -320,7 +353,7 @@ $$
 
 ## 10. 结论定理（四等价与唯一性）
 
-**定理 10.1**：光速常数 $c$ 可由窗口化群延迟的 Nyquist 极限**唯一**定义；且与
+**定理 10.1**：光速常数 $c$ 可由窗口化群延迟表述**唯一**刻画；且与
 
 $(\mathrm A)$ 相位斜率/谱移密度、$(\mathrm B)$ 因果前沿、$(\mathrm C)$ 信息光锥（在假设 7.0 下）、$(\mathrm D)$ SI 实现
 
@@ -330,9 +363,21 @@ $(\mathrm A)$ 相位斜率/谱移密度、$(\mathrm B)$ 因果前沿、$(\mathrm
 
 ## 11. 多端口一般化与离散实现（RCA 光锥）
 
-### 11.1 多端口一般化
+### 11.1 多端口一般化与基线校准条件
 
-若 $S(E)\in\mathrm U(N)$，令"平均延迟"$\ \bar\tau(E):=\hbar\,\frac{1}{N}\operatorname{tr}Q(E)$。**对无耦合且各通道等长的 $N$ 端口真空链路，有 $S(E)=e^{iEL/(\hbar c)}I_N$，从而 $Q(E)=\frac{L}{\hbar c}I_N$**，各本征延迟皆为 $L/c$，故$\bar\tau(E)=L/c$。**若存在端口耦合或几何长度差异，则一般情形下 $\operatorname{tr}Q(E)$ 含装置相位（耦合器/混合器等）的能量导数贡献，上述等式不再成立。此时需进行基线相消/参考链路扣除：令 $\Delta\!\operatorname{tr}Q:=\operatorname{tr}Q_{\text{被测}}-\operatorname{tr}Q_{\text{参考}}$，在装置相位的能量依赖相同（或可建模并扣除）的条件下，窗口化读数方给出 $\mathsf T=L/c$。对于单一 S-参数 $S_{mn}$，仅在"直达真空通道、无额外色散耦合且端口等长"的条件下有 $\hbar\,\partial_E\arg S_{mn}=L/c$；否则亦需按上法相消/校准（参见第 9 节）。**—证毕。([APS链接][1])
+若 $S(E)\in\mathrm U(N)$，令"平均延迟"$\ \bar\tau(E):=\hbar\,\frac{1}{N}\operatorname{tr}Q(E)$。**对无耦合且各通道等长的 $N$ 端口真空链路，有 $S(E)=e^{iEL/(\hbar c)}I_N$，从而 $Q(E)=\frac{L}{\hbar c}I_N$**，各本征延迟皆为 $L/c$，故 $\bar\tau(E)=L/c$。
+
+**多端口分解与恢复条件**：令 $S(E)\in \mathrm U(N)$ 表示 $N$ 端口散射矩阵，作分解
+$$
+S(E)=e^{\,i E L/(\hbar c)}\,U(E),\qquad U(E)\in \mathrm U(N).
+$$
+则 Wigner–Smith 算子 $Q(E)=-i\,S^\dagger(E)S'(E)$ 的迹满足
+$$
+\operatorname{tr}Q(E)=\frac{N L}{\hbar c}-i\,\operatorname{tr}\!\bigl(U^\dagger(E)\,U'(E)\bigr),\qquad
+\bar{\tau}(E)=\frac{L}{c}-\frac{i\hbar}{N}\operatorname{tr}\!\bigl(U^\dagger(E)\,U'(E)\bigr).
+$$
+
+**基线校准**：若存在参考链路使 $\operatorname{tr}(U^\dagger U')$ 在被测与参考两链路间相同（或可精确建模并扣除），则窗口化平均恢复 $\bar{\tau}=L/c$。对于单一 S-参数 $S_{mn}$，仅在"直达真空通道、无额外色散耦合且端口等长"的条件下有 $\hbar\,\partial_E\arg S_{mn}=L/c$；否则亦需按上法相消/校准（参见第 9 节）。—证毕。([APS链接][1])
 
 ### 11.2 离散等价（RCA 光锥与 CHL）
 
@@ -353,23 +398,23 @@ $(\mathrm A)$ 相位斜率/谱移密度、$(\mathrm B)$ 因果前沿、$(\mathrm
 
 由 $Q=-iS^\dagger \tfrac{dS}{dE}$ 得 $[Q]=E^{-1}$，故 $\tau_{\mathrm{WS}}=\hbar\,\operatorname{tr}Q$ 具时间量纲。真空链路 $S_L(E)=e^{i E L/(\hbar c)}\Rightarrow \operatorname{tr}Q_L=L/(\hbar c)$ 为常值，保证 $\mathsf T=L/c$。—证毕。([APS链接][1])
 
-### 13.2 KK—因果的严格化
+### 13.2 KK—因果的严格化（记号统一）
 
-给定 $h\in L^2(\mathbb R)$ 支持 $[0,\infty)$，则 $H(z)$ 为上半平面全纯函数，边界值 $H(\omega)$ 的实/虚部由 Hilbert 变换互定，即 KK 关系；反向由 Paley–Wiener–Titchmarsh 保证 $H$ 的解析与增长条件推出 $h(t)=0$（$t<0$）。—证毕。([APS链接][4])
+与 §1.1 的能量域核 $h(E)$ 区分，本节统一使用 $\kappa(t)$ 表示**时域脉冲响应**，$K(z)$ 表示其频率响应。给定 $\kappa\in L^{2}(\mathbb R)$ 且 $\operatorname{supp}\kappa\subset[0,\infty)$，则 $K(z)$ 为上半平面全纯函数，边界值 $K(\omega)$ 的实部与虚部由 Hilbert 变换互定，即 KK 关系；反向由 Paley–Wiener–Titchmarsh 定理推出 $\kappa(t)=0$（$t<0$）。—证毕。([APS链接][4])
 
-### 13.3 光锥支撑的直接校验
+### 13.3 光锥支撑的直接校验（自由空间）
 
-对**标量**波动方程，将 $G_{\mathrm{ret}}(t,\mathbf r)=\delta(t-r/c)/(4\pi r)$ 代入波算符 $(\frac{1}{c^2}\partial_t^2-\nabla^2)$ 的分布意义计算，可得 $(\frac{1}{c^2}\partial_t^2-\nabla^2)G_{\mathrm{ret}}=\delta(t)\delta(\mathbf r)$；支撑仅在 $t=r/c$。对 **Maxwell** 方程，其 dyadic 格林函数虽需张量—微分算子构造，但**支撑同样仅在光锥上**，故前沿速度结论相同。—证毕。([solar.physics.montana.edu][9]; [ETH Zürich][15])
+对**标量**波动方程，在**自由空间（真空、均匀、无界、无耗散）**下，将 $G_{\mathrm{ret}}(t,\mathbf r)=\delta(t-r/c)/(4\pi r)$ 代入波算符 $(\frac{1}{c^2}\partial_t^2-\nabla^2)$ 的分布意义计算，可得 $(\frac{1}{c^2}\partial_t^2-\nabla^2)G_{\mathrm{ret}}=\delta(t)\delta(\mathbf r)$；支撑仅在 $t=r/c$。对 **Maxwell** 方程，在同样条件下，其 dyadic 格林函数为**分布级**的 $\delta$ 及其导数在光锥上的组合，**支撑同样仅在光锥上**，故前沿速度结论相同。在色散/耗散或有边界介质中此结论不成立。—证毕。([solar.physics.montana.edu][9]; [ETH Zürich][15])
 
 ### 13.4 信息阈值与误差指数
 
-对二元假设检验（存在/不存在微弱信号），在独立样本数随观测时间/带宽线性增长时，最优误差指数为 KL 散度（Chernoff–Stein）；Dorrah–Mojahedi 在含总噪声模型下跟踪"可检测信息速度"，与本定义一致。—证毕。([APS链接][5])
+对二元假设检验（存在/不存在微弱信号），在独立样本数随观测时间/带宽线性增长时，最优误差指数为 KL 散度（Chernoff–Stein）；Dorrah–Mojahedi 在含总噪声模型下跟踪"可检测信息速度"，与本表述一致。—证毕。([APS链接][5])
 
 ---
 
 ## 14. 最终陈述
 
-以"窗口化群延迟"的 Nyquist 极限定义之 $c$，在真空链路上给出 $L/\mathsf T$ 的唯一值；该值与**相位斜率/谱移密度**、**因果前沿**与**信息光锥**三线并证，且与 **SI** 的固定数值完全一致。工程上，NPE 误差账本提供非渐近、可操作的精度控制与校准路径。([BIPM][2])
+以"窗口化群延迟"表述之 $c$，在真空链路上给出 $L/\mathsf T$ 的唯一值；该值与**相位斜率/谱移密度**、**因果前沿**与**信息光锥**三线并证，且与 **SI** 的固定数值完全一致。工程上，NPE 误差账本提供非渐近、可操作的精度控制与校准路径。([BIPM][2])
 
 ---
 
