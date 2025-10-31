@@ -1,6 +1,6 @@
 # $(c)$-FIRST：光速常数的窗口化群延迟表述、等价层、误差账本与完整证明（全文）
 
-**Version: 1.24**（2025-10-31，Asia/Dubai）
+**Version: 1.27**（2025-10-31，Asia/Dubai）
 
 **作者**：Auric（EBOC / WSIG / S-series）
 
@@ -20,9 +20,9 @@
 
 本文中**误差**一词严格指**数学逼近的解析余项**，与实验测量误差或统计不确定度无关。典型情形包括（但不限于）：
 $$
-\mathsf{Err}=\underbrace{\mathsf{err}_{\mathrm{alias}}}_{\text{采样与混叠项}}+\underbrace{\mathsf{err}_{\mathrm{EM}}^{(N)}}_{\text{Euler–Maclaurin 有限阶余项}}+\underbrace{\mathsf{err}_{\mathrm{tail}}}_{\text{窗/频带外尾项}}.
+\mathsf{Err}\ =\ \underbrace{\varepsilon_{\mathrm{alias}}}_{\text{采样与混叠项}}\ +\ \underbrace{\varepsilon_{\mathrm{EM}}^{(m)}}_{\text{Euler–Maclaurin 至第 $m$ 阶截断余项}}\ +\ \underbrace{\varepsilon_{\mathrm{tail}}}_{\text{窗/频带外尾项}}.
 $$
-上式各项均为**确定性**（可上界/可控制）量；若无特别说明，本文所有"误差""误差账本"均作如上**解析意义**理解。
+其中 $m$ 为 Euler–Maclaurin 采用的截断阶；$N$ 专指采样网格点数/区间数，二者概念独立，不应混用。上式各项均为**确定性**（可上界/可控制）量；若无特别说明，本文所有"误差""误差账本"均作如上**解析意义**理解。
 
 ---
 
@@ -126,6 +126,8 @@ $$
 $$
 在该条件下频谱重复项不重叠，从而 $\varepsilon_{\mathrm{alias}}=0$。若仅具"有效带宽"（存在带外尾项，非严格带限），则一般 $\varepsilon_{\mathrm{alias}}\neq0$，其量级由带外能量与 $\Delta E$ 给出，应按 §8.1 的上界并入误差账本。([fab.cba.mit.edu][6])
 
+**互斥说明（Paley–Wiener）**：严格的 $\tau$ 域带限与 $E$ 域紧支撑**不可能同时成立**（除零函数）。因此，上述"严格带限—Poisson/Nyquist"与下述"紧支撑—Euler–Maclaurin"是两种**互斥**的数值/实验设置：实际使用时应**择一**并据此记账。若采用 $w_R\in C_c$（紧支撑窗），则属"非严格带限"，别名项一般不为零，需按 §8.1 的上界并入误差账本。
+
 3. **Poisson—EM（端点与尾项）**：为应用 Euler–Maclaurin 上界，取整数 $m\ge 1$，并假设 $g(E):=w_R(E)\,[h\!\star\!\operatorname{tr}Q_L](E)\in C^{2m}[a,b]$ 且 $g^{(2m)}$ 可积；在真空链路下因 $h\!\star\!\operatorname{tr}Q_L$ 为常值，选择 $w_R\in C^{2m}_c$ 即可满足该条件。设能量步长为 $\Delta E$，节点 $E_n=a+n\,\Delta E$。则**求和公式**的 Euler–Maclaurin 余项满足
 $$
 \bigl|R_{2m}\bigr|
@@ -134,7 +136,12 @@ $$
 \ \le\ \frac{2\,\zeta(2m)}{(2\pi)^{2m}}\,(\Delta E)^{2m-1}(b-a)\,
 \sup_{E\in[a,b]}\bigl|g^{(2m)}(E)\bigr|.
 $$
-将其与**梯形积分**联系起来（两边乘以 $\Delta E$ 并整理），得到对 $\displaystyle \int_a^b g(E)\,dE$ 的**梯形法**误差上界为 $O\!\bigl((\Delta E)^{2m}\bigr)$。因此在**固定带宽**下，端点/尾项误差随 $m\uparrow$ 或 $\Delta E\downarrow$ 按 $(\Delta E)^{2m}$ 收敛（$m=1$ 时即 $O((\Delta E)^2)$），与 §8.2 的严格推导保持一致。—证毕。([carmamaths.org][7])
+将其与**梯形积分**联系起来（两边乘以 $\Delta E$ 并整理），得
+$$
+\Delta E\!\left[\tfrac{g(a)+g(b)}{2}+\sum_{n=1}^{N-1}g(E_n)\right]
+=\!\int_a^b\! g(x)\,dx+\sum_{k=1}^{m}\frac{B_{2k}}{(2k)!}(\Delta E)^{2k}\!\bigl[g^{(2k-1)}(b)-g^{(2k-1)}(a)\bigr]+\Delta E\,R_{2m}.
+$$
+因而对**未做端点校正**的纯梯形法，**总体主阶为** $O((\Delta E)^2)$；**仅当**满足 $g^{(2k-1)}(a)=g^{(2k-1)}(b)=0$（$k=1,\dots,m-1$，例如选用在端点**平滑为零**的窗 $w_R$ 或加入相应 EM 端点修正）时，**整体误差**方可提升为 $O((\Delta E)^{2m})$。另需注意 **Euler–Maclaurin 为渐近展开**：增大 $m$ 并不保证误差单调减小，应依据 $g$ 的平滑性选取**最优截断阶** $m_\ast$。—证毕。([carmamaths.org][7])
 
 4. **极限与唯一性（理论项）**：综合 1)–3)，在真空链路下
 $$
@@ -150,7 +157,7 @@ $$
 =\mathsf T[w_R,h;L]
 +\varepsilon_{\mathrm{alias}}+\varepsilon_{\mathrm{EM}}+\varepsilon_{\mathrm{tail}},
 $$
-其中各 $\varepsilon$ 的上界如 §8 所述，随带宽↑、步长↓、阶数↑ 而收敛至 0。—证毕。
+其中各 $\varepsilon$ 的上界如 §8 所述，随带宽↑、步长↓ 而收敛至 0；对阶数 $m$ 应**固定或按最优截断阶 $m_\ast$ 选择**，不以 $m\uparrow$ 作为收敛保证。—证毕。
 
 ---
 
@@ -329,7 +336,7 @@ $$
 +\frac{2\zeta(2m)}{(2\pi)^{2m}}\,(\Delta E)^{2m}\!\int_a^b |g^{(2m)}(x)|\,dx
 \right].
 $$
-因此在**固定带宽**下，端点/尾项误差随 $m\uparrow$ 或 $\Delta E\downarrow$ 按 **$(\Delta E)^{2m}$** 收敛（$m=1$ 时即 $O((\Delta E)^2)$）。取 $g=w_R\,[h\!\star\!\operatorname{tr}Q]$ 即得 $\varepsilon_{\text{EM}}$ 的显式上界。—证毕。([carmamaths.org][7])
+因此在**固定带宽**下、对**未做端点校正**的纯梯形法，其误差展开自 $O((\Delta E)^2)$ 起；**仅当** $g^{(2k-1)}(a)=g^{(2k-1)}(b)=0$（$k=1,\dots,m-1$）或显式加入对应的 EM 端点修正时，**整体误差**方可达到 $O((\Delta E)^{2m})$。此外，**EM 为渐近级数**，应选取**最优截断阶** $m_\ast$，**不应**把 $m\uparrow$ 视为保证收敛的手段。取 $g=w_R\,[h\!\star\!\operatorname{tr}Q]$ 即得 $\varepsilon_{\text{EM}}$ 的显式上界。—证毕。([carmamaths.org][7])
 
 ### 8.3 尾项（有限带宽截断）
 
@@ -376,6 +383,8 @@ $$
 \operatorname{tr}Q(E)=\frac{N L}{\hbar c}-i\,\operatorname{tr}\!\bigl(U^\dagger(E)\,U'(E)\bigr),\qquad
 \bar{\tau}(E)=\frac{L}{c}-\frac{i\hbar}{N}\operatorname{tr}\!\bigl(U^\dagger(E)\,U'(E)\bigr).
 $$
+
+注意 $U^\dagger U'$ **反厄米**：由 $(U^\dagger U)'=0$ 得 $(U^\dagger)'U+U^\dagger U'=0\Rightarrow (U^\dagger U')^\dagger=-(U^\dagger U')$，故 $\operatorname{tr}(U^\dagger U')\in i\,\mathbb R$，从而 $-\tfrac{i\hbar}{N}\operatorname{tr}(U^\dagger U')\in\mathbb R$，保证 $\bar{\tau}$ 为实数。
 
 **基线校准**：若存在参考链路使 $\operatorname{tr}(U^\dagger U')$ 在被测与参考两链路间相同（或可精确建模并扣除），则窗口化平均恢复 $\bar{\tau}=L/c$。对于单一 S-参数 $S_{mn}$，仅在"直达真空通道、无额外色散耦合且端口等长"的条件下有 $\hbar\,\partial_E\arg S_{mn}=L/c$；否则亦需按上法相消/校准（参见第 9 节）。—证毕。([APS链接][1])
 
