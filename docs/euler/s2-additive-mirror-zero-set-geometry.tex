@@ -1,0 +1,299 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\setlist[itemize]{nosep,leftmargin=1.6em}
+\setlist[enumerate]{nosep,leftmargin=1.6em}
+
+\geometry{margin=1in}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+\DeclareMathOperator{\Re}{Re}
+\DeclareMathOperator{\Im}{Im}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Arg}{Arg}
+
+\raggedbottom
+
+\title{Additive Mirror and Zero-Set Geometry}
+
+\author{Haobo Ma\thanks{Independent Researcher} \and Wenlin Zhang\thanks{National University of Singapore}}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{center}
+\textit{Binomial Closure, Codimension 2, Transversality (Residual) and Localization via Amplitude ``Balance Hyperplanes''}
+\end{center}
+
+\begin{abstract}
+Within the mother mapping framework, we systematically characterize the \textbf{additive mirror} structure and \textbf{zero-set geometry} of finite exponential sums. Under unified tube-domain and interchange/convergence conditions, we establish: the \textbf{necessary and sufficient conditions} for binomial closure with explicit zero-set parametrization; a transversality theorem stating that the zero set of a finite sum forms a \textbf{real-analytic codimension-2} submanifold on a \textbf{residual} parameter set (which is \textbf{open and dense} on any fixed compact subdomain); \textbf{quantitative necessary localization} of the zero set on the scale side by amplitude ``balance hyperplanes''; and a listing of degenerate families and counterexamples. Notation, $\Gamma/\pi$ normalization, and directional slicing conventions remain consistent with S0/S1; this abstract provides only a qualitative description.
+\end{abstract}
+
+\section{Notation and Prerequisites (Aligned with S0/S1)}
+
+\begin{itemize}
+\item \textbf{Phase--scale mother mapping}
+\begin{equation}
+\mathcal{M}[\mu](\theta,\rho)
+=\int e^{\,i\langle\omega,\theta\rangle}\,e^{\,\langle\gamma,\rho\rangle}\,d\mu(\omega,\gamma),
+\qquad \theta\in\mathbb{R}^{m},\ \rho\in\mathbb{R}^{n}.
+\end{equation}
+For discrete spectra,
+\begin{equation}
+\mathcal{M}(\theta,\rho)
+=\sum_{j=1}^J c_j\,e^{\,i\langle\alpha_j,\theta\rangle}\,e^{\,\langle\beta_j,\rho\rangle},
+\quad
+c_j\in\mathbb{C},\ \alpha_j\in\mathbb{R}^m,\ \beta_j\in\mathbb{R}^n.
+\end{equation}
+
+\item \textbf{Preprocessing convention (C1$'$)}: First \textbf{remove all terms with $c_j=0$}, and \textbf{merge} terms with identical $(\alpha_j,\beta_j)$ (adding coefficients). Under this convention, for all participating indices $j$ we have $c_j\neq0$, making $H_{jk}$ and $\delta(\rho)$ \textbf{well-defined}.
+
+\item \textbf{Domain contract (C0)}: All computations are performed within the tube domain/strip specified by S1, ensuring legitimate interchange of order, term-by-term differentiation, and Poisson/Euler--Maclaurin.
+
+\item \textbf{Directional slicing (vector multiplication)}
+\begin{equation}
+\boxed{\ \rho=\rho_\perp+s\,\mathbf{v},\qquad \mathbf{v}\in\mathbb{S}^{n-1},\ s\in\mathbb{R}\ }.
+\end{equation}
+
+\item \textbf{Amplitude and phase}
+\begin{equation}
+A_j(\rho):=|c_j|\,e^{\langle\beta_j,\rho\rangle},\qquad
+\phi_j(\theta):=\arg c_j+\langle\alpha_j,\theta\rangle.
+\end{equation}
+
+\item \textbf{Amplitude balance hyperplanes (scale side)}
+\begin{equation}
+H_{jk}:=\Big\{\rho\in\mathbb{R}^n:\ \langle\beta_j-\beta_k,\rho\rangle=\log\frac{|c_k|}{|c_j|}\Big\},\qquad j\ne k,
+\end{equation}
+with the convention: if $\beta_j=\beta_k$ and $|c_j|\ne|c_k|$, then $H_{jk}:=\varnothing$; if $\beta_j=\beta_k$ and $|c_j|=|c_k|$, then $H_{jk}:=\mathbb{R}^n$ (corresponding to a pure-phase equal-amplitude branch).
+
+\item \textbf{Verifiable discipline}: D1 (measure/weight), D2 ($\Gamma/\pi$ normalization), D3 (finite-order EM), D4 (directional preprocessing).
+\end{itemize}
+
+\section{Binomial Closure and Explicit Zero Sets (Additive Mirror Prototype)}
+
+\begin{theorem}[Binomial Closure: Necessary and Sufficient Conditions with Zero-Set Parametrization]\label{thm:binomial}
+Let
+\begin{equation}
+F(\theta,\rho)=c_1 e^{\,i\langle\alpha_1,\theta\rangle}e^{\,\langle\beta_1,\rho\rangle}
++c_2 e^{\,i\langle\alpha_2,\theta\rangle}e^{\,\langle\beta_2,\rho\rangle},
+\qquad c_1c_2\ne0,
+\end{equation}
+and write $\Delta\alpha:=\alpha_1-\alpha_2,\ \Delta\beta:=\beta_1-\beta_2$. Under premise C0:
+
+\begin{enumerate}
+\item \textbf{Non-degenerate} ($\Delta\alpha\ne0,\ \Delta\beta\ne0$)
+\begin{equation}
+F=0\iff
+\begin{cases}
+\langle \Delta\beta,\rho\rangle = -\log\big|\frac{c_1}{c_2}\big|,\\[2mm]
+\langle \Delta\alpha,\theta\rangle \equiv \pi-\arg\big(\frac{c_1}{c_2}\big)\ \ (\mathrm{mod}\ 2\pi).
+\end{cases}
+\end{equation}
+The zero set is a \textbf{real-analytic codimension-2} countable union (product of a single hyperplane on the scale side and parallel hyperplane families on the phase side).
+
+\item \textbf{Degenerate I (pure phase)} ($\Delta\beta=0,\ \Delta\alpha\ne0$)
+When $|c_1|=|c_2|$, the zero set consists of parallel hyperplane families on the phase side; otherwise, no zeros.
+
+\item \textbf{Degenerate II (pure scale)} ($\Delta\alpha=0,\ \Delta\beta\ne0$)
+When $\frac{c_1}{c_2}\in(-\infty,0)$ and $\langle \Delta\beta,\rho\rangle=-\log\big|\frac{c_1}{c_2}\big|$, the zero set is a hyperplane on the scale side; otherwise, no zeros.
+
+\item \textbf{Degenerate III (same frequency, same scale)} ($\Delta\alpha=\Delta\beta=0$)
+Identically zero if and only if $c_1+c_2=0$; otherwise, no zeros.
+\end{enumerate}
+\end{theorem}
+
+\section{Zero Set of Finite Exponential Sums is Codimension 2 (Local Transversal Geometry)}
+
+Let
+\begin{equation}
+F(\theta,\rho)=\sum_{j=1}^J c_j\,e^{\,\langle\beta_j,\rho\rangle}e^{\,i\langle\alpha_j,\theta\rangle},\qquad J\ge2,
+\end{equation}
+and write $G=(\Re F,\Im F):\Omega\subset\mathbb{R}^{m+n}\to\mathbb{R}^2$.
+
+\begin{lemma}[Jacobian Structure]\label{lem:jacobian}
+\begin{equation}
+\partial_{\theta_k}F=i\sum_{j=1}^J \alpha_{j,k}\,c_j e^{\,\langle\beta_j,\rho\rangle}e^{\,i\langle\alpha_j,\theta\rangle},\quad
+\partial_{\rho_\ell}F=\sum_{j=1}^J \beta_{j,\ell}\,c_j e^{\,\langle\beta_j,\rho\rangle}e^{\,i\langle\alpha_j,\theta\rangle}.
+\end{equation}
+\end{lemma}
+
+\begin{theorem}[Local Structure of Zero Sets: Real-Analytic Codimension 2]\label{thm:codim2}
+If $x_0=(\theta_0,\rho_0)\in\Omega$ satisfies $F(x_0)=0$ and $\rank\,DG(x_0)=2$, then there exists a neighborhood $U\ni x_0$ such that
+\begin{equation}
+Z\cap U=\{x\in U:\ G(x)=0\}
+\end{equation}
+is a \textbf{real-analytic submanifold} of $\mathbb{R}^{m+n}$ with \textbf{codimension 2}; this property is stable under small perturbations of $\{c_j\}$ and $\{(\alpha_j,\beta_j)\}$.
+\end{theorem}
+
+\section{Transversality is Residual (Open and Dense on Compact Domains)}
+
+\begin{theorem}[Parametric Transversality]\label{thm:transversal}
+Let the parameter space
+\begin{equation}
+\mathcal{P}=\Big\{(c_1,\ldots,c_J,\alpha_1,\ldots,\alpha_J,\beta_1,\ldots,\beta_J)\Big\}
+\end{equation}
+be equipped with its natural topology. Then on a \textbf{residual} subset of $\mathcal{P}$, $G$ is \textbf{transversal} to $0\in\mathbb{R}^2$; moreover, for any fixed compact subdomain $K\Subset\Omega$, this property is \textbf{open and dense} in $\mathcal{P}$.
+\end{theorem}
+
+\begin{proof}[Sketch]
+Define the augmented map $\mathscr{G}(\mathbf{p},x)=G_{\mathbf{p}}(x)$. Parametric transversality (Baire category) yields residuality; when restricted to a fixed compact $K$, transversality is an open condition and is dense by the Sard--Thom principle.
+\end{proof}
+
+\section{Quantitative Necessary Localization via Amplitude ``Balance Hyperplanes''}
+
+\begin{proposition}[Necessary Localization: Quantitative Version]\label{prop:localization}
+Define
+\begin{equation}
+\delta(\rho):=\min_{j<k}\Big|\ \langle\beta_j-\beta_k,\rho\rangle-\log\frac{|c_k|}{|c_j|}\ \Big|.
+\end{equation}
+If $\delta(\rho)>\log(J-1)$, then for any $\theta$ we have $F(\theta,\rho)\ne0$. Consequently, the zero set can only appear in the scale projection within
+\begin{equation}
+\{\rho:\ \delta(\rho)\le \log(J-1)\}
+\end{equation}
+this family of ``bounded thickness neighborhoods''; when $J=2$, the thickness threshold is $0$, and zeros can only appear on $H_{12}$.
+\end{proposition}
+
+\begin{proof}[Key points]
+Let $j_\star$ be such that $A_{j_\star}(\rho)=\max_j A_j(\rho)$. By definition of $\delta(\rho)$, for any $k\ne j_\star$ we have
+$\log A_{j_\star}(\rho)-\log A_k(\rho)\ge \delta(\rho)$, hence $A_k(\rho)\le e^{-\delta(\rho)}A_{j_\star}(\rho)$, so
+\begin{equation}
+\sum_{k\ne j_\star}A_k(\rho)\le (J-1)e^{-\delta(\rho)}A_{j_\star}(\rho)
+< A_{j_\star}(\rho).
+\end{equation}
+The triangle inequality gives $|F(\theta,\rho)|\ge A_{j_\star}-\sum_{k\ne j_\star}A_k>0$.
+\end{proof}
+
+\section{Transversality and Meromorphization Interface on Directional Slices}
+
+Take $\rho=\rho_\perp+s\,\mathbf{v}$ and fix $\theta$; define
+\begin{equation}
+f_{\theta,\rho_\perp,\mathbf{v}}(s)
+=\sum_{j=1}^J \big(c_j e^{\,\langle\beta_j,\rho_\perp\rangle}e^{\,i\langle\alpha_j,\theta\rangle}\big)\,e^{\,\langle\beta_j,\mathbf{v}\rangle s}.
+\end{equation}
+If there exist $j\ne k$ such that $\langle\beta_j-\beta_k,\mathbf{v}\rangle\ne0$, then zeros along $s$ are \textbf{simple} in general position parameters (codimension 1 in the directional sense), locally controlled by binomial closure of two dominating terms; this directional structure naturally interfaces with ``directional meromorphization'' in S5.
+
+\section{Counterexamples and Boundary Families}
+
+\begin{itemize}
+\item \textbf{R2.1 (Same frequency, same scale, merged)}: $\alpha_1=\alpha_2,\ \beta_1=\beta_2,\ c_1+c_2\ne0$. No zeros (terms merge).
+
+\item \textbf{R2.2 (Pure phase, unequal amplitude)}: $\beta_1=\beta_2,\ |c_1|\ne|c_2|$. No zeros (equation unattainable).
+
+\item \textbf{R2.3 (Pure scale, non-negative ratio)}: $\alpha_1=\alpha_2,\ \frac{c_1}{c_2}\notin(-\infty,0)$. No zeros (phase cannot be antipodal).
+
+\item \textbf{R2.4 (Collinear gradients in multi-term sums)}: There exist non-trivial real vectors $u=(u_1,\dots,u_J),\ v=(v_1,\dots,v_J)\in\mathbb{R}^J$ such that $\sum_{j=1}^J u_j\alpha_j=0,\ \sum_{j=1}^J v_j\beta_j=0$, causing the two rows of $DG$ to be collinear at the zero. This gives \textbf{non-transversal} zeros (possibly codimension 1 or coalescence).
+
+\item \textbf{R2.5 (Out-of-domain slicing)}: The scale hyperplane does not intersect the C0 domain; parametric equations have no solution. This is a domain boundary issue, not a geometric failure.
+\end{itemize}
+
+\section{Interface with Subsequent Papers}
+
+\begin{itemize}
+\item \textbf{S3 (Self-dual kernels and functional mirror)}: Theorems~\ref{thm:binomial}--\ref{thm:transversal} provide the ``amplitude balance + phase antipodality'' zero-set template, which can be directly applied to local models of completed function zero symmetry under Mellin self-dual kernels; kernel selection should maintain $\Delta\alpha\ne0,\ \Delta\beta\ne0$ to preserve mirror transversality.
+
+\item \textbf{S4 (Finite-order EM continuation)}: The quantitative bound in Proposition~\ref{prop:localization} provides a verifiable threshold for endpoint vs. main-scale separation; EM remainders enter as entire functions, not altering the ``codimension-2 main geometry''.
+
+\item \textbf{S5 (Directional meromorphization)}: The binomial closure structure along directional slices (directional template of simple zeros and pole orders) embeds into the ``pole = main scale'' localization narrative.
+
+\item \textbf{S10 (Amoeba/Ronkin)}: $H_{jk}$ forms the linear skeleton of the amoeba boundary; scale projection of the zero set is governed by these hyperplanes. This paper provides necessity and quantitative localization, while convexity and quantitative growth are completed in S10.
+\end{itemize}
+
+\section{Unified Verifiable Checklist (Summary of Minimal Sufficient Conditions)}
+
+\begin{itemize}
+\item \textbf{C0 (Domain)}: Working points and neighborhood operations all lie within the tube domain/strip of S1.
+
+\item \textbf{C1 (Parameter non-degeneracy)}: Focus on binomial subsums satisfying $\Delta\alpha\ne0,\ \Delta\beta\ne0$, or follow the corresponding amplitude/phase conditions of Theorem~\ref{thm:binomial}.
+
+\item \textbf{C2 (Transversality)}: Verify $\rank\,DG=2$ at candidate zeros; avoid algebraic relations in multi-term sums that induce collinear $\nabla F$.
+
+\item \textbf{C3 (Scale localization)}: Search only within $\{\rho:\ \delta(\rho)\le \log(J-1)\}$; if a single term absolutely dominates or $\delta(\rho)>\log(J-1)$, immediately conclude no zeros.
+
+\item \textbf{C4 (Directionalization)}: Along slice in direction $\mathbf{v}$, ensure $\langle\beta_j-\beta_k,\mathbf{v}\rangle\ne0$ to obtain simple zeros (general position).
+
+\item \textbf{C5 (Stability)}: Under small parameter perturbations, maintain full rank of Theorem~\ref{thm:codim2} and transversality of Theorem~\ref{thm:transversal} (open and dense on compact domains, residual overall).
+\end{itemize}
+
+\section{Reference Formulas and Differential Operators (Implementation Quick Reference)}
+
+\begin{itemize}
+\item Gradients and Jacobian
+\begin{equation}
+\nabla_{\theta}F=i\sum_j \alpha_j\,\varphi_j,\qquad
+\nabla_{\rho}F=\sum_j \beta_j\,\varphi_j,\qquad
+\varphi_j:=c_j e^{\,\langle\beta_j,\rho\rangle}e^{\,i\langle\alpha_j,\theta\rangle}.
+\end{equation}
+
+\item Full-rank criterion (equivalent, verifiable)
+\begin{equation}
+\boxed{\ \rank\,DG=2\ \Longleftrightarrow
+\Re\nabla F\ \text{and}\ \Im\nabla F\ \text{are linearly independent in}\ \mathbb{R}^{m+n}\ }.
+\end{equation}
+Equivalently, there exist $u,v\in\mathbb{R}^{m+n}$ such that
+\begin{equation}
+\det\begin{pmatrix}
+\Re\langle u,\nabla F\rangle & \Re\langle v,\nabla F\rangle\\[2pt]
+\Im\langle u,\nabla F\rangle & \Im\langle v,\nabla F\rangle
+\end{pmatrix}\neq 0.
+\end{equation}
+
+\item Binomial closure criterion (quick reference)
+\begin{equation}
+\boxed{\ \langle \Delta\beta,\rho\rangle=-\log|c_1/c_2|,\quad
+\langle \Delta\alpha,\theta\rangle\equiv \pi-\arg(c_1/c_2)\ (\mathrm{mod}\ 2\pi)\ }.
+\end{equation}
+\end{itemize}
+
+\section*{Concluding Remarks}
+
+The additive mirror partitions the problem of ``exponential sum vanishing'' into two independent real equations: \textbf{amplitude balance} and \textbf{phase antipodality}; under general position, these intersect transversally, and the zero set exhibits stable \textbf{real-analytic codimension-2} geometry. The resulting binomial closure template, parametric transversality (residual/open-and-dense on compact domains), and \textbf{quantitative necessary localization} on the scale side constitute a unified geometric--analytic baseline for subsequent functional mirrors, finite-order continuation, and directional meromorphization.
+
+\begin{thebibliography}{9}
+
+\bibitem{krantz-parks}
+R.~Krantz and H.~R. Parks, \emph{A Primer of Real Analytic Functions}, Birkh\"auser, 1992.
+
+\bibitem{hirsch}
+M.~Hirsch, \emph{Differential Topology}, Springer-Verlag, 1976.
+
+\bibitem{milnor}
+J.~Milnor, \emph{Topology from the Differentiable Viewpoint}, Princeton University Press, 1965.
+
+\bibitem{guillemin-pollack}
+V.~Guillemin and A.~Pollack, \emph{Differential Topology}, Prentice-Hall, 1974.
+
+\bibitem{steenrod}
+N.~E. Steenrod, \emph{The Topology of Fibre Bundles}, Princeton University Press, 1951.
+
+\bibitem{lang}
+S.~Lang, \emph{Real and Functional Analysis}, Springer-Verlag, 1993.
+
+\bibitem{rudin}
+W.~Rudin, \emph{Real and Complex Analysis}, McGraw-Hill, 1987.
+
+\bibitem{oxtoby}
+J.~C. Oxtoby, \emph{Measure and Category}, Springer-Verlag, 1980.
+
+\bibitem{sard}
+A.~Sard, \emph{Brownian Motion and a Generalized Theorem of F. and M. Riesz}, Annals of Mathematics \textbf{52} (1950), 376--390.
+
+\end{thebibliography}
+
+\end{document}
+

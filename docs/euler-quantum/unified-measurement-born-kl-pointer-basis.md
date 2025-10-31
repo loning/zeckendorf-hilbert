@@ -75,9 +75,7 @@ $$
 
 ### 定理 1.1（窗口化读数；Nyquist–Poisson–EM 三分解）
 
-**假设**：被采样函数 $F(E)=w_R(E)\,[h\!\star\!\rho_\star](E)$ 属于 $L^1(\mathbb R)$ 或缓增分布 $\mathcal S'$ 且满足 Poisson 求和的对调条件；$h\in L^1\cap L^2$；$w_R$ 为偶窗；$\rho_\star$ 为绝对或相对 LDOS。
-
-取偶窗 $w_R(x)=w(x/R)$ 与前端核 $h\in L^1\cap L^2$。对绝对或相对 LDOS $\rho_\star\in\{\rho_m,\rho_{\mathrm{rel}}\}$ 定义读数
+取偶窗 $w_R(x)=w(x/R)$ 与前端核 $h\in L^1\cap L^2$。**LDOS 选择**：若需要非负主项与能量计数解释，取 $\rho_\star=\rho_m$；与相位导数/Friedel–BK 对应时，取 $\rho_\star=\rho_{\mathrm{rel}}=\xi'$（可取负）。对绝对或相对 LDOS $\rho_\star\in\{\rho_m,\rho_{\mathrm{rel}}\}$ 定义读数
 
 $$
 \mathrm{Obs}_{\Delta,T}:=\Delta\!\!\sum_{|n|\le M}\! w_R(E_n)\,[h\!\star\!\rho_\star](E_n),\quad E_n=n\Delta,\ T=M\Delta.
@@ -96,44 +94,24 @@ $$
 （ii）$\varepsilon_{\mathrm{EM}}$：**有限阶 Euler–Maclaurin** 求和公式之余项；
 （iii）$\varepsilon_{\mathrm{tail}}$：窗外截断尾项。
 
-**别名归零的充要条件与常用判据**：由 Poisson 求和公式（见 NIST DLMF §1.8(iv)），$\varepsilon_{\mathrm{alias}}=0$ 的**充要条件**为：
+若 $\widehat w_R$ 与 $\widehat h$ 分别带限于 $[-\Omega_w,\Omega_w]$、$[-\Omega_h,\Omega_h]$。被采样函数 $F(E)=w_R(E)\,[h\!\star\!\rho](E)$ 为**时域乘积**，由卷积定理其频谱 $\widehat F=\widehat w_R\ast(\widehat h\,\widehat\rho)$ 的支集**包含于** $[-(\Omega_w+\Omega_h),\,\Omega_w+\Omega_h]$（Minkowski 和上界），因而 $\Omega_{\mathrm{eff}}\le \Omega_w+\Omega_h$。在别名分析中，可把 $\Omega_w+\Omega_h$ 作为**充分**上界使用。**充分条件：**当采样满足
 
 $$
-\sum_{k\neq 0}\widehat F\!\Bigl(\tfrac{2\pi k}{\Delta}\Bigr)=0.
+\boxed{\ \Delta \le \frac{\pi}{\Omega_w+\Omega_h}\ }
 $$
 
-**常用充分条件（严格带限 + Nyquist）**：若 $\widehat w_R$ 与 $\widehat h$ 分别**严格带限**于 $[-\Omega_w,\Omega_w]$、$[-\Omega_h,\Omega_h]$，则被采样函数 $F(E)=w_R(E)\,[h\!\star\!\rho](E)$ 的频谱 $\widehat F=\widehat w_R\ast(\widehat h\,\widehat\rho)$ 满足 $\mathrm{supp}\,\widehat F\subset[-(\Omega_w+\Omega_h),\Omega_w+\Omega_h]$（和宽）。当采样满足
+时，Poisson 公式中除 $k=0$ 外的折叠项全为零，故 $\varepsilon_{\mathrm{alias}}=0$（Nyquist 关断）。$\varepsilon_{\mathrm{EM}}$ 由有限阶伯努利层显式控制；$\varepsilon_{\mathrm{tail}}$ 由窗外 $L^2$ 能量给出。
 
-$$
-\boxed{\ \Delta < \frac{\pi}{\Omega_w+\Omega_h}\ }\quad\Rightarrow\quad\varepsilon_{\mathrm{alias}}=0,
-$$
+**注（有效带宽，对采样变量 $E$）**：别名分析针对 $F(E)=w_R(E)\,[h\!\star\!\rho](E)$ 的**时域乘积**；其频域为**卷积** $\widehat w_R\ast\widehat h\,\widehat\rho$，故谱宽不超过 $\Omega_w+\Omega_h$（Minkowski 和上界，通常作**充分上界**使用）。这与先卷积成核 $w_R\!\star h$ 再与 $\rho$ 卷积的**连续积分**层面不同，后者涉及 $\widehat{w_R\!\star h}=\widehat w_R\,\widehat h$ 的谱宽 $\min(\Omega_w,\Omega_h)$，但那不是被采样的对象。若采样间隔 $\Delta\le \pi/(\Omega_w+\Omega_h)$，则 Poisson 折叠项除 $k=0$ 外全消失，别名误差为零；近带限时误差由出带能量与采样率共同上界。
 
-或等价地
-
-$$
-\boxed{\ \Delta \le \frac{\pi}{\Omega_w+\Omega_h}\ \text{且}\ \widehat F(\pm\pi/\Delta)=0\ }\quad\Rightarrow\quad\varepsilon_{\mathrm{alias}}=0.
-$$
-
-（见 NIST DLMF §1.8(iv) 的带宽-采样折叠判据）。$\varepsilon_{\mathrm{EM}}$ 由有限阶周期化伯努利函数显式控制（NIST DLMF §2.10, §24.11）；$\varepsilon_{\mathrm{tail}}$ 由窗外 $L^2$ 能量给出。
-
-**注（有效带宽，对被采样的 $F$）**：别名分析针对 $F(E)=w_R(E)\,[h\!\star\!\rho](E)$ 的**时域乘积**；其频域为**卷积** $\widehat w_R\ast\widehat h\,\widehat\rho$，故谱宽为 $\Omega_w+\Omega_h$（和宽）。因 $\mathrm{supp}(\widehat h\,\widehat\rho)\subseteq \mathrm{supp}(\widehat h)$，故在 $\widehat h$ 严格带限时 $\widehat\rho$ 的非带限性不会破坏 $\widehat F$ 的带限。这与**先卷积成核 $w_R\!\star h$ 再与 $\rho$ 卷积的连续积分**层面不同，后者涉及 $\widehat{w_R\!\star h}=\widehat w_R\,\widehat h$ 的谱宽 $\min(\Omega_w,\Omega_h)$，**但那不是被采样的对象**。若 $\widehat w_R$、$\widehat h$ 仅近带限，则别名误差由出带能量与采样率共同上界（给出上界而非严格为零）。
-
-**注（边界情形）**：当 $\mathrm{supp}\,\widehat F\subset(-\pi/\Delta,\pi/\Delta)$ 或在端点处为零时，$\varepsilon_{\mathrm{alias}}=0$；若仅"近带限"或端点不为零，别名随"出带能量"与采样率显式上界。
+**注（边界情形）**：**只要** $\mathrm{supp}\,\widehat F\subset(-\pi/\Delta,\pi/\Delta)$ 或在端点处为零时，$\varepsilon_{\mathrm{alias}}=0$；若仅"近带限"或端点不为零，别名随"出带能量"与采样率显式上界。
 
 **注（近带限情形）**：当 $\widehat{w_R}$、$\widehat{h}$ 仅**近似带限**（现实中常见）时，$\varepsilon_{\mathrm{alias}}$ 由出带能量与采样率共同决定，可用 Poisson 项的非零 $k$ 尾和给出上界；理想"$\varepsilon_{\mathrm{alias}}=0$"需**严格带限 + Nyquist** 同时满足。
 
 **证明要点.**
 （a）谱侧：由 Herglotz 表示与谱定理，$[h\!\star\!\rho_\star](E)=\int h(E-E')\,d\mu_\star(E')$，$\Im m(E+i0)=\pi\rho_m(E)$，得卷积加权形式。
-
-（b）别名（Poisson 求和，本规范）：本文采用的傅里叶规范 $\widehat f(\xi)=\int f(t)e^{-it\xi}dt$ 下，Poisson 求和公式为
-
-$$
-\Delta\sum_{n\in\mathbb Z}F(n\Delta)=\sum_{k\in\mathbb Z}\widehat F\!\bigl(\tfrac{2\pi k}{\Delta}\bigr)
-$$
-
-（与 NIST DLMF §1.8(iv) 在本规范下对应）。若 $\mathrm{supp}\,\widehat F\subset(-\pi/\Delta,\pi/\Delta)$，则仅 $k=0$ 留下。此处 $\xi$ 为角频率（rad/能量），采样点为 $2\pi k/\Delta$。出带能量 $\epsilon_{\mathrm{OB}}:=|\widehat F\cdot \mathbf 1_{|\xi|>\pi/\Delta}|_{L^1}$ 给出 $|\varepsilon_{\mathrm{alias}}|\le \epsilon_{\mathrm{OB}}$ 的上界（近带限情形）。
-
-（c）EM 余项：采用到 $2p$ 阶 Euler–Maclaurin 需 $F$ 在相关区间上具 $2p$ 阶可积导数，余项 $R_{2p}$ 由**周期化伯努利函数** $\widetilde B_{2p}$ 与 $f^{(2p)}$ 表达（NIST DLMF §2.10, §24.11）。当 $F$ 在工作带内具所需阶数的解析延拓时，有限阶 EM 的余项由端点高阶导数与周期化伯努利函数的解析组合构成，不引入新奇点，不提升极阶，仅改变端点解析数据。
+（b）别名（Poisson 求和，**按本文角频率规范** $\widehat f(\xi)=\int f(t)e^{-i\xi t}dt$）：$\Delta\sum_{n}F(n\Delta)=\sum_k\widehat F\!\bigl(\tfrac{2\pi k}{\Delta}\bigr)$；若 $\mathrm{supp}\,\widehat F\subset(-\pi/\Delta,\pi/\Delta)$，则仅 $k=0$ 留下。此处 $\xi$ 为**角**频率，采样点为 $2\pi k/\Delta$。
+（c）EM 余项：采用到 $2p$ 阶 Euler–Maclaurin 需 $F$ 具足够阶可积导数，余项按 NIST DLMF §24.11 给出上界；有限阶 EM 不引入新奇点，仅改变端点解析数据。
 
 ### 推论 1.2（PSWF 能量浓聚与强制性）
 
@@ -194,9 +172,7 @@ $$
 \min_{q\in\Delta}\{\mathrm{KL}(q|\pi):\ \mathbb E_q[\beta]=u_0\}\ }.
 $$
 
-极小解满足 $\nabla\Lambda(\rho^\star)=u_0$，其权 $p(\rho^\star)$ 为 I-projection（在指数族上 log-partition 的 Bregman 散度即 KL；I-投影唯一，见 Banerjee et al., JMLR 2005 与 Csiszár 1975）；当软化参数 $\tau\!\downarrow\!0$（或等价地逆温度 $\kappa=1/\tau\!\uparrow\!\infty$；**不与字典系数 $\beta_j$ 混淆**）时，经 $\Gamma$-极限收敛到硬正交投影。
-
-**注（退化与择一）**：当存在**并列极大值/退化**时，$\tau\!\downarrow\!0$ 的 softmax 可能收敛到**极小支撑的选择**（非唯一），此时几何"硬投影"应理解为**到极大子空间的正交投影**，并需给出平局/择一规则。
+（**在该对齐假设下**）极小解满足 $\nabla\Lambda(\rho^\star)=u_0$，其权 $p(\rho^\star)$ 为 I-projection；当 $\tau\!\downarrow\!0$（或等价地 $\beta=1/\tau\!\uparrow\!\infty$）时，经 $\Gamma$-极限收敛到硬正交投影。
 
 ### 推论 2.3（Born 概率的 softmax 实现）
 
@@ -306,7 +282,7 @@ $$
 
 ## 6. 奇性保持、阈值与零点稳定半径
 
-在被求和函数 $F$ 于工作带内具有所需阶数的**解析延拓**且满足 Euler–Maclaurin 公式的标准可微与尾项可积条件时，采用**有限阶** EM 与偶窗/核不会引入新奇点且不提升极阶。余项由端点高阶导数与**周期化伯努利函数**的解析组合构成（见 NIST DLMF §2.10(i)）。具体而言，有限阶 Euler–Maclaurin 的余项可写成 $f^{(p)}$ 与周期化伯努利函数 $P_p$ 的卷积积分，因而**不会引入新奇点，且不提升极阶**；端点处仅改变解析数据。EM 公式与余项的精确定义、符号与适用条件见 NIST DLMF §2.10(i) 与 §24.11。阈值可由 $\varphi'=\pi\rho$ 的退化点识别，并用 Rouché 定理得到零点位置的稳定半径（细节从略）。
+采用**有限阶** EM 与偶窗/核，工作条带内的奇性集合不增、极阶不升；其原因是 EM 余项可写为边界高阶导数与伯努利多项式的**解析**组合，因而不引入新奇点。具体而言，有限阶 Euler–Maclaurin 的余项可写成 $f^{(p)}$ 与周期化伯努利函数 $P_p$ 的卷积积分，因而只改变端点处的解析数据，不引入新奇点。阈值可由 $\varphi'=\pi\rho_{\mathrm{rel}}$ 的退化点识别，并用 Rouché 定理得到零点位置的稳定半径（细节从略）。
 
 ---
 

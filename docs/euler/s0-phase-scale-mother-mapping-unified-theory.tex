@@ -1,0 +1,351 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\setlist[itemize]{nosep,leftmargin=1.6em}
+\setlist[enumerate]{nosep,leftmargin=1.6em}
+
+\geometry{margin=1in}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+\DeclareMathOperator{\Re}{Re}
+\DeclareMathOperator{\Im}{Im}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\conv}{conv}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\spec}{spec}
+
+\raggedbottom
+
+\title{Phase--Scale Mother Mapping and the Mirror Unification of Euler--$\zeta$--Primes}
+
+\author{Haobo Ma\thanks{Independent Researcher} \and Wenlin Zhang\thanks{National University of Singapore}}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{center}
+\textit{Rigorous Derivation, Analytic Continuation, Discrete--Continuous Bridge and Information-Theoretic Calibration}
+\end{center}
+
+\begin{abstract}
+This paper proposes a pure mathematical framework centered on the phase--scale mother mapping, which unifies: the Euler formula (single-mode phase)---the Riemann $\zeta$ function (multi-mode phase--scale superposition)---the Euler product over primes---and the mirror symmetry of the completed function. We establish: (i) phase--scale orthogonality and the analytic domain of the mother mapping; (ii) additive mirror symmetry (necessary and sufficient conditions for binomial closure) and the codimension-2 geometry of zero sets; (iii) functional mirror symmetry (functional equation) derived from Mellin invariance with self-dual kernels; (iv) organization of Euler--Maclaurin into Bernoulli layers, yielding analytic continuation and pole localization along designated scale directions; (v) embedding of $\zeta$/Dirichlet series and information-theoretic calibration (entropy, effective number of modes, participation ratio), thereby precisely defining ``phase-layer information conservation / scale and discrete-layer parity violation''; (vi) axiomatic interface with general $L$-functions (Selberg/GL$(n)$) via degree, conductor, completed function, and explicit formula; (vii) discretization and uniform approximation (Poisson or Nyquist plus Euler--Maclaurin) and difference annihilation structures. The entire framework is dimension-independent.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Euler formula; Riemann $\zeta$; Euler product; completed function; Mellin transform; Poisson summation; Bernoulli numbers; Euler--Maclaurin; automorphic $L$-functions; information entropy.
+
+\section{Notation and Main Contributions}
+
+Phase variables are taken as non-compact real vectors $\theta\in\mathbb{R}^m$, and scale variables $\rho\in\mathbb{C}^n$. The multiplicative group $\mathbb{C}^\times\cong\mathbb{R}_+\times U(1)$ yields the scale--phase decomposition; $\langle\cdot,\cdot\rangle$ denotes the Euclidean inner product; $\Re z,\Im z$ denote the real and imaginary parts, respectively; $B_{k}$ denotes the $k$-th Bernoulli number. We write $DG$ for the Jacobian matrix.
+
+\textbf{Main Contributions:}
+
+\begin{enumerate}
+\item Define the mother mapping $\mathcal{M}[\mu]$ and directly characterize tube-domain analyticity via absolute integrability of the integrand.
+\item Prove the necessary and sufficient conditions for binomial closure and the codimension-2 structure of polynomial zero sets.
+\item Construct functional mirror symmetry via self-dual kernels and build the completed function.
+\item Establish the paradigm of analytic continuation and error control via finite-order Euler--Maclaurin and Bernoulli layers.
+\item Under exponential--polynomial asymptotics of the \textbf{weighted} cumulative distribution, prove meromorphization along designated scale directions and pole localization.
+\item Develop information-theoretic calibration and show phase-layer conservation versus scale/discrete-layer violation.
+\item Interface with general $L$-functions via degree, conductor, completed function, and explicit formula, and provide executable schemes for discrete uniform approximation and difference annihilation.
+\end{enumerate}
+
+\section{Phase--Scale Mother Mapping and Analytic Domain}
+
+Let $\mu$ be a \textbf{complex Radon measure (locally finite/$\sigma$-finite)} supported on $\mathbb{R}^m\times\mathbb{R}^n$. Define
+\begin{equation}
+\mathcal{M}[\mu](\theta,\rho)
+=\int_{\mathbb{R}^m\times\mathbb{R}^n}
+e^{\,i\langle\omega,\theta\rangle}\,e^{\,\langle\gamma,\rho\rangle}\,d\mu(\omega,\gamma),
+\qquad \theta\in\mathbb{R}^m,\ \rho\in\mathbb{C}^n .
+\end{equation}
+
+If $\mu=\sum_j c_j\,\delta_{(\alpha_j,\beta_j)}$ is discrete (possibly with infinite support), then
+\begin{equation}
+\mathcal{M}[\mu](\theta,\rho)=\sum_j c_j\,e^{\,\langle\beta_j,\rho\rangle}\,e^{\,i\langle\alpha_j,\theta\rangle}.
+\end{equation}
+
+\textbf{Tube-domain analyticity (defined by absolute integrability).} Set
+\begin{equation}
+\mathcal{T}:=\Bigl\{\rho\in\mathbb{C}^n:\ \int e^{\,\Re\langle\gamma,\rho\rangle}\,d|\mu|(\omega,\gamma)<\infty\Bigr\}.
+\end{equation}
+
+Then $\mathcal{T}$ is \textbf{convex}, its \textbf{interior} $\mathrm{int}\,\mathcal{T}$ is open and a domain of holomorphy, and $\rho\mapsto\mathcal{M}[\mu](\theta,\rho)$ is holomorphic on $\mathrm{int}\,\mathcal{T}$; for each fixed $\rho\in\mathcal{T}$, $\theta\mapsto\mathcal{M}[\mu](\theta,\rho)$ is a bounded continuous function on $\mathbb{R}^m$. In the discrete case, if for each compact $K\Subset\mathrm{int}\,\mathcal{T}$ we have
+\begin{equation}
+\sum_j |c_j|\,e^{\,\sup_{\rho\in K}\Re\langle\beta_j,\rho\rangle}<\infty,
+\end{equation}
+then absolute uniform convergence on $K$ holds, hence holomorphy by the Weierstrass test; in the general case, such uniform convergence is not required---holomorphy in $\rho$ follows directly from the integral form combined with dominated convergence and Morera's theorem.
+
+\section{Additive Mirror (Binomial Closure) and Codimension-2 Zero Sets}
+
+In what follows, we assume $\rho\in\mathbb{R}^n$.
+
+Let
+\begin{equation}
+F(\theta,\rho)=\sum_{j=1}^{k} c_j\,e^{\,\langle\beta_j,\rho\rangle}\,e^{\,i\langle\alpha_j,\theta\rangle},\qquad
+G=(\Re F,\Im F):\ \mathbb{R}^m\times\mathbb{R}^n\to\mathbb{R}^2 .
+\end{equation}
+
+\begin{theorem}[Binomial Closure]\label{thm:binomial}
+When $k=2$ and $c_1c_2\neq0$,
+\begin{equation}
+F(\theta,\rho)=0
+\iff
+\begin{cases}
+\langle\beta_1-\beta_2,\rho\rangle=\log|c_2/c_1|,\\[2pt]
+\langle\alpha_2-\alpha_1,\theta\rangle\equiv \pi-\arg(c_2/c_1)\ \ (\mathrm{mod}\ 2\pi).
+\end{cases}
+\end{equation}
+The above necessary and sufficient conditions apply when $\alpha_2\neq\alpha_1$ \textbf{and} $\beta_2\neq\beta_1$.
+If $\alpha_2=\alpha_1$, then $F=0 \iff c_1 e^{\langle\beta_1,\rho\rangle}+c_2 e^{\langle\beta_2,\rho\rangle}=0$ (constraint only on $\rho$);
+if $\beta_2=\beta_1$, then $F=0 \iff c_1+c_2 e^{\,i\langle\alpha_2-\alpha_1,\theta\rangle}=0$ (constraint only on $\theta$);
+if both are equal, then $F=0 \iff c_1+c_2=0$.
+\end{theorem}
+
+\begin{theorem}[Codimension-2 Zero Set]\label{thm:codim2}
+If $F(p)=0$ and $\rank\,DG(p)=2$, then by the implicit function theorem the zero set $\{F=0\}$ is a real-analytic submanifold of dimension $m+n-2$ in a neighborhood of $p$. When $\rho$ takes complex values, one must also balance $\Im\langle\beta_2-\beta_1,\rho\rangle$ to maintain rank 2.
+\end{theorem}
+
+\textbf{Phase mirror} is defined as $\theta\mapsto-\theta$. Since $e^{\,i\langle\alpha,-\theta\rangle}=\overline{e^{\,i\langle\alpha,\theta\rangle}}$, it is a unitary reflection on the Fourier side, preserving spectral energy and the information calibration defined in Section~\ref{sec:info}.
+
+\section{Multiplicative Mirror (Functional Mirror) and Mellin Self-Duality}
+
+Take a kernel $K:(0,\infty)\to\mathbb{C}$ satisfying
+\begin{equation}
+K(x)=x^{-a}K(1/x),
+\end{equation}
+with sufficient decay as $x\to0,\infty$. Its Mellin transform
+\begin{equation}
+\Phi(s)=\int_0^\infty K(x)\,x^{\,s}\,\frac{dx}{x}
+\end{equation}
+satisfies
+\begin{equation}
+\Phi(s)=\Phi(a-s).
+\end{equation}
+When $a=1$, this yields the standard $s\mapsto1-s$ symmetry. The completed function
+\begin{equation}
+\xi(s)=\tfrac12\,s(s-1)\,\pi^{-s/2}\,\Gamma\bigl(\tfrac s2\bigr)\,\zeta(s)
+\end{equation}
+satisfies $\xi(s)=\xi(1-s)$.
+
+\section{Unification of Phase Mirror and Multiplicative Mirror}
+
+Let $\rho=(\rho_1,\dots,\rho_n)$, $x_j=e^{\rho_j}$ (component-wise exponential), then
+\begin{equation}
+e^{\,\langle\beta,-\rho\rangle}=\prod_{j=1}^{n}x_j^{-\beta_j}.
+\end{equation}
+With $\phi=e^{i\theta}$ representing phase, we obtain
+\begin{equation}
+\boxed{\ \text{Multiplicative mirror}=\text{Phase mirror in }\rho=\log x\text{ under exponential extension}\ \oplus\ \text{($\Gamma$--$\pi$ normalization)}\ }.
+\end{equation}
+In the case $n=1$, $\,e^{\langle\beta,-\rho\rangle}=(1/x)^{\beta}\,$ is a scalar instance of the above formula.
+
+\section{Bernoulli Layers and the Discrete--Continuous Bridge}
+
+If $f\in C^{2M}([a,b])$, the Euler--Maclaurin formula gives
+\begin{equation}
+\sum_{n=a}^{b} f(n)
+=\int_a^b f(x)\,dx+\frac{f(a)+f(b)}{2}
++\sum_{m=1}^{M-1}\frac{B_{2m}}{(2m)!}\Bigl(f^{(2m-1)}(b)-f^{(2m-1)}(a)\Bigr)+R_M,
+\end{equation}
+\begin{equation}
+|R_M|\le \frac{|B_{2M}|}{(2M)!}\,(b-a)\,\sup_{x\in[a,b]}|f^{(2M)}(x)|.
+\end{equation}
+
+Take $f(x)=a(x)\,x^{-s}$ and assume there exists $\epsilon>0$ such that $a^{(r)}(x)=O(x^{-1-\epsilon-r})$. To ensure that the remainder $R_M(s)$ is holomorphic in $s$ within a strip, we introduce integrability and strip-uniformity conditions: there exist $M\ge1$ and real numbers $\sigma_1<\sigma_2$ such that
+\begin{equation}
+\int_{1}^{\infty}\bigl|f^{(2M)}(x)\bigr|\,dx<\infty
+\quad\text{uniformly for}\ \sigma\in[\sigma_1,\sigma_2].
+\end{equation}
+Then $R_M(s)$ is holomorphic in the strip $\sigma\in[\sigma_1,\sigma_2]$ (equivalently: holomorphic in the region where integrability holds); all poles arise from analytic continuation of the principal scale integral term with respect to $s$.
+
+\subsection{Continuation Paradigm (Poles Originate from the Principal Scale Integral)}
+
+Under the above assumptions, the poles of $\sum_{n\ge1} f(n)$ are produced by the analytic continuation of $\int_1^\infty f(x)\,dx$, while the remainder is holomorphic in the strip. Bernoulli layers provide systematic corrections at the discrete endpoints.
+
+\subsection{Directional Analytic Continuation (Weighted Cumulative Distribution and Laplace--Stieltjes Transform)}
+
+Let $\mathbf v\in\mathbb{R}^n$ be a unit vector, and decompose $\rho=\rho_\perp+s\mathbf v$ ($\langle\rho_\perp,\mathbf v\rangle=0$). In the discrete case, set
+\begin{equation}
+t_j:=\langle-\beta_j,\mathbf v\rangle,\qquad
+w_j:=c_j\,e^{\,\langle\beta_j,\rho_\perp\rangle}\,e^{\,i\langle\alpha_j,\theta\rangle},
+\end{equation}
+and define the \textbf{weighted} cumulative distribution
+\begin{equation}
+M_{\mathbf v}(t):=\sum_{j:\ t_j\le t} w_j .
+\end{equation}
+
+Assume there exist real numbers $\gamma_0>\gamma_1>\cdots>\gamma_L$, $\delta>0$, and polynomials $Q_\ell$ (possibly with complex coefficients) such that as $t\to+\infty$ (along the positive direction of $\mathbf v$):
+\begin{equation}
+M_{\mathbf v}(t)=\sum_{\ell=0}^{L} Q_\ell(t)\,e^{\,\gamma_\ell t}
+\ +\ O\big(e^{(\gamma_L-\delta)t}\big),
+\end{equation}
+and there exist constants $A,a\ge0$ such that $|w_j|\le A\,e^{a t_j}$ (moderate growth), and there exists $t_*\in\mathbb{R}$ such that $t_j\ge t_*$ for all $j$, so that the \textbf{series} $\sum_j w_j e^{-s t_j}$ serves as the \textbf{primary definition}; when $M_{\mathbf v}$ has \textbf{bounded variation}, this is equivalent to the Stieltjes integral notation.
+\begin{equation}
+\mathcal{L}_{\mathbf v}(s)=\sum_j w_j\,e^{-s t_j}
+=\mathcal{M}[\mu](\theta,\rho_\perp+s\mathbf v).
+\end{equation}
+
+Then $\mathcal{L}_{\mathbf v}(s)$ converges as a \textbf{Laplace--Stieltjes transform} for $\Re s>\gamma_0$, and admits meromorphic continuation to $\Re s>\gamma_L-\delta$, with poles of order at most $\deg Q_\ell+1$ at $s=\gamma_\ell$. If we further assume
+\begin{equation}
+\sum_{t_j\le t}|w_j|=O(e^{\gamma_0 t})\quad(\text{equivalently: }M_{\mathbf v}\ \text{has bounded variation with total variation satisfying this bound}),
+\end{equation}
+then \textbf{absolute convergence} is obtained for $\Re s>\gamma_0$.
+
+\section{Embedding of the $\zeta$ Function and Dirichlet Polynomials}
+
+Take
+\begin{equation}
+\mu=\sum_{n\ge1}\delta_{(\log n,\,-\log n)},\qquad
+\mathcal{M}[\mu](\theta,\rho)=\sum_{n\ge1}e^{-\rho\log n}\,e^{\,i\theta\log n}.
+\end{equation}
+
+When $\sigma>1$, set $\rho=\sigma\in\mathbb{R}$, $\theta=-t\in\mathbb{R}$, then
+\begin{equation}
+\mathcal{M}[\mu](-t,\sigma)=\sum_{n\ge1}n^{-\sigma}e^{-it\log n}
+=\sum_{n\ge1}n^{-(\sigma+it)}=\zeta(\sigma+it).
+\end{equation}
+
+For any Dirichlet polynomial $S_N(s)=\sum_{n\le N}a_n n^{-s}$, let $(\alpha_n,\beta_n,c_n)=(\log n,-\log n,a_n)$, then
+\begin{equation}
+S_N(\sigma+it)=\sum_{n\le N} a_n\,e^{-\sigma\log n}\,e^{-it\log n}
+=\mathcal{M}[\mu_{N}]\bigl(\theta=-t,\rho=\sigma\bigr).
+\end{equation}
+
+\section{Information-Theoretic Calibration and ``Information Conservation / Parity Violation''}\label{sec:info}
+
+All calculations in this section are performed in the convergence domain $\sigma>1$.
+
+For the discrete spectrum $\{c_j,\beta_j\}$, define
+\begin{equation}
+p_j(\rho)=\frac{|c_j|\,e^{\,\Re\langle\beta_j,\rho\rangle}}{\sum_\ell |c_\ell|\,e^{\,\Re\langle\beta_\ell,\rho\rangle}},\qquad
+H=-\sum_j p_j\log p_j,\qquad
+N_{\mathrm{eff}}=e^{H},\qquad
+N_2=\Bigl(\sum_j p_j^2\Bigr)^{-1}.
+\end{equation}
+
+\textbf{Phase-layer information conservation:} For fixed $\rho$, phase rotation and index permutation do not change $(p_j,H,N_{\mathrm{eff}},N_2)$.
+
+\textbf{Scale and discrete-layer parity violation:} A general spectrum does not preserve the above quantities under the reflection $\rho\mapsto 2\rho_0-\rho$; discrete summation breaks translational symmetry, and the deviation is corrected by Bernoulli layers; the $\Gamma,\pi$ factors in the completed function restore the $s\leftrightarrow 1-s$ mirror at the functional level.
+
+\textbf{Quantitative example for $\zeta$.} Set $p_n(\sigma)=\zeta(\sigma)^{-1}n^{-\sigma}$ ($\sigma>1$), then
+\begin{equation}
+H(\sigma)=\log\zeta(\sigma)-\sigma\,\frac{\zeta'(\sigma)}{\zeta(\sigma)},\qquad
+N_2(\sigma)=\frac{\zeta(\sigma)^2}{\zeta(2\sigma)}.
+\end{equation}
+As $\sigma\downarrow1$, $N_{\mathrm{eff}},N_2\to\infty$; as $\sigma\to\infty$, $N_{\mathrm{eff}}\to1$.
+
+\section{$L$-Function Interface: Degree, Conductor, Completed Function and Explicit Formula}
+
+Let
+\begin{equation}
+L(s)=\sum_{n\ge1}a_n n^{-s},\qquad
+\Lambda(s)=Q^{\,s}\Bigl(\prod_{j=1}^{d}\Gamma(\lambda_js+\mu_j)\Bigr)L(s),
+\end{equation}
+satisfying
+\begin{equation}
+\Lambda(s)=\varepsilon\,\overline{\Lambda}(1-\overline{s}),
+\end{equation}
+and having an Euler product
+\begin{equation}
+L(s)=\prod_{p}\prod_{j=1}^{d}(1-\alpha_{p,j}p^{-s})^{-1}.
+\end{equation}
+
+Then $d$ is the degree, $Q$ is the conductor. Viewing $\alpha_{p,j}$ as local phases and $p^{-s}$ as local scales, one embeds them into $\mathcal{M}[\mu]$; the completed function is ensured by the self-dual kernel corresponding to the $\Gamma$-factors; under a unified test kernel, the Weil explicit formula pairs ``zeros---primes''.
+
+\section{Discrete Uniform Approximation and Difference Annihilation}
+
+Take scale step size $\Delta>0$, and set $b=e^{\Delta}$. For a phase-band-limited (bandwidth $\le B$) trigonometric polynomial, sampling at $q>2B$ equidistant points (Nyquist) yields lossless reconstruction. Define the discrete approximation
+\begin{equation}
+\boxed{\ F_q(\mathbf{j},\ell)=\sum_{r} c_r\,e^{\,\langle\beta_r,\rho_0\rangle}\,\big(b^{\langle\beta_r,\mathbf v\rangle}\big)^{\ell}\,
+\exp\Bigl(\tfrac{2\pi i}{q}\,\langle\alpha_r,\mathbf{j}\rangle\Bigr)\ }
+\end{equation}
+When only finitely many indices $r$ are retained within a given phase/scale \textbf{window} (or $\mu$'s support is itself finite), define sampling points $\theta_{\mathbf{j}}=\frac{2\pi}{q}\mathbf{j}$,
+\begin{equation}
+\boxed{\ \rho_{\ell}=\rho_0+\Delta\ell\,\mathbf v\ }
+\end{equation}
+($\rho_0$ is the starting point of the window), then
+\begin{equation}
+\boxed{\ \sup_{(\mathbf{j},\ell)}\bigl|\mathcal{M}[\mu](\theta_{\mathbf{j}},\rho_{\ell})-F_q(\mathbf{j},\ell)\bigr|
+\le C_1\ \text{(bandwidth aliasing)}+C_2\ \text{(Bernoulli endpoint remainder)}+C_0\ \text{(truncation error)} . }
+\end{equation}
+
+Under this premise, in the case of scale dimension $n=1$, the sequence $\ell\mapsto F_q(\mathbf{j},\ell)$ for fixed $\mathbf{j}$ is a finite geometric series, and one difference annihilation operator is
+\begin{equation}
+\boxed{\ \prod_{r}\bigl(S-\lambda_r I\bigr)=0\ },\qquad (Sf)(\ell)=f(\ell+1),\quad
+\lambda_r=b^{\,\langle\beta_r,\mathbf v\rangle}=e^{\Delta\langle\beta_r,\mathbf v\rangle}.
+\end{equation}
+
+Verification: for a single term $f_r(\ell)=\lambda_r^{\,\ell}$, we have $(S-\lambda_r I)f_r(\ell)=\lambda_r^{\ell+1}-\lambda_r\cdot\lambda_r^{\ell}=0$.
+
+The one-dimensional special case with $\Delta=1$ gives $\lambda_r=b^{\,\langle\beta_r,\mathbf v\rangle}$.
+
+\section{Conclusion}
+
+Starting from phase--scale orthogonality, this paper uses the mother mapping to unify Euler (single mode) and $\zeta$ (multi-mode), presents the unified principle of additive and multiplicative mirrors and the paradigm of analytic continuation, characterizes the ``single-mode $\leftrightarrow$ multi-mode'' magnitude difference under information calibration, and establishes a unified interface at the $L$-function level via degree, conductor, completed function, and explicit formula. Discrete uniform approximation and difference annihilation provide an executable numerical path, laying a common foundation for rigorous and extensive subsequent work.
+
+\appendix
+
+\section{$\Gamma$ and Bernoulli Expansions (Asymptotic Sectors and Convergence Remarks)}
+
+\textbf{(i) Convergent series.}
+\begin{equation}
+x\cot x
+=1+\sum_{k=1}^{\infty}(-1)^{k}\frac{2^{2k}B_{2k}}{(2k)!}\,x^{2k}\qquad(|x|<\pi).
+\end{equation}
+
+\textbf{(ii) Stirling asymptotic expansion (non-convergent).} In the sector $|\arg z|<\pi$ as $|z|\to\infty$:
+\begin{equation}
+\log\Gamma z=(z-\tfrac12)\log z-z+\tfrac12\log(2\pi)
++\sum_{k=1}^{\infty}\frac{B_{2k}}{2k(2k-1)\,z^{\,2k-1}}+\cdots ,
+\end{equation}
+The above is an asymptotic series, not a series convergent on the entire domain.
+
+\section{Jacobian and Transversality Check (Computational Formulae)}
+
+\begin{equation}
+\partial_{\theta_\ell}F
+=i\sum_j c_j\,\alpha_{j,\ell}\,e^{\,\langle\beta_j,\rho\rangle}\,e^{\,i\langle\alpha_j,\theta\rangle},\qquad
+\partial_{\rho_\ell}F
+=\sum_j c_j\,\beta_{j,\ell}\,e^{\,\langle\beta_j,\rho\rangle}\,e^{\,i\langle\alpha_j,\theta\rangle}.
+\end{equation}
+
+At $F=0$, selecting two linearly independent columns from $\{\partial_{\theta_\ell}\Re F,\ \partial_{\rho_\ell}\Im F\}$ yields $\rank\,DG=2$.
+
+\begin{thebibliography}{9}
+
+\bibitem{titchmarsh1986}
+E.~C. Titchmarsh, \emph{The Theory of the Riemann Zeta-function} (2nd ed.), Oxford University Press, 1986.
+
+\bibitem{iwaniec2004}
+H.~Iwaniec and E.~Kowalski, \emph{Analytic Number Theory}, American Mathematical Society, 2004.
+
+\bibitem{montgomery2007}
+H.~L. Montgomery and R.~C. Vaughan, \emph{Multiplicative Number Theory I: Classical Theory}, Cambridge University Press, 2007.
+
+\bibitem{apostol1976}
+T.~M. Apostol, \emph{Introduction to Analytic Number Theory}, Springer-Verlag, 1976.
+
+\bibitem{conrey1989}
+J.~B. Conrey, More than two fifths of the zeros of the Riemann zeta function are on the critical line, \emph{Journal f\"ur die reine und angewandte Mathematik} \textbf{399} (1989), 1--26.
+
+\bibitem{weil1952}
+A.~Weil, Sur les ``formules explicites'' de la th\'eorie des nombres premiers, \emph{Meddelanden fr\aa n Lunds Universitets Matematiska Seminarium} (1952), 252--265.
+
+\end{thebibliography}
+
+\end{document}
+

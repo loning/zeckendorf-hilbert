@@ -20,7 +20,7 @@
 - 采用 EBOC 文献中的记号：$X_f$ 为空间-时间 SFT；$F$ 为半径 $r$ 的 $d$ 维 CA 全局映射；$\pi$ 为因子译码；厚边界与传播锥如 EBOC 引理 5.3；Følner 窗口族满足 $|\partial W_k|/|W_k|\to 0$；前缀 Kolmogorov 复杂度记为 $K(\cdot)$。
 - 统计不可分辨采用积分概率度量在检验族 $\mathcal F_m$ 上的界与资源三元组 $(m,N,\varepsilon)$（见 RBIT）。
 - RBIT（docs/zeta-publish/resource-bounded-incompleteness-theory.md）提供两项外部支撑：长度门槛版不完备（定理 4.1）与相对误差样本复杂度下界（定理 4.4）。
- - 概率量（如 $\alpha,N$ 等）均在固定的概率空间上计算，例如：对长度为 $K$ 的窗口作等权随机抽取，或在 CA 的移位不变遍历测度 $\mu$ 下取随机样本。
+- 统计参数（如显著性水平 $\alpha$、样本数 $N$ 等）均在固定的概率空间上计算，例如：对长度为 $K$ 的窗口作等权随机抽取，或在 CA 的移位不变遍历测度 $\mu$ 下取随机样本。
 
 ---
 
@@ -34,7 +34,7 @@
 
 2) $T_{\mathrm{EBOC}}$ 无长度 $\le L$ 的 $G_L$ 的证明；
 
-3) $G_L$ 等价于“长度 $\le L$ 的证明串中无 $G_L$ 的证明”。
+3) $G_L$ 等价于"长度 $\le L$ 的证明串中无 $G_L$ 的证明"（$\Delta_0$ 句子即有界量词的算术公式）。
 
 **证明要点.** 由 RBIT 的长度门槛不完备（定理 4.1）对 $T_{\mathrm{EBOC}}$ 应用哥德尔对角化，且 $\mathrm{Proof}_{T_{\mathrm{EBOC}}}(x,y)$ 在标准编码下为 $\Delta_0$ 可定义，立即得到结论。$\square$
 
@@ -42,41 +42,39 @@
 
 ### O2（统计不可分辨：有限样本下的因子观察者）
 
-**定理.**（前提，二选一其一）
-
- (a) 令 $M$ 充分大，并在所取区间上采用局部密度近似：$\mathbb P\{s+id\ \text{为素}\}=p:=\tfrac{d}{\varphi(d)}\cdot\tfrac{1}{\ln M}$；或
-
- (b) 令 $p$ 为该区间的经验密度：$p=\tfrac1K\sum_{i=0}^{K-1}\mathbf1\{s+id\ \text{为素}\}$，以下检验以此 $p$ 为基准。
-
-取步长 $d\in\{2, q\}$（$q$ 为素数）与起点 $s$，在 CA 中通过宏块-强制嵌入序列
-
+**定理.**（前提）令 $M$ 充分大，使得在所取区间 $[s, s+Kd)$ 上可采用局部密度近似：
 $$
-b_i=\mathbf1\{s+i d\ \text{为素}\},\qquad i=0,\dots,K-1,
+\mathbb P\{s+id\ \text{为素}\}=p:=\tfrac{1}{\varphi(d)}\cdot\tfrac{1}{\ln M}.
 $$
-
-并令目标密度 $p=\tfrac{d}{\varphi(d)}\cdot\tfrac{1}{\ln M}$。若区间满足 $Kd\le (\eta/2)\,M\ln M$ 且因子观察者仅使用检验族 $\mathcal F_m$（频率、一阶自相关、窗口 $\le m$ 的 runs），则当
-
+取步长 $d\in\{2, q\}$（$q$ 为素数）与起点 $s$（满足 $\gcd(s,d)=1$），在 CA 中通过宏块-强制嵌入序列
+$$
+b_i=\mathbf1\{s+i d\ \text{为素}\},\qquad i=0,\dots,K-1.
+$$
+若区间满足 $Kd\le (\eta/2)\,M\ln M$（保证局部密度近似的相对误差 $\le \eta/2$），且因子观察者仅使用检验族 $\mathcal F_m$，其中包含：频率检验、一阶自相关检验、窗口长度 $\le m$ 的 runs 检验，则当
 $$
 N\ <\ \frac{3}{\eta^2 p}\,\ln\frac{2}{\alpha}
 $$
-
 时，该因子观察者在资源 $(m,N,\varepsilon=\eta p)$ 下无法将该序列与 i.i.d. Bernoulli$(p)$ 区分（不可分辨）。
 
-**证明要点.** 频率检验由 RBIT 样本复杂度下界（定理 4.4）直接给出；由上述前提得密度偏差 $\le \eta p/2$；素数间隔的短程相关在该样本规模下的偏差 $\le \eta p/2$，合并得总体误差 $\le \eta p$。$\square$
+**证明要点.** 频率检验由 RBIT 样本复杂度下界（定理 4.4）直接给出；在区间条件 $Kd\le (\eta/2)M\ln M$ 下，Dirichlet 定理给出的局部密度与目标密度 $p=\tfrac{1}{\varphi(d)\ln M}$ 的偏差 $\le \eta p/2$；素数间隔的短程相关在该样本规模下的偏差 $\le \eta p/2$，合并得总体误差 $\le \eta p$。$\square$
 
 ---
 
-### O3（厚边界互信息“面积律”，固定 $T$）
+### O3（厚边界互信息边界；固定时间跨度的面积律）
 
-**定理.** 在移位不变遍历测度 $\mu$ 下，设 $F$ 为半径 $r$ 的 CA，$W\subset\mathbb Z^d$ 为有限窗口，记 $X_t:=x|_{W\times\{t\}}$，$Y_{t+T}:=x|_{W\times\{t+T\}}$。存在常数 $C=C(\Sigma)$ 使
-
+**定理.** 在移位不变遍历测度 $\mu$ 下，设 $F$ 为半径 $r$ 的 CA，$W\subset\mathbb Z^d$ 为有限**空间**窗口，记 $X_t:=x|_{W\times\{t\}}$，$Y_{t+T}:=x|_{W\times\{t+T\}}$。对**固定的时间跨度 $T\in\mathbb{N}$**，存在常数 $C=C(\Sigma)$ 使
 $$
 I\big(X_t;Y_{t+T}\big)\ \le\ C\,r\,T\,\big|\partial W\big|.
 $$
 
-因此对任意 Følner 族 $\{W_k\}$ 与固定的 $T$，$I(X_t;Y_{t+T})/|W_k|\to0$（归一化互信息消失）。
+因此对任意**空间** Følner 族 $\{W_k\subset\mathbb{Z}^d\}$ 与固定的 $T$，归一化互信息消失：
+$$
+\frac{I(X_t;Y_{t+T})}{|W_k|}\to 0.
+$$
 
-**证明要点.** 厚边界与传播锥给出：$Y_{t+T}$ 由 $X_t$ 的 $rT$-膨胀 $W^{+rT}$ 决定，依赖集中在边界带；由数据处理与次可加性，互信息受边界自由度线性上界，得不等式。$\square$
+**注**：此处归一化采用**空间体素数** $|W_k|$，刻画空间配置间的互信息密度；与 EBOC 主文档中时间子作用的**时间厚度归一化**熵 $h_\mu(\sigma_{\mathrm{time}})$ 为不同的量（后者按 $L(W)=T$ 归一化）。本定理适用于**固定 $T$** 的空间截面分析。
+
+**证明要点.** 厚边界与传播锥给出：$Y_{t+T}$ 由 $X_t$ 的 $rT$-膨胀 $W^{+rT}$ 决定，依赖集中在边界带；由数据处理不等式与次可加性，互信息受边界自由度线性上界，得不等式。$\square$
 
 ---
 

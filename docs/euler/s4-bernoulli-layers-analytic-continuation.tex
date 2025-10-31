@@ -1,0 +1,293 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\setlist[itemize]{nosep,leftmargin=1.6em}
+\setlist[enumerate]{nosep,leftmargin=1.6em}
+
+\geometry{margin=1in}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+\DeclareMathOperator{\Re}{Re}
+\DeclareMathOperator{\Im}{Im}
+\DeclareMathOperator{\Sing}{Sing}
+
+\raggedbottom
+
+\title{Bernoulli Layers and Analytic Continuation Paradigm}
+
+\author{Haobo Ma\thanks{Independent Researcher} \and Wenlin Zhang\thanks{National University of Singapore}}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{center}
+\textit{Finite-Order Euler--Maclaurin, Remainder Entireness and the ``Pole = Main Scale'' Principle}
+\end{center}
+
+\begin{abstract}
+We establish a unified paradigm of ``finite-order Euler--Maclaurin (EM)---Bernoulli layers---analytic continuation'': on one-dimensional scale slices, we decompose function families $f(\cdot;s)$ depending on complex parameter $s$ using \textbf{finite-order} EM; we provide verifiable conditions ensuring the remainder is \textbf{holomorphic/entire} with respect to $s$; based on this, we prove that \textbf{poles arise solely from main-scale terms} (endpoint/main-term integrals and their finite-order derivatives), while EM correction's \textbf{Bernoulli layers} contribute only entire-function corrections, thereby realizing ``pole = main scale''. This paradigm is compatible with S2's ``additive mirror---zero-set transversality'' in local geometry, interfaces with S3's ``self-dual kernel---completed function---$\Gamma/\pi$ normalization'' on the multiplicative mirror, and provides a verifiable interface for S5's ``directional meromorphization and pole localization''.
+\end{abstract}
+
+\section{Notation and Prerequisites (Aligned with S1/S2/S3)}
+
+\begin{itemize}
+\item \textbf{Scale slice}: Fix direction $\mathbf{v}\in\mathbb{S}^{n-1}$ and transverse offset $\rho_\perp$; let
+\begin{equation}
+f(x;s)\;:=\;F\bigl(\theta,\rho_\perp+x\,\mathbf{v}; s\bigr),\qquad x\in\mathbb{R}_{\ge0},
+\end{equation}
+where $\theta$ is fixed (phase layer) and $s$ is the (Mellin/Laplace) complex parameter. All interchanges, term-by-term differentiation, and convergence are performed under S1's tube-domain/strip contract (C0--C3).
+
+\item \textbf{Discrete--continuous bridge (step size and ratio)}: The scale grid is denoted $x_k:=a+k\Delta$ ($k\in\mathbb{N}$), and write $b:=e^{\Delta}$ (multiplicative variable); this paper \textbf{uses only finite-order} EM, not infinite Bernoulli series.
+
+\item \textbf{S2/S3 interface}: S2's ``amplitude balance + phase antipodality'' provides codimension-2 transversal geometry of zero sets (used for localization of dominant terms/binomial closure); S3 provides $\Gamma/\pi$ normalization and completed function template (used to cancel poles induced by main scales and obtain mirror symmetry).
+\end{itemize}
+
+\section{Finite-Order Euler--Maclaurin and ``Bernoulli Layers''}
+
+\begin{definition}[Finite-Order EM / Bernoulli Layers]\label{def:EM}
+Let $M\in\mathbb{N}$, $N\in\mathbb{N}$, and assume $f\in C^{2M}\bigl([a,a+N\Delta]\bigr)$. Then the finite-order EM formula is
+\begin{equation}
+\begin{aligned}
+\sum_{k=0}^{N-1} f(a+k\Delta)
+&= \frac{1}{\Delta}\int_{a}^{a+N\Delta} f(x)\,dx
++ \frac{f(a)-f(a+N\Delta)}{2}\\
+&\quad+ \sum_{m=1}^{M-1}\frac{B_{2m}}{(2m)!}\,\Delta^{2m-1}\bigl(f^{(2m-1)}(a+N\Delta)-f^{(2m-1)}(a)\bigr)
++ R_M,
+\end{aligned}
+\end{equation}
+where
+\begin{equation}
+R_M=\frac{\Delta^{2M-1}}{(2M)!}\int_{a}^{a+N\Delta} B_{2M}\left(\Bigl\{\tfrac{x-a}{\Delta}\Bigr\}\right)\, f^{(2M)}(x)\,dx.
+\end{equation}
+Write
+\begin{equation}
+\mathcal{B}_m[f]\;:=\;\frac{B_{2m}}{(2m)!}\,\Delta^{2m-1}\bigl(f^{(2m-1)}(a+N\Delta)-f^{(2m-1)}(a)\bigr),\qquad 1\le m\le M-1,
+\end{equation}
+as the \textbf{$m$-th Bernoulli layer}, and $R_M$ as the \textbf{remainder layer}, where $B_{2m}$ are Bernoulli numbers, $B_{2M}(\cdot)$ is the Bernoulli polynomial, and $\{\cdot\}$ denotes the fractional part.
+\end{definition}
+
+\begin{remark}
+Convention: This paper always takes \textbf{finite $M$}; the dependence of $\mathcal{B}_m$ and $R_M$ on complex parameter $s$ satisfies verifiable conditions described below, hence holomorphic/entire in $s$.
+\end{remark}
+
+\section{Entireness of Remainder and Strip Holomorphy}
+
+Let $f(\cdot;s)$ be $C^{2M}$ in the $x$-direction and take values in a continuously differentiable function space with respect to complex parameter $s$. Assume there exists an open set $U\subset\mathbb{C}$ such that:
+
+\begin{itemize}
+\item \textbf{(H1)} For any compact $K\subset U$, there exists an integrable weight $w_M(x)\ge 0$ such that
+\begin{equation}
+\sup_{s\in K}\bigl|f^{(k)}(x;s)\bigr|\le w_M(x),\qquad x\in[a,\infty),\ 0\le k\le 2M.
+\end{equation}
+
+\item \textbf{(H2)} $\displaystyle \int_{a}^{\infty} w_M(x)\,dx<\infty$ (or appropriate semi-infinite interval and endpoint separation variants), and endpoints satisfy finite-order vanishing/boundedness to ensure boundary terms exist.
+
+\item \textbf{(H0)} (Pointwise holomorphy) For each $x\in[a,\infty)$ and $0\le k\le 2M$, the map $s\mapsto f^{(k)}(x;s)$ is holomorphic in $U$; and this holds jointly with (H1)'s dominant bound $w_M\in L^1$ (uniform on compacts).
+\end{itemize}
+
+\begin{theorem}[Holomorphy/Entireness of Remainder and Bernoulli Layers]\label{thm:remainder}
+Under (H0)--(H2), $R_M(a,N,\Delta;s)$ is \textbf{holomorphic} with respect to $s\in U$; if (H0)--(H2) hold for $U=\mathbb{C}$, then $R_M$ is an \textbf{entire function} of $s$. Similarly, each Bernoulli layer $\mathcal{B}_m[f(\cdot;s)]$ is holomorphic in $s\in U$.
+\end{theorem}
+
+\begin{proof}[Proof (brief)]
+By definition,
+\begin{equation}
+R_M(s)=\frac{\Delta^{2M-1}}{(2M)!}\int_{a}^{a+N\Delta} B_{2M}\left(\Bigl\{\tfrac{x-a}{\Delta}\Bigr\}\right)\, f^{(2M)}(x;s)\,dx.
+\end{equation}
+For fixed compact $K\subset U$, $B_{2M}$ is bounded and $\sup_{s\in K}|f^{(2M)}(x;s)|\le w_M(x)\in L^1$. By dominated convergence and Morera's theorem (or Weierstrass uniform convergence criterion), one can interchange ``integration---limit/differentiation'', yielding that $R_M$ is holomorphic in $U$; if (H0)--(H2) hold for $\mathbb{C}$, then $R_M$ is entire. Holomorphy of Bernoulli layers follows similarly (endpoint values and finite-order derivatives are holomorphic in $s$ under (H0)--(H2)).
+\end{proof}
+
+\section{The ``Pole = Main Scale'' Principle}
+
+Consider the truncated semi-infinite sum
+\begin{equation}
+S_N(\Delta;s):=\sum_{k=0}^{N-1} f(a+k\Delta;s),\qquad N\to\infty,
+\end{equation}
+and its \textbf{main-scale term}
+\begin{equation}
+\mathcal{I}(\Delta;s):=\frac{1}{\Delta}\int_a^{\infty} f(x;s)\,dx,
+\end{equation}
+together with finite-order Bernoulli corrections $\sum_{m=1}^{M-1}\mathcal{B}_m[f(\cdot;s)]$ and limiting remainder $R_M(s)$ (well-defined in the sense of $N\to\infty$). In many mother mapping/Laplace--Mellin scenarios (e.g., $f(x;s)=e^{-\sigma x}g(x;s)$ with $\sigma>0$), $\mathcal{I}(\Delta;s)$ is an analytic (meromorphic) function of $s$, while $\mathcal{B}_m$ and $R_M$ are holomorphic/entire in $s$.
+
+\begin{itemize}
+\item \textbf{(H3$'$)} (Infinite endpoint decay, including $k=0$) For any compact $K\subset U$,
+\begin{equation}
+\sup_{s\in K}\big|f^{(k)}(a+N\Delta;s)\big|\xrightarrow[N\to\infty]{}0,\quad k\in\{0,1,3,\dots,2M-1\}.
+\end{equation}
+Thus the upper endpoint derivative terms in $\sum_{m=1}^{M-1}\mathcal{B}_m[f(\cdot;s)]$ decay and vanish as $N\to\infty$, allowing definition of the \textbf{limiting Bernoulli layers} $\mathcal{B}_m^{(\infty)}[f(\cdot;s)]$ (depending only on finite-order derivatives at $x=a$), and the \textbf{remainder layer limit} $R_M^{(\infty)}(s)$ exists and is locally uniform in $s\in U$. A sufficient optional condition: there exists $\eta>0$ such that $\sup_{s\in K} e^{\eta x}\,\big|f^{(k)}(x;s)\big|$ is bounded for $0\le k\le 2M-1$; then (H3$'$) holds automatically.
+\end{itemize}
+
+\begin{theorem}[Poles Arise Only from Main-Scale Terms]\label{thm:pole}
+Let $f(\cdot;s)$ satisfy (H0)--(H2) of Theorem~\ref{thm:remainder}, and take strip $V\subset U$
+\begin{equation}
+V=\{\sigma_0<\Re s<\sigma_1\}.
+\end{equation}
+Assume:
+\begin{itemize}
+\item \textbf{(A0)} (Existence of pointwise limit) There exists a non-empty \textbf{convergence strip} $W\subset V$ such that under (H0)--(H3$'$), the $N\to\infty$ limits of $\sum_{m=1}^{M-1}\mathcal{B}_m[f(\cdot;\cdot)]$ and $R_M$ exist uniformly in $W$, and the upper endpoint satisfies the decay in (H3$'$) at all orders (including $k=0$); accordingly define $\mathcal{B}_m^{(\infty)}[f(\cdot;s)]$, $R_M^{(\infty)}(s)$, and retain the endpoint averaging term $\frac{1}{2} f(a;s)$;
+
+\item \textbf{(A1)} $\mathcal{I}(\Delta;s)$ admits analytic continuation to a \textbf{meromorphic function} in $V$, with pole set $\mathcal{P}\subset V$ countable and without accumulation points;
+
+\item \textbf{(A2)} Each Bernoulli layer and the remainder are holomorphic in $s\in V$ (guaranteed by Theorem~\ref{thm:remainder}).
+\end{itemize}
+
+Then:
+\begin{itemize}
+\item \textbf{(Pointwise limit)} In $W$,
+\begin{equation}
+\lim_{N\to\infty}S_N(\Delta;s)
+=\mathcal{I}(\Delta;s)
++\tfrac{1}{2} f(a;s)
++\sum_{m=1}^{M-1}\mathcal{B}_m^{(\infty)}[f(\cdot;s)]
++R_M^{(\infty)}(s).
+\end{equation}
+
+\item \textbf{(Analytic continuation)} In $V$, define by the right-hand side
+\begin{equation}
+S(\Delta;s):=\mathcal{I}(\Delta;s)+\tfrac{1}{2} f(a;s)+\sum_{m=1}^{M-1}\mathcal{B}_m^{(\infty)}[f(\cdot;s)]+R_M^{(\infty)}(s),
+\end{equation}
+so that $S(\Delta;\cdot)$ is a meromorphic continuation in $V$, and
+\begin{equation}
+\Sing_V\bigl(S(\Delta;\cdot)\bigr)=\Sing_V\bigl(\mathcal{I}(\Delta;\cdot)\bigr)=\mathcal{P}.
+\end{equation}
+\end{itemize}
+
+That is, in the sense of analytic continuation, \textbf{poles are generated only by the main-scale term $\mathcal{I}$}; Bernoulli layers and remainder introduce no new poles.
+\end{theorem}
+
+\begin{remark}[Interface with S3's completed function]
+If the endpoint leading term of $\mathcal{I}$ can be reduced to Gamma/exponential--polynomial type, one can select symmetric factor $r(s)$ ($\Gamma/\pi$ factor) following the template provided by S3 such that $r(s)\mathcal{I}(\Delta;s)$ cancels poles; combined with (A2), this yields a \textbf{holomorphic (pole-free) completed function} in $V$.
+\end{remark}
+
+\section{Directionalization and Exponential--Polynomial Case (S5 Interface)}
+
+Fix scale direction $\mathbf{v}$; consider discrete counting and its Laplace--Stieltjes transform:
+\begin{equation}
+M_{\mathbf{v}}(t;s):=\sum_{k\ge 0} f(\rho_\perp+k\Delta\,\mathbf{v};s)\,\mathbf{1}_{[0,\infty)}(t-k\Delta),\qquad
+\mathcal{L}_{\mathbf{v}}(s):=\int_{0}^{\infty} e^{-st}\,dM_{\mathbf{v}}(t;s).
+\end{equation}
+
+If $f(\cdot;s)$ has exponential--polynomial order growth/decay at endpoints and (H1)--(H2) hold for some strip, then applying finite-order EM to the $k$-variable and using Theorem~\ref{thm:pole}, one obtains meromorphic continuation of $\mathcal{L}_{\mathbf{v}}$ in that strip, with \textbf{poles completely determined by the main-scale Laplace term}; their \textbf{location and order} agree with S5's pole localization theorem (``main-term exponential--polynomial $\Rightarrow$ pole order $\le$ polynomial degree + 1''). S2's binomial closure criterion can be used to locally determine the dominant subsum and transversality (zeros being simple/non-simple), thereby providing a geometric template for the directional pole structure.
+
+\section{Typical Frameworks and Examples (Template Implementation)}
+
+\subsection{Framework A (Mellin--EM Composite)}
+
+Let $K$ be an $a$-self-dual kernel from S3. Consider
+\begin{equation}
+\Phi(s)=\sum_{n\ge1} K(n)\,n^{-s}\quad\text{or}\quad \int_{1}^{\infty} K(x)\,x^{-s}\,dx.
+\end{equation}
+
+When there is only finite-order endpoint expansion (not Schwartz-class), apply finite-order EM to $\sum_{n\ge1}K(n)n^{-s}$; the main-scale term consists of $\int K(x)x^{-s}dx$ and its endpoint derivatives, with holomorphic remainder. By Theorem~\ref{thm:pole}, poles arise only from the main-scale term. Following S3 to select $r(s)$ ($\Gamma/\pi$ factor) yields a holomorphic (pole-free) completed function $\Xi=r\Phi$ in the working strip.
+
+\subsection{Framework B (Directional Sampling---Nyquist/Poisson + EM)}
+
+On the scale grid $\rho_k=\rho_0+k\Delta\,\mathbf{v}$ ($b=e^\Delta$), sampling of $F(\theta,\rho)$ generates a function, decomposed via finite-order EM into ``main-scale integral + finite Bernoulli layers + remainder layer''; the main-scale integral determines meromorphic continuation and potential poles in the strip, while the remainder layer is holomorphic. This framework directly interfaces with S8's uniform approximation/error constant table (error three-way decomposition: aliasing/endpoint/truncation).
+
+\section{Counterexamples and Boundary Families (Failure Reasons Annotated)}
+
+\begin{itemize}
+\item \textbf{R4.1 (Infinite Bernoulli layers)}: Using EM as an \textbf{infinite} series rather than finite-order may lead to \textbf{divergence} or \textbf{non-uniformly summable} behavior even if $f$ is smooth, producing spurious ``poles'' (actually artifacts of formal extrapolation).
+
+\item \textbf{R4.2 (Endpoint non-integrable/not canceled)}: If $f^{(k)}(\cdot;s)$ at endpoints does not satisfy (H2)'s weighted integrability or necessary finite-order vanishing, then $R_M$ is no longer holomorphic; endpoint divergence seeps into the remainder.
+
+\item \textbf{R4.3 (Interchange violation)}: Without performing ``sum---integral---differentiation'' interchanges under S1's tube domain/dominated convergence, conclusions do not hold.
+
+\item \textbf{R4.4 (Directional grid degeneracy)}: If the limits $\Delta\to0$ and $N\to\infty$ are not taken in order ``first $N$, then $\Delta$'' or lack uniform control, separation of main scale and remainder may break down.
+\end{itemize}
+
+\section{Unified Verifiable Checklist (Minimal Sufficient Conditions)}
+
+\begin{enumerate}
+\item \textbf{Finite order}: Fix $M$, retain only Bernoulli layers up to $B_{2(M-1)}$ and $R_M$.
+
+\item \textbf{Endpoint regularity}: There exists $w_M\in L^1$ dominating $\{f^{(k)}\}_{k\le 2M}$ and satisfying endpoint finite-order vanishing/boundedness (H1--H2).
+
+\item \textbf{Strip control}: Main-scale term $\mathcal{I}(\Delta;s)$ is meromorphic in the working strip, providing \textbf{explicit location/order} of potential poles.
+
+\item \textbf{Remainder holomorphic}: Verify by Theorem~\ref{thm:remainder} that $\mathcal{B}_m$ and $R_M$ are holomorphic in the strip (if globally valid, then entire).
+
+\item \textbf{Mirror splicing (optional)}: If a completed function is needed, consult S3 to select $r(s)$ canceling main-scale poles and obtaining mirror symmetry.
+
+\item \textbf{Geometric consistency}: In directionalization/local binomial dominance, compatibility with S2's binomial closure---transversality template (simplicity/degeneracy determination of zeros).
+\end{enumerate}
+
+\section{Interface with Subsequent Papers}
+
+\begin{itemize}
+\item \textbf{$\to$ S5 (Directional meromorphization)}: Theorem~\ref{thm:pole} provides the analytic baseline of ``pole = main scale''; combined with the exponential--polynomial form of directional counting (S5), one determines pole location and order.
+
+\item \textbf{$\to$ S6 (Information-theoretic calibration)}: EM alters only the entire-function layer, so phase-layer information conservation (S0 basic principle) and scale-layer parity-violation correction can proceed without changing pole structure.
+
+\item \textbf{$\to$ S7 ($L$-function interface)}: Poles of main-scale terms are induced by archimedean factors and endpoint leading terms; after normalization by S3's $r(s)$, they embed directly into the explicit formula.
+
+\item \textbf{$\to$ S8 (Uniform approximation)}: Finite-order EM remainder bounds and Bernoulli layer constants enter the error three-way decomposition; interfacing with Nyquist/Poisson yields non-asymptotic constant tables.
+
+\item \textbf{$\to$ S10 (Geometric growth)}: Strip growth determined by main-scale terms is compatible with amoeba/Ronkin geometric constraints; S2's ``balance hyperplanes'' provide necessary localization of scale projection.
+\end{itemize}
+
+\appendix
+
+\section{Multiplicative Version of Finite-Order EM (Mellin-Side Quick Reference)}
+
+Let $g\in C^{2M}([1,B])$, and consider multiplicative grid $x_n=b^n$ ($b=e^{\Delta}$). The EM formula for $\sum_{n=0}^{N-1}g(b^n)$ can be obtained from the additive version via the substitution $y=\log x$; Bernoulli layers and remainder forms remain unchanged, with only powers of $\Delta$ appearing in coefficients. The main-scale contribution to the Mellin transform $\int g(x)\,x^{s-1}dx$ and endpoint derivatives form pole sources; the remainder is entire.
+
+\section{Stirling and Vertical-Line Growth of Completed Functions}
+
+Take S3's symmetric factor $r(s)$ ($\Gamma/\pi$ factor). By Stirling estimates, on any closed strip $|r(s)|$ decays as $\exp\bigl(-\frac{\pi}{2}J|t|\bigr)$ ($J$ being the number of paired $\Gamma_{\mathbb{R}}$ factors), so
+\begin{equation}
+r(s)\left(\sum_{m<M}\mathcal{B}_m+R_M\right)
+\end{equation}
+grows at most polynomially; if $r(s)\mathcal{I}(\Delta;s)$ cancels poles in $V$, then the completed function is holomorphic (pole-free) in $V$.
+
+\section*{Concluding Remarks}
+
+Finite-order EM bridges the discrete--continuous divide into a three-tiered structure ``main scale + Bernoulli layers + remainder layer'': under S1's tube domain and interchange discipline, the \textbf{remainder layer is holomorphic/entire} and \textbf{poles are induced only by main-scale terms}; combined with S3's $\Gamma/\pi$ normalization, poles can be canceled and mirror symmetry obtained. This paradigm precisely interfaces S2's local geometry (binomial closure, transversality) with S5's directional meromorphization, providing a unified, verifiable, and reusable analytic baseline for S7/S8/S10's arithmetic interface, error constants, and geometric growth.
+
+\begin{thebibliography}{9}
+
+\bibitem{apostol1976}
+T.~M. Apostol, \emph{Introduction to Analytic Number Theory}, Springer-Verlag, 1976.
+
+\bibitem{stein2003}
+E.~M. Stein and R.~Shakarchi, \emph{Complex Analysis}, Princeton University Press, 2003.
+
+\bibitem{hormander1990}
+L.~H\"ormander, \emph{An Introduction to Complex Analysis in Several Variables}, North-Holland, 1990.
+
+\bibitem{rudin1987}
+W.~Rudin, \emph{Real and Complex Analysis}, McGraw-Hill, 1987.
+
+\bibitem{lang}
+S.~Lang, \emph{Complex Analysis}, Springer-Verlag, 1993.
+
+\bibitem{whittaker-watson}
+E.~T. Whittaker and G.~N. Watson, \emph{A Course of Modern Analysis}, Cambridge University Press, 1927.
+
+\bibitem{doetsch}
+G.~Doetsch, \emph{Introduction to the Theory and Application of the Laplace Transformation}, Dover, 1943.
+
+\bibitem{korevaar}
+J.~Korevaar, \emph{Tauberian Theory: A Century of Developments}, Springer, 2004.
+
+\bibitem{feller}
+W.~Feller, \emph{An Introduction to Probability Theory and Its Applications, Vol. II}, Wiley, 1971.
+
+\end{thebibliography}
+
+\end{document}
+

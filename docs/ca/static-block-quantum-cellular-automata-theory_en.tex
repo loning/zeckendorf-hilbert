@@ -1,0 +1,518 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\setlist[itemize]{nosep,leftmargin=1.6em}
+\setlist[enumerate]{nosep,leftmargin=1.6em}
+\usepackage{natbib}
+\usepackage{booktabs}
+
+% Overfull hbox prevention
+\emergencystretch=1em
+\raggedbottom
+\tolerance=2000
+
+% Theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{limitation}{Limitation}
+
+% Operators
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Ad}{Ad}
+
+\title{Static Block Quantum Cellular Automata Theory:\\ A Formal Reconstruction from Dynamic Evolution to Full Spacetime Quantum Graphs}
+
+\author{Haobo Ma\thanks{Independent Researcher} \and Wenlin Zhang\thanks{National University of Singapore}}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Static Block Quantum Cellular Automata Theory treats Quantum Cellular Automata (QCA) as an eternal, immutable static block quantum structure, where the temporal dimension is incorporated into the coordinate system, forming a high-dimensional quantum state body. The core insight of this theory is that QCA evolution can be reinterpreted as sequential reading of a static quantum structure satisfying local unitary consistency constraints, rather than a fundamental dynamic process. From a global perspective, QCA can be expressed as full spacetime quantum graphs subject to finite sets of spatiotemporal local projection constraints. Through formal definitions, mathematical proofs, and theoretical verification, we construct this theoretical framework and discuss its applications in quantum computation, information theory, and philosophical eternalism. The theory is logically self-consistent: all quantum states are completely determined by initial density matrices and unitary rules, forming an immutable spacetime quantum field. This paper proves that the spacetime quantum graph set \( Y \) is a Quantum Subshift of Finite Type (QSFT) and is predictively equivalent to traditional QCA evolution (under the premise that closed unitary systems and static block constructions satisfy consistency projections). We explicitly clarify that quantum models are naturally built on Hilbert space foundations, and the use of Hilbert space here is an essential requirement rather than forced embedding; we avoid unnecessary classical tools being forcibly quantized, instead using tools suitable for quantum discrete structures, such as quantum Fourier analysis and quantum topological dynamics. Simultaneously, this theory is positioned as a static formulation framework for QCA, not a new theory, providing only equivalent mathematical restatements and computational perspectives.
+
+\noindent\textbf{Keywords}: Quantum cellular automata, block universe, static spacetime, quantum symbolic dynamical systems, quantum subshift of finite type, QCA structure theorem, reversibility and history states
+\end{abstract}
+
+\section{Introduction}
+
+\subsection{Background and Motivation}
+
+Quantum Cellular Automata, as quantum computational models, were proposed by Feynman, Margolus, and others to simulate emergent behaviors of quantum systems. The traditional view treats QCA as dynamic evolutionary systems: qubits update their states according to local unitary rules at discrete time steps. However, from the perspective of block universe theory and eternalism, we can reinterpret QCA as static block quantum structures.
+
+In the block universe, spacetime is a four-dimensional eternal entity where all quantum events exist simultaneously; the flow of time is merely an observer's illusion. When this idea is applied to QCA, the temporal dimension becomes a coordinate axis, with the entire evolutionary history predetermined as quantum states. The state space of quantum systems is essentially the tensor product of Hilbert spaces, which is a core foundation of quantum mechanics that we naturally adopt in this theory, rather than as an ambiguity point. This theory explicitly applies to closed quantum systems (no measurements, no environmental coupling) to avoid quantum measurement collapse problems destroying global consistency.
+
+\subsection{Core Theoretical Ideas}
+
+The Static Block QCA Theory constructed in this paper emphasizes that QCA is essentially a static, complete quantum state body, consisting of spacetime quantum graphs defined by local unitary rules and initial density matrices. This framework deepens our understanding of QCA and bridges quantum computational models with physical philosophy. We base ourselves on mathematical frameworks such as quantum topological dynamics and quantum Fourier analysis to ensure logical self-consistency.
+
+\textbf{Clarification of Potential Ambiguities}: Hilbert space is a natural mathematical structure in quantum contexts, and we do not avoid its use, but rather avoid unnecessary Hilbert embeddings in classical models (such as potentially inappropriate applications in the original classical CA theory). This theory provides a static formulation framework for QCA, predictively equivalent to the dynamic perspective, but does not claim ontological priority. The main scope of this paper is closed unitary QCA; causal CPTP for open systems is only discussed as boundary cases in Section~\ref{sec:reversibility} and not included in the core conclusions of static block equivalent formulations.
+
+\subsection{Paper Structure}
+
+This paper is organized as follows:
+
+\begin{itemize}
+\item \textbf{Section~\ref{sec:formal}} Establishes formal definitions of QCA and quantum configuration spaces
+\item \textbf{Section~\ref{sec:static}} Defines static block quantum structures and spacetime quantum graphs
+\item \textbf{Section~\ref{sec:qsubshift}} Establishes quantum subshift and Quantum Subshift of Finite Type (QSFT) formulations
+\item \textbf{Section~\ref{sec:structure}} States the QCA structure theorem
+\item \textbf{Section~\ref{sec:existence}} Proves existence and uniqueness of static blocks and local dependency cones
+\item \textbf{Section~\ref{sec:momentum}} Discusses translation-invariant QCA diagonalizable in momentum representation
+\item \textbf{Section~\ref{sec:pauli}} Introduces Pauli-Fourier expansion of local superoperators
+\item \textbf{Section~\ref{sec:reversibility}} States reversibility and history states and their significance for static blocks
+\item \textbf{Section~\ref{sec:applications}} Applications: quantum computational optimization, reversibility and classical embedding, philosophical implications
+\item \textbf{Section~\ref{sec:complexity}} Discusses complexity and undecidability boundaries
+\item \textbf{Section~\ref{sec:conclusions}} Conclusions and prospects
+\end{itemize}
+
+\section{Formal Definition of Quantum Cellular Automata}\label{sec:formal}
+
+\begin{definition}[Quantum Cellular Automaton]\label{def:qca}
+A \( d \)-dimensional quantum cellular automaton is defined as a quadruple \( \mathcal{Q} = (\mathbb{Z}^d, \mathcal{H}_\Sigma, N, \alpha) \), where:
+\begin{itemize}
+\item \( \mathbb{Z}^d \) is the set of spatial lattice points
+\item \( \mathcal{H}_\Sigma \) is a finite-dimensional Hilbert space (e.g., qubit \( \mathbb{C}^2 \))
+\item \( N \subset \mathbb{Z}^d \) is a finite neighborhood set (e.g., von Neumann neighborhood \( \{ \mathbf{n} \in \mathbb{Z}^d : \|\mathbf{n}\|_1 \le 1 \} \) or Moore neighborhood \( \{ \mathbf{n} \in \mathbb{Z}^d : \|\mathbf{n}\|_\infty \le 1 \} \))
+\item \( \alpha: \mathcal{A} \to \mathcal{A} \) is a causal, translation-invariant \( * \)-automorphism (invertible) on the quasi-local \( C^* \)-algebra \( \mathcal{A} \), where \( \mathcal{A} = \bigotimes_{\mathbf{r} \in \mathbb{Z}^d} \mathcal{B}(\mathcal{H}_\Sigma) \)
+\end{itemize}
+\end{definition}
+
+\begin{remark}\label{rem:2.1}
+This paper uses two equivalent characterizations: causal \( * \)-automorphisms on quasi-local \( C^* \)-algebras; or finite-depth, translation-invariant layered local unitary circuits (Margolus partitioning scheme). Gates within a single layer are pairwise non-overlapping, with no commutativity assumption required.
+\end{remark}
+
+\begin{definition}[Neighborhood Radius]\label{def:qradius}
+Let \( r := \max_{\mathbf{n} \in N} \|\mathbf{n}\|_1 \) be the \( L_1 \) radius of the neighborhood, where \( \|\mathbf{n}\|_1 = \sum_{i=1}^d |n_i| \).
+\end{definition}
+
+\begin{definition}[Quantum Configuration Space]\label{def:qconfig}
+Let the quantum configuration space \( X = \bigotimes_{\mathbf{r} \in \mathbb{Z}^d} \mathcal{H}_\Sigma \) be endowed with the product topology. The state space of the quasi-local algebra \( \mathcal{A} \) is compact in the weak-\( * \) topology.
+\end{definition}
+
+\begin{remark}[Clarification]\label{rem:2.2}
+This Hilbert space tensor product is the natural foundation of QCA, with no ambiguity.
+\end{remark}
+
+\begin{definition}[Global Mapping]\label{def:qglobal}
+Global evolution \( \alpha = \Ad_U \), where \( U \) is implemented by finite-depth, translation-invariant layered local gates (Margolus partitioning). In the Schrödinger picture, density matrices evolve as \( \rho \mapsto U \rho U^\dagger \). We do not use closed expressions for local densities/partial traces to avoid inaccuracies when entanglement is present (avoiding quantum marginal problems).
+\end{definition}
+
+\begin{definition}[Shift Mapping]\label{def:qshift}
+For any \( \mathbf{v} \in \mathbb{Z}^d \), define the shift action \( \sigma^\mathbf{v}: X \to X \) as
+\[
+(\sigma^\mathbf{v} \psi)(\mathbf{r}) = \psi(\mathbf{r} + \mathbf{v})
+\]
+\end{definition}
+
+\section{Static Block: Spacetime Quantum Graphs}\label{sec:static}
+
+\begin{remark}[Semantic Clarification: Static Block as State]\label{rem:3.1}
+We treat the static block \( \mathcal{M} \) as a state on the spacetime quasi-local \( C^* \)-algebra \( \mathcal{A}^{\mathrm{st}} \) (or equivalently, a compatible family of local states \( \{\omega_\Omega\} \) on all finite spacetime windows \( \Omega\subset\mathbb{Z}^{d+1} \)). The single-site notation \( \mathcal{M}(\mathbf{r},t)\in\mathcal{D}(\mathcal{H}_\Sigma) \) in the text is only for visualization; the actual semantics is always marginal states on finite windows; local marginals do not form independent dynamics when entanglement exists.
+\end{remark}
+
+\begin{definition}[Spacetime Quantum Graph]\label{def:qspacetime}
+A spacetime quantum graph \( \mathcal{M}: \mathbb{Z}^d \times \mathbb{N} \to \mathcal{D}(\mathcal{H}_\Sigma) \) is a function defined on spacetime lattice points, satisfying local unitary consistency constraints, rather than being defined by dynamic iteration \( G^t \). These constraints are implemented through finite sets of spatiotemporal local projections (see Section~\ref{sec:qsubshift}).
+\end{definition}
+
+\begin{remark}\label{rem:3.2}
+To avoid circular definitions, we axiomatically define static blocks independently of dynamic iteration: they satisfy global constraint equation systems, ensuring predictive equivalence with the dynamic perspective.
+\end{remark}
+
+\begin{definition}[Static Block]\label{def:qstaticblock}
+We call \( \mathcal{M} \) a static block quantum structure, which is a state function defined on \( \mathbb{Z}^{d+1} \), satisfying the following \textbf{local unitary consistency constraints} (encoded through local projections).
+\end{definition}
+
+\begin{remark}
+``Static block'' refers to the overall quantum object \( \mathcal{M} \) obtained by treating time as an additional coordinate, which satisfies finite circuit consistency projections and forms a closed invariant set under shift actions. This formulation is an equivalent mathematical restatement of dynamic evolution.
+\end{remark}
+
+\begin{definition}[Bidirectional Static Block]\label{def:qbidir}
+Since \( \alpha \) is a \( * \)-automorphism (invertible), a bidirectional static block can be defined on \( t \in \mathbb{Z} \):
+\[
+\mathcal{M}: \mathbb{Z}^d \times \mathbb{Z} \to \mathcal{D}(\mathcal{H}_\Sigma)
+\]
+\end{definition}
+
+\begin{definition}[Spacetime Shift Invariance]\label{def:qstshift}
+Define the spacetime shift \( \sigma^{(\mathbf{v},\tau)}: \mathcal{D}(\mathcal{H}^{\mathbb{Z}^{d+1}}) \to \mathcal{D}(\mathcal{H}^{\mathbb{Z}^{d+1}}) \) as
+\[
+\big(\sigma^{(\mathbf{v},\tau)}\mathcal{M}\big)(\mathbf{r},t) = \mathcal{M}(\mathbf{r}+\mathbf{v}, t+\tau)
+\]
+The set of static blocks remains invariant under all spatial and temporal shifts.
+\end{definition}
+
+\begin{remark}[Observer Perspective]\label{rem:3.3}
+The observed ``evolution'' is a projection and sequential reading of \( \mathcal{M} \) on slices \( t = \mathrm{const} \):
+\[
+\mathcal{O}_t: \mathcal{M} \mapsto \mathcal{M}_t = \{ (\mathbf{r}, \rho) \mid \mathcal{M}(\mathbf{r}, t) = \rho \}
+\]
+This reinterprets dynamic evolution as sequential access to a static quantum structure. This theory applies to closed systems; if measurements are introduced, collapse would destroy global consistency, requiring extension to many-worlds interpretations.
+\end{remark}
+
+\section{Quantum Subshift and Quantum Subshift of Finite Type (QSFT) Formulation}\label{sec:qsubshift}
+
+\begin{definition}[Quantum Forbidden Pattern Set]\label{def:qforbidden}
+Given finite sets of spatiotemporal local projections \( \{\Pi_a\}_{a=1}^m \), each \( \Pi_a \) acts on finite spacetime windows \( \Omega_a \subset \mathbb{Z}^{d+1} \). These projections encode circuit consistency/causal propagation/wire matching (history state techniques).
+\end{definition}
+
+\begin{definition}[Quantum Subshift of Finite Type]\label{def:qsft}
+The set of all spacetime quantum graphs satisfying the constraints
+\[
+Y := \{ \mathcal{M} : \forall a, \ \Pi_a \text{ satisfies (zero energy) on restriction to } \Omega_a \}
+\]
+is a \textbf{Quantum Subshift of Finite Type (QSFT)}, and remains invariant under all spatial and temporal shift actions. Causal/update consistency of QCA can be characterized by finite circuit consistency projections.
+\end{definition}
+
+\begin{proposition}[QSFT Characterization]\label{prop:qsft}
+The static block \( \mathcal{M} \) is an element of the QSFT \( Y \), and ``evolution'' is a temporal slice reading of \( Y \).
+\end{proposition}
+
+\begin{proof}
+By Definitions~\ref{def:qspacetime} and~\ref{def:qforbidden}, \( \mathcal{M} \) satisfies local projection constraints, therefore \( \mathcal{M} \in Y \). The temporal slice \( \mathcal{M}_t \) corresponds to the projection at fixed \( t \).
+\end{proof}
+
+\begin{remark}[Significance of QSFT]
+This aligns the ``full spacetime quantum graphs subject to finite local projection constraints'' with the standard framework of quantum symbolic dynamical systems.
+\end{remark}
+
+\section{QCA Structure Theorem}\label{sec:structure}
+
+\begin{theorem}[QCA Structure Theorem]\label{thm:structure}
+On \( \mathbb{Z}^d \), any translation-invariant, causal, invertible quantum evolution \( \alpha \) (\( * \)-automorphism of \( \mathcal{A} \)) can be implemented by finite-depth, translation-invariant layered local unitary circuits (Margolus partitioning or its higher-dimensional generalizations). Conversely, any such circuit-induced \( \alpha \) satisfies causality and translation invariance.
+\end{theorem}
+
+\begin{remark}
+\textbf{Significance}: This theorem provides a structural characterization of QCA and ensures that the locality of ``static block'' constraints is both sufficient and necessary. We do not use the formulation ``continuous unitary and commuting with shifts'' to avoid topological ambiguities.
+
+\textbf{Note}: Assuming \( \mathcal{H}_\Sigma \) is finite-dimensional, otherwise the theorem requires additional conditions. Equivalent formulations can be written in the Heisenberg picture as \( \alpha = \Ad_U \), and in the Schrödinger picture as \( \rho \mapsto U \rho U^\dagger \). See references for proofs.
+
+\textbf{Reference}: Schumacher \& Werner (2004), arXiv:quant-ph/0405174
+\end{remark}
+
+\section{Existence, Uniqueness, and Local Dependence of Static Blocks}\label{sec:existence}
+
+\begin{lemma}[Local Dependency Cone]\label{lem:qdependency}
+Let the \( L_1 \) radius of the QCA neighborhood \( N \) be \( r \). Then for any \( \mathbf{r}_0 \in \mathbb{Z}^d \), \( t \in \mathbb{N} \), we have
+\[
+\mathcal{M}(\mathbf{r}_0, t) \text{ depends only on initial } \rho_0 \restriction_{B_{L_1}(\mathbf{r}_0; rt)}
+\]
+where \( B_{L_1}(\mathbf{r}_0; rt) = \{ \mathbf{r} \in \mathbb{Z}^d : \|\mathbf{r} - \mathbf{r}_0\|_1 \le rt \} \).
+
+We use ``dependency cone (\( L_1 \)-cone)'' rather than ``light cone'' to avoid implications of relativistic Lorentz invariance. Changing norms only results in constant factor changes.
+\end{lemma}
+
+\begin{proof}
+By induction on \( t \).
+
+\textbf{Base case} (\( t=0 \)): \( \mathcal{M}(\mathbf{r}_0, 0) = \rho_0(\mathbf{r}_0) \) depends only on \( \rho_0(\mathbf{r}_0) \), satisfying the condition.
+
+\textbf{Inductive step}: Assuming the statement holds for \( t \), then \( \mathcal{M}(\mathbf{r}_0, t+1) \) is obtained from the same neighborhood states at time \( t \) through unitary operations. Since \( \|\mathbf{n}\|_1 \le r \), the dependency region is contained in \( B_{L_1}(\mathbf{r}_0; r(t+1)) \).
+\end{proof}
+
+\begin{remark}[Dependency Cone]
+In the 1D case, this is equivalent to the interval \( [\mathbf{r}_0 - rt, \mathbf{r}_0 + rt] \); in higher dimensions, it corresponds to the \( L_1 \) ball centered at \( \mathbf{r}_0 \). Unlike relativistic light cones, there is no Lorentz symmetry here.
+\end{remark}
+
+\begin{theorem}[Existence and Uniqueness of Spacetime Quantum Graphs]\label{thm:qexistence}
+Given \( (N, \alpha) \) and initial \( \rho_0 \), the spacetime quantum graph \( \mathcal{M} \) exists and is unique.
+\end{theorem}
+
+\begin{proof}
+\textbf{Existence (Constructive History State)}: Take a finite-depth layered local circuit \( U=\prod_{\ell=1}^{T}U^{(\ell)} \) of finite duration \( T \). On finite box \( \Lambda=L^d\times[0,T] \), introduce finite consistency projections \( \{\Pi_a\} \) (clock, gate action, wire matching, causal connectivity). The zero-energy subspace of the finite-volume Hamiltonian \( H_\Lambda=\sum_a\Pi_a \) is non-empty (witnessed by Feynman-Kitaev history state construction). Let \( \Lambda\uparrow\mathbb{Z}^{d+1} \) take the net limit to obtain the limit state \( \omega \) of \( \mathcal{A}^{\mathrm{st}} \); its local marginals define the static block \( \mathcal{M} \).
+
+\textbf{Uniqueness}: Suppose there exist two different \( \mathcal{M}_1, \mathcal{M}_2 \) satisfying initial \( \rho_0 \) and local projection constraints, then there must be some \( (\mathbf{r}_0, t_0) \) such that \( \Tr | \mathcal{M}_1(\mathbf{r}_0, t_0) - \mathcal{M}_2(\mathbf{r}_0, t_0) | > 0 \). Taking the smallest \( t_0 \), at time \( t_0 \) they must already differ on the neighborhood of \( \mathbf{r}_0 \), which contradicts their agreement at time \( t_0 - 1 \).
+\end{proof}
+
+\begin{remark}[Uniqueness for Fixed Initial State]
+This is uniqueness for a fixed initial \( \rho_0 \). From the QSFT perspective, \( Y \) may contain multiple elements.
+\end{remark}
+
+\section{Translation-Invariant QCA Diagonalizable in Momentum Representation (Example Classes)}\label{sec:momentum}
+
+We take translation-invariant classes such as quantum walks/Clifford/free fermions as examples: their Bloch-momentum representation \( U(k) \) can be block-diagonalized.
+
+\begin{definition}[Linear QCA]\label{def:qlinear}
+When \( \alpha \) is linear in momentum representation, \( \alpha \) is a quantum convolution operator on the abelian group \( \mathbb{Z}^d \).
+\end{definition}
+
+\begin{proposition}[Group Fourier Diagonalization]\label{prop:qfourier}
+For translation-invariant linear QCA, the transfer operator can be block-diagonalized in momentum representation (group Fourier on \( \mathbb{Z}^d \)):
+\begin{itemize}
+\item \textbf{Finite volume periodic boundaries}: Obtain discrete frequency eigenmodes
+\item \textbf{Infinite lattice}: Use characters \( \chi_\xi(\mathbf{r}) = e^{2\pi i \langle \xi, \mathbf{r} \rangle} \) for spectral analysis (under \( L^2 \) conditions)
+\end{itemize}
+This provides orthogonal decomposition and spectral radius/propagation cone conclusions. We acknowledge difficulties with non-\( L^2 \) initial states and distinguish boundary effects.
+\end{proposition}
+
+\begin{remark}
+For infinite lattice cases, the group Fourier transform exists in the \( L^2(\mathbb{Z}^d) \) square-integrable function space, requiring appropriate boundary conditions to ensure convergence of spectral analysis. Hilbert space is a natural tool here, with no ambiguity.
+\end{remark}
+
+\begin{example}[Quantum Walk QCA]\label{ex:qwalk}
+In 1D periodic boundaries, quantum walk QCA is equivalent to quantum convolution action on generating polynomials; the spectrum is given at unit roots. This exhibits the dependency cone structure.
+
+\textbf{Visualization Description}: Quantum walk static blocks exhibit interference patterns. Given initial \( \rho_0 = |\delta_0\rangle\langle\delta_0| \), the static block \( \mathcal{M}(r,t) \) at position \( r \) and time \( t \) is given by quantum walk amplitudes, forming interference patterns. This pattern clearly demonstrates ``evolution'' as temporal slice reading of a static block: the entire interference pattern pre-exists, and observers merely access its different levels in temporal order.
+\end{example}
+
+\begin{remark}[Group Ring Representation]
+By embedding quantum state spaces into vector spaces, linear rules correspond to quantum convolution actions in group rings.
+\end{remark}
+
+\section{Pauli-Fourier Expansion of Local Superoperators}\label{sec:pauli}
+
+\begin{definition}[Pauli-Fourier Expansion]\label{def:pauli}
+Let \( \{\sigma_S\} \) be the Pauli tensor basis, \( \langle X,Y\rangle_{HS}=2^{-|\Lambda|}\Tr(X^\dagger Y) \). The expansion of any operator \( A \) is
+\[
+A=\sum_S \widehat{A}(S)\,\sigma_S,\quad \widehat{A}(S)=\langle \sigma_S,A\rangle_{HS}
+\]
+For local superoperators \( \mathcal{E} \) (Heisenberg picture),
+\[
+\mathcal{E}(\sigma_T)=\sum_S \widehat{\mathcal{E}}(S\!\leftarrow\!T)\,\sigma_S,\quad
+\widehat{\mathcal{E}}(S\!\leftarrow\!T)=\langle \sigma_S,\mathcal{E}(\sigma_T)\rangle_{HS}
+\]
+These coefficients describe coupling strength from ``incident basis element \( T \)'' to ``output basis element \( S \)''. This expansion is only a representation tool and does not imply separable dynamics.
+\end{definition}
+
+\begin{proposition}[Walsh Coefficients]\label{prop:pauli}
+The coefficients \( \widehat{\mathcal{E}}(S\!\leftarrow\!T) \) satisfy the above formula and prove orthogonality.
+\end{proposition}
+
+\begin{proof}
+By orthogonality of Hilbert-Schmidt inner product, \( \langle \sigma_S, \sigma_T \rangle_{HS} = \delta_{ST} \), therefore the expansion is unique.
+\end{proof}
+
+\begin{remark}[Representation Tool]
+Important: This is an orthogonal expansion in function space, not implying that global dynamics can be decomposed or ``uncoupled''. We use it only as a representation tool, not as proof of dynamical independence. Unlike classical Walsh expansion, this is spectral analysis of quantum operators.
+
+\textbf{Reference}: Montanaro \& Osborne (2010)
+\end{remark}
+
+\section{Reversibility and History States and Their Significance for Static Blocks}\label{sec:reversibility}
+
+\begin{definition}[Quantum Pre-injective]\label{def:qpreinj}
+A mapping \( \alpha: \mathcal{A} \to \mathcal{A} \) is called \textbf{quantum pre-injective} if for any finite set \( F \subset \mathbb{Z}^d \) and any two initial states \( \omega \neq \nu \), as long as they agree on the complement, we have \( \omega \circ \alpha \neq \nu \circ \alpha \).
+\end{definition}
+
+\begin{remark}
+Only for heuristic characterization, not used for key equivalence theorems.
+\end{remark}
+
+\begin{proposition}[Reversibility and Bidirectional History]\label{prop:qreversibility}
+If the global evolution \( \alpha \) is a \( * \)-automorphism (invertible), then bidirectional static blocks \( \mathbb{Z}^d \times \mathbb{Z} \) exist. If \( \alpha \) degenerates to non-invertible causal CPTP mappings, then generally only forward history consistency can be guaranteed.
+
+\textbf{Reference}: Farrelly \& Short (2014)
+\end{proposition}
+
+\begin{corollary}[Garden-of-Eden Patterns and Reversibility]\label{cor:qgarden}
+\begin{itemize}
+\item Absence of ``quantum Garden-of-Eden patterns'' (unreachable densities) is related to surjectivity, but surjectivity \( \neq \) bijectivity
+\item Reversibility \( \Rightarrow \) bidirectional static blocks exist
+\item If not invertible, only forward static blocks \( \mathbb{Z}^d \times \mathbb{N} \) can be constructed
+\end{itemize}
+\end{corollary}
+
+\begin{remark}[Bidirectionality and Reversibility]
+This directly connects the bidirectionality of the ``eternal block'' with unitary reversible properties, avoiding disconnection between philosophical and mathematical levels. We do not use the equivalence ``surjective \( \Leftrightarrow \) pre-injective'' to avoid overstepping statements.
+\end{remark}
+
+\section{Applications and Discussion}\label{sec:applications}
+
+\subsection{Quantum Computational Applications}
+
+\begin{proposition}[Parallel Optimization]\label{prop:qparallel}
+The static block framework can optimize simulation: large spacetime quantum segments can be generated in parallel from the block perspective. For radius \( r \) 1D QCA, the density at \( (\mathbf{r}_0, t) \) depends only on the initial interval \( [\mathbf{r}_0 - rt, \mathbf{r}_0 + rt] \).
+\end{proposition}
+
+\begin{proof}
+Directly follows from Lemma~\ref{lem:qdependency} (local dependency cone).
+\end{proof}
+
+\begin{remark}[Linear QCA Acceleration]
+In linear rules, \( t \) steps of evaluation can be organized into \( \tilde{O}(\log t) \) rounds of parallel composition by constructing \( \alpha^{2^k} \) (such as quantum FFT); achievable when exponentially accelerated spectral/power structures exist, with Clifford/free or diagonal-in-Fourier as examples. General nonlinear QCA still have \( \Omega(t) \) depth lower bounds.
+\end{remark}
+
+\subsection{Reversibility and Classical Embedding}
+
+\begin{proposition}[Classical Embedding Prerequisites]\label{prop:qclassical}
+Only when the global evolution \( \alpha \) is a \( * \)-automorphism can it be embedded in classical space; non-invertible QCA can be converted to reversible by introducing auxiliary qubits, then embedded in classical frameworks.
+\end{proposition}
+
+\begin{proof}[Proof Outline]
+Reversibility guarantees information conservation, allowing bijective mapping of classical bits. Non-invertible cases require introducing ``garbage'' bits to record history, implementing Bennett's trick.
+\end{proof}
+
+\begin{remark}[Limiting Conditions]
+Reversibility is a necessary but not sufficient condition for classical embedding. Here we explicitly limit the scope of application.
+\end{remark}
+
+\subsection{Philosophical Implications: Analogy with Eternalism}
+
+\begin{definition}[Eternalist Perspective]\label{def:qeternal}
+In the eternalism framework, time is the order of observation, and evolution is projection
+\[
+\mathcal{O}_t: \mathcal{M} \to \mathcal{M}_t = \{ (\mathbf{r}, \rho) \mid \mathcal{M}(\mathbf{r}, t) = \rho \}
+\]
+This bridges QCA with quantum block universe: local entanglement is compatible with global invariance. We distinguish mathematical staticity (equivalent formulation), computational equivalence (same predictions), and philosophical interpretation (metaphysical stance on the nature of time).
+
+\textbf{Reference}: 't Hooft (2016), Barbour (1999)
+\end{definition}
+
+\begin{remark}[Limitations of Analogy]
+It must be emphasized that the analogy between QCA static blocks and physical quantum block universe is heuristic rather than literal. In QCA, time is a discrete parameter, while in quantum field theory time is continuous; QCA's unitary evolution and general relativity's curvature also have differences. The value of this analogy lies in providing a model for thinking about ``quantum time as coordinate''.
+\end{remark}
+
+\begin{remark}[Epistemology and Ontology]
+The static perspective cannot epistemologically replace the dynamic simulation perspective, because finite observers must explore this static quantum structure through dynamic processes. Static blocks describe the mathematical level of overall equivalent formulation, while dynamic evolution describes the sequential process that finite observers follow in exploring this structure through computational simulation within the same mathematical framework. We do not claim ontological priority.
+\end{remark}
+
+\subsection{Limitations}
+
+\begin{limitation}[Infinite Storage]
+Infinite grids require infinite qubits; actual simulations can only handle finite subsets.
+\end{limitation}
+
+\begin{limitation}[Computational Feasibility]
+The construction of static blocks exists theoretically, but actual computation is limited by quantum resources.
+\end{limitation}
+
+\section{Discussion of Complexity and Undecidability Boundaries}\label{sec:complexity}
+
+\begin{remark}[Decidability Boundaries]
+For \( d+1\ge2 \), several decision problems of quantum SFT defined by finite sets of spatiotemporal local projections (such as emptiness/periodicity) are typically in the same highly intractable category as quantum satisfiability/tiling problems, lacking unified decidable algorithms. Under restricted subclasses in 1D (e.g., finite-depth layered, finite alphabet clocks, commutative consistency projections), certain properties can be constructively decided; general 1D scenarios still require case-by-case analysis.
+\end{remark}
+
+\begin{proposition}[Emptiness Problem]\label{prop:qemptiness}
+Deciding \( Y = \varnothing \) is generally undecidable, in the same highly intractable category as quantum satisfiability/tiling problems. We do not provide specific reductions, only intuitive difficulty alignment explanations.
+
+\textbf{Reference}: Cubitt et al. (2015)
+\end{proposition}
+
+\begin{proposition}[Periodicity and Entanglement Entropy]\label{prop:qperiod}
+Existence of periodicity and entanglement entropy computation are also generally undecidable or highly difficult (related to high-dimensional quantum tiling).
+\end{proposition}
+
+\begin{corollary}[Existence Boundary]\label{cor:qboundary}
+``There exists a static block satisfying given local projection constraints'' has no unified algorithm in high dimensions; this defines the computational boundary of the static perspective.
+\end{corollary}
+
+\begin{proof}[Proof Outline]
+Through reduction to quantum satisfiability problems (QMA-complete), inheriting their undecidability.
+\end{proof}
+
+\begin{remark}[Decidable Subclasses]
+In linear cases, computable spectra and propagation bounds can be obtained, while decision problems for nonlinear, infinite lattice, and high-dimensional cases must be carefully limited to decidable subclasses (such as 1D, linear/Clifford cases) or adopt semi-decision/approximation methods.
+\end{remark}
+
+\begin{remark}[Boundary of ``Can and Cannot'']
+This section echoes the QSFT/reversibility framework above, providing readers with a clear map of the boundary between ``can and cannot''.
+\end{remark}
+
+\section{Conclusions and Prospects}\label{sec:conclusions}
+
+\subsection{Main Contributions}
+
+Static Block Quantum Cellular Automata Theory reconstructs QCA as eternal quantum state bodies, consisting of full spacetime quantum objects defined by finite local projection constraints. This framework is logically self-consistent and provides new perspectives for understanding the nature of quantum time and computation. We use quantum topological dynamics and quantum Fourier analysis to ensure rigor, and eliminate potential ambiguities through clarifying the natural role of Hilbert space and structure theorems.
+
+\subsection{Core Insights}
+
+\begin{enumerate}
+\item \textbf{Mathematical level}: QCA ``evolution'' is sequential reading of static blocks, not true dynamic change
+\item \textbf{Mathematical characterization}: Through QSFT and QCA structure theorem, a rigorous quantum topological dynamics foundation is established
+\item \textbf{Computational boundaries}: Through reversibility and history states and undecidability results, the scope of the theory is clarified
+\item \textbf{Philosophical implications}: Bridges quantum computational models with quantum block universe theory, while clarifying the limitations of analogies
+\end{enumerate}
+
+\subsection{Theoretical Positioning}
+
+This theory provides a static formulation framework for QCA, mathematically equivalent to the dynamic perspective and predictively consistent. We do not claim ontological priority for the static perspective, but rather position it as a complementary tool for understanding quantum evolution.
+
+\subsection{Future Directions}
+
+\begin{enumerate}
+\item \textbf{Quantum field extensions}: Extend to quantum field QCA or complex quantum system simulation
+\item \textbf{High-dimensional analysis}: Deepen research on decidable subclasses of high-dimensional QSFT
+\item \textbf{Physical applications}: Explore deep connections with quantum gravity and holographic principles
+\item \textbf{Computational optimization}: Develop efficient quantum parallel algorithms based on static block perspectives
+\item \textbf{Measurement theory}: Extend to many-worlds interpretation frameworks including measurement processes
+\end{enumerate}
+
+\begin{thebibliography}{99}
+
+\bibitem{feynman1982}
+R. P. Feynman,
+\textit{Simulating Physics with Computers},
+International Journal of Theoretical Physics, vol.~21, pp.~467--488, 1982.
+
+\bibitem{schumacher2004}
+B. Schumacher and R. F. Werner,
+\textit{Reversible Quantum Cellular Automata},
+arXiv:quant-ph/0405174, 2004.
+
+\bibitem{arrighi2011}
+P. Arrighi, V. Nesme, and R. Werner,
+\textit{Unitarity plus Causality implies Localizability},
+Journal of Computer and System Sciences, vol.~77, pp.~372--378, 2011.
+
+\bibitem{hooft2016}
+G. 't Hooft,
+\textit{The Cellular Automaton Interpretation of Quantum Mechanics},
+Springer, 2016.
+
+\bibitem{farrelly2014}
+T. Farrelly and A. J. Short,
+\textit{Causal Fermions in Discrete Spacetime},
+Physical Review A, vol.~89, 012302, 2014.
+
+\bibitem{montanaro2010}
+A. Montanaro and T. J. Osborne,
+\textit{Quantum Boolean Functions},
+Chicago Journal of Theoretical Computer Science, Article 1, 2010.
+
+\bibitem{cubitt2015}
+T. S. Cubitt, D. Perez-Garcia, and M. M. Wolf,
+\textit{Undecidability of the Spectral Gap},
+Nature, vol.~528, pp.~207--211, 2015.
+
+\bibitem{barbour1999}
+J. Barbour,
+\textit{The End of Time},
+Oxford University Press, 1999.
+
+\bibitem{gross2012}
+D. Gross, V. Nesme, H. Vogts, and R. F. Werner,
+\textit{Index Theory of One-Dimensional Quantum Walks and Cellular Automata},
+Communications in Mathematical Physics, vol.~310, pp.~419--454, 2012.
+
+\bibitem{arrighi2019}
+P. Arrighi,
+\textit{An Overview of Quantum Cellular Automata},
+Natural Computing, vol.~18, pp.~885--899, 2019.
+
+\bibitem{kitaev2002}
+A. Y. Kitaev, A. Shen, and M. Vyalyi,
+\textit{Classical and Quantum Computation},
+American Mathematical Society, 2002.
+
+\bibitem{haah2018}
+J. Haah and L. Fidkowski,
+\textit{Nontrivial Quantum Cellular Automata in Higher Dimensions},
+arXiv:1812.01625, 2018.
+
+\end{thebibliography}
+
+\end{document}
+

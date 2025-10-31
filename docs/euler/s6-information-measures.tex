@@ -1,0 +1,301 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\setlist[itemize]{nosep,leftmargin=1.6em}
+\setlist[enumerate]{nosep,leftmargin=1.6em}
+
+\geometry{margin=1in}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+\DeclareMathOperator{\Re}{Re}
+\DeclareMathOperator{\Im}{Im}
+\DeclareMathOperator{\conv}{conv}
+\DeclareMathOperator{\aff}{aff}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+
+\raggedbottom
+
+\title{Information Measures}
+
+\author{Haobo Ma\thanks{Independent Researcher} \and Wenlin Zhang\thanks{National University of Singapore}}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{center}
+\textit{Phase-Layer Conservation, Scale/Discrete-Layer Duality and Convex Geometry of $\Lambda$--$\Lambda^\ast$}
+\end{center}
+
+\begin{abstract}
+Building on the geometric--analytic foundation of S2--S5, we establish the \textbf{information measure calibration} of the mother mapping: centered on the log-sum-exp potential function $\Lambda(\rho)$ and its convex dual $\Lambda^\ast$, we systematically define and analyze the structural properties of entropy $H$, effective modality count $N_{\mathrm{eff}}=e^H$, and participation ratio $N_2=(\sum p_j^2)^{-1}$; we prove that \textbf{unitary transformations of the phase layer do not alter the calibration} (conservation), while the scale/discrete layer forms \textbf{convex-analytic duality} on the natural manifold, whose gradient--Hessian give the ``effective modality centroid'' and ``covariance metric'' respectively. We establish the Bregman--KL identity and derivative/variance formulas on directional (slices), achieving consistent splicing and complementarity with S2's transversal zero geometry, S3's $\Gamma/\pi$ normalization, S4's ``pole = main scale'', and S5's directional meromorphization.
+\end{abstract}
+
+\section{Notation and Prerequisites (Aligned with S2/S3/S4/S5)}
+
+\textbf{Discrete spectrum and log-sum-exp potential.} For the mother mapping's discrete spectral representation
+\begin{equation}
+F(\theta,\rho)=\sum_{j=1}^J c_j\,e^{i\langle \alpha_j,\theta\rangle}e^{\langle \beta_j,\rho\rangle},\qquad
+w_j:=|c_j|>0,\ \ \beta_j\in\mathbb{R}^n,
+\end{equation}
+define
+\begin{equation}
+\Lambda(\rho):=\log\Big(\sum_{j=1}^J w_j\,e^{\langle \beta_j,\rho\rangle}\Big),\qquad
+p_j(\rho):=\frac{w_j\,e^{\langle \beta_j,\rho\rangle}}{e^{\Lambda(\rho)}}.
+\end{equation}
+Then $p(\rho)=(p_j(\rho))_{j=1}^J$ is a probability vector on the calibration. S2's binomial closure and transversality are used for local zero-set geometry, not affecting the convexity of $\Lambda$ and the entropy structure below.
+
+\textbf{Information measure quantities.}
+\begin{equation}
+H(\rho):=-\sum_{j=1}^J p_j(\rho)\log p_j(\rho),\qquad
+N_{\mathrm{eff}}(\rho):=e^{H(\rho)},\qquad
+N_2(\rho):=\Big(\sum_{j=1}^J p_j(\rho)^2\Big)^{-1}.
+\end{equation}
+
+\textbf{Compatibility with mirror/continuation.} S3's $\Gamma/\pi$ normalization and completed function multiply only an overall scalar independent of $j$, not altering the normalization of $p_j$; S4's finite-order Euler--Maclaurin (EM) only superimposes entire-function layers, not changing the discrete data $(\beta_j,w_j)$; S5's directional slice $\rho=\rho_\perp+s\mathbf{v}$ can be directly substituted into this section's formulas.
+
+\textbf{Basic integrability domain assumption (aligned with S1 tube domain).} There exists a non-empty open set $\mathcal{T}\subset\mathbb{R}^n$ such that for all $\rho\in\mathcal{T}$, $\sum_j w_j e^{\langle \beta_j,\rho\rangle}<\infty$. This paper uniformly discusses within $\mathcal{T}$. Moreover, to ensure first- and second-order derivatives with respect to $\rho$ commute with summation (or limits), there exists a neighborhood $\mathcal{U}\subset\mathcal{T}$ containing $\rho$ such that
+\begin{equation}
+\sum_j w_j\,|\beta_j|\,e^{\langle\beta_j,\rho'\rangle}<\infty,\qquad
+\sum_j w_j\,|\beta_j|^2\,e^{\langle\beta_j,\rho'\rangle}<\infty,
+\end{equation}
+\begin{equation}
+\sum_j w_j\,|y_j|\,e^{\langle\beta_j,\rho'\rangle}<\infty,\qquad
+\sum_j w_j\,|\beta_j|\,|y_j|\,e^{\langle\beta_j,\rho'\rangle}<\infty\quad(\forall\rho'\in\mathcal{U}),
+\end{equation}
+where $y_j=\log w_j$. Accordingly, the gradient--Hessian identities in Section~\ref{sec:convex} and directional derivative/variance laws in Section~\ref{sec:entropy_derivative} hold rigorously.
+
+\section{Phase-Layer Conservation and Gauge Invariance of the Calibration}
+
+\begin{theorem}[Phase--Completed Function--Bernoulli Layer Conservation of Calibration]\label{thm:conservation}
+The calibration $\Lambda,H,N_{\mathrm{eff}},N_2$ in this section is defined solely by the discrete spectral data $(\beta_j,\,w_j)$ in Section~1; S4's finite-order EM only superimposes entire-function layers, not altering $(\beta_j,\,w_j)$.
+
+For fixed $\rho\in\mathcal{T}$, the following operations all preserve $p(\rho)$ and $(H,N_{\mathrm{eff}},N_2)$:
+\begin{enumerate}
+\item \textbf{Phase-layer unitary transformation}: $(c_j,\alpha_j)\mapsto (c_j e^{i\phi_j},\alpha_j+\delta\alpha_j)$;
+\item \textbf{Completed function normalization}: $F\mapsto r(s)\,F$, where $r$ is a $\Gamma/\pi$ factor satisfying $r(s)=r(a-s)$;
+\item \textbf{Finite-order EM correction}: Superimpose S4's finite-order Bernoulli layers and remainder entire function.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+$p_j(\rho)$ depends only on $w_j=|c_j|$, $\beta_j$, and the current $\rho$. Operation 1) changes the phase but not the modulus; 2) multiplies by a factor invariant in $j$ which cancels in numerator and denominator; 3) does not change $(w_j,\beta_j)$.
+\end{proof}
+
+\section{Convex Structure of the Log-Sum-Exp Potential and ``Centroid--Covariance'' Laws}\label{sec:convex}
+
+\begin{theorem}[Gradient--Hessian Identities]\label{thm:grad_hess}
+\begin{equation}
+\nabla_\rho \Lambda(\rho)=\sum_{j=1}^J p_j(\rho)\,\beta_j=:\mathbb{E}_\rho[\beta],\qquad
+\nabla_\rho^2 \Lambda(\rho)=\Cov_\rho(\beta):=\mathbb{E}_\rho\big[(\beta-\mathbb{E}_\rho\beta)(\beta-\mathbb{E}_\rho\beta)^\top\big]\succeq 0.
+\end{equation}
+Hence $\Lambda$ is convex; $\nabla\Lambda$ gives the ``effective modality centroid'' weighted by $p(\rho)$, and the Hessian is the ``covariance metric''.
+\end{theorem}
+
+\begin{proof}
+Directly differentiate $\Lambda=\log\sum_j w_j e^{\langle \beta_j,\rho\rangle}$ and normalize to obtain the first-order formula; differentiate $p_j$ again to obtain the second-order formula. The covariance is obviously positive semi-definite.
+\end{proof}
+
+\begin{corollary}[Directional Variance Law]\label{cor:dir_var}
+Along S5's directional slice $\rho=\rho_\perp+s\mathbf{v}$,
+\begin{equation}
+\frac{d^2}{ds^2}\Lambda(\rho_\perp+s\mathbf{v})=\Var_\rho\big(\langle \beta,\mathbf{v}\rangle\big)\ge 0.
+\end{equation}
+Thus convexity of $\Lambda$ with respect to $s$ is controlled by the projection variance; the analytic side's ``pole determined by main scale'' (S4/S5) complements the geometric side's ``growth bounded by variance''.
+\end{corollary}
+
+\section{Entropy, Effective Modality Count, and Participation Ratio: Inequalities and Equivalence Conditions}
+
+\begin{proposition}[Calibration Inequality Chain]\label{prop:ineq}
+For any $\rho\in\mathcal{T}$ and finite $J$:
+\begin{equation}
+1\ \le\ N_2(\rho)\ \le\ N_{\mathrm{eff}}(\rho)\ \le\ J,\qquad
+\log N_2(\rho)\ \le\ H(\rho)\ \le\ \log J.
+\end{equation}
+Equality cases:
+\begin{itemize}
+\item $N_2=N_{\mathrm{eff}}=J$ if and only if $p_j\equiv 1/J$ (fully uniform);
+\item $N_2=N_{\mathrm{eff}}=1$ if and only if $p$ is a unit vector concentrated on a single modality.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+The first inequality follows from H\"older and $\sum p_j^2\ge e^{-H}$; Jensen gives $H\le\log J$. Equality conditions are determined by uniform/concentrated distribution criteria.
+\end{proof}
+
+\section{Variational Characterization of $\Lambda$ and Dual $\Lambda^\ast$}
+
+\textbf{Applicability note.} This section assumes $J<\infty$; or $J$ countable but $W:=\sum_j w_j<\infty$ (so $\pi$ is a well-defined reference distribution). When $W=\infty$, the following variational/dual formulas do not directly apply (requires reformulation with $\sigma$-finite reference measure in continuous form, not expanded here). In the case of countable $J$ with $W<\infty$, the optimal solution $q^\star$ in the above variational/dual formulas exists and is unique; if $u$ is allowed on the boundary of the closed convex hull, see supplementary remarks above regarding relative interior/boundary.
+
+Write $W:=\sum_{j=1}^J w_j$, $\pi_j:=w_j/W$ (reference distribution), and $\Delta_J$ for the $J$-dimensional probability simplex.
+
+\begin{theorem}[Gibbs Variational Principle]\label{thm:gibbs}
+\begin{equation}
+\Lambda(\rho)=\log W+\sup_{q\in\Delta_J}\Big\{\big\langle \rho,\ \mathbb{E}_q[\beta]\big\rangle - D(q\,|\,\pi)\Big\},
+\end{equation}
+where $D(q\,|\,\pi)=\sum_j q_j\log\frac{q_j}{\pi_j}$ is the KL divergence. The extremizer is $q^\star=p(\rho)$.
+\end{theorem}
+
+\begin{proof}
+Classical log-sum-exp variational formula: $\log\sum_j \pi_j e^{\langle \rho,\beta_j\rangle}=\sup_q\{\langle \rho,\mathbb{E}_q[\beta]\rangle - D(q\,|\,\pi)\}$. Multiply back by $W$ and take logarithm. Optimality given by first-order conditions yields $q^\star=p(\rho)$.
+\end{proof}
+
+\begin{definition}[Convex Dual]\label{def:dual}
+\begin{equation}
+\Lambda^\ast(u):=\sup_{\rho\in\mathbb{R}^n}\big\{\langle u,\rho\rangle-\Lambda(\rho)\big\},\qquad
+u\in\overline{\conv}\{\beta_1,\dots,\beta_J\}\text{ (closed convex hull)}.
+\end{equation}
+\end{definition}
+
+\begin{theorem}[Entropy-Type Representation of $\Lambda^\ast$]\label{thm:dual_entropy}
+\begin{equation}
+\Lambda^\ast(u)=\ \inf_{\substack{q\in\Delta_J\\ \mathbb{E}_q[\beta]=u}}\Big\{D(q\,|\,\pi)\Big\}\ -\ \log W.
+\end{equation}
+When $u$ falls in the \textbf{relative interior} of $\overline{\conv}\{\beta_j\}$, there exists $\rho$ such that $\nabla\Lambda(\rho)=u$; \textbf{if} $\aff\{\beta_j\}$ \textbf{spans} $\mathbb{R}^n$, then this $\rho$ is \textbf{unique}; in the \textbf{general case}, $\rho$ is unique only on $\aff\{\beta_j\}$ (translation along its orthogonal complement does not change $p(\rho)$ and $\nabla\Lambda(\rho)$), while the minimizing solution $q^\star$ remains unique. In this case the minimizer is given by $q^\star=p(\rho)$; if $u$ is on the boundary, there generally does not exist finite $\rho$ such that $\nabla\Lambda(\rho)=u$, but the minimization problem still has a solution (can be obtained via approximating sequence $\rho_k\to\infty$ yielding limiting distribution $q^\star$).
+\end{theorem}
+
+\begin{proof}
+Apply Fenchel transform to Theorem~\ref{thm:gibbs} and introduce linear constraint $\mathbb{E}_q[\beta]=u$.
+\end{proof}
+
+\begin{corollary}[Bregman--KL Identity]\label{cor:bregman}
+For any $\rho,\rho'\in\mathcal{T}$,
+\begin{equation}
+B_\Lambda(\rho'\mid\rho):=\Lambda(\rho')-\Lambda(\rho)-\langle \nabla\Lambda(\rho),\rho'-\rho\rangle
+= D\big(p(\rho)\,|\,p(\rho')\big).
+\end{equation}
+Thus the ``potential difference'' on the calibration exactly equals the KL divergence of the two calibration distributions.
+\end{corollary}
+
+\section{Derivative Structure of Entropy and Directional Formulas}\label{sec:entropy_derivative}
+
+Let $y_j:=\log w_j$. Using
+\begin{equation}
+H(\rho)=\Lambda(\rho)-\big\langle \rho,\ \mathbb{E}_\rho[\beta]\big\rangle-\sum_{j=1}^J p_j(\rho)\,y_j,
+\end{equation}
+we obtain:
+
+\begin{proposition}[Entropy Gradient and Directional Derivative]\label{prop:entropy_grad}
+\begin{equation}
+\nabla_\rho H(\rho)= -\Cov_\rho(\beta)\,\rho\ -\ \Cov_\rho(\beta,\ y),
+\end{equation}
+where $\Cov_\rho(\beta,\ y):=\sum_j p_j(\rho)\,(\beta_j-\mathbb{E}_\rho\beta)\,(y_j-\mathbb{E}_\rho y)$. On the directional slice $\rho=\rho_\perp+s\mathbf{v}$ along direction $\mathbf{v}$,
+\begin{equation}
+\frac{d}{ds}H(\rho_\perp+s\mathbf{v})= -\,\mathbf{v}^\top\Cov_\rho(\beta)\,\rho\ -\ \big\langle \Cov_\rho(\beta,\ y),\ \mathbf{v}\big\rangle.
+\end{equation}
+If $w_j$ has equal amplitude (i.e., $y$ constant), the second term vanishes, and entropy variation along the scale flow is entirely controlled by $\Cov_\rho(\beta)$. The above directionalization is compatible with S5, while S4's finite-order EM does not change $(w,\beta)$, hence does not affect this derivative structure.
+\end{proposition}
+
+\section{The $\zeta$ Calibration Example (Structural Statement)}
+
+The following equalities hold for $\sigma>1$. Take $\mu=\sum_{n\ge 1}\delta_{(\log n,\,-\log n)}$, set $(\theta,\rho)=(-t,\sigma)$ to obtain $\zeta(\sigma+it)$ (here $W=\sum_n w_n=\infty$, so this section \textbf{does not} invoke the variational/dual results of Section~4, only derives from the derivative--variance law of Section~\ref{sec:convex} and one-dimensional version of the moment conditions in Section~1). Thus
+\begin{equation}
+w_n\equiv 1,\qquad \beta_n=-\log n,\qquad
+p_n(\sigma)=\frac{n^{-\sigma}}{\sum_{m\ge 1} m^{-\sigma}}=\frac{n^{-\sigma}}{\zeta(\sigma)}.
+\end{equation}
+Therefore
+\begin{equation}
+\Lambda(\sigma)=\log\zeta(\sigma),\quad
+\Lambda'(\sigma)=-\mathbb{E}_\sigma[\log n],\quad
+\Lambda''(\sigma)=\Var_\sigma(\log n)\ \ge 0,
+\end{equation}
+and
+\begin{equation}
+H(\sigma)=\log\zeta(\sigma)+\sigma\,\mathbb{E}_\sigma[\log n].
+\end{equation}
+In the equal-amplitude weight case, the $\Cov_\rho(\beta,y)$ term in Proposition~\ref{prop:entropy_grad} vanishes. This calibration is compatible with S3's completed function normalization and S4's EM remainder entire function (both do not change $(w_n,\beta_n)$), while directionalization (S5) corresponds to the one-dimensional slice $\mathbf{v}=1$.
+
+\section{Boundaries and Counterexamples}
+
+\begin{itemize}
+\item \textbf{R6.1 (Non-normalizable).} If $\sum_j w_j e^{\langle \beta_j,\rho\rangle}=\infty$, then $p(\rho)$ does not exist and the calibration is undefined; this corresponds to outside S5's convergence half-plane or the divergent main-scale case in S4.
+
+\item \textbf{R6.2 (Misuse of phase participation).} If complex coefficients $c_j$ (including phase) are mistakenly used directly for normalization instead of $w_j=|c_j|$, then $p_j$ may not be real and non-negative, and the calibration loses meaning; this contradicts Theorem~\ref{thm:conservation}'s phase conservation principle.
+
+\item \textbf{R6.3 (Unbounded heterogeneous weights).} If $y_j=\log w_j$ causes $\Cov_\rho(\beta,y)$ to be uncontrolled over the $\rho$ family, then the directional derivative in Proposition~\ref{prop:entropy_grad} may not converge; need to ensure interchange and integrability by S1/S4's tube domain and endpoint regularity.
+\end{itemize}
+
+\section{Unified Verifiable Checklist (Minimal Sufficient Conditions for This Section)}
+
+\begin{enumerate}
+\item \textbf{Normalization exists:} There exists $\rho$ such that $\Lambda(\rho)<\infty$, so $p(\rho)$ is well-defined (consistent with S5's convergence half-plane).
+
+\item \textbf{Phase reduction:} Only $w_j=|c_j|$ enters the formula; any $\Gamma/\pi$ normalization or phase transformation does not enter the numerator of $p$ (conservation).
+
+\item \textbf{Convex duality:} Use the variational and dual formulas in Theorems~\ref{thm:gibbs}--\ref{thm:dual_entropy} (verify extremizer $q^\star=p(\rho)$ when necessary).
+
+\item \textbf{Directionalization:} On $\rho=\rho_\perp+s\mathbf{v}$, use the variance law and Proposition~\ref{prop:entropy_grad}'s directional derivative; if analytic continuation is needed, invoke S5's meromorphization and S4's ``pole = main scale''.
+
+\item \textbf{Inequality verification:} Verify $N_2\le N_{\mathrm{eff}}\le J$ and equality conditions (Proposition~\ref{prop:ineq}).
+
+\item \textbf{$\zeta$ example:} Write $p_n(\sigma)=n^{-\sigma}/\zeta(\sigma)$, use $\Lambda'=-\mathbb{E}[\log n]$, $\Lambda''=\Var(\log n)$, and the simplified form of Proposition~\ref{prop:entropy_grad}.
+\end{enumerate}
+
+\section{Interface with Other Sections}
+
+\textbf{$\to$ S2 (Zero-set geometry).} Calibration does not alter the codimension-2 transversal structure but provides quantitative indication of ``local dominant terms'' ($p_j$ comparable near balance hyperplanes), complementing binomial closure's local geometry.
+
+\textbf{$\to$ S3 (Completed function).} Calibration is orthogonal to normalization; completed function changes overall growth and strip symmetry, not $p$ and its derivative structure.
+
+\textbf{$\to$ S4 (Finite-order EM).} Bernoulli layers and remainder entire function do not change calibration; pole cancellation/continuation of main-scale terms is compatible with the normalizable domain of calibration.
+
+\textbf{$\to$ S5 (Directional meromorphization).} Directional convexity and variance law of $\Lambda$ provide ``growth-side'' information for pole localization, forming the splicing of ``main scale--pole / centroid--variance''.
+
+\textbf{$\to$ S7 ($L$-function interface).} The variational formula provides a \textbf{test kernel selection criterion} under local/infinite factors (maximize/constrain $\mathbb{E}_q[\beta]$ or minimize $D(q\,|\,\pi)$).
+
+\textbf{$\to$ S8 (Discrete uniform approximation).} $N_{\mathrm{eff}},N_2$ can serve as ``effective degrees of freedom/complexity'' indicators for discrete approximation; EM's finite-order error layers do not change their numerical interpretation.
+
+\textbf{$\to$ S9/S10 (Exponential sums and geometric growth).} The Hessian/variance of $\Lambda$ is isomorphic to S10's Ronkin convexity, constraining S9's near-zero revisiting and concentration inequalities (not expanded here).
+
+\section*{Concluding Remarks}
+
+Information measure calibration uses the convex geometry of $\Lambda(\rho)$ as a link to uniformly reflect the discrete spectral data $(w_j,\beta_j)$ of the phase--scale mother mapping into a ``centroid--covariance--entropy'' statistical triad: phase-layer conservation, scale/discrete-layer duality, directional variance laws, and the Bregman--KL identity jointly constitute a verifiable, spliceable ``information--geometry--analysis'' dictionary. This dictionary is compatible with S2's transversal zero geometry, S3's completed function, S4's finite-order continuation, and S5's directional meromorphization, and provides unified indicators and methodology for kernel selection and complexity evaluation in subsequent $L$-function interface and uniform approximation.
+
+\begin{thebibliography}{9}
+
+\bibitem{cover-thomas}
+T.~M. Cover and J.~A. Thomas, \emph{Elements of Information Theory}, Wiley, 1991.
+
+\bibitem{boyd-vandenberghe}
+S.~Boyd and L.~Vandenberghe, \emph{Convex Optimization}, Cambridge University Press, 2004.
+
+\bibitem{beck-tetruashvili}
+A.~Beck and L.~Tetruashvili, \emph{On the convergence of block coordinate descent type methods}, SIAM Journal on Optimization, 2013.
+
+\bibitem{rockafellar}
+R.~T. Rockafellar, \emph{Convex Analysis}, Princeton University Press, 1970.
+
+\bibitem{villani}
+C.~Villani, \emph{Optimal Transport: Old and New}, Springer, 2009.
+
+\bibitem{donsker-varadhan}
+M.~D. Donsker and S.~R.~S. Varadhan, \emph{Asymptotic evaluation of certain Markov process expectations for large time}, Communications on Pure and Applied Mathematics, 1975.
+
+\bibitem{csiszar}
+I.~Csisz\'ar, \emph{Information-type measures of difference of probability distributions and indirect observations}, Studia Scientiarum Mathematicarum Hungarica, 1967.
+
+\bibitem{bregman}
+L.~Bregman, \emph{The relaxation method of finding the common point of convex sets and its application to the solution of problems in convex programming}, USSR Computational Mathematics and Mathematical Physics, 1967.
+
+\bibitem{kullback-leibler}
+S.~Kullback and R.~A. Leibler, \emph{On information and sufficiency}, Annals of Mathematical Statistics, 1951.
+
+\end{thebibliography}
+
+\end{document}
+
