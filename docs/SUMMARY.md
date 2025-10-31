@@ -41,9 +41,11 @@
 - [Euler-Quantum 统一量子理论]()
     - [窗化信息几何量子测量统一框架](./euler-quantum/wsig-qm-unified-quantum-measurement-framework.md)
     - [WSIG 统一测量框架](./euler-quantum/wsig-unified-measurement-framework.md)
+    - [WSIG Unified Measurement Framework](./euler-quantum/wsig-unified-measurement-framework_en.md)
     - [协变多通道窗化散射相位密度统一定理](./euler-quantum/covariant-multichannel-windowed-scattering-phase-density-unified-theorem.md)
     - [Born-Pointer-Windows三位一体定理](./euler-quantum/trinity-theorem-born-pointer-windows.md)
-    - [测量-Born-KL-Pointer基础统一理论](./euler-quantum/unified-measurement-born-kl-pointer-basis.md)
+    - [窗口化读数统一测量：Born 概率 = 最小 KL，指针基 = 最小能量本征基](./euler-quantum/unified-measurement-born-kl-pointer-basis.md)
+    - [Windowed Readout Unified Measurement: Born Probability = Minimal KL, Pointer Basis = Minimal-Energy Eigenbasis](./euler-quantum/unified-measurement-born-kl-pointer-basis_en.md)
     - [相位导数谱密度窗化读出理论](./euler-quantum/phase-derivative-spectral-density-windowed-readout.md)
 
 - [Euler 系列]()
