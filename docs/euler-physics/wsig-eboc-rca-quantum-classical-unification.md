@@ -2,18 +2,18 @@
 
 **（Windowed Scattering & Information Geometry · Eternal-Block Observer-Computing · Reversible Cellular Automata）**
 
-**Version: 1.13**（2025-11-02，Asia/Dubai）
+**Version: 1.15**（2025-11-02，Asia/Dubai）
 
 ---
 
 ## 摘要
 
-以窗化散射—信息几何给出的相位—相对态密度—群延迟三位一体为能量刻度的唯一母尺，本文在静态块几何与可逆元胞自动机两侧建立同构语义，实现量子—经典统一。设散射对 $(H,H_0)$ 在 $H_0$ 的绝对连续谱上给出多端口散射矩阵 $S(E)\in U(N)$，Wigner–Smith 延迟矩阵定义为 $\mathsf{Q}(E):=-i\,S(E)^\dagger \partial_E S(E)$，相对态密度的 ac 密度记为 $\rho_{\mathrm{rel}}(E):=\xi'_{\mathrm{ac}}(E)$，半行列式相位记为 $\varphi(E):=\pi\,\xi_{\mathrm{ac}}(E)$（亦可记为 $\tfrac12 \operatorname{Arg}_{\mathrm{ac}}\det S(E)$）。在 $H_0$ 的绝对连续谱的 Lebesgue 点几乎处处成立
+以窗化散射—信息几何给出的相位—相对态密度—群延迟三位一体为能量刻度的唯一母尺，本文在静态块几何与可逆元胞自动机两侧建立同构语义，实现量子—经典统一。设散射对 $(H,H_0)$ 在 $H_0$ 的绝对连续谱上给出多端口散射矩阵 $S(E)$，其在能量 $E$ 处作用于开放通道子空间，且 $S(E)\in U\!\big(N(E)\big)$。Wigner–Smith 延迟矩阵定义为 $\mathsf{Q}(E):=-i\,S(E)^\dagger \partial_E S(E)$，相对态密度的 ac 密度记为 $\rho_{\mathrm{rel}}(E):=\xi'_{\mathrm{ac}}(E)$，半行列式相位记为 $\varphi(E):=\pi\,\xi_{\mathrm{ac}}(E)$（亦可记为 $\tfrac12 \operatorname{Arg}_{\mathrm{ac}}\det S(E)$）。在 $H_0$ 的绝对连续谱的 Lebesgue 点几乎处处成立
 $$
 \boxed{\ \varphi'(E)=\tfrac12\,\operatorname{tr}\mathsf{Q}(E)=\pi\,\rho_{\mathrm{rel}}(E)\ }.
 $$
 
-半经典极限由 Egorov 定理、Moyal 变形与 Wigner 测度传播闭合到经典哈密顿流、泊松括号与李乌维尔动力学。读数采用 Nyquist–Poisson–Euler–Maclaurin（NPE）误差账本给出非渐近上界，并证明单/多窗—多核的变分最优性。常数 $(c,\hbar,e,G,k_{\mathrm{B}})$ 在本体系内完成计量对表：$c$ 由前沿支撑与群延迟定标；$\hbar$ 为 Weyl–Heisenberg 中心荷比例尺；$e$ 由磁通量子锚定；$G$ 由曲率—能流对表锚定；$k_{\mathrm{B}}$ 由 SI 常数化固定。上述结构在 EBOC 的因果块宇宙与 RCA 的离散光锥下具有可实现的同构语义。
+半经典极限由 Egorov 定理、Moyal 变形与 Wigner 测度传播闭合到经典哈密顿流、泊松括号与李乌维尔动力学。读数采用 Nyquist–Poisson–Euler–Maclaurin（NPE）误差账本给出非渐近上界，并提出单/多窗—多核的变分最优性框架（细节见 §6）。常数 $(c,\hbar,e,G,k_{\mathrm{B}})$ 在本体系内完成计量对表：$c$ 由前沿支撑与群延迟定标；$\hbar$ 为 Weyl–Heisenberg 中心荷比例尺；$e$ 由磁通量子锚定；$G$ 由曲率—能流对表锚定；$k_{\mathrm{B}}$ 由 SI 常数化固定。上述结构在 EBOC 的因果块宇宙与 RCA 的离散光锥下具有可实现的同构语义。
 
 ---
 
@@ -28,10 +28,12 @@ $$
 $$
 进一步定义多端口情形的**每端口平均群延迟**
 $$
-\overline{\tau}(E):=\frac{1}{N}\,\tau_{\mathrm{WS}}(E)=\frac{\hbar}{N}\,\operatorname{tr}\mathsf{Q}(E).
+\overline{\tau}(E):=\frac{\hbar}{N(E)}\,\operatorname{tr}\mathsf{Q}(E),\qquad
+N(E):=\text{开放通道数（在该 $E$ 处）}.
 $$
+以下如未特别说明，迹与平均均在当下开放通道子空间上取；远离通道阈值时 $N(E)$ 为常数。
 
-令**散射对** $(H,H_0)$ 满足可定义的波算子，记其在 $H_0$ 的绝对连续谱上之多端口散射矩阵 $S(E)\in U(N)$。
+令**散射对** $(H,H_0)$ 满足可定义的波算子，记其在 $H_0$ 的绝对连续谱上之多端口散射矩阵 $S(E)$；对每个能量 $E$，$S(E)$ 作用于开放通道子空间，且 $S(E)\in U\!\big(N(E)\big)$。
 
 **BK 条件（确保光谱位移与行列式相位的适用）**：假设 $(H,H_0)$ 构成 Birman–Kreĭn 意义下的迹类扰动对，例如
 $$
@@ -57,7 +59,7 @@ $$
 \varphi'(E)=\tfrac12\,\operatorname{tr}\mathsf{Q}(E)=\pi\,\rho_{\mathrm{rel}}(E).
 $$
 
-**正则性与域**：下述关于 $\partial_E S(E)$ 与 $\mathsf{Q}(E)$ 的等式均在 $E\in\sigma_{\mathrm{ac}}(H_0)$ 上、$S(E)$ 关于 $E$ 局部绝对连续（或具弱导数）之处理解。
+**正则性与域**：下述关于 $\partial_E S(E)$ 与 $\mathsf{Q}(E)$ 的等式均在 $E\in\sigma_{\mathrm{ac}}(H_0)$ 上、$S(E)$ 关于 $E$ 局部绝对连续（或具弱导数）之处理解。本文默认工作能量窗远离通道阈值与支化点；如需跨阈值讨论，均以 $N(E)$ 与开放通道子空间的迹/导数替代相应常数与全迹。
 
 **A3（桥接常数）**：$\hbar$ 为 Weyl–Heisenberg 的中心参数；$c$ 由前沿支撑与群延迟计量对表；$e$ 由磁通量子锚定；$G$ 由曲率—能流对表实现；$k_{\mathrm{B}}$ 由 SI 常数化固定。
 
@@ -71,7 +73,7 @@ $$
 
 ### 2.1 定义与记号
 
-设散射对 $(H,H_0)$ 在 $H_0$ 的绝对连续谱上给出 $S(E)\in U(N)$，取
+设散射对 $(H,H_0)$ 在 $H_0$ 的绝对连续谱上给出 $S(E)$（在 $E$ 处作用于开放通道子空间），且 $S(E)\in U\!\big(N(E)\big)$，取
 $$
 \mathsf{Q}(E):=-i\,S^\dagger \partial_E S,\qquad
 \tau_{\mathrm{WS}}(E):=\hbar\,\operatorname{tr}\mathsf{Q}(E),\qquad
@@ -96,9 +98,10 @@ $$
 $$
 \operatorname{tr}\mathsf{Q}(E)=-i\,\operatorname{tr}\!\big(S^\dagger \partial_E S\big)=2\pi\,\xi'_{\mathrm{ac}}(E)=2\pi\,\rho_{\mathrm{rel}}(E),
 $$
-又
+又由 BK 链条得
 $$
-\varphi'(E)=\tfrac12\,\partial_E \operatorname{Arg}_{\mathrm{ac}}\det S(E)=\tfrac12\,\operatorname{tr}\mathsf{Q}(E)\quad\text{(a.e. on ac spectrum)}.
+\varphi'(E)=\pi\,\xi'_{\mathrm{ac}}(E)=\tfrac12\,\operatorname{tr}\mathsf{Q}(E)\quad
+\text{（在 $H_0$ 的绝对连续谱的 Lebesgue 点几乎处处成立）}.
 $$
 证毕。
 
@@ -137,18 +140,20 @@ G_{\mathrm{ret}}(t,\mathbf{r})=\frac{\delta\!\big(t-|\mathbf{r}|/c\big)}{4\pi\,|
 $$
 其支撑恰在前沿 $t=|\mathbf{r}|/c$。在**满足 §1.A1 条件**（$h\in L^1$ 或更一般为缓增分布且频响 $H$ 属 Hardy 类并具适当增长/衰减）时，严格因果与上半平面解析及 Kramers–Kronig 色散关系**互为充要**；若上述条件不满足，仅能得到方向性的蕴含或需额外正则化。
 
-**计量闭环的分解与成立条件**：设外部链路均匀，写
+**计量闭环的分解与成立条件**：设外部链路均匀，各开放通道 $n=1,\dots,N(E)$ 的自由传播相位可写为对角因子
 $$
-S(E)=e^{\,i k(E)L}\,U(E),\quad k(E)=\frac{E}{\hbar\,v_p(E)}.
+D_k(E):=\operatorname{diag}\!\big(e^{\,i k_n(E)L}\big),\qquad
+k_n(E)=\frac{E}{\hbar\,v_{p,n}(E)}.
 $$
-由 $dk/dE=\dfrac{1}{\hbar\,v_g(E)}$ 得
+取分解 $S(E)=D_k(E)\,U(E)$，则由 $\dfrac{dk_n}{dE}=\dfrac{1}{\hbar\,v_{g,n}(E)}$ 得
 $$
-\operatorname{tr}\mathsf{Q}(E)=\frac{N L}{\hbar\,v_g(E)}-i\,\operatorname{tr}\!\big(U(E)^\dagger \partial_E U(E)\big).
+\operatorname{tr}\mathsf{Q}(E)=\frac{L}{\hbar}\sum_{n=1}^{N(E)}\frac{1}{v_{g,n}(E)}
+\;-\;i\,\operatorname{tr}\!\big(U^\dagger \partial_E U\big).
 $$
-
-以参考链路抵消第二项的窗口化漂移后，$\displaystyle \overline{\tau}(E)=\frac{\hbar}{N}\operatorname{tr}\mathsf{Q}(E)$ 的读数回归为
+若各通道在给定能量窗内满足 $v_{g,n}(E)\approx v_g(E)$（或已用参考链路消除了 $-i\,\operatorname{tr}(U^\dagger\partial_E U)$），则
 $$
-\overline{\tau}(E)=\frac{L}{v_g(E)}\quad\big(\text{真空时 }v_g(E)=c\big).
+\overline{\tau}(E)=\frac{\hbar}{N(E)}\,\operatorname{tr}\mathsf{Q}(E)\;\approx\;\frac{L}{v_g(E)}\quad
+\big(\text{真空时 }v_g(E)=c\big).
 $$
 若外部链路存在色散或反射，或散射区含与端口解耦的局域态，则需分离连续部分并修正上述分解。
 
@@ -186,13 +191,15 @@ $$
 
 ## 7. 典型模型与统一推论
 
-**自由传播链路（统一写法）**：若外部链路均匀，且 $-i\,\operatorname{tr}\!\big(U^\dagger \partial_E U\big)=0$（或已通过参考链路抵消该项），则
+**自由传播链路（统一写法，含多模）**：若外部链路均匀且
+$-i\,\operatorname{tr}\!\big(U^\dagger \partial_E U\big)=0$（或已通过参考链路抵消该项），则
 $$
-\operatorname{tr}\mathsf{Q}(E)=\frac{N L}{\hbar\,v_g(E)},\qquad
-\tau_{\mathrm{WS}}(E)=\frac{N L}{v_g(E)},\qquad
-\overline{\tau}(E)=\frac{L}{v_g(E)}.
+\operatorname{tr}\mathsf{Q}(E)=\frac{L}{\hbar}\sum_{n=1}^{N(E)}\frac{1}{v_{g,n}(E)},\qquad
+\tau_{\mathrm{WS}}(E)=L\sum_{n=1}^{N(E)}\frac{1}{v_{g,n}(E)},\qquad
+\overline{\tau}(E)=\frac{1}{N(E)}\sum_{n=1}^{N(E)}\frac{L}{v_{g,n}(E)}.
 $$
-若上述条件不满足，应保留 $-i\,\operatorname{tr}\!\big(U^\dagger \partial_E U\big)$ 的修正项。
+若各通道 $v_{g,n}(E)\approx v_g(E)$，则退化为
+$\tau_{\mathrm{WS}}(E)\approx \dfrac{N(E)\,L}{v_g(E)}$ 与 $\overline{\tau}(E)\approx \dfrac{L}{v_g(E)}$。若上述条件不满足，应保留 $-i\,\operatorname{tr}\!\big(U^\dagger \partial_E U\big)$ 的修正项。
 
 **RCA 的离散光锥**：半径为 $r$、栅距 $a$、步长 $\Delta t$ 的 RCA 在 $t$ 步影响域为 $\pm r t$，离散"光速" $c_{\mathrm{disc}}=r a/\Delta t$。在连续极限中，其与经典色散的群速度仅在某一线性化能量/波数邻域 $E_0$ 局域匹配：
 $$
@@ -224,7 +231,7 @@ Wigner 测度给出宏观输运极限。
 
 ### 9.1 BK—Kreĭn—WS 链条
 
-设散射对 $(H,H_0)$ 在 $H_0$ 的绝对连续谱上给出 $S(E)\in U(N)$。则
+设散射对 $(H,H_0)$ 在 $H_0$ 的绝对连续谱上给出 $S(E)$（$S(E)\in U\!\big(N(E)\big)$）。则
 $$
 \det S(E)=\exp\!\big(2\pi i\,\xi(E)\big)\ \Rightarrow\ -i\,\partial_E\log\det S(E)=2\pi\,\xi'_{\mathrm{ac}}(E)\ \text{(a.e. on }\sigma_{\mathrm{ac}}(H_0)\text{)},
 $$
