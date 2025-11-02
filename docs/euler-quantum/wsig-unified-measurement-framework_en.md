@@ -445,3 +445,4 @@ K_{w,h}\text{ Nyquist–Poisson–EM finite-order closure};
 \text{Pointer=Ky Fan minimum}\,\big). }
 $$
 
+
