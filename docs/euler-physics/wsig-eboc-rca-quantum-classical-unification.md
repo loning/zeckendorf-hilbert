@@ -2,13 +2,13 @@
 
 **（Windowed Scattering & Information Geometry · Eternal-Block Observer-Computing · Reversible Cellular Automata）**
 
-**Version: 1.10**（2025-11-02，Asia/Dubai）
+**Version: 1.13**（2025-11-02，Asia/Dubai）
 
 ---
 
 ## 摘要
 
-以窗化散射—信息几何给出的相位—相对态密度—群延迟三位一体为能量刻度的唯一母尺，本文在静态块几何与可逆元胞自动机两侧建立同构语义，实现量子—经典统一。设 $S(E)\in U(N)$ 为多端口散射矩阵，Wigner–Smith 延迟矩阵定义为 $\mathsf{Q}(E):=-i\,S(E)^\dagger \partial_E S(E)$，相对态密度记为 $\rho_{\mathrm{rel}}(E)$，半行列式相位记为 $\varphi(E):=\pi\,\xi_{\mathrm{ac}}(E)$（亦可记为 $\tfrac12 \operatorname{Arg}_{\mathrm{ac}}\det S(E)$）。在绝对连续谱的 Lebesgue 点几乎处处成立
+以窗化散射—信息几何给出的相位—相对态密度—群延迟三位一体为能量刻度的唯一母尺，本文在静态块几何与可逆元胞自动机两侧建立同构语义，实现量子—经典统一。设散射对 $(H,H_0)$ 在 $H_0$ 的绝对连续谱上给出多端口散射矩阵 $S(E)\in U(N)$，Wigner–Smith 延迟矩阵定义为 $\mathsf{Q}(E):=-i\,S(E)^\dagger \partial_E S(E)$，相对态密度的 ac 密度记为 $\rho_{\mathrm{rel}}(E):=\xi'_{\mathrm{ac}}(E)$，半行列式相位记为 $\varphi(E):=\pi\,\xi_{\mathrm{ac}}(E)$（亦可记为 $\tfrac12 \operatorname{Arg}_{\mathrm{ac}}\det S(E)$）。在 $H_0$ 的绝对连续谱的 Lebesgue 点几乎处处成立
 $$
 \boxed{\ \varphi'(E)=\tfrac12\,\operatorname{tr}\mathsf{Q}(E)=\pi\,\rho_{\mathrm{rel}}(E)\ }.
 $$
@@ -31,15 +31,33 @@ $$
 \overline{\tau}(E):=\frac{1}{N}\,\tau_{\mathrm{WS}}(E)=\frac{\hbar}{N}\,\operatorname{tr}\mathsf{Q}(E).
 $$
 
-令 Kreĭn 光谱位移函数 $\xi(E)$ 满足 $\det S(E)=\exp\!\big(2\pi i\,\xi(E)\big)$，记 $\rho_{\mathrm{rel}}(E):=\xi'(E)$。为避免 $\operatorname{Arg}$ 的多值歧义，定义
+令**散射对** $(H,H_0)$ 满足可定义的波算子，记其在 $H_0$ 的绝对连续谱上之多端口散射矩阵 $S(E)\in U(N)$。
+
+**BK 条件（确保光谱位移与行列式相位的适用）**：假设 $(H,H_0)$ 构成 Birman–Kreĭn 意义下的迹类扰动对，例如
+$$
+(H-i)^{-1}-(H_0-i)^{-1}\in\mathfrak{S}_1,
+$$
+则 Kreĭn 光谱位移函数 $\xi$ 存在，且在 $E\in\sigma_{\mathrm{ac}}(H_0)$ 的 Lebesgue 点几乎处处成立
+$$
+\det S(E)=\exp\!\big(2\pi i\,\xi(E)\big),\qquad
+-i\,\partial_E\log\det S(E)=2\pi\,\xi'_{\mathrm{ac}}(E).
+$$
+
+记**相对态密度的 ac 密度**为
+$$
+\rho_{\mathrm{rel}}(E):=\xi'_{\mathrm{ac}}(E).
+$$
+为避免 $\operatorname{Arg}$ 的多值歧义，定义
 $$
 \varphi(E):=\pi\,\xi_{\mathrm{ac}}(E)\quad\big(\text{亦可记为 }\tfrac12 \operatorname{Arg}_{\mathrm{ac}}\det S(E)\big).
 $$
-则在绝对连续谱上几乎处处有
+则在 $H_0$ 的绝对连续谱的 Lebesgue 点几乎处处成立
 $$
 \operatorname{tr}\mathsf{Q}(E)=2\pi\,\rho_{\mathrm{rel}}(E),\qquad
 \varphi'(E)=\tfrac12\,\operatorname{tr}\mathsf{Q}(E)=\pi\,\rho_{\mathrm{rel}}(E).
 $$
+
+**正则性与域**：下述关于 $\partial_E S(E)$ 与 $\mathsf{Q}(E)$ 的等式均在 $E\in\sigma_{\mathrm{ac}}(H_0)$ 上、$S(E)$ 关于 $E$ 局部绝对连续（或具弱导数）之处理解。
 
 **A3（桥接常数）**：$\hbar$ 为 Weyl–Heisenberg 的中心参数；$c$ 由前沿支撑与群延迟计量对表；$e$ 由磁通量子锚定；$G$ 由曲率—能流对表实现；$k_{\mathrm{B}}$ 由 SI 常数化固定。
 
@@ -53,22 +71,30 @@ $$
 
 ### 2.1 定义与记号
 
-设 $S(E)\in U(N)$，取
+设散射对 $(H,H_0)$ 在 $H_0$ 的绝对连续谱上给出 $S(E)\in U(N)$，取
 $$
 \mathsf{Q}(E):=-i\,S^\dagger \partial_E S,\qquad
 \tau_{\mathrm{WS}}(E):=\hbar\,\operatorname{tr}\mathsf{Q}(E),\qquad
-\rho_{\mathrm{rel}}(E):=\xi'(E),\ \ \det S(E)=\exp\!\big(2\pi i\,\xi(E)\big).
+\rho_{\mathrm{rel}}(E):=\xi'_{\mathrm{ac}}(E),
+$$
+$$
+\det S(E)=\exp\!\big(2\pi i\,\xi(E)\big),\qquad
+-i\,\partial_E\log\det S(E)=2\pi\,\xi'_{\mathrm{ac}}(E)\ \text{(a.e. on }\sigma_{\mathrm{ac}}(H_0)\text{，BK 条件下)}.
 $$
 
 ### 2.2 主定理（Trinity）
 
 $$
-\boxed{\ \varphi'(E)=\tfrac12\,\operatorname{tr}\mathsf{Q}(E)=\pi\,\rho_{\mathrm{rel}}(E)\ }\quad\text{（在绝对连续谱的 Lebesgue 点几乎处处成立）}.
+\boxed{\ \varphi'(E)=\tfrac12\,\operatorname{tr}\mathsf{Q}(E)=\pi\,\rho_{\mathrm{rel}}(E)\ }\quad\text{（在 $H_0$ 的绝对连续谱的 Lebesgue 点几乎处处成立）}.
 $$
 
-**证明要点**：由 $\det S(E)=\exp(2\pi i\,\xi(E))$ 得 $-i\,\partial_E\log\det S(E)=2\pi\,\xi'(E)$。幺正性给出 $\partial_E\log\det S(E)=\operatorname{tr}\!\big(S^\dagger \partial_E S\big)$。据此
+**证明要点**：由 $\det S(E)=\exp\!\big(2\pi i\,\xi(E)\big)$（BK 条件）得，在 $E\in\sigma_{\mathrm{ac}}(H_0)$ 的 Lebesgue 点几乎处处
 $$
-\operatorname{tr}\mathsf{Q}(E)=-i\,\operatorname{tr}\!\big(S^\dagger \partial_E S\big)=2\pi\,\xi'(E)=2\pi\,\rho_{\mathrm{rel}}(E),
+-i\,\partial_E\log\det S(E)=2\pi\,\xi'_{\mathrm{ac}}(E).
+$$
+幺正性给出 $\partial_E\log\det S(E)=\operatorname{tr}\!\big(S^\dagger \partial_E S\big)$。据此在 $E\in\sigma_{\mathrm{ac}}(H_0)$ 上有
+$$
+\operatorname{tr}\mathsf{Q}(E)=-i\,\operatorname{tr}\!\big(S^\dagger \partial_E S\big)=2\pi\,\xi'_{\mathrm{ac}}(E)=2\pi\,\rho_{\mathrm{rel}}(E),
 $$
 又
 $$
@@ -198,16 +224,17 @@ Wigner 测度给出宏观输运极限。
 
 ### 9.1 BK—Kreĭn—WS 链条
 
+设散射对 $(H,H_0)$ 在 $H_0$ 的绝对连续谱上给出 $S(E)\in U(N)$。则
 $$
-\det S(E)=\exp\!\big(2\pi i\,\xi(E)\big)\ \Rightarrow\ -i\,\partial_E\log\det S(E)=2\pi\,\xi'(E),
+\det S(E)=\exp\!\big(2\pi i\,\xi(E)\big)\ \Rightarrow\ -i\,\partial_E\log\det S(E)=2\pi\,\xi'_{\mathrm{ac}}(E)\ \text{(a.e. on }\sigma_{\mathrm{ac}}(H_0)\text{)},
 $$
 $$
 \partial_E\log\det S(E)=\operatorname{tr}\!\big(S^\dagger \partial_E S\big),\qquad
 \mathsf{Q}(E)=-i\,S^\dagger \partial_E S,\qquad
-\rho_{\mathrm{rel}}(E)=\xi'(E),
+\rho_{\mathrm{rel}}(E)=\xi'_{\mathrm{ac}}(E),
 $$
 $$
-\varphi(E):=\pi\,\xi_{\mathrm{ac}}(E)\ \big(=\tfrac12 \operatorname{Arg}_{\mathrm{ac}}\det S(E)\big),\qquad \varphi'(E)=\tfrac12\,\operatorname{tr}\mathsf{Q}(E)=\pi\,\rho_{\mathrm{rel}}(E)\ \text{(a.e. on ac spectrum)}.
+\varphi(E):=\pi\,\xi_{\mathrm{ac}}(E)\ \big(=\tfrac12 \operatorname{Arg}_{\mathrm{ac}}\det S(E)\big),\qquad \varphi'(E)=\tfrac12\,\operatorname{tr}\mathsf{Q}(E)=\pi\,\rho_{\mathrm{rel}}(E)\ \text{(a.e. on $\sigma_{\mathrm{ac}}(H_0)$)}.
 $$
 
 ### 9.2 Egorov—NPE 综合误差
