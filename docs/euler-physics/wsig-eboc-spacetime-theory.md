@@ -2,13 +2,17 @@
 
 **（含可核对引文）**
 
-**Version: 1.39**（2025-11-02，Asia/Dubai）
+**Version: 1.45**（2025-11-03，Asia/Dubai）
 
 ---
 
 ## 摘要
 
-在 **WSIG**（Windowed Scattering & Information Geometry）与 **EBOC**（Eternal-Block **Observer-Computing**）框架下，本文建立一套基于**窗口化散射**的可操作时空理论：以**相位导数—谱移密度—Wigner–Smith 群延迟**三重等价为计量基元；以**Kramers–Kronig 因果—解析（稳定 LTI 限定）**与波动方程**推迟格林函数**（时域支撑，适用于 LTV）的光锥支撑，给出**以前沿光学度量计的上界：因果前沿不超 $c$**；并在**3D 真空纯传播/前沿奇性 $K\neq0$/链路含Dirac直通分量（即脉冲响应含 $\delta(t)$ 分量）** 时取等号。以**门限互信息**的首次可检时间确立**信息光锥上界**：在真空或静态介质（LTI）下，$c_{\rm info}:=\lim_{\delta\downarrow0}\sup D_{\rm front}/T_\delta\le c$，**且当且仅当**满足**前沿可检**（§5）时取等号 $c_{\rm info}=c$；LTV 仅得 $T_\delta\ge t_{\min}$。据此给出**时间**与**空间**的操作性定义，并把**时空**刻画为四元组 $(\mathcal E,\preceq,g,\mu_\varphi)$：其中 $\preceq$ 由光锥支撑诱导，$g$ 为（含介质的）光学洛伦兹度量，$\mu_\varphi=(\varphi'/\pi)\,dx$ 为由 de Branges 核对角给出的**相位密度测度**。核心定理证明"**相位斜率 = 群延迟 = 谱移密度 = SI 实现**"四等价，并在 **Nyquist–Poisson–Euler–Maclaurin（NPE）** 误差账本下给出**非渐近**可检上界。理论兼容**可逆元胞自动机（RCA）**之 CHL 定理的离散光锥，并与采样/插值/帧的密度阈值（Landau、Wexler–Raz、Balian–Low）建立同构。
+在 **WSIG**（Windowed Scattering & Information Geometry）与 **EBOC**（Eternal-Block **Observer-Computing**）框架下，本文建立一套基于**窗口化散射**的可操作时空理论：以**相位导数—谱移密度—Wigner–Smith 群延迟**三重等价为计量基元；以**Kramers–Kronig 因果—解析（稳定 LTI 限定）**与波动方程**推迟格林函数**（时域支撑，适用于 LTV）的光锥支撑，给出**以前沿光学度量计的上界：因果前沿不超 $c$**；并**当且仅当满足前沿可检（§5）**时取等号。以**门限互信息**的首次可检时间确立**信息光锥上界**：在真空或静态介质（LTI）下，
+$$
+c_{\rm info}:=\lim_{\delta\downarrow0}\sup \frac{D}{T_\delta}\ \le\ c,
+$$
+**且当且仅当**满足**前沿可检**（§5）时取等号 $c_{\rm info}=c$；**其中** $D=D_{\rm front}$（链路归一，$t_h=0$）或 $D=D_{\rm sys}:=D_{\rm front}+c\,t_h$（系统归一，$t_h>0$）。LTV 仅得 $T_\delta\ge t_{\min}$。据此给出**时间**与**空间**的操作性定义，并把**时空**刻画为四元组 $(\mathcal E,\preceq,g,\mu_\varphi)$：其中 $\preceq$ 由光锥支撑诱导，$g$ 为（含介质的）光学洛伦兹度量，$\mu_\varphi=(\varphi'/\pi)\,dx$ 为由 de Branges 核对角给出的**相位密度测度**。核心定理证明"**相位斜率 = 群延迟 = 谱移密度 = SI 实现**"四等价，并在 **Nyquist–Poisson–Euler–Maclaurin（NPE）** 误差账本下给出**非渐近**可检上界。理论兼容**可逆元胞自动机（RCA）**之 CHL 定理的离散光锥，并与采样/插值/帧的密度阈值（Landau、Wexler–Raz、Balian–Low）建立同构。
 
 ---
 
@@ -20,13 +24,13 @@
 
 * **KK—因果（LTI 限定）**：在**稳定 LTI**系统（脉冲响应 $h_{\rm sys}(t)$）上，严格因果 $\Rightarrow$ 频响在上半平面解析；并且在 $h_{\rm sys}\in L^1(\mathbb R)$、$H(\omega)$ 多项式增长受控、无上半平面极点等**附加条件**下，实部与虚部满足 Kramers–Kronig 色散，且可反推严格因果（解析 $\Rightarrow$ 因果）。**LTV/非平稳**情形不适用该频域等价，本文仅采用 $G_{\rm ret}$ 的时域支撑性表述（见 §5）。([物理评论链接管理器][3])
 
-* **推迟格林函数**：在三维**真空无界域**，标量波动方程 $\square G_{\rm ret}=\delta$ 的解为 $G_{\rm ret}(t,\mathbf r)=\delta(t-|\mathbf r|/c)/(4\pi|\mathbf r|)$，支撑恰在 $t=r/c$；**Maxwell** 的时域 **dyadic** 核由该标量核经张量—微分算子得到（含 $\delta$ 及其导数），支撑同样**仅在光锥上**。**在有界域/介质/色散**下，一般会出现**先驱/尾场**，详见 §5 的分解式。([维基百科][4])
+* **推迟格林函数**：在三维**真空无界域**，标量波动方程 $\square G_{\rm ret}=\delta$ 的解为 $G_{\rm ret}(t,\mathbf r)=\delta(t-|\mathbf r|/c)/(4\pi|\mathbf r|)$，支撑恰在 $t=r/c$；**Maxwell** 的时域 **dyadic** 核由该标量核经张量—微分算子得到（含 $\delta$ 及其导数），支撑同样**仅在光锥上**。**在有界域/介质/色散**下，一般会出现**先驱/尾场**，详见 **§0 的"前沿分解（定义）"**。([维基百科][4])
 
 * **光学度量（Gordon）**：前沿时间**满足**
 $$
 t_{\min}\ge \frac{d_{\rm front}}{c},
 $$
-其中 $d_{\rm front}$ 由高频极限折射率 $n_\infty$ 的 **3D 费马度量**定义。**在 3D 真空纯传播**或**前沿含奇性 $K\neq0$**、或**链路含Dirac直通分量（即脉冲响应含 $\delta(t)$ 分量）** 时取等号。许多被动介质在高频满足"真空化" $n(\mathbf x,\omega)\to1$（故 $n_\infty=1$），于是 $d_{\rm front}=|A-B|$；此时**实验坐标下**仅能无条件断言 $t_{\min}\ge |A-B|/c$，并**仅在**上述**等号条件**成立时才**恢复**"前沿速度 $=c$"。（群速与 $c$ 可异——Sommerfeld–Brillouin 先驱）现代综述与推广见 Leonhardt–Philbin 及后续工作。([arXiv][5])
+其中 $d_{\rm front}$ 由高频极限折射率 $n_\infty$ 的 **3D 费马度量**定义。且**当且仅当满足前沿可检（§5）**时，取等号 $t_{\min}=d_{\rm front}/c$；3D 真空纯传播为其特例。许多被动介质在高频满足"真空化" $n(\mathbf x,\omega)\to1$（故 $n_\infty=1$），于是 $d_{\rm front}=|A-B|$；此时**实验坐标下**仅能无条件断言 $t_{\min}\ge |A-B|/c$，并**仅在**上述**等号条件**成立时才**恢复**"前沿速度 $=c$"。（群速与 $c$ 可异——Sommerfeld–Brillouin 先驱）现代综述与推广见 Leonhardt–Philbin 及后续工作。([arXiv][5])
 
 * **快/慢光与信息速度**：实验与信息论定义表明**可检测信息速度不超 $c$**。([PubMed][6])
 
@@ -49,15 +53,15 @@ $$
 
 * **分布与广义函数记号**：$\delta(\cdot)$ 为 Dirac $\delta$ 分布；$\Theta(t)$ 为 Heaviside 阶跃函数，$\Theta(t)=0\ (t<0)$、$\Theta(t)=1\ (t>0)$（取 $\Theta(0)=\tfrac{1}{2}$ 不影响本文结果）。
 
-* **前沿分解（定义）**：在真空或静态介质（LTI）并满足前沿假设（F）下，推迟格林函数可在分布意义上写成
+* **前沿分解（定义）**：在真空或静态介质（LTI）并满足前沿假设（F）下，推迟格林函数在**分布意义**上可写成
 $$
-G_{\rm ret}(t;x,y)=K(x,y)\,\delta\!\Big(t-\tfrac{d_{\rm front}(x,y)}{c}\Big)+\Theta\!\Big(t-\tfrac{d_{\rm front}(x,y)}{c}\Big)\,g(t;x,y),
+G_{\rm ret}(t;x,y)=\sum_{k=0}^{m}K_{k}(x,y)\,\delta^{(k)}\!\Big(t-\tfrac{d_{\rm front}(x,y)}{c}\Big)+\Theta\!\Big(t-\tfrac{d_{\rm front}(x,y)}{c}\Big)\,g(t;x,y),
 $$
-其中 $K(x,y)$ 称为**前沿系数**（描述可传播奇性的强度），$g$ 为**尾项核**（局部可积）。据此，本文各处"前沿含奇性 $K\neq0$"即指 $K(x,y)\neq0$；此时在 $t=d_{\rm front}(x,y)/c$ 存在分布型非零响应，从而满足文中各"取等号条件"。
+其中 $m<\infty$，$K_k(x,y)$ 为前沿奇性的幅度系数，$g$ 为**尾项核**（局部可积）。据此称"**前沿可检**（在分布层面）"当且仅当**存在某 $k\ge0$ 使 $K_k(x,y)\neq0$**；Maxwell 情形允许 $k\ge1$。
 
 * **散射背景与能量表象**：设 $\mathcal H$ 为希尔伯特空间，$H_0,H$ 为其上自伴算子（自由/全哈密顿量）。假设波算子 $W_\pm:=s\text{-}\lim_{t\to\pm\infty} e^{itH}e^{-itH_0}$ 存在且完备，则散射算子 $\mathsf S:=W_+^*W_-$ 在能量表象纤维化为 $S(E)\in U(N)$。Wigner–Smith 延迟矩阵定义为 $Q(E):=-\,i\,S(E)^\dagger\partial_E S(E)$，与正文 §0 的记号一致。
 
-* **迹记号**：本文统一用 $\operatorname{tr}$ 表示有限维矩阵迹（如 $S(E)\in U(N)$），$\operatorname{Tr}$ 保留给希尔伯特空间上的迹类算子（如 §6 的 $T_{w_R}$）。
+* **迹记号**：本文统一用 $\operatorname{tr}$ 表示有限维矩阵迹（如 $S(E)\in U(N)$），$\operatorname{Tr}$ 保留给希尔伯特空间上的迹类算子（如 §6 的 $T_{w_\varphi}$）。
 
 ---
 
@@ -72,7 +76,7 @@ $$
 
 称 $\mathbb S$ 为**WSIG–EBOC 时空**，若：
 
-**(A1) 事件与因果序**：$\mathcal E$ 为事件集；若波动方程的 $G_{\rm ret}$ 对差向量 $(e_2-e_1)$ 有支撑，则置 $e_1\preceq e_2$。离散系统取 RCA 邻域传播界（见 §9）。([维基百科][4])
+**(A1) 事件与因果序**：$\mathcal E$ 为事件集；若波动方程的 $G_{\rm ret}$ **在对 $(e_1,e_2)$ 上具有非零支撑**（即 $G_{\rm ret}(e_2,e_1)\neq0$），则置 $e_1\preceq e_2$。离散系统取 RCA 邻域传播界（见 §9）。([维基百科][4])
 
 **(A2) 表象与可观测性**：$\mathcal H$ 为希尔伯特空间；$(U_\tau,V_\sigma)$ 为 Weyl–Heisenberg 射影酉表示，支持窗化读数。([PagePlace][8])
 
@@ -83,11 +87,11 @@ $$
 t_{\min}\ge \frac{D_{\rm front}}{c},\qquad
 D_{\rm front}=\begin{cases}L,&\text{真空},\\ d_{\rm front}(x,y),&\text{介质/不均匀/有界域}.\end{cases}
 $$
-当**传播核**在前沿含奇性 $K\neq0$（如3D真空）或链路含**Dirac直通分量** $h_{\rm sys}(t)=\kappa\delta(t)+h_{\rm sc}(t)$（$\kappa\neq0$）时可取等号；若与严格因果 LTI 滤波器（脉冲响应 $h_{\rm sys}(t)$，起始时延 $t_h:=\inf\{t:\,h_{\rm sys}(t)\neq 0\}$）串联，则
+**当且仅当满足前沿可检（§5）**时，可取等号 $t_{\min}=d_{\rm front}/c$；3D 真空纯传播为其特例。若与严格因果 LTI 滤波器（脉冲响应 $h_{\rm sys}(t)$，起始时延 $t_h:=\inf\{t:\,h_{\rm sys}(t)\neq 0\}$）串联，则
 $$
 t_{\min}\ \ge\ \frac{D_{\rm front}}{c}+t_h,
 $$
-且仅当前述"前沿奇性/Dirac直通"成立并**无前沿处系统性抵消**时，方有
+且**仅当满足前沿可检（§5）且前沿处无系统性抵消**时，方有
 $$
 t_{\min}=\frac{D_{\rm front}}{c}+t_h.
 $$
@@ -97,7 +101,7 @@ $$
 $$
 c_{\rm info}:=\lim_{\delta\downarrow0}\sup\frac{D}{T_\delta}\ \le\ c,
 $$
-其中 $D$ 为所用归一化的**前沿光程**。并且当且仅当满足**前沿可检**时取等 $c_{\rm info}=c$；此处"前沿可检"指：$G_{\rm ret}$ 在 $t=D/c$ 处有奇性 $K\neq0$，或测链含**Dirac直通分量（即脉冲响应含 $\delta(t)$ 分量）**，或存在 $t_n\downarrow D/c$ 与单位能量短脉冲 $\psi$ 使 $\int G_{\rm ret}(t_n,\tau;x,y)\psi(\tau)\,d\tau\neq0$。**(i) 链路归一化（$t_h=0$）**：$D=D_{\rm front}$。**(ii) 系统归一化（$t_h>0$）**：$D=D_{\rm sys}:=D_{\rm front}+c\,t_h$。**（LTV 补充）**：对时变系统，仅断言 $T_\delta\ge t_{\min}$（由 $G_{\rm ret}(t,\tau)$ 的时域支撑定义）。([维基百科][4])
+其中 $D$ 为所用归一化的**前沿光程**。并且当且仅当满足**前沿可检**时取等 $c_{\rm info}=c$；此处**"前沿可检"**指：**按§0 的前沿分解** $G_{\rm ret}(t;x,y)=\sum_{k=0}^{m}K_{k}(x,y)\,\delta^{(k)}\!\big(t-\tfrac{D}{c}\big)+\Theta(\cdot)\,g$，**存在某 $k\ge0$ 使 $K_k(x,y)\neq0$**，或测链含**Dirac直通分量**（脉冲响应含 $\delta(t)$），或存在 $t_n\downarrow D/c$ 与单位能量短脉冲 $\psi$ 使 $\int G_{\rm ret}(t_n,\tau;x,y)\psi(\tau)\,d\tau\neq0$。**(i) 链路归一化（$t_h=0$）**：$D=D_{\rm front}$。**(ii) 系统归一化（$t_h>0$）**：$D=D_{\rm sys}:=D_{\rm front}+c\,t_h$。**（LTV 补充）**：对时变系统，仅断言 $T_\delta\ge t_{\min}$（由 $G_{\rm ret}(t,\tau)$ 的时域支撑定义）。([维基百科][4])
 
 **(A6) 采样—误差闭合**：读数误差按 NPE 三分解给出非渐近上界。([webusers.imj-prg.fr][7])
 
@@ -133,7 +137,7 @@ $$
 $$
 t_{\min}(A,B)\ge \frac{d_{\rm front}(A,B)}{c}.
 $$
-当（i）3D真空纯传播，或（ii）介质前沿存在奇性 $K\neq0$，或（iii）测链含Dirac直通分量（即脉冲响应含 $\delta(t)$ 分量）时，取等号。在各向同性且 $n_\infty\equiv1$ 时，$d_{\rm front}=|A-B|$。上述与 4D Gordon 光学度量的零测地线描述在高频极限下等价，但用于计时以 3D 光程表述更为直接。([arXiv][9])
+**当且仅当满足前沿可检（§5）时，取等号。**在各向同性且 $n_\infty\equiv1$ 时，$d_{\rm front}=|A-B|$。上述与 4D Gordon 光学度量的零测地线描述在高频极限下等价，但用于计时以 3D 光程表述更为直接。([arXiv][9])
 
 **群折射率**：对各向同性被动介质，定义
 $$
@@ -144,7 +148,7 @@ $$
 $$
 t_{\min}\ge \frac{d_{\rm front}}{c},\qquad T_{\rm info}\ge t_{\min},
 $$
-且**仅当**（i）3D 真空纯传播，或（ii）介质前沿存在奇性 $K\neq0$，或（iii）测链含Dirac直通分量（即脉冲响应含 $\delta(t)$ 分量）时，才有 $t_{\min}=d_{\rm front}/c$。其中 $T_{\rm info}$ 为任意**可检信息**的首次到达时间（见 §5）。
+并且**仅当满足前沿可检（§5）时**，才有 $t_{\min}=d_{\rm front}/c$。其中 $T_{\rm info}$ 为任意**可检信息**的首次到达时间（见 §5）。
 
 **往返时间**：
 $$
@@ -165,11 +169,11 @@ $$
 $$
 t_{\min}(A,B)\ \le\ \frac{\overline d_{\rm front}(A,B)}{c}
 $$
-**仅在附加条件下成立**：当（i）3D 真空纯传播，或（ii）介质前沿存在奇性 $K\neq0$，或（iii）测链含Dirac直通分量（即脉冲响应含 $\delta(t)$ 分量）时有 $t_{\min}=d_{\rm front}/c$，联立 $d_{\rm front}\le \overline d_{\rm front}$ 得到上界；若与严格因果 LTI 滤波器串联且起始时延有上界 $t_h$，则
+**仅在附加条件下成立**：$t_{\min}\le \overline d_{\rm front}/c$ **仅当满足前沿可检（§5）时**成立；若与严格因果 LTI 滤波器串联且起始时延 $t_h$ 有上界，则
 $$
 t_{\min}\ \ge\ \frac{d_{\rm front}}{c}+t_h,
 $$
-并且仅当前述等号条件满足且无前沿抵消时，方有 $t_{\min}=\frac{d_{\rm front}}{c}+t_h\le \frac{\overline d_{\rm front}}{c}+t_h$。
+并且**仅当满足前沿可检（§5）且前沿处无系统性抵消**时，方有 $t_{\min}=\frac{d_{\rm front}}{c}+t_h\le \frac{\overline d_{\rm front}}{c}+t_h$。
 本稿其他处对"等号何时成立"的口径与 §5 保持一致。**仅当**被动因果介质满足高频真空化（典型模型下 $n(\mathbf x,\omega)\to1$）时，实验坐标中才**恢复** $t_{\min}=|A-B|/c$ 与"波前速度 $=c$"；一般介质则保持 $t_{\min}\ge d_{\rm front}/c$ 的陈述。
 
 **定义 2.3（同时切片）** 选参考世界线与往返协议，令 $\Sigma_t:=\{e\in\mathcal E:\ \mathsf T_{\rm roundtrip}=2t\}$，其三维度量由雷达距或 $g^{\rm front}$ 诱导。
@@ -261,7 +265,7 @@ $$
 t_{\min}\ge \frac{D_{\rm front}}{c},\qquad
 D_{\rm front}=\begin{cases}L,&\text{真空},\\ d_{\rm front}(x,y),&\text{介质/不均匀/有界域}.\end{cases}
 $$
-且在**3D真空自由空间纯传播**时 $t_{\min}=L/c$；对一般介质/有界域，若前沿含奇性 $K\neq0$ 或链路含Dirac直通分量（即脉冲响应含 $\delta(t)$ 分量），亦有 $t_{\min}=d_{\rm front}/c$；若与严格因果LTI滤波器串联，则 $t_{\min}\ge D_{\rm front}/c+t_h$（等号需前沿可检且无抵消）。
+且在**3D真空自由空间纯传播**时 $t_{\min}=L/c$；对一般介质/有界域，**若满足前沿可检（§5）**，亦有 $t_{\min}=d_{\rm front}/c$；若与严格因果LTI滤波器串联，则 $t_{\min}\ge D_{\rm front}/c+t_h$（等号需前沿可检且无抵消）。
 
 **（LTV 备注）**：对线性**时变**系统，仅以 $G_{\rm ret}(t,\tau)$ 的**时域支撑**表述前沿；本文不以静态 $d_{\rm front}$ 代表时变介质的前沿。
 
@@ -284,7 +288,7 @@ $$
 $$
 \operatorname{supp}_t G_{\rm ret}^{\rm med}(t,\tau;x,y)\ \subseteq\ [\,\tau+d_{\rm front}(x,y)/c,\ \infty).
 $$
-因此当 $t<d_{\rm front}(x,y)/c$ 时响应为零。若前沿含奇性 $K\neq0$ 或链路含Dirac直通分量（即脉冲响应含 $\delta(t)$ 分量），则在 $t=d_{\rm front}(x,y)/c$ 处存在分布型非零响应，从而
+因此当 $t<d_{\rm front}(x,y)/c$ 时响应为零。**若满足前沿可检（§5）**，则在 $t=d_{\rm front}(x,y)/c$ 处存在分布型非零响应（前沿奇性 $\sum_k K_k\delta^{(k)}$ 或Dirac直通分量），从而
 $$
 t_{\min}= \tfrac{d_{\rm front}(x,y)}{c};
 $$
@@ -296,7 +300,7 @@ $$
 $$
 t_{\min}\ \ge\ \tfrac{d_{\rm front}(x,y)}{c}+t_h,
 $$
-并且**仅当**前沿含奇性 $K\neq0$ 或链路具有Dirac直通分量（即脉冲响应含 $\delta(t)$ 分量），且不存在前沿处抵消时，方可取等号。
+并且**仅当满足前沿可检（§5）且前沿处无系统性抵消**时，方可取等号。
 
 因此在真空情形下，当 $t<L/c$ 时，对任意 $\tau\ge 0$，有 $t-\tau<L/c\Rightarrow G_{\rm ret}(t-\tau,L)=0$，从而 $y(t)=0$。**取单位能量短脉冲族** $x_\eta=\psi_\eta$（$\psi_\eta\to\delta$ 为近似恒等核），则
 $$
@@ -344,7 +348,11 @@ $$
 $$
 Z_\varepsilon:=\int_0^{t_\varepsilon}G_{\rm ret}(t_\varepsilon,\tau;x,y)\,\psi(\tau)\,d\tau\neq0.
 $$
-**真空情形**（情形 i）：取**连续且 $\psi(0)\neq 0$** 的单位能量短脉冲，则 $Z_\varepsilon=\psi(\varepsilon)/(4\pi L)\neq 0$。**介质情形**（情形 i）：由前沿奇性 $K\neq0$ 或尾项在 $t\ge d_{\rm front}/c$ 的支撑给出 $Z_\varepsilon\neq 0$。**串联滤波情形**（情形 ii）：系统响应在 $t\ge D_{\rm sys}/c$ 可检。
+**真空情形**（情形 i）：取**连续且 $\psi(0)\neq 0$** 的单位能量短脉冲，则 $Z_\varepsilon=\psi(\varepsilon)/(4\pi L)\neq 0$。**介质情形**（情形 i）：若**存在前沿奇性**（§0，$\sum_{k=0}^{m}K_k\,\delta^{(k)}$ 中某 $K_k\neq0$），则与真空同理可取 $t_\varepsilon=\tfrac{D_{\rm front}}{c}+\varepsilon$ 直接得 $Z_\varepsilon\neq0$。**否则**按 §1(A5)/§5 的**前沿可检**（短脉冲极限）定义，**存在** $t_n\downarrow \tfrac{D_{\rm front}}{c}$ 与单位能量短脉冲 $\psi$ 使
+$$
+Z(t_n):=\int_0^{t_n}G_{\rm ret}(t_n,\tau;x,y)\,\psi(\tau)\,d\tau\neq0.
+$$
+故对任意 $\varepsilon>0$，可取 $n$ 使 $t_n\le \tfrac{D_{\rm front}}{c}+\varepsilon$，从而 $T_\delta\le t_n\le \tfrac{D_{\rm front}}{c}+\varepsilon$（情形 (ii) 仅以 $D_{\rm front}\to D_{\rm sys}$ 代换）。**串联滤波情形**（情形 ii）：系统响应在 $t\ge D_{\rm sys}/c$ 可检。
 
 引入等概符号 $S\in\{\pm1\}$，设 $X_S(\tau):=S\,\alpha\,\psi(\tau)$，则 $Y(t_\varepsilon)=S\,\alpha\,Z_\varepsilon+N(t_\varepsilon)$。令 $N(t_\varepsilon)\sim\mathcal N(0,\sigma^{2})$，记 $X:=S\,\alpha$，取 $\mathrm{SNR}:=\alpha^{2}|Z_\varepsilon|^{2}/\sigma^{2}$。由 I–MMSE 小 SNR 斜率得
 $$
@@ -405,11 +413,15 @@ $$
 $$
 |\varepsilon_{\rm tail}|\le \frac{\hbar}{2\pi}\,\epsilon\,\|\eta\|_{L^{1}}\,\operatorname*{ess\,sup}_{E\in \Omega_E}|\mathrm{tr}\,Q(E)|.
 $$
-在真空纯延迟链路中，$\mathrm{tr}Q_L$ 为常数，故三项误差（别名/EM/尾项）皆为 0（见 §4）。
+在真空纯延迟链路中，因 $\mathrm{tr}Q_L\equiv L/(\hbar c)$ 为常数，**别名项**与 **Euler–Maclaurin 余项**为 0；而**尾项** $\varepsilon_{\rm tail}$ 仅在 $w_R$ **紧支撑**且 $R$ 覆盖其支撑（或取极限 $R\to\infty$ / 选取 $\int_{|E|>R}\!|w_R|\!=\!0$）时为 0；对一般窗口仅能用上界将其做**任意小**。因此在**全频积分**下仍有 $\mathsf T=L/c$，与 §4 的精确等式一致。
 
 * **Nyquist（别名）**：若 $\widehat f$ 带限于 $(-\pi/\Delta E,\pi/\Delta E)$，则别名为 0；否则可用频谱抽样上界量化。([webusers.imj-prg.fr][7])
 * **Poisson 求和**：把离散采样与周期化严格联结，用于评估别名项。([dlmf.nist.gov][13])
-* **Euler–Maclaurin（有限阶）**：余项满足 $|R_{p}|\le \frac{2\zeta(p)}{(2\pi)^p}\int|f^{(p)}|$，给出端点/尾项的可检上界。([dlmf.nist.gov][14])
+* **Euler–Maclaurin（有限阶）**：余项满足
+$$
+|R_{2m}|\ \le\ \frac{2\,\zeta(2m)}{(2\pi)^{2m}}\ \int\! \big|f^{(2m)}(x)\big|\,dx,\qquad m\ge 1,
+$$
+给出端点/尾项的可检上界。([dlmf.nist.gov][14])
 
 **（真空纯延迟校准链路）**：综上，时间读数满足
 $$
@@ -433,14 +445,14 @@ $$
 
 * **洛伦兹协变**：$G_{\rm ret}$ 的光锥支撑等价于 Minkowski 光锥。([维基百科][4])
 * **微因果/无超信号性**：快/慢光体系中"信息速度 $\le c$"与量子场的类空对易一致。([PubMed][6])
-* **介质几何**：Gordon 光学度量把折射/流速吸收入度量，因而**在前沿光学度量中**按定义始终有"前沿 $=c$"。**实验坐标**下仅能保证 $t_{\min}\ge d_{\rm front}/c$；且**仅当**满足 §5 的**等号条件**（真空纯传播/前沿奇性/含Dirac直通分量，或再加严格因果 LTI 滤波器已知 $t_h$）时，方可恢复"前沿 $=c$"。若并且 $n_\infty\equiv1$，则 $d_{\rm front}=|A-B|$（此时是否取等仍取决于前述条件）。([arXiv][9])
+* **介质几何**：Gordon 光学度量把折射/流速吸收入度量，因而**在前沿光学度量中**按定义始终有"前沿 $=c$"。**实验坐标**下仅能保证 $t_{\min}\ge d_{\rm front}/c$；且**仅当满足前沿可检（§5）**（含 $\delta/\delta^{(k)}$ 前沿或Dirac直通，或短脉冲极限可检）时，方可恢复"前沿 $=c$"。若并且 $n_\infty\equiv1$，则 $d_{\rm front}=|A-B|$（此时是否取等仍取决于前述条件）。([arXiv][9])
 
 ---
 
 ## 11. 结论性定义（汇总）
 
 * **时间**：在给定窗—核与读数协议下，时间是**窗口化群延迟坐标**，即 $t\equiv \hbar\int \tfrac{w_R}{2\pi}\,[\eta\!\star\!\mathrm{tr}\,Q]\,dE$。
-* **空间**：通过等时往返读数选定的**同时切片 $\Sigma_t$** 及其三维度量。真空中由雷达距定义；介质情形以**前沿光学度量**诱导的 **3D 费马度量** $ds_{\rm front}=n_\infty(\mathbf x)|\mathrm dx|$ 的**测地光程极小值**定义 $d_{\rm front}$（高频极限 $n_\infty=\lim_{\omega\to\infty}n(\mathbf x,\omega)$ 决定），最早可达时间满足 $t_{\min}\ge d_{\rm front}/c$；**仅当**（i）3D 真空纯传播，或（ii）介质前沿存在奇性 $K(x,y)\neq0$，或（iii）测链含Dirac直通分量（即 $h_{\rm sys}(t)$ 含 $\delta(t)$ 分量）时，方有 $t_{\min}=d_{\rm front}/c$。**在前沿光学度量下**波前速度按定义为 $c$；**实验坐标**下：若 $n_\infty\equiv1$，则 $d_{\rm front}=|A-B|$ 且无条件仅得 $t_{\min}\ge |A-B|/c$；**仅在** §5 的等号条件（或外接严格因果 LTI 滤波器使 $t_h>0$ 时改以 $D_{\rm sys}$ 计）下，方可**恢复**"前沿速度 $=c$"的结论。
+* **空间**：通过等时往返读数选定的**同时切片 $\Sigma_t$** 及其三维度量。真空中由雷达距定义；介质情形以**前沿光学度量**诱导的 **3D 费马度量** $ds_{\rm front}=n_\infty(\mathbf x)|\mathrm dx|$ 的**测地光程极小值**定义 $d_{\rm front}$（高频极限 $n_\infty=\lim_{\omega\to\infty}n(\mathbf x,\omega)$ 决定），最早可达时间满足 $t_{\min}\ge d_{\rm front}/c$；**仅当满足前沿可检（§5）时**，方有 $t_{\min}=d_{\rm front}/c$。**在前沿光学度量下**波前速度按定义为 $c$；**实验坐标**下：若 $n_\infty\equiv1$，则 $d_{\rm front}=|A-B|$ 且无条件仅得 $t_{\min}\ge |A-B|/c$；**仅在**满足前沿可检（§5）（或外接严格因果 LTI 滤波器使 $t_h>0$ 时改以 $D_{\rm sys}$ 计）下，方可**恢复**"前沿速度 $=c$"的结论。
 * **时空**：四元组 $(\mathcal E,\preceq,g,\mu_\varphi)$，其中 $\preceq$ 来自 $G_{\rm ret}$ 光锥支撑，$g$ 为（光学）洛伦兹度量，$\mu_\varphi=(\varphi'/\pi)\,dx$ 为相位密度刻度；在 NPE 账本下可检、可校准，并与 SI 互逆实现。
 
 ---
