@@ -2,7 +2,7 @@
 
 **（含可核对引文）**
 
-**Version: 1.38**（2025-11-02，Asia/Dubai）
+**Version: 1.39**（2025-11-02，Asia/Dubai）
 
 ---
 
@@ -304,7 +304,7 @@ y_\eta(t)=\big(G_{\rm ret}*\psi_\eta\big)(t)=\frac{\psi_\eta(t-L/c)}{4\pi L},
 $$
 从而 $\lim_{\eta\downarrow 0}y_\eta(t)=\delta(t-L/c)/(4\pi L)$，最早非零响应仍在 $t=L/c$。该论证与"可检读数"口径一致。
 
-**（LTI 情形）**：因果 $\Leftrightarrow$ 上半平面解析（稳定 LTI）。在**纯延迟链路** $G(t)=\delta(t-L/c)$ **或**串联严格因果滤波器且具有**Dirac直通分量（即脉冲响应含 $\delta(t)$ 分量）**时，**最小支撑端点**为 $L/c$。对**一般 LTI** 系统（脉冲响应 $h_{\rm sys}(t)$），最早非零响应时间由其支撑给出
+**（LTI 情形）**：在稳定 LTI 系统中，严格因果 $\Rightarrow$ 频响在上半平面解析；而"解析 $\Rightarrow$ 严格因果"仅在附加条件（如 $h_{\rm sys}\in L^{1}(\mathbb R)$、$H(\omega)$ 多项式增长受控且上半平面无极点等）下成立。在**纯延迟链路** $G(t)=\delta(t-L/c)$ **或**串联严格因果滤波器且具有**Dirac直通分量（即脉冲响应含 $\delta(t)$ 分量）**时，**最小支撑端点**为 $L/c$。对**一般 LTI** 系统（脉冲响应 $h_{\rm sys}(t)$），最早非零响应时间由其支撑给出
 $$
 t_{\min}=\inf\{t:\,h_{\rm sys}(t)\neq 0\},\qquad
 t_{\min}=L/c+t_h\ \ (\text{若与纯延迟串联}).
@@ -350,7 +350,15 @@ $$
 $$
 I\bigl(X;Y(t_\varepsilon)\bigr)=\tfrac{1}{2}\,\mathrm{SNR}+o(\mathrm{SNR})=\frac{\alpha^{2}|Z_\varepsilon|^{2}}{2\sigma^{2}}+o(\alpha^{2}).
 $$
-因 $Y(t_\varepsilon)$ 为 $Y_{[0,t_\varepsilon]}$ 的可测函数，故 $I\bigl(X;Y_{[0,t_\varepsilon]}\bigr)\ge I\bigl(X;Y(t_\varepsilon)\bigr)$。对任意小 $\delta>0$，可取充分小 $\alpha$ 使 $I\bigl(X;Y_{[0,t_\varepsilon]}\bigr)\ge\delta$，便得 $T_\delta\le t_\varepsilon$。因此 $\forall \varepsilon>0,\ \exists \delta(\varepsilon)\downarrow 0:\,T_\delta\le t_\varepsilon$，由是情形 (i) 给出 $c_{\rm info}=c$，情形 (ii) 同样给出 $c_{\rm info}=c$。
+因 $Y(t_\varepsilon)$ 为 $Y_{[0,t_\varepsilon]}$ 的可测函数，故 $I\bigl(X;Y_{[0,t_\varepsilon]}\bigr)\ge I\bigl(X;Y(t_\varepsilon)\bigr)$。给定任意小 $\delta>0$，取
+$$
+\alpha=\alpha(\delta):=\frac{\sqrt{2\,\sigma^{2}\,\delta}}{|Z_\varepsilon|},
+$$
+使得 $\mathrm{SNR}=\alpha^{2}|Z_\varepsilon|^{2}/\sigma^{2}=2\delta$（仍处于小 SNR 区间），于是
+$$
+I\bigl(X;Y_{[0,t_\varepsilon]}\bigr)\ \ge\ I\bigl(X;Y(t_\varepsilon)\bigr)\ \ge\ \delta.
+$$
+因而 $T_\delta\le t_\varepsilon$。并且当 $\delta\downarrow0$ 时有 $\alpha(\delta)\downarrow0$，与"小信号极限"假设一致。因此 $\forall \varepsilon>0,\ \exists \delta(\varepsilon)\downarrow 0:\,T_\delta\le t_\varepsilon$，由是情形 (i) 给出 $c_{\rm info}=c$，情形 (ii) 同样给出 $c_{\rm info}=c$。
 
 $\square$
 
