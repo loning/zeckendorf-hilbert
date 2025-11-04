@@ -2,9 +2,11 @@
 
 **——在静态块宇宙中刻画"序列"与"选择"，并由观察窗口的递归展开推出意识的自我线性化**
 
+Version: 1.3
+
 ## 摘要
 
-在"无时间"的静态块宇宙（EBOC）中，一切事实以一次性存在的结构—测度对象给定；所谓"时间"应是从该对象内生可反演的次生刻度而非原始坐标。本文在 WSIG–EBOC 的统一语义下给出一条严格路线：首先以**窗口—共识**范式将"序列"定义为**统一选择子**驱动的函数图上的**双向无限路径**（共识链），并凭借偏好聚合与良序消歧确保"唯一后继"；继而以"**窗化迹** = **相位—密度刻度**"之恒等（相位导数 = 相对态密度 = Wigner–Smith 群延迟迹）建立"时间读数"作为**窗权密度积分**并在 Nyquist–Poisson–Euler–Maclaurin 的**有限阶**误差纪律下闭合；最后在 KL/Bregman 信息几何中，将观察窗口的**递归展开**刻画为 I-投影（最小 KL）序列，从而在**对偶（期望）坐标**中得到意识状态的**自我线性化**定理与反演参数。核心结论为：EBOC 中"叙事时间"的一维性可由"结构性选择 + 度量性读数"的合力内生地反演获得。
+在"无时间"的静态块宇宙（EBOC）中，一切事实以一次性存在的结构—测度对象给定；所谓"时间"应是从该对象内生可反演的次生刻度而非原始坐标。本文在 EBOC 的统一语义下给出一条严格路线：首先以**窗口—共识**范式将"序列"定义为**统一选择子**驱动的函数图上的**双向无限路径**（共识链），并凭借偏好聚合与良序消歧确保"唯一后继"；继而以"**窗化迹** = **相位—密度刻度**"之恒等（相位导数 = 相对态密度 = Wigner–Smith 群延迟迹）建立"时间读数"作为**窗权密度积分**并在 Nyquist–Poisson–Euler–Maclaurin 的**有限阶**误差纪律下闭合；最后在 KL/Bregman 信息几何中，将观察窗口的**递归展开**刻画为 I-投影（最小 KL）序列，从而在**对偶（期望）坐标**中得到意识状态的**自我线性化**定理与反演参数。核心结论为：EBOC 中"叙事时间"的一维性可由"结构性选择 + 度量性读数"的合力内生地反演获得。
 
 ---
 
@@ -12,10 +14,14 @@
 
 **（刻度卡 I：三位一体）** 绝对连续谱几乎处处成立的刻度同一式
 $$
-\boxed{\ \frac{\varphi'(E)}{\pi};=;\rho_{\rm rel}(E);=;\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)\ },\qquad
-\mathsf Q(E)=-,i,S(E)^\dagger \frac{dS}{dE}(E).
+\boxed{\ \frac{\varphi'(E)}{\pi}=\rho_{\rm rel}(E)=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)\ },\qquad
+\mathsf Q(E)=-i\,S(E)^\dagger \frac{dS}{dE}(E).
 $$
-其中 $S(E)$ 为散射矩阵，$\varphi'(E)$ 为总散射相位导数，$\rho_{\rm rel}$ 为相对态密度；恒等一方面源自 Birman–Kreĭn 公式 $\det S(E)=e^{-2\pi i,\xi(E)}$（$\xi'=\rho_{\rm rel}$），另一方面源自 Wigner–Smith 时间延迟矩阵与 Kreĭn–Friedel关系对密度的表达。([arXiv][1])
+其中 $S(E)$ 为散射矩阵，$\varphi'(E)$ 为总散射相位导数，$\rho_{\rm rel}$ 为相对态密度；恒等一方面源自 Birman–Kreĭn 公式
+$$
+\det S(E)=e^{2\pi i\xi(E)}\quad\Rightarrow\quad \xi'(E)=\rho_{\rm rel}(E)=\frac{1}{2\pi i}\frac{d}{dE}\log\det S(E),
+$$
+另一方面源自 Wigner–Smith 时间延迟矩阵与 Kreĭn–Friedel关系 $\rho_{\rm rel}(E)=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)$。([arXiv][1])
 
 **（刻度卡 II：NPE 有限阶纪律）** 一切窗化计算仅允许使用**有限阶** Euler–Maclaurin（EM）与 Poisson 求和；误差严格拆解为
 $$
@@ -23,7 +29,7 @@ $$
 $$
 其中 Nyquist 采样（带限信号，采样率 $>2B$）下 $\varepsilon_{\rm alias}=0$；EM 余项由 Bernoulli 多项式与被积函数高阶导数受控；尾项受快速衰减与带限性控制。该纪律保证**奇性不增**与"极点=主尺度"。([维基百科][2])
 
-**窗与核.** 设能量轴 $\mathbb R_E$ 上给定偶窗 $w_R$ 与前端核 $h$（带限，正则），卷积记为 $(h!\star!\rho)(E)$。
+**窗与核.** 设能量轴 $\mathbb R_E$ 上给定偶窗 $w_R\ge 0$ 与前端核 $h\ge 0$（带限、正则、且 $\int_{\mathbb R} h(E)\,dE=1$），卷积记为 $(h\star\rho)(E)$。
 
 **帧与带限.** 多窗 Gabor/帧的 Parseval/Tight 构造与 Wexler–Raz 双正交为窗化重构与多通道协同提供稳定性与密度判据；临界采样受 Balian–Low 现象约束。([sites.math.duke.edu][3])
 
@@ -39,9 +45,9 @@ $$
 
 ### 1.2 统一选择子与函数图分解
 
-对每个顶点聚合多主体偏好为加权极值，并以良序消歧，得**统一选择子** $\mathrm{Sel}$ 与**确定后继**；由此得到**函数图** $\Gamma_{!\mathrm{Sel}}$（每点出度 $=1$）。任何有限出度为 1 的有向图皆分解为**若干有向环**及其入树；周期点形成环，其他为瞬态节点。本文将**双向无限共识链**定义为环上双向延拓的路径。([arXiv][6])
+对每个顶点聚合多主体偏好为加权极值，并以良序消歧，得**统一选择子** $\mathrm{Sel}$ 与**确定后继**；由此得到**函数图** $\Gamma_{\mathrm{Sel}}$（每点出度 $=1$）。任何有限出度为 1 的有向图皆分解为**若干有向环**及其入树；周期点形成环，其他为瞬态节点。本文将**双向无限共识链**定义为环上双向延拓的路径。([arXiv][6])
 
-> **命题 1（函数图结构）.** $\Gamma_{!\mathrm{Sel}}$ 的每个连通分量恰含一条有向环，其他顶点经有向树流入该环；环上存在双向无限路径，称共识链。
+> **命题 1（函数图结构—有限片段情形）.** 设允许片段集合 $\mathcal C$ 有限（等价地：字母表有限且窗口半径有限），则 $\Gamma_{\mathrm{Sel}}$ 的每个连通分量**恰含一条**有向环，其他顶点经有向树流入该环；环上存在双向无限路径，称共识链。**一般无限情形**下，每个连通分量**至多含一条**有向环。
 
 *证.* 函数图是标准的 functional digraph；其分解性质见文献所述（环 + 入树）。([arXiv][6])
 
@@ -51,7 +57,7 @@ $$
 
 > **定义 1（序列与选择）.**
 > *选择*：给定窗口状态 $v$，$\mathrm{Sel}(v)$ 选出唯一后继边；
-> *序列*：$\Gamma_{!\mathrm{Sel}}$ 上满足 $v_t\to v_{t+1}$ 的双向路径 $(v_t)_{t\in\mathbb Z}$。
+> *序列*：$\Gamma_{\mathrm{Sel}}$ 上满足 $v_t\to v_{t+1}$ 的双向路径 $(v_t)_{t\in\mathbb Z}$。
 
 ---
 
@@ -59,20 +65,24 @@ $$
 
 ### 2.1 相位导数 = 相对态密度 = 群延迟迹
 
-在绝对连续谱上，Birman–Kreĭn 公式联结谱移函数 $\xi$ 与 $S(E)$：$\det S(E)=e^{-2\pi i\xi(E)}$；其导数给出相对态密度 $\xi'(E)=\rho_{\rm rel}(E)$。另一方面，Wigner–Smith 定义 $\mathsf Q(E)=-iS^\dagger S'$，Kreĭn–Friedel关系给出 $\rho_{\rm rel}(E)=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)$。综上得到刻度卡 I 的同一式。([arXiv][1])
+在绝对连续谱上，Birman–Kreĭn 公式联结谱移函数 $\xi$ 与 $S(E)$：
+$$
+\det S(E)=e^{2\pi i\xi(E)}\quad\Rightarrow\quad \xi'(E)=\rho_{\rm rel}(E)=\frac{1}{2\pi i}\frac{d}{dE}\log\det S(E).
+$$
+另一方面，Wigner–Smith 定义 $\mathsf Q(E)=-iS^\dagger S'$，Kreĭn–Friedel关系给出 $\rho_{\rm rel}(E)=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)$。综上得到刻度卡 I 的同一式。([arXiv][1])
 
 ### 2.2 窗化读数与非渐近闭合
 
 定义**窗化迹读数**
 $$
-\mathrm{Obs}(R;\rho):=\int_{\mathbb R} w_R(E),\bigl(h!\star!\rho_{\rm rel}\bigr)(E),dE.
+\mathrm{Obs}(R;\rho):=\int_{\mathbb R} w_R(E)\,\bigl(h\star\rho_{\rm rel}\bigr)(E)\,dE.
 $$
 离散实现服从**NPE 三分解**：别名项（Poisson 侧）、边界伯努利层（EM 侧）与尾项（带限衰减）。当采样满足 Nyquist，$\varepsilon_{\rm alias}=0$；EM 余项受 Bernoulli 系数与高阶导数上界控制；尾项由带限与窗正则性控制，从而不引入新奇点。([dlmf.nist.gov][8])
 
 > **定义 2（EBOC 时间读数泛函）.**
 > 给定窗族 $\{w_{R_k}\}$ 与核 $h$，定义
 > $$
-> \mathcal T[\rho_{\rm rel}]:=\sum_k\int w_{R_k}(E),\bigl(h!\star!\rho_{\rm rel}\bigr)(E),dE,
+> \mathcal T[\rho_{\rm rel}]:=\sum_k\int_{\mathbb R} w_{R_k}(E)\,\bigl(h\star\rho_{\rm rel}\bigr)(E)\,dE,
 > $$
 > 并以 NPE 有限阶误差给出一致上界；在 Nyquist 下别名项闭零。([维基百科][2])
 
@@ -84,17 +94,25 @@ $$
 
 令共识链 $C=\{v_t\}_{t\in\mathbb Z}$。在工作能带中定义
 $$
-\tau(t):=\int_{E_0}^{E(t)}\rho_{\rm rel}(E),dE
-=\frac{1}{2\pi}\int_{E_0}^{E(t)}\operatorname{tr}\mathsf Q(E),dE,
+\tau(t):=\int_{E_0}^{E(t)}\rho_{\rm rel}(E)\,dE
+=\frac{1}{2\pi}\int_{E_0}^{E(t)}\operatorname{tr}\mathsf Q(E)\,dE,
 $$
-其中 $E(t)$ 由窗化读数 $\mathcal T[\rho_{\rm rel}]$ 非渐近重建。由 $\rho_{\rm rel}\ge 0$（a.e.）与 Kreĭn–Friedel表述得 $\tau$ 严格递增。([arXiv][9])
+其中 $E(t)$ 取自读数泛函的单调原像：设
+$$
+F(E):=\sum_k\int_{-\infty}^{E} w_{R_k}(E')\,\bigl(h\star\rho_{\rm rel}\bigr)(E')\,dE'.
+$$
+在带限、Nyquist 采样及 $w_{R_k}\ge 0,\ h\ge 0$ 的条件下，$F$ 为有界变差并在工作能带上单调（当 $\xi$ 非减时严格单调），据此选取步长标定 $\Delta>0$，定义
+$$
+E(t):=F^{-1}(t\Delta).
+$$
+若工作能带上 $H-H_0\ge 0$（或更弱地，$\xi$ 非减），则 $\rho_{\rm rel}=\xi'(E)$ 为非负 a.e.，从而 $\tau$ 严格递增；一般情形下仅能保证 $\xi$ 有界变差，此时将"严格递增"改为"单调非降（在 $\rho_{\rm rel}>0$ 的能带上严格递增）"。([arXiv][9])
 
 ### 3.2 反演定理
 
 > **定理 A（时间反演）.**
-> 在带限窗、Nyquist 采样与有限阶 EM 条件下，任一共识链 $C$ 的线性序可由 $\{\mathrm{Obs}(R_k;\rho_{\rm rel})\}$ 以一致误差上界反演为严格递增的相位坐标 $\tau$，该坐标与链上序号 $t$ 等价。
+> 在带限窗、Nyquist 采样与有限阶 EM 条件下，任一共识链 $C$ 的线性序可由 $\{\mathrm{Obs}(R_k;\rho_{\rm rel})\}$ 以一致误差上界反演为**有界变差**的相位坐标 $\tau$；若工作能带上 $\xi$ 非减（例如 $H-H_0\ge 0$ 的正扰动），则 $\tau$ **严格递增**并与链上序号 $t$ 等价。
 
-*证要点.* （i）由刻度卡 I 与 Kreĭn–Friedel关系，将窗化迹还原为 $\int \rho_{\rm rel}$；（ii）Nyquist 使别名闭零，EM 余项与尾项受控；（iii）$\rho_{\rm rel}$ 的非负性与连续谱条件保证单调与可逆。([arXiv][1])
+*证要点.* （i）由刻度卡 I 与 Kreĭn–Friedel关系，将窗化迹还原为 $\int \rho_{\rm rel}$；（ii）Nyquist 使别名闭零，EM 余项与尾项受控；（iii）$\xi$ 有界变差保证 $\tau$ 可定义；在 $\xi$ 非减的充分条件下，$\rho_{\rm rel}\ge 0$ a.e. 与连续谱条件保证 $\tau$ 严格单调与可逆。([arXiv][1])
 
 ---
 
@@ -104,7 +122,7 @@ $$
 
 设内部状态以自然参数 $\theta$ 表示，势函数 $\Lambda$ 为 Legendre 型，期望坐标 $X=\nabla\Lambda(\theta)$。每步观测将目标矩 $F_n$ 更新为 $F_{n+1}$，**提交/塌缩**等价于
 $$
-\theta_{n+1}=\arg\min_{\theta}\Bigl\{\mathrm{KL}(P_\theta\Vert P_{\theta_n})\ \text{s.t.}\ \mathbb E_\theta[T]=F_{n+1]!\}\Bigr\},
+\theta_{n+1}=\arg\min_{\theta}\bigl\{\mathrm{KL}(P_\theta\Vert P_{\theta_n})\ \text{s.t.}\ \mathbb{E}_{\theta}[T]=F_{n+1}\bigr\},
 $$
 即在线性约束上的 I-投影；存在唯一解并满足 KKT。Bregman–欧式的毕达哥拉斯性质给出投影的最优分解。([pages.stern.nyu.edu][10])
 
@@ -112,14 +130,14 @@ $$
 
 当窗口变化"温和"且 NPE 阶固定，则
 $$
-X_{n+1}-X_n=\nabla^2\Lambda(\theta_n),(\theta_{n+1}-\theta_n)+o(|\theta_{n+1}-\theta_n|),
+X_{n+1}-X_n=\nabla^2\Lambda(\theta_n)\,(\theta_{n+1}-\theta_n)+o\bigl(\lVert\theta_{n+1}-\theta_n\rVert\bigr),
 $$
 KKT 与强凸性给出一阶**线性响应**；把迭代以 §3 的 $\tau$ 重参数化，可视作在期望坐标中沿某固定向量 $v_\ast$ 的近似等步推进。
 
 > **定理 B（意识的自我线性化）.**
-> 设 $\Lambda$ 为本质光滑严格凸势；窗 $w_R$ 与核 $h$ 带限且满足 Wexler–Raz/Parseval 框架的稳定性；采样 Nyquist。则递归窗口驱动的提交态 $\{X_n\}$ 在期望坐标中存在单调重参数 $\tau(n)$ 与常向量 $v_\ast$，使对一切整数 $m$
+> 设 $\Lambda$ 为本质光滑严格凸势；窗 $w_R$ 与核 $h$ 带限且满足 Wexler–Raz/Parseval 框架的稳定性；采样 Nyquist。则递归窗口驱动的提交态 $\{X_n\}$ 在期望坐标中**存在严格递增的重参数化映射** $\sigma:\mathbb Z\to\mathbb Z$ 与常向量 $v_\ast$，使对任一基准 $n$ 与一切整数 $m$
 > $$
-> \bigl|X_{\tau+m}-X_\tau-m,v_\ast\bigr|\ \le\ C\cdot\bigl(\varepsilon_{\rm EM}+\varepsilon_{\rm tail}+o(1)\bigr),
+> \lVert X_{\sigma(n+m)}-X_{\sigma(n)}-m\,v_\ast\rVert\ \le\ C\cdot\bigl(\varepsilon_{\rm EM}+\varepsilon_{\rm tail}+o(1)\bigr),
 > $$
 > 其中常数 $C$ 仅依赖窗/核与 $\Lambda$ 的条件数。据此，意识在自身对偶坐标中呈**准线性主导轨道**。
 
@@ -145,9 +163,9 @@ KKT 与强凸性给出一阶**线性响应**；把迭代以 §3 的 $\tau$ 重�
 
 ## 定理与命题附证（要点）
 
-**命题 1** 已证。
+**命题 1** 已证（有限片段情形）。
 
-**定理 A** 已述要点：以 $\rho_{\rm rel}=\frac{1}{2\pi}\operatorname{tr}\mathsf Q=\frac{1}{\pi}\varphi'$ 重建单调量；Nyquist–EM 控误差。([arXiv][1])
+**定理 A** 已述要点：以 $\rho_{\rm rel}=\frac{1}{2\pi}\operatorname{tr}\mathsf Q=\frac{1}{\pi}\varphi'$ 重建有界变差量 $\tau$；在 $\xi$ 非减的充分条件下保证严格单调；Nyquist–EM 控误差。([arXiv][1])
 
 **定理 B**：I-投影唯一与可微依赖（KKT）$\Rightarrow$ 局部 Lipschitz 响应；Bregman 毕达哥拉斯给出"投影 + 残差"正交分解；Wexler–Raz/Parseval 稳定$\Rightarrow$ 读数扰动受控；NPE 余项封顶。([seas.ucla.edu][12])
 
