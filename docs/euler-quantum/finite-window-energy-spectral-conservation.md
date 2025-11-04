@@ -1,5 +1,7 @@
 # 有限窗能谱守恒原理：群延迟—带宽乘积上界与 WSIG–EBOC–RCA 统一语义
 
+Version: 1.3
+
 ## 摘要
 
 提出并严格化一个面向有限观测窗的"能谱守恒原理"。在以散射相位导数—相对态密度—Wigner–Smith 群延迟迹为统一刻度的框架下，定义窗化能谱读数，并证明其总量由"群延迟通量"与"窗的有效时频条件数"的乘积一侧上界；上界常数仅依赖窗族的正则性与通道的被动性。在带限或弱色散区域、紧框架窗族下，上界进一步收紧为紧界并由 Nyquist–Poisson–Euler–Maclaurin 的有限阶误差学（NPE 三分解）闭合控制。变分分析给出在固定资源约束下的最优窗趋向紧框架与近最小不确定性窗，并在多端口散射下推广为对群延迟本征值之总读数的同型上界。该原理在 WSIG 作为观测资源界、在 EBOC 作为记录熵/可写能谱界、在 RCA 作为"光锥宽度 × 时深度"的可写容量界而获得统一语义。
@@ -12,30 +14,40 @@
 
 **A0（观测三元）** 以 $(\mathcal H,w,S)$ 表示观测三元：$\mathcal H$ 为工作希尔伯特空间；$w$ 为时间/尺度窗，满足 $0\le w\le 1$、紧支或快速衰减、$w\in L^1\cap L^2$ 且二阶矩有限；$S(E)$ 为能量参量的散射矩阵或被动传递算子，绝对连续谱上可微且在无耗极限下幺正。
 
+**A0（补充：归一化、单位与刻度）** $|w|_2=1$；Fourier 取 $\widehat w(\omega)=(2\pi)^{-1/2}\int_{\mathbb R}e^{-i\omega t}w(t)\,dt$；统一采用 $\hbar=1$ 单位约定，使能量轴 $E$ 与角频率轴 $\omega$ 认同，故 $\partial_E=\partial_\omega$，并将 $\operatorname{supp}\widehat w$ 解释为对应的能带。
+
 **A1（Wigner–Smith 群延迟）** 定义
 $$
-\mathsf Q(E):=-i,S(E)^\dagger S'(E),\qquad \mathsf Q(E)=\mathsf Q(E)^\dagger,
+\mathsf Q(E):=-i\,S(E)^\dagger S'(E),\qquad \mathsf Q(E)=\mathsf Q(E)^\dagger,
 $$
 其本征值为"proper delay times"。$\operatorname{tr}\mathsf Q$ 与散射相位及特征时间的关联可追溯至 Wigner 与 Smith 的结果，并已在多端口及电磁系统中系统化阐述。([link.aps.org][1])
 
 **A2（刻度同一式：三位一体）** 在绝对连续谱几乎处处成立
 $$
-\boxed{\ \rho_{\rm rel}(E)=\frac{\varphi'(E)}{\pi}=\frac{1}{2\pi}\operatorname{tr},\mathsf Q(E)\ },
+\boxed{\ \rho_{\rm rel}(E)=\frac{\varphi'(E)}{\pi}=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)\ },
 $$
-其中 $\varphi(E)$ 为散射相位（相对于自由参照），$\rho_{\rm rel}$ 为相对态密度。其严格基础为 Birman–Kreĭn 谱移函数与散射行列式的关系 $\det S(E)=e^{-2\pi i \xi(E)}$ 以及 $\xi'(E)=\rho_{\rm rel}(E)$，并与 Büttiker 等给出的"散射矩阵—态密度"表述一致。([arXiv][2])
+其中 $\varphi(E)$ 为散射相位（相对于自由参照），$\rho_{\rm rel}$ 为相对态密度。其严格基础为 Birman–Kreĭn 谱移函数与散射行列式的关系
+$$
+\det S(E)=e^{+2\pi i \xi(E)},
+$$
+以及 $\xi'(E)=\rho_{\rm rel}(E)$，并与 Büttiker 等给出的"散射矩阵—态密度"表述一致。([arXiv][2])
 
-**A3（窗的有效时频条件数）** 记窗与其傅里叶变换为 $w,\widehat w$。定义
+**A3（窗的有效时频条件数）** 记
 $$
-T_w:=\Big(!\int t^2|w(t)|^2,dt\Big)^{1/2},\quad
-B_w:=\Big(!\int \omega^2|\widehat w(\omega)|^2,d\omega\Big)^{1/2},
+\mu_t:=\int_{\mathbb R} t\,|w(t)|^2\,dt,\quad
+\mu_\omega:=\int_{\mathbb R} \omega\,|\widehat w(\omega)|^2\,d\omega,
 $$
-称 $\Lambda_w:=T_w B_w$ 为"有效时频条件数"。Heisenberg–Gabor 不确定性给出 $\Lambda_w\ge \tfrac12$（单位规范下），高斯窗逼近等号。([math.stonybrook.edu][3])
+$$
+T_w:=\Big(\int_{\mathbb R}(t-\mu_t)^2|w(t)|^2\,dt\Big)^{1/2},\quad
+B_w:=\Big(\int_{\mathbb R}(\omega-\mu_\omega)^2|\widehat w(\omega)|^2\,d\omega\Big)^{1/2},
+$$
+定义 $\Lambda_w:=T_wB_w$。在上述约定下，Heisenberg–Gabor 不确定性给出 $\Lambda_w\ge \tfrac12$（高斯窗取等号）。([math.stonybrook.edu][3])
 
 **A4（Toeplitz/Berezin 压缩与局域化算子）** 以
 $$
-\mathrm K_{w,h}:=\Pi_w,M_h,\Pi_w
+\mathrm K_{w,h}:=\Pi_w M_h \Pi_w
 $$
-表示由窗诱导的局域化投影（或近投影）$\Pi_w$ 与读数符号乘子 $M_h$ 的 Toeplitz/Berezin 压缩。时间—频率局域化算子的范数、Schatten 类与 Berezin 变换之关系可据 Daubechies 与后续工作建立。([sites.math.duke.edu][4])
+表示由窗诱导的近投影 $\Pi_w$ 与读数符号乘子 $M_h$ 的 Toeplitz/Berezin 压缩。时间—频率局域化算子的范数、Schatten 类与 Berezin 变换之关系可据 Daubechies 与后续工作建立。([sites.math.duke.edu][4])
 
 **A5（NPE 三分解：有限阶闭合）** 对任意窗化采样/求和—积分转换，误差分解为：Nyquist 混叠（Poisson 主项）、有限阶 Euler–Maclaurin 边界层及窗尾项；相应的有界性与配方可由 DLMF 的 Poisson 及 Euler–Maclaurin 条目给出标准形式。([dlmf.nist.gov][5])
 
@@ -45,11 +57,17 @@ $$
 
 在统一刻度下定义窗化能谱密度
 $$
-\varepsilon_w(E):=\rho_{\rm rel}(E),\mathcal A_w(E)=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E),\mathcal A_w(E),
+\varepsilon_w(E):=\rho_{\rm rel}(E)\,\mathcal A_w(E)
+=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)\,\mathcal A_w(E),
 $$
-其中 $\mathcal A_w(E):=\langle \psi,\mathrm K_{w,h(E)}\psi\rangle$ 为窗—读数—函数的可测振幅因子（读数是对谱测度的有界线性泛函）。窗化能谱总读数
+其中 $\psi\in\mathcal H$、$|\psi|=1$，读数符号 $h(E)$ 有界且 $|h|_\infty\le 1$，并令
 $$
-\mathcal E[w;S]:=\int_{\mathbb R}\varepsilon_w(E),dE.
+\mathcal A_w(E):=\langle \psi,\mathrm K_{w,h(E)}\psi\rangle,\qquad
+\mathrm K_{w,h(E)}:=\Pi_w M_{h(E)}\Pi_w .
+$$
+设关注能带 $\Omega\subset\mathbb R$，窗化能谱总读数
+$$
+\mathcal E[w;S;\Omega]:=\int_{\Omega}\varepsilon_w(E)\,dE .
 $$
 
 ---
@@ -59,24 +77,26 @@ $$
 **定理 A（群延迟—带宽乘积上界）**
 设 $(\mathcal H,w,S)$ 满足 A0–A5，窗 $w$ 属于一族正则窗类（紧支或指数尾、二阶矩有限、帧界有界），$S$ 被动（无耗极限幺正）。记关注区间 $\Omega\subset\mathbb R$ 与群延迟通量
 $$
-\Phi_S(\Omega):=\int_\Omega \frac{1}{2\pi}\operatorname{tr}\mathsf Q(E),dE.
+\Phi_S(\Omega):=\int_\Omega \frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)\,dE.
 $$
-则存在常数 $C_\ast>0$（仅依赖窗族帧界、尾衰减与通道被动性）使
-$$
-\boxed{\quad
-\mathcal E[w;S]
-\le C_\ast,\Lambda_w\cdot \Big|\tfrac{1}{2\pi}\operatorname{tr}\mathsf Q\Big|_{L^1(\operatorname{supp}\widehat w)}\quad }.
-$$
-若 $S$ 在 $\Omega$ 内带限或弱色散，且 $\operatorname{supp}\widehat w\subset \Omega$ 并满足紧框架窗族条件，则有紧化估计
+则存在常数 $C_\ast>0$（仅依赖窗族帧界、尾衰减与通道被动性，并吸收 $|h|_\infty$ 的常数因子）使
 $$
 \boxed{\quad
-\mathcal E[w;S];\lesssim;\Lambda_w\cdot \Phi_S(\Omega),\quad \text{误差由 NPE 有界： }\ \mathcal O(B_w^{-1})+\mathcal O(T_w^{-1})+\mathcal O(\mathrm{Tail}(w)).
+\mathcal E[w;S;\operatorname{supp}\widehat w]
+\le C_\ast\,\Lambda_w\cdot \Big|\tfrac{1}{2\pi}\operatorname{tr}\mathsf Q\Big|_{L^1(\operatorname{supp}\widehat w)}
+\quad } .
+$$
+若 $S$ 在 $\Omega$ 内带限或弱色散，且 $\operatorname{supp}\widehat w\subset \Omega$ 并满足紧框架窗族条件，则
+$$
+\boxed{\quad
+\mathcal E[w;S;\Omega]\ \lesssim\ \Lambda_w\cdot |\Phi_S(\Omega)|,
+\qquad \text{误差由 NPE 有界： }\ \mathcal O(B_w^{-1})+\mathcal O(T_w^{-1})+\mathcal O(\mathrm{Tail}(w)).
 \quad}
 $$
 
 **证明纲要**
-(1) 由 A2 得 $\mathcal E[w;S]=\int \tfrac{1}{2\pi}\operatorname{tr}\mathsf Q(E),\mathcal A_w(E),dE$。
-(2) 用 Toeplitz/Berezin 压缩与时间—频率局域化算子的 Schatten/HS 范数估计控制 $\mathcal A_w$；二阶矩通过不确定性与局域化算子插值给出 $|\Pi_w|_{\rm HS}\lesssim |w|_2^2$、$|,[t,\Pi_w],|\lesssim T_w$、$|,[D,\Pi_w],|\lesssim B_w$，从而得到 $\mathcal A_w(E)\lesssim (1+\Lambda_w)\cdot |h(E)|_{\rm op}$。([sites.math.duke.edu][4])
+(1) 由 A2 得 $\mathcal E[w;S;\Omega]=\int_\Omega \tfrac{1}{2\pi}\operatorname{tr}\mathsf Q(E)\,\mathcal A_w(E)\,dE$。
+(2) 用 Toeplitz/Berezin 压缩与时间—频率局域化算子的 Schatten/HS 范数估计控制 $\mathcal A_w$；二阶矩通过不确定性与局域化算子插值给出 $|\Pi_w|_{\rm HS}\lesssim |w|_2^2$、$|[t,\Pi_w]|\lesssim T_w$、$|[D,\Pi_w]|\lesssim B_w$，从而得到 $\mathcal A_w(E)\lesssim (1+\Lambda_w)\cdot |h(E)|_{\rm op}$。([sites.math.duke.edu][4])
 (3) 对能量离散化/采样应用 NPE 三分解：Poisson 主项吸收，Nyquist 混叠随带限膨胀衰减为 $\mathcal O(B_w^{-1})$；有限阶 Euler–Maclaurin 边界层由 Bernoulli 层系数与时间二阶矩控制为 $\mathcal O(T_w^{-1})$；窗尾项由 $\mathrm{Tail}(w)$ 控制。([dlmf.nist.gov][5])
 (4) 将 $\operatorname{tr}\mathsf Q$ 的 $L^1$ 质量限制到 $\operatorname{supp}\widehat w$ 或 $\Omega$ 内，即得所述上界与紧化估计。
 
@@ -84,7 +104,7 @@ $$
 
 ## 3. 结构性质与推论
 
-**P1（资源对偶）** 在固定 $\Lambda_w$ 下，$\mathcal E[w;S]\lesssim \Lambda_w\cdot \Phi_S$ 给出"有效带宽—群延迟"不可同时无界增益：提升通带必牺牲可集成群延迟，反之亦然。该现象与被动网络之 Bode–Fano 极限相容。([core.ac.uk][6])
+**P1（资源对偶）** 在固定 $\Lambda_w$ 下，$\mathcal E[w;S;\Omega]\lesssim \Lambda_w\cdot |\Phi_S(\Omega)|$ 给出"有效带宽—群延迟"不可同时无界增益：提升通带必牺牲可集成群延迟，反之亦然。该现象与被动网络之 Bode–Fano 极限相容。([core.ac.uk][6])
 
 **P2（刻度一致性）** 刻度同一式 A2 保障任何等价能谱定义（经相位导数或谱移）在窗化后与 $(2\pi)^{-1}\operatorname{tr}\mathsf Q$ 同步，不引入额外归一因子。其严式基础见 Birman–Kreĭn 公式与态密度—散射矩阵表述。([arXiv][2])
 
@@ -94,9 +114,9 @@ $$
 
 ## 4. 变分问题与最优窗
 
-在资源约束 $\Lambda_w\le \Lambda$ 下最大化 $\mathcal E[w;S]$：
+在资源约束 $\Lambda_w\le \Lambda$ 下最大化 $\mathcal E[w;S;\Omega]$：
 $$
-\max_{w}\ \int \frac{1}{2\pi}\operatorname{tr}\mathsf Q(E),\mathcal A_w(E),dE\quad \text{s.t.}\ \Lambda_w\le \Lambda.
+\max_{w}\ \int_\Omega \frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)\,\mathcal A_w(E)\,dE\quad \text{s.t.}\ \Lambda_w\le \Lambda.
 $$
 对符号平滑、带限与紧框架窗族，拉格朗日一阶条件导出"等效水位"准则：在 $\operatorname{tr}\mathsf Q$ 密集区提升 $|\widehat w|$ 权重、在稀薄区降配；最优窗趋向紧框架与近最小不确定性窗（加法域为高斯/Gabor；带限域为 Prolate–Slepian；乘法域为对数小波）。([math.ucdavis.edu][7])
 
@@ -106,7 +126,7 @@ $$
 
 对 $S(E)\in\mathbb C^{n\times n}$，记 $\mathsf Q(E)$ 的本征值为 ${\tau_j(E)}_{j=1}^n$。则
 $$
-\mathcal E[w;S]\ \lesssim\ \Lambda_w\cdot \sum_{j=1}^n\int_{\Omega}\frac{\tau_j(E)}{2\pi},dE\ +\ \text{NPE 误差},
+\mathcal E[w;S;\Omega]\ \lesssim\ \Lambda_w\cdot |\Phi_S(\Omega)|\ +\ \text{NPE 误差},
 $$
 并在块对角弱耦合下按块加法近似。proper delay 的统计结构在混沌散射中由随机矩阵理论刻画，提供 ${\tau_j}$ 的普适波动尺度。([link.aps.org][8])
 
@@ -114,15 +134,15 @@ $$
 
 ## 6. WSIG–EBOC–RCA 的统一语义
 
-**WSIG（窗化散射与信息几何）** $\mathcal E[w;S]$ 为"窗化迹"在通用刻度下的观测资源；$\Phi_S$ 为群延迟通量；$\Lambda_w$ 为观测条件数。
-**EBOC（永恒静态块·观察—计算）** 将通道视为静态块之"可读纹理"，$\mathcal E[w;S]$ 对应在窗 $w$ 内的可写/可读能谱；$\Lambda_w$ 约束记录熵；$\Phi_S$ 为被动通道的可提交预算。
-**RCA（可逆元胞自动机）** 离散化后，群延迟决定信号在可逆门列中的局域滞后；$\Lambda_w$ 对应"光锥宽度 × 时深度"，$\mathcal E[w;S]$ 即每步可写入的能谱容量上界。
+**WSIG（窗化散射与信息几何）** $\mathcal E[w;S;\Omega]$ 为"窗化迹"在通用刻度下的观测资源；$\Phi_S(\Omega)$ 为群延迟通量；$\Lambda_w$ 为观测条件数。
+**EBOC（永恒静态块·观察—计算）** 将通道视为静态块之"可读纹理"，$\mathcal E[w;S;\Omega]$ 对应在窗 $w$ 内的可写/可读能谱；$\Lambda_w$ 约束记录熵；$\Phi_S(\Omega)$ 为被动通道的可提交预算。
+**RCA（可逆元胞自动机）** 离散化后，群延迟决定信号在可逆门列中的局域滞后；$\Lambda_w$ 对应"光锥宽度 × 时深度"，$\mathcal E[w;S;\Omega]$ 即每步可写入的能谱容量上界。
 
 ---
 
 ## 7. 工程推演与可检验命题
 
-**被动匹配链路**：在被动匹配网络中，增大群延迟峰值通常压窄通带；由定理 A 得 $\mathcal E[w;S]$ 的极大化等价于在"$\operatorname{tr}\mathsf Q$ 峰值 × 通带宽度"间寻求帕累托最优，此与 Bode–Fano 带宽—反射系数的硬约束一致。([core.ac.uk][6])
+**被动匹配链路**：在被动匹配网络中，增大群延迟峰值通常压窄通带；由定理 A 得 $\mathcal E[w;S;\Omega]$ 的极大化等价于在"$\operatorname{tr}\mathsf Q$ 峰值 × 通带宽度"间寻求帕累托最优，此与 Bode–Fano 带宽—反射系数的硬约束一致。([core.ac.uk][6])
 
 **低温射频路径**：在固定 $T_w$ 与 $B_w$ 下，谐振腔与匹配网络对 $\operatorname{tr}\mathsf Q$ 的调制给出可量化的"峰宽—峰高"权衡；紧框架窗近似逼近极值。
 
@@ -142,9 +162,9 @@ $$
 
 **L2（NPE 三分解）** 对能量栅格 $\{E_k\}$ 的窗化求和
 $$
-\sum_k f(E_k)\approx \int f(E),dE
-+\sum_{m\neq 0}\widehat f!\left(\tfrac{2\pi m}{\Delta E}\right)
-+\sum_{j=1}^{m}\frac{B_{2j}}{(2j)!},f^{(2j-1)}(\partial)
+\sum_k f(E_k)\approx \int f(E)\,dE
++\sum_{m\neq 0}\widehat f\!\left(\tfrac{2\pi m}{\Delta E}\right)
++\sum_{j=1}^{m}\frac{B_{2j}}{(2j)!}\,f^{(2j-1)}(\partial)
 +\mathrm{Tail},
 $$
 其中 Poisson 主项随带限与 $\operatorname{supp}\widehat w$ 收缩而抑制；Euler–Maclaurin 有限阶层由 Bernoulli 数与端点导数控制，其量级与 $T_w^{-1}$ 同阶；尾项由窗尾衰减控制。([dlmf.nist.gov][5])
@@ -163,12 +183,12 @@ $$
 
 在刻度同一式 $\varphi'/\pi=\rho_{\rm rel}=(2\pi)^{-1}\operatorname{tr}\mathsf Q$ 之下，有限窗可测的能谱总量满足
 $$
-\int \varepsilon_w(E),dE
-\le C_\ast,\Lambda_w\cdot \Big|\tfrac{1}{2\pi}\operatorname{tr}\mathsf Q\Big|_{L^1(\operatorname{supp}\widehat w)},
+\int_{\operatorname{supp}\widehat w} \varepsilon_w(E)\,dE
+\le C_\ast\,\Lambda_w\cdot \Big|\tfrac{1}{2\pi}\operatorname{tr}\mathsf Q\Big|_{L^1(\operatorname{supp}\widehat w)},
 $$
 在带限/弱色散与紧框架窗族下进一步收紧为
 $$
-\int \varepsilon_w(E),dE ;\lesssim; \Lambda_w\cdot \Phi_S(\Omega),
+\int_\Omega \varepsilon_w(E)\,dE \ \lesssim\ \Lambda_w\cdot |\Phi_S(\Omega)|,
 $$
 且误差由 NPE 三分解非渐近闭合控制。该上界给出"群延迟通量 × 有效时频条件数"的统一资源律，在 WSIG—EBOC—RCA 三层语义中同时刻画观测资源、记录熵与可写容量的极限。
 
