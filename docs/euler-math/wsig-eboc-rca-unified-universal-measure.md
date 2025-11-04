@@ -24,12 +24,12 @@ $$
 \det S(E)=\exp\bigl(-2\pi i\,\xi(E)\bigr),
 $$
 
-其中 $\xi$ 为谱移函数；据此得 $\frac{d}{dE}\Arg\det S(E)=-2\pi\,\xi'(E)$。约定相对态密度 $\rho_{\mathrm{rel}}(E):=-\xi'(E)$。([SpringerLink][1])
+其中 $\xi$ 为谱移函数；据此得 $\frac{d}{dE}\operatorname{Arg}\det S(E)=-2\pi\,\xi'(E)$。约定相对态密度 $\rho_{\mathrm{rel}}(E):=-\xi'(E)$。([SpringerLink][1])
 
 **相位（散射半相位）.** 设多通道散射矩阵 $S(E)\in U(N)$。定义
 
 $$
-\varphi(E):=\tfrac12\,\Arg\det S(E)\quad(\text{BK 连续分支}),
+\varphi(E):=\tfrac12\,\operatorname{Arg}\det S(E)\quad(\text{BK 连续分支}),
 $$
 
 则几乎处处有 $\varphi'(E)=\tfrac12\,\operatorname{tr}\mathsf Q(E)=\pi\,\rho_{\mathrm{rel}}(E)$，其中 $\mathsf Q(E)=-i\,S(E)^\dagger S'(E)$、$\rho_{\mathrm{rel}}(E)=-\xi'(E)$。
@@ -40,7 +40,7 @@ $$
 \frac{d}{dE}\log\det S(E)=\operatorname{tr}\bigl(S^{-1}S'(E)\bigr)=\operatorname{tr}\bigl(S^\dagger S'(E)\bigr),
 $$
 
-从而 $\frac{d}{dE}\Arg\det S(E)=\operatorname{tr}\mathsf Q(E)$ 与 $\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)=\rho_{\mathrm{rel}}(E)$（a.e.）。单通道 $S=e^{2i\varphi}$ 时 $\operatorname{tr}\mathsf Q=2\varphi'(E)$。延迟矩阵的定义与性质参见综述与计算文献。([chaosbook.org][2])
+从而 $\frac{d}{dE}\operatorname{Arg}\det S(E)=\operatorname{tr}\mathsf Q(E)$ 与 $\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)=\rho_{\mathrm{rel}}(E)$（a.e.）。单通道 $S=e^{2i\varphi}$ 时 $\operatorname{tr}\mathsf Q=2\varphi'(E)$。延迟矩阵的定义与性质参见综述与计算文献。([chaosbook.org][2])
 
 **de Branges–Kreĭn 与 Herglotz–Weyl.** 对规范系统与 de Branges 空间 $\mathcal H(\mathcal E)$，其再生核对角满足
 
@@ -217,7 +217,7 @@ $$
 
 ## 11. 数学与实现清单（可复现）
 
-1. **刻度统一**：以 $\operatorname{tr}\mathsf Q$ 或 $\Arg\det S$ 估计 $d\mu_\varphi$，在 $\varphi$-均匀采样上进行 Nyquist 校验。([chaosbook.org][2])
+1. **刻度统一**：以 $\operatorname{tr}\mathsf Q$ 或 $\operatorname{Arg}\det S$ 估计 $d\mu_\varphi$，在 $\varphi$-均匀采样上进行 Nyquist 校验。([chaosbook.org][2])
 2. **指针验证**：窗算子 $W_R$ 的谱最小子空间（Ky–Fan 极小和）与数据扰动的稳定性用 Davis–Kahan 控制。([pnas.org][5])
 3. **误差闭合**：报告 $(\varepsilon_{\rm alias},\varepsilon_{\rm EM},\varepsilon_{\rm tail})$，带限+Nyquist 下关闭 alias。([dlmf.nist.gov][4])
 4. **采样—帧**：在 $\varphi$-坐标中验证 Landau 必要密度、Wexler–Raz 条件与 Balian–Low 障碍。([archive.ymsc.tsinghua.edu.cn][6])
