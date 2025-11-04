@@ -1,10 +1,10 @@
 # 有限记录熵、Zeckendorf 日志与完备—停机判据：WSIG–EBOC–RCA 统一公理化
 
-Version: 1.6
+Version: 1.9
 
 ## 摘要
 
-建立一套以窗化散射与信息几何（WSIG）为读数层、以永恒静态块观察—计算（EBOC）为本体层、以可逆元胞自动机（RCA）为动力语义的统一公理化，用于刻画观察者日志的有限记录熵与停机（可逆重建）之间的必要—充分关系。核心结论指出：在满足帧稳定性与规范一致性的条件下，任何观察三元 $(\mathcal H,w,\mathcal D)$ 所得到的有限记录，其重建所需的最小自编码信息量 $H_{\mathrm{rec}}$ 与 WSIG 的三位一体刻度完全同尺度，
+建立一套以窗化散射与信息几何（WSIG）为读数层、以永恒静态块观察—计算（EBOC）为本体层、以可逆元胞自动机（RCA）为动力语义的统一公理化，用于刻画观察者日志的有限记录熵与停机（可逆重建）之间的必要—充分关系。核心结论指出：在满足帧稳定性与规范一致性的条件下，任何观察四元 $(\mathcal H,w,h,\mathcal D)$ 所得到的有限记录，其重建所需的最小自编码信息量 $H_{\mathrm{rec}}$ 与 WSIG 的三位一体刻度完全同尺度，
 $$
 \boxed{\ \rho_{\mathrm{rel}}(E)=\frac{\varphi'(E)}{\pi}=\frac{1}{2\pi}\operatorname{tr}\big(\mathsf Q(E)\big)\ },\qquad
 \mathsf Q(E)=-i\, S(E)^\dagger S'(E)
@@ -48,7 +48,7 @@ $$
 为使所有迹表达式良定义，约定在所选能量工作域 $\mathrm{band}$ 上满足：
 (i) $h\in L^\infty(\mathrm{band})$，窗核 $w$ 为带限或具指数型衰减且具有有限阶可微性；
 (ii) 由（A2）定义之 Toeplitz/Berezin 压缩 $K_{w,h}$ 满足 $E_{H_V}(\mathrm{band})\,K_{w,h}\in\mathfrak S_1(\mathcal H)$（迹类），且 $\|E_{H_V}(\mathrm{band})\,K_{w,h}\|_{\mathfrak S_1}$ 由 $\|h\|_{L^\infty}$、窗族的带宽/衰减常数与有限阶导数上界共同控制。
-如取带限窗，则 $K_{w,h}$ 为 Hilbert–Schmidt，压缩后属迹类；指数窗情形以下降指数与有限阶 EM/Poisson 逼近保证同结论。
+如取带限窗，则 $K_{w,h}$ 为 Hilbert–Schmidt；指数窗情形以下降指数与有限阶 EM/Poisson 逼近得到相同的 HS 结论。为保证所有迹表达式良定义，本文在所选 $\mathrm{band}$ 上进一步假设 $E_{H_V}(\mathrm{band})\,K_{w,h}\in\mathfrak S_1(\mathcal H)$（迹类），可通过加强核平滑与衰减条件来确保。
 
 **（A3）NPE 有限阶误差纪律**
 任何离散—连续换元仅使用有限阶 Euler–Maclaurin 与 Poisson 和—积变换；误差闭合为"主项 + 别名层 + Bernoulli 层"，并遵守：（i）奇性不增；（ii）极点=主尺度。所用公式与常数可由 DLMF 的 EM / PSF 标准条目与近年 EM 强化版给出。([dlmf.nist.gov][3])
@@ -71,14 +71,14 @@ EBOC 为静态全局编码之本体层；RCA 为其可逆叶上动力学对位�
 
 ## 1. 对象与问题设定
 
-### 1.1 观察者窗—测度—解码三元
+### 1.1 观察者窗—测度—解码四元
 
-设希尔伯特空间 $\mathcal H$，散射算子族 $S(E)$ 与谱测度 $\mu$。观察三元 $(\mathcal H,w,\mathcal D)$ 包含：
-(i) 窗核 $w$（带限或指数衰减类），
-(ii) 读数—压缩算子 $K_{w,h}$（以 $h$ 指定读数方向），
+设希尔伯特空间 $\mathcal H$，散射算子族 $S(E)$ 与谱测度 $\mu$。观察四元 $(\mathcal H,w,h,\mathcal D)$ 包含：
+(i) 窗核 $w$（带限或指数衰减类）；
+(ii) 读数函数 $h$ 及其诱导的读数—压缩算子 $K_{w,h}$（以 $h$ 指定读数方向）；
 (iii) 自解码器 $\mathcal D$（前缀、可逆、与 $\Lambda$ 同步）。
 
-在采样格 $\Lambda$ 上形成窗化读数向量 $\mathbf y=\{y_\lambda\}_{\lambda\in\Lambda}$，其中每个 $y_\lambda$ 为对 $\mu$ 的线性泛函，由 $K_{w,h}$ 与帧系数给出。
+在采样格 $\Lambda$ 上形成窗化读数向量 $\mathbf y=\{y_\lambda\}_{\lambda\in\Lambda}$，其中每个 $y_\lambda$ 为对 $\mu$ 的线性泛函，由 $K_{w,h}$ 与帧系数给出。下文 $H_{\mathrm{rec}}(R;w,h)$ 与 $K_{w,h}$ 皆以上述四元记号为准。
 
 **约定（能量工作域 $\mathrm{band}$）**
 选取有界 Borel 集 $\mathrm{band}\subset\mathbb R$ 作为能量工作域，用以限定积分与迹：$\int_{\mathrm{band}}(\cdot)\, dE$ 与 $\operatorname{tr}\big(1_{\mathrm{band}}(H)(\cdot)\big)$ 皆在该集合内取值。构造上可取 $\mathrm{band}:=\operatorname{supp}h\cap\operatorname{ess\,supp}(d\mu)$；带限窗情形亦可取 $\mathrm{band}=\operatorname{supp}\widehat w$。
@@ -86,7 +86,7 @@ EBOC 为静态全局编码之本体层；RCA 为其可逆叶上动力学对位�
 ### 1.2 记录与可逆过去
 
 **定义 1（记录与可逆过去）**
-一次测量得到的记录 $R\subset\Xi$（$\Xi$ 为 EBOC 全局编码空间）是 $(w,\Lambda)$ 下可提取的有限符号串/有限维向量集合，且存在可逆扩展 $\Theta$ 使 $\Theta(R)$ 沿 RCA 叶空间 $\mathcal L$ 唯一回接到某一可逆历史分支。
+一次测量得到的记录 $R\subset\Xi$（$\Xi$ 为 EBOC 全局编码空间）是 $(w,h,\Lambda)$ 下可提取的有限符号串/有限维向量集合，且存在可逆扩展 $\Theta$ 使 $\Theta(R)$ 沿 RCA 叶空间 $\mathcal L$ 在规范等价类意义下唯一回接到某一可逆历史分支（固定规范后其代表唯一）。
 
 **定义 2（有限记录熵）**
 $$
@@ -173,7 +173,7 @@ $$
 $$
 A|f|_2^2 \le \sum_{\lambda\in\Lambda} |\langle f,w_\lambda\rangle|^2 \le B|f|_2^2,
 $$
-从而可见自由度 $\mathsf N$ 与 $\mathsf D_{\mathrm{eff}}\mathsf B$ 等阶；带限窗由 Landau 密度给最小采样约束；指数窗以有效带宽替代并保留同阶估计。Wexler–Raz 对偶则提供双正交重构的算子准则。([archive.ymsc.tsinghua.edu.cn][5])
+从而可见自由度 $\mathsf N$ 与 $\mathsf D_{\mathrm{eff}}\mathsf B$ 等阶；带限窗由 Landau 密度给最小采样约束；指数窗以有效带宽替代并保留同阶估计。若 $\{w_\lambda\}$ 由格点时–频平移生成（Gabor 系），则可再用 Wexler–Raz 对偶给出双正交重构的准则；对一般窗族本文仅使用帧界与密度条件。([archive.ymsc.tsinghua.edu.cn][5])
 
 ### 3.3 模型窗与集中性
 
@@ -183,7 +183,7 @@ $$
 
 ## 4. EBOC / RCA 语义嵌入
 
-**本体层（EBOC）**：$\Xi$ 为全局静态编码；记录 $R$ 是 $\Xi$ 的有限剖面。有限记录熵 $H_{\mathrm{rec}}$ 衡量 $R$ 可逆回接到唯一历史分支所需的最小自编码信息量，即"从叶到块的桥宽"。
+**本体层（EBOC）**：$\Xi$ 为全局静态编码；记录 $R$ 是 $\Xi$ 的有限剖面。有限记录熵 $H_{\mathrm{rec}}$ 衡量 $R$ 在规范等价类意义下可逆回接到唯一历史分支所需的最小自编码信息量，即"从叶到块的桥宽"。
 
 **动力叶（RCA）**：叶空间 $\mathcal L$ 赋可逆邻接图，纠错距离 $d_{\mathrm{corr}}$ 决定局部扰动被可逆延拓吸收的半径。Garden-of-Eden（预注入 $\Leftrightarrow$ 满射）提供"停机 $\Leftrightarrow$ 完备"的动力学基础。([ibisc.univ-evry.fr][4])
 
@@ -243,7 +243,7 @@ Fibonacci/高阶 Fibonacci 码具有自同步变量长度特性，局部错误�
 Landau 必要密度与 PSWF/DPSS 集中性给出 $\mathsf N\sim \mathsf D_{\mathrm{eff}}\mathsf B$ 的非渐近定量上界。([archive.ymsc.tsinghua.edu.cn][5])
 
 **Lemma 7.8（RCA 叶上停机—完备等价）**
-在可逆 CA 上，预注入 $\Leftrightarrow$ 满射（Garden-of-Eden 定理），从而"足够信息 $\Rightarrow$ 有限步可逆延拓"。([ibisc.univ-evry.fr][4])
+在可逆 CA 上，预注入 $\Leftrightarrow$ 满射（Garden-of-Eden 定理）。有限步停机并非由该等价直接推出，而是由 §2.3 的阈值 $H_\star$ 与算法 $\mathcal A$ 的误差闭合给出。([ibisc.univ-evry.fr][4])
 
 ---
 
@@ -296,7 +296,7 @@ Gabor 系的对偶性由 Wexler–Raz 关系刻画；一般帧仅依赖密度定
 
 ## 结论式陈述
 
-在 WSIG–EBOC–RCA 统一框架内，将"有限记录能否唯一回接到可逆过去"精确化为可计算的熵阈值命题，并证明
+在 WSIG–EBOC–RCA 统一框架内，将"有限记录能否在规范等价类意义下唯一回接到可逆过去"精确化为可计算的熵阈值命题，并证明
 $$
 \text{完备}\ (H_{\mathrm{rec}}\le H_\star)\quad\Longleftrightarrow\quad \text{停机}\ (\text{有限步可逆重建}),
 $$
