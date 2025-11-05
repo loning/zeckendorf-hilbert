@@ -2,7 +2,7 @@
 
 **—— de Branges–Mellin 局部化行列式从二阶到全非线性的极限理论**
 
-**Version: 1.2**
+**Version: 1.6**
 
 ## 摘要(定性)
 
@@ -23,17 +23,30 @@ E(x)=|E(x)|e^{-i\varphi(x)},\qquad \varphi'(x)=\pi\,\rho(x)=\pi\,\frac{K(x,x)}{|
 $$
 记基准测度 $d\mu(x):=\dfrac{\varphi'(x)}{\pi}\,dx$。
 
-**局部化算子.** 取符号 $a\in L^\infty(\mathbb R)$ 与**偶窗** $w_R(t)=w(t/R)$(带限或指数衰减)。定义
+**局部化算子.** 取符号 $a\in L^\infty(\mathbb R)$ 与**非负偶窗** $w\ge0$,令 $w_R(t)=w(t/R)$(带限或指数衰减)。定义
 $$
 T_{a,w,R}:=\int a(x)\,w_R(x)\ \frac{|K(\cdot,x)\rangle\langle K(\cdot,x)|}{K(x,x)}\,d\mu(x),
 $$
-以及相位体积 $M_R:=\int w_R\,d\mu$。**窗化积分算子**
+以及相位体积 $M_R:=\int w_R\,d\mu$。
+
+**Parseval 连续帧(分解恒等式).** 归一化核 $\psi_x:=K(\cdot,x)/\sqrt{K(x,x)}$ 在 $d\mu(x)=\varphi'(x)\,dx/\pi$ 下构成连续 Parseval 帧,因而
 $$
-\Pi_R(x,y):=\int w_R(t)\,\frac{K(x,t)\overline{K(y,t)}}{\sqrt{K(x,x)K(y,y)}}\,d\mu(t)
+\int \frac{|K(\cdot,x)\rangle\langle K(\cdot,x)|}{K(x,x)}\,d\mu(x)=I
+\quad\Longleftrightarrow\quad
+\int \frac{K(u,x)\overline{K(v,x)}}{K(x,x)}\,d\mu(x)=K(u,v).
 $$
-是一个自伴的正算子("窗化帧算子"),一般**不是**正交投影;仅当 $w_R$ 为指示函数(或满足 Parseval 紧帧条件)时才退化为投影。由此
+
+**窗化积分算子.** 记
 $$
-\|\Pi_R\|_{HS}^2=\operatorname{Tr}\!\big(\Pi_R^2\big)\ \le\ \|\Pi_R\|_{\infty}\,\operatorname{Tr}\Pi_R\ \le\ C_w\,\operatorname{Tr}\Pi_R\ =\ \mathcal O(M_R),\quad C_w:=\|w\|_\infty.
+\Pi_R(x,y):=\int w_R(t)\,\frac{K(x,t)\overline{K(y,t)}}{\sqrt{K(x,x)K(y,y)}}\,d\mu(t).
+$$
+由非负窗 $w_R\ge0$,它是一个自伴的正算子("窗化帧算子"),一般**不是**正交投影;仅当 $w_R$ 为指示函数(或满足 Parseval 紧帧条件)时才退化为投影。由 Parseval 恒等式,
+$$
+\|\Pi_R\|_{\infty}\le\|w\|_\infty,\qquad \operatorname{Tr}\Pi_R=\int w_R\,d\mu=M_R,
+$$
+从而
+$$
+\|\Pi_R\|_{HS}^2=\operatorname{Tr}\!\big(\Pi_R^2\big)\ \le\ \|\Pi_R\|_{\infty}\,\operatorname{Tr}\Pi_R\ \le\ \|w\|_\infty\,M_R\ =\ \mathcal O(M_R).
 $$
 取
 $$
@@ -62,21 +75,27 @@ $$
 $$
 \mathcal Q_R(h):=\iint \frac{(h(x)-h(y))^2}{2}\,|\Pi_R(x,y)|^2\,d\mu(x)\,d\mu(y).
 $$
+我们将 $H^{1/2}$ 二次型作双线性扩展
+$$
+\mathcal Q_R(f,g):=\iint \frac{(f(x)-f(y))(g(x)-g(y))}{2}\,|\Pi_R(x,y)|^2\,d\mu(x)\,d\mu(y),
+$$
+并以 $\mathcal Q(f,g)$ 记其在相位坐标下的极限双线性型;于是 $\mathcal Q_R(h)=\mathcal Q_R(h,h)$、$\mathcal Q(h)=\mathcal Q(h,h)$。
 
 ### 定理 30.1(累积量塌缩/模高斯型)
 
 在固定 $\lambda$ 的紧邻域内,存在 $\epsilon>0$ 使得 $Y_R(\lambda)$ 的高阶累积量(由 $\mathscr F_R(a,w;\lambda)$ 的幂级数系数/多重导数定义)满足:对任意 $k\ge3$,$\kappa_k\big(Y_R(\lambda)\big)=o(M_R)$。且当 $t_R=\theta/\sqrt{M_R}$($\theta$ 有界)时,
 $$
-\sum_{k\ge3}\frac{\kappa_k\big(Y_R(\lambda)\big)}{k!}\,t_R^k\ \longrightarrow\ 0,\qquad
-\kappa_2\big(Y_R(\lambda)\big)\sim M_R\,\sigma^2(\lambda),
+\sum_{k\ge3}\frac{\kappa_k\big(Y_R(\lambda)\big)}{k!}\,t_R^k\ \longrightarrow\ 0,
+\qquad
+\frac{\kappa_2\big(Y_R(\lambda)\big)}{M_R}\ \longrightarrow\ \sigma^2(\lambda),
 $$
 其中
 $$
 \sigma^2(\lambda):=\lim_{R\to\infty}\frac{1}{M_R}\,\mathcal Q_R\!\big(\log(1+\lambda a)\big).
 $$
-亦即在 $t=t_R$ 处 $Y_R(\lambda)$ 的正规化累积量母函数收敛到 $\frac12\theta^2\sigma^2(\lambda)$。
+上式即表示:在 $M_R^{-1/2}$ 标度下,高于二阶的累积量系数全部塌缩,而二阶系数的密度极限为 $\sigma^2(\lambda)$。
 
-**证明要点** 由 S28 的二阶展开得主项与二次项;对 $k\ge3$ 阶累积量利用 $\|\Pi_R\|_{HS}^2=\operatorname{Tr}(\Pi_R^2)\le\|\Pi_R\|_{\infty}\,\operatorname{Tr}\Pi_R\le C_w\,\operatorname{Tr}\Pi_R=\mathcal O(M_R)$ 与带限投影的局域性,得 $\kappa_k=o(M_R)$。对 $t_R$ 级别展开即得累积量塌缩。
+**证明要点** 由 S28 的二阶展开得主项与二次项;对 $k\ge3$ 阶累积量利用 $\|\Pi_R\|_{HS}^2=\operatorname{Tr}(\Pi_R^2)\le\|\Pi_R\|_{\infty}\,\operatorname{Tr}\Pi_R\le\|w\|_\infty\,M_R=\mathcal O(M_R)$ 与带限投影的局域性,得 $\kappa_k=o(M_R)$。对 $t_R$ 级别展开即得累积量塌缩。
 
 > **解释** 二次型 $\mathcal Q_R$ 在相位坐标 $u=\varphi(x)/\pi$ 下收敛到 $H^{1/2}$ 能量 $\mathcal Q(h)=\frac{1}{2\pi}\int|\widehat{h\circ\varphi^{-1}}(\xi)|^2|\xi|\,d\xi$。
 
@@ -84,7 +103,17 @@ $$
 
 ## 2. 占据统计($0\le a\le1$)的 CLT/MDP/LDP
 
-设 $0\le a\le1$。记 $T_R:=T_{a,w,R}$ 的特征值为 $\{p_j^{(R)}\}\subset[0,1]$。定义 Poisson–Binomial 变量
+**本节附加假设(收缩性).** 取 $0\le a\le1$ 且 $0\le w\le1$,则 $0\le w_R\le1$,从而
+$$
+0\le T_{a,w,R}\le I,\qquad \{p_j^{(R)}\}\subset[0,1],
+$$
+并且
+$$
+\log\mathbb E\big[e^{\theta S_R}\big]=\log\det\!\big(I+(e^\theta-1)T_R\big)\quad(\forall\,\theta\in\mathbb R)\ \text{良定}.
+$$
+在此假设下,定理 30.2–30.4 的叙述与证明保持不变。
+
+记 $T_R:=T_{a,w,R}$ 的特征值为 $\{p_j^{(R)}\}\subset[0,1]$。定义 Poisson–Binomial 变量
 $$
 S_R:=\sum_j \xi_j^{(R)},\qquad \xi_j^{(R)}\sim\mathrm{Bernoulli}\big(p_j^{(R)}\big)\ \text{独立},
 $$
@@ -108,7 +137,11 @@ $$
 
 ### 定理 30.3(中偏差 MDP)
 
-若 $r_R\to\infty$ 且 $r_R/\sigma_R\to0$,则 $\frac{S_R-\mu_R}{r_R}$ 满足速率函数 $I(x)=x^2/(2v)$ 的 MDP,速率 $r_R^2/\sigma_R^2$。
+若 $r_R\to\infty$ 且 $r_R/\sigma_R\to0$,则
+$$
+Z_R:=\frac{S_R-\mu_R}{\sigma_R\,r_R}
+$$
+满足速率为 $r_R^2$、速率函数 $I(x)=\frac{x^2}{2}$ 的 MDP。
 
 ### 定理 30.4(大偏差 LDP)
 
@@ -163,18 +196,30 @@ $$
 $$
 中,$w_R$ 仅通过 $\Pi_R$ 进入 $\mathcal Q_R$ 并在极限 $\mathcal Q$ 中体现,故 $h'$ 的自变量取 $a$ 而非 $a\,w_R$。
 
-> **注** 对 $h(\cdot)=\log(1+\lambda\,\cdot)$ 回收定理 30.1 的二阶方差;对分段常数 $h$ 得到区段计数的协方差。
+> **注** 对 $h(\cdot)=\log(1+\lambda\,\cdot)$,定理 30.5 的协方差为
+> $$
+> \frac12\,\mathcal Q\!\Big(\frac{\lambda\,a(1-a)}{1+\lambda a},\ \frac{\lambda\,a(1-a)}{1+\lambda a}\Big),
+> $$
+> 而定理 30.1 中出现在 $\mathscr F_R$ 的二阶确定性项为
+> $$
+> \frac12\,\mathcal Q\!\big(\log(1+\lambda a)\big).
+> $$
+> 二者分别对应于线性统计 $L_R(h)$ 的 CLT 协方差与对数行列式的二阶确定性修正,概念不同,**不可直接等同**。对分段常数 $h$ 得到区段计数的协方差。
 
 ---
 
 ## 4. 多窗/非平稳与软化的稳定性
 
-**多窗与帧算子.** 若 $\{w_R^{(\ell)}\}_{\ell=1}^K$ 为 Parseval 紧帧拼接($\sum_\ell w_R^{(\ell)}\to1$ 局部一致),则 $\Pi_R=\sum_\ell \Pi_R^{(\ell)}$ 且
+**多窗与帧算子.** 若 $\{w_R^{(\ell)}\}_{\ell=1}^K$ 为 Parseval 紧帧拼接($\sum_\ell w_R^{(\ell)}\to1$ 局部一致),则
 $$
-\mathcal Q_R(h)=\sum_\ell \mathcal Q_R^{(\ell)}(h)+o(M_R),\qquad
+\Pi_R=\sum_{\ell=1}^K \Pi_R^{(\ell)}+R_R,\qquad \|R_R\|_{HS}=o(\sqrt{M_R}),
+$$
+因此
+$$
+\mathcal Q_R(h)=\sum_{\ell=1}^K \mathcal Q_R^{(\ell)}(h)+o(M_R),\qquad
 \sigma^2(\lambda)=\lim_{R\to\infty}\frac{1}{M_R}\sum_\ell \mathcal Q_R^{(\ell)}\!\big(\log(1+\lambda a)\big).
 $$
-因此模高斯、CLT/MDP/LDP 逐窗叠加成立;非 Parseval 情形以帧乘子修正 $a\mapsto a\cdot\mathcal S_W$。
+模高斯、CLT/MDP/LDP 逐窗叠加成立;非 Parseval 情形以帧乘子修正 $a\mapsto a\cdot\mathcal S_W$。
 
 **BN–Bregman 软化.** 以 $\min -\mathscr F_R+\tau\,\Lambda^\ast$ 软化符号/窗的最优化。若 $\Lambda$ 在最优点邻域 $(\mu,L)$-强凸—平滑,则极小元与最小值对数据扰动李普希茨稳定;$\tau\downarrow0$ 的 $\Gamma$-极限回到硬问题,而模高斯与 CLT/MDP/LDP 的极限不变。
 
@@ -199,11 +244,11 @@ $$
 
 ## 7. 可检清单(最小充分条件)
 
-1. **相位密度**:$\varphi'(x)=\pi K(x,x)/|E(x)|^2>0$,取 $d\mu=\frac{\varphi'}{\pi}dx$。
-2. **窗/换序**:偶窗带限或指数衰减;**有限阶** EM;Nyquist 条件消别名。
+1. **相位密度**:$\varphi'(x)=\pi K(x,x)/|E(x)|^2>0$,取 $d\mu=\frac{\varphi'}{\pi}dx$;验证 Parseval 连续帧恒等式。
+2. **窗/换序**:非负偶窗 $w\ge0$,带限或指数衰减;**有限阶** EM;Nyquist 条件消别名。
 3. **二阶量**:$\mathcal Q_R(h)$ 可计算且 $\frac{1}{M_R}\mathcal Q_R(h)\to \mathcal Q(h)$(相位坐标 $H^{1/2}$)。
 4. **模高斯**:$Y_R(\lambda)$ 的三阶及以上累积量为 $o(M_R)$;二阶极限为 $\sigma^2(\lambda)=\lim M_R^{-1}\mathcal Q_R(\log(1+\lambda a))$。
-5. **占据统计**(若 $0\le a\le1$):验证 $\sigma_R^2=\operatorname{Tr}(T_R(1-T_R))\sim v\,M_R$ 且 $\max_j p_j^{(R)}(1-p_j^{(R)})=o(\sigma_R^2)$,则 CLT/MDP/LDP 成立。
+5. **占据统计**(若 $0\le a\le1$ 且 $0\le w\le1$):验证 $\sigma_R^2=\operatorname{Tr}(T_R(1-T_R))\sim v\,M_R$ 且 $\max_j p_j^{(R)}(1-p_j^{(R)})=o(\sigma_R^2)$,则 CLT/MDP/LDP 成立。
 6. **泛函二阶极限**:测试族 $h\in C^{1,\alpha}\cap L^\infty$;协方差由 $\frac12\,\mathcal Q\big(h'(a)a(1-a)\big)$ 给出。
 7. **多窗/软化**:Parseval 紧帧下二阶量可加;BN–Bregman 软化保持极限并赋予李普希茨稳定。
 8. **奇性保持**:整个流程仅叠加整/全纯层,工作条带内**不增奇性**、极阶不升。
