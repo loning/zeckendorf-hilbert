@@ -1,6 +1,6 @@
 # 观察者—状态离散流形的 Zeckendorf 坐标化：与 WSIG–EBOC–RCA 的公理化耦合、有限阶 Euler–Maclaurin 误差学与窗化迹稳定性
 
-Version: 2.6
+Version: 2.13
 
 ## 摘要
 
@@ -52,9 +52,9 @@ Version: 2.6
 
 (H2) $E:\mathcal O\to\mathbb R$ 关于位层切换满足两侧 Lipschitz 递减律：存在常数 $0<C_1\le C_2<\infty$ 使对任意层 $k$ 与合法切换 $\omega\mapsto\omega^{(k)}$ 有 $C_1\,\rho_{\rm Z}^{-k}\le|E(\omega)-E(\omega^{(k)})|\le C_2\,\rho_{\rm Z}^{-k}$，**并且另作假设**：层间相互作用具有有限半径（该性质不由无相邻约束推出，而作为模型假定引入）；
 
-(H3) Nyquist 条件：按最深主尺度 $K$ 取样时，Poisson 带外能量落入窗的衰减区间。
+(H3) Nyquist 条件：按最深主尺度 $K_*$ 取样时，Poisson 带外能量落入窗的衰减区间。
 
-则取 $C_{\rm Z}$ 使 $\sum_{\omega}J_{\rm Z}(\omega)\,w(\omega)=\int w(E)\,\mathrm d\mu_{\rm rel}(E)$ 后，成立 $\sum_{\omega\in\mathcal O}J_{\rm Z}(\omega)\,w(\omega)\,f\!\big(E(\omega)\big)=\int f(E)\,w(E)\,\mathrm d\mu_{\rm rel}(E)+O\!\big(\rho_*^{-\eta K}\big)$，其中常数 $\eta>0$ 仅依赖于 $m$、窗参数与 (H2) 的常数。证明基于有限阶 Euler–Maclaurin 与 Poisson 三分解，并由 (H2) 把层切换的增量等价到对数尺度。■
+则取 $C_{\rm Z}$ 使 $\sum_{\omega}J_{\rm Z}(\omega)\,w(\omega)=\int w(E)\,\mathrm d\mu_{\rm rel}(E)$ 后，成立 $\sum_{\omega\in\mathcal O}J_{\rm Z}(\omega)\,w(\omega)\,f\!\big(E(\omega)\big)=\int f(E)\,w(E)\,\mathrm d\mu_{\rm rel}(E)+O\!\big(\rho_*^{-\eta K_*}\big)$，其中常数 $\eta>0$ 仅依赖于 $m$、窗参数与 (H2) 的常数。证明基于有限阶 Euler–Maclaurin 与 Poisson 三分解，并由 (H2) 把层切换的增量等价到对数尺度。■
 
 ---
 
@@ -64,15 +64,15 @@ Version: 2.6
 
 令 $f$ 为位层可分函数 $f(\omega)=\sum_k f_k(\varepsilon_k,k)$，窗 $w$ 属带限或指数类，使 $\sum_{\omega}w(\omega)|f(\omega)|$ 绝对可和。记最深主尺度为 $K:=\max\{k:\exists\,\varepsilon_k(\omega)=1\ \text{且}\ w,f \ \text{在} \ k\ \text{上有支撑}\}$。
 
-**(D$_m$) 离散正则性（至阶 $m$）**：对每个 $\varepsilon\in\{0,1\}$ 与 $\ell=0,1,\dots,m$，记前向差分算子 $\Delta_k g(k):=g(k+1)-g(k)$、$\Delta_k^{\ell}:=\Delta_k\circ\cdots\circ\Delta_k$（$\ell$ 次）。要求 $\sup_{\varepsilon}\sum_{k\ge2}\big|\Delta_k^{\ell} f_k(\varepsilon,k)\big|<\infty$，$\sup_{\varepsilon}\sum_{k\ge2}\big|\Delta_k^{\ell} w_k(\varepsilon,k)\big|<\infty$，其中若 $w$ 不显式依赖位层，则第二个条件略去并将 $\Delta_k^\ell w_k$ 视为 0。记 $|f|_{D_m}:=\max_{0\le \ell\le m}\sup_{\varepsilon}\sum_{k\ge2}\big|\Delta_k^{\ell} f_k(\varepsilon,k)\big|$，$|w|_{D_m}:=\max_{0\le \ell\le m}\sup_{\varepsilon}\sum_{k\ge2}\big|\Delta_k^{\ell} w_k(\varepsilon,k)\big|$。
+**(D$_m$) 离散正则性（至阶 $m$）**：对每个 $\varepsilon\in\{0,1\}$ 与 $\ell=0,1,\dots,m$，记前向差分算子 $\Delta_k g(k):=g(k+1)-g(k)$、$\Delta_k^{\ell}:=\Delta_k\circ\cdots\circ\Delta_k$（$\ell$ 次）。要求 $\sup_{\varepsilon}\sum_{k\ge2}\big|\Delta_k^{\ell} f_k(\varepsilon,k)\big|<\infty$。若 $w$ **显式**依赖位层，则同样要求 $\sup_{\varepsilon}\sum_{k\ge2}\big|\Delta_k^{\ell} w_k(\varepsilon,k)\big|<\infty$；若 $w$ **不显式**依赖位层（即 $w_k$ 与 $k$ 无关），则省略对 $w$ 的差分正则性约束，并在涉及差分算子的公式中**仅对 $\ell\ge1$** 约定 $\Delta_k^{\ell} w_k\equiv 0$（$\ell=0$ 为恒等，不作 0 约定）。记 $|f|_{D_m}:=\max_{0\le \ell\le m}\sup_{\varepsilon}\sum_{k\ge2}\big|\Delta_k^{\ell} f_k(\varepsilon,k)\big|$。当 $w$ 与位层无关时约定 $|w|_{D_m}:=0$（不参与常数估计）。
 
 ### 2.2 定理（三分解与指数尾界）
 
 在 2.1 的设定**并满足 (D$_m$)** 下，对任意有限阶 $m\in\mathbb N$ 有
 $$\sum_{\omega\in\mathcal O} w(\omega)f(\omega)=\text{Nyquist 主项}+\sum_{j=1}^m\text{Bernoulli 修正}_j+\text{Poisson 带外尾}$$
-且存在常数 $C_m,\eta>0$ 使误差项满足 $O(\rho_*^{-\eta K})$。此处 $C_m=C_m\!\big(|f|_{D_m},|w|_{D_m},m,\text{窗带限/指数参数}\big)$，与图规模无关。
+且存在常数 $C_m,\eta>0$ 使误差项满足 $O(\rho_*^{-\eta K_*})$，其中 $K_*$ 按"Notation 8"定义（单图册情形下 $K_*=K$）。此处 $C_m=C_m\!\big(|f|_{D_m},|w|_{D_m},m,\text{窗带限/指数参数}\big)$，与图规模无关。
 
-**证明要点。** 以位层 $k$ 为准连续变量对层内平滑项施行 EM 展开；无相邻约束将耦合限制为局域二体项；Poisson 校正抑制 alias；窗带限/指数衰减给出尾项指数界，获得 $O(\rho_*^{-\eta K})$。证明同前，但 EM 余项与边界层常数由 (D$_m$) 的差分范数控制。■
+**证明要点。** 以位层 $k$ 为准连续变量对层内平滑项施行 EM 展开；无相邻约束将耦合限制为局域二体项；Poisson 校正抑制 alias；窗带限/指数衰减给出尾项指数界，获得 $O(\rho_*^{-\eta K_*})$。证明同前，但 EM 余项与边界层常数由 (D$_m$) 的差分范数控制。■
 
 ### 2.3 术语（极点=主尺度；奇性不增）
 
@@ -96,7 +96,7 @@ $$\sum_{\omega\in\mathcal O} w(\omega)f(\omega)=\text{Nyquist 主项}+\sum_{j=1}
 
 **(H$_{\rm tr}$)**：存在 $L\in\mathbb N$ 使过渡 $\Psi_{\alpha\to\beta}$ 可由记忆长度 $\le L$ 的有限状态进/借位换元器实现（等价地，借/进位传播半径有全局上界）。
 
-在带限/指数窗及有限阶 EM+Poisson 纪律与 (H$_{\rm tr}$) 下，过渡 $\Psi_{\alpha\to\beta}$ 对计数/迹泛函的影响满足 $\big|\mathcal R[f]_{\beta}-\mathcal R[f]_{\alpha}\big|\le C_{\alpha,\beta,m,L}\,\rho_*^{-\eta K_*}$，且若源图主尺度仅出现有限极点，则过渡后不新增主极点，极点阶保持不增。
+在带限/指数窗及有限阶 EM+Poisson 纪律与 (H$_{\rm tr}$) 下，**记** $\mathcal R^{(\gamma)}[f]:=\sum_{\omega\in\mathcal O}J_{\gamma}(\omega)\,w(\omega)\,f\!\big(E(\omega)\big)$（$\gamma\in\{\alpha,\beta\}$，定义与 §5.1 一致）。则过渡 $\Psi_{\alpha\to\beta}$ 对计数/迹泛函的影响满足 $\big|\mathcal R^{(\beta)}[f]-\mathcal R^{(\alpha)}[f]\big|\le C_{\alpha,\beta,m,L}\,\rho_*^{-\eta K_*}$，且若源图主尺度仅出现有限极点，则过渡后不新增主极点，极点阶保持不增。
 
 **证明要点。** 由 (H$_{\rm tr}$) 将过渡等价为半径 $\le L$ 的进/借位卷积；EM 吸收局域扭曲为有限个边界层修正；Poisson 抑制别名；主尺度不可去奇性在有限耦合下保持，且常数对 $L$ 与图册谱半径仅呈多项式依赖。■
 
@@ -106,25 +106,25 @@ $$\sum_{\omega\in\mathcal O} w(\omega)f(\omega)=\text{Nyquist 主项}+\sum_{j=1}
 
 ### 4.1 定义（算子与泛函）
 
-给定符号 $a$、窗 $w$ 与截断 $R$，压缩 $T_{a,w,R}$ 定义为对 $\mathcal H$ 的窗—局域化 Toeplitz/Berezin 算子。设 $T_{a,w,R}$ 为迹类算子，并取参数 $\lambda\in\mathbb C$ 使 $I+\lambda T_{a,w,R}$ 可逆（即 $-1/\lambda\notin\sigma(T_{a,w,R})$）。定义 $\mathscr F_R(a,w;\lambda):=\log\det\!\big(I+\lambda T_{a,w,R}\big)$（Fredholm 行列式），并规定以 $\lambda=0$ 为基点的主支解析延拓：若对所有 $t\in[0,1]$ 有 $\det\!\big(I+t\lambda T_{a,w,R}\big)\neq0$，则定义 $\mathscr F_R(a,w;\lambda)=\mathrm{tr}\,\log\!\big(I+\lambda T_{a,w,R}\big)$，其中 $\log$ 取主值分支并沿线段 $t\mapsto t\lambda$ 解析延拓。
+给定符号 $a$、窗 $w$ 与截断 $R$，压缩 $T_{a,w,R}$ 定义为对 $\mathcal H$ 的窗—局域化 Toeplitz/Berezin 算子。设 $T_{a,w,R}$ 为迹类算子，并取参数 $\lambda\in\mathbb C$ 使 $I+\lambda T_{a,w,R}$ 可逆（**若 $\lambda\ne 0$，等价于** $-1/\lambda\notin\sigma(T_{a,w,R})$）。定义 $\mathscr F_R(a,w;\lambda):=\log\det\!\big(I+\lambda T_{a,w,R}\big)$（Fredholm 行列式），并规定以 $\lambda=0$ 为基点的主支解析延拓：若对所有 $t\in[0,1]$ 有 $\det\!\big(I+t\lambda T_{a,w,R}\big)\neq0$，则定义 $\mathscr F_R(a,w;\lambda)=\mathrm{tr}\,\log\!\big(I+\lambda T_{a,w,R}\big)$。此外，$\mathscr F_R(a,w;0)=0$。
 
 ### 4.2 定理（Gateaux/Fréchet 变分与凹性；强凹的充分条件与 Lipschitz 上界）
 
-设 $T:=T_{a,w,R}$ 为迹类且自伴，$\lambda\in\mathbb R$ 使 $I+\lambda T\succ0$。则 $\delta\mathscr F_R=\mathrm{tr}\!\big((I+\lambda T)^{-1}\lambda\,\delta T\big)$，$\delta^2\mathscr F_R=-\,\mathrm{tr}\!\big((I+\lambda T)^{-1}\lambda\,\delta T\,(I+\lambda T)^{-1}\lambda\,\delta T\big)$，因此 $\mathscr F_R$ 关于 $T$ 为凹且二阶负定。进一步：
+设 $T:=T_{a,w,R}$ 为迹类且自伴，取**变分方向** $\delta T,\Delta\in\mathcal S_1(\mathcal H)$（故亦属 $\mathcal S_2$），$\lambda\in\mathbb R$ 且 $I+\lambda T\succ0$。则对任意**自伴** $\delta T$，$\delta\mathscr F_R=\mathrm{tr}\!\big((I+\lambda T)^{-1}\lambda\,\delta T\big)$，$\delta^2\mathscr F_R=-\,\lambda^{2}\,\big|(I+\lambda T)^{-1/2}\,\delta T\,(I+\lambda T)^{-1/2}\big|_2^{\,2}\le 0$，因此 $\mathscr F_R$ 在自伴迹类方向上为凹且二阶负半定。若满足 (i) 的谱夹条件，则 $I+\lambda T\succ0$；**在 $\lambda\neq 0$ 时**可得显式强凹模量。进一步：
 
-(i) **谱夹 $\Rightarrow$ 强凹。** 若存在 $0<\alpha I\preceq I+\lambda T\preceq \beta I$，则对 Hilbert–Schmidt 范数 $\delta^2\mathscr F_R(T)[\delta T,\delta T]\le -\,\frac{\lambda^2}{\beta^2}\,|\delta T|_2^2$，即在该局部区域以模量 $\lambda^2/\beta^2$ 强凹。
+(i) **谱夹 + $\lambda\neq 0$ $\Rightarrow$ 强凹。** 若存在 $0<\alpha I\preceq I+\lambda T\preceq \beta I$ **且** $\lambda\neq 0$，则对 Hilbert–Schmidt 范数 $\delta^2\mathscr F_R(T)[\delta T,\delta T]\le -\,\frac{\lambda^2}{\beta^2}\,|\delta T|_2^2$，即在该局部区域以模量 $\lambda^2/\beta^2$ 强凹。**（注：当 $\lambda=0$ 时，$\delta^2\mathscr F_R\equiv 0$，仅为凹而非强凹。）**
 
-(ii) **Neumann 区间 $\Rightarrow$ 局部梯度 Lipschitz（对称半径）。** 若 $r:=\max\big\{\Vert\lambda T\Vert_{\rm op},\Vert\lambda(T+\Delta)\Vert_{\rm op}\big\}<1$，则有 $\big|\nabla\mathscr F_R(T+\Delta)-\nabla\mathscr F_R(T)\big|_2\le \frac{\lambda^2}{(1-r)^2}\,|\Delta|_2$。证明用两侧 Resolvent 恒等式与 Neumann 级数，常数对称依赖 $T$ 与 $T+\Delta$，从而刻画真实的"局部"适用域。
+(ii) **Neumann 区间 $\Rightarrow$ 局部梯度 Lipschitz（对称半径），对任意 $\Delta\in\mathcal S_1$。** 若 $r:=\max\big\{\Vert\lambda T\Vert_{\rm op},\Vert\lambda(T+\Delta)\Vert_{\rm op}\big\}<1$，则有 $\big|\nabla\mathscr F_R(T+\Delta)-\nabla\mathscr F_R(T)\big|_2\le \frac{\lambda^2}{(1-r)^2}\,|\Delta|_2$。（此处 $\nabla\mathscr F_R(T)=\lambda(I+\lambda T)^{-1}$，差分项属于 $\mathcal S_2$，可用 HS 范数度量。）证明用两侧 Resolvent 恒等式与 Neumann 级数，常数对称依赖 $T$ 与 $T+\Delta$，从而刻画真实的"局部"适用域。
 
 **证明。** 由 $\log\det(I+\lambda T)=\mathrm{tr}\,\log(I+\lambda T)$ 与 Fréchet 微分规则；(i) 以 $A:=(I+\lambda T)^{-1}\lambda$ 得 $\delta^2\mathscr F_R=-\,\mathrm{tr}(A\,\delta T\,A\,\delta T)\le -s_{\min}(A)^2\,|\delta T|_2^2\le -(\lambda^2/\beta^2)\,|\delta T|_2^2$；(ii) 以 Neumann 展开与 Schatten 范数收敛判据得梯度 Lipschitz 常数。■
 
 ### 4.3 定理（位层扰动的 Lipschitz—强稳定界）
 
-设 $a=\sum_k a_k$、$w=\sum_k w_k$ 为位层分块，且对某 $K$ 有 $\delta a=\sum_{k>K}\delta a_k$、$\delta w=\sum_{k>K}\delta w_k$，并取参数 $\lambda$ 使 $I+\lambda T_{a,w,R}$ 可逆。则存在 $C,\eta>0$ 与窗带限相容的 Banach 范数 $|\cdot|_X,|\cdot|_Y$ 使
-$$\big|\mathscr F_R(a+\delta a,w+\delta w;\lambda)-\mathscr F_R(a,w;\lambda)\big|\le C\big(|\delta a|_X+|\delta w|_Y\big)\rho_*^{-\eta K}$$
-且 $C$ 至多多项式依赖 $R$。
+设 $a=\sum_k a_k$、$w=\sum_k w_k$ 为位层分块，且对某 $K$ 有 $\delta a=\sum_{k>K}\delta a_k$、$\delta w=\sum_{k>K}\delta w_k$，并取参数 $\lambda$，**使对所有 $t\in[0,1]$** 有 $\det\!\big(I+t\lambda\,T_{a,w,R}\big)\neq 0$ 且 $\det\!\big(I+t\lambda\,T_{a+\delta a,w+\delta w,R}\big)\neq 0$，从而二者的 $\log\det$ 可在**同一主支**上解析定义。（注：端点 $I+\lambda T$、$I+\lambda(T+\Delta)$ 的可逆性本身**不足以**保证上述沿径条件，故在本定理中将其作为**独立假设**列出。）则存在 $C,\eta>0$ 与窗带限相容的 Banach 范数 $|\cdot|_X,|\cdot|_Y$ 使
+$$\big|\mathscr F_R(a+\delta a,w+\delta w;\lambda)-\mathscr F_R(a,w;\lambda)\big|\le C\big(|\delta a|_X+|\delta w|_Y\big)\rho_*^{-\eta K_*}$$
+其中 $K_*$ 按"Notation 8"定义（本定理为单图册情形，故 $K_*=K$），且 $C$ 至多多项式依赖 $R$。
 
-**证明要点。** 以位层分块写出 $\delta T=\sum_{k>K}\delta T_k$，用迹范数次可加性与 $\Vert(I+\lambda T)^{-1}\Vert_{\rm op}$ 的有界性得到 Lipschitz 界；有限阶 EM 吸收层差，Poisson 抑制带外 alias，给出 $\rho_*^{-\eta K}$ 的指数衰减。■
+**证明要点。** 以位层分块写出 $\delta T=\sum_{k>K}\delta T_k$。令 $\Delta:=T_{a+\delta a,w+\delta w,R}-T_{a,w,R}=\delta T$。用迹范数次可加性与 $\Vert(I+\lambda T)^{-1}\Vert_{\rm op}$ 的有界性得到 Lipschitz 界；有限阶 EM 吸收层差，Poisson 抑制带外 alias，给出 $\rho_*^{-\eta K_*}$ 的指数衰减。常数 $C$ 可取与 $\max\!\big\{\Vert(I+\lambda T)^{-1}\Vert_{\rm op},\Vert(I+\lambda(T+\Delta))^{-1}\Vert_{\rm op}\big\}$ 多项式相关的量，使 resolvent 有界性进入估计。■
 
 ---
 
@@ -134,7 +134,9 @@ $$\big|\mathscr F_R(a+\delta a,w+\delta w;\lambda)-\mathscr F_R(a,w;\lambda)\big
 
 在 §3.3 的 (H$_{\rm tr}$)（有限半径进/借位过渡）与 §1.4 的 (H1)–(H3) 的相应假设下（对任一图册以其 $\rho_\alpha>1$ 取代 $\rho_{\rm Z}$），记 $\mathcal R[f]_{\alpha}:=\sum_{\omega\in\mathcal O} J_{\alpha}(\omega)\,w(\omega)\,f\!\big(E(\omega)\big)$，$J_{\alpha}(\omega)=C_{\alpha}\,\rho_{\alpha}^{-\sum_{k}k\,\varepsilon^{(\alpha)}_{k}(\omega)}$，其中 $\varepsilon^{(\alpha)}_{k}(\omega):=\mathbf 1\{d_k^{(\alpha)}(\omega)\neq 0\}$，$C_{\alpha}$ 由归一化 $\sum_{\omega}J_{\alpha}(\omega)\,w(\omega)=\int w(E)\,\mathrm d\mu_{\rm rel}(E)$ 确定。则任意过渡 $\Psi_{\alpha\to\beta}$ 下有 $\mathcal R[f]_{\alpha}=\mathcal R[f]_{\beta}+O\!\big(\rho_*^{-\eta K_*}\big)$，其中误差由过渡雅可比 $J_{\alpha\to\beta}$ 与有限阶 EM 边界层给出，其常数 $C_{\alpha,\beta,m,L}$ 仅依赖于窗的带限/指数参数、正则性阶 $m$、过渡的有限半径常数 $L$ 及图册对 $(\alpha,\beta)$ 的谱半径数据（如 $\rho_\alpha,\rho_\beta$），与图规模无关。
 
-**定义（过渡雅可比）。** 设 $\Psi_{\alpha\to\beta}=\Phi^{(\beta)}\circ(\Phi^{(\alpha)})^{-1}$，则 $J_{\alpha\to\beta}(\omega):=\frac{J_{\beta}\!\big(\Psi_{\alpha\to\beta}(\omega)\big)}{J_{\alpha}(\omega)}=\frac{C_\beta}{C_\alpha}\,\rho_{\beta}^{-\sum_{k}k\,\varepsilon^{(\beta)}_{k}\!\big(\Psi_{\alpha\to\beta}(\omega)\big)}\,\rho_{\alpha}^{+\sum_{k}k\,\varepsilon^{(\alpha)}_{k}(\omega)}$。其作用是将计数密度在两图册间做乘法换元修正，之后由有限阶 EM 吸收局部边界层差异。
+**记号补充（坐标串）。** 对 $\omega\in\mathcal U$，写 $d^{(\gamma)}(\omega):=\Phi^{(\gamma)}(\omega)$（$\gamma\in\{\alpha,\beta\}$）。过渡 $\Psi_{\alpha\to\beta}$ 作用于 $\alpha$-坐标串，满足 $\Psi_{\alpha\to\beta}\!\big(d^{(\alpha)}(\omega)\big)=d^{(\beta)}(\omega)$。
+
+**定义（过渡雅可比）。** $J_{\alpha\to\beta}(\omega):=\frac{J_{\beta}(\omega)}{J_{\alpha}(\omega)}=\frac{C_\beta}{C_\alpha}\,\rho_{\beta}^{-\sum_{k}k\,\varepsilon^{(\beta)}_{k}(\omega)}\,\rho_{\alpha}^{+\sum_{k}k\,\varepsilon^{(\alpha)}_{k}(\omega)}$，其中 $J_{\gamma}(\omega)=C_{\gamma}\,\rho_{\gamma}^{-\sum_{k}k\,\varepsilon^{(\gamma)}_{k}(\omega)}$（见本节开头），且 $d^{(\beta)}(\omega)=\Psi_{\alpha\to\beta}\!\big(d^{(\alpha)}(\omega)\big)$ 仅用于指明两图册坐标的一致对应关系。
 
 **证明要点。** 将读数重写为对 $\mu_{\rm rel}$ 的线性泛函后，坐标变化仅改变计数密度；雅可比修正配合有限阶 EM 校正使差异降为指数小量。■
 
@@ -160,7 +162,7 @@ $$\big|\mathscr F_R(a+\delta a,w+\delta w;\lambda)-\mathscr F_R(a,w;\lambda)\big
 
 1. **EBOC（永恒静态块·观察—计算）。** 位层坐标是"叶层日志"的规范账本；读数作为对 $\mu_{\rm rel}$ 的泛函只依赖母尺，坐标仅改变计数权，不改变刻度同一式。
 
-2. **RCA（可逆元胞自动机）。** 将"激活 $F_k$ 层"解释为打开第 $k$ 层可逆门；合法加法—进位—回滚构成可逆滑动块，测地对应最小门列；位层受限扰动等价于高层稀疏门的微扰，其对 $\mathscr F_R$ 的影响由 $\rho_*^{-\eta K}$ 统御。
+2. **RCA（可逆元胞自动机）。** 将"激活 $F_k$ 层"解释为打开第 $k$ 层可逆门；合法加法—进位—回滚构成可逆滑动块，测地对应最小门列；位层受限扰动等价于高层稀疏门的微扰，其对 $\mathscr F_R$ 的影响由 $\rho_*^{-\eta K_*}$ 统御。
 
 3. **WSIG（窗化散射与信息几何）。** 窗—群延迟读数以位层计数实现后与三位一体母尺严格对齐，框架提供非渐近误差预算与坐标独立的稳定性陈述。
 
@@ -170,9 +172,9 @@ $$\big|\mathscr F_R(a+\delta a,w+\delta w;\lambda)-\mathscr F_R(a,w;\lambda)\big
 
 * **刻度卡。** $\varphi'/\pi=\rho_{\rm rel}=(2\pi)^{-1}\mathrm{tr}\,\mathsf Q$；任何坐标/图册变换只经由雅可比修正作用于计数密度，不触动母尺。
 
-* **误差卡。** 位层型和/迹遵循"Nyquist 主项 + 有限阶 Bernoulli 边界层 + 带外尾项"，并满足"奇性不增/极点=主尺度"；对最深主尺度 $K$ 给出 $O(\rho_*^{-\eta K})$ 尾界。
+* **误差卡。** 位层型和/迹遵循"Nyquist 主项 + 有限阶 Bernoulli 边界层 + 带外尾项"，并满足"奇性不增/极点=主尺度"；对最深主尺度 $K_*$ 给出 $O(\rho_*^{-\eta K_*})$ 尾界。
 
-* **稳定卡。** $\big|\Delta \mathscr F_R\big|\le C\big(|\delta a|_X+|\delta w|_Y\big)\rho_*^{-\eta K}$，$C$ 至多多项式依赖 $R$ 与窗带限参数。
+* **稳定卡。** $\big|\Delta \mathscr F_R\big|\le C\big(|\delta a|_X+|\delta w|_Y\big)\rho_*^{-\eta K_*}$，$C$ 至多多项式依赖 $R$ 与窗带限参数。
 
 * **过渡卡。** 在 (H$_{\rm tr}$) 下，任意图册过渡 $\Psi_{\alpha\to\beta}$ 等价于半径 $\le L$ 的卷积型进/借位，从而"奇性不增"，主尺度极点阶保持；若 (H$_{\rm tr}$) 不满足，则不主张上述性质与界。
 
@@ -182,7 +184,7 @@ $$\big|\mathscr F_R(a+\delta a,w+\delta w;\lambda)-\mathscr F_R(a,w;\lambda)\big
 
 1. **Zeckendorf 唯一性。** 贪婪选择最大 $F_k$ 并以无相邻约束阻止进位回流，给出唯一最简形；该过程在 $G(\mathcal O,\mathcal E)$ 的局域生成元语义下可视作可逆规范化。
 
-2. **有限阶 EM–Poisson。** 将位层 $k$ 看作准连续变量，对层内平滑项施 EM 至阶 $m$，边界层系数由 Bernoulli 数决定；别名项由 Poisson 求和以窗带限衰减抑制，获得 $O(\rho_*^{-\eta K})$。
+2. **有限阶 EM–Poisson。** 将位层 $k$ 看作准连续变量，对层内平滑项施 EM 至阶 $m$，边界层系数由 Bernoulli 数决定；别名项由 Poisson 求和以窗带限衰减抑制，获得 $O(\rho_*^{-\eta K_*})$。
 
 3. **凹性与强凹。** 由 $f(T)=\log\det(I+\lambda T)$ 的算子凸性—凹性理论及 Fréchet 微分，二阶式为负半定；当 $\Vert\lambda T\Vert_{\rm op}<1$ 时 Neumann 收敛给出显式模量。
 
