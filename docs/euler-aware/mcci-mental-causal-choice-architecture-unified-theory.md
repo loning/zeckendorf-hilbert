@@ -3,7 +3,7 @@
 **（含定义—判据—定理—证明—可检流程，与 WSIG / EBOC / RCA–CID 兼容）**
 
 **作者**：Auric（S-series / EBOC）
-**版本**：v1.1（2025-11-05，Asia/Singapore）
+**版本**：v1.7（2025-11-05，Asia/Singapore）
 **关键词**：思维漏洞；因果图（SCM）；选择架构（默认/框架/顺序）；偏差—噪声分解；损失厌恶；参考点；CATE；I-投影（KL/Bregman）；WSIG；EBOC；RCA–CID
 **MSC**：62Cxx；62Pxx；68Txx；91Bxx；94Axx
 
@@ -11,14 +11,14 @@
 
 ## 摘要
 
-构造一套在概率—效用—因果三重规范下可校验的"思维漏洞"理论：给定理性基准策略与可见架构变量的嵌入，定义总体偏离泛函与四维分解（偏差、噪声、因果错配、架构敏感），并给出后门/前门/工具变量/断点/双重差分等识别判据与最小实验设计；在 I-投影与 Bregman 几何下证明"Pythagoras—解耦"结构，导出可实现的估计—审计管线（DQC）。在 WSIG 词典中，将理性约束族的 I-投影视为"读数规范"，把偏离写成 KL/Bregman 距离；于 EBOC 中把管线实现为"窗口选择叶"的规则；在 RCA–CID 中用可逆日志保证干预的可回放与外部审计。并以"关切权重×断裂系数"指标 $L=\eta\lambda$ 给出"损失厌恶—爱"的模型内判定准则。核心证明依循 Csiszár 的 I-投影与 Bregman-Pythagoras、Pearl 的因果判据与现代估计理论。([projecteuclid.org][1])
+构造一套在概率—效用—因果三重规范下可校验的"思维漏洞"理论：给定理性基准策略与可见架构变量的嵌入，定义总体偏离泛函与四维分解（偏差、噪声、因果错配、架构敏感），并给出后门/前门/工具变量/断点/双重差分等识别判据与最小实验设计；在 I-投影与 Bregman 几何下证明"Pythagoras—解耦"结构，导出可实现的估计—审计管线（DQC）。在 WSIG 词典中，将理性约束族的 I-投影视为"读数规范"，把偏离写成 KL/Bregman 距离；于 EBOC 中把管线实现为"窗口选择叶"的规则；在 RCA–CID 中用可逆日志保证干预的可回放与外部审计。并以"关切权重×断裂系数"指标 $L=\eta(\lambda-1)$ 给出"损失厌恶—爱"的模型内判定准则。核心证明依循 Csiszár 的 I-投影与 Bregman-Pythagoras、Pearl 的因果判据与现代估计理论。([projecteuclid.org][1])
 
 ---
 
 ## Notation & Axioms / Conventions（WSIG–EBOC–RCA 统一体）
 
 **A1（测度—策略—读数）**：观测三元 $(\mathcal H,w,\mathcal D)$ 诱导窗化读数；所有策略与分布在标准单纯形上以 Bregman 发散 $D_\phi(\cdot\Vert\cdot)$ 与 KL 做度量；理性基准由约束族上的 I-投影给定。([projecteuclid.org][1])
-**A2（刻度同一式，WSIG 卡片）**：在散射—信息几何的统一刻度下，采用母刻度 $\varphi'(E)/\pi=\rho_{\rm rel}(E)=(2\pi)^{-1}\mathrm{tr},\mathsf Q(E)$，其中 $\mathsf Q=-\mathrm i,S^\dagger \partial_E S$ 为 Wigner–Smith 群延迟矩阵；作为与本体系连接的测度坐标。([link.aps.org][2])
+**A2（刻度同一式，WSIG 卡片）**：在散射—信息几何的统一刻度下，采用母刻度 $\varphi'(E)/\pi=\rho_{\rm rel}(E)=(2\pi)^{-1}\,\mathrm{tr}\,\mathsf Q(E)$，其中 $\mathsf Q:=-\mathrm i\, S^\dagger \partial_E S$ 为 Wigner–Smith 群延迟矩阵；作为与本体系连接的测度坐标。([link.aps.org][2])
 **A3（有限阶 NPE 纪律）**：所有离散—连续换元与窗化积分一律采用"有限阶 Euler–Maclaurin + Poisson"三项闭合误差学，声明奇性不增与极点=主尺度。
 **A4（RCA–CID 可逆性）**：实现与审计一律映射到 Bennett 可逆计算与 Zeckendorf-编码日志；保证干预与估计版本的可逆回放。([users.cs.duke.edu][3])
 
@@ -30,7 +30,7 @@
 **SCM**：有向无环图 $G$ 与结构方程 $V_i:=f_i(\mathrm{Pa}(V_i),U_i)$。
 **理性基准**：在已识别的干预分布 $P(Y\mid do(A=a),X)$ 与效用 $u$ 下，贝叶斯—决策最优策略
 $$
-\pi^\star(\cdot\mid x)\in\arg\max_\pi,\mathbb E!\left[u(Y)\mid do(A\sim \pi(\cdot\mid x)),X=x\right].
+\pi^\star(\cdot\mid x)\in\arg\max_\pi\,\mathbb E\left[u(Y)\mid do(A\sim \pi(\cdot\mid x)),X=x\right].
 $$
 **实际策略**：$\pi(\cdot\mid x,c)$ 可显式依赖 $c$。
 **发散度**：取 KL 或一般 Bregman 发散 $D_\phi$。
@@ -39,26 +39,34 @@ $$
 
 ## 2. 定义：思维漏洞的偏离泛函与四维分解
 
-**定义 2.1（总体偏离）**
+**定义 2.1（总体偏离—重复评审一致化）**
+对每个情境 $X=x$，固定一份**基线呈现** $c_0$；令第 $r$ 次评审的策略为 $\pi^{(r)}(\cdot\mid x,c_0)$。定义
 $$
-\mathcal L:=\mathbb E_X!\Big[D_\phi!\big(\pi^\star(\cdot!\mid!X),\Vert,\pi(\cdot!\mid!X,C)\big)\Big].
+\mathcal L:=\mathbb E_X\,\mathbb E_r\big[D_\phi\big(\pi^\star(\cdot\mid X)\Vert\pi^{(r)}(\cdot\mid X,c_0)\big)\big].
 $$
+（架构敏感性单独由 $\mathrm{AS}$ 与其正则项 $\mathcal R_{\mathrm{AS}}$ 度量；见定理4.1。）
 
 **定义 2.2（同案重复与四元量）**
-对同一案件 $x$，重复评审 $A^{(r)}\sim\pi(\cdot\mid x,c)$，令 Bregman-重心 $\bar\pi_\phi(\cdot\mid x,c):=(\nabla\phi)^{-1}!\big(\mathbb E_r[\nabla\phi(\pi^{(r)}(\cdot\mid x,c))]\big)$。则
+对同一案件 $x$，重复评审 $A^{(r)}\sim\pi^{(r)}(\cdot\mid x,c)$。这里的 $\pi^{(r)}(\cdot\mid x,c)$ 指第 $r$ 次评审（或评审者）的行动分布；其 Bregman-重心
+$$
+\bar\pi_\phi(\cdot\mid x,c):=(\nabla\phi)^{-1}\big(\mathbb E_r[\nabla\phi(\pi^{(r)}(\cdot\mid x,c))]\big).
+$$
+定义
 $$
 \begin{aligned}
-\mathrm{Bias}(x)&:=a^\star(x)-\arg\max_a,\bar\pi_\phi(a\mid x,c),\\
-\mathrm{Noise}(x)&:=\mathbb E_r!\big[D_\phi!\big(\bar\pi_\phi(\cdot\mid x,c)\Vert \pi^{(r)}(\cdot\mid x,c)\big)\big],\\
-\mathrm{CM}(x)&:=\mathbb E\big[u(Y)\mid A=\hat a(x),X=x\big]-\mathbb E\big[u(Y)\mid do(A=\hat a(x)),X=x\big],\\
-\mathrm{AS}(x)&:=\sup_{c,c'}D_\phi!\big(\pi(\cdot\mid x,c)\Vert\pi(\cdot\mid x,c')\big).
+\mathrm{Bias}(x)&:=D_\phi\big(\pi^\star(\cdot\mid x)\Vert\bar\pi_\phi(\cdot\mid x,c)\big),\\
+\mathrm{Noise}(x)&:=\mathbb E_r\big[D_\phi\big(\bar\pi_\phi(\cdot\mid x,c)\Vert\pi^{(r)}(\cdot\mid x,c)\big)\big],\\
+\mathrm{CM}(x)&:=\Big(\mathbb E[u(Y)\mid A\sim \bar\pi_\phi(\cdot\mid x,c),X=x]-\mathbb E[u(Y)\mid do(A\sim \bar\pi_\phi(\cdot\mid x,c)),X=x]\Big)^{2}\ge 0,\\
+\mathrm{AS}(x)&:=\sup_{c,c'}D_\phi\big(\pi(\cdot\mid x,c)\Vert\pi(\cdot\mid x,c')\big).
 \end{aligned}
 $$
 
-**定义 2.3（强度指标）**：给定权重 $\omega\succ0$，定义
+**定义 2.3（强度指标）**
+给定权重 $\omega\succ0$，定义
 $$
-\mathrm{Defect}:=\mathbb E_X!\Big[\omega_b,\big|\mathrm{Bias}(X)\big|+\omega_n,\mathrm{Noise}(X)+\omega_c,\mathrm{CM}(X)+\omega_a,\mathrm{AS}(X)\Big].
+\mathrm{Defect}:=\mathbb E_X\Big[\omega_b\,\mathrm{Bias}(X)+\omega_n\,\mathrm{Noise}(X)+\omega_c\,\mathrm{CM}(X)+\omega_a\,\mathrm{AS}(X)\Big].
 $$
+注：此处 $\mathrm{Defect}$ 的四项与第4.1节中的 $\mathcal B,\mathcal N,\mathcal C,\mathcal R_{\mathrm{AS}}$ 一一对应，其中 $\mathcal C=\mathbb E_X[\mathrm{CM}(X)]$、$\mathcal R_{\mathrm{AS}}$ 为 $\mathrm{AS}$ 的惩罚泛函。
 
 ---
 
@@ -72,24 +80,27 @@ $$
 
 ## 4. 三个核心定理与证明
 
-### 定理 4.1（Bregman-Pythagoras 四分解）
+### 定理 4.1（Bregman–Pythagoras 双分解 + 正则项）
 
-在可识别的 $P(Y\mid do(A),X)$ 与 $D_\phi$ 下，对每个 $x$ 有恒等式
+对每个 $x$，对 $r$ 取期望得
 $$
-\mathbb E_r!\Big[D_\phi!\big(\pi^\star\Vert \pi^{(r)}\big)\Big]
-= D_\phi!\big(\pi^\star\Vert\bar\pi_\phi\big)\ +\ \mathbb E_r!\Big[D_\phi!\big(\bar\pi_\phi\Vert\pi^{(r)}\big)\Big],
+\mathbb E_r\Big[D_\phi\big(\pi^\star\Vert \pi^{(r)}\big)\Big]
+= D_\phi\big(\pi^\star\Vert\bar\pi_\phi\big)+\mathbb E_r\Big[D_\phi\big(\bar\pi_\phi\Vert\pi^{(r)}\big)\Big].
 $$
-其中 $\bar\pi_\phi$ 为上定义的 Bregman-重心。故总体偏离可分解为
+再对 $X$ 取期望，按定义2.1得
 $$
-\mathcal L=\underbrace{\mathbb E_X!\big[D_\phi(\pi^\star\Vert\bar\pi_\phi)\big]}_{\mathcal B}
-+\underbrace{\mathbb E_X!\big[\mathrm{Noise}(X)\big]}_{\mathcal N}
-+\underbrace{\mathbb E_X!\big[\Phi_{\mathrm{CM}}(X)\big]}_{\mathcal C}
-+\underbrace{\Psi_{\mathrm{AS}}}_{\mathcal A},
+\mathcal L=\underbrace{\mathbb E_X\big[D_\phi(\pi^\star\Vert\bar\pi_\phi)\big]}_{\mathcal B}
++\underbrace{\mathbb E_X\big[\mathbb E_r D_\phi(\bar\pi_\phi\Vert\pi^{(r)})\big]}_{\mathcal N}.
 $$
-其中 $\Phi_{\mathrm{CM}}$ 将 $\mathrm{CM}$ 表为期望效用缺口的非负泛函；$\Psi_{\mathrm{AS}}$ 是 $\mathrm{AS}$ 的惩罚泛函。
+若引入正则项以惩罚因果错配与架构敏感，定义
+$$
+\mathcal L_{\rm aug}:=\mathcal L+\underbrace{\mathbb E_X[\mathrm{CM}(X)]}_{\mathcal C}+\underbrace{\Psi_{\mathrm{AS}}}_{\mathcal R_{\mathrm{AS}}}\quad\Rightarrow\quad
+\mathcal L_{\rm aug}=\mathcal B+\mathcal N+\mathcal C+\mathcal R_{\mathrm{AS}},
+$$
+其中 $\mathcal C,\mathcal R_{\mathrm{AS}}\ge0$。
 **证明**：Bregman 三点恒等式
 $\ D_\phi(x_1\Vert x_3)=D_\phi(x_1\Vert x_2)+D_\phi(x_2\Vert x_3)+\langle x_1-x_2,\nabla\phi(x_3)-\nabla\phi(x_2)\rangle$，
-取 $x_1=\pi^\star,x_2=\bar\pi_\phi,x_3=\pi^{(r)}$ 并对 $r$ 取条件期望，利用 $\bar\pi_\phi=(\nabla\phi)^{-1}\mathbb E[\nabla\phi(\pi^{(r)})]$ 令交叉项为 0（Bregman-重心的一阶条件），得第一式；将相关/干预差异写成 $u$ 的缺口定义 $\mathcal C$；将 $\mathrm{AS}$ 以最坏呈现差异的发散度惩罚得到 $\mathcal A$。([jmlr.org][6])
+取 $x_1=\pi^\star,x_2=\bar\pi_\phi,x_3=\pi^{(r)}$ 并对 $r$ 取条件期望，利用 $\bar\pi_\phi=(\nabla\phi)^{-1}\mathbb E[\nabla\phi(\pi^{(r)})]$ 令交叉项为 0（Bregman-重心的一阶条件），得第一式与基线恒等式；$\mathrm{CM}(X)$ 已按定义2.2取为非负平方差，$\Psi_{\mathrm{AS}}$ 是 $\mathrm{AS}$ 的惩罚泛函，两者作为正则项扩展得 $\mathcal L_{\rm aug}$。([jmlr.org][6])
 
 ### 定理 4.2（架构等价与架构效应）
 
@@ -102,16 +113,25 @@ $$
 
 ### 定理 4.3（"损失厌恶—爱"的模型内判定）
 
-令关系状态 $s\in\{0,1\}$，参考点 $s^\ast=1$，对方福利权重 $\eta\ge0$，断裂损失系数 $\lambda>1$，并取
+令 $s\in\{0,1\}$，参考点 $s^\ast=1$，对方福利权重 $\eta\ge0$，断裂损失系数 $\lambda>1$，
 $$
-U(x,y,s)=u(x)+\eta,u(y)+v(s-s^\ast),\quad
-v(z)=\begin{cases}\alpha z,&z\ge0\\ -\lambda,\beta(-z),&z<0.\end{cases}
+U(x,y,s)=u(x)+\eta\, u(y)+v(s-s^\ast),\qquad
+v(z)=
+\begin{cases}
+\alpha\, z,& z\ge 0,\\[2pt]
+-\lambda\,\beta(-z),& z<0.
+\end{cases}
 $$
-把"爱"操作化为：把分离概率从 $\varepsilon\downarrow 0$ 降到 0 的 $\mathrm{WTP}$ 超过仅由 $u$ 的风险厌恶所蕴含基准的判定。则
+其中 $\beta(\cdot)>0,\ \beta(0)=0$。将"爱"操作化为：把分离概率从 $\varepsilon\downarrow0$ 降到 $0$ 的 $\mathrm{WTP}$ 超过仅由 $u$ 的风险厌恶所蕴含的基准。则在 $\lambda>1$ 前提下
 $$
-\text{爱}\ \Longleftrightarrow\ \eta>0\ \text{且}\ \lambda>1\quad(\text{即 }L:=\eta\lambda>0).
+\text{爱}\ \Longleftrightarrow\ \eta>0,\qquad
+L:=\eta(\lambda-1)>0.
 $$
-**证明**：一阶近似下 $\mathrm{WTP}\sim \varepsilon\cdot\big(\eta,\Delta u+\lambda,\beta(1)\big)$；若 $\eta=0$ 或 $\lambda=1$，则回落至基准；反之二者正向贡献叠加。
+**证明**：一阶近似下
+$$
+\mathrm{WTP}\ \sim\ \varepsilon\Big(\eta\cdot\Delta u+(\lambda-1)\cdot\beta(1)\Big).
+$$
+其中 $\Delta u$ 表示对方福利在 $s=1$ 与 $s=0$ 下的边际差异；若 $\eta=0$，该项消失；若 $\lambda=1$，不存在对分离的损失厌恶校正。两者共同为正即给出正的 $\mathrm{WTP}$ 超额。
 
 ---
 
@@ -120,7 +140,7 @@ $$
 **D1 记录**：案卷包含 $(X,C,\mathcal A,\text{目标},\text{约束})$。
 **D2 对照（Counter-framing）**：同案卷施行两种以上 $C$（收益/损失框架、默认切换、顺序打乱），计算
 $$
-\widehat{\mathrm{AS}}(x)=\max_{c,c'} D_{\rm TV}!\big(\hat\pi(\cdot\mid x,c),\hat\pi(\cdot\mid x,c')\big),
+\widehat{\mathrm{AS}}(x)=\max_{c,c'} D_\phi\big(\hat\pi(\cdot\mid x,c),\hat\pi(\cdot\mid x,c')\big),
 $$
 高于门限即标记"架构敏感"。
 **D3 因果（Causalization）**：绘制 DAG 并按后门/前门/IV/断点/DiD 判识；可随机化者优先小流量随机化。估计
@@ -128,7 +148,7 @@ $\mathrm{ATE}=\mathbb E[Y(1)-Y(0)]$、$\mathrm{CATE}(x)=\mathbb E[Y(1)-Y(0)\mid 
 观测数据采用 IPW/DR/TMLE 及因果森林；并做未观测混杂的 $\Gamma$-敏感性分析。([math.mcgill.ca][7])
 **D4 审计（Noise audit）**：同案多评估计 $\mathrm{Noise}$ 并汇总
 $$
-\widehat{\mathrm{Defect}}=\omega_b\widehat{\mathcal B}+\omega_n\widehat{\mathcal N}+\omega_c\widehat{\mathcal C}+\omega_a\widehat{\mathcal A}.
+\widehat{\mathrm{Defect}}=\omega_b\widehat{\mathcal B}+\omega_n\widehat{\mathcal N}+\omega_c\widehat{\mathcal C}+\omega_a\widehat{\mathrm{AS}}.
 $$
 在报告中区分"水平噪声/情景噪声/模式噪声"，并给出"决策卫生"规程（独立评判、聚合、多源证据）。([维基百科][8])
 
@@ -159,7 +179,7 @@ $$
 **WSIG（I-投影=Born 读数）**：理性约束族 $\mathcal Q$ 上的 I-投影 $q^\star=\arg\min_{q\in\mathcal Q}\mathrm{KL}(p\Vert q)$ 为"规范读数"，总体偏离 $\mathcal L=\mathrm{KL}(q^\star\Vert p_\pi)$ 即读数—策略相对偏离；Bregman-Pythagoras 给出"偏差+噪声"的可加结构。([projecteuclid.org][1])
 **EBOC（静态块）**：案卷与随机化设计是对静态块测度的窗口选择规则，不改变全局测度；时间被视为对块的叶读取，其序由选择规则诱导。
 **RCA–CID（可逆日志）**：将 DQC 管线嵌入可逆元胞自动机，全部干预—估计版本以 Zeckendorf 规范形编码的 CID 日志记录，并以 Bennett 可逆嵌入保证可回放与外部审计。([users.cs.duke.edu][3])
-**刻度对齐**：在需要与能谱刻度合流的场景，引用 $\varphi'/\pi=\rho_{\rm rel}=(2\pi)^{-1}\mathrm{tr},\mathsf Q$ 作为通用坐标，群延迟—带宽的资源约束成为 DQC 的全局预算。([link.aps.org][2])
+**刻度对齐**：在需要与能谱刻度合流的场景，引用 $\varphi'/\pi=\rho_{\rm rel}=(2\pi)^{-1}\,\mathrm{tr}\,\mathsf Q$ 作为通用坐标，群延迟—带宽的资源约束成为 DQC 的全局预算。([link.aps.org][2])
 
 ---
 
@@ -168,20 +188,21 @@ $$
 **A/B（默认效应）**：随机化 $D\in\{\text{opt-in},\text{opt-out}\}$；测 $\Delta\mathrm{ATE}$ 与 $\widehat{\mathrm{AS}}$。
 **双框架复核**：同一告知以收益/损失两版呈现；以 TMLE 估计 $\mathrm{CATE}$。([De Gruyter Brill][12])
 **噪声审计**：同案多评；区分水平/情景/模式噪声并报告降噪后幅度与稳定性。([维基百科][8])
-**"爱"指标**：在自愿样本上构造小概率分离的保险-型选择，估 $\widehat L=\hat\eta\hat\lambda$ 并联动满意度/互惠性次级终点。
+**"爱"指标**：在自愿样本上构造小概率分离的保险-型选择，估 $\widehat L=\hat\eta(\hat\lambda-1)$ 并联动满意度/互惠性次级终点。
 **治理与公平**：对重点子群报告 $\mathrm{CATE}$、$\widehat{\mathrm{AS}}$，设置"架构公平"门限与告知规范。
 
 ---
 
 ## 10. 进一步性质与推论
 
-**推论 10.1（后门闭合 $\Rightarrow$ 因果错配项消失）**：若存在 $Z$ 满足后门判据，则 $\mathcal C=0$。([fitelson.org][4])
+**推论 10.1（按后门集调整 $\Rightarrow$ 因果错配项消失）**
+若存在 $Z$ 满足后门判据，且计算 $\mathrm{CM}$ 时按 $Z$ 进行完全调整，则 $\mathcal C=0$。([fitelson.org][4])
 
 **推论 10.2（KL 特例的重心）**：当 $D_\phi=\mathrm{KL}$ 且第一参数在单纯形上，$\bar\pi_\phi$ 为几何-均值型重心，保证定理 4.1 的交叉项消失。([projecteuclid.org][1])
 
 **推论 10.3（决策卫生的充分性）**：独立评判与去同温层聚合在 Bregman 平台上等价于最小化 $\mathbb E_r[D_\phi(\bar\pi_\phi\Vert\pi^{(r)})]$，从而直接降低 $\mathcal N$。([barrons.com][15])
 
-**推论 10.4（群延迟预算）**：在以 $\mathrm{tr},\mathsf Q$ 为刻度的系统中，窗口化评估的总复杂度受群延迟—带宽乘积上界约束，可作为 DQC 的资源预算。([link.aps.org][2])
+**推论 10.4（群延迟预算）**：在以 $\mathrm{tr}\,\mathsf Q$ 为刻度的系统中，窗口化评估的总复杂度受群延迟—带宽乘积上界约束，可作为 DQC 的资源预算。([link.aps.org][2])
 
 ---
 
@@ -199,7 +220,7 @@ $$
 
 1）绘图与判据：每条上线决策流先绘 DAG 并标明后门集/可用工具/可能阈值与时序错位。
 2）上线 DQC：案卷模板＋双框架问卷＋小流量随机化；自动化 IPW/DR/TMLE/因果森林；附带 Rosenbaum $\Gamma$ 报告。([jstatsoft.org][17])
-3）审计与治理：对重点子群报告 $\mathrm{CATE}$、$\widehat{\mathrm{AS}}$ 与 $\widehat{\mathrm{Defect}}$；设置"架构公平"门限与复核频率。
+3）审计与治理：对重点子群报告 $\mathrm{CATE}$、$\widehat{\mathrm{AS}}$ 与 $\widehat{\mathrm{Defect}}$（含 $\widehat{\mathcal B},\widehat{\mathcal N},\widehat{\mathcal C},\widehat{\mathrm{AS}}$）；设置"架构公平"门限与复核频率。
 4）RCA–CID：以 Zeckendorf-日志承载版本，并声明可逆回放接口与审计 API。
 
 ---
