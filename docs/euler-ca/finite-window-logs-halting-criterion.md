@@ -1,6 +1,6 @@
 # 有限窗日志的停机判据：NPE 尾项熵通量、三位一体刻度与 WSIG–EBOC–RCA 统一框架
 
-Version: 1.23
+Version: 1.24
 
 ## 摘要
 
@@ -180,12 +180,12 @@ $\mu$ 为刻度权。变分所得欧拉—拉格朗日方程表明最优对偶�
 
 **定理 5.1** 在带限或弱色散区，存在常数 $C_{\rm uni}$（仅依赖窗族正则性与被动性）使
 $$
-\big|\mathcal R_{w,h}[1]\big|=\big|\operatorname{tr}K_{w,h}\big|\le C_{\rm uni}\,\kappa_{\rm tf}\,\int_{\mathbb R}\Psi_w(E)\,\Big|\tfrac{1}{2\pi}\operatorname{tr}\mathsf Q(E)\Big|\,dE.
+\big|\mathcal R_{w,h}[1]\big|=\big|\operatorname{tr}K_{w,h}\big|\le C_{\rm uni}\,\kappa_{\rm tf}\,\int_{\Omega}\Psi_w(E)\,\Big|\tfrac{1}{2\pi}\operatorname{tr}\mathsf Q(E)\Big|\,dE.
 $$
 
 *证明要点*：令 $d\mu_{\mathsf A}=(2\pi)^{-1}\operatorname{tr}\mathsf Q\,dE$。由 Toeplitz/Berezin 符号—算子比较与迹理想估计得
 $$
-|\operatorname{tr}K_{w,h}|\lesssim \int_{\mathbb R}\Psi_w(E)\,d|\mu_{\mathsf A}|(E),
+|\operatorname{tr}K_{w,h}|\lesssim \int_{\Omega}\Psi_w(E)\,d|\mu_{\mathsf A}|(E),
 $$
 再以框架上下界折算为 $\kappa_{\rm tf}$ 因子，得所示不等式。([美国数学会][8])
 
