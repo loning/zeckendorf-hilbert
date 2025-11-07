@@ -1,8 +1,8 @@
 # GLS—因果流形—滤镜链统一框架
 
-## ——窗化群延迟、红移与光速的公理化理论、互构定理与非渐近误差闭合(完整版)
+## ——窗化群延迟、红移与光速的公理化理论、互构纲要与非渐近误差闭合(完整版)
 
-**Version: 2.0**
+**Version: 2.10**
 
 ## 摘要
 
@@ -10,25 +10,28 @@
 $$
 \boxed{\ \frac{\varphi'(E)}{\pi}=\rho_{\rm rel}(E)=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E),\qquad \mathsf Q(E)=-i\,S(E)^\dagger \tfrac{dS}{dE}(E)\ }
 $$
-为母刻度(相位导数—相对态密度—Wigner–Smith 群延迟迹)的公理化理论。核心结果:(i)以**窗化群延迟读数**定义**时间**并证明串并联可加、规范协变/相对不变(当 $U,V$ 与能量无关或 $\det U\cdot\det V\equiv1$ 时保持不变);(ii)以谱缩放刻画**红移**并证明与时间的互易标度律;(iii)以真空**前沿**规范光速 $c$,给出任意物理通道的**前沿下界**与**无超锥传播**;(iv)建立"GLS ↔ 因果流形"的**互构定理**(范畴同构意义);(v)在同一账本中统一**波/粒二象性**与双缝的窗化互补不等式 $D^2+V^2\le 1$;(vi)阐明"分辨率提升 = 宇宙膨胀(红移放大)"的严格对偶,并给出 Nyquist–Poisson–Euler–Maclaurin(NPE)**有限阶**误差闭合与工程化处方。理论全程采用算子—测度—函数语言(Toeplitz/Berezin 压缩 $K_{w,h}$,读数 = 对谱测度的线性泛函)。
+为母刻度(相位导数—相对态密度—Wigner–Smith 群延迟迹)的公理化理论。核心结果:(i)以**窗化群延迟读数**定义**时间**并证明串并联可加、规范协变/相对不变(当 $U,V$ 与能量无关或 $\det U\cdot\det V\equiv1$ 时保持不变);(ii)以谱缩放刻画**红移**并证明与时间的互易标度律;(iii)以真空**前沿**规范光速 $c$,给出任意物理通道的**前沿下界**与**无超锥传播**;(iv)提出"GLS ↔ 因果流形"的**互构纲要**,给出构造骨架与一致性条件,**严格证明及自然性验证另文呈现**;(v)在同一账本中统一**波/粒二象性**与双缝的窗化互补不等式 $D^2+V^2\le 1$;(vi)阐明"分辨率提升 = 宇宙膨胀(红移放大)"的严格对偶,并给出 Nyquist–Poisson–Euler–Maclaurin(NPE)**有限阶**误差闭合与工程化处方。理论全程采用算子—测度—函数语言(Toeplitz/Berezin 压缩 $K_{w,h}$,读数 = 对谱测度的线性泛函),在全局幺正公设下将一切时间/密度读数统一由 $\mathsf Q=-iS^\dagger S'$ 定义,实验性非幺正均通过幺正扩张 $\widehat S$ 回推母刻度。
 
 ---
 
 ## Notation & Axioms / Conventions
 
-### 卡片 I(刻度同一)
+### 单位与常数规范
 
-在绝对连续谱(实能 $E$)上,**假设工作带内 $S(E)$ 单位**(无损耗/无增益;必要时将环境并入散射通道)。此时
-$$
-\frac{\varphi'(E)}{\pi}=\rho_{\rm rel}(E)=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E),\qquad \mathsf Q=-iS^\dagger S',\quad \rho_{\rm rel}=-\xi'(E).
-$$
-其中 $\varphi$ 为 de Branges 相位(Hermite–Biehler 类),$\rho_{\rm rel}$ 为谱移密度 $-\xi'(E)$,而 $\mathsf Q$ 为 Wigner–Smith 群延迟矩阵;等式由 Birman–Kreĭn 公式 $\det S(E)=e^{-2\pi i\xi(E)}$ 与 $\operatorname{tr}\mathsf Q(E)=-i\,\tfrac{d}{dE}\log\det S(E)$ 综合而来。**验证**：ChaosBook 明确给出 $-i\,\tfrac{d}{dE}\log\det S=-i\,\operatorname{tr}(S^\dagger S')$;与本框架的 $\mathsf Q=-iS^\dagger S'$ 完全一致。
+默认采用 $\hbar=1$(必要时亦可取 $c=1$)。若恢复 SI 单位,所有由 $\operatorname{tr}\mathsf Q$ 导出的时间读数需乘以 $\hbar$,即 $T_{\rm phys}=\hbar\,T$;相应地,若 $c$ 未取为 1,则需按 $L/c$ 恢复光程量纲。
 
-若存在有效损耗/增益使 $S$ 非单位,可改用
+### 卡片 I（刻度同一｜全局幺正公设）
+
+**公设（全局幺正）**：宇宙视作封闭系统;存在以能量 $E$ 为坐标的绝对连续谱区间,在本工作带内散射矩阵 $S(E)\in C^1\cap\mathsf U(N)$ 幺正。由 Birman–Kreĭn 公式
 $$
-\widetilde{\mathsf Q}:=-iS^{-1}S',
+\det S(E)=e^{-2\pi i\xi(E)},\qquad \mathsf Q(E)=-i\,S^\dagger(E)S'(E),
 $$
-此时 $\operatorname{tr}\widetilde{\mathsf Q}$ 在级联下保持可加。与谱移函数的标准等式 $(2\pi)^{-1}\operatorname{tr}\mathsf Q=-\xi'(E)$ 仅在 $S$ 幺正(或经环境扩展幺正化)时成立;非幺正情形仅保留 $\operatorname{tr}\widetilde{\mathsf Q}$ 的可加性。后文凡用到 $\operatorname{tr}\mathsf Q$ 的可加性,可等价以 $\operatorname{tr}\widetilde{\mathsf Q}$ 代之。([arXiv][1])
+得到母刻度
+$$
+\boxed{\,\frac{\varphi'(E)}{\pi}=\rho_{\rm rel}(E)=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)=-\xi'(E),\,}.
+$$
+
+**处方**：任何实验性损耗/增益均视作对环境自由度的迹出;理论分析统一通过幺正扩张 $\widehat S(E)$ 处理,并以 $\mathsf Q(\widehat S)=-i\widehat S^\dagger\widehat S'$ 评估全部时间/密度读数。本文不引入 $\widetilde{\mathsf Q}:=-iS^{-1}S'$。
 
 ### 卡片 II(有限阶 EM 与极点 = 主尺度)
 
@@ -36,11 +39,17 @@ $$
 $$
 \varepsilon_{\rm total}=\varepsilon_{\rm alias}+\varepsilon_{\rm EM}+\varepsilon_{\rm tail},
 $$
-若采样间隔 $\Delta\le\pi/\Omega_{\rm eff}$(定义 $\Omega_{\rm eff}:=\Omega_h+\Omega_w$,$\Omega_h,\Omega_w$ 分别为前端核与窗的有效带宽),则 $\varepsilon_{\rm alias}=0$(Nyquist–Shannon);$\varepsilon_{\rm EM}$ 由**有限阶** Euler–Maclaurin(端点伯努利层与显式余项)控制;$\varepsilon_{\rm tail}$ 由窗外衰减控制。奇性不增,极点决定主尺度。([维基百科][2])
+若 $h,w$ **严格带限**,其频域支撑满足 $\mathrm{supp}\,\widehat h\subset[-\Omega_h,\Omega_h]$、$\mathrm{supp}\,\widehat w\subset[-\Omega_w,\Omega_w]$。当采用窗族 $w_R(E)=w((E-E_0)/R)$ 时,$\mathrm{supp}\,\widehat{w_R}\subset[-\Omega_w/R,\Omega_w/R]$。因此若采样间隔
+$$
+\Delta\le \frac{\pi}{\Omega_h+\Omega_w/R},
+$$
+则 $\varepsilon_{\rm alias}=0$(Nyquist–Shannon);近似带限/有效带宽场景下,$\varepsilon_{\rm alias}$ 保留为可估上界的残差项。$\varepsilon_{\rm EM}$ 由**有限阶** Euler–Maclaurin(端点伯努利层与显式余项)控制;$\varepsilon_{\rm tail}$ 由窗外衰减控制。奇性不增,极点决定主尺度。([维基百科][2])
 
 ### 记号约定
 
-$S(E)$:多通道散射矩阵;$\mathsf Q=-iS^\dagger S'$。$\quad$ $\rho_{\rm rel}=-\xi'(E)$:谱移密度。$\quad$ 窗—核:偶窗 $w_R(E)=w((E-E_0)/R)$,前端核 $h$。$\quad$ 压缩 $K_{w,h}$:Toeplitz/Berezin 型。**验证**：由 $\det S=e^{-2\pi i\xi}$ 得 $\tfrac{d}{dE}\log\det S=-2\pi i\,\xi'(E)$;结合上条修正 $\operatorname{tr}\mathsf Q=-i\,\tfrac{d}{dE}\log\det S$ 即得 $(2\pi)^{-1}\operatorname{tr}\mathsf Q=-\xi'(E)$;亦与 DOS/Friedel–Krein–Lloyd 关系相符。([SpringerLink][3])
+约定 $(h\star f)(E):=(h*f)(E)$,其中 $\check h(E):=h(-E)$,星号表示对能量变量的卷积。窗族取 $w_R(E)=w((E-E_0)/R)$,默认 $w$ 为偶函数且属于 $L^1\cap C^M$ 以支撑所用 Euler–Maclaurin 阶数;核 $h$ 亦取 $h\in L^1\cap C^M$,具体归一方式在上下文另行说明。
+
+$S(E)\in\mathsf U(N)$:多通道散射矩阵,$\mathsf Q=-iS^\dagger S'$。$\quad$ $\rho_{\rm rel}=-\xi'(E)=(2\pi)^{-1}\operatorname{tr}\mathsf Q$。$\quad$ 窗—核:偶窗 $w_R(E)=w((E-E_0)/R)$,前端核 $h$。$\quad$ 压缩 $K_{w,h}$:Toeplitz/Berezin 型。**引理 0.1(刻度同一的迹—谱移关系)** 由 $\det S(E)=e^{-2\pi i\xi(E)}$ 与 $\mathsf Q=-iS^\dagger S'$ 可得 $\tfrac{d}{dE}\log\det S(E)=-2\pi i\,\xi'(E)$ 和 $\operatorname{tr}\mathsf Q(E)=-i\,\tfrac{d}{dE}\log\det S(E)$,从而 $(2\pi)^{-1}\operatorname{tr}\mathsf Q(E)=-\xi'(E)$。([SpringerLink][3])
 
 ---
 
@@ -57,7 +66,7 @@ $$
 \mathrm{Obs}(w_R,h;\rho)=\operatorname{Tr}(K_{w,h}\rho)
 =\!\int_{\mathbb R}\! w_R(E)\,[\,h\!\star\!\rho_\rho\,](E)\,dE\;+\varepsilon_{\rm alias}+\varepsilon_{\rm EM}+\varepsilon_{\rm tail},
 $$
-其中 $\rho_\rho(E):=\dfrac{d\mu_\rho^{\rm ac}}{dE}$ 为态 $\rho$ 相对于母测度 $\mu_\varphi$ 的能谱密度;若采用相对 DOS 校准并以参考通道为基准,可取 $\rho_\rho=\rho_{\rm rel}$。
+其中 $\rho_\rho(E):=\dfrac{d\mu_\rho^{\rm ac}}{dE}$ 为态 $\rho$ 相对于 Lebesgue 测度 $dE$ 的能谱密度;而 $\rho_{\rm rel}(E):=-\xi'(E)=(2\pi)^{-1}\operatorname{tr}\mathsf Q(E)$ 属于通道/散射数据。仅当选取参考态 $\rho_{\rm ref}$ 满足 $d\mu_{\rho_{\rm ref}}^{\rm ac}=\rho_{\rm rel}(E)\,dE$ 时,才可以在公式中以 $\rho_{\rm rel}$ 替换 $\rho_\rho$;其余情形必须显式区分二者。
 
 ### 1.2 操作语法:滤镜链
 
@@ -75,16 +84,19 @@ $$
 
 取上半平面 Herglotz–Nevanlinna 函数 $m(z)=\int\frac{d\mu_\varphi(E)}{E-z}$。由 Titchmarsh 定理/Paley–Wiener 与 Kramers–Kronig 关系,时域冲激响应 $g(t)$ 具单向支撑(经校准后 $t\ge0$),并且实/虚部互为 Hilbert 变换。
 
-**定义 2.1′(前沿时间偏序)** 设链 $\gamma$ 的输出冲激响应为 $g_\gamma(t;L)$,前沿到达时间
+**定义 2.1(前沿时间偏序)** 设链 $\gamma$ 的输出冲击响应为 $g_\gamma(t;L)$,前沿到达时间
 $$
-t_*(\gamma;w_R,h):=\inf\{\,t:\,g_\gamma(t;L)\neq 0\,\}\quad(\text{见 §4.2}).
+t_*(\gamma):=\inf\{\,t:\,g_\gamma(t;L)\neq 0\,\}\quad(\text{见 §4.2}).
 $$
-定义偏序
+记 $L(\gamma)$ 为该链在真空度规下的光程(参见 §4.1)。定义偏序
 $$
-x\preceq y\;\Longleftrightarrow\;\inf_{\gamma:x\to y} t_*(\gamma;w_R,h)\ge 0,\qquad
-\partial J^+(x):=\{\,y:\inf_{\gamma:x\to y} t_*(\gamma;w_R,h)=0\,\}.
+x\preceq y\;\Longleftrightarrow\;\exists\,\gamma:x\to y\ \text{且}\ \inf_{\gamma:x\to y}\big[t_*(\gamma)-L(\gamma)/c\big]\ge 0,
 $$
-在真空前沿规范下(§4.1)任意链满足 $t_*(\gamma;w_R,h)\ge L/c$(§4.2),故该偏序与因果一致。窗化群延迟读数 $T_\gamma[w_R,h]$ 仅为相位导数的带内加权读数,并非前沿时间,可能取负,因而不宜直接作为偏序生成器(参见 §4.2 之注)。([Wolfram MathWorld][5])
+并令
+$$
+\partial J^+(x):=\{\,y:\exists\,\gamma:x\to y,\ \inf_{\gamma:x\to y}\big[t_*(\gamma)-L(\gamma)/c\big]=0\,\}.
+$$
+窗化群延迟读数 $T_\gamma[w_R,h]$ 是相位导数的加权读数,没有与前沿时间 $t_*$ 的一般大小比较关系。
 
 ### 2.2 相位奇性 ⇒ 最短到达与因果边界
 
@@ -100,41 +112,67 @@ de Branges 相位的跳变/极点(Hermite–Biehler 零点、散射相移突变)
 $$
 \boxed{\ T_\gamma[w_R,h]\;:=\;\int_{\mathbb R} (w_R*\check h)(E)\,\frac{1}{2\pi}\operatorname{tr}\mathsf Q_\gamma(E)\,dE\ },\qquad \check h(E):=h(-E),
 $$
-并约定 $(h\star f)(E):=(\check h*f)(E)$。等价地,
+并约定 $(h\star f)(E)=(h*f)(E)$。等价地,
 $$
 T_\gamma[w_R,h]=\int_{\mathbb R} w_R(E)\,[\,h\!\star\!\rho_{\rm rel}\,](E)\,dE.
 $$
-此量在母刻度上实现"带内时间"的可实现读数。([chaosbook.org][7])
+此量在母刻度上实现"带内时间"的可实现读数。后续关于采样与 NPE 的一切公式均作用于被积函数
+$$
+f(E):=w_R(E)\big[h\!\star\!\rho_{\rm rel}\big](E),
+$$
+并以该 $f$ 为误差估计的唯一对象。([chaosbook.org][7])
 
 ### 3.2 串并联可加、规范协变
 
-**定理 3.2(可加性,单位散射)** 设在 $w_R$ 的带内 $S_j^\dagger(E)S_j(E)=I\ (j=1,2)$。若 $\gamma=\gamma_2\circ\gamma_1$,则
+**定理 3.2(可加性,幺正散射)** 设在 $w_R$ 的带内 $S_j^\dagger(E)S_j(E)=I\ (j=1,2)$。若 $\gamma=\gamma_2\circ\gamma_1$,则
 $$
 \operatorname{tr}\mathsf Q_{\gamma_2\circ\gamma_1}
 =\operatorname{tr}\mathsf Q_{\gamma_2}+\operatorname{tr}\mathsf Q_{\gamma_1},\qquad
 T_{\gamma_2\circ\gamma_1}[w_R,h]=T_{\gamma_2}[w_R,h]+T_{\gamma_1}[w_R,h].
 $$
-*证明*:由 $(S_2S_1)'=S_2'S_1+S_2S_1'$ 得 $\mathsf Q(S_2S_1)=S_1^\dagger\mathsf Q(S_2)S_1+\mathsf Q(S_1)$;取迹用循环不变性即得第一式;代入定义得第二式。*备注*:存在损耗/增益时,可改用 $\widetilde{\mathsf Q}:=-iS^{-1}S'$ 保持迹的可加性,但 $\widetilde{\mathsf Q}$ 一般不自伴。([chaosbook.org][7])
+*证明*:由 $(S_2S_1)'=S_2'S_1+S_2S_1'$ 得 $\mathsf Q(S_2S_1)=S_1^\dagger\mathsf Q(S_2)S_1+\mathsf Q(S_1)$;取迹用循环不变性即得第一式;代入定义得第二式。*备注(幺正版)*:由**卡片 I(刻度同一｜全局幺正公设)**可知任意串/并联网络可视为单一幺正扩张 $\widehat S$ 的块构造,故 $\operatorname{tr}\mathsf Q$ 与 $T_\gamma[w_R,h]$ 的可加性在幺正框架内直接成立,无需其他替代处方。([chaosbook.org][7])
 
 **命题 3.3(规范协变与相对不变)** 设能量依赖基变换 $S\mapsto U(E)SV(E)$,则
 $$
 \operatorname{tr}\mathsf Q(USV)=\operatorname{tr}\mathsf Q(S)-i\,\operatorname{tr}(U^\dagger U')-i\,\operatorname{tr}(V'V^\dagger).
 $$
-因而 $\frac{1}{2\pi}\operatorname{tr}\mathsf Q$ 与 $\varphi'/\pi$ 同步协变;当 $U,V$ 与能量无关或 $\det U(E)\det V(E)\equiv1$ 时保持不变。一般情形取相对读数
+*推导要点(算子级)*:
+$$
+\mathsf Q(USV)=V^\dagger\mathsf Q(S)V-i\,V^\dagger S^\dagger\big(U^\dagger U'\big)SV-i\,V^\dagger V'.
+$$
+取迹并利用循环不变性即可得到上述恒等式。当 $U,V$ 与能量无关或 $\det U(E)\det V(E)\equiv1$ 时,附加项消失,故 $\operatorname{tr}\mathsf Q$ 保持不变。一般情形采用相对读数
 $$
 T_{\rm rel}(\gamma):=T_\gamma[w_R,h;S]-T_\gamma[w_R,h;S_{\rm ref}],
 $$
-其值与规范无关。([普渡大学数学系][6])
+以消除规范项。([普渡大学数学系][6])
 
 ### 3.3 非渐近误差闭合(NPE)
 
-**命题 3.4(离散实现)** 采样点 $E_n=E_0+n\Delta$ 满足 $\Delta\le \pi/(\Omega_h+\Omega_w)$ 时,
+**命题 3.4(离散实现；精确与近似的分立表述)** 设 $f(E):=w_R(E)[h\\star\\rho_{\rm rel}](E)$,采样点 $E_n=E_0+n\Delta$。
+
+**(A) 严格带限 + Nyquist 条件(精确等式)**:若 $\widehat w,\widehat h$ 严格带限且 $f\in\mathsf{PW}_B\cap L^1$，其中 $B:=\Omega_h+\Omega_w/R$,并满足
 $$
-T_\gamma[w_R,h]=\sum_{n} w_R(E_n)\,[\,h\!\star\!\rho_{\rm rel}\,](E_n)\,\Delta\;+\;\varepsilon_{\rm EM}+\varepsilon_{\rm tail},
+\Delta\le \frac{\pi}{B},
 $$
-其中 $\varepsilon_{\rm alias}=0$,$\varepsilon_{\rm EM}$ 由有限阶 Euler–Maclaurin 余项与伯努利层给出显式上界,$\varepsilon_{\rm tail}$ 由窗外衰减控制。([维基百科][2])
+则由 Poisson 求和得
+$$
+\boxed{\ T_\gamma[w_R,h]=\int_{\mathbb R} f(E)\,dE=\Delta\sum_{n\in\mathbb Z} f(E_n)\ }.
+$$
+此时 $\varepsilon_{\rm alias}=\varepsilon_{\rm EM}=\varepsilon_{\rm tail}=0$。
+
+**(B) 近带限/数值截断(NPE 三分解)**:若 $f$ 仅近似带限或实现上将无穷和截断为 $|n|\le N$,则
+$$
+T_\gamma[w_R,h]=\Delta\sum_{|n|\le N} f(E_n)+\varepsilon_{\rm tail}+\varepsilon_{\rm alias}+\varepsilon_{\rm EM},
+$$
+其中
+$$
+\varepsilon_{\rm tail}:=\Delta\sum_{|n|>N} f(E_n),\qquad |\varepsilon_{\rm alias}|\le\sum_{k\ne 0}\Big|\widehat f\big(\cdot+2\pi k/\Delta\big)\Big|_{L^1},
+$$
+而 $\varepsilon_{\rm EM}$ 仅在以有限阶 Euler–Maclaurin 近似无穷和(或对近带限 $f$ 的修正积分)时出现,其上界参见附录 B。*说明*: 本命题将理论上的等式 (A) 与工程实践的 NPE 分解 (B) 严格区分,避免在无 alias 的情形下引入不存在的 EM/尾项。([chaosbook.org][7])
 
 ---
+
+**前提（LTI+因果+K–K）**:以下关于前沿与无超锥传播的命题均建立在系统线性、时间不变、因果(时域响应在 $t<0$ 为零)且满足 Kramers–Kronig/解析正性的条件之上。
 
 ## 4. 光速与类光锥:前沿定标与无超锥传播
 
@@ -144,7 +182,7 @@ $$
 $$
 c:=\lim_{L\to\infty}\frac{L}{t_{\rm front}(L)}\quad(\text{或取上确界作规范常数}).
 $$
-其中 $L$ 表示在**真空度规**下两点间的**光程(测地长度)**;在均匀介质中可取为几何长度乘折射率。该 $L$ 亦用于 §4.2 中 $t_*(\gamma)\ge L/c$ 的判定基准。前沿速度与因果一致(Sommerfeld–Brillouin 先驱)。([互联网档案馆][8])
+其中 $L$ 表示在**真空度规**下两点间的**光程(测地长度)**,其定义独立于介质;介质的色散与吸收效应仅体现于系统响应而不改变前沿下界的几何基准。该 $L$ 亦用于 §4.2 中 $t_*(\gamma)\ge L/c$ 的判定基准。前沿速度与因果一致(Sommerfeld–Brillouin 先驱)。([互联网档案馆][8])
 
 ### 4.2 无超锥传播——前沿读数
 
@@ -191,6 +229,8 @@ $$
 
 ### 6.2 互易标度律
 
+**假设(谱均匀缩放)**:存在 $z>-1$ 使 $S_{\rm obs}(E)=S_{\rm src}((1+z)E)$,并保证 $S,\ S'$ 在缩放域内可测可积;同时假设源端窗/核满足卡片 II 的带限与采样前提。
+
 **定理 6.2** 若谱缩放 $E\mapsto E/(1+z)$,则对任意链 $\gamma$ 与窗—核 $(w_R,h)$,
 $$
 \boxed{\ 
@@ -205,6 +245,8 @@ T_\gamma^{\rm obs}[w_R,h]
 =\int_{\mathbb R}(w_R*\check h)\!\Big(\frac{E}{1+z}\Big)\,
 \frac{1}{2\pi}\operatorname{tr}\mathsf Q_\gamma(E)\,dE.
 $$
+**带限与采样协变**:若 $\widehat w,\widehat h$ 严格带限,则 $w_R^{\langle a\rangle},h^{\langle a\rangle}$ 仍严格带限,Nyquist 纪律随缩放变为 $\Delta\le \pi/\big(a(\Omega_h+\Omega_w/R)\big)$,故卡片 II 的前提在该模型下保持有效。
+
 *证明要点*:$\operatorname{tr}\mathsf Q_{\rm obs}(E)=(1+z)\,\operatorname{tr}\mathsf Q\big((1+z)E\big)$,以及$(f*g)\big(aE\big)=a\,\big(f^{\langle a\rangle}*g^{\langle a\rangle}\big)(E)$。
 
 ---
@@ -213,8 +255,18 @@ $$
 
 ### 7.1 类空间分离与交换
 
-**定义 7.1(类空间分离)** 两窗—核支撑域 $U_x,U_y$ 互不落入对方的前/后向锥内。
-**定理 7.2(窗化微因果律)** 类空间分离时 $[K_{w_x,h_x},K_{w_y,h_y}]=0$,并且任意 CP 与 POVM 组合满足 $\mathcal O_y\circ\mathcal O_x=\mathcal O_x\circ\mathcal O_y$。该陈述与 QFT 微因果 $[\mathscr O(x),\mathscr O(y)]=0$(类空间分离)同型。([ncatlab.org][11])
+**局域化约定(本节)** 在因果流形 $(\mathcal M,\preceq)$ 上,对任意开集 $U\subset\mathcal M$ 记 $P_U$ 为 $U$ 上的局域投影/截断算符,定义局域窗—核
+$$
+K_{w,h}[U]:=P_U K_{w,h} P_U,
+$$
+使得 $\mathrm{supp}\,K_{w,h}[U]\subset U$。称 $U_x,U_y$ 类空间分离当且仅当 $U_x\cap J^\pm(U_y)=\varnothing$。以下所有陈述均针对局域算子 $K_{w,h}[U]$。
+
+**定义 7.1(类空间分离)** 两局域窗—核支撑域 $U_x,U_y$ 互不落入对方的前/后向锥内。
+**命题 7.2(窗化微因果律)** 设 $K_{w_x,h_x}[U_x],K_{w_y,h_y}[U_y]$ 属于满足微因果(例如 Wightman/Haag–Kastler)条件的局域代数网,且其支撑区域类空间分离,则
+$$
+[K_{w_x,h_x}[U_x],K_{w_y,h_y}[U_y]]=0,
+$$
+并且任意 CP 与 POVM 组合满足 $\mathcal O_y\circ \mathcal O_x=\mathcal O_x\circ \mathcal O_y$。该陈述与 QFT 微因果 $[\mathscr O(x),\mathscr O(y)]=0$ 同型。([ncatlab.org][11])
 
 ### 7.2 因果适配与组合律
 
@@ -227,7 +279,7 @@ $$
 
 ---
 
-## 8. 互构定理:GLS ↔ 因果流形(范畴同构)
+## 8. 互构纲要:GLS ↔ 因果流形(构造骨架)
 
 ### 8.1 范畴
 
@@ -236,12 +288,11 @@ $\mathbf{Cau}$:对象为因果流形 $(\mathcal M,\preceq)$,态射为保持类�
 
 ### 8.2 构造与结论
 
-**定理 8.1(互构定理)** 存在函子
+**纲要 8.1(GLS ↔ 因果流形的互构骨架)** 存在构造性的函子
 $$
 \mathfrak F:\mathbf{WScat}\to\mathbf{Cau},\qquad \mathfrak G:\mathbf{Cau}\to\mathbf{WScat},
 $$
-使 $\mathfrak F\circ\mathfrak G\simeq \mathrm{Id}_{\mathbf{Cau}}$、$\mathfrak G\circ\mathfrak F\simeq \mathrm{Id}_{\mathbf{WScat}}$(自然同构)。
-*构造要点*:$\mathfrak F$ 以 $\operatorname{tr}\mathsf Q$ 等值面与相位奇性生成偏序与锥;$\mathfrak G$ 以固有时间/光锥参数化构造带限窗—核并施以 Berezin 压缩,使 $\varphi'/\pi=(2\pi)^{-1}\operatorname{tr}\mathsf Q$ 与 NPE 闭合同步成立。([SpringerLink][3])
+并预期存在自然同构 $\mathfrak F\circ\mathfrak G\simeq \mathrm{Id}_{\mathbf{Cau}}、\mathfrak G\circ\mathfrak F\simeq \mathrm{Id}_{\mathbf{WScat}}$。本稿仅给出构造骨架,严格证明与自然性验证将另文阐述。*构造要点*:$\mathfrak F$ 以 $\operatorname{tr}\mathsf Q$ 等值面与相位奇性生成偏序与锥;$\mathfrak G$ 以固有时间/光锥参数化构造带限窗—核并施以 Berezin 压缩,使 $\varphi'/\pi=(2\pi)^{-1}\operatorname{tr}\mathsf Q$ 与 NPE 闭合同步成立。([SpringerLink][3])
 
 ---
 
@@ -301,7 +352,15 @@ $$
 
 ## 附录 A:窗化互补 $D^2+V^2\le 1$ 的证明
 
-记 $K=K_{w,h}$。取两路径等效态 $\rho_1\propto P_1K\rho KP_1,\ \rho_2\propto P_2K\rho KP_2$。设 $\Pi$ 为二分类最优 POVM,则 Helstrom 距离 $D=\tfrac12|\rho_1-\rho_2|_1$ 给出最小错判界。交叉可见度 $V$ 由 $K$ 的非对角块归一量诱导。以 CPTP 收缩性与 Cauchy–Schwarz 得
+记 $K=K_{w,h}$。定义两路径的非归一化条件态
+$$
+\tilde\rho_1:=P_1 K\rho K P_1,\qquad \tilde\rho_2:=P_2 K\rho K P_2,
+$$
+并归一化
+$$
+\rho_1:=\frac{\tilde\rho_1}{\operatorname{Tr}\tilde\rho_1},\qquad \rho_2:=\frac{\tilde\rho_2}{\operatorname{Tr}\tilde\rho_2}.
+$$
+设 $\Pi$ 为二分类最优 POVM,则 Helstrom 距离 $D=\tfrac12|\rho_1-\rho_2|_1$ 给出最小错判界。交叉可见度 $V$ 由 $K$ 的非对角块归一量诱导。以 CPTP 收缩性与 Cauchy–Schwarz 得
 $$
 D^2+V^2\le 1,
 $$
@@ -311,23 +370,50 @@ $$
 
 ## 附录 B:NPE 三分解的上界模板
 
-取偶窗 $w_R(E)=w((E-E_0)/R)$,其中 $E_0$ 为中心频率。以下一切导数与积分均相对于 $E$ 而非移相变量计算。
+取偶窗 $w_R(E)=w((E-E_0)/R)$,其中 $E_0$ 为中心频率。以下一切导数与积分均相对于 $E$ 而非移相变量计算。*记号统一*:本节出现的 $(w_R h)$ 指函数乘积而非卷积;令
+$$
+g(E):=(h\!\star\!\rho_{\rm rel})(E),\qquad f(E):=w_R(E)\,g(E),
+$$
+后续所有误差界均针对 $f$ 给出。
 
-**Poisson 别名**:若 $\Delta\le \pi/(\Omega_h+\Omega_w)$ 则 $\varepsilon_{\rm alias}=0$(Nyquist)。
+*Poisson 基式*:对上述 $f$ 有
+$$
+\int_{\mathbb R} f(E)\,dE=\Delta\sum_{n\in\mathbb Z} f(E_0+n\Delta)-\sum_{k\ne 0}e^{i(2\pi k/\Delta)E_0}\widehat f\Big(\tfrac{2\pi k}{\Delta}\Big).
+$$
+若 $\mathrm{supp}\,\widehat f\subset(-2\pi/\Delta,2\pi/\Delta)$,第二项为零(无 alias),积分与无限采样和精确相等。仅当 $f$ 近带限或在实现中截断无穷和时,才引入本文 NPE 的 $\varepsilon_{\rm alias},\varepsilon_{\rm tail}$,以及采用有限阶 Euler–Maclaurin 时的 $\varepsilon_{\rm EM}$。
+
+**Poisson 别名(一般近带限)**:设 $\widehat f(\omega)$ 为 $f$ 的傅里叶变换,则
+$$
+|\varepsilon_{\rm alias}|\ \le\ \sum_{k\ne 0}\Big|\widehat f\big(\cdot+2\pi k/\Delta\big)\Big|_{L^1},
+\qquad \widehat f=\widehat{w_R}\ast\Big(\widehat{h}\cdot\widehat{\rho_{\rm rel}}\Big).
+$$
+工程估算可使用
+$$
+|\varepsilon_{\rm alias}|\ \le\ \Bigg(\sum_{k\ne 0}\Big|\widehat{w_R}\big(\cdot+2\pi k/\Delta\big)\Big|_{L^1}\Bigg)\,\Big|\widehat{h}\cdot\widehat{\rho_{\rm rel}}\Big|_{L^\infty},
+$$
+若 $g$ 再次严格带限,上述求和可有限截断并令别名项为零。
+
+**EM 阶数选择(处方)**:给定目标误差阈值 $\varepsilon_{\rm tol}$,取最小 $M$ 使
+$$
+\sum_{m=1}^{M}\frac{|B_{2m}|}{(2m)!}\Big|f^{(2m-1)}\Big|_{L^1}\ \le\ \tfrac12\,\varepsilon_{\rm tol},
+$$
+同时选取 Euler–Maclaurin 余项界 $|R_{2M}|\le \tfrac12\,\varepsilon_{\rm tol}$。这样 $|\varepsilon_{\rm EM}|$ 可控制在既定容差内。
+
 **有限阶 EM**:令取到 $2M$ 阶,则
 $$
-|\varepsilon_{\rm EM}|\ \le\ \sum_{m=1}^{M}\frac{|B_{2m}|}{(2m)!}\,\Big|\,(w_R h)^{(2m-1)}\Big|_{L^1}\;+\;|R_{2M}|,
+|\varepsilon_{\rm EM}|\ \le\ \sum_{m=1}^{M}\frac{|B_{2m}|}{(2m)!}\,\Big|f^{(2m-1)}\Big|_{L^1}\;+\;|R_{2M}|,
 $$
-其中 $R_{2M}$ 为 DLMF 形式的余项(可用周期化伯努利函数显式表示并估界)。
-**尾项**:若 $w_R$ 在 $|E|>\Lambda R$ 上 $L^1$ 可控,且 $|h\!\star\!\rho_{\rm rel}|_{L^\infty}$ 有界,则
+其中 $R_{2M}$ 为 DLMF 形式余项(可用周期化伯努利函数显式表示并估界)。
+
+**尾项**:若 $w_R$ 在 $|E-E_0|>\Lambda R$ 上 $L^1$ 可控,且 $|g|_{L^\infty}$ 有界,则
 $$
-|\varepsilon_{\rm tail}|\ \le\ |w_R\mathbf 1_{|E|>\Lambda R}|_{L^1}\,|h\!\star\!\rho_{\rm rel}|_{L^\infty}.
+|\varepsilon_{\rm tail}|\ \le\ \Big|w_R\mathbf 1_{|E-E_0|>\Lambda R}\Big|_{L^1}\,|g|_{L^\infty}.
 $$
-尺度变换 $R\mapsto\lambda R$ 与谱缩放 $E\mapsto E/(1+z)$ 下,上界按傅里叶—采样对偶协变。([维基百科][2])
+尺度变换 $R\mapsto\lambda R$ 与谱缩放 $E\mapsto E/(1+z)$ 下,上述上界按傅里叶—采样对偶协变。([维基百科][2])
 
 ---
 
-## 附录 C:互构定理的范畴论骨架
+## 附录 C:互构纲要的范畴论骨架
 
 对象:$\mathbf{WScat}$ 的态射为保持卡片 I/II 的滤镜链;$\mathbf{Cau}$ 的态射为保持类光锥与偏序的映射。
 $\mathfrak F$:以 $\operatorname{tr}\mathsf Q$ 等值面与相位奇性构造偏序与锥。
@@ -364,7 +450,7 @@ Toeplitz/Berezin 框架为窗化读数提供算子化实施路径;de Branges 空
 * 以真空**前沿**规范 $c$ 得到**无超锥传播**与到达时间下界;
 * **红移—时间**满足**互易标度律**;**分辨率提升**与**红移放大**严格对偶;
 * 双缝的窗化互补律 $D^2+V^2\le1$ 与 which-way 调谐在同一母刻度下统一;
-* 构造出 **GLS ↔ 因果流形** 的互构定理,完成"散射—因果"双向刻画。
+* 提出 **GLS ↔ 因果流形** 的互构纲要,保留自然同构的严格证明与验证为后续工作。
 
 [1]: https://arxiv.org/pdf/1006.0639?utm_source=chatgpt.com "arXiv:1006.0639v1 [math.SP] 3 Jun 2010"
 [2]: https://en.wikipedia.org/wiki/Nyquist%E2%80%93Shannon_sampling_theorem?utm_source=chatgpt.com "Nyquist–Shannon sampling theorem"
