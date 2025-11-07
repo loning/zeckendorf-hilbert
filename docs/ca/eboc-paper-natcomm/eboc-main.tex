@@ -4,8 +4,17 @@
 \usepackage{mathtools,amssymb,amsfonts}
 \usepackage{bm,bbm}
 \usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{caption}
 \usepackage{hyperref}
 \usepackage[nameinlink]{cleveref}
+
+% Improve line breaking and hyphenation
+\sloppy
+\emergencystretch=1em
+\hbadness=10000
+\vbadness=10000
+\captionsetup{font=small,labelfont=bf}
 
 % Custom macros for symbols
 \newcommand{\Z}{\mathbb{Z}}
@@ -51,7 +60,7 @@
 \maketitle
 
 \begin{abstract}
-\textbf{Objective.} We present \textbf{EBOC (Eternal-Block Observer-Computing)}: a geometry--information unified framework without requiring explicit global time, merging the \textbf{timeless causal encoding} of \textbf{Eternal-Graph Cellular Automata} (EG-CA) with the \textbf{program semantics and observation-decoding} of \textbf{Static-Block Universe Cellular Automata} (SB-CA) into a single formal system, with verifiable information laws and construction algorithms. We regard the static block $X_f$ and the eternal-graph edge shift $(Y_G,\sigma)$ as \textbf{equivalent dual formulations}; below we use $X_f$ as the primary presentation, but every conclusion can be restated on $(Y_G,\sigma)$ via \textbf{graph-shift (countable-state Markov shift) display/encoding equivalence}; when satisfying T13's ``time-Markovizability'' hypotheses, one further obtains sofic/finite-type presentations.
+\textbf{Objective.} We present \textbf{EBOC (Eternal-Block Observer-Computing)}: a geometry--information unified framework without requiring explicit global time, merging the \textbf{timeless causal encoding} of \textbf{Eternal-Graph Cellular Automata} (EG-CA) with the \textbf{program semantics and observation-decoding} of \textbf{Static-Block Universe Cellular Automata} (SB-CA) into a single formal system, with verifiable information laws and construction algorithms. We regard the static block $X_f$ and the eternal-graph edge shift $(Y_G,\sigma)$ as \textbf{equivalent dual formulations}; below we use $X_f$ as the primary presentation, but every conclusion can be restated on $(Y_G,\sigma)$ via \textbf{graph-shift} (countable-state Markov shift) \textbf{display/encoding equivalence}; when satisfying T13's ``time-Markovizability'' hypotheses, one further obtains sofic/finite-type presentations.
 
 \textbf{Three pillars.}
 \begin{enumerate}
@@ -81,28 +90,28 @@ Traditional CA presents ``evolution'' via global-time iteration; block/eternal-g
 
 To clarify contributions vis-\`a-vis existing literature, we classify T1--T26 as follows (see Table~\ref{tab:novelty}):
 
-\begin{table}[h]
+\begin{table}[htbp]
 \centering
 \caption{Novelty classification of main results}\label{tab:novelty}
-\small
-\begin{tabular}{lll}
+\scriptsize
+\begin{tabular}{lp{1.5cm}p{6.8cm}}
 \hline
 Theorem & Status & Notes / Key References \\
 \hline
 T1 & Standard & Natural extension conjugacy~\cite{LindMarcus} \\
-T2 & Refinement & Unimodular covariance with \textbf{explicit non-automatic hypotheses} \\
+T2 & Refinement & Unimodular covariance with explicit non-automatic hypotheses \\
 T3 & New packaging & Observation-as-factor formalization \\
-T4 & \textbf{New} & \textbf{Conditional complexity bound via causal thick boundary} \\
-T5 & Refinement & Brudno alignment~\cite{Brudno1983} with \textbf{normalization discipline} \\
-T6--T9 & \textbf{New} & \textbf{Program emergence in static block; halting witness staticization} \\
+T4 & \textbf{New} & Conditional complexity bound via causal thick boundary \\
+T5 & Refinement & Brudno alignment~\cite{Brudno1983} with normalization discipline \\
+T6--T9 & \textbf{New} & Program emergence in static block; halting witness staticization \\
 T10 & Refinement & Information stability under coordinate changes \\
 T11 & Standard & Model set definition \\
 T12 & Standard & CA-TM simulation~\cite{Moore1962,Myhill1963}; CSP embedding~\cite{Berger} \\
-T13 & Refinement & Sofic $\omega$-language with \textbf{explicit Markovizability conditions}~\cite{Buchi,Thomas} \\
-T14--T16 & \textbf{New} & \textbf{SBU existence; causal extension; deterministic progression} \\
-T17--T18 & \textbf{New} & \textbf{Multi-anchor observers; subjective time rate; coordinate relativization} \\
-T19--T20 & \textbf{New} & \textbf{Apparent choice vs determinism unification} \\
-T21--T22 & Refinement & Information laws~\cite{LiVitanyi} with \textbf{Følner normalization discipline} \\
+T13 & Refinement & Sofic $\omega$-language with explicit Markovizability conditions~\cite{Buchi,Thomas} \\
+T14--T16 & \textbf{New} & SBU existence; causal extension; deterministic progression \\
+T17--T18 & \textbf{New} & Multi-anchor observers; subjective time rate; coordinate relativization \\
+T19--T20 & \textbf{New} & Apparent choice vs determinism unification \\
+T21--T22 & Refinement & Information laws~\cite{LiVitanyi} with Følner normalization discipline \\
 T23--T25 & New application & Observation pressure geometry (exponential-family framework) \\
 T26 & Standard & Garden-of-Eden theorem~\cite{Moore1962} \\
 \hline
@@ -148,9 +157,10 @@ The key insight: \textbf{``time'' is leaf-by-leaf reading, not evolution}. What 
 
 \textbf{Information bound (T4 application).} For window $W=R\times[0,T-1]$ ($R$ finite spatial region, $T$ time steps):
 \begin{align*}
-K(\pi(x|_W)\,|\,x|_{\partial_\downarrow W^-})
-&\le K(f)+K(W)+K(\pi)+O(\log|W|) \\
-&= O(1)+O(\log T)+O(1)+O(\log T)=O(\log T).
+&K(\pi(x|_W)\,|\,x|_{\partial_\downarrow W^-}) \\
+&\quad\le K(f)+K(W)+K(\pi)+O(\log|W|) \\
+&\quad= O(1)+O(\log T)+O(1)+O(\log T) \\
+&\quad=O(\log T).
 \end{align*}
 The visible trace $\pi(x|_W)\in\Gamma^{\lfloor T/5\rfloor}$ (step-size $b=5$ for macroblock rhythm) has conditional complexity $O(\log T)$ given thick boundary—\textbf{without invoking entropy}, directly from causal dependence geometry.
 
@@ -168,11 +178,11 @@ Empirically: $r_k\to h_{\pi_\ast\mu}(\sigma_{\mathrm{time}})$ (T5 Brudno alignme
 \subsection{Subjective Time and Multi-Anchor Observers (T17--T18)}
 
 \textbf{Step-size parameterization.} Different observers may adopt different leaf-progression step-sizes $b=\langle\tau^\star,\tau\rangle\ge1$. For fixed spatial cross-section $R$ and time-slice cuboid family $W_k=R\times[t_k,t_k+T_k-1]$:
-$$
+\begin{align*}
 \limsup_{k\to\infty}\frac{K(\pi(x|_{W_k}))}{T_k}
-=\frac{1}{b}h_{\pi_\ast\mu}(\sigma_{\mathrm{time}}^{b},\alpha_R^\pi)
-\le h_{\pi_\ast\mu}(\sigma_{\mathrm{time}},\alpha_R^\pi).
-$$
+&=\frac{1}{b}h_{\pi_\ast\mu}(\sigma_{\mathrm{time}}^{b},\alpha_R^\pi) \\
+&\le h_{\pi_\ast\mu}(\sigma_{\mathrm{time}},\alpha_R^\pi).
+\end{align*}
 \textbf{Interpretation}: Larger step $b$ (``slower subjective time'') yields \textbf{monotonically lower} observation entropy rate per unit temporal thickness. Under generating partition limit ($R_k\uparrow\Z^d$), rate becomes $h_{\pi_\ast\mu}(\sigma_{\mathrm{time}})$, \textbf{independent of $b$}—subjective time-dilation doesn't change total information, only observational density.
 
 \textbf{Coordinate relativization (T18).} Two observers using unimodular-related coordinates $(U_1,U_2)$ satisfying Assumption~\ref{assump:U} observe same entropy rate (up to constant factor from thickness comparability). Extra encoding cost for coordinate conversion: $O(K(W))$, absorbed into window description—\textbf{no per-sample data complexity penalty}.
@@ -244,10 +254,10 @@ Combined with T21 applied to $F^{-1}$, yields two-sided bound forcing equality. 
 
 \begin{itemize}
 \item Finite neighborhood $N\subset \Z^{d}$, local rule $f:\Sigma^{|N|}\to\Sigma$:
-$$
-x(\mathbf r+N,t)\coloneqq\big(x(\mathbf r+\mathbf n,t)\big)_{\mathbf n\in N}\in\Sigma^{|N|},\qquad
-x(\mathbf r,t)=f\big(x(\mathbf r+N, t-1)\big).
-$$
+\begin{align*}
+x(\mathbf r+N,t)&\coloneqq\big(x(\mathbf r+\mathbf n,t)\big)_{\mathbf n\in N}\in\Sigma^{|N|}, \\
+x(\mathbf r,t)&=f\big(x(\mathbf r+N, t-1)\big).
+\end{align*}
 \item \textbf{Global map}
 $$
 F:\Sigma^{\Z^{d}}\to\Sigma^{\Z^{d}},\qquad (F(x))(\mathbf r)=f\big(x(\mathbf r+N)\big).
@@ -258,14 +268,16 @@ $$
 
 \begin{itemize}
 \item \textbf{Space-time SFT}
-$$
-X_f:=\Big\{x\in\Sigma^{\Z^{d+1}}:\ \forall(\mathbf r,t),\ x(\mathbf r,t)=f\big(x(\mathbf r+N,t-1)\big)\Big\}.
-$$
+\begin{align*}
+X_f:=\Big\{x\in\Sigma^{\Z^{d+1}}:\ &\forall(\mathbf r,t),\\
+&x(\mathbf r,t)=f\big(x(\mathbf r+N,t-1)\big)\Big\}.
+\end{align*}
 \item \textbf{Eternal graph} $G=(V,E)$: vertices $V$ encode local patterns (events), edges $E$ encode causal/consistency relations.
 \item \textbf{Edge shift}
-$$
-Y_G=\Big\{(e_t)_{t\in\Z}\in E^{\Z}:\ \forall t,\ \mathrm{tail}(e_{t+1})=\mathrm{head}(e_t)\Big\}.
-$$
+\begin{align*}
+Y_G=\Big\{(e_t)_{t\in\Z}\in E^{\Z}:\ &\forall t, \\
+&\mathrm{tail}(e_{t+1})=\mathrm{head}(e_t)\Big\}.
+\end{align*}
 \end{itemize}
 
 \subsection{Foliation and leaf-by-leaf reading protocol}
@@ -315,25 +327,29 @@ $$
 r:=\max_{\mathbf n\in N}|\mathbf n|_{\infty}.
 $$
 \item Define
-$$
-t_-=\min\Big\{t:(\mathbf r,t)\in W\Big\},\quad
-t_+=\max\Big\{t:(\mathbf r,t)\in W\Big\},\quad
-T=t_+-t_-+1.
-$$
+\begin{align*}
+t_-&=\min\Big\{t:(\mathbf r,t)\in W\Big\}, \\
+t_+&=\max\Big\{t:(\mathbf r,t)\in W\Big\}, \\
+T&=t_+-t_-+1.
+\end{align*}
 \item Base $\mathrm{base}(W)=\Big\{(\mathbf r,t_-)\in W\Big\}$.
 \item \textbf{Layer-by-layer dependence domain (general window)}: for arbitrary window $W\subset\Z^{d+1}$, denote spatial projection of layer $s$ as
 $$
 \mathrm{Proj}_s(W):=\Big\{\mathbf r\in\Z^d:(\mathbf r,s)\in W\Big\}.
 $$
 Define layer-by-layer past causal dependence domain as
-$$
-\Delta_{\mathrm{dep}}^-(W):=\Big(\bigcup_{s=t_-}^{t_+}\big(\mathrm{Proj}_s(W)+[-r(s-t_-+1),r(s-t_-+1)]^d\big)\Big)\times\{t_--1\}.
-$$
+\begin{align*}
+\Delta_{\mathrm{dep}}^-(W):=&\Big(\bigcup_{s=t_-}^{t_+}\big(\mathrm{Proj}_s(W) \\
+&\quad\quad+[-r(s-t_-+1), \\
+&\quad\quad\quad r(s-t_-+1)]^d\big)\Big) \\
+&\times\{t_--1\}.
+\end{align*}
 This covers all causal dependencies of $x|_W$. For describable window families, $K(\Delta_{\mathrm{dep}}^-(W))=O(K(W)+\log|W|)$.
 \item \textbf{Time-slice cuboid special case}: when $W=R\times[t_-,t_+]$ is time-slice cuboid,
-$$
-\Delta_{\mathrm{dep}}^-(W)=\big(R+[-rT,rT]^d\big)\times\{t_--1\}=:\partial_{\downarrow}^{(r,T)}W^-.
-$$
+\begin{align*}
+\Delta_{\mathrm{dep}}^-(W)&=\big(R+[-rT,rT]^d\big)\times\{t_--1\} \\
+&=:\partial_{\downarrow}^{(r,T)}W^-.
+\end{align*}
 \end{itemize}
 
 Convention: $T$ in this and subsequent T4 refers to crossed temporal layers (consistent with $L(W)$ in \S2.4). Non-standard leaf cases first map back to standard coordinates via $U^{-1}$ then take image. Throughout we use fixed canonical encoding for $K(W)$, including possible coordinate-switching descriptions.
@@ -343,15 +359,20 @@ Convention: $T$ in this and subsequent T4 refers to crossed temporal layers (con
 $G$ carries no global coordinates. Choose anchor $v_0$, relative embedding $\varphi_{v_0}:\mathrm{Ball}_G(v_0,R_0)\to\Z^{d+1}$ satisfying $\varphi_{v_0}(v_0)=(\mathbf 0,0)$, with layer function along $\tau$ monotone non-decreasing, spatial adjacency finite shift. Pre-fix by ``local pattern $\to$ vertex'' minimal display radius $R_0$; all relevant definitions and constructions uniformly adopt this fixed $R_0$.
 
 Layer function
-$$
-\ell(w):=\langle\tau^\star,\varphi_{v_0}(w)\rangle,\qquad
-\mathrm{Cone}^+_{\ell}(v):=\Big\{w\in \mathrm{Dom}(\varphi_{v_0}):\ \exists v\leadsto w\ \text{and }\ell\ \text{monotone non-decreasing along path}\Big\}.
-$$
+\begin{align*}
+\ell(w)&:=\langle\tau^\star,\varphi_{v_0}(w)\rangle, \\
+\mathrm{Cone}^+_{\ell}(v)&:=\Big\{w\in \mathrm{Dom}(\varphi_{v_0}): \\
+&\quad\exists v\leadsto w\ \text{and }\ell \\
+&\quad\text{monotone non-decreasing along path}\Big\}.
+\end{align*}
 
 \textbf{SBU (Static Block Unfolding)}
-$$
-X_f^{(v,\tau)}:=\Big\{x\in X_f:\ x\big|_{\varphi_{v_0}(\mathrm{Ball}_G(v,R_0))}=\mathrm{pat}(v)\ \text{and}\ x\ \text{is consistent extension in}\ \varphi_{v_0}\!\big(\mathrm{Cone}^+_\ell(v)\big)\Big\},
-$$
+\begin{align*}
+X_f^{(v,\tau)}:=\Big\{x\in X_f:\ &x\big|_{\varphi_{v_0}(\mathrm{Ball}_G(v,R_0))} \\
+&=\mathrm{pat}(v)\ \text{and}\ x \\
+&\text{is consistent extension in} \\
+&\varphi_{v_0}\!\big(\mathrm{Cone}^+_\ell(v)\big)\Big\},
+\end{align*}
 where ``consistent extension'' means: all cells in this cone uniquely determined by anchor $v$ and local rule forcing match with $x$. Here ``\textbf{forcing}'' means: cell values uniquely determined solely by anchor $v$ within given cone domain via \textbf{finite-step local constraint closure}; SBU only requires matching these unique forced values. ``Finite-step closure'' realized as radius-monotone expansion iteration; if a cell remains undetermined after finite iterations, not counted in forcing domain.
 
 \subsection{Eternal-graph--SFT dual formulation (working principle)}
@@ -388,11 +409,11 @@ For arbitrary window $W$, $K(\pi(x|_W))\le K(x|_W)+K(\pi)+O(1)$.
 \section{Observation Language and Equivalence}
 
 Fix $(\pi,\varsigma)$ and leaf family $\cL$,
-$$
-\mathsf{Lang}_{\pi,\varsigma}(X_f):=\Big\{\cO_{\pi,\varsigma}(x)\in\Gamma^{\N}:x\in X_f,\ \text{leaf-by-leaf reading per }\cL\Big\},
-\qquad
-x\sim_{\pi,\varsigma}y\iff \cO_{\pi,\varsigma}(x)=\cO_{\pi,\varsigma}(y).
-$$
+\begin{align*}
+\mathsf{Lang}_{\pi,\varsigma}(X_f)&:=\Big\{\cO_{\pi,\varsigma}(x)\in\Gamma^{\N}:x\in X_f, \\
+&\quad\text{leaf-by-leaf reading per }\cL\Big\}, \\
+x\sim_{\pi,\varsigma}y&\iff \cO_{\pi,\varsigma}(x)=\cO_{\pi,\varsigma}(y).
+\end{align*}
 
 \section{Preliminary Lemmas}
 
@@ -426,10 +447,10 @@ If using general Følner windows or normalizing by $|W|$, limit corresponds to $
 \textbf{Encoding convention.} Below we concatenate $x|_{W_k}=x|_{R\times[t_k,t_k+T_k-1]}$ in temporal progression order as length-$T_k$ sequence over alphabet $\Sigma^R$, adopting fixed invertible canonical encoding; thus 2D-block to sequence conversion brings only $O(\log T_k)$ description overhead, not affecting density limits.
 
 Denote $L(W_k)=T_k$ (temporal thickness), then
-$$
--\frac1{T_k}\log \mu\big([x|_{W_k}]\big)\to h_\mu(\sigma_{\mathrm{time}},\alpha_R)\quad (\mu\text{-a.e.}),\qquad
-\limsup_{k\to\infty}\frac{K(x|_{W_k})}{T_k}=h_\mu(\sigma_{\mathrm{time}},\alpha_R)\quad (\mu\text{-a.e.}).
-$$
+\begin{align*}
+-\frac1{T_k}\log \mu\big([x|_{W_k}]\big)&\to h_\mu(\sigma_{\mathrm{time}},\alpha_R)\quad (\mu\text{-a.e.}), \\
+\limsup_{k\to\infty}\frac{K(x|_{W_k})}{T_k}&=h_\mu(\sigma_{\mathrm{time}},\alpha_R)\quad (\mu\text{-a.e.}).
+\end{align*}
 
 This is one-dimensional SMB/Brudno theorem for time subaction $\sigma_{\mathrm{time}}$ or equivalently $(\Omega(F),\sigma_\Omega)$. \textbf{Window shape must be time-slice cuboid family} (or satisfy equivalent ``temporally uniform slicing'' condition), ensuring cylinder set $[x|_{W_k}]$ generated by one-dimensional generating partition iteration of time subaction, thus normalization matches action. If adopting general $W_k$, can only ensure limit under $|W_k|$ normalization equals $\mathbb{Z}^{d+1}$ action entropy $h_\mu^{(d+1)}$, or under additional uniform slicing/density hypotheses recover time-entropy limit.
 
@@ -441,11 +462,10 @@ For fixed finite $R$, above limit equals $h_\mu(\sigma_{\mathrm{time}},\alpha_R)
 
 \begin{theoremT}[Block--natural extension conjugacy]\label{thm:T1}
 If $X_f\neq\varnothing$, then
-$$
-\boxed{ (X_f,\sigma_{\mathrm{time}})\cong(\Omega(F),\sigma_\Omega) },
-\quad
-\Omega(F)=\Big\{(\ldots,x_{-1},x_0,x_1,\ldots):F(x_t)=x_{t+1}\Big\}.
-$$
+\begin{align*}
+&\boxed{ (X_f,\sigma_{\mathrm{time}})\cong(\Omega(F),\sigma_\Omega) }, \\
+&\Omega(F)=\Big\{(\ldots,x_{-1},x_0,x_1,\ldots):F(x_t)=x_{t+1}\Big\}.
+\end{align*}
 \end{theoremT}
 
 \begin{proof}
@@ -460,9 +480,10 @@ For two acceptable-leaf systems given by $U_1,U_2\in\mathrm{GL}_{d+1}(\Z)$ with 
 
 \begin{enumerate}[(U1)]
 \item \textbf{Time-slice cuboid structure}: $\{W_k\}$ and $\{\tilde W_k\}$ are respective time-slice cuboid Følner families in their time directions:
-$$
-W_k=R\times[t_k,t_k+T_k-1],\quad \tilde W_k=\tilde R\times[\tilde t_k,\tilde t_k+\tilde T_k-1],
-$$
+\begin{align*}
+W_k&=R\times[t_k,t_k+T_k-1], \\
+\tilde W_k&=\tilde R\times[\tilde t_k,\tilde t_k+\tilde T_k-1],
+\end{align*}
 where $R,\tilde R\subset\Z^d$ are fixed finite spatial cross-sections (independent of $k$).
 
 \item \textbf{Step-size uniformity}: Leaf families given by primitive integral covector--time vector pairs $(\tau_i^\star,\tau_i)$ satisfy pairing constants $b_i=\langle\tau_i^\star,\tau_i\rangle\ge1$ that are independent of $k$.
@@ -481,12 +502,12 @@ For general $U\in\mathrm{GL}_{d+1}(\Z)$, image $U(W_k)$ may be tilted polyhedron
 \end{remark}
 
 \textbf{Proposition (under Assumption~\ref{assump:U}).} For arbitrary shift-invariant ergodic measure $\mu$ and two acceptable-leaf systems satisfying Assumption~\ref{assump:U}, we have for $\mu$-a.e. $x$,
-$$
+\begin{align*}
 \limsup_{k\to\infty}\frac{K(\pi(x|_{W_k}))}{L(W_k)}
-=h_{\pi_\ast\mu}\big(\sigma_{\mathrm{time}},\alpha_R^\pi\big),\qquad
+&=h_{\pi_\ast\mu}\big(\sigma_{\mathrm{time}},\alpha_R^\pi\big), \\
 \limsup_{k\to\infty}\frac{K(\pi(x|_{\tilde W_k}))}{L(\tilde W_k)}
-=h_{\pi_\ast\mu}\big(\sigma_{\mathrm{time}},\alpha_{\tilde R}^\pi\big).
-$$
+&=h_{\pi_\ast\mu}\big(\sigma_{\mathrm{time}},\alpha_{\tilde R}^\pi\big).
+\end{align*}
 
 \begin{proof}
 \textbf{All steps below invoke Assumption~\ref{assump:U}.} Integer isomorphism $U=U_2U_1^{-1}$ preserves Følner property: if $\{W_k\}$ Følner family then $\{\tilde W_k\}$ likewise, and $|\tilde W_k|=|W_k|$ (integer determinant $\pm1$; here $\tilde W_k$ denotes lattice-point image set $U(W_k)$, even if shape non-axis-aligned, lattice-point count equal). By (U3), leaf counting (temporal thickness) scales by constant multiple, bound given by linear map's action on leaf normal vectors and bounded geometric distortion of fixed cross-sections $R,\tilde R$ guaranteed by (U1).
@@ -503,9 +524,12 @@ $\cO_{\pi,\varsigma}:X_f\to\Gamma^{\N}$ is factor map of time subaction, inducin
 \end{theoremT}
 
 \begin{theoremT}[Information upper bound: conditional complexity version]\label{thm:T4}
-$$
-\boxed{ K\Big(\pi(x|_{W})\Big|x\big|_{\Delta_{\mathrm{dep}}^-(W)}\Big)\le K(f)+K(W)+K(\pi)+O(\log |W|) }.
-$$
+\begin{equation*}
+\boxed{ \begin{aligned}
+K\Big(\pi(x|_{W})\Big|x\big|_{\Delta_{\mathrm{dep}}^-(W)}\Big) &\le K(f)+K(W)+K(\pi) \\
+& \quad +O(\log |W|)
+\end{aligned} }
+\end{equation*}
 where $\Delta_{\mathrm{dep}}^-(W)$ is layer-by-layer causal dependence domain (see \S2.6). For time-slice cuboid $W=R\times[t_-,t_+]$, domain reduces to $\partial_{\downarrow}^{(r,T)}W^-$.
 \end{theoremT}
 
@@ -547,21 +571,22 @@ If coordinate switching/integer affine $U$ needed, its description length absorb
 \end{remark}
 
 \textbf{Proposition (Fixed cross-section case).} For \textbf{fixed finite spatial cross-section $R\subset\Z^d$} and \textbf{time-slice cuboid family} $\{W_k = R \times [t_k, t_k+T_k-1]\}$ (where $T_k\to\infty$, satisfying Lemma~\ref{lem:5.5}'s window premises), adopting Lemma~\ref{lem:5.5}'s encoding convention (concatenating 2D blocks in temporal progression order as sequences), normalizing by temporal thickness $L(W_k)=T_k$:
-$$
-\limsup_{k\to\infty}\frac{K(x|_{W_k})}{T_k}=h_\mu(\sigma_{\mathrm{time}},\alpha_R),\qquad
-\limsup_{k\to\infty}\frac{K(\pi(x|_{W_k}))}{T_k}=h_{\pi_\ast\mu}(\sigma_{\mathrm{time}},\alpha_R^\pi)\le h_\mu(\sigma_{\mathrm{time}}).
-$$
+\begin{align*}
+\limsup_{k\to\infty}\frac{K(x|_{W_k})}{T_k}&=h_\mu(\sigma_{\mathrm{time}},\alpha_R), \\
+\limsup_{k\to\infty}\frac{K(\pi(x|_{W_k}))}{T_k}&=h_{\pi_\ast\mu}(\sigma_{\mathrm{time}},\alpha_R^\pi)\le h_\mu(\sigma_{\mathrm{time}}).
+\end{align*}
 Here $\alpha_R=\{[p]_{R\times\{0\}}:p\in\Sigma^R\}$ is the \textbf{fixed} observation partition; limits equal \textbf{relative entropy} $h_\mu(\sigma_{\mathrm{time}},\alpha_R)$, \textbf{not} the full KS entropy.
 
 \textbf{Proposition (Generating partition case).} If instead adopting \textbf{spatially growing cross-section family} $\{R_k\}$ with $R_k\uparrow\Z^d$ such that
-$$
-\bigvee_{i\in\Z}\sigma_{\mathrm{time}}^i\alpha_{R_k}\quad\text{generates entire }\sigma\text{-algebra as }k\to\infty
-$$
+\begin{align*}
+\bigvee_{i\in\Z}\sigma_{\mathrm{time}}^i\alpha_{R_k}\quad&\text{generates entire }\sigma\text{-algebra} \\
+&\text{as }k\to\infty
+\end{align*}
 (i.e., $\{\alpha_{R_k}\}$ forms a \textbf{generating partition sequence}), then
-$$
-\limsup_{k\to\infty}\frac{K(x|_{W_k})}{T_k}=h_\mu(\sigma_{\mathrm{time}}),\qquad
-\limsup_{k\to\infty}\frac{K(\pi(x|_{W_k}))}{T_k}=h_{\pi_\ast\mu}(\sigma_{\mathrm{time}}),
-$$
+\begin{align*}
+\limsup_{k\to\infty}\frac{K(x|_{W_k})}{T_k}&=h_\mu(\sigma_{\mathrm{time}}), \\
+\limsup_{k\to\infty}\frac{K(\pi(x|_{W_k}))}{T_k}&=h_{\pi_\ast\mu}(\sigma_{\mathrm{time}}),
+\end{align*}
 recovering the \textbf{full Kolmogorov--Sinai entropy} (supremum over all partitions).
 
 \begin{note}
@@ -623,9 +648,10 @@ By Lemmas~\ref{lem:5.1}--\ref{lem:5.2}, window description complexity $K(W)$ is 
 \end{proof}
 
 \begin{theoremT}[Model set semantics]\label{thm:T11}
-$$
-X_f=\mathcal T_f(\mathsf{Conf})=\Big\{x\in\Sigma^{\Z^{d+1}}:\forall(\mathbf r,t),\ x(\mathbf r,t)=f(x(\mathbf r+N,t-1))\Big\}.
-$$
+\begin{align*}
+X_f=\mathcal T_f(\mathsf{Conf})=\Big\{x\in\Sigma^{\Z^{d+1}}:&\forall(\mathbf r,t), \\
+&x(\mathbf r,t)=f(x(\mathbf r+N,t-1))\Big\}.
+\end{align*}
 \end{theoremT}
 
 \begin{proof}
@@ -651,15 +677,17 @@ $$
 \textbf{Step 1: Finite-memory reduction.} Under time-direction Markovizability condition, take higher-order block representation $X_f^{[k]}$ such that cross-leaf consistency depends only on adjacent $k$ layers. Let $\Sigma^{[k]}$ denote extended alphabet encoding $k$-blocks.
 
 \textbf{Step 2: Automaton state space.} Define finite state set
-$$
-Q\ :=\ \big\{[\sigma_0,\ldots,\sigma_{k-1}]:\ (\sigma_0,\ldots,\sigma_{k-1})\text{ forms valid } k\text{-layer configuration}\big\}.
-$$
+\begin{align*}
+Q\ :=\ \big\{[\sigma_0,\ldots,\sigma_{k-1}]:\ &(\sigma_0,\ldots,\sigma_{k-1})\text{ forms valid} \\
+&k\text{-layer configuration}\big\}.
+\end{align*}
 Initial state $q_0\in Q$ arbitrary (or determined by boundary condition).
 
 \textbf{Step 3: Transition function.} For each state $q=[\sigma_0,\ldots,\sigma_{k-1}]$ and input symbol $a\in\Gamma$ (visible alphabet), define
-$$
-\delta(q,a)\ =\ \big\{[\sigma_1,\ldots,\sigma_{k-1},\sigma_k]:\ \pi(\sigma_0,\ldots,\sigma_k)=a\text{ and local SFT constraints satisfied}\big\}.
-$$
+\begin{align*}
+\delta(q,a)\ =\ \big\{[\sigma_1,\ldots,\sigma_{k-1},\sigma_k]:\ &\pi(\sigma_0,\ldots,\sigma_k)=a \\
+&\text{and local SFT constraints satisfied}\big\}.
+\end{align*}
 Here $\pi$ acts on $(k+1)$-layer window (kernel $B$ with thickness $\delta_B\le k$) outputting symbol $a$.
 
 \textbf{Step 4: Acceptance condition.} For liveness/safety properties:
@@ -715,17 +743,17 @@ The non-increasing property $\frac{1}{b}h_\mu(T^b,\alpha)\le h_\mu(T,\alpha)$ fo
 
 \begin{proof}
 Time subaction changed to $\sigma_{\mathrm{time}}^b$ equivalent to ``sampling'' on $\Z$ subaction ($\sigma_\Omega^b$). For time-slice cuboid $W$, \textbf{observation step count} is $\lfloor L(W)/b\rfloor$ (see \S2.4), while normalization adopts \textbf{temporal thickness} $L(W)=T$. Thus for fixed finite cross-section $R$,
-$$
-\frac{K(\pi(x|_W))}{L(W)}\ \sim\ \frac{\lfloor L(W)/b\rfloor}{L(W)}\cdot h_{\pi_\ast\mu}(\sigma_{\mathrm{time}}^{b},\alpha_R^\pi)
-=\frac1b\cdot h_{\pi_\ast\mu}\!\big(\sigma_{\mathrm{time}}^{b},\alpha_R^\pi\big).
-$$
+\begin{align*}
+\frac{K(\pi(x|_W))}{L(W)}\ &\sim\ \frac{\lfloor L(W)/b\rfloor}{L(W)}\cdot h_{\pi_\ast\mu}(\sigma_{\mathrm{time}}^{b},\alpha_R^\pi) \\
+&=\frac1b\cdot h_{\pi_\ast\mu}\!\big(\sigma_{\mathrm{time}}^{b},\alpha_R^\pi\big).
+\end{align*}
 
 \textbf{Conclusion (corrected)}: For fixed finite cross-section $R$ and time-slice cuboid families,
-$$
+\begin{align*}
 \limsup_{k\to\infty}\frac{K(\pi(x|_{W_k}))}{L(W_k)}
-=\frac{1}{b}\,h_{\pi_\ast\mu}\!\big(\sigma_{\mathrm{time}}^{b},\alpha_R^\pi\big)
-\le h_{\pi_\ast\mu}\!\big(\sigma_{\mathrm{time}},\alpha_R^\pi\big).
-$$
+&=\frac{1}{b}\,h_{\pi_\ast\mu}\!\big(\sigma_{\mathrm{time}}^{b},\alpha_R^\pi\big) \\
+&\le h_{\pi_\ast\mu}\!\big(\sigma_{\mathrm{time}},\alpha_R^\pi\big).
+\end{align*}
 Hence \textbf{monotone non-increasing} in step-size $b$. If instead adopting spatially growing cross-section family $R_k\uparrow\Z^d$ forming generating partition, right side approaches
 $$
 \frac{1}{b}\,h_{\pi_\ast\mu}(\sigma_{\mathrm{time}}^{b})
@@ -774,10 +802,10 @@ where $\partial W_k:=\{x\in W_k:\exists y\notin W_k,\,\|x-y\|_1=1\}$ is the \tex
 
 \begin{lemma}[Minkowski thickening stability for F\o lner families]\label{lem:Minkowski}
 Let $\{W_k\}$ be a F\o lner family in $\Z^d$ and $\rho\in\N$ fixed. Define the \textbf{Minkowski $\rho$-thickening}
-$$
-W_k^{+\rho}:=\big\{x\in\Z^d:\exists y\in W_k,\,\|x-y\|_\infty\le\rho\big\}
-\quad(\text{or equivalently }W_k+[-\rho,\rho]^d).
-$$
+\begin{align*}
+W_k^{+\rho}:=\big\{x\in\Z^d:\exists y\in W_k,&\,\|x-y\|_\infty\le\rho\big\} \\
+&(\text{or equivalently }W_k+[-\rho,\rho]^d).
+\end{align*}
 Then $\{W_k^{+\rho}\}$ is also F\o lner, and
 $$
 \lim_{k\to\infty}\frac{|W_k^{+\rho}|}{|W_k|}=1.
@@ -1045,40 +1073,40 @@ Convergence is monotonic and consistent with T5's prediction: computable compres
 
 \subsection{Visual Summary}
 
-\begin{figure}[h]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=0.9\textwidth]{fig1_spacetime_diagrams.pdf}
+\includegraphics[width=0.9\textwidth]{fig1_spacetime_diagrams.png}
 \caption{\textbf{Spacetime Block Visualizations.} (Left) Rule-110 exhibits complex, irregular patterns characteristic of universal computation. (Right) Rule-90 displays regular, self-similar fractal structure (Sierpiński triangle). Both are static blocks $X_f \subset \{0,1\}^{\mathbb{Z}^2}$ satisfying local rule $f$; ``time evolution'' is leaf-by-leaf reading artifact.}
 \label{fig:spacetime}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=0.9\textwidth]{fig2_T4_reconstruction.pdf}
+\includegraphics[width=0.9\textwidth]{fig2_T4_reconstruction.png}
 \caption{\textbf{T4 Thick Boundary Verification.} (Left) Ground truth window $x|_W$. (Center) Reconstructed from thick boundary alone. (Right) Difference map showing \textbf{zero errors}—perfect reconstruction validates T4's causal dependency analysis and conditional complexity bound.}
 \label{fig:T4_reconstruction}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=0.7\textwidth]{fig3_T5_entropy_convergence.pdf}
+\includegraphics[width=0.7\textwidth]{fig3_T5_entropy_convergence.png}
 \caption{\textbf{T5 Brudno Convergence.} Normalized compression rate $K(\pi(x|_W))/T$ vs temporal thickness $T$. Both systems exhibit monotonic convergence to finite entropy rates, with Rule-110 (complex) stabilizing at $\approx 0.10$ bytes/step and Rule-90 (linear) at $\approx 0.09$ bytes/step. Log-scale $T$-axis highlights convergence behavior; asymptotic rates reflect time-subaction entropy $h_{\pi_\ast\mu}(\sigma_{\mathrm{time}})$.}
 \label{fig:T5_convergence}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=0.7\textwidth]{fig4_T17_subjective_time.pdf}
+\includegraphics[width=0.7\textwidth]{fig4_T17_subjective_time.png}
 \caption{\textbf{T17 Subjective Time Rate Dependence.} Entropy rate (normalized by temporal thickness $T$, not observation steps) vs step-size $b$. Larger $b$ (``slower'' subjective time) yields \textbf{monotonically lower} information density per unit $T$, consistent with $h_{\mathrm{obs}} \propto 1/b$ prediction. All curves converge as $T \to \infty$, approaching system's intrinsic $h_{\pi_\ast\mu}(\sigma_{\mathrm{time}})$.}
 \label{fig:T17_subjective}
 \end{figure}
 
-\begin{table}[h]
+\begin{table}[htbp]
 \centering
 \caption{Experimental verification summary for core theorems}
 \label{tab:verification_results}
-\small
-\begin{tabular}{lll}
+\scriptsize
+\begin{tabular}{lp{3.5cm}p{4.5cm}}
 \hline
 \textbf{Theorem} & \textbf{Metric} & \textbf{Result} \\
 \hline
@@ -1233,6 +1261,11 @@ Encyclopedia of Mathematics and its Applications \textbf{60}, Cambridge Universi
 Hedlund, G. A.
 Endomorphisms and automorphisms of the shift dynamical system.
 \textit{Mathematical Systems Theory} \textbf{3}, 320--375 (1969).
+
+\bibitem{Walters}
+Walters, P.
+\textit{An Introduction to Ergodic Theory}.
+Graduate Texts in Mathematics \textbf{79}, Springer (1982).
 
 \bibitem{RBIT}
 Ma, H. \& Zhang, W.
