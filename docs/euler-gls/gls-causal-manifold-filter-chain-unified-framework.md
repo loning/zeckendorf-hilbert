@@ -2,7 +2,7 @@
 
 ## ——窗化群延迟、红移与光速的公理化理论、互构纲要与非渐近误差闭合(完整版)
 
-**Version: 3.5**
+**Version: 3.9**
 
 ## 摘要
 
@@ -10,7 +10,7 @@
 $$
 \boxed{\ \frac{\varphi'(E)}{\pi}=\rho_{\rm rel}(E)=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E),\qquad \mathsf Q(E)=-i\,S(E)^\dagger \tfrac{dS}{dE}(E)\ }
 $$
-为母刻度(相位导数—相对态密度—Wigner–Smith 群延迟迹)的公理化理论。核心结果:(i)以**窗化群延迟读数**定义**时间**并证明串并联可加、规范协变/相对不变(当 $U,V$ 与能量无关或 $\det U\cdot\det V\equiv1$ 时保持不变);(ii)以谱缩放刻画**红移**并证明与时间的互易标度律;(iii)以真空**前沿**规范光速 $c$,给出任意物理通道的**前沿下界**与**无超锥传播**;(iv)提出"GLS ↔ 因果流形"的**互构纲要**,给出构造骨架与一致性条件,**严格证明及自然性验证另文呈现**;(v)在同一账本中统一**波/粒二象性**与双缝的窗化互补不等式 $D^2+V^2\le 1$;(vi)阐明"分辨率提升 = 宇宙膨胀(红移放大)"的严格对偶,并给出 Nyquist–Poisson–Euler–Maclaurin(NPE)**有限阶**误差闭合与工程化处方。理论全程采用算子—测度—函数语言(Toeplitz/Berezin 压缩 $K_{w,h}$,读数 = 对谱测度的线性泛函),在全局幺正公设下将一切时间/密度读数统一由 $\mathsf Q=-iS^\dagger S'$ 定义,实验性非幺正均通过幺正扩张 $\widehat S$ 回推母刻度。
+为母刻度(相位导数—相对态密度—Wigner–Smith 群延迟迹)的公理化理论。核心结果:(i)以**窗化群延迟读数**提供时间的操作化刻度,并证明其串并联可加、规范协变/相对不变(当 $U,V$ 与能量无关或 $\det U\cdot\det V\equiv1$ 时保持不变);在真空链路上,其 Nyquist 极限与前沿速度标定 $c$ 等值;(ii)以谱缩放刻画**红移**并证明与时间的互易标度律;(iii)以真空**前沿**规范光速 $c$,给出任意物理通道的**前沿下界**与**无超锥传播**;(iv)提出"GLS ↔ 因果流形"的**互构纲要**,给出构造骨架与一致性条件,**严格证明及自然性验证另文呈现**;(v)在同一账本中统一**波/粒二象性**与双缝的窗化互补不等式 $D^2+V^2\le 1$;(vi)阐明"分辨率提升 = 宇宙膨胀(红移放大)"的严格对偶,并给出 Nyquist–Poisson–Euler–Maclaurin(NPE)**有限阶**误差闭合与工程化处方。理论全程采用算子—测度—函数语言(Toeplitz/Berezin 压缩 $K_{w,h}$,读数 = 对谱测度的线性泛函),在全局幺正公设下将一切时间/密度读数统一由 $\mathsf Q=-iS^\dagger S'$ 定义,实验性非幺正均通过幺正扩张 $\widehat S$ 回推母刻度。
 
 ---
 
@@ -20,10 +20,11 @@ $$
 
 默认采用 $\hbar=1$(必要时亦可取 $c=1$)。若恢复 SI 单位,所有由 $\operatorname{tr}\mathsf Q$ 导出的时间读数需乘以 $\hbar$,即 $T_{\rm phys}=\hbar\,T$;相应地,若 $c$ 未取为 1,则需按 $L/c$ 恢复光程量纲。
 
+**术语对齐**:本文中"时间"如无特别说明,指因果时间 $t_*$;$T_\gamma[w_R,h]$ 称为窗化群延迟读数或操作化时间刻度。
+
 ### 卡片 I（刻度同一｜全局幺正公设）
 
-**公设（全局幺正）**：宇宙视作封闭系统;存在以能量 $E$ 为坐标的绝对连续谱区间,在本工作带内散射矩阵 $S(E)
-in C^1\cap\mathsf U(N)$ 幺正。由 Birman–Kreĭn 公式
+**公设（全局幺正）**：宇宙视作封闭系统;存在以能量 $E$ 为坐标的绝对连续谱区间,在本工作带内散射矩阵 $S(E)\in C^1\cap\mathsf U(N)$ 幺正。由 Birman–Kreĭn 公式
 $$
 \det S(E)=e^{-2\pi i\xi(E)},\qquad \mathsf Q(E)=-i\,S^\dagger(E)S'(E),
 $$
@@ -58,6 +59,8 @@ $$
 ### 记号约定
 
 约定 $(h\star f)(E):=(h*f)(E)$,其中 $\check h(E):=h(-E)$,星号表示对能量变量的卷积。窗族取 $w_R(E)=w((E-E_0)/R)$,默认 $w$ 为偶函数且属于 $L^1\cap C^M$ 以支撑所用 Euler–Maclaurin 阶数;核 $h$ 亦取 $h\in L^1\cap C^M$,具体归一方式在上下文另行说明。
+
+**傅里叶规范**: $\widehat f(\omega):=\displaystyle\int_{\mathbb R} f(E)\,e^{-i\omega E}\,dE$, $f(E)=\displaystyle\frac{1}{2\pi}\int_{\mathbb R}\widehat f(\omega)\,e^{i\omega E}\,d\omega$。在此规范下,Nyquist 条件 $\Delta\le \pi/(\Omega_h+\Omega_w/R)$ 与附录 B 的 Poisson 公式中 $2\pi$ 因子与相位约定一致。
 
 $S(E)\in\mathsf U(N)$:多通道散射矩阵,$\mathsf Q=-iS^\dagger S'$。$\quad$ $\rho_{\rm rel}=-\xi'(E)=(2\pi)^{-1}\operatorname{tr}\mathsf Q$。$\quad$ 窗—核:偶窗 $w_R(E)=w((E-E_0)/R)$,前端核 $h$。$\quad$ 压缩 $K_{w,h}$:Toeplitz/Berezin 型。**引理 0.1(刻度同一的迹—谱移关系)** 由 $\det S(E)=e^{-2\pi i\xi(E)}$ 与 $\mathsf Q=-iS^\dagger S'$ 可得 $\tfrac{d}{dE}\log\det S(E)=-2\pi i\,\xi'(E)$ 和 $\operatorname{tr}\mathsf Q(E)=-i\,\tfrac{d}{dE}\log\det S(E)$,从而 $(2\pi)^{-1}\operatorname{tr}\mathsf Q(E)=-\xi'(E)$。([SpringerLink][3])
 
@@ -96,7 +99,11 @@ $$
 $$
 m(z)=\int_{\mathbb R}\frac{d\mu_\varphi(E)}{E-z},
 $$
-其中 $\mu_\varphi$ 由卡片 I 定义,允许为有限符号测度。由于 $\mu_\varphi$ 可为有限符号测度,$m$ 非必为 Herglotz;本文仅要求 $m\in H^2(\mathbb C^+)$(上半平面 Hardy 边值)。在 LTI 与因果假设下,Paley–Wiener/Titchmarsh 与 Kramers–Kronig–Hilbert 关系推出时域冲激响应 $g(t)$ 的单向支撑(规范后 $t\ge 0$)及实/虚部的 Hilbert 共轭。
+其中 $\mu_\varphi$ 由卡片 I 定义。为应用 Paley–Wiener/Titchmarsh 与 Kramers–Kronig,本稿在 §2–§4 假设 $\mu_\varphi$ 绝对连续,且 $\rho_{\rm rel}\in L^2(\mathbb R)$,于是
+$$
+m(z)=\int_{\mathbb R}\frac{d\mu_\varphi(E)}{E-z}\in H^2(\mathbb C^+).
+$$
+若实验性非幺正引入的奇异贡献不可忽略,统一并入幺正扩张 $\widehat S$ 的环境自由度而不计入 $\mu_\varphi$ 的奇异部分。在 LTI 与因果假设下,Paley–Wiener/Titchmarsh 与 Kramers–Kronig–Hilbert 关系推出时域冲激响应 $g(t)$ 的单向支撑(规范后 $t\ge 0$)及实/虚部的 Hilbert 共轭。
 
 **定义 2.1(前沿时间可达预序)** 设链集合 $\Gamma(x,y):=\{\gamma:x\to y\}$。若 $\Gamma(x,y)\neq\varnothing$,定义
 $$
@@ -108,7 +115,7 @@ $$
 $$
 x\preceq y\;\Longleftrightarrow\;\Gamma(x,y)\neq\varnothing\ \text{且}\ \tau(x,y)\ge \frac{L_*(x,y)}{c}.
 $$
-(**充分条件**:若对所有 $\gamma:x\to y$,均有 $t_*(\gamma)\ge L(\gamma)/c$,则 $x\preceq y$。*注*:反向蕴含一般不成立,除非满足 §4 的补强前提并且极小链同时实现 $\tau$ 与 $L_*$。)
+(**充分条件**:若 **$\Gamma(x,y)\neq\varnothing$** 且对所有 $\gamma:x\to y$ 均有 $t_*(\gamma)\ge L(\gamma)/c$,则 $x\preceq y$。*注*:反向蕴含一般不成立,除非满足 §4 的补强前提并且极小链同时实现 $\tau$ 与 $L_*$。)
 
 **约定(恒等链)** 对每个 $x$,$\Gamma(x,x)$ 包含恒等链 $e_x$,规定 $L(e_x)=0$,$g_{e_x}(t;0)=\delta(t)$,故 $t_*(e_x)=0$。于是 $\tau(x,x)=0=L_*(x,x)/c$,自反性由定义立即得到。
 
@@ -127,9 +134,11 @@ de Branges 相位的跳变/极点(Hermite–Biehler 零点、散射相移突变)
 
 ---
 
-## 3. 时间的生成:窗化群延迟读数
+## 3. 操作化时间刻度:窗化群延迟读数
 
 ### 3.1 定义
+
+下述 $T_\gamma[w_R,h]$ 为相位导数的带内读数,用作时间刻度的操作化读数,并非前沿时间 $t_*$。
 
 **定义 3.1(窗化群延迟读数)** 对因果可达的传播—读出链 $\gamma$ 与窗—核 $(w_R,h)$,定义
 $$
@@ -171,7 +180,7 @@ $$
 
 ### 3.3 非渐近误差闭合(NPE)
 
-**命题 3.4(离散实现；精确与近似的分立表述)** 设 $f(E):=w_R(E)[h\\star\\rho_{\rm rel}](E)$,采样点 $E_n=E_0+n\Delta$。
+**命题 3.4(离散实现；精确与近似的分立表述)** 设 $f(E):=w_R(E)\,[\,h\!\star\!\rho_{\rm rel}\,](E)$,采样点 $E_n=E_0+n\Delta$。
 
 **(A) 严格带限 + Nyquist 条件(精确等式)**:若 $\widehat w,\widehat h$ 严格带限且 $f\in\mathsf{PW}_B\cap L^1$，其中 $B:=\Omega_h+\Omega_w/R$,并满足
 $$
@@ -222,6 +231,8 @@ $$
 t_*(\gamma)\ \ge\ L/c,
 $$
 且等号当且仅当链的高频传播子在真空极限下沿测地达到。*注*:窗化群延迟读数 $T_\gamma[w_R,h]$ 仍非前沿时间,窄带/共振下可取负,二者无普适比较不等式。([Wolfram MathWorld][5])
+
+本文一切因果与无信号结论仅以 $t_*$ 与类光锥偏序为准绳;$T_\gamma$ 仅作为可测读数,不参与偏序的定义。
 
 ---
 
@@ -293,7 +304,7 @@ $$
 
 *证明要点*:完备性与偏迹给出 $\sum_a(\mathrm{Id}_s\otimes\mathcal I_a^i)(\rho_{si})=(\mathrm{Id}_s\otimes\Phi_i)(\rho_{si})$,取 $\operatorname{Tr}_i$ 得无条件不变;$\mathsf Q_{\rm sig}$ 由信号散射子决定,与闲置的本地测量基无关,故 $T_{\rm sig}$ 不变。
 
-*备注(延迟与类空间分离)*:当屏与闲置读出区域类空间分离时,由 §7 的窗化微因果律,$[K[U_x],\mathbf 1\otimes\Pi_\alpha[U_y]]=0$,因而"延迟选择"不引入任何超因果效应;仅在符合(条件化)层面重排样本,边缘统计与群延迟读数保持不变。
+*备注(延迟与类空间分离)*:当屏与闲置读出区域类空间分离时,由 §7 的窗化微因果律,$[K[U_x],\mathbf 1\otimes\Pi_\alpha[U_y]]=0$,因而"延迟选择"不引入任何超因果效应;仅在符合(条件化)层面重排样本,边缘统计与群延迟读数保持不变。其无信号与时间顺序独立的根源来自由 $t_*$ 决定的偏序结构,而非 $T_\gamma$。
 
 ---
 
@@ -368,7 +379,7 @@ $$
 $$
 [K_{w,h}[U_x],\mathbf 1\otimes\Pi_\alpha[U_y]]=0,
 $$
-从而无论"先测屏后擦除"或"先擦除后测屏",无条件分布一致;条件符合仅改变样本分组,不改变边缘。与 §5.3 的定理 5.4 保持一致。
+从而无论"先测屏后擦除"或"先擦除后测屏",无条件分布一致;条件符合仅改变样本分组,不改变边缘。与 §5.3 的定理 5.4 保持一致。其无信号性与时间顺序独立源于偏序结构,而非 $T_\gamma$。
 
 ---
 
@@ -385,7 +396,7 @@ $\mathbf{Cau}$:对象为因果流形 $(\mathcal M,\preceq)$,其中 $\preceq$ 为
 $$
 \mathfrak F:\mathbf{WScat}\to\mathbf{Cau},\qquad \mathfrak G:\mathbf{Cau}\to\mathbf{WScat},
 $$
-并预期存在自然同构 $\mathfrak F\circ\mathfrak G\simeq \mathrm{Id}_{\mathbf{Cau}}、\mathfrak G\circ\mathfrak F\simeq \mathrm{Id}_{\mathbf{WScat}}$。本稿仅给出构造骨架,严格证明与自然性验证将另文阐述。*构造要点*:$\mathfrak F$ 以 $\operatorname{tr}\mathsf Q$ 等值面与相位奇性生成偏序与锥;$\mathfrak G$ 以固有时间/光锥参数化构造带限窗—核并施以 Berezin 压缩,使 $\varphi'/\pi=(2\pi)^{-1}\operatorname{tr}\mathsf Q$ 与 NPE 闭合同步成立。([SpringerLink][3])
+并预期存在自然同构 $\mathfrak F\circ\mathfrak G\simeq \mathrm{Id}_{\mathbf{Cau}}、\mathfrak G\circ\mathfrak F\simeq \mathrm{Id}_{\mathbf{WScat}}$。本稿仅给出构造骨架,严格证明与自然性验证将另文阐述。*构造要点*:$\mathfrak F$ 以前沿集/最早到达集(由 $t_*(\cdot)$ 确定)与相位奇性生成偏序与锥;$\operatorname{tr}\mathsf Q$ 仅用于读数层面的刻度与标定(Nyquist 极限与 $c$ 等值);$\mathfrak G$ 以固有时间/光锥参数化构造带限窗—核并施以 Berezin 压缩,使 $\varphi'/\pi=(2\pi)^{-1}\operatorname{tr}\mathsf Q$ 与 NPE 闭合同步成立。([SpringerLink][3])
 
 ---
 
@@ -479,7 +490,7 @@ $$
 \delta\left(\tfrac{1}{2\pi}\operatorname{tr}\mathsf Q\right)
 =\tfrac{1}{2\pi}\tfrac{d}{d\omega}\arg M(\omega),
 $$
-给出条纹相位对 $\omega$ 的导数。窗化群延迟读数 $T[w_R,h]=\int_{\mathbb R}(w_R*\check h)(\omega)\,\frac{1}{2\pi}\operatorname{tr}\mathsf Q_{\rm eff}(\omega)\,d\omega$ 自然分解为"静态背景 + 时间狭缝相位项",在母刻度上精确对接"时间 = 群延迟读数"的定义(见 §3.1)。互补律 $D^2+V^2\le 1$(§5)与无信号结论(§5.3、§7.3)保持不变;§4 的前沿下界 $t_*\ge L/c$ 不受开合时序影响,条纹遵循 §3.3 的 NPE 有限阶误差闭合。([Nature][17])
+给出条纹相位对 $\omega$ 的导数。窗化群延迟读数 $T[w_R,h]=\int_{\mathbb R}(w_R*\check h)(\omega)\,\frac{1}{2\pi}\operatorname{tr}\mathsf Q_{\rm eff}(\omega)\,d\omega$ 自然分解为"静态背景 + 时间狭缝相位项",在母刻度上精确对接操作化时间刻度的定义(见 §3.1)。互补律 $D^2+V^2\le 1$(§5)与无信号结论(§5.3、§7.3)保持不变;§4 的前沿下界 $t_*\ge L/c$ 不受开合时序影响,条纹遵循 §3.3 的 NPE 有限阶误差闭合。([Nature][17])
 
 ---
 
@@ -549,7 +560,7 @@ $$
 ## 附录 C:互构纲要的范畴论骨架
 
 对象:$\mathbf{WScat}$ 的态射为保持卡片 I/II 的滤镜链;$\mathbf{Cau}$ 的态射为保持类光锥与偏序的映射。
-$\mathfrak F$:以 $\operatorname{tr}\mathsf Q$ 等值面与相位奇性构造偏序与锥。
+$\mathfrak F$:以前沿集/最早到达集构造偏序与锥;$\operatorname{tr}\mathsf Q$ 仅用于读数刻度与 $c$ 的等值标定。
 $\mathfrak G$:以固有时间构造带限窗—核并施以 Berezin 压缩,使刻度同一与 NPE 闭合同步成立。([SpringerLink][3])
 
 ---
@@ -582,7 +593,7 @@ Toeplitz/Berezin 框架为窗化读数提供算子化实施路径;de Branges 空
 ### 结论要点
 
 * 三位一体刻度 $\varphi'/\pi=\rho_{\rm rel}=(2\pi)^{-1}\operatorname{tr}\mathsf Q$ 统一了相位—密度—群延迟;
-* **时间**即**窗化群延迟读数**,具可加与**规范协变(相对不变)**,并在 NPE 纪律下**非渐近闭合**;
+* 窗化群延迟读数提供时间的操作化刻度,具可加与**规范协变(相对不变)**,并在 NPE 纪律下**非渐近闭合**;
 * 以真空**前沿**规范 $c$ 得到**无超锥传播**与到达时间下界;
 * **红移—时间**满足**互易标度律**;**分辨率提升**与**红移放大**严格对偶;
 * 双缝的窗化互补律 $D^2+V^2\le1$ 与 which-way 调谐在同一母刻度下统一;
