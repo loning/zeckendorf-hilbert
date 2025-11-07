@@ -2,7 +2,7 @@
 
 ## ——窗化群延迟、红移与光速的公理化理论、互构纲要与非渐近误差闭合(完整版)
 
-**Version: 3.20**
+**Version: 3.22**
 
 ## 摘要
 
@@ -24,9 +24,11 @@ $$
 
 ### 时间三分原则
 
+**原理(双时间分离)** 偏序与光速规范仅由因果前沿 $t_*$ 决定,且 $t_*(\gamma)\ge L_g/c$;窗化群延迟读数 $T_\gamma[w_R,h]$(定义见定义 3.1)仅为操作化刻度,与 $t_*$ 无普适大小比较(允许 $T_\gamma<0$)。据此,本节三分 $\{t_*,\,T_\gamma,\,T_{\gamma\mid a}\}$ 确立"因果—读数"的位阶。
+
 为杜绝"读数即本体"的偷换,统一规定:
 
-**(1) 因果时间 $t_*$**:由链 $\gamma$ 的输出冲激响应最早非零到达定义 $t_*(\gamma)=\inf\{\,t:\,g_\gamma(t;L)\neq 0\,\}$,仅用于建立可达预序与类光锥;参见 §2 与 §4 的前沿下界。
+**(1) 因果时间 $t_*$**:由链 $\gamma$ 的输出冲激响应最早非零到达定义 $t_*(\gamma)=\inf\{\,t:\,g_\gamma(t;L_\gamma)\neq 0\,\}$,仅用于建立可达预序与类光锥;参见 §2 与 §4 的前沿下界。
 
 **(2) 窗化时间 $T_\gamma[w_R,h]$**:相位导数的带内线性读数,用作时间刻度的**操作化**量,不参与偏序定义;在窄带/共振下可取负,与 $t_*$ 无普适大小比较。
 
@@ -35,7 +37,7 @@ $$
 \sum_a p_a\,T_{\gamma\mid a}[w_R,h]\ =\ T_\gamma[w_R,h],\qquad
 p_a:=\operatorname{Tr}\big[(\mathrm{Id}\otimes\mathcal I_a)(\rho)\big],
 $$
-体现"条件样本重排 ≠ 时间本体叠加"。(命题与证明详见 §5)
+体现"条件样本重排 ≠ 时间本体叠加"。(命题与证明见 §5)
 
 ### GR 协变声明(事件—世界线—固有时)
 
@@ -263,8 +265,17 @@ T_\gamma[w_R,h]=\Delta\sum_{|n|\le N} f(E_n)+\varepsilon_{\rm tail}+\varepsilon_
 $$
 其中
 $$
-\varepsilon_{\rm tail}:=\Delta\sum_{|n|>N} f(E_n),\qquad |\varepsilon_{\rm alias}|\le\sum_{k\ne 0}\Big|\widehat f\big(\cdot+2\pi k/\Delta\big)\Big|_{L^1},
+\varepsilon_{\rm tail}:=\Delta\sum_{|n|>N} f(E_n),\qquad
+|\varepsilon_{\rm alias}|\ \le\ \sum_{k\ne 0}\Big|\widehat f\Big(\tfrac{2\pi k}{\Delta}\Big)\Big|.
 $$
+*工程上界(由支撑与卷积结构给出)*:若 $\mathrm{supp}\,\widehat{w_R}\subset[-\Omega_w/R,\Omega_w/R]$ 且 $\mathrm{supp}\,\widehat h\subset[-\Omega_h,\Omega_h]$,则
+$$
+\Big|\widehat f\Big(\tfrac{2\pi k}{\Delta}\Big)\Big|
+=\Big|\big(\widehat{w_R}\ast(\widehat h\,\widehat{\rho_{\rm rel}})\big)\Big(\tfrac{2\pi k}{\Delta}\Big)\Big|
+\le \int_{-\Omega_w/R}^{\Omega_w/R}|\widehat{w_R}(\xi)|\,
+\big|\widehat h\,\widehat{\rho_{\rm rel}}\big(\tfrac{2\pi k}{\Delta}-\xi\big)\big|\,d\xi.
+$$
+因此当 $\Delta\le \pi/(\Omega_h+\Omega_w/R)$ 时,对所有 $k\ne0$ 上式为 0(无别名);近带限时,上式提供可计算的数值上界。
 而 $\varepsilon_{\rm EM}$ 仅在以有限阶 Euler–Maclaurin 近似无穷和(或对近带限 $f$ 的修正积分)时出现,其上界参见附录 B。*说明*: 本命题将理论上的等式 (A) 与工程实践的 NPE 分解 (B) 严格区分,避免在无 alias 的情形下引入不存在的 EM/尾项。([chaosbook.org][7])
 
 ### 3.4 操作化时间—能量分辨率纪律(UR)
@@ -738,16 +749,24 @@ $$
 $$
 若 $\mathrm{supp}\,\widehat f\subset(-2\pi/\Delta,2\pi/\Delta)$,第二项为零(无 alias),积分与无限采样和精确相等。仅当 $f$ 近带限或在实现中截断无穷和时,才引入本文 NPE 的 $\varepsilon_{\rm alias},\varepsilon_{\rm tail}$,以及采用有限阶 Euler–Maclaurin 时的 $\varepsilon_{\rm EM}$。
 
-**Poisson 别名(一般近带限)**:设 $\widehat f(\omega)$ 为 $f$ 的傅里叶变换,则
+**Poisson 别名(一般近带限)**:由
 $$
-|\varepsilon_{\rm alias}|\ \le\ \sum_{k\ne 0}\Big|\widehat f\big(\cdot+2\pi k/\Delta\big)\Big|_{L^1},
-\qquad \widehat f=\widehat{w_R}\ast\Big(\widehat{h}\cdot\widehat{\rho_{\rm rel}}\Big).
+\Delta\sum_{n\in\mathbb Z} f(E_0+n\Delta)=\sum_{k\in\mathbb Z}e^{i(2\pi k/\Delta)E_0}\,\widehat f\Big(\tfrac{2\pi k}{\Delta}\Big)
 $$
-工程估算可使用
+得
 $$
-|\varepsilon_{\rm alias}|\ \le\ \Bigg(\sum_{k\ne 0}\Big|\widehat{w_R}\big(\cdot+2\pi k/\Delta\big)\Big|_{L^1}\Bigg)\,\Big|\widehat{h}\cdot\widehat{\rho_{\rm rel}}\Big|_{L^\infty},
+|\varepsilon_{\rm alias}|
+=\Bigg|\sum_{k\ne 0}e^{i(2\pi k/\Delta)E_0}\,\widehat f\Big(\tfrac{2\pi k}{\Delta}\Big)\Bigg|
+\ \le\ \sum_{k\ne 0}\Big|\widehat f\Big(\tfrac{2\pi k}{\Delta}\Big)\Big|,
+\qquad \widehat f=\widehat{w_R}\ast(\widehat h\,\widehat{\rho_{\rm rel}}).
 $$
-若 $g$ 再次严格带限,上述求和可有限截断并令别名项为零。
+**(可计算的支撑型上界)** 若 $\mathrm{supp}\,\widehat{w_R}\subset[-\Omega_w/R,\Omega_w/R]$、$\mathrm{supp}\,\widehat h\subset[-\Omega_h,\Omega_h]$,则
+$$
+\Big|\widehat f\Big(\tfrac{2\pi k}{\Delta}\Big)\Big|
+\le \int_{-\Omega_w/R}^{\Omega_w/R}|\widehat{w_R}(\xi)|\,
+\big|\widehat h\,\widehat{\rho_{\rm rel}}\big(\tfrac{2\pi k}{\Delta}-\xi\big)\big|\,d\xi,
+$$
+从而当 $\Delta\le \pi/(\Omega_h+\Omega_w/R)$ 时,别名项严格为 0(Nyquist–Shannon)。近带限/有限阶实现时,上式提供稳定的数值上界,与正文 §3.3 的 NPE 账本保持一致。
 
 **EM 阶数选择(处方)**:给定目标误差阈值 $\varepsilon_{\rm tol}$,取最小 $M$ 使
 $$
