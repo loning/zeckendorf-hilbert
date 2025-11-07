@@ -2,7 +2,7 @@
 
 ## ——窗化群延迟、红移与光速的公理化理论、互构纲要与非渐近误差闭合(完整版)
 
-**Version: 3.11**
+**Version: 3.14**
 
 ## 摘要
 
@@ -21,6 +21,21 @@ $$
 默认采用 $\hbar=1$(必要时亦可取 $c=1$)。若恢复 SI 单位,所有由 $\operatorname{tr}\mathsf Q$ 导出的时间读数需乘以 $\hbar$,即 $T_{\rm phys}=\hbar\,T$;相应地,若 $c$ 未取为 1,则需按 $L/c$ 恢复光程量纲。
 
 **术语对齐**:本文中"时间"如无特别说明,指因果时间 $t_*$;$T_\gamma[w_R,h]$ 称为窗化群延迟读数或操作化时间刻度。
+
+### 时间三分原则
+
+为杜绝"读数即本体"的偷换,统一规定:
+
+**(1) 因果时间 $t_*$**:由链 $\gamma$ 的输出冲激响应最早非零到达定义 $t_*(\gamma)=\inf\{\,t:\,g_\gamma(t;L)\neq 0\,\}$,仅用于建立可达预序与类光锥;参见 §2 与 §4 的前沿下界。
+
+**(2) 窗化时间 $T_\gamma[w_R,h]$**:相位导数的带内线性读数,用作时间刻度的**操作化**量,不参与偏序定义;在窄带/共振下可取负,与 $t_*$ 无普适大小比较。
+
+**(3) 条件化时间族 $\{T_{\gamma\mid a}\}$**:对闲置/中继端施加完备仪式 $\{\mathcal I_a\}$ 后得到的条件读数族,其无条件母刻度满足**凸平均恒等式**
+$$
+\sum_a p_a\,T_{\gamma\mid a}[w_R,h]\ =\ T_\gamma[w_R,h],\qquad
+p_a:=\operatorname{Tr}\big[(\mathrm{Id}\otimes\mathcal I_a)(\rho)\big],
+$$
+体现"条件样本重排 ≠ 时间本体叠加"。(命题与证明详见 §5)
 
 ### 卡片 I（刻度同一｜全局幺正公设）
 
@@ -117,6 +132,8 @@ x\preceq y\;\Longleftrightarrow\;\Gamma(x,y)\neq\varnothing\ \text{且}\ \tau(x,
 $$
 (**充分条件**:若 **$\Gamma(x,y)\neq\varnothing$** 且对所有 $\gamma:x\to y$ 均有 $t_*(\gamma)\ge L(\gamma)/c$,则 $x\preceq y$。*注*:反向蕴含一般不成立,除非满足 §4 的补强前提并且极小链同时实现 $\tau$ 与 $L_*$。)
 
+**注(冗余判据的消解)** 当 §4 的前提与定理 4.2 给出前沿下界时,对任意链均有 $t_*(\gamma)\ge L(\gamma)/c$。此时"$\tau(x,y)\ge L_*(x,y)/c$"由 $\Gamma(x,y)\neq\varnothing$ 自动推出,保留该不等式仅为凸显几何前沿基准;与窗化读数 $T_\gamma[w_R,h]$ 无关,后者不参与偏序定义。
+
 **约定(恒等链)** 对每个 $x$,$\Gamma(x,x)$ 包含恒等链 $e_x$,规定 $L(e_x)=0$,$g_{e_x}(t;0)=\delta(t)$,故 $t_*(e_x)=0$。于是 $\tau(x,x)=0=L_*(x,x)/c$,自反性由定义立即得到。
 
 **假设(无闭因果回路)**:不存在 $x\neq y$ 使得 $x\preceq y$ 且 $y\preceq x$。定义类光锥边界
@@ -164,6 +181,8 @@ f(E):=w_R(E)\big[h\!\star\!\rho_{\rm rel}\big](E),
 $$
 并以该 $f$ 为误差估计的唯一对象。([chaosbook.org][7])
 
+**公设(不可比较性)** 对任意链 $\gamma$ 与任意窗—核 $(w_R,h)$,不存在普适常数 $C_1,C_2$ 使 $C_1\,t_*(\gamma)\le T_\gamma[w_R,h]\le C_2\,t_*(\gamma)$ 恒成立;反向比较亦不成立。仅在真空链路、Nyquist 纪律满足且冲激沿测地达到的极限情形,二者可在标定层面相合,用于校准母刻度,而非定义偏序。
+
 ### 3.2 串并联可加、规范协变
 
 **定理 3.2(可加性,幺正散射)** 设在 $w_R$ 的带内 $S_j^\dagger(E)S_j(E)=I\ (j=1,2)$。若 $\gamma=\gamma_2\circ\gamma_1$,则
@@ -189,6 +208,8 @@ $$
 以消除规范项。([普渡大学数学系][6])
 
 ### 3.3 非渐近误差闭合(NPE)
+
+**提示(对象唯一性)** 本节一切采样/别名/EM/尾项误差,**仅**作用于被积函数 $f(E)=w_R(E)\,[\,h\!\star\!\rho_{\rm rel}\,](E)$ 的数值近似,不涉及因果时间 $t_*$ 或可达偏序的任何修正。
 
 **命题 3.4(离散实现；精确与近似的分立表述)** 设 $f(E):=w_R(E)\,[\,h\!\star\!\rho_{\rm rel}\,](E)$,采样点 $E_n=E_0+n\Delta$。
 
@@ -242,7 +263,7 @@ t_*(\gamma)\ \ge\ L/c,
 $$
 且等号当且仅当链的高频传播子在真空极限下沿测地达到。*注*:窗化群延迟读数 $T_\gamma[w_R,h]$ 仍非前沿时间,窄带/共振下可取负,二者无普适比较不等式。([Wolfram MathWorld][5])
 
-本文一切因果与无信号结论仅以 $t_*$ 与类光锥偏序为准绳;$T_\gamma$ 仅作为可测读数,不参与偏序的定义。
+**红线声明** 本文所有"因果/无信号/顺序独立"结论一律以**前沿时间 $t_*$** 与由其诱导的类光锥偏序为唯一准绳;**窗化读数 $T_\gamma[w_R,h]$** 仅为可测刻度,不参与任何因果判定。
 
 ---
 
@@ -281,10 +302,37 @@ $$
 \lvert E_\pm\rangle=\tfrac{1}{\sqrt2}\big(\lvert I_1\rangle \pm e^{i\phi}\lvert I_2\rangle\big),\quad \Pi_{E_\pm}=\lvert E_\pm\rangle\langle E_\pm\rvert.
 $$
 
-**定义(符合—条件强度)** 记源态 $\rho_s$ 与总态 $\rho_{si}=U_{\rm ent}(\rho_s\otimes\lvert0\rangle\langle0\rvert)U_{\rm ent}^\dagger$。对闲置端结果 $\alpha\in\{I_1,I_2,E_+,E_-\}$,定义
+**记号(信号链与边缘群延迟)** 记源→屏的物理传播—读出链为 $\gamma_s$。定义
+$$
+T_{\gamma_s}[w_R,h]\;:=\;\int (w_R*\check h)(E)\,\frac{1}{2\pi}\operatorname{tr}\mathsf Q_{\gamma_s}(E)\,dE,
+$$
+其中 $\mathsf Q_{\gamma_s}(E)$ 为该链对应散射子的 Wigner–Smith 矩阵,$\check h(E):=h(-E)$。为与后文已有写法一致,**约定**
+$$
+T_{\rm sig}[w_R,h]\ \equiv\ T_{\gamma_s}[w_R,h],\qquad
+\operatorname{tr}\mathsf Q_{\rm sig}(E)\ \equiv\ \operatorname{tr}\mathsf Q_{\gamma_s}(E).
+$$
+于是 §5.4 与 §12.4 中的所有等式均应理解为关于 $\gamma_s$ 的陈述;特别地,闲置端的任何完备仪式仅改变条件分箱,不改变 $\mathsf Q_{\gamma_s}$,从而
+$$
+T_{\rm sig}[w_R,h\mid \{\mathcal I_a^i\}]=T_{\rm sig}[w_R,h],\quad
+\sum_a p_a\,T_{\rm sig}[w_R,h\mid a]=T_{\rm sig}[w_R,h],
+$$
+与定理 5.4 及命题 5.5 保持一致。
+
+**定义(符合—贡献,未归一化)** 记源态 $\rho_s$ 与总态 $\rho_{si}=U_{\rm ent}(\rho_s\otimes\lvert0\rangle\langle0\rvert)U_{\rm ent}^\dagger$。对闲置端结果 $\alpha\in\{I_1,I_2,E_+,E_-\}$,定义
 $$
 I_\alpha(w_R,h):=\operatorname{Tr}\Big[(K\otimes \Pi_\alpha)\,\rho_{si}\Big].
 $$
+
+**补充定义(强度的条件化与加权恢复式)** 令
+$$
+p_\alpha:=\operatorname{Tr}\Big[(\mathbf 1\otimes \Pi_\alpha)\,\rho_{si}\Big],\qquad
+I(w_R,h\mid \alpha):=\frac{I_\alpha(w_R,h)}{p_\alpha}.
+$$
+则有**强度的加权恢复式**
+$$
+\boxed{\quad I_{\rm uncond}(w_R,h)=\sum_{\alpha}p_\alpha\,I(w_R,h\mid \alpha)\quad}
+$$
+这与定理 5.4(i) 的无信号总和形式完全一致,并与命题 5.5 的时间凸平均属于同一线性账本。
 
 **命题 5.3(无条件=无干涉;擦除=条件条纹)**
 
@@ -313,6 +361,12 @@ T_{\rm sig}[w_R,h\mid \{\mathcal I_a^i\}]=\int (w_R*\check h)(E)\,\frac{1}{2\pi}
 $$
 
 *证明要点*:完备性与偏迹给出 $\sum_a(\mathrm{Id}_s\otimes\mathcal I_a^i)(\rho_{si})=(\mathrm{Id}_s\otimes\Phi_i)(\rho_{si})$,取 $\operatorname{Tr}_i$ 得无条件不变;$\mathsf Q_{\rm sig}$ 由信号散射子决定,与闲置的本地测量基无关,故 $T_{\rm sig}$ 不变。
+
+**命题 5.5(宏观时间非叠加=凸平均)** 设闲置端完备仪式 $\{\mathcal I_a^i\}$ 满足 $\sum_a\mathcal I_a^i=\Phi_i$(CPTP)。令 $p_a:=\operatorname{Tr}\big[(\mathrm{Id}_s\otimes\mathcal I_a^i)(\rho_{si})\big]$。则
+$$
+\sum_a p_a\,T_{\rm sig}[w_R,h\mid a]\ =\ T_{\rm sig}[w_R,h].
+$$
+*证明要点*:线性与完备性:$\sum_a(\mathrm{Id}_s\otimes\mathcal I_a^i)=\mathrm{Id}_s\otimes\Phi_i$,而 $T_{\rm sig}$ 仅由 $\mathsf Q_{\rm sig}$ 决定,取偏迹即得。与 §7 的"无信号/时间顺序独立"一致。
 
 *备注(延迟与类空间分离)*:当屏与闲置读出区域类空间分离时,由 §7 的窗化微因果律,$[K[U_x],\mathbf 1\otimes\Pi_\alpha[U_y]]=0$,因而"延迟选择"不引入任何超因果效应;仅在符合(条件化)层面重排样本,边缘统计与群延迟读数保持不变。其无信号与时间顺序独立的根源来自由 $t_*$ 决定的偏序结构,而非 $T_\gamma$。
 
@@ -390,6 +444,8 @@ $$
 [K_{w,h}[U_x],\mathbf 1\otimes\Pi_\alpha[U_y]]=0,
 $$
 从而无论"先测屏后擦除"或"先擦除后测屏",无条件分布一致;条件符合仅改变样本分组,不改变边缘。与 §5.3 的定理 5.4 保持一致。其无信号性与时间顺序独立源于偏序结构,而非 $T_\gamma$。
+
+**注(账本视角)** 屏上无条件分布与窗化群延迟读数属于同一母刻度的线性泛函;延迟选择只产生**条件分箱**而非本体"时间叠加"。因此对任一完备分箱 $\{a\}$,恒有 $\sum_a p_a\,(\cdot\mid a)=(\cdot)$,其中"$(\cdot)$"可取为强度或 $T_{\rm sig}$。这与命题 5.5 的凸平均等式一致,亦与命题 7.5–7.6 的无信号与顺序独立同源于由 $t_*$ 定义的偏序结构。
 
 ---
 
@@ -474,11 +530,25 @@ I_\pm(x)\ \propto\ |\psi_1(x)|^2+|\psi_2(x)|^2\ \pm\ 2\,\big|\psi_1(x)\psi_2(x)\
 $$
 两图样相位相反,叠加回到无条件分布。
 
+* **强度—加权恢复式(DCQE)**
+$$
+\boxed{\quad I_{\rm uncond}(w_R,h)=\sum_{\alpha\in\{I_1,I_2,E_\pm\}}p_\alpha\,I(w_R,h\mid \alpha),\qquad
+p_\alpha=\operatorname{Tr}\Big[(\mathbf 1\otimes\Pi_\alpha)\,\rho_{si}\Big]\quad}
+$$
+与 §5.3 的补充定义、定理 5.4(i) 的无信号以及命题 5.5 的时间凸平均完全对齐。
+
 * **群延迟一致性**:对任何 $\alpha\in\{\pm, I_1,I_2\}$,
 $$
 T_{\rm sig}[w_R,h\mid \alpha]=\int (w_R*\check h)(E)\,\frac{1}{2\pi}\operatorname{tr}\mathsf Q_{\rm sig}(E)\,dE,
 $$
 与擦除选择无关;当 $w_R,h$ 满足卡片 II 的带限与 Nyquist 条件时,NPE 误差闭合同步成立。
+
+* **一致性—凸平均**:对 $\alpha\in\{\pm,I_1,I_2\}$,有
+$$
+\sum_{\alpha} p_\alpha\,T_{\rm sig}[w_R,h\mid \alpha]\ =\ T_{\rm sig}[w_R,h],\qquad
+p_\alpha:=\Pr(\alpha).
+$$
+与 §5 的命题 5.5 完全一致。
 
 ### 12.5 时间域双缝:超快时变镜(ITO/ENZ)
 
