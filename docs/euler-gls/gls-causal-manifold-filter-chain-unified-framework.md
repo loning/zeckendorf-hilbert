@@ -2,7 +2,7 @@
 
 ## ——窗化群延迟、红移与光速的公理化理论、互构纲要与非渐近误差闭合(完整版)
 
-**Version: 3.22**
+**Version: 3.24**
 
 ## 摘要
 
@@ -10,7 +10,7 @@
 $$
 \boxed{\ \frac{\varphi'(E)}{\pi}=\rho_{\rm rel}(E)=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E),\qquad \mathsf Q(E)=-i\,S(E)^\dagger \tfrac{dS}{dE}(E)\ }
 $$
-为母刻度(相位导数—相对态密度—Wigner–Smith 群延迟迹)的公理化理论。核心结果:(i)以**窗化群延迟读数**提供时间的操作化刻度,并证明其串并联可加、规范协变/相对不变(当 $U,V$ 与能量无关或 $\det U\cdot\det V\equiv1$ 时保持不变);在真空链路上,其 Nyquist 极限与前沿速度标定 $c$ 等值;(ii)以谱缩放刻画**红移**并证明与时间的互易标度律;(iii)以真空**前沿**规范光速 $c$,给出任意物理通道的**前沿下界**与**无超锥传播**;(iv)提出"GLS ↔ 因果流形"的**互构纲要**,给出构造骨架与一致性条件,**严格证明及自然性验证另文呈现**;(v)在同一账本中统一**波/粒二象性**与双缝的窗化互补不等式 $D^2+V^2\le 1$;(vi)阐明"分辨率提升 = 宇宙膨胀(红移放大)"的严格对偶,并给出 Nyquist–Poisson–Euler–Maclaurin(NPE)**有限阶**误差闭合与工程化处方。理论全程采用算子—测度—函数语言(Toeplitz/Berezin 压缩 $K_{w,h}$,读数 = 对谱测度的线性泛函),在全局幺正公设下将一切时间/密度读数统一由 $\mathsf Q=-iS^\dagger S'$ 定义,实验性非幺正均通过幺正扩张 $\widehat S$ 回推母刻度。
+为母刻度(相位导数—相对态密度—Wigner–Smith 群延迟迹)的公理化理论。核心结果:(i)以**窗化群延迟读数**提供时间的操作化刻度,并证明其串并联可加、规范协变/相对不变(当 $U,V$ 与能量无关或 $\det U\cdot\det V\equiv1$ 时保持不变);在真空链路并满足 Nyquist 纪律时,其高频/无别名极限可用于与前沿速度标定 $c$ 一致对齐;(ii)以谱缩放刻画**红移**并证明与时间的互易标度律;(iii)以真空**前沿**规范光速 $c$,给出任意物理通道的**前沿下界**与**无超锥传播**;(iv)提出"GLS ↔ 因果流形"的**互构纲要**,给出构造骨架与一致性条件,**严格证明及自然性验证另文呈现**;(v)在同一账本中统一**波/粒二象性**与双缝的窗化互补不等式 $D^2+V^2\le 1$;(vi)阐明"分辨率提升 = 宇宙膨胀(红移放大)"的严格对偶,并给出 Nyquist–Poisson–Euler–Maclaurin(NPE)**有限阶**误差闭合与工程化处方。理论全程采用算子—测度—函数语言(Toeplitz/Berezin 压缩 $K_{w,h}$,读数 = 对谱测度的线性泛函),在全局幺正公设下将一切时间/密度读数统一由 $\mathsf Q=-iS^\dagger S'$ 定义,实验性非幺正均通过幺正扩张 $\widehat S$ 回推母刻度。
 
 ---
 
@@ -241,6 +241,7 @@ $$
 $$
 T_{\rm rel}(\gamma):=T_\gamma[w_R,h;S]-T_\gamma[w_R,h;S_{\rm ref}],
 $$
+**其中 $S_{\rm ref}$ 与 $S$ 采用同一能量依赖基系选择(相同 $U,V$),以保证规范项完全相消。**
 以消除规范项。([普渡大学数学系][6])
 
 ### 3.3 非渐近误差闭合(NPE)
@@ -297,7 +298,7 @@ $$
 
 (i) **LTI + 因果 + 上半平面解析性(Hardy)**:频域响应的上半平面解析性与 Hardy 边值保证 Kramers–Kronig–Hilbert 关系;**若进一步假设被动性**,则可归入 Herglotz 类;
 
-(ii) **高频真空极限**:对任一传播段 $T(\omega;L)$,有 $\lim_{|\omega|\to\infty}T(\omega;L)\,e^{-i\omega L/c}=1$(或等价地 $\lim_{|\omega|\to\infty}n(\omega)=1$);
+(ii) **高频真空极限**:对任一传播段 $T(\omega;L)$,有 $\lim_{|\omega|\to\infty}T(\omega;L)\,e^{-i\omega L/c}=1$(**在被动—因果介质中由 Kramers–Kronig 关系可推出 $\lim_{|\omega|\to\infty}n(\omega)=1$,因此该极限可由 $n(\omega)\to 1$ 保证**);
 
 (iii) **局域性/有限传播速度**:链由满足双曲型局域动力学的元件组成,其格林函数(或冲激响应)存在有限波前;
 
@@ -402,11 +403,11 @@ $$
 
 ### 5.3 延迟擦除(Delayed-Choice Quantum Eraser, DCQE)
 
-**设置** 设双缝路径投影 $P_1,P_2$。引入"信号—闲置(idler)"分裂 $\mathcal H=\mathcal H_s\otimes\mathcal H_i$,以幺正纠缠器
+**设置** 设双缝路径投影 $P_1,P_2$。引入"信号—闲置(idler)"分裂 $\mathcal H=\mathcal H_s\otimes\mathcal H_i$,取正交闲置基 $\{\lvert I_1\rangle,\lvert I_2\rangle\}$。定义幺正纠缠器在态空间上的作用为
 $$
-U_{\rm ent}:\ P_j\otimes\lvert0\rangle_i\ \mapsto\ P_j\otimes\lvert I_j\rangle_i,\qquad \langle I_1\mid I_2\rangle=0,\ j=1,2,
+U_{\rm ent}\big(\lvert\psi\rangle_s\otimes\lvert0\rangle_i\big)\ =\ \sum_{j=1}^{2}\big(P_j\lvert\psi\rangle_s\big)\otimes\lvert I_j\rangle_i,\qquad \langle I_1\mid I_2\rangle=0,
 $$
-实现 which-way 打标。屏上读数由同一窗—核 $K:=K_{w,h}$ 给出,闲置端选择在两类测量基之间切换:
+其中 $P_j$ 仅选取路径分量;随后的强度与时间读数按本文同一 $K_{w,h}$ 与 $T_{\rm sig}$ 账本计算。屏上读数由同一窗—核 $K:=K_{w,h}$ 给出,闲置端选择在两类测量基之间切换:
 
 (i) which-way 基 $\{\Pi_{I_1},\Pi_{I_2}\}$;(ii) 擦除基 $\{\Pi_{E_\pm}\}$,其中
 $$
@@ -584,7 +585,7 @@ $\mathbf{Cau}$:对象为因果流形 $(\mathcal M,\preceq)$,其中 $\preceq$ 为
 $$
 \mathfrak F:\mathbf{WScat}\to\mathbf{Cau},\qquad \mathfrak G:\mathbf{Cau}\to\mathbf{WScat},
 $$
-并预期存在自然同构 $\mathfrak F\circ\mathfrak G\simeq \mathrm{Id}_{\mathbf{Cau}}、\mathfrak G\circ\mathfrak F\simeq \mathrm{Id}_{\mathbf{WScat}}$。本稿仅给出构造骨架,严格证明与自然性验证将另文阐述。*构造要点*:$\mathfrak F$ 以前沿集/最早到达集(由 $t_*(\cdot)$ 确定)与相位奇性生成偏序与锥;$\operatorname{tr}\mathsf Q$ 仅用于读数层面的刻度与标定(Nyquist 极限与 $c$ 等值);$\mathfrak G$ 以固有时间/光锥参数化构造带限窗—核并施以 Berezin 压缩,使 $\varphi'/\pi=(2\pi)^{-1}\operatorname{tr}\mathsf Q$ 与 NPE 闭合同步成立。([SpringerLink][3])
+并预期存在自然同构 $\mathfrak F\circ\mathfrak G\simeq \mathrm{Id}_{\mathbf{Cau}}、\mathfrak G\circ\mathfrak F\simeq \mathrm{Id}_{\mathbf{WScat}}$。本稿仅给出构造骨架,严格证明与自然性验证将另文阐述。*构造要点*:$\mathfrak F$ 以前沿集/最早到达集(由 $t_*(\cdot)$ 确定)与相位奇性生成偏序与锥;$\operatorname{tr}\mathsf Q$ 仅用于读数层面的刻度与标定(**在真空链路并满足 Nyquist 纪律的高频/无别名极限下,可用于与前沿速度标定 $c$ 一致对齐**);$\mathfrak G$ 以固有时间/光锥参数化构造带限窗—核并施以 Berezin 压缩,使 $\varphi'/\pi=(2\pi)^{-1}\operatorname{tr}\mathsf Q$ 与 NPE 闭合同步成立。([SpringerLink][3])
 
 ---
 
@@ -791,7 +792,7 @@ $$
 ## 附录 C:互构纲要的范畴论骨架
 
 对象:$\mathbf{WScat}$ 的态射为保持卡片 I/II 的滤镜链;$\mathbf{Cau}$ 的态射为保持类光锥与偏序的映射。
-$\mathfrak F$:以前沿集/最早到达集构造偏序与锥;$\operatorname{tr}\mathsf Q$ 仅用于读数刻度与 $c$ 的等值标定。
+$\mathfrak F$:以前沿集/最早到达集构造偏序与锥;$\operatorname{tr}\mathsf Q$ 仅用于读数刻度与标定(**在真空链路并满足 Nyquist 纪律的高频/无别名极限下,可用于与前沿速度 $c$ 一致对齐**)。
 $\mathfrak G$:以固有时间构造带限窗—核并施以 Berezin 压缩,使刻度同一与 NPE 闭合同步成立。([SpringerLink][3])
 
 ---
