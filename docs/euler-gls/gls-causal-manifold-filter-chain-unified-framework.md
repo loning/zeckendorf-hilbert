@@ -2,7 +2,7 @@
 
 ## ——窗化群延迟、红移与光速的公理化理论、互构纲要与非渐近误差闭合(完整版)
 
-**Version: 3.9**
+**Version: 3.11**
 
 ## 摘要
 
@@ -119,12 +119,22 @@ $$
 
 **约定(恒等链)** 对每个 $x$,$\Gamma(x,x)$ 包含恒等链 $e_x$,规定 $L(e_x)=0$,$g_{e_x}(t;0)=\delta(t)$,故 $t_*(e_x)=0$。于是 $\tau(x,x)=0=L_*(x,x)/c$,自反性由定义立即得到。
 
-**假设(无闭因果回路)**:不存在 $x\neq y$ 使得 $x\preceq y$ 且 $y\preceq x$。在该假设下, $\preceq$ 为偏序。定义类光锥边界
+**假设(无闭因果回路)**:不存在 $x\neq y$ 使得 $x\preceq y$ 且 $y\preceq x$。定义类光锥边界
 $$
 \partial J^+(x):=\{\,y\in J^+(x):\ \tau(x,y)=L_*(x,y)/c\,\},\qquad
 J^+(x):=\{\,y:\Gamma(x,y)\neq\varnothing,\ x\preceq y\,\}.
 $$
-**命题 2.2(偏序性)** 在该假设下,$\preceq$ 自反、传递且反对称,因此为偏序。自反与传递性分别来自恒等路径与路径级联,反对称性由“无闭因果回路”直接保证。
+**命题 2.2(偏序性,依赖前沿下界)** 在**前沿下界假设**(即对任意链 $\gamma$ 均有 $t_*(\gamma)\ge L(\gamma)/c$;该假设由 §4 的前提 (i)–(iv) 可推出,见定理 4.2)与"无闭因果回路"条件下,$\preceq$ 为偏序。
+
+*证明*:自反性来自恒等链 $e_x$;设 $x\preceq y$ 与 $y\preceq z$,取任意拼接链 $\gamma=\gamma_{z\leftarrow y}\circ\gamma_{y\leftarrow x}$。由卷积支撑的 Minkowski 和性质,有
+$$
+t_*(\gamma)\ \ge\ t_*(\gamma_{z\leftarrow y})+t_*(\gamma_{y\leftarrow x})\ (\text{边界不抵消时取等}),
+$$
+再由前沿下界得到
+$$
+t_*(\gamma)\ \ge\ \frac{L(\gamma_{z\leftarrow y})+L(\gamma_{y\leftarrow x})}{c}\ \ge\ \frac{L_*(x,z)}{c}.
+$$
+因此对全体链取下确界得 $\tau(x,z)\ge L_*(x,z)/c$,从而 $x\preceq z$;反对称性由"无闭因果回路"给出。□
 
 窗化群延迟读数 $T_\gamma[w_R,h]$ 是相位导数的频域加权读数,没有与前沿时间 $t_*(\gamma)$ 的一般大小比较关系。
 
