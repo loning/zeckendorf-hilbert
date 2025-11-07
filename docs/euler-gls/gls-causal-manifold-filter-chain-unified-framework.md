@@ -2,7 +2,7 @@
 
 ## ——窗化群延迟、红移与光速的公理化理论、互构纲要与非渐近误差闭合(完整版)
 
-**Version: 3.17**
+**Version: 3.20**
 
 ## 摘要
 
@@ -97,11 +97,22 @@ $S(E)\in\mathsf U(N)$:多通道散射矩阵,$\mathsf Q=-iS^\dagger S'$。$\quad$
 $$
 \mathfrak U=(\mathcal H,\ S(E),\ \mu_\varphi,\ \mathcal W),
 $$
-其中 $d\mu_\varphi^{\rm ac}=(\varphi'/\pi)\,dE$,$\mathcal W$ 为可实施窗—核字典。任意态 $\rho$ 的窗化读数为
+其中 $d\mu_\varphi^{\rm ac}=(\varphi'/\pi)\,dE$,$\mathcal W$ 为可实施窗—核字典。任意态 $\rho$ 的**窗化读数**定义为
 $$
-\mathrm{Obs}(w_R,h;\rho)=\operatorname{Tr}(K_{w,h}\rho)
-=\!\int_{\mathbb R}\! w_R(E)\,[\,h\!\star\!\rho_\rho\,](E)\,dE\;+\varepsilon_{\rm alias}+\varepsilon_{\rm EM}+\varepsilon_{\rm tail},
+\boxed{\ \mathrm{Obs}(w_R,h;\rho):=\operatorname{Tr}(K_{w,h}\rho)
+=\int_{\mathbb R} w_R(E)\,[\,h\!\star\!\rho_\rho\,](E)\,dE\ }.
 $$
+**数值实现(NPE)**:当采用采样/截断/有限阶 Euler–Maclaurin 进行数值实现时,记被积函数
+$$
+f(E):=w_R(E)\,[\,h\!\star\!\rho_\rho\,](E),
+$$
+在采样点 $E_n=E_0+n\Delta$、截断 $|n|\le N$、EM 阶数 $2M$ 下的**实现读数**为
+$$
+\mathrm{Obs}_{\rm NPE}(w_R,h;\rho)
+=\Delta\sum_{|n|\le N} f(E_n)+\varepsilon_{\rm tail}+\varepsilon_{\rm alias}+\varepsilon_{\rm EM},
+$$
+其中三类误差项的条件与上界见 §3.3 与附录 B;该分解**不改变**上式的精确定义,仅描述数值近似的偏差账本。
+
 其中 $\rho_\rho(E):=\dfrac{d\mu_\rho^{\rm ac}}{dE}$ 为态 $\rho$ 相对于 Lebesgue 测度 $dE$ 的能谱密度;而 $\rho_{\rm rel}(E):=-\xi'(E)=(2\pi)^{-1}\operatorname{tr}\mathsf Q(E)$ 属于通道/散射数据。仅当选取参考态 $\rho_{\rm ref}$ 满足 $d\mu_{\rho_{\rm ref}}^{\rm ac}=\rho_{\rm rel}(E)\,dE$ 时,才可以在公式中以 $\rho_{\rm rel}$ 替换 $\rho_\rho$;其余情形必须显式区分二者。
 
 ### 1.2 操作语法:滤镜链
@@ -256,6 +267,19 @@ $$
 $$
 而 $\varepsilon_{\rm EM}$ 仅在以有限阶 Euler–Maclaurin 近似无穷和(或对近带限 $f$ 的修正积分)时出现,其上界参见附录 B。*说明*: 本命题将理论上的等式 (A) 与工程实践的 NPE 分解 (B) 严格区分,避免在无 alias 的情形下引入不存在的 EM/尾项。([chaosbook.org][7])
 
+### 3.4 操作化时间—能量分辨率纪律(UR)
+
+取窗—核的有效带宽 $B:=\Omega_h+\Omega_w/R$(见卡片 II 与 §3.3 记号)。记由 $K_{w,h}$ 诱导的读数分布之稳健尺度为 $\sigma_T$,与能域尺度 $\sigma_E$ 同一规范。
+
+**命题(UR 的操作化下界)** 在带限与 Nyquist 条件下,对任意链 $\gamma$ 与带限窗—核 $(w_R,h)$,有
+$$
+\sigma_T\ \gtrsim\ \frac{C_{w,h}}{B},\qquad
+\sigma_T\,\sigma_E\ \gtrsim\ \tfrac12\,C_{w,h},
+$$
+其中常数 $C_{w,h}\in(0,1]$ 仅与窗—核的光滑度与归一化有关。该下界与 §3.3 的 NPE 上界模板($\varepsilon_{\rm alias},\varepsilon_{\rm EM},\varepsilon_{\rm tail}$)配对,形成"可测时间刻度"的**非渐近上下界闭合**:上界由 NPE 控误差,下界由带宽 $B$ 定分辨率。
+
+**备注(GR 协变)** 在曲时空 $(\mathcal M,g)$ 上,$\sigma_E$ 取局域正交标架能量,UR 结论在局域洛伦兹框架下保持不变;红移仅重标度 $\sigma_E$,从而按同一账本重标度 $\sigma_T$。
+
 ---
 
 **前提**:以下关于前沿与无超锥传播的命题建立在:
@@ -309,6 +333,37 @@ $$
 t_{*}(\gamma)\ \ge\ \frac{L_{g}}{c}
 $$
 约束,故无悖论。窗化群延迟读数 $T_{\gamma}[w_R,h]$ 可能随滤镜参数和频带改变到达"读数"的数值,但它不改变边缘统计、不生成超因果,也不参与"同时"的定义。这与本文"红线声明"完全一致。
+
+**命题(UR 限幅下的同时可判定性)** 令两端事件 $A,B$ 的窗化读数差为 $\Delta T:=T_{\gamma_A}[w_R,h]-T_{\gamma_B}[w_R,h]$,分辨率阈为 $\sigma_T$(§3.4)。若 $|\Delta T|\le \sigma_T$,则在给定窗—核与带宽下"同时/先后"**不可判定**;若 $|\Delta T|>\sigma_T$,则其符号与狭义相对论洛伦兹变换给出的同时相对性一致,即当基座系有 $\Delta t=0,\ \Delta x=L$ 时,动系满足
+$$
+\operatorname{sign}\Delta T\ =\ \operatorname{sign}\big(\gamma(\Delta t- v\Delta x/c^2)\big)\ =\ -\,\operatorname{sign}(v),
+$$
+其中 $\gamma=(1-v^2/c^2)^{-1/2}$。此处 $\Delta T$ 受多普勒重标度与带内色散影响,但其可判定性阈值由 $\sigma_T$ 固定。
+
+**推论(三账本对账)** 在任何参考系与曲时空局域标架中,$t_*$ 给出不可逾越的因果边界("最早可达"),$\tau$ 给出世界线的固有历时,$T_\gamma$ 给出带内读数刻度;UR 的下界 $\sigma_T$ 定义了"可判定同时"的最小时间差。因而"火车悖论"仅是**不同账本的混用**:用 $\tau$/$T_\gamma$ 讨论"先后"会产生表面冲突,但在加入 $\sigma_T$ 的可判定性阈值与 $t_*$ 的前沿红线后,三者完全一致。
+
+### 4.4 量子隧穿与 Hartman 效应:群延迟与前沿一致
+
+设一维势垒的散射矩阵 $S(E)\in\mathsf U(2)$ 满足 §4 的上半平面解析性与高频真空极限。记透射幅 $t(E)=|t(E)|e^{i\phi_t(E)}$,以及 Wigner–Smith 矩阵 $\mathsf Q(E)=-i\,S^\dagger(E)\tfrac{dS}{dE}(E)$。
+
+**定理(前沿下界保持)** 任意链 $\gamma_{\rm tun}$ 的最早非零到达时间满足
+$$
+t_*(\gamma_{\rm tun})\ \ge\ \frac{L_\gamma}{c},
+$$
+与是否处于隧穿区、障厚如何无关;等号仅在高频测地极限取到。
+
+**命题(Hartman 一致化)** 对窄带读数,
+$$
+T_{\gamma_{\rm tun}}[w_R,h]
+\simeq \int (w_R*\check h)(E)\,\frac{d\phi_t}{dE}(E)\,\frac{dE}{\pi},
+$$
+可能随障厚出现**饱和**或在强共振下取**负值**。该现象仅反映带内相位补偿,并不对应任何信号前沿提前:
+$$
+\text{"负/饱和的 }T_\gamma\text{"}\ \not\Rightarrow\ \text{"}t_*<L/c\text{"}.
+$$
+因为 $t_*$ 由高频端主导(§4.2),而 $T_\gamma$ 由带内相位导数主导,二者账本不同:$t_*$ 定偏序,$T_\gamma$ 定刻度。
+
+**备注(GR 协变)** 曲时空中,$t_*$ 由最短类光测地与局域折射(含 Shapiro 延迟)决定,保持"无超锥传播";而 $T_\gamma$ 随局域势阱的相位响应重标度,但不改变偏序。
 
 ---
 
@@ -628,12 +683,26 @@ I_{\rm ref}(\omega)\ \propto\ \big|M(\omega)\big|^2\,I_{\rm in}(\omega)
 $$
 $\phi=\arg r_2-\arg r_1$。这与空间双缝在角谱上的条纹完全同构,只是"空间位移 $\leftrightarrow$ 时间延迟"对换成"角频率条纹",§6 的谱缩放—时间互易直接适用。
 
-以等效散射子 $S_{\rm eff}(\omega)=M(\omega)\,S_0(\omega)$ 表示时变镜对静态通道 $S_0$ 的调制,相位读数增量由
+以等效散射子 $S_{\rm eff}(\omega)=M(\omega)\,S_0(\omega)$ 表示时变镜对静态通道 $S_0$ 的调制。由于一般 $|M(\omega)|\ne 1$,$S_{\rm eff}$ 非幺正;按**卡片 I(全局幺正)**,应先取最小幺正扩张 $\widehat S_{\rm eff}(\omega)$(单通道情形可取 $2\times2$ 扩张,使 $S_{\rm eff}$ 为其左上角块),并以
+$$
+\frac{1}{2\pi}\operatorname{tr}\mathsf Q_{\widehat S}(\omega)
+=\frac{1}{2\pi}\frac{d}{d\omega}\arg\det\widehat S(\omega)
+$$
+定义母刻度。于是相对于静态通道的群延迟密度增量为
 $$
 \delta\left(\tfrac{1}{2\pi}\operatorname{tr}\mathsf Q\right)
-=\tfrac{1}{2\pi}\tfrac{d}{d\omega}\arg M(\omega),
+=\tfrac{1}{2\pi}\tfrac{d}{d\omega}\arg\det\widehat S_{\rm eff}(\omega)
+-\tfrac{1}{2\pi}\tfrac{d}{d\omega}\arg\det\widehat S_{0}(\omega).
 $$
-给出条纹相位对 $\omega$ 的导数。窗化群延迟读数 $T[w_R,h]=\int_{\mathbb R}(w_R*\check h)(\omega)\,\frac{1}{2\pi}\operatorname{tr}\mathsf Q_{\rm eff}(\omega)\,d\omega$ 自然分解为"静态背景 + 时间狭缝相位项",在母刻度上精确对接操作化时间刻度的定义(见 §3.1)。互补律 $D^2+V^2\le 1$(§5)与无信号结论(§5.3、§7.3)保持不变;§4 的前沿下界 $t_*\ge L/c$ 不受开合时序影响,条纹遵循 §3.3 的 NPE 有限阶误差闭合。([Nature][17])
+当且仅当 $|M(\omega)|\equiv1$(纯相位调制)时,上式退化为
+$$
+\delta\left(\tfrac{1}{2\pi}\operatorname{tr}\mathsf Q\right)=\tfrac{1}{2\pi}\tfrac{d}{d\omega}\arg M(\omega).
+$$
+因而"窗化群延迟读数"应写作
+$$
+T[w_R,h]=\int_{\mathbb R}(w_R*\check h)(\omega)\,\frac{1}{2\pi}\operatorname{tr}\mathsf Q_{\widehat S_{\rm eff}}(\omega)\,d\omega,
+$$
+并可在"静态背景 + 时间狭缝($M$)项"的分解下进行数值实现,与 §3.1 的操作化时间刻度定义保持一致。互补律 $D^2+V^2\le 1$(§5)与无信号结论(§5.3、§7.3)保持不变;§4 的前沿下界 $t_*\ge L_\gamma/c$ 不受开合时序影响,条纹遵循 §3.3 的 NPE 有限阶误差闭合。([Nature][17])
 
 ---
 
