@@ -137,6 +137,7 @@
     - [《大贤者总律：窗·秤·镜·路·账》](./euler-article/great-sage-general-laws.md)
     - [*The Great Sage General Laws* (English)](./euler-article/great-sage-general-laws_en.md)
     - [宇宙作为光的结构](./euler-article/universe-as-light-structure.md)
+    - [宇宙即光的结构：一个万物的新视角](./euler-article/universe-as-generalized-light-structure.md)
     - [册 A｜总纲（五法锚与元律）]()
         - [人生的五面镜子与八条天理](./euler-article/article/book-a-01-five-anchors-meta-laws.md)
         - [Five Mirrors and Eight Natural Laws (EN)](./euler-article/article/book-a-01-five-anchors-meta-laws_en.md)
