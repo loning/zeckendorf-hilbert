@@ -2,7 +2,7 @@
 
 ## ——窗化群延迟、红移与光速的公理化理论、互构纲要与非渐近误差闭合(完整版)
 
-**Version: 3.14**
+**Version: 3.15**
 
 ## 摘要
 
@@ -334,6 +334,17 @@ $$
 $$
 这与定理 5.4(i) 的无信号总和形式完全一致,并与命题 5.5 的时间凸平均属于同一线性账本。
 
+**定义域约定(零测事件与完备仪式)** 记闲置端**单一完备仪式**为 $\{\Pi_a\}_a$(如 which-way:$\{I_1,I_2\}$;或 eraser:$\{E_+,E_-\}$)。则
+$$
+I_{\rm uncond}(w_R,h)=\sum_{a}p_a\,I(w_R,h\mid a),\qquad
+p_a=\operatorname{Tr}\Big[(\mathbf 1\otimes\Pi_a)\,\rho_{si}\Big],
+$$
+**仅在该完备仪式内部成立**。当 $p_a=0$ 时,$I(w_R,h\mid a)$ 不作定义或取任意值(该项被权重消去),不影响上式。时间读数同理:
+$$
+T_{\rm sig}[w_R,h]=\sum_{a}p_a\,T_{\rm sig}[w_R,h\mid a]
+$$
+亦仅对**同一**完备仪式成立。该约定与 §7.3 的"$\sum_a p_a(\cdot\mid a)=(\cdot)$"保持一致。
+
 **命题 5.3(无条件=无干涉;擦除=条件条纹)**
 
 (1) 无条件边缘强度与退相干等价:
@@ -530,12 +541,18 @@ I_\pm(x)\ \propto\ |\psi_1(x)|^2+|\psi_2(x)|^2\ \pm\ 2\,\big|\psi_1(x)\psi_2(x)\
 $$
 两图样相位相反,叠加回到无条件分布。
 
-* **强度—加权恢复式(DCQE)**
+* **强度—加权恢复式(DCQE;按仪式分立)**
 $$
-\boxed{\quad I_{\rm uncond}(w_R,h)=\sum_{\alpha\in\{I_1,I_2,E_\pm\}}p_\alpha\,I(w_R,h\mid \alpha),\qquad
-p_\alpha=\operatorname{Tr}\Big[(\mathbf 1\otimes\Pi_\alpha)\,\rho_{si}\Big]\quad}
+\boxed{\ I_{\rm uncond}
+=\sum_{\alpha\in\{I_1,I_2\}}p_{\alpha}^{(\mathrm{ww})}\,I(\cdot\mid \alpha)
+=\sum_{\beta\in\{E_+,E_-\}}p_{\beta}^{(\mathrm{er})}\,I(\cdot\mid \beta)\ }
 $$
-与 §5.3 的补充定义、定理 5.4(i) 的无信号以及命题 5.5 的时间凸平均完全对齐。
+其中上、下两式分别对应 which-way 与 eraser 两个**各自完备**的仪式;若实验将两种仪式按频率 $\lambda_{\mathrm{ww}},\lambda_{\mathrm{er}}$ 混合运行($\lambda_{\mathrm{ww}}+\lambda_{\mathrm{er}}=1$),则
+$$
+I_{\rm uncond}
+=\lambda_{\mathrm{ww}}\sum_{\alpha\in\{I_1,I_2\}}p_{\alpha}^{(\mathrm{ww})}I(\cdot\mid \alpha)
++\lambda_{\mathrm{er}}\sum_{\beta\in\{E_+,E_-\}}p_{\beta}^{(\mathrm{er})}I(\cdot\mid \beta).
+$$
 
 * **群延迟一致性**:对任何 $\alpha\in\{\pm, I_1,I_2\}$,
 $$
@@ -543,12 +560,13 @@ T_{\rm sig}[w_R,h\mid \alpha]=\int (w_R*\check h)(E)\,\frac{1}{2\pi}\operatornam
 $$
 与擦除选择无关;当 $w_R,h$ 满足卡片 II 的带限与 Nyquist 条件时,NPE 误差闭合同步成立。
 
-* **一致性—凸平均**:对 $\alpha\in\{\pm,I_1,I_2\}$,有
+* **一致性—凸平均(时间;按仪式分立)**
 $$
-\sum_{\alpha} p_\alpha\,T_{\rm sig}[w_R,h\mid \alpha]\ =\ T_{\rm sig}[w_R,h],\qquad
-p_\alpha:=\Pr(\alpha).
+\boxed{\ T_{\rm sig}[w_R,h]
+=\sum_{\alpha\in\{I_1,I_2\}}p_{\alpha}^{(\mathrm{ww})}\,T_{\rm sig}[w_R,h\mid \alpha]
+=\sum_{\beta\in\{E_+,E_-\}}p_{\beta}^{(\mathrm{er})}\,T_{\rm sig}[w_R,h\mid \beta]\ }
 $$
-与 §5 的命题 5.5 完全一致。
+混合运行同理加上 $\lambda_{\mathrm{ww}},\lambda_{\mathrm{er}}$ 的凸组合。以上改写与 §5.3 的补充定义、命题 5.5 以及 §7.3 的账本恒等式完全对齐,排除了跨仪式求和导致的归一性与一致性问题。
 
 ### 12.5 时间域双缝:超快时变镜(ITO/ENZ)
 
