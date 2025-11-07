@@ -2,7 +2,7 @@
 
 ## ——窗化群延迟、红移与光速的公理化理论、互构纲要与非渐近误差闭合(完整版)
 
-**Version: 2.11**
+**Version: 3.5**
 
 ## 摘要
 
@@ -90,27 +90,36 @@ $$
 
 ## 2. 因果流形的内生
 
-### 2.1 解析正性 ⇒ 单向支撑与偏序
+### 2.1 上半平面解析性(Hardy) ⇒ 单向支撑与偏序
 
-取上半平面 **Cauchy 变换**
+取上半平面 Cauchy 变换
 $$
 m(z)=\int_{\mathbb R}\frac{d\mu_\varphi(E)}{E-z},
 $$
-其中 $\mu_\varphi$ 由卡片 I 定义,允许为有限符号测度。结合 LTI+因果假设以及 Paley–Wiener/Titchmarsh 与 Kramers–Kronig 关系,时域冲激响应 $g(t)$ 具单向支撑(经校准后 $t\ge0$),并且实/虚部互为 Hilbert 变换。
+其中 $\mu_\varphi$ 由卡片 I 定义,允许为有限符号测度。由于 $\mu_\varphi$ 可为有限符号测度,$m$ 非必为 Herglotz;本文仅要求 $m\in H^2(\mathbb C^+)$(上半平面 Hardy 边值)。在 LTI 与因果假设下,Paley–Wiener/Titchmarsh 与 Kramers–Kronig–Hilbert 关系推出时域冲激响应 $g(t)$ 的单向支撑(规范后 $t\ge 0$)及实/虚部的 Hilbert 共轭。
 
-**定义 2.1(前沿时间可达预序)** 设链 $\gamma$ 的输出冲击响应为 $g_\gamma(t;L)$,前沿到达时间
+**定义 2.1(前沿时间可达预序)** 设链集合 $\Gamma(x,y):=\{\gamma:x\to y\}$。若 $\Gamma(x,y)\neq\varnothing$,定义
 $$
-t_*(\gamma):=\inf\{\,t:\,g_\gamma(t;L)\neq 0\,\}\quad(\text{见 §4.2}).
+t_*(\gamma):=\inf\{\,t:\,g_\gamma(t;L)\neq 0\,\},\qquad
+\tau(x,y):=\inf_{\gamma\in\Gamma(x,y)} t_*(\gamma),\qquad
+L_*(x,y):=\inf_{\gamma\in\Gamma(x,y)} L(\gamma).
 $$
-记 $L(\gamma)$ 为该链在真空度规下的光程(参见 §4.1)。定义可达预序
+约定:当 $\Gamma(x,y)=\varnothing$ 时,$\tau(x,y)$ 与 $L_*(x,y)$ 记为 $+\infty$,且关系 $x\preceq y$ **不成立**。据此定义可达预序
 $$
-x\preceq_{\rm pre} y\;\Longleftrightarrow\;\exists\,\gamma:x\to y\ \text{且}\ t_*(\gamma)\ge L(\gamma)/c.
+x\preceq y\;\Longleftrightarrow\;\Gamma(x,y)\neq\varnothing\ \text{且}\ \tau(x,y)\ge \frac{L_*(x,y)}{c}.
 $$
-**假设(无闭因果回路)**:不存在 $x\neq y$ 使得 $x\preceq_{\rm pre} y$ 且 $y\preceq_{\rm pre} x$。在该假设下, $\preceq_{\rm pre}$ 为偏序,记作 $\preceq$。定义类光锥边界
+(**充分条件**:若对所有 $\gamma:x\to y$,均有 $t_*(\gamma)\ge L(\gamma)/c$,则 $x\preceq y$。*注*:反向蕴含一般不成立,除非满足 §4 的补强前提并且极小链同时实现 $\tau$ 与 $L_*$。)
+
+**约定(恒等链)** 对每个 $x$,$\Gamma(x,x)$ 包含恒等链 $e_x$,规定 $L(e_x)=0$,$g_{e_x}(t;0)=\delta(t)$,故 $t_*(e_x)=0$。于是 $\tau(x,x)=0=L_*(x,x)/c$,自反性由定义立即得到。
+
+**假设(无闭因果回路)**:不存在 $x\neq y$ 使得 $x\preceq y$ 且 $y\preceq x$。在该假设下, $\preceq$ 为偏序。定义类光锥边界
 $$
-\partial J^+(x):=\{\,y:\exists\,\gamma:x\to y,\ t_*(\gamma)=L(\gamma)/c\,\}.
+\partial J^+(x):=\{\,y\in J^+(x):\ \tau(x,y)=L_*(x,y)/c\,\},\qquad
+J^+(x):=\{\,y:\Gamma(x,y)\neq\varnothing,\ x\preceq y\,\}.
 $$
-窗化群延迟读数 $T_\gamma[w_R,h]$ 是相位导数的加权读数,没有与前沿时间 $t_*(\gamma)$ 的一般大小比较关系。
+**命题 2.2(偏序性)** 在该假设下,$\preceq$ 自反、传递且反对称,因此为偏序。自反与传递性分别来自恒等路径与路径级联,反对称性由“无闭因果回路”直接保证。
+
+窗化群延迟读数 $T_\gamma[w_R,h]$ 是相位导数的频域加权读数,没有与前沿时间 $t_*(\gamma)$ 的一般大小比较关系。
 
 ### 2.2 相位奇性 ⇒ 最短到达与因果边界
 
@@ -186,7 +195,15 @@ $$
 
 ---
 
-**前提（LTI+因果+K–K）**:以下关于前沿与无超锥传播的命题均建立在系统线性、时间不变、因果(时域响应在 $t<0$ 为零)且满足 Kramers–Kronig/解析正性的条件之上。
+**前提**:以下关于前沿与无超锥传播的命题建立在:
+
+(i) **LTI + 因果 + 上半平面解析性(Hardy)**:频域响应的上半平面解析性与 Hardy 边值保证 Kramers–Kronig–Hilbert 关系;**若进一步假设被动性**,则可归入 Herglotz 类;
+
+(ii) **高频真空极限**:对任一传播段 $T(\omega;L)$,有 $\lim_{|\omega|\to\infty}T(\omega;L)\,e^{-i\omega L/c}=1$(或等价地 $\lim_{|\omega|\to\infty}n(\omega)=1$);
+
+(iii) **局域性/有限传播速度**:链由满足双曲型局域动力学的元件组成,其格林函数(或冲激响应)存在有限波前;
+
+(iv) **被动性**:无主动增益导致的超前响应。
 
 ## 4. 光速与类光锥:前沿定标与无超锥传播
 
@@ -200,11 +217,11 @@ $$
 
 ### 4.2 无超锥传播——前沿读数
 
-**定理 4.2(前沿下界)** 设真空前沿规范给出 $c$(见§4.1)。任意链 $\gamma$ 的输出冲激响应 $g_\gamma(t;L)$ 在 $t<L/c$ 恒为 0,故
+**定理 4.2(前沿下界)** 在上述前提下,任意链 $\gamma$ 的输出冲激响应 $g_\gamma(t;L)$ 在 $t<L/c$ 恒为 0,因而
 $$
-t_*(\gamma):=\inf\{\,t:\,g_\gamma(t;L)\ne0\,\}\ \ge\ L/c.
+t_*(\gamma)\ \ge\ L/c,
 $$
-**注**:窗化群延迟读数 $T_\gamma[w_R,h]$ 为相位导数的频域加权平均,并非前沿时间;其值可在窄带/共振情形取负,因而不存在普适的不等式 $T_\gamma[w_R,h]\ge L/c$。([Wolfram MathWorld][5])
+且等号当且仅当链的高频传播子在真空极限下沿测地达到。*注*:窗化群延迟读数 $T_\gamma[w_R,h]$ 仍非前沿时间,窄带/共振下可取负,二者无普适比较不等式。([Wolfram MathWorld][5])
 
 ---
 
@@ -229,6 +246,54 @@ $$
 **定理 5.2(窗化互补不等式)** 能见度 $V$ 与可辨度 $D$(Helstrom 距离)满足 $D^2+V^2\le 1$,等号在纯态与理想区分/理想相干极限取到。([物理评论链接管理器][9])
 
 *证明提纲*:以 CPTP 收缩性与 Cauchy–Schwarz 控制交叉块范数;将二分类最小错判界(Helstrom)嵌入窗化场景,复现 Englert 不等式。([物理评论链接管理器][10])
+
+### 5.3 延迟擦除(Delayed-Choice Quantum Eraser, DCQE)
+
+**设置** 设双缝路径投影 $P_1,P_2$。引入"信号—闲置(idler)"分裂 $\mathcal H=\mathcal H_s\otimes\mathcal H_i$,以幺正纠缠器
+$$
+U_{\rm ent}:\ P_j\otimes\lvert0\rangle_i\ \mapsto\ P_j\otimes\lvert I_j\rangle_i,\qquad \langle I_1\mid I_2\rangle=0,\ j=1,2,
+$$
+实现 which-way 打标。屏上读数由同一窗—核 $K:=K_{w,h}$ 给出,闲置端选择在两类测量基之间切换:
+
+(i) which-way 基 $\{\Pi_{I_1},\Pi_{I_2}\}$;(ii) 擦除基 $\{\Pi_{E_\pm}\}$,其中
+$$
+\lvert E_\pm\rangle=\tfrac{1}{\sqrt2}\big(\lvert I_1\rangle \pm e^{i\phi}\lvert I_2\rangle\big),\quad \Pi_{E_\pm}=\lvert E_\pm\rangle\langle E_\pm\rvert.
+$$
+
+**定义(符合—条件强度)** 记源态 $\rho_s$ 与总态 $\rho_{si}=U_{\rm ent}(\rho_s\otimes\lvert0\rangle\langle0\rvert)U_{\rm ent}^\dagger$。对闲置端结果 $\alpha\in\{I_1,I_2,E_+,E_-\}$,定义
+$$
+I_\alpha(w_R,h):=\operatorname{Tr}\Big[(K\otimes \Pi_\alpha)\,\rho_{si}\Big].
+$$
+
+**命题 5.3(无条件=无干涉;擦除=条件条纹)**
+
+(1) 无条件边缘强度与退相干等价:
+$$
+I_{\rm uncond}(w_R,h):=\sum_{j=1}^2 I_{I_j}(w_R,h)=\operatorname{Tr}\Big(K\,\sum_{j=1}^2 P_j\rho_s P_j\Big),
+$$
+其交叉项消失,故屏上不显干涉。
+
+(2) 擦除基下的条件符合显现互补相位:
+$$
+I_\pm(w_R,h)=\sum_{j=1}^2 \operatorname{Tr}\big(K\,P_j\rho_s P_j\big)\ \pm\ 2\,\Re\Big(e^{i\phi}\operatorname{Tr}(K\,P_1\rho_s P_2)\Big),
+$$
+两图样相位相反,能见度在纯态与理想稳定窗下取到互补上界。
+
+**定理 5.4(无信号与群延迟不变)** 设闲置端采用任意完备仪式 $\{\mathcal I_a^i\}$(包含 which-way 或擦除作特别情形),则
+
+(i) 屏上无条件分布不依赖闲置选择与测量先后:
+$$
+\sum_a I_a(w_R,h)=\operatorname{Tr}\big(K\,\operatorname{Tr}_i\rho_{si}\big),\qquad \sum_a \mathcal I_a^i=\Phi_i\ \text{为 CPTP};
+$$
+
+(ii) 信号通道的窗化群延迟读数与擦除选择无关:
+$$
+T_{\rm sig}[w_R,h\mid \{\mathcal I_a^i\}]=\int (w_R*\check h)(E)\,\frac{1}{2\pi}\operatorname{tr}\mathsf Q_{\rm sig}(E)\,dE=T_{\rm sig}[w_R,h].
+$$
+
+*证明要点*:完备性与偏迹给出 $\sum_a(\mathrm{Id}_s\otimes\mathcal I_a^i)(\rho_{si})=(\mathrm{Id}_s\otimes\Phi_i)(\rho_{si})$,取 $\operatorname{Tr}_i$ 得无条件不变;$\mathsf Q_{\rm sig}$ 由信号散射子决定,与闲置的本地测量基无关,故 $T_{\rm sig}$ 不变。
+
+*备注(延迟与类空间分离)*:当屏与闲置读出区域类空间分离时,由 §7 的窗化微因果律,$[K[U_x],\mathbf 1\otimes\Pi_\alpha[U_y]]=0$,因而"延迟选择"不引入任何超因果效应;仅在符合(条件化)层面重排样本,边缘统计与群延迟读数保持不变。
 
 ---
 
@@ -290,6 +355,20 @@ $$
 \mathcal O_{[t_0,t_n]}=\mathcal O_{[t_{n-1},t_n]}\circ\cdots\circ \mathcal O_{[t_0,t_1]},
 $$
 相邻类空间分离段可交换,否则按时间序组合。
+
+### 7.3 延迟选择的无信号与时间顺序独立
+
+**命题 7.5(无信号)** 对任意信号—闲置总态 $\rho_{si}$ 与任意闲置端完备仪式 $\{\mathcal I_a^i\}$($\sum_a\mathcal I_a^i=\Phi_i$ 为 CPTP),有
+$$
+\operatorname{Tr}_i\Big[(\mathrm{Id}_s\otimes\sum_a\mathcal I_a^i)(\rho_{si})\Big]=\operatorname{Tr}_i(\rho_{si}),
+$$
+故任意屏上局域窗—核 $K_{w,h}[U_x]$ 的无条件读数不依赖闲置端的测量基、是否擦除、以及先后顺序。
+
+**命题 7.6(时间顺序独立)** 若屏域 $U_x$ 与闲置域 $U_y$ 类空间分离,则对任何 $K_{w,h}[U_x]$ 与闲置端投影 $\Pi_\alpha[U_y]$ 有
+$$
+[K_{w,h}[U_x],\mathbf 1\otimes\Pi_\alpha[U_y]]=0,
+$$
+从而无论"先测屏后擦除"或"先擦除后测屏",无条件分布一致;条件符合仅改变样本分组,不改变边缘。与 §5.3 的定理 5.4 保持一致。
 
 ---
 
@@ -361,6 +440,46 @@ T_{\rm obs}[w_R,h]
 =\int_{\mathbb R}(w_R*\check h)\!\Big(\frac{E}{1+z}\Big)\,\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)\,dE
 =\frac{1}{1+z}\,T_{\rm src}\!\big[w_R^{\langle 1/(1+z)\rangle},\,h^{\langle 1/(1+z)\rangle}\big].
 $$
+
+### 12.4 双缝延迟擦除(DCQE)
+
+取远场近似下的两缝振幅 $\psi_{1,2}(x)$,屏上选择位置窗—核 $K_{w,h}$($w_R$ 定位于像面区段,$h$ 取近 $\delta$ 核以读出强度)。设源态 $\rho_s$ 为纯态 $\lvert\psi_s\rangle\langle\psi_s\rvert$,$\lvert\psi_s\rangle=\tfrac{1}{\sqrt2}(\lvert1\rangle+e^{i\theta}\lvert2\rangle)$。则
+
+* **无条件**:$I_{\rm uncond}(x)\propto |\psi_1(x)|^2+|\psi_2(x)|^2$。
+
+* **擦除符合**:
+$$
+I_\pm(x)\ \propto\ |\psi_1(x)|^2+|\psi_2(x)|^2\ \pm\ 2\,\big|\psi_1(x)\psi_2(x)\big|\cos\big(\Delta k\cdot x+\theta+\phi\big).
+$$
+两图样相位相反,叠加回到无条件分布。
+
+* **群延迟一致性**:对任何 $\alpha\in\{\pm, I_1,I_2\}$,
+$$
+T_{\rm sig}[w_R,h\mid \alpha]=\int (w_R*\check h)(E)\,\frac{1}{2\pi}\operatorname{tr}\mathsf Q_{\rm sig}(E)\,dE,
+$$
+与擦除选择无关;当 $w_R,h$ 满足卡片 II 的带限与 Nyquist 条件时,NPE 误差闭合同步成立。
+
+### 12.5 时间域双缝:超快时变镜(ITO/ENZ)
+
+采用接近 ENZ 区的 ITO 薄膜构成可切换"时间镜",以两次超短泵浦在时刻 $t_1,t_2$ 使反射率快速跃迁,相当于对入射探测脉冲施加两道"时间狭缝"。随间隔 $\Delta t=t_2-t_1$ 调谐,反射谱出现清晰干涉条纹,周期满足 $\Delta\omega \simeq 2\pi/\Delta t$。([Nature][17])
+
+将时间域双缝视作对反射通道的瞬时调制,其对频域的等效作用为乘以
+$$
+M(\omega)=r_1+r_2e^{-i\omega\Delta t},
+$$
+其中 $r_{1,2}$ 为两次开启的复幅度。反射谱强度
+$$
+I_{\rm ref}(\omega)\ \propto\ \big|M(\omega)\big|^2\,I_{\rm in}(\omega)
+=\Big(|r_1|^2+|r_2|^2+2|r_1r_2|\cos[\omega\Delta t+\phi]\Big)\,I_{\rm in}(\omega),
+$$
+$\phi=\arg r_2-\arg r_1$。这与空间双缝在角谱上的条纹完全同构,只是"空间位移 $\leftrightarrow$ 时间延迟"对换成"角频率条纹",§6 的谱缩放—时间互易直接适用。
+
+以等效散射子 $S_{\rm eff}(\omega)=M(\omega)\,S_0(\omega)$ 表示时变镜对静态通道 $S_0$ 的调制,相位读数增量由
+$$
+\delta\left(\tfrac{1}{2\pi}\operatorname{tr}\mathsf Q\right)
+=\tfrac{1}{2\pi}\tfrac{d}{d\omega}\arg M(\omega),
+$$
+给出条纹相位对 $\omega$ 的导数。窗化群延迟读数 $T[w_R,h]=\int_{\mathbb R}(w_R*\check h)(\omega)\,\frac{1}{2\pi}\operatorname{tr}\mathsf Q_{\rm eff}(\omega)\,d\omega$ 自然分解为"静态背景 + 时间狭缝相位项",在母刻度上精确对接"时间 = 群延迟读数"的定义(见 §3.1)。互补律 $D^2+V^2\le 1$(§5)与无信号结论(§5.3、§7.3)保持不变;§4 的前沿下界 $t_*\ge L/c$ 不受开合时序影响,条纹遵循 §3.3 的 NPE 有限阶误差闭合。([Nature][17])
 
 ---
 
@@ -454,6 +573,9 @@ Toeplitz/Berezin 框架为窗化读数提供算子化实施路径;de Branges 空
 9. E. C. Titchmarsh, Paley–Wiener/Titchmarsh 定理(因果—解析性与 Hilbert 变换);Kramers–Kronig 关系物理阐释。([Wolfram MathWorld][5])
 10. L. Brillouin, *Wave Propagation and Group Velocity*, Academic Press (1960):先驱/前沿速度与因果讨论的经典来源。([互联网档案馆][8])
 11. Berezin 协变/逆协变符号与 Berezin 变换(Toeplitz/Berezin 量化)。([SpringerLink][16])
+12. R. Tirole *et al.*, *Double-slit time diffraction at optical frequencies*, Nature Phys. 19, 999–1002 (2023):ITO 近 ENZ 区时变镜实现时间域双缝干涉,展示频谱条纹与上升时间接近一个光学周期的证据。([Nature][17])
+13. D. Castelvecchi, *Light waves squeezed through 'slits in time'*, Nature News (2023):Nature 新闻对时间域双缝实验的权威解读,引用指出镜面切换可能达 1 fs 量级。([Nature][18])
+14. S. Vezzoli *et al.*, *Saturable Time-Varying Mirror Based on an Epsilon-Near-Zero Material*, Phys. Rev. Applied 18, 054067 (2022):ITO–Au 可饱和时变镜的先导工作,实现十倍反射调制与亚 30 fs 级响应。([物理评论链接管理器][19])
 
 ---
 
@@ -482,3 +604,6 @@ Toeplitz/Berezin 框架为窗化读数提供算子化实施路径;de Branges 空
 [14]: https://link.springer.com/book/10.1007/3-540-32436-4?utm_source=chatgpt.com "Analysis of Toeplitz Operators"
 [15]: https://dlmf.nist.gov/2.10?utm_source=chatgpt.com "DLMF: §2.10 Sums and Sequences ‣ Areas ‣ Chapter 2 ..."
 [16]: https://link.springer.com/chapter/10.1007/978-1-4612-0255-4_12?utm_source=chatgpt.com "Berezin-Toeplitz Quantization"
+[17]: https://www.nature.com/articles/s41567-023-01993-w "Double-slit time diffraction at optical frequencies | Nature Physics"
+[18]: https://www.nature.com/articles/d41586-023-00968-4 "Light waves squeezed through 'slits in time'"
+[19]: https://link.aps.org/doi/10.1103/PhysRevApplied.18.054067?utm_source=chatgpt.com "Saturable Time-Varying Mirror Based on an Epsilon-Near-Zero Material"
