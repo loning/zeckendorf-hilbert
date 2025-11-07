@@ -47,7 +47,7 @@ t_{*}(\gamma)\ \ge\ \frac{L_{g}}{c}.
 $$
 **红线重申**:$t_*$ 与由其诱导的偏序决定因果;窗化群延迟读数 $T_{\gamma}[w_R,h]$ 仅是可测刻度,不参与偏序定义。
 
-### 卡片 I（刻度同一｜全局幺正公设）
+### 公理 I（刻度同一｜全局幺正公设）
 
 **公设（全局幺正）**：宇宙视作封闭系统;存在以能量 $E$ 为坐标的绝对连续谱区间,在本工作带内散射矩阵 $S(E)\in C^1\cap\mathsf U(N)$ 幺正。由 Birman–Kreĭn 公式
 $$
@@ -69,7 +69,7 @@ $$
 
 **处方**：任何实验性损耗/增益均视作对环境自由度的迹出;理论分析统一通过幺正扩张 $\widehat S(E)$ 处理,并以 $\mathsf Q(\widehat S)=-i\widehat S^\dagger\widehat S'$ 评估全部时间/密度读数。本文不引入 $\widetilde{\mathsf Q}:=-iS^{-1}S'$。
 
-### 卡片 II(有限阶 EM 与极点 = 主尺度)
+### 公理 II(有限阶 EM 与极点 = 主尺度)
 
 一切离散—连续换算与窗化读数遵循 NPE 三分解
 $$
@@ -147,7 +147,7 @@ $$
 $$
 m(z)=\int_{\mathbb R}\frac{d\mu_\varphi(E)}{E-z},
 $$
-其中 $\mu_\varphi$ 由卡片 I 定义。为应用 Paley–Wiener/Titchmarsh 与 Kramers–Kronig,本稿在 §2–§4 假设 $\mu_\varphi$ 绝对连续,且 $\rho_{\rm rel}\in L^2(\mathbb R)$,于是
+其中 $\mu_\varphi$ 由公理 I 定义。为应用 Paley–Wiener/Titchmarsh 与 Kramers–Kronig,本稿在 §2–§4 假设 $\mu_\varphi$ 绝对连续,且 $\rho_{\rm rel}\in L^2(\mathbb R)$,于是
 $$
 m(z)=\int_{\mathbb R}\frac{d\mu_\varphi(E)}{E-z}\in H^2(\mathbb C^+).
 $$
@@ -227,7 +227,7 @@ $$
 =\operatorname{tr}\mathsf Q_{\gamma_2}+\operatorname{tr}\mathsf Q_{\gamma_1},\qquad
 T_{\gamma_2\circ\gamma_1}[w_R,h]=T_{\gamma_2}[w_R,h]+T_{\gamma_1}[w_R,h].
 $$
-*证明*:由 $(S_2S_1)'=S_2'S_1+S_2S_1'$ 得 $\mathsf Q(S_2S_1)=S_1^\dagger\mathsf Q(S_2)S_1+\mathsf Q(S_1)$;取迹用循环不变性即得第一式;代入定义得第二式。*备注(幺正版)*:由**卡片 I(刻度同一｜全局幺正公设)**可知任意串/并联网络可视为单一幺正扩张 $\widehat S$ 的块构造,故 $\operatorname{tr}\mathsf Q$ 与 $T_\gamma[w_R,h]$ 的可加性在幺正框架内直接成立,无需其他替代处方。([chaosbook.org][7])
+*证明*:由 $(S_2S_1)'=S_2'S_1+S_2S_1'$ 得 $\mathsf Q(S_2S_1)=S_1^\dagger\mathsf Q(S_2)S_1+\mathsf Q(S_1)$;取迹用循环不变性即得第一式;代入定义得第二式。*备注(幺正版)*:由**公理 I(刻度同一｜全局幺正公设)**可知任意串/并联网络可视为单一幺正扩张 $\widehat S$ 的块构造,故 $\operatorname{tr}\mathsf Q$ 与 $T_\gamma[w_R,h]$ 的可加性在幺正框架内直接成立,无需其他替代处方。([chaosbook.org][7])
 
 **命题 3.3(规范协变与相对不变)** 设能量依赖基变换 $S\mapsto U(E)SV(E)$,则
 $$
@@ -281,7 +281,7 @@ $$
 
 ### 3.4 操作化时间—能量分辨率纪律(UR)
 
-取窗—核的有效带宽 $B:=\Omega_h+\Omega_w/R$(见卡片 II 与 §3.3 记号)。记由 $K_{w,h}$ 诱导的读数分布之稳健尺度为 $\sigma_T$,与能域尺度 $\sigma_E$ 同一规范。
+取窗—核的有效带宽 $B:=\Omega_h+\Omega_w/R$(见公理 II 与 §3.3 记号)。记由 $K_{w,h}$ 诱导的读数分布之稳健尺度为 $\sigma_T$,与能域尺度 $\sigma_E$ 同一规范。
 
 **命题(UR 的操作化下界)** 在带限与 Nyquist 条件下,对任意链 $\gamma$ 与带限窗—核 $(w_R,h)$,有
 $$
@@ -506,7 +506,7 @@ $$
 
 ### 6.2 互易标度律
 
-**假设(谱均匀缩放)**:存在 $z>-1$ 使 $S_{\rm obs}(E)=S_{\rm src}((1+z)E)$,并保证 $S,\ S'$ 在缩放域内可测可积;同时假设源端窗/核满足卡片 II 的带限与采样前提。
+**假设(谱均匀缩放)**:存在 $z>-1$ 使 $S_{\rm obs}(E)=S_{\rm src}((1+z)E)$,并保证 $S,\ S'$ 在缩放域内可测可积;同时假设源端窗/核满足公理 II 的带限与采样前提。
 
 **定理 6.2** 若谱缩放 $E\mapsto E/(1+z)$,则对任意链 $\gamma$ 与窗—核 $(w_R,h)$,
 $$
@@ -522,7 +522,7 @@ T_\gamma^{\rm obs}[w_R,h]
 =\int_{\mathbb R}(w_R*\check h)\!\Big(\frac{E}{1+z}\Big)\,
 \frac{1}{2\pi}\operatorname{tr}\mathsf Q_\gamma(E)\,dE.
 $$
-**带限与采样协变**:若 $\widehat w,\widehat h$ 严格带限,则 $w_R^{\langle a\rangle},h^{\langle a\rangle}$ 仍严格带限,Nyquist 纪律随缩放变为 $\Delta\le \pi/\big(a(\Omega_h+\Omega_w/R)\big)$,故卡片 II 的前提在该模型下保持有效。
+**带限与采样协变**:若 $\widehat w,\widehat h$ 严格带限,则 $w_R^{\langle a\rangle},h^{\langle a\rangle}$ 仍严格带限,Nyquist 纪律随缩放变为 $\Delta\le \pi/\big(a(\Omega_h+\Omega_w/R)\big)$,故公理 II 的前提在该模型下保持有效。
 
 *证明要点*:$\operatorname{tr}\mathsf Q_{\rm obs}(E)=(1+z)\,\operatorname{tr}\mathsf Q\big((1+z)E\big)$,以及$(f*g)\big(aE\big)=a\,\big(f^{\langle a\rangle}*g^{\langle a\rangle}\big)(E)$。
 
@@ -576,7 +576,7 @@ $$
 
 ### 8.1 范畴
 
-$\mathbf{WScat}$:对象为 $(S,\mu_\varphi,\mathcal W)$,态射为保持卡片 I/II 的滤镜链;
+$\mathbf{WScat}$:对象为 $(S,\mu_\varphi,\mathcal W)$,态射为保持公理 I/II 的滤镜链;
 $\mathbf{Cau}$:对象为因果流形 $(\mathcal M,\preceq)$,其中 $\preceq$ 为由 §2.1 的可达预序在无闭因果回路假设下得到的偏序(或一般情形下的商偏序);态射为保持类光锥与该偏序的映射。
 
 ### 8.2 构造与结论
@@ -670,7 +670,7 @@ $$
 $$
 T_{\rm sig}[w_R,h\mid \alpha]=\int (w_R*\check h)(E)\,\frac{1}{2\pi}\operatorname{tr}\mathsf Q_{\rm sig}(E)\,dE,
 $$
-与擦除选择无关;当 $w_R,h$ 满足卡片 II 的带限与 Nyquist 条件时,NPE 误差闭合同步成立。
+与擦除选择无关;当 $w_R,h$ 满足公理 II 的带限与 Nyquist 条件时,NPE 误差闭合同步成立。
 
 * **一致性—凸平均(时间;按仪式分立)**
 $$
@@ -695,7 +695,7 @@ I_{\rm ref}(\omega)\ \propto\ \big|M(\omega)\big|^2\,I_{\rm in}(\omega)
 $$
 $\phi=\arg r_2-\arg r_1$。这与空间双缝在角谱上的条纹完全同构,只是"空间位移 $\leftrightarrow$ 时间延迟"对换成"角频率条纹",§6 的谱缩放—时间互易直接适用。
 
-以等效散射子 $S_{\rm eff}(\omega)=M(\omega)\,S_0(\omega)$ 表示时变镜对静态通道 $S_0$ 的调制。由于一般 $|M(\omega)|\ne 1$,$S_{\rm eff}$ 非幺正;按**卡片 I(全局幺正)**,应先取最小幺正扩张 $\widehat S_{\rm eff}(\omega)$(单通道情形可取 $2\times2$ 扩张,使 $S_{\rm eff}$ 为其左上角块),并以
+以等效散射子 $S_{\rm eff}(\omega)=M(\omega)\,S_0(\omega)$ 表示时变镜对静态通道 $S_0$ 的调制。由于一般 $|M(\omega)|\ne 1$,$S_{\rm eff}$ 非幺正;按**公理 I(全局幺正)**,应先取最小幺正扩张 $\widehat S_{\rm eff}(\omega)$(单通道情形可取 $2\times2$ 扩张,使 $S_{\rm eff}$ 为其左上角块),并以
 $$
 \frac{1}{2\pi}\operatorname{tr}\mathsf Q_{\widehat S}(\omega)
 =\frac{1}{2\pi}\frac{d}{d\omega}\arg\det\widehat S(\omega)
@@ -791,7 +791,7 @@ $$
 
 ## 附录 C:互构纲要的范畴论骨架
 
-对象:$\mathbf{WScat}$ 的态射为保持卡片 I/II 的滤镜链;$\mathbf{Cau}$ 的态射为保持类光锥与偏序的映射。
+对象:$\mathbf{WScat}$ 的态射为保持公理 I/II 的滤镜链;$\mathbf{Cau}$ 的态射为保持类光锥与偏序的映射。
 $\mathfrak F$:以前沿集/最早到达集构造偏序与锥;$\operatorname{tr}\mathsf Q$ 仅用于读数刻度与标定(**在真空链路并满足 Nyquist 纪律的高频/无别名极限下,可用于与前沿速度 $c$ 一致对齐**)。
 $\mathfrak G$:以固有时间构造带限窗—核并施以 Berezin 压缩,使刻度同一与 NPE 闭合同步成立。([SpringerLink][3])
 
