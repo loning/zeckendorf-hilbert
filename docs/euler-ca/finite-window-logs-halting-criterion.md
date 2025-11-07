@@ -1,6 +1,6 @@
 # 有限窗日志的停机判据：NPE 尾项熵通量、三位一体刻度与 WSIG–EBOC–RCA 统一框架
 
-Version: 1.24
+Version: 1.26
 
 ## 摘要
 
@@ -20,15 +20,25 @@ $$
 $$
 从而 $\rho_{\rm rel}=(2\pi)^{-1}\operatorname{tr}\mathsf Q=\varphi'(E)/\pi=-\xi'(E)$。([arXiv][1])
 
+**WSIG（Wigner–Smith 信息规范）**：以 Wigner–Smith 矩阵 $\mathsf Q(E)=-\,i\,S(E)^\dagger S'(E)$ 的迹密度定义母尺规范，其自然测度为
+$$
+d\mu_{\rm WSIG}(E):=(2\pi)^{-1}\operatorname{tr}\mathsf Q(E)\,dE.
+$$
+该测度与散射相位导数、相对态密度满足三位一体同一式
+$$
+\frac{\varphi'(E)}{\pi}=\rho_{\rm rel}(E)=(2\pi)^{-1}\operatorname{tr}\mathsf Q(E),
+$$
+因此文中的“WSIG–EBOC–RCA 统一框架”即以此母尺将 §6 的 EBOC 静态本体与 RCA 可逆动力语义对位。
+
 **对象与窗**：Hilbert 空间 $\mathcal H$，观测三元 $(\mathcal H,w,S)$。窗 $w$ 诱导 Toeplitz/Berezin 压缩核 $K_{w,h}$（步长/刻度 $h>0$），并诱导对谱测度的连续线性读数泛函。Toeplitz/Berezin 参考文献见 Engliš 与 Boutet de Monvel–Guillemin。([users.math.cas.cz][2])
 
 **窗剖面、能带与尾域**：设工作带 $\Omega\subset\mathbb R$ 为固定有界能带；记可能的阈值（或其他不可去奇性）集合为 $\{E_{{\rm th},j}\}_j$。定义**窗剖面** $\Psi_w:\mathbb R\to[0,\infty)$ 为由窗 $w$ 诱导的能量轴权函数（例如窗化投影的对角 $\Psi_w(E):=\langle \delta_E,\mathsf P_w\,\delta_E\rangle$ 的归一化版本），仅要求 $\Psi_w$ 可测、非负且在远区具有给定的可积/次可积衰减。给定**远区截断** $E_c:(0,h_\star)\to(0,\infty)$（随刻度单调增，且 $E_c(h)\uparrow\infty$），并为每个阈值点引入**奇性剥离半径** $r_j(h)\downarrow 0$。定义**修正工作域**
 $$
-\Omega_h^\circ:=\Omega\setminus\bigcup_j \{\,E:\ |E-E_{{\rm th},j}|\le r_j(h)\,\},
+\Omega_h^\circ:=\{\,|E|\le E_c(h)\,\}\setminus\bigcup_j \{\,E:\ |E-E_{{\rm th},j}|\le r_j(h)\,\},
 $$
 以及**尾域**
 $$
-\mathcal T(h):=\mathbb R\setminus\Omega_h^\circ=\{\,|E|>E_c(h)\,\}\ \cup\ \bigcup_j \{\,|E-E_{{\rm th},j}|\le r_j(h)\,\}.
+\mathcal T(h):=\mathbb R\setminus\Omega_h^\circ=\{\,|E|>E_c(h)\,\}\ \cup\ \bigcup_j \{\,E:\ |E-E_{{\rm th},j}|\le r_j(h)\,\}.
 $$
 尾域 $\mathcal T(h)$ 同时捕捉远区高能贡献与阈值奇性邻域；随 $h\downarrow 0$，远区外推与奇性剥离同步收敛。§5.3 中的带内积分理解为对 $\Omega$ 的积分。
 
