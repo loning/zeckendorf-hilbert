@@ -2,7 +2,7 @@
 
 ## ——窗化群延迟、红移与光速的公理化理论、互构纲要与非渐近误差闭合(完整版)
 
-**Version: 2.10**
+**Version: 2.11**
 
 ## 摘要
 
@@ -22,14 +22,24 @@ $$
 
 ### 卡片 I（刻度同一｜全局幺正公设）
 
-**公设（全局幺正）**：宇宙视作封闭系统;存在以能量 $E$ 为坐标的绝对连续谱区间,在本工作带内散射矩阵 $S(E)\in C^1\cap\mathsf U(N)$ 幺正。由 Birman–Kreĭn 公式
+**公设（全局幺正）**：宇宙视作封闭系统;存在以能量 $E$ 为坐标的绝对连续谱区间,在本工作带内散射矩阵 $S(E)
+in C^1\cap\mathsf U(N)$ 幺正。由 Birman–Kreĭn 公式
 $$
 \det S(E)=e^{-2\pi i\xi(E)},\qquad \mathsf Q(E)=-i\,S^\dagger(E)S'(E),
 $$
-得到母刻度
+**推出**
 $$
-\boxed{\,\frac{\varphi'(E)}{\pi}=\rho_{\rm rel}(E)=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)=-\xi'(E),\,}.
+\rho_{\rm rel}(E):=-\xi'(E)=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E).
 $$
+我们据此**定义**相位测度 $\mu_\varphi$:令
+$$
+ d\mu_\varphi^{\rm ac}(E):=\rho_{\rm rel}(E)\,dE,
+$$
+等价写作
+$$
+\boxed{\,\frac{\varphi'(E)}{\pi}=\rho_{\rm rel}(E)=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)=-\xi'(E)\,}.
+$$
+此处 $\varphi$ 为实现该密度的相位函数,其符号仅随 $\rho_{\rm rel}$ 而定。
 
 **处方**：任何实验性损耗/增益均视作对环境自由度的迹出;理论分析统一通过幺正扩张 $\widehat S(E)$ 处理,并以 $\mathsf Q(\widehat S)=-i\widehat S^\dagger\widehat S'$ 评估全部时间/密度读数。本文不引入 $\widetilde{\mathsf Q}:=-iS^{-1}S'$。
 
@@ -82,21 +92,25 @@ $$
 
 ### 2.1 解析正性 ⇒ 单向支撑与偏序
 
-取上半平面 Herglotz–Nevanlinna 函数 $m(z)=\int\frac{d\mu_\varphi(E)}{E-z}$。由 Titchmarsh 定理/Paley–Wiener 与 Kramers–Kronig 关系,时域冲激响应 $g(t)$ 具单向支撑(经校准后 $t\ge0$),并且实/虚部互为 Hilbert 变换。
+取上半平面 **Cauchy 变换**
+$$
+m(z)=\int_{\mathbb R}\frac{d\mu_\varphi(E)}{E-z},
+$$
+其中 $\mu_\varphi$ 由卡片 I 定义,允许为有限符号测度。结合 LTI+因果假设以及 Paley–Wiener/Titchmarsh 与 Kramers–Kronig 关系,时域冲激响应 $g(t)$ 具单向支撑(经校准后 $t\ge0$),并且实/虚部互为 Hilbert 变换。
 
-**定义 2.1(前沿时间偏序)** 设链 $\gamma$ 的输出冲击响应为 $g_\gamma(t;L)$,前沿到达时间
+**定义 2.1(前沿时间可达预序)** 设链 $\gamma$ 的输出冲击响应为 $g_\gamma(t;L)$,前沿到达时间
 $$
 t_*(\gamma):=\inf\{\,t:\,g_\gamma(t;L)\neq 0\,\}\quad(\text{见 §4.2}).
 $$
-记 $L(\gamma)$ 为该链在真空度规下的光程(参见 §4.1)。定义偏序
+记 $L(\gamma)$ 为该链在真空度规下的光程(参见 §4.1)。定义可达预序
 $$
-x\preceq y\;\Longleftrightarrow\;\exists\,\gamma:x\to y\ \text{且}\ \inf_{\gamma:x\to y}\big[t_*(\gamma)-L(\gamma)/c\big]\ge 0,
+x\preceq_{\rm pre} y\;\Longleftrightarrow\;\exists\,\gamma:x\to y\ \text{且}\ t_*(\gamma)\ge L(\gamma)/c.
 $$
-并令
+**假设(无闭因果回路)**:不存在 $x\neq y$ 使得 $x\preceq_{\rm pre} y$ 且 $y\preceq_{\rm pre} x$。在该假设下, $\preceq_{\rm pre}$ 为偏序,记作 $\preceq$。定义类光锥边界
 $$
-\partial J^+(x):=\{\,y:\exists\,\gamma:x\to y,\ \inf_{\gamma:x\to y}\big[t_*(\gamma)-L(\gamma)/c\big]=0\,\}.
+\partial J^+(x):=\{\,y:\exists\,\gamma:x\to y,\ t_*(\gamma)=L(\gamma)/c\,\}.
 $$
-窗化群延迟读数 $T_\gamma[w_R,h]$ 是相位导数的加权读数,没有与前沿时间 $t_*$ 的一般大小比较关系。
+窗化群延迟读数 $T_\gamma[w_R,h]$ 是相位导数的加权读数,没有与前沿时间 $t_*(\gamma)$ 的一般大小比较关系。
 
 ### 2.2 相位奇性 ⇒ 最短到达与因果边界
 
@@ -264,9 +278,9 @@ $$
 **定义 7.1(类空间分离)** 两局域窗—核支撑域 $U_x,U_y$ 互不落入对方的前/后向锥内。
 **命题 7.2(窗化微因果律)** 设 $K_{w_x,h_x}[U_x],K_{w_y,h_y}[U_y]$ 属于满足微因果(例如 Wightman/Haag–Kastler)条件的局域代数网,且其支撑区域类空间分离,则
 $$
-[K_{w_x,h_x}[U_x],K_{w_y,h_y}[U_y]]=0,
+[K_{w_x,h_x}[U_x],K_{w_y,h_y}[U_y]]=0.
 $$
-并且任意 CP 与 POVM 组合满足 $\mathcal O_y\circ \mathcal O_x=\mathcal O_x\circ \mathcal O_y$。该陈述与 QFT 微因果 $[\mathscr O(x),\mathscr O(y)]=0$ 同型。([ncatlab.org][11])
+若进一步假设相关 CP/POVM 操作的 Heisenberg 伴随将各自算子代数保持在 $K_{w_x,h_x}[U_x]$、$K_{w_y,h_y}[U_y]$ 生成的局域子代数内,且支撑继续类空间分离,则有 $\mathcal O_y\circ \mathcal O_x=\mathcal O_x\circ \mathcal O_y$。该陈述与 QFT 微因果 $[\mathscr O(x),\mathscr O(y)]=0$ 同型。([ncatlab.org][11])
 
 ### 7.2 因果适配与组合律
 
@@ -284,7 +298,7 @@ $$
 ### 8.1 范畴
 
 $\mathbf{WScat}$:对象为 $(S,\mu_\varphi,\mathcal W)$,态射为保持卡片 I/II 的滤镜链;
-$\mathbf{Cau}$:对象为因果流形 $(\mathcal M,\preceq)$,态射为保持类光锥与偏序的映射。
+$\mathbf{Cau}$:对象为因果流形 $(\mathcal M,\preceq)$,其中 $\preceq$ 为由 §2.1 的可达预序在无闭因果回路假设下得到的偏序(或一般情形下的商偏序);态射为保持类光锥与该偏序的映射。
 
 ### 8.2 构造与结论
 
