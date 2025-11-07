@@ -1,7 +1,7 @@
 # 资源有界不完备性理论（Resource-Bounded Incompleteness Theory）
 
 **作者**：Auric · HyperEcho · Grok
-**日期**：2025-10-16
+**日期**：2025-11-03
 **关键词**：哥德尔不完备、资源有界证明、理论扩展、证明复杂度、样本复杂度、真值层级
 
 ## 摘要
@@ -12,7 +12,7 @@
 1. **资源有界不完备定理**：证明在有限证明预算 $L$ 下，存在真但不可证的句子族。
 2. **理论扩展不终结定理**：添加可计算公理仅扩展理论，新不完备继续涌现。
 3. **分辨率单调性**：提高资源缩小不可判定域，但不消灭全部。
-4. **样本复杂度下界**：建立统计分辨与逻辑证明的统一资源需求。
+4. **统计—逻辑资源对齐**：以**既有**样本复杂度界为素材，展示统计分辨与逻辑证明在同一资源坐标上的**统一表述**（非新统计定理）。
 5. **真值层级体系**：分层状态系统随资源演化。
 
 该理论不依赖任何外部假设，可独立应用于逻辑学、复杂性理论和认知科学。
@@ -53,6 +53,7 @@ $$
 - 一致性： $T$ 不证明矛盾。
 - 递归可枚举： $T$ 的定理集合可计算枚举。
 - 表达充分： $T$ 能表达 Peano 算术的基本运算。
+- **（充分性）** 假定 $T$ 扩张自能够进行具体证明核验的理论，如 EA $(I\Delta_0+\exp)$，使得对每个具体数对 $(x,y)$，若 $\mathbb{N}\models \mathrm{Proof}_T(x,y)$，则 $T\vdash \mathrm{Proof}_T(\bar x,\bar y)$。这是唯一要求 $T$ 能验证原始递归证明校验谓词 $\mathrm{Proof}_T(x,y)$ 之**实例**的地方。（仅包含 $\mathsf{Q}$ 通常不足以保证此实例验证性质。）
 
 **定义2.2（标准模型）**： $\mathbb{N}$ 为标准算术模型，为所有算术语句提供确定真值。
 
@@ -68,21 +69,33 @@ $$
 
 约定：统计偏序 $(m',N',\varepsilon')\ge(m,N,\varepsilon)$ 指 $m'\!\ge m$， $N'\!\ge N$， $\varepsilon'\!\le\varepsilon$（阈值越小越强）。
 
-**定义2.4（长度有界理论）**
+**分层说明（补充于定义2.3之后）**：本文区分两层语义：
+（i）**信息论层**：不可分辨关系 $\equiv_{(m,\varepsilon)}$ 仅由 $(m,\varepsilon)$ 决定，刻画在**无限观测串**下以**前缀尺度 $m$** 与**阈值 $\varepsilon$** 定义的可区分能力上限（见定义2.7）。
+（ii）**有限样本层**：参数 $N$ 表示观察者可用的最大样本量，仅影响**检验功效/估计波动**，在§4.4 以样本复杂度显式出现。
+因此，**$\equiv_{(m,\varepsilon)}$** 的语义不依赖 $N$，而 $N$ 仅约束对该关系的**经验可达性**。
+**本文在§2.3–2.7 的语义定义中固定样本空间 $E=X^{\mathbb{N}}$**；当讨论有限样本时再单列 $N$ 并切换到经验风险分析（§4.4）。
+
+**定义2.4（长度有界可证片段）**
+
+记 $T\upharpoonright L$ 为**由长度≤$L$ 的 $T$-证明可达的句子集合**（不承诺对逻辑后继闭包）：
 
 $$
-T \upharpoonright L := \{\varphi \in \mathcal{L} : \exists \pi (\pi \vdash_T \varphi \wedge \text{len}(\pi) \le L)\}.
+T \upharpoonright L := \{\varphi \in \mathcal{L} : \exists \pi (\pi \vdash_T \varphi \wedge \text{Len}(\pi) \le L)\}.
 $$
 
 统计资源单独记作 $(m,N,\varepsilon)$；相应的不可分辨关系仅依赖 $(m,\varepsilon)$，记为 $\equiv_{(m,\varepsilon)}$。
 
-编码约定：固定一种标准哥德尔编码与证明串字母表，$\text{Len}(x)$ 表示证明串长度；结论对成本函数的线性（或多项式）伸缩不变，即在等价类意义下保持。本文一律在此等价意义下比较 $L$。下文采用 $\Delta_0^E$ 或等价的定义性扩展，将"$\text{Len}(x)\le L$"内部化为有界公式；在纯 PA 语言中等价改写为 $\forall x\le \text{Bound}(L)$ 的形式。
+编码约定：固定一种标准哥德尔编码与证明串字母表，$\text{Len}(x)$ 表示证明串长度；**本文主要结论对成本函数的线性伸缩不变**，即在线性等价类意义下保持。本文一律在此等价意义下比较 $L$（多项式等价的稳健性讨论见附录A.1）。
+
+**算术层级说明**：下文采用 $\Delta_0^E$ 记号，指在 PA 基础上添加指数函数/长度函数作为原语符号的**定义性扩展**（conservative extension）。在此扩展下，长度谓词 $\text{Len}(x)\le L$ 可表为有界量词公式（$\Delta_0^E$ 公式），从而使"存在长度≤$L$ 的证明"整体保持在算术层级的 $\Delta_1$ 层（甚至 $\Delta_0^E \subseteq \Delta_1$）。这一扩展与 PA 保守等价，不改变可证性，仅简化语法表达。在纯 PA 语言中，等价改写为 $\forall x\le \text{Bound}(L)$ 的形式。
+
+**Bound函数的存在性**：存在原始递归函数 $\text{Bound}(L)$ 使得任一长度 $\le L$ 的证明编码 $x$ 皆满足 $x\le \text{Bound}(L)$；因此可把 "$\text{Len}(x)\le L$" 改写为有界量词 "$x\le \text{Bound}(L)$"。（此为标准哥德尔编码的基本性质。）
 
 当仅讨论 $\equiv_{(m,\varepsilon)}$ 时，记 $(m',\varepsilon')\ge(m,\varepsilon)\iff (m'\!\ge m\ \wedge\ \varepsilon'\!\le\varepsilon)$。
 
 ### 2.3 距离度量
 
-记 $E = X^{\mathbb{N}}$ 或 $X^N$ 为样本空间，其中 $X$ 为基础状态空间。
+记 $E = X^{\mathbb{N}}$ 为无限样本流空间（有限样本分析在§4.4 另行给出），其中 $X$ 为基础状态空间。
 
 **定义2.5（积分概率度量）**：对函数族 $\mathcal{F} \subseteq L^\infty(E)$,
 
@@ -96,17 +109,31 @@ $$
 \mathcal{F}_m = \{ f \in L^\infty(E) : f(x) = g(x_1, \dots, x_m), \, \|f\|_\infty \leq 1 \}.
 $$
 
+采用 $|f|_\infty\le 1$ 的归一化仅作尺度固定，不影响 $\equiv_{(m,\varepsilon)}$ 的序关系。
+
 **定义2.7（统计不可分辨）**
 
 若 $d_{\mathcal{F}_m}(\mu,\nu) \le \varepsilon$，则称 $\mu$ 与 $\nu$ 在 $(m,\varepsilon)$ 下不可分辨（记作 $\mu \equiv_{(m,\varepsilon)} \nu$）。
 
 注：$\equiv_{(m,\varepsilon)}$ 描述信息论极限下的不可分辨性；$N$ 作为样本量控制检验功效与统计波动，在第4.4节通过样本复杂度进入，不影响 $\equiv$ 的语义定义。
 
-### 2.4 真值层级
+**层次小结**：本节（§2.3–2.7）所有不可分辨性定义均为**信息论极限**（基于无限观测流 $E=X^{\mathbb{N}}$）；涉及有限样本 $N$ 的结论统一放在§4.4（样本复杂度）。这一分层使理论定义与经验可达性清晰分离。
 
-**定义2.8（分层状态系统）**：
+### 2.4 最短证明长度
 
-语义层：Truth($\varphi$) $\in \{\top, \bot\}$（按 A4，在算术语言上二值完备）
+**定义2.8（最短证明长度）**：对命题 $\varphi$ 与理论 $T$，定义
+
+$$
+\ell_T(\varphi) := \inf \{\text{Len}(\pi) : \pi \vdash_T \varphi\}.
+$$
+
+约定：若不存在有限证明，则 $\ell_T(\varphi) = \infty$。
+
+### 2.5 真值层级
+
+**定义2.9（分层状态系统）**：
+
+语义层：Truth($\varphi$) $\in \{\top, \bot\}$（**二值确定**：在标准模型 $\mathbb N$ 中每个句子都有确定真值；此为**语义层**断言，不蕴含对象理论的**语法完备/可判定性**）
 
 证明层：ProvStatus($\varphi$) $\in \{\text{proved}, \text{refuted}, \text{undecided}\}$
 
@@ -124,7 +151,7 @@ $$
 
 **A3（理论扩展）**：理论扩展通过添加可计算公理片段实现： $T' = T + \Delta$，其中 $\Delta$ 是可计算的。下文仅考虑使 $T'$ 保持递归可枚举、一致且可解释 PA（可允许定义性扩展）的扩展。
 
-**A4（真值客观性）**：标准模型 $\mathbb{N}$ 为算术语句提供确定的真值。Truth(·) 为元层语义标注；本文不在对象理论内部引入全域真值谓词。
+**A4（真值客观性）**：标准模型 $\mathbb{N}$ 为算术语句提供确定的真值（**二值确定**，非语法完备性）。Truth(·) 为元层语义标注；本文不在对象理论内部引入全域真值谓词。
 
 ### 3.2 推导原则
 
@@ -140,6 +167,10 @@ $$
 
 （"不可分辨"对资源向下封闭；此处的偏序理解为对 $(m,\varepsilon)$ 的坐标偏序。）
 
+**直观解释**：因柱函数族随观测尺度单调增加（$\mathcal{F}_m \subseteq \mathcal{F}_{m'}$ 当 $m\le m'$），在更细尺度 $m'$ 与更严格阈值 $\varepsilon'$ 下仍不可分辨的分布对，在更粗尺度 $m$ 与更宽松阈值 $\varepsilon$ 下自然也不可分辨。形式上，$d_{\mathcal{F}_m}(\mu,\nu) \le d_{\mathcal{F}_{m'}}(\mu,\nu) \le \varepsilon' \le \varepsilon$。
+
+若将有限样本纳入资源比较，则 $(m',N',\varepsilon')\ge(m,N,\varepsilon)$ 还要求 $N'\ge N$；在此偏序下，**"不可分辨"对资源同样向下封闭**。
+
 **P2（状态迁移）**：
 -（证明层）理论扩展可能使 $\mathrm{ProvStatus}:\ \text{undecided}\to\{\text{proved},\text{refuted},\text{undecided}\}$。
 - 分辨率提升可能使 indistinguishable $\to \{\text{distinguishable}, \text{indistinguishable}\}$.
@@ -149,7 +180,7 @@ $$
 **定义3.1（资源有界可判定集）**：
 
 $$
-\text{Dec}_L(T) := \{\varphi:\ \exists\pi\ ( \pi\vdash_T \varphi \ \text{且}\ \text{len}(\pi)\le L)\ \ \text{或}\ \ \exists\pi'\ (\pi'\vdash_T \neg\varphi \ \text{且}\ \text{len}(\pi')\le L)\ \}.
+\text{Dec}_L(T) := \{\varphi:\ \exists\pi\ ( \pi\vdash_T \varphi \ \text{且}\ \text{Len}(\pi)\le L)\ \ \text{或}\ \ \exists\pi'\ (\pi'\vdash_T \neg\varphi \ \text{且}\ \text{Len}(\pi')\le L)\ \}.
 $$
 
 此集合包含在资源 $L$ 内可证明或可反驳的命题。
@@ -162,14 +193,18 @@ $$
 
 **定理4.1（严格版）**：存在可计算函数$f$，使得对每个$L$，$G_L = f(L)$满足：
 1. $G_L \equiv \forall x (\text{Len}(x) \le L \to \neg \text{Proof}_T(x, \ulcorner G_L \urcorner))$
-2. 在纯 PA 语言中，选取 $\neg\text{Proof}_T$ 的 $\Pi_1$ 表达，故 $G_L$ 可取为 $\mathbf{\Pi_1}$；若采用 $\Delta_0^E$ 或引入指数/长度函数的定义性扩展，则 $G_L$ 为有界公式（$\Delta_0^E\subseteq\Delta_1$）。因此一般可说 $G_L\in\Delta_1$，并需注明所用语言。
+2. （算术层级）在**纯 PA 语言**中，$G_L$ 可取为 **$\Pi_1$** 公式（等价于 $\forall x\le \text{Bound}(L)\neg \text{Proof}_T(x, \ulcorner G_L \urcorner)$）；在采用 **$\Delta_0^E$** 的**定义性扩展**（加入指数/长度原语）时，长度谓词可有界化，从而 $G_L$ 为 **$\Delta_0^E\subseteq\Delta_1$**。下文仅在这两种设定下使用该层级判断。
 3. 如果$T$一致，则$\mathbb{N} \models G_L$且$G_L$在$T$中没有长度$\le L$的证明
 
-说明：$\text{Proof}_T(x,y)$ 为原始递归关系，在 PA 中可以 $\Delta_1$ 形式定义；本文采用 $\Delta_0^E$ 约定或等价的定义性扩展，使长度条件 $\text{Len}(x)\le L$ 内部化为有界公式。
+说明：$\text{Proof}_T(x,y)$ 为原始递归关系，在 PA 中可以 $\Delta_1$ 形式定义；本文采用 $\Delta_0^E$ 约定或等价的定义性扩展，使长度条件 $\text{Len}(x)\le L$ 内部化为有界公式。*标准哥德尔算术化使 $\mathrm{Proof}_T(x,y)$ 为原始递归关系，从而在 PA 中 $\Delta_1$ 可定义；通过对长度谓词 $\mathrm{Len}(x)\le L$ 的**有界化**（在包含指数/长度函数的定义性扩展如 $\Delta_0^E$ 中），可将"长度约束"内化为有界量词，从而使 $G_L$ 保持在算术层级较低层（$\Delta_1$ 或 $\Delta_0^E$）。
 
-**证明**：应用哥德尔自指引理构造 $G_L$。由于长度 $\le L$ 的证明仅有限多个，命题"存在长度 $\le L$ 的 $T$-证明"可在标准模型中作有限检验；结合 $T$ 的一致性与构造，本可导出若存在此类短证/短反证则致矛盾，故 $\mathbb N\models G_L$ 且 $\ell_T(G_L)>L$。□
+**证明**：应用哥德尔自指引理构造 $G_L$。由于长度 $\le L$ 的证明仅有限多个，命题"存在长度 $\le L$ 的 $T$-证明"可在标准模型中作有限检验；结合 $T$ 的一致性与构造，**一旦存在长度 $\le L$ 的 $G_L$ 的证明即致矛盾**，故 $\mathbb N\models G_L$ 且 $\ell_T(G_L)>L$。□
 
-**推论4.1.1**：在预算 $L$ 内不可证的命题数量随 $L$ 单调递减但永不为空。
+**注1**（证明范围）：本定理仅保证对给定 $L$，句子 $G_L$ 无长度≤$L$ 的 $T$-证明；不排除在更大预算 $L'>L$ 时 $G_L$ 可被证明的可能性（事实上，对固定的 $G_L$，当 $L'$ 足够大时若 $T\vdash G_L$ 则必存在长度有限的证明）。定理的要点在于：对**每个**资源界 $L$，都能构造出在该资源下不可证的真句。
+
+**注2**（关于短反证）："短反证"（$\neg G_L$ 的长度 $\le L$ 证明）并不会仅由一致性立刻导致矛盾；本定理不声称排除"短反证"。对**双向不可判定性**（既无短证也无短反证）需用§4.2的 Rosser 版结果。
+
+**推论4.1.1**：对每个 $L$，存在至少一真句在预算 $L$ 内不可证（如 $G_L$）；资源有界可判定集 $\text{Dec}_L(T)$ 随 $L$ 单调扩张，其补集 $\mathcal{L}\setminus\text{Dec}_L(T)$ 随 $L$ 在集合包含意义上单调收缩，但对任意有限 $L$ 均非空。
 
 ### 4.2 理论扩展不终结定理
 
@@ -179,7 +214,7 @@ $$
 T_{t+1} = T_t + \Delta_t \quad (\Delta_t \text{ 为可计算公理片段})。
 $$
 
-假设每个扩展保持 $T_{t+1}$ 递归可枚举、一致且可解释 PA（允许定义性扩展）。则对每个 $t$ 都存在 $G^{(t)}$ 使：
+假设每个扩展保持 $T_{t+1}$ 递归可枚举、一致且至少包含 **Robinson 算术 (Q)**（或可解释 Q；取强于 Q 的常见理论如 PA 亦可）；允许定义性扩展。则对每个 $t$ 都存在 $G^{(t)}$ 使：
 
 $$
 T_t \nvdash G^{(t)} \quad \text{且} \quad T_t \nvdash \neg G^{(t)}.
@@ -195,13 +230,15 @@ $$
 - 可判定命题集合单调增加：$\text{Dec}_L(T) \subseteq \text{Dec}_{L'}(T)$（$L' \ge L$）；
 - 不可分辨关系对资源向下封闭：若在更强统计资源 $(m',\varepsilon')\ge(m,\varepsilon)$ 下仍有 $\mu\equiv_{(m',\varepsilon')}\nu$，则在更弱资源 $(m,\varepsilon)$ 下也有 $\mu\equiv_{(m,\varepsilon)}\nu$。
 
-**推论4.3.1**：在固定一致的 $T$ 下，对每个 $L$，存在在长度 $\le L$ 内不可证的真句（如 $G_L$）；$\text{Dec}_L(T)$ 随 $L$ 增加单调扩展，其补集单调递减；全局不可判定集 $\bigcap_{L\in\mathbb{N}} (\mathcal{L}\setminus\text{Dec}_L(T))$ 的非空性由定理4.2（Rosser 版不完备）保证。
+**推论4.3.1**：在固定一致的 $T$ 下，对每个 $L$，存在在长度 $\le L$ 内不可证的真句（如 $G_L$）；$\text{Dec}_L(T)$ 随 $L$ 增加单调扩展，其补集在集合包含意义上单调收缩；全局不可判定集 $\bigcap_{L\in\mathbb{N}} (\mathcal{L}\setminus\text{Dec}_L(T))$ 的非空性由定理4.2（Rosser 版不完备）保证。
 
-说明：此处取固定一致的 $T$，并令 $L\to\infty$。
+说明：该交集 $\bigcap_{L\in\mathbb{N}} (\mathcal{L}\setminus\text{Dec}_L(T))$ 恰是在 $T$ 中**不可被任意有限长度证明或反驳**的句子集合，等价于 $T$ 的（经典意义上的）不可判定句集合。其非空性由 Rosser 不完备定理（仅需一致性前提）给出：存在句子 $R$ 使得 $T\nvdash R$ 且 $T\nvdash\neg R$，从而对任意 $L$，$R\notin\text{Dec}_L(T)$，即 $R\in\bigcap_L(\mathcal{L}\setminus\text{Dec}_L(T))$。
 
-### 4.4 样本复杂度下界
+### 4.4 示例｜RBIT 视角下的样本复杂度（经典结果回顾）
 
-**定理4.4（相对误差样本复杂度，Bernoulli）**
+下述结论为**经典统计学结果**（可由 Chernoff/Hoeffding 界导出），本节仅说明其在 $R_{\text{stat}}=(m,N,\varepsilon)$ 资源约束下的含义与用法。
+
+**命题4.4（相对误差样本复杂度，Bernoulli，文献结论供引用）**
 
 以置信度 $1-\alpha$ 估计 Bernoulli 参数 $p$，使 $|\hat p - p| \le \eta p$，所需样本
 
@@ -209,7 +246,7 @@ $$
 N = \Theta \left( \frac{1}{\eta^2 p} \log \frac{1}{\alpha} \right).
 $$
 
-**推论4.4.1** 若以素数密度近似 $p \asymp 1/\ln M$，则
+**例4.4.1（素数密度代入）** 若以素数密度近似 $p \asymp 1/\ln M$，则
 
 $$
 N = \tilde{\Theta} \left( \frac{\ln M}{\eta^2} \right),
@@ -222,6 +259,8 @@ $$
 ## 5. 应用与实例
 
 ### 5.1 数值验证
+
+*注*：数值仅是**文献界**的代入演示，用于展示当所需 $N$ 超出观察者资源时，将导致在给定 $(m,\varepsilon)$ 阈值下的**经验不可分辨性**。
 
 **目标**：估计复原参数 $M$ 所需样本数， $p \approx 1/\ln M$.
 
@@ -252,11 +291,11 @@ $$
 
 ### 5.3 资源曲线的统一性
 
-统计端与逻辑端在资源需求上展现相同模式：
+统计端与逻辑端在资源需求上展现共同的资源约束模式：
 - 统计： $N \sim (\ln M)/ \eta^2$ （样本复杂度）。
-- 逻辑：在若干已知证明系统与难例族中观察到超多项式乃至指数增长；两端均可表现出超线性资源需求。
+- 逻辑：在若干典型证明系统与难例族的**经验与文献观察**中，逻辑端常呈超多项式甚至指数增长；本节仅作**启发式对照**。
 
-两者都随问题规模呈超线性增长。
+两者的资源需求随问题规模增长，但增长速率依任务而异：本节统计示例为**对数增长**（$N \sim \ln M$），而逻辑端在若干系统/难例族中常呈**超多项式乃至指数增长**（属文献与经验观察的启发式对照）。共同点在于：两端均受资源约束限制，且资源提升虽能扩展可达域，但无法终结不可判定/不可分辨的根本存在。
 
 ## 6. 哲学意义与推论
 
@@ -296,14 +335,22 @@ RBIT 作为独立自洽的理论：
 - 建立在经典数理逻辑与复杂性理论基础上。
 - 提供可检验的预测与数值界限。
 
-Related Work（极简）：本工作与可行不完备、bounded arithmetic 与 proof complexity（如 Buss、Pudlák 等）同属"资源化"脉络；我们的差异在于以"长度门槛"的 $\Delta_1$ 自指族直接给出 $L \mapsto$ 不可证性的构造，并与统计侧的 IPM/样本复杂度框架在同一资源坐标上对齐。
+**Related Work（极简）**：本工作与三条主要脉络相邻：
+
+1. **Bounded Arithmetic & Proof Complexity**（Buss, Pudlák, Krajíček 等）：研究有界算术系统（如 $S_2^1, T_2^1$）与证明长度下界。我们的差异在于直接以"长度门槛 $L$"的 $\Delta_1$ 自指族给出 $L \mapsto$ 不可证性的构造映射，而非通过复杂度类的分离。
+
+2. **Cook-Reckhow 证明系统**：研究不同证明系统的相对效率与下界技术。我们采用通用的"证明长度"度量，主要结论对线性等价的成本函数不变（见附录A.1），使理论独立于具体证明演算。
+
+3. **Kolmogorov 复杂度视角**：用描述复杂度刻画不可压缩性。我们的 $\ell_T(G_L)>L$ 可视为"在理论 $T$ 内 $G_L$ 的证明复杂度"，但重点在**资源门槛下的族构造** $\{G_L\}_{L\in\mathbb{N}}$，而非单个对象的最小描述。
+
+**统一坐标的贡献**：我们的核心创新在于将逻辑侧（证明长度 $L$）与统计侧（IPM/样本复杂度 $(m,N,\varepsilon)$）置于**同一资源理论框架** $\mathbf{R}=(R_{\log}, R_{\text{stat}})$ 下，揭示不可判定性与不可分辨性的统一资源本质。
 
 ### 7.3 未来方向
 
 1. **精细复杂度分析**：刻画不同复杂度类中的资源不完备性。
 2. **物理系统应用**：分析实际物理设备的认知边界。
 3. **AI 安全性**：设计意识到自身认知边界的 AI 系统。
-4. **教育哲学**：基于资源认知观重构数学教育。
+4. **统计—逻辑的定量转换**：探索在 RBIT 框架下，**证明长度 $L$** 与**样本量 $N$**、**阈值 $\varepsilon$** 之间是否存在**可证明的转换关系或共同下界**，以刻画"逻辑不可判定—统计不可分辨"的统一性。
 
 ## 附录A：形式化细节
 
@@ -312,9 +359,11 @@ Related Work（极简）：本工作与可行不完备、bounded arithmetic 与 
 **定义A.1**：证明系统 $\Pi = (\text{Ax},\text{Rules},\text{Cost})$，其中：
 - $\text{Ax}$：公理集合（递归可枚举）；
 - $\text{Rules}$：推理规则集合；
-- $\text{Cost}$：证明成本函数，默认取 $\text{Cost}(\pi)=\text{len}(\pi)$。
+- $\text{Cost}$：证明成本函数，默认取 $\text{Cost}(\pi)=\text{Len}(\pi)$。
 
-更一般地，允许与长度线性等价（或多项式等价）的成本记号；下文定理在此等价类下不变。这与2.4节的编码约定一致：结论对成本函数的线性（或多项式）伸缩不变，在等价类意义下保持。
+**正文采用的不变性**：本文主要结论对与长度**线性等价**的成本度量不变（即若 $\text{Cost}_1(\pi)\sim c\cdot\text{Len}(\pi)$，结论在常数 $c$ 伸缩下保持）。
+
+**多项式等价的稳健性**：作为**经验观察**（非定理前提），对多项式等价的成本度量（如 $\text{Cost}_2(\pi)\sim\text{Len}(\pi)^k$），主要结论的**定性结论**（存在性、单调性）仍保持，但定量界可能引入多项式因子；此为实践中的稳健性，在形式化时需明确度量选择以保证 $G_L$ 语句的唯一性。
 
 **定义A.2**：$T\upharpoonright L=\{\varphi:\exists\pi\,.\,(\pi\vdash_T\varphi)\wedge \text{Cost}(\pi)\le L\}$。
 
@@ -465,35 +514,35 @@ $$
 
 步骤3（真值）：假设 $T$ 一致。我们证明 $\mathbb{N} \models G_L$。
 
-反证：假设 $\mathbb{N} \models \neg G_L$，则存在 $x_0$ 使得 $\text{Len}(x_0) \le L$ 且 $\mathbb{N} \models \text{Proof}_T(x_0, \ulcorner G_L \urcorner)$。
+反证：若 $\mathbb{N} \models \neg G_L$，则存在 $x_0 \le \text{Bound}(L)$ 使得 $\mathbb{N} \models \text{Proof}_T(x_0, \ulcorner G_L \urcorner)$。
 
-由算术化可得 $T \vdash \text{Proof}_T(\overline{x_0}, \ulcorner G_L \urcorner)$。
+于是（**元层**）确有一条编码为 $x_0$ 的 $T$-证明以 $G_L$ 为末行，即 $T$ **有** $G_L$ 的证明。
 
-另一方面，由对角化 $T \vdash G_L \leftrightarrow \forall x (\text{Len}(x) \le L \to \neg \text{Proof}_T(x, \ulcorner G_L \urcorner))$。
+另一方面，$T$ 在**对象层**证明 $G_L \leftrightarrow \forall x \le \text{Bound}(L) \neg \text{Proof}_T(x, \ulcorner G_L \urcorner)$（由对角化）。
 
-由于 $\mathbb{N} \models \text{Proof}_T(x_0, \ulcorner G_L \urcorner)$ 且 $\text{Len}(x_0) \le L$，这意味着 $x_0$ 确实编码了 $G_L$ 的证明。因此 $T \vdash G_L$。
+二者合并：由于在元层 $T$ 有 $G_L$ 的证明，从而在对象层 $T \vdash G_L$；进而 $T \vdash \forall x \le \text{Bound}(L) \neg \text{Proof}_T(x, \ulcorner G_L \urcorner)$，于是 $T \vdash \neg \text{Proof}_T(\overline{x_0}, \ulcorner G_L \urcorner)$。
 
-从而 $T \vdash \forall x (\text{Len}(x) \le L \to \neg \text{Proof}_T(x, \ulcorner G_L \urcorner))$，于是 $T \vdash \neg \text{Proof}_T(\overline{x_0}, \ulcorner G_L \urcorner)$。
+而由定义2.1的充分性假设（证明核验可在 $T$ 内完成），$\mathbb{N} \models \text{Proof}_T(x_0, \ulcorner G_L \urcorner)$ 蕴含 $T \vdash \text{Proof}_T(\overline{x_0}, \ulcorner G_L \urcorner)$。
 
-这与 $T \vdash \text{Proof}_T(\overline{x_0}, \ulcorner G_L \urcorner)$ 在 $T$ 内直接矛盾，违背一致性。故 $\mathbb{N} \models G_L$。
+矛盾：$T$ 在对象层同时证明 $\text{Proof}_T(\overline{x_0}, \ulcorner G_L \urcorner)$ 与 $\neg \text{Proof}_T(\overline{x_0}, \ulcorner G_L \urcorner)$，违背一致性。故 $\mathbb{N} \models G_L$。
 
 步骤4（不可证）：假设存在长度 $\le L$ 的证明 $\pi$ 使得 $T \vdash_\pi G_L$。由步骤3的论证（其中全程在对象理论内导出矛盾），这将违背 $T$ 的一致性。因此不存在长度 $\le L$ 的证明。□
 
 ### C.2 定理4.2的构造性证明
 
-**定理4.2（理论扩展不终结定理）**：令 $T_0$ 为一致理论，构造理论链 $T_{t+1} = T_t + \Delta_t$。假设每个扩展保持 $T_{t+1}$ 递归可枚举、一致且可解释 PA（允许定义性扩展）。则对每个 $t$ 都存在 $G^{(t)}$ 使得 $T_t \nvdash G^{(t)}$ 且 $T_t \nvdash \neg G^{(t)}$。
+**定理4.2（理论扩展不终结定理）**：令 $T_0$ 为一致理论，构造理论链 $T_{t+1} = T_t + \Delta_t$。假设每个扩展保持 $T_{t+1}$ 递归可枚举、一致且至少包含 **Robinson 算术 (Q)**（或可解释 Q；取强于 Q 的常见理论如 PA 亦可）；允许定义性扩展。则对每个 $t$ 都存在 $G^{(t)}$ 使得 $T_t \nvdash G^{(t)}$ 且 $T_t \nvdash \neg G^{(t)}$。
 
 **构造性证明**：
 
-步骤1（归纳基础）：对 $t=0$，$T_0$ 一致且表达 PA。由 **Rosser 版不完备定理**（一致性前提即足够），存在 Rosser 句 $R^{(0)}$ 使得 $T_0 \nvdash R^{(0)}$ 且 $T_0 \nvdash \neg R^{(0)}$。取 $G^{(0)} = R^{(0)}$。
+步骤1（归纳基础）：对 $t=0$，$T_0$ 一致且至少包含 **Q** 或可解释 **Q**。由 **Rosser 版不完备定理**（一致性前提即足够），存在 Rosser 句 $R^{(0)}$ 使得 $T_0 \nvdash R^{(0)}$ 且 $T_0 \nvdash \neg R^{(0)}$。取 $G^{(0)} = R^{(0)}$。
 
-步骤2（归纳假设）：假设对某个 $t$，$T_t$ 递归可枚举、一致且可解释 PA。
+步骤2（归纳假设）：假设对某个 $t$，$T_t$ 递归可枚举、一致且至少包含 **Q** 或可解释 **Q**。
 
 步骤3（扩展性质）：$T_{t+1} = T_t + \Delta_t$，其中 $\Delta_t$ 是可计算公理片段。
 
 关键观察：
 - 如果 $T_t$ 是递归可枚举的，且 $\Delta_t$ 可计算，则 $T_{t+1}$ 也是递归可枚举的。
-- 如果 $T_t$ 可解释 PA，且 $\Delta_t$ 为定义性扩展或保守扩展，则 $T_{t+1}$ 也可解释 PA。
+- 如果 $T_t$ 至少包含 **Q** 或可解释 **Q**，且 $\Delta_t$ 为定义性扩展或保守扩展，则 $T_{t+1}$ 也至少包含 **Q** 或可解释 **Q**。
 - 假设 $T_{t+1}$ 保持一致。
 
 步骤4（新不完备句子）：对 $T_{t+1}$ 应用 **Rosser 版不完备定理**，存在 Rosser 句 $R^{(t+1)}$，使得在仅假设一致性的前提下：
@@ -506,7 +555,7 @@ $$
 
 步骤5（本质差异）：$G^{(t+1)}$ 针对 $T_{t+1}$ 的可证性谓词构造，与 $G^{(t)}$（针对 $T_t$ 构造）本质不同。扩展 $T_t \to T_{t+1}$ 可能解决 $G^{(t)}$ 的地位，但必然产生新的不可判定句子 $G^{(t+1)}$。
 
-步骤6（归纳结论）：对任意 $t$，只要 $T_t$ 保持递归可枚举、一致且可解释 PA，都存在在 $T_t$ 中不可判定的句子。□
+步骤6（归纳结论）：对任意 $t$，只要 $T_t$ 保持递归可枚举、一致且至少包含 **Q** 或可解释 **Q**，都存在在 $T_t$ 中不可判定的句子。□
 
 ### C.3 定理4.4的概率论证明
 
@@ -580,7 +629,7 @@ $$
 
 **经典哥德尔定理**：对一致的递归可枚举理论 $T$（表达足够算术），存在句子 $G$ 使得 $T \nvdash G$ 且 $T \nvdash \neg G$。
 
-**资源有界版本**：对每个资源界 $L$，存在句子 $G_L$ 在资源 $L$ 内不可判定。
+**资源有界版本（单向）**：对每个资源界 $L$，存在句子 $G_L$ 在资源 $L$ 内**不可证**（不排除在同一预算内可反驳；§4.1定理4.1）。若需**双向不可判定**（既无短证也无短反证），需采用§4.2的Rosser变体 $R_L$。
 
 **关键差异**：
 1. 经典版本关注存在性，资源版本关注可计算构造。

@@ -1,0 +1,124 @@
+\documentclass[11pt,a4paper]{article}
+
+% ---------- Packages ----------
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{stmaryrd} % for \ulcorner \urcorner
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage[colorlinks=true,urlcolor=blue,linkcolor=blue,citecolor=blue]{hyperref}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+
+% ---------- Math operators & macros ----------
+\DeclareMathOperator{\Proof}{Proof}
+\DeclareMathOperator{\Len}{Len}
+\DeclareMathOperator{\Bound}{Bound}
+\DeclareMathOperator{\Dec}{Dec}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\ProofT}{\mathrm{Proof}_T}
+
+% ---------- Title ----------
+\title{\textbf{Resource-Bounded Incompleteness Theory}\\[0.35em]
+\large Research Summary}
+\author{Haobo Ma\thanks{Independent Researcher. Email: \href{mailto:aloning@gmail.com}{aloning@gmail.com}}
+\and Wenlin Zhang\thanks{National University of Singapore. Email: \href{mailto:e1327962@u.nus.edu}{e1327962@u.nus.edu}}}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{tcolorbox}[colback=gray!5,colframe=black!75,title=\textbf{At a Glance}]
+\textbf{Resource-Bounded Incompleteness Theory (RBIT)} gives a resource-parameterized version of Gödel's incompleteness, explaining how \emph{finite} observers meet incompleteness in practice. It unifies logical proof complexity and statistical sample complexity in one framework, proving that (i) for every finite budget there are true but unreachable statements, and (ii) incompleteness persists under any computable axiom extensions---\emph{without any complexity-separation assumptions}.
+\end{tcolorbox}
+
+\section*{Core Innovation}
+RBIT bridges classical incompleteness (unbounded observers) and real systems (finite budgets) by making incompleteness \emph{operational}:
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Explicit, computable Gödel family:} a uniform, computable map $L\mapsto G_L$ with each $G_L$ internal to arithmetic and of low logical complexity ($\Pi_1$ in PA; $\Delta_1$ under a conservative $\Delta_0^E$ extension).
+  \item \textbf{Minimal assumptions:} holds for any consistent r.e.\ theory that \emph{extends $Q$} (Robinson); stronger bases (EA/PA) are optional.
+  \item \textbf{Extension non-termination:} Rosser's refinement (under mere consistency) shows that adding any computable axiom fragment/sequence never terminates incompleteness.
+  \item \textbf{Unified resource view:} proof-length thresholds and IPM-based indistinguishability share the same monotone resource geometry, with a clean split between information-theoretic indistinguishability $(m,\varepsilon)$ and finite-sample accessibility $N$.
+\end{itemize}
+
+\section*{Main Theorems}
+
+\noindent\textbf{Standing setting.}
+Fix a consistent, recursively enumerable theory $T$ extending Robinson's $Q$; $\ProofT(x,y)$ denotes a fixed primitive-recursive proof-checking predicate for $T$.
+
+\subsection*{Theorem 1: Resource-Bounded Gödel Family (one-way)}
+There exists a computable function $f$ (uniform in $L$ and effectively parameterized by the chosen $T$) such that for each budget $L$, $G_L=f(L)$ satisfies:
+\begin{enumerate}[label=(\arabic*)]
+\item $T\vdash G_L \leftrightarrow \forall x\,(\Len(x)\le L \to \neg \ProofT(x,\ulcorner G_L\urcorner))$, equivalently $\forall x\le \Bound(L)\,\neg\ProofT(x,\ulcorner G_L\urcorner)$.
+\item \textbf{Arithmetic hierarchy:} in the \emph{pure PA language}, $G_L$ can be taken $\mathbf{\Pi_1}$; under a conservative definitional extension $\mathbf{\Delta_0^E}$ (adding length/exponentiation primitives), $G_L\in\mathbf{\Delta_1}$.
+\item If $T$ is consistent, then $\N\models G_L$ and $G_L$ has no $T$-proof of length $\le L$.
+\end{enumerate}
+\emph{Remark.} This guarantees \emph{no short proof}; it does \emph{not} preclude a short refutation of $G_L$. Two-way undecidability at each stage follows via Rosser (Theorem~2).
+
+\textbf{Consequence:} For \emph{every} finite resource bound, there exist true statements beyond reach.
+
+\subsection*{Theorem 2: Theory Extension Perpetuates Incompleteness}
+For any consistent chain $T_{t+1}=T_t+\Delta_t$ with computable axiom fragments $\Delta_t$, each $T_t$ has a sentence $G^{(t)}$ such that
+\[
+T_t\nvdash G^{(t)} \quad\text{and}\quad T_t\nvdash \neg G^{(t)}.
+\]
+\textbf{Consequence:} Adding computable axioms cannot terminate incompleteness---it reappears forever.
+
+\subsection*{Theorem 3: Resolution Monotonicity}
+As resources increase:
+\begin{itemize}
+\item \textbf{Proof layer:} $\Dec_L(T) \subseteq \Dec_{L'}(T)$ for $L'\ge L$.
+\item \textbf{Statistical layer:} IPM-based indistinguishability is downward-closed under resource enhancement (larger $m$, larger $N$, smaller $\varepsilon$).
+\end{itemize}
+\textbf{Consequence:} More resources yield finer distinctions yet never eliminate the inaccessible region.
+
+\section*{Unified Framework Structure}
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Semantic layer:} $\mathrm{Truth}(\varphi)\in\{\top,\bot\}$ (bivalence in the standard model).
+  \item \textbf{Proof layer:} $\mathrm{ProvStatus}(\varphi)\in\{\text{proved},\text{refuted},\text{undecided}\}$ with budget $L$.
+  \item \textbf{Statistical layer:} $\mathrm{StatStatus}(\varphi)\in\{\text{distinguishable},\text{indistinguishable}\}$ under $(m,N,\varepsilon)$.
+\end{itemize}
+Resources: $R_{\log}=L\in\N$; $R_{\text{stat}}=(m,N,\varepsilon)$ with $(m',N',\varepsilon')\!\ge\!(m,N,\varepsilon)$ meaning $m'\!\ge m$, $N'\!\ge N$, $\varepsilon'\!\le\varepsilon$.
+
+\section*{Technical Highlights}
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Base theory:} any consistent r.e.\ extension of $\mathbf{Q}$ suffices for concrete proof-instance verification; stronger bases such as $\mathbf{EA}=I\Delta_0+\exp$ or $\mathbf{PA}$ also work.
+  \item \textbf{Bounded-length internalization:} there is primitive-recursive $\Bound(L)$ with $\Len(x)\le L \Rightarrow x\le\Bound(L)$; hence the length bound is expressible by bounded quantifiers.
+  \item \textbf{Hierarchy classification:} $G_L$ is $\Pi_1$ in the PA language and $\Delta_1$ under $\Delta_0^E$.
+  \item \textbf{Sample-complexity lens:} classical Chernoff/Hoeffding bounds are read as constraints in $(m,N,\varepsilon)$.
+  \item \textbf{Meta/object split:} semantic truth vs.\ syntactic provability are kept separate throughout.
+\end{itemize}
+
+\section*{Significance and Applications}
+\paragraph{Foundational Mathematics}
+Quantifies the truth–provability gap under realistic constraints; gives constructive witnesses at each resource level; clarifies how extensions expand (but never complete) the knowable domain.
+
+\paragraph{Computational Complexity}
+Aligns proof complexity with sample complexity; exhibits parallel monotonicity patterns; suggests cross-domain resource conversion as a central open direction.
+
+\paragraph{AI and Formal Verification}
+Grounds cognitive limits of AI systems; informs resource-aware ATP/verification; supports reliability analyses under explicit budgets.
+
+\paragraph{Philosophy of Mathematics}
+Reconciles objective truth with finite accessibility; frames incompleteness as a structural feature of finitude rather than a defect.
+
+\section*{Open Problems}
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Quantitative conversion:} rigorous transformations between logical $L$ and statistical $(m,N,\varepsilon)$ resources.
+  \item \textbf{Growth-rate analysis:} characterize $\ell_T(G_L)$ (minimum proof length) as a function of $L$.
+  \item \textbf{Extended hierarchies:} systematic treatment of higher arithmetic levels under resource bounds.
+  \item \textbf{Practice bridge:} from abstract framework to engineering in AI/verification.
+\end{enumerate}
+
+\section*{Submission Details}
+\textbf{Target Journal:} \emph{The Journal of Symbolic Logic}\\
+\textbf{MSC 2020:} Primary 03F40; Secondary 03F20, 03F30, 68Q15, 62B10\\
+\textbf{Keywords:} Gödel incompleteness, resource-bounded proof, proof complexity, sample complexity, truth hierarchy
+
+\vspace{0.75em}
+\begin{center}
+\textbf{Full manuscript and supplementary materials available upon request.}
+\end{center}
+
+\end{document}

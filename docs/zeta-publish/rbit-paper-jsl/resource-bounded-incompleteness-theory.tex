@@ -1,0 +1,916 @@
+\documentclass[jsl]{asl}
+
+% Note: amsmath, amssymb, amsthm already loaded by asl.cls
+\usepackage{mathtools}
+\usepackage{microtype}
+\usepackage[colorlinks=false]{hyperref}
+
+% --- Encoding for accented characters like Gödel (pdfLaTeX) ---
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% --- Roman-numbered enumerate labels like (i), (ii) ---
+\usepackage[shortlabels]{enumitem}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{notation}[thm]{Notation}
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{note}[thm]{Note}
+
+% Unnumbered theorem for appendix
+\newtheorem*{thm*}{Theorem}
+
+% Semantic macros
+
+\DeclareMathOperator{\Proof}{Proof}
+\DeclareMathOperator{\Len}{Len}
+\DeclareMathOperator{\Bound}{Bound}
+\DeclareMathOperator{\Dec}{Dec}
+\DeclareMathOperator{\Truth}{Truth}
+\DeclareMathOperator{\ProvStatus}{ProvStatus}
+\DeclareMathOperator{\StatStatus}{StatStatus}
+\DeclareMathOperator{\State}{State}
+\DeclareMathOperator{\DTIME}{DTIME}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\ProofT}{\mathrm{Proof}_T}
+% use amssymb's \ulcorner and \urcorner (no redefinition needed)
+
+% Mathematical system names
+\newcommand{\PA}{\mathsf{PA}}
+\newcommand{\QRA}{\mathsf{Q}}
+\newcommand{\Con}{\mathrm{Con}}
+
+% Metadata
+\title{Resource-Bounded Incompleteness Theory}
+
+\author{Haobo Ma}
+\revauthor{Ma, Haobo}
+\address{Independent Researcher}
+\email{aloning@gmail.com}
+
+\author{Wenlin Zhang}
+\revauthor{Zhang, Wenlin}
+\address{National University of Singapore, Singapore}
+\email{e1327962@u.nus.edu}
+
+\keywords{Gödel incompleteness, resource-bounded proof, proof complexity, sample complexity, truth hierarchy}
+
+\subjclass[2020]{Primary 03F40; Secondary 03F20, 03F30, 68Q15, 62B10}
+
+\begin{document}
+
+\begin{abstract}
+We present the \emph{Resource-Bounded Incompleteness Theory} (RBIT), a self-contained mathematical framework characterizing how finite-resource observers encounter incompleteness. This theory provides a resource-parameterized version of Gödel's incompleteness theorems, proving that under finite proof budgets there exist families of true but unprovable sentences, and that theory extensions by computable axioms cannot eliminate incompleteness. RBIT places logical proof resources and statistical sampling resources within a unified parametric framework, exhibiting parallel resource monotonicity patterns; sample complexity bounds for the statistical side are derived from classical results, while the logical side provides constructive sentence families $\{G_L\}$ indexed by length bounds. Rigorous quantitative conversions between the two dimensions remain an open problem. Beyond standard computability and arithmetic formalization, the framework requires only concrete proof verification capacity (EA or equivalent), without relying on complexity separation conjectures.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+\subsection{Core thesis}
+
+\begin{quote}
+Incompleteness obtains an operational characterization under resource constraints.
+\end{quote}
+
+Classical Gödel incompleteness theorems assume observers with unlimited resources, whereas actual systems operate under finite resources. This theory reconstructs incompleteness as a manifestation of resource gaps: resource limitations render incompleteness explicit in actual systems.
+\begin{itemize}
+\item \textbf{Unprovable under budget $L$} $=$ no $T$-proof of length $\le L$ (resource-undecided; short refutations not excluded unless using a Rosser variant).
+\item \textbf{Indistinguishable} $=$ statistical tests cannot distinguish under finite samples.
+\item \textbf{Theory extension} $=$ adding computable axioms cannot terminate incompleteness.
+\item \textbf{Truth hierarchy} $=$ stratified states migrate with resources and theory extensions.
+\end{itemize}
+
+\subsection{Theoretical foundations}
+
+The theory rests on three basic observations:
+\begin{enumerate}
+\item \textbf{Actual observer finiteness}: Any actual system (human, AI, physical device) operates only under finite resources.
+\item \textbf{Self-reference permanence}: Gödelian self-referential diagonalization remains effective under resource constraints.
+\item \textbf{Resource unification}: Logical proof and statistical testing share the same pattern of resource constraints.
+\end{enumerate}
+
+\subsection{Main contributions}
+
+\begin{enumerate}
+\item Bringing Gödel's theorem from abstract logic into a computable resource framework.
+\item Establishing a rigorous mathematical characterization of theory extensions and their limitations.
+\item Placing proof complexity $(L)$ and sample complexity $(m,N,\varepsilon)$ within a unified parametric framework for contrastive analysis, exhibiting parallel resource monotonicity and typical growth patterns; strict quantitative transformations between the two remain open.
+\item Providing verifiable numerical predictions and bounds from classical sample complexity theory.
+\end{enumerate}
+
+\section{Basic definitions and notation}
+
+\subsection{Formal systems}
+
+\begin{defn}[Base theory]\label{def:base-theory}
+Let $T$ be a first-order arithmetic theory satisfying:
+\begin{itemize}
+\item Consistency: $T$ does not prove contradictions.
+\item Recursive enumerability: the theorem set of $T$ is computably enumerable.
+\item Expressive adequacy: $T$ can express basic operations of Peano arithmetic.
+\item \textbf{(Sufficiency)} Assume $T$ extends a theory capable of concrete verification of the primitive--recursive relations used below (e.g.\ EA $(I\Delta_0+\exp)$): for each concrete numerals $(x,y,L)$,
+if $\N\models \ProofT(x,y)$ then $T\vdash \ProofT(\bar x,\bar y)$,
+and if $\N\models \Len(x)\le L$ (resp.\ $x\le \Bound(L)$) then $T\vdash \Len(\bar x)\le \bar L$ (resp.\ $T\vdash \bar x\le \Bound(\bar L)$).
+(Containing $\mathsf{Q}$ alone is, in general, not sufficient for this instance--verification property.)
+\end{itemize}
+\end{defn}
+
+\begin{defn}[Standard model]\label{def:standard-model}
+$\N$ denotes the standard arithmetic model, providing a definite truth value for all arithmetic sentences.
+\end{defn}
+
+\subsection{Resource parameters}
+
+\begin{defn}[Unified resource theory]\label{def:unified-resource}
+\begin{align*}
+\text{Logical resource:}\quad & R_{\log} = L \in \N, \\
+\text{Statistical resource:}\quad & R_{\text{stat}} = (m, N, \varepsilon) \in \N^2 \times [0,1], \\
+\text{Resource partial order:}\quad & R \leq R' \Leftrightarrow R_{\log} \leq R'_{\log} \wedge R_{\text{stat}} \leq R'_{\text{stat}}.
+\end{align*}
+Convention: Statistical partial order $(m',N',\varepsilon')\ge(m,N,\varepsilon)$ means $m'\ge m$, $N'\ge N$, $\varepsilon'\le\varepsilon$ (smaller threshold is stronger).
+\end{defn}
+
+\begin{rem}[Stratification explanation (supplementing Definition~\ref{def:unified-resource})]
+This paper distinguishes two semantic layers:
+\begin{enumerate}[label=(\roman*)]
+\item \textbf{Information-theoretic layer}: The indistinguishability relation $\equiv_{(m,\varepsilon)}$ depends only on $(m,\varepsilon)$, characterizing the upper limit of distinguishability under \textbf{infinite observation sequences} with \textbf{prefix scale $m$} and \textbf{threshold $\varepsilon$} (see Definition~\ref{def:stat-indist}).
+\item \textbf{Finite-sample layer}: The parameter $N$ represents the maximum sample size available to the observer, affecting only \textbf{test power/estimation fluctuation}, appearing explicitly in~\S\ref{sec:sample-complexity} via sample complexity.
+\end{enumerate}
+Therefore, the semantics of $\equiv_{(m,\varepsilon)}$ is independent of $N$, while $N$ constrains only the \textbf{empirical accessibility} of this relation. This paper fixes the sample space $E=X^{\N}$ in the semantic definitions of~\S\ref{sec:distance-metrics}--\S\ref{sec:truth-hierarchy}; when discussing finite samples, we separately list $N$ and switch to empirical risk analysis (\S\ref{sec:sample-complexity}).
+\end{rem}
+
+\begin{defn}[Length-bounded provable fragment]\label{def:length-bounded}
+Let $T\upharpoonright L$ denote the \textbf{set of sentences reachable by $T$-proofs of length $\le L$} (not committed to logical consequence closure):
+\begin{equation}
+T \upharpoonright L := \{\varphi \in \mathcal{L} : \exists \pi (\pi \vdash_T \varphi \wedge \Len(\pi) \le L)\}.
+\end{equation}
+Statistical resources are separately denoted $(m,N,\varepsilon)$; the corresponding indistinguishability relation depends only on $(m,\varepsilon)$, denoted $\equiv_{(m,\varepsilon)}$.
+\end{defn}
+
+\begin{notation}[Encoding conventions]
+Fix a standard Gödel encoding and proof-string alphabet. $\Len(x)$ denotes proof-string length. \textbf{Main results are invariant under linear scaling of the cost function}, i.e., hold in the linear equivalence class sense. This paper uniformly compares $L$ in this equivalence sense (robustness under polynomial equivalence discussed in Appendix~\ref{app:formal-details}).
+\end{notation}
+
+\begin{notation}[Arithmetic hierarchy]\label{not:arith-hierarchy}
+Below we adopt the notation $\Delta_0^E$, indicating a \textbf{definitional extension} (conservative extension) of PA by adding exponential/length functions as primitive symbols. Under this extension, the length predicate $\Len(x)\le L$ can be expressed as a bounded-quantifier formula ($\Delta_0^E$ formula), so that ``there exists a proof of length $\le L$'' remains overall in the $\Delta_1$ level of the arithmetic hierarchy (even $\Delta_0^E \subseteq \Delta_1$). This extension is conservatively equivalent to PA, not changing provability, only simplifying syntactic expression. In pure PA language we may bound the search:
+\[
+\forall x\,\big(\Len(x)\le L \to \Phi(x)\big)\ \equiv\
+\forall x\le \Bound(L)\,\big(\Len(x)\le L \to \Phi(x)\big).
+\]
+Without an additional length--monotonic Gödel coding, the antecedent $\Len(x)\le L$ cannot be dropped. This equivalence is a \textbf{metalevel} fact used for hierarchy classification and formula rewriting; in object-level reasoning, the $\Len(\cdot)\le L$ premise is retained.
+\end{notation}
+
+\begin{notation}[Existence of the Bound function]
+There exists a primitive recursive function $\Bound(L)$ such that if $\Len(x)\le L$ then $x\le \Bound(L)$. Consequently, any quantifier over codes of length $\le L$ can be restricted to $x\le \Bound(L)$, e.g.
+\[
+\exists x\,\big(\Len(x)\le L \wedge \ProofT(x,y)\big)\ \equiv\
+\exists x\le \Bound(L)\,\big(\Len(x)\le L \wedge \ProofT(x,y)\big).
+\]
+\end{notation}
+
+When discussing only $\equiv_{(m,\varepsilon)}$, we write $(m',\varepsilon')\ge(m,\varepsilon)\iff (m'\ge m \wedge \varepsilon'\le\varepsilon)$.
+
+\subsection{Distance metrics}\label{sec:distance-metrics}
+
+Let $E = X^{\N}$ be the infinite sample stream space (finite sample analysis given separately in~\S\ref{sec:sample-complexity}), where $X$ is the base state space.
+
+\begin{defn}[Integral probability metric]\label{def:IPM}
+For a function family $\mathcal{F} \subseteq L^\infty(E)$,
+\begin{equation}
+d_{\mathcal{F}}(P, Q) = \sup_{f \in \mathcal{F}} \left| \int f \, dP - \int f \, dQ \right|.
+\end{equation}
+\end{defn}
+
+\begin{defn}[Cylinder function family]\label{def:cylinder-family}
+For observation scale $m$,
+\begin{equation}
+\mathcal{F}_m = \{ f \in L^\infty(E) : f(x) = g(x_1, \dots, x_m), \, \|f\|_\infty \leq 1 \}.
+\end{equation}
+Adopting the normalization $|f|_\infty\le 1$ only fixes the scale, not affecting the order relation of $\equiv_{(m,\varepsilon)}$.
+\end{defn}
+
+\begin{defn}[Statistical indistinguishability]\label{def:stat-indist}
+If $d_{\mathcal{F}_m}(\mu,\nu) \le \varepsilon$, we say $\mu$ and $\nu$ are indistinguishable under $(m,\varepsilon)$ (denoted $\mu \equiv_{(m,\varepsilon)} \nu$).
+\end{defn}
+
+\begin{note}
+$\equiv_{(m,\varepsilon)}$ describes indistinguishability in the information-theoretic limit; $N$ as sample size controls test power and statistical fluctuation, entering in Section~\ref{sec:sample-complexity} via sample complexity, not affecting the semantic definition of $\equiv$.
+\end{note}
+
+\begin{rem}[Hierarchy summary]
+All indistinguishability definitions in this section (\S\ref{sec:distance-metrics}--\S\ref{sec:truth-hierarchy}) are at the \textbf{information-theoretic limit} (based on infinite observation streams $E=X^{\N}$); conclusions involving finite samples $N$ are uniformly placed in~\S\ref{sec:sample-complexity} (sample complexity). This stratification cleanly separates theoretical definitions from empirical accessibility.
+\end{rem}
+
+\subsection{Shortest proof length}
+
+\begin{defn}[Shortest proof length]\label{def:shortest-proof}
+For a proposition $\varphi$ and theory $T$, define
+\begin{equation}
+\ell_T(\varphi) := \inf \{\Len(\pi) : \pi \vdash_T \varphi\}.
+\end{equation}
+Convention: If no finite proof exists, then $\ell_T(\varphi) = \infty$.
+\end{defn}
+
+\subsection{Truth hierarchy}\label{sec:truth-hierarchy}
+
+\begin{defn}[Stratified state system]\label{def:stratified-state}
+\textbf{Notation}: $\Truth$, $\ProvStatus$, $\StatStatus$ are \textbf{metalevel annotations} for analysis; they are not object-level predicates within the formal theory.
+\begin{align*}
+\text{Semantic layer:}\quad 
+& \Truth(\varphi) \in \{\top, \bot\} 
+\quad 
+\parbox[t]{0.65\textwidth}{%
+(\textbf{bivalent}: every sentence in the standard model $\N$ has a definite truth value; this is a \textbf{semantic-layer} assertion, not implying \textbf{syntactic completeness/decidability} of the object theory)}, \\
+\text{Proof layer:}\quad 
+& \ProvStatus(\varphi) \in \{\text{proved}, \text{refuted}, \text{undecided}\}, \\
+\text{Statistical layer:}\quad 
+& \StatStatus(\varphi) \in \{\text{distinguishable}, \text{indistinguishable}\}, \\
+\text{Combined state:}\quad 
+& \State(\varphi) = (\Truth(\varphi), \ProvStatus(\varphi), \StatStatus(\varphi)).
+\end{align*}
+\end{defn}
+
+
+\section{Axiom system}
+
+\subsection{Basic axioms}
+
+\begin{itemize}
+\item[\textbf{A1}] (\emph{Computability}) All observation and generation processes can be represented by computable functions.
+\item[\textbf{A2}] (\emph{Finite resolution}) Actual observers operate under given logical resource $L$ and statistical resource $(m,N,\varepsilon)$; denoted respectively by $T\upharpoonright L$ and $\equiv_{(m,\varepsilon)}$.
+\item[\textbf{A3}] (\emph{Theory extension}) Theory extension is realized by adding computable axiom fragments: $T' = T + \Delta$, where $\Delta$ is computable. Below we consider only extensions that keep $T'$ recursively enumerable, consistent, and interpretable in PA (definitional extensions allowed).
+\item[\textbf{A4}] (\emph{Truth objectivity}) The standard model $\N$ provides definite truth values for arithmetic sentences (\textbf{bivalence}, not syntactic completeness). $\Truth(\cdot)$ is a metalevel semantic annotation; this paper does not introduce a global truth predicate inside the object theory.
+\end{itemize}
+
+\subsection{Derivation principles}
+
+\begin{itemize}
+\item[\textbf{P1}] (\emph{Resource monotonicity})
+
+(Logical) If $L' \ge L$, then $T\upharpoonright L \subseteq T\upharpoonright L'$.
+
+(Statistical) If $(m',\varepsilon')\ge(m,\varepsilon)$ (i.e., $m'\ge m$, $\varepsilon'\le\varepsilon$), then
+\begin{equation}
+\mu\equiv_{(m',\varepsilon')}\nu \Rightarrow \mu\equiv_{(m,\varepsilon)}\nu.
+\end{equation}
+(``Indistinguishability'' is downward-closed under resources; here the partial order is understood as the coordinate partial order on $(m,\varepsilon)$.)
+
+\textbf{Intuitive explanation}: Because the cylinder function family increases monotonically with observation scale ($\mathcal{F}_m \subseteq \mathcal{F}_{m'}$ when $m\le m'$), distribution pairs that remain indistinguishable at finer scale $m'$ and stricter threshold $\varepsilon'$ are naturally also indistinguishable at coarser scale $m$ and looser threshold $\varepsilon$. Formally, $d_{\mathcal{F}_m}(\mu,\nu) \le d_{\mathcal{F}_{m'}}(\mu,\nu) \le \varepsilon' \le \varepsilon$.
+
+If finite samples are included in the resource comparison, then $(m',N',\varepsilon')\ge(m,N,\varepsilon)$ also requires $N'\ge N$; under this partial order, \textbf{``indistinguishability'' is likewise downward-closed} under resources.
+
+\item[\textbf{P2}]~(\emph{State transitions})\\[-2pt]
+\begin{itemize}[leftmargin=2.2em]
+\item (Proof layer) Theory extension may cause 
+$\ProvStatus: \text{undecided}\!\to\!\{\text{proved},\text{refuted},\text{undecided}\}$.
+\item (Statistical layer) Resolution enhancement may cause 
+$\text{indistinguishable}\!\to\!\{\text{distinguishable},\text{indistinguishable}\}$.
+\end{itemize}
+
+
+\subsection{Resource-bounded decidable sets}
+
+\begin{defn}[Resource-bounded decidable set]\label{def:Dec-L}
+\begin{equation}
+\Dec_L(T) := \{\varphi: \exists\pi\, ( \pi\vdash_T \varphi \text{ and } \Len(\pi)\le L) \text{ or } \exists\pi'\, (\pi'\vdash_T \neg\varphi \text{ and } \Len(\pi')\le L) \}.
+\end{equation}
+This set contains propositions provable or refutable within resource $L$. Note that $\Dec_L(T)$ is \textbf{not} closed under logical consequence; it enumerates only sentences with explicit short proofs or refutations.
+\end{defn}
+
+\section{Main theorems}
+
+\begin{note}
+Theorem~\ref{thm:resource-incomp} requires, in addition to \textbf{consistency}, the \textbf{(Sufficiency)} premise of Definition~\ref{def:base-theory} (concrete verification of primitive--recursive relations; not $\omega$-consistency). Theorem~\ref{thm:extension-no-end} follows from Rosser's incompleteness theorem, which requires only consistency.
+\end{note}
+
+\subsection{Resource-bounded incompleteness theorem}\label{sec:resource-incomp}
+
+\begin{thm}[Strict version]\label{thm:resource-incomp}
+There exists a computable function $f$ such that for each $L$, $G_L = f(L)$ satisfies:
+\begin{enumerate}
+\item $T\vdash G_L \leftrightarrow \forall x\, (\Len(x) \le L \to \neg \ProofT(x, \ulcorner G_L \urcorner))$;
+\item (Arithmetic hierarchy) In \textbf{pure PA language}, letting $\Bound(L)$ be a primitive recursive upper bound for proof encodings of length $\le L$,
+\[
+T\vdash G_L\leftrightarrow \forall x\le \Bound(L)\,\big(\Len(x)\le L \to \neg \ProofT(x,\ulcorner G_L\urcorner)\big),
+\]
+hence $G_L\in\Delta_1$. Under the \textbf{$\Delta_0^E$} \textbf{definitional extension} where the length predicate is primitive, $G_L\in\Delta_0^E\subseteq\Delta_1$.
+\item If $T$ is consistent, then $\N \models G_L$ and $G_L$ has no proof in $T$ of length $\le L$.
+\end{enumerate}
+\end{thm}
+
+\begin{note}[Arithmetic hierarchy and length predicate]
+$\ProofT(x,y)$ is a primitive recursive relation, definable in PA in $\Delta_1$ form.
+The bounded quantifier $\forall x\le \Bound(L)$ combined with the bounded antecedent $\Len(x)\le L$ keeps $G_L$ in $\Delta_1$.
+In a $\Delta_0^E$ definitional extension where $\Len$ is primitive, $G_L\in\Delta_0^E\subseteq\Delta_1$.
+If one adopts a \textbf{length-monotonic} Gödel coding satisfying $\Len(x)\le L \Longleftrightarrow x\le \Bound(L)$, the antecedent can be dropped, simplifying to $\forall x\le \Bound(L)\neg \ProofT(x,\ulcorner G_L\urcorner)$; otherwise, the $\Len(x)\le L$ condition must be retained to avoid strengthening the formula. Note that $\Delta_1$ is closed under bounded quantifiers and Boolean connectives, and both $\ProofT$ and its negation are $\Delta_1$.
+\end{note}
+
+\begin{proof}
+Apply the Gödel self-reference lemma to construct $G_L$. Since proofs of length $\le L$ are only finitely many, the proposition ``there exists a proof of length $\le L$ in $T$'' can be finitely checked in the standard model; combining $T$'s consistency with the construction, \textbf{once there exists a proof of length $\le L$ for $G_L$, a contradiction arises}, hence $\N\models G_L$ and $\ell_T(G_L)>L$.
+\end{proof}
+
+\begin{note}[Proof scope]\label{note:proof-scope}
+This theorem guarantees only that for given $L$, the sentence $G_L$ has no $T$-proof of length $\le L$; it does not exclude the possibility that $G_L$ can be proved under a larger budget $L'>L$ (in fact, for fixed $G_L$, when $L'$ is sufficiently large, if $T\vdash G_L$ then there must be a finite-length proof). The theorem's point is: for \textbf{each} resource bound $L$, one can construct a true sentence unprovable under that resource.
+\end{note}
+
+\begin{note}[Concerning short refutations]\label{note:short-refutations}
+A ``short refutation'' (a proof of $\neg G_L$ of length $\le L$) does not immediately lead to a contradiction from consistency alone; this theorem does not claim to rule out ``short refutations.'' For \textbf{two-way undecidability} (neither short proof nor short refutation), use the Rosser version result in~\S\ref{sec:extension-no-end}.
+\end{note}
+
+\begin{cor}\label{cor:unprovable-complement}
+For each $L$, there exists at least one true sentence unprovable within budget $L$ (such as $G_L$); the resource-bounded decidable set $\Dec_L(T)$ expands monotonically with $L$, its complement $\mathcal{L}\setminus\Dec_L(T)$ shrinks monotonically in the set-inclusion sense with $L$, but is nonempty for any finite $L$.
+\end{cor}
+
+\subsection{Theory extension does not terminate incompleteness}\label{sec:extension-no-end}
+
+\begin{thm}[RBIT second theorem]\label{thm:extension-no-end}
+Let $T_0$ be a consistent theory. Construct a theory chain:
+\begin{equation}
+T_{t+1} = T_t + \Delta_t \quad (\Delta_t \text{ a computable axiom fragment}).
+\end{equation}
+Assume each extension keeps $T_{t+1}$ recursively enumerable, consistent, and contains at least \textbf{Robinson arithmetic (Q)} or interprets Q (sufficient for Rosser's theorem; stronger theories such as EA or PA also suffice); definitional extensions allowed. Then for each $t$ there exists $G^{(t)}$ such that:
+\begin{equation}
+T_t \nvdash G^{(t)} \quad \text{and} \quad T_t \nvdash \neg G^{(t)}.
+\end{equation}
+\end{thm}
+
+\begin{proof}
+By \textbf{Rosser's incompleteness theorem}, for any consistent recursively enumerable theory containing (or interpreting) Robinson arithmetic Q, there exists a sentence that is neither provable nor refutable in that theory (consistency alone suffices; no $\omega$-consistency required). Apply this to each fixed $T_t$. Since $\Delta_t$ is computable, the extended theory $T_{t+1}$ remains recursively enumerable and consistent (by hypothesis), and still contains Q; hence the theorem reapplies.
+\end{proof}
+
+\begin{rem}
+No matter how many computable axioms are added, incompleteness reappears forever.
+\end{rem}
+
+\subsection{Resolution monotonicity theorem}
+
+\begin{thm}[Unified theorem]\label{thm:resolution-monotonicity}
+When resources increase:
+\begin{itemize}
+\item Decidable proposition set increases monotonically: $\Dec_L(T) \subseteq \Dec_{L'}(T)$ (for $L' \ge L$);
+\item Indistinguishability relation is downward-closed under resources: if under stronger statistical resource $(m',\varepsilon')\ge(m,\varepsilon)$ we still have $\mu\equiv_{(m',\varepsilon')}\nu$, then under weaker resource $(m,\varepsilon)$ we also have $\mu\equiv_{(m,\varepsilon)}\nu$.
+\end{itemize}
+\end{thm}
+
+\begin{cor}\label{cor:global-undecidable}
+For fixed consistent $T$, for each $L$, there exists a true sentence unprovable in length $\le L$ (such as $G_L$); $\Dec_L(T)$ expands monotonically with increasing $L$, its complement shrinks in the set-inclusion sense; the global undecidable set $\bigcap_{L\in\N} (\mathcal{L}\setminus\Dec_L(T))$ is nonempty, guaranteed by Theorem~\ref{thm:extension-no-end} (Rosser version incompleteness).
+\end{cor}
+
+\begin{note}
+The intersection $\bigcap_{L\in\N} (\mathcal{L}\setminus\Dec_L(T))$ is exactly the set of sentences \textbf{unprovable and unrefutable by any finite-length proof or refutation} in $T$, equivalent to (in the classical sense) the set of undecidable sentences of $T$. Its nonemptiness is given by the Rosser incompleteness theorem (requiring only the consistency premise): there exists a sentence $R$ such that $T\nvdash R$ and $T\nvdash\neg R$, hence for any $L$, $R\notin\Dec_L(T)$, i.e., $R\in\bigcap_L(\mathcal{L}\setminus\Dec_L(T))$.
+\end{note}
+
+\subsection{Example: sample complexity under the RBIT perspective (classical result review)}\label{sec:sample-complexity}
+
+The following conclusion is a \textbf{classical statistical result} (derivable from Chernoff/Hoeffding bounds). This section only explains its meaning and usage under the resource constraint $R_{\text{stat}}=(m,N,\varepsilon)$.
+
+\begin{prop}[\parbox[t]{.85\textwidth}{%
+Relative-error sample complexity, Bernoulli, literature conclusion for reference%
+}]
+\label{prop:sample-complexity-bernoulli}
+To estimate a Bernoulli parameter $p$ with confidence $1-\alpha$ such that $|\hat p - p| \le \eta p$, the required sample size is
+\begin{equation}
+N = \Theta \left( \frac{1}{\eta^2 p} \log \frac{1}{\alpha} \right).
+\end{equation}
+\end{prop}
+
+
+\begin{ex}[Prime density substitution]\label{ex:prime-density}
+If we approximate with prime density $p \asymp 1/\ln M$, then
+\begin{equation}
+N = \tilde{\Theta} \left( \frac{\ln M}{\eta^2} \right),
+\end{equation}
+where $\tilde{\Theta}$ omits slowly-growing factors such as $\log(1/\alpha)$.
+\end{ex}
+
+\begin{note}
+If instead the task is distinguishing by absolute difference $\delta$, Hoeffding gives $N = \Omega \left( \delta^{-2} \log \frac{1}{\alpha} \right)$.
+\end{note}
+
+\section{Applications and examples}
+
+\subsection{Numerical verification}
+
+\emph{Note}: The numerical values are merely \textbf{substitutions into literature bounds}, used to show that when required $N$ exceeds the observer's resources, this will lead to \textbf{empirical indistinguishability} under the given $(m,\varepsilon)$ threshold.
+
+\textbf{Goal}: Estimate the sample number needed to recover parameter $M$, with $p \approx 1/\ln M$.
+
+\textbf{Formula}:
+\begin{equation}
+\boxed{N \approx \frac{3\,\log(2/\alpha)}{\eta^2\,p}}, \qquad p = \frac{1}{\ln M},\ \alpha=0.05.
+\end{equation}
+
+\textbf{Calculation results} (based on 95\% confidence, $\alpha=0.05$; $\ln$ denotes natural logarithm):
+
+\begin{center}
+\begin{tabular}{cccc}
+\hline
+$M$      & $p \approx 1/\ln M$ & $\eta$ & Required samples $N$ \\
+\hline
+$10^6$   &              0.072382&    50\% &           612 \\
+$10^6$   &              0.072382&    10\% &        15,290 \\
+$10^9$   &              0.048255&    10\% &        22,934 \\
+$10^{24}$&              0.018096&    10\% &        61,157 \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Limitations of theory extension}
+
+\textbf{Example analysis}: Consider the theory sequence:
+\begin{itemize}
+\item $T_0 =$ PA (Peano arithmetic).
+\item $T_1 =$ PA + Con(PA).
+\item $T_2 = T_1 +$ Con($T_1$).
+\item \dots
+\end{itemize}
+
+Each extension resolves the consistency statement of the previous theory but produces new undecidable sentences.
+
+\subsection{Unification of resource curves}
+
+\textbf{Note}: This section provides a \textbf{heuristic comparison for illustration}, not a theorem-level assertion. Rigorous quantitative transformations or joint lower bounds between proof complexity and sample complexity remain an open problem (see Future directions).
+
+Statistical and logical sides exhibit a common pattern of resource constraint:
+\begin{itemize}
+\item Statistical: $N \sim (\ln M)/ \eta^2$ (sample complexity).
+\item Logical: In several typical proof systems and hard instance families, from \textbf{empirical and literature observations}, the logical side often exhibits superpolynomial or even exponential growth.
+\end{itemize}
+
+Resource requirements grow with problem size, but growth rates vary by task: this section's statistical example is \textbf{logarithmic growth} ($N \sim \ln M$), while the logical side in several systems/hard families often exhibits \textbf{superpolynomial or even exponential growth} (from literature and empirical observation). The common point: both sides are constrained by resources, and resource enhancement can expand the reachable domain but cannot eliminate the fundamental existence of undecidable/indistinguishable phenomena.
+
+\section{Philosophical implications and corollaries}
+
+\textbf{Note}: The following sections (\S\ref{sec:philosophy}--\ref{sec:free-will}) present \textbf{non-technical discussions} and philosophical extrapolations. The formal mathematical results are contained in \S\ref{sec:resource-incomp}--\S\ref{sec:sample-complexity}.
+
+\subsection{Cognitive boundary theory}\label{sec:philosophy}
+
+RBIT provides a mathematical model for human cognition:
+\begin{itemize}
+\item \textbf{Absolute truth exists}: The standard model $\N$ provides objective truth values.
+\item \textbf{Finite accessibility}: Actual cognition is resource-limited.
+\item \textbf{Asymptotic approximability}: Increasing resources can approach but never reach completeness.
+\end{itemize}
+
+\subsection{Methodology of science and mathematics}
+
+\begin{enumerate}
+\item \textbf{Value of theory extension}: Though not terminating incompleteness, it expands the knowable domain.
+\item \textbf{Significance of resolution enhancement}: Technological progress essentially enhances resource $\mathbf{R}$.
+\item \textbf{Multi-layer states}: $\ProvStatus$, $\StatStatus$ are first-class citizens in the cognitive process; $\Truth$ is semantically determined by $\N$ but often not directly accessible.
+\end{enumerate}
+
+\subsection{Free will and determinism}\label{sec:free-will}
+
+If one abstracts computable cognitive processes as arithmetic objects within the RBIT framework, the theory suggests an analytic perspective:
+\begin{itemize}
+\item \textbf{Semantic completeness}: Truth values exist objectively in the standard model $\N$.
+\item \textbf{Epistemic limitation}: Under finite resources, complete prediction is impossible.
+\item \textbf{Compatibilist analogy}: Semantic determinacy and epistemic freedom may coexist.
+\end{itemize}
+
+\section{Conclusions}
+
+\subsection{Core achievements}
+
+\begin{enumerate}
+\item \textbf{Resource-parameterized Gödel theorem}: Placing incompleteness under actual resource constraints.
+\item \textbf{Proof of extension limitations}: Theory extension cannot terminate incompleteness.
+\item \textbf{Unified resource theory}: Logical proof and statistical testing share resource patterns.
+\item \textbf{Operational framework}: Providing concrete computable bounds and predictions.
+\end{enumerate}
+
+\subsection{Theoretical status}
+
+RBIT as an independent self-contained theory:
+\begin{itemize}
+\item Does not depend on quantum mechanics, special philosophical frameworks, or unproven assumptions.
+\item Built on classical mathematical logic and complexity theory foundations.
+\item Provides testable predictions and numerical bounds.
+\end{itemize}
+
+\textbf{Related work (minimal)}: This work is adjacent to three main threads:
+
+\begin{enumerate}
+\item \textbf{Bounded arithmetic \& proof complexity} (Buss, Pudlák, Krajíček, et al.): Research on bounded arithmetic systems (such as $S_2^1, T_2^1$) and proof length lower bounds. Our difference is to directly give an $L \mapsto$ unprovability construction mapping via the ``length threshold $L$'' $\Delta_1$ self-reference family, rather than through complexity class separations.
+
+\item \textbf{Cook--Reckhow proof systems}: Research on the relative efficiency of different proof systems and lower-bound techniques. We adopt a universal ``proof length'' measure; main results are invariant under linearly-equivalent cost functions (see Appendix~\ref{app:formal-details}), making the theory independent of specific proof calculi.
+
+\item \textbf{Kolmogorov complexity perspective}: Using descriptive complexity to characterize incompressibility. Our $\ell_T(G_L)>L$ can be viewed as ``the proof complexity of $G_L$ within theory $T$,'' but the focus is on the \textbf{family construction under resource thresholds} $\{G_L\}_{L\in\N}$, rather than the minimal description of a single object.
+\end{enumerate}
+
+\textbf{Contribution of unified coordinates}: Our core innovation is to place the logical side (proof length $L$) and the statistical side (IPM/sample complexity $(m,N,\varepsilon)$) within the \textbf{same parametric framework} $\mathbf{R}=(R_{\log}, R_{\text{stat}})$ for contrastive analysis, exhibiting parallel resource monotonicity patterns. Rigorous quantitative transformations or joint lower bounds remain an open problem (see Future directions).
+
+\subsection{Future directions}
+
+\begin{enumerate}
+\item \textbf{Refined complexity analysis}: Characterize resource-bounded incompleteness in different complexity classes.
+\item \textbf{Physical system applications}: Analyze cognitive boundaries of actual physical devices.
+\item \textbf{AI safety}: Design AI systems aware of their own cognitive boundaries.
+\item \textbf{Statistical--logical quantitative conversion}: Explore under the RBIT framework whether there exists a \textbf{provable conversion relation or common lower bound} between \textbf{proof length $L$} and \textbf{sample size $N$, threshold $\varepsilon$}, to characterize the unity of ``logical undecidability--statistical indistinguishability.''
+\end{enumerate}
+
+\appendix
+
+\section{Formal details}\label{app:formal-details}
+
+\subsection{Resource-bounded proof systems}
+
+\begin{defn}\label{def:proof-system}
+A proof system $\Pi = (\text{Ax},\text{Rules},\text{Cost})$, where:
+\begin{itemize}
+\item $\text{Ax}$: axiom set (recursively enumerable);
+\item $\text{Rules}$: inference rule set;
+\item $\text{Cost}$: proof cost function, default $\text{Cost}(\pi)=\Len(\pi)$.
+\end{itemize}
+\end{defn}
+
+\textbf{Invariance adopted in the main text}: Main results are invariant under cost measures \textbf{linearly equivalent} to length (i.e., if $\text{Cost}_1(\pi)\sim c\cdot\Len(\pi)$, conclusions hold under constant $c$ scaling).
+
+\textbf{Robustness of polynomial equivalence}: As an \textbf{empirical observation} (not a theorem premise), for polynomially-equivalent cost measures (such as $\text{Cost}_2(\pi)\sim\Len(\pi)^k$), the \textbf{qualitative conclusions} (existence, monotonicity) of main results still hold, but quantitative bounds may introduce polynomial factors; this is robustness in practice, and when formalizing, the metric choice must be clarified to ensure uniqueness of the $G_L$ statement.
+
+\begin{defn}\label{def:T-restr-L}
+$T\upharpoonright L=\{\varphi:\exists\pi\,.\,(\pi\vdash_T\varphi)\wedge \text{Cost}(\pi)\le L\}$.
+\end{defn}
+
+\subsection{Metric theory of indistinguishability}
+
+\begin{prop}[$\mathcal{F}_m$-IPM pseudometric property]\label{prop:IPM-pseudometric}
+$d_{\mathcal{F}_m}(P,Q)=\sup_{f\in\mathcal{F}_m}|\mathbb E_P f-\mathbb E_Q f|$ satisfies nonnegativity, symmetry, and triangle inequality, hence is a pseudometric. (If changing to the asymmetric form $\sup_f(\mathbb E_P f-\mathbb E_Q f)$, then $\mathcal{F}_m$ needs closure under negation.)
+\end{prop}
+
+\subsection{Formal rules of state transitions}
+
+\begin{defn}\label{def:state-transitions}
+For proposition $\varphi$, theory $T$, logical resource $L$, and statistical resource $(m,N,\varepsilon)$, define:
+\begin{itemize}
+\item $\text{extend}(T,\Delta,\varphi)$: After extending $T$ to $T' = T+\Delta$, $\ProvStatus(\varphi)$ may undergo the transition $\text{undecided}\to\{\text{proved},\text{refuted},\text{undecided}\}$;
+\item $\text{refine}((m,N,\varepsilon),(m',N',\varepsilon'),\varphi)$: When $(m',N',\varepsilon')\ge(m,N,\varepsilon)$, $\StatStatus(\varphi)$ may undergo the transition $\text{indist.}\to\{\text{dist.},\text{indist.}\}$.
+\end{itemize}
+\end{defn}
+
+\section{Computational examples}
+
+\subsection{Sample complexity calculation}
+
+\begin{verbatim}
+from math import log, ceil
+
+def sample_complexity(M, eta, alpha=0.05):
+    """Relative-error sample size: N ≈ 3 log(2/alpha) / (eta^2 * p),
+       p ≈ 1/ln M"""
+    p = 1 / log(M)
+    N = 3 * log(2 / alpha) / (eta**2 * p)
+    return ceil(N)
+
+# Example calculations
+M_values = [10**6, 10**9, 10**24]
+for M in M_values:
+    for eta in [0.5, 0.1]:
+        N = sample_complexity(M, eta)
+        print(f"M={M:.0e}, η={eta*100:.0f}% -> N={N:,}")
+\end{verbatim}
+
+\subsection{Resource monotonicity verification}
+
+\begin{verbatim}
+def verify_monotonicity(L_values, theory_power):
+    """Verify monotonicity as resources increase"""
+    provable_sets = []
+
+    for L in L_values:
+        # Simulate number of provable propositions as L increases
+        num_provable = int(L * theory_power)
+        provable_sets.append(num_provable)
+
+    # Verify monotonicity
+    for i in range(1, len(provable_sets)):
+        assert provable_sets[i] >= provable_sets[i-1], "Monotonicity violated"
+
+    return provable_sets
+\end{verbatim}
+
+\subsection{Theory extension sequence simulation}
+
+\begin{verbatim}
+def theory_extension_sequence(T0, max_iterations=10):
+    """Simulate theory extension sequence T_0, T_1, T_2, ..."""
+    theories = [T0]
+    undecidable_sentences = []
+
+    for t in range(max_iterations):
+        T_t = theories[t]
+        # Construct Gödel sentence for T_t
+        G_t = construct_godel_sentence(T_t)
+        undecidable_sentences.append(G_t)
+
+        # Extend theory by adding G_t as axiom
+        T_next = extend_theory(T_t, G_t)
+        theories.append(T_next)
+
+    return theories, undecidable_sentences
+
+def construct_godel_sentence(theory):
+    """Construct Gödel sentence for given theory"""
+    # This is a placeholder - actual implementation would use
+    # formal encoding and diagonalization
+    return f"G_{len(theory)}"
+
+def extend_theory(theory, axiom):
+    """Extend theory by adding new axiom"""
+    return theory + [axiom]
+\end{verbatim}
+
+\subsection{Resource curve visualization}
+
+\begin{verbatim}
+import numpy as np
+import matplotlib.pyplot as plt
+
+def plot_resource_curves():
+    """Plot unified resource curves for logic and statistics"""
+
+    # Logical resource curve
+    n_values = np.arange(1, 20)
+    L_values = 2 ** n_values
+
+    # Statistical resource curve
+    M_values = np.logspace(6, 24, 20)
+    eta = 0.1
+    alpha = 0.05
+    N_values = [sample_complexity(M, eta, alpha) for M in M_values]
+
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
+
+    # Plot logical resources
+    ax1.semilogy(n_values, L_values)
+    ax1.set_xlabel('Problem Size n')
+    ax1.set_ylabel('Proof Length L')
+    ax1.set_title('Logical Resource Growth')
+    ax1.grid(True)
+
+    # Plot statistical resources
+    ax2.loglog(M_values, N_values)
+    ax2.set_xlabel('Parameter M')
+    ax2.set_ylabel('Sample Size N')
+    ax2.set_title('Statistical Resource Growth')
+    ax2.grid(True)
+
+    plt.tight_layout()
+    plt.savefig('resource_curves.png', dpi=300)
+    print("Resource curves saved to resource_curves.png")
+
+# Uncomment to generate plots:
+# plot_resource_curves()
+\end{verbatim}
+
+\section{Mathematical proofs supplement}
+
+\subsection{Complete proof of Theorem~\ref{thm:resource-incomp}}
+
+\begin{thm*}[Resource-bounded incompleteness theorem]
+There exists a computable function $f$ such that for each $L$, $G_L = f(L)$ satisfies:
+\begin{enumerate}
+\item $T\vdash G_L \leftrightarrow \forall x\, (\Len(x) \le L \to \neg \ProofT(x, \ulcorner G_L \urcorner))$;
+\item In pure PA language, letting $\Bound(L)$ be a primitive recursive upper bound for proof encodings of length $\le L$,
+\[
+T\vdash G_L\leftrightarrow \forall x\le \Bound(L)\,\big(\Len(x)\le L \to \neg \ProofT(x,\ulcorner G_L\urcorner)\big),
+\]
+hence $G_L\in\Delta_1$; when adopting $\Delta_0^E$ definitional extension where $\Len$ is primitive, $G_L\in\Delta_0^E\subseteq\Delta_1$;
+\item If $T$ is consistent, then $\N \models G_L$ and $G_L$ has no proof in $T$ of length $\le L$.
+\end{enumerate}
+\end{thm*}
+
+\begin{proof}
+\textbf{Step 1 (Construction)}: Apply the Gödel diagonal lemma. For each fixed $L$, there exists a sentence $G_L$ such that:
+\begin{equation}
+T \vdash G_L \leftrightarrow \forall x (\Len(x) \le L \to \neg \ProofT(x, \ulcorner G_L \urcorner)).
+\end{equation}
+
+\textbf{Step 2 (Hierarchy)}: $\ProofT(x,y)$ is a primitive recursive relation, definable in PA in $\Delta_1$ form. The bounded quantifier $\forall x\le \Bound(L)$ combined with the bounded antecedent $\Len(x)\le L$ keeps $G_L$ in $\Delta_1$. In $\Delta_0^E$ where $\Len$ is primitive, $G_L\in\Delta_0^E\subseteq\Delta_1$.
+
+\textbf{Step 3 (Truth)}: Assume $T$ is consistent. We prove $\N \models G_L$.
+
+Contradiction: If $\N \models \neg G_L$, then there exists $x_0$ such that
+$\N\models \Len(x_0)\le L \wedge \ProofT(x_0,\ulcorner G_L\urcorner)$
+(hence $x_0\le \Bound(L)$).
+
+Thus (\textbf{metalevel}) there indeed is a $T$-proof encoded as $x_0$ with $G_L$ as the end line, i.e., $T$ \textbf{has} a proof of $G_L$.
+
+On the other hand, $T$ proves at the \textbf{object level} $G_L \leftrightarrow \forall x \le \Bound(L)\, \big(\Len(x)\le L \to \neg \ProofT(x, \ulcorner G_L \urcorner)\big)$ (by diagonalization).
+
+Combining these two: Since at the metalevel $T$ has a proof of $G_L$, thus at the object level $T \vdash G_L$; further $T \vdash \forall x \le \Bound(L)\, \big(\Len(x)\le L \to \neg \ProofT(x, \ulcorner G_L \urcorner)\big)$.
+
+By \textbf{(Sufficiency)}, we also have $T\vdash \Len(\overline{x_0})\le \overline{L}$.
+Instantiating the universal with $\overline{x_0}$ and eliminating the antecedent yields $T \vdash \neg \ProofT(\overline{x_0}, \ulcorner G_L \urcorner)$.
+
+But by \textbf{(Sufficiency)} of Definition~\ref{def:base-theory} (concrete proof verification via EA or equivalent), from $\N \models \ProofT(x_0, \ulcorner G_L \urcorner)$ we obtain $T \vdash \ProofT(\overline{x_0}, \ulcorner G_L \urcorner)$.
+
+Contradiction: $T$ proves at the object level both $\ProofT(\overline{x_0}, \ulcorner G_L \urcorner)$ and $\neg \ProofT(\overline{x_0}, \ulcorner G_L \urcorner)$, violating consistency. (Here ``there is a $T$-proof'' is a \emph{metalevel} fact; via the diagonal biconditional provable in $T$, it yields the \emph{object-level} contradiction under consistency.) Hence $\N \models G_L$.
+
+\textbf{Step 4 (Unprovability)}: Suppose there is a proof $\pi$ of length $\le L$ such that $T \vdash_\pi G_L$. By the argument in Step 3 (which derives a contradiction entirely within the object theory), this would violate $T$'s consistency. Therefore no proof of length $\le L$ exists.
+\end{proof}
+
+\subsection{Constructive proof of Theorem~\ref{thm:extension-no-end}}
+
+\begin{thm*}[Theory extension does not terminate incompleteness]
+Let $T_0$ be a consistent theory. Construct a theory chain $T_{t+1} = T_t + \Delta_t$. Assume each extension keeps $T_{t+1}$ recursively enumerable, consistent, and contains at least \textbf{Robinson arithmetic (Q)} or interprets Q (sufficient for Rosser's theorem; stronger theories such as EA or PA also suffice); definitional extensions allowed. Then for each $t$ there exists $G^{(t)}$ such that $T_t \nvdash G^{(t)}$ and $T_t \nvdash \neg G^{(t)}$.
+\end{thm*}
+
+\begin{proof}
+\textbf{Step 1 (Induction base)}: For $t=0$, $T_0$ is consistent and contains at least \textbf{Q} or interprets \textbf{Q}. By the \textbf{Rosser version incompleteness theorem} (consistency premise suffices), there exists a Rosser sentence $R^{(0)}$ such that $T_0 \nvdash R^{(0)}$ and $T_0 \nvdash \neg R^{(0)}$. Take $G^{(0)} = R^{(0)}$.
+
+\textbf{Step 2 (Induction hypothesis)}: Assume for some $t$, $T_t$ is recursively enumerable, consistent, and contains at least \textbf{Q} or interprets \textbf{Q}.
+
+\textbf{Step 3 (Extension properties)}: $T_{t+1} = T_t + \Delta_t$, where $\Delta_t$ is a computable axiom fragment.
+
+Key observations:
+\begin{itemize}
+\item If $T_t$ is recursively enumerable and $\Delta_t$ is computable, then $T_{t+1}$ is also recursively enumerable.
+\item If $T_t$ contains at least \textbf{Q} or interprets \textbf{Q}, and $\Delta_t$ is a definitional or conservative extension, then $T_{t+1}$ also contains at least \textbf{Q} or interprets \textbf{Q}.
+\item Assume $T_{t+1}$ remains consistent.
+\end{itemize}
+
+\textbf{Step 4 (New undecidable sentence)}: Apply the \textbf{Rosser version incompleteness theorem} to $T_{t+1}$. There exists a Rosser sentence $R^{(t+1)}$ such that under only the consistency assumption:
+\begin{equation}
+T_{t+1} \nvdash R^{(t+1)} \quad \text{and} \quad T_{t+1} \nvdash \neg R^{(t+1)}.
+\end{equation}
+Take $G^{(t+1)} = R^{(t+1)}$.
+
+\textbf{Step 5 (Essential difference)}: $G^{(t+1)}$ is constructed for the provability predicate of $T_{t+1}$, essentially different from $G^{(t)}$ (constructed for $T_t$). The extension $T_t \to T_{t+1}$ may resolve the status of $G^{(t)}$, but necessarily produces a new undecidable sentence $G^{(t+1)}$.
+
+\textbf{Step 6 (Induction conclusion)}: For any $t$, as long as $T_t$ remains recursively enumerable, consistent, and contains at least \textbf{Q} or interprets \textbf{Q}, there exists an undecidable sentence in $T_t$.
+\end{proof}
+
+\subsection{Probabilistic proof of Theorem~\ref{prop:sample-complexity-bernoulli}}
+
+\begin{thm*}[Relative-error sample complexity]
+To estimate a Bernoulli parameter $p$ with confidence $1-\alpha$ such that $|\hat p - p| \le \eta p$, the required sample size is
+\begin{equation}
+N = \Theta \left( \frac{1}{\eta^2 p} \log \frac{1}{\alpha} \right).
+\end{equation}
+\end{thm*}
+
+\begin{proof}
+\textbf{Step 1 (Setup)}: Let $X_1, \dots, X_N$ be independent identically distributed Bernoulli($p$) random variables. Estimator $\hat p = \frac{1}{N} \sum_{i=1}^N X_i$.
+
+\textbf{Step 2 (Relative error condition)}: We require
+\begin{equation}
+\mathbb{P}(|\hat p - p| \le \eta p) \ge 1 - \alpha,
+\end{equation}
+equivalently
+\begin{equation}
+\mathbb{P}(|\hat p - p| > \eta p) \le \alpha.
+\end{equation}
+
+\textbf{Step 3 (Chernoff bound)}: For Bernoulli sums, the Chernoff bound gives:
+\begin{align*}
+\mathbb{P}(\hat p > (1+\eta)p) &\le \exp\left(-\frac{\eta^2 Np}{2+\eta}\right), \\
+\mathbb{P}(\hat p < (1-\eta)p) &\le \exp\left(-\frac{\eta^2 Np}{2}\right).
+\end{align*}
+
+\textbf{Step 4 (Union bound)}: By union bound,
+\begin{equation}
+\mathbb{P}(|\hat p - p| > \eta p) \le 2\exp\left(-\frac{\eta^2 Np}{3}\right)
+\end{equation}
+(using the weaker bound for simplicity).
+
+\textbf{Step 5 (Solve for $N$)}: Require
+\begin{equation}
+2\exp\left(-\frac{\eta^2 Np}{3}\right) \le \alpha,
+\end{equation}
+i.e.,
+\begin{equation}
+\exp\left(-\frac{\eta^2 Np}{3}\right) \le \frac{\alpha}{2},
+\end{equation}
+\begin{equation}
+\frac{\eta^2 Np}{3} \ge \log\frac{2}{\alpha},
+\end{equation}
+\begin{equation}
+N \ge \frac{3\log(2/\alpha)}{\eta^2 p}.
+\end{equation}
+
+\textbf{Step 6 (Tightness)}: This bound is tight within constant factors, since for relative error, any estimator requires $\Omega\left(\frac{1}{\eta^2 p}\log\frac{1}{\alpha}\right)$ samples.
+
+Therefore $N = \Theta\left(\frac{1}{\eta^2 p}\log\frac{1}{\alpha}\right)$.
+\end{proof}
+
+\section{Relations to other theories}
+
+\subsection{Relation to classical incompleteness}
+
+\textbf{Classical Gödel theorem}: For consistent recursively enumerable theory $T$ (expressing sufficient arithmetic), there exists a sentence $G$ such that $T \nvdash G$ and $T \nvdash \neg G$.
+
+\textbf{Resource-bounded version (one-way)}: For each resource bound $L$, there exists a sentence $G_L$ \textbf{unprovable} within resource $L$ (not ruling out refutability within the same budget; Theorem~\ref{thm:resource-incomp}). For \textbf{two-way undecidability} (neither short proof nor short refutation), one uses a Rosser sentence $R$ (not length-parameterized), as in~\S\ref{sec:extension-no-end}. Then $R\notin \Dec_L(T)$ for all $L$.
+
+\textbf{Key differences}:
+\begin{enumerate}
+\item Classical version focuses on existence; resource version focuses on computable construction.
+\item Classical version assumes unlimited resources; resource version characterizes behavior under finite resources.
+\item Resource version provides quantitative bounds; classical version is mainly qualitative.
+\end{enumerate}
+
+\subsection{Connection to computational complexity theory}
+
+\textbf{Time hierarchy theorem}: For any time-constructible functions $f(n)$ and $g(n)$, if $f(n)\log f(n) = o(g(n))$, then $\DTIME(f(n)) \subsetneq \DTIME(g(n))$.
+
+\textbf{Space hierarchy theorem}: Similar hierarchy holds for space complexity.
+
+\textbf{Connection to RBIT}:
+\begin{itemize}
+\item Hierarchy theorems show: increasing resources strictly expands decidable problem classes.
+\item RBIT shows: even as resources tend to infinity, undecidable domains never vanish.
+\item Unified view: Both study decidability boundaries under resource constraints.
+\end{itemize}
+
+\subsection{Relation to proof complexity}
+
+\textbf{Bounded arithmetic} (Buss et al.): Research on bounded arithmetic systems $S_2^1, T_2^1$, etc., where induction axioms are restricted by polynomial bounds.
+
+\textbf{Proof complexity} (Cook--Reckhow et al.): Research on proof system efficiency, defining proof length lower bounds.
+
+\textbf{RBIT's contribution}:
+\begin{itemize}
+\item Unifying proof length bounds with statistical sample complexity in the same framework.
+\item Emphasizing the resource-parameterized Gödel sentence family $\{G_L\}_{L\in\N}$.
+\item Establishing the dual dimensions of theory extension and resource extension.
+\end{itemize}
+
+\subsection{Relation to statistical learning theory}
+
+\textbf{PAC learning framework} (Valiant): Sample complexity for learning a concept class $\mathcal{C}$ under $\delta$ failure probability and $\epsilon$ approximation error.
+
+\textbf{VC dimension theory}: Sample complexity is determined by VC dimension: $N = O\left(\frac{d + \log(1/\delta)}{\epsilon^2}\right)$.
+
+\textbf{RBIT perspective}:
+\begin{itemize}
+\item Statistical indistinguishability is a manifestation of sample resource constraints.
+\item IPM metrics provide a more general framework than PAC.
+\item Unified treatment of relative-error and absolute-error bounds.
+\end{itemize}
+
+\section{Open problems}
+
+\subsection{Exact constants}
+
+\textbf{Problem}: For the $G_L$ in Theorem~\ref{thm:resource-incomp}, can we give exact constants for $\ell_T(G_L)$ relative to $L$?
+
+\textbf{Known}: $\ell_T(G_L) > L$, but how much it exceeds depends on encoding details.
+
+\textbf{Significance}: Exact constants would allow more refined resource planning.
+
+\subsection{Complexity class hierarchy}
+
+\textbf{Problem}: For different complexity classes $\mathcal{C}$ (such as $\mathsf{P}, \mathsf{NP}, \mathsf{PSPACE}$), how to characterize their corresponding resource-bounded incompleteness?
+
+\textbf{Conjecture}: Higher complexity classes require superpolynomial resources to resolve their incompleteness.
+
+\subsection{Quantum resources}
+
+\textbf{Problem}: Under the quantum computing model, how does resource-bounded incompleteness manifest? Does quantum entanglement provide proof resource advantages?
+
+\textbf{Direction}: Resource analysis of quantum proof systems (QMA).
+
+\subsection{Deep connection between statistics and logic}
+
+\textbf{Problem}: Is there a deep duality making statistical indistinguishability and logical undecidability two aspects of the same structure?
+
+\textbf{Hint}: Duality of measure theory and topology, category-theoretic connections of probability and logic.
+
+\subsection{Practical system applications}
+
+\textbf{Problem}: How to apply RBIT to reliability analysis of actual AI systems? Can we design AI architectures with self-awareness of cognitive boundaries based on RBIT?
+
+\textbf{Challenge}: Bridge from abstract theory to engineering practice.
+
+\begin{rem}[Concluding remarks]
+Resource-bounded incompleteness theory reveals the fundamental structure of cognitive processes: truth exists objectively, but accessibility is limited by resources. This recognition maintains both the ideal of pursuing truth and acknowledges the limitations of actual exploration, providing a profound mathematical foundation for understanding human knowledge progress.
+
+Incompleteness is not a defect but an essential manifestation of finiteness. Theory extension is not futile but the necessary path to expanding cognitive territory. Resource enhancement cannot eliminate incompleteness but can approach more facets of truth.
+
+Pursuing the infinite within the finite, exploring freedom within constraints—this is the eternal tension and charm of science and mathematics.
+\end{rem}
+
+\nocite{*}
+\bibliographystyle{asl}
+\bibliography{refs}
+\bigskip
+\hrule
+\bigskip
+
+
+\end{document}
