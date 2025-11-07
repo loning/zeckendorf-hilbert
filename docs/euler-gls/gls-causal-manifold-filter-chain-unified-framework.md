@@ -2,7 +2,7 @@
 
 ## ——窗化群延迟、红移与光速的公理化理论、互构纲要与非渐近误差闭合(完整版)
 
-**Version: 3.15**
+**Version: 3.17**
 
 ## 摘要
 
@@ -36,6 +36,14 @@ $$
 p_a:=\operatorname{Tr}\big[(\mathrm{Id}\otimes\mathcal I_a)(\rho)\big],
 $$
 体现"条件样本重排 ≠ 时间本体叠加"。(命题与证明详见 §5)
+
+### GR 协变声明(事件—世界线—固有时)
+
+在曲时空 $(\mathcal M,g)$ 上,**事件**指 $p\in\mathcal M$;**观测者**为单位类时向量场 $u^\mu$ 的积分曲线(**世界线**) $\gamma$。采用签名 $(-+++)$。类时曲线的**固有时**满足 $c^{2}\,d\tau^{2}=-g_{\mu\nu}(x)\,dx^{\mu}dx^{\nu}$;**类光前沿**由 $ds^{2}=0$ 给出。本文 §4–§7 中的几何前沿基准 $L$ 在曲时空上统一解释为由 $g$ 的类光锥诱导的**光锥距离** $L_{g}$;由此前沿判据一律表述为
+$$
+t_{*}(\gamma)\ \ge\ \frac{L_{g}}{c}.
+$$
+**红线重申**:$t_*$ 与由其诱导的偏序决定因果;窗化群延迟读数 $T_{\gamma}[w_R,h]$ 仅是可测刻度,不参与偏序定义。
 
 ### 卡片 I（刻度同一｜全局幺正公设）
 
@@ -108,6 +116,18 @@ $$
 
 ## 2. 因果流形的内生
 
+### 2.0 事件与同时(Einstein 同步)
+
+给定观测者世界线 $\gamma$ 与其局域惯性片 $(t,\mathbf x)$。对任一事件 $q$,令 $\gamma$ 在时刻 $t_{\rm send}$ 发出光信号并在 $t_{\rm recv}$ 收到回波,定义
+$$
+t_{\rm sim}(q):=\tfrac12\big(t_{\rm send}+t_{\rm recv}\big).
+$$
+称 $q$ 与 $\gamma$ 上 $t_{\rm sim}(q)$ 的事件"同时"。该"同时"依赖于观测者的 4-速度 $u^\mu$,等价于取过 $u^\mu$ 正交的空间样条;它仅服务于切片与坐标选取,不改变 §2.1 的可达预序。在闵氏时空的两惯性系 $S,S'$ 间,洛伦兹变换给出相对同时公式
+$$
+\Delta t'=\gamma\left(\Delta t-\frac{v\,\Delta x}{c^{2}}\right),\qquad \gamma=\frac{1}{\sqrt{1-v^{2}/c^{2}}}.
+$$
+因而"是否同时"并非时空本体命题,而是观测者依赖的切片选择;因果依旧仅由 $t_*$ 与类光锥决定。
+
 ### 2.1 上半平面解析性(Hardy) ⇒ 单向支撑与偏序
 
 取上半平面 Cauchy 变换
@@ -120,28 +140,31 @@ m(z)=\int_{\mathbb R}\frac{d\mu_\varphi(E)}{E-z}\in H^2(\mathbb C^+).
 $$
 若实验性非幺正引入的奇异贡献不可忽略,统一并入幺正扩张 $\widehat S$ 的环境自由度而不计入 $\mu_\varphi$ 的奇异部分。在 LTI 与因果假设下,Paley–Wiener/Titchmarsh 与 Kramers–Kronig–Hilbert 关系推出时域冲激响应 $g(t)$ 的单向支撑(规范后 $t\ge 0$)及实/虚部的 Hilbert 共轭。
 
+*约定(曲时空记号统一)*:自本节起,链的几何长度记为 $L_\gamma:=L_g(\gamma)$,其下确界为 $L_*(x,y)$。偏序判据与 §4.1 的前沿规范一致。
+
 **定义 2.1(前沿时间可达预序)** 设链集合 $\Gamma(x,y):=\{\gamma:x\to y\}$。若 $\Gamma(x,y)\neq\varnothing$,定义
 $$
-t_*(\gamma):=\inf\{\,t:\,g_\gamma(t;L)\neq 0\,\},\qquad
+t_*(\gamma):=\inf\{\,t:\,g_\gamma(t;L_\gamma)\neq 0\,\},\qquad
 \tau(x,y):=\inf_{\gamma\in\Gamma(x,y)} t_*(\gamma),\qquad
-L_*(x,y):=\inf_{\gamma\in\Gamma(x,y)} L(\gamma).
+L_*(x,y):=\inf_{\gamma\in\Gamma(x,y)} L_\gamma,
 $$
+其中 $L_\gamma:=L_g(\gamma)$ 由背景度规 $g$ 的类光锥诱导。
 约定:当 $\Gamma(x,y)=\varnothing$ 时,$\tau(x,y)$ 与 $L_*(x,y)$ 记为 $+\infty$,且关系 $x\preceq y$ **不成立**。据此定义可达预序
 $$
 x\preceq y\;\Longleftrightarrow\;\Gamma(x,y)\neq\varnothing\ \text{且}\ \tau(x,y)\ge \frac{L_*(x,y)}{c}.
 $$
-(**充分条件**:若 **$\Gamma(x,y)\neq\varnothing$** 且对所有 $\gamma:x\to y$ 均有 $t_*(\gamma)\ge L(\gamma)/c$,则 $x\preceq y$。*注*:反向蕴含一般不成立,除非满足 §4 的补强前提并且极小链同时实现 $\tau$ 与 $L_*$。)
+(**充分条件**:若 **$\Gamma(x,y)\neq\varnothing$** 且对所有 $\gamma:x\to y$ 均有 $t_*(\gamma)\ge L_\gamma/c$,则 $x\preceq y$。*注*:反向蕴含一般不成立,除非满足 §4 的补强前提并且极小链同时实现 $\tau$ 与 $L_*$。)
 
-**注(冗余判据的消解)** 当 §4 的前提与定理 4.2 给出前沿下界时,对任意链均有 $t_*(\gamma)\ge L(\gamma)/c$。此时"$\tau(x,y)\ge L_*(x,y)/c$"由 $\Gamma(x,y)\neq\varnothing$ 自动推出,保留该不等式仅为凸显几何前沿基准;与窗化读数 $T_\gamma[w_R,h]$ 无关,后者不参与偏序定义。
+**注(冗余判据的消解)** 当 §4 的前提与定理 4.2 给出前沿下界时,对任意链均有 $t_*(\gamma)\ge L_\gamma/c$。此时"$\tau(x,y)\ge L_*(x,y)/c$"由 $\Gamma(x,y)\neq\varnothing$ 自动推出,保留该不等式仅为凸显几何前沿基准;与窗化读数 $T_\gamma[w_R,h]$ 无关,后者不参与偏序定义。
 
-**约定(恒等链)** 对每个 $x$,$\Gamma(x,x)$ 包含恒等链 $e_x$,规定 $L(e_x)=0$,$g_{e_x}(t;0)=\delta(t)$,故 $t_*(e_x)=0$。于是 $\tau(x,x)=0=L_*(x,x)/c$,自反性由定义立即得到。
+**约定(恒等链)** 对每个 $x$,$\Gamma(x,x)$ 包含恒等链 $e_x$,规定 $L_{e_x}=0$,$g_{e_x}(t;0)=\delta(t)$,故 $t_*(e_x)=0$。于是 $\tau(x,x)=0=L_*(x,x)/c$,自反性由定义立即得到。
 
 **假设(无闭因果回路)**:不存在 $x\neq y$ 使得 $x\preceq y$ 且 $y\preceq x$。定义类光锥边界
 $$
 \partial J^+(x):=\{\,y\in J^+(x):\ \tau(x,y)=L_*(x,y)/c\,\},\qquad
 J^+(x):=\{\,y:\Gamma(x,y)\neq\varnothing,\ x\preceq y\,\}.
 $$
-**命题 2.2(偏序性,依赖前沿下界)** 在**前沿下界假设**(即对任意链 $\gamma$ 均有 $t_*(\gamma)\ge L(\gamma)/c$;该假设由 §4 的前提 (i)–(iv) 可推出,见定理 4.2)与"无闭因果回路"条件下,$\preceq$ 为偏序。
+**命题 2.2(偏序性,依赖前沿下界)** 在**前沿下界假设**(即对任意链 $\gamma$ 均有 $t_*(\gamma)\ge L_\gamma/c$;该假设由 §4 的前提 (i)–(iv) 可推出,见定理 4.2)与"无闭因果回路"条件下,$\preceq$ 为偏序。
 
 *证明*:自反性来自恒等链 $e_x$;设 $x\preceq y$ 与 $y\preceq z$,取任意拼接链 $\gamma=\gamma_{z\leftarrow y}\circ\gamma_{y\leftarrow x}$。由卷积支撑的 Minkowski 和性质,有
 $$
@@ -149,7 +172,7 @@ t_*(\gamma)\ \ge\ t_*(\gamma_{z\leftarrow y})+t_*(\gamma_{y\leftarrow x})\ (\tex
 $$
 再由前沿下界得到
 $$
-t_*(\gamma)\ \ge\ \frac{L(\gamma_{z\leftarrow y})+L(\gamma_{y\leftarrow x})}{c}\ \ge\ \frac{L_*(x,z)}{c}.
+t_*(\gamma)\ \ge\ \frac{L_{\gamma_{z\leftarrow y}}+L_{\gamma_{y\leftarrow x}}}{c}\ \ge\ \frac{L_*(x,z)}{c}.
 $$
 因此对全体链取下确界得 $\tau(x,z)\ge L_*(x,z)/c$,从而 $x\preceq z$;反对称性由"无闭因果回路"给出。□
 
@@ -255,15 +278,37 @@ c:=\lim_{L\to\infty}\frac{L}{t_{\rm front}(L)}\quad(\text{或取上确界作规�
 $$
 其中 $L$ 表示在**真空度规**下两点间的**光程(测地长度)**,其定义独立于介质;介质的色散与吸收效应仅体现于系统响应而不改变前沿下界的几何基准。该 $L$ 亦用于 §4.2 中 $t_*(\gamma)\ge L/c$ 的判定基准。前沿速度与因果一致(Sommerfeld–Brillouin 先驱)。([互联网档案馆][8])
 
+**曲时空一致化** 将上式中的 $L$ 以背景度规 $g$ 的类光锥诱导之光锥距离 $L_{g}$ 替换,并以
+$$
+c:=\lim_{L_{g}\to\infty}\frac{L_{g}}{t_{\rm front}(L_{g})}
+$$
+作前沿规范常数。于是对任意传播—读出链 $\gamma$ 恒有 $t_{*}(\gamma)\ge L_{g}/c$。该替换只依赖于 $g$ 的共形类,故与介质色散无涉。
+
 ### 4.2 无超锥传播——前沿读数
 
-**定理 4.2(前沿下界)** 在上述前提下,任意链 $\gamma$ 的输出冲激响应 $g_\gamma(t;L)$ 在 $t<L/c$ 恒为 0,因而
+**定理 4.2(前沿下界)** 在上述前提下,任意链 $\gamma$ 的输出冲激响应 $g_\gamma(t;L_\gamma)$ 在 $t<L_\gamma/c$ 恒为 0,因而
 $$
-t_*(\gamma)\ \ge\ L/c,
+t_*(\gamma)\ \ge\ L_\gamma/c,
 $$
 且等号当且仅当链的高频传播子在真空极限下沿测地达到。*注*:窗化群延迟读数 $T_\gamma[w_R,h]$ 仍非前沿时间,窄带/共振下可取负,二者无普适比较不等式。([Wolfram MathWorld][5])
 
 **红线声明** 本文所有"因果/无信号/顺序独立"结论一律以**前沿时间 $t_*$** 与由其诱导的类光锥偏序为唯一准绳;**窗化读数 $T_\gamma[w_R,h]$** 仅为可测刻度,不参与任何因果判定。
+
+### 4.3 爱因斯坦火车悖论的 GLS 解析
+
+**设定** 轨道系 $S$ 中,列车长度为 $L$,两端闪电事件 $A,B$ 在 $S$ 内**同时**发生:$\Delta t:=t_B-t_A=0$,$\Delta x:=x_B-x_A=L$。列车系 $S'$ 以速度 $v$ 沿 $+x$ 方向运动,车中点的观测者 $O'$ 在 $S'$ 的原点。
+
+**洛伦兹分析** 由
+$$
+\Delta t'=\gamma\left(\Delta t-\frac{v\,\Delta x}{c^{2}}\right)=-\gamma\,\frac{vL}{c^{2}}\neq 0
+$$
+得出:在 $S'$ 中,靠前端的闪电先到达 $O'$,靠后端的后到达,**不存在**跨系一致的"同时"。
+
+**GLS 解释** 事件 $A,B$ 与 $O'$ 所处事件均两两**类空间分离**,因而在 §2 的偏序中既无 $A\preceq B$ 也无 $B\preceq A$。各系的"同时"仅是各自世界线族的切片选择;因果只受前沿判据
+$$
+t_{*}(\gamma)\ \ge\ \frac{L_{g}}{c}
+$$
+约束,故无悖论。窗化群延迟读数 $T_{\gamma}[w_R,h]$ 可能随滤镜参数和频带改变到达"读数"的数值,但它不改变边缘统计、不生成超因果,也不参与"同时"的定义。这与本文"红线声明"完全一致。
 
 ---
 
