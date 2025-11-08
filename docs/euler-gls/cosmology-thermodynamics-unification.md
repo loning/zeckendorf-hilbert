@@ -1,6 +1,6 @@
 # 宇宙学—热力学统一：以几何熵产生重释 Friedmann 方程（含证明）
 
-Version: 1.0
+Version: 1.1
 
 ## 摘要
 
@@ -56,7 +56,7 @@ Raychaudhuri 方程给出测地线族膨胀的聚焦/发散演化；在能量条
 
 ## 3. 非平衡扩展与内禀熵产生
 
-当引力熵泛函含曲率修正（如 $S\sim\int f(R)$ 的 Wald/Noether 熵）时，Clausius 关系需改为 $\delta Q=T\,dS_h+T\,d_iS$（$d_iS\ge0$）。Eling–Guedens–Jacobson 表明，对 Ricci 标量的多项式修正，必须采取非平衡熵学处理，并可由熵平衡关系导出修正场方程；即便在 Einstein 理论中，若考虑视界剪切/体粘滞，也存在 $d_iS$ 的正定贡献。宇宙学粘滞流体（Eckart/Israel–Stewart）提供了宏观建模途径，其非平衡压强 $\Pi$ 与 $d_iS$ 在早/晚期阶段皆可造成附加熵增长。([物理评论链接管理器][6])
+当引力熵泛函含曲率修正时（例如 $f(R)$ 理论的 Wald/Noether 熵 $S_{\rm Wald}=\dfrac{A}{4G}f_R$，其中 $f_R\equiv\partial f/\partial R$），Clausius 关系需改为 $\delta Q=T\,dS_h+T\,d_iS$（$d_iS\ge0$）。Eling–Guedens–Jacobson 表明，对 Ricci 标量的多项式修正，必须采取非平衡熵学处理，并可由熵平衡关系导出修正场方程；即便在 Einstein 理论中，若考虑视界剪切/体粘滞，也存在 $d_iS$ 的正定贡献。宇宙学粘滞流体（Eckart/Israel–Stewart）提供了宏观建模途径，其非平衡压强 $\Pi$ 与 $d_iS$ 在早/晚期阶段皆可造成附加熵增长。([物理评论链接管理器][6])
 
 ---
 
