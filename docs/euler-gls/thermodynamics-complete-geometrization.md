@@ -1,4 +1,5 @@
 # 热力学—统计的完全几何化：温度—曲率频谱、熵—体积对数与相变的几何判据
+Version: 1.7
 
 **MSC**：82B05；82C31；53C21；58J35；60G10；28A80
 **关键词**：KMS/Tolman 红移；热核与 Seeley–DeWitt 系数；Weyl 律与谱维；Bogoliubov–Kubo–Mori（BKM）度量；Bakry–Émery 曲率维条件；Wasserstein 梯度流（JKO）；Lee–Yang/Fisher 零点；Ruppeiner 曲率；Birman–Kreĭn 与散射相位；Spohn 单调与 Jarzynski；分形边界热含量
@@ -9,9 +10,9 @@
 
 给定带有黎曼度量 $g$ 的可定向 $d$-维流形 $M$ 及拉普拉斯型算子 $\mathcal L=-\Delta_g+V$，以规范配分函数 $Z(\beta)=\operatorname{Tr}\,e^{-\beta \mathcal L}$ 的几何小时间渐近与谱分布为纽带，建立如下三条主张并给出证明链与实现要则：
 
-1. **温度—曲率频谱**：$\beta^{-1}$ 等价于热核半群 $e^{-\beta \mathcal L}$ 的"频谱窗口宽度"；局域上有热核对角渐近 $K(\beta;x,x)\sim (4\pi\beta)^{-d/2}\bigl[1+\beta\,R(x)/6+O(\beta^{3/2})\bigr]$，据此定义曲率的热谱密度 $\mathcal R_\beta(x):=6\,\partial_\beta\bigl[\beta^{d/2}K(\beta;x,x)\bigr]$ 并证明 $\lim_{\beta\downarrow 0}\mathcal R_\beta(x)=R(x)$。故**温度的几何含义**是以窗口尺度 $\beta$ 解析曲率不变量的频谱过滤；在静态时空还满足 Tolman–Ehrenfest 红移 $T(x)\sqrt{-g_{00}(x)}=\text{常数}$，与 KMS 平衡条件等价。([ScienceDirect][1])
+1. **温度—曲率频谱**：$\beta^{-1}$ 等价于热核半群 $e^{-\beta \mathcal L}$ 的"频谱窗口宽度"；局域上有热核对角渐近 $K(\beta;x,x)\sim (4\pi\beta)^{-d/2}\bigl[1+\beta\bigl(\tfrac{R(x)}{6}-V(x)\bigr)+O(\beta^{2})\bigr]$，据此定义曲率的几何热谱密度 $\mathcal R^{\rm geom}_\beta(x):=6(4\pi)^{d/2}\,\partial_\beta\bigl[\beta^{d/2}e^{\beta V(x)}K(\beta;x,x)\bigr]$ 并证明 $\lim_{\beta\downarrow 0}\mathcal R^{\rm geom}_\beta(x)=R(x)$。故**温度的几何含义**是以窗口尺度 $\beta$ 解析曲率不变量的频谱过滤；在静态时空还满足 Tolman–Ehrenfest 红移 $T(x)\sqrt{-g_{00}(x)}=\text{常数}$，与 KMS 平衡条件等价。([ScienceDirect][1])
 
-2. **熵—体积对数**：微正则下由 Weyl 律的本征计数 $N(\lambda)$ 得到态密度 $\rho(\lambda)\sim C_d\,\operatorname{Vol}(M)\,\lambda^{d/2-1}$（边界与曲率给出低次修正），从而系统熵满足 $S(E)=\log \Omega(E)=\log \int_0^E\rho(\lambda)\,d\lambda=\log \operatorname{Vol}(M)+\tfrac{d}{2}\log E+O(E^{-1/2})$；正则系综下 $S(\beta)=\beta\langle \mathcal L\rangle+\log Z(\beta)$ 且 $\log Z(\beta)=\log \int_M K(\beta;x,x)\,dV_g$ 的首项即 $\log \operatorname{Vol}(M)-\tfrac{d}{2}\log \beta+\text{曲率/边界修正}$。由此严格实现命题"熵＝几何体积的对数"，并量化曲率与边界的有限温度修正项。([arXiv][2])
+2. **熵—体积对数**：微正则下由 Weyl 律的本征计数 $N(\lambda)$ 得到态密度 $\rho(\lambda)\sim \tfrac{d}{2}C_d\,\operatorname{Vol}(M)\,\lambda^{d/2-1}$（边界与曲率给出低次修正），从而系统熵满足 $S(E)=\log \Omega(E)=\log \int_0^E\rho(\lambda)\,d\lambda=\log \operatorname{Vol}(M)+\tfrac{d}{2}\log E+\log C_d+O(E^{-1/2})$；正则系综下 $S(\beta)=\beta\langle \mathcal L\rangle+\log Z(\beta)$ 且 $\log Z(\beta)=\log \int_M K(\beta;x,x)\,dV_g$ 的首项即 $\log \operatorname{Vol}(M)-\tfrac{d}{2}\log \beta+\text{曲率/边界修正}$。由此严格实现命题"熵＝几何体积的对数"，并量化曲率与边界的有限温度修正项。([arXiv][2])
 
 3. **相变的几何描述**：在宏观层面，Ruppeiner 信息几何曲率 $R_{\rm Rup}$ 作为相关体积尺度的量度，在临界点发散并刻画一阶与二阶相变曲线；在微观层面，Lee–Yang/Fisher 零点逼近实轴当且仅当发生非解析，从而以零点测度与 Morse/拓扑变化为判据；二者与热核／Weyl 校正系数、边界与分形维的耦合给出统一的相变几何学。([Physical Review Links][3])
 
@@ -43,19 +44,29 @@
 
 **公理 3（响应与度量）**：线性响应核的 Kubo–Mori（BKM）内积定义在平衡态上并诱导热力学信息几何；其经典极限为 Fisher–Rao 度量。([dept.camden.rutgers.edu][4])
 
-**公理 4（散射—母尺）**：若存在外区散射，Wigner–Smith 延迟矩阵 $\mathsf Q(E)=-iS^\dagger\,\tfrac{dS}{dE}$ 与谱移函数 $\xi$ 满足 Birman–Kreĭn 公式 $\det S(E)=e^{-2\pi i\,\xi(E)}$；其迹密度 $(2\pi)^{-1}\operatorname{tr}\mathsf Q(E)=\xi'(E)$ 给出相对态密度刻度，用作读数母尺。([arXiv][6])
+**公理 4（散射—母尺）**：若存在外区散射，Wigner–Smith 延迟矩阵 $\mathsf Q(E)=-iS^\dagger\,\tfrac{dS}{dE}$ 与谱移函数 $\xi$ 满足 Birman–Kreĭn 公式 $\det S(E)=e^{-2\pi i\,\xi(E)}$；其迹密度 $\displaystyle \frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)=-\xi'(E)$ 给出相对态密度刻度，用作读数母尺。([arXiv][6])
 
 ---
 
 ## 2. 温度＝曲率频谱：热核与 KMS/Tolman
 
-**定理 2.1（曲率的热谱恢复）**。令 $\mathcal L$ 为拉普拉斯型。小 $\beta$ 时热核对角渐近为
+**定理 2.1（曲率的热谱恢复，内点版）**。设 $\mathcal L=-\Delta_g+V$ 为拉普拉斯型算子。对**无边界流形**或**有边界流形的内点** $x\in M^\circ$，当 $\beta\downarrow 0$ 有
 $$
-K(\beta;x,x)\sim (4\pi\beta)^{-d/2}\Bigl[1+\beta\,\tfrac{R(x)}{6}+\beta^{3/2}b_{3/2}(x)+\beta^2 b_2(x)+\cdots\Bigr].
+K(\beta;x,x)\sim (4\pi\beta)^{-d/2}\Bigl[1+\beta\Bigl(\tfrac{R(x)}{6}-V(x)\Bigr)+O(\beta^{2})\Bigr],
 $$
-定义曲率热谱密度 $\displaystyle \mathcal R_\beta(x):=6\,\partial_\beta\bigl(\beta^{d/2}K(\beta;x,x)\bigr)$。则 $\displaystyle \lim_{\beta\downarrow 0}\mathcal R_\beta(x)=R(x)$。([ScienceDirect][1])
+从而定义
+$$
+\boxed{\ \mathcal R^{\rm geom}_\beta(x):=6(4\pi)^{d/2}\,\partial_\beta\Bigl[\beta^{d/2}e^{\beta V(x)}K(\beta;x,x)\Bigr],\qquad \lim_{\beta\downarrow 0}\mathcal R^{\rm geom}_\beta(x)=R(x)\ }
+$$
+**说明（有边界时）**：若 $\partial M\neq\varnothing$ 且 $x$ 位于边界或以 $\operatorname{dist}(x,\partial M)=O(\sqrt\beta)$ 接近边界，则 $K(\beta;x,x)$ 含半整数项，$\mathcal R^{\rm geom}_\beta(x)$ 一般存在 $\beta^{-1/2}$ 级发散；关于整体量（迹/积分）之半整数修正见第3.3节。
 
-*证明要点*：Seeley–DeWitt 系数 $a_0=1$、$a_1=\tfrac{R}{6}$；对角核乘以 $\beta^{d/2}$ 消去体积主项，微分后首项即 $R$。边界时附加半整数序列 $a_{1/2},a_{3/2},\dots$。([arXiv][7])
+([ScienceDirect][1])
+
+*证明要点*：参见附录 A：$a_0=1$、$a_1=\tfrac{R}{6}-V$，从而
+$$
+\beta^{d/2}e^{\beta V(x)}K(\beta;x,x)= (4\pi)^{-d/2}\Bigl[1+\beta\,\tfrac{R(x)}{6}+O(\beta^{2})\Bigr].
+$$
+边界时附加半整数序列 $a_{1/2},a_{3/2},\dots$（无边界，**局域对角**）；有边界时**整体量**出现半整数修正，见第3.3节。([arXiv][7])
 
 **命题 2.2（温度的谱窗口意义）**。$\beta^{-1}$ 等价于谱测度 $\mu$ 的窗口宽度：有 Tauberian 关系
 $$
@@ -69,21 +80,39 @@ $$
 
 ## 3. 熵＝体积对数：Weyl 律与两系综联通
 
-**定理 3.1（Weyl 律与微正则熵）**。紧致无边界时 $N(\lambda)=C_d\,\operatorname{Vol}(M)\,\lambda^{d/2}+C_{d-2}\int_M R\,\lambda^{d/2-1}+o(\lambda^{d/2-1})$。态密度 $\rho(\lambda)=N'(\lambda)\sim \tfrac{d}{2}C_d\,\operatorname{Vol}(M)\,\lambda^{d/2-1}$。定义能量 $E\leftrightarrow \lambda$，则微正则熵
+**定理 3.1（Weyl 律与微正则熵·严格版）**。紧致无边界时
 $$
-S(E)=\log \Omega(E)=\log \int_0^E \rho(\lambda)\,d\lambda=\log \operatorname{Vol}(M)+\tfrac{d}{2}\log E+O(E^{-1/2}).
+N(\lambda)=C_d\,\operatorname{Vol}(M)\,\lambda^{d/2}+O\bigl(\lambda^{(d-1)/2}\bigr).
+$$
+态密度 $\rho(\lambda)=N'(\lambda)\sim \tfrac{d}{2}C_d\,\operatorname{Vol}(M)\,\lambda^{d/2-1}$。定义能量 $E\leftrightarrow \lambda$，则微正则熵
+$$
+S(E)=\log \Omega(E)=\log \int_0^E \rho(\lambda)\,d\lambda=\log \operatorname{Vol}(M)+\tfrac{d}{2}\log E+\log C_d+O(E^{-1/2}).
 $$
 ([arXiv][2])
 
-**命题 3.2（正则熵与体积项）**。$\displaystyle \log Z(\beta)=\int_M \log K(\beta;x,x)\,dV_g - \int_M \log\frac{K(\beta;x,x)}{\bar K(\beta)}\,dV_g$，其中 $\bar K$ 为体平均。由定理 2.1 得
+**命题 3.2（正则熵与体积项）**。设
 $$
-\log Z(\beta)=\log \operatorname{Vol}(M)-\tfrac{d}{2}\log \beta + \tfrac{1}{6}\beta\,\overline{R}\operatorname{Vol}(M)+O(\beta^{1/2}),
+\bar K(\beta):=\frac{1}{\operatorname{Vol}(M)}\int_M K(\beta;x,x)\,dV_g.
 $$
-故
+则
 $$
-S(\beta)=\beta\langle \mathcal L\rangle+\log Z(\beta)=\log \operatorname{Vol}(M)+\tfrac{d}{2}\bigl[1-\log \beta\bigr]+\tfrac{1}{6}\beta\,\overline{R}\operatorname{Vol}(M)+\cdots.
+\log Z(\beta)=\log \operatorname{Vol}(M)+\log \bar K(\beta),
 $$
-体积为首要对数项，曲率给出温度依赖修正。([ScienceDirect][1])
+从而利用第 2 节热核展开得
+
+**无边界情形**：
+$$
+\boxed{\ \log Z(\beta)=\log \operatorname{Vol}(M)-\tfrac{d}{2}\log(4\pi\beta)+\beta\Bigl(\tfrac{1}{6}\overline{R}-\overline{V}\Bigr)+O(\beta^{2})\ }
+$$
+于是 $-\partial_\beta\log Z=\tfrac{d}{2\beta}-\bigl(\tfrac{1}{6}\overline{R}-\overline{V}\bigr)+O(\beta)$，
+$$
+\boxed{\ S(\beta)=\beta\langle\mathcal L\rangle+\log Z(\beta)=\log \operatorname{Vol}(M)-\tfrac{d}{2}\log(4\pi\beta)+\tfrac{d}{2}+O(\beta^{2})\ }
+$$
+其中 $\displaystyle \overline{R}:=\frac{1}{\operatorname{Vol}(M)}\int_M R\,dV_g$，$\displaystyle \overline{V}:=\frac{1}{\operatorname{Vol}(M)}\int_M V\,dV_g$。
+
+**有边界情形说明**：按第3.3节，$\log Z(\beta)$ 与 $S(\beta)$ 需额外加入面积阶的 $O(\beta^{1/2})$ 半整数修正项。
+
+体积为首要对数项，线性 $\beta$ 曲率修正抵消，边界与更高阶几何项出现在更高次幂。([ScienceDirect][1])
 
 **命题 3.3（边界与半整数修正）**。若 $\partial M\neq\varnothing$，则 $Z(\beta)$ 的下一主项为 $\propto \operatorname{Area}(\partial M)\,\beta^{-(d-1)/2}$，并伴随边界几何不变量；由此在 $S$ 中出现与面积相关的半整数幂。([arXiv][7])
 
@@ -93,9 +122,9 @@ $$
 
 **零定律（KMS 等价）**：平衡态 $\omega$ 满足 $\omega(A\tau_t(B))$ 的解析延拓与 KMS 条件；静态时空局域温度满足 Tolman 关系，与第 2 节一致。([Project Euclid][5])
 
-**第一定律（几何变分）**：自由能 $\mathcal F(\beta,g)=-\beta^{-1}\log Z(\beta)$。变分得能量与应力
+**第一定律（几何变分）**：自由能 $\mathcal F(\beta,g)=-\beta^{-1}\log Z(\beta)$。变分：
 $$
-\delta(\beta \mathcal F)=\delta\langle \mathcal L\rangle -\tfrac{1}{2}\int_M \sqrt{g}\,T^{\mu\nu}\,\delta g_{\mu\nu}\,d^dx,
+\boxed{\ \delta(\beta \mathcal F)=\langle \mathcal L\rangle\,\delta\beta+\tfrac{1}{2}\int_M \sqrt{g}\,T^{\mu\nu}\,\delta g_{\mu\nu}\,d^dx\ }
 $$
 其中 $T^{\mu\nu}=-\tfrac{2}{\sqrt{g}}\tfrac{\delta \log Z}{\delta g_{\mu\nu}}$；从热核变分可表达 $T^{\mu\nu}$ 的曲率展开。([ScienceDirect][1])
 
@@ -109,7 +138,7 @@ $$
 
 **命题 5.1（BKM 度量与响应）**：设平衡态 $\rho_\beta\propto e^{-\beta H}$。BKM 内积 $\langle X,Y\rangle_{\rm BKM}=\int_0^1 \operatorname{Tr}\bigl(\rho_\beta^s X^\dagger \rho_\beta^{1-s}Y\bigr)\,ds$ 诱导的黎曼度量是量子信息单调度量中对应于 Kubo–Mori 情形；其 Christoffel 与曲率刻画线性响应与耗散。([dept.camden.rutgers.edu][4])
 
-**命题 5.2（散射相位与谱移）**：若系统含外区散射通道，则谱移函数与散射矩阵满足 $\det S(E)=e^{-2\pi i\xi(E)}$；Kreĭn 迹公式给出 $\operatorname{Tr}\bigl(f(H)-f(H_0)\bigr)=\int f'(E)\,\xi(E)\,dE$，相位导数与 Wigner–Smith 群延迟迹密度一致，从而提供与第 2–3 节相容的"读数母尺"。([arXiv][6])
+**命题 5.2（散射相位与谱移）**：若系统含外区散射通道，则谱移函数与散射矩阵满足 $\det S(E)=e^{-2\pi i\xi(E)}$；Kreĭn 迹公式给出 $\operatorname{Tr}\bigl(f(H)-f(H_0)\bigr)=\int f'(E)\,\xi(E)\,dE$，因而 $\displaystyle \frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)=-\xi'(E)$ 提供与第 2–3 节相容的"读数母尺"。([arXiv][6])
 
 ---
 
@@ -141,7 +170,11 @@ $$
 
 ## 9. 边界与分形效应：热含量与谱修正
 
-边界导致热核半整数系数与面积项；粗糙或分形边界时，热含量 $E(s)$ 呈现与 Minkowski 维相关的标度 $E(s)\sim s^{1-\gamma/2}$（$\gamma$ 为边界维），并可从早时热含量反演边界维与 Minkowski 内容。分形鼓与相对分形 ζ 函数提供复杂维度框架以解析谱振荡与相变信号。([arXiv][7])
+边界导致热核半整数系数与面积项；**当 $\partial\Omega$ 为粗糙或分形边界（Minkowski 维为 $\gamma$）时，短时的热含量**相对体积的**缺口**满足
+$$
+|\Omega|-E(s)\sim C\,s^{\frac{d-\gamma}{2}},\qquad s\downarrow 0,
+$$
+从而可据早时热含量之**缺口标度**反演边界维 $\gamma$ 与 Minkowski 内容。**在 $d=2$ 的特例下，上式退化为先前常用的 $s^{1-\gamma/2}$ 标度。**分形鼓与相对分形 ζ 函数提供复杂维度框架以解析谱振荡与相变信号。([arXiv][7])
 
 ---
 
@@ -155,29 +188,33 @@ $$
 
 ## 附录 A：热核—曲率频谱同一（定理 2.1）
 
-**引理 A.1（Seeley–DeWitt 展开）**：对拉普拉斯型算子，存在
+**引理 A.1（Seeley–DeWitt 展开）**：对拉普拉斯型算子 $\mathcal L=-\Delta_g+V$，存在
 $$
 K(\beta;x,x)\sim (4\pi\beta)^{-d/2}\sum_{m\ge 0} a_m(x)\,\beta^m,
 $$
-其中 $a_0=1$、$a_1=R/6$。([ScienceDirect][1])
+其中 $a_0=1$、$a_1=\tfrac{R}{6}-V$。([ScienceDirect][1])
 
 *证明*：参考标准热核展开并取对角极限，见综述。由此
 $$
-\beta^{d/2}K(\beta;x,x)= (4\pi)^{-d/2}\bigl[1+\beta R/6+O(\beta^{3/2})\bigr].
+\beta^{d/2}e^{\beta V(x)}K(\beta;x,x)= (4\pi)^{-d/2}\Bigl[1+\beta\,\tfrac{R(x)}{6}+O(\beta^{2})\Bigr].
 $$
-定义 $\mathcal R_\beta(x):=6\,\partial_\beta[\beta^{d/2}K]$ 即 $\mathcal R_\beta(x)=(4\pi)^{-d/2}\bigl[R+O(\beta^{1/2})\bigr]$，取 $\beta\downarrow 0$ 得结论。带边界时加入半整数系数。([arXiv][7])
+定义 $\mathcal R^{\rm geom}_\beta(x):=6(4\pi)^{d/2}\,\partial_\beta[\beta^{d/2}e^{\beta V(x)}K(\beta;x,x)]$ 即 $\mathcal R^{\rm geom}_\beta(x)=R(x)+O(\beta)$，取 $\beta\downarrow 0$ 得结论。带边界时加入半整数系数。([arXiv][7])
 
 ---
 
 ## 附录 B：Weyl 律与熵—体积对数（定理 3.1）
 
-**引理 B.1（Weyl 主项与曲率修正）**：
+**引理 B.1（Weyl 主项）**：
 $$
-N(\lambda)=\frac{\omega_d}{(2\pi)^d}\operatorname{Vol}(M)\lambda^{d/2}+ \frac{\omega_{d-2}}{(2\pi)^{d}}\frac{1}{6}\!\int_M\!R\,\lambda^{d/2-1}+o(\lambda^{d/2-1}).
+N(\lambda)=\frac{\omega_d}{(2\pi)^d}\operatorname{Vol}(M)\lambda^{d/2}+O\bigl(\lambda^{(d-1)/2}\bigr).
 $$
 ([arXiv][2])
 
-*证明*：微局部分析与 Tauberian 理论。态密度 $\rho=N'$ 给出 $\Omega(E)=\int_0^E\rho$；取对数得主项 $\log \operatorname{Vol}(M)$ 与能量标度 $\tfrac{d}{2}\log E$，其余为曲率与边界修正。边界项来自热核 $a_{1/2}$ 等半整数系数。([arXiv][7])
+*证明*：微局部分析与 Tauberian 理论。态密度 $\rho=N'$ 给出 $\Omega(E)=C_d\,\operatorname{Vol}(M)\,E^{d/2}(1+O(E^{-1/2}))$；取对数得
+$$
+\log\Omega(E)=\log \operatorname{Vol}(M)+\tfrac{d}{2}\log E+\log C_d+O(E^{-1/2}).
+$$
+边界若存在则贡献 $\lambda^{(d-1)/2}$ 级项并由热核 $a_{1/2}$ 等半整数系数控制。([arXiv][7])
 
 ---
 
@@ -215,7 +252,7 @@ $$
 
 **定理 G.1（Birman–Kreĭn 与 Kreĭn 迹公式）**：$\det S(E)=e^{-2\pi i\xi(E)}$，且 $\operatorname{Tr}\bigl(f(H)-f(H_0)\bigr)=\int f'(E)\,\xi(E)\,dE$。*证明*：谱族与行列式的解析延拓；Helffer–Sjöstrand 表示给出迹类性与积分表示。([arXiv][6])
 
-**推论**：$(2\pi)^{-1}\operatorname{tr}\mathsf Q(E)=\xi'(E)$ 提供"温度—能量窗口"下的相对态密度刻度，与第 2–3 节热核/Weyl 框架互补。([Physical Review Links][16])
+**推论**：$\displaystyle \frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)=-\xi'(E)$ 提供"温度—能量窗口"下的相对态密度刻度，与第 2–3 节热核/Weyl 框架互补。([Physical Review Links][16])
 
 ---
 

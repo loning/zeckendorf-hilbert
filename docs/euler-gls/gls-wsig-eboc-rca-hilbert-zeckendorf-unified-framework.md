@@ -1,7 +1,7 @@
 # GLS–WSIG–EBOC—RCA—Hilbert—Zeckendorf 统一中的量子动力学与几何反演
 
 ## ——母尺同一、纤维丛几何、窗化路径积分、测量闭合与可逆日志
-Version: 1.6
+Version: 1.8
 
 **MSC**：81Q05；81Q20；81S40；35P25；35R30；53Z05；46N50；83C05；47A40；94A17
 **关键词**：GLS（广义光结构）；WSIG（窗化散射—信息几何）；EBOC（静态块观察—计算）；RCA（可逆元胞自动机）；三位一体母尺；Wigner–Smith 群延迟；Birman–Kreĭn；Toeplitz/Berezin 压缩；Hardy/de Branges；Kramers–Kronig；Titchmarsh；IGVP；I-投影；Belavkin 过滤；Jarzynski（含互信息修正）；Mellin 帧；Zeckendorf 范畴；NPE（Poisson—Euler–Maclaurin—尾项）
@@ -98,7 +98,7 @@ $$
 
 对 $f=h\star w_R$ 有
 $$
-\mathrm{Tr}\,f(H)-\mathrm{Tr}\,f(H_0)=\int f'(E)\,\xi(E)\,dE=-\frac{1}{2\pi i}\int f'(E)\,\log\det S(E)\,dE,
+\mathrm{Tr}\,f(H)-\mathrm{Tr}\,f(H_0)=-\int f'(E)\,\xi(E)\,dE=-\frac{1}{2\pi i}\int f'(E)\,\log\det S(E)\,dE,
 $$
 实现"谱—相位—延迟"的积分级桥接（附录 C.1–C.3）。
 
@@ -186,22 +186,37 @@ $$
 
 窗 $W=[\tau,\tau+L)$ 的载荷
 $$
-S(W)=\left\lfloor \int_W \rho_{\mathrm{rel}}(E)\,dE\right\rfloor=S^+(W)-S^-(W),\qquad S^\pm(W)=\sum_{k\ge2}b_k^\pm(\tau)\,F_k,
+I(W):=\int_W \rho_{\mathrm{rel}}(E)\,dE,\qquad I^\pm(W):=\max\{\pm I(W),0\}.
 $$
-其中 $b_k^\pm\in\{0,1\},\ b_k^\pm b_{k+1}^\pm=0$，并记
+定义
 $$
-I(W)=\int_W \rho_{\mathrm{rel}}(E)\,dE,\qquad I^\pm(W)=\max\{\pm I(W),0\},
+S^\pm(W):=\left\lfloor I^\pm(W)\right\rfloor=\sum_{k\ge2}b_k^\pm(\tau)\,F_k,\quad b_k^\pm\in\{0,1\},\ b_k^\pm b_{k+1}^\pm=0,
 $$
-则 $S^\pm(W)=\lfloor I^\pm(W)\rfloor$。$\{F_k\}_{k\ge0}$ 为 Fibonacci 数列，$F_0=0,\ F_1=1,\ F_{k+1}=F_k+F_{k-1}$（故 $F_2=1,\ F_3=2$），Zeckendorf 展式按标准下标自 $k\ge2$ 起始。
-滑窗 $W\mapsto W+\delta$ 的进借位在两本账上分别执行，整体保持局域可逆（Zeckendorf 唯一性）。
+并取**整数化日志**
+$$
+S(W):=S^+(W)-S^-(W).
+$$
+注意：一般并无 $S(W)=\lfloor I(W)\rfloor$（当 $I(W)<0$ 时二者不同）；但有
+$$
+0\le I^\pm(W)-S^\pm(W)<1\quad\Rightarrow\quad |I(W)-S(W)|<1.
+$$
+其中 $\{F_k\}_{k\ge0}$ 为 Fibonacci 数列，$F_0=0,\ F_1=1,\ F_{k+1}=F_k+F_{k-1}$（故 $F_2=1,\ F_3=2$），Zeckendorf 展式按标准下标自 $k\ge2$ 起始；滑窗 $W\mapsto W+\delta$ 的进/借位在两本账上分别执行，整体保持局域可逆（Zeckendorf 唯一性）。
 
 ### 7.2 一致性与上界（主定理 IV）
 
-对任意窗 $W$ 与按 §7.1 给定的位权 $\{b_k^\pm\}$，有
+对任意窗 $W$，依 §7.1 记 $I^\pm(W)=\max\{\pm I(W),0\}$ 与
 $$
-0\le \int_W \rho_{\mathrm{rel}}(E)\,dE-\sum_{k\ge2}b_k(\tau) F_k < 1,
+S^+(W)=\left\lfloor I^+(W)\right\rfloor,\qquad S^-(W)=\left\lceil I^-(W)\right\rceil,
 $$
-其中 $b_k=b_k^+-b_k^-$。
+则有
+$$
+0\le I^+(W)-S^+(W)<1,\qquad 0\le S^-(W)-I^-(W)<1,
+$$
+因而
+$$
+\boxed{0\le I(W)-S(W)=(I^+(W)-S^+(W))+(S^-(W)-I^-(W))<1,}
+$$
+从而 $|I(W)-S(W)|<1$。
 另一方面，取 NPE 的非整数近似 $I_p(W)$（Poisson—有限阶 Euler–Maclaurin—尾项），当 $\rho_{\mathrm{rel}}$ 具 $C^p$ 正则与适度衰减时，
 $$
 \left|\int_W \rho_{\mathrm{rel}}(E)\,dE-I_p(W)\right|\le C_{p,W}\,R^{-p},\qquad R=\text{窗的 Nyquist 尺度}.
@@ -249,13 +264,17 @@ $\varepsilon_{\rm alias}$ 由 Poisson 控制（带限与 Nyquist 下消失），
 ## 10. 用例（提要）
 
 **10.1 一维势台阶**：在阈值附近 $\operatorname{tr}\mathsf Q$ 呈峰—谷结构；负群延迟不违因果，因为前沿由 $t_*$ 限定。
-**10.2 两能级持续监测**：Belavkin 扩散下构造鞅 $\Gamma_t=\exp[-\beta W_t+\beta\Delta F_t-I_t]$ 验证 Jarzynski；窗化读数与 $(2\pi)^{-1}\operatorname{tr}\mathsf Q$ 对齐。
+**10.2 两能级持续监测**：Belavkin 扩散下构造鞅 $\Gamma_t=\exp[-\beta W_t+\beta\Delta F_t-I_t]$ 验证 Jarzynski；窗化读数与 $(2\pi)^{-1}\operatorname{tr}\mathsf Q_{\rm eff}$ 对齐。
 
 ---
 
 ## 11. 随机与开放系统扩展
 
-在 GKSL 生成子 $\mathcal L$ 下定义**有效群延迟** $\mathsf Q_{\rm eff}(\omega)=-i\,\mathsf G^\sharp(\omega)\,\partial_\omega\mathsf G(\omega)$（$\mathsf G(\omega)=(i\omega-\mathcal L)^{-1}$），其中 $X^\sharp$ 表示相对于 Hilbert–Schmidt 内积 $\langle A,B\rangle_{\rm HS}=\mathrm{Tr}(A^\dagger B)$ 的超算子伴随，即对任意算子 $A,B$ 有 $\langle X^\sharp A,B\rangle_{\rm HS}=\langle A,XB\rangle_{\rm HS}$；其迹与 Liouvillian 光谱移导数等刻度。随机通道极限下，$\int W\,\operatorname{tr}\mathsf Q_{\rm eff}$ 的归一化波动趋于高斯，窄窗尾分布呈自由稳定律（附录 L）。
+在弱耦合并满足 KMS 对称（量子详细平衡）的前提下，设 GKSL 生成子 $\mathcal L$ 相对于某忠实静态态作用，定义**有效群延迟**
+$$
+\mathsf Q_{\rm eff}(\omega)=-i\,\mathsf G^\sharp(\omega)\,\partial_\omega\mathsf G(\omega),\qquad \mathsf G(\omega)=(i\omega-\mathcal L)^{-1},
+$$
+其中 $X^\sharp$ 表示相对于 Hilbert–Schmidt 内积 $\langle A,B\rangle_{\rm HS}=\mathrm{Tr}(A^\dagger B)$ 的超算子伴随，即对任意算子 $A,B$ 有 $\langle X^\sharp A,B\rangle_{\rm HS}=\langle A,XB\rangle_{\rm HS}$。在上述 KMS/弱耦合前提下，其迹与对称化的 Liouvillian 光谱移导数等刻度；离开该前提一般不成立。随机通道极限下，$\int W\,\operatorname{tr}\mathsf Q_{\rm eff}$ 的归一化波动趋于高斯，窄窗尾分布呈自由稳定律（附录 L）。
 
 ---
 
@@ -328,7 +347,7 @@ $$
 
 **I.1 Mellin–Poisson 展开** 给出窗化积分的频域分解；
 **I.2 Euler–Maclaurin 有限阶** 给端点/余项显式上界；
-**I.3 整数逼近与唯一性** 构造位权 $\{b_k\}$ 使误差 $O(R^{-p})$；
+**I.3 非整数近似与唯一性** 构造位权 $\{b_k^\pm\}$ 给出 Zeckendorf 唯一表示；对非整数近似 $I_p(W)$ 有 $|\int_W\rho_{\mathrm{rel}}-I_p(W)|\le C_{p,W}R^{-p}$，而整数化量满足 $0\le I^+(W)-S^+(W)<1$ 与 $0\le I^-(W)-S^-(W)<1$（记号同 §7.1），从而 $|I(W)-S(W)|<1$；
 **I.4 滑窗可逆** 验证进/借位更新的局域可逆性与守恒。
 
 ---

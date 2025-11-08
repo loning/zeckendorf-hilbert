@@ -1,8 +1,10 @@
 # 信息几何与时空几何的结构同构：从相对熵的二阶响应到度规、联络与场方程
 
+Version: 1.1
+
 ## 摘要
 
-本文构建并严格论证一个"信息—时空同构"框架。以满足 Eguchi 正则性的散度函数（含相对熵）为起点，定义 Fisher–Rao 度量与对偶联络族，并在 $\alpha=0$ 情形下得到与度量相容且无挠的 Levi–Civita 联络；由此保证二阶 Bianchi 恒等式与能动张量守恒。随后我们把"散度—Hessian—度量"的构造范畴化，证明**"正则散度流形（对偶平坦）"与"带平直仿射联络且度量为 Hessian 形式的（伪）黎曼流形"**之间的等价，消除"形式类比"的歧义。针对时空所需的洛伦兹签名，本文给出两步方案：第一步证明一个正定性不可行性引理，指出在 Eguchi 条件下由对角极小性的散度诱导的 Fisher–Rao 度量必为正定；第二步通过"伪-Hessian 结构／ADM 提升"自然嵌入到洛伦兹几何，并在微扰层面用"相对熵二阶变分＝量子 Fisher＝引力规范能"的同一性建立信息几何切空间与满足线性化爱因斯坦方程的引力相空间之间的等距对应；非线性层面以体-边相对熵等价与引力的"纠缠第一定律"闭合到完整场方程。该框架还导出可检验推论：相对熵单调性与二阶形变给出 QNEC/ANEC，从而对应几何中的聚焦不等式与能量条件。上述关键点分别以 Eguchi/Amari—Nagaoka 的信息几何、Hessian/伪-Hessian 几何、以及全息/量子信息—引力的代表性判据为锚定。([Project Euclid][1])
+本文构建并严格论证一个"信息—时空同构"框架。以满足 Eguchi 正则性的散度函数（含相对熵）为起点，定义 Fisher–Rao 度量与对偶联络族，并在 $\alpha=0$ 情形下得到与度量相容且无挠的 Levi–Civita 联络；由此保证二阶 Bianchi 恒等式。若进一步采用爱因斯坦场方程，则由契约 Bianchi 恒等式推出能动张量的协变守恒（$\nabla^a T_{ab}=0$）。随后我们把"散度—Hessian—度量"的构造范畴化，证明**"正则散度流形（对偶平坦）"与"带平直仿射联络且度量为 Hessian 形式的（伪）黎曼流形"**之间的等价，消除"形式类比"的歧义。针对时空所需的洛伦兹签名，本文给出两步方案：第一步证明一个正定性不可行性引理，指出在 Eguchi 条件下由对角极小性的散度诱导的 Fisher–Rao 度量必为正定；第二步通过"伪-Hessian 结构／ADM 提升"自然嵌入到洛伦兹几何，并在微扰层面用"相对熵二阶变分＝量子 Fisher＝引力规范能"的同一性建立信息几何切空间与满足线性化爱因斯坦方程的引力相空间之间的等距对应；非线性层面以体-边相对熵等价与引力的"纠缠第一定律"闭合到完整场方程。该框架还导出可检验推论：相对熵单调性与二阶形变给出 QNEC/ANEC，从而对应几何中的聚焦不等式与能量条件。上述关键点分别以 Eguchi/Amari—Nagaoka 的信息几何、Hessian/伪-Hessian 几何、以及全息/量子信息—引力的代表性判据为锚定。([Project Euclid][1])
 
 ---
 
@@ -10,7 +12,7 @@
 
 **散度与对偶联络** 设正则散度 $D(\theta|\theta')$ 在对角处三阶可微且对角极小（Eguchi 正则性）。定义
 $$
-g_{ij}=\left.\partial_i\partial_{j'}D\right|_{\Delta},\quad \Gamma_{ijk}=-\left.\partial_i\partial_j\partial_{k'}D\right|_{\Delta},\quad \Gamma^{*}_{ijk}=-\left.\partial_{i'}\partial_{j'}\partial_k D\right|_{\Delta},
+g_{ij}=-\left.\partial_i\partial_{j'}D\right|_{\Delta},\quad \Gamma_{ijk}=-\left.\partial_i\partial_j\partial_{k'}D\right|_{\Delta},\quad \Gamma^{*}_{ijk}=-\left.\partial_{i'}\partial_{j'}\partial_k D\right|_{\Delta},
 $$
 并取对偶联络族 $\nabla^{(\alpha)}=\tfrac{1+\alpha}{2}\nabla+\tfrac{1-\alpha}{2}\nabla^{*}$。当 $\alpha=0$ 时得到与 $g$ 相容且无挠的 Levi–Civita 联络。([Project Euclid][1])
 
@@ -98,7 +100,7 @@ Wong 等建立了"伪-Riemann 框架编码信息几何"的一般论断：Kim–M
 (i) 线性化下，QFI 与 $g_L$ 的规范能等距，从而得到线性化场方程；
 (ii) 若满足体-边相对熵等价与纠缠第一定律，则非线性层面闭合到完整的爱因斯坦方程。([SpringerLink][4])
 
-**推论 6.3（范畴等价的稳健性）** 在对偶平坦子范畴内，$\mathbf{Div}^{\mathrm{df}}\simeq\mathbf{Hess}^{+}$；对洛伦兹目标几何采用"伪-Hessian／ADM 提升"，范畴等价通过提升函子保留到物理几何侧的线性/非线性动力学判据。
+**推论 6.3（范畴等价的稳健性）** 在对偶平坦子范畴内，$\mathbf{Div}^{\mathrm{df}}\simeq\mathbf{Hess}^{\sigma}$（此处取 $\sigma=+$）；对洛伦兹目标几何采用"伪-Hessian／ADM 提升"，范畴等价通过提升函子保留到物理几何侧的线性/非线性动力学判据。
 
 ---
 
@@ -111,7 +113,7 @@ Wong 等建立了"伪-Riemann 框架编码信息几何"的一般论断：Kim–M
 
 ## 附录 A  由散度到 $(g,\nabla,\nabla^*)$ 与 $\alpha$-联络
 
-令 $g_{ij}=\left.\partial_i\partial_{j'}D\right|_{\Delta}$、$\Gamma_{ijk}=-\left.\partial_i\partial_j\partial_{k'}D\right|_{\Delta}$、$\Gamma^{*}_{ijk}=-\left.\partial_{i'}\partial_{j'}\partial_kD\right|_{\Delta}$。可验证 $(\nabla,\nabla^*)$ 互为对偶且无挠，$\nabla^{(\alpha)}=\tfrac{1+\alpha}{2}\nabla+\tfrac{1-\alpha}{2}\nabla^*$。当 $\alpha=0$ 时与 $g$ 相容，故为 Levi–Civita。([Project Euclid][1])
+令 $g_{ij}=-\left.\partial_i\partial_{j'}D\right|_{\Delta}$、$\Gamma_{ijk}=-\left.\partial_i\partial_j\partial_{k'}D\right|_{\Delta}$、$\Gamma^{*}_{ijk}=-\left.\partial_{i'}\partial_{j'}\partial_kD\right|_{\Delta}$。可验证 $(\nabla,\nabla^*)$ 互为对偶且无挠，$\nabla^{(\alpha)}=\tfrac{1+\alpha}{2}\nabla+\tfrac{1-\alpha}{2}\nabla^*$。当 $\alpha=0$ 时与 $g$ 相容，故为 Levi–Civita。([Project Euclid][1])
 
 ---
 
