@@ -1,5 +1,6 @@
 # 时间箭头与热力学涌现：SBU 叠加的量子混沌、$\pi$-语义塌缩的熵产生与 Belavkin 过滤下的量子涨落定理
-Version: 1.0
+
+Version: 1.9
 
 ## 摘要
 
@@ -10,6 +11,8 @@ Version: 1.0
 ## Notation & Conventions
 
 取 $\hbar=c=k_{\rm B}=1$。希尔伯特空间 $\mathcal H$，可观测代数 $\mathcal A\subset\mathcal B(\mathcal H)$，经典记录代数 $\mathcal O\simeq L^\infty(\mathcal X)$。测量以量子仪器 $\{\mathcal I_x\}_x$ 与 POVM $\{E_x\}_x$ 表示，存在 Stinespring/Naimark/Kraus 表示。连续监测采用 Hudson–Parthasarathy 量子随机微分（QSDE）与 Belavkin 过滤表述。SBU 指因果网中相容记录的局域片，波函数为 SBU 集上的复幅赋值。锚定切换记为经典化通道 $\pi:\mathcal A\to\mathcal O$（海森堡像），测量更新为 $\rho\mapsto\rho_x=\mathcal I_x(\rho)/{\rm tr}\,\mathcal I_x(\rho)$。连续监测的后验态 $\rho_t$ 满足扩散型或计数型 QSDE。([Project Euclid][2])
+
+**（满秩与支撑约定）** 默认参照态 $\rho^{\rm ss}$ 与热态 $\rho_\beta$ 忠实（满秩），从而 $\rho^{\rm ss,-1/2}$ 与 $y:=\rho_\beta^{1/4}$ 等运算在 $\mathcal H$ 上良定义；若任一态非满秩，则所有逆与分数幂均在其支撑上理解，并以相应支撑投影作限制。同时假设初态 $\rho$ 的支撑包含于 $\operatorname{supp}(\rho^{\rm ss})$，以保证由 Petz 对偶构造得到的对偶路径测度与前向路径测度彼此绝对连续，从而 $\Sigma_{0:t}=\ln\frac{{\rm d}\mathbb P}{{\rm d}\mathbb P^\dagger}$ 与 $\big\langle e^{-\Sigma_{0:t}}\big\rangle=1$ 等关系严格成立。
 
 ---
 
@@ -23,6 +26,26 @@ $$
 \Sigma_{0:t}:=\sum_k\Sigma_k=\ln\frac{{\rm d}\mathbb P}{{\rm d}\mathbb P^\dagger}.
 $$
 [Project Euclid][3]
+
+**补充（对偶路径测度的构造与绝对连续性）** 设前向量子仪器 $\{\mathcal I_x\}$ 与参照态 $\rho^{\rm ss}$。对每个分支定义像态 $\rho^{\rm ss}_x:=\mathcal I_x(\rho^{\rm ss})$（在其支撑上正定），并引入以 $\rho^{\rm ss}$ 为基准的 Schrödinger 像 Petz 对偶
+$$
+\mathcal I_x^{\sharp}(\sigma):=\rho^{\rm ss\,1/2}\,\mathcal I_x^\dagger\!\big(\rho^{\rm ss}_{x}{}^{-1/2}\,\sigma\,\rho^{\rm ss}_{x}{}^{-1/2}\big)\,\rho^{\rm ss\,1/2},
+$$
+其中 $\mathcal I_x^\dagger$ 是 Heisenberg 伴随，输入 $\sigma$ 为态算子，$\rho^{\rm ss}_{x}{}^{-1/2}$ 在 $\operatorname{supp}\rho^{\rm ss}_x$ 上取逆。
+令前向路径概率
+$$
+\mathbb P(\underline x_{0:t})={\rm tr}\big(\mathcal I_{x_t}\circ\cdots\circ\mathcal I_{x_0}(\rho)\big),
+$$
+对偶（时间反演配对）路径概率
+$$
+\mathbb P^\dagger(\underline{\tilde x}_{0:t})={\rm tr}\big(\mathcal I_{\tilde x_0}^{\sharp}\circ\cdots\circ\mathcal I_{\tilde x_t}^{\sharp}(\rho^{\rm ss})\big).
+$$
+若对任意 $x$ 满足 $\operatorname{supp}\mathcal I_x(\rho)\subseteq\operatorname{supp}\rho^{\rm ss}_x$（等价地 $\mathrm{tr}\,\mathcal I_x(\rho)>0\Rightarrow\mathrm{tr}\,\rho^{\rm ss}_x>0$），则有 $\mathbb P\ll\mathbb P^\dagger$，因而 Radon–Nikodym 导数存在，并满足
+$$
+\Sigma_{0:t}=\ln\frac{{\rm d}\mathbb P}{{\rm d}\mathbb P^\dagger},\qquad
+\Big\langle e^{-\Sigma_{0:t}}\Big\rangle=1,\quad
+\langle\Sigma_{0:t}\rangle=D(\mathbb P\Vert\mathbb P^\dagger)\ge 0.
+$$
 
 ### 定理 1（平均不可逆性与 Spohn 单调）
 
@@ -44,12 +67,14 @@ $$
 
 设 $y:=\rho_\beta^{1/4}$，定义正则化 OTOC
 $$
-F_\beta(t):={\rm tr}\!\big(yVyW(t)yVyW(t)\big),
+F_\beta(t):={\rm tr}\!\big(yV^\dagger yW^\dagger(t)yVyW(t)\big),
 $$
-并定义 Loschmidt 回声 $\mathcal L_\delta(t):=\big|\langle\psi|e^{iHt}e^{-i(H+\delta V)t}|\psi\rangle\big|^2$。在早期增长窗口 $t\in I_{\rm L}$（满足 $t_{\rm d}\ll t\ll t_\ast$）内，设
+其中 $W(t):=e^{iHt}W e^{-iHt}$ 为海森堡像。
+并定义 Loschmidt 回声 $\mathcal L_\delta(t):=\big|\langle\psi|e^{iHt}e^{-i(H+\delta V)t}|\psi\rangle\big|^2$。其中 $\mathcal E\subset\mathcal A$ 表示算子范数有界的可观测集合，使得对任意 $A\in\mathcal E$ 有 $\|A\|\le 1$（可取局域于同一可观测窗的算子族）。在早期增长窗口 $I_{\rm L}=(t_{\rm d},t_\ast)$（满足 $t_{\rm d}\ll t_\ast$）内，取参照时刻 $t_0\in I_{\rm L}$，设
 $$
-\lambda_{\rm L}(\mathcal W):=\sup_{\substack{V,W\in\mathcal E\\|V|,|W|\le 1}}\limsup_{t\in I_{\rm L}}\frac{1}{t}\ln\frac{1-\Re F_\beta(t)}{1-\Re F_\beta(t_0)}。
+\lambda_{\rm L}:=\sup_{\substack{V,W\in\mathcal E\\\|V\|,\|W\|\le 1}}\limsup_{\substack{t\downarrow t_0\\t\in I_{\rm L}}}\frac{1}{t-t_0}\ln\frac{1-\Re F_\beta(t)}{1-\Re F_\beta(t_0)}。
 $$
+选择满足 $1-\Re F_\beta(t_0)>0$ 的 $t_0$ 以确保对数定义良好。
 ([物理评论链接管理器][5])
 
 ### 定理 2（MSS 上界的 SBU 适用性）
@@ -72,9 +97,14 @@ $$
 
 定义总通道 $\Phi=\sum_x\mathcal I_x$、信息增益 $I_{\rm meas}:=I(X:\mathrm{系统})$，存在可恢复项 $\mathcal R\ge 0$ 使
 $$
-\langle \Sigma\rangle=D(\Phi(\rho)\Vert\Phi(\rho^{\rm ss}))-D(\rho\Vert\rho^{\rm ss})+I_{\rm meas}-\mathcal R.
+\langle \Sigma\rangle\ge D(\rho\Vert\rho^{\rm ss})-D(\Phi(\rho)\Vert\Phi(\rho^{\rm ss}))-I_{\rm meas}-\mathcal R.
 $$
-**证明**：将测量视作量子—经典通道并使用相对熵的链式法则与数据处理；对 $\Phi$ 应用以 Petz 恢复映射为下界的"带余项"版本得到 $\mathcal R\ge 0$，当 $\Phi$ 可逆或测量不携带信息时回到 Spohn 单调。([arXiv][6])
+由此得 $\langle \Sigma\rangle+I_{\rm meas}\ge D(\rho\Vert\rho^{\rm ss})-D(\Phi(\rho)\Vert\Phi(\rho^{\rm ss}))-\mathcal R\ge 0$。仅当 $\Phi$ 对 $\{\rho,\rho^{\rm ss}\}$ 充分（存在使 $\Phi$ 在该对态上可逆的（旋转）Petz 恢复映射，因而 $D(\rho\Vert\rho^{\rm ss})-D(\Phi(\rho)\Vert\Phi(\rho^{\rm ss}))=0$）且链式分解中的各步不等式（含信息项、可恢复项）同时取等时，方可达到该下界；单独满足 $\mathcal R=0$ 或 $I_{\rm meas}=0$ 均不足以保证等号，与第 4 节的 Belavkin–Jarzynski 条件保持一致。([arXiv][6])
+**证明**：将测量视作量子—经典通道并使用相对熵的链式法则分离出 $I_{\rm meas}$；对 $\Phi$ 应用数据处理不等式得 $D(\rho\Vert\rho^{\rm ss})-D(\Phi(\rho)\Vert\Phi(\rho^{\rm ss}))\ge 0$。取（旋转）Petz 恢复映射 $\mathcal R_{\rho^{\rm ss}}$，并定义
+$$
+\mathcal R:=-\ln F\big(\rho,\mathcal R_{\rho^{\rm ss}}\circ\Phi(\rho)\big)^{2}\ge 0,
+$$
+则由可恢复性不等式得 $D(\rho\Vert\rho^{\rm ss})-D(\Phi(\rho)\Vert\Phi(\rho^{\rm ss}))\ge \mathcal R$，从而 $D(\rho\Vert\rho^{\rm ss})-D(\Phi(\rho)\Vert\Phi(\rho^{\rm ss}))-\mathcal R\ge 0$。若 $\Phi$ 对 $\{\rho,\rho^{\rm ss}\}$ 充分并由相应（旋转）Petz 恢复映射实现数据处理等号，且链式分解中与测量互信息、可恢复项相关的界同时饱和，则该下界取等；否则（包括仅有 $\mathcal R=0$ 或仅有 $I_{\rm meas}=0$ 的情形）通常仍为严格不等式。([arXiv][6])
 
 ### 命题 1（路径级涨落定理）
 
@@ -90,7 +120,7 @@ $$
 
 ### 定义 3（轨道功、自由能差与信息项）
 
-采用与二点测量等价的"条件能谱读数"定义轨道功 $W_t$ 与 $\Delta F_t$。在开系中引入"一时测量"的猜测功/热保持 Jarzynski 结构；连续监测引入信息项 $I_t$ 表示测量—反馈环的互信息流。([物理评论链接管理器][7])
+在闭系统且能量投影读数（TPM）条件下，采用与 TPM 一致的“条件能谱读数”定义轨道功 $W_t$ 与 $\Delta F_t$；在开系统与连续监测情形，该读数作为保持 Jarzynski 结构的一致推广，而非普遍等价。引入"一时测量"的猜测功/热保持 Jarzynski 结构；连续监测引入信息项 $I_t$ 表示测量—反馈环的互信息流。([物理评论链接管理器][7])
 
 ### 引理 1（量子 Feynman–Kac 与测度变换—真鞅条件）
 
