@@ -1,5 +1,7 @@
 # 量子测量统一：EBOC 静态块—SBU 叠加、锚定切换的 $\pi$-语义塌缩与因果网纠缠
 
+Version: 1.3
+
 ## 摘要
 
 在"离散—静态块（EBOC）"与"连续—因果流形/规范系统"的统一视角下，构造量子测量的公理化体系：波函数被刻画为静态块中相容 SBU（Static Block Units）的复幅叠加；坍缩被刻画为观察者锚定切换与从算子代数到经典记录代数的 $\pi$-语义塌缩；纠缠被刻画为因果网中的条件互信息与量子马尔可夫性。数学上，以量子仪器与 POVM 为核心对象，并用 Stinespring/Naimark/Kraus 表示、Lüders 更新、相对熵极小原则与 Belavkin 过滤闭合"测量—更新—记录"链条；在信息几何层以强次可加性与条件互信息控制纠缠的因果传播与"无信号"。在读数—几何接口上，采用窗化压缩 $K_{w,h}$ 与"三位一体母刻度" $\varphi'/\pi=\rho_{\rm rel}=(2\pi)^{-1}\mathrm{tr}\,\mathsf Q$ 的统一读数框架，并在 Nyquist–Poisson–Euler–Maclaurin（有限阶）纪律下给出非渐近误差闭合；该同一式在绝对连续谱上几乎处处成立，从而将"相位导数—相对谱密度—Wigner–Smith 群延迟"严格统一。Davies–Lewis 仪器/POVM、公设 Lüders 规则、Stinespring–Kraus–Naimark 表示与 Belavkin 连续测量随机滤波提供了可检锚点；Birman–Kreĭn 恒等式、Kreĭn–Friedel–Lloyd 桥接与 de Branges 核对角公式为"窗化—谱—散射"之统一读数提供了谱/泛函分析依据。([施普林格链接][1])
@@ -8,19 +10,31 @@
 
 ## Notation & Axioms / Conventions
 
-**记号与约定。** 单位取 $\hbar=c=1$。希尔伯特空间 $\mathcal H$，可观测代数 $\mathcal A\subseteq\mathcal B(\mathcal H)$，经典记录代数 $\mathcal O\cong L^\infty(\mathcal X)$。测量以 Davies–Lewis 仪器 $\{\mathcal I_x\}_x$ 与 POVM $\{E_x\}_x$ 表示；其 Heisenberg 像为 $\pi^\ast(f)=\sum_x f(x)E_x$。Kraus 表示、Stinespring 扩张与 Naimark 扩张互相等价。Lüders 更新涵盖投影测量极限；Belavkin 过滤用于连续测量。([施普林格链接][1])
+**记号与约定。** 单位取 $\hbar=c=1$。希尔伯特空间 $\mathcal H$，可观测代数 $\mathcal A\subseteq\mathcal B(\mathcal H)$，经典记录代数 $\mathcal O\cong L^\infty(\mathcal X)$。测量以 Davies–Lewis 仪器 $\{\mathcal I_x\}_x$ 与 POVM $\{E_x\}_x$ 表示；其 Heisenberg 像为 $\pi^\ast(f)=\sum_x f(x)E_x$。Kraus 表示与 Stinespring 扩张等价（针对 CP 映射）；POVM 与 PVM 通过 Naimark 扩张等价（针对测度）。Lüders 更新涵盖投影测量极限；Belavkin 过滤用于连续测量。([施普林格链接][1])
 
 **卷积与窗化。** 取窗—核对 $(w_R,h)$，卷积记为 $(h\star f)(E)=\int_{\mathbb R}h(E-E')f(E')\,dE'$。窗化读数定义为 $\langle K_{w,h}\rangle=\int_{\mathbb R} w_R(E)\,(h\star \rho_\star)(E)\,dE$，其中 $\rho_\star\in\{\rho_{\rm abs},\rho_{\rm rel}\}$。Nyquist–Poisson–Euler–Maclaurin（有限阶）给出非渐近误差账本，带限并满足 Nyquist 条件时别名误差为零。([Project Euclid][2])
 
-**母刻度与散射。** 在标准正则性（相对迹类扰动、存在散射矩阵）下，绝对连续谱上几乎处处成立"三位一体"同一：$\varphi'(E)/\pi=\rho_{\rm rel}(E)=(2\pi)^{-1}\mathrm{tr}\,\mathsf Q(E)$，其中 $\det S(E)=e^{-2\pi i\,\xi(E)}$、$\rho_{\rm rel}(E)=\xi'(E)$、$\mathsf Q(E)=-i\,S(E)^\dagger \tfrac{dS}{dE}(E)$。([arXiv][3])
+**母刻度与散射。** 定义**母刻度相位**
+$$
+\varphi_{\rm m}(E):=\tfrac{1}{2}\arg\det S(E)=-\pi\,\xi(E).
+$$
+在标准正则性（相对迹类扰动、存在散射矩阵）下，绝对连续谱上几乎处处成立
+$$
+\frac{\varphi'_{\rm m}(E)}{\pi}=\rho_{\rm rel}(E)=\frac{1}{2\pi}\mathrm{tr}\,\mathsf Q(E),
+$$
+其中 $\det S=e^{-2\pi i\xi}$、$\rho_{\rm rel}=-\xi'$、$\mathsf Q=-i\,S^\dagger \tfrac{dS}{dE}$。([arXiv][3])
 
-**de Branges 锚点。** de Branges 空间 $\mathcal H(E)$ 的核对角满足 $K(x,x)/|E(x)|^2=\varphi'(x)/\pi$（相位函数 $\varphi(x)=-\arg E(x)$），提供"相位—密度"刻度的函数论锚。([math.purdue.edu][4])
+**de Branges 锚点。** 令 $\varphi_{\rm dB}(x):=-\arg E(x)$。则
+$$
+\frac{K(x,x)}{|E(x)|^2}=\frac{\varphi'_{\rm dB}(x)}{\pi}.
+$$
+**桥接条件。** 当且仅当所用 $E$ 由与 $(H,H_0)$ 对应的规范系统产生并与散射数据配准时，$\varphi_{\rm dB}(x)=\varphi_{\rm m}(x)$ 几乎处处成立；一般情形下该式仅提供"相位—密度"的**函数论校准刻度**，不与 $\rho_{\rm rel}$ 无条件同一。([math.purdue.edu][4])
 
 ---
 
 ## 1. 波函数：EBOC 静态块中的相容 SBU 叠加
 
-**定义 1.1（SBU 与相容性）。** 设 $\mathfrak B$ 为静态块中的局域配置族，存在嵌套投影 $\{\Pi_\alpha\}$ 使得对任何有限子族闭合于限制；称 $\mathfrak B$ 相容。波函数定义为归一化复幅赋值 $\psi:\mathfrak B\to\mathbb C$，且在退相干类上诱导概率测度 $\mathbb P(B)=|\psi(B)|^2$。
+**定义 1.1（SBU、退相干泛函与相容划分）。** 设 $\mathfrak B$ 为静态块中的历史类族，干涉/退相干泛函 $D:\mathfrak B\times\mathfrak B\to\mathbb C$ 给定。若存在子族 $\mathcal C\subset\mathfrak B$ 使得对任意 $B\neq B'\in\mathcal C$ 有 $D(B,B')=0$，则称 $\mathcal C$ 为相容（退相干）划分。波函数 $\psi:\mathfrak B\to\mathbb C$ 在相容划分上满足 $\sum_{B\in\mathcal C}|\psi(B)|^2=1$，并定义概率 $\mathbb P(B)=D(B,B)=|\psi(B)|^2\ (B\in\mathcal C)$。
 
 **命题 1.2（退相干诱导）。** 若对所选历史类的干涉泛函对角，则 $\mathbb P$ 与 Born 概率一致。证略：相干项消失后归结于正交分解，见第 8 节之 Born–I 投影等价。
 
@@ -56,9 +70,17 @@
 
 ## 5. 统一测量的变分原理（I-投影）
 
-**定理 5.1（相对熵极小）。** 给定先验 $\rho$ 与线性约束 $\mathrm{tr}(\rho' E_x)=p_x$（由仪器/POVM 与窗约束诱导），极小化 $D(\rho'\Vert\rho)=\mathrm{tr}(\rho'(\log\rho'-\log\rho))$ 的解为 $\rho'_\lambda=\exp(\log\rho-\sum_x\lambda_x E_x)/Z$；在与 $\{E_x\}$ 共对角时回到 Lüders 更新。([yaroslavvb.com][10])
+**定理 5.1（相对熵极小与 Lüders/I‑投影一致的条件）。**
 
-**证明。** 由严格凸性与拉格朗日对偶得到指数族；可对角化时退化为对谱测度的条件化。
+（a）选择性更新：投影测量 $\{P_x\}$ 给定结果 x，约束 $\rho'\ge0,\ \mathrm{tr}\rho'=1,\ \mathrm{supp}(\rho')\subseteq\mathrm{ran}(P_x)$，极小化 $D(\rho'\Vert\rho)$ 的唯一解为 $\rho'_x=\dfrac{P_x\rho P_x}{\mathrm{tr}(\rho P_x)}$（Lüders 条件态）。
+
+（b）非选择性更新：令先验为**忠实态** $\rho\succ0$；若 $\rho$ 非满秩，则**一律限制在** $\mathrm{supp}(\rho)$ 上并以受限 $\log\rho$ 代之。若 $[\rho,P_x]=0$ 且采用对齐约束 $\mathrm{tr}(\rho'P_x)=\mathrm{tr}(\rho P_x)$（对所有 x），则 I‑投影解为 $\rho'=\sum_x P_x\rho P_x$；一般非交换情形仅得
+$$
+\rho' \propto \exp\!\Bigl(\log\rho-\sum_x\lambda_x P_x\Bigr)\quad\text{（在 }\mathrm{supp}(\rho)\text{ 上）},
+$$
+通常不等同于 Lüders。([yaroslavvb.com][10])
+
+**证明。** （a）由约束与严格凸性直接得到；（b）由拉格朗日对偶与交换性条件得到。
 
 **推论 5.2（Born = I-投影极限）。** 对投影测量，当窗/噪声尺度 $\tau\downarrow 0$（硬极限），softmax 权收敛至一热核极限，得到 $p_x=\mathrm{tr}(\rho P_x)$，即 Born 规则。
 
@@ -77,9 +99,18 @@ $\mathcal E_R=\mathcal E_{\rm alias}+\mathcal E_{\rm EM}+\mathcal E_{\rm tail}$�
 
 ## 7. 相位—密度—群延迟"三位一体"与窗化 BK 恒等式
 
-**定理 7.1（Birman–Kreĭn 与 Wigner–Smith）。** 设 $(H,H_0)$ 为相对迹类扰动，存在散射矩阵 $S(E)$ 与谱移函数 $\xi(E)$。则 $\det S(E)=e^{-2\pi i\,\xi(E)}$、$\rho_{\rm rel}(E)=\xi'(E)$、$\mathsf Q(E)=-i\,S^\dagger(E)\frac{dS}{dE}(E)$，并且 $\frac{\varphi'(E)}{\pi}=\rho_{\rm rel}(E)=\frac{1}{2\pi}\mathrm{tr}\,\mathsf Q(E)$ 几乎处处成立。([arXiv][3])
+**定理 7.1（Birman–Kreĭn 与 Wigner–Smith）。** 设 $(H,H_0)$ 为相对迹类扰动，存在散射矩阵 $S(E)$ 与谱移函数 $\xi(E)$。则 $\det S(E)=e^{-2\pi i\,\xi(E)}$、$\rho_{\rm rel}(E)=-\xi'(E)$、$\mathsf Q(E)=-i\,S^\dagger(E)\frac{dS}{dE}(E)$，并且
+$$
+\mathrm{tr}\,\mathsf Q(E)=-2\pi\,\xi'(E),\qquad
+\frac{\varphi'(E)}{\pi}=\rho_{\rm rel}(E)=\frac{1}{2\pi}\mathrm{tr}\,\mathsf Q(E)
+$$
+几乎处处成立。([arXiv][3])
 
-**证明（纲要）。** 由 Lifshits–Kreĭn 迹公式与 BK 恒等式得 $\xi'$ 为谱差密度；Wigner–Smith 定义给出 $\partial_E\arg\det S=(1/2i)\partial_E\log\det S=(1/2)\mathrm{tr}\,S^\dagger S'$；合并得主同一式。对非幺正扩展见最新文献（复杂耗散情形），但本框架在宇宙封闭/幺正假设下取幺正分支。([arXiv][13])
+**证明（纲要）。** 由 Lifshits–Kreĭn 迹公式与 BK 恒等式得 $\xi'$ 为谱差密度；Wigner–Smith 定义给出
+$$
+\partial_E\arg\det S=\frac{1}{i}\partial_E\log\det S=\frac{1}{i}\mathrm{tr}\,S^\dagger S'=\mathrm{tr}\,\mathsf Q,
+$$
+合并得主同一式。对非幺正扩展见最新文献（复杂耗散情形），但本框架在宇宙封闭/幺正假设下取幺正分支。([arXiv][13])
 
 **定理 7.2（窗化 BK 恒等式）。** 设 $f=h\star w_R \in C_0^\infty$。则
 $\mathrm{Tr}\,f(H)-\mathrm{Tr}\,f(H_0)=\int_{\mathbb R} f'(E)\,\xi(E)\,dE$
@@ -99,15 +130,25 @@ $-\frac{1}{2\pi i}\int_{\mathbb R} f'(E)\,\log\det S(E)\,dE=\int_{\mathbb R} f'(
 
 ## 9. 指针基选择的谱变分刻画
 
-**定理 9.1（指针基 = Ky Fan 谱极小）。** 窗算子 $W_R$ 的最小 $k$ 个本征子空间使得对任意噪声核 $h$，窗化读数方差的上界达到最小；其必要充分条件等价于 Ky Fan 最大/最小和原理的饱和。([国家科学院院刊][16])
+**定理 9.1（指针基的 Ky Fan 谱极值刻画）。**
 
-**证明（提要）。** 由 $\sum_{j=1}^k\lambda_j(W_R)=\max_{\dim V=k}\mathrm{Tr}(P_VW_R)$ 与相应的最小和变分式，将"最稳读数基"转化为谱极值问题，给出充要条件。
+令窗算子 $W_R$ 为自伴紧算子，$P_V$ 为任意 $k$ 维子空间 $V$ 的正交投影。则
+$$
+\min_{\dim V=k}\mathrm{Tr}(P_V W_R)=\sum_{j=1}^k \lambda_j^{\uparrow}(W_R),
+$$
+极小由 $W_R$ 的最小 $k$ 个本征子空间达到。因而"指针基"可刻画为使 $\mathrm{Tr}(P_V W_R)$ 极小的本征基；该表述与 Ky Fan 最小和原理等价。([国家科学院院刊][16])
+
+**证明（提要）。** 由 Ky Fan 最小和原理直接得到；极小由最小本征子空间达到。
 
 ---
 
 ## 附录 A：de Branges 核对角与相位密度
 
-de Branges 结构函数 $E=A-iB$（Hermite–Biehler 类）与相位 $\varphi(x)=-\arg E(x)$。核公式 $K(z,w)=\frac{E(z)\overline{E(w)}-E^\sharp(z)\overline{E^\sharp(w)}}{2\pi i(z-\overline w)}$ 在实轴对角化为 $K(x,x)=\frac{\varphi'(x)}{\pi}|E(x)|^2$。该式为"相位密度刻度"的函数论锚点。([math.purdue.edu][4])
+de Branges 结构函数 $E=A-iB$（Hermite–Biehler 类）与相位 $\varphi_{\rm dB}(x)=-\arg E(x)$。核公式 $K(z,w)=\frac{E(z)\overline{E(w)}-E^\sharp(z)\overline{E^\sharp(w)}}{2\pi i(z-\overline w)}$ 在实轴对角化为
+$$
+K(x,x)=\frac{\varphi'_{\rm dB}(x)}{\pi}|E(x)|^2.
+$$
+该式为"相位密度刻度"的函数论锚点。([math.purdue.edu][4])
 
 ---
 
@@ -144,7 +185,7 @@ Poisson 求和将采样误差表示为高频像差之和；带限与 Nyquist 条
 
 ## 结论要点（提炼）
 
-（i）以仪器/POVM—I-投影—Lüders/Belavkin 为核心，可在范畴上闭合"测量—更新—记录"；（ii）以 $\varphi'/\pi=\rho_{\rm rel}=(2\pi)^{-1}\mathrm{tr}\,\mathsf Q$ 为母刻度，并以 de Branges 核对角与 BK/Helffer–Sjöstrand 为锚，实现"窗化—谱—散射"的可检统一；（iii）Nyquist–Poisson–EM 的有限阶纪律保证非渐近误差闭合；（iv）条件互信息与量子马尔可夫性提供纠缠传播与无信号的因果约束。以上四点统一地将 EBOC 静态块的 SBU 叠加、锚定切换的 $\pi$-语义塌缩与因果网纠缠联入同一测量理论框架。
+（i）以仪器/POVM—I-投影—Lüders/Belavkin 为核心，可在范畴上闭合"测量—更新—记录"；（ii）以 $\boxed{\varphi'_{\rm m}/\pi=\rho_{\rm rel}=(2\pi)^{-1}\mathrm{tr}\,\mathsf Q}$ 为母刻度，并以 de Branges 核对角与 BK/Helffer–Sjöstrand 为锚，实现"窗化—谱—散射"的可检统一；（iii）Nyquist–Poisson–EM 的有限阶纪律保证非渐近误差闭合；（iv）条件互信息与量子马尔可夫性提供纠缠传播与无信号的因果约束。以上四点统一地将 EBOC 静态块的 SBU 叠加、锚定切换的 $\pi$-语义塌缩与因果网纠缠联入同一测量理论框架。
 
 [1]: https://link.springer.com/article/10.1007/BF01647093?utm_source=chatgpt.com "An operational approach to quantum probability"
 [2]: https://projecteuclid.org/journals/bulletin-of-the-american-mathematical-society-new-series/volume-12/issue-1/Five-short-stories-about-the-cardinal-series/bams/1183552334.pdf?utm_source=chatgpt.com "(2) f(t) = j^f_j(x)e'x'dx"
