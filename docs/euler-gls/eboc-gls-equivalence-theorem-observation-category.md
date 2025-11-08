@@ -1,8 +1,10 @@
 # EBOC–GLS 等价定理（观察范畴版）
 
+Version: 1.2
+
 ## 摘要
 
-在四条可检条件——全局幺正/可逆化、有限记忆/可马尔可夫化、带限与 Nyquist–Poisson–Euler–Maclaurin（NPE）有限阶闭合、时间账本对齐——之下,构造函子 $\mathfrak F:\mathbf{EBOC}\to\mathbf{GLS}$、$\mathfrak G:\mathbf{GLS}\to\mathbf{EBOC}$ 与自然变换 $\eta,\epsilon$,证明二者在观察范畴中互为等价。桥梁为母刻度同一式 $\varphi'(E)/\pi=\rho_{\rm rel}(E)=(2\pi)^{-1}\mathrm{tr}\,\mathsf Q(E)$（$\mathsf Q=-i\,S^\dagger \partial_E S$）与窗化迹恒等式；NPE 纪律给出离散化与端点—尾项的非渐近闭合而不引入新奇性。由此,EBOC 的"静态块—因子译码—复杂度/熵账本"与 GLS 的"幺正散射—群延迟—窗化测度"逐窗一致。([ChaosBook][1])
+在四条可检条件——全局幺正/可逆化、有限记忆/可马尔可夫化、带限与 Nyquist–Poisson–Euler–Maclaurin（NPE）有限阶闭合、时间账本对齐——之下,构造函子 $\mathfrak F:\mathbf{EBOC}\to\mathbf{GLS}$、$\mathfrak G:\mathbf{GLS}\to\mathbf{EBOC}$ 与自然变换 $\eta,\epsilon$,证明二者在观察范畴中互为等价。桥梁为母刻度同一式 $\boxed{\ \varphi'(E)/\pi=\tfrac{1}{2\pi}\mathrm{tr}\,\mathsf Q(E)\ }$、$\boxed{\ \rho_{\rm rel}(E)=\xi'(E)=-\tfrac{1}{2\pi}\mathrm{tr}\,\mathsf Q(E)\ }$，故 $\varphi'(E)/\pi=-\rho_{\rm rel}(E)$（$\mathsf Q=-i\,S^\dagger \partial_E S$）与窗化迹恒等式；NPE 纪律给出离散化与端点—尾项的非渐近闭合而不引入新奇性。由此,EBOC 的"静态块—因子译码—复杂度/熵账本"与 GLS 的"幺正散射—群延迟—窗化测度"逐窗一致。([ChaosBook][1])
 
 ---
 
@@ -29,9 +31,9 @@ $$
 $$
 其中 $S(E)\in\mathsf U(N)$ 幺正且可微,$\mathsf Q(E)=-i\,S(E)^\dagger \tfrac{dS}{dE}(E)$ 为 Wigner–Smith 群延迟矩阵,总群延迟 $\mathrm{tr}\,\mathsf Q$；密度—延迟—相位满足
 $$
-\boxed{\quad \frac{\varphi'(E)}{\pi}=\rho_{\rm rel}(E)=\frac{1}{2\pi}\mathrm{tr}\,\mathsf Q(E)\quad}
+\boxed{\ \frac{\varphi'(E)}{\pi}=\frac{1}{2\pi}\mathrm{tr}\,\mathsf Q(E)\ },\qquad \boxed{\ \rho_{\rm rel}(E)=\xi'(E)=-\frac{1}{2\pi}\mathrm{tr}\,\mathsf Q(E)\ },\ \text{因而}\ \frac{\varphi'(E)}{\pi}=-\rho_{\rm rel}(E).
 $$
-并与谱位移函数 $\xi$ 由 Birman–Kreĭn 公式 $\det S(E)=e^{-2\pi i\,\xi(E)}$ 联络,故 $\xi'(E)=(2\pi)^{-1}\mathrm{tr}\,\mathsf Q(E)$。([ChaosBook][1])
+并与谱位移函数 $\xi$ 由 Birman–Kreĭn 公式 $\det S(E)=e^{-2\pi i\,\xi(E)}$ 联络,故 $\xi'(E)=-\frac{1}{2\pi}\mathrm{tr}\,\mathsf Q(E)$。([ChaosBook][1])
 给定窗—核对 $(w_R,h)\in\mathcal W$,定义窗化读数
 $$
 \mathrm{Obs}(w_R,h;\rho)=\int_{\mathbb R} w_R(E)\,(h\star \rho_{\rm rel})(E)\,dE,
@@ -78,12 +80,12 @@ $$
 
 若 $S(E)$ 幺正可微,定义 $\mathsf Q=-i\,S^\dagger S'$。则几乎处处
 $$
-\rho_{\rm rel}(E)=\frac{1}{2\pi}\mathrm{tr}\,\mathsf Q(E),\qquad
-\frac{\varphi'(E)}{\pi}=\rho_{\rm rel}(E),\quad \det S=e^{2i\varphi}.
+\rho_{\rm rel}(E)=\xi'(E)=-\frac{1}{2\pi}\mathrm{tr}\,\mathsf Q(E),\quad
+\frac{\varphi'(E)}{\pi}=-\rho_{\rm rel}(E),\quad \det S=e^{2i\varphi}.
 $$
 **证明** 由 Birman–Kreĭn $\det S(E)=e^{-2\pi i\,\xi(E)}$ 与
 $\partial_E\log\det S(E)=\mathrm{tr}\,(S^\dagger S')$,得
-$\mathrm{tr}\,\mathsf Q(E)=2\pi\,\xi'(E)$。令 $\rho_{\rm rel}=\xi'$ 得首式；设 $\varphi=\tfrac12\arg\det S$ 则 $\varphi'=\pi\xi'$ 得次式。([arXiv][4])
+$\mathrm{tr}\,\mathsf Q(E)=-2\pi\,\xi'(E)$。令 $\rho_{\rm rel}=\xi'$ 得首式；设 $\varphi=\tfrac12\arg\det S$ 则 $\varphi'=\tfrac12\mathrm{tr}\,\mathsf Q=-\pi\xi'$，故 $\varphi'/\pi=-\xi'=-\rho_{\rm rel}$ 得次式。([arXiv][4])
 
 ### 引理 2.2（窗化读数 = 压缩迹恒等式）
 
@@ -92,8 +94,18 @@ $$
 \mathrm{Tr}\,K_{w,h}
 =\int_{\mathbb R} w_R(E)\,(h\star \rho_{\rm rel})(E)\,dE.
 $$
-**证明** Lifshits–Kreĭn 迹公式给出在 $A-B\in\mathcal S_1$ 时
-$\mathrm{Tr}\big(f(A)-f(B)\big)=\int f'(E)\,\xi(E)\,dE$。取 $f' = w_R\!\ast h$ 且 $\rho_{\rm rel}=\xi'$,即得。幺正规型可由 Aleksandrov–Peller 的单位圆版本处理。([arXiv][5])
+**证明** 取 $f=-(w_R\ast\check h)$（故 $f'=-(w_R\ast\check h)'$）。由 Lifshits–Kreĭn 迹公式，在 $A-B\in\mathcal S_1$ 时
+$$
+\mathrm{Tr}\big(f(A)-f(B)\big)=\int_{\mathbb R} f'(E)\,\xi(E)\,dE.
+$$
+又按 §0.2 的记号约定 $(h\star\rho_{\rm rel})=\check h\ast\rho_{\rm rel}$，并用 $\rho_{\rm rel}=\xi'$ 与分部积分，得
+$$
+\int_{\mathbb R} w_R(E)\,(h\star\rho_{\rm rel})(E)\,dE
+=\int_{\mathbb R} (w_R\ast\check h)(E)\,\xi'(E)\,dE
+=-\int_{\mathbb R} (w_R\ast\check h)'(E)\,\xi(E)\,dE
+=\int_{\mathbb R} f'(E)\,\xi(E)\,dE.
+$$
+因而 $\mathrm{Tr}\,K_{w,h}=\int_{\mathbb R} w_R(E)\,(h\star\rho_{\rm rel})(E)\,dE$。幺正规型可由 Aleksandrov–Peller 的单位圆版本处理。([arXiv][5])
 
 ### 引理 2.3（Poisson–Nyquist 与 EM 闭合）
 
@@ -140,7 +152,7 @@ $$
 =\mathrm{Obs}(w_R,h;\rho)
 =\int_{\mathbb R} w_R(E)\,(h\star \rho_{\rm rel})(E)\,dE,
 $$
-且所有读数以母刻度 $\varphi'/\pi=\rho_{\rm rel}=(2\pi)^{-1}\mathrm{tr}\,\mathsf Q$ 统一。([arXiv][5])
+且所有读数以母刻度 $\varphi'(E)/\pi=-(\rho_{\rm rel}(E))=\frac{1}{2\pi}\mathrm{tr}\,\mathsf Q(E)$ 统一。([arXiv][5])
 
 ### 3.3 NPE 闭合与"无新奇性"
 
@@ -191,7 +203,7 @@ $$
 **自然变换 $\epsilon:\mathfrak F\!\circ\!\mathfrak G\Rightarrow \mathrm{Id}_{\mathbf{GLS}}$**
 对每个 $\mathfrak U$,取去规范相位后的群延迟密度同一：
 $$
-\frac{1}{2\pi}\mathrm{tr}\,\mathsf Q_{\mathfrak F(\mathfrak G(\mathfrak U))}(E)=\rho_{\rm rel}(E),
+\boxed{\ -\frac{1}{2\pi}\mathrm{tr}\,\mathsf Q_{\mathfrak F(\mathfrak G(\mathfrak U))}(E)=\rho_{\rm rel}(E)\ },
 $$
 故一切 $\mathrm{Obs}(w_R,h)$、$T_\gamma[w_R,h]$ 值保持。
 
@@ -204,7 +216,7 @@ $$
 ### 6.1 EBOC $\to$ GLS：核算一致性的全细节
 
 取任意带限 $(w_R,h)$。由引理 2.1,母刻度同一式给出
-$\rho_{\rm rel}=(2\pi)^{-1}\mathrm{tr}\,\mathsf Q=\varphi'/\pi$。
+$\rho_{\rm rel}=-\frac{1}{2\pi}\mathrm{tr}\,\mathsf Q$ 且 $\frac{\varphi'}{\pi}=-\rho_{\rm rel}$。
 由引理 2.2,
 $$
 \mathrm{Obs}(w_R,h;\rho)=\mathrm{Tr}\,K_{w,h}.
@@ -279,7 +291,7 @@ $$
 $$
 其核心恒等为
 $$
-\boxed{\ \frac{\varphi'}{\pi}=\rho_{\rm rel}=\frac{1}{2\pi}\mathrm{tr}\,\mathsf Q\ },\qquad
+\boxed{\ \frac{\varphi'}{\pi}=\frac{1}{2\pi}\mathrm{tr}\,\mathsf Q\ },\qquad \boxed{\ \rho_{\rm rel}=\xi'=-\frac{1}{2\pi}\mathrm{tr}\,\mathsf Q\ }，并由此 \ \frac{\varphi'}{\pi}=-\rho_{\rm rel};\qquad
 \boxed{\ \mathrm{Tr}\,K_{w,h}=\int w_R(E)\,(h\star\rho_{\rm rel})(E)\,dE\ }.
 $$
 第一式由 Birman–Kreĭn 与 Wigner–Smith 结构推出,第二式由 Lifshits–Kreĭn 迹公式与窗化压缩导出；NPE 纪律提供非渐近闭合并避免新奇性。([arXiv][4])
@@ -289,7 +301,7 @@ $$
 ## 参考锚点（可核查）
 
 * Wigner–Smith 群延迟矩阵、总延迟与态密度的联系；教材/综述亦述及 $\tau_W=\mathrm{tr}\,\mathsf Q/N$ 的统计性质。([ChaosBook][1])
-* Birman–Kreĭn 公式 $\det S=e^{-2\pi i\xi}$ 与 $\xi'=(2\pi)^{-1}\mathrm{tr}\,\mathsf Q$ 的一般性。([arXiv][4])
+* Birman–Kreĭn 公式 $\det S=e^{-2\pi i\xi}$ 与 $\xi'=-(2\pi)^{-1}\mathrm{tr}\,\mathsf Q$ 的一般性。([arXiv][4])
 * Lifshits–Kreĭn 迹公式与单位圆情形的 Kreĭn–Peller 扩展（算子 Lipschitz 类）。([arXiv][5])
 * Poisson 求和与 EM 余项的显式上界及教材化推导。([webusers.imj-prg.fr][3])
 * SMB 与 Brudno 等式的多维推广；因子熵单调与 sofic/SFT 覆盖。([Project Euclid][2])
