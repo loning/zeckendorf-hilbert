@@ -1,5 +1,5 @@
 # 虫洞—黑洞—意识的窗化散射—因果—信息几何统一
-Version: 1.3
+Version: 1.4
 
 **三位一体母尺、可遍历性判据、测量—熵产生、Mellin—分形—Zeckendorf 桥接与范畴化（含证明）**
 
@@ -262,7 +262,7 @@ $\delta\langle (2\pi)^{-1}\operatorname{tr}\mathsf Q\rangle_{w,h}=-\langle \delt
 * Maldacena, Qi. *Eternal traversable wormhole*. arXiv:1804.00491. ([arXiv][15])
 * Almheiri et al.; Penington et al. *Replica wormholes / Islands and Page curve*（代表作）。
 * Pushnitski. *The spectral shift function and the invariance principle*. J. Funct. Anal. **183** (2001) 269–320；及 *Birman–Kreĭn Det S = e^{-2πiξ}* 综述。([KCL Pure][16])
-* Schomerus, Beenakker. *Quantum time-delay matrix in wave scattering*. （综述）([arXiv][17])
+* Texier. *Wigner time delay and related concepts. Application to transport in coherent conductors*（综述）([arXiv][17])
 * Kramers–Kronig 与 Titchmarsh 卷积支撑定理。([Wikipedia][7])
 * Koeller, Leichenauer. *Holographic Proof of the QNEC*. Phys. Rev. D **94** (2016) 024026；Bousso et al. *QFC*. ([Physical Review][14])
 * Fewster. *Lectures on Quantum Energy Inequalities*. arXiv:1208.5399. ([arXiv][2])
@@ -279,10 +279,10 @@ $\delta\langle (2\pi)^{-1}\operatorname{tr}\mathsf Q\rangle_{w,h}=-\langle \delt
 
 ### 结语
 
-母尺恒等式将相位、群延迟与相对态密度统一为可窗化的散射刻度；拓扑审查—QNEC/QEI—GJW 的合力为可遍历虫洞提供必要—充分的物理门控；测量—过滤—熵产生给出"观察者参与"的能量—信息预算；Mellin—Zeckendorf—RCA 则把多尺度记账与可逆实现落到可计算规则。由此形成"GLS—因果流形—窗化散射—能量与信息账本—范畴互构"的闭合框架。
+母尺恒等式将相位、群延迟与相对态密度统一为可窗化的散射刻度；拓扑审查—QNEC/QEI—GJW 的合力为可遍历虫洞提供必要—充分的物理门控；测量—过滤—熵产生给出"观察者参与"的能量—信息预算；Mellin—Zeckendorf—RCA 则把多尺度记账与可逆实现落到可计算规则。由此形成"GKSL—因果流形—窗化散射—能量与信息账本—范畴互构"的闭合框架。
 
 [1]: https://arxiv.org/pdf/1006.0639?utm_source=chatgpt.com "arXiv:1006.0639v1 [math.SP] 3 Jun 2010"
-[2]: https://arxiv.org/pdf/1108.2463?utm_source=chatgpt.com "On the Titchmarsh convolution theorem for distributions on ..."
+[2]: https://arxiv.org/pdf/1208.5399?utm_source=chatgpt.com "Lectures on Quantum Energy Inequalities"
 [3]: https://link.aps.org/doi/10.1103/PhysRevD.98.046016?utm_source=chatgpt.com "Teleportation through the wormhole | Phys. Rev. D"
 [4]: https://epubs.siam.org/doi/10.1137/060651239?utm_source=chatgpt.com "An Introduction to Quantum Filtering"
 [5]: https://www.jeanphilippeovarlez.com/publications/ewExternalFiles/the%20mellin%20.pdf?utm_source=chatgpt.com "Chapter 11 - The Mellin Transform"
@@ -297,6 +297,6 @@ $\delta\langle (2\pi)^{-1}\operatorname{tr}\mathsf Q\rangle_{w,h}=-\langle \delt
 [14]: https://link.aps.org/doi/10.1103/PhysRevD.94.024026?utm_source=chatgpt.com "Holographic proof of the quantum null energy condition"
 [15]: https://arxiv.org/abs/1804.00491?utm_source=chatgpt.com "Eternal traversable wormhole"
 [16]: https://kclpure.kcl.ac.uk/portal/en/publications/the-spectral-shift-function-and-the-invariance-principle?utm_source=chatgpt.com "The spectral shift function and the invariance principle"
-[17]: https://arxiv.org/abs/1412.3998?utm_source=chatgpt.com "Effect of chiral symmetry on chaotic scattering from Majorana zero modes"
+[17]: https://arxiv.org/pdf/1507.00075?utm_source=chatgpt.com "Wigner time delay and related concepts. Application to transport in coherent conductors"
 [18]: https://pubs.aip.org/aip/jmp/article/19/5/1227/460049/Entropy-production-for-quantum-dynamical?utm_source=chatgpt.com "Entropy production for quantum dynamical semigroups"
 [19]: https://link.aps.org/doi/10.1103/PhysRevLett.104.090602?utm_source=chatgpt.com "Generalized Jarzynski Equality under Nonequilibrium ..."
