@@ -1,4 +1,5 @@
 # 时间箭头与热力学涌现：SBU 叠加的量子混沌、$\pi$-语义塌缩的熵产生与 Belavkin 过滤下的量子涨落定理
+Version: 1.0
 
 ## 摘要
 
@@ -14,18 +15,22 @@
 
 ## 1. 时间箭头的涌现：$\pi$-语义塌缩与相对熵单调
 
-### 定义 1（路径熵产生）
+### 定义 1（路径熵产生—前后向比值）
 
-在由仪器序列 $\{\mathcal I_{x_k}\}$ 生成的记录 $\underline x_{0:t}$ 与后验轨道 $\rho_{0:t}$ 上，设不变态为 $\rho^{\rm ss}$。定义单步熵产生
+在由仪器序列 $\{\mathcal I_{x_k}\}$ 生成的记录 $\underline x_{0:t}$ 上，引入前向路径测度 $\mathbb P$ 与其时间反演配对的对偶路径测度 $\mathbb P^\dagger$。定义单步与总熵产生为
 $$
-\Sigma_k:=D(\rho_{k}\Vert\rho^{\rm ss})-D(\rho_{k-1}\Vert\rho^{\rm ss})-\ln\frac{\mathbb P^\dagger(\tilde x_k|\tilde\rho_{k-1})}{\mathbb P(x_k|\rho_{k-1})},
+\Sigma_k:=\ln\frac{\mathbb P(x_k|\rho_{k-1})}{\mathbb P^\dagger(\tilde x_k|\tilde\rho_{k-1})},\qquad
+\Sigma_{0:t}:=\sum_k\Sigma_k=\ln\frac{{\rm d}\mathbb P}{{\rm d}\mathbb P^\dagger}.
 $$
-令总熵产生 $\Sigma_{0:t}=\sum_k\Sigma_k$，其中 $D$ 为 Umegaki 相对熵，$\dagger$ 表示与前向过程互为时间反演的对偶过程。([Project Euclid][3])
+[Project Euclid][3]
 
 ### 定理 1（平均不可逆性与 Spohn 单调）
 
-任意 CPTP 演化与测量通道下有 $\langle \Sigma_{0:t}\rangle\ge 0$。当连续极限为 Lindblad 半群且存在 $\rho^{\rm ss}$ 时，满足 $\frac{{\rm d}}{{\rm d}t}D(\rho_t\Vert\rho^{\rm ss})\le 0$。
-**证明**：相对熵的 CPTP 单调给出 $D(\rho\Vert\sigma)\ge D(\Phi(\rho)\Vert\Phi(\sigma))$。离散路径层面，定义前后向路径测度 $\mathbb P,\mathbb P^\dagger$ 得 $\Sigma_{0:t}=\ln\frac{{\rm d}\mathbb P}{{\rm d}\mathbb P^\dagger}$，由 Kullback–Leibler 非负性得平均非负；Lindblad 情形由 Spohn 对 GKLS 生成元的引理推出相对熵随流不增。([物理评论链接管理器][4])
+(i) $\big\langle e^{-\Sigma_{0:t}}\big\rangle=1$ 且 $\langle\Sigma_{0:t}\rangle=D(\mathbb P\Vert\mathbb P^\dagger)\ge 0$。
+
+(ii) 当连续极限为 Lindblad 半群且存在定态 $\rho^{\rm ss}$ 时，满足 $\frac{{\rm d}}{{\rm d}t}D(\rho_t\Vert\rho^{\rm ss})\le 0$。
+
+**证明**：(i) 由 $\Sigma_{0:t}=\ln\frac{{\rm d}\mathbb P}{{\rm d}\mathbb P^\dagger}$ 与 Radon–Nikodym 导数直接得 $\big\langle e^{-\Sigma_{0:t}}\big\rangle=1$，并识别 $\langle\Sigma_{0:t}\rangle=D(\mathbb P\Vert\mathbb P^\dagger)\ge 0$。 (ii) 若 $\dot\rho_t=\mathcal L(\rho_t)$ 且 $\mathcal L^\dagger(\rho^{\rm ss})=0$，则由 Spohn 对 GKLS 生成元的引理得 $\frac{{\rm d}}{{\rm d}t}D(\rho_t\Vert\rho^{\rm ss})\le 0$。([物理评论链接管理器][4])
 
 ### 推论 1（时间箭头）
 
@@ -35,14 +40,25 @@ $$
 
 ## 2. 量子混沌：SBU—OTOC 与回声的热上界
 
-### 定义 2（SBU—OTOC 与回声度量）
+### 定义 2（正则化 OTOC、回声与 Lyapunov 指数）
 
-在可实现效果算子类 $\mathcal E$ 内，对 $V,W\in\mathcal E$ 定义 OTOC $C_{V,W}(t):=-\langle[W(t),V]^2\rangle_\beta$ 与 Loschmidt 回声 $\mathcal L_\delta(t):=\big|\langle\psi|e^{iHt}e^{-i(H+\delta V)t}|\psi\rangle\big|^2$。定义 Lyapunov 指数 $\lambda_{\rm L}(\mathcal W):=\sup_{V,W\in\mathcal E}\limsup_{t\to 0^+}\frac{1}{2t}\ln\frac{C_{V,W}(t)}{C_{V,W}(0^+)}$。([物理评论链接管理器][5])
+设 $y:=\rho_\beta^{1/4}$，定义正则化 OTOC
+$$
+F_\beta(t):={\rm tr}\!\big(yVyW(t)yVyW(t)\big),
+$$
+并定义 Loschmidt 回声 $\mathcal L_\delta(t):=\big|\langle\psi|e^{iHt}e^{-i(H+\delta V)t}|\psi\rangle\big|^2$。在早期增长窗口 $t\in I_{\rm L}$（满足 $t_{\rm d}\ll t\ll t_\ast$）内，设
+$$
+\lambda_{\rm L}(\mathcal W):=\sup_{\substack{V,W\in\mathcal E\\|V|,|W|\le 1}}\limsup_{t\in I_{\rm L}}\frac{1}{t}\ln\frac{1-\Re F_\beta(t)}{1-\Re F_\beta(t_0)}。
+$$
+([物理评论链接管理器][5])
 
 ### 定理 2（MSS 上界的 SBU 适用性）
 
-在 KMS 热态下，$\lambda_{\rm L}\le 2\pi T$。
-**证明**：MSS 以 KMS 正则性与解析延拓约束 OTOC 的早期指数增长速率。SBU 仅限制可测算子类 $\mathcal E$，不改变 KMS 构型与解析区域，故上界保持。回声的早期衰减速率一致地给出 $\lambda_{\rm L}$ 的读数。([施普林格链接][1])
+若 $F_\beta(t)$ 在 $0<\Im t<\beta/2$ 条带解析并满足边界最大模估计，则在 KMS 热态下有 $\lambda_{\rm L}\le 2\pi T$。
+
+**证明**：MSS 框架依赖正则化 OTOC 的解析延拓与最大模原理，从而约束早期指数增长速率不超过 $2\pi T$。SBU 仅限制算子族 $\mathcal E$，不改变热态的解析域，因此上界保持成立。([施普林格链接][1])
+
+**注**：在弱扰动 $\delta\to 0$ 且半经典极限下，$1-\mathcal L_\delta(t)\sim\delta^2 e^{2\lambda_{\rm L} t}$，可将回声衰减率作为 $\lambda_{\rm L}$ 的实验读数；超出该条件时需以正则化 OTOC 为准。([科学直通车][15])
 
 ---
 
@@ -62,7 +78,7 @@ $$
 
 ### 命题 1（路径级涨落定理）
 
-以前向与对偶路径测度配对，得 $\langle e^{-\Sigma}\rangle=1$ 与 $\langle\Sigma\rangle\ge 0$。该结果在量子二点测量与量子通道框架的综述中给出统一推导。([物理评论链接管理器][4])
+以前向与对偶路径测度配对，得 $\big\langle e^{-\Sigma_{0:t}}\big\rangle=1$ 与 $\langle\Sigma_{0:t}\rangle\ge 0$。该结果在量子二点测量与量子通道框架的综述中给出统一推导。([物理评论链接管理器][4])
 
 ---
 
@@ -76,13 +92,13 @@ $$
 
 采用与二点测量等价的"条件能谱读数"定义轨道功 $W_t$ 与 $\Delta F_t$。在开系中引入"一时测量"的猜测功/热保持 Jarzynski 结构；连续监测引入信息项 $I_t$ 表示测量—反馈环的互信息流。([物理评论链接管理器][7])
 
-### 引理 1（量子 Feynman–Kac 与测度变换）
+### 引理 1（量子 Feynman–Kac 与测度变换—真鞅条件）
 
-对伴随半群做指数歪斜，定义过程 $\Gamma_t:=\exp[-\beta W_t+\beta\Delta F_t-I_t]$。在适定条件下 $\Gamma_t$ 为物理测度下的局部鞅（量子 Girsanov 变换）。([物理评论链接管理器][8])
+对伴随半群做指数歪斜，定义过程 $\Gamma_t:=\exp[-\beta W_t+\beta\Delta F_t-I_t]$。当噪声满足 Novikov/Kazamaki 型可积条件时，$\Gamma_t$ 为物理测度下的真鞅，因而 $\langle\Gamma_t\rangle=1$；若仅验证局部鞅，则仅能保证 $\langle\Gamma_t\rangle\le 1$。([物理评论链接管理器][8])
 
-### 定理 4（Belavkin–Jarzynski 等式）
+### 定理 4（Belavkin–Jarzynski 等式与不等式）
 
-有 $\big\langle \exp[-\beta W_t+\beta\Delta F_t-I_t]\big\rangle=1$，从而 $\langle W_t\rangle\ge \Delta F_t-T\,\langle I_t\rangle$。无反馈或无信息流极限 $I_t=0$ 时恢复标准量子 Jarzynski 等式；在一般开系下"一时测量"方案给出一致推广。([物理评论链接管理器][9])
+若上述真鞅条件成立，则 $\big\langle \exp[-\beta W_t+\beta\Delta F_t-I_t]\big\rangle=1$，从而 $\langle W_t\rangle\ge \Delta F_t-T\,\langle I_t\rangle$。若仅得局部鞅，则对应的积分涨落关系退化为 $\big\langle \exp[-\beta W_t+\beta\Delta F_t-I_t]\big\rangle\le 1$ 与 $\langle W_t\rangle\ge \Delta F_t-T\,\langle I_t\rangle$ 的松弛版本。无反馈或无信息流极限 $I_t=0$ 时恢复标准量子 Jarzynski 等式；在一般开系下"一时测量"方案给出一致推广。([物理评论链接管理器][9])
 
 ---
 
@@ -94,7 +110,7 @@ Belavkin 过滤与 Markovian 线性反馈的协同框架确保观测电流、后
 
 ## 6. 可检后果与读数方案
 
-一是混沌上界的可检性：以 OTOC 或 Loschmidt 回声的早期衰减率估计 $\lambda_{\rm L}$，热平衡态满足 $\lambda_{\rm L}\le 2\pi T$。二是退相干的熵—信息账本：通过 $\langle \Sigma\rangle$ 的分解在实验上区分动力学单调、信息增益与可恢复项。三是带信息修正的积分涨落定理：连续监测与反馈下的 Belavkin–Jarzynski 等式给出功—互信息的权衡边界。([施普林格链接][1])
+一是混沌上界的可检性：以正则化 OTOC 的早期增长率估计 $\lambda_{\rm L}$，热平衡态满足 $\lambda_{\rm L}\le 2\pi T$；在弱扰动与半经典极限下，Loschmidt 回声的早期衰减率与 $\lambda_{\rm L}$ 对齐，可作为实验读数。二是退相干的熵—信息账本：通过 $\langle \Sigma_{0:t}\rangle$ 的分解在实验上区分动力学单调、信息增益与可恢复项。三是带信息修正的积分涨落定理：连续监测与反馈下的 Belavkin–Jarzynski 等式（或其松弛版本）给出功—互信息的权衡边界。([施普林格链接][1])
 
 ---
 
@@ -102,7 +118,7 @@ Belavkin 过滤与 Markovian 线性反馈的协同框架确保观测电流、后
 
 ### 7.1 定理 1 的严格化
 
-离散情形将一步演化写为 $\Phi_k=\sum_x\mathcal I_{x_k}$。定义联合状态 $\omega_k=\sum_x p_x\,|x\rangle\!\langle x|\otimes\rho_x$ 与参考 $\sigma_k=\sum_x p_x\,|x\rangle\!\langle x|\otimes\rho^{\rm ss}$。有 $\Sigma_k=D(\omega_k\Vert\sigma_k)-D(\omega_{k-1}\Vert\sigma_{k-1})$，累加并取期望得 $\langle\Sigma_{0:t}\rangle=D(\omega_t\Vert\sigma_t)-D(\omega_0\Vert\sigma_0)\ge 0$。连续极限下，若 $\dot\rho_t=\mathcal L(\rho_t)$ 且 $\mathcal L^\dagger(\rho^{\rm ss})=0$，则 $\frac{{\rm d}}{{\rm d}t}D(\rho_t\Vert\rho^{\rm ss})={\rm tr}\,(\mathcal L(\rho_t)(\log\rho_t-\log\rho^{\rm ss}))\le 0$。([物理评论链接管理器][4])
+由定义可得 $\Sigma_{0:t}=\ln\frac{{\rm d}\mathbb P}{{\rm d}\mathbb P^\dagger}$，故 $\big\langle e^{-\Sigma_{0:t}}\big\rangle=1$ 且 $\langle\Sigma_{0:t}\rangle=D(\mathbb P\Vert\mathbb P^\dagger)\ge 0$。在连续极限下，若 $\dot\rho_t=\mathcal L(\rho_t)$ 且 $\mathcal L^\dagger(\rho^{\rm ss})=0$，则 Spohn 引理给出 $\frac{{\rm d}}{{\rm d}t}D(\rho_t\Vert\rho^{\rm ss})={\rm tr}\,\big(\mathcal L(\rho_t)(\log\rho_t-\log\rho^{\rm ss})\big)\le 0$。([物理评论链接管理器][4])
 
 ### 7.2 定理 3 的可恢复项
 
@@ -110,11 +126,11 @@ Belavkin 过滤与 Markovian 线性反馈的协同框架确保观测电流、后
 
 ### 7.3 定理 2 与回声—OTOC 对齐
 
-用 KMS 条件将 OTOC 解析延拓到复条带，最大模原理与 Schwarz 不等式给出指数增长的上界系数不超过 $2\pi T$。选择 $\mathcal E$ 为由 SBU 可实现的效果算子族不改变 KMS 数据，所以上界保持。回声的早期衰减常数与对易子平方的二阶矩等价，从而两种读数一致。([施普林格链接][1])
+KMS 条件保证正则化 OTOC 在 $0<\Im t<\beta/2$ 条带内解析，结合最大模原理与 Schwarz 不等式即可得指数增长率不超过 $2\pi T$。SBU 所约束的算子族不改变上述解析区域，故混沌上界保持有效。在弱扰动与半经典极限下，$\mathcal L_\delta(t)$ 的短时衰减常数与 $\lambda_{\rm L}$ 对齐，可用于实验读数；超出该极限需回到正则化 OTOC 分析。([施普林格链接][1])
 
 ### 7.4 定理 4 的鞅构造
 
-在 QSDE 中对生成元作指数歪斜并应用量子版 Girsanov 变换，得到 Doléans–Dade 指数型过程 $\Gamma_t$。由 Itô 计算验证 $\Gamma_t$ 为局部鞅，取期望得 $\langle \Gamma_t\rangle=1$。将 $\Gamma_t$ 的指数权重分解为功、自由能差与信息项即得结论；当 $I_t=0$ 或通道满足"一时测量"设定时分别回到标准与开系版本。([物理评论链接管理器][8])
+在 QSDE 中对生成元作指数歪斜并应用量子版 Girsanov 变换，得到 Doléans–Dade 指数型过程 $\Gamma_t$。当 Novikov/Kazamaki 型条件确保其为真鞅时，$\langle \Gamma_t\rangle=1$；若仅验证局部鞅，则 $\langle \Gamma_t\rangle\le 1$。将指数权重拆分为功、自由能差与信息项即可对应定理 4。([物理评论链接管理器][8])
 
 ---
 
@@ -124,7 +140,7 @@ Belavkin 过滤与 Markovian 线性反馈的协同框架确保观测电流、后
 $$
 {\rm d}\rho_t=\mathcal L(\rho_t)\,{\rm d}t+\sqrt{\kappa}\,(\sigma_z\rho_t+\rho_t\sigma_z-2\,{\rm tr}(\sigma_z\rho_t)\rho_t)\,{\rm d}W_t.
 $$
-用二点或"一时测量"定义 $W_t,\Delta F_t$，构造 $\Gamma_t=\exp[-\beta W_t+\beta\Delta F_t-I_t]$ 并验证 $\langle e^{-\beta W_t+\beta\Delta F_t-I_t}\rangle=1$。回声 $\mathcal L_\delta(t)$ 的短时衰减常数给出 $\lambda_{\rm L}$ 的估计。([Cambridge University Press & Assessment][10])
+用二点或"一时测量"定义 $W_t,\Delta F_t$，构造 $\Gamma_t=\exp[-\beta W_t+\beta\Delta F_t-I_t]$。在满足真鞅条件时有 $\big\langle e^{-\beta W_t+\beta\Delta F_t-I_t}\big\rangle=1$；若条件仅保证局部鞅，则得到 $\le 1$ 的松弛形式。弱扰动并取半经典极限时，$\mathcal L_\delta(t)$ 的短时衰减常数与 $\lambda_{\rm L}$ 对齐，可用于估计混沌指数。([Cambridge University Press & Assessment][10])
 
 ---
 
