@@ -1,4 +1,5 @@
 # 信息几何变分原理导出爱因斯坦场方程：EBOC—因果流形统一中的量子引力纲要
+Version: 1.1
 
 ## 摘要
 
@@ -66,7 +67,7 @@ $$
 
 **引理 2.2（面积变分）** 固定小球体积的同时改变形状（或等价地以保持中心与半径的方式改变背景度规），其边界面积的变分满足
 $$
-\delta\!\left(\frac{A}{4G}\right)=2\pi \int_{B_\ell}\xi^\mu\,\frac{1}{8\pi G}\,\delta\!\big(G_{\mu\nu}+\Lambda g_{\mu\nu}\big)\,d\Sigma^\nu + O(\ell^{d+1}),
+\delta\!\left(\frac{A}{4G}\right)=-2\pi \int_{B_\ell}\xi^\mu\,\frac{1}{8\pi G}\,\delta\!\big(G_{\mu\nu}+\Lambda g_{\mu\nu}\big)\,d\Sigma^\nu + O(\ell^{d+1}),
 $$
 其中使用了 Raychaudhuri 与测地展开的标准小球几何。把该项与引理 2.1 相比对即可闭合第一变分。（推导同 Jacobson 型局域热力学/等熵论证之小球版。）([物理评论链接管理器][4])
 
@@ -74,11 +75,19 @@ $$
 $$
 \boxed{\ G_{\mu\nu}+\Lambda g_{\mu\nu}=8\pi G\,\langle T_{\mu\nu}\rangle\ }.
 $$
-*证明*：由 $\delta S_{\rm gen}=\delta(A/4G)+\delta S_{\rm out}=0$ 与两引理得
+*证明*：由 $\delta S_{\rm gen}=\delta(A/4G)+\delta S_{\rm out}=0$ 与两引理得，对任意小球与任意局域形变
 $$
-2\pi\!\int_{B_\ell}\!\xi^\mu\!\left[\frac{1}{8\pi G}\,\delta\!\big(G_{\mu\nu}+\Lambda g_{\mu\nu}\big)-\delta\!\langle T_{\mu\nu}\rangle\right] d\Sigma^\nu=0.
+\delta\!\Big(G_{\mu\nu}+\Lambda g_{\mu\nu}-8\pi G\,\langle T_{\mu\nu}\rangle\Big)=0.
 $$
-对所有小球与所有形变（等价于对所有局域的 $\xi^\mu$ 与任意的 $u^\nu$ 方向）成立，得被积函数为零，即结论。□
+令
+$$
+C_{\mu\nu}:=G_{\mu\nu}+\Lambda g_{\mu\nu}-8\pi G\,\langle T_{\mu\nu}\rangle.
+$$
+上式对所有变分皆为零，故 $C_{\mu\nu}$ 与局域场 $(g_{\mu\nu},\rho)$ 无关。由 Bianchi 恒等式 $\nabla^\mu G_{\mu\nu}=0$ 与能动守恒 $\nabla^\mu\langle T_{\mu\nu}\rangle=0$ 推得 $\nabla^\mu C_{\mu\nu}=0$。在局域洛伦兹协变下，唯一满足该条件的张量为 $C_{\mu\nu}=C\,g_{\mu\nu}$，其中 $C$ 为常数。把 $C$ 吸收到宇宙学常数中，$\Lambda_{\rm eff}=\Lambda+C$，即得
+$$
+G_{\mu\nu}+\Lambda_{\rm eff} g_{\mu\nu}=8\pi G\,\langle T_{\mu\nu}\rangle,
+$$
+完成证明。□
 该推导与"纠缠平衡 $\Rightarrow$ 爱因斯坦方程"的等价系谱一致，并在全息与一般场论中得到线性化与非线性扩展。([物理评论链接管理器][3])
 
 ---
@@ -121,9 +130,9 @@ $$
 
 ## 5. 离散化：EBOC–Regge 信息作用与连续极限
 
-**5.1 静态块—三角化** 在 EBOC 的静态块 $X_f$ 上选取与类光锥一致的叶分层与三角化，令每个 2-骨架 $\triangle$ 携带离散面积 $A_\triangle$，每条 1-骨架（棱）携带缺角 $\varepsilon_e$。Regge 作用
+**5.1 静态块—三角化** 在 EBOC 的静态块 $X_f$ 上选取与类光锥一致的叶分层与三角化，令每个 2-骨架（三角形） $h$ 携带离散面积 $A_h$，并在 $h$ 处定义缺角 $\varepsilon_h$。Regge 作用
 $$
-S_{\rm Regge}=\frac{1}{8\pi G}\sum_{e} \varepsilon_e\,\ell_e- \sum_\sigma \Lambda\,V_\sigma
+S_{\rm Regge}=\frac{1}{8\pi G}\sum_{h} A_h\,\varepsilon_h- \frac{\Lambda}{8\pi G}\sum_\sigma V_\sigma
 $$
 在变分下给出离散爱因斯坦方程。信息几何侧，对每个离散小球胞腔 $c$ 定义**离散广义熵**
 $$
