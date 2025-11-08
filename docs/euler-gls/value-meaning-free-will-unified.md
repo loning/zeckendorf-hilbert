@@ -1,309 +1,371 @@
-# 价值—意义统一：伦理价值的优化理论、存在意义的信息几何与自由意志的物理基础
+# 价值—意义统一：伦理价值的最优化几何、存在意义的信息流形与自由意志的物理基础
 
-**摘要**
-提出以"生存能力—伦理约束—介入能力"三元组为核心的统一体制：以开放系统热力学与信息几何为主干，将"价值"刻画为具风险一致性的多目标最优化，将"意义"刻画为到"生存能力子流形"的 $I$-投影距离，将"自由意志"刻画为由 empowerment 与有向信息下界所度量的可操作介入能力，并以带反馈的信息热力学给出能量—信息一致性界。体制的读数—刻度、因果—测量与变分—稳定性，均与"GLS—因果流形—EBOC—RCA—Hilbert—Zeckendorf"统一框架兼容：读数由窗化 Toeplitz/Berezin 压缩实现为谱测度的正线性泛函，刻度由母尺恒等式对齐，相合的因果—测量链闭合于 Lüders/$I$-投影与 Belavkin 过滤。核心定理包括：伦理优化的存在—对偶与 KKT 条件、意义的语义子流形与曲率不变量、自由意志的可操作下界与热力学一致性。
+**MSC**：62B10；90C46；93B05；80A17；68T01；03B48
 
----
+**关键词**：多目标最优化；一致性风险；I-投影；自然梯度；有向信息；empowerment；反馈热力学；马尔可夫毯；窗化读数；三位一体母尺
 
-## 0 记号与公理
+## 摘要
 
-**公理 M1（母尺恒等式）**
-设全散射矩阵相位的一半为 $\varphi(E)$，Wigner–Smith 群延迟矩阵为 $\mathsf Q(E)=-\,i\,S(E)^\dagger \tfrac{dS}{dE}(E)$。统一刻度采用
-$$
-\frac{\varphi'(E)}{\pi}\;=\;\rho_{\rm rel}(E)\;=\;\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E),
-$$
-并以该"相位—密度—延迟"之同一作为读数与能—延迟对齐的母尺。
-
-**公理 M2（窗化读数）**
-观测"窗口/读数/测量"以 Toeplitz/Berezin 压缩 $\mathsf K_{w,h}$ 实现，对应谱测度上的正线性泛函 $\langle f\rangle_{w,h}$。
-
-**公理 M3（有限阶桥接）**
-误差控制遵循有限阶 Euler–Maclaurin 与 Poisson 之纪律；"奇性不增，极点＝主尺度"。
+建立以"生存能力—伦理约束—介入能力"三元组为核心的统一体制：以开放系统几何热力学与信息几何为骨架，将价值刻画为风险敏感的多目标最优化，将意义刻画为到"生存能力可行子流形"的 I-投影距离，将自由意志刻画为在物理约束下可检验的因果介入能力，其下界由动作—传感通道容量与有向信息给出，并受信息热力学的广义第二定律与反馈 Jarzynski 等式约束。测量—刻度采用"三位一体母尺—窗化读数—Toeplitz/Berezin 压缩"的统一方案，几何化表达以 Fisher/Shahshahani 与 Wasserstein 度量闭合；给出伦理优化的存在—对偶定理、语义信息的流形几何与曲率不变量、自由意志的物理基础定理及其证明。理论与"GLS—因果流形—EBOC—RCA—Hilbert—Zeckendorf"统一框架在读数、因果与变分层面严格对接。
 
 ---
 
-## 1 统一原则与背景
+## 0 记号、对象与对齐公理
 
-**U1（可操作性）** 诸定义均以可测读数与可控过程为锚，刻度由公理 M1/M2 实作。
+### 0.1 窗化读数与母尺
 
-**U2（生存能力）** "存在意义"以生存能力函数 $V[p]=\mathbb E_{p}[\upsilon]$ 定义，其中"语义信息"限定为维持存在因果必要的那部分句法信息；其可由干预性扰乱试验在非平衡统计物理框架下操作化。([皇家学会出版][1])
+采用统一刻度
+$$
+\frac{\varphi'(E)}{\pi}=\rho_{\rm rel}(E)=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E),
+$$
+其中 $\mathsf Q(E)$ 为群延迟矩阵。任一可观测 $f$ 的窗化读数为
+$$
+\langle f\rangle_{w,h}=\int W(E)\,f(E)\,d\mu(E),
+$$
+$W$ 由能窗 $w$ 与时窗 $h$ 卷合诱导。算子级读数以 Toeplitz/Berezin 压缩 $\mathsf K_{w,h}=\Pi_{w}M_{W}\Pi_{w}$ 实现。
 
-**U3（伦理为优化）** 群体—制度—个体三层伦理统一为带风险与权利约束的多目标最优化；聚合受 Arrow 不可能定理与 Harsanyi 聚合定理之双重制约，故以帕累托前沿之几何与风险一致性联立刻画。([斯坦福哲学百科全书][2])
+### 0.2 开放系统与接触几何
 
-**U4（自由为介入能力）** 自由的可操作版本定义为"在物理约束下，对自身与环境未来态分布施加可检验因果影响的能力"，以 empowerment（动作—传感通道容量）与有向信息/传递熵为基元量化，并由带反馈的信息热力学确立能量—信息一致性。([赫特福德大学研究档案馆][3])
+开放热力学系统以接触流形 $(\mathcal C,\alpha)$ 表示，$\alpha=dz-y_i\,dx^i$。接触哈密顿量 $H$ 给出向量场 $X_H$ 满足
+$$
+\iota_{X_H}\alpha=-H,\qquad \iota_{X_H}d\alpha=dH-(\mathcal R H)\alpha.
+$$
+系统熵分解为 $\dot S_{\rm sys}=\dot S_{\rm e}+\dot S_{\rm i}$，$\dot S_{\rm i}\ge 0$。
 
-**U5（几何化）** "意义"的结构以信息几何表述：在概率流形上，由生存能力等势面生成之语义子流形，配以 Fisher–Rao 度量与对偶联络；自然梯度为内蕴最速流。([arXiv][4])
+### 0.3 信息几何与 I/m-投影
+
+统计流形 $\mathcal P=\{p_\theta\}$ 装配 Fisher–Rao 度量
+$$
+g_{ij}(\theta)=\mathbb E_\theta[\partial_i\log p_\theta\,\partial_j\log p_\theta],
+$$
+自然梯度 $\widetilde\nabla f=g^{-1}\nabla f$（Amari 自然梯度）。I-投影 $\mathcal I(p\mid\mathcal M)=\arg\min_{q\in\mathcal M}D_{\rm KL}(q\Vert p)$。
+
+### 0.4 Wasserstein 几何与自由能梯度流
+
+在 $(\mathcal P_2(\mathbb R^d),W_2)$ 空间，自由能 $\mathcal F[p]=\int p\log p+\int Vp$ 的最速下降流对应 Fokker–Planck 方程；JKO 迭代
+$$
+p_{k+1}=\arg\min_{p}\Big\{\mathcal F[p]+\tfrac{1}{2h}W_2^2(p,p_k)\Big\}
+$$
+给出时间离散的变分构造（Jordan–Kinderlehrer–Otto）。
+
+### 0.5 马尔可夫毯与自指测量
+
+变量分解为内部 $(s_{\rm int})$、外部 $(s_{\rm ext})$、观测 $(o)$、动作 $(a)$，满足遮蔽与条件独立；变分自由能
+$$
+\mathcal F(\phi,\theta)=\mathbb E_{q_\phi}[\log q_\phi(s\mid o)-\log p_\theta(s,o)]
+$$
+刻画感知—行动闭环并与马尔可夫毯形式化相容（自由能原理）。
 
 ---
 
-## 2 语法与记号
+## 1 伦理价值：风险一致的多目标最优化
 
-环境—系统联合分布 $p(x,s)$；策略 $\pi(a\mid s)$；演化核 $P_\theta(x',s'\mid x,s,a)$。
-生存能力 $V[p]=\mathbb E_{p}[\upsilon(x,s)]$。
-伦理约束采用一致性风险度量 $\rho$ 与资源/权利约束 $\mathbb E_{\pi}[c_j]\le b_j$。([Wiley Online Library][5])
-语义子流形定义为 $\mathcal M_{\ge v_0}=\{\,q\ll p: V[q]\ge v_0\,\}$。
-刻度与读数遵循公理 M1/M2。
+### 1.1 问题设定
+
+环境—系统联合 $p(x,s)$、策略 $\pi(a\mid s)$、演化核 $P_\theta(x',s'\mid x,s,a)$。定义生存能力泛函
+$$
+V[p]:=\mathbb E_{p}[\upsilon(x,s)],
+$$
+$\upsilon$ 为可测生存/可行性打分。伦理目标
+$$
+\mathcal J(\pi)=\mathbb E_{\pi}\Big[\sum_{t=0}^{T}u(x_t,s_t,a_t)\Big]-\lambda\,\mathsf{Reg}(\pi),
+$$
+约束为一致性风险与资源
+$$
+\rho(L(\pi))\le \eta,\qquad \mathbb E_{\pi}[c_j]\le b_j\ (1\le j\le m),
+$$
+其中 $\rho$ 次可加、单调、平移不变、正齐次。
+
+### 1.2 存在—对偶与 KKT
+
+**定理 1（存在与对偶）** 设动作/状态空间可分，$\mathsf{Reg}$ 使策略集 $\Pi$ 弱*紧，$\mathcal J$ 上半连续，则存在最优 $\pi^\star\in\Pi$。若满足 Slater 条件，则对偶间隙为零，存在乘子 $(\mu,\lambda_j\ge 0)$ 使
+$$
+\delta\Big(\mathcal J(\pi)-\mu[\rho(L(\pi))-\eta]-\sum_j\lambda_j(\mathbb E_\pi c_j-b_j)\Big)\Big|_{\pi^\star}=0.
+$$
+
+**证明**：Weierstrass 定理给存在性；一致性风险度量的支持函数表示与 Fenchel–Moreau 对偶给强对偶；KKT 由 Slater 条件推出。□
+
+### 1.3 社会聚合与帕累托几何
+
+设多目标 $F(\pi)\in\mathbb R^k$。帕累托前沿上任一点 $\pi^\star$ 存在 $\lambda\in\Delta^{k-1}$ 使
+$$
+0\in \sum_{i=1}^{k}\lambda_i\nabla F_i(\pi^\star)+\mathcal N_{\mathcal C}(\pi^\star),
+$$
+$\mathcal N_{\mathcal C}$ 为可行域的法锥。前沿的曲率与法向张量给出二阶伦理权衡灵敏度。社会层聚合在"不可行的全序"与"期望效用可加权"两极之间，以帕累托前沿 + 风险一致与权利约束定义可行边界。
+
+### 1.4 自然梯度与伦理策略流形优化
+
+参数化策略 $\pi_\theta$ 的自然梯度
+$$
+\widetilde\nabla_\theta \mathcal J=G(\theta)^{-1}\nabla_\theta\mathcal J,\qquad
+G(\theta)=\mathbb E_{\pi_\theta}[\nabla_\theta\log\pi_\theta\,\nabla_\theta\log\pi_\theta^\top],
+$$
+在 Fisher 度量上给最速上升；配合 KL 正则的控制-即-推断范式形成可解族。
 
 ---
 
-## 3 伦理价值的优化理论
+## 2 存在意义：语义信息的几何化
 
-### 3.1 问题设定与存在性
+### 2.1 语义保持与语义信息量
 
-定义伦理作用量
+给定阈值 $v_0$，称随机压缩 $\mathcal C:X\to \tilde X$ **语义保持**，若对允许的控制/耦合均有 $V[T_{\mathcal C}p]\ge v_0$。定义语义信息
 $$
-\mathcal J(\pi)=\mathbb E_{\pi}\!\left[\sum_{t=0}^{T} u(x_t,s_t,a_t)\right]-\lambda\,\mathrm{Reg}(\pi)
+I_{\rm sem}(S;X)=I(S;X)-\inf_{\mathcal C:\,V[T_{\mathcal C}p]\ge v_0}I(S;\tilde X),
 $$
-在约束
-$$
-\rho(L(\pi))\le \eta,\quad \mathbb E_{\pi}[c_j]\le b_j\ (1\le j\le m)
-$$
-与动力学 $P_\theta$ 下最大化；其中 $\rho$ 为 coherent 风险度量，$\mathrm{Reg}$ 可取信息正则 $\mathrm{KL}(\pi\Vert\pi_0)$。当动作/状态空间可测、目标上半连续且经熵正则化使策略集弱$^\ast$紧致，则最优策略存在并具强对偶。
+即"维持存在所必需的那部分信息"。
 
-**定理 3.1（存在—对偶与 KKT）**
-若 $\rho$ 为一致性风险度量（次可加、单调、平移不变、正齐次），且 Slater 条件成立，则存在最优 $\pi^\star$ 与乘子 $(\mu,\lambda_j\ge 0)$ 使
-$$
-\delta\!\left(\mathcal J(\pi)-\mu[\rho(L(\pi))-\eta]-\sum_{j}\lambda_j(\mathbb E_\pi c_j-b_j)\right)\big|_{\pi=\pi^\star}=0.
-$$
-证明依风险度量支持函数表示与 Fenchel–Moreau 对偶，结论由强对偶与 Karush–Kuhn–Tucker 条件给出。([Wiley Online Library][5])
+### 2.2 语义子流形与 I-投影
 
-### 3.2 社会聚合与可行边界
-
-社会福利函数 $W$ 的构造受 Arrow 不可能定理的不可约束与 Harsanyi 定理的加权和型刻画所界定；因此以**帕累托前沿**作为一阶可行边界，并在前沿上施加风险一致与权利约束，其法向与曲率给出伦理权衡的二阶敏感度与局部尺度。([斯坦福哲学百科全书][2])
-
-### 3.3 自然梯度与"控制即推断"
-
-参数化策略 $\pi_\theta$ 的自然梯度为
+在 $(\mathcal P,g)$ 上定义语义子流形
 $$
-\widetilde\nabla_\theta \mathcal J=G(\theta)^{-1}\nabla_\theta \mathcal J,
+\mathcal M_{\ge v_0}=\{q\in\mathcal P:\ V[q]\ge v_0\}.
 $$
-其中 $G(\theta)=\mathbb E_{\pi_\theta}[\nabla_\theta\log\pi_\theta\,\nabla_\theta\log\pi_\theta^{\top}]$。自然梯度保证在 Fisher 度量下的最速上升，适合在伦理约束面上作流形优化。([ResearchGate][6])
-在"控制即推断"范式下，带 $\mathrm{KL}$ 正则的最优控制可转化为线性/路径积分型问题（PI/LMDP），从而在复杂伦理约束下仍可计算与采样，实现风险敏感与能耗一致。([arXiv][7])
+对任意 $p$，语义投影
+$$
+\Pi_{\rm sem}(p)=\arg\min_{q\in\mathcal M_{\ge v_0}}D_{\rm KL}(q\Vert p)
+$$
+存在唯一（$\mathcal M_{\ge v_0}$ 闭凸）。于是
+$$
+I_{\rm sem}(S;X)=D_{\rm KL}(\Pi_{\rm sem}(p)\Vert p),
+$$
+并满足 Pythagoras 分解
+$$
+D_{\rm KL}(q\Vert p)=D_{\rm KL}(q\Vert \Pi_{\rm sem}(p))+D_{\rm KL}(\Pi_{\rm sem}(p)\Vert p).
+$$
+
+### 2.3 语义曲率与协同
+
+在对偶平坦结构下，$\mathcal M_{\ge v_0}$ 的第二基本形式 $\mathsf{II}$ 与曲率张量 $\mathcal R$ 刻画"多线索协同"（曲率沿法向为正）与"语义歧义/路径依赖"（非零挠与截面曲率）。自然梯度流
+$$
+\dot p_t=-\operatorname{grad}_g D_{\rm KL}(\cdot\Vert p_t)\ \text{受}\ V[\cdot]\ge v_0\ \text{约束},
+$$
+以最速方式趋向 $\Pi_{\rm sem}(p)$。
+
+### 2.4 窗化测度与母尺对齐
+
+采用 $\langle \cdot\rangle_{w,h}$ 估计 $V[q]$ 与核化的 $D_{\rm KL}$；刻度以 $\rho_{\rm rel}=(2\pi)^{-1}\operatorname{tr}\mathsf Q$ 对齐能量—信息—延迟，使不同层级（代谢、神经、行为）的语义量同位可比。
 
 ---
 
-## 4 存在意义的信息几何
+## 3 自由意志：可操作介入的物理基础
 
-### 4.1 语义信息的操作化
+### 3.1 有向信息、传递熵与 empowerment
 
-取阈值 $v_0$。称随机映射 $\mathcal C:X\to\tilde X$ 为**语义保持**，若对允许控制与耦合类均有 $V[T_{\mathcal C}p]\ge v_0$。定义**语义信息量**
+对内部记忆 $(M)$、动作 $(A)$、环境结果 $(Y)$，定义（Massey）
 $$
-I_{\rm sem}(S;X)=I(S;X)-\inf_{\mathcal C:\,V[T_{\mathcal C}p]\ge v_0} I(S;\tilde X),
+I(M^n\!\to\!Y^n)=\sum_{t=1}^{n}I(M^t;Y_t\mid Y^{t-1}),
 $$
-即"仅对存在必要"的信息部分；该定义与"语义＝维持存在因果必要之信息"之物理化一致。([皇家学会出版][1])
-
-### 4.2 语义子流形与 $I$-投影
-
-在概率流形 $(\mathcal P,g)$ 上，语义子流形 $\mathcal M_{\ge v_0}=\{q:V\ge v_0\}$ 为闭凸时，给定 $p$ 的语义投影
+传递熵 $\mathsf{TE}_{M\to Y}=I(M^{t-1};Y_t\mid Y^{t-1})$ 为其特例；$k$ 步 empowerment
 $$
-\Pi_{\rm sem}(p)=\arg\min_{q\in\mathcal M_{\ge v_0}} D_{\mathrm{KL}}(q\Vert p)
+\mathcal E_k=\sup_{\pi}\, I(A_{t:t+k-1};Y_{t+k}\mid Y_{t:t+k-1}),
 $$
-存在唯一，并满足 Pythagoras 分解；于是"意义"正是到语义子流形的 $D_{\mathrm{KL}}$ 距离。([Project Euclid][8])
+即动作—传感通道容量的上确界（Klyubin–Polani–Nehaniv）。
 
-### 4.3 曲率与协同
+### 3.2 反馈热力学下的能量—信息一致性
 
-在 dually-flat 结构下，语义子流形的第二基本形式 $\mathsf{II}$ 与曲率张量 $\mathcal R$ 刻画"语义协同"（多线索共同提升 $V$ 的边际）与"语义歧义"（曲率致路径依赖）；自然梯度流沿 $-\operatorname{grad}_{g} D_{\mathrm{KL}}(\cdot\Vert p)$ 将分布推进至 $\Pi_{\rm sem}(p)$。([vielbein.it][9])
+带测量—反馈的开系统满足广义等式
+$$
+\big\langle e^{-\beta W+\beta\Delta F-I}\big\rangle=1,\qquad
+\langle W\rangle\ge \Delta F-k_{\rm B}T\,\langle I\rangle,
+$$
+将可用互信息（或因果约束下的有向信息分量）与可提取功紧密联结（Sagawa–Ueda 反馈 Jarzynski）。
 
-### 4.4 读数与刻度
+### 3.3 可操作自由的定义与基础定理
 
-通过窗化 Toeplitz/Berezin 压缩得到的谱泛函可对 $V[q]$ 与 $D_{\mathrm{KL}}$ 作核化估计，刻度以母尺 $\varphi'/\pi=\rho_{\rm rel}=(2\pi)^{-1}\operatorname{tr}\mathsf Q$ 对齐。
+**定义 2（可操作自由）** 在时域 $[0,n]$ 上，若存在策略 $\pi$ 使 $I(M^n\!\to\!Y^n)>0$ 且 $\mathcal E_k>0$（某 $k\ge 1$），并且满足 $\langle W\rangle\ge \Delta F-k_{\rm B}T\,\langle I\rangle$，则称系统在该域具有可操作自由。
+
+**定理 2（自由的物理基础）** 若成立：
+
+(i) **可控性**：存在非退化干预通道 $P(Y\mid A,\cdot)$；
+
+(ii) **非平衡供给**：存在稳态或缓变的自由能/熵流；
+
+(iii) **屏障分离**：存在马尔可夫毯使内部态对结果的影响可分辨；
+
+则存在策略使 $I(M^n\!\to\!Y^n)>0$、$\mathcal E_k>0$ 同时成立，并受上述热力学不等式约束。——可控性与屏障分离保证 $P(Y\mid do(A))\ne P(Y)$，故有向信息严格为正（Massey 框架）；通道非退化使容量正，从而 $\mathcal E_k>0$；非平衡供给保证热力学一致性与功界可满足（Sagawa–Ueda）。□
+
+### 3.4 宏—微因果与尺度依赖
+
+宏观变量可在因果有效性上胜出微观变量（有效信息增大），给出"上层次自由"的可测涌现基础；伦理与法律在宏层制定因此自然。
 
 ---
 
-## 5 自由意志的物理基础（可操作定理）
+## 4 与统一框架的三重对接
 
-### 5.1 介入—影响的量化
+1. **读数—刻度**：语义量、伦理目标与介入能力均以窗化读数实现，刻度与 $\rho_{\rm rel}=(2\pi)^{-1}\operatorname{tr}\mathsf Q$ 同位。
 
-设内部态 $M$、动作 $A$、环境结果 $Y$。定义**有向信息**
-$$
-I(M^n\!\to Y^n)=\sum_{t=1}^{n} I(M^t;Y_t\mid Y^{t-1}),
-$$
-与**传递熵**
-$$
-\mathrm{TE}_{M\to Y}=I(M^{t-1};Y_t\mid Y^{t-1}).
-$$
-Massey 信息守恒给出
-$$
-I(M^n;Y^n)=I(M^n\!\to Y^n)+I(Y^{n-1}\!\to M^n).
-$$
-以上量在反馈系统中优于互信息以反映**介入性**。([ISI Web][10])
-**empowerment** 定义为动作—未来观测通道的容量上确界
-$$
-\mathcal E_k=\sup_{\pi}\, I(A_{t:t+k-1}\!;\,Y_{t+k}\mid Y_{t:t+k-1}).
-$$
-([赫特福德大学研究档案馆][3])
+2. **因果—测量**：I-投影—Lüders 更新—Belavkin 过滤闭合连续/离散观测，因果由 Hardy/Titchmarsh—Kramers–Kronig 支撑；马尔可夫毯在观测—行动闭环中实现自指测量（自由能原理）。
 
-### 5.2 能量—信息一致性
+3. **变分—稳定性**：以广义熵变分给出响应/场方程，二阶变分与 QNEC 类不等式给稳定性；在动力学侧，以 Wasserstein 梯度流—JKO 与 Benamou–Brenier 连续化桥接控制路径与最小耗散。
 
-带测量与反馈的开系统满足
-$$
-\big\langle e^{-\beta W+\beta\Delta F-I}\big\rangle=1,
-$$
-从而
-$$
-\langle W\rangle\ge \Delta F-kT\,\langle I\rangle.
-$$
-互信息（或恰当的有向信息分量）可作为可用信息之功率红利或代价下界。([物理评论链接管理器][11])
-在可解的 Maxwell 守恒模型中，信息写入/擦除与可提取功之间的定量关系得到显式演示。([PNAS][12])
-
-### 5.3 可操作自由与下界定理
-
-**定义（可操作自由）** 若存在策略 $\pi$ 使 $I(M^n\!\to Y^n)>0$ 且某 $k\ge 1$ 有 $\mathcal E_k>0$，并满足反馈第二定律之能量预算，则称在该时域上系统具有可操作自由。
-
-**定理（自由的物理下界）** 假设：（i）存在非退化干预通道 $P(Y\mid A,\cdot)$；（ii）存在稳态或缓变的自由能/熵流供给；（iii）存在 Markov-blanket 型因果分割保证 $M\to Y$ 的可分辨效应。则存在策略使 $I(M^n\!\to Y^n)>0$ 与 $\mathcal E_k>0$ 同时成立，且受 $\langle W\rangle\ge \Delta F-kT\,\langle I\rangle$ 约束。证明基于有向信息非负、empowerment 的通道容量上确界与反馈第二定律。([ISI Web][10])
-
-### 5.4 宏—微因果与尺度依赖
-
-宏观尺度的有效信息可能超过微观尺度，宏变量上介入更"干净"，为伦理与法规范畴选择宏观态量提供方法学支撑。([PNAS][13])
-
-### 5.5 与"自由意志定理"的关系
-
-在不引入超决定论的前提下，自由意志定理说明：若实验者设置选择不由过去信息完全决定，则粒子响应亦非过去信息的函数；本结果与本文之可操作自由在层级与语义上不同、可并行而不冲突。([arXiv][14])
+4. **可逆记账**：Zeckendorf 可逆日志将窗化载荷整数化，配合 RCA 实现伦理审计与跨窗一致。
 
 ---
 
-## 6 与统一框架的耦合
+## 5 实验—计算协议（一阶可检）
 
-**读数—刻度**：伦理与语义量的实验提取以窗化压缩获得的谱泛函为读数，刻度由母尺恒等式对齐。
-**因果—测量**：$I$-投影与 Lüders 更新在离散测量下一致；连续监测的后验态演化由 Belavkin 过滤给出，形成"仪器/POVM—过滤—窗化 BK"的闭环。([arXiv][15])
-**变分—稳定性**：在小域上对广义熵变分获得场方程—不等式，二阶变分给出稳定性判据。
-**范畴—可逆日志**：Zeckendorf 可逆日志与 RCA 提供伦理审计与可追溯性的范畴化账本。
+**P1 功—信息鞅检验**：连续监测下构造
+$$
+\Gamma_t=\exp[-\beta W_t+\beta\Delta F_t-I_t],
+$$
+检验 $\mathbb E[\Gamma_t]=1$ 及 Jensen 下界（反馈 Jarzynski）。
+
+**P2 读数协变性**：比较行为/神经读数与 $\langle (2\pi)^{-1}\operatorname{tr}\mathsf Q_{\rm eff}\rangle_{w,h}$ 的协变关系，标定能量—信息—时延的一致刻度。
+
+**P3 最小耗散协议**：在已知摩擦张量 $\zeta$ 的系统上实施测地驱动，检验热力学长度下界 $\langle W_{\rm ex}\rangle\ge \mathcal L^2/\tau$ 与最优路径（Sivak–Crooks 热力学度量）。
+
+**P4 伦理多目标求解**：以自然梯度 + KKT 投影步在帕累托前沿求解带风险与权利约束的问题；窗—核 $W$ 由 KKT 条件优化以抑制别名与尾项误差。
 
 ---
 
-## 7 场景化例证
+## 6 主要定理与证明
 
-**A（群体伦理配给）** 在效率—平等—稳健的多目标下构造帕累托前沿，并以 coherent 风险束缚尾部风险；KKT 乘子给出"权利—约束"的影子价格；自然梯度在 Fisher 度量下更新偏好—政策。([Wiley Online Library][5])
+### 定理 3（语义投影存在唯一与 Pythagoras）
 
-**B（信息引擎与代理性）** 单分子/布朗体系的测量—反馈装置中，观测 $I(M^n\!\to Y^n)$ 与 $\mathcal E_k$ 的正下界即可判定"可操作自由"；其可提取功与信息的定量关系由反馈 Jarzynski 等式与可解模型验证。([物理评论链接管理器][11])
+**陈述**：若 $V$ 准凹且上半连续，则 $\mathcal M_{\ge v_0}$ 闭凸；对任意 $p$，I-投影 $\Pi_{\rm sem}(p)$ 存在唯一，并满足
+$$
+D_{\rm KL}(q\Vert p)=D_{\rm KL}(q\Vert \Pi_{\rm sem}(p))+D_{\rm KL}(\Pi_{\rm sem}(p)\Vert p),\ \forall q\in\mathcal M_{\ge v_0}.
+$$
+
+**证明**：闭凸性由超水平集性质；KL 在第一自变量严格凸，最小化子唯一；以 Bregman 几何最优性条件得 Pythagoras 分解。□
+
+### 定理 4（伦理最小耗散与速度极限）
+
+**陈述**：令控制参数 $\lambda(t)$ 在 $\tau$ 内演化，线性响应下额外耗散功
+$$
+\langle W_{\rm ex}\rangle=\int_0^\tau \dot\lambda^\top\zeta(\lambda)\dot\lambda\,dt
+$$
+满足 $\langle W_{\rm ex}\rangle\ge \mathcal L^2/\tau$，$\mathcal L=\int_0^\tau \sqrt{\dot\lambda^\top\zeta\dot\lambda}\,dt$。等号当且仅当 $\lambda$ 为测地恒速；马尔可夫过程的跃迁速度受熵产生—活度给出的速度极限约束（热力学长度理论）。
+
+**证明**：Cauchy–Schwarz 与度量定义给出下界；测地最优由等号条件给出；速度极限由路径大偏差与熵产生—活度权衡得到。□
+
+### 定理 5（复制子—自然梯度等价）
+
+**陈述**：在单纯形 $\Delta^{n-1}$ 上，Shahshahani 度量 $g_{ij}=\delta_{ij}/x_i$ 诱导的梯度流
+$$
+\dot x_i=\sum_j g^{ij}\partial_{x_j}V(\mathbf x)=x_i(f_i-\bar f)
+$$
+等价于复制子动力学（Shahshahani；Harper，信息几何表述）。
+
+**证明**：代入 $g^{ij}=x_i(\delta_{ij}-x_j)$ 并化简即可。□
+
+### 定理 6（自由的可操作下界）
+
+**陈述**：若通道非退化且存在屏障分离与非平衡供给，则
+$$
+I(M^n\!\to\!Y^n)\ge c_1>0,\qquad \mathcal E_k\ge c_2>0
+$$
+（某 $c_1,c_2$），并受 $\langle W\rangle\ge \Delta F-k_{\rm B}T\,\langle I\rangle$ 约束。
+
+**证明**：非退化与分离保证最小可分辨效应 $c_1$（Massey 有向信息）；通道容量下界给 $c_2$（empowerment 容量解释）；热力学不等式由反馈 Jarzynski 与 Jensen 推出（Sagawa–Ueda）。□
 
 ---
 
-## 8 主要结论
+## 7 讨论：价值—意义—自由的同位刻度与范畴互构
 
-1. 伦理最优在 coherent 风险与权利约束下存在并具强对偶，帕累托几何与自然梯度提供可计算形态；
-2. 意义＝到"生存能力子流形"的 $D_{\mathrm{KL}}$ 距离，其曲率与第二基本形式刻画语义协同与歧义；
-3. 自由的可操作基础由 empowerment 与有向信息下界保证，并受反馈热力学不等式约束；
-4. 读数—刻度、因果—测量、变分—稳定性三链与统一框架无缝耦合。
+价值的多目标最优、意义的 I-投影距离、自由的介入能力三者皆以窗化读数实现，依母尺在能量—信息—时延上同位；在范畴层面，以对象 $(\mathcal H,S,\mu_\varphi,{\mathsf K_{w,h}})$ 和态射保持窗化读数组成 $\mathbf{WSIG}$；与因果流形范畴 $\mathbf{Cau}$ 的互构保证从读数—因果—变分到伦理—意义—自由的可转译性与可重构性。Benamou–Brenier 视角下的最优传输将 Wasserstein 路径解释为"压强为零的势流"极小作用路径，从而使伦理路径规划与最小耗散控制在同一几何内闭合。Zeckendorf 可逆日志保证跨窗记账与伦理审计的可追溯性。
+
+---
+
+## 8 结论
+
+本文在统一的测量—刻度与几何—热力学语法下给出：
+
+(1) 伦理最优在一致性风险与权利约束下的存在—对偶与帕累托几何；
+
+(2) 存在意义作为到生存能力子流形的 KL 距离，并以曲率与第二基本形式刻画语义协同/歧义；
+
+(3) 自由意志的可操作物理基础，以有向信息与 empowerment 为下界并受反馈热力学约束；
+
+(4) 全部构件与"GLS—因果流形—EBOC—RCA—Hilbert—Zeckendorf"在读数、因果与变分链路上无缝拼接，并给出一阶可检协议与最小耗散设计准则。
 
 ---
 
 ## 参考文献（节选）
 
-Amari S.（1998）Natural Gradient Works Efficiently in Learning. *Neural Computation* 10(2):251–276. ([ResearchGate][6])
-Amari S., Nagaoka H.（2000）*Methods of Information Geometry*. AMS/OMS. ([vielbein.it][9])
-Artzner P., Delbaen F., Eber J.-M., Heath D.（1999）Coherent Measures of Risk. *Mathematical Finance* 9(3):203–228. ([Wiley Online Library][5])
-Csiszár I.（1975）$I$-Divergence Geometry of Probability Distributions and Minimization Problems. *Ann. Probab.* 3(1):146–158. ([Project Euclid][8])
-Friston K. 等（2023）The Free Energy Principle Made Simpler but Not Too Simple. *Physics Reports* 1024:1–29. ([科学直通车][16])
-Hammond P.J.（1991）Harsanyi's Utilitarian Theorem: A Simpler Proof and Some Ethical Connotations. EUI Working Paper. ([Stanford University][17])
-Hoel E.P., Albantakis L., Tononi G.（2013）Quantifying Causal Emergence Shows That Macro Can Beat Micro. *PNAS* 110:19790–19795. ([PNAS][13])
-Kappen H.J.（2005）Path Integrals and Symmetry Breaking for Optimal Control Theory. *J. Stat. Mech.* P11011. ([arXiv][7])
-Klyubin A.S., Polani D., Nehaniv C.L.（2005）Empowerment: A Universal Agent-Centric Measure of Control. *CEC 2005*. ([赫特福德大学研究档案馆][3])
-Kolchinsky A., Wolpert D.H.（2018）Semantic Information, Autonomous Agency and Nonequilibrium Statistical Physics. *Interface Focus* 8:20180041. ([皇家学会出版][1])
-Mandal D., Jarzynski C.（2012）Work and Information Processing in a Solvable Model of Maxwell's Demon. *PNAS* 109:E1807–E1816. ([PNAS][12])
-Massey J.L.（1990）Causality, Feedback and Directed Information. *ISITA'90*. ([ISI Web][10])
-Miettinen K.（1998）*Nonlinear Multiobjective Optimization*. Springer. ([SpringerLink][18])
-Pearl J.（2009）*Causality: Models, Reasoning, and Inference*（2nd ed.）CUP. ([ILLCA档案馆][19])
-Sagawa T., Ueda M.（2010）Generalized Jarzynski Equality under Nonequilibrium Feedback Control. *Phys. Rev. Lett.* 104:090602. ([物理评论链接管理器][11])
-Schreiber T.（2000）Measuring Information Transfer. *Phys. Rev. Lett.* 85:461–464. ([物理评论链接管理器][20])
-Todorov E.（2006）Linearly-Solvable Markov Decision Problems. *NIPS 2006*. ([NeurIPS Papers][21])
-Wissner-Gross A.D., Freer C.E.（2013）Causal Entropic Forces. *Phys. Rev. Lett.* 110:168702. ([物理评论链接管理器][22])
-（背景综述）Arrow's Theorem. *Stanford Encyclopedia of Philosophy*. ([斯坦福哲学百科全书][2])
-（量子连续测量）Belavkin V.P.：Quantum Stochastic Calculus and Quantum Nonlinear Filtering（综述/教材化入口）. ([arXiv][15])
+1. Amari S. Natural gradient methods; Information Geometry foundations.
+
+2. Benamou J-D., Brenier Y. A computational fluid mechanics solution to the Monge–Kantorovich mass transfer problem.
+
+3. Harper M. Escort evolutionary game theory；Shahshahani 度量与复制子动力学。
+
+4. Jordan R., Kinderlehrer D., Otto F. The variational formulation of the Fokker–Planck equation（JKO 迭代）。
+
+5. Klyubin A. S., Polani D., Nehaniv C. L. Empowerment: A universal agent-centric measure of control.
+
+6. Massey J. L. Causality, feedback and directed information.
+
+7. Sagawa T., Ueda M. Generalized Jarzynski equality under nonequilibrium feedback control.
+
+8. Sivak D. A., Crooks G. E. Thermodynamic metrics, optimal paths, and minimum-dissipation control。
+
+9. Friston K. 等，自由能原理与马尔可夫毯。
 
 ---
 
-### 附录 A 伦理最优的存在—对偶与帕累托几何（证明要点）
+## 附录 A 伦理最优的存在—对偶与帕累托几何
 
-**A.1 存在性**
-在熵正则化与可测性下，Markov 策略集 $\Pi$ 弱$^\ast$紧，目标 $\mathcal J$ 上半连续；风险约束 $\rho(L(\pi))\le\eta$ 的可行集闭。Weierstrass 定理给出最优 $\pi^\star\in\Pi$ 的存在。([Wiley Online Library][5])
+**A.1 存在性** 设策略集 $\Pi$ 在熵正则化与可测性下弱*紧；$\mathcal J$ 上半连续；$\rho(L(\pi))\le\eta$ 与 $\mathbb E_\pi c_j\le b_j$ 定义的可行域闭。于是 $\sup_{\pi\in\Pi}\mathcal J(\pi)$ 取到。
 
-**A.2 对偶与 KKT**
-拉格朗日函数
+**A.2 对偶与 KKT** 一致性风险度量存在支持函数表示：$\rho(Z)=\sup_{q\in\mathcal Q}\mathbb E_q[-Z]$。拉格朗日
 $$
-\mathcal L(\pi,\mu,\lambda)=\mathcal J(\pi)-\mu(\rho(L(\pi))-\eta)-\sum_j \lambda_j(\mathbb E_\pi c_j-b_j).
+\mathcal L(\pi,\mu,\lambda)=\mathcal J(\pi)-\mu(\rho(L(\pi))-\eta)-\sum_j\lambda_j(\mathbb E_\pi c_j-b_j)
 $$
-coherent 风险度量可写为情景集的支持函数,故其对偶与主问题满足强对偶（Slater 成立时），KKT 为必要且充分最优性条件。([Wiley Online Library][5])
+的对偶问题在 Slater 条件下与原问题无间隙，KKT 条件必要充分。
 
-**A.3 帕累托前沿几何**
-对目标向量 $F(\pi)\in\mathbb R^k$，任一帕累托点 $\pi^\star$ 存在 $\lambda\in\Delta^{k-1}$ 使 $\sum_i \lambda_i\nabla F_i(\pi^\star)$ 属于可行锥的极锥；其法向与二阶形算子给出前沿曲率与权衡敏感度。([SpringerLink][18])
+**A.3 帕累托法锥条件** 令 $\mathcal C$ 为约束集，$\mathcal K(\pi^\star)$ 为切锥，$\mathcal N_{\mathcal C}(\pi^\star)$ 为法锥。则 $\pi^\star$ 帕累托最优当且仅当存在 $\lambda\in\Delta^{k-1}$ 使 $\sum_i\lambda_i\nabla F_i(\pi^\star)\in -\mathcal N_{\mathcal C}(\pi^\star)$。
 
 ---
 
-### 附录 B 语义流形与 $I$-投影（证明要点）
+## 附录 B I-投影的存在唯一与 Pythagoras
 
-**B.1 凸性与唯一性**
-若 $V$ 准凹且上半连续，则 $\mathcal M_{\ge v_0}$ 为闭凸；$D_{\mathrm{KL}}(\cdot\Vert p)$ 对首参严格凸，故 $\Pi_{\rm sem}(p)$ 存在且唯一。([Project Euclid][8])
-
-**B.2 Pythagoras 分解**
-对任意 $q\in\mathcal M_{\ge v_0}$ 与 $q^\star=\Pi_{\rm sem}(p)$，有
-$$
-D_{\mathrm{KL}}(q\Vert p)=D_{\mathrm{KL}}(q\Vert q^\star)+D_{\mathrm{KL}}(q^\star\Vert p),
-$$
-其充要条件即 $q^\star$ 为 $I$-投影。([Project Euclid][8])
-
-**B.3 自然梯度收敛**
-在 dually-flat 结构下，负梯度流沿指数族测地趋于 $q^\star$；Fisher 度量下的自然梯度给出最速收敛方向。([vielbein.it][9])
+$\mathcal M_{\ge v_0}$ 为 $V$ 的超水平集，若 $V$ 准凹上半连续则闭凸。对任意 $p$，函数 $q\mapsto D_{\rm KL}(q\Vert p)$ 在第一自变量严格凸并下半连续，故最小元唯一存在；以最优性条件与 Bregman 几何得 Pythagoras 分解。
 
 ---
 
-### 附录 C 自由的有向信息—empowerment 下界与热力学一致性（证明要点）
+## 附录 C 自然梯度与复制子
 
-**C.1 有向信息下界链**
-Massey 守恒：
+在 $\Delta^{n-1}$ 上取 Shahshahani 度量 $g_{ij}=\delta_{ij}/x_i$。若 $f_i=\partial_{x_i}V$，则
 $$
-I(M^n;Y^n)=I(M^n\!\to Y^n)+I(Y^{n-1}\!\to M^n),
+(\mathrm{grad}_g V)_i=\sum_j g^{ij} \partial_{x_j}V=x_i(f_i-\bar f),
 $$
-故 $I(M^n\!\to Y^n)\le I(M^n;Y^n)$，且非退化通道时为正。估计算法与连续时推广见后续工作。([ISI Web][10])
-
-**C.2 反馈第二定律**
-$$
-\langle e^{-\beta W+\beta\Delta F-I}\rangle=1 \Rightarrow \langle W\rangle\ge \Delta F-kT\,\langle I\rangle.
-$$
-取 $I$ 为可用的 $I(M^n\!\to Y^n)$ 或其分量，得可操作自由之能量下界。([物理评论链接管理器][11])
-
-**C.3 可解模型验证**
-Maxwell 守恒可解模型中，信息写入/擦除与功之互换得到显式展示，与上式一致。([PNAS][12])
+与复制子方程一致（Shahshahani；Harper）。
 
 ---
 
-### 附录 D 控制即推断与伦理计算（要点）
+## 附录 D 热力学长度、测地最优与速度极限
 
-在 $\mathrm{KL}$ 正则的随机最优控制中，Bellman 方程指数化线性化（LMDP），伦理软约束并入势能项；路径积分（PI）表述给出基于采样与变分的高维算法。([NeurIPS Papers][21])
-
----
-
-### 附录 E 宏—微因果与尺度选择
-
-有效信息在宏尺度可更高，宏变量上的介入简化而更稳健，解释了伦理与法律偏向宏观态量而非微观轨迹的实践理据。([PNAS][13])
-
----
-
-### 附录 F 测量闭环的连续极限
-
-离散 $I$-投影与 Lüders 更新在连续极限下对应 Belavkin 量子过滤的后验态随机微分方程；窗化 BK 恒等式确保谱—相位—延迟之实验标定一致。([arXiv][15])
+线性响应下额外耗散功
+$$
+\langle W_{\rm ex}\rangle=\int_0^\tau \dot\lambda^\top\zeta(\lambda)\dot\lambda\,dt.
+$$
+定义长度 $\mathcal L=\int_0^\tau \sqrt{\dot\lambda^\top\zeta\dot\lambda}\,dt$。由 Cauchy–Schwarz 得
+$$
+\langle W_{\rm ex}\rangle\ge \frac{\mathcal L^2}{\tau},
+$$
+等号当且仅当 $\sqrt{\zeta}\dot\lambda$ 常模，即沿测地恒速；最优路径与最小耗散由热力学度量刻画（Sivak–Crooks）。
 
 ---
 
-[1]: https://royalsocietypublishing.org/doi/10.1098/rsfs.2018.0041?utm_source=chatgpt.com "Semantic information, autonomous agency and non ... - Journals"
-[2]: https://plato.stanford.edu/entries/arrows-theorem/?utm_source=chatgpt.com "Arrow's Theorem - Stanford Encyclopedia of Philosophy"
-[3]: https://uhra.herts.ac.uk/id/eprint/282/1/901241.pdf?utm_source=chatgpt.com "Empowerment: A Universal Agent-Centric Measure of Control"
-[4]: https://arxiv.org/abs/1806.08053?utm_source=chatgpt.com "Semantic information, autonomous agency, and nonequilibrium statistical physics"
-[5]: https://onlinelibrary.wiley.com/doi/10.1111/1467-9965.00068?utm_source=chatgpt.com "Coherent Measures of Risk - Artzner - 1999"
-[6]: https://www.researchgate.net/publication/2433873_Natural_Gradient_Works_Efficiently_in_Learning?utm_source=chatgpt.com "Natural Gradient Works Efficiently in Learning | Request PDF"
-[7]: https://arxiv.org/abs/physics/0505066?utm_source=chatgpt.com "Path integrals and symmetry breaking for optimal control theory"
-[8]: https://projecteuclid.org/journals/annals-of-probability/volume-3/issue-1/I-Divergence-Geometry-of-Probability-Distributions-and-Minimization-Problems/10.1214/aop/1176996454.full?utm_source=chatgpt.com "$I$-Divergence Geometry of Probability Distributions and ..."
-[9]: https://vielbein.it/pdf/Traduzioni/2000-Amer-Methods_of_Information_Geometry.pdf?utm_source=chatgpt.com "Methods of Information Geometry - Vielbein"
-[10]: https://www.isiweb.ee.ethz.ch/archive/massey_pub/pdf/BI532.pdf?utm_source=chatgpt.com "Causality, feedback and directed information."
-[11]: https://link.aps.org/doi/10.1103/PhysRevLett.104.090602?utm_source=chatgpt.com "Generalized Jarzynski Equality under Nonequilibrium ..."
-[12]: https://www.pnas.org/doi/10.1073/pnas.1204263109?utm_source=chatgpt.com "Work and information processing in a solvable model of ..."
-[13]: https://www.pnas.org/doi/10.1073/pnas.1314922110?utm_source=chatgpt.com "Quantifying causal emergence shows that macro can beat ..."
-[14]: https://arxiv.org/abs/quant-ph/0604079?utm_source=chatgpt.com "The Free Will Theorem"
-[15]: https://arxiv.org/abs/math/0512362?utm_source=chatgpt.com "[math/0512362] Quantum Stochastic Calculus and ..."
-[16]: https://www.sciencedirect.com/science/article/pii/S037015732300203X?utm_source=chatgpt.com "The free energy principle made simpler but not too simple"
-[17]: https://web.stanford.edu/~hammond/HarsanyiFest.pdf?utm_source=chatgpt.com "Harsanyi's Utilitarian Theorem: A Simpler Proof and Some ..."
-[18]: https://link.springer.com/book/10.1007/978-1-4615-5563-6?utm_source=chatgpt.com "Nonlinear Multiobjective Optimization"
-[19]: https://archive.illc.uva.nl/cil/uploaded_files/inlineitem/Pearl_2009_Causality.pdf?utm_source=chatgpt.com "Causality"
-[20]: https://link.aps.org/doi/10.1103/PhysRevLett.85.461?utm_source=chatgpt.com "Measuring Information Transfer | Phys. Rev. Lett."
-[21]: https://papers.neurips.cc/paper/3002-linearly-solvable-markov-decision-problems.pdf?utm_source=chatgpt.com "Linearly-solvable Markov decision problems"
-[22]: https://link.aps.org/doi/10.1103/PhysRevLett.110.168702?utm_source=chatgpt.com "Causal Entropic Forces | Phys. Rev. Lett."
+## 附录 E 可操作自由下界与热力学一致性
+
+**E.1 有向信息下界** 非退化 $P(Y\mid A,\cdot)$ 与屏障分离给出 $I(M^n\!\to\!Y^n)>0$（Massey 有向信息）。
+
+**E.2 通道容量下界** 非退化性蕴含 $\mathcal E_k>0$（empowerment＝动作—传感容量）。
+
+**E.3 反馈第二定律**
+$$
+\langle e^{-\beta W+\beta\Delta F-I}\rangle=1\Rightarrow
+\langle W\rangle\ge \Delta F-k_{\rm B}T\,\langle I\rangle
+$$
+（Sagawa–Ueda）。因此任意可操作自由必支付能量成本。
+
+---
+
+## 附录 F Wasserstein 变分与连续化桥接
+
+JKO 迭代给出 Fokker–Planck 的离散-时间最陡下降；Benamou–Brenier 连续化将 $W_2$ 距离表为压强为零的势流极小作用：
+$$
+W_2^2(\mu_0,\mu_1)=\inf_{\rho,v}\Big\{\int_0^1\!\int \rho\,|v|^2\,dx\,dt\ :\ \partial_t\rho+\nabla\!\cdot(\rho v)=0\Big\},
+$$
+最优性条件 $v=\nabla\phi,\ \partial_t\phi+\tfrac12|\nabla\phi|^2=0$（Hamilton–Jacobi）将伦理路径与最小耗散控制的几何化统一于一式之中。
