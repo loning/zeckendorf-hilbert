@@ -1,5 +1,7 @@
 # 数学—物理完全统一：范畴—散射—几何—信息的一体化公理与证明
 
+Version: 1.0
+
 ## 摘要
 
 提出并证明两条统一命题：其一，$\text{数学结构}$是$\text{物理约束}$的必然表达；其二，$\text{逻辑规则}$是$\text{因果结构}$的代数刻画。构造路径为：以窗化散射—信息几何—静态块观察—可逆日志（WSIG–EBOC–RCA）为对象层，以"母刻度同一"（MSI）为观测标尺，建立由可实现谓词组成的超教义并经 tripos→topos 完成得到内在逻辑；再以匕对称单体范畴的串图语义刻画演绎规则与因果偏序之相容。核心结论表明：满足因果、幺正/完全正、能谱—相位—群延迟之同刻度（MSI）与 NPE（Poisson—Euler–Maclaurin—尾项）误差纪律的物理自洽性，与某内在逻辑的完备可演绎性等价；且该逻辑之结构规则恰对应"可复制/可丢弃"之经典线索与因资源敏感而受限的量子通道。文中给出：谱移—散射行列式—群延迟之等刻度恒等式与窗化迹公式；射影希尔伯特空间的几何化量子动力学；Belavkin 过滤与 GKSL 半群的测量闭合；边界/透镜刚性与度量反演；Zeckendorf 可逆日志的整数化刻度。([arXiv][1])
@@ -18,7 +20,7 @@
 $$
 \boxed{\quad \frac{\varphi'(E)}{\pi}\;=\;\rho_{\rm rel}(E)\;=\;\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)\quad}
 $$
-此式由 Birman–Kreĭn 公式 $\det S(E)=e^{-2\pi i\,\xi(E)}$、Kreĭn–Friedel 关系 $\xi'(E)=\rho_{\rm rel}(E)$、以及 $\operatorname{tr}\mathsf Q(E)=\partial_E\arg\det S(E)$ 联立而得。([mathnet.ru][2])
+此式由 Birman–Kreĭn 公式 $\det S(E)=e^{-2\pi i\,\xi(E)}$、Kreĭn–Friedel 关系 $\xi'(E)=-\rho_{\rm rel}(E)$、以及 $\operatorname{tr}\mathsf Q(E)=\partial_E\arg\det S(E)$ 联立而得。([mathnet.ru][2])
 
 **卡片 II（有限阶 EM 与"极点=主尺度"）**：离散—连续桥接采用 Poisson 求和与有限阶 Euler–Maclaurin 展开，余项以窗衰减与母尺正则性统一约束，遵循"奇性不增、极点给主尺度"的纪律，形成全流程可审计的误差账本。
 
@@ -55,7 +57,7 @@ $$
 
 ### 2.1 Birman–Kreĭn—Kreĭn–Friedel—Wigner–Smith
 
-谱移函数 $\xi(E)$ 满足 $\det S(E)=e^{-2\pi i\xi(E)}$ 与 $\xi'(E)=\rho_{\rm rel}(E)$，而 $\operatorname{tr}\mathsf Q(E)=\partial_E\arg\det S(E)$，于是得 MSI。([mathnet.ru][2])
+谱移函数 $\xi(E)$ 满足 $\det S(E)=e^{-2\pi i\xi(E)}$ 与 $\xi'(E)=-\rho_{\rm rel}(E)$，而 $\operatorname{tr}\mathsf Q(E)=\partial_E\arg\det S(E)$，于是得 MSI。([mathnet.ru][2])
 
 ### 2.2 Helffer–Sjöstrand 与窗化 BK
 
@@ -131,7 +133,7 @@ Poisson 求和抑制别名，有限阶 Euler–Maclaurin 给端点校正与余�
 对可追踪扰动对 $(H,H_0)$，Birman–Kreĭn 公式给 $\det S(E)=e^{-2\pi i\xi(E)}$。([mathnet.ru][2])
 
 **A.2 Kreĭn–Friedel 关系**
-相对态密度满足 $\xi'(E)=\rho_{\rm rel}(E)$（见 Friedel 迹公式与 KFL 变体），故 $\varphi'(E)/\pi=\rho_{\rm rel}(E)$。
+相对态密度满足 $\xi'(E)=-\rho_{\rm rel}(E)$（见 Friedel 迹公式），故 $\varphi'(E)/\pi=\rho_{\rm rel}(E)$。
 
 **A.3 群延迟—相位导数**
 $\mathsf Q(E)=-i\,S^\dagger \partial_E S$，则 $\operatorname{tr}\mathsf Q(E)=\partial_E\arg\det S(E)$，合并即 MSI。([arXiv][1])
