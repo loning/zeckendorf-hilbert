@@ -446,3 +446,4 @@ K_{w,h}\text{ Nyquist–Poisson–EM finite-order closure};
 $$
 
 
+
