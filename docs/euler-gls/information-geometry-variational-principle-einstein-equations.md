@@ -1,9 +1,9 @@
 # 信息几何变分原理导出爱因斯坦场方程：EBOC—因果流形统一中的量子引力纲要
-Version: 1.1
+Version: 1.7
 
 ## 摘要
 
-给定离散—静态块结构 $\mathrm{EBOC}$ 与连续—因果流形的互构框架，本文提出一条信息几何的变分原理：在每一个足够小的类时几何球（或局域因果菱形）上，**广义相对熵**（或等价地，广义熵 $S_{\rm gen}$）在保持体积与参考真空约束下极值。利用相对熵的一阶"第一定律" $\delta S=\delta\langle H_{\rm mod}\rangle$ 与几何光束会聚（Raychaudhuri）导致的面积变分，我们证明：对一切小球与一切形状变形，极值条件当且仅当满足爱因斯坦场方程 $G_{\mu\nu}+\Lambda g_{\mu\nu}=8\pi G\,\langle T_{\mu\nu}\rangle$。在半经典阶，二阶变分与相对熵非负性给出量子焦散—QNEC 等信息不等式，构成量子修正。离散侧以 EBOC 的静态块—因子译码语义给出 Regge 型离散作用并证明：在网格细化与信息几何一致化的极限下收敛到上述连续场方程。本文的"读数—刻度—因果"语义与窗化群延迟母刻度 $\varphi'/\pi=\rho_{\rm rel}=(2\pi)^{-1}\mathrm{tr}\,\mathsf Q$ 严格对齐，并在 Nyquist–Poisson–Euler–Maclaurin 的有限阶误差纪律下闭合。
+给定离散—静态块结构 $\mathrm{EBOC}$ 与连续—因果流形的互构框架，本文提出一条信息几何的变分原理：在每一个足够小的类时几何球（或局域因果菱形）上，**广义熵** $S_{\rm gen}$ 在保持体积与参考真空约束下极值。利用相对熵的一阶"第一定律" $\delta S_{\rm out}=\delta\langle H_{\rm mod}\rangle$ 与几何光束会聚（Raychaudhuri）导致的面积变分，我们证明：对一切小球与一切形状变形，极值条件推出爱因斯坦场方程 $G_{\mu\nu}+\Lambda g_{\mu\nu}=8\pi G\,\langle T_{\mu\nu}\rangle$。在半经典阶，二阶变分与相对熵非负性给出量子焦散—QNEC 等信息不等式，构成量子修正。离散侧以 EBOC 的静态块—因子译码语义给出 Regge 型离散作用并证明：在网格细化与信息几何一致化的极限下收敛到上述连续场方程。本文的"读数—刻度—因果"语义与窗化群延迟母刻度 $\varphi'/\pi=\rho_{\rm rel}=(2\pi)^{-1}\mathrm{tr}\,\mathsf Q$ 严格对齐，并在 Nyquist–Poisson–Euler–Maclaurin 的有限阶误差纪律下闭合。
 
 ---
 
@@ -25,11 +25,11 @@ $$
 
 **EBOC（离散侧）** 世界以静态块 $X_f$ 与永恒图—子移位给出；观察 $=$ 因子译码，信息不增；时间子作用的 Brudno 对齐与可逆 CA 的信息守恒构成离散信息几何的公理基。
 
-**信息几何** 统计流形 $(\mathcal P,g^{\rm F})$ 上以 Fisher–Rao 度量为唯一（幺正）单调度量；$D(\rho\Vert\sigma)$ 的二阶变分给出 $g^{\rm F}$，双联络结构 $(\nabla,\nabla^*)$ 由发散族诱导。([施普林格链接][1])
+**信息几何** 经典统计流形 $(\mathcal P,g^{\rm F})$ 上，Fisher–Rao 度量是唯一满足 Markov（数据处理）单调性的度量（Čencov 定理）；在量子情形，Umegaki 相对熵的 Hessian 给出 BKM 单调度量，其属于 Petz 单调度量族（非唯一）。双联络结构 $(\nabla,\nabla^*)$ 由发散族诱导。([施普林格链接][1])
 
 ---
 
-## 1. 局域统计流形与广义相对熵
+## 1. 局域统计流形与相对熵
 
 **1.1 局域小球与模哈密顿量** 在点 $x\in\mathcal M$ 的局域洛伦兹坐标中取小球 $B_\ell(x)$。令 $\rho_{B_\ell}$ 为物质场在 $B_\ell$ 的约化态，$\rho^{(0)}_{B_\ell}$ 为与局域最大对称真空对应的参考态。真空的模哈密顿量在共形理论中局域可写为
 $$
@@ -56,7 +56,7 @@ $$
 $$
 \delta S_{\rm gen}=0,\qquad \delta^2 S(\rho_{B_\ell}\Vert \sigma_{B_\ell})\ge 0.
 $$
-第一式给出场方程，第二式给出稳定性与量子能量不等式（QNEC）族。该极值假设与"最大真空纠缠/等熵平衡"框架一致。([物理评论链接管理器][3])
+第一式在小球极限的一阶微扰下给出线性化场方程；在满足假设 A 时可升格为完整场方程。第二式给出稳定性与量子能量不等式（QNEC）族。该极值假设与"最大真空纠缠/等熵平衡"框架一致。([物理评论链接管理器][3])
 
 **引理 2.1（第一定律）** 在小球极限与一阶微扰下，
 $$
@@ -71,34 +71,30 @@ $$
 $$
 其中使用了 Raychaudhuri 与测地展开的标准小球几何。把该项与引理 2.1 相比对即可闭合第一变分。（推导同 Jacobson 型局域热力学/等熵论证之小球版。）([物理评论链接管理器][4])
 
-**定理 2.3（IGVP ⇒ 爱因斯坦场方程）** 若对一切 $x$ 与足够小的 $B_\ell(x)$ 有 $\delta S_{\rm gen}=0$，则
+**定理 2.3（IGVP ⇒ 线性化；在假设下升格完整方程）** 若对一切 $x$ 与足够小的 $B_\ell(x)$ 有 $\delta S_{\rm gen}=0$，则在参考几何的一阶邻域内
 $$
-\boxed{\ G_{\mu\nu}+\Lambda g_{\mu\nu}=8\pi G\,\langle T_{\mu\nu}\rangle\ }.
+\boxed{\ \delta\!\big(G_{\mu\nu}+\Lambda g_{\mu\nu}-8\pi G\,\langle T_{\mu\nu}\rangle\big)=0\ }.
 $$
-*证明*：由 $\delta S_{\rm gen}=\delta(A/4G)+\delta S_{\rm out}=0$ 与两引理得，对任意小球与任意局域形变
+进一步，若满足**假设 A**：
+(i) 上式对任意背景点与任意微扰族成立；
+(ii) $C_{\mu\nu}:=G_{\mu\nu}+\Lambda g_{\mu\nu}-8\pi G\,\langle T_{\mu\nu}\rangle$ 为局域、协变、至多二阶的张量泛函；
+则在局域洛伦兹协变与无外背景结构下，唯一性推出 $C_{\mu\nu}=C\,g_{\mu\nu}$。由 Bianchi 恒等式 $\nabla^\mu G_{\mu\nu}=0$ 与能动守恒 $\nabla^\mu\langle T_{\mu\nu}\rangle=0$ 可得 $\nabla^\mu C_{\mu\nu}=0$，进而 $\partial_\nu C=0$。把常数 $C$ 吸收到 $\Lambda$ 中，遂得
 $$
-\delta\!\Big(G_{\mu\nu}+\Lambda g_{\mu\nu}-8\pi G\,\langle T_{\mu\nu}\rangle\Big)=0.
+G_{\mu\nu}+\Lambda_{\rm eff} g_{\mu\nu}=8\pi G\,\langle T_{\mu\nu}\rangle,\qquad \Lambda_{\rm eff}=\Lambda+C.
 $$
-令
-$$
-C_{\mu\nu}:=G_{\mu\nu}+\Lambda g_{\mu\nu}-8\pi G\,\langle T_{\mu\nu}\rangle.
-$$
-上式对所有变分皆为零，故 $C_{\mu\nu}$ 与局域场 $(g_{\mu\nu},\rho)$ 无关。由 Bianchi 恒等式 $\nabla^\mu G_{\mu\nu}=0$ 与能动守恒 $\nabla^\mu\langle T_{\mu\nu}\rangle=0$ 推得 $\nabla^\mu C_{\mu\nu}=0$。在局域洛伦兹协变下，唯一满足该条件的张量为 $C_{\mu\nu}=C\,g_{\mu\nu}$，其中 $C$ 为常数。把 $C$ 吸收到宇宙学常数中，$\Lambda_{\rm eff}=\Lambda+C$，即得
-$$
-G_{\mu\nu}+\Lambda_{\rm eff} g_{\mu\nu}=8\pi G\,\langle T_{\mu\nu}\rangle,
-$$
-完成证明。□
 该推导与"纠缠平衡 $\Rightarrow$ 爱因斯坦方程"的等价系谱一致，并在全息与一般场论中得到线性化与非线性扩展。([物理评论链接管理器][3])
 
 ---
 
 ## 3. 二阶变分与量子能量条件
 
-**命题 3.1（相对熵非负与 QNEC）** 沿任意通过 $x$ 的无挠零测地丛 $k^\mu$ 作切割形变，二阶变分给出
+**命题 3.1（相对熵非负与 QNEC）** 沿任意通过 $x$ 的无挠零测地丛 $k^\mu$ 作局域切割形变，定义
 $$
-\delta^2 S(\rho_{B_\ell}\Vert \sigma_{B_\ell})\ \ge\ 0
-\quad\Longrightarrow\quad
-\langle T_{kk}\rangle\ \ge\ \frac{1}{2\pi}\,\frac{d^2 S_{\rm out}}{d\lambda^2},
+s_{\rm out}''(x):=\lim_{\mathcal A\to 0}\frac{1}{\mathcal A}\,\frac{d^2 S_{\rm out}}{d\lambda^2},
+$$
+其中 $\lambda$ 为 $k^\mu$ 的仿射参数、$\mathcal A$ 为变形补丁的横截面积。则相对熵的凸性给出
+$$
+\boxed{\ \langle T_{kk}(x)\rangle\ \ge\ \frac{1}{2\pi}\,s_{\rm out}''(x)\ },
 $$
 即量子零能条件（QNEC）。其证明族（场论/全息）均把相对熵的凸性作为核心输入。([物理评论链接管理器][5])
 
@@ -160,7 +156,11 @@ $$
 
 **7.1 一回路/$1/N$ 修正** 在全息与场论中，广义熵的"面积 $+$ 外部纠缠"结构在一回路由体纠缠补偿；该修正正是 $S_{\rm gen}$ 的量子极小（QES）条件来源，保证 IGVP 在半经典阶仍成立。([arXiv][8])
 
-**7.2 QNEC 与相对熵凸性** 二阶变分的正性给出 $\langle T_{kk}\rangle \ge (2\pi)^{-1}S''$ 等族不等式，并已在场论与全息语境中证明，构成 IGVP 的稳定性判据与可检核条件。([物理评论链接管理器][5])
+**7.2 QNEC 与相对熵凸性** 二阶变分的正性给出
+$$
+\boxed{\ \langle T_{kk}(x)\rangle \ge \frac{1}{2\pi}\,s_{\rm out}''(x)\ },
+$$
+并已在场论与全息语境中证明，构成 IGVP 的稳定性判据与可检核条件。([物理评论链接管理器][5])
 
 ---
 
@@ -168,9 +168,9 @@ $$
 
 **8.1 小球几何与面积展开** 在正规坐标下，小球边界面积
 $$
-A(\partial B_\ell)=\Omega_{d-2}\,\ell^{d-2}\!\left[1-\frac{\ell^2}{6(d-1)}\,R_{\mu\nu}u^\mu u^\nu+O(\ell^3)\right],
+A(\partial B_\ell)=\Omega_{d-2}\,\ell^{d-2}\!\left[1-\frac{\ell^2}{6(d-1)}\,R+O(\ell^4)\right],
 $$
-体积保持变分消去 $\delta\ell$，留下 $\delta A\propto \delta(R_{\mu\nu}u^\mu u^\nu)$。与引理 2.1 配对并使用 $G_{\mu\nu}=R_{\mu\nu}-\tfrac12 R g_{\mu\nu}$ 得定理 2.3。
+体积保持变分消去 $\delta\ell$，留下 $\delta A\propto \delta R$。与引理 2.1 配对并使用 $G_{\mu\nu}=R_{\mu\nu}-\tfrac12 R g_{\mu\nu}$ 得定理 2.3。
 
 **8.2 "第一定律"与模哈密顿量** 球域的模哈密顿量对共形真空局域为能动张量的线性泛函，故 $\delta S_{\rm out}=\delta\langle H_{\rm mod}\rangle$ 成立；对非共形场的修正已在后续文献中给出并不影响结论的形式。([施普林格链接][2])
 
@@ -188,7 +188,7 @@ $$
 
 ## 10. 典型推论与可观测后果
 
-1. **局域等熵 ⇒ 场方程（可逆向）**：若已知 $G_{\mu\nu}+\Lambda g_{\mu\nu}=8\pi G\,\langle T_{\mu\nu}\rangle$，则在小球极限 $\delta S_{\rm gen}=0$ 成立（等价表述），形成封闭的必要充分链条。([物理评论链接管理器][3])
+1. **场方程 ⇒ 局域等熵**：若已知 $G_{\mu\nu}+\Lambda g_{\mu\nu}=8\pi G\,\langle T_{\mu\nu}\rangle$，则在小球极限可直接验证 $\delta S_{\rm gen}=0$ 成立。([物理评论链接管理器][3])
 
 2. **QNEC/量子焦散**：任意零方向的二阶形变给出能量下界，提供对半经典引力的一致性检验与数值检核指标。([物理评论链接管理器][5])
 
@@ -198,7 +198,7 @@ $$
 
 ## 11. 结论式陈述（纲要化）
 
-* 在小球极限中，把**广义相对熵极值**作为信息几何的基本变分原理，**等价**于爱因斯坦场方程。
+* 在小球极限中，**广义熵** $S_{\rm gen}$ 的一阶极值（配合相对熵第一定律）与线性化爱因斯坦方程等价；在满足假设 A 时可推出完整非线性爱因斯坦方程。
 * 二阶变分的非负性给出 QNEC/量子焦散等**量子一致性**约束。
 * EBOC 的离散—译码语义与 Regge 三角化给出**离散作用—极值**的兼容实现，并在细化极限下收敛到连续 IGVP。
 * 母刻度—窗化读数—Fisher 配准把"可测刻度"与几何度量**统一对齐**，保持因果—读数的位阶分离与数值误差账本的有限阶闭合。
@@ -254,7 +254,7 @@ $$
 
 ---
 
-**说明** 本文所有公式的度量—读数—因果位阶与母刻度、互构等一致性已在前述统一框架中系统刻画，本文仅在此基础上把"引力＝信息几何的广义相对熵极值"作严格化表述并给出连续—离散双实现。
+**说明** 本文所有公式的度量—读数—因果位阶与母刻度、互构等一致性已在前述统一框架中系统刻画，本文仅在此基础上把"引力＝信息几何的广义熵极值（配合相对熵第一定律）"作严格化表述并给出连续—离散双实现。
 
 [1]: https://link.springer.com/book/10.1007/978-4-431-55978-8?utm_source=chatgpt.com "Information Geometry and Its Applications"
 [2]: https://link.springer.com/article/10.1007/JHEP04%282014%29195?utm_source=chatgpt.com "Gravitational dynamics from entanglement "thermodynamics""
