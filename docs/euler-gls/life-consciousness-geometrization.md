@@ -1,5 +1,7 @@
 # 生命—意识几何化：开放系统几何热力学与信息几何的统一
 
+Version: 1.6
+
 **MSC**：80A17；82C05；53D10；62B10；92C42；68Q85
 **关键词**：开放系统；接触几何；信息几何；Wasserstein 流；自然梯度；热力学长度；热力学不确定性关系；速度极限；马尔可夫毯；Jarzynski–Sagawa–Ueda；Landauer 界；自指测量；复制子动力学
 
@@ -13,16 +15,21 @@
 
 ### 0.1 窗化读数与母刻度
 
+* 逆温记号：$\beta:=(k_{\rm B}T)^{-1}$。文中功—信息等式与连续监测鞅 $\Gamma_t=\exp[-\beta W_t+\beta\Delta F_t-I_t]$（§5）、$\langle e^{-\beta W+\beta\Delta F-I}\rangle=1$（附录 E）皆以此为统一热参量约定。
 * 能谱窗核与时间窗分别记为 $w(E)$、$h(t)$；窗化读数记为线性泛函 $\langle f\rangle_{w,h}=\int W(E)\,f(E)\,d\mu(E)$，其中 $W$ 由 $w,h$ 卷合诱导的权。
-* 以散射—谱移母刻度同一式作为全局刻度（母尺）：$\varphi'(E)/\pi=\rho_{\rm rel}(E)=(2\pi)^{-1}\mathrm{tr}\,\mathsf Q(E)$，其中 $\mathsf Q(E)$ 为 Wigner–Smith 群延迟矩阵。该式在本文中用作能量—信息—延迟的共同刻度（在开放系统推广处用 $\mathsf Q_{\rm eff}$ 代替）。
+* **以散射—谱移母刻度同一式作为全局刻度（母尺）**：令散射矩阵 $\mathsf S(E)$ 的**总散射相位** $\varphi(E):=\arg\det \mathsf S(E)$（等价于谱移函数 $\xi(E)=\varphi(E)/(2\pi)$），并定义 Wigner–Smith **群延迟矩阵** $\mathsf Q(E):=-i\,\mathsf S^\dagger(E)\,\partial_E\mathsf S(E)$。则
+
+  $$\boxed{\ \frac{\varphi'(E)}{2\pi}=\rho_{\rm rel}(E)=\frac{1}{2\pi}\mathrm{tr}\,\mathsf Q(E)\ }.$$
+
+  上式在本文中用作能量—信息—延迟的共同刻度（在开放系统推广处用 $\mathsf Q_{\rm eff}$ 代替）。
 
 ### 0.2 接触几何—开放系统
 
-* 接触流形 $(\mathcal C,\alpha)$ 取 Darboux 坐标 $(x^i,y_i,z)$ 满足 $\alpha=dz-y_i\,dx^i$。接触哈密顿量 $H$ 确定向量场 $X_H$ 由 $\iota_{X_H}\alpha=-H$、$\iota_{X_H}d\alpha=dH-(\mathcal R H)\alpha$ 给出；以此统一势—力—流与熵产生的几何描述，用于非平衡开放系统的端口耦合。
+* 接触流形 $(\mathcal C,\alpha)$ 取 Darboux 坐标 $(x^i,y_i,z)$ 满足 $\alpha=dz-y_i\,dx^i$。接触哈密顿量 $H$ 确定向量场 $X_H$ 由 $\iota_{X_H}\alpha=-H$、$\iota_{X_H}d\alpha=dH-(\mathcal R H)\alpha$ 给出，其中 $\mathcal R$ 为 Reeb 向量场，满足 $\alpha(\mathcal R)=1$、$\iota_{\mathcal R}d\alpha=0$；以此统一势—力—流与熵产生的几何描述，用于非平衡开放系统的端口耦合。
 
 ### 0.3 信息几何—自然梯度
 
-* 概率流形 $\mathcal P=\{p_\theta\}$ 装备 Fisher–Rao 度量 $g_{ij}(\theta)=\mathbb E_\theta[\partial_i\log p_\theta\,\partial_j\log p_\theta]$。自然梯度记为 $\widetilde\nabla f=g^{-1}\nabla f$。I-投影最小化 $D_{\rm KL}(q\Vert p)$，m-投影最小化 $D_{\rm KL}(p\Vert q)$。
+* 概率流形 $\mathcal P=\{p_\theta\}$ 装备 Fisher–Rao 度量 $g_{ij}(\theta)=\mathbb E_\theta[\partial_i\log p_\theta\,\partial_j\log p_\theta]$。自然梯度记为 $\widetilde\nabla f=g^{-1}\nabla f$。**I（information）/e（exponential）-投影最小化 $D_{\rm KL}(p\Vert q)$，m（mixture/M）-投影最小化 $D_{\rm KL}(q\Vert p)$。**
 
 ### 0.4 Wasserstein–JKO 与梯度流
 
@@ -59,9 +66,9 @@
 
 **定义 1（生命 = 负熵几何结构）**：设开放系统由接触系统 $(\mathcal C,\alpha,H)$ 与概率流形 $\mathcal P$ 耦合。系统熵满足 $\dot S_{\rm sys}=\dot S_{\rm e}+\dot S_{\rm i}$、$\dot S_{\rm i}\ge 0$。若存在持久的负熵通量 $J_N:=-\dot S_{\rm e}>0$ 使 $\sup_{t}S_{\rm sys}(t)<\infty$，并且接触流在给定端口约束下是输入—状态稳定与可达，则称处于生命态。该生命态由负熵通量支撑的几何结构维持。
 
-**定义 2（意识 = 自指测量过程）**：设生成模型 $p_\theta(s,o)$、识别密度 $q_\phi(s\mid o)$ 在马尔可夫毯 $(s_{\rm int},s_{\rm ext};o,a)$ 的遮蔽条件下演化，其更新由 I-投影/自然梯度最小化 $\mathcal F(\phi,\theta)$；测量—反馈引入互信息 $I$，功—自由能差满足 $\langle W\rangle\ge \Delta F-k_{\rm B}T\langle I\rangle$。称该最小化—控制闭环为意识的抽象。([Nature][5])
+**定义 2（意识 = 自指测量过程）**：设生成模型 $p_\theta(s,o)$、识别密度 $q_\phi(s\mid o)$ 在马尔可夫毯 $(s_{\rm int},s_{\rm ext};o,a)$ 的遮蔽条件下演化，其更新由 **m-投影（最小化 $D_{\rm KL}(q_\phi\Vert p_\theta)$）/自然梯度** 实现对 $\mathcal F(\phi,\theta)$ 的下降；测量—反馈引入互信息 $I$，功—自由能差满足 $\langle W\rangle\ge \Delta F-k_{\rm B}T\langle I\rangle$。称该最小化—控制闭环为意识的抽象。([Nature][5])
 
-**定义 3（进化 = 几何优化路径）**：在策略单纯形 $\Delta^{n-1}$ 上的复制子动力学 $\dot x_i=x_i(f_i-\bar f)$ 是 Shahshahani/Fisher 度量的梯度流；进化轨道是给定预算与环境约束下，Fisher 或 Wasserstein 度量上最小化热力学长度与熵产生的曲线。([arXiv][6])
+**定义 3（进化 = 几何优化路径）**：在策略单纯形 $\Delta^{n-1}$ 上，**若存在势函数 $V(\mathbf x)$ 使 $f_i=\partial_{x_i}V$（潜在博弈/可积）**，则复制子动力学 $\dot x_i=x_i(f_i-\bar f)$ 是 Shahshahani/Fisher 度量的**梯度流**；进化轨道是给定预算与环境约束下，Fisher 或 Wasserstein 度量上最小化热力学长度与熵产生的曲线。([arXiv][6])
 
 ---
 
@@ -82,9 +89,9 @@
 
 ### 定理 C（进化的最小耗散与速度极限）
 
-**陈述**：控制参数 $\lambda(t)$ 驱动非平衡过程于时长 $\tau$ 内转移时，线性响应下额外耗散功下界为 $\langle W_{\rm ex}\rangle\ge \mathcal L^2/\tau$，其中热力学长度 $\mathcal L=\int_0^\tau \sqrt{\dot\lambda^\top \zeta(\lambda)\dot\lambda}\,dt$，最小耗散协议为测地；马尔可夫过程的转移速度受熵产生与动力活度的速度极限约束。复制子动力学为 Shahshahani 度量的梯度流，与上述"测地—最优协议"一致。
+**陈述**：控制参数 $\lambda(t)$ 驱动非平衡过程于时长 $\tau$ 内转移时，线性响应下额外耗散功下界为 $\langle W_{\rm ex}\rangle\ge \mathcal L^2/\tau$，其中热力学长度 $\mathcal L=\int_0^\tau \sqrt{\dot\lambda^\top \zeta(\lambda)\dot\lambda}\,dt$，最小耗散协议为测地；马尔可夫过程的转移速度受熵产生与动力活度的速度极限约束。**在潜在博弈/可积条件下**，复制子动力学为 Shahshahani 度量的梯度流，并与上述"测地—最优协议"一致。
 
-**证明概述**：由热力学度量构造与 Cauchy–Schwarz 给出 $\langle W_{\rm ex}\rangle$ 下界；速度极限由动力活度—熵产生权衡不等式给出；复制子—自然梯度同构见附录 C、D。([物理评论链接管理器][4])
+**证明概述**：由热力学度量构造与 Cauchy–Schwarz 给出 $\langle W_{\rm ex}\rangle$ 下界；速度极限由动力活度—熵产生权衡不等式给出；复制子—自然梯度同构见附录 C。([物理评论链接管理器][4])
 
 ### 定理 D（热力学不确定性关系的生命—计量界）
 
@@ -96,27 +103,31 @@
 
 ## 5 窗化读数、有效群延迟与实验协议
 
-**开放系统有效群延迟**：定义 $\mathsf Q_{\rm eff}(\omega)=-i\,\mathsf G^\sharp(\omega)\,\partial_\omega\mathsf G(\omega)$（$\mathsf G$ 为响应/散射函数），以 $(2\pi)^{-1}\mathrm{tr}\,\mathsf Q_{\rm eff}$ 与 $\rho_{\rm rel}$ 同位，作为能量—信息—时延的统一读数；配合窗化取迹 $\langle (2\pi)^{-1}\mathrm{tr}\,\mathsf Q_{\rm eff}\rangle_{w,h}$ 进行跨尺度标定。
+**开放系统有效群延迟**：约定 $A^\sharp:=A^\dagger$。当响应/散射函数 $\mathsf G(\omega)$ 非酉时，取其极分解 $\mathsf G(\omega)=\mathsf U(\omega)\mathsf H(\omega)$（$\mathsf U$ 酉、$\mathsf H$ 正定），并以酉因子定义
+
+$$\boxed{\ \mathsf Q_{\rm eff}(\omega):=-i\,\mathsf U^\dagger(\omega)\,\partial_\omega \mathsf U(\omega)\ }.$$
+
+因而 $(2\pi)^{-1}\mathrm{tr}\,\mathsf Q_{\rm eff}\in\mathbb R$，并与 $\rho_{\rm rel}$ 同位；配合窗化取迹 $\big\langle (2\pi)^{-1}\mathrm{tr}\,\mathsf Q_{\rm eff}\big\rangle_{w,h}$ 可进行跨尺度标定。
 **读数算子与误差纪律**：以 $\mathsf K_{w,h}$ 实现窗化算子读数，误差预算由 NPE 有限阶纪律控制；尾项熵通量 $\mathscr T_R$ 的收敛性给出停机准则（附录 F）。
 **协议与可检性**：（i）连续监测构造鞅 $\Gamma_t=\exp[-\beta W_t+\beta\Delta F_t-I_t]$ 检验功—信息等式；（ii）比较行为/神经读数与 $\langle (2\pi)^{-1}\mathrm{tr}\,\mathsf Q_{\rm eff}\rangle_{w,h}$ 的协变性；（iii）在微系统上以最小耗散测地协议验证热力学长度界。广义等式与度量—测地的实验可行性已在统计物理与生物物理语境中反复论证。([物理评论链接管理器][7])
 
 ---
 
-## 6 意识的几何：马尔可夫毯、I-投影与连续测量
+## 6 意识的几何：马尔可夫毯、m-投影与连续测量
 
-意识视为自指测量—控制：内部生成模型与识别密度在马尔可夫毯遮蔽下以 I-投影/自然梯度最小化 $\mathcal F$，行动作为策略控制以最小化预期自由能。该过程的物理可达界由 Landauer 最小散热、Jarzynski–Sagawa–Ueda 功—信息不等式与热力学度量共同决定；若观测为连续型，可在 Belavkin 过滤下得到后验态的随机主方程，实现意识—观测的连续时间闭合。([Nature][5])
+意识视为自指测量—控制：内部生成模型与识别密度在马尔可夫毯遮蔽下以 **m-投影（逆向 KL）/自然梯度** 最小化 $\mathcal F$，行动作为策略控制以最小化预期自由能。该过程的物理可达界由 Landauer 最小散热、Jarzynski–Sagawa–Ueda 功—信息不等式与热力学度量共同决定；若观测为连续型，可在 Belavkin 过滤下得到后验态的随机主方程，实现意识—观测的连续时间闭合。([Nature][5])
 
 ---
 
 ## 7 进化的几何：自然选择与自然梯度的一致性
 
-复制子动力学是 Shahshahani（亦即 Fisher 在单纯形上的限制）度量的梯度流；因而"适应度上升"等价于在 Fisher 度量下的最速上升/下降（视势函数定义而定）。将变异—选择—迁移写为 Wasserstein 空间上的自由能下降流，可与 JKO 方案统一，并在热力学长度与速度极限的框架下给出"代价—时间—精度"的三重权衡。([arXiv][6])
+**在潜在博弈（存在 $V$ 使 $f_i=\partial_{x_i}V$）条件下**，复制子动力学是 Shahshahani（亦即 Fisher 在单纯形上的限制）度量的**梯度流**；因而"适应度上升"与在 Fisher 度量下的最速上升/下降（视势函数定义而定）等价。将变异—选择—迁移写为 Wasserstein 空间上的自由能下降流，可与 JKO 方案统一，并在热力学长度与速度极限的框架下给出"代价—时间—精度"的三重权衡。([arXiv][6])
 
 ---
 
 ## 8 生命—意识的母刻度同位化
 
-将母刻度 $\varphi'/\pi=\rho_{\rm rel}=(2\pi)^{-1}\mathrm{tr}\,\mathsf Q$ 推广到开放系统，以 $\mathsf Q_{\rm eff}$ 替换 $\mathsf Q$，在代谢—信号—神经—行为多层上以窗化读数实现能量—信息—延迟的同位量纲；与 Toeplitz/Berezin 压缩的算子读数兼容，为跨尺度数据同化与反演提供统一刻度。配合 Zeckendorf 可逆日志对窗化载荷做整数化记账，保证跨窗可复算与一致对接。
+将母刻度 $\varphi'/(2\pi)=\rho_{\rm rel}=(2\pi)^{-1}\mathrm{tr}\,\mathsf Q$ 推广到开放系统，以 $\mathsf Q_{\rm eff}$ 替换 $\mathsf Q$，在代谢—信号—神经—行为多层上以窗化读数实现能量—信息—延迟的同位量纲；与 Toeplitz/Berezin 压缩的算子读数兼容，为跨尺度数据同化与反演提供统一刻度。配合 Zeckendorf 可逆日志对窗化载荷做整数化记账，保证跨窗可复算与一致对接。
 
 ---
 
@@ -130,7 +141,7 @@ $$
 
 ---
 
-## 附录 B：I-投影、自然梯度与 ELBO 单调性
+## 附录 B：m-投影、自然梯度与 ELBO 单调性
 
 在指数族近似与光滑约束下，ELBO 的欧氏梯度经 Fisher 预条件化得到自然梯度步 $\Delta\theta=-\eta\,g^{-1}\nabla_\theta \mathcal F$。由于 $g$ 正定，取足够小的 $\eta$ 可保证 $\mathcal F$ 在每步下降且下降率在局部意义下最优；这等价于统计流形上的最速下降。信息几何的标准结果保证 I/m-投影的正交分解与唯一性（在适当凸性假设下）。([Vielbein][3])
 
@@ -138,7 +149,15 @@ $$
 
 ## 附录 C：复制子动力学的 Shahshahani 几何证明
 
-在单纯形 $\Delta^{n-1}$ 上取 Shahshahani 度量 $g_{ij}=\delta_{ij}/x_i$。令势函数 $V(\mathbf x)$ 的欧氏梯度为 $f_i=\partial_{x_i}V$，则度量下的梯度为 $(\mathrm{grad}_g V)_i=\sum_j g^{ij}\partial_{x_j}V=x_i(f_i-\bar f)$，即复制子方程 $\dot x_i=x_i(f_i-\bar f)$。该结果等价于"复制子 = Fisher 自然梯度"，已在信息几何—演化博弈文献中系统阐述。([arXiv][6])
+在单纯形 $\Delta^{n-1}$ 上取 Shahshahani 度量 $g_{ij}=\delta_{ij}/x_i$。令势函数 $V(\mathbf x)$ 的欧氏梯度为 $f_i=\partial_{x_i}V$。在单纯形约束 $\sum_i x_i=1$ 下，自然梯度需先投影到切空间：
+
+$$\mathrm{grad}_g V=\Pi_x\,g^{-1}\nabla V,\qquad \Pi_x:\ T_x\mathbb R^n\to T_x\Delta^{n-1}.$$
+
+因 $g^{-1}\nabla V=(x_i f_i)_i$，故
+
+$$(\mathrm{grad}_g V)_i=x_i f_i - x_i\sum_j x_j f_j=x_i\big(f_i-\bar f\big),\ \ \bar f=\sum_j x_j f_j,$$
+
+从而得到复制子方程 $\dot x_i=x_i(f_i-\bar f)$。该结果等价于"复制子 = Fisher 自然梯度"，已在信息几何—演化博弈文献中系统阐述。([arXiv][6])
 
 ---
 
