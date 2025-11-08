@@ -1,8 +1,10 @@
 # EBOC–GLS 等价定理（观察范畴版）
 
+Version: 1.9
+
 ## 摘要
 
-在四条可检条件——全局幺正/可逆化、有限记忆/可马尔可夫化、带限与 Nyquist–Poisson–Euler–Maclaurin（NPE）有限阶闭合、时间账本对齐——之下,构造函子 $\mathfrak F:\mathbf{EBOC}\to\mathbf{GLS}$、$\mathfrak G:\mathbf{GLS}\to\mathbf{EBOC}$ 与自然变换 $\eta,\epsilon$,证明二者在观察范畴中互为等价。桥梁为母刻度同一式 $\varphi'(E)/\pi=\rho_{\rm rel}(E)=(2\pi)^{-1}\mathrm{tr}\,\mathsf Q(E)$（$\mathsf Q=-i\,S^\dagger \partial_E S$）与窗化迹恒等式；NPE 纪律给出离散化与端点—尾项的非渐近闭合而不引入新奇性。由此,EBOC 的"静态块—因子译码—复杂度/熵账本"与 GLS 的"幺正散射—群延迟—窗化测度"逐窗一致。([ChaosBook][1])
+在四条可检条件——全局幺正/可逆化、有限记忆/可马尔可夫化、带限与 Nyquist–Poisson–Euler–Maclaurin（NPE）有限阶闭合、时间账本对齐——之下,构造函子 $\mathfrak F:\mathbf{EBOC}\to\mathbf{GLS}$、$\mathfrak G:\mathbf{GLS}\to\mathbf{EBOC}$ 与自然变换 $\eta,\epsilon$,证明二者在观察范畴中互为等价。桥梁为母刻度同一式 $\boxed{\ \varphi'(E)/\pi=\tfrac{1}{2\pi}\mathrm{tr}\,\mathsf Q(E)\ }$、$\boxed{\ \rho_{\rm rel}(E)=\xi'(E)=-\tfrac{1}{2\pi}\mathrm{tr}\,\mathsf Q(E)\ }$，故 $\varphi'(E)/\pi=-\rho_{\rm rel}(E)$（$\mathsf Q=-i\,S^\dagger \partial_E S$）与窗化迹恒等式；NPE 纪律给出离散化与端点—尾项的非渐近闭合而不引入新奇性。由此,EBOC 的"静态块—因子译码—复杂度/熵账本"与 GLS 的"幺正散射—群延迟—窗化测度"逐窗一致。([ChaosBook][1])
 
 ---
 
@@ -25,18 +27,23 @@ $$
 
 GLS 对象写作
 $$
-\mathfrak U=(\mathcal H,S(E),\mu_\varphi,\mathcal W),
+\mathfrak U=(\mathcal H,S(E),\mathcal W),
 $$
 其中 $S(E)\in\mathsf U(N)$ 幺正且可微,$\mathsf Q(E)=-i\,S(E)^\dagger \tfrac{dS}{dE}(E)$ 为 Wigner–Smith 群延迟矩阵,总群延迟 $\mathrm{tr}\,\mathsf Q$；密度—延迟—相位满足
 $$
-\boxed{\quad \frac{\varphi'(E)}{\pi}=\rho_{\rm rel}(E)=\frac{1}{2\pi}\mathrm{tr}\,\mathsf Q(E)\quad}
+\boxed{\ \frac{\varphi'(E)}{\pi}=\frac{1}{2\pi}\mathrm{tr}\,\mathsf Q(E)\ },\qquad \boxed{\ \rho_{\rm rel}(E)=\xi'(E)=-\frac{1}{2\pi}\mathrm{tr}\,\mathsf Q(E)\ },\ \text{因而}\ \frac{\varphi'(E)}{\pi}=-\rho_{\rm rel}(E).
 $$
-并与谱位移函数 $\xi$ 由 Birman–Kreĭn 公式 $\det S(E)=e^{-2\pi i\,\xi(E)}$ 联络,故 $\xi'(E)=(2\pi)^{-1}\mathrm{tr}\,\mathsf Q(E)$。([ChaosBook][1])
+并与谱位移函数 $\xi$ 由 Birman–Kreĭn 公式 $\det S(E)=e^{-2\pi i\,\xi(E)}$ 联络,故 $\xi'(E)=-\frac{1}{2\pi}\mathrm{tr}\,\mathsf Q(E)$。([ChaosBook][1])
 给定窗—核对 $(w_R,h)\in\mathcal W$,定义窗化读数
 $$
 \mathrm{Obs}(w_R,h;\rho)=\int_{\mathbb R} w_R(E)\,(h\star \rho_{\rm rel})(E)\,dE,
 $$
-以及沿通道 $\gamma$ 的窗化群延迟
+其中 $\star$ 表示相关运算：$(h\star \rho)(E):=(\check h\ast \rho)(E)=\int_{\mathbb R} h(t-E)\,\rho(t)\,dt$，$\check h(E)=h(-E)$。
+设 $P_\gamma$ 为通道 $\gamma$ 的正交投影，定义通道群延迟矩阵
+$$
+\mathsf Q_\gamma(E):=P_\gamma\,\mathsf Q(E)\,P_\gamma,\qquad \mathrm{tr}\,\mathsf Q_\gamma(E)=\mathrm{Tr}\big(P_\gamma\,\mathsf Q(E)\big).
+$$
+由此，沿通道 $\gamma$ 的窗化群延迟
 $$
 T_\gamma[w_R,h]=\int_{\mathbb R} (w_R\ast \check h)(E)\,\frac{1}{2\pi}\mathrm{tr}\,\mathsf Q_\gamma(E)\,dE.
 $$
@@ -78,22 +85,39 @@ $$
 
 若 $S(E)$ 幺正可微,定义 $\mathsf Q=-i\,S^\dagger S'$。则几乎处处
 $$
-\rho_{\rm rel}(E)=\frac{1}{2\pi}\mathrm{tr}\,\mathsf Q(E),\qquad
-\frac{\varphi'(E)}{\pi}=\rho_{\rm rel}(E),\quad \det S=e^{2i\varphi}.
+\rho_{\rm rel}(E)=\xi'(E)=-\frac{1}{2\pi}\mathrm{tr}\,\mathsf Q(E),\quad
+\frac{\varphi'(E)}{\pi}=-\rho_{\rm rel}(E),\quad \det S=e^{2i\varphi}.
 $$
 **证明** 由 Birman–Kreĭn $\det S(E)=e^{-2\pi i\,\xi(E)}$ 与
 $\partial_E\log\det S(E)=\mathrm{tr}\,(S^\dagger S')$,得
-$\mathrm{tr}\,\mathsf Q(E)=2\pi\,\xi'(E)$。令 $\rho_{\rm rel}=\xi'$ 得首式；设 $\varphi=\tfrac12\arg\det S$ 则 $\varphi'=\pi\xi'$ 得次式。([arXiv][4])
+$\mathrm{tr}\,\mathsf Q(E)=-2\pi\,\xi'(E)$。令 $\rho_{\rm rel}=\xi'$ 得首式；设 $\varphi=\tfrac12\arg\det S$ 则 $\varphi'=\tfrac12\mathrm{tr}\,\mathsf Q=-\pi\xi'$，故 $\varphi'/\pi=-\xi'=-\rho_{\rm rel}$ 得次式。([arXiv][4])
 
 ### 引理 2.2（窗化读数 = 压缩迹恒等式）
 
-令 $K_{w,h}$ 为由 $(w_R,h)$ 定义的 Toeplitz/Berezin 窗化压缩。则
+设 $(A,B)$ 为自伴算子且 $A-B\in\mathcal S_1$。令 $f:=-(w_R\ast \check h)$，并假设 $f\in OL(\mathbb R)$，并且
 $$
-\mathrm{Tr}\,K_{w,h}
-=\int_{\mathbb R} w_R(E)\,(h\star \rho_{\rm rel})(E)\,dE.
+(w_R\ast \check h)\in W^{1,1}(\mathbb R),\qquad (w_R\ast \check h)(E)\,\xi(E)\xrightarrow[E\to\pm\infty]{}0.
 $$
-**证明** Lifshits–Kreĭn 迹公式给出在 $A-B\in\mathcal S_1$ 时
-$\mathrm{Tr}\big(f(A)-f(B)\big)=\int f'(E)\,\xi(E)\,dE$。取 $f' = w_R\!\ast h$ 且 $\rho_{\rm rel}=\xi'$,即得。幺正规型可由 Aleksandrov–Peller 的单位圆版本处理。([arXiv][5])
+（例如：$w_R\in L^1\cap W^{1,1}$ 且具紧支撑或快速衰减、$h\in L^1$，则 $(w_R\ast \check h)\in W^{1,1}$；典型散射情形下 $\xi$ 具有界变差并趋于常数。）定义
+$$
+K_{w,h}:=f(A)-f(B)\qquad(\text{其迹与由 }(w_R,h)\text{ 定义的 Toeplitz/Berezin 窗化压缩同值}).
+$$
+在此条件下分部积分无边界项，故
+$$
+\mathrm{Tr}\,K_{w,h}=\int_{\mathbb R} w_R(E)\,(h\star\rho_{\rm rel})(E)\,dE.
+$$
+**证明** 由 Lifshits–Kreĭn 迹公式（$A-B\in\mathcal S_1,\ f\in OL$），
+$$
+\mathrm{Tr}\big(f(A)-f(B)\big)=\int_{\mathbb R} f'(E)\,\xi(E)\,dE.
+$$
+按 §0.2 定义 $(h\star\rho_{\rm rel})=\check h\ast\rho_{\rm rel}$ 与 $\rho_{\rm rel}=\xi'$，分部积分给出
+$$
+\int_{\mathbb R} w_R(E)\,(h\star\rho_{\rm rel})(E)\,dE
+=\int_{\mathbb R} (w_R\ast \check h)(E)\,\xi'(E)\,dE
+=-\int_{\mathbb R} (w_R\ast \check h)'(E)\,\xi(E)\,dE
+=\int_{\mathbb R} f'(E)\,\xi(E)\,dE,
+$$
+因而结论成立。幺正规型可由 Aleksandrov–Peller 的单位圆版本处理。([arXiv][5])
 
 ### 引理 2.3（Poisson–Nyquist 与 EM 闭合）
 
@@ -140,7 +164,7 @@ $$
 =\mathrm{Obs}(w_R,h;\rho)
 =\int_{\mathbb R} w_R(E)\,(h\star \rho_{\rm rel})(E)\,dE,
 $$
-且所有读数以母刻度 $\varphi'/\pi=\rho_{\rm rel}=(2\pi)^{-1}\mathrm{tr}\,\mathsf Q$ 统一。([arXiv][5])
+且所有读数以母刻度 $\varphi'(E)/\pi=-(\rho_{\rm rel}(E))=\frac{1}{2\pi}\mathrm{tr}\,\mathsf Q(E)$ 统一。([arXiv][5])
 
 ### 3.3 NPE 闭合与"无新奇性"
 
@@ -150,7 +174,7 @@ $$
 
 有限传播 $+$ 幺正性给出无超锥传播（无信号）；窗化时间 $T_\gamma[w_R,h]$ 仅为刻度读数,因果偏序由前沿时间决定。由 SMB/Brudno 与因子熵单调,EBOC 时间片账本与 GLS 密度—延迟账本对齐。([ChaosBook][1])
 
-**定义** $\mathfrak F(\mathcal U):=(\mathcal H,S(E),\mu_\varphi,\mathcal W)$ 并约定
+**定义** $\mathfrak F(\mathcal U):=(\mathcal H,S(E),\mathcal W)$ 并约定
 $\mathsf{Obs}_{\rm G}(\mathfrak F(\mathcal U))=\mathsf{Obs}_{\rm E}(\mathcal U)$。
 
 ---
@@ -191,7 +215,7 @@ $$
 **自然变换 $\epsilon:\mathfrak F\!\circ\!\mathfrak G\Rightarrow \mathrm{Id}_{\mathbf{GLS}}$**
 对每个 $\mathfrak U$,取去规范相位后的群延迟密度同一：
 $$
-\frac{1}{2\pi}\mathrm{tr}\,\mathsf Q_{\mathfrak F(\mathfrak G(\mathfrak U))}(E)=\rho_{\rm rel}(E),
+\boxed{\ -\frac{1}{2\pi}\mathrm{tr}\,\mathsf Q_{\mathfrak F(\mathfrak G(\mathfrak U))}(E)=\rho_{\rm rel}(E)\ },
 $$
 故一切 $\mathrm{Obs}(w_R,h)$、$T_\gamma[w_R,h]$ 值保持。
 
@@ -204,17 +228,18 @@ $$
 ### 6.1 EBOC $\to$ GLS：核算一致性的全细节
 
 取任意带限 $(w_R,h)$。由引理 2.1,母刻度同一式给出
-$\rho_{\rm rel}=(2\pi)^{-1}\mathrm{tr}\,\mathsf Q=\varphi'/\pi$。
+$\rho_{\rm rel}=-\frac{1}{2\pi}\mathrm{tr}\,\mathsf Q$ 且 $\frac{\varphi'}{\pi}=-\rho_{\rm rel}$。
 由引理 2.2,
 $$
 \mathrm{Obs}(w_R,h;\rho)=\mathrm{Tr}\,K_{w,h}.
 $$
-EBOC 侧,$\pi$ 有限厚度使得在时间片窗口 $W$ 上的读数成为像测度 $\pi_\ast\mu$ 的线性泛函；SMB 与 Brudno 等式给出 $L(W)=T$ 归一化的复杂度/熵密度极限,与压缩迹的线性泛函一致。故
+EBOC 侧，$\pi$ 为有限厚度译码，$\mu$ 遍历且 $L(W)=T$ 为时间长度。由 Birkhoff/SMB 与 Brudno，$\mu$-几乎处处有（假设 $\int_{\mathbb R} w_R(E)\,dE\neq 0$）
 $$
-\lim_{|W|\to\infty}\frac{1}{L(W)}\sum_{x\in X_f|_W}\!\mathcal O_{\pi,\varsigma}(x)\,=\,
-\frac{1}{L(W)}\mathrm{Tr}\,K_{w,h}\quad\Longrightarrow\quad
-\mathsf{Obs}_{\rm G}(\mathfrak F(\mathcal U))\cong \mathsf{Obs}_{\rm E}(\mathcal U).
+\lim_{|W|\to\infty}\frac{1}{L(W)}\sum_{t\in W}\mathcal O_{\pi,\varsigma}\!\big(\sigma_{\rm time}^t x\big)
+=\frac{1}{\int_{\mathbb R} w_R(E)\,dE}\mathrm{Tr}\,K_{w,h}
+=\frac{1}{\int_{\mathbb R} w_R(E)\,dE}\int_{\mathbb R} w_R(E)\,(h\star\rho_{\rm rel})(E)\,dE.
 $$
+于是 $\mathsf{Obs}_{\rm G}(\mathfrak F(\mathcal U))\cong \mathsf{Obs}_{\rm E}(\mathcal U)$ 在时间密度刻度上逐窗一致。
 ([arXiv][5])
 
 ### 6.2 GLS $\to$ EBOC：SFT 化的构造细节
@@ -223,14 +248,14 @@ $$
 $$
 \int f=\Delta\sum_{n\in\mathbb Z} f(E_0+n\Delta).
 $$
-近带限：
+近带限时，有
 $$
-\int f
-=\Delta\!\!\sum_{|n|\le N} f(E_0+n\Delta)
-+\underbrace{\sum_{k\neq 0}\widehat f\!\big(2\pi k/\Delta\big)}_{\text{别名}}
-+\underbrace{R_{\rm EM}^{(m)}}_{\text{EM 端点+余项}},
+\int_{\mathbb R} f(E)\,dE
+= \Delta\sum_{|n|\le N} f(E_0+n\Delta)
+- 2\pi\sum_{k\ne 0}\widehat f\!\left(\frac{2\pi k}{\Delta}\right)e^{i\,2\pi k E_0/\Delta}
++ R_{\rm EM}^{(m)},
 $$
-其中 $R_{\rm EM}^{(m)}$ 具 Bernoulli–$\zeta$ 上界。将有限精度的采样值 $f(E_0+n\Delta)$ 量化为字母,在线性滤波一致性（长度 $M$）下定义 sofic 子移位；取 SFT 覆盖得 $X_f$ 与有限厚度译码 $\pi$。由引理 2.2,
+其中 $R_{\rm EM}^{(m)}$ 为用 Euler–Maclaurin 将 $\Delta\sum_{n\in\mathbb Z}f(E_0+n\Delta)$ 关闭到 $|n|\le N$ 的端点与尾项余量；若 $\widehat f$ 支持于 $(-\pi/\Delta,\pi/\Delta)$，则别名项为 $0$，退化为严格采样恒等式。将有限精度的采样值 $f(E_0+n\Delta)$ 量化为字母,在线性滤波一致性（长度 $M$）下定义 sofic 子移位；取 SFT 覆盖得 $X_f$ 与有限厚度译码 $\pi$。由引理 2.2,
 $$
 \mathrm{Obs}(w_R,h;\rho)=\mathrm{Tr}\,K_{w,h}
 =\lim_{k\to\infty}\mathcal O_{\pi,\varsigma}\!\big(x\!\mid_{W_k}\big),
@@ -258,13 +283,17 @@ QCA 之有限传播与幺正性确保无超锥传播；窗化顺序仅影响刻�
 
 ## 8. 误差预算（NPE Discipline）
 
-对任意 $(w_R,h)$ 与近带限 $\rho_{\rm rel}$,令 $f=w_R\cdot(h\star \rho_{\rm rel})$,采样步长 $\Delta$、截断 $N$、EM 阶数 $m$。有
+对任意 $(w_R,h)$ 与近带限 $\rho_{\rm rel}$,令 $f=w_R\cdot(h\star \rho_{\rm rel})$，取采样步长 $\Delta$、截断 $N$、EM 阶数 $m$，并设
+$$
+[a,b]=\Big[E_0-\Big(N+\tfrac12\Big)\Delta,\ \ E_0+\Big(N+\tfrac12\Big)\Delta\Big],\qquad f\in C^{2m}([a,b]),\ \ \widehat f\in L^1(\mathbb R).
+$$
+则有下述别名+EM 上界：
 $$
 \Bigl|\int f-\Delta\!\sum_{|n|\le N}f(E_0+n\Delta)\Bigr|
 \le
-\underbrace{\int_{|\omega|\ge \pi/\Delta}\!|\widehat f(\omega)|\,d\omega}_{\text{别名}}
-+\underbrace{\frac{|B_{2m}|}{(2m)!}\bigl|f^{(2m-1)}(b)-f^{(2m-1)}(a)\bigr|
-+\frac{2\zeta(2m)}{(2\pi)^{2m}}\!\int_a^b\!|f^{(2m)}(E)|\,dE}_{\text{EM 端点+余项}}.
+2\pi\sum_{k\ne 0}\Bigl|\widehat f\!\Bigl(\frac{2\pi k}{\Delta}\Bigr)\Bigr|
++\frac{|B_{2m}|}{(2m)!}\bigl|f^{(2m-1)}(b)-f^{(2m-1)}(a)\bigr|
++\frac{2\zeta(2m)}{(2\pi)^{2m}}\!\int_a^b\!|f^{(2m)}(E)|\,dE.
 $$
 选择 $\Delta,N,m$ 以达目标精度阈值。([Massachusetts Institute of Technology][9])
 
@@ -279,7 +308,7 @@ $$
 $$
 其核心恒等为
 $$
-\boxed{\ \frac{\varphi'}{\pi}=\rho_{\rm rel}=\frac{1}{2\pi}\mathrm{tr}\,\mathsf Q\ },\qquad
+\boxed{\ \frac{\varphi'}{\pi}=\frac{1}{2\pi}\mathrm{tr}\,\mathsf Q\ },\qquad \boxed{\ \rho_{\rm rel}=\xi'=-\frac{1}{2\pi}\mathrm{tr}\,\mathsf Q\ }，并由此 \ \frac{\varphi'}{\pi}=-\rho_{\rm rel};\qquad
 \boxed{\ \mathrm{Tr}\,K_{w,h}=\int w_R(E)\,(h\star\rho_{\rm rel})(E)\,dE\ }.
 $$
 第一式由 Birman–Kreĭn 与 Wigner–Smith 结构推出,第二式由 Lifshits–Kreĭn 迹公式与窗化压缩导出；NPE 纪律提供非渐近闭合并避免新奇性。([arXiv][4])
@@ -289,7 +318,7 @@ $$
 ## 参考锚点（可核查）
 
 * Wigner–Smith 群延迟矩阵、总延迟与态密度的联系；教材/综述亦述及 $\tau_W=\mathrm{tr}\,\mathsf Q/N$ 的统计性质。([ChaosBook][1])
-* Birman–Kreĭn 公式 $\det S=e^{-2\pi i\xi}$ 与 $\xi'=(2\pi)^{-1}\mathrm{tr}\,\mathsf Q$ 的一般性。([arXiv][4])
+* Birman–Kreĭn 公式 $\det S=e^{-2\pi i\xi}$ 与 $\xi'=-(2\pi)^{-1}\mathrm{tr}\,\mathsf Q$ 的一般性。([arXiv][4])
 * Lifshits–Kreĭn 迹公式与单位圆情形的 Kreĭn–Peller 扩展（算子 Lipschitz 类）。([arXiv][5])
 * Poisson 求和与 EM 余项的显式上界及教材化推导。([webusers.imj-prg.fr][3])
 * SMB 与 Brudno 等式的多维推广；因子熵单调与 sofic/SFT 覆盖。([Project Euclid][2])
