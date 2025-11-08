@@ -1,4 +1,5 @@
 # 虫洞—黑洞—意识的窗化散射—因果—信息几何统一
+Version: 1.3
 
 **三位一体母尺、可遍历性判据、测量—熵产生、Mellin—分形—Zeckendorf 桥接与范畴化（含证明）**
 
@@ -62,7 +63,7 @@ $$
 
 在双边 $\mathrm{AdS}$ 中引入两侧边界算符的双迹耦合 $g(t)\,\mathcal O_L\mathcal O_R$ 会在视界附近诱导平均负的 Null 能量，开启有限时间窗的信号通道。该负能通量的存在是可遍历的必要条件之一：
 $$
-\int_I !! \langle T_{\mu\nu}k^\mu k^\nu\rangle\,d\lambda<0 .
+\int_I\!\langle T_{\mu\nu}k^\mu k^\nu\rangle\,d\lambda<0 .
 $$
 原始计算与后续变体均证实此点。
 
@@ -141,23 +142,23 @@ $$
 
 ### 定理 A（拓扑审查的窗化重述）
 
-设 $(\mathcal M,g)$ 为区分性、渐近平直且满足 ANEC 的时空。对任意光束生成元 $k^\mu$ 与任意 Schwartz 窗核 $(w_R,h)$，若
+设 $(\mathcal M,g)$ 为区分性、渐近平直且满足 ANEC 的时空。对任意光束生成元 $k^\mu$ 与任意非负、归一化的时间窗核 $K\in\mathcal S(\mathbb R)$（$K\ge0,\ \int_{\mathbb R}K(\lambda)\,d\lambda=1$），若
 $$
-\int_{\mathbb R} (w_R*\check h)(\lambda)\ \langle T_{\mu\nu}k^\mu k^\nu\rangle\,d\lambda \ \ge 0,
+\int_{\mathbb R} K(\lambda)\ \langle T_{\mu\nu}k^\mu k^\nu\rangle\,d\lambda \ \ge 0 \quad\text{对所有此类 }K,
 $$
-则外部观察者不可实现遍历通信；若存在可遍历窗，则必有上述积分 **严格为负**，其幅度—持续时间受 QEI/QNEC 给出之下界约束。
+则外部观察者不可实现遍历通信；若存在可遍历窗，则必存在某此类 $K$ 使上述积分 **严格为负**，其幅度—持续时间受 QEI/QNEC 给出之下界约束。
 **证明要点**：拓扑審查定理排除经典可遍历；将能量条件以测试函数加权的窗化形式表述，结合 QEI/QNEC 的下界推出必要的负能窗存在性与约束。([arXiv][2])
 
 ### 定理 B（GJW 可遍历性的母尺刻度）
 
 在双边 $\mathrm{AdS}$ 场景，对适定的双迹耦合 $g(t)$ 存在时间窗 $I$ 使
 $$
-\int_{I}!\langle T_{\mu\nu}k^\mu k^\nu\rangle_g\,d\lambda<0,
+\int_I\!\langle T_{\mu\nu}k^\mu k^\nu\rangle_g\,d\lambda<0,
 $$
 并导致母尺的窗化读数下降：
 $$
-\int_I!! dE\,(w_R*\check h)(E)\ \frac{1}{2\pi}\operatorname{tr}\mathsf Q_g(E)
-<\int_I!! dE\,(w_R*\check h)(E)\ \frac{1}{2\pi}\operatorname{tr}\mathsf Q_0(E).
+\int_{\mathbb R}\!(w_R*\check h)(E)\,\frac{1}{2\pi}\operatorname{tr}\mathsf Q_g(E)\,dE
+<\int_{\mathbb R}\!(w_R*\check h)(E)\,\frac{1}{2\pi}\operatorname{tr}\mathsf Q_0(E)\,dE.
 $$
 等价地，$\langle\varphi'\rangle$ 在该窗内下降，出现**可遍历窗**。
 **证明要点**：GJW 线性响应给出负能通量；由 BK 迹公式 $\mathrm{Tr}[f(H)-f(H_0)]=\int f'(E)\,\xi(E)\,dE$ 与 $\tfrac{1}{2\pi}\operatorname{tr}\mathsf Q=-\xi'$ 得窗化相位—群延迟的同步下降。([PMC][9])
@@ -167,7 +168,7 @@ $$
 在 ER=EPR 框架下，理想化传态协议等价于穿越 ER 桥的通道；其成功概率 $p_{\rm suc}$ 与门控强度、带宽及互信息预算满足
 $$
 \big\langle e^{-\beta W+\beta\Delta F-I}\big\rangle=1,\qquad
-\langle W\rangle\ge \Delta F - T\,\langle I\rangle,
+\langle W\rangle\ge \Delta F - \beta^{-1}\langle I\rangle,
 $$
 并受 QEI/QNEC 约束；当 $\langle T_{kk}\rangle$ 的负窗与互信息预算匹配时，出现非零 $p_{\rm suc}$ 的遍历传输。
 **证明要点**："传态 = 穿越"结果与永恒可遍历解；Belavkin 过滤与 Spohn 熵产生、Jarzynski—Sagawa–Ueda 等式耦合到能量—信息预算。([Physical Review][3])
@@ -217,8 +218,12 @@ $$
 在 ANEC 与适当全局假设下，任何从 $\mathscr I^-$ 到 $\mathscr I^+$ 的类光通信均被"拓扑审查"禁止。
 
 **D.2 QNEC**
-给出
-$\langle T_{kk}\rangle \ge \tfrac{1}{2\pi\sqrt h}\,S''_{\rm out}$（在适定条件下），并可推广至一般场论与全息证法。窗化后以 $(w_R*\check h)$ 加权。([Physical Review][14])
+其中 $S''_{\rm out}$ 取每单位横向面积的二阶变分，给出
+$\langle T_{kk}\rangle \ge \tfrac{1}{2\pi}\,S''_{\rm out}$（在适定条件下），并可推广至一般场论与全息证法。窗化时在仿射参数上取非负、归一化窗 $K(\lambda)$，写成
+$$
+\int_{\mathbb R}K(\lambda)\Big(\langle T_{kk}\rangle-\tfrac{1}{2\pi}S''_{\rm out}\Big)\,d\lambda \ge 0.
+$$
+([Physical Review][14])
 
 **D.3 QEI**
 量子场的负能脉冲满足"借贷—归还"的时间—幅度的定量权衡，测试函数（即窗）决定约束形式。([arXiv][2])
@@ -235,9 +240,11 @@ $A\|f\|_2^2\le \sum_k|\langle f,\psi_k\rangle|^2\le B\|f\|_2^2$，据此实现�
 ## 附录 F：GJW 可遍历性与母尺的变分
 
 将双迹耦合视为边界扰动，线性响应给出视界附近的平均负能通量。由
-$\delta\log\det S=\int \delta\xi'(E)\cdot(-2\pi i)^{-1}\,dE$
+$\det S(E)=e^{-2\pi i\,\xi(E)}\ \Rightarrow\
+\delta\log\det S(E)=-2\pi i\,\delta\xi(E),\qquad
+\frac{d}{dE}\log\det S(E)=-2\pi i\,\xi'(E)$
 与 $\operatorname{tr}\mathsf Q=-2\pi\,\xi'$ 得
-$\delta\langle (2\pi)^{-1}\operatorname{tr}\mathsf Q\rangle_{w,h}=-\langle \delta\xi'\rangle_{w,h}<0$，从而母尺出现下降窗，等价于可遍历窗的出现。([arXiv][1])
+$\delta\langle (2\pi)^{-1}\operatorname{tr}\mathsf Q\rangle_{w,h}=-\langle \delta\xi'\rangle_{w,h}$。其符号由窗内 $\langle \delta\xi'\rangle_{w,h}$ 决定；在 GJW 场景的线性响应预测 $\langle T_{kk}\rangle<0$ 且诱导 $\langle \delta\xi'\rangle_{w,h}>0$ 的条件下，出现母尺下降窗，等价于可遍历窗的出现。([arXiv][1])
 
 ---
 
