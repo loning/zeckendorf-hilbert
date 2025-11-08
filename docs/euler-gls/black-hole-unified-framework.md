@@ -1,6 +1,6 @@
-# 黑洞的窗化散射—因果—信息几何统一：母尺刻度、环降—共振、灰体因子、测量—熵产生与分形—Mellin—Zeckendorf 桥接（含证明）
+# 黑洞的窗化散射—因果—信息几何统一：母尺刻度、环降—共振、灰体因子、测量—熵产生与分形—Mellin—Zeckendorf 桥接
 
-**版本**：v7.1
+**版本**：v8.0
 **MSC**：83C57；83C05；81U15；42A38；46E22；37B15；94A17；68Q80
 **关键词**：Kerr/Schwarzschild；窗化散射；三位一体母尺；Wigner–Smith 群延迟；Birman–Kreĭn 与光谱位移；Hardy/de Branges；Titchmarsh—Kramers–Kronig 因果；准正则模（QNM）—环降；灰体因子；IGVP（信息几何变分）；QNEC；Belavkin 过滤；量子 Jarzynski；Mellin—对数帧；Zeckendorf 可逆日志
 
@@ -8,17 +8,17 @@
 
 ## 摘要
 
-在广义光结构与因果流形的统一范式中，本文以"母尺刻度—窗化读数—因果律"三要素闭合黑洞外区的线性扰动散射学。设可微能量散射矩阵 $S(E)\in\mathsf U(N)$ 的 Wigner–Smith 矩阵为 $\mathsf Q(E)=-\,i\,S(E)^\dagger \tfrac{dS}{dE}(E)$。定义总相位 $\varphi(E)=\tfrac12\arg\det S(E)$ 与相对态密度 $\rho_{\rm rel}(E)$。则统一刻度同一式
+在广义光结构与因果流形的统一范式中，本文以"母尺刻度—窗化读数—因果律"三要素闭合黑洞外区的线性扰动散射学。设散射对 $(H,H_0)$ 满足 $(H-H_0)\in\mathfrak S_1$，且 $S(E)$ 对能量可微、$\det S(E)$ 取连续相位，则有统一刻度同一式
 $$
 \frac{\varphi'(E)}{\pi}\;=\;\rho_{\rm rel}(E)\;=\;\frac{1}{2\pi}\,\operatorname{tr}\mathsf Q(E)
 $$
-成立；该式由 Birman–Kreĭn（BK）公式与光谱位移函数 $\xi(E)$ 精确钩连，并可在存在吸收的开系统/耗散散射中借助自伴扩张与修正 BK 公式保持有效，从而以"视界通道"保全全局幺正。上述刻度与 Toeplitz/Berezin 压缩给出的窗化观测读数线性等价，Hardy $H^2(\mathbb C^+)$ 的上半平面解析性与 Kramers–Kronig/Hilbert 变换则内在刻画了因果律。
+并由 Birman–Kreĭn 公式与光谱位移 $\xi(E)$ 精确钩连；在存在吸收的情形，可在"视界通道"的自伴扩张或耗散/耦合散射的 BK 变体框架下获得相应等价。上述刻度与 Toeplitz/Berezin 压缩给出的窗化观测读数线性等价，Hardy $H^2(\mathbb C^+)$ 的上半平面解析性与 Kramers–Kronig/Hilbert 变换则内在刻画了因果律。
 
 在线性扰动层面，Kerr/Schwarzschild 的准正则模（QNM）为延拓散射矩阵的极点（共振），其频率集合决定合并后"环降"段的指数衰减；Kerr–de Sitter 背景的模稳定与解析性已以微局部方法与代数散射工具得到系统证明。环降窗化读数由有限多极点残数与 Price 定律控制的幂律尾项叠加而成。([CaltechAUTHORS][1])
 
 在观测侧，事件视界望远镜（EHT）对 M87* 与 Sgr A* 的多历元、极化与环形几何读数显示阴影直径的持久性与近视界强磁场的普适性；引力波 O3–O4 的环降谱学与面积定理检验方法学持续成熟。
 
-在热力学与量子信息侧，信息几何小球变分（IGVP）的一阶极值蕴含爱因斯坦场方程，二阶变分给出量子零能条件（QNEC）与量子焦散不等式。离散测量的 Lüders 更新可描述为相对熵极小的 I-投影；持续监测由 Belavkin 过滤给出后验态随机微分方程，其平均回收 Lindblad 生成而满足 Spohn 熵产生单调；引入互信息的 Jarzynski 等式刻画含反馈测量的功—熵平衡。
+在热力学与量子信息侧，信息几何小球变分（IGVP）的一阶极值蕴含爱因斯坦场方程；在满足模哈密顿量可积、相对熵二阶展开及适当能量条件等附加假设时，二阶变分可导出（或与之等价地蕴含）QNEC 与量子焦散型不等式。离散测量的 Lüders 更新可描述为相对熵极小的 I-投影；持续监测由 Belavkin 过滤给出后验态随机微分方程，其平均回收 Lindblad 生成而满足 Spohn 熵产生单调；引入互信息的 Jarzynski 等式刻画含反馈测量的功—熵平衡。
 
 数值—实验实现方面，提出"Poisson 旁瓣—Euler–Maclaurin（EM）端点—尾项"三分误差闭合纪律；以 Mellin 对数帧匹配频率尺度不变性；在环降拟合中显式引入灰体核以缓解起始时刻与过拟合问题；有限窗能量预算以 Zeckendorf 唯一分解编码为可逆日志。
 
@@ -26,12 +26,16 @@ $$
 
 ## 0. 记号与公设
 
-**（0.1）散射母尺刻度。** 设 $S(E)$ 为每个 $(\ell,m,s)$ 通道的能量散射矩阵，Wigner–Smith 矩阵 $\mathsf Q(E)=-i\,S^\dagger(E)\,S'(E)$。定义总相位 $\varphi(E)=\tfrac12\arg\det S(E)$ 与相对态密度 $\rho_{\rm rel}(E)$。则
+**（0.1）散射母尺刻度（假设与定义）。** 设 $(H-H_0)\in\mathfrak S_1$，$S(E)$ 关于 $E$ 可微且 $\det S(E)$ 取连续相位。令 Wigner–Smith 矩阵 $\mathsf Q(E)=-iS^\dagger(E)S'(E)$、总相位 $\varphi(E)=\tfrac12\arg\det S(E)$，并**定义**
+$$
+\rho_{\rm rel}(E):=-\,\xi'(E),
+$$
+其中 $\xi(E)$ 为 BK 光谱位移函数。于是
 $$
 \frac{\varphi'(E)}{\pi}\;=\;\rho_{\rm rel}(E)\;=\;\frac{1}{2\pi}\operatorname{tr}\,\mathsf Q(E),\qquad
-\det S(E)=\exp\!\bigl(-2\pi i\,\xi(E)\bigr),
+\det S(E)=\exp\!\bigl(-2\pi i\,\xi(E)\bigr).
 $$
-其中 $\xi$ 为 BK 光谱位移函数。证明基于 BK 公式与 $S$ 的行列式相位，见附录 A。
+证明基于 BK 公式与 $S$ 的行列式相位，见附录 A。
 
 **（0.2）耗散/开系统修正。** 黑洞外区存在吸收与超辐射，导致外散射子非幺正。引入包含"视界通道"的自伴扩张或采用耗散/耦合散射的 BK 变体可恢复全局幺正与位移—相位—群延迟的等价。
 
@@ -61,11 +65,13 @@ Kerr 外区 $(\mathcal M,g_{M,a})$ 上的 $s=0,\pm1,\pm2$ 线性扰动满足可�
 
 ### 2.1 QNM 作为散射共振
 
-QNM 为散射矩阵（或相应传输—反射系数）之解析延拓的极点；其实部为振频，虚部给衰减率。Kerr 与 Kerr–de Sitter 的模稳定、谱隙与解析性已以微局部与代数散射方法证明。数值上，Leaver 连分式与谱定点迭代为高精度手段。
+QNM 为散射矩阵（或相应传输—反射系数）之解析延拓的极点；其实部为振频，虚部给衰减率。**Kerr–de Sitter** 背景**存在谱隙**并已系统证明模稳定与解析性；对**渐近平坦 Kerr**，虽已建立 QNM 的解析性与模稳定，但一般**不存在全局谱隙**，其频域在 $\omega=0$ 处起始并沿**负虚轴**存在分支切割，由此低频结构与连续谱导致 **Price 定律**控制的多项式尾项。数值上，Leaver 连分式与谱定点迭代仍为高精度手段。
 
 ### 2.2 窗化残数—尾项展开
 
-取时间窗 $w(t)$、频核 $h(\omega)$，以母尺测度加权，线性响应的窗化读数可按 QNM 极点全体展开为
+在 **Kerr–de Sitter**（相应波算子的 resolvent 在适当 Riemann 面上存在亚纯延拓且**存在谱隙**）与**渐近平坦 Schwarzschild**（存在 meromorphic 延拓但**无全球谱隙**，并在复频平面**负虚轴**存在分支切割，起点 $\omega=0$）两类背景下，取时间窗 $w(t)$、频核 $h(\omega)$ 且 $(w,h)\in\mathcal S$ 并满足带限/衰减条件时，窗化响应可按全部 QNM 极点展开。**Kerr–de Sitter** 背景下，余项（含连续谱贡献）具**指数型**控制；**渐近平坦 Schwarzschild** 背景下，窗化响应写为 QNM 残数和与分支切割项 $R_{\rm cut}$ 之和，尾项 $\mathrm{Tail}=R_{\rm cut}+R_{\rm qnm}^{(>J)}$ 具显式上界，其中 $R_{\rm cut}$ 依 **Price 定律**呈幂律衰减。
+
+两类背景下，线性响应的窗化读数均可按 QNM 极点全体展开为
 $$
 \langle \Psi\rangle_{w,h}
 =\sum_{\omega_j\in\mathcal P}\operatorname{Res}\bigl(\widehat\Psi(\omega),\omega_j\bigr)\,\widehat w(\omega_j)\,\widehat h(\omega_j)\;+\;R_{\rm cut},
@@ -75,7 +81,7 @@ $$
 \langle \Psi\rangle_{w,h}
 =\sum_{j=1}^J \operatorname{Res}\bigl(\widehat\Psi(\omega),\omega_j\bigr)\,\widehat w(\omega_j)\,\widehat h(\omega_j)\;+\;\mathrm{Tail},
 $$
-其中 $\mathrm{Tail}=R_{\rm cut}+R_{\rm qnm}^{(>J)}$，$R_{\rm qnm}^{(>J)}$ 为被截断极点的余项；当 $(w,h)\in\mathcal S$ 且具有频域衰减/带限条件时，$\mathrm{Tail}$ 具显式上界，$R_{\rm cut}$ 依 Price 定律呈幂律衰减（Schwarzschild 情形次幂已得点态精确估计）。
+其中 $\mathrm{Tail}=R_{\rm cut}+R_{\rm qnm}^{(>J)}$，$R_{\rm qnm}^{(>J)}$ 为被截断极点的余项；当 $(w,h)\in\mathcal S$ 且具有频域衰减/带限条件时，$\mathrm{Tail}$ 具显式上界，$R_{\rm cut}$ 依 Price 定律呈幂律衰减（Schwarzschild **标量场**情形次幂已得点态精确估计）。
 
 ### 2.3 环降谱学与检验
 
@@ -109,7 +115,7 @@ $$
 $$
 G_{\mu\nu}+\Lambda g_{\mu\nu}=8\pi G\,\langle T_{\mu\nu}\rangle,
 $$
-二阶非负给出 QNEC 与量子焦散不等式。该链路与黑洞热力学第一定律与表面引力刻度兼容。
+在满足量子场论侧的模哈密顿量可积、相对熵二阶展开与适当能量条件等附加假设下，二阶非负可导出（或与之等价地蕴含）QNEC 与量子焦散型不等式；一般背景下的无条件结论尚未建立。该链路与黑洞热力学第一定律与表面引力刻度兼容。
 
 ---
 
@@ -124,12 +130,12 @@ $$
 
 ## 7. Mellin—分形—对数帧与环降多尺度
 
-以 $\omega=\log E$ 将母尺与尺度测度配准；构造对数均匀采样的 Mellin 紧框架 $\{\psi_k\}$，在带限与窗乘子有界下存在帧界
+以 **$\eta=\log E$** 将母尺与尺度测度配准；构造对数均匀采样的 Mellin 紧框架 $\{\psi_k\}$，在带限与窗乘子有界下存在帧界
 $$
 A\|f\|_{\mathcal H}^2\le\sum_k|\langle f,\psi_k\rangle|^2\le B\|f\|_{\mathcal H}^2,
 $$
 其中 $\mathcal H$ 为本文采用的 Hilbert 空间（如 $L^2$ 能量空间）。
-Mellin 帧天然分离指数衰减 $e^{-\Im\omega\,t}$ 与幂律尾 $t^{-\alpha}$ 的叠加，并与广义 Poisson 公式与对数取样相容，利于环降—尾项的稳健分辨与误差闭合。
+Mellin 帧天然分离指数衰减 $e^{-\Im\eta\,t}$ 与幂律尾 $t^{-\alpha}$ 的叠加，并与广义 Poisson 公式与对数取样相容，利于环降—尾项的稳健分辨与误差闭合。
 
 ---
 
@@ -167,7 +173,11 @@ $$
 
 **定理 D（de Branges：相位导—核对角）。** 对 Hermite–Biehler 函数 $E$，其 de Branges 空间 $H(E)$ 的再生核满足 $K(x,x)=\pi^{-1}\varphi'(x)|E(x)|^2$。*证略。* 由核的标准公式对角极限与 $\Im(E'/E)=\varphi'$ 的关系得出。
 
-**命题 E（QNM 残数—尾项的窗化展开，适用范围）。** 在 Schwarzschild 或 Kerr–de Sitter 背景下，且已知波算子的 resolvent 在适当 Riemann 面上存在亚纯延拓并具有谱隙结构时，若时间窗与频核属于 $\mathcal S$ 并满足带限/衰减条件，则窗化响应可写为 QNM 极点的残数和与连续谱（分支切割）项 $R_{\rm cut}$ 之和。将极点和按贡献大小截断至前 $J$ 项时，余项 $\mathrm{Tail}=R_{\rm cut}+R_{\rm qnm}^{(>J)}$，其中 $R_{\rm qnm}^{(>J)}$ 为被截断极点的余项，并在上述背景与假设下具显式上界；$R_{\rm cut}$ 服从 Price 定律的幂律衰减，Schwarzschild 情形尾项次幂已有点态精确估计。
+**命题 E（QNM 残数—尾项的窗化展开，适用范围）。** 在 **Kerr–de Sitter（有谱隙）**或**渐近平坦 Schwarzschild（无全球谱隙，存在分支切割）**的背景下，若 $(w,h)\in\mathcal S$ 并满足带限/衰减条件，则窗化响应可写为 QNM 残数和与连续谱（分支切割）项之和。
+
+**(i) Kerr–de Sitter：** 当相应波算子的 resolvent 在适当 Riemann 面上存在亚纯延拓并具有**谱隙**时，若 $(w,h)\in\mathcal S$ 且满足带限/衰减条件，则窗化响应可写为 QNM 极点残数和与连续谱项之和。将极点和按贡献大小截断至前 $J$ 项时，余项 $\mathrm{Tail}=R_{\rm cut}+R_{\rm qnm}^{(>J)}$ 在上述前提下具**指数型**控制。
+
+**(ii) Schwarzschild（渐近平坦）：** 存在 meromorphic 延拓但**无全球谱隙**，且在复频平面**负虚轴**存在分支切割（起点 $\omega=0$）。同样有窗化响应的 QNM 残数和 + 分支切割项 $R_{\rm cut}$ 表示；当 $(w,h)\in\mathcal S$ 且满足带限/衰减条件时，$\mathrm{Tail}$ 具显式上界，其中 $R_{\rm cut}$ 依 **Price 定律**呈**幂律**衰减（标量场情形已有点态精确指数）。
 
 **定理 F（IGVP 的一阶变分）。** 在小球设置与标准平衡态假设下，广义熵的一阶极值推出 $G_{\mu\nu}+\Lambda g_{\mu\nu}=8\pi G\,\langle T_{\mu\nu}\rangle$。
 
@@ -219,7 +229,7 @@ $$
 
 ## 附录 D：QNM—环降—尾项
 
-**D.1 共振谱。** Kerr 与 Kerr–de Sitter 的 QNM 模稳定、解析性与谱隙结果参见近作；数值以 Leaver 连分式实现高精度谱。
+**D.1 共振谱。** **Kerr–de Sitter** 具有谱隙并据此得到 QNM 展开与指数衰减；**渐近平坦 Kerr** 虽可作解析延拓并已建立模稳定，但因在 $\omega=0$ 起始并沿**负虚轴**的分支切割而**无全球谱隙**（仅在高能区存在**共振自由带**）。数值以 Leaver 连分式实现高精度谱。
 
 **D.2 Price 尾。** Schwarzschild 背景上线性波的点态衰减给出精确的幂指数，作为窗化残数展开的 Tail 上界。
 
@@ -272,7 +282,7 @@ $$
 1. **母尺刻度闭合**：全流程统一以 $\varphi'/\pi=\rho_{\rm rel}=(2\pi)^{-1}\operatorname{tr}\mathsf Q$ 标定；存在吸收/超辐射时以"视界通道"或耗散 BK 修正恢复全局幺正。
 2. **窗—核与采样纪律**：选取 Schwartz 级窗—核，Nyquist 采样消除别名；有限阶 EM 端点修正与 Tail 上界显式记录。
 3. **环降拟合策略**：以"QNM 残数 + 灰体核 + Mellin 对数帧"联合模型；将灰体核并入频域幅度以缓解起始时刻与过拟合，尾项按 Price 定律处置。
-4. **IGVP 校核**：以小球广义熵变分进行几何—热力学一致性自检（$1^\text{st}$ 导数 $\Rightarrow$ 场方程；$2^\text{nd}$ 导数 $\Rightarrow$ QNEC）。
+4. **IGVP 校核**：以小球广义熵变分进行几何—热力学一致性自检（$1^\text{st}$ 导数 $\Rightarrow$ 场方程；在附加假设下 $2^\text{nd}$ 导数 $\Rightarrow$ QNEC/量子焦散）。
 5. **可逆能量日志**：采用 Zeckendorf 唯一分解的无相邻 1 账本进行有限窗能量与模份额的可逆统计与版本管理。
 
 ---
