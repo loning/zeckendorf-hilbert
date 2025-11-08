@@ -444,6 +444,3 @@ K_{w,h}\text{ Nyquist–Poisson–EM finite-order closure};
 \text{Landau/WR/BL};
 \text{Pointer=Ky Fan minimum}\,\big). }
 $$
-
-
-

@@ -411,6 +411,3 @@ This paper unifies quantum measurement as a **windowed readout** problem, obtain
 * **Band-limited optimal window strong form**: see §5 frequency-domain equation.
 
 (End of Document)
-
-
-
