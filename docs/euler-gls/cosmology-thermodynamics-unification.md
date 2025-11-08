@@ -1,8 +1,12 @@
 # 宇宙学—热力学统一：以几何熵产生重释 Friedmann 方程（含证明）
 
+Version: 1.0
+
 ## 摘要
 
-在各向同性—均匀的 FLRW 宇宙中，以表观视界为天然热力学边界，构造广义熵 $S_{\rm gen}(t)=\tfrac{A(t)}{4G}+S_{\rm out}(t)$（其中 $A(t)=4\pi r_A^2$、$r_A=(H^2+\kappa/a^2)^{-1/2}$），并采用 Kodama–Hayward 温度 $T=|\kappa_{\rm sg}|/(2\pi)$ 的准静极限 $T=\tfrac{1}{2\pi r_A}$，可将宇宙动力学等价表述为几何熵产生过程。以 Hayward 统一第一定律 $dE=A\psi+W\,dV$ 与 Clausius 关系 $\delta Q=T\,dS$ 为核心，可在表观视界上得到与两条 Friedmann 方程互为充要的一组热力学关系；在含曲率修正或非平衡流体情形下，需引入内禀熵产生项 $d_iS$，对应改变量子/几何修正的不可逆效应。由此建立三重对应：宇宙演化 $=$ 几何熵产生过程；大爆炸 $=$ 由观测锚定的相变链；暗能量 $=$ 真空几何曲率。该框架以 Jacobson 的"时空热力学"思想、Hayward 的统一第一定律、Cai–Kim 与 Akbar–Cai 的视界热力学导出 Friedmann 方程、以及 Bousso–Engelhardt 的宇宙学广义第二定律（Q-screen 形式）为理论支柱，并以 Gibbons–Hawking 的 de Sitter 温度与地平线熵刻度统一晚期几何极限。([物理评论链接管理器][1])
+在各向同性—均匀的 FLRW 宇宙中，以表观视界为天然热力学边界，构造广义熵 $S_{\rm gen}(t)=\tfrac{A(t)}{4G}+S_{\rm out}(t)$（其中 $A(t)=4\pi r_A^2$、$r_A=(H^2+\kappa/a^2)^{-1/2}$），并采用 Kodama–Hayward 温度 $T=|\kappa_{\rm sg}|/(2\pi)$ 的准静极限 $T=\tfrac{1}{2\pi r_A}$，可将宇宙动力学等价表述为几何熵产生过程。以 Hayward 统一第一定律 $dE=A\psi+W\,dV$ 与 Clausius 关系 $\delta Q=T\,dS$ 为核心，可在表观视界上得到与两条 Friedmann 方程互为充要的一组热力学关系；由
+$$T\dot S_h=4\pi H r_A^3(\rho+p)$$
+可知，可逆熵通量仅由物质/辐射焓通量给定，曲率与真空 $\Lambda$ 不产生独立的局域熵通量（即便 $\dot\Lambda\neq0$，其效应亦经 $(T,A,r_A)$ 的几何刻度与能量交换自洽吸收）。在含曲率修正或非平衡流体情形下，需引入内禀熵产生项 $d_iS$，对应改变量子/几何修正的不可逆效应。由此建立三重对应：宇宙演化 $=$ 几何熵产生过程；大爆炸 $=$ 由观测锚定的相变链；暗能量 $=$ 真空几何曲率。该框架以 Jacobson 的"时空热力学"思想、Hayward 的统一第一定律、Cai–Kim 与 Akbar–Cai 的视界热力学导出 Friedmann 方程、以及 Bousso–Engelhardt 的宇宙学广义第二定律（Q-screen 形式）为理论支柱，并以 Gibbons–Hawking 的 de Sitter 温度与地平线熵刻度统一晚期几何极限。([物理评论链接管理器][1])
 
 ---
 
@@ -25,13 +29,12 @@ $$
 
 ### 1.2 第一方程的"熵平衡分拆"
 
-写成 $r_A^{-2}=H^2+\kappa/a^2=\tfrac{8\pi G}{3}\rho-\kappa/a^2+\tfrac{\Lambda}{3}$，对时间微分并代入 $\dot\rho=-3H(\rho+p)$，再乘以 $T$ 与 $dS_h/dt$ 的因子，可得
+写成 $r_A^{-2}=H^2+\kappa/a^2=\tfrac{8\pi G}{3}\rho+\tfrac{\Lambda}{3}$，对时间微分并用 $\dot\rho+3H(\rho+p)=-\dot\Lambda/(8\pi G)$（$\dot\Lambda=0$ 时化为标准守恒），配合 $T=(2\pi r_A)^{-1}$ 与 $S_h=\pi r_A^2/G$，得到
 $$
-T\,\dot S_h
-=4\pi H r_A^3(\rho+p)\;-\;\frac{\kappa H r_A^3}{G a^2}\;+\;\frac{r_A^3}{6G}\,\dot\Lambda.
+T\,\dot S_h=4\pi H r_A^3(\rho+p).
 \tag{1}
 $$
-右端三项依次诠释为：物质/辐射的焓通量熵、几何曲率交换熵、真空曲率熵；当 $\dot\Lambda=0$ 时，真空项不产生局域熵通量，只通过几何刻度 $(T,A)$ 调制可逆熵。([arXiv][2])
+即表观视界上的可逆熵产生完全由物质/辐射的焓通量决定；曲率与 $\Lambda$ 仅通过几何刻度 $(r_A,T)$ 间接影响 $T\,\dot S_h$，并不构成独立的熵通量项。([arXiv][2])
 
 ---
 
@@ -39,7 +42,7 @@ $$
 
 ### 2.1 宇宙演化 = 几何熵产生过程
 
-Raychaudhuri 方程给出测地线族膨胀的聚焦/发散演化；在能量条件与适当边界下，表观/事件视界面积的单调性与宇宙学广义第二定律（Q-screen 形式）共同保证沿自然时间箭头的广义熵 $S_{\rm gen}$ 不减。式 $(1)$ 提供了视界上一阶"熵收支"的几何分拆，宇宙学演化可等价描述为视界几何熵的产生—交换—调制的动力学。([物理评论链接管理器][3])
+Raychaudhuri 方程给出测地线族膨胀的聚焦/发散演化；在能量条件与适当边界下，表观/事件视界面积的单调性与宇宙学广义第二定律（Q-screen 形式）共同保证沿自然时间箭头的广义熵 $S_{\rm gen}$ 不减。式(1) 表明，可逆熵收支由物质/辐射的焓通量唯一决定；曲率与 $\Lambda$ 仅通过几何刻度 $(r_A,T)$ 间接影响 $S_{\rm gen}$ 的演化。([物理评论链接管理器][3])
 
 ### 2.2 大爆炸 = 观测锚定的相变链
 
@@ -47,7 +50,7 @@ Raychaudhuri 方程给出测地线族膨胀的聚焦/发散演化；在能量条
 
 ### 2.3 暗能量 = 真空几何曲率
 
-在 de Sitter 极限 $H^2=\Lambda/3$ 中，温度与熵分别为 $T_{\rm dS}=H/(2\pi)$、$S_{\rm dS}=A/(4G)=3\pi/(G\Lambda)$，体现真空曲率对几何刻度的可逆设定；若 $\Lambda$ 随时间缓变或含高阶曲率修正，则 $\Phi_\Lambda\propto \dot\Lambda$ 与内禀熵产生 $d_iS$ 同时出现。([物理评论链接管理器][5])
+在 de Sitter 极限 $H^2=\Lambda/3$ 中，温度与熵分别为 $T_{\rm dS}=H/(2\pi)$、$S_{\rm dS}=A/(4G)=3\pi/(G\Lambda)$，体现真空曲率对几何刻度的可逆设定；若 $\Lambda$ 随时间缓变或含高阶曲率修正，则其效应通过改变 $H(t)$ 进而改变量子/几何刻度 $(T,S_h)$，并可能在非平衡扩展中体现为 $d_iS$。([物理评论链接管理器][5])
 
 ---
 
@@ -61,13 +64,11 @@ Raychaudhuri 方程给出测地线族膨胀的聚焦/发散演化；在能量条
 
 **定理 1（视界第一定律与 Friedmann 方程的等价）**：在 Einstein 引力与 FLRW 背景下，表观视界上 $\delta Q=A\psi=T\,dS_h$、$T=\tfrac{1}{2\pi r_A}$、$S_h=\tfrac{A}{4G}$ 与两条 Friedmann 方程互为充要。证明要点：由 $\dot r_A=-H r_A^3\!\left(\dot H-\kappa/a^2\right)$、$\dot\rho+3H(\rho+p)=0$，配合 $E=\rho V$、$V=\tfrac{4}{3}\pi r_A^3$、$A=4\pi r_A^2$ 与 $T$ 上式，即得 $\dot H-\kappa/a^2=-4\pi G(\rho+p)$；再由 $r_A^{-2}=H^2+\kappa/a^2$ 与能量约束积分得第一 Friedmann 方程，反向亦然。([物理评论链接管理器][7])
 
-**定理 2（第一方程的熵平衡分拆）**：对 $r_A^{-2}=\tfrac{8\pi G}{3}\rho-\kappa/a^2+\tfrac{\Lambda}{3}$ 微分并使用 $\dot\rho=-3H(\rho+p)$，在表观视界上成立
+**定理 2（视界熵收支）**：对 $r_A^{-2}=H^2+\kappa/a^2$ 微分并使用 $\dot\rho+3H(\rho+p)=-\dot\Lambda/(8\pi G)$（$\dot\Lambda=0$ 时退化为标准守恒），在表观视界上成立
 $$
-T\,\dot S_h=\underbrace{4\pi H r_A^3(\rho+p)}_{\Phi_{\rm m}}
-\;+\;\underbrace{\big(-\kappa H r_A^3/(G a^2)\big)}_{\Phi_\kappa}
-\;+\;\underbrace{\big(r_A^3\dot\Lambda/(6G)\big)}_{\Phi_\Lambda}.
+T\,\dot S_h=4\pi H r_A^3(\rho+p).
 $$
-其中 $\Phi_{\rm m}$ 为焓通量熵，$\Phi_\kappa$ 为曲率几何交换熵，$\Phi_\Lambda$ 为真空曲率熵（$\dot\Lambda=0$ 时为零）。([arXiv][2])
+即可逆熵产生项完全由焓通量给定；若引入高阶曲率或非平衡流体，则应改写为 $\delta Q=T\,dS_h+T\,d_iS$，其中 $d_iS\ge0$ 描述几何/量子修正导致的不可逆贡献。([arXiv][2])
 
 **定理 3（广义第二定律与"相变链"的单调性）**：沿宇宙学 Q-screen 的族，广义熵 $S_{\rm gen}$ 单调不减；早期热史诸相变/转变节点在 $S_{\rm gen}$ 上表现为非解析拐点，其时间—尺度位置由 BBN 与 CMB 的观测量锚定。([物理评论链接管理器][3])
 
@@ -75,9 +76,9 @@ $$
 
 ## 5. 观测锚与可检验后果
 
-（1）晚期几何刻度：$\Lambda$ 主导时代 $T=H/(2\pi)$、$S_h=3\pi/(G\Lambda)$。运行真空模型的缓变 $\dot\Lambda$ 将以 $\Phi_\Lambda$ 的形式进入熵平衡并影响 $\dot S_{\rm gen}$。([物理评论链接管理器][5])
+（1）晚期几何刻度：$\Lambda$ 主导时代 $T=H/(2\pi)$、$S_h=3\pi/(G\Lambda)$。若考虑运行真空模型，缓变的 $\Lambda(t)$ 通过改变 $H(t)$ 从而改变量子/几何刻度 $(T,S_h)$；其不可逆效应（若有）应在 $\delta Q=T\,dS_h+T\,d_iS$ 的 $d_iS$ 中体现。([物理评论链接管理器][5])
 （2）焓通量熵重构：以 Planck 2018 的 $\Omega_m,\Omega_b,n_s,\tau$ 与 PDG/最新 BBN 的 $\eta_B$ 为输入，可随红移重构 $\Phi_{\rm m}(z)$ 并检验 $\dot S_{\rm gen}\ge0$。([Aanda][4])
-（3）曲率交换熵：若 $|\Omega_k|\neq 0$，$\Phi_\kappa$ 在再电离前后给出可测的几何交换项符号，其现值受 BAO/CMB 对 $\Omega_k$ 的约束；相应地，$\Phi_\kappa$ 的贡献比例随 $a(t)$ 的演化而调制。([arXiv][2])
+（3）曲率调制效应：若 $|\Omega_k|\neq 0$，曲率通过改变 $r_A=(H^2+\kappa/a^2)^{-1/2}$ 进而调制几何刻度 $(T,S_h)$，其现值受 BAO/CMB 对 $\Omega_k$ 的约束；相应地，曲率对熵演化的影响比例随 $a(t)$ 的演化而调制。([arXiv][2])
 
 ---
 
@@ -89,7 +90,7 @@ $$
 
 ## 7. 与引力—信息统一的关系
 
-Jacobson 将 Einstein 方程视作局域 Rindler 视界族上的状态方程 $\delta Q=T\,dS$；本文在宇宙学尺度以表观视界的几何刻度 $(S_h,T)$ 将该思想具体化，给出 Friedmann 方程的熵学分拆。含高阶曲率/非最小耦合时，需引入 $d_iS$ 的非平衡扩展；在 de Sitter 极限，暗能量作为真空几何曲率仅改变可逆几何熵，而不在局域产生熵通量，除非 $\Lambda$ 时间依赖。([物理评论链接管理器][1])
+Jacobson 将 Einstein 方程视作局域 Rindler 视界族上的状态方程 $\delta Q=T\,dS$；本文在宇宙学尺度以表观视界的几何刻度 $(S_h,T)$ 将该思想具体化，给出 Friedmann 方程的熵学分拆。含高阶曲率/非最小耦合时，需引入 $d_iS$ 的非平衡扩展；在 de Sitter 极限，暗能量作为真空几何曲率仅通过几何刻度 $(T,S_h)$ 改变可逆几何熵，而不在局域产生独立的熵通量项（即使 $\Lambda$ 时间依赖，其效应亦经能量交换与几何刻度自洽吸收）。([物理评论链接管理器][1])
 
 ---
 
@@ -101,9 +102,13 @@ Jacobson 将 Einstein 方程视作局域 Rindler 视界族上的状态方程 $\d
 
 ---
 
-## 附录 B：式 $(1)$ 的分拆推导
+## 附录 B：式(1) 的推导
 
-对 $r_A^{-2}=\tfrac{8\pi G}{3}\rho-\kappa/a^2+\tfrac{\Lambda}{3}$ 微分，得 $-2r_A^{-3}\dot r_A=\tfrac{8\pi G}{3}\dot\rho+2(\kappa/a^2)H-\tfrac{1}{3}\dot\Lambda$。两侧乘 $-\tfrac{\pi r_A^4}{G}$ 得 $\dot S_h=-\tfrac{8\pi^2 r_A^4}{3}\dot\rho-\tfrac{2\pi r_A^4}{G}\tfrac{\kappa H}{a^2}+\tfrac{\pi r_A^4}{3G}\tfrac{\dot\Lambda}{2}$。再乘 $T=(2\pi r_A)^{-1}$ 并以 $\dot\rho=-3H(\rho+p)$，化为 $T\,\dot S_h=4\pi H r_A^3(\rho+p)-\tfrac{\kappa H r_A^3}{G a^2}+\tfrac{r_A^3}{6G}\dot\Lambda$。([arXiv][2])
+由 $r_A^{-2}=H^2+\kappa/a^2$ 得 $-2r_A^{-3}\dot r_A=2H(\dot H-\kappa/a^2)$。两侧乘 $-\tfrac{\pi r_A^4}{G}$ 并用 $S_h=\pi r_A^2/G$、$T=(2\pi r_A)^{-1}$ 得
+$$T\,\dot S_h=-\frac{H r_A^3}{G}\big(\dot H-\kappa/a^2\big).$$
+再由 $\dot H-\kappa/a^2=-4\pi G(\rho+p)$（允许 $\Lambda(t)$ 时亦成立）即得
+$$T\,\dot S_h=4\pi H r_A^3(\rho+p).$$
+([arXiv][2])
 
 ---
 
