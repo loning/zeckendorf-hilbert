@@ -68,7 +68,7 @@ $$
 即"相位导数—谱移密度—群延迟迹"统一为母刻度。([arXiv][2])
 
 **公理 II（双时间分离）**
-因果时间（前沿）定义为最早非零到达 $t_*(\gamma)=\inf\{t:\ g_\gamma(t)\neq 0\}$。由 Hardy 解析的单向支撑，**对任一传播链 $\gamma$ 有 $t_*(\gamma)\ge 0$**；若进一步要求 $\gamma$ 为**非恒等传播链**（或其几何长度 $L_\gamma>0$，见 §3.3），则结合有限传播速度得 **$t_*(\gamma)>0$**。且若 $\gamma=\gamma_2\circ\gamma_1$ 则 $t_*(\gamma)\ge t_*(\gamma_2)+t_*(\gamma_1)$。可测时间仅指窗化读数 $T[w_R,h]$ 的操作化刻度，二者无普适大小比较；因果与无信号仅以前沿 $t_*$ 与类光锥决定。单向支撑由 Hardy 解析—Kramers–Kronig 与 Titchmarsh 卷积支撑定理保证。([维基百科][3])
+因果时间（前沿）定义为最早非零到达 $t_*(\gamma)=\inf\{t:\ g_\gamma(t)\neq 0\}$。由 Hardy 解析的单向支撑可得 $t_*(\gamma)\ge 0$；在满足有限传播速度并引入几何长度 $L_\gamma$ 时，进一步有 $t_*(\gamma)\ge L_\gamma/c$。若 $\gamma=\gamma_2\circ\gamma_1$，则 $t_*(\gamma)\ge t_*(\gamma_2)+t_*(\gamma_1)$。可测时间仅指窗化读数 $T[w_R,h]$ 的操作化刻度，二者无普适大小比较；因果与无信号仅以前沿 $t_*$ 与类光锥决定。单向支撑由 Hardy 解析—Kramers–Kronig 与 Titchmarsh 卷积支撑定理保证。([维基百科][3])
 
 **公理 III（有限阶 NPE 误差闭合）**
 窗化积分的数值实现由 Poisson 求和与有限阶 Euler–Maclaurin（EM）公式给出显式误差三分
@@ -89,7 +89,7 @@ $\mathbf{Cau}$ 对象取时间定向的洛伦兹流形 $(\mathcal M,g)$。HKM �
 
 **对象** $\mathfrak U=(\mathcal H,S,\mu_\varphi,\mathcal W,\mathbf V,\boldsymbol\Gamma)$，满足：频域传递函数在 $\mathbb C^+$ 解析，系统被动，无预响应；高频极限与有限传播速度成立。
 
-**（无闭回路/无反馈）** 传播链图谱无非平凡闭合串联：不存在 $U_0,\dots,U_m=U_0$ 的链路闭环（各段 $t_*(\gamma_j)>0$）。由此 §2.1 的可达关系为偏序。
+**（无闭回路/无反馈）** 传播链图谱无非平凡闭合串联：不存在 $U_0,\dots,U_m=U_0$ 的链路闭环（各段 $t_*(\gamma_j)\ge 0$；若段长 $L_j>0$，则 $t_*(\gamma_j)\ge L_j/c$）。由此 §2.1 的可达关系为偏序。
 
 **态射** 为保持被动与因果（不产生预响应）的滤镜链 $\mathcal O=\mathcal M_{\rm th}\circ M_i\circ\Phi\circ K_{w,h}$，其 Heisenberg 伴随保持母刻度的线性读数。
 **规范等价**：若存在能量依赖幺正 $U(E),V(E)$ 使 $S\mapsto U S V$ 且 $\det U\cdot\det V\equiv 1$，则称两对象规范等价；在该等价类上母刻度 $\rho_{\rm rel}=(2\pi)^{-1}\operatorname{tr}\mathsf Q$ 及其诱导的窗化读数 $T[w_R,h]$ 不变（§5.4）。
@@ -109,9 +109,13 @@ $$p\ll q\ \Longleftrightarrow\ f(p)\ll f(q)\ \text{（在像上保持并反射�
 
 **定义（可达关系）** 设端口/读出域 $U,V\in\mathcal W$。
 $$
-U\preceq V\ \Longleftrightarrow\ \exists\ \text{有限传播链}\ \gamma:U\to V\ \text{（各段前沿 }t_*>0\text{）}.
+U\preceq V\ \Longleftrightarrow\ \exists\ \text{有限传播链}\ \gamma:U\to V\ \text{（各段前沿 }t_*\ge 0;\ \text{若 }L_j>0,\ t_*\ge L_j/c\text{）}.
 $$
-即 $\preceq$ 为链路图的自反传递闭包。由卷积支撑的 Minkowski 和与单向支撑，若 $\gamma=\gamma_2\circ\gamma_1$ 则 $t_*(\gamma)\ge t_*(\gamma_2)+t_*(\gamma_1)$；结合"无闭回路/无反馈"条件，$\preceq$ 为偏序。单向支撑来自 Kramers–Kronig/Hardy 与 Titchmarsh。([维基百科][3])
+即 $\preceq$ 为链路图的自反传递闭包。
+
+**（恒等链与自反性）** 对每个端口/读出域 $U$，引入恒等链 $e_U:U\to U$，规定 $L_{e_U}=0,\ t_*(e_U)=0$。于是 $U\preceq U$ 成立，自反性由恒等链保证；传递性由复合链的卷积支撑与 $t_*$ 可加给出。
+
+由卷积支撑的 Minkowski 和与单向支撑，若 $\gamma=\gamma_2\circ\gamma_1$ 则 $t_*(\gamma)\ge t_*(\gamma_2)+t_*(\gamma_1)$；结合"无闭回路/无反馈"条件，$\preceq$ 为偏序。单向支撑来自 Kramers–Kronig/Hardy 与 Titchmarsh。([维基百科][3])
 
 **证明（概要且自含）**：频域响应 $H\in H^2(\mathbb C^+)$ 蕴含时域冲激响应在 $t<0$ 为零；串联系统之响应为卷积 $h=h_n*\cdots*h_1$，由 Titchmarsh 定理得 $\inf\operatorname{supp}(h)=\sum_j\inf\operatorname{supp}(h_j)$，故若 $\gamma=\gamma_2\circ\gamma_1$ 则 $t_*(\gamma)\ge t_*(\gamma_2)+t_*(\gamma_1)$。配合**各段 $t_*(\gamma_j)>0$ 的链路前提**与"无闭回路/无反馈"，可达关系之自反传递闭包为偏序。([维基百科][3])
 
@@ -204,9 +208,9 @@ $\sup\operatorname{supp}(f*g)=\sup\operatorname{supp} f+\sup\operatorname{supp} 
 全局双曲背景上的线性波动方程满足有限传播速度：若初值在 $B_r$ 外为零，则解在 $t<r/c$ 的影响域外为零。
 **证明**：能量不等式与域依赖性给出；详见几何波动方程综述与讲义。([ljll.fr][11])
 
-**结论**：由引理 5.1–5.2（单向支撑与 Titchmarsh 卷积支撑），对任一传播链 $\gamma$ 有 $t_*(\gamma)\ge 0$；若 $\gamma$ 为**非恒等传播链**或 $L_\gamma>0$，则 $t_*(\gamma)>0$。且若 $\gamma=\gamma_2\circ\gamma_1$ 则
+**结论**：由引理 5.1–5.2（单向支撑与 Titchmarsh 卷积支撑），对任一传播链 $\gamma$ 有 $t_*(\gamma)\ge 0$，且若引入几何长度 $L_\gamma$ 并满足有限传播速度，则 $t_*(\gamma)\ge L_\gamma/c$；若 $\gamma=\gamma_2\circ\gamma_1$，则
 $$t_*(\gamma)\ge t_*(\gamma_2)+t_*(\gamma_1).$$
-配合"无闭回路/无反馈"，§2.1 的可达关系为偏序。**在 $(\mathcal M,g)\in\mathbf{Cau}$ 的背景下**，另可得物理下界 $t_*(\gamma)\ge L_\gamma/c$，但该几何下界不进入 $\mathbf{WScat}$ 的偏序定义。
+配合"恒等链 $e$：$t_*(e)=0$"与"无闭回路/无反馈"，§2.1 的可达关系为偏序。**在 $(\mathcal M,g)\in\mathbf{Cau}$ 的背景下**，该几何下界 $t_*(\gamma)\ge L_\gamma/c$ 亦成立，但它不进入 $\mathbf{WScat}$ 的偏序定义。
 
 ### 5.2 光观测集重构（KLU）
 
@@ -254,7 +258,7 @@ $$
 
 ### 5.6 NPE 数值账本（实现无关性）
 
-对被积函数 $f(E)=w_R(E)[h*\rho_{\rm rel}](E)$，若严格带限则有 Poisson 求和等式
+对被积函数 $f(E)=w_R(E)[\check h*\rho_{\rm rel}](E)$，若严格带限则有 Poisson 求和等式
 $\int f=\Delta\sum_{n\in\mathbb Z}f(E_0+n\Delta)$；一般情形误差分解为
 $\varepsilon_{\rm alias}+\varepsilon_{\rm EM}+\varepsilon_{\rm tail}$，其中 $\varepsilon_{\rm EM}$ 由有限阶 Euler–Maclaurin 给出显式端点校正，$\varepsilon_{\rm tail}$ 由窗/核的外带衰减控制。该误差学仅影响 $T[w_R,h]$ 的数值稳定性，与 §2 的因果偏序无涉。([维基百科][4])
 
