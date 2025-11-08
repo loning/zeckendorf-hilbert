@@ -1,6 +1,6 @@
 # GLS ↔ 因果流形：互构定理与范畴等价
 
-Version: 1.9
+Version: 1.10
 
 ## 摘要
 
@@ -11,12 +11,12 @@ $$
 $$
 并严格证明二者（在 $\mathbf{WScat}$ 的能量依赖幺正规范等价类上）通过自然变换互为等价：
 $$
-\mathfrak F\circ \mathfrak G\simeq \mathrm{Res}_{\mathcal D(V)},\qquad
+\mathfrak F\circ \mathfrak G\simeq \mathrm{Res}_{\mathcal D(\mathbf V)},\qquad
 \mathfrak G\circ \mathfrak F\simeq \mathrm{Id}_{\mathbf{WScat}/\!\sim_{\rm gauge}}.
 $$
 或者等价地表述为
 $$
-\eta:\ \mathrm{Res}_{\mathcal D(V)}\Rightarrow \mathfrak F\circ \mathfrak G,\qquad
+\eta:\ \mathrm{Res}_{\mathcal D(\mathbf V)}\Rightarrow \mathfrak F\circ \mathfrak G,\qquad
 \varepsilon:\ \mathfrak G\circ \mathfrak F\Rightarrow \mathrm{Id}_{\mathbf{WScat}/\!\sim_{\rm gauge}}.
 $$
 核心思路为：（i）以前沿时间 $t_*$ 的单向支撑与有限传播速度建立可达偏序与菱形基拓扑；（ii）调用 Hawking–King–McCarthy（HKM）与 Malament 的因果重构判据，从因果关系（或光观测集族）重建流形拓扑与度量的保角类；（iii）在全局双曲的可处理背景上，以辐射场—Lax–Phillips 理论构造能量可微的幺正散射矩阵 $S(E)$，并由 Birman–Kreĭn 公式与 Wigner–Smith 时间延迟矩阵统一母刻度；（iv）在能量依赖幺正规范 $S\mapsto U(E)S(E)V(E)$ 的相对不变类上确立自然同构。窗化数值读数遵循 Nyquist–Poisson–Euler–Maclaurin 的有限阶误差闭合纪律，与因果偏序严格分离。([AIP Publishing][1])
@@ -27,10 +27,11 @@ $$
 
 ### 0.1 记号与对象
 
-能量变量记为 $E$，上半平面 $\mathbb C^+$ 解析性以 Hardy 空间表述。GLS 对象取四元
+能量变量记为 $E$，上半平面 $\mathbb C^+$ 解析性以 Hardy 空间表述。GLS 对象取六元
 $$
-\mathfrak U=(\mathcal H,\ S(E),\ \mu_\varphi,\ \mathcal W),
+\mathfrak U=(\mathcal H,\ S(E),\ \mu_\varphi,\ \mathcal W,\ \mathbf V,\ \boldsymbol\Gamma),
 $$
+其中 $\mathbf V$ 为观测域，$\boldsymbol\Gamma$ 为 $\mathbf V$ 内的类时观测轨道族。
 其中 $S(E)\in\mathsf U(N)$ 为能量可微的散射矩阵，Wigner–Smith 矩阵与相对态密度定义为
 $$
 \mathsf Q(E)=-i\,S(E)^\dagger \tfrac{dS}{dE}(E),\qquad
@@ -51,6 +52,11 @@ $$
 \rho_{\rm rel,\gamma}(E):=\frac{1}{2\pi}\operatorname{tr}\big(P_\gamma\,\mathsf Q(E)\,P_\gamma\big),
 $$
 但本文范畴等价仅依赖总迹 $\rho_{\rm rel}$。
+
+**对象自带的光观测集生成**：由前沿 $t_*$ 定义
+$$
+P_{\mathbf V}(q):=\{x\in\mathbf V:\ x\ \text{首先观测到来自}\ q\ \text{的非零前沿信号}\}.
+$$
 ([arXiv][2])
 
 ### 0.2 公理
@@ -62,7 +68,7 @@ $$
 即"相位导数—谱移密度—群延迟迹"统一为母刻度。([arXiv][2])
 
 **公理 II（双时间分离）**
-因果时间（前沿）定义为最早非零到达 $t_*(\gamma)=\inf\{t:\ g_\gamma(t)\neq 0\}$。由 Hardy 解析的单向支撑与有限传播速度，**对任一传播链 $\gamma$ 均有 $t_*(\gamma)>0$**；且若 $\gamma=\gamma_2\circ\gamma_1$ 则 $t_*(\gamma)\ge t_*(\gamma_2)+t_*(\gamma_1)$。可测时间仅指窗化读数 $T[w_R,h]$ 的操作化刻度，二者无普适大小比较；因果与无信号仅以前沿 $t_*$ 与类光锥决定。单向支撑由 Hardy 解析—Kramers–Kronig 与 Titchmarsh 卷积支撑定理保证。([维基百科][3])
+因果时间（前沿）定义为最早非零到达 $t_*(\gamma)=\inf\{t:\ g_\gamma(t)\neq 0\}$。由 Hardy 解析的单向支撑，**对任一传播链 $\gamma$ 有 $t_*(\gamma)\ge 0$**；若进一步要求 $\gamma$ 为**非恒等传播链**（或其几何长度 $L_\gamma>0$，见 §3.3），则结合有限传播速度得 **$t_*(\gamma)>0$**。且若 $\gamma=\gamma_2\circ\gamma_1$ 则 $t_*(\gamma)\ge t_*(\gamma_2)+t_*(\gamma_1)$。可测时间仅指窗化读数 $T[w_R,h]$ 的操作化刻度，二者无普适大小比较；因果与无信号仅以前沿 $t_*$ 与类光锥决定。单向支撑由 Hardy 解析—Kramers–Kronig 与 Titchmarsh 卷积支撑定理保证。([维基百科][3])
 
 **公理 III（有限阶 NPE 误差闭合）**
 窗化积分的数值实现由 Poisson 求和与有限阶 Euler–Maclaurin（EM）公式给出显式误差三分
@@ -81,7 +87,7 @@ $\mathbf{Cau}$ 对象取时间定向的洛伦兹流形 $(\mathcal M,g)$。HKM �
 
 ### 1.1 窗化散射范畴 $\mathbf{WScat}$
 
-**对象** $\mathfrak U=(\mathcal H,S,\mu_\varphi,\mathcal W)$，满足：频域传递函数在 $\mathbb C^+$ 解析，系统被动，无预响应；高频极限与有限传播速度成立。
+**对象** $\mathfrak U=(\mathcal H,S,\mu_\varphi,\mathcal W,\mathbf V,\boldsymbol\Gamma)$，满足：频域传递函数在 $\mathbb C^+$ 解析，系统被动，无预响应；高频极限与有限传播速度成立。
 
 **（无闭回路/无反馈）** 传播链图谱无非平凡闭合串联：不存在 $U_0,\dots,U_m=U_0$ 的链路闭环（各段 $t_*(\gamma_j)>0$）。由此 §2.1 的可达关系为偏序。
 
@@ -107,19 +113,17 @@ U\preceq V\ \Longleftrightarrow\ \exists\ \text{有限传播链}\ \gamma:U\to V\
 $$
 即 $\preceq$ 为链路图的自反传递闭包。由卷积支撑的 Minkowski 和与单向支撑，若 $\gamma=\gamma_2\circ\gamma_1$ 则 $t_*(\gamma)\ge t_*(\gamma_2)+t_*(\gamma_1)$；结合"无闭回路/无反馈"条件，$\preceq$ 为偏序。单向支撑来自 Kramers–Kronig/Hardy 与 Titchmarsh。([维基百科][3])
 
-**证明（概要且自含）**：频域响应 $H\in H^2(\mathbb C^+)$ 蕴含时域冲激响应在 $t<0$ 为零；串联系统之响应为卷积 $h=h_n*\cdots*h_1$，由 Titchmarsh 定理得 $\inf\operatorname{supp}(h)=\sum_j\inf\operatorname{supp}(h_j)$，故若 $\gamma=\gamma_2\circ\gamma_1$ 则 $t_*(\gamma)\ge t_*(\gamma_2)+t_*(\gamma_1)$。配合 Axiom II 的 $t_*>0$ 与"无闭回路/无反馈"，$\preceq$ 为偏序。([维基百科][3])
+**证明（概要且自含）**：频域响应 $H\in H^2(\mathbb C^+)$ 蕴含时域冲激响应在 $t<0$ 为零；串联系统之响应为卷积 $h=h_n*\cdots*h_1$，由 Titchmarsh 定理得 $\inf\operatorname{supp}(h)=\sum_j\inf\operatorname{supp}(h_j)$，故若 $\gamma=\gamma_2\circ\gamma_1$ 则 $t_*(\gamma)\ge t_*(\gamma_2)+t_*(\gamma_1)$。配合**各段 $t_*(\gamma_j)>0$ 的链路前提**与"无闭回路/无反馈"，可达关系之自反传递闭包为偏序。([维基百科][3])
 
 ### 2.2 光观测集与几何重构
 
-在观测域 $V$ 内给出丰富的类时世界线族 $\Gamma$。对 $q\in W\subset\mathcal M$ 定义光观测集
-$$
-P_V(q)=\{x\in V:\ x\ \text{首先观测到来自}\ q\ \text{的非零前沿信号}\}.
-$$
-KLU 证明：已知 $V$ 与 $P_V(q)$ 的全体，可重建 $W$ 的拓扑、微分与保角结构（被动/主动两型数据）。
+令 $\mathfrak U=(\mathcal H,S,\mu_\varphi,\mathcal W,\mathbf V,\boldsymbol\Gamma)$。在对象自带的观测域 **$\mathbf V$** 内，取其类时观测轨道族 **$\boldsymbol\Gamma$**，并按 §0.1 的规则由前沿 $t_*$ 生成光观测集 $P_{\mathbf V}(q)$；据此重构 $(\mathcal M_{\rm rec},[g]_{\rm rec},\preceq_{\rm rec})$。
 
-**定义（最大传播域）** 给定观测域 $V\subset\mathcal M$，令
-$$\mathcal D(V):=\{q\in\mathcal M:\ P_V(q)\ \text{良定义且可由 $V$ 上的数据唯一确定}\}.$$
-等价地，可取因果域刻画 $\mathcal D(V)=J^+(V)\cap J^-(V)$ 在本重构框架下与 $P_V(q)$ 的可观测性相一致的最大开子集。随后 §4.1 与 §7 中的限制函子均按此 $\mathcal D(V)$ 取值。
+KLU 证明：已知 $\mathbf V$ 与 $P_{\mathbf V}(q)$ 的全体，可重建最大传播域内的拓扑、微分与保角结构（被动/主动两型数据）。
+
+**定义（最大传播域）** 给定观测域 $\mathbf V\subset\mathcal M$，令
+$$\mathcal D(\mathbf V):=\{q\in\mathcal M:\ P_{\mathbf V}(q)\ \text{良定义且可由 $\mathbf V$ 上的数据唯一确定}\}.$$
+等价地，可取因果域刻画 $\mathcal D(\mathbf V)=J^+(\mathbf V)\cap J^-(\mathbf V)$ 在本重构框架下与 $P_{\mathbf V}(q)$ 的可观测性相一致的最大开子集。随后 §4.1 与 §7 中的限制函子均按此 $\mathcal D(\mathbf V)$ 取值。
 
 据此置
 $$
@@ -147,9 +151,11 @@ HKM 与 Malament 给出：在可区分背景下，**因果同构**（$p\ll q\iff
 
 ### 3.3 前沿一致与函子性
 
-超曲性与有限传播速度给出 **$t_*\ge L_\gamma/c$**（$L_\gamma$ 为相对于 $g$ 的链路几何长度）；高频测地极限取等号，故由 $(\mathcal M,g)$ 构造之 GLS 的前沿与其因果锥一致。保角同构诱导辐射场的幺正等价与 $S$ 的等价表示，给出 $\mathbf{WScat}$ 的态射，定义
+超曲性与有限传播速度给出 **$t_*\ge L_\gamma/c$**（$L_\gamma$ 为相对于 $g$ 的链路几何长度）；高频测地极限取等号，故由 $(\mathcal M,g)$ 构造之 GLS 的前沿与其因果锥一致。保角同构诱导辐射场的幺正等价与 $S$ 的等价表示，给出 $\mathbf{WScat}$ 的态射。
+
+**观测方案（Obs）**：对每个 $(\mathcal M,g)$ 选定类时开集 $\mathbf V$ 及其类时观测轨道族 $\boldsymbol\Gamma$；对因果嵌入 $f$ 取像 $(f(\mathbf V),f_*\boldsymbol\Gamma)$ 以保持函子性。于是
 $$
-\mathfrak G(\mathcal M,g):=(\mathcal H,S,\mu_\varphi,\mathcal W).
+\mathfrak G(\mathcal M,g):=(\mathcal H,S,\mu_\varphi,\mathcal W,\mathbf V,\boldsymbol\Gamma).
 $$
 ([arXiv][9])
 
@@ -159,11 +165,11 @@ $$
 
 ### 4.1 $\mathfrak F\circ \mathfrak G\simeq \mathrm{Id}_{\mathbf{Cau}}$
 
-将 $(\mathcal M,g)$ 送入 $\mathfrak G$ 得 $S(E)$ 与前沿簿记，再由 $\mathfrak F$ 以 $t_*$ 与 $P_V(q)$ 重建。KLU 断言：在四维背景下，给定 $V$ 与 $P_V(q)$ 的全体，可重建最大传播域内的拓扑、微分与保角结构；配合 Malament，因果同构的双射即为光滑保角同构。构造自然同构
+将 $(\mathcal M,g)$ 送入 $\mathfrak G$ 得 $S(E)$ 与前沿簿记，再由 $\mathfrak F$ 以 $t_*$ 与 $P_{\mathbf V}(q)$ 重建。KLU 断言：在四维背景下，给定 $\mathbf V$ 与 $P_{\mathbf V}(q)$ 的全体，可重建最大传播域内的拓扑、微分与保角结构；配合 Malament，因果同构的双射即为光滑保角同构。构造自然同构
 $$
-\eta_{(\mathcal M,g)}:\ (\mathcal M,g)\big|_{\mathcal D(V)}\ \overset{\sim}{\longrightarrow}\ \mathfrak F(\mathfrak G(\mathcal M,g)),
+\eta_{(\mathcal M,g)}:\ (\mathcal M,g)\big|_{\mathcal D(\mathbf V)}\ \overset{\sim}{\longrightarrow}\ \mathfrak F(\mathfrak G(\mathcal M,g)),
 $$
-其中 $\mathcal D(V)$ 为观测域 $V$ 的最大传播域；若 $V$ 覆盖有效外边界，则 $\eta_{(\mathcal M,g)}$ 退化为 $\mathrm{Id}_{(\mathcal M,g)}$。自然性来自态射层的因果保持与辐射场的协变性。([arXiv][6])
+其中 **$\mathbf V$ 为 $\mathfrak G(\mathcal M,g)$ 输出对象的观测域分量**；若 $\mathbf V$ 覆盖有效外边界，则 $\eta_{(\mathcal M,g)}$ 退化为 $\mathrm{Id}_{(\mathcal M,g)}$。自然性来自态射层的因果保持与辐射场的协变性。([arXiv][6])
 
 ### 4.2 $\mathfrak G\circ \mathfrak F\simeq \mathrm{Id}_{\mathbf{WScat}/\!\sim_{\rm gauge}}$
 
@@ -176,7 +182,7 @@ $$
 
 ### 4.3 范畴等价
 
-由 4.1–4.2，$(\mathfrak F,\mathfrak G;\eta,\varepsilon)$ 给出 $\mathrm{Res}_{\mathcal D(V)}(\mathbf{Cau})$ 与 $\mathbf{WScat}/\!\sim_{\rm gauge}$ 的等价；当 $V$ 覆盖有效外边界时退化为 $\mathbf{Cau}\simeq \mathbf{WScat}/\!\sim_{\rm gauge}$。其一端依赖 HKM–Malament 的因果—保角重构，另一端依赖辐射场散射与 Birman–Kreĭn—Wigner–Smith 母刻度。([AIP Publishing][1])
+由 4.1–4.2，$(\mathfrak F,\mathfrak G;\eta,\varepsilon)$ 给出 $\mathrm{Res}_{\mathcal D(\mathbf V)}(\mathbf{Cau})$ 与 $\mathbf{WScat}/\!\sim_{\rm gauge}$ 的等价；当 $\mathbf V$ 覆盖有效外边界时退化为 $\mathbf{Cau}\simeq \mathbf{WScat}/\!\sim_{\rm gauge}$。其一端依赖 HKM–Malament 的因果—保角重构，另一端依赖辐射场散射与 Birman–Kreĭn—Wigner–Smith 母刻度。([AIP Publishing][1])
 
 ---
 
@@ -198,7 +204,7 @@ $\sup\operatorname{supp}(f*g)=\sup\operatorname{supp} f+\sup\operatorname{supp} 
 全局双曲背景上的线性波动方程满足有限传播速度：若初值在 $B_r$ 外为零，则解在 $t<r/c$ 的影响域外为零。
 **证明**：能量不等式与域依赖性给出；详见几何波动方程综述与讲义。([ljll.fr][11])
 
-**结论**：由引理 5.1–5.2（单向支撑与 Titchmarsh 卷积支撑），对任一传播链 $\gamma$ 有 $t_*(\gamma)>0$，且若 $\gamma=\gamma_2\circ\gamma_1$ 则
+**结论**：由引理 5.1–5.2（单向支撑与 Titchmarsh 卷积支撑），对任一传播链 $\gamma$ 有 $t_*(\gamma)\ge 0$；若 $\gamma$ 为**非恒等传播链**或 $L_\gamma>0$，则 $t_*(\gamma)>0$。且若 $\gamma=\gamma_2\circ\gamma_1$ 则
 $$t_*(\gamma)\ge t_*(\gamma_2)+t_*(\gamma_1).$$
 配合"无闭回路/无反馈"，§2.1 的可达关系为偏序。**在 $(\mathcal M,g)\in\mathbf{Cau}$ 的背景下**，另可得物理下界 $t_*(\gamma)\ge L_\gamma/c$，但该几何下界不进入 $\mathbf{WScat}$ 的偏序定义。
 
@@ -263,12 +269,12 @@ $\varepsilon_{\rm alias}+\varepsilon_{\rm EM}+\varepsilon_{\rm tail}$，其中 $
 ## 7. 主定理（范畴等价）与推论
 
 **主定理**
-令 $\mathbf{WScat}$ 为满足公理 I–III、Hardy 解析、被动、有限传播速度与高频极限的窗化散射系统类；$\mathbf{Cau}$ 为可区分并适合辐射场—散射构造的洛伦兹流形类。设 $\mathrm{Res}_{\mathcal D(V)}:\mathbf{Cau}\to\mathbf{Cau}$ 为限制到最大传播域的函子，$\mathrm{Res}_{\mathcal D(V)}(\mathcal M,g)=(\mathcal M,g)|_{\mathcal D(V)}$。则存在自然变换
+令 $\mathbf{WScat}$ 为满足公理 I–III、Hardy 解析、被动、有限传播速度与高频极限的窗化散射系统类；$\mathbf{Cau}$ 为可区分并适合辐射场—散射构造的洛伦兹流形类。设 $\mathrm{Res}_{\mathcal D(\mathbf V)}:\mathbf{Cau}\to\mathbf{Cau}$ 为限制到最大传播域的函子，$\mathrm{Res}_{\mathcal D(\mathbf V)}(\mathcal M,g)=(\mathcal M,g)|_{\mathcal D(\mathbf V)}$，其中 $\mathbf V$ 来自 $\mathfrak G(\mathcal M,g)$ 的对象分量。则存在自然变换
 $$
-\eta:\ \mathrm{Res}_{\mathcal D(V)}\ \Rightarrow\ \mathfrak F\circ \mathfrak G,\qquad
+\eta:\ \mathrm{Res}_{\mathcal D(\mathbf V)}\ \Rightarrow\ \mathfrak F\circ \mathfrak G,\qquad
 \varepsilon:\ \mathfrak G\circ \mathfrak F\ \Rightarrow\ \mathrm{Id}_{\mathbf{WScat}/\!\sim_{\rm gauge}}.
 $$
-若观测域 $V$ 覆盖有效外边界，则 $\mathcal D(V)=\mathcal M$，从而 $\eta$ 退化为 $\mathrm{Id}_{\mathbf{Cau}}$。证明见 §2–§5。([AIP Publishing][1])
+若观测域 $\mathbf V$ 覆盖有效外边界，则 $\mathcal D(\mathbf V)=\mathcal M$，从而 $\eta$ 退化为 $\mathrm{Id}_{\mathbf{Cau}}$。证明见 §2–§5。([AIP Publishing][1])
 
 **推论（order+number 佐证）**
 "因果 + 计数"可定保角类与体积因子；在离散化语境，因果集方案以偏序与局部有限性重建几何，呼应本文的"前沿—保角—母刻度"链路。([物理评论链接管理器][15])
