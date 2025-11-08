@@ -1,6 +1,6 @@
 # GLS—因果流形—EBOC—RCA—Hilbert—Zeckendorf 统一框架：三位一体母尺、窗化散射—信息几何变分、测量—熵产生、分形—递归—傅里叶—Mellin 融合与范畴严格化（含证明）
 
-**版本**：v6.1（Part I：核心定理与实现要则；附录含主要证明链）
+**版本**：v8.2
 **MSC**：83C05；81U15；37B15；46E22；42A38；68Q80；94A17
 **关键词**：GLS（广义光结构）；因果流形；EBOC（静态块）；RCA（可逆元胞自动机）；三位一体母尺；Toeplitz/Berezin 压缩；Hilbert 变换；Hardy/de Branges 空间；Poisson—Euler–Maclaurin（有限阶）；Mellin/小波框架；Zeckendorf/Fibonacci 编码；I-投影；Belavkin 过滤；量子 Jarzynski；分形标度；递归范畴
 
@@ -20,7 +20,7 @@
 
 提出 Zeckendorf 可逆日志范畴 $\mathbf{Zec}$：对象为滑窗的 Fibonacci 唯一分解码与其局部进借位增量，态射为可逆滑移更新；给出对称单幺半结构，并构造到 $\mathbf{WScat}$ 与 $\mathbf{RCA}$ 的函子桥接，证明其作为范畴的自洽独立性（§8；附录 D）。唯一分解性与线性时间规范算法支撑了该范畴的可实现性。([维基百科][5])
 
-Poisson—有限阶 Euler–Maclaurin 的三分误差学作为统一的数值纪律（§9；附录 C/I），满足"奇性不增，极点＝主尺度"的局部化原则。([维基百科][6])
+Poisson—有限阶 Euler–Maclaurin 的三分误差学作为统一的数值纪律（§9；附录 C），满足"奇性不增，极点＝主尺度"的局部化原则。([维基百科][6])
 
 ---
 
@@ -36,7 +36,7 @@ Poisson—有限阶 Euler–Maclaurin 的三分误差学作为统一的数值纪
 8. Zeckendorf 可逆日志范畴：定义—性质—桥接
 9. 数值 NPE 纪律
 10. 案例
-    附录 A–I（证明）
+    附录 A–H（证明）
 
 ---
 
@@ -90,7 +90,7 @@ $\mathbf{WScat}$ 的对象 $(\mathcal H,S,\rho_{\rm rel};\mathcal K_{w,h})$；�
 
 ## 6. 测量统一：I-投影、Belavkin 过滤与窗化 BK
 
-**离散测量**：Davies–Lewis 仪器、POVM 与 Naimark 外延统一"选择/非选择"图式；对约束极小化相对熵的 I-投影等价于 Lüders 更新。([SpringerLink][3])
+**离散测量**：Davies–Lewis 仪器、POVM 与 Naimark 外延统一"选择/非选择"图式；当测量为投影测量（PVM），或约束与先验态/可观测量两两可交换时，极小化相对熵的 I-投影与 Lüders 更新一致；对一般 POVM，二者并不等价，可先取 Naimark 外延为投影测量后再行条件化获得相应更新。([SpringerLink][3])
 
 **连续监测**：Belavkin 过滤给出后验态的量子随机微分方程（扩散/计数型），平均后回收 GKSL 主方程；非平衡熵产生由 Spohn 单调正定。([科学直通车][10])
 
