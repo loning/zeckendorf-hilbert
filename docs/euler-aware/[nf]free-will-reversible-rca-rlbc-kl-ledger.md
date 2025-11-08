@@ -1,5 +1,7 @@
 # 自由意志的可逆化：可逆元胞自动机的局部可逆边界条件、KL/Bregman 选择算子与可逆账本
 
+Version: 1.10
+
 ## 摘要
 
 提出一种把"自由意志"严格实现为**可逆元胞自动机**（reversible cellular automaton, RCA）在有限区域上的**局部可逆边界条件**（reversible local boundary condition, RLBC）的方法学，并将"为何选此不选彼"的**信息保真度**刻画与**选择算子**置于同一可逆账本中。核心做法是：把每一步"抉择"设计为边界带上的**双射更新**，在必要时携带可逆的**证据/随机子寄存器**以保存打平与采样路径，使其与内部 RCA 的一步演化**级联为整体双射**；抉择本身由**最小-KL/I-投影**的**软选择**给出，并在**Γ-极限**下退化为**硬选择**（argmax），其全部信息开销在**Bennett 可逆嵌入**中被精确记账并可逆回收。可逆性与可判性由 CHL 表征定理、Garden-of-Eden 定理、分块/分区可逆元胞自动机结构与线性-边界矩阵判据保障；二维及以上一般邻域的不可判定性通过选取**块置换**或**线性可逆块**的可验证子类加以回避。本文同时将该边界-抉择范式与统一的**窗化读数—相位—相对态密度—群延迟**刻度相衔接，给出端到端的误差与稳定性声明。
@@ -8,7 +10,7 @@
 
 ## Notation & Axioms / Conventions
 
-1. **RCA 与配置空间.** 字母表 $A$ 有限，$d\ge 1$，全空间 $X=A^{\mathbb Z^d}$。时间一步的全局更新 $F:X\to X$ 若在 Cantor 拓扑下连续且与平移等变，则且仅则它由有限视界的局部规则给出（Curtis–Hedlund–Lyndon, CHL）。若 $F$ 为双射，则称为 RCA；在欧氏格上，**单射 ⇔ 满射**与**无前驱 ⇔ 有孤儿/孪生子图样**由 Garden-of-Eden 定理刻画。([SpringerLink][1])
+1. **RCA 与配置空间.** 字母表 $A$ 有限，$d\ge 1$，全空间 $X=A^{\mathbb Z^d}$。时间一步的全局更新 $F:X\to X$ 若在 Cantor 拓扑下连续且与平移等变，则且仅则它由有限视界的局部规则给出（Curtis–Hedlund–Lyndon, CHL）。若 $F$ 为双射，则称为 RCA；在 $\mathbb Z^d$ 全格上，Garden-of-Eden 定理给出 **满射 ⇔ 预单射（无孪生子） ⇔ 无孤儿（无前驱图样）**，并且 **单射 ⇒ 满射**；故双射当且仅当同时单射且满射。([SpringerLink][1])
 
 2. **块/分区可逆与线性可逆.** 采用 Margolus 等分区：若**块内变换为置换**，则全局即可逆；反向演化由逆置换与逆序分区实现。线性元胞自动机在多种边界条件（含"中间边界"）下的可逆性可化为规则矩阵的可逆性与 Kronecker 分解判据。([维基百科][2])
 
@@ -16,10 +18,9 @@
 
 4. **刻度同一（WSIG–EBOC 约定）.** 在窗化散射刻度上，采用同一式
 $$
-\frac{\varphi'(E)}{\pi}=\rho_{\mathrm{rel}}(E)=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E),\qquad
-\mathsf Q(E)=-,i,S(E)^\dagger ,\partial_E S(E),
+\rho_{\mathrm{rel}}(E)=\frac{1}{2\pi i}\frac{\mathrm d}{\mathrm dE}\log\det S(E)=\frac{1}{2\pi}\operatorname{tr}Q(E)=\frac{1}{2\pi}\,\varphi'(E),
 $$
-并以 Birman–Kreĭn 公式联系散射相位与谱移函数，作为能量/时间读数与"提交"的公共母刻度。([link.aps.org][4])
+其中 $Q(E)=-i\,S^{\dagger}(E)\,\partial_E S(E)$，$\det S(E)=e^{i\varphi(E)}$。Birman–Kreĭn 公式联系散射相位与谱移函数，作为能量/时间读数与"提交"的公共母刻度。([link.aps.org][4])
 
 5. **信息几何与选择.** "最小-KL 在线性一致性约束下给出指数族/softmax、并满足 Pythagorean 身份与 Fenchel 双性"；"TV–KL"的 Pinsker 界用于温度-扰动-抖动的稳定估计。([pages.stern.nyu.edu][5])
 
@@ -33,15 +34,15 @@ $$
 $$
 \mathsf B:\ A^{\partial\Lambda}\times \mathcal E\ \longrightarrow\ A^{\partial\Lambda}\times \mathcal E,
 $$
-其中 $\mathcal E$ 是**可逆辅助寄存器**（证据/随机子/打平标签等）。**一轮演化**定义为
+其中 $\mathcal E$ 是**可逆辅助寄存器**（证据/随机子/打平标签等）；本文默认 $\mathcal E$ 的字母表**有限**，并按边界触块局域化配置，以确保整体处于有限字母表 CA 框架（适用 CHL/GOE）。**一轮演化**定义为
 $$
 \mathcal U \coloneqq F_\Lambda\circ \mathsf B\quad\text{（先边界，后内部）}.
 $$
 称 $\mathsf B$ 为**局部可逆边界条件**（RLBC），若满足：
 
-* **(R1) 局部性**：$\mathsf B$ 仅读写 $\partial\Lambda$ 及其有限外侧壳层（或把外侧观测压入 $\mathcal E$），不触及 $\Lambda^\circ$；
+* **(R1) 局部性**：$\mathsf B$ 可**读** $\partial\Lambda$ 之外的有限外侧壳层（必要时将观测压入 $\mathcal E$），但**仅写** $\partial\Lambda$ 与 $\mathcal E$，且不触及 $\Lambda^\circ$；
 * **(R2) 双射性**：$(b,\epsilon)\mapsto (b',\epsilon')$ 为置换；
-* **(R3) 证据可追账**：一切用于抉择的随机子、打平索引与观测证据均写入 $\mathcal E$，以便反演恢复（Bennett 嵌入）。([dl.acm.org][6])
+* **(R3) 证据可追账**：一切用于抉择的随机子、打平索引、**所选动作索引 $a^\star$（或可重构 $a^\star$ 的最小充分证据）**与观测证据均写入 $\mathcal E$，以便反演恢复（Bennett 嵌入）。([dl.acm.org][6])
 
 在分区实现中，令所有"触边块"各施以块内置换；由**块置换的并行直积=置换**，$\mathsf B$ 自动满足 (R2)。Margolus 分区的反向次序与逆置换给出 $\mathsf B^{-1}$。([维基百科][2])
 
@@ -49,9 +50,13 @@ $$
 
 ## 2. 级联可逆性与可判性
 
-**命题 2.1（级联可逆）.** 若 $F_\Lambda$ 为 RCA，$\mathsf B$ 为 RLBC，则 $\mathcal U=F_\Lambda\circ\mathsf B$ 为 RCA，且 $\mathcal U^{-1}=\mathsf B^{-1}\circ F_\Lambda^{-1}$。
+**命题 2.1（有限域级联为双射）.** 设全局 $F$ 为 RCA，并取其在 $\Lambda$ 上的局部实现 $F_\Lambda$。若 $\mathsf B$ 为 RLBC，**且 $\mathsf B$ 与 $F_\Lambda$ 采用分区两相（如 Margolus）实现，使每一相位中的触边块两两不相交，并按"边界相位→内部相位"的两相日程同步执行**，则
+$$
+\mathcal U=F_\Lambda\circ\mathsf B
+$$
+是在状态 $(x|_\Lambda,b,\epsilon)$ 上的**有限域双射**，且 $\mathcal U^{-1}=\mathsf B^{-1}\circ F_\Lambda^{-1}$。将 $\Lambda$ 与 $\mathsf B$ 按上述**分区平铺与两相日程**同步作用于全格时，所得全局演化为 RCA。
 
-*证明.* 双射复合仍为双射；局部性与等变性由 CHL 表征保留，从而反向映射亦为局部-等变的 CA 规则。([SpringerLink][1])∎
+*证明.* $\mathcal U$ 为双射，且 $\mathcal U^{-1}=\mathsf B^{-1}\circ F_\Lambda^{-1}$。若将 $\Lambda$ 与 $\mathsf B$ 按分区平铺并同步作用于全格，则由 CHL 可得对应全局映射连续且与平移等变，其逆同理。([SpringerLink][1])∎
 
 **命题 2.2（边界-内部一体的可判性子类）.** 在下列两类实现中，$\mathcal U$ 的可逆性**可判**且可构造反演：
 
@@ -64,27 +69,37 @@ $$
 
 ## 3. 选择算子：KL/Bregman 保真（软→硬）
 
-设边界可行动作集合 $\mathcal A(b)$。给定基准 $q(\cdot\mid b)$ 与线性一致性约束 $Ap=b^\star$。
+设边界可行动作集合 $\mathcal A(b)$。给定基准 $q(\cdot\mid b)$ 与矩约束，引入特征映射 $\phi:\mathcal A(b)\to\mathbb R^m$。
+
+**假设（可行性）**：$b^\star \in \operatorname{conv}\{\phi(a):a\in\mathcal A(b)\}$。
 
 **定义 3.1（软选择 / I-投影）.**
 $$
-p^\star(\cdot\mid b)\in\arg\min_{p\in\Delta(\mathcal A(b))}\Big\{D_{\mathrm{KL}}!\big(p|q\big):\ Ap=b^\star\Big\},
+p^\star(\cdot\mid b)\in\arg\min_{p\in\Delta(\mathcal A(b))}\Big\{D_{\mathrm{KL}}(p\|q):\ \sum_{a}p(a\mid b)\phi(a)=b^\star\Big\},
 $$
 其 KKT 条件给
 $$
-p^\star(a\mid b)\ \propto\ q(a\mid b),e^{\langle\lambda,basis(a)\rangle},
+p^\star(a\mid b)\ \propto\ q(a\mid b)\exp\big(\langle \lambda,\phi(a)\rangle\big),
 $$
 即指数族/softmax；并满足信息几何的 Pythagorean 身份与 Fenchel-Legendre 对偶。([pages.stern.nyu.edu][5])
 
 **命题 3.2（稳健性与 TV-KL 界）.** 当温度/正则参数改变引入的 KL 误差为 $\delta$ 时，总变差偏移受 Pinsker 界
 $$
-|p_1-p_2|_{\mathrm{TV}}\le \sqrt{\tfrac12 D_{\mathrm{KL}}(p_1|p_2)}
+\|p_1-p_2\|_{\mathrm{TV}}\le \sqrt{\tfrac12 D_{\mathrm{KL}}(p_1\|p_2)}
 $$
 控制，可作为"温度—抖动"的上界；必要时可用 Bretagnolle–Huber 界改进。([维基百科][8])
 
-**定理 3.3（Γ-极限：软→硬）.** 令 $\Phi_\tau(p)=D_{\mathrm{KL}}(p|q)+\tau,R(p)$（$R$ 强凸）；当 $\tau\downarrow 0$ 时，$\Phi_\tau$ 的极小者 $p^\star_\tau$ 在 Γ-意义下收敛到某个极大化线性泛函的点质量 $ \delta_{a^\star}$（硬选择）。([SpringerLink][9])
+**定理 3.3（Γ-极限：软→硬，经熵/KL 正则）.** 设 $q\in\Delta(\mathcal A)$、代价 $c:\mathcal A\to\mathbb R$。对 $\tau>0$，令
+$$
+p_\tau\in\arg\min_{p\in\Delta(\mathcal A)}\big\{\langle c,p\rangle+\tau D_{\mathrm{KL}}(p\|q)\big\}
+$$
+则 $p_\tau(a)\propto q(a)\exp(-c_a/\tau)$，且当 $\tau\downarrow 0$ 时 $p_\tau\Rightarrow \delta_{a^\star}$ 其中 $a^\star\in\arg\min_a c_a$；若极小点唯一则收敛唯一。**（带线性矩约束）** 若加入 $\sum_a p(a)\phi(a)=b^\star$，且**可行**（$b^\star\in\operatorname{conv}\phi(\mathcal A)$），则存在对偶变量 $\lambda(\tau)$ 使
+$$
+p_\tau(a)\propto q(a)\exp\Big(\tfrac{\langle \lambda(\tau),\phi(a)\rangle - c_a}{\tau}\Big).
+$$
+若可行集中**极小点唯一且为点质量**（存在 $a^\star\in\mathcal A$ 使 $\phi(a^\star)=b^\star$），则当 $\tau\downarrow 0$ 时 $p_\tau\Rightarrow \delta_{a^\star}$。([SpringerLink][9])
 
-*证明略.* 利用强凸-Γ-紧性与线性泛函的 Mosco 极限，结合同胚嵌入把极小序列的任何弱极限识别为极值点；唯一性与选择稳定性由 3.2 给出。∎
+*证明略.* 当 $\tau\downarrow 0$ 时，熵/KL 项权重下降，线性目标支配；指数族表达式中的 $-c_a/\tau$ 指数差距放大，使概率质量集中到极小者；Γ-收敛与大偏差原理给出严格极限；矩约束情形通过拉格朗日乘子的尺度分析得到相同结论。唯一性与选择稳定性由 3.2 给出。∎
 
 ---
 
@@ -108,18 +123,26 @@ $$
 $$
 \mathsf B(b,\epsilon)=\big(b',\epsilon'\big)
 $$
-满足 (R1)–(R3)，并且在分块实现下为边界触块置换的直积。
+满足 (R1)–(R3)，并且在分块实现下为**某一相位的不相交**边界触块置换的直积。
 
-**定理 5.2（RLBC ⊗ RCA ⇒ RCA）.** 若 $F_\Lambda$ 为 RCA、$\mathsf B$ 为 RLBC，则 $\mathcal U=F_\Lambda\circ\mathsf B$ 为 RCA；$\mathcal U^{-1}=\mathsf B^{-1}\circ F_\Lambda^{-1}$。([SpringerLink][1])
+**定理 5.2（RLBC $\otimes$ 局部 RCA ⇒ 有限域双射）.** 若 $F_\Lambda$ 为 RCA、$\mathsf B$ 为 RLBC，则 $\mathcal U=F_\Lambda\circ\mathsf B$ 为有限域双射；$\mathcal U^{-1}=\mathsf B^{-1}\circ F_\Lambda^{-1}$。若对全格的每个平移副本**按分区两相日程**施加同构的 $\mathsf B$ 与对应的 $F_\Lambda$，且在任一相位中触边块**两两不相交**，则得到全局 RCA，逆由相反相位与逆置换回放得到。([SpringerLink][1])
 
-**定理 5.3（选择 = I-投影；软→硬）.** 设 $Ap=b^\star$ 为线性一致性约束，则
-(i) $p^\star=\arg\min D_{\mathrm{KL}}(p|q)$ 唯一，且为指数族；
-(ii) 当温度 $\tau\downarrow 0$ 时，$p^\star\Rightarrow \delta_{a^\star}$；
+**定理 5.3（选择 = I-投影；软→硬）.** 设 $\sum_a p(a)\phi(a)=b^\star$ 为矩约束，且**可行**（$b^\star\in\operatorname{conv}\phi(\mathcal A)$），则
+(i) $p^\star=\arg\min D_{\mathrm{KL}}(p\|q)$ 唯一，且为指数族；
+(ii) 对正则化族
+$$
+p_\tau\in\arg\min_{p\in\Delta(\mathcal A)}\Big\{\langle c,p\rangle+\tau D_{\mathrm{KL}}(p\|q)\ :\ \sum_a p(a)\phi(a)=b^\star\Big\},
+$$
+**存在**对偶变量 $\lambda(\tau)$；并且**若** $b^\star$ 位于 $\operatorname{conv}\phi(\mathcal A)$ 的**相对内点**（Slater 条件），则 $\{\lambda(\tau)\}$ **有界**（存在聚点）。在一般可行但非内点情形，$\lambda(\tau)$ 可能发散而下式仍成立：
+$$
+p_\tau(a)\propto q(a)\exp\Big(\tfrac{\langle \lambda(\tau),\phi(a)\rangle - c_a}{\tau}\Big).
+$$
+**若极小点唯一且为点质量**（存在 $a^\star$ 使 $\phi(a^\star)=b^\star$），则当 $\tau\downarrow 0$ 时 $p_\tau\Rightarrow \delta_{a^\star}$；
 (iii) 抖动稳定性受 Pinsker/Bretagnolle–Huber 界控制。([pages.stern.nyu.edu][5])
 
 **定理 5.4（可逆账本化）.** 令 $\operatorname{Sel}$ 为 5.3 的软/硬选择。存在一族边界块-置换 $\{\Pi_{\text{block}}^{(a)}\}_{a\in\mathcal A}$ 与可逆寄存器更新，使
 $$
-\mathsf B_\theta=\prod_{\text{触边块}}\Pi_{\text{block}}^{(a^\star_\theta)}
+\mathsf B_\theta=\prod_{\text{触边块}}\Pi_{\text{block}}\big(a^\star_\theta\big)
 $$
 构成 RLBC，并且采样/打平的全部信息被写入 $\mathcal E$ 并在 $\mathsf B_\theta^{-1}$ 中回擦，无 Landauer 成本。([dl.acm.org][6])
 
@@ -131,23 +154,31 @@ $$
 
 将边界的"证据汇总/一致性约束"来源于一类窗化谱读数：在绝对连续谱区，以同一刻度
 $$
-\frac{\varphi'(E)}{\pi}=\rho_{\mathrm{rel}}(E)=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E),\quad \mathsf Q=-iS^\dagger S',
+\rho_{\mathrm{rel}}(E)=\frac{1}{2\pi i}\frac{\mathrm d}{\mathrm dE}\log\det S(E)=\frac{1}{2\pi}\operatorname{tr}Q(E)=\frac{1}{2\pi}\,\varphi'(E),
 $$
-把"读数"表述为相位导数/相对态密度/群延迟迹的积分泛函；Birman–Kreĭn 公式给出谱移与散射相位的等价，从而可把"提交/抉择"的一致性约束 $Ap=b^\star$ 明确地绑定到能量-相位账本。边界-选择的**软→硬**转变对"读数抖动"的灵敏度由 Pinsker-型不等式与线性化响应估计控制。([link.aps.org][4])
+其中 $Q=-i\,S^{\dagger}\,\partial_E S$，$\det S(E)=e^{i\varphi(E)}$，把"读数"表述为相位导数/相对态密度/群延迟迹的积分泛函；Birman–Kreĭn 公式给出谱移与散射相位的等价，从而可把"提交/抉择"的一致性约束 $\sum_a p(a)\phi(a)=b^\star$ 明确地绑定到能量-相位账本。边界-选择的**软→硬**转变对"读数抖动"的灵敏度由 Pinsker-型不等式与线性化响应估计控制。([link.aps.org][4])
 
 ---
 
 ## 7. 范式构造：Margolus-边界的可逆抉择器
 
-在二维 Margolus 分区上，设外圈全为"触边块"。对每个触边块，给定有限动作集 $\mathcal A\subset \mathfrak S(A^{2\times 2})$（块内置换族）。令
+在二维 Margolus 分区上，设外圈全为"触边块"。对每个触边块，给定有限动作集 $\mathcal A\subset \mathfrak S(A^{2\times 2})$（块内置换族）与特征映射 $\phi:\mathcal A\times \partial\Lambda\to\mathbb R^m$。根据 §3 的 I-投影，对温度 $\tau>0$ 定义软选择分布
 $$
-a^\star_\theta(\text{局部观测},\epsilon)\in\arg\min_{a\in\mathcal A}\ D_{\mathrm{KL}}!\big(p(\cdot\mid b),|,q_\theta(\cdot\mid b)\big)\ \text{或其软化抽样},
+p^\star_{\tau,\theta}(a\mid b)\ \propto\ q_\theta(a\mid b)\exp\big(\langle \lambda_\theta,\phi(a,b)\rangle/\tau\big),
 $$
-并把平手/抽样标签写入 $\epsilon$。定义
+其硬极限为
 $$
-\mathsf B_\theta=\prod_{\text{触边块}}\Pi_{\text{block}}!\big(a^\star_\theta\big),
+a^\star_\theta(b)\in\arg\max_{a\in\mathcal A}\ \langle \lambda_\theta,\phi(a,b)\rangle .
 $$
-则 $\mathsf B_\theta$ 为置换；与内部分块 RCA 级联后，$\mathcal U$ 保持可逆；$\epsilon$ 记账保证反演可恢复全部随机/证据路径。([维基百科][2])
+定义
+$$
+\mathsf B_\theta=\prod_{\text{触边块}}\Pi_{\text{block}}\big(a^\star_\theta(b)\big),
+$$
+并配合可逆寄存器更新
+$$
+(b,\epsilon)\ \mapsto\ \Big(b'=\Pi_{\text{block}}\big(a^\star_\theta(b)\big)(b),\ \epsilon'=\epsilon\oplus\operatorname{code}\big(a^\star_\theta(b)\big)\Big),
+$$
+其中 $\operatorname{code}(\cdot)$ 为动作索引的可逆编码。soft 情形用可逆采样从 $p^\star_{\tau,\theta}(\cdot\mid b)$ 抽取 $a$，将抽样路径与 $\operatorname{code}(a)$ 一并写入 $\mathcal E$ 以保证回放；hard 情形先根据 $b$ 计算 $a^\star_\theta(b)$，写入 $\operatorname{code}\big(a^\star_\theta(b)\big)$ 后再施置换。逆过程中读取编码，施 $\Pi_{\text{block}}(a^\star)^{-1}$ 并回擦编码，从而 $\mathsf B_\theta$ 在 $(b,\epsilon)$ 上为置换。与内部分块 RCA 级联后，$\mathcal U$ 保持可逆；$\epsilon$ 记账保证反演可恢复全部随机/证据路径。([维基百科][2])
 
 ---
 
@@ -156,19 +187,27 @@ $$
 1. **可逆性核查**：分块-置换或线性-边界矩阵法；二维一般邻域的不可判定区不进入实现口径。([维基百科][2])
 2. **选择-保真**：求解 I-投影（或其凸对偶），软/硬在温度参数调控下互达；抖动-误差用 Pinsker/Bretagnolle–Huber 界。([pages.stern.nyu.edu][5])
 3. **可逆账本**：Knuth–Yao/DDG-tree 或别名法的可逆化；随机子与索引写入 $\mathcal E$；反演回擦。([semanticscholar.org][10])
-4. **刻度绑定**：以 $\tfrac{\varphi'}{\pi}=\rho_{\mathrm{rel}}=\tfrac1{2\pi}\mathrm{tr},\mathsf Q$ 与 Birman–Kreĭn 公式将"读数→约束"嵌入统一能量/相位账本。([link.aps.org][4])
+4. **刻度绑定**：以 $\rho_{\mathrm{rel}}=\tfrac{1}{2\pi}\,\varphi'=\tfrac1{2\pi}\mathrm{tr}\,Q$ 与 Birman–Kreĭn 公式将"读数→约束"嵌入统一能量/相位账本。([link.aps.org][4])
 
 ---
 
 ## 附录 A：Garden-of-Eden 与 RLBC 的一致性
 
-在欧氏格上，Garden-of-Eden 定理给**局部单射⇔全局满射**。RLBC 的块置换实现使边界层在其作用域内**局部单射**，内部 RCA 又是全局双射；二者级联保持单射与满射，于是整体仍为 RCA。该论证依 CHL 的连续-等变闭性与 GOE 的单射-满射等价。([维基百科][11])
+在欧氏格上，Garden-of-Eden 定理给**局部预单射⇔全局满射**。RLBC 的块置换实现使边界层在其作用域内**局部单射**，内部 RCA 又是全局双射；二者级联保持单射与满射，于是整体仍为 RCA。该论证依 CHL 的连续-等变闭性与 GOE 的 **满射-预单射等价**（并且 **单射⇒满射**）。([维基百科][11])
 
 ---
 
 ## 附录 B：Γ-极限下的软→硬选择
 
-设可行集为紧单纯形与线性约束之交。定义 $\Phi_\tau(p)=D_{\mathrm{KL}}(p|q)+\tau R(p)$（$R$ 为强凸、下半连续）。则 $\Phi_\tau\xrightarrow{\Gamma}\Phi_0$（在弱拓扑下），$\operatorname{argmin}\Phi_\tau\to \operatorname{argmin}\Phi_0$。当 $\Phi_0$ 的极小集合为一组面上的极点，对偶问题（线性目标）之解即为硬选择的 argmax；唯一性可通过一般位置与强凸扰动保证。([SpringerLink][9])
+设可行集为单纯形 $\Delta(\mathcal A)$、代价 $c:\mathcal A\to\mathbb R$、基准分布 $q\in\Delta(\mathcal A)$。定义泛函
+$$
+\Phi_\tau(p)=\langle c,p\rangle+\tau D_{\mathrm{KL}}(p\|q).
+$$
+则 $p_\tau\in\operatorname{argmin}\Phi_\tau$ 给出 $p_\tau(a)\propto q(a)\exp(-c_a/\tau)$。当 $\tau\downarrow 0$ 时，KL 项权重趋零，$\Phi_\tau$ **Γ-收敛**到线性泛函 $\Phi_0(p)=\langle c,p\rangle$，其在单纯形顶点（点质量）上极小。若再假设等紧性与极小点 $a^\star\in\arg\min_a c_a$ 唯一，**则极小化器序列** $p_\tau$ **在弱拓扑下收敛**到点质量：$p_\tau \Rightarrow \delta_{a^\star}$。大偏差原理保证指数尺度 $1/\tau$ 下的概率质量集中速率。**矩约束情形（假设可行）**：加入 $\sum_a p(a)\phi(a)=b^\star$（假设 $b^\star\in\operatorname{conv}\phi(\mathcal A)$）后，**存在**对偶变量 $\lambda(\tau)$；**若** $b^\star$ 为相对内点（Slater 条件），$\{\lambda(\tau)\}$ **有界**（存在聚点），否则其范数可能发散而硬极限仍等价于受限线性规划。指数族解为
+$$
+p_\tau(a)\propto q(a)\exp\Big(\tfrac{\langle \lambda(\tau),\phi(a)\rangle - c_a}{\tau}\Big).
+$$
+当 $\tau\downarrow 0$ 时，极限问题等价于 $\min\{\langle c,p\rangle:\sum_a p(a)\phi(a)=b^\star\}$；若极小点 $a^\star$ 唯一且为点质量，则 $p_\tau\Rightarrow\delta_{a^\star}$。([SpringerLink][9])
 
 ---
 
@@ -191,7 +230,7 @@ $$
 * Csiszár, **I-divergence geometry & I-projection**；Cover–Thomas；Wainwright–Jordan（指数族与凸对偶）. ([pages.stern.nyu.edu][5])
 * Pinsker 不等式及改进（Bretagnolle–Huber）. ([维基百科][8])
 * Knuth–Yao（DDG-tree）；Walker/Vose（Alias）. ([semanticscholar.org][10])
-* Wigner（相位导数/时间延迟）；Smith（$\mathsf Q=-iS^\dagger S'$）；Birman–Kreĭn 公式（谱移-散射）。([link.aps.org][15])
+* Wigner（相位导数/时间延迟）；Smith（$\mathsf Q=-i\,S^{\dagger}\,\partial_E S$）；Birman–Kreĭn 公式（谱移-散射）。([link.aps.org][15])
 
 ---
 
