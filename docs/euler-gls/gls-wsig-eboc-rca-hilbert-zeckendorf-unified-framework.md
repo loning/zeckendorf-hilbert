@@ -1,6 +1,7 @@
 # GLS–WSIG–EBOC—RCA—Hilbert—Zeckendorf 统一中的量子动力学与几何反演
 
-## ——母尺同一、纤维丛几何、窗化路径积分、测量闭合与可逆日志（含完整证明）
+## ——母尺同一、纤维丛几何、窗化路径积分、测量闭合与可逆日志
+Version: 1.6
 
 **MSC**：81Q05；81Q20；81S40；35P25；35R30；53Z05；46N50；83C05；47A40；94A17
 **关键词**：GLS（广义光结构）；WSIG（窗化散射—信息几何）；EBOC（静态块观察—计算）；RCA（可逆元胞自动机）；三位一体母尺；Wigner–Smith 群延迟；Birman–Kreĭn；Toeplitz/Berezin 压缩；Hardy/de Branges；Kramers–Kronig；Titchmarsh；IGVP；I-投影；Belavkin 过滤；Jarzynski（含互信息修正）；Mellin 帧；Zeckendorf 范畴；NPE（Poisson—Euler–Maclaurin—尾项）
@@ -91,7 +92,7 @@ Floquet–散射化把 $U_{\rm loc}$ 的一周期演化转为能量散射 $S_{\r
 $$
 \frac{\varphi'(E)}{\pi}=\rho_{\mathrm{rel}}(E)=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E).
 $$
-证明：Birman–Kreĭn 给 $\det S=e^{-2\pi i\xi} \Rightarrow \partial_E\arg\det S=-2\pi\,\xi'$；Kreĭn–Friedel给 $\xi'=\rho_{\mathrm{rel}}$；而 $\operatorname{tr}\mathsf Q=\partial_E\arg\det S$。三者合并即得（附录 C）。
+证明：Birman–Kreĭn 给 $\det S=e^{-2\pi i\xi} \Rightarrow \partial_E\arg\det S=-2\pi\,\xi'$；Kreĭn–Friedel 给 $\rho_{\mathrm{rel}}=-\xi'$；而 $\operatorname{tr}\mathsf Q=\partial_E\arg\det S$。三者合并即得（附录 C）。
 
 ### 2.2 窗化 BK 与 Helffer–Sjöstrand
 
@@ -99,7 +100,7 @@ $$
 $$
 \mathrm{Tr}\,f(H)-\mathrm{Tr}\,f(H_0)=\int f'(E)\,\xi(E)\,dE=-\frac{1}{2\pi i}\int f'(E)\,\log\det S(E)\,dE,
 $$
-实现"谱—相位—延迟"的积分级桥接（附录 C.2）。
+实现"谱—相位—延迟"的积分级桥接（附录 C.1–C.3）。
 
 ### 2.3 Hardy/Kramers–Kronig 与 de Branges 锚点
 
@@ -151,7 +152,7 @@ $$
 $$
 \rho_x=\arg\min_{\rho'}\{D(\rho'\Vert\rho):\ \mathrm{Tr}(\rho' E_x)=1\}
 $$
-等价于 Lüders 更新；连续监测极限给出 Belavkin 过滤的扩散/计数型 QSDE；平均后回收 GKSL（附录 G）。
+当且仅当 $E_x$ 为谱投影并与先验态（或所施加的约束族）可交换，或在 Naimark 扩张下采用 $\sqrt{E_x}$ 的 Lüders 仪器时，$\rho_x$ 与 Lüders 更新等价；一般 POVM 情形仅得到上述约束下的相对熵极小解。连续监测极限给出 Belavkin 过滤的扩散/计数型 QSDE；平均后回收 GKSL（附录 G）。
 
 ### 5.2 窗化 BK 与日志计量
 
@@ -163,7 +164,7 @@ $$
 
 ### 6.1 高频几何先验
 
-在高频窗下由 $\operatorname{tr}\mathsf Q=\partial_E\arg\det S$ 与 $\xi'=\rho_{\mathrm{rel}}$ 提取散射/透镜关系与行程时。
+在高频窗下由 $\operatorname{tr}\mathsf Q=\partial_E\arg\det S$ 与 $\rho_{\mathrm{rel}}=-\xi'$ 提取散射/透镜关系与行程时。
 
 ### 6.2 边界/透镜刚性与边界控制
 
@@ -183,19 +184,29 @@ $$
 
 ### 7.1 定义（有限窗日志）
 
-窗 $W=[\tau,\tau+L)$ 的载荷和
+窗 $W=[\tau,\tau+L)$ 的载荷
 $$
-S(W)=\left\lfloor \int_W \rho_{\mathrm{rel}}(E)\,dE\right\rfloor=\sum_{k\ge2}b_k(\tau)\,F_k,\qquad b_k\in\{0,1\},\ b_k b_{k+1}=0.
+S(W)=\left\lfloor \int_W \rho_{\mathrm{rel}}(E)\,dE\right\rfloor=S^+(W)-S^-(W),\qquad S^\pm(W)=\sum_{k\ge2}b_k^\pm(\tau)\,F_k,
 $$
-滑窗 $W\mapsto W+\delta$ 的进借位更新是局域可逆映射（Zeckendorf 唯一性）。
+其中 $b_k^\pm\in\{0,1\},\ b_k^\pm b_{k+1}^\pm=0$，并记
+$$
+I(W)=\int_W \rho_{\mathrm{rel}}(E)\,dE,\qquad I^\pm(W)=\max\{\pm I(W),0\},
+$$
+则 $S^\pm(W)=\lfloor I^\pm(W)\rfloor$。$\{F_k\}_{k\ge0}$ 为 Fibonacci 数列，$F_0=0,\ F_1=1,\ F_{k+1}=F_k+F_{k-1}$（故 $F_2=1,\ F_3=2$），Zeckendorf 展式按标准下标自 $k\ge2$ 起始。
+滑窗 $W\mapsto W+\delta$ 的进借位在两本账上分别执行，整体保持局域可逆（Zeckendorf 唯一性）。
 
 ### 7.2 一致性与上界（主定理 IV）
 
-存在常数 $C_{p,W}$ 与阶 $p\ge2$ 使
+对任意窗 $W$ 与按 §7.1 给定的位权 $\{b_k^\pm\}$，有
 $$
-\left|\int_W \rho_{\mathrm{rel}}(E)\,dE-\sum_{k\ge2}b_k F_k\right|\le C_{p,W}\,R^{-p},\qquad R=\text{窗的 Nyquist 尺度}.
+0\le \int_W \rho_{\mathrm{rel}}(E)\,dE-\sum_{k\ge2}b_k(\tau) F_k < 1,
 $$
-证明：Mellin–Poisson 展开与有限阶 Euler–Maclaurin 封口余项，整数逼近闭合（附录 I）。
+其中 $b_k=b_k^+-b_k^-$。
+另一方面，取 NPE 的非整数近似 $I_p(W)$（Poisson—有限阶 Euler–Maclaurin—尾项），当 $\rho_{\mathrm{rel}}$ 具 $C^p$ 正则与适度衰减时，
+$$
+\left|\int_W \rho_{\mathrm{rel}}(E)\,dE-I_p(W)\right|\le C_{p,W}\,R^{-p},\qquad R=\text{窗的 Nyquist 尺度}.
+$$
+证明：Mellin–Poisson 展开与有限阶 Euler–Maclaurin 封口余项，非整数近似逼近闭合（附录 I）。
 
 ### 7.3 拓扑—指标统一（Levinson/APS 视角）
 
@@ -244,7 +255,7 @@ $\varepsilon_{\rm alias}$ 由 Poisson 控制（带限与 Nyquist 下消失），
 
 ## 11. 随机与开放系统扩展
 
-在 GKSL 生成子 $\mathcal L$ 下定义**有效群延迟** $\mathsf Q_{\rm eff}(\omega)=-i\,\mathsf G^\sharp(\omega)\,\partial_\omega\mathsf G(\omega)$（$\mathsf G(\omega)=(i\omega-\mathcal L)^{-1}$），其迹与 Liouvillian 光谱移导数等刻度。随机通道极限下，$\int W\,\operatorname{tr}\mathsf Q$ 的归一化波动趋于高斯，窄窗尾分布呈自由稳定律（附录 L）。
+在 GKSL 生成子 $\mathcal L$ 下定义**有效群延迟** $\mathsf Q_{\rm eff}(\omega)=-i\,\mathsf G^\sharp(\omega)\,\partial_\omega\mathsf G(\omega)$（$\mathsf G(\omega)=(i\omega-\mathcal L)^{-1}$），其中 $X^\sharp$ 表示相对于 Hilbert–Schmidt 内积 $\langle A,B\rangle_{\rm HS}=\mathrm{Tr}(A^\dagger B)$ 的超算子伴随，即对任意算子 $A,B$ 有 $\langle X^\sharp A,B\rangle_{\rm HS}=\langle A,XB\rangle_{\rm HS}$；其迹与 Liouvillian 光谱移导数等刻度。随机通道极限下，$\int W\,\operatorname{tr}\mathsf Q_{\rm eff}$ 的归一化波动趋于高斯，窄窗尾分布呈自由稳定律（附录 L）。
 
 ---
 
@@ -265,7 +276,7 @@ $\varepsilon_{\rm alias}$ 由 Poisson 控制（带限与 Nyquist 下消失），
 # 附录 C：母刻度同一式（完全证明）
 
 **C.1 Birman–Kreĭn。** $\det S(E)=e^{-2\pi i\xi(E)} \Rightarrow \partial_E\arg\det S(E)=-2\pi\,\xi'(E)$。
-**C.2 Kreĭn–Friedel。** $\xi'(E)=\rho_{\mathrm{rel}}(E)$。
+**C.2 Kreĭn–Friedel。** $\rho_{\mathrm{rel}}(E)=-\xi'(E)$。
 **C.3 Wigner–Smith。** $\mathsf Q=-i S^\dagger S' \Rightarrow \operatorname{tr}\mathsf Q=\partial_E\arg\det S$。
 合并即得 $\varphi'/\pi=\rho_{\mathrm{rel}}=(2\pi)^{-1}\operatorname{tr}\mathsf Q$。
 
@@ -274,7 +285,7 @@ $\varepsilon_{\rm alias}$ 由 Poisson 控制（带限与 Nyquist 下消失），
 # 附录 D：Hardy—Kramers–Kronig—de Branges（证明）
 
 **D.1 因果与 Hilbert 共轭。** $H^2(\mathbb C^+)$ 解析性等价于因果核；Hilbert 变换耦合实/虚部。
-**D.2 de Branges 锚点。** 再生核对角 $K(x,x)\propto \varphi'(x)\,|E(x)|^2$ 给出相位导—密度的函数论刻度。
+**D.2 de Branges 锚点。** 设 $\mathcal E(z)$ 为相应的 Hermite–Biehler 函数，则再生核对角 $K(x,x)\propto \varphi'(x)\,|\mathcal E(x)|^2$ 给出相位导—密度的函数论刻度。
 
 ---
 

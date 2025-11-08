@@ -49,11 +49,11 @@ $$
 
 Kerr 外区 $(\mathcal M,g_{M,a})$ 上的 $s=0,\pm1,\pm2$ 线性扰动满足可分离的 Teukolsky 方程；经 Sasaki–Nakamura/Detweiler 变换为一维短程散射型径向方程，便于共振谱与时间域分析。([RUG Research][2])
 
-### 1.2 互构定理
+### 1.2 互构框架
 
-**定理 1（窗化读数—因果互构）。** 设 $(\mathcal M,g)$ 为区分且强因果时空，$\mathfrak G:(\mathcal M,g)\mapsto(\mathcal H,S,\rho_{\rm rel})$ 为辐射场散射函子，$\mathfrak F:(\mathcal H,S)\mapsto(\mathcal M,g)/{\sim_{\rm conf}}$ 为由可达偏序/光观测集重构保角类的函子。则在能量依赖规范等价商上存在自然变换 $\eta,\varepsilon$，使 $\mathfrak F\circ\mathfrak G\simeq\mathrm{Id}$、$\mathfrak G\circ\mathfrak F\simeq\mathrm{Id}$。
+**命题 1（窗化读数—因果互构，框架性陈述）。** 设 $(\mathcal M,g)$ 为区分且强因果时空。若辐射场散射满足完备性与唯一可辨识性（包括辐射场映射的满射—单射性质、散射矩阵的能量解析以及窗化读数的规范不变性），并且可达偏序/光观测集的重构在该类时空上适定，则在能量依赖的规范等价商上存在自然候选变换 $\eta,\varepsilon$，据以期望 $\mathfrak F\circ\mathfrak G\simeq\mathrm{Id}$、$\mathfrak G\circ\mathfrak F\simeq\mathrm{Id}$ 在上述假设成立时有效。
 
-*证明要点。*（i）Hardy 解析 $\Rightarrow$ 时域因果与 Kramers–Kronig；（ii）Titchmarsh 支撑等式给出最早到达的加性边界；（iii）Malament 与 Hawking–King–McCarthy 定理：因果同构决定保角同构；（iv）窗化 BK 将 $\operatorname{tr}\mathsf Q$ 与 $\varphi'$ 对齐，给出读数的规范不变性。详见附录 A。([Applied Mathematics at TU Graz][3])
+*说明要点。*（i）Hardy 解析 $\Rightarrow$ 时域因果与 Kramers–Kronig；（ii）Titchmarsh 支撑等式给出最早到达的加性边界；（iii）Malament 与 Hawking–King–McCarthy 定理表明因果同构决定保角同构；（iv）窗化 BK 将 $\operatorname{tr}\mathsf Q$ 与 $\varphi'$ 对齐，给出读数的规范不变性。详见附录 A。([Applied Mathematics at TU Graz][3])
 
 ---
 
@@ -167,9 +167,11 @@ $$
 
 **定理 D（de Branges：相位导—核对角）。** 对 Hermite–Biehler 函数 $E$，其 de Branges 空间 $H(E)$ 的再生核满足 $K(x,x)=\pi^{-1}\varphi'(x)|E(x)|^2$。*证略。* 由核的标准公式对角极限与 $\Im(E'/E)=\varphi'$ 的关系得出。
 
-**定理 E（QNM 残数—尾项的窗化展开）。** 设时间窗与频核属于 $\mathcal S$ 并满足带限/衰减条件，则窗化响应可写为 QNM 极点全体的残数和与连续谱（分支切割）项 $R_{\rm cut}$ 之和。将极点和按贡献大小截断至前 $J$ 项时，余项 $\mathrm{Tail}=R_{\rm cut}+R_{\rm qnm}^{(>J)}$，其中 $R_{\rm qnm}^{(>J)}$ 为被截断极点的余项，并在上述条件下具显式上界；其中 $R_{\rm cut}$ 服从 Price 定律的幂律衰减，Schwarzschild 情形尾项次幂已有点态精确估计。
+**命题 E（QNM 残数—尾项的窗化展开，适用范围）。** 在 Schwarzschild 或 Kerr–de Sitter 背景下，且已知波算子的 resolvent 在适当 Riemann 面上存在亚纯延拓并具有谱隙结构时，若时间窗与频核属于 $\mathcal S$ 并满足带限/衰减条件，则窗化响应可写为 QNM 极点的残数和与连续谱（分支切割）项 $R_{\rm cut}$ 之和。将极点和按贡献大小截断至前 $J$ 项时，余项 $\mathrm{Tail}=R_{\rm cut}+R_{\rm qnm}^{(>J)}$，其中 $R_{\rm qnm}^{(>J)}$ 为被截断极点的余项，并在上述背景与假设下具显式上界；$R_{\rm cut}$ 服从 Price 定律的幂律衰减，Schwarzschild 情形尾项次幂已有点态精确估计。
 
-**定理 F（IGVP 一阶—二阶变分）。** 小球广义熵的一阶极值与爱因斯坦方程等价；二阶非负导出 QNEC 与量子焦散不等式。
+**定理 F（IGVP 的一阶变分）。** 在小球设置与标准平衡态假设下，广义熵的一阶极值推出 $G_{\mu\nu}+\Lambda g_{\mu\nu}=8\pi G\,\langle T_{\mu\nu}\rangle$。
+
+**命题 F'（二阶变分的含义，条件化）。** 当量子场论侧满足模哈密顿量可积、相对熵二阶展开以及适当的能量条件等附加假设时，小球广义熵的二阶非负可导出——或与之等价地蕴含——QNEC 与量子焦散型不等式；一般背景下的无条件结论仍为开放问题。
 
 **定理 G（测量更新的相对熵极小与持续监测的熵产生）。** Lüders 规则可由 Umegaki 相对熵极小（I-投影）推出；Belavkin 过滤给出后验态 QSDE，其平均动力学为 GKSL 并满足 Spohn 熵产生单调；含反馈的 Jarzynski 等式加入互信息修正。
 
