@@ -1,6 +1,6 @@
 # 基于 WScat^+ 的统一散射—信息纤维丛框架重构标准模型
 
-Version: 1.2
+Version: 1.3
 
 **摘要**
 提出一套以信息纤维丛为载体、以广义散射矩阵为动力学核心的统一框架 WScat^+。以 $G=\mathrm{SU}(3)\times\mathrm{SU}(2)\times\mathrm{U}(1)$ 为规范群（允许其全局形式为 $(\mathrm{SU}(3)\times\mathrm{SU}(2)\times\mathrm{U}(1))/\Gamma$），在此框架中：其一，构造包含规范自由度与束框架选择的广义散射矩阵 $S(E)$，并以 $\det S(E)$ 的解析结构刻画粒子谱与共振；其二，从推广的信息广义变分原理（IGVP）$\,\delta S_{\mathrm{gen}}^{+}=0$ 同时推出爱因斯坦场方程与杨–米尔斯方程；其三，论证希格斯机制在散射论中的对应物为 $\det S(E)$ 的零点/极点与主丛约化之间的对应，进而给出从第一性原则出发的质量谱求解程序（以共振极点与相位流为输入）。框架内系统性整合了单位性、解析性与因果性所蕴含的色散与正性约束，并与电弱精密观测、异常一致性、以及规范群全局结构的区分量相容。文末给出若干严格定理的证明与推论。关于 $\det S$ 与谱位移函数的联系、Wigner–Smith 时间延迟矩阵、色散与 Froissart–Martin 上界、以及"纠缠第一定律"与 QNEC/ANEC 的使用，分别参见相应经典与近年文献。([arXiv][1])
@@ -260,7 +260,7 @@ $\mathrm{SU}(2)$ 的全局异常要求双态数为偶数；标准模型每代为
 * **BRST 与物理态空间**：BRST 量子化与 $\mathcal{H}_{\mathrm{phys}}$ 构造。([arXiv][8])
 * **标准模型全局结构**：$(\mathrm{SU}(3)\times\mathrm{SU}(2)\times\mathrm{U}(1))/\Gamma$ 的判别与现状。([arXiv][7])
 * **电弱精密与 STU**：Peskin–Takeuchi 参数及色散表达。([Physical Review Link Manager][16])
-* **Kähler–Dirac 费米子**：Kähler–Dirac 与格点无倍增方案。([arXiv][14])
+* **Kähler–Dirac 费米子**：Kähler–Dirac 与 Kogut–Susskind（staggered）离散化等价，因而不消除倍增。（[Z. Phys. C][14]）
 
 ---
 
