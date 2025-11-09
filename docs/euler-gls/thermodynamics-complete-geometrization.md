@@ -1,5 +1,5 @@
 # 热力学—统计的完全几何化：温度—曲率频谱、熵—体积对数与相变的几何判据
-Version: 1.7
+Version: 1.10
 
 **MSC**：82B05；82C31；53C21；58J35；60G10；28A80
 **关键词**：KMS/Tolman 红移；热核与 Seeley–DeWitt 系数；Weyl 律与谱维；Bogoliubov–Kubo–Mori（BKM）度量；Bakry–Émery 曲率维条件；Wasserstein 梯度流（JKO）；Lee–Yang/Fisher 零点；Ruppeiner 曲率；Birman–Kreĭn 与散射相位；Spohn 单调与 Jarzynski；分形边界热含量
@@ -10,7 +10,7 @@ Version: 1.7
 
 给定带有黎曼度量 $g$ 的可定向 $d$-维流形 $M$ 及拉普拉斯型算子 $\mathcal L=-\Delta_g+V$，以规范配分函数 $Z(\beta)=\operatorname{Tr}\,e^{-\beta \mathcal L}$ 的几何小时间渐近与谱分布为纽带，建立如下三条主张并给出证明链与实现要则：
 
-1. **温度—曲率频谱**：$\beta^{-1}$ 等价于热核半群 $e^{-\beta \mathcal L}$ 的"频谱窗口宽度"；局域上有热核对角渐近 $K(\beta;x,x)\sim (4\pi\beta)^{-d/2}\bigl[1+\beta\bigl(\tfrac{R(x)}{6}-V(x)\bigr)+O(\beta^{2})\bigr]$，据此定义曲率的几何热谱密度 $\mathcal R^{\rm geom}_\beta(x):=6(4\pi)^{d/2}\,\partial_\beta\bigl[\beta^{d/2}e^{\beta V(x)}K(\beta;x,x)\bigr]$ 并证明 $\lim_{\beta\downarrow 0}\mathcal R^{\rm geom}_\beta(x)=R(x)$。故**温度的几何含义**是以窗口尺度 $\beta$ 解析曲率不变量的频谱过滤；在静态时空还满足 Tolman–Ehrenfest 红移 $T(x)\sqrt{-g_{00}(x)}=\text{常数}$，与 KMS 平衡条件等价。([ScienceDirect][1])
+1. **温度—曲率频谱**：$\beta^{-1}$ 等价于热核半群 $e^{-\beta \mathcal L}$ 的"频谱窗口宽度"；局域上有热核对角渐近 $K(\beta;x,x)\sim (4\pi\beta)^{-d/2}\bigl[1+\beta\bigl(\tfrac{R(x)}{6}-V(x)\bigr)+O(\beta^{2})\bigr]$，据此定义曲率的几何热谱密度 $\mathcal R^{\rm geom}_\beta(x):=6(4\pi)^{d/2}\,\partial_\beta\bigl[\beta^{d/2}e^{\beta V(x)}K(\beta;x,x)\bigr]$ 并证明 $\lim_{\beta\downarrow 0}\mathcal R^{\rm geom}_\beta(x)=R(x)$。故**温度的几何含义**是以窗口尺度 $\beta$ 解析曲率不变量的频谱过滤；在静态时空还满足 Tolman–Ehrenfest 红移 $T(x)\sqrt{-g_{00}(x)}=\text{常数}$；该红移与 KMS 平衡条件相容，并在静态时空由 KMS 条件蕴含。([ScienceDirect][1])
 
 2. **熵—体积对数**：微正则下由 Weyl 律的本征计数 $N(\lambda)$ 得到态密度 $\rho(\lambda)\sim \tfrac{d}{2}C_d\,\operatorname{Vol}(M)\,\lambda^{d/2-1}$（边界与曲率给出低次修正），从而系统熵满足 $S(E)=\log \Omega(E)=\log \int_0^E\rho(\lambda)\,d\lambda=\log \operatorname{Vol}(M)+\tfrac{d}{2}\log E+\log C_d+O(E^{-1/2})$；正则系综下 $S(\beta)=\beta\langle \mathcal L\rangle+\log Z(\beta)$ 且 $\log Z(\beta)=\log \int_M K(\beta;x,x)\,dV_g$ 的首项即 $\log \operatorname{Vol}(M)-\tfrac{d}{2}\log \beta+\text{曲率/边界修正}$。由此严格实现命题"熵＝几何体积的对数"，并量化曲率与边界的有限温度修正项。([arXiv][2])
 
@@ -80,6 +80,8 @@ $$
 
 ## 3. 熵＝体积对数：Weyl 律与两系综联通
 
+本文约定 $C_d:=\dfrac{\omega_d}{(2\pi)^d}$，其中 $\omega_d=\dfrac{\pi^{d/2}}{\Gamma(1+\tfrac d2)}$ 为 $\mathbb R^d$ 单位球体积。
+
 **定理 3.1（Weyl 律与微正则熵·严格版）**。紧致无边界时
 $$
 N(\lambda)=C_d\,\operatorname{Vol}(M)\,\lambda^{d/2}+O\bigl(\lambda^{(d-1)/2}\bigr).
@@ -120,7 +122,7 @@ $$
 
 ## 4. 热力学四定律的几何化推导
 
-**零定律（KMS 等价）**：平衡态 $\omega$ 满足 $\omega(A\tau_t(B))$ 的解析延拓与 KMS 条件；静态时空局域温度满足 Tolman 关系，与第 2 节一致。([Project Euclid][5])
+**零定律（KMS/Tolman 一致性）**：平衡态 $\omega$ 满足 $\omega(A\tau_t(B))$ 的解析延拓与 KMS 条件；静态时空局域温度满足 Tolman 关系，与第 2 节一致。([Project Euclid][5])
 
 **第一定律（几何变分）**：自由能 $\mathcal F(\beta,g)=-\beta^{-1}\log Z(\beta)$。变分：
 $$
@@ -180,7 +182,7 @@ $$
 
 ## 10. 量子混沌与温度上界
 
-在热平衡下 OTOC 的指数增长率满足混沌上界 $\lambda_L\le 2\pi k_B T/\hbar$，该上界来自解析带宽与 KMS 条件，进一步将"温度＝频谱带宽"的解释延伸到动力学混沌领域。严密形式见 Tsuji–Shitara–Ueda 的正则化无关性证明。([arXiv][15])
+在热平衡下 OTOC 的指数增长率满足混沌上界 $\lambda_L\le 2\pi k_B T/\hbar$，该上界来自解析带宽与 KMS 条件，进一步将"温度＝频谱带宽"的解释延伸到动力学混沌领域。严密形式见 Maldacena–Shenker–Stanford 对该上界的证明；另见 Tsuji–Shitara–Ueda 关于不同正则化下增长率一致性的严格证明。([arXiv][15])
 
 ---
 
@@ -266,7 +268,11 @@ $$
 
 ## 附录 I：边界与分形的热含量
 
-**命题 I.1（热含量与边界维）**：对分形边界，短时热含量 $E(s)$ 具有标度 $s^{1-\gamma/2}$，可反演 Minkowski 维 $\gamma$ 与内容；给出统计自相似情形的极限定理。*证明*：更新方程与"感受不到边界"原理。([Pi Math Cornell][17])
+**命题 I.1（热含量与边界维）**：设 $\partial\Omega$ 的 Minkowski 维为 $\gamma\in[d-1,d]$，则短时热含量缺口
+$$
+|\Omega|-E(s)\sim C\,s^{\frac{d-\gamma}{2}},\qquad s\downarrow 0,
+$$
+因此可据该标度反演边界维 $\gamma$ 与 Minkowski 内容；在 $d=2$ 时上式退化为常用的 $s^{1-\gamma/2}$ 标度。*证明*：更新方程与"感受不到边界"原理。([Pi Math Cornell][17])
 
 ---
 
@@ -292,7 +298,7 @@ Ruppeiner 几何与相变：Ruppeiner 系列；Wei 等（2019）。([arXiv][18])
 Lee–Yang/Fisher 零点：Bena 讲义；Aslyamov（2019）。([ifi.unicamp.br][13])
 分形边界热含量：Lapidus 学派；Charmoy 幻灯。([SpringerLink][19])
 熵产生与涨落：Spohn（1978）；Sagawa–Ueda（2010）。([Inspire][8])
-混沌上界：Maldacena–Shenker–Stanford（2016）；Tsuji–Shitara–Ueda（2018/2017）。([arXiv][15])
+混沌上界：Maldacena–Shenker–Stanford（2016）。([arXiv][15])；另见 Tsuji–Shitara–Ueda（2017/2018）。
 
 ---
 
