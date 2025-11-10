@@ -1,8 +1,10 @@
 # Null–Modular 双覆盖统一原理：在因果钻石上对齐信息几何变分与散射半相位的 $\mathbb{Z}_2$ holonomy
 
+Version: 1.1
+
 ## Abstract
 
-在每一点小因果钻石 $B_\ell(p)$ 上提出一条把信息几何变分的一阶—二阶判据与定能散射半相位的平方根双覆盖耦合的统一路线。方法论核心是在乘积底空间 $Y:=M\times X^\circ$ 上以**体积分版本**的离散 $\mathbb Z_2$–BF 机制选择"物理可实现扇区"：令 $\dim Y=d$，取上链场 $a\in C^{d-3}(Y;\mathbb Z_2)$、$b\in C^{d-2}(Y;\mathbb Z_2)$ 与
+在每一点小因果钻石 $B_\ell(p)$ 上提出一条把信息几何变分的一阶—二阶判据与定能散射半相位的平方根双覆盖耦合的统一路线。方法论核心是在乘积底空间 $Y:=M\times X^\circ$ 上以**体积分版本**的离散 $\mathbb Z_2$–BF 机制选择"物理可实现扇区"：令 $\dim Y=d$，取上链场 $a\in C^{1}(Y;\mathbb Z_2)$、$b\in C^{d-2}(Y;\mathbb Z_2)$ 与
 
 $$
 I_{\rm BF}[a,b;g,S]
@@ -47,7 +49,7 @@ $$
 ## Symbols, Units, Conventions
 
 度规签名 $(-+++)$；单位 $c=k_B=1$，保留 $\hbar$。微分与虚数单位统一为 $\mathrm d$、$\mathrm i$。运算符与群记号统一为 $\operatorname{tr}$、$\operatorname{Pf}$、$\operatorname{sgn}$、$\det_p$、$\mathrm{Sf}$、$U(1)$、$\mathbb Z_2$。
-**物理回路** $\gamma\subset X^\circ$：可由外参绝热实现的闭路；若绕过 $D$，以小半圆切除或折返保持绝热并用 $I_2(\gamma,D)$ 记录奇偶。**物理二维循环**允许两类乘积：$\Sigma_2\times{\mathrm{pt}}\subset M\times X^\circ$ 与 $\Sigma_1\times\gamma_1\subset M\times X^\circ$（$\Sigma_k$ 为 $M$ 中闭 $k$‑链，$\gamma_1\subset X^\circ$ 为闭 1‑链）。
+**物理回路** $\gamma\subset X^\circ$：可由外参绝热实现的闭路；若绕过 $D$，以小半圆切除或折返保持绝热并用 $I_2(\gamma,D)$ 记录奇偶。**物理二维循环**允许三类乘积：$\Sigma_2\times{\mathrm{pt}}$、$\Sigma_1\times\gamma_1$、${\mathrm{pt}}\times\gamma_2$（$\Sigma_k$ 为 $M$ 中闭 $k$‑链；$\gamma_1,\gamma_2\subset X^\circ$ 为闭 1/2‑链）。
 
 ---
 
@@ -57,14 +59,14 @@ Künneth 给出
 
 $$
 H^2(Y;\mathbb Z_2)\cong
-H^2(M)\ \oplus\ \big(H^1(M)\otimes H^1(X^\circ)\big)\ \oplus\ H^2(X^\circ)\ \oplus\ \mathrm{Tor}.
+H^2(M;\mathbb Z_2)\ \oplus\ \big(H^1(M;\mathbb Z_2)\otimes H^1(X^\circ;\mathbb Z_2)\big)\ \oplus\ H^2(X^\circ;\mathbb Z_2).
 $$
 
 散射平方根的全局障碍有两条并行来源：
 **$H^1$ 路线**：主 $\mathbb Z_2$‑丛类 $\mathfrak w\in H^1(X^\circ;\mathbb Z_2)$ 控制
 $\nu_{\sqrt{\det S}}(\gamma)=(-1)^{\langle\mathfrak w,[\gamma]\rangle}$；在 $\Sigma_1\times\gamma_1$ 上以交叉项
 $\pi_M^\ast\mu\smile \pi_X^\ast\mathfrak w$（$\mu\in H^1(M;\mathbb Z_2)$ 为与 $\Sigma_1$ 对偶的类）配对。
-**$H^2$ 路线**：平直线丛 $\mathcal L_S$ 的 $c_1(\mathcal L_S)\in H^2(X^\circ;\mathbb Z)$（扭挠）经模二约化 $\rho\!\big(c_1\big)$；在 $\Sigma_2\times{\mathrm{pt}}$ 上直接配对。
+**$H^2$ 路线**：平直线丛 $\mathcal L_S$ 的 $c_1(\mathcal L_S)\in H^2(X^\circ;\mathbb Z)$（扭挠）经模二约化 $\rho\!\big(c_1\big)$；在 ${\mathrm{pt}}\times\gamma_2$ 上直接配对。
 后文 BF 顶项统一把三部分累加到同一 $K$ 中并以 $[K]=0$ 作为"可实现扇区"的充要判据。
 
 ---
@@ -107,7 +109,7 @@ $$
 令 $d=\dim Y$，取
 
 $$
-a\in C^{d-3}(Y;\mathbb Z_2),\quad b\in C^{d-2}(Y;\mathbb Z_2),\quad
+a\in C^{1}(Y;\mathbb Z_2),\quad b\in C^{d-2}(Y;\mathbb Z_2),\quad
 K:=\pi_M^\ast w_2(TM)\ +\ \underbrace{\sum_j \pi_M^\ast\mu_j\smile \pi_X^\ast\mathfrak w_j}_{H^1\!\times H^1\ \text{通道}}\ +\ \underbrace{\pi_X^\ast\rho\!\big(c_1(\mathcal L_S)\big)}_{H^2\ \text{通道}} .
 $$
 
@@ -170,7 +172,7 @@ $$
 
 ### 定理 3（体积分、一般维度、相对上同调）
 
-$a\in C^{d-3}$、$b\in C^{d-2}$ 使 $\deg(a\smile\delta b)=\deg(b\smile K)=d$。闭流形上变分给 $\delta b=0,\ \delta a=K$。若 $[K]\neq 0$，$\delta a=K$ 无全球解；对 $[a]$ 求和把配分函数投影到 $[K]=0$。含边界时以相对上同调 $H^\bullet(Y,\partial Y;\mathbb Z_2)$ 替代，并加入边界对偶项 $\mathrm i\pi\int_{\partial Y}a\smile b$ 保证离散 Stokes 与变分无缺口；结论即 $[K]=0\in H^2(Y,\partial Y;\mathbb Z_2)$ 的充要条件。
+$a\in C^{1}$、$b\in C^{d-2}$ 使 $\deg(a\smile\delta b)=1+(d-1)=d$、$\deg(b\smile K)=(d-2)+2=d$。闭流形上变分给 $\delta b=0,\ \delta a=K$。若 $[K]\neq 0$，$\delta a=K$ 无全球解；对 $[a]$ 求和把配分函数投影到 $[K]=0$。含边界时以相对上同调 $H^\bullet(Y,\partial Y;\mathbb Z_2)$ 替代，并加入边界对偶项 $\mathrm i\pi\int_{\partial Y}a\smile b$ 保证离散 Stokes 与变分无缺口；结论即 $[K]=0\in H^2(Y,\partial Y;\mathbb Z_2)$ 的充要条件。
 
 ### 定理 4
 
@@ -254,22 +256,22 @@ Jacobson, *Phys. Rev. Lett.* **75** (1995) 1260；Hollands & Wald, *Commun. Math
 
 ## 附录 I  体积分版本 $\mathbb Z_2$–BF：次数—积分域—相对上同调
 
-令 $d=\dim Y$。取 $a\in C^{d-3}(Y;\mathbb Z_2)$、$b\in C^{d-2}(Y;\mathbb Z_2)$、$K\in Z^2(Y;\mathbb Z_2)$，则
-$\deg(a\smile\delta b)=\deg(b\smile K)=d$。闭流形上
+令 $d=\dim Y$。取 $a\in C^{1}(Y;\mathbb Z_2)$、$b\in C^{d-2}(Y;\mathbb Z_2)$、$K\in Z^2(Y;\mathbb Z_2)$，则
+$\deg(a\smile\delta b)=1+(d-1)=d$，$\deg(b\smile K)=(d-2)+2=d$。闭流形上
 
 $$
 I_{\rm BF}=\mathrm i\pi\!\int_Y a\smile\delta b+\mathrm i\pi\!\int_Y b\smile K,\qquad
 \delta b=0,\ \ \delta a=K,
 $$
 
-规范变换 $a\mapsto a+\delta\lambda^{d-4}$、$b\mapsto b+\delta\lambda^{d-3}$ 不改相位。对 $[a],[b]$ 求和，配分函数投影到 $[K]=0\in H^2(Y;\mathbb Z_2)$。有边界时以相对上同调 $H^\bullet(Y,\partial Y;\mathbb Z_2)$ 处理，并加入边界对偶项 $\mathrm i\pi\int_{\partial Y}a\smile b$。
+规范变换 $a\mapsto a+\delta\lambda^{0}$、$b\mapsto b+\delta\lambda^{d-3}$ 不改相位。对 $[a],[b]$ 求和，配分函数投影到 $[K]=0\in H^2(Y;\mathbb Z_2)$。有边界时以相对上同调 $H^\bullet(Y,\partial Y;\mathbb Z_2)$ 处理，并加入边界对偶项 $\mathrm i\pi\int_{\partial Y}a\smile b$。
 
 ## 附录 II  Künneth 分解与 $H^1/H^2$ 的等价操控
 
 由
 
 $$
-H^2(Y)\cong H^2(M)\oplus\big(H^1(M)\otimes H^1(X^\circ)\big)\oplus H^2(X^\circ)\oplus\mathrm{Tor}
+H^2(Y;\mathbb Z_2)\cong H^2(M;\mathbb Z_2)\oplus\big(H^1(M;\mathbb Z_2)\otimes H^1(X^\circ;\mathbb Z_2)\big)\oplus H^2(X^\circ;\mathbb Z_2)
 $$
 
 可作
@@ -278,13 +280,13 @@ $$
 K=\pi_M^\ast w_2(TM)+\sum_j \pi_M^\ast\mu_j\smile \pi_X^\ast\mathfrak w_j+\pi_X^\ast\rho\!\big(c_1(\mathcal L_S)\big).
 $$
 
-对物理二维循环的两类乘积：
+对物理二维循环的三类乘积：
 
 $$
 \begin{aligned}
 &\text{(A)}\ \ \Sigma_2\times{\mathrm{pt}}:\ \ \langle K,[S]\rangle=\langle w_2(TM),[\Sigma_2]\rangle,\\
-&\text{(B)}\ \ \Sigma_1\times\gamma_1:\ \ \langle K,[S]\rangle=\sum_j\langle \mu_j,[\Sigma_1]\rangle\,\langle \mathfrak w_j,[\gamma_1]\rangle
-\ +\ \langle \rho(c_1),[{\mathrm{pt}}\times\gamma_1]\rangle .
+&\text{(B)}\ \ \Sigma_1\times\gamma_1:\ \ \langle K,[S]\rangle=\sum_j\langle \mu_j,[\Sigma_1]\rangle\,\langle \mathfrak w_j,[\gamma_1]\rangle,\\
+&\text{(C)}\ \ {\mathrm{pt}}\times\gamma_2:\ \ \langle K,[S]\rangle=\langle \rho(c_1(\mathcal L_S)),[\gamma_2]\rangle.
 \end{aligned}
 $$
 
