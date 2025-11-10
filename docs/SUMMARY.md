@@ -101,6 +101,13 @@
     - [虫洞—黑洞—意识的窗化散射—因果—信息几何统一](./euler-gls/wormhole-blackhole-consciousness-unified-framework.md)
     - [生命—意识几何化：开放系统几何热力学与信息几何的统一](./euler-gls/life-consciousness-geometrization.md)
     - [价值—意义统一：伦理价值的最优化几何、存在意义的信息流形与自由意志的物理基础](./euler-gls/value-meaning-free-will-unified.md)
+    - [黎曼猜想的几何化与"有限窗—有限带宽—有限阶"子系统中的相对不可证](./euler-gls/riemann-hypothesis-geometric-relative-unprovability.md)
+    - [自指散射理论与费米子的起源](./euler-gls/self-referential-scattering-fermion-origin.md)
+    - [基于 WScat^+ 的统一散射—信息纤维丛框架重构标准模型](./euler-gls/wscat-plus-standard-model-reconstruction.md)
+    - [Euler-GLS 论文系列]()
+        - [信息几何变分原理导出爱因斯坦方程：定体积对偶、显式可交换极限、Radon‑型闭包、OS/KMS–Fisher 解析延拓与 null 边界处方](./euler-gls-paper/igvp-einstein-complete.md)
+        - [Null–Modular 双覆盖统一原理：在因果钻石上对齐信息几何变分与散射半相位的 $\mathbb{Z}_2$ holonomy](./euler-gls-paper/null-modular-z2-holonomy-unification.md)
+        - [自指散射与费米子的诞生：Riccati 平方根、旋量双覆盖与 $\mathbb{Z}_2$ 交换相位](./euler-gls-paper/self-referential-scattering-fermion-origin.md)
 
 - [Euler-Aware 意识理论]()
     - [自由意志可逆RCA-RLBC-KL账本](./euler-aware/free-will-reversible-rca-rlbc-kl-ledger.md)
@@ -229,6 +236,7 @@
         - [07. The Cost of Free Will: Directed Information and the Physics of Choice (EN)](./euler-article/gls/07-free-will-cost_en.md)
         - [08. 意义的几何地图：价值、目的、存在的信息几何](./euler-article/gls/08-meaning-geometry.md)
         - [08. The Geometric Map of Meaning: Information Geometry of Value, Purpose, and Existence (EN)](./euler-article/gls/08-meaning-geometry_en.md)
+        - [宇宙的签名：从太空到太满的秘密](./euler-article/gls-paper/the-cosmic-signature.md)
 
 - [学术论文]()
     - [Zeta函数相关文档导航索引](./zeta_index.md)
