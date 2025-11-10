@@ -1,6 +1,6 @@
 # 自指散射与费米子的诞生：Riccati 平方根、旋量双覆盖与 $\mathbb{Z}_2$ 交换相位
 
-Version: 1.1
+Version: 1.3
 
 ## 摘要
 
@@ -128,13 +128,17 @@ $$
 =(-1)^{I_2(\gamma,D)}.
 $$
 
-其中 $\mathrm{Sf}(\gamma)$ 为本征相位的谱流，$N_b(\gamma)$ 为束缚态数的净变化，$I_2(\gamma,D)$ 为 $\gamma$ 与鉴别子 $D$ 的模 2 交数。
+其中 $\mathrm{Sf}(\gamma)$ 为本征相位关于参考相位的谱流，$N_b(\gamma)$ 为沿闭路 $\gamma$ 束缚态穿越连续谱阈值的符号计数（出生计 $+1$、湮灭计 $-1$），其奇偶与 $\mathrm{Sf}(\gamma)$ 等价，$I_2(\gamma,D)$ 为 $\gamma$ 与鉴别子 $D$ 的模 2 交数。
 
 **引理 1（BK 到谱流模 2）**
 在第 0 节短程与正则性假设下，沿闭路 $\gamma$
 
 $$
-\oint_\gamma d\xi=\mathrm{Sf}(\gamma)\in\mathbb{Z},\qquad
+\deg(\det S|_\gamma)=\frac{1}{2\pi i}\oint_\gamma (\det S)^{-1}d(\det S)=-\oint_\gamma d\xi,\qquad
+\mathrm{Sf}(\gamma)=\deg(\det S|_\gamma)\in\mathbb{Z},
+$$
+
+$$
 \exp\Bigl(-i\pi\oint_\gamma d\xi\Bigr)=(-1)^{\mathrm{Sf}(\gamma)}.
 $$
 
@@ -180,18 +184,13 @@ $$
 
 诱导 Bockstein 态射 $\beta:H^1(X^\circ;U(1))\to H^2(X^\circ;\mathbb{Z})$，并有 $\beta([\mathcal L_S])=c_1(\mathcal L_S)$。平方根线丛存在当且仅当 $c_1(\mathcal L_S)\in 2H^2(X^\circ;\mathbb{Z})$。复线丛的底层实二维丛天然可定向，故 $w_1(\mathcal L_S)=0$ 与平方根存在性无关。
 
-**两层判据的相容性与交换图**
-带联络的平方根在 $H^1(X^\circ;U(1))$ 层等价于表示的平方根提升；仅讨论拓扑平方根则由 $H^2$ 层的陈类偶性刻画。二者通过 Bockstein 在模 2 层面对 $\nu_{\sqrt S}$ 给出一致障碍。交换图为
+**两层判据的相容性（并列表述）**
 
-$$
-\begin{CD}
-H^1(X^\circ;\mathbb{Z}) @>\times 2>> H^1(X^\circ;\mathbb{Z})\\
-@V\iota VV @VV\iota V\\
-H^1(X^\circ;U(1)) @>\mathrm{sq}>> H^1(X^\circ;U(1)) @>\beta>> H^2(X^\circ;\mathbb{Z})
-\end{CD}
-$$
+- **映射层**（$U(1)=K(\mathbb{Z},1)$）：存在连续 $s$ 使 $s^2=S$ $\Leftrightarrow$ $[S]\in 2H^1(X^\circ;\mathbb{Z})$。
 
-其中 $\mathrm{sq}$ 为线丛张量平方，$\beta$ 为 Bockstein。
+- **线丛层**（平直联络）：指数短正合列 $0\to\mathbb{Z}\to\mathbb{R}\to U(1)\to 0$ 诱导 Bockstein $\beta:H^1(X^\circ;U(1))\to H^2(X^\circ;\mathbb{Z})$，且 $\beta([\mathcal L_S])=c_1(\mathcal L_S)$。平方根线丛存在 $\Leftrightarrow$ $c_1(\mathcal L_S)\in 2H^2(X^\circ;\mathbb{Z})$。
+
+二者在模 2 层面的障碍与 $\nu_{\sqrt S}(\gamma)=(-1)^{\deg(S|_\gamma)}$ 一致。
 
 ---
 
@@ -227,8 +226,13 @@ $$
 在绝对连续谱能段且 $S-\mathbf 1$ 为迹类（多通道取修正 Fredholm 行列式）的条件下，存在连续谱位移 $\xi$ 使
 
 $$
-\det S(E,\lambda)=e^{-2\pi i\,\xi(E,\lambda)},\qquad
-\oint_\gamma d\xi=\mathrm{Sf}(\gamma)\in\mathbb{Z}.
+\det S(E,\lambda)=e^{-2\pi i\,\xi(E,\lambda)}.
+$$
+
+从而沿闭路 $\gamma$ 有
+
+$$
+\mathrm{Sf}(\gamma)=\deg(\det S|_\gamma)=-\oint_\gamma d\xi\in\mathbb{Z}.
 $$
 
 当 $\gamma$ 同时改变能量与外参时，$\xi$ 取自修正 Fredholm 行列式的连续化分支；反向取向仅改变 $\oint_\gamma d\xi$ 的号符而不改其奇偶。
@@ -238,6 +242,8 @@ $$
 $$
 \nu_{\sqrt S}(\gamma)=\exp\Bigl(-i\pi\oint_\gamma d\xi\Bigr)=(-1)^{\mathrm{Sf}(\gamma)}=(-1)^{N_b(\gamma)}.
 $$
+
+这里 $N_b(\gamma)$ 指沿 $\gamma$ 对阈值事件的符号计数之奇偶，而非起讫点束缚态总数之差。
 
 ---
 
@@ -463,7 +469,7 @@ $$
 在短程与迹类假设下，存在连续谱位移 $\xi$ 使 $\det S=e^{-2\pi i\,\xi}$。本征相位关于参数的横截与避障给出
 
 $$
-\oint_\gamma d\xi=\mathrm{Sf}(\gamma)\in\mathbb{Z},\qquad
+\mathrm{Sf}(\gamma)=\deg(\det S|_\gamma)=-\oint_\gamma d\xi\in\mathbb{Z},\qquad
 \nu_{\sqrt S}(\gamma)=\exp\Bigl(-i\pi\oint_\gamma d\xi\Bigr)=(-1)^{\mathrm{Sf}(\gamma)}.
 $$
 
