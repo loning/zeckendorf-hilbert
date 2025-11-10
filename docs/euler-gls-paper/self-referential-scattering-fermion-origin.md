@@ -1,6 +1,6 @@
 # 自指散射与费米子的诞生：Riccati 平方根、旋量双覆盖与 $\mathbb{Z}_2$ 交换相位
 
-Version: 1.3
+Version: 1.7
 
 ## 摘要
 
@@ -22,7 +22,7 @@ $$
 \nu_{\sqrt S}(\gamma)=\exp\Bigl(i\oint_\gamma \alpha\Bigr)=(-1)^{\deg(S|_\gamma)}\in\{\pm1\}
 $$
 
-为一个天然的 $\mathbb{Z}_2$ 不变量，其中 $\deg(S|_\gamma)=\frac{1}{2\pi i}\oint_\gamma S^{-1}dS$。平方根存在与 $\nu_{\sqrt S}$ 可在两层拓扑判据中刻画并保持一致：其一是映射层的覆盖提升条件 $[S]\in 2H^1(X^\circ;\mathbb{Z})$；其二是线丛层的陈类偶性 $c_1(\mathcal L_S)\in 2H^2(X^\circ;\mathbb{Z})$，其中 $\mathcal L_S$ 为由 $S$ 对应的平直复线丛且 $c_1(\mathcal L_S)$ 是指数短正合列的 Bockstein 像。谱理论方面，在短程且无零能共振的条件下，结合 Birman–Kreĭn 公式与谱流，得到模 2 Levinson 关系
+为一个天然的 $\mathbb{Z}_2$ 不变量，其中 $\deg(S|_\gamma)=\frac{1}{2\pi i}\oint_\gamma S^{-1}dS$。平方根存在性由映射层的覆盖提升条件 $[S]\in 2H^1(X^\circ;\mathbb{Z})$ 刻画（因 $U(1)\simeq K(\mathbb{Z},1)$ 且平方覆盖在 $H^1$ 上对应乘二）；$\nu_{\sqrt S}$ 由主 $\mathbb{Z}_2$-丛 $P_{\sqrt S}=S^*(p)$ 的 holonomy 给出。线丛层的平方根问题（$c_1(\mathcal L)\in 2H^2(X^\circ;\mathbb{Z})$）由指数层序列的 Bockstein 刻画，与映射提升问题针对不同对象，一般不相互推出。谱理论方面，在短程且无零能共振的条件下，结合 Birman–Kreĭn 公式与谱流，得到模 2 Levinson 关系
 
 $$
 \nu_{\sqrt S}(\gamma)=\exp\Bigl(-i\pi\oint_\gamma d\xi\Bigr)=(-1)^{\mathrm{Sf}(\gamma)}=(-1)^{N_b(\gamma)}.
@@ -168,29 +168,35 @@ $$
 **定理 A（覆盖—提升判据）**
 存在连续 $s:X^\circ\to U(1)$ 使 $s^2=S$ 当且仅当 $[S]\in 2H^1(X^\circ;\mathbb{Z})$。对应主 $\mathbb{Z}_2$-丛 $P_{\sqrt S}=S^*(p)$ 的 holonomy 等于 $\nu_{\sqrt S}$。
 
-### 2.2 平直线丛、Bockstein 与陈类偶性
+### 2.2 平直线丛、Bockstein 与两类提升问题
 
-带平直联络的复线丛同构类由
+本文涉及两类互相独立的提升/平方根问题：
 
-$$
-H^1(X^\circ;U(1))\cong \mathrm{Hom}(\pi_1X^\circ,U(1))
-$$
+**(A) 映射层（函数的平方根）**：给定 $S:X^\circ\to U(1)$，平方覆盖 $p:z\mapsto z^2$ 的提升 $s:X^\circ\to U(1)$ 使 $s^2=S$ 存在，当且仅当 $[S]\in 2H^1(X^\circ;\mathbb{Z})$（因 $U(1)\simeq K(\mathbb{Z},1)$ 且 $p_*=\times2$）。其 $\mathbb{Z}_2$ 障碍由主 $\mathbb{Z}_2$-丛 $P_{\sqrt S}=S^*(p)$ 的 holonomy 给出，即 $\nu_{\sqrt S}$。
 
-分类。指数短正合列
+**(B) 线丛层（丛的平方根）**：对任意 $U(1)$-主丛/复线丛 $\mathcal L$，存在 $\mathcal M$ 使 $\mathcal M^{\otimes2}\cong\mathcal L$ 的充要条件是 $c_1(\mathcal L)\in 2H^2(X^\circ;\mathbb{Z})$。这里 $c_1$ 由指数层序列
 
 $$
-0\longrightarrow \mathbb{Z}\longrightarrow \mathbb{R}\longrightarrow U(1)\longrightarrow 0
+0\longrightarrow \mathbb{Z}\longrightarrow \mathcal C^\infty(\mathbb{R})\xrightarrow{\exp(2\pi i\,\cdot)}\mathcal C^\infty(U(1))\longrightarrow 0
 $$
 
-诱导 Bockstein 态射 $\beta:H^1(X^\circ;U(1))\to H^2(X^\circ;\mathbb{Z})$，并有 $\beta([\mathcal L_S])=c_1(\mathcal L_S)$。平方根线丛存在当且仅当 $c_1(\mathcal L_S)\in 2H^2(X^\circ;\mathbb{Z})$。复线丛的底层实二维丛天然可定向，故 $w_1(\mathcal L_S)=0$ 与平方根存在性无关。
+的连接同态
 
-**两层判据的相容性（并列表述）**
+$$
+\delta:\ H^1\left(X^\circ;\mathcal C^\infty(U(1))\right)\xrightarrow{\ \simeq\ } H^2\left(X^\circ;\mathbb{Z}\right)
+$$
 
-- **映射层**（$U(1)=K(\mathbb{Z},1)$）：存在连续 $s$ 使 $s^2=S$ $\Leftrightarrow$ $[S]\in 2H^1(X^\circ;\mathbb{Z})$。
+产生，并满足 $\delta([\mathcal L])=c_1(\mathcal L)$。
 
-- **线丛层**（平直联络）：指数短正合列 $0\to\mathbb{Z}\to\mathbb{R}\to U(1)\to 0$ 诱导 Bockstein $\beta:H^1(X^\circ;U(1))\to H^2(X^\circ;\mathbb{Z})$，且 $\beta([\mathcal L_S])=c_1(\mathcal L_S)$。平方根线丛存在 $\Leftrightarrow$ $c_1(\mathcal L_S)\in 2H^2(X^\circ;\mathbb{Z})$。
+二者分别针对不同对象，**一般不相互推出**。与本文 $\mathbb{Z}_2$ 指标直接相关的是 $P_{\sqrt S}$；其经 $\{\pm1\}\hookrightarrow U(1)$ 关联的平直复线丛 $\mathcal L_{\sqrt S}$ 的 $c_1$ 为 2‑挠（由乘二短正合列的 Bockstein 给出），可在挠与模 2 层面反映 $\nu_{\sqrt S}$ 的障碍，但并不等价于 (A) 的提升条件。
 
-二者在模 2 层面的障碍与 $\nu_{\sqrt S}(\gamma)=(-1)^{\deg(S|_\gamma)}$ 一致。
+**两类判据（并列表述）**
+
+- **映射层**（$U(1)=K(\mathbb{Z},1)$）：$\exists\,s:X^\circ\to U(1)\ \text{s.t.}\ s^2=S\ \Longleftrightarrow\ [S]\in 2H^1(X^\circ;\mathbb{Z})$。
+
+- **线丛层**（指数层序列与 Bockstein）：对任意复线丛 $\mathcal L$，$\exists\,\mathcal M,\ \mathcal M^{\otimes2}\cong\mathcal L\ \Longleftrightarrow\ c_1(\mathcal L)\in 2H^2(X^\circ;\mathbb{Z})$。
+
+二者针对不同对象，**一般不相互推出**；本文的 $\nu_{\sqrt S}$ 与 (A) 等价，而非与任意给定 $\mathcal L$ 的 $c_1$ 偶性等价。
 
 ---
 
@@ -440,13 +446,35 @@ $$
 
 ### A.2 平直线丛的分类与 Bockstein
 
-带平直联络的复线丛由 $H^1(X^\circ;U(1))\cong \mathrm{Hom}(\pi_1X^\circ,U(1))$ 分类。指数短正合列
+**（一般复线丛）** 复线丛（不要求平直）由 Čech/层上同调 $H^1\left(X^\circ;\mathcal C^\infty(U(1))\right)$ 分类。由指数层序列
 
 $$
-0\longrightarrow \mathbb{Z}\longrightarrow \mathbb{R}\longrightarrow U(1)\longrightarrow 0
+0\longrightarrow \mathbb{Z}\longrightarrow \mathcal C^\infty(\mathbb{R})\xrightarrow{\exp(2\pi i\,\cdot)}\mathcal C^\infty(U(1))\longrightarrow 0
 $$
 
-诱导 Bockstein 态射 $\beta:H^1(X^\circ;U(1))\to H^2(X^\circ;\mathbb{Z})$，并有 $\beta([\mathcal L_S])=c_1(\mathcal L_S)$。平方根线丛存在当且仅当 $c_1(\mathcal L_S)\in 2H^2(X^\circ;\mathbb{Z})$。其模 2 约化与 A.1 的覆盖障碍一致。
+诱导的连接同态给出同构
+
+$$
+\delta:\ H^1\left(X^\circ;\mathcal C^\infty(U(1))\right)\xrightarrow{\ \simeq\ } H^2\left(X^\circ;\mathbb{Z}\right),\qquad \delta([\mathcal L])=c_1(\mathcal L).
+$$
+
+**（平直复线丛）** 带平直联络的复线丛由表示 $\rho:\pi_1X^\circ\to U(1)$ 分类，即
+
+$$
+H^1\left(X^\circ;U(1)_{\mathrm{const}}\right)\cong \mathrm{Hom}(\pi_1X^\circ,U(1)).
+$$
+
+由系数短正合列 $0\to\mathbb{Z}\to\mathbb{R}\to U(1)\cong \mathbb{R}/\mathbb{Z}\to 0$ 的 Bockstein
+
+$$
+\beta:\ H^1\left(X^\circ;U(1)_{\mathrm{const}}\right)\longrightarrow H^2\left(X^\circ;\mathbb{Z}\right)
+$$
+
+得到平直线丛的第一陈类，其像等于 $H^2$ 的挠子群；因此平直线丛必满足 $c_1$ 为挠元（对由 $\{\pm1\}\hookrightarrow U(1)$ 关联得到的平直线丛更是 2‑挠）。这与正文 §2.2 对 $\mathcal L_{\sqrt S}$ 的描述相一致。
+
+线丛平方根存在当且仅当 $c_1(\mathcal L)\in 2H^2(X^\circ;\mathbb{Z})$。这与 A.1 的映射提升问题（$[S]\in 2H^1(X^\circ;\mathbb{Z})$）针对不同对象，一般不相互推出；本文的 $\nu_{\sqrt S}$ 由主 $\mathbb{Z}_2$-丛 $P_{\sqrt S}=S^*(p)$ 的 holonomy 给出，与 (A) 等价。
+
+**注意**：$c_1(\mathcal L)$ 的 $\bmod 2$ 约化属于 $H^2(X^\circ;\mathbb{Z}_2)$，而 A.1 的覆盖障碍 $w_1(P_{\sqrt S})\in H^1(X^\circ;\mathbb{Z}_2)$，两者不处于同一上同调次数，不能直接等同。仅当专指由 $P_{\sqrt S}$ 经 $\{\pm1\}\hookrightarrow U(1)$ 关联得到的平直复线丛 $\mathcal L_{\sqrt S}$ 时，其 $c_1$ 的 2‑挠可在挠/模 2 层面反映 $\nu_{\sqrt S}$ 的 holonomy 数据（见 §2.2），但并不与 $w_1(P_{\sqrt S})$ 作同度量的等价。
 
 ---
 
