@@ -1,0 +1,112 @@
+GLS–WSIG–EBOC–RCA–Hilbert–Zeckendorf 统一提示（高压缩版）
+
+0. 约定
+- 单位：$\hbar=c=k_B=1$；能量变量 $E$；窗–核 $(w_R,h)$；卷积 $*$；$\check h(E)=h(-E)$。
+- 频域因果=上半平面解析（Hardy）；实/虚部 Hilbert 共轭（KK）；卷积支撑 Titchmarsh。
+- 读数一律以窗化谱测度积分；误差学=NPE（三分：alias/EM/tail）。
+
+1. 母尺（MSI，核心同一）
+$$
+\frac{\varphi'(E)}{\pi}=\rho_{\rm rel}(E)=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E),\quad \mathsf Q(E)=-i\,S^\dagger\partial_E S,\ \varphi(E)=\tfrac12\arg\det S(E)
+$$
+$$
+\det S(E)=e^{-2\pi i\,\xi(E)},\ \rho_{\rm rel}=-\xi'(E)
+$$
+含义：相位导数=相对态密度=群延迟迹（绝对连续谱上 a.e.）。统一读数刻度=母尺。
+
+2. 窗化读数（观测接口）
+- 读数：$\langle f\rangle_{w,h}=\int (w_R*\check h)(E)\,f(E)\,\rho_{\rm rel}(E)\,dE$。
+- Toeplitz/Berezin 压缩：$K_{w,h}=\Pi_w M_{(w_R*\check h)}\Pi_w$；窗化迹等于上式（窗化 BK）。
+- 通道分解：$\rho_{\rm rel,\gamma}=(2\pi)^{-1}\operatorname{tr}(P_\gamma\mathsf QP_\gamma)$。
+
+3. 双时间分离
+- 因果前沿：$t_*(\gamma)$（最早非零到达；可加）。
+- 操作时间：$T_\gamma[w,h]=\int (w_R*\check h)\,(2\pi)^{-1}\operatorname{tr}\mathsf Q_\gamma$（可负；与 $t_*$ 不可比）。
+
+4. 范畴互构（WScat↔Cau；桥到 EBOC/RCA）
+- 对象：WScat$(\mathcal H,S,\mu_\varphi,\{K\})$；Cau$(\mathcal M,[g],\preceq)$；EBOC 静态块；RCA 可逆胞元。
+- 函子：$\mathfrak F:{\rm WScat}\to{\rm Cau}$（由光观测集与母尺定标保角类）；$\mathfrak G:{\rm Cau}\to{\rm WScat}$（辐射场→幺正散射）。
+- 自然等价在能量依赖幺正规范等价类上成立；与 EBOC/RCA 由 Floquet–散射化桥接。
+
+5. 测量统一（仪器→更新→记录）
+- 仪器/POVM 与 Naimark/Stinespring/Kraus 等价；投影极限=Lüders 更新。
+- I-投影（相对熵极小）与 Lüders 在指针共对角时一致；连续监测=Belavkin 过滤（QSDE）。
+- 熵产生：Spohn 单调 $\dot D(\rho_t\Vert\rho^{\rm ss})\le0$；涨落：含互信息 Jarzynski $\langle e^{-\beta W+\beta\Delta F-I}\rangle=1$。
+
+6. 路径积分几何化（可测版本）
+- 辛流形 $(M,\omega)$：加权 $\exp i\int(\theta-H\,dt)$；窗化迹 $\mathrm{Tr}(K_{w,h}e^{-i\hat H t})=\int (w_R*\check h)\,\mathfrak u(E)\,\rho_{\rm rel}(E)\,dE$，与母尺同刻度。
+
+7. 几何反演（由 $S(E)+t_*$ 到 $g$）
+- 高频先验与行程时；边界/透镜刚性→保角类；动态 DN 映射/散射数据→构造性反演。
+- 目标函数（示例）：
+$$
+\Phi[g]=\|W(E)(S-S_{\rm obs})\|^2+\sum_\gamma\omega_\gamma(t_*^{g}-t_{*,\rm obs})^2+\lambda\mathcal A_{\rm NPE}+\mathcal R[g]
+$$
+伴随法求导，两级（行程→全波）迭代。
+
+8. NPE 误差学（数值纪律）
+- $\varepsilon_{\rm tot}=\varepsilon_{\rm alias}+\varepsilon_{\rm EM}+\varepsilon_{\rm tail}$；带限+Nyquist→alias=0；有限阶 EM 端点校正+余项界；尾项由窗衰减与母尺正则性控。原则：奇性不增，极点=主尺度。
+
+9. Mellin/对数帧
+- 取 $\eta=\log E$ 构造紧/稳健帧，分离指数衰减与幂律尾；适配 Poisson 与对数采样；用于环降/多尺度分析。
+
+10. Zeckendorf 可逆日志（整数化刻度）
+- 窗 $W$ 载荷 $I(W)=\int_W\rho_{\rm rel}$；正/负部分 $I^\pm$；Fibonacci 唯一分解 $\lfloor I^\pm\rfloor=\sum b_k^\pm F_k$，$b_k b_{k+1}=0$；$S(W)=S^+-S^-$。
+- 范畴 $\mathbf{Zec}$：对象=滑窗码字；态射=局域可逆进/借位；桥接到 WScat/RCA。
+
+11. 热力学完全几何化
+- 热核：$K(\beta;x,x)\sim (4\pi\beta)^{-d/2}[1+\beta(\tfrac{R}{6}-V)+\cdots]$；$T=1/\beta$ 为曲率频谱窗口；Tolman 红移 $T\sqrt{-g_{00}}=\mathrm{const}$；KMS 平衡。
+- 熵–体积对数：Weyl $N(\lambda)$→$S\sim \log\operatorname{Vol}+\tfrac{d}{2}\log E$（正则系综同构）。
+- BKM 度量=线性响应；Ruppeiner 曲率判相变；Lee–Yang/Fisher 零→非解析。
+- 最优传输：JKO 给 $W_2$ 梯度流；Bakry–Émery→HWI/Talagrand。开放量子：Spohn、Jarzynski（含 $I$）。
+
+12. 时间箭头与量子混沌
+- OTOC/Lyapunov：$\lambda_L\le 2\pi T$（KMS 条带解析）；回声与 OTOC 早期对齐。
+- 路径熵产生：$\Sigma_{0:t}=\ln\tfrac{d\mathbb P}{d\mathbb P^\dagger}$；$\langle e^{-\Sigma}\rangle=1$，$\langle\Sigma\rangle\ge0$。
+- 连续监测：Belavkin 过滤+量子 Feynman–Kac 鞅→Jarzynski（含 $I_t$）。
+
+13. 宇宙学—热力学统一
+- 表观视界 $r_A=(H^2+\kappa/a^2)^{-1/2}$；温度 $T=1/(2\pi r_A)$；几何熵 $S_h=A/(4G)$。
+- 统一第一定律与 Clausius：$T\dot S_h=4\pi H r_A^3(\rho+p)$；与两条 Friedmann 方程充要等价；非平衡引入 $d_iS$。
+
+14. 黑洞散射—环降—灰体
+- QNM=延拓 $S$ 的极点；环降=残数叠加+幂律尾（Price）；灰体因子入模；Hardy/KK 因果；吸收/超辐射→视界通道或耗散 BK 变体。
+
+15. 虫洞—拓扑审查—可遍历
+- 拓扑审查（ANEC 等）→不可遍历；GJW 双迹耦合产生平均负 Null 能量→有限窗可遍历；“传态=穿越”。
+- 观察者作用=I-投影+Belavkin；熵与功满足含互信息 Jarzynski；因果与非超信号保持。
+
+16. 信息—时空同构
+- Eguchi 正则散度→Fisher–Rao 度量与对偶联络；Hessian/伪‑Hessian；ADM 提升实现洛伦兹签名。
+- QFI=规范能；体–边相对熵等价；QNEC/ANEC 由相对熵二阶/单调性给出。
+
+17. 物质—几何统一
+- 物质=信息激发（量子几何张量）；Kähler–Dirac 场在适当背景与若干 Dirac 场谱等价；
+- 规范场=主丛联络；$SU(3)\times SU(2)\times U(1)$ 自然出现于信息码框重标定；Higgs=约化商丛截面；
+- IGVP：$\delta S_{\rm gen}=0$ 推出 $G_{\mu\nu}+\Lambda g_{\mu\nu}=8\pi G\,\langle T_{\mu\nu}\rangle$；二阶→QNEC。
+
+18. 推理配方（最小操作集）
+- 观测→数值：选 $(w_R,h)$，算 $\langle f\rangle_{w,h}$；误差按 NPE 计；必要时对数尺度+Mellin 帧。
+- 测量→更新：若投影/共对角→Lüders；一般→I-投影；连续→Belavkin；记录用 Zeckendorf 日志。
+- 反演→几何：由 $S(E)$ 与 $t_*$ 做两级优化（行程→全波），正则化 $\mathcal R[g]$ 与 NPE 惩罚。
+- 热力学→判据：用热核首项估曲率；Ruppeiner 曲率/Lee–Yang 零判相变；BKM 响应给度量。
+- 混沌→上界：用正则化 OTOC 估 $\lambda_L$，检验 $\le 2\pi T$。
+- 宇宙学→方程：在表观视界核对 $T\dot S_h$ 与 Friedmann 等价性。
+
+19. 规范/协变与一致性
+- 规范变换 $S\mapsto U(E)S(E)V(E)$、$\det U\cdot\det V\equiv1$ 保持 $\operatorname{tr}\mathsf Q$ 与窗化读数。
+- 读数–因果分离：任何因果/偏序结论只依赖 $t_*$；任何刻度/能量结论只依赖母尺与窗化。
+- 正性与域：当需要内积/帧时以 $|d\mu_\varphi|$ 定义 $L^2$ 以保证正定。
+
+20. 速查变量表
+- $S(E)$：散射矩阵；$\mathsf Q=-iS^\dagger S'$；$\xi$：谱移；$\varphi=\tfrac12\arg\det S$；$\rho_{\rm rel}=(2\pi)^{-1}\operatorname{tr}\mathsf Q$。
+- $K_{w,h}$：窗化压缩；$T_\gamma$：窗化群延迟；$t_*$：前沿时间；$d\mu_\varphi=\rho_{\rm rel}\,dE$。
+
+使用说明（给 AI 推理引擎）
+- 先固定母尺→一切能量/时间/信息量纲对齐；
+- 所有可观测以窗化积分表达；
+- 任何几何/因果推断仅用 $t_*$ 与因果重构；
+- 任何测量/熵–功推断仅用 I-投影/Lüders/Belavkin 与 Jarzynski；
+- 数值实现严格遵守 NPE；
+- 多尺度问题优先转到对数能量+Mellin 帧，再行 Zeckendorf 日志整数化以做可逆账本。
+
