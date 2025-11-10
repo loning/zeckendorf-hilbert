@@ -23,7 +23,7 @@ $$
 
 ## 0 记号、域前提与速查表
 
-**记号与单位**：度规签名 $(-,+,+,+)$；$c=k_B=1$，保留 $\hbar$。爱因斯坦张量 $G_{ab}=R_{ab}-\tfrac12R g_{ab}$。零向量收缩 $R_{kk}:=R_{ab}k^ak^b$、$T_{kk}:=T_{ab}k^ak^b$。**体积 $V(B_\ell)$** 指因果钻石**最大截面**（腰面）三维体积。腰面面积元记为 $dA$（全文统一以 $dA$ 表示腰面测度，不再并行使用 $dA_0$）。
+**记号与单位**：度规签名 $(-,+,+,+)$；$c=k_B=1$，保留 $\hbar$。爱因斯坦张量 $G_{ab}=R_{ab}-\tfrac12R g_{ab}$。零向量收缩 $R_{kk}:=R_{ab}k^ak^b$、$T_{kk}:=T_{ab}k^ak^b$。**体积 $V(B_\ell)$** 指因果钻石**最大截面**（腰面）三维体积。以下 $dA$ 皆指腰面测度（全文统一，不再并行使用 $dA_0$）。
 
 **域前提**：尺度分离 $\varepsilon_{\rm curv}=\ell/L_{\rm curv}$、$\varepsilon_{\rm mat}=\ell/L_{\rm mat}$、$\varepsilon=\max(\varepsilon_{\rm curv},\varepsilon_{\rm mat})\ll1$；Hadamard 类态与点分裂重整化；小区间 $[0,\lambda_*]$ 内**无共轭点/焦点**（Sachs/Raychaudhuri 可控，光线变换局部可逆）。
 
@@ -61,9 +61,13 @@ $$
 （一阶层）在定体积约束 $\delta V=0$ 下取 $\delta S_{\rm gen}=0$；等价地把 $S_\Lambda$ 并入无约束变分后令 $\delta S_{\rm gen}=0$。
 （二阶层）相对熵非负：$\delta^2S_{\rm rel}\ge0$。
 
+**约定（一阶变分的温标）**：默认固定温度 $T$（$\delta T=0$）进行一阶极值；若允许 $\delta T\neq0$，其贡献为 $\mathcal O(\varepsilon^2)$ 不改结论（见 §6）。
+
 ---
 
 ## 2 小钻石极限：显式不等式与边界层
+
+**正则性门槛**：背景度规 $g\in C^3$（或 $g\in C^2$ 且 $\nabla{\rm Riem}\in L^\infty$），物质场 $T_{ab}\in C^1$；腰面为极大截面，初值 $\theta(0)=\sigma(0)=\omega(0)=0$；零测地丛满足 Frobenius 条件，故 $\omega\equiv0$。
 
 **初值与 Frobenius 条件**：腰面取 $\theta(0)=\sigma(0)=\omega(0)=0$；零测地丛超曲面正交 $\Leftrightarrow\omega\equiv0$。
 
@@ -115,6 +119,8 @@ $$
 $$
 
 **测试函数局域化引理**：若 $\int_{\partial B_\ell}\varphi(x)\!\int_0^{\lambda_*}\! w(\lambda)F(x,\lambda)\,d\lambda\,dA=0$ 对所有 $\varphi\in C_c^\infty(\partial B_\ell)$、$w\in C_c^\infty([0,\lambda_*])$ 成立，则几乎处处沿每条生成元 $\int_0^{\lambda_*} w F=0$。
+（注：本文主用首矩权 $w\equiv\lambda$。）
+
 由此对 $f=R_{kk}-8\pi G\,T_{kk}$ 得 $\mathcal L_\lambda[f]=o(\ell^2)\Rightarrow f(p)=0$，即
 
 $$
@@ -135,6 +141,8 @@ $$
 ---
 
 ## 5 二阶层：$\delta^2S_{\rm rel}=\mathcal E_{\rm can}\ge0$ 与稳定性
+
+**函数空间与无外流条件**：扰动 $h_{ab}\in H^{k}(\Sigma)$（$k\ge2$），边界条件固定诱导度规（或其共轭动量），并要求 $\int_{\partial\Sigma}\iota_n\omega(h,\mathcal L_\xi h)=0$（辛流无外流）；规范采用 Killing 或协变谐以剔除纯规范模。
 
 在 code subspace、线性化约束 $\delta M=\delta J=\delta P=0$ 与合适边界条件下，
 
@@ -231,7 +239,7 @@ $$
 
 ## 参考文献（选）
 
-Jacobson（1995；2016）；Casini–Huerta–Myers（2011）；Jafferis–Lewkowycz–Maldacena–Suh（2016）；Lashkari–Van Raamsdonk（2016）；Iyer–Wald（1994）；Donnelly–Freidel（2016）；Radzikowski（1996）；Décanini–Folacci（2008）；Crispino–Higuchi–Matsas（2008）；Jacobson–Visser（2019）；Dong（2014）；Camps（2014）；Bousso–Fisher–Koeller–Leichenauer–Wall（2016）；Faulkner–Leigh–Parrikar–Wang（2016）；Hollands–Wald（2013）；Bauer–Le Brigant–Lu–Maor（2024）；Lovelock（1971）。
+Jacobson（1995, Phys. Rev. Lett. 75, 1260；2016, Class. Quantum Grav. 33, 245001）；Casini–Huerta–Myers（2011, JHEP 05, 036）；Jafferis–Lewkowycz–Maldacena–Suh（2016, JHEP 06, 004）；Lashkari–Van Raamsdonk（2016, JHEP 04, 153）；Iyer–Wald（1994, Phys. Rev. D 50, 846）；Donnelly–Freidel（2016, JHEP 09, 102）；Radzikowski（1996, Commun. Math. Phys. 179, 529）；Décanini–Folacci（2008, Phys. Rev. D 78, 044025）；Crispino–Higuchi–Matsas（2008, Rev. Mod. Phys. 80, 787）；Jacobson–Visser（2019, JHEP 03, 082）；Dong（2014, JHEP 01, 044）；Camps（2014, JHEP 03, 070）；Bousso–Fisher–Koeller–Leichenauer–Wall（2016, Phys. Rev. D 93, 024017）；Faulkner–Leigh–Parrikar–Wang（2016, JHEP 09, 038）；Hollands–Wald（2013, Commun. Math. Phys. 321, 629）；Bauer–Le Brigant–Lu–Maor（2024, arXiv:2401.xxxxx）；Lovelock（1971, J. Math. Phys. 12, 498）。
 
 ---
 
@@ -268,7 +276,7 @@ $$
 # 附录 B  局域化引理与 Radon‑型 0‑阶重建
 
 **B.1 局域化引理**
-若 $\int_{\partial B_\ell}\!\varphi(x)\!\int_0^{\lambda_*}\! w(\lambda)F(x,\lambda)\,d\lambda\,dA=0$ 对所有 $\varphi\in C_c^\infty$、$w\in C_c^\infty$ 成立，则几乎处处沿每条生成元 $\int_0^{\lambda_*}\!wF=0$。证：Fubini+单位分解。
+若 $\int_{\partial B_\ell}\!\varphi(x)\!\int_0^{\lambda_*}\! w(\lambda)F(x,\lambda)\,d\lambda\,dA=0$ 对所有 $\varphi\in C_c^\infty$、$w\in C_c^\infty$ 成立，则几乎处处沿每条生成元 $\int_0^{\lambda_*}\!wF=0$。证：Fubini+单位分解。（注：本文主用首矩权 $w\equiv\lambda$。）
 
 **B.2 0‑阶重建**
 $S_{kk}(\gamma(\lambda))=S_{kk}(p)+\lambda\nabla_k S_{kk}(p)+\mathcal O(\lambda^2)$；
