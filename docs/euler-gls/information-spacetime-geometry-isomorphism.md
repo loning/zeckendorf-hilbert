@@ -1,10 +1,10 @@
 # 信息几何与时空几何的结构同构：从相对熵的二阶响应到度规、联络与场方程
 
-Version: 1.1
+Version: 1.4
 
 ## 摘要
 
-本文构建并严格论证一个"信息—时空同构"框架。以满足 Eguchi 正则性的散度函数（含相对熵）为起点，定义 Fisher–Rao 度量与对偶联络族，并在 $\alpha=0$ 情形下得到与度量相容且无挠的 Levi–Civita 联络；由此保证二阶 Bianchi 恒等式。若进一步采用爱因斯坦场方程，则由契约 Bianchi 恒等式推出能动张量的协变守恒（$\nabla^a T_{ab}=0$）。随后我们把"散度—Hessian—度量"的构造范畴化，证明**"正则散度流形（对偶平坦）"与"带平直仿射联络且度量为 Hessian 形式的（伪）黎曼流形"**之间的等价，消除"形式类比"的歧义。针对时空所需的洛伦兹签名，本文给出两步方案：第一步证明一个正定性不可行性引理，指出在 Eguchi 条件下由对角极小性的散度诱导的 Fisher–Rao 度量必为正定；第二步通过"伪-Hessian 结构／ADM 提升"自然嵌入到洛伦兹几何，并在微扰层面用"相对熵二阶变分＝量子 Fisher＝引力规范能"的同一性建立信息几何切空间与满足线性化爱因斯坦方程的引力相空间之间的等距对应；非线性层面以体-边相对熵等价与引力的"纠缠第一定律"闭合到完整场方程。该框架还导出可检验推论：相对熵单调性与二阶形变给出 QNEC/ANEC，从而对应几何中的聚焦不等式与能量条件。上述关键点分别以 Eguchi/Amari—Nagaoka 的信息几何、Hessian/伪-Hessian 几何、以及全息/量子信息—引力的代表性判据为锚定。([Project Euclid][1])
+本文构建并严格论证一个"信息—时空同构"框架。以满足 Eguchi 正则性的散度函数（含相对熵）为起点，定义 Fisher–Rao 度量与对偶联络族，并在 $\alpha=0$ 情形下得到与度量相容且无挠的 Levi–Civita 联络；由此保证二阶 Bianchi 恒等式。若进一步采用爱因斯坦场方程，则由契约 Bianchi 恒等式推出能动张量的协变守恒（$\nabla^a T_{ab}=0$）。随后我们把"散度—Hessian—度量"的构造范畴化，证明**"正则散度流形（对偶平坦）"与"带平直仿射联络且度量为 Hessian 形式的黎曼（正定）流形"**之间的等价，消除"形式类比"的歧义。针对时空所需的洛伦兹签名，本文给出两步方案：第一步证明一个正定性不可行性引理，指出在 Eguchi 条件下由对角极小性的散度诱导的 Fisher–Rao 度量必为正定；第二步通过"伪-Hessian 结构／ADM 提升"自然嵌入到洛伦兹几何，并在微扰层面用"相对熵二阶变分＝量子 Fisher＝引力规范能"的同一性建立信息几何切空间与满足线性化爱因斯坦方程的引力相空间之间的等距对应；非线性层面以体-边相对熵等价与引力的"纠缠第一定律"闭合到完整场方程。该框架还导出可检验推论：相对熵单调性与二阶形变给出 QNEC/ANEC，从而对应几何中的聚焦不等式与能量条件。上述关键点分别以 Eguchi/Amari—Nagaoka 的信息几何、Hessian/伪-Hessian 几何、以及全息/量子信息—引力的代表性判据为锚定。([Project Euclid][1])
 
 ---
 
@@ -28,15 +28,21 @@ $$
 
 ### 1.1  正定性不可行性引理
 
-若 $D$ 满足 Eguchi 正则性且对角极小，则对任何非零切向量 $v$，有
+**正定性不可行性引理** 若 $D$ 满足 Eguchi 正则性并在对角处**严格**极小，则对任意非零切向量 $v$ 有
 $$
-v^iv^jg_{ij}=\left.\tfrac{d^2}{dt^2}D(\theta|\theta+tv)\right|_{t=0}>0.
+v^iv^jg_{ij}=-\left.\tfrac{\partial^2}{\partial s\partial t}D(\theta+sv|\theta+tv)\right|_{s=t=0}>0.
 $$
+**证明要点**：对角附近作二点泰勒展开
+$$
+D(\theta+u|\theta+v)=\tfrac12 g_{ij}(u^i-v^i)(u^j-v^j)+O(3),
+$$
+取 $u=sv,\ v=tv$ 得 $\partial_s\partial_t D|_{0,0}=-v^iv^jg_{ij}$，且由对角严格极小性知 $v^iv^jg_{ij}>0$。
+
 因此由此产生的 Fisher–Rao 度量必为正定，不能直接作为时空的洛伦兹度规。([Project Euclid][1])
 
 ### 1.2  伪-Hessian 与 ADM 提升
 
-**步骤 A：伪-Hessian 扩展** 在允许非定号的伪-Hessian 框架中，可在数学上容纳洛伦兹指数；但此时"散度"须理解为**伪散度/作用**而非对角极小的统计散度。([ncatlab.org][5])
+**步骤 A：伪-Hessian 扩展** 在允许非定号的伪-Hessian 框架中，可在数学上容纳洛伦兹签名；但此时"散度"须理解为**伪散度/作用**而非对角极小的统计散度。([ncatlab.org][5])
 **步骤 B：ADM 提升** 取统计流形 $(\mathcal S,g_{F})$ 作为"空间切片"，并引入 lapse $N$ 与 shift $N^i$，定义洛伦兹度规
 $$
 g_L=-N^2d\tau^2+h_{ij}(dx^i+N^i d\tau)(dx^j+N^j d\tau),
@@ -58,7 +64,7 @@ $\mathbf{Hess}^{\sigma}$：对象为 $\bigl(M,\nabla^{\mathrm{aff}},g\bigr)$，$
 $$
 \Phi:(M,D)\mapsto\bigl(M,\nabla^{\mathrm{aff}},g=\nabla^{\mathrm{aff}}d\varphi\bigr),\quad \Psi:(M,\nabla^{\mathrm{aff}},g)\mapsto(M,D_{\mathrm{can}}),
 $$
-使 $\Phi,\Psi$ 在对偶平坦子范畴上互为等价：$\Phi$ 由 Bregman/Legendre 势生成 Hessian 结构；$\Psi$ 由 Ay–Amari/Felice–Ay 的**规范散度**自反构造恢复 $(g,\nabla,\nabla^*)$。$\alpha=0$ 联络即 Levi–Civita。([Vielbein][6])
+使得在对偶平坦子范畴上 $\mathbf{Div}^{\mathrm{df}}\simeq\mathbf{Hess}^{+}$：$\Phi$ 由 Bregman/Legendre 势生成 Hessian 结构；$\Psi$ 由 Ay–Amari/Felice–Ay 的**规范散度**自反构造恢复 $(g,\nabla,\nabla^*)$。$\alpha=0$ 联络即 Levi–Civita。([Vielbein][6])
 
 *证明要点*：对偶平坦保证存在仿射坐标与凸势 $\varphi$ 使 $g=\partial^2\varphi$；反向方向以"规范散度"在测地上积分逆指数映射重建 $(g,\nabla,\nabla^*)$，两向构造在态射层自然相容。
 
