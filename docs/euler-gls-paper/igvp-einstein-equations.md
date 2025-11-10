@@ -1,6 +1,6 @@
 # 信息几何变分原理导出爱因斯坦场方程
 
-Version: 1.5
+Version: 1.6
 
 ## 摘要
 
@@ -45,9 +45,13 @@ $$
 
 **公设 B（几何信息容量）** 定义几何熵 $S_{\rm grav}=\tfrac{A}{4G\hbar}$ 并以 $T=\hbar\kappa/(2\pi)$ 作为温标。该定义在本框架中作为**变分泛函的组成**，而非由其它理论推得。
 
-**公设 C（平衡与稳定）** 在**定体积约束** $\delta V(B_\ell)=0$ 下，一阶驻值 $\delta S_{\rm gen}=0$，并在同一驻点要求二阶相对熵非负 $\delta^2 S_{\rm rel}\ge0$。体积的选取基于因果钻石第一定律中 $V$ 与其共轭变量 $\Lambda$ 的天然配对，从而保证变分问题的良定与 $\Lambda$ 的拉格朗日乘子解释。在定体积约束下取 $S_{\rm ct}[B_\ell;g]=-\dfrac{\Lambda}{8\pi G\hbar}V(B_\ell)$，故 $\delta S_{\rm ct}=-\dfrac{\Lambda}{8\pi G\hbar}\delta V$。于是**无约束**的一阶驻值为
+**公设 C（平衡与稳定）** 在**定体积约束** $\delta V(B_\ell)=0$ 下，一阶驻值 $\delta S_{\rm gen}=0$，并在同一驻点要求二阶相对熵非负 $\delta^2 S_{\rm rel}\ge0$。体积的选取基于因果钻石第一定律中 $V$ 与其共轭变量 $\Lambda$ 的天然配对，从而保证变分问题的良定与 $\Lambda$ 的拉格朗日乘子解释。为将体积约束等价地并入无约束变分，取
 
-$$\delta S_{\rm gen}=\frac{\delta A}{4G\hbar}+\delta S_{\rm out}-\frac{\Lambda}{8\pi G\hbar}\delta V=0,$$
+$$S_{\rm ct}[B_\ell;g]=-\frac{\Lambda}{8\pi G}\frac{V(B_\ell)}{T},\qquad T=\frac{\hbar\kappa}{2\pi},$$
+
+故 $\delta S_{\rm ct}=-\dfrac{\Lambda}{8\pi G}\dfrac{\delta V}{T}$。于是**无约束**的一阶驻值为
+
+$$\delta S_{\rm gen}=\frac{\delta A}{4G\hbar}+\delta S_{\rm out}-\frac{\Lambda}{8\pi G}\frac{\delta V}{T}=0,$$
 
 在**约束面** $\delta V=0$ 上则回落为 $\delta S_{\rm grav}+\delta S_{\rm out}=0$。
 
@@ -65,9 +69,9 @@ $$
 \delta Q=\int_{\mathcal H}T_{ab}\chi^a d\Sigma^b=\kappa\int_{\mathcal H}\lambda\,T_{ab}k^a k^b\,d\lambda\,dA,
 $$
 
-配合 $T=\hbar\kappa/(2\pi)$ 得 $\delta Q/T=\tfrac{2\pi}{\hbar}\int_{\mathcal H}\lambda\,T_{ab}k^a k^b\,d\lambda\,dA$。由 $\theta(\lambda)=-\lambda\,R_{ab}k^a k^b+\mathcal O(\varepsilon^2)$ 与 $\delta S_{\rm grav}=\delta A/(4G\hbar)$，结合 $\delta S_{\rm ct}=-(\Lambda/8\pi G\hbar)\delta V$，无约束的一阶平衡为
+配合 $T=\hbar\kappa/(2\pi)$ 得 $\delta Q/T=\tfrac{2\pi}{\hbar}\int_{\mathcal H}\lambda\,T_{ab}k^a k^b\,d\lambda\,dA$。由 $\theta(\lambda)=-\lambda\,R_{ab}k^a k^b+\mathcal O(\varepsilon^2)$ 与 $\delta S_{\rm grav}=\delta A/(4G\hbar)$，结合 $\delta S_{\rm ct}=-(\Lambda/8\pi G)(\delta V/T)$，无约束的一阶平衡为
 
-$$\frac{\delta A}{4G\hbar}+\delta S_{\rm out}-\frac{\Lambda}{8\pi G\hbar}\delta V=0,$$
+$$\frac{\delta A}{4G\hbar}+\delta S_{\rm out}-\frac{\Lambda}{8\pi G}\frac{\delta V}{T}=0,$$
 
 在 $\delta V=0$ 约束面上简化为 $\delta S_{\rm grav}+\delta S_{\rm out}=0$（此即公设 C 的具体实现），再对任意零矢量系数匹配与张量化闭包，即得
 
