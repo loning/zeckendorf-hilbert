@@ -105,33 +105,30 @@ $$
 
 其中 $C_d=C_d(C_R,C_{\nabla R},C_{\mathcal C};d,c_\lambda)$ 与 $\varepsilon$ 无关。
 
-端点层 $[\lambda_*-\delta,\lambda_*]$ 的贡献为
+端点层 $[\lambda_*-\delta,\lambda_*]$ 的贡献满足
 
 $$
+\Big|\int_{\lambda_*-\delta}^{\lambda_*}\lambda R_{kk}\,d\lambda\,dA\Big|
 \le \tfrac12 A\big(\lambda_*^2-(\lambda_*-\delta)^2\big)C_R
-=\mathcal O\big(A\,\ell\,\delta\,C_R\big),
+=\mathcal O\big(A,C_R,\lambda_*,\delta\big).
 $$
 
-取 $\delta=\mathcal O(\varepsilon\ell)$ 与 $C_R=\mathcal O(L_{\rm curv}^{-2})$ 得 $\mathcal O\big(A\,\varepsilon\,\ell^2\,C_R\big)=\mathcal O(\varepsilon)\times\mathcal O(\varepsilon^2\ell^{d-2})$。为严谨起见，取一固定凸正规邻域 $\mathcal O$ 与 $\ell_0>0$，令 $\lambda_0=c_\lambda\ell_0$，并在 $\mathcal O$ 上定义
+取 $\delta=\mathcal O(\varepsilon\ell)$ 且 $\lambda_*\sim c_\lambda\ell$，得 $\mathcal O\big(A,C_R,\varepsilon,\ell^2\big)$。
+
+取固定常数 $\lambda_0>0$，对所取极限族均有 $0<\lambda_*\le\lambda_0$。由 $C_\sigma=C_{\mathcal C}\lambda_*\le C_{\mathcal C}\lambda_0$，令
 
 $$
-\widehat C_{\nabla R}:=\sup_{\mathcal O}|\nabla_k R_{kk}|,\qquad
-\widehat C_{\mathcal C}:=\sup_{\mathcal O}\big|C_{abcd}k^a m^b k^c m^d\big|.
+M_{\rm dom}(\lambda):=\tfrac12 C_{\nabla R}\lambda^2+\big(C_{\mathcal C}\lambda_0\big)^2|\lambda| .
 $$
 
-设
+则在固定区间 $[0,\lambda_0]$ 上，有
 
 $$
-M_{\rm dom}^{(\mathcal O)}(\lambda):=\tfrac12\widehat C_{\nabla R}\lambda^2+(\widehat C_{\mathcal C}\lambda_0)^2|\lambda|\in L^1([0,\lambda_0]).
+\big|\chi_{[0,\lambda_*]}(\lambda)\big(\theta(\lambda)+\lambda R_{kk}\big)\big|
+\le M_{\rm dom}(\lambda),\qquad M_{\rm dom}\in L^1([0,\lambda_0]) .
 $$
 
-当 $B_\ell\subset\mathcal O$ 且 $\lambda_*\le\lambda_0$ 时，将被积函数在 $[0,\lambda_0]$ 上外延为 $0$（于 $[\lambda_*,\lambda_0]$），得对所有充分小的 $\varepsilon$ 有统一支配：
-
-$$
-\big|\theta(\lambda)+\lambda R_{kk}\big|\le M_{\rm dom}^{(\mathcal O)}(\lambda)\quad\text{a.e. on }[0,\lambda_0].
-$$
-
-因而可由主导收敛定理严格推出"$\varepsilon\to0$ 与 $\lambda$‑积分可交换"。
+因 $M_{\rm dom}$ 与 $\varepsilon$ 无关，故可据主导收敛定理交换"$\varepsilon\to0$"与沿 $\lambda$ 的积分。
 
 ---
 
@@ -313,23 +310,24 @@ $$
 \le \Big(\tfrac16 C_{\nabla R}\lambda_*^3+\tfrac12 C_\sigma^2\lambda_*^2\Big)A .
 $$
 
-端点层 $[\lambda_*-\delta,\lambda_*]$ 贡献
+端点层 $[\lambda_*-\delta,\lambda_*]$ 贡献满足
 
 $$
+\Big|\int_{\lambda_*-\delta}^{\lambda_*}\lambda R_{kk}\,d\lambda\,dA\Big|
 \le \tfrac12 A\big(\lambda_*^2-(\lambda_*-\delta)^2\big)C_R
-=\mathcal O\big(A\,\ell\,\delta\,C_R\big),
+=\mathcal O\big(A,C_R,\lambda_*,\delta\big).
 $$
 
-取 $\delta=\mathcal O(\varepsilon\ell)$ 与 $C_R=\mathcal O(L_{\rm curv}^{-2})$ 得 $\mathcal O\big(A\,\varepsilon\,\ell^2\,C_R\big)=\mathcal O(\varepsilon)\times\mathcal O(\varepsilon^2\ell^{d-2})$。
+取 $\delta=\mathcal O(\varepsilon\ell)$ 且 $\lambda_*\sim c_\lambda\ell$，得 $\mathcal O\big(A,C_R,\varepsilon,\ell^2\big)$。
 
-**A.5 可交换性（修订）**
-以
+**A.5 可交换性**
+取固定 $\lambda_0>0$ 使 $0<\lambda_*\le\lambda_0$。由 $C_\sigma=C_{\mathcal C}\lambda_*\le C_{\mathcal C}\lambda_0$，定义
 
 $$
-M_{\rm dom}^{(\mathcal O)}(\lambda)=\tfrac12\widehat C_{\nabla R}\lambda^2+(\widehat C_{\mathcal C}\lambda_0)^2|\lambda|
+M_{\rm dom}(\lambda):=\tfrac12 C_{\nabla R}\lambda^2+\big(C_{\mathcal C}\lambda_0\big)^2|\lambda| \in L^1([0,\lambda_0]) .
 $$
 
-作为与 $\varepsilon$ 无关且定义在固定区间 $[0,\lambda_0]$ 上的支配函数，对 $[0,\lambda_*]$ 外延零后应用主导收敛定理，即得"$\varepsilon\to0$ 与积分次序可交换"。
+于是对 $[0,\lambda_0]$ 上的被积式 $\chi_{[0,\lambda_*]}(\lambda)\big(\theta(\lambda)+\lambda R_{kk}\big)$ 有统一支配，由主导收敛定理得到"$\varepsilon\to0$"与积分次序可交换。
 
 ---
 
