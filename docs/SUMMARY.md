@@ -2,6 +2,9 @@
 - [首页](./index.md)
 - [INDEX](./index_en.md)
 
+- [宇宙的签名：从太空到太满的秘密](./euler-article/gls-paper/the-cosmic-signature.md)
+- [The Cosmic Signature: The Secret from Taikong to Taiman (EN)](./euler-article/gls-paper/the-cosmic-signature_en.md)
+
 - [Euler-GLS 广义Lagrange系统]()
     - [GLS因果流形滤波链统一框架](./euler-gls/gls-causal-manifold-filter-chain-unified-framework.md)
     - [GLS ↔ 因果流形：互构定理与范畴等价](./euler-gls/gls-causal-manifold-mutual-construction-theorem.md)
@@ -199,8 +202,7 @@
         - [07. The Cost of Free Will: Directed Information and the Physics of Choice (EN)](./euler-article/gls/07-free-will-cost_en.md)
         - [08. 意义的几何地图：价值、目的、存在的信息几何](./euler-article/gls/08-meaning-geometry.md)
         - [08. The Geometric Map of Meaning: Information Geometry of Value, Purpose, and Existence (EN)](./euler-article/gls/08-meaning-geometry_en.md)
-        - [宇宙的签名：从太空到太满的秘密](./euler-article/gls-paper/the-cosmic-signature.md)
-        - [The Cosmic Signature: The Secret from Taikong to Taiman (EN)](./euler-article/gls-paper/the-cosmic-signature_en.md)
+
 
 - [Zeta-Publish 理论体系]()
     - [附录：临界线信息分量实验报告](./zeta-publish/zeta-critical-line-appendix.md)
