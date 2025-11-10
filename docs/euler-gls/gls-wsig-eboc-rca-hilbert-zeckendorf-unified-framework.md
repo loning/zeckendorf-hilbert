@@ -1,7 +1,7 @@
 # GLS–WSIG–EBOC—RCA—Hilbert—Zeckendorf 统一中的量子动力学与几何反演
 
 ## ——母尺同一、纤维丛几何、窗化路径积分、测量闭合与可逆日志
-Version: 1.8
+Version: 1.10
 
 **MSC**：81Q05；81Q20；81S40；35P25；35R30；53Z05；46N50；83C05；47A40；94A17
 **关键词**：GLS（广义光结构）；WSIG（窗化散射—信息几何）；EBOC（静态块观察—计算）；RCA（可逆元胞自动机）；三位一体母尺；Wigner–Smith 群延迟；Birman–Kreĭn；Toeplitz/Berezin 压缩；Hardy/de Branges；Kramers–Kronig；Titchmarsh；IGVP；I-投影；Belavkin 过滤；Jarzynski（含互信息修正）；Mellin 帧；Zeckendorf 范畴；NPE（Poisson—Euler–Maclaurin—尾项）
@@ -92,7 +92,7 @@ Floquet–散射化把 $U_{\rm loc}$ 的一周期演化转为能量散射 $S_{\r
 $$
 \frac{\varphi'(E)}{\pi}=\rho_{\mathrm{rel}}(E)=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E).
 $$
-证明：Birman–Kreĭn 给 $\det S=e^{-2\pi i\xi} \Rightarrow \partial_E\arg\det S=-2\pi\,\xi'$；Kreĭn–Friedel 给 $\rho_{\mathrm{rel}}=-\xi'$；而 $\operatorname{tr}\mathsf Q=\partial_E\arg\det S$。三者合并即得（附录 C）。
+证明：Birman–Kreĭn：$\det S=e^{-2\pi i\xi}\Rightarrow \partial_E\arg\det S=-2\pi\,\xi'$；Kreĭn–Friedel：$\rho_{\mathrm{rel}}=-\xi'$；Wigner–Smith：$\operatorname{tr}\mathsf Q=\partial_E\arg\det S$。合并得 $\displaystyle \frac{\varphi'(E)}{\pi}=\rho_{\mathrm{rel}}(E)=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)$（附录 C）。
 
 ### 2.2 窗化 BK 与 Helffer–Sjöstrand
 
@@ -184,44 +184,41 @@ $$
 
 ### 7.1 定义（有限窗日志）
 
-窗 $W=[\tau,\tau+L)$ 的载荷
+令
 $$
 I(W):=\int_W \rho_{\mathrm{rel}}(E)\,dE,\qquad I^\pm(W):=\max\{\pm I(W),0\}.
 $$
-定义
+定义两本账的整数化载荷
 $$
-S^\pm(W):=\left\lfloor I^\pm(W)\right\rfloor=\sum_{k\ge2}b_k^\pm(\tau)\,F_k,\quad b_k^\pm\in\{0,1\},\ b_k^\pm b_{k+1}^\pm=0,
+S^+(W):=\left\lfloor I^+(W)\right\rfloor,\qquad
+S^-(W):=\left\lceil I^-(W)\right\rceil,
 $$
-并取**整数化日志**
+并令总载荷
 $$
-S(W):=S^+(W)-S^-(W).
+S(W):=S^+(W)-S^-(W)=\left\lfloor I(W)\right\rfloor.
 $$
-注意：一般并无 $S(W)=\lfloor I(W)\rfloor$（当 $I(W)<0$ 时二者不同）；但有
+写作 Zeckendorf 位权
 $$
-0\le I^\pm(W)-S^\pm(W)<1\quad\Rightarrow\quad |I(W)-S(W)|<1.
+S^\pm(W)=\sum_{k\ge2}b_k^\pm(\tau)\,F_k,\qquad
+b_k^\pm\in\{0,1\},\ \ b_k^\pm b_{k+1}^\pm=0,
 $$
-其中 $\{F_k\}_{k\ge0}$ 为 Fibonacci 数列，$F_0=0,\ F_1=1,\ F_{k+1}=F_k+F_{k-1}$（故 $F_2=1,\ F_3=2$），Zeckendorf 展式按标准下标自 $k\ge2$ 起始；滑窗 $W\mapsto W+\delta$ 的进/借位在两本账上分别执行，整体保持局域可逆（Zeckendorf 唯一性）。
+其中 $\{F_k\}$ 为 Fibonacci 数列（标准下标自 $k\ge2$）。滑窗 $W\mapsto W+\delta$ 的进/借位在两账内分别执行并保持局域可逆。
 
 ### 7.2 一致性与上界（主定理 IV）
 
-对任意窗 $W$，依 §7.1 记 $I^\pm(W)=\max\{\pm I(W),0\}$ 与
-$$
-S^+(W)=\left\lfloor I^+(W)\right\rfloor,\qquad S^-(W)=\left\lceil I^-(W)\right\rceil,
-$$
-则有
+对任意窗 $W$ 有
 $$
 0\le I^+(W)-S^+(W)<1,\qquad 0\le S^-(W)-I^-(W)<1,
 $$
-因而
+从而
 $$
-\boxed{0\le I(W)-S(W)=(I^+(W)-S^+(W))+(S^-(W)-I^-(W))<1,}
+0\le I(W)-S(W)=(I^+-S^+)+(S^--I^-)<1.
 $$
-从而 $|I(W)-S(W)|<1$。
-另一方面，取 NPE 的非整数近似 $I_p(W)$（Poisson—有限阶 Euler–Maclaurin—尾项），当 $\rho_{\mathrm{rel}}$ 具 $C^p$ 正则与适度衰减时，
+当 $\rho_{\mathrm{rel}}$ 具 $C^p$ 正则与适度衰减时，NPE 非整数近似 $I_p(W)$ 满足
 $$
-\left|\int_W \rho_{\mathrm{rel}}(E)\,dE-I_p(W)\right|\le C_{p,W}\,R^{-p},\qquad R=\text{窗的 Nyquist 尺度}.
+\left|\int_W \rho_{\mathrm{rel}}(E)\,dE-I_p(W)\right|\le C_{p,W}\,R^{-p},\qquad
+R=\text{窗的 Nyquist 尺度}.
 $$
-证明：Mellin–Poisson 展开与有限阶 Euler–Maclaurin 封口余项，非整数近似逼近闭合（附录 I）。
 
 ### 7.3 拓扑—指标统一（Levinson/APS 视角）
 
@@ -347,7 +344,7 @@ $$
 
 **I.1 Mellin–Poisson 展开** 给出窗化积分的频域分解；
 **I.2 Euler–Maclaurin 有限阶** 给端点/余项显式上界；
-**I.3 非整数近似与唯一性** 构造位权 $\{b_k^\pm\}$ 给出 Zeckendorf 唯一表示；对非整数近似 $I_p(W)$ 有 $|\int_W\rho_{\mathrm{rel}}-I_p(W)|\le C_{p,W}R^{-p}$，而整数化量满足 $0\le I^+(W)-S^+(W)<1$ 与 $0\le I^-(W)-S^-(W)<1$（记号同 §7.1），从而 $|I(W)-S(W)|<1$；
+**I.3 非整数近似与唯一性** 构造位权 $\{b_k^\pm\}$ 给出 Zeckendorf 唯一表示；对非整数近似 $I_p(W)$ 有 $|\int_W\rho_{\mathrm{rel}}-I_p(W)|\le C_{p,W}R^{-p}$，而整数化量满足 $0\le I^+(W)-S^+(W)<1$ 与 $0\le S^-(W)-I^-(W)<1$（记号同 §7.1），从而 $|I(W)-S(W)|<1$；
 **I.4 滑窗可逆** 验证进/借位更新的局域可逆性与守恒。
 
 ---
