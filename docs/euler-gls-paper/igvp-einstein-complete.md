@@ -1,6 +1,6 @@
 # 信息几何变分原理导出爱因斯坦方程：定体积对偶、显式可交换极限、Radon‑型闭包、OS/KMS–Fisher 解析延拓与 null 边界处方
 
-Version: 2.0
+Version: 2.2
 
 ## 摘要
 
@@ -11,7 +11,7 @@ S_{\rm gen}= \frac{A(\partial B_\ell)}{4G\hbar}+S_{\rm out}^{\rm ren}+S_{\rm ct}
 \qquad\big(T=\hbar|\kappa|/2\pi\big)
 $$
 
-为基本变分泛函，提出信息几何变分原理（IGVP）：一阶层在定体积约束下取驻值，二阶层要求相对熵非负。本文给出四个可直接调用的技术支柱：（i）基于 Raychaudhuri–Sachs–Grönwall 的**显式可交换极限不等式**与**边界层估计**，并将剪切/挠率控制写成几何常数；（ii）以**加权光线变换**与**测试函数局域化引理**实现"族约束 $\Rightarrow$ 点态"的**Radon‑型闭包**，再配"零锥刻画引理"与 Bianchi 恒等式得到张量化闭包；（iii）在 OS 反射正性与 KMS 条带解析性下，建立 Fisher–Rao 度量经解析延拓得到**实、非退化、洛伦兹签名**的充要条件及**下界**，并给出交叉分量消失的**可操作判据**；（iv）在协变相空间框架中，提供**标准 null 边界与角点项处方**，证明辛流无外泄与哈密顿量变分可积，且在 Minkowski 小钻石上显式核对。由一阶层得到
+为基本变分泛函，提出信息几何变分原理（IGVP）：一阶层在定体积约束下取驻值，二阶层要求相对熵非负。本文给出四个可直接调用的技术支柱：（i）基于 Raychaudhuri–Sachs–Grönwall 的**显式可交换极限不等式**与**边界层估计**，并将剪切/挠率控制写成几何常数；（ii）以**加权光线变换**与**测试函数局域化引理**实现"族约束 $\Rightarrow$ 点态"的**Radon‑型闭包**，再配"零锥刻画引理"与 Bianchi 恒等式得到张量化闭包；（iii）在 OS 反射正性与 KMS 条带解析性下，建立 Fisher–Rao 度量经解析延拓得到**实、非退化、洛伦兹签名**的**充分条件**及**下界**，并给出交叉分量消失的**可操作判据**；（iv）在协变相空间框架中，提供**标准 null 边界与角点项处方**，证明辛流无外泄与哈密顿量变分可积，且在 Minkowski 小钻石上显式核对。由一阶层得到
 
 $$
 G_{ab}+\Lambda g_{ab}=8\pi G\,T_{ab},
@@ -132,7 +132,13 @@ $$
 ## 4 张量化闭包与场方程（$d\ge 3$）
 
 **零锥刻画引理**：若 $X_{ab}$ 光滑对称且 $X_{ab}k^ak^b=0$ 对一切零矢成立，则 $X_{ab}=\Phi g_{ab}$。
-令 $X_{ab}=R_{ab}-8\pi G\,T_{ab}$。由 Bianchi 与 $\nabla^aT_{ab}=0$ 得 $\nabla_b\Phi=0$，记 $\Phi=-\Lambda$，于是
+令 $X_{ab}=R_{ab}-8\pi G\,T_{ab}$。由 $X_{ab}=\Phi g_{ab}$ 得 $\nabla^a X_{ab}=\nabla_b\Phi$。又由收缩 Bianchi 与 $\nabla^aT_{ab}=0$，有 $\nabla^a X_{ab}=\tfrac12\nabla_b R$。于是
+
+$$
+\nabla_b\!\left(\tfrac12 R-\Phi\right)=0,
+$$
+
+定义 $\Lambda:=\tfrac12 R-\Phi$（常数），从而
 
 $$
 \boxed{\,G_{ab}+\Lambda g_{ab}=8\pi G\,T_{ab}\,}.
@@ -174,9 +180,21 @@ $$
 g^{(E)}_{\mu\nu}=\mathbb E\big[\partial_\mu\log p\,\partial_\nu\log p\big].
 $$
 
-**交叉分量消失的充分判据**：若 $p(y|-t_E,x)=p(y|t_E,x)$（OS 反射偶）、$\partial_{t_E}\log p$ 奇、$\partial_i\log p$ 偶，则 $g^{(E)}_{t_E i}=0$；KMS 周期保证解析延拓后一致性，故 $g^{(L)}_{ti}=0$。
+**交叉分量消失（在反射不变点）的充分判据**：若 $p(y|-t_E,x)=p(y|t_E,x)$（OS 反射偶）、$\partial_{t_E}\log p$ 奇、$\partial_i\log p$ 偶，则
 
-**实值与非退化的充要条件（含下界）**：设存在常数 $\eta>0$，使
+$$
+g^{(E)}_{t_E i}\big|_{t_E=0}=0 .
+$$
+
+KMS 周期保证解析延拓后一致性，故
+
+$$
+g^{(L)}_{ti}\big|_{t=0}=0 .
+$$
+
+一般 $t_E\neq0$ 时 $g^{(E)}_{t_E i}$ 仅关于 $t_E$ 为奇，不必恒为零。
+
+**实值与非退化的充分条件（含下界）**：设存在常数 $\eta>0$，使
 
 $$
 \mathbb E\big[(\partial_{t_E}\log p)^2\big]\ge \eta,\qquad
@@ -202,13 +220,11 @@ $$
 在 Einstein–Hilbert 作用上加入 null 边界项与关节项：
 
 $$
-I_{\partial\mathcal N}=\frac{1}{8\pi G}\int_{\mathcal N}\!d\lambda\,d^{2}x\,\sqrt{q}\,(\Theta+\kappa),\qquad
+I_{\partial\mathcal N}=\frac{1}{8\pi G}\int_{\mathcal N}\!d\lambda\,d^{2}x\,\sqrt{q}\,\kappa,\qquad
 I_{\rm joint}=\frac{1}{8\pi G}\int_{\mathcal J}\!d^{2}x\,\sqrt{\sigma}\,\eta ,
 $$
 
-其中 $\eta=\ln|-\ell\!\cdot n|$（null–非 null）或 $\eta=\ln\big|\!-\tfrac12\,\ell\!\cdot\tilde\ell\big|$（null–null）。取 Dirichlet‑类边界条件固定 $(q_{AB},\ell^a)$ 与仿射参数化，则：
-
-**定理（无外流与可积性）**：在有限因果钻石边界上，加入 $I_{\partial\mathcal N}+I_{\rm joint}$ 后，Iyer–Wald 辛流在边界无外泄，$\delta H_\chi$ 可积，且不改变 $\delta S_{\rm gen}$ 与 $\mathcal E_{\rm can}$ 的数值。
+其中 $\eta=\ln|-\ell\!\cdot n|$（null–非 null）或 $\eta=\ln\big|\!-\tfrac12\,\ell\!\cdot\tilde\ell\big|$（null–null）。取 Dirichlet‑类边界条件固定 $(q_{AB},\ell^a)$ 并采用仿射参数化，则 $\kappa=0$ 使 $I_{\partial\mathcal N}=0$；关节项以 $\eta$ 计入。由此 Iyer–Wald 辛流在边界无外泄，$\delta H_\chi$ 可积，且不改变 $\delta S_{\rm gen}$ 与 $\mathcal E_{\rm can}$ 的数值。
 
 **示例（Minkowski 小钻石）**：两片仿射 null 面拼接 $\Rightarrow \kappa=0$ 给 $I_{\partial\mathcal N}=0$；null–空超曲面关节项 $\eta$ 为常数，$\delta I_{\rm joint}=0$。由此边界通量为零且哈密顿量变分可积。
 
@@ -311,7 +327,7 @@ $$
 $\delta L=E\!\cdot\!\delta\Phi+d\Theta$，辛流 $\omega=\delta\Theta$。加入
 
 $$
-I_{\partial\mathcal N}=\frac{1}{8\pi G}\int_{\mathcal N}\!\sqrt{q}\,(\Theta+\kappa),\quad
+I_{\partial\mathcal N}=\frac{1}{8\pi G}\int_{\mathcal N}\!\sqrt{q}\,\kappa,\quad
 I_{\rm joint}=\frac{1}{8\pi G}\int_{\mathcal J}\!\sqrt{\sigma}\,\eta .
 $$
 
@@ -332,12 +348,12 @@ $$
 
 ---
 
-# 附录 G  OS/KMS–Fisher：交叉判据、充要条件与下界
+# 附录 G  OS/KMS–Fisher：交叉判据、充分条件与下界
 
 **G.1 判据**
-若 $p(y|-t_E,x)=p(y|t_E,x)$，$\partial_{t_E}\log p$ 奇、$\partial_i\log p$ 偶，则 $g^{(E)}_{t_E i}=0\Rightarrow g^{(L)}_{ti}=0$。
+若 $p(y|-t_E,x)=p(y|t_E,x)$，$\partial_{t_E}\log p$ 奇、$\partial_i\log p$ 偶，则 $g^{(E)}_{t_E i}\big|_{t_E=0}=0$；KMS 周期保证解析延拓后一致性，故 $g^{(L)}_{ti}\big|_{t=0}=0$。一般 $t_E\neq0$ 时 $g^{(E)}_{t_E i}$ 仅关于 $t_E$ 为奇，不必恒为零。
 
-**G.2 充要条件与下界**
+**G.2 充分条件与下界**
 在 OS 反射正性与 $\beta$-KMS 条带解析性前提下，若存在 $\eta>0$ 使 Fisher 协方差阵下界为 $\eta I$，则延拓后
 
 $$
