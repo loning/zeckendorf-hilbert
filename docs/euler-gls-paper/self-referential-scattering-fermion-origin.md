@@ -1,6 +1,6 @@
 # 自指散射与费米子的诞生：Riccati 平方根、旋量双覆盖与 $\mathbb{Z}_2$ 交换相位
 
-Version: 1.8
+Version: 1.9
 
 ## 摘要
 
@@ -91,7 +91,7 @@ $$
 
 ### 0.4 短程与谱假设
 
-势 $V$ 属短程类，使 $S(E,\lambda)-\mathbf 1$ 为迹类；多通道取修正 Fredholm 行列式。假定 $(E,\lambda)\mapsto S$ 在闭路 $\gamma$ 上分段 $C^1$，且 $\gamma$ 远离阈值与嵌入本征值。若无法完全回避阈值，则以模 2 交数描述。单通道时 $S=e^{2i\delta}$；多通道时以 $\det S$ 作为整体相位指数。
+势 $V$ 属短程类：在 $d=1$（以及某些 $d=2$ 的附加条件下）可保证 $S(E,\lambda)-\mathbf 1$ 为迹类；而在更一般的 $d\ge 2$ 情形通常仅能得到 $S(E,\lambda)-\mathbf 1$ 属合适的 Schatten 类，因而需使用修正 Fredholm 行列式 $\det_p$ 及其连续化来定义谱位移。下文为简洁起见以"$\det/\det_p$"统记。其余假设保持不变：$(E,\lambda)\mapsto S$ 沿闭路 $\gamma$ 分段 $C^1$，且 $\gamma$ 回避阈值与嵌入本征值；若无法完全回避阈值，则用模 2 交数描述。单通道时 $S=e^{2i\delta}$；多通道/分波时以 $\det/\det_p S$ 作为整体相位指数。
 
 ### 0.5 Birman–Kreĭn 与谱位移
 
