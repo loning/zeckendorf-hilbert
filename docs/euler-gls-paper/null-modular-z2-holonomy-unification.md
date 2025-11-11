@@ -1,6 +1,6 @@
 # Null–Modular 双覆盖统一原理：在因果钻石上对齐信息几何变分与散射半相位的 $\mathbb{Z}_2$ holonomy
 
-Version: 1.1
+Version: 1.3
 
 ## Abstract
 
