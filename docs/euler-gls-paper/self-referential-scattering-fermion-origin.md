@@ -1,6 +1,6 @@
 # 自指散射与费米子的诞生：Riccati 平方根、旋量双覆盖与 $\mathbb{Z}_2$ 交换相位
 
-Version: 1.9
+Version: 2.0
 
 ## 摘要
 
@@ -76,7 +76,7 @@ $$
 
 记 $X^\circ=X\setminus D$。在 $X^\circ$ 上散射数据关于参数连续或解析。
 
-### 0.3 holonomy 口径与绕数
+### 0.3 联络与绕数
 
 $$
 \alpha=\frac{1}{2i}\,S^{-1}dS,\qquad
@@ -218,8 +218,9 @@ $$
 
 $$
 \frac{1}{2\pi i}\oint_C S^{-1}dS
-=\sum_j\left(\frac{1}{2\pi i}\oint_C \frac{f'(-k)}{f(-k)}(-dk)-\frac{1}{2\pi i}\oint_C \frac{f'(k)}{f(k)}\,dk\right)
-=-\sum_j m_j,
+=\frac{1}{2\pi i}\oint_C\!\Bigl(-\frac{f'(-k)}{f(-k)}-\frac{f'(k)}{f(k)}\Bigr)\,dk
+=-\frac{1}{2\pi i}\oint_C\frac{f'(k)}{f(k)}\,dk
+=-\sum_j m_j.
 $$
 
 于是 $\nu_{\sqrt S}(C)=(-1)^{\sum_j m_j}$。若同时围住 $\pm k_j$，两项抵消且绕数为零。
@@ -484,7 +485,8 @@ $$
 
 $$
 \frac{1}{2\pi i}\oint_C S^{-1}dS
-=\sum_j\left(\frac{1}{2\pi i}\oint_C \frac{f'(-k)}{f(-k)}(-dk)-\frac{1}{2\pi i}\oint_C \frac{f'(k)}{f(k)}\,dk\right)
+=\frac{1}{2\pi i}\oint_C\!\Bigl(-\frac{f'(-k)}{f(-k)}-\frac{f'(k)}{f(k)}\Bigr)\,dk
+=-\frac{1}{2\pi i}\oint_C\frac{f'(k)}{f(k)}\,dk
 =-\sum_j m_j,
 $$
 
