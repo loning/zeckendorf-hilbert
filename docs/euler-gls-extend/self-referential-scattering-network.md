@@ -1,10 +1,10 @@
 # 自指散射网络：联络矩阵综合、$J$‑幺正稳健性与 Floquet 带缘拓扑
 
-Version 1.7
+Version 1.10
 
 ## 摘要
 
-本文在自指散射网络（Self‑Referential Scattering Networks, SSN）中，给出一套从**设计—实现—读出—证伪**到**定理化保障**的闭环方法学。在**迹类口径**下，将整体半相位（$\sqrt{\det}$ 覆盖）的 holonomy 与谱位移、过 $-1$ 的谱流、判别子横截建立**模二等价**。相较前稿，本版在五个关键环节补齐**可核查细节与可检常数**：（i）第 3 节新增"$\log\det$ 正则化—Birman–Kreĭn—$-1$ 谱流—模二交数"的**桥接引理**与半页级**自足证明**；（ii）第 4 节给出星乘后"**无伪交**"的**定量结构引理**，明确主块最小梯度 $g_{\min}$ 与互耦上界 $r_{\max}$ 的**比较原则**与**设计线**；（iii）第 5 节把**二值化投影＋多数投票**写成**集中不等式**，给出误判率与样本数的显式关系，并附**相关性修正**；（iv）第 6 节用 $J$‑内积归一化的**虚部 Rayleigh 商（Kreĭn 角）**刻画稳健域，构造**极化同伦**并给出阈值函数 $\varepsilon_0(\eta)$ 的可行上界；（v）第 7 节把**相位型 Floquet 指标**的**截断独立**与**规范独立**写成定理，**并在 Hilbert–Schmidt 场景下以 $\det_2$ 完成**正则化一致性**与**失败检测**。工程侧以两端口"耦合器—微环—增益"原型给出可仿真的 Schur‑闭合式，量化群延迟"双峰并合"的平方根标度与阈值选取依据。
+本文在自指散射网络（Self‑Referential Scattering Networks, SSN）中，给出一套从**设计—实现—读出—证伪**到**定理化保障**的闭环方法学。在**迹类口径**下，将整体半相位（$\sqrt{\det}$ 覆盖）的 holonomy 与谱位移、过 $-1$ 的谱流、判别子横截建立**模二等价**。相较前稿，本版在五个关键环节补齐**可核查细节与可检常数**：（i）第 3 节新增"$\log\det$ 正则化—Birman–Kreĭn—$-1$ 谱流—模二交数"的**桥接引理**与半页级**自足证明**；（ii）第 4 节给出星乘后"**无伪交**"的**定量结构引理**，明确主块最小梯度 $g_{\min}$ 与互耦上界 $r_{\max}$ 的**比较原则**与**设计线**；（iii）第 5 节把**二值化投影＋多数投票**写成**集中不等式**，给出误判率与样本数的显式关系，并附**相关性修正**；（iv）第 6 节用 $J$‑内积归一化的**虚部 Rayleigh 商（Kreĭn 角）**刻画稳健域，构造**极化同伦**并给出阈值函数 $\varepsilon_0(\eta,\beta)$ 的可行上界，统一保障 Cayley 分母可逆性与判别子不穿越；（v）第 7 节把**相位型 Floquet 指标**的**截断独立**与**规范独立**写成定理，**并在 Hilbert–Schmidt 场景下以 $\det_2$ 完成**正则化一致性**与**失败检测**。工程侧以两端口"耦合器—微环—增益"原型给出可仿真的 Schur‑闭合式，量化群延迟"双峰并合"的平方根标度与阈值选取依据。
 
 **关键词**：闭环散射；Redheffer 星乘；Schur 补；Herglotz/Nevanlinna；判别子；谱位移与谱流；模二 Levinson；$J$‑幺正；Kreĭn 角；Floquet 相位型指标。
 
@@ -88,10 +88,12 @@ S^{(k)}_{ie} & S^{(k)}_{ii}
 \end{pmatrix},\quad k=1,2.
 $$
 
-**结构引理 4.1（无伪交：定量条件）**
+**结构引理 4.1（无伪交：定量条件，带管状分离）**
 设在邻域 $U\subset X^\circ$ 内满足
 (i) Schur 可逆下界：$\sigma_{\min}\bigl(I-S^{(1)}_{ii}S^{(2)}_{ii}\bigr)\ge \delta>0$；
-(ii) 互耦小量：$\|S^{(1)}_{ei}\|_2,\|S^{(2)}_{ie}\|_2\le \rho<1$。
+(ii) 互耦小量：$\|S^{(1)}_{ei}\|_2,\|S^{(2)}_{ie}\|_2\le \rho<1$；
+**(iii) 管状分离**：对 $k=1,2$ 的零集 $D_{(k)}$ 存在统一管状半径 $\tau_\ast>0$，取 $0<\tau\le\tau_\ast$ 使得 $N_\tau(D_{(1)})$、$N_\tau(D_{(2)})\subset U$ 且不相交。
+
 定义主判别式 $\Phi_k(\vartheta)=\det\bigl(I-\mathcal{C}S^{(k)}_{ii}\bigr)$ 与主块最小梯度
 
 $$
@@ -104,28 +106,28 @@ $$
 r_{\max}\ \le\ \frac{\|S^{(1)}_{ei}\|_2\,\|S^{(2)}_{ie}\|_2}{\delta^2},
 $$
 
-且当 $r_{\max}<g_{\min}$ 时，网络判别子为子网判别子的横离并：$D_{\mathrm{net}}=D_{(1)}\sqcup D_{(2)}$，并有
+且当
+
+$$
+r_{\max}\ <\ (\tau g_{\min})^2
+$$
+
+时，网络判别子为子网判别子的横离并：$D_{\mathrm{net}}=D_{(1)}\sqcup D_{(2)}$，并有
 
 $$
 I_2(\gamma,D_{\mathrm{net}})=I_2(\gamma,D_{(1)})+I_2(\gamma,D_{(2)})\ \bmod 2.
 $$
 
-*证明要点*：将闭环判别式写成主块乘积与互耦 Neumann 余项的乘法分解；由 $\delta$ 控制分母、由 2‑范数控制互耦级数与梯度扰动，比较 $r_{\max}$ 与 $g_{\min}$ 得横离并。
+*证明要点*：由管状分离与平均值定理，在管外有 $|\Phi_1(\vartheta)|\wedge|\Phi_2(\vartheta)|\ge \tau g_{\min}$，因而 $|\Phi_1(\vartheta)\Phi_2(\vartheta)|\ge (\tau g_{\min})^2$；当 $r_{\max}<(\tau g_{\min})^2$ 时，互耦余项不足以在管外引入新零点。在每个单管内用隐函数定理得零集为原零集的法向微小形变，因管不相交而得到横离并。
 
 **工程设计线（可检）**
 取 $\delta=\inf_{U}\sigma_{\min}(I-S^{(1)}_{ii}S^{(2)}_{ii})$。若
 
 $$
-\|S^{(1)}_{ei}\|_2\,\|S^{(2)}_{ie}\|_2\ \le\ \tfrac12\,\delta^2\,g_{\min},
+\|S^{(1)}_{ei}\|_2\,\|S^{(2)}_{ie}\|_2\ \le\ \tfrac12\,\delta^2\,(\tau g_{\min})^2,
 $$
 
-则
-
-$$
-r_{\max}\ \le\ \frac{\|S^{(1)}_{ei}\|_2\,\|S^{(2)}_{ie}\|_2}{\delta^2}\ \le\ \tfrac12\,g_{\min}\ <\ g_{\min},
-$$
-
-因而满足引理 4.1 的前提 $r_{\max}<g_{\min}$；网络判别子为子网判别子的横离并，横截奇偶由主块决定。
+则 $r_{\max}\le\tfrac12(\tau g_{\min})^2<(\tau g_{\min})^2$，从而满足引理的充分条件。
 
 **边界与失败模式 4.2**：当 $\delta\to 0^+$ 或 $\rho\to 1^-$ 时，可能出现近切交与共振‑诱发的"伪交"。应实时监测 $\sigma_{\min}(I-\mathcal{C}S_{ii})$ 的裕度与 $g_{\min}$ 的数值估计，必要时缩小 $U$ 或重配端口。
 
@@ -155,19 +157,28 @@ $$
 测量样本 $\{\widehat{\Delta\phi}_{ab}^{(n)}\}_{n=1}^N$ 独立，$\mathbb{E}\,\widehat{\Delta\phi}_{ab}^{(n)}=\Delta\phi_{ab}$，且为次高斯，代理方差 $\sigma^2$。
 
 **定理 5.1（多数投票的误差界与样本复杂度）**
-若有界噪声 $|\varepsilon|\le \epsilon$，有效相位窗满足 $\Delta\phi_{\mathrm{eff}}>\pi/2+2\epsilon$。则对 $N$ 次独立采样与多数投票，
+
+设测量样本 $\{\widehat{\Delta\phi}_{ab}^{(n)}\}_{n=1}^N$ 相互独立，$\mathbb{E}\,\widehat{\Delta\phi}_{ab}^{(n)}=\Delta\phi_{ab}$，且为次高斯，代理方差 $\sigma^2$；并有有界加性偏置 $|\varepsilon|\le\epsilon$。记
 
 $$
-\mathbb{P}(\text{误判})\ \le\ \exp\Bigl(-2N\,\Bigl(\tfrac{\Delta\phi_{\mathrm{eff}}-\pi/2-2\epsilon}{\pi}\Bigr)^2\Bigr),
+m:=\Delta\phi_{\mathrm{eff}}-\frac{\pi}{2}-2\epsilon>0,\qquad
+q:=\mathbb{P}\big(|\widehat{\Delta\phi}_{ab}^{(n)}|<\tfrac{\pi}{2}\big).
 $$
 
-给定目标误差 $\delta$，取
+则
 
 $$
-N\ \ge\ \frac{1}{2}\Bigl(\frac{\pi}{\Delta\phi_{\mathrm{eff}}-\pi/2-2\epsilon}\Bigr)^2\log\frac{1}{\delta}
+q\ \le\ 2\exp\Bigl(-\frac{m^2}{2\sigma^2}\Bigr),\qquad
+\mathbb{P}(\text{多数投票误判})\ \le\ \exp\Bigl(-2N\big(\tfrac12-q\big)^2\Bigr).
 $$
 
-即可。若存在过采样相关性，以上式中 $N$ 替换为有效样本数 $N_{\mathrm{eff}}$。
+给定目标误差 $\delta\in(0,1)$，充分条件为
+
+$$
+N\ \ge\ \frac{\log(1/\delta)}{2\big(\tfrac12-2e^{-m^2/(2\sigma^2)}\big)^2},
+$$
+
+且需 $m>\sigma\sqrt{2\log 4}$ 以确保 $q<\tfrac12$ 从而多数投票收敛。若存在过采样相关性，以上式中 $N$ 替换为有效样本数 $N_{\mathrm{eff}}$。
 
 **命题 5.2（去混叠与二级证据融合）**
 多重穿越或近阈值掩蔽时：
@@ -179,20 +190,34 @@ $$
 
 ## 6 $J$‑幺正稳健性：Kreĭn 角、极化同伦与阈值函数
 
-**Kreĭn 角（$J$‑内积、取虚部口径）**：**假定 $\langle\psi_j(\tau),J\psi_j(\tau)\rangle\neq0$（非中性本征态），否则 $\varkappa_j$ 不定义，且该参数点视为稳健域边界并予以排除。** 对 $(e^{\mathrm{i}\phi_j(\tau)},\psi_j(\tau))$ 定义
+**Kreĭn 角与角度缺口**：**假定 $\langle\psi_j(\tau),J\psi_j(\tau)\rangle\neq0$（非中性本征态），否则 $\varkappa_j$ 不定义，且该参数点视为稳健域边界并予以排除。** 定义
 
 $$
-\varkappa_j(\tau)=\frac{\operatorname{Im}\,\langle \psi_j(\tau)\,,J\,S^{-1}(\partial_\tau S)\,\psi_j(\tau)\rangle}{\langle \psi_j(\tau)\,,J\,\psi_j(\tau)\rangle},\qquad
-\eta=\min_{j:\ \langle\psi_j,J\psi_j\rangle\neq0}\ \inf_\tau |\varkappa_j(\tau)|.
+\varkappa_j(\tau)=\frac{\operatorname{Im}\,\langle \psi_j(\tau)\,,J\,S^{-1}(\partial_\tau S)\,\psi_j(\tau)\rangle}{\langle \psi_j(\tau)\,,J\,\psi_j(\tau)\rangle},
 $$
 
-幺正极限 $J=I$ 时 $\varkappa_j=\partial_\tau\phi_j$。近 $J$‑幺正下存在 $c_\pm(\varepsilon)\to1$ 使 $c_{-}\,|\partial_\tau\phi_j|\le |\varkappa_j|\le c_{+}\,|\partial_\tau\phi_j|$。
+其在幺正极限 $J=I$ 时与 $\partial_\tau\phi_j$ 一致，用作**相位斜率**。**角度缺口**定义为
+
+$$
+\eta:=\min_{j}\ \inf_{\tau}\operatorname{dist}\bigl(\phi_j(\tau),\,\pi+2\pi\mathbb{Z}\bigr)\in(0,\pi].
+$$
+
+近 $J$‑幺正下存在 $c_\pm(\varepsilon)\to1$ 使 $c_{-}\,|\partial_\tau\phi_j|\le |\varkappa_j|\le c_{+}\,|\partial_\tau\phi_j|$。*注：$\varkappa_j$ 仅作为斜率控制项，不参与 $\eta$ 的定义。
 
 **小引理 6.1（$(S^\dagger J S-J)$ 到 $(K-K^\sharp)$ 的估计）**
-设 $\|S^\dagger J S-J\|\le \varepsilon$ 且 $\beta=\inf_\tau\sigma_{\min}(I+\mathrm{i}K(\tau))>0$。则存在常数 $C=C(\beta,\|S\|,\|S^{-1}\|)$ 使
+
+设 $S(\tau)$ 沿所考察参数域逐点可逆，且
 
 $$
-\|K-K^\sharp\|\ \le\ C\,\varepsilon.
+\sup_\tau|S(\tau)|<\infty,\quad \sup_\tau|S(\tau)^{-1}|<\infty,\quad
+|S^\dagger J S-J|\le \varepsilon,\quad
+\beta=\inf_\tau\sigma_{\min}(I+\mathrm{i}K(\tau))>0.
+$$
+
+则存在常数 $C=C\big(\beta,\ \sup|S|,\ \sup|S^{-1}|\big)$ 使
+
+$$
+|K-K^\sharp|\ \le\ C\,\varepsilon.
 $$
 
 *证要*：用 Cayley 逆映射 $K=-\mathrm{i}(I+S)^{-1}(I-S)$ 的 Fréchet 微分并配合 $J$‑共轭与有界乘子不等式。
@@ -205,13 +230,19 @@ K_t=(1-t)\,K+t\,\tfrac12(K+K^\sharp),\qquad
 S_t=(I-\mathrm{i}K_t)(I+\mathrm{i}K_t)^{-1},\quad t\in[0,1].
 $$
 
-则 $S_0=S$、$S_1$ 为 $J$‑幺正。若 $\|S^\dagger J S-J\|\le \varepsilon$ 与 $\eta>0$，由引理 6.1 与本征相位扰动估计，存在常数 $\alpha>0$（依赖 $\|S\|$、$\|S^{-1}\|$、$\beta$）使当
+由引理 6.1 与 Neumann 引理得
 
 $$
-\varepsilon\ <\ \varepsilon_0(\eta):=\alpha\,\sin^2\!\tfrac{\eta}{2}
+\sigma_{\min}\bigl(I+\mathrm{i}K_t(\tau)\bigr)\ \ge\ \beta-\tfrac{t}{2}C\,\varepsilon,
 $$
 
-时，整条同伦不穿越 $D$。
+故当 $\varepsilon<2\beta/C$ 时，$(I+\mathrm{i}K_t)$ 在 $t\in[0,1]$ 全程可逆，$S_t$ 良定。在近 $J$‑幺正口径下，存在常数 $\alpha>0$（依赖于 $|S|$、$|S^{-1}|$、$\beta$）使
+
+$$
+\varepsilon_0(\eta,\beta)\ :=\ \min\left\{\frac{2\beta}{C},\ \alpha\,\sin^2\!\frac{\eta}{2}\right\}
+$$
+
+成为**可行上界**：当 $\|S^\dagger J S-J\|\le \varepsilon<\varepsilon_0(\eta,\beta)$ 且 $\eta>0$ 时，同伦 $\{S_t\}$ 不与 $D$ 相交，且 Cayley 分母全程可逆。
 
 **定理 6.3（同伦稳健性）**
 若存在满足上式的同伦 $\{S_t\}$ 且过程中不与 $D$ 相交，则 $\nu_{\sqrt{\det S^{\circlearrowleft}}}$ 与幺正极限同值。
@@ -392,7 +423,7 @@ $$
 |\dot{\theta}_1-\dot{\theta}_2|=|\varkappa_1-\varkappa_2|.
 $$
 
-以引理 6.1 得 $\|K-K^\sharp\|\le C\,\varepsilon$。取 $K_t=(1-t)K+t(K+K^\sharp)/2$，$S_t=(I-\mathrm{i}K_t)(I+\mathrm{i}K_t)^{-1}$。若 $\|S^\dagger J S-J\|\le \varepsilon$ 且 $\eta>0$，存在常数 $\alpha>0$ 使 $\varepsilon_0(\eta)=\alpha\sin^2(\eta/2)$ 为可行上界。
+以引理 6.1 得 $\|K-K^\sharp\|\le C\,\varepsilon$。取 $K_t=(1-t)K+t(K+K^\sharp)/2$，$S_t=(I-\mathrm{i}K_t)(I+\mathrm{i}K_t)^{-1}$。由 Neumann 引理得 $\sigma_{\min}(I+\mathrm{i}K_t)\ge\beta-\tfrac{t}{2}C\,\varepsilon$，故当 $\varepsilon<2\beta/C$ 时 $S_t$ 良定。若 $\|S^\dagger J S-J\|\le \varepsilon$ 且 $\eta>0$，存在常数 $\alpha>0$ 使 $\varepsilon_0(\eta,\beta)=\min\{2\beta/C,\ \alpha\sin^2(\eta/2)\}$ 为可行上界，统一保障 Cayley 分母可逆性与判别子不穿越。
 
 ---
 
