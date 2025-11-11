@@ -1,6 +1,6 @@
 # Null–Modular 双覆盖统一原理：在因果钻石上对齐信息几何变分与散射半相位的 $\mathbb{Z}_2$ holonomy
 
-Version: 1.3
+Version: 1.9
 
 ## Abstract
 
@@ -13,7 +13,7 @@ I_{\rm BF}[a,b;g,S]
 K\in Z^2(Y;\mathbb Z_2),
 $$
 
-其中 $K$ 的 Künneth 分解同时包含**几何自旋障碍** $\pi_M^\ast w_2(TM)$、**散射线丛的 $H^2$ 通道** $\pi_X^\ast\rho\!\big(c_1(\mathcal L_S)\big)$（扭挠情形）与**平方根双覆盖的 $H^1$ 通道**的交叉项 $\sum_j\pi_M^\ast\mu_j\smile \pi_X^\ast\mathfrak w_j$（$\mu_j\in H^1(M;\mathbb Z_2)$、$\mathfrak w_j\in H^1(X^\circ;\mathbb Z_2)$）。对上同调类求和后，配分函数在上同调意义上投影到 $[K]=0$，从而在一切物理回路上强制半相位 holonomy $\nu_{\sqrt{\det S}}(\gamma)\equiv 1$。几何侧：一阶层 $\delta S_{\rm gen}=0\Rightarrow G_{ab}+\Lambda g_{ab}=8\pi G\,T_{ab}$，二阶层 $\delta^2S_{\rm rel}=\mathcal E_{\rm can}\ge0$。散射侧：在迹类/相对迹类与（修正）行列式门槛下由 Birman–Kreĭn、谱流与模二交数得到 $\nu_{\sqrt{\det S}}=(-1)^{\mathrm{Sf}}=(-1)^{I_2(\gamma,D)}$ 的稳健表述。提出"模组—散射对齐"的**充分条件**并给出**可解示例**；给出含边界时的相对上同调版本与边界对偶项。以一维 $\delta$ 势、二维 Aharonov–Bohm 与拓扑超导端点散射做指纹化应用。两条技术链分别对齐信息几何变分与自指散射的技术底稿。
+其中 $K$ 的 Künneth 分解同时包含**几何自旋障碍** $\pi_M^\ast w_2(TM)$、**散射线丛的 $H^2$ 通道** $\pi_X^\ast\rho\!\big(c_1(\mathcal L_S)\big)$（扭挠情形）与**平方根双覆盖的 $H^1$ 通道**的交叉项 $\sum_j\pi_M^\ast\mu_j\smile \pi_X^\ast\mathfrak w_j$（$\mu_j\in H^1(M;\mathbb Z_2)$、$\mathfrak w_j\in H^1(X^\circ;\mathbb Z_2)$）。对上同调类求和后，配分函数在上同调意义上投影到 $[K]=0$；**进一步，在 $H^1$ 通道可检测性成立时**，对一切物理回路 $\gamma\subset X^\circ$ 强制半相位 holonomy $\nu_{\sqrt{\det S}}(\gamma)\equiv 1$；**若该条件不满足，则 $[K]=0$ 仅能约束 $H^2$ 通道**。几何侧：一阶层 $\delta S_{\rm gen}=0\Rightarrow G_{ab}+\Lambda g_{ab}=8\pi G\,T_{ab}$，二阶层 $\delta^2S_{\rm rel}=\mathcal E_{\rm can}\ge0$。散射侧：在迹类/相对迹类与（修正）行列式门槛下由 Birman–Kreĭn、谱流与模二交数得到 $\nu_{\sqrt{\det S}}=(-1)^{\mathrm{Sf}}=(-1)^{I_2(\gamma,D)}$ 的稳健表述。提出"模组—散射对齐"的**充分条件**并给出**可解示例**；给出含边界时的相对上同调版本与边界对偶项。以一维 $\delta$ 势、二维 Aharonov–Bohm 与拓扑超导端点散射做指纹化应用。两条技术链分别对齐信息几何变分与自指散射的技术底稿。
 
 ## Keywords
 
@@ -49,7 +49,7 @@ $$
 ## Symbols, Units, Conventions
 
 度规签名 $(-+++)$；单位 $c=k_B=1$，保留 $\hbar$。微分与虚数单位统一为 $\mathrm d$、$\mathrm i$。运算符与群记号统一为 $\operatorname{tr}$、$\operatorname{Pf}$、$\operatorname{sgn}$、$\det_p$、$\mathrm{Sf}$、$U(1)$、$\mathbb Z_2$。
-**物理回路** $\gamma\subset X^\circ$：可由外参绝热实现的闭路；若绕过 $D$，以小半圆切除或折返保持绝热并用 $I_2(\gamma,D)$ 记录奇偶。**物理二维循环**允许三类乘积：$\Sigma_2\times{\mathrm{pt}}$、$\Sigma_1\times\gamma_1$、${\mathrm{pt}}\times\gamma_2$（$\Sigma_k$ 为 $M$ 中闭 $k$‑链；$\gamma_1,\gamma_2\subset X^\circ$ 为闭 1/2‑链）。
+**物理回路** $\gamma\subset X^\circ$：可由外参绝热实现的闭路；若绕过 $D$，以小半圆切除或折返保持绝热并用 $I_2(\gamma,D)$ 记录奇偶。**物理二维循环**允许三类乘积：$\Sigma_2\times{\mathrm{pt}}$、$\Sigma_1\times\gamma_1$、${\mathrm{pt}}\times\gamma_2$（$\Sigma_k$ 为 $M$ 中闭 $k$‑链；$\gamma_1\subset X^\circ$ 为闭 1‑链，$\gamma_2\subset X^\circ$ 为闭 2‑链）。
 
 ---
 
@@ -76,6 +76,29 @@ $\pi_M^\ast\mu\smile \pi_X^\ast\mathfrak w$（$\mu\in H^1(M;\mathbb Z_2)$ 为与
 **几何与态**：$(M,g)$ 为定向四维流形，$g\in C^3$、$T_{ab}\in C^1$；小钻石腰面为极大截面，$\theta(0)=\sigma(0)=\omega(0)=0$，零测地族超曲面正交；Hadamard 类态与点分裂重整化；$[0,\lambda_*]$ 内无共轭点。
 **散射与正则性**：$S-\mathbf 1\in\mathfrak S_1$ 或满足相对迹类并采用修正行列式 $\det_p$；闭路数据分段 $C^1$；阈值/嵌入本征值以小半圆切除或折返，并以 $I_2(\gamma,D)$ 稳定。
 **单位与温标**：体积项取 $-\tfrac{\Lambda}{8\pi G}V$；一阶极值在固定温标/加速度框架下进行（$\delta T=0$），不把 $T$ 作为变分变量。
+**同调可检测性（$H^1$ 通道）**：假设 $H^1(M;\mathbb Z_2)$ 非平凡，且存在基 $\{\mu_j\}$ 使得
+
+$$
+\sum_j \pi_M^\ast \mu_j\smile \pi_X^\ast \mathfrak w_j=0\ \text{于}\ H^2(Y;\mathbb Z_2)\ \Longleftrightarrow\ \forall j:\ \mathfrak w_j=0 ,
+$$
+
+**等价表述**：固定基 $\{\mu_j\}\subset H^1(M;\mathbb Z_2)$ 后，线性映射
+
+$$
+T:\ \bigoplus_j H^1(X^\circ;\mathbb Z_2)\ \longrightarrow\ H^1(M;\mathbb Z_2)\otimes H^1(X^\circ;\mathbb Z_2),\quad
+T\big((\mathfrak w_j)_j\big)=\sum_j \mu_j\otimes \mathfrak w_j
+$$
+
+为**单射**。等价地，沿与 $\{\mu_j\}$ 对偶的闭 $1$‑链族 $\{\Sigma_1^{(j)}\}$ 配对有
+
+$$
+\big\langle K,\ \Sigma_1^{(j)}\times\gamma_1\big\rangle=\big\langle \mathfrak w_j,[\gamma_1]\big\rangle\ \ (\forall j),
+$$
+
+从而可**唯一**确定每个 $\mathfrak w_j$；据此 $[K]=0$ 同时消去 $H^2$ 与 $H^1$ 两通道并平凡化 $\nu_{\sqrt{\det S}}$。
+**生成性假设（相对二同调，记作 A_\text{gen}）**：允许的物理二维循环族 $\mathcal S$ **生成** $H_2(Y,\partial Y;\mathbb Z_2)$，即任意 $[S]\in H_2(Y,\partial Y;\mathbb Z_2)$ 可由 $\mathcal S$ 中有限个元素的和表示。该假设与 $H^1$‑通道可检测性共同保证由回路上 $\nu_{\sqrt{\det S}}(\gamma)\equiv1$ 可推出 $[K]=0$。
+**自旋平凡性（M 侧，记作 A_\text{spin}）**：$w_2(TM)=0$。
+说明：该假设剔除 $H^2(M;\mathbb Z_2)$ 分量对 $[K]$ 的贡献，使由回路数据得到的 (iii) 能完整推出 (ii)。
 
 ---
 
@@ -139,7 +162,7 @@ $$
 
 ### 定理 5（统一原理：分解陈述）
 
-**E‑(a)（充分）** 在定理 1–4 的门槛与对齐假设下，以下命题等价：
+**E‑(a)（充分 + 生成性）** 在定理 1–4 的门槛与对齐假设、**$H^1$‑通道可检测性**、**生成性假设 A_\text{gen}** **以及自旋平凡性 A_\text{spin}** 下，以下命题等价：
 (i) 小钻石上一阶极值与二阶非负；
 (ii) $[K]=0\in H^2(Y,\partial Y;\mathbb Z_2)$；
 (iii) 一切物理回路上 $\nu_{\sqrt{\det S}}(\gamma)\equiv 1$。
