@@ -1,6 +1,6 @@
 # 自指散射与费米子的诞生：Riccati 平方根、旋量双覆盖与 $\mathbb{Z}_2$ 交换相位
 
-Version: 2.2
+Version: 2.3
 
 ## 摘要
 
@@ -89,6 +89,20 @@ $$
 
 闭路方向采用数学上正向约定。
 
+**层级与号符规范**  本文在**整数层级**仅使用
+
+$$
+\mathrm{Sf}(\gamma)=\deg(\det S|_\gamma)\in\mathbb{Z},
+$$
+
+见 §4；而主定理 1.1 连接 $N_b,I_2$ 时仅在 $\mathbb{Z}_2$ 层级成立：
+
+$$
+(-1)^{\deg(\det S|_\gamma)}=(-1)^{\mathrm{Sf}(\gamma)}=(-1)^{N_b(\gamma)}=(-1)^{I_2(\gamma,D)}.
+$$
+
+一般闭路上 $N_b(\gamma)$ 的**整数号符**依赖于对穿越 $D$ 的**规避方式**与参数定向，故不与 $\deg$ 建立整数恒等；仅其奇偶 $(N_b\bmod 2)$ 为不变量。以下讨论据此规范展开。
+
 ### 0.4 短程与谱假设
 
 势 $V$ 属短程类：在 $d=1$（以及某些 $d=2$ 的附加条件下）可保证 $S(E,\lambda)-\mathbf 1$ 为迹类；而在更一般的 $d\ge 2$ 情形通常仅能得到 $S(E,\lambda)-\mathbf 1$ 属合适的 Schatten 类，因而需使用修正 Fredholm 行列式 $\det_p$ 及其连续化来定义谱位移。下文为简洁起见以"$\det/\det_p$"统记。其余假设保持不变：$(E,\lambda)\mapsto S$ 沿闭路 $\gamma$ 分段 $C^1$，且 $\gamma$ 回避阈值与嵌入本征值；若无法完全回避阈值，则用模 2 交数描述。单通道时 $S=e^{2i\delta}$；多通道/分波时以 $\det/\det_p S$ 作为整体相位指数。
@@ -129,6 +143,8 @@ $$
 $$
 
 其中 $\mathrm{Sf}(\gamma)$ 为本征相位关于参考相位的谱流，$N_b(\gamma)$ 为沿闭路 $\gamma$ 束缚态穿越连续谱阈值的符号计数（出生计 $+1$、湮灭计 $-1$），其奇偶与 $\mathrm{Sf}(\gamma)$ 等价，$I_2(\gamma,D)$ 为 $\gamma$ 与鉴别子 $D$ 的模 2 交数。
+
+**说明（整数层级）** 本文在整数层级仅断言 $\mathrm{Sf}(\gamma)=\deg(\det S|_\gamma)$（见 §4）。与 $N_b(\gamma)$、$I_2(\gamma,D)$ 的关系只取其奇偶，故主定理等式应理解为 $\mathbb{Z}_2$ 层级的等价。
 
 **引理 1（BK 到谱流模 2）**
 在第 0 节短程与正则性假设下，沿闭路 $\gamma$
@@ -225,6 +241,8 @@ $$
 
 于是 $\nu_{\sqrt S}(C)=(-1)^{\sum_j m_j}$。若同时围住 $\pm k_j$，两项抵消且绕数为零。
 
+**注（谱回路 vs 参回路）** 上式取的是 $k$-平面的小正向回路 $C$，只围住上半平面零点 $\{k_j\}$。其给出 $\deg(S|_C)=-\sum_j m_j$ 的**谱参数**整数计数，用于分析 $S=f(-k)/f(k)$ 的解析结构。它**不是**外参数空间中的闭路 $\gamma$，因此不定义 $N_b(\gamma)$。当需比较 $N_b$ 时，应先在参数空间内选取避开 $D$ 的闭路 $\gamma$ 并应用 §4 的 $\mathrm{Sf}=\deg$ 与 §5 的 $\mathbb{Z}_2$ 等价，只保留奇偶信息。
+
 ---
 
 ## 4 Birman–Kreĭn、谱位移与模 2 Levinson
@@ -250,7 +268,7 @@ $$
 \nu_{\sqrt S}(\gamma)=\exp\Bigl(-i\pi\oint_\gamma d\xi\Bigr)=(-1)^{\mathrm{Sf}(\gamma)}=(-1)^{N_b(\gamma)}.
 $$
 
-这里 $N_b(\gamma)$ 指沿 $\gamma$ 对阈值事件的符号计数之奇偶，而非起讫点束缚态总数之差。
+这里 $N_b(\gamma)$ 指沿 $\gamma$ 对阈值事件的符号计数之奇偶，而非起讫点束缚态总数之差。当 $\gamma$ 不可完全回避 $D$ 时，仅 $(-1)^{\mathrm{Sf}(\gamma)}$ 为不变量；整数 $\mathrm{Sf}(\gamma)$ 与 $\deg(\det S|_\gamma)$ 的号符取决于规避方向。
 
 ---
 
@@ -262,7 +280,7 @@ $$
 D=\{\text{Jost 上半平面零点生成或湮灭、阈值异常、嵌入本征值、通道开闭}\}\subset X.
 $$
 
-一般位置下 $D$ 为余维一的分片光滑子流形。
+一般位置下 $D$ 为余维一的分片光滑子流形。以下结论在 $\mathbb{Z}_2$ 层级普适成立；即便闭路必须穿越 $D$，其 $\nu_{\sqrt S}(\gamma)$ 与 $I_2(\gamma,D)$ 仍良定义并彼此等价。
 
 **定义（模 2 交／链接数，闭路通用版）** 设 $D\subset X$ 为余维一的分片光滑闭子流形，记 $X^\circ=X\setminus D$。令 $w_D\in H^1(X^\circ;\mathbb{Z}_2)$ 为由 $D$ 在补空间诱导的 $\mathbb{Z}_2$ 上同调类（等价地，$X^\circ$ 上切割双覆盖的单值化类）。对任意闭路 $\gamma\subset X^\circ$，定义
 
@@ -305,17 +323,17 @@ $$
 
 当 $\lambda<0$ 时，$f$ 在上半平面零点 $k_\ast=-\tfrac{i\lambda}{2}=i|\lambda|/2$ 给出唯一束缚态，束缚能 $E_b=-\lambda^2/4$。奇宇称通道对 $\delta$-势透明，其相移为零，故完整 $2\times 2$ 散射矩阵的行列式等于该标量 $S$。
 
-**复参数小环（绕极点）**
-取 $\lambda(\theta)=2ik+\rho e^{i\theta}$（$\rho>0$ 小）。有
+**复参数小环（仅演示整数绕数）** 取 $\lambda(\theta)=2ik+\rho e^{i\theta}$（$\rho>0$ 小），
 
 $$
 S(\lambda(\theta))=-1+\frac{4k}{i\rho}\,e^{-i\theta}.
 $$
 
-随 $\theta$ 递增，$e^{-i\theta}$ 在单位圆顺时针一周，故 $\deg(S|_\gamma)=-1$，$\nu_{\sqrt S}=-1$。
+随 $\theta$ 递增，$\deg(S|_\gamma)=-1$。该例保持在 $X^\circ$ 内，**仅用于展示整数绕数**。
 
-**实参数折返环**
-在 $(E,\lambda)$ 平面以穿越 $\lambda=0$ 并返回的折返闭路横截鉴别子一次，$I_2(\gamma,D)=1\Rightarrow \nu_{\sqrt S}=-1$。
+**实参数折返环（仅陈述 $\mathbb{Z}_2$ 结论）** 在 $(E,\lambda)$ 平面以穿越 $\lambda=0$ 并返回的折返闭路横截 $D$ 一次，$I_2(\gamma,D)=1\Rightarrow \nu_{\sqrt S}(\gamma)=-1$。
+
+**规避与整数不变性** 折返闭路不可完全避开 $D$；将其以小半圆规避后得到的 $\deg(\det S|_\gamma)$ 的**号符**取决于规避方向，但其奇偶固定，且与 $\nu_{\sqrt S}$ 与 $I_2$ 一致。
 
 ---
 
@@ -506,6 +524,8 @@ $$
 
 从而 $\nu_{\sqrt S}(C)=(-1)^{\sum_j m_j}$。若 $C$ 同时围住对称点 $\pm k_j$，两项等重且抵消，故 $\deg(S|_C)=0$。
 
+**注（谱回路 vs 参回路）** 上式取的是 $k$-平面的小正向回路 $C$，只围住上半平面零点 $\{k_j\}$。其给出 $\deg(S|_C)=-\sum_j m_j$ 的**谱参数**整数计数，用于分析 $S=f(-k)/f(k)$ 的解析结构。它**不是**外参数空间中的闭路 $\gamma$，因此不定义 $N_b(\gamma)$。当需比较 $N_b$ 时，应先在参数空间内选取避开 $D$ 的闭路 $\gamma$ 并应用 §4 的 $\mathrm{Sf}=\deg$ 与 §5 的 $\mathbb{Z}_2$ 等价，只保留奇偶信息。
+
 ---
 
 ## 附录 C  Birman–Kreĭn 与谱流
@@ -539,13 +559,17 @@ $$
 S(k)=\frac{2k-i\lambda}{2k+i\lambda},\qquad f(k)=1+\frac{i\lambda}{2k}.
 $$
 
-复 $\lambda$-环：$\lambda(\theta)=2ik+\rho e^{i\theta}$ 给出
+**复参数小环（仅演示整数绕数）** 取 $\lambda(\theta)=2ik+\rho e^{i\theta}$（$\rho>0$ 小），
 
 $$
 S(\lambda(\theta))=-1+\frac{4k}{i\rho}e^{-i\theta},
 $$
 
-随 $\theta$ 递增，$e^{-i\theta}$ 顺时针一周，$\deg(S|_\gamma)=-1\Rightarrow \nu_{\sqrt S}=-1$。实折返：在 $(E,\lambda)$ 平面绕行并横截 $D$ 一次，$\nu_{\sqrt S}=-1$。
+随 $\theta$ 递增，$\deg(S|_\gamma)=-1$。该例保持在 $X^\circ$ 内，**仅用于展示整数绕数**。
+
+**实参数折返环（仅陈述 $\mathbb{Z}_2$ 结论）** 在 $(E,\lambda)$ 平面以穿越 $\lambda=0$ 并返回的折返闭路横截 $D$ 一次，$I_2(\gamma,D)=1\Rightarrow \nu_{\sqrt S}(\gamma)=-1$。
+
+**规避与整数不变性** 折返闭路不可完全避开 $D$；将其以小半圆规避后得到的 $\deg(\det S|_\gamma)$ 的**号符**取决于规避方向，但其奇偶固定，且与 $\nu_{\sqrt S}$ 与 $I_2$ 一致。
 
 ---
 
