@@ -1,10 +1,10 @@
 # 自指散射网络：联络矩阵综合、$J$‑幺正稳健性与 Floquet 带缘拓扑
 
-Version 1.0
+Version 1.7
 
 ## 摘要
 
-本文在自指散射网络（Self‑Referential Scattering Networks, SSN）中，给出一套从**设计—实现—读出—证伪**到**定理化保障**的闭环方法学。在**迹类口径**下，将整体半相位（$\sqrt{\det}$ 覆盖）的 holonomy 与谱位移、过 $-1$ 的谱流、判别子横截建立**模二等价**。相较前稿，本版在五个关键环节补齐**可核查细节与可检常数**：（i）第 3 节新增"$\log\det$ 正则化—Birman–Kreĭn—$-1$ 谱流—模二交数"的**桥接引理**与半页级**自足证明**；（ii）第 4 节给出星乘后"**无伪交**"的**定量结构引理**，明确主块最小梯度 $g_{\min}$ 与互耦上界 $r_{\max}$ 的**比较原则**与**设计线**；（iii）第 5 节把**二值化投影＋多数投票**写成**集中不等式**，给出误判率与样本数的显式关系，并附**相关性修正**；（iv）第 6 节用 $J$‑内积归一化的**虚部 Rayleigh 商（Kreĭn 角）**刻画稳健域，构造**极化同伦**并给出阈值函数 $\varepsilon_0(\eta)$ 的可行上界；（v）第 7 节把**相位型 Floquet 指标**的**截断独立**与**规范独立**写成定理，并在 Hilbert–Schmidt/强收敛下以 $\det_2$ 完成**正则化一致性**与**失败检测**。工程侧以两端口"耦合器—微环—增益"原型给出可仿真的 Schur‑闭合式，量化群延迟"双峰并合"的平方根标度与阈值选取依据。
+本文在自指散射网络（Self‑Referential Scattering Networks, SSN）中，给出一套从**设计—实现—读出—证伪**到**定理化保障**的闭环方法学。在**迹类口径**下，将整体半相位（$\sqrt{\det}$ 覆盖）的 holonomy 与谱位移、过 $-1$ 的谱流、判别子横截建立**模二等价**。相较前稿，本版在五个关键环节补齐**可核查细节与可检常数**：（i）第 3 节新增"$\log\det$ 正则化—Birman–Kreĭn—$-1$ 谱流—模二交数"的**桥接引理**与半页级**自足证明**；（ii）第 4 节给出星乘后"**无伪交**"的**定量结构引理**，明确主块最小梯度 $g_{\min}$ 与互耦上界 $r_{\max}$ 的**比较原则**与**设计线**；（iii）第 5 节把**二值化投影＋多数投票**写成**集中不等式**，给出误判率与样本数的显式关系，并附**相关性修正**；（iv）第 6 节用 $J$‑内积归一化的**虚部 Rayleigh 商（Kreĭn 角）**刻画稳健域，构造**极化同伦**并给出阈值函数 $\varepsilon_0(\eta)$ 的可行上界；（v）第 7 节把**相位型 Floquet 指标**的**截断独立**与**规范独立**写成定理，**并在 Hilbert–Schmidt 场景下以 $\det_2$ 完成**正则化一致性**与**失败检测**。工程侧以两端口"耦合器—微环—增益"原型给出可仿真的 Schur‑闭合式，量化群延迟"双峰并合"的平方根标度与阈值选取依据。
 
 **关键词**：闭环散射；Redheffer 星乘；Schur 补；Herglotz/Nevanlinna；判别子；谱位移与谱流；模二 Levinson；$J$‑幺正；Kreĭn 角；Floquet 相位型指标。
 
@@ -20,7 +20,7 @@ Version 1.0
 
 $$
 S^{\circlearrowleft}(z)=(I-\mathrm{i}K(z))(I+\mathrm{i}K(z))^{-1},\qquad
-K(z)=\mathrm{i}\bigl(I+S^{\circlearrowleft}(z)\bigr)\bigl(I-S^{\circlearrowleft}(z)\bigr)^{-1}.
+K(z)=-\mathrm{i}\bigl(I+S^{\circlearrowleft}(z)\bigr)^{-1}\bigl(I-S^{\circlearrowleft}(z)\bigr).
 $$
 
 **迹类与正则化**：凡与谱位移 $\xi$ 和 Birman–Kreĭn 相关的结果，统一假设 $S^{\circlearrowleft}-I\in\mathfrak{S}_1$ 并使用 $\det$。无限维（如 Floquet 侧带）先做有限截断，必要时用 $\det_2$；本文**模二结论与 $\det/\det_2$ 的选择无关**（见附录 F）。
@@ -56,7 +56,7 @@ $$
 **引理 3.3（Birman–Kreĭn—$-1$ 谱流桥梁：两步可核查细节）**
 记 $\xi(\omega)$ 为谱位移。则
 (i) 由 BK 公式 $\det S(\omega)=\exp\{-2\pi\mathrm{i}\,\xi(\omega)\}$，任意分支更换使 $\xi\mapsto\xi+n$（$n\in\mathbb{Z}$），对半相位的贡献为 $\exp\{\mathrm{i}\oint \tfrac12\,\mathrm{d}(2\pi n)\}=1$，故**模二不变**；
-(ii) 令 $S(\tau)=V(\tau)\,e^{\mathrm{i}\Phi(\tau)}\,U(\tau)$ 为局部 Schur 形且在 $\tau=\tau_c$ 仅有一一重本征相位 $\phi_j$ 横越 $\pi$（$-1$），则 $\xi$ 的跃迁为 $\pm \tfrac12$ 而 $\mathrm{Sf}_{-1}=1$。多重横越分解为有限次单横越叠加，故
+(ii) 令 $S(\tau)=V(\tau)\,e^{\mathrm{i}\Phi(\tau)}\,U(\tau)$ 为局部 Schur 形且在 $\tau=\tau_c$ 仅有一一重本征相位 $\phi_j$ 横越 $\pi$（$-1$），则 $\xi$ 的跃迁为 $\pm 1$ 而 $\mathrm{Sf}_{-1}=1$。多重横越分解为有限次单横越叠加，故
 
 $$
 \exp\Bigl(-\mathrm{i}\pi\oint_\gamma \mathrm{d}\xi\Bigr)=(-1)^{\mathrm{Sf}_{-1}(S^{\circlearrowleft}\circ\gamma)}.
@@ -116,10 +116,16 @@ $$
 取 $\delta=\inf_{U}\sigma_{\min}(I-S^{(1)}_{ii}S^{(2)}_{ii})$。若
 
 $$
-\|S^{(1)}_{ei}\|_2\,\|S^{(2)}_{ie}\|_2\ \le\ \tfrac12\,\delta^2,\qquad g_{\min}>0,
+\|S^{(1)}_{ei}\|_2\,\|S^{(2)}_{ie}\|_2\ \le\ \tfrac12\,\delta^2\,g_{\min},
 $$
 
-则 $r_{\max}\le\tfrac12$，横截奇偶由主块决定。
+则
+
+$$
+r_{\max}\ \le\ \frac{\|S^{(1)}_{ei}\|_2\,\|S^{(2)}_{ie}\|_2}{\delta^2}\ \le\ \tfrac12\,g_{\min}\ <\ g_{\min},
+$$
+
+因而满足引理 4.1 的前提 $r_{\max}<g_{\min}$；网络判别子为子网判别子的横离并，横截奇偶由主块决定。
 
 **边界与失败模式 4.2**：当 $\delta\to 0^+$ 或 $\rho\to 1^-$ 时，可能出现近切交与共振‑诱发的"伪交"。应实时监测 $\sigma_{\min}(I-\mathcal{C}S_{ii})$ 的裕度与 $g_{\min}$ 的数值估计，必要时缩小 $U$ 或重配端口。
 
@@ -136,6 +142,14 @@ $$
 \Delta\phi_{ab}=\frac12\Bigl[\arg\det S\bigl(\gamma_a;\theta_b+\delta\bigr)-\arg\det S\bigl(\gamma_a;\theta_b-\delta\bigr)\Bigr]_{\mathrm{cont}},\qquad
 \Pi(\Delta\phi_{ab})=\mathbf{1}_{\{|\Delta\phi_{ab}|\ge \pi/2\}}.
 $$
+
+**定义（有效相位窗）** 设实验/仿真使用的测量网格为 $\mathcal{G}=\{(a,b)\}$，并按上式定义 $\Delta\phi_{ab}$ 与二值化规则 $\Pi(\cdot)$。定义
+
+$$
+\Delta\phi_{\mathrm{eff}}:=\operatorname*{ess\,inf}_{(a,b)\in\mathcal{G}}\,|\Delta\phi_{ab}|.
+$$
+
+当存在有界加性噪声 $\varepsilon$ 且 $|\varepsilon|\le \epsilon$ 时，采用门限条件 $\Delta\phi_{\mathrm{eff}}>\frac{\pi}{2}+2\epsilon$；据此得到定理 5.1 的误判率与样本复杂度估计。
 
 **假设（独立与次高斯）**
 测量样本 $\{\widehat{\Delta\phi}_{ab}^{(n)}\}_{n=1}^N$ 独立，$\mathbb{E}\,\widehat{\Delta\phi}_{ab}^{(n)}=\Delta\phi_{ab}$，且为次高斯，代理方差 $\sigma^2$。
@@ -165,11 +179,11 @@ $$
 
 ## 6 $J$‑幺正稳健性：Kreĭn 角、极化同伦与阈值函数
 
-**Kreĭn 角（$J$‑内积、取虚部口径）**：对 $(e^{\mathrm{i}\phi_j(\tau)},\psi_j(\tau))$ 定义
+**Kreĭn 角（$J$‑内积、取虚部口径）**：**假定 $\langle\psi_j(\tau),J\psi_j(\tau)\rangle\neq0$（非中性本征态），否则 $\varkappa_j$ 不定义，且该参数点视为稳健域边界并予以排除。** 对 $(e^{\mathrm{i}\phi_j(\tau)},\psi_j(\tau))$ 定义
 
 $$
 \varkappa_j(\tau)=\frac{\operatorname{Im}\,\langle \psi_j(\tau)\,,J\,S^{-1}(\partial_\tau S)\,\psi_j(\tau)\rangle}{\langle \psi_j(\tau)\,,J\,\psi_j(\tau)\rangle},\qquad
-\eta=\min_j\inf_\tau |\varkappa_j(\tau)|.
+\eta=\min_{j:\ \langle\psi_j,J\psi_j\rangle\neq0}\ \inf_\tau |\varkappa_j(\tau)|.
 $$
 
 幺正极限 $J=I$ 时 $\varkappa_j=\partial_\tau\phi_j$。近 $J$‑幺正下存在 $c_\pm(\varepsilon)\to1$ 使 $c_{-}\,|\partial_\tau\phi_j|\le |\varkappa_j|\le c_{+}\,|\partial_\tau\phi_j|$。
@@ -181,7 +195,7 @@ $$
 \|K-K^\sharp\|\ \le\ C\,\varepsilon.
 $$
 
-*证要*：用 Cayley 逆映射 $K=\mathrm{i}(I+S)(I-S)^{-1}$ 的 Fréchet 微分并配合 $J$‑共轭与有界乘子不等式。
+*证要*：用 Cayley 逆映射 $K=-\mathrm{i}(I+S)^{-1}(I-S)$ 的 Fréchet 微分并配合 $J$‑共轭与有界乘子不等式。
 
 **构造 6.2（极化同伦）**
 令
@@ -226,11 +240,17 @@ $$
 \nu_F^{(N)}=\exp\Bigl(\frac{\mathrm{i}}{2}\int_{-\pi/T}^{\pi/T}\operatorname{Im}\,\partial_\omega\log\det S_F^{(N)}(\omega)\,\mathrm{d}\omega\Bigr).
 $$
 
-**定理 7.2（截断独立：强/HS 版本）**
-若 $S_F^{(N)}\to S_F$ 于算子范数或 Hilbert–Schmidt 拓扑，且端点 $\omega=\pm\pi/T$ 无随 $N$ 迁移的支化，则存在 $N_\ast$ 使 $N\ge N_\ast$ 时 $\nu_F^{(N)}$ 稳定；定义 $\nu_F=\nu_F^{(N_\ast)}$。在 HS/强收敛场景，用 Koplienko 谱位移与 $\det_2$ 的导数配方替换 $\det$ 的微分，结合附录 F 的模二一致性，得到相同的 $\nu_F$。
+**定理 7.2（截断独立：范数/HS 版本）**
+若 $S_F^{(N)}\to S_F$ 于算子范数或 Hilbert–Schmidt 拓扑，且端点 $\omega=\pm\pi/T$ 无随 $N$ 迁移的支化，则存在 $N_\ast$ 使 $N\ge N_\ast$ 时 $\nu_F^{(N)}$ 稳定；定义 $\nu_F=\nu_F^{(N_\ast)}$。在 **Hilbert–Schmidt 场景**，用 Koplienko 谱位移与 $\det_2$ 的导数配方替换 $\det$ 的微分，结合附录 F 的模二一致性，得到相同的 $\nu_F$。**仅有强收敛不足以保证 $\det_2$ 与二阶迹公式的良定，因此不纳入本定理的前提。**
 
 **引理 7.3（规范独立性）**
-若 $S_F(\omega)\mapsto U_L(\omega)\,S_F(\omega)\,U_R(\omega)$，其中 $U_{L,R}$ 连续、$|\det U_{L,R}|=1$，并满足带缘粘合条件 $[\arg\det U_L+\arg\det U_R]_{-\pi/T}^{\pi/T}\in 2\pi\mathbb{Z}$，则
+若 $S_F(\omega)\mapsto U_L(\omega)\,S_F(\omega)\,U_R(\omega)$，其中 $U_{L,R}$ 连续、$|\det U_{L,R}|=1$，并满足带缘粘合条件
+
+$$
+[\arg\det U_L+\arg\det U_R]_{-\pi/T}^{\pi/T}\in 4\pi\mathbb{Z},
+$$
+
+则
 
 $$
 \int_{-\pi/T}^{\pi/T}\partial_\omega\arg\det S_F(\omega)\,\mathrm{d}\omega
@@ -260,7 +280,14 @@ $$
 
 **8.1 单次穿越的两类等价路径**：
 (i) 复参数小环：$\lambda$ 在复平面绕 Jost 零点一次；
-(ii) 实参横越 + 频域读出：实参沿横截 $D$ 前后，在频域选取单支并用锚点连续化；两者同伦等价且 $\Delta(\arg\det S)=\pi$。
+(ii) 实参横越 + 频域读出：实参沿横截 $D$ 前后，在频域选取单支并用锚点连续化。两者同伦等价。沿任一由复参数小环或"实参横越 + 回程闭合"得到的**闭合回路**，有
+
+$$
+\oint \mathrm{d}\arg\det S=\pm 2\pi,\qquad
+\exp\Bigl(\tfrac{\mathrm{i}}{2}\oint \mathrm{d}\arg\det S\Bigr)=-1,
+$$
+
+与 §3 的半相位—谱流奇偶完全一致。
 
 **8.2 两端口"耦合器—微环—增益"原型（可仿真）**：
 耦合器
@@ -359,10 +386,10 @@ $$
 \varkappa_j=\frac{\operatorname{Im}\,\langle v_j\,,JX\,v_j\rangle}{v_j^\dagger J v_j}.
 $$
 
-由 $J$‑内积下的柯西–施瓦茨与极化恒等式，得
+由上两式逐点可得 $\varkappa_j=\dot{\theta}_j$，因而
 
 $$
-|\dot{\theta}_1-\dot{\theta}_2|\ \ge\ |\varkappa_1-\varkappa_2|.
+|\dot{\theta}_1-\dot{\theta}_2|=|\varkappa_1-\varkappa_2|.
 $$
 
 以引理 6.1 得 $\|K-K^\sharp\|\le C\,\varepsilon$。取 $K_t=(1-t)K+t(K+K^\sharp)/2$，$S_t=(I-\mathrm{i}K_t)(I+\mathrm{i}K_t)^{-1}$。若 $\|S^\dagger J S-J\|\le \varepsilon$ 且 $\eta>0$，存在常数 $\alpha>0$ 使 $\varepsilon_0(\eta)=\alpha\sin^2(\eta/2)$ 为可行上界。
@@ -392,4 +419,4 @@ $$
 
 ## 附录 G  Floquet 截断、收敛与失败模式
 
-将 $S_F$ 侧带截断至 $|m|\le M$ 得 $S_F^{(M)}$。若 $\sum_{|m|>M}\|K_m\|\to0$（强或 HS 收敛），且端点不出现随 $M$ 迁移的支化，则 $\sup_\omega \|S_F^{(M+1)}-S_F^{(M)}\|\to 0$，存在 $M_0$ 使 $M\ge M_0$ 时 $\nu_F^{(M)}$ 稳定。检测量：端点奇异值阈值 $\delta_F$ 与"台阶稳定"准则（$\nu_F^{(M)}=\nu_F^{(M+1)}=\nu_F^{(M+2)}$）。出现异常漂移时增大 $M$ 或缩小耦合带宽以规避伪支化。
+将 $S_F$ 侧带截断至 $|m|\le M$ 得 $S_F^{(M)}$。若 $\sum_{|m|>M}\|K_m\|\to0$（**算子范数或 HS 收敛；该条件蕴含算子范数收敛**），且端点不出现随 $M$ 迁移的支化，则 $\sup_\omega \|S_F^{(M+1)}-S_F^{(M)}\|\to 0$，存在 $M_0$ 使 $M\ge M_0$ 时 $\nu_F^{(M)}$ 稳定。检测量：端点奇异值阈值 $\delta_F$ 与"台阶稳定"准则（$\nu_F^{(M)}=\nu_F^{(M+1)}=\nu_F^{(M+2)}$）。出现异常漂移时增大 $M$ 或缩小耦合带宽以规避伪支化。
