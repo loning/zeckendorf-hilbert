@@ -2,6 +2,8 @@
 
 **——二次型局域化的全序近似桥接、容斥—马尔可夫拼接与分布论散射刻度的奇偶阈值**
 
+Version: 1.7
+
 **MSC**：81T05；81T40；83C57；83C05；46L30；46L60；58J35；81U40；42A38
 **Keywords**：Tomita–Takesaki 模理论；零测度边界；因果钻石；半侧模包含；强次可加与马尔可夫性；Petz 恢复；QNEC；JLMS；Wigner–Smith 群延迟；Birman–Kreĭn／Friedel–Lloyd；Toeplitz／Berezin 压缩；Euler–Maclaurin 与 Poisson；GHY 关节项；$\mathbb Z_2$ 取向账本
 
@@ -33,6 +35,12 @@ $$
 $$
 
 从而存在自伴算子 $K_R$ 满足 $\langle\psi,K_R\psi\rangle=\mathfrak k_R[\psi]$。CFT 的球形区／劈形与其共形像给出精确几何等式。
+
+设 $\mathfrak k_R$ 下半界为 $a_R\in\mathbb R$，即 $\mathfrak k_R[\psi]\ge a_R|\psi|^2$。取任意 $c_R>-a_R$，定义**移位图范数**
+
+$$|\psi|_{\mathfrak k_R,c_R}^2:=|\psi|^2+\big(\mathfrak k_R[\psi]+c_R|\psi|^2\big),$$
+
+则 $(\mathcal D(\mathfrak k_R),|\cdot|_{\mathfrak k_R,c_R})$ 完备，且与自伴算子 $K_R$ 的一表示定理相容。
 
 ### 2.2 零测度局域化与 QNEC
 
@@ -79,6 +87,15 @@ $$
 
 其中 $T_{++}=T_{vv},\,T_{--}=T_{uu}$。CFT 球形钻石中 $g_\sigma(\lambda)=\lambda(1-\lambda)$。
 [**二次型；域：真空，CFT 为精确等式**]
+
+**假设 A′（null 能流一致可积）** 对任意 $\psi\in\mathcal D_0$ 与几何上有界的单调近似族 $\{R_{V_\alpha}^\pm\}$，存在 $H_\sigma\in L^1_{\mathrm{loc}}(E^\sigma\times\mathbb R^{d-2})$ 使
+
+$$
+\big|g^{(\alpha)}_\sigma(\lambda,x_\perp)\,\langle\psi,T_{\sigma\sigma}(\lambda,x_\perp)\psi\rangle\big|
+\le H_\sigma(\lambda,x_\perp)
+$$
+
+几乎处处成立，且 $\sup_\alpha\int_{\mathcal K} H_\sigma<\infty$ 对任意紧集 $\mathcal K\subset E^\sigma\times\mathbb R^{d-2}$。
 
 **引理 A（有序切割近似）**
 存在沿 $E^\pm$ 的单调半空间族 $\{R_{V_\alpha}^\pm\}$ 使
@@ -129,8 +146,7 @@ $$
 定义层状度
 
 $$
-\kappa(x_\perp)=\max_v\Big(\sum_i\mathbf 1_{[V_i(x_\perp),\infty)}(v)\Big)
--\mathbf 1_{[\min_i V_i(x_\perp),\infty)}(v),
+\boxed{\ \kappa(x_\perp):=\sup_{v\in\mathbb R}\Bigg[\sum_i \mathbf 1_{[V_i(x_\perp),\infty)}(v)\Bigg]-1\ }.
 $$
 
 并以相对熵密度核定义**马尔可夫缺口线密度** $\iota(v,x_\perp)\ge0$。则
@@ -143,23 +159,20 @@ $$
 
 [**不等式；域：真空**]
 
-**定理 D（Petz 恢复与支撑包含）**
-若 $\mathrm{supp}(\rho_{j\cap j+1})\subseteq \mathrm{supp}(\rho_{j\cup j+1})$，则
+**定理 D（Petz 恢复与稳定性）** 记 $A=D_{j-1}$，$B=D_j$，$C=D_{j+1}$，忘却通道 $\Phi_{ABC\to AB}(X):=\operatorname{Tr}_C[X]$，$\Phi(\rho)=\rho_{AB}$。令 $\rho_B=\operatorname{Tr}_{AC}\rho_{ABC}$。在 $\mathrm{supp}(\rho_B)$ 上取（广义）逆，定义作用于 $B$ 的 Petz 恢复
 
-$$
-\mathcal R^\rho(X)=\rho_{j\cup j+1}^{1/2}\,\rho_{j\cap j+1}^{-1/2}\,X\,
-\rho_{j\cap j+1}^{-1/2}\,\rho_{j\cup j+1}^{1/2}
-$$
+$$\mathcal R^\rho_{B\to BC}(Y):=\rho_{BC}^{1/2}\rho_B^{-1/2}Y\rho_B^{-1/2}\rho_{BC}^{1/2},\qquad Y\in\mathcal B(\mathcal H_B),$$
 
-实现完美恢复。非忠实情形以广义逆与旋转平均版本替代；偏离取等的稳定度满足
+并扩展为 $\mathrm{id}_A\otimes\mathcal R^\rho_{B\to BC}:\mathcal B(\mathcal H_{AB})\to\mathcal B(\mathcal H_{ABC})$。则
 
-$$
-1-F\bigl(\rho,\mathcal R^\rho\!\circ\!\Phi(\rho)\bigr)
-\ \le\ C_{\rm rec}\,\mathrm{Def}_{\rm supp}(\rho)+C'_{\rm rec}\,\delta_{\rm reg},
-$$
+$$(\mathrm{id}_A\otimes\mathcal R^\rho_{B\to BC})(\rho_{AB})=\rho_{ABC}\quad\Longleftrightarrow\quad I(A:C\mid B)_\rho=0.$$
 
-其中 $\mathrm{Def}_{\rm supp}$ 度量支撑包含偏离，$\delta_{\rm reg}$ 为零模截断误差。
-[**完全恢复／稳定度；域：支撑包含**]
+对一般情形，存在依赖于 $\rho_{BC}$ 的旋转平均 Petz 映射 $\mathcal R_{\rm rot}$，满足
+
+$$I(A:C\mid B)_\rho\ \ge\ -2\ln F\bigl(\rho_{ABC},\ \mathcal R_{\rm rot}(\rho_{AB})\bigr),$$
+
+等价地 $F\bigl(\rho_{ABC},\mathcal R_{\rm rot}(\rho_{AB})\bigr)\ \ge\ 2^{-I(A:C\mid B)_\rho/(2\ln2)}$。
+[**完全恢复／稳定性；域：马尔可夫饱和**]
 
 ### 3.4  半侧模包含与链式推进
 
@@ -189,6 +202,16 @@ $$
 \qquad \nu_{\rm chain}(\gamma):=(-1)^{\lfloor \Theta_h(\gamma)/\pi\rfloor}.
 $$
 
+定义无窗极限
+
+$$
+\Theta_{\rm geom}(\gamma):=\frac12\int_{\mathcal I(\gamma)}\operatorname{tr}Q(E)\,dE
+=\int_{\mathcal I(\gamma)}\varphi'(E)\,dE
+=\varphi(E_2)-\varphi(E_1),
+$$
+
+其中 $\mathcal I(\gamma)=[E_1,E_2]$，$\varphi(E)=\tfrac12\arg\det S(E)$。
+
 若存在 $\ell>0,\Delta>0,m\in\mathbb N$ 使
 
 $$
@@ -197,7 +220,7 @@ $$
 C_{\rm T} \ell^{-1/2}\!\int_{\mathcal I(\gamma)}\!|\partial_E S(E)|_2\,dE\ \le\ \frac{\pi}{2}-\varepsilon\ },
 $$
 
-则对任一相位基准 $E_*$，$\nu_{\rm chain}(\gamma)$ 与无窗极限 $(-1)^{\lfloor \Theta_{\rm geom}/\pi\rfloor}$ 一致。这里
+则对任一窗中心 $E_0$，$\nu_{\rm chain}(\gamma)$ 与无窗极限 $(-1)^{\lfloor \Theta_{\rm geom}(\gamma)/\pi\rfloor}$ 一致。这里
 $\bullet$ $R_{\rm EM}$ 为 Euler–Maclaurin 端点余项，满足 $\int|R_{\rm EM}|\le C_m\,\ell^{-(m-1)}$；
 $\bullet$ $R_{\rm P}$ 为 Poisson 混叠，满足 $\int|R_{\rm P}|\le C_h\sum_{|q|\ge1}|\widehat h(2\pi q/\Delta)|$；
 $\bullet$ $C_{\rm T}$ 源自 Toeplitz 交换子半经典界。
@@ -217,30 +240,41 @@ $$
 \quad C_h=\sup_E\int |h_\ell(E-E')|\,dE' .
 $$
 
-**推论 G（弱非幺正稳定）**
-定义 $\Delta_{\rm nonU}(E)=|S^\dagger S-\mathbb I|_1$。若
+**推论 G（弱非幺正稳定）** 定义 $\Delta_{\rm nonU}(E)=|S^\dagger S-\mathbb I|_1$。若
 
 $$
 \int_{\mathcal I(\gamma)} \Delta_{\rm nonU}(E)\,dE\ \le\ \varepsilon,\qquad
-\int_{\mathcal I(\gamma)} |R_{\rm EM}+R_{\rm P}|\,dE\ \le\ \pi-\varepsilon,
+\int_{\mathcal I(\gamma)} |R_{\rm EM}|\,dE\ +\ \int_{\mathcal I(\gamma)} |R_{\rm P}|\,dE\ +\ C_{\rm T}\,\ell^{-1/2}\!\int_{\mathcal I(\gamma)}\!|\partial_E S|_2\,dE\ \le\ \tfrac{\pi}{2}-\varepsilon,
 $$
 
-则 $\nu_{\rm chain}(\gamma)$ 不变。
+则 $\nu_{\rm chain}(\gamma)=(-1)^{\lfloor \Theta_h(\gamma)/\pi\rfloor}$ 不变，且与无窗极限 $(-1)^{\lfloor \Theta_{\rm geom}(\gamma)/\pi\rfloor}$ 一致。
+
+（其中三项门槛与定理 G 完全对齐。）
 [**稳定性；域：弱耗散**]
 
 ### 3.6  关节项与 $\mathbb Z_2$ 账本
 
-**定理 H（账本一致与规范独立）**
-在 null–null 与 null–spacelike 角点，关节项
+**定理 H（账本一致与规范变换）** 在 null–null 与 null–spacelike 角点，
 
-$$
-I_{\rm joint}=\frac{\varepsilon_J}{8\pi G}\int\sqrt{\gamma}\,\Xi\,d^{d-2}x,\quad
-\Xi=\begin{cases} \ln \frac{|k_1\cdot k_2|}{2}, & \text{null–null},\\[2mm]
-\ln|n\cdot k|, & \text{null–spacelike},\end{cases}
-$$
+$$I_{\rm joint}=\frac{\varepsilon_J}{8\pi G}\int\sqrt{\gamma}\,\Xi\,d^{d-2}x,$$
 
-在仿射重标 $\lambda\mapsto a\lambda+b$ 与法向翻转 $k\mapsto -k$ 下仅改变整体符号。平方根粘接类 $\epsilon_i=-1$ 与 $\varepsilon_J$ 翻转同源，闭路总体符号仅依赖 $\prod_i\epsilon_i$ 的奇偶，并与 $\lfloor \Theta_h/\pi\rfloor$ 奇偶一致。
-[**规范独立；域：仿射参数化的 null 边界**]
+其中
+
+$$\Xi=\ln\frac{|k_1\cdot k_2|}{2}$$
+（null–null）或 $\Xi=\ln|n\cdot k|$（null–spacelike）。
+
+对独立缩放 $k_i\to \alpha_i k_i$、$n\to\beta n$ 有
+
+$$\Xi\mapsto \Xi+\ln|\alpha_1\alpha_2|$$
+
+（null–null），
+
+$$\Xi\mapsto \Xi+\ln|\alpha|+\ln|\beta|$$
+
+（null–spacelike）。
+
+仅当法向翻转 $k\to -k$（或 $n\to -n$）时，$\varepsilon_J$ 变号而 $\Xi$ 不变。故单角点的 $I_{\rm joint}$ 非纯符号不变；但沿链闭合并以平方根粘接类 $\epsilon_i$ 记账后，净效应仅依赖 $\prod_i\epsilon_i$ 的奇偶，且与 $\lfloor\Theta_h/\pi\rfloor$ 的奇偶一致。
+[**规范变换；域：仿射参数化的 null 边界**]
 
 **算例（$2+1$ 维）**
 两片共线生成的 null 片与一片 spacelike 折面围成角结构；在规范 $k\cdot l=-1$ 下计算外挠曲率号差与角参数，验证符号与 $\epsilon_i$ 一致。
@@ -269,7 +303,11 @@ $$
 
 ### 4.1  双层几何分解与全序近似桥接
 
-**引理 A 的证明**：沿每条 null 生成元 $\gamma_{x_\perp}^\pm$ 构造单调函数族 $V_\alpha^\pm(x_\perp)\downarrow V^\pm(x_\perp)$，使对应的半空间近似域 $R_{V_\alpha}^\pm$ 内外逼近因果钻石 $D$。令 $g^{(\alpha)}_\sigma$ 为对应权函数。由二阶响应核 $2\pi T_{vv}$ 的局域性与单调收敛定理，得到 $g^{(\alpha)}_\sigma\to g_\sigma$ 于 $L^1_{\mathrm{loc}}$。二次型闭性保证极限与近似路径的选取无关。
+**引理 A 的证明**：沿每条 null 生成元 $\gamma_{x_\perp}^\pm$ 构造单调函数族 $V_\alpha^\pm(x_\perp)\downarrow V^\pm(x_\perp)$，使对应的半空间近似域 $R_{V_\alpha}^\pm$ 内外逼近因果钻石 $D$。令 $g^{(\alpha)}_\sigma$ 为对应权函数。由假设 A′ 给出的支配函数与单调逼近，结合主控收敛与二次型闭性，极限
+
+$$\lim_{\alpha\to\infty}\sum_{\sigma=\pm}2\pi\!\int g^{(\alpha)}_\sigma\langle\psi,T_{\sigma\sigma}\psi\rangle$$
+
+与有序逼近的选取无关。
 
 **定理 A 的证明**：半空间与球形区（及其共形像）的模哈密顿量分解为已知结果。对一般因果钻石，由引理 A 的全序近似桥接，通过单调半空间族的极限构造完成分解。
 
@@ -281,7 +319,11 @@ $$(v-\min_i V_i)_+ = \sum_{k\ge1}(-1)^{k-1}\sum_{|I|=k}(v-\max_{i\in I}V_i)_+$$
 
 通过平滑近似 $(\cdot)_+^\eta=\rho_\eta*\mathbf 1_{[0,\infty)}$ 证明，其中 $\rho_\eta$ 为标准磨光核。令 $\eta\to0^+$，由主控收敛定理与 Fubini–Tonelli 定理交换极限与积分，乘以 $2\pi T_{vv}$ 并积分得到二次型容斥恒等式。
 
-**命题 B 的证明**：若 $\psi_n\to\psi$ 于 $\mathcal D_0$，则容斥恒等式两侧对 $\psi_n$ 的值同收敛至对 $\psi$ 的值。闭性来自 $\mathcal D_0$ 的完备性与二次型下半连续性。
+**命题 B 的证明**：若 $\psi_n\to\psi$ 于 $\mathcal D_0$，则容斥恒等式两侧对 $\psi_n$ 的值同收敛至对 $\psi$ 的值。闭性来自**下半界闭二次型的移位图范数完备性**：取 $c>-a$ 并以
+
+$$|\psi|_{\mathfrak k,c}^2:=|\psi|^2+\big(\mathfrak k[\psi]+c|\psi|^2\big)$$
+
+定义图范数，使形式域完备；配合二次型下半连续性与 Fatou 型论证，容斥恒等式两侧对 $\psi_n\to\psi$ 同收敛，故恒等式在 $\mathcal D_0$ 上闭合。
 
 ### 4.3  马尔可夫拼接与 Petz 恢复
 
@@ -293,7 +335,15 @@ $$I(D_{j-1}:D_{j+1}\mid D_j)=0.$$
 
 **定理 C′ 的证明**：非全序切割时，以相对熵密度核定义马尔可夫缺口线密度 $\iota(v,x_\perp)\ge0$。通过层状度 $\kappa(x_\perp)$ 与 $\iota$ 的单调性比较，得到缺口积分表示与上下界估计。
 
-**定理 D 的证明**：在支撑包含条件 $\mathrm{supp}(\rho_{j\cap j+1})\subseteq\mathrm{supp}(\rho_{j\cup j+1})$ 下，Petz 恢复映射实现完全恢复。非忠实情形以广义逆与群平均版本替代。稳定度不等式由支撑偏离度量与数据处理稳定性给出。
+**定理 D 的证明**：记 $A=D_{j-1}$，$B=D_j$，$C=D_{j+1}$，忘却通道 $\Phi_{ABC\to AB}(X):=\operatorname{Tr}_C[X]$，$\Phi(\rho)=\rho_{AB}$。令 $\rho_B=\operatorname{Tr}_{AC}\rho_{ABC}$。在 $\mathrm{supp}(\rho_B)$ 上取（广义）逆，定义作用于 $B$ 的 Petz 恢复
+
+$$\mathcal R^\rho_{B\to BC}(Y):=\rho_{BC}^{1/2}\rho_B^{-1/2}Y\rho_B^{-1/2}\rho_{BC}^{1/2},\qquad Y\in\mathcal B(\mathcal H_B),$$
+
+并扩展为 $\mathrm{id}_A\otimes\mathcal R^\rho_{B\to BC}:\mathcal B(\mathcal H_{AB})\to\mathcal B(\mathcal H_{ABC})$。完美恢复当且仅当 $I(A:C\mid B)_\rho=0$（即 $\rho_{ABC}$ 为 $B$‑马尔可夫链）。对一般情形，存在依赖于 $\rho_{BC}$ 的旋转平均 Petz 映射 $\mathcal R_{\rm rot}$，由 Fawzi–Renner 稳定性不等式得到
+
+$$I(A:C\mid B)_\rho\ \ge\ -2\ln F\bigl(\rho_{ABC},\ \mathcal R_{\rm rot}(\rho_{AB})\bigr),$$
+
+等价地 $F\bigl(\rho_{ABC},\mathcal R_{\rm rot}(\rho_{AB})\bigr)\ \ge\ 2^{-I(A:C\mid B)_\rho/(2\ln2)}$。
 
 ### 4.4  半侧模包含与链式推进
 
@@ -323,7 +373,7 @@ $$S^\dagger \partial_E S-\tilde S^\dagger \partial_E \tilde S = (S^\dagger-\tild
 
 ### 4.6  关节项与 $\mathbb Z_2$ 账本一致性
 
-**定理 H 的证明**：GHY 关节项在仿射重标 $\lambda\mapsto a\lambda+b$ 与法向翻转 $k\mapsto -k$ 下的变换律仅改变整体符号因子 $\varepsilon_J$。平方根粘接类 $\epsilon_i$ 记录同一翻转操作，闭路总体符号仅依赖 $\prod_i\epsilon_i$ 的奇偶性，并与 $\lfloor \Theta_h/\pi\rfloor$ 的奇偶性一致。
+**定理 H 的证明**：GHY 关节项中，对独立缩放 $k_i\to \alpha_i k_i$、$n\to\beta n$，$\Xi$ 变换为 $\Xi+\ln|\alpha_1\alpha_2|$（null–null）或 $\Xi+\ln|\alpha|+\ln|\beta|$（null–spacelike）。仅当法向翻转 $k\to -k$（或 $n\to -n$）时，$\varepsilon_J$ 变号而 $\Xi$ 不变。故单角点的 $I_{\rm joint}$ 非纯符号不变；但沿链闭合并以平方根粘接类 $\epsilon_i$ 记账后，净效应仅依赖 $\prod_i\epsilon_i$ 的奇偶，且与 $\lfloor\Theta_h/\pi\rfloor$ 的奇偶一致。
 
 ### 4.7  全息提升与次阶估计
 
@@ -412,6 +462,13 @@ Trefethen–Weideman；Javed–Trefethen；Chandrasekaran–Prabhu；Pulakkat。
 $\mathfrak k_R[\psi]=\sum_{\sigma=\pm}\!\int g_\sigma^{(R)}\langle\psi,T_{\sigma\sigma}\psi\rangle$
 对 $\psi\in\mathcal D_0$ 良定义且下半界；则存在自伴 $K_R$ 满足 $\langle\psi,K_R\psi\rangle=\mathfrak k_R[\psi]$。
 
+**假设 A′（null 能流一致可积）** 对任意 $\psi\in\mathcal D_0$ 与几何上有界的单调近似族 $\{R_{V_\alpha}^\pm\}$，存在 $H_\sigma\in L^1_{\mathrm{loc}}(E^\sigma\times\mathbb R^{d-2})$ 使
+
+$$\big|g^{(\alpha)}_\sigma(\lambda,x_\perp)\,\langle\psi,T_{\sigma\sigma}(\lambda,x_\perp)\psi\rangle\big|
+\le H_\sigma(\lambda,x_\perp)$$
+
+几乎处处成立，且 $\sup_\alpha\int_{\mathcal K} H_\sigma<\infty$ 对任意紧集 $\mathcal K\subset E^\sigma\times\mathbb R^{d-2}$。
+
 ### 附录 B：有序切割近似（引理 A 证明）
 
 沿每条生成元 $\gamma_{x_\perp}^\pm$ 构造单调函数族 $V_\alpha^\pm(x_\perp)\downarrow V^\pm(x_\perp)$，令 $R_{V_\alpha}^\pm$ 为半空间近似域并取权 $g^{(\alpha)}_\sigma$。二阶响应核 $2\pi\,T_{vv}$ 与主控收敛给出
@@ -424,10 +481,27 @@ $\langle\psi,K_{R_{V_\alpha}^\pm}\psi\rangle\to2\pi\!\int g_\sigma\langle\psi,T_
 $(v-\min_i V_i)_+^\eta=\sum_{k\ge1}(-1)^{k-1}\sum_{|I|=k}(v-\max_{i\in I}V_i)_+^\eta$。
 令 $\eta\to0^+$ 用主控收敛与 Fubini／Tonelli 完成极限交换并乘 $2\pi T_{vv}$ 积分得二次型容斥。
 
-### 附录 D：Petz 的支撑包含与稳定度
+### 附录 D：Petz 的支撑与稳定性（统一版）
 
-在 $\mathrm{supp}(\rho_{j\cap j+1})\subseteq\mathrm{supp}(\rho_{j\cup j+1})$ 下，Petz 完全恢复成立；非忠实时以广义逆替代并对交叠代数作群平均，稳定度不等式给出
-$1-F(\rho,\mathcal R^\rho\circ\Phi(\rho))\le C_{\rm rec}\,\mathrm{Def}_{\rm supp}+C'_{\rm rec}\,\delta_{\rm reg}$。
+记 $A=D_{j-1}$，$B=D_j$，$C=D_{j+1}$。定义忘却通道
+
+$$\Phi_{ABC\to AB}(X):=\operatorname{Tr}_C[X],\qquad \Phi(\rho)=\rho_{AB}.$$
+
+令 $\rho_B=\operatorname{Tr}_{AC}\rho_{ABC}$，并在 $\mathrm{supp}(\rho_B)$ 上取（广义）逆。定义作用于 $B$ 的 Petz 恢复
+
+$$\mathcal R^\rho_{B\to BC}(Y):=\rho_{BC}^{1/2}\rho_B^{-1/2}Y\rho_B^{-1/2}\rho_{BC}^{1/2},\quad Y\in\mathcal B(\mathcal H_B),$$
+
+并扩展为 $\mathrm{id}_A\otimes\mathcal R^\rho_{B\to BC}:\mathcal B(\mathcal H_{AB})\to\mathcal B(\mathcal H_{ABC})$。
+
+则**完全恢复当且仅当** $I(A:C\mid B)_\rho=0$：
+
+$$(\mathrm{id}_A\otimes\mathcal R^\rho_{B\to BC})(\rho_{AB})=\rho_{ABC}\ \Longleftrightarrow\ I(A:C\mid B)_\rho=0.$$
+
+对一般情形，取依赖 $\rho_{BC}$ 的**旋转平均 Petz** $\mathcal R_{\rm rot}$，有 Fawzi–Renner 稳定性不等式
+
+$$I(A:C\mid B)_\rho\ \ge\ -2\ln F\bigl(\rho_{ABC},\ \mathcal R_{\rm rot}(\rho_{AB})\bigr).$$
+
+（以上表述与全文主文 3.3 节记号保持一致。）
 
 ### 附录 E：分布论 KFL—WS 与测试函数空间
 
@@ -460,10 +534,9 @@ $$
 取迹范数并在能带上积分，得到
 $|\Theta_h[S]-\Theta_h[\tilde S]|\le C_h\eta$。
 
-### 附录 H：GHY 关节项的规范独立与 $2+1$ 维算例
+### 附录 H：GHY 关节项的规范变换与 $2+1$ 维算例
 
-在仿射重标 $\lambda\mapsto a\lambda+b$ 与 $k\mapsto -k$ 下，
-$\Xi\mapsto \Xi+\ln|a|$ 与 $\varepsilon_J\mapsto -\varepsilon_J$，闭路总符号仅随 $\mathbb Z_2$ 翻转；给出 $2+1$ 维 null–null–spacelike 折面的外挠曲率号差计算并验证与 $\epsilon_i$ 对齐。
+对独立缩放 $k_i\to \alpha_i k_i$、$n\to\beta n$，$\Xi$ 变换为 $\Xi+\ln|\alpha_1\alpha_2|$（null–null）或 $\Xi+\ln|\alpha|+\ln|\beta|$（null–spacelike）。仅当法向翻转 $k\to -k$（或 $n\to -n$）时，$\varepsilon_J$ 变号而 $\Xi$ 不变。沿链闭合并以平方根粘接类 $\epsilon_i$ 记账后，净效应仅依赖 $\prod_i\epsilon_i$ 的奇偶。给出 $2+1$ 维 null–null–spacelike 折面的外挠曲率号差计算并验证与 $\epsilon_i$ 对齐。
 
 ### 附录 I：非全序切割的线密度核
 
