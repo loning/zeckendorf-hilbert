@@ -1,6 +1,6 @@
 # Gibbons–Hawking–York 边界项的必要性与推广：变分良定性、角点与零类边界，以及到准局域能与热力学的闭合
 
-**Version: 1.6**
+**Version: 1.7**
 
 **MSC**：83C05；83C57；58A10；49S05
 
@@ -413,6 +413,8 @@ $$
 +\cdots\right]\mathrm d^3x .
 $$
 
+其中 $\Pi^{ab}:=K^{ab}-Kh^{ab}$。
+
 ## 附录 B：GHY 的抵消与实例取向表
 
 **B.1** $\delta(\sqrt{|h|}K)=\sqrt{|h|}\big(\delta K+\tfrac12 K\,h^{ab}\delta h_{ab}\big)$，$\delta K=h^{ab}\delta K_{ab}-K^{ab}\delta h_{ab}$，其中
@@ -432,9 +434,9 @@ $$
 
 | 片段 | 因果型 | $n^2=\varepsilon$ | 外法向 | GHY 权重 |
 |------|--------|-------------------|--------|----------|
-| 初/末空间片 | 类空 | $-1$ | 未来/过去 | $-\int\sqrt{\|h\|}\,K\,\mathrm d^3x$ |
-| 侧边 | 类时 | $+1$ | 指向外侧 | $+\int\sqrt{\|h\|}\,K\,\mathrm d^3x$ |
-| 欧氏边界 | Riemann | $+1$ | 指向外侧 | $+\int\sqrt{\|h\|}\,K\,\mathrm d^3x$ |
+| 初/末空间片 | 类空 | $-1$ | 未来/过去 | $-\int\sqrt{|h|}\,K\,\mathrm d^3x$ |
+| 侧边 | 类时 | $+1$ | 指向外侧 | $+\int\sqrt{|h|}\,K\,\mathrm d^3x$ |
+| 欧氏边界 | Riemann | $+1$ | 指向外侧 | $+\int\sqrt{|h|}\,K\,\mathrm d^3x$ |
 
 （此表仅为阅读指引；实际计算统一使用母公式。）
 
@@ -470,6 +472,8 @@ $$
 \delta H_\xi=\int_{\Sigma}(N\,\delta\mathcal H+N^i\,\delta\mathcal H_i)\,\mathrm d^3x
 +\int_{\partial\Sigma}\sqrt{\sigma}\,\Big(\varepsilon\,\delta N+j_i\,\delta N^i+T^{ab}_{\mathrm{BY}}\delta h_{ab}\Big)\,\mathrm d^2x .
 $$
+
+其中 $\varepsilon:=u_a u_b\,T^{ab}_{\mathrm{BY}}$，$j_i:=-\sigma_i{}^a u_b\,T^{ab}_{\mathrm{BY}}$，$\sigma_{ab}=h_{ab}+u_a u_b$。
 
 加入 GHY/关节后 $H_\xi$ 可微并生成正确演化；渐近平坦下 $E_{\mathrm{BY}}\to M_{\mathrm{ADM}}$。
 
