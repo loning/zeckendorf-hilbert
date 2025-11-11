@@ -1,5 +1,7 @@
 # 信息熵—几何统一与宇宙学项的窗化生成
 
+Version: 1.4
+
 **从相对熵 Hessian 到有效作用、Poisson–Euler–Maclaurin 有限阶纪律与 Friedmann 方程的几何熵分解**
 
 **Author**: Auric (S-series / EBOC)
@@ -13,7 +15,7 @@
 在统一的"算子—测度—函数"框架中，建立把**相对熵的多阶响应**、**散射谱的母尺刻度**、**窗化读数的 Toeplitz/Berezin 压缩**与**Nyquist–Poisson–Euler–Maclaurin（NPE）有限阶纪律**有机拼接到**几何有效作用**与**宇宙学项**的闭合推导。首先，在 Eguchi 正则散度与 Amari α–几何下证明 Fisher–Rao 度量与对偶联络的构造；其次，在迹类/相对迹类扰动与能量可导的散射理论假设下给出"母尺"三位一体
 
 $$
-\frac{\varphi'(\omega)}{\pi}=\xi'(\omega)=\frac{1}{2\pi}\operatorname{tr}Q(\omega),\qquad Q=-iS^\dagger\partial_\omega S
+\frac{\varphi'(\omega)}{\pi}=-\xi'(\omega)=\frac{1}{2\pi}\operatorname{tr}Q(\omega),\qquad Q=-iS^\dagger\partial_\omega S
 $$
 
 的定理化陈述，并指出**阈值/长程势**处的分布意义修正。再次，选定 Paley–Wiener / de Branges / Hardy 环境，采用**对称平滑分配**（$\widehat g=\sqrt{\widehat h}$，$h=g\ast\tilde g$）将 $\mathsf K_{w,h}=P\,M_{w^{1/2}}C_g\cdot C_{\tilde g}M_{w^{1/2}}P$ 置入 Schatten–迹类并给出**显式上界**。随后统一 Fourier 约定并区分**Poisson 零别项判据** ($\Delta<2\pi/B$) 与**香农无混叠重构** ($\Delta<\pi/B$) 的倍常数差异；在"近带限"的双层尾部控制下给出 EM 余项的 $\zeta(2m)$ 显式常数。利用 Toeplitz–FIO 的对角型波前关系证明**窗化—压缩—卷积的奇性不增**（并对 $\xi=0$ 锥域作条件化说明）。在线性化重力的最小可算模型中，给出**四阶响应**到**曲率二次不变量**的**显式系数**，由此得到体积项的**尺度积分律**
@@ -66,8 +68,10 @@ $$
 $$
 g_{ij}=\partial_i\partial_j D|_{\theta_0},\quad
 T_{ijk}=\partial_i\partial_j\partial_k D|_{\theta_0},\quad
-K_{ijkl}=\partial_i\partial_j\partial_k\partial_l D|_{\theta_0},
+\boxed{\ \mathcal K_{ijkl}=\partial_i\partial_j\partial_k\partial_l D|_{\theta_0}\ }.
 $$
+
+记 $\boxed{\ \mathcal K:=\mathcal K^{ij}{}_{ij}\ }$ 为四阶响应张量的完全收缩（与 $\mathsf K_{w,h}$ 无关）。
 
 诱导 Fisher–Rao 与 $\alpha$–联络：$\Gamma^{(\alpha)}{}_{ijk}=\Gamma^{(0)}{}_{ijk}+\tfrac{\alpha}{2}T_{ijk}$。Bregman 散度 $D_\psi$ 使 $g=\nabla^2\psi$，$\nabla^{(\pm1)}$ 平直。
 
@@ -76,21 +80,29 @@ $$
 自伴对 $(H_0,H)$ 满足迹类或相对迹类扰动，波算子完备；$S(\omega)$ 幺正且弱可导。谱移 $\xi(\omega)$ 满足 $\det S(\omega)=e^{-2\pi i\xi(\omega)}$。离散阈值集 $\Sigma$ 之外，
 
 $$
-\frac{\varphi'(\omega)}{\pi}=\xi'(\omega)=\frac{1}{2\pi}\operatorname{tr}Q(\omega),\qquad Q=-iS^\dagger \partial_\omega S,
+\frac{\varphi'(\omega)}{\pi}=-\xi'(\omega)=\frac{1}{2\pi}\operatorname{tr}Q(\omega),\qquad Q=-iS^\dagger \partial_\omega S,
 $$
 
 在 $\Sigma$ 上以分布意义（含相位重整与边界项）成立。
 
 ### 4. Toeplitz/Berezin 压缩与读数
 
-取 Paley–Wiener / de Branges / Hardy 空间 $\mathcal H$，正交投影 $P$（**范数 $|P|=1$**）。设 $w\in C_0^\infty\cap L^\infty$，$h=g\ast\tilde g$ 如上。定义
+取 Paley–Wiener / de Branges / Hardy 空间 $\mathcal H$，正交投影 $P$（**范数 $|P|=1$**）。设 $w\in C_0^\infty\cap L^\infty$，$h=g\ast\tilde g$ 如上。
+
+**定义（相对谱投影差）** 记 $\Pi$ 为自伴对 $(H_0,H)$ 的**相对谱投影差**在能量表象下的分布核（等价于相对谱测度），使得
+
+$$
+\operatorname{tr}(\mathsf K_{w,h}\Pi)=\int w(\omega)\,[h\!\ast!\rho_{\rm rel}](\omega)\,d\omega,
+$$
+
+其中 $\rho_{\rm rel}(\omega)=\frac{\varphi'(\omega)}{\pi}=\frac{1}{2\pi}\operatorname{tr}Q(\omega)$，$Q=-iS^\dagger\partial_\omega S$。
+
+定义
 
 $$
 \mathsf K_{w,h}:=P\,M_{w^{1/2}}C_g\cdot C_{\tilde g}M_{w^{1/2}}P,\qquad
-\mathrm{Obs}(w,h)=\operatorname{tr}(\mathsf K_{w,h}\Pi)=\int w(\omega)\,[h\!\ast!\rho_{\rm rel}](\omega)\,d\omega,
+\mathrm{Obs}(w,h)=\operatorname{tr}(\mathsf K_{w,h}\Pi)=\int w(\omega)\,[h\!\ast!\rho_{\rm rel}](\omega)\,d\omega.
 $$
-
-其中 $\rho_{\rm rel}(\omega)=\varphi'(\omega)/\pi=(2\pi)^{-1}\operatorname{tr}Q(\omega)$。
 
 ### 5. NPE 纪律与"近带限"
 
@@ -118,7 +130,7 @@ $$
 
 ### 定理 2（母尺三位一体：充分条件与阈值修正）
 
-在 §3 假设下，$\det S(\omega)=e^{-2\pi i\xi(\omega)}$ 且 $\xi'(\omega)=(2\pi)^{-1}\operatorname{tr}Q(\omega)$ 几乎处处成立；$\omega\in\Sigma$ 或长程势时以分布意义并带重整相位成立。
+在 §3 假设下，$\det S(\omega)=e^{-2\pi i\xi(\omega)}$ 且 $\boxed{\ \xi'(\omega)=-\tfrac{1}{2\pi}\operatorname{tr}Q(\omega)\ }$ 几乎处处成立；$\omega\in\Sigma$ 或长程势时以分布意义并带重整相位成立。
 
 ### 定理 3（Poisson 零别项判据与香农重构判据）
 
@@ -147,7 +159,13 @@ $$
 \mathrm{WF}\big(P\,M_w\,C_h\,P\,u\big)\subseteq \mathrm{WF}(u)\ \cup\ \Gamma_0,
 $$
 
-$\Gamma_0$ 为 $\xi=0$ 的受控锥域。**注**：在能量壳窗化（带限/近带限）下不激活 $\Gamma_0$，于是有严格包含 $\mathrm{WF}(PM_wC_hPu)\subseteq \mathrm{WF}(u)$。
+$\Gamma_0$ 为 $\xi=0$ 的受控锥域。**注**：在能量壳窗化（带限/近带限）下不激活 $\Gamma_0$，于是有
+
+$$
+\mathrm{WF}(PM_wC_hPu)\subseteq \mathrm{WF}(u).
+$$
+
+若 $\mathrm{WF}(u)\neq \varnothing$，则上述包含为严格包含。
 
 ### 定理 6（四阶响应 $\to$ 曲率二次项：最小可算模型与系数）
 
@@ -161,8 +179,8 @@ $$
 其中 $W$ 由 $\rho_{\rm rel},w,h$ 决定。则
 
 $$
-\int\!\sqrt{-g}\,\mathrm{Tr}K
-=c_1\!\int\!\sqrt{-g}\,R^2+c_2\!\int\!\sqrt{-g}\,R_{\mu\nu}R^{\mu\nu}+\text{(总导数)},
+\boxed{\ \int\!\sqrt{-g}\,\mathcal K
+=c_1\!\int\!\sqrt{-g}\,R^2+c_2\!\int\!\sqrt{-g}\,R_{\mu\nu}R^{\mu\nu}+\text{(总导数)}\ },
 $$
 
 且
@@ -182,14 +200,14 @@ $$
 \Xi(\omega)=\langle\mathcal K,\rho_{\rm rel}\rangle_{w_\omega,h},\quad [\Xi]=L^{-2}.
 $$
 
-若诱导二点核与 $w_\omega,h$ 皆为 Bochner 正定，则 $\Xi(\omega)\ge 0$ 并随 $\ln\mu$ 单调不减；阈值/共振簇可致局部非单调，但当峰族在 $\ln\omega$ 上近匀密且权重缓变时，$\Xi$ 在宽区间近常，出现"准对数"累积。
+若 $\rho_{\rm rel}(\omega)\ge 0$ 且诱导二点核与 $w_\omega,h$ 为非负/Bochner 正定，则 $\Xi(\omega)\ge 0$ 并随 $\ln\mu$ 单调不减；若 $\rho_{\rm rel}$ 符号可变，则仅能得到窗口平均意义下的准单调性，或将 $\Xi$ 改为二次型以获得严格非负。阈值/共振簇可致局部非单调，但当峰族在 $\ln\omega$ 上近匀密且权重缓变时，$\Xi$ 在宽区间近常，出现"准对数"累积。
 
 ### 定理 8（FRW 曲率项的谱—几何对接）
 
 三维常曲率流形的热核渐近
 
 $$
-\mathrm{Tr}\,e^{-t\Delta}\sim (4\pi t)^{-3/2}\Big[\mathrm{Vol}+\frac{t}{6}\!\int R +O(t^{3/2})\Big],\quad t\downarrow 0,
+\mathrm{Tr}\,e^{-t\Delta}\sim (4\pi t)^{-3/2}\Big[\mathrm{Vol}+\frac{t}{6}\!\int R +O(t^{2})\Big],\quad t\downarrow 0,
 $$
 
 对 $S^3(L)$ 有 $R=6/L^2$、$\mathrm{Vol}=2\pi^2L^3$。窗化计数函数的次主项 $\propto \int R\propto \kappa\,\mathrm{Vol}$ 与 FRW 的 $-\kappa/a^2$ 项一致；窗形仅改变系数，不破坏同质各向同性。
@@ -210,7 +228,7 @@ $$
 
 1. **谱移函数的定义**：由 Lifshitz–Krein 迹公式定义 $\xi$。
 2. **散射行列式关系**：Birman–Krein 等式给出 $\det S=e^{-2\pi i\xi}$。
-3. **导数关系**：stationary scattering 的可导性导出 $\xi'=(2\pi)^{-1}\operatorname{tr}Q$。
+3. **导数关系**：stationary scattering 的可导性导出 $\xi'=-(2\pi)^{-1}\operatorname{tr}Q$。
 
 阈值/长程势情形以分布意义与相位重整修正。
 
@@ -236,11 +254,19 @@ Hörmander 伪局部性与 Boutet de Monvel–Guillemin 的 Toeplitz–FIO 对�
 
 $$\mathrm{WF}(PM_wC_hPu)\subseteq \mathrm{WF}(u)\cup\Gamma_0.$$
 
-能量壳窗化避免 $\Gamma_0$，从而有严格包含 $\mathrm{WF}(PM_wC_hPu)\subseteq \mathrm{WF}(u)$。
+能量壳窗化避免 $\Gamma_0$，从而有
+
+$$
+\mathrm{WF}(PM_wC_hPu)\subseteq \mathrm{WF}(u),
+$$
+
+且当 $\mathrm{WF}(u)\neq\varnothing$ 时该包含为严格包含。
 
 ---
 
 ### 定理 6（四阶响应 $\to$ 曲率二次项：最小可算模型与系数）
+
+由线性化分解得 $\boxed{\ \mathcal K_{ijkl}\ }$ 的贡献；其完全收缩 $\boxed{\ \mathcal K\ }$ 与 $R^2,\,R_{\mu\nu}R^{\mu\nu}$ 的匹配系数为 $c_1=\mathcal N_s/36,\ c_2=\mathcal N_s/12+\mathcal N_t/4$。
 
 **标量模**：线性化曲率 $R^{(1)}=-6\Box \sigma$，从而 $R^2=36\,k^4\sigma^2$，$R_{\mu\nu}^{(1)}R^{\mu\nu (1)}=12\,k^4\sigma^2$。
 
@@ -252,7 +278,7 @@ $$\mathrm{WF}(PM_wC_hPu)\subseteq \mathrm{WF}(u)\cup\Gamma_0.$$
 
 ### 定理 7（体积项的尺度积分律与 $\Xi$ 的正性/单调）
 
-低频簇（Poisson 的 $k=0$）主导体积项。Bochner 正定性给出 $\Xi\ge 0$。
+低频簇（Poisson 的 $k=0$）主导体积项。当 $\rho_{\rm rel}(\omega)\ge 0$ 且核与窗为非负/Bochner 正定时，$\Xi\ge 0$；若 $\rho_{\rm rel}$ 符号可变，则需窗口平均或改为二次型。
 
 峰族在 $\ln\omega$ 上近匀密时的 Tauberian 控制保证"准对数"区间。
 
@@ -268,7 +294,20 @@ $$\mathrm{WF}(PM_wC_hPu)\subseteq \mathrm{WF}(u)\cup\Gamma_0.$$
 
 ### 1. 一维 $\delta$ 势：单峰饱和与准对数累积
 
-$V(x)=\lambda\delta(x)$。相移 $\delta(k)=-\arctan(\lambda/2k)$，$\rho_{\rm rel}(\omega)=\delta'(\omega)/\pi$。对平滑对数窗
+取 $V(x)=\lambda\delta(x)$。在本文单位约定下**以能量变量 $E\equiv\omega$ 表述**，相移写作
+
+$$
+\delta(E)=\delta\big(k(E)\big)=-\arctan\frac{\lambda}{2k(E)},\quad k(E)=\sqrt{E}\ (\text{可取 }2m=1),
+$$
+
+因而**相对态密度**
+
+$$
+\boxed{\ \rho_{\rm rel}(E)=\frac{1}{\pi}\frac{d\delta}{dE}
+=\frac{1}{\pi}\frac{d\delta}{dk}\frac{dk}{dE}\ } \qquad\big(\text{下文将 $E$ 与 $\omega$ 等同}\big).
+$$
+
+随后采用对数窗与洛伦兹峰的解析积分来展示"单峰饱和/峰族准对数累积"，与上式兼容。对平滑对数窗
 
 $$
 I(\mu;\mu_0)=\int_{\mu_0}^{\mu}\frac{\Gamma}{(\omega-\omega_0)^2+\Gamma^2}\frac{d\omega}{\omega}
@@ -354,7 +393,7 @@ Hagen, C. R. "Aharonov–Bohm scattering of particles with spin." *Phys. Rev. D*
 
 ### 附录 B：母尺等式的 KFL 链闭合
 
-由 Lifshitz–Krein 迹公式定义 $\xi$；Birman–Krein 等式给 $\det S=e^{-2\pi i\xi}$；stationary scattering 的可导性推出 $\xi'=(2\pi)^{-1}\operatorname{tr}Q$；阈值/长程势的分布意义修正。
+由 Lifshitz–Krein 迹公式定义 $\xi$；Birman–Krein 等式给 $\det S=e^{-2\pi i\xi}$；stationary scattering 的可导性推出 $\xi'=-(2\pi)^{-1}\operatorname{tr}Q$；阈值/长程势的分布意义修正。
 
 ### 附录 C：Toeplitz/Berezin—Schatten 迹类：对称平滑分配
 
@@ -388,6 +427,8 @@ $\mathrm{WF}(PM_wC_hPu)\subseteq \mathrm{WF}(u)\cup\Gamma_0$；能量壳窗化�
 
 ### 附录 G：四阶响应到 $R^2, R_{\mu\nu}R^{\mu\nu}$ 的系数推导
 
+由线性化分解得 $\boxed{\ \mathcal K_{ijkl}\ }$ 的贡献；其完全收缩 $\boxed{\ \mathcal K\ }$ 与 $R^2,\,R_{\mu\nu}R^{\mu\nu}$ 的匹配系数为 $c_1=\mathcal N_s/36,\ c_2=\mathcal N_s/12+\mathcal N_t/4$。
+
 标量：$R^{(1)}=-6\Box\sigma \Rightarrow R^2=36\,k^4\sigma^2$、$R_{\mu\nu}R^{\mu\nu}=12\,k^4\sigma^2$。
 TT：$R^{(1)}=0$、$R_{\mu\nu}R^{\mu\nu}=\tfrac14 k^4(h^{\rm TT})^2$。
 与窗化四阶核权重匹配得
@@ -395,7 +436,7 @@ $c_1=\mathcal N_s/36,\ c_2=\mathcal N_s/12+\mathcal N_t/4$。
 
 ### 附录 H：$\Xi(\omega)$ 的正性与反例边界
 
-当诱导二点核与 $w,h$ Bochner 正定时，$\Xi\ge 0$；阈值/共振簇可导致局部负；对数尺度上的窗口平均 $\overline{\Xi}$ 的变差界提供"准对数"区间的可测检判据。
+当 $\rho_{\rm rel}(\omega)\ge 0$ 且诱导二点核与 $w,h$ 为非负/Bochner 正定时，$\Xi\ge 0$；若 $\rho_{\rm rel}$ 符号可变，则 $\Xi$ 可能为负，此时需窗口平均或改为二次型以获得非负性。阈值/共振簇可导致局部负；对数尺度上的窗口平均 $\overline{\Xi}$ 的变差界提供"准对数"区间的可测检判据。
 
 ### 附录 I：对数窗×洛伦兹峰的恒等式与饱和
 
