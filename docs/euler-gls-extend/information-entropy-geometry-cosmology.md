@@ -1,6 +1,6 @@
 # 信息熵—几何统一与宇宙学项的窗化生成
 
-Version: 1.4
+Version: 1.5
 
 **从相对熵 Hessian 到有效作用、Poisson–Euler–Maclaurin 有限阶纪律与 Friedmann 方程的几何熵分解**
 
@@ -18,7 +18,7 @@ $$
 \frac{\varphi'(\omega)}{\pi}=-\xi'(\omega)=\frac{1}{2\pi}\operatorname{tr}Q(\omega),\qquad Q=-iS^\dagger\partial_\omega S
 $$
 
-的定理化陈述，并指出**阈值/长程势**处的分布意义修正。再次，选定 Paley–Wiener / de Branges / Hardy 环境，采用**对称平滑分配**（$\widehat g=\sqrt{\widehat h}$，$h=g\ast\tilde g$）将 $\mathsf K_{w,h}=P\,M_{w^{1/2}}C_g\cdot C_{\tilde g}M_{w^{1/2}}P$ 置入 Schatten–迹类并给出**显式上界**。随后统一 Fourier 约定并区分**Poisson 零别项判据** ($\Delta<2\pi/B$) 与**香农无混叠重构** ($\Delta<\pi/B$) 的倍常数差异；在"近带限"的双层尾部控制下给出 EM 余项的 $\zeta(2m)$ 显式常数。利用 Toeplitz–FIO 的对角型波前关系证明**窗化—压缩—卷积的奇性不增**（并对 $\xi=0$ 锥域作条件化说明）。在线性化重力的最小可算模型中，给出**四阶响应**到**曲率二次不变量**的**显式系数**，由此得到体积项的**尺度积分律**
+的定理化陈述，并指出**阈值/长程势**处的分布意义修正。再次，选定 Paley–Wiener / de Branges / Hardy 环境，采用**对称平滑分配**（$\widehat g=\sqrt{\widehat h}$，$h=g\ast\tilde g$）将 $\mathsf K_{w,h}=P\,M_{w^{1/2}}C_g\cdot C_{\tilde g}M_{w^{1/2}}P$ 置入 Schatten–迹类并给出**显式上界**。随后统一 Fourier 约定并区分**Poisson 零别项判据** ($\Delta<2\pi/B$) 与**香农无混叠重构** ($\Delta<\pi/B$) 的倍常数差异；在"近带限"的双层尾部控制下给出 EM 余项的 $\zeta(2m)$ 显式常数。利用 Toeplitz–FIO 的对角型波前关系证明**窗化—压缩—卷积的奇性不增**（在去零截切 $T^*X\setminus 0$ 上成立，带限/近带限窗化下为全局包含）。在线性化重力的最小可算模型中，给出**四阶响应**到**曲率二次不变量**的**显式系数**，由此得到体积项的**尺度积分律**
 
 $$
 \Lambda_{\mathrm{eff}}(\mu)-\Lambda_{\mathrm{eff}}(\mu_0)=\int_{\mu_0}^{\mu}\Xi(\omega)\,d\ln\omega,\qquad [\Xi]=L^{-2},
@@ -58,7 +58,13 @@ f(x)=\frac{1}{2\pi}\int_{\mathbb R} e^{i\omega x}\widehat f(\omega)\,d\omega.
 $$
 
 全文统一以**频率** $\omega$ 记能量变量（读者可视作 $E\equiv\omega$）。
-窗 $w_\mu$ 取平滑化对数窗 $w_\mu(\omega)\approx \chi_{[\mu_0,\mu]}(\omega)/\omega$。
+窗 $w_\mu$ 取平滑化对数窗，满足 $w_\mu\in C_0^\infty\cap L^\infty$ 且 $\operatorname{supp}w_\mu\subset[\mu_0,\mu]$、$\mu>\mu_0>0$；具体可取
+
+$$
+w_\mu(\omega)=\frac{\psi(\omega)}{\omega},\qquad \psi\in C_0^\infty,\ \psi\equiv1\ \text{于}\ [\mu_0,\mu]^\circ,
+$$
+
+并在 $\omega=\mu_0,\mu$ 处平滑截断（若需覆盖 $\omega\approx 0$ 的区间，则先取 $\mu_0>0$ 后极限）。
 **总声明**：读数核 $h$ 默认为**Bochner 正定**（$\widehat h\ge 0$、$\widehat h\in L^1$），从而存在 $\widehat g=\sqrt{\widehat h}\in L^2$ 使 $h=g\ast\tilde g$。
 
 ### 2. 信息散度与对偶平坦
@@ -77,13 +83,27 @@ $$
 
 ### 3. 母尺、散射—谱移与阈值条款
 
-自伴对 $(H_0,H)$ 满足迹类或相对迹类扰动，波算子完备；$S(\omega)$ 幺正且弱可导。谱移 $\xi(\omega)$ 满足 $\det S(\omega)=e^{-2\pi i\xi(\omega)}$。离散阈值集 $\Sigma$ 之外，
+自伴对 $(H_0,H)$ 满足迹类或相对迹类扰动，波算子完备；$S(\omega)$ 幺正且弱可导。谱移 $\xi(\omega)$ 满足 $\det S(\omega)=e^{-2\pi i\xi(\omega)}$。
+
+**定义（总散射相位）** 令
 
 $$
-\frac{\varphi'(\omega)}{\pi}=-\xi'(\omega)=\frac{1}{2\pi}\operatorname{tr}Q(\omega),\qquad Q=-iS^\dagger \partial_\omega S,
+\varphi(\omega):=\frac{1}{2i}\mathrm{Log}\,\det S(\omega),
 $$
 
-在 $\Sigma$ 上以分布意义（含相位重整与边界项）成立。
+取与阈值相位重整一致且在 $\omega\to+\infty$ 连续的支。则
+
+$$
+\varphi'(\omega)=\frac{1}{2i}\operatorname{tr}\big(S^{-1}\partial_\omega S\big)=\tfrac12\operatorname{tr}Q(\omega),\qquad Q=-iS^\dagger\partial_\omega S,
+$$
+
+因而
+
+$$
+\frac{\varphi'(\omega)}{\pi}=-\xi'(\omega)=\frac{1}{2\pi}\operatorname{tr}Q(\omega),
+$$
+
+离散阈值集 $\Sigma$ 上以分布意义成立。
 
 ### 4. Toeplitz/Berezin 压缩与读数
 
@@ -153,19 +173,19 @@ $$
 
 ### 定理 5（Toeplitz–FIO 的伪局部性与奇性不增）
 
-$w\in C^\infty$，$h\in\mathcal S$；投影 $P$ 为对角型波前关系的 Toeplitz–FIO。对任意分布 $u$：
+令 $w\in C^\infty$，$h\in\mathcal S$，$P$ 为对角型波前关系的 Toeplitz–FIO。对任意分布 $u$ 与任意远离零截切的开锥域 $U\Subset T^*X\setminus 0$，有
 
 $$
-\mathrm{WF}\big(P\,M_w\,C_h\,P\,u\big)\subseteq \mathrm{WF}(u)\ \cup\ \Gamma_0,
+\mathrm{WF}\big(P\,M_w\,C_h\,P\,u\big)\cap U\ \subseteq\ \mathrm{WF}(u)\cap U.
 $$
 
-$\Gamma_0$ 为 $\xi=0$ 的受控锥域。**注**：在能量壳窗化（带限/近带限）下不激活 $\Gamma_0$，于是有
+**注**：在能量壳窗化（带限/近带限）排除了 $|\xi|\approx 0$ 的低频邻域时，得到全局包含
 
 $$
-\mathrm{WF}(PM_wC_hPu)\subseteq \mathrm{WF}(u).
+\mathrm{WF}(PM_wC_hPu)\subseteq \mathrm{WF}(u),
 $$
 
-若 $\mathrm{WF}(u)\neq \varnothing$，则上述包含为严格包含。
+且当 $\mathrm{WF}(u)\neq \varnothing$ 时，上述包含为严格包含。
 
 ### 定理 6（四阶响应 $\to$ 曲率二次项：最小可算模型与系数）
 
@@ -250,17 +270,13 @@ $$
 
 ### 定理 5（Toeplitz–FIO 的伪局部性与奇性不增）
 
-Hörmander 伪局部性与 Boutet de Monvel–Guillemin 的 Toeplitz–FIO 对角型波前关系给出
-
-$$\mathrm{WF}(PM_wC_hPu)\subseteq \mathrm{WF}(u)\cup\Gamma_0.$$
-
-能量壳窗化避免 $\Gamma_0$，从而有
+Hörmander 伪局部性给出 $\mathrm{WF}(M_w u)\subseteq \mathrm{WF}(u)$，而 $C_h$ 为平滑算子。Toeplitz–FIO 的对角型波前关系蕴含：对任意 $U\Subset T^*X\setminus 0$，
 
 $$
-\mathrm{WF}(PM_wC_hPu)\subseteq \mathrm{WF}(u),
+\mathrm{WF}(PM_wC_hPu)\cap U\subseteq \mathrm{WF}(u)\cap U.
 $$
 
-且当 $\mathrm{WF}(u)\neq\varnothing$ 时该包含为严格包含。
+在带限/近带限窗化下可取 $U$ 覆盖整个 $T^*X\setminus 0$，于是 $\mathrm{WF}(PM_wC_hPu)\subseteq \mathrm{WF}(u)$。
 
 ---
 
@@ -420,10 +436,15 @@ $$
 采用 DLMF 的余项表达与 Bernoulli 数常数，结合 Bernstein 导数界给出
 $|R_m|\le \frac{2\zeta(2m)}{(2\pi)^{2m}}(b-a)\sup|f^{(2m)}|+O(\varepsilon)$。
 
-### 附录 F：波前集不增与 $\xi=0$ 锥域
+### 附录 F：波前集不增与去零截切
 
-Hörmander 伪局部性：$\mathrm{WF}(wu)\subseteq \mathrm{WF}(u)$、$\mathrm{WF}(h\ast u)=\varnothing$。Toeplitz–FIO 的对角型波前关系给出
-$\mathrm{WF}(PM_wC_hPu)\subseteq \mathrm{WF}(u)\cup\Gamma_0$；能量壳窗化排除 $\Gamma_0$。
+Hörmander 伪局部性给出 $\mathrm{WF}(M_w u)\subseteq \mathrm{WF}(u)$，而 $C_h$ 为平滑算子。Toeplitz–FIO 的对角型波前关系蕴含：对任意 $U\Subset T^*X\setminus 0$，
+
+$$
+\mathrm{WF}(PM_wC_hPu)\cap U\subseteq \mathrm{WF}(u)\cap U.
+$$
+
+在带限/近带限窗化下可取 $U$ 覆盖整个 $T^*X\setminus 0$，于是 $\mathrm{WF}(PM_wC_hPu)\subseteq \mathrm{WF}(u)$。
 
 ### 附录 G：四阶响应到 $R^2, R_{\mu\nu}R^{\mu\nu}$ 的系数推导
 
