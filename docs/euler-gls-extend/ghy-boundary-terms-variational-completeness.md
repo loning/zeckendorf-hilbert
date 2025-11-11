@@ -1,6 +1,6 @@
 # Gibbons–Hawking–York 边界项的必要性与推广：变分良定性、角点与零类边界，以及到准局域能与热力学的闭合
 
-**Version: 1.1**
+**Version: 1.4**
 
 **MSC**：83C05；83C57；58A10；49S05
 
@@ -40,6 +40,27 @@ W_{AB}:=\gamma_A{}^\mu\gamma_B{}^\nu\nabla_\mu\ell_\nu,\qquad
 $$
 
 指标以 $\gamma_{AB}$ 升降；横截协变导数 $\mathcal D_A$ 与 Hájiček 一形式 $\omega_A:=-k_\mu\nabla_A\ell^\mu$ 由 rigging connection 诱导。
+
+**参数与表面引力**：取 $\lambda$ 为沿生成矢量 $\ell$ 的参数，规定
+
+$$
+\partial_\lambda:=\ell^\mu\nabla_\mu.
+$$
+
+在保持规范 $\ell\cdot k=-1$ 下，表面引力定义为
+
+$$
+\boxed{\ \kappa:=-k_\mu\,\ell^\nu\nabla_\nu\ell^\mu\ },
+$$
+
+因而有 $\ell^\nu\nabla_\nu\ell^\mu=\kappa\,\ell^\mu$。
+
+该定义与 §4 的重标度律相容：当 $\ell\to e^\alpha\ell$、$k\to e^{-\alpha}k$ 时，
+
+$$
+\theta\to e^\alpha\theta\quad\text{且}\quad\kappa\to e^\alpha(\kappa+\partial_\lambda\alpha).
+$$
+
 * **分段边界与关节**：$\partial\mathcal M=\bigcup_i\mathcal B_i$，$\mathcal C_{ij}=\mathcal B_i\cap\mathcal B_j$ 允许签名翻转或含零类片段。
 * **边界数据（Dirichlet 类）**：非零类片段固定 $h_{ab}$；零类片段固定 Carroll 结构 $(\gamma_{AB},[\ell])$，其中 $[\ell]$ 按常数重标度 $\ell\to e^\alpha\ell$ 取等价类；各关节固定"角"（§3 的 $\eta$ 与 §4 的对数量角 $a$）。
 * **测度**：体域 $\sqrt{-g}\,\mathrm d^4x$；非零类边界 $\sqrt{|h|}\,\mathrm d^3x$；零类边界 $\sqrt{\gamma}\,\mathrm d\lambda\,\mathrm d^2x$；关节 $\sqrt{\sigma}\,\mathrm d^2x$。
@@ -80,7 +101,7 @@ $$
 
 $$
 \delta(n_\mu n^\mu)=0,\qquad
-\boxed{\ \delta n_\mu=-\tfrac12\,\varepsilon\,n_\mu\,n^\alpha n^\beta\,\delta g_{\alpha\beta}\ } .
+\boxed{\ \delta n_\mu=\tfrac12\,\varepsilon\,n_\mu\,n^\alpha n^\beta\,\delta g_{\alpha\beta}\ } .
 $$
 
 该设定与 Dirichlet 数据（固定 $h_{ab}$）相容，并使 $S_{\mathrm{GHY}}$ 与关节项逐项抵消边界通量。
@@ -95,7 +116,7 @@ $$
 
 证明见附录 B 的逐项配平。
 **自检提示**：将附录 A 的主项 $n^\rho h^{\mu\alpha}h^{\nu\beta}\nabla_\rho\delta g_{\alpha\beta}$ 与附录 B 中由
-$\delta n_\mu=-\tfrac12\varepsilon n_\mu n^\alpha n^\beta\delta g_{\alpha\beta}$ 导致的 $\delta K_{ab}$ 之含 $\nabla\delta g$ 项逐项对齐，可直接复算抵消。
+$\delta n_\mu=\tfrac12\varepsilon n_\mu n^\alpha n^\beta\delta g_{\alpha\beta}$ 导致的 $\delta K_{ab}$ 之含 $\nabla\delta g$ 项逐项对齐，可直接复算抵消。
 
 ---
 
@@ -194,7 +215,7 @@ $$
 T^{ab}_{\mathrm{BY}}=\frac{1}{8\pi G}(K^{ab}-Kh^{ab})
 $$
 
-给出；类时截面 $\mathcal S$ 的能量
+给出；类空截面 $\mathcal S$ 的能量
 
 $$
 E_{\mathrm{BY}}=\int_{\mathcal S}\sqrt{\sigma}\,u_a u_b\,T^{ab}_{\mathrm{BY}}\,\mathrm d^2x
@@ -245,8 +266,12 @@ $$
 $$
 T^{ab}_{\mathrm{BY,ren}}
 =\frac{2}{\sqrt{|h|}}\frac{\delta\big(S_{\mathrm{GHY}}+S_{\mathrm{joint}}+S_{\mathrm{ct}}-S_{\mathrm{ref}}\big)}{\delta h_{ab}}
-=T^{ab}_{\mathrm{BY}}-\big(T^{ab}_{\mathrm{BY}}\big)_{\mathrm{ref}},
+= T^{ab}_{\mathrm{BY}} + T^{ab}_{\mathrm{ct}} - T^{ab}_{\mathrm{ref}},
 $$
+
+其中\quad
+$T^{ab}_{\mathrm{ct}}:=\dfrac{2}{\sqrt{|h|}}\dfrac{\delta S_{\mathrm{ct}}}{\delta h_{ab}},\qquad
+T^{ab}_{\mathrm{ref}}:=\dfrac{2}{\sqrt{|h|}}\dfrac{\delta S_{\mathrm{ref}}}{\delta h_{ab}}$。
 
 四维 AAdS 的最小反项见 §9。
 
@@ -383,7 +408,7 @@ $$
 **B.2** 代入单位法向规范
 
 $$
-\boxed{\ \delta n_\mu=-\tfrac12\,\varepsilon\,n_\mu\,n^\alpha n^\beta\,\delta g_{\alpha\beta}\ },
+\boxed{\ \delta n_\mu=\tfrac12\,\varepsilon\,n_\mu\,n^\alpha n^\beta\,\delta g_{\alpha\beta}\ },
 $$
 
 将 $\delta K$ 中的 $\nabla\delta g$ 与附录 A 主项逐项相消，同时 $\Pi^{ab}\delta h_{ab}$ 互消，得定理 2.1。
