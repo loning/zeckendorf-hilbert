@@ -1,6 +1,6 @@
 # Gibbons–Hawking–York 边界项的必要性与推广：变分良定性、角点与零类边界，以及到准局域能与热力学的闭合
 
-**Version: 1.4**
+**Version: 1.6**
 
 **MSC**：83C05；83C57；58A10；49S05
 
@@ -184,7 +184,7 @@ $$
 W_{AB}\to e^\alpha W_{AB},\quad \theta\to e^\alpha\theta,\quad \kappa\to e^\alpha(\kappa+\partial_\lambda\alpha).
 $$
 
-当 $\alpha=\text{const}$ 时，$\int_{\mathcal N}\sqrt{\gamma}(\theta+\kappa)\,\mathrm d\lambda\,\mathrm d^2x$ 与关节项之和不变；当 $\alpha=\alpha(\lambda)$ 时，产生端点全变分，可由对数量角的 counterterm 吸收（附录 D）。
+当 $\alpha=\text{const}$ 时，$\int_{\mathcal N}\sqrt{\gamma}(\theta+\kappa)\,\mathrm d\lambda\,\mathrm d^2x$ 与关节项之和不变；当 $\alpha=\alpha(\lambda)$ 时，产生端点全变分，可由对数量角的 counterterm 吸收（见附录 D；路径 B 取 $\ln(\ell_c|\Theta|)$ 并要求 $\Theta$ 保号，若 $\Theta$ 过零则改用路径 A 的端点/关节补偿）。
 
 **横向超平移/截面重参数**：
 
@@ -208,14 +208,30 @@ $$
 
 在 $3+1$ 分解下，仅 $S_{\mathrm{EH}}$ 时哈密顿量泛函不可微；加入 $S_{\mathrm{GHY}}$ 与必要关节/零类项后，得
 
-**定理 5.1（若且唯若的可微性）**
-在 Dirichlet 数据与本文取向/正则性假设下，哈密顿量 $H_\xi$ 在相空间 Frechét 可微若且唯若其边界生成元由
+**定理 5.1（可微性与边界生成元）**
+在 Dirichlet 数据与本文取向/正则性假设下，若取作用
+
+$$
+S=S_{\mathrm{EH}}+S_{\mathrm{GHY}}+S_{\mathrm{joint}}(+S_{\mathcal N})
+$$
+
+而**不引入任何仅依赖边界内禀度规 $h_{ab}$ 的本征边界泛函**，则哈密顿量 $H_\xi$ 在相空间 Fréchet 可微，其边界生成元**唯一**由
 
 $$
 T^{ab}_{\mathrm{BY}}=\frac{1}{8\pi G}(K^{ab}-Kh^{ab})
 $$
 
-给出；类空截面 $\mathcal S$ 的能量
+给出。
+
+若在同一边界条件类内加入/减去本征项（如第 9 节的 $S_{\mathrm{ct}}$、参考项 $S_{\mathrm{ref}}$），则 $H_\xi$ 仍可微，且边界生成元相应改为
+
+$$
+T^{ab}_{\mathrm{BY,ren}}=T^{ab}_{\mathrm{BY}}+T^{ab}_{\mathrm{ct}}-T^{ab}_{\mathrm{ref}},
+$$
+
+与第 6 节协变相空间分析及第 9 节重整反项保持一致。
+
+类空截面 $\mathcal S$ 的能量
 
 $$
 E_{\mathrm{BY}}=\int_{\mathcal S}\sqrt{\sigma}\,u_a u_b\,T^{ab}_{\mathrm{BY}}\,\mathrm d^2x
@@ -441,8 +457,10 @@ $$
 **D.3 路径 B（对数反项）**：
 
 $$
-S_{\mathrm{reparam}}=\frac{1}{8\pi G}\int_{\mathcal N}\sqrt{\gamma}\,\Theta\ln(\ell_c\Theta)\,\mathrm d\lambda\,\mathrm d^2x,\qquad \Theta:=\theta .
+S_{\mathrm{reparam}}=\frac{1}{8\pi G}\int_{\mathcal N}\sqrt{\gamma}\,\Theta\ln\big(\ell_c|\Theta|\big)\,\mathrm d\lambda\,\mathrm d^2x,\qquad \Theta:=\theta .
 $$
+
+注：路径 B 需各生成线 $\Theta$ 保持定号；若 $\Theta$ 过零（如在焦点），应将过零点视为关节并按 D.2 的端点/关节补偿处理，或改用路径 A。
 
 **D.4 横向超平移** $\ell\to e^\alpha(\ell+v^A e_A)$ 引入 $\mathcal D_A v^A$，归入截面重定义。
 
