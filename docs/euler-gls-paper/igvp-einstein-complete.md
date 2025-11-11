@@ -1,10 +1,10 @@
 # 信息几何变分原理导出爱因斯坦方程：定体积对偶、显式可交换极限、Radon‑型闭包、OS/KMS–Fisher 解析延拓与 null 边界处方
 
-Version: 2.9
+Version: 3.6
 
 ## 摘要
 
-在流形每一点的小尺度因果钻石 $B_\ell(p)$ 上，以广义熵
+在流形每一点的小尺度因果钻石 $\mathcal D_\ell(p)$ 上，以广义熵
 
 $$
 S_{\rm gen}= \frac{A(\text{腰面})}{4G\hbar}+S_{\rm out}^{\rm ren}+S_{\rm ct}^{\rm UV}-\frac{\Lambda}{8\pi G}\frac{V(B_\ell)}{T}
@@ -23,7 +23,7 @@ $$
 
 ## 0 记号、域前提与速查表
 
-**记号与单位**：度规签名 $(-,+,+,+)$；$c=k_B=1$，保留 $\hbar$。爱因斯坦张量 $G_{ab}=R_{ab}-\tfrac12R g_{ab}$。零向量收缩 $R_{kk}:=R_{ab}k^ak^b$、$T_{kk}:=T_{ab}k^ak^b$。**体积与面积**：**体积 $V(B_\ell)$** 指因果钻石**最大截面**（腰面）的 $(d{-}1)$ 维体积（本文默认 $d\ge3$；四维时即三维体积）。以下 $dA$ 皆指腰面测度；腰面面积主阶标度 $A\sim c_d\ell^{d-2}$（常数并入 $C_d$）。
+**记号与单位**：度规签名 $(-,+,+,+)$；$c=k_B=1$，保留 $\hbar$。爱因斯坦张量 $G_{ab}=R_{ab}-\tfrac12R g_{ab}$。零向量收缩 $R_{kk}:=R_{ab}k^ak^b$、$T_{kk}:=T_{ab}k^ak^b$。**体积与面积**：令**腰超曲面** $\Sigma_\ell$ 为因果钻石 $\mathcal D_\ell$ 的最大空间截面（维数 $d{-}1$），其体积 $V(B_\ell):=\mathrm{Vol}(\Sigma_\ell)$；令**腰面** $\partial\Sigma_\ell$ 为其边界（维数 $d{-}2$），其面积 $A:=\mathrm{Area}(\partial\Sigma_\ell)$。记 $B_\ell:=\Sigma_\ell$，$S_\ell:=\partial B_\ell$（腰面）；以下 $dA$ 一律指 $S_\ell$ 的固有测度；主阶标度 $A\sim c_d\ell^{d-2}$（常数并入 $C_d$）。
 
 **域前提**：尺度分离 $\varepsilon_{\rm curv}=\ell/L_{\rm curv}$、$\varepsilon_{\rm mat}=\ell/L_{\rm mat}$、$\varepsilon=\max(\varepsilon_{\rm curv},\varepsilon_{\rm mat})\ll1$；Hadamard 类态与点分裂重整化；小区间 $[0,\lambda_*]$ 内**无共轭点/焦点**（Sachs/Raychaudhuri 可控，光线变换局部可逆）。
 
@@ -36,13 +36,17 @@ $$
 
 **备注**：$V/T$ 随重标定缩放（$T\to\alpha T$、$V$ 不变），故非不变量；在一阶极值层取 $\delta T=0$ 时，其出现仅作对偶项记法，不影响结论。
 
-**常数族速查表**（定义于 $B_\ell$）：
+**常数族速查表**（定义于 $\mathcal D_\ell$）：
 
 $$
-C_R:=\sup|R_{kk}|,\quad C_{\nabla R}:=\sup|\nabla_k R_{kk}|,\quad
-C_{\mathcal C}:=\sup\big|C_{abcd}k^a m^b k^c m^d\big|\quad(\text{即 }|\Psi_0|),\quad
+C_R:=\sup_{\mathcal D_\ell}|R_{kk}|,\quad
+C_{\nabla R}:=\sup_{\mathcal D_\ell}|\nabla_k R_{kk}|,\quad
+\mathcal C_{AB}:=\mathrm{TF}\big[C_{acbd}k^c k^d e^a_A e^b_B\big],\quad
+C_{\mathcal C}:=\sup_{\mathcal D_\ell}|\mathcal C_{AB}|,\quad
 C_\sigma:=C_{\mathcal C}\lambda_*,\quad C_\omega=0,\quad \lambda_*\sim c_\lambda \ell .
 $$
+
+其中 $\{e_A^a\}$ 为与 $k^a$ 正交的 $(d{-}2)$ 维 screen 空间正交基，$\mathrm{TF}$ 表示去迹，$|\cdot|$ 为任一定义良好的矩阵范数。
 
 最终不等式中的 $C_d=C_d(C_R,C_{\nabla R},C_{\mathcal C};d,c_\lambda)$ 给出闭式依赖。
 
@@ -68,24 +72,25 @@ $$
 
 ## 2 小钻石极限：显式不等式与边界层
 
-**正则性门槛**：背景度规 $g\in C^3$（或 $g\in C^2$ 且 $\nabla{\rm Riem}\in L^\infty$），物质场 $T_{ab}\in C^1$；腰面为极大截面，初值 $\theta(0)=\sigma(0)=\omega(0)=0$；零测地丛满足 Frobenius 条件，故 $\omega\equiv0$。
+**正则性门槛**：背景度规 $g\in C^3$（或 $g\in C^2$ 且 $\nabla{\rm Riem}\in L^\infty$），物质场 $T_{ab}\in C^1$；令 $\Sigma_\ell$ 为**最大体积空间超曲面**，其边界 $S_\ell=\partial\Sigma_\ell$（**腰面**）为初值面，取 $\theta(0)=\sigma(0)=\omega(0)=0$；零测地丛满足 Frobenius 条件，故 $\omega\equiv0$。
 
 **初值与 Frobenius 条件**：腰面取 $\theta(0)=\sigma(0)=\omega(0)=0$；零测地丛超曲面正交 $\Leftrightarrow\omega\equiv0$。
 
-**Raychaudhuri–Sachs–Twist 方程**
+**Raychaudhuri–Sachs–Twist 方程（$d\ge3$）**
 
 $$
-\theta'=-\tfrac12\theta^2-\sigma^2+\omega^2-R_{kk},\quad
-\sigma'=-\theta\,\sigma-\mathcal C,\quad
-\omega'=-\theta\,\omega ,
+\theta'=-\frac{1}{d-2}\theta^2-\sigma^2+\omega^2-R_{kk},\quad
+(\sigma_{AB})'=-\frac{2}{d-2}\theta\,\sigma_{AB}-\big(\sigma^2{+}\omega^2\big)^{\rm TF}_{AB}-\mathcal C_{AB},\quad
+\omega_{AB}'=-\frac{2}{d-2}\theta\,\omega_{AB}
+-\big(\sigma_A{}^{C}\omega_{CB}+\omega_A{}^{C}\sigma_{CB}\big),
 $$
 
-其中 $\mathcal C:=C_{abcd}k^a m^b k^c m^d$。*注：本文约定 $\sigma^2:=|\sigma|^2$。*
+其中 $\sigma^2:=\sigma_{AB}\sigma^{AB}$，$(\sigma^2)_{AB}:=\sigma_A{}^{C}\sigma_{CB}$，$(\omega^2)_{AB}:=\omega_A{}^{C}\omega_{CB}$，$\mathrm{TF}$ 表示去迹，$\mathcal C_{AB}=\mathrm{TF}\big[C_{acbd}k^c k^d e^a_A e^b_B\big]$。
 
 由 $\omega(0)=0$ 与 Frobenius 得 $\omega\equiv 0$。变系数 Grönwall 与 $|\theta|\lambda_*\ll1$ 给出
 
 $$
-|\sigma(\lambda)|\le C_{\mathcal C}|\lambda|\,e^{\int_0^{|\lambda|}|\theta|ds}\le C_\sigma(1+\mathcal O(\varepsilon)),
+|\sigma(\lambda)|\le C_{\mathcal C}|\lambda|\,e^{\frac{2}{d-2}\int_0^{|\lambda|}|\theta|ds}\le C_\sigma(1+\mathcal O(\varepsilon)),
 $$
 
 并且
@@ -146,7 +151,7 @@ $$
 \mathcal L_\lambda[f](p,\hat k)=\tfrac12\lambda_*^2 f(p)+\mathcal O(\lambda_*^3|\nabla f|_\infty).
 $$
 
-**测试函数局域化引理**：若 $\int_{\partial B_\ell}\varphi(x)\int_0^{\lambda_*} w(\lambda)F(x,\lambda)\,d\lambda\,dA=0$ 对所有 $\varphi\in C_c^\infty(\partial B_\ell)$、$w\in C_c^\infty([0,\lambda_*])$ 成立，则几乎处处沿每条生成元 $\int_0^{\lambda_*} w F=0$。
+**测试函数局域化引理**：若 $\int_{S_\ell}\varphi(x)\int_0^{\lambda_*} w(\lambda)F(x,\lambda)\,d\lambda\,dA=0$ 对所有 $\varphi\in C_c^\infty(S_\ell)$、$w\in C_c^\infty([0,\lambda_*])$ 成立，则几乎处处沿每条生成元 $\int_0^{\lambda_*} w F=0$。
 （注：本文主用首矩权 $w\equiv\lambda$。）
 
 由此对 $f=R_{kk}-8\pi G\,T_{kk}$ 得 $\mathcal L_\lambda[f]=o(\ell^2)\Rightarrow f(p)=0$，即
@@ -260,7 +265,13 @@ $$
 
 ## 9 高阶引力与唯一性
 
-以 Wald/Dong–Camps 熵替代面积项定义 $S_{\rm grav}$，小钻石一阶驻值导出高阶引力场方程；二阶层以相应的广义规范能量给出稳定性判据。四维且二阶导数结构的自然性与无散度假设下，Lovelock 唯一性保证张量结构同胚于 $a\,G_{ab}+b\,g_{ab}$。
+以 Wald/Dong–Camps 熵替代面积项定义 $S_{\rm grav}$，小钻石一阶驻值导出高阶引力场方程；二阶层以相应的广义规范能量给出稳定性判据。四维且二阶导数结构的自然性与无散度假设下，Lovelock 唯一性保证场方程张量结构**唯一地为**
+
+$$
+a\,G_{ab}+b\,g_{ab}
+$$
+
+的线性组合（常数 $a,b$）。
 
 ---
 
@@ -293,10 +304,31 @@ Jacobson（1995, Phys. Rev. Lett. 75, 1260；2016, Class. Quantum Grav. 33, 2450
 腰面：$\theta(0)=\sigma(0)=\omega(0)=0$；生成元参数 $|\lambda|\le\lambda_*\sim c_\lambda\ell$。常数族 $C_R,C_{\nabla R},C_{\mathcal C},C_\sigma(=C_{\mathcal C}\lambda_*),C_\omega(=0)$。
 
 **A.2 Frobenius 与 $\omega\equiv0$**
-零测地丛超曲面正交 $\Leftrightarrow \omega_{ab}=0$。在"腰面 + 近似 CKV"构造下 $\omega(0)=0$，由 $\omega'=-\theta\omega$ 得 $\omega\equiv0$。
+零测地丛超曲面正交 $\Leftrightarrow \omega_{ab}=0$。在"腰面 + 近似 CKV"构造下 $\omega(0)=0$，由
+
+$$
+\omega_{AB}'=-\frac{2}{d-2}\theta\,\omega_{AB}
+-\big(\sigma_A{}^{C}\omega_{CB}+\omega_A{}^{C}\sigma_{CB}\big)
+$$
+
+（或等价地由 Frobenius 条件）得 $\omega\equiv0$。
 
 **A.3 剪切与曲率梯度上界**
-Sachs：$|\sigma(\lambda)|\le C_{\mathcal C}|\lambda|e^{\int|\,\theta|}\Rightarrow \sup\sigma^2\le C_\sigma^2$。
+由 Sachs（且 $\omega\equiv0$）得
+
+$$
+|\sigma|' \le \frac{2}{d-2}|\theta|\,|\sigma|+|\sigma|^2+|\mathcal C| .
+$$
+
+以变系数 Grönwall、初值 $\sigma(0)=0$ 与小钻石标度 $|\theta|\lambda_*\ll1$ 得
+
+$$
+|\sigma(\lambda)|\le C_{\mathcal C}|\lambda|\,e^{\frac{2}{d-2}\int_0^{|\lambda|}|\theta|ds}(1+\mathcal O(\varepsilon))
+\ \Rightarrow\
+\sup\sigma^2\le C_\sigma^2(1+\mathcal O(\varepsilon)),\quad C_\sigma:=C_{\mathcal C}\lambda_* .
+$$
+
+（后续使用 $C_\sigma$ 与 $M_\theta$ 的各处公式与阶计数保持不变。）
 
 $$
 |\theta(\lambda)+\lambda R_{kk}|\le \tfrac12 C_{\nabla R}\lambda^2+C_\sigma^2|\lambda|=M_\theta(\lambda).
@@ -334,7 +366,7 @@ $$
 # 附录 B  局域化引理与 Radon‑型 0‑阶重建
 
 **B.1 局域化引理**
-若 $\int_{\partial B_\ell}\varphi(x)\int_0^{\lambda_*} w(\lambda)F(x,\lambda)\,d\lambda\,dA=0$ 对所有 $\varphi\in C_c^\infty$、$w\in C_c^\infty$ 成立，则几乎处处沿每条生成元 $\int_0^{\lambda_*}wF=0$。证：Fubini+单位分解。（注：本文主用首矩权 $w\equiv\lambda$。）
+若 $\int_{S_\ell}\varphi(x)\int_0^{\lambda_*} w(\lambda)F(x,\lambda)\,d\lambda\,dA=0$ 对所有 $\varphi\in C_c^\infty$、$w\in C_c^\infty$ 成立，则几乎处处沿每条生成元 $\int_0^{\lambda_*}wF=0$。证：Fubini+单位分解。（注：本文主用首矩权 $w\equiv\lambda$。）
 
 **B.2 0‑阶重建**
 $S_{kk}(\gamma(\lambda))=S_{kk}(p)+\lambda\nabla_k S_{kk}(p)+\mathcal O(\lambda^2)$；
