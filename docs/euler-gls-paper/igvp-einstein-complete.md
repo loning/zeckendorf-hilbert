@@ -1,6 +1,6 @@
 # 信息几何变分原理导出爱因斯坦方程：定体积对偶、显式可交换极限、Radon‑型闭包、OS/KMS–Fisher 解析延拓与 null 边界处方
 
-Version: 4.9
+Version: 5.2
 
 ## 摘要
 
@@ -49,12 +49,14 @@ C_R:=\sup_{\mathcal D_\ell}|R_{kk}|,\quad
 C_{\nabla R}:=\sup_{\mathcal D_\ell}|\nabla_k R_{kk}|,\quad
 \mathcal C_{AB}:=\mathrm{TF}\big[C_{acbd}k^c k^d e^a_A e^b_B\big],\quad
 C_{\mathcal C}:=\sup_{\mathcal D_\ell}|\mathcal C_{AB}|,\quad
-C_\sigma:=C_{\mathcal C}\lambda_*,\quad C_\omega=0,\quad \lambda_*\sim c_\lambda \ell .
+C_{\sigma,0}:=\sup_{S_\ell}|\sigma(0)|,\quad
+\boxed{C_\sigma:=C_{\sigma,0}+C_{\mathcal C}\lambda_*},\quad
+C_\omega=0,\quad \lambda_*\sim c_\lambda \ell .
 $$
 
 其中 $\{e_A^a\}$ 为与 $k^a$ 正交的 $(d{-}2)$ 维 screen 空间正交基，$\mathrm{TF}$ 表示去迹，$|\cdot|$ 为任一定义良好的矩阵范数。
 
-最终不等式中的 $C_d=C_d(C_R,C_{\nabla R},C_{\mathcal C};d,c_\lambda)$ 给出闭式依赖。
+最终不等式中的 $C_d=C_d(C_R,C_{\nabla R},C_{\mathcal C},C_{\sigma,0};d,c_\lambda)$ 给出闭式依赖。
 
 ---
 
@@ -98,8 +100,8 @@ $$
 =\frac{\delta A}{4G\hbar}+\frac{2\pi}{\hbar}\int_{\mathcal H}\lambda\,T_{kk}\,d\lambda\,dA\ +\ \mathcal O(\varepsilon^2)=0.
 $$
 
-结合 §2 的面积—曲率恒等式（误差为 $\mathcal O(\varepsilon^3)$），经 §3 的局域化与 §4 的张量化闭包，得到
-$R_{kk}=8\pi G\,T_{kk}$ 以及 $G_{ab}+\Lambda g_{ab}=8\pi G\,T_{ab}$。
+结合 §2 的**面积—曲率显式上界**，经 §3 的局域化与 §4 的张量化闭包，得到
+$R_{kk}=8\pi G\,T_{kk}$ 以及 $G_{ab}+\Lambda g_{ab}=8\pi G\,T_{ab}$；**若**腰面初始剪切满足 $C_{\sigma,0}=\mathcal O(\varepsilon)$（如最大体积腰面几何），**则**整体误差缩至 $\mathcal O(\varepsilon^3)$。
 
 **约定（一阶变分的温标）**：默认固定温度 $T$（$\delta T=0$）进行一阶极值；若允许 $\delta T\neq0$，其贡献为 $\mathcal O(\varepsilon^2)$ 不改结论（见 §6）。
 
@@ -107,11 +109,11 @@ $R_{kk}=8\pi G\,T_{kk}$ 以及 $G_{ab}+\Lambda g_{ab}=8\pi G\,T_{ab}$。
 
 ## 2 小钻石极限：显式不等式与边界层
 
-**正则性门槛**：背景度规 $g\in C^3$（或 $g\in C^2$ 且 $\nabla{\rm Riem}\in L^\infty$），物质场 $T_{ab}\in C^1$；令 $\Sigma_\ell$ 为**最大体积空间超曲面**，其边界 $S_\ell=\partial\Sigma_\ell$（**腰面**）为初值面，取 $\theta(0)=\sigma(0)=\omega(0)=0$；零测地丛满足 Frobenius 条件，故 $\omega\equiv0$。
+**正则性门槛**：背景度规 $g\in C^3$（或 $g\in C^2$ 且 $\nabla{\rm Riem}\in L^\infty$），物质场 $T_{ab}\in C^1$；令 $\Sigma_\ell$ 为**最大体积空间超曲面**，其边界 $S_\ell=\partial\Sigma_\ell$（**腰面**）为初值面，取 $\theta(0)=0,\ \omega(0)=0$；不对 $\sigma(0)$ 作零假设，仅要求 $\sigma(0)\in L^\infty$；零测地丛满足 Frobenius 条件，故 $\omega\equiv0$。
 
 **参数化约定**：下文沿零测地生成元的参数 $\lambda$ 统一取为**仿射参数**（$k^b\nabla_b k^a=0$），因此本文采用的 Raychaudhuri–Sachs–Twist 方程**不含 $\kappa\theta$ 项**。
 
-**初值与 Frobenius 条件**：腰面取 $\theta(0)=\sigma(0)=\omega(0)=0$；零测地丛超曲面正交 $\Leftrightarrow\omega\equiv0$。
+**初值与 Frobenius 条件**：腰面取 $\theta(0)=0,\ \omega(0)=0$；不对 $\sigma(0)$ 作零假设，仅要求 $\sigma(0)\in L^\infty$。零测地丛超曲面正交 $\Leftrightarrow\omega\equiv0$。
 
 **Raychaudhuri–Sachs–Twist 方程（$d\ge3$）**
 
@@ -127,8 +129,12 @@ $$
 由 $\omega(0)=0$ 与 Frobenius 得 $\omega\equiv 0$。变系数 Grönwall 与 $|\theta|\lambda_*\ll1$ 给出
 
 $$
-|\sigma(\lambda)|\le C_{\mathcal C}|\lambda|\,e^{\frac{2}{d-2}\int_0^{|\lambda|}|\theta|ds}\le C_\sigma(1+\mathcal O(\varepsilon)),
+|\sigma(\lambda)|\le \big(|\sigma(0)|+C_{\mathcal C}|\lambda|\big)\,
+e^{\frac{2}{d-2}\int_0^{|\lambda|}|\theta|ds}
+\ \le\ C_\sigma\big(1+\mathcal O(\varepsilon)\big),
 $$
+
+从而 $\sup\sigma^2\le C_\sigma^2\big(1+\mathcal O(\varepsilon)\big)$。
 
 并且
 
@@ -148,11 +154,11 @@ $$
 }
 $$
 
-其中 $C_d=C_d(C_R,C_{\nabla R},C_{\mathcal C};d,c_\lambda)$ 与 $\varepsilon$ 无关。
+其中 $C_d=C_d(C_R,C_{\nabla R},C_{\mathcal C},C_{\sigma,0};d,c_\lambda)$ 与 $\varepsilon$ 无关。
 
-**数值验证**：归一化误差 $|\delta A+\int\lambda R_{kk}|/\ell^{d-2}$ 的 $\varepsilon^3$ 标度见图 1（不同曲率参数 $C_R, C_{\nabla R}, C_{\mathcal C}$ 下的上界曲线）。
+**数值验证（在 $C_{\sigma,0}=\mathcal O(\varepsilon)$ 的几何族上）**：归一化误差 $|\delta A+\int\lambda R_{kk}|/\ell^{d-2}$ 呈现 $\varepsilon^3$ 标度；**一般情形**则遵循上式盒装上界。
 
-![图 1：显式可交换极限的数值验证。归一化误差上界 $|\delta A+\int\lambda R_{kk}|/\ell^{d-2}$ 随尺度分离参数 $\varepsilon$ 的变化，显示 $\varepsilon^3$ 标度。三条曲线对应不同曲率参数组合（低/中/高曲率），灰色虚线为参考 $\varepsilon^3$ 标度线。](igvp_figure1_exchangeable_limit.png)
+![图 1（$C_{\sigma,0}=\mathcal O(\varepsilon)$ 的示例族）：显式可交换极限的数值验证。归一化误差上界 $|\delta A+\int\lambda R_{kk}|/\ell^{d-2}$ 随尺度分离参数 $\varepsilon$ 的变化，显示 $\varepsilon^3$ 标度。三条曲线对应不同曲率参数组合（低/中/高曲率），灰色虚线为参考 $\varepsilon^3$ 标度线。](igvp_figure1_exchangeable_limit.png)
 
 端点层 $[\lambda_*-\delta,\lambda_*]$ 的贡献满足
 
@@ -164,12 +170,12 @@ $$
 
 取 $\delta=\mathcal O(\varepsilon\ell)$ 且 $\lambda_*\sim c_\lambda\ell$，得 $\mathcal O\big(A,C_R,\varepsilon,\ell^2\big)$。
 
-取固定常数 $\lambda_0>0$，对所取极限族均有 $0<\lambda_*\le\lambda_0$。由 $C_\sigma=C_{\mathcal C}\lambda_*\le C_{\mathcal C}\lambda_0$，令
+取固定常数 $\lambda_0>0$，对所取极限族均有 $0<\lambda_*\le\lambda_0$。由 $C_\sigma=C_{\sigma,0}+C_{\mathcal C}\lambda_*\le C_{\sigma,0}+C_{\mathcal C}\lambda_0$，令
 
 $$
 \boxed{
 \widetilde M_{\rm dom}(\lambda)
-:=\tfrac12 C_{\nabla R}\lambda^2+\big(C_{\mathcal C}\lambda_0\big)^2|\lambda|
+:=\tfrac12 C_{\nabla R}\lambda^2+\big(C_{\sigma,0}+C_{\mathcal C}\lambda_0\big)^2|\lambda|
 +\tfrac{4}{3(d-2)}C_R^2\lambda_0^3\ \in L^1([0,\lambda_0])\ .
 }
 $$
@@ -342,7 +348,7 @@ $$
 
 ## 11 可复现实操清单
 
-1. 调用 §2 的不等式与常数族，数值检验 $\big|\delta A+\int\lambda R_{kk}\big|\sim\varepsilon^3\ell^{d-2}$ 的标度与 $C_d$ 的保守性（见图 1；生成脚本：`scripts/generate_igvp_figure1.py`）；
+1. 在 **$C_{\sigma,0}=\mathcal O(\varepsilon)$** 的几何族上，调用 §2 的不等式与常数族，数值检验 $\big|\delta A+\int\lambda R_{kk}\big|\sim\varepsilon^3\ell^{d-2}$ 的标度与 $C_d$ 的保守性；**一般情形**请核对 §2 盒装上界（见图 1；生成脚本：`scripts/generate_igvp_figure1.py`）；
 2. 逐项验证 $\delta Q/T$、$\delta A/(4G\hbar)$ 的重标定/取向不变；并在固定 $T$ 的规约下核查 $V/T$ 的使用。
 3. 以"局域化引理"把面积恒等式下推至逐生成元，加上 0‑阶重建得 $R_{kk}=8\pi G\,T_{kk}$；
 4. 在 $1{+}1$ 高斯族与满足奇偶性判据的模型上，显式验证 $g_{ti}=0$ 与"实/非退化/签名"的下界；
@@ -359,7 +365,7 @@ Jacobson（1995, Phys. Rev. Lett. 75, 1260；2016, Class. Quantum Grav. 33, 2450
 # 附录 A  小钻石极限：显式上界、边界层与可交换性
 
 **A.1 初值与参数化**
-腰面：$\theta(0)=\sigma(0)=\omega(0)=0$；生成元参数 $|\lambda|\le\lambda_*\sim c_\lambda\ell$，**且 $\lambda$ 取为仿射参数**（$k^b\nabla_b k^a=0$）。常数族 $C_R,C_{\nabla R},C_{\mathcal C},C_\sigma(=C_{\mathcal C}\lambda_*),C_\omega(=0)$。
+腰面：$\theta(0)=0,\ \omega(0)=0$；$\sigma(0)\in L^\infty$，定义 $C_{\sigma,0}:=\sup_{S_\ell}|\sigma(0)|$，并取 $\boxed{C_\sigma:=C_{\sigma,0}+C_{\mathcal C}\lambda_*}$。生成元参数 $|\lambda|\le\lambda_*\sim c_\lambda\ell$，**且 $\lambda$ 取为仿射参数**（$k^b\nabla_b k^a=0$）。常数族 $C_R,C_{\nabla R},C_{\mathcal C},C_{\sigma,0},C_\sigma,C_\omega(=0)$。
 
 **A.2 Frobenius 与 $\omega\equiv0$**
 零测地丛超曲面正交 $\Leftrightarrow \omega_{ab}=0$。在"腰面 + 近似 CKV"构造下 $\omega(0)=0$，由
@@ -378,12 +384,13 @@ $$
 |\sigma|' \le \frac{2}{d-2}|\theta|\,|\sigma|+|\sigma|^2+|\mathcal C| .
 $$
 
-以变系数 Grönwall、初值 $\sigma(0)=0$ 与小钻石标度 $|\theta|\lambda_*\ll1$ 得
+以变系数 Grönwall 与小钻石标度 $|\theta|\lambda_*\ll1$ 得
 
 $$
-|\sigma(\lambda)|\le C_{\mathcal C}|\lambda|\,e^{\frac{2}{d-2}\int_0^{|\lambda|}|\theta|ds}(1+\mathcal O(\varepsilon))
+|\sigma(\lambda)|\le \big(|\sigma(0)|+C_{\mathcal C}|\lambda|\big)\,
+e^{\frac{2}{d-2}\int_0^{|\lambda|}|\theta|ds}
 \ \Rightarrow\
-\sup\sigma^2\le C_\sigma^2(1+\mathcal O(\varepsilon)),\quad C_\sigma:=C_{\mathcal C}\lambda_* .
+\sup\sigma^2\le C_\sigma^2\big(1+\mathcal O(\varepsilon)\big).
 $$
 
 （后续使用 $C_\sigma$ 与 $\widetilde M_\theta$ 的各处公式与阶计数保持不变。）
@@ -416,12 +423,12 @@ $$
 取 $\delta=\mathcal O(\varepsilon\ell)$ 且 $\lambda_*\sim c_\lambda\ell$，得 $\mathcal O\big(A,C_R,\varepsilon,\ell^2\big)$。
 
 **A.5 可交换性**
-取固定 $\lambda_0>0$ 使 $0<\lambda_*\le\lambda_0$。由 $C_\sigma=C_{\mathcal C}\lambda_*\le C_{\mathcal C}\lambda_0$，定义
+取固定 $\lambda_0>0$ 使 $0<\lambda_*\le\lambda_0$。由 $C_\sigma=C_{\sigma,0}+C_{\mathcal C}\lambda_*\le C_{\sigma,0}+C_{\mathcal C}\lambda_0$，定义
 
 $$
 \boxed{
 \widetilde M_{\rm dom}(\lambda)
-:=\tfrac12 C_{\nabla R}\lambda^2+\big(C_{\mathcal C}\lambda_0\big)^2|\lambda|
+:=\tfrac12 C_{\nabla R}\lambda^2+\big(C_{\sigma,0}+C_{\mathcal C}\lambda_0\big)^2|\lambda|
 +\tfrac{4}{3(d-2)}C_R^2\lambda_0^3\ \in L^1([0,\lambda_0])\ .
 }
 $$
