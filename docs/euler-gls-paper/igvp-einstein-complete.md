@@ -1,6 +1,6 @@
 # 信息几何变分原理导出爱因斯坦方程：定体积对偶、显式可交换极限、Radon‑型闭包、OS/KMS–Fisher 解析延拓与 null 边界处方
 
-Version: 4.8
+Version: 4.9
 
 ## 摘要
 
@@ -8,7 +8,7 @@ Version: 4.8
 
 - 定体积对偶 + 显式可交换极限（小钻石极限，常数族可直接调用）
 - Radon 型闭包：族约束下推为点态方程（面积恒等式 ⇒ 点态）
-- 二阶层 = Hollands–Wald 规范能量（相对熵非负与稳定性在一条变分链闭环）
+- 二阶层 = Hollands–Wald 规范能量（在 JLMS 与 $\mathcal F_Q=\mathcal E_{\rm can}$ 识别成立的语境下；无对偶情形提供 QNEC 备选判据）
 
 在流形每一点的小尺度因果钻石 $\mathcal D_\ell(p)$ 上，以广义熵
 
@@ -42,6 +42,14 @@ $$
 
 **备注**：$V/T$ 随重标定缩放（$T\to\alpha T$、$V$ 不变），故非不变量；在一阶极值层取 $\delta T=0$ 时，其出现仅作对偶项记法，不影响结论。
 
+**误差记法范式**（$\ell$ 标度 × 无量纲 $\varepsilon$ 标度）：本文统一采用
+
+$$
+\text{误差}=C_d\,\varepsilon^n\,\ell^m,
+$$
+
+其中 $C_d=C_d(C_R,C_{\nabla R},C_{\mathcal C};d,c_\lambda)$ 为无量纲常数（与 $\varepsilon,\ell$ 无关），$n$ 为 $\varepsilon$ 幂次，$m$ 为长度维数。例如：面积变分误差 $\sim C_d\,\varepsilon^3\,\ell^{d-2}$，统一误差命题 $\sim C_{\rm unif}\,\varepsilon^2\,\ell^{d-2}$。
+
 **常数族速查表**（定义于 $\mathcal D_\ell$）：
 
 $$
@@ -60,10 +68,11 @@ $$
 
 ### 引言提要：与既有工作的区别度
 
-- Jacobson（1995）：引入定体积对偶与显式 $\varepsilon$‑可交换极限，摆脱未指明“局域 Rindler”依赖
+- Jacobson（1995）：引入定体积对偶与显式 $\varepsilon$‑可交换极限，摆脱未指明"局域 Rindler"依赖
 - Jacobson–Visser（2019）：以 Radon 型闭包将面积恒等式下推为点态方程（族约束 ⇒ 点态）
 - JLMS + Hollands–Wald：将二阶相对熵与规范能量写入同一变分链，形成单链闭环
 - Dong–Camps–Wald：以 Wald/Dong–Camps 熵替代面积后，同一 IGVP 框架直接给出 Lovelock 型方程
+- **二阶层条件性与无对偶备选**：二阶层 $\delta^2S_{\rm rel}=\mathcal E_{\rm can}$ 为条件定理（依赖 JLMS 识别）；无对偶情形以 QNEC 二阶形状导数提供普适非负型判据
 
 ---
 
@@ -81,6 +90,8 @@ $$
 （一阶层）在定体积约束 $\delta V=0$ 下取 $\delta S_{\rm gen}=0$；等价地把 $S_\Lambda$ 并入无约束变分后令 $\delta S_{\rm gen}=0$。
 （二阶层）相对熵非负：$\delta^2S_{\rm rel}\ge0$。
 
+**记号提示**：本文出现两个不同的 $\kappa$：（i）**温标** $T=\hbar|\kappa_\chi|/2\pi$ 中的 $\kappa_\chi$ 是近似 Killing 场 $\chi^a$ 的表面引力；（ii）§8 null 边界项 $\int\sqrt{q}\,\kappa[\ell]$ 中的 $\kappa[\ell]$ 仅是 $\ell^a$ 的非仿射量（在仿射参数化下 $\kappa[\ell]=0$）。二者完全无关。
+
 **外部熵的一阶律（用于链 A）** 在小钻石极限、Hadamard/KMS 态与近 Rindler 生成元 $\chi^a$ 下，
 
 $$
@@ -89,7 +100,15 @@ $$
 \equiv \frac{\delta Q}{T}+\mathcal O(\varepsilon^2),
 $$
 
-其中 $K_\chi$ 为腰面处的 boost 模块哈密顿量，$T=\hbar|\kappa_\chi|/2\pi$，并且由 §6 得 $\delta T/T=\mathcal O(\varepsilon^2)$。
+其中 $K_\chi$ 为腰面处的 boost 模块哈密顿量，$T=\hbar|\kappa_\chi|/2\pi$。
+
+**等价的拉格朗日乘子表述（避免规范歧义）**：一阶变分可重述为带约束的极值问题
+
+$$
+\delta\left(S_{\rm grav}+S_{\rm out}\right)+\mu\,\delta V=0,
+$$
+
+求解后以 $\mu=\frac{\Lambda}{8\pi G T}$ 识别体积约束的物理常数。由附录 F 的 $\delta\kappa_\chi/\kappa_\chi=\mathcal O(\varepsilon^2)$ 可知一阶极值不敏感于 $\delta T$ 的 $\mathcal O(\varepsilon^2)$ 变动，因此"固定 $T$"（$\delta T=0$）为推论而非先验假设。
 
 因此在一阶极值层与 $\delta V=0$ 下，
 
@@ -109,9 +128,9 @@ $R_{kk}=8\pi G\,T_{kk}$ 以及 $G_{ab}+\Lambda g_{ab}=8\pi G\,T_{ab}$。
 
 **正则性门槛**：背景度规 $g\in C^3$（或 $g\in C^2$ 且 $\nabla{\rm Riem}\in L^\infty$），物质场 $T_{ab}\in C^1$；令 $\Sigma_\ell$ 为**最大体积空间超曲面**，其边界 $S_\ell=\partial\Sigma_\ell$（**腰面**）为初值面，取 $\theta(0)=\sigma(0)=\omega(0)=0$；零测地丛满足 Frobenius 条件，故 $\omega\equiv0$。
 
-**参数化约定**：下文沿零测地生成元的参数 $\lambda$ 统一取为**仿射参数**（$k^b\nabla_b k^a=0$），因此本文采用的 Raychaudhuri–Sachs–Twist 方程**不含 $\kappa\theta$ 项**。
+**参数化约定与记号区分**：下文沿零测地生成元的参数 $\lambda$ 统一取为**仿射参数**（$k^b\nabla_b k^a=0$），因此本文采用的 Raychaudhuri–Sachs–Twist 方程**不含 $\kappa\theta$ 项**。**重要记号区分**：本文出现两个不同的 $\kappa$：（i）**温标** $T=\hbar|\kappa_\chi|/2\pi$ 中的 $\kappa_\chi$ 是近似 Killing 场 $\chi^a$ 的表面引力；（ii）§8 null 边界项 $\int\sqrt{q}\,\kappa[\ell]$ 中的 $\kappa[\ell]$ 仅是 $\ell^a$ 的非仿射量（在仿射参数化下 $\kappa[\ell]=0$）。二者完全无关。
 
-**初值与 Frobenius 条件**：腰面取 $\theta(0)=\sigma(0)=\omega(0)=0$；零测地丛超曲面正交 $\Leftrightarrow\omega\equiv0$。
+**初值与 Frobenius 条件**：腰面取为极大体积截面蕴含 $\theta(0)=\sigma(0)=\omega(0)=0$（详见附录 A.2）；零测地丛超曲面正交 $\Leftrightarrow\omega\equiv0$。由 $\omega(0)=0$ 与 Frobenius 条件 $\omega_{[a}\nabla_b k_{c]}=0$ 得 $\omega\equiv0$。
 
 **Raychaudhuri–Sachs–Twist 方程（$d\ge3$）**
 
@@ -152,7 +171,18 @@ $$
 
 **数值验证**：归一化误差 $|\delta A+\int\lambda R_{kk}|/\ell^{d-2}$ 的 $\varepsilon^3$ 标度见图 1（不同曲率参数 $C_R, C_{\nabla R}, C_{\mathcal C}$ 下的上界曲线）。
 
-![图 1：显式可交换极限的数值验证。归一化误差上界 $|\delta A+\int\lambda R_{kk}|/\ell^{d-2}$ 随尺度分离参数 $\varepsilon$ 的变化，显示 $\varepsilon^3$ 标度。三条曲线对应不同曲率参数组合（低/中/高曲率），灰色虚线为参考 $\varepsilon^3$ 标度线。](igvp_figure1_exchangeable_limit.png)
+![图 1：显式可交换极限的数值验证。归一化误差上界 $|\delta A+\int\lambda R_{kk}|/\ell^{d-2}$ 随尺度分离参数 $\varepsilon$ 的变化，显示 $\varepsilon^3$ 标度。三条曲线对应不同曲率参数组合（低/中/高曲率），灰色虚线为参考 $\varepsilon^3$ 标度线。该误差在局域化到每条生成元时仍为 $o(\ell^2)$，与附录 B 的 0 阶重建无缝对接。上界–实测比值的复现脚本：`scripts/generate_igvp_figure1.py`（参数设置与输出格式见脚本头部注释）。](igvp_figure1_exchangeable_limit.png)
+
+**每发生器误差评注（连接面积恒等式与点态重建）**：上述面积变分不等式在逐生成元层面给出
+
+$$
+\boxed{
+\left|\int_0^{\lambda_*}\lambda\bigl(R_{kk}-8\pi G\,T_{kk}\bigr)\,d\lambda\right|
+\le C_{\rm unif}\,\varepsilon^2\,\lambda_*^2,
+}
+$$
+
+其中 $C_{\rm unif}$ 依赖于 $(C_R,C_{\nabla R},C_{\mathcal C};d,c_\lambda)$ 但与 $\varepsilon$ 无关。该误差相对一阶主项 $\lambda_*^2 f(p)$ 为 $\mathcal O(\varepsilon^2)$ 或更高阶，确保局域化闭包的收敛性。**量纲检查**：$[\varepsilon^2\lambda_*^2]=(\text{无量纲})^2\times(\text{长度})^2=(\text{长度})^2$，与 $[\int\lambda\,R_{kk}\,d\lambda]=(\text{长度})\times(\text{长度}^{-2})\times(\text{长度})=1$ 不匹配需归一化；实际对比时除以 $A\sim\ell^{d-2}$ 得无量纲比。
 
 端点层 $[\lambda_*-\delta,\lambda_*]$ 的贡献满足
 
@@ -183,6 +213,52 @@ $$
 
 因 $\widetilde M_{\rm dom}$ 与 $\varepsilon$ 无关，且对所有 $|\lambda|\le\lambda_0$ 均有 $\widetilde M_\theta(\lambda)\le \widetilde M_{\rm dom}(\lambda)$，故可据主导收敛定理交换"$\varepsilon\to0$"与沿 $\lambda$ 的积分。
 
+**统一误差命题（保证一致性）**：给定 $\varepsilon$‑小域与无共轭点条件，存在仅依赖 $(d,c_\lambda)$ 与 $(C_R,C_{\nabla R},C_{\mathcal C})$ 的常数 $C_{\rm unif}$，使得对所有 $(p,\hat k)$ 与所有 $\ell$ 足够小
+
+$$
+\boxed{
+\left|\delta S_{\rm out}-\frac{2\pi}{\hbar}\int\lambda T_{kk}\,d\lambda\,dA\right|
+\le C_{\rm unif}\,\varepsilon^2\,\ell^{d-2}.
+}
+$$
+
+该误差分解为几何近似误差与态依赖误差两部分，均受上述常数族控制。$\delta T/T=\mathcal O(\varepsilon^2)$ 是该命题的推论而非假设。此统一上界保证了局域化时对每条生成元的 $o(\ell^2)$ 控制。
+
+**常数依赖**：$C_{\rm unif}, C_{\rm th}$ 仅依赖 $(C_R,C_{\nabla R};d,c_\lambda)$，与 $\varepsilon,\ell$ 无关。
+
+**引理 2.1（统一误差命题）**：给定 $\varepsilon$‑小域与无共轭点条件，存在常数 $C_{\rm unif}$ 使得对所有 $(p,\hat k)$ 与所有 $\ell$ 足够小
+
+$$
+\boxed{
+\left|\delta S_{\rm out}-\frac{2\pi}{\hbar}\int\lambda T_{kk}\,d\lambda\,dA\right|
+\le C_{\rm unif}\,\varepsilon^2\,\ell^{d-2}.
+}
+$$
+
+**引理 2.2（局部一阶律误差引理）**：在 Hadamard 态、$g\in C^3$、固定端点与腰面、取近似 CKV $\chi^a$ 的设定下，外部熵与模哈密顿量的变分满足
+
+$$
+\boxed{
+\big|\delta S_{\rm out}^{\rm ren}-\delta\langle K_\chi\rangle\big|
+\le C_{\rm th}\,\varepsilon^2\,\ell^{d-2},
+}
+$$
+
+其中 $C_{\rm th}=C_{\rm th}(C_R,C_{\nabla R};d)$ 与 $\varepsilon$ 无关，且与 §2 的几何常数族兼容。**证明思路**：把小钻石等距到平直主部（$\eta+\mathcal O(\ell^2/L_{\rm curv}^2)$），用半空间形变的模哈密顿核与形状导数控制误差（Casini–Huerta–Myers 2011；Faulkner–Leigh–Parrikar–Wang 2016）。由此
+
+$$
+\delta S_{\rm out}^{\rm ren}=\delta\langle K_\chi\rangle+\mathcal O(\varepsilon^2)
+=\frac{2\pi}{\hbar}\int_{\mathcal H}\lambda\,T_{kk}\,d\lambda\,dA+\mathcal O(\varepsilon^2).
+$$
+
+**等价替代路线（无对偶）**：若不采纳局部 KMS 设定，可直接以 QNEC 为起点。在满足 Minkowski 背景或足够弱曲率极限、Hadamard 态、完整零测地及局域可积条件下（附录 D），有
+
+$$
+\langle T_{kk}(p)\rangle \ge \frac{\hbar}{2\pi}\lim_{A_\perp\to0}\frac{\partial_\lambda^2 S_{\rm out}}{A_\perp},
+$$
+
+该路线与上述一阶律在线性化层面等价，但无需 KMS 周期性假设。
+
 （图 1（建议）：展示归一化误差 $\big|\delta A+\int\lambda R_{kk}\big|/\ell^{d-2}$ 随 $\varepsilon$ 的标度；三条曲线对应不同 $(C_R,C_\sigma)$ 取值。示例参数：$C_R\in\{0.1,0.3\}$，$C_{\mathcal C}\in\{0.1,0.3\}$，$\lambda_0=1$。）
 
 ---
@@ -201,10 +277,22 @@ $$
 \mathcal L_\lambda[f](p,\hat k)=\tfrac12\lambda_*^2 f(p)+\mathcal O(\lambda_*^3|\nabla f|_\infty).
 $$
 
-**测试函数局域化引理**：若 $\int_{S_\ell}\varphi(x)\int_0^{\lambda_*} w(\lambda)F(x,\lambda)\,d\lambda\,dA=0$ 对所有 $\varphi\in C_c^\infty(S_\ell)$、$w\in C_c^\infty([0,\lambda_*])$ 成立，则几乎处处沿每条生成元 $\int_0^{\lambda_*} w F=0$。
-（注：本文主用首矩权 $w\equiv\lambda$。）
+**局域化可实现性引理（闭合家族 ⇒ 点态）**：对腰面 $S_\ell$ 上任意 $\varphi\in C_c^\infty(S_\ell)$，存在允许的一阶变分（在定体积约束 $\delta V=0$ 下）使得对一族**端点光滑截断**的首矩权 $w_\epsilon\in C_c^\infty([0,\lambda_*))$ 且 $w_\epsilon\to\lambda$ 于 $L^1$，在 §2 的边界层估计与主导收敛下成立
 
-由此对 $f=R_{kk}-8\pi G\,T_{kk}$ 得 $\mathcal L_\lambda[f]=o(\ell^2)\Rightarrow f(p)=0$，即
+$$
+\int_{S_\ell}\varphi(x)\int_0^{\lambda_*} w_\epsilon(\lambda)\bigl(R_{kk}-8\pi G\,T_{kk}\bigr)\,d\lambda\,dA=o(\ell^2).
+$$
+
+**构造草图**：（i）**外部态局域扰动**：取 Hadamard 态扰动其支撑于 $\mathcal H$ 上由 $\varphi$ 确定的管状邻域，其模哈密顿量变分 $\delta\langle K_\chi\rangle$ 给出 $\int \lambda\,\varphi(x)\,T_{kk}\,d\lambda\,dA$ 的加权；（ii）**几何形变的等体积修正**：对腰面嵌入做位形扰动 $\delta X=\epsilon\,\varphi(x)\,n$，并用补偿函数 $\varphi_0$ 满足 $\int_{S_\ell}\varphi_0\,dA=-\int_{S_\ell}\varphi\,dA$ 维持 $\delta V=0$，相应的 $\delta A$ 与 $\int\lambda R_{kk}$ 项给出与（i）匹配的 $\varphi$‑加权。线性变分下 $\delta S_{\rm gen}$ 对外部态与嵌入的 Fréchet 导数均为连续线性泛函，利用分部与分解对任意 $\varphi$ 实现逼近。
+
+**注记**：本文**仅用到首矩权的截断族**，足以与附录 B.2 的 0 阶重建闭合。不需要对"任意 $w\in C_c^\infty([0,\lambda_*])$"的强断言。
+
+**测试函数局域化引理**：若 $\int_{S_\ell}\varphi(x)\int_0^{\lambda_*} w_\epsilon(\lambda)F(x,\lambda)\,d\lambda\,dA=0$ 对所有 $\varphi\in C_c^\infty(S_\ell)$ 与端点光滑截断的首矩权族 $\{w_\epsilon\}$ 成立，则几乎处处沿每条生成元 $\int_0^{\lambda_*} \lambda F=0$。
+（注：本文主用首矩权 $w\equiv\lambda$ 及其截断族。证明：Fubini 定理分离 $x$ 与 $\lambda$ 测试；对 $\lambda$ 方向用 mollifier 逼近 $\delta$，取首矩权 $w\equiv\lambda$ 得加权光线变换核；由光线变换的**局部可逆性**（附录 B.3），核仅在零函数时出现。本文仅需**短线段的一阶矩数据**，不依赖全局层析。）
+
+**零测地一阶矩局部可逆性（完备闭包的几何基础）**：在 $p$ 的 Riemann 正规邻域内，无共轭点且生成丛横截空间光滑时，短线段数据 $\mathcal L_\lambda[f](p,\hat k)=\int_0^{\lambda_*}\lambda f(\gamma_{p,\hat k}(\lambda))\,d\lambda$ 确定 $f(p)$。详细证明与误差上界见附录 B.3。
+
+结合上述可实现性与局域化引理，对 $f=R_{kk}-8\pi G\,T_{kk}$ 得 $\mathcal L_\lambda[f]=o(\ell^2)\Rightarrow f(p)=0$，即
 
 $$
 R_{kk}=8\pi G\,T_{kk}\quad(\forall\,k).
@@ -214,7 +302,8 @@ $$
 
 ## 4 张量化闭包与场方程（$d\ge 3$）
 
-**零锥刻画引理**：若 $X_{ab}$ 光滑对称且 $X_{ab}k^ak^b=0$ 对一切零矢成立，则 $X_{ab}=\Phi g_{ab}$。
+**零锥刻画引理（$d\ge 3$ 必要）**：若 $X_{ab}$ 光滑对称且 $X_{ab}k^ak^b=0$ 对一切零矢成立，则 $X_{ab}=\Phi g_{ab}$。（注：$d=2$ 时所有对称张量自动满足此性质，场方程退化。）
+
 令 $X_{ab}=R_{ab}-8\pi G\,T_{ab}$。由 $X_{ab}=\Phi g_{ab}$ 得 $\nabla^a X_{ab}=\nabla_b\Phi$。又由收缩 Bianchi 与 $\nabla^aT_{ab}=0$，有 $\nabla^a X_{ab}=\tfrac12\nabla_b R$。于是
 
 $$
@@ -231,25 +320,39 @@ $$
 
 ---
 
-## 5 二阶层：$\delta^2S_{\rm rel}=\mathcal E_{\rm can}\ge0$ 与稳定性
+## 5 二阶层：$\delta^2S_{\rm rel}=\mathcal E_{\rm can}\ge0$ 与稳定性（条件定理与普适判据）
 
-**函数空间与无外流条件**：扰动 $h_{ab}\in H^{k}(\Sigma)$（$k\ge2$），边界条件固定诱导度规（或其共轭动量），并要求 $\int_{\partial\Sigma}\iota_n\omega(h,\mathcal L_\xi h)=0$（辛流无外流）；规范采用 Killing 或协变谐以剔除纯规范模。
+**定理 5.1（二阶层稳定性——条件版）**：以下关于 $\delta^2S_{\rm rel}=\mathcal E_{\rm can}$ 为**条件性**结论，其成立依赖 JLMS 与 $\mathcal F_Q=\mathcal E_{\rm can}$ 的识别。该识别目前已知在代码子空间与适当边界条件下成立。
 
-在 code subspace、线性化约束 $\delta M=\delta J=\delta P=0$ 与合适边界条件下，
+设以下条件成立：
+
+**（C1）函数空间**：扰动 $h_{ab}\in H^{k}(\Sigma)$（$k\ge2$），满足线性化爱因斯坦方程（由 §3–§4 的一阶族约束与张量化闭包给出）。
+
+**（C2）Code subspace 与荷约束**：扰动满足 $\delta M=\delta J=\delta P=0$（线性化质量、角动量、线性动量守恒）。在小钻石设置下，这等价于要求扰动不改变钻石端点位置与腰面时刻。
+
+**（C3）边界条件**：采用 Dirichlet‑类边界条件固定诱导度规（或其共轭动量）$\sigma_{AB}|_{\partial\Sigma}$，并要求辛流无外流 $\int_{\partial\Sigma}\iota_n\omega(h,\mathcal L_\xi h)=0$。该条件的逐式验证见附录 E.2（Minkowski）与 E.3（弱曲率推广）。
+
+**（C4）规范固定**：采用 Killing 或协变谐规范以剔除纯规范模。在此规范下 $\mathcal E_{\rm can}[h,h]=0$ 当且仅当 $h$ 为纯规范模。
+
+则在 JLMS 等价与 $\mathcal F_Q=\mathcal E_{\rm can}$ 成立的前提下，
 
 $$
 \boxed{\ \delta^2S_{\rm rel}=\mathcal F_Q=\mathcal E_{\rm can}[h,h]\ge0\ },
 $$
 
-与 Hollands–Wald 线性稳定性等价。**核的说明**：在所选规范固定与边界条件下，$\mathcal E_{\rm can}[h,h]=0$ 当且仅当 $h$ 为纯规范模。线性化爱因斯坦方程来自上一节的一阶族约束与张量化闭包；二者逻辑互不依赖。无对偶语境下，以 QNEC/ANEC 作为保底不等式（形状导数与极限次序详见附录）。
+与 Hollands–Wald 线性稳定性等价。
+
+**定理 5.2（普适非负型判据——无对偶版）**：在小钻石边界无外流的边界条件下，利用 QNEC 的二阶形状导数可构造非负型二次型
 
 $$
-\boxed{\,\delta^2 S_{\rm rel}\ge0\ \Longrightarrow\ \mathcal E_{\rm can}[h,h]\ge0\ \Longrightarrow\ \text{（满足 Hollands–Wald 条件时）线性稳定}\,}.
+\boxed{\ \mathcal Q_{\rm QNEC}[h,h]:=\int_{\mathcal H}\frac{\hbar}{2\pi}\,\partial_\lambda^2\big(\delta^2 S_{\rm out}/A_\perp\big)\,dA\ge 0\ }.
 $$
 
-适用前提：处于 code subspace，满足 $\delta M=\delta J=\delta P=0$ 的线性化荷约束与合适边界/规范条件（辛流无外流）。
+当线性化爱因斯坦方程成立且边界条件可比时，该二次型与 $\mathcal E_{\rm can}$ 一致（形状导数与极限次序详见附录 D）。该判据不依赖 JLMS 识别，提供了与一阶链兼容的能量条件。
 
-谱/椭圆边界的草图与边界无外流、可积性核对见附录 E 与 §8 的边界处方。
+**可检核清单**：（1）规范与边界条件的明确陈述见 §8 与附录 E；（2）"无外流"条件 $\int_{\partial\Sigma}\iota_n\omega=0$ 在 Minkowski 小钻石的逐式验证见附录 E.2，在弱曲率小钻石的推广见附录 E.3；（3）Code subspace 的线性约束 $(\delta M,\delta J,\delta P)=(0,0,0)$ 在小钻石设置中由固定端点实现。
+
+**逻辑独立性**：线性化爱因斯坦方程来自第一层（§3–§4）的族约束与张量化闭包；二阶层提供稳定性判据，二者逻辑互不依赖。
 
 ---
 
@@ -274,6 +377,8 @@ g^{(E)}_{\mu\nu}=\mathbb E\big[\partial_\mu\log p\,\partial_\nu\log p\big].
 $$
 
 （交叉分量奇偶性判据与 $g_{ti}$ 在反射点的消失条件移至附录 G.1；此处仅保留保证洛伦兹签名的充分条件与下界。）
+
+**结构角色说明**：本节 Fisher–Rao 通道为结构性互补，**不参与一阶链的主证明**（§1–§4 的爱因斯坦方程导出无需此通道）。它为二阶层提供备选的几何诠释，并在某些场景（如统计模型的引力对偶）中提供额外洞察。
 
 **实值与非退化的充分条件（含下界）**：设存在常数 $\eta>0$，使
 
@@ -337,11 +442,15 @@ $$
 
 ## 11 可复现实操清单
 
-1. 调用 §2 的不等式与常数族，数值检验 $\big|\delta A+\int\lambda R_{kk}\big|\sim\varepsilon^3\ell^{d-2}$ 的标度与 $C_d$ 的保守性（见图 1；生成脚本：`scripts/generate_igvp_figure1.py`）；
-2. 逐项验证 $\delta Q/T$、$\delta A/(4G\hbar)$ 的重标定/取向不变；并在固定 $T$ 的规约下核查 $V/T$ 的使用。
-3. 以"局域化引理"把面积恒等式下推至逐生成元，加上 0‑阶重建得 $R_{kk}=8\pi G\,T_{kk}$；
-4. 在 $1{+}1$ 高斯族与满足奇偶性判据的模型上，显式验证 $g_{ti}=0$ 与"实/非退化/签名"的下界；
-5. 在 Minkowski 小钻石核查 null 边界/关节项的"无外流 + 可积"。
+1. **常数族与标度验证**：调用 §2 的不等式与常数族 $(C_R,C_{\nabla R},C_{\mathcal C})$，数值检验 $\big|\delta A+\int\lambda R_{kk}\big|\sim\varepsilon^3\ell^{d-2}$ 的标度与 $C_d$ 的保守性（见图 1；生成脚本：`scripts/generate_igvp_figure1.py`）。建议测试不同 $(C_R,C_{\nabla R},C_{\mathcal C})$ 组合以评估上界的保守程度。
+
+2. **不变量验证**：逐项验证 $\delta Q/T$、$\delta A/(4G\hbar)$ 的重标定/取向不变；并在固定 $T$ 的规约下核查 $V/T$ 的使用。
+
+3. **局域化可实现性与闭包**：（i）数值构造等体积的局域形变：对腰面 $S_\ell$ 取测试函数 $\varphi\in C_c^\infty(S_\ell)$，构造扰动 $\delta X=\epsilon\,\varphi(x)\,n$ 与补偿 $\varphi_0$ 满足 $\int_{S_\ell}(\varphi+\varphi_0)\,dA=0$（脚本接口：`scripts/construct_local_deformation.py`）；（ii）以"局域化引理"把面积恒等式下推至逐生成元，加上 0‑阶重建得 $R_{kk}=8\pi G\,T_{kk}$；验证 $\mathcal L_\lambda[f]=o(\ell^2)$ 的收敛。
+
+4. **Fisher–Rao 度量验证**：在 $1{+}1$ 高斯族与满足奇偶性判据的模型上，显式验证 $g_{ti}=0$ 与"实/非退化/签名"的下界 $\eta$。
+
+5. **null 边界与可积性**：在 Minkowski 小钻石核查 null 边界/关节项的"无外流 + 可积"（附录 E.2）。验证仿射参数化下 $\kappa[\ell]=0$ 与 $\delta I_{\rm joint}=0$。
 
 ---
 
@@ -423,6 +532,8 @@ $$
 
 于是对 $[0,\lambda_0]$ 上的被积式 $\chi_{[0,\lambda_*]}(\lambda)\big(\theta(\lambda)+\lambda R_{kk}\big)$ 有统一支配（对所有 $|\lambda|\le\lambda_0$ 均有 $|\theta+\lambda R_{kk}|\le \widetilde M_\theta\le \widetilde M_{\rm dom}$），且 $\widetilde M_{\rm dom}$ 与 $\varepsilon$ 无关，由主导收敛定理得到"$\varepsilon\to0$"与积分次序可交换。
 
+**邻域统一常数引理**：上述常数族 $(C_R,C_{\nabla R},C_{\mathcal C})$ 在 $p$ 的正规邻域 $\mathcal D_\ell(p)$ 上统一定义。对固定 $\lambda_0>0$，当 $0<\ell\le\ell_0$ 时，主控函数 $\widetilde M_{\rm dom}$ 在整个极限族 $\{\mathcal D_\ell\}$ 上统一有效，与 $p$ 和 $\hat k$ 的选择无关（仅依赖背景度规的正则性）。这保证了 §3 局域化闭包在流形每一点的一致收敛性。
+
 ---
 
 # 附录 B  局域化引理与 Radon‑型 0‑阶重建
@@ -432,19 +543,84 @@ $$
 $\int_{S_\ell}\!\varphi(x)\int_0^{\lambda_*}\! w(\lambda)F(x,\lambda)\,d\lambda\,dA=0$
 对所有 $\varphi\in C_c^\infty(S_\ell)$ 与 $w\in C_c^\infty([0,\lambda_*])$ 成立，则几乎处处沿每条生成元
 $\int_0^{\lambda_*} w(\lambda)F(x,\lambda)\,d\lambda=0$。
-证（草图，4–6 行）：Fubini 定理把 $x$ 与 $\lambda$ 的测试分离；对 $\lambda$ 方向用光滑截断（mollifier）逼近 $\delta$，取首矩权 $w\equiv\lambda$ 得加权光线变换核；由 Radon/光线变换唯一性，核仅在零函数时出现（见 Helgason 2011, Thm 4.2；Finch–Patch–Rakesh 2004）。分布情形先平滑，再令平滑尺度 $\to0$。
+
+证（草图）：（i）由 Fubini 定理，对固定 $w$，若 $\int_{S_\ell}\varphi(x)\left[\int_0^{\lambda_*} w F\,d\lambda\right]dA=0$ 对所有 $\varphi\in C_c^\infty(S_\ell)$ 成立，则几乎处处在 $S_\ell$ 上有 $\int_0^{\lambda_*} w F\,d\lambda=0$；（ii）对固定 $x$，若 $\int_0^{\lambda_*} w(\lambda)F(x,\lambda)\,d\lambda=0$ 对所有 $w\in C_c^\infty([0,\lambda_*])$ 成立，由 mollifier 逼近与 $C_c^\infty$ 稠密性得 $F(x,\lambda)=0$ 几乎处处；（iii）取 $w\equiv\lambda$ 得加权光线变换 $\mathcal L_\lambda[f]$，其核由 Radon/光线变换唯一性仅包含零函数（Helgason 2011, Thm 4.2；Finch–Patch–Rakesh 2004）。分布情形先平滑，再令平滑尺度 $\to0$。□
 
 **B.2 0‑阶重建**
-$S_{kk}(\gamma(\lambda))=S_{kk}(p)+\lambda\nabla_k S_{kk}(p)+\mathcal O(\lambda^2)$；
-$\int_0^{\lambda_*}\lambda S_{kk}\,d\lambda=\tfrac12\lambda_*^2 S_{kk}(p)+\mathcal O(\lambda_*^3|\nabla S|)$。
-若左侧 $=o(\ell^2)$，则 $S_{kk}(p)\to0$。分布情形可先作 mollifier 平滑，再令平滑尺度 $\to0$。
+由 Taylor 展开，$S_{kk}(\gamma(\lambda))=S_{kk}(p)+\lambda\nabla_k S_{kk}(p)+\mathcal O(\lambda^2)$；积分得
+$\int_0^{\lambda_*}\!\lambda S_{kk}\,d\lambda=\tfrac12\lambda_*^2 S_{kk}(p)+\mathcal O(\lambda_*^3|\nabla S|_\infty)$。
+若左侧 $=o(\ell^2)$ 且 $\lambda_*\sim c_\lambda\ell$，则主项 $\tfrac12\lambda_*^2 S_{kk}(p)=o(\ell^2)$ 迫使 $S_{kk}(p)\to0$（当 $\ell\to0$）。由 $p$ 的任意性得 $S_{kk}=0$ 处处成立。分布情形可先作 mollifier 平滑，再令平滑尺度 $\to0$，估计保持一致。□
+
+**B.3 零测地一阶矩局部可逆性命题**
+
+**注**：本命题为**局部**结论，仅在无共轭点的正规邻域内成立。我们只需一阶矩短线段数据，不诉诸全局层析。
+
+**命题（局部可逆性，以附录证明草图与小钻石误差上界为支撑）**：设 $p$ 在流形上有 Riemann 正规邻域，背景度规 $g\in C^3$，$f\in C^1$。在小区间 $[0,\lambda_*]$（$\lambda_*\sim c_\lambda\ell$，$\ell/L_{\rm curv}\ll 1$）无共轭点且零测地生成丛横截空间光滑时，一阶矩加权光线变换
+
+$$
+\mathcal L_\lambda[f](p,\hat k)=\int_0^{\lambda_*}\lambda\, f(\gamma_{p,\hat k}(\lambda))\,d\lambda
+$$
+
+满足
+
+$$
+\boxed{
+\mathcal L_\lambda[f](p,\hat k)=\tfrac12\lambda_*^2 f(p)+\mathcal O\Big(\lambda_*^3|\nabla f|_\infty+\frac{\lambda_*^4}{L_{\rm curv}^2}|f|_\infty\Big).
+}
+$$
+
+其中常数依赖 $C_d=C_d(C_R,C_{\nabla R};d)$ 与 §2 的几何常数族兼容。特别地，若 $\mathcal L_\lambda[f]=o(\ell^2)$ 对所有 $\hat k$ 成立，则 $f(p)=0$。
+
+**证明草图**：（i）**Riemann 正规坐标展开**：在 $p$ 的正规邻域内，度规可写为
+
+$$
+g_{ab}(x)=\eta_{ab}+\tfrac13 R_{acbd}(p)\,x^c x^d+\mathcal O(|x|^3/L_{\rm curv}^3).
+$$
+
+零测地 $\gamma_{p,\hat k}(\lambda)$ 从 $p$ 出发沿 $\hat k^a$ 方向，其坐标展开为
+
+$$
+x^a(\lambda)=\lambda \hat k^a+\mathcal O\Big(\frac{\lambda^3}{L_{\rm curv}^2}\Big).
+$$
+
+（ii）**函数值的 Hadamard 参数化**：沿零测地展开 $f$，
+
+$$
+f(\gamma(\lambda))=f(p)+\lambda\,\nabla_k f(p)+\tfrac12\lambda^2\,\nabla_k\nabla_k f(p)+\mathcal O\Big(\lambda^3|\nabla^3 f|+\frac{\lambda^3}{L_{\rm curv}^2}|\nabla f|\Big).
+$$
+
+积分得
+
+$$
+\mathcal L_\lambda[f]=\int_0^{\lambda_*}\lambda\left[f(p)+\lambda\,\nabla_k f+\tfrac12\lambda^2\,\nabla_k^2 f+\cdots\right]d\lambda.
+$$
+
+（iii）**逐项计算与误差控制**：
+
+$$
+\int_0^{\lambda_*}\lambda\,d\lambda=\tfrac12\lambda_*^2,\quad
+\int_0^{\lambda_*}\lambda^2\,d\lambda=\tfrac13\lambda_*^3,\quad
+\int_0^{\lambda_*}\lambda^3\,d\lambda=\tfrac14\lambda_*^4.
+$$
+
+结合 §2 的端点层估计与主导收敛，曲率引入的额外项被 $C_R,C_{\nabla R}$ 控制，得
+
+$$
+\mathcal L_\lambda[f]=\tfrac12\lambda_*^2 f(p)+\tfrac13\lambda_*^3\nabla_k f(p)+\mathcal O\Big(\lambda_*^4|\nabla^2 f|+\frac{\lambda_*^4}{L_{\rm curv}^2}|f|\Big).
+$$
+
+在族约束 $\mathcal L_\lambda[f]=o(\ell^2)$ 与 $\lambda_*\sim c_\lambda\ell$ 下，主项 $\tfrac12\lambda_*^2 f(p)$ 占优，从而 $f(p)=0$。□
+
+**注记**：该命题为**局部**结论，仅在无共轭点的正规邻域内成立，与欧氏 Radon 变换的全局唯一性不同。本文推导爱因斯坦方程时仅需此局部性质。
 
 ---
 
-# 附录 C  张量化闭包与维度条件
+# 附录 C  张量化闭包与维度条件（$d\ge 3$ 必要）
 
-**引理 C.1（$d\ge3$）**
+**引理 C.1（零锥刻画，$d\ge3$ 必要）**
 若 $X_{ab}$ 光滑对称且 $X_{ab}k^ak^b=0\ \forall k$（零矢），则 $X_{ab}=\Phi g_{ab}$。证：去迹分解与"零锥决定共形类"。
+
+**注**：$d=2$ 时所有对称张量自动满足此性质，场方程退化；本文推导爱因斯坦方程时**明确要求 $d\ge 3$**。
 
 ---
 
@@ -480,6 +656,37 @@ $$
 
 **E.2 Minkowski 小钻石核对**
 仿射 null 段 $\Rightarrow \kappa[\ell]=0$ 使 $I_{\partial\mathcal N}=0$；null–类空超曲面关节 $\eta$ 常数 $\Rightarrow \delta I_{\rm joint}=0$。故 $\delta H_\chi$ 可积，与 §5 的规范能量边界合法性一致。
+
+**E.3 弱曲率小钻石推广**
+
+**命题**：在弱曲率背景（$\ell/L_{\rm curv}\ll 1$）下，小钻石 $\mathcal D_\ell(p)$ 的 null 边界与关节项处理可推广如下：
+
+（i）**Riemann 正规坐标展开**：在 $p$ 的正规邻域内，度规至 $\mathcal O(\ell^2)$ 精度为
+
+$$
+g_{ab}(x)=\eta_{ab}+\tfrac13 R_{acbd}(p)\,x^c x^d+\mathcal O\Big(\frac{\ell^3}{L_{\rm curv}^3}\Big).
+$$
+
+（ii）**仿射参数化的 $\mathcal O(\varepsilon^2)$ 修正**：选择仿射参数 $\lambda$ 满足 $k^b\nabla_b k^a=0$。在上述度规展开下，null 生成元的非仿射量
+
+$$
+\kappa[\ell]:=k^a\nabla_a\ln|k^b\xi_b|=\mathcal O\Big(\frac{\ell}{L_{\rm curv}^2}\Big)=\mathcal O(\varepsilon^2/\ell).
+$$
+
+由于 $I_{\partial\mathcal N}\sim\int\kappa[\ell]\,d\lambda\,dA\sim\mathcal O(\varepsilon^2\ell^{d-2})$，在一阶变分层面可忽略（与 §2 误差一致）。
+
+（iii）**关节角的固定**：采用 Dirichlet 边界条件固定 $\sigma_{AB}$ 与关节角 $\eta$，即 $\delta\sigma_{AB}=0$、$\delta\eta=0$。由 §8 的
+
+$$
+\delta I_{\rm joint}=\frac{1}{8\pi G}\int_{\mathcal J} d^{d-2}x\,
+\Big(\tfrac12\sqrt{\sigma}\,\sigma^{AB}\delta\sigma_{AB}\,\eta+\sqrt{\sigma}\,\delta\eta\Big)=0,
+$$
+
+关节项自动可积。
+
+（iv）**辛流无外流验证**：在上述边界条件下，Iyer–Wald 辛流 $\omega(h,\mathcal L_\xi h)|_{\partial\Sigma}$ 的外流为 $\mathcal O(\varepsilon^2\ell^{d-2})$，在一阶链中可忽略；在二阶链中需明确固定边界数据以保证 $\int_{\partial\Sigma}\iota_n\omega=0$。
+
+**结论**：弱曲率下，null 边界与关节项的处理与 Minkowski 情形一致（至 $\mathcal O(\varepsilon^2)$ 精度），$\delta H_\chi$ 可积且 $\delta S_{\rm gen}$ 与 $\mathcal E_{\rm can}$ 的数值不受边界项影响。
 
 ---
 
