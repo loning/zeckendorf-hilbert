@@ -1,6 +1,6 @@
 # 自指散射与费米子的诞生：Riccati 平方根、旋量双覆盖与 $\mathbb{Z}_2$ 交换相位
 
-Version: 2.3
+Version: 2.4
 
 ## 摘要
 
@@ -103,6 +103,22 @@ $$
 
 一般闭路上 $N_b(\gamma)$ 的**整数号符**依赖于对穿越 $D$ 的**规避方式**与参数定向，故不与 $\deg$ 建立整数恒等；仅其奇偶 $(N_b\bmod 2)$ 为不变量。以下讨论据此规范展开。
 
+**声明（空间与不变量层级）** 本文所有绕数 $\deg(S|_\gamma)$、谱流 $\mathrm{Sf}(\gamma)$、束缚态计数 $N_b(\gamma)$ 与交数 $I_2(\gamma,D)$ 均以**同一参数‑能量闭路** $\gamma\subset X^\circ$ 为自变量，比较仅在 $\mathbb{Z}_2$ 层级进行。
+
+与此不同，§3 中的
+
+$$
+\deg(S|_C)=-\sum_j m_j
+$$
+
+乃**动量 $(k)$ 平面谱回路** $C$ 的解析计数，用于 $S=f(-k)/f(k)$ 的谱结构分析；它**不**与参数回路 $\gamma$ 作整数级别识别与比较。本文并**不**主张存在整数等式 $\deg(S|_\gamma)=\deg(S|_C)$ 或 $\deg_\lambda=\deg_k$。主定理 1.1 仅断言
+
+$$
+(-1)^{\deg(\det S|_\gamma)}=(-1)^{\mathrm{Sf}(\gamma)}=(-1)^{N_b(\gamma)}=(-1)^{I_2(\gamma,D)}.
+$$
+
+（参见 §3"注（谱回路 vs 参回路）"。）
+
 ### 0.4 短程与谱假设
 
 势 $V$ 属短程类：在 $d=1$（以及某些 $d=2$ 的附加条件下）可保证 $S(E,\lambda)-\mathbf 1$ 为迹类；而在更一般的 $d\ge 2$ 情形通常仅能得到 $S(E,\lambda)-\mathbf 1$ 属合适的 Schatten 类，因而需使用修正 Fredholm 行列式 $\det_p$ 及其连续化来定义谱位移。下文为简洁起见以"$\det/\det_p$"统记。其余假设保持不变：$(E,\lambda)\mapsto S$ 沿闭路 $\gamma$ 分段 $C^1$，且 $\gamma$ 回避阈值与嵌入本征值；若无法完全回避阈值，则用模 2 交数描述。单通道时 $S=e^{2i\delta}$；多通道/分波时以 $\det/\det_p S$ 作为整体相位指数。
@@ -143,6 +159,32 @@ $$
 $$
 
 其中 $\mathrm{Sf}(\gamma)$ 为本征相位关于参考相位的谱流，$N_b(\gamma)$ 为沿闭路 $\gamma$ 束缚态穿越连续谱阈值的符号计数（出生计 $+1$、湮灭计 $-1$），其奇偶与 $\mathrm{Sf}(\gamma)$ 等价，$I_2(\gamma,D)$ 为 $\gamma$ 与鉴别子 $D$ 的模 2 交数。
+
+**证明（模 2）** 由 Birman–Kreĭn 公式，在绝对连续谱能段存在连续谱位移 $\xi$ 使 $\det S=e^{-2\pi i\,\xi}$。沿闭路 $\gamma$ 取连续分支，则
+
+$$
+\deg(\det S|_\gamma)=\frac{1}{2\pi i}\oint_\gamma (\det S)^{-1}d(\det S)=-\oint_\gamma d\xi=\mathrm{Sf}(\gamma).
+$$
+
+因而
+
+$$
+(-1)^{\deg(\det S|_\gamma)}=\exp\Bigl(-i\pi\oint_\gamma d\xi\Bigr)=(-1)^{\mathrm{Sf}(\gamma)}.
+$$
+
+设 $D\subset X$ 为"上半平面 Jost 零点生成/湮灭、阈值异常、嵌入本征值、通道开闭"等事件组成的判别子。若 $\gamma$ 与 $D$ 在 $t_\ast$ 处横截，则恰有一个本征相位在参考相位处一阶穿越，$\mathrm{Sf}$ 在该点跳变 $\pm1$；于是
+
+$$
+(-1)^{\mathrm{Sf}(\gamma)}=(-1)^{I_2(\gamma,D)}.
+$$
+
+按定义，$N_b(\gamma)$ 为沿 $\gamma$ 束缚态"出生记 $(+1)$、湮灭记 $(-1)$"的符号计数；每个横截 $D$ 的事件正对应一次出生/湮灭，故 $N_b(\gamma)\equiv I_2(\gamma,D)\pmod2$。综上
+
+$$
+(-1)^{\deg(\det S|_\gamma)}=(-1)^{\mathrm{Sf}(\gamma)}=(-1)^{N_b(\gamma)}=(-1)^{I_2(\gamma,D)}.\quad\Box
+$$
+
+*（整数层级等式 $\mathrm{Sf}=\deg(\det S|_\gamma)$ 见 §4；$I_2$ 的定义与性质见 §5。）*
 
 **说明（整数层级）** 本文在整数层级仅断言 $\mathrm{Sf}(\gamma)=\deg(\det S|_\gamma)$（见 §4）。与 $N_b(\gamma)$、$I_2(\gamma,D)$ 的关系只取其奇偶，故主定理等式应理解为 $\mathbb{Z}_2$ 层级的等价。
 
