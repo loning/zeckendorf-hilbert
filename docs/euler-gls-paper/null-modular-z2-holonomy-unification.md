@@ -163,7 +163,13 @@ $$
 
 ### 定理 5（统一原理：分解陈述）
 
-**E‑(a)（充分 + 生成性）** 在定理 1–4 的门槛与对齐假设、**$H^1$‑通道可检测性**、**$H^2$‑通道可检测性 $A_{!H^2}$**、**生成性假设 $A_{\text{gen}}$** 以及 **自旋平凡性 $A_{\text{spin}}$** 下，**(ii) 与 (iii) 等价**；并且 **(i)$\Rightarrow$(iii)**（从而 **(i)$\Rightarrow$(ii)**）。其中：
+**E‑(a)（充分 + 生成性）** 在定理 1–4 的门槛与对齐假设、**$H^1$‑通道可检测性**、**生成性假设 $A_{\text{gen}}$** 以及 **自旋平凡性 $A_{\text{spin}}$** 下，成立
+
+$$
+(ii)\ \Longleftrightarrow\ (iii),\qquad (i)\ \Longrightarrow\ (ii)\ (\Longleftrightarrow\ (iii)).
+$$
+
+即：$[K]=0\in H^2(Y,\partial Y;\mathbb Z_2)$ 与"一切物理回路上 $\nu_{\sqrt{\det S}}(\gamma)\equiv1$"等价；且小钻石上的一阶极值与二阶非负进一步推出该等价类。其中：
 (i) 小钻石上一阶极值与二阶非负；
 (ii) $[K]=0\in H^2(Y,\partial Y;\mathbb Z_2)$；
 (iii) 一切物理回路上 $\nu_{\sqrt{\det S}}(\gamma)\equiv 1$。
@@ -205,7 +211,7 @@ $a\in C^{1}$、$b\in C^{d-2}$ 使 $\deg(a\smile\delta b)=1+(d-1)=d$、$\deg(b\sm
 
 ### 定理 5
 
-在 **$H^1$‑通道可检测性 + $A_{\text{spin}}$** 下，结合定理 3 与 Künneth 配对得 **(ii)$\Rightarrow$(iii)**；在 **$H^1$‑通道可检测性 + $A_{!H^2}$ + $A_{\text{gen}}$ + $A_{\text{spin}}$** 下，以 $\Sigma_1\times\gamma_1$（$H^1\!\times H^1$）与 ${\mathrm{pt}}\times\gamma_2$（$H^2$）两类检测子二维循环生成相对二同调，得 **(iii)$\Rightarrow$(ii)**，故 **(ii)$\Leftrightarrow$(iii)**。再由定理 1 与 4 得 **(i)$\Rightarrow$(iii)**（并因此 **(i)$\Rightarrow$(ii)**）。E‑(b) 在可解族中与 $D$ 横截的回路构造完成。
+**E‑(a)** 由定理 3 得 $(ii)\Rightarrow(iii)$；由检测子回路生成相对二同调得 $(iii)\Rightarrow(ii)$，故 $(ii)\Leftrightarrow(iii)$。再由定理 1 与 4 得 $(i)\Rightarrow(iii)$，于是 $(i)\Rightarrow(ii)\Leftrightarrow(iii)$。E‑(b) 在可解族中与 $D$ 横截的回路构造完成。
 
 ---
 
