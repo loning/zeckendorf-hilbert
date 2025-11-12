@@ -1,6 +1,6 @@
 # 自指散射与费米子的诞生：Riccati 平方根、旋量双覆盖与 $\mathbb{Z}_2$ 交换相位
 
-Version: 2.18
+Version: 2.20
 
 ## 摘要
 
@@ -219,7 +219,7 @@ $$
 
 **说明（整数层级）** 本文在整数层级仅断言 $\mathrm{Sf}(\gamma)=\deg(\mathfrak s|_\gamma)$（见 §4）。与 $N_b(\gamma)$、$I_2(\gamma,D)$ 的关系只取其奇偶，故主定理等式应理解为 $\mathbb{Z}_2$ 层级的等价。
 
-**引理 1（BK 到谱流模 2）**
+**引理 1（BK 到谱流；及其模 2 推论）**
 在第 0 节短程与正则性假设下，沿闭路 $\gamma$
 
 $$
@@ -433,7 +433,7 @@ $$
 
 ## 7 非线性 Herglotz–Möbius 本征值问题
 
-该非线性本征值问题已在**量子点—超导体**混合电路中被观测到 [Nat. Nanotechnol. **16**, 776 (2021)]，其中边界条件 $L$ 可实时门控调节，预测的不动点 $L_\pm$ 交换表现为 Andreev 谱中的 $\pi$-相位滑移。
+相位偏置的平面 Josephson 结中已观测到与拓扑相变一致的 **π 相位跃迁** 特征，且与本文"固定点交换→相位跨 π"的图景相符 [Phys. Rev. Lett. **126**, 036802 (2021)]。
 
 **设定**
 自洽方程
@@ -613,13 +613,13 @@ $$
 10. J. Behrndt, S. Hassi, H. de Snoo, Boundary Value Problems, Weyl Functions, and Differential Operators, Springer, 2020.
 11. I. C. Fulga, F. Hassler, A. R. Akhmerov, C. W. J. Beenakker, Scattering Formula for the Topological Quantum Number, Phys. Rev. B 83 (2011) 155429.
 12. A. R. Akhmerov, J. P. Dahlhaus, F. Hassler, M. W. Wimmer, C. W. J. Beenakker, Quantized Conductance at the Majorana Phase Transition, Phys. Rev. Lett. 106 (2011) 057001.
-13. A. P. Higginbotham et al., Detecting Majorana Nonlocality by Phase-Slip Spectroscopy, Phys. Rev. Lett. 126 (2021) 036802.
-14. L. P. Kouwenhoven et al., Signatures of Majorana Fermions in Hybrid Superconductor-Semiconductor Nanowire Devices, Nature Nanotechnol. 16 (2021) 776–781.
-15. C. M. Marcus et al., Quantized Majorana Conductance, Nature 556 (2018) 74–79.
+13. M. C. Dartiailh, W. Mayer, J. Yuan, K. S. Wickramasinghe, A. Matos‑Abiague, I. Žutić, J. Shabani, **Phase Signature of Topological Transition in Josephson Junctions**, *Phys. Rev. Lett.* **126** (2021) 036802.
+14. T. Kanne **et al.**, **Epitaxial Pb on InAs Nanowires for Quantum Devices**, *Nat. Nanotechnol.* **16** (2021) 776–781.
+15. **Retraction Note:** *Quantized Majorana conductance*, *Nature* **591** (2021) E30；H. Zhang **et al.**, *Quantized Majorana conductance*, *Nature* **556** (2018) 74–79 (**Retracted**).
 16. M. T. Deng et al., Majorana Bound State in a Coupled Quantum-Dot Hybrid-Nanowire System, Science 354 (2016) 1557–1562.
 17. V. Mourik et al., Signatures of Majorana Fermions in Hybrid Superconductor-Semiconductor Nanowire Devices, Science 336 (2012) 1003–1007.
 18. S. M. Albrecht et al., Exponential Protection of Zero Modes in Majorana Islands, Nature 531 (2016) 206–209.
-19. H. Zhang et al., Quantized Anomalous Hall Effect in Magnetic Topological Insulators, Science 329 (2010) 61–64.
+19. R. Yu, W. Zhang, H.-J. Zhang, S.-C. Zhang, X. Dai, Z. Fang, **Quantized Anomalous Hall Effect in Magnetic Topological Insulators**, *Science* **329** (2010) 61–64.
 20. T. Friedrich, Dirac Operators in Riemannian Geometry, AMS, 2000.
 21. J. M. Lee, Introduction to Topological Manifolds, 2nd ed., Springer, 2011.
 22. M. Nakahara, Geometry, Topology and Physics, 2nd ed., CRC Press, 2003.
