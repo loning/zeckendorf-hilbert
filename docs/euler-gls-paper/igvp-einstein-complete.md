@@ -1,6 +1,6 @@
 # 信息几何变分原理导出爱因斯坦方程：定体积对偶、显式可交换极限、Radon‑型闭包、OS/KMS–Fisher 解析延拓与 null 边界处方
 
-Version: 3.7
+Version: 4.2
 
 ## 摘要
 
@@ -111,19 +111,26 @@ $$
 并且
 
 $$
-\big|\theta(\lambda)+\lambda R_{kk}\big|\le \tfrac12 C_{\nabla R}\lambda^2+C_\sigma^2|\lambda|=:M_\theta(\lambda).
+\boxed{\
+\big|\theta(\lambda)+\lambda R_{kk}(\lambda)\big|\ \le\
+\tfrac12 C_{\nabla R}\lambda^2\ +\ C_\sigma^2|\lambda|\ +\ \tfrac{4}{3(d-2)}C_R^2|\lambda|^3\ :=\ \widetilde M_\theta(\lambda)\ .
+}
 $$
 
 **面积变分显式不等式与可交换性**
 
 $$
-\boxed{\
+\boxed{
 \Big|\delta A+\int_{\mathcal H}\lambda R_{kk}\,d\lambda\,dA\Big|
-\le \Big(\tfrac16 C_{\nabla R}\lambda_*^3+\tfrac12 C_\sigma^2\lambda_*^2\Big)A
-\le C_d\,\varepsilon^2\,\ell^{d-2}\ },
+\ \le\ \Big(\tfrac16 C_{\nabla R}\lambda_*^3+\tfrac12 C_\sigma^2\lambda_*^2+\tfrac{1}{3(d-2)}C_R^2\lambda_*^4\Big)A\ .
+}
 $$
 
 其中 $C_d=C_d(C_R,C_{\nabla R},C_{\mathcal C};d,c_\lambda)$ 与 $\varepsilon$ 无关。
+
+**数值验证**：归一化误差 $|\delta A+\int\lambda R_{kk}|/\ell^{d-2}$ 的 $\varepsilon^2$ 标度见图 1（不同曲率参数 $C_R, C_{\nabla R}, C_{\mathcal C}$ 下的上界曲线）。
+
+![图 1：显式可交换极限的数值验证。归一化误差上界 $|\delta A+\int\lambda R_{kk}|/\ell^{d-2}$ 随尺度分离参数 $\varepsilon$ 的变化，显示 $\varepsilon^2$ 标度。三条曲线对应不同曲率参数组合（低/中/高曲率），灰色虚线为参考 $\varepsilon^2$ 标度线。](igvp_figure1_exchangeable_limit.png)
 
 端点层 $[\lambda_*-\delta,\lambda_*]$ 的贡献满足
 
@@ -138,17 +145,21 @@ $$
 取固定常数 $\lambda_0>0$，对所取极限族均有 $0<\lambda_*\le\lambda_0$。由 $C_\sigma=C_{\mathcal C}\lambda_*\le C_{\mathcal C}\lambda_0$，令
 
 $$
-M_{\rm dom}(\lambda):=\tfrac12 C_{\nabla R}\lambda^2+\big(C_{\mathcal C}\lambda_0\big)^2|\lambda| .
+\boxed{
+\widetilde M_{\rm dom}(\lambda)
+:=\tfrac12 C_{\nabla R}\lambda^2+\big(C_{\mathcal C}\lambda_0\big)^2|\lambda|
++\tfrac{4}{3(d-2)}C_R^2\lambda_0^3\ \in L^1([0,\lambda_0])\ .
+}
 $$
 
 则在固定区间 $[0,\lambda_0]$ 上，有
 
 $$
 \big|\chi_{[0,\lambda_*]}(\lambda)\big(\theta(\lambda)+\lambda R_{kk}\big)\big|
-\le M_{\rm dom}(\lambda),\qquad M_{\rm dom}\in L^1([0,\lambda_0]) .
+\le \widetilde M_\theta(\lambda)\le \widetilde M_{\rm dom}(\lambda),\qquad \widetilde M_{\rm dom}\in L^1([0,\lambda_0]) .
 $$
 
-因 $M_{\rm dom}$ 与 $\varepsilon$ 无关，故可据主导收敛定理交换"$\varepsilon\to0$"与沿 $\lambda$ 的积分。
+因 $\widetilde M_{\rm dom}$ 与 $\varepsilon$ 无关，且对所有 $|\lambda|\le\lambda_0$ 均有 $\widetilde M_\theta(\lambda)\le \widetilde M_{\rm dom}(\lambda)$，故可据主导收敛定理交换"$\varepsilon\to0$"与沿 $\lambda$ 的积分。
 
 （图 1（建议）：展示归一化误差 $\big|\delta A+\int\lambda R_{kk}\big|/\ell^{d-2}$ 随 $\varepsilon$ 的标度；三条曲线对应不同 $(C_R,C_\sigma)$ 取值。示例参数：$C_R\in\{0.1,0.3\}$，$C_{\mathcal C}\in\{0.1,0.3\}$，$\lambda_0=1$。）
 
@@ -211,8 +222,10 @@ $$
 与 Hollands–Wald 线性稳定性等价。**核的说明**：在所选规范固定与边界条件下，$\mathcal E_{\rm can}[h,h]=0$ 当且仅当 $h$ 为纯规范模。线性化爱因斯坦方程来自上一节的一阶族约束与张量化闭包；二者逻辑互不依赖。无对偶语境下，以 QNEC/ANEC 作为保底不等式（形状导数与极限次序详见附录）。
 
 $$
-\boxed{\,\delta^2 S_{\rm rel}\ge0\ \Longleftrightarrow\ \mathcal E_{\rm can}\ge0\ \Longleftrightarrow\ \text{线性化 Einstein 算子（半）正}\,}.
+\boxed{\,\delta^2 S_{\rm rel}\ge0\ \Longrightarrow\ \mathcal E_{\rm can}[h,h]\ge0\ \Longrightarrow\ \text{（满足 Hollands–Wald 条件时）线性稳定}\,}.
 $$
+
+适用前提：处于 code subspace，满足 $\delta M=\delta J=\delta P=0$ 的线性化荷约束与合适边界/规范条件（辛流无外流）。
 
 谱/椭圆边界的草图与边界无外流、可积性核对见附录 E 与 §8 的边界处方。
 
@@ -272,15 +285,19 @@ $$
 
 其中横截面为 $(d{-}2)$ 维，$d^{d-2}x$ 为其固有测度。$\eta=\ln|-\ell\cdot n|$（null–非 null）或 $\eta=\ln\big|-\tfrac12\,\ell\cdot\tilde\ell\big|$（null–null）。取 Dirichlet‑类边界条件并采用**仿射**参数化则 $\kappa[\ell]=0$；**注意**：此处的 $\kappa[\ell]$ 仅是 $\ell^a$ 的非仿射量，**与**温标 $T=\hbar|\kappa_\chi|/2\pi$ **无关**。关节项以 $\eta$ 计入。由此 Iyer–Wald 辛流在边界无外泄，$\delta H_\chi$ 可积，且不改变 $\delta S_{\rm gen}$ 与 $\mathcal E_{\rm can}$ 的数值。
 
-在仿射参数化且关节角固定（$\delta\eta=0$）时，
+关节项的一般变分为
 
 $$
-\delta I_{\rm joint}=\frac{1}{8\pi G}\int_{\mathcal J}d^{d-2}x\,\sqrt{\sigma}\,\delta\eta=0,
+\delta I_{\rm joint}
+=\frac{1}{8\pi G}\int_{\mathcal J} d^{d-2}x\,
+\Big(\tfrac12\sqrt{\sigma}\,\sigma^{AB}\delta\sigma_{AB}\,\eta+\sqrt{\sigma}\,\delta\eta\Big).
 $$
+
+在本文所取 **Dirichlet** 类边界条件下固定 $\sigma_{AB}$（故 $\delta\sigma_{AB}=0$），并固定关节角（$\delta\eta=0$），因此 $\delta I_{\rm joint}=0$。
 
 从而 joint 项自动可积，无需再调 counterterm。
 
-**示例（Minkowski 小钻石）**：两片仿射 null 面拼接 $\Rightarrow \kappa[\ell]=0$ 给 $I_{\partial\mathcal N}=0$；null–空超曲面关节项 $\eta$ 为常数，$\delta I_{\rm joint}=0$。由此边界通量为零且哈密顿量变分可积。
+**示例（Minkowski 小钻石）**：两片仿射 null 面拼接 $\Rightarrow \kappa[\ell]=0$ 给 $I_{\partial\mathcal N}=0$；null–类空超曲面关节项 $\eta$ 为常数，$\delta I_{\rm joint}=0$。由此边界通量为零且哈密顿量变分可积。
 
 ---
 
@@ -298,7 +315,7 @@ $$
 
 ## 11 可复现实操清单
 
-1. 调用 §2 的不等式与常数族，数值检验 $\big|\delta A+\int\lambda R_{kk}\big|\sim\varepsilon^2\ell^{d-2}$ 的标度与 $C_d$ 的保守性；
+1. 调用 §2 的不等式与常数族，数值检验 $\big|\delta A+\int\lambda R_{kk}\big|\sim\varepsilon^2\ell^{d-2}$ 的标度与 $C_d$ 的保守性（见图 1；生成脚本：`scripts/generate_igvp_figure1.py`）；
 2. 逐项验证 $\delta Q/T$、$\delta A/(4G\hbar)$ 的重标定/取向不变；并在固定 $T$ 的规约下核查 $V/T$ 的使用。
 3. 以"局域化引理"把面积恒等式下推至逐生成元，加上 0‑阶重建得 $R_{kk}=8\pi G\,T_{kk}$；
 4. 在 $1{+}1$ 高斯族与满足奇偶性判据的模型上，显式验证 $g_{ti}=0$ 与"实/非退化/签名"的下界；
@@ -342,18 +359,23 @@ $$
 \sup\sigma^2\le C_\sigma^2(1+\mathcal O(\varepsilon)),\quad C_\sigma:=C_{\mathcal C}\lambda_* .
 $$
 
-（后续使用 $C_\sigma$ 与 $M_\theta$ 的各处公式与阶计数保持不变。）
+（后续使用 $C_\sigma$ 与 $\widetilde M_\theta$ 的各处公式与阶计数保持不变。）
 
 $$
-|\theta(\lambda)+\lambda R_{kk}|\le \tfrac12 C_{\nabla R}\lambda^2+C_\sigma^2|\lambda|=M_\theta(\lambda).
+\boxed{\
+\big|\theta(\lambda)+\lambda R_{kk}(\lambda)\big|\ \le\
+\tfrac12 C_{\nabla R}\lambda^2\ +\ C_\sigma^2|\lambda|\ +\ \tfrac{4}{3(d-2)}C_R^2|\lambda|^3\ :=\ \widetilde M_\theta(\lambda)\ .
+}
 $$
 
 **A.4 面积不等式与边界层**
 
 $$
-\Big|\delta A+\int_{\mathcal H}\lambda R_{kk}\Big|
-\le \int_{\mathcal H} M_\theta(\lambda)\,d\lambda\,dA
-\le \Big(\tfrac16 C_{\nabla R}\lambda_*^3+\tfrac12 C_\sigma^2\lambda_*^2\Big)A .
+\boxed{
+\Big|\delta A+\int_{\mathcal H}\lambda R_{kk}\,d\lambda\,dA\Big|
+\ \le\ \int_{\mathcal H}\widetilde M_\theta(\lambda)\,d\lambda\,dA
+\ \le\ \Big(\tfrac16 C_{\nabla R}\lambda_*^3+\tfrac12 C_\sigma^2\lambda_*^2+\tfrac{1}{3(d-2)}C_R^2\lambda_*^4\Big)A\ .
+}
 $$
 
 端点层 $[\lambda_*-\delta,\lambda_*]$ 贡献满足
@@ -370,10 +392,14 @@ $$
 取固定 $\lambda_0>0$ 使 $0<\lambda_*\le\lambda_0$。由 $C_\sigma=C_{\mathcal C}\lambda_*\le C_{\mathcal C}\lambda_0$，定义
 
 $$
-M_{\rm dom}(\lambda):=\tfrac12 C_{\nabla R}\lambda^2+\big(C_{\mathcal C}\lambda_0\big)^2|\lambda| \in L^1([0,\lambda_0]) .
+\boxed{
+\widetilde M_{\rm dom}(\lambda)
+:=\tfrac12 C_{\nabla R}\lambda^2+\big(C_{\mathcal C}\lambda_0\big)^2|\lambda|
++\tfrac{4}{3(d-2)}C_R^2\lambda_0^3\ \in L^1([0,\lambda_0])\ .
+}
 $$
 
-于是对 $[0,\lambda_0]$ 上的被积式 $\chi_{[0,\lambda_*]}(\lambda)\big(\theta(\lambda)+\lambda R_{kk}\big)$ 有统一支配，由主导收敛定理得到"$\varepsilon\to0$"与积分次序可交换。
+于是对 $[0,\lambda_0]$ 上的被积式 $\chi_{[0,\lambda_*]}(\lambda)\big(\theta(\lambda)+\lambda R_{kk}\big)$ 有统一支配（对所有 $|\lambda|\le\lambda_0$ 均有 $|\theta+\lambda R_{kk}|\le \widetilde M_\theta\le \widetilde M_{\rm dom}$），且 $\widetilde M_{\rm dom}$ 与 $\varepsilon$ 无关，由主导收敛定理得到"$\varepsilon\to0$"与积分次序可交换。
 
 ---
 
@@ -388,7 +414,7 @@ $\int_0^{\lambda_*} w(\lambda)F(x,\lambda)\,d\lambda=0$。
 
 **B.2 0‑阶重建**
 $S_{kk}(\gamma(\lambda))=S_{kk}(p)+\lambda\nabla_k S_{kk}(p)+\mathcal O(\lambda^2)$；
-$\int_0^{\lambda_*}\lambda S_{kk}=\tfrac12\lambda_*^2 S_{kk}(p)+\mathcal O(\lambda_*^3|\nabla S|)$。
+$\int_0^{\lambda_*}\lambda S_{kk}\,d\lambda=\tfrac12\lambda_*^2 S_{kk}(p)+\mathcal O(\lambda_*^3|\nabla S|)$。
 若左侧 $=o(\ell^2)$，则 $S_{kk}(p)\to0$。分布情形可先作 mollifier 平滑，再令平滑尺度 $\to0$。
 
 ---
@@ -431,7 +457,7 @@ $$
 取 Dirichlet‑类边界条件与仿射参数化，边界变分抵消，$\omega$ 无外泄，Wald–Zoupas/Brown–York 荷与 null 约束一致。
 
 **E.2 Minkowski 小钻石核对**
-仿射 null 段 $\Rightarrow \kappa[\ell]=0$ 使 $I_{\partial\mathcal N}=0$；null–空超曲面关节 $\eta$ 常数 $\Rightarrow \delta I_{\rm joint}=0$。故 $\delta H_\chi$ 可积，与 §5 的规范能量边界合法性一致。
+仿射 null 段 $\Rightarrow \kappa[\ell]=0$ 使 $I_{\partial\mathcal N}=0$；null–类空超曲面关节 $\eta$ 常数 $\Rightarrow \delta I_{\rm joint}=0$。故 $\delta H_\chi$ 可积，与 §5 的规范能量边界合法性一致。
 
 ---
 
