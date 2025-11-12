@@ -2,7 +2,7 @@
 
 **——二次型局域化的全序近似桥接、容斥—马尔可夫拼接与分布论散射刻度的奇偶阈值**
 
-Version: 1.7
+Version: 2.11
 
 **MSC**：81T05；81T40；83C57；83C05；46L30；46L60；58J35；81U40；42A38
 **Keywords**：Tomita–Takesaki 模理论；零测度边界；因果钻石；半侧模包含；强次可加与马尔可夫性；Petz 恢复；QNEC；JLMS；Wigner–Smith 群延迟；Birman–Kreĭn／Friedel–Lloyd；Toeplitz／Berezin 压缩；Euler–Maclaurin 与 Poisson；GHY 关节项；$\mathbb Z_2$ 取向账本
@@ -25,7 +25,11 @@ Tomita–Takesaki 模理论将冯·诺依曼代数—矢量态对 $(\mathcal A,\
 
 ### 2.1 二次型框架与自然域
 
-取闵氏时空 $\mathbb R^{1,d-1}$（$d\ge2$）。令 $\mathcal D_0$ 为真空的能量有界矢量所成稠密域。设对任一区域 $R$ 存在下半界闭二次型
+取闵氏时空 $\mathbb R^{1,d-1}$（$d\ge2$）。令 $\mathcal D_0$ 为真空的能量有界矢量所成稠密域。
+
+**记号与测度约定**：零测度边界分解为两层 $\widetilde E=E^+\sqcup E^-$；以下记号 $\int_{E^\sigma}(\cdots)\,d\lambda\,d^{d-2}x_\perp$ 指在该层上按仿射参数 $\lambda$ 与横向坐标 $x_\perp$ 的标准测度积分。
+
+设对任一区域 $R$ 存在下半界闭二次型
 
 $$
 \mathfrak k_R[\psi]
@@ -66,7 +70,21 @@ Q(E):=-\mathrm i\,S^\dagger\partial_E S,\quad
 \rho_{\rm rel}(E):=\tfrac{1}{2\pi}\operatorname{tr}Q(E).
 $$
 
-采用测试函数 $h\in C_c^\infty$ 或解析带限窗 $h\in C^{2m}\cap L^1$；窗尺度 $h_\ell(E)=\ell^{-1}h(E/\ell)$。Toeplitz／Berezin 压缩 $T_h(S)$ 与迹公式用于窗化估计与误差控制。
+采用窗函数 $h\in\mathcal S(\mathbb R)$（如高斯），**或** $h\in C_c^{2m+1}(\mathbb R)$ 且端点至 $2m$ 阶喷气为零（$m\ge1$）。在此情形有 $\widehat h(\omega)=O(|\omega|^{-(2m+1)})$。若 $h$ 仅为紧支撑的分段 $C^{2m}$（端点允许角点，含 Kaiser–Bessel），则采用**角点尾界**（至少 $O(|\omega|^{-2})$），据此定理 G 的 Poisson 混叠项级数收敛。相应的 Toeplitz／Berezin 压缩与迹公式沿用 §3.5 的误差分解，其中 **端点余项 $R_{\rm EM}$**：对 $C_c^\infty$ 窗取 $O(\ell^{-(m-1)})$；对分段 $C^{2m}$ 的紧支撑窗（含 Kaiser–Bessel）采用**角点版**估计（阶一般降至 $O(\ell^{-1})$），并计入总误差预算 $\mathcal E_h(\gamma)$。
+
+**附加假设（Toeplitz 交换子可积性）**：在任意考察能带 $\mathcal I$ 上，$\partial_E S(E)\in\mathfrak S_2$ 且 $\displaystyle\int_{\mathcal I}|\partial_E S(E)|_2\,dE<\infty$。于是 $R_{\rm T}\le C_{\rm T}\,\ell^{-1/2}\!\int_{\mathcal I}|\partial_E S|_2\,dE$ 有界。
+
+**全局约定（窗与尾项）**：设 $\int_{\mathbb R}h=1$ **且 $h\ge0$**，尺度 $h_\ell(E)=\ell^{-1}h(E/\ell)$。定义
+
+$$\boxed{R_{\rm tail}(\ell,\mathcal I,E_0):=\int_{\mathbb R\setminus\mathcal I(\gamma)} |h_\ell(E-E_0)|\,dE\in[0,1].}$$
+
+*注*：此时 $R_{\rm tail}=1-\int_{\mathcal I(\gamma)}h_\ell(E-E_0)\,dE$。
+
+**符号约定（Poisson 步长）** 记 $\Delta>0$ 为能带分片／频域采样的步长（网格间距）；在 Poisson 重求和估计中取
+
+$$\int_{\mathcal I}|R_{\rm P}|\,dE\ \le\ C_h\sum_{|q|\ge1}\big|\widehat h\left(2\pi q\,\ell/\Delta\right)\big|,$$
+
+与 §3.5 的同名项一致使用此 $\Delta$。
 
 ### 2.5 链与交叠、代数假设
 
@@ -126,8 +144,14 @@ $$
 逐点恒等式 $(v-\min_i V_i)_+ = \sum_{k\ge1}(-1)^{k-1}\sum_{|I|=k}(v-\max_{i\in I}V_i)_+$ 推得。
 [**二次型；域：真空，$V_i$ 分段光滑**]
 
-**命题 B（闭性）**
-若 $\psi_n\to\psi$ 于 $\mathcal D_0$，则容斥两侧对 $\psi_n$ 的值同收敛至对 $\psi$ 的值；恒等式在 $\mathcal D_0$ 上闭合。
+**命题 B（闭性）** 记 $\mathfrak k:=\mathfrak k_{\cup_i R_{V_i}}$ 为容器域的闭二次型，其下半界为 $a\in\mathbb R$。取任意 $c>-a$。若
+
+$$\psi_n,\psi\in \mathcal D(\mathfrak k)\cap\bigcap_{I\ne\emptyset}\mathcal D(\mathfrak k_{R_{V_I}}),
+\qquad \psi_n\to\psi\ \text{于移位图范数 }|\cdot|_{\mathfrak k,c}\text{ 下},$$
+
+则容斥恒等式两侧对 $\psi_n$ 的二次型值同收敛至对 $\psi$ 的值；因而该恒等式在上述形式域上闭合。其中
+
+$$|\psi|_{\mathfrak k,c}^2:=|\psi|^2+\big(\mathfrak k[\psi]+c|\psi|^2\big).$$
 [**二次型闭性**]
 
 ### 3.3  马尔可夫拼接、Petz 恢复与非全序缺口
@@ -142,14 +166,13 @@ $$
 
 [**信息等价；域：真空，split／strong additivity**]
 
-**定理 C′（非全序的马尔可夫缺口）**
-定义层状度
+**定理 C′（非全序的马尔可夫缺口）** **定义（层状度）**：令 $V_i^\pm(x_\perp)$ 分别为 $E^\pm$ 上的阈值，定义
 
-$$
-\boxed{\ \kappa(x_\perp):=\sup_{v\in\mathbb R}\Bigg[\sum_i \mathbf 1_{[V_i(x_\perp),\infty)}(v)\Bigg]-1\ }.
-$$
+$$\boxed{\kappa(x_\perp):=\#\{(a,b):a<b,\ (V_a^+-V_b^+)(V_a^--V_b^-)<0\}.}$$
 
-并以相对熵密度核定义**马尔可夫缺口线密度** $\iota(v,x_\perp)\ge0$。则
+*注*：全序切割时 $\kappa\equiv 0$。据此得 $\iota$ 对 $\kappa$ 单调非降之比较不等式。
+
+以相对熵密度核定义的**马尔可夫缺口线密度** $\iota(v,x_\perp)\ge0$ 满足
 
 $$
 I(D_{j-1}\!:\!D_{j+1}\mid D_j)=\iint\iota(v,x_\perp)\,dv\,d^{d-2}x_\perp,
@@ -157,21 +180,36 @@ I(D_{j-1}\!:\!D_{j+1}\mid D_j)=\iint\iota(v,x_\perp)\,dv\,d^{d-2}x_\perp,
 \iota\ \text{对}\ \kappa\ \text{单调非降}.
 $$
 
+特别地，全序时 $\kappa\equiv0$ 且 $I(D_{j-1}\!:\!D_{j+1}\mid D_j)=0$（马尔可夫饱和）。
+
 [**不等式；域：真空**]
 
-**定理 D（Petz 恢复与稳定性）** 记 $A=D_{j-1}$，$B=D_j$，$C=D_{j+1}$，忘却通道 $\Phi_{ABC\to AB}(X):=\operatorname{Tr}_C[X]$，$\Phi(\rho)=\rho_{AB}$。令 $\rho_B=\operatorname{Tr}_{AC}\rho_{ABC}$。在 $\mathrm{supp}(\rho_B)$ 上取（广义）逆，定义作用于 $B$ 的 Petz 恢复
+**约定（保真度）** 本文统一取 Uhlmann 保真度（未取平方）
 
-$$\mathcal R^\rho_{B\to BC}(Y):=\rho_{BC}^{1/2}\rho_B^{-1/2}Y\rho_B^{-1/2}\rho_{BC}^{1/2},\qquad Y\in\mathcal B(\mathcal H_B),$$
+$$F(\rho,\sigma):=\big|\sqrt{\rho}\sqrt{\sigma}\big|_1\in[0,1].$$
 
-并扩展为 $\mathrm{id}_A\otimes\mathcal R^\rho_{B\to BC}:\mathcal B(\mathcal H_{AB})\to\mathcal B(\mathcal H_{ABC})$。则
+据此，Fawzi–Renner 不等式写为
 
-$$(\mathrm{id}_A\otimes\mathcal R^\rho_{B\to BC})(\rho_{AB})=\rho_{ABC}\quad\Longleftrightarrow\quad I(A:C\mid B)_\rho=0.$$
+$$I(A:C\mid B)\ge -2\ln F,\qquad\text{等价地 }F\ge e^{-I(A:C\mid B)/2}.$$
 
-对一般情形，存在依赖于 $\rho_{BC}$ 的旋转平均 Petz 映射 $\mathcal R_{\rm rot}$，满足
+**定理 D（Petz 恢复与稳定性 — 自洽版）** 记 $A=D_{j-1}$，$B=D_j$，$C=D_{j+1}$。取忘却通道
 
-$$I(A:C\mid B)_\rho\ \ge\ -2\ln F\bigl(\rho_{ABC},\ \mathcal R_{\rm rot}(\rho_{AB})\bigr),$$
+$$\Phi_{BC\to B}(X_{BC})=\operatorname{Tr}_C[X_{BC}],\qquad \Phi^*(Y_B)=Y_B\otimes \mathbb I_C .$$
 
-等价地 $F\bigl(\rho_{ABC},\mathcal R_{\rm rot}(\rho_{AB})\bigr)\ \ge\ 2^{-I(A:C\mid B)_\rho/(2\ln2)}$。
+以 $\sigma_{BC}=\rho_{BC}$ 为参考态（故 $\sigma_B=\rho_B$），Petz 恢复映射 $\mathcal R_{B\to BC}$ 定义为
+
+$$\boxed{\ \mathcal R_{B\to BC}(X_B)=\sigma_{BC}^{1/2}\big(\sigma_B^{-1/2}X_B\,\sigma_B^{-1/2}\otimes\mathbb I_C\big)\sigma_{BC}^{1/2}\ },$$
+
+其中逆在 $\mathrm{supp}(\sigma_B)$ 上取伪逆。**当且仅当** $I(A:C\mid B)=0$ 时存在完美恢复
+
+$$(\mathrm{id}_A\otimes \mathcal R_{B\to BC})(\rho_{AB})=\rho_{ABC}.$$
+
+一般情形存在**旋转平均 Petz 恢复** $\mathcal R^{\rm rot}_{B\to BC}$ 使
+
+$$I(A:C\mid B)\ \ge\ -2\ln F\left(\rho_{ABC},\ (\mathrm{id}_A\otimes \mathcal R^{\rm rot}_{B\to BC})(\rho_{AB})\right),
+\quad\text{等价地 }F\ge e^{-I(A:C\mid B)/2}.$$
+
+上述不等式对未旋转的 $\mathcal R_{B\to BC}$ 一般不保证成立；本文统一采用 $\mathcal R^{\rm rot}_{B\to BC}$ 处理稳定性命题。
 [**完全恢复／稳定性；域：马尔可夫饱和**]
 
 ### 3.4  半侧模包含与链式推进
@@ -182,19 +220,28 @@ $$I(A:C\mid B)_\rho\ \ge\ -2\ln F\bigl(\rho_{ABC},\ \mathcal R_{\rm rot}(\rho_{A
 
 ### 3.5  分布论 KFL—WS 刻度与窗化奇偶阈值
 
-**定理 F（分布论刻度同一）**
-对 $h\in C_c^\infty(\mathbb R)$,
+**非平滑窗过渡与误差并入**：若窗 $h\in C_c^0$ 且在支撑内分段 $C^{2m}$（端点允许角点），取标准平滑核 $\rho_\delta$ 并定义 $h_{\ell,\delta}:=h_\ell*\rho_\delta$。则对每个固定 $\ell>0$ 有
+
+$$\big|h_{\ell,\delta}-h_\ell\big|_{L^1(\mathbb R)}=O(\delta),$$
+
+且定理 F、Toeplitz／Berezin 压缩与迹公式可先对 $h_{\ell,\delta}$ 应用；由三角不等式可将
+
+$$R_{\rm smooth}(\delta):=\int_{\mathcal I(\gamma)}|h_{\ell,\delta}-h_\ell|\,dE$$
+
+并入总误差预算 $\mathcal E_h(\gamma)$。在定理 G 的门槛条件下，选取 $\delta=\delta(\ell,m)$ 使 $R_{\rm smooth}(\delta)\le \frac12\,\delta_*(\gamma)$，从而保留与 $h_\ell$ 同一的奇偶阈值结论。
+
+**定理 F（分布论刻度同一）** 对 $h\in C_c^\infty(\mathbb R)$（或 $h\in\mathcal S(\mathbb R)$），
 
 $$
 \int \partial_E\arg\det S(E)\,h(E)\,dE
 =\int \operatorname{tr}Q(E)\,h(E)\,dE
-=2\pi\!\int \xi'(E)\,h(E)\,dE ,
+=-2\pi\!\int \xi'(E)\,h(E)\,dE ,
 $$
 
-其中 $\xi$ 为谱移函数。能带阈值与嵌入本征态由选择 $\operatorname{supp}h$ 避开；长程势需改用相应的广义 KFL。
+其中 $\xi$ 为谱移函数。（约定：Birman–Kreĭn 取 $\det S(E)=e^{-2\pi \mathrm i\,\xi(E)}$。）能带阈值与嵌入本征态由选择 $\operatorname{supp}h$ 避开；长程势需改用相应的广义 KFL。
 [**分布等式；域：$S-\mathbb I\in\mathfrak S_1$，分段光滑**]
 
-**定理 G（窗化奇偶阈值；带常数门槛）**
+**定理 G（窗化奇偶阈值；带间隙门槛）**
 令
 
 $$
@@ -210,21 +257,48 @@ $$
 =\varphi(E_2)-\varphi(E_1),
 $$
 
-其中 $\mathcal I(\gamma)=[E_1,E_2]$，$\varphi(E)=\tfrac12\arg\det S(E)$。
-
-若存在 $\ell>0,\Delta>0,m\in\mathbb N$ 使
+其中 $\mathcal I(\gamma)=[E_1,E_2]$，$\varphi(E)=\tfrac12\arg\det S(E)$。定义间隙
 
 $$
-\boxed{\ \int_{\mathcal I(\gamma)} |R_{\rm EM}(\ell,\Delta)|\,dE \ +\
-\int_{\mathcal I(\gamma)} |R_{\rm P}(\ell,\Delta)|\,dE \ +
-C_{\rm T} \ell^{-1/2}\!\int_{\mathcal I(\gamma)}\!|\partial_E S(E)|_2\,dE\ \le\ \frac{\pi}{2}-\varepsilon\ },
+\delta_{\rm gap}(\gamma):=\operatorname{dist}\big(\Theta_{\rm geom}(\gamma),\pi\mathbb Z\big).
 $$
 
-则对任一窗中心 $E_0$，$\nu_{\rm chain}(\gamma)$ 与无窗极限 $(-1)^{\lfloor \Theta_{\rm geom}(\gamma)/\pi\rfloor}$ 一致。这里
+在 $\int_{\mathbb R}h=1$、并令
+
+$$
+\boxed{\ \mathcal E_h(\gamma)\ :=\ \underbrace{\int_{\mathcal I}|R_{\rm EM}|\,dE}_{\text{EM 端点}}
++\underbrace{\int_{\mathcal I}|R_{\rm P}|\,dE}_{\text{Poisson 混叠}}
++\underbrace{C_{\rm T}\,\ell^{-1/2}\!\int_{\mathcal I}\!|\partial_E S|_2\,dE}_{\text{Toeplitz 交换子}}
++\ \underbrace{R_{\rm tail}(\ell,\mathcal I,E_0)}_{\text{区间外尾部}}\ \le\ \delta_*(\gamma)\ } ,
+$$
+
+其中
+
+$$R_{\rm tail}(\ell,\mathcal I,E_0):=\int_{\mathbb R\setminus\mathcal I(\gamma)} |h_\ell(E-E_0)|\,dE\in[0,1].$$
+
+*附注*：若 $h\ge0$ 且 $\int_{\mathbb R} h=1$，则 $R_{\rm tail}=1-\int_{\mathcal I(\gamma)} h_\ell(E-E_0)\,dE$。$\delta_*(\gamma):=\min\big\{\tfrac{\pi}{2},\delta_{\rm gap}(\gamma)\big\}-\varepsilon$。若存在 $\ell>0,\Delta>0,m\in\mathbb N$ 与 $\varepsilon\in(0,\delta_{\rm gap}(\gamma))$ 使上述不等式成立，则对任一满足上述窗质量条件的窗中心 $E_0$，
+
+$$
+\nu_{\rm chain}(\gamma)=(-1)^{\lfloor \Theta_h(\gamma)/\pi\rfloor}
+=(-1)^{\lfloor \Theta_{\rm geom}(\gamma)/\pi\rfloor}.
+$$
+
+这里
 $\bullet$ $R_{\rm EM}$ 为 Euler–Maclaurin 端点余项，满足 $\int|R_{\rm EM}|\le C_m\,\ell^{-(m-1)}$；
-$\bullet$ $R_{\rm P}$ 为 Poisson 混叠，满足 $\int|R_{\rm P}|\le C_h\sum_{|q|\ge1}|\widehat h(2\pi q/\Delta)|$；
-$\bullet$ $C_{\rm T}$ 源自 Toeplitz 交换子半经典界。
-[**窗化分布等式＋显式门槛；域：幺正散射与带限窗**]
+$\bullet$ $R_{\rm P}$ 为 Poisson 混叠，满足
+
+$$\int_{\mathcal I}|R_{\rm P}|\,dE\ \le\ C_h\sum_{|q|\ge1}\Bigl\lvert\widehat h\left(\tfrac{2\pi q\,\ell}{\Delta}\right)\Bigr\rvert,$$
+
+其中 **$\Delta>0$** 为 Poisson 求和所用的**能量采样步长（能带晶格间距）**；
+$\bullet$ $R_{\rm T}$ 为 Toeplitz 交换子项，在 $\partial_E S\in\mathfrak S_2$ 且 $\int_{\mathcal I}|\partial_E S|_2\,dE<\infty$ 的假设下满足 $R_{\rm T}\le C_{\rm T}\,\ell^{-1/2}\!\int_{\mathcal I}|\partial_E S|_2\,dE$；
+$\bullet$ **区间外尾项**：
+
+$$R_{\rm tail}(\ell,\mathcal I,E_0):=\int_{\mathbb R\setminus\mathcal I(\gamma)} |h_\ell(E-E_0)|\,dE\in[0,1].$$
+
+*附注*：若 $h\ge0$ 且 $\int_{\mathbb R} h=1$，则 $R_{\rm tail}=1-\int_{\mathcal I(\gamma)} h_\ell(E-E_0)\,dE$。
+
+**注**：对分段光滑紧支撑窗（如 Kaiser），上述 $R_{\rm EM}$ 的 $C_m\,\ell^{-(m-1)}$ 应以角点估计替换（例如 $O(\ell^{-1})$），其余三项 $R_{\rm P},R_{\rm T},R_{\rm tail}$ 不变。由上述衰减阶，$\displaystyle R_{\rm P}\le C_h\sum_{|q|\ge1}\big|\widehat h\left(2\pi q\,\ell/\Delta\right)\big|$ **有限**，并与角点估计保持同阶。
+[**窗化分布等式＋显式门槛；域：幺正散射，$h\in C_c^\infty$ 或 $h\in\mathcal S$**]
 
 **引理 G（窗化相位扰动）**
 若两组散射 $S,\tilde S$ 在能区 $\mathcal I$ 上满足
@@ -240,16 +314,16 @@ $$
 \quad C_h=\sup_E\int |h_\ell(E-E')|\,dE' .
 $$
 
-**推论 G（弱非幺正稳定）** 定义 $\Delta_{\rm nonU}(E)=|S^\dagger S-\mathbb I|_1$。若
+**推论 G（弱非幺正稳定）** 定义 $\Delta_{\rm nonU}(E)=|S^\dagger S-\mathbb I|_1$。令 $\delta_{\rm gap}(\gamma):=\operatorname{dist}\big(\Theta_{\rm geom}(\gamma),\pi\mathbb Z\big)$。若
 
 $$
 \int_{\mathcal I(\gamma)} \Delta_{\rm nonU}(E)\,dE\ \le\ \varepsilon,\qquad
-\int_{\mathcal I(\gamma)} |R_{\rm EM}|\,dE\ +\ \int_{\mathcal I(\gamma)} |R_{\rm P}|\,dE\ +\ C_{\rm T}\,\ell^{-1/2}\!\int_{\mathcal I(\gamma)}\!|\partial_E S|_2\,dE\ \le\ \tfrac{\pi}{2}-\varepsilon,
+\mathcal E_h(\gamma)\ \le\ \delta_*(\gamma):=\min\big\{\tfrac{\pi}{2},\delta_{\rm gap}(\gamma)\big\}-\varepsilon,
 $$
 
-则 $\nu_{\rm chain}(\gamma)=(-1)^{\lfloor \Theta_h(\gamma)/\pi\rfloor}$ 不变，且与无窗极限 $(-1)^{\lfloor \Theta_{\rm geom}(\gamma)/\pi\rfloor}$ 一致。
+其中 $\varepsilon\in(0,\delta_{\rm gap}(\gamma))$，$\mathcal E_h(\gamma):=\int_{\mathcal I(\gamma)} |R_{\rm EM}|\,dE + \int_{\mathcal I(\gamma)} |R_{\rm P}|\,dE + C_{\rm T}\,\ell^{-1/2}\!\int_{\mathcal I(\gamma)}\!|\partial_E S|_2\,dE + R_{\rm tail}(\ell,\mathcal I,E_0)$，则 $\nu_{\rm chain}(\gamma)=(-1)^{\lfloor \Theta_h(\gamma)/\pi\rfloor}$ 不变，且与无窗极限 $(-1)^{\lfloor \Theta_{\rm geom}(\gamma)/\pi\rfloor}$ 一致。
 
-（其中三项门槛与定理 G 完全对齐。）
+（其中门槛与定理 G 完全对齐。）
 [**稳定性；域：弱耗散**]
 
 ### 3.6  关节项与 $\mathbb Z_2$ 账本
@@ -285,7 +359,7 @@ $$\Xi\mapsto \Xi+\ln|\alpha|+\ln|\beta|$$
 在大 $N$ 领先阶，边界容斥与马尔可夫拼接提升为纠缠楔的法向模流拼接。次阶偏差分解为
 $\bullet$ 极值面位移 $\delta X$ 对模流的贡献（规模 $\propto G_N^{-1}|\delta X|^2$ 的无量纲组配）；
 $\bullet$ 体区互信息 $I_{\rm bulk}$；
-$\bullet$ 体区模块哈密顿量涨落 $\mathrm{Var}(K_{\rm bulk})$。
+$\bullet$ 体区模哈密顿量涨落 $\mathrm{Var}(K_{\rm bulk})$。
 设
 
 $$
@@ -313,17 +387,19 @@ $$\lim_{\alpha\to\infty}\sum_{\sigma=\pm}2\pi\!\int g^{(\alpha)}_\sigma\langle\p
 
 ### 4.2  容斥恒等式与闭性
 
-**定理 B 的证明**：对固定横向坐标 $x_\perp$，逐点恒等式
+**定理 B 的证明**：对固定横向坐标 $x_\perp$，先以 $\mathbf 1_{[a,\infty)}^\eta:=\rho_\eta*\mathbf 1_{[a,\infty)}$ 平滑指示函数并证明
 
-$$(v-\min_i V_i)_+ = \sum_{k\ge1}(-1)^{k-1}\sum_{|I|=k}(v-\max_{i\in I}V_i)_+$$
+$$\mathbf 1_{[\min_i V_i(x_\perp),\infty)}^\eta(v)=\sum_{k\ge1}(-1)^{k-1}\sum_{|I|=k}\mathbf 1_{[\max_{i\in I}V_i(x_\perp),\infty)}^\eta(v);$$
 
-通过平滑近似 $(\cdot)_+^\eta=\rho_\eta*\mathbf 1_{[0,\infty)}$ 证明，其中 $\rho_\eta$ 为标准磨光核。令 $\eta\to0^+$，由主控收敛定理与 Fubini–Tonelli 定理交换极限与积分，乘以 $2\pi T_{vv}$ 并积分得到二次型容斥恒等式。
+再对 $v$ 积分得到 $(v-\min_i V_i)_+^\eta=\sum_{k\ge1}(-1)^{k-1}\sum_{|I|=k}(v-\max_{i\in I}V_i)_+^\eta$，
 
-**命题 B 的证明**：若 $\psi_n\to\psi$ 于 $\mathcal D_0$，则容斥恒等式两侧对 $\psi_n$ 的值同收敛至对 $\psi$ 的值。闭性来自**下半界闭二次型的移位图范数完备性**：取 $c>-a$ 并以
+其中 $(x)_+^\eta:=\displaystyle\int_{-\infty}^{x}\mathbf 1_{[0,\infty)}^\eta(t)\,dt$（等价地 $(x)_+^\eta=\rho_\eta*(x)_+$）。令 $\eta\to0^+$，由主控收敛定理与 Fubini–Tonelli 定理交换极限与积分，乘以 $2\pi T_{vv}$ 并积分得到二次型容斥恒等式。
+
+**命题 B 的证明**：取 $c>-a$。设 $\psi_n\to\psi$ 于移位图范数 $|\cdot|_{\mathfrak k,c}$，且 $\psi_n,\psi\in \mathcal D\left(\mathfrak k_{\cup_i R_{V_i}}\right)\cap\bigcap_{I\ne\emptyset}\mathcal D\left(\mathfrak k_{R_{V_I}}\right)$，则容斥恒等式两侧对 $\psi_n$ 的二次型值同收敛至对 $\psi$ 的值。闭性来自**下半界闭二次型的移位图范数完备性**：以
 
 $$|\psi|_{\mathfrak k,c}^2:=|\psi|^2+\big(\mathfrak k[\psi]+c|\psi|^2\big)$$
 
-定义图范数，使形式域完备；配合二次型下半连续性与 Fatou 型论证，容斥恒等式两侧对 $\psi_n\to\psi$ 同收敛，故恒等式在 $\mathcal D_0$ 上闭合。
+定义图范数，使形式域完备；配合二次型下半连续性与 Fatou 型论证，容斥恒等式两侧对 $\psi_n\to\psi$ 同收敛，故恒等式在上述形式域上闭合。
 
 ### 4.3  马尔可夫拼接与 Petz 恢复
 
@@ -335,15 +411,23 @@ $$I(D_{j-1}:D_{j+1}\mid D_j)=0.$$
 
 **定理 C′ 的证明**：非全序切割时，以相对熵密度核定义马尔可夫缺口线密度 $\iota(v,x_\perp)\ge0$。通过层状度 $\kappa(x_\perp)$ 与 $\iota$ 的单调性比较，得到缺口积分表示与上下界估计。
 
-**定理 D 的证明**：记 $A=D_{j-1}$，$B=D_j$，$C=D_{j+1}$，忘却通道 $\Phi_{ABC\to AB}(X):=\operatorname{Tr}_C[X]$，$\Phi(\rho)=\rho_{AB}$。令 $\rho_B=\operatorname{Tr}_{AC}\rho_{ABC}$。在 $\mathrm{supp}(\rho_B)$ 上取（广义）逆，定义作用于 $B$ 的 Petz 恢复
+**定理 D 的证明**：记 $A=D_{j-1}$，$B=D_j$，$C=D_{j+1}$。取忘却通道
 
-$$\mathcal R^\rho_{B\to BC}(Y):=\rho_{BC}^{1/2}\rho_B^{-1/2}Y\rho_B^{-1/2}\rho_{BC}^{1/2},\qquad Y\in\mathcal B(\mathcal H_B),$$
+$$\Phi_{BC\to B}(X_{BC})=\operatorname{Tr}_C[X_{BC}],\qquad \Phi^*(Y_B)=Y_B\otimes\mathbb I_C,$$
 
-并扩展为 $\mathrm{id}_A\otimes\mathcal R^\rho_{B\to BC}:\mathcal B(\mathcal H_{AB})\to\mathcal B(\mathcal H_{ABC})$。完美恢复当且仅当 $I(A:C\mid B)_\rho=0$（即 $\rho_{ABC}$ 为 $B$‑马尔可夫链）。对一般情形，存在依赖于 $\rho_{BC}$ 的旋转平均 Petz 映射 $\mathcal R_{\rm rot}$，由 Fawzi–Renner 稳定性不等式得到
+参考态取 $\sigma_{BC}=\rho_{BC}$（$\sigma_B=\rho_B$）。则 Petz 恢复映射
 
-$$I(A:C\mid B)_\rho\ \ge\ -2\ln F\bigl(\rho_{ABC},\ \mathcal R_{\rm rot}(\rho_{AB})\bigr),$$
+$$\mathcal R_{B\to BC}(X_B)=\sigma_{BC}^{1/2}\big(\sigma_B^{-1/2}X_B\,\sigma_B^{-1/2}\otimes\mathbb I_C\big)\sigma_{BC}^{1/2},$$
 
-等价地 $F\bigl(\rho_{ABC},\mathcal R_{\rm rot}(\rho_{AB})\bigr)\ \ge\ 2^{-I(A:C\mid B)_\rho/(2\ln2)}$。
+逆在 $\mathrm{supp}(\sigma_B)$ 上取伪逆。完美恢复当且仅当 $I(A:C\mid B)=0$ 且
+
+$$(\mathrm{id}_A\otimes\mathcal R_{B\to BC})(\rho_{AB})=\rho_{ABC}.$$
+
+存在旋转平均 $\mathcal R^{\rm rot}_{B\to BC}$ 使
+
+$$I(A:C\mid B)\ \ge\ -2\ln F\left(\rho_{ABC},\ (\mathrm{id}_A\otimes \mathcal R^{\rm rot}_{B\to BC})(\rho_{AB})\right).$$
+
+上述不等式对未旋转的 $\mathcal R_{B\to BC}$ 一般不保证成立；本文统一采用 $\mathcal R^{\rm rot}_{B\to BC}$ 处理稳定性命题。
 
 ### 4.4  半侧模包含与链式推进
 
@@ -353,15 +437,23 @@ $$I(A:C\mid B)_\rho\ \ge\ -2\ln F\bigl(\rho_{ABC},\ \mathcal R_{\rm rot}(\rho_{A
 
 **定理 F 的证明**：Birman–Kreĭn 恒等式与 Friedel–Lloyd—Wigner–Smith 等式的分布论版本在测试函数 $h\in C_c^\infty(\mathbb R)$ 下成立：
 
-$$\int \partial_E\arg\det S(E)\,h(E)\,dE = 2\pi\int \xi'(E)\,h(E)\,dE,$$
+$$\int \partial_E\arg\det S(E)\,h(E)\,dE = -2\pi\int \xi'(E)\,h(E)\,dE,$$
 
-其中 $\xi$ 为谱移函数。能带阈值与嵌入本征态通过选择 $\operatorname{supp}h$ 回避，或经可去奇点处理。
+并与 $\operatorname{tr}Q=\partial_E\arg\det S$ 联立。其中 $\xi$ 为谱移函数。能带阈值与嵌入本征态通过选择 $\operatorname{supp}h$ 回避，或经可去奇点处理。
 
 **定理 G 的证明**：通过 Toeplitz／Berezin 迹公式与交换子半经典估计，将窗化误差 $\mathcal R_h$ 分离为三项：
 
 $$\mathcal R_h = R_{\rm EM} + R_{\rm P} + R_{\rm T}.$$
 
-Euler–Maclaurin 公式给出端点余项 $R_{\rm EM}$ 的 $O(\ell^{-(m-1)})$ 衰减；Poisson 求和公式给出混叠项 $R_{\rm P}$ 的指数衰减；Toeplitz 交换子估计给出 $R_{\rm T}$ 的 $O(\ell^{-1/2})$ 界。三项之和满足门槛不等式时，奇偶阈值稳定。
+Euler–Maclaurin 公式给出端点余项 $R_{\rm EM}$ 的 $O(\ell^{-(m-1)})$ 衰减；Poisson 求和公式给出混叠项的普适上界
+
+$$\int_{\mathcal I}|R_{\rm P}|\ \le\ C_h\sum_{|q|\ge1}\big|\widehat h\left(2\pi q\,\ell/\Delta\right)\big| .$$
+
+**若取高斯窗**，由于 $\widehat h$ 的高斯尾，上式呈**指数平方**衰减；**若取 Kaiser–Bessel 或紧支撑 $C^\infty$ 窗**，由其已知傅里叶尾界得到**指数或超多项式**衰减。此与定理 G 及 §6.1 的门槛与参数条件完全一致。Toeplitz 交换子估计给出 $R_{\rm T}$ 的 $O(\ell^{-1/2})$ 界。**对无限支撑窗（如高斯）**，区间外尾部质量
+
+$$R_{\rm tail}(\ell,\mathcal I,E_0):=\int_{\mathbb R\setminus\mathcal I(\gamma)} |h_\ell(E-E_0)|\,dE$$
+
+并入总误差预算；**对紧支撑窗（如 Kaiser–Bessel 或其它 $C^\infty$ 窗）**，若 $\operatorname{supp}h_\ell\subset\mathcal I(\gamma)$ 则 $R_{\rm tail}=0$。若进一步假设 $h\ge0$，则上式与 $1-\int_{\mathcal I(\gamma)}h_\ell(E-E_0)\,dE$ 等价。四项之和满足门槛不等式时，奇偶阈值稳定。
 
 **引理 G 的证明**：利用分解
 
@@ -404,14 +496,30 @@ $$S^\dagger \partial_E S-\tilde S^\dagger \partial_E \tilde S = (S^\dagger-\tild
 
 ## 6  Engineering Proposals（可操作参数）
 
-### 6.1  推荐窗与采样门槛（确保 $\int|R_{\rm EM}+R_{\rm P}| \le \frac{\pi}{2}-\varepsilon$）
+### 6.1  推荐窗与采样门槛（满足 $\delta_*(\gamma)=\min\{\pi/2,\ \delta_{\rm gap}(\gamma)\}-\varepsilon$）
 
 * **窗族**：高斯窗或 Kaiser 窗（$\beta\ge6$），$h_\ell(E)=\ell^{-1}h(E/\ell)$。
-* **平滑阶**：$m\ge 6$，Euler–Maclaurin 端点修正到 $2m$ 阶。
-* **步长与带宽**：取 $\Delta\le \ell/4$，并使 $2\pi\ell/\Delta\ge 5$，则
-  $\sum_{|q|\ge1}|\widehat h(2\pi q/\Delta)|\lesssim e^{-\pi^2(2\pi\ell/\Delta)^2}$。
-* **Toeplitz 交换子项**：控制量 $\ell^{-1/2}\int_{\mathcal I}|\partial_E S|_2$；若其 $\le 10^{-3}\pi$，与前两项合计 $\le \frac{\pi}{2}-\varepsilon$。
+
+**注**：Kaiser–Bessel 属于紧支撑的分段 $C^{2m}$ 窗，端点为角点；其 Euler–Maclaurin 端点余项按 §3.5 的角点版 $R_{\rm EM}$ 计入总误差预算 $\mathcal E_h(\gamma)$。
+
+* **平滑阶／EM 端点余项**：若 $h\in C_c^\infty$ 或 $h\in\mathcal S$（如高斯），取 $m\ge 6$ 并用 $\int_{\mathcal I}|R_{\rm EM}|\le C_m\,\ell^{-(m-1)}$；若用 **Kaiser** 窗，则按角点估计采用 $\int_{\mathcal I}|R_{\rm EM}|\le C_{\rm KB}\,\ell^{-1}$ 计入误差预算。
+* **步长与带宽**：取 $\Delta\le \ell/4$，并使 $2\pi\ell/\Delta$ 足够大。Poisson 混叠采用与正文一致的一般式
+
+  $$R_{\rm P}\ \le\ C_h\sum_{|q|\ge1}\big|\widehat h\left(2\pi q\,\ell/\Delta\right)\big|.$$
+
+  **若取高斯窗**，则上式和 $\widehat h$ 的高斯尾给出**指数平方**衰减的具体界（随 $2\pi\ell/\Delta$ 快速下降）；
+
+  **若取 Kaiser–Bessel 或一般紧支撑 $C^\infty$ 窗**，使用该窗已知的傅里叶尾界给出**指数或超多项式**衰减，不再套用高斯专属的 $e^{-c(2\pi\ell/\Delta)^2}$ 形式。
+* **Toeplitz 交换子项**：控制量 $\ell^{-1/2}\int_{\mathcal I}|\partial_E S|_2$。
 * **非幺正容限**：若 $\int_{\mathcal I}\Delta_{\rm nonU}\le \varepsilon$，则门槛合格。
+* **Gap 预检**：计算 $\delta_{\rm gap}(\gamma)=\operatorname{dist}(\Theta_{\rm geom}(\gamma),\pi\mathbb Z)$。
+* **误差预算**：
+
+$$\int|R_{\rm EM}|+\int|R_{\rm P}|+C_{\rm T}\,\ell^{-1/2}\!\int|\partial_E S|_2+R_{\rm tail}\ \le\ \delta_*(\gamma)=\min\big\{\tfrac{\pi}{2},\delta_{\rm gap}(\gamma)\big\}-\varepsilon,$$
+
+其中 $R_{\rm tail}(\ell,\mathcal I,E_0):=\int_{\mathbb R\setminus\mathcal I(\gamma)} |h_\ell(E-E_0)|\,dE$。
+
+（其他数值参数与窗族建议保持不变。）
 
 ### 6.2  最小数值与实验管线
 
@@ -453,7 +561,7 @@ Trefethen–Weideman；Javed–Trefethen；Chandrasekaran–Prabhu；Pulakkat。
 
 ---
 
-## Proofs
+## 附录
 
 ### 附录 A：二次型框架与闭性（形式化）
 
@@ -477,35 +585,37 @@ $\langle\psi,K_{R_{V_\alpha}^\pm}\psi\rangle\to2\pi\!\int g_\sigma\langle\psi,T_
 
 ### 附录 C：容斥的分布式正则化与交换
 
-以 $(x)_+^\eta=(\rho_\eta*\mathbf 1_{[0,\infty)})(x)$ 平滑近似正部，证明
-$(v-\min_i V_i)_+^\eta=\sum_{k\ge1}(-1)^{k-1}\sum_{|I|=k}(v-\max_{i\in I}V_i)_+^\eta$。
-令 $\eta\to0^+$ 用主控收敛与 Fubini／Tonelli 完成极限交换并乘 $2\pi T_{vv}$ 积分得二次型容斥。
+以指示函数的平滑近似 $\mathbf 1_{[a,\infty)}^\eta:=\rho_\eta*\mathbf 1_{[a,\infty)}$ 证明
 
-### 附录 D：Petz 的支撑与稳定性（统一版）
+$$\mathbf 1_{[\min_i V_i,\infty)}^\eta=\sum_{k\ge1}(-1)^{k-1}\sum_{|I|=k}\mathbf 1_{[\max_{i\in I}V_i,\infty)}^\eta;$$
 
-记 $A=D_{j-1}$，$B=D_j$，$C=D_{j+1}$。定义忘却通道
+再对 $v$ 积分得 $(v-\min_i V_i)_+^\eta=\sum_{k\ge1}(-1)^{k-1}\sum_{|I|=k}(v-\max_{i\in I}V_i)_+^\eta$，
 
-$$\Phi_{ABC\to AB}(X):=\operatorname{Tr}_C[X],\qquad \Phi(\rho)=\rho_{AB}.$$
+其中 $(x)_+^\eta:=\displaystyle\int_{-\infty}^{x}\mathbf 1_{[0,\infty)}^\eta(t)\,dt$（或 $(x)_+^\eta=\rho_\eta*(x)_+$）。令 $\eta\to0^+$ 用主控收敛与 Fubini／Tonelli 完成极限交换并乘 $2\pi T_{vv}$ 积分得二次型容斥。
 
-令 $\rho_B=\operatorname{Tr}_{AC}\rho_{ABC}$，并在 $\mathrm{supp}(\rho_B)$ 上取（广义）逆。定义作用于 $B$ 的 Petz 恢复
+### 附录 D：Petz 的支撑与稳定性（统一版，自洽）
 
-$$\mathcal R^\rho_{B\to BC}(Y):=\rho_{BC}^{1/2}\rho_B^{-1/2}Y\rho_B^{-1/2}\rho_{BC}^{1/2},\quad Y\in\mathcal B(\mathcal H_B),$$
+记 $A=D_{j-1}$，$B=D_j$，$C=D_{j+1}$。令
 
-并扩展为 $\mathrm{id}_A\otimes\mathcal R^\rho_{B\to BC}:\mathcal B(\mathcal H_{AB})\to\mathcal B(\mathcal H_{ABC})$。
+$$\Phi_{BC\to B}(X_{BC})=\operatorname{Tr}_C[X_{BC}],\qquad \Phi^*(Y_B)=Y_B\otimes\mathbb I_C,$$
 
-则**完全恢复当且仅当** $I(A:C\mid B)_\rho=0$：
+参考态取 $\sigma_{BC}=\rho_{BC}$（$\sigma_B=\rho_B$）。则 Petz 恢复映射
 
-$$(\mathrm{id}_A\otimes\mathcal R^\rho_{B\to BC})(\rho_{AB})=\rho_{ABC}\ \Longleftrightarrow\ I(A:C\mid B)_\rho=0.$$
+$$\mathcal R_{B\to BC}(X_B)=\sigma_{BC}^{1/2}\big(\sigma_B^{-1/2}X_B\,\sigma_B^{-1/2}\otimes\mathbb I_C\big)\sigma_{BC}^{1/2},$$
 
-对一般情形，取依赖 $\rho_{BC}$ 的**旋转平均 Petz** $\mathcal R_{\rm rot}$，有 Fawzi–Renner 稳定性不等式
+逆在 $\mathrm{supp}(\sigma_B)$ 上取伪逆。完美恢复当且仅当 $I(A:C\mid B)=0$ 且
 
-$$I(A:C\mid B)_\rho\ \ge\ -2\ln F\bigl(\rho_{ABC},\ \mathcal R_{\rm rot}(\rho_{AB})\bigr).$$
+$$(\mathrm{id}_A\otimes\mathcal R_{B\to BC})(\rho_{AB})=\rho_{ABC}.$$
 
-（以上表述与全文主文 3.3 节记号保持一致。）
+存在旋转平均 $\mathcal R^{\rm rot}_{B\to BC}$ 使
+
+$$I(A:C\mid B)\ \ge\ -2\ln F\left(\rho_{ABC},\ (\mathrm{id}_A\otimes \mathcal R^{\rm rot}_{B\to BC})(\rho_{AB})\right).$$
+
+本文后续稳定性命题均以 $\mathcal R^{\rm rot}_{B\to BC}$ 表述，避免与 $AB\to ABC$ 范式混用。
 
 ### 附录 E：分布论 KFL—WS 与测试函数空间
 
-给出 $\partial_E\arg\det S=2\pi \xi'$ 与 $(2\pi)^{-1}\operatorname{tr}Q=\xi'$ 的分布等式在 $h\in C_c^\infty$（或 $\mathcal S$）下的证明；能带阈值与嵌入本征态通过选择 $\operatorname{supp}h$ 回避或以可去奇点处理；多道情形在能量壳上的有限维通道空间下迹与测试函数配对可交换。
+给出 $\partial_E\arg\det S=-2\pi \xi'$ 与 $(2\pi)^{-1}\operatorname{tr}Q=-\xi'$ 的分布等式在 $h\in C_c^\infty$（或 $\mathcal S$）下的证明；能带阈值与嵌入本征态通过选择 $\operatorname{supp}h$ 回避或以可去奇点处理；多道情形在能量壳上的有限维通道空间下迹与测试函数配对可交换。
 
 ### 附录 F：Toeplitz／Berezin 余项与 EM／Poisson 界
 
@@ -519,7 +629,7 @@ $$
 $$
 
 给出 $R_{\rm EM}\le C_m\,\ell^{-(m-1)}$、
-$R_{\rm P}\le C_h\sum_{|q|\ge1}|\widehat h(2\pi q/\Delta)|$、
+$R_{\rm P}\ \le\ C_h\displaystyle\sum_{|q|\ge1}\big|\widehat h\left(2\pi q\,\ell/\Delta\right)\big|$、
 $R_{\rm T}\le C_{\rm T}\ell^{-1/2}\int|\partial_E S|_2$ 的推导。
 
 ### 附录 G：窗化相位扰动引理（证明）
@@ -545,19 +655,13 @@ $\iota\ge0$ 且对 $\kappa$ 单调非降，并给出 $\kappa$ 有界时的上下
 
 ### 附录 J：可复现实验参数表与核查清单
 
-**参数表**（满足定理 G 门槛）：
+**参数表**（满足定理 G 门槛；含 $\delta_{\rm gap}$ 预检）：
 
 * 窗：高斯／Kaiser($\beta\ge6$)；$m\ge 6$；$\Delta\le \ell/4$；$2\pi\ell/\Delta\ge 5$。
-* 误差预算：$\int|R_{\rm EM}+R_{\rm P}|\le \frac{\pi}{2}-\varepsilon$，
-  $\ell^{-1/2}\!\int|\partial_E S|_2\le 10^{-3}\pi$。
+* **误差预算**：$\int|R_{\rm EM}|+\int|R_{\rm P}|+C_{\rm T}\,\ell^{-1/2}\!\int|\partial_E S|_2+R_{\rm tail}\ \le\ \delta_*(\gamma)$，其中 $R_{\rm tail}(\ell,\mathcal I,E_0):=\int_{\mathbb R\setminus\mathcal I(\gamma)} |h_\ell(E-E_0)|\,dE$。
 * 非幺正：$\int \Delta_{\rm nonU}\le \varepsilon$。
+* **Gap 预检**：若 $\delta_{\rm gap}(\gamma)<\tfrac{\pi}{2}$，按上式以 $\delta_*(\gamma)$ 为门槛收紧 $\ell,\Delta$ 的取值。
 
-**复核清单**：
-(1) $\mathcal D_0$ 与闭性是否明示；(2) 容斥的平滑近似与极限交换是否给出；
-(3) split／strong additivity 假设是否出现；(4) 分布论刻度的测试函数空间是否注明；
-(5) 定理 G 是否为带常数门槛的不等式；(6) 窗化相位扰动引理是否出现；
-(7) 关节项规范独立是否证明；(8) JLMS 次阶三源与扰动半径是否明示；
-(9) 参数表与数值图（跨阈示意、缺口热图）是否匹配门槛；(10) 反例与失效边界是否列出。
 
 ### 附录 K：符号表
 
