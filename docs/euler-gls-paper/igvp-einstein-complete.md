@@ -1,24 +1,48 @@
 # 信息几何变分原理导出爱因斯坦方程：定体积对偶、显式可交换极限、Radon‑型闭包、OS/KMS–Fisher 解析延拓与 null 边界处方
 
-Version: 6.7（全局规范化终稿——双层判据架构）
+Version: 6.8（JHEP 评审修订版——条件定理架构）
+
+**修订说明**：本版本响应 JHEP 评审人关于"弱剪切族存在性"、"光线变换局部可逆性"与"模哈密顿整族上界"三个根本性缺口的意见。主定理改为**条件定理**形式，关键技术步骤提升为完整定理/命题，明确标注证明状态。
 
 ## 摘要
 
-**We derive the local form of Einstein's equations for $d\ge 3$ within a weak‑shear family of small causal diamonds, from an information‑geometric variational principle.** 在 $C_{\sigma,0}=\mathcal O(\varepsilon)$ 的弱剪切族内，我们给出 Raychaudhuri–Sachs–Grönwall 驱动的显式可交换极限与边界层上界。以加权光线变换与测试函数局域化实现"族约束 $\Rightarrow$ 点态"的 Radon 型闭包，从而得到
+**We derive the local form of Einstein's equations for $d\ge 3$ from an information‑geometric variational principle, as a conditional theorem assuming the existence of weak‑shear diamond families.** 
+
+**主定理（条件形式）**：假设在每一点 $p$ 存在小因果钻石族 $\{\mathcal D_\ell(p)\}_{\ell\le\ell_0}$ 满足：
+
+(i) **弱剪切条件**：$\sup_{S_\ell}|\sigma(0,x)|\le c_s\varepsilon$ 对所有方向统一成立，
+
+(ii) 短段无共轭点、度规 $C^2$ 与 Hadamard 类态，
+
+(iii) 模哈密顿近似的整族统一上界（定理 2.1）与加权光线变换的局部可逆性（定理 3D）成立，
+
+则在 Raychaudhuri–Sachs–Grönwall 驱动的显式可交换极限与 Radon 型闭包下，得到
 
 $$
 R_{kk}=8\pi G\,T_{kk}\quad(\forall k),\qquad G_{ab}+\Lambda g_{ab}=8\pi G\,T_{ab},
 $$
 
-其中 $\Lambda$ 为体积约束的乘子参数，数值不由本原理决定。二阶层在 **JLMS 与 $\mathcal F_Q=\mathcal E_{\rm can}$** 成立时给出 Hollands–Wald 规范能量非负性。若不采用该对偶识别，则以 QNEC 的二阶形状导数提供普适非负判据。本文三个主要技术支柱：
+其中 $\Lambda$ 为体积约束的乘子参数，数值不由本原理决定。
+
+**关键未证假设**：弱剪切族的**构造性存在性**（例如通过屏空间对称化或有限方向平均）未包含在本文中。一般 $C^3$ 背景下该条件是否稠密、可实现，留作后续工作。
+
+二阶层在 **JLMS 与 $\mathcal F_Q=\mathcal E_{\rm can}$** 成立时给出 Hollands–Wald 规范能量非负性。若不采用该对偶识别，则以 QNEC（Bousso-Fisher-Leichenauer-Wall 版本）的二阶形状导数提供普适非负判据。本文四个主要技术支柱：
 
 (i) **显式可交换极限不等式与边界层估计**：剪切与挠率由几何常数族统一控制。
 
-(ii) **Radon 型闭包**：在首矩权 $w(\lambda)=\lambda$ 的光线变换下，将族约束下推为点态等式。
+(ii) **Radon 型闭包**：在首矩权 $w(\lambda)=\lambda$ 的光线变换下，将族约束下推为点态等式（需定理 3D 的局部可逆性）。
 
-(iii) **协变相空间的 null 边界与角点处方**：在仿射参数化与 Dirichlet 类边界数据下证明辛流无外泄与哈密顿量变分可积。
+(iii) **模哈密顿近似的整族统一上界**：定理 2.1 给出 $\delta S_{\rm out}^{\rm ren}=\delta\langle K_\chi\rangle+\mathcal O(\varepsilon^2\ell^{d-2})$ 对整族几何与态变分的统一控制。
 
-**适用域**：$d\ge 3$，Hadamard 类态与点分裂重整化，小区间无共轭点。**核心限制**：主定理**假设存在**弱剪切族 $C_{\sigma,0}=\mathcal O(\varepsilon)$。该假设的构造性存在性证明（通过剪切均衡引理或屏空间对称化）未包含在本文中，留作后续工作。一般族 $C_{\sigma,0}=\mathcal O(1)$ 的情形不保证闭包到点态等式。
+(iv) **协变相空间的 null 边界与角点处方**：定理 8.1 在仿射参数化与 Dirichlet 类边界数据下证明辛流无外泄与哈密顿量变分可积。
+
+**证明状态声明**：
+
+- ✅ **已完整证明**：显式可交换极限（引理 2.2）、端点层估计（引理 2.3）、张量化闭包（引理 4.1-4.3）。
+- ⚠️ **依赖权威结果**：模哈密顿核（FLPW et al.）、QNEC（Bousso et al.）、JLMS 识别（code subspace）。
+- ❌ **关键未证假设**：弱剪切族存在性、光线变换局部可逆性的完整稳定性估计、从半空间到小钻石的核比较引理。
+
+**QNEC 路线说明**：本文采用 **Bousso-Fisher-Leichenauer-Wall (2016)** 版本的 QNEC，前提为 Minkowski 背景或弱曲率极限、Hadamard 态、完整 null 测地线与局域可积性。形状导数与 $A_\perp\to 0$ 的极限顺序与本文端点层固定兼容（见附录 D 的对齐说明）。
 
 **结构性互补**：§7 的 OS/KMS–Fisher 解析延拓提供二阶非负性的结构性直觉，但不参与主证明链（一阶层依赖 Hadamard/KMS 或 QNEC，二阶层依赖 JLMS 识别或 QNEC 判据）。
 
@@ -83,7 +107,23 @@ $$
 
 存在常数 $c_{\min},c_{\max}>0$ 使 $c_{\min}\ell\le \lambda_*(x,\hat k)\le c_{\max}\ell$ 对所有方向一致成立。端点层的归一化估计一律以 $\mathcal I_{\hat k}$ 的 $\ell^2$ 标度为参照。
 
-**弱剪切族（工作假设）**：本文**假设存在**满足 $\sup_{S_\ell}|\sigma(0,x)|\le c_s\,\varepsilon$ 的小钻石族，其中 $c_s>0$ 与 $\ell_0>0$ 为常数。该假设的构造性证明（例如通过剪切均衡引理：在 Riemann 正规邻域中通过屏空间对称化或有限方向平均将 $\sup|\sigma(0)|$ 压至 $\mathcal O(\varepsilon)$）未包含在本文中，留作后续工作。本文主定理仅在此假设下成立。
+**弱剪切族（条件假设）**：本文主定理为**条件定理**，假设在每一点 $p$ 存在满足下列条件的小钻石族 $\{\mathcal D_\ell(p)\}_{\ell\le\ell_0}$：
+
+$$
+\boxed{\sup_{S_\ell,\,\hat k}|\sigma(0,x,\hat k)|\le c_s\,\varepsilon\quad\text{（对所有方向 }\hat k\text{ 统一成立）}}
+$$
+
+其中 $c_s>0$ 与 $\ell_0>0$ 为常数。
+
+**关键未解决问题**：该条件的**构造性存在性**与**变分稳定性**未包含在本文中。具体需要：
+
+1. **剪切均衡引理**：给出在 Riemann 正规邻域中通过屏空间对称化或有限方向平均的显式构造，证明存在腰面选择使 $C_{\sigma,0}$ 降至 $\mathcal O(\varepsilon)$。
+
+2. **稳定性**：证明该族在半径 $r\varepsilon^2$ 的几何与态变分球内保持 $C_{\sigma,0}=\mathcal O(\varepsilon)$ 的阶数。
+
+3. **稠密性**：说明一般 $C^3$ 背景下该条件是否稠密或可通过规范选择实现。
+
+**本文地位**：在上述假设下，给出从熵变分到 Einstein 方程的**可信路线图与细化误差控制**。弱剪切族假设的证明或替代方案是自然的后续工作。
 
 **整族统一误差的主命题引用约定**：正文统一只引用"命题 2B'（整族统一误差）"。原"统一误差命题 引理 2.1"不再单独使用其标签。
 
@@ -409,7 +449,23 @@ $$
 $$
 即允许的几何与态变分族都包含在一个以零为中心、半径为 $r\varepsilon^2$ 的有界球中。
 
-**命题 2B'（小钻石模哈密顿近似的整族统一误差——主链技术脊梁）**：在§0的几何正则性、Hadamard类态条件以及假设2.B.0下，令 $\mathfrak G$ 为满足端点固定与腰面固定的几何形变族，令 $\mathfrak S$ 为满足Hadamard与局域KMS的态族。则存在常数 $C_{\rm th}=C_{\rm th}(C_R,C_{\nabla R},r;d,c_\lambda)$ 与 $\ell_0>0$，使得对所有 $\ell<\ell_0$ 与所有允许变分 $(\delta g,\delta\text{state})\in\mathfrak G\times\mathfrak S$：
+**定理 2.1（小钻石模哈密顿近似的整族统一误差——主链技术脊梁）**
+
+**前提**：
+
+(i) §0的几何正则性：$|R|_{\mathcal C^0}\le C_R/\ell^2$，$|\nabla R|_{\mathcal C^0}\le C_{\nabla R}/\ell^3$，
+
+(ii) Hadamard 类态条件与点分裂重整化，局域 KMS 或 QNEC 版本成立，
+
+(iii) 假设 2.B.0：允许变分族 $(\delta g,\delta\rho)$ 满足
+$$
+|\delta g|_{C^2}\le r\varepsilon^2,\quad |\delta W|_{\mathcal C^\alpha}\le r\varepsilon^2,
+$$
+且 $\delta W$ 的波前集保持在 Hadamard 锥内，
+
+(iv) 端点固定与腰面固定（边界条件）。
+
+**结论**：令 $\mathfrak G$ 为满足上述条件的几何形变族，令 $\mathfrak S$ 为 Hadamard 类态族。则存在常数 $C_{\rm th}=C_{\rm th}(C_R,C_{\nabla R},r;d,c_\lambda)$ 与 $\ell_0>0$，使得对所有 $\ell<\ell_0$ 与所有允许变分 $(\delta g,\delta\text{state})\in\mathfrak G\times\mathfrak S$：
 
 $$
 \boxed{
@@ -419,7 +475,15 @@ $$
 }
 $$
 
+**证明状态**：本定理给出证明纲要与误差阶计数，但以下关键环节仍需完整证明：
+
+- **❌ 核比较引理**：从 FLPW 半空间核到小钻石核的显式公式及误差分解（需雅可比、切换域、端点层逐项估计）。
+- **⚠️ 点分裂重整化交换**：证明 Weyl 激发 $U_{\epsilon,\varphi}$ 与模哈密顿核卷积后给出同阶 $\varepsilon^2$ 估计（需波前集与 UV 窗口定量约束）。
+- **⚠️ 上确界统一性**：证明常数 $C_{\rm th}$ 与 $(\varphi,\chi,\ell)$ 的具体选择无关，仅依赖背景上界。
+
 **证明纲要**：（i）Riemann正规坐标把 $\mathcal D_\ell$ 等距到平直主部 $\eta+\mathcal O(\ell^2/L_{\rm curv}^2)$；（ii）用Faulkner-Leigh-Parrikar-Wang (2016)风格的半空间形变核与点分裂重整化控制模哈密顿与局域boost的差，误差为 $\mathcal O(\varepsilon^2)$；（iii）将态与形变的族放进 $\sup$，依赖常数只和背景上界 $(C_R,C_{\nabla R})$ 与半径 $r$ 有关，与具体变分无关。该统一上界保证了后续局域化构造对**整族**允许变分都保持一致误差控制。
+
+**JHEP 评审要求**：补充核比较的完整证明，明确列式写出误差每一项的来源，以及 Weyl 激发与模哈密顿核卷积的同阶估计。
 
 **误差分解（两项显式表达）**：
 $$
@@ -494,14 +558,36 @@ $$
 }.
 $$
 
-**命题 3D（短线段，首矩赋权的 null 光线变换局部可逆性）** 在 $p$ 的 Riemann 正规邻域内，若小区间 $[0,\lambda_*]$ 上无共轭点且 $|R|_{C^1}$ 有界，则对任意 $f\in C^1$
+**定理 3D（加权 Null 光线变换的局部可逆性）**
+
+**前提**：
+
+(i) 度规 $C^2$ 有界：$|R|_{\mathcal C^0}\le C_R/\ell^2$，$|\nabla R|_{\mathcal C^0}\le C_{\nabla R}/\ell^3$，
+
+(ii) 短段无共轭点：对所有 $\lambda\in[0,\lambda_*]$，测地线 $\gamma_{p,\hat k}$ 无共轭点，
+
+(iii) 仿射参数统一控制：$c_{\min}\ell\le \lambda_*(x,\hat k)\le c_{\max}\ell$ 对所有 $(x,\hat k)$ 成立，
+
+(iv) 被变换函数的正则性：$f\in C^1(S_\ell)$ 且 $\|f\|_{C^1}\le M$。
+
+**结论**：在 $p$ 的 Riemann 正规邻域内，加权光线变换满足
 
 $$
 \mathcal L_\lambda[f](p,\hat k)=\int_0^{\lambda_*}\lambda\, f(\gamma_{p,\hat k}(\lambda))\,d\lambda
-=\frac12\lambda_*^2 f(p)+\mathcal O\!\left(\lambda_*^3|\nabla f|_\infty+\frac{\lambda_*^4}{L_{\rm curv}^2}|f|_\infty\right)。
+=\frac12\lambda_*^2 f(p)+\mathcal O\!\left(\lambda_*^3|\nabla f|_\infty+\frac{\lambda_*^4}{L_{\rm curv}^2}|f|_\infty\right),
 $$
 
-其中余项常数只依赖于 $C_d\big(C_R,C_{\nabla R};d,c_{\min},c_{\max}\big)$。特别地，若对所有 $\hat k$ 有 $\mathcal L_\lambda[f]=o(\ell^2)$ 且该 $o(\ell^2)$ 一致于方向，则 $f(p)=0$。
+其中大 $\mathcal O$ 常数仅依赖于 $C_d\big(C_R,C_{\nabla R};d,c_{\min},c_{\max}\big)$，与 $(\hat k,\ell)$ 无关。
+
+**稳定性推论**：若对所有 $\hat k$ 有 $\mathcal L_\lambda[f](p,\hat k)=o(\ell^2)$ 且该 $o(\ell^2)$ 一致于方向，则 $f(p)=0$。
+
+**证明状态**：本定理给出证明草图，但缺少以下关键内容：
+
+- **❌ 主符号分析与核刻画**：刻画带权 $\lambda$ 的 null 光线变换在 Lorentz 流形上的主符号、椭圆性与核结构。
+- **❌ 稳定性估计**：给出 $C^1$ 或 $H^1$ 级别的稳定不等式（非仅展开启发）。
+- **⚠️ 主控函数独立性**：证明 $M_{\rm dom}$ 对所有方向与局域化族统一成立。
+
+**JHEP 评审要求**：提升为可引用的完整定理，或在附录中补充严格证明（含前提、结论、常数依赖与稳定性估计）。
 
 **证明纲要**：（i）**Minkowski符号法与首矩权的微局域算子**：在平直空间，Fourier变换下
 $$
