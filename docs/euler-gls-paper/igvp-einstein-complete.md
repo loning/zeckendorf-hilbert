@@ -1,6 +1,6 @@
 # 信息几何变分原理导出爱因斯坦方程：定体积对偶、显式可交换极限、Radon‑型闭包、OS/KMS–Fisher 解析延拓与 null 边界处方
 
-Version: 4.2
+Version: 4.3
 
 ## 摘要
 
@@ -80,6 +80,26 @@ $$
 **准则**
 （一阶层）在定体积约束 $\delta V=0$ 下取 $\delta S_{\rm gen}=0$；等价地把 $S_\Lambda$ 并入无约束变分后令 $\delta S_{\rm gen}=0$。
 （二阶层）相对熵非负：$\delta^2S_{\rm rel}\ge0$。
+
+**外部熵的一阶律（用于链 A）** 在小钻石极限、Hadamard/KMS 态与近 Rindler 生成元 $\chi^a$ 下，
+
+$$
+\delta S_{\rm out}^{\rm ren}=\delta\langle K_\chi\rangle
+=\frac{2\pi}{\hbar}\int_{\mathcal H}\lambda\,T_{kk}\,d\lambda\,dA\ +\ \mathcal O(\varepsilon^2)
+\equiv \frac{\delta Q}{T}+\mathcal O(\varepsilon^2),
+$$
+
+其中 $K_\chi$ 为腰面处的 boost 模块哈密顿量，$T=\hbar|\kappa_\chi|/2\pi$，并且由 §6 得 $\delta T/T=\mathcal O(\varepsilon^2)$。
+
+因此在一阶极值层与 $\delta V=0$ 下，
+
+$$
+\delta S_{\rm gen}
+=\frac{\delta A}{4G\hbar}+\frac{2\pi}{\hbar}\int_{\mathcal H}\lambda\,T_{kk}\,d\lambda\,dA\ +\ \mathcal O(\varepsilon^2)=0.
+$$
+
+结合 §2 的面积—曲率恒等式（误差为 $\mathcal O(\varepsilon^2)$），经 §3 的局域化与 §4 的张量化闭包，得到
+$R_{kk}=8\pi G\,T_{kk}$ 以及 $G_{ab}+\Lambda g_{ab}=8\pi G\,T_{ab}$。
 
 **约定（一阶变分的温标）**：默认固定温度 $T$（$\delta T=0$）进行一阶极值；若允许 $\delta T\neq0$，其贡献为 $\mathcal O(\varepsilon^2)$ 不改结论（见 §6）。
 
