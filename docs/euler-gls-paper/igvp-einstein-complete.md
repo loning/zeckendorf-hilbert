@@ -1,6 +1,6 @@
 # 信息几何变分原理导出爱因斯坦方程：定体积对偶、显式可交换极限、Radon‑型闭包、OS/KMS–Fisher 解析延拓与 null 边界处方
 
-Version: 3.6
+Version: 3.7
 
 ## 摘要
 
@@ -387,11 +387,16 @@ $\int_0^{\lambda_*}\lambda S_{kk}=\tfrac12\lambda_*^2 S_{kk}(p)+\mathcal O(\lamb
 对单位横截面积归一：
 
 $$
-\langle T_{kk}(p)\rangle \ge \frac{\hbar}{2\pi}\lim_{A_\perp\to0}\frac{\partial_\lambda^2 S_{\rm out}}{A_\perp},\qquad
-\int_{\mathbb R}T_{kk}\,d\lambda\ge 0 .
+\langle T_{kk}(p)\rangle \ge \frac{\hbar}{2\pi}\lim_{A_\perp\to0}\frac{\partial_\lambda^2 S_{\rm out}}{A_\perp},
 $$
 
-先取 $\partial_\lambda^2$，再取 $A_\perp\to0$ 与 UV 极限；edge modes 以边界代数分解吸收。
+并且在满足 **Minkowski 背景或足够弱曲率极限、Hadamard 类态、完整零测地及局域可积** 等标准假设下，成立
+
+$$
+\int_{-\infty}^{+\infty}T_{kk}\,d\lambda\ge 0 .
+$$
+
+极限次序同前：先取 $\partial_\lambda^2$，再取 $A_\perp\to0$ 与 UV 极限；edge modes 以边界代数分解吸收。
 
 ---
 
