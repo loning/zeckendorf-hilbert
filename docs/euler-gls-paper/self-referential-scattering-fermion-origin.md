@@ -1,31 +1,33 @@
 # 自指散射与费米子的诞生：Riccati 平方根、旋量双覆盖与 $\mathbb{Z}_2$ 交换相位
 
-Version: 2.15
+Version: 2.18
 
 ## 摘要
 
-在去除鉴别子后的参数空间 $X^\circ\subset X$ 上，考虑定能散射的相位指数映射 $S:X^\circ\to U(1)$。沿平方覆盖 $p:U(1)\to U(1)$, $p(z)=z^2$ 的拉回
+在去除鉴别子后的参数空间 $X^\circ\subset X$ 上，考虑定能散射的**相位指数映射** $\mathfrak s:X^\circ\to U(1)$。沿平方覆盖 $p:U(1)\to U(1)$, $p(z)=z^2$ 的拉回
 
 $$
-P_{\sqrt S}=S^*(p)=\{(x,\sigma)\in X^\circ\times U(1):\ \sigma^2=S(x)\}\to X^\circ
+P_{\sqrt{\mathfrak s}}=\mathfrak s^*(p)=\{(x,\sigma)\in X^\circ\times U(1):\ \sigma^2=\mathfrak s(x)\}\to X^\circ
 $$
 
-定义散射的平方根覆盖。以整体相位的一形式
+定义平方根覆盖。一般多通道或非迹类情形取
 
 $$
-\alpha=\frac{1}{2i}(\det S)^{-1}d(\det S)
+\mathfrak s(E,\lambda):=e^{-2\pi i\,\xi_p(E,\lambda)}\in U(1),
 $$
 
-刻画的 holonomy
+其中 $\xi_p$ 由（修正）Fredholm 行列式定义的谱位移。**单通道且散射矩阵** $S(E,\lambda)-\mathbf 1\in\mathfrak S_1$ **时**，$\mathfrak s=\det S$，并有
 
 $$
-\nu_{\sqrt S}(\gamma)=\exp\Bigl(i\oint_\gamma \alpha\Bigr)=(-1)^{\deg(\det S|_\gamma)}\in\{\pm1\}
+\alpha=\tfrac{1}{2i}\,\mathfrak s^{-1}d\mathfrak s,\qquad
+\nu_{\sqrt S}(\gamma)=\exp\Bigl(i\oint_\gamma \alpha\Bigr)
+=\exp\Bigl(-i\pi\oint_\gamma d\xi_p\Bigr).
 $$
 
-为一个天然的 $\mathbb{Z}_2$ 不变量，其中单通道时 $\det S=S=e^{2i\delta}$；多通道/分波时按需理解为 $\det/\det_p S$。$\deg(\det S|_\gamma)=\frac{1}{2\pi i}\oint_\gamma (\det S)^{-1}d(\det S)$。平方根存在性由映射层的覆盖提升条件 $[S]\in 2H^1(X^\circ;\mathbb{Z})$ 刻画（因 $U(1)\simeq K(\mathbb{Z},1)$ 且平方覆盖在 $H^1$ 上对应乘二）；$\nu_{\sqrt S}$ 由主 $\mathbb{Z}_2$-丛 $P_{\sqrt S}=S^*(p)$ 的 holonomy 给出。线丛层的平方根问题（$c_1(\mathcal L)\in 2H^2(X^\circ;\mathbb{Z})$）由指数层序列的 Bockstein 刻画，与映射提升问题针对不同对象，一般不相互推出。谱理论方面，在短程且无零能共振的条件下，结合 Birman–Kreĭn 公式与谱流，得到模 2 Levinson 关系
+$\deg(\mathfrak s|_\gamma)=\frac{1}{2\pi i}\oint_\gamma \mathfrak s^{-1}d\mathfrak s\in\mathbb{Z}$。其奇偶 $(-1)^{\deg(\mathfrak s|_\gamma)}$ 为天然的 $\mathbb{Z}_2$ 不变量（闭路取向改变仅翻号而不改奇偶）。平方根存在性由映射层的覆盖提升条件 $[\mathfrak s]\in 2H^1(X^\circ;\mathbb{Z})$ 刻画（因 $U(1)\simeq K(\mathbb{Z},1)$ 且平方覆盖在 $H^1$ 上对应乘二）；$\nu_{\sqrt S}$ 由主 $\mathbb{Z}_2$-丛 $P_{\sqrt{\mathfrak s}}=\mathfrak s^*(p)$ 的 holonomy 给出。为与后文习惯保持一致，下文"$\sqrt S$"均指 $\mathfrak s$ 的平方根覆盖。线丛层的平方根问题（$c_1(\mathcal L)\in 2H^2(X^\circ;\mathbb{Z})$）由指数层序列的 Bockstein 刻画，与映射提升问题针对不同对象，一般不相互推出。谱理论方面，在短程且无零能共振的条件下，结合 Birman–Kreĭn 公式与谱流，得到模 2 Levinson 关系
 
 $$
-\nu_{\sqrt S}(\gamma)=\exp\Bigl(-i\pi\oint_\gamma d\xi\Bigr)=(-1)^{\mathrm{Sf}(\gamma)}=(-1)^{N_b(\gamma)}.
+\nu_{\sqrt S}(\gamma)=\exp\Bigl(-i\pi\oint_\gamma d\xi_p\Bigr)=(-1)^{\mathrm{Sf}(\gamma)}=(-1)^{N_b(\gamma)}.
 $$
 
 功能分析方面，在边界三元组与 Nevanlinna–Möbius 结构下严格化自指闭环
@@ -55,7 +57,7 @@ $$
 本文的核心思想是用一个统一的 $\mathbb{Z}_2$ holonomy 指标
 
 $$
-\nu_{\sqrt S}(\gamma)=\exp\Bigl(i\oint_\gamma \frac{1}{2i}\,(\det S)^{-1}d(\det S)\Bigr)
+\nu_{\sqrt S}(\gamma)=\exp\Bigl(i\oint_\gamma \tfrac{1}{2i}\,\mathfrak s^{-1}d\mathfrak s\Bigr)
 $$
 
 把三个看似不同的负号来源统一起来：交换两个费米子获得的负号、把旋量绕 $2\pi$ 的负号、以及散射半相位的分支切换负号。物理图像如下。
@@ -87,33 +89,34 @@ $$
 ### 0.3 联络与绕数
 
 $$
-\alpha=\frac{1}{2i}\,(\det S)^{-1}d(\det S),\qquad
-\nu_{\sqrt S}(\gamma)=\exp\Bigl(i\oint_\gamma \alpha\Bigr)=(-1)^{\deg(\det S|_\gamma)}.
+\alpha=\tfrac{1}{2i}\,\mathfrak s^{-1}d\mathfrak s,\qquad
+\nu_{\sqrt S}(\gamma)=\exp\Bigl(i\oint_\gamma \alpha\Bigr)
+=(-1)^{\deg(\mathfrak s|_\gamma)}.
 $$
 
 $$
-\deg(\det S|_\gamma)=\frac{1}{2\pi i}\oint_\gamma (\det S)^{-1}d(\det S)\in\mathbb{Z},
+\deg(\mathfrak s|_\gamma)=\frac{1}{2\pi i}\oint_\gamma \mathfrak s^{-1}d\mathfrak s\in\mathbb{Z},
 $$
 
-*说明*：多通道/分波情形上述 $\det S$ 按需理解为 $\det/\det_p S$；单通道时退化为标量 $S=e^{2i\delta}$。
+*说明*：单通道且 $S-\mathbf 1\in\mathfrak S_1$ 时 $\mathfrak s=\det S$；一般多通道/分波情形用 $\mathfrak s=e^{-2\pi i\,\xi_p}$。
 
 闭路方向采用数学上正向约定。
 
 **层级与号符规范**  本文在**整数层级**仅使用
 
 $$
-\mathrm{Sf}(\gamma)=\deg(\det S|_\gamma)\in\mathbb{Z},
+\mathrm{Sf}(\gamma)=\deg(\mathfrak s|_\gamma)\in\mathbb{Z},
 $$
 
 见 §4；而主定理 1.1 连接 $N_b,I_2$ 时仅在 $\mathbb{Z}_2$ 层级成立：
 
 $$
-(-1)^{\deg(\det S|_\gamma)}=(-1)^{\mathrm{Sf}(\gamma)}=(-1)^{N_b(\gamma)}=(-1)^{I_2(\gamma,D)}.
+(-1)^{\deg(\mathfrak s|_\gamma)}=(-1)^{\mathrm{Sf}(\gamma)}=(-1)^{N_b(\gamma)}=(-1)^{I_2(\gamma,D)}.
 $$
 
 一般闭路上 $N_b(\gamma)$ 的**整数号符**依赖于对穿越 $D$ 的**规避方式**与参数定向，故不与 $\deg$ 建立整数恒等；仅其奇偶 $(N_b\bmod 2)$ 为不变量。以下讨论据此规范展开。
 
-**声明（空间与不变量层级）** 本文所有绕数 $\deg(\det S|_\gamma)$、谱流 $\mathrm{Sf}(\gamma)$、束缚态计数 $N_b(\gamma)$ 与交数 $I_2(\gamma,D)$ 均以**同一参数‑能量闭路** $\gamma\subset X^\circ$ 为自变量，比较仅在 $\mathbb{Z}_2$ 层级进行。
+**声明（空间与不变量层级）** 本文所有绕数 $\deg(\mathfrak s|_\gamma)$、谱流 $\mathrm{Sf}(\gamma)$、束缚态计数 $N_b(\gamma)$ 与交数 $I_2(\gamma,D)$ 均以**同一参数‑能量闭路** $\gamma\subset X^\circ$ 为自变量，比较仅在 $\mathbb{Z}_2$ 层级进行。
 
 与此不同，§3 中的
 
@@ -121,10 +124,10 @@ $$
 \deg(S|_C)=-\sum_j m_j
 $$
 
-乃**动量 $(k)$ 平面谱回路** $C$ 的解析计数，用于 $S=f(-k)/f(k)$ 的谱结构分析；它**不**与参数回路 $\gamma$ 作整数级别识别与比较。本文并**不**主张存在整数等式 $\deg(\det S|_\gamma)=\deg(S|_C)$ 或 $\deg_\lambda=\deg_k$。主定理 1.1 仅断言
+乃**动量 $(k)$ 平面谱回路** $C$ 的解析计数，用于 $S=f(-k)/f(k)$ 的谱结构分析；它**不**与参数回路 $\gamma$ 作整数级别识别与比较。本文并**不**主张存在整数等式 $\deg(\mathfrak s|_\gamma)=\deg(S|_C)$ 或 $\deg_\lambda=\deg_k$。主定理 1.1 仅断言
 
 $$
-(-1)^{\deg(\det S|_\gamma)}=(-1)^{\mathrm{Sf}(\gamma)}=(-1)^{N_b(\gamma)}=(-1)^{I_2(\gamma,D)}.
+(-1)^{\deg(\mathfrak s|_\gamma)}=(-1)^{\mathrm{Sf}(\gamma)}=(-1)^{N_b(\gamma)}=(-1)^{I_2(\gamma,D)}.
 $$
 
 （参见 §3"注（谱回路 vs 参回路）"。）
@@ -161,14 +164,14 @@ $$
 
 $$
 \nu_{\sqrt S}(\gamma)
-=\exp\Bigl(i\oint_\gamma \tfrac{1}{2i}(\det S)^{-1}d(\det S)\Bigr)
-=(-1)^{\deg(\det S|_\gamma)}
+=\exp\Bigl(i\oint_\gamma \tfrac{1}{2i}\,\mathfrak s^{-1}d\mathfrak s\Bigr)
+=(-1)^{\deg(\mathfrak s|_\gamma)}
 =(-1)^{\mathrm{Sf}(\gamma)}
 =(-1)^{N_b(\gamma)}
 =(-1)^{I_2(\gamma,D)}.
 $$
 
-其中**多通道/分波情形**统一以整体相位指数 $\det S$（必要时用修正行列式 $\det_p S$）代入；**单通道**时有 $\det S=S$。
+其中 $\mathfrak s=e^{-2\pi i\,\xi_p}$；当 $S-\mathbf 1\in\mathfrak S_1$ 时，$\mathfrak s=\det S$。
 
 定义**束缚态奇偶指标**
 
@@ -184,16 +187,16 @@ $$
 
 $\mathrm{Sf}(\gamma)$ 为本征相位关于参考相位的谱流。因而
 
-**证明（模 2）** 由 Birman–Kreĭn 公式，在绝对连续谱能段存在连续谱位移 $\xi$ 使 $\det S=e^{-2\pi i\,\xi}$。沿闭路 $\gamma$ 取连续分支，则
+**证明（模 2）** 由 Birman–Kreĭn 公式与定理 4.0，存在连续谱位移 $\xi_p$ 使 $\mathfrak s=e^{-2\pi i\,\xi_p}$。沿闭路 $\gamma$ 取连续分支，则
 
 $$
-\deg(\det S|_\gamma)=\frac{1}{2\pi i}\oint_\gamma (\det S)^{-1}d(\det S)=-\oint_\gamma d\xi=\mathrm{Sf}(\gamma).
+\deg(\mathfrak s|_\gamma)=\frac{1}{2\pi i}\oint_\gamma \mathfrak s^{-1}d\mathfrak s=-\oint_\gamma d\xi_p=\mathrm{Sf}(\gamma).
 $$
 
 因而
 
 $$
-(-1)^{\deg(\det S|_\gamma)}=\exp\Bigl(-i\pi\oint_\gamma d\xi\Bigr)=(-1)^{\mathrm{Sf}(\gamma)}.
+(-1)^{\deg(\mathfrak s|_\gamma)}=\exp\Bigl(-i\pi\oint_\gamma d\xi_p\Bigr)=(-1)^{\mathrm{Sf}(\gamma)}.
 $$
 
 设 $D\subset X$ 为"上半平面 Jost 零点生成/湮灭、阈值异常、嵌入本征值、通道开闭"等事件组成的鉴别子。由 §5 的定义，$I_2(\gamma,D)=\langle w_D,[\gamma]\rangle$ 对任意闭路 $\gamma\subset X^\circ$ 皆有定义。若存在与 $D$ 横截的分片 $C^1$ 2‑链 $\Sigma$ 使 $\partial\Sigma=\gamma$，则每个交点对应恰有一个本征相位在参考相位处一阶穿越，谱流在该点跳变 $\pm1$，且 $I_2(\gamma,D)=\#(\Sigma\cap D)\bmod2$；于是
@@ -205,27 +208,27 @@ $$
 由 $N_b(\gamma):=I_2(\gamma,D)$ 的定义，综上
 
 $$
-(-1)^{\deg(\det S|_\gamma)}=(-1)^{\mathrm{Sf}(\gamma)}=(-1)^{N_b(\gamma)}=(-1)^{I_2(\gamma,D)}.\quad\Box
+(-1)^{\deg(\mathfrak s|_\gamma)}=(-1)^{\mathrm{Sf}(\gamma)}=(-1)^{N_b(\gamma)}=(-1)^{I_2(\gamma,D)}.\quad\Box
 $$
 
-*（整数层级等式 $\mathrm{Sf}=\deg(\det S|_\gamma)$ 见 §4；$I_2$ 的定义与性质见 §5。）*
+*（整数层级等式 $\mathrm{Sf}=\deg(\mathfrak s|_\gamma)$ 见 §4；$I_2$ 的定义与性质见 §5。）*
 
-**说明**：单通道时 $\det S=S$，上式退化为 $\exp\Bigl(i\oint_\gamma \tfrac{1}{2i}S^{-1}dS\Bigr)$。
+**说明**：单通道时 $\mathfrak s=S$，上式退化为 $\exp\Bigl(i\oint_\gamma \tfrac{1}{2i}\,\mathfrak s^{-1}d\mathfrak s\Bigr)$。
 
-**鲁棒性** 奇偶性 $\nu_{\sqrt S}$ 对 $\gamma$ 相对于 $D$ 的 $C^0$-小扰动不敏感（*cf.* 附录 D）。在保持短程与（修正）行列式连续分支假设并施加小范数势扰动时，谱位移函数 $\xi$ 的连续选择可保持，因而 $\exp\Bigl(-i\pi\oint_\gamma d\xi\Bigr)$ 的取值不变，即**模 2** 谱流保持不变。
+**鲁棒性** 奇偶性 $\nu_{\sqrt S}$ 对 $\gamma$ 相对于 $D$ 的 $C^0$-小扰动不敏感（*cf.* 附录 D）。在保持短程与（修正）行列式连续分支假设并施加小范数势扰动时，谱位移函数 $\xi_p$ 的连续选择可保持，因而 $\exp\Bigl(-i\pi\oint_\gamma d\xi_p\Bigr)$ 的取值不变，即**模 2** 谱流保持不变。
 
-**说明（整数层级）** 本文在整数层级仅断言 $\mathrm{Sf}(\gamma)=\deg(\det S|_\gamma)$（见 §4）。与 $N_b(\gamma)$、$I_2(\gamma,D)$ 的关系只取其奇偶，故主定理等式应理解为 $\mathbb{Z}_2$ 层级的等价。
+**说明（整数层级）** 本文在整数层级仅断言 $\mathrm{Sf}(\gamma)=\deg(\mathfrak s|_\gamma)$（见 §4）。与 $N_b(\gamma)$、$I_2(\gamma,D)$ 的关系只取其奇偶，故主定理等式应理解为 $\mathbb{Z}_2$ 层级的等价。
 
 **引理 1（BK 到谱流模 2）**
 在第 0 节短程与正则性假设下，沿闭路 $\gamma$
 
 $$
-\deg(\det S|_\gamma)=\frac{1}{2\pi i}\oint_\gamma (\det S)^{-1}d(\det S)=-\oint_\gamma d\xi,\qquad
-\mathrm{Sf}(\gamma)=\deg(\det S|_\gamma)\in\mathbb{Z},
+\deg(\mathfrak s|_\gamma)=\frac{1}{2\pi i}\oint_\gamma \mathfrak s^{-1}d\mathfrak s=-\oint_\gamma d\xi_p,\qquad
+\mathrm{Sf}(\gamma)=\deg(\mathfrak s|_\gamma)\in\mathbb{Z},
 $$
 
 $$
-\exp\Bigl(-i\pi\oint_\gamma d\xi\Bigr)=(-1)^{\mathrm{Sf}(\gamma)}.
+\exp\Bigl(-i\pi\oint_\gamma d\xi_p\Bigr)=(-1)^{\mathrm{Sf}(\gamma)}.
 $$
 
 连续化分支与反向取向仅改变积分的号符，不影响奇偶。
@@ -248,17 +251,17 @@ $$
 由于 $U(1)$ 是 $K(\mathbb{Z},1)$，有 $[X^\circ,U(1)]\cong H^1(X^\circ;\mathbb{Z})$。平方覆盖 $p:z\mapsto z^2$ 在基本群与一上同调上对应乘二。对任意闭路 $\gamma$
 
 $$
-\nu_{\sqrt S}(\gamma)=\exp\Bigl(i\oint_\gamma \tfrac{1}{2i}(\det S)^{-1}d(\det S)\Bigr)=(-1)^{\deg(\det S|_\gamma)}.
+\nu_{\sqrt S}(\gamma)=\exp\Bigl(i\oint_\gamma \tfrac{1}{2i}\,\mathfrak s^{-1}d\mathfrak s\Bigr)=(-1)^{\deg(\mathfrak s|_\gamma)}.
 $$
 
 **定理 A（覆盖—提升判据）**
-存在连续 $s:X^\circ\to U(1)$ 使 $s^2=S$ 当且仅当 $[S]\in 2H^1(X^\circ;\mathbb{Z})$。对应主 $\mathbb{Z}_2$-丛 $P_{\sqrt S}=S^*(p)$ 的 holonomy 等于 $\nu_{\sqrt S}$。
+存在连续 $s:X^\circ\to U(1)$ 使 $s^2=\mathfrak s$ 当且仅当 $[\mathfrak s]\in 2H^1(X^\circ;\mathbb{Z})$。对应主 $\mathbb{Z}_2$-丛 $P_{\sqrt{\mathfrak s}}=\mathfrak s^*(p)$ 的 holonomy 等于 $\nu_{\sqrt S}$（此处"$\sqrt S$"指 $\mathfrak s$ 的平方根覆盖）。
 
 ### 2.2 平直线丛、Bockstein 与两类提升问题
 
 本文涉及两类互相独立的提升/平方根问题：
 
-**(A) 映射层（函数的平方根）**：给定 $S:X^\circ\to U(1)$，平方覆盖 $p:z\mapsto z^2$ 的提升 $s:X^\circ\to U(1)$ 使 $s^2=S$ 存在，当且仅当 $[S]\in 2H^1(X^\circ;\mathbb{Z})$（因 $U(1)\simeq K(\mathbb{Z},1)$ 且 $p_*=\times2$）。其 $\mathbb{Z}_2$ 障碍由主 $\mathbb{Z}_2$-丛 $P_{\sqrt S}=S^*(p)$ 的 holonomy 给出，即 $\nu_{\sqrt S}$。
+**(A) 映射层（函数的平方根）**：给定 $\mathfrak s:X^\circ\to U(1)$，平方覆盖 $p:z\mapsto z^2$ 的提升 $s:X^\circ\to U(1)$ 使 $s^2=\mathfrak s$ 存在，当且仅当 $[\mathfrak s]\in 2H^1(X^\circ;\mathbb{Z})$（因 $U(1)\simeq K(\mathbb{Z},1)$ 且 $p_*=\times2$）。其 $\mathbb{Z}_2$ 障碍由主 $\mathbb{Z}_2$-丛 $P_{\sqrt{\mathfrak s}}=\mathfrak s^*(p)$ 的 holonomy 给出，即 $\nu_{\sqrt S}$（"$\sqrt S$"指 $\mathfrak s$ 的平方根覆盖）。
 
 **(B) 线丛层（丛的平方根）**：对任意 $U(1)$-主丛/复线丛 $\mathcal L$，存在 $\mathcal M$ 使 $\mathcal M^{\otimes2}\cong\mathcal L$ 的充要条件是 $c_1(\mathcal L)\in 2H^2(X^\circ;\mathbb{Z})$。这里 $c_1$ 由指数层序列
 
@@ -274,19 +277,23 @@ $$
 
 产生，并满足 $\delta([\mathcal L])=c_1(\mathcal L)$。
 
-二者分别针对不同对象，**一般不相互推出**。与本文 $\mathbb{Z}_2$ 指标直接相关的是 $P_{\sqrt S}$；其经 $\{\pm1\}\hookrightarrow U(1)$ 关联的平直复线丛 $\mathcal L_{\sqrt S}$ 的 $c_1$ 为 2‑挠（由乘二短正合列的 Bockstein 给出），可在挠与模 2 层面反映 $\nu_{\sqrt S}$ 的障碍，但并不等价于 (A) 的提升条件。
+二者分别针对不同对象，**一般不相互推出**。与本文 $\mathbb{Z}_2$ 指标直接相关的是 $P_{\sqrt{\mathfrak s}}$；其经 $\{\pm1\}\hookrightarrow U(1)$ 关联的平直复线丛 $\mathcal L_{\sqrt{\mathfrak s}}$ 的 $c_1$ 为 2‑挠（由乘二短正合列的 Bockstein 给出），可在挠与模 2 层面反映 $\nu_{\sqrt S}$ 的障碍，但并不等价于 (A) 的提升条件。
 
 **两类判据（并列表述）**
 
-- **映射层**（$U(1)=K(\mathbb{Z},1)$）：$\exists\,s:X^\circ\to U(1)\ \text{s.t.}\ s^2=S\ \Longleftrightarrow\ [S]\in 2H^1(X^\circ;\mathbb{Z})$。
+- **映射层**（$U(1)=K(\mathbb{Z},1)$）：$\exists\,s:X^\circ\to U(1)\ \text{s.t.}\ s^2=\mathfrak s\ \Longleftrightarrow\ [\mathfrak s]\in 2H^1(X^\circ;\mathbb{Z})$。
 
 - **线丛层**（指数层序列与 Bockstein）：对任意复线丛 $\mathcal L$，$\exists\,\mathcal M,\ \mathcal M^{\otimes2}\cong\mathcal L\ \Longleftrightarrow\ c_1(\mathcal L)\in 2H^2(X^\circ;\mathbb{Z})$。
 
 二者针对不同对象，**一般不相互推出**；本文的 $\nu_{\sqrt S}$ 与 (A) 等价，而非与任意给定 $\mathcal L$ 的 $c_1$ 偶性等价。
 
+因此，$\nu_{\sqrt S}$ 是映射层平方根障碍的完整不变量，而非线丛层的。
+
 ---
 
 ## 3 Riccati 变量、Weyl–Titchmarsh 与 Jost 结构
+
+**说明**：本节仅限单通道或球对称分波情形；多通道一般情形下 $S(k)$ 为矩阵，$f(k)$ 为多分量 Jost 解，表达式需修正为 $\det S(k)=\det[f(-k)f(k)^{-1}]$。
 
 令 $L=\psi'/\psi$，则
 
@@ -311,53 +318,45 @@ $$
 
 于是 $\nu_{\sqrt S}(C)=(-1)^{\sum_j m_j}$。若同时围住 $\pm k_j$，两项抵消且绕数为零。
 
-**注（谱回路 vs 参回路）** 上式取的是 $k$-平面的小正向回路 $C$，只围住上半平面零点 $\{k_j\}$。其给出 $\deg(S|_C)=-\sum_j m_j$ 的**谱参数**整数计数，用于分析 $S=f(-k)/f(k)$ 的解析结构。它**不是**外参数空间中的闭路 $\gamma$，因此不定义 $N_b(\gamma)$。当需比较 $N_b$ 时，应先在参数空间内选取避开 $D$ 的闭路 $\gamma$ 并应用 §4 的 $\mathrm{Sf}=\deg$ 与 §5 的 $\mathbb{Z}_2$ 等价，只保留奇偶信息。
+**注（谱回路 vs 参回路）** 上式取的是 $k$-平面的小正向回路 $C$，只围住上半平面零点 $\{k_j\}$。其给出 $\deg(S|_C)=-\sum_j m_j$ 的**谱参数**整数计数，用于分析 $S=f(-k)/f(k)$ 的解析结构。它**不是**外参数空间中的闭路 $\gamma$，因此不定义 $N_b(\gamma)$。$C$ 是 $k$-平面中的回路，$\gamma$ 是 $(E,\lambda)$-空间中的回路，二者维度与意义不同，仅在 $\mathbb{Z}_2$ 层级上可比。当需比较 $N_b$ 时，应先在参数空间内选取避开 $D$ 的闭路 $\gamma$ 并应用 §4 的 $\mathrm{Sf}=\deg$ 与 §5 的 $\mathbb{Z}_2$ 等价，只保留奇偶信息。
 
 ---
 
 ## 4 Birman–Kreĭn、谱位移与模 2 Levinson
 
-**定理 4.0（$\det_p$ 连续分支与谱流等式）**
+**定理 4.0（谱位移连续支与谱流等式，统一版）**
 
-设沿闭路 $\gamma\subset X^\circ$ 有下述其一：
+设沿闭路 $\gamma$ 有：
 
-(i) $S(E,\lambda)-\mathbf 1\in\mathfrak S_1$ 且 $(E,\lambda)\mapsto S$ 分段 $C^1$；或
+(i) $S-\mathbf 1\in\mathfrak S_1$；或 (ii) $\exists\,p\ge2$ 使 $S-\mathbf 1\in\mathfrak S_p$，并取相应谱位移 $\xi_p$ 的连续分支。
 
-(ii) 存在 $p\ge2$ 使 $S(E,\lambda)-\mathbf 1\in\mathfrak S_p$，并以修正行列式 $\det_p$ 与相应谱位移 $\xi_p$ 取连续分支。
-
-则沿 $\gamma$ 存在 $\log\det_p S$ 的连续分支，且
+则沿 $\gamma$ 存在 $U(1)$‑值映射 $\mathfrak s:=e^{-2\pi i\,\xi_p}$ 的连续分支，且
 
 $$
-\det_p S=e^{-2\pi i\,\xi_p},\qquad
-\mathrm{Sf}(\gamma)=\frac{1}{2\pi i}\oint_\gamma (\det_p S)^{-1}d(\det_p S)=-\oint_\gamma d\xi_p\in\mathbb{Z}.
+\mathrm{Sf}(\gamma)=\frac{1}{2\pi i}\oint_\gamma \mathfrak s^{-1}d\mathfrak s
+=-\oint_\gamma d\xi_p\in\mathbb{Z}.
 $$
+
+迹类情形退化为 $\mathfrak s=\det S$ 与 $\xi_p=\xi$。
 
 *提示*：由修正 Fredholm 行列式的解析性与谱位移函数的连续选择（见[9],[10]）可得。
 
-以上记号与 §0.4 的"$\det/\det_p$"统记一致。
-
 **定理 4.1（Birman–Kreĭn 与谱位移）**
-在绝对连续谱能段且 $S-\mathbf 1$ 为迹类（多通道取修正 Fredholm 行列式）的条件下，存在连续谱位移 $\xi$ 使
+在绝对连续谱能段且 $S-\mathbf 1$ 为迹类的条件下，存在连续谱位移 $\xi$ 使 $\mathfrak s=\det S=e^{-2\pi i\,\xi}$。从而沿闭路 $\gamma$ 有
 
 $$
-\det S(E,\lambda)=e^{-2\pi i\,\xi(E,\lambda)}.
+\mathrm{Sf}(\gamma)=\deg(\mathfrak s|_\gamma)=-\oint_\gamma d\xi\in\mathbb{Z}.
 $$
 
-从而沿闭路 $\gamma$ 有
-
-$$
-\mathrm{Sf}(\gamma)=\deg(\det S|_\gamma)=-\oint_\gamma d\xi\in\mathbb{Z}.
-$$
-
-当 $\gamma$ 同时改变能量与外参时，$\xi$ 取自修正 Fredholm 行列式的连续化分支；反向取向仅改变 $\oint_\gamma d\xi$ 的号符而不改其奇偶。由定理 4.0 得 $\mathrm{Sf}(\gamma)=\deg(\det S|_\gamma)$。
+当 $\gamma$ 同时改变能量与外参时，$\xi$ 取自连续化分支；反向取向仅改变 $\oint_\gamma d\xi$ 的号符而不改其奇偶。由定理 4.0 得 $\mathrm{Sf}(\gamma)=\deg(\mathfrak s|_\gamma)$。
 
 **定理 4.2（模 2 Levinson）**
 
 $$
-\nu_{\sqrt S}(\gamma)=\exp\Bigl(-i\pi\oint_\gamma d\xi\Bigr)=(-1)^{\mathrm{Sf}(\gamma)}=(-1)^{N_b(\gamma)}.
+\nu_{\sqrt S}(\gamma)=\exp\Bigl(-i\pi\oint_\gamma d\xi_p\Bigr)=(-1)^{\mathrm{Sf}(\gamma)}=(-1)^{N_b(\gamma)}.
 $$
 
-这里 $N_b(\gamma)$ 指沿 $\gamma$ 对阈值事件的符号计数之奇偶，而非起讫点束缚态总数之差。当 $\gamma$ 不可完全回避 $D$ 时，仅 $(-1)^{\mathrm{Sf}(\gamma)}$ 为不变量；整数 $\mathrm{Sf}(\gamma)$ 与 $\deg(\det S|_\gamma)$ 的号符取决于规避方向。
+这里 $N_b(\gamma)$ 指沿 $\gamma$ 对阈值事件的符号计数之奇偶，而非起讫点束缚态总数之差。当 $\gamma$ 不可完全回避 $D$ 时，仅 $(-1)^{\mathrm{Sf}(\gamma)}$ 为不变量；整数 $\mathrm{Sf}(\gamma)$ 与 $\deg(\mathfrak s|_\gamma)$ 的号符取决于规避方向。
 
 ---
 
@@ -428,7 +427,7 @@ $$
 
 **实参数折返环（仅陈述 $\mathbb{Z}_2$ 结论）** 在 $(E,\lambda)$ 平面取闭路 $\gamma\subset X^\circ$，令 $\partial\Sigma=\gamma$ 的分片 $C^1$ 2‑链 $\Sigma$ 与 $D$ 横截且 $\#(\Sigma\cap D)=1$，则 $I_2(\gamma,D)=1\Rightarrow \nu_{\sqrt S}(\gamma)=-1$。实际绘制折返路径时，可在穿越 $\lambda=0$ 处以小半圆规避以保持 $\gamma\subset X^\circ$，上述模 2 结果不变。
 
-**规避与整数不变性** 折返闭路不可完全避开 $D$；将其以小半圆规避后得到的 $\deg(\det S|_\gamma)$ 的**号符**取决于规避方向，但其奇偶固定，且与 $\nu_{\sqrt S}$ 与 $I_2$ 一致。
+**规避与整数不变性** 折返闭路不可完全避开 $D$；将其以小半圆规避后得到的 $\deg(\mathfrak s|_\gamma)$ 的**号符**取决于规避方向，但其奇偶固定，且与 $\nu_{\sqrt S}$ 与 $I_2$ 一致。
 
 ---
 
@@ -490,14 +489,14 @@ $$
 
 **命题 8.2（交换到旋转）** 两粒子交换 $\sigma_{ij}\in S_N$ 对应于相对坐标的环路 $[R_{ij}]\in \pi_1(\mathrm{SO}(d))\cong\mathbb{Z}_2$，由 $2\pi$ 旋转代表非平凡类。
 
-**构造 8.3（散射配对公式）** 由无穷远边界扭转得映射 $\Psi:\pi_1(\mathrm{SO}(d))\to [X^\circ,U(1)]$。令 $S_R:=\Psi([R])$。记 $\alpha=\frac{1}{2i}(\det S_R)^{-1}d(\det S_R)$，则对闭路 $\gamma\subset X^\circ$
+**构造 8.3（散射配对公式）** 由无穷远边界扭转得映射 $\Psi:\pi_1(\mathrm{SO}(d))\to [X^\circ,U(1)]$。令 $\mathfrak s_R:=\Psi([R])$。记 $\alpha=\frac{1}{2i}\,\mathfrak s_R^{-1}d\mathfrak s_R$，则对闭路 $\gamma\subset X^\circ$
 
 $$
 \Psi([R])(\gamma)=\exp\Big(i\oint_\gamma \alpha\Big),\qquad
-\nu_{\sqrt{S_R}}(\gamma)=\exp\Big(i\oint_\gamma \tfrac{1}{2}d\arg(\det S_R)\Big).
+\nu_{\sqrt{\mathfrak s_R}}(\gamma)=\exp\Big(i\oint_\gamma \tfrac{1}{2i}\,\mathfrak s_R^{-1}d\mathfrak s_R\Big).
 $$
 
-特别地，对 $[R]$ 的非平凡类（$2\pi$ 旋转），有 $\nu_{\sqrt{S_R}}(\gamma)=-1$。
+特别地，对 $[R]$ 的非平凡类（$2\pi$ 旋转），有 $\nu_{\sqrt{\mathfrak s_R}}(\gamma)=-1$。
 
 两体中心势下，交换路径在配置空间中同伦于相对坐标的 $\pi$ 旋转；其在旋转群 $\mathrm{SO}(d)$ 上的提升对应由 $2\pi$ 旋转代表的非平凡同伦类。由上述构造并配对闭路，得到
 
@@ -539,7 +538,7 @@ $$
 
 即 $\operatorname{sgn}\det r(0)$ 翻转。
 
-(b) *Class DIII*：在 Kramers 配对下可取实反对称 $r(0)$，存在 $2\times2$ 反对称块 $\begin{psmallmatrix}0&\rho\\-\rho&0\end{psmallmatrix}$ 的号符穿越，致 $\operatorname{Pf}r(0)$ 改变符号、$\det r(0)=(\operatorname{Pf}r(0))^2$ 不变幅仅换号符的平方。
+(b) *Class DIII*：在 Kramers 配对下可取实反对称 $r(0)$，存在 $2\times2$ 反对称块 $\left(\begin{smallmatrix}0&\rho\\-\rho&0\end{smallmatrix}\right)$ 的号符穿越，致 $\operatorname{Pf}r(0)$ 改变符号、$\det r(0)=(\operatorname{Pf}r(0))^2$ 不变幅仅换号符的平方。
 
 *结论*：两类中号符翻转与 $\deg(\det r|_\gamma)\equiv 1$ 同步，且该穿越事件即属于鉴别子 $D$，故 $(-1)^{I_2(\gamma,D)}=\operatorname{sgn}\sqrt{\det r(0)}$。
 
@@ -547,15 +546,14 @@ $$
 
 ## 10 多通道与分波：最小自洽陈述
 
-若 $S(E,\lambda)-\mathbf 1$ 为迹类且 $(E,\lambda)\mapsto S$ 连续，则存在连续相位
+若 $S(E,\lambda)-\mathbf 1$ 为迹类且 $(E,\lambda)\mapsto S$ 连续，则存在连续相位 $\mathfrak s=\det S=e^{-2\pi i\,\xi}$，且
 
 $$
-\det S(E,\lambda)=e^{-2\pi i\,\xi(E,\lambda)},\qquad
-\nu_{\sqrt{\det S}}(\gamma)=\exp\Bigl(i\oint_\gamma \tfrac{1}{2i}\,(\det S)^{-1}d(\det S)\Bigr)
+\nu_{\sqrt S}(\gamma)=\exp\Bigl(i\oint_\gamma \tfrac{1}{2i}\,\mathfrak s^{-1}d\mathfrak s\Bigr)
 =(-1)^{\mathrm{Sf}(\gamma)}=(-1)^{I_2(\gamma,D)}.
 $$
 
-球对称势下 $\det S=\prod_\ell \det S_\ell$，各分波的奇偶在模 2 下相乘；通道开闭事件纳入 $D$ 并由 $I_2(\gamma,D)$ 稳定记录。
+球对称势下 $\mathfrak s=\det S=\prod_\ell \det S_\ell$，各分波的奇偶在模 2 下相乘；通道开闭事件纳入 $D$ 并由 $I_2(\gamma,D)$ 稳定记录。
 
 ---
 
@@ -564,10 +562,10 @@ $$
 Aharonov–Bohm 散射以通量 $\alpha=\Phi/\Phi_0$ 给出统计角 $\theta=2\pi\alpha$。固定能量，沿闭路 $\alpha\mapsto \alpha+1$ 并穿越 $\alpha=\tfrac12$（$\theta=\pi$）时，由分波相位的跳变可知
 
 $$
-\deg(\det S|_\gamma)\equiv 1\pmod{2},\qquad \nu_{\sqrt{\det S}}(\gamma)=-1.
+\deg(\mathfrak s|_\gamma)\equiv 1\pmod{2},\qquad \nu_{\sqrt S}(\gamma)=-1.
 $$
 
-分波指数无穷时，本文**固定采用**修正行列式 $\det_2$ 定义整体相位 $\det_2 S$，并据此读取 $\nu_{\sqrt{\det_2 S}}(\gamma)$ 的 $\mathbb{Z}_2$ 影像。对于 Aharonov–Bohm 模型，分波截断的有限乘积与 $\det_2$ 在穿越 $\alpha=\tfrac12$ 时的**模 2** 结果一致；本文不在此处主张对**一切**正则化方案的普遍独立性。一般 $\theta\neq 0,\pi$ 超出本文的 $\mathbb{Z}_2$ 框架，本文只捕获其模 2 投影。
+分波指数无穷时，本文**固定采用**修正行列式 $\det_2$ 定义整体相位 $\mathfrak s=e^{-2\pi i\,\xi_2}$，并据此读取 $\nu_{\sqrt S}(\gamma)$ 的 $\mathbb{Z}_2$ 影像。对于 Aharonov–Bohm 模型，分波截断的有限乘积与 $\det_2$ 在穿越 $\alpha=\tfrac12$ 时的**模 2** 结果一致；本文不在此处主张对**一切**正则化方案的普遍独立性。一般 $\theta\neq 0,\pi$ 超出本文的 $\mathbb{Z}_2$ 框架，本文只捕获其模 2 投影。
 
 **定义 11.1（分波截断的 $\mathbb{Z}_2$ 指标，半整数中心）** 记
 
@@ -597,7 +595,7 @@ $$
 
 ## 12 结论与展望
 
-以 $\alpha=\frac{1}{2i}(\det S)^{-1}d(\det S)$ 的 holonomy 为核心，构建了"平方根—双覆盖—$\mathbb{Z}_2$ 指标"的统一框架，将交换统计、旋量双覆盖与散射谱结构整合为同一可计算不变量 $\nu_{\sqrt S}$。该不变量可由主 $\mathbb{Z}_2$-丛 holonomy、Birman–Kreĭn 与谱流、鉴别子模 2 交数及自指闭环的双曲型分支交换四条链路读取，并在拓扑超导端点散射中与 $\operatorname{sgn}\det r$、$\operatorname{sgn}\operatorname{Pf}r$ 等价。多体系统、二维非阿贝尔任意子、阈值强耦合与非厄米散射的平方根拓扑构成自然的延展方向。
+以 $\alpha=\tfrac{1}{2i}\,\mathfrak s^{-1}d\mathfrak s$ 的 holonomy 为核心，构建了"平方根—双覆盖—$\mathbb{Z}_2$ 指标"的统一框架，将交换统计、旋量双覆盖与散射谱结构整合为同一可计算不变量 $\nu_{\sqrt S}$。该不变量可由主 $\mathbb{Z}_2$-丛 holonomy、Birman–Kreĭn 与谱流、鉴别子模 2 交数及自指闭环的双曲型分支交换四条链路读取，并在拓扑超导端点散射中与 $\operatorname{sgn}\det r$、$\operatorname{sgn}\operatorname{Pf}r$ 等价。多体系统、二维非阿贝尔任意子、阈值强耦合与非厄米散射的平方根拓扑构成自然的延展方向。
 
 ---
 
@@ -632,10 +630,10 @@ $$
 
 ### A.1 覆盖—提升与 holonomy
 
-$U(1)=K(\mathbb{Z},1)$，故 $[X^\circ,U(1)]\cong H^1(X^\circ;\mathbb{Z})$。平方覆盖 $p:z\mapsto z^2$ 在 $\pi_1$ 与 $H^1$ 上对应乘二。存在 $s:X^\circ\to U(1)$ 使 $s^2=S$ 当且仅当 $[S]\in 2H^1(X^\circ;\mathbb{Z})$。对闭路 $\gamma$
+$U(1)=K(\mathbb{Z},1)$，故 $[X^\circ,U(1)]\cong H^1(X^\circ;\mathbb{Z})$。平方覆盖 $p:z\mapsto z^2$ 在 $\pi_1$ 与 $H^1$ 上对应乘二。存在 $s:X^\circ\to U(1)$ 使 $s^2=\mathfrak s$ 当且仅当 $[\mathfrak s]\in 2H^1(X^\circ;\mathbb{Z})$。对应主 $\mathbb{Z}_2$-丛为 $P_{\sqrt{\mathfrak s}}=\mathfrak s^*(p)$。对闭路 $\gamma$
 
 $$
-\exp\Bigl(i\oint_\gamma \tfrac{1}{2} d\arg(\det S)\Bigr)=e^{i\pi\,\deg(\det S|_\gamma)}=(-1)^{\deg(\det S|_\gamma)}.
+\exp\Bigl(i\oint_\gamma \tfrac{1}{2i}\,\mathfrak s^{-1}d\mathfrak s\Bigr)=e^{i\pi\,\deg(\mathfrak s|_\gamma)}=(-1)^{\deg(\mathfrak s|_\gamma)}.
 $$
 
 ### A.2 平直线丛的分类与 Bockstein
@@ -664,11 +662,11 @@ $$
 \beta:\ H^1\left(X^\circ;U(1)_{\mathrm{const}}\right)\longrightarrow H^2\left(X^\circ;\mathbb{Z}\right)
 $$
 
-得到平直线丛的第一陈类，其像等于 $H^2$ 的挠子群；因此平直线丛必满足 $c_1$ 为挠元（对由 $\{\pm1\}\hookrightarrow U(1)$ 关联得到的平直线丛更是 2‑挠）。这与正文 §2.2 对 $\mathcal L_{\sqrt S}$ 的描述相一致。
+得到平直线丛的第一陈类，其像等于 $H^2$ 的挠子群；因此平直线丛必满足 $c_1$ 为挠元（对由 $\{\pm1\}\hookrightarrow U(1)$ 关联得到的平直线丛更是 2‑挠）。这与正文 §2.2 对 $\mathcal L_{\sqrt{\mathfrak s}}$ 的描述相一致。
 
-线丛平方根存在当且仅当 $c_1(\mathcal L)\in 2H^2(X^\circ;\mathbb{Z})$。这与 A.1 的映射提升问题（$[S]\in 2H^1(X^\circ;\mathbb{Z})$）针对不同对象，一般不相互推出；本文的 $\nu_{\sqrt S}$ 由主 $\mathbb{Z}_2$-丛 $P_{\sqrt S}=S^*(p)$ 的 holonomy 给出，与 (A) 等价。
+线丛平方根存在当且仅当 $c_1(\mathcal L)\in 2H^2(X^\circ;\mathbb{Z})$。这与 A.1 的**映射层**提升问题（$[\mathfrak s]\in 2H^1(X^\circ;\mathbb{Z})$）针对不同对象，一般不相互推出。本文的 $\nu_{\sqrt S}$ 与映射层平方根障碍等价，其由主 $\mathbb{Z}_2$-丛 $P_{\sqrt{\mathfrak s}}=\mathfrak s^*(p)$ 的 holonomy 给出。
 
-**注意**：$c_1(\mathcal L)$ 的 $\bmod 2$ 约化属于 $H^2(X^\circ;\mathbb{Z}_2)$，而 A.1 的覆盖障碍 $w_1(P_{\sqrt S})\in H^1(X^\circ;\mathbb{Z}_2)$，两者不处于同一上同调次数，不能直接等同。仅当专指由 $P_{\sqrt S}$ 经 $\{\pm1\}\hookrightarrow U(1)$ 关联得到的平直复线丛 $\mathcal L_{\sqrt S}$ 时，其 $c_1$ 的 2‑挠可在挠/模 2 层面反映 $\nu_{\sqrt S}$ 的 holonomy 数据（见 §2.2），但并不与 $w_1(P_{\sqrt S})$ 作同度量的等价。
+**注意**：$c_1(\mathcal L)$ 的 $\bmod 2$ 约化属于 $H^2(X^\circ;\mathbb{Z}_2)$，而 A.1 的覆盖障碍 $w_1(P_{\sqrt{\mathfrak s}})\in H^1(X^\circ;\mathbb{Z}_2)$，两者不处于同一上同调次数，不能直接等同。仅当专指由 $P_{\sqrt{\mathfrak s}}$ 经 $\{\pm1\}\hookrightarrow U(1)$ 关联得到的平直复线丛 $\mathcal L_{\sqrt{\mathfrak s}}$ 时，其 $c_1$ 的 2‑挠可在挠/模 2 层面反映 $\nu_{\sqrt S}$ 的 holonomy 数据（见 §2.2），但并不与 $w_1(P_{\sqrt{\mathfrak s}})$ 作同度量的等价。
 
 ---
 
@@ -685,16 +683,16 @@ $$
 
 从而 $\nu_{\sqrt S}(C)=(-1)^{\sum_j m_j}$。若 $C$ 同时围住对称点 $\pm k_j$，两项等重且抵消，故 $\deg(S|_C)=0$。
 
-**注（谱回路 vs 参回路）** 上式取的是 $k$-平面的小正向回路 $C$，只围住上半平面零点 $\{k_j\}$。其给出 $\deg(S|_C)=-\sum_j m_j$ 的**谱参数**整数计数，用于分析 $S=f(-k)/f(k)$ 的解析结构。它**不是**外参数空间中的闭路 $\gamma$，因此不定义 $N_b(\gamma)$。当需比较 $N_b$ 时，应先在参数空间内选取避开 $D$ 的闭路 $\gamma$ 并应用 §4 的 $\mathrm{Sf}=\deg$ 与 §5 的 $\mathbb{Z}_2$ 等价，只保留奇偶信息。
+**注（谱回路 vs 参回路）** 上式取的是 $k$-平面的小正向回路 $C$，只围住上半平面零点 $\{k_j\}$。其给出 $\deg(S|_C)=-\sum_j m_j$ 的**谱参数**整数计数，用于分析 $S=f(-k)/f(k)$ 的解析结构。它**不是**外参数空间中的闭路 $\gamma$，因此不定义 $N_b(\gamma)$。$C$ 是 $k$-平面中的回路，$\gamma$ 是 $(E,\lambda)$-空间中的回路，二者维度与意义不同，仅在 $\mathbb{Z}_2$ 层级上可比。当需比较 $N_b$ 时，应先在参数空间内选取避开 $D$ 的闭路 $\gamma$ 并应用 §4 的 $\mathrm{Sf}=\deg$ 与 §5 的 $\mathbb{Z}_2$ 等价，只保留奇偶信息。
 
 ---
 
 ## 附录 C  Birman–Kreĭn 与谱流
 
-在短程与迹类假设下，存在连续谱位移 $\xi$ 使 $\det S=e^{-2\pi i\,\xi}$。本征相位关于参数的横截与避障给出
+在短程与迹类假设下，存在连续谱位移 $\xi$ 使 $\mathfrak s=\det S=e^{-2\pi i\,\xi}$。本征相位关于参数的横截与避障给出
 
 $$
-\mathrm{Sf}(\gamma)=\deg(\det S|_\gamma)=-\oint_\gamma d\xi\in\mathbb{Z},\qquad
+\mathrm{Sf}(\gamma)=\deg(\mathfrak s|_\gamma)=-\oint_\gamma d\xi\in\mathbb{Z},\qquad
 \nu_{\sqrt S}(\gamma)=\exp\Bigl(-i\pi\oint_\gamma d\xi\Bigr)=(-1)^{\mathrm{Sf}(\gamma)}.
 $$
 
@@ -730,7 +728,7 @@ $$
 
 **实参数折返环（仅陈述 $\mathbb{Z}_2$ 结论）** 在 $(E,\lambda)$ 平面取闭路 $\gamma\subset X^\circ$，取 $\partial\Sigma=\gamma$ 的分片 $C^1$ 2‑链 $\Sigma$ 与 $D$ 横截且 $\#(\Sigma\cap D)=1$，则 $I_2(\gamma,D)=1\Rightarrow \nu_{\sqrt S}(\gamma)=-1$。在折返处以小半圆规避保持 $\gamma\subset X^\circ$；模 2 计数保持不变。
 
-**规避与整数不变性** 折返闭路不可完全避开 $D$；将其以小半圆规避后得到的 $\deg(\det S|_\gamma)$ 的**号符**取决于规避方向，但其奇偶固定，且与 $\nu_{\sqrt S}$ 与 $I_2$ 一致。
+**规避与整数不变性** 折返闭路不可完全避开 $D$；将其以小半圆规避后得到的 $\deg(\mathfrak s|_\gamma)$ 的**号符**取决于规避方向，但其奇偶固定，且与 $\nu_{\sqrt S}$ 与 $I_2$ 一致。
 
 ---
 
