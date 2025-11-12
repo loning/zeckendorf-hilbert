@@ -1,6 +1,6 @@
 # 信息几何变分原理导出爱因斯坦方程：定体积对偶、显式可交换极限、Radon‑型闭包、OS/KMS–Fisher 解析延拓与 null 边界处方
 
-Version: 4.8
+Version: 4.9
 
 ## 摘要
 
@@ -201,8 +201,13 @@ $$
 \mathcal L_\lambda[f](p,\hat k)=\tfrac12\lambda_*^2 f(p)+\mathcal O(\lambda_*^3|\nabla f|_\infty).
 $$
 
-**测试函数局域化引理**：若 $\int_{S_\ell}\varphi(x)\int_0^{\lambda_*} w(\lambda)F(x,\lambda)\,d\lambda\,dA=0$ 对所有 $\varphi\in C_c^\infty(S_\ell)$、$w\in C_c^\infty([0,\lambda_*])$ 成立，则几乎处处沿每条生成元 $\int_0^{\lambda_*} w F=0$。
-（注：本文主用首矩权 $w\equiv\lambda$。）
+**测试函数局域化引理（端点光滑截断版）**：若
+$$
+\int_{S_\ell}\!\varphi(x)\int_0^{\lambda_*}\! w(\lambda)F(x,\lambda)\,d\lambda\,dA=0
+$$
+对所有 $\varphi\in C_c^\infty(S_\ell)$ 与 $w\in C_c^\infty([0,\lambda_*))$（并要求 $w(0)=0$）成立，则几乎处处沿每条生成元 $\int_0^{\lambda_*} w F=0$。实际使用时取一族 $w_\epsilon\in C_c^\infty([0,\lambda_*))$ 使 $w_\epsilon(\lambda)=\lambda$ 于 $[0,\lambda_*-\epsilon]$，并令 $\epsilon\to0$；端点层的贡献由 §2 的边界层估计控制，极限交换由主导收敛保证。
+
+（注：本文主用首矩权的光滑截断 $w_\epsilon$，在 $[0,\lambda_*-\epsilon]$ 上等于 $\lambda$，极限 $\epsilon\to0$ 在 §2 的可交换性与边界层估计下成立。）
 
 由此对 $f=R_{kk}-8\pi G\,T_{kk}$ 得 $\mathcal L_\lambda[f]=o(\ell^2)\Rightarrow f(p)=0$，即
 
@@ -427,12 +432,14 @@ $$
 
 # 附录 B  局域化引理与 Radon‑型 0‑阶重建
 
-**B.1 命题（Radon/光线变换唯一性与局域化）**
+**B.1 命题（Radon/光线变换唯一性与局域化，端点截断）**
 设 $F(x,\lambda)$ 可测且局域可积。若
-$\int_{S_\ell}\!\varphi(x)\int_0^{\lambda_*}\! w(\lambda)F(x,\lambda)\,d\lambda\,dA=0$
-对所有 $\varphi\in C_c^\infty(S_\ell)$ 与 $w\in C_c^\infty([0,\lambda_*])$ 成立，则几乎处处沿每条生成元
+$$
+\int_{S_\ell}\!\varphi(x)\int_0^{\lambda_*}\! w(\lambda)F(x,\lambda)\,d\lambda\,dA=0
+$$
+对所有 $\varphi\in C_c^\infty(S_\ell)$ 与 $w\in C_c^\infty([0,\lambda_*))$（并要求 $w(0)=0$）成立，则几乎处处沿每条生成元
 $\int_0^{\lambda_*} w(\lambda)F(x,\lambda)\,d\lambda=0$。
-证（草图，4–6 行）：Fubini 定理把 $x$ 与 $\lambda$ 的测试分离；对 $\lambda$ 方向用光滑截断（mollifier）逼近 $\delta$，取首矩权 $w\equiv\lambda$ 得加权光线变换核；由 Radon/光线变换唯一性，核仅在零函数时出现（见 Helgason 2011, Thm 4.2；Finch–Patch–Rakesh 2004）。分布情形先平滑，再令平滑尺度 $\to0$。
+**证（草图，4–6 行）**：Fubini 定理把 $x$ 与 $\lambda$ 的测试分离；对 $\lambda$ 方向取一族光滑截断 $w_\epsilon$，令 $w_\epsilon(\lambda)=\lambda$ 于 $[0,\lambda_*-\epsilon]$ 且在端点处光滑消失，随后令 $\epsilon\to0$。由 §2 的边界层估计与主导收敛，极限可交换；取首矩权 $w_\epsilon\to\lambda$ 得加权光线变换核；由 Radon/光线变换唯一性，核仅在零函数时出现（见 Helgason 2011, Thm 4.2；Finch–Patch–Rakesh 2004）。分布情形先平滑，再令平滑尺度 $\to0$。
 
 **B.2 0‑阶重建**
 $S_{kk}(\gamma(\lambda))=S_{kk}(p)+\lambda\nabla_k S_{kk}(p)+\mathcal O(\lambda^2)$；
