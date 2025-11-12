@@ -1,6 +1,6 @@
 # 信息几何变分原理导出爱因斯坦方程：定体积对偶、显式可交换极限、Radon‑型闭包、OS/KMS–Fisher 解析延拓与 null 边界处方
 
-Version: 4.6
+Version: 4.8
 
 ## 摘要
 
@@ -108,6 +108,8 @@ $R_{kk}=8\pi G\,T_{kk}$ 以及 $G_{ab}+\Lambda g_{ab}=8\pi G\,T_{ab}$。
 ## 2 小钻石极限：显式不等式与边界层
 
 **正则性门槛**：背景度规 $g\in C^3$（或 $g\in C^2$ 且 $\nabla{\rm Riem}\in L^\infty$），物质场 $T_{ab}\in C^1$；令 $\Sigma_\ell$ 为**最大体积空间超曲面**，其边界 $S_\ell=\partial\Sigma_\ell$（**腰面**）为初值面，取 $\theta(0)=\sigma(0)=\omega(0)=0$；零测地丛满足 Frobenius 条件，故 $\omega\equiv0$。
+
+**参数化约定**：下文沿零测地生成元的参数 $\lambda$ 统一取为**仿射参数**（$k^b\nabla_b k^a=0$），因此本文采用的 Raychaudhuri–Sachs–Twist 方程**不含 $\kappa\theta$ 项**。
 
 **初值与 Frobenius 条件**：腰面取 $\theta(0)=\sigma(0)=\omega(0)=0$；零测地丛超曲面正交 $\Leftrightarrow\omega\equiv0$。
 
@@ -352,7 +354,7 @@ Jacobson（1995, Phys. Rev. Lett. 75, 1260；2016, Class. Quantum Grav. 33, 2450
 # 附录 A  小钻石极限：显式上界、边界层与可交换性
 
 **A.1 初值与参数化**
-腰面：$\theta(0)=\sigma(0)=\omega(0)=0$；生成元参数 $|\lambda|\le\lambda_*\sim c_\lambda\ell$。常数族 $C_R,C_{\nabla R},C_{\mathcal C},C_\sigma(=C_{\mathcal C}\lambda_*),C_\omega(=0)$。
+腰面：$\theta(0)=\sigma(0)=\omega(0)=0$；生成元参数 $|\lambda|\le\lambda_*\sim c_\lambda\ell$，**且 $\lambda$ 取为仿射参数**（$k^b\nabla_b k^a=0$）。常数族 $C_R,C_{\nabla R},C_{\mathcal C},C_\sigma(=C_{\mathcal C}\lambda_*),C_\omega(=0)$。
 
 **A.2 Frobenius 与 $\omega\equiv0$**
 零测地丛超曲面正交 $\Leftrightarrow \omega_{ab}=0$。在"腰面 + 近似 CKV"构造下 $\omega(0)=0$，由
