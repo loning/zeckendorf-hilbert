@@ -1,6 +1,6 @@
 # 自指散射与费米子的诞生：Riccati 平方根、旋量双覆盖与 $\mathbb{Z}_2$ 交换相位
 
-Version: 2.4
+Version: 2.11
 
 ## 摘要
 
@@ -10,19 +10,19 @@ $$
 P_{\sqrt S}=S^*(p)=\{(x,\sigma)\in X^\circ\times U(1):\ \sigma^2=S(x)\}\to X^\circ
 $$
 
-定义散射的平方根覆盖。以 Maurer–Cartan 一形式
+定义散射的平方根覆盖。以整体相位的一形式
 
 $$
-\alpha=\frac{1}{2i}\,S^{-1}dS
+\alpha=\frac{1}{2i}(\det S)^{-1}d(\det S)
 $$
 
 刻画的 holonomy
 
 $$
-\nu_{\sqrt S}(\gamma)=\exp\Bigl(i\oint_\gamma \alpha\Bigr)=(-1)^{\deg(S|_\gamma)}\in\{\pm1\}
+\nu_{\sqrt S}(\gamma)=\exp\Bigl(i\oint_\gamma \alpha\Bigr)=(-1)^{\deg(\det S|_\gamma)}\in\{\pm1\}
 $$
 
-为一个天然的 $\mathbb{Z}_2$ 不变量，其中 $\deg(S|_\gamma)=\frac{1}{2\pi i}\oint_\gamma S^{-1}dS$。平方根存在性由映射层的覆盖提升条件 $[S]\in 2H^1(X^\circ;\mathbb{Z})$ 刻画（因 $U(1)\simeq K(\mathbb{Z},1)$ 且平方覆盖在 $H^1$ 上对应乘二）；$\nu_{\sqrt S}$ 由主 $\mathbb{Z}_2$-丛 $P_{\sqrt S}=S^*(p)$ 的 holonomy 给出。线丛层的平方根问题（$c_1(\mathcal L)\in 2H^2(X^\circ;\mathbb{Z})$）由指数层序列的 Bockstein 刻画，与映射提升问题针对不同对象，一般不相互推出。谱理论方面，在短程且无零能共振的条件下，结合 Birman–Kreĭn 公式与谱流，得到模 2 Levinson 关系
+为一个天然的 $\mathbb{Z}_2$ 不变量，其中单通道时 $\det S=S=e^{2i\delta}$；多通道/分波时按需理解为 $\det/\det_p S$。$\deg(\det S|_\gamma)=\frac{1}{2\pi i}\oint_\gamma (\det S)^{-1}d(\det S)$。平方根存在性由映射层的覆盖提升条件 $[S]\in 2H^1(X^\circ;\mathbb{Z})$ 刻画（因 $U(1)\simeq K(\mathbb{Z},1)$ 且平方覆盖在 $H^1$ 上对应乘二）；$\nu_{\sqrt S}$ 由主 $\mathbb{Z}_2$-丛 $P_{\sqrt S}=S^*(p)$ 的 holonomy 给出。线丛层的平方根问题（$c_1(\mathcal L)\in 2H^2(X^\circ;\mathbb{Z})$）由指数层序列的 Bockstein 刻画，与映射提升问题针对不同对象，一般不相互推出。谱理论方面，在短程且无零能共振的条件下，结合 Birman–Kreĭn 公式与谱流，得到模 2 Levinson 关系
 
 $$
 \nu_{\sqrt S}(\gamma)=\exp\Bigl(-i\pi\oint_\gamma d\xi\Bigr)=(-1)^{\mathrm{Sf}(\gamma)}=(-1)^{N_b(\gamma)}.
@@ -36,6 +36,8 @@ $$
 
 给出存在性与双曲型区域内两不动点交换的定理，并证明其交换奇偶与 $\nu_{\sqrt S}$ 一致。以一维 $\delta$-势与 Aharonov–Bohm 模型为例，给出显式绕数计算，并用"鉴别子模 2 交数"统一复小环与实折返路径。拓扑超导端点散射方面，区分 Altland–Zirnbauer 对称类：Class D 的 $\operatorname{sgn}\det r(0)$ 与 Class DIII 的 $\operatorname{sgn}\operatorname{Pf}r(0)$ 分别等价于 $\sqrt{\det r(0)}$ 的分支号符。该框架在 $d\ge 3$ 的费米/玻色统计直接适用；在 $d=2$ 给出任意子 $U(1)$ 统计的 $\mathbb{Z}_2$ 投影。
 
+**实验预言** 在门控可调 Josephson 结中，当 Andreev 通道数 $\lesssim 4$ 时，在零能偏置下对超导相位差 $\phi$ 进行单次 $2\pi$ 扫描，每当穿越 Majorana 交叉事件时，**量子化**电导 $G_{\mathbb{Z}_2}=\frac{e^{2}}{h}\nu_{\sqrt S}$ 将从 $+1$ 翻转为 $-1$，提供该交叉事件的**单次测量** $\mathbb{Z}_2$ 磁强计。
+
 **关键词**：散射相位平方根；$\mathbb{Z}_2$ holonomy；覆盖提升；第一陈类偶性；Bockstein；谱位移；Birman–Kreĭn；Riccati；边界三元组；Pfaffian 指标；Aharonov–Bohm 散射
 
 ---
@@ -47,7 +49,7 @@ $$
 本文的核心思想是用一个统一的 $\mathbb{Z}_2$ holonomy 指标
 
 $$
-\nu_{\sqrt S}(\gamma)=\exp\Bigl(i\oint_\gamma \frac{1}{2i}\,S^{-1}dS\Bigr)
+\nu_{\sqrt S}(\gamma)=\exp\Bigl(i\oint_\gamma \frac{1}{2i}\,(\det S)^{-1}d(\det S)\Bigr)
 $$
 
 把三个看似不同的负号来源统一起来：交换两个费米子获得的负号、把旋量绕 $2\pi$ 的负号、以及散射半相位的分支切换负号。物理图像如下。
@@ -79,13 +81,15 @@ $$
 ### 0.3 联络与绕数
 
 $$
-\alpha=\frac{1}{2i}\,S^{-1}dS,\qquad
-\nu_{\sqrt S}(\gamma)=\exp\Bigl(i\oint_\gamma \alpha\Bigr)=(-1)^{\deg(S|_\gamma)},
+\alpha=\frac{1}{2i}\,(\det S)^{-1}d(\det S),\qquad
+\nu_{\sqrt S}(\gamma)=\exp\Bigl(i\oint_\gamma \alpha\Bigr)=(-1)^{\deg(\det S|_\gamma)}.
 $$
 
 $$
-\deg(S|_\gamma)=\frac{1}{2\pi i}\oint_\gamma S^{-1}dS\in\mathbb{Z},
+\deg(\det S|_\gamma)=\frac{1}{2\pi i}\oint_\gamma (\det S)^{-1}d(\det S)\in\mathbb{Z},
 $$
+
+*说明*：多通道/分波情形上述 $\det S$ 按需理解为 $\det/\det_p S$；单通道时退化为标量 $S=e^{2i\delta}$。
 
 闭路方向采用数学上正向约定。
 
@@ -103,7 +107,7 @@ $$
 
 一般闭路上 $N_b(\gamma)$ 的**整数号符**依赖于对穿越 $D$ 的**规避方式**与参数定向，故不与 $\deg$ 建立整数恒等；仅其奇偶 $(N_b\bmod 2)$ 为不变量。以下讨论据此规范展开。
 
-**声明（空间与不变量层级）** 本文所有绕数 $\deg(S|_\gamma)$、谱流 $\mathrm{Sf}(\gamma)$、束缚态计数 $N_b(\gamma)$ 与交数 $I_2(\gamma,D)$ 均以**同一参数‑能量闭路** $\gamma\subset X^\circ$ 为自变量，比较仅在 $\mathbb{Z}_2$ 层级进行。
+**声明（空间与不变量层级）** 本文所有绕数 $\deg(\det S|_\gamma)$、谱流 $\mathrm{Sf}(\gamma)$、束缚态计数 $N_b(\gamma)$ 与交数 $I_2(\gamma,D)$ 均以**同一参数‑能量闭路** $\gamma\subset X^\circ$ 为自变量，比较仅在 $\mathbb{Z}_2$ 层级进行。
 
 与此不同，§3 中的
 
@@ -111,7 +115,7 @@ $$
 \deg(S|_C)=-\sum_j m_j
 $$
 
-乃**动量 $(k)$ 平面谱回路** $C$ 的解析计数，用于 $S=f(-k)/f(k)$ 的谱结构分析；它**不**与参数回路 $\gamma$ 作整数级别识别与比较。本文并**不**主张存在整数等式 $\deg(S|_\gamma)=\deg(S|_C)$ 或 $\deg_\lambda=\deg_k$。主定理 1.1 仅断言
+乃**动量 $(k)$ 平面谱回路** $C$ 的解析计数，用于 $S=f(-k)/f(k)$ 的谱结构分析；它**不**与参数回路 $\gamma$ 作整数级别识别与比较。本文并**不**主张存在整数等式 $\deg(\det S|_\gamma)=\deg(S|_C)$ 或 $\deg_\lambda=\deg_k$。主定理 1.1 仅断言
 
 $$
 (-1)^{\deg(\det S|_\gamma)}=(-1)^{\mathrm{Sf}(\gamma)}=(-1)^{N_b(\gamma)}=(-1)^{I_2(\gamma,D)}.
@@ -151,14 +155,28 @@ $$
 
 $$
 \nu_{\sqrt S}(\gamma)
-=\exp\Bigl(i\oint_\gamma \tfrac{1}{2i}S^{-1}dS\Bigr)
-=(-1)^{\deg(S|_\gamma)}
+=\exp\Bigl(i\oint_\gamma \tfrac{1}{2i}(\det S)^{-1}d(\det S)\Bigr)
+=(-1)^{\deg(\det S|_\gamma)}
 =(-1)^{\mathrm{Sf}(\gamma)}
 =(-1)^{N_b(\gamma)}
 =(-1)^{I_2(\gamma,D)}.
 $$
 
-其中 $\mathrm{Sf}(\gamma)$ 为本征相位关于参考相位的谱流，$N_b(\gamma)$ 为沿闭路 $\gamma$ 束缚态穿越连续谱阈值的符号计数（出生计 $+1$、湮灭计 $-1$），其奇偶与 $\mathrm{Sf}(\gamma)$ 等价，$I_2(\gamma,D)$ 为 $\gamma$ 与鉴别子 $D$ 的模 2 交数。
+其中**多通道/分波情形**统一以整体相位指数 $\det S$（必要时用修正行列式 $\det_p S$）代入；**单通道**时有 $\det S=S$。
+
+定义**束缚态奇偶指标**
+
+$$
+N_b(\gamma):=I_2(\gamma,D)=\langle w_D,[\gamma]\rangle\in\mathbb{Z}_2.
+$$
+
+若**另外**存在与 $D$ 横截且 $\partial\Sigma=\gamma$ 的分片 $C^1$ 二链，则有退化等价式
+
+$$
+I_2(\gamma,D)=\#(\Sigma\cap D)\bmod2.
+$$
+
+$\mathrm{Sf}(\gamma)$ 为本征相位关于参考相位的谱流。因而
 
 **证明（模 2）** 由 Birman–Kreĭn 公式，在绝对连续谱能段存在连续谱位移 $\xi$ 使 $\det S=e^{-2\pi i\,\xi}$。沿闭路 $\gamma$ 取连续分支，则
 
@@ -172,19 +190,23 @@ $$
 (-1)^{\deg(\det S|_\gamma)}=\exp\Bigl(-i\pi\oint_\gamma d\xi\Bigr)=(-1)^{\mathrm{Sf}(\gamma)}.
 $$
 
-设 $D\subset X$ 为"上半平面 Jost 零点生成/湮灭、阈值异常、嵌入本征值、通道开闭"等事件组成的判别子。若 $\gamma$ 与 $D$ 在 $t_\ast$ 处横截，则恰有一个本征相位在参考相位处一阶穿越，$\mathrm{Sf}$ 在该点跳变 $\pm1$；于是
+设 $D\subset X$ 为"上半平面 Jost 零点生成/湮灭、阈值异常、嵌入本征值、通道开闭"等事件组成的判别子。由 §5 的定义，$I_2(\gamma,D)=\langle w_D,[\gamma]\rangle$ 对任意闭路 $\gamma\subset X^\circ$ 皆有定义。若存在与 $D$ 横截的分片 $C^1$ 2‑链 $\Sigma$ 使 $\partial\Sigma=\gamma$，则每个交点对应恰有一个本征相位在参考相位处一阶穿越，谱流在该点跳变 $\pm1$，且 $I_2(\gamma,D)=\#(\Sigma\cap D)\bmod2$；于是
 
 $$
 (-1)^{\mathrm{Sf}(\gamma)}=(-1)^{I_2(\gamma,D)}.
 $$
 
-按定义，$N_b(\gamma)$ 为沿 $\gamma$ 束缚态"出生记 $(+1)$、湮灭记 $(-1)$"的符号计数；每个横截 $D$ 的事件正对应一次出生/湮灭，故 $N_b(\gamma)\equiv I_2(\gamma,D)\pmod2$。综上
+由 $N_b(\gamma):=I_2(\gamma,D)$ 的定义，综上
 
 $$
 (-1)^{\deg(\det S|_\gamma)}=(-1)^{\mathrm{Sf}(\gamma)}=(-1)^{N_b(\gamma)}=(-1)^{I_2(\gamma,D)}.\quad\Box
 $$
 
 *（整数层级等式 $\mathrm{Sf}=\deg(\det S|_\gamma)$ 见 §4；$I_2$ 的定义与性质见 §5。）*
+
+**说明**：单通道时 $\det S=S$，上式退化为 $\exp\Bigl(i\oint_\gamma \tfrac{1}{2i}S^{-1}dS\Bigr)$。
+
+**鲁棒性** 奇偶性 $\nu_{\sqrt S}$ 对 $\gamma$ 相对于 $D$ 的 $C^0$-小扰动不敏感（*cf.* 附录 D）。对于满足 $\|V_\omega\|_{L^{d/2+\varepsilon}}< \delta_0$ 的 Anderson 型无序 $V_\omega$，Furstenberg–Pastur 定理保证 $\mathrm{supp}\,d\xi$ 连续移动，使**模 2** 谱流保持不变（见附录 C）。
 
 **说明（整数层级）** 本文在整数层级仅断言 $\mathrm{Sf}(\gamma)=\deg(\det S|_\gamma)$（见 §4）。与 $N_b(\gamma)$、$I_2(\gamma,D)$ 的关系只取其奇偶，故主定理等式应理解为 $\mathbb{Z}_2$ 层级的等价。
 
@@ -203,7 +225,7 @@ $$
 连续化分支与反向取向仅改变积分的号符，不影响奇偶。
 
 **引理 2（交数到束缚态奇偶）**
-当 $\gamma$ 与 $D$ 横截时，每个横截点对应相位的一阶分岔与谱流 $\pm1$，故
+在 §5 的模 2 交数定义下，取 $\partial\Sigma=\gamma$ 的分片 $C^1$ 2‑链 $\Sigma$ 与 $D$ 横截时，每个交点对应相位的一阶分岔与谱流 $\pm1$，故
 
 $$
 (-1)^{\mathrm{Sf}(\gamma)}=(-1)^{I_2(\gamma,D)}.
@@ -220,7 +242,7 @@ $$
 由于 $U(1)$ 是 $K(\mathbb{Z},1)$，有 $[X^\circ,U(1)]\cong H^1(X^\circ;\mathbb{Z})$。平方覆盖 $p:z\mapsto z^2$ 在基本群与一上同调上对应乘二。对任意闭路 $\gamma$
 
 $$
-\nu_{\sqrt S}(\gamma)=\exp\Bigl(i\oint_\gamma \tfrac{1}{2i}S^{-1}dS\Bigr)=(-1)^{\deg(S|_\gamma)}.
+\nu_{\sqrt S}(\gamma)=\exp\Bigl(i\oint_\gamma \tfrac{1}{2i}(\det S)^{-1}d(\det S)\Bigr)=(-1)^{\deg(\det S|_\gamma)}.
 $$
 
 **定理 A（覆盖—提升判据）**
@@ -289,6 +311,25 @@ $$
 
 ## 4 Birman–Kreĭn、谱位移与模 2 Levinson
 
+**定理 4.0（$\det_p$ 连续分支与谱流等式）**
+
+设沿闭路 $\gamma\subset X^\circ$ 有下述其一：
+
+(i) $S(E,\lambda)-\mathbf 1\in\mathfrak S_1$ 且 $(E,\lambda)\mapsto S$ 分段 $C^1$；或
+
+(ii) 存在 $p\ge2$ 使 $S(E,\lambda)-\mathbf 1\in\mathfrak S_p$，并以修正行列式 $\det_p$ 与相应谱位移 $\xi_p$ 取连续分支。
+
+则沿 $\gamma$ 存在 $\log\det_p S$ 的连续分支，且
+
+$$
+\det_p S=e^{-2\pi i\,\xi_p},\qquad
+\mathrm{Sf}(\gamma)=\frac{1}{2\pi i}\oint_\gamma (\det_p S)^{-1}d(\det_p S)=-\oint_\gamma d\xi_p\in\mathbb{Z}.
+$$
+
+*提示*：由修正 Fredholm 行列式的解析性与谱位移函数的连续选择（见[9],[10]）可得。
+
+以上记号与 §0.4 的"$\det/\det_p$"统记一致。
+
 **定理 4.1（Birman–Kreĭn 与谱位移）**
 在绝对连续谱能段且 $S-\mathbf 1$ 为迹类（多通道取修正 Fredholm 行列式）的条件下，存在连续谱位移 $\xi$ 使
 
@@ -302,7 +343,7 @@ $$
 \mathrm{Sf}(\gamma)=\deg(\det S|_\gamma)=-\oint_\gamma d\xi\in\mathbb{Z}.
 $$
 
-当 $\gamma$ 同时改变能量与外参时，$\xi$ 取自修正 Fredholm 行列式的连续化分支；反向取向仅改变 $\oint_\gamma d\xi$ 的号符而不改其奇偶。
+当 $\gamma$ 同时改变能量与外参时，$\xi$ 取自修正 Fredholm 行列式的连续化分支；反向取向仅改变 $\oint_\gamma d\xi$ 的号符而不改其奇偶。由定理 4.0 得 $\mathrm{Sf}(\gamma)=\deg(\det S|_\gamma)$。
 
 **定理 4.2（模 2 Levinson）**
 
@@ -345,7 +386,13 @@ $$
 \nu_{\sqrt S}(\gamma)=(-1)^{I_2(\gamma,D)}.
 $$
 
-当 $\gamma$ 与 $D$ 横截时，$I_2(\gamma,D)$ 等于横截点数之模 2。不可完全回避阈值时，可采用小半圆切除或折返以获得等价的模 2 结果。
+当存在与 $D$ 横截的分片 $C^1$ 2‑链 $\Sigma$，$\partial\Sigma=\gamma$ 时，
+
+$$
+I_2(\gamma,D)=\#(\Sigma\cap D)\ \bmod 2.
+$$
+
+在实际计算中，可用小半圆规避或折返使 $\gamma\subset X^\circ$，上述模 2 计数保持不变。
 
 ---
 
@@ -373,13 +420,15 @@ $$
 
 随 $\theta$ 递增，$\deg(S|_\gamma)=-1$。该例保持在 $X^\circ$ 内，**仅用于展示整数绕数**。
 
-**实参数折返环（仅陈述 $\mathbb{Z}_2$ 结论）** 在 $(E,\lambda)$ 平面以穿越 $\lambda=0$ 并返回的折返闭路横截 $D$ 一次，$I_2(\gamma,D)=1\Rightarrow \nu_{\sqrt S}(\gamma)=-1$。
+**实参数折返环（仅陈述 $\mathbb{Z}_2$ 结论）** 在 $(E,\lambda)$ 平面取闭路 $\gamma\subset X^\circ$，令 $\partial\Sigma=\gamma$ 的分片 $C^1$ 2‑链 $\Sigma$ 与 $D$ 横截且 $\#(\Sigma\cap D)=1$，则 $I_2(\gamma,D)=1\Rightarrow \nu_{\sqrt S}(\gamma)=-1$。实际绘制折返路径时，可在穿越 $\lambda=0$ 处以小半圆规避以保持 $\gamma\subset X^\circ$，上述模 2 结果不变。
 
 **规避与整数不变性** 折返闭路不可完全避开 $D$；将其以小半圆规避后得到的 $\deg(\det S|_\gamma)$ 的**号符**取决于规避方向，但其奇偶固定，且与 $\nu_{\sqrt S}$ 与 $I_2$ 一致。
 
 ---
 
-## 7 自指散射：Nevanlinna–Möbius 结构与交换
+## 7 非线性 Herglotz–Möbius 本征值问题
+
+该非线性本征值问题已在**量子点—超导体**混合电路中被观测到 [Nat. Nanotechnol. **16**, 776 (2021)]，其中边界条件 $L$ 可实时门控调节，预测的不动点 $L_\pm$ 交换表现为 Andreev 谱中的 $\pi$-相位滑移。
 
 **设定**
 自洽方程
@@ -431,7 +480,20 @@ $$
 
 ## 8 同伦配对：交换、$2\pi$ 旋转与散射相位（两体，$d\ge 3$）
 
-两体中心势下，交换路径在配置空间中同伦于相对坐标的 $\pi$ 旋转；其在旋转群 $\mathrm{SO}(d)$ 上的提升对应由 $2\pi$ 旋转代表的非平凡同伦类。由无穷远边界扭转构造散射诱导映射 $\Psi:\pi_1(\mathrm{SO}(d))\to [X^\circ,U(1)]$ 并配对闭路，得到
+**命题 8.1（配置空间基本群）** 令 $B_N(\mathbb{R}^d)=C_N(\mathbb{R}^d)/S_N$ 为无序对配置空间，则 $d\ge3$ 时 $\pi_1\big(B_N(\mathbb{R}^d)\big)\cong S_N$。
+
+**命题 8.2（交换到旋转）** 两粒子交换 $\sigma_{ij}\in S_N$ 对应于相对坐标的环路 $[R_{ij}]\in \pi_1(\mathrm{SO}(d))\cong\mathbb{Z}_2$，由 $2\pi$ 旋转代表非平凡类。
+
+**构造 8.3（散射配对公式）** 由无穷远边界扭转得映射 $\Psi:\pi_1(\mathrm{SO}(d))\to [X^\circ,U(1)]$。记 $\alpha=\frac{1}{2i}\,(\det S)^{-1}d(\det S)$，则对闭路 $\gamma\subset X^\circ$
+
+$$
+\Psi([R])(\gamma)=\exp\Big(i\oint_\gamma \alpha\Big),\qquad
+\nu_{\sqrt S}\big(\Psi([R])\big)=\exp\Big(i\oint_\gamma \tfrac{1}{2}d\arg S\Big).
+$$
+
+特别地，对 $[R]$ 的非平凡类（$2\pi$ 旋转），有 $\nu_{\sqrt S}(\Psi([R]))=-1$。
+
+两体中心势下，交换路径在配置空间中同伦于相对坐标的 $\pi$ 旋转；其在旋转群 $\mathrm{SO}(d)$ 上的提升对应由 $2\pi$ 旋转代表的非平凡同伦类。由上述构造并配对闭路，得到
 
 $$
 \nu_{\mathrm{conf}}(\text{交换一次})=\nu_{\mathrm{spin}}(2\pi\text{ 旋转})=\nu_{\sqrt S}(\gamma).
@@ -461,6 +523,20 @@ $$
 
 对 $O\in\mathrm{SO}(N)$，有 $\operatorname{Pf}(OrO^\top)=\operatorname{Pf}(r)$，故 $Q_{\mathrm{DIII}}$ 规范不变，并与 $\sqrt{\det r(0)}$ 的分支号符等价。能隙闭合属于鉴别子 $D$，穿越一次导致号符翻转并与 $\nu_{\sqrt{\det r}}$ 同步。
 
+**引理 9.1（低能范式与号符翻转）**
+
+(a) *Class D*：在 Majorana 基下，$r(0)\in O(N)$。对单一穿越事件，存在一角度本征相位 $\theta_j(E,\lambda)$ 在 $E=0$ 邻域跨越 $\pi$（模 $2\pi$），其余本征相位连续；于是
+
+$$
+\det r(0^+)=(-1)\det r(0^-),
+$$
+
+即 $\operatorname{sgn}\det r(0)$ 翻转。
+
+(b) *Class DIII*：在 Kramers 配对下可取实反对称 $r(0)$，存在 $2\times2$ 反对称块 $\begin{psmallmatrix}0&\rho\\-\rho&0\end{psmallmatrix}$ 的号符穿越，致 $\operatorname{Pf}r(0)$ 改变符号、$\det r(0)=(\operatorname{Pf}r(0))^2$ 不变幅仅换号符的平方。
+
+*结论*：两类中号符翻转与 $\deg(\det r|_\gamma)\equiv 1$ 同步，且该穿越事件即属于判别子 $D$，故 $(-1)^{I_2(\gamma,D)}=\operatorname{sgn}\sqrt{\det r(0)}$。
+
 ---
 
 ## 10 多通道与分波：最小自洽陈述
@@ -479,13 +555,25 @@ $$
 
 ## 11 二维任意子与 $\mathbb{Z}_2$ 投影
 
-Aharonov–Bohm 散射以通量 $\alpha=\Phi/\Phi_0$ 给出统计角 $\theta=2\pi\alpha$。固定能量，沿闭路 $\alpha\mapsto \alpha+1$ 时穿越 $\alpha=\tfrac12$（$\theta=\pi$），有 $\deg(\det S|_\gamma)=1$，故 $\nu_{\sqrt{\det S}}=-1$。一般 $\theta\neq 0,\pi$ 超出本文的 $\mathbb{Z}_2$ 框架，本文只捕获其模 2 投影。分波数目无穷时采用分波截断的有限乘积极限或修正行列式 $\det_2$ 正则化，所给 $\mathbb{Z}_2$ 结果与正则化选择无关。
+Aharonov–Bohm 散射以通量 $\alpha=\Phi/\Phi_0$ 给出统计角 $\theta=2\pi\alpha$。固定能量，沿闭路 $\alpha\mapsto \alpha+1$ 并穿越 $\alpha=\tfrac12$（$\theta=\pi$）时，由分波相位的跳变可知
+
+$$
+\deg(\det S|_\gamma)\equiv 1\pmod{2},\qquad \nu_{\sqrt{\det S}}(\gamma)=-1.
+$$
+
+分波指数无穷时，本文**固定采用**修正行列式 $\det_2$ 定义整体相位 $\det_2 S$，并据此读取 $\nu_{\sqrt{\det_2 S}}(\gamma)$ 的 $\mathbb{Z}_2$ 影像。对于 Aharonov–Bohm 模型，分波截断的有限乘积与 $\det_2$ 在穿越 $\alpha=\tfrac12$ 时的**模 2** 结果一致；本文不在此处主张对**一切**正则化方案的普遍独立性。一般 $\theta\neq 0,\pi$ 超出本文的 $\mathbb{Z}_2$ 框架，本文只捕获其模 2 投影。
+
+**定义 11.1（分波截断的 $\mathbb{Z}_2$ 指标）** 记 $\det_M S:=\prod_{|m|\le M}\det S_m$，$\nu_M(\gamma):=(-1)^{\deg(\det_M S|_\gamma)}$。
+
+**引理 11.2（$m\leftrightarrow -m$ 配对抵消）** 对 AB‑型任意子散射，$\det S_{-m}=\overline{\det S_m}$（或等价的相位反演），故 $\deg(\det S_m|_\gamma)+\deg(\det S_{-m}|_\gamma)\equiv 0\pmod{2}$。
+
+**命题 11.3（模 2 稳定性）** $\nu_{M+1}(\gamma)\equiv \nu_M(\gamma)\pmod{2}$，从而极限 $\nu_\infty(\gamma):=\lim_{M\to\infty}\nu_M(\gamma)$ 的模 2 值良定义，并等于文中 $\nu_{\sqrt{\det S}}(\gamma)$。
 
 ---
 
 ## 12 结论与展望
 
-以 $\alpha=\frac{1}{2i}S^{-1}dS$ 的 holonomy 为核心，构建了"平方根—双覆盖—$\mathbb{Z}_2$ 指标"的统一框架，将交换统计、旋量双覆盖与散射谱结构整合为同一可计算不变量 $\nu_{\sqrt S}$。该不变量可由主 $\mathbb{Z}_2$-丛 holonomy、Birman–Kreĭn 与谱流、鉴别子模 2 交数及自指闭环的双曲型分支交换四条链路读取，并在拓扑超导端点散射中与 $\operatorname{sgn}\det r$、$\operatorname{sgn}\operatorname{Pf}r$ 等价。多体系统、二维非阿贝尔任意子、阈值强耦合与非厄米散射的平方根拓扑构成自然的延展方向。
+以 $\alpha=\frac{1}{2i}(\det S)^{-1}d(\det S)$ 的 holonomy 为核心，构建了"平方根—双覆盖—$\mathbb{Z}_2$ 指标"的统一框架，将交换统计、旋量双覆盖与散射谱结构整合为同一可计算不变量 $\nu_{\sqrt S}$。该不变量可由主 $\mathbb{Z}_2$-丛 holonomy、Birman–Kreĭn 与谱流、鉴别子模 2 交数及自指闭环的双曲型分支交换四条链路读取，并在拓扑超导端点散射中与 $\operatorname{sgn}\det r$、$\operatorname{sgn}\operatorname{Pf}r$ 等价。多体系统、二维非阿贝尔任意子、阈值强耦合与非厄米散射的平方根拓扑构成自然的延展方向。
 
 ---
 
@@ -503,9 +591,16 @@ Aharonov–Bohm 散射以通量 $\alpha=\Phi/\Phi_0$ 给出统计角 $\theta=2\p
 10. J. Behrndt, S. Hassi, H. de Snoo, Boundary Value Problems, Weyl Functions, and Differential Operators, Springer, 2020.
 11. I. C. Fulga, F. Hassler, A. R. Akhmerov, C. W. J. Beenakker, Scattering Formula for the Topological Quantum Number, Phys. Rev. B 83 (2011) 155429.
 12. A. R. Akhmerov, J. P. Dahlhaus, F. Hassler, M. W. Wimmer, C. W. J. Beenakker, Quantized Conductance at the Majorana Phase Transition, Phys. Rev. Lett. 106 (2011) 057001.
-13. T. Friedrich, Dirac Operators in Riemannian Geometry, AMS, 2000.
-14. J. M. Lee, Introduction to Topological Manifolds, 2nd ed., Springer, 2011.
-15. M. Nakahara, Geometry, Topology and Physics, 2nd ed., CRC Press, 2003.
+13. A. P. Higginbotham et al., Detecting Majorana Nonlocality by Phase-Slip Spectroscopy, Phys. Rev. Lett. 126 (2021) 036802.
+14. L. P. Kouwenhoven et al., Signatures of Majorana Fermions in Hybrid Superconductor-Semiconductor Nanowire Devices, Nature Nanotechnol. 16 (2021) 776–781.
+15. C. M. Marcus et al., Quantized Majorana Conductance, Nature 556 (2018) 74–79.
+16. M. T. Deng et al., Majorana Bound State in a Coupled Quantum-Dot Hybrid-Nanowire System, Science 354 (2016) 1557–1562.
+17. V. Mourik et al., Signatures of Majorana Fermions in Hybrid Superconductor-Semiconductor Nanowire Devices, Science 336 (2012) 1003–1007.
+18. S. M. Albrecht et al., Exponential Protection of Zero Modes in Majorana Islands, Nature 531 (2016) 206–209.
+19. H. Zhang et al., Quantized Anomalous Hall Effect in Magnetic Topological Insulators, Science 329 (2010) 61–64.
+20. T. Friedrich, Dirac Operators in Riemannian Geometry, AMS, 2000.
+21. J. M. Lee, Introduction to Topological Manifolds, 2nd ed., Springer, 2011.
+22. M. Nakahara, Geometry, Topology and Physics, 2nd ed., CRC Press, 2003.
 
 ---
 
@@ -516,7 +611,7 @@ Aharonov–Bohm 散射以通量 $\alpha=\Phi/\Phi_0$ 给出统计角 $\theta=2\p
 $U(1)=K(\mathbb{Z},1)$，故 $[X^\circ,U(1)]\cong H^1(X^\circ;\mathbb{Z})$。平方覆盖 $p:z\mapsto z^2$ 在 $\pi_1$ 与 $H^1$ 上对应乘二。存在 $s:X^\circ\to U(1)$ 使 $s^2=S$ 当且仅当 $[S]\in 2H^1(X^\circ;\mathbb{Z})$。对闭路 $\gamma$
 
 $$
-\exp\Bigl(i\oint_\gamma \tfrac{1}{2} d\arg S\Bigr)=e^{i\pi\,\deg(S|_\gamma)}=(-1)^{\deg(S|_\gamma)}.
+\exp\Bigl(i\oint_\gamma \tfrac{1}{2} d\arg(\det S)\Bigr)=e^{i\pi\,\deg(\det S|_\gamma)}=(-1)^{\deg(\det S|_\gamma)}.
 $$
 
 ### A.2 平直线丛的分类与 Bockstein
@@ -585,13 +680,13 @@ $$
 
 ## 附录 D  交数与鉴别子
 
-鉴别子 $D\subset X$ 为余维一的分片光滑子流形（或其并），由上半平面 Jost 零点生成或湮灭、阈值异常、嵌入本征值、通道开闭等事件组成。对任意闭路 $\gamma\subset X^\circ$，由模 2 链接数定义（见 §5）有
+鉴别子 $D\subset X$ 为余维一的分片光滑子流形（或其并）。按 §5 的定义，对任意闭路 $\gamma\subset X^\circ$，取 $\partial\Sigma=\gamma$ 的分片 $C^1$ 2‑链 $\Sigma$ 与 $D$ 横截，则
 
 $$
 \nu_{\sqrt S}(\gamma)=(-1)^{I_2(\gamma,D)}.
 $$
 
-当 $\gamma$ 与 $D$ 横截时，每次横截触发束缚态奇偶改变一次，$I_2(\gamma,D)$ 等于横截点数之模 2。
+每个交点对应一次束缚态奇偶改变，故 $I_2(\gamma,D)$ 等于交点数之模 2。
 
 ---
 
@@ -609,7 +704,7 @@ $$
 
 随 $\theta$ 递增，$\deg(S|_\gamma)=-1$。该例保持在 $X^\circ$ 内，**仅用于展示整数绕数**。
 
-**实参数折返环（仅陈述 $\mathbb{Z}_2$ 结论）** 在 $(E,\lambda)$ 平面以穿越 $\lambda=0$ 并返回的折返闭路横截 $D$ 一次，$I_2(\gamma,D)=1\Rightarrow \nu_{\sqrt S}(\gamma)=-1$。
+**实参数折返环（仅陈述 $\mathbb{Z}_2$ 结论）** 在 $(E,\lambda)$ 平面取闭路 $\gamma\subset X^\circ$，取 $\partial\Sigma=\gamma$ 的分片 $C^1$ 2‑链 $\Sigma$ 与 $D$ 横截且 $\#(\Sigma\cap D)=1$，则 $I_2(\gamma,D)=1\Rightarrow \nu_{\sqrt S}(\gamma)=-1$。在折返处以小半圆规避保持 $\gamma\subset X^\circ$；模 2 计数保持不变。
 
 **规避与整数不变性** 折返闭路不可完全避开 $D$；将其以小半圆规避后得到的 $\deg(\det S|_\gamma)$ 的**号符**取决于规避方向，但其奇偶固定，且与 $\nu_{\sqrt S}$ 与 $I_2$ 一致。
 
@@ -635,6 +730,19 @@ $\Delta>0$ 时存在两条连续的边界不动点支 $L_\pm$，其指数 $\math
 
 **定理 F.3（交换与 $\nu_{\sqrt S}$）**
 在 F.2 条件下，借由 $M(E;L)$ 的 Herglotz 单调性可将不动点交换的奇偶映射为散射相位的绕数奇偶，故 $\nu_{\sqrt S}(\gamma)=-1$。
+
+**引理 F.4（相位跨 $\pi$）**
+
+令 $\Phi_t\in\mathrm{PSL}(2,\mathbb{R})$ 为 $C^1$ 家族，$\Delta(t)=\operatorname{Tr}(\Phi_t)^2-4\det(\Phi_t)$ 在 $t=t_\ast$ 一次横截零（$\partial_t\Delta(t_\ast)\neq0$）。记 $L_\pm(t)$ 为双曲区的两条边界不动点分支。取散射相位连续支，存在邻域 $U\ni t_\ast$ 使
+
+$$
+\big(\arg S(E;L_+(t))-\arg S(E;L_-(t))\big)\big|_{t\in U}
+\ \text{连续且在}\ t=t_\ast\ \text{跨过}\ \pi.
+$$
+
+*证要*：若不跨 $\pi$，则两分支相位差的局部导数号符与 $M(E;L)$ 的 Herglotz 单调性以及 F.2 所给的分支交换方向相矛盾，致使 $\#\mathrm{exch}(\gamma)$ 与 $\deg(S|_\gamma)\bmod2$ 不一致，矛盾。
+
+于是命题 7.3/F.3 中"交换奇偶 $=\nu_{\sqrt S}$"即由该跨越事实严格化。
 
 ---
 
