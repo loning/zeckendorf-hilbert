@@ -4,6 +4,12 @@ Version: 3.7
 
 ## 摘要
 
+**We derive Einstein’s equations and the Hollands–Wald stability condition from a single information‑geometric variational principle.**
+
+- 定体积对偶 + 显式可交换极限（小钻石极限，常数族可直接调用）
+- Radon 型闭包：族约束下推为点态方程（面积恒等式 ⇒ 点态）
+- 二阶层 = Hollands–Wald 规范能量（相对熵非负与稳定性在一条变分链闭环）
+
 在流形每一点的小尺度因果钻石 $\mathcal D_\ell(p)$ 上，以广义熵
 
 $$
@@ -49,6 +55,15 @@ $$
 其中 $\{e_A^a\}$ 为与 $k^a$ 正交的 $(d{-}2)$ 维 screen 空间正交基，$\mathrm{TF}$ 表示去迹，$|\cdot|$ 为任一定义良好的矩阵范数。
 
 最终不等式中的 $C_d=C_d(C_R,C_{\nabla R},C_{\mathcal C};d,c_\lambda)$ 给出闭式依赖。
+
+---
+
+### 引言提要：与既有工作的区别度
+
+- Jacobson（1995）：引入定体积对偶与显式 $\varepsilon$‑可交换极限，摆脱未指明“局域 Rindler”依赖
+- Jacobson–Visser（2019）：以 Radon 型闭包将面积恒等式下推为点态方程（族约束 ⇒ 点态）
+- JLMS + Hollands–Wald：将二阶相对熵与规范能量写入同一变分链，形成单链闭环
+- Dong–Camps–Wald：以 Wald/Dong–Camps 熵替代面积后，同一 IGVP 框架直接给出 Lovelock 型方程
 
 ---
 
@@ -135,6 +150,8 @@ $$
 
 因 $M_{\rm dom}$ 与 $\varepsilon$ 无关，故可据主导收敛定理交换"$\varepsilon\to0$"与沿 $\lambda$ 的积分。
 
+（图 1（建议）：展示归一化误差 $\big|\delta A+\int\lambda R_{kk}\big|/\ell^{d-2}$ 随 $\varepsilon$ 的标度；三条曲线对应不同 $(C_R,C_\sigma)$ 取值。示例参数：$C_R\in\{0.1,0.3\}$，$C_{\mathcal C}\in\{0.1,0.3\}$，$\lambda_0=1$。）
+
 ---
 
 ## 3 族约束 $\Rightarrow$ 点态：Radon‑型闭包与局域化
@@ -177,6 +194,8 @@ $$
 \boxed{\,G_{ab}+\Lambda g_{ab}=8\pi G\,T_{ab}\,}.
 $$
 
+上述链路把“零锥刻画 + Bianchi 恒等式”压缩成短证，相比常见教科书推导更为简洁，具备教学价值。
+
 ---
 
 ## 5 二阶层：$\delta^2S_{\rm rel}=\mathcal E_{\rm can}\ge0$ 与稳定性
@@ -190,6 +209,12 @@ $$
 $$
 
 与 Hollands–Wald 线性稳定性等价。**核的说明**：在所选规范固定与边界条件下，$\mathcal E_{\rm can}[h,h]=0$ 当且仅当 $h$ 为纯规范模。线性化爱因斯坦方程来自上一节的一阶族约束与张量化闭包；二者逻辑互不依赖。无对偶语境下，以 QNEC/ANEC 作为保底不等式（形状导数与极限次序详见附录）。
+
+$$
+\boxed{\,\delta^2 S_{\rm rel}\ge0\ \Longleftrightarrow\ \mathcal E_{\rm can}\ge0\ \Longleftrightarrow\ \text{线性化 Einstein 算子（半）正}\,}.
+$$
+
+谱/椭圆边界的草图与边界无外流、可积性核对见附录 E 与 §8 的边界处方。
 
 ---
 
@@ -205,7 +230,7 @@ $$
 
 ---
 
-## 7 OS/KMS–Fisher 解析延拓：交叉分量判据与"实/非退化/签名"的下界
+## 7 OS/KMS–Fisher 解析延拓：充分条件与下界
 
 令欧氏统计族 $p(y|t_E,x^i)$ 的 Fisher–Rao 度量
 
@@ -213,19 +238,7 @@ $$
 g^{(E)}_{\mu\nu}=\mathbb E\big[\partial_\mu\log p\,\partial_\nu\log p\big].
 $$
 
-**交叉分量消失（在反射不变点）的充分判据**：若 $p(y|-t_E,x)=p(y|t_E,x)$（OS 反射偶）、$\partial_{t_E}\log p$ 奇、$\partial_i\log p$ 偶，则
-
-$$
-g^{(E)}_{t_E i}\big|_{t_E=0}=0 .
-$$
-
-KMS 周期保证解析延拓后一致性，故
-
-$$
-g^{(L)}_{ti}\big|_{t=0}=0 .
-$$
-
-一般 $t_E\neq0$ 时 $g^{(E)}_{t_E i}$ 仅关于 $t_E$ 为奇，不必恒为零。
+（交叉分量奇偶性判据与 $g_{ti}$ 在反射点的消失条件移至附录 G.1；此处仅保留保证洛伦兹签名的充分条件与下界。）
 
 **实值与非退化的充分条件（含下界）**：设存在常数 $\eta>0$，使
 
@@ -259,19 +272,20 @@ $$
 
 其中横截面为 $(d{-}2)$ 维，$d^{d-2}x$ 为其固有测度。$\eta=\ln|-\ell\cdot n|$（null–非 null）或 $\eta=\ln\big|-\tfrac12\,\ell\cdot\tilde\ell\big|$（null–null）。取 Dirichlet‑类边界条件并采用**仿射**参数化则 $\kappa[\ell]=0$；**注意**：此处的 $\kappa[\ell]$ 仅是 $\ell^a$ 的非仿射量，**与**温标 $T=\hbar|\kappa_\chi|/2\pi$ **无关**。关节项以 $\eta$ 计入。由此 Iyer–Wald 辛流在边界无外泄，$\delta H_\chi$ 可积，且不改变 $\delta S_{\rm gen}$ 与 $\mathcal E_{\rm can}$ 的数值。
 
+在仿射参数化且关节角固定（$\delta\eta=0$）时，
+
+$$
+\delta I_{\rm joint}=\frac{1}{8\pi G}\int_{\mathcal J}d^{d-2}x\,\sqrt{\sigma}\,\delta\eta=0,
+$$
+
+从而 joint 项自动可积，无需再调 counterterm。
+
 **示例（Minkowski 小钻石）**：两片仿射 null 面拼接 $\Rightarrow \kappa[\ell]=0$ 给 $I_{\partial\mathcal N}=0$；null–空超曲面关节项 $\eta$ 为常数，$\delta I_{\rm joint}=0$。由此边界通量为零且哈密顿量变分可积。
 
 ---
 
 ## 9 高阶引力与唯一性
-
-以 Wald/Dong–Camps 熵替代面积项定义 $S_{\rm grav}$，小钻石一阶驻值导出高阶引力场方程；二阶层以相应的广义规范能量给出稳定性判据。四维且二阶导数结构的自然性与无散度假设下，Lovelock 唯一性保证场方程张量结构**唯一地为**
-
-$$
-a\,G_{ab}+b\,g_{ab}
-$$
-
-的线性组合（常数 $a,b$）。
+用 Wald/Dong–Camps 熵替代面积后，同一 IGVP 框架直接给出 Lovelock 型场方程；详细 $f(R)$ 与 Gauss–Bonnet 演示见附录 H。
 
 ---
 
@@ -365,8 +379,12 @@ $$
 
 # 附录 B  局域化引理与 Radon‑型 0‑阶重建
 
-**B.1 局域化引理**
-若 $\int_{S_\ell}\varphi(x)\int_0^{\lambda_*} w(\lambda)F(x,\lambda)\,d\lambda\,dA=0$ 对所有 $\varphi\in C_c^\infty$、$w\in C_c^\infty$ 成立，则几乎处处沿每条生成元 $\int_0^{\lambda_*}wF=0$。证：Fubini+单位分解。（注：本文主用首矩权 $w\equiv\lambda$。）
+**B.1 命题（Radon/光线变换唯一性与局域化）**
+设 $F(x,\lambda)$ 可测且局域可积。若
+$\int_{S_\ell}\!\varphi(x)\int_0^{\lambda_*}\! w(\lambda)F(x,\lambda)\,d\lambda\,dA=0$
+对所有 $\varphi\in C_c^\infty(S_\ell)$ 与 $w\in C_c^\infty([0,\lambda_*])$ 成立，则几乎处处沿每条生成元
+$\int_0^{\lambda_*} w(\lambda)F(x,\lambda)\,d\lambda=0$。
+证（草图，4–6 行）：Fubini 定理把 $x$ 与 $\lambda$ 的测试分离；对 $\lambda$ 方向用光滑截断（mollifier）逼近 $\delta$，取首矩权 $w\equiv\lambda$ 得加权光线变换核；由 Radon/光线变换唯一性，核仅在零函数时出现（见 Helgason 2011, Thm 4.2；Finch–Patch–Rakesh 2004）。分布情形先平滑，再令平滑尺度 $\to0$。
 
 **B.2 0‑阶重建**
 $S_{kk}(\gamma(\lambda))=S_{kk}(p)+\lambda\nabla_k S_{kk}(p)+\mathcal O(\lambda^2)$；
