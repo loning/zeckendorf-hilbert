@@ -1,6 +1,6 @@
 # 自指散射与费米子的诞生：Riccati 平方根、旋量双覆盖与 $\mathbb{Z}_2$ 交换相位
 
-Version: 2.11
+Version: 2.15
 
 ## 摘要
 
@@ -36,7 +36,13 @@ $$
 
 给出存在性与双曲型区域内两不动点交换的定理，并证明其交换奇偶与 $\nu_{\sqrt S}$ 一致。以一维 $\delta$-势与 Aharonov–Bohm 模型为例，给出显式绕数计算，并用"鉴别子模 2 交数"统一复小环与实折返路径。拓扑超导端点散射方面，区分 Altland–Zirnbauer 对称类：Class D 的 $\operatorname{sgn}\det r(0)$ 与 Class DIII 的 $\operatorname{sgn}\operatorname{Pf}r(0)$ 分别等价于 $\sqrt{\det r(0)}$ 的分支号符。该框架在 $d\ge 3$ 的费米/玻色统计直接适用；在 $d=2$ 给出任意子 $U(1)$ 统计的 $\mathbb{Z}_2$ 投影。
 
-**实验预言** 在门控可调 Josephson 结中，当 Andreev 通道数 $\lesssim 4$ 时，在零能偏置下对超导相位差 $\phi$ 进行单次 $2\pi$ 扫描，每当穿越 Majorana 交叉事件时，**量子化**电导 $G_{\mathbb{Z}_2}=\frac{e^{2}}{h}\nu_{\sqrt S}$ 将从 $+1$ 翻转为 $-1$，提供该交叉事件的**单次测量** $\mathbb{Z}_2$ 磁强计。
+**实验预言** 在门控可调 Josephson 结中，当 Andreev 通道数 $\lesssim 4$ 时，在零能偏置下对超导相位差 $\phi$ 进行单次 $2\pi$ 扫描，每当穿越 Majorana 交叉事件时，**无量纲的 $\mathbb{Z}_2$ 指标**
+
+$$
+G_{\mathbb{Z}_2}\equiv \nu_{\sqrt S}\in\{+1,-1\}
+$$
+
+将翻转一次；该指标可由零偏置电导或干涉信号的**归一化读出**获得，实现对交叉事件的**单次测量**型 $\mathbb{Z}_2$ 磁强计。
 
 **关键词**：散射相位平方根；$\mathbb{Z}_2$ holonomy；覆盖提升；第一陈类偶性；Bockstein；谱位移；Birman–Kreĭn；Riccati；边界三元组；Pfaffian 指标；Aharonov–Bohm 散射
 
@@ -190,7 +196,7 @@ $$
 (-1)^{\deg(\det S|_\gamma)}=\exp\Bigl(-i\pi\oint_\gamma d\xi\Bigr)=(-1)^{\mathrm{Sf}(\gamma)}.
 $$
 
-设 $D\subset X$ 为"上半平面 Jost 零点生成/湮灭、阈值异常、嵌入本征值、通道开闭"等事件组成的判别子。由 §5 的定义，$I_2(\gamma,D)=\langle w_D,[\gamma]\rangle$ 对任意闭路 $\gamma\subset X^\circ$ 皆有定义。若存在与 $D$ 横截的分片 $C^1$ 2‑链 $\Sigma$ 使 $\partial\Sigma=\gamma$，则每个交点对应恰有一个本征相位在参考相位处一阶穿越，谱流在该点跳变 $\pm1$，且 $I_2(\gamma,D)=\#(\Sigma\cap D)\bmod2$；于是
+设 $D\subset X$ 为"上半平面 Jost 零点生成/湮灭、阈值异常、嵌入本征值、通道开闭"等事件组成的鉴别子。由 §5 的定义，$I_2(\gamma,D)=\langle w_D,[\gamma]\rangle$ 对任意闭路 $\gamma\subset X^\circ$ 皆有定义。若存在与 $D$ 横截的分片 $C^1$ 2‑链 $\Sigma$ 使 $\partial\Sigma=\gamma$，则每个交点对应恰有一个本征相位在参考相位处一阶穿越，谱流在该点跳变 $\pm1$，且 $I_2(\gamma,D)=\#(\Sigma\cap D)\bmod2$；于是
 
 $$
 (-1)^{\mathrm{Sf}(\gamma)}=(-1)^{I_2(\gamma,D)}.
@@ -206,7 +212,7 @@ $$
 
 **说明**：单通道时 $\det S=S$，上式退化为 $\exp\Bigl(i\oint_\gamma \tfrac{1}{2i}S^{-1}dS\Bigr)$。
 
-**鲁棒性** 奇偶性 $\nu_{\sqrt S}$ 对 $\gamma$ 相对于 $D$ 的 $C^0$-小扰动不敏感（*cf.* 附录 D）。对于满足 $\|V_\omega\|_{L^{d/2+\varepsilon}}< \delta_0$ 的 Anderson 型无序 $V_\omega$，Furstenberg–Pastur 定理保证 $\mathrm{supp}\,d\xi$ 连续移动，使**模 2** 谱流保持不变（见附录 C）。
+**鲁棒性** 奇偶性 $\nu_{\sqrt S}$ 对 $\gamma$ 相对于 $D$ 的 $C^0$-小扰动不敏感（*cf.* 附录 D）。在保持短程与（修正）行列式连续分支假设并施加小范数势扰动时，谱位移函数 $\xi$ 的连续选择可保持，因而 $\exp\Bigl(-i\pi\oint_\gamma d\xi\Bigr)$ 的取值不变，即**模 2** 谱流保持不变。
 
 **说明（整数层级）** 本文在整数层级仅断言 $\mathrm{Sf}(\gamma)=\deg(\det S|_\gamma)$（见 §4）。与 $N_b(\gamma)$、$I_2(\gamma,D)$ 的关系只取其奇偶，故主定理等式应理解为 $\mathbb{Z}_2$ 层级的等价。
 
@@ -452,7 +458,7 @@ $$
 $$
 
 **类型分类**
-$\Delta>0$（双曲型）存在两边界不动点 $L_\pm$；$\Delta=0$（抛物型）两不动点并合，构成判别子；$\Delta<0$（椭圆型）仅有一内点不动点。
+$\Delta>0$（双曲型）存在两边界不动点 $L_\pm$；$\Delta=0$（抛物型）两不动点并合，构成判别式零集；$\Delta<0$（椭圆型）仅有一内点不动点。
 
 **导数与指数**
 若 $L^*$ 为不动点，则
@@ -480,18 +486,18 @@ $$
 
 ## 8 同伦配对：交换、$2\pi$ 旋转与散射相位（两体，$d\ge 3$）
 
-**命题 8.1（配置空间基本群）** 令 $B_N(\mathbb{R}^d)=C_N(\mathbb{R}^d)/S_N$ 为无序对配置空间，则 $d\ge3$ 时 $\pi_1\big(B_N(\mathbb{R}^d)\big)\cong S_N$。
+**命题 8.1（配置空间基本群）** 令 $B_N(\mathbb{R}^d)=C_N(\mathbb{R}^d)/S_N$ 为无序配置空间，则 $d\ge3$ 时 $\pi_1\big(B_N(\mathbb{R}^d)\big)\cong S_N$。
 
 **命题 8.2（交换到旋转）** 两粒子交换 $\sigma_{ij}\in S_N$ 对应于相对坐标的环路 $[R_{ij}]\in \pi_1(\mathrm{SO}(d))\cong\mathbb{Z}_2$，由 $2\pi$ 旋转代表非平凡类。
 
-**构造 8.3（散射配对公式）** 由无穷远边界扭转得映射 $\Psi:\pi_1(\mathrm{SO}(d))\to [X^\circ,U(1)]$。记 $\alpha=\frac{1}{2i}\,(\det S)^{-1}d(\det S)$，则对闭路 $\gamma\subset X^\circ$
+**构造 8.3（散射配对公式）** 由无穷远边界扭转得映射 $\Psi:\pi_1(\mathrm{SO}(d))\to [X^\circ,U(1)]$。令 $S_R:=\Psi([R])$。记 $\alpha=\frac{1}{2i}(\det S_R)^{-1}d(\det S_R)$，则对闭路 $\gamma\subset X^\circ$
 
 $$
 \Psi([R])(\gamma)=\exp\Big(i\oint_\gamma \alpha\Big),\qquad
-\nu_{\sqrt S}\big(\Psi([R])\big)=\exp\Big(i\oint_\gamma \tfrac{1}{2}d\arg S\Big).
+\nu_{\sqrt{S_R}}(\gamma)=\exp\Big(i\oint_\gamma \tfrac{1}{2}d\arg(\det S_R)\Big).
 $$
 
-特别地，对 $[R]$ 的非平凡类（$2\pi$ 旋转），有 $\nu_{\sqrt S}(\Psi([R]))=-1$。
+特别地，对 $[R]$ 的非平凡类（$2\pi$ 旋转），有 $\nu_{\sqrt{S_R}}(\gamma)=-1$。
 
 两体中心势下，交换路径在配置空间中同伦于相对坐标的 $\pi$ 旋转；其在旋转群 $\mathrm{SO}(d)$ 上的提升对应由 $2\pi$ 旋转代表的非平凡同伦类。由上述构造并配对闭路，得到
 
@@ -535,7 +541,7 @@ $$
 
 (b) *Class DIII*：在 Kramers 配对下可取实反对称 $r(0)$，存在 $2\times2$ 反对称块 $\begin{psmallmatrix}0&\rho\\-\rho&0\end{psmallmatrix}$ 的号符穿越，致 $\operatorname{Pf}r(0)$ 改变符号、$\det r(0)=(\operatorname{Pf}r(0))^2$ 不变幅仅换号符的平方。
 
-*结论*：两类中号符翻转与 $\deg(\det r|_\gamma)\equiv 1$ 同步，且该穿越事件即属于判别子 $D$，故 $(-1)^{I_2(\gamma,D)}=\operatorname{sgn}\sqrt{\det r(0)}$。
+*结论*：两类中号符翻转与 $\deg(\det r|_\gamma)\equiv 1$ 同步，且该穿越事件即属于鉴别子 $D$，故 $(-1)^{I_2(\gamma,D)}=\operatorname{sgn}\sqrt{\det r(0)}$。
 
 ---
 
@@ -563,11 +569,29 @@ $$
 
 分波指数无穷时，本文**固定采用**修正行列式 $\det_2$ 定义整体相位 $\det_2 S$，并据此读取 $\nu_{\sqrt{\det_2 S}}(\gamma)$ 的 $\mathbb{Z}_2$ 影像。对于 Aharonov–Bohm 模型，分波截断的有限乘积与 $\det_2$ 在穿越 $\alpha=\tfrac12$ 时的**模 2** 结果一致；本文不在此处主张对**一切**正则化方案的普遍独立性。一般 $\theta\neq 0,\pi$ 超出本文的 $\mathbb{Z}_2$ 框架，本文只捕获其模 2 投影。
 
-**定义 11.1（分波截断的 $\mathbb{Z}_2$ 指标）** 记 $\det_M S:=\prod_{|m|\le M}\det S_m$，$\nu_M(\gamma):=(-1)^{\deg(\det_M S|_\gamma)}$。
+**定义 11.1（分波截断的 $\mathbb{Z}_2$ 指标，半整数中心）** 记
 
-**引理 11.2（$m\leftrightarrow -m$ 配对抵消）** 对 AB‑型任意子散射，$\det S_{-m}=\overline{\det S_m}$（或等价的相位反演），故 $\deg(\det S_m|_\gamma)+\deg(\det S_{-m}|_\gamma)\equiv 0\pmod{2}$。
+$$
+\det_M S:=\prod_{-M-1\le m\le M}\det S_m\qquad(\text{围绕 }m=-\tfrac12\text{ 对称截断}),
+$$
 
-**命题 11.3（模 2 稳定性）** $\nu_{M+1}(\gamma)\equiv \nu_M(\gamma)\pmod{2}$，从而极限 $\nu_\infty(\gamma):=\lim_{M\to\infty}\nu_M(\gamma)$ 的模 2 值良定义，并等于文中 $\nu_{\sqrt{\det S}}(\gamma)$。
+$$
+\nu_M(\gamma):=(-1)^{\deg(\det_M S|_\gamma)}.
+$$
+
+**引理 11.2（$m\leftrightarrow -m-1$ 配对抵消）** 对 AB‑型任意子散射，$\det S_{-m-1}=\overline{\det S_m}$。因此
+
+$$
+\deg(\det S_m|_\gamma)+\deg(\det S_{-m-1}|_\gamma)\equiv 0\pmod{2}.
+$$
+
+**命题 11.3（模 2 稳定性）** 采用上述半整数中心截断，有
+
+$$
+\nu_{M+1}(\gamma)\equiv \nu_M(\gamma)\pmod{2},
+$$
+
+因为随 $M$ 增加时新增的一对 $(m,-m-1)$ 在绕数模 2 下相消。
 
 ---
 
@@ -736,7 +760,7 @@ $\Delta>0$ 时存在两条连续的边界不动点支 $L_\pm$，其指数 $\math
 令 $\Phi_t\in\mathrm{PSL}(2,\mathbb{R})$ 为 $C^1$ 家族，$\Delta(t)=\operatorname{Tr}(\Phi_t)^2-4\det(\Phi_t)$ 在 $t=t_\ast$ 一次横截零（$\partial_t\Delta(t_\ast)\neq0$）。记 $L_\pm(t)$ 为双曲区的两条边界不动点分支。取散射相位连续支，存在邻域 $U\ni t_\ast$ 使
 
 $$
-\big(\arg S(E;L_+(t))-\arg S(E;L_-(t))\big)\big|_{t\in U}
+\big(\arg(\det S(E;L_+(t)))-\arg(\det S(E;L_-(t)))\big)\big|_{t\in U}
 \ \text{连续且在}\ t=t_\ast\ \text{跨过}\ \pi.
 $$
 
