@@ -1,10 +1,10 @@
 # Null–Modular 双覆盖统一原理：在因果钻石上对齐信息几何变分与散射半相位的 $\mathbb{Z}_2$ holonomy
 
-Version: 2.10
+Version: 2.13
 
 ## 摘要
 
-我们在小因果钻石 $B_\ell(p)$ 的门槛内（Hadamard 态、$[0,\lambda_\ast]$ 无共轭点、角点处方、固定温标 $\delta T=0$、**能量–动量守恒 $\nabla^a T_{ab}=0$**、维数 $n\ge3$）表明：**(i)** $G_{ab}+\Lambda g_{ab}=8\pi G\,T_{ab}$ 与 $\delta^2 S_{\rm rel}\ge0$；**(ii)** 体积分 $\mathbb Z_2$–BF 在 $Y=M\times X^\circ$ 的相对扇区选择 $[K]=0$；**(iii$^\star$)** 一切物理回路与允许二维循环上的 $\mathbb Z_2$ 指标皆平凡/为零。并在 $A_\partial$、$A_{\rm rel\text{-}gen}$、$H^1/H^2$ 可检测性、（一般流形时）$A_{\rm spin}$ 与 $A_{\rm tors2}$ 下，$(ii)\Longleftrightarrow(\text{iii}^\star)$；若再加"模二对齐"，则 $(i)\Rightarrow(\text{iii}^\star)$。我们用 Künneth 分解把 $w_2(TM)$、散射线丛扭挠与平方根双覆盖统一到同一 $K$ 类，并给出一维 $\delta$ 势、二维 Aharonov–Bohm 与拓扑超导端点散射的三类可计算指纹。全文在 $\mathbb Z_2$ 系数下工作（Tor 项为零），所有配对皆为相对上同调意义。
+我们在小因果钻石 $B_\ell(p)$ 的门槛内（Hadamard 态、$[0,\lambda_\ast]$ 无共轭点、角点处方、固定温标 $\delta T=0$、**能量–动量守恒 $\nabla^a T_{ab}=0$**、维数 $n\ge3$）表明：**(i)** $G_{ab}+\Lambda g_{ab}=8\pi G\,T_{ab}$ 与 $\delta^2 S_{\rm rel}\ge0$；**(ii)** 体积分 $\mathbb Z_2$–BF 在 $Y=M\times X^\circ$ 的相对扇区选择 $[K]=0$；**(iii$^\star$)** 一切物理回路与允许二维循环上的 $\mathbb Z_2$ 指标皆平凡/为零。并在 $A_\partial$、$A_{\rm rel\text{-}gen}$、$H^1/H^2$ 可检测性、（一般流形时）$A_{\rm spin}$ 与 $A_{\rm tors2}$ 下，$(ii)\Longleftrightarrow(\text{iii}^\star)$；**若再加闭路的模二对齐（假设 4）并对 $H^2$ 通道实施对齐/等效消去（假设 4′ 与 $A_{!H^2}$），则** $(i)\Rightarrow(\text{iii}^\star)$。我们用 Künneth 分解把 $w_2(TM)$、散射线丛扭挠与平方根双覆盖统一到同一 $K$ 类，并给出一维 $\delta$ 势、二维 Aharonov–Bohm 与拓扑超导端点散射的三类可计算指纹。全文在 $\mathbb Z_2$ 系数下工作（Tor 项为零），所有配对皆为相对上同调意义。
 
 ## Keywords
 
@@ -160,19 +160,13 @@ $$
 
 从而可**唯一**确定每个 $\mathfrak w_j$；据此可消去 $H^1\!\times H^1$ 通道并平凡化由 $H^1$ 控制的 $\nu_{\sqrt{\det_p S}}$。
 
-**（$H^1$ 通道可检测性）**：取生成族 $\{(\gamma_1^{(a)},\partial\gamma_1^{(a)})\}$ 的相对闭路，并令
-
-$$
-P_{ja}:=\langle K,(\Sigma_1^{(j)},\partial\Sigma_1^{(j)})\times(\gamma_1^{(a)},\partial\gamma_1^{(a)})\rangle=\langle \mathfrak w_j,[\gamma_1^{(a)}]\rangle.
-$$
-
-**若且仅若** $\{(\gamma_1^{(a)},\partial\gamma_1^{(a)})\}$ 生成 $H_1(X^\circ,\partial X^\circ;\mathbb Z_2)$，评估映射
+**（$H^1$ 通道可检测性，统一口径）**：取基 $\{\mu_j\}\subset H^1(M,\partial M;\mathbb Z_2)$ 及对偶链族 $\{(\Sigma_1^{(j)},\partial\Sigma_1^{(j)})\}$。若参考闭路族 $\{(\gamma_1^{(a)},\partial\gamma_1^{(a)})\}$ **生成** $H_1(X^\circ,\partial X^\circ;\mathbb Z_2)$，则评估映射
 
 $$
 \mathrm{ev}:H^1(X^\circ,\partial X^\circ;\mathbb Z_2)\to\mathbb Z_2^{A},\quad \mathfrak w\mapsto\big(\langle\mathfrak w,[\gamma_1^{(a)}]\rangle\big)_a
 $$
 
-**单射**；于是 $T=\bigoplus_j(\mu_j\otimes\mathrm{ev})$ 单射，$H^1\!\times H^1$ 通道可被**唯一消去**。等价地，对每个 $j$，行向量 $(P_{ja})_a$ 全零当且仅当 $\mathfrak w_j=0$，无需额外的"$P$ 行满秩"要求。
+**单射**，因而 $T:=\bigoplus_j(\mu_j\otimes\mathrm{ev})$ **单射**；等价地，对每个 $j$，行向量 $(P_{ja})_a$ 全零当且仅当 $\mathfrak w_j=0$，其中 $P_{ja}:=\langle K,(\Sigma_1^{(j)},\partial\Sigma_1^{(j)})\times(\gamma_1^{(a)},\partial\gamma_1^{(a)})\rangle=\langle \mathfrak w_j,[\gamma_1^{(a)}]\rangle$。据此可**唯一**确定每个 $\mathfrak w_j$ 并消去 $H^1\!\times H^1$ 通道。
 
 **（$H^2$ 通道可检测性，$A_{!H^2}$）**：取生成族 $\{\gamma_2^{(b)}\}$ 的相对二维循环，测量 $\langle \rho(c_1(\mathcal L_S)),[\gamma_2^{(b)}]\rangle$ 是否**全零**以判定消去。
 
@@ -188,7 +182,11 @@ $$
 
 生成 $H_2(Y,\partial Y;\mathbb Z_2)$。
 
-则矩阵 $P_{ja}$ 行满秩与 $A_{!H^2}$ 共同给出**可操作的充要检测**：测得所有配对为零 $\Leftrightarrow [K]=0$。
+**（引理 C，统一口径）** 若允许族生成 $H_2(Y,\partial Y;\mathbb Z_2)$，参考闭路族生成 $H_1(X^\circ,\partial X^\circ;\mathbb Z_2)$，并满足 $A_{!H^2}$ 与 $A_{\rm rel\text{-}gen}$，则
+
+$$
+\text{对所有允许相对二维循环的配对皆为零}\ \Longleftrightarrow\ [K]=0\in H^2(Y,\partial Y;\mathbb Z_2).
+$$
 
 **生成性假设（相对二同调版，记作 $A_{\rm rel\text{-}gen}$）**
 
@@ -206,7 +204,13 @@ $$
 
 **扭挠与可检测性**：**（平直性）** 若 $\mathcal L_S$ 为**平直** $U(1)$ 线丛，则 $c_1(\mathcal L_S)$ 落在 $H^2(X^\circ;\mathbb Z)$ 的**扭挠子群**（有限阶）。为与本文 $\mathbb Z_2$ 框架匹配，**引入假设** **（$A_{\rm tors2}$）**：$c_1(\mathcal L_S)$ 的扭挠阶为某个 $2^m$，于是其模二约化 $\rho(c_1(\mathcal L_S))$ 完整刻画 $H^2$ 通道；**（$A_{!H^2}$）**——允许的参数二维循环生成 $H_2(X^\circ,\partial X^\circ;\mathbb Z_2)$。
 
-**自旋平凡性（$A_{\rm spin}$）**：一般流形时假设 $w_2(TM)=0$。**小因果钻石情形自动满足**：令工作域 $U:=B_\ell(p)$，则 $U$ 可形变收缩到带边紧域，$\Rightarrow H^2(U,\partial U;\mathbb Z_2)=0$。
+**自旋平凡性（$A_{\rm spin}$）**：一般流形时假设 $w_2(TM)=0$。**小因果钻石情形自动满足**：令工作域 $U:=B_\ell(p)$ 可形变收缩到可缩空间，故
+
+$$
+H^2(U;\mathbb Z_2)=H^2(U,\partial U;\mathbb Z_2)=0,
+$$
+
+从而 $w_2(TM)|_U=0$。相对通道不产生来自 $M$ 的二阶分量。
 
 **（平直线丛扭挠口径；$A_{\rm tors2}$ 的明确定义）**
 
@@ -335,14 +339,6 @@ $$
 
 在迹类扰动与阈值正则化下，$\mathrm{Sf}(\gamma;E)\bmod 2=I_2(\gamma,D_E)$，故 $\nu_{\sqrt{\det_p S}}(\gamma)=(-1)^{\mathrm{Sf}}=(-1)^{I_2}$ 成立。
 
-判别集
-
-$$
-D_E:=\bigl\{x\in X^\circ:\ \sqrt{\det_p S(E;x)}\ \text{的连续分支在 }x\text{ 处不可定义}\bigr\},
-$$
-
-其典型来源为：**(α)** 阈值、嵌入本征值或共振导致谱移函数 $\xi(E;\cdot)$ 跃迁；**(β)** $S(E;\cdot)$ 出现特征值 $-1$（平方根分支切换点）。于是 $\nu_{\sqrt{\det_p S}}(\gamma)=\exp\!\big(-\mathrm i\pi\oint_\gamma \mathrm d\xi(E)\big)=(-1)^{I_2(\gamma,D_E)}$。$I_2(\gamma,D_E)$ 定义为相对取向之模二交数。当 $\gamma$ 与 $D_E$ 切触时，允许以（i）小半圆偏转或（ii）折返使交点计数良定；该模二计数对迹类/相对迹类正则化与有限维截断稳定。
-
 **引理 2.2**（模二鲁棒性；对 $p$/相对迹类/分波截断的独立性）
 
 在 $S(E;\cdot)-\mathbf 1$ 属迹类或相对迹类的门槛下，取任意 $p\ge 1$ 之 Schatten 修正行列式 $\det_p$。对多通道/分波情形，令有限维截断参数 $N\to\infty$。则对一切**物理闭路** $\gamma$（按"小半圆/折返"规则稳定），有
@@ -370,23 +366,9 @@ $$
 I_{\rm BF}[a,b]=\mathrm i\pi\!\int_{(Y,\partial Y)} b\smile\boldsymbol\delta a+\mathrm i\pi\!\int_{(Y,\partial Y)} b\smile K\ +\ \mathrm i\pi\!\int_{\partial Y} a\smile b .
 $$
 
-**规变良定与上同调投影**
+**规变良定与上同调投影（有限性门槛）**
 
-**（有限性门槛）** 假设 $Y$ 与 $\partial Y$ 为有限 CW 复形（故 $H^\bullet(Y,\partial Y;\mathbb Z_2)$ 有限维），于是对 $[a]\in H^1(Y,\partial Y)$、$[b]\in H^{d-2}(Y,\partial Y)$ 的求和是**有限群**上的离散求和，可用特征正交性得 $Z_{\rm top}\propto\delta([K])$。
-
-取 $a\in C^1(Y;\mathbb Z_2)$、$b\in C^{d-2}(Y;\mathbb Z_2)$、
-
-$$
-K=\pi_M^\ast w_2(TM)+\sum_j \pi_M^\ast\mu_j\smile \pi_X^\ast\mathfrak w_j+\pi_X^\ast\rho(c_1(\mathcal L_S)).
-$$
-
-作用量
-
-$$
-I_{\rm BF}[a,b]=\mathrm i\pi\!\int_{(Y,\partial Y)} b\smile\boldsymbol\delta a+\mathrm i\pi\!\int_{(Y,\partial Y)} b\smile K+\mathrm i\pi\!\int_{\partial Y} a\smile b
-$$
-
-在规变 $a\mapsto a+\boldsymbol\delta\lambda^{0}$、$b\mapsto b+\boldsymbol\delta\lambda^{d-3}$ 下边界项互相抵消，变分良定；对相对上同调类 $[a]\in H^1(Y,\partial Y)$、$[b]\in H^{d-2}(Y,\partial Y)$ 求和并用**有限阿贝尔群特征正交性**得
+假设 $Y$ 与 $\partial Y$ 为有限 CW 复形（故 $H^\bullet(Y,\partial Y;\mathbb Z_2)$ 有限维）。规变 $a\mapsto a+\boldsymbol\delta\lambda^{0}$、$b\mapsto b+\boldsymbol\delta\lambda^{d-3}$ 下边界项互相抵消，变分良定；对相对上同调类 $[a]\in H^1(Y,\partial Y)$、$[b]\in H^{d-2}(Y,\partial Y)$ 离散求和并用**有限阿贝尔群特征正交性**得
 
 $$
 \boxed{Z_{\rm top}\ \propto\ \delta([K])\quad\Longleftrightarrow\quad [K]=0\in H^2(Y,\partial Y;\mathbb Z_2)}.
@@ -459,7 +441,7 @@ $$
 
 **E‑(a′)（分解；***门槛合订本***）**
 
-在 **$A_\partial$、$A_{\rm rel\text{-}gen}$、$A_{!H^2}$、$H^1$‑通道可检测性（检测回路生成 $H_1$）、**$A_{\rm tors2}$** 与（一般流形时）**$A_{\rm spin}$**，并假定 $Y$ 与 $\partial Y$ 满足 Poincaré–Lefschetz 对偶的门槛下，
+在 **$A_\partial$、$A_{\rm rel\text{-}gen}$、$A_{!H^2}$、$H^1$‑通道可检测性（**检测回路生成 $H_1$**）、**$A_{\rm tors2}$** 与（一般流形时）**$A_{\rm spin}$**，并假定 $Y$ 与 $\partial Y$ 满足 Poincaré–Lefschetz 对偶的门槛下，
 
 $$
 \boxed{(ii)\ \Longleftrightarrow\ (iii^\star)}.
@@ -467,7 +449,7 @@ $$
 
 若缺少 $A_{\rm rel\text{-}gen}$ 或 $A_{!H^2}$，则仅有 $(ii)\Rightarrow(iii^\star)$ 的**必要性**。
 
-**E‑(b″)（对齐推出）** 在"定理 1"的正则门槛并满足**假设 4（模二版）**与**假设 4′**下，
+**E‑(b″)（对齐推出）** 在"定理 1"的正则门槛并满足**假设 4（模二版）**、**假设 4′** **以及 $A_{!H^2}$** 下，
 
 $$
 \boxed{(i)\ \Longrightarrow\ (iii^\star)\ (\Longleftrightarrow\ (ii)).}
@@ -493,20 +475,6 @@ $$
 
 以与 $\varepsilon$ 无关的支配函数建立"极限—积分可交换"，配合加权光线变换与局域化引理将族约束下推为 $R_{kk}=8\pi G\,T_{kk}$。零锥刻画与 Bianchi 恒等式给出 $G_{ab}+\Lambda g_{ab}=8\pi G\,T_{ab}$。协变相空间的 null 边界与角点处方保证辛流无外泄与 $\delta H_\chi$ 可积，故 $\delta^2S_{\rm rel}=\mathcal E_{\rm can}\ge0$。我们工作在 $[0,\lambda_\ast]$ 无共轭点、Hadamard 态与角点处方闭合的可逆域内。
 
-### 定理 2
-
-在上述门槛下，$\det_p S(E;\cdot)=\mathrm e^{-2\pi\mathrm i\,\xi(E)}$；沿闭路 $\gamma$ 有
-
-$$
-\deg(\det_p S(E;\cdot)|_\gamma)=-\oint_\gamma \mathrm d\xi(E)=\mathrm{Sf}(\gamma;E)\in\mathbb Z,\qquad
-\nu_{\sqrt{\det_p S(E;\cdot)}}(\gamma)=\exp\!\Bigl(-\mathrm i\pi\oint_\gamma \mathrm d\xi(E)\Bigr).
-$$
-
-阈值/嵌入本征值以 $I_2(\gamma,D_E)$ 稳定；$I_2$ 取相对取向之模二交数。
-
-### 定理 3（体积分、一般维度、相对上同调）
-
-作用量 $I_{\rm BF}[a,b]=\mathrm i\pi\int_Y b\smile\boldsymbol\delta a+\mathrm i\pi\int_Y b\smile K$ 对 $a$ 和 $b$ 的变分分别给出 $\boldsymbol\delta a+K=0$ 与 $\boldsymbol\delta b=0$。先对 $[a]$ 求和仅强制 $\boldsymbol\delta b=0$，再对闭的 $[b]$ 上同调类求和利用特征正交性把配分函数在上同调上投影到 $[K]=0$（见正文定理 3 的注）。含边界时改用相对上同调 $H^\bullet(Y,\partial Y;\mathbb Z_2)$ 并加入边界对偶项以保证变分良定；由 $r([K])=0$ 可把 $[K]$ 提升至相对类，结论同上。
 
 ### 假设 4
 

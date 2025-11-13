@@ -130,6 +130,17 @@ $$
 
 **排除说明**：若缺失 BW／HSMI 或边界粗糙到破坏 QNEC 真空饱和，上述分解不保证成立。
 
+**假设 A''（二次型下半界与闭性门槛）** 设所有参与区域 $R$ 的二次型 $\mathfrak k_R$ 存在统一下半界 $a\in\mathbb R$，即 $\mathfrak k_R[\psi]\ge a\,|\psi|^2$。取任意 $c>-a$ 定义移位图范数 $|\psi|_{\mathfrak k_R,c}^2=|\psi|^2+(\mathfrak k_R[\psi]+c|\psi|^2)$，则 $\mathfrak k_R$ 闭且 $\mathcal D(\mathfrak k_R)$ 关于 $|\cdot|_{\mathfrak k_R,c}$ 完备。
+
+**命题 A.1（极限与路径无关的充要条件）** 若满足假设 A′ 与 A''，并且沿任意两族单调近似 $\{R_{V_\alpha}\}$、$\{R_{\widetilde V_\beta}\}$ 都有 $g^{(\alpha)}\to g$、$\widetilde g^{(\beta)}\to g$ 于 $L^1_{\mathrm{loc}}$，则对每个 $\psi\in\mathcal D_0$，极限
+
+$$
+\lim_{\alpha\to\infty}\!\sum_{\sigma}\!\int g^{(\alpha)}_\sigma\,\langle\psi,T_{\sigma\sigma}\psi\rangle
+=\lim_{\beta\to\infty}\!\sum_{\sigma}\!\int \widetilde g^{(\beta)}_\sigma\,\langle\psi,T_{\sigma\sigma}\psi\rangle .
+$$
+
+理由：主控收敛将每条近似的极限与 $g$ 同一；闭性与下半界给出二次型连续性，故与近似路径无关。
+
 ### 3.2  容斥与闭性
 
 **定理 B（容斥恒等式）**
@@ -154,6 +165,8 @@ $$\psi_n,\psi\in \mathcal D(\mathfrak k)\cap\bigcap_{I\ne\emptyset}\mathcal D(\m
 $$|\psi|_{\mathfrak k,c}^2:=|\psi|^2+\big(\mathfrak k[\psi]+c|\psi|^2\big).$$
 [**二次型闭性**]
 
+**说明（可操作域）** 上述闭性在共同形式域 $\mathcal D_*:=\mathcal D(\mathfrak k)\cap\bigcap_{I\ne\emptyset}\mathcal D(\mathfrak k_{R_{V_I}})$ 上成立；对链式应用，取 $V_i$ 分段 $C^1$ 且有一致 Lipschitz 常数即可确保 $\mathcal D_*$ 非空且稠密。
+
 ### 3.3  马尔可夫拼接、Petz 恢复与非全序缺口
 
 **定理 C（马尔可夫拼接）**
@@ -172,6 +185,14 @@ $$\boxed{\kappa(x_\perp):=\#\{(a,b):a<b,\ (V_a^+-V_b^+)(V_a^--V_b^-)<0\}.}$$
 
 *注*：全序切割时 $\kappa\equiv 0$。据此得 $\iota$ 对 $\kappa$ 单调非降之比较不等式。
 
+为限定 $\iota(v,x_\perp)$ 的 $v$ 域，记
+
+$$
+v_-(x_\perp):=\min_i V_i^+(x_\perp),\qquad v_+(x_\perp):=\max_i V_i^+(x_\perp),
+$$
+
+即 $E^+$ 层上该链覆盖的有效支撑区间端点；以下关于 $v$ 的陈述均在 $[v_-(x_\perp),v_+(x_\perp)]$ 内理解。
+
 以相对熵密度核定义的**马尔可夫缺口线密度** $\iota(v,x_\perp)\ge0$ 满足
 
 $$
@@ -183,6 +204,14 @@ $$
 特别地，全序时 $\kappa\equiv0$ 且 $I(D_{j-1}\!:\!D_{j+1}\mid D_j)=0$（马尔可夫饱和）。
 
 [**不等式；域：真空**]
+
+**引理 C.1（层状度—缺口比较）** 设 $V_i^\pm$ 分段 $C^1$ 且在每个 $x_\perp$ 上仅有限次交叉。则存在常数 $c_*>0$（依赖于 $\sup|\partial V_i^\pm|$ 与交叉数上界）使在分布意义
+
+$$
+\iota(v,x_\perp)\ \ge\ c_*\,\kappa(x_\perp)\,\mathbf 1_{\{v\in[v_-(x_\perp),v_+(x_\perp)]\}} .
+$$
+
+与 Fawzi–Renner 下界合用，给出非全序时的缺口定量下界。
 
 **约定（保真度）** 本文统一取 Uhlmann 保真度（未取平方）
 
@@ -240,6 +269,25 @@ $$
 
 其中 $\xi$ 为谱移函数。（约定：Birman–Kreĭn 取 $\det S(E)=e^{-2\pi \mathrm i\,\xi(E)}$。）能带阈值与嵌入本征态由选择 $\operatorname{supp}h$ 避开；长程势需改用相应的广义 KFL。
 [**分布等式；域：$S-\mathbb I\in\mathfrak S_1$，分段光滑**]
+
+**命题 F′（相对／修正口径）** 若 $S_0(E)$ 为在能带内同片解析、无零／极点的参考散射，且
+
+$$
+U(E):=S(E)S_0(E)^{-1},\qquad U(E)-\mathbb I\in\mathfrak S_2,\quad \partial_E U\in\mathfrak S_2,\ \int_{\mathcal I}|\partial_E U|_2<\infty,
+$$
+
+则 Carleman 行列式满足
+
+$$
+\int \partial_E\arg\det_2 U(E)\,h(E)\,dE
+=\int \operatorname{tr}\big(Q(E)-Q_0(E)\big)\,h(E)\,dE,
+$$
+
+其中 $Q=-\mathrm i\,S^\dagger\partial_E S$，$Q_0=-\mathrm i\,S_0^\dagger\partial_E S_0$。若 $S$ 幺正而 $S_0=\mathbb I$，上式退化为定理 F。此命题给出“非迹类但相对二阶可迹”的窗口下的相位—群延迟—谱移一致性。
+
+**注（π/2 缓冲的来源）** 在奇偶判定中，$(-1)^{\lfloor\Theta/\pi\rfloor}$ 仅当 $\Theta$ 穿越奇数个 $\pi$ 时翻转。将扰动总量收敛至 $<\pi/2$ 保证不会跨越最近的整数倍 $\pi$，因此与无扰动的奇偶一致；取 $\delta_*(\gamma)=\min\{\pi/2,\delta_{\rm gap}(\gamma)\}-\varepsilon$ 即为该缓冲的显式化。
+
+**支路约定（arg 的正则化）** 取 $\arg\det S$ 的连续化分支于能带内除去可数离散集的点后定义；其分布导数 $\partial_E\arg\det S$ 不依赖支路的 $2\pi$ 跳跃选择，因 $h\in C_c^\infty$ 将跳跃消光并由 DOI／Helffer–Sjöstrand 表示与 $\operatorname{tr}Q$ 匹配。
 
 **定理 G（窗化奇偶阈值；带间隙门槛）**
 令
@@ -300,6 +348,24 @@ $$R_{\rm tail}(\ell,\mathcal I,E_0):=\int_{\mathbb R\setminus\mathcal I(\gamma)}
 **注**：对分段光滑紧支撑窗（如 Kaiser），上述 $R_{\rm EM}$ 的 $C_m\,\ell^{-(m-1)}$ 应以角点估计替换（例如 $O(\ell^{-1})$），其余三项 $R_{\rm P},R_{\rm T},R_{\rm tail}$ 不变。由上述衰减阶，$\displaystyle R_{\rm P}\le C_h\sum_{|q|\ge1}\big|\widehat h\left(2\pi q\,\ell/\Delta\right)\big|$ **有限**，并与角点估计保持同阶。
 [**窗化分布等式＋显式门槛；域：幺正散射，$h\in C_c^\infty$ 或 $h\in\mathcal S$**]
 
+**引理 T（Toeplitz／Berezin 压缩误差）** 令 $\mathsf T_\ell$ 为能量轴上的窗化压缩算子（核为 $h_\ell(E-E')$ 的卷积），令 $Q(E)=-\mathrm i\,S(E)^\dagger\partial_E S(E)$，且 $\partial_E S\in\mathfrak S_2$ 并满足 $\int_{\mathcal I}|\partial_E S|_2\,dE<\infty$。则存在常数 $C_T>0$ 使
+
+$$
+\Big\lvert\operatorname{tr}\big(Q*h_\ell\big)-\int Q(E)\,h_\ell(E-E_0)\,dE\Big\rvert
+\le C_T\,\ell^{-1/2}\!\int_{\mathcal I}|\partial_E S|_2\,dE .
+$$
+
+证明要点：将压缩误差写成 $[\mathsf T_\ell,\cdot]$ 的交换子，对能量导数做一次平均值估计；用 Hilbert–Schmidt–trace Hölder 与窗扩展尺度 $\int (E-E_0)^2 h_\ell\sim\ell^{-1}$ 得到 $\ell^{-1/2}$ 衰减。
+
+**引理 P（Poisson／EM 的窗条件）** 若 $h\in C_c^{2m+1}$ 且端点 $\le 2m$ 阶喷气为零，则 $\widehat h(\omega)=O(|\omega|^{-(2m+1)})$，故
+
+$$
+\sum_{|q|\ge1}\Bigl\lvert\widehat h\!\left(\tfrac{2\pi q\,\ell}{\Delta}\right)\Bigr\rvert<\infty,
+\qquad \int|R_{\rm EM}|\le C_m\,\ell^{-(m-1)} .
+$$
+
+对分段 $C^{2m}$ 且端点角点的紧支撑窗，用角点估计替代 $R_{\rm EM}$ 的阶，并保持 Poisson 级数收敛。
+
 **引理 G（窗化相位扰动）**
 若两组散射 $S,\tilde S$ 在能区 $\mathcal I$ 上满足
 
@@ -326,6 +392,14 @@ $$
 （其中门槛与定理 G 完全对齐。）
 [**稳定性；域：弱耗散**]
 
+**引理 N（弱非幺正相位差界）** 写 $S=U(\mathbb I-A)$ 的极分解，$U$ 幺正、$A\ge0$。若 $\int_{\mathcal I}\!|S^\dagger S-\mathbb I|_1\,dE\le\varepsilon$，则存在常数 $C_N$ 使
+
+$$
+\Big|\int_{\mathcal I}\!\operatorname{tr}Q(S)\,h_\ell-\int_{\mathcal I}\!\operatorname{tr}Q(U)\,h_\ell\Big|\ \le\ C_N\,\varepsilon .
+$$
+
+证明要点：$Q(S)=\!\operatorname{Im}\,\operatorname{tr}(S^{-1}\partial_E S)$，对近幺正的 $S$ 有 $\|S^{-1}\|\le (1-\|A\|)^{-1}$；用 $\|\partial_E S\|_1\le\|\partial_E U\|_1+\|\partial_E A\|_1$ 与 $\|A\|_1\lesssim\|S^\dagger S-\mathbb I\|_1$ 控制差值并积分。
+
 ### 3.6  关节项与 $\mathbb Z_2$ 账本
 
 **定理 H（账本一致与规范变换）** 在 null–null 与 null–spacelike 角点，
@@ -350,6 +424,8 @@ $$\Xi\mapsto \Xi+\ln|\alpha|+\ln|\beta|$$
 仅当法向翻转 $k\to -k$（或 $n\to -n$）时，$\varepsilon_J$ 变号而 $\Xi$ 不变。故单角点的 $I_{\rm joint}$ 非纯符号不变；但沿链闭合并以平方根粘接类 $\epsilon_i$ 记账后，净效应仅依赖 $\prod_i\epsilon_i$ 的奇偶，且与 $\lfloor\Theta_h/\pi\rfloor$ 的奇偶一致。
 [**规范变换；域：仿射参数化的 null 边界**]
 
+**引理 H.1（闭合链的角项奇偶对齐）** 设链的每一关节取同一仿射规范并按上式记账。沿闭路的角参数变分之和为 $2\pi$ 的整数倍，其半相位奇偶由穿越 $\Xi=(2k+1)\pi$ 的次数决定。由此 $\sum I_{\rm joint}/(8\pi G)$ 的奇偶与 $\lfloor\Theta_h/\pi\rfloor$ 一致。
+
 **算例（$2+1$ 维）**
 两片共线生成的 null 片与一片 spacelike 折面围成角结构；在规范 $k\cdot l=-1$ 下计算外挠曲率号差与角参数，验证符号与 $\epsilon_i$ 一致。
 
@@ -368,6 +444,8 @@ $$
 
 若 $\delta_{\rm holo}\le \tfrac{\pi}{2}-\varepsilon$，则与定理 G 的门槛拼合，奇偶不变。
 [**半经典阶；域：AdS/CFT**]
+
+**假设 J（半经典可控窗化）** 取足够平滑的窗 $h$ 与足够大的 $\ell$ 使边界侧的 $R_{\rm EM},R_{\rm P},R_{\rm tail}$ 满足定理 G 的门槛，同时 $\delta X,I_{\rm bulk},\mathrm{Var}(K_{\rm bulk})$ 由 $1/N$ 与耦合窗口的微扰展开统一控制。则边界—体区的二阶误差可与 $\mathcal E_h$ 合并到同一 $\delta_*$ 预算内，实现全息奇偶一致性。
 
 ---
 
@@ -406,6 +484,16 @@ $$|\psi|_{\mathfrak k,c}^2:=|\psi|^2+\big(\mathfrak k[\psi]+c|\psi|^2\big)$$
 **定理 C 的证明**：在同面全序切割下，容斥恒等式与相对熵恒等式联立，得到三段马尔可夫律
 
 $$I(D_{j-1}:D_{j+1}\mid D_j)=0.$$
+
+**命题 C.2（相对熵的下半连续与数据处理）** 对任意 CPTP 映射 $\Phi$ 与态对 $(\rho,\sigma)$，有
+
+$$S(\rho\Vert\sigma)\ge S(\Phi\rho\Vert\Phi\sigma)\quad\text{且}\quad S\ \text{对弱* 收敛下半连续}.$$
+
+设有单调近似 $R_{V_\alpha}\uparrow R_V$，令 $\Phi_\alpha$ 为对 $R_{V_\alpha}$ 的限制通道，$\Phi$ 为对 $R_V$ 的限制通道；则
+
+$$\liminf_{\alpha\to\infty} I_{\alpha}(A:C\mid B)\ge I(A:C\mid B),$$
+
+其中 $I_\alpha$ 按 $R_{V_\alpha}$ 计算的条件互信息。配合容斥极限与引理 A 可把三段马尔可夫律稳定传递到一般钻石的极限。
 
 对应的模哈密顿量恒等式由容斥与模流几何化直接推得。
 
