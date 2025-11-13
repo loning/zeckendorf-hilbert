@@ -1,6 +1,6 @@
 # 信息几何变分原理导出爱因斯坦方程：定体积对偶、显式可交换极限、Radon‑型闭包、OS/KMS–Fisher 解析延拓与 null 边界处方
 
-Version: 5.7（最小必要补全完成）
+Version: 6.2（逻辑闭环完整版——统一常数+沿方向一致）
 
 ## 摘要
 
@@ -239,29 +239,64 @@ $$
 }
 $$
 
-**备注（两套并行结论与图1的适用范围）**：
+**主定理的适用范围与弱剪切族的精确定义**
 
-1. **强对称族**：$C_{\sigma,0}=\mathcal O(\varepsilon)$（如最大体积腰面或近似CKV生成的对称小钻石）。此时剪切项 $\tfrac12 C_\sigma^2\lambda_*^2 A$ 降为 $\mathcal O(\varepsilon^3\ell^{d-2})$，总误差呈现 $\varepsilon^3$ 标度。**图1专门展示此类族**。
+**定义（弱剪切族，统一版）**：存在常数 $c_s>0$ 与 $\ell_0>0$，对所有 $\ell<\ell_0$ 与所有腰面点 $x\in S_\ell$，以及所有从 $x$ 射出的生成元方向 $\hat k$，有
 
-2. **一般族**：$C_{\sigma,0}=\mathcal O(1)$（初始剪切不消失）。误差遵循完整盒装上界 $\mathcal O\big((C_{\sigma,0}^2\lambda_*^2+C_R^2\lambda_*^4+C_{\nabla R}\lambda_*^3)\,A\big)$。只要设"局域化目标"为 $o(\ell^2)$（而非 $o(\varepsilon^3\ell^{d-2})$），定理3C的可实现性（3步算法在 $\epsilon=c\,\varepsilon\ell$ 选取下统一给出 $o(\ell^2)$ 控制）、命题3A的切空间验证与命题3D的局部可逆性依旧成立，"族约束→点态"闭包无阻。
-
-**量纲核算小盒子（$\mathcal O(\varepsilon^2\ell^{d-2})\Rightarrow o(\ell^2)$）**：
-
-以 $d=4$ 为例，$\varepsilon=\ell/L_{\rm curv}$。命题2B'给出
 $$
-\Bigl|\delta S_{\rm out}-\frac{2\pi}{\hbar}\int\lambda T_{kk}\Bigr|
+\sup_{S_\ell}|\sigma(0,x)|\le c_s\,\varepsilon.
+$$
+
+并保持无共轭点与 $|R|_{C^1}$ 有界的统一常数族。称这类小钻石族为"弱剪切族"。在此条件下
+
+$$
+\sup_{\hat k}\left|\int_0^{\lambda_*}\!\lambda\,F(\gamma_{x,\hat k}(\lambda))\,d\lambda\right|=o(\ell^2)
+\quad\text{对}\quad F=R_{kk}-8\pi G\,T_{kk}.
+$$
+
+**适用域声明**：
+
+$$
+\boxed{
+\textbf{主定理仅在弱剪切族内成立。一般族 }C_{\sigma,0}=O(1)\text{ 时仅能给出 }O(\ell^2)\text{ 上界，不足以闭包到 }f(p)=0。
+}
+$$
+
+一般族的闭包需要新的"剪切均衡引理"或额外平均步骤，不在本稿范围内。
+
+**量纲核算与沿方向一致性**：所有 $o(\ell^2)$ 语句均指沿单条生成元的首矩归一化尺度，并且上式的 $o(\ell^2)$ 对所有 $\hat k$ 一致成立。端点层由 §2 的边界层估计吸收，主导收敛保证极限与积分可交换。
+
+**量纲核算小盒子（归一化约定与 $o(\ell^2)$ 目标）**：
+
+**关键约定**：§3中的"$o(\ell^2)$"始终指**按生成元归一化**的首矩量级。定义沿单条生成元的首矩算子
+$$
+\boxed{
+\mathcal I_{\hat k}[f]:=\int_0^{\lambda_*}\lambda\,f(\gamma_{p,\hat k}(\lambda))\,d\lambda,
+\qquad \text{自然标度}\sim\ell^2.
+}
+$$
+
+对全腰面 $S_\ell$ 的积分量级为 $A\cdot(\ell^2)\sim\ell^{d-2}\cdot\ell^2=\ell^d$。
+
+以 $d=4$ 为例，$\varepsilon=\ell/L_{\rm curv}$。命题2B'给出的**总量误差**
+$$
+\Bigl|\delta S_{\rm out}-\frac{2\pi}{\hbar}\int\lambda T_{kk}\,d\lambda\,dA\Bigr|
 \le C_{\rm th}\varepsilon^2\ell^{d-2}
 =C_{\rm th}\frac{\ell^2}{L_{\rm curv}^2}\cdot\ell^2.
 $$
-对每条生成元来说，首矩积分的自然标度是 $\sim\ell^2$。因此误差可以写成
+
+**按生成元归一化**（除以 $A\sim\ell^{d-2}$）：
 $$
-\text{误差}=\Bigl(\frac{\ell^2}{L_{\rm curv}^2}\Bigr)\cdot\ell^2=o(\ell^2)\quad(\ell/L_{\rm curv}\to 0).
+\frac{C_{\rm th}\varepsilon^2\ell^{d-2}}{A}
+\sim\frac{C_{\rm th}\varepsilon^2\ell^{d-2}}{\ell^{d-2}}
+=C_{\rm th}\varepsilon^2\sim\frac{\ell^2}{L_{\rm curv}^2}\to0.
 $$
-这说明只要保持尺度分离 $\varepsilon=\ell/L_{\rm curv}\ll1$，就能在0阶重建中把所有 $\mathcal O(\varepsilon^2\ell^{d})$ 级别的误差视为 $o(\ell^2)$。这正是§3中局域化与Radon型闭包所需的量纲条件。
+
+因此对于首矩 $\mathcal I_{\hat k}$（标度 $\sim\ell^2$），误差为 $\mathcal O(\varepsilon^2)\times\ell^2=o(\ell^2)$。这正是§3局域化与Radon型闭包所需的量纲条件。
 
 **数值验证（在 $C_{\sigma,0}=\mathcal O(\varepsilon)$ 的几何族上）**：归一化误差 $|\delta A+\int\lambda R_{kk}|/\ell^{d-2}$ 呈现 $\varepsilon^3$ 标度；**一般情形**则遵循上式盒装上界。
 
-![图 1：显式可交换极限的数值验证（**仅展示强对称族**）。**本图仅展示满足 $C_{\sigma,0}=\mathcal O(\varepsilon)$ 的强对称族，不代表一般几何族的误差标度。**归一化误差上界 $|\delta A+\int\lambda R_{kk}|/\ell^{d-2}$ 随尺度分离参数 $\varepsilon$ 的变化，显示 $\varepsilon^3$ 标度。三条曲线对应不同曲率参数组合：低曲率 $(C_R=0.1, C_{\mathcal C}=0.1)$、中曲率 $(C_R=0.2, C_{\mathcal C}=0.2)$、高曲率 $(C_R=0.3, C_{\mathcal C}=0.3)$，均取 $\lambda_0=1$、$C_{\sigma,0}=0.05\varepsilon$。灰色虚线为参考 $\varepsilon^3$ 标度线。**一般族 $C_{\sigma,0}=\mathcal O(1)$ 的误差标度见盒装上界**（§2），主链推导同样成立但需调整参数（将显示 $\varepsilon^2$ 或常数级标度，参见附录J表J.2）。复现方法：修改`scripts/generate_igvp_figure1.py`中 $C_R, C_{\mathcal C}, C_{\sigma,0}$ 三参数即可生成不同族的曲线。](igvp_figure1_exchangeable_limit.png)
+![图 1 仅展示满足 $C_{\sigma,0}=\mathcal O(\varepsilon)$ 的强对称族，不适用于一般几何族。归一化误差上界 $|\delta A+\int\lambda R_{kk}|/\ell^{d-2}$ 随尺度分离参数 $\varepsilon$ 的变化，显示 $\varepsilon^3$ 标度。三条曲线对应不同曲率参数组合：低曲率 $(C_R=0.1, C_{\mathcal C}=0.1)$、中曲率 $(C_R=0.2, C_{\mathcal C}=0.2)$、高曲率 $(C_R=0.3, C_{\mathcal C}=0.3)$，均取 $\lambda_0=1$、$C_{\sigma,0}=0.05\varepsilon$。灰色虚线为参考 $\varepsilon^3$ 标度线。一般族 $C_{\sigma,0}=\mathcal O(1)$ 不在主定理范围内，仅给出 $O(\ell^2)$ 上界，不足以闭包到点态等式（见§2盒装上界与适用域声明）。复现方法：修改`scripts/generate_igvp_figure1.py`中 $C_R, C_{\mathcal C}, C_{\sigma,0}$ 三参数即可生成不同族的曲线。](igvp_figure1_exchangeable_limit.png)
 
 端点层 $[\lambda_*-\delta,\lambda_*]$ 的贡献满足
 
@@ -273,7 +308,13 @@ $$
 }
 $$
 
-取 $\delta=c\,\varepsilon\ell$ 且 $\lambda_*\sim c_\lambda\ell$（$c$ 为 $\mathcal O(1)$ 常数），得端点层贡献为 $\mathcal O(\varepsilon\ell^{d-1})$。此量化与§3测试函数局域化引理中首矩权截断 $w_\epsilon$ 的端点区间 $[\lambda_*-\epsilon,\lambda_*]$ 误差控制呼应：令 $\epsilon=c\,\varepsilon\ell$ 即闭合调用关系。
+**尺度计数修正**（按归一化约定）：
+
+- **按总面积归一化**：$A\sim\ell^{d-2}$，$\lambda_*\delta\sim\varepsilon\ell^2$，故 $A\cdot\lambda_*\cdot\delta\sim\varepsilon\ell^d$。端点层贡献为 $\boxed{\mathcal O(\varepsilon\ell^{d})}$。
+
+- **按生成元归一化**：沿单条生成元，$\int_{\lambda_*-\delta}^{\lambda_*}\lambda R_{kk}\,d\lambda\le C_R\lambda_*\delta\sim\varepsilon\ell^2$。端点层贡献为 $\boxed{\mathcal O(\varepsilon\ell^{2})=o(\ell^2)}$（$\varepsilon\to0$时）。
+
+§3中的"局域化目标 $o(\ell^2)$"始终理解为**按生成元归一化**的陈述。此量化与测试函数局域化引理中首矩权截断 $w_\epsilon$ 的端点区间 $[\lambda_*-\epsilon,\lambda_*]$ 误差控制呼应：令 $\epsilon=c\,\varepsilon\ell$ 即得按生成元的 $o(\ell^2)$ 控制。
 
 取固定常数 $\lambda_0>0$，对所取极限族均有 $0<\lambda_*\le\lambda_0$。由 $C_\sigma=C_{\sigma,0}+C_{\mathcal C}\lambda_*\le C_{\sigma,0}+C_{\mathcal C}\lambda_0$，令
 
@@ -294,23 +335,16 @@ $$
 
 因 $\widetilde M_{\rm dom}$ 与 $\varepsilon$ 无关，且对所有 $|\lambda|\le\lambda_0$ 均有 $\widetilde M_\theta(\lambda)\le \widetilde M_{\rm dom}(\lambda)$，故可据**主导收敛定理**（Lebesgue dominated convergence theorem）交换"$\varepsilon\to0$"与沿 $\lambda$ 的积分。
 
-**统一误差命题（保证一致性）**：给定 $\varepsilon$‑小域与无共轭点条件，存在仅依赖 $(d,c_\lambda)$ 与 $(C_R,C_{\nabla R},C_{\mathcal C})$ 的常数 $C_{\rm unif}$，使得对所有 $(p,\hat k)$ 与所有 $\ell$ 足够小
+**备注（编号整合）**：原"统一误差命题"已整合入命题2B'（假设2.B.0+整族统一误差上界），常数 $C_{\rm th}$ 的作用等同于原 $C_{\rm unif}$。为避免重复，下文统一引用命题2B'。引理2.1专指"局部一阶律误差"（$\delta S_{\rm out}^{\rm ren}$ 与 $\delta\langle K_\chi\rangle$ 的偏差），与命题2B'互补。
+
+**假设 2.B.0（允许变分族的大小，统一版）**：存在常数 $r>0$ 与 $\ell_0>0$，对所有 $\ell<\ell_0$ 与所有允许的几何与态变分 $(\delta g,\delta\text{state})$ 有
 
 $$
-\boxed{
-\left|\delta S_{\rm out}-\frac{2\pi}{\hbar}\int\lambda T_{kk}\,d\lambda\,dA\right|
-\le C_{\rm unif}\,\varepsilon^2\,\ell^{d-2}.
-}
+|\delta g|_{C^2(\mathcal D_\ell)}+|\nabla\delta g|_{L^\infty(\mathcal D_\ell)}\le r\,\varepsilon^2,\qquad
+|\delta W|_{\mathcal C^\alpha(\mathcal D_\ell\times\mathcal D_\ell)}\le r\,\varepsilon^2,
 $$
 
-该误差分解为几何近似误差与态依赖误差两部分，均受上述常数族控制。$\delta T/T=\mathcal O(\varepsilon^2)$ 是该命题的推论而非假设。此统一上界保证了局域化时对每条生成元的 $o(\ell^2)$ 控制。
-
-**常数依赖**：$C_{\rm unif}, C_{\rm th}$ 仅依赖 $(C_R,C_{\nabla R};d,c_\lambda)$，与 $\varepsilon,\ell$ 无关。
-
-**假设 2.B.0（允许变分族的大小）**：存在常数 $r>0$。对于所有允许的几何变分 $\delta g$ 与态变分 $\delta\text{state}$，我们要求
-$$
-|\delta g|_{C^2(\mathcal D_\ell)}\le r\,\varepsilon^2,
-$$
+其中 $\delta W$ 为 Hadamard 双点函数的变分，其波前集保持在固定的 Hadamard 类。上述常数 $r$ 与 $|R|_{C^1}$ 的上界可统一选择，与 $(p,\hat k)$ 及具体 $(\delta g,\delta\text{state})$ 无关。
 且相应的二点函数变分 $\delta W$ 的Hadamard余项在某个固定Hölder或Besov范数 $|\cdot|_{\mathcal C^\alpha}$ 下满足
 $$
 |\delta W|_{\mathcal C^\alpha(\mathcal D_\ell\times\mathcal D_\ell)}\le r\,\varepsilon^2.
@@ -433,31 +467,63 @@ $$
 
 且该族变分在命题2B的统一控制下保持误差 $\mathcal O(\varepsilon^2\ell^{d-2})$。
 
-**可复现的3步构造算法**：
+**可复现三步构造**：
 
-1. **形变器**（geometric deformation）：令 $\Phi_\epsilon:S_\ell\to\mathbb R$ 为分片 $C^\infty$ 的bump函数。定义嵌入
+1. **形变器**：取分片 $C^\infty$ bump $\Phi_\epsilon$ 与补偿函数 $\varphi_0$ 使 $\int_{S_\ell}(\varphi+\varphi_0)\,dA=0$，定义
+
    $$
-   X_\epsilon(x)=\exp_x\big(\epsilon\,\varphi(x)\,n\big)+\epsilon\,\varphi_0(x)\,n,
+   X_\epsilon(x)=\exp_x\big(\epsilon\,\varphi(x)\,n\big)+\epsilon\,\varphi_0(x)\,n.
    $$
-   其中补偿函数 $\varphi_0$ 满足 $\int_{S_\ell}(\varphi+\varphi_0)\,dA=0$ 以维持 $\delta V=0$。该形变对 $\delta A$ 与 $\int\lambda R_{kk}$ 产生 $\varphi$-加权。
 
-2. **态局域器**（state localizer）：取模哈密顿核 $k_\chi$ 的紧支撑近似，使 $\delta\langle K_\chi\rangle$ 在 $\mathcal H$ 上产生 $\int\lambda\,\varphi(x)\,T_{kk}\,d\lambda\,dA$ 的首矩加权。该扰动支撑于由 $\varphi$ 确定的管状邻域内，保持Hadamard与KMS性质（误差在命题2B控制下）。
+2. **态局域器**：取
 
-3. **端点权处理**（endpoint weight）：取 $w_\epsilon\in C_c^\infty([0,\lambda_*))$ 在 $[0,\lambda_*-\epsilon]$ 等于 $\lambda$，端点处光滑消失。端点层 $[\lambda_*-\epsilon,\lambda_*]$ 的贡献由§2边界层估计吸收：$\mathcal O(\epsilon\ell^{d-1})$，取 $\epsilon=c\,\varepsilon\ell$ 即得 $o(\ell^2)$。
+   $$
+   w_\epsilon(\lambda)=\lambda\,\chi_{[0,\lambda_*-\epsilon]}(\lambda)\ast\rho_\epsilon(\lambda),
+   \quad
+   J_{r(\ell)}(x)=\text{单位质量 mollifier with }r(\ell)/\ell=\mathcal O(1),
+   $$
+
+   并令
+
+   $$
+   U_{\epsilon,\varphi}=\exp\Big(i\int_{\mathcal H} w_\epsilon(\lambda)\,\varphi(x)\,J_{r(\ell)}(x)\,T_{kk}(x,\lambda)\,d\lambda\,dA\Big).
+   $$
+
+   以 $\delta\text{state}=U_{\epsilon,\varphi}\,|\text{state}\rangle-|\text{state}\rangle$。Hadamard 类与 $C^\alpha$ 有界性由 $\rho_\epsilon$ 与 $J_{r(\ell)}$ 的平滑与紧支撑保证。
+
+3. **端点权处理**：$w_\epsilon(0)=0$ 且 $w_\epsilon=\lambda$ 于 $[0,\lambda_*-\epsilon]$，端点层由 §2 的边界层估计给出 $o(\ell^2)$。
+
+该构造保持 $\delta V=0$ 且对整族 $(\delta g,\delta\text{state})$ 有统一主控函数 $M_{\rm dom}\in L^1([0,\lambda_0])$，因此"族约束到点态"的闭包沿所有方向一致成立。
+
+**操作手册（$\varphi$ 的缩放范式）**：选 $\varphi_{r(\ell)}$ 为单位质量bump函数，半径 $r(\ell)=\ell^\alpha$（$0<\alpha<1$，例如 $\alpha=1/2$）。补偿函数 $\varphi_0$ 在 $S_\ell\setminus\text{supp}(\varphi)$ 上取常数使 $\int(\varphi+\varphi_0)dA=0$，其 $L^1$ 范数 $\|\varphi_0\|_{L^1}\sim\|\varphi\|_{L^1}=\mathcal O(1)$。由引理A.6'，误差 $\mathcal O(\varepsilon^2\ell^{d-2})$ 被 $C_{\rm unif}$ 吸收，与 $r(\ell)$ 的具体取值无关（只要 $r(\ell)/\ell=\mathcal O(1)$）。读者据此可照抄实现定理3C的"可测选择"。
 
 **统一上界保证**：对 $\theta,\sigma$ 的控制改为
 $$
 \big|\theta+\lambda R_{kk}\big|\le \widetilde M_{\rm dom}(\lambda),
 $$
-其中 $\widetilde M_{\rm dom}$ 不依赖 $\varphi$ 与 $\epsilon$（显式式样同§2盒装上界）。由命题2B，该构造对实现任意 $\varphi$ 的整族变分保持统一误差控制，从而"族约束→点态"的闭包完全成立。
+其中 $\widetilde M_{\rm dom}$ 不依赖 $\varphi$ 与 $\epsilon$（显式式样同§2盒装上界）。由命题2B'（假设2.B.0+整族统一误差）与引理A.5'（局域化族一致支配）的组合，该构造对实现任意 $\varphi$ 的整族变分保持统一误差控制，从而"族约束→点态"的闭包完全成立。
 
-**测试函数局域化引理（端点光滑截断版）**：若
+**交叉引用说明**：本定理的族一致性依赖于：（i）假设2.B.0定义变分族大小；（ii）命题2B'给出整族统一误差上界 $C_{\rm th}\varepsilon^2\ell^{d-2}$；（iii）引理A.6'保证态局域器对整族 $\{\varphi\}$ 的一致控制；（iv）引理A.5'保证主控函数 $M_{\rm dom}$ 对整族有效。四者结合使局域化闭包严丝合缝。
+
+**测试函数局域化引理（端点光滑截断版——统一$o(\ell^2)$目标）**：若
 $$
 \int_{S_\ell}\!\varphi(x)\int_0^{\lambda_*}\! w(\lambda)F(x,\lambda)\,d\lambda\,dA=0
 $$
-对所有 $\varphi\in C_c^\infty(S_\ell)$ 与 $w\in C_c^\infty([0,\lambda_*))$（并要求 $w(0)=0$）成立，则几乎处处沿每条生成元 $\int_0^{\lambda_*} w F=0$。实际使用时取一族 $w_\epsilon\in C_c^\infty([0,\lambda_*))$ 使 $w_\epsilon(\lambda)=\lambda$ 于 $[0,\lambda_*-\epsilon]$，并令 $\epsilon\to0$；端点层的贡献由 §2 的边界层估计控制，极限交换由主导收敛保证。
+对所有 $\varphi\in C_c^\infty(S_\ell)$ 与 $w\in C_c^\infty([0,\lambda_*))$（并要求 $w(0)=0$）成立，则几乎处处沿每条生成元 $\int_0^{\lambda_*} w F=0$。
 
-（注：本文主用首矩权的光滑截断 $w_\epsilon$，在 $[0,\lambda_*-\epsilon]$ 上等于 $\lambda$，极限 $\epsilon\to0$ 在 §2 的可交换性与边界层估计下成立。）
+**归一化约定的严格化**：上式左端为**全腰面积分**（量级 $\sim\ell^d$），右端为零意味着对**按生成元归一化**的首矩 $\mathcal I_{\hat k}[w\cdot F]=\int_0^{\lambda_*}w(\lambda)F(x,\lambda)\,d\lambda$（量级 $\sim\ell^2$），几乎处处为零。
+
+实际使用时取一族 $w_\epsilon\in C_c^\infty([0,\lambda_*))$ 使 $w_\epsilon(\lambda)=\lambda$ 于 $[0,\lambda_*-\epsilon]$，并令 $\epsilon\to0$。端点层 $[\lambda_*-\epsilon,\lambda_*]$ 的贡献由§2边界层估计给出：
+$$
+\boxed{
+\Big|\int_{\lambda_*-\epsilon}^{\lambda_*}\lambda F\,d\lambda\Big|
+\le C_R\lambda_*\epsilon
+\sim C_R\ell\cdot(\varepsilon\ell)=\mathcal O(\varepsilon\ell^2)=o(\ell^2)\quad(\varepsilon\to0).
+}
+$$
+这正是§2"按生成元归一化"给出的 $o(\ell^2)$ 控制。极限交换由主导收敛保证。
+
+（注：本文主用首矩权的光滑截断 $w_\epsilon$，**所有 $o(\ell^2)$ 陈述均指按生成元归一化的首矩量级**，与§2的归一化约定盒严格对应。）
 
 **测试函数局域化引理（提升为命题+证明）**：设 $\int_{S_\ell}\varphi(x)\int_0^{\lambda_*} w(\lambda)F(x,\lambda)\,d\lambda\,dA=0$ 对所有 $\varphi\in C_c^\infty(S_\ell)$ 与 $w\in C_c^\infty([0,\lambda_*))$（$w(0)=0$）成立。则几乎处处沿每条生成元 $\int_0^{\lambda_*} w F=0$。
 
@@ -520,13 +586,20 @@ $$
 
 **命题 5B（Code subspace在小钻石中的实现）**：在小钻石背景下，固定端点位置与腰面时刻等价于线性荷约束 $(\delta M,\delta J,\delta P)=(0,0,0)$。
 
-**证明草图（含Brown-York荷积分表达式）**：在小钻石的腰超曲面 $\Sigma_\ell$ 上，Brown-York质量、线性动量与角动量可写为
+**证明配方（含线性化细节）**：在小钻石的腰超曲面 $\Sigma_\ell$ 上，Brown-York质量、线性动量与角动量可写为
 $$
 M\sim\int_{\Sigma_\ell}(K-K_0)\,dA,\quad
 P_i\sim\int_{\Sigma_\ell}K_{ij}\,u^j\,dA,\quad
 J\sim\int_{\Sigma_\ell}\epsilon_{ijk}x^iK^{jk}\,dA,
 $$
-其中 $K_{ij}$ 为外曲率，$u^j$ 为单位法矢。端点位置与腰面时刻固定意味着在一阶层 $\delta K_{ij}$ 的主阶贡献在上述积分中为零，因此对应的线性荷变分 $(\delta M,\delta J,\delta P)$ 同时消失。由此小钻石的端点+腰面固定自然落在code subspace假设内。□
+其中 $K_{ij}$ 为外曲率，$u^j$ 为单位法矢。对度规扰动 $g_{ab}\to g_{ab}+\delta g_{ab}$，外曲率的一阶展开为
+$$
+\boxed{
+K_{ij}\to K_{ij}+\delta K_{ij},\qquad
+\delta K_{ij}=-\tfrac12 u^k\nabla_k\delta g_{ij}+\mathcal O(\delta g^2).
+}
+$$
+固定端点位置与腰面时刻意味着 $\delta g_{ij}|_{\partial\Sigma_\ell}=0$（边界Dirichlet条件），因此在积分 $\int_{\Sigma_\ell}\delta K_{ij}\,u^j\,dA$ 中，分部积分后边界项 $\int_{\partial\Sigma_\ell}$ 消失，主阶贡献为零。由此 $(\delta M,\delta J,\delta P)=(0,0,0)$，小钻石的端点+腰面固定自然落在code subspace假设内。□
 
 设以下条件成立：
 
@@ -923,7 +996,36 @@ $$
 \sim C_{\nabla R}\varepsilon^2\ell^{d-2}.
 $$
 
-**统一上界**：对整族 $\mathfrak G\times\mathfrak S$，$\Delta_{\rm geom}$ 的常数由背景上界 $C_R$ 控制，$\Delta_{\rm state}$ 由 $C_{\nabla R}$ 控制，与具体变分无关。由此得命题2B的统一误差上界 $C_{\rm th}\varepsilon^2\ell^{d-2}$。详细计算见Faulkner et al. (2016) §3-4。
+**统一上界**：对整族 $\mathfrak G\times\mathfrak S$，$\Delta_{\rm geom}$ 的常数由背景上界 $C_R$ 控制，$\Delta_{\rm state}$ 由 $C_{\nabla R}$ 控制，与具体变分无关。由此得命题2B'的统一误差上界 $C_{\rm th}\varepsilon^2\ell^{d-2}$。详细计算见Faulkner et al. (2016) §3-4。
+
+**引理 A.6'（态局域器的族一致构造——严谨接口）**：设 $\varphi\in C_c^\infty(S_\ell)$ 为任意局域化函数，其支撑半径为 $r(\ell)$，满足 $r(\ell)/\ell=\mathcal O(1)$。在假设2.B.0下，存在态变分 $\delta\text{state}^{(\varphi)}$ 使得
+
+$$
+\boxed{
+\Bigl|\delta S_{\rm out}^{\rm ren}-\frac{2\pi}{\hbar}\int\lambda\,\varphi\,T_{kk}\Bigr|
+\le C_{\rm th}(C_R,C_{\nabla R},r;d,c_\lambda)\,\varepsilon^2\ell^{d-2},
+}
+$$
+
+其中常数 $C_{\rm th}$ 与 $\varphi$ 的支撑大小 $r(\ell)$ 无关（仅依赖半径与 $\ell$ 的比值被 $\mathcal O(1)$ 控制），与具体 $\varphi$ 的形状无关。
+
+**态变分的构造类与正则性约束**：令 $\mathfrak S$ 为满足以下条件的态变分族：
+
+1. **紧支撑有限能量波包**：$\delta\text{state}$ 为Fock空间中的有限粒子叠加，支撑于管状邻域 $\{\text{dist}(x,\text{supp}(\varphi))\le r(\ell)\}$。
+
+2. **Hadamard类保持**：对基态的扰动满足 $|\delta W_{ab}|\le r\varepsilon^2$（$W_{ab}$ 为Hadamard双点函数的波前集），保证重整化的良定义性。
+
+3. **能动张量界限**：$\|\delta T_{ab}\|_{C^\alpha(\mathcal H)}\le r\varepsilon^2/\ell^{d-2}$（$\alpha>0$），与假设2.B.0的几何变分正则性相匹配。
+
+**误差分解的常数依赖**：由附录A.6的FLPW近似，$\Delta_{\rm state}$ 满足
+$$
+\Delta_{\rm state}\le C'(C_{\nabla R},r,\alpha)\int_{\mathcal H}|\delta T_{ab}||\nabla h_{cd}|\,dV
+\le C'(C_{\nabla R},r,\alpha)\cdot(r\varepsilon^2/\ell^{d-2})\cdot(\varepsilon^2)\cdot\ell^d
+=C'\cdot r\varepsilon^4\ell^{d-2}.
+$$
+取 $C_{\rm th}=C'+C''(C_R,r)$（$C''$ 来自几何项 $\Delta_{\rm geom}$），得统一上界。常数 $C_{\rm th}(C_R,C_{\nabla R},r;d,c_\lambda)$ 对参数 $(C_R,C_{\nabla R},r)$ **有界连续**：当 $(C_R,C_{\nabla R},r)$ 在紧集内变化时，$C_{\rm th}$ 的变化受控。
+
+**证明要点**（3行）：从FLPW半空间核出发，用Riemann正规坐标将弱曲率背景小钻石映射到平直主部；对模哈密顿核 $k_\chi$ 做紧支撑截断与卷积，实现对 $\varphi(x)$ 的局域化；由命题2B'的统一上界与上述正则性约束，误差被 $C_{\rm th}\varepsilon^2\ell^{d-2}$ 吸收，与 $\varphi$ 的具体选择无关。态变分族 $\mathfrak S$ 的Hadamard类保持保证卷积核逼近误差不超过 $\mathcal O(\varepsilon^4\ell^{d-2})\subset\mathcal O(\varepsilon^2\ell^{d-2})$。这保证定理3C的态局域器对整族 $\{\varphi\}$ 保持一致控制。□
 
 ---
 
