@@ -1,6 +1,6 @@
 # Null–Modular 双覆盖统一原理：在因果钻石上对齐信息几何变分与散射半相位的 $\mathbb{Z}_2$ holonomy
 
-Version: 2.8
+Version: 2.10
 
 ## 摘要
 
@@ -160,13 +160,19 @@ $$
 
 从而可**唯一**确定每个 $\mathfrak w_j$；据此可消去 $H^1\!\times H^1$ 通道并平凡化由 $H^1$ 控制的 $\nu_{\sqrt{\det_p S}}$。
 
-**（$H^1$ 通道可检测性）**：取 $\{\mu_j\}\subset H^1(M,\partial M;\mathbb Z_2)$ 基及与之对偶的 $\{(\Sigma_1^{(j)},\partial\Sigma_1^{(j)})\}$。令参考闭路 $\{(\gamma_1^{(a)},\partial\gamma_1^{(a)})\}$ 生成 $H_1(X^\circ,\partial X^\circ;\mathbb Z_2)$，矩阵
+**（$H^1$ 通道可检测性）**：取生成族 $\{(\gamma_1^{(a)},\partial\gamma_1^{(a)})\}$ 的相对闭路，并令
 
 $$
 P_{ja}:=\langle K,(\Sigma_1^{(j)},\partial\Sigma_1^{(j)})\times(\gamma_1^{(a)},\partial\gamma_1^{(a)})\rangle=\langle \mathfrak w_j,[\gamma_1^{(a)}]\rangle.
 $$
 
-当且仅当 $P$ 行满秩时，映射 $T$ 单射，$H^1\!\times H^1$ 通道可被**唯一消去**。
+**若且仅若** $\{(\gamma_1^{(a)},\partial\gamma_1^{(a)})\}$ 生成 $H_1(X^\circ,\partial X^\circ;\mathbb Z_2)$，评估映射
+
+$$
+\mathrm{ev}:H^1(X^\circ,\partial X^\circ;\mathbb Z_2)\to\mathbb Z_2^{A},\quad \mathfrak w\mapsto\big(\langle\mathfrak w,[\gamma_1^{(a)}]\rangle\big)_a
+$$
+
+**单射**；于是 $T=\bigoplus_j(\mu_j\otimes\mathrm{ev})$ 单射，$H^1\!\times H^1$ 通道可被**唯一消去**。等价地，对每个 $j$，行向量 $(P_{ja})_a$ 全零当且仅当 $\mathfrak w_j=0$，无需额外的"$P$ 行满秩"要求。
 
 **（$H^2$ 通道可检测性，$A_{!H^2}$）**：取生成族 $\{\gamma_2^{(b)}\}$ 的相对二维循环，测量 $\langle \rho(c_1(\mathcal L_S)),[\gamma_2^{(b)}]\rangle$ 是否**全零**以判定消去。
 
@@ -198,13 +204,13 @@ $$
 
 **推论 E（$H^2=0$ 化约）** 对一维 $\delta$ 势、二维 Aharonov–Bohm 与端点散射族，参数域去除判别集后形变收缩到 1‑复形，故 $H^2(X^\circ,\partial X^\circ)=0$；于是（iii）与（iii$^\star$）等价，并且 $(\text{iii}^\star)\Rightarrow(ii)$ 在相对上同调意义下成立。
 
-**扭挠与可检测性**：**（$A_{\rm tors2}$）**——若 $\mathcal L_S$ 源自 $U(1)$ 表示，则 $c_1(\mathcal L_S)$ 为 $2^m$‑扭挠，其模二约化 $\rho(c_1(\mathcal L_S))$ 完整刻画 $H^2$ 通道；**（$A_{!H^2}$）**——允许的参数二维循环生成 $H_2(X^\circ,\partial X^\circ;\mathbb Z_2)$。
+**扭挠与可检测性**：**（平直性）** 若 $\mathcal L_S$ 为**平直** $U(1)$ 线丛，则 $c_1(\mathcal L_S)$ 落在 $H^2(X^\circ;\mathbb Z)$ 的**扭挠子群**（有限阶）。为与本文 $\mathbb Z_2$ 框架匹配，**引入假设** **（$A_{\rm tors2}$）**：$c_1(\mathcal L_S)$ 的扭挠阶为某个 $2^m$，于是其模二约化 $\rho(c_1(\mathcal L_S))$ 完整刻画 $H^2$ 通道；**（$A_{!H^2}$）**——允许的参数二维循环生成 $H_2(X^\circ,\partial X^\circ;\mathbb Z_2)$。
 
-**自旋平凡性（$A_{\rm spin}$）**：一般流形时假设 $w_2(TM)=0$。**小因果钻石情形自动满足**：因果钻石可形变收缩到带边紧域，$\Rightarrow H^2(M,\partial M;\mathbb Z_2)=0$。
+**自旋平凡性（$A_{\rm spin}$）**：一般流形时假设 $w_2(TM)=0$。**小因果钻石情形自动满足**：令工作域 $U:=B_\ell(p)$，则 $U$ 可形变收缩到带边紧域，$\Rightarrow H^2(U,\partial U;\mathbb Z_2)=0$。
 
-**（平直线丛扭挠口径，统一声明 $A_{\rm tors2}$）**
+**（平直线丛扭挠口径；$A_{\rm tors2}$ 的明确定义）**
 
-散射相之平直线丛 $\mathcal L_S$ 取自 $U(1)$‑表示且 $c_1(\mathcal L_S)$ 为**二幂阶扭挠**（$2^m$）。据此其模二约化 $\rho(c_1(\mathcal L_S))\in H^2(X^\circ;\mathbb Z_2)$ **穷尽** $H^2$‑通道并进入 $K$。若存在奇数阶扭挠分量，则需改用相应有限群（如 $\mathbb Z_n$）的 BF 顶项；本文不展开，所有充要/等价陈述均在 $A_{\rm tors2}$ 下理解。
+若散射相之线丛 $\mathcal L_S$ 取自 $U(1)$‑表示，则 $c_1(\mathcal L_S)$ 为**扭挠**类（有限阶）。为与本文 $\mathbb Z_2$ 架构对齐，**我们假设** $c_1(\mathcal L_S)$ 的扭挠阶为某个 $2^m$（记作 $A_{\rm tors2}$）。在此假设下，$\rho(c_1(\mathcal L_S))\in H^2(X^\circ;\mathbb Z_2)$ **穷尽** $H^2$‑通道并进入 $K$。若存在奇数阶扭挠分量，则需改用相应有限群（如 $\mathbb Z_n$）的 BF 顶项；本文不展开，后续充要/等价陈述均在 $A_{\rm tors2}$ 下理解。
 
 ---
 
@@ -257,31 +263,17 @@ $$
 
 **（注）** "允许"的二维循环族按 **$A_{\rm rel\text{-}gen}$** 之生成性取定；若允许族未生成全部相对二同调，则上式仅给出**必要**而非**充分**判据。
 
-### 定理 1（Null 链：两层判据）
+### 定理 1（Null 链：两层判据，取 $A_{\rm LRI}$ 为门槛）
 
-**（$R_w$ 可逆性门槛）** 在小因果钻石 $B_\ell(p)$ 且 $[0,\lambda_\ast]$ 内无共轭点时，取权 $w\in C^1([0,\lambda_\ast])$ 且 $w(\lambda)\ge w_0>0$。对 $f\in C^0(B_\ell(p))\cap L^\infty(B_\ell(p))$ 的加权光线变换
-
-$$
-R_w[f](\gamma):=\int_0^{\lambda_\ast} w(\lambda)\,f(\gamma(\lambda))\,\mathrm d\lambda
-$$
-
-在 $B_\ell(p)$ 可逆，并有稳定估计
-
-$$
-\|f\|_{L^\infty(B_\ell(p))}\le C(g,w,\lambda_\ast)\,\sup_\gamma |R_w[f](\gamma)| .
-$$
-
-下文取 $f:=R_{kk}-8\pi G\,T_{kk}$ 并据此完成"族约束 ⇒ 点态"的闭包。
-
-在上述几何正则性、协变相空间边界/角点处方以及 **$A_{\rm LRI}$** 下，有
+在小因果钻石 $B_\ell(p)$ 的无共轭点域内，满足 Hadamard 态、角点处方、$\nabla^aT_{ab}=0$、$\delta T=0$ **并假设 $A_{\rm LRI}$（加权光线变换在 $B_\ell(p)$ 单射且具有稳定估计）**时，
 
 $$
 G_{ab}+\Lambda g_{ab}=8\pi G\,T_{ab},\qquad \delta^2 S_{\rm rel}=\mathcal E_{\rm can}[h,h]\ge 0 .
 $$
 
-我们在 $[0,\lambda_\ast]$ 无共轭点、Hadamard 态与角点处方保证辛流闭合且 $\delta H_\chi$ 可积、**$\nabla^aT_{ab}=0$、$n\ge3$** 的门槛内工作；此时加权光线变换在小钻石上可逆，因而"族约束 ⇒ 点态"等式成立。首式由"族约束 $\Rightarrow$ 点态"的 Radon‑型闭包与零锥刻画得到；次式与 Hollands–Wald 规范能量非负等价。
+首式由"族约束 $\Rightarrow$ 点态"的 Radon‑型闭包与零锥刻画得到（取 $f:=R_{kk}-8\pi G\,T_{kk}$，配合 $A_{\rm LRI}$ 单射性即得 $R_{kk}=8\pi G\,T_{kk}$，再经零锥刻画与 Bianchi 恒等式升格为张量方程）；次式与 Hollands–Wald 规范能量非负等价。
 
-**引理 1″**（小因果钻石上的加权光线变换可逆与稳定）
+**引理 1″**（小因果钻石上的加权光线变换可逆与稳定；背景说明）
 
 在 $g\in C^3$、$T_{ab}\in C^1$ 且 $[0,\lambda_\ast]$ **无共轭点**的门槛下，取 $w\in C^1([0,\lambda_\ast])$ 正且有界。则加权光线变换
 
@@ -295,7 +287,7 @@ $$
 \|f\|_{L^\infty(B_\ell(p))}\le C\,\sup_{\gamma}|R_w[f](\gamma)|.
 $$
 
-取 $f:=R_{kk}-8\pi G\,T_{kk}$ 即得族约束 $\Rightarrow f\equiv 0$，配合零锥刻画与 Bianchi 恒等式升格为 $G_{ab}+\Lambda g_{ab}=8\pi G\,T_{ab}$。
+**（注）** 本文将此可逆性与稳定估计作为门槛假设 $A_{\rm LRI}$ 使用，不再作为本文内证成的结论。
 
 **引理 1′（零锥 ⇒ 共形型，$n\ge3$，连通版）**
 
@@ -379,6 +371,8 @@ I_{\rm BF}[a,b]=\mathrm i\pi\!\int_{(Y,\partial Y)} b\smile\boldsymbol\delta a+\
 $$
 
 **规变良定与上同调投影**
+
+**（有限性门槛）** 假设 $Y$ 与 $\partial Y$ 为有限 CW 复形（故 $H^\bullet(Y,\partial Y;\mathbb Z_2)$ 有限维），于是对 $[a]\in H^1(Y,\partial Y)$、$[b]\in H^{d-2}(Y,\partial Y)$ 的求和是**有限群**上的离散求和，可用特征正交性得 $Z_{\rm top}\propto\delta([K])$。
 
 取 $a\in C^1(Y;\mathbb Z_2)$、$b\in C^{d-2}(Y;\mathbb Z_2)$、
 
@@ -465,7 +459,7 @@ $$
 
 **E‑(a′)（分解；***门槛合订本***）**
 
-在 **$A_\partial$、$A_{\rm rel\text{-}gen}$、$A_{!H^2}$、$H^1$‑通道可检测性（矩阵 $P$ 行满秩）、**$A_{\rm tors2}$** 与（一般流形时）**$A_{\rm spin}$**，并假定 $Y$ 与 $\partial Y$ 满足 Poincaré–Lefschetz 对偶的门槛下，
+在 **$A_\partial$、$A_{\rm rel\text{-}gen}$、$A_{!H^2}$、$H^1$‑通道可检测性（检测回路生成 $H_1$）、**$A_{\rm tors2}$** 与（一般流形时）**$A_{\rm spin}$**，并假定 $Y$ 与 $\partial Y$ 满足 Poincaré–Lefschetz 对偶的门槛下，
 
 $$
 \boxed{(ii)\ \Longleftrightarrow\ (iii^\star)}.
@@ -473,13 +467,13 @@ $$
 
 若缺少 $A_{\rm rel\text{-}gen}$ 或 $A_{!H^2}$，则仅有 $(ii)\Rightarrow(iii^\star)$ 的**必要性**。
 
-进一步，若处于"定理 1"的正则门槛并满足**假设 4（模二版）**，则
+**E‑(b″)（对齐推出）** 在"定理 1"的正则门槛并满足**假设 4（模二版）**与**假设 4′**下，
 
 $$
 \boxed{(i)\ \Longrightarrow\ (iii^\star)\ (\Longleftrightarrow\ (ii)).}
 $$
 
-（在三类可解族中，局域穿孔使 $H^2(X^\circ,\partial X^\circ)=0$，于是 $(iii)=(iii^\star)$。）
+（在三类可解族中，$H^2(X^\circ,\partial X^\circ)=0$，故 $(iii)=(iii^\star)$。）
 
 **模型域注释（统一）**
 
@@ -535,7 +529,8 @@ $$
 偶宇称通道
 
 $$
-S(k)=\frac{2k-\mathrm i\lambda}{2k+\mathrm i\lambda}=e^{2\mathrm i\delta(k)},\qquad f(k)=1+\frac{\mathrm i\lambda}{2k}.
+S(k)=\frac{2k-\mathrm i\lambda}{2k+\mathrm i\lambda}=e^{2\mathrm i\delta(k)},\qquad
+\text{取 **Jost 函数** } f(k):=1+\frac{\mathrm i\lambda}{2k}\ \text{使}\ S(k)=\frac{f(-k)}{f(k)} .
 $$
 
 **复参数小环（真奇点）**：取 $E(t)=E_0$、$\lambda(t)=-2\mathrm i\sqrt{E_0}+\rho\,\mathrm e^{\mathrm i t}$，则
@@ -712,7 +707,7 @@ $$
 
 该配对在 $\mathbb Z_2$ 系数下良定且不依赖取向。由 $A_{\rm rel\text{-}gen}$，允许的相对二维循环生成 $H_2(Y,\partial Y;\mathbb Z_2)$，从而 $\langle K,[S]\rangle=0$ 对所有相对二维循环成立当且仅当 $[K]=0\in H^2(Y,\partial Y;\mathbb Z_2)$。
 
-**引理 VII.1（相对类的提升与唯一性）** 设 $r:H^2(Y;\mathbb Z_2)\to H^2(\partial Y;\mathbb Z_2)$。若 $r([K])=0$，则存在唯一的 $[\widehat K]\in H^2(Y,\partial Y;\mathbb Z_2)$ 满足 **$j^\ast([\widehat K])=[K]$**，其中 **$j^\ast$** 为自然映射。
+**引理 VII.1（相对类的提升；在 $A_\partial$ 下的唯一性）** 设 $r:H^2(Y;\mathbb Z_2)\to H^2(\partial Y;\mathbb Z_2)$。若 $r([K])=0$，则存在 $[\widehat K]\in H^2(Y,\partial Y;\mathbb Z_2)$ 使 **$j^\ast([\widehat K])=[K]$**。其唯一性为：若 $[\widehat K]_1,[\widehat K]_2$ 皆为提升，则 $[\widehat K]_1-[\widehat K]_2\in \operatorname{Im}\big(H^1(\partial Y)\to H^2(Y,\partial Y)\big)$；**在 $A_\partial$（边界平凡化）下唯一**。
 
 **推论 VII.2（生成—检测 ⇒ 相对类平凡）** 若允许的相对二维循环生成 $H_2(Y,\partial Y;\mathbb Z_2)$，且对所有生成元配对 $\langle [\widehat K],[S]\rangle=0$，则 $[\widehat K]=0$，即 $[K]=0$。证明仅用到 Poincaré–Lefschetz 对偶与 $\mathbb Z_2$ 系数下的特征正交性。
 
