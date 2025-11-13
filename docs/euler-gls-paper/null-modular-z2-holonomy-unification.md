@@ -1,6 +1,6 @@
 # Null–Modular 双覆盖统一原理：在因果钻石上对齐信息几何变分与散射半相位的 $\mathbb{Z}_2$ holonomy
 
-Version: 1.9
+Version: 2.6
 
 ## Abstract
 
@@ -95,8 +95,9 @@ $$
 \big\langle K,\ \Sigma_1^{(j)}\times\gamma_1\big\rangle=\big\langle \mathfrak w_j,[\gamma_1]\big\rangle\ \ (\forall j),
 $$
 
-从而可**唯一**确定每个 $\mathfrak w_j$；据此 $[K]=0$ 同时消去 $H^2$ 与 $H^1$ 两通道并平凡化 $\nu_{\sqrt{\det S}}$。
-**生成性假设（相对二同调，记作 A_\text{gen}）**：允许的物理二维循环族 $\mathcal S$ **生成** $H_2(Y,\partial Y;\mathbb Z_2)$，即任意 $[S]\in H_2(Y,\partial Y;\mathbb Z_2)$ 可由 $\mathcal S$ 中有限个元素的和表示。该假设与 $H^1$‑通道可检测性共同保证由回路上 $\nu_{\sqrt{\det S}}(\gamma)\equiv1$ 可推出 $[K]=0$。
+从而可**唯一**确定每个 $\mathfrak w_j$；据此可消去 $H^1\!\times H^1$ 通道并平凡化由 $H^1$ 控制的 $\nu_{\sqrt{\det S}}$。$H^2$ 通道 $\pi_X^\ast\rho!\big(c_1(\mathcal L_S)\big)$ 的消去需另加假设（见下）。
+**$H^2$ 通道可检测性（参数侧，记作 $A_{!H^2}$）**：允许的参数二维循环族 ${\gamma_2\subset X^\circ}$ 在相对同调中**生成** $H_2(X^\circ,\partial X^\circ;\mathbb Z_2)$，使得 $\langle \rho(c_1(\mathcal L_S)),[\gamma_2]\rangle$ 的各分量皆可被检测。
+**生成性假设（相对二同调，记作 A_\text{gen}）**：允许的物理二维循环族 $\mathcal S$ **生成** $H_2(Y,\partial Y;\mathbb Z_2)$，即任意 $[S]\in H_2(Y,\partial Y;\mathbb Z_2)$ 可由 $\mathcal S$ 中有限个元素的和表示。**该假设与 $H^1$‑通道可检测性、$H^2$‑通道可检测性 $A_{!H^2}$ 以及自旋平凡性 $A_{\text{spin}}$ 共同保证**：若一切物理回路上 $\nu_{\sqrt{\det S}}(\gamma)\equiv1$，则 $[K]=0$（相对上同调）。其中以 $\Sigma_1\times\gamma_1$ 与 ${\mathrm{pt}}\times\gamma_2$ 两类检测子二维循环分别消去 $H^1\!\times H^1$ 与 $H^2$ 通道。
 **自旋平凡性（M 侧，记作 A_\text{spin}）**：$w_2(TM)=0$。
 说明：该假设剔除 $H^2(M;\mathbb Z_2)$ 分量对 $[K]$ 的贡献，使由回路数据得到的 (iii) 能完整推出 (ii)。
 
@@ -162,10 +163,17 @@ $$
 
 ### 定理 5（统一原理：分解陈述）
 
-**E‑(a)（充分 + 生成性）** 在定理 1–4 的门槛与对齐假设、**$H^1$‑通道可检测性**、**生成性假设 A_\text{gen}** **以及自旋平凡性 A_\text{spin}** 下，以下命题等价：
+**E‑(a)（充分 + 生成性）** 在定理 1–4 的门槛与对齐假设、**$H^1$‑通道可检测性**、**生成性假设 $A_{\text{gen}}$** 以及 **自旋平凡性 $A_{\text{spin}}$** 下，成立
+
+$$
+(ii)\ \Longleftrightarrow\ (iii),\qquad (i)\ \Longrightarrow\ (ii)\ (\Longleftrightarrow\ (iii)).
+$$
+
+即：$[K]=0\in H^2(Y,\partial Y;\mathbb Z_2)$ 与"一切物理回路上 $\nu_{\sqrt{\det S}}(\gamma)\equiv1$"等价；且小钻石上的一阶极值与二阶非负进一步推出该等价类。其中：
 (i) 小钻石上一阶极值与二阶非负；
 (ii) $[K]=0\in H^2(Y,\partial Y;\mathbb Z_2)$；
 (iii) 一切物理回路上 $\nu_{\sqrt{\det S}}(\gamma)\equiv 1$。
+(i)(ii)(iii) 的其余方向在一般情形**不主张**成立。
 **E‑(b)（模型域内必要）** 在一维 $\delta$ 势、二维 Aharonov–Bohm 与端点散射（Class D/DIII）的可解族中，若 (iii) 成立，则 (ii) 成立（相对上同调意义）。
 
 ---
@@ -195,7 +203,7 @@ $$
 
 ### 定理 3（体积分、一般维度、相对上同调）
 
-$a\in C^{1}$、$b\in C^{d-2}$ 使 $\deg(a\smile\delta b)=1+(d-1)=d$、$\deg(b\smile K)=(d-2)+2=d$。闭流形上变分给 $\delta b=0,\ \delta a=K$。若 $[K]\neq 0$，$\delta a=K$ 无全球解；对 $[a]$ 求和把配分函数投影到 $[K]=0$。含边界时以相对上同调 $H^\bullet(Y,\partial Y;\mathbb Z_2)$ 替代，并加入边界对偶项 $\mathrm i\pi\int_{\partial Y}a\smile b$ 保证离散 Stokes 与变分无缺口；结论即 $[K]=0\in H^2(Y,\partial Y;\mathbb Z_2)$ 的充要条件。
+$a\in C^{1}$、$b\in C^{d-2}$ 使 $\deg(a\smile\delta b)=1+(d-1)=d$、$\deg(b\smile K)=(d-2)+2=d$。闭流形上变分给 $\delta b=0,\ \delta a=K$。若 $[K]\neq 0$，$\delta a=K$ 无全球解；**先对 $[a]$ 求和仅强制 $\delta b=0$，再对闭的 $[b]$ 上同调类求和把配分函数在上同调上投影到 $[K]=0$（等价地，直接对 $[b]$ 求和得到 $\delta([K])$）**。含边界时以相对上同调 $H^\bullet(Y,\partial Y;\mathbb Z_2)$ 替代，并加入边界对偶项 $\mathrm i\pi\int_{\partial Y}a\smile b$ 保证离散 Stokes 与变分无缺口；结论即 $[K]=0\in H^2(Y,\partial Y;\mathbb Z_2)$ 的充要条件。
 
 ### 定理 4
 
@@ -203,7 +211,7 @@ $a\in C^{1}$、$b\in C^{d-2}$ 使 $\deg(a\smile\delta b)=1+(d-1)=d$、$\deg(b\sm
 
 ### 定理 5
 
-E‑(a) 由定理 3 得 (ii)$\Rightarrow$(iii)，由定理 1 与 4 得 (i)$\Rightarrow$(iii)；以检测子回路生成相对二同调得 (iii)$\Rightarrow$(ii)。E‑(b) 在可解族中与 $D$ 横截的回路构造完成。
+**E‑(a)** 由定理 3 得 $(ii)\Rightarrow(iii)$；由检测子回路生成相对二同调得 $(iii)\Rightarrow(ii)$，故 $(ii)\Leftrightarrow(iii)$。再由定理 1 与 4 得 $(i)\Rightarrow(iii)$，于是 $(i)\Rightarrow(ii)\Leftrightarrow(iii)$。E‑(b) 在可解族中与 $D$ 横截的回路构造完成。
 
 ---
 
@@ -245,14 +253,14 @@ Class D：$Q=\operatorname{sgn}\det r(0)$；Class DIII：$Q=\operatorname{sgn}\o
 
 ## Discussion
 
-**选择原则的充要化**：对一切允许二维循环 $S\subset Y$ 有
+**选择原则的判据与前提**：对一切允许二维循环 $S\subset Y$ 有
 
 $$
 \big\langle\,K\,,\,[S]\big\rangle
 =\Big\langle \pi_M^\ast w_2(TM)+\sum_j \pi_M^\ast\mu_j\smile \pi_X^\ast\mathfrak w_j+\pi_X^\ast\rho\!\big(c_1(\mathcal L_S)\big),[S]\Big\rangle=0
 $$
 
-为"物理可实现扇区"的充要条件；若 $[K]\neq0$，存在回路使 $\nu_{\sqrt{\det S}}=-1$。
+$\langle K,[S]\rangle=0$ 是"物理可实现扇区"的**必要条件**；在**生成性假设** $A_{\text{gen}}$（相对上同调）成立时，上述条件亦为**充分条件**，即当且仅当 $[K]=0\in H^2(Y,\partial Y;\mathbb Z_2)$。进一步，在 $H^1$‑通道可检测性与 $A_{\text{gen}}$ 成立时，存在回路 $\gamma$ 使 $\nu_{\sqrt{\det S}}(\gamma)=-1$ 当且仅当 $[K]\ne0$。
 **充分 vs 必要**：模组—散射对齐提供充分而非必要条件；在非平衡/非局域情形实数环量可能不等，但 $\mathbb Z_2$ 投影常稳定。
 **OS/KMS–Fisher**：反射正性与条带解析性给出延拓后 $g^{(L)}_{tt}<0$、$g^{(L)}_{ij}\succ0$ 与 $g^{(L)}_{ti}|_{t=0}=0$ 的充分判据，作为几何侧结构性互补。
 
