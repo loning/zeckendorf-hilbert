@@ -1,6 +1,6 @@
 # 自指散射与费米子的诞生：Riccati 平方根、旋量双覆盖与 $\mathbb{Z}_2$ 交换相位
 
-Version: 2.27
+Version: 2.29
 
 ## 摘要
 
@@ -44,7 +44,7 @@ $$
 
 给出存在性与双曲型区域内两不动点交换的定理，并证明其交换奇偶与 $\nu_{\sqrt S}$ 一致。以一维 $\delta$-势与 Aharonov–Bohm 模型为例，给出显式绕数计算，并用"鉴别子模 2 交数"统一复小环与实折返路径。拓扑超导端点散射方面，区分 Altland–Zirnbauer 对称类：Class D 的 $\operatorname{sgn}\det r(0)$ 与 Class DIII 的 $\operatorname{sgn}\operatorname{Pf}r(0)$ 分别等价于 $\sqrt{\det r(0)}$ 的分支号符。该框架在 $d\ge 3$ 的费米/玻色统计直接适用；在 $d=2$ 给出任意子 $U(1)$ 统计的 $\mathbb{Z}_2$ 投影。
 
-**实验预言（单次 $\mathbb{Z}_2$ 读出协议，最终版）**
+**实验预言（单次 $\mathbb{Z}_2$ 读出协议）**
 
 在门控可调 Josephson 结中，取 Andreev 通道数 $\lesssim 4$ 且能够分辨**单一** $\pi$ 跃迁。设超导相位差 $\phi$ 在一次 $2\pi$ 扫描中以步长 $\Delta\phi$ 记录零偏置信号 $Y(\phi)$（电导或干涉幅）。
 
@@ -183,9 +183,9 @@ $$
 
 势 $V$ 属短程类：在 $d=1$（以及某些 $d=2$ 的附加条件下）可保证 $S(E,\lambda)-\mathbf 1$ 为迹类；而在更一般的 $d\ge 2$ 情形通常仅能得到 $S(E,\lambda)-\mathbf 1$ 属合适的 Schatten 类，因而需使用修正 Fredholm 行列式 $\det_p$ 及其连续化来定义谱位移。下文为简洁起见以"$\det/\det_p$"统记。其余假设保持不变：$(E,\lambda)\mapsto S$ 沿闭路 $\gamma$ 分段 $C^1$，且 $\gamma$ 回避阈值与嵌入本征值；若无法完全回避阈值，则用模 2 交数描述。单通道时 $S=e^{2i\delta}$；多通道/分波时以 $\det/\det_p S$ 作为整体相位指数。
 
-**假设 A（Schatten‑连续性与阈值规避的一致化选择，最终版）**
+**假设 A（Schatten‑连续性与阈值规避的一致化选择）**
 
-我们只使用 $\xi_p$ 的**连续化支**来定义整体相位指数，不再要求 $\det_p S\in U(1)$。旧稿的 (A3′)/(A4′) 版本作废，以本版的 (A3″)/(A4″) 为准。
+我们只使用 $\xi_p$ 的**连续化支**来定义整体相位指数；**不要求** $\det_p S\in U(1)$。
 
 令 $\gamma\subset X$ 为闭路。存在 $p\in\mathbb N,\ p\ge2$ 与 $\varepsilon_0>0$，使得：
 
@@ -208,7 +208,7 @@ $$
 \nu_{\sqrt S}(\gamma):=\exp\Bigl(-i\pi\oint_{\gamma_\varepsilon} d\xi_p\Bigr).
 $$
 
-上述 $\mathbb Z_2$ 读数对规避方式**不敏感**。**（说明：旧稿的 (A3′)/(A4′) 版本作废，以本版为准。）**
+上述 $\mathbb Z_2$ 读数对规避方式**不敏感**。
 
 **引理 0.A（$\xi_p$ 的连续化与模 $2$ 稳定性）**
 
@@ -394,7 +394,7 @@ $$
 
 ## 3 Riccati 变量、Weyl–Titchmarsh 与 Jost 结构
 
-**注（谱回路 vs 参回路，最终版）**
+**注（谱回路 vs 参回路）**
 
 本节的回路 $C$ 位于 $k$-平面，用于分析 $S(k)=f(-k)/f(k)$ 的解析结构，给出 $\deg(S|_C)$ 的**谱参数**计数；而主文中的 $\gamma$ 是 $(E,\lambda)$-空间中的**外参闭路**。我们在**整数层级**从不比较 $\deg(S|_C)$ 与 $\deg(\mathfrak s|_\gamma)$；仅在 §4–§5 的桥接下，把两者作**模 $2$** 投影的比较，用于判定 $\nu_{\sqrt S}(\gamma)$。
 
@@ -437,7 +437,7 @@ $$
 
 对闭路 $\gamma\subset X$（若 $\gamma\cap D\neq\varnothing$，按 §0.2a 取规避闭路 $\gamma_\varepsilon\subset X^\circ$），定义**本征相位的谱流** $\mathrm{Sf}(\gamma)$ 为：沿 $\gamma_\varepsilon$ 连续追踪本征相位 $\theta(E,\lambda)$，每当其横截参考相位（如 $\theta=0$ 或 $\pi$）时计数 $\pm1$（穿越方向决定符号），总计数为 $\mathrm{Sf}(\gamma)\in\mathbb{Z}$。在迹类假设下，$\mathrm{Sf}(\gamma)$ 与绕数 $\deg(\mathfrak s|_\gamma)$ 一致；在一般 Schatten 情形，仅其奇偶 $(-1)^{\mathrm{Sf}(\gamma)}$ 为不变量。
 
-**定义 4.0+（单位圆的模 2 谱流，正式版）**
+**定义 4.0+（单位圆的模 2 谱流）**
 
 给定沿规避闭路 $\gamma_\varepsilon\subset X^\circ$ 的连续幺正族 $S(E,\lambda)$。若仅在有限多个参数点，有本征相位 $\theta_j$ **一阶横截**参考相位 $0$ 或 $\pi$（即穿越瞬间 $\partial_t\theta_j\neq0$），其余时刻谱在 $(0,\pi)$ 处保持**开隙**，则定义
 
@@ -561,11 +561,11 @@ $$
 
 **补充（非横截情形的稳定化）** 若 $D$ 含角点/自交/切触等非正则点，取任意小的 $C^1$ 扰动将 $(\gamma,D)$ 调至**分层横截**情形；由模 2 同伦不变性与 $w_D\in H^1(X^\circ;\mathbb Z_2)$ 的自然性，$I_2(\gamma,D)$ 与 $\exp(-i\pi\oint d\xi_p)$ 在 $\mathbb Z_2$ 层级保持不变。
 
-**命题 5.0bis（Alexander 对偶与横截代表，修订版）**
+**命题 5.0bis（Alexander 对偶与横截代表）**
 
 令 $w_D\in H^1(X^\circ;\mathbb Z_2)$ 为由**余维一**分片光滑子流形 $D$ 诱导的链接类。则：
 
-**(a)** 若闭路 $\gamma\pitchfork D$，有
+**(a)（二维特例）** 若 **$\dim X=2$** 且闭路 $\gamma\pitchfork D$，则
 
 $$
 I_2(\gamma,D)=\langle w_D,[\gamma_\varepsilon]\rangle=\#\bigl(\gamma\cap D\bigr)\ \bmod 2 .
@@ -578,7 +578,7 @@ I_2(\gamma,D)=\big([\gamma_\varepsilon]\cdot[\partial N(D)]\big)\bmod2
 =\#\big(\gamma_\varepsilon\cap\partial N(D)\big)\bmod2,
 $$
 
-其中"$\cdot$"为**同调交数（模 2）**。**仅当 $\dim X=2$ 且 $\gamma\pitchfork D$** 时，上式退化为 (a) 的 $\#(\gamma\cap D)\bmod2$。两式对小的 $C^1$ 变形与规避同伦稳定。
+其中"$\cdot$"为**同调交数（模 2）**。**仅当 $\dim X=2$ 且 $\gamma\pitchfork D$ 时，(b) 式退化为上面的二维特例 (a) 的 $\#(\gamma\cap D)\bmod2$。两式对小的 $C^1$ 变形与规避同伦稳定。
 
 **横截局部模型假设（单通道化跨 $\pi$）**
 
@@ -720,7 +720,7 @@ $$
 
 (B3) 双曲区域 ${\Delta>0}$ 在 $\gamma$ 的像的邻域非空且连通，且 $\gamma$ 仅以横截方式穿越 ${\Delta=0}$。
 
-**定理 7.0*（交换 ⇒ 跨 $\pi$ 的充分条件；精炼版）**
+**定理 7.0*（交换 ⇒ 跨 $\pi$ 的充分条件）**
 
 在假设 B 下，设沿闭路参数化 $t\mapsto(\tau(t),E(t))$。令
 
