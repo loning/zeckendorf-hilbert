@@ -648,19 +648,19 @@ $$
 在 $(E,\lambda)$‑平面取小矩形
 
 $$
-\gamma=\partial\big([E_0-\varepsilon,E_0+\varepsilon]\times[-\varepsilon,\varepsilon]\big),
+\gamma=\partial\big([E_0-\varepsilon,E_0+\varepsilon]\times[-\varepsilon,\varepsilon]\big),\qquad E_0,\varepsilon>0,
 $$
 
-选择 $E_0,\varepsilon>0$ 使 $E_0-\varepsilon<0<E_0+\varepsilon$。对 $\delta$‑势有
+选择 $E_0,\varepsilon$ 使 **$E_0-\varepsilon<0<E_0+\varepsilon$**。对 $\delta$‑势有
 
 $$
 D={\lambda=0}\cup{E=0,\ \lambda<0}.
 $$
 
-则 $\gamma$ 与 $D$ 横截三次（在 $(E_0-\varepsilon,0)$、$(E_0+\varepsilon,0)$ 与 $(0,-\varepsilon)$），故
+按 §5 规避规则在 ${\lambda=0}$ 处作小半圆推开。则 $\gamma$ 与 $D$ **横截三次**（在 $(E_0-\varepsilon,0)$、$(E_0+\varepsilon,0)$ 与 $(0,-\varepsilon)$），故
 
 $$
-I_2(\gamma,D)=3\bmod2=1,\qquad \nu_{\sqrt S}(\gamma)=-1 .
+I_2(\gamma,D)=3\bmod2=1,\qquad \nu_{\sqrt S}(\gamma)=-1.
 $$
 
 规避方向仅影响整数绕数号符，不改上述 $\mathbb Z_2$ 结论。
@@ -1103,7 +1103,15 @@ $$
 
 随 $\theta$ 递增，$\deg(S|_\gamma)=-1$。该例保持在 $X^\circ$ 内，**仅用于展示整数绕数**。
 
-**实参数折返环（$\delta$‑势）** 取 $E_0-\varepsilon<0<E_0+\varepsilon$。则 $\gamma$ 与 $D={\lambda=0}\cup{E=0,\lambda<0}$ 横截三次，$I_2(\gamma,D)=1\Rightarrow \nu_{\sqrt S}=-1$；规避仅影响整数号符，不改 $\mathbb Z_2$ 结论。
+**实参数折返环（$\delta$‑势）**
+
+取 $E_0,\varepsilon>0$ 满足 **$E_0-\varepsilon<0<E_0+\varepsilon$**，并按 §5 以半径 $o(\varepsilon)$ 的小半圆规避 ${\lambda=0}$。对 $\delta$‑势，
+
+$$
+D={\lambda=0}\cup{E=0,\ \lambda<0}.
+$$
+
+此时 $\gamma$ 与 $D$ 的横截发生在 $(E_0-\varepsilon,0)$、$(E_0+\varepsilon,0)$ 与 $(0,-\varepsilon)$，合计 **3** 次，故 $I_2(\gamma,D)=1\Rightarrow \nu_{\sqrt S}(\gamma)=-1$；整数绕数号符依赖规避方向，但**模 2** 结果不变。
 
 **规避与整数不变性** 折返闭路不可完全避开 $D$；将其以小半圆规避后得到的 $\deg(\mathfrak s|_\gamma)$ 的**号符**取决于规避方向，但其奇偶固定，且与 $\nu_{\sqrt S}$ 与 $I_2$ 一致。
 
