@@ -54,6 +54,8 @@
     - [边界作为统一舞台:变分完备性、时间刻度与拓扑分支](./euler-gls-paper-bondary/boundary-as-unified-stage-go.md)
     - [边界驱动的分形生成机制:从时间刻度母尺到反馈散射与临界界面](./euler-gls-paper-bondary/boundary-driven-fractal-generation.md)
     - [观察者世界的截面结构：因果一致性、延迟选择与边界时间几何中的时间双缝干涉](./euler-gls-paper-bondary/observer-world-section-structure-causality-delayed-choice-time-double-slit.md)
+    - [观察者世界的截面结构：因果一致性、条件化与边界时间几何](./euler-gls-paper-bondary/observer-world-section-structure-causality-conditionalization.md)
+    - [三位一体母尺—边界时间几何—Null–Modular 双覆盖的一体化统一理论：从散射相位到时间晶体、局域量子条件与宇宙学](./euler-gls-paper-bondary/trinity-master-scale-boundary-time-geometry-null-modular-unification.md)
 - [Euler-GLS 扩展系列]()
     - [Null–Modular 双覆盖与重叠因果钻石链](./euler-gls-extend/null-modular-double-cover-causal-diamond-chain.md)
     - [有限阶纪律下的误差可控性](./euler-gls-extend/error-controllability-finite-order-pswf-dpss.md)
@@ -69,7 +71,6 @@
     - [时间晶体—Null–Modular $\mathbb Z_2$ 环量统一:从 Floquet 与 Lindblad 到体积分 BF 的相对上同调判据](./euler-gls-extend/time-crystals-null-modular-z2-holonomy-unification.md)
     - [时间晶体的统一框架与工程化路径:从 Floquet 相到开系极限、准周期驱动与拓扑保护](./euler-gls-extend/time-crystals-unified-framework-engineering.md)
     - [纠缠—意识—时间的统一延迟理论:谱–散射–信息–折扣的四重桥接与跨模态可检刻度](./euler-gls-extend/entanglement-consciousness-time-unified-delay-theory.md)
-    - [观察者世界的截面结构：因果一致性、条件化与边界时间几何](./euler-gls-extend/observer-world-section-structure-causality-conditionalization.md)
 
 - [Euler-Quantum 统一量子理论]()
     - [窗化信息几何量子测量统一框架](./euler-quantum/wsig-qm-unified-quantum-measurement-framework.md)
