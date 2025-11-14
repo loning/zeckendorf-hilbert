@@ -15,7 +15,7 @@ $$
 并以 $(m,n)=(3,2)$ 推得 $(SU(3)\times SU(2)\times U(1))/\mathbb Z_6$。通过**相对 $K$ 理论边界映射**统一"投影‑陈类"与"质量‑clutching（$\det\widehat\Phi$ 绕数）"，在二维横截 $S^1$ 上得到
 
 $$
-\mathrm{Ind}(\slashed D_A+\Phi)=\mathrm{wind}\,\det\widehat\Phi=\langle c_1(\mathcal L_\Phi),[S^1]\rangle .
+\mathrm{Ind}(\not{D}_A+\Phi)=\mathrm{wind}\,\det\widehat\Phi=\langle c_1(\mathcal L_\Phi),[S^1]\rangle .
 $$
 
 在 $\mathbb{CP}^2$ 的 spin$^c$/Dolbeault 口径计算 $\mathrm{index}=3$ 作为"三代原型"。本文给出所有核心命题与定理的**完整证明**，并提供两条**协议级**可复现实验/数值方案（纯化干涉环与光子 Dirac‑质量涡旋）。附录包含：统一围道与全域光滑性、群同构的 gcd/lcm 归一化与"选根"、相对 $K$ 理论与 Chern 角色交换图的严格证明、Callias/Anghel–Bunke 指数定理的 Fredholm 构造、以及 $\Gamma=\mathbb Z_6$ 时最小电荷 $1/6$ 的一页算术推导。
@@ -73,7 +73,7 @@ $$
 若外区可逆 $\Phi^2\ge cI$、$[\nabla,\Phi]\in L^\infty$、$\Phi\in W^{1,2}_{\rm loc}$ 等条件成立，则
 
 $$
-\mathrm{Ind}(\slashed D_A+\Phi)=\deg\big(\widehat\Phi|_{S^{d-1}_\infty}\big)\in \pi_{d-1}(U).
+\mathrm{Ind}(\not{D}_A+\Phi)=\deg\big(\widehat\Phi|_{S^{d-1}_\infty}\big)\in \pi_{d-1}(U).
 $$
 
 由 Bott 周期性 $\pi_k(U)=\mathbb Z$（$k$ 奇）、$0$（$k$ 偶），得：仅当**横截维 $d$ 为偶**时指数可能非零；$d=2$ 时
@@ -85,7 +85,7 @@ $$
 
 **定理 E（$\mathbb{CP}^2$ 指标）**
 $\mathrm{Td}(T\mathbb{CP}^2)=1+\tfrac32H+H^2$、$\mathrm{ch}(\mathcal O(1))=1+H+\tfrac12H^2$，故
-$\mathrm{index}\,\slashed D^{\mathcal O(1)}=3$。
+$\mathrm{index}\,\not{D}^{\mathcal O(1)}=3$。
 
 **推论 F（SM 全局群）**
 由定理 A、命题 B，得到
@@ -186,20 +186,20 @@ $$
 \mathrm{Td}(T\mathbb{CP}^2)=1+\tfrac12c_1+\tfrac1{12}(c_1^2+c_2)=1+\tfrac32H+H^2,\quad \mathrm{ch}(\mathcal O(1))=e^H=1+H+\tfrac12H^2.
 $$
 
-顶维系数 $1+\tfrac32+\tfrac12=3$，故 $\mathrm{index}\,\slashed D^{\mathcal O(1)}=3$。Kodaira 消失确保 $\chi=h^0=3$。
+顶维系数 $1+\tfrac32+\tfrac12=3$，故 $\mathrm{index}\,\not{D}^{\mathcal O(1)}=3$。Kodaira 消失确保 $\chi=h^0=3$。
 
 ---
 
 ## 6 Callias/Anghel–Bunke 指数＝度数；二维绕数公式（定理 D）
 
 **6.1 Fredholm 条件**
-设 $M$ 完备，Dirac 型算子 $\slashed D_A$ 与自伴端项 $\Phi$。若存在 $R,c>0$ 使 $M\setminus B_R$ 上 $\Phi^2\ge cI$，且 $[\nabla,\Phi]\in L^\infty$、$\Phi\in W^{1,2}_{\rm loc}$，则 $\slashed D_A+\Phi$ 为 Fredholm（附录 D.1）。
+设 $M$ 完备，Dirac 型算子 $\not{D}_A$ 与自伴端项 $\Phi$。若存在 $R,c>0$ 使 $M\setminus B_R$ 上 $\Phi^2\ge cI$，且 $[\nabla,\Phi]\in L^\infty$、$\Phi\in W^{1,2}_{\rm loc}$，则 $\not{D}_A+\Phi$ 为 Fredholm（附录 D.1）。
 
 **6.2 指数＝度数与奇偶性**
 边界化与 Bott 同构给
 
 $$
-\mathrm{Ind}(\slashed D_A+\Phi)=\deg\big(\widehat\Phi|_{S^{d-1}_\infty}\big)\in \pi_{d-1}(U),\quad
+\mathrm{Ind}(\not{D}_A+\Phi)=\deg\big(\widehat\Phi|_{S^{d-1}_\infty}\big)\in \pi_{d-1}(U),\quad
 \pi_k(U)=\begin{cases}\mathbb Z,&k\ \text{奇}\\ 0,&k\ \text{偶}\end{cases}.
 $$
 
@@ -356,10 +356,10 @@ $$
 取外区截止 $\chi$ 与参数子 $Q=\chi\Phi^{-1}$。有
 
 $$
-(\slashed D_A+\Phi)Q=I-K_1,\qquad Q(\slashed D_A+\Phi)=I-K_2,
+(\not{D}_A+\Phi)Q=I-K_1,\qquad Q(\not{D}_A+\Phi)=I-K_2,
 $$
 
-其中 $K_{1,2}$ 为相对紧（由 $[\nabla,\Phi]\in L^\infty$、Rellich 紧嵌入与外区可逆性）。故 $\slashed D_A+\Phi$ 为 Fredholm。
+其中 $K_{1,2}$ 为相对紧（由 $[\nabla,\Phi]\in L^\infty$、Rellich 紧嵌入与外区可逆性）。故 $\not{D}_A+\Phi$ 为 Fredholm。
 
 **D.2 边界映射与度数**
 将外区同伦到仅依赖方向的 $\Phi_\infty(\theta)$，指数等于边界映射 $\partial[\widehat\Phi_\infty]\in \widetilde K^0(S^d)\cong\mathbb Z$。Bott 同构给出
