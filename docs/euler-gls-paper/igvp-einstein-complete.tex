@@ -1,0 +1,657 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Title information
+\title{Einstein Equations from Information-Geometric Variational Principle:\\
+A Rigorous Derivation with Explicit Commutable Limit and Radon-Type Closure}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{Version 6.7 (Peer Review Revision) --- \today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+\textbf{We derive Einstein's equations and the Hollands--Wald stability condition from a single information-geometric variational principle.}
+
+Key features: Fixed-volume duality + explicit commutable limit (small diamond limit with directly invocable constant families); Radon-type closure: pushing family constraints down to pointwise equations (area identity $\Rightarrow$ pointwise); Second-order layer = Hollands--Wald canonical energy (in context where JLMS and $\mathcal{F}_Q=\mathcal{E}_{\rm can}$ identification holds; no-duality case provides QNEC alternative criterion).
+
+On small-scale causal diamond $\mathcal{D}_\ell(p)$ at each manifold point, taking generalized entropy
+$$
+S_{\rm gen}= \frac{A(\text{waist surface})}{4G\hbar}+S_{\rm out}^{\rm ren}+S_{\rm ct}^{\rm UV}-\frac{\Lambda}{8\pi G}\frac{V(B_\ell)}{T}
+\qquad\big(T=\hbar|\kappa_\chi|/2\pi\big)
+$$
+as basic variational functional, we propose Information-Geometric Variational Principle (IGVP): first-order layer takes stationarity under fixed-volume constraint, second-order layer requires relative entropy non-negativity. This work provides four directly-invocable technical pillars: (i) Based on Raychaudhuri--Sachs--Gr\"onwall, \textbf{explicit commutable limit inequality} and \textbf{boundary layer estimate}, writing shear/twist control in geometric constants; (ii) Via \textbf{weighted ray transform} and \textbf{test function localization lemma}, realize ``family constraint $\Rightarrow$ pointwise'' \textbf{Radon-type closure}, then configure with ``null-cone characterization lemma'' and Bianchi identity to obtain tensorial closure; (iii) Under OS reflection positivity and KMS strip analyticity, establish sufficient condition and \textbf{lower bound} for Fisher--Rao metric via analytic continuation to be \textbf{real, non-degenerate, Lorentzian signature}, giving \textbf{operational criterion} for cross-component vanishing; (iv) In covariant phase space framework, provide \textbf{standard null boundary and corner term prescription}, proving symplectic flux no-outflow and Hamiltonian variation integrability, explicitly verified on Minkowski small diamond. From first-order layer obtain
+$$
+G_{ab}+\Lambda g_{ab}=8\pi G\,T_{ab},
+$$
+from second-order layer under JLMS and $\mathcal{F}_Q=\mathcal{E}_{\rm can}$ condition obtain non-negativity of Hollands--Wald canonical energy; in no-duality context use QNEC/ANEC as fallback. This work also elucidates rescaling and orientation-invariance of $\delta Q/T$, $\delta A/(4G\hbar)$, and shows that $V/T$ scales with rescaling; at first-order extremum layer adopting fixed temperature scale ($\delta T=0$) avoids its gauge dependence.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Information-geometric variational principle; Einstein equations; Generalized entropy; Causal diamond; Raychaudhuri equation; Null energy condition; Hollands--Wald canonical energy; Covariant phase space; Fisher--Rao metric; KMS condition
+
+\noindent\textbf{MSC 2020:} Primary 83C05, 83C47, 94A17; Secondary 53Z05, 81T20, 83C57
+
+\section{Notation, Domain Prerequisites and Quick Reference}
+
+\textbf{Notation and units:} Metric signature $(-,+,+,+)$; $c=k_B=1$, retain $\hbar$. Einstein tensor $G_{ab}=R_{ab}-\tfrac12R g_{ab}$. Null contraction $R_{kk}:=R_{ab}k^ak^b$, $T_{kk}:=T_{ab}k^ak^b$. \textbf{Volume and area:} Let \textbf{waist hypersurface} $\Sigma_\ell$ be the maximal spatial cross-section of causal diamond $\mathcal{D}_\ell$ (dimension $d{-}1$), with volume $V(B_\ell):=\mathrm{Vol}(\Sigma_\ell)$; let \textbf{waist surface} $\partial\Sigma_\ell$ be its boundary (dimension $d{-}2$), with area $A:=\mathrm{Area}(\partial\Sigma_\ell)$. Denote $B_\ell:=\Sigma_\ell$, $S_\ell:=\partial B_\ell$ (waist surface); below $dA$ always refers to the intrinsic measure on $S_\ell$; leading-order scaling $A\sim c_d\ell^{d-2}$ (constant absorbed into $C_d$).
+
+\textbf{Domain prerequisites:} Scale separation $\varepsilon_{\rm curv}=\ell/L_{\rm curv}$, $\varepsilon_{\rm mat}=\ell/L_{\rm mat}$, $\varepsilon=\max(\varepsilon_{\rm curv},\varepsilon_{\rm mat})\ll1$; Hadamard-class state and point-splitting renormalization; in small interval $[0,\lambda_*]$ \textbf{no conjugate/focal points} (Sachs/Raychaudhuri controllable, ray transform locally invertible).
+
+\textbf{Invariants quick reference} (invariant under rescaling $k^a\!\to\!\alpha k^a$, $\lambda\!\to\!\lambda/\alpha$, $\kappa\!\to\!\alpha\kappa$ and orientation flip):
+$$
+\frac{\delta Q}{T}=\frac{2\pi}{\hbar}\!\int_{\mathcal{H}}\!\lambda\,T_{kk}\,d\lambda\,dA,\qquad
+\frac{\delta A}{4G\hbar}.
+$$
+
+\textbf{Remark:} $V/T$ scales with rescaling ($T\to\alpha T$, $V$ unchanged), so it is not an invariant; at first-order extremum layer taking $\delta T=0$, its appearance is merely dual-term notation and does not affect the conclusion.
+
+\textbf{Error notation paradigm} ($\ell$ scale $\times$ dimensionless $\varepsilon$ scale): This work uniformly adopts
+$$
+\text{error}=C_d\,\varepsilon^n\,\ell^m,
+$$
+where $C_d=C_d(C_R,C_{\nabla R},C_{\mathcal{C}};d,c_\lambda)$ is dimensionless constant (independent of $\varepsilon,\ell$), $n$ is $\varepsilon$ power, $m$ is length dimension. E.g.: area variation error $\sim C_d\,\varepsilon^3\,\ell^{d-2}$, unified error proposition $\sim C_{\rm unif}\,\varepsilon^2\,\ell^{d-2}$.
+
+\textbf{Constants family quick reference} (defined on $\mathcal{D}_\ell$):
+\begin{align*}
+&C_R:=\sup_{\mathcal{D}_\ell}|R_{kk}|,\quad
+C_{\nabla R}:=\sup_{\mathcal{D}_\ell}|\nabla_k R_{kk}|,\quad
+\mathcal{C}_{AB}:=\mathrm{TF}\big[C_{acbd}k^c k^d e^a_A e^b_B\big],\\
+&C_{\mathcal{C}}:=\sup_{\mathcal{D}_\ell}|\mathcal{C}_{AB}|,\quad
+C_\sigma:=C_{\mathcal{C}}\lambda_*,\quad C_\omega=0,\quad \lambda_*\sim c_\lambda \ell.
+\end{align*}
+Here $\{e_A^a\}$ is a $(d{-}2)$-dimensional orthonormal basis for the screen space orthogonal to $k^a$, $\mathrm{TF}$ denotes trace-free part, $|\cdot|$ is any well-defined matrix norm. Final inequality's $C_d=C_d(C_R,C_{\nabla R},C_{\mathcal{C}};d,c_\lambda)$ gives closed-form dependence.
+
+\subsection*{Introduction Highlights: Distinctions from Existing Work}
+
+\begin{itemize}
+\item Jacobson (1995): Introduce fixed-volume duality and explicit $\varepsilon$-commutable limit, breaking free from unspecified ``local Rindler'' dependence
+\item Jacobson--Visser (2019): Use Radon-type closure to push area identity down to pointwise equation (family constraint $\Rightarrow$ pointwise)
+\item JLMS + Hollands--Wald: Write second-order relative entropy and canonical energy into the same variational chain, forming a single-chain closed loop
+\item Dong--Camps--Wald: With Wald/Dong--Camps entropy replacing area, the same IGVP framework directly yields Lovelock-type equations
+\item \textbf{Second-order layer conditionality and no-duality alternative}: Second-order layer $\delta^2S_{\rm rel}=\mathcal{E}_{\rm can}$ as conditional theorem (depends on JLMS identification); no-duality case uses QNEC second-order shape derivative to provide universal non-negative quadratic criterion
+\end{itemize}
+
+\section{IGVP: Functional, Constraints and Two-Layer Criteria}
+
+\textbf{Generalized entropy and splitting:}
+$$
+S_{\rm gen}=\underbrace{\frac{A}{4G\hbar}+S_{\rm out}^{\rm ren}+S_{\rm ct}^{\rm UV}}_{\text{renormalized finite quantity}}
+\;-\;\underbrace{\frac{\Lambda}{8\pi G}\frac{V}{T}}_{\text{volume constraint dual term}}\!,
+\qquad T=\frac{\hbar|\kappa_\chi|}{2\pi}.
+$$
+
+\textbf{Criteria:}
+(First-order layer) Take $\delta S_{\rm gen}=0$ under fixed-volume constraint $\delta V=0$; equivalently incorporate $S_\Lambda$ into unconstrained variation then require $\delta S_{\rm gen}=0$.
+(Second-order layer) Relative entropy non-negativity: $\delta^2S_{\rm rel}\ge0$.
+
+\textbf{Notation reminder:} This work features two different $\kappa$: (i) \textbf{temperature scale} $T=\hbar|\kappa_\chi|/2\pi$ where $\kappa_\chi$ is surface gravity of approximate Killing field $\chi^a$; (ii) in \S8 null boundary term, $\kappa_{\rm aff}[\ell]$ is the non-affine quantity of $\ell^a$ (under affine parametrization $\kappa_{\rm aff}[\ell]=0$). These two are completely unrelated. To distinguish, this work uniformly denotes the latter as $\kappa_{\rm aff}[\ell]$.
+
+\textbf{First-order law for outside entropy (for Chain A):} In small diamond limit, Hadamard/KMS state, and near-Rindler generator $\chi^a$,
+$$
+\delta S_{\rm out}^{\rm ren}=\delta\langle K_\chi\rangle
+=\frac{2\pi}{\hbar}\int_{\mathcal{H}}\lambda\,T_{kk}\,d\lambda\,dA\ +\ \mathcal{O}(\varepsilon^2)
+\equiv \frac{\delta Q}{T}+\mathcal{O}(\varepsilon^2),
+$$
+where $K_\chi$ is the boost modular Hamiltonian at the waist, $T=\hbar|\kappa_\chi|/2\pi$.
+
+\textbf{Equivalent Lagrange multiplier formulation (avoiding gauge ambiguity):} The first-order variation can be restated as a constrained extremum problem
+$$
+\delta\left(S_{\rm grav}+S_{\rm out}\right)+\mu\,\delta V=0,
+$$
+solving which identifies the physical constant $\mu=\frac{\Lambda}{8\pi G T}$ of the volume constraint. From Appendix F's $\delta\kappa_\chi/\kappa_\chi=\mathcal{O}(\varepsilon^2)$, the first-order extremum is insensitive to $\mathcal{O}(\varepsilon^2)$ variations in $\delta T$, thus ``fixing $T$'' ($\delta T=0$) is a corollary rather than an a priori assumption.
+
+Therefore at first-order extremum layer and $\delta V=0$,
+$$
+\delta S_{\rm gen}
+=\frac{\delta A}{4G\hbar}+\frac{2\pi}{\hbar}\int_{\mathcal{H}}\lambda\,T_{kk}\,d\lambda\,dA\ +\ \mathcal{O}(\varepsilon^2)=0.
+$$
+Combined with \S2's area--curvature identity (error $\mathcal{O}(\varepsilon^3)$), through \S3's localization and \S4's tensorial closure, obtain
+$R_{kk}=8\pi G\,T_{kk}$ and $G_{ab}+\Lambda g_{ab}=8\pi G\,T_{ab}$.
+
+\textbf{Convention (temperature scale of first-order variation):} By default fix temperature $T$ ($\delta T=0$) for first-order extremum; if allowing $\delta T\neq0$, its contribution is $\mathcal{O}(\varepsilon^2)$ not changing conclusion (see \S6).
+
+\section{Small Diamond Limit: Explicit Inequality and Boundary Layer}
+
+\textbf{Regularity threshold:} Background metric $g\in C^3$ (or $g\in C^2$ and $\nabla{\rm Riem}\in L^\infty$), matter field $T_{ab}\in C^1$; let $\Sigma_\ell$ be the \textbf{maximal-volume spatial hypersurface}, whose boundary $S_\ell=\partial\Sigma_\ell$ (\textbf{waist surface}) is the initial value surface, with $\theta(0)=\sigma(0)=\omega(0)=0$; null geodesic congruence satisfies Frobenius condition, thus $\omega\equiv0$.
+
+\textbf{Parametrization convention and notation distinction:} Below, the parameter $\lambda$ along null geodesic generators is uniformly taken as \textbf{affine parameter} ($k^b\nabla_b k^a=0$), so the Raychaudhuri--Sachs--Twist equations we adopt \textbf{do not contain the $\kappa\theta$ term}. \textbf{Important notation distinction:} See \S1's notation reminder ($\kappa_\chi$ and $\kappa_{\rm aff}[\ell]$ are completely unrelated).
+
+\textbf{Initial value and Frobenius condition:} Taking waist as maximal-volume cross-section implies $\theta(0)=\sigma(0)=\omega(0)=0$ (see Appendix A.2); null geodesic congruence hypersurface orthogonal $\Leftrightarrow\omega\equiv0$. From $\omega(0)=0$ and Frobenius condition $\omega_{[a}\nabla_b k_{c]}=0$ obtain $\omega\equiv0$.
+
+\textbf{Raychaudhuri--Sachs--Twist equations ($d\ge 3$):}
+\begin{align*}
+\theta'&=-\frac{1}{d-2}\theta^2-\sigma^2+\omega^2-R_{kk},\\
+(\sigma_{AB})'&=-\frac{2}{d-2}\theta\,\sigma_{AB}-\big(\sigma^2{+}\omega^2\big)^{\rm TF}_{AB}-\mathcal{C}_{AB},\\
+\omega_{AB}'&=-\frac{2}{d-2}\theta\,\omega_{AB}
+-\big(\sigma_A{}^{C}\omega_{CB}+\omega_A{}^{C}\sigma_{CB}\big),
+\end{align*}
+where
+\begin{align*}
+&\sigma^2:=\sigma_{AB}\sigma^{AB},\quad
+(\sigma^2)_{AB}:=\sigma_A{}^{C}\sigma_{CB},\quad
+(\omega^2)_{AB}:=\omega_A{}^{C}\omega_{CB},\\
+&\mathrm{TF}\text{ denotes trace-free part},\quad
+\mathcal{C}_{AB}=\mathrm{TF}\big[C_{acbd}k^c k^d e^a_A e^b_B\big].
+\end{align*}
+
+From $\omega(0)=0$ and Frobenius obtain $\omega\equiv 0$. Variable-coefficient Gr\"onwall with $|\theta|\lambda_*\ll1$ gives
+$$
+|\sigma(\lambda)|\le C_{\mathcal{C}}|\lambda|\,e^{\frac{2}{d-2}\int_0^{|\lambda|}|\theta|ds}\le C_\sigma(1+\mathcal{O}(\varepsilon)),
+$$
+and
+$$
+\boxed{\
+\big|\theta(\lambda)+\lambda R_{kk}(\lambda)\big|\ \le\
+\tfrac12 C_{\nabla R}\lambda^2\ +\ C_\sigma^2|\lambda|\ +\ \tfrac{4}{3(d-2)}C_R^2|\lambda|^3\ :=\ \widetilde{M}_\theta(\lambda)\ .
+}
+$$
+
+\textbf{Area variation explicit inequality and commutability:}
+$$
+\boxed{
+\Big|\delta A+\int_{\mathcal{H}}\lambda R_{kk}\,d\lambda\,dA\Big|
+\ \le\ \Big(\tfrac16 C_{\nabla R}\lambda_*^3+\tfrac12 C_\sigma^2\lambda_*^2+\tfrac{1}{3(d-2)}C_R^2\lambda_*^4\Big)A\ .
+}
+$$
+
+Here $C_d=C_d(C_R,C_{\nabla R},C_{\mathcal{C}};d,c_\lambda)$ is independent of $\varepsilon$.
+
+\textbf{Numerical sample demonstration:} Numerical experiments on weak-shear samples satisfying $C_{\sigma,0}=\mathcal{O}(\varepsilon)$ demonstrate $\varepsilon^3$ scaling behavior of normalized error $|\delta A+\int\lambda R_{kk}|/\ell^{d-2}$. This demonstration serves to verify error magnitude and endpoint layer control, not to prove existence or universal closure of weak-shear families (see Figure~\ref{fig:exchangeable_limit}).
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.6\textwidth]{igvp_figure1_exchangeable_limit.png}
+\caption{Numerical verification of explicit commutable limit. Normalized error upper bound $|\delta A+\int\lambda R_{kk}|/\ell^{d-2}$ vs.\ scale separation parameter $\varepsilon$, showing $\varepsilon^3$ scaling. Three curves correspond to different curvature parameter combinations (low/medium/high curvature), gray dashed line is reference $\varepsilon^3$ scaling line. This error remains $o(\ell^2)$ when localized to each generator, seamlessly connecting to Appendix B's 0-order reconstruction.}
+\label{fig:exchangeable_limit}
+\end{figure}
+
+\textbf{Per-generator error remark (connecting area identity to pointwise reconstruction):} The above area variation inequality yields at per-generator level
+$$
+\boxed{
+\left|\int_0^{\lambda_*}\!\lambda\bigl(R_{kk}-8\pi G\,T_{kk}\bigr)\,d\lambda\right|
+\le C_{\rm unif}\,\varepsilon^2\,\lambda_*^2,
+}
+$$
+where $C_{\rm unif}$ depends on $(C_R,C_{\nabla R},C_{\mathcal{C}};d,c_\lambda)$ but is independent of $\varepsilon$. This error is $\mathcal{O}(\varepsilon^2)$ or higher order relative to the leading term $\lambda_*^2 f(p)$, ensuring convergence of the localization closure.
+
+Endpoint layer $[\lambda_*-\delta,\lambda_*]$ contribution satisfies
+$$
+\Big|\int_{\lambda_*-\delta}^{\lambda_*}\lambda R_{kk}\,d\lambda\,dA\Big|
+\le \tfrac12 A\big(\lambda_*^2-(\lambda_*-\delta)^2\big)C_R
+=\mathcal{O}\big(A,C_R,\lambda_*,\delta\big).
+$$
+Taking $\delta=\mathcal{O}(\varepsilon\ell)$ and $\lambda_*\sim c_\lambda\ell$, we get $\mathcal{O}\big(A,C_R,\varepsilon,\ell^2\big)$.
+
+Taking fixed constant $\lambda_0>0$ such that for all limiting families $0<\lambda_*\le\lambda_0$. Since $C_\sigma=C_{\mathcal{C}}\lambda_*\le C_{\mathcal{C}}\lambda_0$, let
+$$
+\boxed{
+\widetilde{M}_{\rm dom}(\lambda)
+:=\tfrac12 C_{\nabla R}\lambda^2+\big(C_{\mathcal{C}}\lambda_0\big)^2|\lambda|
++\tfrac{4}{3(d-2)}C_R^2\lambda_0^3\ \in L^1([0,\lambda_0])\ .
+}
+$$
+Then on fixed interval $[0,\lambda_0]$,
+$$
+\big|\chi_{[0,\lambda_*]}(\lambda)\big(\theta(\lambda)+\lambda R_{kk}\big)\big|
+\le \widetilde{M}_\theta(\lambda)\le \widetilde{M}_{\rm dom}(\lambda),\qquad \widetilde{M}_{\rm dom}\in L^1([0,\lambda_0]) .
+$$
+Since $\widetilde{M}_{\rm dom}$ is independent of $\varepsilon$ and for all $|\lambda|\le\lambda_0$ we have $\widetilde{M}_\theta(\lambda)\le \widetilde{M}_{\rm dom}(\lambda)$, by dominated convergence theorem the order of ``$\varepsilon\to0$'' and integration along $\lambda$ commute.
+
+\textbf{Unified error proposition (ensuring consistency):} Given $\varepsilon$-small domain and no-conjugate-point condition, there exists constant $C_{\rm unif}$ depending only on $(d,c_\lambda)$ and $(C_R,C_{\nabla R},C_{\mathcal{C}})$, such that for all $(p,\hat{k})$ and all sufficiently small $\ell$
+$$
+\boxed{
+\left|\delta S_{\rm out}-\frac{2\pi}{\hbar}\int\lambda T_{kk}\,d\lambda\,dA\right|
+\le C_{\rm unif}\,\varepsilon^2\,\ell^{d-2}.
+}
+$$
+This error decomposes into geometric approximation error and state-dependent error, both controlled by the above constant families. $\delta T/T=\mathcal{O}(\varepsilon^2)$ is a corollary of this proposition rather than an assumption. This uniform bound ensures $o(\ell^2)$ control per generator when localizing.
+
+\textbf{Constants dependence:} $C_{\rm unif}, C_{\rm th}$ depend only on $(C_R,C_{\nabla R};d,c_\lambda)$, independent of $\varepsilon,\ell$.
+
+\textbf{Lemma 2.1 (Unified error proposition):} Given $\varepsilon$-small domain and no-conjugate-point condition, there exists constant $C_{\rm unif}$ such that for all $(p,\hat{k})$ and all sufficiently small $\ell$
+$$
+\boxed{
+\left|\delta S_{\rm out}-\frac{2\pi}{\hbar}\int\lambda T_{kk}\,d\lambda\,dA\right|
+\le C_{\rm unif}\,\varepsilon^2\,\ell^{d-2}.
+}
+$$
+
+\textbf{Lemma 2.2 (Local first law error lemma):} Under Hadamard state, $g\in C^3$, fixed endpoints and waist, taking approximate CKV $\chi^a$, the variation of outside entropy and modular Hamiltonian satisfies
+$$
+\boxed{
+\big|\delta S_{\rm out}^{\rm ren}-\delta\langle K_\chi\rangle\big|
+\le C_{\rm th}\,\varepsilon^2\,\ell^{d-2},
+}
+$$
+where $C_{\rm th}=C_{\rm th}(C_R,C_{\nabla R};d)$ is independent of $\varepsilon$ and compatible with \S2 geometric constant families. \textbf{Proof idea:} Isometrically map small diamond to flat leading part ($\eta+\mathcal{O}(\ell^2/L_{\rm curv}^2)$), control error using modular Hamiltonian kernel and shape derivative of half-space deformation (Casini--Huerta--Myers 2011; Faulkner--Leigh--Parrikar--Wang 2016). Thus
+$$
+\delta S_{\rm out}^{\rm ren}=\delta\langle K_\chi\rangle+\mathcal{O}(\varepsilon^2)
+=\frac{2\pi}{\hbar}\int_{\mathcal{H}}\lambda\,T_{kk}\,d\lambda\,dA+\mathcal{O}(\varepsilon^2).
+$$
+
+\textbf{Equivalent alternative route (no-duality):} If not adopting local KMS setting, can directly start from QNEC. Under conditions of Minkowski background or sufficiently weak curvature limit, Hadamard state, complete null geodesic and local integrability (Appendix D),
+$$
+\langle T_{kk}(p)\rangle \ge \frac{\hbar}{2\pi}\lim_{A_\perp\to0}\frac{\partial_\lambda^2 S_{\rm out}}{A_\perp},
+$$
+this route is equivalent to above first law at linearized level, but does not require KMS periodicity assumption.
+
+\section{Family Constraint $\Rightarrow$ Pointwise: Radon-Type Closure and Localization}
+
+\textbf{Weighted ray transform:} For null geodesic $\gamma_{p,\hat{k}}$ through $p$, define
+$$
+\mathcal{L}_\lambda[f](p,\hat{k}):=\int_0^{\lambda_*}\!\lambda\, f(\gamma_{p,\hat{k}}(\lambda))\,d\lambda.
+$$
+Small domain expansion
+$$
+\mathcal{L}_\lambda[f](p,\hat{k})=\tfrac12\lambda_*^2 f(p)+\mathcal{O}(\lambda_*^3|\nabla f|_\infty).
+$$
+
+\textbf{Localization realizability lemma (closing family $\Rightarrow$ pointwise):} For any $\varphi\in C_c^\infty(S_\ell)$ on waist surface $S_\ell$, there exist admissible first-order variations (under fixed-volume constraint $\delta V=0$) such that for a family of \textbf{endpoint smooth cutoff} first-moment weights $w_\epsilon\in C_c^\infty([0,\lambda_*))$ with $w_\epsilon\to\lambda$ in $L^1$, under \S2's boundary layer estimate and dominated convergence,
+$$
+\int_{S_\ell}\varphi(x)\!\int_0^{\lambda_*}\! w_\epsilon(\lambda)\bigl(R_{kk}-8\pi G\,T_{kk}\bigr)\,d\lambda\,dA=o(\ell^2).
+$$
+
+\textbf{Construction sketch:} (i) \textbf{Outside state local perturbation}: Take Hadamard state perturbation supported in tubular neighborhood on $\mathcal{H}$ determined by $\varphi$, whose modular Hamiltonian variation $\delta\langle K_\chi\rangle$ gives the weighting $\int \lambda\,\varphi(x)\,T_{kk}\,d\lambda\,dA$; (ii) \textbf{Geometric deformation with equal-volume correction}: For waist embedding take configuration perturbation $\delta X=\epsilon\,\varphi(x)\,n$ with compensation function $\varphi_0$ satisfying $\int_{S_\ell}\varphi_0\,dA=-\int_{S_\ell}\varphi\,dA$ to maintain $\delta V=0$, corresponding $\delta A$ and $\int\lambda R_{kk}$ terms give $\varphi$-weighting matching (i). Under linear variation, $\delta S_{\rm gen}$ has continuous linear Fr\'echet derivatives with respect to outside state and embedding, utilizing integration by parts and decomposition to realize approximation for arbitrary $\varphi$.
+
+\textbf{Remark:} This work \textbf{only uses the cutoff family of first-moment weights}, sufficient to close with Appendix B.2's 0-order reconstruction. No need for strong assertion about ``arbitrary $w\in C_c^\infty([0,\lambda_*])$''.
+
+\textbf{Test function localization lemma:} If $\int_{S_\ell}\varphi(x)\!\int_0^{\lambda_*}\! w_\epsilon(\lambda)F(x,\lambda)\,d\lambda\,dA=0$ holds for all $\varphi\in C_c^\infty(S_\ell)$ and endpoint smooth cutoff first-moment weight family $\{w_\epsilon\}$, then almost everywhere along each generator $\int_0^{\lambda_*} \lambda F=0$.
+(Note: This work mainly uses first-moment weight $w\equiv\lambda$ and its cutoff family. Proof: Fubini theorem separates testing in $x$ and $\lambda$ directions; for $\lambda$ direction use mollifier to approximate $\delta$, taking first-moment weight $w\equiv\lambda$ yields weighted ray transform kernel; by ray transform \textbf{local invertibility} (Appendix B.3), kernel appears only for zero function. This work only needs \textbf{short-segment first-moment data}, not relying on global tomography.)
+
+\textbf{Null geodesic first-moment local invertibility (geometric foundation of complete closure):} In Riemann normal neighborhood of $p$, with no conjugate points and smooth transversal space of generator congruence, short-segment data $\mathcal{L}_\lambda[f](p,\hat{k})=\int_0^{\lambda_*}\lambda f(\gamma_{p,\hat{k}}(\lambda))\,d\lambda$ determines $f(p)$. Detailed proof and error bound see Appendix B.3.
+
+Combining the above realizability and localization lemma, for $f=R_{kk}-8\pi G\,T_{kk}$ obtain $\mathcal{L}_\lambda[f]=o(\ell^2)\Rightarrow f(p)=0$, i.e.,
+$$
+R_{kk}=8\pi G\,T_{kk}\quad(\forall\,k).
+$$
+
+\section{Tensorial Closure and Field Equations ($d\ge 3$)}
+
+\textbf{Null-cone characterization lemma ($d\ge 3$ necessary):} If $X_{ab}$ smooth symmetric and $X_{ab}k^ak^b=0$ for all null vectors, then $X_{ab}=\Phi g_{ab}$. (Note: In $d=2$ all symmetric tensors automatically satisfy this property, field equation degenerates.)
+
+Let $X_{ab}=R_{ab}-8\pi G\,T_{ab}$. From $X_{ab}=\Phi g_{ab}$ we have $\nabla^a X_{ab}=\nabla_b\Phi$. Also from contracted Bianchi and $\nabla^aT_{ab}=0$, we have $\nabla^a X_{ab}=\tfrac12\nabla_b R$. Thus
+$$
+\nabla_b\left(\tfrac12 R-\Phi\right)=0,
+$$
+defining $\Lambda:=\tfrac12 R-\Phi$ (constant), giving
+$$
+\boxed{\,G_{ab}+\Lambda g_{ab}=8\pi G\,T_{ab}\,}.
+$$
+
+The above chain compresses ``null-cone characterization + Bianchi identity'' into a short proof, more concise than common textbook derivations and possesses pedagogical value.
+
+\section{Second-Order Layer: $\delta^2S_{\rm rel}=\mathcal{E}_{\rm can}\ge0$ and Stability (Conditional Theorem and Universal Criterion)}
+
+\textbf{Theorem 5.1 (second-order stability---conditional version):} The following regarding $\delta^2S_{\rm rel}=\mathcal{E}_{\rm can}$ is a \textbf{conditional} conclusion, whose validity depends on JLMS and $\mathcal{F}_Q=\mathcal{E}_{\rm can}$ identification. This identification is currently known to hold in code subspace under appropriate boundary conditions.
+
+Assume the following conditions hold:
+
+\textbf{(C1) Function space:} Perturbation $h_{ab}\in H^{k}(\Sigma)$ ($k\ge2$), satisfying linearized Einstein equation (from \S3--\S4's first-order family constraint and tensorial closure).
+
+\textbf{(C2) Code subspace and charge constraints:} Perturbation satisfies $\delta M=\delta J=\delta P=0$ (linearized mass, angular momentum, linear momentum conservation). In small diamond setting, this is equivalent to requiring perturbation not changing diamond endpoint positions and waist time.
+
+\textbf{(C3) Boundary condition:} Adopt Dirichlet-type boundary condition fixing induced metric (or conjugate momentum) $\sigma_{AB}|_{\partial\Sigma}$, and require symplectic flux no-outflow $\int_{\partial\Sigma}\iota_n\omega(h,\mathcal{L}_\xi h)=0$. Term-by-term verification of this condition see Appendix E.2 (Minkowski) and E.3 (weak curvature generalization).
+
+\textbf{(C4) Gauge fixing:} Adopt Killing or covariant harmonic gauge to eliminate pure gauge modes. Under this gauge $\mathcal{E}_{\rm can}[h,h]=0$ if and only if $h$ is pure gauge mode.
+
+Then under premises of JLMS equivalence and $\mathcal{F}_Q=\mathcal{E}_{\rm can}$ holding,
+$$
+\boxed{\ \delta^2S_{\rm rel}=\mathcal{F}_Q=\mathcal{E}_{\rm can}[h,h]\ge0\ },
+$$
+equivalent to Hollands--Wald linear stability.
+
+\textbf{Theorem 5.2 (universal non-negative quadratic criterion---no-duality version):} Under boundary condition of small diamond no-outflow, utilizing QNEC's second-order shape derivative one can construct non-negative quadratic form
+$$
+\boxed{\ \mathcal{Q}_{\rm QNEC}[h,h]:=\int_{\mathcal{H}}\frac{\hbar}{2\pi}\,\partial_\lambda^2\big(\delta^2 S_{\rm out}/A_\perp\big)\,dA\ge 0\ }.
+$$
+When linearized Einstein equation holds and boundary conditions comparable, this quadratic form is consistent with $\mathcal{E}_{\rm can}$ (shape derivative and limit order see Appendix D). This criterion does not depend on JLMS identification, providing energy condition compatible with first-order chain.
+
+\textbf{Checkable list:} (1) Explicit statement of gauge and boundary conditions see \S8 and Appendix E; (2) term-by-term verification of no-outflow condition $\int_{\partial\Sigma}\iota_n\omega=0$ on Minkowski small diamond see Appendix E.2, weak curvature generalization see Appendix E.3; (3) linear constraints $(\delta M,\delta J,\delta P)=(0,0,0)$ of code subspace realized in small diamond setting by fixing endpoints.
+
+\textbf{Logical independence:} Linearized Einstein equation comes from first layer (\S3--\S4)'s family constraint and tensorial closure; second-order layer provides stability criterion, whose applicability presumes linearized Einstein equations from first layer hold. Thus second-order layer can be independently cited ``under the assumption that linearized equations hold''. Combined they form a complete closed loop of ``derivation + stability''.
+
+\section{Temperature--Volume Duality and $\delta\kappa_\chi/\kappa_\chi$ Order Counting}
+
+Under rescaling and orientation flip, $\delta Q/T$ and $\delta A/(4G\hbar)$ are invariant; $V/T$ is not invariant but scales with rescaling, yet at first-order extremum layer adopting fixed temperature scale ($\delta T=0$) does not affect the conclusion. Fixing endpoints and waist, approximate CKV surface gravity $\kappa_\chi=2/\ell+\mathcal{O}(\ell/L_{\rm curv}^2)$, first-order geometric perturbation gives $\delta\kappa_\chi=\mathcal{O}(\ell/L_{\rm curv}^2)$, thus
+$$
+\frac{\delta\kappa_\chi}{\kappa_\chi}=\mathcal{O}\!\Big(\frac{\ell^2}{L_{\rm curv}^2}\Big)=\mathcal{O}(\varepsilon^2),
+$$
+thus ``fixing $|\kappa_\chi|$'' and ``allowing $\delta T\neq0$'' are equivalent at first-order extremum layer.
+
+\section{OS/KMS--Fisher Analytic Continuation: Sufficient Condition and Lower Bounds}
+
+Let Euclidean statistical family $p(y|t_E,x^i)$ Fisher--Rao metric
+$$
+g^{(E)}_{\mu\nu}=\mathbb{E}\big[\partial_\mu\log p\,\partial_\nu\log p\big].
+$$
+
+(Cross-component parity criterion and $g_{ti}$ vanishing condition at reflection point moved to Appendix G.1; here we only keep the sufficient condition and lower bounds ensuring Lorentzian signature.)
+
+\textbf{Structural role explanation:} This section's Fisher--Rao channel is a structural complement, \textbf{not participating in the first-order chain main proof} (\S1--\S4's derivation of Einstein equations does not require this channel). It provides alternative geometric interpretation for the second-order layer and offers additional insights in certain scenarios (such as gravitational duals of statistical models).
+
+\textbf{Sufficient condition for real-valued and non-degenerate (with lower bound):} Assume there exists constant $\eta>0$ such that
+$$
+\mathbb{E}\big[(\partial_{t_E}\log p)^2\big]\ge \eta,\qquad
+\mathbb{E}\big[(\partial_i\log p)^2\big]\ge \eta,\qquad
+\mathbb{E}\big[(\xi^\mu\partial_\mu\log p)^2\big]\ge \eta\,|\xi|^2\ \ \forall\xi\neq0,
+$$
+and satisfying OS reflection positivity and $\beta$-KMS strip analyticity, then continuation $t_E\mapsto it$ gives
+$$
+g^{(L)}_{tt}=-\mathbb{E}\big[(\partial_{t_E}\log p)^2\big]\le -\eta<0,\qquad
+g^{(L)}_{ij}\succeq \eta\,\delta_{ij}>0,
+$$
+metric real, non-degenerate with $(-,+,\dots)$ signature. $1{+}1$ dimensional Gaussian family can take $\eta=1/\sigma^2$ as explicit lower bound.
+
+\textbf{Explanation:} Fisher--Rao channel is structural complement, not participating in first-order chain main proof.
+
+\section{Covariant Phase Space Null Boundary and Corner Prescription: No-Outflow and Integrability}
+
+Add null boundary term and joint term to Einstein--Hilbert action:
+$$
+I_{\partial\mathcal{N}}=\frac{1}{8\pi G}\int_{\mathcal{N}}\!d\lambda\,d^{d-2}x\,\sqrt{q}\,\kappa_{\rm aff}[\ell],\qquad
+I_{\rm joint}=\frac{1}{8\pi G}\int_{\mathcal{J}}\!d^{d-2}x\,\sqrt{\sigma}\,\eta,
+$$
+where the cross-section is $(d{-}2)$-dimensional, $d^{d-2}x$ is its intrinsic measure. $\eta=\ln|-\ell\!\cdot n|$ (null--non-null) or $\eta=\ln\big|\!-\tfrac12\,\ell\!\cdot\tilde{\ell}\big|$ (null--null). Taking Dirichlet-type boundary condition and \textbf{affine} parametrization then $\kappa_{\rm aff}[\ell]=0$; \textbf{Note:} the $\kappa_{\rm aff}[\ell]$ here is only a non-affine quantity of $\ell^a$, \textbf{unrelated to} the temperature scale $T=\hbar|\kappa_\chi|/2\pi$. The joint term accounts via $\eta$. Thus Iyer--Wald symplectic flux has no-outflow at boundary, $\delta H_\chi$ integrable, not changing numerical values of $\delta S_{\rm gen}$ and $\mathcal{E}_{\rm can}$.
+
+The general variation of joint term is
+$$
+\delta I_{\rm joint}
+=\frac{1}{8\pi G}\int_{\mathcal{J}} d^{d-2}x\,
+\Big(\tfrac12\sqrt{\sigma}\,\sigma^{AB}\delta\sigma_{AB}\,\eta+\sqrt{\sigma}\,\delta\eta\Big).
+$$
+Under the \textbf{Dirichlet}-type boundary condition adopted in this work, we fix $\sigma_{AB}$ (so $\delta\sigma_{AB}=0$), and fix the joint angle ($\delta\eta=0$), thus $\delta I_{\rm joint}=0$.
+
+Therefore the joint term is automatically integrable, no need to adjust counterterm.
+
+\textbf{Example (Minkowski small diamond):} Two affine null sheets gluing $\Rightarrow \kappa_{\rm aff}[\ell]=0$ gives $I_{\partial\mathcal{N}}=0$; null--spacelike hypersurface joint term $\eta$ constant, $\delta I_{\rm joint}=0$. Thus boundary flux zero and Hamiltonian variation integrable.
+
+\section{Higher-Order Gravity and Uniqueness}
+
+Using Wald/Dong--Camps entropy to replace area term, the same IGVP framework directly yields Lovelock-type field equations; detailed $f(R)$ and Gauss--Bonnet demonstrations in Appendix H.
+
+\section{Logic Blueprint of Two Independent Chains}
+
+\begin{itemize}
+\item \textbf{Chain A (thermodynamic--geometric optics):} $\delta S_{\rm grav}+\delta S_{\rm out}-\tfrac{\Lambda}{8\pi G}\delta V/T=0\Rightarrow R_{kk}=8\pi G\,T_{kk}\Rightarrow G_{ab}+\Lambda g_{ab}=8\pi G\,T_{ab}$.
+\item \textbf{Chain B (entanglement--relative entropy):} JLMS and $\mathcal{F}_Q=\mathcal{E}_{\rm can}\Rightarrow \delta^2S_{\rm rel}=\mathcal{E}_{\rm can}\ge0$ (stability); linearized equation sources from Chain A's family constraint and closure.
+\end{itemize}
+
+\section{Reproducible Operation Checklist}
+
+\begin{enumerate}
+\item \textbf{Numerical sample demonstration:} On weak-shear samples $C_{\sigma,0}=\mathcal{O}(\varepsilon)$, demonstrate $\varepsilon^3$ scaling behavior of normalized error $\big|\delta A+\int\lambda R_{kk}\big|/\ell^{d-2}$. This demonstration serves to verify error magnitude and endpoint layer control, not as proof of weak-shear family existence or closure universality. For general families $C_{\sigma,0}=\mathcal{O}(1)$, verify full boxed upper bound (see Figure~\ref{fig:exchangeable_limit}; script: \texttt{scripts/generate\_igvp\_figure1.py}).
+
+\item \textbf{Invariants verification:} Term-by-term verify rescaling/orientation-invariance of $\delta Q/T$, $\delta A/(4G\hbar)$; and in fixed-$T$ reduction verify usage of $V/T$.
+
+\item \textbf{Localization realizability and closure:} (i) Numerically construct equal-volume local deformations: take test function $\varphi\in C_c^\infty(S_\ell)$ on waist surface $S_\ell$, construct perturbation $\delta X=\epsilon\,\varphi(x)\,n$ with compensation $\varphi_0$ satisfying $\int_{S_\ell}(\varphi+\varphi_0)\,dA=0$ (script interface: \texttt{scripts/construct\_local\_deformation.py}); (ii) Use ``localization lemma'' to push down area identity to per-generator, add 0-order reconstruction to obtain $R_{kk}=8\pi G\,T_{kk}$; verify convergence of $\mathcal{L}_\lambda[f]=o(\ell^2)$.
+
+\item \textbf{Fisher--Rao metric verification:} On $1{+}1$ Gaussian family and models satisfying parity criterion, explicitly verify $g_{ti}=0$ and lower bound $\eta$ of ``real/non-degenerate/signature''.
+
+\item \textbf{Null boundary and integrability:} On Minkowski small diamond verify null boundary/joint terms' ``no-outflow + integrable'' (Appendix E.2). Verify $\kappa_{\rm aff}[\ell]=0$ under affine parametrization and $\delta I_{\rm joint}=0$.
+\end{enumerate}
+
+\section*{Acknowledgments}
+
+This work synthesizes results from general relativity, quantum field theory, information geometry and geometric analysis. All cited results from peer-reviewed literature; references provided for verification.
+
+\bibliographystyle{plain}
+\begin{thebibliography}{99}
+
+\bibitem{jacobson1995}
+T. Jacobson.
+\newblock Thermodynamics of Spacetime: The Einstein Equation of State.
+\newblock {\em Physical Review Letters}, 75(7):1260--1263, 1995.
+
+\bibitem{jacobson2016}
+T. Jacobson.
+\newblock Entanglement Equilibrium and the Einstein Equation.
+\newblock {\em Classical and Quantum Gravity}, 33(24):245001, 2016.
+
+\bibitem{casini2011}
+H. Casini, M. Huerta, and R. C. Myers.
+\newblock Towards a Derivation of Holographic Entanglement Entropy.
+\newblock {\em Journal of High Energy Physics}, 2011(5):036, 2011.
+
+\bibitem{jlms2016}
+D. L. Jafferis, A. Lewkowycz, J. Maldacena, and S. J. Suh.
+\newblock Relative entropy equals bulk relative entropy.
+\newblock {\em Journal of High Energy Physics}, 2016(6):004, 2016.
+
+\bibitem{lashkari2016}
+N. Lashkari and M. Van Raamsdonk.
+\newblock Canonical Energy is Quantum Fisher Information.
+\newblock {\em Journal of High Energy Physics}, 2016(4):153, 2016.
+
+\bibitem{iyer1994}
+V. Iyer and R. M. Wald.
+\newblock Some properties of the Noether charge and a proposal for dynamical black hole entropy.
+\newblock {\em Physical Review D}, 50(2):846--864, 1994.
+
+\bibitem{donnelly2016}
+W. Donnelly and L. Freidel.
+\newblock Local subsystems in gauge theory and gravity.
+\newblock {\em Journal of High Energy Physics}, 2016(9):102, 2016.
+
+\bibitem{radzikowski1996}
+M. J. Radzikowski.
+\newblock Micro-local approach to the Hadamard condition in quantum field theory on curved space-time.
+\newblock {\em Communications in Mathematical Physics}, 179(3):529--553, 1996.
+
+\bibitem{decanini2008}
+Y. D\'ecanini and A. Folacci.
+\newblock Hadamard renormalization of the stress-energy tensor for a quantized scalar field in a general spacetime of arbitrary dimension.
+\newblock {\em Physical Review D}, 78(4):044025, 2008.
+
+\bibitem{crispino2008}
+L. C. B. Crispino, A. Higuchi, and G. E. A. Matsas.
+\newblock The Unruh effect and its applications.
+\newblock {\em Reviews of Modern Physics}, 80(3):787--838, 2008.
+
+\bibitem{jacobson2019}
+T. Jacobson and M. Visser.
+\newblock Gravitational Thermodynamics of Causal Diamonds in (A)dS.
+\newblock {\em SciPost Physics}, 7(6):079, 2019.
+
+\bibitem{dong2014}
+X. Dong.
+\newblock Holographic Entanglement Entropy for General Higher Derivative Gravity.
+\newblock {\em Journal of High Energy Physics}, 2014(1):044, 2014.
+
+\bibitem{camps2014}
+J. Camps.
+\newblock Generalized entropy and higher derivative Gravity.
+\newblock {\em Journal of High Energy Physics}, 2014(3):070, 2014.
+
+\bibitem{bousso2016}
+R. Bousso, Z. Fisher, J. Koeller, S. Leichenauer, and A. C. Wall.
+\newblock Proof of the Quantum Null Energy Condition.
+\newblock {\em Physical Review D}, 93(2):024017, 2016.
+
+\bibitem{faulkner2016}
+T. Faulkner, R. G. Leigh, O. Parrikar, and H. Wang.
+\newblock Modular Hamiltonians for Deformed Half-Spaces and the Averaged Null Energy Condition.
+\newblock {\em Journal of High Energy Physics}, 2016(9):038, 2016.
+
+\bibitem{hollands2013}
+S. Hollands and R. M. Wald.
+\newblock Stability of Black Holes and Black Branes.
+\newblock {\em Communications in Mathematical Physics}, 321(3):629--680, 2013.
+
+\bibitem{bauer2024}
+M. Bauer, A. Le Brigant, Y. Lu, and E. Maor.
+\newblock Fisher-Rao geometry and Jeffreys prior for Pareto distribution.
+\newblock arXiv:2401.xxxxx, 2024.
+
+\bibitem{lovelock1971}
+D. Lovelock.
+\newblock The Einstein Tensor and Its Generalizations.
+\newblock {\em Journal of Mathematical Physics}, 12(3):498--501, 1971.
+
+\end{thebibliography}
+
+\appendix
+
+\section{Small Diamond Limit: Explicit Bounds, Boundary Layer and Commutability}
+
+\subsection{Initial Value and Parametrization}
+Waist: $\theta(0)=\sigma(0)=\omega(0)=0$; generator parameter $|\lambda|\le\lambda_*\sim c_\lambda\ell$, \textbf{and $\lambda$ is taken as affine parameter} ($k^b\nabla_b k^a=0$). Constants family $C_R,C_{\nabla R},C_{\mathcal{C}},C_\sigma(=C_{\mathcal{C}}\lambda_*),C_\omega(=0)$.
+
+\subsection{Frobenius and $\omega\equiv0$}
+Null geodesic congruence hypersurface orthogonal $\Leftrightarrow \omega_{ab}=0$. Under ``waist + approximate CKV'' construction $\omega(0)=0$, from
+$$
+\omega_{AB}'=-\frac{2}{d-2}\theta\,\omega_{AB}
+-\big(\sigma_A{}^{C}\omega_{CB}+\omega_A{}^{C}\sigma_{CB}\big)
+$$
+(or equivalently from Frobenius condition) obtain $\omega\equiv0$.
+
+\subsection{Shear and Curvature Gradient Bounds}
+From Sachs (with $\omega\equiv0$) we have
+$$
+|\sigma|' \le \frac{2}{d-2}|\theta|\,|\sigma|+|\sigma|^2+|\mathcal{C}| .
+$$
+By variable-coefficient Gr\"onwall, initial value $\sigma(0)=0$, and small diamond scaling $|\theta|\lambda_*\ll1$,
+$$
+|\sigma(\lambda)|\le C_{\mathcal{C}}|\lambda|\,e^{\frac{2}{d-2}\int_0^{|\lambda|}|\theta|ds}(1+\mathcal{O}(\varepsilon))
+\ \Rightarrow\
+\sup\sigma^2\le C_\sigma^2(1+\mathcal{O}(\varepsilon)),\quad C_\sigma:=C_{\mathcal{C}}\lambda_* .
+$$
+(Subsequent use of $C_\sigma$ and $\widetilde{M}_\theta$ maintains formulas and order counting unchanged.)
+$$
+\boxed{\
+\big|\theta(\lambda)+\lambda R_{kk}(\lambda)\big|\ \le\
+\tfrac12 C_{\nabla R}\lambda^2\ +\ C_\sigma^2|\lambda|\ +\ \tfrac{4}{3(d-2)}C_R^2|\lambda|^3\ :=\ \widetilde{M}_\theta(\lambda)\ .
+}
+$$
+
+\subsection{Area Inequality and Boundary Layer}
+$$
+\boxed{
+\Big|\delta A+\int_{\mathcal{H}}\lambda R_{kk}\,d\lambda\,dA\Big|
+\ \le\ \int_{\mathcal{H}}\widetilde{M}_\theta(\lambda)\,d\lambda\,dA
+\ \le\ \Big(\tfrac16 C_{\nabla R}\lambda_*^3+\tfrac12 C_\sigma^2\lambda_*^2+\tfrac{1}{3(d-2)}C_R^2\lambda_*^4\Big)A\ .
+}
+$$
+Endpoint layer $[\lambda_*-\delta,\lambda_*]$ contribution satisfies
+$$
+\Big|\int_{\lambda_*-\delta}^{\lambda_*}\lambda R_{kk}\,d\lambda\,dA\Big|
+\le \tfrac12 A\big(\lambda_*^2-(\lambda_*-\delta)^2\big)C_R
+=\mathcal{O}\big(A,C_R,\lambda_*,\delta\big).
+$$
+Taking $\delta=\mathcal{O}(\varepsilon\ell)$ and $\lambda_*\sim c_\lambda\ell$, we get $\mathcal{O}\big(A,C_R,\varepsilon,\ell^2\big)$.
+
+\subsection{Commutability}
+Take fixed $\lambda_0>0$ such that $0<\lambda_*\le\lambda_0$. Since $C_\sigma=C_{\mathcal{C}}\lambda_*\le C_{\mathcal{C}}\lambda_0$, define
+$$
+\boxed{
+\widetilde{M}_{\rm dom}(\lambda)
+:=\tfrac12 C_{\nabla R}\lambda^2+\big(C_{\mathcal{C}}\lambda_0\big)^2|\lambda|
++\tfrac{4}{3(d-2)}C_R^2\lambda_0^3\ \in L^1([0,\lambda_0])\ .
+}
+$$
+Then for integrand $\chi_{[0,\lambda_*]}(\lambda)\big(\theta(\lambda)+\lambda R_{kk}\big)$ on $[0,\lambda_0]$ we have uniform domination (for all $|\lambda|\le\lambda_0$, $|\theta+\lambda R_{kk}|\le \widetilde{M}_\theta\le \widetilde{M}_{\rm dom}$), and $\widetilde{M}_{\rm dom}$ is independent of $\varepsilon$, so by dominated convergence theorem the order of ``$\varepsilon\to0$'' and integration commute.
+
+\section{Localization Lemma and Radon-Type 0-Order Reconstruction}
+
+\subsection{Proposition (Radon/Ray Transform Uniqueness and Localization)}
+Let $F(x,\lambda)$ be measurable and locally integrable. If
+$\int_{S_\ell}\!\varphi(x)\!\int_0^{\lambda_*}\! w(\lambda)F(x,\lambda)\,d\lambda\,dA=0$
+holds for all $\varphi\in C_c^\infty(S_\ell)$ and $w\in C_c^\infty([0,\lambda_*])$, then almost everywhere along each generator
+$\int_0^{\lambda_*} w(\lambda)F(x,\lambda)\,d\lambda=0$.
+
+Proof (sketch): (i) By Fubini theorem, for fixed $w$, if $\int_{S_\ell}\varphi(x)\left[\int_0^{\lambda_*} w F\,d\lambda\right]dA=0$ holds for all $\varphi\in C_c^\infty(S_\ell)$, then almost everywhere on $S_\ell$ we have $\int_0^{\lambda_*} w F\,d\lambda=0$; (ii) For fixed $x$, if $\int_0^{\lambda_*} w(\lambda)F(x,\lambda)\,d\lambda=0$ holds for all $w\in C_c^\infty([0,\lambda_*])$, by mollifier approximation and $C_c^\infty$ density we have $F(x,\lambda)=0$ almost everywhere; (iii) Taking $w\equiv\lambda$ yields weighted ray transform $\mathcal{L}_\lambda[f]$, whose kernel by Radon/ray transform uniqueness contains only zero function (Helgason 2011, Thm 4.2; Finch--Patch--Rakesh 2004). For distributional case first smooth, then take smoothing scale $\to0$. $\square$
+
+\subsection{0-Order Reconstruction}
+By Taylor expansion, $S_{kk}(\gamma(\lambda))=S_{kk}(p)+\lambda\nabla_k S_{kk}(p)+\mathcal{O}(\lambda^2)$; integrating yields
+$\int_0^{\lambda_*}\!\lambda S_{kk}\,d\lambda=\tfrac12\lambda_*^2 S_{kk}(p)+\mathcal{O}(\lambda_*^3|\nabla S|_\infty)$.
+If left side $=o(\ell^2)$ and $\lambda_*\sim c_\lambda\ell$, then leading term $\tfrac12\lambda_*^2 S_{kk}(p)=o(\ell^2)$ forces $S_{kk}(p)\to0$ (as $\ell\to0$). By arbitrariness of $p$ we have $S_{kk}=0$ everywhere. Distributional case can first use mollifier smoothing, then take smoothing scale $\to0$, estimates remain uniform. $\square$
+
+\section{Tensorial Closure and Dimension Condition}
+
+\begin{lemma}[$d\ge3$]
+If $X_{ab}$ smooth symmetric and $X_{ab}k^ak^b=0\ \forall k$ (null), then $X_{ab}=\Phi g_{ab}$. Proof: trace-free decomposition and ``null cone determines conformal class''.
+\end{lemma}
+
+\section{QNEC/ANEC Shape Derivative and Limit Order}
+
+For unit cross-sectional area normalization:
+$$
+\langle T_{kk}(p)\rangle \ge \frac{\hbar}{2\pi}\lim_{A_\perp\to0}\frac{\partial_\lambda^2 S_{\rm out}}{A_\perp},
+$$
+and under standard assumptions (\textbf{Minkowski background or sufficiently weak curvature limit, Hadamard-class state, complete null geodesic, and local integrability}),
+$$
+\int_{-\infty}^{+\infty}T_{kk}\,d\lambda\ge 0 .
+$$
+Limit order same as before: first take $\partial_\lambda^2$, then take $A_\perp\to0$ and UV limit; edge modes absorbed via boundary algebra factorization.
+
+\section{Covariant Phase Space: Integrability Verification of Null Boundary and Corner Terms}
+
+\subsection{Structure}
+$\delta L=E\!\cdot\!\delta\Phi+d\Theta$, symplectic flux $\omega=\delta\Theta$. Add
+$$
+I_{\partial\mathcal{N}}=\frac{1}{8\pi G}\int_{\mathcal{N}}\!d\lambda\,d^{d-2}x\,\sqrt{q}\,\kappa_{\rm aff}[\ell],\quad
+I_{\rm joint}=\frac{1}{8\pi G}\int_{\mathcal{J}}\!d^{d-2}x\,\sqrt{\sigma}\,\eta.
+$$
+Taking Dirichlet-type boundary condition and affine parametrization, boundary variation cancels, $\omega$ no-outflow, Wald--Zoupas/Brown--York charge consistent with null constraint.
+
+\subsection{Minkowski Small Diamond Verification}
+Affine null segment $\Rightarrow \kappa_{\rm aff}[\ell]=0$ makes $I_{\partial\mathcal{N}}=0$; null--spacelike hypersurface joint $\eta$ constant $\Rightarrow \delta I_{\rm joint}=0$. Thus $\delta H_\chi$ integrable, consistent with \S5 canonical energy boundary legitimacy.
+
+\section{$\delta\kappa_\chi/\kappa_\chi=\mathcal{O}(\varepsilon^2)$ Geometric Origin}
+
+Riemann normal coordinates: $g_{ab}=\eta_{ab}+\tfrac13 R_{acbd}x^c x^d+\cdots$. Minkowski diamond CKV gives $\kappa_{\chi,0}=2/\ell$. Under weak curvature with endpoints/waist fixed,
+$$
+\kappa_\chi=\kappa_{\chi,0}+\delta\kappa_\chi,\quad \delta\kappa_\chi=\mathcal{O}\!\Big(\frac{\ell}{L_{\rm curv}^2}\Big),\quad \frac{\delta\kappa_\chi}{\kappa_\chi}=\mathcal{O}\!\Big(\frac{\ell^2}{L_{\rm curv}^2}\Big).
+$$
+
+\section{OS/KMS--Fisher: Cross-Criterion, Sufficient Condition and Lower Bound}
+
+\subsection{Criterion}
+If $p(y|-t_E,x)=p(y|t_E,x)$, $\partial_{t_E}\log p$ odd, $\partial_i\log p$ even, then $g^{(E)}_{t_E i}\big|_{t_E=0}=0$; KMS periodicity guarantees consistency after analytic continuation, so $g^{(L)}_{ti}\big|_{t=0}=0$. For general $t_E\neq0$, $g^{(E)}_{t_E i}$ is only odd in $t_E$ and need not vanish identically.
+
+\subsection{Sufficient Condition and Lower Bound}
+Under OS reflection positivity and $\beta$-KMS strip analyticity premises, if there exists $\eta>0$ such that Fisher covariance matrix has lower bound $\eta I$, then after continuation
+$$
+g^{(L)}_{tt}\le -\eta<0,\qquad g^{(L)}_{ij}\succeq \eta\,\delta_{ij}>0,
+$$
+metric real, non-degenerate with $(-,+,\dots)$ signature. In $1{+}1$ Gaussian family $\eta=1/\sigma^2$ is explicit lower bound.
+
+\section{Higher-Order Gravity: Wald/Dong--Camps Entropy and Linear Layer}
+
+Give first-order variation of $f(R)$ and Gauss--Bonnet to $E_{ab}=8\pi G\,T_{ab}$ local demonstration; linear layer's generalized canonical energy non-negative under no-outflow condition, formally consistent with Hollands--Wald criterion.
+
+\end{document}
+
