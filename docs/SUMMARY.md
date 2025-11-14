@@ -44,6 +44,7 @@
     - [边界时间–拓扑–散射的统一框架：从 $\mathbb Z_2$ holonomy 与 $K^{1}$ 唯一性到宇宙学常数与相位–频率计量](./euler-gls-paper-time/boundary-time-topology-scattering-unified.md)
     - [时间等价类与广义熵优化：统一交换率、严格公设与面向观测的闭合框架](./euler-gls-paper-time/time-equivalence-generalized-entropy-unified.md)
     - [拓扑不变量驱动的边界时间–几何–拓扑统一理论](./euler-gls-paper-time/topological-invariant-boundary-time-unified-theory.md)
+    - [时间等价类、观察者投影与四维拓扑类比：从边界时间刻度不变到相变、分形与 exotic 结构](./euler-gls-paper-time/time-equivalence-observer-projection-4d-analogy.md)
 - [Euler-GLS 扩展系列]()
     - [Null–Modular 双覆盖与重叠因果钻石链](./euler-gls-extend/null-modular-double-cover-causal-diamond-chain.md)
     - [有限阶纪律下的误差可控性](./euler-gls-extend/error-controllability-finite-order-pswf-dpss.md)
