@@ -50,6 +50,7 @@
     - [Gibbons–Hawking–York 边界项的必要性与推广：变分良定性、角点与零类边界，以及到准局域能与热力学的闭合](./euler-gls-extend/ghy-boundary-terms-variational-completeness.md)
     - [时间晶体—Null–Modular $\mathbb Z_2$ 环量统一:从 Floquet 与 Lindblad 到体积分 BF 的相对上同调判据](./euler-gls-extend/time-crystals-null-modular-z2-holonomy-unification.md)
     - [时间晶体的统一框架与工程化路径:从 Floquet 相到开系极限、准周期驱动与拓扑保护](./euler-gls-extend/time-crystals-unified-framework-engineering.md)
+    - [纠缠—意识—时间的统一延迟理论:谱–散射–信息–折扣的四重桥接与跨模态可检刻度](./euler-gls-extend/entanglement-consciousness-time-unified-delay-theory.md)
 
 - [Euler-Quantum 统一量子理论]()
     - [窗化信息几何量子测量统一框架](./euler-quantum/wsig-qm-unified-quantum-measurement-framework.md)
