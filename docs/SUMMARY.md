@@ -56,6 +56,8 @@
     - [观察者世界的截面结构：因果一致性、延迟选择与边界时间几何中的时间双缝干涉](./euler-gls-paper-bondary/observer-world-section-structure-causality-delayed-choice-time-double-slit.md)
     - [观察者世界的截面结构：因果一致性、条件化与边界时间几何](./euler-gls-paper-bondary/observer-world-section-structure-causality-conditionalization.md)
     - [三位一体母尺—边界时间几何—Null–Modular 双覆盖的一体化统一理论：从散射相位到时间晶体、局域量子条件与宇宙学](./euler-gls-paper-bondary/trinity-master-scale-boundary-time-geometry-null-modular-unification.md)
+    - [意识的结构性定义与时间—因果几何：量子 Fisher 信息、因果可控性与观察者本征时间](./euler-gls-paper-bondary/consciousness-structural-definition-time-causality.md)
+    - [意识相互作用、本征时间与信息–因果几何中的类引力效应](./euler-gls-paper-bondary/consciousness-interaction-eigentime-gravity-analog.md)
 - [Euler-GLS 扩展系列]()
     - [Null–Modular 双覆盖与重叠因果钻石链](./euler-gls-extend/null-modular-double-cover-causal-diamond-chain.md)
     - [有限阶纪律下的误差可控性](./euler-gls-extend/error-controllability-finite-order-pswf-dpss.md)
