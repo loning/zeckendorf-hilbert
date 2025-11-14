@@ -36,6 +36,7 @@
     - [统一时间刻度与时间几何：因果排序、幺正演化与广义熵](./euler-gls-paper-time/unified-time-scale-geometry.md)
     - [统一时间刻度与时间几何：谱—散射—因果—熵的等价、定义域与可解模型](./euler-gls-paper-time/unified-time-scale-geometry-domains-solvable-models.md)
     - [时间刻度上的量子–经典桥接：相位、时间延迟、红移与引力–熵几何](./euler-gls-paper-time/time-scale-quantum-classical-bridge.md)
+    - [边界即时钟:时间作为相位—谱移—模块流的统一翻译算子](./euler-gls-paper-time/boundary-as-clock-time-unified-translation-operator.md)
 - [Euler-GLS 扩展系列]()
     - [Null–Modular 双覆盖与重叠因果钻石链](./euler-gls-extend/null-modular-double-cover-causal-diamond-chain.md)
     - [有限阶纪律下的误差可控性](./euler-gls-extend/error-controllability-finite-order-pswf-dpss.md)
