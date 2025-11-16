@@ -43,6 +43,7 @@
     - [量子混沌与本征态热化在 QCA 宇宙中的统一理论：统一时间刻度下的 ETH、公设混沌与本征态能级统计](./euler-gls-union/quantum-chaos-eth-qca-universe.md)
     - [宇宙学常数与暗能量的谱窗化统一理论：统一时间刻度、矩阵宇宙与 QCA 宇宙中的真空能密度](./euler-gls-union/cosmological-constant-dark-energy-spectral-windowing-unified-theory.md)
     - [引力波 Lorentz 破缺与色散的统一矩阵–QCA 宇宙理论：统一时间刻度下的 $v_{\mathrm g}\neq c$ 边界与可检验预言](./euler-gls-union/gravitational-wave-lorentz-violation-dispersion-unified-matrix-qca.md)
+    - [强 CP 问题与轴子在统一矩阵–QCA 宇宙中的拓扑–散射解](./euler-gls-union/strong-cp-problem-axion-topological-scattering-solution-unified-matrix-qca-universe.md)
 - [Euler-GLS 论文系列]()
     - [信息几何变分原理导出爱因斯坦方程：定体积对偶、显式可交换极限、Radon‑型闭包、OS/KMS–Fisher 解析延拓与 null 边界处方](./euler-gls-paper/igvp-einstein-complete.md)
     - [Null–Modular 双覆盖统一原理：在因果钻石上对齐信息几何变分与散射半相位的 $\mathbb{Z}_2$ holonomy](./euler-gls-paper/null-modular-z2-holonomy-unification.md)
