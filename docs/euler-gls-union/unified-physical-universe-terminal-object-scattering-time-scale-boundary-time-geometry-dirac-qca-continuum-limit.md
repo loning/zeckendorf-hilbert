@@ -1,6 +1,6 @@
 # 统一物理宇宙终对象：散射时间刻度、边界时间几何与 Dirac–QCA 连续极限
 
-**Version: 2.12**
+**Version: 2.13**
 
 ## Abstract
 
@@ -618,13 +618,15 @@ $$
 \kappa(\omega)=-\sum_{\ell=0}^{\infty}(2\ell+1)\xi'_{\ell}(\omega),
 $$
 
-其中在每个角动量通道 $\ell$ 上，本文以**实频 resolvent 边界值**定义相对于参照背景的谱移函数 $\xi_\ell(\omega)$。对于**具有自旋的场**，通道应以**总角动量** $j$ 为标签，简并度为 $(2j+1)$。例如 **Dirac（$s=\tfrac12$）** 情形中，部分波由 $j=\ell\pm\tfrac12$（亦可用 Dirac 的 $\kappa_{\rm D}$ 量子数）标记。为避免与统一刻度函数 $\kappa(\omega)$ 混淆，下文用 $\kappa_{\rm D}$ 表示 Dirac 量子数。统一刻度的分布形式应写为
+其中在每个角动量通道 $\ell$ 上，本文以**实频 resolvent 边界值**定义相对于参照背景的谱移函数 $\xi_\ell(\omega)$。对于**具有自旋的场**，通道应以**Dirac 量子数** $\kappa_{\rm D}=\pm(j+\tfrac12)$（或等价的奇偶通道）区分。统一刻度的分布形式写为
 
 $$
-\kappa(\omega)=-\sum_{j}(2j+1)\xi'_{j}(\omega),
+\kappa(\omega)=-\sum_{\kappa_{\rm D}}\bigl(2j(\kappa_{\rm D})+1\bigr)\,\xi'_{\kappa_{\rm D}}(\omega)=-\sum_{j}(2j+1)\,\bigl[\xi'_{j,+}(\omega)+\xi'_{j,-}(\omega)\bigr],
 $$
 
-而**不应**将自旋简并简单地与 $(2\ell+1)$ 因式分解为 $(2\ell+1)(2s+1)$。上述按 $j$ 的计数与 Wigner–Smith 时间延迟与态密度的标准对应 $\operatorname{Tr}Q=2\,\partial_E\delta_{\rm sum}$、$\rho=(2\pi)^{-1}\operatorname{Tr}Q$ 一致。其奇点结构由 QNM 极点数据控制。若要得到关于**能量纤维**的幺正散射矩阵 $S(\omega)$，应同时纳入无穷远与地平线两端的**全部渐近通道**：做法是将 AdS 区域与一个外部开放域**拼接**，并在无穷远施加**辐射型/透明**条件；**在地平线处采用纯入射边界条件，并将地平线视为独立渐近通道以计入透射通量**。由此得到的"无穷远通道 $\oplus$ 地平线通道"的**两端通道散射矩阵**是幺正的（体现通量守恒 $|R|^2+|T|^2=1$），从而
+其中 $j(\kappa_{\rm D})$ 为与 $\kappa_{\rm D}$ 对应的总角动量。为避免与统一刻度函数 $\kappa(\omega)$ 混淆，下文用 $\kappa_{\rm D}$ 表示 Dirac 量子数。对标量场（$s=0$）仅有单一通道，公式自然退化为 $\kappa(\omega)=-\sum_{\ell}(2\ell+1)\xi'_\ell(\omega)$。
+
+而**不应**将自旋简并简单地与 $(2\ell+1)$ 因式分解为 $(2\ell+1)(2s+1)$。上述按 $\kappa_{\rm D}$ 的计数与 Wigner–Smith 时间延迟与态密度的标准对应 $\operatorname{Tr}Q=2\,\partial_E\delta_{\rm sum}$、$\rho=(2\pi)^{-1}\operatorname{Tr}Q$ 一致。其奇点结构由 QNM 极点数据控制。若需在实频上得到**幺正**的能量纤维散射矩阵 $S(\omega)$，必须将**无穷远端入/出**与**地平线端入/出**两类本征通道**一并**纳入渐近基，从而在"无穷远通道 $\oplus$ 地平线通道"的完备通道空间上定义 $S(\omega)$（体现通量守恒）。其后，为选取物理解，可在**求解层面**对地平线端施加**纯入射**边界条件（即在该端将出射振幅设为零），但这一步不改变 $S(\omega)$ 的幺正定义，仅对应在通道解上的系数选择。从而
 
 $$
 \kappa(\omega)=\frac{1}{2\pi}\operatorname{tr}Q(\omega)=\frac{\varphi'(\omega)}{\pi}.
