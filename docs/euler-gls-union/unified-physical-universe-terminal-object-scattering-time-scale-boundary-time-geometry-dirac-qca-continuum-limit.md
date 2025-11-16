@@ -1,25 +1,28 @@
 # 统一物理宇宙终对象：散射时间刻度、边界时间几何与 Dirac–QCA 连续极限
 
+**Version: 1.7**
+
 ## Abstract
 
 本文在散射谱理论、广义相对论的边界 Hamilton 形式、量子 Null 能量条件（quantum null energy condition, QNEC）以及 Dirac 型量子元胞自动机（quantum cellular automaton, QCA）的连续极限研究基础上，引入一个以统一时间刻度为核心的"物理宇宙终对象"结构。
 
-在标准可追踪扰动与波算子完备的散射设定下，利用 Birman–Kreĭn 公式与 Eisenbud–Wigner–Smith 理论，证明存在一个在加常数意义下唯一的刻度密度函数
+在标准可追踪扰动与波算子完备的散射设定下，利用 Birman–Kreĭn 公式与 Eisenbud–Wigner–Smith 理论，证明存在一个几乎处处唯一的刻度密度函数
 
 $$
 \kappa(\omega)
 =\frac{\varphi'(\omega)}{\pi}
-=\rho_{\mathrm{rel}}(\omega)
+=-\xi'(\omega)
+=-\rho_{\mathrm{rel}}(\omega)
 =\frac{1}{2\pi}\operatorname{tr}Q(\omega),
 $$
 
-将"散射总相位导数 $\varphi'(\omega)$""谱移函数导数/相对态密度 $\rho_{\mathrm{rel}}(\omega)$"与 Wigner–Smith 群延迟矩阵迹 $\operatorname{tr}Q(\omega)$ 统一为单一时间刻度母尺 $\kappa$。
+其中 $\rho_{\mathrm{rel}}(\omega)=\xi'(\omega)$。将"散射总相位导数 $\varphi'(\omega)$""谱移函数导数/相对态密度 $\rho_{\mathrm{rel}}(\omega)$"与 Wigner–Smith 群延迟矩阵迹 $\operatorname{tr}Q(\omega)$ 统一为单一时间刻度母尺 $\kappa$。
 
 在引力与量子场论侧，本文选择四维渐近 AdS 的 Einstein 引力与其对偶的大 $N$ 共形场论这一具体背景类。在 Brown–York 准局域能量与 Hamilton–Jacobi 边界形式以及基于相对熵形变的 QNEC 与 holographic QNEC 结果基础上，引入一个明确假设：边界 Hamilton 量沿 null 形变的二阶变分可表示为广义熵 $S_{\rm gen}$ 二阶形变的配权积分。证明在该假设及一个谱–几何对应存在的条件下，可以选择刻度规范使边界时间函数 $\tau$ 的重标度刚性锁定到同一 $\kappa(\omega)$，从而在边界时间几何中得到刻度函数 $\kappa_{\mathrm{geo}}(\omega)=\kappa(\omega)$。
 
 在离散宇宙侧，本文考虑 Dirac 型 QCA，将 split-step 量子行走及其高维推广作为具体模型族。在适当局域性和平滑性假设下，利用 Dirac 连续极限与有限阶 Euler–Maclaurin–Poisson 公式，证明包含有限散射区的 Dirac–QCA 的离散 Wigner–Smith 群延迟迹在长波极限中收敛到同一 $\kappa(\omega)$，并在一维 split-step 模型上给出幂次误差上界，从而在 $a,\Delta t\to 0$ 极限下定义离散刻度 $\kappa_{\mathrm{QCA}}(\omega)=\kappa(\omega)$。
 
-上述三层结构在一个以 Grothendieck 宇宙控制大小的 2–范畴 $\mathbf{Univ}_\kappa$ 中被统一：对象是携带统一刻度 $\kappa$ 的"物理宇宙对象"，其核心时间层由三元组 $(U_{\mathrm{scat}},U_{\mathrm{BTG}},U_{\mathrm{QCA}})$ 组成，分别对应散射、边界时间几何与 QCA；1–态射是保持因果偏序、局域代数与刻度的结构态射，2–态射是相应的自然同构。在标准散射假设、AdS/大 $N$ 背景下的 QNEC 与 Brown–York 兼容性假设以及 Dirac–QCA 连续极限假设下，构造出一个在 $\mathbf{Univ}_\kappa$ 中满足终对象普适性质的候选对象 $\mathfrak{U}_\ast$：对任何对象 $\mathfrak{V}\in\mathbf{Univ}_\kappa$，存在唯一（至 2–同构）刻度保持 1–态射 $F:\mathfrak{V}\to\mathfrak{U}_\ast$。
+上述三层结构在一个以 Grothendieck 宇宙控制大小的 2–范畴 $\mathbf{Univ}_\kappa$ 中被统一：对象为携带统一刻度的"物理宇宙对象"，1–态射为刻度保持的结构态射，2–态射为相应自然同构。**在此基础上，并在 $\mathbf{Univ}_\kappa$ 为（2,1）–范畴且具 smallness 与 2–（弱）极限、同时标准化函子 $N$ 的对象层不动点以 2–极限（Eilenberg–Moore 意义）存在并具从任意对象入射 1–态射唯一（至 2–同构）之泛性质的附加范畴假设下，本文得到一个条件性结果：存在 $\mathfrak{U}_\ast\in\mathbf{Univ}_\kappa$ 满足终对象普适性质。**
 
 在模型应用部分，本文分别在 Minkowski 真空、渐近 AdS 黑洞散射及一维 Dirac–QCA 玩具模型上具体重建刻度函数 $\kappa(\omega)$，展示统一时间刻度如何将黑洞群延迟、边界熵流与离散时间步长联系起来。在工程方案部分，提出在微波/声学散射实验与量子行走/离子阱平台中实现部分刻度结构的可行路径，并讨论统一刻度在这些平台上的数值验证方式。
 
@@ -51,7 +54,7 @@ $$
 
 其迹给出"总时间延迟"，并通过 trace 公式与谱移函数导数关联。
 
-在广义相对论中，Brown–York 基于 Einstein–Hilbert 作用与 Gibbons–Hawking–York 边界项的 Hamilton–Jacobi 分析，定义了准局域能量与边界 Hamilton 面电荷，表明在适当边界条件下，类空边界上的时间平移矢量场与准局域能量密度共轭。
+在广义相对论中，Brown–York 基于 Einstein–Hilbert 作用与 Gibbons–Hawking–York 边界项的 Hamilton–Jacobi 分析，定义了准局域能量与边界 Hamilton 面电荷，表明在适当边界条件下，类时边界上的时间平移矢量场与准局域能量密度共轭。
 
 量子 Null 能量条件（QNEC）则在量子场论中给出沿 null 方向的能流 $\langle T_{kk}\rangle$ 与广义熵 $S_{\rm gen}$ 二阶形变之间的不等式关系。Bousso 等在自由及可控相互作用的场论中给出了严格证明，Koeller–Leichenauer 在大 $N$ holographic CFT 中给出了 holographic 证明。
 
@@ -66,7 +69,8 @@ $$
 $$
 \kappa(\omega)
 =\frac{\varphi'(\omega)}{\pi}
-=\rho_{\mathrm{rel}}(\omega)
+=-\xi'(\omega)
+=-\rho_{\mathrm{rel}}(\omega)
 =\frac{1}{2\pi}\operatorname{tr}Q(\omega)
 $$
 
@@ -78,7 +82,7 @@ $$
 
 3. **Dirac–QCA 侧**：在 Dirac–QCA 模型上，通过连续极限与 Euler–Maclaurin–Poisson 估计，将离散 Wigner–Smith 群延迟迹的能量依赖收敛到同一 $\kappa(\omega)$。
 
-在此基础上，引入一个以统一刻度为核心的"物理宇宙对象"，并在统一刻度保持的 2–范畴中构造一个具有终对象性质的候选对象 $\mathfrak{U}_\ast$。
+在此基础上，引入一个以统一刻度为核心的"物理宇宙对象"，并在 **§3.4 的条件性结果**（依赖于标准化函子 $N$ 的不动点以 2–极限存在并具泛性质）下，构造满足终对象普适性质的对象 $\mathfrak{U}_\ast$。
 
 ---
 
@@ -136,13 +140,13 @@ Q(\omega)
 =-\mathrm{i}\,S(\omega)^\dagger\partial_\omega S(\omega)。
 $$
 
-则有
+由 $\det S(\omega)=\exp(-2\pi\mathrm{i}\,\xi(\omega))$ 与 $Q(\omega)=-\mathrm{i}\,S(\omega)^\dagger\partial_\omega S(\omega)$ 可得
 
 $$
 \operatorname{tr}Q(\omega)
 =-\mathrm{i}\partial_\omega\log\det S(\omega)
 =2\partial_\omega\varphi(\omega)
-=2\pi\xi'(\omega)。
+=-2\pi\xi'(\omega)。
 $$
 
 统一时间刻度密度定义为
@@ -150,8 +154,8 @@ $$
 $$
 \kappa(\omega)
 :=\frac{\varphi'(\omega)}{\pi}
-:=\xi'(\omega)
-:=\rho_{\mathrm{rel}}(\omega)
+:=-\xi'(\omega)
+:=-\rho_{\mathrm{rel}}(\omega)
 :=\frac{1}{2\pi}\operatorname{tr}Q(\omega),
 $$
 
@@ -161,11 +165,11 @@ $$
 
 引力与量子场论侧的背景类选取为：
 
-* 四维渐近 AdS 的 Einstein 引力 $(M,g)$，整体为全局双曲，带类空无穷远边界 $\partial M$；
+* 四维渐近 AdS 的 Einstein 引力 $(M,g)$，**非全局双曲**；其无穷远边界 $\partial M$ 为**类时**，在边界处指定适当自伴边界条件以得良定初值–边界问题。
 
 * 边界上存在三维诱导度规 $\gamma_{ab}$ 与一族类空截面 $B_\lambda$，$\lambda$ 为沿某 null 方向的形变参数；
 
-* 在 $(M,g)$ 上耦合一个大 $N$ 共形场论，满足 AdS/CFT 对偶假设。
+* **在 $\partial M$ 上存在大 $N$ 共形场论（边界 CFT）**，与 bulk Einstein 引力满足 AdS/CFT 对偶。
 
 Brown–York 准局域能量与 Hamilton–Jacobi 分析提供边界 Hamilton 面电荷的系统定义。
 
@@ -177,11 +181,11 @@ QNEC 在多种量子场论背景下已被证明，在 holographic CFT 中的版�
 
 $$
 \partial_\lambda^2 H_{\partial M}[\tau]
-=\int_{B_\lambda} f(\mathbf{x})
+=\int_{B_\lambda} f(\lambda,\mathbf{x})
 \,\partial_\lambda^2 S_{\rm gen}(\lambda,\mathbf{x})\,\mathrm{d}\Sigma,
 $$
 
-其中 $f(\mathbf{x})\ge 0$ 为局域配权函数，$S_{\rm gen}(\lambda,\mathbf{x})$ 为以 $\mathbf{x}\in B_\lambda$ 标记的广义熵密度或 coarse–grained 熵密度。
+其中 $f(\lambda,\mathbf{x})$ 为**局域有界可测的配权函数（允许取符号）**，典型选取为 $f(\lambda,\mathbf{x})=\kappa(\omega(\lambda,\mathbf{x}))$，$S_{\rm gen}(\lambda,\mathbf{x})$ 为以 $\mathbf{x}\in B_\lambda$ 标记的广义熵密度或 coarse–grained 熵密度。
 
 谱–几何对应通过 AdS/CFT 中的模式展开或模 Hamiltonian 的谱来实现：边界模 Hamiltonian 的本征频率 $\omega_n$ 与 bulk normal mode 的频率对应，从而在小形变极限下，将 entangling cut 的形变模式 $(\lambda,\mathbf{x})$ 映射到一个能量窗口中的 $\omega(\lambda,\mathbf{x})$。这一对应在 holographic relative entropy 与 modular flow 的研究中已有具体实现途径。
 
@@ -301,13 +305,13 @@ $$
   =\kappa(\omega)；
   $$
 
-* 1–态射：从 $\mathfrak{U}$ 到 $\mathfrak{V}$ 的刻度保持 pseudofunctor $F$，在事件与因果层面是因果同态，在局域代数层面是 $(*)$–同态，在核心时间层满足
+* 1–态射：从 $\mathfrak{U}$ 到 $\mathfrak{V}$ 的**刻度保持结构态射** $F$。为避免歧义，本文约定：每个对象通过 $U_{\mathrm{cat}}$ 封装为内部（2,1）–范畴，因此 $F$ 可等价视为该封装上的 **pseudofunctor**；在事件与因果层面为因果同态，在局域代数层面为 $(*)$–同态，并在核心时间层满足
 
   $$
-  F^\ast\kappa_{\mathfrak{V}}(\omega)
-  =\kappa_{\mathfrak{U}}(\omega)
-  +\text{常数}；
+  F^\ast\kappa_{\mathfrak{V}}(\omega)=\kappa_{\mathfrak{U}}(\omega)\quad\text{（a.e.）}。
   $$
+
+  若仅把对象看作裸的 13 元组，则 1–态射理解为相同约束下的结构保持映射，并与上述 pseudofunctor 通过 $U_{\mathrm{cat}}$ 等价。
 
 * 2–态射：1–态射之间的自然同构，允许在散射侧相差整数倍 $2\pi$ 的相位重标度，在几何侧相差边界坐标变换，在 QCA 侧相差局域酉变换及有限 coarse–graining。
 
@@ -319,16 +323,17 @@ $$
 
 **定理 3.1（统一散射时间刻度）**
 
-在第 2.1 节散射设定下，存在一个在加常数意义下唯一的 Borel 可测函数 $\kappa(\omega)$，使得在 Lebesgue 绝大多数能量点上成立
+在第 2.1 节散射设定下，存在一个（a.e. 唯一）的 Borel 可测函数 $\kappa(\omega)$，使得在 Lebesgue 绝大多数能量点上成立
 
 $$
 \kappa(\omega)
 =\frac{\varphi'(\omega)}{\pi}
-=\rho_{\mathrm{rel}}(\omega)
+=-\xi'(\omega)
+=-\rho_{\mathrm{rel}}(\omega)
 =\frac{1}{2\pi}\operatorname{tr}Q(\omega),
 $$
 
-其中 $\det S(\omega)=\exp(2\mathrm{i}\,\varphi(\omega))$，$\rho_{\mathrm{rel}}(\omega)$ 为谱移函数导数，$Q(\omega)=-\mathrm{i}\,S(\omega)^\dagger\partial_\omega S(\omega)$。
+其中 $\det S(\omega)=\exp(2\mathrm{i}\,\varphi(\omega))$，$\rho_{\mathrm{rel}}(\omega)=\xi'(\omega)$ 为谱移函数导数，$Q(\omega)=-\mathrm{i}\,S(\omega)^\dagger\partial_\omega S(\omega)$。
 
 这是散射谱理论中关于谱移函数与时间延迟的标准结论。
 
@@ -344,7 +349,7 @@ $$
 \kappa(\tilde{\omega})\,\mathrm{d}\tilde{\omega},
 $$
 
-其中 $\kappa(\omega)$ 为定理 3.1 中由散射侧定义的统一刻度，使得边界 Hamilton 量沿 null 形变的二阶变分可写为
+其中 $\kappa(\omega)$ 为定理 3.1 中由散射侧定义的统一刻度。取配权 $f(\lambda,\mathbf{x})=\kappa(\omega(\lambda,\mathbf{x}))$，从而边界 Hamilton 量沿 null 形变的二阶变分可写为
 
 $$
 \partial_\lambda^2 H_{\partial M}[\tau_\kappa]
@@ -410,34 +415,19 @@ $$
 
 其中 $q$ 由有效哈密顿量近似的阶数决定。
 
-### 3.4 统一物理宇宙终对象（结构性定理）
+### 3.4 统一物理宇宙终对象（条件性结果）
 
-**定理 3.4（$\mathbf{Univ}_\kappa$ 中候选终对象的存在性）**
+**定理 3.4（$\mathbf{Univ}_\kappa$ 中终对象的条件性存在）**
 
-在第 2 节设定下，假设：
+在第 2 节设定下，若进一步满足：
 
-1. 对每个物理宇宙对象 $\mathfrak{U}$，其核心时间层满足定理 3.1、命题 3.2 与定理 3.3 的条件，即存在统一刻度 $\kappa(\omega)$，使得
+1. 对每个物理宇宙对象 $\mathfrak{U}$，其核心时间层已按定理 3.1、命题 3.2 与定理 3.3 对齐到统一刻度 $\kappa$；
 
-   $$
-   \kappa_{\mathrm{scat}}
-   =\kappa_{\mathrm{geo}}
-   =\kappa_{\mathrm{QCA}}
-   =\kappa；
-   $$
+2. $\mathbf{Univ}_\kappa$ 为（2,1）–范畴且具有相应的小性与 2–（弱）极限；
 
-2. 2–范畴 $\mathbf{Univ}_\kappa$ 具有适当的 2–余极限与余不动点。
+3. 标准化函子 $N:\mathbf{Univ}_\kappa\to\mathbf{Univ}_\kappa$ 的**对象层不动点**以 2–极限（Eilenberg–Moore 意义）存在，记为 $\mathfrak{U}_\ast$，并且该 2–极限具备：对任意对象 $\mathfrak{V}$，存在唯一（至 2–同构）刻度保持 1–态射 $F_{\mathfrak{V}}:\mathfrak{V}\to\mathfrak{U}_\ast$ 的泛性质；
 
-则存在一个对象 $\mathfrak{U}_\ast\in\mathbf{Univ}_\kappa$，满足：
-
-* 对任一对象 $\mathfrak{V}\in\mathbf{Univ}_\kappa$，存在唯一（至 2–同构）刻度保持 1–态射
-
-  $$
-  F_{\mathfrak{V}}:\mathfrak{V}\to\mathfrak{U}_\ast；
-  $$
-
-* 任意两个从 $\mathfrak{V}$ 到 $\mathfrak{U}_\ast$ 的 1–态射之间存在唯一 2–态射使其同构。
-
-在 2–范畴意义下，$\mathfrak{U}_\ast$ 是 $\mathbf{Univ}_\kappa$ 中的候选终对象。
+   则 $\mathfrak{U}_\ast$ 为 $\mathbf{Univ}_\kappa$ 中的终对象。
 
 ---
 
@@ -487,7 +477,7 @@ $$
 \operatorname{tr}Q(\omega)
 =-\mathrm{i}\operatorname{tr}\big(S(\omega)^\dagger\partial_\omega S(\omega)\big)
 =-\mathrm{i}\partial_\omega\log\det S(\omega)
-=2\pi\,\xi'(\omega)。
+=-2\pi\,\xi'(\omega)。
 $$
 
 又由 $\det S(\omega)=\exp(2\mathrm{i}\,\varphi(\omega))$ 可得
@@ -508,7 +498,8 @@ $$
 $$
 \kappa(\omega)
 =\frac{\varphi'(\omega)}{\pi}
-=\xi'(\omega)
+=-\xi'(\omega)
+=-\rho_{\mathrm{rel}}(\omega)
 =\frac{1}{2\pi}\operatorname{tr}Q(\omega),
 $$
 
@@ -530,7 +521,7 @@ $$
 
 $$
 H_{\partial M}[t]
-=\int_{B_t} (\epsilon,N-j_a N^a)\,\mathrm{d}\Sigma，
+=\int_{B_t}\big(N\,\epsilon - N^a j_a\big)\,\mathrm{d}\Sigma，
 $$
 
 $\epsilon,j_a$ 为能量与动量密度，$N,N^a$ 为 lapse 与 shift。
@@ -623,16 +614,9 @@ $$
 
 3. 在 QCA 层，将时间步长与准能量拓扑重标度，使其满足定理 3.3。
 
-标准化过程在态射上对应于刻度保持条件下的规范变换，构成 2–函子 $N:\mathbf{Univ}_\kappa\to\mathbf{Univ}_\kappa$。考虑 $N$ 的余不动点范畴 $\mathbf{Fix}(N)$，其对象满足 $N(\mathfrak{U})\cong\mathfrak{U}$。
+标准化过程在态射上对应于刻度保持条件下的规范变换，构成 2–函子 $N:\mathbf{Univ}_\kappa\to\mathbf{Univ}_\kappa$。考虑 $N$ 的不动点范畴 $\mathbf{Fix}(N)$，其对象满足 $N(\mathfrak{U})\cong\mathfrak{U}$。
 
-在 smallness 与 2–余极限存在假设下，可构造 2–余极限
-
-$$
-\mathfrak{U}_\ast
-=\mathop{\mathrm{2\text{-}colim}}_{\mathfrak{U}} N(\mathfrak{U})。
-$$
-
-余极限的泛性质保证对任一对象 $\mathfrak{V}$，存在唯一（至 2–同构）态射 $\mathfrak{V}\to\mathfrak{U}_\ast$，从而 $\mathfrak{U}_\ast$ 是候选终对象。若存在另一对象 $\mathfrak{U}'_\ast$ 也满足终对象性质，则从 $\mathfrak{U}_\ast$ 到 $\mathfrak{U}'_\ast$ 与反向态射的组合与各自恒等态射 2–同构，从而二者在 2–范畴意义下等价。
+在 smallness 与 2–（弱）极限存在假设下，若标准化函子 $N$ 的对象层不动点以 2–极限（Eilenberg–Moore 意义）存在且满足从任意对象入射的 1–态射唯一至 2–同构的泛性质，则将该不动点记为 $\mathfrak{U}_\ast$。由定义立即推出：对任一对象 $\mathfrak{V}$，存在唯一（至 2–同构）态射 $\mathfrak{V}\to\mathfrak{U}_\ast$，因而 $\mathfrak{U}_\ast$ 为 $\mathbf{Univ}_\kappa$ 的 2–终对象。若存在另一对象 $\mathfrak{U}'_\ast$ 也满足终对象性质，则从 $\mathfrak{U}_\ast$ 到 $\mathfrak{U}'_\ast$ 与反向态射的组合与各自恒等态射 2–同构，从而二者在 2–范畴意义下等价。
 
 ---
 
@@ -654,7 +638,7 @@ $$
 =\frac{1}{2\pi}\operatorname{tr}Q(\omega)。
 $$
 
-在边界时间几何侧，选取靠近无穷远的类空边界 $\partial M$，在其上定义 Brown–York 准局域能量与 Hamilton 量。AdS/CFT 对偶下，边界 CFT 的能量谱与体内散射模式谱对应，null 截面 $B_\lambda$ 的形变参数 $\lambda$ 可与 entangling cut 的形变模式及模 Hamiltonian 本征频率关联。利用 holographic QNEC 与相对熵形变结果，可将边界 Hamilton 量的形变重写为广义熵二阶形变的配权积分，从而按命题 3.2 将 $\tau_\kappa$ 与 $\kappa(\omega)$ 关联。
+在边界时间几何侧，选取靠近无穷远的类时边界 $\partial M$，在其上定义 Brown–York 准局域能量与 Hamilton 量。AdS/CFT 对偶下，边界 CFT 的能量谱与体内散射模式谱对应，null 截面 $B_\lambda$ 的形变参数 $\lambda$ 可与 entangling cut 的形变模式及模 Hamiltonian 本征频率关联。利用 holographic QNEC 与相对熵形变结果，可将边界 Hamilton 量的形变重写为广义熵二阶形变的配权积分，从而按命题 3.2 将 $\tau_\kappa$ 与 $\kappa(\omega)$ 关联。
 
 在 Dirac–QCA 侧，可构造一个在有限区域内模拟黑洞有效势的 QCA：在一维格点上引入空间依赖的 coin 角度或散射单元阵列，使其连续极限在有效势层面近似黑洞外部散射。通过数值计算 QCA 的 $S_{\mathrm{QCA}}(\varepsilon)$ 与 $Q_{\mathrm{QCA}}(\varepsilon)$，可以检验统一刻度 $\kappa_{\mathrm{QCA}}(\omega)$ 与连续 Dirac 散射刻度 $\kappa(\omega)$ 之间的误差收敛。
 
@@ -710,7 +694,7 @@ $$
 
 散射侧的刻度同一完全扎根于成熟的谱移函数与时间延迟理论，适用于大量 Schrödinger 型与 Dirac 型散射系统。边界时间几何侧的命题 3.2 是在特定背景类与 Hamilton–熵匹配假设下的条件性结果，适用范围主要限于具有良好 holographic 对偶的渐近 AdS 背景。Dirac–QCA 部分在一维与部分高维模型上具备严格的连续极限证明，但在一般多通道高维系统中给出显式的 Euler–Maclaurin–Poisson 误差界仍具有技术挑战。
 
-范畴层面的定理 3.4 在 smallness 与 2–余极限存在假设下提供了一个自然的标准化封装，将统一刻度条件与散射–边界–QCA 三层结构组合为一个具有终对象性质的候选宇宙对象。
+范畴层面的定理 3.4 为**条件性结果**：除 smallness 与 2–（弱）极限外，还需标准化函子 $N$ 的对象层不动点以 2–极限（Eilenberg–Moore 意义）存在并具从任意对象入射 1–态射唯一（至 2–同构）的泛性质，方可得到终对象结论。
 
 统一物理宇宙终对象框架为连接黑洞热力学、宇宙学常数、量子混沌与多观察者信息几何提供了结构起点。未来工作可以在包含规范场与完整标准模型散射的设定中推广统一刻度结构，并在非 AdS 背景下通过数值相对熵与 QNEC 检验边界刻度同一的适用性。
 
@@ -718,20 +702,21 @@ $$
 
 ## 8 Conclusion
 
-本文在散射谱理论、边界时间几何与 Dirac–QCA 连续极限之间建立了一条统一时间刻度主线，并在统一刻度条件下构造了一个具有终对象性质的物理宇宙候选对象。
+本文在散射谱理论、边界时间几何与 Dirac–QCA 连续极限之间建立了一条统一时间刻度主线，并在统一刻度条件下，在附加范畴假设下得到条件性结论：存在具有终对象性质的物理宇宙对象。
 
 散射侧的 Birman–Kreĭn 与 Wigner–Smith 理论给出
 
 $$
 \kappa(\omega)
 =\frac{\varphi'(\omega)}{\pi}
-=\rho_{\mathrm{rel}}(\omega)
+=-\xi'(\omega)
+=-\rho_{\mathrm{rel}}(\omega)
 =\frac{1}{2\pi}\operatorname{tr}Q(\omega),
 $$
 
-这一刻度母式为时间的统一提供了谱论基础。在渐近 AdS + holographic CFT 背景类中，在 Brown–York 准局域 Hamilton 量与 QNEC 兼容性假设及谱–几何对应存在的条件下，可以将边界时间函数的形变重标度到同一刻度 $\kappa(\omega)$。在 Dirac–QCA 侧，通过连续极限与 Euler–Maclaurin–Poisson 估计证明离散 Wigner–Smith 群延迟迹在长波极限中收敛到同一刻度，从而在离散宇宙模型中实现统一时间刻度。
+其中 $\rho_{\mathrm{rel}}(\omega)=\xi'(\omega)$。这一刻度母式为时间的统一提供了谱论基础。在渐近 AdS + holographic CFT 背景类中，在 Brown–York 准局域 Hamilton 量与 QNEC 兼容性假设及谱–几何对应存在的条件下，可以将边界时间函数的形变重标度到同一刻度 $\kappa(\omega)$。在 Dirac–QCA 侧，通过连续极限与 Euler–Maclaurin–Poisson 估计证明离散 Wigner–Smith 群延迟迹在长波极限中收敛到同一刻度，从而在离散宇宙模型中实现统一时间刻度。
 
-在范畴层面，本文将满足统一刻度条件的散射–边界–QCA 宇宙模型组织为 2–范畴 $\mathbf{Univ}_\kappa$，并在 smallness 与 2–余极限存在假设下构造了一个具有终对象普适性质的候选对象 $\mathfrak{U}_\ast$。这一对象可被视为在统一时间刻度下物理宇宙结构的极大一致实现，将散射相位、边界熵、离散时间步长等量统一到单一刻度母尺之下。
+在范畴层面，本文将满足统一刻度条件的散射–边界–QCA 宇宙模型组织为 2–范畴 $\mathbf{Univ}_\kappa$，并在 smallness 与 2–（弱）极限**及**标准化函子 $N$ 的对象层不动点以 2–极限存在并具泛性质的**附加范畴假设**下，得到**条件性**结论：存在满足终对象普适性质的对象 $\mathfrak{U}_\ast$。这一对象可被视为在统一时间刻度下物理宇宙结构的极大一致实现，将散射相位、边界熵、离散时间步长等量统一到单一刻度母尺之下。
 
 ---
 
@@ -793,7 +778,7 @@ $$
 \operatorname{tr}Q(\omega)
 =-\mathrm{i}\operatorname{tr}(S(\omega)^\dagger\partial_\omega S(\omega))
 =-\mathrm{i}\partial_\omega\log\det S(\omega)
-=2\pi\,\xi'(\omega)。
+=-2\pi\,\xi'(\omega)。
 $$
 
 再由 $\det S(\omega)=\exp(2\mathrm{i}\,\varphi(\omega))$ 得
@@ -807,7 +792,8 @@ $$
 $$
 \kappa(\omega)
 =\frac{\varphi'(\omega)}{\pi}
-=\xi'(\omega)
+=-\xi'(\omega)
+=-\rho_{\mathrm{rel}}(\omega)
 =\frac{1}{2\pi}\operatorname{tr}Q(\omega)。
 $$
 
@@ -838,7 +824,7 @@ $$
 
 $$
 H_{\partial M}[t]
-=\int_{B_t} (\epsilon,N-j_a N^a)\,\mathrm{d}\Sigma。
+=\int_{B_t}\big(N\,\epsilon - N^a j_a\big)\,\mathrm{d}\Sigma。
 $$
 
 ### B.2 QNEC 与广义熵形变
@@ -918,15 +904,19 @@ $$
 +R_p,
 $$
 
-其中 $B_{2r}$ 为 Bernoulli 数。若 $f\in C^{2p}$，则 $|R_p|\le C h^{2p}$。结合 Poisson 求和公式，可进一步控制高频模式贡献，得到
+其中 $B_{2r}$ 为 Bernoulli 数。由 Euler–Maclaurin 公式，若 $f\in C^{2p}$，则余项满足 $|R_p|\le C h^{2p}$。因而
 
 $$
-\sum_{k\in\mathrm{BZ}} f(k)
-=\frac{1}{h}\int f(x)\,\mathrm{d}x
-+\mathcal{O}(h^{2p-1})。
+\sum_{n=n_0}^{n_1} f(nh)=\frac{1}{h}\int_{n_0h}^{n_1h} f(x)\,\mathrm{d}x+\frac{f(n_0h)+f(n_1h)}{2}+\sum_{r=1}^{p}\frac{B_{2r}}{(2r)!}h^{2r-1}\left(f^{(2r-1)}(n_1h)-f^{(2r-1)}(n_0h)\right)+R_p,
 $$
 
-将 $f(k)=\partial_\varepsilon\varphi_{\mathrm{QCA}}(\varepsilon(k))$ 代入，即可得到命题 3.3.1 中的 $a^{2r-1}$ 误差估计。
+结合 Poisson 求和公式可控制高频贡献；**若** $f$ 及其所有奇阶导在端点消失**或** $f$ 按 BZ 作周期延拓使边界与低阶 Bernoulli 校正项为零，则有
+
+$$
+\sum_{k\in\mathrm{BZ}} f(k)=\frac{1}{h}\int f(x)\,\mathrm{d}x+\mathcal{O}(h^{2p})。
+$$
+
+上式用于估计 QCA–Dirac 差异时，可与能量导数与势的正则性假设共同给出 §3.3 与命题 3.3.1 所需的幂次上界。
 
 ---
 
@@ -950,16 +940,9 @@ $$
 
 这一过程在态射上对应于统一刻度保持下的规范变换，构成 2–函子 $N:\mathbf{Univ}_\kappa\to\mathbf{Univ}_\kappa$。
 
-### D.2 2–余极限与候选终对象
+### D.2 2–终对象与（弱）极限刻画（条件性）
 
-考虑 $N$ 的余不动点范畴 $\mathbf{Fix}(N)$，其对象满足 $N(\mathfrak{U})\cong\mathfrak{U}$。在 smallness 与 2–余极限存在假设下，可构造 2–余极限
-
-$$
-\mathfrak{U}_\ast
-=\mathop{\mathrm{2\text{-}colim}}_{\mathfrak{U}} N(\mathfrak{U})。
-$$
-
-由 2–余极限的泛性质，对任一对象 $\mathfrak{V}$ 存在唯一（至 2–同构）态射 $\mathfrak{V}\to\mathfrak{U}_\ast$，从而 $\mathfrak{U}_\ast$ 为候选终对象。若存在另一对象 $\mathfrak{U}'_\ast$ 也满足终对象性质，则二者在 2–范畴意义下等价。
+设标准化函子 $N$ 的不动点以 2–极限存在且满足从任意对象入射的 1–态射唯一至 2–同构的泛性质；此时将该不动点记为 $\mathfrak{U}_\ast$。由定义立即推出：对任意 $\mathfrak{V}$ 存在唯一（至 2–同构）态射 $\mathfrak{V}\to\mathfrak{U}_\ast$，因而 $\mathfrak{U}_\ast$ 为 $\mathbf{Univ}_\kappa$ 的 2–终对象。若另有对象亦满足该泛性质，则两者在 2–范畴意义下等价。
 
 ---
 
@@ -973,13 +956,13 @@ $$
 
 [4] J. D. Brown and J. W. York, "Quasilocal energy and conserved charges derived from the gravitational action," Phys. Rev. D 47, 1407–1419 (1993).
 
-[5] S. Bose, L. Parker and Y. Peleg, "Brown–York quasilocal energy, gravitational charge, and black hole thermodynamics," Phys. Rev. D 60, 064010 (1999).
+[5] S. Bose and N. Dadhich, "Brown–York quasilocal energy, gravitational charge, and black hole horizons," Phys. Rev. D 60, 064010 (1999).
 
 [6] R. Bousso, Z. Fisher, J. Koeller, S. Leichenauer and A. C. Wall, "Proof of the Quantum Null Energy Condition," Phys. Rev. D 93, 024017 (2016).
 
 [7] J. Koeller and S. Leichenauer, "Holographic proof of the quantum null energy condition," Phys. Rev. D 94, 024026 (2016).
 
-[8] T. A. Malik and R. Bousso, "Proof of the quantum null energy condition for free fermionic fields," Phys. Rev. D 101, 066028 (2020).
+[8] T. A. Malik and R. Lopez-Mobilia, "Proof of the quantum null energy condition for free fermionic field theories," Phys. Rev. D 101, 066028 (2020).
 
 [9] T. Farrelly, "A review of quantum cellular automata," Quantum 4, 368 (2020).
 
