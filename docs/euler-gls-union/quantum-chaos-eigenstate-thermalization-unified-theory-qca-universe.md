@@ -12,7 +12,7 @@ $$
 \kappa(\omega)
 =\varphi'(\omega)/\pi
 =\rho_{\mathrm{rel}}(\omega)
-=(2\pi)^{-1}\tr Q(\omega)
+=(2\pi)^{-1}\operatorname{tr} Q(\omega)
 $$
 
 将散射半相位导数、相对态密度与 Wigner–Smith 群延迟迹统一为单一时间刻度密度，从而在矩阵宇宙 $U_{\mathrm{mat}}$ 中给出独立于具体哈密顿量选取的"宇宙时间母尺"。宇宙作为 QCA 对象
@@ -72,7 +72,7 @@ $$
 在 Floquet 系统与随机量子电路中，时间演化以单一时间步幺正算子 $U$ 描述，准能谱通过
 
 $$
-U\ket{\psi_n}=\mathrm{e}^{-\ii\varepsilon_n\Delta t}\ket{\psi_n}
+U\ket{\psi_n}=\mathrm{e}^{-\mathrm{i}\varepsilon_n\Delta t}\ket{\psi_n}
 $$
 
 定义。ETH 可转写为关于准能量本征态 $\ket{\psi_n}$ 的陈述，热平衡则对应于固定准能壳上的微正则分布。局域随机量子电路被证明在多项式深度下可实现高阶单位设计，其本征态与谱统计在严格意义上接近 Haar 随机幺正矩阵的典型性质。近期工作进一步改进了设计阶与电路深度的折衷，并给出对"随机性"与"scrambling 速度"的更精细估计。
@@ -90,14 +90,14 @@ $$
 在散射与谱理论中，Wigner–Smith 时间延迟矩阵
 
 $$
-Q(\omega)=-\ii S(\omega)^\dagger\partial_\omega S(\omega)
+Q(\omega)=-\mathrm{i} S(\omega)^\dagger\partial_\omega S(\omega)
 $$
 
 将多通道散射矩阵 $S(\omega)$ 的频率导数与"群延迟"联系起来，其迹给出总延迟时间。另一方面，Birman–Kreĭn 公式与 Lifshits–Kreĭn 迹公式将谱移函数 $\xi(\omega)$ 与散射行列式 $\det S(\omega)$ 联系，表明
 
 $$
 \xi(\omega)
-=-\frac{1}{2\pi\ii}\log\det S(\omega),
+=-\frac{1}{2\pi\mathrm{i}}\log\det S(\omega),
 \quad
 \rho_{\mathrm{rel}}(\omega)=-\xi'(\omega)
 $$
@@ -110,7 +110,7 @@ $$
 \kappa(\omega)
 =\varphi'(\omega)/\pi
 =\rho_{\mathrm{rel}}(\omega)
-=(2\pi)^{-1}\tr Q(\omega)
+=(2\pi)^{-1}\operatorname{tr} Q(\omega)
 $$
 
 在这一背景下被解释为"相对态密度–群延迟–散射相位导数"的统一密度，定义了一个独立于具体坐标与局域 Hamilton 选取的"时间母尺"。
@@ -148,7 +148,7 @@ $$
 在谱分解下可写为
 
 $$
-S=\int^\oplus S(\omega)\,\diff\mu(\omega),
+S=\int^\oplus S(\omega)\,\mathrm{d}\mu(\omega),
 $$
 
 其中 $\omega$ 表示能量或频率参数。对几乎处处 $\omega$，$S(\omega)$ 为在纤维 Hilbert 空间上的酉算子。
@@ -156,7 +156,7 @@ $$
 Birman–Kreĭn 公式断言存在谱移函数 $\xi(\omega)$，使得
 
 $$
-\xi(\omega)=-\frac{1}{2\pi\ii}\log\det S(\omega),
+\xi(\omega)=-\frac{1}{2\pi\mathrm{i}}\log\det S(\omega),
 \quad
 \rho_{\mathrm{rel}}(\omega)=-\xi'(\omega)
 $$
@@ -164,7 +164,7 @@ $$
 在广泛情形下给出相对态密度。另一方面，Wigner–Smith 时间延迟矩阵定义为
 
 $$
-Q(\omega)=-\ii S(\omega)^\dagger\partial_\omega S(\omega),
+Q(\omega)=-\mathrm{i} S(\omega)^\dagger\partial_\omega S(\omega),
 $$
 
 其迹刻画总群延迟时间。
@@ -175,13 +175,13 @@ $$
 \kappa(\omega)
 =\frac{\varphi'(\omega)}{\pi}
 =\rho_{\mathrm{rel}}(\omega)
-=\frac{1}{2\pi}\tr Q(\omega),
+=\frac{1}{2\pi}\operatorname{tr} Q(\omega),
 $$
 
 其中 $\varphi(\omega)$ 为散射半相位（相对散射行列式的相位）。在统一框架中，$\kappa(\omega)$ 被视为"宇宙时间密度"，任何物理时间参数若通过可观测测量过程得到，其在大尺度上与
 
 $$
-\tau_{\mathrm{scatt}}(\omega)=\int^{\omega}\kappa(\tilde\omega)\,\diff\tilde\omega
+\tau_{\mathrm{scatt}}(\omega)=\int^{\omega}\kappa(\tilde\omega)\,\mathrm{d}\tilde\omega
 $$
 
 处于等价类。
@@ -201,11 +201,11 @@ $$
 
 2. $S(\omega)\in\mathcal B(\mathcal H_{\mathrm{chan}})$ 为频率依赖散射矩阵族，其块稀疏结构在 $V\times V$ 上编码因果偏序与相互作用结构；
 
-3. $Q(\omega)=-\ii S(\omega)^\dagger\partial_\omega S(\omega)$ 为 Wigner–Smith 群延迟矩阵，统一时间刻度密度由
+3. $Q(\omega)=-\mathrm{i} S(\omega)^\dagger\partial_\omega S(\omega)$ 为 Wigner–Smith 群延迟矩阵，统一时间刻度密度由
 
    $$
    \kappa(\omega)
-   =(2\pi)^{-1}\tr Q(\omega)
+   =(2\pi)^{-1}\operatorname{tr} Q(\omega)
    $$
 
    给出；
@@ -249,7 +249,7 @@ $$
 
 $$
 U_\Omega\ket{\psi_n}
-=\mathrm{e}^{-\ii\varepsilon_n\Delta t}\ket{\psi_n}.
+=\mathrm{e}^{-\mathrm{i}\varepsilon_n\Delta t}\ket{\psi_n}.
 $$
 
 这些有限维幺正算子是讨论 QCA–ETH 与能级统计的基本对象。
@@ -389,7 +389,7 @@ $$
 
 $$
 K(t)
-=D^{-1}\lvert\tr U_\Omega^t\rvert^2
+=D^{-1}\lvert\operatorname{tr} U_\Omega^t\rvert^2
 $$
 
 在适当 rescale 后呈现"斜坡–平台"结构，与 CUE 的普适谱波动一致。
@@ -406,7 +406,7 @@ $$
 
 **定理 3.3（统一时间–ETH–熵增长）**
 
-在公设混沌 QCA 与定理 3.1 的假设下，存在函数 $v_{\mathrm{ent}}(\varepsilon)>0$ 与常数 $c'>0$，使得对任意有限 $X\subset\Omega$，在统一时间刻度区间 $\tau\in[0,\tau_{\mathrm{th}}]$ 中，约化态 $\rho_X(\tau)=\tr_{\Omega\setminus X}\rho(\tau)$ 的熵密度
+在公设混沌 QCA 与定理 3.1 的假设下，存在函数 $v_{\mathrm{ent}}(\varepsilon)>0$ 与常数 $c'>0$，使得对任意有限 $X\subset\Omega$，在统一时间刻度区间 $\tau\in[0,\tau_{\mathrm{th}}]$ 中，约化态 $\rho_X(\tau)=\operatorname{tr}_{\Omega\setminus X}\rho(\tau)$ 的熵密度
 
 $$
 s_X(\tau)=|X|^{-1}S(\rho_X(\tau))
@@ -454,15 +454,15 @@ $$
 
 设 $U$ Haar 随机，$\{\ket{\psi_n}\}$ 为其本征基，$O_X$ 为支撑在 $|X|\ll|\Omega|$ 上的局域算子，则：
 
-1. $\mathbb E[\bra{\psi_n}O_X\ket{\psi_n}]=\tr(O_X)/D$ 与能级 $n$ 无关；
+1. $\mathbb E[\bra{\psi_n}O_X\ket{\psi_n}]=\operatorname{tr}(O_X)/D$ 与能级 $n$ 无关；
 
-2. $\Var[\bra{\psi_n}O_X\ket{\psi_n}]\sim\mathcal O(D^{-1})$，且随 $|\Omega|$ 指数衰减；
+2. $\operatorname{Var}[\bra{\psi_n}O_X\ket{\psi_n}]\sim\mathcal O(D^{-1})$，且随 $|\Omega|$ 指数衰减；
 
 3. 通过 Levy 浓缩不等式，有
 
    $$
    \mathbb P\bigl[
-   \lvert\bra{\psi_n}O_X\ket{\psi_n}-\tr(O_X)/D\rvert>\epsilon
+   \lvert\bra{\psi_n}O_X\ket{\psi_n}-\operatorname{tr}(O_X)/D\rvert>\epsilon
    \bigr]
    \le 2\exp(-cD\epsilon^2/\lVert O_X\rVert^2),
    $$
@@ -531,7 +531,7 @@ $$
 \langle O_X\rangle(n)
 =\bra{\psi(n)}O_X\ket{\psi(n)}
 =\sum_{m,n}c_m^\ast c_n
-\mathrm{e}^{\ii(\varepsilon_m-\varepsilon_n)n\Delta t}
+\mathrm{e}^{\mathrm{i}(\varepsilon_m-\varepsilon_n)n\Delta t}
 \bra{\psi_m}O_X\ket{\psi_n}.
 $$
 
@@ -562,7 +562,7 @@ $\square$
 
 步骤 1：谱统计的单位设计可逼近性。
 
-最近邻间距分布与谱 form factor 均可表示为本征相位 $\{\theta_n\}$ 的对称多项式函数，在展开后仅依赖于有限阶迹 $\tr U_\Omega^k$ 与其复共轭。CUE 谱统计的标准表达式正是在 Haar 随机幺正下这些迹的高阶矩。
+最近邻间距分布与谱 form factor 均可表示为本征相位 $\{\theta_n\}$ 的对称多项式函数，在展开后仅依赖于有限阶迹 $\operatorname{tr} U_\Omega^k$ 与其复共轭。CUE 谱统计的标准表达式正是在 Haar 随机幺正下这些迹的高阶矩。
 
 由于公设混沌 QCA 对 $U_\Omega$ 给出了有限阶近似单位设计，故在适当截断与展式精度下，QCA 与 CUE 在这些迹多项式上的期望与方差差异至多为 $\epsilon_{t_0}(|\Omega|)$，随 $|\Omega|$ 指数衰减。
 
@@ -596,7 +596,7 @@ $\square$
 
 $$
 \bar\kappa(\varepsilon)
-=\frac{1}{\lvert I\rvert}\int_I\kappa(\omega)\,\diff\omega.
+=\frac{1}{\lvert I\rvert}\int_I\kappa(\omega)\,\mathrm{d}\omega.
 $$
 
 将 QCA 的准能量谱 $\varepsilon_n$ 与散射能量 $\omega$ 对应，可定义
@@ -656,7 +656,7 @@ $$
 
 若 $U_{\mathrm{even}},U_{\mathrm{odd}}$ 选自生成 $SU(q^2)$ 的通用门集，并在不同时间段上进行参数更新，则该 QCA 在任何有限区间上的限制 $U_\Omega$ 等价于局域随机量子电路，满足公设混沌 QCA 公理。
 
-在适当的连续极限中（时间步 $\Delta t\to 0$，两体门接近 $\exp(-\ii h_{x,x+1}\Delta t)$），可得到一个有效哈密顿量
+在适当的连续极限中（时间步 $\Delta t\to 0$，两体门接近 $\exp(-\mathrm{i} h_{x,x+1}\Delta t)$），可得到一个有效哈密顿量
 
 $$
 H_{\mathrm{eff}}=\sum_x h_{x,x+1},
@@ -814,7 +814,7 @@ $$
 
 $$
 U_\Omega\ket{\psi_n}
-=\mathrm{e}^{-\ii\varepsilon_n\Delta t}\ket{\psi_n},
+=\mathrm{e}^{-\mathrm{i}\varepsilon_n\Delta t}\ket{\psi_n},
 $$
 
 初态 $\ket{\psi_0}=\sum_n c_n\ket{\psi_n}$。局域观测的时间平均为
@@ -856,7 +856,7 @@ $$
 \delta O_X(k)
 =\langle O_X\rangle(k)-\overline{\langle O_X\rangle}
 =\sum_{m\neq n}c_m^\ast c_n
-\mathrm{e}^{\ii(\varepsilon_m-\varepsilon_n)k\Delta t}
+\mathrm{e}^{\mathrm{i}(\varepsilon_m-\varepsilon_n)k\Delta t}
 \bra{\psi_m}O_X\ket{\psi_n}.
 $$
 
@@ -883,7 +883,7 @@ $$
 
 $$
 H_{\mathrm{eff}}
-=\frac{\ii}{\Delta t}\log U,
+=\frac{\mathrm{i}}{\Delta t}\log U,
 $$
 
 其谱与准能谱满足 $E_n\approx\varepsilon_n$。若 $\Delta t$ 足够小、$\log U$ 的支割线选择得当，则 Floquet ETH 与哈密顿 ETH 在同一能窗上等价，微正则集与准能壳可相互替代。
@@ -910,7 +910,7 @@ Haar 积分公式给出
 
 $$
 \int_{U(D)} U_{i_1j_1}\cdots U_{i_kj_k}
-\overline{U_{i'_1j'_1}}\cdots\overline{U_{i'_kj'_k}}\,\diff\mu_{\mathrm{Haar}}(U)
+\overline{U_{i'_1j'_1}}\cdots\overline{U_{i'_kj'_k}}\,\mathrm{d}\mu_{\mathrm{Haar}}(U)
 $$
 
 可用置换群 $S_k$ 上的 Weingarten 函数表示。对 $k\le t_0$ 的场合，即可用有限项求和表示期望值。由此推导引理 4.1 与引理 4.2 中的平均与方差估计。
@@ -938,7 +938,7 @@ CUE 随机矩阵 $U\in U(D)$ 的谱 form factor 定义为
 
 $$
 K_{\mathrm{CUE}}(t)
-=D^{-1}\mathbb E\bigl[\lvert\tr U^t\rvert^2\bigr].
+=D^{-1}\mathbb E\bigl[\lvert\operatorname{tr} U^t\rvert^2\bigr].
 $$
 
 随机矩阵理论给出在 $D\to\infty$ 极限下的显式表达：在 rescale 时间 $\tau=t/D$ 下，$K_{\mathrm{CUE}}(\tau)$ 展现线性"斜坡"与饱和"平台"。
@@ -959,9 +959,9 @@ $$
 
 $$
 U_{\mathrm{gate}}
-=\exp\bigl(-\ii (J_x\sigma^x\otimes\sigma^x
+=\exp\bigl(-\mathrm{i} (J_x\sigma^x\otimes\sigma^x
 +J_y\sigma^y\otimes\sigma^y
-+J_z\sigma^z\otimes\sigma^z+h_x(\sigma^x\otimes\id+\id\otimes\sigma^x))\Delta t\bigr),
++J_z\sigma^z\otimes\sigma^z+h_x(\sigma^x\otimes\mathbb{I}+\mathbb{I}\otimes\sigma^x))\Delta t\bigr),
 $$
 
 并在不同时间段对参数 $(J_x,J_y,J_z,h_x)$ 进行准随机扰动，以破坏可积性与额外交对称性。

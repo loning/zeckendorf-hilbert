@@ -14,7 +14,7 @@ $$
 \kappa(\omega)
 =\frac{\varphi'(\omega)}{\pi}
 =\rho_{\mathrm{rel}}(\omega)
-=\frac{1}{2\pi}\tr Q(\omega)
+=\frac{1}{2\pi}\operatorname{tr} Q(\omega)
 $$
 
 的基础上，将三代中微子质量与味混合解释为：矩阵宇宙中 leptonic flavor–束的散射 holonomy，与 QCA 宇宙中元胞内部 flavor–缺陷的连续极限；并进一步把 Yukawa 耦合视为统一时间刻度密度在 flavor–特定频带上的谱权重。具体而言：
@@ -65,7 +65,7 @@ $$
    Y_{\alpha i}
    \simeq
    \exp\Bigl(
-   -\int_{I_{\alpha i}}\kappa_{\alpha i}(\omega)\,\diff\ln\omega
+   -\int_{I_{\alpha i}}\kappa_{\alpha i}(\omega)\,\mathrm{d}\ln\omega
    \Bigr),
    $$
 
@@ -141,7 +141,7 @@ $$
 \kappa(\omega)
 =\frac{\varphi'(\omega)}{\pi}
 =\rho_{\mathrm{rel}}(\omega)
-=\frac{1}{2\pi}\tr Q(\omega)
+=\frac{1}{2\pi}\operatorname{tr} Q(\omega)
 $$
 
 被统一为单一刻度密度，其积分给出宇宙唯一的时间标尺。
@@ -217,7 +217,7 @@ $$
    \kappa(\omega)
    =\frac{\varphi'(\omega)}{\pi}
    =\rho_{\mathrm{rel}}(\omega)
-   =\frac{1}{2\pi}\tr Q(\omega)
+   =\frac{1}{2\pi}\operatorname{tr} Q(\omega)
    $$
 
    在几乎处处意义下成立；
@@ -226,7 +226,7 @@ $$
 
    $$
    \tau_{\mathrm{scatt}}(\omega)
-   =\int_{\omega_0}^{\omega}\kappa(\tilde\omega)\,\diff\tilde\omega
+   =\int_{\omega_0}^{\omega}\kappa(\tilde\omega)\,\mathrm{d}\tilde\omega
    $$
 
    与几何时间、模时间等属于同一刻度等价类。
@@ -272,7 +272,7 @@ $$
 则存在 $U(3)$–联络一形式
 
 $$
-\mathcal A_{\mathrm{flavor}}(\omega)\,\diff\omega
+\mathcal A_{\mathrm{flavor}}(\omega)\,\mathrm{d}\omega
 \in\Omega^1\bigl(\Omega,\mathfrak u(3)\bigr),
 $$
 
@@ -310,7 +310,7 @@ $$
 $$
 U_x^{\mathrm{loc}}
 =\exp\Bigl[
--\ii\Delta t
+-\mathrm{i}\Delta t
 \begin{pmatrix}
 0 & M_D(x)\\
 M_D^\dagger(x) & M_R(x)
@@ -335,7 +335,7 @@ $$
 
 $$
 U
-=\exp(-\ii H_{\mathrm{eff}}\Delta t)+O((\Delta t)^2),
+=\exp(-\mathrm{i} H_{\mathrm{eff}}\Delta t)+O((\Delta t)^2),
 $$
 
 其中轻中微子子块的质量矩阵为
@@ -357,7 +357,7 @@ $$
 
    $$
    \partial_{\ln\omega}\varphi_{\alpha i}(\omega)
-   =\int \chi_{\alpha i}(\omega,\lambda)\,\kappa(\lambda)\,\diff\lambda,
+   =\int \chi_{\alpha i}(\omega,\lambda)\,\kappa(\lambda)\,\mathrm{d}\lambda,
    $$
 
    其中 $\chi_{\alpha i}$ 为有界核函数；
@@ -370,7 +370,7 @@ $$
    -\int
    W_{\alpha i}(\omega)\,
    \partial_{\ln\omega}\varphi_{\alpha i}(\omega)\,
-   \diff\ln\omega
+   \mathrm{d}\ln\omega
    \Bigr)
    $$
 
@@ -381,7 +381,7 @@ $$
 $$
 Y_{\alpha i}
 =c_{\alpha i}\exp\Bigl(
--\int_{I_{\alpha i}}\kappa_{\alpha i}(\omega)\,\diff\ln\omega
+-\int_{I_{\alpha i}}\kappa_{\alpha i}(\omega)\,\mathrm{d}\ln\omega
 \Bigr),
 $$
 
@@ -453,20 +453,20 @@ $$
 
 $$
 Q(\omega)
-=-\ii S^\dagger(\omega)\partial_\omega S(\omega),
+=-\mathrm{i} S^\dagger(\omega)\partial_\omega S(\omega),
 $$
 
 其迹由统一刻度控制：
 
 $$
-\tr Q(\omega)=2\pi \kappa(\omega).
+\operatorname{tr} Q(\omega)=2\pi \kappa(\omega).
 $$
 
 对 leptonic CC 子块 $S_{CC}(\omega)$ 的限制 $Q_\ell(\omega)$ 的 trace–free 部分
 
 $$
 \widetilde Q_\ell(\omega)
-=Q_\ell(\omega)-\frac{\tr Q_\ell(\omega)}{3}\mathbb I
+=Q_\ell(\omega)-\frac{\operatorname{tr} Q_\ell(\omega)}{3}\mathbb I
 $$
 
 自然落在 $\mathfrak su(3)$ 中。由于 $S_{CC}(\omega)$ 在中微子–lepton 子空间上给出 flavor–相干散射，其本征基与 PMNS 结构相关。由幺正性与解析性，可构造一族 $U(3)$–值函数 $V(\omega)$ 对角化 $\widetilde Q_\ell$，从而在质量本征标架与 flavor–散射标架间建立同构。
@@ -485,7 +485,7 @@ $$
 考虑统一时间刻度下描述某一 CC 过程的频率路径 $\gamma_{\mathrm{cc}}:[0,1]\to\Omega$，联络的平行移动满足
 
 $$
-\frac{\diff}{\diff s}\psi(s)
+\frac{\mathrm{d}}{\mathrm{d} s}\psi(s)
 =-\mathcal A_{\mathrm{flavor}}\bigl(\gamma_{\mathrm{cc}}(s)\bigr)\,\psi(s),
 $$
 
@@ -519,7 +519,7 @@ $$
 $$
 V(\omega)
 =\mathcal P\exp\Bigl(
--\int_{\omega_\ast}^{\omega}\mathcal A_{\mathrm{flavor}}(\tilde\omega)\,\diff\tilde\omega
+-\int_{\omega_\ast}^{\omega}\mathcal A_{\mathrm{flavor}}(\tilde\omega)\,\mathrm{d}\tilde\omega
 \Bigr),
 $$
 
@@ -536,7 +536,7 @@ $$
 $$
 U_x^{\mathrm{loc}}
 =\mathbb I
--\ii\Delta t
+-\mathrm{i}\Delta t
 \begin{pmatrix}
 0 & M_D(x)\\
 M_D^\dagger(x) & M_R(x)
@@ -548,7 +548,7 @@ $$
 
 $$
 U^{\mathrm{loc}}
-=\exp(-\ii H_{\mathrm{mass}}\Delta t)+O((\Delta t)^2)
+=\exp(-\mathrm{i} H_{\mathrm{mass}}\Delta t)+O((\Delta t)^2)
 $$，其中
 
 $$
@@ -598,7 +598,7 @@ $$
 
 $$
 U_{\mathrm{hop}}
-=\exp\Bigl(-\ii\Delta t\sum_x
+=\exp\Bigl(-\mathrm{i}\Delta t\sum_x
 \bar\nu_{L,x}c\gamma^j\nabla_j\nu_{L,x}+\text{h.c.}\Bigr),
 $$
 
@@ -614,7 +614,7 @@ $$
 
 $$
 U
-=\exp\bigl(-\ii(H_{\mathrm{kin}}+H_{\mathrm{mass}})\Delta t\bigr)
+=\exp\bigl(-\mathrm{i}(H_{\mathrm{kin}}+H_{\mathrm{mass}})\Delta t\bigr)
 +O((\Delta t)^2),
 $$
 
@@ -660,7 +660,7 @@ $$
 $$
 \partial_{\ln\omega}\varphi_{\alpha i}(\omega)
 =\omega\partial_\omega\varphi_{\alpha i}(\omega)
-=\int \chi_{\alpha i}(\omega,\lambda)\kappa(\lambda)\,\diff\lambda,
+=\int \chi_{\alpha i}(\omega,\lambda)\kappa(\lambda)\,\mathrm{d}\lambda,
 $$
 
 由谱分解与 Fubini 定理可证明该表示在适当的正则性假设下成立（附录 D.2）。
@@ -673,8 +673,8 @@ $$
 Y_{\alpha i}
 \sim\frac{1}{\mathcal N}
 \int_{\omega_{\min}}^{\omega_{\max}}
-\exp\bigl(\ii\varphi_{\alpha i}(\omega)\bigr)
-\Phi(\omega)\,\diff\omega,
+\exp\bigl(\mathrm{i}\varphi_{\alpha i}(\omega)\bigr)
+\Phi(\omega)\,\mathrm{d}\omega,
 $$
 
 其中 $\Phi(\omega)$ 表示波包包络与相空间权重。
@@ -687,7 +687,7 @@ $$
 -\int_{\omega_{\min}}^{\omega_{\max}}
 W_{\alpha i}(\omega)\,
 \partial_{\ln\omega}\varphi_{\alpha i}(\omega)\,
-\diff\ln\omega,
+\mathrm{d}\ln\omega,
 $$
 
 对某个非负窗函数 $W_{\alpha i}$；该形式可视为在能区上平均群延迟或相位梯度的指数抑制因子。
@@ -700,9 +700,9 @@ $$
 -\int_{\omega_{\min}}^{\omega_{\max}}
 \Bigl[
 \int \chi_{\alpha i}(\omega,\lambda)
-W_{\alpha i}(\omega)\,\diff\ln\omega
+W_{\alpha i}(\omega)\,\mathrm{d}\ln\omega
 \Bigr]
-\kappa(\lambda)\,\diff\lambda.
+\kappa(\lambda)\,\mathrm{d}\lambda.
 $$
 
 定义
@@ -711,7 +711,7 @@ $$
 K_{\alpha i}(\lambda)
 =\int_{\omega_{\min}}^{\omega_{\max}}
 \chi_{\alpha i}(\omega,\lambda)
-W_{\alpha i}(\omega)\,\diff\ln\omega,
+W_{\alpha i}(\omega)\,\mathrm{d}\ln\omega,
 $$
 
 在核 $K_{\alpha i}$ 集中于某个频带 $I_{\alpha i}$ 的情况下，上式等价于
@@ -720,7 +720,7 @@ $$
 \ln|Y_{\alpha i}|
 \approx
 -\int_{I_{\alpha i}}
-K_{\alpha i}^{\mathrm{eff}}(\lambda)\kappa(\lambda)\,\diff\lambda,
+K_{\alpha i}^{\mathrm{eff}}(\lambda)\kappa(\lambda)\,\mathrm{d}\lambda,
 $$
 
 其中 $K_{\alpha i}^{\mathrm{eff}}$ 可视为平滑窗函数。吸收常数因子并将变量变换为 $\ln\omega$，即可得到 Theorem 3 中的窗化积分形式。
@@ -730,7 +730,7 @@ $$
 在 QCA 描述中，频谱由离散布里渊区上的本征值 $\{\varepsilon_n(k)\}$ 给出，相关积分需由离散和替代：
 
 $$
-\int f(\omega)\,\diff\ln\omega
+\int f(\omega)\,\mathrm{d}\ln\omega
 \quad\leadsto\quad
 \sum_{n,k} f(\varepsilon_n(k))\,w_{n,k},
 $$
@@ -739,7 +739,7 @@ $$
 
 $$
 \sum_{m=a}^b f(m)
-=\int_a^b f(x)\,\diff x
+=\int_a^b f(x)\,\mathrm{d} x
 +\frac{f(a)+f(b)}{2}
 +\sum_{j=1}^N
 \frac{B_{2j}}{(2j)!}
@@ -958,9 +958,9 @@ U_{\mathrm{PMNS}}
 0 & -s_{23} & c_{23}
 \end{pmatrix}
 \begin{pmatrix}
-c_{13} & 0 & s_{13}e^{-\ii\delta}\\
+c_{13} & 0 & s_{13}e^{-\mathrm{i}\delta}\\
 0 & 1 & 0\\
--s_{13}e^{\ii\delta} & 0 & c_{13}
+-s_{13}e^{\mathrm{i}\delta} & 0 & c_{13}
 \end{pmatrix}
 \begin{pmatrix}
 c_{12} & s_{12} & 0\\
@@ -969,8 +969,8 @@ c_{12} & s_{12} & 0\\
 \end{pmatrix}
 \begin{pmatrix}
 1 & 0 & 0\\
-0 & e^{\ii\alpha_1/2} & 0\\
-0 & 0 & e^{\ii\alpha_2/2}
+0 & e^{\mathrm{i}\alpha_1/2} & 0\\
+0 & 0 & e^{\mathrm{i}\alpha_2/2}
 \end{pmatrix},
 $$
 
@@ -1059,7 +1059,7 @@ Dirac–QCA 文献给出了从离散更新到连续 Dirac 方程的系统方法�
 
 $$
 U(k)\ket{\psi(k)}
-=e^{-\ii\varepsilon(k)\Delta t}\ket{\psi(k)},
+=e^{-\mathrm{i}\varepsilon(k)\Delta t}\ket{\psi(k)},
 $$
 
 在小 $k$ 与小质量极限中，$\varepsilon(k)$ 展开为
@@ -1110,11 +1110,11 @@ $$
 
 在 fiber bundle 理论中，给定路径 $\gamma$ 与 $U(3)$ 元素 $U$，总可以构造某个联络使得其沿 $\gamma$ 的 holonomy 等于 $U$。本文的额外要求是：联络的迹部分由统一刻度 $\kappa(\omega)$ 决定，迹自由部分与 leptonic 群延迟矩阵相关。这一要求通过如下分解实现：
 
-* 将 $Q_\ell(\omega)$ 分解为迹部分 $\frac{\tr Q_\ell(\omega)}{3}\mathbb I$ 与迹自由部分 $\widetilde Q_\ell(\omega)$；
+* 将 $Q_\ell(\omega)$ 分解为迹部分 $\frac{\operatorname{tr} Q_\ell(\omega)}{3}\mathbb I$ 与迹自由部分 $\widetilde Q_\ell(\omega)$；
 
 * 将迹部分对应的 $U(1)$–联络固定为
 
-  $\mathcal A_{U(1)}(\omega)=\frac{1}{6\pi}\tr Q_\ell(\omega)$；
+  $\mathcal A_{U(1)}(\omega)=\frac{1}{6\pi}\operatorname{tr} Q_\ell(\omega)$；
 
 * 在 $SU(3)$ 部分选择联络 $\mathcal A_{SU(3)}(\omega)=\frac{1}{2\pi}\widetilde Q_\ell(\omega)$ 的某种 gauge。
 
@@ -1126,7 +1126,7 @@ Birman–Kreĭn 公式给出散射行列式与谱移函数之间的关系：
 
 $$
 \det S(\omega)
-=\exp\bigl(-2\pi\ii\xi(\omega)\bigr),
+=\exp\bigl(-2\pi\mathrm{i}\xi(\omega)\bigr),
 \quad
 \partial_\omega\xi(\omega)
 =-\Delta\rho_\omega(\omega),

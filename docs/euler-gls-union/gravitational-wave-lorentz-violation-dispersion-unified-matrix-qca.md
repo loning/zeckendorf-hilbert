@@ -1,12 +1,3 @@
-(\newcommand{\diff}{\mathrm{d}}
-\newcommand{\ii}{\mathrm{i}}
-\newcommand{\tr}{\mathrm{tr}}
-\newcommand{\id}{\mathbb{I}}
-\newcommand{\diag}{\mathrm{diag}}
-\newcommand{\bk}{\mathbf{k}}
-\newcommand{\bx}{\mathbf{x}}
-\newcommand{\bg}{\mathbf{g}})
-
 # 引力波 Lorentz 破缺与色散的统一矩阵–QCA 宇宙理论
 
 统一时间刻度下的 $v_{\mathrm g}\neq c$ 边界与可检验预言
@@ -20,9 +11,9 @@ $$
 \kappa(\omega)
 =\frac{\varphi'(\omega)}{\pi}
 =\rho_{\mathrm{rel}}(\omega)
-=\frac{1}{2\pi}\tr Q(\omega),
+=\frac{1}{2\pi}\operatorname{tr} Q(\omega),
 \qquad
-Q(\omega)=-\ii S(\omega)^\dagger\partial_\omega S(\omega),
+Q(\omega)=-\mathrm{i} S(\omega)^\dagger\partial_\omega S(\omega),
 $$
 将散射半相位导数、相对态密度与群延迟迹统一为单一时间密度 $\kappa(\omega)$，其积分定义时间刻度等价类代表 $\tau_{\mathrm{scatt}}(\omega)$。在"引力波作为几何扰动的散射模式"视角下，$\kappa(\omega)$ 直接控制引力波相速度、群速度及频率依赖的传播延迟。
 
@@ -32,7 +23,7 @@ U_{\mathrm{QCA}}
 =(\Lambda,\mathcal H_{\mathrm{cell}},
 \mathcal A_{\mathrm{qloc}},\alpha,\omega_0)
 $$
-中,引力自由度被嵌入为"引力–QCA 模式"的线性化激发，其准能谱 $\varepsilon(\bk)$ 在连续极限中给出有效色散关系
+中,引力自由度被嵌入为"引力–QCA 模式"的线性化激发，其准能谱 $\varepsilon(\mathbf{k})$ 在连续极限中给出有效色散关系
 $$
 \omega^2
 =c^2k^2\bigl[1+\varepsilon_2(k\ell_{\mathrm{cell}})^2
@@ -42,7 +33,7 @@ $$
 
 在适当的谱–散射与 QCA 公理下，本文得到以下主要结果：
 
-(1) 在矩阵宇宙表象中，将弱场引力波视为背景 FRW/平直时空上的线性扰动模式，构造引力波散射矩阵 $S_{\mathrm{GW}}(\omega;\bk)$ 与群延迟矩阵 $Q_{\mathrm{GW}}(\omega;\bk)$，证明在远场低频极限下，统一刻度密度的偏差 $\delta\kappa_{\mathrm{GW}}(\omega)$ 与色散函数 $\varepsilon(k)$ 满足
+(1) 在矩阵宇宙表象中，将弱场引力波视为背景 FRW/平直时空上的线性扰动模式，构造引力波散射矩阵 $S_{\mathrm{GW}}(\omega;\mathbf{k})$ 与群延迟矩阵 $Q_{\mathrm{GW}}(\omega;\mathbf{k})$，证明在远场低频极限下，统一刻度密度的偏差 $\delta\kappa_{\mathrm{GW}}(\omega)$ 与色散函数 $\varepsilon(k)$ 满足
 $$
 \delta v_{\mathrm g}(\omega)
 =\frac{\partial\omega}{\partial k}-c
@@ -72,7 +63,7 @@ $$
 $$
 的普朗克尺度抑制律，高阶项对群延迟的贡献在当前观测精度下被指数压制。
 
-(5) 附录中给出：从 GR 线性扰动到矩阵宇宙散射矩阵 $S_{\mathrm{GW}}(\omega;\bk)$ 的构造；引力–QCA 模型的连续极限与色散展开；统一时间刻度下群延迟与 $\kappa(\omega)$ 偏差的精确关系；以及如何将 LIGO/Virgo–GW170817 与 GWTC-3 的约束转换为 $(\ell_{\mathrm{cell}},\varepsilon_2)$ 数值界的过程。
+(5) 附录中给出：从 GR 线性扰动到矩阵宇宙散射矩阵 $S_{\mathrm{GW}}(\omega;\mathbf{k})$ 的构造；引力–QCA 模型的连续极限与色散展开；统一时间刻度下群延迟与 $\kappa(\omega)$ 偏差的精确关系；以及如何将 LIGO/Virgo–GW170817 与 GWTC-3 的约束转换为 $(\ell_{\mathrm{cell}},\varepsilon_2)$ 数值界的过程。
 
 结果表明：在统一矩阵–QCA 宇宙理论中，引力波 Lorentz 破缺与色散并非任意高维算子扰动，而是 QCA 离散结构与统一时间刻度偏差的几何–谱学投影。现有观测已经把这一偏差压到极小范围，为宇宙离散结构的格距及色散系数提供了强约束，并给出未来高频与多频段引力波探测可检验的统一模板。
 
@@ -138,16 +129,16 @@ $$
 \kappa(\omega)
 =\frac{\varphi'(\omega)}{\pi}
 =\rho_{\mathrm{rel}}(\omega)
-=\frac{1}{2\pi}\tr Q(\omega),
+=\frac{1}{2\pi}\operatorname{tr} Q(\omega),
 \quad
-Q(\omega)=-\ii S(\omega)^\dagger\partial_\omega S(\omega),
+Q(\omega)=-\mathrm{i} S(\omega)^\dagger\partial_\omega S(\omega),
 $$
 其中 $S(\omega)$ 为定能散射矩阵，$\varphi(\omega)=\tfrac12\arg\det S(\omega)$ 为总半相位，$\rho_{\mathrm{rel}}(\omega)$ 为相对态密度，$Q(\omega)$ 为 Wigner–Smith 群延迟矩阵。
 
 时间刻度参数定义为
 $$
 \tau_{\mathrm{scatt}}(\omega)
-=\int_{\omega_0}^{\omega}\kappa(\tilde\omega)\,\diff\tilde\omega,
+=\int_{\omega_0}^{\omega}\kappa(\tilde\omega)\,\mathrm{d}\tilde\omega,
 $$
 其仿射变换 $\tau\mapsto a\tau+b$ 被视为同一时间刻度等价类。前期工作中已证明：在合适的散射–几何–模流公理下，几何本征时间、边界模时间与散射时间刻度属于同一等价类。
 
@@ -173,34 +164,34 @@ $$
 
 1. 背景几何被编码为有效光锥结构：$\alpha$ 的传播半径与邻接图拓扑在连续极限中重现某个 Lorentz 流形 $(M,g)$ 的因果锥结构；
 
-2. 引力波模式为 $U=\mathrm{e}^{-\ii H_{\mathrm{eff}}\Delta t}$ 的线性化本征模，与背景 $U_0$ 的差异在低能极限中满足 GR 的横向无迹波动方程。
+2. 引力波模式为 $U=\mathrm{e}^{-\mathrm{i} H_{\mathrm{eff}}\Delta t}$ 的线性化本征模，与背景 $U_0$ 的差异在低能极限中满足 GR 的横向无迹波动方程。
 
 在动量表示下，采用 Bloch–Floquet 分解
 $$
-U=\int_{\mathrm{BZ}}^{\oplus}U(\bk)\,\diff\mu(\bk),
+U=\int_{\mathrm{BZ}}^{\oplus}U(\mathbf{k})\,\mathrm{d}\mu(\mathbf{k}),
 $$
-$\mathrm{BZ}$ 为 Brillouin 区，$U(\bk)$ 在 $\mathcal H_{\mathrm{cell}}$ 上酉，谱分解为
+$\mathrm{BZ}$ 为 Brillouin 区，$U(\mathbf{k})$ 在 $\mathcal H_{\mathrm{cell}}$ 上酉，谱分解为
 $$
-U(\bk)
-=\sum_a\exp\bigl(-\ii \varepsilon_a(\bk)\Delta t\bigr)
-\Pi_a(\bk),
+U(\mathbf{k})
+=\sum_a\exp\bigl(-\mathrm{i} \varepsilon_a(\mathbf{k})\Delta t\bigr)
+\Pi_a(\mathbf{k}),
 $$
-$\varepsilon_a(\bk)$ 为准能谱，$\Pi_a(\bk)$ 为本征投影。引力波分支记作 $\varepsilon_{\mathrm{GW}}(\bk)$，定义有效频率
+$\varepsilon_a(\mathbf{k})$ 为准能谱，$\Pi_a(\mathbf{k})$ 为本征投影。引力波分支记作 $\varepsilon_{\mathrm{GW}}(\mathbf{k})$，定义有效频率
 $$
-\omega(\bk)
-=\frac{\varepsilon_{\mathrm{GW}}(\bk)}{\Delta t}.
+\omega(\mathbf{k})
+=\frac{\varepsilon_{\mathrm{GW}}(\mathbf{k})}{\Delta t}.
 $$
 
 ### 2.3 色散关系与 QCA 格距
 
-设 QCA 基本格距为 $\ell_{\mathrm{cell}}$，则在长波极限 $k\ell_{\mathrm{cell}}\ll1$ 下，可对 $\omega(\bk)$ 做 Taylor 展开。假定存在一簇无质量分支，其主导行为为 $\omega(\bk)\simeq ck$（$c$ 为宏观光速），则一般可写为
+设 QCA 基本格距为 $\ell_{\mathrm{cell}}$，则在长波极限 $k\ell_{\mathrm{cell}}\ll1$ 下，可对 $\omega(\mathbf{k})$ 做 Taylor 展开。假定存在一簇无质量分支，其主导行为为 $\omega(\mathbf{k})\simeq ck$（$c$ 为宏观光速），则一般可写为
 $$
-\omega^2(\bk)
+\omega^2(\mathbf{k})
 =c^2k^2
 \left[1+\sum_{n\ge1}
-\beta_{2n}(\hat\bk)(k\ell_{\mathrm{cell}})^{2n}\right],
+\beta_{2n}(\hat{\mathbf{k}})(k\ell_{\mathrm{cell}})^{2n}\right],
 $$
-其中 $\hat\bk=\bk/k$ 为方向，$\beta_{2n}(\hat\bk)$ 为无量纲系数。该式显式体现了 QCA 离散结构对色散的高阶修正。
+其中 $\hat{\mathbf{k}}=\mathbf{k}/k$ 为方向，$\beta_{2n}(\hat{\mathbf{k}})$ 为无量纲系数。该式显式体现了 QCA 离散结构对色散的高阶修正。
 
 本文将特别关注各向同性近似下的主导项
 $$
@@ -215,12 +206,12 @@ $\omega^2=c^2k^2+\alpha_{\mathrm{disp}}k^4$ 对应。
 对于给定频率 $\omega$，考虑引力波的散射通道子空间 $\mathcal H_{\mathrm{GW}}\subset\mathcal H_{\mathrm{chan}}$，对应散射矩阵 $S_{\mathrm{GW}}(\omega)\in U(N_{\mathrm{GW}})$ 与群延迟矩阵
 $$
 Q_{\mathrm{GW}}(\omega)
-=-\ii S_{\mathrm{GW}}^\dagger(\omega)\partial_\omega S_{\mathrm{GW}}(\omega),
+=-\mathrm{i} S_{\mathrm{GW}}^\dagger(\omega)\partial_\omega S_{\mathrm{GW}}(\omega),
 $$
 其本征值 $\tau_j(\omega)$ 为各通道的群延迟。引力波扇区的统一时间刻度密度定义为
 $$
 \kappa_{\mathrm{GW}}(\omega)
-=\frac{1}{2\pi}\tr Q_{\mathrm{GW}}(\omega)
+=\frac{1}{2\pi}\operatorname{tr} Q_{\mathrm{GW}}(\omega)
 =\frac{1}{2\pi}\sum_{j=1}^{N_{\mathrm{GW}}}\tau_j(\omega).
 $$
 
@@ -299,18 +290,18 @@ $$
 
 设 $U_{\mathrm{QCA}}$ 为一空间齐次、局域、平移不变且满足以下条件的 QCA：
 
-1. 存在反演对称 $\mathcal P$ 与时间反演对称 $\mathcal T$，使得 $\mathcal P U(\bk)\mathcal P^{-1}=U(-\bk)$，$\mathcal T U(\bk)\mathcal T^{-1}=U^\dagger(-\bk)$；
+1. 存在反演对称 $\mathcal P$ 与时间反演对称 $\mathcal T$，使得 $\mathcal P U(\mathbf{k})\mathcal P^{-1}=U(-\mathbf{k})$，$\mathcal T U(\mathbf{k})\mathcal T^{-1}=U^\dagger(-\mathbf{k})$；
 
-2. 存在一簇无质量引力波分支，其在 $\bk\to0$ 时满足 $\omega(\bk)\sim ck$；
+2. 存在一簇无质量引力波分支，其在 $\mathbf{k}\to0$ 时满足 $\omega(\mathbf{k})\sim ck$；
 
-3. 该分支与其它分支之间在低能极限中简并度有限，且可在适当基底下对角化为 $\omega(\bk)$ 与 $-\omega(\bk)$ 成对出现。
+3. 该分支与其它分支之间在低能极限中简并度有限，且可在适当基底下对角化为 $\omega(\mathbf{k})$ 与 $-\omega(\mathbf{k})$ 成对出现。
 
-则 $\omega^2(\bk)$ 在 $k\ell_{\mathrm{cell}}\ll1$ 的展开中只含有偶次项：
+则 $\omega^2(\mathbf{k})$ 在 $k\ell_{\mathrm{cell}}\ll1$ 的展开中只含有偶次项：
 $$
-\omega^2(\bk)
+\omega^2(\mathbf{k})
 =c^2k^2
 \left[1+\sum_{n\ge1}
-\beta_{2n}(\hat\bk)(k\ell_{\mathrm{cell}})^{2n}\right],
+\beta_{2n}(\hat{\mathbf{k}})(k\ell_{\mathrm{cell}})^{2n}\right],
 $$
 不存在 $k^3,k^5,\dots$ 型奇次修正。特别地，在各向同性近似下主导修正为
 $$
@@ -406,7 +397,7 @@ t(\omega)&r'(\omega)
 \end{pmatrix},
 \qquad
 t(\omega)=\lvert t(\omega)\rvert
-\exp\bigl[\ii\phi(\omega)\bigr],
+\exp\bigl[\mathrm{i}\phi(\omega)\bigr],
 $$
 其中 $\phi(\omega)$ 为透射相位。Wigner 群延迟为
 $$
@@ -427,18 +418,18 @@ $$
 多通道情形下，Wigner–Smith 矩阵
 $$
 Q(\omega)
-=-\ii S^\dagger(\omega)\partial_\omega S(\omega)
+=-\mathrm{i} S^\dagger(\omega)\partial_\omega S(\omega)
 $$
 的本征值给出各通道群延迟，迹为其和。若存在 $N$ 个等价通道，则
 $$
-\tr Q(\omega)
+\operatorname{tr} Q(\omega)
 \approx N\frac{L}{v_{\mathrm g}(\omega)}.
 $$
 
 统一时间刻度密度定义为
 $$
 \kappa(\omega)
-=\frac{1}{2\pi}\tr Q(\omega)
+=\frac{1}{2\pi}\operatorname{tr} Q(\omega)
 \approx\frac{N}{2\pi}\frac{L}{v_{\mathrm g}(\omega)}.
 $$
 
@@ -481,52 +472,52 @@ $$
 
 ### 4.2 定理 3.2 的证明：对称性与偶次展开
 
-考虑满足条件 1–3 的 QCA。由于平移不变性与局域性，$U(\bk)$ 在 $\bk$ 空间是解析的酉矩阵函数。条件 2 与无质量分支存在意味着在 $\bk\to0$ 邻域内存在本征值 $\mathrm e^{-\ii\varepsilon(\bk)\Delta t}$，其中 $\varepsilon(\bk)=\omega(\bk)\Delta t$ 并且 $\omega(\bk)\sim ck$。
+考虑满足条件 1–3 的 QCA。由于平移不变性与局域性，$U(\mathbf{k})$ 在 $\mathbf{k}$ 空间是解析的酉矩阵函数。条件 2 与无质量分支存在意味着在 $\mathbf{k}\to0$ 邻域内存在本征值 $\mathrm{e}^{-\mathrm{i}\varepsilon(\mathbf{k})\Delta t}$，其中 $\varepsilon(\mathbf{k})=\omega(\mathbf{k})\Delta t$ 并且 $\omega(\mathbf{k})\sim ck$。
 
 反演对称给出
 $$
-\mathcal P U(\bk)\mathcal P^{-1}
-=U(-\bk),
+\mathcal P U(\mathbf{k})\mathcal P^{-1}
+=U(-\mathbf{k}),
 $$
-在 $\varepsilon(\bk)$ 的水平上意味着谱满足
+在 $\varepsilon(\mathbf{k})$ 的水平上意味着谱满足
 $$
-\{\varepsilon_a(\bk)\}
-=\{\varepsilon_a(-\bk)\},
+\{\varepsilon_a(\mathbf{k})\}
+=\{\varepsilon_a(-\mathbf{k})\},
 $$
 时间反演对称给出
 $$
-\mathcal T U(\bk)\mathcal T^{-1}
-=U^\dagger(-\bk),
+\mathcal T U(\mathbf{k})\mathcal T^{-1}
+=U^\dagger(-\mathbf{k}),
 $$
 从而
 $$
-\{\varepsilon_a(\bk)\}
-=\{-\varepsilon_a(-\bk)\}
+\{\varepsilon_a(\mathbf{k})\}
+=\{-\varepsilon_a(-\mathbf{k})\}
 \quad
 (\mathrm{mod}\ 2\pi/\Delta t).
 $$
 
 对无质量引力波分支，可以选取基底使其谱满足
 $$
-\varepsilon_{\mathrm{GW}}(-\bk)
-=-\varepsilon_{\mathrm{GW}}(\bk),
+\varepsilon_{\mathrm{GW}}(-\mathbf{k})
+=-\varepsilon_{\mathrm{GW}}(\mathbf{k}),
 $$
-即 $\omega(-\bk)=-\omega(\bk)$。这意味着 $\omega(\bk)$ 为 $\bk$ 的奇函数，而 $\omega^2(\bk)$ 是偶函数。对 $\omega^2$ 在 $k\ell_{\mathrm{cell}}$ 处展开，有
+即 $\omega(-\mathbf{k})=-\omega(\mathbf{k})$。这意味着 $\omega(\mathbf{k})$ 为 $\mathbf{k}$ 的奇函数，而 $\omega^2(\mathbf{k})$ 是偶函数。对 $\omega^2$ 在 $k\ell_{\mathrm{cell}}$ 处展开，有
 $$
-\omega^2(\bk)
+\omega^2(\mathbf{k})
 =c^2k^2
-\sum_{n\ge0}\gamma_{2n}(\hat\bk)(k\ell_{\mathrm{cell}})^{2n},
+\sum_{n\ge0}\gamma_{2n}(\hat{\mathbf{k}})(k\ell_{\mathrm{cell}})^{2n},
 $$
-其中 $\gamma_0(\hat\bk)=1$，其它系数则来自局域门的组合结构；奇次项 $(k\ell_{\mathrm{cell}})^{2n+1}$ 若出现会破坏 $\omega^2(-\bk)=\omega^2(\bk)$，与上述对称性矛盾。
+其中 $\gamma_0(\hat{\mathbf{k}})=1$，其它系数则来自局域门的组合结构；奇次项 $(k\ell_{\mathrm{cell}})^{2n+1}$ 若出现会破坏 $\omega^2(-\mathbf{k})=\omega^2(\mathbf{k})$，与上述对称性矛盾。
 
-再利用低能极限中 $\omega(\bk)\sim ck$ 的归一，整理系数得到
+再利用低能极限中 $\omega(\mathbf{k})\sim ck$ 的归一，整理系数得到
 $$
-\omega^2(\bk)
+\omega^2(\mathbf{k})
 =c^2k^2
-\left[1+\sum_{n\ge1}\beta_{2n}(\hat\bk)(k\ell_{\mathrm{cell}})^{2n}\right].
+\left[1+\sum_{n\ge1}\beta_{2n}(\hat{\mathbf{k}})(k\ell_{\mathrm{cell}})^{2n}\right].
 $$
 
-在各向同性近似下，$\beta_{2n}(\hat\bk)$ 仅依赖于晶格与门的平均对称性，可简化为常数 $\beta_{2n}$，得出定理结论。
+在各向同性近似下，$\beta_{2n}(\hat{\mathbf{k}})$ 仅依赖于晶格与门的平均对称性，可简化为常数 $\beta_{2n}$，得出定理结论。
 
 这一结构与具体 Dirac/Weyl/Maxwell QCA 模型中的色散形式一致；已有分析表明在这些模型中 Lorentz 对称性破缺确实首先出现在 $(k\ell_{\mathrm{cell}})^2$ 阶的修正中。
 
@@ -581,7 +572,7 @@ $$
 
 证明分三步。
 
-第一步，将统一时间刻度与 Null–Modular 双覆盖联系。边界模流生成元 $K$ 的谱与散射相位的频率依赖通过相对熵与 BF 型体积分联系，从而给出刻度同一式 $\kappa(\omega)=\varphi'(\omega)/\pi=(2\pi)^{-1}\tr Q(\omega)$。若引入奇次色散修正 $\omega^2=c^2k^2+\tilde\alpha k^3+\dots$，则散射相位在 $\omega$ 平面上不再是简单的奇函数，其导数在绕原点的回路上将获得额外的 $\pi$ 相位，导致 Null–Modular 覆盖上的 $\mathbb Z_2$ holonomy 非平凡，与 $[K]=0$ 条件矛盾。
+第一步，将统一时间刻度与 Null–Modular 双覆盖联系。边界模流生成元 $K$ 的谱与散射相位的频率依赖通过相对熵与 BF 型体积分联系，从而给出刻度同一式 $\kappa(\omega)=\varphi'(\omega)/\pi=(2\pi)^{-1}\operatorname{tr} Q(\omega)$。若引入奇次色散修正 $\omega^2=c^2k^2+\tilde\alpha k^3+\dots$，则散射相位在 $\omega$ 平面上不再是简单的奇函数，其导数在绕原点的回路上将获得额外的 $\pi$ 相位，导致 Null–Modular 覆盖上的 $\mathbb Z_2$ holonomy 非平凡，与 $[K]=0$ 条件矛盾。
 
 第二步，将广义熵极值与 QNEC/QFC 条件转化为对因果光锥与传播速度的约束。若某频段的引力波群速度 $v_{\mathrm g}(\omega)$ 显著偏离几何光速，则存在因果菱形，其边界上的光锥结构与模流流线不再对齐，将破坏相对熵的单调性与局域能量条件，从而与 QNEC/QFC 不等式冲突。这要求
 $$
@@ -804,7 +795,7 @@ Standard-Model Extension 提供了系统的 Lorentz 破缺参数化框架，其�
 
 ---
 
-## Appendix A：从 GR 线性扰动到引力波散射矩阵 $S_{\mathrm{GW}}(\omega;\bk)$
+## Appendix A：从 GR 线性扰动到引力波散射矩阵 $S_{\mathrm{GW}}(\omega;\mathbf{k})$
 
 ### A.1 线性化 Einstein 方程与模分解
 
@@ -827,16 +818,16 @@ $$
 $$
 平面波解为
 $$
-h_{\mu\nu}(t,\bx)
-=\epsilon_{\mu\nu}(\hat\bk)\,
-\mathrm{e}^{-\ii(\omega t-\bk\cdot\bx)},
+h_{\mu\nu}(t,\mathbf{x})
+=\epsilon_{\mu\nu}(\hat{\mathbf{k}})\,
+\mathrm{e}^{-\mathrm{i}(\omega t-\mathbf{k}\cdot\mathbf{x})},
 \qquad
 \omega^2=c^2k^2.
 $$
 
 在具有球对称的静态背景（如 Schwarzschild 外区）中，将扰动投影到 Regge–Wheeler 或 Zerilli 模式上，可化为径向方程
 $$
--\frac{\diff^2\psi_\ell}{\diff r_\ast^2}
+-\frac{\mathrm{d}^2\psi_\ell}{\mathrm{d}r_\ast^2}
 +V_{\mathrm{eff},\ell}(r_\ast)\psi_\ell
 =\omega^2\psi_\ell,
 $$
@@ -845,10 +836,10 @@ $$
 \psi_\ell(r_\ast)
 \sim
 \begin{cases}
-\mathrm{e}^{-\ii\omega r_\ast}
-+A_\ell^{\mathrm{out}}\mathrm{e}^{+\ii\omega r_\ast},
+\mathrm{e}^{-\mathrm{i}\omega r_\ast}
++A_\ell^{\mathrm{out}}\mathrm{e}^{+\mathrm{i}\omega r_\ast},
 & r_\ast\to-\infty,\\[1ex]
-B_\ell^{\mathrm{out}}\mathrm{e}^{+\ii\omega r_\ast},
+B_\ell^{\mathrm{out}}\mathrm{e}^{+\mathrm{i}\omega r_\ast},
 & r_\ast\to+\infty.
 \end{cases}
 $$
@@ -865,7 +856,7 @@ $$
 $S_{\mathrm{GW}}(\omega)\in U(N_{\mathrm{GW}})$。Wigner–Smith 矩阵定义为
 $$
 Q_{\mathrm{GW}}(\omega)
-=-\ii S_{\mathrm{GW}}^\dagger(\omega)
+=-\mathrm{i} S_{\mathrm{GW}}^\dagger(\omega)
 \partial_\omega S_{\mathrm{GW}}(\omega).
 $$
 
@@ -873,7 +864,7 @@ $$
 $$
 S_{\mathrm{GW}}(\omega)
 =\sum_{j=1}^{N_{\mathrm{GW}}}
-\mathrm{e}^{2\ii\delta_j(\omega)}\Pi_j,
+\mathrm{e}^{2\mathrm{i}\delta_j(\omega)}\Pi_j,
 $$
 则
 $$
@@ -904,7 +895,7 @@ $$
    U_{\mathrm{hop}}
    =\prod_x
    \exp\bigl[
-   -\ii\theta\,
+   -\mathrm{i}\theta\,
    (\ket{x+1}\bra{x}\otimes\sigma_z+\mathrm{h.c.})
    \bigr];
    $$
@@ -914,10 +905,10 @@ $$
    U_{\mathrm{grav}}
    =\prod_x
    \exp\bigl[
-   -\ii\phi(\hat p)\,\sigma_z
+   -\mathrm{i}\phi(\hat{p})\,\sigma_z
    \bigr],
    $$
-   其中 $\phi(\hat p)$ 为动量算符的某一函数。
+   其中 $\phi(\hat{p})$ 为动量算符的某一函数。
 
 整体更新为
 $$
@@ -929,7 +920,7 @@ $$
 $$
 U(k)
 =\exp\bigl(
--\ii H_{\mathrm{eff}}(k)\Delta t
+-\mathrm{i} H_{\mathrm{eff}}(k)\Delta t
 \bigr),
 $$
 其中
@@ -957,15 +948,15 @@ $$
 
 ### B.2 高维与各向异性推广
 
-在高维情形，$U(\bk)$ 为多元函数，其谱可写为
+在高维情形，$U(\mathbf{k})$ 为多元函数，其谱可写为
 $$
-\omega^2(\bk)
+\omega^2(\mathbf{k})
 =c^2k^2
 \left[1+\sum_{n\ge1}
-\beta_{2n}(\hat\bk)(k\ell_{\mathrm{cell}})^{2n}\right].
+\beta_{2n}(\hat{\mathbf{k}})(k\ell_{\mathrm{cell}})^{2n}\right].
 $$
 
-各向异性由 $\beta_{2n}(\hat\bk)$ 的角向依赖体现。若晶格与门的对称性足够高（如立方晶格与各向同性局域门），则在低阶近似下可视为 $\beta_{2n}(\hat\bk)\approx\beta_{2n}$ 常数。对引力波观测而言，角向各向异性可以在多事件与多方向平均下有效抹平,其残余效应可用作检验更精细的 QCA 结构的高级指标。
+各向异性由 $\beta_{2n}(\hat{\mathbf{k}})$ 的角向依赖体现。若晶格与门的对称性足够高（如立方晶格与各向同性局域门），则在低阶近似下可视为 $\beta_{2n}(\hat{\mathbf{k}})\approx\beta_{2n}$ 常数。对引力波观测而言，角向各向异性可以在多事件与多方向平均下有效抹平,其残余效应可用作检验更精细的 QCA 结构的高级指标。
 
 ---
 
