@@ -1,6 +1,6 @@
 # 统一物理宇宙终对象：散射时间刻度、边界时间几何与 Dirac–QCA 连续极限
 
-**Version: 2.4**
+**Version: 2.6**
 
 ## Abstract
 
@@ -11,12 +11,12 @@
 $$
 \kappa(\omega)
 =\frac{\varphi'(\omega)}{\pi}
-=-\xi'(\omega)
-=-\rho_{\mathrm{rel}}(\omega)
-=\frac{1}{2\pi}\operatorname{tr}Q(\omega),
+=\rho_{\mathrm{rel}}(\omega)
+=\frac{1}{2\pi}\operatorname{tr}Q(\omega)
+=-\xi'(\omega),
 $$
 
-其中 $\rho_{\mathrm{rel}}(\omega)=\xi'(\omega)$。将"散射总相位导数 $\varphi'(\omega)$""谱移函数导数/相对态密度 $\rho_{\mathrm{rel}}(\omega)$"与 Wigner–Smith 群延迟矩阵迹 $\operatorname{tr}Q(\omega)$ 统一为单一时间刻度母尺 $\kappa$。
+其中 $\rho_{\mathrm{rel}}(\omega)=-\xi'(\omega)$。将"散射总相位导数 $\varphi'(\omega)$""谱移函数导数/相对态密度 $\rho_{\mathrm{rel}}(\omega)$"与 Wigner–Smith 群延迟矩阵迹 $\operatorname{tr}Q(\omega)$ 统一为单一时间刻度母尺 $\kappa$。
 
 当能谱不含连续部分（如反射型 AdS 背景）时，上述等式仅以**分布**形式保留 $\kappa(\omega)=-\xi'(\omega)$，不再使用 $S(\omega)$、$Q(\omega)$ 与相位导数表述。
 
@@ -45,7 +45,7 @@ $$
 =\exp(-2\pi\mathrm{i}\,\xi(\omega)),
 $$
 
-其中 $S(\omega)$ 为能量纤维上的散射矩阵。谱移函数导数 $\xi'(\omega)$ 与相对态密度 $\rho_{\mathrm{rel}}(\omega)$ 相同，可由 resolvent 迹差表示。
+其中 $S(\omega)$ 为能量纤维上的散射矩阵。$\rho_{\mathrm{rel}}(\omega)=-\xi'(\omega)$；其中 $\xi'$ 可由 resolvent 迹差给出，$\rho_{\mathrm{rel}}$ 亦可由 $S$ 矩阵或 $Q$ 的迹给出。
 
 Eisenbud–Wigner 与 Smith 将散射相位对能量的导数解释为时间延迟，引入 Wigner–Smith 群延迟矩阵
 
@@ -71,9 +71,9 @@ $$
 $$
 \kappa(\omega)
 =\frac{\varphi'(\omega)}{\pi}
-=-\xi'(\omega)
-=-\rho_{\mathrm{rel}}(\omega)
+=\rho_{\mathrm{rel}}(\omega)
 =\frac{1}{2\pi}\operatorname{tr}Q(\omega)
+=-\xi'(\omega)
 $$
 
 视为统一时间刻度母尺，并在三个层级上强制对齐：
@@ -135,7 +135,7 @@ $$
 =\exp(-2\pi\mathrm{i}\,\xi(\omega))。
 $$
 
-谱移函数导数 $\xi'(\omega)$ 与相对态密度 $\rho_{\mathrm{rel}}(\omega)$ 相同。定义 Wigner–Smith 群延迟矩阵
+$\rho_{\mathrm{rel}}(\omega)=-\xi'(\omega)$；其中 $\xi'$ 可由 resolvent 迹差给出，$\rho_{\mathrm{rel}}$ 亦可由 $S$ 矩阵或 $Q$ 的迹给出。定义 Wigner–Smith 群延迟矩阵
 
 $$
 Q(\omega)
@@ -156,9 +156,9 @@ $$
 $$
 \kappa(\omega)
 :=\frac{\varphi'(\omega)}{\pi}
-:=-\xi'(\omega)
-:=-\rho_{\mathrm{rel}}(\omega)
-:=\frac{1}{2\pi}\operatorname{tr}Q(\omega),
+:=\rho_{\mathrm{rel}}(\omega)
+:=\frac{1}{2\pi}\operatorname{tr}Q(\omega)
+:=-\xi'(\omega)\quad(\text{a.e.}).
 $$
 
 这一等式在 Lebesgue 绝大多数能量点上成立。
@@ -338,12 +338,12 @@ $$
 $$
 \kappa(\omega)
 =\frac{\varphi'(\omega)}{\pi}
-=-\xi'(\omega)
-=-\rho_{\mathrm{rel}}(\omega)
-=\frac{1}{2\pi}\operatorname{tr}Q(\omega),
+=\rho_{\mathrm{rel}}(\omega)
+=\frac{1}{2\pi}\operatorname{tr}Q(\omega)
+=-\xi'(\omega).
 $$
 
-其中 $\det S(\omega)=\exp(2\mathrm{i}\,\varphi(\omega))$，$\rho_{\mathrm{rel}}(\omega)=\xi'(\omega)$ 为谱移函数导数，$Q(\omega)=-\mathrm{i}\,S(\omega)^\dagger\partial_\omega S(\omega)$。
+其中 $\det S(\omega)=\exp(2\mathrm{i}\,\varphi(\omega))$，$\rho_{\mathrm{rel}}(\omega)=-\xi'(\omega)$，$Q(\omega)=-\mathrm{i}\,S(\omega)^\dagger\partial_\omega S(\omega)$。
 
 这是散射谱理论中关于谱移函数与时间延迟的标准结论。
 
@@ -506,9 +506,9 @@ $$
 $$
 \kappa(\omega)
 =\frac{\varphi'(\omega)}{\pi}
-=-\xi'(\omega)
-=-\rho_{\mathrm{rel}}(\omega)
-=\frac{1}{2\pi}\operatorname{tr}Q(\omega),
+=\rho_{\mathrm{rel}}(\omega)
+=\frac{1}{2\pi}\operatorname{tr}Q(\omega)
+=-\xi'(\omega),
 $$
 
 定理得证。
@@ -631,10 +631,10 @@ $$
 考虑四维渐近 AdS 的 Schwarzschild–AdS 黑洞外部区域。由于存在地平线，体系以**准正则模（QNM）**的**复频谱**为主；因此标准意义上的"到无穷远散射相位"及实频离散本征谱表述**不直接适用**。在每个角动量通道 $\ell$ 上，本文以**实频 resolvent 边界值**定义相对于参照背景的谱移函数 $\xi_\ell(\omega)$，并将统一刻度按**分布**理解为
 
 $$
-\kappa(\omega)=-\sum_{\ell}\xi'_\ell(\omega).
+\kappa(\omega)=-\sum_{\ell=0}^{\infty}(2\ell+1)\xi'_\ell(\omega),
 $$
 
-其奇点结构由 QNM 极点数据控制。若将无穷远边界改为**吸收/透明条件**或外接耗散浴以恢复**连续谱极限**，则 $\kappa(\omega)$ 的分布弱收敛为几乎处处定义的函数，并可再次写成
+其中 $(2\ell+1)$ 为四维球对称情形的角动量简并度。如考虑自旋 $s$ 的场，可将自旋简并 $(2s+1)$ 吸收入 $\xi_\ell$ 的定义或在求和中显式计入，以保持对全部自由度的正确计数。其奇点结构由 QNM 极点数据控制。若将无穷远边界改为**吸收/透明条件**或外接耗散浴以恢复**连续谱极限**，则 $\kappa(\omega)$ 的分布弱收敛为几乎处处定义的函数，并可再次写成
 
 $$
 \kappa(\omega)=\frac{1}{2\pi}\operatorname{tr}Q(\omega)=\frac{\varphi'(\omega)}{\pi}.
@@ -711,12 +711,12 @@ $$
 $$
 \kappa(\omega)
 =\frac{\varphi'(\omega)}{\pi}
-=-\xi'(\omega)
-=-\rho_{\mathrm{rel}}(\omega)
-=\frac{1}{2\pi}\operatorname{tr}Q(\omega),
+=\rho_{\mathrm{rel}}(\omega)
+=\frac{1}{2\pi}\operatorname{tr}Q(\omega)
+=-\xi'(\omega),
 $$
 
-其中 $\rho_{\mathrm{rel}}(\omega)=\xi'(\omega)$。这一刻度母式为时间的统一提供了谱论基础。在渐近 AdS + holographic CFT 背景类中，在 Brown–York 准局域 Hamilton 量与 QNEC 兼容性假设及谱–几何对应存在的条件下，可以将边界时间函数的形变重标度到同一刻度 $\kappa(\omega)$。在 Dirac–QCA 侧，通过连续极限与 Euler–Maclaurin–Poisson 估计证明离散 Wigner–Smith 群延迟迹在长波极限中收敛到同一刻度，从而在离散宇宙模型中实现统一时间刻度。
+其中 $\rho_{\mathrm{rel}}(\omega)=-\xi'(\omega)$。这一刻度母式为时间的统一提供了谱论基础。在渐近 AdS + holographic CFT 背景类中，在 Brown–York 准局域 Hamilton 量与 QNEC 兼容性假设及谱–几何对应存在的条件下，可以将边界时间函数的形变重标度到同一刻度 $\kappa(\omega)$。在 Dirac–QCA 侧，通过连续极限与 Euler–Maclaurin–Poisson 估计证明离散 Wigner–Smith 群延迟迹在长波极限中收敛到同一刻度，从而在离散宇宙模型中实现统一时间刻度。
 
 在范畴层面，本文将满足统一刻度条件的散射–边界–QCA 宇宙模型组织为 2–范畴 $\mathbf{Univ}_\kappa$，并在 smallness 与 2–（弱）极限**及**存在具唯一入射态射泛性质的对象这一**附加范畴假设**下，得到**条件性**结论：存在满足终对象普适性质的对象 $\mathfrak{U}_\ast$。这一对象可被视为在统一时间刻度下物理宇宙结构的极大一致实现，将散射相位、边界熵、离散时间步长等量统一到单一刻度母尺之下。
 
@@ -794,9 +794,9 @@ $$
 $$
 \kappa(\omega)
 =\frac{\varphi'(\omega)}{\pi}
-=-\xi'(\omega)
-=-\rho_{\mathrm{rel}}(\omega)
-=\frac{1}{2\pi}\operatorname{tr}Q(\omega)。
+=\rho_{\mathrm{rel}}(\omega)
+=\frac{1}{2\pi}\operatorname{tr}Q(\omega)
+=-\xi'(\omega)。
 $$
 
 ---
