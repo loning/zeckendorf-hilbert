@@ -1,6 +1,6 @@
 # 统一物理宇宙终对象：散射时间刻度、边界时间几何与 Dirac–QCA 连续极限
 
-**Version: 2.0**
+**Version: 2.4**
 
 ## Abstract
 
@@ -17,6 +17,8 @@ $$
 $$
 
 其中 $\rho_{\mathrm{rel}}(\omega)=\xi'(\omega)$。将"散射总相位导数 $\varphi'(\omega)$""谱移函数导数/相对态密度 $\rho_{\mathrm{rel}}(\omega)$"与 Wigner–Smith 群延迟矩阵迹 $\operatorname{tr}Q(\omega)$ 统一为单一时间刻度母尺 $\kappa$。
+
+当能谱不含连续部分（如反射型 AdS 背景）时，上述等式仅以**分布**形式保留 $\kappa(\omega)=-\xi'(\omega)$，不再使用 $S(\omega)$、$Q(\omega)$ 与相位导数表述。
 
 在引力与量子场论侧，本文选择四维渐近 AdS 的 Einstein 引力与其对偶的大 $N$ 共形场论这一具体背景类。在 Brown–York 准局域能量与 Hamilton–Jacobi 边界形式以及基于相对熵形变的 QNEC 与 holographic QNEC 结果基础上，引入一个明确假设：边界 Hamilton 量沿 null 形变的二阶变分可表示为广义熵 $S_{\rm gen}$ 二阶形变的配权积分。证明在该假设及一个谱–几何对应存在的条件下，可以选择刻度规范使边界时间函数 $\tau$ 的重标度刚性锁定到同一 $\kappa(\omega)$，从而在边界时间几何中得到刻度函数 $\kappa_{\mathrm{geo}}(\omega)=\kappa(\omega)$。
 
@@ -161,11 +163,13 @@ $$
 
 这一等式在 Lebesgue 绝大多数能量点上成立。
 
+**注**：本节等式在 $H_0$ 具纯绝对连续谱、$V$ 为 trace–class 扰动且波算子完备的设定下，于几乎处处的能量点成立。对无连续谱或纯点谱的体系（例如反射型边界条件下的 AdS 几何），仅谱移函数 $\xi$ 及其**分布意义**的导数 $-\xi'$ 有意义；此时统一刻度定义为 $\kappa:=-\xi'$（按分布理解），不再引入 $S(\omega)$、$Q(\omega)$ 与 $\varphi(\omega)$。
+
 ### 2.2 渐近 AdS 背景类与边界时间几何假设
 
 引力与量子场论侧的背景类选取为：
 
-* 四维渐近 AdS 的 Einstein 引力 $(M,g)$，**非全局双曲**；其无穷远边界 $\partial M$ 为**类时**，在边界处指定适当自伴边界条件以得良定初值–边界问题。
+* 四维渐近 AdS 的 Einstein 引力 $(M,g)$，**非全局双曲**；其无穷远边界 $\partial M$ 为**类时**。**引力侧**采用固定边界度规（Dirichlet 型）并配合 holographic counterterms，使 Brown–York 面电荷与 Hamilton–Jacobi 变分良定；**线性/探测场**可在 $\partial M$ 处施加使对应动力学算子自伴的反射型（如 Dirichlet/Robin）边界条件。
 
 * 边界上存在三维诱导度规 $\gamma_{ab}$ 与一族类空截面 $B_\lambda$，$\lambda$ 为沿某 null 方向的形变参数；
 
@@ -266,7 +270,13 @@ $$
 
 4. $U_{\mathrm{QFT}}$：体与边界上的局域代数网及其态；
 
-5. $U_{\mathrm{scat}}$：散射系统 $(H,H_0,S(\omega),Q(\omega),\kappa_{\mathrm{scat}}(\omega))$；
+5. $U_{\mathrm{scat}}$：**散射系统** $(H,H_0,\xi(\omega),\kappa_{\mathrm{scat}}(\omega);[S(\omega),Q(\omega)]_{\text{当且仅当 a.c. 谱存在}})$，其中在绝对连续谱且波算子完备时
+
+  $$
+  \kappa_{\mathrm{scat}}(\omega)=\frac{1}{2\pi}\operatorname{tr}Q(\omega)=\frac{\varphi'(\omega)}{\pi}=-\xi'(\omega)\quad\text{（a.e.）},
+  $$
+
+  若含纯点/无连续谱，则统一刻度以**分布**形式定义为 $\kappa_{\mathrm{scat}}:=-\xi'$，此时不使用 $S(\omega),Q(\omega),\varphi(\omega)$。
 
 6. $U_{\mathrm{mod}}$：模流与 KMS 结构；
 
@@ -308,7 +318,7 @@ $$
 * 1–态射：从 $\mathfrak{U}$ 到 $\mathfrak{V}$ 的**刻度保持结构态射** $F$。为避免歧义，本文约定：每个对象通过 $U_{\mathrm{cat}}$ 封装为内部（2,1）–范畴，因此 $F$ 可等价视为该封装上的 **pseudofunctor**；在事件与因果层面为因果同态，在局域代数层面为 $(*)$–同态，并在核心时间层满足
 
   $$
-  F^\ast\kappa_{\mathfrak{V}}(\omega)=\kappa_{\mathfrak{U}}(\omega)\quad\text{（a.e.）}。
+  F^\ast\kappa_{\mathfrak{V}}(\omega)=\kappa_{\mathfrak{U}}(\omega)\quad\text{（于绝对连续谱处为 a.e. 等式；含纯点/混合谱时按分布意义成立）}。
   $$
 
   若仅把对象看作裸的 13 元组，则 1–态射理解为相同约束下的结构保持映射，并与上述 pseudofunctor 通过 $U_{\mathrm{cat}}$ 等价。
@@ -618,19 +628,17 @@ $$
 
 ### 5.2 渐近 AdS 黑洞外部区域
 
-考虑四维渐近 AdS 的 Schwarzschild–AdS 黑洞外部区域。由于无穷远边界为类时且在自伴（反射型）边界条件下能谱离散，标准意义上的"到无穷远的散射相位"并不直接适用。可采用 Birman–Kreĭn 框架中的**谱移函数**来等效刻画：在每个角动量通道 $\ell$ 上定义相对于参照背景的谱移函数 $\xi_\ell(\omega)$，并以
+考虑四维渐近 AdS 的 Schwarzschild–AdS 黑洞外部区域。由于存在地平线，体系以**准正则模（QNM）**的**复频谱**为主；因此标准意义上的"到无穷远散射相位"及实频离散本征谱表述**不直接适用**。在每个角动量通道 $\ell$ 上，本文以**实频 resolvent 边界值**定义相对于参照背景的谱移函数 $\xi_\ell(\omega)$，并将统一刻度按**分布**理解为
 
 $$
-\det S_\ell(\omega)=\exp(-2\pi\mathrm{i}\,\xi_\ell(\omega))
+\kappa(\omega)=-\sum_{\ell}\xi'_\ell(\omega).
 $$
 
-引入通道相位；其能量导数给出通道延迟。多通道合并得到总相位 $\varphi(\omega)$ 与 Wigner–Smith 矩阵 $Q(\omega)$，从而统一刻度
+其奇点结构由 QNM 极点数据控制。若将无穷远边界改为**吸收/透明条件**或外接耗散浴以恢复**连续谱极限**，则 $\kappa(\omega)$ 的分布弱收敛为几乎处处定义的函数，并可再次写成
 
 $$
-\kappa(\omega)=\frac{\varphi'(\omega)}{\pi}=\frac{1}{2\pi}\operatorname{tr}Q(\omega)=-\xi'(\omega)。
+\kappa(\omega)=\frac{1}{2\pi}\operatorname{tr}Q(\omega)=\frac{\varphi'(\omega)}{\pi}.
 $$
-
-该表述与 AdS 类时边界/反射条件的离散谱性质一致，并保留了与散射谱理论之间经由谱移函数的等价联系。
 
 在边界时间几何侧，选取靠近无穷远的类时边界 $\partial M$，在其上定义 Brown–York 准局域能量与 Hamilton 量。AdS/CFT 对偶下，边界 CFT 的能量谱与体内散射模式谱对应，null 截面 $B_\lambda$ 的形变参数 $\lambda$ 可与 entangling cut 的形变模式及模 Hamiltonian 本征频率关联。利用 holographic QNEC 与相对熵形变结果，可将边界 Hamilton 量的形变重写为广义熵二阶形变的配权积分，从而按命题 3.2 将 $\tau_\kappa$ 与 $\kappa(\omega)$ 关联。
 
@@ -737,7 +745,7 @@ $$
 
 $$
 \xi'(\omega)
-=\frac{1}{\pi}\Im\operatorname{Tr}\Big((H-\omega-\mathrm{i}0)^{-1}
+=-\frac{1}{\pi}\Im\operatorname{Tr}\Big((H-\omega-\mathrm{i}0)^{-1}
 -(H_0-\omega-\mathrm{i}0)^{-1}\Big)。
 $$
 
