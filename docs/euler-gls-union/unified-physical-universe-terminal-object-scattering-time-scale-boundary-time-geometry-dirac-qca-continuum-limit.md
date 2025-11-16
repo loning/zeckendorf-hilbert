@@ -1,6 +1,6 @@
 # 统一物理宇宙终对象：散射时间刻度、边界时间几何与 Dirac–QCA 连续极限
 
-**Version: 2.13**
+**Version: 2.14**
 
 ## Abstract
 
@@ -626,13 +626,27 @@ $$
 
 其中 $j(\kappa_{\rm D})$ 为与 $\kappa_{\rm D}$ 对应的总角动量。为避免与统一刻度函数 $\kappa(\omega)$ 混淆，下文用 $\kappa_{\rm D}$ 表示 Dirac 量子数。对标量场（$s=0$）仅有单一通道，公式自然退化为 $\kappa(\omega)=-\sum_{\ell}(2\ell+1)\xi'_\ell(\omega)$。
 
-而**不应**将自旋简并简单地与 $(2\ell+1)$ 因式分解为 $(2\ell+1)(2s+1)$。上述按 $\kappa_{\rm D}$ 的计数与 Wigner–Smith 时间延迟与态密度的标准对应 $\operatorname{Tr}Q=2\,\partial_E\delta_{\rm sum}$、$\rho=(2\pi)^{-1}\operatorname{Tr}Q$ 一致。其奇点结构由 QNM 极点数据控制。若需在实频上得到**幺正**的能量纤维散射矩阵 $S(\omega)$，必须将**无穷远端入/出**与**地平线端入/出**两类本征通道**一并**纳入渐近基，从而在"无穷远通道 $\oplus$ 地平线通道"的完备通道空间上定义 $S(\omega)$（体现通量守恒）。其后，为选取物理解，可在**求解层面**对地平线端施加**纯入射**边界条件（即在该端将出射振幅设为零），但这一步不改变 $S(\omega)$ 的幺正定义，仅对应在通道解上的系数选择。从而
+而**不应**将自旋简并简单地与 $(2\ell+1)$ 因式分解为 $(2\ell+1)(2s+1)$。上述按 $\kappa_{\rm D}$ 的计数与 Wigner–Smith 时间延迟与态密度的标准对应 $\operatorname{Tr}Q=2\,\partial_E\delta_{\rm sum}$、$\rho=(2\pi)^{-1}\operatorname{Tr}Q$ 一致。其奇点结构由 QNM 极点数据控制。
+
+在本文与 §2.2 一致的**反射/自伴型（Dirichlet/Robin） AdS 边界条件**下，外部区域的能谱为**纯点谱**，标准意义上的能量纤维幺正散射矩阵 $S(\omega)$ 与 Wigner–Smith 矩阵 $Q(\omega)$ **不存在**；统一刻度仅以**分布意义**定义为
 
 $$
-\kappa(\omega)=\frac{1}{2\pi}\operatorname{tr}Q(\omega)=\frac{\varphi'(\omega)}{\pi}.
+\kappa(\omega)=-\sum_{\ell=0}^{\infty}(2\ell+1)\,\xi'_{\ell}(\omega)\quad(\text{标量场})，
 $$
 
-相反，若在无穷远采取**反射/自伴（Dirichlet/Robin）**边界条件，则谱通常为**纯点**（无绝对连续部分），不再存在能量纤维上的幺正 $S(\omega)$；此时仅保留**分布**意义的统一刻度 $\kappa:=-\xi'$，不使用 $S(\omega),Q(\omega),\varphi(\omega)$。
+对自旋场按 **Dirac 量子数** $\kappa_{\rm D}=\pm\bigl(j+\tfrac12\bigr)$ 计数，写为
+
+$$
+\kappa(\omega)=-\sum_{j}(2j+1)\,\bigl[\xi'_{j,+}(\omega)+\xi'_{j,-}(\omega)\bigr]。
+$$
+
+为便于比较，**仅在与本文边界条件无关的情形**（如渐近平坦黑洞或对 $\partial M$ 采用开/透明边界，使无穷远通道对能流开放）中，才可把"无穷远入/出 $\oplus$ 地平线入/出"组成完备通道空间并得到**幺正**的 $S(\omega)$。在该**对比**设定下才有
+
+$$
+\kappa(\omega)=\frac{1}{2\pi}\operatorname{tr}Q(\omega)=\frac{\varphi'(\omega)}{\pi}。
+$$
+
+本文后续分析均以反射型 AdS 边界为准，因而在该背景下**不再**使用 $S(\omega),Q(\omega),\varphi(\omega)$ 表述。
 
 在边界时间几何侧，选取靠近无穷远的类时边界 $\partial M$，在其上定义 Brown–York 准局域能量与 Hamilton 量。AdS/CFT 对偶下，边界 CFT 的能量谱与体内散射模式谱对应，null 截面 $B_\lambda$ 的形变参数 $\lambda$ 可与 entangling cut 的形变模式及模 Hamiltonian 本征频率关联。利用 holographic QNEC 与相对熵形变结果，可将边界 Hamilton 量的形变重写为广义熵二阶形变的配权积分，从而按命题 3.2 将 $\tau_\kappa$ 与 $\kappa(\omega)$ 关联。
 
