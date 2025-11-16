@@ -1,6 +1,6 @@
 # 统一物理宇宙终对象：散射时间刻度、边界时间几何与 Dirac–QCA 连续极限
 
-**Version: 2.7**
+**Version: 2.8**
 
 ## Abstract
 
@@ -634,13 +634,13 @@ $$
 \kappa(\omega)=-\sum_{\ell=0}^{\infty}(2\ell+1)\xi'_{\ell}(\omega),
 $$
 
-其中在每个角动量通道 $\ell$ 上，本文以**实频 resolvent 边界值**定义相对于参照背景的谱移函数 $\xi_\ell(\omega)$。对于**具有自旋的场**，通道应以**总角动量** $j$ 为标签，简并度为 $(2j+1)$。例如 **Dirac（$s=\tfrac12$）** 情形中，部分波由 $j=\ell\pm\tfrac12$（亦可用 Dirac 的 $\kappa$ 量子数）标记，统一刻度的分布形式应写为
+其中在每个角动量通道 $\ell$ 上，本文以**实频 resolvent 边界值**定义相对于参照背景的谱移函数 $\xi_\ell(\omega)$。对于**具有自旋的场**，通道应以**总角动量** $j$ 为标签，简并度为 $(2j+1)$。例如 **Dirac（$s=\tfrac12$）** 情形中，部分波由 $j=\ell\pm\tfrac12$（亦可用 Dirac 的 $\kappa_{\rm D}$ 量子数）标记。为避免与统一刻度函数 $\kappa(\omega)$ 混淆，下文用 $\kappa_{\rm D}$ 表示 Dirac 量子数。统一刻度的分布形式应写为
 
 $$
 \kappa(\omega)=-\sum_{j}(2j+1)\xi'_{j}(\omega),
 $$
 
-而**不应**将自旋简并简单地与 $(2\ell+1)$ 因式分解为 $(2\ell+1)(2s+1)$。上述按 $j$ 的计数与 Wigner–Smith 时间延迟与态密度的标准对应 $\operatorname{Tr}Q=2\,\partial_E\delta_{\rm sum}$、$\rho=(2\pi)^{-1}\operatorname{Tr}Q$ 一致。其奇点结构由 QNM 极点数据控制。若将无穷远边界改为**吸收/透明条件**或外接耗散浴以恢复**连续谱极限**，则 $\kappa(\omega)$ 的分布弱收敛为几乎处处定义的函数，并可再次写成
+而**不应**将自旋简并简单地与 $(2\ell+1)$ 因式分解为 $(2\ell+1)(2s+1)$。上述按 $j$ 的计数与 Wigner–Smith 时间延迟与态密度的标准对应 $\operatorname{Tr}Q=2\,\partial_E\delta_{\rm sum}$、$\rho=(2\pi)^{-1}\operatorname{Tr}Q$ 一致。其奇点结构由 QNM 极点数据控制。若将无穷远边界改为**透明/自伴延拓**边界以恢复**连续谱极限**（从而 $S(\omega)$ 幺正），则 $\kappa(\omega)$ 的分布弱收敛为几乎处处定义的函数，并可再次写成
 
 $$
 \kappa(\omega)=\frac{1}{2\pi}\operatorname{tr}Q(\omega)=\frac{\varphi'(\omega)}{\pi}.
