@@ -1,6 +1,6 @@
 # 统一物理宇宙终对象：散射时间刻度、边界时间几何与 Dirac–QCA 连续极限
 
-**Version: 2.8**
+**Version: 2.10**
 
 ## Abstract
 
@@ -640,11 +640,13 @@ $$
 \kappa(\omega)=-\sum_{j}(2j+1)\xi'_{j}(\omega),
 $$
 
-而**不应**将自旋简并简单地与 $(2\ell+1)$ 因式分解为 $(2\ell+1)(2s+1)$。上述按 $j$ 的计数与 Wigner–Smith 时间延迟与态密度的标准对应 $\operatorname{Tr}Q=2\,\partial_E\delta_{\rm sum}$、$\rho=(2\pi)^{-1}\operatorname{Tr}Q$ 一致。其奇点结构由 QNM 极点数据控制。若将无穷远边界改为**透明/自伴延拓**边界以恢复**连续谱极限**（从而 $S(\omega)$ 幺正），则 $\kappa(\omega)$ 的分布弱收敛为几乎处处定义的函数，并可再次写成
+而**不应**将自旋简并简单地与 $(2\ell+1)$ 因式分解为 $(2\ell+1)(2s+1)$。上述按 $j$ 的计数与 Wigner–Smith 时间延迟与态密度的标准对应 $\operatorname{Tr}Q=2\,\partial_E\delta_{\rm sum}$、$\rho=(2\pi)^{-1}\operatorname{Tr}Q$ 一致。其奇点结构由 QNM 极点数据控制。若要得到关于**能量纤维**的幺正散射矩阵 $S(\omega)$，必须在**开放几何**中同时纳入"无穷远–地平线"两端的**渐近通道**：具体做法是将 AdS 区域与一个外部开放域**拼接**，在无穷远施加**辐射型/透明**条件使能流可以逃逸，并在地平线处施加保持能流守恒的自伴条件。此时针对**整体封闭体系**的散射表述幺正，且
 
 $$
 \kappa(\omega)=\frac{1}{2\pi}\operatorname{tr}Q(\omega)=\frac{\varphi'(\omega)}{\pi}.
 $$
+
+相反，若在无穷远采取**反射/自伴（Dirichlet/Robin）**边界条件，则谱通常为**纯点**（无绝对连续部分），不再存在能量纤维上的幺正 $S(\omega)$；此时仅保留**分布**意义的统一刻度 $\kappa:=-\xi'$，不使用 $S(\omega),Q(\omega),\varphi(\omega)$。
 
 在边界时间几何侧，选取靠近无穷远的类时边界 $\partial M$，在其上定义 Brown–York 准局域能量与 Hamilton 量。AdS/CFT 对偶下，边界 CFT 的能量谱与体内散射模式谱对应，null 截面 $B_\lambda$ 的形变参数 $\lambda$ 可与 entangling cut 的形变模式及模 Hamiltonian 本征频率关联。利用 holographic QNEC 与相对熵形变结果，可将边界 Hamilton 量的形变重写为广义熵二阶形变的配权积分，从而按命题 3.2 将 $\tau_\kappa$ 与 $\kappa(\omega)$ 关联。
 
