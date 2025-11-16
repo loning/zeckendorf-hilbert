@@ -1,6 +1,6 @@
 # 统一物理宇宙终对象：散射时间刻度、边界时间几何与 Dirac–QCA 连续极限
 
-**Version: 2.10**
+**Version: 2.12**
 
 ## Abstract
 
@@ -22,7 +22,7 @@ $$
 
 在引力与量子场论侧，本文选择四维渐近 AdS 的 Einstein 引力与其对偶的大 $N$ 共形场论这一具体背景类。在 Brown–York 准局域能量与 Hamilton–Jacobi 边界形式以及基于相对熵形变的 QNEC 与 holographic QNEC 结果基础上，引入一个明确假设：边界 Hamilton 量沿 null 形变的二阶变分可表示为广义熵 $S_{\rm gen}$ 二阶形变的配权积分。证明在该假设及一个谱–几何对应存在的条件下，可以选择刻度规范使边界时间函数 $\tau$ 的重标度刚性锁定到同一 $\kappa(\omega)$，从而在边界时间几何中得到刻度函数 $\kappa_{\mathrm{geo}}(\omega)=\kappa(\omega)$。
 
-在离散宇宙侧，本文考虑 Dirac 型 QCA，将 split-step 量子行走及其高维推广作为具体模型族。在适当局域性和平滑性假设下，利用 Dirac 连续极限与有限阶 Euler–Maclaurin–Poisson 公式，证明包含有限散射区的 Dirac–QCA 的离散 Wigner–Smith 群延迟迹在长波极限中收敛到同一 $\kappa(\omega)$，并在一维 split-step 模型上给出幂次误差上界，从而在 $a,\Delta t\to 0$ 极限下定义离散刻度 $\kappa_{\mathrm{QCA}}(\omega)=\kappa(\omega)$。
+在离散宇宙侧，本文考虑 Dirac 型 QCA，将 split-step 量子行走及其高维推广作为具体模型族。在适当局域性和平滑性假设下，利用 Dirac 连续极限与有限阶 Euler–Maclaurin–Poisson 公式，证明包含有限散射区的 Dirac–QCA 的离散 Wigner–Smith 群延迟迹在长波极限中收敛到同一 $\kappa(\omega)$，并在一维 split-step 模型上给出一阶误差上界，从而在 $a,\Delta t\to 0$ 极限下定义离散刻度 $\kappa_{\mathrm{QCA}}(\omega)=\kappa(\omega)$。
 
 上述三层结构在一个以 Grothendieck 宇宙控制大小的 2–范畴 $\mathbf{Univ}_\kappa$ 中被统一：对象为携带统一刻度的"物理宇宙对象"，1–态射为刻度保持的结构态射，2–态射为相应自然同构。**在此基础上，并在 $\mathbf{Univ}_\kappa$ 为（2,1）–范畴且具 smallness 与 2–（弱）极限，以及存在对象 $\mathfrak{U}_\ast$ 具备：对任意对象存在唯一（至 2–同构）刻度保持 1–态射入射之泛性质的附加范畴假设下，本文得到条件性结果：$\mathfrak{U}_\ast$ 为终对象。**
 
@@ -351,13 +351,13 @@ $$
 
 **命题 3.2（假设 2.1 下的边界时间刻度统一）**
 
-在第 2.2 节给出的四维渐近 AdS Einstein 背景与大 $N$ holographic CFT 背景类中，**若假设 2.1 成立，且该假设中的配权函数满足**
+在第 2.2 节给出的四维渐近 AdS Einstein 背景与大 $N$ holographic CFT 背景类中，选取能量窗口 $I\subset\sigma_{\rm ac}(H_0)$，使得统一刻度 $\kappa(\omega)$ 在 $I$ 上为有界可测函数。**若假设 2.1 成立**，且配权函数取
 
 $$
-f(\lambda,\mathbf{x})=\kappa(\omega(\lambda,\mathbf{x})),
+f(\lambda,\mathbf{x})=\kappa\bigl(\omega(\lambda,\mathbf{x})\bigr)\in L^\infty(I),
 $$
 
-并存在谱–几何对应 $(\lambda,\mathbf{x})\mapsto\omega(\lambda,\mathbf{x})$，则存在边界时间函数族
+并存在谱–几何对应 $(\lambda,\mathbf{x})\mapsto\omega(\lambda,\mathbf{x})\in I$，则可定义
 
 $$
 \tau_\kappa(\lambda,\mathbf{x})
@@ -365,22 +365,7 @@ $$
 \kappa(\tilde{\omega})\,\mathrm{d}\tilde{\omega},
 $$
 
-其中 $\kappa(\omega)$ 为定理 3.1 中由散射侧定义的统一刻度。由上述前提直接得到边界 Hamilton 量沿 null 形变的二阶变分可写为
-
-$$
-\partial_\lambda^2 H_{\partial M}[\tau_\kappa]
-=\int_{B_\lambda}
-\kappa(\omega(\lambda,\mathbf{x}))
-\,\partial_\lambda^2 S_{\rm gen}(\lambda,\mathbf{x})\,\mathrm{d}\Sigma。
-$$
-
-在 QNEC 饱和或近似饱和的极限中，可得到边界时间几何中的刻度函数满足
-
-$$
-\kappa_{\mathrm{geo}}(\omega)=\kappa(\omega)。
-$$
-
-该命题是在假设 2.1、配权函数满足 $f(\lambda,\mathbf{x})=\kappa(\omega(\lambda,\mathbf{x}))$ 及谱–几何对应存在的条件下成立的条件性结构结果。
+进而有 $\kappa_{\mathrm{geo}}(\omega)=\kappa(\omega)$。在不含绝对连续谱的情形，不采用 $f=\kappa(\omega)$ 的函数型配权，而需改以与 $\kappa$ 对应的测度表达式处理。
 
 ### 3.3 Dirac–QCA 连续极限与刻度收敛
 
@@ -413,23 +398,22 @@ t(\omega)
 =\int^{\omega}\kappa(\tilde{\omega})\,\mathrm{d}\tilde{\omega}。
 $$
 
-在一维 split-step Dirac–QCA 的具体模型中，可进一步得到下述命题。
+在一维 split-step Dirac–QCA 的具体模型中，可进一步得到下述给出一阶误差上界的命题。
 
 **命题 3.3.1（一维 split-step QCA 的误差估计）**
 
-考虑一维 split-step QCA，散射区长度为 $L=Na$，coin 角度函数在散射区内属于 $C^{2r}$ 类。对能量窗口 $I$ 中的每个 $\omega$，存在整数 $r\ge 1$ 与常数 $C(I,L,\lVert\partial^k\theta_i\rVert_\infty)$，使得
+考虑一维 split-step QCA，散射区长度为 $L=Na$，coin 角度函数在散射区内属于 $C^{2}$ 类。对能量窗口 $I$ 中的每个 $\omega$，存在常数 $C\bigl(I,L,\lVert\partial \theta_i\rVert_\infty\bigr)$ 与 $q\ge1$，使得
 
 $$
 \left|
-\frac{1}{2\pi}\operatorname{tr}Q_{\mathrm{QCA}}(\varepsilon(\omega,a,\Delta t))
+\frac{1}{2\pi}\operatorname{tr}Q_{\mathrm{QCA}}\bigl(\varepsilon(\omega,a,\Delta t)\bigr)
 -\kappa(\omega)
 \right|
-\le C(I,L,\lVert\partial^k\theta_i\rVert_\infty)
-\,a^{2r-1}
-+\mathcal{O}(\Delta t^{q}),
+\le C\bigl(I,L,\lVert\partial \theta_i\rVert_\infty\bigr)\,a
++\mathcal{O}(\Delta t^{q}).
 $$
 
-其中 $q$ 由有效哈密顿量近似的阶数决定。
+上式的一阶 $O(a)$ 项源于 Euler–Maclaurin 端点校正；若需更高阶估计，需要在额外端点匹配/周期性条件下另行给出。
 
 ### 3.4 统一物理宇宙终对象（泛性质刻画，条件性）
 
@@ -543,7 +527,7 @@ $$
 
 在形状导数与相对熵框架下，熵二阶形变可通过能流与模 Hamiltonian 的变分表达。
 
-在假设 2.1 中，若配权函数满足 $f(\lambda,\mathbf{x})=\kappa(\omega(\lambda,\mathbf{x}))$，则 Brown–York Hamilton 量二阶变分可写为广义熵二阶形变的配权积分。引入谱–几何对应 $(\lambda,\mathbf{x})\mapsto\omega(\lambda,\mathbf{x})$ 与统一刻度 $\kappa(\omega)$，定义
+在假设 2.1 中，选取能量窗口 $I\subset\sigma_{\rm ac}(H_0)$ 使得 $\kappa(\omega)$ 在 $I$ 上为有界可测函数。若配权函数取 $f(\lambda,\mathbf{x})=\kappa(\omega(\lambda,\mathbf{x}))\in L^\infty(I)$，则 Brown–York Hamilton 量二阶变分可写为广义熵二阶形变的配权积分。引入谱–几何对应 $(\lambda,\mathbf{x})\mapsto\omega(\lambda,\mathbf{x})\in I$ 与统一刻度 $\kappa(\omega)$，定义
 
 $$
 \tau_\kappa(\lambda,\mathbf{x})
@@ -606,7 +590,7 @@ $$
 +\mathcal{O}(a^{p})+\mathcal{O}(\Delta t^{q})，
 $$
 
-其中 $\frac{1}{2\pi}\operatorname{tr}Q_{\mathrm{Dirac}}(\omega)=\kappa(\omega)$。这直接推出推论 3.3。若角度函数属于 $C^{2r}$ 类，则余项可进一步细化为 $a^{2r-1}$ 阶，得到命题 3.3.1。
+其中 $\frac{1}{2\pi}\operatorname{tr}Q_{\mathrm{Dirac}}(\omega)=\kappa(\omega)$。这直接推出推论 3.3。在 $C^{2}$ 光滑性假设下，Euler–Maclaurin 端点校正给出主导的一阶 $O(a)$ 误差，得到命题 3.3.1。
 
 ### 4.4 命题 3.4 的说明
 
@@ -640,7 +624,7 @@ $$
 \kappa(\omega)=-\sum_{j}(2j+1)\xi'_{j}(\omega),
 $$
 
-而**不应**将自旋简并简单地与 $(2\ell+1)$ 因式分解为 $(2\ell+1)(2s+1)$。上述按 $j$ 的计数与 Wigner–Smith 时间延迟与态密度的标准对应 $\operatorname{Tr}Q=2\,\partial_E\delta_{\rm sum}$、$\rho=(2\pi)^{-1}\operatorname{Tr}Q$ 一致。其奇点结构由 QNM 极点数据控制。若要得到关于**能量纤维**的幺正散射矩阵 $S(\omega)$，必须在**开放几何**中同时纳入"无穷远–地平线"两端的**渐近通道**：具体做法是将 AdS 区域与一个外部开放域**拼接**，在无穷远施加**辐射型/透明**条件使能流可以逃逸，并在地平线处施加保持能流守恒的自伴条件。此时针对**整体封闭体系**的散射表述幺正，且
+而**不应**将自旋简并简单地与 $(2\ell+1)$ 因式分解为 $(2\ell+1)(2s+1)$。上述按 $j$ 的计数与 Wigner–Smith 时间延迟与态密度的标准对应 $\operatorname{Tr}Q=2\,\partial_E\delta_{\rm sum}$、$\rho=(2\pi)^{-1}\operatorname{Tr}Q$ 一致。其奇点结构由 QNM 极点数据控制。若要得到关于**能量纤维**的幺正散射矩阵 $S(\omega)$，应同时纳入无穷远与地平线两端的**全部渐近通道**：做法是将 AdS 区域与一个外部开放域**拼接**，并在无穷远施加**辐射型/透明**条件；**在地平线处采用纯入射边界条件，并将地平线视为独立渐近通道以计入透射通量**。由此得到的"无穷远通道 $\oplus$ 地平线通道"的**两端通道散射矩阵**是幺正的（体现通量守恒 $|R|^2+|T|^2=1$），从而
 
 $$
 \kappa(\omega)=\frac{1}{2\pi}\operatorname{tr}Q(\omega)=\frac{\varphi'(\omega)}{\pi}.
@@ -670,7 +654,7 @@ $$
 -\kappa(\omega),
 $$
 
-拟合其对 $a,\Delta t$ 的幂次依赖，检验命题 3.3.1 中给出的 $a^{2r-1}$ 与 $\Delta t^q$ 误差律。
+拟合其对 $a,\Delta t$ 的依赖，检验命题 3.3.1 中给出的一阶 $O(a)$ 与 $\Delta t^q$ 误差律。
 
 ---
 
