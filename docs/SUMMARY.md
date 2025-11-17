@@ -220,6 +220,7 @@
     - [纠缠—意识—时间的统一延迟理论:谱–散射–信息–折扣的四重桥接与跨模态可检刻度](./euler-gls-extend/entanglement-consciousness-time-unified-delay-theory.md)
     - [通用灾难安全不可判定与能力–风险上界前沿：统一定理、复杂性定位与工程化路径](./euler-gls-extend/universal-catastrophic-safety-undecidability-capability-risk-frontier.md)
     - [延迟量子化、反馈闭环与 $\pi$-台阶奇偶跃迁：从刻度同一式到自指散射网络的 $\mathbb Z_2$ 拓扑结构](./euler-gls-extend/delay-quantization-feedback-loop-pi-step-parity-transition.md)
+    - [六大未统一物理作为统一矩阵–QCA 宇宙的一致性约束](./euler-gls-extend/six-unified-physics-constraints-matrix-qca-universe.md)
 
 - [Euler-Quantum 统一量子理论]()
     - [窗化信息几何量子测量统一框架](./euler-quantum/wsig-qm-unified-quantum-measurement-framework.md)
