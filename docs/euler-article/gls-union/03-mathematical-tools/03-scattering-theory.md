@@ -206,7 +206,7 @@ $$
 得到：
 
 $$
-\frac{1}{2\pi} \text{tr}\, Q(\omega) = \xi'(\omega) = \rho_{\text{rel}}(\omega)
+\frac{1}{2\pi} \text{tr}\, Q(\omega) = -\,\xi'(\omega) = \rho_{\text{rel}}(\omega)
 $$
 
 **这就是统一时间刻度的数学基础！**
@@ -296,7 +296,7 @@ S-矩阵的因果性保证时间箭头与因果箭头一致。
 - 经典教材：J.R. Taylor, *Scattering Theory* (Wiley, 1972)
 - 原始论文：E.P. Wigner, "Lower limit for the energy derivative of the scattering phase shift" (Phys. Rev. 98, 145, 1955)
 - GLS应用：[04-scattering-is-evolution.md](../02-core-ideas/04-scattering-is-evolution.md)
-- 下一篇：[04-modular-theory.md](./04-modular-theory.md) - 模块理论
+- 下一篇：[04-modular-theory.md](04-modular-theory.md) - 模块理论
 
 ## 🤔 练习题
 
@@ -323,4 +323,3 @@ S-矩阵的因果性保证时间箭头与因果箭头一致。
 ---
 
 **下一步**：掌握了散射理论后，我们将学习**模块理论**——量子态如何定义自己的"时间流"！
-

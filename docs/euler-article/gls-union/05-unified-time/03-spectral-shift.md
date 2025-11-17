@@ -515,7 +515,7 @@ $$\det S(\omega) = e^{-2\pi i\xi(\omega)}$$
 **下一步**：我们已经理解了相位-时间（第1篇）、群延迟（第2篇）、谱移（第3篇）。下一篇将**完整证明时间刻度同一式**，并揭示其深刻意义！
 
 **导航**：
-- 上一篇：[02-scattering-phase.md](./02-scattering-phase.md) - 散射相位与群延迟
-- 下一篇：[04-time-scale-identity.md](./04-time-scale-identity.md) - 时间刻度同一式（⭐核心）
-- 概览：[00-time-overview.md](./00-time-overview.md) - 统一时间篇总览
-- GLS理论：[unified-time-scale-geometry.md](../../euler-gls-paper-time/unified-time-scale-geometry.md)
+- 上一篇：[02-scattering-phase.md](02-scattering-phase.md) - 散射相位与群延迟
+- 下一篇：[04-time-scale-identity.md](04-time-scale-identity.md) - 时间刻度同一式（⭐核心）
+- 概览：[00-time-overview.md](00-time-overview.md) - 统一时间篇总览
+- GLS理论：unified-time-scale-geometry.md

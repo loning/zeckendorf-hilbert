@@ -294,7 +294,7 @@ $$
 相对 $K$ 理论边界映射将 Yukawa 质量端项的单位化 $\widehat\Phi$ 的边界类 $\partial[\det\widehat\Phi]\in K^0(X,Y)$ 与投影线丛 $[\det\mathcal E_3]-[\det\mathcal E_2]$ 统一；在二维横截上
 
 $$
-\mathrm{Ind}(\slashed D_A+\Phi)
+\mathrm{Ind}(D/_{A}+\Phi)
 =\mathrm{wind},\det\widehat\Phi
 =\langle c_1(\det\mathcal E_3),[S^1]\rangle.
 $$

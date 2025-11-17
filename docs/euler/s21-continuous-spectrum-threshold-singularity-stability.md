@@ -24,7 +24,7 @@ $$
 
 ### 0.1 规范系统、Weyl 函数与谱密度
 
-设 $J=\begin{psmallmatrix}0&-1\\1&0\end{psmallmatrix}$，取一阶辛型规范系统
+设 $J=\begin{smallmatrix}0&-1\\1&0\end{smallmatrix}$，取一阶辛型规范系统
 
 $$
 J\,Y'(t,z)=z\,H(t)\,Y(t,z),\qquad H(t)=H(t)^{!*}\succeq0,\quad t\in[0,\infty),

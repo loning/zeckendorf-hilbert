@@ -2,7 +2,7 @@
 
 > "时间、因果、边界、散射、熵——它们不是五个独立的概念，而是同一个实在的五重投影。"
 
-[← 上一篇：熵是什么](05-what-is-entropy.md) | [返回主页](../index.md) | [下一篇：核心思想篇 →](../02-core-ideas/)
+[← 上一篇：熵是什么](05-what-is-entropy.md) | [返回主页](../index.md) | [下一篇：核心思想篇 →](../02-core-ideas/01-time-is-geometry.md)
 
 ---
 
@@ -433,7 +433,7 @@ $$
 
 准备好了吗？让我们继续这场思想的冒险！
 
-[下一篇：核心思想篇 →](../02-core-ideas/)
+[下一篇：核心思想篇 →](../02-core-ideas/01-time-is-geometry.md)
 
 ---
 
@@ -449,4 +449,4 @@ $$
 
 现在，让我们进入下一阶段，看看这个统一如何在数学和物理中精确实现！
 
-[← 上一篇：熵是什么](05-what-is-entropy.md) | [返回主页](../index.md) | [下一篇：核心思想篇 →](../02-core-ideas/)
+[← 上一篇：熵是什么](05-what-is-entropy.md) | [返回主页](../index.md) | [下一篇：核心思想篇 →](../02-core-ideas/01-time-is-geometry.md)

@@ -270,8 +270,8 @@ graph LR
 
 - 入门教材：S. Awodey, *Category Theory* (Oxford, 2010)
 - 物理应用：J. Baez, M. Stay, "Physics, Topology, Logic and Computation: A Rosetta Stone" (arXiv:0903.0340)
-- GLS应用：[universe-as-quantum-cellular-automaton-complete-physical-unification-theory.md](../../euler-gls-union/universe-as-quantum-cellular-automaton-complete-physical-unification-theory.md)
-- 下一篇：[07-tools-summary.md](./07-tools-summary.md) - 数学工具总结
+- GLS应用：universe-as-quantum-cellular-automaton-complete-physical-unification-theory.md
+- 下一篇：[07-tools-summary.md](07-tools-summary.md) - 数学工具总结
 
 ## 🤔 练习题
 

@@ -38,8 +38,7 @@ $$
 以及 **Ronkin 型势**
 
 $$
-N_F(\rho):=\fint_{\mathbb T^m}\log|F(\theta,\rho)|\,d\theta
-=\frac{1}{(2\pi)^m}\int_{\mathbb T^m}\log|F(\theta,\rho)|\,d\theta .
+N_F(\rho):=\frac{1}{(2\pi)^m}\int_{\mathbb T^m}\log|F(\theta,\rho)|\,d\theta .
 $$
 
 零点的对数奇性在紧致环面上可积。为保证 $N_F(\rho)$ 对任意 $\rho$ 有限，作如下对象假设：
@@ -89,7 +88,7 @@ $$
 
 此外，$\rho\mapsto N_F(\rho)$ 为凸且局部 Lipschitz。
 
-**证明要点**。固定 $\rho$，记 $A_j(\theta,\rho):=c_j e^{i\langle\alpha_j,\theta\rangle}e^{\langle\beta_j,\rho\rangle}$。三角不等式给 $|F(\theta,\rho)|\le\sum_j|A_j|=\sum_j|c_j|e^{\langle\beta_j,\rho\rangle}$，取对数并在 $\theta$ 上平均即得 $N_F\le\Lambda$。先证凸性与局部 Lipschitz：固定方向 $\mathbf v$，令 $G_\theta(z):=F(\theta,\rho+z\mathbf v)$。则 $z\mapsto\log|G_\theta(z)|$ 为次调和，其 Riesz 质量（零点计数测度）非负；由一元 Jensen–Poisson 公式知，$t\mapsto N_F(\rho+t\mathbf v)=\fint_{\mathbb T^m}\log|G_\theta(t)|\,d\theta$ 的**分布二阶导**等于上述非负测度在 $\theta$ 上的平均，故为非负测度，遂 $t\mapsto N_F(\rho+t\mathbf v)$ 凸。沿任意直线皆凸 $\Rightarrow$ $N_F$ 在 $\rho$ 上凸，且由凸函数一般理论得局部 Lipschitz。基于已证凸性（割线斜率单调），对任意单位向量 $\mathbf u$，有链式上界
+**证明要点**。固定 $\rho$，记 $A_j(\theta,\rho):=c_j e^{i\langle\alpha_j,\theta\rangle}e^{\langle\beta_j,\rho\rangle}$。三角不等式给 $|F(\theta,\rho)|\le\sum_j|A_j|=\sum_j|c_j|e^{\langle\beta_j,\rho\rangle}$，取对数并在 $\theta$ 上平均即得 $N_F\le\Lambda$。先证凸性与局部 Lipschitz：固定方向 $\mathbf v$，令 $G_\theta(z):=F(\theta,\rho+z\mathbf v)$。则 $z\mapsto\log|G_\theta(z)|$ 为次调和，其 Riesz 质量（零点计数测度）非负；由一元 Jensen–Poisson 公式知，$t\mapsto N_F(\rho+t\mathbf v)=\frac{1}{(2\pi)^m}\int_{\mathbb T^m}\log|G_\theta(t)|\,d\theta$ 的**分布二阶导**等于上述非负测度在 $\theta$ 上的平均，故为非负测度，遂 $t\mapsto N_F(\rho+t\mathbf v)$ 凸。沿任意直线皆凸 $\Rightarrow$ $N_F$ 在 $\rho$ 上凸，且由凸函数一般理论得局部 Lipschitz。基于已证凸性（割线斜率单调），对任意单位向量 $\mathbf u$，有链式上界
 $$
 D^{+}N_F(\rho;\mathbf u)
 \ \le\ \limsup_{r\to\infty}\frac{N_F(\rho+r\mathbf u)-N_F(\rho)}{r}
@@ -98,7 +97,7 @@ D^{+}N_F(\rho;\mathbf u)
 $$
 其中末步由三角不等式与
 $\sup_{\theta}\log|F(\theta,\rho+r\mathbf u)|\le \log\sum_j |c_j|e^{\langle\beta_j,\rho+r\mathbf u\rangle}
-\le r\,H_{\operatorname{New}(F)}(\mathbf u)+O(1)$ 得到。由引理 A.1（凸分析：方向导数上界 $\Rightarrow$ 次梯度包含）遂得 $\partial N_F(\rho)\subseteq\operatorname{New}(F)$。关于凸性与局部 Lipschitz：固定方向 $\mathbf v$，令 $G_\theta(z):=F(\theta,\rho+z\mathbf v)$。则 $z\mapsto\log|G_\theta(z)|$ 为次调和，其 Riesz 质量（零点计数测度）非负；由一元 Jensen–Poisson 公式知，$t\mapsto N_F(\rho+t\mathbf v)=\fint_{\mathbb T^m}\log|G_\theta(t)|\,d\theta$ 的**分布二阶导**等于上述非负测度在 $\theta$ 上的平均，故为非负测度，遂 $t\mapsto N_F(\rho+t\mathbf v)$ 凸。沿任意直线皆凸 $\Rightarrow$ $N_F$ 在 $\rho$ 上凸，且由凸函数一般理论得局部 Lipschitz。∎
+\le r\,H_{\operatorname{New}(F)}(\mathbf u)+O(1)$ 得到。由引理 A.1（凸分析：方向导数上界 $\Rightarrow$ 次梯度包含）遂得 $\partial N_F(\rho)\subseteq\operatorname{New}(F)$。关于凸性与局部 Lipschitz：固定方向 $\mathbf v$，令 $G_\theta(z):=F(\theta,\rho+z\mathbf v)$。则 $z\mapsto\log|G_\theta(z)|$ 为次调和，其 Riesz 质量（零点计数测度）非负；由一元 Jensen–Poisson 公式知，$t\mapsto N_F(\rho+t\mathbf v)=\frac{1}{(2\pi)^m}\int_{\mathbb T^m}\log|G_\theta(t)|\,d\theta$ 的**分布二阶导**等于上述非负测度在 $\theta$ 上的平均，故为非负测度，遂 $t\mapsto N_F(\rho+t\mathbf v)$ 凸。沿任意直线皆凸 $\Rightarrow$ $N_F$ 在 $\rho$ 上凸，且由凸函数一般理论得局部 Lipschitz。∎
 从而由引理 A.1（凸分析：方向导数上界 $\Rightarrow$ 次梯度包含）得 $\partial N_F(\rho)\subseteq\operatorname{New}(F)$。∎
 
 ### 命题 10.2（主导子和区：近分段仿射）
@@ -114,7 +113,7 @@ $$
 
 **证明要点**。单项幅度占优：写 $F=A_{j_\star}(1+R)$ 且 $|R(\theta,\rho)|\le\sum_{j\ne j_\star}\frac{|A_j|}{|A_{j_\star}|}\le(J-1)e^{-D}$，从而 $|(J-1)e^{-D}|<1$。由可积对数的标准不等式
 $$
-\fint_{\mathbb T^m}\bigl|\log|1+R|\bigr|\,d\theta\ \le\ -\log\bigl(1-(J-1)e^{-D}\bigr)
+\frac{1}{(2\pi)^m}\int_{\mathbb T^m}\bigl|\log|1+R|\bigr|\,d\theta\ \le\ -\log\bigl(1-(J-1)e^{-D}\bigr)
 $$
 得到所述绝对误差上界。∎
 

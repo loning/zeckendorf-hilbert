@@ -470,10 +470,10 @@ graph TB
 ---
 
 **导航**：
-- 上一篇：[05-geometric-times.md](./05-geometric-times.md) - 几何时间
-- 下一篇：[07-cosmological-redshift.md](./07-cosmological-redshift.md) - 宇宙学红移
-- 概览：[00-time-overview.md](./00-time-overview.md) - 统一时间篇总览
-- GLS理论：[unified-time-scale-geometry.md](../../euler-gls-paper-time/unified-time-scale-geometry.md)
+- 上一篇：[05-geometric-times.md](05-geometric-times.md) - 几何时间
+- 下一篇：[07-cosmological-redshift.md](07-cosmological-redshift.md) - 宇宙学红移
+- 概览：[00-time-overview.md](00-time-overview.md) - 统一时间篇总览
+- GLS理论：unified-time-scale-geometry.md
 - 参考文献：
   - Connes & Rovelli, "Von Neumann algebra automorphisms and time–thermodynamics relation" (1994)
   - Bisognano & Wichmann, "On the Duality Condition for Quantum Fields" (1976)

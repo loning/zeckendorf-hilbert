@@ -239,7 +239,7 @@ graph LR
 
 ---
 
-**下一步**：[01-spectral-theory.md](./01-spectral-theory.md) - 谱理论：算符的"频谱分析"
+**下一步**：[01-spectral-theory.md](01-spectral-theory.md) - 谱理论：算符的"频谱分析"
 
 让我们开始吧！
 

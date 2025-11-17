@@ -190,17 +190,17 @@ graph LR
 
 **🎓 有物理背景？直达核心：**
 - [核心思想：五者合一](02-core-ideas/06-unity-of-five.md) - 统一时间刻度同一式
-- [IGVP框架：从熵到爱因斯坦方程](04-igvp-framework/04-from-entropy-to-einstein.md) - 引力的涌现
-- [最终统一：单一变分原理](11-final-unification/01-single-principle.md) - 所有定律的源头
+- [IGVP框架：从熵到爱因斯坦方程](04-igvp-framework/04-first-order-variation.md) - 引力的涌现
+- [最终统一：宇宙一致性泛函](11-final-unification/01-consistency-functional.md) - 所有定律的源头
 
 **🔬 想看实验检验？看这里：**
-- [应用与检验篇](12-applications/) - 黑洞熵、中微子质量、暗能量、引力波
-- [统一时间理论](05-unified-time/) - 可测量的时间刻度
+- [应用与检验篇](12-applications/00-intro.md) - 黑洞熵、中微子质量、暗能量、引力波
+- [统一时间理论](05-unified-time/00-time-overview.md) - 可测量的时间刻度
 
 **🧠 对哲学问题感兴趣？从这里进入：**
-- [矩阵宇宙](10-matrix-universe/) - 现实即网络，心-宇同构
-- [生命与意识](12-applications/07-consciousness.md) - 自指观察者的结构
-- [最终统一](11-final-unification/) - 本体论的终极答案
+- [矩阵宇宙](10-matrix-universe/00-intro.md) - 现实即网络，心-宇同构
+- [意识的物理基础](13-advanced-topics/03-consciousness.md) - 自指观察者的结构
+- [最终统一](11-final-unification/00-intro.md) - 本体论的终极答案
 
 ---
 
@@ -218,6 +218,7 @@ graph LR
 - [边界是什么？](01-foundation/03-what-is-boundary.md) - 从容器到全息
 - [散射是什么？](01-foundation/04-what-is-scattering.md) - 从回声到S矩阵
 - [熵是什么？](01-foundation/05-what-is-entropy.md) - 从混乱到箭头
+- [基础概念总结](01-foundation/06-foundation-summary.md) - 五个概念，一个宇宙
 
 ### 📖 第二篇：核心思想（02-core-ideas/）
 五个改变世界观的统一思想
@@ -227,109 +228,126 @@ graph LR
 - [散射即演化](02-core-ideas/04-scattering-is-evolution.md)
 - [熵即箭头](02-core-ideas/05-entropy-is-arrow.md)
 - ⭐ [五者合一：统一时间刻度同一式](02-core-ideas/06-unity-of-five.md)
+- [核心思想总结](02-core-ideas/07-core-summary.md) - 从五个洞见到统一理论
 
 ### 📖 第三篇：数学工具箱（03-mathematical-tools/）
 通俗讲解核心数学概念
-- [谱理论入门](03-mathematical-tools/01-spectral-theory-intro.md) - 从音乐到量子
-- [散射矩阵](03-mathematical-tools/02-scattering-matrix.md) - 从镜子到S矩阵
-- [Wigner-Smith延迟](03-mathematical-tools/03-wigner-smith-delay.md) - 时间从何而来
-- [Birman-Kreĭn公式](03-mathematical-tools/04-birman-krein-formula.md) - 相位与能量
-- [Fisher-Rao度量](03-mathematical-tools/05-fisher-rao-metric.md) - 信息的几何
-- [相对熵](03-mathematical-tools/06-relative-entropy.md) - 距离与单调性
+- [工具总览](03-mathematical-tools/00-tools-overview.md) - 理解GLS理论的数学语言
+- [谱理论](03-mathematical-tools/01-spectral-theory.md) - 从音乐到量子
+- [非交换几何](03-mathematical-tools/02-noncommutative-geometry.md) - 几何的代数化
+- [散射理论](03-mathematical-tools/03-scattering-theory.md) - 从镜子到S矩阵
+- [模理论](03-mathematical-tools/04-modular-theory.md) - 时间与相位的统一
+- [信息几何](03-mathematical-tools/05-information-geometry.md) - 信息的几何
+- [范畴论](03-mathematical-tools/06-category-theory.md) - 结构的统一语言
+- [数学工具总结](03-mathematical-tools/07-tools-summary.md) - 工具的统一图景
 
 ### 📖 第四篇：IGVP框架（04-igvp-framework/）
 从熵的极值导出引力
-- [IGVP是什么？](04-igvp-framework/01-what-is-igvp.md) - 从肥皂泡到变分原理
+- [IGVP总览](04-igvp-framework/00-igvp-overview.md) - 从熵到Einstein方程
+- [广义熵](04-igvp-framework/01-generalized-entropy.md) - 面积+物质
 - [因果钻石](04-igvp-framework/02-causal-diamond.md) - 时空的最小单元
-- [广义熵](04-igvp-framework/03-generalized-entropy.md) - 面积+物质
-- ⭐ [从熵到爱因斯坦方程](04-igvp-framework/04-from-entropy-to-einstein.md) - 引力的涌现
-- [信息几何](04-igvp-framework/05-information-geometry.md) - 从统计到度规
+- [Raychaudhuri方程](04-igvp-framework/03-raychaudhuri-equation.md) - 聚焦与熵增
+- [一阶变分](04-igvp-framework/04-first-order-variation.md) - 变分原理的基础
+- [二阶变分](04-igvp-framework/05-second-order-variation.md) - 稳定性与因果性
+- [IGVP总结](04-igvp-framework/06-igvp-summary.md) - 引力的信息几何起源
 
 ### 📖 第五篇：统一时间理论（05-unified-time/）
 三种时间的统一
-- [三种时间](05-unified-time/01-three-times.md) - 散射、模、几何
-- ⭐ [时间刻度同一式](05-unified-time/02-time-scale-identity.md) - 三者为一
-- [相位即本征时间](05-unified-time/03-phase-eigentime.md) - 量子钟
-- [红移即相位节奏](05-unified-time/04-redshift-phase-rhythm.md) - 宇宙膨胀
-- [时间的涌现](05-unified-time/05-time-emergence.md) - 从无到有
+- [时间总览](05-unified-time/00-time-overview.md) - 时间的本质
+- [相位与本征时间](05-unified-time/01-phase-and-proper-time.md) - 量子钟
+- [散射相位](05-unified-time/02-scattering-phase.md) - 时间从散射来
+- [谱移](05-unified-time/03-spectral-shift.md) - 能量与时间的统一
+- ⭐ [时间刻度同一式](05-unified-time/04-time-scale-identity.md) - 三者为一
+- [几何时间](05-unified-time/05-geometric-times.md) - 时空的几何维度
+- [模时间](05-unified-time/06-modular-time.md) - 模流与时间
+- [宇宙学红移](05-unified-time/07-cosmological-redshift.md) - 宇宙膨胀的时间刻度
+- [时间理论总结](05-unified-time/08-time-summary.md) - 统一时间的完整图景
 
 ### 📖 第六篇：边界理论（06-boundary-theory/）
 边界即实在
-- [边界优先](06-boundary-theory/01-boundary-priority.md) - 实在的起点
-- [Brown-York应力张量](06-boundary-theory/02-brown-york-tensor.md) - 边界的能量
+- [边界总览](06-boundary-theory/00-boundary-overview.md) - 物理不在体域，而在边界
+- [为什么边界优先](06-boundary-theory/01-why-boundary.md) - 实在的起点
+- [边界数据三元组](06-boundary-theory/02-boundary-data-triple.md) - 边界信息的完整描述
 - [GHY边界项](06-boundary-theory/03-ghy-boundary-term.md) - 变分的完整性
-- [边界谱三元组](06-boundary-theory/04-boundary-spectral.md) - 代数-几何对偶
-- [全息原理](06-boundary-theory/05-holography.md) - 体积的边界编码
+- [Brown-York能量](06-boundary-theory/04-brown-york-energy.md) - 边界的能量
+- [边界可观测量](06-boundary-theory/05-boundary-observables.md) - 边界上的物理量
+- [边界理论总结](06-boundary-theory/06-boundary-summary.md) - 边界即实在的完整图景
 
 ### 📖 第七篇：因果结构（07-causal-structure/）
 因果、时间、熵的三重统一
-- [偏序](07-causal-structure/01-partial-order.md) - 事件的先后
-- [因果钻石链](07-causal-structure/02-causal-diamond-chain.md) - 时空的骨架
-- [Markov性质](07-causal-structure/03-markov-property.md) - 因果屏蔽
-- [观察者共识](07-causal-structure/04-observer-consensus.md) - 多视角的几何
-- [因果的涌现](07-causal-structure/05-causality-emergence.md) - 从量子到经典
+- [因果总览](07-causal-structure/00-causal-overview.md) - 因果不是关系，而是结构
+- [什么是因果](07-causal-structure/01-what-is-causality.md) - 因果的本质
+- [因果钻石](07-causal-structure/02-causal-diamond.md) - 时空的最小因果单元
+- [偏序](07-causal-structure/03-partial-order.md) - 事件的先后
+- [Null-模双覆盖](07-causal-structure/04-null-modular-cover.md) - 因果与模的统一
+- [Markov性质](07-causal-structure/05-markov-property.md) - 因果屏蔽
+- [观察者共识](07-causal-structure/06-observer-consensus.md) - 多视角的几何
+- [因果结构总结](07-causal-structure/07-causal-summary.md) - 因果、时间、熵的三重统一
 
 ### 📖 第八篇：拓扑约束（08-topological-constraints/）
 拓扑如何限制物理
-- [Z₂上同调](08-topological-constraints/01-z2-cohomology.md) - 开关的代数
-- [Null-模双覆盖](08-topological-constraints/02-null-modular-cover.md) - 拓扑的统一
-- [自旋结构](08-topological-constraints/03-spin-structure.md) - 费米子的拓扑起源
-- [K理论与通道丛](08-topological-constraints/04-k-theory-channels.md) - 场的拓扑分类
+- [拓扑总览](08-topological-constraints/00-topological-overview.md) - 统一理论的"量子化选择"
+- [为什么需要拓扑](08-topological-constraints/01-why-topology.md) - 拓扑的必要性
+- [相对上同调](08-topological-constraints/02-relative-cohomology.md) - 边界与拓扑
+- [Z₂ holonomy](08-topological-constraints/03-z2-holonomy.md) - 拓扑的量子化
+- [SM群结构](08-topological-constraints/04-sm-group-structure.md) - 标准模型的拓扑起源
+- [Gauss-Bonnet因果](08-topological-constraints/05-gauss-bonnet-causal.md) - 拓扑与因果的统一
+- [拓扑约束总结](08-topological-constraints/06-topological-summary.md) - 拓扑如何限制物理
 
 ### 📖 第九篇：量子元胞自动机宇宙（09-qca-universe/）
 离散的宇宙
-- [离散时空](09-qca-universe/01-discrete-spacetime.md) - 像素化的宇宙
-- [局域幺正演化](09-qca-universe/02-local-unitary.md) - 邻居互动规则
-- [连续极限](09-qca-universe/03-continuum-limit.md) - 从离散到连续
-- [量子场论的涌现](09-qca-universe/04-qft-emergence.md) - QCA→QFT
-- [广义相对论的涌现](09-qca-universe/05-gr-emergence.md) - QCA→GR
-- ⭐ [范畴论终对象](09-qca-universe/06-terminal-object.md) - 所有理论的母体
+- [QCA总览](09-qca-universe/00-qca-overview.md) - 从离散到连续的终极统一
+- [QCA公理化](09-qca-universe/01-qca-axioms.md) - 五元组定义的严格基础
+- [因果结构从QCA涌现](09-qca-universe/02-causal-emergence.md) - 偏序与光锥的诞生
+- [2-范畴中的终对象](09-qca-universe/03-terminal-object.md) - 物理定律的唯一性定理
+- [三重范畴等价](09-qca-universe/04-category-equivalence.md) - 宇宙的三种面孔
+- [场论的涌现](09-qca-universe/05-field-emergence.md) - 物质场如何从空无中诞生
+- [QCA宇宙总结](09-qca-universe/06-qca-summary.md) - 从终对象到完整统一
 
 ### 📖 第十篇：矩阵宇宙（10-matrix-universe/）
 现实的代数本质
-- [现实即网络](10-matrix-universe/01-reality-as-network.md) - 从物质到关系
-- [因果流形](10-matrix-universe/02-causal-manifold.md) - 几何的代数本质
-- [自我的定义](10-matrix-universe/03-self-definition.md) - 观察者的结构
-- ⭐ [心-宇宙等价](10-matrix-universe/04-heart-universe.md) - 内外的同构
-- [共识几何](10-matrix-universe/05-consensus-geometry.md) - 多智能体的涌现
+- [矩阵宇宙总览](10-matrix-universe/00-intro.md) - 观察者与实在
+- [观察者的数学定义](10-matrix-universe/01-observer-definition.md) - 自我的结构
+- ⭐ [心-宇宙等价定理](10-matrix-universe/02-heart-universe-equivalence.md) - 内外的同构
+- [多观察者共识](10-matrix-universe/03-multi-observer.md) - 从主观到客观的涌现
+- [测量问题](10-matrix-universe/04-measurement.md) - 从波函数塌缩到纠缠切割
+- [客观实在的涌现](10-matrix-universe/05-reality-emergence.md) - 从量子基底到经典世界
+- [矩阵宇宙总结](10-matrix-universe/06-summary.md) - 观察者理论的统一图景
 
 ### 📖 第十一篇：最终统一（11-final-unification/）
 所有定律的源头
-- ⭐ [单一变分原理](11-final-unification/01-single-principle.md) - 一切的源头
-- [一致性即定律](11-final-unification/02-consistency-laws.md) - 约束的力量
-- [观察者共识原理](11-final-unification/03-observer-consensus.md) - 主体间性
-- [从一到万](11-final-unification/04-all-from-one.md) - 所有物理定律的推导
-- [本体论统一](11-final-unification/05-ontological-unity.md) - 不是对称，是同一
+- [最终统一引言](11-final-unification/00-intro.md) - 最终统一的必要性
+- ⭐ [宇宙一致性泛函](11-final-unification/01-consistency-functional.md) - 一切的源头
+- [信息几何变分原理](11-final-unification/02-igvp-principle.md) - IGVP的完整表述
+- [从IGVP导出Einstein方程](11-final-unification/03-einstein-derivation.md) - 引力的涌现
+- [规范场论与量子场论的涌现](11-final-unification/04-gauge-qft-emergence.md) - 所有相互作用的统一
+- [物质场与流体动力学](11-final-unification/05-matter-fluid.md) - 物质的几何化
+- [最终统一总结](11-final-unification/06-summary.md) - 物理统一的完成
 
 ### 📖 第十二篇：应用与检验（12-applications/）
 理论的实验检验
-- [黑洞熵](12-applications/01-black-hole-entropy.md) - 引力热力学
-- [中微子质量](12-applications/02-neutrino-mass.md) - 味混合之谜
-- [宇宙学常数](12-applications/03-cosmological-constant.md) - 暗能量之谜
-- [强CP问题](12-applications/04-strong-cp-problem.md) - 轴子解
-- [量子混沌](12-applications/05-quantum-chaos.md) - ETH与热化
-- [引力波](12-applications/06-gravitational-waves.md) - 时空涟漪
-- [意识理论](12-applications/07-consciousness.md) - 自指与时间
+- [应用引言](12-applications/00-intro.md) - 从理论到观测的桥梁
+- [宇宙学应用](12-applications/01-cosmology.md) - 暗能量的谱窗口解释
+- [引力波检验](12-applications/02-gravitational-waves.md) - 时空离散性的直接探针
+- [黑洞物理](12-applications/03-black-holes.md) - 信息悖论的量子解答
+- [凝聚态应用](12-applications/04-condensed-matter.md) - 实验室中的量子几何
+- [粒子物理检验](12-applications/05-particle-physics.md) - 标准模型的深层起源
+- [应用总结](12-applications/06-summary.md) - 物理统一的检验蓝图
 
 ### 📖 第十三篇：高级专题（13-advanced-topics/）
-前沿研究方向
-- [时间晶体](13-advanced-topics/01-time-crystals.md)
-- [误差几何](13-advanced-topics/02-error-geometry.md)
-- [纠缠与时间延迟](13-advanced-topics/03-entanglement-delay.md)
-- [AI安全](13-advanced-topics/04-ai-safety.md)
+统一时间刻度的四重奏：理论的巅峰
+- [导论：高级专题概览](13-advanced-topics/00-introduction.md) - 四大前沿方向的统一
+- ⭐ [量子混沌与ETH](13-advanced-topics/01-quantum-chaos-eth.md) - QCA宇宙的热化机制
+- ⭐ [时间晶体](13-advanced-topics/02-time-crystals.md) - 破缺时间平移对称性
+- ⭐ [意识的物理学](13-advanced-topics/03-consciousness.md) - 自指观察者的五大结构
+- ⭐ [自指散射网络](13-advanced-topics/04-self-referential-networks.md) - Redheffer星积与拓扑不变量
+- [总结：统一时间刻度的深层联系](13-advanced-topics/05-summary.md) - 四者合一的哲学
 
-### 📖 第十四篇：学习路径指南（14-paths/）
-根据你的背景选择路径
-- [路径A：理论物理学者](14-paths/01-path-physicist.md)
-- [路径B：实验物理学者](14-paths/02-path-experimentalist.md)
-- [路径C：哲学/概念思考者](14-paths/03-path-philosopher.md)
-- [路径D：工程/应用背景](14-paths/04-path-engineer.md)
+### 📖 学习路径指南
+- [学习路径指南](14-learning-paths.md) - 找到你的统一理论之路
 
 ### 📖 附录
-- [术语表](appendix/A-glossary.md) - 所有核心概念的简明定义
-- [符号约定](appendix/B-notation.md) - 数学符号说明
-- [原始理论文档索引](appendix/C-references.md) - 完整技术细节
-- [延伸阅读](appendix/D-further-reading.md) - 相关文献推荐
+- [术语表与速查手册](appendix-glossary.md) - 所有核心概念的简明定义与符号说明
 
 ---
 
@@ -450,8 +468,3 @@ $$
 ---
 
 *"在宇宙的深处，所有的道路最终汇聚于一。"*
-
----
-
-最后更新：2025年
-版本：1.0

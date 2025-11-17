@@ -540,7 +540,7 @@ $$\boxed{\frac{\varphi'(\omega)}{\pi} = \rho_{\text{rel}}(\omega) = \frac{1}{2\p
 ---
 
 **导航**：
-- 上一篇：[07-cosmological-redshift.md](./07-cosmological-redshift.md) - 宇宙学红移
-- 概览：[00-time-overview.md](./00-time-overview.md) - 统一时间篇总览
-- 下一章：[06-boundary-theory/](../06-boundary-theory/) - 边界理论篇
+- 上一篇：[07-cosmological-redshift.md](07-cosmological-redshift.md) - 宇宙学红移
+- 概览：[00-time-overview.md](00-time-overview.md) - 统一时间篇总览
+- 下一章：[06-boundary-theory/00-boundary-overview.md](../06-boundary-theory/00-boundary-overview.md) - 边界理论篇
 - 主页：[index.md](../index.md) - GLS理论完整教程

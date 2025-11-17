@@ -505,9 +505,9 @@ graph TB
 - 群延迟：F.T. Smith, Phys. Rev. 118, 349 (1960)
 - 微波实验：Fyodorov & Sommers, J. Math. Phys. 38, 1918 (1997)
 - 引力延迟：I.I. Shapiro, Phys. Rev. Lett. 13, 789 (1964)
-- GLS理论：[unified-time-scale-geometry.md](../../euler-gls-paper-time/unified-time-scale-geometry.md)
-- 上一篇：[01-phase-and-proper-time.md](./01-phase-and-proper-time.md) - 相位与本征时间
-- 下一篇：[03-spectral-shift.md](./03-spectral-shift.md) - 谱移函数与Birman-Kreĭn公式
+- GLS理论：unified-time-scale-geometry.md
+- 上一篇：[01-phase-and-proper-time.md](01-phase-and-proper-time.md) - 相位与本征时间
+- 下一篇：[03-spectral-shift.md](03-spectral-shift.md) - 谱移函数与Birman-Kreĭn公式
 
 ## 🤔 练习题
 

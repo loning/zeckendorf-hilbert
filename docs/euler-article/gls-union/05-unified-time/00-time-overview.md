@@ -321,7 +321,7 @@ $$\boxed{\text{时间} \equiv \text{相位} \equiv \text{本征时间} \equiv \t
 
 ### 研究路径（深入技术）
 
-阅读本章 + 原始论文：[unified-time-scale-geometry.md](../../euler-gls-paper-time/unified-time-scale-geometry.md)
+阅读本章 + 原始论文：unified-time-scale-geometry.md
 
 **收获**：研究级理解，能够应用到新问题。
 
@@ -393,5 +393,5 @@ graph TB
 
 **准备好了吗？让我们开始探索时间的本质！**
 
-**下一篇**：[01-phase-and-proper-time.md](./01-phase-and-proper-time.md) - 相位与本征时间的等价
+**下一篇**：[01-phase-and-proper-time.md](01-phase-and-proper-time.md) - 相位与本征时间的等价
 

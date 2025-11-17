@@ -370,9 +370,9 @@ $$m = \frac{\hbar\omega_C}{c^2}$$
 - 路径积分：R.P. Feynman, A.R. Hibbs, *Quantum Mechanics and Path Integrals* (1965)
 - 相对论作用量：L.D. Landau, E.M. Lifshitz, *The Classical Theory of Fields* (1975)
 - COW实验：R. Colella, A.W. Overhauser, S.A. Werner, PRL 34, 1472 (1975)
-- GLS理论：[unified-time-scale-geometry.md](../../euler-gls-paper-time/unified-time-scale-geometry.md)
-- 上一篇：[00-time-overview.md](./00-time-overview.md) - 统一时间概览
-- 下一篇：[02-scattering-phase.md](./02-scattering-phase.md) - 散射相位与群延迟
+- GLS理论：unified-time-scale-geometry.md
+- 上一篇：[00-time-overview.md](00-time-overview.md) - 统一时间概览
+- 下一篇：[02-scattering-phase.md](02-scattering-phase.md) - 散射相位与群延迟
 
 ## 🤔 练习题
 

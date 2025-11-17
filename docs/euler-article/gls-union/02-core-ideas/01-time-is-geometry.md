@@ -240,9 +240,9 @@ $$
 
 想要理解更多技术细节，可以阅读：
 
-- 理论文档：[unified-time-scale-geometry.md](../../euler-gls-paper-time/unified-time-scale-geometry.md)
-- 边界框架：[boundary-time-geometry-unified-framework.md](../../euler-gls-paper-bondary/boundary-time-geometry-unified-framework.md)
-- 下一篇：[02-causality-is-order.md](./02-causality-is-order.md) - 因果就是偏序
+- 理论文档：unified-time-scale-geometry.md
+- 边界框架：boundary-time-geometry-unified-framework.md
+- 下一篇：[02-causality-is-order.md](02-causality-is-order.md) - 因果就是偏序
 
 ## 🤔 思考题
 

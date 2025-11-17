@@ -555,7 +555,7 @@ graph TB
 **下一步**：我们已经完成了时间刻度同一式的完整推导！下一篇将探讨**几何时间**（Killing、ADM、null、共形），并展示它们如何融入统一刻度！
 
 **导航**：
-- 上一篇：[03-spectral-shift.md](./03-spectral-shift.md) - 谱移函数
-- 下一篇：[05-geometric-times.md](./05-geometric-times.md) - 几何时间
-- 概览：[00-time-overview.md](./00-time-overview.md) - 统一时间篇总览
-- GLS理论：[unified-time-scale-geometry.md](../../euler-gls-paper-time/unified-time-scale-geometry.md)
+- 上一篇：[03-spectral-shift.md](03-spectral-shift.md) - 谱移函数
+- 下一篇：[05-geometric-times.md](05-geometric-times.md) - 几何时间
+- 概览：[00-time-overview.md](00-time-overview.md) - 统一时间篇总览
+- GLS理论：unified-time-scale-geometry.md

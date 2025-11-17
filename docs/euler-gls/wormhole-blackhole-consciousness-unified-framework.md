@@ -43,7 +43,7 @@ $$
 $$
 并据此比较 $\langle\varphi'\rangle,\ \langle \operatorname{tr}\mathsf Q\rangle$ 等读数。Toeplitz/Berezin 压缩与符号的 Berezin 变换保证窗化操作的正定性与半经典极限可控。([Wiley Online Library][6])
 
-**因果与解析**：线性响应的因果性等价于上半平面的解析性与 Kramers–Kronig/Hilbert 成对关系；Titchmarsh 卷积支撑定理给出前沿时间的次可加性：$\inf\supp(f*g)=\inf\supp f+\inf\supp g$。这确保群延迟可出现负值而不违背最早到达前沿的因果界。([Wikipedia][7])
+**因果与解析**：线性响应的因果性等价于上半平面的解析性与 Kramers–Kronig/Hilbert 成对关系；Titchmarsh 卷积支撑定理给出前沿时间的次可加性：$\inf\operatorname{supp}(f*g)=\inf\operatorname{supp} f+\inf\operatorname{supp} g$。这确保群延迟可出现负值而不违背最早到达前沿的因果界。([Wikipedia][7])
 
 ---
 

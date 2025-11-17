@@ -6,7 +6,7 @@
 
 ## Abstract
 
-在统一时间刻度、相位–谱移–态密度链与边界时间几何框架下，本文对宇宙学常数与暗能量给出一个谱窗化统一表述，并在离散矩阵宇宙与量子元胞自动机宇宙中实现离散化版本。首先，在满足相对迹类与良好散射假设的偶维渐近双曲或共形紧致几何及静片 de Sitter 背景上，利用 Birman–Kreĭn 与 Lifshits–Kreĭn 迹公式，将广义散射相位导数、谱移函数导数与频率变量下的相对态密度统一为刻度密度 $\kappa(\omega)=\varphi'(\omega)/\pi=\Delta\rho_\omega(\omega)=(2\pi)^{-1}\tr Q(\omega)$，其中 $Q(\omega)$ 为 Wigner–Smith 群延迟矩阵。在对数频率窗核满足 Mellin 消零条件的前提下，建立一个窗化 Tauberian 定理：小 $s$ 热核差的有限部与 $\Theta'(\omega)$ 的对数窗平均在尺度 $\mu\sim s^{-1/2}$ 下等价，由此将真空能密度重整化完全重写为 $\kappa(\omega)$ 的窗化积分。其次，在矩阵宇宙表象中，将 FRW 与 de Sitter 宇宙视作包含地平线通道的散射背景，构造宇宙学散射矩阵 $S_{\mathrm{cos}}(\omega)$ 及其刻度密度 $\kappa_{\mathrm{cos}}(\omega)$ 与窗核 $\Xi_{\mathrm{cos}}(\omega)$，证明有效宇宙学常数增量 $\Lambda_{\mathrm{eff}}(\mu)-\Lambda_{\mathrm{eff}}(\mu_0)$ 可表示为"物理宇宙"与"参考宇宙"之间 DOS 差分的对数频率窗化谱积分，从而将宇宙学常数问题归结为统一时间刻度下的相对谱问题。第三，在宇宙 QCA 对象 $\mathfrak U_{\mathrm{QCA}}=(\Lambda,\mathcal H_{\mathrm{cell}},\mathcal A,\alpha,\omega_0)$ 内，将连续谱 $\omega$ 替换为准能谱 $\varepsilon_j(k)$，定义 QCA 宇宙与参考 QCA 的相对带密度 $\Delta\rho_j(k)$，构造离散窗化公式 $\Lambda_{\mathrm{eff}}(\mu)=\sum_j\int_{\mathrm{BZ}}\mathcal W_\mu(\varepsilon_j(k))\,\Delta\rho_j(k)\,\diff^dk$。在高能带满足对称配对与带间和谐 sum rule 的条件下，证明高能区对 $\Lambda_{\mathrm{eff}}$ 的贡献在窗化后被指数或幂次抑制，仅剩由红移窗口内的低能质量阈值与拓扑模态贡献的有限残差，得到自然抑制估计 $\Lambda_{\mathrm{eff}}\sim m_{\mathrm{IR}}^4(m_{\mathrm{IR}}/M_{\mathrm{UV}})^{\gamma}$ 且 $\gamma>0$。最后，将谱窗化–带结构机制与曲时空量子场论中的运行真空模型相对接，在统一时间刻度框架内构造暗能量等效状态方程 $w_{\mathrm{de}}(z)\approx -1+\delta w(z)$，其中 $\delta w(z)$ 由 $\Xi(\omega)$ 在对应频带上的缓慢演化控制，与当前"整体接近 $w=-1$ 且允许小幅度演化"的观测约束相容。综合而言，本文将"宇宙学常数为何远小于 $M_{\mathrm{Pl}}^4$"重述为"相对 DOS 在统一时间刻度下满足何种窗化 sum rule"，为在矩阵宇宙与 QCA 宇宙内统一讨论暗能量的大小与运行行为提供了一个自洽的谱理论框架。宇宙学常数问题由此被嵌入统一时间刻度–散射–离散宇宙的更广泛计划之中。
+在统一时间刻度、相位–谱移–态密度链与边界时间几何框架下，本文对宇宙学常数与暗能量给出一个谱窗化统一表述，并在离散矩阵宇宙与量子元胞自动机宇宙中实现离散化版本。首先，在满足相对迹类与良好散射假设的偶维渐近双曲或共形紧致几何及静片 de Sitter 背景上，利用 Birman–Kreĭn 与 Lifshits–Kreĭn 迹公式，将广义散射相位导数、谱移函数导数与频率变量下的相对态密度统一为刻度密度 $\kappa(\omega)=\varphi'(\omega)/\pi=\Delta\rho_\omega(\omega)=(2\pi)^{-1}\operatorname{tr} Q(\omega)$，其中 $Q(\omega)$ 为 Wigner–Smith 群延迟矩阵。在对数频率窗核满足 Mellin 消零条件的前提下，建立一个窗化 Tauberian 定理：小 $s$ 热核差的有限部与 $\Theta'(\omega)$ 的对数窗平均在尺度 $\mu\sim s^{-1/2}$ 下等价，由此将真空能密度重整化完全重写为 $\kappa(\omega)$ 的窗化积分。其次，在矩阵宇宙表象中，将 FRW 与 de Sitter 宇宙视作包含地平线通道的散射背景，构造宇宙学散射矩阵 $S_{\mathrm{cos}}(\omega)$ 及其刻度密度 $\kappa_{\mathrm{cos}}(\omega)$ 与窗核 $\Xi_{\mathrm{cos}}(\omega)$，证明有效宇宙学常数增量 $\Lambda_{\mathrm{eff}}(\mu)-\Lambda_{\mathrm{eff}}(\mu_0)$ 可表示为"物理宇宙"与"参考宇宙"之间 DOS 差分的对数频率窗化谱积分，从而将宇宙学常数问题归结为统一时间刻度下的相对谱问题。第三，在宇宙 QCA 对象 $\mathfrak U_{\mathrm{QCA}}=(\Lambda,\mathcal H_{\mathrm{cell}},\mathcal A,\alpha,\omega_0)$ 内，将连续谱 $\omega$ 替换为准能谱 $\varepsilon_j(k)$，定义 QCA 宇宙与参考 QCA 的相对带密度 $\Delta\rho_j(k)$，构造离散窗化公式 $\Lambda_{\mathrm{eff}}(\mu)=\sum_j\int_{\mathrm{BZ}}\mathcal W_\mu(\varepsilon_j(k))\,\Delta\rho_j(k)\,\mathrm{d}^dk$。在高能带满足对称配对与带间和谐 sum rule 的条件下，证明高能区对 $\Lambda_{\mathrm{eff}}$ 的贡献在窗化后被指数或幂次抑制，仅剩由红移窗口内的低能质量阈值与拓扑模态贡献的有限残差，得到自然抑制估计 $\Lambda_{\mathrm{eff}}\sim m_{\mathrm{IR}}^4(m_{\mathrm{IR}}/M_{\mathrm{UV}})^{\gamma}$ 且 $\gamma>0$。最后，将谱窗化–带结构机制与曲时空量子场论中的运行真空模型相对接，在统一时间刻度框架内构造暗能量等效状态方程 $w_{\mathrm{de}}(z)\approx -1+\delta w(z)$，其中 $\delta w(z)$ 由 $\Xi(\omega)$ 在对应频带上的缓慢演化控制，与当前"整体接近 $w=-1$ 且允许小幅度演化"的观测约束相容。综合而言，本文将"宇宙学常数为何远小于 $M_{\mathrm{Pl}}^4$"重述为"相对 DOS 在统一时间刻度下满足何种窗化 sum rule"，为在矩阵宇宙与 QCA 宇宙内统一讨论暗能量的大小与运行行为提供了一个自洽的谱理论框架。宇宙学常数问题由此被嵌入统一时间刻度–散射–离散宇宙的更广泛计划之中。
 
 ---
 
@@ -65,7 +65,7 @@ $$，
 在此前工作中已构造出统一时间刻度母尺
 
 $$
-\kappa(\omega)=\varphi'(\omega)/\pi=\rho_{\mathrm{rel}}(\omega)=(2\pi)^{-1}\tr Q(\omega)
+\kappa(\omega)=\varphi'(\omega)/\pi=\rho_{\mathrm{rel}}(\omega)=(2\pi)^{-1}\operatorname{tr} Q(\omega)
 $$，
 
 其中 $\varphi(\omega)$ 为总散射半相位，$\rho_{\mathrm{rel}}(\omega)$ 为相对态密度，$Q(\omega)$ 为 Wigner–Smith 群延迟矩阵。该母尺将散射相位梯度、相对 DOS 与群延迟迹统一为单一刻度密度，为在多种几何与物理情形中定义统一时间参数提供了统一源头。
@@ -91,7 +91,7 @@ $$，
 考虑一对自伴算子 $(H,H_0)$，定义在同一 Hilbert 空间 $\mathcal H$ 上。假设 $H-H_0$ 为适当意义下的相对迹类扰动，使得定能散射理论良好定义，并存在对所有 Borel 有界测度 $f$ 的 Lifshits–Kreĭn 迹公式
 
 $$
-\tr(f(H)-f(H_0))=\int_{\mathbb R} f'(\lambda)\,\xi_E(\lambda)\,\diff\lambda
+\operatorname{tr}(f(H)-f(H_0))=\int_{\mathbb R} f'(\lambda)\,\xi_E(\lambda)\,\mathrm{d}\lambda
 $$，
 
 其中 $\xi_E(\lambda)$ 为能量变量 $\lambda$ 下的谱移函数。
@@ -112,10 +112,10 @@ $$
 \Delta\rho_\omega(\omega)=2\omega\,\Delta\rho_E(\omega^2)=-\partial_\omega\xi(\omega)
 $$。
 
-设 $S(\omega)$ 为定能散射矩阵，$Q(\omega)=-\ii S(\omega)^\dagger\partial_\omega S(\omega)$ 为 Wigner–Smith 群延迟矩阵，Birman–Kreĭn 公式给出
+设 $S(\omega)$ 为定能散射矩阵，$Q(\omega)=-\mathrm{i} S(\omega)^\dagger\partial_\omega S(\omega)$ 为 Wigner–Smith 群延迟矩阵，Birman–Kreĭn 公式给出
 
 $$
-\det S(\omega)=\exp\bigl(-2\pi\ii \xi(\omega)\bigr)
+\det S(\omega)=\exp\bigl(-2\pi\mathrm{i} \xi(\omega)\bigr)
 $$，
 
 由此可定义散射行列式相位
@@ -127,13 +127,13 @@ $$，
 并有
 
 $$
-\Theta'(\omega)=-\partial_\omega\xi(\omega)=\Delta\rho_\omega(\omega)=(2\pi)^{-1}\tr Q(\omega)
+\Theta'(\omega)=-\partial_\omega\xi(\omega)=\Delta\rho_\omega(\omega)=(2\pi)^{-1}\operatorname{tr} Q(\omega)
 $$。
 
 统一时间刻度密度定义为
 
 $$
-\kappa(\omega)=\frac{\varphi'(\omega)}{\pi}=\Delta\rho_\omega(\omega)=\frac{1}{2\pi}\tr Q(\omega)
+\kappa(\omega)=\frac{\varphi'(\omega)}{\pi}=\Delta\rho_\omega(\omega)=\frac{1}{2\pi}\operatorname{tr} Q(\omega)
 $$，
 
 其中 $\varphi(\omega)$ 为总散射半相位。本文中所有关于"统一时间刻度"的构造均以 $\kappa(\omega)$ 为唯一刻度源。
@@ -145,7 +145,7 @@ $$，
 在这些假设下，Guillarmou 证明了 KV 行列式相位与广义谱移函数之间的 Kreĭn 型公式，而热核 $K_H(s,x,y)=\exp(-sH)(x,y)$ 的对角迹
 
 $$
-\tr(\exp(-sH)-\exp(-sH_0))=\Delta K(s)
+\operatorname{tr}(\exp(-sH)-\exp(-sH_0))=\Delta K(s)
 $$
 
 在 $s\to0^+$ 时具有标准的 Seeley–DeWitt 渐近展开，其有限部分可通过散射相位的 Mellin 变换表示。
@@ -162,14 +162,14 @@ $$，
 
 其中 $\mu>0$ 为谱刻度，$W\in C_0^\infty(\mathbb R)$ 为平滑紧支函数，满足以下 Mellin 消零条件：
 
-1. $\displaystyle \int_{\mathbb R} W(u)\,\diff u=0$；
+1. $\displaystyle \int_{\mathbb R} W(u)\,\mathrm{d} u=0$；
 
-2. $\displaystyle \int_{\mathbb R} e^{2nu}W(u)\,\diff u=0$ 对若干低整数 $n$ 成立。
+2. $\displaystyle \int_{\mathbb R} e^{2nu}W(u)\,\mathrm{d} u=0$ 对若干低整数 $n$ 成立。
 
 这些条件保证窗核在 $\omega\to0$ 与 $\omega\to\infty$ 时能消去热核中对应的主导奇异项，将有限几何信息提取出来。定义对数平均
 
 $$
-\langle\Theta'\rangle_W(\mu)=\int_{\mathbb R}\Theta'(\omega)\,W(\ln(\omega/\mu))\,\diff\ln\omega
+\langle\Theta'\rangle_W(\mu)=\int_{\mathbb R}\Theta'(\omega)\,W(\ln(\omega/\mu))\,\mathrm{d}\ln\omega
 $$，
 
 并进一步定义谱窗核
@@ -209,10 +209,10 @@ $$
 统一时间刻度密度在宇宙学情形下写作
 
 $$
-\kappa_{\mathrm{cos}}(\omega)=\frac{1}{2\pi}\tr Q_{\mathrm{cos}}(\omega)
+\kappa_{\mathrm{cos}}(\omega)=\frac{1}{2\pi}\operatorname{tr} Q_{\mathrm{cos}}(\omega)
 $$，
 
-其中 $Q_{\mathrm{cos}}(\omega)=-\ii S_{\mathrm{cos}}(\omega)^\dagger\partial_\omega S_{\mathrm{cos}}(\omega)$。本文将用 $\kappa_{\mathrm{cos}}(\omega)$ 控制宇宙学常数的谱窗化表达。
+其中 $Q_{\mathrm{cos}}(\omega)=-\mathrm{i} S_{\mathrm{cos}}(\omega)^\dagger\partial_\omega S_{\mathrm{cos}}(\omega)$。本文将用 $\kappa_{\mathrm{cos}}(\omega)$ 控制宇宙学常数的谱窗化表达。
 
 ### 2.6 QCA 宇宙对象与带结构
 
@@ -233,7 +233,7 @@ $$，
 并存在本征分解
 
 $$
-U(k)\ket{\psi_{j,k}}=e^{-\ii\varepsilon_j(k)\Delta t}\ket{\psi_{j,k}}
+U(k)\ket{\psi_{j,k}}=e^{-\mathrm{i}\varepsilon_j(k)\Delta t}\ket{\psi_{j,k}}
 $$，
 
 其中 $N=\dim\mathcal H_{\mathrm{cell}}$，准能量 $\varepsilon_j(k)\in(-\pi/\Delta t,\pi/\Delta t]$。在连续极限 $\Delta t\to0$ 下，存在色散关系 $\varepsilon_j(k)\approx E_j(k)\Delta t$，其中 $E_j(k)$ 为对应连续场论的能谱。
@@ -241,7 +241,7 @@ $$，
 定义单带 DOS
 
 $$
-\rho_j(E)=\int_{\mathrm{BZ}}\delta(E-E_j(k))\frac{\diff^dk}{(2\pi)^d}
+\rho_j(E)=\int_{\mathrm{BZ}}\delta(E-E_j(k))\frac{\mathrm{d}^dk}{(2\pi)^d}
 $$，
 
 总 DOS 为 $\rho(E)=\sum_j\rho_j(E)$。选定参考 QCA $U_0(k)$ 及其能谱 $\{E_{j,0}(k)\}$，定义相对 DOS
@@ -265,13 +265,13 @@ $$，
 设 $(H,H_0)$ 满足第 2.2 节的几何与散射假设，令
 
 $$
-\Delta K(s)=\tr(\mathrm{e}^{-sH}-\mathrm{e}^{-sH_0})
+\Delta K(s)=\operatorname{tr}(\mathrm{e}^{-sH}-\mathrm{e}^{-sH_0})
 $$
 
-为热核差，$\Theta(\omega)$ 为散射行列式相位，$\Theta'(\omega)=\Delta\rho_\omega(\omega)=(2\pi)^{-1}\tr Q(\omega)$。取一族满足第 2.3 节 Mellin 消零条件的对数窗核 $W$，定义
+为热核差，$\Theta(\omega)$ 为散射行列式相位，$\Theta'(\omega)=\Delta\rho_\omega(\omega)=(2\pi)^{-1}\operatorname{tr} Q(\omega)$。取一族满足第 2.3 节 Mellin 消零条件的对数窗核 $W$，定义
 
 $$
-\Xi_W(\mu)=\int_{\mathbb R}\omega\,\Theta''(\omega)\,W(\ln(\omega/\mu))\,\diff\ln\omega
+\Xi_W(\mu)=\int_{\mathbb R}\omega\,\Theta''(\omega)\,W(\ln(\omega/\mu))\,\mathrm{d}\ln\omega
 $$。
 
 则存在 $\mu\sim s^{-1/2}$ 的双曲缩放及常数 $C,\gamma>0$，使得当 $s\to0^+$ 时
@@ -295,13 +295,13 @@ $$，
 其显式形式为
 
 $$
-\Xi(\mu)=\int_{\mathbb R}\omega\,\Theta''(\omega)\,W(\ln(\omega/\mu))\,\diff\ln\omega
+\Xi(\mu)=\int_{\mathbb R}\omega\,\Theta''(\omega)\,W(\ln(\omega/\mu))\,\mathrm{d}\ln\omega
 $$，
 
 并且对任意参考尺度 $\mu_0$ 有
 
 $$
-\Lambda_{\mathrm{eff}}(\mu)-\Lambda_{\mathrm{eff}}(\mu_0)=\int_{\mu_0}^{\mu}\Xi(\omega)\,\diff\ln\omega
+\Lambda_{\mathrm{eff}}(\mu)-\Lambda_{\mathrm{eff}}(\mu_0)=\int_{\mu_0}^{\mu}\Xi(\omega)\,\mathrm{d}\ln\omega
 $$。
 
 其中 $\Xi(\omega)$ 具有量纲 $L^{-2}$，可视为"宇宙学常数的谱窗核"，完全由统一时间刻度密度 $\kappa(\omega)$ 与散射相位确定。
@@ -325,13 +325,13 @@ $$。
 在定理 3.2 条件下，有
 
 $$
-\Lambda_{\mathrm{eff}}(\mu)-\Lambda_{\mathrm{eff}}(\mu_0)=\int_{\mu_0}^{\mu}\Xi_{\mathrm{cos}}(\omega)\,\diff\ln\omega
+\Lambda_{\mathrm{eff}}(\mu)-\Lambda_{\mathrm{eff}}(\mu_0)=\int_{\mu_0}^{\mu}\Xi_{\mathrm{cos}}(\omega)\,\mathrm{d}\ln\omega
 $$，
 
 其中
 
 $$
-\Xi_{\mathrm{cos}}(\omega)=\int_{\mathbb R}\omega\,\Theta_{\mathrm{rel}}''(\omega)\,W(\ln(\omega/\mu))\,\diff\ln\omega
+\Xi_{\mathrm{cos}}(\omega)=\int_{\mathbb R}\omega\,\Theta_{\mathrm{rel}}''(\omega)\,W(\ln(\omega/\mu))\,\mathrm{d}\ln\omega
 $$，
 
 $\Theta_{\mathrm{rel}}(\omega)=(2\pi)^{-1}\arg\det S_{\mathrm{rel}}(\omega)$，
@@ -339,7 +339,7 @@ $\Theta_{\mathrm{rel}}(\omega)=(2\pi)^{-1}\arg\det S_{\mathrm{rel}}(\omega)$，
 并且
 
 $$
-\Theta_{\mathrm{rel}}'(\omega)=\Delta\rho_{\mathrm{cos}}(\omega)=(2\pi)^{-1}\tr Q_{\mathrm{rel}}(\omega)
+\Theta_{\mathrm{rel}}'(\omega)=\Delta\rho_{\mathrm{cos}}(\omega)=(2\pi)^{-1}\operatorname{tr} Q_{\mathrm{rel}}(\omega)
 $$。
 
 因此，$\Lambda_{\mathrm{eff}}(\mu)$ 可以解释为"物理宇宙与参考宇宙的宇宙学散射矩阵之间 DOS 差分"的对数频率窗化积分。
@@ -357,7 +357,7 @@ $$。
 令 $\mathcal W_\mu(E)$ 为由连续窗核 $W(\ln(\omega/\mu))$ 映射而来的能量权重函数，则存在归一化常数 $C_W$ 使得
 
 $$
-\Lambda_{\mathrm{eff}}(\mu)=C_W\sum_j\int_{\mathrm{BZ}}\mathcal W_\mu(E_j(k))\,\Delta\rho_j(k)\,\diff^dk
+\Lambda_{\mathrm{eff}}(\mu)=C_W\sum_j\int_{\mathrm{BZ}}\mathcal W_\mu(E_j(k))\,\Delta\rho_j(k)\,\mathrm{d}^dk
 $$，
 
 并在连续极限 $\Delta t\to0$ 下与定理 3.2 的连续谱表达相容。
@@ -381,10 +381,10 @@ $$，
 2. 带间和谐 sum rule：存在 UV 标度 $E_{\mathrm{UV}}$ 使得
 
    $$
-   \int_0^{E_{\mathrm{UV}}}E^2\,\Delta\rho(E)\,\diff E=0
+   \int_0^{E_{\mathrm{UV}}}E^2\,\Delta\rho(E)\,\mathrm{d} E=0
    $$，
 
-   其中 $\Delta\rho(E)=\sum_j\int_{\mathrm{BZ}}\Delta\rho_j(k)\,\delta(E-E_j(k))\,\diff^dk$。
+   其中 $\Delta\rho(E)=\sum_j\int_{\mathrm{BZ}}\Delta\rho_j(k)\,\delta(E-E_j(k))\,\mathrm{d}^dk$。
 
 则对任意满足 Tauberian 条件的窗核族，存在常数 $C>0,\gamma>0$ 与 IR 标度 $E_{\mathrm{IR}}\ll E_{\mathrm{UV}}$，使得对 $\mu\sim E_{\mathrm{IR}}$ 有
 
@@ -423,61 +423,61 @@ $$，
 对满足第 2.2 节条件的自伴散射对 $(H,H_0)$，对任何 Schwartz 类函数 $f$ 有 Lifshits–Kreĭn 迹公式
 
 $$
-\tr(f(H)-f(H_0))=\int_{\mathbb R} f'(\lambda)\,\xi_E(\lambda)\,\diff\lambda
+\operatorname{tr}(f(H)-f(H_0))=\int_{\mathbb R} f'(\lambda)\,\xi_E(\lambda)\,\mathrm{d}\lambda
 $$。
 
 取 $f(\lambda)=\mathrm{e}^{-s\lambda}$，得到
 
 $$
-\Delta K(s)=\tr(\mathrm{e}^{-sH}-\mathrm{e}^{-sH_0})=-\int_0^\infty s\,\mathrm{e}^{-s\lambda}\,\xi_E(\lambda)\,\diff\lambda
+\Delta K(s)=\operatorname{tr}(\mathrm{e}^{-sH}-\mathrm{e}^{-sH_0})=-\int_0^\infty s\,\mathrm{e}^{-s\lambda}\,\xi_E(\lambda)\,\mathrm{d}\lambda
 $$。
 
 分部积分并利用 $\Delta\rho_E(\lambda)=-\xi_E'(\lambda)$ 得到
 
 $$
-\Delta K(s)=\int_0^\infty\mathrm{e}^{-s\lambda}\,\Delta\rho_E(\lambda)\,\diff\lambda
+\Delta K(s)=\int_0^\infty\mathrm{e}^{-s\lambda}\,\Delta\rho_E(\lambda)\,\mathrm{d}\lambda
 $$。
 
-在频率变量 $\omega$ 下令 $\lambda=\omega^2$，$\diff\lambda=2\omega\,\diff\omega$，得到
+在频率变量 $\omega$ 下令 $\lambda=\omega^2$，$\mathrm{d}\lambda=2\omega\,\mathrm{d}\omega$，得到
 
 $$
-\Delta K(s)=\int_0^\infty\mathrm{e}^{-s\omega^2}\,\Delta\rho_\omega(\omega)\,\diff\omega=\int_0^\infty\mathrm{e}^{-s\omega^2}\,\Theta'(\omega)\,\diff\omega
+\Delta K(s)=\int_0^\infty\mathrm{e}^{-s\omega^2}\,\Delta\rho_\omega(\omega)\,\mathrm{d}\omega=\int_0^\infty\mathrm{e}^{-s\omega^2}\,\Theta'(\omega)\,\mathrm{d}\omega
 $$，
 
 其中最后一步利用了 $\Theta'(\omega)=\Delta\rho_\omega(\omega)$。
 
-另一方面，根据 Birman–Kreĭn 公式 $\det S(\omega)=\exp(-2\pi\ii\xi(\omega))$ 和 KV 行列式的解析延拓性质，在偶维渐近双曲流形上可证明 $\Theta(\omega)$ 具有 Weyl 型渐近与良好解析性，其高能及低能行为可由几何不变量控制，从而保证上述积分表达式在 $s\to0^+$ 时可作有限部分析。
+另一方面，根据 Birman–Kreĭn 公式 $\det S(\omega)=\exp(-2\pi\mathrm{i}\xi(\omega))$ 和 KV 行列式的解析延拓性质，在偶维渐近双曲流形上可证明 $\Theta(\omega)$ 具有 Weyl 型渐近与良好解析性，其高能及低能行为可由几何不变量控制，从而保证上述积分表达式在 $s\to0^+$ 时可作有限部分析。
 
 ### 4.2 窗化 Tauberian 定理的证明
 
 考虑对数窗平均
 
 $$
-\langle\Theta'\rangle_W(\mu)=\int_{\mathbb R}\Theta'(\omega)\,W(\ln(\omega/\mu))\,\diff\ln\omega
+\langle\Theta'\rangle_W(\mu)=\int_{\mathbb R}\Theta'(\omega)\,W(\ln(\omega/\mu))\,\mathrm{d}\ln\omega
 $$。
 
 作变量代换 $\omega=\mu\mathrm{e}^u$，
 
 $$
-\langle\Theta'\rangle_W(\mu)=\int_{\mathbb R}\Theta'(\mu\mathrm{e}^u)\,W(u)\,\diff u
+\langle\Theta'\rangle_W(\mu)=\int_{\mathbb R}\Theta'(\mu\mathrm{e}^u)\,W(u)\,\mathrm{d} u
 $$。
 
 其对 $\ln\mu$ 的导数为
 
 $$
-\partial_{\ln\mu}\langle\Theta'\rangle_W(\mu)=\int_{\mathbb R}\mu\mathrm{e}^u\,\Theta''(\mu\mathrm{e}^u)\,W(u)\,\diff u=\Xi_W(\mu)
+\partial_{\ln\mu}\langle\Theta'\rangle_W(\mu)=\int_{\mathbb R}\mu\mathrm{e}^u\,\Theta''(\mu\mathrm{e}^u)\,W(u)\,\mathrm{d} u=\Xi_W(\mu)
 $$。
 
 另一方面，利用 Mellin 变换
 
 $$
-\mathcal M[\Theta'](s)=\int_0^\infty\omega^{s-1}\Theta'(\omega)\,\diff\omega
+\mathcal M[\Theta'](s)=\int_0^\infty\omega^{s-1}\Theta'(\omega)\,\mathrm{d}\omega
 $$，
 
 可将 $\langle\Theta'\rangle_W(\mu)$ 写作
 
 $$
-\langle\Theta'\rangle_W(\mu)=\frac{1}{2\pi\ii}\int_{\Gamma}\mathcal M[\Theta'](s)\,\widehat W(s)\,\mu^{-s}\,\diff s
+\langle\Theta'\rangle_W(\mu)=\frac{1}{2\pi\mathrm{i}}\int_{\Gamma}\mathcal M[\Theta'](s)\,\widehat W(s)\,\mu^{-s}\,\mathrm{d} s
 $$，
 
 其中 $\widehat W(s)$ 为 $W$ 的 Mellin 变换，$\Gamma$ 为适当竖直线。Mellin 消零条件保证 $\widehat W(s)$ 在若干低阶点上有零，从而消去了对应的几何主项。
@@ -485,7 +485,7 @@ $$，
 同时，小 $s$ 热核差可以写作
 
 $$
-\Delta K(s)=\frac{1}{2\pi\ii}\int_{\Gamma'}\Gamma(s')\,s^{-s'}\mathcal M[\Delta\rho_\omega](s')\,\diff s'
+\Delta K(s)=\frac{1}{2\pi\mathrm{i}}\int_{\Gamma'}\Gamma(s')\,s^{-s'}\mathcal M[\Delta\rho_\omega](s')\,\mathrm{d} s'
 $$，
 
 其中 $\Gamma(s')$ 为 Gamma 函数。利用 $\Delta\rho_\omega(\omega)=\Theta'(\omega)$ 得到两者 Mellin 变换之间的简单关系。通过在 $s^{-1/2}\sim\mu$ 双曲线附近匹配主导贡献，并利用解析延拓与残差计算，可以证明当 $s\to0^+$、$\mu\sim s^{-1/2}$ 时
@@ -505,7 +505,7 @@ $$，
 在曲时空量子场论中，有效作用可写作
 
 $$
-S_{\mathrm{eff}}[g]=\int\diff^4x\,\sqrt{-g}\Bigl[\frac{R-2\Lambda_{\mathrm{eff}}(\mu)}{16\pi G}+\alpha R^2+\beta R_{\mu\nu}R^{\mu\nu}+\cdots\Bigr]
+S_{\mathrm{eff}}[g]=\int\mathrm{d}^4x\,\sqrt{-g}\Bigl[\frac{R-2\Lambda_{\mathrm{eff}}(\mu)}{16\pi G}+\alpha R^2+\beta R_{\mu\nu}R^{\mu\nu}+\cdots\Bigr]
 $$，
 
 其中 $\alpha,\beta$ 等为无量纲重整化耦合。真空能密度的尺度依赖可写作
@@ -523,7 +523,7 @@ $$。
 对 $\ln\mu$ 积分得到
 
 $$
-\Lambda_{\mathrm{eff}}(\mu)-\Lambda_{\mathrm{eff}}(\mu_0)=\int_{\mu_0}^{\mu}\Xi(\omega)\,\diff\ln\omega
+\Lambda_{\mathrm{eff}}(\mu)-\Lambda_{\mathrm{eff}}(\mu_0)=\int_{\mu_0}^{\mu}\Xi(\omega)\,\mathrm{d}\ln\omega
 $$，
 
 其中 $\Xi(\omega)$ 为与 $\Xi_W(\omega)$ 只差归一化因子的谱窗核。由此得到定理 3.2。
@@ -541,7 +541,7 @@ $$，
 其行列式相位 $\Theta_{\mathrm{rel}}(\omega)$ 与谱移函数满足
 
 $$
-\det S_{\mathrm{rel}}(\omega)=\exp\bigl(-2\pi\ii\xi_{\mathrm{rel}}(\omega)\bigr)
+\det S_{\mathrm{rel}}(\omega)=\exp\bigl(-2\pi\mathrm{i}\xi_{\mathrm{rel}}(\omega)\bigr)
 $$，
 
 $$
@@ -551,7 +551,7 @@ $$。
 由于 $\Lambda_{\mathrm{eff}}(\mu)$ 只依赖于 $H$ 与 $H_0$ 的相对谱性质，可以直接用 $S_{\mathrm{rel}}(\omega)$ 的相位来表达，得到
 
 $$
-\Xi_{\mathrm{cos}}(\mu)=\int_{\mathbb R}\omega\,\Theta_{\mathrm{rel}}''(\omega)\,W(\ln(\omega/\mu))\,\diff\ln\omega
+\Xi_{\mathrm{cos}}(\mu)=\int_{\mathbb R}\omega\,\Theta_{\mathrm{rel}}''(\omega)\,W(\ln(\omega/\mu))\,\mathrm{d}\ln\omega
 $$，
 
 进而照搬定理 3.2 的推导得到相对 DOS 表述。这给出定理 3.3。
@@ -561,13 +561,13 @@ $$，
 对 QCA 能谱，窗化真空能的连续表达
 
 $$
-\Lambda_{\mathrm{eff}}(\mu)=\int_0^\infty F_\mu(E)\,\Delta\rho(E)\,\diff E
+\Lambda_{\mathrm{eff}}(\mu)=\int_0^\infty F_\mu(E)\,\Delta\rho(E)\,\mathrm{d} E
 $$
 
 离散化为
 
 $$
-\Lambda_{\mathrm{eff}}(\mu)=\sum_j\int_{\mathrm{BZ}}\mathcal W_\mu(E_j(k))\,\Delta\rho_j(k)\,\diff^dk
+\Lambda_{\mathrm{eff}}(\mu)=\sum_j\int_{\mathrm{BZ}}\mathcal W_\mu(E_j(k))\,\Delta\rho_j(k)\,\mathrm{d}^dk
 $$，
 
 其中 $F_\mu(E)$ 在连续极限下对应 $\mathcal W_\mu(E)$，满足平滑性与高能衰减条件。
@@ -577,13 +577,13 @@ $$，
 在 $(E_{\mathrm{IR}},E_{\mathrm{UV}})$ 段，利用带间和谐 sum rule
 
 $$
-\int_0^{E_{\mathrm{UV}}}E^2\,\Delta\rho(E)\,\diff E=0
+\int_0^{E_{\mathrm{UV}}}E^2\,\Delta\rho(E)\,\mathrm{d} E=0
 $$，
 
 可将该段贡献改写为
 
 $$
-\int_0^{E_{\mathrm{UV}}}E^2\bigl(\mathcal W_\mu(E)-1\bigr)\Delta\rho(E)\,\diff E
+\int_0^{E_{\mathrm{UV}}}E^2\bigl(\mathcal W_\mu(E)-1\bigr)\Delta\rho(E)\,\mathrm{d} E
 $$。
 
 由于 $\mathcal W_\mu(E)\approx 1$ 在 $E\ll\mu\sim E_{\mathrm{IR}}$ 区域内，仅在 $E\sim\mu$ 附近偏离 1，故这一积分主要由靠近 IR 的窄区间贡献，其量级与低能段相同。
@@ -591,7 +591,7 @@ $$。
 在 $(E_{\mathrm{UV}},\infty)$ 段，利用带配对对称性与窗权重的近似偶对称，可将贡献写成
 
 $$
-\int_{E_{\mathrm{UV}}}^\infty E^2\,\delta\rho_{\mathrm{asym}}(E)\,\mathcal W_\mu(E)\,\diff E
+\int_{E_{\mathrm{UV}}}^\infty E^2\,\delta\rho_{\mathrm{asym}}(E)\,\mathcal W_\mu(E)\,\mathrm{d} E
 $$，
 
 其中 $\delta\rho_{\mathrm{asym}}(E)=\Delta\rho(E)+\Delta\rho(-E)$ 表示对称配对的偏差。假设 $|\delta\rho_{\mathrm{asym}}(E)|\le C_1E^{-\beta}$ 且 $\beta>3$，再利用 $\mathcal W_\mu(E)$ 的指数或高次幂衰减，即可得到高能贡献被压到 $E_{\mathrm{UV}}^{3-\beta}$ 或更小的量级，进而写成 $E_{\mathrm{IR}}^4(E_{\mathrm{IR}}/E_{\mathrm{UV}})^\gamma$ 的形式。
@@ -603,7 +603,7 @@ $$，
 假设谱刻度 $\mu$ 与 Hubble 标度存在线性或缓变关系 $\mu=cH$ 或 $\mu\propto R^{1/2}$，其中 $R$ 为 Ricci 标量。令
 
 $$
-\Lambda_{\mathrm{eff}}(\mu)-\Lambda_{\mathrm{eff}}(\mu_0)=\int_{\mu_0}^{\mu}\Xi(\omega)\,\diff\ln\omega
+\Lambda_{\mathrm{eff}}(\mu)-\Lambda_{\mathrm{eff}}(\mu_0)=\int_{\mu_0}^{\mu}\Xi(\omega)\,\mathrm{d}\ln\omega
 $$，
 
 对 $H^2$ 的小变化展开，若 $\Xi(\omega)$ 在对应频带上近似常数或有解析展开，则可以写成
@@ -621,13 +621,13 @@ $$。
 对暗能量密度 $\rho_{\mathrm{de}}(z)=\Lambda_{\mathrm{eff}}(\mu(z))/(8\pi G)$ 代入能量守恒方程
 
 $$
-\frac{\diff\rho_{\mathrm{de}}}{\diff z}=\frac{3}{1+z}(1+w_{\mathrm{de}}(z))\rho_{\mathrm{de}}(z)
+\frac{\mathrm{d}\rho_{\mathrm{de}}}{\mathrm{d} z}=\frac{3}{1+z}(1+w_{\mathrm{de}}(z))\rho_{\mathrm{de}}(z)
 $$，
 
 整理得到
 
 $$
-1+w_{\mathrm{de}}(z)=\frac{1+z}{3}\frac{1}{\rho_{\mathrm{de}}(z)}\frac{\diff\rho_{\mathrm{de}}(z)}{\diff z}=\frac{1+z}{24\pi G}\frac{1}{\Lambda_{\mathrm{eff}}(\mu(z))}\frac{\diff\Lambda_{\mathrm{eff}}(\mu(z))}{\diff z}
+1+w_{\mathrm{de}}(z)=\frac{1+z}{3}\frac{1}{\rho_{\mathrm{de}}(z)}\frac{\mathrm{d}\rho_{\mathrm{de}}(z)}{\mathrm{d} z}=\frac{1+z}{24\pi G}\frac{1}{\Lambda_{\mathrm{eff}}(\mu(z))}\frac{\mathrm{d}\Lambda_{\mathrm{eff}}(\mu(z))}{\mathrm{d} z}
 $$。
 
 若 $\Xi(\omega)$ 在晚期宇宙对应的频带上缓慢变化，则 $\Lambda_{\mathrm{eff}}(\mu(z))$ 的红移导数很小，$w_{\mathrm{de}}(z)$ 自然接近 $-1$，偏离量 $\delta w(z)$ 与 $\Xi(\omega)$ 的对数导数同阶，从而得到定理 3.6。与文献中 RVM 模型对 $\nu$ 的拟合结果相比，只要 $\Xi(\omega)$ 的谱结构给出 $|\nu|\ll1$，即可与现有对 $w_{\mathrm{de}}(z)$ 的约束相容。
@@ -641,7 +641,7 @@ $$。
 在四维 FRW 宇宙中，度规
 
 $$
-\diff s^2=-\diff t^2+a(t)^2\bigl(\diff\chi^2+\sin^2\chi\,\diff\Omega_2^2\bigr)
+\mathrm{d} s^2=-\mathrm{d} t^2+a(t)^2\bigl(\mathrm{d}\chi^2+\sin^2\chi\,\mathrm{d}\Omega_2^2\bigr)
 $$
 
 在固定时间切片上等价于 $S^3$ 上的空间度规。对标模型中，可用 $S^3$ 上 Laplace 算子的热核与计数函数的谱–几何关系，将曲率项 $-\kappa/a^2$ 与 DOS 次主项对应起来。类似构造在四维 FRW 上可推广：热核差展开
@@ -689,7 +689,7 @@ $$
 将上述谱窗化机制嵌入宇宙学背景中，假设晚期宇宙的有效刻度 $\mu$ 与 Hubble 标度 $H$ 成正比，则
 
 $$
-\Lambda_{\mathrm{eff}}(H)-\Lambda_{\mathrm{eff}}(H_0)=\int_{H_0}^{H}\Xi(\omega(H'))\,\partial_{\ln H'}\ln\mu(H')\,\diff\ln H'
+\Lambda_{\mathrm{eff}}(H)-\Lambda_{\mathrm{eff}}(H_0)=\int_{H_0}^{H}\Xi(\omega(H'))\,\partial_{\ln H'}\ln\mu(H')\,\mathrm{d}\ln H'
 $$。
 
 若 QCA 带结构保证 $\Xi(\omega)$ 在 $H\sim H_0$ 对应的频带上缓速变化，则 $\Lambda_{\mathrm{eff}}(H)$ 与 $H^2$ 之间的关系近似线性，等效状态方程 $w_{\mathrm{de}}(z)$ 接近 $-1$，偏离量 $\delta w(z)$ 的大小与带结构在对应频带内的谱倾斜程度同阶。这与当前对暗能量状态方程的约束（总体偏离不大但不排除轻微演化）一致，为在谱与离散结构层面理解观测结果提供了新的视角。
@@ -838,10 +838,10 @@ $$。
 
 ### A.1 自伴对与谱移函数
 
-设 $H$ 与 $H_0$ 为自伴算子，满足 $(H-\ii)^{-1}-(H_0-\ii)^{-1}$ 为 trace 类。则对任意 Schwartz 函数 $f$ 有
+设 $H$ 与 $H_0$ 为自伴算子，满足 $(H-\mathrm{i})^{-1}-(H_0-\mathrm{i})^{-1}$ 为 trace 类。则对任意 Schwartz 函数 $f$ 有
 
 $$
-\tr(f(H)-f(H_0))=\int_{\mathbb R} f'(\lambda)\,\xi_E(\lambda)\,\diff\lambda
+\operatorname{tr}(f(H)-f(H_0))=\int_{\mathbb R} f'(\lambda)\,\xi_E(\lambda)\,\mathrm{d}\lambda
 $$，
 
 其中 $\xi_E(\lambda)$ 为谱移函数。谱移函数在绝大多数 $\lambda$ 的导数给出相对 DOS：$\Delta\rho_E(\lambda)=-\xi_E'(\lambda)$。
@@ -849,7 +849,7 @@ $$，
 在存在定能散射理论的情形下，散射矩阵 $S(\lambda)$ 与谱移函数之间由 Birman–Kreĭn 公式联系：
 
 $$
-\det S(\lambda)=\exp\bigl(-2\pi\ii\xi_E(\lambda)\bigr)
+\det S(\lambda)=\exp\bigl(-2\pi\mathrm{i}\xi_E(\lambda)\bigr)
 $$。
 
 在渐近双曲与共形紧致流形上，Guillarmou 通过对散射算子与相对行列式的深入分析，将这一关系推广到更一般的 KV 行列式背景，使得散射行列式相位与广义谱移函数统一。
@@ -859,19 +859,19 @@ $$。
 散射矩阵 $S(\omega)$ 的频率导数给出 Wigner–Smith 群延迟矩阵
 
 $$
-Q(\omega)=-\ii S(\omega)^\dagger\partial_\omega S(\omega)
+Q(\omega)=-\mathrm{i} S(\omega)^\dagger\partial_\omega S(\omega)
 $$。
 
 在 trace 类条件下，迹
 
 $$
-\tr Q(\omega)=\partial_\omega\arg\det S(\omega)=2\pi\Theta'(\omega)
+\operatorname{tr} Q(\omega)=\partial_\omega\arg\det S(\omega)=2\pi\Theta'(\omega)
 $$，
 
 从而有
 
 $$
-\Theta'(\omega)=(2\pi)^{-1}\tr Q(\omega)
+\Theta'(\omega)=(2\pi)^{-1}\operatorname{tr} Q(\omega)
 $$。
 
 统一时间刻度密度定义为
@@ -891,25 +891,25 @@ $$。
 对函数 $f(\omega)$ 的 Mellin 变换定义为
 
 $$
-\mathcal M[f](s)=\int_0^\infty\omega^{s-1}f(\omega)\,\diff\omega
+\mathcal M[f](s)=\int_0^\infty\omega^{s-1}f(\omega)\,\mathrm{d}\omega
 $$。
 
 对数窗核 $W(\ln(\omega/\mu))$ 的引入使得
 
 $$
-\langle f\rangle_W(\mu)=\int_{\mathbb R}f(\omega)\,W(\ln(\omega/\mu))\,\diff\ln\omega
+\langle f\rangle_W(\mu)=\int_{\mathbb R}f(\omega)\,W(\ln(\omega/\mu))\,\mathrm{d}\ln\omega
 $$
 
 在 Mellin 空间中对应为
 
 $$
-\langle f\rangle_W(\mu)=\frac{1}{2\pi\ii}\int_{\Gamma}\mathcal M[f](s)\,\widehat W(s)\,\mu^{-s}\,\diff s
+\langle f\rangle_W(\mu)=\frac{1}{2\pi\mathrm{i}}\int_{\Gamma}\mathcal M[f](s)\,\widehat W(s)\,\mu^{-s}\,\mathrm{d} s
 $$，
 
 其中
 
 $$
-\widehat W(s)=\int_{\mathbb R}\mathrm{e}^{su}W(u)\,\diff u
+\widehat W(s)=\int_{\mathbb R}\mathrm{e}^{su}W(u)\,\mathrm{d} u
 $$。
 
 Mellin 消零条件保证 $\widehat W(s)$ 在若干低阶点上有零，从而在残差计算中消去热核展开的主导奇异项，仅保留有限几何部分。
@@ -947,7 +947,7 @@ $$，
 带间和谐 sum rule
 
 $$
-\int_0^{E_{\mathrm{UV}}}E^2\,\Delta\rho(E)\,\diff E=0
+\int_0^{E_{\mathrm{UV}}}E^2\,\Delta\rho(E)\,\mathrm{d} E=0
 $$
 
 可以理解为一种"相对能量平方守恒"：物理 QCA 与参考 QCA 在 UV 区域的能量平方加权态密度相同。

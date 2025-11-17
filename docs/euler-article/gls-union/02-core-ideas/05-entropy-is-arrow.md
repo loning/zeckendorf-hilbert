@@ -376,11 +376,11 @@ $$
 
 想要理解更多技术细节，可以阅读：
 
-- 理论文档：[igvp-einstein-complete.md](../../euler-gls-paper/igvp-einstein-complete.md)
-- 因果与熵：[unified-theory-causal-structure-time-scale-partial-order-generalized-entropy.md](../../euler-gls-causal/unified-theory-causal-structure-time-scale-partial-order-generalized-entropy.md)
-- 上一篇：[04-scattering-is-evolution.md](./04-scattering-is-evolution.md) - 散射就是演化
-- 下一篇：[06-unity-of-five.md](./06-unity-of-five.md) - 五者合一（详解）
-- 总结：[07-core-summary.md](./07-core-summary.md) - 核心思想总结
+- 理论文档：igvp-einstein-complete.md
+- 因果与熵：unified-theory-causal-structure-time-scale-partial-order-generalized-entropy.md
+- 上一篇：[04-scattering-is-evolution.md](04-scattering-is-evolution.md) - 散射就是演化
+- 下一篇：[06-unity-of-five.md](06-unity-of-five.md) - 五者合一（详解）
+- 总结：[07-core-summary.md](07-core-summary.md) - 核心思想总结
 
 ## 🤔 思考题
 

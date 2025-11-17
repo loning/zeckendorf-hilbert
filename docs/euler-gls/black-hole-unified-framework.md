@@ -99,7 +99,7 @@ $$
 
 对 de Branges 空间 $H(E)$，再生核
 $$
-K(w,z)=\frac{E(z)\overline{E(w)}-E^#(z)\overline{E^#(w)}}{2\pi i\,(z-\overline w)}\!,\quad E^#(z)=\overline{E(\overline z)}.
+K(w,z)=\frac{E(z)\overline{E(w)}-E^{\#}(z)\overline{E^{\#}(w)}}{2\pi i\,(z-\overline w)}\!,\quad E^{\#}(z)=\overline{E(\overline z)}.
 $$
 在实轴对角处给出；写 $E(x)=|E(x)|e^{i\varphi(x)}$，其中 $\varphi(x)=\arg E(x)$，则
 $$
@@ -195,7 +195,7 @@ $$
 
 ## 附录 A：散射—因果互构与母尺同一
 
-**A.1 单向支撑与前沿。** 若频域边值属于 $H^2(\mathbb C^+)$，则时域响应因果；Titchmarsh 卷积支撑定理给出 $\inf\supp(f*g)=\inf\supp f+\inf\supp g$，从而最早到达 $t_*$ 的加性成立：$t_*(f*g)=t_*(f)+t_*(g)$。
+**A.1 单向支撑与前沿。** 若频域边值属于 $H^2(\mathbb C^+)$，则时域响应因果；Titchmarsh 卷积支撑定理给出 $\inf\operatorname{supp}(f*g)=\inf\operatorname{supp} f+\inf\operatorname{supp} g$，从而最早到达 $t_*$ 的加性成立：$t_*(f*g)=t_*(f)+t_*(g)$。
 
 **A.2 因果决定性。** Malament 与 Hawking–King–McCarthy 定理表明在区分/强因果条件下，因果同构蕴含保角同构，由此构造 $\mathfrak F$ 并给出自然等价。([Applied Mathematics at TU Graz][3])
 
@@ -209,7 +209,7 @@ $$
 
 **B.2 de Branges 核对角。** 由核的标准公式
 $$
-K(w,z)=\frac{E(z)\overline{E(w)}-E^#(z)\overline{E^#(w)}}{2\pi i\,(z-\overline w)}
+K(w,z)=\frac{E(z)\overline{E(w)}-E^{\#}(z)\overline{E^{\#}(w)}}{2\pi i\,(z-\overline w)}
 $$
 取 $w=z=x\in\mathbb R$ 的对角极限，并写 $E(x)=|E(x)|e^{i\varphi(x)}$。此时
 $$

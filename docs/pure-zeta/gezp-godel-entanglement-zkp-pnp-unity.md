@@ -182,7 +182,7 @@ $$
 使得在统计不可分辨意义下：
 
 $$
-\phi(\text{Gödel独立}) = \phi(\text{Bell违反}) = \phi(\text{ZKP零知识}) = \phi(\text{P\neq NP})
+\phi(\text{Gödel独立}) = \phi(\text{Bell违反}) = \phi(\text{ZKP零知识}) = \phi(\text{P} \neq \text{NP})
 $$
 
 **公设A3（下界统一）**：四领域共享统一的样本复杂度形式：

@@ -59,12 +59,12 @@ graph LR
 **推荐阅读顺序**：
 
 1. [序章：为什么需要这个理论](00-motivation.md) ✓ 你已经读过了
-2. [基础概念篇](../01-foundation/)：6篇文章，每篇15分钟
+2. [基础概念篇](../01-foundation/01-what-is-time.md)：6篇文章，每篇15分钟
    - 从日常经验（钟表、多米诺骨牌、镜子）出发
    - 建立对核心概念的直觉
-3. [核心思想篇](../02-core-ideas/)：重点读第6篇"五者合一"
+3. [核心思想篇](../02-core-ideas/01-time-is-geometry.md)：重点读第6篇"五者合一"
    - 这是整个理论的心脏
-4. [应用与检验篇](../12-applications/)：选择你感兴趣的专题
+4. [应用与检验篇](../12-applications/00-intro.md)：选择你感兴趣的专题
    - 黑洞、暗能量、意识……
 5. 如果想深入，回头读中间的理论篇
 
@@ -93,18 +93,18 @@ graph LR
    - 用10分钟理解核心洞见
 
 2. **理论基石**（按顺序）：
-   - [IGVP框架](../04-igvp-framework/)：如何从熵导出爱因斯坦方程
-     - 重点：[从熵到爱因斯坦方程](../04-igvp-framework/04-from-entropy-to-einstein.md)
-   - [统一时间理论](../05-unified-time/)：Wigner-Smith延迟 = 模时间 = 几何时间
-     - 重点：[时间刻度同一式](../05-unified-time/02-time-scale-identity.md)
-   - [边界理论](../06-boundary-theory/)：Brown-York应力张量、GHY边界项
-   - [因果结构](../07-causal-structure/)：因果钻石、Markov性、观察者共识
+   - [IGVP框架](../04-igvp-framework/00-igvp-overview.md)：如何从熵导出爱因斯坦方程
+     - 重点：[从熵到爱因斯坦方程](../04-igvp-framework/04-first-order-variation.md)
+   - [统一时间理论](../05-unified-time/00-time-overview.md)：Wigner-Smith延迟 = 模时间 = 几何时间
+     - 重点：[时间刻度同一式](../05-unified-time/04-time-scale-identity.md)
+   - [边界理论](../06-boundary-theory/00-boundary-overview.md)：Brown-York应力张量、GHY边界项
+   - [因果结构](../07-causal-structure/00-causal-overview.md)：因果钻石、Markov性、观察者共识
 
-3. **顶点**：[最终统一](../11-final-unification/)
-   - [单一变分原理](../11-final-unification/01-single-principle.md)：所有定律的源头
-   - [从一到万](../11-final-unification/04-all-from-one.md)：如何导出GR、YM、QFT
+3. **顶点**：[最终统一](../11-final-unification/00-intro.md)
+   - [单一变分原理](../11-final-unification/01-consistency-functional.md)：所有定律的源头
+   - 从一到万：如何导出GR、YM、QFT
 
-4. **深入技术细节**：查阅[原始理论文档索引](../appendix/C-references.md)
+4. **深入技术细节**：查阅原始理论文档索引
 
 **时间投入**：快速浏览约3-5小时，深入理解约20-30小时
 
@@ -125,19 +125,19 @@ graph LR
 
 **推荐阅读顺序**：
 
-1. **从可测量量开始**：[统一时间理论](../05-unified-time/)
-   - [三种时间](../05-unified-time/01-three-times.md)：散射延迟、模时间、几何时间
-   - [红移即相位节奏](../05-unified-time/04-redshift-phase-rhythm.md)：宇宙学应用
+1. **从可测量量开始**：[统一时间理论](../05-unified-time/00-time-overview.md)
+   - 三种时间：散射延迟、模时间、几何时间
+   - 红移即相位节奏：宇宙学应用
    - 这些都是**可以测量的物理量**
 
-2. **实验设置**：[边界理论](../06-boundary-theory/)
-   - [边界优先](../06-boundary-theory/01-boundary-priority.md)：为什么观测总是在边界上
-   - [Brown-York应力张量](../06-boundary-theory/02-brown-york-tensor.md)：可测的边界能量
+2. **实验设置**：[边界理论](../06-boundary-theory/00-boundary-overview.md)
+   - 边界优先：为什么观测总是在边界上
+   - Brown-York应力张量：可测的边界能量
 
-3. **具体应用**：[应用与检验篇](../12-applications/)
-   - [黑洞熵](../12-applications/01-black-hole-entropy.md)：Bekenstein-Hawking公式的新理解
-   - [引力波](../12-applications/06-gravitational-waves.md)：LIGO/Virgo观测的理论框架
-   - [中微子质量](../12-applications/02-neutrino-mass.md)：味振荡的统一解释
+3. **具体应用**：[应用与检验篇](../12-applications/00-intro.md)
+   - 黑洞熵：Bekenstein-Hawking公式的新理解
+   - 引力波：LIGO/Virgo观测的理论框架
+   - 中微子质量：味振荡的统一解释
 
 4. **如果想理解原理**：回头读IGVP框架和核心思想
 
@@ -160,23 +160,23 @@ graph LR
 
 **推荐阅读顺序**：
 
-1. **从终极问题开始**：[最终统一篇](../11-final-unification/)
-   - [本体论统一](../11-final-unification/05-ontological-unity.md)：不是对称，是同一
-   - [一致性即定律](../11-final-unification/02-consistency-laws.md)：约束的力量
+1. **从终极问题开始**：[最终统一篇](../11-final-unification/00-intro.md)
+   - 本体论统一：不是对称，是同一
+   - 一致性即定律：约束的力量
 
-2. **现实的本质**：[矩阵宇宙篇](../10-matrix-universe/)
-   - [现实即网络](../10-matrix-universe/01-reality-as-network.md)：从物质到关系
-   - [心-宇宙等价](../10-matrix-universe/04-heart-universe.md)：内外的同构
+2. **现实的本质**：[矩阵宇宙篇](../10-matrix-universe/00-intro.md)
+   - 现实即网络：从物质到关系
+   - 心-宇宙等价：内外的同构
    - 这会改变你对"存在"的理解
 
 3. **观察者与意识**：
-   - [因果结构：观察者共识](../07-causal-structure/04-observer-consensus.md)
-   - [应用：意识理论](../12-applications/07-consciousness.md)
-   - [边界：意识与时间](https://path/to/consciousness-structural-definition)（原始理论）
+   - 因果结构：观察者共识
+   - 应用：意识理论
+   - 原始理论文档中的《边界：意识与时间》
 
-4. **QCA宇宙**：[QCA宇宙篇](../09-qca-universe/)
-   - [离散时空](../09-qca-universe/01-discrete-spacetime.md)：像素化的宇宙
-   - [范畴论终对象](../09-qca-universe/06-terminal-object.md)：所有理论的母体
+4. **QCA宇宙**：[QCA宇宙篇](../09-qca-universe/00-qca-overview.md)
+   - 离散时空：像素化的宇宙
+   - 范畴论终对象：所有理论的母体
 
 5. **严格基础**：回头阅读数学工具和IGVP框架
 
@@ -293,21 +293,21 @@ $$
 
 如果你想看完整的技术细节，请查阅：
 
-- [原始理论文档索引](../appendix/C-references.md)
+- 原始理论文档索引
 - 包含所有严格证明、技术假设、边界条件
 
 ### 📖 术语表
 
 遇到不熟悉的术语？查看：
 
-- [术语表](../appendix/A-glossary.md)：所有核心概念的简明定义
-- [符号约定](../appendix/B-notation.md)：数学符号说明
+- 术语表：所有核心概念的简明定义
+- 符号约定：数学符号说明
 
 ### 📈 延伸阅读
 
 想要了解更多背景和相关工作？
 
-- [延伸阅读](../appendix/D-further-reading.md)：经典文献和现代研究
+- 延伸阅读：经典文献和现代研究
 
 ---
 
@@ -362,18 +362,18 @@ $$
 ### 🕐 快速浏览（5-10小时）
 
 - [序章](00-motivation.md) (1小时)
-- [基础概念篇](../01-foundation/) (3小时)
+- [基础概念篇](../01-foundation/01-what-is-time.md) (3小时)
 - [核心思想：五者合一](../02-core-ideas/06-unity-of-five.md) (2小时)
-- [应用篇](../12-applications/)选读 (2-4小时)
+- [应用篇](../12-applications/00-intro.md)选读 (2-4小时)
 
 **收获**：对理论有整体印象，理解核心洞见
 
 ### 🕐 中等深度（20-30小时）
 
 - 上述快速浏览内容 (10小时)
-- [IGVP框架篇](../04-igvp-framework/) (5小时)
-- [统一时间篇](../05-unified-time/) (5小时)
-- [最终统一篇](../11-final-unification/) (5-10小时)
+- [IGVP框架篇](../04-igvp-framework/00-igvp-overview.md) (5小时)
+- [统一时间篇](../05-unified-time/00-time-overview.md) (5小时)
+- [最终统一篇](../11-final-unification/00-intro.md) (5-10小时)
 
 **收获**：理解理论框架，能解释给他人听
 
@@ -410,7 +410,7 @@ $$
 **A**:
 
 1. 先跳过，继续往下读，也许后面会豁然开朗
-2. 查看[术语表](../appendix/A-glossary.md)
+2. 查看术语表
 3. 重新阅读相关的基础概念篇
 4. 尝试用自己的话向朋友解释（费曼技巧）
 
@@ -444,10 +444,10 @@ $$
 
 选择一个适合你的路径，开始探索吧：
 
-- 🌱 [路径A：完全新手](../01-foundation/) - 从基础概念开始
+- 🌱 [路径A：完全新手](../01-foundation/01-what-is-time.md) - 从基础概念开始
 - 🎓 [路径B：理论物理](../02-core-ideas/06-unity-of-five.md) - 直达核心
-- 🔬 [路径C：实验物理](../05-unified-time/) - 从可测量量开始
-- 🧠 [路径D：哲学思考](../11-final-unification/) - 从大图景开始
+- 🔬 [路径C：实验物理](../05-unified-time/00-time-overview.md) - 从可测量量开始
+- 🧠 [路径D：哲学思考](../11-final-unification/00-intro.md) - 从大图景开始
 
 或者，先浏览[概念地图](02-concept-map.md)，鸟瞰整个理论的核心概念。
 

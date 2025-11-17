@@ -181,7 +181,7 @@ $$
 
 ## 5. 规范 vs. 真动力学：可证伪指纹
 
-定义宇宙学**状态指纹**：减速 $q:=-\ddot a a/\dot a^2$、jerk $j:=\dddot a/(aH^3)$。定义
+定义宇宙学**状态指纹**：减速 $q:=-\ddot a a/\dot a^2$、jerk $j:=\frac{d^3a/dt^3}{aH^3}$。定义
 
 $$
 \eta(z):=\frac{D_L}{(1+z)^2D_A}.

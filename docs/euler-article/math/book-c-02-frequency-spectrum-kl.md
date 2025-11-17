@@ -40,7 +40,7 @@ $$
 若再以长度 $m$ 的移动平均窗 $W_m$ 平滑，均方误差
 
 $$
-\mathbb E|y-\hat y_W_m|_2^2\ \le\ C_1\,E_{\text{alias}} + C_2\,L^2\,\Delta t^2/m .
+\mathbb E|y-\hat{y}_{W_m}|_2^2\ \le\ C_1\,E_{\text{alias}} + C_2\,L^2\,\Delta t^2/m .
 $$
 
 **证明要点**：均值值定理给出分段误差；频域用窗频响衰减折叠能量。

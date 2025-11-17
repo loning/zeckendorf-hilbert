@@ -255,10 +255,10 @@ GLS理论说：**两者是同一个结构的不同极限**。
 
 根据你的兴趣和背景，选择一个入口：
 
-- **完全新手** → [基础概念篇](../01-foundation/) 从日常经验开始
-- **有物理背景** → [核心思想篇](../02-core-ideas/) 直达统一思想
-- **想看公式** → [数学工具篇](../03-mathematical-tools/) 理解数学框架
-- **想看大图景** → [最终统一篇](../11-final-unification/) 看终极答案
+- **完全新手** → [基础概念篇](../01-foundation/01-what-is-time.md) 从日常经验开始
+- **有物理背景** → [核心思想篇](../02-core-ideas/01-time-is-geometry.md) 直达统一思想
+- **想看公式** → [数学工具篇](../03-mathematical-tools/00-tools-overview.md) 理解数学框架
+- **想看大图景** → [最终统一篇](../11-final-unification/00-intro.md) 看终极答案
 
 ---
 

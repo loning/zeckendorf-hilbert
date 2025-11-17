@@ -263,8 +263,8 @@ $$
 
 - 经典教材：M. Takesaki, *Theory of Operator Algebras* (Springer)
 - 原始论文：A. Connes, C. Rovelli, "Von Neumann algebra automorphisms and time-thermodynamics relation" (Class. Quant. Grav. 11, 2899, 1994)
-- GLS应用：[boundary-time-geometry-unified-framework.md](../../euler-gls-paper-bondary/boundary-time-geometry-unified-framework.md)
-- 下一篇：[05-information-geometry.md](./05-information-geometry.md) - 信息几何
+- GLS应用：boundary-time-geometry-unified-framework.md
+- 下一篇：[05-information-geometry.md](05-information-geometry.md) - 信息几何
 
 ## 🤔 练习题
 

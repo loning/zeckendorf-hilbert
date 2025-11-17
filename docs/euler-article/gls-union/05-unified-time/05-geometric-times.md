@@ -359,6 +359,6 @@ $$\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \frac{1}{2\pi}\text{tr}\,Q(\om
 ---
 
 **导航**：
-- 上一篇：[04-time-scale-identity.md](./04-time-scale-identity.md) - 时间刻度同一式
-- 下一篇：[06-modular-time.md](./06-modular-time.md) - 模块时间
-- 概览：[00-time-overview.md](./00-time-overview.md) - 统一时间篇总览
+- 上一篇：[04-time-scale-identity.md](04-time-scale-identity.md) - 时间刻度同一式
+- 下一篇：[06-modular-time.md](06-modular-time.md) - 模块时间
+- 概览：[00-time-overview.md](00-time-overview.md) - 统一时间篇总览

@@ -360,9 +360,9 @@ $$\theta' \approx -\frac{4M}{r^3} < 0$$
 - 原始论文：A.K. Raychaudhuri, "Relativistic cosmology" (Phys. Rev. 98, 1123, 1955)
 - 现代处理：R.M. Wald, *General Relativity* (University of Chicago Press, 1984), §9.2
 - 奇点定理：S.W. Hawking, R. Penrose, "The singularities of gravitational collapse" (Proc. Roy. Soc. A 314, 529, 1970)
-- GLS应用：[igvp-einstein-complete.md](../../euler-gls-paper/igvp-einstein-complete.md)
-- 上一篇：[02-causal-diamond.md](./02-causal-diamond.md) - 小因果菱形
-- 下一篇：[04-first-order-variation.md](./04-first-order-variation.md) - 一阶变分与Einstein方程
+- GLS应用：igvp-einstein-complete.md
+- 上一篇：[02-causal-diamond.md](02-causal-diamond.md) - 小因果菱形
+- 下一篇：[04-first-order-variation.md](04-first-order-variation.md) - 一阶变分与Einstein方程
 
 ## 🤔 练习题
 
@@ -389,4 +389,3 @@ $$\theta' \approx -\frac{4M}{r^3} < 0$$
 ---
 
 **下一步**：掌握了Raychaudhuri方程后，我们将看到如何从 $\delta S_{\text{gen}} = 0$ 推导出Einstein方程！
-
