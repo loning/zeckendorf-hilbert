@@ -59,12 +59,12 @@ graph LR
 **推荐阅读顺序**：
 
 1. [序章：为什么需要这个理论](00-motivation.md) ✓ 你已经读过了
-2. [基础概念篇](../01-foundation/)：6篇文章，每篇15分钟
+2. [基础概念篇](../01-foundation/01-what-is-time.md)：6篇文章，每篇15分钟
    - 从日常经验（钟表、多米诺骨牌、镜子）出发
    - 建立对核心概念的直觉
-3. [核心思想篇](../02-core-ideas/)：重点读第6篇"五者合一"
+3. [核心思想篇](../02-core-ideas/01-time-is-geometry.md)：重点读第6篇"五者合一"
    - 这是整个理论的心脏
-4. [应用与检验篇](../12-applications/)：选择你感兴趣的专题
+4. [应用与检验篇](../12-applications/00-intro.md)：选择你感兴趣的专题
    - 黑洞、暗能量、意识……
 5. 如果想深入，回头读中间的理论篇
 
@@ -93,14 +93,14 @@ graph LR
    - 用10分钟理解核心洞见
 
 2. **理论基石**（按顺序）：
-   - [IGVP框架](../04-igvp-framework/)：如何从熵导出爱因斯坦方程
+   - [IGVP框架](../04-igvp-framework/00-igvp-overview.md)：如何从熵导出爱因斯坦方程
      - 重点：[从熵到爱因斯坦方程](../04-igvp-framework/04-first-order-variation.md)
-   - [统一时间理论](../05-unified-time/)：Wigner-Smith延迟 = 模时间 = 几何时间
+   - [统一时间理论](../05-unified-time/00-time-overview.md)：Wigner-Smith延迟 = 模时间 = 几何时间
      - 重点：[时间刻度同一式](../05-unified-time/04-time-scale-identity.md)
-   - [边界理论](../06-boundary-theory/)：Brown-York应力张量、GHY边界项
-   - [因果结构](../07-causal-structure/)：因果钻石、Markov性、观察者共识
+   - [边界理论](../06-boundary-theory/00-boundary-overview.md)：Brown-York应力张量、GHY边界项
+   - [因果结构](../07-causal-structure/00-causal-overview.md)：因果钻石、Markov性、观察者共识
 
-3. **顶点**：[最终统一](../11-final-unification/)
+3. **顶点**：[最终统一](../11-final-unification/00-intro.md)
    - [单一变分原理](../11-final-unification/01-consistency-functional.md)：所有定律的源头
    - 从一到万：如何导出GR、YM、QFT
 
@@ -125,16 +125,16 @@ graph LR
 
 **推荐阅读顺序**：
 
-1. **从可测量量开始**：[统一时间理论](../05-unified-time/)
+1. **从可测量量开始**：[统一时间理论](../05-unified-time/00-time-overview.md)
    - 三种时间：散射延迟、模时间、几何时间
    - 红移即相位节奏：宇宙学应用
    - 这些都是**可以测量的物理量**
 
-2. **实验设置**：[边界理论](../06-boundary-theory/)
+2. **实验设置**：[边界理论](../06-boundary-theory/00-boundary-overview.md)
    - 边界优先：为什么观测总是在边界上
    - Brown-York应力张量：可测的边界能量
 
-3. **具体应用**：[应用与检验篇](../12-applications/)
+3. **具体应用**：[应用与检验篇](../12-applications/00-intro.md)
    - 黑洞熵：Bekenstein-Hawking公式的新理解
    - 引力波：LIGO/Virgo观测的理论框架
    - 中微子质量：味振荡的统一解释
@@ -160,11 +160,11 @@ graph LR
 
 **推荐阅读顺序**：
 
-1. **从终极问题开始**：[最终统一篇](../11-final-unification/)
+1. **从终极问题开始**：[最终统一篇](../11-final-unification/00-intro.md)
    - 本体论统一：不是对称，是同一
    - 一致性即定律：约束的力量
 
-2. **现实的本质**：[矩阵宇宙篇](../10-matrix-universe/)
+2. **现实的本质**：[矩阵宇宙篇](../10-matrix-universe/00-intro.md)
    - 现实即网络：从物质到关系
    - 心-宇宙等价：内外的同构
    - 这会改变你对"存在"的理解
@@ -174,7 +174,7 @@ graph LR
    - 应用：意识理论
    - 原始理论文档中的《边界：意识与时间》
 
-4. **QCA宇宙**：[QCA宇宙篇](../09-qca-universe/)
+4. **QCA宇宙**：[QCA宇宙篇](../09-qca-universe/00-qca-overview.md)
    - 离散时空：像素化的宇宙
    - 范畴论终对象：所有理论的母体
 
@@ -362,18 +362,18 @@ $$
 ### 🕐 快速浏览（5-10小时）
 
 - [序章](00-motivation.md) (1小时)
-- [基础概念篇](../01-foundation/) (3小时)
+- [基础概念篇](../01-foundation/01-what-is-time.md) (3小时)
 - [核心思想：五者合一](../02-core-ideas/06-unity-of-five.md) (2小时)
-- [应用篇](../12-applications/)选读 (2-4小时)
+- [应用篇](../12-applications/00-intro.md)选读 (2-4小时)
 
 **收获**：对理论有整体印象，理解核心洞见
 
 ### 🕐 中等深度（20-30小时）
 
 - 上述快速浏览内容 (10小时)
-- [IGVP框架篇](../04-igvp-framework/) (5小时)
-- [统一时间篇](../05-unified-time/) (5小时)
-- [最终统一篇](../11-final-unification/) (5-10小时)
+- [IGVP框架篇](../04-igvp-framework/00-igvp-overview.md) (5小时)
+- [统一时间篇](../05-unified-time/00-time-overview.md) (5小时)
+- [最终统一篇](../11-final-unification/00-intro.md) (5-10小时)
 
 **收获**：理解理论框架，能解释给他人听
 
@@ -444,10 +444,10 @@ $$
 
 选择一个适合你的路径，开始探索吧：
 
-- 🌱 [路径A：完全新手](../01-foundation/) - 从基础概念开始
+- 🌱 [路径A：完全新手](../01-foundation/01-what-is-time.md) - 从基础概念开始
 - 🎓 [路径B：理论物理](../02-core-ideas/06-unity-of-five.md) - 直达核心
-- 🔬 [路径C：实验物理](../05-unified-time/) - 从可测量量开始
-- 🧠 [路径D：哲学思考](../11-final-unification/) - 从大图景开始
+- 🔬 [路径C：实验物理](../05-unified-time/00-time-overview.md) - 从可测量量开始
+- 🧠 [路径D：哲学思考](../11-final-unification/00-intro.md) - 从大图景开始
 
 或者，先浏览[概念地图](02-concept-map.md)，鸟瞰整个理论的核心概念。
 

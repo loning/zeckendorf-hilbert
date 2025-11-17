@@ -194,8 +194,8 @@ graph LR
 - [最终统一：宇宙一致性泛函](11-final-unification/01-consistency-functional.md) - 所有定律的源头
 
 **🔬 想看实验检验？看这里：**
-- [应用与检验篇](12-applications/) - 黑洞熵、中微子质量、暗能量、引力波
-- [统一时间理论](05-unified-time/) - 可测量的时间刻度
+- [应用与检验篇](12-applications/00-intro.md) - 黑洞熵、中微子质量、暗能量、引力波
+- [统一时间理论](05-unified-time/00-time-overview.md) - 可测量的时间刻度
 
 **🧠 对哲学问题感兴趣？从这里进入：**
 - [矩阵宇宙](10-matrix-universe/00-intro.md) - 现实即网络，心-宇同构

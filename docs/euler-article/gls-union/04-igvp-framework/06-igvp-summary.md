@@ -495,7 +495,7 @@ graph TB
 ## 🔗 相关阅读
 
 - GLS完整论文：igvp-einstein-complete.md
-- 数学工具篇：[03-mathematical-tools/](../03-mathematical-tools/)
+- 数学工具篇：[03-mathematical-tools/00-tools-overview.md](../03-mathematical-tools/00-tools-overview.md)
 - 核心思想篇：[02-core-ideas/06-unity-of-five.md](../02-core-ideas/06-unity-of-five.md)
-- 下一章：[05-unified-time/](../05-unified-time/) - 统一时间篇
+- 下一章：[05-unified-time/00-time-overview.md](../05-unified-time/00-time-overview.md) - 统一时间篇
 
