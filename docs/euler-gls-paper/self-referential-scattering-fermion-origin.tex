@@ -32,20 +32,22 @@
 \newtheorem{remark}[theorem]{Remark}
 
 % Title information
-\title{Self-Referential Scattering and Fermion Genesis:\\
-Riccati Square Roots, Spinor Double Covers, and $\mathbb{Z}_2$ Exchange Phase}
+\title{Self-Referential Scattering and the Birth of Fermions:\\
+Riccati Square Roots, Spinor Double Cover, and a $\mathbb{Z}_2$ Exchange Phase}
 \author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
 \small $^1$Independent Researcher\\
 \small $^2$National University of Singapore}
 
-\date{Version 2.15 --- \today}
+\date{Version 2.29 --- \today}
 
 \begin{document}
 
 \maketitle
 
 \begin{abstract}
-On parameter space $X^\circ\subset X$ after removing discriminant, consider phase exponential map $S:X^\circ\to U(1)$ of fixed-energy scattering. Along square cover $p:U(1)\to U(1)$, $p(z)=z^2$, the pullback
+We define a unified $\mathbb{Z}_2$ invariant $\nu_{\sqrt{S}}$ on the discriminant-free parameter space $X^\circ\subset X$. It is the monodromy of the square-root pullback $\mathfrak{s}^*(p)$ of the fixed-energy scattering phase exponential and equals, modulo two, the winding of $\mathfrak{s}$, the unitary spectral flow, the mod-2 linking with the discriminant, and the exchange parity of hyperbolic fixed points in a self-consistent loop.
+
+Formally, on parameter space $X^\circ$ after removing discriminant, consider phase exponential map $\mathfrak{s}:X^\circ\to U(1)$ of fixed-energy scattering. Along square cover $p:U(1)\to U(1)$, $p(z)=z^2$, the pullback
 $$
 P_{\sqrt{S}}=S^*(p)=\{(x,\sigma)\in X^\circ\times U(1):\ \sigma^2=S(x)\}\to X^\circ
 $$
@@ -67,7 +69,11 @@ L=\Phi_{\tau,E}(L)=\mathcal{B}_\tau\big(M(E;L)\big),\qquad \mathcal{B}_\tau\in \
 $$
 giving existence theorem and two-fixed-point exchange in hyperbolic region, proving exchange parity consistent with $\nu_{\sqrt{S}}$. Using one-dimensional $\delta$-potential and Aharonov--Bohm model as examples, give explicit winding number calculations, unifying complex small loops and real fold-back paths via ``discriminant mod-2 intersection.'' For topological superconductor endpoint scattering, distinguish Altland--Zirnbauer symmetry classes: Class D's $\operatorname{sgn}\det r(0)$ and Class DIII's $\operatorname{sgn}\operatorname{Pf}r(0)$ each equivalent to branch sign of $\sqrt{\det r(0)}$. This framework directly applicable to Fermi/Bose statistics in $d\ge 3$; in $d=2$ gives $\mathbb{Z}_2$ projection of anyon $U(1)$ statistics.
 
-\textbf{Experimental prediction:} In gate-tunable Josephson junctions, when Andreev channel number $\lesssim 4$, perform single $2\pi$ scan of superconducting phase difference $\phi$ at zero energy bias; each time crossing Majorana crossing event, the \textbf{dimensionless $\mathbb{Z}_2$ index}
+\textbf{Experimentally readable mod-2 indicator: Morphological criterion (single-shot $\mathbb{Z}_2$ readout protocol):} 
+
+\textit{Declaration:} The following is an operational readout protocol, not part of the theoretical proof. This protocol maps the $\nu_{\sqrt{S}}(\gamma)\in\{\pm1\}$ of this work to directly observable experimental signs.
+
+In gate-tunable Josephson junctions, when Andreev channel number $\lesssim 4$, perform single $2\pi$ scan of superconducting phase difference $\phi$ at zero energy bias; each time crossing Majorana crossing event, the \textbf{dimensionless $\mathbb{Z}_2$ index}
 $$
 G_{\mathbb{Z}_2}\equiv \nu_{\sqrt{S}}\in\{+1,-1\}
 $$
@@ -104,6 +110,8 @@ negative sign from exchanging two fermions, negative sign from rotating spinor b
 
 Thus, whether observing from configuration space topology, spinor double cover, scattering analytic structure or self-consistent dynamics, appearing is same $\mathbb{Z}_2$ holonomy. This index has observational accessibility: can extract $S$'s phase continuation from interference measurement, or obtain from phase spectral flow and bound state counting.
 
+\textbf{General notation hint:} This work uses symbol $L$ in two different contexts. In \S3, $L=\psi'/\psi$ is the Riccati variable. In \S7, $L$ is a boundary parameter taking values on the extended real line. The two usages are separate within their respective sections and do not mix. When mentioning ``self-referential closed loop $L=\Phi_{\tau,E}(L)$,'' it always refers to the boundary parameter from \S7.
+
 \subsection{Parameter Space and Discriminant}
 
 Let $X$ be piecewise smooth manifold, take discriminant
@@ -112,7 +120,26 @@ D=\{\text{upper-half-plane Jost zero generation or annihilation, zero-energy thr
 $$
 denote $X^\circ=X\setminus D$. On $X^\circ$ scattering data continuous or analytic in parameters.
 
+\begin{proposition}[Existence and naturality of $w_D$]
+\label{prop:wD-existence}
+Let $X$ be second countable piecewise $C^1$ oriented manifold, $D\subset X$ be closed tameable codimension-one stratified submanifold. Let $X^\circ:=X\setminus D$. Then exists unique $w_D\in H^1(X^\circ;\mathbb{Z}_2)$ (linking class) such that pairing with any sufficiently small normal positive loop is $1$. This class is natural under embeddings and $C^0$-stable under small perturbations of $D$.
+\end{proposition}
+
+\begin{proposition}[Stratified transversality case]
+\label{prop:stratified-transverse}
+Let $X,D$ be as above, $N(D)$ be compact tubular neighborhood of $D$. For any closed path's avoidance version $\gamma_\varepsilon\subset X^\circ$, when $\gamma_\varepsilon\pitchfork\partial N(D)$, have
+$$
+\langle w_D,[\gamma_\varepsilon]\rangle
+=\big([\gamma_\varepsilon]\cdot[\partial N(D)]\big)\bmod 2.
+$$
+This class is invariant under operations adjusting $(\gamma,D)$ to stratified transversality via small $C^1$ perturbations.
+\end{proposition}
+
+\textit{Proofs:} By Alexander duality and Poincaré--Lefschetz duality. See Appendix D.
+
 \subsection{Connection and Winding Number}
+
+\textbf{Unique convention (Throughout):} In this work, the notation ``$\sqrt{S}$'' \textbf{always} refers to the \textbf{map-level square-root covering} of $\mathfrak{s}:X^\circ\to U(1)$ (i.e., the monodromy of principal $\mathbb{Z}_2$-bundle $P_{\sqrt{\mathfrak{s}}}=\mathfrak{s}^*(p)$), \textbf{not} a matrix square root. Phrases like ``branch sign of $\sqrt{\det r(0)}$'' always mean the \textbf{sign of the covering monodromy branch}, not taking matrix square roots of $\det r(0)$. See \S2 (covering--lift criterion) and \S9 (D/DIII indices).
 
 $$
 \alpha=\frac{1}{2i}\,(\det S)^{-1}d(\det S),\qquad
@@ -125,6 +152,23 @@ $$
 \textit{Note:} For multichannel/partial wave cases, the above $\det S$ should be understood as $\det/\det_p S$ as needed; for single channel it reduces to scalar $S=e^{2i\delta}$.
 
 Closed path orientation adopts mathematical positive convention.
+
+\begin{definition}[Argument version of winding number and integral equivalence]
+\label{def:arg-winding}
+Let $\mathfrak{s}:X^\circ\to U(1)$ be continuous along closed path $\gamma_\varepsilon\subset X^\circ$. Take any continuous argument choice $\mathrm{Arg}\,\mathfrak{s}\in\mathbb{R}/2\pi\mathbb{Z}$, define
+$$
+\deg(\mathfrak{s}|_\gamma):=\frac{1}{2\pi}\,\Delta_{\gamma_\varepsilon}\big(\mathrm{Arg}\,\mathfrak{s}\big)\in\mathbb{Z}.
+$$
+If further $\mathfrak{s}$ along $\gamma_\varepsilon$ is piecewise $C^1$ or of bounded variation, then
+$$
+\frac{1}{2\pi i}\oint_{\gamma_\varepsilon}\mathfrak{s}^{-1}d\mathfrak{s}=\deg(\mathfrak{s}|_\gamma),
+\qquad
+\oint_{\gamma_\varepsilon} d\xi_p=-\deg(\mathfrak{s}|_\gamma),
+$$
+where $\oint d\xi_p$ is interpreted in Lebesgue--Stieltjes sense. The two definitions are equivalent.
+\end{definition}
+
+\textbf{Warning (comparison scope of spectral loops vs parameter loops):} Any integer-level equalities in this work concern \textbf{external parameter closed paths $\gamma$ only}. Spectral parameter loop $C$ is used only for analytic structure integer accounting of $S(k)$. The two types compare \textbf{only at $\mathbb{Z}_2$ level}. The equivalence chain in Main Theorem~\ref{thm:main} is always understood as statements for $\gamma$.
 
 \textbf{Hierarchy and sign convention:} This work at \textbf{integer level} only uses
 $$
@@ -139,19 +183,24 @@ For general closed paths, the \textbf{integer sign} of $N_b(\gamma)$ depends on 
 
 \textbf{Declaration (space and invariant hierarchy):} All winding numbers $\deg(\det S|_\gamma)$, spectral flow $\mathrm{Sf}(\gamma)$, bound state counting $N_b(\gamma)$, and intersection number $I_2(\gamma,D)$ in this work take the \textbf{same parameter-energy closed path} $\gamma\subset X^\circ$ as argument, and comparison proceeds only at $\mathbb{Z}_2$ level.
 
-In contrast, the
-$$
-\deg(S|_C)=-\sum_j m_j
-$$
-in \S3 is \textbf{momentum $(k)$ plane spectral loop} $C$ analytic counting, used for spectral structure analysis of $S=f(-k)/f(k)$; it does \textbf{not} identify and compare with parameter loop $\gamma$ at integer level. This work does \textbf{not} claim integer equalities like $\deg(\det S|_\gamma)=\deg(S|_C)$ or $\deg_\lambda=\deg_k$. Main Theorem~\ref{thm:main} only asserts
+\begin{remark}[Global: Spectral loop vs Parameter loop]
+\label{rem:global-spectral-param}
+The $\deg(S|_C)=-\sum_j m_j$ in \S3 is a \textbf{momentum $(k)$ plane spectral loop} $C$ analytic counting, used for spectral structure analysis of $S=f(-k)/f(k)$; it does \textbf{not} identify with parameter loop $\gamma$ at integer level. This work does \textbf{not} claim integer equalities like $\deg(\det S|_\gamma)=\deg(S|_C)$ or $\deg_\lambda=\deg_k$. Main Theorem~\ref{thm:main} only asserts mod-2 equivalences:
 $$
 (-1)^{\deg(\det S|_\gamma)}=(-1)^{\mathrm{Sf}(\gamma)}=(-1)^{N_b(\gamma)}=(-1)^{I_2(\gamma,D)}.
 $$
-(See \S3 ``Note (spectral loop vs parameter loop)''.)
+All integer-level statements concern \textbf{parameter loops $\gamma$ only}. The two types of loops compare \textbf{only at $\mathbb{Z}_2$ level} via intersection criterion. Other mentions of this distinction refer back to this remark.
+\end{remark}
 
 \subsection{Short-Range and Spectral Assumptions}
 
 Potential $V$ belongs to short-range class: in $d=1$ (and with certain additional conditions for some $d=2$ cases) ensures $S(E,\lambda)-\mathbf{1}$ is trace-class; for more general $d\ge 2$ cases typically only obtain $S(E,\lambda)-\mathbf{1}$ belongs to suitable Schatten class, thus need to use modified Fredholm determinant $\det_p$ and its continuous branch to define spectral shift. Below for brevity denote uniformly as ``$\det/\det_p$''. Other assumptions remain unchanged: $(E,\lambda)\mapsto S$ piecewise $C^1$ along closed path $\gamma$, and $\gamma$ avoids thresholds and embedded eigenvalues; if cannot completely avoid thresholds, describe via mod-2 intersection number. Single channel $S=e^{2i\delta}$; multichannel/partial waves use $\det/\det_p S$ as overall phase exponential.
+
+\textbf{(A3$'''$) (Regularity and integral interpretation):} On $\gamma_\varepsilon$ can take continuous branch of spectral shift $\xi_p$, satisfying along $\gamma_\varepsilon$ being piecewise $C^1$ or of bounded variation. Thus
+$$
+\oint_{\gamma_\varepsilon} d\xi_p
+$$
+is defined in Lebesgue--Stieltjes sense, and equals the negative of total variation of $\mathrm{Arg}\,\mathfrak{s}$ divided by $2\pi$. In particular $(-1)^{\deg(\mathfrak{s}|_\gamma)}=\exp\bigl(-i\pi\oint_{\gamma_\varepsilon} d\xi_p\bigr)$.
 
 \subsection{Birman--Kre\u{\i}n and Spectral Shift}
 
@@ -181,9 +230,15 @@ $\ge 3$ & $V\in L^{d/2+\varepsilon}$ etc. & Often need modified $\det_p$ and con
 
 \section{Main Results (Four Equivalent Links)}
 
-\begin{theorem}[Unified equivalence]
+\begin{theorem}[Unified equivalence; integer=trace-class, mod 2=general Schatten]
 \label{thm:main}
-Under Section 0 assumptions, for any closed path $\gamma\subset X^\circ$ have
+Under Section 0 short-range and regularity settings, assume the following two conditions hold:
+
+\textbf{Assumption A (Schatten-continuity and spectral shift continuation):} There exists $p\ge 2$ and a continuous branch of regularized spectral shift $\xi_p$ such that $(E,\lambda)\mapsto S(E,\lambda)-\mathbf{1}\in\mathfrak{S}_p$ is continuous along closed path $\gamma$ (avoiding discriminant as in \S0.2a to get $\gamma_\varepsilon\subset X^\circ$), and define $\mathfrak{s}:=e^{-2\pi i\xi_p}\in U(1)$. \textit{Literature:} Yafaev, \textit{Mathematical Scattering Theory}, \S8--\S9; Pushnitski, J. Math. Phys. \textbf{47} (2006) 062101; Behrndt--Hassi--de Snoo, \textit{Boundary Value Problems}, \S10.
+
+\textbf{Assumption D (Transverse-codimension-one regularity):} Discriminant $D\subset X$ is a codimension-one piecewise $C^1$ closed submanifold, corresponding to events of Jost zero generation/annihilation, threshold anomaly, embedded eigenvalue, or channel opening/closing (\S0.2).
+
+Then for any parameter closed path $\gamma\subset X$ (if $\gamma\cap D\neq\varnothing$, take avoidance path $\gamma_\varepsilon\subset X^\circ$ as in \S0.2a), have
 $$
 \nu_{\sqrt{S}}(\gamma)
 =\exp\Bigl(i\oint_\gamma \tfrac{1}{2i}(\det S)^{-1}d(\det S)\Bigr)
@@ -192,7 +247,21 @@ $$
 =(-1)^{N_b(\gamma)}
 =(-1)^{I_2(\gamma,D)}.
 $$
-where for \textbf{multichannel/partial wave cases} unified substitution uses overall phase exponential $\det S$ (when necessary use modified determinant $\det_p S$); for \textbf{single channel} have $\det S=S$.
+where for \textbf{multichannel/partial wave cases} unified substitution uses overall phase exponential $\det S$ (when necessary use modified determinant $\det_p S$); for \textbf{single channel} have $\det S=S$. Notation ``$\sqrt{S}$'' refers to \textbf{map-level square-root covering} of $\mathfrak{s}:X^\circ\to U(1)$ (monodromy of principal $\mathbb{Z}_2$-bundle $P_{\sqrt{\mathfrak{s}}}=\mathfrak{s}^*(p)$), \textbf{not} matrix square root.
+
+\begin{itemize}
+\item \textbf{Integer level (trace-class version):} If $S-\mathbf{1}\in\mathfrak{S}_1$ is continuous along $\gamma_\varepsilon$, then $\mathfrak{s}=\det S$ and
+$$
+\mathrm{Sf}(\gamma)=\deg(\det S|_\gamma)=-\oint_{\gamma_\varepsilon} d\xi\in\mathbb{Z}.
+$$
+
+\item \textbf{Mod 2 level (general Schatten version):} Under Assumption A ($p\ge 2$), only assert
+$$
+\exp\Bigl(-i\pi\oint_{\gamma_\varepsilon} d\xi_p\Bigr)=(-1)^{\mathrm{Sf}(\gamma)}=(-1)^{N_b(\gamma)}=(-1)^{I_2(\gamma,D)}.
+$$
+\end{itemize}
+
+\textbf{Important convention:} All above equivalences concern \textbf{parameter-space closed path $\gamma$ only}. At integer level this work does not compare spectral parameter loop $C\subset k$-plane (for Jost zero counting) with parameter loop $\gamma$; the two types compare \textbf{only at $\mathbb{Z}_2$ level} via intersection criterion $I_2(\gamma,D)$ (see Remark~\ref{rem:global-spectral-param} and \S3 note).
 
 Define \textbf{bound state parity index}
 $$
@@ -256,10 +325,21 @@ $$
 
 \subsection{Covering--Lift and Principal $\mathbb{Z}_2$-Bundle}
 
+\textbf{Terminology convention:} In this work, ``holonomy'' exclusively refers to the single-valued-lifting sign of the $\mathbb{Z}_2$ principal bundle, taking values $\{\pm1\}$; ``holonomy index'' refers to the exponential path function written as $\nu_{\sqrt{S}}(\gamma)=\exp(i\oint\alpha)$. The two are related by $\operatorname{Hol}=\exp(i\pi\,\deg)$ and equivalent.
+
 Since $U(1)=K(\mathbb{Z},1)$, have $[X^\circ,U(1)]\cong H^1(X^\circ;\mathbb{Z})$. Square cover $p:z\mapsto z^2$ corresponds to multiplication by two on fundamental group and first cohomology. For any closed path $\gamma$
 $$
 \nu_{\sqrt{S}}(\gamma)=\exp\Bigl(i\oint_\gamma \tfrac{1}{2i}(\det S)^{-1}d(\det S)\Bigr)=(-1)^{\deg(\det S|_\gamma)}.
 $$
+
+\begin{definition}[Cover's single-valued lift and so-called holonomy]
+\label{def:holonomy}
+The ``holonomy'' of principal $\mathbb{Z}_2$-bundle $P_{\sqrt{\mathfrak{s}}}=\mathfrak{s}^*(p)$ refers to single-valued-ness of the cover's lift along closed paths. Namely, take $\tilde{\gamma}$ to be the lift of $\gamma_\varepsilon$ in $P_{\sqrt{\mathfrak{s}}}$; if starting sheet labeled $+1$, then ending sheet labeled $\pm 1$. Denote this sign as $\operatorname{Hol}_{P_{\sqrt{\mathfrak{s}}}}(\gamma_\varepsilon)\in\{\pm1\}$. Then
+$$
+\operatorname{Hol}_{P_{\sqrt{\mathfrak{s}}}}(\gamma_\varepsilon)=(-1)^{\deg(\mathfrak{s}|_\gamma)}.
+$$
+Here no differential-geometric connection form is introduced on the $\mathbb{Z}_2$-bundle; the equality is purely topological.
+\end{definition}
 
 \begin{theorem}[Covering--lift criterion]
 \label{thm:covering-lift}
@@ -292,6 +372,8 @@ These two target different objects and \textbf{generally not mutually deducible}
 
 These two target different objects and \textbf{generally not mutually deducible}; this work's $\nu_{\sqrt{S}}$ equivalent to (A), not equivalent to $c_1$ parity of any given $\mathcal{L}$.
 
+\textbf{Supplementary (de Rham perspective):} First Chern class of a flat line bundle is a torsion element. Its de Rham representative is the zero form. Therefore, the information of $\nu_{\sqrt{S}}$ in this work resides entirely at the torsion and $\mathbb{Z}_2$ levels and is not reflected in curvature forms.
+
 \section{Riccati Variable, Weyl--Titchmarsh and Jost Structure}
 
 Let $L=\psi'/\psi$, then
@@ -312,6 +394,8 @@ $$
 Thus $\nu_{\sqrt{S}}(C)=(-1)^{\sum_j m_j}$. If simultaneously enclosing $\pm k_j$, two terms cancel and winding number zero.
 
 \textbf{Note (spectral loop vs parameter loop):} The above takes small positive loop $C$ in $k$-plane, enclosing only upper-half-plane zeros $\{k_j\}$. It gives \textbf{spectral parameter} integer counting $\deg(S|_C)=-\sum_j m_j$, used for analyzing analytic structure of $S=f(-k)/f(k)$. It is \textbf{not} a closed path $\gamma$ in external parameter space, thus does not define $N_b(\gamma)$. When comparison with $N_b$ is needed, should first select closed path $\gamma$ avoiding $D$ in parameter space and apply $\mathrm{Sf}=\deg$ from \S4 and $\mathbb{Z}_2$ equivalence from \S5, only retaining parity information.
+
+\textbf{Terminology clarification (bound state parity):} The ``bound state parity'' here refers to the \textbf{parity of transverse events of eigenphase crossing reference phase $0$ or $\pi$ on the unit circle} (i.e., mod-2 of phase spectral flow crossing count), not equivalent to bound energy levels crossing on the energy axis for the Hamiltonian; choosing reference $\theta=0$ or $\pi$ are $\mathbb{Z}_2$-equivalent. This terminology follows scattering theory tradition; its essence is the $\mathbb{Z}_2$ index of unitary matrix spectral flow.
 
 \section{Birman--Kre\u{\i}n, Spectral Shift and Mod-2 Levinson}
 
@@ -361,6 +445,19 @@ $$
 D=\{\text{Jost upper-half-plane zero generation or annihilation, threshold anomaly, embedded eigenvalue, channel opening/closing}\}\subset X.
 $$
 Under generic position $D$ is codimension-one piecewise smooth submanifold. Following conclusions universally hold at $\mathbb{Z}_2$ level; even if closed path must cross $D$, its $\nu_{\sqrt{S}}(\gamma)$ and $I_2(\gamma,D)$ remain well-defined and equivalent to each other.
+
+\begin{proposition}[Avoidance and orientation $\mathbb{Z}_2$ invariance, general outline]
+\label{prop:avoidance-invariance}
+Under Assumption A and Assumption D, let closed path $\gamma\subset X$ have finitely many transverse crossings with discriminant $D$. Then:
+
+\textbf{(i)} Avoidance choice only affects the \textit{sign} of integer winding $\deg(\mathfrak{s}|_\gamma)$, not its parity;
+
+\textbf{(ii)} Reversing orientation only changes the \textit{sign} of $\deg(\mathfrak{s}|_\gamma)$, not its parity;
+
+\textbf{(iii)} Therefore, all $\mathbb{Z}_2$ conclusions ($\nu_{\sqrt{S}}(\gamma)$, $(-1)^{\mathrm{Sf}(\gamma)}$, $(-1)^{I_2(\gamma,D)}$) are \textbf{insensitive} to avoidance choice and orientation reversal.
+
+\textit{Proof:} By Lemma 0.A, Lemma 4.0bis, and Proposition 5.0ter (see Appendices). \qed
+\end{proposition}
 
 \textbf{Definition (mod-2 intersection/linking number, universal version for closed paths):} Let $D\subset X$ be codimension-one piecewise smooth closed submanifold, denote $X^\circ=X\setminus D$. Let $w_D\in H^1(X^\circ;\mathbb{Z}_2)$ be $\mathbb{Z}_2$ cohomology class induced by $D$ in complement space (equivalently, monodromy class of cutting double cover on $X^\circ$). For any closed path $\gamma\subset X^\circ$, define
 $$
@@ -414,6 +511,25 @@ In $(E,\lambda)$ plane, take closed path $\gamma\subset X^\circ$, let piecewise 
 
 This nonlinear eigenvalue problem has been observed in \textbf{quantum dot--superconductor} hybrid circuits [Nat. Nanotechnol. \textbf{16}, 776 (2021)], where boundary condition $L$ can be gate-tuned in real time; predicted fixed-point $L_\pm$ exchange manifests as $\pi$-phase slip in Andreev spectrum.
 
+\textbf{Reader's map (\S7 structure guide):}
+
+This section studies self-consistent equation $L=\Phi_{\tau,E}(L)$, where $\Phi$ is a M\"obius transformation in $\mathrm{PSL}(2,\mathbb{R})$ and $L\in\mathbb{R}\cup\{\infty\}$ is a boundary parameter. Core geometric objects:
+
+\begin{itemize}
+\item $L_\pm$: Boundary fixed points, satisfying $\Phi(L_\pm)=L_\pm$, existing in hyperbolic region $\Delta>0$;
+\item $\Delta=\operatorname{Tr}^2-4\det$: Discriminant, $\Delta>0$ for hyperbolic type (two fixed points), $\Delta=0$ for parabolic type (discriminant surface), $\Delta<0$ for elliptic type (no boundary fixed points);
+\item Exchange event: Along parameter closed path $\gamma$, when transversely crossing $\{\Delta=0\}$ once, the two boundary fixed-point branches $L_\pm$ exchange once, causing phase difference to cross $\pi$, and thus $\nu_{\sqrt{S}}(\gamma)$ flips.
+\end{itemize}
+
+Theorem 7.0* rigorously equates exchange parity with $\nu_{\sqrt{S}}$; Propositions 7.1--7.3 give fixed-point tracking and transversality criteria.
+
+\textbf{Applicability card (three conditions):}
+\begin{enumerate}
+\item $M(E;L)$ is Nevanlinna family and monotone in $L$;
+\item $\Phi_{\tau,E}\in\mathrm{PSL}(2,\mathbb{R})$ has coefficients $C^1$ continuous on $\gamma$;
+\item Only crosses $\{\Delta=0\}$ transversely; hyperbolic domain is non-empty and connected.
+\end{enumerate}
+
 \textbf{Setting:}
 Self-consistency equation
 $$
@@ -456,6 +572,21 @@ $$
 (-1)^{\#\mathrm{exch}(\gamma)}=\nu_{\sqrt{S}}(\gamma).
 $$
 \end{proposition}
+
+\begin{lemma}[Sign formula for $\partial_L \arg\det S$]
+\label{lem:sign-formula}
+Under boundary triple framework, take energy $E$ in absolutely continuous spectrum. Let $M(E;L)$ be Nevanlinna class and order-preserving in $L$. Then exists positive semi-definite operator kernel $G(E;L)\succeq0$ such that along boundary branch
+$$
+\partial_L \arg\det S(E;L)=\operatorname{Tr}\big(G(E;L)\,\partial_L M(E;L)\big).
+$$
+Therefore if $\partial_L M(E;L)\succcurlyeq 0$ and boundary fixed-point index is non-parabolic, i.e., $\Phi'(L_\pm)\neq1$, then $\partial_L \arg\det S(E;L_\pm)$ have same sign and are non-zero. Combined with transversality of $\Delta$, have
+$$
+\big(\arg\det S(E;L_+)-\arg\det S(E;L_-)\big)
+$$
+must cross $\pi$ (mod $2\pi$) at exchange point, contributing $\pm1$ to $\mathrm{Sf}$.
+\end{lemma}
+
+\textit{Proof:} By boundary triple scattering formula, change variables from $\Phi(L)$ to $X(L):=\Phi(L)-M(E+i0)$, and use $\partial_L \log\det(X^{-1})=-\operatorname{Tr}(X^{-1}\partial_L X)$. Combined with Woodbury identity for $S=\mathbf{1}-2\pi i\,\Gamma^*X^{-1}\Gamma$, get $\partial_L \log\det S=\operatorname{Tr}\big((\mathbf{1}+2\pi i\,X^{-1}\Gamma\Gamma^*)^{-1}\,2\pi i\,X^{-1}\,\partial_L M\,X^{-1}\,\Gamma\Gamma^*\big)$. Taking imaginary part gives the required form, where $G(E;L):=\pi\,(\Gamma X^{-1})^*(\Gamma X^{-1})\succeq0$. Since $\partial_L M\succeq0$, right-hand side is non-negative or non-positive, with sign determined by boundary values and branches. By Lemma 7.A (Herglotz monotonicity), $\partial_L\arg\det S$ has same sign on both boundary branches and is non-zero. Thus when $L_+$ and $L_-$ exchange, derivative of $\Theta(E;L_+)-\Theta(E;L_-)$ is non-zero at $t_\ast$. Continuity and range being circular angle difference forces it to cross $\pi$ (mod $2\pi$) at $t_\ast$. Transverse model guarantees only one first-order crossing, thus contributing $\pm1$ to spectral flow. \qed
 
 \textit{Proof see Appendix F.}
 
@@ -510,7 +641,7 @@ i.e., $\operatorname{sgn}\det r(0)$ flips.
 
 (b) \textit{Class DIII}: Under Kramers pairing can take real antisymmetric $r(0)$, exists $2\times2$ antisymmetric block $\begin{psmallmatrix}0&\rho\\-\rho&0\end{psmallmatrix}$ sign crossing, causing $\operatorname{Pf}r(0)$ to change sign, $\det r(0)=(\operatorname{Pf}r(0))^2$ unchanged in magnitude but flipping sign of square.
 
-\textit{Conclusion:} In both classes sign flip synchronizes with $\deg(\det r|_\gamma)\equiv 1$, and this crossing event precisely belongs to discriminant $D$, thus $(-1)^{I_2(\gamma,D)}=\operatorname{sgn}\sqrt{\det r(0)}$.
+\textit{Conclusion:} In both classes sign flip synchronizes with $\deg(\det r|_\gamma)\equiv 1$, and this crossing event precisely belongs to discriminant $D$, thus $(-1)^{I_2(\gamma,D)}=\operatorname{sgn}\sqrt{\det r(0)}$. This is equivalent to $P_{\sqrt{\det r(0)}}$'s monodromy along $\gamma$ being $-1$ (see \S2 definition).
 \end{lemma}
 
 \section{Multichannel and Partial Waves: Minimal Self-Consistent Statement}
@@ -529,7 +660,16 @@ Aharonov--Bohm scattering with flux $\alpha=\Phi/\Phi_0$ gives statistical angle
 $$
 \deg(\det S|_\gamma)\equiv 1\pmod{2},\qquad \nu_{\sqrt{\det S}}(\gamma)=-1.
 $$
-When partial-wave index infinite, this work \textbf{fixes adoption} of modified determinant $\det_2$ to define overall phase $\det_2 S$, and accordingly read $\mathbb{Z}_2$ image of $\nu_{\sqrt{\det_2 S}}(\gamma)$. For Aharonov--Bohm model, partial-wave truncation finite product and $\det_2$ give consistent \textbf{mod-2} result when crossing $\alpha=\tfrac12$; this work does not claim universal independence of \textbf{all} regularization schemes here. General $\theta\neq 0,\pi$ beyond this work's $\mathbb{Z}_2$ framework, this work only captures its mod-2 projection.
+
+\textbf{Uniformization commitment:} This work \textbf{fixes adoption} of modified Fredholm determinant $\det_2 S=e^{-2\pi i\xi_2}$ and takes the same continuous branch $\xi_2$ along closed paths. In partial-wave representation, adopt \textbf{symmetric truncation} around half-integer $m=-\tfrac12$:
+$$
+\det_M S:=\prod_{-M-1\le m\le M}\det S_m.
+$$
+Satisfying $m\leftrightarrow -m-1$ pairing cancellation \textbf{mod 2} stability: $\det S_{-m-1}=\overline{\det S_m}\Rightarrow \deg(\det S_m|_\gamma)+\deg(\det S_{-m-1}|_\gamma)\equiv0\pmod{2}$, thus $\nu_M(\gamma):=(-1)^{\deg(\det_M S|_\gamma)}$ stabilizes as $M$ increases to the $\mathbb{Z}_2$ readout of $\nu_{\sqrt{S}}(\gamma)$. \textbf{At mod 2 level, this work fixes $\det_2$ and symmetric partial-wave truncation, ensuring parity consistency between them.}
+
+\textbf{Small loop illustration (pairing cancellation):} Take $\alpha$ runs one circle along $[0,1)$. For any $m\ge 0$, partial-wave phase shifts $\delta_m(\alpha)$ and $\delta_{-m-1}(\alpha)=-\delta_m(\alpha)$ have opposite winding numbers, thus $\deg(\det S_m)+\deg(\det S_{-m-1})=0$, canceling mod 2. When crossing $\alpha=\tfrac12$ ($\theta=\pi$), $\deg(\mathfrak{s}|_\gamma)\equiv1\pmod{2}$, thus $\nu_{\sqrt{S}}(\gamma)=-1$. This work does not claim universal independence of \textbf{all} regularization schemes; conclusions limited to above commitment and symmetric truncation.
+
+For Aharonov--Bohm model, partial-wave truncation finite product and $\det_2$ give consistent \textbf{mod-2} result when crossing $\alpha=\tfrac12$. General $\theta\neq 0,\pi$ beyond this work's $\mathbb{Z}_2$ framework, this work only captures its mod-2 projection.
 
 \textbf{Definition 11.1 (partial-wave truncation $\mathbb{Z}_2$ index, half-integer center):} Denote
 $$
@@ -557,6 +697,20 @@ since when increasing $M$ the newly added pair $(m,-m-1)$ cancel mod-2 in windin
 \end{proposition}
 
 \section{Conclusion and Outlook}
+
+\textbf{Main contributions of this work:}
+
+\begin{enumerate}
+\item On fixed-energy scattering parameter space $X^\circ$, define $\nu_{\sqrt{S}}$, the monodromy of square-root covering of $\mathfrak{s}$.
+
+\item Prove four readout links equivalent at $\mathbb{Z}_2$ level: $(-1)^{\deg\mathfrak{s}}$, $(-1)^{\mathrm{Sf}}$, $(-1)^{I_2(\gamma,D)}$, and exchange parity of boundary fixed points in self-referential M\"obius loop.
+
+\item In trace-class case give integer-level Birman--Kre\u{\i}n equality; in general Schatten case give ``mod-2 Levinson'' and clarify branch independence of continuous spectral shift.
+
+\item For stratified discriminant construct $w_D\in H^1(X^\circ;\mathbb{Z}_2)$, give intersection formula, and establish avoidance independence.
+
+\item Apply framework to one-dimensional $\delta$-potential, AB scattering, and topological superconductor endpoint scattering (Classes D and DIII), proposing experimentally oriented single-shot $\mathbb{Z}_2$ criterion.
+\end{enumerate}
 
 With holonomy of $\alpha=\frac{1}{2i}(\det S)^{-1}d(\det S)$ as core, construct unified framework of ``square root--double cover--$\mathbb{Z}_2$ index,'' integrating exchange statistics, spinor double cover and scattering spectral structure into same computable invariant $\nu_{\sqrt{S}}$. This invariant can be read via four links: principal $\mathbb{Z}_2$-bundle holonomy, Birman--Kre\u{\i}n and spectral flow, discriminant mod-2 intersection number, and hyperbolic branch exchange of self-referential closed loop, equivalent to $\operatorname{sgn}\det r$, $\operatorname{sgn}\operatorname{Pf}r$ in topological superconductor endpoint scattering. Many-body systems, two-dimensional non-abelian anyons, threshold strong coupling and non-Hermitian scattering square-root topology constitute natural extension directions.
 
@@ -724,7 +878,9 @@ $$
 =-\frac{1}{2\pi i}\oint_C\frac{f'(k)}{f(k)}\,dk
 =-\sum_j m_j,
 $$
-thus $\nu_{\sqrt{S}}(C)=(-1)^{\sum_j m_j}$. If $C$ simultaneously encloses symmetric points $\pm k_j$, two terms equal weight and cancel, thus $\deg(S|_C)=0$.
+where the term $-\frac{f'(-k)}{f(-k)}$ vanishes because $C$ encloses only $\Im k>0$ zeros; variable substitution $k\mapsto -k$ moves those to lower half-plane, thus that term contributes zero.
+
+Thus $\nu_{\sqrt{S}}(C)=(-1)^{\sum_j m_j}$. If $C$ simultaneously encloses symmetric points $\pm k_j$, two terms equal weight and cancel, thus $\deg(S|_C)=0$.
 
 \textbf{Note (spectral loop vs parameter loop):} The above takes small positive loop $C$ in $k$-plane, enclosing only upper-half-plane zeros $\{k_j\}$. It gives \textbf{spectral parameter} integer counting $\deg(S|_C)=-\sum_j m_j$, used for analyzing analytic structure of $S=f(-k)/f(k)$. It is \textbf{not} a closed path $\gamma$ in external parameter space, thus does not define $N_b(\gamma)$. When comparison with $N_b$ is needed, should first select closed path $\gamma$ avoiding $D$ in parameter space and apply $\mathrm{Sf}=\deg$ from \S4 and $\mathbb{Z}_2$ equivalence from \S5, only retaining parity information.
 
