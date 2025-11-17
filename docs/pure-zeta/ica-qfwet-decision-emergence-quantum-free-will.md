@@ -456,7 +456,7 @@ $$
 $$
 \begin{aligned}
 \mathbb{P}(\delta_{i,j}(t) = + | \mathcal{N}) &= \frac{p_+ + \Re[\zeta(1/2 + it/\tau)]}{1 + \Re[\zeta(1/2 + it/\tau)]} \\
-\mathbb{P}(\delta_{i,j}(t) = 0 | \mathcal{N}) &\approx 0.194 \quad (\text{固定i_0近似}) \\
+\mathbb{P}(\delta_{i,j}(t) = 0 | \mathcal{N}) &\approx 0.194 \quad (\text{固定}i_0\text{近似}) \\
 \mathbb{P}(\delta_{i,j}(t) = - | \mathcal{N}) &= 1 - \mathbb{P}(+) - \mathbb{P}(0)
 \end{aligned}
 $$

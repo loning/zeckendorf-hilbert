@@ -78,6 +78,7 @@ $$
 本文仅使用 $\varphi'(E)$，与常数相位无关。在单通道 $S(E)=e^{2i\delta(E)}$ 下退化为 $\varphi=\delta$，从而
 $$
 \boxed{\ \frac{\varphi'(E)}{\pi}=\frac{\delta'(E)}{\pi}=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)\ }.
+$$
 
 **处方**：任何实验性损耗/增益均视作对环境自由度的迹出;理论分析统一通过幺正扩张 $\widehat S(E)$ 处理,并以 $\mathsf Q(\widehat S)=-i\widehat S^\dagger\widehat S'$ 评估全部时间/密度读数。本文不引入 $\widetilde{\mathsf Q}:=-iS^{-1}S'$。
 
