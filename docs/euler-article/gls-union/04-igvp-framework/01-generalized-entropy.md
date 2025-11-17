@@ -262,7 +262,7 @@ $$p \prec q \quad \Longleftrightarrow \quad S_{\text{gen}}(p) \le S_{\text{gen}}
 - Hawking辐射：S.W. Hawking, "Black hole explosions?" (Nature 248, 30, 1974)
 - 广义熵：T. Faulkner et al., "Gravitation from entanglement" (JHEP 03, 051, 2014)
 - GLS文档：igvp-einstein-complete.md
-- 下一篇：[02-causal-diamond.md](../07-causal-structure/02-causal-diamond.md) - 小因果菱形
+- 下一篇：[02-causal-diamond.md](02-causal-diamond.md) - 小因果菱形
 
 ## 🤔 练习题
 
@@ -288,4 +288,3 @@ $$p \prec q \quad \Longleftrightarrow \quad S_{\text{gen}}(p) \le S_{\text{gen}}
 ---
 
 **下一步**：理解了广义熵后，我们将学习它在哪里变分——**小因果菱形**！
-
