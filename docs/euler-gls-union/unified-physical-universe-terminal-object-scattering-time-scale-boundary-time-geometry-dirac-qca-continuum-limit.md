@@ -1,6 +1,6 @@
 # 统一物理宇宙终对象：散射时间刻度、边界时间几何与 Dirac–QCA 连续极限
 
-**Version: 2.13**
+**Version: 2.16**
 
 ## Abstract
 
@@ -18,7 +18,7 @@ $$
 
 其中 $\rho_{\mathrm{rel}}(\omega)=-\xi'(\omega)$。将"散射总相位导数 $\varphi'(\omega)$""谱移函数导数/相对态密度 $\rho_{\mathrm{rel}}(\omega)$"与 Wigner–Smith 群延迟矩阵迹 $\operatorname{tr}Q(\omega)$ 统一为单一时间刻度母尺 $\kappa$。
 
-当能谱不含连续部分（如反射型 AdS 背景）时，上述等式仅以**分布**形式保留 $\kappa(\omega)=-\xi'(\omega)$，不再使用 $S(\omega)$、$Q(\omega)$ 与相位导数表述。
+当能谱不含连续部分（如**无地平线的**反射型 AdS 背景）时，上述等式仅以**分布**形式保留 $\kappa(\omega)=-\xi'(\omega)$，不再使用 $S(\omega)$、$Q(\omega)$ 与相位导数表述。
 
 在引力与量子场论侧，本文选择四维渐近 AdS 的 Einstein 引力与其对偶的大 $N$ 共形场论这一具体背景类。在 Brown–York 准局域能量与 Hamilton–Jacobi 边界形式以及基于相对熵形变的 QNEC 与 holographic QNEC 结果基础上，引入一个明确假设：边界 Hamilton 量沿 null 形变的二阶变分可表示为广义熵 $S_{\rm gen}$ 二阶形变的配权积分。证明在该假设及一个谱–几何对应存在的条件下，可以选择刻度规范使边界时间函数 $\tau$ 的重标度刚性锁定到同一 $\kappa(\omega)$，从而在边界时间几何中得到刻度函数 $\kappa_{\mathrm{geo}}(\omega)=\kappa(\omega)$。
 
@@ -26,7 +26,7 @@ $$
 
 上述三层结构在一个以 Grothendieck 宇宙控制大小的 2–范畴 $\mathbf{Univ}_\kappa$ 中被统一：对象为携带统一刻度的"物理宇宙对象"，1–态射为刻度保持的结构态射，2–态射为相应自然同构。**在此基础上，并在 $\mathbf{Univ}_\kappa$ 为（2,1）–范畴且具 smallness 与 2–（弱）极限，以及存在对象 $\mathfrak{U}_\ast$ 具备：对任意对象存在唯一（至 2–同构）刻度保持 1–态射入射之泛性质的附加范畴假设下，本文得到条件性结果：$\mathfrak{U}_\ast$ 为终对象。**
 
-在模型应用部分，本文分别在 Minkowski 真空、渐近 AdS 黑洞散射及一维 Dirac–QCA 玩具模型上具体重建刻度函数 $\kappa(\omega)$，展示统一时间刻度如何将黑洞群延迟、边界熵流与离散时间步长联系起来。在工程方案部分，提出在微波/声学散射实验与量子行走/离子阱平台中实现部分刻度结构的可行路径，并讨论统一刻度在这些平台上的数值验证方式。
+在模型应用部分，本文在 Minkowski 真空与一维 Dirac–QCA 玩具模型上**具体重建**刻度函数 $\kappa(\omega)$；在**渐近 AdS 黑洞外部区域**，基于**准正则模/共振**对时间尺度奇点的**定性**结构进行分析，与统一刻度框架作对照。在工程方案部分，提出在微波/声学散射实验与量子行走/离子阱平台中实现部分刻度结构的可行路径，并讨论统一刻度在这些平台上的数值验证方式。
 
 ## Keywords
 
@@ -163,7 +163,7 @@ $$
 
 这一等式在 Lebesgue 绝大多数能量点上成立。
 
-**注**：本节等式在 $H_0$ 具纯绝对连续谱、$V$ 为 trace–class 扰动且波算子完备的设定下，于几乎处处的能量点成立。对无连续谱或纯点谱的体系（例如反射型边界条件下的 AdS 几何），仅谱移函数 $\xi$ 及其**分布意义**的导数 $-\xi'$ 有意义；此时统一刻度定义为 $\kappa:=-\xi'$（按分布理解），不再引入 $S(\omega)$、$Q(\omega)$ 与 $\varphi(\omega)$。
+**注**：本节等式在 $H_0$ 具纯绝对连续谱、$V$ 为 trace–class 扰动且波算子完备的设定下，于几乎处处的能量点成立。对无连续谱或纯点谱的体系（例如**无地平线的**反射型边界条件下的 AdS 几何），仅谱移函数 $\xi$ 及其**分布意义**的导数 $-\xi'$ 有意义；此时统一刻度定义为 $\kappa:=-\xi'$（按分布理解），不再引入 $S(\omega)$、$Q(\omega)$ 与 $\varphi(\omega)$。
 
 ### 2.2 渐近 AdS 背景类与边界时间几何假设
 
@@ -612,27 +612,27 @@ $$
 
 ### 5.2 渐近 AdS 黑洞外部区域
 
-考虑四维渐近 AdS 的 Schwarzschild–AdS 黑洞外部区域。由于存在地平线，体系以**准正则模（QNM）**的**复频谱**为主；因此标准意义上的"到无穷远散射相位"及实频离散本征谱表述**不直接适用**。在四维球对称背景下，**标量场**（$s=0$）的角动量简并度为 $(2\ell+1)$，因此
+**Schwarzschild–AdS 黑洞外部区域（含地平线）**。由于存在地平线，线性场的动力学由**准正则模（QNM）**的离散**复频谱**控制；相应生成元**非自伴**，实轴上既无纯点谱也无基于自伴对的谱移函数（BK 公式）可用，幺正能量纤维散射矩阵 $S(\omega)$ 与 Wigner–Smith 矩阵 $Q(\omega)$ 框架亦不适用。本文在该情形**不**以 $\xi(\omega)$ 或 $S(\omega),Q(\omega)$ 定义统一刻度，而仅将 QNM/共振极点作为奇点结构的来源作定性讨论（例如极点位置与阻尼率刻画的时间尺度）。
+
+**无地平线的反射型 AdS 背景（如纯 AdS 或具反射边界的星体）**。此时在合适的反射（Dirichlet/Robin）边界条件下生成元自伴、谱为离散**实**频的纯点谱，因而可按**分布**意义定义
 
 $$
-\kappa(\omega)=-\sum_{\ell=0}^{\infty}(2\ell+1)\xi'_{\ell}(\omega),
+\kappa(\omega)=-\sum_{\ell=0}^{\infty}(2\ell+1)\,\xi'_{\ell}(\omega)\quad(s=0),
 $$
 
-其中在每个角动量通道 $\ell$ 上，本文以**实频 resolvent 边界值**定义相对于参照背景的谱移函数 $\xi_\ell(\omega)$。对于**具有自旋的场**，通道应以**Dirac 量子数** $\kappa_{\rm D}=\pm(j+\tfrac12)$（或等价的奇偶通道）区分。统一刻度的分布形式写为
+对自旋场按 **Dirac 量子数** $\kappa_{\rm D}=\pm\bigl(j+\tfrac12\bigr)$ 计数，得到
 
 $$
-\kappa(\omega)=-\sum_{\kappa_{\rm D}}\bigl(2j(\kappa_{\rm D})+1\bigr)\,\xi'_{\kappa_{\rm D}}(\omega)=-\sum_{j}(2j+1)\,\bigl[\xi'_{j,+}(\omega)+\xi'_{j,-}(\omega)\bigr],
+\kappa(\omega)=-\sum_{j}(2j+1)\,\bigl[\xi'_{j,+}(\omega)+\xi'_{j,-}(\omega)\bigr]\quad(\text{分布}).
 $$
 
-其中 $j(\kappa_{\rm D})$ 为与 $\kappa_{\rm D}$ 对应的总角动量。为避免与统一刻度函数 $\kappa(\omega)$ 混淆，下文用 $\kappa_{\rm D}$ 表示 Dirac 量子数。对标量场（$s=0$）仅有单一通道，公式自然退化为 $\kappa(\omega)=-\sum_{\ell}(2\ell+1)\xi'_\ell(\omega)$。
+上述纯点谱与正规模结构可由 AdS 的非全局双曲性与适定反射边界条件下的自伴性分析得到。
 
-而**不应**将自旋简并简单地与 $(2\ell+1)$ 因式分解为 $(2\ell+1)(2s+1)$。上述按 $\kappa_{\rm D}$ 的计数与 Wigner–Smith 时间延迟与态密度的标准对应 $\operatorname{Tr}Q=2\,\partial_E\delta_{\rm sum}$、$\rho=(2\pi)^{-1}\operatorname{Tr}Q$ 一致。其奇点结构由 QNM 极点数据控制。若需在实频上得到**幺正**的能量纤维散射矩阵 $S(\omega)$，必须将**无穷远端入/出**与**地平线端入/出**两类本征通道**一并**纳入渐近基，从而在"无穷远通道 $\oplus$ 地平线通道"的完备通道空间上定义 $S(\omega)$（体现通量守恒）。其后，为选取物理解，可在**求解层面**对地平线端施加**纯入射**边界条件（即在该端将出射振幅设为零），但这一步不改变 $S(\omega)$ 的幺正定义，仅对应在通道解上的系数选择。从而
+为便于比较，**仅在与本文边界条件无关的情形**（如渐近平坦黑洞或对 $\partial M$ 采用开/透明边界，使无穷远通道对能流开放）中，才可把"无穷远入/出 $\oplus$ 地平线入/出"组成完备通道空间并得到**幺正**的 $S(\omega)$。在该**对比**设定下才有
 
 $$
-\kappa(\omega)=\frac{1}{2\pi}\operatorname{tr}Q(\omega)=\frac{\varphi'(\omega)}{\pi}.
+\kappa(\omega)=\frac{1}{2\pi}\operatorname{tr}Q(\omega)=\frac{\varphi'(\omega)}{\pi}。
 $$
-
-相反，若在无穷远采取**反射/自伴（Dirichlet/Robin）**边界条件，则谱通常为**纯点**（无绝对连续部分），不再存在能量纤维上的幺正 $S(\omega)$；此时仅保留**分布**意义的统一刻度 $\kappa:=-\xi'$，不使用 $S(\omega),Q(\omega),\varphi(\omega)$。
 
 在边界时间几何侧，选取靠近无穷远的类时边界 $\partial M$，在其上定义 Brown–York 准局域能量与 Hamilton 量。AdS/CFT 对偶下，边界 CFT 的能量谱与体内散射模式谱对应，null 截面 $B_\lambda$ 的形变参数 $\lambda$ 可与 entangling cut 的形变模式及模 Hamiltonian 本征频率关联。利用 holographic QNEC 与相对熵形变结果，可将边界 Hamilton 量的形变重写为广义熵二阶形变的配权积分，从而按命题 3.2 将 $\tau_\kappa$ 与 $\kappa(\omega)$ 关联。
 

@@ -267,6 +267,7 @@
     - [宇宙作为量子元胞自动机的全物理统一理论：从统一时间刻度到所有物理理论的范畴嵌入](./euler-gls-union/universe-as-quantum-cellular-automaton-complete-physical-unification-theory.md)
     - [统一物理宇宙终对象：几何–边界时间–矩阵–QCA–拓扑的完全统一框架](./euler-gls-union/unified-physical-universe-terminal-object-complete-unification-framework.md)
     - [统一物理宇宙终对象：散射时间刻度、边界时间几何与 Dirac–QCA 连续极限](./euler-gls-union/unified-physical-universe-terminal-object-scattering-time-scale-boundary-time-geometry-dirac-qca-continuum-limit.md)
+    - [宇宙终对象的数学刻画：统一时间刻度、边界时间几何与 QCA 宇宙的高维结构](./euler-gls-union/universe-terminal-object-mathematical-characterization-unified-time-scale-boundary-geometry-qca-high-dimensional-structure.md)
     - [黑洞熵与信息在统一矩阵–QCA 宇宙中的离散视界理论：统一时间刻度下的 $S_{\mathrm{BH}} = A/4$ 与信息守恒](./euler-gls-union/black-hole-entropy-qca-universe.md)
     - [中微子质量与味混合的统一矩阵–QCA 宇宙理论：统一时间刻度下的 PMNS 结构与 Yukawa 耦合起源](./euler-gls-union/neutrino-mass-flavor-mixing-unified-matrix-qca-universe-theory.md)
     - [量子混沌与本征态热化在 QCA 宇宙中的统一理论：统一时间刻度下的 ETH、公设混沌与本征态能级统计](./euler-gls-union/quantum-chaos-eigenstate-thermalization-unified-theory-qca-universe.md)
