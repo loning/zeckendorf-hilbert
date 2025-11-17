@@ -261,8 +261,8 @@ $$p \prec q \quad \Longleftrightarrow \quad S_{\text{gen}}(p) \le S_{\text{gen}}
 - 原始论文：J.D. Bekenstein, "Black holes and entropy" (Phys. Rev. D 7, 2333, 1973)
 - Hawking辐射：S.W. Hawking, "Black hole explosions?" (Nature 248, 30, 1974)
 - 广义熵：T. Faulkner et al., "Gravitation from entanglement" (JHEP 03, 051, 2014)
-- GLS文档：[igvp-einstein-complete.md](../../euler-gls-paper/igvp-einstein-complete.md)
-- 下一篇：[02-causal-diamond.md](./02-causal-diamond.md) - 小因果菱形
+- GLS文档：igvp-einstein-complete.md
+- 下一篇：[02-causal-diamond.md](../07-causal-structure/02-causal-diamond.md) - 小因果菱形
 
 ## 🤔 练习题
 

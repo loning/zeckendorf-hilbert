@@ -352,10 +352,10 @@ $$
 
 想要理解更多技术细节，可以阅读：
 
-- 理论文档：[unified-time-scale-geometry.md](../../euler-gls-paper-time/unified-time-scale-geometry.md)
-- 边界框架：[boundary-time-geometry-unified-framework.md](../../euler-gls-paper-bondary/boundary-time-geometry-unified-framework.md)
-- 上一篇：[03-boundary-is-reality.md](./03-boundary-is-reality.md) - 边界就是实在
-- 下一篇：[05-entropy-is-arrow.md](./05-entropy-is-arrow.md) - 熵就是箭头
+- 理论文档：unified-time-scale-geometry.md
+- 边界框架：boundary-time-geometry-unified-framework.md
+- 上一篇：[03-boundary-is-reality.md](03-boundary-is-reality.md) - 边界就是实在
+- 下一篇：[05-entropy-is-arrow.md](05-entropy-is-arrow.md) - 熵就是箭头
 
 ## 🤔 思考题
 

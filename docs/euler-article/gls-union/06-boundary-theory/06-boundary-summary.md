@@ -37,7 +37,7 @@ graph TB
 
 ## 第一步：三大历史证据
 
-在[01-为什么边界](./01-why-boundary.md)中，我们看到了三个独立的历史证据，它们都指向同一个结论：
+在[01-为什么边界](01-why-boundary.md)中，我们看到了三个独立的历史证据，它们都指向同一个结论：
 
 ### 证据1：散射理论（量子力学）
 
@@ -93,7 +93,7 @@ $$S_{\mathrm{GHY}} = \frac{\varepsilon}{8\pi G}\int_{\partial\mathcal{M}}\sqrt{|
 
 ## 第二步：边界数据三元组
 
-在[02-边界数据三元组](./02-boundary-data-triple.md)中，我们构造了统一的边界描述：
+在[02-边界数据三元组](02-boundary-data-triple.md)中，我们构造了统一的边界描述：
 
 ### 定义（边界三元组）
 
@@ -158,7 +158,7 @@ graph TB
 
 ## 第三步：GHY边界项的深层含义
 
-在[03-GHY边界项](./03-ghy-boundary-term.md)中，我们揭示了GHY边界项的必要性：
+在[03-GHY边界项](03-ghy-boundary-term.md)中，我们揭示了GHY边界项的必要性：
 
 ### 核心定理（GHY抵消机制）
 
@@ -221,7 +221,7 @@ $$S_{\mathcal{N}} = \frac{1}{8\pi G}\int_{\mathcal{N}}\sqrt{\gamma}\, (\theta + 
 
 ## 第四步：Brown-York准局域能量
 
-在[04-Brown-York能量](./04-brown-york-energy.md)中，我们定义了边界时间的生成元：
+在[04-Brown-York能量](04-brown-york-energy.md)中，我们定义了边界时间的生成元：
 
 ### 定义（Brown-York应力张量）
 
@@ -261,7 +261,7 @@ $$\boxed{\text{Brown-York能量} = \text{边界时间平移的生成元}}$$
 
 ## 第五步：边界观察者的统一
 
-在[05-边界观察者](./05-boundary-observables.md)中，我们实现了终极统一：
+在[05-边界观察者](05-boundary-observables.md)中，我们实现了终极统一：
 
 ### 核心定理（边界观察者统一）
 
@@ -769,4 +769,4 @@ $$\boxed{\text{体域物理} = F[\text{边界三元组 } (\partial\mathcal{M}, \
 
 **下一篇**：[07-因果结构篇](../07-causal-structure/00-causal-overview.md) - 边界的因果组织
 
-**返回**：[边界理论篇总览](./00-boundary-overview.md) | [GLS理论完整教程](../index.md)
+**返回**：[边界理论篇总览](00-boundary-overview.md) | [GLS理论完整教程](../index.md)

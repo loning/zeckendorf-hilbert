@@ -431,7 +431,7 @@ IGVP如何处理**拓扑改变**？
 ### 研究路径（深入技术细节）
 
 1. 阅读本章全部内容
-2. 阅读原始论文：[igvp-einstein-complete.md](../../euler-gls-paper/igvp-einstein-complete.md)
+2. 阅读原始论文：igvp-einstein-complete.md
 3. 推导所有公式
 4. 思考推广方向
 
@@ -494,7 +494,7 @@ graph TB
 
 ## 🔗 相关阅读
 
-- GLS完整论文：[igvp-einstein-complete.md](../../euler-gls-paper/igvp-einstein-complete.md)
+- GLS完整论文：igvp-einstein-complete.md
 - 数学工具篇：[03-mathematical-tools/](../03-mathematical-tools/)
 - 核心思想篇：[02-core-ideas/06-unity-of-five.md](../02-core-ideas/06-unity-of-five.md)
 - 下一章：[05-unified-time/](../05-unified-time/) - 统一时间篇

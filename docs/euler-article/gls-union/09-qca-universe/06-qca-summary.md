@@ -984,6 +984,6 @@ GLS统一理论（QCA宇宙）的图景：
 
 **本章完**
 
-**下一章**：[10-矩阵宇宙篇](../10-matrix-universe/00-overview.md) —— 心-宇宙等价
+**下一章**：[10-矩阵宇宙篇](../10-matrix-universe/00-intro.md) —— 心-宇宙等价
 
 **返回总目录**：[../../index.md](../../index.md)

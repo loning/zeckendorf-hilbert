@@ -306,10 +306,10 @@ graph LR
 
 想要理解更多技术细节，可以阅读：
 
-- 理论文档：[unified-theory-causal-structure-time-scale-partial-order-generalized-entropy.md](../../euler-gls-causal/unified-theory-causal-structure-time-scale-partial-order-generalized-entropy.md)
-- 观测者共识：[observer-consensus-geometrization.md](../../euler-gls-causal/observer-consensus-geometrization.md)
-- 上一篇：[01-time-is-geometry.md](./01-time-is-geometry.md) - 时间就是几何
-- 下一篇：[03-boundary-is-reality.md](./03-boundary-is-reality.md) - 边界就是实在
+- 理论文档：unified-theory-causal-structure-time-scale-partial-order-generalized-entropy.md
+- 观测者共识：observer-consensus-geometrization.md
+- 上一篇：[01-time-is-geometry.md](01-time-is-geometry.md) - 时间就是几何
+- 下一篇：[03-boundary-is-reality.md](03-boundary-is-reality.md) - 边界就是实在
 
 ## 🤔 思考题
 

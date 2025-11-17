@@ -858,6 +858,6 @@ $\epsilon \to 0$ 时，QCA 在单粒子扇区给出 Dirac 方程在弯曲时空�
 
 ---
 
-**下一节**：[05-场论涌现.md](./05-field-emergence.md) —— 标准模型从终对象中的涌现
+**下一节**：[05-场论涌现.md](05-field-emergence.md) —— 标准模型从终对象中的涌现
 
 **返回目录**：[../index.md](../index.md)

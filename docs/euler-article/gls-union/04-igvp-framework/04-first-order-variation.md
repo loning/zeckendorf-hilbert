@@ -445,9 +445,9 @@ $\Lambda$ 不是事先假设，而是从变分中**涌现**的积分常数！
 
 - Jacobson原始推导：T. Jacobson, "Thermodynamics of spacetime" (1995)
 - Radon变换：S. Helgason, *The Radon Transform* (Birkhäuser, 1999)
-- GLS完整证明：[igvp-einstein-complete.md](../../euler-gls-paper/igvp-einstein-complete.md)
-- 上一篇：[03-raychaudhuri-equation.md](./03-raychaudhuri-equation.md) - Raychaudhuri方程
-- 下一篇：[05-second-order-variation.md](./05-second-order-variation.md) - 二阶变分与稳定性
+- GLS完整证明：igvp-einstein-complete.md
+- 上一篇：[03-raychaudhuri-equation.md](03-raychaudhuri-equation.md) - Raychaudhuri方程
+- 下一篇：[05-second-order-variation.md](05-second-order-variation.md) - 二阶变分与稳定性
 
 ## 🤔 练习题
 

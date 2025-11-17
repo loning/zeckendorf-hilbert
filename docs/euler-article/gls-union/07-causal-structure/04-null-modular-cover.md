@@ -749,7 +749,7 @@ $$
 
 我们已经掌握了GLS理论最核心的Null-Modular双覆盖定理！下一篇将探讨模哈密顿量的**可加性**：Markov性质。
 
-**下一篇**：[05-Markov性质](./05-markov-property.md) - 因果钻石链的包含排斥公式
+**下一篇**：[05-Markov性质](05-markov-property.md) - 因果钻石链的包含排斥公式
 
 在那里，我们将看到：
 - Markov性质：$I(A:C|B) = 0$
@@ -757,6 +757,6 @@ $$
 - Casini-Teste-Torroba结果：零平面区域的Markov性
 - 为什么因果钻石是"独立"的
 
-**返回**：[因果结构篇总览](./00-causal-overview.md)
+**返回**：[因果结构篇总览](00-causal-overview.md)
 
-**上一篇**：[03-偏序结构与粘合](./03-partial-order.md)
+**上一篇**：[03-偏序结构与粘合](03-partial-order.md)

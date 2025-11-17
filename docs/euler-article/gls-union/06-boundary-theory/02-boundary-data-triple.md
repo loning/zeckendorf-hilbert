@@ -536,6 +536,6 @@ $$(\partial\mathcal{M}, \mathcal{A}_\partial, \omega_\partial)$$
 **下一步**：有了边界三元组，我们需要使作用量在边界上良定。这就是GHY边界项的作用！
 
 **导航**：
-- 上一篇：[01-为什么边界](./01-why-boundary.md)
-- 下一篇：[03-GHY边界项](./03-ghy-boundary-term.md)
-- 概览：[00-边界理论总览](./00-boundary-overview.md)
+- 上一篇：[01-为什么边界](01-why-boundary.md)
+- 下一篇：[03-GHY边界项](03-ghy-boundary-term.md)
+- 概览：[00-边界理论总览](00-boundary-overview.md)

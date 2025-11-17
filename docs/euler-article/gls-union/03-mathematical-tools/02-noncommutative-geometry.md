@@ -387,9 +387,9 @@ $$
 ## 🎓 深入阅读
 
 - 经典著作：Alain Connes, *Noncommutative Geometry* (Academic Press, 1994)
-- 理论文档：[boundary-time-geometry-unified-framework.md](../../euler-gls-paper-bondary/boundary-time-geometry-unified-framework.md)
+- 理论文档：boundary-time-geometry-unified-framework.md
 - 应用：[QCA宇宙篇](../09-qca-universe/) - 量子元胞自动机的谱三元组
-- 下一篇：[03-scattering-theory.md](./03-scattering-theory.md) - 散射理论
+- 下一篇：[03-scattering-theory.md](03-scattering-theory.md) - 散射理论
 
 ## 🤔 练习题
 

@@ -587,7 +587,7 @@ $$\Phi^{(t)} = \sum_i \lambda_i\, D(\omega_i^{(t)} \| \omega_*) \to 0$$
 
 因果结构是GLS理论的**支柱之一**，但还有更多激动人心的内容等待探索：
 
-**下一站**：[08-拓扑约束篇](../08-topological-constraints/00-topology-overview.md)
+**下一站**：[08-拓扑约束篇](../08-topological-constraints/00-topological-overview.md)
 
 我们将探索：
 - 因果钻石的拓扑性质
@@ -595,7 +595,7 @@ $$\Phi^{(t)} = \sum_i \lambda_i\, D(\omega_i^{(t)} \| \omega_*) \to 0$$
 - Gauss-Bonnet定理的因果版本
 - 因果集理论与离散时空
 
-**最终目标**：[11-最终统一篇](../11-final-unification/00-final-overview.md)
+**最终目标**：[11-最终统一篇](../10-matrix-universe/00-intro.md)
 
 所有内容将汇聚到**单一变分原理**，实现真正的大一统！
 
@@ -607,10 +607,10 @@ $$\Phi^{(t)} = \sum_i \lambda_i\, D(\omega_i^{(t)} \| \omega_*) \to 0$$
 
 继续前进，探索更多奥秘！
 
-**返回**：[因果结构篇总览](./00-causal-overview.md)
+**返回**：[因果结构篇总览](00-causal-overview.md)
 
-**下一篇**：[08-拓扑约束篇](../08-topological-constraints/00-topology-overview.md)
+**下一篇**：[08-拓扑约束篇](../08-topological-constraints/00-topological-overview.md)
 
-**上一篇**：[06-观察者共识](./06-observer-consensus.md)
+**上一篇**：[06-观察者共识](06-observer-consensus.md)
 
 **主页**：[GLS理论完整教程](../index.md)

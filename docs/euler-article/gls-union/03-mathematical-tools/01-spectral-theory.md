@@ -362,10 +362,10 @@ $$
 
 ## 🎓 深入阅读
 
-- 理论文档：[unified-time-scale-geometry.md](../../euler-gls-paper-time/unified-time-scale-geometry.md) 附录A
+- 理论文档：unified-time-scale-geometry.md 附录A
 - 原始论文：Birman & Kreĭn, "On the theory of wave operators and scattering operators" (1962)
 - Strohmaier & Waters, "The Birman-Krein formula for differential forms" (arXiv:2104.13589)
-- 下一篇：[02-noncommutative-geometry.md](./02-noncommutative-geometry.md) - 非交换几何
+- 下一篇：[02-noncommutative-geometry.md](02-noncommutative-geometry.md) - 非交换几何
 
 ## 🤔 练习题
 

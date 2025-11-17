@@ -634,7 +634,7 @@ $$
 
 我们已经理解了**偏序结构及其粘合**，下一篇将深入探讨GLS理论最核心的结构：**Null-Modular双覆盖**！
 
-**下一篇**：[04-Null-Modular双覆盖](./04-null-modular-cover.md) - 模哈密顿量的边界局域化（核心）
+**下一篇**：[04-Null-Modular双覆盖](04-null-modular-cover.md) - 模哈密顿量的边界局域化（核心）
 
 在那里，我们将看到：
 - 零类边界 $E^+ \cup E^-$ 的双覆盖构造
@@ -644,6 +644,6 @@ $$
 
 这是GLS理论最技术性也最深刻的一篇！
 
-**返回**：[因果结构篇总览](./00-causal-overview.md)
+**返回**：[因果结构篇总览](00-causal-overview.md)
 
-**上一篇**：[02-因果钻石](./02-causal-diamond.md)
+**上一篇**：[02-因果钻石](02-causal-diamond.md)

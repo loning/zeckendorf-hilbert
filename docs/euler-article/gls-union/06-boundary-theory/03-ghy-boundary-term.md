@@ -510,6 +510,6 @@ GHY边界项中的外挠曲率 $K$ 直接关联到边界时间：
 **下一步**：有了GHY边界项，我们可以定义Brown-York准局域能量，这是边界时间生成元的具体实现！
 
 **导航**：
-- 上一篇：[02-边界数据三元组](./02-boundary-data-triple.md)
-- 下一篇：[04-Brown-York准局域能量](./04-brown-york-energy.md)
-- 概览：[00-边界理论总览](./00-boundary-overview.md)
+- 上一篇：[02-边界数据三元组](02-boundary-data-triple.md)
+- 下一篇：[04-Brown-York准局域能量](04-brown-york-energy.md)
+- 概览：[00-边界理论总览](00-boundary-overview.md)

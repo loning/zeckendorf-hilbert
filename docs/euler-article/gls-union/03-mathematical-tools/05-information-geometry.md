@@ -254,8 +254,8 @@ Fisher信息矩阵给出度规空间的自然度规。
 
 - 经典教材：S. Amari, *Information Geometry and Its Applications* (Springer, 2016)
 - 量子信息：M. Hayashi, *Quantum Information Theory* (Springer, 2017)
-- GLS应用：[igvp-einstein-complete.md](../../euler-gls-paper/igvp-einstein-complete.md)
-- 下一篇：[06-category-theory.md](./06-category-theory.md) - 范畴论基础
+- GLS应用：igvp-einstein-complete.md
+- 下一篇：[06-category-theory.md](06-category-theory.md) - 范畴论基础
 
 ## 🤔 练习题
 

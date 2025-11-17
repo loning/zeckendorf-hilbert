@@ -455,12 +455,12 @@ $$
 |------|------|----------|----------|----------|
 | 时间 | $t, \tau$ | 演化的参数 | 依赖于刻度 | [统一时间](../05-unified-time/) |
 | 相位 | $\varphi$ | 量子旋转角度 | $S/\hbar$ | [数学工具](../03-mathematical-tools/) |
-| S矩阵 | $S(\omega)$ | 散射幅度 | 幺正矩阵 | [散射理论](../03-mathematical-tools/02-scattering-matrix.md) |
-| Q矩阵 | $Q(\omega)$ | 时间延迟矩阵 | $-iS^\dagger \partial_\omega S$ | [Wigner-Smith延迟](../03-mathematical-tools/03-wigner-smith-delay.md) |
-| 态密度 | $\rho(\omega)$ | 能级密度 | $\text{tr}\,\delta(\omega - H)$ | [谱理论](../03-mathematical-tools/01-spectral-theory-intro.md) |
-| 谱移 | $\xi(\omega)$ | 相互作用的累积相移 | $\frac{1}{2\pi i}\ln\det S$ | [Birman-Kreĭn](../03-mathematical-tools/04-birman-krein-formula.md) |
-| 相对熵 | $D(\rho\|\sigma)$ | 态的距离 | $\text{tr}(\rho\ln\rho - \rho\ln\sigma)$ | [相对熵](../03-mathematical-tools/06-relative-entropy.md) |
-| Fisher度规 | $g_{ij}$ | 信息几何的度规 | $\mathbb{E}[\partial_i\ln p\,\partial_j\ln p]$ | [Fisher度规](../03-mathematical-tools/05-fisher-rao-metric.md) |
+| S矩阵 | $S(\omega)$ | 散射幅度 | 幺正矩阵 | [散射理论](../03-mathematical-tools/03-scattering-theory.md) |
+| Q矩阵 | $Q(\omega)$ | 时间延迟矩阵 | $-iS^\dagger \partial_\omega S$ | [Wigner-Smith延迟](../03-mathematical-tools/03-scattering-theory.md) |
+| 态密度 | $\rho(\omega)$ | 能级密度 | $\text{tr}\,\delta(\omega - H)$ | [谱理论](../03-mathematical-tools/01-spectral-theory.md) |
+| 谱移 | $\xi(\omega)$ | 相互作用的累积相移 | $\frac{1}{2\pi i}\ln\det S$ | [Birman-Kreĭn](../03-mathematical-tools/04-modular-theory.md) |
+| 相对熵 | $D(\rho\|\sigma)$ | 态的距离 | $\text{tr}(\rho\ln\rho - \rho\ln\sigma)$ | [相对熵](../03-mathematical-tools/05-information-geometry.md) |
+| Fisher度规 | $g_{ij}$ | 信息几何的度规 | $\mathbb{E}[\partial_i\ln p\,\partial_j\ln p]$ | [Fisher度规](../03-mathematical-tools/05-information-geometry.md) |
 | 广义熵 | $S_{\text{gen}}$ | 几何+物质熵 | $A/4G + S_{\text{out}}$ | [IGVP](../04-igvp-framework/) |
 | 因果钻石 | $\mathcal{D}$ | 时空的最小单元 | $J^+(p) \cap J^-(q)$ | [因果钻石](../04-igvp-framework/02-causal-diamond.md) |
 | 观察者 | $\mathcal{O}$ | 测量装置/意识 | 自指散射网络 | [矩阵宇宙](../10-matrix-universe/) |

@@ -481,6 +481,6 @@ $$\boxed{\text{可计算物理} = \text{边界数据的函数}}$$
 **下一步**：既然边界如此基本，下一篇我们将详细定义**边界数据三元组**。
 
 **导航**：
-- 上一篇：[00-边界理论总览](./00-boundary-overview.md)
-- 下一篇：[02-边界数据三元组](./02-boundary-data-triple.md)
-- 本篇概览：[边界理论篇](./00-boundary-overview.md)
+- 上一篇：[00-边界理论总览](00-boundary-overview.md)
+- 下一篇：[02-边界数据三元组](02-boundary-data-triple.md)
+- 本篇概览：[边界理论篇](00-boundary-overview.md)

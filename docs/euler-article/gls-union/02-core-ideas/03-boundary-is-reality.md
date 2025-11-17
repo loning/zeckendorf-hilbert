@@ -337,10 +337,10 @@ $$
 
 想要理解更多技术细节，可以阅读：
 
-- 理论文档：[boundary-time-geometry-unified-framework.md](../../euler-gls-paper-bondary/boundary-time-geometry-unified-framework.md)
-- 全息原理：[trinity-master-scale-boundary-time-geometry-null-modular-unification.md](../../euler-gls-paper-bondary/trinity-master-scale-boundary-time-geometry-null-modular-unification.md)
-- 上一篇：[02-causality-is-order.md](./02-causality-is-order.md) - 因果就是偏序
-- 下一篇：[04-scattering-is-evolution.md](./04-scattering-is-evolution.md) - 散射就是演化
+- 理论文档：boundary-time-geometry-unified-framework.md
+- 全息原理：trinity-master-scale-boundary-time-geometry-null-modular-unification.md
+- 上一篇：[02-causality-is-order.md](02-causality-is-order.md) - 因果就是偏序
+- 下一篇：[04-scattering-is-evolution.md](04-scattering-is-evolution.md) - 散射就是演化
 
 ## 🤔 思考题
 

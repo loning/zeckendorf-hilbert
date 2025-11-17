@@ -964,6 +964,6 @@ $$
 
 ---
 
-**下一节**：[06-qca-summary.md](./06-qca-summary.md) —— QCA宇宙的完整总结
+**下一节**：[06-qca-summary.md](06-qca-summary.md) —— QCA宇宙的完整总结
 
 **返回目录**：[../index.md](../index.md)

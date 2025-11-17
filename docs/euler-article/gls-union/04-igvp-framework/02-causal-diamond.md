@@ -383,9 +383,9 @@ Radon型闭包
 
 - Jacobson原始论文：T. Jacobson, "Thermodynamics of spacetime" (Phys. Rev. Lett. 75, 1260, 1995)
 - 小钻石几何：T. Jacobson, "Entanglement Equilibrium and the Einstein Equation" (Phys. Rev. Lett. 116, 201101, 2016)
-- GLS完整推导：[igvp-einstein-complete.md](../../euler-gls-paper/igvp-einstein-complete.md)
-- 上一篇：[01-generalized-entropy.md](./01-generalized-entropy.md) - 广义熵定义
-- 下一篇：[03-raychaudhuri-equation.md](./03-raychaudhuri-equation.md) - Raychaudhuri方程
+- GLS完整推导：igvp-einstein-complete.md
+- 上一篇：[01-generalized-entropy.md](01-generalized-entropy.md) - 广义熵定义
+- 下一篇：[03-raychaudhuri-equation.md](03-raychaudhuri-equation.md) - Raychaudhuri方程
 
 ## 🤔 练习题
 

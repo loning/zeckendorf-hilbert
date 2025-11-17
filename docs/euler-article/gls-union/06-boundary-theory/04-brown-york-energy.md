@@ -512,6 +512,6 @@ $$\text{散射时间延迟} \Longleftrightarrow \text{模流参数} \Longleftrig
 **下一步**：我们已经看到边界数据、GHY项、Brown-York能量，现在该统一边界观察者的视角！
 
 **导航**：
-- 上一篇：[03-GHY边界项](./03-ghy-boundary-term.md)
-- 下一篇：[05-边界观察者](./05-boundary-observables.md)
-- 概览：[00-边界理论总览](./00-boundary-overview.md)
+- 上一篇：[03-GHY边界项](03-ghy-boundary-term.md)
+- 下一篇：[05-边界观察者](05-boundary-observables.md)
+- 概览：[00-边界理论总览](00-boundary-overview.md)

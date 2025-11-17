@@ -252,7 +252,7 @@ $$\delta^2 S_{\text{rel}} = \mathcal{E}_{\text{can}} \ge 0$$
 ### 路径C：研究级（严格证明）
 
 1. 阅读本章全部内容
-2. 阅读原始论文：[igvp-einstein-complete.md](../../euler-gls-paper/igvp-einstein-complete.md)
+2. 阅读原始论文：igvp-einstein-complete.md
 3. 推导所有公式
 4. 理解所有技术假设
 
@@ -299,5 +299,5 @@ graph LR
 
 ---
 
-**下一篇**：[01-generalized-entropy.md](./01-generalized-entropy.md) - 广义熵：几何+量子的统一
+**下一篇**：[01-generalized-entropy.md](01-generalized-entropy.md) - 广义熵：几何+量子的统一
 

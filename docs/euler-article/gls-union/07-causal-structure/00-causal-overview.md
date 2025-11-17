@@ -477,6 +477,6 @@ $$\Phi^{(t)} = \sum_i \lambda_i D(\omega_i^{(t)} \| \omega_*)$$
 
 让我们开始这场从偏序到Markov、从局域到全局、从观察者到共识的因果之旅！
 
-**下一篇**：[01-什么是因果](./01-what-is-causality.md) - 因果的三重等价定义
+**下一篇**：[01-什么是因果](01-what-is-causality.md) - 因果的三重等价定义
 
 **返回**：[GLS理论完整教程](../index.md)

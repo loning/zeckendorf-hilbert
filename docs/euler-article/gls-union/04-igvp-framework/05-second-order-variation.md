@@ -388,9 +388,9 @@ $$\mathcal{Q}_{\text{QNEC}}[h, h] = \int_{\mathcal{H}} \frac{\hbar}{2\pi} \parti
 - Hollands-Wald原始论文：S. Hollands, R.M. Wald, "Stability of black holes and black branes" (CMP 321, 629, 2013)
 - JLMS关系：D. Jafferis et al., "Relative entropy equals bulk relative entropy" (JHEP 06, 004, 2016)
 - QNEC：R. Bousso et al., "Proof of the QNEC" (PRD 93, 024017, 2016)
-- GLS完整推导：[igvp-einstein-complete.md](../../euler-gls-paper/igvp-einstein-complete.md)
-- 上一篇：[04-first-order-variation.md](./04-first-order-variation.md) - 一阶变分
-- 下一篇：[06-igvp-summary.md](./06-igvp-summary.md) - IGVP总结
+- GLS完整推导：igvp-einstein-complete.md
+- 上一篇：[04-first-order-variation.md](04-first-order-variation.md) - 一阶变分
+- 下一篇：[06-igvp-summary.md](06-igvp-summary.md) - IGVP总结
 
 ## 🤔 练习题
 

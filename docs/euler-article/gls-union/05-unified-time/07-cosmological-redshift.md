@@ -473,10 +473,10 @@ graph TB
 ---
 
 **导航**：
-- 上一篇：[06-modular-time.md](./06-modular-time.md) - 模块时间
-- 下一篇：[08-time-summary.md](./08-time-summary.md) - 统一时间总结
-- 概览：[00-time-overview.md](./00-time-overview.md) - 统一时间篇总览
-- GLS理论：[unified-time-scale-geometry.md](../../euler-gls-paper-time/unified-time-scale-geometry.md)
+- 上一篇：[06-modular-time.md](06-modular-time.md) - 模块时间
+- 下一篇：[08-time-summary.md](08-time-summary.md) - 统一时间总结
+- 概览：[00-time-overview.md](00-time-overview.md) - 统一时间篇总览
+- GLS理论：unified-time-scale-geometry.md
 - 参考文献：
   - Hogg, "Distance measures in cosmology" (2000)
   - Perlmutter et al., "Measurements of Ω and Λ from 42 High-Redshift Supernovae" (1999)
