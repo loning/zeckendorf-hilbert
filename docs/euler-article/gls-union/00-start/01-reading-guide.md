@@ -172,7 +172,7 @@ graph LR
 3. **观察者与意识**：
    - 因果结构：观察者共识
    - 应用：意识理论
-   - [边界：意识与时间](https://path/to/consciousness-structural-definition)（原始理论）
+   - 原始理论文档中的《边界：意识与时间》
 
 4. **QCA宇宙**：[QCA宇宙篇](../09-qca-universe/)
    - 离散时空：像素化的宇宙

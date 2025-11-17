@@ -59,7 +59,7 @@
 ### G
 **规范场（Gauge Field）**：描述相互作用的矢量场（如电磁场$A_\mu$）。规范不变性要求物理量不依赖于规范选择。
 
-**广义Lorentz系统（Generalized Lorentz System, GLS）**：本教程的核心框架，统一时空、引力、量子场论。推广Lorentz变换至动态度规和非线性结构。
+**广义光结构（Generalized Light Structure, GLS）**：本教程的核心框架，统一时空、引力、量子场论。推广Lorentz变换至动态度规和非线性结构。
 
 **引力波（Gravitational Waves）**：时空曲率的传播波动。GLS预言的修正项：$h_{\mu\nu}^{\text{GLS}} = h_{\mu\nu}^{\text{GR}} + \delta h_{\mu\nu}[\kappa]$。
 

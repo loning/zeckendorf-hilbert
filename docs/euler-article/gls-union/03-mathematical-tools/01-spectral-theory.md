@@ -208,7 +208,7 @@ $$
 **推论**：取对数并对 $\omega$ 求导：
 
 $$
-\frac{d}{d\omega}\big[-i \ln \det S(\omega)\big] = 2\pi \xi'(\omega) = 2\pi \rho_{\text{rel}}(\omega)
+\frac{d}{d\omega}\big[-i \ln \det S(\omega)\big] = 2\pi \xi'(\omega) = -\,2\pi \rho_{\text{rel}}(\omega)
 $$
 
 定义**总散射相位**：
@@ -217,10 +217,10 @@ $$
 \Phi(\omega) = -i \ln \det S(\omega)
 $$
 
-则：
+则有 $\Phi(\omega) = -2\pi\xi(\omega)$，从而
 
 $$
-\boxed{\frac{\Phi'(\omega)}{\pi} = 2\xi'(\omega) = 2\rho_{\text{rel}}(\omega)}
+\boxed{\frac{\Phi'(\omega)}{\pi} = -2\xi'(\omega) = 2\rho_{\text{rel}}(\omega)}
 $$
 
 或写成：
@@ -245,10 +245,10 @@ $$
 \text{tr}\, Q(\omega) = -i \text{tr}\big(S^\dagger \partial_\omega S\big) = -i \frac{\partial}{\partial\omega} \text{tr}\, \ln S = \frac{\partial \Phi}{\partial \omega}
 $$
 
-结合Birman-Kreĭn公式：
+结合Birman-Kreĭn公式与上式 $\Phi'(\omega) = -2\pi\xi'(\omega) = 2\pi\rho_{\text{rel}}(\omega)$，得到
 
 $$
-\boxed{\frac{1}{2\pi} \text{tr}\, Q(\omega) = \frac{\Phi'(\omega)}{2\pi} = \xi'(\omega) = \rho_{\text{rel}}(\omega)}
+\boxed{\frac{1}{2\pi} \text{tr}\, Q(\omega) = \frac{\Phi'(\omega)}{2\pi} = -\,\xi'(\omega) = \rho_{\text{rel}}(\omega)}
 $$
 
 **这就是统一时间刻度同一式的数学来源！**
@@ -392,4 +392,3 @@ $$
 ---
 
 **下一步**：在理解了谱理论之后，我们将学习**非交换几何**——如何用代数定义几何，这是边界理论的数学语言！
-

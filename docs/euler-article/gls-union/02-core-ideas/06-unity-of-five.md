@@ -292,7 +292,7 @@ graph TB
 
     Det --> BK["Birman-Kreĭn公式<br/>det S = exp(-2πiξ)"]
     BK --> Xi["谱移函数 ξ(ω)"]
-    Xi --> Deriv2["导数 ξ'(ω) = ρ_rel(ω)"]
+    Xi --> Deriv2["导数 -ξ'(ω) = ρ_rel(ω)"]
 
     Deriv1 -.等于.-> Trace
     Deriv1 -.等于.-> Deriv2
@@ -314,13 +314,13 @@ $$
 取对数：
 
 $$
-\arg \det S(\omega) = -2\pi \xi(\omega) = -2\varphi(\omega)
+\arg \det S(\omega) = -2\pi \xi(\omega) = 2\varphi(\omega)
 $$
 
 2. **对能量求导**：
 
 $$
-\frac{d}{d\omega} \arg \det S = -2\pi \xi'(\omega) = -2\varphi'(\omega)
+\frac{d}{d\omega} \arg \det S = -2\pi \xi'(\omega) = 2\varphi'(\omega)
 $$
 
 3. **Wigner-Smith矩阵的迹**：
@@ -332,7 +332,7 @@ $$
 4. **合并**：
 
 $$
-\text{tr}\,Q = -2\varphi' = -2\pi \xi' = -2\pi \rho_{\text{rel}}
+\text{tr}\,Q = 2\varphi' = -2\pi \xi' = 2\pi \rho_{\text{rel}}
 $$
 
 整理得到：

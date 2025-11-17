@@ -458,7 +458,7 @@ $$
 | S矩阵 | $S(\omega)$ | 散射幅度 | 幺正矩阵 | [散射理论](../03-mathematical-tools/03-scattering-theory.md) |
 | Q矩阵 | $Q(\omega)$ | 时间延迟矩阵 | $-iS^\dagger \partial_\omega S$ | [Wigner-Smith延迟](../03-mathematical-tools/03-scattering-theory.md) |
 | 态密度 | $\rho(\omega)$ | 能级密度 | $\text{tr}\,\delta(\omega - H)$ | [谱理论](../03-mathematical-tools/01-spectral-theory.md) |
-| 谱移 | $\xi(\omega)$ | 相互作用的累积相移 | $\frac{1}{2\pi i}\ln\det S$ | [Birman-Kreĭn](../03-mathematical-tools/04-modular-theory.md) |
+| 谱移 | $\xi(\omega)$ | 相互作用的累积相移 | $-\frac{1}{2\pi i}\ln\det S$ | [Birman-Kreĭn](../03-mathematical-tools/03-scattering-theory.md) |
 | 相对熵 | $D(\rho\|\sigma)$ | 态的距离 | $\text{tr}(\rho\ln\rho - \rho\ln\sigma)$ | [相对熵](../03-mathematical-tools/05-information-geometry.md) |
 | Fisher度规 | $g_{ij}$ | 信息几何的度规 | $\mathbb{E}[\partial_i\ln p\,\partial_j\ln p]$ | [Fisher度规](../03-mathematical-tools/05-information-geometry.md) |
 | 广义熵 | $S_{\text{gen}}$ | 几何+物质熵 | $A/4G + S_{\text{out}}$ | [IGVP](../04-igvp-framework/) |
