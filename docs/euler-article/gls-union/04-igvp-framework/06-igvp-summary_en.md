@@ -113,27 +113,27 @@ $$\delta^2 S_{\text{rel}} = \mathcal{E}_{\text{can}}[h, h] \ge 0$$
 
 ```mermaid
 graph TB
-    S1["1. Generalized Entropy<br/>S_gen = A/4Gℏ + S_out"] --> S2["2. Small Causal Diamond<br/>𝒟_ℓ(p)"]
+    S1["Step 1: Generalized Entropy<br/>S_gen = A/4Gℏ + S_out"] --> S2["Step 2: Small Causal Diamond<br/>𝒟_ℓ(p)"]
 
-    S2 --> S3["3. Raychaudhuri<br/>δA ~ -∫ λR_kk"]
-    S2 --> S4["4. Modular Theory<br/>δS_out ~ ∫ λT_kk"]
+    S2 --> S3["Step 3: Raychaudhuri<br/>δA ~ -∫ λR_kk"]
+    S2 --> S4["Step 4: Modular Theory<br/>δS_out ~ ∫ λT_kk"]
 
-    S3 --> S5["5. IGVP<br/>δS_gen = 0"]
+    S3 --> S5["Step 5: IGVP<br/>δS_gen = 0"]
     S4 --> S5
 
-    S5 --> S6["6. Family Constraint<br/>∫ λ(R_kk - 8πGT_kk) = o(ℓ²)"]
+    S5 --> S6["Step 6: Family Constraint<br/>∫ λ(R_kk - 8πGT_kk) = o(ℓ²)"]
 
-    S6 --> S7["7. Radon Closure<br/>R_kk = 8πGT_kk"]
+    S6 --> S7["Step 7: Radon Closure<br/>R_kk = 8πGT_kk"]
 
-    S7 --> S8["8. Null Cone Characterization<br/>R_ab - 8πGT_ab = Φg_ab"]
+    S7 --> S8["Step 8: Null Cone Characterization<br/>R_ab - 8πGT_ab = Φg_ab"]
 
-    S8 --> S9["9. Bianchi<br/>Φ = ½R - Λ"]
+    S8 --> S9["Step 9: Bianchi<br/>Φ = ½R - Λ"]
 
-    S9 --> S10["10. Einstein Equations<br/>G_ab + Λg_ab = 8πGT_ab"]
+    S9 --> S10["Step 10: Einstein Equations<br/>G_ab + Λg_ab = 8πGT_ab"]
 
-    S10 --> S11["11. Second-Order Variation<br/>δ²S_rel ≥ 0"]
+    S10 --> S11["Step 11: Second-Order Variation<br/>δ²S_rel ≥ 0"]
 
-    S11 --> S12["12. Stability<br/>𝓔_can ≥ 0"]
+    S11 --> S12["Step 12: Stability<br/>𝓔_can ≥ 0"]
 
     style S1 fill:#e1f5ff
     style S5 fill:#fff4e1,stroke:#ff6b6b,stroke-width:3px

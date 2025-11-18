@@ -1208,11 +1208,11 @@ Let us summarize the structural definition of consciousness in GLS theory with a
 graph TB
     A["Consciousness Subsystem"] --> B["Five Structural Conditions"]
 
-    B --> C["1. Integration I_int"]
-    B --> D["2. Differentiation H_P"]
-    B --> E["3. Self-Referential World-Self Model"]
-    B --> F["4. Intrinsic Time Scale tau"]
-    B --> G["5. Causal Controllability E_T"]
+    B --> C["Step 1: Integration I_int"]
+    B --> D["Step 2: Differentiation H_P"]
+    B --> E["Step 3: Self-Referential World-Self Model"]
+    B --> F["Step 4: Intrinsic Time Scale tau"]
+    B --> G["Step 5: Causal Controllability E_T"]
 
     C --> H["High Mutual Information Between Subsystems"]
     D --> I["Rich Internal States"]

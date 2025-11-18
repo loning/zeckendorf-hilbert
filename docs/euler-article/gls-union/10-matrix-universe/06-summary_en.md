@@ -226,13 +226,13 @@ $$
 
 ```mermaid
 graph TD
-    A["01. Observer Definition<br/>(P_O, A_O, omega_O)"] --> B["02. Mind-Universe Isomorphism<br/>g^FR = g_param"]
-    B --> C["03. Multi-Observer Consensus<br/>omega_i -> omega_*"]
+    A["Step 01: Observer Definition<br/>(P_O, A_O, omega_O)"] --> B["Step 02: Mind-Universe Isomorphism<br/>g^FR = g_param"]
+    B --> C["Step 03: Multi-Observer Consensus<br/>omega_i -> omega_*"]
 
-    A --> D["04. Measurement Problem<br/>Born's Rule Derivation"]
+    A --> D["Step 04: Measurement Problem<br/>Born's Rule Derivation"]
     C --> D
 
-    D --> E["05. Reality Emergence<br/>Classical Limit"]
+    D --> E["Step 05: Reality Emergence<br/>Classical Limit"]
     C --> E
 
     A -.->|"Single Observer"| F["Subjective Phenomenology"]

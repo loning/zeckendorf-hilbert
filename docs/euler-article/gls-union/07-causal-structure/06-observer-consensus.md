@@ -178,15 +178,15 @@ $$
 ```mermaid
 graph TB
     subgraph "观察者九元组"
-        CI["1. 因果视野 C_i"]
-        PREC["2. 局域偏序 ≺_i"]
-        LAMBDA["3. 事件划分 Λ_i"]
-        ALG["4. 可观测代数 𝒜_i"]
-        STATE["5. 量子态 ω_i"]
-        MODEL["6. 物理模型 ℳ_i"]
-        UTIL["7. 效用函数 U_i"]
-        VEL["8. 四速度 u_i"]
-        COM["9. 通信图 {𝒞_ij}"]
+        CI["步骤1: 因果视野 C_i"]
+        PREC["步骤2: 局域偏序 ≺_i"]
+        LAMBDA["步骤3: 事件划分 Λ_i"]
+        ALG["步骤4: 可观测代数 𝒜_i"]
+        STATE["步骤5: 量子态 ω_i"]
+        MODEL["步骤6: 物理模型 ℳ_i"]
+        UTIL["步骤7: 效用函数 U_i"]
+        VEL["步骤8: 四速度 u_i"]
+        COM["步骤9: 通信图 {𝒞_ij}"]
     end
 
     CI --> GEO["几何信息"]

@@ -179,12 +179,12 @@ Let's walk through the complete logic chain and see how the six tools collaborat
 
 ```mermaid
 graph TB
-    S1["1. Boundary Spectral Triple<br/>【Noncommutative Geometry】"] --> S2["2. Scattering Matrix S(ω)<br/>【Scattering Theory】"]
-    S2 --> S3["3. Unified Time Scale<br/>【Spectral Theory: BK Formula】"]
-    S3 --> S4["4. Modular Flow Verification<br/>【Modular Theory】"]
-    S4 --> S5["5. IGVP Variation<br/>【Information Geometry】"]
-    S5 --> S6["6. Einstein Equation"]
-    S6 --> S7["7. QCA Universe Unification<br/>【Category Theory】"]
+    S1["Step 1: Boundary Spectral Triple<br/>【Noncommutative Geometry】"] --> S2["Step 2: Scattering Matrix S(ω)<br/>【Scattering Theory】"]
+    S2 --> S3["Step 3: Unified Time Scale<br/>【Spectral Theory: BK Formula】"]
+    S3 --> S4["Step 4: Modular Flow Verification<br/>【Modular Theory】"]
+    S4 --> S5["Step 5: IGVP Variation<br/>【Information Geometry】"]
+    S5 --> S6["Step 6: Einstein Equation"]
+    S6 --> S7["Step 7: QCA Universe Unification<br/>【Category Theory】"]
 
     style S1 fill:#e1f5ff
     style S3 fill:#fff4e1,stroke:#ff6b6b,stroke-width:2px

@@ -123,11 +123,11 @@ $$
 
 ```mermaid
 graph LR
-    A["01. 一致性泛函<br/>的构造"] --> B["02. 信息几何<br/>变分原理"]
-    B --> C["03. Einstein方程<br/>的导出"]
-    C --> D["04. 规范场论与QFT<br/>的涌现"]
-    D --> E["05. 物质场与流体<br/>的涌现"]
-    E --> F["06. 总结：<br/>物理统一的完成"]
+    A["步骤01: 一致性泛函<br/>的构造"] --> B["步骤02: 信息几何<br/>变分原理"]
+    B --> C["步骤03: Einstein方程<br/>的导出"]
+    C --> D["步骤04: 规范场论与QFT<br/>的涌现"]
+    D --> E["步骤05: 物质场与流体<br/>的涌现"]
+    E --> F["步骤06: 总结：<br/>物理统一的完成"]
 
     style A fill:#e1f5ff,stroke:#333,stroke-width:2px
     style B fill:#fff4e1,stroke:#333,stroke-width:2px

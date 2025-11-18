@@ -226,13 +226,13 @@ $$
 
 ```mermaid
 graph TD
-    A["01. 观察者定义<br/>(P_O, A_O, omega_O)"] --> B["02. 心-宇宙同构<br/>g^FR = g_param"]
-    B --> C["03. 多观察者共识<br/>omega_i -> omega_*"]
+    A["步骤01: 观察者定义<br/>(P_O, A_O, omega_O)"] --> B["步骤02: 心-宇宙同构<br/>g^FR = g_param"]
+    B --> C["步骤03: 多观察者共识<br/>omega_i -> omega_*"]
 
-    A --> D["04. 测量问题<br/>Born规则推导"]
+    A --> D["步骤04: 测量问题<br/>Born规则推导"]
     C --> D
 
-    D --> E["05. 实在涌现<br/>经典极限"]
+    D --> E["步骤05: 实在涌现<br/>经典极限"]
     C --> E
 
     A -.->|"单观察者"| F["主观现象学"]

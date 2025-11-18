@@ -261,6 +261,10 @@ Unification of three times
 - [Geometric Time](05-unified-time/05-geometric-times_en.md) - Geometric Dimension of Spacetime
 - [Modular Time](05-unified-time/06-modular-time_en.md) - Modular Flow and Time
 - [Cosmological Redshift](05-unified-time/07-cosmological-redshift_en.md) - Time Scale of Cosmic Expansion
+- [Time as Generalized Entropy Optimal Path](05-unified-time/08-time-as-entropy_en.md) - Time as Solution to Extremal Problem
+- [Time-Geometry-Interaction Unification](05-unified-time/09-time-geometry-interaction_en.md) - No "Force," Only Curvature of Time
+- [Topological Invariants and Time](05-unified-time/10-topological-invariants-time_en.md) - The "DNA" of Time
+- [Boundary Language](05-unified-time/11-boundary-language_en.md) - Where Time "Speaks"
 - [Time Theory Summary](05-unified-time/08-time-summary_en.md) - Complete Picture of Unified Time
 
 ### 📖 Part Six: Boundary Theory (06-boundary-theory/)

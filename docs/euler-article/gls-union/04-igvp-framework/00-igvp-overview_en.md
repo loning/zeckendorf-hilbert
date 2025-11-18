@@ -120,20 +120,20 @@ The complete IGVP derivation can be summarized by the following flowchart:
 
 ```mermaid
 graph TB
-    S1["1. Define Generalized Entropy<br/>S_gen = A/4Gℏ + S_out"] --> S2["2. Choose Small Causal Diamond<br/>𝒟_ℓ(p)"]
-    S2 --> S3["3. Calculate Area Variation<br/>δA ~ -∫ λR_kk dλ dA<br/>[Raychaudhuri Equation]"]
-    S2 --> S4["4. Calculate Field Entropy Variation<br/>δS_out ~ ∫ λT_kk dλ dA<br/>[Modular Theory]"]
+    S1["Step 1: Define Generalized Entropy<br/>S_gen = A/4Gℏ + S_out"] --> S2["Step 2: Choose Small Causal Diamond<br/>𝒟_ℓ(p)"]
+    S2 --> S3["Step 3: Calculate Area Variation<br/>δA ~ -∫ λR_kk dλ dA<br/>[Raychaudhuri Equation]"]
+    S2 --> S4["Step 4: Calculate Field Entropy Variation<br/>δS_out ~ ∫ λT_kk dλ dA<br/>[Modular Theory]"]
 
-    S3 --> S5["5. First-Order Variation Condition<br/>δS_gen = 0 (fixed volume)"]
+    S3 --> S5["Step 5: First-Order Variation Condition<br/>δS_gen = 0 (fixed volume)"]
     S4 --> S5
 
-    S5 --> S6["6. Radon-Type Closure<br/>Family Constraint → Pointwise Equation"]
-    S6 --> S7["7. Null-Direction Einstein Equation<br/>R_kk = 8πGT_kk"]
-    S7 --> S8["8. Tensorization<br/>Valid for all k^a"]
-    S8 --> S9["9. Einstein Equations<br/>G_ab + Λg_ab = 8πGT_ab"]
+    S5 --> S6["Step 6: Radon-Type Closure<br/>Family Constraint → Pointwise Equation"]
+    S6 --> S7["Step 7: Null-Direction Einstein Equation<br/>R_kk = 8πGT_kk"]
+    S7 --> S8["Step 8: Tensorization<br/>Valid for all k^a"]
+    S8 --> S9["Step 9: Einstein Equations<br/>G_ab + Λg_ab = 8πGT_ab"]
 
-    S9 --> S10["10. Second-Order Condition<br/>δ²S_rel ≥ 0"]
-    S10 --> S11["11. Stability<br/>Hollands-Wald Energy"]
+    S9 --> S10["Step 10: Second-Order Condition<br/>δ²S_rel ≥ 0"]
+    S10 --> S11["Step 11: Stability<br/>Hollands-Wald Energy"]
 
     style S1 fill:#fff4e1,stroke:#ff6b6b,stroke-width:2px
     style S5 fill:#e1f5ff,stroke:#ff6b6b,stroke-width:2px

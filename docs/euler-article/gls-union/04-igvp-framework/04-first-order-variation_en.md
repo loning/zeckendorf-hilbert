@@ -378,21 +378,21 @@ $$G_{ab} + \Lambda g_{ab} = 8\pi G T_{ab}$$
 
 ```mermaid
 graph TB
-    S1["1. Generalized Entropy<br/>S_gen = A/4Gℏ + S_out"] --> S2["2. Variation Principle<br/>δS_gen = 0 (Fixed V)"]
+    S1["Step 1: Generalized Entropy<br/>S_gen = A/4Gℏ + S_out"] --> S2["Step 2: Variation Principle<br/>δS_gen = 0 (Fixed V)"]
 
-    S2 --> S3["3. Raychaudhuri<br/>δA ~ -∫ λR_kk dλ dA"]
-    S2 --> S4["4. Modular Theory<br/>δS_out ~ ∫ λT_kk dλ dA"]
+    S2 --> S3["Step 3: Raychaudhuri<br/>δA ~ -∫ λR_kk dλ dA"]
+    S2 --> S4["Step 4: Modular Theory<br/>δS_out ~ ∫ λT_kk dλ dA"]
 
-    S3 --> S5["5. Family Constraint<br/>∫ λ(R_kk - 8πGT_kk) = o(ℓ²)"]
+    S3 --> S5["Step 5: Family Constraint<br/>∫ λ(R_kk - 8πGT_kk) = o(ℓ²)"]
     S4 --> S5
 
-    S5 --> S6["6. Radon Closure<br/>R_kk = 8πGT_kk ∀k"]
+    S5 --> S6["Step 6: Radon Closure<br/>R_kk = 8πGT_kk ∀k"]
 
-    S6 --> S7["7. Null Cone Characterization<br/>R_ab - 8πGT_ab = Φg_ab"]
+    S6 --> S7["Step 7: Null Cone Characterization<br/>R_ab - 8πGT_ab = Φg_ab"]
 
-    S7 --> S8["8. Bianchi<br/>∇_b(Φ - ½R) = 0"]
+    S7 --> S8["Step 8: Bianchi<br/>∇_b(Φ - ½R) = 0"]
 
-    S8 --> S9["9. Einstein Equations<br/>G_ab + Λg_ab = 8πGT_ab"]
+    S8 --> S9["Step 9: Einstein Equations<br/>G_ab + Λg_ab = 8πGT_ab"]
 
     style S1 fill:#e1f5ff
     style S5 fill:#fff4e1,stroke:#ff6b6b,stroke-width:2px

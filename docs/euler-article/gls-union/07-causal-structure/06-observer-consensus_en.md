@@ -164,15 +164,15 @@ Including:
 ```mermaid
 graph TB
     subgraph "Observer Nine-Tuple"
-        CI["1. Causal Horizon C_i"]
-        PREC["2. Local Partial Order ≺_i"]
-        LAMBDA["3. Event Partition Λ_i"]
-        ALG["4. Observable Algebra 𝒜_i"]
-        STATE["5. Quantum State ω_i"]
-        MODEL["6. Physical Model ℳ_i"]
-        UTIL["7. Utility Function U_i"]
-        VEL["8. Four-Velocity u_i"]
-        COM["9. Communication Graph {𝒞_ij}"]
+        CI["Step 1: Causal Horizon C_i"]
+        PREC["Step 2: Local Partial Order ≺_i"]
+        LAMBDA["Step 3: Event Partition Λ_i"]
+        ALG["Step 4: Observable Algebra 𝒜_i"]
+        STATE["Step 5: Quantum State ω_i"]
+        MODEL["Step 6: Physical Model ℳ_i"]
+        UTIL["Step 7: Utility Function U_i"]
+        VEL["Step 8: Four-Velocity u_i"]
+        COM["Step 9: Communication Graph {𝒞_ij}"]
     end
 
     CI --> GEO["Geometric Information"]

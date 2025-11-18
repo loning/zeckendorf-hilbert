@@ -123,11 +123,11 @@ This chapter will complete final unification in six parts:
 
 ```mermaid
 graph LR
-    A["01. Construction of<br/>Consistency Functional"] --> B["02. Information-Geometric<br/>Variational Principle"]
-    B --> C["03. Derivation of<br/>Einstein Equations"]
-    C --> D["04. Emergence of<br/>Gauge Field Theory & QFT"]
-    D --> E["05. Emergence of<br/>Matter Fields & Fluids"]
-    E --> F["06. Summary:<br/>Completion of Physical Unification"]
+    A["Step 01: Construction of<br/>Consistency Functional"] --> B["Step 02: Information-Geometric<br/>Variational Principle"]
+    B --> C["Step 03: Derivation of<br/>Einstein Equations"]
+    C --> D["Step 04: Emergence of<br/>Gauge Field Theory & QFT"]
+    D --> E["Step 05: Emergence of<br/>Matter Fields & Fluids"]
+    E --> F["Step 06: Summary:<br/>Completion of Physical Unification"]
 
     style A fill:#e1f5ff,stroke:#333,stroke-width:2px
     style B fill:#fff4e1,stroke:#333,stroke-width:2px
