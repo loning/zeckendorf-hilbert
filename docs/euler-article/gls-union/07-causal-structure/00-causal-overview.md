@@ -37,7 +37,7 @@ $$\boxed{\text{因果} = \text{偏序} = \text{时间} = \text{熵}}$$
 
 ## 📚 本篇内容地图
 
-本篇共7篇文章，揭示因果结构的完整图景：
+本篇共10篇文章，揭示因果结构的完整图景：
 
 ### 第1篇：什么是因果？
 
@@ -209,7 +209,120 @@ graph TB
 
 $$\lim_{t \to \infty} \omega_i^{(t)} = \omega_*, \quad \forall i$$
 
-### 第7篇：因果结构总结
+### 第7篇：因果结构前期总结
+
+对前6篇内容进行第一次总结，建立因果-时间-熵-边界的初步联系。
+
+### 第8篇：因果几何化——时空作为最小无损压缩
+
+**核心思想**：时空几何 = 因果约束的最小无损压缩
+
+**三步重构定理**：
+1. **因果偏序 → 拓扑**：Alexandrov拓扑由因果结构唯一确定
+2. **因果 + 时间定向 → 共形类**：光锥结构重构共形几何
+3. **因果 + 体积刻度 → 完整度量**：$(M, g) \Longleftrightarrow (M, \prec, \mu)$
+
+**描述复杂度-曲率泛函**：
+
+$$\mathcal{F}[g] = \mathcal{C}(\text{Reach}(g)) + \lambda \int_M |\text{Riem}(g)|^2 \, \mathrm{dVol}_g$$
+
+**曲率的因果诠释**：曲率 = 因果约束之间无法局域消除的相关性冗余密度
+
+```mermaid
+graph TB
+    CAUSAL["因果偏序<br/>(M,≺)"] -->|"Alexandrov拓扑"| TOPO["拓扑结构"]
+    TOPO -->|"光锥重构"| CONFORMAL["共形类[g]"]
+    CONFORMAL -->|"体积刻度μ"| METRIC["完整度量g"]
+
+    METRIC -.->|"压缩视角"| COMPRESS["描述复杂度𝒞"]
+    COMPRESS -->|"冗余"| CURV["曲率Riem"]
+
+    style CAUSAL fill:#e1f5ff
+    style METRIC fill:#fff4e1,stroke:#ff6b6b,stroke-width:3px
+```
+
+### 第9篇：误差几何与因果稳健性
+
+**核心思想**：误差 = 几何边界，稳健性 = 几何不变性
+
+**置信椭球（可信区域）**：
+
+$$\mathcal{R}_n(\alpha) = \left\{ \theta : n(\theta - \hat{\theta}_n)^\top I(\hat{\theta}_n) (\theta - \hat{\theta}_n) \leq \chi^2_{d,1-\alpha} \right\}$$
+
+**几何稳健判据**：因果结论应基于可信区域与可识别集的交集
+
+$$\mathcal{C}_n(\alpha) := \{\psi(\theta) : \theta \in \mathcal{R}_n(\alpha) \cap \mathcal{I}_n\}$$
+
+**多实验共识区域**：
+
+$$\mathcal{R}_{\text{cons}} := \bigcap_{k=1}^K \mathcal{R}_k(\alpha_k)$$
+
+```mermaid
+graph TB
+    ESTIMATE["点估计θ̂"] --> ELLIPSE["置信椭球ℛₙ(α)"]
+    IDENT["可识别集ℐₙ"] --> INTER["交集ℛₙ∩ℐₙ"]
+    ELLIPSE --> INTER
+
+    INTER --> ROBUST["稳健因果结论"]
+
+    MULTI["多实验"] --> CONS["共识区域ℛ_cons"]
+    CONS -->|"非空"| AGREEMENT["结果一致"]
+    CONS -->|"为空"| CONFLICT["显著冲突"]
+
+    style INTER fill:#fff4e1,stroke:#ff6b6b,stroke-width:3px
+    style ROBUST fill:#e1ffe1
+```
+
+### 第10篇：统一定理完整证明
+
+**核心定理**：在半经典-全息窗口内，三者完全等价：
+
+$$\boxed{
+\begin{aligned}
+&\text{几何因果: } q \in J^+(p) \\
+&\text{时间单调: } \tau(q) > \tau(p) \\
+&\text{熵箭头: } S_{\text{gen}}[\Sigma_q] \geq S_{\text{gen}}[\Sigma_p]
+\end{aligned}
+}$$
+
+**统一时间刻度等价类**：
+
+$$[\tau] = \{\tau_{\text{scatt}}, \tau_{\text{mod}}, \tau_{\text{geom}}\} / \sim$$
+
+**IGVP与Einstein方程的等价性**：
+
+$$\delta S_{\text{gen}} = 0 \Longleftrightarrow G_{\mu\nu} + \Lambda g_{\mu\nu} = 8\pi G T_{\mu\nu}$$
+
+**Markov性质与包含-排斥公式**：
+
+$$K_{\cup_j D_j} = \sum_{k \geq 1} (-1)^{k-1} \sum_{j_1 < \cdots < j_k} K_{D_{j_1} \cap \cdots \cap D_{j_k}}$$
+
+```mermaid
+graph TB
+    subgraph "统一定理核心"
+        CAUSAL["因果偏序"] <-->|"定理2"| TIME["时间刻度"]
+        TIME <-->|"定理2"| ENTROPY["熵箭头"]
+        ENTROPY <-->|"定理2"| CAUSAL
+    end
+
+    subgraph "时间刻度统一"
+        SCATT["散射时间"] <-->|"定理1"| MOD["模流时间"]
+        MOD <-->|"定理1"| GEOM["几何时间"]
+    end
+
+    subgraph "变分原理"
+        IGVP["δS_gen=0"] <-->|"定理3"| EINSTEIN["Einstein方程"]
+    end
+
+    TIME -.-> MOD
+    ENTROPY -.-> IGVP
+
+    style CAUSAL fill:#fff4e1,stroke:#ff6b6b,stroke-width:4px
+    style TIME fill:#e1f5ff
+    style ENTROPY fill:#e1ffe1
+```
+
+**完整图景**：
 
 回顾整个因果结构的统一图景：
 
@@ -217,7 +330,7 @@ $$\boxed{\text{偏序} \Longleftrightarrow \text{时间刻度} \Longleftrightarr
 
 **最深刻的洞察**：
 
-因果不是一个外加的结构，而是**时间、几何、熵三者统一的内在结构**。
+因果不是一个外加的结构，而是**时间、几何、熵三者统一的内在结构**，并通过严格的数学定理得到证明。
 
 ## 🔗 与其他篇的联系
 
@@ -259,19 +372,24 @@ $$\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\mathrm{rel}}(\omega) = 
 ## 💡 学习路线图
 
 ```mermaid
-graph LR
+graph TB
     START["开始因果结构"] --> WHAT["01-什么是因果"]
     WHAT --> DIAMOND["02-因果钻石"]
     DIAMOND --> ORDER["03-偏序结构"]
     ORDER --> NULL["04-Null-Modular双覆盖"]
     NULL --> MARKOV["05-Markov性"]
     MARKOV --> OBSERVER["06-观察者共识"]
-    OBSERVER --> SUM["07-总结"]
+    OBSERVER --> SUM1["07-前期总结"]
+
+    SUM1 --> COMPRESS["08-因果几何化"]
+    COMPRESS --> ERROR["09-误差几何"]
+    ERROR --> PROOF["10-统一定理证明"]
 
     NULL -.->|"深入"| TECH["技术附录"]
+    PROOF -.->|"严格证明"| TECH
 
     style START fill:#e1f5ff
-    style SUM fill:#e1ffe1
+    style PROOF fill:#e1ffe1,stroke:#ff6b6b,stroke-width:4px
     style NULL fill:#fff4e1,stroke:#ff6b6b,stroke-width:3px
 ```
 
@@ -280,14 +398,19 @@ graph LR
 **快速通道**（抓住核心）：
 1. 01-什么是因果（三重等价）
 2. 04-Null-Modular双覆盖（核心构造）
-3. 05-Markov性（信息传播）
-4. 07-总结（完整图景）
+3. 08-因果几何化（压缩视角）
+4. 10-统一定理证明（完整图景）
 
 **深入学习**（完整理解）：
-按顺序阅读01-07，配合源理论文档
+按顺序阅读01-10，配合源理论文档
 
 **技术研究**（严格推导）：
-重点阅读03-偏序结构的粘合定理、04-Null-Modular的局域化证明
+重点阅读：
+- 03-偏序结构的粘合定理
+- 04-Null-Modular的局域化证明
+- 08-描述复杂度-曲率泛函
+- 09-Fisher信息几何
+- 10-统一定理的完整证明（公理G/S/M/B/E/T）
 
 ## 🎓 核心结论预告
 
