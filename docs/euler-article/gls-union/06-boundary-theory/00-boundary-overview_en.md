@@ -28,7 +28,7 @@ graph TB
 
 ## 📚 Chapter Content Map
 
-This chapter consists of 10 articles, revealing the complete picture of boundary physics:
+This chapter consists of 11 articles, revealing the complete picture of boundary physics:
 
 ### Article 1: Why Boundary?
 
@@ -113,74 +113,133 @@ $$\text{Brown-York Energy} \Longleftrightarrow \text{Boundary Time Generator} \L
 
 ### Article 7: Boundary as Stage
 
-**Core Idea**: Physics truly happens on boundary, bulk is just "projection" of boundary data
+**Core Idea**: Physics truly happens on boundary, bulk is just "projection" or "holographic image" of boundary data
 
-**Boundary Triplet**: $(∂M, \mathcal{A}_∂, ω_∂)$
+**Boundary Triplet**: $(∂M, \mathcal{A}_∂, ω_∂)$ unifies all boundary physics
+- $∂M$: Geometric boundary (physical space of stage)
+- $\mathcal{A}_∂$: Boundary algebra (set of observables/script)
+- $ω_∂$: Boundary state (rules for expectation values/director's instructions)
 
 **Three Actors, Same Stage**:
-1. Scattering Actor: $\text{tr}Q(\omega)/2\pi$
-2. Modular Flow Actor: $K_D = -\log \Delta$
-3. Geometric Actor: $H_∂^{\text{grav}}$
+1. **Scattering Actor**: Time translation $= \int\omega d\mu^{\text{scatt}}(\omega)$
+2. **Modular Flow Actor**: Modular Hamiltonian $K_D = -\log \Delta$
+3. **Geometric Actor**: Brown-York Hamiltonian $H_∂^{\text{grav}}$
 
 **Boundary Trinity Theorem**:
 $$H_∂ = \int\omega d\mu^{\text{scatt}} = c_1 K_D = c_2^{-1} H_∂^{\text{grav}}$$
 
-**Null-Modular Double Cover**: Diamond boundary decomposes as $E^+ \sqcup E^-$
+**Null-Modular Double Cover**:
+- Causal diamond boundary decomposes as $E^+ \sqcup E^-$ (future/past null pieces)
+- Modular Hamiltonian localized on null boundary
+- $\mathbb{Z}_2$ holonomy characterizes topological structure
 
-**Daily Analogy**: Theater stage (boundary) is where performance truly happens
+**Daily Analogy**: Theater stage (boundary) is where performance truly happens, three actors are actually three guises of the same person
 
 ### Article 8: Boundary, Observer, and Time
 
 **Core Idea**: Time axis = geodesic chosen by observer attention on boundary section family
 
+**Three Profound Questions**:
+1. What is the boundary like without an observer?
+2. What mathematical object is the world that the observer "sees"?
+3. **Is time a product of the observer's "attention"?**
+
 **Observer Triplet**: $\mathcal{O} = (\gamma, \Lambda, \mathcal{A}_{\gamma,\Lambda})$
+- $\gamma$: Worldline (observer trajectory)
+- $\Lambda$: Resolution (minimum scale)
+- $\mathcal{A}_{\gamma,\Lambda}$: Observable algebra (measurable physical quantities)
 
 **World Section**: $\Sigma_\tau = (\gamma(\tau), \mathcal{A}_{\gamma,\Lambda}(\tau), \rho_{\gamma,\Lambda}(\tau))$
+The world the observer "sees" at time $\tau$
 
 **Core Theorems**:
-- **No-Observer Time Theorem**: No observer → No time, only scale field
-- **Attention Geodesic Theorem**: Time axis = geodesic satisfying generalized entropy stationary + scale consistency
-- **Section Universe**: All sections form space $\mathfrak{S}$, observer experience = a path in it
+- **No-Observer Time Theorem**: No observer → No time, only scale field $\kappa(\omega)$
+- **Attention Geodesic Theorem**: Time axis $\tau$ must satisfy:
+  1. Scale condition: $\frac{d\tau}{d\lambda} = \int \kappa(\omega) w_\lambda(\omega) d\omega$
+  2. Generalized entropy geodesic: Section family $\{\sigma(\tau)\}$ makes $S_{\text{gen}}$ stationary
+- **Section Universe $\mathfrak{S}$**: Space of all possible sections, observer experience = a path in it
 
-**New Interpretation of Double-Slit Interference**: With/without detector = different paths in section universe!
+**New Interpretation of Double-Slit Interference**: With/without detector = different paths in section universe, quantum superposition = path superposition!
 
-**Daily Analogy**: Film projection (attention selects frame sequence)
+**Daily Analogy**: Film reel (all frames exist simultaneously), projector (attention) selects frame sequence to produce time flow
 
 ### Article 9: Boundary Clock
 
-**Core Idea**: Boundary clock = directly measure $\kappa(\omega)$ using windowed spectral readings
+**Core Idea**: Boundary clock = directly measure scale master $\kappa(\omega)$ using windowed spectral readings
+
+**Physical Challenge**: Ideal clock is impossible
+- Requires infinite time $t\in(-\infty,+\infty)$ to run
+- Requires infinite bandwidth $\omega\in\mathbb{R}$
+- Requires infinite energy
 
 **Ideal vs Windowed Reading**:
-- Ideal: $\mathcal{R}_{\text{ideal}} = \int_{-\infty}^{+\infty} \kappa(\omega) f(\omega) d\omega$ (impossible)
-- Windowed: $\mathcal{R}_{\text{window}} = \int_{-W}^{+W} W(\omega) \kappa(\omega) f(\omega) d\omega$ (practically feasible)
+- **Ideal Reading**: $\mathcal{R}_{\text{ideal}} = \int_{-\infty}^{+\infty} \kappa(\omega) f(\omega) d\omega$ (impossible)
+- **Windowed Reading**: $\mathcal{R}_{\text{window}} = \int_{-W}^{+W} W(\omega) \kappa(\omega) f(\omega) d\omega$ (practically feasible)
 
-**PSWF/DPSS Optimal Window Functions**:
-- Optimal energy concentration under constraints of time $[-T,T]$ and frequency band $[-W,W]$
+**PSWF/DPSS Optimal Window Functions** (Slepian Theorem):
+- **Prolate Spheroidal Wave Functions** are the optimal window function family
+- **Optimal energy concentration** under constraints of time window $[-T,T]$ and frequency band $[-W,W]$
 - Effective degrees of freedom: $N_{\text{eff}} \approx 2WT/\pi$
+- Eigenvalues $\lambda_n$ drop sharply: $\lambda_0\approx 1$, $\lambda_{2WT/\pi}\approx 0$
 
-**Windowed Clock**: $\Theta_\Delta(\omega) = (\rho_{\text{rel}} * P_\Delta)(\omega)$ solves negative delay
+**Windowed Clock Formula**:
+$$\Theta_\Delta(\omega) = (\rho_{\text{rel}} * P_\Delta)(\omega)$$
+Solves negative delay problem, ensures causality!
 
-**Experimental Applications**: Atomic clock networks, microwave scattering, FRB, δ-ring scattering
+**Experimental Applications**:
+- Atomic clock networks (GPS/optical clocks)
+- Microwave cavity scattering experiments
+- Fast Radio Burst (FRB) time delay
+- δ-ring scattering standard source
 
-**Daily Analogy**: Finite precision watch (vs ideal infinite clock)
+**Daily Analogy**: Finite precision watch vs ideal infinite precision clock, minimize error using optimal window functions
 
 ### Article 10: Trinity Master Scale
 
 **Core Idea**: Unification of three time definitions is not coincidence, but profound necessity of boundary geometry
 
-**Scale Equivalence Class**: $[\kappa]$ - unique under affine transformation
-
-**Trinity Master Scale**:
+**Ultimate Question**: **Why** do three completely different definitions give the **same** time scale?
 $$\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\text{rel}}(\omega) = \frac{1}{2\pi}\text{tr}Q(\omega)$$
 
+**Scale Equivalence Class**: $[\kappa]$ - uniqueness under affine transformation
+- Two scales equivalent: $\tau_2 = a\tau_1 + b$ (allowing rescaling and translation)
+- All affinely related scales form equivalence class $[\kappa]$
+- **Different units measure the same length!** (e.g., meters, feet, light-seconds)
+
+**Three Definitions of Trinity Master Scale**:
+
+1. **Scattering Phase Derivative** (scattering theory):
+   $$\kappa_{\text{scatt}}(\omega) = \frac{\varphi'(\omega)}{\pi}$$
+   Physical picture: Wavefunction phase change when particles scatter
+
+2. **Modular Flow Time Parameter** (operator algebra):
+   $$\kappa_{\text{mod}}(\omega) = \rho_{\text{rel}}(\omega)$$
+   Physical picture: Evolution parameter induced by quantum state entanglement structure
+
+3. **Brown-York Boundary Energy** (general relativity):
+   $$\kappa_{\text{grav}}(\omega) = \frac{1}{2\pi}\text{tr}Q(\omega)$$
+   Physical picture: Time translation generated by boundary quasi-local energy
+
 **Core Theorems**:
-- **Affine Uniqueness Theorem**: $\kappa_{\text{scatt}} \sim \kappa_{\text{mod}} \sim \kappa_{\text{grav}}$
-- **Topological Class Equivalence**: $[K]$ equivalent to half-phase transition, fermion statistics, time crystal
-- **Generalized Entropy Variation**: $\delta^2 S_{\text{gen}} = \int \kappa(\omega) \Psi(\omega) d\omega + C\delta^2\Lambda_{\text{eff}}$
+- **Affine Uniqueness Theorem** (Theorem 3.1): $\kappa_{\text{scatt}} \sim \kappa_{\text{mod}} \sim \kappa_{\text{grav}}$
+  Three scales belong to the same equivalence class!
+- **Topological Class Equivalence** (Theorem 3.2): Null-Modular $\mathbb{Z}_2$ class $[K]$ equivalent to:
+  - Half-phase transition $\Delta\varphi = \pi \mod 2\pi$
+  - Fermion statistics sign $(-1)^F$
+  - Time crystal period doubling
+- **Generalized Entropy Variation** (Theorem 3.3):
+  $$\delta^2 S_{\text{gen}} = \int \kappa(\omega) \Psi(\omega) d\omega + C\delta^2\Lambda_{\text{eff}}$$
+  Time scale is the weight of generalized entropy second-order variation!
 
-**Null-Modular $\mathbb{Z}_2$ Class**: $[K] \in H^2(Y,\partial Y;\mathbb{Z}_2)$ - topological DNA of time
+**Null-Modular $\mathbb{Z}_2$ Class**: $[K] \in H^2(Y,\partial Y;\mathbb{Z}_2)$
+- **Topological DNA** of time
+- Encodes global topological information on boundary null surfaces
+- Determines fundamental properties like fermion statistics, half-integer spin
 
-**Daily Analogy**: Three blind men touching the same elephant (measured values must agree)
+**Daily Analogy**: Three blind men touching an elephant (deepened version)
+- Blind man A touches trunk (scattering), B touches leg (modular flow), C touches tail (gravity)
+- Reported "lengths" $L_1, L_2, L_3$ must be equal
+- Reason: They are all **intrinsic scales** of the elephant, determined by intrinsic geometry!
 
 ### Article 11: Boundary Theory Summary
 
@@ -235,18 +294,31 @@ Boundary theory completes IGVP variational principle:
 ## 💡 Learning Roadmap
 
 ```mermaid
-graph LR
-    START["Start Boundary Theory"] --> WHY["01-Why Boundary"]
-    WHY --> TRIPLE["02-Boundary Triplet"]
-    TRIPLE --> GHY["03-GHY Boundary Term"]
-    GHY --> BY["04-Brown-York Energy"]
-    BY --> OBS["05-Boundary Observer"]
-    OBS --> SUM["06-Summary"]
+graph TB
+    START["Start Boundary Theory"] --> PART1["Part 1: Basic Framework<br/>(Articles 1-6)"]
+
+    PART1 --> WHY["01-Why Boundary<br/>Three Historical Evidences"]
+    WHY --> TRIPLE["02-Boundary Triplet<br/>(∂M, 𝒜_∂, ω_∂)"]
+    TRIPLE --> GHY["03-GHY Boundary Term<br/>Variational Well-Definedness"]
+    GHY --> BY["04-Brown-York Energy<br/>Quasi-Local Energy"]
+    BY --> OBS["05-Boundary Observer<br/>Three Observer Unifications"]
+    OBS --> SUM1["06-Mid-Summary"]
+
+    SUM1 --> PART2["Part 2: Deepening Unification<br/>(Articles 7-10)"]
+
+    PART2 --> STAGE["07-Boundary as Stage<br/>Boundary Trinity"]
+    STAGE --> TIME["08-Boundary Observer and Time<br/>Attention Geodesic"]
+    TIME --> CLOCK["09-Boundary Clock<br/>PSWF Optimal Window Functions"]
+    CLOCK --> MASTER["10-Trinity Master Scale<br/>Affine Uniqueness"]
+
+    MASTER --> FINAL["11-Boundary Theory Summary<br/>Complete Picture"]
 
     GHY -.->|"Mathematical Details"| TECH["Technical Appendix"]
 
     style START fill:#e1f5ff
-    style SUM fill:#e1ffe1
+    style PART1 fill:#fff4e1
+    style PART2 fill:#ffe1e1
+    style FINAL fill:#e1ffe1,stroke:#00cc00,stroke-width:3px
 ```
 
 ### Recommended Reading Order
@@ -254,14 +326,20 @@ graph LR
 **Quick Path** (grasp core):
 1. 01-Why Boundary (intuition)
 2. 03-GHY Boundary Term (core formula)
-3. 04-Brown-York Energy (physical application)
-4. 06-Summary (complete picture)
+3. 07-Boundary as Stage (unified perspective)
+4. 10-Trinity Master Scale (ultimate unification)
+5. 11-Summary (complete picture)
 
-**Deep Learning** (complete understanding):
-Read 01-06 in order, with source theory documents
+**Complete Learning** (deep understanding):
+Read 01-11 in order, divided into two stages:
+- **Stage 1**: 01-06 (basic framework)
+- **Stage 2**: 07-10 (deepening unification)
 
 **Technical Research** (rigorous derivation):
-Focus on appendix of 03-GHY Boundary Term, understand every step of variational calculation
+Focus on:
+- Appendix of 03-GHY Boundary Term (variational calculation)
+- 09-Boundary Clock (PSWF/DPSS mathematics)
+- 10-Trinity Master Scale (topological $\mathbb{Z}_2$ class)
 
 ## 🎓 Core Conclusions Preview
 
