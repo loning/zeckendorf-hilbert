@@ -28,7 +28,7 @@ graph TB
 
 ## 📚 本篇内容地图
 
-本篇共6篇文章，揭示边界物理的完整图景：
+本篇共10篇文章，揭示边界物理的完整图景：
 
 ### 第1篇：为什么是边界？
 
@@ -107,9 +107,84 @@ $$\text{Brown-York能量} \Longleftrightarrow \text{边界时间生成元} \Long
 
 **统一刻度**：所有观察者共享同一时间刻度等价类 $[\kappa]$！
 
-### 第6篇：边界理论总结
+### 第6篇：边界理论阶段总结
 
-**终极图景**：
+**前6篇总结**：边界数据三元组的基础框架
+
+### 第7篇：边界作为舞台
+
+**核心思想**：物理真正发生在边界,体域只是边界数据的"投影"
+
+**边界三元组**：$(∂M, \mathcal{A}_∂, ω_∂)$
+
+**三位演员,同一舞台**：
+1. 散射演员：$\text{tr}Q(\omega)/2\pi$
+2. 模流演员：$K_D = -\log \Delta$
+3. 几何演员：$H_∂^{\text{grav}}$
+
+**边界三位一体定理**：
+$$H_∂ = \int\omega d\mu^{\text{scatt}} = c_1 K_D = c_2^{-1} H_∂^{\text{grav}}$$
+
+**Null-Modular双覆盖**：菱形边界分解为$E^+ \sqcup E^-$
+
+**日常类比**：剧院舞台(边界)是演出真正发生的地方
+
+### 第8篇：边界、观察者与时间
+
+**核心思想**：时间轴=观察者注意力在边界截面族上选择的测地线
+
+**观察者三元组**：$\mathcal{O} = (\gamma, \Lambda, \mathcal{A}_{\gamma,\Lambda})$
+
+**世界截面**：$\Sigma_\tau = (\gamma(\tau), \mathcal{A}_{\gamma,\Lambda}(\tau), \rho_{\gamma,\Lambda}(\tau))$
+
+**核心定理**：
+- **无观察者时间定理**：无观察者→无时间,只有刻度场
+- **注意力测地线定理**：时间轴=满足广义熵驻定+刻度一致的测地线
+- **截面宇宙**：所有截面构成空间$\mathfrak{S}$,观察者体验=其中一条路径
+
+**双缝干涉新解释**：有/无探测器=截面宇宙中不同路径!
+
+**日常类比**：电影放映(注意力选择帧序列)
+
+### 第9篇：边界钟
+
+**核心思想**：边界钟=用窗口化谱读数直接测量$\kappa(\omega)$
+
+**理想vs窗口化读数**：
+- 理想：$\mathcal{R}_{\text{ideal}} = \int_{-\infty}^{+\infty} \kappa(\omega) f(\omega) d\omega$ (不可实现)
+- 窗口化：$\mathcal{R}_{\text{window}} = \int_{-W}^{+W} W(\omega) \kappa(\omega) f(\omega) d\omega$ (实际可行)
+
+**PSWF/DPSS最优窗函数**：
+- 在时间$[-T,T]$和频带$[-W,W]$约束下能量集中度最优
+- 有效自由度：$N_{\text{eff}} \approx 2WT/\pi$
+
+**窗口化时钟**：$\Theta_\Delta(\omega) = (\rho_{\text{rel}} * P_\Delta)(\omega)$ 解决负延迟
+
+**实验应用**：原子钟网络、微波散射、FRB、δ-环散射
+
+**日常类比**：有限精度手表(vs理想无限时钟)
+
+### 第10篇：三位一体母尺
+
+**核心思想**：三种时间定义的统一不是巧合,而是边界几何的深刻必然
+
+**刻度等价类**：$[\kappa]$ - 仿射变换意义下唯一
+
+**三位一体母尺**：
+$$\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\text{rel}}(\omega) = \frac{1}{2\pi}\text{tr}Q(\omega)$$
+
+**核心定理**：
+- **仿射唯一性定理**：$\kappa_{\text{scatt}} \sim \kappa_{\text{mod}} \sim \kappa_{\text{grav}}$
+- **拓扑类等价**：$[K]$与半相位跃迁、费米统计、时间晶体等价
+- **广义熵变分**：$\delta^2 S_{\text{gen}} = \int \kappa(\omega) \Psi(\omega) d\omega + C\delta^2\Lambda_{\text{eff}}$
+
+**Null-Modular $\mathbb{Z}_2$类**：$[K] \in H^2(Y,\partial Y;\mathbb{Z}_2)$ - 时间的拓扑DNA
+
+**日常类比**：三个盲人摸同一头象(测量值必须一致)
+
+### 第11篇：边界理论总结
+
+**完整图景**：
 
 ```mermaid
 graph TB

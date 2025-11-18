@@ -4,7 +4,7 @@
 
 ## 🎯 Complete Picture
 
-After exploring 8 articles, we have finally revealed the most central insight of GLS theory:
+After exploring 13 articles, we have finally revealed the most central insight of GLS theory:
 
 $$\boxed{\text{Time} \equiv \text{Phase} \equiv \text{Proper Time} \equiv \text{Scattering Delay} \equiv \text{Spectral Shift} \equiv \text{Geometry} \equiv \text{Modular Flow} \equiv \text{Redshift}}$$
 
@@ -46,7 +46,7 @@ graph TB
     style UNIFIED fill:#ffe1e1,stroke:#ff6b6b,stroke-width:4px
 ```
 
-## 📚 Review of Eight Articles
+## 📚 Review of Thirteen Articles
 
 ### Article 0: Overview (Navigation Map)
 
@@ -223,7 +223,112 @@ $$\Delta t_{\text{obs}} = (1 + z)\Delta t_{\text{rest}}$$
 
 **Insight**: Redshift is cosmic expansion's shear on time scale!
 
-### Article 8 (This Article): Summary
+### Article 8: Time as Optimal Path of Generalized Entropy
+
+**Theme**: Time emerges from generalized entropy variational principle
+
+**Core Principle**:
+
+$$\boxed{\delta S_{\text{gen}} = 0}$$
+
+**Physical Meaning**:
+- Time does not flow uniformly, but is the optimal path of the system in the generalized entropy landscape
+- Entropy extremum principle determines time evolution
+- Time arrow = entropy increase direction
+
+**QNEC/QFC**:
+- Quantum null energy condition: $S''_{\text{gen}} \geq 0$
+- Second-order variational property of generalized entropy
+- Connection with Einstein equations
+
+**Insight**: Time is the geodesic in entropy landscape!
+
+### Article 9: Unification of Time-Geometry-Interaction
+
+**Theme**: Total connection unifies all "forces"
+
+**Core Formula**:
+
+$$\boxed{\Omega = \omega_{\text{LC}} \oplus A_{\text{YM}} \oplus \Gamma_{\text{res}}}$$
+
+**Three Connections**:
+- $\omega_{\text{LC}}$: Levi-Civita connection (gravity)
+- $A_{\text{YM}}$: Yang-Mills connection (gauge field)
+- $\Gamma_{\text{res}}$: Resonance/residual connection (interaction)
+
+**Unified Time**: Parallel transport induced by connection defines unified time flow
+
+**Insight**: All interactions are geometric manifestations of time!
+
+### Article 10: Topological Invariants and Time
+
+**Theme**: Topological "DNA" of time scale
+
+**Three Major Topological Invariants**:
+
+1. **Time scale master ruler**: $\kappa(\omega)$ invariant under affine transformation
+2. **$\mathbb{Z}_2$ holonomy**: $\nu_{\sqrt{S}}(\gamma) = \pm 1$
+3. **Relative topological class**: $[K] \in H^2(Y,\partial Y;\mathbb{Z}_2)$
+
+**Physical Meaning**:
+- Topological invariants characterize "global properties" of time
+- Connection with fermion statistics
+- Topological constraints of spacetime
+
+**Insight**: Time has topological "fingerprint"!
+
+### Article 11: Boundary Language Unified Framework
+
+**Theme**: Boundary three axioms restate time
+
+**Boundary Three Axioms**:
+
+**A1 (Conservation and Flux)**:
+$$\partial_t E_{\text{bulk}} = \Phi_{\text{in}} - \Phi_{\text{out}}$$
+Balance like a bank statement!
+
+**A2 (Time Generation)**:
+$$\delta_\xi = [K, \cdot]$$
+Time = generation by boundary modular Hamiltonian
+
+**A3 (Monotonicity and Consistency)**:
+$$S'_{\text{rel}} \geq 0$$
+Second law of thermodynamics
+
+**Boundary Triple**: $(\partial M, \mathcal{A}_\partial, \omega_\partial)$
+
+**Insight**: Time completely determined by boundary data!
+
+### Article 12: Time Domains and Solvable Models
+
+**Theme**: Scope of applicability of scale identity
+
+**Three Major Domains**:
+
+1. **Elastic-Unitary Domain**: Standard scattering theory
+   - $S$ unitary
+   - Real-valued phase
+   - Discrete/continuous spectrum
+
+2. **Non-unitary-Absorption Domain**: Open systems
+   - $S$ non-unitary
+   - Complex phase (decay)
+   - Resonance states
+
+3. **Long-range Potential Domain**: Gravity and cosmology
+   - Modified scattering theory
+   - Asymptotic symmetries
+   - Redshift as time scale
+
+**Windowed Clock**:
+
+$$\boxed{\Theta_\Delta(\omega) = (\rho_{\text{rel}} * P_\Delta)(\omega)}$$
+
+Solves negative delay problem!
+
+**Insight**: Time scale formula holds in all physical situations!
+
+### Article 13 (This Article): Summary
 
 **Theme**: Complete unified picture
 

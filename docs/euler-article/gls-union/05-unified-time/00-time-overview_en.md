@@ -1,4 +1,4 @@
-# Unified Time Chapter: The Nature of Time
+# Unified Time: The Essence of Time
 
 > *"Time is not one, and time is not many—time is different projections of the same object."*
 
@@ -7,14 +7,14 @@
 In physics, "time" appears in many forms:
 
 - **Relativity**: Proper time $\tau$, Killing time, conformal time
-- **Quantum mechanics**: Phase $\phi = -Et/\hbar$, evolution operator $U(t)$
-- **Scattering theory**: Wigner-Smith group delay $Q(\omega)$
+- **Quantum Mechanics**: Phase $\phi = -Et/\hbar$, evolution operator $U(t)$
+- **Scattering Theory**: Wigner-Smith group delay $Q(\omega)$
 - **Cosmology**: Cosmic time $t$, redshift $z$
-- **Information theory**: Modular time (Tomita-Takesaki)
+- **Information Theory**: Modular time (Tomita-Takesaki)
 
 **Are these "times" different?**
 
-**GLS theory's answer**: **No! They are different projections of the same "unified time scale"!**
+**GLS Theory Answer**: **No! They are different projections of the same "unified time scale"!**
 
 ```mermaid
 graph TB
@@ -35,7 +35,7 @@ graph TB
 
 $$\boxed{\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\text{rel}}(\omega) = \frac{1}{2\pi}\text{tr}\,Q(\omega)}$$
 
-**This equality says**:
+**This equation says**:
 1. **Phase derivative** $\varphi'(\omega)/\pi$ (quantum)
 2. **Relative density of states** $\rho_{\text{rel}}(\omega)$ (spectral theory)
 3. **Group delay trace** $\text{tr}\,Q(\omega)/(2\pi)$ (scattering)
@@ -51,11 +51,11 @@ $$\boxed{\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\text{rel}}(\omeg
 
 $$\phi = \frac{mc^2}{\hbar}\int d\tau$$
 
-**Physical meaning**: Phase is a "quantum counter" of proper time!
+**Physical Meaning**: Phase is the "quantum counter" of proper time!
 
 ### Station 2: Scattering Phase and Group Delay
 
-**Wigner-Smith matrix**:
+**Wigner-Smith Matrix**:
 
 $$Q(\omega) = -iS(\omega)^\dagger \frac{\partial S(\omega)}{\partial \omega}$$
 
@@ -63,21 +63,21 @@ $$Q(\omega) = -iS(\omega)^\dagger \frac{\partial S(\omega)}{\partial \omega}$$
 
 $$\text{tr}\,Q(\omega) = \frac{\partial \Phi(\omega)}{\partial \omega}$$
 
-Where $\Phi = \arg\det S$ is the total scattering phase.
+where $\Phi = \arg\det S$ is the total scattering phase.
 
-**Physical meaning**: Group delay measures time delay of wave packet in scattering!
+**Physical Meaning**: Group delay measures time delay of wave packet in scattering!
 
 ### Station 3: Spectral Shift Function
 
-**Birman-Kreĭn formula**:
+**Birman-Kreĭn Formula**:
 
 $$\det S(\omega) = e^{-2\pi i \xi(\omega)}$$
 
-**Relative density of states**:
+**Relative Density of States**:
 
 $$\rho_{\text{rel}}(\omega) = -\frac{d\xi}{d\omega}$$
 
-**Physical meaning**: Spectral shift function measures energy level shifts caused by interaction!
+**Physical Meaning**: Spectral shift function measures energy level shifts caused by interactions!
 
 ### Station 4: Time Scale Identity (⭐ Core)
 
@@ -87,7 +87,7 @@ From Birman-Kreĭn formula:
 
 $$\Phi(\omega) = \arg\det S = -2\pi\xi(\omega)$$
 
-Differentiating:
+Taking derivative:
 
 $$\frac{d\Phi}{d\omega} = -2\pi\frac{d\xi}{d\omega} = 2\pi\rho_{\text{rel}}(\omega)$$
 
@@ -101,36 +101,82 @@ $$\frac{1}{2\pi}\text{tr}\,Q = \rho_{\text{rel}}$$
 
 **Identity holds!**
 
-### Station 5: Geometric Times
+### Station 5: Geometric Time
 
 In curved spacetime, there are various "times":
 
 | Time Type | Definition | Applicable Scenario |
 |---------|------|---------|
-| **Killing time** | $\partial/\partial t$ is Killing vector | Static spacetime |
-| **ADM lapse** | $N$ in $ds^2 = -N^2dt^2 + \cdots$ | $(3+1)$ decomposition |
-| **Null affine parameter** | $k^a \nabla_a k^b = 0$ | Null geodesics |
-| **Conformal time** | $d\eta = dt/a(t)$ | FRW universe |
+| **Killing Time** | $\partial/\partial t$ is Killing vector | Static spacetime |
+| **ADM Lapse** | $N$ in $ds^2 = -N^2dt^2 + \cdots$ | $(3+1)$ decomposition |
+| **Null Affine Parameter** | $k^a \nabla_a k^b = 0$ | Null geodesics |
+| **Conformal Time** | $d\eta = dt/a(t)$ | FRW universe |
 
-**Key**: They are all in the equivalence class of unified scale!
+**Key**: They all belong to the equivalence class of unified scale!
 
 ### Station 6: Modular Time
 
-**Tomita-Takesaki theory**:
+**Tomita-Takesaki Theory**:
 
 For state $\omega$ and algebra $\mathcal{A}$, define modular flow:
 
 $$\sigma_t(A) = \Delta^{it} A \Delta^{-it}$$
 
-**Connes-Rovelli thermal time hypothesis**: Modular flow parameter $t$ is physical time!
+**Connes-Rovelli Thermal Time Hypothesis**: Modular flow parameter $t$ is physical time!
 
-**Relationship with geometric time**: Under appropriate conditions, modular time is affinely equivalent to Killing time.
+**Relation to Geometric Time**: Under appropriate conditions, modular time is affinely equivalent to Killing time.
 
 ### Station 7: Cosmological Redshift
 
 $$1 + z = \frac{a(t_0)}{a(t_e)} = \frac{(d\phi/dt)_e}{(d\phi/dt)_0}$$
 
-**Physical meaning**: Redshift is the shear of cosmic scale factor evolution on "phase rhythm"!
+**Physical Meaning**: Redshift is the shear of cosmic scale factor evolution on "phase rhythm"!
+
+### Station 8: Time as Optimal Path of Generalized Entropy
+
+**Core Idea**: Time does not flow uniformly, but is the optimal path chosen by system in generalized entropy landscape!
+
+$$\delta S_{\text{gen}} = 0$$
+
+**Physical Meaning**: Time's "choice" makes generalized entropy of causal history stationary.
+
+### Station 9: Unification of Time-Geometry-Interaction
+
+**Core Formula**: Total connection unifies all "forces"
+
+$$\Omega = \omega_{\text{LC}} \oplus A_{\text{YM}} \oplus \Gamma_{\text{res}}$$
+
+**Physical Meaning**: Gravity, gauge forces, resolution forces are all projections of unified time geometry in different directions!
+
+### Station 10: Topological Invariants and Time
+
+**Topological "DNA" of Time**:
+
+1. Time scale master $\kappa(\omega)$
+2. $\mathbb{Z}_2$ holonomy $\nu_{\sqrt{S}}(\gamma)$
+3. Relative topological class $[K] \in H^2(Y,\partial Y;\mathbb{Z}_2)$
+
+**Physical Meaning**: Fermion statistics originate from topological invariants of time structure!
+
+### Station 11: Boundary Language Unified Framework
+
+**Boundary Three Axioms**:
+
+- A1: Conservation and Flux (bank statement)
+- A2: Time Generation (revolving door)
+- A3: Monotonicity and Consistency (second law of thermodynamics)
+
+**Physical Meaning**: Time "speaks" on the boundary!
+
+### Station 12: Time Domains and Solvable Models
+
+**Three Major Definition Domains of Scale Identity**:
+
+1. Elastic-Unitary Domain: Standard scattering theory
+2. Non-Unitary-Absorption Domain: Open systems
+3. Long-Range Potential Domain: Gravity and cosmology
+
+**Windowed Clock**: $\Theta_\Delta(\omega) = (\rho_{\text{rel}} * P_\Delta)(\omega)$ solves negative delay problem!
 
 ## 📊 Physical Picture of Unified Time Scale
 
@@ -181,7 +227,7 @@ graph TB
     style UT fill:#fff4e1,stroke:#ff6b6b,stroke-width:4px
 ```
 
-## 🎨 Analogy: Projections of a Cube
+## 🎨 Analogy: Projection of a Cube
 
 Imagine a **four-dimensional cube** (tesseract):
 
@@ -194,11 +240,11 @@ Imagine a **four-dimensional cube** (tesseract):
       * ---- *
 ```
 
-Viewed from different angles, we get different **three-dimensional projections**:
-- From "phase direction" → phase time $\phi$
-- From "spectral direction" → density of states $\rho_{\text{rel}}$
-- From "scattering direction" → group delay $Q$
-- From "geometric direction" → proper time $\tau$
+Viewed from different angles, get different **three-dimensional projections**:
+- From "phase direction" → Phase time $\phi$
+- From "spectral direction" → Density of states $\rho_{\text{rel}}$
+- From "scattering direction" → Group delay $Q$
+- From "geometric direction" → Proper time $\tau$
 
 **They are all different projections of the same high-dimensional object (unified time scale)!**
 
@@ -208,27 +254,27 @@ GLS theory is based on three axioms about time:
 
 ### Axiom I: Causal Ordering
 
-There exists a strictly increasing time function such that fundamental equations are in local (hyperbolic) form.
+There exists a strictly increasing time function that makes fundamental equations local (hyperbolic) form.
 
 $$p \prec q \quad \Longleftrightarrow \quad \tau(p) < \tau(q)$$
 
 ### Axiom II: Unitary Evolution
 
-There exists a strongly continuous unitary group $U(t) = e^{-iHt}$, phase-time relationship determined by stationary phase.
+There exists a strongly continuous unitary group $U(t) = e^{-iHt}$, phase-time relation determined by stationary phase.
 
 $$\phi = \int \frac{mc^2}{\hbar} d\tau$$
 
 ### Axiom III: Entropy Monotonicity/Extremum
 
-Generalized entropy $S_{\text{gen}}$ satisfies monotonicity and extremum conditions along time evolution.
+Generalized entropy $S_{\text{gen}}$ along time evolution satisfies monotonicity and extremum conditions.
 
 $$\frac{dS_{\text{gen}}}{d\lambda} \ge 0, \quad \delta S_{\text{gen}} = 0$$
 
 **Theorem** (mutually imply):
 
-In the semiclassical-holographic window:
+In semiclassical-holographic window:
 
-$$\text{Axiom I + II} \quad \Leftrightarrow \quad \text{Time Scale Identity} \quad \Rightarrow \quad \text{Axiom III} \quad \Rightarrow \quad \text{Einstein Equations}$$
+$$\text{Axiom I + II} \quad \Leftrightarrow \quad \text{Time Scale Identity} \quad \Rightarrow \quad \text{Axiom III} \quad \Rightarrow \quad \text{Einstein Equation}$$
 
 ## 📐 Mathematical Structure
 
@@ -238,29 +284,29 @@ $$\text{Axiom I + II} \quad \Leftrightarrow \quad \text{Time Scale Identity} \qu
 
 $$[\tau] \sim \{\tau, t, t_K, N, \lambda_{\text{null}}, u, v, \eta, \omega^{-1}, z, s_{\text{mod}}\}$$
 
-Members are converted to each other through **monotonic rescaling**, making dynamics local, causally ordered, and entropy structure simplest.
+Members are converted to each other through **monotonic rescaling**, making dynamics local, causally ordered, entropy structure simplest.
 
-### Affine Transformations
+### Affine Transformation
 
-Within the equivalence class, different times are related through **affine transformations**:
+Within equivalence class, different times are related by **affine transformation**:
 
 $$t_1 = \alpha t_2 + \beta$$
 
-Where $\alpha > 0$ (preserves time arrow).
+where $\alpha > 0$ (preserving time arrow).
 
 **Examples**:
-- Killing time $\leftrightarrow$ proper time: $\tau = \sqrt{-g_{tt}} \cdot t$
-- ADM time $\leftrightarrow$ proper time: $\tau = N \cdot t$
-- Conformal time $\leftrightarrow$ cosmic time: $\eta = \int dt/a(t)$
+- Killing time $\leftrightarrow$ Proper time: $\tau = \sqrt{-g_{tt}} \cdot t$
+- ADM time $\leftrightarrow$ Proper time: $\tau = N \cdot t$
+- Conformal time $\leftrightarrow$ Cosmic time: $\eta = \int dt/a(t)$
 
 ## 🌊 Core Insight: Time is Geometry
 
-**Traditional view**:
+**Traditional View**:
 - Time is external parameter
 - Geometry is dynamics
-- The two are independent
+- Two are independent
 
-**GLS view**:
+**GLS View**:
 - Time is intrinsic structure of geometry
 - $\phi = (mc^2/\hbar)\int d\tau$
 - **Time = Phase = Geometry**
@@ -271,37 +317,37 @@ $$\boxed{\text{Time} \equiv \text{Phase} \equiv \text{Proper Time} \equiv \text{
 
 ### Core Articles (Required Reading)
 
-1. **01-phase-and-proper-time_en.md** - Phase and Proper Time
-   - Proof that $\phi = (mc^2/\hbar)\int d\tau$
+1. **01-phase-and-proper-time.md** - Phase and Proper Time
+   - Proof of $\phi = (mc^2/\hbar)\int d\tau$
    - Worldline path integral
 
-2. **04-time-scale-identity_en.md** - Time Scale Identity (⭐⭐⭐)
+2. **04-time-scale-identity.md** - Time Scale Identity (⭐⭐⭐)
    - Complete derivation of identity
    - Birman-Kreĭn formula
-   - Proof of unification of four
+   - Proof of four-way unification
 
-3. **08-time-summary_en.md** - Unified Time Summary
+3. **08-time-summary.md** - Unified Time Summary
    - Complete picture review
 
 ### In-Depth Articles (Recommended)
 
-4. **02-scattering-phase_en.md** - Scattering Phase and Group Delay
+4. **02-scattering-phase.md** - Scattering Phase and Group Delay
    - Wigner-Smith matrix
    - Operational definition of time delay
 
-5. **03-spectral-shift_en.md** - Spectral Shift Function
+5. **03-spectral-shift.md** - Spectral Shift Function
    - Birman-Kreĭn theorem
    - Relative density of states
 
-6. **05-geometric-times_en.md** - Geometric Times
+6. **05-geometric-times.md** - Geometric Times
    - Killing, ADM, null, conformal
    - Unification of four times
 
-7. **06-modular-time_en.md** - Modular Time
+7. **06-modular-time.md** - Modular Time
    - Tomita-Takesaki theory
    - Thermal time hypothesis
 
-8. **07-cosmological-redshift_en.md** - Cosmological Redshift
+8. **07-cosmological-redshift.md** - Cosmological Redshift
    - Redshift as phase shear
    - Time structure of FRW universe
 
@@ -309,9 +355,9 @@ $$\boxed{\text{Time} \equiv \text{Phase} \equiv \text{Proper Time} \equiv \text{
 
 ### Quick Path (Understand Core Ideas)
 
-Read: 00-time-overview_en (this article) → 01-phase-and-proper-time_en → 04-time-scale-identity_en → 08-time-summary_en
+Read: 00-time-overview (this article) → 01-phase-and-proper-time → 04-time-scale-identity → 08-time-summary
 
-**Gain**: Understand core idea "time is geometry".
+**Gain**: Understand core idea of "time is geometry".
 
 ### Solid Path (Master Derivation)
 
@@ -325,7 +371,7 @@ Read this chapter + original paper: unified-time-scale-geometry.md
 
 **Gain**: Research-level understanding, able to apply to new problems.
 
-## 📝 Key Terminology: Chinese-English
+## 📝 Key Terms Chinese-English Glossary
 
 | Chinese | English | Meaning |
 |-----|------|------|
@@ -341,19 +387,19 @@ Read this chapter + original paper: unified-time-scale-geometry.md
 
 ## 🤔 Preview Questions
 
-Before starting to learn, think about these questions:
+Before starting, think about these questions:
 
-1. **Conceptual questions**:
+1. **Conceptual Questions**:
    - What is "time"? Is there absolute time?
    - Is "time" in quantum mechanics the same as in relativity?
    - What does "delay" mean in scattering theory?
 
-2. **Mathematical questions**:
+2. **Mathematical Questions**:
    - What is phase? What is the relationship between phase and frequency?
    - What is spectrum? What does spectral shift mean?
-   - What is a unitary matrix? Why is $S(\omega)$ unitary?
+   - What is unitary matrix? Why is $S(\omega)$ unitary?
 
-3. **Physical questions**:
+3. **Physical Questions**:
    - Why does time slow down near black holes?
    - What is the physical cause of cosmological redshift?
    - Is there a relationship between quantum entanglement and time?
@@ -362,19 +408,19 @@ Before starting to learn, think about these questions:
 
 ## 🌟 Why Is This Chapter Important?
 
-The Unified Time chapter is the **heart** of GLS theory:
+Unified Time is the **heart** of GLS theory:
 
-1. **Connects quantum and geometry**: $\phi = (mc^2/\hbar)\int d\tau$
-2. **Unifies all time concepts**: Time scale identity
-3. **Provides foundation for IGVP**: Time is parameter of entropy evolution
-4. **Reveals nature of time**: Time is geometry, geometry is phase
+1. **Connects Quantum and Geometry**: $\phi = (mc^2/\hbar)\int d\tau$
+2. **Unifies All Time Concepts**: Time scale identity
+3. **Provides Foundation for IGVP**: Time is parameter of entropy evolution
+4. **Reveals Essence of Time**: Time is geometry, geometry is phase
 
 **Without unified time scale, there is no GLS unified theory!**
 
 ```mermaid
 graph TB
     T["Unified Time Scale"] --> I["IGVP<br/>δS_gen = 0"]
-    T --> B["Boundary Theory<br/>Spectral Triples"]
+    T --> B["Boundary Theory<br/>Spectral Triplet"]
     T --> C["Causal Structure<br/>Partial Order"]
     T --> Q["QCA Universe<br/>Category Theory"]
     T --> M["Matrix Universe<br/>Equivalence"]
@@ -391,7 +437,6 @@ graph TB
 
 ---
 
-**Ready? Let's begin exploring the nature of time!**
+**Ready? Let's begin exploring the essence of time!**
 
-**Next**: [01-phase-and-proper-time_en.md](01-phase-and-proper-time_en.md) - Equivalence of Phase and Proper Time
-
+**Next Article**: [01-phase-and-proper-time.md](01-phase-and-proper-time.md) - Equivalence of Phase and Proper Time

@@ -1,12 +1,12 @@
-# Boundary Theory Chapter: Overview
+# Boundary Theory: Overview
 
 > *"Physics is not in the bulk, but on the boundary."*
 
 ## 🎯 Core Ideas of This Chapter
 
-In GLS theory, **the boundary is not a limitation, but the essence**. This chapter will reveal an astonishing fact:
+In GLS theory, **boundary is not a limitation, but essence**. This chapter will reveal an astonishing fact:
 
-**All computable physical objects are concentrated on the boundary; the bulk is merely reconstruction from boundary data.**
+**All computable physical objects concentrate on the boundary, the bulk is just reconstruction of boundary data.**
 
 ```mermaid
 graph TB
@@ -26,9 +26,9 @@ graph TB
     style BOUND fill:#e1f5ff,stroke:#0066cc,stroke-width:3px
 ```
 
-## 📚 Content Map of This Chapter
+## 📚 Chapter Content Map
 
-This chapter consists of 6 articles, revealing the complete picture of boundary physics:
+This chapter consists of 10 articles, revealing the complete picture of boundary physics:
 
 ### Article 1: Why Boundary?
 
@@ -36,23 +36,23 @@ This chapter consists of 6 articles, revealing the complete picture of boundary 
 
 **Three Major Evidences**:
 1. **Scattering Theory**: $S$-matrix defined at asymptotic boundary
-2. **Quantum Field Theory**: Modular flow localized on regional boundaries
-3. **General Relativity**: Einstein-Hilbert action alone is ill-defined, must add GHY boundary term
+2. **Quantum Field Theory**: Modular flow localized on region boundary
+3. **General Relativity**: Einstein-Hilbert action alone ill-defined, must add GHY boundary term
 
-**Key Insight**: The bulk is more like a "phantom" of boundary data!
+**Key Insight**: Bulk is more like a "phantom" of boundary data!
 
-### Article 2: Boundary Data Triple
+### Article 2: Boundary Data Triplet
 
 **Core Object**:
 
 $$(\partial\mathcal{M}, \mathcal{A}_\partial, \omega_\partial)$$
 
 where:
-- $\partial\mathcal{M}$: geometric boundary (can be piecewise, includes null pieces)
-- $\mathcal{A}_\partial$: boundary observable algebra
-- $\omega_\partial$: boundary state
+- $\partial\mathcal{M}$: Geometric boundary (can be piecewise, contains null pieces)
+- $\mathcal{A}_\partial$: Boundary observable algebra
+- $\omega_\partial$: Boundary state
 
-**Unified Framework**: All boundary physics is encoded by this triple!
+**Unified Framework**: All boundary physics encoded by this triplet!
 
 ### Article 3: GHY Boundary Term
 
@@ -62,18 +62,18 @@ $$S_{\mathrm{GHY}} = \frac{\varepsilon}{8\pi G}\int_{\partial\mathcal{M}}\sqrt{|
 
 where:
 - $\varepsilon = n^\mu n_\mu \in \{\pm 1\}$ (orientation factor)
-- $K$: extrinsic curvature
-- $h_{ab}$: induced metric
+- $K$: Extrinsic curvature
+- $h_{ab}$: Induced metric
 
 **Physical Meaning**:
 - **Variational Well-Definedness**: Only with GHY term, Einstein-Hilbert action is well-defined for variations fixing boundary metric
-- **Corner Terms**: Piecewise boundaries require additional corner terms
-- **Null Boundaries**: Null geodesic boundaries require $(\theta + \kappa)$ structure
+- **Corner Terms**: Piecewise boundaries need additional corner terms
+- **Null Boundaries**: Null geodesic boundaries need $(\theta + \kappa)$ structure
 
 ```mermaid
 graph LR
     EH["Einstein-Hilbert<br/>Bulk Action"] --> VAR["Variation"]
-    VAR --> BAD["✗ Ill-Defined<br/>Contains Normal Derivatives"]
+    VAR --> BAD["✗ Ill-Defined<br/>Contains Normal Derivative Terms"]
 
     EH2["EH + GHY"] --> VAR2["Variation"]
     VAR2 --> GOOD["✓ Well-Defined<br/>Only Bulk Equations"]
@@ -96,20 +96,95 @@ $$T^{ab}_{\mathrm{BY}} = \frac{1}{8\pi G}(K^{ab} - K h^{ab})$$
 **Deep Connection**:
 $$\text{Brown-York Energy} \Longleftrightarrow \text{Boundary Time Generator} \Longleftrightarrow \text{Modular Flow Parameter}$$
 
-### Article 5: Boundary Observers
+### Article 5: Boundary Observer
 
-**Core Concept**: Observers are essentially boundary observers!
+**Core Concept**: Observer is essentially a boundary observer!
 
 **Three Realizations**:
 1. **Scattering Observer**: Measures scattering phase at asymptotic boundary
-2. **Modular Flow Observer**: Defines modular Hamiltonian on regional boundary
+2. **Modular Flow Observer**: Defines modular Hamiltonian on region boundary
 3. **Geometric Observer**: Measures Brown-York energy on timelike boundary
 
 **Unified Scale**: All observers share the same time scale equivalence class $[\kappa]$!
 
-### Article 6: Boundary Theory Summary
+### Article 6: Boundary Theory Mid-Summary
 
-**Ultimate Picture**:
+**Summary of First 6 Articles**: Basic framework of boundary data triplet
+
+### Article 7: Boundary as Stage
+
+**Core Idea**: Physics truly happens on boundary, bulk is just "projection" of boundary data
+
+**Boundary Triplet**: $(∂M, \mathcal{A}_∂, ω_∂)$
+
+**Three Actors, Same Stage**:
+1. Scattering Actor: $\text{tr}Q(\omega)/2\pi$
+2. Modular Flow Actor: $K_D = -\log \Delta$
+3. Geometric Actor: $H_∂^{\text{grav}}$
+
+**Boundary Trinity Theorem**:
+$$H_∂ = \int\omega d\mu^{\text{scatt}} = c_1 K_D = c_2^{-1} H_∂^{\text{grav}}$$
+
+**Null-Modular Double Cover**: Diamond boundary decomposes as $E^+ \sqcup E^-$
+
+**Daily Analogy**: Theater stage (boundary) is where performance truly happens
+
+### Article 8: Boundary, Observer, and Time
+
+**Core Idea**: Time axis = geodesic chosen by observer attention on boundary section family
+
+**Observer Triplet**: $\mathcal{O} = (\gamma, \Lambda, \mathcal{A}_{\gamma,\Lambda})$
+
+**World Section**: $\Sigma_\tau = (\gamma(\tau), \mathcal{A}_{\gamma,\Lambda}(\tau), \rho_{\gamma,\Lambda}(\tau))$
+
+**Core Theorems**:
+- **No-Observer Time Theorem**: No observer → No time, only scale field
+- **Attention Geodesic Theorem**: Time axis = geodesic satisfying generalized entropy stationary + scale consistency
+- **Section Universe**: All sections form space $\mathfrak{S}$, observer experience = a path in it
+
+**New Interpretation of Double-Slit Interference**: With/without detector = different paths in section universe!
+
+**Daily Analogy**: Film projection (attention selects frame sequence)
+
+### Article 9: Boundary Clock
+
+**Core Idea**: Boundary clock = directly measure $\kappa(\omega)$ using windowed spectral readings
+
+**Ideal vs Windowed Reading**:
+- Ideal: $\mathcal{R}_{\text{ideal}} = \int_{-\infty}^{+\infty} \kappa(\omega) f(\omega) d\omega$ (impossible)
+- Windowed: $\mathcal{R}_{\text{window}} = \int_{-W}^{+W} W(\omega) \kappa(\omega) f(\omega) d\omega$ (practically feasible)
+
+**PSWF/DPSS Optimal Window Functions**:
+- Optimal energy concentration under constraints of time $[-T,T]$ and frequency band $[-W,W]$
+- Effective degrees of freedom: $N_{\text{eff}} \approx 2WT/\pi$
+
+**Windowed Clock**: $\Theta_\Delta(\omega) = (\rho_{\text{rel}} * P_\Delta)(\omega)$ solves negative delay
+
+**Experimental Applications**: Atomic clock networks, microwave scattering, FRB, δ-ring scattering
+
+**Daily Analogy**: Finite precision watch (vs ideal infinite clock)
+
+### Article 10: Trinity Master Scale
+
+**Core Idea**: Unification of three time definitions is not coincidence, but profound necessity of boundary geometry
+
+**Scale Equivalence Class**: $[\kappa]$ - unique under affine transformation
+
+**Trinity Master Scale**:
+$$\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\text{rel}}(\omega) = \frac{1}{2\pi}\text{tr}Q(\omega)$$
+
+**Core Theorems**:
+- **Affine Uniqueness Theorem**: $\kappa_{\text{scatt}} \sim \kappa_{\text{mod}} \sim \kappa_{\text{grav}}$
+- **Topological Class Equivalence**: $[K]$ equivalent to half-phase transition, fermion statistics, time crystal
+- **Generalized Entropy Variation**: $\delta^2 S_{\text{gen}} = \int \kappa(\omega) \Psi(\omega) d\omega + C\delta^2\Lambda_{\text{eff}}$
+
+**Null-Modular $\mathbb{Z}_2$ Class**: $[K] \in H^2(Y,\partial Y;\mathbb{Z}_2)$ - topological DNA of time
+
+**Daily Analogy**: Three blind men touching the same elephant (measured values must agree)
+
+### Article 11: Boundary Theory Summary
+
+**Complete Picture**:
 
 ```mermaid
 graph TB
@@ -133,11 +208,11 @@ graph TB
     style THREE fill:#e1f5ff,stroke:#0066cc,stroke-width:3px
 ```
 
-## 🔗 Connections to Other Chapters
+## 🔗 Connections with Other Chapters
 
 ### Following Unified Time Chapter (Chapter 5)
 
-In the Unified Time chapter, we proved:
+In Unified Time chapter, we proved:
 
 $$\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\mathrm{rel}}(\omega) = \frac{1}{2\pi}\operatorname{tr}Q(\omega)$$
 
@@ -150,22 +225,22 @@ Boundary theory provides foundation for causal structure:
 - **Null-Modular Double Cover**: Natural structure of null boundaries
 - **Modular Hamiltonian**: Localized on boundary null surfaces
 
-### Connecting to IGVP Framework (Chapter 4)
+### Connecting IGVP Framework (Chapter 4)
 
-Boundary theory completes the IGVP variational principle:
-- **Generalized Entropy**: Extremized on small causal diamond boundary
-- **Einstein Equations**: First-order condition from boundary variation
-- **QNEC/QFC**: Second-order condition from boundary variation
+Boundary theory completes IGVP variational principle:
+- **Generalized Entropy**: Extremum on small causal diamond boundary
+- **Einstein Equation**: First-order condition from boundary variation
+- **QNEC/QFC**: Second-order conditions from boundary variation
 
 ## 💡 Learning Roadmap
 
 ```mermaid
 graph LR
     START["Start Boundary Theory"] --> WHY["01-Why Boundary"]
-    WHY --> TRIPLE["02-Boundary Triple"]
+    WHY --> TRIPLE["02-Boundary Triplet"]
     TRIPLE --> GHY["03-GHY Boundary Term"]
     GHY --> BY["04-Brown-York Energy"]
-    BY --> OBS["05-Boundary Observers"]
+    BY --> OBS["05-Boundary Observer"]
     OBS --> SUM["06-Summary"]
 
     GHY -.->|"Mathematical Details"| TECH["Technical Appendix"]
@@ -176,17 +251,17 @@ graph LR
 
 ### Recommended Reading Order
 
-**Fast Track** (Grasp Core):
+**Quick Path** (grasp core):
 1. 01-Why Boundary (intuition)
 2. 03-GHY Boundary Term (core formula)
-3. 04-Brown-York Energy (physical applications)
+3. 04-Brown-York Energy (physical application)
 4. 06-Summary (complete picture)
 
-**Deep Learning** (Complete Understanding):
+**Deep Learning** (complete understanding):
 Read 01-06 in order, with source theory documents
 
-**Technical Research** (Rigorous Derivation):
-Focus on Article 03-GHY Boundary Term appendix, understand every step of variational calculation
+**Technical Research** (rigorous derivation):
+Focus on appendix of 03-GHY Boundary Term, understand every step of variational calculation
 
 ## 🎓 Core Conclusions Preview
 
@@ -194,12 +269,12 @@ After completing this chapter, you will understand:
 
 ### 1. Boundary Completeness Principle
 
-**Proposition**: Bulk physics content can be completely reconstructed from boundary triple.
+**Proposition**: Bulk physics content can be completely reconstructed from boundary triplet.
 
 **Evidence**:
-- Scattering theory: wave operators and $S$-matrix
-- AdS/CFT: boundary CFT reconstructs bulk geometry
-- Hamilton-Jacobi: boundary data reconstructs bulk solution
+- Scattering theory: Wave operators and $S$-matrix
+- AdS/CFT: Boundary CFT reconstructs bulk geometry
+- Hamilton-Jacobi: Boundary data reconstructs bulk solution
 
 ### 2. Boundary Time Trinity
 
@@ -231,7 +306,7 @@ $$\lim_{r\to\infty} E_{\mathrm{BY}}(r) = M_{\mathrm{ADM}}$$
 
 And is conserved under spacetime evolution (under appropriate boundary conditions).
 
-## 🤔 Thought Questions (Chapter Preview)
+## 🤔 Thinking Questions (Chapter Preview)
 
 ### Question 1: Why is Einstein-Hilbert Action Ill-Defined?
 
@@ -247,82 +322,82 @@ And is conserved under spacetime evolution (under appropriate boundary condition
 
 ### Question 3: How Do Boundary Observers Measure Time?
 
-**Hint**: Recall the Time Scale Identity from Unified Time chapter, now all on boundary!
+**Hint**: Recall time scale identity from Unified Time chapter, now all on boundary!
 
-**Answer in**: 05-Boundary Observers
+**Answer in**: 05-Boundary Observer
 
-### Question 4: How Does AdS/CFT Embody Boundary Completeness?
+### Question 4: How Does AdS/CFT Reflect Boundary Completeness?
 
 **Hint**: Boundary CFT completely determines bulk AdS geometry.
 
-**Answer in**: 06-Summary, and future advanced topics chapter
+**Answer in**: 06-Summary, and future advanced topics chapters
 
 ## 📖 Notation Conventions
 
 This chapter uses the following core symbols:
 
 ### Geometric Symbols
-- $\mathcal{M}$: spacetime manifold (4D)
-- $\partial\mathcal{M}$: boundary (3D, can be piecewise)
-- $g_{\mu\nu}$: bulk metric (signature $-+++$)
-- $h_{ab}$: induced metric
-- $n^\mu$: unit normal vector
-- $\varepsilon := n^\mu n_\mu \in \{\pm 1\}$: orientation factor
+- $\mathcal{M}$: Spacetime manifold (4-dimensional)
+- $\partial\mathcal{M}$: Boundary (3-dimensional, can be piecewise)
+- $g_{\mu\nu}$: Bulk metric (signature $-+++$)
+- $h_{ab}$: Induced metric
+- $n^\mu$: Unit normal vector
+- $\varepsilon := n^\mu n_\mu \in \{\pm 1\}$: Orientation factor
 
 ### Curvature Symbols
 - $R$: Ricci scalar
-- $K_{ab}$: extrinsic curvature
-- $K := h^{ab}K_{ab}$: trace of extrinsic curvature
+- $K_{ab}$: Extrinsic curvature
+- $K := h^{ab}K_{ab}$: Trace of extrinsic curvature
 
 ### Boundary Objects
-- $(\partial\mathcal{M}, \mathcal{A}_\partial, \omega_\partial)$: boundary triple
+- $(\partial\mathcal{M}, \mathcal{A}_\partial, \omega_\partial)$: Boundary triplet
 - $T^{ab}_{\mathrm{BY}}$: Brown-York stress tensor
 - $E_{\mathrm{BY}}$: Brown-York quasi-local energy
 - $S_{\mathrm{GHY}}$: Gibbons-Hawking-York boundary term
 
 ### Null Boundaries
-- $\ell^\mu$: null generating vector ($\ell \cdot \ell = 0$)
-- $\theta$: expansion
-- $\kappa$: surface gravity
-- $\gamma_{AB}$: transverse 2D metric
+- $\ell^\mu$: Null generator vector ($\ell \cdot \ell = 0$)
+- $\theta$: Expansion
+- $\kappa$: Surface gravity
+- $\gamma_{AB}$: Transverse two-dimensional metric
 
 ## 🔍 Unique Contributions of This Chapter
 
 Compared to traditional general relativity textbooks, this chapter:
 
 1. **Unifies Three Perspectives**
-   - Traditional: separately discuss GHY term, Brown-York energy, modular flow
-   - This chapter: unifies as boundary trinity
+   - Traditional: Separately discuss GHY term, Brown-York energy, modular flow
+   - This chapter: Unified as boundary trinity
 
 2. **Emphasizes Boundary Completeness**
-   - Traditional: boundary is technical supplement
-   - This chapter: boundary is physical essence
+   - Traditional: Boundary is technical supplement
+   - This chapter: Boundary is physical essence
 
 3. **Connects Time Scale**
-   - Traditional: isolated discussion of various times
-   - This chapter: all times unified by boundary scale
+   - Traditional: Isolated discussion of various times
+   - This chapter: All times unified by boundary scale
 
-4. **Accessible Intuitive Explanations**
-   - Traditional: pure technical derivation
-   - This chapter: multi-level explanations (analogy → concept → formula → source)
+4. **Intuitive Explanations**
+   - Traditional: Pure technical derivation
+   - This chapter: Multi-level explanations (analogy → concept → formula → source)
 
 ## 🌟 Why Is This Chapter Important?
 
-Boundary Theory chapter is **one of the pillars** of GLS theory, because:
+Boundary Theory is one of the **pillars** of GLS theory, because:
 
 ### Theoretical Level
-- Reveals boundary nature of physics
+- Reveals boundary essence of physics
 - Unifies three perspectives: time, geometry, algebra
 - Provides foundation for causal structure and topological constraints
 
 ### Application Level
-- Black hole thermodynamics: horizon is boundary
-- AdS/CFT: core of holographic principle
-- Quantum gravity: boundary degrees of freedom
+- Black hole thermodynamics: Horizon is boundary
+- AdS/CFT: Core of holographic principle
+- Quantum gravity: Boundary degrees of freedom
 
 ### Philosophical Level
 - **Paradigm shift from bulk to boundary**
-- **Boundary nature of observers**
+- **Boundary essence of observer**
 - **Measurement as boundary projection**
 
 ---
@@ -331,7 +406,6 @@ Boundary Theory chapter is **one of the pillars** of GLS theory, because:
 
 Let's begin this paradigm revolution from bulk to boundary!
 
-**Next**: [01-Why Boundary_en.md](01-why-boundary_en.md) - Revealing why physics must be defined on boundary
+**Next Article**: [01-Why Boundary](01-why-boundary.md) - Revealing why physics must be defined on boundary
 
-**Back**: [Complete GLS Theory Tutorial](../index_en.md)
-
+**Return**: [GLS Theory Complete Tutorial](../index.md)
