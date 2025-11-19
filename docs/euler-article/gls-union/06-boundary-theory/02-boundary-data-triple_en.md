@@ -4,11 +4,11 @@
 
 ## 🎯 Core Idea
 
-In the previous article, we learned: **Physics is on the boundary**.
+In the previous article, we learned: **Physics is viewed as being on the boundary**.
 
 Now the question: **What data is needed on the boundary?**
 
-**Answer**: Exactly three objects:
+**Answer**: Theoretically exactly three objects:
 
 $$\boxed{(\partial\mathcal{M}, \mathcal{A}_\partial, \omega_\partial)}$$
 
@@ -299,7 +299,7 @@ The three components are not independent, but closely related:
 
 ### 1. Geometry Determines Algebra
 
-**Causality**: Causal structure of $\partial\mathcal{M}$ determines locality of algebra
+**Causality**: Causal structure of $\partial\mathcal{M}$ is considered to determine locality of algebra
 
 $$O_1 \perp O_2 \quad (\text{spacelike separated}) \Rightarrow [\mathcal{A}(O_1), \mathcal{A}(O_2)] = 0$$
 
@@ -334,9 +334,9 @@ graph TB
 
 Now we can precisely formulate boundary completeness:
 
-**Theorem (Boundary Reconstruction)**:
+**Proposition (Boundary Reconstruction)**:
 
-Given boundary triple $(\partial\mathcal{M}, \mathcal{A}_\partial, \omega_\partial)$ with appropriate regularity conditions, there exists unique (up to natural equivalence) bulk theory $(\mathcal{M}, \mathcal{A}, \omega)$ such that:
+Given boundary triple $(\partial\mathcal{M}, \mathcal{A}_\partial, \omega_\partial)$ with appropriate regularity conditions, there theoretically exists unique (up to natural equivalence) bulk theory $(\mathcal{M}, \mathcal{A}, \omega)$ such that:
 
 1. $\mathcal{A}_\partial \subset \mathcal{A}$ is boundary subalgebra
 2. $\omega|_{\mathcal{A}_\partial} = \omega_\partial$
@@ -382,7 +382,7 @@ $$\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\mathrm{rel}}(\omega) = 
 
 **Question**: Is the triple minimal? Can we use less data?
 
-**Answer**: No! Each of the three components is irreplaceable.
+**Answer**: Theoretically no. Each of the three components is considered irreplaceable.
 
 ### Why Do We Need $\partial\mathcal{M}$?
 
@@ -511,8 +511,8 @@ $$(\partial\mathcal{M}, \mathcal{A}_\partial, \omega_\partial)$$
 
 ### Completeness Theorem
 
-Boundary triple completely encodes physical content:
-- Bulk can be reconstructed from boundary
+Boundary triple is considered to completely encode physical content:
+- Bulk can theoretically be reconstructed from boundary
 - Time evolution determined by boundary automorphism groups
 - Expectation values of observables given by boundary state
 

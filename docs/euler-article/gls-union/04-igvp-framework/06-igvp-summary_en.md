@@ -1,14 +1,14 @@
 # IGVP Summary: Complete Picture from Entropy to Gravity
 
-> *"Entropy is fundamental, spacetime geometry is emergent. Einstein's equations are not dynamical laws, but thermodynamic equilibrium conditions."*
+> *"Entropy is viewed as fundamental, while spacetime geometry is emergent. Einstein's equations, in this perspective, can be understood as thermodynamic equilibrium conditions."*
 
 ## 🎯 Our Journey
 
-In this chapter, we completed one of the most brilliant achievements of GLS theory:
+In this chapter, we presented one of the key achievements of GLS theory:
 
 $$\boxed{\text{Information-Geometric Variational Principle (IGVP)} \quad \Rightarrow \quad \text{Einstein Field Equations + Stability}}$$
 
-Let's review this wonderful journey.
+Let's review this journey of exploration.
 
 ## 📜 Complete Derivation Review
 
@@ -22,7 +22,7 @@ $$S_{\text{gen}} = \underbrace{\frac{A(S_\ell)}{4G\hbar}}_{\text{Geometric Entro
 - $A/(4G\hbar)$: degrees of freedom of spacetime geometry (Bekenstein-Hawking)
 - $S_{\text{out}}$: entanglement entropy of matter fields (von Neumann)
 
-**Key insight**: Entropy has two sources—geometry and quantum!
+**Key insight**: Entropy involves two sources—geometry and quantum.
 
 ### Step 2: Choose Variation Stage
 
@@ -63,7 +63,7 @@ Combining the two terms:
 
 $$\boxed{\int_{\mathcal{H}} \int_0^{\lambda_*} \lambda (R_{kk} - 8\pi G T_{kk}) d\lambda dA = o(\ell^{d-2})}$$
 
-**This is the family constraint**: holds for all small causal diamonds!
+**This is the family constraint**: holds for all small causal diamonds.
 
 ### Step 6: Radon-Type Closure (Family → Point)
 
@@ -75,7 +75,7 @@ $$\mathcal{L}_\lambda[f](p, \hat{k}) = \int_0^{\lambda_*} \lambda f(\gamma_{p,\h
 
 $$\mathcal{L}_\lambda[R_{kk} - 8\pi G T_{kk}] = o(\ell^2) \quad \Rightarrow \quad R_{kk} = 8\pi G T_{kk}$$
 
-**Null-direction Einstein equation**!
+**Null-direction Einstein equation**.
 
 ### Step 7: Tensorization (Null Cone Characterization)
 
@@ -99,7 +99,7 @@ $$\nabla_b\Phi = \frac{1}{2}\nabla_b R \quad \Rightarrow \quad \Phi - \frac{1}{2
 
 $$\boxed{G_{ab} + \Lambda g_{ab} = 8\pi G T_{ab}}$$
 
-**Complete!**
+**Derivation complete.**
 
 ### Step 10: Second-Order Variation (Stability)
 
@@ -109,7 +109,7 @@ $$\delta^2 S_{\text{rel}} \ge 0$$
 
 $$\delta^2 S_{\text{rel}} = \mathcal{E}_{\text{can}}[h, h] \ge 0$$
 
-**Conclusion**: Solutions of Einstein's equations are linearly stable.
+**Conclusion**: Solutions of Einstein's equations are generally considered linearly stable.
 
 ```mermaid
 graph TB
@@ -155,9 +155,9 @@ graph TB
 
 $$\text{Entropy} \quad \xrightarrow{\text{Variation}} \quad \text{Gravity}$$
 
-**Philosophical meaning**: Spacetime geometry is **emergent**, not fundamental!
+**Philosophical meaning**: Spacetime geometry may be **emergent**, not fundamental.
 
-### Insight 2: Gravity is a Thermodynamic Phenomenon
+### Insight 2: Gravity as a Thermodynamic Phenomenon
 
 Einstein equations can be written in the form of first law of thermodynamics:
 
@@ -182,7 +182,7 @@ The **causal structure** of small causal diamond (past light cone ∩ future lig
 
 **Causality** → **Geometry** → **Gravity**
 
-### Insight 4: Victory of Locality
+### Insight 4: Manifestation of Locality
 
 Einstein equations are **pointwise equations**, holding at each point:
 
@@ -190,7 +190,7 @@ $$G_{ab}(x) + \Lambda g_{ab}(x) = 8\pi G T_{ab}(x)$$
 
 IGVP achieves this through **local variation** (small causal diamond) + **Radon-type closure**.
 
-**This is true local derivation**, not depending on global structure!
+**This is true local derivation**, not depending on global structure.
 
 ### Insight 5: Natural Emergence of Cosmological Constant
 
@@ -198,7 +198,7 @@ $\Lambda$ is not an assumed parameter, but:
 
 $$\Lambda = \frac{1}{2}R - \Phi$$
 
-An integration constant that **emerges** from variation!
+An integration constant that **emerges** from variation.
 
 **Physical meaning**:
 - Dual variable of fixed volume constraint
@@ -220,7 +220,7 @@ IGVP has **two logically independent layers**:
 - Guarantees stability
 - This is **sufficient condition** (stable extremum)
 
-**Both combined** give physically realizable gravitational solutions!
+**Both combined** give physically realizable gravitational solutions.
 
 ## 🌌 Connection to GLS Core Insights
 
@@ -234,7 +234,7 @@ $$T = \frac{\hbar|\kappa_\chi|}{2\pi} = \frac{\hbar}{\pi\ell}$$
 
 Connects **thermal time** ($1/T$) with **geometric scale** ($\ell$).
 
-**Modular flow** $\sigma_t$ generates time evolution, determined by geometry!
+**Modular flow** $\sigma_t$ generates time evolution, determined by geometry.
 
 ### 2. Causality is Partial Order
 
@@ -246,7 +246,7 @@ $$p^- \prec q \prec p^+ \quad \Leftrightarrow \quad q \in \mathcal{D}_\ell(p)$$
 
 $$p \prec q \quad \Rightarrow \quad S_{\text{gen}}(p) \le S_{\text{gen}}(q)$$
 
-Causal arrow = time arrow = entropy arrow!
+Causal arrow = time arrow = entropy arrow.
 
 ### 3. Boundary is Reality
 
@@ -262,7 +262,7 @@ $$S_{\text{gen}} = \frac{A(S_\ell)}{4G\hbar} + S_{\text{out}}(S_\ell)$$
 
 $$\theta' = -R_{kk} + \cdots$$
 
-This is the geometric manifestation of **scattering** (how light rays deflect)!
+This is the geometric manifestation of **scattering** (how light rays deflect).
 
 **Wigner-Smith delay** manifests in IGVP as weight $\lambda$.
 
@@ -272,7 +272,7 @@ This is the geometric manifestation of **scattering** (how light rays deflect)!
 
 $$\delta S_{\text{gen}} = 0 \quad \text{and} \quad \delta^2 S_{\text{rel}} \ge 0$$
 
-Entropy not only defines time direction, but also **determines gravitational dynamics**!
+Entropy not only defines time direction, but also **determines gravitational dynamics**.
 
 ```mermaid
 graph TB
@@ -319,7 +319,7 @@ $$\int \varphi \int \lambda f = o(\ell^2) \quad \forall \varphi \quad \Rightarro
 
 **Tool**: Local invertibility of weighted ray transform.
 
-**Meaning**: No need for global Radon transform, only local data!
+**Meaning**: No need for global Radon transform, only local data.
 
 ### 3. Null Cone Characterization + Bianchi
 
@@ -333,7 +333,7 @@ $$\nabla^a(R_{ab} - 8\pi G T_{ab}) = \frac{1}{2}\nabla_b R$$
 
 **Obtain** $\Phi = \frac{1}{2}R - \Lambda$.
 
-**Meaning**: Elegant tensorization, no need for component-by-component verification!
+**Meaning**: Elegant tensorization, no need for component-by-component verification.
 
 ### 4. JLMS Equivalence
 
@@ -343,7 +343,7 @@ $$\delta^2 S_{\text{rel}} = \mathcal{E}_{\text{can}}[h, h]$$
 - Quantum information (relative entropy)
 - Gravitational stability (canonical energy)
 
-**Meaning**: Profound unification of information and gravity!
+**Meaning**: Profound unification of information and gravity.
 
 ### 5. Null Boundary Prescription
 
@@ -382,7 +382,7 @@ $$\delta^2 S_{\text{rel}} = \mathcal{E}_{\text{can}}[h, h]$$
 
 $$S_{\text{Wald}} = -2\pi \int_{S_\ell} \frac{\partial \mathcal{L}}{\partial R_{abcd}} \epsilon_{ab} \epsilon_{cd} \sqrt{h} d^{d-2}x$$
 
-IGVP framework can be directly generalized to derive **Lovelock equations**!
+IGVP framework can be directly generalized to derive **Lovelock equations**.
 
 ### 2. Quantum Corrections
 
@@ -459,13 +459,13 @@ We completed an epic journey:
 
 This is not just mathematical derivation, but a revolution in physical philosophy:
 
-> **Gravity is not fundamental, but a geometric manifestation of entropy extremum.**
+> **Gravity may not be fundamental, but a geometric manifestation of entropy extremum.**
 
-**IGVP shows us**:
-- Spacetime geometry is emergent
-- Gravity is a thermodynamic phenomenon
+**IGVP framework shows us**:
+- Spacetime geometry may be emergent
+- Gravity can be viewed as a thermodynamic phenomenon
 - Causality, time, and entropy are unified
-- Information is the origin of the universe
+- Information may be the origin of the universe
 
 ```mermaid
 graph TB

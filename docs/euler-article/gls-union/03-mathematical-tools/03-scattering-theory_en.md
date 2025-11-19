@@ -265,9 +265,9 @@ These are time delays of $N$ orthogonal channels.
 
 In GLS's matrix universe theory:
 
-**Universe = Huge family of S-matrices $\mathbb{S}(\omega)$**
-
-All physics emerges from S-matrix data.
+**Universe is modeled as Huge family of S-matrices $\mathbb{S}(\omega)$**
+ 
+ All physics is considered to emerge from S-matrix data.
 
 ### 2. Time Scale
 
@@ -279,7 +279,7 @@ $$
 
 ### 3. Causal Structure
 
-Causality of S-matrix ensures time arrow is consistent with causal arrow.
+Causality of S-matrix is considered to ensure time arrow is consistent with causal arrow.
 
 ## 📝 Key Formulas Summary
 

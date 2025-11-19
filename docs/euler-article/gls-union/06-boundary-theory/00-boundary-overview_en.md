@@ -4,9 +4,9 @@
 
 ## 🎯 Core Ideas of This Chapter
 
-In GLS theory, **boundary is not a limitation, but essence**. This chapter will reveal an astonishing fact:
+In GLS theory, **boundary is viewed as essence**. This chapter will present a core perspective:
 
-**All computable physical objects concentrate on the boundary, the bulk is just reconstruction of boundary data.**
+**All computable physical objects are proposed to concentrate on the boundary, the bulk can be viewed as reconstruction of boundary data.**
 
 ```mermaid
 graph TB
@@ -39,7 +39,7 @@ This chapter consists of 11 articles, revealing the complete picture of boundary
 2. **Quantum Field Theory**: Modular flow localized on region boundary
 3. **General Relativity**: Einstein-Hilbert action alone ill-defined, must add GHY boundary term
 
-**Key Insight**: Bulk is more like a "phantom" of boundary data!
+**Key Insight**: Bulk can be viewed as a "phantom" of boundary data!
 
 ### Article 2: Boundary Data Triplet
 
@@ -52,7 +52,7 @@ where:
 - $\mathcal{A}_\partial$: Boundary observable algebra
 - $\omega_\partial$: Boundary state
 
-**Unified Framework**: All boundary physics encoded by this triplet!
+**Unified Framework**: All boundary physics is theoretically encoded by this triplet!
 
 ### Article 3: GHY Boundary Term
 
@@ -98,14 +98,14 @@ $$\text{Brown-York Energy} \Longleftrightarrow \text{Boundary Time Generator} \L
 
 ### Article 5: Boundary Observer
 
-**Core Concept**: Observer is essentially a boundary observer!
+**Core Concept**: Observer is theoretically essentially a boundary observer!
 
 **Three Realizations**:
 1. **Scattering Observer**: Measures scattering phase at asymptotic boundary
 2. **Modular Flow Observer**: Defines modular Hamiltonian on region boundary
 3. **Geometric Observer**: Measures Brown-York energy on timelike boundary
 
-**Unified Scale**: All observers share the same time scale equivalence class $[\kappa]$!
+**Unified Scale**: All observers are considered to share the same time scale equivalence class $[\kappa]$!
 
 ### Article 6: Boundary Theory Mid-Summary
 
@@ -113,7 +113,7 @@ $$\text{Brown-York Energy} \Longleftrightarrow \text{Boundary Time Generator} \L
 
 ### Article 7: Boundary as Stage
 
-**Core Idea**: Physics truly happens on boundary, bulk is just "projection" or "holographic image" of boundary data
+**Core Idea**: Physics is considered to truly happen on boundary, bulk is just "projection" or "holographic image" of boundary data
 
 **Boundary Triplet**: $(∂M, \mathcal{A}_∂, ω_∂)$ unifies all boundary physics
 - $∂M$: Geometric boundary (physical space of stage)
@@ -125,7 +125,7 @@ $$\text{Brown-York Energy} \Longleftrightarrow \text{Boundary Time Generator} \L
 2. **Modular Flow Actor**: Modular Hamiltonian $K_D = -\log \Delta$
 3. **Geometric Actor**: Brown-York Hamiltonian $H_∂^{\text{grav}}$
 
-**Boundary Trinity Theorem**:
+**Boundary Trinity Proposition**:
 $$H_∂ = \int\omega d\mu^{\text{scatt}} = c_1 K_D = c_2^{-1} H_∂^{\text{grav}}$$
 
 **Null-Modular Double Cover**:
@@ -133,7 +133,7 @@ $$H_∂ = \int\omega d\mu^{\text{scatt}} = c_1 K_D = c_2^{-1} H_∂^{\text{grav}
 - Modular Hamiltonian localized on null boundary
 - $\mathbb{Z}_2$ holonomy characterizes topological structure
 
-**Daily Analogy**: Theater stage (boundary) is where performance truly happens, three actors are actually three guises of the same person
+**Daily Analogy**: Theater stage (boundary) is where performance truly happens, three actors can be viewed as three guises of the same person
 
 ### Article 8: Boundary, Observer, and Time
 
@@ -152,9 +152,9 @@ $$H_∂ = \int\omega d\mu^{\text{scatt}} = c_1 K_D = c_2^{-1} H_∂^{\text{grav}
 **World Section**: $\Sigma_\tau = (\gamma(\tau), \mathcal{A}_{\gamma,\Lambda}(\tau), \rho_{\gamma,\Lambda}(\tau))$
 The world the observer "sees" at time $\tau$
 
-**Core Theorems**:
-- **No-Observer Time Theorem**: No observer → No time, only scale field $\kappa(\omega)$
-- **Attention Geodesic Theorem**: Time axis $\tau$ must satisfy:
+**Core Propositions**:
+- **No-Observer Time Inference**: No observer → No time, only scale field $\kappa(\omega)$
+- **Attention Geodesic Hypothesis**: Time axis $\tau$ must satisfy:
   1. Scale condition: $\frac{d\tau}{d\lambda} = \int \kappa(\omega) w_\lambda(\omega) d\omega$
   2. Generalized entropy geodesic: Section family $\{\sigma(\tau)\}$ makes $S_{\text{gen}}$ stationary
 - **Section Universe $\mathfrak{S}$**: Space of all possible sections, observer experience = a path in it
@@ -196,7 +196,7 @@ Solves negative delay problem, ensures causality!
 
 ### Article 10: Trinity Master Scale
 
-**Core Idea**: Unification of three time definitions is not coincidence, but profound necessity of boundary geometry
+**Core Idea**: Unification of three time definitions might not be coincidence, but profound necessity of boundary geometry
 
 **Ultimate Question**: **Why** do three completely different definitions give the **same** time scale?
 $$\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\text{rel}}(\omega) = \frac{1}{2\pi}\text{tr}Q(\omega)$$
@@ -220,8 +220,8 @@ $$\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\text{rel}}(\omega) = \f
    $$\kappa_{\text{grav}}(\omega) = \frac{1}{2\pi}\text{tr}Q(\omega)$$
    Physical picture: Time translation generated by boundary quasi-local energy
 
-**Core Theorems**:
-- **Affine Uniqueness Theorem** (Theorem 3.1): $\kappa_{\text{scatt}} \sim \kappa_{\text{mod}} \sim \kappa_{\text{grav}}$
+**Core Propositions**:
+- **Affine Uniqueness Proposition** (Proposition 3.1): $\kappa_{\text{scatt}} \sim \kappa_{\text{mod}} \sim \kappa_{\text{grav}}$
   Three scales belong to the same equivalence class!
 - **Topological Class Equivalence** (Theorem 3.2): Null-Modular $\mathbb{Z}_2$ class $[K]$ equivalent to:
   - Half-phase transition $\Delta\varphi = \pi \mod 2\pi$
@@ -239,7 +239,7 @@ $$\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\text{rel}}(\omega) = \f
 **Daily Analogy**: Three blind men touching an elephant (deepened version)
 - Blind man A touches trunk (scattering), B touches leg (modular flow), C touches tail (gravity)
 - Reported "lengths" $L_1, L_2, L_3$ must be equal
-- Reason: They are all **intrinsic scales** of the elephant, determined by intrinsic geometry!
+- Reason: They might all be **intrinsic scales** of the elephant, determined by intrinsic geometry!
 
 ### Article 11: Boundary Theory Summary
 
@@ -275,7 +275,7 @@ In Unified Time chapter, we proved:
 
 $$\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\mathrm{rel}}(\omega) = \frac{1}{2\pi}\operatorname{tr}Q(\omega)$$
 
-Now we will see: **This unified scale is completely determined by boundary data!**
+Now we will see: **This unified scale is theoretically determined by boundary data!**
 
 ### Leading to Causal Structure Chapter (Chapter 7)
 
@@ -345,18 +345,18 @@ Focus on:
 
 After completing this chapter, you will understand:
 
-### 1. Boundary Completeness Principle
+### 1. Boundary Completeness Hypothesis
 
-**Proposition**: Bulk physics content can be completely reconstructed from boundary triplet.
+**Proposition**: Bulk physics content can theoretically be completely reconstructed from boundary triplet.
 
 **Evidence**:
 - Scattering theory: Wave operators and $S$-matrix
 - AdS/CFT: Boundary CFT reconstructs bulk geometry
 - Hamilton-Jacobi: Boundary data reconstructs bulk solution
 
-### 2. Boundary Time Trinity
+### 2. Boundary Time Trinity Proposition
 
-**Theorem**: The following three "boundary times" are equivalent:
+**Proposition**: The following three "boundary times" are proposed to be equivalent:
 
 $$\text{Scattering Time Delay} \Longleftrightarrow \text{Modular Flow Parameter} \Longleftrightarrow \text{Brown-York Boundary Time}$$
 
@@ -364,9 +364,9 @@ $$\text{Scattering Time Delay} \Longleftrightarrow \text{Modular Flow Parameter}
 
 $$H_\partial = \int \omega\, \mathrm{d}\mu_\partial^{\mathrm{scatt}}(\omega) = c_1 K_D + c_2^{-1} H_\partial^{\mathrm{grav}}$$
 
-### 3. GHY Necessity Theorem
+### 3. GHY Necessity Argument
 
-**Theorem**: On non-null boundaries, after adding
+**Argument**: On non-null boundaries, after adding
 
 $$S_{\mathrm{GHY}} = \frac{\varepsilon}{8\pi G}\int_{\partial\mathcal{M}}\sqrt{|h|}\,K\,\mathrm{d}^3x$$
 
@@ -376,9 +376,9 @@ $$\delta(S_{\mathrm{EH}} + S_{\mathrm{GHY}}) = \frac{1}{16\pi G}\int_{\mathcal{M
 
 Boundary terms completely cancel!
 
-### 4. Quasi-Local Energy Convergence Theorem
+### 4. Quasi-Local Energy Convergence Property
 
-**Theorem**: Brown-York quasi-local energy converges to ADM mass in asymptotically flat limit:
+**Property**: Brown-York quasi-local energy converges to ADM mass in asymptotically flat limit:
 
 $$\lim_{r\to\infty} E_{\mathrm{BY}}(r) = M_{\mathrm{ADM}}$$
 

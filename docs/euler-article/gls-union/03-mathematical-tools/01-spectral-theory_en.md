@@ -348,7 +348,7 @@ $$
 
 ### 3. Causality and Spectrum
 
-Non-negativity of spectrum $\rho_{\text{rel}}(\omega) \ge 0$ ensures monotonicity of time scale, which in turn guarantees causality.
+Non-negativity of spectrum $\rho_{\text{rel}}(\omega) \ge 0$ ensures monotonicity of time scale, which in turn is considered to guarantee causality.
 
 ## 📝 Key Formulas Summary
 

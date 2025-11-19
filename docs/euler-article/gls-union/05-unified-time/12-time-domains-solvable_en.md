@@ -2,16 +2,16 @@
 
 ## Core Idea
 
-In previous chapters, we established the complete theoretical framework of time:
+In previous chapters, we constructed the theoretical framework of time:
 
-- **Time is the optimal path of entropy** (Section 8)
-- **Force is the projection of time geometry** (Section 9)
-- **Time is determined by topological invariants** (Section 10)
-- **Time is defined on the boundary** (Section 11)
+- **Time is interpreted as the optimal path of entropy** (Section 8)
+- **Force can be viewed as the projection of time geometry** (Section 9)
+- **Time structure might be determined by topological invariants** (Section 10)
+- **Time might be defined on the boundary** (Section 11)
 
-Now we face the final key question: **Under what conditions can we completely reconstruct time from boundary data?**
+Now we face the final key question: **Under what conditions can we theoretically reconstruct time from boundary data?**
 
-The answer of GLS theory is: **Domain** determines everything. Just as mathematical functions need a domain to be meaningful, time scales also need clear **domain conditions** to be uniquely determined from boundary data.
+GLS theory proposes: **Domain** might determine everything. Just as mathematical functions need a domain to be meaningful, time scales also need clear **domain conditions** to be uniquely determined from boundary data.
 
 ---
 
@@ -54,11 +54,11 @@ graph TB
     style Reconstruct fill:#4ecdc4,stroke:#0b7285,stroke-width:4px
 ```
 
-**Key Insight**:
+**Theoretical Insight**:
 
 - Film (boundary data) alone is insufficient
 - Need **domain conditions** (frame rate, order, completeness)
-- Satisfy conditions → uniquely reconstruct movie (time)
+- Satisfy conditions → theoretically uniquely reconstruct movie (time)
 
 ---
 
@@ -104,7 +104,7 @@ H - H_0 \in \mathfrak{S}_1 & \text{(Trace Class)} \\
 \end{cases}
 $$
 
-**Identity**: In this domain, the scale identity **holds exactly**:
+**Identity**: In this domain, the scale identity **holds mathematically exactly**:
 
 $$
 \frac{\varphi'(\omega)}{\pi} = \rho_{\mathrm{rel}}(\omega) = \frac{1}{2\pi}\mathrm{tr}\,Q(\omega) \quad \text{(Lebesgue-a.e.)}
@@ -277,7 +277,7 @@ $$
 t_\Delta(\omega) = \int_{\omega_0}^\omega \Theta_\Delta(\tilde{\omega})\,\mathrm{d}\tilde{\omega}
 $$
 
-**Key Theorem**:
+**Core Proposition**:
 
 If $\Delta > \Gamma_{\min}$ (minimum resonance width), then:
 
@@ -413,7 +413,7 @@ $$
 \partial_\omega[\Phi_i(\omega) - \Phi_j(\omega)] = \Delta t_{ij}
 $$
 
-Time delay = frequency derivative of phase difference!
+Time delay = frequency derivative of phase difference (Theoretical Inference)!
 
 ---
 
@@ -467,7 +467,7 @@ graph LR
 
 - Cosmological redshift is not "Doppler effect"
 - But **ratio of boundary phase rhythms**
-- Completely determined by boundary data (phase evolution)!
+- Theoretically determined by boundary data (phase evolution)!
 
 ---
 
@@ -652,9 +652,9 @@ graph TB
 
 ## Chapter Summary
 
-**Core Insight**:
+**Core Perspective**:
 
-> **Reconstruction of time scales requires clear domain conditions. In elastic-unitary domain, scale identity holds exactly; in non-unitary/long-range domains, corrections or renormalization are needed. Windowed clocks solve negative delay problem, providing weak monotonicity and affine uniqueness. Solvable models (Schwarzschild, lensing, cosmology) verify scattering time = geometric time.**
+> **GLS theory suggests that reconstruction of time scales requires clear domain conditions. In elastic-unitary domain, scale identity holds exactly; in non-unitary/long-range domains, corrections or renormalization are needed. Windowed clocks solve negative delay problem, providing weak monotonicity and affine uniqueness. Solvable models (Schwarzschild, lensing, cosmology) verify scattering time = geometric time.**
 
 **Key Formulas**:
 
@@ -706,7 +706,7 @@ Time reconstruction is not automatic, but **conditional**:
 - Must choose window (measurement resolution)
 - Unification at affine equivalence class, not pointwise values
 
-This completes the **final piece of the puzzle** of GLS unified time theory: strict conditions from boundary data to time reconstruction.
+This constitutes a **significant part** of the GLS unified time theory: strict conditions from boundary data to time reconstruction.
 
 ---
 

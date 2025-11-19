@@ -122,7 +122,7 @@ $$S_{\text{rel}} = \underbrace{\delta S_{\text{gen}}}_{=0 \text{ (first-order ex
 
 $$\boxed{\delta^2 S_{\text{rel}} \ge 0}$$
 
-**Physical meaning**: Perturbations cannot lower generalized entropy, guaranteeing the extremum is a **stable minimum**!
+**Physical meaning**: Perturbations cannot lower generalized entropy, providing a theoretical guarantee that the extremum is a **stable minimum**.
 
 ## 🔧 Hollands-Wald Canonical Energy
 
@@ -148,7 +148,7 @@ $\mathcal{E}_{\text{can}}$ measures the **energy of gravitational perturbations*
 
 $$\mathcal{E}_{\text{can}} \ge 0 \quad \Leftrightarrow \quad \text{Gravitational waves carry positive energy}$$
 
-**Stability criterion**: If $\mathcal{E}_{\text{can}} \ge 0$ for all allowed perturbations, then the background solution is **linearly stable**.
+**Stability criterion**: If $\mathcal{E}_{\text{can}} \ge 0$ for all allowed perturbations, then the background solution is generally considered **linearly stable**.
 
 ```mermaid
 graph TB
@@ -171,13 +171,13 @@ graph TB
 
 ### JLMS Relation
 
-Jafferis, Lewkowycz, Maldacena, Suh (2016) proved a profound equivalence relation:
+Jafferis, Lewkowycz, Maldacena, Suh (2016) proposed a profound equivalence relation:
 
 Under appropriate conditions (spherical region, near vacuum state, fixed boundary conditions):
 
 $$\boxed{\delta^2 S_{\text{rel}} = \mathcal{E}_{\text{can}}[h, h]}$$
 
-**Meaning**: Second-order variation of relative entropy **equals** Hollands-Wald canonical energy!
+**Meaning**: Second-order variation of relative entropy **corresponds to** Hollands-Wald canonical energy under specific conditions.
 
 ### Proof Idea
 
@@ -328,7 +328,7 @@ graph TB
 
 First-order extremum $\delta S_{\text{gen}} = 0$ is only a **necessary condition**.
 
-Physically realizable solutions must be **stable extrema**:
+Physically realizable solutions are generally considered to be **stable extrema**:
 
 $$\delta S_{\text{gen}} = 0 \quad \text{and} \quad \delta^2 S_{\text{rel}} \ge 0$$
 
@@ -339,11 +339,11 @@ $$\delta S_{\text{gen}} = 0 \quad \text{and} \quad \delta^2 S_{\text{rel}} \ge 0
 
 ### Gravitational Waves Carry Positive Energy
 
-$\mathcal{E}_{\text{can}}[h, h] \ge 0$ guarantees:
+$\mathcal{E}_{\text{can}}[h, h] \ge 0$ implies:
 
-**Gravitational perturbations (gravitational waves) carry non-negative energy**
+**Gravitational perturbations (gravitational waves) typically carry non-negative energy**
 
-This is a fundamental requirement for physical consistency!
+This is a fundamental requirement for physical consistency.
 
 ### Quantum Energy Condition
 

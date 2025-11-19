@@ -4,12 +4,12 @@
 
 In the previous two sections, we saw:
 
-- **Time is the optimal path of entropy** (Section 8)
-- **Force is the projection of time geometry** (Section 9)
+- **Time is interpreted as the optimal path of entropy** (Section 8)
+- **Force can be viewed as the projection of time geometry** (Section 9)
 
-Now we ask a deeper question: **What determines the structure of time itself?**
+Now we ask a deeper question: **What might determine the structure of time itself?**
 
-The answer is surprising: **The deep structure of time is determined by a set of topological invariants**, just as DNA determines the basic traits of living organisms. These invariants are "digital labels" that cannot be changed by continuous deformation, constraining all possible behaviors of time, geometry, interactions, and even consciousness.
+GLS theory suggests a surprising answer: **The deep structure of time may be determined by a set of topological invariants**, just as DNA determines the basic traits of living organisms. These invariants are "digital labels" that cannot be changed by continuous deformation, theoretically constraining all possible behaviors of time, geometry, interactions, and even consciousness.
 
 ---
 
@@ -34,18 +34,18 @@ graph TB
     style Invariant fill:#ffe66d,stroke:#f59f00,stroke-width:4px
 ```
 
-**Key Insight**:
+**Theoretical Insight**:
 
 - **Geometric properties** (size, color) can change continuously
 - **Topological properties** (number of holes) cannot be changed by continuous deformation
 - Topological properties are characterized by **discrete digital labels** (0 holes, 1 hole...)
-- These labels are **topological invariants**, determining the basic structure like "genetic code"
+- In GLS theory, these labels correspond to **topological invariants**, determining the basic structure like "genetic code"
 
 ---
 
 ## Three Topological "Genes" of Time
 
-GLS theory discovers that the deep structure of time is determined by three core topological invariants:
+GLS theory proposes that the deep structure of time is determined by three core topological invariants:
 
 ```mermaid
 graph TB
@@ -108,12 +108,12 @@ $$
 \kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\mathrm{rel}}(\omega) = \frac{1}{2\pi}\mathrm{tr}\,Q(\omega)
 $$
 
-**Intuitive Understanding**:
+**Physical Interpretation**:
 
 - Like the **International Prototype Meter** defines the standard for all lengths
-- **Time scale master scale** $\kappa(\omega)$ defines the standard for all times
-- It **does not change with observer**, it is the "gene" of time
-- All specific clocks (atomic clocks, hourglasses, pulsars...) are its "phenotypes"
+- **Time scale master scale** $\kappa(\omega)$ theoretically defines the standard for all times
+- It **is posited to be invariant** for all observers, acting as the "gene" of time
+- All specific clocks (atomic clocks, hourglasses, pulsars...) can be viewed as its "phenotypes"
 
 **Key Properties**:
 
@@ -202,7 +202,7 @@ Where $P_{\sqrt{\mathfrak{s}}}$ is the scattering square root principal bundle.
 1. **ν = +1**: Parameters go once around, time structure unchanged → **Bosons, continuous symmetry**
 2. **ν = -1**: Parameters go once around, time structure flips → **Fermions, time crystal period doubling**
 
-**Amazing Fact**: **Fermion anticommutation statistics** and **time crystal period doubling** essentially come from the same Z₂ holonomy!
+**Theoretical Inference**: **Fermion anticommutation statistics** and **time crystal period doubling** may essentially originate from the same Z₂ holonomy!
 
 ---
 
@@ -248,6 +248,7 @@ Where:
 - $w_2(TM)$ = Second Stiefel-Whitney class of spacetime (spin obstruction)
 - $\mu_j \smile \mathfrak{w}_j$ = "Hybrid" topology of spacetime and parameter space
 - $c_1(\mathcal{L}_S)$ = First Chern class of scattering line bundle
+- 
 
 **Physical Meaning: No Topological Anomaly Principle**
 
@@ -319,6 +320,7 @@ graph TB
 1. **κ(ω)** defines unified time scale → All clocks normalized to the same standard
 2. **ν_√S(γ)** determines discrete symmetry of time → Fermions vs bosons, periodic vs quasiperiodic
 3. **[K]** constrains topological consistency of spacetime-parameters → Gravity equations, energy conditions
+4. 
 
 All three must **simultaneously satisfy consistency conditions** to produce the physical world we observe.
 
@@ -372,9 +374,9 @@ graph TB
     style Anti fill:#ffe66d,stroke:#f59f00,stroke-width:3px
 ```
 
-**Key Insight**:
+**Theoretical Insight**:
 
-Fermions' "exchange twice gives minus sign" is not a basic assumption, but the inevitable result of **Z₂ holonomy of parameter space topology**!
+Fermions' "exchange twice gives minus sign" may not be a basic assumption, but rather a consequence of **Z₂ holonomy of parameter space topology**!
 
 $$
 \text{Exchange Twice} \Leftrightarrow \text{Parameters Go Once Around} \Leftrightarrow \nu_{\sqrt{S}}(\gamma) = -1
@@ -438,7 +440,7 @@ graph TB
 
 ---
 
-## Philosophical Meaning: "Genetic Code" of Time
+## Philosophical Implications: "Genetic Code" of Time
 
 ```mermaid
 graph TB
@@ -467,11 +469,11 @@ graph TB
     style I3 fill:#e9ecef,stroke:#495057
 ```
 
-**Deep Revelations**:
+**Deep Implications**:
 
-1. **Time is not fundamental**, but an emergent structure "encoded" by topological invariants
-2. **Topological invariants are like DNA**, a few "bases" ($\kappa, \nu, [K]$) determine the entire "organism" (physical laws)
-3. **Different levels of physics** (quantum/classical/gravity/consciousness) all read the same "genetic code"
+1. **Time may not be fundamental**, but an emergent structure "encoded" by topological invariants
+2. **Topological invariants may act like DNA**, where a few "bases" ($\kappa, \nu, [K]$) determine the entire "organism" (physical laws)
+3. **Different levels of physics** (quantum/classical/gravity/consciousness) may all read the same "genetic code"
 
 This is a revolutionary understanding of the nature of time:
 
@@ -541,9 +543,9 @@ graph TB
 
 ## Chapter Summary
 
-**Core Insight**:
+**Core Insight (Proposed)**:
 
-> **The deep structure of time is determined by three topological invariants: time scale master scale κ(ω), Z₂ holonomy ν_√S(γ), and relative topology class [K]. They act like "genetic code," determining all possible behaviors of time, geometry, interactions, and even consciousness.**
+> **GLS theory proposes that the deep structure of time is determined by three topological invariants: time scale master scale κ(ω), Z₂ holonomy ν_√S(γ), and relative topology class [K]. They act like "genetic code," theoretically determining all possible behaviors of time, geometry, interactions, and even consciousness.**
 
 **Key Formulas**:
 
@@ -568,15 +570,15 @@ $$
 - **Möbius strip**: Walking once around flips direction → Z₂ holonomy = -1
 - **DNA and phenotype**: Few "bases" (invariants) determine the entire "organism" (physical laws)
 
-**Amazing Discoveries**:
+**Theoretical Inferences**:
 
-1. **Fermion statistics** is not a basic assumption, but the **inevitable result of Z₂ holonomy**
-2. **Einstein equations** are not independent postulates, but **corollaries of [K]=0**
-3. **All physical phenomena** are different "phenotypes" of the same topological "DNA"
+1. **Fermion statistics** may not be a basic assumption, but the **inevitable result of Z₂ holonomy**
+2. **Einstein equations** may not be independent postulates, but **corollaries of [K]=0**
+3. **All physical phenomena** can be viewed as different "phenotypes" of the same topological "DNA"
 
 **Philosophical Revelation**:
 
-The underlying code of the universe is not differential equations, but **a few discrete topological numbers**. Time, space, force, particles, consciousness—everything is a "phenotype" of these numbers.
+The underlying code of the universe may not be differential equations, but **a few discrete topological numbers**. Time, space, force, particles, consciousness—everything may be a "phenotype" of these numbers.
 
 This is the deepest simplification of natural laws: from infinitely many degrees of freedom, to a few topological invariants.
 

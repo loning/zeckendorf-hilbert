@@ -207,13 +207,13 @@ graph LR
 
 ### Property 1: Monotonicity
 
-During evolution, generalized entropy satisfies the **second law**:
+During evolution, generalized entropy is considered to satisfy the **second law**:
 
 $$\frac{dS_{\text{gen}}}{d\lambda} \ge 0$$
 
 Along affine parameter $\lambda$ of null geodesics.
 
-**This guarantees the thermodynamic arrow!**
+**This suggests the existence of a thermodynamic arrow of time.**
 
 ### Property 2: Extremality
 
@@ -221,15 +221,15 @@ On solutions of Einstein's equations, generalized entropy takes an **extremum** 
 
 $$\delta S_{\text{gen}} = 0 \quad (\text{fixed volume})$$
 
-**This is the first-order condition of IGVP!**
+**This is the first-order variational condition of IGVP.**
 
 ### Property 3: Concavity
 
-Second-order variation is non-negative:
+Second-order variation is typically non-negative:
 
 $$\delta^2 S_{\text{rel}} \ge 0$$
 
-**This guarantees stability of solutions!**
+**This provides a theoretical guarantee for the stability of solutions.**
 
 ## 🔗 Connection to Core Insights
 

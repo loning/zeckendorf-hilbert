@@ -177,21 +177,21 @@ graph TB
 - **Set** 中：空集 $\emptyset$
 - **Grp** 中：平凡群（也是终对象！）
 
-## 🌌 在GLS理论中的应用
+## 🌌 在GLS理论中的应用模型
 
 ### 1. QCA宇宙作为终对象
 
-**定理**（QCA宇宙理论）：
+**理论猜想**（QCA宇宙假设）：
 
-QCA宇宙 $\mathfrak{U}_{\text{QCA}}$ 是物理理论范畴中的**终对象**。
+在GLS框架定义的"物理理论范畴" $\mathcal{CAT}_{\text{phys}}$ 中，QCA宇宙 $\mathfrak{U}_{\text{QCA}}$ 被**提议**作为一个**终对象**。
 
 $$
 \forall \mathfrak{T} \in \mathcal{CAT}_{\text{phys}}, \quad \exists ! \, F: \mathfrak{T} \to \mathfrak{U}_{\text{QCA}}
 $$
 
-**物理意义**：
+**物理诠释**：
 
-**任何物理理论都可以唯一地嵌入QCA宇宙！**
+这意味着，在这个理论框架下，**任何物理理论都有望被唯一地嵌入到QCA宇宙模型中**。
 
 ```mermaid
 graph TB
@@ -202,11 +202,11 @@ graph TB
     style QCA fill:#fff4e1,stroke:#ff6b6b,stroke-width:3px
 ```
 
-### 2. 矩阵宇宙的范畴等价
+### 2. 矩阵宇宙的范畴等价性
 
-**定理**（矩阵宇宙理论）：
+**理论命题**（矩阵宇宙等价性）：
 
-几何宇宙范畴与矩阵宇宙范畴**等价**：
+几何宇宙范畴与矩阵宇宙范畴被认为是**范畴等价**的：
 
 $$
 \mathfrak{Uni}_{\text{geo}} \simeq \mathfrak{Uni}_{\text{mat}}
@@ -214,11 +214,13 @@ $$
 
 **物理意义**：
 
-**Reality ≡ Causal Network ≡ THE-MATRIX**
+这暗示了物理实在、因果网络与矩阵模型之间可能存在深层的结构同构：
+
+**Reality $\sim$ Causal Network $\sim$ Matrix Model**
 
 ### 3. 函子作为物理对应
 
-物理中的很多对应关系其实是**函子**：
+物理学中的许多对偶和对应关系可以用**函子**语言来精确描述：
 
 - **AdS/CFT**：$F: \mathcal{CAT}_{\text{AdS}} \to \mathcal{CAT}_{\text{CFT}}$
 - **全息对偶**：$F: \mathcal{CAT}_{\text{bulk}} \to \mathcal{CAT}_{\text{boundary}}$
@@ -249,11 +251,11 @@ graph LR
 
 ### 物理意义
 
-自然变换描述"物理过程的自然性"：
+自然变换为描述"物理过程的自然性"提供了数学语言：
 
-- 规范变换是自然变换
-- 对偶变换是自然变换
-- 量子态的演化是自然变换
+- 规范变换可以被视为自然变换
+- 对偶变换之间的联系
+- 量子态演化的协变性
 
 ## 📝 关键概念总结
 

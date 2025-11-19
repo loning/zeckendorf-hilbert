@@ -267,7 +267,7 @@ $$\kappa_\chi = \frac{2}{\ell} + O\left(\frac{\ell}{L_{\text{curv}}^2}\right)$$
 
 $$T = \frac{\hbar |\kappa_\chi|}{2\pi} = \frac{\hbar}{\pi\ell} + O\left(\frac{\ell}{L_{\text{curv}}^2}\right)$$
 
-**关键洞察**：小因果菱形有其**内在温度**，由几何决定！
+**关键洞察**：小因果菱形具有由几何决定的**内在温度**。
 
 ## 📐 变分设定
 
@@ -294,7 +294,7 @@ $$S_{\text{gen}}(S_\ell) = \frac{A(S_\ell)}{4G\hbar} + S_{\text{out}}(S_\ell)$$
 
 $$\boxed{\delta S_{\text{gen}} = 0} \quad (\text{固定体积})$$
 
-**这就是IGVP的核心！**
+**这是IGVP的核心假设之一。**
 
 ```mermaid
 graph TB
@@ -320,7 +320,7 @@ graph TB
 
 **核心思想**：如果对**所有**小因果菱形某个积分条件成立，能否推出**点态**方程？
 
-答案：**可以！**（在适当条件下）
+答案：**在适当条件下是可以的。**
 
 **步骤**：
 
@@ -328,7 +328,7 @@ graph TB
 2. **积分条件**：$\int_{S_\ell} \varphi \int_0^{\lambda_*} \lambda (R_{kk} - 8\pi G T_{kk}) d\lambda dA = o(\ell^2)$
 3. **闭包**：由光线变换的局部可逆性，推出 $R_{kk} = 8\pi G T_{kk}$ 在每点成立
 
-**这是从"族约束"到"点态方程"的桥梁！**
+**这构成了从"族约束"到"点态方程"的逻辑桥梁。**
 
 ### 族约束的物理意义
 

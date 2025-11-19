@@ -6,6 +6,14 @@
 
 ---
 
+## Note on This Guide
+
+> **Important**:
+> 
+> This guide is intended to help readers navigate the "GLS Unified Theory," an **exploratory framework**. The "paths" and "connections" described herein are logical deductions based on the theory's hypotheses, not established physical facts. Readers are advised to distinguish between "verified physical laws" (such as General Relativity) and "inferences of this theory."
+
+---
+
 ## Who Is This Tutorial For?
 
 ### ✅ It's for you if you are:
@@ -418,7 +426,7 @@ Based on your goals and available time:
 
 **A**:
 
-This is a developing theoretical framework. It builds on verified physical laws (GR, QFT) but provides a completely new unified perspective.
+This is a **developing theoretical framework**. It builds on verified physical laws (GR, QFT) but provides a completely new unified perspective.
 
 Criteria for judging a theory:
 
@@ -427,7 +435,7 @@ Criteria for judging a theory:
 3. Explaining known phenomena
 4. Predicting new phenomena
 
-These will all be discussed in the tutorial.
+These will all be discussed in the tutorial. Please note that **many points in this tutorial (especially regarding consciousness and ultimate ontology) remain in the theoretical hypothesis stage**.
 
 ### Q5: What can I do after reading?
 

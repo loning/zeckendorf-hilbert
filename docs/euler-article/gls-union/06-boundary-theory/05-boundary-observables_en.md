@@ -1,12 +1,12 @@
 # Boundary Observers: Unified Measurement Perspective
 
-> *"All observers are essentially boundary observers."*
+> *"All observers can theoretically be viewed as boundary observers."*
 
 ## 🎯 Core Insight
 
 This article will reveal a profound fact:
 
-**No matter where you are, you are a "boundary observer"!**
+**No matter where you are, you can theoretically be modeled as a "boundary observer"!**
 
 ```mermaid
 graph TB
@@ -60,7 +60,7 @@ graph LR
 - You're always in some "room" (causal region)
 - "Walls" of room are boundary
 - All information comes from walls
-- **You are a boundary observer!**
+- **You can be viewed as a boundary observer!**
 
 ## 🌟 Three Types of Boundary Observers
 
@@ -163,9 +163,9 @@ graph TB
 
 ### Core Theorem
 
-**Theorem (Boundary Observer Unification)**:
+**Proposition (Boundary Observer Unification)**:
 
-Under appropriate matching conditions, three boundary observers measure **the same physics**:
+Under appropriate matching conditions, three boundary observers are considered to measure **the same physics**:
 
 $$\boxed{\kappa_{\mathrm{scatt}} \sim \kappa_{\mathrm{mod}} \sim \kappa_{\mathrm{geom}}}$$
 
@@ -371,7 +371,7 @@ graph LR
 - Can **convert** through matching conditions
 - Exist **invariant equivalence classes** (like $[\kappa]$)
 
-This is not subjectivity, but **relational objectivity**!
+This is considered not subjectivity, but **relational objectivity**!
 
 ## 💎 Experimental Verification
 
@@ -450,7 +450,7 @@ This is not subjectivity, but **relational objectivity**!
 
 $$\kappa_{\mathrm{scatt}} \sim \kappa_{\mathrm{mod}} \sim \kappa_{\mathrm{geom}} \in [\kappa]$$
 
-All observers share unified time scale equivalence class!
+All observers are considered to share unified time scale equivalence class!
 
 ### Physical Meaning
 

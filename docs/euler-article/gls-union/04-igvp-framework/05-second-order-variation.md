@@ -122,7 +122,7 @@ $$S_{\text{rel}} = \underbrace{\delta S_{\text{gen}}}_{=0 \text{ （一阶极值
 
 $$\boxed{\delta^2 S_{\text{rel}} \ge 0}$$
 
-**物理意义**：扰动不能降低广义熵，这保证了极值是**稳定的极小值**！
+**物理意义**：扰动不能降低广义熵，这为极值是**稳定的极小值**提供了理论保障。
 
 ## 🔧 Hollands-Wald规范能量
 
@@ -148,7 +148,7 @@ $\mathcal{E}_{\text{can}}$ 测量**引力扰动的能量**。
 
 $$\mathcal{E}_{\text{can}} \ge 0 \quad \Leftrightarrow \quad \text{引力波携带正能量}$$
 
-**稳定性判据**：如果对所有允许的扰动都有 $\mathcal{E}_{\text{can}} \ge 0$，则背景解是**线性稳定的**。
+**稳定性判据**：如果对所有允许的扰动都有 $\mathcal{E}_{\text{can}} \ge 0$，则背景解通常被认为是**线性稳定的**。
 
 ```mermaid
 graph TB
@@ -171,13 +171,13 @@ graph TB
 
 ### JLMS关系
 
-Jafferis, Lewkowycz, Maldacena, Suh（2016）证明了一个深刻的等价关系：
+Jafferis, Lewkowycz, Maldacena, Suh（2016）提出了一个深刻的等价关系：
 
 在适当条件下（球形区域，真空态附近，固定边界条件）：
 
 $$\boxed{\delta^2 S_{\text{rel}} = \mathcal{E}_{\text{can}}[h, h]}$$
 
-**意义**：相对熵的二阶变分**等于**Hollands-Wald规范能量！
+**意义**：相对熵的二阶变分在特定条件下**等同于**Hollands-Wald规范能量。
 
 ### 证明思路
 
@@ -328,7 +328,7 @@ graph TB
 
 一阶极值 $\delta S_{\text{gen}} = 0$ 只是**必要条件**。
 
-物理实在的解必须是**稳定极值**：
+物理实在的解通常被认为是**稳定极值**：
 
 $$\delta S_{\text{gen}} = 0 \quad \text{且} \quad \delta^2 S_{\text{rel}} \ge 0$$
 
@@ -339,11 +339,11 @@ $$\delta S_{\text{gen}} = 0 \quad \text{且} \quad \delta^2 S_{\text{rel}} \ge 0
 
 ### 引力波携带正能量
 
-$\mathcal{E}_{\text{can}}[h, h] \ge 0$ 保证：
+$\mathcal{E}_{\text{can}}[h, h] \ge 0$ 意味着：
 
-**引力扰动（引力波）携带非负能量**
+**引力扰动（引力波）通常携带非负能量**
 
-这是物理一致性的基本要求！
+这是物理一致性的基本要求。
 
 ### 量子能量条件
 

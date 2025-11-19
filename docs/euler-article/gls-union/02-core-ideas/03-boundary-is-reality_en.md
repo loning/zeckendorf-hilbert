@@ -1,6 +1,6 @@
-# Core Insight 3: Boundary is Reality
+# Core Insight 3: Boundary Modeled as Reality
 
-> *"The universe is not in volume, but on the surface."*
+> *"GLS theory proposes: The universe might not be in volume, but on the surface."*
 
 ## 🎯 Core Idea
 
@@ -10,7 +10,7 @@ This is one of the most striking insights of GLS theory:
 
 Or more precisely:
 
-**Boundary data is ontological priority; bulk dynamics is just an extension of boundary data.**
+**GLS theory argues: Boundary data might be ontological priority; bulk dynamics might be just an extension of boundary data.**
 
 ## 🎈 Starting from Balloons: Boundary Contains All Information
 
@@ -42,7 +42,7 @@ graph TB
 - Surface pressure → Determines interior gas state
 - Surface vibration → Determines interior sound wave modes
 
-**The balloon interior is not independent reality, but a "shadow" of surface data!**
+**In this analogy, the balloon interior is not viewed as independent reality, but a "shadow" of surface data!**
 
 ### Bekenstein-Hawking Entropy: Area, Not Volume!
 
@@ -64,7 +64,7 @@ where $A = 4\pi R^2$ is the horizon area.
 
 **What does this mean?**
 
-**All information of a black hole is encoded on the two-dimensional surface, not in the three-dimensional volume!**
+**This implies that all information of a black hole might be encoded on the two-dimensional surface, not in the three-dimensional volume!**
 
 ```mermaid
 graph LR
@@ -88,7 +88,7 @@ You may have seen holographic security labels on credit cards:
 
 The Holographic Principle says:
 
-**Our universe is a "hologram"—all information is on the boundary!**
+**The Holographic Principle suggests: Our universe might be like a "hologram"—all information might be on the boundary!**
 
 ### AdS/CFT Correspondence: The Greatest Example
 
@@ -122,7 +122,7 @@ graph TB
 **Physical meaning**:
 - Quantum field theory on boundary contains all information of bulk gravity theory
 - Gravity, spacetime curvature are "emergences" of boundary data
-- **Bulk is not fundamental; boundary is!**
+- **GLS theory posits: Bulk might not be fundamental; boundary is!**
 
 ## 📐 Boundary Spectral Triple: Defining Geometry with Algebra
 
@@ -149,7 +149,7 @@ $$
 
 **This means**:
 
-**Geometry (metric, distance) is not a pre-given stage, but emerges from spectral data of boundary algebra!**
+**GLS theory proposes: Geometry (metric, distance) might not be a pre-given stage, but emerges from spectral data of boundary algebra!**
 
 ```mermaid
 graph LR
@@ -212,9 +212,9 @@ $$
 
 This is one of the most striking conclusions of GLS boundary theory:
 
-**Theorem 3 (No Fundamental Force Theorem)**
+**Theoretical Inference 3 (No Fundamental Force Theorem)**
 
-Under the Boundary Time Geometry (BTG) framework, all "forces"—gravity, electromagnetic, weak, strong—are not fundamental, but **different projections of unified boundary connection curvature**!
+Under the Boundary Time Geometry (BTG) framework, all "forces"—gravity, electromagnetic, weak, strong—might not be fundamental, but **different projections of unified boundary connection curvature**!
 
 ### Unified Boundary Connection
 
@@ -258,7 +258,7 @@ $$
 
 **Key insight**:
 
-**These "forces" are not external, but projection effects when we ignore certain fiber directions!**
+**These "forces" might not be external, but projection effects when we ignore certain fiber directions!**
 
 Just as objects on Earth move along geodesics, but appear to be subject to "forces" when projected onto a two-dimensional map.
 
@@ -282,13 +282,13 @@ graph TB
 
 Let's summarize all this into GLS's core axiom:
 
-**Axiom 1 (Boundary Priority)**
+**Theoretical Axiom 1 (Boundary Priority)**
 
 Given a spacetime region $(M, g)$ and its boundary $\partial M$, the fundamental description of physical observables is based on boundary observable algebra $\mathcal{A}_\partial$ and state set $\mathcal{S}_\partial$; bulk observables and dynamics can be viewed as extensions determined by $(\mathcal{A}_\partial, \mathcal{S}_\partial)$.
 
 **In plain language**:
 
-1. **Ontological priority**: Boundary data is "real," bulk is "derived"
+1. **Ontological priority**: Boundary data is viewed as "real," bulk is "derived"
 2. **Information completeness**: Boundary contains all information of bulk
 3. **Dynamics emergence**: Bulk evolution laws are derived from boundary data
 

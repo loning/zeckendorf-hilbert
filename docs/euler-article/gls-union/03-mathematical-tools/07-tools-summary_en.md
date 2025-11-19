@@ -173,9 +173,9 @@ Let's walk through the complete logic chain and see how the six tools collaborat
 
 **Construction**: Category $\mathcal{CAT}_{\text{phys}}$
 
-**Theorem**: QCA universe $\mathfrak{U}_{\text{QCA}}$ is terminal object
+**Theoretical Conjecture**: QCA universe $\mathfrak{U}_{\text{QCA}}$ is proposed as a terminal object
 
-**Meaning**: All theories uniquely embed into QCA universe
+**Meaning**: All theories could potentially uniquely embed into QCA universe
 
 ```mermaid
 graph TB
@@ -257,10 +257,10 @@ Now that you've mastered the mathematical toolbox, you can delve into:
    - Construct boundary framework using noncommutative geometry
 
 4. **QCA Universe** (09-qca-universe)
-   - Prove QCA universe is terminal object using category theory
+   - Explore the properties of QCA universe as a proposed terminal object using category theory
 
 5. **Matrix Universe** (10-matrix-universe)
-   - Prove geometric-matrix equivalence using category theory
+   - Study the equivalence between geometric and matrix universes using category theory
 
 ## 📝 Self-Check List
 
@@ -294,11 +294,11 @@ Before entering next chapter, ensure you can answer:
 ### Category Theory
 - [ ] What is a functor?
 - [ ] How is terminal object defined?
-- [ ] Why is QCA universe terminal object?
+- [ ] Why is QCA universe proposed as a terminal object?
 
 ## 🎉 Conclusion
 
-**Congratulations!** You have mastered the mathematical language of GLS theory.
+**Summary**: You have now explored the mathematical language of GLS theory.
 
 These tools are not isolated, but an **organically unified** whole:
 
@@ -329,5 +329,5 @@ graph TB
 
 **Next Chapter Preview**:
 
-In **IGVP Framework**, we will detail how to derive Einstein field equation from variational principle of entropy—one of the most brilliant achievements of GLS theory!
+In **IGVP Framework**, we will detail how to derive Einstein field equation from variational principle of entropy—one of the key theoretical achievements of GLS theory!
 

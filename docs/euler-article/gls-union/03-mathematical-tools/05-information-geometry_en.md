@@ -4,16 +4,20 @@
 
 ## 🎯 Core Idea
 
+## 🎯 Core Idea
+
 We usually think probability distributions are just sets of numbers.
 
-**Information geometry** reveals: Probability distribution space is actually a **manifold with metric**!
+**Information Geometry** offers a geometric perspective:
 
-- **Points** = Probability distributions
-- **Distance** = Relative entropy (KL divergence)
-- **Metric** = Fisher information matrix
-- **Geodesics** = Optimal inference paths
+**Families of probability distributions can be viewed as differential manifolds, where the Fisher information matrix defines a Riemannian metric!**
 
-This is the mathematical foundation of IGVP (Information Geometric Variational Principle).
+- **Points** $\leftrightarrow$ Probability distributions
+- **Distance** $\leftrightarrow$ Relative entropy (KL divergence) / Fisher-Rao distance
+- **Metric** $\leftrightarrow$ Fisher information matrix
+- **Geodesics** $\leftrightarrow$ Optimal inference paths or exponential families
+
+This constitutes one of the mathematical foundations of the IGVP (Information Geometric Variational Principle).
 
 ## 🗺️ Space of Probability Distributions
 
@@ -22,28 +26,28 @@ This is the mathematical foundation of IGVP (Information Geometric Variational P
 Consider a biased coin with probability $p$ of heads:
 
 $$
-P(H) = p, \quad P(T) = 1-p, \quad p \in [0, 1]
+P(H) = p, \quad P(T) = 1-p, \quad p \in (0, 1)
 $$
 
-All possible probability distributions form a **one-dimensional manifold** (interval $[0,1]$).
+All possible probability distributions form a **one-dimensional manifold** (open interval $(0,1)$).
 
 ```mermaid
 graph LR
-    P0["p=0<br/>Always Tails"] --> P25["p=0.25"]
+    P0["p -> 0<br/>Tends to Tails"] --> P25["p=0.25"]
     P25 --> P50["p=0.5<br/>Fair Coin"]
     P50 --> P75["p=0.75"]
-    P75 --> P1["p=1<br/>Always Heads"]
+    P75 --> P1["p -> 1<br/>Tends to Heads"]
 
     style P50 fill:#fff4e1,stroke:#ff6b6b,stroke-width:2px
 ```
 
-Question: How to measure "distance" between two distributions $p_1$ and $p_2$?
+Question: How to naturally define the "distance" between two distributions $p_1$ and $p_2$?
 
 ## 📏 Kullback-Leibler Divergence (Relative Entropy)
 
 ### Definition
 
-**KL divergence** (Kullback-Leibler divergence):
+**KL divergence** (Kullback-Leibler divergence) is a standard measure of the difference between two probability distributions:
 
 $$
 \boxed{D_{KL}(p || q) = \sum_i p_i \ln \frac{p_i}{q_i}}
@@ -55,16 +59,16 @@ $$
 D_{KL}(p || q) = \int p(x) \ln \frac{p(x)}{q(x)} dx
 $$
 
-**Physical meaning**:
+### Physical and Information-Theoretic Meaning
 
-- Extra information needed to encode true distribution $p$ using distribution $q$
-- "Distance" from $p$ to $q$ (but asymmetric!)
+- **Information Gain**: The amount of information gained when updating a prior distribution $q$ to a posterior distribution $p$.
+- **Encoding Cost**: The expected extra bits required to encode data distributed according to $p$ using a code optimized for $q$.
 
 ### Properties
 
-1. **Non-negativity**: $D_{KL}(p || q) \ge 0$
-2. **Zero if and only if**: $D_{KL}(p || q) = 0 \Leftrightarrow p = q$
-3. **Asymmetry**: $D_{KL}(p || q) \neq D_{KL}(q || p)$ (not a true distance!)
+1. **Non-negativity**: $D_{KL}(p || q) \ge 0$ (Gibbs' inequality).
+2. **Identity**: $D_{KL}(p || q) = 0 \Leftrightarrow p = q$ (almost everywhere).
+3. **Asymmetry**: Generally $D_{KL}(p || q) \neq D_{KL}(q || p)$ (thus it is not a strict metric distance!).
 
 ```mermaid
 graph LR
@@ -81,23 +85,23 @@ graph LR
 
 Consider parameterized distribution family $p_\theta$, where $\theta = (\theta^1, \ldots, \theta^n)$.
 
-**Fisher information matrix** is defined as Hessian of KL divergence:
+The **Fisher information matrix** can be defined as the second-order expansion term of KL divergence near a point:
 
 $$
-\boxed{g_{ij}(\theta) = \frac{\partial^2}{\partial \theta^i \partial \theta^j} D_{KL}(p_\theta || p_{\theta'})\Big|_{\theta'=\theta}}
+D_{KL}(p_\theta || p_{\theta+d\theta}) \approx \frac{1}{2} \sum_{i,j} g_{ij}(\theta) d\theta^i d\theta^j
 $$
 
-Or equivalently:
+Where:
 
 $$
-g_{ij}(\theta) = \mathbb{E}_\theta\left[\frac{\partial \ln p_\theta}{\partial \theta^i} \frac{\partial \ln p_\theta}{\partial \theta^j}\right]
+\boxed{g_{ij}(\theta) = \mathbb{E}_\theta\left[\frac{\partial \ln p_\theta}{\partial \theta^i} \frac{\partial \ln p_\theta}{\partial \theta^j}\right]}
 $$
 
-**This is a Riemannian metric!**
+### Geometric Meaning
 
-### Fisher-Rao Metric
+**The Fisher information matrix defines a Riemannian metric (Fisher-Rao metric)!**
 
-**Fisher-Rao metric** turns probability distribution space into Riemannian manifold.
+It is not only the unique metric (in the sense of Chentsov's theorem) invariant under sufficient statistics, but also endows the probability manifold with a curved geometric structure.
 
 Line element:
 
@@ -105,17 +109,13 @@ $$
 ds^2 = g_{ij}(\theta) d\theta^i d\theta^j
 $$
 
-"Distance" between two nearby distributions $p_\theta$ and $p_{\theta+d\theta}$:
-
-$$
-ds^2 \approx 2 D_{KL}(p_\theta || p_{\theta+d\theta})
-$$
+This means that in information geometry, "distance" is determined by the difficulty of distinguishing between two distributions.
 
 ```mermaid
 graph TB
     M["Probability Distribution Manifold 𝓜"] --> G["Fisher Metric g_ij"]
-    G --> D["Geodesics = Optimal Paths"]
-    G --> C["Curvature = Higher Correlations"]
+    G --> D["Geodesics = Optimal Inference Paths"]
+    G --> C["Curvature = Non-trivial Correlations"]
 
     style M fill:#fff4e1,stroke:#ff6b6b,stroke-width:2px
     style G fill:#e1ffe1
@@ -139,7 +139,7 @@ $$
 
 ### Fisher Information
 
-Calculate:
+Calculate the variance of the score function:
 
 $$
 \frac{\partial \ln p}{\partial \theta} = \frac{x}{\theta} - \frac{1-x}{1-\theta}
@@ -151,7 +151,7 @@ $$
 
 ### Fisher-Rao Distance
 
-Distance between two Bernoulli distributions $p_{\theta_1}$ and $p_{\theta_2}$:
+The geodesic distance between two Bernoulli distributions $p_{\theta_1}$ and $p_{\theta_2}$:
 
 $$
 d(\theta_1, \theta_2) = \int_{\theta_1}^{\theta_2} \sqrt{g(\theta)} d\theta = \int_{\theta_1}^{\theta_2} \frac{d\theta}{\sqrt{\theta(1-\theta)}}
@@ -163,13 +163,13 @@ $$
 d(\theta_1, \theta_2) = 2 \arccos\left(\sqrt{\theta_1\theta_2} + \sqrt{(1-\theta_1)(1-\theta_2)}\right)
 $$
 
-(This is called **Bhattacharyya distance**)
+This is known as the **Bhattacharyya distance**, corresponding to the great-circle distance on a sphere.
 
 ## 🔄 Quantum Relative Entropy
 
 ### Definition
 
-For quantum states $\rho$ and $\sigma$, define **quantum relative entropy**:
+For quantum states (density operators) $\rho$ and $\sigma$, **quantum relative entropy** is defined as:
 
 $$
 \boxed{S(\rho || \sigma) = \text{tr}(\rho \ln \rho) - \text{tr}(\rho \ln \sigma)}
@@ -177,68 +177,58 @@ $$
 
 ### Properties
 
-1. **Non-negativity**: $S(\rho || \sigma) \ge 0$ (Klein inequality)
-2. **Monotonicity**: For any completely positive map $\Phi$, $S(\Phi(\rho) || \Phi(\sigma)) \le S(\rho || \sigma)$
-3. **Additivity**: $S(\rho_1 \otimes \rho_2 || \sigma_1 \otimes \sigma_2) = S(\rho_1 || \sigma_1) + S(\rho_2 || \sigma_2)$
+1. **Non-negativity**: $S(\rho || \sigma) \ge 0$ (Klein inequality).
+2. **Monotonicity**: For any completely positive trace-preserving (CPTP) map $\Phi$, $S(\Phi(\rho) || \Phi(\sigma)) \le S(\rho || \sigma)$. This reflects the **Data Processing Inequality**: information processing cannot increase distinguishability.
+3. **Joint Convexity**: $S(\rho || \sigma)$ is jointly convex in $(\rho, \sigma)$.
 
-### Physical Meaning
+### Physical Connection
 
-Quantum relative entropy measures "distinguishability" of two quantum states.
-
-In thermodynamics:
+In thermodynamics, if $\rho_{\text{thermal}}$ is a Gibbs state, relative entropy is proportional to the free energy difference:
 
 $$
-S(\rho || \rho_{\text{thermal}}) = \beta(F - F_{\text{thermal}})
+S(\rho || \rho_{\text{thermal}}) = \beta(F(\rho) - F(\rho_{\text{thermal}}))
 $$
 
-(Free energy difference)
+This gives relative entropy a clear thermodynamic interpretation: the degree of deviation from equilibrium.
 
-## 🎓 Applications in IGVP
+## 🎓 Application Models in IGVP
 
 ### Variation of Generalized Entropy
 
-In IGVP framework, first-order condition:
+In the IGVP framework, we **postulate** that spacetime dynamics follow a variational principle of generalized entropy. First-order condition:
 
 $$
 \delta S_{\text{gen}} = 0
 $$
 
-involves **generalized entropy**:
+Where generalized entropy $S_{\text{gen}}$ includes an area term (Bekenstein-Hawking entropy) and a matter entropy term.
 
-$$
-S_{\text{gen}} = \frac{A}{4G\hbar} + S_{\text{out}}
-$$
+### Second-Order Condition: Stability
 
-### Second-Order Condition: Relative Entropy Non-Negative
-
-Second-order condition requires:
+The second-order variation involves the second derivative of relative entropy. The stability condition requires:
 
 $$
 \delta^2 S_{\text{rel}} \ge 0
 $$
 
-where $S_{\text{rel}}$ is relative entropy.
-
-This ensures stability of Einstein equation.
+Physically, this corresponds to thermodynamic stability of the system; mathematically, it relates to the positive definiteness of Fisher information.
 
 ```mermaid
 graph TB
-    I["IGVP"] --> F["First-Order: δS_gen = 0"]
+    I["IGVP Framework"] --> F["First-Order: δS_gen = 0"]
     I --> S["Second-Order: δ²S_rel ≥ 0"]
 
-    F --> E["Einstein Equation<br/>G_ab + Λg_ab = 8πGT_ab"]
-    S --> H["Hollands-Wald<br/>Stability"]
+    F --> E["Derives Einstein Equation<br/>(Theoretical Conjecture)"]
+    S --> H["Corresponds to Hollands-Wald<br/>Stability Condition"]
 
     style I fill:#fff4e1,stroke:#ff6b6b,stroke-width:3px
     style E fill:#e1ffe1
     style H fill:#ffe1e1
 ```
 
-### Fisher Metric and Metric Variation
+### Fisher Metric and Spacetime Metric
 
-From information geometry perspective, variation of metric $g_{\mu\nu}$ corresponds to variation of probability distributions.
-
-Fisher information matrix gives natural metric on metric space.
+From an information geometry perspective, there may be a deep connection between the Fisher metric $g_{ij}$ on the probability manifold and the spacetime metric $g_{\mu\nu}$. IGVP attempts to establish this **holographic correspondence**.
 
 ## 📝 Key Concepts Summary
 

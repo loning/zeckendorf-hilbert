@@ -1,10 +1,10 @@
 # Boundary Theory Summary: Boundary Nature of Physics
 
-> *"Bulk is a phantom of boundary data; all real physical objects live on the boundary."*
+> *"From the GLS perspective, the bulk is viewed as a projection of boundary data; physical objects are primarily defined on the boundary."*
 
 ## 🎯 Core Review
 
-In this chapter, we completed a **paradigm revolution from bulk to boundary**. Let's review this amazing journey.
+In this chapter, we explored a **paradigm shift from bulk to boundary**. Let's review this theoretical journey.
 
 ### Core Insight
 
@@ -124,7 +124,7 @@ graph LR
 
 ### Boundary Completeness Principle
 
-**Proposition**: Given boundary triple $(\partial\mathcal{M}, \mathcal{A}_\partial, \omega_\partial)$, bulk physical content can be **completely reconstructed**.
+**Proposition (Boundary Completeness Hypothesis)**: Given boundary triple $(\partial\mathcal{M}, \mathcal{A}_\partial, \omega_\partial)$, bulk physical content can theoretically be **completely reconstructed**.
 
 **Three Levels of Reconstruction**:
 
@@ -162,7 +162,7 @@ In [03-GHY Boundary Term](03-ghy-boundary-term_en.md), we revealed necessity of 
 
 ### Core Theorem (GHY Cancellation Mechanism)
 
-**Theorem**: For Einstein-Hilbert action plus GHY boundary term:
+**Proposition (GHY Cancellation Mechanism)**: For Einstein-Hilbert action plus GHY boundary term:
 
 $$S_{\mathrm{total}} = S_{\mathrm{EH}} + S_{\mathrm{GHY}}$$
 
@@ -242,7 +242,7 @@ $$\boxed{E_{\mathrm{BY}} = \int_{\mathcal{S}} \sqrt{\sigma}\, u_a u_b\, T^{ab}_{
 
 ### Asymptotic Limit
 
-**Theorem**: In asymptotically flat spacetime, Brown-York energy converges to ADM mass:
+**Property**: In asymptotically flat spacetime, Brown-York energy converges to ADM mass:
 
 $$\lim_{r \to \infty} E_{\mathrm{BY}}(\mathcal{S}_r) = M_{\mathrm{ADM}}$$
 
@@ -265,7 +265,7 @@ In [05-Boundary Observers](05-boundary-observables_en.md), we achieved ultimate 
 
 ### Core Theorem (Boundary Observer Unification)
 
-**Theorem**: The following three "boundary observers" are essentially equivalent:
+**Proposition**: The following three "boundary observers" are essentially equivalent within the theoretical framework:
 
 $$\boxed{\kappa_{\mathrm{scatt}} \sim \kappa_{\mathrm{mod}} \sim \kappa_{\mathrm{geom}}}$$
 
@@ -306,7 +306,7 @@ graph TB
 
 **Definition**: Time scale equivalence class $[\kappa]$ is equivalence class of all scale densities differing by constant factors and allowed rescalings.
 
-**Theorem**: In boundary triple $(\partial\mathcal{M}, \mathcal{A}_\partial, \omega_\partial)$, there exists unique scale equivalence class $[\kappa]$ such that:
+**Proposition**: In boundary triple $(\partial\mathcal{M}, \mathcal{A}_\partial, \omega_\partial)$, there exists unique scale equivalence class $[\kappa]$ such that:
 
 $$\boxed{\kappa_{\mathrm{scatt}} = \kappa_{\mathrm{mod}} = \kappa_{\mathrm{geom}} = \kappa(\omega)}$$
 
@@ -368,21 +368,21 @@ graph TB
 
 ### Main Results Summary
 
-**Theorem A (Scattering End Scale Identity)**:
+**Proposition A (Scattering End Scale Identity)**:
 
 $$\boxed{\frac{\varphi'(\omega)}{\pi} = \rho_{\mathrm{rel}}(\omega) = \frac{1}{2\pi}\operatorname{tr}Q(\omega)}$$
 
-**Theorem B (Modular Flow End Localization)**: Modular Hamiltonian can be completely localized on boundary:
+**Proposition B (Modular Flow End Localization)**: Modular Hamiltonian can be completely localized on boundary:
 
 $$K_\partial = 2\pi \int_{\partial O} \xi^\mu T_{\mu\nu} n^\nu\, \mathrm{d}\Sigma$$
 
-**Theorem C (GHY Well-Definedness)**:
+**Proposition C (GHY Well-Definedness)**:
 
 $$\delta(S_{\mathrm{EH}} + S_{\mathrm{GHY}}) = \frac{1}{16\pi G}\int_{\mathcal{M}}\sqrt{-g}\, G_{\mu\nu}\, \delta g^{\mu\nu}$$
 
 Boundary terms completely cancel!
 
-**Theorem D (Boundary Trinity)**: There exists unified boundary time generator $H_\partial$ such that:
+**Proposition D (Boundary Trinity)**: There exists unified boundary time generator $H_\partial$ such that:
 
 $$H_\partial = \int \omega\, \mathrm{d}\mu_\partial^{\mathrm{scatt}}(\omega) = c_1 K_D = c_2 H_\partial^{\mathrm{grav}}$$
 
@@ -529,7 +529,7 @@ graph LR
 
 ### 3. Essence of Observers
 
-**Theorem**: Any observer is a **boundary observer**.
+**Viewpoint**: Any observer can theoretically be modeled as a **boundary observer**.
 
 **Three Levels**:
 1. **Scattering Observer**: Measures incoming/outgoing particles at asymptotic boundary
@@ -728,7 +728,7 @@ graph TB
 
 ### Core Propositions
 
-**Boundary Trinity Principle**:
+**Boundary Trinity Proposition**:
 
 $$\boxed{
 \begin{aligned}
@@ -740,11 +740,11 @@ $$\boxed{
 \end{aligned}
 }$$
 
-**GHY Well-Definedness Principle**:
+**GHY Well-Definedness Proposition**:
 
 $$\boxed{\delta(S_{\mathrm{EH}} + S_{\mathrm{GHY}}) = \frac{1}{16\pi G}\int_{\mathcal{M}}\sqrt{-g}\, G_{\mu\nu}\, \delta g^{\mu\nu}}$$
 
-**Boundary Completeness Principle**:
+**Boundary Completeness Proposition**:
 
 $$\boxed{\text{Bulk Physics} = F[\text{Boundary Triple } (\partial\mathcal{M}, \mathcal{A}_\partial, \omega_\partial)]}$$
 
@@ -754,7 +754,7 @@ where $F$ is some reconstruction functional.
 
 **Physics is not in bulk, but on boundary.**
 
-This is not a metaphor, but a **profound physical fact**. All computable physical objects—scattering phases, entanglement entropy, energy-momentum—are concentrated on boundary. Bulk is just "phantom" projected from boundary data.
+This is not a metaphor, but a **profound physical insight**. All computable physical objects—scattering phases, entanglement entropy, energy-momentum—are concentrated on boundary. Bulk is viewed as a "reconstruction" projected from boundary data.
 
 Boundary theory reveals true nature of physics:
 - **Time** is not background, but boundary scale

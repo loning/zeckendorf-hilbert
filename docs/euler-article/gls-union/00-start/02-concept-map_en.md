@@ -8,6 +8,8 @@
 
 ## Core Conceptual Relationship Network
 
+> **Note**: This map illustrates the **proposed** conceptual structure of the GLS theory, showing the logical connections between different physical quantities within the theoretical framework.
+
 ```mermaid
 graph TB
     subgraph "Fundamental Concept Layer"

@@ -4,9 +4,9 @@
 
 ## 🎯 本篇核心思想
 
-在GLS理论中，**边界不是限制，而是本质**。本篇将揭示一个惊人的事实：
+在GLS理论中，**边界被视为本质**。本篇将阐述一个核心观点：
 
-**所有可计算的物理对象都集中在边界上，体域只是边界数据的重建。**
+**所有可计算的物理对象可能都集中在边界上，体域可被视为边界数据的重建。**
 
 ```mermaid
 graph TB
@@ -39,7 +39,7 @@ graph TB
 2. **量子场论**：模流在区域边界上局域化
 3. **广义相对论**：Einstein-Hilbert作用单独不良定，必须加GHY边界项
 
-**关键洞察**：体域更像边界数据的"幻影"！
+**关键洞察**：体域在某种意义上更像边界数据的"幻影"！
 
 ### 第2篇：边界数据三元组
 
@@ -52,7 +52,7 @@ $$(\partial\mathcal{M}, \mathcal{A}_\partial, \omega_\partial)$$
 - $\mathcal{A}_\partial$：边界可观测代数
 - $\omega_\partial$：边界态
 
-**统一框架**：所有边界物理都由这个三元组编码！
+**统一框架**：所有边界物理理论上都由这个三元组编码！
 
 ### 第3篇：GHY边界项
 
@@ -98,14 +98,14 @@ $$\text{Brown-York能量} \Longleftrightarrow \text{边界时间生成元} \Long
 
 ### 第5篇：边界观察者
 
-**核心观念**：观察者本质上是边界观察者！
+**核心观念**：观察者在理论上本质上是边界观察者！
 
 **三种实现**：
 1. **散射观察者**：在渐近边界测量散射相位
 2. **模流观察者**：在区域边界定义模哈密顿量
 3. **几何观察者**：在类时边界测量Brown-York能量
 
-**统一刻度**：所有观察者共享同一时间刻度等价类 $[\kappa]$！
+**统一刻度**：所有观察者被认为共享同一时间刻度等价类 $[\kappa]$！
 
 ### 第6篇：边界理论阶段总结
 
@@ -113,7 +113,7 @@ $$\text{Brown-York能量} \Longleftrightarrow \text{边界时间生成元} \Long
 
 ### 第7篇：边界作为舞台
 
-**核心思想**：物理真正发生在边界,体域只是边界数据的"投影"或"全息像"
+**核心思想**：物理被认为真正发生在边界,体域只是边界数据的"投影"或"全息像"
 
 **边界三元组**：$(∂M, \mathcal{A}_∂, ω_∂)$统一所有边界物理
 - $∂M$：几何边界(舞台的物理空间)
@@ -125,7 +125,7 @@ $$\text{Brown-York能量} \Longleftrightarrow \text{边界时间生成元} \Long
 2. **模流演员**：模哈密顿量$K_D = -\log \Delta$
 3. **几何演员**：Brown-York哈密顿量$H_∂^{\text{grav}}$
 
-**边界三位一体定理**：
+**边界三位一体命题**：
 $$H_∂ = \int\omega d\mu^{\text{scatt}} = c_1 K_D = c_2^{-1} H_∂^{\text{grav}}$$
 
 **Null-Modular双覆盖**：
@@ -133,7 +133,7 @@ $$H_∂ = \int\omega d\mu^{\text{scatt}} = c_1 K_D = c_2^{-1} H_∂^{\text{grav}
 - 模哈密顿量在零边界上局域化
 - $\mathbb{Z}_2$ holonomy刻画拓扑结构
 
-**日常类比**：剧院舞台(边界)是演出真正发生的地方,三个演员实为同一人的三种扮相
+**日常类比**：剧院舞台(边界)是演出真正发生的地方,三个演员可被视为同一人的三种扮相
 
 ### 第8篇：边界、观察者与时间
 
@@ -152,9 +152,9 @@ $$H_∂ = \int\omega d\mu^{\text{scatt}} = c_1 K_D = c_2^{-1} H_∂^{\text{grav}
 **世界截面**：$\Sigma_\tau = (\gamma(\tau), \mathcal{A}_{\gamma,\Lambda}(\tau), \rho_{\gamma,\Lambda}(\tau))$
 观察者在$\tau$时刻"看到"的世界
 
-**核心定理**：
-- **无观察者时间定理**：无观察者→无时间,只有刻度场$\kappa(\omega)$
-- **注意力测地线定理**：时间轴$\tau$必须满足:
+**核心命题**：
+- **无观察者时间推论**：无观察者→无时间,只有刻度场$\kappa(\omega)$
+- **注意力测地线假设**：时间轴$\tau$必须满足:
   1. 刻度条件: $\frac{d\tau}{d\lambda} = \int \kappa(\omega) w_\lambda(\omega) d\omega$
   2. 广义熵测地线: 截面族$\{\sigma(\tau)\}$使$S_{\text{gen}}$驻定
 - **截面宇宙$\mathfrak{S}$**：所有可能截面的空间,观察者体验=其中一条路径
@@ -196,7 +196,7 @@ $$\Theta_\Delta(\omega) = (\rho_{\text{rel}} * P_\Delta)(\omega)$$
 
 ### 第10篇：三位一体母尺
 
-**核心思想**：三种时间定义的统一不是巧合,而是边界几何的深刻必然
+**核心思想**：三种时间定义的统一可能不是巧合,而是边界几何的深刻必然
 
 **终极问题**：**为什么**三种完全不同的定义给出**相同的**时间刻度?
 $$\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\text{rel}}(\omega) = \frac{1}{2\pi}\text{tr}Q(\omega)$$
@@ -220,8 +220,8 @@ $$\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\text{rel}}(\omega) = \f
    $$\kappa_{\text{grav}}(\omega) = \frac{1}{2\pi}\text{tr}Q(\omega)$$
    物理图像：边界准局域能量生成的时间平移
 
-**核心定理**：
-- **仿射唯一性定理**(定理3.1)：$\kappa_{\text{scatt}} \sim \kappa_{\text{mod}} \sim \kappa_{\text{grav}}$
+**核心命题**：
+- **仿射唯一性命题**(命题3.1)：$\kappa_{\text{scatt}} \sim \kappa_{\text{mod}} \sim \kappa_{\text{grav}}$
   三种刻度属于同一等价类!
 - **拓扑类等价**(定理3.2)：Null-Modular $\mathbb{Z}_2$类$[K]$等价于:
   - 半相位跃迁$\Delta\varphi = \pi \mod 2\pi$
@@ -239,7 +239,7 @@ $$\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\text{rel}}(\omega) = \f
 **日常类比**：三个盲人摸象(深化版)
 - 盲人A摸鼻子(散射)、B摸腿(模流)、C摸尾巴(引力)
 - 报告的"长度"$L_1, L_2, L_3$必须相等
-- 原因：它们都是大象的**固有尺度**,由内禀几何决定!
+- 原因：它们可能都是大象的**固有尺度**,由内禀几何决定!
 
 ### 第11篇：边界理论总结
 
@@ -275,7 +275,7 @@ graph TB
 
 $$\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\mathrm{rel}}(\omega) = \frac{1}{2\pi}\operatorname{tr}Q(\omega)$$
 
-现在我们将看到：**这个统一刻度完全由边界数据确定！**
+现在我们将看到：**这个统一刻度理论上完全由边界数据确定！**
 
 ### 引向因果结构篇（第7篇）
 
@@ -345,18 +345,18 @@ graph TB
 
 学完本篇后，你将理解：
 
-### 1. 边界完备性原理
+### 1. 边界完备性假说
 
-**命题**：体域物理内容可由边界三元组完全重建。
+**命题**：体域物理内容理论上可由边界三元组完全重建。
 
 **证据**：
 - 散射理论：波算子与$S$-矩阵
 - AdS/CFT：边界CFT重建体域几何
 - Hamilton-Jacobi：边界数据重建体域解
 
-### 2. 边界时间三位一体
+### 2. 边界时间三位一体命题
 
-**定理**：以下三种"边界时间"等价：
+**命题**：以下三种"边界时间"被认为是等价的：
 
 $$\text{散射时间延迟} \Longleftrightarrow \text{模流参数} \Longleftrightarrow \text{Brown-York边界时间}$$
 
@@ -364,9 +364,9 @@ $$\text{散射时间延迟} \Longleftrightarrow \text{模流参数} \Longleftrig
 
 $$H_\partial = \int \omega\, \mathrm{d}\mu_\partial^{\mathrm{scatt}}(\omega) = c_1 K_D + c_2^{-1} H_\partial^{\mathrm{grav}}$$
 
-### 3. GHY必要性定理
+### 3. GHY必要性论证
 
-**定理**：在非零类边界上，加入
+**论证**：在非零类边界上，加入
 
 $$S_{\mathrm{GHY}} = \frac{\varepsilon}{8\pi G}\int_{\partial\mathcal{M}}\sqrt{|h|}\,K\,\mathrm{d}^3x$$
 
@@ -376,9 +376,9 @@ $$\delta(S_{\mathrm{EH}} + S_{\mathrm{GHY}}) = \frac{1}{16\pi G}\int_{\mathcal{M
 
 边界项完全抵消！
 
-### 4. 准局域能收敛定理
+### 4. 准局域能收敛性质
 
-**定理**：Brown-York准局域能量在渐近平坦极限下收敛到ADM质量：
+**性质**：Brown-York准局域能量在渐近平坦极限下收敛到ADM质量：
 
 $$\lim_{r\to\infty} E_{\mathrm{BY}}(r) = M_{\mathrm{ADM}}$$
 

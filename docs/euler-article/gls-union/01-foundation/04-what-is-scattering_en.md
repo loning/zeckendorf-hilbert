@@ -208,7 +208,7 @@ $$
 
 That is: **Derivative of phase with respect to energy is time delay!**
 
-> 💡 **This is the Quantum Origin of Time**: Time is not an external parameter, but derivative of scattering phase!
+> 💡 **GLS Theory Proposes**: This might be the quantum origin of time—time might not be an external parameter, but the derivative of scattering phase!
 
 ---
 
@@ -216,7 +216,7 @@ That is: **Derivative of phase with respect to energy is time delay!**
 
 One of GLS unified theory's core insights:
 
-> **Scattering is not just particle collisions, it is the essence of time evolution.**
+> **GLS theory argues: Scattering is not just particle collisions, it might be the essence of time evolution.**
 
 ### 🔄 Evolution = Scattering
 
@@ -251,7 +251,7 @@ Translation:
 - **Scattering Delay** ($\text{tr}\,Q$) = Time particle stays in scattering region
 - **Phase Derivative** ($\varphi'$) = Rate of change of wave function phase with respect to energy
 
-**They are the same thing!**
+**In the GLS framework, they are mathematically equivalent!**
 
 ---
 
@@ -315,7 +315,7 @@ graph TD
     style Center fill:#ff6b6b,stroke:#c92a2a,stroke-width:4px,color:#fff
 ```
 
-> 💡 **Profound Insight**: Time is not an external clock, but an intrinsic emergent property of scattering-phase-spectrum structure.
+> 💡 **Core Insight of GLS Theory**: Time might not be an external clock, but an intrinsic emergent property of scattering-phase-spectrum structure.
 
 ---
 
@@ -396,7 +396,7 @@ Imagine a causal diamond:
 1. **Bulk View**: Particles move in interior, affected by potential
 2. **Boundary View**: Particles scatter on boundary, interior is "empty"
 
-**GLS Theory Says**: Boundary view is fundamental!
+**GLS Theory Advocates**: Boundary view might be more fundamental!
 
 - Scattering data (S-matrix) defined on boundary
 - "Evolution" in bulk is reconstructed from boundary data
@@ -435,7 +435,7 @@ This is another manifestation of holographic principle!
 
 ### 💡 Most Profound Insight
 
-> **Time is not an external clock, but intrinsic delay of scattering processes. Evolution of universe is essentially a huge scattering process.**
+> **GLS theory proposes: Time might not be an external clock, but intrinsic delay of scattering processes. Evolution of universe is essentially a huge scattering process.**
 
 Just as echo tells you the shape of a cave, scattering tells you the structure of universe—even what time itself is.
 

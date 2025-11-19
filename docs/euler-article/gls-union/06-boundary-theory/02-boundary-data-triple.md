@@ -4,11 +4,11 @@
 
 ## 🎯 核心思想
 
-在上一篇我们知道：**物理在边界**。
+在上一篇我们知道：**物理被视为在边界**。
 
 现在的问题：**边界上需要什么数据？**
 
-**答案**：恰好三个对象：
+**答案**：理论上核心包含三个对象：
 
 $$\boxed{(\partial\mathcal{M}, \mathcal{A}_\partial, \omega_\partial)}$$
 
@@ -299,7 +299,7 @@ $$S(\omega_\rho \| \omega) = \operatorname{Tr}(\rho \ln \rho) - \operatorname{Tr
 
 ### 1. 几何决定代数
 
-**因果性**：$\partial\mathcal{M}$ 的因果结构决定代数的局域性
+**因果性**：$\partial\mathcal{M}$ 的因果结构被认为决定代数的局域性
 
 $$O_1 \perp O_2 \quad (\text{类空分离}) \Rightarrow [\mathcal{A}(O_1), \mathcal{A}(O_2)] = 0$$
 
@@ -334,9 +334,9 @@ graph TB
 
 现在我们可以精确表述边界完备性：
 
-**定理（边界重建）**：
+**命题（边界重建）**：
 
-给定边界三元组 $(\partial\mathcal{M}, \mathcal{A}_\partial, \omega_\partial)$ 与适当的正则性条件，存在唯一（在自然等价意义下）体域理论 $(\mathcal{M}, \mathcal{A}, \omega)$ 使得：
+给定边界三元组 $(\partial\mathcal{M}, \mathcal{A}_\partial, \omega_\partial)$ 与适当的正则性条件，理论上存在唯一（在自然等价意义下）体域理论 $(\mathcal{M}, \mathcal{A}, \omega)$ 使得：
 
 1. $\mathcal{A}_\partial \subset \mathcal{A}$ 是边界子代数
 2. $\omega|_{\mathcal{A}_\partial} = \omega_\partial$
@@ -382,7 +382,7 @@ $$\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\mathrm{rel}}(\omega) = 
 
 **问题**：三元组是最小的吗？能否用更少数据？
 
-**回答**：不能！三个组分各有不可替代性。
+**回答**：理论上不能。三个组分被认为各有不可替代性。
 
 ### 为什么需要 $\partial\mathcal{M}$？
 
@@ -511,8 +511,8 @@ $$(\partial\mathcal{M}, \mathcal{A}_\partial, \omega_\partial)$$
 
 ### 完备性定理
 
-边界三元组完全编码物理内容：
-- 体域可由边界重建
+边界三元组被认为完全编码物理内容：
+- 体域理论上可由边界重建
 - 时间演化由边界自同构群确定
 - 可观测量的期望值由边界态给出
 

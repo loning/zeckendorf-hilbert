@@ -1,12 +1,12 @@
 # 时间刻度同一式：四者合一的证明
 
-> *"所有时间都是同一时间的不同面孔。"*
+> *"多种时间概念可能只是同一物理实体的不同表现形式。"*
 
 ## 🎯 核心定理
 
 **定理**（时间刻度同一式）：
 
-在适当的散射-谱-几何条件下，以下四个量在本质上相同：
+在适当的散射-谱-几何条件下，以下四个量在数学结构上等价：
 
 $$\boxed{\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\text{rel}}(\omega) = \frac{1}{2\pi}\text{tr}\,Q(\omega)}$$
 
@@ -20,7 +20,7 @@ $$\boxed{\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\text{rel}}(\omeg
 - **相位导数** $\varphi'/\pi$：量子相位的变化率
 - **相对态密度** $\rho_{\text{rel}}$：能级推移的密度
 - **群延迟迹** $\text{tr}\,Q/(2\pi)$：波包延迟的密度
-- **它们是同一个时间刻度的三个投影！**
+- **结论**：它们可被视为同一个时间刻度的三个投影。
 
 ```mermaid
 graph TB
@@ -56,9 +56,9 @@ graph TB
 - **谱角度**：山的高度分布（$\rho_{\text{rel}}$）
 - **散射角度**：攀登所需时间（$\text{tr}\,Q$）
 
-**它们描述同一座山！**
+**寓意**：它们从不同角度描述了同一物理对象。
 
-**同一式说**：这三个视角给出**相同的信息**！
+**同一式表明**：这三个视角给出**一致的信息**。
 
 ### 音乐类比
 
@@ -69,7 +69,7 @@ graph TB
 2. **能级谱**（共振峰）：主要频率
 3. **时间延迟**（回响）：声音持续
 
-**同一式说**：这三种分析方法提取**相同的时间结构**！
+**同一式表明**：这三种分析方法提取**相同的时间结构**。
 
 ## 📐 完整证明
 
@@ -81,7 +81,7 @@ graph TB
 
 **第2步**：证明 $\rho_{\text{rel}} = \text{tr}\,Q/(2\pi)$（谱-散射等价）
 
-**结论**：三者相等！
+**结论**：三者相等。
 
 ```mermaid
 graph LR
@@ -144,7 +144,7 @@ $$\frac{d\varphi}{d\omega} = \pi\rho_{\text{rel}}(\omega)$$
 
 $$\boxed{\frac{\varphi'(\omega)}{\pi} = \rho_{\text{rel}}(\omega)}$$
 
-**证毕！第1个等号成立！**
+**证毕**：第1个等号成立。
 
 ### 第2步：谱-散射等价
 
@@ -210,7 +210,7 @@ $$\text{tr}\,Q(\omega) = 2\pi\rho_{\text{rel}}(\omega)$$
 
 $$\boxed{\rho_{\text{rel}}(\omega) = \frac{1}{2\pi}\text{tr}\,Q(\omega)}$$
 
-**证毕！第2个等号成立！**
+**证毕**：第2个等号成立。
 
 ### 完整同一式
 
@@ -222,7 +222,7 @@ $$\boxed{\frac{\varphi'(\omega)}{\pi} = \rho_{\text{rel}}(\omega) = \frac{1}{2\p
 
 $$\kappa(\omega) := \frac{1}{2\pi}\text{tr}\,Q(\omega)$$
 
-**物理意义**：$\kappa(\omega)\,d\omega$ 是频率区间 $[\omega, \omega + d\omega]$ 对应的"时间间隔"！
+**物理意义**：$\kappa(\omega)\,d\omega$ 可解释为频率区间 $[\omega, \omega + d\omega]$ 对应的"时间间隔"。
 
 ```mermaid
 graph TB
@@ -281,7 +281,7 @@ $$\frac{\text{tr}\,Q}{2\pi} = \frac{1}{\pi}\frac{d\delta}{dE}$$
 
 $$\frac{\varphi'}{\pi} = \frac{1}{\pi}\frac{d\delta}{dE} = \rho_{\text{rel}} = \frac{\text{tr}\,Q}{2\pi}$$
 
-**完美！同一式成立！**
+**结论**：结果验证了同一式的有效性。
 
 ### 共振散射
 
@@ -299,13 +299,13 @@ $$= \frac{\Gamma/2}{(E - E_r)^2 + (\Gamma/2)^2}$$
 
 $$\frac{\varphi'}{\pi} = \rho_{\text{rel}} = \frac{\text{tr}\,Q}{2\pi} = \frac{1}{\pi} \cdot \frac{\Gamma/2}{(E - E_r)^2 + (\Gamma/2)^2}$$
 
-**Lorentz线型！**
+**Lorentz线型**。
 
 **积分**：
 
 $$\int_{-\infty}^\infty \kappa(E)\,dE = \int_{-\infty}^\infty \rho_{\text{rel}}(E)\,dE = 1$$
 
-**意义**：一个共振贡献单位"时间"！
+**意义**：一个共振贡献单位"时间"。
 
 ```mermaid
 graph LR
@@ -339,7 +339,7 @@ graph LR
 - 时间是可直接测量的延迟
 - 散射实验可测
 
-**同一式说**：**这三者是同一个时间！**
+**同一式表明**：**这三者在数学结构上高度统一。**
 
 ### 2. 统一时间刻度
 
@@ -356,13 +356,13 @@ $$= \int_{\omega_0}^\omega \frac{\text{tr}\,Q(\omega')}{2\pi}\,d\omega'$$
 **物理意义**：
 - $T(\omega)$ 是从 $\omega_0$ 到 $\omega$ 的"累积时间"
 - 可从相位、谱移或群延迟任意一个计算
-- **它们给出相同的答案！**
+- **它们给出一致的答案。**
 
 ### 3. 时间的操作定义
 
 **传统观点**：时间是先验参数 $t$
 
-**GLS观点**：时间是从散射数据提取的！
+**GLS观点**：时间可从散射数据提取。
 
 **操作步骤**：
 1. 测量散射矩阵 $S(\omega)$
@@ -375,7 +375,7 @@ $$= \int_{\omega_0}^\omega \frac{\text{tr}\,Q(\omega')}{2\pi}\,d\omega'$$
 2. 求导 $\varphi'$
 3. 归一化 $\kappa = \varphi'/\pi$
 
-**结果相同！**
+**结果相同。**
 
 ```mermaid
 graph TB
@@ -431,7 +431,7 @@ $$t - \tau = \text{常数} = \beta$$
 
 若允许重标：$dt = \alpha\,d\tau$，则 $t = \alpha\tau + \beta$。
 
-**物理意义**：时间刻度在仿射变换意义下唯一！
+**物理意义**：时间刻度在仿射变换意义下唯一。
 
 ### 时间刻度等价类
 
@@ -450,7 +450,7 @@ $$[\tau] := \{t \mid t = \alpha\tau + \beta, \alpha > 0\}$$
 - 红移参数 $z$
 - 模块时间 $s_{\text{mod}}$
 
-**它们通过单调重标互相转换！**
+**它们通过单调重标互相转换。**
 
 ```mermaid
 graph TB
@@ -493,13 +493,13 @@ $$\phi = \frac{mc^2}{\hbar}\int d\tau$$
 
 $$\frac{d\phi}{d\tau} = \frac{mc^2}{\hbar} = \omega_C$$
 
-**联系**：相位随本征时间线性增长，频率 $\omega_C$ 就是"时间刻度"！
+**联系**：相位随本征时间线性增长，频率 $\omega_C$ 就是"时间刻度"。
 
 ### 第2篇：散射相位与群延迟
 
 $$\text{tr}\,Q(\omega) = \frac{\partial\Phi(\omega)}{\partial\omega}$$
 
-**联系**：群延迟是相位对频率的导数，就是"时间刻度"的直接测量！
+**联系**：群延迟是相位对频率的导数，就是"时间刻度"的直接测量。
 
 ### 第3篇：谱移函数
 
@@ -507,13 +507,13 @@ $$\rho_{\text{rel}}(\omega) = -\frac{d\xi}{d\omega}$$
 
 $$\Phi = -2\pi\xi$$
 
-**联系**：相对态密度描述能级推移，也是"时间刻度"的谱表现！
+**联系**：相对态密度描述能级推移，也是"时间刻度"的谱表现。
 
 ### 第4篇（本篇）：四者统一
 
 $$\boxed{\text{相位} \equiv \text{谱} \equiv \text{散射} \equiv \text{时间}}$$
 
-**完整闭环！**
+**理论逻辑闭环。**
 
 ```mermaid
 graph TB
@@ -552,7 +552,7 @@ graph TB
 
 ---
 
-**下一步**：我们已经完成了时间刻度同一式的完整推导！下一篇将探讨**几何时间**（Killing、ADM、null、共形），并展示它们如何融入统一刻度！
+**下一步**：我们已经完成了时间刻度同一式的完整推导！下一篇将探讨**几何时间**（Killing、ADM、null、共形），并展示它们如何融入统一刻度。
 
 **导航**：
 - 上一篇：[03-spectral-shift.md](03-spectral-shift.md) - 谱移函数

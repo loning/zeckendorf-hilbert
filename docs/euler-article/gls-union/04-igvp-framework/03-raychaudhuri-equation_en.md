@@ -204,7 +204,7 @@ From Raychaudhuri equation:
 
 $$\theta' = -\frac{1}{d-2}\theta^2 - \sigma^2 - R_{kk}$$
 
-Multiply both sides by $\lambda$ and integrate (**key trick**!):
+Multiply both sides by $\lambda$ and integrate (**key technique**):
 
 $$\int_0^{\lambda_*} \lambda \theta' d\lambda = -\int_0^{\lambda_*} \lambda \left[\frac{1}{d-2}\theta^2 + \sigma^2 + R_{kk}\right] d\lambda$$
 
@@ -230,7 +230,7 @@ $$\boxed{\delta A + \int_0^{\lambda_*} \lambda R_{kk} d\lambda \cdot A(0) = -\in
 
 $$\frac{\delta A}{4G\hbar} \approx -\frac{1}{4G\hbar} \int_0^{\lambda_*} \lambda R_{kk} d\lambda dA$$
 
-This is the **precise connection between area change and curvature**!
+This establishes the **precise connection between area change and curvature**.
 
 ```mermaid
 graph TB

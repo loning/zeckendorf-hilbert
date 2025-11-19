@@ -1,12 +1,12 @@
 # Cosmological Redshift: Cosmic Shear of Time
 
-> *"Redshift is the stretching of phase rhythm by the cosmic scale factor."*
+> *"Redshift can be understood as the stretching of phase rhythm by the cosmic scale factor."*
 
 ## 🎯 Core Proposition
 
-**Theorem** (Redshift as Phase Rhythm Ratio):
+**Theoretical Proposition** (Redshift as Phase Rhythm Ratio):
 
-In FRW cosmology, cosmological redshift can be expressed as:
+In FRW cosmology, cosmological redshift can be expressed within the GLS framework as:
 
 $$\boxed{1 + z = \frac{a(t_0)}{a(t_e)} = \frac{(d\phi/dt)_e}{(d\phi/dt)_0}}$$
 
@@ -16,11 +16,11 @@ where:
 - $t_e$: emission time
 - $\phi$: photon eikonal phase
 
-**Physical Meaning**:
+**Physical Interpretation**:
 - Left side: observed redshift
 - Middle: scale factor ratio (standard formula)
 - Right side: phase "rhythm" ratio (GLS formulation)
-- **Redshift = global rescaling of time scale!**
+- **Inference**: Redshift can be viewed as a global rescaling of the time scale.
 
 ```mermaid
 graph TB
@@ -60,7 +60,7 @@ Stretched: ∿  ∿  ∿  (wavelength λ_0 = (1+z)λ_e)
 
 $$1 + z = \frac{\lambda_0}{\lambda_e} = \frac{a(t_0)}{a(t_e)}$$
 
-**Physical Meaning**: Redshift measures the "stretching factor" of cosmic expansion!
+**Physical Meaning**: Redshift measures the "stretching factor" of cosmic expansion.
 
 ### Slowing of Clocks
 
@@ -80,7 +80,7 @@ Observation: $d\phi_0/dt = 2\pi\nu_0 = 2\pi\nu_e/(1+z)$
 
 $$\frac{(d\phi/dt)_e}{(d\phi/dt)_0} = 1 + z$$
 
-**Physical Meaning**: Redshift is a global scaling of "phase rhythm"!
+**Physical Interpretation**: Redshift manifests as a global scaling of "phase rhythm".
 
 ```mermaid
 graph LR
@@ -126,7 +126,7 @@ $$u^\mu = (1, 0, 0, 0)$$
 
 $$d\tau = dt$$
 
-**Physical Meaning**: Comoving observer's clock measures cosmic time $t$!
+**Physical Meaning**: Comoving observer's clock measures cosmic time $t$.
 
 ### Photon Null Geodesics
 
@@ -144,7 +144,7 @@ where $\chi$ is the comoving radial coordinate.
 
 $$d\eta = \frac{dt}{a(t)}$$
 
-**Null Geodesics**: $d\eta = \pm d\chi$ (straight lines!)
+**Null Geodesics**: $d\eta = \pm d\chi$ (straight lines).
 
 ```mermaid
 graph TB
@@ -222,7 +222,7 @@ $$\frac{d\phi}{dt} \propto \frac{1}{a(t)}$$
 
 $$\frac{(d\phi/dt)_e}{(d\phi/dt)_0} = \frac{a(t_0)}{a(t_e)} = 1 + z$$
 
-**Perfect! Phase rhythm ratio equals redshift!**
+**Conclusion**: Phase rhythm ratio is numerically equal to redshift.
 
 ```mermaid
 graph TB
@@ -255,9 +255,9 @@ $$\kappa_0 = \frac{1}{2\pi}\frac{d\phi}{dt}\bigg|_0$$
 
 $$\frac{\kappa_e}{\kappa_0} = 1 + z$$
 
-**Physical Meaning**:
+**Physical Interpretation**:
 
-Redshift = **global rescaling factor** of local time scale!
+Redshift can be viewed as a **global rescaling factor** of the local time scale.
 
 **Time Dilation**:
 
@@ -265,7 +265,7 @@ For the same physical process (e.g., supernova explosion), observed duration:
 
 $$\Delta t_{\text{obs}} = (1 + z)\Delta t_{\text{proper}}$$
 
-This is exactly "cosmological time dilation"!
+This is exactly "cosmological time dilation".
 
 ### Distance-Redshift Relation
 
@@ -283,7 +283,7 @@ $$d_A = \frac{d_L}{(1+z)^2}$$
 
 $$z \approx \frac{H_0 d}{c}$$
 
-**Physical Meaning**: By measuring redshift, we can infer distance and cosmic evolution!
+**Physical Meaning**: By measuring redshift, we can infer distance and cosmic evolution.
 
 ```mermaid
 graph LR
@@ -309,7 +309,7 @@ $$cz \approx H_0 d$$
 
 **Hubble Constant** (current): $H_0 \approx 70\text{ km/s/Mpc}$
 
-**Physical Meaning**: The universe is expanding!
+**Physical Meaning**: The universe is expanding.
 
 ### 2. Type Ia Supernovae
 
@@ -320,7 +320,7 @@ $$cz \approx H_0 d$$
 - Measure apparent brightness
 - Infer luminosity distance $d_L(z)$
 
-**Result** (1998): Cosmic acceleration!
+**Result** (1998): Cosmic acceleration.
 
 **Nobel Prize** (2011): Perlmutter, Schmidt, Riess
 
@@ -334,7 +334,7 @@ $$cz \approx H_0 d$$
 
 $$1 + z = \frac{T_e}{T_0} \approx 1100$$
 
-**Perfect Agreement**: $a(t_0)/a(t_e) \approx 1100$
+**Agreement**: $a(t_0)/a(t_e) \approx 1100$
 
 ### 4. Time Dilation
 
@@ -344,9 +344,9 @@ $$\Delta t_{\text{obs}} = (1 + z)\Delta t_{\text{rest}}$$
 
 **Observation** (Goldhaber et al., 2001):
 
-For supernovae at $z \sim 0.5$, light curves are indeed "stretched" by a factor of $1.5$!
+For supernovae at $z \sim 0.5$, light curves are indeed "stretched" by a factor of $1.5$.
 
-**Perfect Verification**: Redshift is time rescaling!
+**Verification**: Redshift is time rescaling.
 
 ```mermaid
 graph TB
@@ -376,7 +376,7 @@ $$1 + z \sim \frac{a_0}{a_e} \sim \frac{\kappa_e}{\kappa_0} \sim \frac{(d\phi/dt
 
 $$t_{\text{cosmo}} = (1 + z)t_{\text{local}}$$
 
-**Physical Meaning**: Redshift is a global scaling factor of time scale!
+**Physical Meaning**: Redshift is a global scaling factor of the time scale.
 
 ### Connection to Phase (Chapter 1)
 
@@ -396,7 +396,7 @@ $$\nu = \frac{1}{2\pi}\frac{d\phi}{dt}$$
 
 $$1 + z = \frac{\nu_e}{\nu_0} = \frac{(d\phi/dt)_e}{(d\phi/dt)_0}$$
 
-**Complete closed loop!**
+**Theoretical Consistency**: Logic of each part is mutually closed.
 
 ```mermaid
 graph TB
@@ -424,7 +424,7 @@ graph TB
 
 **Cosmology**: Time dilation from cosmic expansion $\Delta t_{\text{obs}} = (1+z)\Delta t_{\text{rest}}$
 
-**Unified View**: All are rescalings of time scale!
+**Unified View**: All can be viewed as rescalings of the time scale.
 
 ### 2. History of the Universe
 
@@ -436,7 +436,7 @@ graph TB
 - $z \sim 1100$: 380,000 years after (CMB)
 - $z \to \infty$: Big Bang
 
-**Redshift is the timestamp of the universe!**
+**Redshift is the timestamp of the universe.**
 
 ### 3. Dark Energy Mystery
 
@@ -446,7 +446,7 @@ graph TB
 
 **Cosmological Constant**: $\Lambda \approx 10^{-52}\text{ m}^{-2}$
 
-**GLS Perspective**: $\Lambda$ is a global integration constant of time scale (see IGVP chapter)
+**GLS Perspective**: $\Lambda$ may be a global integration constant of the time scale (see IGVP chapter).
 
 ## 🤔 Exercises
 

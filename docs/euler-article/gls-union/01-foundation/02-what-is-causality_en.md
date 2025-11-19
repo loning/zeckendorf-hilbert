@@ -155,7 +155,7 @@ During those 8 minutes, the sun explosion and you on Earth **have no causal rela
 
 ## GLS Theory's Causality: Partial Order = Entropy Monotonicity
 
-GLS unified theory gives a third understanding of causality, extremely profound:
+GLS unified theory **proposes** a third understanding of causality, attempting to unify the above views:
 
 > **Causal Relationship = Partial Order Relationship = Monotonicity of Entropy**
 
@@ -189,7 +189,7 @@ In the family tree:
 
 ### 🔗 Causality = Partial Order
 
-GLS theory says: **Causal relationships in spacetime are partial order relationships of events!**
+GLS theory **proposes**: **Causal relationships in spacetime might be mathematically equivalent to partial order relationships of events!**
 
 $$
 A \prec B \quad \Leftrightarrow \quad \text{A is in B's causal past}
@@ -205,7 +205,7 @@ Symbol $\prec$ reads as "before."
 
 ### 📈 Causality = Entropy Monotonicity
 
-**Even More Shocking Insight**: Causal order is equivalent to monotonicity of entropy!
+A **core theoretical inference**: Causal order might be equivalent to monotonicity of entropy!
 
 $$
 A \prec B \quad \Leftrightarrow \quad S(A) \leq S(B)
@@ -384,7 +384,7 @@ graph TD
 
 If you could go back and kill your grandfather, you wouldn't be born, so you couldn't go back... This is the famous **Grandfather Paradox**.
 
-**GLS Theory's Answer**: **Causal structure forbids closed timelike curves (CTCs)**.
+**GLS Theory's Inference**: **Causal structure mathematically forbids closed timelike curves (CTCs)**.
 
 In spacetimes satisfying stable causality, **no closed causal loops exist**:
 
@@ -427,7 +427,7 @@ The universe rejects time travel, **not because of technical limitations, but be
 
 ### 💡 Most Profound Insight
 
-> **Causality is not a "mysterious force" between things, but a necessary consequence of spacetime geometry and entropy structure.**
+> **GLS theory proposes: Causality might not be a "mysterious force" between things, but a necessary consequence of spacetime geometry and entropy structure.**
 
 Just as "straight line" is not fundamental (it's a geodesic), "causality" is not fundamental—it's a manifestation of deeper partial order-entropy-time unified structure.
 

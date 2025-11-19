@@ -9,7 +9,7 @@ From the previous two chapters, we know:
 
 But the most crucial link is missing: **How to actually read out time with instruments?**
 
-Answer: **Boundary Clock = Directly measure scale master $\kappa(\omega)$ using windowed spectral readings!**
+Answer: **Boundary Clock is designed to directly measure scale master $\kappa(\omega)$ using windowed spectral readings.**
 
 ## Daily Analogy: Measuring Time with a Watch
 
@@ -46,7 +46,7 @@ graph TB
 - Needs to measure all frequencies $\omega\in\mathbb{R}$ (infinite bandwidth)
 - Needs infinite energy to drive
 
-→ **Physically impossible!**
+→ **Considered physically impossible to strictly realize.**
 
 **Actual Watch Solution:**
 
@@ -54,7 +54,7 @@ graph TB
 - Only measure visible light/mechanical vibration bands (finite bandwidth)
 - Battery powered (finite energy)
 
-→ **Approximate ideal time using "windowed readings"!**
+→ **Approximate theoretical ideal time using "windowed readings".**
 
 **Core of Boundary Clock:**
 
@@ -224,7 +224,7 @@ graph LR
 
 ## Core Theorems and Corollaries
 
-### Theorem 1: Time-Frequency-Complexity Degrees of Freedom Upper Bound
+### Proposition 1: Time-Frequency-Complexity Degrees of Freedom Upper Bound
 
 **Statement:**
 
@@ -238,7 +238,7 @@ where $\varepsilon$ is error tolerance.
 
 **Plain Translation:**
 
-**The amount of "independent information" you can measure is determined by time window × frequency band width!**
+**The amount of "independent information" you can measure is theoretically determined by time window × frequency band width.**
 
 Want to measure more? → Either extend time $T$, or increase bandwidth $W$!
 
@@ -270,7 +270,7 @@ graph TB
 
 → Want high-resolution photos? Either long exposure, or use large aperture!
 
-### Theorem 2: PSWF/DPSS as Variational Extremum of Optimal Windows
+### Proposition 2: PSWF/DPSS as Variational Extremum of Optimal Windows
 
 **Statement:**
 
@@ -353,7 +353,7 @@ $$
 
 **Plain Translation:**
 
-**As long as window width is large enough, negative delay is "smoothed out", clock always positive!**
+**Theoretically, as long as window width is large enough, negative delay is "smoothed out", keeping clock reading positive.**
 
 **Daily Analogy:** Slow-motion video of fast action
 
@@ -614,7 +614,7 @@ Time is "absolute reality", clocks just "measure" it.
 
 **BTG View:**
 
-Time **is** the reading of scale master $\kappa(\omega)$!
+Time **is defined as** the reading of scale master $\kappa(\omega)$.
 
 - No reading → No time (see Chapter 08 no-observer theorem)
 - With reading → Time appears (attention geodesic)
@@ -695,7 +695,7 @@ graph TB
 
 → You cannot finish the library! Can only choose most important books to read (optimal window function)!
 
-**This is not regret, but physical law!**
+**This is viewed as an intrinsic limitation of physical laws.**
 
 ## Connections with Previous and Following Chapters
 

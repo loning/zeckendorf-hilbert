@@ -1,10 +1,10 @@
 # 边界理论总结：物理的边界本质
 
-> *"体域是边界数据的幻影，真实的物理对象全都活在边界上。"*
+> *"在GLS视角下，体域被视为边界数据的投影，物理对象主要在边界上定义。"*
 
 ## 🎯 核心回顾
 
-在本篇中，我们完成了一场**从体域到边界的范式革命**。让我们回顾这个惊人的旅程。
+在本篇中，我们探讨了一场**从体域到边界的范式转换**。让我们回顾这个理论旅程。
 
 ### 核心洞察
 
@@ -124,7 +124,7 @@ graph LR
 
 ### 边界完备性原理
 
-**命题**：给定边界三元组 $(\partial\mathcal{M}, \mathcal{A}_\partial, \omega_\partial)$，体域物理内容可以**完全重建**。
+**命题（边界完备性假设）**：给定边界三元组 $(\partial\mathcal{M}, \mathcal{A}_\partial, \omega_\partial)$，体域物理内容在理论上可以**完全重建**。
 
 **三个层次的重建**：
 
@@ -162,7 +162,7 @@ graph TB
 
 ### 核心定理（GHY抵消机制）
 
-**定理**：对Einstein-Hilbert作用加上GHY边界项：
+**命题（GHY抵消机制）**：对Einstein-Hilbert作用加上GHY边界项：
 
 $$S_{\mathrm{total}} = S_{\mathrm{EH}} + S_{\mathrm{GHY}}$$
 
@@ -242,7 +242,7 @@ $$\boxed{E_{\mathrm{BY}} = \int_{\mathcal{S}} \sqrt{\sigma}\, u_a u_b\, T^{ab}_{
 
 ### 渐近极限
 
-**定理**：在渐近平坦时空中，Brown-York能量收敛到ADM质量：
+**性质**：在渐近平坦时空中，Brown-York能量收敛到ADM质量：
 
 $$\lim_{r \to \infty} E_{\mathrm{BY}}(\mathcal{S}_r) = M_{\mathrm{ADM}}$$
 
@@ -265,7 +265,7 @@ $$\boxed{\text{Brown-York能量} = \text{边界时间平移的生成元}}$$
 
 ### 核心定理（边界观察者统一）
 
-**定理**：以下三种"边界观察者"本质上等价：
+**命题**：以下三种"边界观察者"在理论框架下本质上等价：
 
 $$\boxed{\kappa_{\mathrm{scatt}} \sim \kappa_{\mathrm{mod}} \sim \kappa_{\mathrm{geom}}}$$
 
@@ -306,7 +306,7 @@ graph TB
 
 **定义**：时间刻度等价类 $[\kappa]$ 是所有相差常数因子和允许重标的刻度密度的等价类。
 
-**定理**：在边界三元组 $(\partial\mathcal{M}, \mathcal{A}_\partial, \omega_\partial)$ 中，存在唯一的刻度等价类 $[\kappa]$，使得：
+**命题**：在边界三元组 $(\partial\mathcal{M}, \mathcal{A}_\partial, \omega_\partial)$ 中，存在唯一的刻度等价类 $[\kappa]$，使得：
 
 $$\boxed{\kappa_{\mathrm{scatt}} = \kappa_{\mathrm{mod}} = \kappa_{\mathrm{geom}} = \kappa(\omega)}$$
 
@@ -368,21 +368,21 @@ graph TB
 
 ### 主结果总结
 
-**定理A（散射端刻度同一式）**：
+**命题A（散射端刻度同一式）**：
 
 $$\boxed{\frac{\varphi'(\omega)}{\pi} = \rho_{\mathrm{rel}}(\omega) = \frac{1}{2\pi}\operatorname{tr}Q(\omega)}$$
 
-**定理B（模流端局域化）**：模哈密顿量可以在边界上完全局域化：
+**命题B（模流端局域化）**：模哈密顿量可以在边界上完全局域化：
 
 $$K_\partial = 2\pi \int_{\partial O} \xi^\mu T_{\mu\nu} n^\nu\, \mathrm{d}\Sigma$$
 
-**定理C（GHY良定性）**：
+**命题C（GHY良定性）**：
 
 $$\delta(S_{\mathrm{EH}} + S_{\mathrm{GHY}}) = \frac{1}{16\pi G}\int_{\mathcal{M}}\sqrt{-g}\, G_{\mu\nu}\, \delta g^{\mu\nu}$$
 
 边界项完全抵消！
 
-**定理D（边界三位一体）**：存在统一边界时间生成元 $H_\partial$，使得：
+**命题D（边界三位一体）**：存在统一边界时间生成元 $H_\partial$，使得：
 
 $$H_\partial = \int \omega\, \mathrm{d}\mu_\partial^{\mathrm{scatt}}(\omega) = c_1 K_D = c_2 H_\partial^{\mathrm{grav}}$$
 
@@ -529,7 +529,7 @@ graph LR
 
 ### 3. 观察者的本质
 
-**定理**：任何观察者都是**边界观察者**。
+**观点**：任何观察者在理论上都可被建模为**边界观察者**。
 
 **三个层次**：
 1. **散射观察者**：在渐近边界测量进出粒子
@@ -728,7 +728,7 @@ graph TB
 
 ### 核心命题
 
-**边界三位一体原理**：
+**边界三位一体命题**：
 
 $$\boxed{
 \begin{aligned}
@@ -740,11 +740,11 @@ $$\boxed{
 \end{aligned}
 }$$
 
-**GHY良定性原理**：
+**GHY良定性命题**：
 
 $$\boxed{\delta(S_{\mathrm{EH}} + S_{\mathrm{GHY}}) = \frac{1}{16\pi G}\int_{\mathcal{M}}\sqrt{-g}\, G_{\mu\nu}\, \delta g^{\mu\nu}}$$
 
-**边界完备性原理**：
+**边界完备性命题**：
 
 $$\boxed{\text{体域物理} = F[\text{边界三元组 } (\partial\mathcal{M}, \mathcal{A}_\partial, \omega_\partial)]}$$
 
@@ -754,7 +754,7 @@ $$\boxed{\text{体域物理} = F[\text{边界三元组 } (\partial\mathcal{M}, \
 
 **物理不在体域，而在边界。**
 
-这不是比喻，而是**深刻的物理事实**。所有可计算的物理对象——散射相位、纠缠熵、能量动量——都集中在边界上。体域只是边界数据投射出的"幻影"。
+这不是比喻，而是**深刻的物理洞察**。所有可计算的物理对象——散射相位、纠缠熵、能量动量——都集中在边界上。体域被视为边界数据投射出的"重构"。
 
 边界理论揭示了物理的真正本质：
 - **时间**不是背景，而是边界刻度

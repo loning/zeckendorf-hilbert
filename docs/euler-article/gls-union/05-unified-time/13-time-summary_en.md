@@ -4,9 +4,9 @@
 
 ## 🎯 Complete Picture
 
-After exploring 13 articles, we have finally revealed the most central insight of GLS theory:
+After exploring 13 articles, we have attempted to reveal the most central insight of GLS theory:
 
-$$\boxed{\text{Time} \equiv \text{Phase} \equiv \text{Proper Time} \equiv \text{Scattering Delay} \equiv \text{Spectral Shift} \equiv \text{Geometry} \equiv \text{Modular Flow} \equiv \text{Redshift}}$$
+$$\boxed{\text{Time} \equiv \text{Phase} \equiv \text{Proper Time} \equiv \text{Scattering Delay} \equiv \text{Spectral Shift} \equiv \text{Geometry} \equiv \text{Modular Flow} \equiv \text{Redshift} \quad (\text{in the GLS framework})}$$
 
 **Core Formula** (Time Scale Identity):
 
@@ -17,8 +17,8 @@ $$\boxed{\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\text{rel}}(\omeg
 $$\boxed{[T] \sim \{\tau, t_K, N, \lambda, u, v, \eta, \omega^{-1}, z, t_{\text{mod}}\}}$$
 
 **Physical Meaning**:
-- Time is not multiple concepts, but **different projections of the same object**
-- "Time" in quantum mechanics, geometry, scattering, spectroscopy, and information theory are **essentially the same**
+- Time might not be multiple concepts, but **different projections of the same object**
+- "Time" in quantum mechanics, geometry, scattering, spectroscopy, and information theory are **essentially the same in mathematical structure**
 - They are related through **affine transformations** $t_1 = \alpha t_2 + \beta$
 
 ```mermaid
@@ -54,7 +54,7 @@ graph TB
 
 **Core Ideas**:
 - "Time" appears in multiple forms in physics
-- They are not different times, but different faces of the same time
+- They might not be different times, but different faces of the same time
 - Time Scale Identity is the core formula
 
 **Key Formula**:
@@ -70,14 +70,14 @@ $$\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\text{rel}}(\omega) = \f
 
 **Theme**: Quantum phase = linear function of proper time
 
-**Core Theorem**:
+**Core Proposition**:
 
 $$\boxed{\phi = \frac{mc^2}{\hbar}\int_\gamma d\tau}$$
 
 **Physical Meaning**:
 - Left side: quantum phase (pure quantum concept)
 - Right side: proper time integral (pure geometric concept)
-- **Equality**: Bridge between quantum and geometry!
+- **Equality**: Theoretical bridge between quantum and geometry!
 
 **Compton Frequency**:
 
@@ -87,7 +87,7 @@ $$\omega_C = \frac{mc^2}{\hbar} = \frac{d\phi}{d\tau}$$
 
 **Experiments**: COW experiment, GPS clocks, Compton scattering
 
-**Insight**: Each particle is an "intrinsic clock," frequency determined by mass!
+**Insight**: Each particle can be viewed as an "intrinsic clock," frequency determined by mass!
 
 ### Article 2: Scattering Phase and Group Delay
 
@@ -110,7 +110,7 @@ $$\boxed{\text{tr}\,Q(\omega) = \frac{\partial \Phi(\omega)}{\partial \omega}}$$
 
 **Experiments**: Microwave cavities, slow/fast light, Shapiro delay
 
-**Insight**: Time is an observable of scattering processes!
+**Insight**: Time can be viewed as an observable of scattering processes!
 
 ### Article 3: Spectral Shift Function
 
@@ -131,13 +131,13 @@ $$\boxed{\rho_{\text{rel}}(\omega) = -\frac{d\xi(\omega)}{d\omega}}$$
 
 **Connection**: $\Phi = -2\pi\xi$ (total phase = $-2\pi$ × spectral shift)
 
-**Insight**: Scattering phase records spectral changes!
+**Insight**: Scattering phase reflects spectral changes!
 
 ### Article 4: Time Scale Identity (⭐ Core)
 
-**Theme**: Complete proof of unification of four quantities
+**Theme**: Argument for the unification of four quantities
 
-**Theorem**:
+**Proposition**:
 
 $$\boxed{\frac{\varphi'(\omega)}{\pi} = \rho_{\text{rel}}(\omega) = \frac{1}{2\pi}\text{tr}\,Q(\omega) =: \kappa(\omega)}$$
 
@@ -150,7 +150,7 @@ $$\boxed{\frac{\varphi'(\omega)}{\pi} = \rho_{\text{rel}}(\omega) = \frac{1}{2\p
 
 **Uniqueness**: Time scale is unique up to affine transformation
 
-**Insight**: Time is not a priori, but extracted from scattering data!
+**Insight**: Time might not be a priori, but extracted from scattering data!
 
 ### Article 5: Geometric Times
 
@@ -171,7 +171,7 @@ $$\boxed{\frac{\varphi'(\omega)}{\pi} = \rho_{\text{rel}}(\omega) = \frac{1}{2\p
 - $\phi = (mc^2/\hbar)\int d\tau$
 - Geometric times connect to unified scale through $d\tau$
 
-**Insight**: All geometric times are rescalings of proper time!
+**Insight**: All geometric times can be viewed as rescalings of proper time!
 
 ### Article 6: Modular Time
 
@@ -182,7 +182,7 @@ $$\boxed{\frac{\varphi'(\omega)}{\pi} = \rho_{\text{rel}}(\omega) = \frac{1}{2\p
 $$\boxed{\sigma_t^\omega(A) = \Delta_\omega^{it} A \Delta_\omega^{-it}}$$
 
 **Thermal Time Hypothesis** (Connes-Rovelli):
-The parameter $t$ of modular flow is physical time!
+The parameter $t$ of modular flow is hypothesized to be physical time!
 
 **KMS Condition**:
 
@@ -196,7 +196,7 @@ Corresponds to temperature $T = \beta^{-1}$.
 
 **Relative Entropy Monotonicity** → QNEC → Einstein Equations
 
-**Insight**: Time emerges from entanglement structure!
+**Insight**: Time might emerge from entanglement structure!
 
 ### Article 7: Cosmological Redshift
 
@@ -209,7 +209,7 @@ $$\boxed{1 + z = \frac{a(t_0)}{a(t_e)} = \frac{(d\phi/dt)_e}{(d\phi/dt)_0}}$$
 **Physical Meaning**:
 - Standard: scale factor ratio
 - GLS: phase rhythm ratio
-- **They are equivalent!**
+- **They are theoretically equivalent!**
 
 **Time Dilation**:
 
@@ -221,7 +221,7 @@ $$\Delta t_{\text{obs}} = (1 + z)\Delta t_{\text{rest}}$$
 - CMB temperature redshift
 - Supernova light curve stretching
 
-**Insight**: Redshift is cosmic expansion's shear on time scale!
+**Insight**: Redshift can be viewed as cosmic expansion's shear on time scale!
 
 ### Article 8: Time as Optimal Path of Generalized Entropy
 
@@ -232,7 +232,7 @@ $$\Delta t_{\text{obs}} = (1 + z)\Delta t_{\text{rest}}$$
 $$\boxed{\delta S_{\text{gen}} = 0}$$
 
 **Physical Meaning**:
-- Time does not flow uniformly, but is the optimal path of the system in the generalized entropy landscape
+- Time might not flow uniformly, but is the optimal path of the system in the generalized entropy landscape
 - Entropy extremum principle determines time evolution
 - Time arrow = entropy increase direction
 
@@ -241,7 +241,7 @@ $$\boxed{\delta S_{\text{gen}} = 0}$$
 - Second-order variational property of generalized entropy
 - Connection with Einstein equations
 
-**Insight**: Time is the geodesic in entropy landscape!
+**Insight**: Time can be viewed as the geodesic in entropy landscape!
 
 ### Article 9: Unification of Time-Geometry-Interaction
 
@@ -258,7 +258,7 @@ $$\boxed{\Omega = \omega_{\text{LC}} \oplus A_{\text{YM}} \oplus \Gamma_{\text{r
 
 **Unified Time**: Parallel transport induced by connection defines unified time flow
 
-**Insight**: All interactions are geometric manifestations of time!
+**Insight**: All interactions might be geometric manifestations of time!
 
 ### Article 10: Topological Invariants and Time
 
@@ -275,7 +275,7 @@ $$\boxed{\Omega = \omega_{\text{LC}} \oplus A_{\text{YM}} \oplus \Gamma_{\text{r
 - Connection with fermion statistics
 - Topological constraints of spacetime
 
-**Insight**: Time has topological "fingerprint"!
+**Insight**: Time might have a topological "fingerprint"!
 
 ### Article 11: Boundary Language Unified Framework
 
@@ -297,7 +297,7 @@ Second law of thermodynamics
 
 **Boundary Triple**: $(\partial M, \mathcal{A}_\partial, \omega_\partial)$
 
-**Insight**: Time completely determined by boundary data!
+**Insight**: Time is theoretically determined by boundary data!
 
 ### Article 12: Time Domains and Solvable Models
 
@@ -326,7 +326,7 @@ $$\boxed{\Theta_\Delta(\omega) = (\rho_{\text{rel}} * P_\Delta)(\omega)}$$
 
 Solves negative delay problem!
 
-**Insight**: Time scale formula holds in all physical situations!
+**Insight**: Time scale formula is proposed to hold in all physical situations!
 
 ### Article 13 (This Article): Summary
 
@@ -385,11 +385,11 @@ graph TB
 
 ## 🔑 Core Insights
 
-### 1. Time is Emergent
+### 1. Time is Considered Emergent
 
 **Traditional View**: Time is an a priori external parameter
 
-**GLS View**: Time emerges from physical structures:
+**GLS View**: GLS theory suggests time emerges from physical structures:
 - From entanglement → modular flow → time
 - From scattering → phase → time
 - From metric → proper time → time
@@ -399,7 +399,7 @@ graph TB
 - No scattering no phase → no time delay
 - Flat spacetime proper time simple → Minkowski time
 
-### 2. Time is Geometry
+### 2. Unification of Time and Geometry
 
 $$\boxed{\text{Time} = \text{Phase} = \text{Proper Time Integral}}$$
 
@@ -408,9 +408,9 @@ $$\phi = \frac{mc^2}{\hbar}\int d\tau$$
 **Meaning**:
 - Geometry ($\tau$) determines quantum ($\phi$)
 - Quantum measures geometry
-- **They are the same thing!**
+- **They are theoretically the same thing!**
 
-### 3. Time is Scattering
+### 3. Connection between Time and Scattering
 
 $$\boxed{\text{Time Delay} = \text{Group Delay} = \frac{\partial \text{Phase}}{\partial \text{Frequency}}}$$
 
@@ -419,9 +419,9 @@ $$\Delta t = \text{tr}\,Q = \frac{\partial \Phi}{\partial \omega}$$
 **Meaning**:
 - Time is observable delay
 - Scattering experiments measure time
-- **Operational definition succeeds!**
+- **Operational definition theoretically succeeds!**
 
-### 4. Time is Entropy
+### 4. Association between Time and Entropy
 
 $$\boxed{\text{Time Arrow} = \text{Entropy Increase Direction}}$$
 
@@ -432,7 +432,7 @@ $$\boxed{\text{Time Arrow} = \text{Entropy Increase Direction}}$$
 **Meaning**:
 - Second law of thermodynamics defines time direction
 - Gravity is geometry of entropy
-- **Time = parameter of entropy evolution**
+- **Time can be viewed as a parameter of entropy evolution**
 
 ### 5. Cosmology is Time Rescaling
 
@@ -441,7 +441,7 @@ $$\boxed{1 + z = \frac{a_0}{a_e} = \frac{\kappa_e}{\kappa_0}}$$
 **Meaning**:
 - Redshift = global scaling of time scale
 - Cosmic expansion = stretching of time
-- **Cosmology = geometry of time**
+- **Cosmology can be viewed as geometry of time**
 
 ## 📊 Complete Derivation Chain
 
@@ -528,7 +528,7 @@ graph TB
 
 **Naturality**: Affine transformation of time = natural isomorphism
 
-## 🎓 Profound Philosophical Significance
+## 🎓 Philosophical Significance Discussion
 
 ### The Nature of Time Problem
 
@@ -539,8 +539,8 @@ graph TB
 - Einstein: relative time
 - Quantum mechanics: external parameter
 
-**GLS Answer**:
-Time is the equivalence class that makes the following three consistent:
+**Perspective Proposed by GLS Theory**:
+Time is defined as the equivalence class that makes the following three consistent:
 1. Quantum unitary evolution
 2. Geometric causal ordering
 3. Entropy monotonicity/extremum
@@ -556,7 +556,7 @@ $$\boxed{\text{Time} = \{\text{parameter } t \mid \text{localizes dynamics, clar
 - Modular flow provides intrinsic time
 - Entropy provides time arrow
 
-**Key**: Time is not input, but output!
+**Key**: Time might not be input, but output!
 
 ### Block Universe vs Emergent Time
 
@@ -567,7 +567,7 @@ $$\boxed{\text{Time} = \{\text{parameter } t \mid \text{localizes dynamics, clar
 **GLS Reconciliation**:
 - Spacetime block exists (geometry)
 - Time emerges from entanglement, scattering, entropy (physics)
-- **They are consistent!**
+- **They are theoretically consistent!**
 
 ## 📝 Key Formulas Summary
 
@@ -628,9 +628,9 @@ After completing the Unified Time chapter, we have understood the "time pillar" 
 
 From quantum phase to proper time, from scattering delay to spectral shift function, from geometric time to modular flow, from cosmic redshift to time scale identity, we have seen:
 
-$$\boxed{\text{All times are one time}}$$
+$$\boxed{\text{All times might be one time}}$$
 
-This is not philosophical speculation, but a **mathematical theorem**!
+This is not just philosophical speculation, but a **mathematical inference**!
 
 The Time Scale Identity:
 
@@ -638,7 +638,7 @@ $$\boxed{\frac{\varphi'(\omega)}{\pi} = \rho_{\text{rel}}(\omega) = \frac{1}{2\p
 
 is the heart of GLS theory, the core bridge connecting quantum mechanics, geometry, scattering, spectroscopy, and information theory.
 
-**Time is not a priori, but emerges from physical structures.**
+**Time might not be a priori, but emerges from physical structures.**
 
 **Next Chapter**: Boundary Theory chapter, where we will see how physics is completely defined on the boundary!
 
@@ -649,4 +649,3 @@ is the heart of GLS theory, the core bridge connecting quantum mechanics, geomet
 - Overview: [00-time-overview_en.md](00-time-overview_en.md) - Unified Time Overview
 - Next Chapter: [06-boundary-theory/00-boundary-overview_en.md](../06-boundary-theory/00-boundary-overview_en.md) - Boundary Theory Chapter
 - Home: [index_en.md](../index_en.md) - Complete GLS Theory Tutorial
-

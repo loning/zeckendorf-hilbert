@@ -1,6 +1,6 @@
 # Modular Time: Intrinsic Evolution of Quantum States
 
-> *"Modular time is the quantum state's own clock."*
+> *"Modular time can be viewed as the quantum state's own clock."*
 
 ## 🎯 Core Proposition
 
@@ -16,7 +16,7 @@ $$\sigma_t^\omega(A) = \Delta_\omega^{it} A \Delta_\omega^{-it}$$
 
 **Thermal Time Hypothesis** (Connes-Rovelli, 1994):
 
-The parameter $t$ of the modular flow is physical time!
+This hypothesis proposes that the parameter $t$ of the modular flow **can be physically interpreted as time**.
 
 **KMS Condition**:
 
@@ -26,8 +26,8 @@ $$\omega(AB) = \omega(B\sigma_{i\beta}^\omega(A))$$
 
 **Physical Meaning**:
 - $\sigma_t^\omega$: "intrinsic evolution" of state $\omega$
-- $t$: "intrinsic time" independent of external clocks
-- $\beta$: connection to geometric time (Unruh temperature!)
+- $t$: "intrinsic time" parameter independent of external clocks
+- $\beta$: establishes connection to geometric time (e.g., Unruh temperature)
 
 ```mermaid
 graph TB
@@ -57,9 +57,9 @@ Earth has two types of time:
 - Rotation → modular flow $\sigma_t^\omega$
 - Rotation period → KMS temperature $\beta$
 
-**Key Point**: Even without the Sun (external reference), Earth's rotation still defines a "day"!
+**Key Point**: Even without the Sun (external reference), Earth's rotation still defines a "day".
 
-**Modular Time says**: Quantum states have "intrinsic rotation," defining their own time!
+**Modular Time Perspective**: Quantum states possess "intrinsic rotation," thereby defining their own time parameter.
 
 ### "Memory" of Quantum States
 
@@ -70,9 +70,9 @@ Imagine a quantum system:
 **Example**: Half-Space Entangled State
 - Global: pure state $|\Psi\rangle$
 - Half-space A: reduced state $\rho_A = \text{tr}_B|\Psi\rangle\langle\Psi|$
-- Modular flow of $\rho_A$ → "intrinsic time" of half-space A!
+- Modular flow of $\rho_A$ → "intrinsic time" of half-space A
 
-**Physical Meaning**: Entanglement structure encodes time!
+**Physical Interpretation**: Entanglement structure may encode time information.
 
 ```mermaid
 graph LR
@@ -117,7 +117,7 @@ $$\sigma_t^\omega(A) = \Delta^{it} A \Delta^{-it}$$
 
 $$\sigma_t^\omega(\mathcal{M}) = \mathcal{M}$$
 
-That is, the modular flow preserves the algebra!
+That is, the modular flow preserves the algebra structure.
 
 ```mermaid
 graph TB
@@ -158,7 +158,7 @@ Modular flow:
 
 $$\sigma_t^\omega(A) = e^{itH}Ae^{-itH}$$
 
-**Perfect!** The modular flow is exactly the normal time evolution $U(t) = e^{-iHt}$!
+**Observation**: In this example, the modular flow is formally identical to the normal time evolution $U(t) = e^{-iHt}$.
 
 ### Modular Hamiltonian
 
@@ -175,9 +175,9 @@ $$\sigma_t^\omega(A) = e^{itK_\omega}Ae^{-itK_\omega}$$
 **Physical Analogy**:
 - $K_\omega$: "energy" generating "intrinsic time evolution"
 - $t$: modular time
-- Form identical to $e^{-iHt}Ae^{iHt}$!
+- Form identical to $e^{-iHt}Ae^{iHt}$
 
-**Difference**: $K_\omega$ is not necessarily a local Hamiltonian!
+**Difference**: $K_\omega$ is not necessarily a local Hamiltonian.
 
 ```mermaid
 graph LR
@@ -197,13 +197,13 @@ graph LR
 
 **Core Idea**:
 
-In quantum gravity without external clocks, **the modular flow parameter $t$ is physical time**!
+In the context of quantum gravity without external clocks, **the modular flow parameter $t$ can be identified as physical time**.
 
-**Argument**:
+**Argument Logic**:
 1. In generally covariant theories, there is no external time parameter
 2. Given state $\omega$, modular flow $\sigma_t^\omega$ is intrinsically defined
 3. For thermal equilibrium states, $t$ is proportional to the "time" measured by temperature
-4. **Therefore**: physical time = modular time
+4. **Inference**: A correspondence exists between physical time and modular time
 
 **Mathematical Form**:
 
@@ -239,7 +239,7 @@ where $a$ is the proper acceleration.
 
 - Rindler coordinates: $ds^2 = -(ax)^2 dt^2 + dx^2 + dy^2 + dz^2$
 - Minkowski vacuum $|0\rangle$ reduced to Rindler wedge
-- Reduced state $\rho_R$ is a thermal state at temperature $T = a/(2\pi)$!
+- Reduced state $\rho_R$ is a thermal state at temperature $T = a/(2\pi)$
 
 **Modular Hamiltonian**:
 
@@ -251,7 +251,7 @@ where $\xi = a x \partial_t$ is the Killing vector.
 
 $$t_{\text{mod}} = 2\pi t_{\text{Killing}}$$
 
-**Perfect correspondence!**
+**Conclusion**: A clear proportionality exists between the two.
 
 ```mermaid
 graph TB
@@ -280,9 +280,9 @@ graph TB
 $$K_A = 2\pi \int_{x>0} T_{00} x\, dx dy dz$$
 
 **Physical Meaning**:
-- $K_A$ is the Rindler boost generator!
-- Modular flow = Lorentz boost
-- Modular time = boost parameter (rapidity)
+- $K_A$ is the Rindler boost generator
+- Modular flow corresponds to Lorentz boost
+- Modular time corresponds to boost parameter (rapidity)
 
 **Relation to Proper Time**:
 
@@ -296,7 +296,7 @@ where $\eta$ is the boost parameter (rapidity).
 
 $$t_{\text{mod}} = 2\pi \eta$$
 
-**Perfect! Modular time is proportional to boost rapidity!**
+**Conclusion**: Modular time is proportional to boost rapidity.
 
 ## 🔑 Relative Entropy and Time Arrow
 
@@ -314,7 +314,7 @@ $$S(\rho_1|_{\mathcal{A}_1} \| \rho_2|_{\mathcal{A}_1}) \leq S(\rho_1|_{\mathcal
 
 **Time Arrow**:
 
-Under modular flow evolution, relative entropy is monotonically non-increasing or non-decreasing (depending on direction)!
+Under modular flow evolution, relative entropy exhibits monotonicity (non-increasing or non-decreasing, depending on direction).
 
 **ANEC/QNEC Connection**:
 
@@ -323,9 +323,9 @@ Relative entropy monotonicity $\Leftrightarrow$ Quantum Null Energy Condition (Q
 $$S''_{\text{out}} \geq \frac{2\pi}{\hbar}\int \langle T_{kk}\rangle dA$$
 
 **Physical Meaning**:
-- Modular time provides "time arrow"
+- Modular time provides a definition of "time arrow"
 - Relative entropy is monotonic along modular time
-- Consistent with the second law of thermodynamics!
+- This is consistent with the second law of thermodynamics
 
 ```mermaid
 graph TB
@@ -374,7 +374,7 @@ $$K_{\text{CFT}} \leftrightarrow E_{\text{bulk}}$$
 
 $$t_{\text{mod}}^{\text{CFT}} \leftrightarrow t_{\text{geo}}^{\text{bulk}}$$
 
-Through JLMS equivalence!
+Through JLMS equivalence.
 
 ### Unified Scale
 
@@ -387,7 +387,7 @@ $$[T] \sim \{\tau, t_K, N, \lambda, u, v, \eta, \omega^{-1}, z, t_{\text{mod}}\}
 - Connected to scattering time through boundary correspondence
 - Connected to entropy evolution through relative entropy
 
-**Complete closed loop!**
+**Theoretical Consistency**: The logic of each part is mutually closed.
 
 ```mermaid
 graph TB
@@ -414,12 +414,12 @@ graph TB
 
 **Traditional View**: Time is an external parameter
 
-**Modular View**: Time emerges from the entanglement structure of quantum states!
+**Modular View**: Time may emerge from the entanglement structure of quantum states.
 
 **Argument**:
 1. Pure state → no modular flow → no time
 2. Entangled state → non-trivial modular flow → time emerges
-3. **Entanglement = origin of time**
+3. **Inference**: Entanglement may be one of the origins of time
 
 ### 2. Gravity as Thermodynamics
 
@@ -433,7 +433,7 @@ graph TB
 - Relative entropy evolves along $K$
 - Monotonicity → energy conditions → gravitational equations
 
-**Gravity is the geometric projection of modular flow!**
+**Conclusion**: Gravity can be viewed as the geometric projection of modular flow.
 
 ### 3. Quantum Error Correction and Time
 
@@ -443,29 +443,29 @@ graph TB
 - Modular flow: time evolution
 - Entanglement wedge reconstruction: error correction recovery
 
-**Time = entanglement encoding structure**
+**Perspective**: Time structure is closely related to entanglement encoding structure.
 
 ## 🤔 Exercises
 
-1. **Conceptual Understanding**:
-   - Why is the modular flow of pure states trivial?
-   - What is the physical meaning of the KMS condition?
-   - What is the core argument of the thermal time hypothesis?
+1.  **Conceptual Understanding**:
+    - Why is the modular flow of pure states trivial?
+    - What is the physical meaning of the KMS condition?
+    - What is the core argument of the thermal time hypothesis?
 
-2. **Calculation Exercises**:
-   - Canonical ensemble $\omega(A) = \text{tr}(e^{-\beta H}A)/Z$, calculate $\sigma_t^\omega(A)$
-   - Unruh temperature $T = a/(2\pi)$, calculate the temperature for acceleration $a = 1g$
-   - Half-space modular Hamiltonian $K = 2\pi\int T_{00} x dx$, verify boost generator
+2.  **Calculation Exercises**:
+    - Canonical ensemble $\omega(A) = \text{tr}(e^{-\beta H}A)/Z$, calculate $\sigma_t^\omega(A)$
+    - Unruh temperature $T = a/(2\pi)$, calculate the temperature for acceleration $a = 1g$
+    - Half-space modular Hamiltonian $K = 2\pi\int T_{00} x dx$, verify boost generator
 
-3. **Physical Applications**:
-   - How does a Rindler observer understand the Unruh effect through modular flow?
-   - What is the modular flow near a black hole horizon?
-   - How does boundary modular flow correspond to bulk time in AdS/CFT?
+3.  **Physical Applications**:
+    - How does a Rindler observer understand the Unruh effect through modular flow?
+    - What is the modular flow near a black hole horizon?
+    - How does boundary modular flow correspond to bulk time in AdS/CFT?
 
-4. **Advanced Thinking**:
-   - What is the role of modular flow in quantum gravity?
-   - What is the relationship between relative entropy monotonicity and causality?
-   - How to derive Einstein equations from modular flow?
+4.  **Advanced Thinking**:
+    - What is the role of modular flow in quantum gravity?
+    - What is the relationship between relative entropy monotonicity and causality?
+    - How to derive Einstein equations from modular flow?
 
 ---
 
@@ -478,4 +478,3 @@ graph TB
   - Connes & Rovelli, "Von Neumann algebra automorphisms and time–thermodynamics relation" (1994)
   - Bisognano & Wichmann, "On the Duality Condition for Quantum Fields" (1976)
   - Tomita-Takesaki theory: Takesaki, "Theory of Operator Algebras" (2002)
-

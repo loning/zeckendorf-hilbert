@@ -4,11 +4,11 @@
 
 ## 🎯 Chapter Goals
 
-This chapter will demonstrate one of the most brilliant achievements of GLS theory:
+This chapter will demonstrate one of the key achievements of GLS theory:
 
 **How to derive Einstein's field equations from a variational principle of entropy?**
 
-This is not a conjecture, but a rigorous mathematical derivation!
+This is a rigorous mathematical derivation based on specific physical assumptions.
 
 ## 🌟 Core Ideas
 
@@ -16,7 +16,7 @@ This is not a conjecture, but a rigorous mathematical derivation!
 
 In traditional physics:
 
-1. **Einstein's equations** are fundamental axioms:
+1. **Einstein's equations** are typically viewed as fundamental axioms:
    $$G_{ab} + \Lambda g_{ab} = 8\pi G T_{ab}$$
 
 2. **Entropy** is a derived thermodynamic quantity:
@@ -26,16 +26,16 @@ In traditional physics:
 
 ### IGVP Perspective
 
-The **Information-Geometric Variational Principle (IGVP)** reverses this logic:
+The **Information-Geometric Variational Principle (IGVP)** offers an inverse logical perspective:
 
-1. **Generalized entropy** is the fundamental variational functional:
+1. **Generalized entropy** is viewed as the fundamental variational functional:
    $$S_{\text{gen}} = \frac{A}{4G\hbar} + S_{\text{out}}$$
 
 2. **Variational conditions**:
    - First order: $\delta S_{\text{gen}} = 0$ (fixed volume)
    - Second order: $\delta^2 S_{\text{rel}} \ge 0$ (stability)
 
-3. **Einstein's equations** are the result of variation:
+3. **Einstein's equations** can be interpreted as the result of variation:
    $$\boxed{\delta S_{\text{gen}} = 0 \quad \Rightarrow \quad G_{ab} + \Lambda g_{ab} = 8\pi G T_{ab}}$$
 
 ```mermaid
@@ -196,7 +196,7 @@ $$\delta S_{\text{gen}}[g] = 0 \quad \Rightarrow \quad \text{Einstein Equations}
 
 **Profound insight**:
 
-**Gravitational field equations are not dynamical equations, but entropy extremum conditions!**
+**Gravitational field equations can be viewed as entropy extremum conditions in this framework!**
 
 ## 🌊 Historical Background
 

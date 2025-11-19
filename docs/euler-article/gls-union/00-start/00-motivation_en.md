@@ -6,33 +6,45 @@
 
 ---
 
+## Special Note on Scientific Nature
+
+> **To the Rigorous Reader**:
+> 
+> The "GLS Theory" presented here is an **exploratory theoretical framework** aimed at constructing a unified perspective compatible with existing physical laws.
+> 
+> We are well aware that the cornerstones of physics are experimental verification and mathematical rigor. In this article, for the sake of accessibility, we may use words like "is," but in a scientific context, they should be understood as "is modeled as" or "is equivalent to."
+> 
+> Furthermore, the domains of physical quantities are usually clearly defined within specific theoretical frameworks (e.g., Newtonian mechanics vs. Quantum mechanics). This theory attempts to explore the fusion of these domain boundaries, so in certain transition regions, the definitions of concepts may undergo a "phase transition"-like generalization. We invite readers to maintain an open but critical scientific attitude.
+
+---
+
 ## The Puzzles of Physics
 
 Imagine you are a detective investigating a complex case. You have many clues:
 
-- 📍 **Clue A (General Relativity)**: Tells you gravity is the curvature of spacetime
-- 📍 **Clue B (Quantum Mechanics)**: Tells you the microscopic world is probabilistic
-- 📍 **Clue C (Thermodynamics)**: Tells you time has a direction, entropy always increases
-- 📍 **Clue D (Information Theory)**: Tells you information is physical
+- 📍 **Clue A (General Relativity)**: Tells you gravity can be described geometrically
+- 📍 **Clue B (Quantum Mechanics)**: Tells you the microscopic world follows the principle of superposition of probability amplitudes
+- 📍 **Clue C (Thermodynamics)**: Tells you macroscopic time has a direction, entropy always increases
+- 📍 **Clue D (Information Theory)**: Tells you information has physical reality
 - 📍 **Clue E (Cosmology)**: Tells you the universe is expanding
 
-Each clue seems reasonable, but when you try to piece them together, you find they contradict each other:
+Each clue seems reasonable, but when you try to piece them together, you find they have tensions in their fundamental assumptions:
 
 ### Puzzle 1: Conflict Between Gravity and Quantum Mechanics
 
-**General Relativity** says: Spacetime is smooth, continuous, deterministic. Like a smooth rubber membrane.
+**General Relativity** is based on differential manifolds, assuming spacetime is smooth, continuous, deterministic.
 
-**Quantum Mechanics** says: Everything is discrete, jumping, probabilistic. Like flickering pixels.
+**Quantum Mechanics** is based on Hilbert space, allowing discrete energy levels and probability superposition.
 
-> **Question**: At the center of a black hole, or at the moment of the Big Bang, gravity is extremely strong and scales are extremely small—both theories apply. But they give completely different answers. It's like two witnesses giving completely contradictory descriptions of the same event. Who is right?
+> **Question**: At the center of a black hole, or at the moment of the Big Bang, gravity is extremely strong and scales are extremely small—both theories apply. But they give completely different answers. It's like two witnesses giving completely contradictory descriptions of the same event. We need a more underlying framework to reconcile them.
 
 ### Puzzle 2: Multiple Faces of Time
 
-**Relativity** says: Time is relative. If you move fast in a spaceship, time passes slowly. Time is part of geometry.
+**Relativity**: Time is part of geometry (coordinate time/proper time).
 
-**Quantum Mechanics** says: Time is an absolute external parameter. The $t$ in the Schrödinger equation is a globally unified clock.
+**Quantum Mechanics**: Time usually acts as an external parameter (evolution parameter).
 
-**Thermodynamics** says: Time has an arrow. An egg can break, but a broken egg won't reassemble itself.
+**Thermodynamics**: Time shows directionality through entropy increase (arrow of time).
 
 > **Question**: What is time really? Is it geometry, a parameter, or an arrow? Or are all three, and we just haven't found a way to unify them?
 
@@ -44,9 +56,9 @@ $$
 S_{\text{BH}} = \frac{A}{4G\hbar}
 $$
 
-This is very strange. Usually, entropy should be proportional to volume (the larger the room, the more possibilities for disorder). But black hole entropy is proportional to surface area, as if all information is encoded on the surface.
+This implies that gravitational systems might have holographic properties. Usually, entropy should be proportional to volume (the larger the room, the more possibilities for disorder). But black hole entropy is proportional to surface area, as if all information is encoded on the surface.
 
-> **Question**: Why is entropy related to area? Why are gravity (geometry) and information (entropy) entangled? Is there a deeper connection between them?
+> **Question**: Why is entropy related to area? Does this imply that spacetime geometry itself is made of information?
 
 ### Puzzle 4: Why Does the Universe Follow These Laws?
 
@@ -54,9 +66,7 @@ We have Einstein's equations, Yang-Mills equations, Dirac equations... These equ
 
 But, **why does the universe follow these equations?**
 
-Is it because they are "laws of nature"? But who made these laws? Why these laws and not others?
-
-> **Question**: Is there a deeper reason that makes these laws not "made" but **necessarily emergent**?
+> **Question**: Is there a deeper reason that makes these laws not "made" but **necessarily emergent** from some more fundamental structure?
 
 ---
 
@@ -69,20 +79,9 @@ Physicists have always dreamed of finding a "Theory of Everything" that can unif
 Humanity has had several great unifications:
 
 1. **Newton (17th century)**: Unified planetary motion in the heavens and apple falling on earth
-   - Before: Heaven and earth were two worlds, following different laws
-   - After: The same universal gravitation law
-
 2. **Maxwell (19th century)**: Unified electricity and magnetism
-   - Before: Electrical and magnetic phenomena seemed like two different things
-   - After: The same set of Maxwell equations, light is electromagnetic waves
-
-3. **Einstein (20th century)**: Unified time and space
-   - Before: Time was time, space was space
-   - After: Spacetime is a whole, can be curved
-
-4. **Weinberg-Salam-Glashow (20th century)**: Unified electromagnetic and weak nuclear forces
-   - Before: Two different forces
-   - After: The same electroweak unified theory
+3. **Einstein (20th century)**: Unified time and space, as well as mass and energy
+4. **Standard Model (20th century)**: Unified electromagnetic, weak nuclear, and strong nuclear forces
 
 Each unification brought profound insights and new technologies.
 
@@ -98,26 +97,21 @@ But these theories all face challenges: either the mathematics is too complex, l
 
 ---
 
-## What Makes GLS Theory Different
+## The Perspective of GLS Theory
 
-GLS unified theory takes a **completely different path**.
+GLS unified theory takes a **path based on information geometry**.
 
 ### Not Seeking "New Symmetries"
 
-Traditional unified theories usually seek a **larger symmetry group**. For example:
+Traditional unified theories usually seek a **larger symmetry group** (like Grand Unified Theory).
 
-- Electromagnetic + Weak → Electroweak unification → $SU(2) \times U(1)$ symmetry
-- Strong + Electroweak → Grand unification → $SU(5)$ or $SO(10)$ symmetry
-
-This approach is: find a larger "parent group" and make all known forces its "subgroups."
-
-But GLS theory says: **The problem is not symmetry, but our understanding of fundamental concepts**.
+But GLS theory proposes: **Perhaps the problem is not about finding larger symmetries, but about re-examining the domains of fundamental concepts**.
 
 ### Unifying "Ontology," Not "Symmetry"
 
-The core insight of GLS theory is:
+The core hypothesis of GLS theory is:
 
-> **Time, causality, geometry, information—they are not four independent concepts, but four projections of the same reality.**
+> **Time, causality, geometry, information—might not be four independent concepts, but four projections of the same reality.**
 
 Like a cube, viewed from different angles, the projections are different shapes:
 
@@ -127,87 +121,67 @@ Like a cube, viewed from different angles, the projections are different shapes:
 
 But there is only one cube.
 
-Similarly:
+Similarly, we attempt to establish the following correspondences:
 
-- **Scattering theory** sees: S-matrix, phase, delay time
-- **Geometric theory** sees: metric, curvature, geodesics
-- **Information theory** sees: entropy, relative entropy, Fisher metric
-- **Causal theory** sees: partial order, diamonds, Markov property
-
-But **they describe the same thing**.
+- **Scattering Perspective**: S-matrix, phase, delay time
+- **Geometric Perspective**: metric, curvature, geodesics
+- **Information Perspective**: entropy, relative entropy, Fisher metric
+- **Causal Perspective**: partial order, diamonds, Markov property
 
 ### Core Formula: Unified Time Scale Identity
 
-The core of GLS theory is an equation that looks simple but has profound meaning:
+GLS theory constructs a mathematical equation as a bridge connecting different physical quantities:
 
 $$
 \kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\text{rel}}(\omega) = \frac{1}{2\pi}\text{tr}\,Q(\omega)
 $$
 
-This equation says:
+This equation reveals the numerical equivalence of the following physical quantities under specific conditions:
 
-- $\kappa(\omega)$: **Scattering time delay** (how long a particle is delayed after scattering)
-- $\varphi'(\omega)/\pi$: **Phase derivative** (rate of change of quantum phase)
-- $\rho_{\text{rel}}(\omega)$: **Relative density of states** (density of energy levels)
-- $\text{tr}\,Q(\omega)/2\pi$: **Wigner-Smith group delay** (total delay of all scattering channels)
+- $\kappa(\omega)$: **Scattering time delay**
+- $\varphi'(\omega)/\pi$: **Phase derivative**
+- $\rho_{\text{rel}}(\omega)$: **Relative density of states**
+- $\text{tr}\,Q(\omega)/2\pi$: **Wigner-Smith group delay**
 
-**Four seemingly completely different physical quantities are actually the same thing!**
-
-This is as shocking as discovering "speed of light = electric field speed = magnetic field speed = electromagnetic wave speed."
+**This means that, in mathematical structure, they can be viewed as different manifestations of the same underlying object.**
 
 ---
 
-## The Promise of the Theory
+## Theoretical Implications
 
-If this unification is correct, what will it bring?
+If this unified framework is valid, it might provide us with new explanatory paths:
 
-### 1. Deriving Gravity from Entropy
+### 1. Possibility of Deriving Gravity from Entropy
 
-No need to assume Einstein's equations. Only one principle is needed: **Generalized entropy on small causal diamonds takes extremum**.
+Inspired by the work of Jacobson and Verlinde, we explore whether it is possible to not assume Einstein's equations, but to derive them as a consequence of the **Maximal Entanglement Entropy Principle**.
 
-Then, Einstein's equation $G_{ab} + \Lambda g_{ab} = 8\pi G T_{ab}$ automatically emerges.
+If we assume generalized entropy on small causal diamonds takes an extremum, Einstein's equation $G_{ab} + \Lambda g_{ab} = 8\pi G T_{ab}$ might emerge as a thermodynamic equation of state.
 
-> **Analogy**: Just as soap bubbles automatically form spheres (minimum surface area), the gravity equation is a natural result of entropy extremum.
+### 2. Variational Structure Unifying Physical Laws
 
-### 2. Unifying All Physical Laws
-
-No need to separately assume:
-
-- Law of gravity (Einstein's equations)
-- Quantum field theory (Yang-Mills equations)
-- Matter equations (Dirac equations)
-- Macroscopic laws (Navier-Stokes equations)
-
-Only one principle is needed: **The universe must be self-consistent**.
-
-All these equations are expansions of the same "universe consistency variational principle" at different levels.
+We attempt to construct a unified variational principle: **Universe Consistency Variational Principle**.
 
 $$
-\delta \mathcal{I}[\mathfrak{U}] = 0 \quad \Rightarrow \quad \text{All Physical Laws}
+\delta \mathcal{I}[\mathfrak{U}] = 0
 $$
 
-### 3. Explaining Consciousness and Observers
+In this framework, different physical laws (like Maxwell's equations, Dirac equations) might correspond to constraints at different levels.
 
-Traditional physics avoids the "observer" problem, considering it a matter for philosophy or neuroscience.
+### 3. Self-Consistency of Observers and Physical Structure
 
-But GLS theory says: **Observers are part of the physical structure**.
+Traditional physics often treats observers as external entities.
 
-Consciousness is not a mysterious "soul," but a special **self-referential scattering network structure**.
+GLS theory attempts to incorporate observers into the physical description, proposing that **observers might be self-referential subsystems within the physical structure**.
 
-The existence of "I" is equivalent to a causal diamond chain satisfying specific topological constraints.
+This means consciousness might not be independent of physical laws, but a property of complex self-referential systems.
 
 ### 4. Connecting Discrete and Continuous
 
-Is the universe at its deepest level discrete (quantum cellular automaton) or continuous (differential manifold)?
-
-GLS theory says: **Both are different limits of the same structure**.
+GLS theory suggests that discrete structures (like Quantum Cellular Automata) and continuous structures (like differential manifolds) might be descriptions of the same physical reality at different scales.
 
 Discrete $\xrightarrow{\text{continuous limit}}$ Continuous
 
-This is like:
-
-- Pixels dense enough → looks like a smooth image
-- Enough atoms → looks like a continuous fluid
+This is similar to fluid mechanics, where discrete molecular motion manifests as continuous fluid equations at the macroscopic level.
 
 ---
 
