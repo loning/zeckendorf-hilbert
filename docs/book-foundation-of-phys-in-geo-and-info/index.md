@@ -2,6 +2,10 @@
 
 本书旨在建立基于离散信息本体的物理理论框架。
 
+## 前言
+
+- [前言：重构实在的算法与几何](foreword.md)
+
 ## 书籍结构
 
 ### 第一卷：离散本体论 —— 信息的物理基础
@@ -315,4 +319,15 @@ book-foundation-of-phys-in-geo-and-info/
             ├── 13-02-ghy-term-entropy-origin.md
             └── 13-03-hayward-corner-term.md
 ```
+
+## 附录
+
+- [附录 A：数学工具箱（算子代数、微分几何、范畴论速查）](appendix/appendix-a-mathematical-toolbox.md)
+- [附录 B：标准模型粒子的几何对应表](appendix/appendix-b-standard-model-geometric-correspondence.md)
+- [附录 C：离散-连续误差控制算法代码示例](appendix/appendix-c-dcec-algorithm-code.md)
+- [附录 D：全书符号索引与公理列表](appendix/appendix-d-symbol-index-axioms.md)
+
+## 后记
+
+- [后记：在几何与信息的尽头](postscript.md)
 
