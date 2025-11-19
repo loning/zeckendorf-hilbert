@@ -1,6 +1,6 @@
 # Scattering Phase and Group Delay: Operational Definition of Time
 
-> *"Group delay is the reading of phase clock by scattering process."*
+> *"Group delay can be interpreted as the reading of phase clock by scattering process."*
 
 ## 🎯 Core Proposition
 
@@ -12,8 +12,8 @@ $$\boxed{Q(\omega) = -iS(\omega)^\dagger \frac{\partial S(\omega)}{\partial \ome
 
 **Physical meaning**:
 - $Q(\omega)$ is self-adjoint matrix (Hermitian)
-- Eigenvalues $\tau_j(\omega)$ are time delays of each scattering channel
-- Trace $\text{tr}\,Q(\omega)$ is total group delay
+- Eigenvalues $\tau_j(\omega)$ correspond to time delays of each scattering channel
+- Trace $\text{tr}\,Q(\omega)$ corresponds to total group delay
 - **Key relationship**:
 
 $$\boxed{\text{tr}\,Q(\omega) = \frac{\partial \Phi(\omega)}{\partial \omega}}$$
@@ -41,7 +41,7 @@ $$\Delta t = (t_{\text{in}} - t_{\text{out}}) - t_{\text{free propagation}}$$
 - Time delay → group delay $Q(\omega)$
 - Echo pitch change → phase shift $\Phi(\omega)$
 
-**Physical meaning**: Group delay measures "how much slower interaction makes wave packet"!
+**Physical meaning**: Group delay measures "how much slower interaction makes wave packet".
 
 ### Wave Packet Story
 
@@ -69,7 +69,7 @@ graph LR
     style O fill:#e1ffe1
 ```
 
-**Key**: Group delay is actual time delay of wave packet center!
+**Key**: In the wave packet approximation, group delay corresponds to the actual time delay of wave packet center.
 
 ## 📐 Mathematical Derivation
 
@@ -91,7 +91,7 @@ For each frequency $\omega$, there is channel space $\mathcal{H}_\omega \simeq \
 
 $$S(\omega): \mathcal{H}_\omega \to \mathcal{H}_\omega, \quad S(\omega)^\dagger S(\omega) = I$$
 
-**Why unitary?** Energy conservation! Total probability unchanged before and after scattering.
+**Why unitary?** Energy conservation, total probability unchanged before and after scattering.
 
 ### Total Scattering Phase
 
@@ -109,7 +109,7 @@ $$\det S(\omega) = e^{i\,\text{tr}\,K(\omega)} = e^{i\Phi(\omega)}$$
 
 $$\Phi(\omega) = \arg\det S(\omega) = \text{tr}\,K(\omega)$$
 
-**Physical meaning**: Sum of phase shifts of all channels!
+**Physical meaning**: Sum of phase shifts of all channels.
 
 ### Wigner-Smith Operator Derivation
 
@@ -174,7 +174,7 @@ Substituting:
 
 $$Q^\dagger = i\left(-S^\dagger\frac{\partial S}{\partial \omega}\right) = -iS^\dagger\frac{\partial S}{\partial \omega} = Q$$
 
-**Conclusion**: $Q$ is self-adjoint! So eigenvalues are all real, can be interpreted as real time delays!
+**Conclusion**: $Q$ is self-adjoint. So eigenvalues are all real, can be interpreted as real time delays.
 
 ## 🧮 Single-Channel Scattering
 
@@ -234,7 +234,7 @@ $$\frac{d\delta}{dE} \approx \frac{\Gamma/2}{(E-E_r)^2 + (\Gamma/2)^2}$$
 
 $$\Delta t = \frac{d\delta}{dE}\bigg|_{E_r} = \frac{2}{\Gamma} = \tau_{\text{lifetime}}$$
 
-**Perfect!** Group delay equals resonance lifetime!
+**Results match**: Group delay equals resonance lifetime.
 
 ## 🌀 Multi-Channel Scattering
 
@@ -308,7 +308,7 @@ graph TB
 **Results**:
 - At cavity resonance frequency, $\text{tr}\,Q$ shows peak
 - Peak $\approx Q_{\text{factor}}/\omega_0 = 1/\Gamma$
-- Perfect agreement with theoretical prediction!
+- Highly consistent with theoretical prediction.
 
 **Reference**: Fyodorov & Sommers, J. Math. Phys. 38, 1918 (1997)
 
@@ -354,9 +354,9 @@ $$\Phi(\omega) = \Phi_{\text{geo}}(\omega) + \Phi_{\text{plasma}}(\omega)$$
 
 $$\text{tr}\,Q(\omega) = \frac{\partial \Phi_{\text{geo}}}{\partial \omega} + \frac{\partial \Phi_{\text{plasma}}}{\partial \omega}$$
 
-**Observation**: Cassini spacecraft radar experiment, precision $10^{-5}$!
+**Observation**: Cassini spacecraft radar experiment, precision $10^{-5}$.
 
-**Physical meaning**: Gravitational time delay = derivative of gravitational "scattering" phase!
+**Physical meaning**: Gravitational time delay = derivative of gravitational "scattering" phase.
 
 ```mermaid
 graph LR
@@ -418,7 +418,7 @@ $$\int_0^\infty \text{tr}\,Q(\omega)\,d\omega = \Phi(\infty) - \Phi(0) = \text{f
 
 **Traditional view**: Time is external parameter $t$.
 
-**Scattering view**: Time is measurable delay!
+**Scattering view**: Time is measurable delay.
 
 **Operational definition**:
 1. Prepare narrow wave packet ($\Delta\omega$ small)
@@ -428,8 +428,8 @@ $$\int_0^\infty \text{tr}\,Q(\omega)\,d\omega = \Phi(\infty) - \Phi(0) = \text{f
 
 **Philosophical meaning**:
 - Time is not a priori existence
-- Time is record of scattering process
-- **Time is rate of phase change**
+- Time can be viewed as record of scattering process
+- **Time is closely related to rate of phase change**
 
 ### Connecting Quantum and Classical
 
@@ -469,7 +469,7 @@ Therefore:
 
 $$\text{tr}\,Q = 2\pi\frac{\partial \xi}{\partial \omega} = -2\pi\rho_{\text{rel}}$$
 
-**Perfect closure**!
+**Theoretical framework is self-consistent**.
 
 ```mermaid
 graph TB

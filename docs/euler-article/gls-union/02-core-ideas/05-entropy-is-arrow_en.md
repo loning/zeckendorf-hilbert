@@ -1,6 +1,6 @@
-# Core Insight 5: Entropy is Arrow
+# Core Insight 5: Entropy Modeled as Arrow
 
-> *"Why does time have direction? Because entropy is increasing."*
+> *"GLS theory proposes: Why does time have direction? Possibly because entropy is increasing."*
 
 ## 🎯 Core Idea
 
@@ -18,9 +18,9 @@ Physical laws (Newton, Maxwell, Schrödinger, Einstein) are mostly **time-revers
 
 GLS theory's answer:
 
-**Arrow of time = Arrow of entropy = Arrow of causality**
+**In GLS framework: Arrow of time ⟺ Arrow of entropy ⟺ Arrow of causality**
 
-And these three, under unified time scale, are **the same mathematical object**!
+And these three, under unified time scale, **might be mathematically equivalent to the same object**!
 
 ## 🏠 Starting from Room Chaos: What is Entropy?
 
@@ -50,7 +50,7 @@ graph LR
 **Observation**:
 - Room spontaneously goes from tidy to chaotic (entropy increase)
 - Restoring order from chaos requires **work** (you have to clean up)
-- **Time arrow = Direction of entropy increase**
+- **Time arrow aligns with direction of entropy increase**
 
 ### Boltzmann Formula: Definition of Entropy
 
@@ -98,7 +98,7 @@ $$
 
 **GLS insight**:
 
-Under unified time scale framework, the second law is not an independent "law," but a **necessary consequence** of causal structure!
+Under unified time scale framework, the second law might not be an independent "law," but a **necessary consequence** of causal structure!
 
 ## 🌌 Generalized Entropy: Geometry + Quantum
 
@@ -110,7 +110,7 @@ $$
 S_{\text{BH}} = \frac{A}{4G\hbar}
 $$
 
-**This suggests**: Entropy is not just "number of microstates," but has **geometric meaning**!
+**This suggests**: Entropy might not just be "number of microstates," but has **geometric meaning**!
 
 ### Definition of Generalized Entropy
 
@@ -153,15 +153,15 @@ graph TB
 
 **Key insight**:
 
-In GLS theory, **extremum/monotonicity conditions of generalized entropy directly derive Einstein's field equation!**
+In GLS theory, **extremum/monotonicity conditions of generalized entropy are derived to directly yield Einstein's field equation!**
 
 ## 🔗 Unification of Triple Arrows
 
 Now we can reveal one of the core insights of GLS theory:
 
-**Theorem 2 (Equivalent Characterizations of Causal Partial Order)**
+**Theoretical Inference 2 (Equivalent Characterizations of Causal Partial Order)**
 
-For any two events $p, q$, the following are **completely equivalent**:
+In GLS framework, for any two events $p, q$, the following are **mathematically equivalent**:
 
 1. **Geometric Causality**: $q \in J^+(p)$
 2. **Time Monotonicity**: $\tau(p) \le \tau(q)$
@@ -177,7 +177,7 @@ $$
 - **Time arrow** (clock advances)
 - **Entropy arrow** (chaos increases)
 
-**Are three manifestations of the same arrow!**
+**Might be three manifestations of the same arrow!**
 
 ```mermaid
 graph TB
@@ -197,7 +197,7 @@ graph TB
 
 ## 🎓 IGVP: From Entropy to Einstein Equation
 
-This is one of the most amazing achievements of GLS theory: **Deriving gravitational field equation using variational principle of entropy!**
+This is one of the most amazing achievements of GLS theory: **Attempting to derive gravitational field equation using variational principle of entropy!**
 
 ### Information Geometric Variational Principle (IGVP)
 
@@ -257,7 +257,7 @@ $$
 \boxed{G_{ab} + \Lambda g_{ab} = 8\pi G \, T_{ab}}
 $$
 
-**This is Einstein's field equation!**
+**This formally yields Einstein's field equation!**
 
 ```mermaid
 graph TB
@@ -276,7 +276,7 @@ graph TB
 
 **Profound meaning**:
 
-**Gravitational field equation is not a fundamental axiom, but a necessary consequence of entropy extremum condition!**
+**GLS theory argues: Gravitational field equation might not be a fundamental axiom, but a necessary consequence of entropy extremum condition!**
 
 ## 🌊 QNEC: Quantum Null Energy Condition
 
@@ -309,7 +309,7 @@ where:
 
 **Physical meaning**:
 
-**Lower bound of energy density is determined by rate of entropy change!**
+**Lower bound of energy density might be determined by rate of entropy change!**
 
 This condition:
 1. Recovers NEC in classical limit
@@ -357,7 +357,7 @@ But second law of thermodynamics says **entropy increases** (information lost?).
 1. **Microscopic level**: Unitary evolution, information conserved
 2. **Macroscopic level**: After coarse-graining, accessible information decreases
 3. **Generalized entropy**: Contains geometry + quantum, total entropy monotonically increases
-4. **Boundary perspective**: Information not lost, just transferred to boundary!
+4. **Boundary perspective**: Information might not be lost, just transferred to boundary!
 
 **Inspiration from black hole information paradox**:
 

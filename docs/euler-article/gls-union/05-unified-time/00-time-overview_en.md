@@ -1,6 +1,6 @@
 # Unified Time: The Essence of Time
 
-> *"Time is not one, and time is not many—time is different projections of the same object."*
+> *"Time may not be a single entity, nor unrelated fragments—GLS theory proposes that various time concepts might be different projections of the same mathematical object."*
 
 ## 🎯 Chapter Goals
 
@@ -14,7 +14,7 @@ In physics, "time" appears in many forms:
 
 **Are these "times" different?**
 
-**GLS Theory Answer**: **No! They are different projections of the same "unified time scale"!**
+**GLS Theory Perspective**: **They can be viewed as projections of the same "unified time scale" in different physical contexts.**
 
 ```mermaid
 graph TB
@@ -35,23 +35,23 @@ graph TB
 
 $$\boxed{\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\text{rel}}(\omega) = \frac{1}{2\pi}\text{tr}\,Q(\omega)}$$
 
-**This equation says**:
+**This equation indicates**:
 1. **Phase derivative** $\varphi'(\omega)/\pi$ (quantum)
 2. **Relative density of states** $\rho_{\text{rel}}(\omega)$ (spectral theory)
 3. **Group delay trace** $\text{tr}\,Q(\omega)/(2\pi)$ (scattering)
 4. **Normalized scale** $\kappa(\omega)$ (geometry)
 
-**Are the same thing!**
+**Exhibit profound unity in mathematical structure.**
 
 ## 🗺️ Chapter Roadmap
 
 ### Station 1: Phase and Proper Time
 
-**Proposition**: For a particle of mass $m$, phase along worldline equals:
+**Proposition**: For a particle of mass $m$, phase along worldline can be expressed as:
 
 $$\phi = \frac{mc^2}{\hbar}\int d\tau$$
 
-**Physical Meaning**: Phase is the "quantum counter" of proper time!
+**Physical Meaning**: Phase can be viewed as the "quantum counter" of proper time.
 
 ### Station 2: Scattering Phase and Group Delay
 
@@ -65,7 +65,7 @@ $$\text{tr}\,Q(\omega) = \frac{\partial \Phi(\omega)}{\partial \omega}$$
 
 where $\Phi = \arg\det S$ is the total scattering phase.
 
-**Physical Meaning**: Group delay measures time delay of wave packet in scattering!
+**Physical Meaning**: Group delay measures time delay of wave packet in scattering process.
 
 ### Station 3: Spectral Shift Function
 
@@ -77,11 +77,11 @@ $$\det S(\omega) = e^{-2\pi i \xi(\omega)}$$
 
 $$\rho_{\text{rel}}(\omega) = -\frac{d\xi}{d\omega}$$
 
-**Physical Meaning**: Spectral shift function measures energy level shifts caused by interactions!
+**Physical Meaning**: Spectral shift function reflects energy level shifts caused by interactions.
 
 ### Station 4: Time Scale Identity (⭐ Core)
 
-**Proof**:
+**Proof Outline**:
 
 From Birman-Kreĭn formula:
 
@@ -99,11 +99,11 @@ Therefore:
 
 $$\frac{1}{2\pi}\text{tr}\,Q = \rho_{\text{rel}}$$
 
-**Identity holds!**
+**Establishes an identity relation.**
 
 ### Station 5: Geometric Time
 
-In curved spacetime, there are various "times":
+In curved spacetime, there exist various "time" definitions:
 
 | Time Type | Definition | Applicable Scenario |
 |---------|------|---------|
@@ -112,7 +112,7 @@ In curved spacetime, there are various "times":
 | **Null Affine Parameter** | $k^a \nabla_a k^b = 0$ | Null geodesics |
 | **Conformal Time** | $d\eta = dt/a(t)$ | FRW universe |
 
-**Key**: They all belong to the equivalence class of unified scale!
+**Key**: They can all be classified into the equivalence class of unified scale.
 
 ### Station 6: Modular Time
 
@@ -122,19 +122,19 @@ For state $\omega$ and algebra $\mathcal{A}$, define modular flow:
 
 $$\sigma_t(A) = \Delta^{it} A \Delta^{-it}$$
 
-**Connes-Rovelli Thermal Time Hypothesis**: Modular flow parameter $t$ is physical time!
+**Connes-Rovelli Thermal Time Hypothesis**: Modular flow parameter $t$ might correspond to physical time.
 
-**Relation to Geometric Time**: Under appropriate conditions, modular time is affinely equivalent to Killing time.
+**Relation to Geometric Time**: Under appropriate conditions, modular time is proven to be affinely equivalent to Killing time.
 
 ### Station 7: Cosmological Redshift
 
 $$1 + z = \frac{a(t_0)}{a(t_e)} = \frac{(d\phi/dt)_e}{(d\phi/dt)_0}$$
 
-**Physical Meaning**: Redshift is the shear of cosmic scale factor evolution on "phase rhythm"!
+**Physical Meaning**: Redshift can be interpreted as the shear effect of cosmic scale factor evolution on "phase rhythm".
 
 ### Station 8: Time as Optimal Path of Generalized Entropy
 
-**Core Idea**: Time does not flow uniformly, but is the optimal path chosen by system in generalized entropy landscape!
+**Core Idea**: Time evolution can be modeled as the optimal path chosen by system in generalized entropy landscape.
 
 $$\delta S_{\text{gen}} = 0$$
 
@@ -142,11 +142,11 @@ $$\delta S_{\text{gen}} = 0$$
 
 ### Station 9: Unification of Time-Geometry-Interaction
 
-**Core Formula**: Total connection unifies all "forces"
+**Core Formula**: Total connection attempts to unify all "forces"
 
 $$\Omega = \omega_{\text{LC}} \oplus A_{\text{YM}} \oplus \Gamma_{\text{res}}$$
 
-**Physical Meaning**: Gravity, gauge forces, resolution forces are all projections of unified time geometry in different directions!
+**Physical Meaning**: Gravity, gauge forces, resolution forces might all be projections of unified time geometry in different directions.
 
 ### Station 10: Topological Invariants and Time
 
@@ -156,7 +156,7 @@ $$\Omega = \omega_{\text{LC}} \oplus A_{\text{YM}} \oplus \Gamma_{\text{res}}$$
 2. $\mathbb{Z}_2$ holonomy $\nu_{\sqrt{S}}(\gamma)$
 3. Relative topological class $[K] \in H^2(Y,\partial Y;\mathbb{Z}_2)$
 
-**Physical Meaning**: Fermion statistics originate from topological invariants of time structure!
+**Physical Meaning**: Fermion statistics might originate from topological invariants of time structure.
 
 ### Station 11: Boundary Language Unified Framework
 
@@ -166,7 +166,7 @@ $$\Omega = \omega_{\text{LC}} \oplus A_{\text{YM}} \oplus \Gamma_{\text{res}}$$
 - A2: Time Generation (revolving door)
 - A3: Monotonicity and Consistency (second law of thermodynamics)
 
-**Physical Meaning**: Time "speaks" on the boundary!
+**Physical Meaning**: Time dynamics are manifested on the boundary.
 
 ### Station 12: Time Domains and Solvable Models
 
@@ -176,7 +176,7 @@ $$\Omega = \omega_{\text{LC}} \oplus A_{\text{YM}} \oplus \Gamma_{\text{res}}$$
 2. Non-Unitary-Absorption Domain: Open systems
 3. Long-Range Potential Domain: Gravity and cosmology
 
-**Windowed Clock**: $\Theta_\Delta(\omega) = (\rho_{\text{rel}} * P_\Delta)(\omega)$ solves negative delay problem!
+**Windowed Clock**: $\Theta_\Delta(\omega) = (\rho_{\text{rel}} * P_\Delta)(\omega)$ is used to solve negative delay problem.
 
 ## 📊 Physical Picture of Unified Time Scale
 
@@ -246,21 +246,21 @@ Viewed from different angles, get different **three-dimensional projections**:
 - From "scattering direction" → Group delay $Q$
 - From "geometric direction" → Proper time $\tau$
 
-**They are all different projections of the same high-dimensional object (unified time scale)!**
+**They can be understood as different projections of the same high-dimensional object (unified time scale).**
 
 ## 🔑 Three Axioms
 
-GLS theory is based on three axioms about time:
+GLS theory is based on three axiomatic assumptions about time:
 
 ### Axiom I: Causal Ordering
 
-There exists a strictly increasing time function that makes fundamental equations local (hyperbolic) form.
+Assume there exists a strictly increasing time function that makes fundamental equations local (hyperbolic) form.
 
 $$p \prec q \quad \Longleftrightarrow \quad \tau(p) < \tau(q)$$
 
 ### Axiom II: Unitary Evolution
 
-There exists a strongly continuous unitary group $U(t) = e^{-iHt}$, phase-time relation determined by stationary phase.
+Assume there exists a strongly continuous unitary group $U(t) = e^{-iHt}$, phase-time relation determined by stationary phase approximation.
 
 $$\phi = \int \frac{mc^2}{\hbar} d\tau$$
 
@@ -284,7 +284,7 @@ $$\text{Axiom I + II} \quad \Leftrightarrow \quad \text{Time Scale Identity} \qu
 
 $$[\tau] \sim \{\tau, t, t_K, N, \lambda_{\text{null}}, u, v, \eta, \omega^{-1}, z, s_{\text{mod}}\}$$
 
-Members are converted to each other through **monotonic rescaling**, making dynamics local, causally ordered, entropy structure simplest.
+Members are converted to each other through **monotonic rescaling**, aiming to make dynamics local, causally ordered, and entropy structure simplest.
 
 ### Affine Transformation
 
@@ -299,7 +299,7 @@ where $\alpha > 0$ (preserving time arrow).
 - ADM time $\leftrightarrow$ Proper time: $\tau = N \cdot t$
 - Conformal time $\leftrightarrow$ Cosmic time: $\eta = \int dt/a(t)$
 
-## 🌊 Core Insight: Time is Geometry
+## 🌊 Core Insight: Unification of Time and Geometry
 
 **Traditional View**:
 - Time is external parameter
@@ -307,9 +307,9 @@ where $\alpha > 0$ (preserving time arrow).
 - Two are independent
 
 **GLS View**:
-- Time is intrinsic structure of geometry
+- Time is viewed as intrinsic structure of geometry
 - $\phi = (mc^2/\hbar)\int d\tau$
-- **Time = Phase = Geometry**
+- **Equivalence of Time, Phase, and Geometry**
 
 $$\boxed{\text{Time} \equiv \text{Phase} \equiv \text{Proper Time} \equiv \text{Unified Scale}}$$
 
@@ -318,7 +318,7 @@ $$\boxed{\text{Time} \equiv \text{Phase} \equiv \text{Proper Time} \equiv \text{
 ### Core Articles (Required Reading)
 
 1. **01-phase-and-proper-time.md** - Phase and Proper Time
-   - Proof of $\phi = (mc^2/\hbar)\int d\tau$
+   - Argument for $\phi = (mc^2/\hbar)\int d\tau$
    - Worldline path integral
 
 2. **04-time-scale-identity.md** - Time Scale Identity (⭐⭐⭐)
@@ -415,7 +415,7 @@ Unified Time is the **heart** of GLS theory:
 3. **Provides Foundation for IGVP**: Time is parameter of entropy evolution
 4. **Reveals Essence of Time**: Time is geometry, geometry is phase
 
-**Without unified time scale, there is no GLS unified theory!**
+**Unified time scale is the cornerstone of GLS theory.**
 
 ```mermaid
 graph TB

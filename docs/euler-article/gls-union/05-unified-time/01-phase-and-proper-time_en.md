@@ -1,12 +1,12 @@
 # Phase and Proper Time: Quantum-Geometric Bridge
 
-> *"Phase is a quantum counter of proper time."*
+> *"Phase can be viewed as a quantum counter of proper time."*
 
 ## 🎯 Core Proposition
 
-**Theorem** (Phase-Proper Time Equivalence):
+**Proposition** (Phase-Proper Time Correspondence):
 
-For a particle of mass $m$ propagating along worldline $\gamma$, its quantum phase equals:
+For a particle of mass $m$ propagating along worldline $\gamma$, its quantum phase can be expressed as:
 
 $$\boxed{\phi = \frac{mc^2}{\hbar}\int_\gamma d\tau}$$
 
@@ -20,7 +20,7 @@ Where:
 **Physical meaning**:
 - Left side ($\phi$): quantum phase, pure quantum concept
 - Right side ($\int d\tau$): proper time, pure geometric concept
-- **Equality**: bridge between quantum and geometry!
+- **Relationship**: This equation establishes a bridge between quantum and geometry.
 
 ## 💡 Intuitive Image: Wave Oscillation
 
@@ -44,7 +44,7 @@ Imagine a pendulum clock:
 - Phase $\phi$ ↔ number of oscillations $N$
 - $\phi = (mc^2/\hbar)\tau$ ↔ $N = t/T$
 
-**Physical meaning**: Phase $\phi$ is a counter of particle's intrinsic "oscillation"!
+**Physical meaning**: Phase $\phi$ can be understood as a counter of particle's intrinsic "oscillation".
 
 ### Quantum Wave Packet
 
@@ -107,7 +107,7 @@ graph TB
     A["Classical Action<br/>S = -mc² ∫dτ"] --> P["Path Integral<br/>K ~ exp(iS/ℏ)"]
     P --> SC["Semiclassical Limit<br/>ℏ → 0"]
     SC --> PH["Principal Phase<br/>φ = S/ℏ"]
-    PH --> R["Phase-Time Equivalence<br/>φ = (mc²/ℏ)∫dτ"]
+    PH --> R["Phase-Time Correspondence<br/>φ = (mc²/ℏ)∫dτ"]
 
     style A fill:#e1f5ff
     style R fill:#e1ffe1,stroke:#ff6b6b,stroke-width:3px
@@ -141,13 +141,13 @@ $$\frac{d\phi}{dt} = \frac{mc^2}{\hbar\gamma} \neq \omega$$
 
 **Why different?**
 
-Because $\phi$ is phase along **worldline** (proper time), while $\omega t$ is phase along **coordinate time**!
+Because $\phi$ is phase along **worldline** (proper time), while $\omega t$ is phase along **coordinate time**.
 
 **Correct relationship**:
 
 $$\frac{d\phi}{d\tau} = \frac{mc^2}{\hbar} = \text{constant}$$
 
-This is invariant!
+This is Lorentz invariant.
 
 ### Particle at Rest
 
@@ -163,7 +163,7 @@ $$\omega = \frac{E}{\hbar} = \frac{mc^2}{\hbar}$$
 
 $$\omega_C = \frac{mc^2}{\hbar} \approx 10^{20} \text{ Hz (electron)}$$
 
-**Physical meaning**: Even at rest, particle "oscillates" at Compton frequency!
+**Physical meaning**: Even at rest, particle "oscillates" at Compton frequency.
 
 ## 🌀 Curved Spacetime
 
@@ -193,7 +193,7 @@ $$\omega_{\text{local}} = \frac{mc^2}{\hbar}$$
 
 $$\omega_{\text{coord}} = \sqrt{1 - \frac{2M}{r_0}}\omega_{\text{local}}$$
 
-**Redshift**: Gravity makes phase "slower"!
+**Redshift**: Gravity makes phase evolution "slower".
 
 ```mermaid
 graph LR
@@ -238,7 +238,7 @@ $$\lambda' - \lambda = \frac{h}{mc}(1 - \cos\theta)$$
 
 **Compton frequency**: $\omega_C = 2\pi c/\lambda_C = mc^2/\hbar$
 
-**Perfect agreement** with $\phi = (mc^2/\hbar)\tau$!
+**Highly consistent with** $\phi = (mc^2/\hbar)\tau$.
 
 ### 2. Neutron Interference (COW Experiment)
 
@@ -248,7 +248,7 @@ $$\Delta\phi = \frac{m}{\hbar}\int (g \cdot h) dt = \frac{mc^2}{\hbar}\Delta\tau
 
 Where $\Delta\tau$ is proper time difference caused by gravity.
 
-**Experimental result**: Completely consistent with phase-time relationship!
+**Experimental result**: Strongly supports phase-time relationship.
 
 ### 3. Atomic Clocks
 
@@ -260,7 +260,7 @@ Atomic clocks on GPS satellites, relative to ground have:
 
 $$\Delta\phi = \frac{mc^2}{\hbar}\Delta\tau$$
 
-**GPS system corrects about 38 microseconds per day**, completely consistent with relativity prediction!
+**GPS system corrects about 38 microseconds per day**, completely consistent with relativity prediction.
 
 ## 📊 Phase as Time Scale
 
@@ -277,7 +277,7 @@ $$\Delta\phi = \frac{mc^2}{\hbar}\Delta\tau$$
 **Meaning**:
 - Left side: quantum observable (interference fringes)
 - Right side: geometric proper time
-- **Phase can serve as operational definition of time!**
+- **Phase can serve as operational definition of time.**
 
 ### Time Standards
 
@@ -321,7 +321,7 @@ graph TB
 
 **GLS view**:
 - $\phi = (mc^2/\hbar)\int d\tau$
-- **Phase is geometry, geometry is phase**
+- **Phase and geometry are equivalent in mathematical structure**
 - Quantum-geometric unification
 
 ### Nature of Time
@@ -334,26 +334,26 @@ graph TB
 - Quantum: external parameter
 
 **GLS answer**:
-- Time is geometric projection of phase
+- Time can be understood as geometric projection of phase
 - $\tau = (\hbar/mc^2)\phi$
-- **Time is phase**
+- **Time is essentially related to phase**
 
 ### Meaning of Compton Frequency
 
 **Why** is Compton frequency $\omega_C = mc^2/\hbar$ so fundamental?
 
-**Answer**: It is particle's intrinsic "clock frequency"!
+**Answer**: It is particle's intrinsic "clock frequency".
 
 $$\frac{d\phi}{d\tau} = \frac{mc^2}{\hbar} = \omega_C$$
 
 **Physical meaning**:
 - Each particle carries an "intrinsic clock"
 - Frequency determined by mass
-- **Mass is clock frequency**
+- **Mass determines intrinsic clock frequency**
 
 $$m = \frac{\hbar\omega_C}{c^2}$$
 
-**Profound**: $E = mc^2$ and $E = \hbar\omega$ are unified!
+**Profound**: $E = mc^2$ and $E = \hbar\omega$ are unified.
 
 ## 📝 Key Formulas Summary
 

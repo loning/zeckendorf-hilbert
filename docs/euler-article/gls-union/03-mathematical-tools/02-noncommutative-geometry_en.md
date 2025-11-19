@@ -17,7 +17,7 @@ But in the quantum world, the concept of **"point" fails**!
 
 - Heisenberg uncertainty: $\Delta x \cdot \Delta p \ge \hbar/2$
 - Cannot simultaneously measure position and momentum precisely
-- **"Point" is unobservable!**
+- **"Point" might be unobservable at quantum scale!**
 
 ### The Revolution of Noncommutative Geometry
 
@@ -270,7 +270,7 @@ uniquely determines boundary metric $h_{ab}$ such that Connes distance equals pa
 
 **Physical meaning**:
 
-**Boundary metric is not pre-given, but emerges from spectral structure of Dirac operator!**
+**Boundary metric might not be pre-given, but emerges from spectral structure of Dirac operator!**
 
 ```mermaid
 graph TB
@@ -359,7 +359,7 @@ In GLS's topological constraint theory:
 
 Noncommutative geometry provides mathematical language for "boundary priority" axiom:
 
-**Boundary spectral triple $(\mathcal{A}_\partial, \mathcal{H}_\partial, D_\partial)$ is the ontological foundation.**
+**Boundary spectral triple $(\mathcal{A}_\partial, \mathcal{H}_\partial, D_\partial)$ is assumed to be the ontological foundation.**
 
 ### 2. Emergence of Time
 

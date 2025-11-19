@@ -6,7 +6,7 @@
 
 **Question**: Why must physics be defined on the boundary?
 
-**Answer Preview**: Because all measurable physical quantities are realized through the boundary!
+**Answer Preview**: Because all measurable physical quantities are theoretically realized through the boundary!
 
 ## 💡 Intuitive Image: Room Analogy
 
@@ -18,7 +18,7 @@ Imagine a scenario:
 - To understand the room, must know what happens at every point inside
 
 **GLS Boundary View (Boundary-Centered)**:
-- Physics essence is on the walls!
+- Physics essence is considered to be on the walls!
 - Room interior is just "projection" of wall information
 - To understand the room, only need to know data on walls
 
@@ -38,8 +38,8 @@ graph LR
 
 **Key Insight**:
 - You can only measure the room through walls!
-- Sound, light, temperature on walls completely determine room interior
-- Interior is a necessary consequence of wall data
+- Sound, light, temperature on walls theoretically completely determine room interior
+- Interior is viewed as a necessary consequence of wall data
 
 ## 📜 Historical Evidence: Three Major Paradigm Shifts
 
@@ -83,7 +83,7 @@ $$\det S(\omega) = \exp(-2\pi i \xi(\omega))$$
 **New Understanding Now**:
 - $\xi(\omega)$: spectral shift function, bulk spectral change
 - $\det S(\omega)$: scattering determinant, boundary data
-- **Birman-Kreĭn identity says: bulk spectral change can be read from boundary scattering data!**
+- **Birman-Kreĭn identity indicates: bulk spectral change can be read from boundary scattering data.**
 
 **Physical Meaning**:
 $$\boxed{\text{Bulk Information (Spectrum)} = \text{Function of Boundary Data (}S\text{-Matrix)}}$$
@@ -130,7 +130,7 @@ $$K_D = 2\pi \int_{\partial D} \xi^\mu T_{\mu\nu} n^\nu \, \mathrm{d}\Sigma$$
 where $\xi^\mu$ is conformal Killing vector on boundary, $n^\nu$ is normal.
 
 **Physical Meaning**:
-$$\boxed{\text{Algebraic Intrinsic Time (Modular Flow)} = \text{Boundary Geometric Generator}}$$
+$$\boxed{\text{Algebraic Intrinsic Time (Modular Flow)} \cong \text{Boundary Geometric Generator}}$$
 
 **Null-Modular Double Cover** (Deeper Boundary Structure):
 
@@ -207,7 +207,7 @@ graph LR
 ```
 
 **Physical Meaning**:
-$$\boxed{\text{Differentiability of Gravitational Action} = \text{Determined by Boundary Term}}$$
+$$\boxed{\text{Differentiability of Gravitational Action} \leftarrow \text{Determined by Boundary Term}}$$
 
 **Deeper Understanding**:
 
@@ -230,7 +230,7 @@ Now we see an astonishing unification:
 | **General Relativity** | Einstein equations $G_{\mu\nu}=0$ | GHY boundary term | Variational well-definedness |
 
 **Common Theme**:
-$$\boxed{\text{Bulk} = \text{Function (or Reconstruction) of Boundary}}$$
+$$\boxed{\text{Bulk} \approx \text{Function (or Reconstruction) of Boundary}}$$
 
 ```mermaid
 graph TB
@@ -251,9 +251,9 @@ graph TB
 
 Based on the three major evidences above, we propose:
 
-**Postulate (Boundary Completeness)**:
+**Theoretical Postulate (Boundary Completeness)**:
 
-> Physical content of bulk region $\mathcal{M}$ can be completely reconstructed from some boundary triple $(\partial\mathcal{M}, \mathcal{A}_\partial, \omega_\partial)$ (within the applicable range of the given theory), i.e., time evolution and response operators are all determined by boundary one-parameter automorphism groups and state evolution.
+> Physical content of bulk region $\mathcal{M}$ can theoretically be completely reconstructed from some boundary triple $(\partial\mathcal{M}, \mathcal{A}_\partial, \omega_\partial)$ (within the applicable range of the given theory), i.e., time evolution and response operators are all determined by boundary one-parameter automorphism groups and state evolution.
 
 **Three Realizations**:
 
@@ -300,7 +300,7 @@ graph TB
 
 **Traditional View**: Bulk is real, boundary is additional
 
-**GLS View**: Boundary is real, bulk is reconstructed
+**GLS View**: Boundary is viewed as real, bulk is viewed as reconstructed
 
 **Analogy**: Hologram
 
@@ -461,20 +461,20 @@ We answered the core question: **Why must physics be defined on boundary?**
 
 ### Core Insight
 
-$$\boxed{\text{Computable Physics} = \text{Function of Boundary Data}}$$
+$$\boxed{\text{Computable Physics} \approx \text{Function of Boundary Data}}$$
 
 ### Paradigm Shift
 
 | Traditional View | GLS Boundary View |
 |-----------------|-------------------|
 | Bulk is main character | Boundary is main character |
-| Boundary is constraint | Boundary is essence |
-| Geometry at spacetime points | Geometry emerges from boundary |
+| Boundary is constraint | Boundary is viewed as essence |
+| Geometry at spacetime points | Geometry is considered to emerge from boundary |
 | Measurement samples bulk | Measurement defined on boundary |
 
 ### Boundary Completeness Principle
 
-> Bulk physical content can be completely reconstructed from boundary triple $(\partial\mathcal{M}, \mathcal{A}_\partial, \omega_\partial)$.
+> Bulk physical content can theoretically be completely reconstructed from boundary triple $(\partial\mathcal{M}, \mathcal{A}_\partial, \omega_\partial)$.
 
 ---
 

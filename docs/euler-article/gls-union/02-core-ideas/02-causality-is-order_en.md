@@ -1,6 +1,6 @@
-# Core Insight 2: Causality is Partial Order
+# Core Insight 2: Causality Modeled as Partial Order
 
-> *"Causality is not a mysterious 'force,' but a mathematical 'relation.'"*
+> *"GLS theory proposes: Causality might not be a mysterious 'force,' but a mathematical 'relation.'"*
 
 ## 🎯 Core Idea
 
@@ -8,7 +8,7 @@ In everyday life, we say "because A, therefore B," as if A has some mysterious "
 
 But GLS theory reveals a surprising truth:
 
-**Causality is a mathematical partial order relation, which is equivalent to time monotonicity, and further equivalent to entropy monotonicity!**
+**Causality might be mathematically equivalent to a partial order relation, which is inferred to be equivalent to time monotonicity, and further equivalent to entropy monotonicity!**
 
 In other words: **Causality ⟺ Partial Order ⟺ Time Arrow ⟺ Entropy Increase**
 
@@ -66,7 +66,7 @@ This is the characteristic of **partial order**:
 3. **Antisymmetry**: If A ≼ B and B ≼ A, then A = B
 4. **Partiality**: Not all elements are comparable (Uncle and Father are incomparable)
 
-**Causal relations in physics are exactly such partial orders!**
+**Causal relations in physics can be viewed as such partial orders!**
 
 ## 🌌 Causal Partial Order in Physics
 
@@ -164,9 +164,9 @@ graph TB
 
 Now we come to one of the core insights of GLS theory:
 
-**Theorem 2 (Equivalent Characterizations of Causal Partial Order)**
+**Theoretical Inference 2 (Equivalent Characterizations of Causal Partial Order)**
 
-For any two events $p, q$, the following propositions are **completely equivalent**:
+In the GLS framework, for any two events $p, q$, the following propositions are **mathematically equivalent**:
 
 1. **Geometric Causality**: $q \in J^+(p)$ (q is in p's future light cone)
 
@@ -191,9 +191,9 @@ graph LR
 
 **What does this mean?**
 
-1. **Causality is not external**: It is time ordering itself
-2. **Time arrow = Causal arrow**: Direction of time passage is direction of causal propagation
-3. **Entropy increase = Causal propagation**: Entropy increase law is not independent, but a necessary consequence of causal structure
+1. **Causality might not be external**: It might be time ordering itself
+2. **Time arrow and causal arrow unified**: Direction of time passage is viewed as direction of causal propagation
+3. **Entropy increase and causal propagation linked**: Entropy increase law might not be independent, but a necessary consequence of causal structure
 
 ## 📊 Mathematical Characterization of Partial Order
 
@@ -271,7 +271,7 @@ graph LR
 **Physical meaning**:
 - State of $D_4$ depends only on $D_3$, not directly on $D_1$ or $D_2$
 - All influences from the past are transmitted through the "present"
-- **This is the essence of causality**: Chain propagation of past→present→future
+- **This might be the essence of causality**: Chain propagation of past→present→future
 
 ## 💡 Hume's Challenge and GLS's Answer
 
@@ -287,13 +287,13 @@ For example: Billiard ball A hits billiard ball B, we see B move. But do we real
 
 **GLS theory completely agrees with Hume**: There's no mysterious "causal force"!
 
-Causality is:
+In the GLS framework, causality is defined as:
 1. **Geometric relation**: $q \in J^+(p)$ (light cone structure)
 2. **Partial order relation**: $p \prec q$ (comparability)
 3. **Time monotonicity**: $\tau(p) < \tau(q)$ (time ordering)
 4. **Entropy monotonicity**: $S(p) \le S(q)$ (thermodynamic arrow)
 
-**These are all observable mathematical relations, involving no mysterious 'pushing' or 'force.'**
+**These are theoretically observable mathematical relations, involving no mysterious 'pushing' or 'force.'**
 
 ## 🔗 Connections to Other Core Ideas
 

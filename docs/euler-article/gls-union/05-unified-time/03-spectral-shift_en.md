@@ -1,6 +1,6 @@
 # Spectral Shift Function: Energy Levels Remember Interaction
 
-> *"Spectral shift function is the signature of Hamiltonian on energy levels."*
+> *"Spectral shift function can be viewed as the signature of Hamiltonian on energy levels."*
 
 ## 🎯 Core Proposition
 
@@ -23,9 +23,9 @@ Where $S(\omega)$ is scattering matrix.
 $$\boxed{\rho_{\text{rel}}(\omega) = -\frac{d\xi(\omega)}{d\omega}}$$
 
 **Physical meaning**:
-- $\xi(\omega)$: change in energy level count caused by interaction
-- $\rho_{\text{rel}}(\omega)$: relative density of states, measures density of energy level "shifts"
-- **Birman-Kreĭn formula connects scattering and spectrum!**
+- $\xi(\omega)$: reflects change in energy level count caused by interaction
+- $\rho_{\text{rel}}(\omega)$: relative density of states, describes density of energy level "shifts"
+- **Relationship**: Birman-Kreĭn formula establishes a connection between scattering and spectral properties.
 
 ## 💡 Intuitive Image: String Tuning
 
@@ -50,7 +50,7 @@ How many resonances below frequency $\omega$?
 
 $$\xi(\omega) = N(\omega) - N_0(\omega)$$
 
-**Physical meaning**: $\xi$ records how many energy levels are "pushed past" $\omega$!
+**Physical meaning**: $\xi$ records how many energy levels are "pushed past" $\omega$.
 
 ```mermaid
 graph TB
@@ -75,7 +75,7 @@ Without potential ($V = 0$):
 
 With potential ($V(x) \neq 0$):
 - Bound states $E_b < 0$ may appear
-- Continuous spectrum energy levels "shift"
+- Continuous spectrum energy levels undergo "shift"
 
 **Spectral shift**:
 - Each added bound state increases $\xi(\omega)$ by 1 as $\omega \to 0$
@@ -189,7 +189,7 @@ Or:
 
 $$\boxed{\frac{1}{2\pi}\text{tr}\,Q(\omega) = \rho_{\text{rel}}(\omega) = -\frac{d\xi}{d\omega}}$$
 
-**Perfect! Scattering, spectral shift, density of states unified!**
+**Conclusion**: Scattering, spectral shift, and density of states show unity in this framework.
 
 ```mermaid
 graph TB
@@ -247,7 +247,7 @@ From $\xi(E) = -\delta(k)/\pi$:
 
 $$\xi(0) - \xi(\infty) = N_b$$
 
-**Physical meaning**: Total change of spectral shift function equals number of bound states!
+**Physical meaning**: Total change of spectral shift function equals number of bound states.
 
 ### Resonance Scattering
 
@@ -263,13 +263,13 @@ $$\xi(E) = -\frac{1}{\pi}\arctan\frac{\Gamma/2}{E - E_r}$$
 
 $$\rho_{\text{rel}}(E) = -\frac{d\xi}{dE} = \frac{1}{\pi}\frac{\Gamma/2}{(E - E_r)^2 + (\Gamma/2)^2}$$
 
-This is **Lorentzian line shape**!
+This is **Lorentzian line shape**.
 
 **Integral**:
 
 $$\int_{-\infty}^\infty \rho_{\text{rel}}(E)\,dE = -[\xi(\infty) - \xi(-\infty)] = 1$$
 
-**Perfect!** One resonance contributes density of states integral of 1!
+**Result**: One resonance contributes density of states integral of 1.
 
 ```mermaid
 graph TB
@@ -326,7 +326,7 @@ Where $\tau_j$ are eigenvalues of $Q$.
 
 $$\sum_j \tau_j = \frac{\partial\Phi}{\partial\omega} = 2\pi\rho_{\text{rel}}$$
 
-**Perfect self-consistency!**
+**Theoretical framework is self-consistent.**
 
 ## 💡 Physical Meaning
 
@@ -344,7 +344,7 @@ $$\xi(E) = -\frac{\Phi(E)}{2\pi} = -\frac{1}{2\pi}\arg\det S(E)$$
 
 $$\xi(E) = -\int_{-\infty}^E \rho_{\text{rel}}(E')\,dE'$$
 
-**These three are completely equivalent!**
+**These three are mathematically equivalent.**
 
 ### Why Important?
 
@@ -357,11 +357,11 @@ $$\xi(E) = -\int_{-\infty}^E \rho_{\text{rel}}(E')\,dE'$$
 **2. Observability**:
 - $\xi$ not directly measurable
 - But $\rho_{\text{rel}} = -d\xi/dE$ can be extracted from scattering data
-- $\text{tr}\,Q = 2\pi\rho_{\text{rel}}$ is measurable!
+- $\text{tr}\,Q = 2\pi\rho_{\text{rel}}$ is measurable
 
 **3. Topological information**:
 - $\xi(\infty) - \xi(-\infty) = N_b$ (Levinson theorem)
-- Topological invariant! Even if perturbation changes, bound state number unchanged
+- Topological invariant: Even if perturbation changes, bound state number unchanged
 
 ```mermaid
 graph TB
@@ -382,7 +382,7 @@ graph TB
 
 ## 🌊 Time Scale Identity Derivation
 
-Now we can completely derive unified time scale formula!
+Now we can completely derive unified time scale formula.
 
 ### Step 1: Group Delay
 
@@ -416,7 +416,7 @@ Then:
 
 $$\boxed{\kappa(\omega) = \rho_{\text{rel}}(\omega) = -\frac{d\xi}{d\omega}}$$
 
-**This is the core part of time scale identity!**
+**This is the core part of time scale identity.**
 
 ### Step 6: With Phase Derivative
 
@@ -428,7 +428,7 @@ $$\frac{\varphi'(\omega)}{\pi} = -\frac{d\xi}{d\omega} = \rho_{\text{rel}}(\omeg
 
 $$\boxed{\frac{\varphi'(\omega)}{\pi} = \rho_{\text{rel}}(\omega) = \frac{1}{2\pi}\text{tr}\,Q(\omega)}$$
 
-**QED!** The three are unified!
+**QED**: The three are unified.
 
 ```mermaid
 graph TB
@@ -477,7 +477,7 @@ M.Sh. Birman proved relationship between scattering matrix and spectral shift:
 
 $$\det S(\omega) = e^{-2\pi i\xi(\omega)}$$
 
-**Meaning**: First connection between scattering (observable) and spectrum (mathematical)!
+**Meaning**: First connection between scattering (observable) and spectrum (mathematical).
 
 ### Modern Developments
 
@@ -486,7 +486,7 @@ $$\det S(\omega) = e^{-2\pi i\xi(\omega)}$$
 - Non-Hermitian systems
 - Topological matter
 
-**GLS theory**: Uses Birman-Kreĭn to unify time scale!
+**GLS theory**: Uses Birman-Kreĭn to unify time scale.
 
 ## 🤔 Exercises
 
@@ -512,7 +512,7 @@ $$\det S(\omega) = e^{-2\pi i\xi(\omega)}$$
 
 ---
 
-**Next step**: We have understood phase-time (Article 1), group delay (Article 2), spectral shift (Article 3). Next article will **completely prove time scale identity** and reveal its profound meaning!
+**Next step**: We have understood phase-time (Article 1), group delay (Article 2), spectral shift (Article 3). Next article will **completely prove time scale identity** and reveal its profound meaning.
 
 **Navigation**:
 - Previous: [02-scattering-phase_en.md](02-scattering-phase_en.md) - Scattering Phase and Group Delay

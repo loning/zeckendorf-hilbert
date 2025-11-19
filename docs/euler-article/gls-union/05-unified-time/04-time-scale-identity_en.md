@@ -1,12 +1,12 @@
 # Time Scale Identity: Proof of Four-in-One
 
-> *"All times are different faces of the same time."*
+> *"Multiple concepts of time might be just different manifestations of the same physical entity."*
 
 ## 🎯 Core Theorem
 
 **Theorem** (Time Scale Identity):
 
-Under appropriate scattering-spectral-geometric conditions, the following four quantities are essentially the same:
+Under appropriate scattering-spectral-geometric conditions, the following four quantities are mathematically equivalent:
 
 $$\boxed{\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\text{rel}}(\omega) = \frac{1}{2\pi}\text{tr}\,Q(\omega)}$$
 
@@ -20,7 +20,7 @@ Where:
 - **Phase derivative** $\varphi'/\pi$: rate of change of quantum phase
 - **Relative density of states** $\rho_{\text{rel}}$: density of energy level shifts
 - **Group delay trace** $\text{tr}\,Q/(2\pi)$: density of wave packet delay
-- **They are three projections of the same time scale!**
+- **Conclusion**: They can be viewed as three projections of the same time scale.
 
 ```mermaid
 graph TB
@@ -56,9 +56,9 @@ Viewed from **three directions**:
 - **Spectral angle**: mountain's height distribution ($\rho_{\text{rel}}$)
 - **Scattering angle**: time needed to climb ($\text{tr}\,Q$)
 
-**They describe the same mountain!**
+**Implication**: They describe the same physical object from different angles.
 
-**Identity says**: These three views give **the same information**!
+**Identity says**: These three views give **consistent information**.
 
 ### Music Analogy
 
@@ -69,7 +69,7 @@ Imagine a musical piece:
 2. **Energy level spectrum** (resonance peaks): main frequencies
 3. **Time delay** (reverberation): sound duration
 
-**Identity says**: These three analysis methods extract **the same time structure**!
+**Identity says**: These three analysis methods extract **the same time structure**.
 
 ## 📐 Complete Proof
 
@@ -81,7 +81,7 @@ We will prove the identity in **two steps**:
 
 **Step 2**: Prove $\rho_{\text{rel}} = \text{tr}\,Q/(2\pi)$ (spectral-scattering equivalence)
 
-**Conclusion**: The three are equal!
+**Conclusion**: The three are equal.
 
 ```mermaid
 graph LR
@@ -144,7 +144,7 @@ Dividing by $\pi$:
 
 $$\boxed{\frac{\varphi'(\omega)}{\pi} = \rho_{\text{rel}}(\omega)}$$
 
-**QED! First equality holds!**
+**QED**: First equality holds.
 
 ### Step 2: Spectral-Scattering Equivalence
 
@@ -210,7 +210,7 @@ Dividing by $2\pi$:
 
 $$\boxed{\rho_{\text{rel}}(\omega) = \frac{1}{2\pi}\text{tr}\,Q(\omega)}$$
 
-**QED! Second equality holds!**
+**QED**: Second equality holds.
 
 ### Complete Identity
 
@@ -222,7 +222,7 @@ $$\boxed{\frac{\varphi'(\omega)}{\pi} = \rho_{\text{rel}}(\omega) = \frac{1}{2\p
 
 $$\kappa(\omega) := \frac{1}{2\pi}\text{tr}\,Q(\omega)$$
 
-**Physical meaning**: $\kappa(\omega)\,d\omega$ is the "time interval" corresponding to frequency range $[\omega, \omega + d\omega]$!
+**Physical meaning**: $\kappa(\omega)\,d\omega$ can be interpreted as the "time interval" corresponding to frequency range $[\omega, \omega + d\omega]$.
 
 ```mermaid
 graph TB
@@ -281,7 +281,7 @@ $$\frac{\text{tr}\,Q}{2\pi} = \frac{1}{\pi}\frac{d\delta}{dE}$$
 
 $$\frac{\varphi'}{\pi} = \frac{1}{\pi}\frac{d\delta}{dE} = \rho_{\text{rel}} = \frac{\text{tr}\,Q}{2\pi}$$
 
-**Perfect! Identity holds!**
+**Conclusion**: Results verify the validity of the identity.
 
 ### Resonance Scattering
 
@@ -299,13 +299,13 @@ $$= \frac{\Gamma/2}{(E - E_r)^2 + (\Gamma/2)^2}$$
 
 $$\frac{\varphi'}{\pi} = \rho_{\text{rel}} = \frac{\text{tr}\,Q}{2\pi} = \frac{1}{\pi} \cdot \frac{\Gamma/2}{(E - E_r)^2 + (\Gamma/2)^2}$$
 
-**Lorentzian line shape!**
+**Lorentzian line shape**.
 
 **Integral**:
 
 $$\int_{-\infty}^\infty \kappa(E)\,dE = \int_{-\infty}^\infty \rho_{\text{rel}}(E)\,dE = 1$$
 
-**Meaning**: One resonance contributes unit "time"!
+**Meaning**: One resonance contributes unit "time".
 
 ```mermaid
 graph LR
@@ -339,7 +339,7 @@ graph LR
 - Time is directly measurable delay
 - Measurable via scattering experiments
 
-**Identity says**: **These three are the same time!**
+**Identity says**: **These three are highly unified in mathematical structure.**
 
 ### 2. Unified Time Scale
 
@@ -356,13 +356,13 @@ $$= \int_{\omega_0}^\omega \frac{\text{tr}\,Q(\omega')}{2\pi}\,d\omega'$$
 **Physical meaning**:
 - $T(\omega)$ is "accumulated time" from $\omega_0$ to $\omega$
 - Can be calculated from phase, spectral shift, or group delay
-- **They give the same answer!**
+- **They give consistent answers.**
 
 ### 3. Operational Definition of Time
 
 **Traditional view**: Time is a priori parameter $t$
 
-**GLS view**: Time is extracted from scattering data!
+**GLS view**: Time can be extracted from scattering data.
 
 **Operational steps**:
 1. Measure scattering matrix $S(\omega)$
@@ -375,7 +375,7 @@ $$= \int_{\omega_0}^\omega \frac{\text{tr}\,Q(\omega')}{2\pi}\,d\omega'$$
 2. Differentiate $\varphi'$
 3. Normalize $\kappa = \varphi'/\pi$
 
-**Same result!**
+**Same result.**
 
 ```mermaid
 graph TB
@@ -431,7 +431,7 @@ So $t = \tau + \beta$.
 
 If rescaling allowed: $dt = \alpha\,d\tau$, then $t = \alpha\tau + \beta$.
 
-**Physical meaning**: Time scale is unique up to affine transformation!
+**Physical meaning**: Time scale is unique up to affine transformation.
 
 ### Time Scale Equivalence Class
 
@@ -450,7 +450,7 @@ $$[\tau] := \{t \mid t = \alpha\tau + \beta, \alpha > 0\}$$
 - Redshift parameter $z$
 - Modular time $s_{\text{mod}}$
 
-**They are converted to each other through monotonic rescaling!**
+**They are converted to each other through monotonic rescaling.**
 
 ```mermaid
 graph TB
@@ -493,13 +493,13 @@ $$\phi = \frac{mc^2}{\hbar}\int d\tau$$
 
 $$\frac{d\phi}{d\tau} = \frac{mc^2}{\hbar} = \omega_C$$
 
-**Connection**: Phase grows linearly with proper time, frequency $\omega_C$ is the "time scale"!
+**Connection**: Phase grows linearly with proper time, frequency $\omega_C$ is the "time scale".
 
 ### Article 2: Scattering Phase and Group Delay
 
 $$\text{tr}\,Q(\omega) = \frac{\partial\Phi(\omega)}{\partial\omega}$$
 
-**Connection**: Group delay is derivative of phase with respect to frequency, direct measurement of "time scale"!
+**Connection**: Group delay is derivative of phase with respect to frequency, direct measurement of "time scale".
 
 ### Article 3: Spectral Shift Function
 
@@ -507,13 +507,13 @@ $$\rho_{\text{rel}}(\omega) = -\frac{d\xi}{d\omega}$$
 
 $$\Phi = -2\pi\xi$$
 
-**Connection**: Relative density of states describes energy level shifts, also spectral manifestation of "time scale"!
+**Connection**: Relative density of states describes energy level shifts, also spectral manifestation of "time scale".
 
 ### Article 4 (This Article): Four-in-One Unification
 
 $$\boxed{\text{Phase} \equiv \text{Spectrum} \equiv \text{Scattering} \equiv \text{Time}}$$
 
-**Complete closure!**
+**Theoretical logic closure.**
 
 ```mermaid
 graph TB
@@ -552,7 +552,7 @@ graph TB
 
 ---
 
-**Next step**: We have completed complete derivation of time scale identity! Next article will explore **geometric times** (Killing, ADM, null, conformal) and show how they fit into unified scale!
+**Next step**: We have completed complete derivation of time scale identity! Next article will explore **geometric times** (Killing, ADM, null, conformal) and show how they fit into unified scale.
 
 **Navigation**:
 - Previous: [03-spectral-shift_en.md](03-spectral-shift_en.md) - Spectral Shift Function

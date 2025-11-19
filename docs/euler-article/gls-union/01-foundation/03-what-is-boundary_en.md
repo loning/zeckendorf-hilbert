@@ -41,7 +41,7 @@ graph TB
     style S2 fill:#ff6b6b,color:#fff
 ```
 
-> 💡 **GLS Theory's Shocking View**: The universe is like this balloon. True "reality" exists on the boundary (surface), and physics in "volume" is reconstructed from boundary data!
+> 💡 **GLS Theory Proposes**: The universe might be like this balloon. True "reality" might exist on the boundary (surface), and physics in "volume" is reconstructed from boundary data!
 
 ---
 
@@ -388,7 +388,7 @@ graph TB
 
 ### 💎 No Fundamental Forces Theorem
 
-GLS theory has a shocking result:
+GLS theory derives a **core conclusion**:
 
 > **Theorem: No Fundamental Forces**
 >
@@ -424,7 +424,7 @@ graph TD
     style Unified fill:#ff6b6b,stroke:#c92a2a,stroke-width:3px,color:#fff
 ```
 
-> 💡 **Key Insight**: You think there are 4 fundamental forces, but they're different aspects of the same boundary geometric structure!
+> 💡 **Key Insight**: GLS theory suggests that the 4 fundamental forces might be different aspects of the same boundary geometric structure!
 
 ---
 

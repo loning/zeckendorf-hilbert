@@ -1,4 +1,4 @@
-# Core Insight 1: Time is Geometry
+# Core Insight 1: Time Modeled as Geometry
 
 > *"Time is not the stage, but the dance itself."*
 
@@ -6,7 +6,7 @@
 
 In the foundation section, we already know time has many faces: scattering time, modular time, geometric time. But GLS theory goes further:
 
-**Time is not an external background coordinate, but an intrinsic parameter emerging from geometric structure.**
+**GLS theory proposes: Time might not be an external background coordinate, but an intrinsic parameter emerging from geometric structure.**
 
 ## 🌀 From Rotation to Phase: Everyday Analogy
 
@@ -50,7 +50,7 @@ $$
 
 This formula says: **Phase = (mass×speed of light²/ℏ) × proper time integral**
 
-In other words: **Time is the accumulation of phase!**
+In other words: **In the GLS framework, time is mathematically equivalent to the accumulation of phase!**
 
 ## 🧊 Cube Projection: Unification of Multiple Times
 
@@ -81,7 +81,7 @@ graph TB
 
 **This diagram tells us**:
 
-All these "times" are **the same geometric object viewed from different projections**! Just as a cube looks like a square, diamond, or hexagon from different angles, but is essentially still that cube.
+All these "times" might be **the same geometric object viewed from different projections**! Just as a cube looks like a square, diamond, or hexagon from different angles, but is essentially still that cube.
 
 ## 📐 How Does Geometry Generate Time?
 
@@ -102,7 +102,7 @@ $$
 **Physical meaning**:
 - Phase $\varphi$ is the accumulated "geometric angle" along the worldline
 - For each increment of proper time $d\tau$, phase increases by $(mc^2/\hbar) d\tau$
-- **Time is the "rotation rate" of this phase!**
+- **Time can be understood as the "rotation rate" of this phase!**
 
 ### Step 2: Phase Derivative Gives Time Scale
 
@@ -140,7 +140,7 @@ $$
 \kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\text{rel}}(\omega) = \frac{1}{2\pi}\text{tr}\,Q(\omega)
 $$
 
-**This is the Unified Time Scale Identity!**
+**This is the Unified Time Scale Identity proposed by GLS theory!**
 
 ```mermaid
 graph LR
@@ -164,7 +164,7 @@ graph LR
 
 This derivation chain tells us a profound fact:
 
-**Time is not a pre-given stage, but emerges from the internal structure of the system (scattering matrix, density of states, phase)!**
+**GLS theory argues: Time might not be a pre-given stage, but emerges from the internal structure of the system (scattering matrix, density of states, phase)!**
 
 Specifically:
 
@@ -173,7 +173,7 @@ Specifically:
 3. **Macroscopic level**: Density of states $\rho_{\text{rel}}$ defines time passage
 4. **Geometric level**: Proper time $\tau$ is a function of the metric
 
-**All of these are the same thing!**
+**Mathematically, they might be equivalent!**
 
 ## 🌍 Multiple Times in General Relativity
 
@@ -188,7 +188,7 @@ In general relativity, we have many "time" concepts:
 | **Modular Time** | Defined by Tomita-Takesaki flow | Thermal states in quantum field theory |
 | **Conformal Time** | $d\eta = dt/a(t)$ | Cosmological FRW metric |
 
-**GLS insight**: These seemingly different "times" are all **different coordinatizations of the unified time scale equivalence class**!
+**GLS insight**: These seemingly different "times" might all be **different coordinatizations of the unified time scale equivalence class**!
 
 Just as east longitude, west longitude, UTC time, and local time are different representations of the same phenomenon—Earth's rotation.
 

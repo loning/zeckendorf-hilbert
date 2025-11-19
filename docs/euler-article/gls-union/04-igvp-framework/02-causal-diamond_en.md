@@ -267,7 +267,7 @@ $$\kappa_\chi = \frac{2}{\ell} + O\left(\frac{\ell}{L_{\text{curv}}^2}\right)$$
 
 $$T = \frac{\hbar |\kappa_\chi|}{2\pi} = \frac{\hbar}{\pi\ell} + O\left(\frac{\ell}{L_{\text{curv}}^2}\right)$$
 
-**Key insight**: The small causal diamond has an **intrinsic temperature**, determined by geometry!
+**Key insight**: The small causal diamond possesses an **intrinsic temperature** determined by geometry.
 
 ## 📐 Variation Setup
 
@@ -294,7 +294,7 @@ $$S_{\text{gen}}(S_\ell) = \frac{A(S_\ell)}{4G\hbar} + S_{\text{out}}(S_\ell)$$
 
 $$\boxed{\delta S_{\text{gen}} = 0} \quad (\text{fixed volume})$$
 
-**This is the core of IGVP!**
+**This is one of the core assumptions of IGVP.**
 
 ```mermaid
 graph TB
@@ -320,7 +320,7 @@ graph TB
 
 **Core idea**: If an integral condition holds for **all** small causal diamonds, can we derive a **pointwise** equation?
 
-Answer: **Yes!** (under appropriate conditions)
+Answer: **Yes, under appropriate conditions.**
 
 **Steps**:
 
@@ -328,7 +328,7 @@ Answer: **Yes!** (under appropriate conditions)
 2. **Integral condition**: $\int_{S_\ell} \varphi \int_0^{\lambda_*} \lambda (R_{kk} - 8\pi G T_{kk}) d\lambda dA = o(\ell^2)$
 3. **Closure**: By local invertibility of ray transform, derive that $R_{kk} = 8\pi G T_{kk}$ holds at each point
 
-**This is the bridge from "family constraint" to "pointwise equation"!**
+**This constitutes the logical bridge from "family constraint" to "pointwise equation".**
 
 ### Physical Meaning of Family Constraint
 

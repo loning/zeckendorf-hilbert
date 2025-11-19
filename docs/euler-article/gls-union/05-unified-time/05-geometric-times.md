@@ -1,10 +1,10 @@
 # 几何时间：时空度规的时钟
 
-> *"几何时间是度规对观察者的投影。"*
+> *"几何时间可被理解为度规对观察者的投影。"*
 
 ## 🎯 核心命题
 
-在广义相对论中，"时间"有多种几何实现，它们都属于统一时间刻度等价类 $[\tau]$：
+在广义相对论中，"时间"有多种几何实现。在GLS理论框架下，它们被归类为统一时间刻度等价类 $[\tau]$：
 
 | 时间类型 | 定义 | 适用场景 |
 |---------|------|----------|
@@ -13,11 +13,11 @@
 | **Null仿射参数** $\lambda$ | $k^a \nabla_a k^b = 0$ | 零测地线 |
 | **共形时间** $\eta$ | $d\eta = dt/a(t)$ | FRW宇宙 |
 
-**核心定理**：在适当条件下，这些时间通过**仿射变换**互相联系：
+**理论命题**：在适当条件下，这些时间通过**仿射变换**互相联系：
 
 $$t_1 = \alpha t_2 + \beta, \quad \alpha > 0$$
 
-从而属于同一等价类 $[T]$。
+从而在数学结构上属于同一等价类 $[T]$。
 
 ```mermaid
 graph TB
@@ -44,9 +44,9 @@ graph TB
 - **光子钟**：零质量，走无限快（null参数）
 - **宇宙钟**：随宇宙膨胀变慢（共形时间）
 
-**它们都测量"时间"，但节奏不同！**
+**它们都作为时间的度量，但具有不同的节奏。**
 
-**GLS理论说**：这些钟通过简单的重标联系，**本质上是同一个时间**！
+**GLS理论提出**：这些钟通过简单的重标联系，**在物理本质上可能指向同一个时间概念**。
 
 ## 📐 四种几何时间详解
 
@@ -85,7 +85,7 @@ $V(r) = 1 - 2M/r$，静止观察者：
 
 $$d\tau = \sqrt{1 - \frac{2M}{r}}\,dt$$
 
-**在视界** $r = 2M$：$d\tau = 0$（时间冻结！）
+**在视界** $r = 2M$：$d\tau = 0$（时间冻结）
 
 ```mermaid
 graph LR
@@ -139,7 +139,7 @@ $$\frac{\partial h_{ij}}{\partial t} = \cdots, \quad \frac{\partial K_{ij}}{\par
 
 **与Killing时间的关系**：
 
-在静态时空，$N = \sqrt{V}$，两者等价！
+在静态时空，$N = \sqrt{V}$，两者等价。
 
 ```mermaid
 graph TB
@@ -170,7 +170,7 @@ $$k^a \nabla_a k^b = 0$$
 
 **为什么需要仿射参数？**
 
-对零测地线，$ds = 0$，不能用 $s$ 参数化！必须引入 $\lambda$。
+对零测地线，$ds = 0$，不能用 $s$ 参数化，必须引入 $\lambda$。
 
 **Bondi坐标**（Schwarzschild外区）：
 
@@ -189,7 +189,7 @@ $$r^* = r + 2M\ln\left|\frac{r}{2M} - 1\right|$$
 **物理意义**：
 - $u, v$ 是自然的"边界时间"
 - 引力散射中，$u$ 对应渐近出态时间
-- Bondi质量 $M(u)$ 沿 $u$ 单调不增（能量辐射！）
+- Bondi质量 $M(u)$ 沿 $u$ 单调不增（能量辐射）
 
 **FRW中的共形时间**：
 
@@ -199,7 +199,7 @@ $$d\eta = \frac{dt}{a(t)}$$
 
 用 $\eta$ 坐标：$d\eta^2 = d\chi^2$
 
-**直线！**零测地线在共形时间中是直线！
+**直线化**：零测地线在共形时间中表现为直线。
 
 ```mermaid
 graph LR
@@ -251,7 +251,7 @@ $$1 + z = \frac{a(t_0)}{a(t_e)}$$
 
 $$1 + z = \frac{(d\phi/dt)_e}{(d\phi/dt)_0}$$
 
-**宇宙学红移是时间刻度的全局重标！**
+**宇宙学红移可被视为时间刻度的全局重标。**
 
 ```mermaid
 graph TB
@@ -278,15 +278,15 @@ $$[T] \sim \{\tau, t_K, N, \lambda, u, v, \eta, \omega^{-1}, z, s_{\text{mod}}\}
 
 **证明思路**：
 
-1. **Killing ↔ ADM**：静态时空中，$N = \sqrt{V}$，$d\tau = N\,dt = \sqrt{V}\,dt$
+1.  **Killing ↔ ADM**：静态时空中，$N = \sqrt{V}$，$d\tau = N\,dt = \sqrt{V}\,dt$
 
-2. **ADM ↔ null**：ADM叶片的法向定义 $\lambda$，$d\lambda \propto N\,dt$
+2.  **ADM ↔ null**：ADM叶片的法向定义 $\lambda$，$d\lambda \propto N\,dt$
 
-3. **null ↔ 共形**：FRW中，$\eta$ 直线化零测地线，$d\eta = d\lambda/a$
+3.  **null ↔ 共形**：FRW中，$\eta$ 直线化零测地线，$d\eta = d\lambda/a$
 
-4. **共形 ↔ 红移**：$1+z = a_0/a_e = \eta_e/\eta_0$（适当归一化）
+4.  **共形 ↔ 红移**：$1+z = a_0/a_e = \eta_e/\eta_0$（适当归一化）
 
-**所有这些转换都是仿射的！**
+**所有这些转换都是仿射的。**
 
 ```mermaid
 graph TB
@@ -317,44 +317,44 @@ $$\phi = \frac{mc^2}{\hbar}\int d\tau$$
 
 **各种几何时间**：
 
-1. **Killing时间**：$d\tau = \sqrt{V}\,dt$
-   $$\phi = \frac{mc^2}{\hbar}\int \sqrt{V}\,dt$$
+1.  **Killing时间**：$d\tau = \sqrt{V}\,dt$
+    $$\phi = \frac{mc^2}{\hbar}\int \sqrt{V}\,dt$$
 
-2. **ADM时间**：$d\tau = N\,dt$
-   $$\phi = \frac{mc^2}{\hbar}\int N\,dt$$
+2.  **ADM时间**：$d\tau = N\,dt$
+    $$\phi = \frac{mc^2}{\hbar}\int N\,dt$$
 
-3. **共形时间**：$d\tau = a\,d\eta$（共动观察者）
-   $$\phi = \frac{mc^2}{\hbar}\int a\,d\eta$$
+3.  **共形时间**：$d\tau = a\,d\eta$（共动观察者）
+    $$\phi = \frac{mc^2}{\hbar}\int a\,d\eta$$
 
-**它们都给出相同的相位（沿同一世界线）！**
+**理论上，它们应给出相同的相位（沿同一世界线）。**
 
 **与时间刻度同一式**：
 
 $$\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \frac{1}{2\pi}\text{tr}\,Q(\omega)$$
 
-**几何解释**：$\kappa$ 是"局域时间密度"，积分后给出任何几何时间！
+**几何解释**：$\kappa$ 是"局域时间密度"，积分后给出任何几何时间。
 
 ## 🤔 练习题
 
-1. **概念理解**：
-   - Killing时间与ADM时间有何区别？
-   - null仿射参数为什么必要？
-   - 共形时间如何直线化零测地线？
+1.  **概念理解**：
+    - Killing时间与ADM时间有何区别？
+    - null仿射参数为什么必要？
+    - 共形时间如何直线化零测地线？
 
-2. **计算练习**：
-   - Schwarzschild度规：在 $r = 3M$ 处，计算 $d\tau/dt$
-   - ADM分解：证明 $N = \sqrt{V}$（静态情况）
-   - FRW宇宙：计算物质主导期的 $\eta(t)$
+2.  **计算练习**：
+    - Schwarzschild度规：在 $r = 3M$ 处，计算 $d\tau/dt$
+    - ADM分解：证明 $N = \sqrt{V}$（静态情况）
+    - FRW宇宙：计算物质主导期的 $\eta(t)$
 
-3. **物理应用**：
-   - GPS卫星的时间修正涉及哪些几何时间？
-   - Bondi质量如何随 $u$ 演化？
-   - 宇宙学视界与 $\eta$ 的关系？
+3.  **物理应用**：
+    - GPS卫星的时间修正涉及哪些几何时间？
+    - Bondi质量如何随 $u$ 演化？
+    - 宇宙学视界与 $\eta$ 的关系？
 
-4. **进阶思考**：
-   - 非静态时空中，能否定义全局Killing时间？
-   - ADM能量守恒与时间平移不变性的关系？
-   - 共形时间奇点对应什么物理过程？
+4.  **进阶思考**：
+    - 非静态时空中，能否定义全局Killing时间？
+    - ADM能量守恒与时间平移不变性的关系？
+    - 共形时间奇点对应什么物理过程？
 
 ---
 
@@ -362,3 +362,4 @@ $$\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \frac{1}{2\pi}\text{tr}\,Q(\om
 - 上一篇：[04-time-scale-identity.md](04-time-scale-identity.md) - 时间刻度同一式
 - 下一篇：[06-modular-time.md](06-modular-time.md) - 模块时间
 - 概览：[00-time-overview.md](00-time-overview.md) - 统一时间篇总览
+- GLS理论：unified-time-scale-geometry.md

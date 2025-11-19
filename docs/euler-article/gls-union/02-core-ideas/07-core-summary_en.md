@@ -1,16 +1,16 @@
 # Core Ideas Summary: From Five Insights to Unified Theory
 
-> *"Five seemingly independent insights are actually five aspects of the same truth."*
+> *"Five seemingly independent insights might theoretically be five aspects of the same truth."*
 
 ## 🎯 What Have We Learned?
 
 In this chapter, we explored **five core insights** of GLS theory:
 
-1. **Time is Geometry** - Time is not an external background, but emerges from geometric structure
-2. **Causality is Partial Order** - Causal relations are mathematical partial orders, not mysterious "forces"
-3. **Boundary is Reality** - Physical reality exists primarily on boundary, bulk is extension of boundary
-4. **Scattering is Evolution** - System evolution is essentially scattering, S-matrix encodes all dynamics
-5. **Entropy is Arrow** - Time's directionality comes from entropy increase, consistent with causality and evolution
+1. **Time Modeled as Geometry** - Time might not be an external background, but emerges from geometric structure
+2. **Causality Modeled as Partial Order** - Causal relations are viewed as mathematical partial orders, not mysterious "forces"
+3. **Boundary Viewed as Reality** - Physical reality is assumed to exist primarily on boundary, bulk is extension of boundary
+4. **Scattering Modeled as Evolution** - System evolution might be essentially scattering, S-matrix encodes all dynamics
+5. **Entropy Modeled as Arrow** - Time's directionality might come from entropy increase, consistent with causality and evolution
 
 Now, let's see how they unify into one whole.
 
@@ -44,7 +44,7 @@ graph TB
 
 ### Unified Time Scale Identity
 
-**All five insights unify through one formula**:
+**All five insights might unify through one formula**:
 
 $$
 \boxed{\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\text{rel}}(\omega) = \frac{1}{2\pi}\text{tr}\,Q(\omega)}
@@ -59,7 +59,7 @@ Let's interpret the four quantities in this formula one by one:
 | $\rho_{\text{rel}}(\omega)$ | Entropy is Arrow | Relative density of states (microscopic origin of entropy) |
 | $\text{tr}\,Q(\omega)/2\pi$ | Boundary is Reality | Group delay (boundary Wigner-Smith matrix) |
 
-**Causal partial order** connects to the other four through monotonicity of time scale:
+**Causal partial order** is considered to connect to the other four through monotonicity of time scale:
 
 $$
 p \prec q \quad \Longleftrightarrow \quad \tau(p) \le \tau(q) \quad \Longleftrightarrow \quad S_{\text{gen}}(p) \le S_{\text{gen}}(q)
@@ -71,7 +71,7 @@ Let's walk through the complete logic chain again:
 
 ### Step 1: Start from Boundary
 
-**Boundary Priority Axiom**: Physical reality is primarily based on boundary observable algebra $\mathcal{A}_\partial$.
+**Boundary Priority Axiom assumes**: Physical reality is primarily based on boundary observable algebra $\mathcal{A}_\partial$.
 
 On boundary, define:
 - Boundary spectral triple $(\mathcal{A}_\partial, \mathcal{H}_\partial, D_\partial)$
@@ -123,7 +123,7 @@ $$
 \varphi = \frac{mc^2}{\hbar} \int d\tau
 $$
 
-**Conclusion**: Scattering time = Geometric time (up to affine transformation)
+**Conclusion**: Scattering time ⟺ Geometric time (up to affine transformation)
 
 ### Step 4: Connect to Density of States (Entropy)
 
@@ -137,7 +137,7 @@ where $\rho_{\text{rel}}$ is relative density of states (quantum states that sca
 
 And density of states is precisely the **microscopic origin of entropy** (Boltzmann: $S = k_B \ln \Omega$)!
 
-**Conclusion**: Density of states = Scattering delay = Time scale
+**Conclusion**: Density of states ⟺ Scattering delay ⟺ Time scale
 
 ### Step 5: Connect to Causal Partial Order
 
@@ -153,7 +153,7 @@ $$
 p \prec q \quad \Longleftrightarrow \quad \tau(p) \le \tau(q) \quad \Longleftrightarrow \quad S_{\text{gen}}(p) \le S_{\text{gen}}(q)
 $$
 
-**Conclusion**: Causality = Time order = Entropy order
+**Conclusion**: Causality ⟺ Time order ⟺ Entropy order
 
 ### Step 6: IGVP Derives Field Equation
 
@@ -169,7 +169,7 @@ $$
 \boxed{G_{ab} + \Lambda g_{ab} = 8\pi G T_{ab}}
 $$
 
-**Conclusion**: Gravitational field equation is a result of entropy extremum
+**Conclusion**: Gravitational field equation might be a result of entropy extremum
 
 ## 🌐 Grand Unification Picture
 
@@ -219,7 +219,7 @@ graph TB
 
 ## 💡 Mutual Support of Five Insights
 
-Let's see how the five insights mutually reinforce:
+Let's see how the five insights theoretically mutually reinforce:
 
 ### Time ↔ Scattering
 
@@ -271,7 +271,7 @@ Imagine a **five-faced crystal**:
 - Rotating it, different faces appear sequentially
 - But **essentially there's only one object**
 
-**This object is: Unified Time Scale Equivalence Class $[\tau]$**
+**This object is considered to be: Unified Time Scale Equivalence Class $[\tau]$**
 
 ## 🔍 Review of Key Mathematical Objects
 
@@ -354,7 +354,7 @@ We have traversed the core ideas of GLS theory.
 
 **Five insights, one truth**:
 
-**The universe is not a pre-given stage, but a self-consistent extension of boundary data; time, causality, evolution, entropy are all different aspects of this extension, woven together by unified time scale.**
+**GLS theory proposes: The universe might not be a pre-given stage, but a self-consistent extension of boundary data; time, causality, evolution, entropy might all be different aspects of this extension, woven together by unified time scale.**
 
 In the following chapters, we will:
 

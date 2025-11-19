@@ -1,6 +1,6 @@
-# Core Insight 4: Scattering is Evolution
+# Core Insight 4: Scattering Modeled as Evolution
 
-> *"The universe is not 'moving,' but 'scattering.'"*
+> *"GLS theory proposes: The universe might not be 'moving,' but 'scattering.'"*
 
 ## 🎯 Core Idea
 
@@ -12,11 +12,11 @@ $$
 
 But GLS theory proposes a deeper perspective:
 
-**System evolution is essentially a scattering process, and the scattering matrix $S(\omega)$ encodes all dynamical information!**
+**GLS theory proposes: System evolution might be essentially a scattering process, and the scattering matrix $S(\omega)$ encodes all dynamical information!**
 
 In other words:
 
-**Evolution = Scattering, Dynamics = S-Matrix**
+**In GLS framework: Evolution ⟺ Scattering, Dynamics ⟺ S-Matrix**
 
 ## 🏔️ Starting from Valley Echoes: Scattering Reveals Structure
 
@@ -68,7 +68,7 @@ $$
 
 **Key insight**:
 
-**S-matrix is the only observable thing! The "real description" of intermediate processes is redundant, even misleading!**
+**S-matrix is considered the only observable thing! The "real description" of intermediate processes might be redundant, even misleading!**
 
 ## 🌀 S-Matrix: Essence of Evolution
 
@@ -106,7 +106,7 @@ $$
 
 - Initial and final states are observable (prepared and measured in laboratory)
 - Intermediate processes are unobservable (Heisenberg uncertainty principle)
-- **What is observable is the S-matrix!**
+- **What is theoretically observable is the S-matrix!**
 
 ```mermaid
 graph TB
@@ -167,7 +167,7 @@ where $\rho_{\text{rel}}(\omega)$ is the **relative density of states** (quantum
 
 **This means**:
 
-**Time delay is density of states! The system's "complexity" (how many states) determines the wave packet's "stay time"!**
+**Time delay is mathematically equivalent to density of states! The system's "complexity" (how many states) determines the wave packet's "stay time"!**
 
 ```mermaid
 graph LR
@@ -185,7 +185,7 @@ graph LR
 
 ### Why Say Evolution is Scattering?
 
-In GLS theory, **any physical process can be viewed as scattering**:
+In GLS theory, **any physical process might be viewed as scattering**:
 
 | Traditional Description | Scattering Description |
 |------------------------|----------------------|
@@ -197,7 +197,7 @@ In GLS theory, **any physical process can be viewed as scattering**:
 
 **Core principle**:
 
-**As long as there is "input" and "output," whatever happens in between can be described by S-matrix!**
+**As long as there is "input" and "output," whatever happens in between can theoretically be described by S-matrix!**
 
 ### Deep Meaning of Unitary Evolution
 
@@ -215,7 +215,7 @@ $$
 
 **But GLS theory reverses this logic**:
 
-**Not "first have evolution U, then define S," but "first have S, evolution U is a projection of S at finite time"!**
+**GLS theory argues: Maybe not "first have evolution U, then define S," but "first have S, evolution U is a projection of S at finite time"!**
 
 ```mermaid
 graph TB
@@ -246,7 +246,7 @@ $$
 \boxed{\det S(\omega) = e^{-2\pi i \xi(\omega)} \quad \Rightarrow \quad \frac{\Phi'(\omega)}{\pi} = \rho_{\text{rel}}(\omega) = \frac{1}{2\pi} \text{tr}\, Q(\omega)}
 $$
 
-**This is the source of the Unified Time Scale Identity!**
+**This is the mathematical source of the Unified Time Scale Identity!**
 
 ```mermaid
 graph TB
@@ -271,13 +271,13 @@ graph TB
 
 In GLS's **matrix universe** framework (which we will detail later), there is an amazing proposition:
 
-**The ontology of the universe is a huge family of scattering matrices $\mathbb{S}(\omega)$!**
+**GLS theory hypothesizes: The ontology of the universe might be a huge family of scattering matrices $\mathbb{S}(\omega)$!**
 
 - Each frequency $\omega$ corresponds to a unitary matrix $S(\omega)$
 - All spacetime, gravity, particles are "emergences" of this matrix
 - Evolution is the "flow" of the matrix
 
-**THE-MATRIX is not science fiction, but mathematical reality!**
+**THE-MATRIX might not be science fiction, but a mathematical reality!**
 
 ### Causal Network = Scattering Network
 
@@ -287,7 +287,7 @@ In the language of causal structure:
 - Diamond evolution is guaranteed by unitarity of $S$
 - Markov property of diamond chains is guaranteed by locality of scattering
 
-**Causal propagation = Scattering propagation!**
+**Causal propagation ⟺ Scattering propagation!**
 
 ```mermaid
 graph LR
@@ -303,7 +303,7 @@ graph LR
 
 ## 🔬 Experimental Verifiability
 
-The beauty of scattering theory is: **It is directly observable!**
+The beauty of scattering theory is: **It is theoretically directly observable!**
 
 ### Experiment 1: Wigner-Smith Delay in Mesoscopic Conductors
 
@@ -339,7 +339,7 @@ $$
 1 + z = \frac{(d\phi/dt)_e}{(d\phi/dt)_0}
 $$
 
-**Redshift is the phase evolution of cosmic scattering matrix!**
+**Redshift can be interpreted as the phase evolution of cosmic scattering matrix!**
 
 ## 🔗 Connections to Other Core Ideas
 

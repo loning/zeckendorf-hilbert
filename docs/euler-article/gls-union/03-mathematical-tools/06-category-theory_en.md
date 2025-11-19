@@ -177,21 +177,21 @@ For any object $A$, there exists **unique** morphism $! : 0 \to A$.
 - In **Set**: Empty set $\emptyset$
 - In **Grp**: Trivial group (also terminal!)
 
-## 🌌 Applications in GLS Theory
+## 🌌 Application Models in GLS Theory
 
 ### 1. QCA Universe as Terminal Object
 
-**Theorem** (QCA Universe Theory):
+**Theoretical Conjecture** (QCA Universe Hypothesis):
 
-QCA universe $\mathfrak{U}_{\text{QCA}}$ is **terminal object** in category of physical theories.
+In the "category of physical theories" $\mathcal{CAT}_{\text{phys}}$ defined within the GLS framework, the QCA universe $\mathfrak{U}_{\text{QCA}}$ is **proposed** as a **terminal object**.
 
 $$
 \forall \mathfrak{T} \in \mathcal{CAT}_{\text{phys}}, \quad \exists ! \, F: \mathfrak{T} \to \mathfrak{U}_{\text{QCA}}
 $$
 
-**Physical meaning**:
+**Physical Interpretation**:
 
-**Any physical theory can be uniquely embedded into QCA universe!**
+This suggests that, within this theoretical framework, **any physical theory could potentially be uniquely embedded into the QCA universe model**.
 
 ```mermaid
 graph TB
@@ -204,21 +204,23 @@ graph TB
 
 ### 2. Category Equivalence of Matrix Universe
 
-**Theorem** (Matrix Universe Theory):
+**Theoretical Proposition** (Matrix Universe Equivalence):
 
-Geometric universe category and matrix universe category are **equivalent**:
+The geometric universe category and the matrix universe category are considered to be **categorically equivalent**:
 
 $$
 \mathfrak{Uni}_{\text{geo}} \simeq \mathfrak{Uni}_{\text{mat}}
 $$
 
-**Physical meaning**:
+**Physical Meaning**:
 
-**Reality ≡ Causal Network ≡ THE-MATRIX**
+This implies a deep structural isomorphism between physical reality, causal networks, and matrix models:
+
+**Reality $\sim$ Causal Network $\sim$ Matrix Model**
 
 ### 3. Functors as Physical Correspondences
 
-Many correspondences in physics are actually **functors**:
+Many dualities and correspondences in physics can be precisely described using the language of **functors**:
 
 - **AdS/CFT**: $F: \mathcal{CAT}_{\text{AdS}} \to \mathcal{CAT}_{\text{CFT}}$
 - **Holographic duality**: $F: \mathcal{CAT}_{\text{bulk}} \to \mathcal{CAT}_{\text{boundary}}$
@@ -228,9 +230,9 @@ Many correspondences in physics are actually **functors**:
 
 ### Definition
 
-Given two functors $F, G: \mathcal{C} \to \mathcal{D}$, **natural transformation** $\eta: F \Rightarrow G$ is:
+Given two functors $F, G: \mathcal{C} \to \mathcal{D}$, a **natural transformation** $\eta: F \Rightarrow G$ is:
 
-For each object $A \in \mathcal{C}$, gives morphism $\eta_A: F(A) \to G(A)$,
+For each object $A \in \mathcal{C}$, gives a morphism $\eta_A: F(A) \to G(A)$,
 
 such that for any $f: A \to B$, the following diagram commutes:
 
@@ -249,11 +251,11 @@ That is: $\eta_B \circ F(f) = G(f) \circ \eta_A$
 
 ### Physical Meaning
 
-Natural transformations describe "naturalness of physical processes":
+Natural transformations provide a mathematical language to describe the "naturalness of physical processes":
 
-- Gauge transformations are natural transformations
-- Duality transformations are natural transformations
-- Evolution of quantum states is natural transformation
+- Gauge transformations can be viewed as natural transformations
+- Connections between duality transformations
+- Covariance of quantum state evolution
 
 ## 📝 Key Concepts Summary
 

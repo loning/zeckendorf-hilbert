@@ -8,9 +8,9 @@ In our everyday experience, there exist various "forces":
 - **Electromagnetic force** makes magnets attract
 - **Friction** slows down wheels
 
-But GLS theory tells us a stunning truth: **These "forces" do not actually exist!** They are all projections of the same deeper structure—**unified time geometry**—in different directions.
+But GLS theory proposes a bold hypothesis: **These "forces" may not be fundamental.** They can be viewed as projections of the same deeper structure—**unified time geometry**—in different directions.
 
-Just as a mountain has different silhouettes from different viewing angles, the geometric curvature of time manifests as different "forces" for different observers and at different energy scales.
+Just as a mountain has different silhouettes from different viewing angles, the geometric curvature of time may manifest as different "forces" for different observers and at different energy scales.
 
 ---
 
@@ -20,7 +20,7 @@ Imagine the following scenario:
 
 ```mermaid
 graph TB
-    Mountain["🏔️ Unified Time Geometry<br/>(Real Three-Dimensional Mountain)"]
+    Mountain["🏔️ Unified Time Geometry<br/>(Theoretical Three-Dimensional Mountain)"]
 
     Shadow1["⬛ Projection 1: Gravity<br/>(Silhouette from East)"]
     Shadow2["⬛ Projection 2: Electromagnetic Force<br/>(Silhouette from South)"]
@@ -41,12 +41,12 @@ graph TB
     style Shadow3 fill:#ffe66d,stroke:#f59f00
 ```
 
-**Key Insight**:
+**Theoretical Insight**:
 
 - Three observers each see different "forces" (silhouettes)
 - But these forces all come from the same mountain (unified time geometry)
 - The mountain itself has no distinction between "eastern force" and "southern force"—there is only one complete shape
-- "Force" is an illusion caused by our **limited way of observation**
+- "Force" may be an illusion caused by our **limited way of observation**
 
 ---
 
@@ -110,7 +110,7 @@ graph TB
 **Key Difference**:
 
 1. **Traditional Physics**: Four independent forces → unification difficult
-2. **GLS Framework**: One time geometry → natural unification
+2. **GLS Framework**: One time geometry → attempts natural unification
 
 ---
 
@@ -174,7 +174,7 @@ $$
 
 ---
 
-### 2. No Fundamental Force Theorem: Force is Projection of Curvature
+### 2. No Fundamental Force Proposition: Force is Projection of Curvature
 
 Imagine you drive a car on a **curved road**:
 
@@ -199,7 +199,7 @@ graph LR
     style Feel3 fill:#ffe66d,stroke:#f59f00
 ```
 
-**Mathematical Theorem (No Fundamental Force Proposition)**:
+**Theoretical Proposition (No Fundamental Force Hypothesis)**:
 
 In the semiclassical limit, particle center-of-mass trajectory satisfies:
 
@@ -218,7 +218,7 @@ Where:
 - **Electromagnetic Force** = curvature along charge direction
 - **Entropic Force** = curvature along resolution direction
 
-**They are all components of the same total curvature** $\boldsymbol{\mathcal{R}}$ **in different directions!**
+**Conclusion**: They can all be viewed as **components of the same total curvature** $\boldsymbol{\mathcal{R}}$ **in different directions**.
 
 ---
 
@@ -258,12 +258,12 @@ $$
 
 Where $N(\mathbf{x})$ is the gravitational redshift factor (at infinity $N(\infty) = 1$).
 
-**Intuitive Understanding**:
+**Physical Interpretation**:
 
 - **Strong Gravity** → **Slow Time** → **Hourglass Drips Slowly** → **High Time Scale Density**
 - **Weak Gravity** → **Fast Time** → **Hourglass Drips Quickly** → **Low Time Scale Density**
 
-Gravity is not a "force," but **spatially dependent rescaling of time scale**!
+Gravity in GLS can be understood as **spatially dependent rescaling of time scale**.
 
 ---
 
@@ -300,7 +300,7 @@ graph LR
     style Formula fill:#fff,stroke:#868e96
 ```
 
-**Key**: There is no "force," only the phase of the electron wave function (= time scale) curving near the impurity.
+**Key**: In the GLS perspective, there is no "force," only the phase of the electron wave function (= time scale) curving near the impurity.
 
 ---
 
@@ -358,7 +358,7 @@ graph LR
     style Force fill:#4ecdc4,stroke:#0b7285
 ```
 
-**Key**: Elastic force is the **spatial gradient of entropy** projected at macroscopic resolution, essentially **time geometric curvature in the resolution direction**.
+**Key**: Elastic force is the **spatial gradient of entropy** projected at macroscopic resolution, essentially interpretable as **time geometric curvature in the resolution direction**.
 
 ---
 
@@ -465,12 +465,12 @@ graph TB
 
     Question -->|Newton| Newton["Force is Cause of<br/>Changing Motion State<br/>F = ma"]
     Question -->|Einstein| Einstein["Gravity is Not Force<br/>But Spacetime Curvature<br/>Geodesic Equation"]
-    Question -->|GLS| GLS["All Forces are Not Forces<br/>But Projections of Time Geometry<br/>Unified Time Scale"]
+    Question -->|GLS| GLS["All Forces May Not Be Forces<br/>But Projections of Time Geometry<br/>Unified Time Scale"]
 
     Newton -.->|Progress| Einstein
     Einstein -.->|Progress| GLS
 
-    GLS --> Insight["💡 Insight:<br/>'Force' is Illusion of Limited Observation<br/>Reality is Only One Geometry"]
+    GLS --> Insight["💡 Insight:<br/>'Force' May Be Illusion of Limited Observation<br/>Reality May Be Only One Geometry"]
 
     style Question fill:#e9ecef,stroke:#495057
     style Newton fill:#ffe66d,stroke:#f59f00
@@ -483,7 +483,7 @@ graph TB
 
 1. **Newton Era**: "Force" is fundamental
 2. **Einstein Era**: "Gravity" is not force, but geometry
-3. **GLS Era**: **All "forces" are not forces, but different faces of the same time geometry**
+3. **GLS Era**: **All "forces" may not be forces, but different faces of the same time geometry**
 
 This fundamentally changes our understanding of the universe:
 
@@ -524,7 +524,7 @@ graph TB
 
 **Core Insight**:
 
-> **"Force" does not exist, only the curvature of time geometry. Gravity, electromagnetic force, and entropic force are all projections of unified time scale in different directions (spacetime, internal space, resolution).**
+> **GLS theory proposes: "Force" may not exist, only the curvature of time geometry. Gravity, electromagnetic force, and entropic force can be viewed as projections of unified time scale in different directions (spacetime, internal space, resolution).**
 
 **Key Formulas**:
 
@@ -536,7 +536,7 @@ $$
 \boldsymbol{\mathcal{R}} = R \oplus F \oplus \mathcal{R}_{\mathrm{res}}
 $$
 
-No fundamental force theorem:
+No fundamental force proposition:
 $$
 m\frac{D^{2}x^{\mu}}{D\tau^{2}} = qF^{\mu}{}_{\nu}\frac{\mathrm{d}x^{\nu}}{\mathrm{d}\tau} + f^{\mu}_{\mathrm{res}}
 $$
@@ -554,7 +554,7 @@ $$
 
 **Philosophical Revelation**:
 
-The unity of the universe is deeper than we imagined: not only matter and energy unified ($E=mc^{2}$), not only spacetime and gravity unified (Einstein), **now time, geometry, and all interactions are unified into one structure**.
+The unity of the universe may be deeper than we imagined: not only matter and energy unified ($E=mc^{2}$), not only spacetime and gravity unified (Einstein), **now time, geometry, and all interactions may be unified into one structure**.
 
 ---
 

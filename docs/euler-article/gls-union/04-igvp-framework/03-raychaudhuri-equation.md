@@ -204,7 +204,7 @@ $$\delta A = A(\lambda) - A(0) = A(0) \int_0^\lambda \theta(\lambda') d\lambda'$
 
 $$\theta' = -\frac{1}{d-2}\theta^2 - \sigma^2 - R_{kk}$$
 
-两边乘以 $\lambda$ 并积分（**关键技巧**！）：
+两边乘以 $\lambda$ 并积分（**关键技巧**）：
 
 $$\int_0^{\lambda_*} \lambda \theta' d\lambda = -\int_0^{\lambda_*} \lambda \left[\frac{1}{d-2}\theta^2 + \sigma^2 + R_{kk}\right] d\lambda$$
 
@@ -230,7 +230,7 @@ $$\boxed{\delta A + \int_0^{\lambda_*} \lambda R_{kk} d\lambda \cdot A(0) = -\in
 
 $$\frac{\delta A}{4G\hbar} \approx -\frac{1}{4G\hbar} \int_0^{\lambda_*} \lambda R_{kk} d\lambda dA$$
 
-这就是**面积变化与曲率的精确联系**！
+这建立了**面积变化与曲率的精确联系**。
 
 ```mermaid
 graph TB

@@ -1,6 +1,6 @@
 # Brown-York Quasi-Local Energy: Generator of Boundary Time
 
-> *"In curved spacetime, energy is not at points, but on boundaries."*
+> *"In curved spacetime, energy is considered not to be at points, but on boundaries."*
 
 ## 🎯 Core Problems
 
@@ -15,7 +15,7 @@
 
 **Problem 2**: What is this "quasi-local energy" related to?
 
-**Answer**: It is exactly the generator of boundary time evolution!
+**Answer**: It is proposed to be the generator of boundary time evolution.
 
 ## 💡 Intuitive Image: "Weight" of a Region
 
@@ -44,7 +44,7 @@ graph LR
 ```
 
 **Key Insight**:
-- Energy is not "something in volume"
+- Energy is viewed as not "something in volume"
 - But "property of boundary"
 - Boundary tells you how much energy is inside
 
@@ -311,7 +311,7 @@ $j_a$ is component of Brown-York stress!
 $$H_{\partial\Sigma}[\partial_t] = E_{\mathrm{BY}}$$
 
 **Physical Meaning**:
-$$\boxed{\text{Brown-York Energy} = \text{Generator of Boundary Time Translation}}$$
+$$\boxed{\text{Brown-York Energy} \cong \text{Generator of Boundary Time Translation}}$$
 
 ### Connection to Unified Time Scale
 
@@ -319,7 +319,7 @@ Recall Time Scale Identity from Unified Time chapter:
 
 $$\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\mathrm{rel}}(\omega) = \frac{1}{2\pi}\operatorname{tr}Q(\omega)$$
 
-Now we see: **This unified scale is realized in gravitational end by Brown-York energy!**
+Now we see: **This unified scale is considered to be realized in the gravitational end by Brown-York energy.**
 
 **Boundary Trinity**:
 
@@ -430,7 +430,7 @@ graph LR
 
 ### Why Depends on Boundary?
 
-**Answer**: Because energy is essentially a property of boundary!
+**Answer**: Because energy is essentially considered a property of the boundary.
 
 **Deep Reasons**:
 1. **General Covariance**: No preferred coordinate system, cannot define "same moment"

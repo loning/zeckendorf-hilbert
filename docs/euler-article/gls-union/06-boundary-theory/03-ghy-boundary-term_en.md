@@ -1,12 +1,12 @@
-# GHY Boundary Term: Necessary Supplement for Well-Defined Gravitational Action
-
-> *"Boundary terms are not corrections, but requirements of completeness."*
+# GHY Boundary Term: Theoretical Proposal for Differentiability of Gravitational Action
+$$\boxed{\text{Differentiability of Gravitational Action} \leftarrow \text{Determined by Boundary Term}}$$
+> *"Boundary terms are viewed as requirements of completeness, not merely corrections."*
 
 ## 🎯 Core Problem
 
 **Question**: Why does Einstein-Hilbert action need a boundary term?
 
-**Short Answer**: Because the bulk action alone is ill-defined for variations fixing boundary metric!
+**Short Answer**: Because the bulk action alone is typically ill-defined for variations fixing boundary metric!
 
 **Goals of This Article**:
 1. Understand why GHY boundary term is needed
@@ -224,7 +224,7 @@ This **exactly cancels** the ill-defined term in $\delta S_{\mathrm{EH}}$!
 
 ## ✨ Complete Proof of Cancellation Mechanism
 
-### Theorem (GHY Cancellation)
+### Proposition (GHY Cancellation Mechanism)
 
 For variation families fixing induced metric $\delta h_{ab} = 0$:
 
@@ -394,7 +394,7 @@ where $\eta$ is the **angle**:
 
 ### Additivity Theorem
 
-**Theorem**: After adding corner terms, action satisfies additivity:
+**Proposition**: After adding corner terms, action satisfies additivity:
 
 $$S[\mathcal{M}_1 \cup_\Sigma \mathcal{M}_2] = S[\mathcal{M}_1] + S[\mathcal{M}_2]$$
 
@@ -477,7 +477,7 @@ graph TB
 
 ### Core Conclusion
 
-**GHY Boundary Term is Necessary**:
+**GHY Boundary Term is Considered Necessary**:
 
 $$S_{\mathrm{GHY}} = \frac{\varepsilon}{8\pi G} \int_{\partial\mathcal{M}} \sqrt{|h|}\, K\, \mathrm{d}^3x$$
 

@@ -1,6 +1,6 @@
 # Section 5.8: Time as the Optimal Path of Generalized Entropy
 
-> "Time is not a pre-existing parameter, but the optimal path chosen by the universe among all possible histories."
+> "GLS theory proposes that time may not be a pre-existing parameter, but the optimal path chosen by the universe among all possible histories."
 
 [← Previous: Cosmological Redshift](07-cosmological-redshift_en.md) | [Return to Contents](00-time-overview_en.md) | [Next: Time-Geometry-Interaction Unification →](09-time-geometry-interaction_en.md)
 
@@ -8,7 +8,7 @@
 
 ## Core Idea in One Sentence
 
-**Time is not an externally imposed 'clock parameter,' but rather the path and its parameterization that extremizes the generalized entropy functional among all causally consistent historical paths.**
+**GLS theory suggests: Time should not be viewed as an externally imposed 'clock parameter,' but rather as the path and its parameterization that extremizes the generalized entropy functional among all causally consistent historical paths.**
 
 ---
 
@@ -36,9 +36,9 @@ graph TD
 - **Base → Top**: Evolution of the universe from initial to final state
 - **Multiple Paths**: Theoretically infinite possible evolutionary histories
 - **Energy Cost**: Corresponds to "generalized entropy cost"
-- **Zigzag Optimal Path**: The naturally selected path—this is **time**!
+- **Zigzag Optimal Path**: The naturally selected path—this is interpreted as **time**
 
-**Profound Insight**: Time is not a pre-drawn route map, but the optimal solution "computed" by the universe.
+**Profound Insight**: Time might not be a pre-drawn route map, but the optimal solution "computed" by the universe.
 
 ---
 
@@ -62,7 +62,7 @@ graph LR
 graph TD
     A["All Possible<br/>Historical Paths"] -->|Screening Condition| B["Causal Consistency<br/>+<br/>Local Physical Laws"]
     B -->|Optimization Objective| C["Generalized Entropy Functional<br/>S_gen"]
-    C -->|Unique Solution| D["Optimal Path<br/>⭐This is Time!"]
+    C -->|Unique Solution| D["Optimal Path<br/>⭐Interpreted as Time"]
 
     D --> E["Time is<br/>Solution to Evolution Problem"]
 
@@ -70,7 +70,7 @@ graph TD
     style E fill:#ffe66d,stroke:#f59f00
 ```
 
-**GLS View**: Time is the historical path that extremizes generalized entropy under causal consistency constraints.
+**GLS View**: Time is viewed as the historical path that extremizes generalized entropy under causal consistency constraints.
 
 ---
 
@@ -138,9 +138,9 @@ $$
 
 ### 3. Variational Principle: Time is the Extremal Solution
 
-**Core Theorem** (popular version):
+**Core Proposition** (popular version):
 
-> Among all causally consistent historical paths, the real universe chooses the one that **minimizes** the generalized entropy functional. What we call "time" is the parameterization of this extremal path.
+> Among all causally consistent historical paths, the real universe likely chooses the one that **minimizes** the generalized entropy functional. What we call "time" is the parameterization of this extremal path.
 
 ```mermaid
 graph TD
@@ -161,7 +161,7 @@ graph TD
 - Light taking the shortest optical path in media (Fermat's principle)
 - The universe choosing the historical path with "minimum generalized entropy cost"
 
-**This is the essence of time!**
+**Inference**: This may be the essence of time.
 
 ---
 
@@ -183,7 +183,7 @@ graph LR
     style dS2 fill:#ffe66d
 ```
 
-**Answer**: Because the extremal path must satisfy **non-negative local entropy production rate** (second law of thermodynamics):
+**GLS Explanation**: Because the extremal path must satisfy **non-negative local entropy production rate** (second law of thermodynamics):
 
 $$
 \frac{dS_{\text{local}}}{dt} \geq 0
@@ -252,7 +252,7 @@ graph TD
 ```
 
 **GLS Explanation**:
-- The universe did not "randomly" choose the expansion rate
+- The universe might not "randomly" choose the expansion rate
 - Instead, it chose the rate that minimizes the generalized entropy functional
 - **Current expansion history = extremal solution of generalized entropy**
 
@@ -265,11 +265,11 @@ graph TD
 
 ## Can It Be Experimentally Tested?
 
-### Three Testable Predictions
+### Three Testable Implications
 
 #### 1. Time Scale of Black Hole Evaporation
 
-**Prediction**: Black hole evaporation time should extremize the generalized entropy of (horizon area + external entropy).
+**Implication**: Black hole evaporation time should extremize the generalized entropy of (horizon area + external entropy).
 
 ```mermaid
 graph LR
@@ -283,7 +283,7 @@ graph LR
 
 #### 2. Growth Rate of Quantum Entanglement
 
-**Prediction**: Entanglement entropy growth rate of quantum many-body systems should optimize total generalized entropy.
+**Implication**: Entanglement entropy growth rate of quantum many-body systems should optimize total generalized entropy.
 
 ```mermaid
 graph TB
@@ -296,11 +296,11 @@ graph TB
 
 #### 3. Size of Cosmological Constant
 
-**Prediction**: Vacuum energy density (cosmological constant Λ) should minimize generalized entropy of cosmic history.
+**Implication**: Vacuum energy density (cosmological constant Λ) should minimize generalized entropy of cosmic history.
 
 **Observation**:
 - Current measured value: Λ ≈ 10⁻¹²⁰ (Planck units)
-- GLS prediction: This value should be the extremal solution of generalized entropy
+- GLS Implication: This value should be the extremal solution of generalized entropy
 - Future observations: More precise measurements of dark energy equation of state
 
 ---
@@ -398,7 +398,7 @@ graph TB
 
 ## Chapter Summary
 
-Time is not an a priori background parameter, but the historical path that extremizes the generalized entropy functional under causal consistency constraints.
+GLS theory proposes that time is not an a priori background parameter, but the historical path that extremizes the generalized entropy functional under causal consistency constraints.
 
 **One-Sentence Essence**:
 > Time is the universe's "optimal solution," not a preset "stage."

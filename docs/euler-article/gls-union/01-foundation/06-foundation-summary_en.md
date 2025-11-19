@@ -20,7 +20,7 @@ In the foundation section, starting from everyday experience, we understood five
 - Quantum mechanics: Time = change of phase
 - Thermodynamics: Time has an arrow (direction of entropy increase)
 
-**GLS insight**:
+**Perspective proposed by GLS theory**:
 
 $$
 \text{Time} = \text{phase change} = \text{scattering delay} = \text{direction of entropy increase}
@@ -41,7 +41,7 @@ $$
 A \prec B \quad \Leftrightarrow \quad S(A) \leq S(B) \quad \Leftrightarrow \quad t(A) \leq t(B)
 $$
 
-Causality = partial order = entropy monotonicity = time order
+**GLS theory infers**: Causality, partial order, entropy monotonicity, and time order are mathematically equivalent.
 
 ### 🎭 3. What is Boundary?
 
@@ -86,7 +86,7 @@ $$
 **GLS insight**:
 
 $$
-\text{Entropy} = \text{time arrow} = \text{causal order} = \text{source of gravity}
+> **GLS theory suggests**: Entropy might be the time arrow, causal order, and the source of gravity
 $$
 
 ---
@@ -198,7 +198,7 @@ $$
 - = relative density of states $\rho_{\text{rel}}$
 - = Wigner-Smith group delay $\text{tr}\,Q/2\pi$
 
-**Four quantities, the same thing!**
+**In the GLS framework, these four quantities are mathematically equivalent!**
 
 ### 📐 IGVP: From Entropy to Gravity
 
@@ -210,7 +210,7 @@ $$
 
 On small causal diamonds, requiring generalized entropy to take an extremum automatically derives Einstein's equation.
 
-**Gravity is not a fundamental force, but a geometric emergence of entropy extremum!**
+**GLS theory suggests: Gravity might not be a fundamental force, but a geometric emergence of entropy extremum!**
 
 ### 🔗 Causality-Entropy-Time Triple Equivalence
 
@@ -303,7 +303,7 @@ Each unification brought profound insights and new predictions.
 
 Unified theories not only explain known phenomena but can predict new ones:
 
-**Predictions of GLS theory**:
+**Theoretical inferences of GLS theory**:
 
 1. **Emergence of gravity**: Gravity is not a fundamental force, but a result of entropy extremum
 2. **Origin of time**: Time comes from scattering delay, not external parameter
@@ -443,7 +443,7 @@ Congratulations on completing the foundation section! You now have a new underst
 
 **Remember this core insight**:
 
-> **The universe is not composed of five independent "things" (time, causality, boundary, scattering, entropy), but five manifestations of the same deeper structure. Like five projections of a cube, they look different but describe the same object.**
+> **GLS theory proposes: The universe might not be composed of five independent "things" (time, causality, boundary, scattering, entropy), but five manifestations of the same deeper structure. Like five projections of a cube, they look different but describe the same object.**
 
 **Understanding this, you understand the soul of GLS unified theory.**
 

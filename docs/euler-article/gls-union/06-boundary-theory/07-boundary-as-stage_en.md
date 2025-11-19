@@ -10,7 +10,7 @@ Traditional view holds: **Physics happens in spatial interior**. Particles move 
 
 But GLS theory gives a subversive answer:
 
-> **The place where physics truly happens is the boundary. The bulk interior is just a "projection" or "holographic image" of boundary data.**
+> **The place where physics truly happens is considered to be the boundary. The bulk interior is viewed as a "projection" or "holographic image" of boundary data.**
 
 This is the core idea of **boundary as unified stage**.
 
@@ -56,7 +56,7 @@ graph TB
 **Key Insight**:
 
 - **Traditional View**: Stage is three-dimensional interior space, actors perform within it
-- **GLS View**: Stage **is the boundary**, all "actors" (physical processes) perform on the boundary
+- **GLS View**: Stage **is viewed as the boundary**, all "actors" (physical processes) perform on the boundary
 - Three seemingly different "actors" (scattering, modular flow, geometry) are actually **three guises of the same boundary generator**
 
 ---
@@ -256,7 +256,7 @@ Now we reveal the secret of these three "actors":
 graph TB
     Question["🤔 Are Three Actors the Same Person?"]
 
-    Question --> Theorem["Boundary Trinity Theorem"]
+    Question --> Theorem["Boundary Trinity Proposition"]
 
     Theorem --> Condition["Satisfy Matching Conditions:<br/>· Scattering→QFT Embedding<br/>· QFT→Gravity Holographic Correspondence<br/>· Thermal Time Normalization"]
 
@@ -283,9 +283,9 @@ graph TB
     style Formula fill:#e9ecef,stroke:#495057
 ```
 
-**Theorem Content**:
+**Proposition Content**:
 
-Under the premise of satisfying matching conditions, there exists a unique unified boundary time generator $H_\partial$ (up to affine transformation) such that:
+Under the premise of satisfying matching conditions, there theoretically exists a unique unified boundary time generator $H_\partial$ (up to affine transformation) such that:
 
 $$
 \text{Scattering Time} \Longleftrightarrow \text{Modular Flow Time} \Longleftrightarrow \text{Brown-York Time}
@@ -501,7 +501,7 @@ $$
 
 **Deep Meaning**:
 
-**Gravity is fundamentally a boundary theory!** Without boundary term, even variation cannot be defined.
+**Gravity is considered to be fundamentally a boundary theory!** Without boundary term, even variation cannot be defined.
 
 ---
 
@@ -552,7 +552,7 @@ graph TB
 
 **Core Insight**:
 
-> **The true stage of physics is the boundary, not the bulk. Scattering time delay, modular flow evolution, and Brown-York boundary energy are three guises of the same boundary generator, unified on boundary triple (∂ℳ, 𝒜_∂, ω_∂).**
+> **The true stage of physics is considered to be the boundary, not the bulk. Scattering time delay, modular flow evolution, and Brown-York boundary energy are viewed as three guises of the same boundary generator, unified on boundary triple (∂ℳ, 𝒜_∂, ω_∂).**
 
 **Key Formulas**:
 

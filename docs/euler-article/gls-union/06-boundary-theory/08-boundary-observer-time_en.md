@@ -8,7 +8,7 @@ In Chapter 07, we learned that **physics happens at the boundary**, but there is
 - What mathematical object is the world that the observer "sees"?
 - **Is time a product of the observer's "attention"?**
 
-The answer is stunning: **Time axis = geodesic chosen by observer attention on the boundary section family!**
+The answer is stunning: **Time axis is modeled as geodesic chosen by observer attention on the boundary section family.**
 
 ## Daily Analogy: Film Projection and Audience Perspective
 
@@ -38,7 +38,7 @@ graph TB
 3. **Screen Image = Experiential World**: The single section the observer "sees"
 4. **Time Flow = Projection Speed**: Parameter for attention movement on the section family
 
-**Without an observer:** The film reel lies quietly in the archive, all frames exist simultaneously, **there is no "time flow"!**
+**Without an observer:** The film reel lies quietly in the archive, all frames exist simultaneously, **there is considered to be no "time flow".**
 
 **With an observer:** The projector starts working, frame by frame playback, the audience "feels" time.
 
@@ -136,7 +136,7 @@ This is the world the observer "sees" at time $\tau$:
 
 What is $\tau$ itself? How is it determined?
 
-**Answer (Attention Geodesic Theorem):**
+**Answer (Attention Geodesic Proposition):**
 
 The time axis $\tau$ must simultaneously satisfy two conditions:
 
@@ -179,7 +179,7 @@ graph TB
 
 ## Core Theorems and Corollaries
 
-### Theorem 1: No-Observer Time Theorem
+### Proposition 1: No-Observer Time Proposition
 
 **Statement:**
 
@@ -190,7 +190,7 @@ If no attention section family $\{\Sigma_\tau\}$ and accessible algebra family $
 
 **Plain Translation:**
 
-**Without an observer, time does not exist!** There is only a "scale field", but no one chooses "which direction is time."
+**Without an observer, time is considered not to exist.** There is only a "scale field", but no one chooses "which direction is time."
 
 **Daily Analogy:** Movie film in storage
 
@@ -198,7 +198,7 @@ If no attention section family $\{\Sigma_\tau\}$ and accessible algebra family $
 - Each frame has a number (scale master)
 - But no one projects, **no concept of "playback"** → no time flow!
 
-### Theorem 2: Attention Geodesic Theorem
+### Proposition 2: Attention Geodesic Proposition
 
 **Statement:**
 
@@ -342,7 +342,7 @@ Wheeler's thought experiment: After particles pass through double slits, experim
 
 **BTG Answer: No!**
 
-**Theorem (No Retro-Causality):**
+**Proposition (No Retro-Causality):**
 
 Later-time measurement setting $C$ and result $y$ **do not change** the unconditional distribution $p(x)$ of earlier-time detection screen event $x$.
 
@@ -424,7 +424,7 @@ graph TB
 
 **Profound Meaning:**
 
-Time is not an "absolute background", but a **dynamical degree of freedom of boundary scattering**!
+Time is viewed not as an "absolute background", but a **dynamical degree of freedom of boundary scattering**.
 
 Like space, time can also produce interference!
 

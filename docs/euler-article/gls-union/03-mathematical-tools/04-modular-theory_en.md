@@ -4,13 +4,15 @@
 
 ## 🎯 Core Idea
 
-In previous chapters, we always assumed "time" is a pre-given external parameter.
+## 🎯 Core Idea
 
-**Modular Theory** reveals an amazing fact:
+In previous chapters, we typically treated "time" as a pre-given external parameter.
 
-**Given a quantum state and observable algebra, they naturally define a "time flow"—modular flow!**
+**Modular Theory** offers a unique perspective:
 
-This is the mathematical foundation of the **Thermal Time Hypothesis**.
+**Given a quantum state and an observable algebra, under specific conditions, they naturally induce a one-parameter automorphism group—modular flow!**
+
+This constitutes the mathematical foundation of the **Thermal Time Hypothesis**, which proposes identifying physical time with the modular flow parameter.
 
 ## 🕰️ Analogy of Biological Clocks
 
@@ -29,11 +31,11 @@ graph TB
     style P fill:#fff4e1,stroke:#ff6b6b,stroke-width:2px
 ```
 
-**Modular theory says**:
+**Physical Interpretation of Modular Theory**:
 
-Each quantum state $\omega$ has its own "biological clock" $\sigma_t^\omega$—**modular flow**.
+Each quantum state $\omega$ defines a specific "evolution flow" $\sigma_t^\omega$—**modular flow**.
 
-Different states have different time flows!
+Under the Thermal Time Hypothesis, different states correspond to different "time flows".
 
 ## 📐 Tomita-Takesaki Theory
 
@@ -41,7 +43,7 @@ Different states have different time flows!
 
 Given:
 1. **von Neumann algebra** $\mathcal{M}$ (observable algebra)
-2. **Cyclic separating vector** $\Omega$ (quantum state)
+2. **Cyclic separating vector** $\Omega$ (representing a faithful normal state)
 
 **Definition** (antilinear operator):
 
@@ -51,7 +53,7 @@ $$
 
 ### Polar Decomposition
 
-$S_0$ is not bounded, but can be polar decomposed:
+$S_0$ is generally unbounded, but admits a polar decomposition:
 
 $$
 S_0 = J \Delta^{1/2}
@@ -59,7 +61,7 @@ $$
 
 where:
 - $J$: **Modular conjugation** (antiunitary operator)
-- $\Delta$: **Modular operator** (positive operator)
+- $\Delta$: **Modular operator** (positive self-adjoint operator)
 
 ```mermaid
 graph LR
@@ -79,54 +81,50 @@ $$
 \boxed{\sigma_t(A) = \Delta^{it} A \Delta^{-it}}
 $$
 
-This is a one-parameter automorphism group:
+This is a strongly continuous one-parameter automorphism group:
 - $\sigma_0 = \text{id}$ (identity)
 - $\sigma_s \circ \sigma_t = \sigma_{s+t}$ (group property)
-- $\sigma_t(\mathcal{M}) = \mathcal{M}$ (preserves algebra)
+- $\sigma_t(\mathcal{M}) = \mathcal{M}$ (preserves algebraic structure)
 
-**Physical meaning**:
+**Physical Interpretation**:
 
-**$t$ is the "intrinsic time" of this state $\Omega$!**
+In the Connes-Rovelli framework, the parameter $t$ is **interpreted** as the "intrinsic time" associated with the state $\Omega$.
 
 ## 🔥 KMS Condition: Characteristic of Thermal Equilibrium
 
 ### Definition
 
-State $\omega$ is in **thermal equilibrium** at temperature $T = 1/\beta$ if it satisfies **KMS condition**:
+State $\omega$ satisfies the **KMS condition** (Kubo-Martin-Schwinger condition) at inverse temperature $\beta$ with respect to evolution $\sigma_t$ if:
 
-For all $A, B \in \mathcal{M}$, there exists analytic function $F_{AB}(z)$ such that:
+For all $A, B \in \mathcal{M}$, there exists an analytic function $F_{AB}(z)$ in the strip such that:
 
 $$
 F_{AB}(t) = \omega(A \sigma_t(B)), \quad F_{AB}(t + i\beta) = \omega(\sigma_t(B) A)
 $$
 
-**Physical meaning**:
+### Physical Meaning
 
-KMS condition is the quantum version of **thermodynamic equilibrium condition**!
+The KMS condition mathematically characterizes **thermodynamic equilibrium states** in quantum statistical mechanics.
 
 ### Gibbs State
 
-For Hamiltonian $H$, Gibbs state:
+For a finite system with Hamiltonian $H$, the Gibbs state:
 
 $$
 \omega_\beta(A) = \frac{\text{tr}(e^{-\beta H} A)}{\text{tr}(e^{-\beta H})}
 $$
 
-satisfies KMS condition, and its modular flow is:
+satisfies the KMS condition with respect to the evolution $\sigma_t(A) = e^{iHt} A e^{-iHt}$ (where $\beta$ is inverse temperature).
 
-$$
-\sigma_t(A) = e^{iHt} A e^{-iHt}
-$$
-
-(This is Heisenberg evolution!)
+Here, the modular flow $\sigma_t$ reproduces the Heisenberg evolution.
 
 ## ⏰ Thermal Time Hypothesis
 
 ### Connes-Rovelli Proposal
 
-**Thermal Time Hypothesis** (1994):
+The **Thermal Time Hypothesis** (1994) proposes:
 
-> In generally covariant quantum theories, physical time should be determined jointly by state and algebra, i.e., **time = modular flow parameter**.
+> In generally covariant quantum theories, if an external time definition is lacking, physical time might be determined by the statistical state of the system, i.e., **time flow is identified with modular flow**.
 
 Mathematically:
 
@@ -134,11 +132,11 @@ $$
 \frac{d}{dt} A = \{H, A\} \quad \Leftrightarrow \quad A(t) = \sigma_t(A) = \Delta^{it} A \Delta^{-it}
 $$
 
-### Why Reasonable?
+### Theoretical Motivation
 
-1. **Intrinsic**: Time doesn't depend on external reference frame
-2. **Thermodynamics**: Naturally integrates with thermal equilibrium
-3. **Quantum gravity**: Theories without external time need such mechanism
+1. **Intrinsic Nature**: Provides a time definition independent of background metric.
+2. **Thermodynamic Link**: Naturally connects time evolution with thermal equilibrium conditions.
+3. **Quantum Gravity**: Offers a potential solution to the "problem of time" in background-independent theories.
 
 ```mermaid
 graph TB
@@ -148,7 +146,7 @@ graph TB
 
     subgraph "Thermal Time Hypothesis"
         S["State ω + Algebra 𝓜"] --> M["Modular Flow σ_t"]
-        M --> T2["Intrinsic Time t"]
+        M --> T2["Emergent Time t"]
     end
 
     style T1 fill:#ffe1e1,stroke-dasharray: 5 5
@@ -158,95 +156,79 @@ graph TB
 
 ## 🌊 Modular Time on Boundary
 
-### Application in GLS
+### Application Model in GLS
 
-In GLS theory, boundary algebra $\mathcal{A}_\partial$ with state $\omega$ gives modular flow $\sigma_t^\omega$.
+In the GLS theoretical framework, we **model** the modular flow $\sigma_t^\omega$ induced by the state $\omega$ on the boundary algebra $\mathcal{A}_\partial$ as boundary evolution.
 
-**Key theorem**:
+**Core Conjecture**:
 
-Under appropriate conditions, modular time is equivalent to scattering time and geometric time:
+In specific limits, the modular time parameter $\tau_{\text{mod}}$ is linearly related to the scattering time parameter $\tau_{\text{scatt}}$ and geometric time $\tau_{\text{geom}}$:
 
 $$
-\tau_{\text{mod}} = a \tau_{\text{scatt}} + b = c \tau_{\text{geom}} + d
+\tau_{\text{mod}} \sim c \tau_{\text{geom}}
 $$
 
 ### Bisognano-Wichmann Theorem
 
-For Rindler wedge $W$ of Minkowski space:
+As theoretical support, the Bisognano-Wichmann Theorem (1975) states:
 
-**Theorem** (1975):
+For the Rindler wedge $W$ in Minkowski space:
 
-Modular flow of $\mathcal{A}(W)$ in vacuum state is Lorentz boost preserving the wedge.
+The modular flow of $\mathcal{A}(W)$ in the vacuum state corresponds geometrically to the Lorentz boost preserving the wedge.
 
-**Physical meaning**:
+**Physical Correspondence**:
 
-**Proper time of Rindler observer = Modular time!**
+The **proper time of a Rindler observer** formally coincides with the **modular flow parameter**.
 
-This is the first non-trivial verification of thermal time hypothesis.
+This is considered a significant verification of the Thermal Time Hypothesis in flat spacetime.
 
 ## 📊 Relative Modular Theory
 
 ### Relative Entropy of Two States
 
-Given two states $\omega$ and $\phi$, define **relative entropy**:
+Given two states $\omega$ and $\phi$, the **relative entropy** defined by Araki generalizes the classical concept:
 
 $$
 S(\omega || \phi) = -\text{tr}(\rho_\omega \ln \rho_\phi) + \text{tr}(\rho_\omega \ln \rho_\omega)
 $$
 
-If $\phi$ is KMS state, then:
+If $\phi$ is a KMS state, relative entropy relates to the free energy difference:
 
 $$
 S(\omega || \phi) = \beta(\langle H \rangle_\omega - F_\phi)
 $$
 
-where $F_\phi$ is free energy.
-
 ### Relative Modular Operator
 
-Define relative modular operator:
-
-$$
-\Delta_{\omega, \phi} = \frac{d\omega}{d\phi}
-$$
-
-(Radon-Nikodym derivative)
-
-Relative modular flow:
+Define the relative modular operator $\Delta_{\omega, \phi}$, which generates the relative modular flow:
 
 $$
 \sigma_t^{\omega, \phi}(A) = \Delta_{\omega, \phi}^{it} A \Delta_{\omega, \phi}^{-it}
 $$
 
-## 🔗 Applications in GLS Theory
+## 🔗 Potential Connections in GLS Theory
 
 ### 1. Time Scale Equivalence
 
-Modular time $\tau_{\text{mod}}$ is a member of unified time scale equivalence class $[\tau]$:
+GLS theory **proposes** that modular time $\tau_{\text{mod}}$ belongs to the unified time scale equivalence class $[\tau]$:
 
 $$
-\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\text{rel}}(\omega) = \frac{1}{2\pi}\text{tr}\,Q(\omega) \sim \tau_{\text{mod}}
+\kappa(\omega) \sim \tau_{\text{mod}}
 $$
 
-### 2. Second-Order Condition of IGVP
+### 2. Stability Condition
 
-In IGVP framework, non-negativity of relative entropy:
+In the IGVP framework, the non-negativity of relative entropy $\delta^2 S_{\text{rel}} \ge 0$ is interpreted as being compatible with the stability condition of modular dynamics.
 
-$$
-\delta^2 S_{\text{rel}} \ge 0
-$$
+### 3. Boundary Dynamics
 
-is consistent with stability condition of modular theory.
-
-### 3. Evolution of Boundary Algebra
-
-Evolution of boundary algebra $\mathcal{A}_\partial$ is defined by modular flow:
+The evolution of the boundary algebra $\mathcal{A}_\partial$ **can be described** as driven by modular flow:
 
 $$
-A(t) = \sigma_t(A) = \Delta^{it} A \Delta^{-it}
+A(t) = \sigma_t(A)
 $$
 
-No need for external time!
+This offers a dynamical description without invoking an external time parameter.
 
 ## 📝 Key Concepts Summary
 

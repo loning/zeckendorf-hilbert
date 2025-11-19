@@ -1,10 +1,10 @@
 # Geometric Times: Clocks of Spacetime Metric
 
-> *"Geometric time is the metric's projection onto the observer."*
+> *"Geometric time can be understood as the metric's projection onto the observer."*
 
 ## 🎯 Core Proposition
 
-In general relativity, "time" has multiple geometric realizations, all belonging to the unified time scale equivalence class $[\tau]$:
+In general relativity, "time" has multiple geometric realizations. In the GLS theoretical framework, they are classified as the unified time scale equivalence class $[\tau]$:
 
 | Time Type | Definition | Applicable Scenarios |
 |-----------|-----------|---------------------|
@@ -13,11 +13,11 @@ In general relativity, "time" has multiple geometric realizations, all belonging
 | **Null Affine Parameter** $\lambda$ | $k^a \nabla_a k^b = 0$ | Null geodesics |
 | **Conformal Time** $\eta$ | $d\eta = dt/a(t)$ | FRW universe |
 
-**Core Theorem**: Under appropriate conditions, these times are related to each other through **affine transformations**:
+**Theoretical Proposition**: Under appropriate conditions, these times are related to each other through **affine transformations**:
 
 $$t_1 = \alpha t_2 + \beta, \quad \alpha > 0$$
 
-Thus belonging to the same equivalence class $[T]$.
+Thus mathematically belonging to the same equivalence class $[T]$.
 
 ```mermaid
 graph TB
@@ -44,9 +44,9 @@ Imagine a scenario:
 - **Photon Clock**: Massless, moves infinitely fast (null parameter)
 - **Cosmic Clock**: Slows down with cosmic expansion (conformal time)
 
-**They all measure "time," but at different rhythms!**
+**They all serve as measures of time, but with different rhythms.**
 
-**GLS Theory says**: These clocks are related by simple rescaling, **essentially the same time**!
+**GLS Theory proposes**: These clocks are related by simple rescaling, **potentially pointing to the same underlying time concept**.
 
 ## 📐 Four Geometric Times Explained
 
@@ -85,7 +85,7 @@ $V(r) = 1 - 2M/r$, for a stationary observer:
 
 $$d\tau = \sqrt{1 - \frac{2M}{r}}\,dt$$
 
-**At the horizon** $r = 2M$: $d\tau = 0$ (time freezes!)
+**At the horizon** $r = 2M$: $d\tau = 0$ (time freezes)
 
 ```mermaid
 graph LR
@@ -139,7 +139,7 @@ where $K_{ij}$ is the extrinsic curvature.
 
 **Relation to Killing Time**:
 
-In static spacetimes, $N = \sqrt{V}$, they are equivalent!
+In static spacetimes, $N = \sqrt{V}$, they are equivalent.
 
 ```mermaid
 graph TB
@@ -170,7 +170,7 @@ where $k^a = dx^a/d\lambda$ is the tangent vector, $\lambda$ is the **affine par
 
 **Why is an Affine Parameter Needed?**
 
-For null geodesics, $ds = 0$, so we cannot parameterize with $s$! Must introduce $\lambda$.
+For null geodesics, $ds = 0$, so we cannot parameterize with $s$, must introduce $\lambda$.
 
 **Bondi Coordinates** (Schwarzschild exterior):
 
@@ -189,7 +189,7 @@ $$r^* = r + 2M\ln\left|\frac{r}{2M} - 1\right|$$
 **Physical Meaning**:
 - $u, v$ are natural "boundary times"
 - In gravitational scattering, $u$ corresponds to asymptotic outgoing state time
-- Bondi mass $M(u)$ is monotonically non-increasing along $u$ (energy radiation!)
+- Bondi mass $M(u)$ is monotonically non-increasing along $u$ (energy radiation)
 
 **Conformal Time in FRW**:
 
@@ -199,7 +199,7 @@ $$d\eta = \frac{dt}{a(t)}$$
 
 In $\eta$ coordinates: $d\eta^2 = d\chi^2$
 
-**Straight lines!** Null geodesics are straight lines in conformal time!
+**Straightening**: Null geodesics appear as straight lines in conformal time.
 
 ```mermaid
 graph LR
@@ -251,7 +251,7 @@ $$1 + z = \frac{a(t_0)}{a(t_e)}$$
 
 $$1 + z = \frac{(d\phi/dt)_e}{(d\phi/dt)_0}$$
 
-**Cosmological redshift is a global rescaling of the time scale!**
+**Cosmological redshift can be viewed as a global rescaling of the time scale.**
 
 ```mermaid
 graph TB
@@ -270,7 +270,7 @@ graph TB
 
 ## 🔑 Unification of Time Equivalence Classes
 
-**Theorem**: Under appropriate conditions, the following time parameters belong to the same equivalence class:
+**Theoretical Proposition**: Under appropriate conditions, the following time parameters belong to the same equivalence class:
 
 $$[T] \sim \{\tau, t_K, N, \lambda, u, v, \eta, \omega^{-1}, z, s_{\text{mod}}\}$$
 
@@ -278,15 +278,15 @@ Related to each other through **affine transformations** $t_1 = \alpha t_2 + \be
 
 **Proof Outline**:
 
-1. **Killing ↔ ADM**: In static spacetimes, $N = \sqrt{V}$, $d\tau = N\,dt = \sqrt{V}\,dt$
+1.  **Killing ↔ ADM**: In static spacetimes, $N = \sqrt{V}$, $d\tau = N\,dt = \sqrt{V}\,dt$
 
-2. **ADM ↔ null**: The normal to ADM slices defines $\lambda$, $d\lambda \propto N\,dt$
+2.  **ADM ↔ null**: The normal to ADM slices defines $\lambda$, $d\lambda \propto N\,dt$
 
-3. **null ↔ conformal**: In FRW, $\eta$ straightens null geodesics, $d\eta = d\lambda/a$
+3.  **null ↔ conformal**: In FRW, $\eta$ straightens null geodesics, $d\eta = d\lambda/a$
 
-4. **conformal ↔ redshift**: $1+z = a_0/a_e = \eta_e/\eta_0$ (with appropriate normalization)
+4.  **conformal ↔ redshift**: $1+z = a_0/a_e = \eta_e/\eta_0$ (with appropriate normalization)
 
-**All these transformations are affine!**
+**All these transformations are affine.**
 
 ```mermaid
 graph TB
@@ -317,44 +317,44 @@ $$\phi = \frac{mc^2}{\hbar}\int d\tau$$
 
 **Various Geometric Times**:
 
-1. **Killing Time**: $d\tau = \sqrt{V}\,dt$
-   $$\phi = \frac{mc^2}{\hbar}\int \sqrt{V}\,dt$$
+1.  **Killing Time**: $d\tau = \sqrt{V}\,dt$
+    $$\phi = \frac{mc^2}{\hbar}\int \sqrt{V}\,dt$$
 
-2. **ADM Time**: $d\tau = N\,dt$
-   $$\phi = \frac{mc^2}{\hbar}\int N\,dt$$
+2.  **ADM Time**: $d\tau = N\,dt$
+    $$\phi = \frac{mc^2}{\hbar}\int N\,dt$$
 
-3. **Conformal Time**: $d\tau = a\,d\eta$ (comoving observer)
-   $$\phi = \frac{mc^2}{\hbar}\int a\,d\eta$$
+3.  **Conformal Time**: $d\tau = a\,d\eta$ (comoving observer)
+    $$\phi = \frac{mc^2}{\hbar}\int a\,d\eta$$
 
-**They all give the same phase (along the same worldline)!**
+**Theoretically, they should give the same phase (along the same worldline).**
 
 **Connection to Time Scale Identity**:
 
 $$\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \frac{1}{2\pi}\text{tr}\,Q(\omega)$$
 
-**Geometric Interpretation**: $\kappa$ is the "local time density," integrating it gives any geometric time!
+**Geometric Interpretation**: $\kappa$ is the "local time density," integrating it gives any geometric time.
 
 ## 🤔 Exercises
 
-1. **Conceptual Understanding**:
-   - What is the difference between Killing time and ADM time?
-   - Why is a null affine parameter necessary?
-   - How does conformal time straighten null geodesics?
+1.  **Conceptual Understanding**:
+    - What is the difference between Killing time and ADM time?
+    - Why is a null affine parameter necessary?
+    - How does conformal time straighten null geodesics?
 
-2. **Calculation Exercises**:
-   - Schwarzschild metric: Calculate $d\tau/dt$ at $r = 3M$
-   - ADM decomposition: Prove $N = \sqrt{V}$ (static case)
-   - FRW universe: Calculate $\eta(t)$ for matter-dominated era
+2.  **Calculation Exercises**:
+    - Schwarzschild metric: Calculate $d\tau/dt$ at $r = 3M$
+    - ADM decomposition: Prove $N = \sqrt{V}$ (static case)
+    - FRW universe: Calculate $\eta(t)$ for matter-dominated era
 
-3. **Physical Applications**:
-   - Which geometric times are involved in GPS satellite time corrections?
-   - How does Bondi mass evolve with $u$?
-   - What is the relationship between cosmological horizon and $\eta$?
+3.  **Physical Applications**:
+    - Which geometric times are involved in GPS satellite time corrections?
+    - How does Bondi mass evolve with $u$?
+    - What is the relationship between cosmological horizon and $\eta$?
 
-4. **Advanced Thinking**:
-   - Can we define a global Killing time in non-static spacetimes?
-   - What is the relationship between ADM energy conservation and time translation invariance?
-   - What physical process corresponds to conformal time singularities?
+4.  **Advanced Thinking**:
+    - Can we define a global Killing time in non-static spacetimes?
+    - What is the relationship between ADM energy conservation and time translation invariance?
+    - What physical process corresponds to conformal time singularities?
 
 ---
 
@@ -362,4 +362,4 @@ $$\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \frac{1}{2\pi}\text{tr}\,Q(\om
 - Previous: [04-time-scale-identity_en.md](04-time-scale-identity_en.md) - Time Scale Identity
 - Next: [06-modular-time_en.md](06-modular-time_en.md) - Modular Time
 - Overview: [00-time-overview_en.md](00-time-overview_en.md) - Unified Time Overview
-
+- GLS theory: unified-time-scale-geometry.md

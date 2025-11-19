@@ -101,7 +101,7 @@ This is **B-theory**: Time doesn't flow, all moments equally exist, just like al
 
 ## GLS Theory's View of Time: Three in One
 
-GLS unified theory provides a third perspective that merges the above two views.
+GLS unified theory **proposes** a third perspective that attempts to merge the above two views.
 
 ### Core Insight: Time = Change of Phase
 
@@ -133,7 +133,7 @@ Translation:
 
 ### Three Times, One Essence
 
-GLS theory's stunning discovery: **Three seemingly different "times" are actually the same thing**!
+A **core theoretical inference** of GLS theory is: **Three seemingly different "times" might be mathematically equivalent**!
 
 ```mermaid
 graph TD
@@ -203,7 +203,7 @@ graph TD
 
 **The three projections look different, but they describe the same cube!**
 
-This is GLS theory's understanding of time: **Time is not three independent things, but three ways to measure the same reality.**
+This constitutes GLS theory's **core hypothesis** on time: **Time might not be three independent things, but three ways to measure the same reality.**
 
 ---
 
@@ -339,7 +339,7 @@ Let's summarize different understandings of "time":
 
 ### 💡 Most Profound Insight
 
-> **Time is not an externally imposed "parameter," but an intrinsic emergent property of physical systems.**
+> **GLS theory proposes: Time might not be an externally imposed "parameter," but an intrinsic emergent property of physical systems.**
 
 Just as temperature is not fundamental (it's average kinetic energy of molecules), time is not fundamental—it's an emergent property of deeper structures.
 

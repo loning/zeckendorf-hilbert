@@ -183,7 +183,7 @@ graph TB
 
 ### 🔗 Information Entropy = Thermodynamic Entropy
 
-Remarkably, **information entropy and thermodynamic entropy are essentially the same thing**!
+Remarkably, **it is widely accepted in physics that information entropy and thermodynamic entropy have a profound connection**!
 
 Landauer's principle:
 
@@ -227,7 +227,7 @@ graph LR
 
 **Physical meaning**:
 
-In GLS theory, the monotonicity of relative entropy is the **foundation of the time arrow**!
+In GLS theory, the monotonicity of relative entropy is considered the **foundation of the time arrow**!
 
 $$
 \frac{dD(\rho_t \| \rho_{\text{equilibrium}})}{dt} \leq 0
@@ -313,7 +313,7 @@ $$
 A \prec B \quad \Leftrightarrow \quad S(A) \leq S(B)
 $$
 
-**Causal order is equivalent to entropy monotonicity!**
+**GLS theory infers: Causal order is mathematically equivalent to entropy monotonicity!**
 
 This means:
 
@@ -334,7 +334,7 @@ graph TD
 
 One of the core insights of GLS theory:
 
-> On small causal diamonds, generalized entropy takes an extremum if and only if Einstein's equation holds.
+> **GLS theory derivation shows**: On small causal diamonds, generalized entropy takes an extremum if and only if Einstein's equation holds.
 
 **Information Geometric Variational Principle** (IGVP):
 
@@ -349,7 +349,7 @@ In plain language:
 
 **Significance**:
 
-Gravity is not a fundamental force, but a **geometric emergence of entropy extremum**!
+**GLS theory suggests**: Gravity might not be a fundamental force, but a **geometric emergence of entropy extremum**!
 
 ```mermaid
 graph TB
@@ -402,7 +402,7 @@ This is one of the unsolved mysteries of physics!
 1. **Cosmological principle**: Initial conditions at universe's beginning were low-entropy (but why?)
 2. **Special nature of gravity**: Entropy of gravitational systems differs from other systems
 3. **Multiverse**: Our universe is one of many that happens to be low-entropy
-4. **GLS theory**: Boundary conditions determine initial low entropy
+4. **GLS theory**: Boundary conditions might determine initial low entropy
 
 ---
 
@@ -428,7 +428,7 @@ This is one of the unsolved mysteries of physics!
 
 ### 💡 Most Profound Insight
 
-> **Entropy is not just "chaos," it is the arrow of time, the order of causality, the source of gravity. All evolution in the universe is a process of entropy increase.**
+> **GLS theory proposes: Entropy is not just "chaos," it might be the arrow of time, the order of causality, the source of gravity. All evolution in the universe is essentially a process of entropy increase.**
 
 Entropy unifies thermodynamics, information theory, gravity, and causality:
 

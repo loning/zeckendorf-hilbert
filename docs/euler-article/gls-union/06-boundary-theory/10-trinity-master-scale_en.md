@@ -14,7 +14,7 @@ $$
 \kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\text{rel}}(\omega) = \frac{1}{2\pi}\operatorname{tr}Q(\omega)
 $$
 
-The answer is stunning: **This is not coincidence, but profound necessity of boundary geometry!**
+The answer is: **The GLS theory proposes that this reflects a profound intrinsic consistency of boundary geometry.**
 
 ## Daily Analogy: Three Blind Men Touching an Elephant (Deepened Version)
 
@@ -47,9 +47,9 @@ graph TB
 
 **Key Insight:**
 
-Three blind men measure **different parts**, but the "lengths" $L_1, L_2, L_3$ they report **must be equal**!
+Three blind men measure **different parts**, but the "lengths" $L_1, L_2, L_3$ they report **are theoretically expected to be equal**!
 
-**Reason:** They are all "intrinsic scales" on the elephant → Determined by the elephant's **intrinsic geometry**!
+**Inference:** They are all "intrinsic scales" on the elephant → Considered to be determined by the elephant's **intrinsic geometry**!
 
 **Boundary Time Geometry:**
 
@@ -114,7 +114,7 @@ graph TB
     style Unity fill:#4ecdc4
 ```
 
-**Key Theorem (Theorem 3.1: Affine Uniqueness):**
+**Core Proposition (Proposition 3.1: Affine Uniqueness):**
 
 Under boundary time geometry conditions, scattering, modular flow, and gravitational scales belong to the **same equivalence class** $[\kappa]$!
 
@@ -124,7 +124,7 @@ $$
 
 **Plain Translation:**
 
-**Three seemingly completely different time definitions are essentially different "expressions" of the same master scale!**
+**Three seemingly completely different time definitions are essentially viewed as different "expressions" of the same master scale!**
 
 ### 2. Trinity Master Scale: How Do Three Definitions Unify?
 
@@ -236,7 +236,7 @@ $$
 2. **Modular Flow Actor:** $K_D = -\log \Delta = \int \kappa_{\text{mod}}(\lambda) g(\lambda) d\lambda$
 3. **Gravitational Actor:** $H_∂^{\text{grav}} = \int \kappa_{\text{grav}}(x) h(x) d^3x$
 
-**Boundary Trinity Theorem (Recall Chapter 07):**
+**Boundary Trinity Proposition (Recall Chapter 07):**
 
 Under matching conditions, three generators are **affine equivalent**:
 
@@ -252,9 +252,9 @@ $$
 
 **Plain Translation:**
 
-**Three actors perform on the same stage (boundary), their "stage steps" (time scales) must be consistent!**
+**Three actors perform on the same stage (boundary), their "stage steps" (time scales) are expected to be consistent within the theoretical framework!**
 
-This is not coincidence, but **intrinsic constraint of boundary geometry**!
+This is considered not coincidence, but **intrinsic constraint of boundary geometry**!
 
 ```mermaid
 graph TB
@@ -370,7 +370,7 @@ graph TB
 
 ## Core Theorems and Corollaries
 
-### Theorem 1: Master Scale Existence and Affine Uniqueness
+### Proposition 1: Master Scale Existence and Affine Uniqueness
 
 **Statement:**
 
@@ -388,7 +388,7 @@ $$
 
 **Plain Translation:**
 
-**As long as boundary geometry is well-defined, three time definitions must be equivalent (differ by constant factor)!**
+**As long as boundary geometry is well-defined, three time definitions are equivalent in the model (differ by constant factor)!**
 
 **Proof Outline:**
 
@@ -413,7 +413,7 @@ graph LR
     style Gravity fill:#e1ffe1
 ```
 
-### Theorem 2: Equivalence of Topological Class $[K]$ and Self-Referential Scattering
+### Proposition 2: Equivalence of Topological Class $[K]$ and Self-Referential Scattering
 
 **Statement:**
 
@@ -431,7 +431,7 @@ where:
 
 **Plain Translation:**
 
-**Half-phase transition, self-referential network feedback, fermion statistics, all determined by the same topological class $[K]$!**
+**Half-phase transition, self-referential network feedback, fermion statistics, are considered to be determined by the same topological class $[K]$!**
 
 **Application:** Topological Origin of Fermions
 
@@ -462,7 +462,7 @@ graph TB
     style Sign fill:#ffe66d
 ```
 
-### Theorem 3: Time Crystal $\pi$ Mod Spectral Pairing
+### Proposition 3: Time Crystal $\pi$ Mod Spectral Pairing
 
 **Statement:**
 
@@ -474,7 +474,7 @@ In Floquet-driven systems, the following are equivalent:
 
 **Plain Translation:**
 
-**Existence of time crystal is determined by boundary topological class $[K]$!**
+**Existence of time crystal is theoretically characterized by boundary topological class $[K]$!**
 
 **Physical Picture:**
 
@@ -502,7 +502,7 @@ graph TB
     style Robust fill:#e1ffe1
 ```
 
-### Theorem 4: Generalized Entropy Variation and Integral Expression of Master Scale
+### Proposition 4: Generalized Entropy Variation and Integral Expression of Master Scale
 
 **Statement:**
 
@@ -520,7 +520,7 @@ where:
 
 **Plain Translation:**
 
-**Geometry of generalized entropy = weighted integral of time scale master!**
+**Geometry of generalized entropy $\sim$ weighted integral of time scale master!**
 
 **Profound Meaning:**
 
@@ -758,7 +758,7 @@ graph LR
 
 **Profound Insight:**
 
-Although there are three (or more) time definitions, they are all different "projections" of the **same boundary scale master** $[\kappa]$!
+Although there are three (or more) time definitions, they are viewed as different "projections" of the **same boundary scale master** $[\kappa]$!
 
 $$
 [\kappa] = \text{unique time master scale}
@@ -798,7 +798,7 @@ graph TB
 
 **Ontological Position:**
 
-Time is not "three things coincidentally equal", but **three manifestations of one thing**!
+Time is considered not "three things coincidentally equal", but **three manifestations of one thing**!
 
 ### Unification of Continuous and Discrete
 
@@ -851,7 +851,7 @@ graph LR
 
 Even knowing the trinity master scale, one still **cannot decide** whether a system is catastrophe-safe!
 
-**Theorem (Capability-Risk Frontier):**
+**Proposition (Capability-Risk Frontier):**
 
 For general interactive systems, deciding "catastrophe risk < threshold" is an **undecidable problem**!
 
@@ -969,7 +969,7 @@ Next major chapter will discuss: **How does time generate causality?**
 
 **Summary:**
 
-Chapter 06 (Boundary Theory) is now complete! Starting from "boundary is the stage" (Chapter 07), through "observer chooses time" (Chapter 08), "boundary clock measures time" (Chapter 09), we finally reveal in this chapter: **The unification of three time definitions is not coincidence, but profound necessity of boundary geometry!**
+Chapter 06 (Boundary Theory) is now complete! Starting from "boundary is the stage" (Chapter 07), through "observer chooses time" (Chapter 08), "boundary clock measures time" (Chapter 09), we finally explored in this chapter: **The unification of three time definitions is likely not coincidence, but a profound consistency of boundary geometry!**
 
 $$
 \boxed{\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\text{rel}}(\omega) = \frac{1}{2\pi}\operatorname{tr}Q(\omega)} \quad \text{(Trinity Master Scale)}

@@ -1,6 +1,6 @@
-# Five into One: Unified Time Scale Identity
+# Five into One: Unified Time Scale Identity (Theoretical Derivation)
 
-> "Four seemingly completely different physical quantities are actually completely equal. This is not coincidence, but evidence of deep unity in the universe."
+> "Four seemingly completely different physical quantities are mathematically equal. This might not be coincidence, but theoretical evidence of deep unity in the universe."
 
 [← Previous: Entropy is Arrow](05-entropy-is-arrow_en.md) | [Back to Home](../index_en.md) | [Next: Core Ideas Summary →](07-core-summary_en.md)
 
@@ -18,7 +18,7 @@ $$
 \boxed{\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\text{rel}}(\omega) = \frac{1}{2\pi}\text{tr}\,Q(\omega)}
 $$
 
-This formula says: **Four completely different physical quantities are actually the same thing!**
+This formula says: **Four completely different physical quantities might be mathematically equivalent to the same object!**
 
 ```mermaid
 graph TD
@@ -38,7 +38,7 @@ graph TD
     M3 --> Unity
     M4 --> Unity
 
-    Unity --> Insight["Profound Insight:<br/>Time is Not External Clock<br/>But System's Intrinsic<br/>Scattering-Phase-Spectrum Structure"]
+    Unity --> Insight["Profound Insight:<br/>Time Might Not Be External Clock<br/>But System's Intrinsic<br/>Scattering-Phase-Spectrum Structure"]
 
     style Unity fill:#ff6b6b,stroke:#c92a2a,stroke-width:4px,color:#fff
     style Insight fill:#4ecdc4,stroke:#0b7285,stroke-width:2px,color:#fff
@@ -152,7 +152,7 @@ $$
 \kappa = \frac{\varphi'(\omega)}{\pi}
 $$
 
-> 💡 **Profound insight**: Time is not an external parameter, but **geometry of phase space**!
+> 💡 **Profound insight**: Time might not be an external parameter, but **geometry of phase space**!
 
 ---
 
@@ -216,7 +216,7 @@ graph LR
     style RelDensity fill:#4ecdc4,color:#fff
 ```
 
-> 💡 **Profound insight**: Density of states (information of spectrum) and scattering (information of dynamics) are two sides of the same coin!
+> 💡 **Profound insight**: Density of states (information of spectrum) and scattering (information of dynamics) might be two sides of the same coin!
 
 ---
 
@@ -341,7 +341,7 @@ $$
 \kappa = \frac{\varphi'}{\pi} = -\xi' = \rho_{\text{rel}} = \frac{1}{2\pi}\text{tr}\,Q
 $$
 
-> 💡 **Core insight**: These are not four independent physical quantities that happen to be equal, but four manifestations of the same deep structure!
+> 💡 **Core insight**: These might not be four independent physical quantities that happen to be equal, but four manifestations of the same deep structure!
 
 ---
 
@@ -351,7 +351,7 @@ $$
 
 Traditional view: Time is external, absolute, a priori existing "clock".
 
-GLS view: **Time is an emergence of system's intrinsic scattering-phase-spectrum structure!**
+GLS view: **Time might be an emergence of system's intrinsic scattering-phase-spectrum structure!**
 
 ```mermaid
 graph TD
@@ -367,7 +367,7 @@ graph TD
 
 ### 📏 Three Times, One Scale
 
-The Unified Time Scale Identity tells us that three seemingly different "times" are the same:
+The Unified Time Scale Identity tells us that three seemingly different "times" are mathematically unified:
 
 1. **Scattering time**: Delay of particle scattering $\kappa$
 2. **Quantum time**: Rate of phase change $\varphi'/\pi$
@@ -377,7 +377,7 @@ They all equal Wigner-Smith group delay $\text{tr}\,Q/2\pi$.
 
 ### 🔬 Measurability
 
-This unification is not just mathematical beauty, it's **experimentally verifiable**!
+This unification is not just mathematical beauty, it's **theoretically experimentally verifiable**!
 
 **Experimental Plan**:
 
@@ -398,7 +398,7 @@ This unification is not just mathematical beauty, it's **experimentally verifiab
    - Calculate $Q = -iS^\dagger \partial_\omega S$
    - Take trace $\text{tr}\,Q$
 
-**Prediction**: These four measurements should give **exactly the same** result!
+**Prediction**: These four measurements should theoretically give **exactly the same** result!
 
 ```mermaid
 graph LR
@@ -433,7 +433,7 @@ $$
 A \prec B \quad \Leftrightarrow \quad t(A) \leq t(B) \quad \Leftrightarrow \quad S(A) \leq S(B)
 $$
 
-**Causality = Time Order = Entropy Monotonicity**
+**Causality ⟺ Time Order ⟺ Entropy Monotonicity**
 
 ### 🔗 Boundary ↔ Scattering
 
@@ -445,7 +445,7 @@ $$
 \text{Boundary Scattering Data } S(\omega) \quad \Rightarrow \quad \text{Internal Time Evolution}
 $$
 
-This is another manifestation of the **holographic principle**!
+This is considered another manifestation of the **holographic principle**!
 
 ### 🔗 Entropy ↔ Scattering
 
@@ -619,9 +619,9 @@ $$
 
 ### 💡 Most Profound Insight
 
-> **The universe is not composed of five independent "things": time, causality, boundary, scattering, entropy. They are five manifestations of the same deep reality, like five different projections of a cube.**
+> **The universe might not be composed of five independent "things": time, causality, boundary, scattering, entropy. They might be five manifestations of the same deep reality, like five different projections of a cube.**
 >
-> **The Unified Time Scale Identity is the mathematical proof of how these five projections connect.**
+> **The Unified Time Scale Identity provides the mathematical proof of how these five projections connect.**
 
 This is not just theoretical beauty, but reveals deep unity of the universe:
 
@@ -631,7 +631,7 @@ This is not just theoretical beauty, but reveals deep unity of the universe:
 - No need to assume "scattering is just collision"
 - No need to assume "entropy is just chaos"
 
-**They are all inseparable parts of the same unified structure.**
+**They might all be inseparable parts of the same unified structure.**
 
 ---
 
@@ -653,7 +653,7 @@ $$
 \kappa = \frac{\varphi'}{\pi} = \rho_{\text{rel}} = \frac{1}{2\pi}\text{tr}\,Q
 $$
 
-**It's not four quantities that happen to be equal, but four faces of the same time.**
+**It might not be four quantities that happen to be equal, but four faces of the same time.**
 
 [← Previous: Entropy is Arrow](05-entropy-is-arrow_en.md) | [Back to Home](../index_en.md) | [Next: Core Ideas Summary →](07-core-summary_en.md)
 

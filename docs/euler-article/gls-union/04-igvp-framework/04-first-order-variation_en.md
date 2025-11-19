@@ -410,25 +410,23 @@ Traditional perspective: Einstein equations are fundamental axioms → black hol
 
 $$\text{Entropy Extremum} \quad \Rightarrow \quad \text{Gravitational Field Equations}$$
 
-### Gravity is a Thermodynamic Phenomenon
+### Gravity as a Thermodynamic Phenomenon
 
-Einstein equations can be understood as:
+Einstein's equations in this framework can be understood as:
 
 $$\underbrace{\frac{\delta A}{4G\hbar}}_{\text{Geometric Entropy Change}} + \underbrace{\frac{\delta Q}{T}}_{\text{First Law of Thermodynamics}} = 0$$
 
-This is similar to thermal equilibrium condition!
+This is similar to a thermal equilibrium condition.
 
-### Victory of Locality
+### Manifestation of Locality
 
-From **local entropy extremum** (small causal diamond) → **pointwise field equations**
-
-Gravity is truly **local physics**!
+Deriving **pointwise field equations** from **local entropy extremum** (small causal diamond) highlights the **local nature** of gravity.
 
 ### Emergence of Cosmological Constant
 
-$\Lambda$ is not assumed beforehand, but an integration constant that **emerges** from variation!
+$\Lambda$ is not assumed beforehand in this derivation, but naturally **emerges** as an integration constant from the variation process.
 
-Its physical meaning: dual variable of volume constraint.
+Its physical meaning can be interpreted as the dual variable of the volume constraint.
 
 ## 📝 Key Formulas Quick Reference
 

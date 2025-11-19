@@ -4,7 +4,7 @@
 
 ## 🎯 Why Do We Need These Mathematical Tools?
 
-In previous chapters, we understood the five core insights of GLS theory. But to truly delve into the theory, we need to master the mathematical language it uses.
+In previous chapters, we understood the five core insights of GLS theory. But to truly delve into the theory, we need to master the mathematical language it selects.
 
 **Don't be afraid!** We will use **accessible analogies** and **step-by-step explanations** to make these mathematical tools approachable.
 
@@ -44,7 +44,7 @@ graph TB
 
 **Why important**:
 - Spectral shift function $\xi(\omega)$ connects scattering and density of states
-- Birman-Kreĭn formula is the core of unified time scale
+- Birman-Kreĭn formula is the core mathematical tool for unified time scale
 - Spectral decomposition of self-adjoint operators gives physical observables
 
 **Key concepts**:
@@ -61,7 +61,7 @@ graph TB
 **Why important**:
 - Boundary spectral triple $(\mathcal{A}_\partial, \mathcal{H}_\partial, D_\partial)$ defines geometry
 - Connes distance formula reconstructs metric
-- Natural language for quantum spaces
+- Considered the natural language for quantum spaces
 
 **Key concepts**:
 - Spectral triple
@@ -75,9 +75,9 @@ graph TB
 **In one sentence**: Mathematical theory studying "input→system→output."
 
 **Why important**:
-- S-matrix is the core of GLS ontology
-- Wigner-Smith delay matrix defines time
-- Scattering is evolution
+- S-matrix is the core mathematical object of GLS ontology
+- Wigner-Smith delay matrix is used to define time
+- Evolution is modeled as scattering
 
 **Key concepts**:
 - S-matrix (scattering matrix)
@@ -93,7 +93,7 @@ graph TB
 **Why important**:
 - Tomita-Takesaki flow defines modular time
 - KMS condition describes thermal equilibrium
-- Thermal time hypothesis: time emerges from state
+- Thermal time hypothesis: time might emerge from state
 
 **Key concepts**:
 - Tomita-Takesaki theory
@@ -108,8 +108,8 @@ graph TB
 
 **Why important**:
 - Fisher-Rao metric defines "distance between probabilities"
-- Relative entropy is the core of IGVP
-- Deep connection between information and geometry
+- Relative entropy is the core quantity of IGVP
+- Reveals deep connection between information and geometry
 
 **Key concepts**:
 - Fisher information matrix
@@ -123,7 +123,7 @@ graph TB
 **In one sentence**: "Mathematics of mathematics"—studying relationships between mathematical structures.
 
 **Why important**:
-- QCA universe is terminal object of category
+- QCA universe is modeled as terminal object of category
 - Category equivalence of matrix universe
 - Natural language for unified framework
 
