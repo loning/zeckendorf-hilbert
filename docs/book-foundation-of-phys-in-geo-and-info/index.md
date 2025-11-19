@@ -146,6 +146,33 @@
 - [17.3 强 CP 问题与轴子（Axion）：拓扑相位的动力学弛豫机制](volume03-gravity-entropy-origin/part09-geometric-unification-interactions/chapter17-topological-origin-matter/17-03-strong-cp-problem-axion.md)
 - [17.4 中微子振荡的几何解释：离散时空晶格上的味混合机制](volume03-gravity-entropy-origin/part09-geometric-unification-interactions/chapter17-topological-origin-matter/17-04-neutrino-oscillation-geometric-interpretation.md)
 
+### 第四卷：主体性物理 —— 观察者与复杂系统
+
+#### 第十编：观察者的代数结构
+
+##### 第十八章：观察者的数学定义
+
+- [18.1 从参考系原点到物理实体：观察者的结构化定义](volume04-physics-agency-observer-complex-systems/part10-algebraic-structure-observer/chapter18-mathematical-definition-observer/18-01-structured-definition-observer.md)
+- [18.2 内部代数 $\mathcal{A}_{\text{int}}$：有限维冯·诺依曼代数与信息处理能力](volume04-physics-agency-observer-complex-systems/part10-algebraic-structure-observer/chapter18-mathematical-definition-observer/18-02-internal-algebra-finite-von-neumann.md)
+- [18.3 记忆子系统：马尔可夫子结构的稳定性与抗退相干条件](volume04-physics-agency-observer-complex-systems/part10-algebraic-structure-observer/chapter18-mathematical-definition-observer/18-03-memory-subsystem-markov-stability.md)
+- [18.4 预测模型：外部环境在内部代数中的同态映射与压缩](volume04-physics-agency-observer-complex-systems/part10-algebraic-structure-observer/chapter18-mathematical-definition-observer/18-04-predictive-model-homomorphic-mapping.md)
+
+##### 第十九章：自指动力学与预测编码
+
+- [19.1 机械因果与目的论因果：自指回路引入的动力学特征](volume04-physics-agency-observer-complex-systems/part10-algebraic-structure-observer/chapter19-self-referential-dynamics-predictive-coding/19-01-mechanical-teleological-causality.md)
+- [19.2 自指更新算符：包含预测反馈的状态演化方程](volume04-physics-agency-observer-complex-systems/part10-algebraic-structure-observer/chapter19-self-referential-dynamics-predictive-coding/19-02-self-referential-update-operator.md)
+- [19.3 自由能原理（Free Energy Principle）：作为物理哈密顿量极小化的预测误差最小化](volume04-physics-agency-observer-complex-systems/part10-algebraic-structure-observer/chapter19-self-referential-dynamics-predictive-coding/19-03-free-energy-principle.md)
+- [19.4 奇异吸引子与生命特征：自指系统在相空间中的稳态行为](volume04-physics-agency-observer-complex-systems/part10-algebraic-structure-observer/chapter19-self-referential-dynamics-predictive-coding/19-04-strange-attractor-life-characteristics.md)
+
+### 第十一编：意识的拓扑物理学
+
+#### 第二十章：因果网络中的拓扑结构
+
+- [20.1 因果图论基础：有向无环图 (DAG) 与反馈闭环](volume04-physics-agency-observer-complex-systems/part11-topological-physics-consciousness/chapter20-topological-structure-causal-networks/20-01-causal-graph-theory-dag-feedback-loops.md)
+- [20.2 极小强连通分量 (MSCC)：作为不可还原的"原子自我"](volume04-physics-agency-observer-complex-systems/part11-topological-physics-consciousness/chapter20-topological-structure-causal-networks/20-02-minimal-strongly-connected-component.md)
+- [20.3 整合信息论 (IIT) 的拓扑重述：强连通性与 $\Phi$ 值](volume04-physics-agency-observer-complex-systems/part11-topological-physics-consciousness/chapter20-topological-structure-causal-networks/20-03-iit-topological-restatement.md)
+- [20.4 因果涌现与宏观尺度：为什么意识存在于粗粒化层面？](volume04-physics-agency-observer-complex-systems/part11-topological-physics-consciousness/chapter20-topological-structure-causal-networks/20-04-causal-emergence-macroscopic-scale.md)
+
 ## 目录结构
 
 ```
