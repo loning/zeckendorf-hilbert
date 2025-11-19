@@ -173,6 +173,22 @@
 - [20.3 整合信息论 (IIT) 的拓扑重述：强连通性与 $\Phi$ 值](volume04-physics-agency-observer-complex-systems/part11-topological-physics-consciousness/chapter20-topological-structure-causal-networks/20-03-iit-topological-restatement.md)
 - [20.4 因果涌现与宏观尺度：为什么意识存在于粗粒化层面？](volume04-physics-agency-observer-complex-systems/part11-topological-physics-consciousness/chapter20-topological-structure-causal-networks/20-04-causal-emergence-macroscopic-scale.md)
 
+#### 第二十一章：同痕不变量与意识相变
+
+- [21.1 参数空间回路上的几何相位与 $\mathbb{Z}_2$ 拓扑指标](volume04-physics-agency-observer-complex-systems/part11-topological-physics-consciousness/chapter21-holonomy-invariants-consciousness-phase-transitions/21-01-geometric-phase-z2-holonomy.md)
+- [21.2 拓扑孤子：意识作为因果网络中受拓扑保护的费米子式结构](volume04-physics-agency-observer-complex-systems/part11-topological-physics-consciousness/chapter21-holonomy-invariants-consciousness-phase-transitions/21-02-topological-soliton-fermion-like-structure.md)
+- [21.3 意识的临界性：从平凡相 ($\nu=1$) 到非平凡相 ($\nu=-1$) 的拓扑相变](volume04-physics-agency-observer-complex-systems/part11-topological-physics-consciousness/chapter21-holonomy-invariants-consciousness-phase-transitions/21-03-criticality-topological-phase-transition.md)
+- [21.4 量子测量问题新解：观测诱导的系统-观察者拓扑融合](volume04-physics-agency-observer-complex-systems/part11-topological-physics-consciousness/chapter21-holonomy-invariants-consciousness-phase-transitions/21-04-quantum-measurement-topological-fusion.md)
+
+### 第十二编：多主体系统与客观性
+
+#### 第二十二章：共识几何 (Consensus Geometry)
+
+- [22.1 维格纳的朋友悖论与多观察者一致性问题](volume04-physics-agency-observer-complex-systems/part12-multi-agent-systems-objectivity/chapter22-consensus-geometry/22-01-wigner-friend-paradox-multi-observer.md)
+- [22.2 贝叶斯引力：相对熵最小化驱动的观察者模型同步](volume04-physics-agency-observer-complex-systems/part12-multi-agent-systems-objectivity/chapter22-consensus-geometry/22-02-bayesian-gravity.md)
+- [22.3 客观现实作为纳什均衡：主体间信息交换的博弈论不动点](volume04-physics-agency-observer-complex-systems/part12-multi-agent-systems-objectivity/chapter22-consensus-geometry/22-03-objective-reality-nash-equilibrium.md)
+- [22.4 语言与知识图谱的物理本质：观察者网络中的张量网络态](volume04-physics-agency-observer-complex-systems/part12-multi-agent-systems-objectivity/chapter22-consensus-geometry/22-04-language-knowledge-graph-tensor-network.md)
+
 ## 目录结构
 
 ```
