@@ -47,39 +47,111 @@
 - [5.3 长球波函数 (PSWF)：有限观测窗口下的最优基底与信息截断](volume01-discrete-ontology/part03-mathematical-foundations/chapter05-discrete-continuous-duality/05-03-pswf-optimal-basis.md)
 - [5.4 哥德尔不完备性在物理预测视界中的体现：不可判定性边界](volume01-discrete-ontology/part03-mathematical-foundations/chapter05-discrete-continuous-duality/05-04-godel-incompleteness-prediction-horizon.md)
 
+### 第二卷：时间的涌现 —— 散射、热力学与动力学
+
+#### 第四编：时间的微观算符定义
+
+##### 第六章：散射时间延迟理论
+
+- [6.1 量子力学的时间难题：泡利定理与自伴时间算符的不存在性](volume02-time-emergence/part04-microscopic-time-operator/chapter06-scattering-time-delay/06-01-pauli-theorem-time-operator.md)
+- [6.2 Eisenbud-Wigner-Smith (EWS) 算符 $\mathsf{Q}$ 的完整构造](volume02-time-emergence/part04-microscopic-time-operator/chapter06-scattering-time-delay/06-02-ews-operator-construction.md)
+- [6.3 滞留时间（Dwell Time）与群延迟的物理等价性证明](volume02-time-emergence/part04-microscopic-time-operator/chapter06-scattering-time-delay/06-03-dwell-time-group-delay-equivalence.md)
+- [6.4 多通道散射中的时间延迟矩阵与迹公式应用](volume02-time-emergence/part04-microscopic-time-operator/chapter06-scattering-time-delay/06-04-multichannel-trace-formula.md)
+
+##### 第七章：谱-散射对偶与热力学
+
+- [7.1 Kreĭn 谱移函数 $\xi(E)$：微扰对能级密度的重排机制](volume02-time-emergence/part04-microscopic-time-operator/chapter07-spectral-scattering-duality/07-01-krein-spectral-shift-function.md)
+- [7.2 Birman-Kreĭn 迹公式：散射矩阵行列式与谱移函数的指数映射关系](volume02-time-emergence/part04-microscopic-time-operator/chapter07-spectral-scattering-duality/07-02-birman-krein-trace-formula.md)
+- [7.3 Friedel 求和规则的推广：从费米液体到一般散射系统](volume02-time-emergence/part04-microscopic-time-operator/chapter07-spectral-scattering-duality/07-03-friedel-sum-rule-generalization.md)
+- [7.4 Levinson 定理：散射相位拓扑数与束缚态数目的关系](volume02-time-emergence/part04-microscopic-time-operator/chapter07-spectral-scattering-duality/07-04-levinson-theorem.md)
+
+#### 第五编：统一时间恒等式与相对论
+
+##### 第八章：相位-延迟-密度 三位一体
+
+- [8.1 统一时间恒等式推导：$\kappa(E) = \varphi'/\pi = \rho_{\text{rel}} = \text{Tr}\mathsf{Q}/2\pi$](volume02-time-emergence/part05-unified-time-identity-relativity/chapter08-phase-delay-density-unity/08-01-unified-time-identity.md)
+- [8.2 时间即物质：时间流逝速率与局域态密度的正比关系](volume02-time-emergence/part05-unified-time-identity-relativity/chapter08-phase-delay-density-unity/08-02-time-is-matter.md)
+- [8.3 引力红移的散射机制：势场对局域态密度的重标度效应](volume02-time-emergence/part05-unified-time-identity-relativity/chapter08-phase-delay-density-unity/08-03-gravitational-redshift-scattering.md)
+- [8.4 相对散射行列式：弯曲时空中的有效态密度计算与度规重构](volume02-time-emergence/part05-unified-time-identity-relativity/chapter08-phase-delay-density-unity/08-04-relative-scattering-determinant.md)
+
+##### 第九章：宇宙学与热力学时间
+
+- [9.1 哈密顿量的非厄米性：宇宙视界导致的信息耗散与哈勃膨胀](volume02-time-emergence/part05-unified-time-identity-relativity/chapter09-cosmology-thermodynamic-time/09-01-non-hermitian-hamiltonian-hubble.md)
+- [9.2 红移即相位漂移：宇宙学红移的绝热散射解释](volume02-time-emergence/part05-unified-time-identity-relativity/chapter09-cosmology-thermodynamic-time/09-02-redshift-phase-drift.md)
+- [9.3 热力学时间箭头：从态密度 $\rho(E)$ 到配分函数与熵增方向的锁定](volume02-time-emergence/part05-unified-time-identity-relativity/chapter09-cosmology-thermodynamic-time/09-03-thermodynamic-time-arrow.md)
+- [9.4 暗能量的几何本质：真空态密度引起的背景相位漂移与指数膨胀](volume02-time-emergence/part05-unified-time-identity-relativity/chapter09-cosmology-thermodynamic-time/09-04-dark-energy-geometric-nature.md)
+
+#### 第六编：时间的拓扑结构
+
+##### 第十章：时间平移对称性的破缺
+
+- [10.1 离散时间晶体（DTC）的定义：Floquet 系统的次谐波响应](volume02-time-emergence/part06-topological-structure-time/chapter10-time-translation-symmetry-breaking/10-01-discrete-time-crystal-definition.md)
+- [10.2 $\mathbb{Z}_2$ 同痕 (Holonomy)：参数空间中的 $\pi$-模配对与拓扑保护](volume02-time-emergence/part06-topological-structure-time/chapter10-time-translation-symmetry-breaking/10-02-z2-holonomy.md)
+- [10.3 零模双覆盖（Null-Modular Double Cover）结构与时间拓扑](volume02-time-emergence/part06-topological-structure-time/chapter10-time-translation-symmetry-breaking/10-03-null-modular-double-cover.md)
+- [10.4 宏观连续时间的离散骨架：从时间晶体看 QCA 底层节律](volume02-time-emergence/part06-topological-structure-time/chapter10-time-translation-symmetry-breaking/10-04-discrete-skeleton-macroscopic-time.md)
+
 ## 目录结构
 
 ```
 book-foundation-of-phys-in-geo-and-info/
 ├── index.md
-└── volume01-discrete-ontology/
-    ├── part01-finite-information-axioms/
-    │   ├── chapter01-holographic-principle/
-    │   │   ├── 01-01-bekenstein-bound.md
-    │   │   ├── 01-02-finite-information-axiom.md
-    │   │   ├── 01-03-continuum-hypothesis-failure.md
-    │   │   └── 01-04-wheeler-it-from-bit.md
-    │   └── chapter02-parameterized-universe/
-    │       ├── 02-01-riemannian-structure-qfim.md
-    │       ├── 02-02-fubini-study-physical-meaning.md
-    │       ├── 02-03-berry-curvature-geometric-phase.md
-    │       └── 02-04-dynamical-flow-symplectic-structure.md
-    ├── part02-discrete-dynamics/
-    │   ├── chapter03-quantum-cellular-automata/
-    │   │   ├── 03-01-qca-six-tuple-definition.md
-    │   │   ├── 03-02-causal-locality-theorem.md
-    │   │   ├── 03-03-discrete-noether-theorem.md
-    │   │   └── 03-04-computational-universality.md
-    │   └── chapter04-continuum-emergence/
-    │       ├── 04-01-path-integral-discretization.md
-    │       ├── 04-02-dirac-equation-derivation.md
-    │       ├── 04-03-gauge-fields-wilson-lines.md
-    │       └── 04-04-lorentz-symmetry-rg-flow.md
-    └── part03-mathematical-foundations/
-        └── chapter05-discrete-continuous-duality/
-            ├── 05-01-physical-sampling-theorem.md
-            ├── 05-02-dcec-euler-maclaurin.md
-            ├── 05-03-pswf-optimal-basis.md
-            └── 05-04-godel-incompleteness-prediction-horizon.md
+├── volume01-discrete-ontology/
+│   ├── part01-finite-information-axioms/
+│   │   ├── chapter01-holographic-principle/
+│   │   │   ├── 01-01-bekenstein-bound.md
+│   │   │   ├── 01-02-finite-information-axiom.md
+│   │   │   ├── 01-03-continuum-hypothesis-failure.md
+│   │   │   └── 01-04-wheeler-it-from-bit.md
+│   │   └── chapter02-parameterized-universe/
+│   │       ├── 02-01-riemannian-structure-qfim.md
+│   │       ├── 02-02-fubini-study-physical-meaning.md
+│   │       ├── 02-03-berry-curvature-geometric-phase.md
+│   │       └── 02-04-dynamical-flow-symplectic-structure.md
+│   ├── part02-discrete-dynamics/
+│   │   ├── chapter03-quantum-cellular-automata/
+│   │   │   ├── 03-01-qca-six-tuple-definition.md
+│   │   │   ├── 03-02-causal-locality-theorem.md
+│   │   │   ├── 03-03-discrete-noether-theorem.md
+│   │   │   └── 03-04-computational-universality.md
+│   │   └── chapter04-continuum-emergence/
+│   │       ├── 04-01-path-integral-discretization.md
+│   │       ├── 04-02-dirac-equation-derivation.md
+│   │       ├── 04-03-gauge-fields-wilson-lines.md
+│   │       └── 04-04-lorentz-symmetry-rg-flow.md
+│   └── part03-mathematical-foundations/
+│       └── chapter05-discrete-continuous-duality/
+│           ├── 05-01-physical-sampling-theorem.md
+│           ├── 05-02-dcec-euler-maclaurin.md
+│           ├── 05-03-pswf-optimal-basis.md
+│           └── 05-04-godel-incompleteness-prediction-horizon.md
+└── volume02-time-emergence/
+    ├── part04-microscopic-time-operator/
+    │   ├── chapter06-scattering-time-delay/
+    │   │   ├── 06-01-pauli-theorem-time-operator.md
+    │   │   ├── 06-02-ews-operator-construction.md
+    │   │   ├── 06-03-dwell-time-group-delay-equivalence.md
+    │   │   └── 06-04-multichannel-trace-formula.md
+    │   └── chapter07-spectral-scattering-duality/
+    │       ├── 07-01-krein-spectral-shift-function.md
+    │       ├── 07-02-birman-krein-trace-formula.md
+    │       ├── 07-03-friedel-sum-rule-generalization.md
+    │       └── 07-04-levinson-theorem.md
+    └── part05-unified-time-identity-relativity/
+        ├── chapter08-phase-delay-density-unity/
+        │   ├── 08-01-unified-time-identity.md
+        │   ├── 08-02-time-is-matter.md
+        │   ├── 08-03-gravitational-redshift-scattering.md
+        │   └── 08-04-relative-scattering-determinant.md
+        └── chapter09-cosmology-thermodynamic-time/
+            ├── 09-01-non-hermitian-hamiltonian-hubble.md
+            ├── 09-02-redshift-phase-drift.md
+            ├── 09-03-thermodynamic-time-arrow.md
+            └── 09-04-dark-energy-geometric-nature.md
+    └── part06-topological-structure-time/
+        └── chapter10-time-translation-symmetry-breaking/
+            ├── 10-01-discrete-time-crystal-definition.md
+            ├── 10-02-z2-holonomy.md
+            ├── 10-03-null-modular-double-cover.md
+            └── 10-04-discrete-skeleton-macroscopic-time.md
 ```
 
