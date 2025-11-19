@@ -90,6 +90,46 @@
 - [10.3 零模双覆盖（Null-Modular Double Cover）结构与时间拓扑](volume02-time-emergence/part06-topological-structure-time/chapter10-time-translation-symmetry-breaking/10-03-null-modular-double-cover.md)
 - [10.4 宏观连续时间的离散骨架：从时间晶体看 QCA 底层节律](volume02-time-emergence/part06-topological-structure-time/chapter10-time-translation-symmetry-breaking/10-04-discrete-skeleton-macroscopic-time.md)
 
+### 第三卷：引力与几何的熵起源
+
+#### 第七编：几何动力学基础
+
+##### 第十一章：因果几何与广义熵
+
+- [11.1 小因果菱形（Causal Diamond）的几何性质与共形结构](volume03-gravity-entropy-origin/part07-geometric-dynamics-foundation/chapter11-causal-geometry-generalized-entropy/11-01-causal-diamond-geometric-properties.md)
+- [11.2 广义熵泛函：几何面积项与物质纠缠熵项的定义](volume03-gravity-entropy-origin/part07-geometric-dynamics-foundation/chapter11-causal-geometry-generalized-entropy/11-02-generalized-entropy-functional.md)
+- [11.3 纠缠第一定律：模哈密顿量（Modular Hamiltonian）与能量动量张量](volume03-gravity-entropy-origin/part07-geometric-dynamics-foundation/chapter11-causal-geometry-generalized-entropy/11-03-first-law-entanglement-modular-hamiltonian.md)
+- [11.4 瑞查德乌利（Raychaudhuri）方程：几何聚焦效应的精确描述](volume03-gravity-entropy-origin/part07-geometric-dynamics-foundation/chapter11-causal-geometry-generalized-entropy/11-04-raychaudhuri-equation-geometric-focusing.md)
+
+##### 第十二章：熵变分原理 (IGVP) 与场方程
+
+- [12.1 最大纠缠平衡公理：真空纠缠熵的一阶变分驻值条件](volume03-gravity-entropy-origin/part07-geometric-dynamics-foundation/chapter12-entropic-variational-principle/12-01-maximum-entanglement-equilibrium-axiom.md)
+- [12.2 爱因斯坦场方程的完整推导：从标量熵平衡到张量动力学](volume03-gravity-entropy-origin/part07-geometric-dynamics-foundation/chapter12-entropic-variational-principle/12-02-complete-derivation-einstein-equation.md)
+- [12.3 宇宙常数 $\Lambda$ 的涌现：作为状态方程的积分常数](volume03-gravity-entropy-origin/part07-geometric-dynamics-foundation/chapter12-entropic-variational-principle/12-03-cosmological-constant-emergence.md)
+- [12.4 高阶引力理论：从 Wald 熵推导 Lovelock 引力与 $f(R)$ 引力](volume03-gravity-entropy-origin/part07-geometric-dynamics-foundation/chapter12-entropic-variational-principle/12-04-higher-order-gravity-wald-entropy.md)
+
+##### 第十三章：变分完备性与边界项
+
+- [13.1 变分原理中的边界项问题与数学完备性](volume03-gravity-entropy-origin/part07-geometric-dynamics-foundation/chapter13-variational-completeness-boundary-terms/13-01-boundary-term-problem-mathematical-completeness.md)
+- [13.2 Gibbons-Hawking-York (GHY) 项的熵起源：边缘模式的配分函数](volume03-gravity-entropy-origin/part07-geometric-dynamics-foundation/chapter13-variational-completeness-boundary-terms/13-02-ghy-term-entropy-origin.md)
+- [13.3 海沃德（Hayward）角点项：非光滑几何上的熵可加性](volume03-gravity-entropy-origin/part07-geometric-dynamics-foundation/chapter13-variational-completeness-boundary-terms/13-03-hayward-corner-term.md)
+
+#### 第八编：时空稳定性与奇点
+
+##### 第十四章：能量条件的信息论起源
+
+- [14.1 经典能量条件的失效与半经典引力的困境](volume03-gravity-entropy-origin/part08-spacetime-stability-singularities/chapter14-energy-conditions-information-origin/14-01-classical-energy-conditions-failure.md)
+- [14.2 量子零能条件 (QNEC) 的推导：广义熵二阶变分的非正性](volume03-gravity-entropy-origin/part08-spacetime-stability-singularities/chapter14-energy-conditions-information-origin/14-02-qnec-derivation.md)
+- [14.3 信息流与几何聚焦：利用 QNEC 证明广义视界单调性定理](volume03-gravity-entropy-origin/part08-spacetime-stability-singularities/chapter14-energy-conditions-information-origin/14-03-qfc-generalized-horizon-monotonicity.md)
+- [14.4 奇点定理的热力学诠释：作为信息密度饱和导致的几何焦散](volume03-gravity-entropy-origin/part08-spacetime-stability-singularities/chapter14-energy-conditions-information-origin/14-04-singularity-thermodynamic-interpretation.md)
+
+##### 第十五章：黑洞热力学的微观统计
+
+- [15.1 视界作为 QCA 网络的信息截断表面](volume03-gravity-entropy-origin/part08-spacetime-stability-singularities/chapter15-black-hole-thermodynamics-microscopic/15-01-horizon-information-truncation-surface.md)
+- [15.2 贝肯斯坦-霍金熵 $S=A/4G$ 的微观计数推导](volume03-gravity-entropy-origin/part08-spacetime-stability-singularities/chapter15-black-hole-thermodynamics-microscopic/15-02-bekenstein-hawking-entropy-microscopic-counting.md)
+- [15.3 系数 $1/4$ 的锁定：幺正性与广义相对论的一致性约束](volume03-gravity-entropy-origin/part08-spacetime-stability-singularities/chapter15-black-hole-thermodynamics-microscopic/15-03-coefficient-14-locking.md)
+- [15.4 黑洞蒸发与 Page 曲线：QCA 幺正演化下的信息回收机制](volume03-gravity-entropy-origin/part08-spacetime-stability-singularities/chapter15-black-hole-thermodynamics-microscopic/15-04-black-hole-evaporation-page-curve.md)
+
 ## 目录结构
 
 ```
@@ -153,5 +193,21 @@ book-foundation-of-phys-in-geo-and-info/
             ├── 10-02-z2-holonomy.md
             ├── 10-03-null-modular-double-cover.md
             └── 10-04-discrete-skeleton-macroscopic-time.md
+└── volume03-gravity-entropy-origin/
+    └── part07-geometric-dynamics-foundation/
+        ├── chapter11-causal-geometry-generalized-entropy/
+        │   ├── 11-01-causal-diamond-geometric-properties.md
+        │   ├── 11-02-generalized-entropy-functional.md
+        │   ├── 11-03-first-law-entanglement-modular-hamiltonian.md
+        │   └── 11-04-raychaudhuri-equation-geometric-focusing.md
+        ├── chapter12-entropic-variational-principle/
+        │   ├── 12-01-maximum-entanglement-equilibrium-axiom.md
+        │   ├── 12-02-complete-derivation-einstein-equation.md
+        │   ├── 12-03-cosmological-constant-emergence.md
+        │   └── 12-04-higher-order-gravity-wald-entropy.md
+        └── chapter13-variational-completeness-boundary-terms/
+            ├── 13-01-boundary-term-problem-mathematical-completeness.md
+            ├── 13-02-ghy-term-entropy-origin.md
+            └── 13-03-hayward-corner-term.md
 ```
 
