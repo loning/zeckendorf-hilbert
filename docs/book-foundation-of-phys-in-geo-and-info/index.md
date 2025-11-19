@@ -189,6 +189,52 @@
 - [22.3 客观现实作为纳什均衡：主体间信息交换的博弈论不动点](volume04-physics-agency-observer-complex-systems/part12-multi-agent-systems-objectivity/chapter22-consensus-geometry/22-03-objective-reality-nash-equilibrium.md)
 - [22.4 语言与知识图谱的物理本质：观察者网络中的张量网络态](volume04-physics-agency-observer-complex-systems/part12-multi-agent-systems-objectivity/chapter22-consensus-geometry/22-04-language-knowledge-graph-tensor-network.md)
 
+### 第五卷：元理论 —— 逻辑、计算与实验验证
+
+#### 第十三编：物理学的范畴论基础
+
+##### 第二十三章：范畴量子力学
+
+- [23.1 对称幺半范畴 (Symmetric Monoidal Category) 作为物理公理语言](volume05-metatheory-logic-computation-experimental-verification/part13-categorical-foundations-physics/chapter23-categorical-quantum-mechanics/23-01-symmetric-monoidal-category.md)
+- [23.2 匕首紧致范畴 (Dagger Compact Category)：幺正性与对偶性的统一](volume05-metatheory-logic-computation-experimental-verification/part13-categorical-foundations-physics/chapter23-categorical-quantum-mechanics/23-02-dagger-compact-category.md)
+- [23.3 串图演算 (String Diagrams)：量子过程的拓扑推导与计算](volume05-metatheory-logic-computation-experimental-verification/part13-categorical-foundations-physics/chapter23-categorical-quantum-mechanics/23-03-string-diagrams-topological-derivation.md)
+- [23.4 完备性定理：图解语言与希尔伯特空间算符演算的等价性](volume05-metatheory-logic-computation-experimental-verification/part13-categorical-foundations-physics/chapter23-categorical-quantum-mechanics/23-04-completeness-theorem-equivalence.md)
+
+##### 第二十四章：拓扑斯与物理逻辑
+
+- [24.1 物理理论作为拓扑斯 (Topos) 中的对象](volume05-metatheory-logic-computation-experimental-verification/part13-categorical-foundations-physics/chapter24-topos-physical-logic/24-01-physical-theory-as-topos-object.md)
+- [24.2 直觉主义逻辑：量子叠加态与排中律失效的逻辑对偶](volume05-metatheory-logic-computation-experimental-verification/part13-categorical-foundations-physics/chapter24-topos-physical-logic/24-02-intuitionistic-logic-quantum-superposition.md)
+- [24.3 柯里-霍华德-兰贝克 (Curry-Howard-Lambek) 对应在物理中的实现](volume05-metatheory-logic-computation-experimental-verification/part13-categorical-foundations-physics/chapter24-topos-physical-logic/24-03-curry-howard-lambek-correspondence-physics.md)
+
+### 第十四编：计算基础与编码
+
+#### 第二十五章：物理计算的最优性
+
+- [25.1 兰道尔原理（Landauer's Principle）与不可逆计算的热力学代价](volume05-metatheory-logic-computation-experimental-verification/part14-computational-foundations-encoding/chapter25-optimality-physical-computation/25-01-landauer-principle-thermodynamic-cost.md)
+- [25.2 斐波那契编码与泽肯多夫算术：局域可逆更新的最优编码](volume05-metatheory-logic-computation-experimental-verification/part14-computational-foundations-encoding/chapter25-optimality-physical-computation/25-02-fibonacci-encoding-zeckendorf-arithmetic.md)
+- [25.3 黄金分割率的物理起源：作为因果网络中的最优信息传输率](volume05-metatheory-logic-computation-experimental-verification/part14-computational-foundations-encoding/chapter25-optimality-physical-computation/25-03-golden-ratio-physical-origin.md)
+- [25.4 算法信息论与物理定律的柯尔莫哥洛夫复杂性](volume05-metatheory-logic-computation-experimental-verification/part14-computational-foundations-encoding/chapter25-optimality-physical-computation/25-04-algorithmic-information-theory-kolmogorov-complexity.md)
+
+### 第十五编：实验验证与工程展望
+
+#### 第二十六章：精密测量实验
+
+- [26.1 微波散射网络：利用混沌腔验证 $\kappa(E)=\rho(E)$ 恒等式](volume05-metatheory-logic-computation-experimental-verification/part15-experimental-verification-artificial-consciousness/chapter26-precision-measurement-experiments/26-01-microwave-scattering-network.md)
+- [26.2 介观导体中的时间延迟测量：电子干涉与量子电容](volume05-metatheory-logic-computation-experimental-verification/part15-experimental-verification-artificial-consciousness/chapter26-precision-measurement-experiments/26-02-mesoscopic-conductor-time-delay.md)
+- [26.3 原子钟引力红移实验：检验局域态密度重标度效应](volume05-metatheory-logic-computation-experimental-verification/part15-experimental-verification-artificial-consciousness/chapter26-precision-measurement-experiments/26-03-atomic-clock-gravitational-redshift.md)
+
+#### 第二十七章：天文与宇宙学观测
+
+- [27.1 引力波色散：LIGO/Virgo 数据中的高频洛伦兹破坏搜索](volume05-metatheory-logic-computation-experimental-verification/part15-experimental-verification-artificial-consciousness/chapter27-astronomical-cosmological-observations/27-01-gravitational-wave-dispersion.md)
+- [27.2 快速射电暴 (FRB) 的频谱闪烁：时空微观结构的统计指纹](volume05-metatheory-logic-computation-experimental-verification/part15-experimental-verification-artificial-consciousness/chapter27-astronomical-cosmological-observations/27-02-frb-spectral-scintillation.md)
+- [27.3 宇宙微波背景 (CMB) 中的离散特征：普朗克尺度全息噪声](volume05-metatheory-logic-computation-experimental-verification/part15-experimental-verification-artificial-consciousness/chapter27-astronomical-cosmological-observations/27-03-cmb-discrete-features.md)
+
+#### 第二十八章：人工意识与未来物理
+
+- [28.1 人工意识工程：基于自指动力学的神经形态芯片设计](volume05-metatheory-logic-computation-experimental-verification/part15-experimental-verification-artificial-consciousness/chapter28-artificial-consciousness-future-physics/28-01-artificial-consciousness-engineering.md)
+- [28.2 意识图灵测试：利用 $\mathbb{Z}_2$ 拓扑指标检测机器主体性](volume05-metatheory-logic-computation-experimental-verification/part15-experimental-verification-artificial-consciousness/chapter28-artificial-consciousness-future-physics/28-02-consciousness-turing-test.md)
+- [28.3 终极理论的开放问题：从"发现物理"到"构建几何"](volume05-metatheory-logic-computation-experimental-verification/part15-experimental-verification-artificial-consciousness/chapter28-artificial-consciousness-future-physics/28-03-open-questions-future-physics.md)
+
 ## 目录结构
 
 ```
