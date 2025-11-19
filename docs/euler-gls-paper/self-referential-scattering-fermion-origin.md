@@ -2,6 +2,10 @@
 
 Version: 2.29
 
+**英文标题建议**：Self-referential scattering and the birth of fermions: Riccati square roots, spinor double cover, and a $\mathbb{Z}_2$ exchange phase
+
+**关键词建议**：scattering phase square-root cover; $\mathbb{Z}_2$ holonomy; spectral shift; boundary triples; Pfaffian invariant; Aharonov–Bohm scattering; Birman–Kreĭn formula
+
 ## 摘要
 
 在去除鉴别子后的参数空间 $X^\circ\subset X$ 上，考虑定能散射的**相位指数映射** $\mathfrak s:X^\circ\to U(1)$。沿平方覆盖 $p:U(1)\to U(1)$, $p(z)=z^2$ 的拉回
@@ -44,7 +48,9 @@ $$
 
 给出存在性与双曲型区域内两不动点交换的定理，并证明其交换奇偶与 $\nu_{\sqrt S}$ 一致。以一维 $\delta$-势与 Aharonov–Bohm 模型为例，给出显式绕数计算，并用"鉴别子模 2 交数"统一复小环与实折返路径。拓扑超导端点散射方面，区分 Altland–Zirnbauer 对称类：Class D 的 $\operatorname{sgn}\det r(0)$ 与 Class DIII 的 $\operatorname{sgn}\operatorname{Pf}r(0)$ 分别等价于 $\sqrt{\det r(0)}$ 的分支号符。该框架在 $d\ge 3$ 的费米/玻色统计直接适用；在 $d=2$ 给出任意子 $U(1)$ 统计的 $\mathbb{Z}_2$ 投影。
 
-**实验预言（单次 $\mathbb{Z}_2$ 读出协议）**
+**实验可读出的模 2 指标：形态学判据（单次 $\mathbb{Z}_2$ 读出协议）**
+
+**声明**：以下是可操作的读出协议，并非理论证明的一部分。该协议把本文的 $\nu_{\sqrt S}(\gamma)\in\{\pm1\}$ 映射为实验可直接观测的号符。
 
 在门控可调 Josephson 结中，取 Andreev 通道数 $\lesssim 4$ 且能够分辨**单一** $\pi$ 跃迁。设超导相位差 $\phi$ 在一次 $2\pi$ 扫描中以步长 $\Delta\phi$ 记录零偏置信号 $Y(\phi)$（电导或干涉幅）。
 
@@ -101,6 +107,8 @@ $$
 
 *黑盒提示*：本文记号"$\sqrt S$"一律指 $\mathfrak s:X^\circ\to U(1)$ 的**平方根覆盖**（即主 $\mathbb{Z}_2$-丛的 holonomy），**不**指矩阵意义上的平方根。详见 §2。
 
+**记号总提示** 本文两处 $L$ 的用法不同。§3 中 $L=\psi'/\psi$ 为 Riccati 变量。§7 中 $L$ 为边界参数并取值扩展实轴。二者在各自段落内使用且互不混淆。下文若提及"自指闭环 $L=\Phi_{\tau,E}(L)$"，一律指 §7 的边界参数。
+
 ### 0.2 参数空间、鉴别子与一般位置
 
 令 $X$ 为分片可微流形，记去鉴别子空间 $X^\circ:=X\setminus D$。我们以**一般位置/横截**作为默认正则性：
@@ -156,6 +164,17 @@ $$
 
 规避独立性的具体陈述与交数计数见 §5。
 
+**命题 0.2ter（分层横截与链接类的良定性）** 设 $X$ 为第二可数的分片 $C^1$ 定向流形。令 $D\subset X$ 为闭的、可驯化的余维一分层子流形。取 $X^\circ:=X\setminus D$。则存在唯一 $w_D\in H^1(X^\circ;\mathbb Z_2)$，其与任意足够小的法向正向小环的配对为 $1$。若 $N(D)$ 是 $D$ 的紧致管状邻域，则对任意闭路的规避版本 $\gamma_\varepsilon\subset X^\circ$，当 $\gamma_\varepsilon\pitchfork\partial N(D)$ 时有
+
+$$
+\langle w_D,[\gamma_\varepsilon]\rangle
+=\big([\gamma_\varepsilon]\cdot[\partial N(D)]\big)\bmod 2 .
+$$
+
+该类对把 $(\gamma,D)$ 通过任意小的 $C^1$ 扰动调至分层横截的操作不变。
+
+*证明*：取 $D$ 的紧致管状邻域 $N(D)\cong D\times(-\varepsilon,\varepsilon)$。其边界 $\partial N(D)\cong \big(D\times\{-\varepsilon\}\big)\sqcup\big(D\times\{+\varepsilon\}\big)$ 为 $X^\circ$ 的闭嵌入子流形。将 $[\partial N(D)]$ 视为 $H_{n-1}(X^\circ;\mathbb Z_2)$ 中的同调类（$n=\dim X$），并定义 $w_D:=\operatorname{PD}_{X^\circ}\big([\partial N(D)]\big)\in H^1(X^\circ;\mathbb Z_2)$，其中 $\operatorname{PD}$ 为 Poincaré 对偶。此定义独立于 $N(D)$ 的选取。对任意足够小的法向小环 $\eta$，$\eta$ 与 $\partial N(D)$ 的横截交数模 2 为 1，故配对 $\langle w_D,[\eta]\rangle=1$。唯一性来自对偶性的泛性质。对规避闭路 $\gamma_\varepsilon$ 与 $\gamma_{\varepsilon'}$，它们仅在每个横截点附近沿 $\partial N(D)$ 的一条小弧有所不同，这些差异并成若干个边界为法向小环的 2‑链。模 2 对偶配对不变，故 $I_2(\gamma,D)$ 与规避选择无关。对每个光滑层 $D_\alpha$ 可取管状邻域并用有限覆盖和分割统一粘合。可驯化性保证粘合的良定。对任意小的 $C^1$ 扰动 $(\gamma,D)\leadsto(\gamma',D')$，$X^\circ$ 作小同伦，$\partial N(D)$ 的同调类保持不变，故 $w_D$ 与 $I_2$ 保持不变。
+
 ### 0.3 联络、绕数与"$\sqrt S$"的含义
 
 设
@@ -178,6 +197,24 @@ $$
 本文在**整数层级**仅使用 $\mathrm{Sf}(\gamma)=\deg(\mathfrak s|_\gamma)$ 的迹类结论（见 §4）；在**模 2 层级**比较 $\mathrm{Sf}$、束缚态奇偶与交数（见 §5）。"$\sqrt S$"一律指 $\mathfrak s$ 的平方根覆盖所对应的主 $\mathbb{Z}_2$-丛 holonomy。
 
 **全篇唯一约定（重要）**：记号"$\sqrt S$"一律指 $\mathfrak s:X^\circ\to U(1)$ 的**平方根覆盖**（即主 $\mathbb{Z}_2$-丛 $P_{\sqrt{\mathfrak s}}=\mathfrak s^*(p)$ 的 holonomy），**不**指矩阵意义的平方根。文中"$\sqrt{\det r(0)}$ 的分支号符"等短语悉依此约定，均是指**映射层**平方根覆盖的**号符分支**，而非对 $\det r(0)$ 求矩阵平方根。参见 §2（覆盖—提升判据）与 §9（D/DIII 指标）。
+
+**定义 0.3bis（绕数的辐角版本与积分等价）** 设 $\mathfrak s:X^\circ\to U(1)$ 沿闭路 $\gamma_\varepsilon\subset X^\circ$ 连续。取任一连续辐角选择 $\mathrm{Arg}\,\mathfrak s\in\mathbb R/2\pi\mathbb Z$，定义
+
+$$
+\deg(\mathfrak s|_{\gamma}):=\frac{1}{2\pi}\,\Delta_{\gamma_\varepsilon}\big(\mathrm{Arg}\,\mathfrak s\big)\in\mathbb Z .
+$$
+
+若进一步 $\mathfrak s$ 沿 $\gamma_\varepsilon$ 为分段 $C^1$ 或 $\mathrm{BV}$，则
+
+$$
+\frac{1}{2\pi i}\oint_{\gamma_\varepsilon}\mathfrak s^{-1}d\mathfrak s=\deg(\mathfrak s|_{\gamma}),
+\qquad
+\oint_{\gamma_\varepsilon} d\xi_p=-\deg(\mathfrak s|_{\gamma})
+$$
+
+其中 $\oint d\xi_p$ 按 Lebesgue–Stieltjes 解释。两种定义等价。
+
+**警示（谱回路与参回路的比较范围）** 本文任何整数层级等式仅针对外参数闭路 $\gamma$。谱参数回路 $C$ 仅用于 $S(k)$ 的解析结构整数记账。两者只在 $\mathbb Z_2$ 层级比较。主定理 1.1 中的等价链路一律理解为针对 $\gamma$ 的陈述。
 
 ### 0.4 短程与谱假设
 
@@ -210,6 +247,14 @@ $$
 
 上述 $\mathbb Z_2$ 读数对规避方式**不敏感**。
 
+**(A3‴)（正则性与积分解释）** 在 $\gamma_\varepsilon$ 上可取谱位移的连续化支 $\xi_p$，并满足沿 $\gamma_\varepsilon$ 为分段 $C^1$ 或有界变差。由此
+
+$$
+\oint_{\gamma_\varepsilon} d\xi_p
+$$
+
+按 Lebesgue–Stieltjes 定义，且等于 $\mathrm{Arg}\, \mathfrak s$ 的总变差除以 $2\pi$ 的相反数。特别地 $(-1)^{\deg(\mathfrak s|_\gamma)}=\exp\bigl(-i\pi\oint_{\gamma_\varepsilon} d\xi_p\bigr)$。
+
 **引理 0.A（$\xi_p$ 的连续化与模 $2$ 稳定性）**
 
 在 (A1)–(A2) 与 (A3″) 下，沿规避闭路 $\gamma_\varepsilon\subset X^\circ$ 存在正则化谱位移 $\xi_p$ 的**局部连续化选择**，且任意两条连续化选择之差为整数常数。因而
@@ -220,7 +265,7 @@ $$
 
 与选择无关；反向取向仅使积分变号，但**奇偶不变**。
 
-*（证明略：利用 $\mathfrak S_p$‑连续性与幺正性在避开 $D$ 的管状邻域上拼接局部辐角，差别仅为 $\mathbb Z$，见**引理 4.0bis**的连续化与**定理 4.2**的模 2 一致性。）*
+*证明*：在 $\gamma_\varepsilon$ 的每个紧小弧 $I$ 上，由假设 A 的 $\mathfrak S_p$‑连续性与幺正性，$S-\mathbf 1\in\mathfrak S_p$ 给出修正 Fredholm 行列式 $\det_p S$ 的局部连续对数分支，从而得到 $\xi_p$ 的局部连续支。两条局部分支在 $I$ 上相差整数常数。用有限覆盖拼接得全局分段 $C^1$ 或 BV 的连续化支。对闭路的积分取 Lebesgue–Stieltjes 意义，常数差消失，故指数不依赖分支。逆向取向将积分取负，指数取共轭，值仍在 $\{\pm 1\}$。
 
 ### 0.5 Birman–Kreĭn 与谱位移
 
@@ -251,7 +296,7 @@ $$
 
 在 §0.2 的横截‑余维一正则性与 §0.2a 的规避约定下，若参考相位 $0$ 或 $\pi$ 处开隙，且某时刻仅有一条本征相位与参考相位作一阶横截，则存在一组沿参数的连续本征向量与本征相位选择，使该通道在横截点邻域满足 $\partial_t\theta(t_\ast)\neq0$ 并跨越 $\pi$（模 $2\pi$），其余通道相位在 $t_\ast$ 连续。
 
-*（证明略：由单值的 Herglotz 单调性与 Kato 选择定理，在横截点局部作可分离规范。）*
+*证明*：令 $t\mapsto S(t)$ 为 $\gamma_\varepsilon$ 上的幺正连续族。参考相位 $0$ 或 $\pi$ 处开隙意味着在 $t_\ast$ 的邻域，谱在该点除一条支外与参考点保持正距。由 Riesz 投影与 Kato 选择定理，可在邻域内为每条孤立本征值选取连续的谱投影与本征向量。横截性给出唯一支在 $t_\ast$ 处满足 $\partial_t \theta_j(t_\ast)\neq 0$。其余支与参考相位的距离在 $t_\ast$ 保持正，故连续不中断。
 
 **引理 1.0bis（横截 ⇒ 单通道跨 $\pi$ 的规范化）**
 
@@ -263,9 +308,17 @@ $$
 
 而其余通道相位在 $t_\ast$ 连续。因此相对于任意参考相位 $0$ 或 $\pi$，该横截点对 $\mathrm{Sf}$ 的贡献为 $\pm1$；其**奇偶**不依赖参考相位与规避方式。
 
+*证明*：由引理 1.0ter 得连续相位选择。横截意味着相位函数在参考角的零点是单根，即导数非零。故在 $t_\ast$ 左右符号相反，穿越一次。其余支不接触参考角。谱流定义按穿越方向计 $\pm1$，改变取向只改变号符。故奇偶不变。
+
 **主定理 1.1（统一等价；整数=迹类，模 2=一般 Schatten）**
 
-在 §0 的短程与正则性设定、假设 A 与假设 D 下，对任意闭路 $\gamma\subset X$（若 $\gamma\cap D\neq\varnothing$，按 §0.2a 取规避闭路 $\gamma_\varepsilon\subset X^\circ$）：
+在 §0 的短程与正则性设定下，假设以下两条成立：
+
+**假设 A（Schatten‑连续性与谱位移连续化）**：存在 $p\ge 2$ 与连续化的正则化谱位移 $\xi_p$，使 $(E,\lambda)\mapsto S(E,\lambda)-\mathbf 1\in\mathfrak S_p$ 沿闭路 $\gamma$ 连续（按 §0.2a 规避为 $\gamma_\varepsilon\subset X^\circ$），并定义 $\mathfrak s:=e^{-2\pi i\xi_p}\in U(1)$。文献：Yafaev《Mathematical Scattering Theory》§8–§9；Pushnitski, J. Math. Phys. **47** (2006) 062101 及 Behrndt–Hassi–de Snoo《Boundary Value Problems》§10。
+
+**假设 D（横截‑余维一正则性）**：鉴别子 $D\subset X$ 为余维一的分片 $C^1$ 闭子流形，对应 Jost 零点生成/湮灭、阈值异常、嵌入本征值或通道开闭事件（§0.2）。
+
+则对任意参数闭路 $\gamma\subset X$（若 $\gamma\cap D\neq\varnothing$，按 §0.2a 取规避闭路 $\gamma_\varepsilon\subset X^\circ$），有
 
 $$
 \nu_{\sqrt S}(\gamma)
@@ -276,33 +329,31 @@ $$
 =(-1)^{I_2(\gamma,D)}.
 $$
 
-其中 $\mathfrak s=e^{-2\pi i\,\xi_p}$；当 $S-\mathbf 1\in\mathfrak S_1$ 时 $\mathfrak s=\det S$。
+记号"$\sqrt S$"指 $\mathfrak s:X^\circ\to U(1)$ 的**映射层平方根覆盖**（主 $\mathbb Z_2$-丛 $P_{\sqrt{\mathfrak s}}=\mathfrak s^*(p)$ 的 holonomy 指数），**不**指矩阵平方根。
 
-* **整数层级（迹类）**：若 $S-\mathbf 1\in\mathfrak S_1$ 沿 $\gamma_\varepsilon$ 连续，则 $\mathrm{Sf}(\gamma)=\deg(\mathfrak s|_\gamma)=-\oint_{\gamma_\varepsilon} d\xi\in\mathbb Z$。
+* **整数层级（迹类版）**：若 $S-\mathbf 1\in\mathfrak S_1$ 沿 $\gamma_\varepsilon$ 连续，则 $\mathfrak s=\det S$ 且
 
-* **模 2 层级（一般 Schatten）**：在假设 A（$p\ge2$ 可取）下，仅主张
+  $$
+  \mathrm{Sf}(\gamma)=\deg(\mathfrak s|_\gamma)=-\oint_{\gamma_\varepsilon} d\xi\in\mathbb Z.
+  $$
+
+* **模 2 层级（一般 Schatten 版）**：在假设 A（$p\ge2$）下，仅主张
 
   $$
   \exp\Bigl(-i\pi\oint_{\gamma_\varepsilon} d\xi_p\Bigr)=(-1)^{\mathrm{Sf}(\gamma)}=(-1)^{N_b(\gamma)}=(-1)^{I_2(\gamma,D)} .
   $$
 
-**证明素描（统一版）**
+**重要约定**：上述所有等价关系仅针对**参数空间闭路 $\gamma$**。本文在整数层级从不比较谱参数回路 $C\subset k$‑平面（用于 Jost 零点计数）与参数闭路 $\gamma$；两者仅在模 2 层级通过交数判据 $I_2(\gamma,D)$ 桥接（见 §0.3 警示与 §3 注）。
 
-迹类时由 BK 得 $\deg(\mathfrak s|_\gamma)=-\oint d\xi=\mathrm{Sf}(\gamma)\in\mathbb Z$；一般 Schatten 时，仅保留
+**证明**：第一等号 $\nu_{\sqrt S}(\gamma)=(-1)^{\deg(\mathfrak s|_\gamma)}$ 由定义。第二等号 $(-1)^{\deg(\mathfrak s|_\gamma)}=(-1)^{\mathrm{Sf}(\gamma)}$：在迹类情形 $S-\mathbf 1\in\mathfrak S_1$ 由 Birman–Kreĭn 公式 $\det S=e^{-2\pi i\xi}$ 得 $\deg(\mathfrak s|_\gamma)=\frac{1}{2\pi i}\oint \mathfrak s^{-1}d\mathfrak s=-\oint d\xi$，而单位圆上的谱流 $\mathrm{Sf}(\gamma)$ 等于 $\frac{1}{2\pi}$ 的角度净变化（Kato–Phillips 谱流公式的幺正版本），故 $\mathrm{Sf}(\gamma)=\deg(\mathfrak s|_\gamma)\in\mathbb Z$。在一般 Schatten 情形，由引理 0.A 取 $\xi_p$ 的连续化支，定义 $\mathfrak s=e^{-2\pi i\xi_p}$，则 $\exp(-i\pi\oint d\xi_p)=(-1)^{\deg(\mathfrak s|_\gamma)}$。由横截局部模型，闭路上的穿越仅为有限个一阶穿越，每次穿越使 $\arg\det S$ 跳变 $\pm\pi$，因而指数每次翻转一次，等于 $(-1)^{\mathrm{Sf}(\gamma)}$。第三等号 $(-1)^{\mathrm{Sf}(\gamma)}=(-1)^{N_b(\gamma)}$：$N_b(\gamma)$ 正是单位圆谱流穿越参考角的计数模 2，与 $(-1)^{\mathrm{Sf}(\gamma)}$ 等价。第四等号 $(-1)^{N_b(\gamma)}=(-1)^{I_2(\gamma,D)}$：由命题 5.0bis 与定理 5.1，$I_2(\gamma,D)$ 等于横截点数模 2。每个横截点等价于一条相位跨 $\pi$ 的事件，故与 $N_b(\gamma)$ 的奇偶一致。合并得结论。
 
-$\exp(-i\pi\oint d\xi_p)=(-1)^{\mathrm{Sf}(\gamma)}$（见**引理 4.0bis**与**定理 4.2**）。横截局部模型把"相位跨 $\pi$"与"$\partial_t\theta\neq0$"等价，谱流的奇偶与"交/链接数"一致（§5 定理 5.1）。合并得
-
-$$
-\nu_{\sqrt S}(\gamma)=(-1)^{\deg}=(-1)^{\mathrm{Sf}}=(-1)^{N_b}=(-1)^{I_2}.
-$$
-
-*（整数层级不比较谱回路与参回路；仅在模 2 层级以交数作桥接。）*
+*注*：整数层级不比较谱回路与参回路；仅在模 2 层级以交数作桥接。
 
 **定义（束缚态奇偶）**
 
 令 $\gamma$ 的规避为 $\gamma_\varepsilon$。沿 $\gamma_\varepsilon$ 连续追踪本征相位：每当存在一支相位 $\theta_j$ 在参考相位 $0$ 或 $\pi$ 处**横截**（见"横截局部模型（加强版）"），计 $+1$ 或 $-1$（方向决定符号）。定义 $\widetilde N_b(\gamma)$ 为总计数，$N_b(\gamma):=\widetilde N_b(\gamma)\bmod2$。
 
-**括注**：此处"束缚态"一词仅为术语沿用，指的是**单位圆上本征相位对参考相位的横截事件**（亦即相位谱流的穿越计数），并不等价于哈密顿量在能量轴上的束缚能级穿越；选择 $\theta=0$ 或 $\pi$ 在 $\mathbb{Z}_2$ 层级等价。
+**术语说明**：此处"束缚态奇偶"指的是**单位圆上本征相位对参考相位 $0$ 或 $\pi$ 的横截事件的奇偶**（亦即相位谱流的穿越计数模 2），并不等价于哈密顿量在能量轴上的束缚能级穿越；选择 $\theta=0$ 或 $\pi$ 在 $\mathbb{Z}_2$ 层级等价。该术语仅为沿用散射理论传统，本质是幺正矩阵谱流的 $\mathbb{Z}_2$ 指标。
 
 **定义（模 2 交/链接数）** $I_2(\gamma,D)=\langle w_D,[\gamma_\varepsilon]\rangle\in\mathbb Z_2$。
 
@@ -329,6 +380,8 @@ $$
 
 反向取向仅改变积分号符，不影响 (b) 的奇偶结论。
 
+*证明*：(a) 在 $S-\mathbf 1\in\mathfrak S_1$ 且连续的条件下，Birman–Kreĭn 公式给出 $\det S(E,\lambda)=e^{-2\pi i\xi(E,\lambda)}$。沿规避闭路 $\gamma_\varepsilon$ 取 $\xi$ 的连续化支。有 $\deg(\mathfrak s|_\gamma)=\frac{1}{2\pi i}\oint \mathfrak s^{-1}d\mathfrak s=\frac{1}{2\pi}\oint d(\arg\det S)=-\oint d\xi$。另一方面，单位圆上的谱流 $\mathrm{Sf}(\gamma)$ 等于 $\frac{1}{2\pi}$ 的角度净变化（Kato–Phillips 谱流公式的幺正版本）。于是 $\mathrm{Sf}(\gamma)=\deg(\mathfrak s|_\gamma)$。(b) 由引理 0.A 取 $\xi_p$ 的连续化支。定义 $\mathfrak s=e^{-2\pi i\xi_p}$，则 $\exp(-i\pi\oint d\xi_p)=(-1)^{\deg(\mathfrak s|_\gamma)}$。由横截局部模型，闭路上的穿越仅为有限个一阶穿越，每次穿越使 $\arg\det S$ 跳变 $\pm\pi$，因而指数每次翻转一次，等于 $(-1)^{\mathrm{Sf}(\gamma)}$。
+
 **引理 2（交数到束缚态奇偶）**
 在 §5 的模 2 交数定义下，取 $\partial\Sigma=\gamma$ 的分片 $C^1$ 2‑链 $\Sigma$ 与 $D$ 横截时，每个交点对应相位的一阶分岔与谱流 $\pm1$，故
 
@@ -336,7 +389,7 @@ $$
 (-1)^{\mathrm{Sf}(\gamma)}=(-1)^{I_2(\gamma,D)}.
 $$
 
-*证明见附录 C、D。*
+*证明*：按横截局部模型，每个 $\gamma$ 与 $D$ 的横截点触发唯一通道的相位跨 $\pi$ 一次，致谱流奇偶翻转一次。由命题 5.0bis，横截点数模 2 即 $I_2(\gamma,D)$。结合定理 4.2 的指数表示，得结论。
 
 ---
 
@@ -350,10 +403,22 @@ $$
 \nu_{\sqrt S}(\gamma)=\exp\Bigl(i\oint_\gamma \tfrac{1}{2i}\,\mathfrak s^{-1}d\mathfrak s\Bigr)=(-1)^{\deg(\mathfrak s|_\gamma)}.
 $$
 
+**定义 2.1bis（覆盖的单值提升与所谓 holonomy）** 主 $\mathbb Z_2$‑丛 $P_{\sqrt{\mathfrak s}}=\mathfrak s^*(p)$ 的"holonomy"指的是覆盖的单值提升沿闭路的单值性。即取 $\tilde\gamma$ 为 $\gamma_\varepsilon$ 在 $P_{\sqrt{\mathfrak s}}$ 上的提升，若起点片标记为 $+1$，则终点标记为 $\pm1$。记此号符为 $\operatorname{Hol}_{P_{\sqrt{\mathfrak s}}}(\gamma_\varepsilon)\in\{\pm1\}$。则
+
+$$
+\operatorname{Hol}_{P_{\sqrt{\mathfrak s}}}(\gamma_\varepsilon)=(-1)^{\deg(\mathfrak s|_{\gamma})}.
+$$
+
+这里未在 $\mathbb Z_2$‑丛上引入微分几何的联络形式，等式完全是拓扑的。
+
+**术语约定**：本文"holonomy"专指 $\mathbb{Z}_2$ 主丛的单值提升号符，取值 $\{\pm1\}$；"holonomy 指数"指写成指数形式的路径函数 $\nu_{\sqrt S}(\gamma)=\exp(i\oint\alpha)$。两者通过 $\operatorname{Hol}=\exp(i\pi\deg)$ 等价。
+
 **定理 A（覆盖—提升判据）**
 存在连续 $s:X^\circ\to U(1)$ 使 $s^2=\mathfrak s$ 当且仅当 $[\mathfrak s]\in 2H^1(X^\circ;\mathbb{Z})$。对应主 $\mathbb{Z}_2$-丛 $P_{\sqrt{\mathfrak s}}=\mathfrak s^*(p)$ 的 holonomy 等于 $\nu_{\sqrt S}$（此处"$\sqrt S$"指 $\mathfrak s$ 的平方根覆盖）。
 
 *推论*：$\nu_{\sqrt S}(\gamma)=(-1)^{[\mathfrak s]([\gamma_\varepsilon])}$，即为 $[\mathfrak s]\in H^1(X^\circ;\mathbb Z)$ 对闭路类 $[\gamma_\varepsilon]$ 的奇偶配对。
+
+*证明*：$U(1)$ 是 $K(\mathbb Z,1)$。同伦类 $[X^\circ,U(1)]\cong H^1(X^\circ;\mathbb Z)$。平方映射 $p:U(1)\to U(1)$ 在基本群上是乘二，因此在 $H^1$ 上也是乘二。提升存在当且仅当 $[\mathfrak s]$ 落在乘二的像。holonomy 等式由 $\frac{1}{2\pi i}\oint_{\gamma_\varepsilon} \mathfrak s^{-1}d\mathfrak s=\deg(\mathfrak s|_\gamma)\in\mathbb Z$ 与 $\exp(i\pi \deg)=(-1)^{\deg}$ 直接得到。
 
 **引理 2.A（holonomy 的规避独立性，模 $2$）**
 
@@ -366,7 +431,7 @@ $$
 
 因而 $\nu_{\sqrt S}(\gamma)$ 在 $\mathbb Z_2$ 层级与规避选择无关。
 
-*（证明见 §5 命题 5.0ter 与"规避独立性（模 2）"。）*
+*证明*：两条规避仅在每个横截点附近相差一条法向小半圆。它们在 $X^\circ$ 中同伦于彼此加上若干个以法向小环为边界的 2‑链。对 $\mathbb Z_2$‑丛的 holonomy 来说，沿法向小环的提升号符为 $-1$ 一次，取模 2 后叠加抵消。于是 holonomy 在 $\{\pm1\}$ 中不变。
 
 *补充*：若 $\gamma\cap D\neq\varnothing$，按 §0.2a 取规避闭路 $\gamma_\varepsilon\subset X^\circ$，并以 $\operatorname{Hol}_{P_{\sqrt{\mathfrak s}}}(\gamma_\varepsilon)$ 定义 $\nu_{\sqrt S}(\gamma)$；该值在 $\mathbb Z_2$ 层级对规避选择不变（见 §0.2a 与 §5 约定）。
 
@@ -389,6 +454,8 @@ $$
   **两者不互推**；仅当专指由 $P_{\sqrt{\mathfrak s}}$ 关联得到的平直线丛时，其 $c_1$ 的 2‑挠与 $\nu_{\sqrt S}$ 的 holonomy 在**挠/模2**层面相容。
 
 **提示（层级区分）**：本文只讨论**映射层**平方根问题 $(s^2=\mathfrak s)$ 与其主 $\mathbb{Z}_2$‑丛 holonomy；一般复线丛的平方根 $(c_1(\mathcal L)\in 2H^2)$ 属**不同层级**，二者不互相推出。仅当专指由 $P_{\sqrt{\mathfrak s}}$ 关联得到的平直线丛 $\mathcal L_{\sqrt{\mathfrak s}}$ 时，其 $c_1$ 为 $2$‑挠并与 $\nu_{\sqrt S}$ 的挠/模 $2$ 数据相容。
+
+**补充（de Rham 视角）** 平直线丛的第一陈类为挠元。其 de Rham 代表为零形式。因此本文 $\nu_{\sqrt S}$ 的信息完全存于挠与 $\mathbb Z_2$ 层级，而不反映在曲率形式上。
 
 ---
 
@@ -458,6 +525,8 @@ $$
 
 逐一一致（见定理 4.2 与定理 5.1）。
 
+*证明*：横截性使穿越在有限个点发生且皆为一阶。对参考相位 $0$ 与 $\pi$ 的选择，穿越事件一一对应（旋转单位圆 $180^\circ$ 不改变穿越奇偶）。指数等式来自引理 0.A 与引理 1(b)。交数等式由定理 5.1。
+
 **引理 4.0bis（BK 连续化与模 $2$ 稳定性）**
 
 在假设 A（A1–A4″）下，存在沿 $\gamma_\varepsilon\subset X^\circ$ 的连续化谱位移 $\xi_p$ 使 $\mathfrak s=e^{-2\pi i\xi_p}$，并且：
@@ -472,6 +541,8 @@ $$
 $$
 
 因而 $\nu_{\sqrt S}(\gamma)$ 与 $I_2(\gamma,D)$ 对规避选择**不敏感**。
+
+*证明*：存在性与取向行为已在引理 0.A 处理。对规避独立性：两条规避的差是若干小半圆的并，其边界为若干法向小环。每个小环上 $\oint d\xi_p\in\mathbb Z$，指数为 1。故两条规避的指数相同。
 
 **定理 4.U（$\mathrm{Sf}$–绕数–谱位移的统一陈述）**
 
@@ -493,6 +564,8 @@ $$
 
   反向取向使积分变号，但**奇偶不变**；当 $\gamma$ 不可完全回避 $D$ 时，整数号符依赖规避方向，而**模2**结果与 §5 的 $I_2(\gamma,D)$ 保持一致。
 
+*证明*：迹类情形直接套用 Birman–Kreĭn 与单位圆谱流公式。一般 Schatten 情形用引理 0.A 与横截局部模型，将角度变化的贡献分解为有限个一阶穿越，每次贡献 $\pm\pi$，从而指数等式成立。
+
 **定理 4.1（Birman–Kreĭn，迹类）**
 
 在绝对连续谱能段且 $S-\mathbf 1\in\mathfrak S_1$ 时，$\det S=e^{-2\pi i\xi}$，并沿任意闭路 $\gamma$（若与 $D$ 相交则取 $\gamma_\varepsilon$）有
@@ -500,6 +573,8 @@ $$
 $$
 \mathrm{Sf}(\gamma)=\deg(\mathfrak s|_\gamma)=-\oint_{\gamma_\varepsilon} d\xi\in\mathbb Z .
 $$
+
+*证明*：由 BK 公式 $\det S=e^{-2\pi i\xi}$ 和 $\deg(\mathfrak s|_\gamma)=\frac{1}{2\pi}\oint d\arg\det S$，得到 $\deg=-\oint d\xi$。单位圆谱流与角度总变差的整数关系见 Kato 的谱流理论或 Phillips 的幺正版本，故 $\mathrm{Sf}=\deg$。
 
 **定理 4.2（模 2 Levinson，一般 Schatten）**
 
@@ -512,6 +587,8 @@ $$
 
 当 $\gamma$ 不可完全回避 $D$ 时，整数 $\mathrm{Sf}(\gamma)$ 的符号依赖规避方向，但上式之**模 2** 等式与交数 $I_2$ 对规避**不变**。
 
+*证明*：由引理 4.0bis 与横截局部模型，$\arg\det S$ 的净变化等于若干个 $\pm\pi$ 的和。指数正是穿越次数的奇偶。谱流奇偶与穿越奇偶一致，从而与 $N_b$ 一致。再由 §5 的交数判据得到与 $I_2$ 的一致。
+
 ---
 
 ## 5 鉴别子与模 2 交数
@@ -523,6 +600,18 @@ D=\{\text{Jost 上半平面零点生成或湮灭、阈值异常、嵌入本征�
 $$
 
 一般位置下 $D$ 为余维一的分片光滑子流形。
+
+**命题 5.0（规避与取向的 $\mathbb{Z}_2$ 不变性，总纲）**
+
+在假设 A 与假设 D 下，设闭路 $\gamma\subset X$ 与鉴别子 $D$ 有有限个横截交点。则：
+
+**(i)** 规避选择只影响整数绕数 $\deg(\mathfrak s|_\gamma)$ 的号符，不影响其奇偶；
+
+**(ii)** 闭路取向反转只改变 $\deg(\mathfrak s|_\gamma)$ 的号符，不改其奇偶；
+
+**(iii)** 因此，一切 $\mathbb{Z}_2$ 结论（$\nu_{\sqrt S}(\gamma)$、$(-1)^{\mathrm{Sf}(\gamma)}$、$(-1)^{I_2(\gamma,D)}$）对规避选择与取向反转**不敏感**。
+
+*证明*：由引理 0.A、引理 4.0bis 与命题 5.0ter。
 
 **约定（避障与规避独立性，模 2）**
 
@@ -557,28 +646,18 @@ $$
 
 因而 $\nu_{\sqrt S}(\gamma)$ 与 $I_2(\gamma,D)$ 在 $\mathbb Z_2$ 层级对规避选择**不敏感**；非横截场景下取任意小 $C^1$ 扰动至分层横截，结论依旧成立。
 
-*证明素描*：任意两种规避仅在每个横截点附近相差一条小半圆，其并合为若干个以法向小环为边界的 2‑链；配对 $w_D$ 的结果在 $\mathbb Z_2$ 中相同。由引理 0.A，$\exp(-i\pi\oint d\xi_p)$ 对此替换亦不变。
+*证明*：任意两种规避仅在每个横截点附近相差一条小半圆，其并合为若干个以法向小环为边界的 2‑链；配对 $w_D$ 的结果在 $\mathbb Z_2$ 中相同。由引理 0.A，$\exp(-i\pi\oint d\xi_p)$ 对此替换亦不变。若 $D$ 含角点/自交/切触等非正则点，取任意小的 $C^1$ 扰动将 $(\gamma,D)$ 调至分层横截情形；由模 2 同伦不变性与 $w_D\in H^1(X^\circ;\mathbb Z_2)$ 的自然性，$I_2(\gamma,D)$ 与 $\exp(-i\pi\oint d\xi_p)$ 在 $\mathbb Z_2$ 层级保持不变。
 
-**补充（非横截情形的稳定化）** 若 $D$ 含角点/自交/切触等非正则点，取任意小的 $C^1$ 扰动将 $(\gamma,D)$ 调至**分层横截**情形；由模 2 同伦不变性与 $w_D\in H^1(X^\circ;\mathbb Z_2)$ 的自然性，$I_2(\gamma,D)$ 与 $\exp(-i\pi\oint d\xi_p)$ 在 $\mathbb Z_2$ 层级保持不变。
-
-**命题 5.0bis（Alexander 对偶与横截代表）**
-
-令 $w_D\in H^1(X^\circ;\mathbb Z_2)$ 为由**余维一**分片光滑子流形 $D$ 诱导的链接类。则：
-
-**(a)（二维特例）** 若 **$\dim X=2$** 且闭路 $\gamma\pitchfork D$，则
+**命题 5.0bis（Alexander 对偶与横截代表，统一表述）** 令 $w_D\in H^1(X^\circ;\mathbb Z_2)$ 为由闭的可驯化余维一分层子流形 $D\subset X$ 诱导的链接类。取 $D$ 的紧致管状邻域 $N(D)$。对任意规避闭路 $\gamma_\varepsilon\subset X^\circ$，当 $\gamma_\varepsilon\pitchfork\partial N(D)$ 时，
 
 $$
-I_2(\gamma,D)=\langle w_D,[\gamma_\varepsilon]\rangle=\#\bigl(\gamma\cap D\bigr)\ \bmod 2 .
+I_2(\gamma,D)=\langle w_D,[\gamma_\varepsilon]\rangle
+=\big([\gamma_\varepsilon]\cdot[\partial N(D)]\big)\bmod 2.
 $$
 
-**(b)** 一般情形，取 $D$ 的紧致管状邻域 $N(D)$，并按 §0.2a 将 $\gamma$ 规避为 $\gamma_\varepsilon\subset X^\circ$。当 $\gamma_\varepsilon\pitchfork\partial N(D)$ 时，
+**二维特例** 若 $\dim X=2$ 且 $\gamma\pitchfork D$，则 $I_2(\gamma,D)=\#(\gamma\cap D)\bmod 2$。两种表达式对小的 $C^1$ 变形与分层横截稳定。
 
-$$
-I_2(\gamma,D)=\big([\gamma_\varepsilon]\cdot[\partial N(D)]\big)\bmod2
-=\#\big(\gamma_\varepsilon\cap\partial N(D)\big)\bmod2,
-$$
-
-其中"$\cdot$"为**同调交数（模 2）**。**仅当 $\dim X=2$ 且 $\gamma\pitchfork D$ 时，(b) 式退化为上面的二维特例 (a) 的 $\#(\gamma\cap D)\bmod2$。两式对小的 $C^1$ 变形与规避同伦稳定。
+*证明*：由 $w_D=\operatorname{PD}[\partial N(D)]$，有 $\langle w_D,[\gamma_\varepsilon]\rangle=\langle \operatorname{PD}[\partial N(D)],[\gamma_\varepsilon]\rangle=[\gamma_\varepsilon]\cdot[\partial N(D)]\bmod 2$。二维时 $\partial N(D)$ 为横跨 $D$ 的双侧曲线，交于 $D$ 的横截点一一对应，导出第二式。
 
 **横截局部模型假设（单通道化跨 $\pi$）**
 
@@ -610,6 +689,8 @@ $$
 $$
 
 当 $\gamma_\varepsilon\pitchfork\partial N(D)$ 时，$I_2(\gamma,D)=\big([\gamma_\varepsilon]\cdot[\partial N(D)]\big)\bmod2$。每个交点触发一条本征相位跨 $\pi$，致 $\mathrm{Sf}$ 在该点跳变 $\pm1$；取奇偶即得上式。
+
+*证明*：按横截局部模型，每个 $\gamma$ 与 $D$ 的横截点触发唯一通道的相位跨 $\pi$ 一次，致谱流奇偶翻转一次。由命题 5.0bis，横截点数模 2 即 $I_2(\gamma,D)$。结合定理 4.2 的指数表示，得结论。
 
 ---
 
@@ -643,7 +724,7 @@ $$
 
 *取向诊断*：$S(\lambda(\theta))=-1+\frac{4k}{i\rho}e^{-i\theta}$ 的像为以 $-1$ 为圆心、半径 $R=\frac{4k}{\rho}$ 的大圆；当 $\theta$ 递增时 $e^{-i\theta}$ 顺时针旋转，故绕 $0$ 的绕数为 $-1$（半径足够大时 $0$ 被包围）。该取向与本文"数学正向＝逆时针"的约定一致。反向取向仅翻号，不改奇偶。
 
-**实参数折返环（可检验构型，$\delta$‑势）**
+**实参数折返环（$\delta$‑势，模 2 读数）**
 
 在 $(E,\lambda)$‑平面取小矩形
 
@@ -651,21 +732,19 @@ $$
 \gamma=\partial\big([E_0-\varepsilon,E_0+\varepsilon]\times[-\varepsilon,\varepsilon]\big),\qquad E_0,\varepsilon>0,
 $$
 
-选择 $E_0,\varepsilon$ 使 **$E_0-\varepsilon<0<E_0+\varepsilon$**。对 $\delta$‑势有
+并选 $E_0,\varepsilon$ 使 $E_0-\varepsilon<0<E_0+\varepsilon$。对 $\delta$‑势有
 
 $$
-D={\lambda=0}\cup{E=0,\ \lambda<0}.
+D=\{\lambda=0\}\cup\{E=0,\ \lambda<0\}.
 $$
 
-按 §5 规避规则在 ${\lambda=0}$ 处作小半圆推开。则 $\gamma$ 与 $D$ **横截三次**（在 $(E_0-\varepsilon,0)$、$(E_0+\varepsilon,0)$ 与 $(0,-\varepsilon)$），故
+按 §5 的规避规则在 $\{\lambda=0\}$ 与 $\{E=0,\lambda<0\}$ 处作小半圆推开。则 $\gamma$ 与 $D$ 以横截方式出现三次，故
 
 $$
-I_2(\gamma,D)=3\bmod2=1,\qquad \nu_{\sqrt S}(\gamma)=-1.
+I_2(\gamma,D)=3\bmod2=1.
 $$
 
-规避方向仅影响整数绕数号符，不改上述 $\mathbb Z_2$ 结论。
-
-**规避与整数不变性** 折返闭路不可完全避开 $D$；将其以小半圆规避后得到的 $\deg(\mathfrak s|_\gamma)$ 的**号符**取决于规避方向，但其奇偶固定，且与 $\nu_{\sqrt S}$ 与 $I_2$ 一致。
+**本构型仅用于模 2 读数。即 $\nu_{\sqrt S}(\gamma)=-1$ 的结论只从 $I_2$ 与横截局部模型得到。我们不沿此闭路定义或计算 $\oint d\xi_p$。** 若需要在仅包含 $E>0$ 的域内通过指数积分读数，可改用"复参数小环"示例，或采用 §7 的自指 Möbius 闭环，或采用 §11 的 AB‑型实参数闭路。
 
 **注（两类环路的角色与取向）**
 
@@ -690,6 +769,16 @@ $$
 ## 7 非线性 Herglotz–Möbius 本征值问题
 
 相位偏置的平面 Josephson 结中已观测到与拓扑相变一致的 **π 相位跃迁** 特征，且与本文"固定点交换→相位跨 π"的图景相符 [Phys. Rev. Lett. **126**, 036802 (2021)]。
+
+**读者地图（§7 结构导览）**
+
+本节研究自洽方程 $L=\Phi_{\tau,E}(L)$，其中 $\Phi$ 为 $\mathrm{PSL}(2,\mathbb{R})$ 中的 Möbius 变换，$L\in\mathbb{R}\cup\{\infty\}$ 为边界参数。核心几何对象：
+
+- **$L_\pm$**：边界不动点，满足 $\Phi(L_\pm)=L_\pm$，存在于双曲区 $\Delta>0$；
+- **$\Delta=\operatorname{Tr}^2-4\det$**：判别式，$\Delta>0$ 为双曲型（两不动点），$\Delta=0$ 为抛物型（判别式面），$\Delta<0$ 为椭圆型（无边界不动点）；
+- **交换事件**：沿参数闭路 $\gamma$，当横截 $\{\Delta=0\}$ 一次时，两条边界不动点支 $L_\pm$ 互换，导致相位差跨 $\pi$，从而 $\nu_{\sqrt S}(\gamma)$ 翻转。
+
+定理 7.0* 把交换奇偶与 $\nu_{\sqrt S}$ 严格等价；命题 7.1–7.3 给出不动点追踪与横截判据。
 
 **设定**
 
@@ -750,7 +839,7 @@ $$
 \frac{d}{dt}\Big(\theta_j(E(t),L_+(t))-\theta_j(E(t),L_-(t))\Big)\Big|_{t=t_\ast}\neq 0.
 $$
 
-其证要为：Herglotz 单调性给出 $\partial_L\arg\det S(E;L)$ 的定号；横截性 $\partial_t\Delta(t_\ast)\neq0$ 与 $\Phi'(L_\pm(t_\ast))\neq1$ 排除切触，使相位差导数在 $t_\ast$ 不为零，故在 $t_\ast$**跨过 $\pi$（模 $2\pi$）**，并对 $\mathrm{Sf}$ 贡献 $\pm1$（奇偶固定）。
+*证明*：链式法则给 $\frac{d}{dt}\big(\Theta(E;L_+)-\Theta(E;L_-)\big)=\partial_E\Theta\,\dot E+\partial_L\Theta\big|_{L_+}\dot L_+-\partial_L\Theta\big|_{L_-}\dot L_-$。由引理 7.A，$\partial_L\Theta\big|_{L_\pm}$ 同号且非零。横截性给出 $\dot L_+-\dot L_-\neq0$。于是导数不为零。将 $\Theta$ 的单值支换回本征相位支 $\theta_j$ 得结论。Herglotz 单调性给出 $\partial_L\arg\det S(E;L)$ 的定号；横截性 $\partial_t\Delta(t_\ast)\neq0$ 与 $\Phi'(L_\pm(t_\ast))\neq1$ 排除切触，使相位差导数在 $t_\ast$ 不为零，故在 $t_\ast$ 跨过 $\pi$（模 $2\pi$），并对 $\mathrm{Sf}$ 贡献 $\pm1$（奇偶固定）。
 
 **引理 7.A（Herglotz 单调 ⇒ 相位单调）**
 
@@ -760,13 +849,29 @@ $$
 \partial_L \Theta(E;L)\ \text{在所述区间内保持定号（不变号）}.
 $$
 
-*证要*：由边界三元组的散射公式（$S$ 以 $M(E;L)$ 与边界参数构成的 Möbius 组合给出），$M(\,\cdot\,)$ 的 Nevanlinna 性保证 $\Im M(E+i0;L)>0$，进而 $\partial_L\arg\det S(E;L)$ 的符号由 $\partial_L M$ 的保序性与 $\Phi$ 的边界不动点指数共同确定；故 $\Theta$ 随 $L$ 单调。与 §7 的"横截局部模型"结合可得"交换 ⇒ 跨 $\pi$"。
+*证明*：边界三元组的散射公式给出 $S(E;L)=\mathbf 1-2\pi i \,\Gamma(E)^*\big(\Phi(L)-M(E+i0)\big)^{-1}\Gamma(E)$，其中 $\Gamma(E)$ 为耦合算子，$G(E):=\pi\,\Gamma(E)\Gamma(E)^*\succeq 0$，$\Im M(E+i0)\succeq0$。对 $L$ 求导并用 $\frac{d}{dL}\log\det S=\operatorname{Tr}\big(S^{-1}\partial_L S\big)$ 得 $\partial_L \Theta(E;L)=\tfrac{1}{2}\Im\,\operatorname{Tr}\Big(S(E;L)^{-1}\,2\pi i\, \Gamma^*\big(\Phi(L)-M\big)^{-1}\Phi'(L)\big(\Phi(L)-M\big)^{-1}\Gamma\Big)$。在边界不动点支上 $\Phi'(L)$ 与 $\mathrm{ind}(L)$ 同号且非零。由于 $G(E)\succeq0$ 与 $\Im M\succeq0$，Schur 补与正定性给出 $\Im\operatorname{Tr}(\cdots)$ 的符号由 $\Phi'(L)$ 决定。故 $\partial_L\Theta$ 定号。与 §7 的"横截局部模型"结合可得"交换 ⇒ 跨 $\pi$"。
 
 **引理 7.0ter（$\partial_L\arg\det S$ 的定号封装）**
 
 在"假设 B"与"边界三元组/Weyl 函数 $M(E;L)$ 为 Herglotz（Nevanlinna）并对 $L$ 保序"的条件下，$\partial_L\arg\det S(E;L)$ 在边界分支上一致取定号；故当 $\Delta$ 在 $t_\ast$ 处横截零且 $\Phi'(L_\pm(t_\ast))\neq1$ 时，$\bigl(\arg\det S(E;L_+(t))-\arg\det S(E;L_-(t))\bigr)$ 在 $t_\ast$ 必**跨越 $\pi$**（模 $2\pi$），从而对 $\mathrm{Sf}$ 贡献 $\pm1$（奇偶固定）。
 
-定义（Möbius 系数与判别式）
+**引理 7.B（$\partial_L \arg\det S$ 的符号公式）** 在边界三元组框架下，取绝对连续谱内的能量 $E$。设 $M(E;L)$ 为 Nevanlinna 类并对 $L$ 保序。则存在正半定算子核 $G(E;L)\succeq0$，使得沿边界分支
+
+$$
+\partial_L \arg\det S(E;L)=\operatorname{Tr}\big(G(E;L)\,\partial_L M(E;L)\big).
+$$
+
+因此若 $\partial_L M(E;L)\succcurlyeq 0$ 且边界不动点指数非抛物，即 $\Phi'(L_\pm)\neq1$，则 $\partial_L \arg\det S(E;L_\pm)$ 同号且非零。结合 $\Delta$ 的横截性可知
+
+$$
+\big(\arg\det S(E;L_+)-\arg\det S(E;L_-)\big)
+$$
+
+在交换点必跨越 $\pi$（模 $2\pi$），并对 $\mathrm{Sf}$ 贡献 $\pm1$。
+
+*证明*：由边界三元组散射公式将 $\Phi(L)$ 换元至 $X(L):=\Phi(L)-M(E+i0)$，并利用 $\partial_L \log\det(X^{-1})=-\operatorname{Tr}(X^{-1}\partial_L X)$。配合 $S=\mathbf1-2\pi i\,\Gamma^*X^{-1}\Gamma$ 的 Woodbury 恒等式，得 $\partial_L \log\det S=\operatorname{Tr}\big((\mathbf1+2\pi i\,X^{-1}\Gamma\Gamma^*)^{-1}\,2\pi i\,X^{-1}\,\partial_L M\,X^{-1}\,\Gamma\Gamma^*\big)$。取虚部得到所需形式，其中 $G(E;L):=\pi\,(\Gamma X^{-1})^*(\Gamma X^{-1})\succeq0$。因 $\partial_L M\succeq0$，右端非负或非正，符号由边界取值与分支确定。由引理 7.A，$\partial_L\arg\det S$ 在两条边界支上同号且非零。于是当 $L_+$ 与 $L_-$ 交换时，$\Theta(E;L_+)-\Theta(E;L_-)$ 的导数在 $t_\ast$ 不为零。连续性与值域为圆上角度差迫使其在 $t_\ast$ 跨过 $\pi$（模 $2\pi$）。横截模型保证只发生一次一阶跨越，从而对谱流贡献 $\pm1$。
+
+**定义（Möbius 系数与判别式）**
 
 $$
 \operatorname{Tr}=a+d,\qquad \det=ad-bc,\qquad
@@ -788,8 +893,12 @@ $$
 **命题 7.1（固定点的边界连续追踪）**
 在双曲区存在两条连续的边界不动点支 $L_\pm$，其稳定性由 $\mathrm{ind}(L_\pm)$ 决定。
 
+*证明*：$L\mapsto\Phi(L)$ 在边界上的不动点满足二次方程 $cL^2+(d-a)L-b=0$，判别式即 $\Delta$。$\Delta>0$ 给出两根 $L_\pm$。$|\Phi'(L^*)|\neq1$ 决定双曲稳定性与边界归类。
+
 **命题 7.2（横截判据）**
 沿闭路若 $\Delta$ 横截零水平一次且横截性成立，则两支 $L_\pm$ 发生一次交换。
+
+*证明*：由连续根公式与 $\partial_t\Delta\neq0$，两根在该点交叉并互换。
 
 **命题 7.3（交换奇偶等于 $\nu_{\sqrt S}$）**
 
@@ -805,7 +914,7 @@ $$
 (-1)^{\#\mathrm{exch}(\gamma)}=\nu_{\sqrt S}(\gamma).
 $$
 
-*证要*：由 $M(E;L)$ 的 Herglotz 单调性与 $\partial_t\Delta\neq 0$ 的横截性，局部可单通道化并得到"跨 $\pi$"；奇偶相乘即得结论（附录 F）。
+*证明*：每一次交换由定理 7.0* 触发一次相位跨 $\pi$，故使 $\nu_{\sqrt S}$ 翻转一次。故奇偶一致。由 $M(E;L)$ 的 Herglotz 单调性与 $\partial_t\Delta\neq 0$ 的横截性，局部可单通道化并得到"跨 $\pi$"；奇偶相乘即得结论。
 
 ---
 
@@ -887,6 +996,8 @@ $$
 
 *结论*：两类中号符翻转 $\Longleftrightarrow$ 有一相位跨 $\pi$（模 $2\pi$），与 §5 的 $I_2$ 记账同步，等价于 **$P_{\sqrt{\det r(0)}}$ 沿 $\gamma$ 的 holonomy 为 $-1$**（亦即 $(-1)^{\deg(\det r(0)|_\gamma)}=-1$）。
 
+*证明*：Class D：$r(0)\in O(N)$。本征相位谱对称于 $0$ 与 $\pi$。单通道跨 $\pi$ 将 $\det r$ 乘以 $-1$。Class DIII：在 Kramers 配对基下 $r(0)$ 为实反对称，分解为 $2\times2$ 块 $\begin{pmatrix}0&\lambda\\-\lambda&0\end{pmatrix}$。穿越对应某块的 $\lambda$ 号符改变。Pfaffian 是各块参数的乘积，故翻转一次；行列式为平方，保持非负，仅改变平方值。
+
 ---
 
 ## 10 多通道与分波：最小自洽陈述
@@ -912,7 +1023,9 @@ $$
 \det_M S:=\prod_{-M-1\le m\le M}\det S_m
 $$
 
-满足 $m\leftrightarrow -m-1$ 配对抵消之**模 $2$** 稳定性：$\det S_{-m-1}=\overline{\det S_m}\Rightarrow \deg(\det S_m|_\gamma)+\deg(\det S_{-m-1}|_\gamma)\equiv0\pmod2$，故 $\nu_M(\gamma):=(-1)^{\deg(\det_M S|_\gamma)}$ 随 $M$ 稳定到 $\nu_{\sqrt S}(\gamma)$ 的 $\mathbb{Z}_2$ 读数。穿越 $\alpha=\tfrac12$（$\theta=\pi$）时，$\deg(\mathfrak s|_\gamma)\equiv1\pmod2$，故 $\nu_{\sqrt S}(\gamma)=-1$。本文不主张对**一切**正则化方案之普遍独立性，所用结果限于上述承诺与对称截断。
+满足 $m\leftrightarrow -m-1$ 配对抵消之**模 $2$** 稳定性：$\det S_{-m-1}=\overline{\det S_m}\Rightarrow \deg(\det S_m|_\gamma)+\deg(\det S_{-m-1}|_\gamma)\equiv0\pmod2$，故 $\nu_M(\gamma):=(-1)^{\deg(\det_M S|_\gamma)}$ 随 $M$ 稳定到 $\nu_{\sqrt S}(\gamma)$ 的 $\mathbb{Z}_2$ 读数。**在模 2 层级，本文固定 $\det_2$ 与对称分波截断，并保证两者的奇偶一致。**
+
+**小回路例示（配对相消）**：取 $\alpha$ 沿小圆周 $[0,1)$ 跑一圈。对任意 $m\ge 0$，分波相移 $\delta_m(\alpha)$ 与 $\delta_{-m-1}(\alpha)=-\delta_m(\alpha)$ 绕数互为相反数，故 $\deg(\det S_m)+\deg(\det S_{-m-1})=0$，模 2 相消。穿越 $\alpha=\tfrac12$（$\theta=\pi$）时，$\deg(\mathfrak s|_\gamma)\equiv1\pmod2$，故 $\nu_{\sqrt S}(\gamma)=-1$。本文不主张对**一切**正则化方案之普遍独立性，所用结论限于上述承诺与对称截断。
 
 Aharonov–Bohm 散射以通量 $\alpha=\Phi/\Phi_0$ 给出统计角 $\theta=2\pi\alpha$。固定能量，沿闭路 $\alpha\mapsto \alpha+1$ 并穿越 $\alpha=\tfrac12$（$\theta=\pi$）时，由分波相位的跳变可知
 
@@ -938,6 +1051,8 @@ $$
 \deg(\det S_m|_\gamma)+\deg(\det S_{-m-1}|_\gamma)\equiv 0\pmod{2}.
 $$
 
+*证明*：AB 散射的分波相移满足 $\delta_{-m-1}(\alpha)=-\delta_m(\alpha)$，源于 Bessel 与 Hankel 基函数在指标反射 $m\mapsto -m-1$ 下的伴随关系以及复共轭对称性。于是 $\det S_{-m-1}=e^{2i\delta_{-m-1}}=e^{-2i\delta_m}=\overline{e^{2i\delta_m}}=\overline{\det S_m}$。两者的绕数互为相反数。取模 2 后相加为零。
+
 **注 11.0bis（$\xi_2$ 的连续化与对称截断的一致化）**
 
 沿闭路统一选择 $\xi_2$ 的连续化分支，使 $\exp(-2\pi i\,\xi_2)$ 与围绕 $m=-\tfrac12$ 的对称分波有限乘积在**模 2** 层级配对一致；该工艺化选择不影响 $\nu_{\sqrt S}$ 的读数。
@@ -952,17 +1067,7 @@ $$
 
 则 $\nu_{M+1}(\gamma)\equiv \nu_M(\gamma)\pmod2$。
 
-*证*：
-
-(1)（配对）由 $m\leftrightarrow -m-1$ 的对称性，$\det S_{-m-1}=\overline{\det S_m}$，故
-
-$$
-\deg(\det S_m|_\gamma)+\deg(\det S_{-m-1}|_\gamma)\equiv 0\pmod2.
-$$
-
-(2)（同支）$\xi_2$ 的连续化支沿同一规避闭路统一选定，使 $\exp(-2\pi i\xi_2)$ 与对称截断的有限乘积在**模2层级**一致；
-
-(3)（极限）随 $M\mapsto M+1$ 仅新增一对 $(m,-m-1)$，其模2绕数相消，故 $\nu_M$ 稳定到 $\nu_{\sqrt S}(\gamma)$。
+*证明*：(1)（配对）由 $m\leftrightarrow -m-1$ 的对称性，$\det S_{-m-1}=\overline{\det S_m}$，故 $\deg(\det S_m|_\gamma)+\deg(\det S_{-m-1}|_\gamma)\equiv 0\pmod2$。(2)（同支）$\xi_2$ 的连续化支沿同一规避闭路统一选定，使 $\exp(-2\pi i\xi_2)$ 与对称截断的有限乘积在**模2层级**一致。(3)（极限）随 $M\mapsto M+1$ 仅新增一对 $(m,-m-1)$，其模2绕数相消，故 $\nu_M$ 稳定到 $\nu_{\sqrt S}(\gamma)$。当 $M\mapsto M+1$ 时，新增一对 $(m,-m-1)$。由引理 11.2，该对的两项绕数互为相反数，模 2 抵消。对 $\xi_2$ 的同支连续化保证有限乘积在模 2 层级与 $\exp(-2\pi i\xi_2)$ 的指数一致。于是 $\nu_M$ 稳定并等于 $\nu_{\sqrt S}$。
 
 本文仅在模 2 层级主张 $\nu_{\sqrt S}$ 与 $\det_2$（或对称分波截断 $\det_M$ 的极限）的一致读数；所有正则化依赖性在奇偶投影下抵消（命题 11.3），但不声明更强的正则化独立性。
 
