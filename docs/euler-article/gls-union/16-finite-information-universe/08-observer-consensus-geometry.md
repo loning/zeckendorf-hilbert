@@ -940,7 +940,7 @@ $$
 2. **计算预言**：
 
    $$
-   \langle A \rangle_{\text{theory}} = \omega^\Theta'(A)
+   \langle A \rangle_{\text{theory}} = \omega^{\Theta'}(A)
    $$
 
 3. **与实验比对**：

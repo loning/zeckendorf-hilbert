@@ -940,7 +940,7 @@ When physicists measure fine structure constant $\alpha$:
 2. **Calculate Prediction**:
 
    $$
-   \langle A \rangle_{\text{theory}} = \omega^\Theta'(A)
+   \langle A \rangle_{\text{theory}} = \omega^{\Theta'}(A)
    $$
 
 3. **Compare with Experiment**:

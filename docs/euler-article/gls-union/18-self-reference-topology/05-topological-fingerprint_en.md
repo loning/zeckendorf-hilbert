@@ -257,7 +257,7 @@ graph TB
 Huge advantage of acoustic platform is **visibility** and **low cost**:
 - Can use transparent pipes, visually see standing wave modes of sound waves
 - Use oscilloscope to display waveforms in real time
-- Cost <$100, suitable for undergraduate teaching experiments
+- Cost < \$100, suitable for undergraduate teaching experiments
 
 This makes abstract "topological steps" into phenomena that can be "seen and heard"!
 

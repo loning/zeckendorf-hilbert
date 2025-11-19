@@ -32,9 +32,9 @@ We use **Technology Readiness Levels** (TRL) for quantitative assessment and pro
 
 **Cost**:
 
-- $: $<100$k USD
-- $$: $100$k-$1$M USD
-- $$$: $>1$M USD
+- $: < \$100k USD
+- $$: \$100k-\$1M USD
+- $$$: > \$1M USD
 
 **Impact**:
 
@@ -149,7 +149,7 @@ Feasible within 3 years, targeting **FRB baseband processing** and **quantum mea
 **Assessment**:
 
 - ✅ Fiber ring cavities mature technology
-- ✅ Phase measurement precision sufficient ($<0.1\pi$)
+- ✅ Phase measurement precision sufficient ($< 0.1\pi$)
 - ⚠️ Delay parameter $\tau$ control requires precise temperature/stress control
 - ⚠️ Automated scanning requires programming control
 - ❌ Ultrafast delays (fs level) require optical cross-correlation
