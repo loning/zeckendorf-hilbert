@@ -130,6 +130,22 @@
 - [15.3 系数 $1/4$ 的锁定：幺正性与广义相对论的一致性约束](volume03-gravity-entropy-origin/part08-spacetime-stability-singularities/chapter15-black-hole-thermodynamics-microscopic/15-03-coefficient-14-locking.md)
 - [15.4 黑洞蒸发与 Page 曲线：QCA 幺正演化下的信息回收机制](volume03-gravity-entropy-origin/part08-spacetime-stability-singularities/chapter15-black-hole-thermodynamics-microscopic/15-04-black-hole-evaporation-page-curve.md)
 
+#### 第九编：相互作用的几何统一
+
+##### 第十六章：总空间几何 (Total Space Geometry)
+
+- [16.1 卡鲁扎-克莱因（Kaluza-Klein）思想的现代纤维丛表述](volume03-gravity-entropy-origin/part09-geometric-unification-interactions/chapter16-total-space-geometry/16-01-kaluza-klein-fiber-bundle.md)
+- [16.2 统一联络 $\mathbb{A}$：引力自旋联络与杨-米尔斯规范势的融合](volume03-gravity-entropy-origin/part09-geometric-unification-interactions/chapter16-total-space-geometry/16-02-unified-connection.md)
+- [16.3 曲率分解定理：黎曼曲率与规范场强的几何同源性](volume03-gravity-entropy-origin/part09-geometric-unification-interactions/chapter16-total-space-geometry/16-03-curvature-decomposition-theorem.md)
+- [16.4 力的几何化：洛伦兹力作为总空间中的测地线偏离](volume03-gravity-entropy-origin/part09-geometric-unification-interactions/chapter16-total-space-geometry/16-04-geometric-forces-lorentz-force.md)
+
+##### 第十七章：物质的拓扑起源
+
+- [17.1 费米子即拓扑扭结：自指散射回路的 $\mathbb{Z}_2$ 同痕分类](volume03-gravity-entropy-origin/part09-geometric-unification-interactions/chapter17-topological-origin-matter/17-01-fermions-topological-knots.md)
+- [17.2 自旋-统计定理的几何证明：从参数空间拓扑导出交换反对称性](volume03-gravity-entropy-origin/part09-geometric-unification-interactions/chapter17-topological-origin-matter/17-02-spin-statistics-theorem-geometric-proof.md)
+- [17.3 强 CP 问题与轴子（Axion）：拓扑相位的动力学弛豫机制](volume03-gravity-entropy-origin/part09-geometric-unification-interactions/chapter17-topological-origin-matter/17-03-strong-cp-problem-axion.md)
+- [17.4 中微子振荡的几何解释：离散时空晶格上的味混合机制](volume03-gravity-entropy-origin/part09-geometric-unification-interactions/chapter17-topological-origin-matter/17-04-neutrino-oscillation-geometric-interpretation.md)
+
 ## 目录结构
 
 ```
