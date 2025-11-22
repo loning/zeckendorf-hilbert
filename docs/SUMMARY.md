@@ -1694,3 +1694,6 @@
     - [严格数学证明](./math/13-appendix-proofs.md)
     - [数学验证与示例](./appendix_math.md)
     - [可视化与图表](./appendix_visual.md)
+
+- [Omega]()
+    - [信息速率的普适守恒：从量子元胞自动机到相对论、质量与引力的统一](./omega/universal_conservation_of_information_rate.md)
