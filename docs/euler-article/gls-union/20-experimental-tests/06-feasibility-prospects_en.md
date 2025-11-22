@@ -32,9 +32,9 @@ We use **Technology Readiness Levels** (TRL) for quantitative assessment and pro
 
 **Cost**:
 
-- $: < \$100k USD
-- $$: \$100k-\$1M USD
-- $$$: > \$1M USD
+- \$: < \$100k USD
+- \$\$: \$100k-\$1M USD
+- \$\$\$: > \$1M USD
 
 **Impact**:
 
@@ -52,7 +52,7 @@ We use **Technology Readiness Levels** (TRL) for quantitative assessment and pro
 
 **Feasibility**: ✅ High
 
-**Cost**: $ (University laboratory level)
+**Cost**: \$ (University laboratory level)
 
 **Impact**: ⭐⭐
 
@@ -74,7 +74,7 @@ Immediately feasible, suitable as **teaching demonstration** and **proof of conc
 
 **Feasibility**: ⚠️ Medium
 
-**Cost**: $$ (Professional equipment)
+**Cost**: \$\$ (Professional equipment)
 
 **Impact**: ⭐⭐⭐
 
@@ -98,7 +98,7 @@ Feasible within 5 years, requires **dedicated funding**. Priority: **High** (dir
 
 **Feasibility**: ✅ High
 
-**Cost**: $ (Computing resources)
+**Cost**: \$ (Computing resources)
 
 **Impact**: ⭐⭐
 
@@ -119,7 +119,7 @@ Feasible within 5 years, requires **dedicated funding**. Priority: **High** (dir
 
 **Feasibility**: ⚠️ Medium
 
-**Cost**: $
+**Cost**: \$
 
 **Impact**: ⭐
 
@@ -142,7 +142,7 @@ Feasible within 3 years, targeting **FRB baseband processing** and **quantum mea
 
 **Feasibility**: ⚠️ Medium
 
-**Cost**: $$
+**Cost**: \$$
 
 **Impact**: ⭐⭐⭐
 
@@ -164,7 +164,7 @@ Feasible within 3 years, targeting **FRB baseband processing** and **quantum mea
 
 **Feasibility**: ⚠️ Medium
 
-**Cost**: $$
+**Cost**: \$$
 
 **Impact**: ⭐⭐⭐
 
@@ -188,7 +188,7 @@ Feasible within 3 years, targeting **FRB baseband processing** and **quantum mea
 
 **Feasibility**: ⚠️ Medium
 
-**Cost**: $$$
+**Cost**: \$$$
 
 **Impact**: ⭐⭐⭐
 
@@ -210,7 +210,7 @@ Retrofit existing facilities, results visible in 2-3 years. Priority: **Medium**
 
 **Feasibility**: ✅ High (if device access available)
 
-**Cost**: $$$ (Rent commercial platform)
+**Cost**: \$\$\$ (Rent commercial platform)
 
 **Impact**: ⭐⭐⭐
 
@@ -221,7 +221,7 @@ Retrofit existing facilities, results visible in 2-3 years. Priority: **Medium**
 - ✅ Medium scale ($\sim 30$ ions)
 - ⚠️ Long queue wait times
 - ⚠️ Complex programming (requires quantum algorithm experts)
-- ❌ High cost ($\sim $10k/hour)
+- ❌ High cost ($\sim \$10k$/hour)
 
 **Recommendation**:
 
@@ -235,7 +235,7 @@ Retrofit existing facilities, results visible in 2-3 years. Priority: **Medium**
 
 **Feasibility**: ✅ High
 
-**Cost**: $ (Computing + personnel)
+**Cost**: \$ (Computing + personnel)
 
 **Impact**: ⭐⭐
 
@@ -502,7 +502,7 @@ Prepare software pipeline, **deploy within 5 years**.
 ✅ CHIME data analysis
 
 **Time**: Within 1 year
-**Cost**: $<500k
+**Cost**: \$<500k
 **Recommendation**: **Launch immediately**
 
 ### Medium-Term Goals (TRL 4-6)
@@ -512,7 +512,7 @@ Prepare software pipeline, **deploy within 5 years**.
 ⚠️ δ-Ring spectrum measurement
 
 **Time**: 3-5 years
-**Cost**: $2-5M
+**Cost**: \$2-5M
 **Recommendation**: **Apply for dedicated funding**
 
 ### Long-Term Vision (TRL 1-3)
@@ -522,7 +522,7 @@ Prepare software pipeline, **deploy within 5 years**.
 ❌ SKA new physics search
 
 **Time**: 7-15 years
-**Cost**: $10-50M
+**Cost**: \$10-50M
 **Recommendation**: **International cooperation big science program**
 
 The next chapter (Chapter 7) will summarize all experimental schemes, review key conclusions, and look forward to future theory-experiment interactions.

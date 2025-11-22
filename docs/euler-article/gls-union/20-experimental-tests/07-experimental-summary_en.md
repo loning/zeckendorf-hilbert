@@ -149,9 +149,9 @@ Extends theory from **laboratory** to **cosmic** scales.
 
 **Three-Phase Roadmap**:
 
-- Phase I (1-3 years): Basic verification, $500k
-- Phase II (3-7 years): Topology and quantum simulation, $5M
-- Phase III (7-15 years): Precision verification, $50M
+- Phase I (1-3 years): Basic verification, \$500k
+- Phase II (3-7 years): Topology and quantum simulation, \$5M
+- Phase III (7-15 years): Precision verification, \$50M
 
 **Significance**:
 
