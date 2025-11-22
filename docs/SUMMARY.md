@@ -343,6 +343,7 @@
     - [09. 概率的涌现](./omega/09-emergence_of_probability.md)
     - [10. 离散因果视界中的全息熵](./omega/10-holographic_entropy_from_discrete_causal_horizons.md)
     - [11. 狭义相对论作为信息速率守恒的涌现](./omega/11-special_relativity_as_emergence_of_information_rate_conservation.md)
+    - [12. 信息速率守恒下的惯性几何：质量、时间膨胀与能量–频率关系的微观统一](./omega/12-inertial_geometry_from_information_rate_conservation.md)
 
 - [宇宙的签名：从太空到太满的秘密](./euler-article/gls-paper/the-cosmic-signature.md)
 - [The Cosmic Signature: The Secret from Taikong to Taiman (EN)](./euler-article/gls-paper/the-cosmic-signature_en.md)
