@@ -330,6 +330,7 @@
     - [Postscript: At the End of Geometry and Information](./book-foundation-of-phys-in-geo-and-info/postscript_en.md)
 
 - [信息速率的普适守恒：从量子元胞自动机到相对论、质量与引力的统一]()
+    - [总览：信息速率的普适守恒](./omega/universal_conservation_of_information_rate.md)
     - [01. 信息速率的普适守恒](./omega/01-universal_conservation_of_information_rate.md)
     - [02. 从局域信息体积守恒导出的光学度规](./omega/02-optical_metric_from_local_information_volume_conservation.md)
     - [03. 质量作为拓扑阻抗](./omega/03-mass_as_topological_impedance.md)
