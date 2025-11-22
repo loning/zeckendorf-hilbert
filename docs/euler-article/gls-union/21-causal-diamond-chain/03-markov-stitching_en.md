@@ -206,11 +206,11 @@ $$
 
 ```mermaid
 graph TD
-    A["Totally-Ordered Cut<br/>$\kappa=0$"] --> A1["$E^+$ Layer: $V_1 < V_2 < V_3$<br/>$E^-$ Layer: $V_1 < V_2 < V_3$"]
+    A["Totally-Ordered Cut<br/>κ=0"] --> A1["E+ Layer: V1 < V2 < V3<br/>E- Layer: V1 < V2 < V3"]
     A1 --> A2["Two Layers Order Consistent"]
 
-    B["Non-Totally-Ordered Cut<br/>$\kappa > 0$"] --> B1["$E^+$ Layer: $V_1 < V_2 < V_3$<br/>$E^-$ Layer: $V_2 < V_1 < V_3$"]
-    B1 --> B2["$(V_1,V_2)$ Forms Inconsistent Pair"]
+    B["Non-Totally-Ordered Cut<br/>κ > 0"] --> B1["E+ Layer: V1 < V2 < V3<br/>E- Layer: V2 < V1 < V3"]
+    B1 --> B2["(V1,V2) Forms Inconsistent Pair"]
 
     style A fill:#e1ffe1
     style A1 fill:#f0fff0
@@ -616,13 +616,13 @@ $$
 
 ```mermaid
 graph TD
-    A["Inclusion-Exclusion Identity<br/>Geometric Decomposition"] --> B["Totally-Ordered Cut<br/>$\kappa=0$"]
-    B --> C["Markov Splicing<br/>$I(j-1:j+1\|j)=0$"]
-    C --> D["Perfect Recovery<br/>Petz Map $F=1$"]
+    A["Inclusion-Exclusion Identity<br/>Geometric Decomposition"] --> B["Totally-Ordered Cut<br/>κ=0"]
+    B --> C["Markov Splicing<br/>I(j-1:j+1|j)=0"]
+    C --> D["Perfect Recovery<br/>Petz Map F=1"]
 
-    A --> E["Non-Totally-Ordered Cut<br/>$\kappa > 0$"]
-    E --> F["Markov Gap<br/>$I > 0$"]
-    F --> G["Lossy Recovery<br/>$F < 1$"]
+    A --> E["Non-Totally-Ordered Cut<br/>κ > 0"]
+    E --> F["Markov Gap<br/>I > 0"]
+    F --> G["Lossy Recovery<br/>F < 1"]
 
     C --> H["HSMI Advancement<br/>Algebraic Structure"]
     H --> I["Chain Recursion<br/>Modular Flow Splicing"]
