@@ -329,6 +329,20 @@
         - [Appendix D: Symbol Index and Axiom List for the Entire Book](./book-foundation-of-phys-in-geo-and-info/appendix/appendix-d-symbol-index-axioms_en.md)
     - [Postscript: At the End of Geometry and Information](./book-foundation-of-phys-in-geo-and-info/postscript_en.md)
 
+- [信息速率的普适守恒：从量子元胞自动机到相对论、质量与引力的统一]()
+    - [01. 信息速率的普适守恒](./omega/01-universal_conservation_of_information_rate.md)
+    - [02. 从局域信息体积守恒导出的光学度规](./omega/02-optical_metric_from_local_information_volume_conservation.md)
+    - [03. 质量作为拓扑阻抗](./omega/03-mass_as_topological_impedance.md)
+    - [03. 质量作为拓扑阻抗 (EN)](./omega/03-mass_as_topological_impedance_en.md)
+    - [04. 红皇后宇宙](./omega/04-red_queen_universe.md)
+    - [05. 探测纠缠引力](./omega/05-detecting_entanglement_gravity.md)
+    - [06. 规范场作为信息传输的几何](./omega/06-gauge_fields_as_geometry_of_information_transport.md)
+    - [07. 时间作为态密度](./omega/07-time_as_density_of_states.md)
+    - [08. 自指散射与费米子](./omega/08-self_referential_scattering_and_fermions.md)
+    - [09. 概率的涌现](./omega/09-emergence_of_probability.md)
+    - [10. 离散因果视界中的全息熵](./omega/10-holographic_entropy_from_discrete_causal_horizons.md)
+    - [11. 狭义相对论作为信息速率守恒的涌现](./omega/11-special_relativity_as_emergence_of_information_rate_conservation.md)
+
 - [宇宙的签名：从太空到太满的秘密](./euler-article/gls-paper/the-cosmic-signature.md)
 - [The Cosmic Signature: The Secret from Taikong to Taiman (EN)](./euler-article/gls-paper/the-cosmic-signature_en.md)
 - [GLS统一理论教程系列]()
@@ -1694,6 +1708,3 @@
     - [严格数学证明](./math/13-appendix-proofs.md)
     - [数学验证与示例](./appendix_math.md)
     - [可视化与图表](./appendix_visual.md)
-
-- [Omega]()
-    - [信息速率的普适守恒：从量子元胞自动机到相对论、质量与引力的统一](./omega/universal_conservation_of_information_rate.md)
