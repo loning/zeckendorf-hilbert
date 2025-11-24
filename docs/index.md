@@ -1,132 +1,84 @@
-# 递归希尔伯特理论：数学与宇宙的统一
+# 宇宙统一理论体系 (Unified Theory System)
 
-*从递归母空间的自包含构造到量子现象的完整数学化*
+**从递归母空间的数学构造到物理实在的计算本源**
 
----
-
-## 理论体系概览
-
-> "Wir müssen wissen — wir werden wissen!"  
-> "我们必须知道——我们将会知道！"  
-> —— 大卫·希尔伯特
-
-这是一个基于**递归自相似希尔伯特空间**的完整数学-物理统一理论，包含32章内容，从纯数学基础到量子物理应用的系统建构。
-
-## 理论的核心洞察
-
-### 递归母空间假设
-**也许宇宙本身就是一个巨大的递归希尔伯特空间 $\mathcal{H}^{(R)}$**
-
-从这个基础假设出发，我们发现：
-- 量子力学的所有"神秘"现象都有严格的递归数学解释
-- 素数分布可能是宇宙信息在递归层级中的基础编码
-- 数学常数φ、e、π作为递归收敛模式，是宇宙几何的基本参数
-- 复杂性的涌现遵循递归生成的数学规律
-
-### 核心数学创新
-
-#### 自包含递归构造
-$$\mathcal{H}_n^{(R)} = \text{embed}(R(\mathcal{H}_{n-1}^{(R)}, \mathcal{H}_{n-2}^{(R)})) \oplus_{\text{embed}} \mathbb{C} e_n$$
-
-- **原子新增原理**：每次递归仅新增单一正交基，避免维数爆炸
-- **二元依赖机制**：通过标签参考嵌入实现真正的自包含递归
-- **无限维初始**：从$\ell^2(\mathbb{N})$出发保持无限维完备性
-
-#### 标签序列理论
-$$f_n = \sum_{k=0}^n a_k e_k$$
-
-三种基本模式统一数学常数的生成：
-- **φ模式**：Fibonacci递归 → 黄金比例
-- **e模式**：因子衰减 → 自然常数  
-- **π模式**：交错级数 → 圆周率
-
-#### 相对论指标机制
-$$\eta^{(R)}(k; m) = \frac{F_{\text{finite}}(\{a_{m+j}\}_{j=0}^k)}{F_{\text{finite}}(\{a_j\}_{j=0}^m)}$$
-
-实现任意起点的计算自由，解决递归计算的根本性技术难题。
-
-## 理论体系结构
-
-### 数学基础（第1-16章）
-- **第1章**：[递归母空间理论](./traditional-math/hilbert-complete/01-mother-space/index.md) - 理论的数学基石
-- **第2-8章**：基础工具与优化控制 - 遮蔽函数、不相容理论、Zeckendorf控制
-- **第9-15章**：现代数学分支递归化 - 拓扑、范畴论、代数几何、数论等
-- **第16章**：[递归全息宇宙论](./traditional-math/hilbert-complete/16-recursive-holographic-universe/index.md) - 数学哲学总结
-
-### 量子物理应用（P17-P26章）
-- **P17章**：[量子概念的递归定义](./traditional-math/hilbert-complete/P17-quantum-mechanics-recursive-foundations/index.md)
-- **P18章**：[量子动力学的递归嵌套](./traditional-math/hilbert-complete/P18-recursive-quantum-dynamics/index.md)
-- **P19章**：[量子测量的投影机制](./traditional-math/hilbert-complete/P19-recursive-quantum-measurement-projection/index.md)
-- **P20章**：[量子纠缠的ζ函数嵌入](./traditional-math/hilbert-complete/P20-recursive-quantum-entanglement-nonlocality/index.md)
-- **P21章**：[量子统计的熵增基础](./traditional-math/hilbert-complete/P21-recursive-quantum-statistical-mechanics/index.md)
-- **P22章**：[量子信息的标签编码](./traditional-math/hilbert-complete/P22-recursive-quantum-information-theory/index.md)
-- **P23章**：[量子计算的递归操作符](./traditional-math/hilbert-complete/P23-recursive-quantum-computing/index.md)
-- **P24章**：[量子场论的ζ函数表示](./traditional-math/hilbert-complete/P24-recursive-quantum-field-theory/index.md)
-- **P25章**：[引力的递归几何初步](./traditional-math/hilbert-complete/P25-recursive-quantum-gravity-preliminaries/index.md)
-- **P26章**：[多体系统的ζ嵌入](./traditional-math/hilbert-complete/P26-recursive-quantum-many-body-systems/index.md)
-
-## 主要成就
-
-### 现代物理学核心问题的数学解决
-- ✅ **量子测量问题**：递归投影算子的幂等性机制
-- ✅ **波粒二象性**：标签序列离散基与连续系数的数学对偶
-- ✅ **测不准原理**：观察者投影不相容的严格数学推导
-- ✅ **量子纠缠非局域性**：ζ函数多层嵌入的数学机制
-- ✅ **量子场论重整化**：ζ函数正则化的自然数学解决
-- ✅ **黑洞信息悖论**：递归全息信息守恒机制
-
-### 数学理论的创新突破
-- ✅ **自包含递归构造**：解决递归数学的自指悖论问题
-- ✅ **数学常数统一理论**：φ、e、π的递归生成机制
-- ✅ **ζ函数递归嵌入**：避免发散的非平凡数学工程
-- ✅ **边界处理统一方案**：不同标签模式的边界数学处理
-
-## 理论的哲学意义
-
-### 认识论革命
-- **数学第一性**：从纯数学结构推导物理现象
-- **递归思维**：用递归结构理解复杂系统
-- **观察者中心性**：观察者在现实构造中的核心地位
-
-### 本体论洞察
-- **宇宙即递归母空间**：宇宙可能是数学结构的物理实现
-- **素数即信息原子**：素数作为宇宙递归信息的基础单元
-- **存在即递归过程**：存在不是状态而是递归展开的动态过程
-
-## 使用指南
-
-### 学习路径
-1. **数学研究者**：从[第1章递归母空间](./traditional-math/hilbert-complete/01-mother-space/index.md)开始系统学习
-2. **物理学家**：直接阅读[P17章量子基础](./traditional-math/hilbert-complete/P17-quantum-mechanics-recursive-foundations/index.md)
-3. **哲学思考者**：重点阅读[前言](./traditional-math/hilbert-complete/PREFACE.md)和[第16章哲学总结](./traditional-math/hilbert-complete/16-recursive-holographic-universe/index.md)
-
-### 文档导航
-- **[前言](./traditional-math/hilbert-complete/PREFACE.md)**：理论动机与哲学基础
-- **[数学理论体系介绍](./traditional-math/hilbert-complete/index.md)**：16章数学工作的深度展示
-- **[物理理论体系介绍](./traditional-math/hilbert-complete/PHYSICS_THEORY_INTRODUCTION.md)**：P17-P26物理应用的创新探索
-- **[完整目录](./SUMMARY.md)**：所有章节的系统导航
-
-### 核心概念快速索引
-- **递归母空间**：[第1章定义1.2.1.1](./traditional-math/hilbert-complete/01-mother-space/1.2.1-mother-space-definition.md)
-- **标签序列**：[第1章定义1.2.1.2](./traditional-math/hilbert-complete/01-mother-space/1.2.1-mother-space-definition.md)
-- **相对论指标**：[第1章定义1.2.1.4](./traditional-math/hilbert-complete/01-mother-space/1.2.1-mother-space-definition.md)
-- **严格熵增**：[第1章定理1.2.1.4](./traditional-math/hilbert-complete/01-mother-space/1.2.1-mother-space-definition.md)
-- **量子态定义**：[P17章定义1](./traditional-math/hilbert-complete/P17-quantum-mechanics-recursive-foundations/P17.1-quantum-concepts-recursive-definitions.md)
-- **观察者投影**：[P19章投影理论](./traditional-math/hilbert-complete/P19-recursive-quantum-measurement-projection/P19.1-recursive-projection-operators.md)
-
-## 开放探索的邀请
-
-正如《少年Pi的奇幻漂流》告诉我们的：**我们可以描述Pi，但我们无法穷尽Pi**。我们的递归希尔伯特理论也是如此——它是对无穷递归现实的一次数学描述尝试，而非最终答案。
-
-我们邀请每一位读者：
-- 以开放的心态探索这个递归数学世界
-- 给传统认知框架一个新的挑战
-- 为人类认识探索贡献新的可能性
-
-在递归母空间的无限可能中，我们选择相信、选择探索、选择开放。
+> *"物理学的历史，就是一部不断寻找更底层'源代码'的历史。"*
 
 ---
 
-*"在递归的深处，我们正在接近希尔伯特'我们将会知道'的真谛。"*
+## 体系概览
 
-**探索永不停止，描述永不完备，这正是递归存在的最美丽之处。** 🌌✨♾️
+本理论体系致力于建立一个逻辑自洽、数学完备的统一框架，消除量子力学与广义相对论之间的深层矛盾，并将信息、几何与物理实在统一在同一个公理体系之下。我们提出，宇宙的本质并非连续的几何流形，而是一个建立在离散格点之上的、遵循局域幺正演化规则的**量子元胞自动机 (QCA)**。
+
+核心支柱：
+1.  **第一性原理**：万物源于量子比特的运算 (It from Qubit Processing)。
+2.  **递归数学结构**：宇宙作为递归希尔伯特空间的自包含构造。
+3.  **几何与信息的对偶**：时空几何是底层量子信息纠缠的统计涌现。
+
+---
+
+## 核心著作与理论模块
+
+### 1. [第一性原理：从幺正计算到物理实在](./book-first-principles-from-unitary-computation-to-physical-reality/index.md)
+**The First Principles: From Unitary Computation to Physical Reality**
+
+这是本理论体系的**公理化核心**。本书从唯一的终极公理 $\Omega$ 出发，推导出现代物理学的核心结构。
+*   **离散本体论**：论证为何连续统只是数学幻觉，物理实在必须是离散和有限的。
+*   **时空涌现**：从格点跳跃推导光速 $c$ 的起源，证明洛伦兹变换是资源分配的统计结果。
+*   **引力熵力**：推导爱因斯坦场方程为 IGVP（信息-几何-体积-压强）状态方程。
+*   **物质拓扑**：解释质量、电荷与费米子统计的拓扑起源。
+
+### 2. [物理基础：几何与信息](./book-foundation-of-phys-in-geo-and-info/index.md)
+**Foundations of Physics: Geometry and Information**
+
+深入探讨物理定律的**几何与信息本质**，分为五卷系统阐述：
+*   **第一卷：离散本体论** — 全息原理、贝肯斯坦界限与参数化宇宙。
+*   **第二卷：时间的涌现** — 时间作为微观散射的统计属性与热力学方向。
+*   **第三卷：引力与熵** — 黑洞熵、全息纠缠与引力的微观机制。
+*   **第四卷：物理中的主体性** — 观察者、测量问题与复杂系统的能动性。
+*   **第五卷：元理论** — 逻辑、计算与实验验证方案。
+
+### 3. [递归希尔伯特数学体系](./traditional-math/hilbert-complete/index.md)
+**Recursive Hilbert Math System**
+
+为统一理论提供坚实的**数学基础**：
+*   **递归母空间**：$\mathcal{H}^{(R)}$ 的自包含构造与原子新增原理。
+*   **标签序列理论**：统一 $\varphi, e, \pi$ 等数学常数的递归生成机制。
+*   **量子力学的数学化**：提供量子测量、纠缠和非局域性的严格数学解释。
+
+### 4. [Euler-GLS 统一框架](./euler-article/index.md)
+**Euler-GLS Unified Framework**
+
+探索宇宙的拉格朗日系统 (GLS) 与广义欧拉结构的统一：
+*   **[宇宙的签名](./euler-article/gls-paper/the-cosmic-signature.md)**：从微观到宏观的尺度规范不变性。
+*   **意识理论 (Euler-Aware)**：[MCCI 模型与心理因果选择架构](./euler-aware/mcci-mental-causal-choice-architecture-unified-theory.md)。
+*   **宇宙学 (Euler-Cosmos)**：[尺度规范与宇宙学观测](./euler-cosmos/scale-gauge-cosmological-observation.md)。
+
+### 5. [The Matrix: 计算本体论](./the-matrix/index.md)
+**Computational Ontology**
+
+基于 ZkT 框架的深入探讨：
+*   探索模拟宇宙假说与计算本体论的哲学与技术细节。
+*   分析“观察者-参与者”在计算宇宙中的地位。
+
+---
+
+## 探索与验证
+
+### 数学猜想与证明
+*   **[黎曼猜想的物理统一](./traditional-math/riemann-hypothesis-unified-reorganized.md)**：基于希尔伯特空间不动点理论的物理诠释。
+
+### 实验预言
+我们在理论中提出了多个可证伪的实验预言，包括：
+*   微波腔中的纠缠引力探测。
+*   极高能宇宙线的洛伦兹破缺效应。
+*   精细结构常数的宇宙学漂移。
+
+---
+
+## 导航
+
+*   **[完整目录 (Table of Contents)](./SUMMARY.md)**
+*   **[英文索引 (English Index)](./index_en.md)**
+
+> *"在递归的深处，我们正在接近希尔伯特 '我们将会知道' 的真谛。"*
