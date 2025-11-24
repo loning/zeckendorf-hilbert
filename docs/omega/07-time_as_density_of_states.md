@@ -1064,3 +1064,4 @@ $$
 
 [23] Representative recent works on quantum metrology and gravitational redshift in curved spacetime, e.g. S. Kish, *Quantum Metrology in Curved Space-Time* (PhD thesis, 2019).
 
+
