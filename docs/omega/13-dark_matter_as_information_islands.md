@@ -793,3 +793,5 @@ $$v_{\text{rot}}(r)=\sqrt{\frac{G M(r)}{r}}=\sqrt{2} \sigma.$$
 [11]: https://arxiv.org/html/2411.11945v3?utm_source=chatgpt.com "A Novel Density Profile for Isothermal Cores of Dark Matter ..."
 
 
+
+

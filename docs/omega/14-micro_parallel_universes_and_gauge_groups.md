@@ -757,3 +757,5 @@ $$A_{\mu}(x)\mapsto g(x)A_{\mu}(x)g(x)^{-1}
 [30]: https://link.springer.com/article/10.1140/epjc/s10052-020-8077-5?utm_source=chatgpt.com "The confining color field in SU(3) gauge theory"
 
 
+
+
