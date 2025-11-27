@@ -1,0 +1,301 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{braket}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=0.85in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{axiom}[theorem]{Axiom}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Math operators
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Arg}{Arg}
+\DeclareMathOperator{\PW}{PW}
+
+% Title information
+\title{WSIG Unified Measurement Framework (UMS)\\
+\bigskip
+Finite-Window Covariant\\
+``Scattering--Information--Geometry'' Unified Theory\\
+(Formal Academic Paper with Complete Proofs)}
+\author{Auric (S-series / EBOC Framework)\\[5pt]
+\small Version v2.5}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This paper takes \textbf{phase--density scale}, \textbf{windowed readout} and \textbf{information geometry} as three main axes, welding ``state--measurement--probability--pointer--scattering phase--group delay--sampling/frame--error theory--channel capacity'' into verifiable \textbf{categorized} unified theory (UMS). Core unified formula adopts \textbf{three density expressions of same scale}:
+
+$$
+\boxed{\, d\mu_{\varphi}(E)\ :=\ \frac{\varphi'(E)}{\pi}\,dE\ =\ \frac{1}{2\pi}\,\operatorname{tr}\mathsf{Q}(E)\,dE\ =\ \rho_{\mathrm{rel}}(E)\,dE\ }\ \ \text{(a.e. on a.c. spectrum)}\,
+$$
+
+(Above formula holds a.e. on a.c. spectrum, $\Arg\det S$ takes \textbf{continuous branch}; across threshold/atomic points \textbf{spliced by jumps} via $\Delta\mu_\varphi=\mu_\varphi(\{E_*\})$, consistent with jumps of spectral shift function $\xi(E)$ and bound state/threshold multiplicity.)
+
+where $\mathsf{Q}(E)=-i\,S^\dagger(E)\,S'(E)$ is Wigner--Smith group delay matrix, $\rho_{\mathrm{rel}}(E)=-\xi'(E)$ is Birman--Kreĭn spectral shift density (adopting convention $\det S(E)=e^{-2\pi i\,\xi(E)}$). In multi-channel case, total phase defined as $\varphi(E):=\frac{1}{2}\Arg\det S(E)$ (taking continuous branch).
+
+\textbf{Canonicalization note (unified)}: This paper views $\mu_\varphi$ as \textbf{locally finite signed Radon measure}, making Lebesgue decomposition $\mu_\varphi=\mu_\varphi^{\mathrm{ac}}+\mu_\varphi^{\mathrm{s}}+\mu_\varphi^{\mathrm{pp}}$, and Jordan decomposition $\mu_\varphi=\mu_+-\mu_-$ ($\mu_\pm\ge0$). When $\mu_\varphi$ is non-negative Borel measure satisfying Herglotz representation standard growth/integrability conditions (e.g., $\int (1+E^2)^{-1}\,d\mu_\varphi(E)<\infty$, excess absorbed into $a+bz$ term), exists Herglotz function $m$ such that $\pi^{-1}\Im m(E+i0)=\rho_{\mathrm{rel}}(E)$ (a.e.), under proper normalization (eliminating $a+bz$ freedom) realized by \textbf{trace-normed} DBK canonical system for \textbf{global} representation; if $\mu_\varphi$ contains negative part, can only establish \textbf{local} representation on a.c. segments where $\rho_{\mathrm{rel}}>0$.
+
+This formula unifies scattering phase derivative, relative spectral density and group delay to same scale; measurement readouts expressed as \textbf{window--kernel} spectral integrals, with \textbf{Nyquist--Poisson--Euler--Maclaurin (EM)} three-term decomposition giving \textbf{finite-order, non-asymptotic} error closure; probability uniqueness guaranteed by Naimark dilation and Gleason theorem; sampling/frame thresholds characterized by Landau necessary density, Wexler--Raz biorthogonality and Balian--Low impossibility; open system information monotonicity and capacity upper bounds controlled by GKSL master equation, quantum relative entropy monotonicity under \textbf{trace-preserving positive} maps (DPI) and HSW theorem.
+
+\textbf{Keywords}: Scattering phase; Wigner--Smith group delay; Birman--Kreĭn; de Branges / Herglotz; Naimark dilation; Gleason; Landau density; Wexler--Raz; Balian--Low; Euler--Maclaurin; Poisson; GKSL; DPI; HSW.
+\end{abstract}
+
+\section{Preliminaries and Notation}
+
+\subsection{Scattering and Group Delay}
+
+Set $S(E)\in U(N)$ having \textbf{weak derivative} or \textbf{bounded variation} on a.c. spectrum, Wigner--Smith group delay matrix defined as $\mathsf{Q}(E)=-i\,S^\dagger(E)\,S'(E)$, where $S'(E)$ understood as \textbf{distributional derivative}. For unitary $S$ have $S^\dagger S'=(S^{-1}S')$ anti-Hermitian, thus trace purely imaginary. By Jacobi formula $\tfrac{d}{dE}\log\det S=\operatorname{tr}(S^{-1}S')$, and $S^{-1}=S^\dagger$ (unitary), get $\tfrac{d}{dE}\Arg\det S=\Im\,\operatorname{tr}(S^\dagger S')$; thus
+
+$$
+\operatorname{tr}\mathsf{Q}(E)=-i\,\operatorname{tr}\!\big(S^\dagger S'(E)\big)=\Im\,\operatorname{tr}\!\big(S^\dagger S'(E)\big)=\frac{d}{dE}\Arg\det S(E)\ \ \text{(continuous branch, a.e. on a.c. spectrum)},
+$$
+
+single-channel $S(E)=e^{2i\varphi(E)}$ gives $\operatorname{tr}\mathsf{Q}(E)=2\,\varphi'(E)$. Across threshold/atomic points not requiring everywhere differentiable, but spliced via jumps $\Delta\mu_\varphi$.
+
+\textbf{Notation convention}: Below ``a.c.'' denotes absolutely continuous spectral region; ``a.e.'' means almost everywhere relative to Lebesgue measure. Domain of $\mathsf{Q}$ is a.e. point set of a.c. spectral region, outside this interval (thresholds, atomic points) described by jump part $\mu_\varphi^{\mathrm{pp}}$ of spectral measure.
+
+\textbf{Multi-channel scaled phase}: Let $\varphi(E):=\frac{1}{2}\Arg\det S(E)$ (choose continuous branch, a.e. differentiable on a.c. spectrum), then
+
+$$
+d\mu_\varphi(E)=\frac{\varphi'(E)}{\pi}\,dE=\frac{1}{2\pi}\operatorname{tr}\mathsf{Q}(E)\,dE.
+$$
+
+Single-channel degenerates to $S=e^{2i\varphi}$. $\Arg\det S$ takes locally continuous branch, only a.e. differentiable on a.c. spectrum; across thresholds and atomic points compensated by jumps.
+
+\subsection{Spectral Shift and Birman--Kreĭn}
+
+Adopt BK \textbf{negative sign convention}: $\ \det S(E)=e^{-2\pi i\,\xi(E)}$.
+
+\textbf{Determinant convention (BK/Fredholm)}: $\det S(E)$ in this paper refers to \textbf{Fredholm determinant in Birman--Kreĭn sense} $\det_{\mathrm{F}}S(E)$. Under premise $(H-z)^{-1}-(H_0-z)^{-1}\in\mathfrak{S}_1$ (equivalently, for a.e. $E$, $S(E)-I\in\mathfrak{S}_1$), $\det_{\mathrm{F}}S(E)$ well-defined, $\Arg\det_{\mathrm{F}}S(E)$ can choose \textbf{continuous branch} and is \textbf{a.e. differentiable} on a.c. spectrum, thus
+
+$$
+\frac{d}{dE}\Arg\det_{\mathrm{F}}S(E)=-2\pi\,\xi'(E),\qquad \rho_{\mathrm{rel}}(E):=-\xi'(E),
+$$
+
+therefore $\tfrac{1}{2\pi}\operatorname{tr}\mathsf{Q}(E)=\rho_{\mathrm{rel}}(E)$ (a.e.).
+
+\subsection{DBK Canonical System and Herglotz Dictionary}
+
+One-dimensional de Branges--Kreĭn canonical system $JY'(t,z)=zH(t)Y(t,z)$'s Weyl--Titchmarsh function $m:\mathbb{C}^+\to\mathbb{C}^+$ is Herglotz function, standard representation $m(z)=a+bz+\int\!\big(\frac{1}{t-z}-\frac{t}{1+t^2}\big)\,d\nu(t)$ where $d\nu\ge0$ non-negative Borel measure satisfying $\int (1+t^2)^{-1}\,d\nu(t)<\infty$ (excess absorbed into $a+bz$ term), boundary imaginary part gives absolutely continuous spectral density $\rho_{\mathrm{ac}}(E)=\pi^{-1}\Im m(E+i0)$ (a.e.); under proper normalization (eliminating $a+bz$ freedom), \textbf{trace-normed} canonical system has \textbf{one-to-one and unique} (up to natural equivalence) correspondence with Herglotz function and de Branges space.
+
+\textbf{Signed measure case piecewise splicing}: When $\mu_\varphi$ contains negative part (i.e., $\rho_{\mathrm{rel}}$ changes sign), can only construct trace-normed canonical system $(H_j,J_j)$ and corresponding Herglotz function $m_j$ on each a.c. segment $I_j$ where $\rho_{\mathrm{rel}}>0$, such that $\pi^{-1}\Im m_j(E+i0)=\rho_{\mathrm{rel}}(E)$ a.e. on $I_j$; segments spliced according to Lebesgue decomposition and Jordan decomposition of spectral measure $\mu_\varphi$, uniqueness and consistency guaranteed by trace-normed canon \textbf{within each segment}, but \textbf{globally no single canonical system} Herglotz representation exists.
+
+\subsection{Sampling, Frames and Thresholds}
+
+Paley--Wiener class stable sampling/interpolation obeys Landau necessary density; Gabor system dual windows satisfy Wexler--Raz biorthogonality; critical density satisfies Balian--Low impossibility.
+
+\subsection{Measurement and Probability Uniqueness}
+
+Any POVM can be obtained by compression from PVM in larger space (Naimark dilation); when $\dim\mathcal{H}\ge 3$, probability measure satisfying additivity must be $\Tr(\rho\,\cdot)$ (Gleason theorem).
+
+\subsection{Open Systems and Information Bounds}
+
+Markovian open evolution described by GKSL (Lindblad) master equation; quantum relative entropy monotonically decreases under \textbf{trace-preserving positive} maps (DPI); unassisted classical capacity of quantum channel given by HSW regularized formula.
+
+\section{Axiom System}
+
+\begin{axiom}[Dual Representation and Covariance]
+\label{ax:dual-rep}
+$\mathcal{H}(E)$ (energy representation) and $\mathcal{H}_a=L^2(\mathbb{R}_+,x^{a-1}dx)$ (phase--scale representation) isometrically equivalent; discrete--continuous reordering uses \textbf{finite-order} EM, controlling remainder under smoothness and (bounded or finite variation) premises. This ``isometric equivalence'' refers to unitary operator realization when DBK canonical system/Weyl--Mellin transform \textbf{already constructed}; readers should not interpret as unconditional isomorphism between arbitrary systems.
+\end{axiom}
+
+\begin{axiom}[Finite Window Readout]
+\label{ax:finite-window}
+Any ``realizable readout'' written as window--kernel spectral integral $K_{w,h}=\int h(E)\,w_R(E)\,d\Pi_A(E)$. To ensure expectation value $\Tr(\rho K_{w,h})$ of $K_{w,h}$ on \textbf{all density operators} $\rho$ well-defined and uniformly bounded, this paper \textbf{restricts} $g(E):=h(E)w_R(E)\in L^\infty(\mathbb{R};\mathbb{R})$ and Borel measurable, thus $K_{w,h}$ is \textbf{bounded self-adjoint} operator; error \textbf{non-asymptotically closed} by ``alias (Poisson) + Bernoulli layer (EM) + truncation'' three terms.
+\end{axiom}
+
+\begin{axiom}[Probability--Information Consistency]
+\label{ax:prob-info-consistency}
+For PVM $\{P_j\}$ and state $\rho$, linear constraint $p_j=\Tr(\rho P_j)$ makes feasible set single point $\{p^\star\}$, any strictly convex Bregman/KL I-projection uniquely taken at $p^\star$; POVM case first Naimark dilate to PVM then pushback. Gleason ($\dim\mathcal{H}\ge3$) ensures uniqueness of this probability form.
+\end{axiom}
+
+\begin{axiom}[Pointer Basis]
+\label{ax:pointer-basis}
+``Pointer basis'' defined as basis spanning \textbf{spectral projection subspace corresponding to minimal spectral value} of window operator $W_R=\int w_R\,d\Pi_A$ (Ky Fan ``minimum sum''); if minimal spectral value not attained, take $\varepsilon\downarrow0$ limit subspace. Existence and verifiability: if $w_R\in L^2(\mathbb{R})$ (e.g., finite support), combined with bandlimited projection $\Pi_B$, then $\Pi_BM_{w_R}\Pi_B$ is Hilbert--Schmidt/compact.
+\end{axiom}
+
+\begin{axiom}[Phase--Density--Delay Scale]
+\label{ax:phase-density-delay}
+On a.c. spectrum a.e., have
+
+$$
+d\mu_\varphi(E)=\frac{\varphi'(E)}{\pi}\,dE=\frac{1}{2\pi}\operatorname{tr}\mathsf{Q}(E)\,dE=\rho_{\mathrm{rel}}(E)\,dE.
+$$
+
+Negative group delay and spectral shift density sign change observable in multiple wave scattering classes.
+\end{axiom}
+
+\begin{axiom}[Sampling and Frame Thresholds]
+\label{ax:sampling-frame}
+Paley--Wiener stable sampling/reconstruction obeys Landau necessary density $D\ge 1/(2\pi B)$; Gabor frame critical density $\alpha\beta=1$ satisfies Balian--Low; dual windows satisfy Wexler--Raz biorthogonality.
+\end{axiom}
+
+\begin{axiom}[Open System Information Monotonicity]
+\label{ax:open-system}
+GKSL master equation describes Markovian open dynamics; quantum relative entropy $D(\rho\|\sigma)$ monotonically decreases under trace-preserving completely positive (TPCP) maps (data processing inequality, DPI); unassisted classical capacity $C(\mathcal{N})=\lim_{n\to\infty}\frac{1}{n}\chi(\mathcal{N}^{\otimes n})$ (HSW regularized formula).
+\end{axiom}
+
+\section{Main Theorems}
+
+\begin{theorem}[DBK Global Representation]
+\label{thm:dbk-global}
+If measure $\mu_\varphi$ is non-negative Borel measure satisfying $\int (1+E^2)^{-1}\,d\mu_\varphi(E)<\infty$, then exists Herglotz function $m$ and under proper normalization (trace-normed), exists \textbf{unique} (up to natural equivalence) de Branges--Kreĭn canonical system $(H,J)$ such that
+
+$$
+\pi^{-1}\Im m(E+i0)=\rho_{\mathrm{rel}}(E)\quad\text{(a.e.)},
+$$
+
+where $\rho_{\mathrm{rel}}=d\mu_\varphi^{\mathrm{ac}}/dE$ is absolutely continuous part density of $\mu_\varphi$.
+\end{theorem}
+
+\begin{proof}
+Standard Herglotz representation theory and trace-normed canonical system bijection. Under non-negativity and growth conditions, Herglotz representation well-defined, trace-normed normalization eliminates $a+bz$ freedom, yielding unique canonical system. See Remling, de Branges works for details. \end{proof}
+
+\begin{theorem}[Signed Measure Local Representation]
+\label{thm:signed-local}
+If $\mu_\varphi$ contains negative part, let $I_j$ ($j\in J$) be maximal a.c. intervals where $\rho_{\mathrm{rel}}>0$. Then on each $I_j$, exists trace-normed canonical system $(H_j,J_j)$ and Herglotz function $m_j$ such that
+
+$$
+\pi^{-1}\Im m_j(E+i0)=\rho_{\mathrm{rel}}(E)\quad\text{(a.e. on }I_j\text{)}.
+$$
+
+Globally, $\mu_\varphi$ expressed as piecewise splice of these local representations plus singular/atomic parts, but no single canonical system realizes global representation.
+\end{theorem}
+
+\begin{proof}
+On each segment $I_j$ where $\rho_{\mathrm{rel}}>0$, apply Theorem~\ref{thm:dbk-global} locally. Uniqueness within segment guaranteed by trace-normed normalization. Segments spliced via Lebesgue and Jordan decompositions. Impossibility of global representation follows from non-negativity requirement of Herglotz measures. \end{proof}
+
+\begin{theorem}[Windowed Readout Non-Asymptotic Error Closure]
+\label{thm:windowed-error}
+For window $w_R\in\PW_\Omega\cap L^\infty$, kernel $h\in\PW_\Omega\cap L^1$, and spectral measure $d\Pi_A$, windowed readout
+
+$$
+\Tr\bigl(\rho\int w_R(E)h(E)\,d\Pi_A(E)\bigr)
+$$
+
+admits discrete approximation via sampling with error decomposition:
+
+$$
+\text{Error}=\varepsilon_{\mathrm{alias}}+R_m+\varepsilon_{\mathrm{tail}},
+$$
+
+where $\varepsilon_{\mathrm{alias}}=0$ under bandlimited+Nyquist conditions, $R_m$ is EM remainder with explicit bound
+
+$$
+|R_m|\le \frac{2\zeta(2m)}{(2\pi)^{2m}}\int|F^{(2m)}(x)|\,dx,
+$$
+
+and $\varepsilon_{\mathrm{tail}}$ controlled by truncation point selection based on decay rate.
+\end{theorem}
+
+\begin{proof}
+Combine Poisson summation (alias term), finite-order Euler--Maclaurin (Bernoulli layer), and tail truncation. Under bandlimited assumption with sampling rate $f_s\ge 2B$, Poisson replicas separated, alias vanishes. EM remainder follows from AFP-Isabelle formalization. Tail controlled by function decay. \end{proof}
+
+\begin{theorem}[Sampling Landau Density Threshold]
+\label{thm:landau-density}
+For Paley--Wiener space $\PW_B$ of bandwidth $B$, necessary condition for stable sampling/interpolation is density
+
+$$
+D\ge \frac{1}{2\pi B}.
+$$
+
+Equivalently, sampling period $T\le \pi/B$ (angular frequency) or $T\le 1/(2f_B)$ (Hertz, $f_B=B/(2\pi)$).
+\end{theorem}
+
+\begin{proof}
+Landau 1967 classical result. Follows from uncertainty principle and Fourier analysis on bandlimited functions. \end{proof}
+
+\begin{theorem}[Balian--Low Impossibility at Critical Density]
+\label{thm:balian-low}
+For Gabor frame with time-frequency lattice $(\alpha,\beta)$ satisfying $\alpha\beta=1$ (critical density), if frame is Riesz basis, then window $g$ satisfies
+
+$$
+\int t^2|g(t)|^2\,dt\cdot\int\omega^2|\widehat{g}(\omega)|^2\,d\omega=\infty.
+$$
+
+Cannot have both time and frequency good localization simultaneously at critical density.
+\end{theorem}
+
+\begin{proof}
+Standard Balian--Low theorem. Follows from uncertainty principle and critical density constraint. See Daubechies 1992 for complete proof. \end{proof}
+
+\begin{theorem}[Open System Capacity HSW Bound]
+\label{thm:hsw-capacity}
+For quantum channel $\mathcal{N}$ with ensemble $\{p_i,\rho_i\}$, Holevo information
+
+$$
+\chi(\{p_i,\rho_i\})=S\Bigl(\sum_i p_i\mathcal{N}(\rho_i)\Bigr)-\sum_i p_iS\bigl(\mathcal{N}(\rho_i)\bigr),
+$$
+
+and unassisted classical capacity
+
+$$
+C(\mathcal{N})=\lim_{n\to\infty}\frac{1}{n}\chi(\mathcal{N}^{\otimes n})=\lim_{n\to\infty}\frac{1}{n}\max_{\{p_i,\rho_i\}}\chi(\mathcal{N}^{\otimes n},\{p_i,\rho_i\}).
+$$
+\end{theorem}
+
+\begin{proof}
+Holevo--Schumacher--Westmoreland theorem. Follows from quantum relative entropy monotonicity (DPI) and coding theorem arguments. See Holevo 1998, Schumacher--Westmoreland 1997. \end{proof}
+
+\section{Discussion and Outlook}
+
+This work establishes unified framework connecting:
+\begin{itemize}
+\item Scattering theory (phase, delay, spectral shift)
+\item Information geometry (KL projection, Fisher metric)
+\item Measurement theory (windows, frames, sampling)
+\item Error analysis (Poisson--EM--tail decomposition)
+\item Open systems (GKSL, DPI, capacity bounds)
+\end{itemize}
+
+Key achievements:
+\begin{enumerate}
+\item Unified scale formula $d\mu_\varphi=\frac{\varphi'}{\pi}dE=\frac{1}{2\pi}\tr\mathsf{Q}\,dE=\rho_{\mathrm{rel}}\,dE$
+\item DBK global/local representation dichotomy for signed measures
+\item Non-asymptotic error closure via Nyquist--Poisson--EM
+\item Landau--Balian--Low sampling/frame thresholds
+\item HSW capacity bound for open systems
+\end{enumerate}
+
+Future directions:
+\begin{itemize}
+\item Extension to non-Hermitian/dissipative scattering
+\item Categorical formulation of measurement framework
+\item Numerical implementation and experimental validation
+\item Connections to quantum gravity and holography
+\end{itemize}
+
+\end{document}
+

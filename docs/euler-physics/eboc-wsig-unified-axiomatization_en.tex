@@ -1,0 +1,406 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Title information
+\title{EBOC--WSIG Unified Axiomatization:\\
+Windowed Group Delay Definition of Speed of Light and Fusion of ``Spacetime/Time/Space'' Axioms}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today\\
+\small Version: 3.17}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Under the sole premises of causal front (speed of light constant $c$) and spacetime geometry $(M,g)$, we establish an acyclic system from geometry--causality to measurability--calibration: taking the trinity scale of scattering phase derivative $\varphi'(E)$, relative state density $\rho_{\mathrm{rel}}(E)$, and Wigner--Smith group delay trace $\tfrac12\operatorname{tr}\mathsf Q(E)$ as the unique master scale of the energy axis; implementing non-asymptotic measurement via windowed readouts with Nyquist--Poisson--Euler--Maclaurin (NPE) three-term error closure; defining the four bridge constants $\hbar,e,k_{\mathrm B},G$ within the system; accordingly packaging derived quantities and providing triple equivalence of force (worldline non-geodesicity $=$ momentum flux divergence $=$ minimal coupling to curvature/connection). The speed of light constant is \textbf{not redefined}; the following provides \textbf{windowed group delay readout} as \textbf{metrological equivalence} to the constant $c$ in axiom A1, forming fourfold \textbf{alignment} with the trinity scale, causal front and information light cone, and metrological realization. This system guarantees existence, uniqueness, and window/kernel independence, with directed acyclic graph (DAG) of units--calibration eliminating circular dependencies.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Windowed group delay; Wigner-Smith delay matrix; Trinity scale; NPE error ledger; Four bridge constants; Reversible cellular automata; Metrological equivalence; Directed acyclic graph
+
+\noindent\textbf{MSC 2020:} 81U05; 47A40; 94A12; 83C05; 37B15
+
+\tableofcontents
+
+\section{Notation and Implementation Discipline}
+
+\textbf{Terminology and abbreviations}: \textbf{WSIG}: Refers to ``operational protocol and metrological correspondence based on windowed phase/group delay readout with NPE error ledger''. \textbf{EBOC}: Refers to geometric--dynamical framework of ``static blocks + leaf decomposition + suspension flow'' (realized in text as leaf decomposition of 2D subshift $X\subset\mathcal A^{\mathbb Z^2}$ with induced metric $h$). \textbf{RCA}: Reversible cellular automaton, referring to discrete reversible evolution system $Y\subset\mathcal B^{\mathbb Z}$ with bijective sliding block code $F:Y\to Y$. Notation distinction: \textbf{$\mathsf Q$} always denotes Wigner--Smith matrix $-iS^\dagger \partial_E S$ (dimension $E^{-1}$); \textbf{$\mathcal Q$} denotes ``charge'' in minimal coupling; these two have different meanings and dimensions and must not be confused.
+
+\textbf{Phase and group delay}: Let $S(E)\in U(N)$, $\Phi(E):=\operatorname{Arg}\det S(E)$, $\varphi(E):=\tfrac12\,\Phi(E)$. Define $\mathsf Q(E):=-\,i\,S(E)^\dagger\dfrac{dS}{dE}$, $\Phi'(E)=\operatorname{tr}\mathsf Q(E)$, $\varphi'(E)=\tfrac12\,\operatorname{tr}\mathsf Q(E)$.
+
+\textbf{Phase branch and derivative convention}: $\Phi(E)=\operatorname{Arg}\det S(E)$ takes continuous phase branch; $\Phi'(E)$ is understood as distributional derivative, equal to $\operatorname{tr}\mathsf Q(E)$ almost everywhere on absolutely continuous spectrum.
+
+\textbf{Trinity formula} (almost everywhere on absolutely continuous spectrum):
+$$
+\varphi'(E)=\pi\,\rho_{\mathrm{rel}}(E)=\tfrac12\,\operatorname{tr}\mathsf Q(E).
+$$
+
+\textbf{Group delay dimension (channel-averaged/single-channel)}: Channel-averaged group delay $\displaystyle \bar\tau_{\mathrm{WS}}(E):=\hbar\,\frac{1}{N}\operatorname{tr}\mathsf Q(E)$ (time); single-channel (eigenphase $\theta_\alpha$) $\displaystyle \tau_{g,\alpha}(E):=\hbar\,\partial_E\theta_\alpha(E)$. Relation to semi-determinant phase $\varphi(E):=\tfrac12\,\operatorname{Arg}\det S(E)$: $\displaystyle \bar\tau_{\mathrm{WS}}(E)=\frac{2\hbar}{N}\,\varphi'(E)$.
+
+\textbf{Frequency--energy map and group refractive index}: Let $E=\hbar\omega$, in isotropic, static, local linear media take dispersion relation $k(\omega)=n(\omega)\,\omega/c$. Define group velocity and group refractive index
+$$
+v_g(\omega):=\Big(\partial_\omega k(\omega)\Big)^{-1}=\frac{d\omega}{dk},\qquad
+n_g(\omega):=\frac{c}{v_g(\omega)}=n(\omega)+\omega\,\partial_\omega n(\omega).
+$$
+In general, $n_g(\ell,E)$ denotes local group refractive index along path $\gamma$ at arc length coordinate $\ell$ under energy $E$, substituting $\omega=E/\hbar$; if medium is anisotropic or non-isotropic, $n_g$ should be understood as projected group refractive index (equivalent slowness) along ray direction.
+
+\textbf{Fourier convention}: $\displaystyle \widehat f(\tau):=\int_{\mathbb R} f(E)\,e^{-i\tau E}\,dE,\quad f(E)=\frac{1}{2\pi}\int_{\mathbb R}\widehat f(\tau)\,e^{i\tau E}\,d\tau$.
+
+\textbf{Window and kernel normalization (with dimension)}: Take dimensionless prototypes $W,K\in L^1(\mathbb R)$ satisfying $\int W=\int K=1$, define
+$$
+w_R(E):=\frac{2\pi}{\Delta_w}\,W\!\Big(\frac{E}{\Delta_w}\Big),\qquad
+\kappa(E):=\frac{1}{\Delta_\kappa}\,K\!\Big(\frac{E}{\Delta_\kappa}\Big),
+$$
+then $\frac{1}{2\pi}\int w_R(E)\,dE=1$, $\int \kappa(E)\,dE=1$, and $w_R,\kappa$ both have dimension $E^{-1}$. From normalization, for constant $c$ we have $[\kappa\star c]\equiv c$, $\langle c\rangle_{w,\kappa;E_0}=c$.
+
+\textbf{Regularity assumptions and approximate identity}: $w_R\in W^{1,1}(\mathbb R)$ (\textbf{or compactly supported, or band-limited; these two cannot coexist}), and $w_R,w_R'\in L^1$, $w_R(\pm\infty)=0$; $\kappa\in L^1$, $\int\kappa=1$, and in distributional sense $[\kappa\star\partial_E\Phi]=\partial_E[\kappa\star\Phi]$. \textbf{Approximate identity condition}: $(w_R)_R$ satisfies $\sup_R\|w_R\|_{L^1}<\infty$, $\|w_R\|_{L^\infty}\to0$, and $\widehat w_R\xrightarrow{\ \mathcal S'\ }2\pi\delta_0$ ($R\to\infty$).
+
+\textbf{Note}: Strict band-limitedness and compact support cannot hold simultaneously (Paley--Wiener); this paper uses \textbf{effective support in frequency domain} to provide ``alias-free'' \textbf{verifiable sufficient criterion}, with remaining leakage uniformly counted in $\mathcal E_{\mathrm{tail}}$.
+
+\textbf{Convolution definition}: $[\kappa\star f](E):=\int_{\mathbb R}\kappa(E-E')\,f(E')\,dE'$.
+
+\textbf{Weighted average notation (unified)}: For any integrable function $f$ and central energy $E_0$, define
+$$
+\boxed{\ \langle f\rangle_{w,\kappa;E_0}:=\frac{1}{2\pi}\int_{\mathbb R} w_R(E-E_0)\,[\kappa\star f](E)\,dE\ }.
+$$
+\textbf{If unspecified, default is $E_0=0$}. For constant $c$ and $\int\kappa=1$, we have $\langle c\rangle_{w,\kappa;E_0}\equiv c$.
+
+\textbf{Notation}: $w_{R,E_0}(E):=w_R(E-E_0)$. \textbf{Target spectral density}: $\rho_\star\in\{\rho,\rho_{\mathrm{rel}}\}$ (absolute spectral density and relative state density respectively).
+
+\textbf{Sampling and Nyquist condition}: Let $f:=w_{R,E_0}\cdot(\kappa\star\rho_\star)$, $E_n:=E_0+n\Delta_E$, $\widehat f(\tau):=\int f(E)e^{-i\tau E}dE$. \textbf{Poisson summation (with offset, standard form)}:
+$$
+\boxed{\ \sum_{n\in\mathbb Z} f(E_0+n\Delta_E)=\frac{1}{\Delta_E}\sum_{m\in\mathbb Z}e^{i\frac{2\pi m}{\Delta_E}E_0}\,\widehat f\!\Big(\frac{2\pi m}{\Delta_E}\Big)\ }.
+$$
+Alias-free condition remains: $\operatorname{supp}\widehat f\subset(-\pi/\Delta_E,\pi/\Delta_E)$. \textbf{Effective support width (revised)}: Let $\widehat f(\tau)=\widehat w_R(\tau)\,\ast\,\big(\widehat\kappa(\tau)\cdot\widehat\rho_\star(\tau)\big)$, define
+$$
+\Omega_{\mathrm{eff}}\ :=\ \inf\Big\{\Omega>0:\ \operatorname{supp}\widehat f\subset[-\Omega,\Omega]\Big\}\ \le\ \Omega_w\ +\ \min\big(\Omega_\kappa,\Omega_\rho\big).
+$$
+The \textbf{verifiable sufficient condition} for ``alias-free'' is unified as
+$$
+\Delta_E\ <\ \frac{\pi}{\Omega_{\mathrm{eff}}},\qquad\text{common upper bound substitute:}\ \Delta_E\ <\ \frac{\pi}{\Omega_w+\min(\Omega_\kappa,\Omega_\rho)}.
+$$
+
+\textbf{NPE error ledger}: Any windowed readout decomposes as $\mathcal E_{\mathrm{alias}}+\mathcal E_{\mathrm{EM}}+\mathcal E_{\mathrm{tail}}$. Under band-limitedness and Nyquist, $\mathcal E_{\mathrm{alias}}=0$. Only finite-order Euler--Maclaurin (EM) exchange is allowed to ensure singularity set and pole order do not increase. The above ``three-term error'' is \textbf{purely mathematical} analytic remainder and upper bounds (including Poisson summation alias term, finite-order EM remainder, and bandwidth tail term), \textbf{not involving experimental noise or instrument error}.
+
+\section{Axiom Family}
+
+\textbf{A1 (Causal spacetime)}: $(M,g)$ is spacetime manifold, causal front is calibrated by $ds^2=0$ and constant $c$.
+
+\textbf{A2 (Leaf decomposition, local/global conditions)}: In the considered spacetime domain satisfying \textbf{global hyperbolicity} (existence of Cauchy leaf) or within \textbf{causally convex domain}, can select time function $t$ such that spacelike hypersurfaces $\Sigma_t$ form smooth leaf decomposition, inducing 3-metric $h$. When lacking global hyperbolicity, statements about ``leaf/radar'' below apply only within that causally convex domain.
+
+\textbf{A3 (Energy scale)}: On absolutely continuous spectrum $d\mu_\varphi(E)=\tfrac{\varphi'(E)}{\pi}\,dE=\rho_{\mathrm{rel}}(E)\,dE=\tfrac{1}{2\pi}\operatorname{tr}\mathsf Q(E)\,dE$.
+
+\textbf{A4 (Realizability)}: Any instrument readout is equivalent to ``window×kernel'' weighting of spectral density, subject to NPE three-term error closure.
+
+\textbf{A5 (Probability and pointer)}: Born probability is equivalent to minimum relative entropy (I-projection); \textbf{given window operator $\mathcal W$ self-adjoint and $\mathcal W\ge 0$}, pointer basis takes Ky-Fan maximum principle: given window operator $\mathcal W$ and dimension $k$, let $P$ be projection of rank $k$, then $\displaystyle \max_{\mathrm{rank}P=k}\operatorname{Tr}(P\mathcal W)=\sum_{i=1}^k\lambda_i^\downarrow(\mathcal W)$; pointer subspace is spanned by top $k$ eigenvectors of $\mathcal W$.
+
+\textbf{A6 (Exchange discipline)}: All discrete--continuous exchanges use only finite-order EM; singularity set is preserved.
+
+\textbf{A7 (Operational definition of time and space)}: Time is joint calibration of causal partial order and earliest detectable mutual information; \textbf{space is intrinsic distance within spacelike leaf $\Sigma_t$ by metric $h$}; \textbf{radar calibration is used only for correspondence with $c$ in A1, not as original definition of length}.
+
+\section{Trinity Theorem}
+
+\textbf{Theorem 2.1 (Phase--density--delay trinity)} For self-adjoint scattering pair $(H,H_0)$ satisfying Birman--Kreĭn formula applicability conditions, on absolutely continuous spectrum almost everywhere $\varphi'(E)=\pi\,\rho_{\mathrm{rel}}(E)=\tfrac12\,\operatorname{tr}\mathsf Q(E)$.
+
+\begin{proof}
+Weyl--Titchmarsh--Herglotz theorem gives spectral density representation $\rho(E)=\pi^{-1}\Im m(E+i0)$, where $m(z)$ is corresponding channel's Weyl--Titchmarsh--Herglotz function, e.g. $m(z)=\langle \psi,(H-z)^{-1}\psi\rangle$ boundary value ($\psi$ appropriate boundary vector/channel choice); its non-negative imaginary part satisfies $\rho(E)=\pi^{-1}\Im m(E+i0)$ with Radon--Nikodym density of absolutely continuous spectrum. Birman--Kreĭn formula gives $\det S(E)=\exp(-2\pi i\,\xi(E))$, $\rho_{\mathrm{rel}}(E)=-\xi'(E)$. From $\mathsf Q(E)=-\,i\,S^\dagger\dfrac{dS}{dE}$ and Jacobi identity get $\partial_E\operatorname{Arg}\det S(E)=\operatorname{tr}\mathsf Q(E)$. Combining yields conclusion.
+\end{proof}
+
+\textbf{Corollary 2.2 (Threshold and singularity preservation)} Under band-limitedness+Nyquist and finite-order EM, windowing does not introduce new singularities or pole order increase; thresholds and resonances are determined by master scale, can distinguish physical structure from numerical artifact via ``window-invariant singularities''.
+
+\section{Windowed Readout and NPE Error Closure}
+
+\textbf{Theorem 3.1 (Windowed readout identity)} For band-limited window $w_R$ and kernel $\kappa$, windowed readout of any observable is represented as
+$$
+\boxed{\ \mathrm{Obs}=\frac{1}{2\pi}\int_{\mathbb R}w_R(E-E_0)\,[\kappa\star \rho_\star](E)\,dE+\mathcal E_{\mathrm{alias}}+\mathcal E_{\mathrm{EM}}+\mathcal E_{\mathrm{tail}}=\langle \rho_\star\rangle_{w,\kappa;E_0}+\mathcal E_{\mathrm{alias}}+\mathcal E_{\mathrm{EM}}+\mathcal E_{\mathrm{tail}}.\ }
+$$
+where $\rho_\star$ takes $\rho$ (absolute spectral density) or $\rho_{\mathrm{rel}}$ (relative state density).
+
+\begin{proof}
+First introduce weighted average notation $\displaystyle \langle f\rangle_{w,\kappa;E_0}:=\frac{1}{2\pi}\int_{\mathbb R}w_R(E-E_0)\,[\kappa\star f](E)\,dE$.
+
+\textbf{Case A ($\rho_{\mathrm{rel}}$)}: From trinity $\rho_{\mathrm{rel}}=\frac{1}{2\pi}\operatorname{tr}\mathsf Q=\frac{1}{\pi}\varphi'$ and $\varphi=\tfrac12\Phi$,
+$$
+\langle \rho_{\mathrm{rel}}\rangle_{w,\kappa;E_0}
+=\frac{1}{2\pi}\int w_R(E-E_0)\,[\kappa\star\tfrac{1}{\pi}\varphi'](E)\,dE
+=-\frac{1}{2\pi^2}\int w_R'(E-E_0)\,[\kappa\star\varphi](E)\,dE
+=-\frac{1}{4\pi^2}\int w_R'(E-E_0)\,[\kappa\star\Phi](E)\,dE,
+$$
+using $[\kappa\star\partial_E\Phi]=\partial_E[\kappa\star\Phi]$ and integration by parts (understood distributionally), with $\Phi(E):=\operatorname{Arg}\det S(E)$ taking continuous phase branch from §0.
+
+\textbf{Case B ($\rho$)}: From Weyl--Titchmarsh--Herglotz representation $\rho(E)=\pi^{-1}\Im m(E+i0)$, directly
+$$
+\langle \rho\rangle_{w,\kappa;E_0}=\frac{1}{2\pi}\int w_R(E-E_0)\,[\kappa\star\rho](E)\,dE.
+$$
+
+Subsequently via Poisson summation (giving $\mathcal E_{\mathrm{alias}}$), finite-order Euler--Maclaurin (giving $\mathcal E_{\mathrm{EM}}$) and bandwidth truncation (giving $\mathcal E_{\mathrm{tail}}$) obtain three-term error closure.
+\end{proof}
+
+\textbf{Non-asymptotic upper bounds}: There exist constants $C_{\mathrm{EM}}(k)$ and $C_{\mathrm{tail}}(R)$ such that $|\mathcal E_{\mathrm{EM}}|\le C_{\mathrm{EM}}(k)\sup|\partial_E^{2k}(\cdot)|$, $|\mathcal E_{\mathrm{tail}}|\le C_{\mathrm{tail}}(R)|\cdot|_{L^1(E\notin[-\Omega,\Omega])}$, monotonically convergent with $k$ and bandwidth $R$.
+
+\section{Windowed Group Delay Readout of Speed of Light and Fourfold Alignment}
+
+\subsection{Metrological Protocol (Readout)}
+
+\textbf{Windowed group delay readout} is defined as
+$$
+\boxed{\ \mathsf T[w_R,\kappa;L;E_0]:=\frac{\hbar}{2\pi}\int_{\mathbb R} w_R(E-E_0)\,\Big[\kappa\star \frac{1}{N}\operatorname{tr}\mathsf Q_L\Big](E)\,dE=\hbar\,\Big\langle \frac{1}{N}\operatorname{tr}\mathsf Q_L\Big\rangle_{w,\kappa;E_0}\ },
+$$
+where $L$ is \textbf{intrinsic distance within spacelike leaf $\Sigma_t$ between endpoints by metric $h_{ij}$}, $\frac{1}{N}\operatorname{tr}\mathsf Q_L$ is per-channel average group delay of link. \textbf{Windowed group delay readout of speed of light constant (metrological protocol)} is denoted
+$$
+\boxed{\ c^{\mathrm{read}}:=\lim_{\text{energy window width}\,\uparrow}\dfrac{L}{\mathsf T[w_R,\kappa;L;E_0]}\ },
+$$
+where ``energy window width$\uparrow$'' is equivalent to ``$\tau$ domain bandwidth $\Omega_w(R)\downarrow 0$'', i.e. $\widehat w_R\Rightarrow 2\pi\delta$, while $(2\pi)^{-1}\int w_R=1$ always holds. This limit is independent of $E_0$ (see §4.2). And is \textbf{equivalent} to constant $c$ in A1; \textbf{does not constitute redefinition of $c$}.
+
+\subsection{Existence, Uniqueness, and Window/Kernel Independence}
+
+\textbf{Proposition 4.2(a) (Vacuum link--identity)}: If $S_L(E)=e^{iEL/(\hbar c)}I_N$, then $q(E):=\tfrac1N\operatorname{tr}\mathsf Q_L(E)\equiv \tfrac{L}{\hbar c}$ is constant, thus
+$$
+\mathsf T[w_R,\kappa;L;E_0]=\frac{\hbar}{2\pi}\int w_R(E-E_0)\,[\kappa\star q](E)\,dE=\frac{\hbar}{2\pi}\,\frac{L}{\hbar c}\int w_R(E-E_0)\,dE=\frac{L}{c},
+$$
+independent of $(w_R,\kappa)$, bandwidth $R$ and $E_0$.
+
+\textbf{Proposition 4.2(b) (General link--limit form, rigorous version)}: Let $(w_R)_R$ be approximate identity from §0, satisfying $\tfrac{1}{2\pi}\int w_R=1$, $\sup_R|w_R|_{L^1}<\infty$, $|w_R|_{L^\infty}\to0$ and $\widehat w_R\xrightarrow{\ \mathcal S'\ }2\pi\delta_0$; take $\kappa\in L^1$ and $\int\kappa=1$. Let
+$$
+q(E):=\frac{1}{N}\operatorname{tr}\mathsf Q_L(E)=q_0+\delta q(E),\qquad \delta q\in L^1(\mathbb R).
+$$
+Then limit exists and
+$$
+\boxed{\ \lim_{R\to\infty}\mathsf T[w_R,\kappa;L;E_0]=\hbar\left(q_0+\frac{1}{2\pi}\int_{\mathbb R}\delta q(E)\,dE\right)\ },
+$$
+independent of $(w_R,\kappa,E_0)$.
+
+\subsection{Equivalence with Trinity Scale}
+
+From $\tfrac{1}{2\pi}\operatorname{tr}\mathsf Q=\rho_{\mathrm{rel}}=\varphi'/\pi$ get
+$$
+\mathsf T[w_R,\kappa;L;E_0]=\hbar\Big\langle \frac{1}{N}\operatorname{tr}\mathsf Q\Big\rangle_{w,\kappa;E_0}=\frac{2\hbar}{N}\langle \varphi'(E)\rangle_{w,\kappa;E_0}=\frac{\hbar}{N}\langle \Phi'(E)\rangle_{w,\kappa;E_0}.
+$$
+For vacuum link $\Phi'(E)=\dfrac{NL}{\hbar c}$ is constant, so $\mathsf T=L/c$ independent of $E_0$.
+
+\subsection{Equivalence with Causal Front}
+
+Under Kramers--Kronig analyticity and retarded Green's function support conditions, earliest nonzero response front velocity is $c$. \textbf{For vacuum pure delay link} ($S_L(E)=e^{iEL/(\hbar c)}I_N$), from 4.1--4.3 know $\mathsf T=L/c$; if measured $\mathsf T\neq L/c$, then either violates NPE closure or violates front causality. \textbf{For general media/geometry links}, front velocity still $c$.
+
+\textbf{Under conditions of pure transmission without significant reflection/standing waves and satisfying geometric optics (WKB) approximation}, window--kernel weighted group delay can be written as
+$$
+\boxed{\ \mathsf T[w_R,\kappa;L;E_0]=\frac{1}{c}\int_{\gamma}\big\langle n_g(\ell,E)\big\rangle_{w,\kappa;E_0}\,d\ell\ }.
+$$
+\textbf{In general} only strict identity
+$$
+\boxed{\ \mathsf T[w_R,\kappa;L;E_0]=\hbar\Big\langle \frac{1}{N}\operatorname{tr}\mathsf Q_L\Big\rangle_{w,\kappa;E_0}\ }.
+$$
+
+\subsection{Equivalence with Information Light Cone}
+
+Under conditions that receiver contains only independent noise before threshold and no pre-shared information-bearing variable, supremum of speed of first-detectable mutual information equals $c$. This supremum is jointly constrained by front velocity and trinity scale.
+
+\subsection{Mutual Inverse with Metrological Realization}
+
+\textbf{Length from time}: Take $c$ as constant, use $\ell=c\,\Delta t$ to define length unit; \textbf{length from delay}: Use $\mathsf T$ to back-calculate $L$. Strict mutual inverse for vacuum link, consistent within NPE bounds under weak dispersion.
+
+\section{In-System Definition of Four Bridge Constants}
+
+\subsection{$\hbar$: Weyl--Heisenberg Central Charge (Physical Scale of phase--time 2-cocycle)}
+
+\textbf{WSIG definition (operational)}: Let $U(\Delta t)$ be physical time translation, $V(\Delta E)$ be energy modulation unitary representation. Their projective commutation phase satisfies
+$$
+V(\Delta E)U(\Delta t)=\exp\!\Big(\tfrac{i}{\hbar}\Delta E\Delta t\Big)U(\Delta t)V(\Delta E).
+$$
+$\hbar$ is defined as the \textbf{unique scale} lifting geometric 2-cocycle $\exp(i\tau\sigma)$ to physical quantity $\exp\!\big(i\Delta E\Delta t/\hbar\big)$; and anchored by \textbf{critical lattice} $\Delta t\Delta\omega=2\pi$ to $E=\hbar\omega$. Stone--von Neumann uniqueness theorem guarantees this calibration is unique in canonical class.
+
+\textbf{EBOC definition (structural)}: Under EBOC's time--frequency translation action, $\hbar$ is \textbf{central charge} of Weyl--Heisenberg group, mapping product of phase increment on static block and time leaf parameter to energy scale: $\Delta\Phi=\Delta E\Delta t/\hbar$. Its value is uniquely fixed by WSIG calibration, thus covariant in block--leaf reading.
+
+\textbf{RCA definition (operational--metrological)}: Let one-step evolution $U:=F=\exp(-iH_{\mathrm{CA}}\Delta t/\hbar)$, spatial translation $\sigma_a=\exp(iKa)$. Floquet eigenvalue $U\psi=e^{-i\omega\Delta t}\psi$ gives quasi-energy frequency $\omega$, accordingly readout $E:=\hbar\omega$. $\hbar$ is uniquely determined by scale from ``step phase $\omega\Delta t$'' to energy scale.
+
+\textbf{Meaning (three-side comparison)}: $\hbar$ is central charge of ``phase--time 2-cocycle'': in WSIG lifts geometric phase $\Delta E\Delta t$ to measurable phase; in EBOC guarantees covariance of leaf advancement to $E=\hbar\omega$; in RCA converts eigenphase of discrete stepping to energy scale, achieving unified calibration $E\leftrightarrow\omega$ on three sides.
+
+\subsection{$e$: Minimal Coupling Quantum of $U(1)$ Gauge Holonomy}
+
+\textbf{WSIG definition (operational)}: For closed loop $\mathcal C$ realized by \textbf{minimal elementary $U(1)$ carrier} (e.g. single electron, not Cooper pair), interference phase
+$$
+\Delta\phi(\mathcal C)=\frac{q}{\hbar}\Phi_B(\mathcal C)\quad(\mathrm{mod}\ 2\pi).
+$$
+Let $\Phi_{0,B}$ be minimal positive magnetic flux of \textbf{elementary carrier loop family} realizing first phase recurrence $\Delta\phi=2\pi$, define
+$$
+e:=\frac{2\pi\hbar}{\Phi_{0,B}}.
+$$
+
+\subsection{$k_{\mathrm B}$: Scale from Information Temperature to Thermal Temperature}
+
+\textbf{WSIG definition (operational)}: Under maximum entropy (minimum KL/I-projection) with energy constraint, optimal distribution
+$$
+p^\star\propto \exp(-\beta E).
+$$
+Align natural parameter $\beta$ with thermal temperature $T$ by
+$$
+T:=\frac{1}{k_{\mathrm B}\beta}
+$$
+\textbf{defining} $k_{\mathrm B}$ as scale mapping ``nats per energy'' to ``per kelvin''. Spectral slope readout satisfies
+$$
+\partial_\omega\log\!\Big[\tfrac{I(\omega)}{\omega^3}\Big]
+=-\frac{\hbar}{k_{\mathrm B}T}\cdot\frac{e^{\hbar\omega/(k_{\mathrm B}T)}}{e^{\hbar\omega/(k_{\mathrm B}T)}-1},
+$$
+in \textbf{Wien limit} $\hbar\omega\gg k_{\mathrm B}T$ approximates to $-\hbar/(k_{\mathrm B}T)$. Accordingly jointly anchor $k_{\mathrm B}$ by ``exact formula + Wien limit approximation'' with Carnot temperature, guaranteeing uniqueness and acyclicity.
+
+\subsection{$G$: Geometric Coupling Coefficient of Curvature--Energy Density}
+
+\textbf{WSIG definition (operational)}: Use windowed group delay and phase tomography to invert geometric curvature (or weak field potential), use energy window to read energy--momentum flux of $T_{\mu\nu}$. Define $G$ to be \textbf{unique scaling coefficient} making
+$$
+G_{\mu\nu}=\frac{8\pi G}{c^4}T_{\mu\nu}
+$$
+hold in measured domain; Newtonian limit $\nabla^2\phi=4\pi G\rho_E/c^2$ as consistency constraint. Band-limitedness+Nyquist and finite-order EM ensure window/kernel independence of both ``delay/deflection'' and ``energy flow'' sides.
+
+\subsection{Acyclicity and Independence}
+
+\textbf{Proposition 5.1 (DAG)}: Unit--calibration dependency graph is directed acyclic graph of L0$\to$L1$\to$L2$\to$L3:
+
+\textbf{L0}: $(M,g),c$ and phase/count readouts;
+
+\textbf{L1}: Observable ratio classes ($\Phi',\operatorname{tr}\mathsf Q,\rho_{\mathrm{rel}}$ etc.);
+
+\textbf{L2}: $\hbar$ (time--frequency anchor), $e$ (holonomy anchor), $k_{\mathrm B}$ (temperature and spectral slope double anchor), $G$ (curvature--energy flow correspondence anchor);
+
+\textbf{L3}: All physical quantities in absolute scale.
+
+Calibration anchors of four constants are mutually independent, and none depend on undetermined constants themselves; any hypothetical loop would contradict trinity scale, NPE error closure, or corresponding double-anchor verification, hence excluded.
+
+\section{Derived Physical Quantities and Semantic Equivalence in EBOC and RCA}
+
+We set EBOC as 2D subshift $X\subset\mathcal A^{\mathbb Z^2}$, coordinates denoted $(i,t)\in\mathbb Z\times\mathbb Z$ or via suspension flow $(i,t)\in\mathbb Z\times\mathbb R$; each time leaf $\Sigma_t:=\{(i,t):i\in\mathbb Z\}$ equipped with induced metric $h$. We set reversible cellular automaton (RCA) as 1D subshift $Y\subset\mathcal B^{\mathbb Z}$ with bijective sliding block code $F:Y\to Y$, local radius $r$, lattice spacing $a$, reference time slot $\Delta t$. Define maximal propagation cone (light cone)
+$$
+\Lambda:=\{(i,n)\in\mathbb Z^2:\ |i|\le rn\},
+$$
+and via suspension flow construct operator spectrum $U:=\exp(-iH_{\mathrm{CA}}\Delta t/\hbar)$ and shift spectrum $\sigma_a:=\exp(iKa)$. This section provides semantic equivalence dictionary and readout formulas for physical quantities in $\text{EBOC}\leftrightarrow\text{RCA}$, all following unified master scale $\varphi'(E)\Longleftrightarrow\tfrac{1}{2\pi}\operatorname{tr}\mathsf Q(E)\Longleftrightarrow\rho_{\mathrm{rel}}(E)$.
+
+\subsection{Time--Space--Velocity--Acceleration}
+
+\textbf{Time}
+\begin{itemize}
+\item \textbf{WSIG}: Time scale given by windowed group delay $\mathsf T[w_R,\kappa;L;E_0]$.
+\item \textbf{EBOC}: Parameter $t$ of causal partial order.
+\item \textbf{RCA}: Step index $n$ and $t=n\Delta t$.
+\end{itemize}
+
+\textbf{Space and length}
+\begin{itemize}
+\item \textbf{WSIG}: Length unit given by $c\mathsf T$ (radar method).
+\item \textbf{EBOC}: $\ell(\gamma)=\int\sqrt{h_{ij}\dot\gamma^i\dot\gamma^j}\,ds$.
+\item \textbf{RCA}: Graph metric $d_{\mathrm{CA}}(i,j):=|i-j|a$, radar method $\ell_{\mathrm{CA}}(\gamma):=N_{\mathrm{gate}}(\gamma)\tfrac{a}{2}$ (minimum round-trip gate number $N_{\mathrm{gate}}(\gamma)$); calibrated via $c_{\mathrm{CA}}=c$ consistent with EBOC.
+\end{itemize}
+
+\textbf{Velocity and upper bound}
+\begin{itemize}
+\item \textbf{WSIG}: Velocity upper bound $c$ calibrated by $\mathsf T[w_R,\kappa;L;E_0]$.
+\item \textbf{EBOC}: $v=d\ell/dt$, $|v|\le c$.
+\item \textbf{RCA}: $v_{\mathrm{CA}}:=\lim_{n\to\infty}\frac{|i(n)-i(0)|a}{n\Delta t}\le \frac{ra}{\Delta t}=c$.
+\end{itemize}
+
+\subsection{Wave--Phase--Dispersion and Group Parameters}
+
+\textbf{Plane mode}
+\begin{itemize}
+\item \textbf{WSIG}: $\varphi'(E)=\tfrac12\operatorname{tr}\mathsf Q(E)$, dispersion given by windowed phase readout.
+\item \textbf{EBOC}: Wave mode $\exp\bigl(i(k\cdot x-\omega t)\bigr)$, dispersion relation $\omega=\omega(k)$.
+\item \textbf{RCA}: Koopman mode $\psi_{k,\omega}(j,n)=\exp\bigl(i(kaj-\omega n\Delta t)\bigr)$, $k\in[-\pi/a,\pi/a]$ (first Brillouin zone); local rule linearization gives discrete $\omega=\omega(k)$.
+\end{itemize}
+
+\subsection{Energy--Momentum--Mass--Action}
+
+\textbf{Energy and momentum}
+\begin{itemize}
+\item \textbf{WSIG}: $E=\hbar\omega$, $p=\hbar k$ given by windowed phase readout.
+\item \textbf{EBOC}: $E=\hbar\omega$, $p=\hbar k$.
+\item \textbf{RCA}: Suspension generators $U=\exp(-iH_{\mathrm{CA}}\Delta t/\hbar)$, shift generator $\sigma_a=\exp(iKa)$ give $E=\hbar\omega$, $p=\hbar k$.
+\end{itemize}
+
+\subsection{Force--Non-geodesicity--Minimal Coupling (Discrete Expression)}
+
+\textbf{Unified definition}
+\begin{itemize}
+\item \textbf{WSIG}: Force determined by windowed readout and minimal coupling $\langle \mathcal Q,\mathcal F\rangle$, charge symbol $\mathcal Q$ distinct from Wigner--Smith matrix $\mathsf Q$.
+\item \textbf{EBOC}: $f^\mu=mu^\nu\nabla_\nu u^\mu$ (non-geodesicity) $=-\nabla_\nu T^{\mu\nu}_{\mathrm{matter}}$ (matter momentum flux divergence) $=\langle \mathcal Q,\mathcal F^{\mu}{}_{\nu}\rangle u^\nu$ (minimal coupling).
+\item \textbf{RCA}: Define discrete covariant difference $\nabla_\nu^{\mathrm{d}}$ and four-velocity $u^\mu_{\mathrm{d}}$, take $f^\mu_{\mathrm{CA}}:=mu^\nu_{\mathrm{d}}\nabla^{\mathrm{d}}_\nu u^\mu_{\mathrm{d}}=-\nabla^{\mathrm{d}}_\nu T^{\mu\nu}_{\mathrm{CA},\mathrm{matter}}=\langle \mathcal Q,\mathcal F^{\mu}{}_{\nu}\rangle u^\nu_{\mathrm{d}}$.
+\end{itemize}
+
+\textbf{Meaning (three-side comparison)}: Three-side triple equivalence of force (non-geodesicity$=$momentum flux divergence$=$minimal coupling) consistent in suspension limit; charge $\mathcal Q$ and Wigner--Smith $\mathsf Q$ clearly distinguished, ensuring clear physical meaning and dimensions.
+
+\section{Unified Definition and Classification of Force}
+
+\textbf{Unified definition}: $f^\mu=\dfrac{D p^\mu}{D\tau}=m\,u^\nu\nabla_\nu u^\mu$.
+
+\textbf{Triple equivalence}:
+$$
+\text{Force}=\underbrace{m\,u^\nu\nabla_\nu u^\mu}_{\text{non-geodesicity}}=\underbrace{-\,\nabla_\nu T^{\mu\nu}_{\mathrm{matter}}}_{\text{matter momentum flux divergence}}=\underbrace{\langle \mathcal Q,\ \mathcal F^{\mu}{}_{\nu}\rangle\,u^\nu}_{\text{minimal coupling}}.
+$$
+
+\begin{proof}
+Decompose total stress--energy tensor as $T^{\mu\nu}=T^{\mu\nu}_{\mathrm{matter}}+T^{\mu\nu}_{\mathrm{field}}$, from $\nabla_\nu T^{\mu\nu}=0$ get $-\nabla_\nu T^{\mu\nu}_{\mathrm{matter}}=\nabla_\nu T^{\mu\nu}_{\mathrm{field}}=:f^\mu$, consistent with minimal coupling term correspondence. Minimal coupling of gauge connection gives $\langle \mathcal Q,\mathcal F\rangle$ form, free fall satisfies $f^\mu=0$. Microscopic readout realized by $\dot{\mathbf p}=\hbar\dot{\mathbf k}$, $\dot E=\hbar\dot\omega$, compatible with trinity scale and windowed identity.
+\end{proof}
+
+\textbf{Classification}: Geometric force (metric/connection), gauge force ($U(1)$/non-abelian), effective force (free energy gradient, radiation pressure). All observables fall on same master scale of $\varphi'$, $\operatorname{tr}\mathsf Q$, $\rho_{\mathrm{rel}}$.
+
+\section{Definability of New Forces and Minimal Object}
+
+\textbf{Criterion}: Taking known model's $\rho_{\mathrm{rel}}^{\mathrm{known}}(E)$ as baseline, construct residual $r(E):=\varphi'(E)-\pi\,\rho_{\mathrm{rel}}^{\mathrm{known}}(E)$. If $r$ is robustly nonzero beyond NPE bounds under multi-window/multi-kernel Nyquist safe sampling, and satisfies Herglotz/KK analytic consistency, then define new force $\mathfrak F$ as minimal object making $r(E)\equiv \pi\,\rho_{\mathrm{rel}}^{\mathfrak F}(E)$.
+
+\textbf{Construction}: Take $r/\pi$ as boundary density to establish Herglotz function $m_{\mathfrak F}(z)=\int\dfrac{d\mu_{\mathfrak F}(\lambda)}{\lambda-z}$ obtaining spectral measure $\mu_{\mathfrak F}$; from $\mu_{\mathfrak F}$ construct minimal de Branges space and reproducing kernel $K$, making $K(x,x)=\pi^{-1}\varphi'(x)\,|E(x)|^2$; via invariants like ``window-invariant singularities, threshold migration, holonomy period, flux difference'' classify $m_{\mathfrak F}$ into geometric/gauge/effective classes. Finite-order EM guarantees singularity preservation.
+
+\section{Acyclicity Theorem}
+
+\textbf{DAG structure}: L0 (primitives $(t,\Sigma_t,h,c)$+count/phase) $\to$ L1 (observable ratio classes) $\to$ L2 (double-anchor calibration $\hbar,e,k_{\mathrm B},G$) $\to$ L3 (absolute quantities).
+
+\begin{proof}
+L1 constructed only to ratio from L0; four constant calibration anchors are pairwise independent (time--frequency, holonomy, Carnot temperature and spectral slope, curvature--energy flow pairing), no back edges; any closed loop hypothesis contradicts trinity scale, NPE closure, or quantum metrological closure, hence observationally excluded.
+\end{proof}
+
+\section{Engineering Implementation and Reproducible Experiment}
+
+\textbf{Ruler calibration}: Within same apparatus realize $\hbar$ (critical lattice), $e$ (first holonomy recurrence), $k_{\mathrm B}$ (joint Carnot temperature and spectral slope), $G$ (delay/deflection tomography).
+
+\textbf{Phase--delay consistency}: Acquire $\partial_E\operatorname{Arg}\det S$ and $\operatorname{tr}\mathsf Q$ in parallel, verify trinity scale by $\rho_{\mathrm{rel}}$ correspondence.
+
+\textbf{Nyquist safe sampling}: Record sampling quadruple $(\Omega,\Delta,T,M)$, verify $\mathcal E_{\mathrm{alias}}=0$, $\mathcal E_{\mathrm{EM}}$ and $\mathcal E_{\mathrm{tail}}$ satisfy upper bounds.
+
+\textbf{Probability and pointer}: I-projection (soft to hard) and Ky-Fan maximum parallel verification.
+
+\textbf{Residual and new force}: After known coupling fit calculate $r(E)$, if exceeds bounds follow §8 procedure to give minimal object $\mathfrak F$ and uncertainty.
+
+\section*{Conclusion}
+
+Taking $c$+spacetime geometry as causal skeleton, taking $\varphi'(E)\Longleftrightarrow \tfrac{1}{2\pi}\operatorname{tr}\mathsf Q(E)\Longleftrightarrow \rho_{\mathrm{rel}}(E)$ as unique scale of energy axis, taking WSIG as readout doctrine, taking $\hbar,e,k_{\mathrm B},G$ as in-system calibrations, forming measurement--calibration chain with existence, uniqueness, and window/kernel independence. Windowed group delay definition of speed of light constant is mutually equivalent to trinity scale, causal front and information light cone, and metrological realization. Derived quantities and force formulations close on same master scale; any phenomenon exceeding known couplings will appear as phase--density--delay residual, and can be rigorously defined and measured through Herglotz--de Branges minimal object procedure.
+
+\end{document}
+

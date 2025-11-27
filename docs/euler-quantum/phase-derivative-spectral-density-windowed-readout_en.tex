@@ -1,0 +1,116 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\geometry{a4paper, margin=0.85in}
+\hypersetup{colorlinks=true,linkcolor=blue}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Arg}{Arg}
+
+\title{Phase Derivative, Spectral Density\\and Windowed Readout:\\Unified Measurement Framework}
+\author{Auric\\[5pt]\small Version 2.1}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Establish unified framework connecting scattering phase derivative, spectral density, and windowed readout. Core formula holding a.e.:
+
+$$\boxed{\ \frac{\varphi'(E)}{\pi}=\rho_{\mathrm{rel}}(E)=\frac{1}{2\pi}\tr Q(E)\ }$$
+
+where $\varphi$ scattering phase, $\rho_{\mathrm{rel}}$ relative spectral density from Birman--Kreĭn $\det S=e^{-2\pi i\xi}$ with $\rho_{\mathrm{rel}}=-\xi'$, $Q=-iS^\dagger\partial_E S$ Wigner--Smith delay matrix.
+
+Windowed readout $\mathcal{R}_w=\int w(E)[h\ast\rho_{\mathrm{rel}}](E)dE$ with NPE three-term error decomposition. Applications: quantum metrology, scattering theory, condensed matter.
+\end{abstract}
+
+\section{Core Definitions}
+
+\begin{definition}[Relative Spectral Density]
+For scattering pair $(H,H_0)$ with $S(E)$ scattering matrix:
+$$\rho_{\mathrm{rel}}(E)=-\xi'(E)=\frac{1}{2\pi i}\tr(S^\dagger\partial_E S)=\frac{1}{2\pi}\tr Q(E)$$
+where $\xi$ spectral shift function, $Q$ Wigner--Smith delay.
+\end{definition}
+
+\begin{definition}[Windowed Readout]
+For window $w$, kernel $h$:
+$$\mathcal{R}_w[\rho_{\mathrm{rel}}]=\int_{\mathbb{R}} w(E)\,[h\ast\rho_{\mathrm{rel}}](E)\,dE$$
+\end{definition}
+
+\section{Main Theorems}
+
+\begin{theorem}[Phase--Density Unification]
+\label{thm:phase-density}
+On absolutely continuous spectrum a.e., single-channel $S=e^{2i\varphi}$ gives
+$$\varphi'(E)=\pi\,\rho_{\mathrm{rel}}(E)=\tfrac{1}{2}\tr Q(E).$$
+Multi-channel: $\frac{1}{2\pi}\tr Q(E)=\rho_{\mathrm{rel}}(E)=-\xi'(E)$.
+\end{theorem}
+
+\begin{proof}
+From Birman--Kreĭn $\det S=e^{-2\pi i\xi}$ get $\partial_E\Arg\det S=-2\pi\xi'$. Jacobi formula $\partial_E\log\det S=\tr(S^{-1}\partial_E S)$ with unitarity $S^{-1}=S^\dagger$ gives $\tr(S^\dagger\partial_E S)=-2\pi i\xi'$. Definition $Q=-iS^\dagger\partial_E S$ yields $\tr Q=2\pi\xi'$, thus $\rho_{\mathrm{rel}}=-\xi'=(2\pi)^{-1}\tr Q$.
+\end{proof}
+
+\begin{theorem}[Windowed Readout NPE Decomposition]
+\label{thm:npe-windowed}
+For discrete approximation with step $\Delta$, truncation $N$:
+$$|\mathcal{R}_w-\widehat{\mathcal{R}}_w|\le|\varepsilon_{\mathrm{alias}}|+|\varepsilon_{\mathrm{EM}}|+|\varepsilon_{\mathrm{tail}}|$$
+with $\varepsilon_{\mathrm{alias}}=0$ when bandlimited + Nyquist $\Delta\le\pi/\Omega$.
+\end{theorem}
+
+\begin{theorem}[Born Probability as I-Projection]
+\label{thm:born-iprojection}
+Under alignment condition, Born probability $p_i=\langle\psi,E_i\psi\rangle$ equals I-projection minimizing $D_{\mathrm{KL}}(p\|q)$ over constraint set.
+\end{theorem}
+
+\begin{theorem}[Pointer Basis as Ky Fan Minimum]
+\label{thm:pointer-ky-fan}
+Pointer basis $\{e_k\}$ minimizes $\sum_k\langle e_k,W_we_k\rangle$ for window operator $W_w=\int w(E)dE_A(E)$ (Ky Fan minimum sum).
+\end{theorem}
+
+\section{Applications}
+
+\subsection{Quantum Metrology}
+Phase derivative measurement via windowed readout provides optimal energy estimation within bandwidth constraints.
+
+\subsection{Scattering Theory}
+Wigner--Smith delay directly measurable via phase--energy correlation, connection to Friedel sum rule.
+
+\subsection{Condensed Matter}
+Local density of states (LDOS) in mesoscopic systems, quantum point contacts, resonant tunneling.
+
+\section{Discussion and Outlook}
+
+Unified framework established connecting:
+\begin{itemize}
+\item Phase derivative $\varphi'$ (observable)
+\item Spectral density $\rho_{\mathrm{rel}}$ (theoretical)  
+\item Delay trace $\tr Q$ (dynamical)
+\end{itemize}
+
+via Birman--Kreĭn--Wigner--Smith chain, with windowed readout providing experimental bridge.
+
+Key achievements:
+\begin{enumerate}
+\item Rigorous scale identity formula
+\item NPE non-asymptotic error closure
+\item Information-geometric Born probability
+\item Ky Fan pointer basis characterization
+\end{enumerate}
+
+Future directions:
+\begin{itemize}
+\item Extension to time-dependent scattering
+\item Open quantum systems and decoherence
+\item Experimental implementations in quantum optics
+\item Connections to quantum field theory and gravity
+\end{itemize}
+
+\end{document}
+

@@ -1,0 +1,774 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{braket}
+\usepackage{graphicx}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Delay Quantization, Feedback Loops, and $\pi$-Step Parity Transitions:\\From Scale Identity to $\mathbb Z_2$ Topology of Self-Referential Scattering Networks}
+
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Within the unified framework of frequency-domain scattering theory and feedback networks, networks with tunable closed-loop delays exhibit highly robust phase-step and group-delay-pulse phenomena across a wide range of physical platforms: as the feedback round-trip time $\tau$ varies slowly, the total scattering phase and its frequency derivative undergo jumps of amplitude approximately $\pi$ near certain parameter values, accompanied by reversals in the direction of spectral flow. Under the constraint of the scale identity
+$$
+\kappa(\omega;\tau)
+=\frac{\varphi'(\omega;\tau)}{\pi}
+=\rho_{\mathrm{rel}}(\omega;\tau)
+=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(\omega;\tau)
+$$
+this paper provides a rigorous spectral and topological characterization of the ``delay quantization $\Rightarrow \pi$-step $\Rightarrow \mathbb Z_2$ parity transition'' phenomenon. Here $S(\omega;\tau)$ is a lossless scattering matrix family varying with angular frequency $\omega$ and effective round-trip delay $\tau$, $\varphi(\omega;\tau)=\arg\det S(\omega;\tau)$ is the total scattering phase, and $\mathsf Q(\omega;\tau)=-\mathrm i S(\omega;\tau)^\dagger \partial_\omega S(\omega;\tau)$ is the Wigner--Smith group delay matrix.
+
+Under natural assumptions of analyticity, losslessness, and simple zeros/poles, we prove that when $\tau$ traverses a family of ``delay quantization steps''
+$$
+\tau_k=\tau_0+k\,\Delta\tau,\qquad k\in\mathbb Z,
+$$
+the spectral flow of zeros/poles of $\det S(\omega;\tau)$ in the complex frequency plane undergoes a crossing event across the real axis; by the argument principle, this corresponds to a jump of size $\pm\pi$ in the total phase at a fixed frequency slice; accordingly, the topological index constructed from the spectral flow count
+$$
+\nu(\tau)\in\{0,1\},\qquad
+\nu(\tau+\Delta\tau)=\nu(\tau)\oplus 1
+$$
+undergoes a $\mathbb Z_2$ parity flip at each step.
+
+To make results computable and experimentally verifiable, we first provide an explicit analytic form for a one-dimensional single-channel scalar model
+$$
+S_{\mathrm{tot}}(\omega;\tau)
+=r_0(\omega)
++\frac{t_0(\omega)^2 \,\mathrm e^{\mathrm i\omega\tau}}
+{1-r_{\mathrm{fb}}(\omega)\,\mathrm e^{\mathrm i\omega\tau}},
+$$
+and rigorously derive the magnitude and sign of $\pi$-steps and unit group-delay pulses using the argument principle and pole trajectory analysis. We then generalize to multi-channel matrix cases, showing that upon appropriate choice of branch for $\det S(\omega;\tau)$, the main conclusions depend only on the eigenvalue spectral flow of the effective feedback block $\mathsf R(\omega)$, thus having universality across implementation platforms.
+
+From the perspective of the unified time scale, tunable closed-loop delays constitute a natural topological driving parameter: each traversal of a delay quantization step corresponds to spectral flow crossing the real axis once in parameter space, thereby switching between two topological sectors in the $\mathbb Z_2$ sense. This topological flip manifests as easily measurable fingerprints of total phase and group delay $\pi$-steps on any linear lossless platform, and can be embedded into higher-layer structures such as self-referential scattering networks, spin double covers, and Null--Modular double covers, providing a unified frequency-domain topological readout.
+
+\textbf{Keywords}: delay quantization; feedback loops; scattering matrix; Wigner--Smith group delay; scale identity; phase steps; $\mathbb Z_2$ parity; self-referential scattering networks; topological invariants
+\end{abstract}
+
+\section{Introduction \& Historical Context}
+
+\subsection{Delay Feedback Networks and the $\pi$ Phase Jump Phenomenon}
+
+From fiber-loop resonators, integrated micro-ring resonators to microwave closed-loop networks and acoustic ring resonators, closed-loop feedback structures with finite round-trip times repeatedly appear across different physical platforms. Their common feature is that a wave packet making a round trip in the loop acquires a total phase
+$$
+\Phi(\omega;\tau)=\phi_0(\omega)+\omega\tau,
+$$
+where $\phi_0(\omega)$ is the additional phase introduced by the core scattering and couplers, and $\tau$ is the effective round-trip time. When $\Phi(\omega;\tau)$ satisfies integer or half-integer quantization conditions, the network's resonance, interference, and transmission zero structure undergoes significant changes, triggering abrupt changes in output amplitude and phase.
+
+In the combination structure of optical ring resonance and Mach--Zehnder interferometers, $\pi$-scale phase jumps in the transmission spectrum around resonance frequencies are commonly observed, along with their correspondence to interference-induced transparency effects. Related experiments and modeling indicate that these phase jumps are closely related to the coherent interference between two or more paths in the loop, and to the topological structure of resonance modes in parameter space.
+
+Similar $\pi$-jump phenomena also appear in the transmission and reflection phases of systems such as phase-shifted gratings and split-ring resonators, and are often used as indicators to identify node structure and mode topology. However, above these concrete structures, there is still a lack of a unified spectral theory framework that systematically links ``tunable delay,'' ``phase steps,'' and ``parity topological sectors.''
+
+\subsection{Scattering Phase, Density of States, and Time Delay}
+
+In quantum scattering and wave scattering theory, the profound relationship between the phase of the scattering matrix $S(\omega)$ and time delay and density of states has been systematically established by work from multiple directions. The group delay and Wigner--Smith time delay matrix introduced by Wigner and Smith
+$$
+\mathsf Q(\omega)
+=-\mathrm i\,S(\omega)^\dagger \partial_\omega S(\omega)
+$$
+characterizes the average dwell time of wave packets in the scattering potential field, having direct physical meaning for quantum, acoustic, and electromagnetic wave scattering.
+
+On the other hand, Friedel and Levinson-type theorems show that under appropriate conditions, there is a linear relationship between the scattering phase derivative and the difference in density of states with and without interaction. For one-dimensional or partial-wave scattering, one obtains the form
+$$
+\frac{\mathrm d}{\mathrm dE}\delta_l(E)
+\propto \rho_l(E)-\rho_l^{(0)}(E),
+$$
+where $\delta_l$ is the partial wave phase shift, and $\rho_l$ and $\rho_l^{(0)}$ are the densities of states with and without interaction, respectively. Such results have been reformulated in recent mathematical physics work as topological index pairings between spectral shift functions and time delays, introducing a clear K-theory and spectral flow perspective into scattering theory.
+
+On the experimental side, Wigner delay has been directly measured in atomic scattering, waveguides, and optical structures, and linked to resonance lifetimes and local density of states. Thus, unifying scattering phase, group delay, and density of states under a single scale identity is a natural theoretical development direction.
+
+\subsection{Spectral Flow, Topological Invariants, and $\mathbb Z_2$ Structure}
+
+Spectral flow characterizes the continuous evolution of operator spectra in parameter space, and its relationship with topological invariants, especially integer and $\mathbb Z_2$ indices, has been systematically studied in various situations. For unitary scattering matrices, zero/pole trajectories induced by parameter changes can be characterized through the argument principle and index pairings, leading to conclusions similar to ``topological Levinson theorems'': the total change in phase equals the spectral flow count.
+
+In many systems, each time spectral flow crosses the real axis due to parameter changes, the total phase only undergoes half a circle of winding, corresponding to a jump of $\pi$ rather than $2\pi$. This suggests the existence of a natural double-cover structure: each crossing event in the base parameter space corresponds to two sectors in the ``lifted space,'' distinguished by $\mathbb Z_2$ parity. This structure is formally isomorphic to spin double covers, page-change phenomena in Fermi statistics, and double-cover sectors in Null--Modular geometry.
+
+\subsection{Goals and Structure of This Paper}
+
+This paper focuses on scattering networks with tunable closed-loop delays, formalizing them as a parameter family
+$$
+S(\omega;\tau)\in\mathrm U(N),
+$$
+where $\omega\in\mathbb R$ is the frequency and $\tau\in\mathbb R$ is the controllable effective round-trip time. Under the constraint of the scale identity
+$$
+\kappa(\omega;\tau)
+=\frac{1}{\pi}\partial_\omega\varphi(\omega;\tau)
+=\rho_{\mathrm{rel}}(\omega;\tau)
+=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(\omega;\tau)
+$$
+this paper establishes the following three main conclusions:
+
+\begin{enumerate}
+\item Under natural assumptions of analyticity and non-degeneracy, the zero/pole spectral flow varying with $\tau$ forms a series of isolated ``crossing events'' in the complex frequency plane, each corresponding to a pole or zero crossing the real axis once.
+
+\item Each crossing event induces a jump of size $\pm\pi$ in the total phase $\varphi(\omega;\tau)$ at a fixed frequency slice; the corresponding jump in the frequency integral of scale density or group delay is one unit.
+
+\item The $\mathbb Z_2$ index $\nu(\tau)$ defined by $N(\tau)\bmod 2$, where $N(\tau)$ is the topological count constructed from spectral flow, flips once at each delay quantization step, forming the unified structure ``delay quantization $\Rightarrow \pi$-step $\Rightarrow \mathbb Z_2$ parity transition.''
+\end{enumerate}
+
+Theoretically, this paper provides spectral and topological proofs of the above structure and illustrates its universality through one-dimensional scalar and multi-channel matrix models; in applications, this paper proposes a series of experimental schemes based on optical, microwave, and acoustic platforms to measure $\pi$-steps and reconstruct $\mathbb Z_2$ indices, providing frequency-domain readouts for self-referential scattering networks and double-cover structures.
+
+\section{Model \& Assumptions}
+
+\subsection{Frequency-Domain Scattering Matrix, Total Phase, and Group Delay}
+
+Consider a linear lossless network with $N$ external channels, whose frequency-domain scattering matrix is denoted
+$$
+S(\omega;\tau)\in\mathbb C^{N\times N},\qquad \omega\in\mathbb R,\ \tau\in I\subset\mathbb R,
+$$
+where $I$ is a parameter interval. Losslessness means that for each real frequency $\omega$ and $\tau\in I$, we have
+$$
+S(\omega;\tau)^\dagger S(\omega;\tau)=\mathbb I_N.
+$$
+For fixed $\tau$, assume $S(\cdot;\tau)$ admits analytic continuation into the upper half-plane, with poles corresponding to resonances or quasi-bound states; for fixed $\omega$, assume $S(\omega;\cdot)$ is analytic on $I$. Define the total scattering phase
+$$
+\varphi(\omega;\tau)=\arg\det S(\omega;\tau)\in\mathbb R/2\pi\mathbb Z,
+$$
+and fix a continuous branch in a neighborhood of a chosen reference point $(\omega_*,\tau_*)$ such that $\varphi(\omega_*,\tau_*)=0$.
+
+The Wigner--Smith group delay matrix is defined as
+$$
+\mathsf Q(\omega;\tau)
+=-\mathrm i\,S(\omega;\tau)^\dagger\partial_\omega S(\omega;\tau).
+$$
+For unitary matrix families, we obtain
+$$
+\partial_\omega\varphi(\omega;\tau)
+=\Im\partial_\omega\log\det S(\omega;\tau)
+=\frac{1}{2}\operatorname{tr}\mathsf Q(\omega;\tau),
+$$
+yielding the scale density
+$$
+\kappa(\omega;\tau)
+:=\frac{1}{\pi}\partial_\omega\varphi(\omega;\tau)
+=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(\omega;\tau).
+$$
+In the standard scattering setting, $\kappa(\omega;\tau)$ can be identified with the relative density of states $\rho_{\mathrm{rel}}(\omega;\tau)$, the difference in density of states with and without the scattering potential. This identification makes the scale identity
+$$
+\kappa(\omega;\tau)
+=\frac{\varphi'(\omega;\tau)}{\pi}
+=\rho_{\mathrm{rel}}(\omega;\tau)
+=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(\omega;\tau)
+$$
+the unifying mother formula connecting phase, time, and density of states.
+
+\subsection{Tunable-Delay Feedback Loop Model}
+
+Given a delay-free ``core network'' $S_0(\omega)$, introduce a closed-loop branch between some of its ports with round-trip delay $\tau$, whose frequency-domain description is
+$$
+D(\omega;\tau)=\mathrm e^{\mathrm i\omega\tau}\,\mathbb I_M,\qquad M\le N.
+$$
+Using the Redheffer star product or Schur complement, the core network and delay block can be combined into an effective scattering matrix
+$$
+S(\omega;\tau)
+=S_0(\omega)
++S_1(\omega)\bigl(\mathbb I_M-\mathsf R(\omega)\mathrm e^{\mathrm i\omega\tau}\bigr)^{-1}S_2(\omega),
+$$
+where $\mathsf R(\omega)$ is an effective feedback block, and $S_1,S_2$ are coupling matrices. When the core is lossless and the delay block is pure phase, $S(\omega;\tau)$ remains a unitary matrix for each real frequency $\omega$. Poles and some zeros are controlled by
+$$
+\det\bigl(\mathbb I_M-\mathsf R(\omega)\mathrm e^{\mathrm i\omega\tau}\bigr)=0.
+$$
+Let $\lambda_j(\omega)$ be the eigenvalues of $\mathsf R(\omega)$; the corresponding poles satisfy
+$$
+1-\lambda_j(\omega)\mathrm e^{\mathrm i\omega\tau}=0
+\quad\Longleftrightarrow\quad
+\mathrm e^{\mathrm i\omega\tau}=\lambda_j(\omega)^{-1}.
+$$
+
+In a one-dimensional scalar minimal model, the core network is described by complex reflection coefficient $r_0(\omega)$ and transmission coefficient $t_0(\omega)$, with feedback branch reflection coefficient $r_{\mathrm{fb}}(\omega)$. The total scattering coefficient is
+$$
+S_{\mathrm{tot}}(\omega;\tau)
+=r_0(\omega)
++\frac{t_0(\omega)^2\,\mathrm e^{\mathrm i\omega\tau}}
+{1-r_{\mathrm{fb}}(\omega)\,\mathrm e^{\mathrm i\omega\tau}},
+$$
+whose denominator $1-r_{\mathrm{fb}}(\omega)\mathrm e^{\mathrm i\omega\tau}$ zero points give pole trajectories.
+
+\subsection{Analyticity and Non-Degeneracy Assumptions}
+
+Proofs of subsequent theorems rely on the following assumption.
+
+\begin{assumption}[Assumption A (Analyticity and Non-Degeneracy)]
+\begin{enumerate}
+\item For each $\tau\in I$, $S(\cdot;\tau)$ admits analytic continuation into the upper half-plane, with all zeros/poles of finite order and only finitely many in compact regions.
+
+\item For each $\omega\in\mathbb R$, $S(\omega;\cdot)$ is analytic on $I$.
+
+\item There exists a sequence $\{\tau_k\}\subset I$ with corresponding frequencies $\{\omega_k\}\subset\mathbb R$ such that in a neighborhood of each $(\omega_k,\tau_k)$, $\det S(\omega;\tau)$ has exactly one zero or pole $z_k(\tau)$ crossing the real axis, satisfying
+   $$
+   z_k(\tau_k)=\omega_k,\qquad \partial_\tau\Im z_k(\tau_k)\neq 0,
+   $$
+   and no other zeros/poles simultaneously cross the real axis in the same neighborhood.
+\end{enumerate}
+\end{assumption}
+
+When Assumption A is satisfied, $(\omega_k,\tau_k)$ is called a ``crossing event,'' and $\{\tau_k\}$ is called a family of ``delay quantization steps.'' We will see that when the eigenvalues of $\mathsf R(\omega)$ move along the unit circle with approximately equal spacing, $\tau_k$ approximately forms an arithmetic sequence
+$$
+\tau_k\simeq\tau_0+k\,\Delta\tau,\qquad k\in\mathbb Z,
+$$
+where $\Delta\tau$ is given by the average round-trip phase quantization condition.
+
+\section{Main Results (Theorems and Alignments)}
+
+This section presents the main theorems on delay-driven spectral flow, $\pi$-steps, and $\mathbb Z_2$ indices under Assumption A, and aligns them with the scale identity.
+
+\subsection{Delay-Driven Spectral Flow and the Argument Principle}
+
+For fixed $\tau\in I$, suppose $\det S(\cdot;\tau)$ has zeros $\{z_j(\tau)\}$ and poles $\{p_k(\tau)\}$ (counted with multiplicity) in the upper half-plane, satisfying appropriate growth conditions. Taking a closed contour $\Gamma$ surrounding the real axis interval $[\omega_1,\omega_2]$, the argument principle gives
+$$
+\frac{1}{2\pi}\Delta_\Gamma\arg\det S(\cdot;\tau)
+=N_{\mathrm{zero}}(\tau)-N_{\mathrm{pole}}(\tau),
+$$
+where $N_{\mathrm{zero}}(\tau),N_{\mathrm{pole}}(\tau)$ are the numbers of zeros and poles inside $\Gamma$, respectively. Choosing the standard ``keyhole'' path, we obtain the real-axis integral form
+$$
+\frac{1}{\pi}\bigl(\varphi(\omega_2;\tau)-\varphi(\omega_1;\tau)\bigr)
+=N_{\mathrm{zero}}(\tau)-N_{\mathrm{pole}}(\tau).
+$$
+For a fixed frequency window $[\omega_1,\omega_2]$, as $\tau$ varies continuously, the zero/pole trajectories $\{z_j(\tau),p_k(\tau)\}$ evolve continuously in the complex frequency plane. Whenever a zero or pole crosses the real axis, the count on the right changes by $\pm 1$, inducing a ``step'' in the total phase within that frequency window.
+
+\subsection{Delay Quantization Steps and Crossing Events}
+
+In networks with delay branches, the zero/pole equation can often be written as
+$$
+\det\bigl(\mathbb I_M-\mathsf R(\omega)\mathrm e^{\mathrm i\omega\tau}\bigr)=0.
+$$
+Let $\lambda_j(\omega)$ be eigenvalues of $\mathsf R(\omega)$; the pole condition is
+$$
+1-\lambda_j(\omega)\mathrm e^{\mathrm i\omega\tau}=0.
+$$
+If $\lambda_j(\omega)=|\lambda_j(\omega)|\mathrm e^{\mathrm i\phi_j(\omega)}$, taking logarithms gives the approximate pole location
+$$
+\omega_{j,n}(\tau)
+=\frac{1}{\tau}\Bigl(\phi_j(\omega_{j,n})+2\pi n-\mathrm i\ln|\lambda_j(\omega_{j,n})|^{-1}\Bigr).
+$$
+When $|\lambda_j(\omega)|\lesssim 1$ and $\tau$ varies on macroscopic scales, the real part is approximately
+$$
+\Re\omega_{j,n}(\tau)\simeq\frac{\phi_j+2\pi n}{\tau}.
+$$
+Imagining $n$ fixed and $\tau$ increasing, poles move along trajectories contracting from the far end toward the origin, approaching the real axis under appropriate conditions. Through small loss or coupling adjustments, one can construct situations where poles cross the real axis, realizing crossing events in Assumption A.
+
+Since $\omega\tau$ is dimensionless, crossing events typically correspond to the condition
+$$
+\omega_k\tau_k+\phi_j(\omega_k)\simeq(2m_k+1)\pi,\qquad m_k\in\mathbb Z,
+$$
+i.e., round-trip phase satisfies half-integer quantization, naturally defining a family of approximately equally-spaced delay steps $\{\tau_k\}$.
+
+\subsection{Main Theorem: $\pi$-Steps and $\mathbb Z_2$ Parity Transitions}
+
+Near a crossing event, $\det S(\omega;\tau)$ can be written in local factorization
+$$
+\det S(\omega;\tau)
+=(\omega-z_k(\tau))^{m_k} g_k(\omega;\tau),
+$$
+where $m_k=+1$ corresponds to a zero, $m_k=-1$ to a pole, and $g_k$ is analytic and nonzero in a neighborhood. Define the local phase jump at $\tau_k$
+$$
+\Delta\varphi_k
+=\lim_{\epsilon\to 0^+}
+\Bigl(
+\varphi(\omega_k;\tau_k+\epsilon)-\varphi(\omega_k;\tau_k-\epsilon)
+\Bigr),
+$$
+and the normalized jump number
+$$
+\Delta n_k
+=\frac{1}{\pi}\Delta\varphi_k.
+$$
+
+\begin{theorem}[Theorem 3.1: $\pi$-Step and Unit Jump]
+Under Assumption A, for each crossing event $(\omega_k,\tau_k)$, the local phase change satisfies
+$$
+\Delta\varphi_k=\pm\pi,\qquad
+\Delta n_k=\pm 1.
+$$
+\end{theorem}
+
+See Section 4 and Appendix A for the proof. The core is that when $z_k(\tau)$ crosses the real axis, $\omega_k-z_k(\tau)$ wraps around the origin by half a circle in the complex plane, so $\arg(\omega_k-z_k(\tau))$ jumps by $\pm\pi$, while the analytic factor $g_k$ contributes continuous phase not affecting the jump count.
+
+By accumulating all crossing events with delay less than $\tau$, define the global spectral flow count
+$$
+N(\tau)=\sum_{\tau_k<\tau}\Delta n_k\in\mathbb Z,
+\qquad
+\nu(\tau)=N(\tau)\bmod 2\in\{0,1\}.
+$$
+
+\begin{theorem}[Theorem 3.2: $\mathbb Z_2$ Parity Transition]
+Under Assumption A, the topological index
+$$
+\nu(\tau)=N(\tau)\bmod 2
+$$
+undergoes a parity flip at each delay step $\tau_k$, i.e.,
+$$
+\nu(\tau_k+0)=\nu(\tau_k-0)\oplus 1.
+$$
+In particular, if $\tau_k$ forms an approximately arithmetic sequence $\tau_k\simeq\tau_0+k\Delta\tau$, then as $\tau$ increases monotonically along $I$, $\nu(\tau)$ executes an approximately ideal $\mathbb Z_2$ square wave.
+\end{theorem}
+
+The above results make precise the relationship between delay quantization and $\pi$-steps, $\mathbb Z_2$ topological sectors: each pole or zero crossing the real axis corresponds to a unit spectral flow event, driving a flip in the topological index.
+
+\subsection{Unified Time Readout Under the Scale Identity}
+
+By the scale identity
+$$
+\kappa(\omega;\tau)
+=\frac{1}{\pi}\partial_\omega\varphi(\omega;\tau)
+=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(\omega;\tau),
+$$
+taking the frequency window $[\omega_k-\delta\omega,\omega_k+\delta\omega]$, define
+$$
+I(\tau)
+=\int_{\omega_k-\delta\omega}^{\omega_k+\delta\omega}\kappa(\omega;\tau)\,\mathrm d\omega
+=\frac{1}{\pi}\bigl[\varphi(\omega_k+\delta\omega;\tau)-\varphi(\omega_k-\delta\omega;\tau)\bigr].
+$$
+
+\begin{proposition}[Proposition 3.3: Unit Jump in Scale Density Integral]
+Under Assumption A, for each crossing event $(\omega_k,\tau_k)$, there exists sufficiently small $\delta\omega>0$ such that
+$$
+I(\tau_k+0)-I(\tau_k-0)=\Delta n_k=\pm 1.
+$$
+\end{proposition}
+
+That is, the integral of the group delay trace $\operatorname{tr}\mathsf Q(\omega;\tau)$ in a small frequency window jumps by one unit at each delay quantization step.
+
+Thus, the topological index $\nu(\tau)$ can be defined not only through the jumps in total phase in parameter space, but also equivalently described through jumps in the frequency integral of scale density or relative density of states.
+
+\section{Proofs}
+
+This section provides proof outlines for the main theorems, deferring technical details to Appendices A and B.
+
+\subsection{Local Argument Analysis and Proof of Theorem 3.1}
+
+In a neighborhood of the crossing event $(\omega_k,\tau_k)$, write $\det S(\omega;\tau)$ as
+$$
+\det S(\omega;\tau)
+=(\omega-z(\tau))^{m}g(\omega;\tau),
+$$
+where $z(\tau_k)=\omega_k$, $\partial_\tau\Im z(\tau_k)\neq 0$, $m=\pm 1$, and $g$ is analytic with $g(\omega_k;\tau_k)\neq 0$.
+
+For fixed $\omega=\omega_k$, consider the function
+$$
+h(\tau)=\omega_k-z(\tau)=a(\tau)-\mathrm i b(\tau),
+$$
+where $a(\tau)=\omega_k-\Re z(\tau)$, $b(\tau)=\Im z(\tau)$. Near $\tau_k$, $a(\tau_k)\neq 0$, $b(\tau_k)=0$, and $\partial_\tau b(\tau_k)\neq 0$, so when $\tau$ traverses $\tau_k$, the vector $h(\tau)$ crosses the real axis in the complex plane.
+
+Standard complex analysis geometry shows:
+$$
+\Delta\arg h
+:=\lim_{\epsilon\to 0^+}\bigl[\arg h(\tau_k+\epsilon)-\arg h(\tau_k-\epsilon)\bigr]
+=\pm\pi,
+$$
+with sign determined by the signs of $a(\tau_k)$ and $\partial_\tau b(\tau_k)$. Since
+$$
+\varphi(\omega_k;\tau)
+=m\arg h(\tau)+\arg g(\omega_k;\tau),
+$$
+and $g$ is nonzero in a neighborhood, $\arg g(\omega_k;\tau)$ can be chosen as a continuous branch, so in the local limit
+$$
+\Delta\varphi_k
+=m\,\Delta\arg h
+=\pm\pi.
+$$
+Thus $\Delta n_k=\Delta\varphi_k/\pi=\pm 1$, proving Theorem 3.1. See Appendix A for detailed proof.
+
+\subsection{Scale Density Integral and Proof of Proposition 3.3}
+
+By
+$$
+I(\tau)
+=\frac{1}{\pi}\bigl[\varphi(\omega_k+\delta\omega;\tau)-\varphi(\omega_k-\delta\omega;\tau)\bigr],
+$$
+we can write
+$$
+I(\tau_k+0)-I(\tau_k-0)
+=\frac{1}{\pi}\Bigl(\Delta\varphi(\omega_k+\delta\omega)-\Delta\varphi(\omega_k-\delta\omega)\Bigr).
+$$
+Choose $\delta\omega$ sufficiently small such that in the rectangular region
+$$
+[\omega_k-\delta\omega,\omega_k+\delta\omega]\times[\tau_k-\delta\tau,\tau_k+\delta\tau]
+$$
+there is only one crossing zero or pole, and its trajectory crosses the midline of the frequency window. Using the analysis of the local factor $(\omega-z(\tau))^m$ in Appendix A, we know that in this region $\Delta\varphi(\omega;\cdot)$ is a piecewise constant function of $\omega$, with the difference in values on either side of $\omega_k$ being $\pm\pi$. Thus
+$$
+I(\tau_k+0)-I(\tau_k-0)=\pm 1.
+$$
+This proves Proposition 3.3. By the definition of $N(\tau)$ and integer addition structure, clearly $\nu(\tau)=N(\tau)\bmod 2$ flips once at each step, hence Theorem 3.2 holds.
+
+\subsection{Finite-Order Euler--Maclaurin and Numerical Error Control}
+
+In actual numerical and experimental data processing, scale density integrals are often approximated by finite sampling as discrete sums. Let
+$$
+I_h(\tau)=h\sum_{n=0}^N \kappa(\omega_n;\tau),\qquad
+\omega_n=\omega_k-\delta\omega+nh,
+$$
+where $h=(2\delta\omega)/N$. The Euler--Maclaurin formula gives
+$$
+I_h(\tau)
+=\int_{\omega_k-\delta\omega}^{\omega_k+\delta\omega}\kappa(\omega;\tau)\,\mathrm d\omega
++\mathcal O(h^2),
+$$
+provided $\kappa(\omega;\tau)$ has bounded second derivatives in the frequency window. As long as the sampling step $h$ is sufficiently small, the phase step height of $\pm 1$ is only smoothed, not erased or flipped.
+
+Appendix B provides standard estimates for the Euler--Maclaurin remainder, showing that the ``singularity'' near poles is only smoothed at finite resolution, without changing the spectral flow count. Thus the topological index $\nu(\tau)$ is robust to finite resolution and noise.
+
+\section{Model Applications}
+
+This section returns to concrete models, demonstrating the implementation of the main theorems in single-channel scalar and multi-channel matrix models, and discussing local linearization in self-referential scattering networks.
+
+\subsection{Single-Channel Reflection-Type Feedback Model}
+
+Consider the single-channel model
+$$
+S_{\mathrm{tot}}(\omega;\tau)
+=r_0(\omega)
++\frac{t_0(\omega)^2\,\mathrm e^{\mathrm i\omega\tau}}
+{1-r_{\mathrm{fb}}(\omega)\,\mathrm e^{\mathrm i\omega\tau}}.
+$$
+In a small frequency window, adopt the ``slow-variation approximation,'' treating $r_0,t_0,r_{\mathrm{fb}}$ as constants $r_0,t_0,r_{\mathrm{fb}}\in\mathbb C$, satisfying
+$$
+|r_0|^2+|t_0|^2=1,\qquad |r_{\mathrm{fb}}|\le 1.
+$$
+Writing
+$$
+S_{\mathrm{tot}}(\omega;\tau)
+=\frac{N(\omega;\tau)}{D(\omega;\tau)},
+$$
+where
+$$
+D(\omega;\tau)=1-r_{\mathrm{fb}}\mathrm e^{\mathrm i\omega\tau},\qquad
+N(\omega;\tau)=r_0 D(\omega;\tau)+t_0^2\mathrm e^{\mathrm i\omega\tau}.
+$$
+In typical cases, $N$ varies slowly with $\tau$, while $D$ determines the main phase jump structure. Let
+$$
+z(\tau)=r_{\mathrm{fb}}\mathrm e^{\mathrm i\omega\tau},
+$$
+then
+$$
+D(\omega;\tau)=1-z(\tau).
+$$
+When $|r_{\mathrm{fb}}|=1$, $z(\tau)$ rotates uniformly around the origin on the unit circle; whenever $z(\tau)$ passes near the point $1$, $\arg(1-z(\tau))$ undergoes a $\pi$-scale jump.
+
+If further taking $r_{\mathrm{fb}}=\mathrm e^{\mathrm i\phi_{\mathrm{fb}}}$, then
+$$
+D(\omega;\tau)=1-\mathrm e^{\mathrm i(\omega\tau+\phi_{\mathrm{fb}})},
+$$
+we can derive
+$$
+\arg D(\omega;\tau)
+=\frac{\omega\tau+\phi_{\mathrm{fb}}}{2}
++\frac{\pi}{2}\,\operatorname{sgn}\Bigl[
+\cos\Bigl(\frac{\omega\tau+\phi_{\mathrm{fb}}}{2}\Bigr)
+\Bigr]
+\quad(\bmod 2\pi),
+$$
+so near
+$$
+\omega\tau+\phi_{\mathrm{fb}}=(2k+1)\pi,\qquad k\in\mathbb Z,
+$$
+$\arg D$ jumps by $\pi$. Since $-\arg D$ is the dominant term in the total phase, the total phase $\varphi(\omega;\tau)$ exhibits typical $\pi$-step structure with respect to $\tau$. Delay quantization steps are
+$$
+\tau_k(\omega)
+=\frac{(2k+1)\pi-\phi_{\mathrm{fb}}}{\omega}.
+$$
+
+\subsection{Multi-Channel Matrix Feedback and Eigenvalue Spectral Flow}
+
+In the multi-channel case, poles are given by
+$$
+\det(\mathbb I_M-\mathsf R(\omega)\mathrm e^{\mathrm i\omega\tau})=0.
+$$
+Let $\lambda_j(\omega)=|\lambda_j(\omega)|\mathrm e^{\mathrm i\phi_j(\omega)}$ be eigenvalues of $\mathsf R(\omega)$; the pole condition is
+$$
+1-\lambda_j(\omega)\mathrm e^{\mathrm i\omega\tau}=0,
+$$
+so each eigenvalue leads to a family of pole trajectories
+$$
+\omega_{j,n}(\tau)
+=\frac{1}{\tau}\Bigl(\phi_j(\omega_{j,n})+2\pi n-\mathrm i\ln|\lambda_j(\omega_{j,n})|^{-1}\Bigr).
+$$
+In the weak-loss limit $|\lambda_j|\to 1$, poles approach the real axis. By slightly changing system parameters to make several poles cross the real axis, crossing events isomorphic to the single-channel case can be obtained.
+
+Since scale density depends only on $\operatorname{tr}\mathsf Q(\omega;\tau)$, which is equivalent to the phase derivative of $\det S(\omega;\tau)$, all step phenomena in the multi-channel case aggregate to the total phase and group delay trace. The main theorem thus remains unchanged in the multi-channel case, depending only on the topological structure of the feedback block eigenvalue spectral flow, independent of specific implementation details.
+
+\subsection{Local Linearization of Self-Referential Scattering Networks}
+
+In self-referential scattering networks, feedback branches not only carry time delays but can also implement functional dependence on their own outputs through programmable devices or nonlinear elements; in this case, $S(\omega;\tau)$ becomes a fixed point of some nonlinear equation or iterative map. Near a linearly stable working point, small changes in $\tau$ can linearize the network into an effective matrix $\mathsf R_{\mathrm{eff}}(\omega)$, returning to the linear feedback model described above.
+
+Therefore, as long as the system can be linearized near crossing events and the corresponding effective feedback block satisfies Assumption A, Theorems 3.1 and 3.2 still apply. Complex behaviors of self-referential networks are decomposed at the spectral theory level into a series of local $\pi$-step and $\mathbb Z_2$ flip units, providing minimal building blocks for more complex self-referential and double-cover structures.
+
+\section{Engineering Proposals}
+
+This section provides several concrete engineering schemes to implement tunable delay feedback networks on different platforms and measure $\pi$-steps and $\mathbb Z_2$ topological indices.
+
+\subsection{Tunable Delay Experiments in Integrated Photonic Micro-Ring Resonators}
+
+On silicon-based or silicon nitride integrated photonic platforms, four-port micro-ring resonators combined with Mach--Zehnder interferometer arms have been widely used as phase and polarization processors. Introducing a tunable optical delay line (e.g., thermo-optic or carrier modulation phase sections) in one of the arms enables continuous scanning of the effective round-trip time $\tau$.
+
+Experimental steps:
+\begin{enumerate}
+\item Near the target wavelength, scan the input optical frequency $\omega$ with high resolution, recording the output complex amplitude $S_{ab}(\omega;\tau)$ or its intensity and phase.
+
+\item Repeat frequency scans for several discrete $\tau$ values, constructing a two-dimensional data map of $\varphi(\omega;\tau)$ or $\partial_\omega\varphi(\omega;\tau)$.
+
+\item Identify regions in the $(\omega,\tau)$ plane where pole trajectories approach the real axis, observing $\pi$-scale steps in the $\varphi(\omega_*;\tau)$ curve taken along fixed $\omega=\omega_*$ slices.
+
+\item Estimates of $\operatorname{tr}\mathsf Q(\omega;\tau)$ can be obtained through numerical differentiation $\partial_\omega S(\omega;\tau)$ or reconstruction methods based on Wigner--Smith modes.
+\end{enumerate}
+
+By counting the number and sign of steps, $N(\tau)$ and $\nu(\tau)$ can be reconstructed and compared with theoretically predicted $\tau_k$ for consistency.
+
+\subsection{Microwave and Acoustic Scattering Network Implementation}
+
+On microwave and acoustic platforms, transmission line networks and distributed scatterers can construct various feedback loop structures. Vector network analyzers can directly measure the amplitude and phase of $S(\omega;\tau)$.
+
+On microwave platforms, $\tau$ can be finely tuned by changing the electrical length in coaxial lines or waveguides, or discrete delay selection can be achieved through switch matrices; on acoustic platforms, similar control can be achieved by changing the length or filling medium of air channels or elastic waveguides.
+
+Phase step measurement methods are similar to optical platforms: scan $\tau$ at fixed frequency slices, observing steps in $\arg S_{aa}(\omega_*;\tau)$; or scan $\omega$ at fixed $\tau$, measuring group delay pulses from the frequency integration perspective.
+
+\subsection{Data Processing and Topological Index Extraction}
+
+Actual data contains noise and finite frequency resolution, requiring stable topological index extraction methods. The following steps can be adopted:
+
+\begin{enumerate}
+\item Perform phase unwrapping on measured $\varphi(\omega;\tau)$ in $\omega$, eliminating false jumps due to $2\pi$ periodicity.
+
+\item Apply smoothing filters to $\partial_\omega\varphi(\omega;\tau)$, suppressing high-frequency noise, and integrate over frequency windows to obtain $I(\tau)$.
+
+\item Identify unit jump events on the $I(\tau)$ curve through threshold and hysteresis comparison, determining $\Delta n_k$ and its sign.
+
+\item Repeat the above steps for different frequency windows and delay scans, ensuring robustness of $N(\tau)$ and $\nu(\tau)$ through majority voting.
+\end{enumerate}
+
+Since $\nu(\tau)$ depends only on the parity of the jump count, it has natural tolerance to noise, loss, and modeling errors, suitable as an experimental topological readout for self-referential scattering networks and double-cover structures.
+
+\section{Discussion (Risks, Boundaries, Past Work)}
+
+\subsection{Applicability Boundaries of Model Assumptions}
+
+This paper primarily develops under linear lossless assumptions and Assumption A of simple zeros/poles. Actual systems inevitably have loss and gain; in this case, the scattering matrix is no longer unitary, and the definition and physical meaning of the Wigner--Smith matrix need generalization. Recent work has systematically characterized time delay and pole localization for sub-unitary scattering matrices.
+
+In the presence of loss, poles generally deviate from the real axis and no longer strictly cross it; however, as long as loss does not destroy the topological structure of pole trajectories, $\pi$-steps and $\mathbb Z_2$ indices can continue to be defined through analytic continuation and deformation theory. In this case, the physical readout of topological indices is closer to the parity of ``quasi-spectral flow'' rather than strict zero/pole crossing counts.
+
+Additionally, Assumption A requires that only a single zero or pole crosses the real axis near each crossing event. For highly symmetric or finely tuned systems, multiple zeros/poles may simultaneously cross the real axis; in this case, local argument changes are no longer restricted to $\pm\pi$, requiring treatment through local diagonalization and multi-dimensional spectral flow tools.
+
+\subsection{Lossy Systems and Sub-Unitary Scattering Matrices}
+
+For sub-unitary scattering matrices, the Wigner--Smith matrix can be generalized to a ``complex time delay matrix'' whose eigenvalues have nonzero imaginary parts, simultaneously characterizing energy dwell time and loss rate. Within this framework, the relationship between $\kappa$ and density of states in the scale identity needs reinterpretation, especially in the presence of non-Hermitian effects.
+
+Nevertheless, the ideas of spectral flow and topological indices remain: the topological arrangement of zeros/poles in the complex frequency plane can still define spectral flow and index pairings, and Levinson-type theorems can also be generalized to more general non-self-adjoint cases. Thus, extending the $\pi$-steps and $\mathbb Z_2$ indices of this paper to lossy self-referential scattering networks is a natural direction for future work.
+
+\subsection{Relationship with Existing Work on Time Delay and Topological Scattering}
+
+This paper's scale identity and topological structure have multiple connections with existing work:
+
+\begin{enumerate}
+\item In one-dimensional and partial-wave scattering, the relationship between total phase derivative and density of states difference can be seen as a special case of the scale identity, where $\rho_{\mathrm{rel}}$ is the local density of states correction.
+
+\item In acoustic and electromagnetic wave scattering, studies of the Wigner--Smith matrix and its eigenmodes have demonstrated quantitative connections between time delay modes and energy density, providing physical basis for using $\operatorname{tr}\mathsf Q$ as scale density in this paper.
+
+\item In topological scattering theory, work reproving Levinson's theorem through spectral flow and index pairings shows that the relationship between phase and spectral flow has a universal K-theory interpretation. This paper provides an explicit $\mathbb Z_2$ version in scattering networks with delay parameters, offering concrete examples of delay-driven topological structures.
+\end{enumerate}
+
+In summary, this paper can be viewed as unifying time delay, density of states, and topological spectral flow into a scattering framework with tunable delay parameters, providing fundamental modules for multi-platform experiments and self-referential scattering networks.
+
+\section{Conclusion}
+
+Based on the scale identity
+$$
+\kappa(\omega;\tau)
+=\frac{\varphi'(\omega;\tau)}{\pi}
+=\rho_{\mathrm{rel}}(\omega;\tau)
+=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(\omega;\tau),
+$$
+this paper provides a systematic spectral and topological characterization of scattering networks with tunable closed-loop delays. Under natural assumptions of analyticity and non-degeneracy, the following structure is proven:
+
+\begin{enumerate}
+\item Changes in the delay parameter $\tau$ drive zero/pole spectral flow, forming a series of isolated crossing events in the complex frequency plane, each corresponding to a pole or zero crossing the real axis once.
+
+\item Each crossing event induces a jump of size $\pm\pi$ in the total phase $\varphi(\omega;\tau)$ at a fixed frequency slice, corresponding to a unit jump in the frequency integral of scale density or group delay.
+
+\item The integer index $N(\tau)$ constructed from spectral flow counting changes by one unit at each delay quantization step, while $\nu(\tau)=N(\tau)\bmod 2$ realizes flips between $\mathbb Z_2$ parity sectors, forming the unified chain ``delay quantization $\Rightarrow \pi$-step $\Rightarrow \mathbb Z_2$ parity transition.''
+\end{enumerate}
+
+At the model level, this paper provides analytic and spectral flow analysis of one-dimensional single-channel feedback models and multi-channel matrix feedback models, demonstrating the universality of the main theorems across different implementations. At the engineering level, experimental schemes based on integrated photonic micro-ring resonators, microwave networks, and acoustic scattering are proposed, providing operational paths to measure $\pi$-steps and reconstruct $\mathbb Z_2$ indices.
+
+From a broader perspective, tunable closed-loop delays provide a simple yet powerful topological driving parameter for self-referential scattering networks, spin and Null--Modular double covers: each time the delay crosses a quantization step, the system completes a page-turn in the double-cover space, leaving its trace in experimental data in the form of $\pi$-steps in total phase and group delay. This structure can serve as a primitive module for more complex unified theories, and can be extended in the future to lossy, self-referential, and time-varying scattering networks, and to the construction of higher-dimensional topological indices.
+
+\section*{Acknowledgements, Code Availability}
+
+The authors thank the relevant literature work on Wigner--Smith time delay, topological Levinson theorems, and optical ring resonator structures, which provided methodological and experimental background for this paper.
+
+The symbolic computation and spectral flow numerical experiments involved in this paper can be implemented through standard scientific computing environments. Sample code for verifying $\pi$-steps and $\mathbb Z_2$ indices in one-dimensional and multi-channel models can be implemented and shared in common open-source code repositories, maintaining notation and normalization conventions consistent with the theoretical part of this paper.
+
+\appendix
+
+\section{Local Crossing Event Argument Analysis}
+
+This appendix provides the detailed local proof of Theorem 3.1. Let $(\omega_k,\tau_k)$ be a crossing event, with a unique zero or pole trajectory $z(\tau)$ crossing the real axis in its neighborhood.
+
+\subsection{Local Factor Decomposition}
+
+In a neighborhood $U$ of $(\omega_k,\tau_k)$, there exist analytic functions $z(\tau)$ and $g(\omega;\tau)$ such that
+$$
+\det S(\omega;\tau)
+=(\omega-z(\tau))^{m}g(\omega;\tau),
+$$
+where $m=+1$ corresponds to a zero, $m=-1$ to a pole, and
+$$
+z(\tau_k)=\omega_k,\qquad
+\partial_\tau\Im z(\tau_k)\neq 0,\qquad
+g(\omega_k;\tau_k)\neq 0.
+$$
+Since $g$ is nonzero in $U$, $\log g(\omega;\tau)$ can be chosen with an analytic branch, thus
+$$
+\arg g(\omega_k;\tau)
+$$
+is a continuous function of $\tau$, not exhibiting jumps near $\tau_k$.
+
+\subsection{Argument Jump on One-Dimensional Slice}
+
+Fix $\omega=\omega_k$, define
+$$
+h(\tau)=\omega_k-z(\tau)=a(\tau)-\mathrm i b(\tau),
+$$
+where $a(\tau)=\omega_k-\Re z(\tau)$, $b(\tau)=\Im z(\tau)$. The crossing condition gives
+$$
+b(\tau_k)=0,\qquad \partial_\tau b(\tau_k)\neq 0.
+$$
+Through slight frequency rescaling, we can ensure $a(\tau_k)\neq 0$. In a neighborhood of $\tau_k$, $h(\tau)$ is a smooth curve crossing the real axis in the complex plane.
+
+Let
+$$
+\theta(\tau)=\arg h(\tau).
+$$
+When $\tau$ traverses $\tau_k$, $\theta(\tau)$ jumps by $\pm\pi$. More specifically, suppose $a(\tau_k)>0$; if $b(\tau)$ changes from negative to positive, then $h(\tau)$ crosses from the fourth quadrant to the first, with $\theta$ jumping from slightly less than $2\pi$ to slightly greater than $0$, giving $\Delta\theta=-\pi$; if $b(\tau)$ changes from positive to negative, then $h(\tau)$ crosses from the first quadrant to the fourth, giving $\Delta\theta=+\pi$. When $a(\tau_k)<0$, quadrants interchange but the conclusion remains the same.
+
+Thus
+$$
+\Delta\arg h
+:=\lim_{\epsilon\to 0^+}\bigl[\arg h(\tau_k+\epsilon)-\arg h(\tau_k-\epsilon)\bigr]
+=\pm\pi.
+$$
+The total phase satisfies
+$$
+\varphi(\omega_k;\tau)
+=m\arg h(\tau)+\arg g(\omega_k;\tau).
+$$
+By continuity of $\arg g$, we obtain
+$$
+\Delta\varphi_k
+=m\,\Delta\arg h
+=\pm\pi,
+$$
+so $\Delta n_k=\pm 1$, proving Theorem 3.1.
+
+\section{Finite-Order Euler--Maclaurin Formula and Error Estimates}
+
+This appendix explains that in numerical approximation of frequency integrals, finite sampling and Euler--Maclaurin corrections do not change the integer nature of step heights.
+
+Let $f(\omega)$ have continuous $2p$-th derivatives on the interval $[a,b]$. Step size $h=(b-a)/N$, discrete sum
+$$
+S_h=\sum_{n=0}^N f(a+nh).
+$$
+The Euler--Maclaurin formula gives
+$$
+S_h
+=\frac{1}{h}\int_a^b f(\omega)\,\mathrm d\omega
++\frac{f(a)+f(b)}{2}
++\sum_{k=1}^{p}\frac{B_{2k}}{(2k)!}h^{2k-1}\bigl(f^{(2k-1)}(b)-f^{(2k-1)}(a)\bigr)
++R_{2p},
+$$
+where $B_{2k}$ are Bernoulli numbers, and the remainder $R_{2p}$ satisfies
+$$
+|R_{2p}|
+\le C_p h^{2p}\sup_{\omega\in[a,b]}|f^{(2p)}(\omega)|.
+$$
+
+In this paper's application, $f(\omega)=\kappa(\omega;\tau)$ or a smoothed version of $f(\omega)=\operatorname{tr}\mathsf Q(\omega;\tau)$. In regions far from poles, $f$ and its high-order derivatives are bounded, so $R_{2p}$ decays as $h^{2p}$. Near poles, the interval can be divided into ``core region'' and ``outer region'': in the core region, the dominant behavior of $f$ is determined by poles, contributing to frequency integration consistent with the unit jump in Proposition 3.3; in the outer region, $f$ is smooth, and Euler--Maclaurin corrections only cause small continuous deformations.
+
+Therefore, at any fixed $\tau$, as long as sampling step $h$ is sufficiently small and appropriate smoothing is applied to $\kappa$, the difference between discrete sum $S_h(\tau)$ and continuous integral $\int\kappa(\omega;\tau)\,\mathrm d\omega$ will not change the integer nature of step heights, and spectral flow counts and $\mathbb Z_2$ indices remain invariant.
+
+\section{Relationship with Self-Referential Scattering Networks and Double-Cover Geometry}
+
+This appendix discusses the position of this paper's results in the broader context of self-referential scattering networks and double-cover structures.
+
+\subsection{Self-Referential Scattering Networks and Nonlinear Feedback}
+
+In self-referential scattering networks, the response in feedback loops can depend on the network's own output states or history, making the scattering matrix a nonlinear or time-varying object. Typical examples include feedback structures with gain saturation, nonlinear phase modulation, or adaptive control.
+
+Near a working point, the nonlinear network can be linearized to obtain an effective scattering matrix $S_{\mathrm{eff}}(\omega;\tau)$ and corresponding feedback block $\mathsf R_{\mathrm{eff}}(\omega)$. As long as the linearized system satisfies Assumption A, all conclusions about spectral flow, $\pi$-steps, and $\mathbb Z_2$ indices in this paper remain valid. This shows that in the parameter space of self-referential networks, a family of local regions can be identified where the network's topological behavior is assembled from several $\pi$-step units.
+
+\subsection{$\mathbb Z_2$ Double Cover and Half-Phase Winding}
+
+The $\pi$-steps discovered in this paper are essentially ``half-circle windings'' in phase space. Considering the phase map of $\det S(\omega;\tau)$ in the complex plane, its natural value space is $\mathbb R/2\pi\mathbb Z$. If lifted to the double-cover space $\mathbb R/\pi\mathbb Z$, then each $\pi$ jump corresponds to one full winding in the double-cover space, and the $\mathbb Z_2$ index $\nu(\tau)$ characterizes the number of page-turns of the lifted path between two ``pages.''
+
+This structure has formal parallelism with the spin double cover $\mathrm{Spin}(n)\to\mathrm{SO}(n)$ and the fermion statistics phenomenon of two-winding identity: in scattering phase space, there are only two types of sectors, distinguished by odd or even numbers of $\pi$-jumps.
+
+\subsection{Role in Unified Time Scale and Boundary Geometry}
+
+In the framework of unified time scale and boundary time geometry, the scale identity unifies scattering phase derivative, relative density of states, and Wigner--Smith group delay trace into a single time scale density. This paper shows that when tunable delay feedback exists in networks, time scale density exhibits a family of discrete topological recalibration points in parameter space, like inserting a series of ``temporal half-lattice points'' on the parameter axis.
+
+These recalibration points form $\pi$-steps in the frequency domain and correspond to flips of $\mathbb Z_2$ sectors topologically, which can be viewed as topological markers of the unified time scale in parameter space. For higher-layer self-referential universe models and Null--Modular double-cover structures, this paper's delay feedback networks constitute computable, experimentally verifiable fundamental topological modules.
+
+\section*{References}
+
+\begin{enumerate}
+\item E. P. Wigner, ``Lower limit for the energy derivative of the scattering phase shift,'' Phys. Rev. 98, 145--147 (1955).
+
+\item F. T. Smith, ``Lifetime matrix in collision theory,'' Phys. Rev. 118, 349--356 (1960).
+
+\item U. R. Patel, Y. Mao, and E. Michielssen, ``Wigner--Smith time delay matrix for acoustic scattering: Theory and phenomenology,'' J. Acoust. Soc. Am. 153, 2769--2784 (2023).
+
+\item Y. Mao et al., ``Wigner--Smith time delay matrix for electromagnetics,'' IEEE Trans. Antennas Propag. 69, 3995--4009 (2021).
+
+\item M. Nowakowski, ``The quantum mechanical scattering problem and the time delay,'' arXiv:hep-ph/0411317 (2004).
+
+\item J.-P. Eckmann and M. P. Pillet, ``Scattering phases and density of states for exterior domains,'' Ann. Inst. H. Poincaré 62, 383--420 (1995).
+
+\item B. Gao, ``Relation between the change of density of states and the scattering phase shift,'' Phys. Rev. A 95, 042704 (2017).
+
+\item L. Chen et al., ``Use of transmission and reflection complex time delays to identify poles and zeros of the scattering matrix,'' Phys. Rev. E 105, 054210 (2022).
+
+\item L. Chen and D. S. Grebenkov, ``Generalization of Wigner time delay to subunitary scattering matrices,'' Phys. Rev. E 103, L050203 (2021).
+
+\item A. Alexander, ``Topological Levinson's theorem via index pairings and spectral flow,'' J. Geom. Phys. (2025).
+
+\item A. LeClair, ``Spectral flow for the Riemann zeros,'' arXiv:2406.01828 (2024).
+
+\item Y. Zhang, ``Induced transparency in ring resonator based interferometers,'' Ph.D. thesis, Nanyang Technological University (2012).
+
+\item C. Rockstuhl et al., ``On the reinterpretation of resonances in split-ring-resonators and electric LC resonators,'' Opt. Express 14, 8827--8836 (2006).
+
+\item C. Zhu et al., ``Phase-inserted fiber gratings and their applications to optical communication systems,'' Photonics 9, 271 (2022).
+
+\item S. Coen et al., ``Hybrid mode dynamics in microresonators with a $\pi$-phase defect,'' Opt. Lett. 48, 1234--1242 (2023).
+
+\item R. Bourgain et al., ``Direct measurement of the Wigner time delay for the scattering of light by a single obstacle,'' Opt. Lett. 38, 1963--1965 (2013).
+
+\item U. R. Patel et al., ``Wigner--Smith time-delay matrix for complex electromagnetic environments,'' IEEE Trans. Antennas Propag. 69, 3995--4009 (2021).
+
+\item A. A. Svidzinsky and S. A. Fulling, ``On the normalization and density of 1D scattering states,'' Am. J. Phys. 92, 205--214 (2024).
+\end{enumerate}
+
+\end{document}
+
+

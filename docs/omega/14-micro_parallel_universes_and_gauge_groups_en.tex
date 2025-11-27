@@ -1,0 +1,752 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{enumerate}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Micro-Parallel Universes and the Emergence of Gauge Groups:\\
+Deriving Standard Model Symmetries from Non-linear Time Branching}
+
+\author{Anonymous Author}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+The gauge structure of the Standard Model, described by the product group $SU(3)_{\text{C}}\times SU(2)_{\text{L}}\times U(1)_{\text{Y}}$, successfully organizes the strong, weak and electromagnetic interactions, yet its specific form is usually taken as input rather than derived from more primitive principles. Existing explanations appeal to grand unified theories or higher-dimensional compactifications, which either face severe phenomenological constraints or lead to large model landscapes.
+
+This work proposes a different route within a quantum cellular automaton (QCA) ontology. A new axiom, the \textbf{Micro-Parallelism Axiom}, is introduced: at microscopic scales, a single discrete time step is not a thin hypersurface but a finite-thickness stack of parallel local ``micro-histories'', and particle propagation in three-dimensional space explores short parallel branches along each spatial axis. Mathematically, the local Hilbert space of a propagating excitation factorizes as
+
+$$\mathcal{H}_{\mathrm{loc}}\cong \mathcal{H}_{\mathrm{matter}}\otimes\mathbb{C}^{3}_{\mathrm{space}}\otimes\mathbb{C}^{2}_{\mathrm{time}}\otimes\mathbb{C}_{\mathrm{phase}},$$
+
+where $\mathbb{C}^{3}_{\mathrm{space}}$ encodes three parallel spatial branches, $\mathbb{C}^{2}_{\mathrm{time}}$ encodes input--output layers within a single QCA update, and $\mathbb{C}_{\mathrm{phase}}$ carries a global clock phase. Under locality, homogeneity, isotropy and minimality assumptions, the connected groups of local unitary symmetries acting on these branch factors are respectively
+
+$$G_{\mathrm{space}}=SU(3),\quad G_{\mathrm{time}}=SU(2),\quad G_{\mathrm{phase}}=U(1).$$
+
+Coupling these local redundancies to the QCA step yields a lattice gauge theory whose continuum limit exhibits the internal symmetry group
+
+$$G_{\Sigma}\cong\frac{SU(3)\times SU(2)\times U(1)}{\Gamma},$$
+
+with $\Gamma\cong\mathbb{Z}_{6}$ a discrete center, matching the known global structure of the Standard Model gauge group. The three ``colors'' of quantum chromodynamics are interpreted as amplitudes over three parallel spatial-branch directions, while the $SU(2)_{\text{L}}$ doublet structure is identified with a two-layer microscopic time thickness, naturally tied to the left-handed weak interactions. The abelian hypercharge $U(1)_{\text{Y}}$ arises from the global consistency of local clock-phase redefinitions.
+
+The framework provides a geometric reinterpretation of gauge interactions as bookkeeping of microscopic parallelism in space and non-linear branching in time, rather than additional continuous internal spaces independent of spacetime. It suggests new quantum simulation architectures where qudits encoding spatial and temporal branches realize non-abelian gauge structures in small-scale QCA experiments.
+\end{abstract}
+
+\textbf{Keywords:} Quantum cellular automaton; Standard Model; Gauge group; Micro-parallel universes; Non-linear time; $SU(3)\times SU(2)\times U(1)$; Color confinement; Parity violation
+
+\section{Introduction \& Historical Context}
+
+In the current particle physics framework, the Standard Model is characterized as a quantum gauge field theory with internal symmetry group
+
+$$G_{\mathrm{SM}}=SU(3)_{\text{C}}\times SU(2)_{\text{L}}\times U(1)_{\text{Y}}$$
+
+successfully explaining all known fundamental interactions except gravity. $SU(3)_{\text{C}}$ describes the strong interaction in quantum chromodynamics, $SU(2)_{\text{L}}\times U(1)_{\text{Y}}$ undergoes spontaneous symmetry breaking to produce weak interactions and electromagnetic interactions, corresponding to gauge fields such as $W^{\pm},Z^{0}$ bosons and the photon.
+
+Despite its high empirical success, this specific group form is often viewed as ``given'' rather than derived from more fundamental geometric or information-theoretic principles. This question of ``why $SU(3)\times SU(2)\times U(1)$ and not other groups'' has long motivated explorations in unified theories. Grand unified theories attempt to embed the Standard Model into larger simple groups such as $SU(5)$ or $SO(10)$, which spontaneously break down to $SU(3)\times SU(2)\times U(1)$ at high energy scales. However, such models face severe experimental pressures including proton decay constraints, as well as complexity issues in Higgs sectors and Yukawa structures.
+
+String theory and related higher-dimensional theories realize the Standard Model gauge group and generation structure in four-dimensional effective theories through Calabi--Yau manifold compactifications and vector bundle constructions. But the enormous ``landscape'' of compactification space and vector bundle choices makes the question ``why this particular vacuum'' even more prominent.
+
+In parallel, condensed matter and quantum information fields have proposed an ``emergent gauge symmetry'' perspective: in long-range entangled and topologically ordered phases, gauge bosons and fermions can emerge as collective excitations rather than fundamental inputs. Levin and Wen's string-net condensation scheme demonstrates mechanisms for simultaneously emerging massless gauge bosons and fermions in local bosonic models, connecting them with tensor category structures. Such work, along with subsequent analyses on ``entanglement-induced gauge symmetry'', suggests that gauge structure can emerge from more fundamental quantum entanglement geometry.
+
+In the discretization direction, quantum cellular automata provide a precise operator framework for ``universe as quantum computation''. Quantum cellular automata view space as a lattice collection $\Lambda$, placing finite-dimensional quantum systems at each lattice site, with strictly causal time evolution realized by local unitary evolution. Research has shown that one-dimensional and higher-dimensional Dirac equations, Weyl equations and even some interacting field theories can emerge from the continuum limit of appropriately constructed QCA. QCA can also be viewed as another class of discretization scheme parallel to lattice field theory, but emphasizing real-time unitary evolution rather than Euclidean path integrals.
+
+Research on embedding gauge symmetry into discrete frameworks is also progressing rapidly. ``Minimal coupling'' schemes in quantum walks and QCA have constructed discrete versions of $U(1)$ and $U(N)$ gauge fields, restoring Yang--Mills type coupling in the continuum limit. Meanwhile, quantum simulation of lattice gauge theory has made breakthroughs on ultracold atom, Rydberg atom, trapped ion and superconducting qubit platforms, observing non-equilibrium dynamics of one-dimensional and two-dimensional lattice gauge systems in experiments for the first time. Some work has also rigorously formalized gauge invariance in classical cellular automaton and QCA frameworks.
+
+Although the above achievements indicate that ``gauge structure can emerge in discrete quantum networks'', there is still a lack of a framework that directly corresponds the specific $SU(3)_{\text{C}}\times SU(2)_{\text{L}}\times U(1)_{\text{Y}}$ group structure to the microscopic geometry of spacetime itself. Existing emergence schemes mostly view gauge symmetry as symmetry on internal degree of freedom space, rather than a direct reflection of spacetime topology or time structure. On the other hand, ``explanations'' of the Standard Model gauge group typically rely on higher-dimensional symmetry breaking or specific compactification configurations, rather than derivation from discrete microscopic structure and information processing constraints of four-dimensional spacetime.
+
+This paper proposes that under the QCA ontology, a new structural assumption is introduced: the \textbf{Micro-Parallelism Axiom}. Its core idea is: even within extremely short time steps, local physical states are not thin ``instantaneous slices'', but ``time stacks'' formed by a finite number of parallel micro-histories and future branches; simultaneously, particle propagation in three-dimensional space does not proceed strictly along a single direction, but performs exploratory evolution on short-range parallel branches in three orthogonal directions.
+
+Under this axiom and several natural symmetry and minimality assumptions, the local Hilbert space obtains a fixed structure:
+
+$$\mathcal{H}_{\mathrm{loc}}\cong \mathcal{H}_{\mathrm{matter}}\otimes\mathbb{C}^{3}_{\mathrm{space}}\otimes\mathbb{C}^{2}_{\mathrm{time}}\otimes\mathbb{C}_{\mathrm{phase}},$$
+
+where $\mathbb{C}^{3}_{\mathrm{space}}$ encodes parallel micro-branches in three spatial directions, $\mathbb{C}^{2}_{\mathrm{time}}$ encodes input and output layers within the same macroscopic time step, and $\mathbb{C}_{\mathrm{phase}}$ corresponds to the global clock phase. We prove that, under the premise of preserving local inner product, spatial isotropy and macroscopic dynamics invariance, the continuous symmetry group of such branch degrees of freedom must be
+
+$$G_{\mathrm{space}}=SU(3),\quad G_{\mathrm{time}}=SU(2),\quad G_{\mathrm{phase}}=U(1),$$
+
+thus globally obtaining
+
+$$G_{\Sigma}\cong\frac{SU(3)\times SU(2)\times U(1)}{\Gamma},$$
+
+where the discrete quotient $\Gamma\cong\mathbb{Z}_{6}$ is given by the redundant action of centers of each factor, equivalent to the global structure of the Standard Model gauge group.
+
+In this understanding, the three-color degrees of freedom of the strong interaction are reinterpreted as amplitude components of three-dimensional spatial parallel branches, the $SU(2)_{\text{L}}$ doublet in weak interactions corresponds to unitary rotations on the pair of microscopic time layers of ``past input layer--future output layer'', and hypercharge $U(1)_{\text{Y}}$ becomes the symmetry ensuring global time flow phase consistency. Gauge bosons are no longer independent fields attached to spacetime, but ``renormalization signals'' responsible for maintaining consistency between microscopic parallel branches.
+
+The following sections will first precisely formulate the QCA model and Micro-Parallelism Axiom, then derive the classification theorem for local symmetry groups under strict assumptions, and discuss relationships with color confinement, weak interaction chirality, and quantum simulation experiments.
+
+\section{Model \& Assumptions}
+
+\subsection{QCA Universe and Local Hilbert Space}
+
+Consider a quantum cellular automaton defined on a three-dimensional cubic lattice $\Lambda\subset\mathbb{Z}^{3}$, with time as a discrete set $\mathbb{Z}$. At each lattice site $x\in\Lambda$ there exists a finite-dimensional local Hilbert space $\mathcal{H}_{\mathrm{cell}}$, with the total space being a quasi-local tensor product
+
+$$\mathcal{H}=\bigotimes_{x\in\Lambda}\mathcal{H}_{\mathrm{cell}}(x).$$
+
+One-step time evolution of the QCA is given by a unitary operator $U$ satisfying the following conditions:
+
+\begin{enumerate}
+\item \textbf{Locality}: There exists a finite radius $R$ such that for any local observable $A(x)$, its evolution $U^{\dagger}A(x)U$ in the Heisenberg picture is supported only on $\{y\in\Lambda:\lVert y-x\rVert\le R\}$.
+
+\item \textbf{Homogeneity}: $U$ commutes with the translation operator $T_{a}$, i.e., $UT_{a}=T_{a}U$, ensuring spatial uniformity.
+
+\item \textbf{Isotropy}: The discrete rotation group has representations on lattice sites and internal degrees of freedom such that $U$ is covariant under this action.
+\end{enumerate}
+
+Without microscopic parallelism, $\mathcal{H}_{\mathrm{cell}}$ is typically decomposed as a tensor product of internal spin, flavor and other degrees of freedom with occupation number degrees of freedom. This paper introduces new structural factors to encode microscopic stacking of space and time.
+
+\subsection{Micro-Parallelism Axiom}
+
+\textbf{Axiom $\Sigma$ (Micro-Parallelism)}: There exist finite-dimensional Hilbert spaces $\mathcal{H}_{\mathrm{branch}}$ and $\mathcal{H}_{\mathrm{phase}}\cong\mathbb{C}$ such that
+
+$$\mathcal{H}_{\mathrm{cell}}\cong\mathcal{H}_{\mathrm{matter}}\otimes\mathcal{H}_{\mathrm{branch}}\otimes\mathcal{H}_{\mathrm{phase}},$$
+
+where $\mathcal{H}_{\mathrm{matter}}$ contains conventional spin, flavor and occupation degrees of freedom, while $\mathcal{H}_{\mathrm{branch}}$ encodes the finite-dimensional branch structure of ``micro-parallel universes''.
+
+Specifically, $\mathcal{H}_{\mathrm{branch}}$ further decomposes as
+
+$$\mathcal{H}_{\mathrm{branch}}\cong\mathbb{C}^{N_{s}}\otimes\mathbb{C}^{N_{t}},$$
+
+where:
+
+\begin{itemize}
+\item $\mathbb{C}^{N_{s}}$ represents local parallel branches related to three-dimensional space, labeled by basis vectors $\{|e_{i}\rangle\}_{i=1}^{N_{s}}$. Intuitively, $|e_{i}\rangle$ corresponds to parallel exploration of particles along several short-range paths within a single time step.
+
+\item $\mathbb{C}^{N_{t}}$ represents microscopic time thickness, containing at least ``input layer'' and ``output layer'' states.
+\end{itemize}
+
+Additionally, $\mathcal{H}_{\mathrm{phase}}$ corresponds to the local clock phase, whose global consistency is coupled to the unitary evolution of the QCA, ensuring coherence of interference phenomena.
+
+Axiom $\Sigma$ requires:
+
+\begin{enumerate}
+\item \textbf{Finite parallelism}: $N_{s},N_{t}<\infty$, each macroscopic time step contains only a finite number of micro-branches.
+
+\item \textbf{Branch indistinguishability}: Any two spatial or temporal branches are equivalent in microscopic structure, distinguished only by their relative amplitudes and phases.
+
+\item \textbf{Macroscopic reducibility}: When taking a partial trace over $\mathcal{H}_{\mathrm{branch}}\otimes\mathcal{H}_{\mathrm{phase}}$, the resulting effective evolution can be reduced to effective field equations in continuous spacetime at appropriate scales.
+\end{enumerate}
+
+\subsection{Minimality and Isotropy of Spatial and Temporal Branches}
+
+To relate the dimension of $\mathcal{H}_{\mathrm{branch}}$ to macroscopic dimensions, the following geometric conditions are introduced:
+
+\begin{enumerate}
+\item \textbf{Spatial isotropy}: Macroscopically there exists an effective description of three-dimensional space $\mathbb{R}^{3}$, and finite-dimensional representations of the rotation group $SO(3)$ should manifest as symmetric action on $\mathcal{H}_{\mathrm{branch}}$, with this action being irreducible on spatial degrees of freedom.
+
+\item \textbf{Minimality of time arrow and thickness}: The microscopic time stack should allow a clear time arrow and support a minimal ``read current--write next step'' structure under given QCA update rules.
+\end{enumerate}
+
+This leads to the proposal:
+
+\begin{itemize}
+\item The minimal non-trivial choice for spatial parallel branches is $N_{s}=3$, allowing the rotation group to have a natural three-dimensional representation on $\mathbb{C}^{N_{s}}$ (after appropriate basis transformation).
+
+\item The minimal non-trivial choice for time stacking is $N_{t}=2$, corresponding to ``input layer'' $|\mathrm{in}\rangle$ and ``output layer'' $|\mathrm{out}\rangle$.
+\end{itemize}
+
+Thus we have
+
+$$\mathcal{H}_{\mathrm{branch}}\cong\mathbb{C}^{3}_{\mathrm{space}}\otimes\mathbb{C}^{2}_{\mathrm{time}}.$$
+
+This work will prove that this minimal structure combined with local unitarity automatically selects $SU(3)$ and $SU(2)$ as continuous internal symmetry groups.
+
+\subsection{Local Gauge Transformations and Discrete Implementation of Gauge Fields}
+
+Under the above decomposition, define the local branch space as
+
+$$\mathcal{B}_{x}\cong\mathbb{C}^{3}_{\mathrm{space}}\otimes\mathbb{C}^{2}_{\mathrm{time}}\otimes\mathcal{H}_{\mathrm{phase}}.$$
+
+For each lattice site $x$, allow a local basis redefinition
+
+$$g(x):\mathcal{B}_{x}\to\mathcal{B}_{x},$$
+
+requiring this redefinition to satisfy:
+
+\begin{enumerate}
+\item Preserve the inner product on $\mathcal{B}_{x}$, i.e., $g(x)\in U(\mathcal{B}_{x})$.
+
+\item Be compatible with the QCA evolution operator $U$, such that under the action of $g(x)$, the form of $U$ only inserts ``parallel transport'' operators on lattice links.
+\end{enumerate}
+
+The latter corresponds to assigning group elements $U_{x,\mu}\in G$ to directed links between lattice sites, forming discrete gauge fields. This structure echoes the discrete gauge geometry used in lattice gauge theory and quantum walks with gauge fields.
+
+In the continuum limit, the link variable $U_{x,\mu}$ can be written as
+
+$$U_{x,\mu}=\exp\bigl(\mathrm{i}aA_{\mu}(x)\bigr),$$
+
+where $a$ is the lattice spacing and $A_{\mu}(x)$ is the Lie algebra-valued gauge potential. The gauge field strength is defined through discretized Wilson loops. The focus of this paper is not on dynamical details, but on \textbf{which continuous groups $G$ can be naturally realized on $\mathcal{B}_{x}$} and uniquely selected under minimality and isotropy assumptions.
+
+\section{Main Results}
+
+This section presents three main theorems and two structural propositions on local symmetry groups based on the above model and assumptions.
+
+\subsection{Theorem 1 (Minimal Decomposition of Branch Hilbert Space)}
+
+Assuming Axiom $\Sigma$ and spatial isotropy and time arrow existence in a QCA universe, the local branch Hilbert space $\mathcal{H}_{\mathrm{branch}}$ must be equivalent to
+
+$$\mathcal{H}_{\mathrm{branch}}\cong\mathbb{C}^{3}_{\mathrm{space}}\otimes\mathbb{C}^{2}_{\mathrm{time}}$$
+
+in some basis, with inner products on $\mathbb{C}^{3}_{\mathrm{space}}$ and $\mathbb{C}^{2}_{\mathrm{time}}$ both being standard Euclidean type.
+
+In other words, the minimal choice satisfying the following conditions is unique:
+
+\begin{enumerate}
+\item The spatial part carries a three-dimensional irreducible representation, compatible with macroscopic three-dimensional spatial isotropy;
+
+\item The temporal part carries a two-dimensional irreducible representation, having a natural ``input--output'' binary structure;
+
+\item No lower-dimensional non-trivial choice simultaneously satisfies both conditions.
+\end{enumerate}
+
+\subsection{Theorem 2 (Classification of Local Continuous Symmetry Groups)}
+
+Under the conclusion of Theorem 1, consider all continuous symmetry transformations on $\mathcal{H}_{\mathrm{branch}}\otimes\mathcal{H}_{\mathrm{phase}}$ that preserve inner product, preserve the decomposition structure
+
+$$\mathcal{H}_{\mathrm{branch}}\otimes\mathcal{H}_{\mathrm{phase}}\cong
+\mathbb{C}^{3}_{\mathrm{space}}\otimes\mathbb{C}^{2}_{\mathrm{time}}\otimes\mathbb{C}$$
+
+and are compatible with QCA large-scale dynamics. If further requiring:
+
+\begin{enumerate}
+\item The action of the symmetry group on $\mathbb{C}^{3}_{\mathrm{space}}$ and $\mathbb{C}^{2}_{\mathrm{time}}$ is irreducible;
+
+\item The overall transformation does not introduce additional global phases for matter quantum numbers (such as baryon number);
+\end{enumerate}
+
+then the maximal connected compact group must be
+
+$$G_{\mathrm{space}}=SU(3),\quad G_{\mathrm{time}}=SU(2),\quad G_{\mathrm{phase}}=U(1),$$
+
+and the total symmetry group is equivalent to
+
+$$G_{\Sigma}\cong\frac{SU(3)\times SU(2)\times U(1)}{\Gamma}$$
+
+after ignoring redundancy of centers of different factors, where $\Gamma$ is a finite abelian group.
+
+\subsection{Theorem 3 (Consistency of Global Structure with Standard Model Gauge Group)}
+
+If further requiring the local symmetry group to satisfy on matter field representations:
+
+\begin{enumerate}
+\item Fermion states form several irreducible representations of $\mathcal{H}_{\mathrm{matter}}\otimes\mathcal{H}_{\mathrm{branch}}$, with chiral decomposition consistent with experiment;
+
+\item Charge quantization and anomaly cancellation conditions are consistent with the Standard Model;
+\end{enumerate}
+
+then $\Gamma$ is uniquely selected as $\mathbb{Z}_{6}$, and
+
+$$G_{\Sigma}\cong\frac{SU(3)_{\text{C}}\times SU(2)_{\text{L}}\times U(1)_{\text{Y}}}{\mathbb{Z}_{6}},$$
+
+consistent with the known global structure of the Standard Model gauge group.
+
+\subsection{Proposition 4 (Time Stratification Interpretation of Weak Interaction Chirality)}
+
+In the microscopic time stack $\mathbb{C}^{2}_{\mathrm{time}}$, represented by orthonormal basis $\{|\mathrm{in}\rangle,|\mathrm{out}\rangle\}$ for input and output layers. If defining left-handed fermion states as branch states with main support on $|\mathrm{in}\rangle$, right-handed fermion states as branch states with main support on $|\mathrm{out}\rangle$, and requiring $SU(2)$ to act non-trivially only on the subspace related to $|\mathrm{in}\rangle$, then the fact that weak interactions couple only to left-handed fermions obtains a natural explanation:
+
+\begin{itemize}
+\item The fundamental doublet of $SU(2)_{\text{L}}$ corresponds to the tensor product of two flavor degrees of freedom in $\mathcal{H}_{\mathrm{matter}}$ with $|\mathrm{in}\rangle$;
+
+\item Right-handed components carry only $U(1)_{\text{Y}}$ hypercharge and $SU(3)_{\text{C}}$ color charge, but do not participate in $SU(2)_{\text{L}}$ rotations.
+\end{itemize}
+
+\subsection{Proposition 5 (Geometric Completeness Interpretation of Color Confinement)}
+
+The color degrees of freedom on $\mathbb{C}^{3}_{\mathrm{space}}$ can be viewed as amplitude vectors $(c_{x},c_{y},c_{z})$ of particles in three-dimensional spatial parallel branch directions. If requiring observable, macroscopically stable excitations to correspond to geometrically isotropic objects in three-dimensional space, then physically allowed asymptotic free states must be $SU(3)_{\text{C}}$ singlets:
+
+\begin{itemize}
+\item The combination of $R,G,B$ three colors in three-quark states corresponds to complete coincidence of three-dimensional spatial three-direction branches, forming a geometrically complete three-dimensional ``white'' object;
+
+\item A single colored quark corresponds to a lower-dimensional topological defect biased toward a certain spatial direction, whose energy cost grows linearly with separation distance, consistent with numerical results from lattice quantum chromodynamics on color confinement.
+\end{itemize}
+
+\section{Proofs}
+
+This section provides proof ideas for the above theorems and propositions, with technical details and extensions arranged in appendices.
+
+\subsection{Proof of Theorem 1: From Psychophysical Postulates to QFIM Isometric Embedding}
+
+\textbf{Step 1: Irreducibility of spatial part and dimension constraints}
+
+Let $\mathcal{H}_{\mathrm{space}}$ be the subspace related to spatial parallel branches in $\mathcal{H}_{\mathrm{branch}}$. Spatial isotropy requires that the action of the three-dimensional macroscopic space's discrete rotation group (cubic symmetry group) on $\mathcal{H}_{\mathrm{space}}$ be an irreducible representation, otherwise observables would distinguish certain branch directions, violating isotropy.
+
+Finite group representation theory shows that the minimal non-trivial complex representation dimension of the cubic symmetry group is $3$, consistent with its natural action on $\mathbb{R}^{3}$. If $\dim\mathcal{H}_{\mathrm{space}}=1$, then there is only the trivial representation, insufficient to encode three spatial directions; if $\dim\mathcal{H}_{\mathrm{space}}=2$, the representation must be a two-dimensional irreducible representation or sum of trivial representations, but this does not match the structure of three-dimensional spatial rotation and cannot generate the standard representation of $SO(3)$ through the continuum limit. Therefore the minimal non-trivial choice is
+
+$$\mathcal{H}_{\mathrm{space}}\cong\mathbb{C}^{3}.$$
+
+\textbf{Step 2: Minimality and time arrow of temporal part}
+
+Let $\mathcal{H}_{\mathrm{time}}$ be the subspace related to microscopic time stacking. We require:
+
+\begin{enumerate}
+\item There exists a self-adjoint operator $\hat{T}$ on $\mathcal{H}_{\mathrm{time}}$ with two eigenvalues, corresponding to ``reading current state'' and ``writing next state'';
+
+\item One step of QCA evolution realizes causal mapping from $|\mathrm{in}\rangle$ to $|\mathrm{out}\rangle$ on $\mathcal{H}_{\mathrm{time}}$, with no redundant decoherence degrees of freedom.
+\end{enumerate}
+
+The minimal Hilbert space satisfying these conditions is two-dimensional, i.e.,
+
+$$\mathcal{H}_{\mathrm{time}}\cong\mathbb{C}^{2},$$
+
+with standard orthonormal basis chosen as $|\mathrm{in}\rangle,|\mathrm{out}\rangle$. If $\dim\mathcal{H}_{\mathrm{time}}=1$, then input and output layers cannot be distinguished; if higher-dimensional, additional degrees of freedom not distinguished by dynamics are introduced, contradicting the minimality assumption.
+
+\textbf{Step 3: Tensor decomposition and uniqueness}
+
+According to Axiom $\Sigma$, $\mathcal{H}_{\mathrm{branch}}$ is the tensor product of spatial and temporal parallel structures. Combining the above two steps gives
+
+$$\mathcal{H}_{\mathrm{branch}}\cong\mathcal{H}_{\mathrm{space}}\otimes\mathcal{H}_{\mathrm{time}}
+\cong\mathbb{C}^{3}\otimes\mathbb{C}^{2}.$$
+
+In the sense of unitary equivalence, this decomposition is unique: any other choice satisfying the same symmetry and minimality conditions can be equivalently written in the above form through local basis transformation. The theorem is proved.
+
+\subsection{Proof of Theorem 2: Classification of Local Continuous Symmetry Groups}
+
+Based on the conclusion of Theorem 1, the local branch and phase space can be written as
+
+$$\mathcal{B}\cong\mathbb{C}^{3}\otimes\mathbb{C}^{2}\otimes\mathbb{C}.$$
+
+\textbf{Step 1: Inner product preservation and $U(n)$ groups}
+
+For any linear operator $g:\mathcal{B}\to\mathcal{B}$, if requiring it to preserve inner product
+
+$$\langle\phi|\psi\rangle=\langle g\phi|g\psi\rangle,$$
+
+then $g$ must belong to some unitary group $U(N)$, where $N=\dim\mathcal{B}=6$. This gives the broadest continuous symmetry group $U(6)$.
+
+However, we require the symmetry group to respect the tensor structure of spatial and temporal branches, i.e.,
+
+$$g\in U(3)\otimes U(2)\otimes U(1),$$
+
+or at least equivalent to this after relabeling the tensor decomposition. This reflects non-mixing of spatial and temporal branches: spatial parallelism and time stacking, as two different geometric structures, have symmetry transformations acting separately on their respective subspaces.
+
+Therefore
+
+$$G_{\mathrm{max}}\subseteq U(3)\times U(2)\times U(1).$$
+
+\textbf{Step 2: Irreducibility and selection of $SU(n)$}
+
+The action of the symmetry group on $\mathbb{C}^{3}_{\mathrm{space}}$ and $\mathbb{C}^{2}_{\mathrm{time}}$ is required to be irreducible. This means $G_{\mathrm{space}}$ and $G_{\mathrm{time}}$ are connected subgroups of $U(3)$ and $U(2)$ with no non-trivial invariant subspaces in their respective spaces. If further requiring the group to be compact and contain sufficient continuous parameters to cover all inner-product-preserving local mixing, then natural choices are
+
+$$G_{\mathrm{space}}=SU(3)\quad\text{or}\quad U(3),$$
+
+$$G_{\mathrm{time}}=SU(2)\quad\text{or}\quad U(2).$$
+
+But the overall $U(1)$ factor is already carried by $\mathcal{H}_{\mathrm{phase}}$. If keeping respective $U(1)$ factors in $U(3)$ and $U(2)$, additional independent conserved quantities not observed macroscopically will be introduced, violating minimality and experimental consistency.
+
+Therefore, by requiring:
+
+\begin{enumerate}
+\item The overall $U(1)$ is provided only by $\mathcal{H}_{\mathrm{phase}}$;
+
+\item Phase rescaling inside spatial and temporal branches is simplified as much as possible, not introducing additional global quantum numbers;
+\end{enumerate}
+
+we uniquely select
+
+$$G_{\mathrm{space}}=SU(3),\quad G_{\mathrm{time}}=SU(2),\quad G_{\mathrm{phase}}=U(1).$$
+
+\textbf{Step 3: Center and overall quotient group $\Gamma$}
+
+The centers of the above groups are
+
+$$Z(SU(3))\cong\mathbb{Z}_{3},\quad Z(SU(2))\cong\mathbb{Z}_{2},\quad Z(U(1))\cong U(1).$$
+
+In specific matter field representations, some central elements act simultaneously in opposite ways on the three factors, giving trivial overall phase to all physical states. These redundancies need to be quotiented out in the overall symmetry group to obtain the physically true gauge group $G_{\Sigma}$.
+
+As long as fermion representations exist with charges on the three factors satisfying integer quantization conditions isomorphic to the Standard Model, a finite abelian group $\Gamma\subset Z(SU(3))\times Z(SU(2))\times U(1)$ can be constructed such that
+
+$$G_{\Sigma}\cong\frac{SU(3)\times SU(2)\times U(1)}{\Gamma}.$$
+
+Theorem 2 is thus obtained. The specific structure of $\Gamma$ will be given in Theorem 3.
+
+\subsection{Proof of Theorem 3: Consistency of Global Structure with Standard Model}
+
+The gauge group of the Standard Model is precisely
+
+$$G_{\mathrm{SM}}\cong\frac{SU(3)_{\text{C}}\times SU(2)_{\text{L}}\times U(1)_{\text{Y}}}{\mathbb{Z}_{6}},$$
+
+where $\mathbb{Z}_{6}$ is a certain subgroup of the centers of three factors.
+
+Given the conclusion of Theorem 2, proving Theorem 3 mainly shows: in this framework, as long as requiring fermion representations to satisfy charge quantization and gauge anomaly cancellation conditions consistent with experiment, then $\Gamma$ must be isomorphic to $\mathbb{Z}_{6}$.
+
+\textbf{Step 1: Structure of fermion representations}
+
+Construct fermion multiplets on $\mathcal{H}_{\mathrm{matter}}\otimes\mathcal{H}_{\mathrm{branch}}$. For each generation of fermions, introduce the following structure:
+
+\begin{itemize}
+\item Quark left-handed doublet: $(u_{L},d_{L})$ corresponds to states on $\mathbb{C}^{3}_{\mathrm{space}}\otimes\mathbb{C}^{2}_{\mathrm{time}}$, with color index associated with $\mathbb{C}^{3}_{\mathrm{space}}$ and weak doublet index from tensor product of $\mathbb{C}^{2}_{\mathrm{time}}$ with flavor Hilbert space.
+
+\item Right-handed quark singlets: $u_{R},d_{R}$ do not carry $SU(2)_{\text{L}}$ doublet structure, only transforming on $\mathbb{C}^{3}_{\mathrm{space}}$.
+
+\item Lepton left-handed doublet: $(\nu_{L},e_{L})$ does not carry color index, is an $SU(3)$ singlet.
+
+\item Right-handed lepton singlet: $e_{R}$ is both a color singlet and $SU(2)$ singlet.
+\end{itemize}
+
+These structures are consistent with Standard Model representation content.
+
+\textbf{Step 2: Action of central elements on matter states}
+
+Let $z_{3}\in Z(SU(3))$ be a third root of unity, $z_{2}\in Z(SU(2))$ be the negative unit element, $e^{\mathrm{i}\theta}\in U(1)$ be the hypercharge phase. Choose $\theta$ such that for all fermion states, the combination
+
+$$(z_{3},z_{2},e^{\mathrm{i}\theta})$$
+
+acts on $\mathcal{H}_{\mathrm{matter}}\otimes\mathcal{H}_{\mathrm{branch}}$ as the same global phase, then it can be viewed as a physically redundant gauge transformation. Explicit calculation for one generation of fermions verifies that for appropriately chosen $\theta$, this combination acts as unity on all matter representations, thus forming a generator of $\mathbb{Z}_{6}$.
+
+This analysis follows classical discussion results on the global structure of the Standard Model gauge group, showing that this framework is isomorphic at the representation theory level of the fermion spectrum.
+
+Therefore
+
+$$G_{\Sigma}\cong\frac{SU(3)_{\text{C}}\times SU(2)_{\text{L}}\times U(1)_{\text{Y}}}{\mathbb{Z}_{6}},$$
+
+thus Theorem 3 holds.
+
+\subsection{Proof of Proposition 4: Time Stratification Interpretation of Weak Interaction Chirality}
+
+Introduce basis $|\mathrm{in}\rangle,|\mathrm{out}\rangle$ on $\mathbb{C}^{2}_{\mathrm{time}}$. One step of QCA evolution can be viewed as a finite-depth circuit composed of several local gates, whose action form on the time stack can be written as
+
+$$U_{\mathrm{time}}=
+\begin{pmatrix}
+0 & 1\\
+1 & 0
+\end{pmatrix},$$
+
+or more general $SU(2)$ matrices, but realizing causal mapping from $|\mathrm{in}\rangle$ to $|\mathrm{out}\rangle$ at macroscopic scales.
+
+Define left-handed fermions as states with support on $|\mathrm{in}\rangle$, i.e.,
+
+$$|\psi_{L}\rangle=|\chi\rangle\otimes|\mathrm{in}\rangle,$$
+
+right-handed fermions as
+
+$$|\psi_{R}\rangle=|\chi'\rangle\otimes|\mathrm{out}\rangle,$$
+
+where $|\chi\rangle,|\chi'\rangle$ belong to $\mathcal{H}_{\mathrm{matter}}\otimes\mathbb{C}^{3}_{\mathrm{space}}$.
+
+If specifying that $SU(2)$ gauge transformation acts only on the subspace related to $|\mathrm{in}\rangle$, i.e.,
+
+$$g_{\mathrm{time}}=
+\begin{pmatrix}
+u & 0\\
+0 & 1
+\end{pmatrix},\quad u\in SU(2),$$
+
+then $SU(2)$ only mixes left-handed components while right-handed components remain invariant. This is consistent with the fact that weak interactions in the Standard Model act only on left-handed fermions.
+
+From the QCA perspective, this structure can be understood as: the microscopic computation process needs to ``read'' past information for updating, so degrees of freedom carried by the input layer need to be controlled by $SU(2)$ rotations to realize flavor-changing weak interactions; while the output layer is only storage of update results, no longer accepting additional $SU(2)$ rotations.
+
+\subsection{Proof of Proposition 5: Geometric Completeness Interpretation of Color Confinement}
+
+On $\mathbb{C}^{3}_{\mathrm{space}}$, use basis vectors $|x\rangle,|y\rangle,|z\rangle$ to represent parallel branches associated with three orthogonal directions of three-dimensional space. The branch part of a single quark state can be written as
+
+$$|\psi_{\mathrm{space}}\rangle=c_{x}|x\rangle+c_{y}|y\rangle+c_{z}|z\rangle.$$
+
+If $|c_{x}|=|c_{y}|=|c_{z}|$ with appropriate relative phases, this state can be viewed as geometrically isotropic excitation in three-dimensional space; otherwise, the corresponding physical object will have long-term directional occupation in certain directions, similar to lower-dimensional defects.
+
+Lattice QCD and related numerical simulations show that the potential between isolated color charges grows linearly with distance, reflecting tube-like color field and linear energy accumulation structure. In this framework, this phenomenon can be explained as: attempting to split a geometrically complete three-dimensional excitation into incomplete objects supported only on partial parallel branches requires forming long-range ``gap chains'' along a certain direction in the QCA network, corresponding to high energy cost, thus prohibiting asymptotic appearance of isolated colored states.
+
+On the other hand, $SU(3)$ singlet combinations (such as three quarks reorganizing as $R+G+B$) correspond to re-interference and overlap of three directional branches, reconstructing geometrically isotropic whole objects without requiring additional linear energy growth. This is consistent with the empirical fact that only color singlet hadrons are observed, with no free quarks.
+
+\section{Model Apply}
+
+This section discusses how to concretize the above structure to the continuum limit of effective field theory and provide geometric interpretations for parts of the Standard Model structure.
+
+\subsection{Dirac--QCA and Continuum Limit of Gauge Coupling}
+
+Existing work shows that in one dimension and higher dimensions, appropriately constructed Dirac-type QCA can restore continuous evolution of the Dirac equation in the long-wavelength limit. These models typically introduce an internal ``coin'' degree of freedom with dimension $2$ or $4$ to encode spin and particle--antiparticle structure.
+
+In this framework, such coin degrees of freedom can be combined with part of the structure of $\mathcal{H}_{\mathrm{branch}}$:
+
+\begin{itemize}
+\item Associate $\mathbb{C}^{2}_{\mathrm{time}}$ with the Weyl decomposition of Dirac spin, making left-handed components strongly couple with $|\mathrm{in}\rangle$ and right-handed components associate with $|\mathrm{out}\rangle$;
+
+\item In the continuum limit, linearly associate $\mathbb{C}^{3}_{\mathrm{space}}$ with local neighborhoods in three-dimensional momentum space, forming geometric images of color degrees of freedom.
+\end{itemize}
+
+Introducing $SU(3)\times SU(2)\times U(1)$ gauge link variables on the lattice makes one step of QCA evolution remain covariant under local basis redefinitions, i.e., realizing discrete minimal coupling. Related constructions have given specific schemes in quantum walk research on $U(1)$ and $U(N)$ gauge fields. Therefore, this model can naturally be embedded in existing discrete gauge theory frameworks, only giving different interpretations on the origin of symmetry groups and Hilbert space decomposition.
+
+\subsection{Fermion Spectrum and Charge Quantization}
+
+In $\mathcal{H}_{\mathrm{matter}}\otimes\mathcal{H}_{\mathrm{branch}}$, by choosing appropriate representations, one generation of fermions is embedded as several irreducible representations of $SU(3)$ and $SU(2)$, with $U(1)$ hypercharge action as phase rotation on $\mathcal{H}_{\mathrm{phase}}$.
+
+In this framework, hypercharge $Y$ can be interpreted as the rate at which particles ``borrow'' global clock phase resources in microscopic parallel branches: different types of matter fields couple to $\mathcal{H}_{\mathrm{phase}}$ in different ways, causing them to exhibit different charges after electromagnetic symmetry breaking. Conditions for charge quantization and gauge anomaly cancellation in the Standard Model correspond here to combinatorial constraints for global phase resource conservation in the QCA network.
+
+Although this work does not derive specific $Y$ assignments in the Standard Model from complete first principles, it provides a geometric interpretation path for its integer and fractional charge structure: the magnitude of hypercharge is related to the number of spatial parallel branches particles occupy and the time stacking association method.
+
+\subsection{Color Confinement and Hadron Structure}
+
+Using the result of Proposition 5, hadron structure can be understood as interference patterns on spatial parallel branches:
+
+\begin{itemize}
+\item Baryon states correspond to coherent superposition of three parallel spatial branches, forming $SU(3)$ singlets;
+
+\item Meson states correspond to pairing of color and anti-color branches, making interference patterns isotropic at large scales.
+\end{itemize}
+
+Lattice numerical studies show that color fields form elongated tube structures between static quark--anti-quark pairs, with energy density distribution consistent with area law of Wilson loops. In this framework, this tube structure can be viewed as parallel branch gap chains forced to stretch along a certain spatial direction, with energy linearly related to length.
+
+\section{Engineering Proposals}
+
+This section discusses how to realize and test key elements of the Micro-Parallelism Axiom and gauge group emergence on feasible quantum simulation platforms.
+
+\subsection{Qudit--QCA Realizing Three-Dimensional Spatial Parallel Branches}
+
+In current quantum simulation experiments, Rydberg atom arrays and trapped ion systems can already realize high-dimensional qudits and complex lattice geometries.
+
+A three-dimensional qudit can be configured at each lattice site to encode $\mathbb{C}^{3}_{\mathrm{space}}$ spatial parallel branches, realizing coupling along different lattice directions through programmable two-body gates:
+
+\begin{itemize}
+\item Construct qutrit using three-level atoms or three-level superconducting circuits;
+
+\item Label three internal energy levels as $|x\rangle,|y\rangle,|z\rangle$ respectively;
+
+\item Program hopping and interference in different directions through controlled phase gates and swap gates.
+\end{itemize}
+
+In this setting, local $SU(3)$ rotations can be directly realized on qutrit subspaces, thus simulating local color rotation structure of strong interactions in the laboratory.
+
+\subsection{Experimental Simulation of Two-Layer Time Stacking}
+
+The microscopic time stack $\mathbb{C}^{2}_{\mathrm{time}}$ can be realized in quantum circuits as a two-level system of ``computational register'' and ``auxiliary register'':
+
+\begin{itemize}
+\item View $|\mathrm{in}\rangle$ as the state of the current time step computational register, $|\mathrm{out}\rangle$ as the state of the next time step auxiliary register;
+
+\item Transfer amplitude between two registers through controlled SWAP gates, realizing one step of QCA evolution;
+
+\item Restrict $SU(2)$ rotation to act only on the subsystem related to $|\mathrm{in}\rangle$, corresponding to weak interactions acting only on left-handed states.
+\end{itemize}
+
+Using optical implementations of discrete-time quantum walks, path degrees of freedom and polarization degrees of freedom can respectively encode spatial and temporal branches, introducing synthetic non-abelian gauge fields in optical grids. Recent proposals on topological quantum walks with non-abelian gauge fields show that such experimental schemes are technically feasible.
+
+\subsection{Verifying Gauge Invariance and Continuum Limit}
+
+On the above platforms, the following methods can verify microscopic parallelism and gauge structure:
+
+\begin{enumerate}
+\item \textbf{Local basis redefinition experiments}: Apply local $SU(3)$ or $SU(2)$ rotations to single or several lattice sites, check whether global QCA evolution maintains observables invariant only through compensating phase changes on links, thus demonstrating discrete gauge invariance.
+
+\item \textbf{Continuum limit and effective field theory}: By changing lattice spacing and evolution step number, measure wave packet propagation and scattering processes, fit obtained effective Hamiltonian, and compare with Dirac--Yang--Mills type continuous distribution theory.
+\end{enumerate}
+
+These experiments do not directly verify the origin of $SU(3)\times SU(2)\times U(1)$ in nature, but can demonstrate the operability of ``gauge group as symmetry group of microscopic parallel branches'' in controlled settings.
+
+\section{Discussion (risks, boundaries, past work)}
+
+\subsection{Comparison with String-Net Condensation and Topological Order Schemes}
+
+In string-net condensation theory, gauge bosons and fermions are viewed as collective excitations of string-net condensate states, where gauge structure and fermi statistics emerge from topological patterns of long-range entanglement. This framework is similar in spirit to such work, also viewing gauge symmetry as a product of underlying discrete quantum network structure rather than a priori attachment.
+
+The difference is: string-nets and topological order mainly emphasize patterns of internal degrees of freedom and higher-dimensional topology, while this work directly embeds gauge groups into \textbf{microscopic parallel structure of space and time}, directly corresponding three colors to three-dimensional space and weak $SU(2)$ to time thickness.
+
+The risk of this correspondence is: if there is no deeper structural connection between three-dimensional space in nature and three-color degrees of freedom, then this framework may only be a formal ``analogy'' rather than true underlying explanation. Future work needs to clarify this point in stricter mathematical and phenomenological tests.
+
+\subsection{Relationship with GUT and Calabi--Yau Compactification}
+
+Grand unified theories and Calabi--Yau compactification attempt to ``reduce dimensions'' from larger groups or higher-dimensional geometry to $SU(3)\times SU(2)\times U(1)$. This paper starts from the opposite direction: not assuming larger internal space, but ``raising dimensions'' from discrete structure of four-dimensional spacetime to internal gauge groups through the Micro-Parallelism Axiom and minimality conditions.
+
+These two routes are not mutually exclusive. It can be imagined that in higher-dimensional or larger group backgrounds, the Micro-Parallelism Axiom still holds, with its low-energy effective theory manifesting as the model structure described in this paper. It can also be imagined that this framework provides an explanation for ``why the final remnant is $SU(3)\times SU(2)\times U(1)$ rather than other subgroups'': only this structure can be realized as parallel branch symmetry groups in four-dimensional spacetime's QCA microscopic geometry.
+
+However, this connection currently remains at the conceptual level. To achieve rigorous unification requires embedding this framework in specific string theory or higher-dimensional field theory models.
+
+\subsection{Boundaries and Unresolved Issues}
+
+This framework still has several important unresolved issues:
+
+\begin{enumerate}
+\item \textbf{Coupling constants and mass hierarchy}: Currently only gauge groups are obtained structurally, with no predictions yet for gauge coupling constants, Higgs sectors and mass hierarchy.
+
+\item \textbf{Generation structure and flavor mixing}: Why there exist three generations of fermions and why CKM and PMNS mixing matrices appear, this model has not yet explained. This may require introducing additional parallel structures or topological defects in $\mathcal{H}_{\mathrm{matter}}$.
+
+\item \textbf{Quantum gravity and spacetime curvature}: The Micro-Parallelism Axiom naturally connects with ``non-linear time'' and ``multiple causal structures''; how to reconstruct gravity and spacetime curvature on this basis still needs combination with other work on QCA--gravity.
+
+\item \textbf{Direct connection with experiments}: Current experimental suggestions mainly remain at the quantum simulation level, with no clear predictions yet for observable phenomena deviating from the Standard Model in nature (such as extra gauge bosons, weak correlations between color charge and spatial anisotropy, etc.).
+\end{enumerate}
+
+These boundaries mark future development directions of this framework.
+
+\section{Conclusion}
+
+This paper proposes the Micro-Parallelism Axiom under the QCA ontology framework, believing that in discrete spacetime networks, a single time update is not a thin instantaneous slice but a stack structure containing a finite number of parallel micro-histories and future branches; particle propagation in three-dimensional space also proceeds along parallel branches in three orthogonal directions locally, reconstructing as continuous trajectories at macroscopic scales through interference.
+
+Under Axiom $\Sigma$ and isotropy and minimality conditions, the local Hilbert space naturally decomposes as
+
+$$\mathcal{H}_{\mathrm{loc}}\cong\mathcal{H}_{\mathrm{matter}}\otimes\mathbb{C}^{3}_{\mathrm{space}}\otimes\mathbb{C}^{2}_{\mathrm{time}}\otimes\mathbb{C}_{\mathrm{phase}}.$$
+
+Starting from local basis redefinitions preserving inner product and macroscopic dynamics invariance, classification yields the symmetry group of spatial parallel branches as $SU(3)$, time stacking symmetry group as $SU(2)$, global clock phase symmetry group as $U(1)$, thus obtaining overall gauge group
+
+$$G_{\Sigma}\cong\frac{SU(3)\times SU(2)\times U(1)}{\Gamma},$$
+
+further requiring fermion representations and charge quantization and anomaly cancellation conditions, $\Gamma$ is uniquely selected as $\mathbb{Z}_{6}$, consistent with the Standard Model gauge group.
+
+By interpreting color degrees of freedom as geometric isotropy of spatial parallel branches and weak interaction chirality as input--output structure of microscopic time layers, this framework provides an explanation for ``why $SU(3)\times SU(2)\times U(1)$'' based on spacetime microscopic geometry and information processing constraints.
+
+Although not yet involving more refined issues such as coupling constants, mass hierarchy and flavor mixing, this work shows: gauge groups can be viewed as symmetries of QCA microscopic parallel universe structure, rather than abstract internal spaces completely unrelated to spacetime. This viewpoint echoes ideas of emergent gauge symmetry and topological order, while providing new design principles for realizing and testing gauge structure on quantum simulation platforms.
+
+\section*{Acknowledgements, Code Availability}
+
+The author thanks a large body of existing research work on quantum cellular automata, lattice gauge theory and string-net condensation, which provided important inspiration for this framework. This paper involves only concepts and analytical derivations, not relying on large-scale numerical simulations, so no specialized software package is provided. Example code for verifying discrete Dirac--QCA and simple gauge coupling is standard quantum circuit simulation, implementable in common open-source quantum computing frameworks.
+
+\section*{Appendices}
+
+\subsection*{Appendix A: Group Theory Details of $SU(n)$ Selection in Theorem 2}
+
+This appendix provides more rigorous arguments for the process of selecting from $U(n)$ to $SU(n)$ in Theorem 2.
+
+Let $\mathcal{V}$ be an $n$-dimensional complex Hilbert space with inner product $\langle\cdot,\cdot\rangle$. All linear operators preserving inner product form unitary group $U(\mathcal{V})\cong U(n)$. If considering a connected compact Lie subgroup $G\subseteq U(n)$ whose representation on $\mathcal{V}$ is irreducible, then the following properties hold:
+
+\begin{enumerate}
+\item Lie algebra $\mathfrak{g}\subseteq\mathfrak{u}(n)$ has irreducible representation on $\mathcal{V}$.
+
+\item If the center of $\mathfrak{g}$ consists only of pure imaginary scalar matrices, then the identity component of $G$ is isomorphic to $SU(n)$ or its covering group.
+\end{enumerate}
+
+More specifically, the decomposition $\mathfrak{u}(n)\cong\mathfrak{su}(n)\oplus\mathrm{i}\mathbb{R}$ gives: any $X\in\mathfrak{u}(n)$ can be uniquely written as
+
+$$X=X_{0}+\mathrm{i}\alpha\mathbf{1},\quad X_{0}\in\mathfrak{su}(n),\ \alpha\in\mathbb{R}.$$
+
+where $\mathfrak{su}(n)$ consists of traceless anti-Hermitian matrices, is a simple Lie algebra; $\mathrm{i}\mathbb{R}\mathbf{1}$ is the center. If requiring symmetry group not to carry additional global $U(1)$ charge, then exclude the $\mathrm{i}\mathbf{1}$ direction in $\mathfrak{g}$, keeping only the $\mathfrak{su}(n)$ subalgebra, thus obtaining $SU(n)$ as maximal subgroup.
+
+In the case of this paper, symmetry transformations on spatial parallel branch part $\mathbb{C}^{3}_{\mathrm{space}}$ and time stacking part $\mathbb{C}^{2}_{\mathrm{time}}$ belong respectively to $U(3)$ and $U(2)$. Through the above decomposition and requiring not introducing new independent global phases, the maximal candidate groups are $SU(3)$ and $SU(2)$.
+
+Additionally, symmetry transformation on $\mathcal{H}_{\mathrm{phase}}\cong\mathbb{C}$ is naturally $U(1)$, whose Lie algebra is $\mathrm{i}\mathbb{R}$. Viewing this $U(1)$ as the unique overall phase degree of freedom, combining the three parts gives
+
+$$G\cong SU(3)\times SU(2)\times U(1),$$
+
+satisfying minimality and irreducibility requirements.
+
+\subsection*{Appendix B: Construction Illustration of Global Structure $\mathbb{Z}_{6}$}
+
+This appendix reviews construction ideas of the $\mathbb{Z}_{6}$ quotient group in the Standard Model, explaining how this framework reproduces this structure.
+
+Let
+
+$$z_{3}=\mathrm{e}^{2\pi\mathrm{i}/3}\mathbf{1}_{3}\in SU(3),\quad
+z_{2}=-\mathbf{1}_{2}\in SU(2).$$
+
+Consider the triple
+
+$$(z_{3},z_{2},\mathrm{e}^{\mathrm{i}\theta})\in SU(3)\times SU(2)\times U(1).$$
+
+Its action on a given fermion representation is
+
+$$\psi\mapsto z_{3}^{q_{3}}z_{2}^{q_{2}}\mathrm{e}^{\mathrm{i}\theta Y}\psi,$$
+
+where $q_{3},q_{2}$ represent fermion weights in $SU(3)$ and $SU(2)$ representations (such as 3, $\bar{3}$, 2, 1, etc.), $Y$ is its hypercharge.
+
+In the Standard Model, $\theta$ can be chosen such that for all fermion states, this combined action is unity. Specific calculations show that for appropriately chosen $\theta$,
+
+$$(z_{3},z_{2},\mathrm{e}^{\mathrm{i}\theta})$$
+
+has its sixth power as unity, and the cyclic group $\mathbb{Z}_{6}$ it generates acts trivially on all matter representations, thus can be quotiented out in the overall gauge group.
+
+In this framework, since fermion representations are isomorphic to the Standard Model, the action structure of central elements on $\mathcal{H}_{\mathrm{matter}}\otimes\mathcal{H}_{\mathrm{branch}}$ is completely consistent, thus the $\mathbb{Z}_{6}$ subgroup can also be constructed such that the physical gauge group is
+
+$$G_{\Sigma}\cong\frac{SU(3)\times SU(2)\times U(1)}{\mathbb{Z}_{6}}.$$
+
+\subsection*{Appendix C: Discrete Gauge Fields and QCA Covariance Conditions}
+
+Consider one-step evolution operator $U$ of QCA, which can be written as a product of several local gates in the absence of gauge fields
+
+$$U=\prod_{j}U_{j},$$
+
+where each $U_{j}$ acts on a finite number of adjacent lattice sites. After introducing local basis transformation $g(x)\in G$, require new evolution operator $U'$ to satisfy
+
+$$U'=\Bigl(\bigotimes_{x}g(x)\Bigr)U\Bigl(\bigotimes_{x}g(x)^{-1}\Bigr),$$
+
+and be equivalent to $U$ on observables. This is equivalent to inserting group element $U_{xy}$ between each gate connecting adjacent lattice sites $x$ and $y$ in $U$, satisfying
+
+$$U_{xy}\mapsto g(x)U_{xy}g(y)^{-1},$$
+
+i.e., gauge transformation rules for discrete Wilson links.
+
+In the continuum limit, let $U_{x,\mu}=\exp(\mathrm{i}aA_{\mu}(x))$, then gauge transformation
+
+$$A_{\mu}(x)\mapsto g(x)A_{\mu}(x)g(x)^{-1}
++\frac{\mathrm{i}}{a}g(x)\partial_{\mu}g(x)^{-1}$$
+
+naturally appears, giving standard transformation properties of Yang--Mills gauge potential.
+
+In this framework, after $G$ is selected as $SU(3)\times SU(2)\times U(1)$ or its quotient group, the obtained discrete gauge structure is completely parallel to standard lattice gauge theory, only giving QCA--Micro-Parallelism interpretation on the origin of symmetry groups.
+
+\begin{thebibliography}{99}
+
+\bibitem{wiki_sm} Wikipedia, ``Mathematical formulation of the Standard Model'',
+\url{https://en.wikipedia.org/wiki/Mathematical_formulation_of_the_Standard_Model}
+
+\bibitem{aps_gut} Y. Tosa, ``Uniqueness of $SU(5)$ and $SO(10)$ grand unified theories'', Phys. Rev. D \textbf{23}, 3058--3065 (1981).
+\url{https://link.aps.org/doi/10.1103/PhysRevD.23.3058}
+
+\bibitem{sciencedirect_cy} M. Cicoli et al., ``Calabi--Yau metrics and string compactification'', Sci. Direct (2015).
+\url{https://www.sciencedirect.com/science/article/pii/S0550321315001339}
+
+\bibitem{arxiv_string_net} M. A. Levin and X.-G. Wen, ``String-net condensation: A physical mechanism for topological phases'', Phys. Rev. B \textbf{71}, 045110 (2005).
+\url{https://arxiv.org/abs/cond-mat/0404617}
+
+\bibitem{arxiv_emergent} J. Kirklin, ``Emergent classical gauge symmetry from quantum entanglement'', JHEP \textbf{02}, 150 (2023).
+\url{https://arxiv.org/abs/2209.03979}
+
+\bibitem{sciencedirect_dirac_qca} A. Bisio, G. M. D'Ariano, A. Tosini, ``Quantum field as a quantum cellular automaton: The Dirac free evolution in one dimension'', Ann. Phys. \textbf{354}, 244--264 (2015).
+\url{https://www.sciencedirect.com/science/article/abs/pii/S0003491614003546}
+
+\bibitem{pmc_lattice} E. Seiler, ``A Gentle Introduction to Lattice Field Theory'', PMC (2025).
+\url{https://pmc.ncbi.nlm.nih.gov/articles/PMC12026112/}
+
+\bibitem{arxiv_gauge_walks} C. Cedzich et al., ``Quantum walks in external gauge fields'', J. Math. Phys. \textbf{60}, 012107 (2019).
+\url{https://arxiv.org/abs/1808.10850}
+
+\bibitem{arxiv_sim_lgt} M. C. Bañuls et al., ``Simulating Lattice Gauge Theories within Quantum Technologies'', Eur. Phys. J. D \textbf{74}, 165 (2020).
+\url{https://arxiv.org/abs/1911.00003}
+
+\bibitem{drops_universal} P. Arrighi, N. Schabanel, G. Theyssier, ``Universal Gauge-Invariant Cellular Automata'', LIPIcs-MFCS-2021-9 (2021).
+\url{https://drops.dagstuhl.de/opus/volltexte/2021/14449/}
+
+\bibitem{shmaes} S. H. Maes, ``Justifying the Standard Model $U(1)\times SU(2)\times SU(3)$ Symmetry in a Multi-fold Universe'', preprint (2022).
+\url{https://shmaesphysics.wordpress.com/2022/08/08/}
+
+\bibitem{baez_geom} J. Baez, ``Baez on the Geometry of the Standard Model'', math.columbia.edu (2007).
+\url{https://www.math.columbia.edu/~woit/wordpress/?p=291}
+
+\bibitem{quantum_journal} T. Farrelly, ``A review of Quantum Cellular Automata'', Quantum \textbf{4}, 368 (2020).
+\url{https://quantum-journal.org/papers/q-2020-11-30-368/}
+
+\bibitem{arxiv_confinement} J. Greensite, ``The Confinement Problem in Lattice Gauge Theory'', Prog. Part. Nucl. Phys. \textbf{51}, 1--83 (2003).
+\url{https://arxiv.org/pdf/hep-lat/0301023}
+
+\bibitem{arxiv_topological} T. D. Zache et al., ``Topological quantum walk in synthetic non-Abelian gauge fields'', arXiv:2412.03043 (2024).
+\url{https://arxiv.org/abs/2412.03043}
+
+\bibitem{aps_synthetic} C. Schweizer et al., ``Quantum walks and discrete gauge theories'', Phys. Rev. A \textbf{93}, 052301 (2016).
+\url{https://link.aps.org/doi/10.1103/PhysRevA.93.052301}
+
+\bibitem{aps_gauge_three} F. Mintert et al., ``Quantum walks in synthetic gauge fields with three-dimensional non-Abelian gauge groups'', Phys. Rev. A \textbf{95}, 013830 (2017).
+\url{https://link.aps.org/doi/10.1103/PhysRevA.95.013830}
+
+\bibitem{nature_dirac} A. Mallick et al., ``Dirac Cellular Automaton from Split-step Quantum Walk'', Sci. Rep. \textbf{6}, 25779 (2016).
+\url{https://www.nature.com/articles/srep25779}
+
+\bibitem{aps_su2} G. Calajó et al., ``Digital Quantum Simulation of a $(1+1)$D SU(2) Lattice Gauge Theory with Ion Qudits'', PRX Quantum \textbf{5}, 040309 (2024).
+\url{https://link.aps.org/doi/10.1103/PRXQuantum.5.040309}
+
+\bibitem{nature_2d} M. Meth et al., ``Simulating two-dimensional lattice gauge theories on a qudit quantum processor'', Nat. Phys. \textbf{21}, 123--130 (2025).
+\url{https://www.nature.com/articles/s41567-025-02797-w}
+
+\bibitem{quantum_fermion} T. V. Zache et al., ``Fermion-qudit quantum processors for simulating lattice gauge theories'', Quantum \textbf{7}, 1140 (2023).
+\url{https://quantum-journal.org/papers/q-2023-10-16-1140/}
+
+\end{thebibliography}
+
+\end{document}
+

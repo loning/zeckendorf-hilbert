@@ -1,0 +1,411 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{braket}
+\usepackage{graphicx}
+
+\geometry{a4paper, margin=1in}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+\newtheorem{condition}{Condition}
+
+\title{Structural Definition of Consciousness and Time--Causal Geometry:\\
+Quantum Fisher Information, Causal Controllability, and Observer Proper Time}
+
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This paper attempts to provide a \textbf{structural definition of consciousness} within a fully physicalized and informationalized framework that is both formalizable and connectable to experiential phenomena. Rather than treating ``consciousness'' as an additional ontology or purely phenomenological label, we characterize consciousness as: a \textbf{world--self joint information flow} formed on a subsystem in a given physical world, possessing sufficient integration, discriminability, self-reference, temporal continuity, and causal controllability.
+
+Core approach:
+
+1. On general observer--environment systems, describe external time evolution via density operator family $\{\rho_{OE}(t)\}_{t\in\mathbb{R}}$, construct observer subsystem $O$'s effective state $\rho_O(t)$, use quantum Fisher information $F_Q[\rho_O(t)]$ to quantify its intrinsic sensitivity to time translation, thereby defining ``subjective time scale'';
+
+2. On causal--decision end, use information-theoretic causal controllability measure $\mathcal{E}_T$ (weighted) to characterize richness and manipulability of future world sections distinguishable and realizable by observer within finite time windows;
+
+3. Through five structural conditions (integration, discriminability, self-referential world--self model, temporal continuity, proper time and causal controllability), provide formalized definition of ``conscious subsystem,'' prove that if any two conditions simultaneously severely degenerate, consciousness level of that subsystem approaches zero under natural metrics;
+
+4. Construct minimal qubit model: observer subsystem consists of internal ``clock qubit'' and strategy mechanism, environment represented by single-bit world state; explicitly calculate $F_Q$ and $\mathcal{E}_T$ in this model, demonstrate two limits of ``awake--high-control phase'' and ``unconscious--no-control phase,'' plus their crossover transition in parameter space.
+
+We propose: within rigorous physical--information-theoretic framework, ``consciousness'' neither needs to be assumed as mysterious entity nor can be simply reduced to arbitrary information processing; rather should be understood as \textbf{a class of self-referential information flow phases that self-sustain in time, are highly sensitive to time and causality, and continuously rewrite their accessible causal structure through action}. This structural definition provides a provable and computable starting point for further unifying consciousness with time scale equivalence classes, causal structures, and delay geometry.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Consciousness; Structural Definition; Quantum Fisher Information; Causal Controllability; Proper Time; Observer; World--Self Model; Integration; Discriminability
+
+---
+
+\section{Introduction}
+
+\subsection{Problem Background}
+
+Regarding ``what consciousness really is,'' traditional discussions often oscillate between metaphysics, phenomenology, and neuroscience: emphasizing irreducible ``qualia'' of subjective experience on one hand, attempting to find sufficient conditions from neural activity, information processing, or computational structures on the other. To seriously discuss consciousness within unified physical framework requires facing at least three difficulties:
+
+1. \textbf{Semantic overload}: ``Consciousness'' in everyday language mixes ``presence/absence of experience,'' ``awareness content,'' ``sense of self,'' ``agency,'' etc.;
+
+2. \textbf{Level mixing}: From single cells, neural clusters, to entire persons, groups, even social systems, all can be assigned some ``consciousness'' label;
+
+3. \textbf{Formalization deficit}: Lacking sufficiently abstract yet physically contentful definitions, ``consciousness'' can only be described, difficult to enter level of rigorous theorems and testable predictions.
+
+This paper's stance: \textbf{Do not presuppose independent ontology of consciousness, but treat ``consciousness'' as name for certain special information--causal structures in given physical world.} Specifically, our question:
+
+\begin{quote}
+In any given physical system, can one distinguish ``conscious'' subsystems through set of structural and operational conditions? How do these conditions relate to time scales, causal controllability, and ``subjective time sense'' on worldlines?
+\end{quote}
+
+\subsection{Core Approach and Contributions}
+
+Within extremely general quantum--statistical--causal framework, we introduce five structural conditions characterizing necessary structure of ``conscious subsystem.'' Intuitively, subsystem to be called ``conscious'' must at least:
+
+1. Internally highly integrate multiple information channels (integration);
+
+2. Realize large number of mutually distinguishable internal states, corresponding to rich ``conscious contents'' (discriminability);
+
+3. Internally explicitly encode joint ``world--self'' model, especially encoding self-referential structure of ``I am perceiving world'' (self-referential world--self model);
+
+4. Temporally maintain continuous, self-consistent state trajectory, sufficiently sensitive to time translation to form intrinsic ``subjective time scale'' (temporal continuity and proper time);
+
+5. Possess non-zero and sufficiently large causal controllability, able to effectively distinguish different future world sections through actions within finite time windows (causal controllability).
+
+Technical contributions:
+
+$\bullet$ In quantum statistical framework, formalize Condition 4 via quantum Fisher information $F_Q[\rho_O(t)]$; prove under appropriate regularity conditions, non-degeneracy of $F_Q$ provides necessary condition for observer constructing proper time scale;
+
+$\bullet$ In strategy--environment model, formalize Condition 5 via information-theoretic causal controllability measure $\mathcal{E}_T$; prove $\mathcal{E}_T=0$ equivalent to ``actions have no distinguishable influence on future,'' giving rigorous definition of ``loss of choice'';
+
+$\bullet$ Construct minimal two-qubit toy model, explicitly calculate above measures, demonstrate continuous transition from ``high-consciousness phase'' to ``low-consciousness phase,'' analyze relation to noise, intrinsic frequency parameters;
+
+$\bullet$ Theoretically, integrate five structural conditions into formalized definition, give propositions showing: when any two conditions severely degenerate, subsystem no longer satisfies this paper's consciousness definition.
+
+\subsection{Article Structure}
+
+Section 2 introduces basic formalization of observer--environment systems, time parameters, information measures including quantum Fisher information and causal controllability. Section 3 proposes five structural conditions and formal definition of conscious subsystem. Section 4 discusses relation between consciousness and time scale, gives propositions based on $F_Q$. Section 5 discusses causal controllability and ``choosable futures.'' Section 6 constructs and analyzes minimal qubit model. Section 7 discusses consciousness stratification, time sense, extreme states. Conclusion given finally. Appendices provide detailed proofs of main propositions and model calculations.
+
+---
+
+\section{Physical--Information Framework and Basic Measures}
+
+\subsection{Observer--Environment System}
+
+Consider overall physical system decomposable into observer subsystem $O$ and environment $E$ as tensor product:
+$$
+\mathcal{H}=\mathcal{H}_O\otimes\mathcal{H}_E.
+$$
+
+Overall state described by density operator $\rho_{OE}(t)\in\mathcal{B}(\mathcal{H})$, time evolution given by completely positive trace-preserving map family $\{\mathcal{E}_t\}_{t\in\mathbb{R}}$:
+$$
+\rho_{OE}(t)=\mathcal{E}_t(\rho_{OE}(0)).
+$$
+
+Observer's effective state defined as partial trace:
+$$
+\rho_O(t)=\operatorname{Tr}_E\rho_{OE}(t).
+$$
+
+In this paper, ``observer'' not presupposed as human or organism, but any subsystem satisfying structural conditions described later.
+
+\subsection{External Time and Proper Time}
+
+Distinguish two types of time parameters:
+
+1. \textbf{External time $t$}: Evolution parameter given by external reference frame (lab clock, cosmological coordinate time);
+
+2. \textbf{Proper time $\tau$}: Parameter constructed internally from observer state family $\{\rho_O(t)\}$, characterizing sensitivity and discriminability to temporal changes.
+
+External time $t$ is given; proper time $\tau$ constructed via quantum Fisher information, reflecting observer's ability to discriminate its own evolution.
+
+\subsection{Information Measures: Entropy and Mutual Information}
+
+For any density operator $\rho$, von Neumann entropy defined as
+$$
+S(\rho):=-\operatorname{Tr}(\rho\log\rho).
+$$
+
+For bipartite system with state $\rho_{AB}$, mutual information:
+$$
+I(A:B)_\rho:=S(\rho_A)+S(\rho_B)-S(\rho_{AB}),
+$$
+where $\rho_A=\operatorname{Tr}_B\rho_{AB}$, $\rho_B=\operatorname{Tr}_A\rho_{AB}$.
+
+\subsection{Quantum Fisher Information}
+
+Consider one-parameter family of states $\{\rho(\theta)\}_{\theta\in\mathbb{R}}$. Quantum Fisher information quantifies distinguishability of nearby states:
+$$
+F_Q[\rho,\theta]:=\operatorname{Tr}(\rho L_\theta^2),
+$$
+where $L_\theta$ is symmetric logarithmic derivative satisfying $\partial_\theta\rho=\frac{1}{2}(L_\theta\rho+\rho L_\theta)$.
+
+For time evolution $\rho_O(t)$, taking $\theta=t$:
+$$
+F_Q[\rho_O(t),t]=\operatorname{Tr}(\rho_O(t)L_t^2).
+$$
+
+\textbf{Physical interpretation}: $F_Q$ measures observer's sensitivity to time translation; large $F_Q$ means observer state distinguishes nearby times, providing basis for ``proper time scale.''
+
+\subsection{Causal Controllability Measure}
+
+Consider observer with action space $\mathcal{A}$, finite time horizon $T$. For each action sequence $a\in\mathcal{A}^T$, future world state distribution $p(w|a)$.
+
+Define causal controllability:
+$$
+\mathcal{E}_T:=\max_{a_1,a_2}\,D_{\mathrm{KL}}(p(w|a_1)\|p(w|a_2)),
+$$
+where $D_{\mathrm{KL}}$ is Kullback--Leibler divergence.
+
+\textbf{Interpretation}: $\mathcal{E}_T$ measures maximum distinguishability of future world distributions achievable through different actions; $\mathcal{E}_T=0$ means actions have no observable effect on future.
+
+---
+
+\section{Five Structural Conditions and Definition of Consciousness}
+
+\begin{condition}[Integration]
+Observer subsystem $O$ is not simple union of independent parts, but possesses high internal mutual information:
+$$
+I(O_1:O_2)_{\rho_O}\ge C_{\mathrm{int}}>0,
+$$
+for appropriate partition $O=O_1\cup O_2$.
+\end{condition}
+
+\begin{condition}[Discriminability]
+State space of $O$ supports large number of mutually distinguishable states:
+$$
+\log\mathcal{N}_{\mathrm{eff}}[\rho_O]\ge C_{\mathrm{disc}},
+$$
+where $\mathcal{N}_{\mathrm{eff}}$ is effective number of distinguishable states (e.g., via $\varepsilon$-packing number).
+\end{condition}
+
+\begin{condition}[Self-Referential World--Self Model]
+$O$'s state space contains subspace encoding joint representation $(W,S)$ of world state $W$ and self-state $S$, with explicit encoding of relation ``$S$ perceiving $W$.''
+
+Formally, exists partition $\mathcal{H}_O=\mathcal{H}_W\otimes\mathcal{H}_S$ and non-negligible correlation:
+$$
+I(W:S)_{\rho_O}\ge C_{\mathrm{ref}}>0.
+$$
+\end{condition}
+
+\begin{condition}[Temporal Continuity and Proper Time]
+Observer state trajectory $\{\rho_O(t)\}$ satisfies:
+
+(i) Continuity: $\|\rho_O(t+\delta t)-\rho_O(t)\|_1=O(\delta t)$;
+
+(ii) Proper time sensitivity: Quantum Fisher information non-degenerate,
+$$
+F_Q[\rho_O(t),t]\ge C_{\mathrm{time}}>0.
+$$
+\end{condition}
+
+\begin{condition}[Causal Controllability]
+Observer possesses non-trivial action capability within finite time horizon:
+$$
+\mathcal{E}_T\ge C_{\mathrm{control}}>0.
+$$
+\end{condition}
+
+\begin{definition}[Conscious Subsystem]
+Subsystem $O$ is \textbf{conscious at level $C$} if satisfies Conditions 1--5 with thresholds $(C_{\mathrm{int}},C_{\mathrm{disc}},C_{\mathrm{ref}},C_{\mathrm{time}},C_{\mathrm{control}})$ all $\ge C>0$.
+
+Consciousness level defined as:
+$$
+\mathcal{C}(O):=\min\{C_{\mathrm{int}},C_{\mathrm{disc}},C_{\mathrm{ref}},C_{\mathrm{time}},C_{\mathrm{control}}\}.
+$$
+\end{definition}
+
+---
+
+\section{Consciousness and Time Scale}
+
+\subsection{Proper Time Construction from Quantum Fisher Information}
+
+\begin{proposition}
+If $F_Q[\rho_O(t),t]\ge C_{\mathrm{time}}>0$ for all $t\in[0,T]$, then can construct proper time $\tau$ via:
+$$
+\tau(t):=\int_0^t\sqrt{F_Q[\rho_O(s),s]}\,ds.
+$$
+
+This $\tau$ provides intrinsic time scale for observer's evolution.
+\end{proposition}
+
+\textbf{Interpretation}: $F_Q$ plays role analogous to ``proper time metric''; large $F_Q$ means dense proper time ticks, high time resolution.
+
+\subsection{Loss of Time Sense}
+
+\begin{proposition}
+If $F_Q[\rho_O(t),t]\to 0$, observer cannot distinguish nearby times; proper time scale degenerates. This corresponds to:
+
+$\bullet$ Dreamless sleep (uniform state);
+$\bullet$ Coma (minimal fluctuation);
+$\bullet$ Deep anesthesia (suppressed dynamics).
+\end{proposition}
+
+---
+
+\section{Causal Controllability and Choosable Futures}
+
+\subsection{Zero Controllability Implies Loss of Agency}
+
+\begin{proposition}
+$\mathcal{E}_T=0$ if and only if for all action pairs $(a_1,a_2)$:
+$$
+p(w|a_1)=p(w|a_2),
+$$
+i.e., actions have no distinguishable effect on future world distributions.
+\end{proposition}
+
+This formalizes ``loss of choice'' or ``helplessness.''
+
+\subsection{Relation to Free Will}
+
+While this paper does not resolve metaphysical free will question, $\mathcal{E}_T>0$ provides \textbf{operational definition} of ``having choices'': ability to effectively distinguish futures through actions.
+
+---
+
+\section{Minimal Qubit Model}
+
+\subsection{Model Setup}
+
+Observer $O$: clock qubit $|\psi_O\rangle=\alpha|0\rangle+\beta|1\rangle$;
+
+Environment $E$: world qubit $|\psi_E\rangle=\gamma|0\rangle+\delta|1\rangle$;
+
+Coupling: $H_{\mathrm{int}}=g\sigma_z^O\otimes\sigma_x^E$.
+
+Action: Observer can apply local rotation $U_a(\theta)=e^{-i\theta\sigma_y^O/2}$.
+
+\subsection{Calculation of $F_Q$}
+
+For pure state evolution, quantum Fisher information:
+$$
+F_Q=4(\langle\dot{\psi}|\dot{\psi}\rangle-|\langle\psi|\dot{\psi}\rangle|^2).
+$$
+
+Explicit calculation gives:
+$$
+F_Q\sim\omega_O^2+g^2f(\alpha,\beta,\gamma,\delta),
+$$
+where $\omega_O$ is intrinsic frequency, $g$ coupling strength.
+
+\textbf{Result}: $F_Q$ large when $\omega_O$ large (active clock) and coupling moderate (not overwhelmed by noise).
+
+\subsection{Calculation of $\mathcal{E}_T$}
+
+For two actions $a_1,a_2$ (different $\theta$ values):
+$$
+\mathcal{E}_T=D_{\mathrm{KL}}(p(w|a_1)\|p(w|a_2))\sim g^2T^2h(\Delta\theta),
+$$
+where $h(\Delta\theta)\sim(\Delta\theta)^2$ for small angle differences.
+
+\textbf{Result}: $\mathcal{E}_T$ large when coupling $g$ non-zero and time horizon $T$ sufficient.
+
+\subsection{Phase Diagram}
+
+In $(g,\omega_O)$ parameter space:
+
+$\bullet$ \textbf{High-consciousness phase}: $g\sim\omega_O$, both $F_Q,\mathcal{E}_T$ large;
+
+$\bullet$ \textbf{Unconscious phase}: $\omega_O\to 0$ or $g\to 0$, both measures small;
+
+$\bullet$ \textbf{Transition region}: Crossover between phases.
+
+---
+
+\section{Discussion: Stratification, Extreme States, and Open Questions}
+
+\subsection{Consciousness Stratification}
+
+Different systems can have different consciousness levels $\mathcal{C}(O)$:
+
+$\bullet$ Simple bacteria: Low integration, low controllability;
+$\bullet$ Mammals: High integration, moderate controllability;
+$\bullet$ Humans: High all five conditions;
+$\bullet$ Future AI: Potentially high, depending on architecture.
+
+\subsection{Extreme States}
+
+\textbf{Dreamless sleep}: $F_Q\approx 0$, $I(W:S)\approx 0$ (no world--self model active);
+
+\textbf{Locked-in syndrome}: High $F_Q$ (internal awareness), but $\mathcal{E}_T\approx 0$ (no motor control);
+
+\textbf{Psychedelic states}: Potentially very high $I(O_1:O_2)$ (hyper-integration), altered proper time ($F_Q$ fluctuations).
+
+\subsection{Open Questions}
+
+$\bullet$ Precise threshold values for $C_{\mathrm{int}},C_{\mathrm{disc}},$ etc.?
+$\bullet$ How to measure $F_Q$ and $\mathcal{E}_T$ experimentally in biological systems?
+$\bullet$ Relation to Integrated Information Theory ($\Phi$)?
+$\bullet$ Quantum vs. classical consciousness?
+
+---
+
+\section{Conclusion}
+
+We propose structural definition of consciousness based on five conditions: integration, discriminability, self-referential world--self model, temporal continuity with proper time (via quantum Fisher information $F_Q$), and causal controllability ($\mathcal{E}_T$).
+
+Key equations:
+$$
+F_Q[\rho_O(t),t]=\operatorname{Tr}(\rho_O(t)L_t^2)\ge C_{\mathrm{time}},
+$$
+$$
+\mathcal{E}_T=\max_{a_1,a_2}D_{\mathrm{KL}}(p(w|a_1)\|p(w|a_2))\ge C_{\mathrm{control}}.
+$$
+
+Consciousness level:
+$$
+\mathcal{C}(O)=\min\{C_{\mathrm{int}},C_{\mathrm{disc}},C_{\mathrm{ref}},C_{\mathrm{time}},C_{\mathrm{control}}\}.
+$$
+
+This framework:
+$\bullet$ Fully physical--informational, no additional ontology;
+$\bullet$ Formalizable and computable;
+$\bullet$ Connects consciousness to time scale, causality, agency;
+$\bullet$ Provides starting point for unification with boundary time geometry.
+
+Consciousness is not mysterious essence but \textbf{special information--causal structure phase} in physical world.
+
+---
+
+\begin{thebibliography}{99}
+\bibitem{ref1} Tononi et al., ``Integrated Information Theory,'' various papers.
+\bibitem{ref2} Quantum Fisher information: Braunstein \& Caves, PRL (1994).
+\bibitem{ref3} Causal modeling: Pearl, ``Causality'' (2000).
+\bibitem{ref4} Consciousness and time: relevant neuroscience literature.
+\bibitem{ref5} Boundary time geometry: this paper series.
+\end{thebibliography}
+
+\appendix
+
+\section{Proof of Proper Time Construction}
+[Detailed derivation of $\tau$ from $F_Q$...]
+
+\section{Proof of Zero Controllability Proposition}
+[KL divergence calculations...]
+
+\section{Qubit Model Detailed Calculations}
+[Hamiltonian evolution, partial traces, Fisher information...]
+
+\section{Comparison with IIT}
+[Relation between five conditions and $\Phi$...]
+
+\end{document}
+

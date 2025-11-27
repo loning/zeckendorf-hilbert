@@ -1,0 +1,353 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{braket}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+
+\title{Black Holes as Resolution-Relative Structures:\\
+Information Horizons and Geometric Horizons\\
+in Quantum Cellular Automaton Universe}
+
+\author{Anonymous Author}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Traditional general relativity defines black holes as geometric objects with event horizons: future-directed light rays from any point inside horizon cannot reach infinity. This definition is global and independent of specific observers. However, any real observer has finite resources in energy bands, observation duration, and computational capacity, coupling with universe only through finite-precision ``windows''. Within quantum cellular automaton (QCA) and unified time scale $\kappa$ framework, this paper systematically constructs \textbf{observer resolution-relative black hole concept} and proves rigorous limiting relation with geometric event horizon.
+
+We first introduce three minimalist axioms on QCA universe object $\mathfrak U_{\mathrm{QCA}} = (\Lambda,\mathcal H_{\mathrm{cell}},\mathcal A,\alpha,\omega_0)$: A1 (discrete--unitary--local), A2 (Lieb--Robinson type finite light cone with maximal signal speed $c$), and A3 (existence of Dirac-type low-energy effective mode). On this basis, we formalize ``observer'' as $\mathcal O = (\mathcal A_{\mathrm{loc}},\omega_{\mathrm{mem}},\mathcal M)$ and characterize its finite resolution through triple $\mathcal R = (I_\Omega,T,\varepsilon)$: energy/frequency window $I_\Omega$, maximal waiting time $T$, and tolerable signal-to-noise threshold $\varepsilon$. Utilizing scattering structure induced by QCA in continuum limit and unified time scale $\kappa(x,\omega)$, we define \textbf{information horizon} relative to resolution $\mathcal R$: for observers of this class, any signal emitted from inside horizon cannot be decoded with capacity greater than threshold $\varepsilon$ within accessible frequency band and observation time.
+
+In static spherically symmetric case, we connect QCA unified time scale $\kappa(r,\omega)$ with effective Schwarzschild-type metric, proving \textbf{relative time delay integral} of radial signals
+$$
+\tau_{\mathrm{rel}}(r,\omega) = \int_r^{\infty} \kappa(r',\omega)\,\mathrm d r'
+$$
+diverges for all frequencies at geometric event horizon $r = r_{\mathrm H}$. Further, for given resolution $\mathcal R$, we define \textbf{resolution-dependent black hole radius} $r_{\mathrm{BH}}(\mathcal R)$ as minimal $r$ such that $\tau_{\mathrm{rel}}(r,\omega) > T$ for all $\omega\in I_\Omega$. We prove: $r_{\mathrm{BH}}(\mathcal R)$ monotonically contracts inward as resolution increases ($I_\Omega$ expands, $T$ increases, $\varepsilon$ decreases), converging to geometric event horizon in ``ideal observer limit'':
+$$
+\lim_{\mathcal R\to\mathcal R_{\mathrm{ideal}}} r_{\mathrm{BH}}(\mathcal R) = r_{\mathrm H}.
+$$
+
+Core result: black holes have \textbf{geometric hard core} (event horizon), but what any finite-resource observer ``sees'' is resolution-dependent ``information horizon''; latter can be precisely defined in QCA universe through unified time scale and scattering theory, connected to geometric horizon by rigorous limiting relation.
+\end{abstract}
+
+\textbf{Keywords:} Black holes; Observer resolution; Information horizon; Quantum cellular automaton; Unified time scale; Event horizon
+
+\section{Introduction}
+
+\subsection{Geometric Definition of Black Holes and Observer-Dependent Features}
+
+In general relativity, black holes usually defined as spacetime regions whose boundary is event horizon: future-directed null geodesics from any point inside cannot reach future infinity. Formally, if $(M,g_{\mu\nu})$ is future-complete spacetime manifold, black hole region $\mathcal B$ defined as
+$$
+\mathcal B := M \setminus J^{-}(\mathcal I^{+}),
+$$
+where $J^{-}(\mathcal I^{+})$ is causal past of future infinity, event horizon is $\partial \mathcal B$. This definition completely geometric, not explicitly involving observers, measurements or information.
+
+On other hand, ``black holes'' in actual physical discussions often carry strong observer coloring: static observers in Schwarzschild coordinates see freely falling objects ``forever approaching but never crossing'' horizon; accelerating observers may experience Rindler-like horizons; cosmology has horizons related to universe expansion rate. These phenomena suggest: \textbf{existence of certain ``horizons'' closely related to specific observer worldlines and resolution}.
+
+\subsection{Quantum Cellular Automata and Unified Time Scale}
+
+Quantum cellular automata provide rigorous framework for reducing universe to discrete quantum computational process. Universe viewed as tensor product of local Hilbert spaces on countable graph, time evolution realized through finite-depth local unitary circuits. In this framework, causal structure given by Lieb--Robinson light cones, maximal signal speed $c$ naturally emerges.
+
+In scattering theory and spectral analysis language, can introduce unified time scale function
+$$
+\kappa(\omega) = \frac{1}{2\pi}\mathrm{tr}\,Q(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\mathrm{rel}}(\omega),
+$$
+where $Q(\omega)$ is Wigner--Smith time delay operator, $\varphi(\omega)$ is total scattering phase, $\rho_{\mathrm{rel}}$ is relative state density. In QCA continuum limit, $\kappa$ can be viewed as ``time flow rate'' or ``optical path density''.
+
+\subsection{Problem and Contributions of This Paper}
+
+Central question: In discrete ontology based on QCA and unified time scale, can black holes be defined as \textbf{``information horizons'' relative to observer resolution}? If so, how do such horizons relate to geometric event horizons?
+
+We do three things:
+\begin{enumerate}
+\item Formalize observer ``resolution'': $\mathcal R = (I_\Omega,T,\varepsilon)$ with accessible frequency band $I_\Omega$, maximal waiting time $T$, tolerable signal-to-noise lower bound $\varepsilon$.
+\item Using unified time scale $\kappa(x,\omega)$ and scattering matrix $S_{x_0}(\omega)$, define \textbf{information horizon} $\mathcal H(\mathcal R)$ relative to $\mathcal R$: boundary of irrecoverable information under resource constraints for this observer class.
+\item In continuum limit of static spherically symmetric QCA universe, prove information horizon radius $r_{\mathrm{BH}}(\mathcal R)$ monotonically contracts inward as resolution increases, converging to geometric event horizon radius $r_{\mathrm H}$ in ``ideal observer limit''.
+\end{enumerate}
+
+This provides ontological picture of black holes accommodating both geometry and information theory: black holes have resolution-dependent ``shell'' and resolution-limit-independent geometric hard core.
+
+\section{QCA Universe and Observer Resolution}
+
+\subsection{Universe as QCA Object}
+
+\begin{definition}[Universe object]
+Universe is 5-tuple
+$$
+\mathfrak U_{\mathrm{QCA}} = (\Lambda,\mathcal H_{\mathrm{cell}},\mathcal A,\alpha,\omega_0),
+$$
+where: (1) $\Lambda$ countable locally finite graph; (2) $\mathcal H_{\mathrm{cell}} \cong \mathbb C^d$ finite-dimensional local Hilbert space; (3) $\mathcal A$ quasilocal operator algebra; (4) $\alpha:\mathbb Z\to\mathrm{Aut}(\mathcal A)$ time evolution; (5) $\omega_0$ initial state.
+
+Axioms A1--A3: (A1) Above structure exists with $\dim\mathcal H_{\mathrm{cell}}<\infty$; (A2) Exists Lieb--Robinson velocity $c>0$; (A3) Exists Dirac-type effective mode in low-energy one-particle sector.
+\end{definition}
+
+\subsection{Observer Object and Worldline}
+
+\begin{definition}[Observer object]
+Observer is triple $\mathcal O = (\mathcal A_{\mathrm{loc}},\omega_{\mathrm{mem}},\mathcal M)$ where: (1) $\mathcal A_{\mathrm{loc}}\subset\mathcal A$ local subalgebra; (2) $\omega_{\mathrm{mem}}(t)$ time-parametrized state family; (3) $\mathcal M = \{M_\theta\}$ model family.
+\end{definition}
+
+\subsection{Resolution Triple and Resource Constraints}
+
+\begin{definition}[Resolution triple]
+For observer $\mathcal O$, resolution characterized by triple $\mathcal R = (I_\Omega,T,\varepsilon)$ where: (1) $I_\Omega \subset \mathbb R^+$ resolvable frequency window; (2) $T>0$ maximal waiting time; (3) $0<\varepsilon<1$ acceptable minimal signal-to-noise ratio.
+\end{definition}
+
+\section{Unified Time Scale and Radial Time Delay}
+
+\subsection{Localization of Unified Time Scale}
+
+In scattering theory, given background Hamiltonian $H_0$ and interacting $H = H_0 + V$, exists scattering matrix $S(\omega)$ and Wigner--Smith time delay operator
+$$
+Q(\omega) = -\mathrm i S^\dagger(\omega)\,\partial_\omega S(\omega).
+$$
+Unified time scale defined as
+$$
+\kappa(\omega) = \frac{1}{2\pi}\mathrm{tr}\,Q(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\mathrm{rel}}(\omega).
+$$
+
+In QCA continuum limit for static spherically symmetric background, can localize unified time scale as $\kappa(r,\omega)$.
+
+\subsection{Radial Relative Time Delay}
+
+Define relative time delay from radius $r$ to infinity as
+$$
+\tau_{\mathrm{rel}}(r,\omega) := \int_r^\infty \kappa(r',\omega)\,\mathrm d r'.
+$$
+Physically, $\tau_{\mathrm{rel}}(r,\omega)$ represents extra propagation ``time cost'' for signal of frequency $\omega$ emitted from radius $r$. In Schwarzschild-type metric, $\tau_{\mathrm{rel}}(r,\omega)$ diverges for all $\omega$ at geometric event horizon $r = r_{\mathrm H}$.
+
+\section{Observer-Relative Information Horizon and Black Hole Definition}
+
+\subsection{Channel Capacity Perspective}
+
+Consider source in spherically symmetric region emitting signals at radius $r$ with spectrum $\omega\in I_\Omega$. Maximum average mutual information recoverable from signals under resource constraint $\mathcal R = (I_\Omega,T,\varepsilon)$ denoted $C(r;\mathcal R)$.
+
+Key properties: If $\tau_{\mathrm{rel}}(r,\omega) \gg T$, then $C(r;\mathcal R)\to 0$; if exists $\omega\in I_\Omega$ with $\tau_{\mathrm{rel}}(r,\omega)\ll T$, then $C(r;\mathcal R)$ positive.
+
+\subsection{Resolution-Dependent Black Hole Radius}
+
+\begin{definition}[$\mathcal R$-black hole radius]
+Given resolution triple $\mathcal R = (I_\Omega,T,\varepsilon)$, define
+$$
+r_{\mathrm{BH}}(\mathcal R) := \inf\left\{r>0\ \middle|\ \forall r'<r,\ \forall \omega\in I_\Omega:\ \tau_{\mathrm{rel}}(r',\omega) > T\right\}.
+$$
+\end{definition}
+
+\begin{definition}[$\mathcal R$-information horizon]
+For resolution triple $\mathcal R$, information horizon $\mathcal H(\mathcal R)$ defined as sphere of radius $r_{\mathrm{BH}}(\mathcal R)$.
+\end{definition}
+
+\subsection{Partial Order on Resolutions and Black Hole Radius Monotonicity}
+
+\begin{definition}[Resolution partial order]
+For two resolution triples $\mathcal R_1$, $\mathcal R_2$, if $I_{\Omega,1}\subset I_{\Omega,2}$, $T_1\le T_2$, $\varepsilon_1\ge\varepsilon_2$, then $\mathcal R_2$ has resolution no lower than $\mathcal R_1$, denoted $\mathcal R_1\preceq \mathcal R_2$.
+\end{definition}
+
+\begin{theorem}[Monotonicity of black hole radius]
+If $\mathcal R_1\preceq \mathcal R_2$, then $r_{\mathrm{BH}}(\mathcal R_2)\le r_{\mathrm{BH}}(\mathcal R_1)$.
+\end{theorem}
+
+Therefore, as observer resolution increases, information horizon monotonically contracts toward geometric center.
+
+\section{Geometric Event Horizon as Ideal Observer Limit}
+
+\subsection{Schwarzschild-Type Metric and Time Delay Divergence}
+
+Consider Schwarzschild-type effective metric
+$$
+\mathrm d s^2 = -f(r)c^2\mathrm d t^2 + f(r)^{-1}\mathrm d r^2 + r^2\mathrm d\Omega_2^2, \quad f(r) = 1 - \frac{r_{\mathrm H}}{r},
+$$
+where $r_{\mathrm H} = 2GM/c^2$ is geometric event horizon radius. For light signal propagating outward from $r_0>r_{\mathrm H}$, coordinate time delay
+$$
+\Delta t(r_0) = \int_{r_0}^{\infty} \frac{\mathrm d r}{c f(r)}.
+$$
+Simple calculation gives
+$$
+\lim_{r_0\to r_{\mathrm H}^+} \Delta t(r_0) = +\infty.
+$$
+
+\subsection{Ideal Observer Limit}
+
+\begin{definition}[Ideal observer limit]
+Define sequence of resolution triples $\{\mathcal R_n\}_{n\in\mathbb N}$ where $\mathcal R_n = (I_{\Omega,n},T_n,\varepsilon_n)$ satisfies: (1) $I_{\Omega,n} \uparrow (0,\infty)$; (2) $T_n\uparrow\infty$; (3) $\varepsilon_n\downarrow 0$. Call $\mathcal R_n\to\mathcal R_{\mathrm{ideal}}$ ideal observer limit.
+\end{definition}
+
+\begin{theorem}[Information horizon converges to event horizon]
+Under Schwarzschild-type background, if unified time scale $\kappa(r,\omega)$ satisfies: (1) For each $\omega>0$, $\kappa(r,\omega)$ continuous on $r>r_{\mathrm H}$ with $\tau_{\mathrm{rel}}(r,\omega) <\infty$ for all $r>r_{\mathrm H}$; (2) For each compact interval $[\omega_1,\omega_2]\subset(0,\infty)$, divergence behavior uniform on interval; then for any ideal observer sequence $\{\mathcal R_n\}$,
+$$
+\lim_{n\to\infty} r_{\mathrm{BH}}(\mathcal R_n) = r_{\mathrm H}.
+$$
+\end{theorem}
+
+Therefore geometric event horizon can be characterized as common limit of black hole radii $r_{\mathrm{BH}}(\mathcal R)$ for all physically realizable resolutions in ideal observer limit.
+
+\section{Conclusion and Ontological Interpretation}
+
+Within QCA and unified time scale framework, we provide two-layer ontological characterization of black holes:
+
+\begin{enumerate}
+\item \textbf{Geometric hard core:} In continuum limit, effective metric induced by QCA universe has geometric event horizon $r_{\mathrm H}$ with divergent radial time delay for all frequencies, forming observer-independent topological structure.
+\item \textbf{Resolution shell:} For each specific resolution triple $\mathcal R$, can define information horizon $\mathcal H(\mathcal R)$ and black hole radius $r_{\mathrm{BH}}(\mathcal R)$ describing information-inaccessible boundary for observer class, monotonically contracting inward as resolution increases.
+\end{enumerate}
+
+Geometric event horizon $r_{\mathrm H}$ proven by Theorem 5.2 to be common limit of all information horizons in ideal observer limit. Can rigorously say:
+\begin{itemize}
+\item Black holes as information objects are relative to observer resolution;
+\item Black holes as geometric objects are invariant structures commonly ``seen'' by all physical observers in resolution limit.
+\end{itemize}
+
+In QCA ontology, universe is maximally consistent quantum cellular automaton object; black holes are special information manifolds in this object: appearing as information-frozen layers to finite-resource observers; corresponding to geometric event horizons in ideal limit. Both precisely connected through divergence behavior of unified time scale and radial time delay.
+
+\section*{Appendix A: Unified Time Scale and Relative State Density}
+
+This appendix briefly reviews relation between unified time scale $\kappa(\omega)$ and spectral shift function, explaining its applicability in QCA context.
+
+\subsection*{A.1 Spectral Shift Function and Birman--Kreĭn Formula}
+
+Let $H_0,H$ be self-adjoint operators on same Hilbert space, $V = H - H_0$ trace class perturbation. Exists spectral shift function $\xi(\lambda)$ satisfying
+$$
+\mathrm{tr}\bigl(\varphi(H) - \varphi(H_0)\bigr) = \int_{-\infty}^{+\infty} \varphi'(\lambda)\,\xi(\lambda)\,\mathrm d\lambda,
+$$
+for all $\varphi\in C_0^\infty(\mathbb R)$. Determinant of scattering matrix $S(\omega)$ satisfies Birman--Kreĭn formula
+$$
+\det S(\omega) = \exp\bigl(-2\pi\mathrm i\,\xi(\omega)\bigr).
+$$
+
+Let $\varphi(\omega) := \arg\det S(\omega)$, then
+$$
+\varphi(\omega) = -2\pi \xi(\omega) + 2\pi k,\quad k\in\mathbb Z,
+$$
+thus
+$$
+\varphi'(\omega) = -2\pi \xi'(\omega) = -2\pi \rho_{\mathrm{rel}}(\omega),
+$$
+where $\rho_{\mathrm{rel}}(\omega) = \rho(\omega) - \rho_0(\omega)$ is relative state density. With appropriate sign convention adjustment obtain
+$$
+\kappa(\omega) := \frac{\varphi'(\omega)}{\pi} = \rho_{\mathrm{rel}}(\omega).
+$$
+
+\subsection*{A.2 Wigner--Smith Time Delay Operator}
+
+Wigner--Smith time delay operator defined as
+$$
+Q(\omega) = -\mathrm i S^\dagger(\omega)\,\partial_\omega S(\omega).
+$$
+
+If spectral decomposition of $S(\omega)$ is
+$$
+S(\omega) = \sum_n \mathrm e^{\mathrm i\theta_n(\omega)}\ket{\psi_n(\omega)}\bra{\psi_n(\omega)},
+$$
+then
+$$
+Q(\omega) = \sum_n \partial_\omega\theta_n(\omega)\ket{\psi_n(\omega)}\bra{\psi_n(\omega)},
+$$
+thus
+$$
+\mathrm{tr}\,Q(\omega) = \sum_n \partial_\omega\theta_n(\omega) = \partial_\omega\left(\sum_n\theta_n(\omega)\right) = \partial_\omega\varphi(\omega).
+$$
+
+Therefore unified time scale can also be written as
+$$
+\kappa(\omega) = \frac{1}{2\pi}\mathrm{tr}\,Q(\omega).
+$$
+
+In QCA continuum limit, this formula can hold in each local region, defining $\kappa(x,\omega)$.
+
+\section*{Appendix B: Radial Time Delay and Schwarzschild Metric}
+
+This appendix presents calculation of time delay for radial null geodesic and correspondence with unified time scale.
+
+\subsection*{B.1 Radial Null Geodesic}
+
+In Schwarzschild-type metric
+$$
+\mathrm d s^2 = -f(r)c^2\mathrm d t^2 + f(r)^{-1}\mathrm d r^2 + r^2\mathrm d\Omega_2^2, \quad f(r) = 1 - \frac{r_{\mathrm H}}{r},
+$$
+radial null geodesic satisfies
+$$
+0 = -f(r)c^2\mathrm d t^2 + f(r)^{-1}\mathrm d r^2,
+$$
+i.e.
+$$
+\frac{\mathrm d r}{\mathrm d t} = \pm c f(r).
+$$
+
+For outward propagating light signal (positive sign), time from $r_0$ to reference point $R$ is
+$$
+\Delta t_{r_0\to R} = \int_{r_0}^{R} \frac{\mathrm d r}{c f(r)}.
+$$
+
+Taking $R\to\infty$ and subtracting propagation time in flat background, obtain relative time delay
+$$
+\tau_{\mathrm{rel}}(r_0) = \int_{r_0}^{\infty} \left(\frac{1}{c f(r)} - \frac{1}{c}\right)\mathrm d r.
+$$
+
+Near $r\to r_{\mathrm H}^+$, $f(r)\sim (r-r_{\mathrm H})/r_{\mathrm H}$, thus integrand has $1/(r-r_{\mathrm H})$ type singularity near lower limit, causing logarithmic divergence of integral.
+
+\subsection*{B.2 Correspondence with Unified Time Scale}
+
+In scattering theory, this time delay closely related to radial integral of unified time scale $\kappa(r,\omega)$. For given frequency $\omega$, by constructing radial scattering problem with $H_0$ as flat background Hamiltonian and $H$ as effective Hamiltonian including geometric effects, unified time scale $\kappa(r,\omega)$ characterizes local increase/decrease of state density relative to flat background. Radial relative time delay can be written as
+$$
+\tau_{\mathrm{rel}}(r,\omega) = \int_r^\infty \kappa(r',\omega)\,\mathrm d r',
+$$
+whose divergence at $r\to r_{\mathrm H}^+$ matches $\Delta t(r_0)$ in geometric analysis.
+
+\section*{Appendix C: Details of Information Horizon Monotonicity and Convergence Proofs}
+
+This appendix provides technical details omitted in Theorems 4.4 and 5.2.
+
+\subsection*{C.1 Equivalent Form of Black Hole Radius Definition}
+
+Define
+$$
+\mathcal B(\mathcal R) := \bigcup_{\omega\in I_\Omega} \left\{r>0\ \middle|\ \tau_{\mathrm{rel}}(r,\omega)>T\right\}.
+$$
+
+Clearly $\mathcal B(\mathcal R)$ is some interval $(0,r_{\mathrm{BH}}(\mathcal R))$. This is because for attractive spacetime, $\tau_{\mathrm{rel}}(r,\omega)$ decreases monotonically with $r$. Thus
+$$
+r_{\mathrm{BH}}(\mathcal R) = \sup \mathcal B(\mathcal R).
+$$
+
+This definition equivalent to ``minimal $r$'' definition in main text.
+
+\subsection*{C.2 Rigorous Proof of Monotonicity}
+
+If $\mathcal R_1\preceq\mathcal R_2$, then $I_{\Omega,1}\subset I_{\Omega,2}$, $T_1\le T_2$. Thus for any $r$ and $\omega\in I_{\Omega,1}$ have
+$$
+\tau_{\mathrm{rel}}(r,\omega) > T_1 \Longrightarrow \tau_{\mathrm{rel}}(r,\omega) > T_2.
+$$
+
+Therefore
+$$
+\mathcal B(\mathcal R_1) \subset \mathcal B(\mathcal R_2) \quad\Rightarrow\quad \sup\mathcal B(\mathcal R_2)\le \sup\mathcal B(\mathcal R_1),
+$$
+i.e. $r_{\mathrm{BH}}(\mathcal R_2)\le r_{\mathrm{BH}}(\mathcal R_1)$.
+
+\subsection*{C.3 Steps for Convergence to Event Horizon}
+
+Key to Theorem 5.2 are two points:
+
+\begin{enumerate}
+\item For any $\delta>0$, exists $\omega$ such that $\tau_{\mathrm{rel}}(r_{\mathrm H}+\delta,\omega) <\infty$, therefore exists finite $T$ and appropriate resolution $\mathcal R$ such that $r_{\mathrm H}+\delta$ does not belong to black hole region, thus $r_{\mathrm{BH}}(\mathcal R)\ge r_{\mathrm H}$;
+
+\item For any $\epsilon>0$, uniform divergence guarantees exists $T_\ast$ such that when $r\le r_{\mathrm H} + \epsilon$ for all $\omega$ have $\tau_{\mathrm{rel}}(r,\omega) > T_\ast$; taking $T_n>T_\ast$ and $I_{\Omega,n}$ sufficiently wide ensures $r_{\mathrm{BH}}(\mathcal R_n)\le r_{\mathrm H}+\epsilon$.
+\end{enumerate}
+
+Combining upper and lower bounds obtains required convergence.
+
+\begin{thebibliography}{99}
+\bibitem{penrose} R. Penrose, ``Gravitational collapse and space-time singularities'', Phys. Rev. Lett. \textbf{14}, 57 (1965).
+\bibitem{lieb_robinson} E. H. Lieb, D. W. Robinson, ``The finite group velocity of quantum spin systems'', Commun. Math. Phys. \textbf{28}, 251 (1972).
+\bibitem{wigner_smith} F. T. Smith, ``Lifetime matrix in collision theory'', Phys. Rev. \textbf{118}, 349 (1960).
+\end{thebibliography}
+
+\end{document}

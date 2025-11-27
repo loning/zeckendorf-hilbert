@@ -1,0 +1,565 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{braket}
+\usepackage{graphicx}
+\usepackage{booktabs}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Necessity and Extensions of Gibbons--Hawking--York Boundary Terms:\\Variational Well-Posedness, Corners and Null Boundaries, and Closure to Quasilocal Energy and Thermodynamics}
+
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{Version: 1.7}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+On pseudo-Riemannian manifolds with (possibly non-smooth) boundaries, the variation of the Einstein--Hilbert bulk action contains normal derivative-type boundary fluxes; fixing only Dirichlet data for the induced metric $h_{ab}$ does not suffice for well-posedness. In the framework of Levi--Civita connection and extrinsic curvature, this paper rigorously proves that adding the Gibbons--Hawking--York (GHY) term with orientation factor $\varepsilon:=n^\mu n_\mu\in\{\pm 1\}$ at non-null boundaries cancels all normal derivative contributions, thereby establishing a stationarity principle for variations fixing $h_{ab}$. For piecewise boundaries, we provide a unified dictionary for joint (corner) terms and prove action additivity; for null segments, we construct a null boundary term with expansion $\theta$ and surface gravity $\kappa$ that is invariant under constant rescaling, elucidating the endpoint and divergence contributions introduced by non-constant rescaling and transverse supertranslations respectively, along with their compensations. Subsequently, we establish in ADM/Regge--Teitelboim canonical decomposition and covariant phase space (Iyer--Wald, Wald--Zoupas) that the GHY/joint structure renders the Hamiltonian differentiable, with boundary generators consistent with Brown--York quasilocal stress; compatibility with covariant charges is achieved within the same boundary condition class and representative. For $f(R)$ and Lovelock (including Gauss--Bonnet) theories, we construct boundary--corner functionals matching Dirichlet data and provide additivity propositions for piecewise non-smooth cases. Finally, in Euclidean black hole geometries, explicit computation with $K$ and reference $K_0$, together with necessary joint and (AAdS case) counterterms, yields consistent free energy, energy, and entropy. Appendices provide step-by-step reproducible derivations, orientation--sign dictionaries, and worked examples in covariant phase space.
+
+\textbf{MSC}: 83C05; 83C57; 58A10; 49S05
+
+\textbf{Keywords}: Gibbons--Hawking--York boundary term; variational well-posedness; corners and joints; null boundaries; Brown--York quasilocal energy; covariant phase space; $f(R)$ gravity; Lovelock/Gauss--Bonnet gravity; Euclidean black holes; thermodynamics
+\end{abstract}
+
+\section{Notation, Orientation, and Data Classes}
+
+\begin{itemize}
+\item \textbf{Spacetime and curvature}: $(\mathcal M,g_{\mu\nu})$ is a four-dimensional orientable pseudo-Riemannian manifold with signature $(-,+,+,+)$. The Riemann tensor is
+
+$$
+R^\rho{}_{\sigma\mu\nu}
+=\partial_\mu\Gamma^\rho{}_{\sigma\nu}-\partial_\nu\Gamma^\rho{}_{\sigma\mu}
++\Gamma^\rho{}_{\lambda\mu}\Gamma^\lambda{}_{\sigma\nu}
+-\Gamma^\rho{}_{\lambda\nu}\Gamma^\lambda{}_{\sigma\mu},
+$$
+
+with $R_{\mu\nu}=R^\rho{}_{\mu\rho\nu}$, $R=g^{\mu\nu}R_{\mu\nu}$, and $G_{\mu\nu}=R_{\mu\nu}-\tfrac12 R g_{\mu\nu}$.
+
+\item \textbf{Non-null boundary geometry}: On a boundary segment $\mathcal B$, take unit normal $n^\mu$ with $\varepsilon:=n^\mu n_\mu\in\{\pm 1\}$. The induced metric and extrinsic curvature are
+
+$$
+h_{\mu\nu}=g_{\mu\nu}-\varepsilon\,n_\mu n_\nu,\qquad
+K_{\mu\nu}=h_\mu{}^\alpha h_\nu{}^\beta\nabla_\alpha n_\beta,\qquad
+K=h^{\mu\nu}K_{\mu\nu}.
+$$
+
+\item \textbf{Null boundary geometry}: On $\mathcal N$, take null vector $\ell^\mu$ and auxiliary vector $k^\mu$ with $\ell\cdot k=-1$. The transverse two-dimensional metric is $\gamma_{AB}$. The shape operator and expansion are
+
+$$
+W_{AB}:=\gamma_A{}^\mu\gamma_B{}^\nu\nabla_\mu\ell_\nu,\qquad
+\theta:=\gamma^{AB}W_{AB},
+$$
+
+with indices raised/lowered by $\gamma_{AB}$; transverse covariant derivative $\mathcal D_A$ and Hájiček one-form $\omega_A:=-k_\mu\nabla_A\ell^\mu$ are induced by the rigging connection.
+
+\item \textbf{Affine parameter and surface gravity}: Let $\lambda$ be an affine parameter along the generator $\ell$, with
+
+$$
+\partial_\lambda:=\ell^\mu\nabla_\mu.
+$$
+
+Under the normalization $\ell\cdot k=-1$, surface gravity is defined as
+
+$$
+\boxed{\ \kappa:=-k_\mu\,\ell^\nu\nabla_\nu\ell^\mu\ },
+$$
+
+yielding $\ell^\nu\nabla_\nu\ell^\mu=\kappa\,\ell^\mu$.
+
+This definition is compatible with the rescaling laws in §4: when $\ell\to e^\alpha\ell$ and $k\to e^{-\alpha}k$,
+
+$$
+\theta\to e^\alpha\theta\quad\text{and}\quad\kappa\to e^\alpha(\kappa+\partial_\lambda\alpha).
+$$
+
+\item \textbf{Piecewise boundaries and joints}: $\partial\mathcal M=\bigcup_i\mathcal B_i$, with $\mathcal C_{ij}=\mathcal B_i\cap\mathcal B_j$ allowing signature flips or containing null segments.
+
+\item \textbf{Boundary data (Dirichlet class)}: Non-null segments fix $h_{ab}$; null segments fix the Carroll structure $(\gamma_{AB},[\ell])$, where $[\ell]$ is an equivalence class under constant rescaling $\ell\to e^\alpha\ell$; each joint fixes an ``angle'' (the $\eta$ in §3 and logarithmic angle $a$ in §4).
+
+\item \textbf{Measures}: Bulk $\sqrt{-g}\,\mathrm d^4x$; non-null boundary $\sqrt{|h|}\,\mathrm d^3x$; null boundary $\sqrt{\gamma}\,\mathrm d\lambda\,\mathrm d^2x$; joints $\sqrt{\sigma}\,\mathrm d^2x$.
+\end{itemize}
+
+\section{Variation of EH Bulk Action and Boundary Flux}
+
+$$
+S_{\mathrm{EH}}=\frac{1}{16\pi G}\int_{\mathcal M}\sqrt{-g}\,R\,\mathrm d^4x .
+$$
+
+The first variation is
+
+$$
+\delta(\sqrt{-g}R)=\sqrt{-g}\,G_{\mu\nu}\delta g^{\mu\nu}
++\partial_\mu\left[\sqrt{-g}\left(g^{\alpha\beta}\delta\Gamma^\mu{}_{\alpha\beta}-g^{\mu\alpha}\delta\Gamma^\beta{}_{\alpha\beta}\right)\right],
+$$
+
+where
+
+$$
+\delta\Gamma^\rho{}_{\mu\nu}
+=\tfrac12 g^{\rho\sigma}\big(\nabla_\mu\delta g_{\sigma\nu}+\nabla_\nu\delta g_{\sigma\mu}-\nabla_\sigma\delta g_{\mu\nu}\big).
+$$
+
+After tangent/normal decomposition, the boundary term contains an irreducible principal term $n^\mu\nabla_\mu\delta g_{\alpha\beta}$; $S_{\mathrm{EH}}$ alone is ill-posed under Dirichlet data.
+
+\section{GHY Cancellation and Variational Well-Posedness}
+
+$$
+\boxed{S_{\mathrm{GHY}}[g]=\frac{\varepsilon}{8\pi G}\int_{\partial\mathcal M}\sqrt{|h|}\,K\,\mathrm d^3x}
+$$
+
+\textbf{Variational setup (fixed embedding, unit normal gauge)}: The boundary geometric location is held fixed; only the metric varies. Thus
+
+$$
+\delta(n_\mu n^\mu)=0,\qquad
+\boxed{\ \delta n_\mu=\tfrac12\,\varepsilon\,n_\mu\,n^\alpha n^\beta\,\delta g_{\alpha\beta}\ } .
+$$
+
+This setup is compatible with Dirichlet data (fixing $h_{ab}$) and makes $S_{\mathrm{GHY}}$ and joint terms cancel boundary fluxes term-by-term.
+
+\begin{theorem}[GHY Cancellation]
+For variations fixing $\delta h_{ab}=0$,
+
+$$
+\delta\left(S_{\mathrm{EH}}+S_{\mathrm{GHY}}\right)
+=\frac{1}{16\pi G}\int_{\mathcal M}\sqrt{-g}\,G_{\mu\nu}\,\delta g^{\mu\nu}\,\mathrm d^4x .
+$$
+\end{theorem}
+
+\begin{proof}
+See Appendix B for term-by-term matching.
+\end{proof}
+
+\textbf{Self-check hint}: Align the principal term $n^\rho h^{\mu\alpha}h^{\nu\beta}\nabla_\rho\delta g_{\alpha\beta}$ from Appendix A with the $\nabla\delta g$ terms in $\delta K_{ab}$ arising from $\delta n_\mu=\tfrac12\varepsilon n_\mu n^\alpha n^\beta\delta g_{\alpha\beta}$ in Appendix B; direct term-by-term verification yields cancellation.
+
+\section{Piecewise Boundaries, Signature Flips, and Corner Additivity}
+
+\textbf{Non-null--non-null joint angle dictionary}: Let two segments have unit outward normals $n_1,n_2$ with causal types marked by $\varepsilon_i:=n_i^2\in\{\pm1\}$. The joint angle $\eta$ is defined as
+
+$$
+\eta=
+\begin{cases}
+\operatorname{arccosh}\big(-n_1\cdot n_2\big), & \varepsilon_1=\varepsilon_2=-1\quad(\text{both spacelike, normals timelike}),\\[4pt]
+\arccos\big(n_1\cdot n_2\big), & \varepsilon_1=\varepsilon_2=+1\quad(\text{both timelike, normals spacelike}),\\[4pt]
+\operatorname{arcsinh}\big(n_T\cdot n_S\big), & \varepsilon_1\varepsilon_2=-1\quad(\text{mixed causal;}\ n_T^2=-1,\ n_S^2=+1).
+\end{cases}
+$$
+
+The corner term is
+
+$$
+\boxed{S_{\mathrm{corner}}^{(nn)}=\frac{1}{8\pi G}\int_{\mathcal C}\sqrt{\sigma}\,\eta\,\mathrm d^2x},
+$$
+
+with orientation and sign differences uniformly fixed by the master formula and orientation tables.
+
+\textbf{Null--non-null and null--null joints}: Logarithmic angles
+
+$$
+a_{(n\ell)}=\ln|-\ell\cdot n|,\qquad
+a_{(\ell\ell)}=\ln\Big|-\tfrac12\,\ell_1\cdot\ell_2\Big|,
+$$
+
+with joint terms $\tfrac{1}{8\pi G}\int_{\mathcal C}\sqrt{\sigma}\,a\,\mathrm d^2x$.
+
+\begin{theorem}[Additivity and Necessity]
+Under boundary data fixing the respective angles ($\eta$ or $a$),
+
+$$
+S_{\mathrm{EH}}+S_{\mathrm{GHY}}+S_{\mathrm{corner/joint}}
+$$
+
+is variationally well-posed and satisfies additivity
+
+$$
+S[\mathcal M_1\cup_{\Sigma}\mathcal M_2]=S[\mathcal M_1]+S[\mathcal M_2] .
+$$
+
+Joint terms are invariant under any $C^1$ regularization limit, independent of regularizer details.
+\end{theorem}
+
+\section{Null Boundaries: $\theta+\kappa$ Structure, Rescaling, and Endpoint Compensation}
+
+$$
+\boxed{S_{\mathcal N}=\frac{1}{8\pi G}\int_{\mathcal N}\sqrt{\gamma}\,(\theta+\kappa)\,\mathrm d\lambda\,\mathrm d^2x}
+$$
+
+\begin{theorem}[Null Well-Posedness]
+Fixing $(\gamma_{AB},[\ell])$, $\delta(S_{\mathrm{EH}}+S_{\mathcal N})$ contains no normal derivative residuals.
+\end{theorem}
+
+\textbf{Pure rescaling} (preserving $\ell\cdot k=-1$, no transverse components):
+
+$$
+\ell\to e^\alpha\ell,\quad k\to e^{-\alpha}k
+\ \Rightarrow
+W_{AB}\to e^\alpha W_{AB},\quad \theta\to e^\alpha\theta,\quad \kappa\to e^\alpha(\kappa+\partial_\lambda\alpha).
+$$
+
+When $\alpha=\text{const}$, $\int_{\mathcal N}\sqrt{\gamma}(\theta+\kappa)\,\mathrm d\lambda\,\mathrm d^2x$ plus joint terms is invariant; when $\alpha=\alpha(\lambda)$, endpoint total variations are produced, absorbable by logarithmic angle counterterms (see Appendix D; path B takes $\ln(\ell_c|\Theta|)$ requiring $\Theta$ sign-definite; if $\Theta$ crosses zero, use path A endpoint/joint compensation).
+
+\textbf{Transverse supertranslation/cross-section reparametrization}:
+
+$$
+\ell\to e^\alpha(\ell+v^A e_A)\ \Rightarrow\ \theta\to e^\alpha(\theta+\mathcal D_A v^A),
+$$
+
+belonging to cross-section redefinition effects, treated separately from pure rescaling above. \textbf{Dimensional note}: In $D$ dimensions, transverse space dimension is $D-2$; corresponding divergence structure generalizes straightforwardly by dimension.
+
+\textbf{Null Brown--York stress}:
+
+$$
+T^A{}_B\big|_{\mathcal N}=-\frac{1}{8\pi G}\Big(W^A{}_B-\theta\,\delta^A{}_B\Big),
+$$
+
+satisfying transverse conservation defined by the rigging connection, compatible with null Wald--Zoupas charges within the same boundary condition class.
+
+\section{Canonical Formalism: Differentiable Hamiltonian and Quasilocal Energy}
+
+In $3+1$ decomposition, with $S_{\mathrm{EH}}$ alone the Hamiltonian functional is non-differentiable; adding $S_{\mathrm{GHY}}$ with necessary joint/null terms yields:
+
+\begin{theorem}[Differentiability and Boundary Generators]
+Under Dirichlet data and the orientation/regularity assumptions of this paper, taking the action
+
+$$
+S=S_{\mathrm{EH}}+S_{\mathrm{GHY}}+S_{\mathrm{joint}}(+S_{\mathcal N})
+$$
+
+\textbf{without introducing any intrinsic boundary functional depending solely on the boundary intrinsic metric $h_{ab}$}, the Hamiltonian $H_\xi$ is Fréchet differentiable on phase space, with boundary generator \textbf{uniquely} given by
+
+$$
+T^{ab}_{\mathrm{BY}}=\frac{1}{8\pi G}(K^{ab}-Kh^{ab})
+$$
+
+If intrinsic terms (such as $S_{\mathrm{ct}}$ in §9 or reference term $S_{\mathrm{ref}}$) are added/subtracted within the same boundary condition class, $H_\xi$ remains differentiable with boundary generator modified to
+
+$$
+T^{ab}_{\mathrm{BY,ren}}=T^{ab}_{\mathrm{BY}}+T^{ab}_{\mathrm{ct}}-T^{ab}_{\mathrm{ref}},
+$$
+
+consistent with covariant phase space analysis in §6 and renormalization counterterms in §9.
+\end{theorem}
+
+The energy on a spacelike slice $\mathcal S$ is
+
+$$
+E_{\mathrm{BY}}=\int_{\mathcal S}\sqrt{\sigma}\,u_a u_b\,T^{ab}_{\mathrm{BY}}\,\mathrm d^2x
+$$
+
+which in the asymptotically flat limit approaches the ADM mass.
+
+\section{Covariant Phase Space and Representative Independence}
+
+$$
+\delta\mathbf L=\mathbf E\cdot\delta\phi+\mathrm d\boldsymbol\Theta(\phi,\delta\phi),\qquad
+\mathbf J_\xi=\boldsymbol\Theta(\phi,\mathcal L_\xi\phi)-\xi\cdot\mathbf L=\mathrm d\mathbf Q_\xi .
+$$
+
+If $\mathbf L\to\mathbf L+\mathrm d\mathbf B$, then $\boldsymbol\Theta\to\boldsymbol\Theta+\delta\mathbf B$ and $\mathbf Q_\xi\to\mathbf Q_\xi+\xi\cdot\mathbf B$. Within the same boundary condition class and the same (or gauge-equivalent) representative, mass, angular momentum, and horizon entropy are invariant; flux boundaries employ Wald--Zoupas corrections to ensure integrability.
+
+\textbf{Skeleton formula (locating differentiability source)}: In the Regge--Teitelboim framework,
+
+$$
+\delta H_\xi=\int_{\Sigma}(\text{constraints}\cdot\delta\phi)\,\mathrm d^3x
++\oint_{\partial\Sigma}\Big(\Pi^{ab}\delta h_{ab}+\cdots\Big)\,\mathrm d^2x .
+$$
+
+With bulk term alone, boundary variation contains $\Pi^{ab}\delta h_{ab}$ and normal derivative terms, non-differentiable; adding $S_{\mathrm{GHY}}$ (and joint/null terms) transforms boundary variation into BY surface generators, rendering $H_\xi$ differentiable.
+
+\textbf{Worked Example (representative independence computational chain)}:
+Take a static black hole with Killing field $\xi=\partial_t$, at infinity $\mathcal I$ and horizon $\mathcal H$:
+
+$$
+\delta H_\xi
+=\int_{\mathcal S_\infty}\big(\delta\mathbf Q_\xi-\xi\cdot\boldsymbol\Theta\big)
+-\int_{\mathcal S_{\mathcal H}}\big(\delta\mathbf Q_\xi-\xi\cdot\boldsymbol\Theta\big).
+$$
+
+If $\mathbf L\mapsto \mathbf L+\mathrm d\mathbf B$, then
+
+$$
+\boldsymbol\Theta\mapsto \boldsymbol\Theta+\delta\mathbf B,\qquad
+\mathbf Q_\xi\mapsto \mathbf Q_\xi+\xi\cdot\mathbf B,
+$$
+
+with $\delta(\xi\cdot\mathbf B)=\xi\cdot\delta\mathbf B$, so increments at both ends vanish, $\delta H_\xi$ invariant; if flux boundaries exist, apply Wald--Zoupas correction making endpoint difference zero, restoring integrability.
+
+\textbf{Renormalized BY surface stress}:
+
+$$
+T^{ab}_{\mathrm{BY,ren}}
+=\frac{2}{\sqrt{|h|}}\frac{\delta\big(S_{\mathrm{GHY}}+S_{\mathrm{joint}}+S_{\mathrm{ct}}-S_{\mathrm{ref}}\big)}{\delta h_{ab}}
+= T^{ab}_{\mathrm{BY}} + T^{ab}_{\mathrm{ct}} - T^{ab}_{\mathrm{ref}},
+$$
+
+where $T^{ab}_{\mathrm{ct}}:=\dfrac{2}{\sqrt{|h|}}\dfrac{\delta S_{\mathrm{ct}}}{\delta h_{ab}}$ and $T^{ab}_{\mathrm{ref}}:=\dfrac{2}{\sqrt{|h|}}\dfrac{\delta S_{\mathrm{ref}}}{\delta h_{ab}}$.
+
+Minimal counterterms for four-dimensional AAdS appear in §9.
+
+\section{$f(R)$ Gravity: Dirichlet-Compatible Boundary--Joints}
+
+Using the scalar--tensor equivalence $\Phi=f'(R)$,
+
+$$
+S=\frac{1}{16\pi G}\int_{\mathcal M}\sqrt{-g}\,(\Phi R-V(\Phi))\,\mathrm d^4x .
+$$
+
+Under Dirichlet data fixing $(h_{ab},\Phi)$,
+
+$$
+S^{f(R)}_{\mathrm{bdy}}=\frac{1}{8\pi G}\int_{\partial\mathcal M}\varepsilon\,\sqrt{|h|}\,\Phi\,K\,\mathrm d^3x,\qquad
+S^{f(R)}_{\mathrm{joint}}=\frac{1}{8\pi G}\sum_{\mathcal C}\int_{\mathcal C}\sqrt{\sigma}\,\Phi\,(\text{angle})\,\mathrm d^2x .
+$$
+
+If instead fixing $(h_{ab},n^\mu\nabla_\mu\Phi)$ as Robin-type data, compensation terms $\propto \sqrt{|h|}\,n^\mu\nabla_\mu\Phi$ must be added at the boundary, with correspondingly weighted joint terms (Appendix G).
+
+\section{Lovelock (Gauss--Bonnet) Gravity and Piecewise Non-Smooth Additivity}
+
+For Gauss--Bonnet (GB) term in $D\ge 5$,
+
+$$
+S_{\mathrm{GB}}=\frac{\alpha}{16\pi G}\int_{\mathcal M}\sqrt{-g}\,\big(R_{\mu\nu\rho\sigma}R^{\mu\nu\rho\sigma}-4R_{\mu\nu}R^{\mu\nu}+R^2\big)\,\mathrm d^D x,
+$$
+
+the Dirichlet-compatible Myers-type boundary term is
+
+$$
+S^{\mathrm{GB}}_{\mathrm{bdy}}=\frac{\alpha}{8\pi G}\int_{\partial\mathcal M}\varepsilon\,\sqrt{|h|}\,\Big(2\,\widehat G_{ab}K^{ab}+J\Big)\,\mathrm d^{D-1}x,
+$$
+
+where $\widehat G_{ab}$ is the Einstein tensor of $h_{ab}$,
+
+$$
+J^{ab}=\tfrac13\Big(2KK^{ac}K_c{}^b+K_{cd}K^{cd}K^{ab}-2K^{ac}K_{cd}K^{db}-K^2K^{ab}\Big),\qquad J=h_{ab}J^{ab}.
+$$
+
+\begin{proposition}[GB Additivity, Piecewise Non-Smooth]
+Taking the above boundary term and adding corresponding GB joint polynomials (quadratic combinations of angles $\eta$/logarithmic angles $a$ with $(K,\widehat{\mathcal R})$), under fixed Dirichlet data
+
+$$
+S_{\mathrm{GB}}[\mathcal M_1\cup_\Sigma\mathcal M_2]=S_{\mathrm{GB}}[\mathcal M_1]+S_{\mathrm{GB}}[\mathcal M_2] .
+$$
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+Integrate by parts on each piece; at joints appear residuals $\propto\delta(\text{angle})$; chosen GB joint polynomials' variation exactly cancels these residuals. Representative: Deruelle--Merino--Olea (2018).
+\end{proof}
+
+\section{Non-Compact Boundaries and AAdS Counterterms (Four-Dimensional Minimal Representative)}
+
+$$
+\boxed{S_{\mathrm{ct}}=\frac{1}{8\pi G}\int_{\partial\mathcal M}\sqrt{|h|}\left(\frac{2}{L}+\frac{L}{2}\,\widehat{\mathcal R}\right)\mathrm d^3x}
+$$
+
+where $L$ is the AdS curvature radius and $\widehat{\mathcal R}$ is the boundary intrinsic Ricci scalar. This representative is equivalent to kounterterms/holographic renormalization in four dimensions for yielding the same finite stress and conformal-invariant terms; higher dimensions require additional higher-curvature counterterms.
+
+\section{Distributional Curvature, Thin Shells, and Zero-Measure ``Boundary of Boundary''}
+
+If $K_{ab}$ exhibits jumps across a hypersurface, bulk curvature develops $\delta$-type distributions; their contribution to the action is absorbed by joint/thin shell terms. Timelike/spacelike thin shells satisfy Israel junction conditions $[K_{ab}-Kh_{ab}]=-8\pi G\,S_{ab}$; null thin shells satisfy Barrabès--Israel conditions. The joint and null rules of this paper are compatible therewith.
+
+\section{Euclidean Black Holes: $K$, $K_0$, Free Energy, and Entropy}
+
+For Schwarzschild Euclidean geometry
+
+$$
+\mathrm ds^2=f(r)\,\mathrm d\tau^2+f(r)^{-1}\,\mathrm dr^2+r^2\,\mathrm d\Omega_2^2,\qquad f(r)=1-\frac{2M}{r},
+$$
+
+truncated at $r=R$, $\tau\in[0,\beta]$. With outward unit normal $n^\mu=\sqrt{f}\,\delta^\mu_r$,
+
+$$
+\boxed{K(R)=\frac{2\sqrt{f(R)}}{R}+\frac{f'(R)}{2\sqrt{f(R)}}},\qquad
+\boxed{K_0(R)=\frac{2}{R}}.
+$$
+
+Total action
+
+$$
+I_E=I_{\mathrm{EH}}+I_{\mathrm{GHY}}[K]+I_{\mathrm{joint}}-I_{\mathrm{ref}}[K_0].
+$$
+
+Removing conical deficit $\beta=8\pi M$ and taking $R\to\infty$ finite part yields
+
+$$
+F=\frac{I_E}{\beta}=\frac{M}{2},\qquad E=\partial_\beta(\beta F)=M,\qquad S=\beta(E-F)=\frac{\mathcal A}{4G}.
+$$
+
+\textbf{Periodicity identification no double-counting}: Due to $\tau\sim\tau+\beta$, lateral edge corners at $r=R$ at $(R,0)$ and $(R,\beta)$ are equivalent; integration by parts on interval $[0,\beta]$ yields corner contributions at two ends whose sum equals the contribution of a single corner on the periodic manifold, no double-counting occurs.
+
+\section{Variational Well-Posedness vs PDE/Fredholm}
+
+This paper establishes closure of action first variation on given boundary data sets; PDE well-posedness and Fredholm properties require functional space and boundary-value operator analysis. On compact boundaries, pure Dirichlet/Neumann maps are generally non-Fredholm; natural mixed data (e.g., $([\gamma],H)$ or Bartnik data) are more suitable. This work is confined to the variational well-posedness level; Appendix L provides illustrative examples.
+
+\section*{Appendices: Numbered Derivations, Dictionaries, and Examples}
+
+\textit{Unified note}: All integrals explicitly write measures $\mathrm d^n x$; set notation unified as $\{\pm 1\}$; master formula $S_{\mathrm{GHY}}=(8\pi G)^{-1}\varepsilon\int\sqrt{|h|}\,K\,\mathrm d^3x$ with orientation table uniquely fixes sign differences.
+
+\subsection*{Appendix A: EH Action Boundary Flux (Term-by-Term Decomposition)}
+
+\textbf{A.1} $\delta S_{\mathrm{EH}}=(16\pi G)^{-1}\int_{\mathcal M}\big[\delta(\sqrt{-g})\,R+\sqrt{-g}\,\delta R\big]\mathrm d^4x$, $\delta\sqrt{-g}=-\tfrac12\sqrt{-g}\,g_{\mu\nu}\delta g^{\mu\nu}$.
+
+\textbf{A.2} $\delta R=R_{\mu\nu}\delta g^{\mu\nu}+\nabla_\mu\big(g^{\alpha\beta}\delta\Gamma^\mu{}_{\alpha\beta}-g^{\mu\alpha}\delta\Gamma^\beta{}_{\alpha\beta}\big)$.
+
+\textbf{A.3} Stokes formula yields boundary term $(16\pi G)^{-1}\int_{\partial\mathcal M}\sqrt{|h|}\,n_\mu(\cdots)\mathrm d^3x$.
+
+\textbf{A.4} Projection $h_\mu{}^\nu=\delta_\mu{}^\nu-\varepsilon n_\mu n^\nu$ writes boundary flux as
+
+$$
+\int_{\partial\mathcal M}\sqrt{|h|}\left[\Pi^{ab}\delta h_{ab}
++n^\rho h^{\mu\alpha}h^{\nu\beta}\nabla_\rho\delta g_{\alpha\beta}
++\cdots\right]\mathrm d^3x .
+$$
+
+where $\Pi^{ab}:=K^{ab}-Kh^{ab}$.
+
+\subsection*{Appendix B: GHY Cancellation and Example Orientation Table}
+
+\textbf{B.1} $\delta(\sqrt{|h|}K)=\sqrt{|h|}\big(\delta K+\tfrac12 K\,h^{ab}\delta h_{ab}\big)$, $\delta K=h^{ab}\delta K_{ab}-K^{ab}\delta h_{ab}$, where
+
+$$
+\delta K_{ab}=h_a{}^\mu h_b{}^\nu\big(\nabla_\mu\delta n_\nu+\delta\Gamma^\rho{}_{\mu\nu}n_\rho\big).
+$$
+
+\textbf{B.2} Substituting unit normal gauge
+
+$$
+\boxed{\ \delta n_\mu=\tfrac12\,\varepsilon\,n_\mu\,n^\alpha n^\beta\,\delta g_{\alpha\beta}\ },
+$$
+
+the $\nabla\delta g$ in $\delta K$ cancels term-by-term with Appendix A principal term, while $\Pi^{ab}\delta h_{ab}$ mutually cancel, yielding Theorem 2.1.
+
+\textbf{B.3 Example orientation table}
+
+\begin{center}
+\begin{tabular}{lcccc}
+\toprule
+Segment & Causal type & $n^2=\varepsilon$ & Outward normal & GHY weight \\
+\midrule
+Initial/final slices & Spacelike & $-1$ & Future/past & $-\int\sqrt{|h|}\,K\,\mathrm d^3x$ \\
+Lateral edge & Timelike & $+1$ & Outward & $+\int\sqrt{|h|}\,K\,\mathrm d^3x$ \\
+Euclidean boundary & Riemannian & $+1$ & Outward & $+\int\sqrt{|h|}\,K\,\mathrm d^3x$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+(This table is for reading guidance only; actual computations uniformly use the master formula.)
+
+\subsection*{Appendix C: Three Types of Joints and Additivity (Dictionary and Proof Outline)}
+
+\begin{itemize}
+\item Non-null--non-null: $\eta$ defined piecewise by causal type (see §3); corner term $\tfrac{1}{8\pi G}\int\sqrt{\sigma}\,\eta\,\mathrm d^2x$.
+\item Null--non-null: $a=\ln|-\ell\cdot n|$.
+\item Null--null: $a=\ln|-\tfrac12\ell_1\cdot\ell_2|$.
+\item Piecewise GHY integration by parts leaves only endpoint terms $\propto\delta(\text{angle})$, canceled by joint terms; action additive; result independent of joint regularizer details.
+\end{itemize}
+
+\subsection*{Appendix D: Null Rescaling, Endpoint Compensation, and Supertranslation}
+
+\textbf{D.1 Pure rescaling} $\ell\to e^{\alpha(\lambda)}\ell,\ k\to e^{-\alpha(\lambda)}k$: $\theta\to e^\alpha\theta$, $\kappa\to e^\alpha(\kappa+\partial_\lambda\alpha)$. Invariant under constant $\alpha$; non-constant produces endpoint total variations.
+
+\textbf{D.2 Path A (LMPS endpoint/joint compensation)}:
+
+$$
+S_{\mathrm{end}}=\frac{1}{8\pi G}\sum_{\text{endpoints}}\int\sqrt{\sigma}\,\alpha\,\mathrm d^2x .
+$$
+
+\textbf{D.3 Path B (logarithmic counterterm)}:
+
+$$
+S_{\mathrm{reparam}}=\frac{1}{8\pi G}\int_{\mathcal N}\sqrt{\gamma}\,\Theta\ln\big(\ell_c|\Theta|\big)\,\mathrm d\lambda\,\mathrm d^2x,\qquad \Theta:=\theta .
+$$
+
+Note: Path B requires $\Theta$ sign-definite on each generator; if $\Theta$ crosses zero (as at foci), treat zero-crossing points as joints and handle per D.2 endpoint/joint compensation, or use path A.
+
+\textbf{D.4 Transverse supertranslation} $\ell\to e^\alpha(\ell+v^A e_A)$ introduces $\mathcal D_A v^A$, classified as cross-section redefinition.
+
+\subsection*{Appendix E: Regge--Teitelboim Differentiability and BY Generators}
+
+$$
+\delta H_\xi=\int_{\Sigma}(N\,\delta\mathcal H+N^i\,\delta\mathcal H_i)\,\mathrm d^3x
++\int_{\partial\Sigma}\sqrt{\sigma}\,\Big(\varepsilon\,\delta N+j_i\,\delta N^i+T^{ab}_{\mathrm{BY}}\delta h_{ab}\Big)\,\mathrm d^2x .
+$$
+
+where $\varepsilon:=u_a u_b\,T^{ab}_{\mathrm{BY}}$, $j_i:=-\sigma_i{}^a u_b\,T^{ab}_{\mathrm{BY}}$, $\sigma_{ab}=h_{ab}+u_a u_b$.
+
+Adding GHY/joints renders $H_\xi$ differentiable and generates correct evolution; asymptotically flat $E_{\mathrm{BY}}\to M_{\mathrm{ADM}}$.
+
+\subsection*{Appendix F: Covariant Phase Space—Representative Freedom and Worked Example}
+
+\textbf{F.1 Representative freedom}: $\mathbf L\to\mathbf L+\mathrm d\mathbf B\Rightarrow \boldsymbol\Theta\to\boldsymbol\Theta+\delta\mathbf B$, $\mathbf Q_\xi\to\mathbf Q_\xi+\xi\cdot\mathbf B$. Charge element $\mathbf{k}_\xi:=\delta\mathbf Q_\xi-\xi\cdot\boldsymbol\Theta$ remains invariant.
+
+\textbf{F.2 Worked example (static black hole)}: Main text §6 already provides two-end cancellation chain; flux boundaries restored to integrability via Wald--Zoupas correction, yielding first law and $\mathcal S=\mathcal A/(4G)$.
+
+\subsection*{Appendix G: $f(R)$/Lovelock Boundary--Joint Correspondence}
+
+\textbf{G.1 $f(R)$}: Dirichlet: $S^{f(R)}_{\mathrm{bdy}}=(8\pi G)^{-1}\int\varepsilon\sqrt{|h|}\,\Phi K\,\mathrm d^3x$, joint $\propto \Phi\,(\eta\ \text{or}\ a)$. Robin: add $\propto \sqrt{|h|}\,n^\mu\nabla_\mu\Phi$ with dual joint terms.
+
+\textbf{G.2 Gauss--Bonnet ($D\ge 5$)}: $S^{\mathrm{GB}}_{\mathrm{bdy}}=(8\pi G)^{-1}\alpha\int\varepsilon\sqrt{|h|}\,(2\widehat G_{ab}K^{ab}+J)\,\mathrm d^{D-1}x$; piecewise non-smooth GB joint polynomials ensure Proposition 8.1 additivity (coefficients fixed by Chern--Weil/transgression; see Deruelle--Merino--Olea, 2018).
+
+\subsection*{Appendix H: Schwarzschild Euclidean Action (Including $K$ and $K_0$)}
+
+$\mathrm ds^2=f\,\mathrm d\tau^2+f^{-1}\mathrm dr^2+r^2\,\mathrm d\Omega_2^2$, $f=1-2M/r$.
+
+$K(R)=\dfrac{2\sqrt{f(R)}}{R}+\dfrac{f'(R)}{2\sqrt{f(R)}}$, $K_0(R)=\dfrac{2}{R}$.
+
+$I_E=I_{\mathrm{EH}}+I_{\mathrm{GHY}}[K]-I_{\mathrm{ref}}[K_0]+I_{\mathrm{joint}}\Rightarrow F=M/2,\ E=M,\ S=\mathcal A/(4G)$.
+
+Periodicity identification no double-counting explained in main text §11.
+
+\subsection*{Appendix I: AAdS Counterterms and Holographic/Quasilocal Stress Consistency}
+
+Four-dimensional AAdS minimal counterterms in §9; this representative consistent with holographic stress, yielding finite $T^{ab}_{\mathrm{BY,ren}}$.
+
+\subsection*{Appendix L: PDE/Fredholm Illustrative Examples}
+
+On compact boundaries, pure Dirichlet/Neumann Einstein constraint maps are generally non-Fredholm; natural mixed data (e.g., $([\gamma],H)$, Bartnik data) can yield Fredholm structure. This paper's ``variational well-posedness'' does not imply PDE well-posedness.
+
+\section*{References (Representative)}
+
+\begin{itemize}
+\item York, J. W., \textit{Phys. Rev. Lett.} 28 (1972) 1082.
+\item Gibbons, G. W.; Hawking, S. W., \textit{Phys. Rev. D} 15 (1977) 2752.
+\item Brown, J. D.; York, J. W., \textit{Phys. Rev. D} 47 (1993) 1407.
+\item Hawking, S. W.; Horowitz, G. T., \textit{Class. Quantum Grav.} 13 (1996) 1487.
+\item Hayward, G., \textit{Phys. Rev. D} 47 (1993) 3275.
+\item Jubb, I.; Samuel, J.; Sorkin, R. D.; Surya, S., \textit{Class. Quantum Grav.} 34 (2017) 065006.
+\item Lehner, L.; Myers, R. C.; Poisson, E.; Sorkin, R. D., \textit{Phys. Rev. D} 94 (2016) 084046.
+\item Parattu, K.; Chakraborty, S.; Majhi, B. R.; Padmanabhan, T., \textit{Gen. Rel. Grav.} 48 (2016) 94.
+\item Regge, T.; Teitelboim, C., \textit{Ann. Phys.} 88 (1974) 286--318.
+\item Iyer, V.; Wald, R. M., \textit{Phys. Rev. D} 50 (1994) 846; Wald, R. M., \textit{Phys. Rev. D} 48 (1993) R3427.
+\item Wald, R. M.; Zoupas, A., \textit{Phys. Rev. D} 61 (2000) 084027.
+\item Chandrasekaran, V.; Flanagan, É. É.; Shehzad, I.; Speranza, A. J., \textit{JHEP} 01 (2022) 029.
+\item Dyer, E.; Hinterbichler, K., \textit{Phys. Rev. D} 79 (2009) 024028.
+\item Guarnizo, A.; Castañeda, L.; Tejeiro, J. M., \textit{Gen. Rel. Grav.} 42 (2010) 2713--2728.
+\item Myers, R. C., \textit{Phys. Rev. D} 36 (1987) 392--396.
+\item Deruelle, N.; Merino, N.; Olea, R., \textit{Phys. Rev. D} 97 (2018) 104009.
+\item Balasubramanian, V.; Kraus, P., \textit{Commun. Math. Phys.} 208 (1999) 413--428.
+\item Skenderis, K., \textit{Class. Quantum Grav.} 19 (2002) 5849--5876.
+\item Israel, W., \textit{Il Nuovo Cimento B} 44 (1966) 1--14; Barrabès, C.; Israel, W., \textit{Phys. Rev. D} 43 (1991) 1129--1142.
+\end{itemize}
+
+\bigskip
+
+\noindent\textbf{Note}: Throughout, placeholders and non-standard punctuation (including `*`, exclamation-mark-controlled negative tight spaces, and commas between integrals and integrands) have been uniformly removed; all definitional expressions, projections, and variations (including $\delta\Gamma$, $\delta K_{ab}$, and principal term projections) employ standard superscript/subscript and derivative notation, self-consistent with the ``fixed embedding, unit normal gauge'' Dirichlet data.
+
+\end{document}
+

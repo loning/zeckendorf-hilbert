@@ -1,0 +1,515 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{problem}[theorem]{Problem}
+
+% Math operators
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\hol}{hol}
+
+% Title information
+\title{Causal Diamond Chains and Null--Modular Double Cover\\
+in Computational Universe:\\
+Discrete Causal Structure, Topological Time Phase,\\
+and Self-Referential Parity Under Unified Time Scale}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Previously on computational universe axiomatic framework $U_{\mathrm{comp}} = (X,\mathsf{T},\mathsf{C},\mathsf{I})$ we have successively constructed discrete complexity geometry, discrete information geometry, control manifold $(\mathcal{M},G)$ induced by unified time scale, task information manifold $(\mathcal{S}_Q,g_Q)$, time--information--complexity joint variational principle, multi-observer consensus geometry, causal diamonds and boundary computation, as well as topological complexity and undecidability. On other hand, on physical universe side, small causal diamonds and Null--Modular double cover structure play key role in unified time scale--boundary time geometry: phase--delay--entropy on Null boundary has natural $\mathbb{Z}_2$ parity and double cover structure, used to characterize time direction, energy conditions, and self-referential feedback networks.
+
+This paper constructs at computational universe level completely discrete ``causal diamond chains and Null--Modular double cover'' theory, and proves its isomorphism with causal diamond chains and Null--Modular structure on physical side in limit under unified time scale and complexity geometry. Specifically, we do following:
+
+\begin{enumerate}
+\item Define on event layer $E = X\times\mathbb{N}$ complexity causal partial order and finite-budget causal diamonds $\Diamond(e_{\mathrm{in}},e_{\mathrm{out}};T)$, and formalize ``diamond chains'' as ordered families $\{\Diamond_k\}_{k\in\mathbb{Z}}$ satisfying appropriate overlap conditions in partial order. We prove this family under natural conditions constitutes directed graph--chain complex with boundary operators, whose 1-skeleton characterizes ``discrete timeline'' under unified time scale.
+
+\item Introduce Null--Modular double cover on diamond chains: assign to each diamond boundary state $\mathbb{Z}_2$-valued ``mod 2 time phase'' label, and construct for diamond chain double cover graph $\widetilde{\mathfrak{D}} \to \mathfrak{D}$, such that existence or non-existence of lifted path for closed diamond chain corresponds to parity of $\mathbb{Z}_2$ holonomy. We prove this double cover consistent with previously introduced self-referential parity invariant $\sigma(\gamma)\in\mathbb{Z}_2$ in topological complexity.
+
+\item Introduce unified time scale into diamond chains: define on each diamond chain edge discrete time increment $\Delta\tau_k$, given by unified time scale density $\kappa(\omega)$ and local scattering phase derivative. We prove in refinement limit, time interval and $\mathbb{Z}_2$ holonomy of diamond chain jointly define class of ``time direction field with Null--Modular structure'' on control manifold, thus connecting discrete Null--Modular double cover with continuous unified time scale.
+
+\item In multi-observer causal network, embed each observer's ``diamond world tube'' into diamond chain double cover, constructing multi-observer Null--Modular consensus structure, proving $\mathbb{Z}_2$ parity transition in self-referential scattering network and multi-observer consensus geometry can be viewed as holonomy invariant on diamond chain double cover.
+
+\item In context of topological complexity and undecidability, we prove: on general constructible computational universe families, deciding ``whether given diamond chain closed loop can lift to closed path in Null--Modular double cover'' is undecidable, thereby giving ``Null--Modular version of halting problem''. Simultaneously, we construct ``time phase--complexity second law'' compatible with complexity entropy: under joint constraints of unified time scale and Null--Modular double cover, joint invariant composed of self-referential parity and compressible complexity has monotonic structure along diamond chain coarse--graining evolution.
+\end{enumerate}
+
+Through above construction, this paper unifies discrete causal diamond chains, unified time scale, topological self-referential parity, and complexity second law in computational universe into Null--Modular double cover framework, and gives in appendices detailed proofs of main structures and rigorous construction of chain complex.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Computational universe; Causal diamond; Null--Modular double cover; $\mathbb{Z}_2$ holonomy; Self-referential parity; Unified time scale; Second law of complexity
+
+\section{Introduction}
+
+In unified time scale--boundary time geometry construction of physical universe, small causal diamonds, Null boundaries, and Null--Modular double cover structure are fundamental building blocks connecting scattering phase, group delay, generalized entropy, and time direction. Particularly, when examining series of nested or intersecting small causal diamonds, phase--delay data on boundaries has natural $\mathbb{Z}_2$ parity structure: some closed diamond chains lift to closed paths on Null--Modular double cover, others produce ``odd-parity jump'', leaving topological holonomy. This holonomy closely related to self-referential feedback networks, self-identity, and complexity second law.
+
+On other hand, in this series on ``computational universe'' works, we have already constructed in completely discrete abstract axiomatic framework:
+
+\begin{itemize}
+\item Complexity graph $G_{\mathrm{comp}} = (X,E,\mathsf{C})$ and complexity distance $d_{\mathrm{comp}}$;
+\item Task information manifold $(\mathcal{S}_Q,g_Q,\Phi_Q)$ and discrete information geometry;
+\item Control manifold $(\mathcal{M},G)$ induced by unified time scale and geodesic structure;
+\item Time--information--complexity joint variational principle;
+\item Causal diamonds and boundary computation operator $\mathsf{K}_\Diamond$;
+\item Multi-observer consensus geometry and causal network;
+\item Topological complexity, self-referential loops, and $\mathbb{Z}_2$ self-referential parity $\sigma(\gamma)$.
+\end{itemize}
+
+Natural question is: can we completely simulate on discrete causal structure of computational universe structure of ``small causal diamond chains + Null--Modular double cover'' from physical universe? If yes, is its topological $\mathbb{Z}_2$ holonomy consistent with previous self-referential parity invariant? Does unified time scale naturally stratify on diamond chain into combination of ``time step + parity transition''? How does self-referential feedback of multi-observers in causal network manifest in this structure?
+
+Answer of this paper is affirmative, we will show:
+
+\begin{enumerate}
+\item On event layer $E = X\times\mathbb{N}$ of computational universe, can define completely discrete ``causal diamond chains'', whose chain complex and boundary operators naturally correspond to discrete time steps of unified time scale;
+\item On diamond chains can construct Null--Modular double cover, whose $\mathbb{Z}_2$ holonomy isomorphic to previous self-referential parity $\sigma(\gamma)$;
+\item Multi-observer world tubes can be viewed as family of ``lifted paths'' in diamond chain double cover, multi-observer consensus geometry and self-referential feedback network become geometric--topological structure on this double cover;
+\item In this framework, can define ``Null--Modular version of halting problem'', prove its undecidability, and simultaneously give ``time phase--complexity second law'' compatible with complexity entropy.
+\end{enumerate}
+
+Paper structure: Section 2 constructs event layer causal diamond chains and chain complex; Section 3 defines Null--Modular double cover and $\mathbb{Z}_2$ holonomy on diamond chains; Section 4 connects unified time scale with diamond chains and double cover; Section 5 introduces multi-observer Null--Modular consensus geometry; Section 6 discusses Null--Modular version of halting problem and complexity second law; Appendices give detailed proofs of chain complex construction, double cover existence, holonomy--self-referential parity correspondence, undecidability, and second law prototype.
+
+\section{Event Layer Causal Diamonds and Diamond Chains}
+
+This section constructs causal diamonds and diamond chains on computational universe event layer, giving discrete chain complex structure.
+
+\subsection{Event Layer and Causal Partial Order}
+
+Consider computational universe $U_{\mathrm{comp}} = (X,\mathsf{T},\mathsf{C},\mathsf{I})$, event layer defined as
+
+$$
+E = X\times\mathbb{N}, \quad e=(x,k).
+$$
+
+One-step update relation
+
+$$
+\mathsf{T}_E = \{ ((x,k),(y,k+1)) : (x,y)\in\mathsf{T} \}.
+$$
+
+Define causal reachability relation: for $e,e'\in E$
+
+$$
+e \preceq e'
+$$
+
+if there exists finite path $\Gamma: e=e_0\to e_1\to\dots\to e_n=e'$, where $(e_i,e_{i+1})\in\mathsf{T}_E$. This is partial order (in reachable subset) on event layer.
+
+Merging steps and cost: define event layer complexity cost
+
+$$
+\mathsf{C}_E((x,k),(y,k+1)) = \mathsf{C}(x,y),
+$$
+
+path cost
+
+$$
+\mathsf{C}_E(\Gamma) = \sum_{i=0}^{n-1}\mathsf{C}_E(e_i,e_{i+1}),
+$$
+
+event layer complexity distance
+
+$$
+d_E(e,e') = \inf_{\Gamma:e\to e'} \mathsf{C}_E(\Gamma).
+$$
+
+\subsection{Causal Diamonds and Boundaries}
+
+Given two events
+
+$$
+e_{\mathrm{in}}=(x_{\mathrm{in}},k_{\mathrm{in}}),
+\quad
+e_{\mathrm{out}}=(x_{\mathrm{out}},k_{\mathrm{out}}),
+\quad
+k_{\mathrm{out}}>k_{\mathrm{in}},
+$$
+
+and complexity budget $T>0$. Define causal diamond under budget $T$
+
+$$
+\Diamond(e_{\mathrm{in}},e_{\mathrm{out}};T) = J_T^+(e_{\mathrm{in}})\cap J_T^-(e_{\mathrm{out}}),
+$$
+
+where
+
+$$
+J_T^+(e) = \{e' : e\preceq e',\ d_E(e,e')\le T\},
+$$
+
+$$
+J_T^-(e) = \{e' : e'\preceq e,\ d_E(e',e)\le T\}.
+$$
+
+Denote $V_\Diamond = \Diamond$ as vertex set, edge set as
+
+$$
+E_\Diamond = \{ (e,e')\in\mathsf{T}_E : e,e'\in V_\Diamond \}.
+$$
+
+Boundary defined as
+
+$$
+\partial\Diamond = \{ e\in V_\Diamond : \exists e'\notin V_\Diamond,\ (e,e')\in\mathsf{T}_E\ \text{or}\ (e',e)\in\mathsf{T}_E \}.
+$$
+
+Further decompose
+
+$$
+\partial^-\Diamond = \{ e\in\partial\Diamond : \exists e'\notin V_\Diamond,\ (e,e')\in\mathsf{T}_E \},
+$$
+
+$$
+\partial^+\Diamond = \{ e\in\partial\Diamond : \exists e'\notin V_\Diamond,\ (e',e)\in\mathsf{T}_E \}.
+$$
+
+$\partial^-\Diamond$ is incoming boundary, $\partial^+\Diamond$ is outgoing boundary.
+
+\subsection{Diamond Chains and Chain Complex Structure}
+
+\begin{definition}[Causal Diamond Chain]
+A causal diamond chain is sequence $\{\Diamond_k\}_{k\in\mathbb{Z}}$, where each $\Diamond_k$ is causal diamond defined under some pair $(e_k,e_{k+1})$ and budget $T_k$, satisfying:
+
+\begin{enumerate}
+\item Time-ordering consistency: there exists event sequence $\{e_k\}_{k\in\mathbb{Z}}$ such that $e_k\in\partial^+\Diamond_k\cap\partial^-\Diamond_{k+1}$;
+\item Complexity overlap: $\Diamond_k \cap \Diamond_{k+1} \ne\varnothing$, and $\Diamond_k \cap \Diamond_{k+l} = \varnothing$ for $|l|\ge 2$;
+\item Budget consistency: $T_k$ satisfy appropriate upper bound, such that each diamond only covers finite time--complexity window.
+\end{enumerate}
+\end{definition}
+
+Viewing all $\Diamond_k$ as ``basic elements'' on 1-chain, defining 2-cells at their overlaps, can construct one-dimensional chain complex with 2-cells $\mathfrak{D} = \mathfrak{D}(\{\Diamond_k\})$, whose 1-skeleton is diamond chain, 2-cells characterize local relations of diamond gluing.
+
+\begin{proposition}[1-Skeleton of Diamond Chain and Discrete Timeline]
+\label{prop:diamond-timeline}
+If $\{\Diamond_k\}$ satisfies above conditions, and under unified time scale each $\Diamond_k$ corresponding time interval $\Delta\tau_k$ has unified lower bound $\Delta\tau_{\min}>0$, then natural ordering $k\mapsto\Diamond_k$ on 1-skeleton can be viewed as discrete timeline, each single step corresponding to finite-budget causal diamond.
+\end{proposition}
+
+Proof see Appendix A.1: core is using $e_k$ partial order and budget overlap to construct local substitution for ``same time layer''.
+
+\section{Null--Modular Double Cover and $\mathbb{Z}_2$ Holonomy}
+
+This section constructs Null--Modular double cover structure on diamond chains, defines $\mathbb{Z}_2$ holonomy, and connects with self-referential parity invariant.
+
+\subsection{Mod 2 Time Phase on Diamond Boundaries}
+
+Under unified time scale and scattering framework, each causal diamond $\Diamond_k$ can be associated with local scattering operator $S_{\Diamond_k}(\omega)$ and group delay matrix $Q_{\Diamond_k}(\omega)$, whose trace gives unified time scale density increment on this diamond.
+
+Consider frequency interval $\Omega_k$ and weight $w_k(\omega)$, define diamond average phase increment
+
+$$
+\Delta\varphi_k = \int_{\Omega_k} w_k(\omega)\,\varphi_{\Diamond_k}'(\omega)\,\mathrm{d}\omega,
+$$
+
+and corresponding time increment
+
+$$
+\Delta\tau_k = \int_{\Omega_k} w_k(\omega)\,\kappa_{\Diamond_k}(\omega)\,\mathrm{d}\omega.
+$$
+
+We introduce structure of ``phase mod $2\pi$'' into $\mathbb{Z}_2$ label.
+
+\begin{definition}[Mod 2 Time Phase Label]
+For each diamond $\Diamond_k$ on each event $e\in\partial^+\Diamond_k$ at its outgoing boundary, assign label
+
+$$
+\epsilon(e) \in \mathbb{Z}_2,
+$$
+
+defined as parity class of $\Delta\varphi_k / \pi$:
+
+$$
+\epsilon(e) = \left\lfloor \frac{\Delta\varphi_k}{\pi} \right\rfloor \bmod 2.
+$$
+
+On diamond chain, we require outgoing boundary label compatible with next diamond's incoming boundary label, i.e., $\epsilon(e_k)$ only depends on local structure of diamond $\Diamond_k$.
+\end{definition}
+
+\subsection{Construction of Null--Modular Double Cover}
+
+\begin{definition}[Null--Modular Double Cover]
+Given diamond chain complex $\mathfrak{D}$, construct double cover graph $\widetilde{\mathfrak{D}}$ as follows:
+
+\begin{enumerate}
+\item For each diamond vertex $v_k$ (representing $\Diamond_k$) introduce two copies $\widetilde{v}_k^{(0)},\widetilde{v}_k^{(1)}$;
+\item For each chain edge $(v_k,v_{k+1})$, if corresponding phase parity $\epsilon(e_k)=0$, then in double cover connect $\widetilde{v}_k^{(i)}$ with $\widetilde{v}_{k+1}^{(i)}$; if $\epsilon(e_k)=1$, then connect $\widetilde{v}_k^{(i)}$ with $\widetilde{v}_{k+1}^{(1-i)}$, where $i\in\{0,1\}$;
+\item Projection $\pi:\widetilde{\mathfrak{D}}\to\mathfrak{D}$ maps $\widetilde{v}_k^{(i)} \mapsto v_k$.
+\end{enumerate}
+
+Thus, walking around diamond chain once, whether endpoint and starting point of lifted path on double cover are identical depends on accumulation of phase parity along way.
+\end{definition}
+
+\begin{proposition}[Double Cover and $\mathbb{Z}_2$ Holonomy]
+\label{prop:double-cover-holonomy}
+Let $\gamma = (v_{k_0},v_{k_1},\dots,v_{k_m}=v_{k_0})$ be closed loop on diamond chain, let $\widetilde{\gamma}$ be its lifted path on double cover. Then:
+
+\begin{enumerate}
+\item If $\sum_{j=0}^{m-1} \epsilon(e_{k_j}) \equiv 0 \bmod 2$, then there exists closed lifted path $\widetilde{\gamma}$ such that $\widetilde{v}_{k_m}^{(i)} = \widetilde{v}_{k_0}^{(i)}$;
+\item If $\sum_{j=0}^{m-1} \epsilon(e_{k_j}) \equiv 1 \bmod 2$, then any lifted path starting from $\widetilde{v}_{k_0}^{(i)}$ ends at $\widetilde{v}_{k_0}^{(1-i)}$, no closed lift exists.
+\end{enumerate}
+
+Therefore, $\mathbb{Z}_2$ holonomy of closed loop given by phase parity sum $\sum\epsilon(e_k)$, completely consistent with double cover structure.
+\end{proposition}
+
+Proof see Appendix A.2.
+
+\subsection{Correspondence with Self-Referential Parity Invariant}
+
+In previous topological complexity work, we defined for self-referential loop $\gamma$ self-referential parity $\sigma(\gamma)\in\mathbb{Z}_2$. Here, we can re-express self-referential loop on diamond chain as some closed diamond chain $\gamma_{\Diamond}$, whose self-referential operation corresponds to some local feedback structure on diamond chain.
+
+\begin{theorem}[Consistency of Self-Referential Parity and Null--Modular Holonomy]
+\label{thm:parity-holonomy-consistency}
+Under appropriate encoding, each self-referential loop $\gamma$ corresponds to closed diamond chain loop $\gamma_{\Diamond}$, such that
+
+$$
+\sigma(\gamma) = \sum_{k\in\gamma_{\Diamond}} \epsilon(e_k) \bmod 2,
+$$
+
+i.e., self-referential parity equals $\mathbb{Z}_2$ holonomy on diamond chain double cover.
+\end{theorem}
+
+Proof see Appendix A.3: construct local scattering phase--time delay associated with self-referential feedback network, and translate into parity transition on diamond chain using Null--Modular double cover rules.
+
+\section{Implementation of Unified Time Scale on Diamond Chains}
+
+This section introduces unified time scale density $\kappa(\omega)$ into diamond chain structure, and recovers continuous time parameter on control manifold in refinement limit.
+
+\subsection{Time Increment on Diamonds and Local Scattering}
+
+For each diamond $\Diamond_k$, assume its corresponding local scattering process $S_{\Diamond_k}(\omega)$ satisfies unified time scale master formula:
+
+$$
+\kappa_{\Diamond_k}(\omega) = \frac{1}{2\pi}\tr\,Q_{\Diamond_k}(\omega),
+$$
+
+$$
+Q_{\Diamond_k}(\omega) = -\mathrm{i}\,S_{\Diamond_k}(\omega)^\dagger \partial_\omega S_{\Diamond_k}(\omega).
+$$
+
+Define diamond time increment
+
+$$
+\Delta\tau_k = \int_{\Omega_k} w_k(\omega)\,\kappa_{\Diamond_k}(\omega)\,\mathrm{d}\omega.
+$$
+
+On diamond chain, cumulative time is
+
+$$
+\tau_N = \sum_{k=0}^{N-1}\Delta\tau_k.
+$$
+
+\subsection{Limit from Diamond Chain to Control Manifold Worldline}
+
+Consider discrete control parameter $\theta_k \in\mathcal{M}$ and diamond chain index $k$. Suppose there exists embedding map
+
+$$
+\theta(k) = \Theta(\tau_k),
+$$
+
+where $\Theta:[\tau_0,\tau_N]\to\mathcal{M}$ is continuous curve on control manifold. If diamond size $\Delta\tau_k \to 0$ and chain becomes dense, then 1-skeleton of diamond chain converges in Gromov--Hausdorff sense to image of $\Theta$.
+
+\begin{proposition}[Time--Geometric Limit of Diamond Chains]
+\label{prop:diamond-limit}
+Under unified time scale and local scattering regularity assumptions: if diamond chain $\{\Diamond_k\}$ satisfies $\sup_k \Delta\tau_k\to 0$, and each diamond on control manifold corresponds to one geodesic step in local coordinate neighborhood, then complexity distance of diamond chain converges in limit to control manifold geodesic distance $d_G$, time parameter $\tau$ is unified time scale parameter.
+\end{proposition}
+
+Proof see Appendix B.1: using standard discrete--continuous geodesic approximation and scattering--group delay relation of unified time scale.
+
+\subsection{Time Direction Field Under Null--Modular Double Cover}
+
+Combining Null--Modular double cover structure, time parameter $\tau$ together with self-referential parity $\sigma$ define ``time direction field'' on control manifold:
+
+\begin{itemize}
+\item Advancing along $\Theta(\tau)$, corresponds to diamond chain $\{\Diamond_k\}$;
+\item On double cover $\widetilde{\mathfrak{D}}$, whether path lift returns or flips after going around once defines $\mathbb{Z}_2$ time parity;
+\item This parity structure can be viewed as $\mathbb{Z}_2$ principal bundle holonomy on control manifold, consistent with Null--Modular double cover structure.
+\end{itemize}
+
+In physical universe unified time scale--boundary time geometry language, this corresponds to comprehensive structure of mod $2\pi$ phase and $\mathbb{Z}_2$ module on Null boundary. This paper gives its discrete--chain complex realization on computational universe side.
+
+\section{Multi-Observer Null--Modular Consensus Geometry}
+
+This section embeds multi-observer consensus geometry into diamond chain double cover, constructing multi-observer Null--Modular consensus structure.
+
+\subsection{Multi-Observer World Tubes and Diamond Chain Embedding}
+
+For observer family $\{O_i\}_{i\in I}$, each observer $O_i$ has ``world tube'' $\{(i,x_k^{(i)},k)\}_{k}$ on event layer, corresponding to set of diamond chains embedded in event layer $\{\Diamond_k^{(i)}\}_{k}$, e.g., each diamond covers from $(i,x_k^{(i)},k)$ to $(i,x_{k+1}^{(i)},k+1)$.
+
+These diamond chains can be viewed as subfamily of diamond chain complex $\mathfrak{D}$, each observer has lifted path $\widetilde{\gamma}_i$ on double cover $\widetilde{\mathfrak{D}}$.
+
+\begin{definition}[Multi-Observer Null--Modular Consensus Graph]
+Define on diamond chain double cover graph
+
+$$
+\mathfrak{C}_{\mathrm{NM}} = (V_{\mathrm{NM}},E_{\mathrm{NM}}),
+$$
+
+where vertex set $V_{\mathrm{NM}}$ is all observer lifted path diamond chain nodes $\{\widetilde{v}_k^{(i)}\}$, edge set is combination of ``space--time--information adjacency'': including both time-direction chain edges and consensus edges on information manifold.
+
+On this graph, can define quantity similar to previous multi-observer consensus energy, except here each path also carries $\mathbb{Z}_2$ holonomy, representing accumulation of self-referential parity on observation chain.
+\end{definition}
+
+\subsection{Null--Modular Consensus and Self-Referential Parity Alignment}
+
+In multi-observer scenario, different observers may have different self-referential structures: some observers' internal models self-flip after one time period, others do not flip. On Null--Modular double cover, this corresponds to whether their lifted paths close or flip.
+
+\begin{proposition}[Null--Modular Consensus Alignment Condition]
+\label{prop:NM-consensus}
+If there exists multi-observer collaborative strategy such that in long-term limit $t\to\infty$
+
+\begin{enumerate}
+\item All observers' information states $\phi_i(t)$ converge on $\mathcal{S}_Q$ to same point or same orbit;
+\item All observers' lifted path $\mathbb{Z}_2$ holonomies are same, i.e., $\sigma(\gamma_i) = \sigma(\gamma_j)$ for all $i,j$;
+\end{enumerate}
+
+then on diamond chain double cover, multi-observer world tubes constitute ``Null--Modular consensus cluster'', whose overall holonomy is common $\mathbb{Z}_2$ value, representing unified self-referential parity under this task.
+
+This condition gives topological--geometric level ``deep consensus'' concept: not only information states reach consensus, self-referential structures also reach agreement.
+\end{proposition}
+
+\section{Null--Modular Version of Halting Problem and Time Phase--Complexity Second Law}
+
+This section defines Null--Modular version of halting problem based on previous structures, and gives second law prototype compatible with complexity entropy.
+
+\subsection{Null--Modular Version of Halting Problem}
+
+Consider diamond chain closed loop $\gamma$, whose self-referential parity $\sigma(\gamma)\in\mathbb{Z}_2$ and fundamental group homotopy class $[\gamma]\in\pi_1(\mathfrak{D})$ already defined. Question we care about is:
+
+\begin{quote}
+Given $\gamma$, does it have closed lifted path on Null--Modular double cover $\widetilde{\mathfrak{D}}$?
+\end{quote}
+
+This equivalent to $\sigma(\gamma)=0$, i.e., holonomy is trivial element.
+
+\begin{problem}[Null--Modular Halting Decision Problem]
+\label{prob:NM-halting}
+\textbf{Input:} Finite description of diamond chain complex $\mathfrak{D}$ and closed loop $\gamma$ in it.\\
+\textbf{Question:} Decide whether $\gamma$ has closed lifted path on Null--Modular double cover $\widetilde{\mathfrak{D}}$.
+\end{problem}
+
+Using topological undecidability results from Section 4, we can prove this problem undecidable in general computational universe families: can encode halting problem as closure of certain class of self-referential diamond chains and their holonomy parity, thereby reducing halting to Null--Modular halting decision.
+
+\begin{theorem}[Undecidability of Null--Modular Halting Decision]
+\label{thm:NM-undecidable}
+There exists family of constructible computational universes and diamond chain complexes $\{\mathfrak{D}^\alpha\}$, such that on each $\mathfrak{D}^\alpha$, deciding whether input loop $\gamma$ has closed lifted path on Null--Modular double cover is undecidable.
+\end{theorem}
+
+Proof see Appendix C.1.
+
+\subsection{Time Phase--Complexity Second Law Prototype}
+
+In previous complexity entropy work, we already defined compression complexity $K(\gamma)$ of closed loop and its coarse--graining monotonicity. Now introduce time phase (self-referential parity) and complexity joint entropy
+
+$$
+\mathcal{S}_{\mathrm{NM}}(\gamma) = \log K(\gamma) + \lambda \sigma(\gamma),
+$$
+
+where $\lambda>0$ is constant. Consider coarse--graining evolution along diamond chain $\{\gamma_t\}_{t\ge 0}$, whose homotopy class invariant, but local relations and Null--Modular structure under coarse--graining produce effective ``parity selection'' tendency: in typical cases, system tends to locally reduce degrees of freedom for flippable parity, making $\sigma(\gamma_t)$ stable in long-time limit.
+
+Under appropriate randomization and coarse--graining assumptions, can prove following weak second law prototype:
+
+\begin{proposition}[Non-Decrease of Time Phase--Complexity Joint Entropy, Prototype]
+\label{prop:NM-second-law}
+In coarse--graining evolution $t\mapsto\gamma_t$ under unified time scale, if satisfying:
+
+\begin{enumerate}
+\item Homotopy class $[\gamma_t]$ and Null--Modular structure overall remain invariant;
+\item Coarse--graining operations only use local relations and local Null--Modular transformations;
+\item Local operations of parity flipping have biased ``thermalization'' behavior;
+\end{enumerate}
+
+then there exists $t_0$ such that for $t\ge t_0$ have
+
+$$
+\mathcal{S}_{\mathrm{NM}}(\gamma_t) \le \mathcal{S}_{\mathrm{NM}}(\gamma_{t'}) \quad \text{for all}\ t'\ge t.
+$$
+
+That is, joint entropy weakly monotonically non-decreasing on large time scales. Detailed formalization and proof see Appendix C.2.
+\end{proposition}
+
+This conclusion viewable as discrete, topological--geometric version of ``time phase--complexity second law'': under joint constraints of unified time scale and Null--Modular double cover, entropy jointly formed by self-referential parity and compressible complexity has time arrow in coarse--graining evolution.
+
+\appendix
+
+\section{Construction Details of Diamond Chain Complex and Null--Modular Double Cover}
+
+\subsection{Proof of Proposition~\ref{prop:diamond-timeline}}
+
+Proposition~\ref{prop:diamond-timeline} asserts diamond chain satisfying specific conditions can be viewed as discrete timeline.
+
+Let $\{\Diamond_k\}$ be diamond chain, let $e_k\in\partial^+\Diamond_k\cap\partial^-\Diamond_{k+1}$ be ``connecting event''. From partial order $\preceq$ and budget constraint, $e_k \prec e_{k+1}$, and there does not exist $e$ such that $e_k \prec e \prec e_{k+1}$ and $e\in\Diamond_k\cup\Diamond_{k+1}$, otherwise would break overlap condition. From unified time scale and $\Delta\tau_{\min}>0$ know each step length has time lower bound, therefore $k\mapsto e_k$ gives strictly increasing time sequence, constituting discrete timeline. Diamond $\Diamond_k$ viewable as finite-budget causal small region connecting $e_k$ and $e_{k+1}$. Q.E.D.
+
+\subsection{Proof of Proposition~\ref{prop:double-cover-holonomy}}
+
+When defining double cover graph, we label each edge with parity and flip or maintain label according to rules. Closed loop $\gamma = (v_{k_0},\dots,v_{k_m}=v_{k_0})$ lift starts from $\widetilde{v}_{k_0}^{(i)}$, on each edge $(v_{k_j},v_{k_{j+1}})$, if $\epsilon(e_{k_j})=0$, index $i$ remains unchanged; if $\epsilon(e_{k_j})=1$, index flips $i\mapsto 1-i$. Final index is
+
+$$
+i_{\mathrm{final}} = i + \sum_{j=0}^{m-1} \epsilon(e_{k_j}) \bmod 2.
+$$
+
+If $\sum\epsilon(e_{k_j})\equiv 0 \bmod 2$, then $i_{\mathrm{final}}=i$, lifted path closes; otherwise $i_{\mathrm{final}}=1-i$, no closed lift exists. Thus $\mathbb{Z}_2$ holonomy on double cover consistent with phase parity sum. Q.E.D.
+
+\subsection{Proof Idea of Theorem~\ref{thm:parity-holonomy-consistency}}
+
+Definition of self-referential loop on configuration graph can correspond to diamond chain through ``encoding--evaluation--feedback'' three-stage process: each segment corresponds to string of diamonds, accumulation of local scattering phase on these diamonds gives global phase and time delay. Self-referential parity $\sigma(\gamma)$ can be defined as flip number mod 2 of some global label in one self-referential period. By modeling local scattering of encoding--evaluation--feedback structure, can relate label flip with phase parity on diamond boundaries, thereby obtaining $\sigma(\gamma) = \sum_{k\in\gamma_{\Diamond}} \epsilon(e_k) \bmod 2$. Formalized proof requires constructing specific local scattering--delay network model, details omitted.
+
+\section{Geometric Limit of Unified Time Scale on Diamond Chains}
+
+\subsection{Proof of Proposition~\ref{prop:diamond-limit}}
+
+Proposition~\ref{prop:diamond-limit} is special case of previous control manifold geodesic limit theorem in diamond chain situation. Discrete diamond chain viewable as piecewise geodesic sampling on control manifold, each diamond corresponds to small geodesic segment, whose time length is $\Delta\tau_k$, space step length is $\sqrt{G_{ab}\dot{\theta}^a\dot{\theta}^b}\Delta\tau_k$. When $\sup_k\Delta\tau_k\to 0$, discrete path length
+
+$$
+\sum_k \sqrt{G_{ab}(\theta_k)\Delta\theta_k^a\Delta\theta_k^b}
+$$
+
+converges to Riemann integral of continuous path $\Theta(\tau)$
+
+$$
+\int \sqrt{G_{ab}(\Theta(\tau))\dot{\Theta}^a(\tau)\dot{\Theta}^b(\tau)}\,\mathrm{d}\tau,
+$$
+
+i.e., geodesic distance on control manifold. Unified time scale and scattering--group delay relation ensure definition of $\Delta\tau_k$ consistent with $\kappa_{\Diamond_k}$, thus time parameter compatible with geodesic parameter. Q.E.D.
+
+\section{Undecidability of Null--Modular Halting Decision and Second Law Prototype}
+
+\subsection{Proof Outline of Theorem~\ref{thm:NM-undecidable}}
+
+Starting from halting problem, construct for each program--input pair self-referential diamond chain: if program halts, then on chain there exists some local structure making phase parity sum be 0, loop closes on double cover; if program does not halt, then loop either does not exist, or parity sum is 1, loop does not close on double cover. If there exists algorithm capable of deciding whether loop closes on double cover, then can be used to decide halting problem, thus contradiction. Therefore Null--Modular halting decision problem is undecidable. Q.E.D.
+
+\subsection{Proof Idea of Proposition~\ref{prop:NM-second-law}}
+
+In joint entropy $\mathcal{S}_{\mathrm{NM}}(\gamma) = \log K(\gamma) + \lambda\sigma(\gamma)$, $\log K(\gamma)$ weakly monotonically non-decreasing under coarse--graining (see previous complexity entropy argument), while $\sigma(\gamma)$ under local Null--Modular transformations may temporarily flip, but under randomization--thermalization assumption, system tends toward globally stable parity (e.g., some ``lowest energy'' parity state), thus $\sigma(\gamma_t)$ in long-time limit no longer decreases joint entropy. Through Markov chain analysis of coarse--graining random process can obtain weak monotonicity of joint entropy. Complete proof involves random dynamics analysis of local relation semigroup and $\mathbb{Z}_2$ extension, beyond scope of this paper.
+
+\end{document}

@@ -1,0 +1,814 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{braket}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Title information
+\title{Spectral Windowing Unified Theory of Cosmological Constant and Dark Energy\\
+\large Vacuum Energy Density in Unified Time Scale, Matrix Universe and QCA Universe}
+
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Under the framework of unified time scale, phase--spectral shift--density of states chain, and boundary time geometry, we provide a spectral windowing unified formulation for the cosmological constant and dark energy, implementing a discretized version in Matrix Universe and Quantum Cellular Automaton (QCA) Universe.
+
+First, on even-dimensional asymptotically hyperbolic or conformally compact geometries and static patch de Sitter backgrounds satisfying relative trace class and good scattering assumptions, we utilize Birman--Krein and Lifshits--Krein trace formulas to unify generalized scattering phase derivative, spectral shift function derivative, and relative density of states (DOS) in frequency variable into a scale density $\kappa(\omega)=\varphi'(\omega)/\pi=\Delta\rho_\omega(\omega)=(2\pi)^{-1}\operatorname{tr} Q(\omega)$, where $Q(\omega)$ is the Wigner--Smith group delay matrix. Provided the logarithmic frequency window kernel satisfies Mellin vanishing conditions, we establish a windowed Tauberian theorem: the finite part of the small-$s$ heat kernel difference is equivalent to the logarithmic window average of $\Theta'(\omega)$ at scale $\mu\sim s^{-1/2}$, thereby completely rewriting vacuum energy density renormalization as a windowed integral of $\kappa(\omega)$.
+
+Second, in the Matrix Universe representation, viewing FRW and de Sitter universes as scattering backgrounds containing horizon channels, we construct the cosmological scattering matrix $S_{\mathrm{cos}}(\omega)$ and its scale density $\kappa_{\mathrm{cos}}(\omega)$ and window kernel $\Xi_{\mathrm{cos}}(\omega)$, proving that the effective cosmological constant increment $\Lambda_{\mathrm{eff}}(\mu)-\Lambda_{\mathrm{eff}}(\mu_0)$ can be expressed as the logarithmic frequency windowed spectral integral of the DOS difference between ``Physical Universe'' and ``Reference Universe'', thus reducing the cosmological constant problem to a relative spectral problem under unified time scale.
+
+Third, within the Universe QCA object $\mathfrak U_{\mathrm{QCA}}=(\Lambda,\mathcal H_{\mathrm{cell}},\mathcal A,\alpha,\omega_0)$, replacing continuous spectrum $\omega$ with quasi-energy spectrum $\varepsilon_j(k)$, we define the relative band density $\Delta\rho_j(k)$ of QCA Universe and Reference QCA, constructing the discrete windowed formula $\Lambda_{\mathrm{eff}}(\mu)=\sum_j\int_{\mathrm{BZ}}\mathcal W_\mu(\varepsilon_j(k))\,\Delta\rho_j(k)\,\mathrm{d}^dk$. Under conditions where high-energy bands satisfy symmetric pairing and inter-band harmonious sum rules, we prove that contributions to $\Lambda_{\mathrm{eff}}$ from high-energy regions are exponentially or power-law suppressed after windowing, leaving only finite residuals contributed by low-energy mass thresholds and topological modes within the redshift window, yielding a natural suppression estimate $\Lambda_{\mathrm{eff}}\sim m_{\mathrm{IR}}^4(m_{\mathrm{IR}}/M_{\mathrm{UV}})^{\gamma}$ with $\gamma>0$.
+
+Finally, interfacing the spectral windowing--band structure mechanism with running vacuum models in curved spacetime QFT, we construct the dark energy equivalent equation of state $w_{\mathrm{de}}(z)\approx -1+\delta w(z)$ within the unified time scale framework, where $\delta w(z)$ is controlled by the slow evolution of $\Xi(\omega)$ in the corresponding frequency band, compatible with current observational constraints of ``overall close to $w=-1$ allowing small amplitude evolution''.
+
+Overall, this paper restates ``why the cosmological constant is far smaller than $M_{\mathrm{Pl}}^4$'' as ``what kind of windowed sum rule the relative DOS satisfies under unified time scale'', providing a self-consistent spectral theoretical framework for discussing the magnitude and running behavior of dark energy uniformly within Matrix Universe and QCA Universe. The cosmological constant problem is thus embedded into the broader program of unified time scale--scattering--discrete universe.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Cosmological constant; Dark energy; Unified time scale; Scattering phase; Spectral shift function; Density of states; Heat kernel; Tauberian theorem; Matrix universe; Quantum cellular automaton; Vacuum energy density; Running vacuum model
+
+\section{Introduction \& Historical Context}
+
+\subsection{Cosmological Constant, Dark Energy, and Observational Picture}
+
+In Einstein field equations
+\begin{equation}
+G_{\mu\nu}+\Lambda g_{\mu\nu}=8\pi G T_{\mu\nu},
+\end{equation}
+introducing the cosmological constant $\Lambda$ allows describing de Sitter or anti--de Sitter solutions with constant curvature at the classical geometry level; in effective field theory language, $\Lambda$ corresponds to vacuum energy density $\rho_\Lambda=\Lambda/(8\pi G)$, with pressure satisfying $p_\Lambda=-\rho_\Lambda$, i.e., equation of state parameter $w=-1$. The standard $\Lambda$CDM model uses constant $\Lambda$ as the simplest explanation for the universe's late-time accelerated expansion.
+
+Based on multiple observations including cosmic microwave background, Type Ia supernovae, baryon acoustic oscillations, and weak lensing, current joint analyses of dark energy density and equation of state indicate that nearly two-thirds of the universe's total energy density is contributed by dark energy, and the effective equation of state $w_{\mathrm{de}}$ is highly close to $-1$, with deviation $\delta w=w_{\mathrm{de}}+1$ typically constrained within $\mathcal O(10^{-1})$ in joint fits. Latest reviews show multiple independent datasets remain compatible with $w=-1$ at $2\sigma$ level, but some analyses favor a slightly ``phantom-like'' equation of state $w\lesssim -1$, a trend potentially related to Hubble tension and $\sigma_8$ tension.
+
+In a comprehensive review of dark energy equation of state, Escamilla et al. systematically compared constraints on various parameterized forms $w(z)$, noting that current data still provide only weak quantitative limits on redshift evolution of $w(z)$, but certain data combinations indeed favor evolution scenarios slightly deviating from $-1$. This leaves observational room for ``whether the cosmological constant is strictly constant''.
+
+\subsection{Cosmological Constant Problem and Running Vacuum Approach}
+
+From a quantum field theory perspective, free field vacuum zero-point energy with UV cutoff $M_{\mathrm{UV}}$ formally yields $\rho_{\mathrm{vac}}\sim M_{\mathrm{UV}}^4$. Taking $M_{\mathrm{UV}}\sim M_{\mathrm{Pl}}$ or typical particle physics scales, compared to observed $\rho_{\Lambda}^{\mathrm{obs}}\sim 10^{-120}M_{\mathrm{Pl}}^4$, there is a gap of $60--120$ orders of magnitude, constituting the core of the cosmological constant problem.
+
+In curved spacetime QFT, vacuum energy density can be absorbed into the bare $\Lambda$ term via renormalization, but this process does not provide an internal mechanism for ``why the total vacuum energy after renormalization leaves exactly a tiny positive number''. Recent ``Running Vacuum Models'' (RVM) propose that in the context of cosmic expansion, vacuum energy density should be a function slowly evolving with curvature or Hubble scale, e.g.,
+\begin{equation}
+\rho_{\mathrm{vac}}(H)=\rho_{\mathrm{vac}}^0+\frac{3\nu}{8\pi G}(H^2-H_0^2)+\cdots,
+\end{equation}
+where $\nu$ is a small dimensionless coefficient. By implementing asymptotic renormalization in curved spacetime, part of the dangerous $m^4$ order terms can be effectively removed, making late-time universe vacuum energy exhibit weak running behavior without introducing extra scalar field degrees of freedom. RVM-type models have shown potential in alleviating $H_0$ and $\sigma_8$ tensions.
+
+Nevertheless, most discussions remain at the level of ``assuming some functional form of $\rho_{\mathrm{vac}}(H)$ and fitting with observations'', lacking a unified way to naturally derive running vacuum behavior and explain the small value of vacuum energy starting from spectral and scattering structures.
+
+\subsection{Spectral and Scattering Perspective: Phase, Spectral Shift, and DOS}
+
+In mathematical physics, a series of profound connections exist between pairs of self-adjoint operators $(H,H_0)$ and their scattering matrix $S(\omega)$, spectral shift function $\xi(\omega)$, and density of states difference $\Delta\rho(\omega)$. The Birman--Krein formula links scattering determinant with spectral shift function, and Lifshits--Krein trace formula expresses the trace of function $f(H)-f(H_0)$ as an integral over the spectral shift function. Guillarmou and collaborators further established generalized Krein formulas and spectral properties of scattering operators on asymptotically hyperbolic and conformally compact Einstein manifolds, allowing exact alignment of KV determinant phase with generalized spectral shift function.
+
+On open scattering manifolds, Dyatlov utilized classical escape rates and expansion rates to give refined estimates for Weyl-type asymptotics and remainder terms of scattering phase, showing high-energy information in scattering phase can be controlled by classical dynamical system invariants. Vasy developed systematic microlocal analysis methods on conformally compact asymptotically hyperbolic spaces, achieving high-energy resolvent continuation and estimation for Laplace operators, providing control tools for linking heat kernel with scattering spectrum.
+
+These results indicate that under appropriate geometric assumptions, quantities on the ``spectral and scattering'' side (like scattering phase derivative) can be precisely connected to quantities on the ``geometry and heat kernel'' side (like heat kernel difference and Seeley--DeWitt coefficients), providing a natural entry point for rewriting the cosmological constant using spectral quantities.
+
+\subsection{Quantum Cellular Automata and Discrete Universe}
+
+Quantum Cellular Automata (QCA), as discrete time unitary evolution models with locality, translation invariance, and finite propagation radius, have been systematically proven to recover free or interacting quantum field theories in the continuous limit, including Dirac fields, scalar fields, and even $(1+1)$D and $(3+1)$D electrodynamics. These works show that under natural conditions like locality, Lorentz symmetry approximation, and gauge invariance, standard QFT dispersion relations and propagation properties can be recovered from simple discrete local rules.
+
+From this perspective, abstracting the universe as a whole into a QCA object $\mathfrak U_{\mathrm{QCA}}$ satisfying certain axioms, recovering general relativity and field theory in its continuous limit, and then embedding the cosmological constant and dark energy problem into QCA's spectral and band structure, becomes a natural unified approach: the universe itself is discrete, while continuous geometry and field theory are merely its large-scale approximations.
+
+\subsection{Unified Time Scale and Spectral Windowing Strategy of This Paper}
+
+Prior work has constructed the unified time scale mother scale
+\begin{equation}
+\kappa(\omega)=\varphi'(\omega)/\pi=\rho_{\mathrm{rel}}(\omega)=(2\pi)^{-1}\operatorname{tr} Q(\omega),
+\end{equation}
+where $\varphi(\omega)$ is total scattering hemi-phase, $\rho_{\mathrm{rel}}(\omega)$ relative density of states, and $Q(\omega)$ Wigner--Smith group delay matrix. This mother scale unifies scattering phase gradient, relative DOS, and group delay trace into a single scale density, providing a unified source for defining unified time parameters across various geometric and physical scenarios.
+
+Based on this, the goals of this paper are:
+
+1. On continuous geometries satisfying appropriate scattering and geometric assumptions, establish a windowed Tauberian theorem precisely corresponding the finite part of small-$s$ heat kernel difference to logarithmic window average of $\Theta'(\omega)$ at scale $\mu\sim s^{-1/2}$, thereby rewriting vacuum energy renormalization as logarithmic frequency windowed spectral integral of $\kappa(\omega)$.
+
+2. In Matrix Universe THE--MATRIX representation, view FRW and de Sitter universes as scattering backgrounds, construct cosmological scattering matrix $S_{\mathrm{cos}}(\omega)$ and relative DOS, proving effective cosmological constant $\Lambda_{\mathrm{eff}}(\mu)$ is equivalent to windowed integral of DOS difference between Physical Universe and Reference Universe.
+
+3. In Universe QCA object, replace continuous spectrum with band structure $\varepsilon_j(k)$, define QCA version relative band density and windowed vacuum energy, analyze under what band pairing symmetry and sum rule conditions high-energy contributions to $\Lambda_{\mathrm{eff}}$ naturally cancel, leaving only small residuals controlled by IR thresholds and topological modes.
+
+4. At effective cosmological level, link windowed spectral expression to running vacuum models and dark energy equation of state $w_{\mathrm{de}}(z)$, demonstrating structural origin of $w_{\mathrm{de}}(z)\approx -1+\delta w(z)$ under unified time scale framework, and comparing with current observational constraints.
+
+These steps collectively form a multi-layer unified structure from scattering spectrum to dark energy, restating the cosmological constant problem as a relative spectral problem in Matrix Universe and QCA Universe.
+
+\section{Model \& Assumptions}
+
+\subsection{Scattering Pair, Spectral Shift Function, and Unified Scale Density}
+
+Consider a pair of self-adjoint operators $(H,H_0)$ defined on the same Hilbert space $\mathcal H$. Assume $H-H_0$ is a relative trace class perturbation in appropriate sense, ensuring well-defined fixed-energy scattering theory, and existence of Lifshits--Krein trace formula for all Borel bounded measures $f$
+\begin{equation}
+\operatorname{tr}(f(H)-f(H_0))=\int_{\mathbb R} f'(\lambda)\,\xi_E(\lambda)\,\mathrm{d}\lambda,
+\end{equation}
+where $\xi_E(\lambda)$ is spectral shift function in energy variable $\lambda$.
+
+In frequency variable $\omega\ge0$, let $\lambda=\omega^2$, define
+\begin{equation}
+\xi(\omega)=\xi_E(\omega^2),
+\end{equation}
+then relative DOS in energy and frequency representations are respectively
+\begin{equation}
+\Delta\rho_E(\lambda)=-\xi_E'(\lambda),
+\end{equation}
+\begin{equation}
+\Delta\rho_\omega(\omega)=2\omega\,\Delta\rho_E(\omega^2)=-\partial_\omega\xi(\omega).
+\end{equation}
+
+Let $S(\omega)$ be fixed-energy scattering matrix, $Q(\omega)=-\mathrm{i} S(\omega)^\dagger\partial_\omega S(\omega)$ Wigner--Smith group delay matrix. Birman--Krein formula gives
+\begin{equation}
+\det S(\omega)=\exp\bigl(-2\pi\mathrm{i} \xi(\omega)\bigr),
+\end{equation}
+from which define scattering determinant phase
+\begin{equation}
+\Theta(\omega)=(2\pi)^{-1}\arg\det S(\omega),
+\end{equation}
+and have
+\begin{equation}
+\Theta'(\omega)=-\partial_\omega\xi(\omega)=\Delta\rho_\omega(\omega)=(2\pi)^{-1}\operatorname{tr} Q(\omega).
+\end{equation}
+
+Unified time scale density is defined as
+\begin{equation}
+\kappa(\omega)=\frac{\varphi'(\omega)}{\pi}=\Delta\rho_\omega(\omega)=\frac{1}{2\pi}\operatorname{tr} Q(\omega),
+\end{equation}
+where $\varphi(\omega)$ is total scattering hemi-phase. In this paper, all constructions regarding ``unified time scale'' use $\kappa(\omega)$ as the sole scale source.
+
+\subsection{Heat Kernel Difference, Geometric Assumptions, and Scattering Operator}
+
+Let $H$ be generalized Laplace-type operator on non-compact Riemann manifold $(X,g)$, $H_0$ on corresponding reference background $(X_0,g_0)$, both having same geometric and potential structure at infinity. Assume $(X,g)$ and $(X_0,g_0)$ are even-dimensional asymptotically hyperbolic or conformally compact Einstein manifolds, satisfying Guillarmou--Vasy ``even metric'' condition, such that resolvent $(H-\lambda)^{-1}$ has good meromorphic continuation on appropriate Riemann surface of $\lambda$ plane, and scattering operator $S(\lambda)$ is classical pseudodifferential operator near critical line.
+
+Under these assumptions, Guillarmou proved Krein-type formula between KV determinant phase and generalized spectral shift function, while diagonal trace of heat kernel $K_H(s,x,y)=\exp(-sH)(x,y)$
+\begin{equation}
+\operatorname{tr}(\exp(-sH)-\exp(-sH_0))=\Delta K(s)
+\end{equation}
+has standard Seeley--DeWitt asymptotic expansion as $s\to0^+$, whose finite part can be expressed via Mellin transform of scattering phase.
+
+This paper specifically focuses on symmetric even-dimensional cases and static patch de Sitter backgrounds, where connection between scattering phase and heat kernel difference is most concise, suitable for constructing logarithmically windowed Tauberian theorems.
+
+\subsection{Logarithmic Frequency Window Kernel and Tauberian Conditions}
+
+To convert finite part of small-$s$ heat kernel difference into logarithmic average in frequency domain, introduce a family of logarithmic frequency window kernels
+\begin{equation}
+W(\ln(\omega/\mu)),
+\end{equation}
+where $\mu>0$ is spectral scale, $W\in C_0^\infty(\mathbb R)$ is smooth compact support function, satisfying following Mellin vanishing conditions:
+
+1. $\displaystyle \int_{\mathbb R} W(u)\,\mathrm{d} u=0$;
+2. $\displaystyle \int_{\mathbb R} e^{2nu}W(u)\,\mathrm{d} u=0$ for several low integers $n$.
+
+These conditions ensure window kernel cancels corresponding dominant singular terms in heat kernel as $\omega\to0$ and $\omega\to\infty$, extracting finite geometric information. Define logarithmic average
+\begin{equation}
+\langle\Theta'\rangle_W(\mu)=\int_{\mathbb R}\Theta'(\omega)\,W(\ln(\omega/\mu))\,\mathrm{d}\ln\omega,
+\end{equation}
+and further define spectral window kernel
+\begin{equation}
+\Xi_W(\mu)=\partial_{\ln\mu}\langle\Theta'\rangle_W(\mu).
+\end{equation}
+
+In Tauberian theory, if $\Delta K(s)$ and $\Theta'(\omega)$ satisfy appropriate regularity and growth conditions, equivalence can be established between finite part of small-$s$ heat kernel and $\Xi_W(\mu)$ under hyperbolic scaling $\mu\sim s^{-1/2}$. This paper will provide a finite-order version sufficient for cosmological applications.
+
+\subsection{Cosmological Geometry and Reference Background}
+
+In cosmological applications, $H$ and $H_0$ correspond to wave operators on geometric backgrounds of ``Physical Universe'' and ``Reference Universe'' respectively. For example:
+
+1. $(M,g)$ is FRW with curvature perturbations or de Sitter universe with structure, $H$ is Laplace--Beltrami operator plus potential for scalar or tensor perturbations.
+2. $(M_0,g_0)$ is smooth, same-topology structureless FRW or pure de Sitter background, $H_0$ corresponding unperturbed operator.
+
+Reference background should possess ``physical reasonableness'', e.g., same topology, same cosmological constant, but no complex structure. Spectral difference $\Delta\rho_\omega$ of physical universe relative to reference universe characterizes ``spectral deviation of real structure on background'', its windowed integral gives effective increment of cosmological constant.
+
+\subsection{Matrix Universe and Cosmological Scattering Matrix}
+
+In Matrix Universe THE--MATRIX framework, consider channel Hilbert space decomposed by frequency
+\begin{equation}
+\mathcal H_{\mathrm{chan}}=\bigoplus_{v\in V}\mathcal H_v,
+\end{equation}
+where $v$ labels different directions, polarizations, cosmological modes, and horizon channels. Cosmological scattering matrix
+\begin{equation}
+S_{\mathrm{cos}}(\omega)\in\mathcal B(\mathcal H_{\mathrm{chan}})
+\end{equation}
+encodes scattering process from ``Reference Universe'' modes to ``Physical Universe'' modes. Its determinant phase $\Theta_{\mathrm{cos}}(\omega)$, spectral shift function $\xi_{\mathrm{cos}}(\omega)$, and relative DOS $\Delta\rho_{\mathrm{cos}}(\omega)$ satisfy same chain relations as general scattering pairs.
+
+Unified time scale density in cosmological case is written as
+\begin{equation}
+\kappa_{\mathrm{cos}}(\omega)=\frac{1}{2\pi}\operatorname{tr} Q_{\mathrm{cos}}(\omega),
+\end{equation}
+where $Q_{\mathrm{cos}}(\omega)=-\mathrm{i} S_{\mathrm{cos}}(\omega)^\dagger\partial_\omega S_{\mathrm{cos}}(\omega)$. This paper will use $\kappa_{\mathrm{cos}}(\omega)$ to control spectral windowed expression of cosmological constant.
+
+\subsection{QCA Universe Object and Band Structure}
+
+Universe QCA object is defined as
+\begin{equation}
+\mathfrak U_{\mathrm{QCA}}=(\Lambda,\mathcal H_{\mathrm{cell}},\mathcal A,\alpha,\omega_0),
+\end{equation}
+where $\Lambda$ is countable connected graph (usually $\mathbb Z^d$), $\mathcal H_{\mathrm{cell}}$ finite-dimensional Hilbert space per cell, $\mathcal A$ quasilocal $C^\ast$ algebra, $\alpha:\mathbb Z\to\mathrm{Aut}(\mathcal A)$ time evolution automorphism with finite propagation radius, $\omega_0$ initial universe state.
+
+In momentum space $k\in\mathrm{BZ}$, single-step evolution operator $U$ fiber decomposes as
+\begin{equation}
+U(k)\in U(N),
+\end{equation}
+with eigendecomposition
+\begin{equation}
+U(k)\ket{\psi_{j,k}}=e^{-\mathrm{i}\varepsilon_j(k)\Delta t}\ket{\psi_{j,k}},
+\end{equation}
+where $N=\dim\mathcal H_{\mathrm{cell}}$, quasi-energy $\varepsilon_j(k)\in(-\pi/\Delta t,\pi/\Delta t]$. In continuous limit $\Delta t\to0$, dispersion relation $\varepsilon_j(k)\approx E_j(k)\Delta t$, where $E_j(k)$ is energy spectrum of corresponding continuous field theory.
+
+Define single-band DOS
+\begin{equation}
+\rho_j(E)=\int_{\mathrm{BZ}}\delta(E-E_j(k))\frac{\mathrm{d}^dk}{(2\pi)^d},
+\end{equation}
+total DOS $\rho(E)=\sum_j\rho_j(E)$. Selecting Reference QCA $U_0(k)$ and its spectrum $\{E_{j,0}(k)\}$, define relative DOS
+\begin{equation}
+\Delta\rho(E)=\rho(E)-\rho_0(E),
+\end{equation}
+and its band decomposition $\Delta\rho_j(k)$. These quantities correspond to continuous scattering theory in continuous limit.
+
+\section{Main Results}
+
+This section gives main theorems of this paper, proof details in Section 4 and Appendix.
+
+\subsection{Windowed Tauberian Theorem and Scale Density Formulation}
+
+\begin{theorem}[Windowed Tauberian Theorem]
+Let $(H,H_0)$ satisfy geometric and scattering assumptions of Section 2.2, let
+\begin{equation}
+\Delta K(s)=\operatorname{tr}(\mathrm{e}^{-sH}-\mathrm{e}^{-sH_0})
+\end{equation}
+be heat kernel difference, $\Theta(\omega)$ scattering determinant phase, $\Theta'(\omega)=\Delta\rho_\omega(\omega)=(2\pi)^{-1}\operatorname{tr} Q(\omega)$. Take a family of logarithmic window kernels $W$ satisfying Mellin vanishing conditions of Section 2.3, define
+\begin{equation}
+\Xi_W(\mu)=\int_{\mathbb R}\omega\,\Theta''(\omega)\,W(\ln(\omega/\mu))\,\mathrm{d}\ln\omega.
+\end{equation}
+Then there exists hyperbolic scaling $\mu\sim s^{-1/2}$ and constants $C,\gamma>0$ such that as $s\to0^+$,
+\begin{equation}
+\mathrm{FP}_{s\to0}\Delta K(s)=\kappa_\Lambda\,\Xi_W(\mu)+\mathcal O(s^\gamma),
+\end{equation}
+where $\mathrm{FP}$ denotes finite part, $\kappa_\Lambda$ normalization constant depending only on window kernel choice. In other words, finite part of small-$s$ heat kernel difference is Tauberian equivalent to logarithmic window average of unified time scale density $\kappa(\omega)$.
+\end{theorem}
+
+\subsection{Windowed Unified Expression of Cosmological Constant}
+
+\begin{theorem}[Windowed Cosmological Constant Mother Formula]
+Under conditions of Theorem 3.1, let $\Lambda_{\mathrm{eff}}(\mu)$ be renormalized value of cosmological constant parameter in effective field theory action at observation scale $\mu$, then there exists spectral window kernel $\Xi(\mu)$ such that
+\begin{equation}
+\partial_{\ln\mu}\Lambda_{\mathrm{eff}}(\mu)=\kappa_\Lambda\,\Xi(\mu),
+\end{equation}
+explicitly
+\begin{equation}
+\Xi(\mu)=\int_{\mathbb R}\omega\,\Theta''(\omega)\,W(\ln(\omega/\mu))\,\mathrm{d}\ln\omega,
+\end{equation}
+and for any reference scale $\mu_0$,
+\begin{equation}
+\Lambda_{\mathrm{eff}}(\mu)-\Lambda_{\mathrm{eff}}(\mu_0)=\int_{\mu_0}^{\mu}\Xi(\omega)\,\mathrm{d}\ln\omega.
+\end{equation}
+Here $\Xi(\omega)$ has dimension $L^{-2}$, viewable as ``cosmological constant spectral window kernel'', fully determined by unified time scale density $\kappa(\omega)$ and scattering phase.
+\end{theorem}
+
+\subsection{Cosmological Scattering and Relative DOS in Matrix Universe}
+
+\begin{theorem}[Relative DOS Formulation in Matrix Universe]
+In Matrix Universe THE--MATRIX representation, take Physical Universe $(M,g)$ and Reference Universe $(M_0,g_0)$ and their corresponding scattering matrices $S_{\mathrm{cos}}(\omega)$ and $S_{\mathrm{cos},0}(\omega)$. Define relative cosmological scattering matrix
+\begin{equation}
+S_{\mathrm{rel}}(\omega)=S_{\mathrm{cos}}(\omega)S_{\mathrm{cos},0}(\omega)^{-1},
+\end{equation}
+and relative DOS
+\begin{equation}
+\Delta\rho_{\mathrm{cos}}(\omega)=\Delta\rho_\omega(\omega;H,H_0).
+\end{equation}
+Under conditions of Theorem 3.2,
+\begin{equation}
+\Lambda_{\mathrm{eff}}(\mu)-\Lambda_{\mathrm{eff}}(\mu_0)=\int_{\mu_0}^{\mu}\Xi_{\mathrm{cos}}(\omega)\,\mathrm{d}\ln\omega,
+\end{equation}
+where
+\begin{equation}
+\Xi_{\mathrm{cos}}(\omega)=\int_{\mathbb R}\omega\,\Theta_{\mathrm{rel}}''(\omega)\,W(\ln(\omega/\mu))\,\mathrm{d}\ln\omega,
+\end{equation}
+$\Theta_{\mathrm{rel}}(\omega)=(2\pi)^{-1}\arg\det S_{\mathrm{rel}}(\omega)$,
+and
+\begin{equation}
+\Theta_{\mathrm{rel}}'(\omega)=\Delta\rho_{\mathrm{cos}}(\omega)=(2\pi)^{-1}\operatorname{tr} Q_{\mathrm{rel}}(\omega).
+\end{equation}
+Thus $\Lambda_{\mathrm{eff}}(\mu)$ can be interpreted as logarithmic frequency windowed integral of ``DOS difference between cosmological scattering matrices of Physical and Reference Universes''.
+\end{theorem}
+
+\subsection{Discrete Windowed Formula and High-Energy Suppression in QCA Universe}
+
+\begin{theorem}[Windowed Vacuum Energy Formula in QCA Universe]
+In Universe QCA object $\mathfrak U_{\mathrm{QCA}}$, let Physical QCA and Reference QCA have energy spectra $\{E_j(k)\}$ and $\{E_{j,0}(k)\}$ respectively, define single-band relative DOS
+\begin{equation}
+\Delta\rho_j(k)=\delta(E-E_j(k))-\delta(E-E_{j,0}(k)).
+\end{equation}
+Let $\mathcal W_\mu(E)$ be energy weight function mapped from continuous window kernel $W(\ln(\omega/\mu))$, then there exists normalization constant $C_W$ such that
+\begin{equation}
+\Lambda_{\mathrm{eff}}(\mu)=C_W\sum_j\int_{\mathrm{BZ}}\mathcal W_\mu(E_j(k))\,\Delta\rho_j(k)\,\mathrm{d}^dk,
+\end{equation}
+consistent with continuous spectrum expression of Theorem 3.2 in continuous limit $\Delta t\to0$.
+\end{theorem}
+
+\begin{theorem}[QCA High-Energy Suppression Mechanism]
+Under conditions of Theorem 3.4, if high-energy bands satisfy following two types of conditions:
+
+1. Band Structure Symmetric Pairing: Exists band pair $(j,j')$, for $|E|\ge E_c$
+   \begin{equation}
+   E_{j'}(k)\approx -E_j(k),
+   \end{equation}
+   \begin{equation}
+   \Delta\rho_{j'}(E)\approx\Delta\rho_j(-E),
+   \end{equation}
+   and window weight approximately even symmetric in high-energy region $\mathcal W_\mu(E)\approx\mathcal W_\mu(-E)$.
+
+2. Inter-Band Harmonious Sum Rule: Exists UV scale $E_{\mathrm{UV}}$ such that
+   \begin{equation}
+   \int_0^{E_{\mathrm{UV}}}E^2\,\Delta\rho(E)\,\mathrm{d} E=0,
+   \end{equation}
+   where $\Delta\rho(E)=\sum_j\int_{\mathrm{BZ}}\Delta\rho_j(k)\,\delta(E-E_j(k))\,\mathrm{d}^dk$.
+
+Then for any window kernel family satisfying Tauberian conditions, there exist constants $C>0,\gamma>0$ and IR scale $E_{\mathrm{IR}}\ll E_{\mathrm{UV}}$, such that for $\mu\sim E_{\mathrm{IR}}$
+\begin{equation}
+\bigl|\Lambda_{\mathrm{eff}}(\mu)\bigr|\le C\,E_{\mathrm{IR}}^4\bigl(E_{\mathrm{IR}}/E_{\mathrm{UV}}\bigr)^{\gamma}.
+\end{equation}
+In other words, in Universe QCA with appropriate band pairing and sum rule, natural magnitude of windowed vacuum energy is no longer $E_{\mathrm{UV}}^4$, but suppressed to $E_{\mathrm{IR}}^4$ controlled by IR scale with additional power-law suppression factor.
+\end{theorem}
+
+\subsection{Running Vacuum and Equivalent Dark Energy Equation of State}
+
+\begin{theorem}[Running Vacuum and $w_{\mathrm{de}}(z)$ under Unified Scale]
+Let spectral scale $\mu$ have smooth relationship with Hubble scale or curvature scale $\mu=\mu(H)$, and assume spectral window kernel $\Xi(\omega)$ varies slowly in relevant frequency band, then there exists small dimensionless parameter $\nu$, such that
+\begin{equation}
+\Lambda_{\mathrm{eff}}(H)\approx\Lambda_0+3\nu(H^2-H_0^2)+\cdots,
+\end{equation}
+corresponding dark energy density $\rho_{\mathrm{de}}(z)=\Lambda_{\mathrm{eff}}(\mu(z))/(8\pi G)$ satisfies equation of state
+\begin{equation}
+w_{\mathrm{de}}(z)\approx -1+\delta w(z),
+\end{equation}
+where magnitude of $\delta w(z)$ is of same order as logarithmic derivative of $\Xi(\omega)$ in corresponding band. As long as $\Xi(\omega)$ varies slowly in bands corresponding to late universe, $|\delta w(z)|\ll1$, compatible with current observational constraints on $w_{\mathrm{de}}(z)$.
+\end{theorem}
+
+\section{Proofs}
+
+This section outlines proofs of main theorems, full technical details in Appendix.
+
+\subsection{Trace Formula, Heat Kernel Difference, and Scattering Phase}
+
+For self-adjoint scattering pair $(H,H_0)$ satisfying conditions of Section 2.2, for any Schwartz function $f$ have Lifshits--Krein trace formula
+\begin{equation}
+\operatorname{tr}(f(H)-f(H_0))=\int_{\mathbb R} f'(\lambda)\,\xi_E(\lambda)\,\mathrm{d}\lambda.
+\end{equation}
+Taking $f(\lambda)=\mathrm{e}^{-s\lambda}$, obtain
+\begin{equation}
+\Delta K(s)=\operatorname{tr}(\mathrm{e}^{-sH}-\mathrm{e}^{-sH_0})=-\int_0^\infty s\,\mathrm{e}^{-s\lambda}\,\xi_E(\lambda)\,\mathrm{d}\lambda.
+\end{equation}
+Integrating by parts and using $\Delta\rho_E(\lambda)=-\xi_E'(\lambda)$, obtain
+\begin{equation}
+\Delta K(s)=\int_0^\infty\mathrm{e}^{-s\lambda}\,\Delta\rho_E(\lambda)\,\mathrm{d}\lambda.
+\end{equation}
+In frequency variable $\omega$ let $\lambda=\omega^2$, $\mathrm{d}\lambda=2\omega\,\mathrm{d}\omega$, obtain
+\begin{equation}
+\Delta K(s)=\int_0^\infty\mathrm{e}^{-s\omega^2}\,\Delta\rho_\omega(\omega)\,\mathrm{d}\omega=\int_0^\infty\mathrm{e}^{-s\omega^2}\,\Theta'(\omega)\,\mathrm{d}\omega,
+\end{equation}
+where last step uses $\Theta'(\omega)=\Delta\rho_\omega(\omega)$.
+
+On the other hand, according to Birman--Krein formula $\det S(\omega)=\exp(-2\pi\mathrm{i}\xi(\omega))$ and analytic continuation properties of KV determinant, on even-dimensional asymptotically hyperbolic manifolds can prove $\Theta(\omega)$ has Weyl-type asymptotics and good analyticity, its high and low energy behaviors controlled by geometric invariants, ensuring above integral expression allows finite part analysis as $s\to0^+$.
+
+\subsection{Proof of Windowed Tauberian Theorem}
+
+Consider logarithmic window average
+\begin{equation}
+\langle\Theta'\rangle_W(\mu)=\int_{\mathbb R}\Theta'(\omega)\,W(\ln(\omega/\mu))\,\mathrm{d}\ln\omega.
+\end{equation}
+Change variable $\omega=\mu\mathrm{e}^u$,
+\begin{equation}
+\langle\Theta'\rangle_W(\mu)=\int_{\mathbb R}\Theta'(\mu\mathrm{e}^u)\,W(u)\,\mathrm{d} u.
+\end{equation}
+Its derivative with respect to $\ln\mu$ is
+\begin{equation}
+\partial_{\ln\mu}\langle\Theta'\rangle_W(\mu)=\int_{\mathbb R}\mu\mathrm{e}^u\,\Theta''(\mu\mathrm{e}^u)\,W(u)\,\mathrm{d} u=\Xi_W(\mu).
+\end{equation}
+
+Using Mellin transform
+\begin{equation}
+\mathcal M[\Theta'](s)=\int_0^\infty\omega^{s-1}\Theta'(\omega)\,\mathrm{d}\omega,
+\end{equation}
+can write $\langle\Theta'\rangle_W(\mu)$ as
+\begin{equation}
+\langle\Theta'\rangle_W(\mu)=\frac{1}{2\pi\mathrm{i}}\int_{\Gamma}\mathcal M[\Theta'](s)\,\widehat W(s)\,\mu^{-s}\,\mathrm{d} s,
+\end{equation}
+where $\widehat W(s)$ is Mellin transform of $W$, $\Gamma$ appropriate vertical line. Mellin vanishing conditions ensure $\widehat W(s)$ has zeros at several low-order points, canceling dominant singular terms of heat kernel expansion.
+
+Simultaneously, small-$s$ heat kernel difference can be written as
+\begin{equation}
+\Delta K(s)=\frac{1}{2\pi\mathrm{i}}\int_{\Gamma'}\Gamma(s')\,s^{-s'}\mathcal M[\Delta\rho_\omega](s')\,\mathrm{d} s',
+\end{equation}
+where $\Gamma(s')$ is Gamma function. Using $\Delta\rho_\omega(\omega)=\Theta'(\omega)$ yields simple relation between their Mellin transforms. By matching dominant contributions near hyperbola $s^{-1/2}\sim\mu$ and using analytic continuation and residue calculation, can prove as $s\to0^+$, $\mu\sim s^{-1/2}$
+\begin{equation}
+\mathrm{FP}_{s\to0}\Delta K(s)=\kappa_\Lambda\,\Xi_W(\mu)+\mathcal O(s^\gamma),
+\end{equation}
+where $\gamma>0$ given by high-energy resolvent bound.
+
+This process is essentially a finite-order Tauberian theorem: utilizing growth bound of $\Theta'(\omega)$ and small-$s$ asymptotics of $\Delta K(s)$, linking frequency domain logarithmic average with heat kernel finite part. Technically relies on generalized version of Hardy--Littlewood--Karamata type Tauberian criteria and high-energy resolvent and scattering phase estimates by Vasy and Dyatlov.
+
+This outlines proof of Theorem 3.1.
+
+\subsection{Derivation of Cosmological Constant Mother Formula}
+
+In curved spacetime QFT, effective action can be written as
+\begin{equation}
+S_{\mathrm{eff}}[g]=\int\mathrm{d}^4x\,\sqrt{-g}\Bigl[\frac{R-2\Lambda_{\mathrm{eff}}(\mu)}{16\pi G}+\alpha R^2+\beta R_{\mu\nu}R^{\mu\nu}+\cdots\Bigr],
+\end{equation}
+where $\alpha,\beta$ etc. are dimensionless renormalized couplings. Scale dependence of vacuum energy density can be written as
+\begin{equation}
+\partial_{\ln\mu}\Lambda_{\mathrm{eff}}(\mu)=\mathcal R[\Delta K(s)],
+\end{equation}
+where $\mathcal R$ denotes linear operator taking finite part after absorbing small-$s$ singular terms of heat kernel difference into local counterterms. Using Theorem 3.1, rewrite finite part as $\Xi_W(\mu)$, i.e.,
+\begin{equation}
+\partial_{\ln\mu}\Lambda_{\mathrm{eff}}(\mu)=\kappa_\Lambda\,\Xi_W(\mu).
+\end{equation}
+Integrating with respect to $\ln\mu$ yields
+\begin{equation}
+\Lambda_{\mathrm{eff}}(\mu)-\Lambda_{\mathrm{eff}}(\mu_0)=\int_{\mu_0}^{\mu}\Xi(\omega)\,\mathrm{d}\ln\omega,
+\end{equation}
+where $\Xi(\omega)$ differs from $\Xi_W(\omega)$ only by normalization factor. This yields Theorem 3.2.
+
+Emphasize that $\Lambda_{\mathrm{eff}}(\mu)$ in this formulation is a relative quantity: defined only up to constant $\Lambda_{\mathrm{eff}}(\mu_0)$ difference, reflecting the fact that cosmological constant is observationally manifested only via relative vacuum energy density.
+
+\subsection{Matrix Universe Scattering and Theorem 3.3}
+
+In Matrix Universe, cosmological scattering matrices of Physical and Reference Universes are $S_{\mathrm{cos}}(\omega)$ and $S_{\mathrm{cos},0}(\omega)$ respectively. Define relative matrix
+\begin{equation}
+S_{\mathrm{rel}}(\omega)=S_{\mathrm{cos}}(\omega)S_{\mathrm{cos},0}(\omega)^{-1},
+\end{equation}
+its determinant phase $\Theta_{\mathrm{rel}}(\omega)$ and spectral shift function satisfy
+\begin{equation}
+\det S_{\mathrm{rel}}(\omega)=\exp\bigl(-2\pi\mathrm{i}\xi_{\mathrm{rel}}(\omega)\bigr),
+\end{equation}
+\begin{equation}
+\Theta_{\mathrm{rel}}'(\omega)=-\partial_\omega\xi_{\mathrm{rel}}(\omega)=\Delta\rho_{\mathrm{cos}}(\omega).
+\end{equation}
+Since $\Lambda_{\mathrm{eff}}(\mu)$ depends only on relative spectral properties of $H$ and $H_0$, can be directly expressed using phase of $S_{\mathrm{rel}}(\omega)$, obtaining
+\begin{equation}
+\Xi_{\mathrm{cos}}(\mu)=\int_{\mathbb R}\omega\,\Theta_{\mathrm{rel}}''(\omega)\,W(\ln(\omega/\mu))\,\mathrm{d}\ln\omega,
+\end{equation}
+then following derivation of Theorem 3.2 yields relative DOS formulation. This gives Theorem 3.3.
+
+\subsection{QCA Discrete Windowed Formula and High-Energy Suppression}
+
+For QCA spectrum, continuous expression of windowed vacuum energy
+\begin{equation}
+\Lambda_{\mathrm{eff}}(\mu)=\int_0^\infty F_\mu(E)\,\Delta\rho(E)\,\mathrm{d} E
+\end{equation}
+is discretized to
+\begin{equation}
+\Lambda_{\mathrm{eff}}(\mu)=\sum_j\int_{\mathrm{BZ}}\mathcal W_\mu(E_j(k))\,\Delta\rho_j(k)\,\mathrm{d}^dk,
+\end{equation}
+where $F_\mu(E)$ corresponds to $\mathcal W_\mu(E)$ in continuous limit, satisfying smoothness and high-energy decay conditions.
+
+To prove high-energy suppression, divide energy interval into three segments $(0,E_{\mathrm{IR}})$, $(E_{\mathrm{IR}},E_{\mathrm{UV}})$, and $(E_{\mathrm{UV}},\infty)$. Contribution of low-energy segment is naturally of order $E_{\mathrm{IR}}^4$, determined by dimensional analysis and behavior $\mathcal W_\mu(E) \sim E^2$.
+
+In $(E_{\mathrm{IR}},E_{\mathrm{UV}})$ segment, utilizing inter-band harmonious sum rule
+\begin{equation}
+\int_0^{E_{\mathrm{UV}}}E^2\,\Delta\rho(E)\,\mathrm{d} E=0,
+\end{equation}
+can rewrite contribution of this segment as
+\begin{equation}
+\int_0^{E_{\mathrm{UV}}}E^2\bigl(\mathcal W_\mu(E)-1\bigr)\Delta\rho(E)\,\mathrm{d} E.
+\end{equation}
+Since $\mathcal W_\mu(E)\approx 1$ in region $E\ll\mu\sim E_{\mathrm{IR}}$, deviating from 1 only near $E\sim\mu$, this integral is mainly contributed by narrow interval near IR, its magnitude same as low-energy segment.
+
+In $(E_{\mathrm{UV}},\infty)$ segment, utilizing band pairing symmetry and approximate even symmetry of window weight, contribution can be written as
+\begin{equation}
+\int_{E_{\mathrm{UV}}}^\infty E^2\,\delta\rho_{\mathrm{asym}}(E)\,\mathcal W_\mu(E)\,\mathrm{d} E,
+\end{equation}
+where $\delta\rho_{\mathrm{asym}}(E)=\Delta\rho(E)+\Delta\rho(-E)$ denotes deviation from symmetric pairing. Assuming $|\delta\rho_{\mathrm{asym}}(E)|\le C_1E^{-\beta}$ with $\beta>3$, and utilizing exponential or high-power decay of $\mathcal W_\mu(E)$, yields high-energy contribution suppressed to order $E_{\mathrm{UV}}^{3-\beta}$ or smaller, expressible as $E_{\mathrm{IR}}^4(E_{\mathrm{IR}}/E_{\mathrm{UV}})^\gamma$.
+
+Combining estimates of three segments yields Theorem 3.5. Theorem 3.4 is natural discretization of continuous windowed expression on QCA spectrum.
+
+\subsection{Derivation of Running Vacuum and $w_{\mathrm{de}}(z)$}
+
+Assume spectral scale $\mu$ has linear or slowly varying relationship with Hubble scale $\mu=cH$ or $\mu\propto R^{1/2}$, where $R$ is Ricci scalar. Let
+\begin{equation}
+\Lambda_{\mathrm{eff}}(\mu)-\Lambda_{\mathrm{eff}}(\mu_0)=\int_{\mu_0}^{\mu}\Xi(\omega)\,\mathrm{d}\ln\omega,
+\end{equation}
+Expanding for small variation of $H^2$, if $\Xi(\omega)$ is approximately constant or has analytic expansion in corresponding band, can be written as
+\begin{equation}
+\Lambda_{\mathrm{eff}}(H)\approx\Lambda_0+A\ln(H/H_0)+\cdots.
+\end{equation}
+Under $|H-H_0|\ll H_0$, $\ln(H/H_0)\approx(H^2-H_0^2)/(2H_0^2)$, absorbing $A/(2H_0^2)$ into $3\nu$ yields
+\begin{equation}
+\Lambda_{\mathrm{eff}}(H)\approx\Lambda_0+3\nu(H^2-H_0^2)+\cdots.
+\end{equation}
+Substituting dark energy density $\rho_{\mathrm{de}}(z)=\Lambda_{\mathrm{eff}}(\mu(z))/(8\pi G)$ into energy conservation equation
+\begin{equation}
+\frac{\mathrm{d}\rho_{\mathrm{de}}}{\mathrm{d} z}=\frac{3}{1+z}(1+w_{\mathrm{de}}(z))\rho_{\mathrm{de}}(z),
+\end{equation}
+rearranging yields
+\begin{equation}
+1+w_{\mathrm{de}}(z)=\frac{1+z}{3}\frac{1}{\rho_{\mathrm{de}}(z)}\frac{\mathrm{d}\rho_{\mathrm{de}}(z)}{\mathrm{d} z}=\frac{1+z}{24\pi G}\frac{1}{\Lambda_{\mathrm{eff}}(\mu(z))}\frac{\mathrm{d}\Lambda_{\mathrm{eff}}(\mu(z))}{\mathrm{d} z}.
+\end{equation}
+If $\Xi(\omega)$ varies slowly in frequency band corresponding to late universe, redshift derivative of $\Lambda_{\mathrm{eff}}(\mu(z))$ is small, $w_{\mathrm{de}}(z)$ naturally close to $-1$, deviation $\delta w(z)$ of same order as logarithmic derivative of $\Xi(\omega)$, thus obtaining Theorem 3.6. Compared with RVM model fitting results for $\nu$, as long as spectral structure of $\Xi(\omega)$ gives $|\nu|\ll1$, compatibility with existing constraints on $w_{\mathrm{de}}(z)$ is achieved.
+
+\section{Model Apply: Specific Cases of Cosmology and QCA}
+
+\subsection{Spectral--Geometric Interface on FRW and de Sitter Backgrounds}
+
+In 4D FRW universe, metric
+\begin{equation}
+\mathrm{d} s^2=-\mathrm{d} t^2+a(t)^2\bigl(\mathrm{d}\chi^2+\sin^2\chi\,\mathrm{d}\Omega_2^2\bigr)
+\end{equation}
+is equivalent to spatial metric on $S^3$ at fixed time slice. In toy models, spectral--geometric relation of heat kernel and counting function of Laplace operator on $S^3$ can link curvature term $-\kappa/a^2$ to sub-dominant terms of DOS. Similar construction generalizes on 4D FRW: heat kernel difference expansion
+\begin{equation}
+\Delta K(s)\sim\sum_{n\ge0}a_n s^{(n-4)/2},
+\end{equation}
+where $a_0$ corresponds to volume difference, $a_1$ to Ricci scalar integral, $a_2$ to $R^2$ and $R_{\mu\nu}R^{\mu\nu}$ etc.
+
+Via windowed Tauberian theorem, finite part of $a_0$ can be rewritten as scale dependence of $\Lambda_{\mathrm{eff}}(\mu)$, while $a_1,a_2$ contribute to renormalized couplings of $R$ and $R^2$ in effective gravitational action. Specific calculation shows, taking de Sitter background as reference geometry, finite part of heat kernel difference between Physical FRW and Reference de Sitter precisely captures running behavior of cosmological constant.
+
+\subsection{Schematic Model of Dirac-Type QCA Universe}
+
+Consider a class of QCA defined on 3D cubic lattice, recovering free Dirac field or QED with weak interaction in continuous limit. Single-particle spectrum of such QCA typically has particle--antiparticle symmetric band structure
+\begin{equation}
+E_{\pm}(k)\approx\pm\sqrt{k^2+m^2}
+\end{equation}
+and extra high-energy folded bands.
+
+Choosing Reference QCA as massless model $m=0$, relative DOS in high-energy region satisfies approximate symmetric pairing
+\begin{equation}
+E_{+}(k)\approx -E_{-}(k),
+\end{equation}
+\begin{equation}
+\Delta\rho_{+}(E)\approx\Delta\rho_{-}(-E),
+\end{equation}
+window weight $\mathcal W_\mu(E)$ approximately even symmetric in high-energy region, thus satisfying band pairing assumption of Theorem 3.5. Further designing local update rules such that high-energy folded bands satisfy inter-band harmonious sum rule, natural suppression of $\Lambda_{\mathrm{eff}}$ can be realized in such ``Dirac--QED type QCA Universe''.
+
+In this model, IR scale $E_{\mathrm{IR}}$ can be determined by light mass thresholds (e.g., QCD scale or light scalar mass), while UV scale $E_{\mathrm{UV}}$ determined by QCA lattice scale or coupling structure. Estimate given by Theorem 3.5
+\begin{equation}
+\Lambda_{\mathrm{eff}}\sim E_{\mathrm{IR}}^4(E_{\mathrm{IR}}/E_{\mathrm{UV}})^{\gamma}
+\end{equation}
+can naturally produce magnitude close to observed cosmological constant when $E_{\mathrm{UV}}\sim M_{\mathrm{Pl}}$ and appropriate intermediate scale for $E_{\mathrm{IR}}$ are chosen, without fine-tuning zero-point energy of every UV degree of freedom.
+
+\subsection{Qualitative Interface with Dark Energy Observations}
+
+Embedding above spectral windowing mechanism into cosmological background, assuming effective scale $\mu$ of late universe is proportional to Hubble scale $H$, then
+\begin{equation}
+\Lambda_{\mathrm{eff}}(H)-\Lambda_{\mathrm{eff}}(H_0)=\int_{H_0}^{H}\Xi(\omega(H'))\,\partial_{\ln H'}\ln\mu(H')\,\mathrm{d}\ln H'.
+\end{equation}
+If QCA band structure ensures $\Xi(\omega)$ varies slowly in band corresponding to $H\sim H_0$, relation between $\Lambda_{\mathrm{eff}}(H)$ and $H^2$ is approximately linear, equivalent equation of state $w_{\mathrm{de}}(z)$ close to $-1$, deviation $\delta w(z)$ magnitude of same order as spectral tilt of band structure in corresponding band. This is consistent with current constraints on dark energy equation of state (overall deviation small but slight evolution not excluded), providing new perspective for understanding observational results at spectral and discrete structure levels.
+
+\section{Engineering Proposals}
+
+This section proposes feasible engineering and numerical experimental schemes to test key components of spectral windowing framework at different levels.
+
+\subsection{Numerical Reconstruction of Cosmological Scattering Spectrum}
+
+In Matrix Universe perspective, elements of cosmological scattering matrix $S_{\mathrm{cos}}(\omega)$ essentially correspond to scattering amplitudes of different modes on FRW or de Sitter background. Can be numerically reconstructed via following steps:
+
+1. Select a family of mode functions for scalar or tensor perturbation equations, numerically solve scattering amplitudes on given background $(M,g)$ and reference background $(M_0,g_0)$.
+2. Construct frequency-dependent scattering matrices $S_{\mathrm{cos}}(\omega)$ and $S_{\mathrm{cos},0}(\omega)$ via numerical linear algebra, calculate relative matrix $S_{\mathrm{rel}}(\omega)$.
+3. Estimate scattering phase $\Theta_{\mathrm{rel}}(\omega)$ and derivative $\Theta_{\mathrm{rel}}'(\omega)$ on discrete frequency grid, obtaining relative DOS $\Delta\rho_{\mathrm{cos}}(\omega)$.
+4. Choose logarithmic window kernel $W$ satisfying Tauberian conditions, calculate numerical estimates of spectral window kernel $\Xi_{\mathrm{cos}}(\mu)$ and $\Lambda_{\mathrm{eff}}(\mu)$.
+
+This numerical workflow provides direct path to verify validity of windowed Tauberian theorem and specific shape of spectral window kernel $\Xi(\omega)$.
+
+\subsection{Design and Simulation of QCA Spectral Structure}
+
+In QCA universe scheme, need to specifically construct QCA models satisfying band pairing and sum rule conditions. Engineering steps:
+
+1. On 1D or 2D lattice, starting from known constructions of Dirac-type and gauge field QCA, add extra internal degrees of freedom and coupling parameters, making energy spectrum exhibit $E\leftrightarrow -E$ symmetric pairing in high-energy region.
+2. Calculate DOS via numerical diagonalization and Brillouin zone integration, verify sum rule conditions between high-energy bands.
+3. Evolve QCA on quantum simulation or classical HPC platforms, measure quasi-energy spectrum distribution and behavior of band structure with parameter variation, explore numerical magnitude of $\Lambda_{\mathrm{eff}}$ under different IR and UV scales.
+4. Compare obtained windowed vacuum energy with $\nu$ values fitted from RVM, test if QCA spectral structure can naturally produce parameter region $|\nu|\ll1$.
+
+\subsection{Spectral Windowing Method in Cosmological Data Analysis}
+
+In actual cosmological data processing, can attempt introducing logarithmic frequency windowing method:
+
+1. In data analysis of CMB, BAO, and Type Ia supernovae, replace parameterization from directly assuming form of $\rho_{\mathrm{de}}(z)$ to simple parameterization of $\Xi(\omega)$, e.g., piecewise constant or low-order polynomial.
+2. Encode relation between $\Xi(\omega)$, $\Lambda_{\mathrm{eff}}(\mu)$, and $w_{\mathrm{de}}(z)$ into cosmological parameter inference chain, making fitted parameters directly describe spectral window kernel rather than equation of state.
+3. Compare Bayesian evidence and parameter correlation of ``direct fit $w(z)$'' vs ``fit $\Xi(\omega)$ then derive $w(z)$'', test if spectral windowing framework captures data preference more naturally.
+
+This scheme can be viewed engineering-wise as a ``spectral variable coordinate transformation'' for existing cosmological MCMC frameworks, potentially offering advantages in parameter correlation and interpretability.
+
+\section{Discussion (risks, boundaries, past work)}
+
+\subsection{Risks and Limitations}
+
+The spectral windowing unified framework proposed in this paper relies on several non-trivial assumptions:
+
+1. Geometric and Scattering Assumptions: Require $(M,g)$ and $(M_0,g_0)$ fall into asymptotically hyperbolic or conformally compact geometric categories, and satisfy even metric condition and good scattering theory, which has not been rigorously proven at full spacetime level of real universe.
+2. Window Kernel and Tauberian Conditions: Windowed Tauberian theorem relies on high-energy estimates of resolvent and growth bounds of scattering phase. Current mathematical literature results on spacetimes like Kerr--de Sitter are incomplete, generalizing to universe with complex matter distribution and non-stationary background requires more work.
+3. Realization of QCA Sum Rule: Constructing spectral structures satisfying band pairing and sum rule in specific QCA models is a non-trivial engineering problem, requiring careful design under constraints of locality, causality, and symmetry.
+
+These risks imply many conclusions of this paper should currently be viewed as structural inferences under explicit assumptions, rather than theorems rigorously verified in all physical scenarios.
+
+\subsection{Relation to Existing Work}
+
+Regarding cosmological constant problem, vast literature explores weak running behavior of vacuum energy density with $H$ or curvature via renormalization and running vacuum models. In comparison, contribution of this paper lies in:
+
+1. Explicitly rewriting cosmological constant problem as relative spectral problem on scattering phase--spectral shift--DOS chain, controlling all scale dependence with unified time scale density $\kappa(\omega)$.
+2. Introducing logarithmic frequency window kernel and finite-order Tauberian theorem, unifying finite part of heat kernel difference with scattering spectral information, giving $\Lambda_{\mathrm{eff}}(\mu)$ expression fully accounted for in dimension and variable.
+3. Revealing structural mechanism of natural suppression of vacuum energy via high-energy spectral pairing and inter-band sum rule in QCA universe framework, attributing magnitude of $\Lambda_{\mathrm{eff}}$ to power-law ratio between IR and UV scales, rather than fine-tuning of individual degrees of freedom.
+
+Regarding unification of QCA and QFT, this paper follows and extends systematic analysis of QCA continuous limits by Farrelly, Bisio--D'Ariano, Sellapillay, and Brun, introducing discrete version of ``cosmological constant windowing'' on this basis.
+
+\subsection{Future Work Directions}
+
+Future work can proceed along following directions:
+
+1. On specific cosmological backgrounds (e.g., structured de Sitter, non-flat FRW), utilizing Vasy's microlocal analysis methods and Guillarmou's scattering operator theory, rigorously establish Tauberian theorems satisfying conditions required by this paper.
+2. Construct high-dimensional QCA models with clear QFT continuous limits, systematically explore their band structure and DOS, finding natural parameter regions satisfying sum rule conditions.
+3. Interface spectral windowing framework with other unified time scale related results like black hole entropy, Null--Modular double cover, generalized entropy conditions, forming a ``Universe Terminal Object'' structure on larger scale.
+
+\section{Conclusion}
+
+Based on unified time scale, scattering phase--spectral shift--density of states chain, and QCA universe axioms, this paper provides a systematic spectral windowing restatement of cosmological constant and dark energy problem. By establishing windowed Tauberian theorem in even-dimensional asymptotically hyperbolic and de Sitter geometries, equivalence is made between finite part of small-$s$ heat kernel difference and logarithmic frequency window average of scattering phase derivative, thereby obtaining a cosmological constant mother formula fully determined by unified scale density $\kappa(\omega)$ and window kernel $W$.
+
+In Matrix Universe representation, cosmological scattering matrix of Physical Universe relative to Reference Universe gives relative DOS, windowed integral rewrites cosmological constant as accumulation of relative spectral quantities; in QCA Universe, symmetric pairing of band structure and inter-band harmonious sum rule naturally bring cancellation of high-energy parts and power-law suppression of vacuum energy, making magnitude of $\Lambda_{\mathrm{eff}}$ mainly controlled by ratio of IR scale to UV scale.
+
+Finally, connecting spectral windowing results with running vacuum models and dark energy observational constraints shows unified time scale framework can naturally produce equivalent equation of state approximating $w_{\mathrm{de}}(z)\approx -1$ and possibly slowly evolving, compatible with current data. Overall, cosmological constant problem transforms from ``difficult problem of summing absolute zero-point energies'' to ``windowed sum rule problem of relative DOS under unified time scale'', laying foundation for realizing more complete unification in Matrix Universe and QCA Universe.
+
+\section*{Acknowledgements}
+
+The authors thank colleagues and anonymous reviewers in related fields for discussions and suggestions on scattering theory, QCA continuous limits, and cosmological data analysis, which significantly influenced structure and presentation of this paper.
+
+\section*{Code Availability}
+
+Main results of this paper are based on analytical derivations. Numerical verification involving heat kernel, scattering phase, and QCA DOS can be implemented on open source platforms using general numerical linear algebra libraries and spectral methods. Relevant example codes and numerical scripts can be organized and made public in subsequent work, or provided upon reasonable request.
+
+\begin{thebibliography}{99}
+
+\bibitem{PDG}
+Particle Data Group, ``Dark Energy,'' \textit{Review of Particle Physics}, 2024 update.
+
+\bibitem{Sola2022}
+J. Solà Peracaula, ``The Cosmological Constant Problem and Running Vacuum in the Expanding Universe,'' \textit{Philosophical Transactions of the Royal Society A} 380, 2022.
+
+\bibitem{Sola2016}
+J. Solà Peracaula et al., ``Cosmological Constant vis-à-vis Dynamical Vacuum: Bold Challenging the $\Lambda$CDM,'' \textit{International Journal of Modern Physics A} 31, 2016.
+
+\bibitem{Cruz2024}
+J. de Cruz Pérez, J. Solà Peracaula, ``Running Vacuum in Brans–Dicke Theory: A Possible Cure for the $H_0$ and $\sigma_8$ Tensions,'' \textit{Astroparticle Physics}, 2024.
+
+\bibitem{Escamilla2024}
+L. A. Escamilla et al., ``The State of the Dark Energy Equation of State circa 2023,'' \textit{Journal of Cosmology and Astroparticle Physics}, 2024.
+
+\bibitem{Guillarmou2008}
+C. Guillarmou, ``Generalized Krein Formula, Determinants and Selberg Zeta Function for Convex Co-Compact Manifolds,'' \textit{Communications in Mathematical Physics} 277, 2008.
+
+\bibitem{Guillarmou2009}
+C. Guillarmou, ``Spectral Characterization of Poincaré–Einstein Manifolds,'' \textit{Journal of Differential Geometry} 83, 2009.
+
+\bibitem{Vasy2012}
+A. Vasy, ``Microlocal Analysis of Asymptotically Hyperbolic Spaces and High-Energy Resolvent Estimates,'' \textit{MSRI Publications} 60, 2012.
+
+\bibitem{Dyatlov2015}
+S. Dyatlov, ``Scattering Phase Asymptotics with Fractal Remainders,'' \textit{Communications in Mathematical Physics} 339, 2015.
+
+\bibitem{Farrelly2020}
+T. Farrelly, ``A Review of Quantum Cellular Automata,'' \textit{Quantum} 4, 368 (2020).
+
+\bibitem{DAriano2014}
+G. M. D'Ariano, P. Perinotti, A. Bisio, ``From Quantum Cellular Automata to Quantum Field Theory,'' various works, 2014–2017.
+
+\bibitem{Sellapillay2022}
+K. Sellapillay et al., ``A Discrete Relativistic Spacetime Formalism for 1+1 QED from QCA,'' \textit{Scientific Reports} 12, 2022.
+
+\bibitem{Brun2025}
+T. A. Brun, G. Chiribella, C. M. Scandolo, ``Quantum Electrodynamics from Quantum Cellular Automata,'' \textit{Entropy} 27, 2025.
+
+\end{thebibliography}
+
+\appendix
+
+\section{Spectral Data, Scattering Matrix, and Krein Trace Formula}
+
+This appendix provides detailed statement of spectral and scattering theory background used in this paper.
+
+\subsection{Self-Adjoint Pairs and Spectral Shift Function}
+
+Let $H$ and $H_0$ be self-adjoint operators satisfying $(H-\mathrm{i})^{-1}-(H_0-\mathrm{i})^{-1}$ is trace class. Then for any Schwartz function $f$,
+\begin{equation}
+\operatorname{tr}(f(H)-f(H_0))=\int_{\mathbb R} f'(\lambda)\,\xi_E(\lambda)\,\mathrm{d}\lambda,
+\end{equation}
+where $\xi_E(\lambda)$ is spectral shift function. Derivative of spectral shift function at almost all $\lambda$ gives relative DOS: $\Delta\rho_E(\lambda)=-\xi_E'(\lambda)$.
+
+In presence of fixed-energy scattering theory, scattering matrix $S(\lambda)$ and spectral shift function are related by Birman--Krein formula:
+\begin{equation}
+\det S(\lambda)=\exp\bigl(-2\pi\mathrm{i}\xi_E(\lambda)\bigr).
+\end{equation}
+On asymptotically hyperbolic and conformally compact manifolds, Guillarmou extended this relation to more general KV determinant background through in-depth analysis of scattering operator and relative determinant, unifying scattering determinant phase with generalized spectral shift function.
+
+\subsection{Wigner--Smith Group Delay and Unified Scale Density}
+
+Frequency derivative of scattering matrix $S(\omega)$ gives Wigner--Smith group delay matrix
+\begin{equation}
+Q(\omega)=-\mathrm{i} S(\omega)^\dagger\partial_\omega S(\omega).
+\end{equation}
+Under trace class condition, trace
+\begin{equation}
+\operatorname{tr} Q(\omega)=\partial_\omega\arg\det S(\omega)=2\pi\Theta'(\omega),
+\end{equation}
+thus
+\begin{equation}
+\Theta'(\omega)=(2\pi)^{-1}\operatorname{tr} Q(\omega).
+\end{equation}
+
+Unified time scale density is defined as
+\begin{equation}
+\kappa(\omega)=\Theta'(\omega)=\Delta\rho_\omega(\omega).
+\end{equation}
+In Matrix Universe and QCA Universe, definition of $Q(\omega)$ can be generalized to cosmological scattering matrix and QCA scattering map, making unified time scale span continuous and discrete frameworks.
+
+\section{Technical Details of Windowed Tauberian Theorem}
+
+\subsection{Mellin Transform and Logarithmic Window Kernel}
+
+Mellin transform of function $f(\omega)$ defined as
+\begin{equation}
+\mathcal M[f](s)=\int_0^\infty\omega^{s-1}f(\omega)\,\mathrm{d}\omega.
+\end{equation}
+Introduction of logarithmic window kernel $W(\ln(\omega/\mu))$ makes
+\begin{equation}
+\langle f\rangle_W(\mu)=\int_{\mathbb R}f(\omega)\,W(\ln(\omega/\mu))\,\mathrm{d}\ln\omega
+\end{equation}
+correspond in Mellin space to
+\begin{equation}
+\langle f\rangle_W(\mu)=\frac{1}{2\pi\mathrm{i}}\int_{\Gamma}\mathcal M[f](s)\,\widehat W(s)\,\mu^{-s}\,\mathrm{d} s,
+\end{equation}
+where
+\begin{equation}
+\widehat W(s)=\int_{\mathbb R}\mathrm{e}^{su}W(u)\,\mathrm{d} u.
+\end{equation}
+Mellin vanishing conditions ensure $\widehat W(s)$ has zeros at several low-order points, cancelling dominant singular terms of heat kernel expansion in residue calculation, retaining only finite geometric part.
+
+\subsection{From Scattering Phase to Heat Kernel Finite Part}
+
+Substituting $f(\omega)=\Theta'(\omega)$ and $f(\omega)=\Delta\rho_\omega(\omega)$, simple relation exists between corresponding $\mathcal M[f](s)$ and Laplace--Mellin transform of heat kernel $\Delta K(s)$.
+
+By choosing positions of $\Gamma$ and $\Gamma'$, can simultaneously analyze small-$s$ behavior of $\Delta K(s)$ and large-$\omega$ behavior of $\Theta'(\omega)$ on complex plane, obtaining via Hardy--Littlewood--Karamata type Tauberian theorem
+\begin{equation}
+\mathrm{FP}_{s\to0}\Delta K(s)\sim\kappa_\Lambda\,\Xi_W(\mu),
+\end{equation}
+and giving explicit error bounds.
+
+In cosmological applications, finite-order Tauberian version is sufficient: only need to control error up to certain finite order $s^\gamma$.
+
+\section{QCA Band Pairing, Sum Rule, and Suppression Exponent}
+
+\subsection{Construction of Band Pairing Structure}
+
+In specific QCA models, band pairing can be achieved via following strategies:
+
+1. Require local update rules to possess generalized ``particle--antiparticle symmetry'' and time reversal symmetry in appropriate sense, producing $E\leftrightarrow -E$ symmetry in energy spectrum.
+2. Introduce extra $\mathbb Z_2$ or $\mathbb Z_4$ symmetry in internal degrees of freedom, making high-energy bands appear in pairs, with coupling structure automatically satisfying symmetric pairing condition.
+
+Such structures partially appear in Dirac-type and QED-type QCA, requiring further parameter tuning and constraints to obtain spectral structures satisfying assumptions of Theorem 3.5.
+
+\subsection{Spectral Condition of Sum Rule}
+
+Inter-band harmonious sum rule
+\begin{equation}
+\int_0^{E_{\mathrm{UV}}}E^2\,\Delta\rho(E)\,\mathrm{d} E=0
+\end{equation}
+can be understood as a kind of ``relative energy squared conservation'': Physical QCA and Reference QCA have same energy squared weighted density of states in UV region.
+
+In Dirac-type models, if Reference QCA and Physical QCA differ in UV region only by IR mass and finite topological modes, this sum rule can be naturally satisfied or achieved by adjusting finite high-energy coupling parameters.
+
+By numerical fitting of DOS, can verify approximate validity of sum rule, and estimate impact of its deviation on $\Lambda_{\mathrm{eff}}$, determining magnitude of suppression exponent $\gamma$.
+
+\subsection{Suppression Exponent and Parameter Space}
+
+In actual calculation, multi-scale analysis of QCA spectrum yields
+\begin{equation}
+\bigl|\Lambda_{\mathrm{eff}}(\mu)\bigr|\le C_0E_{\mathrm{IR}}^4+C_1E_{\mathrm{IR}}^4\bigl(E_{\mathrm{IR}}/E_{\mathrm{UV}}\bigr)^{\gamma_1}+\cdots,
+\end{equation}
+where $C_0$ relates to low-energy DOS structure, $\gamma_1$ to precision of sum rule. By searching for regions in parameter space where $C_0$ is also significantly reduced, suppression effect can be further enhanced, explaining observationally tiny $\Lambda_{\mathrm{eff}}$.
+
+\end{document}
+

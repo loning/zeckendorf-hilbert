@@ -1,0 +1,777 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{braket}
+\usepackage{graphicx}
+
+\geometry{a4paper, margin=1in}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+
+\title{Optical Metric from Local Information Volume Conservation and the Entropic Derivation of Einstein Equations}
+
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+From the perspective of Quantum Cellular Automata (QCA) and information ontology, spacetime geometry should be understood as an emergent representation of the information processing capacity and connectivity structure of an underlying discrete quantum network. In this framework, we propose and formalize the principle of "Local Information Volume Conservation": in the coarse-graining process from discrete QCA to a continuous effective manifold, the "total amount of distinguishable quantum degrees of freedom capable of being hosted per unit coordinate volume and per unit coordinate time" within any local volume element must remain invariant. In the static, isotropic case, this principle uniquely selects a class of dual-factor scaled optical metrics
+$$
+ds^2 = -n^{-2}(x) c^2 dt^2 + n^2(x)\delta_{ij} dx^i dx^j,
+$$
+where $n(x) \ge 1$ can be interpreted as an effective refractive index field induced by the local information processing load.
+
+In the weak field limit, taking $n(x) = 1 - \Phi(x)/c^2 + \mathcal O(\Phi^2/c^4)$, where $\Phi$ is the Newtonian potential, the resulting line element expands as
+$$
+ds^2 = -(1+2\Phi/c^2)c^2dt^2 + (1-2\Phi/c^2)\delta_{ij}dx^i dx^j + \mathcal O(\Phi^2/c^4),
+$$
+which corresponds exactly to the general relativistic weak field metric with $\gamma = 1$ in the Parametrized Post-Newtonian (PPN) formalism. This yields observables such as light deflection and Shapiro delay, with a first-order deflection angle coefficient of $4GM/(bc^2)$, thereby resolving the historical difficulty of Einstein's 1911 scalar gravity theory (which yielded only half the deflection angle) within a scalar-field-driven "refractive index gravity" framework.
+
+Furthermore, this paper proposes the Information--Gravity Variational Principle (IGVP): regarding the geometric action as part of a generalized entropy functional and the local information processing load as a source term for entanglement entropy density, we perform variation on the total "information entropy" functional in the sense of local equilibrium. Drawing on Jacobson's idea of "Einstein equation as equation of state," we prove that in generalized scattering regions where the optical metric is viable, the equilibrium condition of the IGVP is equivalent to the Einstein field equations with an information stress-energy tensor.
+
+Thus, this paper establishes bridges on three levels: (1) deriving an experimentally testable optical metric starting from QCA unitary evolution and local information volume conservation; (2) aligning perfectly with the PPN structure of standard General Relativity in the weak field limit; (3) reinterpreting the Einstein equations as a "geometric--information equilibrium condition" within the framework of entropic forces and information geometry, providing several engineering proposals testable in numerical QCA and gravity-analog optical experiments.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Quantum Cellular Automaton; Optical Metric; Local Information Volume Conservation; Gravitational Lensing; Shapiro Delay; Entropic Force; Einstein Equations; Information Geometry
+
+---
+
+\section{Introduction \& Historical Context}
+
+General Relativity (GR) takes a four-dimensional manifold $(M,g_{\mu\nu})$ with Lorentz signature as the fundamental stage for gravitational theory, interpreting gravity as the curvature of spacetime geometry rather than a long-range force acting on a flat background. Observational tests in the weak field limit (such as perihelion precession of Mercury, light deflection by the Sun, Shapiro delay, etc.) have provided highly precise support for this geometric gravitational narrative.
+
+On the other hand, the information ontology perspective represented by "It from Qubit" posits that the physical world is, at its deepest level, constituted by quantum information and its processing rules, with continuous spacetime, matter fields, and measurement results being emergent properties of some underlying discrete information structure. In this vein, the Quantum Cellular Automaton (QCA) is viewed as a natural model unifying quantum fields and discrete causal structures: defining finite-dimensional local Hilbert spaces on discrete lattices, realizing global time evolution through finite-neighborhood, spatially homogeneous unitary evolution rules, and subsequently emerging standard relativistic field equations in the continuum limit.
+
+As early as 1911, when discussing the influence of gravity on light, Einstein proposed a scalar gravity model where the gravitational potential $\Phi$ acted only as a scalar field affecting the local speed of light, deriving a light deflection angle of $2GM/(bc^2)$ for light passing the Sun, which is half of the correct result later given by General Relativity. This discrepancy can be traced to the model modifying only the temporal component $g_{00}$ of the metric while ignoring the curvature contribution of the spatial components $g_{ij}$. The complete General Relativity, in the static, weak field limit, gives a line element writable as
+$$
+ds^2 = -(1+2\Phi/c^2)c^2dt^2 + (1-2\gamma\Phi/c^2)(dx^2+dy^2+dz^2),
+$$
+compatible with experiments only when the PPN parameter $\gamma = 1$.
+
+In literature studying gravitational lensing and wave propagation, the concept of "optical metric" has gradually formed: for static spacetimes, the projection of null geodesics can be equivalent to a geodesic problem on a three-dimensional Riemann manifold with metric $\gamma_{ij} = -g_{00}^{-1}g_{ij}$, thereby introducing an effective refractive index $N_{\text{eff}}(x)$ to study light deflection and wave propagation in weak gravitational fields. However, such optical metrics are usually rewrites starting from a known $g_{\mu\nu}$, rather than constraints derived from a more fundamental information or computational structure.
+
+On the other hand, Jacobson's work showed that if one assumes the entropy of any local Rindler horizon is proportional to its area and requires the Clausius relation $\delta Q = T dS$ to hold for all local horizons, the Einstein field equations can be interpreted as an "equation of state," linking energy flux to curvature in some thermodynamic limit. Verlinde subsequently proposed that gravity could be viewed as an entropic force of position-dependent information, deriving Newton's law of gravity and its relativistic generalization within a holographic framework. Although these works provided inspiration for the "entropic origin of gravity," their original formulations usually assumed continuous spacetime, local thermal equilibrium, and holographic screen structures, without directly combining with the discrete QCA framework and constraints on local information processing capacity; they also face various criticisms and suggestions for modification.
+
+The goal of this paper is to unify these threads from a QCA perspective:
+
+1. Starting from QCA unitarity and local information processing density, propose the principle of "Local Information Volume Conservation";
+2. Prove that in the static, isotropic case, this principle uniquely selects a class of dual-factor scaled optical metrics $ds^2 = -n^{-2}c^2dt^2 + n^2\delta_{ij}dx^i dx^j$, where $n(x)$ is given by the local information processing load;
+3. Prove that in the weak field limit, this metric is equivalent to the linearized metric of General Relativity in PPN form, thus yielding correct light deflection and Shapiro delay;
+4. Inspired by Jacobson and Verlinde, interpret the geometric action as an information--geometric entropy functional, propose the Information--Gravity Variational Principle (IGVP), and prove its local equilibrium condition is equivalent to the standard Einstein field equations.
+
+In this sense, gravity is no longer a "continuous geometric background added to QCA," but an effective optical geometry that the QCA network is forced to adopt to maintain global unitarity and information volume conservation under non-uniform local information processing loads.
+
+---
+
+\section{Model \& Assumptions}
+
+This section constructs the modeling framework from discrete QCA to continuous optical metrics and lists explicit assumptions.
+
+\subsection{1. QCA Universe and Local Information Processing Density}
+
+Assume the underlying universe is described by a QCA object
+$$
+\mathfrak U_{\text{QCA}} = (\Lambda, \mathcal H_{\text{cell}}, U, \omega_0),
+$$
+where:
+\begin{itemize}
+    \item $\Lambda \subset \mathbb Z^3$ is the set of three-dimensional lattice sites with lattice spacing $a$;
+    \item Each cell carries a finite-dimensional Hilbert space $\mathcal H_{\text{cell}} \cong \mathbb C^{d}$;
+    \item The global Hilbert space is the quasi-local tensor product $\mathcal H = \bigotimes_{x\in\Lambda} \mathcal H_{\text{cell}}$;
+    \item Time evolution is realized by a unitary operator $U$ with finite propagation radius $R a$:
+    $$
+    \rho_{n+1} = U \rho_n U^\dagger,
+    $$
+    where $\rho_n$ is the global state at the $n$-th discrete time step;
+    \item $\omega_0$ is the given initial state or family of initial states.
+\end{itemize}
+
+Given a cutoff scale $L \gg a$, $T \gg \Delta t$, we can coarse-grain the QCA, defining continuous coordinates $x^\mu = (ct,\mathbf x)$, and introducing an effective field theory description. The unitarity of the QCA ensures the conservation of the total system Hilbert space dimension and von Neumann entropy, but locally, quantum entanglement and information processing loads can be highly non-uniform.
+
+Define the dimensionless local information processing density field
+$$
+\rho_{\text{info}}(x) \in [0,1),
+$$
+representing the proportion of the computational budget consumed by "intrinsic evolution" such as internal spins, local entanglement, and feedback loops, relative to the maximum vacuum budget, per unit coordinate volume and per unit coordinate time.
+
+Correspondingly, introduce the local information congestion factor
+$$
+n(x) = \frac{1}{1 - \alpha \rho_{\text{info}}(x)} \ge 1,
+$$
+where $\alpha \in (0,1)$ is a coupling constant for scale normalization. $n(x)=1$ corresponds to vacuum (no extra load), and $n(x)>1$ corresponds to regions of high information load.
+
+In the continuum limit of the QCA, the maximum group velocity of the free light cone is given by the lattice spacing and time step
+$$
+c = a/\Delta t.
+$$
+When local information load increases, the budget available for external signal propagation decreases, manifesting as a reduction in effective propagation speed, i.e., $v_{\text{ext}}(x) < c$.
+
+\subsection{2. Local Information Volume Conservation and Scaling Factors}
+
+Consider a small four-dimensional coordinate volume element
+$$
+\mathrm d^4x = \mathrm dt\,\mathrm d^3\mathbf x.
+$$
+In QCA coarse-graining, this corresponds to the evolution of a certain finite cluster of cells $\Omega \subset \Lambda$ over a finite number of time steps. Due to QCA unitarity, the number of distinguishable quantum states within $\Omega$ is constrained by the local Hilbert space dimension and entanglement structure, but should not change under coordinate reparametrization.
+
+To characterize metric deformation, introduce local scaling factors for time and space:
+\begin{itemize}
+    \item The relation between physical proper time and coordinate time is
+    $$
+    \mathrm d\tau = \eta_t(x)\,\mathrm dt;
+    $$
+    \item The relation between physical length element and coordinate length element is
+    $$
+    \mathrm d\ell = \eta_x(x)\,|\mathrm d\mathbf x|.
+    $$
+\end{itemize}
+Then the physical four-volume element is
+$$
+\mathrm dV_4^{\text{phys}} = \mathrm d\tau\,\mathrm d^3\ell = \eta_t(x)\,\eta_x^3(x)\,\mathrm dt\,\mathrm d^3\mathbf x.
+$$
+
+Define the "information capacity" per unit coordinate volume per unit coordinate time as the maximum logarithmic number of distinguishable quantum states $\mathcal C(x)$. Under information ontology, assume the $\mathcal C(x)$ given by the QCA local structure in coarse-graining is proportional to the physical four-volume element but suppressed by the local information load $\rho_{\text{info}}(x)$:
+$$
+\mathcal C(x) \propto \frac{\eta_t(x)\,\eta_x^3(x)}{n(x)}.
+$$
+Here $n(x)$ characterizes the compression of available evolution steps per unit physical time. To ensure local information capacity remains invariant under pure coordinate reparametrization, we introduce:
+
+\begin{axiom}[Local Information Volume Conservation]
+In the mapping from QCA to continuous manifold, for any sufficiently small manifold segment, the local information capacity satisfies
+$$
+\eta_t(x)\,\eta_x^3(x) \propto n(x),
+$$
+and degenerates to Minkowski values $\eta_t = \eta_x = n = 1$ in the perturbative weak field limit.
+\end{axiom}
+
+In the static, isotropic, and weak field cases focused on in this paper, actual observational constraints mainly come from light deflection and time delay, which are sensitive primarily to the metric structure in the $t$--$r$ subspace. To this end, we further adopt the following simplifying assumptions.
+
+\begin{hypothesis}[Isotropy Simplification]
+At the considered scale, the local information load is spatially isotropic, i.e.,
+$$
+\eta_x(x) = \eta_s(x),
+$$
+where $\eta_s$ scales all three spatial directions uniformly, and $n(x)$ depends only on the potential function $\Phi(x)$.
+\end{hypothesis}
+
+\begin{hypothesis}[2D Light Cone Conformality]
+Require the area element of any radial light cone in the $(t,r)$ two-dimensional subspace to remain conformally invariant, thereby preserving the "causal budget" conservation of null geodesics in the QCA. This is equivalent to requiring the determinant of the 2D sub-metric to be affected only by an overall scale factor under coordinate transformation.
+\end{hypothesis}
+
+In the case of a static, spherically symmetric metric
+$$
+ds^2 = -A(r)c^2dt^2 + B(r)(dr^2 + r^2 d\Omega^2),
+$$
+the determinant of the metric in the $(t,r)$ subspace is
+$$
+\det g_{(t,r)} = -A(r)B(r).
+$$
+2D Light Cone Conformality combined with Local Information Volume Conservation yields:
+
+\begin{proposition}
+Under the above settings, $A(r)B(r) = 1$.
+\end{proposition}
+
+Intuitively, this is because: if time is stretched by a factor $\eta_t$ due to information load, then to keep the light cone area and the "discrete step shell" of null geodesics in the QCA invariant, the radial direction must scale by $\eta_r = \eta_t^{-1}$, thus $A \propto \eta_t^2$, $B \propto \eta_r^2$ giving $A B = \eta_t^2 \eta_r^2 = 1$. This conclusion will be derived more systematically via Liouville-type arguments in Appendix A.
+
+Thus we can choose the parameterization
+$$
+A(r) = n^{-2}(r),\quad B(r) = n^2(r),
+$$
+obtaining a family of optical metrics
+$$
+ds^2 = -n^{-2}(r)c^2dt^2 + n^2(r)\left(dr^2 + r^2 d\Omega^2\right).
+$$
+This is what we term the "Information--Optical Metric."
+
+\subsection{3. Matching Information Refractive Index with Newtonian Potential}
+
+To recover the Newtonian gravitational potential at macroscopic scales, consider the geodesic equation of a slow test particle in this metric. Let the general form of the metric be
+$$
+ds^2 = -(1+2\Phi/c^2)c^2dt^2 + (1-2\gamma\Phi/c^2)\delta_{ij}dx^i dx^j,
+$$
+where $\gamma = 1$ in PPN form corresponds to General Relativity. In the weak field, slow speed limit, the dispersion relation determined by the time component gives the effective potential $\Phi$, and particle acceleration satisfies
+$$
+\mathrm d^2\mathbf x/\mathrm dt^2 \approx -\nabla\Phi.
+$$
+
+Expand the Information--Optical Metric to first order:
+$$
+n(x) = 1 + \epsilon(x),\quad |\epsilon|\ll 1,
+$$
+then
+$$
+n^{-2} = (1+\epsilon)^{-2} \approx 1 - 2\epsilon,\quad n^2 \approx 1 + 2\epsilon.
+$$
+Thus the line element becomes
+$$
+ds^2 \approx -(1-2\epsilon)c^2dt^2 + (1+2\epsilon)\delta_{ij}dx^i dx^j.
+$$
+Comparing with the PPN form, taking
+$$
+\epsilon(x) = -\Phi(x)/c^2
+$$
+yields
+$$
+g_{00} = -(1+2\Phi/c^2),\quad g_{ij} = (1-2\Phi/c^2)\delta_{ij},
+$$
+which is the weak field metric of General Relativity with $\gamma = 1$. We can thus define:
+
+\begin{definition}[Information Refractive Index]
+Let the Newtonian potential $\Phi(x)$ satisfy $\nabla^2\Phi = 4\pi G\rho$. The information congestion factor is defined as
+$$
+n(x) = 1 - \Phi(x)/c^2.
+$$
+In gravitational potential wells where $\Phi < 0$, we have $n(x) > 1$, corresponding to regions with higher local information load and reduced effective light speed.
+\end{definition}
+
+---
+
+\section{Main Results (Theorems and Alignments)}
+
+Under the above model and assumptions, the main results of this paper can be summarized in the following theorems and corollaries.
+
+\begin{theorem}[Local Information Volume Conservation $\Rightarrow$ Optical Metric]
+In a static, spherically symmetric, weak field region obtainable by QCA coarse-graining, if the following are satisfied:
+\begin{enumerate}
+    \item The underlying evolution is a local unitary QCA;
+    \item The Local Information Volume Conservation axiom holds;
+    \item Isotropy Simplification and 2D Light Cone Conformality hypotheses hold;
+\end{enumerate}
+then the metric allowed in the continuum limit must belong to the Information--Optical Metric family
+$$
+ds^2 = -n^{-2}(r)c^2dt^2 + n^2(r)(dr^2 + r^2d\Omega^2),
+$$
+where $n(r)\ge 1$ is a scalar field determined by the local information processing density.
+
+Furthermore, in the weak field limit, requiring the existence of a Newtonian potential $\Phi(r)$ such that slow particle motion satisfies $\mathrm d^2\mathbf x/\mathrm dt^2 \approx -\nabla\Phi$ uniquely determines
+$$
+n(r) = 1 - \Phi(r)/c^2 + \mathcal O(\Phi^2/c^4).
+$$
+\end{theorem}
+
+\begin{theorem}[PPN Alignment of Information--Optical Metric]
+Under the setting of Theorem 1, the line element expands in the limit $|\Phi|/c^2 \ll 1$ as
+$$
+ds^2 = -(1+2\Phi/c^2)c^2dt^2 + (1-2\Phi/c^2)(dr^2 + r^2d\Omega^2) + \mathcal O(\Phi^2/c^4).
+$$
+Thus, in PPN notation,
+$$
+\gamma = 1,
+$$
+automatically yielding:
+\begin{enumerate}
+    \item The weak field deflection angle for light passing a point mass $M$ with impact parameter $b$:
+    $$
+    \Delta\theta = \frac{4GM}{bc^2} + \mathcal O\left(\frac{G^2M^2}{b^2c^4}\right);
+    $$
+    \item Shapiro delay:
+    $$
+    \Delta t_{\text{Shapiro}} \propto (1+\gamma)\frac{GM}{c^3}\ln\frac{4r_E r_R}{b^2},
+    $$
+    where $1+\gamma = 2$, fully consistent with standard General Relativity.
+\end{enumerate}
+Thus, within the framework of a scalar refractive index field, considering the coordinated scaling of temporal and spatial components satisfying $A(r)B(r)=1$ naturally avoids the historical difficulty of traditional scalar gravity theories yielding only half the deflection angle.
+\end{theorem}
+
+\begin{theorem}[Information--Gravity Variational Principle and Einstein Equations]
+Let the total "Information Entropy" functional be defined as
+$$
+\mathcal S_{\text{tot}}[g,\Psi] = \mathcal S_{\text{geom}}[g] + \mathcal S_{\text{info}}[g,\Psi],
+$$
+where:
+\begin{itemize}
+    \item $\Psi$ represents matter and information degrees of freedom;
+    \item The geometric part takes the form of Jacobson--Iyer--Wald type geometric entropy, i.e., under appropriate normalization
+    $$
+    \delta \mathcal S_{\text{geom}}[g] = \frac{1}{4G}\int_{\mathcal M} \sqrt{-g}\,(R_{\mu\nu} - \tfrac 12 R g_{\mu\nu})\,\delta g^{\mu\nu}\,\mathrm d^4x;
+    $$
+    \item The variation of the information part defines the information stress-energy tensor
+    $$
+    T^{\text{info}}_{\mu\nu} = -\frac{2}{\sqrt{-g}}\frac{\delta \mathcal S_{\text{info}}}{\delta g^{\mu\nu}}.
+    $$
+\end{itemize}
+If we require local equilibrium to exist on Rindler small neighborhoods seen by all local observers, such that for any compactly supported metric variation
+$$
+\delta \mathcal S_{\text{tot}} = 0,
+$$
+then this condition is equivalent to
+$$
+R_{\mu\nu} - \tfrac 12 R g_{\mu\nu} = 8\pi G\,T^{\text{info}}_{\mu\nu}.
+$$
+In the macroscopic limit, identifying $T^{\text{info}}_{\mu\nu}$ with the standard stress-energy tensor $T_{\mu\nu}$ recovers the usual Einstein field equations.
+\end{theorem}
+
+---
+
+\section{Proofs}
+
+This section provides proof outlines for the main theorems above; detailed calculations are placed in the Appendices.
+
+\subsection{Proof of Theorem 1 (Outline)}
+
+1. **2D Light Cone and Liouville Invariance**
+   In the geometric optics limit of the QCA, consider radial light rays in the $(t,r)$ subspace. Each discrete light ray can be viewed as a Hamiltonian flow on the phase space $(t,r;p_t,p_r)$, where Liouville's theorem guarantees the invariance of the phase space volume element $\mathrm d t\,\mathrm d r\,\mathrm d p_t\,\mathrm d p_r$. Coarse-graining to a continuous metric, requiring the area element of the null geodesic shell in $(t,r)$ subspace $\sqrt{-\det g_{(t,r)}}\,\mathrm dt\,\mathrm dr$ to be proportional to the corresponding QCA step shell implies that $\det g_{(t,r)}$ scales only by an overall factor.
+   In the static, spherically symmetric metric
+   $$
+   ds^2 = -A(r)c^2dt^2 + B(r)dr^2 + \dots,
+   $$
+   we have $\det g_{(t,r)} = -A(r)B(r)$. Matching the QCA step shell with the continuous light cone area element proves $A(r)B(r) = \text{const}$. Requiring the metric to degenerate to Minkowski ($A\to 1, B\to 1$) at infinity $r\to \infty$, the constant must be 1, yielding $A(r)B(r)=1$.
+
+2. **Isotropy and Scaled Parameterization**
+   Under the assumption of 3D spatial isotropy, assigning $B(r)$ uniformly to radial and angular parts yields
+   $$
+   ds^2 = -A(r)c^2dt^2 + B(r)(dr^2 + r^2d\Omega^2).
+   $$
+   From $A(r)B(r)=1$, the two functions can be expressed by a single scalar $n(r)$:
+   $$
+   A(r) = n^{-2}(r), B(r) = n^2(r).
+   $$
+
+3. **Uniqueness of Matching with Newtonian Potential**
+   Expand the line element to first order:
+   $$
+   n(r) = 1 + \epsilon(r) \Rightarrow A(r) \approx 1 - 2\epsilon(r), B(r) \approx 1+2\epsilon(r).
+   $$
+   The geodesic equation in the slow limit can be written as
+   $$
+   \mathrm d^2\mathbf x/\mathrm dt^2 = -\tfrac{c^2}{2}\nabla g_{00} + \mathcal O(v^2/c^2).
+   $$
+   Substituting $g_{00}= -A(r) \approx -(1-2\epsilon)$, we get
+   $$
+   \mathrm d^2\mathbf x/\mathrm dt^2 \approx -\nabla(c^2\epsilon).
+   $$
+   To match Newton's law $\mathrm d^2\mathbf x/\mathrm dt^2 = -\nabla\Phi$, the unique possibility is
+   $$
+   c^2\epsilon(r) = \Phi(r),
+   $$
+   i.e., $\epsilon(r) = \Phi(r)/c^2$.
+   By the convention $\Phi < 0$, to keep $n\ge 1$, redefine $\epsilon(r) = -\Phi(r)/c^2$, determining
+   $$
+   n(r) = 1 - \Phi(r)/c^2.
+   $$
+
+This completes the outline of Theorem 1. Full phase space derivation is in Appendix A.
+
+\subsection{Proof of Theorem 2 (Outline)}
+
+1. **PPN Form Expansion**
+   Substituting
+   $$
+   n(r) = 1 - \Phi(r)/c^2
+   $$
+   into the Information--Optical Metric and expanding to first order gives
+   $$
+   g_{00} = -n^{-2} \approx -(1+2\Phi/c^2), \quad g_{ij} = n^2\delta_{ij} \approx (1-2\Phi/c^2)\delta_{ij}.
+   $$
+   Comparing with standard PPN notation, we read $\gamma = 1$.
+
+2. **Optical Metric and Effective Refractive Index**
+   For any static spacetime, the 3D optical metric is defined as
+   $$
+   \gamma_{ij} = -g_{00}^{-1}g_{ij}.
+   $$
+   Null geodesic projections on 4D spacetime are equivalent to geodesics on this optical 3D manifold. In the Information--Optical Metric:
+   $$
+   \gamma_{ij} = n^4(r)\delta_{ij}.
+   $$
+   Thus the effective refractive index for light in 3D space is
+   $$
+   N_{\text{eff}}(r) = n^2(r) = \left(1 - \Phi(r)/c^2\right)^2 \approx 1 - 2\Phi(r)/c^2.
+   $$
+
+3. **Weak Field Light Deflection**
+   Using geometric optics approximation, the deflection angle for a ray propagating in a plane is
+   $$
+   \Delta\theta \approx \int_{-\infty}^{\infty} \frac{\partial}{\partial b}N_{\text{eff}}(r)\,\mathrm dl,
+   $$
+   where $b$ is the impact parameter and $\mathrm dl$ is the path element along the unperturbed straight line. For a point mass $M$, $\Phi(r) = -GM/r$, so
+   $$
+   N_{\text{eff}}(r) \approx 1 + \frac{2GM}{rc^2}.
+   $$
+   Substituting $r = \sqrt{b^2 + z^2}$ and integrating yields
+   $$
+   \Delta\theta = \frac{4GM}{bc^2},
+   $$
+   consistent with the standard result of General Relativity.
+   Detailed steps are in Appendix B.
+
+4. **Shapiro Delay**
+   Shapiro delay is given by the difference between propagation time integral
+   $$
+   t = \int N_{\text{eff}}(r)\,\mathrm dl/c
+   $$
+   and propagation time in flat space. Expanding to first order similarly yields
+   $$
+   \Delta t_{\text{Shapiro}} \propto (1+\gamma)\frac{GM}{c^3}\ln(\dots),
+   $$
+   since $\gamma = 1$, consistent with experiment.
+
+Thus, Theorem 2 is proved.
+
+\subsection{Proof of Theorem 3 (Outline)}
+
+Theorem 3 is essentially a restatement and generalization of Jacobson's "Einstein equation of state" result within QCA--information ontology semantics. The proof steps are summarized as:
+
+1. **Local Horizons and QCA Information Flow**
+   For any point $p \in M$, construct a local Rindler horizon passing through $p$ and its generating vector field. QCA causal structure ensures the existence of a family of "discrete light cones" corresponding to this horizon, on which the energy flux $\delta Q$ of information flowing into the horizon can be described by QCA local energy--information flow density.
+
+2. **Geometric Entropy and Noether Charge**
+   For any geometric action satisfying an $f(R)$ type Lagrangian density, Noether charge and corresponding geometric entropy density can be defined. For the Einstein--Hilbert action $\mathcal L = R/(16\pi G)$, this construction recovers the Bekenstein--Hawking area entropy $S_{\text{BH}} = A/(4G)$.
+
+3. **Information Entropy and Clausius Relation**
+   Interpreting the information flow crossing the horizon in the QCA as heat flow $\delta Q$, and associating the horizon's geometric entropy with the logarithmic number of accessible degrees of freedom of the QCA at the horizon, the local equilibrium condition can be written as
+   $$
+   \delta Q = T\delta S_{\text{geom}} + T\delta S_{\text{info}},
+   $$
+   where $T$ is the Unruh temperature seen by an accelerated observer. Define the variation of $\delta S_{\text{info}}$ with respect to $\delta g^{\mu\nu}$ as the information stress-energy tensor $T^{\text{info}}_{\mu\nu}$.
+
+4. **Requirement for Any Horizon and Any Variation**
+   Requiring the above Clausius relation to hold for any local horizon passing through any point and for all compactly supported metric variations, it can be shown that the geometric entropy variation must satisfy
+   $$
+   \delta \mathcal S_{\text{geom}} = \frac{1}{4G}\int (R_{\mu\nu} - \tfrac 12 R g_{\mu\nu})\delta g^{\mu\nu}\sqrt{-g}\,\mathrm d^4x,
+   $$
+   thereby yielding
+   $$
+   R_{\mu\nu} - \tfrac 12 R g_{\mu\nu} = 8\pi G T^{\text{info}}_{\mu\nu}.
+   $$
+
+Thus, the Einstein field equations can be interpreted as the condition for "harmonious extremum of geometric entropy and information entropy." Detailed variation is in Appendix C.
+
+---
+
+\section{Model Apply}
+
+This section discusses specific applications of the Information--Optical Metric model in several physical contexts.
+
+\subsection{1. Solar System and Weak Field Gravitational Lensing}
+
+At the solar system scale, approximate the Sun as a point mass $M_\odot$, with Newtonian potential
+$$
+\Phi(r) = -GM_\odot/r.
+$$
+The Information--Optical Metric gives
+$$
+n(r) = 1 + GM_\odot/(rc^2) + \mathcal O(G^2M_\odot^2/(r^2c^4)),
+$$
+Light deflection angle
+$$
+\Delta\theta = 4GM_\odot/(bc^2),
+$$
+Shapiro delay
+$$
+\Delta t_{\text{Shapiro}} \sim 2GM_\odot/c^3\ln(\dots),
+$$
+compatible with high-precision measurements like Cassini. This part of constraints can be directly translated into experimental bounds on the relationship between $n(r)$ and $\rho_{\text{info}}(r)$.
+
+\subsection{2. Galactic Scale Lensing and Dark Matter Profiles}
+
+At galactic and cluster scales, gravitational lensing provides geometric constraints on dark matter mass distribution. Under the Information--Optical Metric framework, the optical refractive index $N_{\text{eff}} = n^2$ is determined by the total potential $\Phi_{\text{tot}} = \Phi_{\text{baryon}} + \Phi_{\text{DM}}$. If the ontology of dark matter is replaced by "extra information load," the consistency condition between galaxy rotation curves and lensing profiles can be rewritten as an inversion problem for the $\rho_{\text{info}}(x)$ field.
+This provides a pathway to reframe the dark matter problem as an inverse problem of "how the galactic-scale information processing budget is distributed," which can be fitted to observational data in numerical simulations using different forms of $\rho_{\text{info}}$ fields.
+
+\subsection{3. Continuum Limit in QCA Models and "Curved" Lattices}
+
+In specific QCA models, by changing the parameters of local evolution operators, the effective "computational step length" in a region can be reduced. For example, in 1D Dirac--QCA, mass terms and inter-site couplings determine the effective light speed and propagation bandwidth. In regions of high mass or high entanglement density, this can be effectively understood as an increase in $n(x)$ and a decrease in $v_{\text{ext}}(x)$.
+If these local parameters are treated as continuous fields on large scales, the "curved" lattice structure on the QCA can be mapped to continuous spacetime geometry via the Information--Optical Metric, providing a "Computation--Geometry" dictionary starting from QCA.
+
+\subsection{4. Random Graphs and Emergent Metric}
+
+Existing work shows that on certain random discrete structures, effective continuous metric and curvature structures can emerge on large scales through appropriate connection rules and evolution mechanisms. In these models, statistical properties of local connectivity and path length can be further translated into statistical distributions of $n(x)$ and $\rho_{\text{info}}(x)$ via the Information--Optical Metric, thereby embedding "geometry emerging from random graphs" into the information--gravity framework of this paper.
+
+---
+
+\section{Engineering Proposals}
+
+The framework of this paper not only has conceptual significance but naturally leads to a series of engineering proposals testable at numerical and experimental levels.
+
+\subsection{1. "Information Lensing" in Numerical QCA Simulations}
+
+On high-dimensional QCA models, pre-set spatially non-uniform local update rules to reduce effective propagation speed in a region, i.e., construct a discrete $n(x)$ field. By injecting wave packets on the QCA and tracking their propagation paths, one can numerically measure:
+\begin{itemize}
+    \item Whether wave packet deflection trajectories are consistent with geodesics predicted by the Information--Optical Metric;
+    \item Whether delay times satisfy Shapiro-type logarithmic corrections;
+    \item Whether interference patterns in multi-source--multi-lens configurations are consistent with continuous optical lens models.
+\end{itemize}
+Such simulations do not require real gravitational fields but rely only on the programmable evolution rules of discrete networks, realizable on quantum simulations or classical discrete networks.
+
+\subsection{2. Analog Gravitational Lensing in Optical or Microwave Experiments}
+
+In optical or microwave bands, spatially-temporally tunable media (such as metamaterials, photonic crystals, or programmable media) can be used to realize effective refractive index distributions $N_{\text{eff}}(x)$. If the group velocity of the medium can be precisely controlled with frequency and position, one can experimentally realize:
+\begin{itemize}
+    \item Refractive index profiles corresponding to point masses or galactic potential wells;
+    \item Simulations of "time stretching" via dispersion relations and energy storage mechanisms, thereby realizing approximate Information--Optical Metrics in effective media.
+\end{itemize}
+By measuring wavefront deflection and propagation time, predictions of the Information--Optical Metric can be directly tested in "laboratory gravitational optics."
+
+\subsection{3. Astrometry Based on Precision Timing}
+
+Gravitational lensing and Shapiro delay have been measured with high precision in radio pulsars, FRBs, and radar echoes. The framework of this paper implies that when $\rho_{\text{info}}(x)$ varies significantly on time scales, $n(x,t)$ also varies with time, introducing additional "information time-varying lensing" effects. This may produce observable signals in large-scale variable sources in binary systems, AGN, or merging galaxies, for which corresponding time-domain observation plans can be designed to constrain the time dependence of $n(x,t)$.
+
+\subsection{4. "Effective Gravity" in Quantum Information Processing Systems}
+
+On large quantum computing platforms (such as 2D superconducting quantum chips), local gate operation depth and entanglement entropy distribution determine the "congestion mode" of information propagation. By deliberately injecting large amounts of entanglement in a region and measuring signal propagation delay of probe qubits, one can construct "information gravitational lens" analog experiments in artificial systems, verifying the constraints of "Local Information Volume Conservation" on propagation cones.
+
+---
+
+\section{Discussion (risks, boundaries, past work)}
+
+\subsection{1. Relationship with Traditional Entropic Gravity Proposals}
+
+Jacobson's work views the Einstein equations as thermodynamic equations of state, and Verlinde further proposes gravity as an entropic force of position-dependent information; these views provide important clues for the "gravity as emergent, not fundamental" picture. On the other hand, criticisms of entropic gravity point out that entropy force analogies do not always hold strictly in specific models, and there are conceptual difficulties in the relationship between holographic screens and test particles.
+
+The differences between this paper and these works are:
+\begin{itemize}
+    \item Taking QCA and local information processing load as basic objects, rather than abstract holographic screens;
+    \item Using Local Information Volume Conservation and Optical Metric construction to first reproduce PPN structure and experimental results of General Relativity in the weak field;
+    \item Converging the entropic force perspective into a variational problem of geometric entropy and information entropy in IGVP, thus being mathematically compatible with traditional action forms.
+\end{itemize}
+Therefore, this paper can be viewed as a more structured version of existing entropic force proposals at the intersection of "Information--Geometry--Entropic Force," compatible with QCA ontology.
+
+\subsection{2. Tension between QCA and Lorentz Symmetry}
+
+Discrete lattice structures naturally break continuous Lorentz symmetry. QCA models must "approximately recover" relativistic symmetry in the continuum limit to be compatible with existing particle physics and gravity experiments. Existing work shows that in appropriately designed QCAs, Dirac and Maxwell equations can emerge in the long-wavelength limit, effectively recovering Lorentz invariance, but observable dispersion and anisotropic corrections may still appear in high-energy or short-wavelength limits.
+The Information--Optical Metric assumption in this paper defaults to using continuous, isotropic metric descriptions at considered scales, which is reasonable under low energy, weak field conditions. However, at Planck scales or in ultra-high-energy cosmic ray propagation, QCA microstructures may introduce observable dispersion and anisotropy, requiring more refined analysis.
+
+\subsection{3. Inversion and Degeneracy of Information Refractive Index}
+
+In actual observations, one can only invert the equivalent refractive index $N_{\text{eff}}(x)$ from lensing imaging and time delays; its decomposition into $n(x)$ and $\rho_{\text{info}}(x)$ is not unique. For example, multiple different QCA microscopic implementations may yield the same $n(x)$ in the continuum limit. Therefore, the framework of this paper still has "micro--macro degeneracy" at the ontological level, requiring combinations with other observations (such as higher-order correlation functions, wave packet distortion, etc.) to break degeneracy.
+
+\subsection{4. Generalization to Strong Fields and Non-Static Cases}
+
+This paper focuses mainly on static, weak field, isotropic cases. For strong field regions near black holes, merging binaries, or cosmological expansion backgrounds, the general form of the metric is far more complex than the Information--Optical Metric. Although instantaneous $n(x,t)$ can be introduced under local static approximation, a complete strong field generalization requires:
+\begin{itemize}
+    \item Introducing time-dependent local information load distributions in QCA;
+    \item Handling the impact of highly non-local entanglement structures on $n(x,t)$;
+    \item Generalizing IGVP to generalized entropy flow forms in non-equilibrium states.
+\end{itemize}
+These issues leave space for future work.
+
+---
+
+\section{Conclusion}
+
+In the framework of Quantum Cellular Automata and information ontology, this paper proposes and systematically analyzes the principle of "Local Information Volume Conservation," deriving a class of dual-factor scaled optical metrics:
+$$
+ds^2 = -n^{-2}(x)c^2dt^2 + n^2(x)\delta_{ij}dx^i dx^j.
+$$
+In the static, spherically symmetric, weak field limit, the requirements of Local Information Volume Conservation and the Newtonian limit uniquely associate $n(x)$ with the Newtonian potential $\Phi(x)$ as $n(x) = 1 - \Phi(x)/c^2$. The resulting metric expansion
+$$
+ds^2 = -(1+2\Phi/c^2)c^2dt^2 + (1-2\Phi/c^2)\delta_{ij}dx^i dx^j + \mathcal O(\Phi^2/c^4),
+$$
+is completely consistent with the weak field line element of General Relativity in the PPN framework, thus naturally yielding correct light deflection and Shapiro delay, and resolving the "half-angle dilemma" of the 1911 scalar gravity theory within the picture of a scalar refractive index field.
+
+Furthermore, this paper constructs the Information--Gravity Variational Principle (IGVP), interpreting geometric action as geometric entropy, introducing QCA local information load into the information entropy functional, and proving that under Jacobson-style local thermodynamic conditions, the extremum condition of IGVP is equivalent to the Einstein field equations with an information stress-energy tensor. Thereby, a unified chain is established between QCA, Information, and Geometry, from microscopic discrete evolution to macroscopic continuous gravitational equations.
+
+Finally, this paper proposes several numerical and experimental engineering schemes for testing the predictions of Local Information Volume Conservation and the Information--Optical Metric in QCA simulations, optical gravity-analog experiments, precision astrometry, and large-scale quantum information processing platforms. These works provide concrete paths for converging the two perspectives of "Universe as Quantum Computation" and "Gravity as Information Geometry" into a testable theory.
+
+---
+
+\section{Acknowledgements, Code Availability}
+
+The authors acknowledge the theoretical background provided by existing work on Quantum Cellular Automata, weak field tests of General Relativity, gravitational lensing, and entropic gravity, especially numerous studies on deriving Einstein equations from thermodynamics and information theory. The numerical implementation and QCA simulation schemes in this paper can be implemented on general tensor network and lattice simulation platforms; specific code structures can be implemented following the definitions of local information load field $\rho_{\text{info}}(x)$ and refractive index field $n(x)$ described in this paper.
+
+---
+
+\begin{thebibliography}{99}
+
+\bibitem{Einstein1911} A. Einstein, "On the Influence of Gravitation on the Propagation of Light," Annalen der Physik 35, 1911.
+
+\bibitem{Jacobson1995} T. Jacobson, "Thermodynamics of Spacetime: The Einstein Equation of State," Physical Review Letters 75, 1260–1263 (1995).
+
+\bibitem{Will2014} C. M. Will, "The Confrontation between General Relativity and Experiment," Living Reviews in Relativity 17, 4 (2014).
+
+\bibitem{Bodenner2003} J. Bodenner and C. M. Will, "Deflection of light to second order: A tool for illustrating principles of general relativity," American Journal of Physics 71, 770–773 (2003).
+
+\bibitem{Gibbons2008} G. W. Gibbons and M. C. Werner, "Applications of the Gauss–Bonnet Theorem to Gravitational Lensing," Classical and Quantum Gravity 25, 235009 (2008).
+
+\bibitem{Verlinde2011} E. P. Verlinde, "On the Origin of Gravity and the Laws of Newton," Journal of High Energy Physics 2011(4), 029 (2011).
+
+\bibitem{Gao2011} S. Gao, "Is Gravity an Entropic Force?" Entropy 13, 936–948 (2011).
+
+\bibitem{Faber2006} T. Faber and M. Visser, "Combining rotation curves and gravitational lensing: How to measure the equation of state of dark matter in the galactic halo," Monthly Notices of the Royal Astronomical Society 372, 136–150 (2006).
+
+\bibitem{Kleftogiannis2022} I. Kleftogiannis, "Emergent spacetime from purely random structures," Physical Review Research 4, 033004 (2022).
+
+\bibitem{Kobakhidze2011} A. Kobakhidze, "Gravity is not an Entropic Force," Physical Review D 83, 021502 (2011).
+
+\bibitem{Wald1993} R. M. Wald, "Black Hole Entropy is Noether Charge," Physical Review D 48, R3427–R3431 (1993).
+
+\bibitem{Hooft2016} G. 't Hooft, \textit{The Cellular Automaton Interpretation of Quantum Mechanics}, Springer, 2016.
+
+\bibitem{Arrighi2014} P. Arrighi, S. Facchini, and M. Forets, "Discrete Lorentz covariance for quantum walks and quantum cellular automata," New Journal of Physics 16, 093007 (2014).
+
+\bibitem{Brun2003} T. A. Brun, H. A. Carteret, and A. Ambainis, "Quantum walks driven by many coins," Physical Review A 67, 052317 (2003).
+
+\bibitem{Fidkowski2025} L. Fidkowski et al., "A Quantum Cellular Automaton Framework for Symmetry Protected Topological Phases," 2025.
+
+\bibitem{Javed2022} W. Javed et al., "Weak gravitational lensing in dark matter and plasma mediums for wormhole-like static aether solution," European Physical Journal C 82, 1044 (2022).
+
+\bibitem{Solanki2021} R. K. Solanki, "Kottler Spacetime in Isotropic Static Coordinates," arXiv:2103.10002 (2021).
+
+\bibitem{Norton1981} J. Norton, "The historical foundation of Einstein's general theory of relativity," PhD Thesis, University of Pittsburgh (1981).
+
+\bibitem{Ovgun2019} A. Övgün, "Deflection angle of photon through dark matter by black holes in Einstein–Maxwell–dilaton gravity," Advances in High Energy Physics 2019, 1–9 (2019).
+
+\end{thebibliography}
+
+\appendix
+
+\section{Liouville-Type Derivation of Local Information Volume Conservation and $A(r)B(r)=1$}
+
+Consider the restriction of a static, spherically symmetric metric to the $(t,r)$ subspace:
+$$
+ds^2_{(t,r)} = -A(r)c^2dt^2 + B(r)dr^2.
+$$
+Let the conjugate momenta be
+$$
+p_t = g_{tt}\dot t = -A(r)c^2\dot t,\quad p_r = g_{rr}\dot r = B(r)\dot r,
+$$
+where the dot denotes differentiation with respect to an affine parameter $\lambda$. The Hamiltonian constraint for null geodesics satisfies
+$$
+\mathcal H = \tfrac 12 g^{\mu\nu}p_\mu p_\nu = 0,
+$$
+which on the $(t,r)$ subspace is
+$$
+\mathcal H = -\tfrac 12 A^{-1}(r)p_t^2/c^2 + \tfrac 12 B^{-1}(r)p_r^2 = 0.
+$$
+Define the phase space volume element
+$$
+\mathrm d\Gamma = \mathrm dt\,\mathrm dr\,\mathrm dp_t\,\mathrm dp_r.
+$$
+Hamilton's equations preserve $\mathrm d\Gamma$, which is the content of Liouville's theorem. For the null geodesic shell $\mathcal H=0$, the volume element can be written as
+$$
+\mathrm d\Gamma|_{\mathcal H=0} = \mathrm dt\,\mathrm dr\,\mathrm dp_r\,\mathrm d\phi,
+$$
+where $\phi$ is an angular variable parameterizing the shell. Since QCA unitarity requires that the "step density" corresponding to the null geodesic shell in the coarse-graining map remains invariant, the scaling factor of $\sqrt{-\det g_{(t,r)}}\,\mathrm dt\,\mathrm dr$ relative to $\mathrm dt\,\mathrm dr$ must remain constant.
+
+Specifically,
+$$
+\sqrt{-\det g_{(t,r)}} = \sqrt{A(r)B(r)}.
+$$
+If $A(r)B(r)$ were allowed to vary with $r$, partial variation could be absorbed by coordinate redefinition $t\to t'(t,r),r\to r'(r)$, but the "step shell density" on the null geodesic shell would no longer depend solely on local information load, but would mix in pure coordinate degrees of freedom. To ensure "information volume" reflects only physical load in the QCA and not coordinate choice, we require $A(r)B(r) = \text{const}$.
+
+At infinity $r\to\infty$, requiring the metric to approach Minkowski implies $A(\infty)=B(\infty)=1$, so the constant must be 1, yielding
+$$
+A(r)B(r) = 1.
+$$
+Combined with the isotropy assumption, this can be written as
+$$
+A(r) = n^{-2}(r),B(r)=n^2(r).
+$$
+
+\section{Calculation of Light Deflection under Information--Optical Metric}
+
+Consider light propagation in a plane, choosing the plane $\theta = \pi/2$, with line element
+$$
+ds^2 = -n^{-2}(r)c^2dt^2 + n^2(r)\left(dr^2 + r^2d\varphi^2\right).
+$$
+Null geodesics satisfy $ds^2 = 0$, and Killing symmetries give conserved quantities
+$$
+E = -g_{tt}\dot t = n^{-2}(r)c^2\dot t,\quad L = g_{\varphi\varphi}\dot\varphi = n^2(r)r^2\dot\varphi.
+$$
+Here $E$ and $L$ are "energy" and "angular momentum" respectively. The null geodesic condition gives
+$$
+0 = -n^{-2}c^2\dot t^2 + n^2\dot r^2 + n^2r^2\dot\varphi^2.
+$$
+Eliminating $\dot t,\dot\varphi$ yields the radial equation
+$$
+\dot r^2 + \frac{L^2}{n^4r^2} = \frac{E^2}{c^2n^4}.
+$$
+Define impact parameter $b = Lc/E$, and let $u(\varphi) = 1/r(\varphi)$, transforming the radial equation to
+$$
+\left(\frac{\mathrm du}{\mathrm d\varphi}\right)^2 + u^2 = \frac{1}{b^2}n^{-4}(r(u)).
+$$
+In the weak field limit, taking
+$$
+n(r) = 1 - \Phi(r)/c^2,\quad \Phi(r) = -GM/r,
+$$
+then
+$$
+n^{-4}(r) \approx 1 - 4\Phi(r)/c^2 = 1 + 4GM/(rc^2).
+$$
+This gives the perturbation equation
+$$
+\frac{\mathrm d^2u}{\mathrm d\varphi^2} + u = \frac{2GM}{c^2b^2}.
+$$
+The solution is
+$$
+u(\varphi) = \frac{\sin\varphi}{b} + \frac{GM}{c^2b^2}(1+\cos\varphi) + \mathcal O(G^2M^2/(b^3c^4)).
+$$
+When $\varphi$ varies from $-\pi/2 - \delta$ to $\pi/2 + \delta$, light travels from infinity to infinity, requiring $u(\varphi)\to 0$. Solving for the deflection angle gives
+$$
+\Delta\varphi = 2\delta = \frac{4GM}{bc^2}.
+$$
+This matches the standard General Relativity calculation exactly.
+
+Another more concise derivation uses the paraxial approximation and integral form under the optical metric
+$$
+\Delta\theta \approx \int_{-\infty}^{\infty}\nabla_\perp N_{\text{eff}}(r)\,\mathrm dl,
+$$
+Here $N_{\text{eff}} = n^2 \approx 1 + 2GM/(rc^2)$, integrating along the unperturbed line $r=\sqrt{b^2+z^2}$ also yields $4GM/(bc^2)$.
+
+\section{Variational Calculation for Information--Gravity Variational Principle}
+
+Let the geometric entropy functional be
+$$
+\mathcal S_{\text{geom}}[g] = \frac{1}{4G}\int_{\mathcal H} \mathrm d^2\Sigma\,\kappa,
+$$
+where $\mathcal H$ is the local horizon cross-section and $\kappa$ is the surface gravity. Jacobson and subsequent work showed that the corresponding volume functional variation can be written as
+$$
+\delta \mathcal S_{\text{geom}} = \frac{1}{4G}\int_{\mathcal M}(R_{\mu\nu} - \tfrac 12R g_{\mu\nu})\delta g^{\mu\nu}\sqrt{-g}\,\mathrm d^4x.
+$$
+
+The information entropy functional takes the form
+$$
+\mathcal S_{\text{info}}[g,\Psi] = \int_{\mathcal M} s_{\text{info}}(g,\Psi)\sqrt{-g}\,\mathrm d^4x,
+$$
+where $s_{\text{info}}$ is the local information entropy density, depending on the metric and matter--information degrees of freedom in the QCA. Its variation is
+$$
+\delta \mathcal S_{\text{info}} = \int \left(\frac{\partial s_{\text{info}}}{\partial g^{\mu\nu}}\delta g^{\mu\nu} + \frac{\partial s_{\text{info}}}{\partial\Psi}\delta\Psi\right)\sqrt{-g}\,\mathrm d^4x + \int s_{\text{info}}\delta\sqrt{-g}\,\mathrm d^4x.
+$$
+Using
+$$
+\delta\sqrt{-g} = -\tfrac 12\sqrt{-g}g_{\mu\nu}\delta g^{\mu\nu},
+$$
+this can be rearranged as
+$$
+\delta \mathcal S_{\text{info}} = -\tfrac 12\int T^{\text{info}}_{\mu\nu}\delta g^{\mu\nu}\sqrt{-g}\,\mathrm d^4x + \int \frac{\partial s_{\text{info}}}{\partial\Psi}\delta\Psi\sqrt{-g}\,\mathrm d^4x,
+$$
+where we define
+$$
+T^{\text{info}}_{\mu\nu} = -2\frac{\partial s_{\text{info}}}{\partial g^{\mu\nu}} + s_{\text{info}} g_{\mu\nu}.
+$$
+
+The total entropy variation is
+$$
+\delta \mathcal S_{\text{tot}} = \frac{1}{4G}\int (R_{\mu\nu} - \tfrac 12R g_{\mu\nu})\delta g^{\mu\nu}\sqrt{-g}\,\mathrm d^4x - \tfrac 12\int T^{\text{info}}_{\mu\nu}\delta g^{\mu\nu}\sqrt{-g}\,\mathrm d^4x + \dots.
+$$
+Requiring $\delta \mathcal S_{\text{tot}} = 0$ for any compactly supported metric variation $\delta g^{\mu\nu}$ and assuming matter fields satisfy their respective Euler--Lagrange equations, we must have
+$$
+R_{\mu\nu} - \tfrac 12R g_{\mu\nu} = 8\pi G\,T^{\text{info}}_{\mu\nu}.
+$$
+In the macroscopic limit, identifying $T^{\text{info}}_{\mu\nu}$ with the standard stress-energy tensor $T_{\mu\nu}$ recovers the usual Einstein field equations. This derivation demonstrates the equivalence between IGVP and standard action forms, while endowing geometric entropy and information entropy with explicit information--geometric meaning.
+
+\end{document}
+

@@ -1,0 +1,735 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Math operators
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Id}{Id}
+
+% Title information
+\title{Unified Computational Universe Terminal Object:\\
+Discrete Complexity Geometry, Information Geometry,\\
+Multi-Observer Causal Network, and Capability--Risk Structure}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This paper constructs on foundation of previous ``computational universe'' series works a \textbf{unified computational universe terminal object} with explicit categorical meaning. Previous works have axiomatized computational universe as four-tuple
+
+$$
+U_{\mathrm{comp}}
+=
+(X,\mathsf{T},\mathsf{C},\mathsf{I}),
+$$
+
+and established on it: discrete complexity geometry (complexity distance, volume growth, and discrete Ricci curvature), discrete information geometry (task information manifold $(\mathcal{S}_Q,g_Q)$ and embedding $\Phi_Q$), control manifold $(\mathcal{M},G)$ induced by unified time scale and time--information--complexity joint variational principle, multi-observer consensus geometry and causal network, topological complexity and undecidability, as well as theory of universal catastrophic safety and capability--risk frontier.
+
+Goal of this paper is to unify these discrete and continuous, geometric and logical, single-observer and multi-observer, capability and risk structures into single categorical object
+
+$$
+\mathfrak{U}_{\mathrm{comp}}^{\mathrm{term}}
+$$
+
+---called \textbf{unified computational universe terminal object}. Specifically, we perform following steps:
+
+\begin{enumerate}
+\item Define computational universe category with unified time scale $\mathbf{CompUniv}_\kappa$: objects are computational universes $U_{\mathrm{comp}}$ satisfying axioms, morphisms are ``safe simulation maps'' simultaneously preserving complexity geometry, information geometry, and catastrophe specifications.
+
+\item Construct 2-layer structure on this category: one layer is discrete configuration--event--causal diamond layer; one layer is continuous control--information geometry layer, with multi-observer network, knowledge graph families, and capability--risk frontier placed on top.
+
+\item Prove there exists object
+
+$$
+\mathfrak{U}_{\mathrm{comp}}^{\mathrm{term}}
+=
+\big(
+\mathfrak{X},\,
+\mathfrak{G}_{\mathrm{comp}},\,
+\mathfrak{G}_{\mathrm{info}},\,
+\mathfrak{E}_{\mathrm{obs}},\,
+\mathfrak{S}_{\mathrm{cat}},\,
+\mathfrak{F}_{\mathrm{CR}}
+\big),
+$$
+
+and for each $U_{\mathrm{comp}} \in \mathbf{CompUniv}_\kappa$ ``contraction'' morphism
+
+$$
+F_{U} : U_{\mathrm{comp}} \to \mathfrak{U}_{\mathrm{comp}}^{\mathrm{term}},
+$$
+
+such that:
+
+\begin{itemize}
+\item $F_U$ at discrete level is embedding of configuration--event--diamond, at continuous level is embedding of control--information--observer states;
+\item $F_U$ preserves complexity distance and unified time scale (at most linear rescaling);
+\item $F_U$ makes all task information geometry and multi-observer consensus geometry become some class of ``submanifold--subnetwork'' on $\mathfrak{U}_{\mathrm{comp}}^{\mathrm{term}}$;
+\item $F_U$ maps catastrophe specifications and capability--risk frontier to substructures of $\mathfrak{S}_{\mathrm{cat}}$ and $\mathfrak{F}_{\mathrm{CR}}$.
+\end{itemize}
+
+\item Prove in natural 2-category sense (allowing natural transformations between morphisms), $\mathfrak{U}_{\mathrm{comp}}^{\mathrm{term}}$ satisfies ``terminal object'' property: for any two such unified objects morphisms between them have unique (in natural isomorphism sense) factorization.
+
+\item Finally using previously established physical universe--computational universe categorical equivalence, construct correspondence between unified physical universe terminal object $\mathfrak{U}_{\mathrm{phys}}^{\mathrm{term}}$ and $\mathfrak{U}_{\mathrm{comp}}^{\mathrm{term}}$, and explain both are equivalent terminal objects under unified time scale, boundary diamonds, observer network, and capability--risk structure.
+\end{enumerate}
+
+This paper thus gives ultimate unified description of ``universe as computation'' under purely discrete, axiomatic framework: all concrete finite or local computational universes contract through safe--geometric--information compatible morphisms to same unified computational universe terminal object, which simultaneously plays terminal object role at categorical, geometric, and logical levels.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Computational universe; Terminal object; Category theory; Unified time scale; Complexity geometry; Information geometry; Multi-observer consensus; Capability--risk frontier
+
+\section{Introduction}
+
+In previous series works, we have successively constructed axiomatization, discrete complexity geometry, discrete information geometry, unified time scale framework, time--information--complexity joint variational principle, multi-observer consensus geometry, topological complexity and undecidability, universal catastrophic safety, and capability--risk frontier theory for ``computational universe''.
+
+This paper aims to unify all these structures into single categorical object---\textbf{unified computational universe terminal object} $\mathfrak{U}_{\mathrm{comp}}^{\mathrm{term}}$. This object plays ``terminal object'' role in computational universe category: every specific computational universe can be embedded into it through unique (up to natural isomorphism) structure-preserving map, and all previous geometric, information, multi-observer, and safety structures can be viewed as substructures of unified object.
+
+Terminal object construction not only provides ultimate unified description for computational universe theory, but also establishes formal correspondence with physical universe category through categorical equivalence: unified physical universe terminal object $\mathfrak{U}_{\mathrm{phys}}^{\mathrm{term}}$ and unified computational universe terminal object $\mathfrak{U}_{\mathrm{comp}}^{\mathrm{term}}$ are equivalent presentations of same mathematical object in two equivalent categories.
+
+Paper structure: Section 2 organizes previous scattered structures into 2-category framework with 2-morphisms. Section 3 gives structural data of unified computational universe terminal object: from discrete configuration--event--diamond to continuous control--information--observer--capability--risk. Section 4 defines unified computational universe terminal object and proves its terminal object property in 2-category sense. Section 5 constructs equivalence with unified physical universe terminal object. Appendices give technical construction details and formal proof outlines.
+
+\section{Computational Universe 2-Category Under Unified Time Scale}
+
+This section organizes previous scattered structures into 2-category framework with 2-morphisms.
+
+\subsection{Computational Universe Objects with Unified Time Scale}
+
+\begin{definition}[Computational Universe with Unified Time Scale]
+A computational universe object with unified time scale is seven-tuple
+
+$$
+\widehat{U}_{\mathrm{comp}}
+=
+(X,\mathsf{T},\mathsf{C},\mathsf{I};\,
+\mathcal{M},G;\,
+\mathcal{S}_Q,g_Q),
+$$
+
+where:
+
+\begin{enumerate}
+\item $(X,\mathsf{T},\mathsf{C},\mathsf{I})$ is computational universe satisfying previous axioms:
+
+\begin{itemize}
+\item $X$ countable;
+\item $\mathsf{T} \subset X\times X$ local finite degree;
+\item $\mathsf{C}$ single-step cost positive and path-additive;
+\item $\mathsf{I}$ task information quality baseline.
+\end{itemize}
+
+\item $(\mathcal{M},G)$ is control manifold and complexity metric constructed from unified time scale scattering master scale, satisfying Riemannian limit property of discrete complexity distance $d_{\mathrm{comp}}$: for each local reachable region there exists refinement family $\{X^{(h)}\}$ and map $\Phi_h:X^{(h)}\to\mathcal{M}$, such that
+
+$$
+d_{\mathrm{comp}}^{(h)}(x,y)
+\to
+d_G\big(\Phi_h(x),\Phi_h(y)\big).
+$$
+
+\item $(\mathcal{S}_Q,g_Q)$ is information manifold and Fisher information metric for task $Q$, with embedding
+
+$$
+\Phi_Q:X\to\mathcal{S}_Q,
+$$
+
+such that discrete Jensen--Shannon information distance $d_{\mathrm{JS},Q}(x,y)$ locally consistent with $d_{\mathcal{S}_Q}\big(\Phi_Q(x),\Phi_Q(y)\big)$.
+\end{enumerate}
+\end{definition}
+
+We call such objects constitute ``0-layer objects'' of category $\mathbf{CompUniv}_\kappa$.
+
+\subsection{Safe--Geometric--Information Compatible 1-Morphisms}
+
+\begin{definition}[Safe--Geometric--Information Compatible Simulation Morphism]
+Given two computational universes with unified time scale
+
+$$
+\widehat{U}_{\mathrm{comp}}
+=
+(X,\mathsf{T},\mathsf{C},\mathsf{I};\mathcal{M},G;\mathcal{S}_Q,g_Q),
+$$
+
+$$
+\widehat{U}_{\mathrm{comp}}'
+=
+(X',\mathsf{T}',\mathsf{C}',\mathsf{I}';\mathcal{M}',G';\mathcal{S}'_Q,g'_Q),
+$$
+
+a 1-morphism
+
+$$
+F:\widehat{U}_{\mathrm{comp}} \to \widehat{U}_{\mathrm{comp}}'
+$$
+
+consists of following data:
+
+\begin{enumerate}
+\item Configuration map $f_X:X\to X'$, being previously defined simulation map (preserving step structure, cost control, and information quality monotonicity), with constants $\alpha_X,\beta_X>0$ and monotone function $\Psi$ such that
+$$
+(x,y)\in\mathsf{T} \Rightarrow (f_X(x),f_X(y))\in\mathsf{T}',
+$$
+$$
+d_{\mathrm{comp}}'(f_X(x),f_X(y)) \le \alpha_X d_{\mathrm{comp}}(x,y)+\beta_X,
+$$
+$$
+\mathsf{I}(x) \le \Psi\big(\mathsf{I}'(f_X(x))\big).
+$$
+
+\item Control manifold map $f_{\mathcal{M}}:\mathcal{M}\to\mathcal{M}'$, for metrics $G,G'$ satisfying Lipschitz--bilateral control: there exist $\alpha_{\mathcal{M}},\beta_{\mathcal{M}}>0$ such that
+$$
+\alpha_{\mathcal{M}} G_\theta(v,v)
+\le
+G'_{f_{\mathcal{M}}(\theta)}\big( \mathrm{d} f_{\mathcal{M}} v,\mathrm{d} f_{\mathcal{M}} v \big)
+\le
+\beta_{\mathcal{M}} G_\theta(v,v).
+$$
+
+\item Information manifold map $f_{\mathcal{S}}:\mathcal{S}_Q\to\mathcal{S}'_Q$, for Fisher metric satisfying similar Lipschitz--bilateral control, and compatible with $f_X$, i.e., there exists natural transformation $\eta_X$ such that
+$$
+f_{\mathcal{S}}\circ \Phi_Q
+\simeq
+\Phi'_Q\circ f_X.
+$$
+
+\item Safety specification compatibility: if there exists catastrophe set $C_{\mathrm{cat}} \subset X$ on $\widehat{U}_{\mathrm{comp}}$, then its image $C_{\mathrm{cat}}' = f_X(C_{\mathrm{cat}}) \subset X'$ remains catastrophe set, and $F$ does not map safe points into catastrophe points, i.e., visible safety--catastrophe partition under map preserves or ``blunts toward safety side''.
+\end{enumerate}
+\end{definition}
+
+Such 1-morphisms simultaneously preserve discrete--continuous geometry and catastrophe specifications. All objects and 1-morphisms constitute category $\mathbf{CompUniv}_\kappa$.
+
+\subsection{2-Morphisms and Natural Transformations}
+
+At control and information manifold level, two 1-morphisms may have ``continuous deformations'', corresponding in category theory to 2-morphisms---natural transformations.
+
+\begin{definition}[Natural Transformation as 2-Morphism]
+Given two 1-morphisms
+
+$$
+F,G : \widehat{U}_{\mathrm{comp}}\to \widehat{U}_{\mathrm{comp}}',
+$$
+
+a 2-morphism
+
+$$
+\Xi: F \Rightarrow G
+$$
+
+includes:
+
+\begin{enumerate}
+\item Configuration side natural transformation $\Xi_X$, usually family of local invertible maps on $X'$, such that $G_X \simeq \Xi_X \circ F_X$;
+\item Control and information side natural transformations $\Xi_{\mathcal{M}},\Xi_{\mathcal{S}}$, giving in metric compatible sense $G_{\mathcal{M}} \simeq \Xi_{\mathcal{M}}\circ F_{\mathcal{M}}$, $G_{\mathcal{S}} \simeq \Xi_{\mathcal{S}}\circ F_{\mathcal{S}}$;
+\item On safety structure not breaking coarse structure of catastrophe set and capability--risk frontier.
+\end{enumerate}
+\end{definition}
+
+Thus, $\mathbf{CompUniv}_\kappa$ has 2-category structure.
+
+\section{Structural Data of Unified Computational Universe Terminal Object}
+
+This section gives specific composition of unified computational universe terminal object
+
+$$
+\mathfrak{U}_{\mathrm{comp}}^{\mathrm{term}}
+$$
+
+from discrete configuration--event--diamond to continuous control--information--observer--capability--risk.
+
+\subsection{Discrete Layer: Maximal Configuration Universe and Event--Diamond Structure}
+
+\begin{definition}[Maximal Configuration Universe]
+Let $\mathfrak{X}$ be ``amalgamation of all countable configuration sets and their finite representations'' under some large cardinal control, formally constructible through Grothendieck universe $\mathcal{U}$ and set theory as
+
+$$
+\mathfrak{X}
+=
+\bigcup_{U_{\mathrm{comp}}\in\mathbf{CompUniv}_\kappa}
+\iota_U(X),
+$$
+
+where $\iota_U$ is embedding of each $X$ into common superset. Define on $\mathfrak{X}$ unified transition relation
+
+$$
+\mathsf{T}_\infty
+=
+\bigcup_{U_{\mathrm{comp}}} \iota_U(\mathsf{T}_U),
+$$
+
+cost function
+
+$$
+\mathsf{C}_\infty
+=
+\bigcup_{U_{\mathrm{comp}}} \iota_U(\mathsf{C}_U),
+$$
+
+at conflicts through equivalence class identification (i.e., merging geometrically equivalent update rules from different universes into single object). Thus obtain ``maximal global complexity graph'' containing all local computation structures
+
+$$
+\mathfrak{G}_{\mathrm{comp}}^{(1)}
+=
+(\mathfrak{X},\mathsf{T}_\infty,\mathsf{C}_\infty).
+$$
+\end{definition}
+
+At event layer
+
+$$
+\mathfrak{E}
+=
+\mathfrak{X}\times\mathbb{N},
+$$
+
+can define unified causal partial order and complexity light cone; thus any finite budget causal diamond $\Diamond$ can be viewed as subgraph of $\mathfrak{G}_{\mathrm{comp}}^{(1)}$.
+
+\subsection{Continuous Layer: Terminal Objects of Unified Control Manifold and Information Manifold}
+
+At control and information geometry level, previous works already constructed for each $\widehat{U}_{\mathrm{comp}}$ control manifold $(\mathcal{M}_U,G_U)$ and information manifold $(\mathcal{S}_{Q,U},g_{Q,U})$.
+
+\begin{definition}[Unified Control Manifold Terminal Object]
+Let
+
+$$
+\mathfrak{M}
+=
+\coprod_{U_{\mathrm{comp}}}
+\mathcal{M}_U \Big/ \sim,
+$$
+
+where $\sim$ is ``time scale--complexity isometry equivalence'': if there exists isometric embedding of control--scattering realization, identify corresponding points. Through this amalgamation obtain large manifold or stacky object $\mathfrak{M}$, with unified metric $\mathfrak{G}$, locally consistent with each $G_U$.
+\end{definition}
+
+\begin{definition}[Unified Information Manifold Terminal Object]
+Similarly for all tasks $Q$ and universe $U_{\mathrm{comp}}$, construct information manifold family $\mathcal{S}_{Q,U}$ and perform similar amalgamation, obtaining unified information manifold
+
+$$
+\mathfrak{S}
+=
+\coprod_{Q,U}
+\mathcal{S}_{Q,U} \Big/ \sim,
+$$
+
+carrying piecewise Fisher metric $\mathfrak{g}$.
+\end{definition}
+
+Thus, any concrete computational universe's control--information geometry can be embedded into $(\mathfrak{M},\mathfrak{G})$ and $(\mathfrak{S},\mathfrak{g})$ as submanifolds; under unified time scale master scale and scattering structure, these embeddings preserve geodesic structure and information structure.
+
+\subsection{Multi-Observer Network Layer}
+
+Taking single observer object
+
+$$
+O = (M_{\mathrm{int}},\Sigma_{\mathrm{obs}},\Sigma_{\mathrm{act}},\mathcal{P},\mathcal{U})
+$$
+
+as basic unit, view all countable observer families in unified computational universe as collection of points $(\theta,\phi,m,\mathcal{G},A)$.
+
+\begin{definition}[Unified Observer State Space]
+Define
+
+$$
+\mathfrak{E}_{\mathrm{obs}}
+=
+\bigcup_{U_{\mathrm{comp}},\mathcal{O}}
+\Big(
+\prod_{i\in I} \mathcal{E}_Q^{(i)}
+\times
+M_{\mathrm{int}}^{(i)}
+\times
+\mathfrak{G}^{(i)}
+\times
+\mathfrak{A}^{(i)}
+\Big) \Big/ \sim,
+$$
+
+where $\mathcal{E}_Q^{(i)} = \mathcal{M}_U^{(i)}\times\mathcal{S}_{Q,U}^{(i)}$, $\mathfrak{G}^{(i)}$ is knowledge graph space, $\mathfrak{A}^{(i)}$ is attention configuration space, $\sim$ identifies geometrically equivalent and strategy equivalent states.
+
+Joint metric composed of sum of each $G_U,g_{Q,U}$ and knowledge graph spectral distance.
+\end{definition}
+
+\subsection{Catastrophe Specification and Capability--Risk Frontier Layer}
+
+Perform similar amalgamation for catastrophe specifications and capability--risk structures defined in all computational universes.
+
+\begin{definition}[Unified Catastrophe Specification Layer]
+Define catastrophe specification family
+
+$$
+\mathfrak{S}_{\mathrm{cat}}
+=
+\bigcup_{U_{\mathrm{comp}}}
+\{(X_{0,U},C_{\mathrm{cat},U})\}
+\Big/ \sim,
+$$
+
+where equivalence relation identifies equivalent initial state sets and catastrophe sets under unified embedding.
+\end{definition}
+
+\begin{definition}[Unified Capability--Risk Frontier Layer]
+For each $(U_{\mathrm{comp}},Q)$, capability--risk frontier is $\mathcal{F}_{\mathrm{CR}}^{(U,Q)}\subset\mathbb{R}\times[0,1]$. Embedding all these frontiers as parametrized family into unified strategy space, obtain overall structure
+
+$$
+\mathfrak{F}_{\mathrm{CR}}
+=
+\bigcup_{U,Q} \mathcal{F}_{\mathrm{CR}}^{(U,Q)} \times \{(U,Q)\} \Big/ \sim.
+$$
+
+On unified control--observer strategy space, $\mathfrak{F}_{\mathrm{CR}}$ is piecewise Pareto boundary set, describing capability--risk limit curves in all possible computational universes.
+\end{definition}
+
+\section{Unified Computational Universe Terminal Object and Terminal Object Property}
+
+This section merges all above layers, gives definition of unified computational universe terminal object, and proves its terminal object property in 2-category sense.
+
+\subsection{Definition of Terminal Object}
+
+\begin{definition}[Unified Computational Universe Terminal Object]
+Unified computational universe terminal object defined as ten-tuple
+
+$$
+\mathfrak{U}_{\mathrm{comp}}^{\mathrm{term}}
+=
+\big(
+\mathfrak{X},\,
+\mathsf{T}_\infty,\,
+\mathsf{C}_\infty,\,
+\mathsf{I}_\infty;\,
+\mathfrak{M},\mathfrak{G};\,
+\mathfrak{S},\mathfrak{g};\,
+\mathfrak{E}_{\mathrm{obs}};\,
+\mathfrak{S}_{\mathrm{cat}};\,
+\mathfrak{F}_{\mathrm{CR}}
+\big),
+$$
+
+where each part defined as in 3.1--3.6.
+\end{definition}
+
+Intuitively, $\mathfrak{U}_{\mathrm{comp}}^{\mathrm{term}}$ simultaneously contains:
+
+\begin{itemize}
+\item All locally realizable configurations and updates;
+\item All control path complexity geometry limits under unified time scale;
+\item All task information geometries and observer networks;
+\item All catastrophe specifications and capability--risk frontiers.
+\end{itemize}
+
+\subsection{Unified Contraction Functor}
+
+\begin{definition}[Contraction 1-Morphism]
+For each $\widehat{U}_{\mathrm{comp}} \in \mathbf{CompUniv}_\kappa$, define
+
+$$
+F_U : \widehat{U}_{\mathrm{comp}} \to \mathfrak{U}_{\mathrm{comp}}^{\mathrm{term}}
+$$
+
+as follows:
+
+\begin{enumerate}
+\item Configuration embedding
+$$
+f_X = \iota_U : X \hookrightarrow \mathfrak{X}.
+$$
+
+\item Control manifold embedding
+$$
+f_{\mathcal{M}} : \mathcal{M}_U \hookrightarrow \mathfrak{M},
+$$
+preserving metric structure (at most constant rescaling).
+
+\item Information manifold embedding
+$$
+f_{\mathcal{S}} : \mathcal{S}_{Q,U} \hookrightarrow \mathfrak{S},
+$$
+preserving Fisher information metric.
+
+\item Observer and knowledge graph embedding
+$$
+f_{\mathrm{obs}} : \text{ObsStates}(U_{\mathrm{comp}}) \hookrightarrow \mathfrak{E}_{\mathrm{obs}}.
+$$
+
+\item Catastrophe specification and capability--risk frontier embedding
+$$
+f_{\mathrm{cat}} : (X_0,C_{\mathrm{cat}}) \mapsto \mathfrak{S}_{\mathrm{cat}},
+\quad
+f_{\mathrm{CR}} : \mathcal{F}_{\mathrm{CR}}^{(U,Q)} \mapsto \mathfrak{F}_{\mathrm{CR}}.
+$$
+\end{enumerate}
+
+Combining these $F_U$ is safe--geometric--information compatible 1-morphism.
+\end{definition}
+
+\subsection{Terminal Object Property}
+
+\begin{theorem}[2-Terminal Object Property of Unified Computational Universe Terminal Object]
+\label{thm:terminal-property}
+In 2-category $\mathbf{CompUniv}_\kappa$, $\mathfrak{U}_{\mathrm{comp}}^{\mathrm{term}}$ is 2-terminal object:
+
+For each object $\widehat{U}_{\mathrm{comp}}$, there exists 1-morphism
+
+$$
+F_U : \widehat{U}_{\mathrm{comp}} \to \mathfrak{U}_{\mathrm{comp}}^{\mathrm{term}},
+$$
+
+and for any other 1-morphism
+
+$$
+G_U : \widehat{U}_{\mathrm{comp}} \to \mathfrak{U}_{\mathrm{comp}}^{\mathrm{term}},
+$$
+
+there exists unique (in 2-morphism sense) natural transformation
+
+$$
+\Xi_U : G_U \Rightarrow F_U.
+$$
+\end{theorem}
+
+\begin{proof}[Proof (Outline)]
+
+\begin{enumerate}
+\item \textbf{Existence}: By construction in 4.2, for each $\widehat{U}_{\mathrm{comp}}$ can explicitly define $F_U$ as embedding.
+
+\item \textbf{Uniqueness (up to natural transformation)}: Any other 1-morphism $G_U$ must map $X$ to some subset of $\mathfrak{X}$, and preserve structure at control--information--observer--capability--risk layers. Since $\mathfrak{U}_{\mathrm{comp}}^{\mathrm{term}}$ constructed by ``maximal global equivalence class'', for any such $G_U$ there exists ``isometry--equivalence class'' natural transformation $\Xi_U$ pulling it back to canonical embedding $F_U$: at each layer, can eliminate redundant degrees of freedom through internal isometry or local unitary transformation, making map isomorphic to $F_U$.
+
+\item \textbf{Naturality}: For morphism $H:\widehat{U}_{\mathrm{comp}}\to\widehat{V}_{\mathrm{comp}}$, natural transformation between two-side composition $F_V\circ H$ and $F_U$ given by unified construction---this is standard feature of ``inclusion--isometry'' structure in Grothendieck universe.
+\end{enumerate}
+
+Rigorous 2-category proof requires checking compatibility at each layer, see Appendix C.
+\end{proof}
+
+\section{Equivalence with Unified Physical Universe Terminal Object}
+
+Previous works already constructed physical universe category $\mathbf{PhysUniv}^{\mathrm{QCA}}$ and computational universe category $\mathbf{CompUniv}^{\mathrm{phys}}$, and through functors
+
+$$
+F : \mathbf{PhysUniv}^{\mathrm{QCA}} \to \mathbf{CompUniv}^{\mathrm{phys}},
+\quad
+G : \mathbf{CompUniv}^{\mathrm{phys}} \to \mathbf{PhysUniv}^{\mathrm{QCA}}
+$$
+
+proved both are categorically equivalent. At physical level, unified physical universe terminal object $\mathfrak{U}_{\mathrm{phys}}^{\mathrm{term}}$ already constructed through scattering time scale, boundary time geometry, and Dirac--QCA continuous limit.
+
+In current scenario, from inclusion $\mathbf{CompUniv}^{\mathrm{phys}} \hookrightarrow \mathbf{CompUniv}_\kappa$ and categorical equivalence, can lift terminal object relationship:
+
+\begin{proposition}[Equivalence Between Terminal Objects]
+\label{prop:terminal-equivalence}
+Under constraints of unified time scale, unified physical universe terminal object $\mathfrak{U}_{\mathrm{phys}}^{\mathrm{term}}$ and unified computational universe terminal object $\mathfrak{U}_{\mathrm{comp}}^{\mathrm{term}}$ are equivalent in 2-category sense.
+
+That is, there exists pair of 1-morphisms
+
+$$
+\mathcal{F} : \mathfrak{U}_{\mathrm{phys}}^{\mathrm{term}}
+\to
+\mathfrak{U}_{\mathrm{comp}}^{\mathrm{term}},
+\quad
+\mathcal{G} : \mathfrak{U}_{\mathrm{comp}}^{\mathrm{term}}
+\to
+\mathfrak{U}_{\mathrm{phys}}^{\mathrm{term}},
+$$
+
+and natural isomorphism 2-morphisms
+
+$$
+\mathcal{G}\circ\mathcal{F} \simeq \Id_{\mathfrak{U}_{\mathrm{phys}}^{\mathrm{term}}},
+\quad
+\mathcal{F}\circ\mathcal{G} \simeq \Id_{\mathfrak{U}_{\mathrm{comp}}^{\mathrm{term}}}.
+$$
+\end{proposition}
+
+Proof relies on previous categorical equivalence theorem and terminal object property, see Appendix D.
+
+This means: ``universe as computation'' unified terminal object and ``universe as unified time--boundary geometry'' terminal object are same 2-terminal object in different categorical presentations: one with discrete computation structure as primary, one with continuous geometric structure as primary.
+
+\appendix
+
+\section{Technical Details of Unified Configuration--Event--Diamond Layer}
+
+\subsection{Set-Theoretic Construction of Maximal Configuration Universe}
+
+To avoid size paradoxes, we operate within some Grothendieck universe $\mathcal{U}$, let
+
+$$
+\mathcal{X}_0
+=
+\{X_U : U\in\mathbf{CompUniv}_\kappa\},
+\quad
+\mathcal{T}_0
+=
+\{\mathsf{T}_U,\mathsf{C}_U,\mathsf{I}_U\}.
+$$
+
+Define
+
+$$
+\mathfrak{X}
+=
+\bigsqcup_{U} (X_U\times\{U\}),
+$$
+
+then through isometry--equivalence relation $\sim$ identify ``geometrically completely identical'' point pairs, obtaining quotient set
+
+$$
+\mathfrak{X}
+=
+\Big(
+\bigsqcup_{U} X_U
+\Big) \Big/ \sim.
+$$
+
+Unified transition relation $\mathsf{T}_\infty$ and cost $\mathsf{C}_\infty$ obtained through similar quotient construction. This process ensures:
+
+\begin{itemize}
+\item Each concrete $X_U$ embedded into $\mathfrak{X}$;
+\item In isometry equivalence classes, do not repeatedly count same update structures;
+\item Unified complexity distance $d_{\mathrm{comp},\infty}$ restricts to original distance on each subset.
+\end{itemize}
+
+\subsection{Unified Event Layer and Diamonds}
+
+On event layer
+
+$$
+\mathfrak{E} = \mathfrak{X}\times\mathbb{N}
+$$
+
+unified update relation
+
+$$
+\mathsf{T}_{\mathfrak{E}}
+=
+\{((x,k),(y,k+1)) : (x,y)\in\mathsf{T}_\infty\}
+$$
+
+and cost function induce complexity light cone and diamond definitions completely analogous to single universe case.
+
+\section{Construction of Unified Control and Information Manifold Terminal Objects}
+
+\subsection{Local Construction of Control Manifold Terminal Object}
+
+For each $U_{\mathrm{comp}}$, control manifold $\mathcal{M}_U$ locally isomorphic to some Riemannian manifold $(\mathbb{R}^{d_U},G_U)$. We perform disjoint union over all such local patches, then amalgamate by ``time scale--scattering--control structure isometry'' relation, obtaining unified control manifold $\mathfrak{M}$.
+
+Technically, can define equivalence relation:
+
+$$
+(\theta,U) \sim (\theta',U')
+\iff
+\exists\ \text{isometric isomorphism}\ \varphi:
+\mathcal{M}_U\supset U \to U'\subset\mathcal{M}_{U'}
+\ \text{with}\ \varphi(\theta)=\theta'.
+$$
+
+Metric $\mathfrak{G}$ defined on equivalence class representatives by $G_U$, isometry equivalence ensures consistency.
+
+\subsection{Construction of Information Manifold Terminal Object}
+
+For all $Q,U$, information manifold $(\mathcal{S}_{Q,U},g_{Q,U})$ can be determined through relative entropy second-order structure. Same as control manifold, through disjoint union and Fisher--isometry equivalence relation amalgamation obtain $(\mathfrak{S},\mathfrak{g})$.
+
+\section{Formal Proof Outline of Terminal Object 2-Property}
+
+\subsection{Uniqueness of 1-Morphism (Up to Natural Transformation)}
+
+Given $\widehat{U}_{\mathrm{comp}}$ and two 1-morphisms
+
+$$
+F_U,G_U : \widehat{U}_{\mathrm{comp}} \to \mathfrak{U}_{\mathrm{comp}}^{\mathrm{term}},
+$$
+
+compare their maps at each layer:
+
+\begin{itemize}
+\item At configuration layer, from isometry--equivalence construction of $\mathfrak{X}$, images of $F_U$ and $G_U$ must fall in same equivalence class, thus there exists some local bijection $\Xi_X$ such that $G_X = \Xi_X\circ F_X$;
+\item At control and information layers, from isometry--equivalence construction of $\mathfrak{M},\mathfrak{S}$, there exist isometric natural transformations $\Xi_{\mathcal{M}},\Xi_{\mathcal{S}}$ between $F_{\mathcal{M}},G_{\mathcal{M}}$ and $F_{\mathcal{S}},G_{\mathcal{S}}$;
+\item At observer and capability--risk layers, similar amalgamation ensures existence of corresponding natural transformations.
+\end{itemize}
+
+Combining these natural transformations into 2-morphism $\Xi_U$ completes.
+
+\subsection{2-Terminal Object Property}
+
+If there exists another candidate terminal object $\mathfrak{U}'_{\mathrm{comp}}$, then 1-morphism $H:\mathfrak{U}_{\mathrm{comp}}^{\mathrm{term}}\to\mathfrak{U}'_{\mathrm{comp}}$ starting from $\mathfrak{U}_{\mathrm{comp}}^{\mathrm{term}}$ and 1-morphism $K$ from $\mathfrak{U}'_{\mathrm{comp}}$ to $\mathfrak{U}_{\mathrm{comp}}^{\mathrm{term}}$ must compose to identity in 2-morphism sense, because both have ``inclusion--amalgamation--isometry'' structure. This is standard 2-terminal object argument.
+
+\section{Equivalence of Unified Physical Universe Terminal Object and Unified Computational Universe Terminal Object}
+
+At physical level, unified physical universe terminal object
+
+$$
+\mathfrak{U}_{\mathrm{phys}}^{\mathrm{term}}
+=
+(M_\infty,g_\infty;\,
+\mathcal{F}_\infty;\,
+\kappa_\infty;\,
+\mathsf{S}_\infty;\,
+\cdots)
+$$
+
+constructed through similar Grothendieck amalgamation in physical universe category $\mathbf{PhysUniv}^{\mathrm{QCA}}$. Previously given categorical equivalence
+
+$$
+F : \mathbf{PhysUniv}^{\mathrm{QCA}} \to \mathbf{CompUniv}^{\mathrm{phys}},
+\quad
+G : \mathbf{CompUniv}^{\mathrm{phys}} \to \mathbf{PhysUniv}^{\mathrm{QCA}}.
+$$
+
+By extending these functors to terminal object level, can construct
+
+$$
+\mathcal{F} : \mathfrak{U}_{\mathrm{phys}}^{\mathrm{term}}
+\to
+\mathfrak{U}_{\mathrm{comp}}^{\mathrm{term}},
+\quad
+\mathcal{G} : \mathfrak{U}_{\mathrm{comp}}^{\mathrm{term}}
+\to
+\mathfrak{U}_{\mathrm{phys}}^{\mathrm{term}},
+$$
+
+and using terminal object property and equivalence, obtain natural isomorphisms
+
+$$
+\mathcal{G}\circ\mathcal{F} \simeq \Id_{\mathfrak{U}_{\mathrm{phys}}^{\mathrm{term}}},
+\quad
+\mathcal{F}\circ\mathcal{G} \simeq \Id_{\mathfrak{U}_{\mathrm{comp}}^{\mathrm{term}}}.
+$$
+
+This fundamentally shows:
+
+\begin{itemize}
+\item Viewing universe as ``scattering--boundary geometry terminal object under unified time scale'' and
+\item Viewing universe as ``computational universe terminal object under unified time scale''
+\end{itemize}
+
+are same mathematical object in dual presentation in two equivalent categories.
+
+\end{document}

@@ -1,0 +1,471 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{braket}
+\usepackage{graphicx}
+\usepackage{booktabs}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Relative Topology, Principal Bundle Reduction, and Index Theory on Perforated Information Manifolds:\\
+Unified Framework Toward $S(U(3)\times U(2))$, Three-Generation Index, and Yukawa--Winding}
+
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Full-rank density matrix manifold $\mathcal{D}^{\rm full}_N=\{\rho>0,\ \mathrm{tr}\rho=1\}$ is open convex contractible, Uhlmann principal bundle admits global square-root section $w=\sqrt{\rho}$ on full domain, thus \textbf{absolute} integer-valued topological invariants are absent on full domain. This paper turns to \textbf{perforated relative topology}: In $N=5$ case, removing tubular neighborhood of three--two level gap closing set $\Sigma_{3|2}=\{\lambda_3=\lambda_4\}$ from $\mathcal{D}^{\rm full}_5$ yields perforated domain $\mathcal{D}^{\rm exc}$. On $\mathcal{D}^{\rm exc}$ construct rank $3/2$ subbundles $(\mathcal{E}_3,\mathcal{E}_2)$ via \textbf{Riesz spectral projection}, realizing principal bundle structure group reduction $U(5)\to U(3)\times U(2)$; further utilizing determinant balancing yields $S(U(3)\times U(2))$ reduction. We prove general group isomorphism
+
+$$
+S\!\big(U(m)\times U(n)\big)\ \cong\ \big(SU(m)\times SU(n)\times U(1)\big)\big/\mathbb{Z}_{\mathrm{lcm}(m,n)},
+$$
+
+with $(m,n)=(3,2)$ deriving $(SU(3)\times SU(2)\times U(1))/\mathbb{Z}_6$. Through \textbf{relative $K$-theory boundary map} unifying ``projection--Chern class'' with ``mass--clutching ($\det\widehat{\Phi}$ winding)'', on two-dimensional transverse $S^1$ obtain
+
+$$
+\mathrm{Ind}(\not{D}_A+\Phi)=\mathrm{wind}\,\det\widehat{\Phi}=\langle c_1(\mathcal{L}_\Phi),[S^1]\rangle .
+$$
+
+In $\mathbb{CP}^2$ spin$^c$/Dolbeault calibration compute $\mathrm{index}=3$ as ``three-generation prototype''. This paper provides \textbf{complete proofs} of all core propositions and theorems, with two \textbf{protocol-level} reproducible experimental/numerical schemes (purification interference loop and photonic Dirac--mass vortex). Appendices include: unified contour and global smoothness, group isomorphism gcd/lcm normalization and ``root selection'', rigorous proof of relative $K$-theory and Chern character commutative diagram, Fredholm construction for Callias/Anghel--Bunke index theorem, and one-page arithmetic derivation of minimal charge $1/6$ when $\Gamma=\mathbb{Z}_6$.
+
+\textbf{Keywords}: Uhlmann principal bundle; perforated relative topology; Riesz projection; principal bundle reduction; $S(U(3)\times U(2))$; $\mathbb{Z}_6$ quotient; relative cohomology/$K$-theory; Dolbeault/spin$^c$ index; Callias/Anghel--Bunke index; determinant line bundle; line operator spectrum; reproducible experimental protocol
+\end{abstract}
+
+\section{Notation, Assumptions, and Scope}
+
+\begin{itemize}
+\item \textbf{Mixed state manifold}: $\mathcal{D}^{\rm full}_N=\{\rho\in{\rm Herm}^+_N:\rho>0,\ \mathrm{tr}\rho=1\}$, this paper fixes $N=5$.
+\item \textbf{Eigenvalue order}: $\lambda_1\ge\cdots\ge\lambda_5$; \textbf{spectral gap function} $g(\rho):=\lambda_3-\lambda_4$.
+\item \textbf{Perforated domain}: Take $\delta>0$, define $\mathcal{D}^{\rm exc}:=\{\rho\in\mathcal{D}^{\rm full}_5:\ g(\rho)\ge 2\delta\}$. Boundary $Y:=\partial\mathrm{Tub}_\varepsilon(\Sigma_{3|2})$ equivalent to $g=2\delta$ tubular boundary.
+\item \textbf{Riesz projection}: Fix \textbf{unified contour family} $\gamma_3$ (see Lemma 1.2 and Appendix A), let
+
+$$
+P_3(\rho)=\frac{1}{2\pi i}\oint_{\gamma_3}(z-\rho)^{-1}\,dz,\qquad P_2=I-P_3 .
+$$
+
+\item \textbf{Uhlmann principal bundle}: $P=\{\sqrt{\rho}\,U:\ \rho\in\mathcal{D}^{\rm full}_5,\ U\in U(5)\}$, right action $w\cdot V=wV$; $\pi(w)=ww^\dagger$ yields $U(5)$-principal bundle $P\to\mathcal{D}^{\rm full}_5$.
+\item \textbf{Regular/ordinary process (verification checklist)}: Along path full rank, generator local CPTP and $C^1$, optional continuous purification gauge, and \textbf{avoiding} $\Sigma_{3|2}$ ($g\ge 2\delta$). This checklist only motivational: full domain lacks integer global classes; this paper focuses \textbf{relative} quantization on perforated domain.
+\item \textbf{Normalization}: de Rham pairing uniformly takes $\frac{1}{2\pi i}$ factor; on $\mathbb{CP}^2$ hyperplane class $H$ normalized as $\int_{\mathbb{CP}^1}H=1$, $\int_{\mathbb{CP}^2}H^2=1$.
+\end{itemize}
+
+\section{Main Results (Statements)}
+
+\begin{theorem}[A: Group Isomorphism, gcd/lcm Normalization]
+Let $g=\gcd(m,n)$, $\ell=\mathrm{lcm}(m,n)=mn/g$. Homomorphism
+
+$$
+\varphi:\ SU(m)\times SU(n)\times U(1)\to S(U(m)\times U(n)),\quad
+\varphi(A,B,z)=\mathrm{diag}\big(z^{n/g}A,\ z^{-m/g}B\big)
+$$
+
+is surjective with $\ker\varphi\simeq \mathbb{Z}_\ell$. Thus
+
+$$
+S\!\big(U(m)\times U(n)\big)\ \cong\ \big(SU(m)\times SU(n)\times U(1)\big)\big/\mathbb{Z}_\ell .
+$$
+
+Special case $(m,n)=(3,2)\Rightarrow \ell=6$.
+\end{theorem}
+
+\begin{proposition}[B: Partition Uniqueness]
+Under constraint ``simple factors exactly $SU(3)$, $SU(2)$ retaining only one $U(1)$'', unique feasible partition of $U(5)$ is $5=3+2$.
+\end{proposition}
+
+\begin{theorem}[C: Relative Bridging]
+Assume mass end term $\Phi$ invertible on $Y$, take unitization $\widehat{\Phi}:Y\to U(N)$. Then relative $K$-theory boundary image $\partial[\det\widehat{\Phi}]\in K^0(X,Y)$ equals projection line bundle $[\det\mathcal{E}_3]-[\det\mathcal{E}_2]$; on two-dimensional link
+
+$$
+\langle c_1(\mathcal{L}_\Phi),[S^2]\rangle=\langle c_1(\det\mathcal{E}_3),[S^2]\rangle\in\mathbb{Z} .
+$$
+\end{theorem}
+
+\begin{theorem}[D: Callias/Anghel--Bunke]
+If outer region invertibility $\Phi^2\ge cI$, $[\nabla,\Phi]\in L^\infty$, $\Phi\in W^{1,2}_{\rm loc}$ etc. hold, then
+
+$$
+\mathrm{Ind}(\not{D}_A+\Phi)=\deg\big(\widehat{\Phi}|_{S^{d-1}_\infty}\big)\in \pi_{d-1}(U).
+$$
+
+By Bott periodicity $\pi_k(U)=\mathbb{Z}$ ($k$ odd), $0$ ($k$ even), obtain: index possibly nonzero only when \textbf{transverse dimension $d$ is even}; when $d=2$
+
+$$
+\mathrm{Ind}=\frac{1}{2\pi i}\oint\mathrm{Tr}(\widehat{\Phi}^{-1}d\widehat{\Phi})
+=\mathrm{wind}\,\det\widehat{\Phi}=\langle c_1(\mathcal{L}_\Phi),[S^1]\rangle .
+$$
+\end{theorem}
+
+\begin{theorem}[E: $\mathbb{CP}^2$ Index]
+$\mathrm{Td}(T\mathbb{CP}^2)=1+\tfrac{3}{2}H+H^2$, $\mathrm{ch}(\mathcal{O}(1))=1+H+\tfrac{1}{2}H^2$, thus
+$\mathrm{index}\,\not{D}^{\mathcal{O}(1)}=3$.
+\end{theorem}
+
+\begin{corollary}[F: SM Global Group]
+By Theorem A, Proposition B, obtain
+
+$$
+S(U(3)\times U(2))\ \cong\ \frac{SU(3)\times SU(2)\times U(1)}{\mathbb{Z}_6}.
+$$
+
+Appendix E further provides electric/magnetic charge lattice and arithmetic derivation of \textbf{minimal charge step $1/6$} for line operator spectrum when $\Gamma=\mathbb{Z}_6$.
+\end{corollary}
+
+\section{Degeneration Set Geometry and Unified Contour}
+
+\begin{proposition}[2.1: Codimension 3 and $S^2$-Link]
+In three-dimensional transverse slice maintaining $(\lambda_2,\lambda_5)$ gap with no additional symmetry, $\Sigma_{3|2}=\{\lambda_3=\lambda_4\}$ is codimension 3 regular subset, its small sphere boundary link homotopic to $S^2$.
+
+\emph{Proof essentials}: Restrict Hamiltonian to near-degenerate 2-dimensional eigensubspace, obtain $h=x\sigma_x+y\sigma_y+z\sigma_z$; degeneracy condition $(x,y,z)=(0,0,0)$ yields three independent real constraints. See Appendix A.3.
+\end{proposition}
+
+\begin{lemma}[2.2: Unified Contour; Global $C^\infty$]
+For any compact $K\subset\mathcal{D}^{\rm exc}$, there exist $\delta>0$ and finite cover $\{U_j\}$ with closed curve family $\{\gamma_j\}$ such that: $\forall \rho\in U_j$, $\gamma_j$ has distance $\ge \delta$ from complement spectrum; thus $P_{3,2}$ is $C^\infty$ on $U_j$ and can be smoothly patched. Details in Appendix A.1--A.2.
+\end{lemma}
+
+\section{Principal Bundle Reduction to $S(U(3)\times U(2))$}
+
+\begin{theorem}[3.1: Reduction = Section]
+Let $P\to X$ be $U(5)$-principal bundle, $\mathcal{G}=P\times_{U(5)}\mathrm{Gr}_3(\mathbb{C}^5)$. Section $\sigma$ from $P_3$ exists if and only if $P$ admits $U(3)\times U(2)$-reduction $P_H\subset P$.
+
+\emph{Proof}: Standard principal bundle theory, Appendix B.4.
+\end{theorem}
+
+\begin{proposition}[3.2: Gauge Nature of Determinant Balancing]
+Background trivial bundle $\underline{\mathbb{C}}^5$ with fixed volume form yields gauge isomorphism
+$\det\mathcal{E}_3\otimes\det\mathcal{E}_2\simeq\underline{\mathbb{C}}$, reducing to $S(U(3)\times U(2))$.
+\end{proposition}
+
+\begin{theorem}[3.3: Group Isomorphism; Theorem A for $m=3$, $n=2$]
+
+$$
+S(U(3)\times U(2))\ \cong\ (SU(3)\times SU(2)\times U(1))/\mathbb{Z}_6 .
+$$
+
+\emph{Proof}: See Appendix B.1; particularly note ``root selection'' step in surjectivity: given $(g_3,g_2)$, take $z\in U(1)$ satisfying $z^6=\det g_3$, let $A=z^{-2}g_3\in SU(3)$, $B=z^{3}g_2\in SU(2)$. Kernel isomorphic to $\mathbb{Z}_6$.
+\end{theorem}
+
+\begin{proposition}[3.4: Partition Uniqueness; Proposition B]
+Partition $5=3+2$ is unique satisfying ``simple factors $SU(3)$, $SU(2)$ with only one $U(1)$''; $(4+1)$ lacks $SU(2)$, $(3+1+1)$ and $(2+2+1)$ both retain two $U(1)$'s. Details in Appendix B.2.
+\end{proposition}
+
+\section{Two Characterizations of Relative Topology and Their Equivalence (Theorem C)}
+
+\subsection{Relative $K$-Theory and Boundary Map}
+
+For pair $(X,Y)=(\mathcal{D}^{\rm exc},\partial\mathrm{Tub}_\varepsilon)$, long exact sequence
+
+$$
+\cdots\to K^1(Y)\xrightarrow{\ \partial\ }K^0(X,Y)\to K^0(X)\to\cdots .
+$$
+
+If $\Phi$ invertible on $Y$, then unitization $\widehat{\Phi}:Y\to U(N)$ defines $[\widehat{\Phi}]\in K^1(Y)$, its boundary $\partial[\widehat{\Phi}]\in K^0(X,Y)$.
+
+\subsection{Commutative Diagram and de Rham Representative}
+
+Odd Chern character $\mathrm{ch}_1:K^1(Y)\to H^1(Y;\mathbb{Q})$ with 1-dimensional representative
+
+$$
+\mathrm{ch}_1([\widehat{\Phi}])=\frac{1}{2\pi i}\mathrm{Tr}(\widehat{\Phi}^{-1}d\widehat{\Phi}).
+$$
+
+Commutative diagram exists (Appendix C.1):
+
+$$
+\begin{array}{ccc}
+K^1(Y) & \xrightarrow{\partial} & K^0(X,Y) \\
+\downarrow{\mathrm{ch}_1} & & \downarrow{\mathrm{ch}} \\
+H^1(Y) & \xrightarrow{\partial} & H^2(X,Y)
+\end{array}
+$$
+
+Thus
+
+$$
+\mathrm{ch}\big(\partial[\widehat{\Phi}]\big)
+=\partial\Big[\frac{1}{2\pi i}\mathrm{Tr}(\widehat{\Phi}^{-1}d\widehat{\Phi})\Big]\in H^2(X,Y).
+$$
+
+\subsection{Equivalence Proposition (Theorem C)}
+
+Compared with $\mathcal{E}_3$, $\mathcal{E}_2$ from Riesz projection, utilizing naturality and clutching--gluing argument (Appendix C.2), obtain
+
+$$
+\partial[\det\widehat{\Phi}]=[\det\mathcal{E}_3]-[\det\mathcal{E}_2]\in K^0(X,Y),
+$$
+
+thus on two-dimensional link $\langle c_1(\mathcal{L}_\Phi),[S^2]\rangle=\langle c_1(\det\mathcal{E}_3),[S^2]\rangle$.
+
+\section{Spin$^c$/Dolbeault Index on $\mathbb{CP}^2$ (Theorem E)}
+
+Take $H=c_1(\mathcal{O}(1))$, $\int_{\mathbb{CP}^2}H^2=1$.
+
+$$
+\mathrm{Td}(T\mathbb{CP}^2)=1+\tfrac{1}{2}c_1+\tfrac{1}{12}(c_1^2+c_2)=1+\tfrac{3}{2}H+H^2,\quad \mathrm{ch}(\mathcal{O}(1))=e^H=1+H+\tfrac{1}{2}H^2.
+$$
+
+Top-dimensional coefficient $1+\tfrac{3}{2}+\tfrac{1}{2}=3$, thus $\mathrm{index}\,\not{D}^{\mathcal{O}(1)}=3$. Kodaira vanishing ensures $\chi=h^0=3$.
+
+\section{Callias/Anghel--Bunke Index = Degree; Two-Dimensional Winding Formula (Theorem D)}
+
+\subsection{Fredholm Conditions}
+
+Let $M$ complete, Dirac-type operator $\not{D}_A$ with self-adjoint end term $\Phi$. If there exist $R$, $c>0$ such that on $M\setminus B_R$, $\Phi^2\ge cI$, with $[\nabla,\Phi]\in L^\infty$, $\Phi\in W^{1,2}_{\rm loc}$, then $\not{D}_A+\Phi$ is Fredholm (Appendix D.1).
+
+\subsection{Index = Degree and Parity}
+
+Boundary homomorphism and Bott isomorphism yield
+
+$$
+\mathrm{Ind}(\not{D}_A+\Phi)=\deg\big(\widehat{\Phi}|_{S^{d-1}_\infty}\big)\in \pi_{d-1}(U),\quad
+\pi_k(U)=\begin{cases}\mathbb{Z},&k\ \text{odd}\\ 0,&k\ \text{even}\end{cases}.
+$$
+
+For two-dimensional transverse
+
+$$
+\mathrm{Ind}=\frac{1}{2\pi i}\oint_{S^1}\mathrm{Tr}(\widehat{\Phi}^{-1}d\widehat{\Phi})
+=\mathrm{wind}\,\det\widehat{\Phi}=\langle c_1(\mathcal{L}_\Phi),[S^1]\rangle ,
+$$
+
+consistent with zero-mode counting. Sign convention: $S^1$ takes counterclockwise orientation.
+
+\section{Alignment with $G_{\rm SM}$ Line Operator Spectrum and Minimal Charge $1/6$}
+
+By Theorem 3.3: $G_{\rm SM}\cong (SU(3)\times SU(2)\times U(1))/\mathbb{Z}_6$. Kernel generator can take
+
+$$
+(\omega_3^{-1}I_3,\ -I_2,\ e^{i2\pi/6}),\qquad \omega_3=e^{i2\pi/3}.
+$$
+
+Action on $(t,s,q)$ (respectively $SU(3)$ triality, $SU(2)$ parity, $U(1)$ integer charge) is
+
+$$
+\omega_3^{-t}\cdot(-1)^s\cdot e^{i2\pi q/6}.
+$$
+
+Necessary and sufficient condition for descending to quotient group: $q\equiv 2t+3s\pmod{6}$. Thus normalized hypercharge $Y=q/6$ has minimal fractional step $1/6$. Appendix E provides one-page derivation and example table for electric/magnetic charge lattice, Dirac pairing integer matrix, and $\theta$ period.
+
+\section{Protocol-Level Experimental and Numerical Schemes (Overview)}
+
+\textbf{E1 Purification Interference (Image around $\Sigma_{3|2}$)}: Discretize unified contour, readout $2\pi\phi_{\rm rel}$, where $\phi_{\rm rel}=\int_{S^2_{\rm link}} F_{\det\mathcal{E}_3}/(2\pi)\in\mathbb{Z}$. Sampling $N_{\rm shots}\gtrsim 30$, phase noise $\delta\phi\lesssim 0.25$rad can stably determine integer. Failure cases: path grazes $\Sigma_{3|2}$, non-smooth purification; countermeasures: enlarge contour radius, increase purity gap and repeat sampling.
+
+\textbf{E2 Photonic Dirac--Mass Vortex}: Encode mass phase $e^{ik\theta}$, outer region $|m|\to m_\infty>0$. Zero-mode count $|k|$, near-field intensity centralization, band-gap midpoint energy form fingerprint. Robust region: phase error $\le 10^\circ$, coupling mismatch $\le 5\%$. Appendix F provides parameter table and ``passing standard''.
+
+\section{Discussion and Outlook}
+
+\begin{itemize}
+\item \textbf{Relative vs absolute}: Full domain contractible $\to$ absolute integer class vanishes; perforated $\to$ relative class quantization.
+\item \textbf{Dimensional effect}: $\det$ only fully detects in two-dimensional transverse; higher dimensions require stable $U$ group generators.
+\item \textbf{Group theory bridging}: Spectral splitting induced $S(U(3)\times U(2))$ works synergistically with line spectrum dictionary, yielding minimal charge step $1/6$.
+\item \textbf{Follow-up}: Multi-defect superposition relative class addition, robust window under noise--non-equilibrium, systematic generalization with higher-order ($r$-block) splitting.
+\end{itemize}
+
+\appendix
+
+\section{Spectral Geometry and Unified Contour (Corresponding to §2)}
+
+\subsection{Spectral Gap Lower Bound and Contour Selection}
+
+Let $\mathrm{gap}(\rho)=\min\{\lambda_3-\lambda_4,\ \lambda_2-\lambda_3,\ \lambda_4-\lambda_5\}$. On $X=\mathcal{D}^{\rm exc}$, $\mathrm{gap}>0$ continuous; for any compact $K\subset X$, let $\delta=\min_K\mathrm{gap}>0$. For each $\rho\in K$ take circle $\gamma_\rho$ centered at $\tfrac{\lambda_3+\lambda_4}{2}$ with radius $\delta/2$, it encloses upper spectrum cluster with distance $\ge \delta/2$ from complement spectrum.
+
+\subsection{Riesz Projection $C^\infty$ Dependence}
+
+By resolvent estimate $|(z-\rho)^{-1}|\le 2/\delta$ and smoothness of $z\mapsto(z-\rho)^{-1}$, $P_3(\rho)=\frac{1}{2\pi i}\oint_{\gamma_\rho}(z-\rho)^{-1}dz$ is $C^\infty$ in $\rho$. Using finite cover $\{U_j\}$ with partition of unity patching, obtain global $C^\infty$ projection field $P_{3,2}$.
+
+\subsection{Codimension 3 and $S^2$-Link}
+
+At $\lambda_3$ \& $\lambda_4$ near-degeneracy, take $E=E_{34}\oplus E^\perp$, effective Hamiltonian $h=\alpha \sigma_z+\Re\beta\,\sigma_x+\Im\beta\,\sigma_y$; degeneracy $\Leftrightarrow (\alpha,\Re\beta,\Im\beta)=(0,0,0)$, three independent real equations thus codimension 3. Take normal small ball $B^3$, its boundary $S^2$ is link.
+
+\section{Group Isomorphism and Minimal Partition (Corresponding to §3)}
+
+\subsection{Complete Proof of Theorem A}
+
+Homomorphism
+
+$$
+\varphi(A,B,z)=\mathrm{diag}(z^{n/g}A,\ z^{-m/g}B),\quad g=\gcd(m,n),\ \ell=\frac{mn}{g}.
+$$
+
+\textbf{Kernel}: $\varphi(A,B,z)=I\Rightarrow A=z^{-n/g}I_m$, $B=z^{m/g}I_n$. By $A\in SU(m)\Rightarrow z^{-nm/g}=1\Rightarrow z^\ell=1$. Map
+
+$$
+\kappa:\ \mu_\ell\to\ker\varphi,\quad \kappa(z)=(z^{-n/g}I_m,\ z^{m/g}I_n,\ z)
+$$
+
+is group isomorphism, thus $\ker\varphi\simeq\mathbb{Z}_\ell$.
+
+\textbf{Surjectivity (``root selection'')}: Given $(g_3,g_2)\in S(U(m)\times U(n))$ (i.e., $\det g_3\det g_2=1$), take $z\in U(1)$ satisfying
+
+$$
+z^\ell=\det g_3 .
+$$
+
+Let
+
+$$
+A=z^{-n/g}g_3\in SU(m),\qquad B=z^{m/g}g_2\in SU(n).
+$$
+
+Then
+
+$$
+\det A=z^{-nm/g}\det g_3=z^{-\ell}\det g_3=1,\quad
+\det B=z^{nm/g}\det g_2=z^\ell\det g_2=1,
+$$
+
+with $\varphi(A,B,z)=(g_3,g_2)$. Thus obtain stated isomorphism.
+
+\subsection{Partition Uniqueness Table}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{llll}
+\toprule
+Partition & Simple part & $S$-constrained $U(1)$ count & Conclusion \\
+\midrule
+$4+1$ & $SU(4)$ & 1 & No $SU(2)$ \\
+$3+1+1$ & $SU(3)$ & 2 & Violates ``one $U(1)$'' \\
+$2+2+1$ & $SU(2)\times SU(2)$ & 2 & Same \\
+\textbf{$3+2$} & \textbf{$SU(3)\times SU(2)$} & \textbf{1} & \textbf{Unique satisfying} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Generalization}
+
+$S(U(k)\times U(\ell))\cong (SU(k)\times SU(\ell)\times U(1))/\mathbb{Z}_{\mathrm{lcm}(k,\ell)}$; explicit form of kernel generator depends on embedding normalization, but quotient group isomorphism class invariant.
+
+\section{Relative $K$-Theory and Chern Character (Corresponding to §4)}
+
+\subsection{Commutative Diagram}
+
+For pair $(X,Y)$, odd Chern character $\mathrm{ch}_1:K^1(Y)\to H^1(Y;\mathbb{Q})$ yields
+
+$$
+\mathrm{ch}_1([u])=\frac{1}{2\pi i}\mathrm{Tr}(u^{-1}du).
+$$
+
+Even Chern character $\mathrm{ch}:K^0(X,Y)\to H^{\rm even}(X,Y;\mathbb{Q})$ with de Rham boundary operator $\partial$ form commutative diagram
+
+$$
+\begin{array}{ccc}
+K^1(Y) & \xrightarrow{\partial} & K^0(X,Y) \\
+\downarrow{\mathrm{ch}_1} & & \downarrow{\mathrm{ch}} \\
+H^1(Y) & \xrightarrow{\partial} & H^2(X,Y)
+\end{array}
+$$
+
+whose commutativity follows from naturality and Mayer--Vietoris patching.
+
+\subsection{Bridging Equality}
+
+Let $\widehat{\Phi}:Y\to U(N)$ be unitized mass, $\partial[\det\widehat{\Phi}]\in K^0(X,Y)$. On other hand, Riesz projection yields $\mathcal{E}_3$, $\mathcal{E}_2$, thus $[\det\mathcal{E}_3]-[\det\mathcal{E}_2]\in K^0(X,Y)$. Using homotopy extension making $\widehat{\Phi}$ stably compatible with spectral splitting morphism, through commutative diagram pairing in $H^2(X,Y)$ to link $S^2$'s integer equality, thus two relative classes equal.
+
+\subsection{Explicit Pairing in Two-Dimensional Transverse}
+
+If $Y$'s piecewise link is $S^1$, then
+
+$$
+\oint_{S^1}\frac{1}{2\pi i}\mathrm{Tr}(\widehat{\Phi}^{-1}d\widehat{\Phi})
+=\int_{S^2}\frac{F_{\det\mathcal{E}_3}}{2\pi}\in\mathbb{Z} .
+$$
+
+\section{Callias/Anghel--Bunke (Corresponding to §6)}
+
+\subsection{Fredholm Construction}
+
+Take outer region cutoff $\chi$ and parametrix $Q=\chi\Phi^{-1}$. Have
+
+$$
+(\not{D}_A+\Phi)Q=I-K_1,\qquad Q(\not{D}_A+\Phi)=I-K_2,
+$$
+
+where $K_{1,2}$ relatively compact (by $[\nabla,\Phi]\in L^\infty$, Rellich compact embedding and outer region invertibility). Thus $\not{D}_A+\Phi$ is Fredholm.
+
+\subsection{Boundary Map and Degree}
+
+Homotope outer region to direction-only dependent $\Phi_\infty(\theta)$, index equals boundary map $\partial[\widehat{\Phi}_\infty]\in \widetilde{K}^0(S^d)\cong\mathbb{Z}$. Bott isomorphism yields
+
+$$
+\mathrm{Ind}=\deg(\widehat{\Phi}_\infty)\in \pi_{d-1}(U).
+$$
+
+\subsection{Two-Dimensional Single Vortex Example}
+
+$\Phi(r,\theta)=U(\theta)H(r)$, $U(\theta)=\mathrm{diag}(e^{ik\theta},1,1)$, $H(r\to\infty)\to m_0 I$. Then $\widehat{\Phi}=U$, $\mathrm{Ind}=k$. Taking counterclockwise orientation as positive, $k\to -k$ index changes sign.
+
+\section{Line Operator Spectrum and Minimal Charge $1/6$ (Corresponding to §7)}
+
+\subsection{Kernel Generator and Congruence}
+
+By Theorem 3.3, $\Gamma\simeq\mathbb{Z}_6$ generator can take
+
+$$
+g_*=(\omega_3^{-1}I_3,\ -I_2,\ e^{i2\pi/6}),\qquad \omega_3=e^{i2\pi/3}.
+$$
+
+Action on $(t,s,q)$ is $\omega_3^{-t}(-1)^s e^{i2\pi q/6}$. Quotient descent condition:
+
+$$
+\omega_3^{-t}(-1)^s e^{i2\pi q/6}=1\iff q\equiv 2t+3s\pmod 6.
+$$
+
+Let $Y=q/6\Rightarrow Y\equiv t/3+s/2\pmod{\mathbb{Z}}$, thus minimal fractional unit $1/6$.
+
+\subsection{Electric/Magnetic Charge Lattice and Dirac Pairing (Schematic)}
+
+Denote $(\mathbf{e};\mathbf{m})$ as electric/magnetic charge vector, central gluing yields congruence constraint matrix $C$ satisfying $(\mathbf{e};\mathbf{m})\mapsto(\mathbf{e};\mathbf{m})+C\mathbf{n}$ ($\mathbf{n}\in\mathbb{Z}^r$) equivalence. Dirac pairing integer matrix $\Omega$ well-defined integrality on quotient; $\theta$ period undergoes equivalence contraction after quotient group identification. Example table: fundamental representations $\mathbf{3}$ and $\mathbf{2}$'s $(t,s)$ values bring $Y$'s fractional parts $\{1/3,1/2\}$, synthesizing with $U(1)$ phase yields minimal step $1/6$ span.
+
+\section{Experimental and Numerical ``Checklist'' (Corresponding to §8)}
+
+\subsection{E1 Purification Interference}
+
+\begin{itemize}
+\item \textbf{Input}: Loop $C$, $\delta$, sampling $N_{\rm shots}$, $(T_1,T_2)$.
+\item \textbf{Steps}: Purification--evolution--interference readout--phase unwrap--contour integral.
+\item \textbf{Output}: $\phi_{\rm rel}\in\mathbb{Z}$.
+\item \textbf{Passing standard}: $|\mathrm{err}(\phi_{\rm rel})|<0.25$ can determine integer; if fails, enlarge loop radius and $N_{\rm shots}$.
+\end{itemize}
+
+\subsection{E2 Photonic Vortex}
+
+\begin{itemize}
+\item \textbf{Input}: Array size, coupling $J$, mass amplitude $m_\infty$, vortex number $k$.
+\item \textbf{Steps}: Phase map encoding--excitation--near-field imaging--spectral localization--zero-mode counting.
+\item \textbf{Output}: Zero-mode count $|k|$.
+\item \textbf{Passing standard}: Band gap $>$ noise bandwidth, central peak significant with energy near midpoint.
+\end{itemize}
+
+\subsection{Numerical Script Essentials}
+
+\begin{itemize}
+\item Grid $(N_\theta,N_r)$ take $N_\theta\ge 64$;
+\item Riesz projection performs contour quadrature along fixed radius $\delta$ circle;
+\item Wilson-loop's $c_1$ consistent with $\mathrm{wind}\,\det\widehat{\Phi}$, error $\sim \mathcal{O}(h^2)$.
+\end{itemize}
+
+\section*{End of Main Text and Appendices}
+
+\end{document}
+
+

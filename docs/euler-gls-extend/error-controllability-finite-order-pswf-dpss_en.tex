@@ -1,0 +1,388 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{braket}
+\usepackage{graphicx}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{alignment}[theorem]{Alignment}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Error Controllability Under Finite-Order Discipline:\\PSWF/DPSS Extremal Windows Uniqueness, Integer Leading Terms (Spectral Flow/Index of Projection Pairs), and $10^{-3}$-Level Universal Constants}
+
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Under unified Fourier normalization $\widehat f(\xi)=\int_{\mathbb R}f(t)e^{-2\pi i t\xi}\,dt$ (frequency in cycles), we construct error discipline around time-limiting--band-limiting concatenated operators: windowing main leakage, multiplicative cross-terms, and ``sum--integral difference'' are organized into computable chains of ``topological integer leading terms + analytic tail terms.'' On the continuous side, $K_c=D_TB_\Omega D_T$ (discrete side $K_{N,W}=T_NB_WT_N$) yields uniqueness of extremal windows and leakage identity $|(I-B_\Omega)g_\ast|_2^2=1-\lambda_0$; on any fundamental domain of length 1, squared-sum aliasing energy equals out-of-domain energy; multiplicative cross-terms' Hankel-type blocks yield Hilbert--Schmidt (HS) exact formulas; Euler--Maclaurin (EM) remainder analytic tail terms are controlled in closed form by periodic Bernoulli supremum constants and BPW inequality. Based on explicit non-asymptotic eigenvalue upper bounds in natural logarithm caliber, we obtain window-shape-independent minimal integer Shannon number thresholds $(\varepsilon,N_0^\star)=(10^{-3},33),(10^{-6},42),(10^{-9},50)$. Under definability hypotheses (trace-class difference and strongly continuous paths), spectral flow equals index of projection pairs, identifying ``integer leading terms of errors'' as topological invariants. Complete proofs and reproducible procedures are provided.
+
+\textbf{Keywords}: Time--band limiting; Prolate Spheroidal Wave Functions (PSWF); Discrete Prolate Spheroidal Sequences (DPSS); Shannon number; aliasing; Hankel block; Hilbert--Schmidt norm; Euler--Maclaurin remainder; spectral flow; index of projection pairs; de Branges
+\end{abstract}
+
+\section{Introduction \& Historical Context}
+
+The time-limiting--band-limiting problem occupies a central position in signal processing and harmonic analysis. The Slepian--Landau--Pollak framework reveals that under concatenated constraints of finite time window $[-T,T]$ and finite bandwidth $[-\Omega,\Omega]$, waveforms with optimal energy concentration are given by PSWF/DPSS, whose eigenvalues cluster exponentially near $1$ and $0$. Engineering practice commonly encounters three types of errors---windowing out-of-band leakage, aliasing, and sum--integral difference (Poisson/EM remainder)---historically treated separately, leading to incomparable and non-reproducible thresholds and constants.
+
+This paper proposes, under unified cycles normalization, a ``computable--provable--reproducible'' error discipline chain:
+(1) Precisely characterize windowing main leakage via principal eigenvalue $\lambda_0$ of $K_c=D_TB_\Omega D_T$ (discrete side $K_{N,W}=T_NB_WT_N$); (2) Reduce aliasing to out-of-band energy via the identity squared-sum aliasing = out-of-domain energy; (3) Provide Hankel--HS exact formulas and bounds for out-of-band leakage after multiplicative action; (4) Characterize ``integer leading terms'' via the framework ``spectral flow = index of projection pairs,'' giving closed-form EM analytic tail terms via Vaaler--Littmann extrema and periodic Bernoulli constants; (5) Generate \textbf{window-shape-independent} minimal integer Shannon number thresholds via explicit non-asymptotic eigenvalue upper bounds in natural logarithm caliber. Thus, three blocks of errors all reduce to three computable quantities: $1-\lambda_0$, Hankel--HS, and EM tail terms; integer leading terms are carried by spectral invariants.
+
+\section{Model \& Assumptions}
+
+\textbf{Fourier and units}: $\widehat f(\xi)=\int_{\mathbb R}f(t)e^{-2\pi i t\xi}\,dt$, $\xi$ in cycles; Plancherel: $|f|_2=|\widehat f|_2$.
+
+\textbf{Projections}: Time-limiting $D_T f=\mathbf 1_{[-T,T]}f$; band-limiting $B_\Omega f=\mathcal F^{-1}(\mathbf 1_{[-\Omega,\Omega]}\widehat f)$.
+
+\textbf{Concatenated operators}: Continuous side $K_c=D_TB_\Omega D_T$; discrete side $K_{N,W}=T_NB_WT_N$ ($T_N$ length-$N$ restriction, $B_W$ band-limiting projection for $[-W,W]\subset[-\tfrac12,\tfrac12]$).
+
+\textbf{Shannon number}: $c=\pi T\Omega$, $N_0=2T\Omega=2c/\pi$ (continuous); $N_0=2NW$ (discrete). Both sides aligned via $N_0$.
+
+\textbf{BPW}: If $\operatorname{supp}\widehat g\subset[-\Omega,\Omega]$, then $|g^{(m)}|_2\le (2\pi\Omega)^m|g|_2$.
+
+\textbf{Norms}: $|\cdot|_2,\ |\cdot|_\infty$; for any bounded operator $|A|_{\mathrm{op}}\le |A|_{\mathrm{HS}}$.
+
+\textbf{Fundamental domain}: Any length-1 interval $I=[a,a+1)$, for aliasing energy normalization.
+
+\section{Main Results (Theorems and Alignments)}
+
+\begin{theorem}[Theorem 1: Extremal Window Uniqueness and Leakage Identity]
+Let $K_c=D_TB_\Omega D_T$ be a compact self-adjoint positive operator acting on $L^2(\mathbb R)$. Its largest eigenvalue $\lambda_0\in(0,1)$ is simple, with corresponding eigenfunction $g_\ast$ ($|g_\ast|_2=1$) unique (up to phase), satisfying
+$$
+|B_\Omega g_\ast|_2^2=\lambda_0,\qquad |(I-B_\Omega)g_\ast|_2^2=1-\lambda_0.
+$$
+The discrete side $K_{N,W}=T_NB_WT_N$ is completely parallel, with principal vector being the first DPSS, also simple.
+\end{theorem}
+
+\begin{alignment}[Alignment 1: Squared-Sum Aliasing = Out-of-Domain Energy]
+For any $w\in L^2(\mathbb R)$ and any fundamental domain $I=[a,a+1)$ of length 1,
+$$
+\int_I\sum_{k\ne0}\big|\widehat w(\xi+k)\big|^2\,d\xi
+=\int_{\mathbb R\setminus I}\big|\widehat w(\eta)\big|^2\,d\eta.
+$$
+When $I$ aligns with physical passband $[-\Omega,\Omega]$ (via translation/scaling), the right side is ``out-of-domain energy relative to that passband''; taking $w=g_\ast$ yields $\mathsf{Aliasing}(g_\ast;I)=1-\lambda_0$.
+\end{alignment}
+
+\begin{theorem}[Theorem 2: HS Exact Formula and Bounds for Multiplicative Cross-Terms]
+For $x\in L^\infty\cap L^2$ and $W\in(0,\tfrac12]$,
+$$
+|(I-B_W)M_xB_W|_{\mathrm{HS}}^2
+=\int_{\mathbb R}|\widehat x(\delta)|^2\,\sigma_W(\delta)\,d\delta,\qquad
+\sigma_W(\delta)=\min(2W,|\delta|).
+$$
+Furthermore, for any $w\in L^2$,
+$$
+|(I-B_W)M_x w|_2
+\le |(I-B_W)M_xB_W|_{\mathrm{op}}|w|_2+|x|_\infty|(I-B_W)w|_2,
+$$
+thus for extremal window $g_\ast$ (Theorem 1):
+$$
+|(I-B_W)M_x g_\ast|_2
+\le |(I-B_W)M_xB_W|_{\mathrm{HS}}+|x|_\infty\sqrt{1-\lambda_0}.
+$$
+Moreover, $(I-B_W)M_xB_W\equiv 0$ if and only if $x$ is a.e. constant.
+\end{theorem}
+
+\begin{theorem}[Theorem 3: Analytic Tail Bounds for EM Remainder]
+For $g\in W^{2p,1}(\mathbb R)\cap L^2(\mathbb R)$,
+$$
+|R_{2p}(g)|\ \le\ \frac{2\zeta(2p)}{(2\pi)^{2p}}\ |g^{(2p)}|_{L^1}.
+$$
+If additionally $\operatorname{supp}\widehat g\subset[-\Omega,\Omega]$ and local evaluation on time-domain length $L$,
+$$
+\frac{|R_{2p}(g)|}{|g|_2}\ \le\ 2\,\zeta(2p)\,\sqrt{L}\,\Omega^{2p}.
+$$
+Sufficient thresholds achieving $|R_{2p}(g)|/|g|_2\le10^{-3}$ are
+$$
+\sqrt{L}\,\Omega^4\le 4.6197\times 10^{-4},\quad
+\sqrt{L}\,\Omega^6\le 4.9148\times 10^{-4},\quad
+\sqrt{L}\,\Omega^8\le 4.9797\times 10^{-4}.
+$$
+\end{theorem}
+
+\begin{theorem}[Theorem 4: Spectral Flow = Index of Projection Pairs: Topologizing Integer Leading Terms]
+Take smooth frequency multiplier $\phi\in C_c^\infty(\mathbb R)$, let $\Pi=\mathcal F^{-1}M_\phi\mathcal F$ and orthogonal projection $P=\mathbf 1_{[1/2,\infty)}(\Pi)$. Let modulation group $U_\theta f(t)=e^{2\pi i\theta t}f(t)$, $P_\theta=U_\theta P U_\theta^\ast$. If
+(i) $P-P_\theta\in\mathcal S_1$; (ii) $\theta\mapsto U_\theta$ strongly continuous,
+then self-adjoint path $A(\theta)=2P_\theta-I$ admits spectral flow, with
+$$
+\mathrm{Sf}\big(A(\theta)\big)_{\theta\in[\theta_0,\theta_1]}
+=\mathrm{ind}\big(P,P_{\theta_1}\big)-\mathrm{ind}\big(P,P_{\theta_0}\big)\in\mathbb Z.
+$$
+Thus ``integer leading terms'' of sum--integral difference can be identified as relative indices along paths; analytic tail terms controlled by Theorem 3.
+\end{theorem}
+
+\begin{theorem}[Theorem 5: KRD Non-Asymptotic Principal Value Bound and Minimal Integer Thresholds]
+Let $N_0=2T\Omega$ (continuous) or $N_0=2NW$ (discrete), then the principal value satisfies
+$$
+1-\lambda_0\ \le\ 10\,\exp\!\Bigg(-\frac{(\lfloor N_0\rfloor-7)^2}{\pi^2\log(50N_0+25)}\Bigg),
+$$
+and define the minimal integer threshold achieving leakage bound $\varepsilon$:
+$$
+N_0^\star(\varepsilon):=\min\Big\{n\in\mathbb N:\ 10\exp\!\Big(-\tfrac{(n-7)^2}{\pi^2\log(50n+25)}\Big)\le \varepsilon\Big\}.
+$$
+Numerical values (natural logarithm, floor in exponent):
+$$
+(\varepsilon,N_0^\star,c^\star,NW^\star)=
+(10^{-3},33,\tfrac{\pi}{2}\!\cdot\!33,16.5),
+(10^{-6},42,\tfrac{\pi}{2}\!\cdot\!42,21.0),
+(10^{-9},50,\tfrac{\pi}{2}\!\cdot\!50,25.0).
+$$
+\end{theorem}
+
+\section{Proofs}
+
+\subsection{Proof of Theorem 1}
+
+\textbf{Compactness and self-adjointness}. $B_\Omega$ and $D_T$ are orthogonal projections, $(D_TB_\Omega)(t,s)=\mathbf 1_{[-T,T]}(t)\,\dfrac{\sin(2\pi\Omega(t-s))}{\pi(t-s)}$ is square-integrable on $[-T,T]^2$, so $D_TB_\Omega$ is Hilbert--Schmidt, thus $K_c=D_TB_\Omega D_T$ is compact self-adjoint.
+
+\textbf{Commutativity and simplicity}. Let $x=t/T\in[-1,1]$, $c=\pi T\Omega$. Classical PSWF satisfies
+$$
+(1-x^2)y''(x)-2xy'(x)+(\chi-c^2x^2)y(x)=0.
+$$
+Write $L_c y:= -\dfrac{d}{dx}\!\left((1-x^2)\dfrac{dy}{dx}\right)+c^2x^2y$, reformulating as $L_cy=\chi y$. $L_c$ is a self-adjoint Sturm--Liouville operator on $[-1,1]$, with endpoints being regular singular points, spectrum purely discrete with each eigenvalue simple; eigenfunctions' zero counts match their indices (oscillation theorem). Slepian commutativity shows $K_c$ and $L_c$ can be simultaneously diagonalized, so geometric multiplicity of $\lambda_0$ equals multiplicity of corresponding $\chi_0$, hence 1, with principal eigenfunction unique (up to phase).
+
+\textbf{Leakage identity}. By orthogonal projection property of $B_\Omega$ and $|g_\ast|_2=1$,
+$$
+\lambda_0=\langle K_cg_\ast,g_\ast\rangle=\langle B_\Omega g_\ast,g_\ast\rangle
+=|B_\Omega g_\ast|_2^2,\quad
+|(I-B_\Omega)g_\ast|_2^2=1-\lambda_0.
+$$
+Discrete side $K_{N,W}$ with commuting second-order difference operator forms discrete Sturm theory, principal value also simple.
+
+\subsection{Proof of Alignment 1}
+
+$\mathbb R\setminus I=\bigsqcup_{k\ne0}(I+k)$ is a countable disjoint decomposition. Since $\widehat w\in L^2$,
+$\sum_{k\ne0}\int_I|\widehat w(\xi+k)|^2\,d\xi\le|\widehat w|_2^2<\infty$, Tonelli applies. Variable substitution $\eta=\xi+k$ yields
+$$
+\int_I\sum_{k\ne0}|\widehat w(\xi+k)|^2\,d\xi
+=\sum_{k\ne0}\int_{I+k}|\widehat w(\eta)|^2\,d\eta
+=\int_{\mathbb R\setminus I}|\widehat w(\eta)|^2\,d\eta.
+$$
+
+\subsection{Proof of Theorem 2}
+
+\textbf{HS exact formula}. Frequency-domain kernel
+$$
+K(\xi,\eta)=\mathbf 1_{|\xi|>W}\mathbf 1_{|\eta|\le W}\,\widehat x(\xi-\eta).
+$$
+HS norm squared
+$$
+\iint |K|^2
+=\int_{|\eta|\le W}\int_{|\xi|>W}|\widehat x(\xi-\eta)|^2\,d\xi d\eta
+=\int_{\mathbb R}|\widehat x(\delta)|^2\,m_W(\delta)\,d\delta,
+$$
+where
+$m_W(\delta)=\operatorname{meas}\{\eta\in[-W,W]:|\eta+\delta|>W\}$.
+Geometrically the measure of complement-intersection between length-$2W$ interval and its translation:
+$m_W(\delta)=\min(2W,|\delta|)$. This yields the stated formula.
+
+\textbf{Bounds}. Decompose
+$$
+(I-B_W)M_x=(I-B_W)M_xB_W+(I-B_W)M_x(I-B_W),
+$$
+apply $|A|_{\mathrm{op}}\le |A|_{\mathrm{HS}}$, $|(I-B_W)|\le 1$ and triangle inequality to obtain general bound; taking $w=g_\ast$ and using Theorem 1's $|(I-B_W)g_\ast|_2\le \sqrt{1-\lambda_0}$ yields stated formula. If $(I-B_W)M_xB_W\equiv 0$, then for any band-limited input $B_Ww$, $\widehat x\ast (\widehat w\cdot \mathbf 1_{[-W,W]})$ support remains in $[-W,W]$, forcing $\operatorname{supp}\widehat x\subset\{0\}$; combined with $x\in L^\infty$ leaves only constant functions.
+
+\subsection{Proof of Theorem 3}
+
+Periodic Bernoulli's Fourier expansion gives
+$$
+\left|\frac{B_{2p}({\cdot})}{(2p)!}\right|_\infty=\frac{2\zeta(2p)}{(2\pi)^{2p}}.
+$$
+EM remainder formula
+$$
+R_{2p}(g)=\int_{\mathbb R} g^{(2p)}(t)\,\frac{B_{2p}(\{t\})}{(2p)!}\,dt,
+$$
+thus
+$$
+|R_{2p}(g)|\le \frac{2\zeta(2p)}{(2\pi)^{2p}}\,|g^{(2p)}|_{L^1}.
+$$
+If $\operatorname{supp}\widehat g\subset[-\Omega,\Omega]$, then
+$|g^{(2p)}|_{L^1}\le \sqrt{L}|g^{(2p)}|_{L^2}\le \sqrt{L}(2\pi\Omega)^{2p}|g|_2$. The $(2\pi)^{2p}$ in denominator and BPW's $(2\pi)^{2p}$ completely cancel, yielding stated formula and threshold values.
+
+\subsection{Proof of Theorem 4}
+
+Define $A(\theta)=2P_\theta-I$. By hypotheses (i)--(ii) and regularity of spectral projections, $A(\theta)$ is a strongly continuous path of self-adjoint Fredholm operators. Spectral flow is defined as signed count of zero crossings; on the other hand, relative index $\mathrm{ind}(P,Q)$ when $P-Q\in\mathcal S_1$ can be defined via relative dimension, satisfying additivity and homotopy invariance. Subdivide $[\theta_0,\theta_1]$ into small intervals making $0$ a regular value on each segment; locally, spectral flow equals jumps in $\mathrm{rank}(P_\theta|_{\mathrm{ran}P})$; relative index also records the same jumps. Concatenate and use homotopy invariance to obtain
+$$
+\mathrm{Sf}(A(\theta))_{\theta_0}^{\theta_1}
+=\mathrm{ind}(P,P_{\theta_1})-\mathrm{ind}(P,P_{\theta_0}).
+$$
+Frequency-domain smoothing $\phi\in C_c^\infty$ and (when necessary) time-domain localization ensure $P-P_\theta\in\mathcal S_1$; in strong operator topology let $\phi\to \mathbf 1_{[-W,W]}$, integer invariant, thus establishing topological origin of ``integer leading terms.''
+
+\subsection{Proof of Theorem 5}
+
+Discrete-side original formula with $NW$ as parameter:
+$$
+1-\lambda_0\le 10\exp\!\left(-\frac{(\lfloor 2NW\rfloor-7)^2}{\pi^2\log(100NW+25)}\right).
+$$
+Setting $N_0=2NW$ yields
+$$
+1-\lambda_0\le 10\exp\!\left(-\frac{(\lfloor N_0\rfloor-7)^2}{\pi^2\log(50N_0+25)}\right).
+$$
+Continuous-side bound expressed in $c$ via $N_0=2c/\pi$ gives same unified form. For given $\varepsilon$, scan minimal integer $n$ such that right side $\le \varepsilon$ to obtain $N_0^\star(\varepsilon)$. Numerical values as stated.
+
+\section{Model Applications}
+
+\textbf{Continuous--discrete mapping}: $(T,\Omega)\leftrightarrow (N,W)$ aligned via $N_0=2T\Omega=2NW$; typically take $N\approx 2T$, $W\approx \Omega$ (when units consistent).
+
+\textbf{Consistency of two calibers}: $D_TB_\Omega D_T$ and $B_\Omega D_TB_\Omega$ have identical non-zero spectra (proposition: $AB$ and $BA$ have identical non-zero spectra). Frequency-domain leakage: $|(I-B_\Omega)g_\ast|_2^2=1-\lambda_0$; time-domain leakage: $|(I-D_T)w_\ast|_2^2=1-\lambda_0$.
+
+\textbf{Fundamental domain consistency}: Choose fundamental domain consistent with $[-\Omega,\Omega]$ (translation/scaling aligned), Alignment 1's right side is ``out-of-domain energy relative to that passband,'' thus for $w=g_\ast$, aliasing energy equals $1-\lambda_0$.
+
+\section{Engineering Proposals}
+
+\textbf{(1) Threshold-driven parameter selection}
+Given leakage tolerance $\varepsilon\in\{10^{-3},10^{-6},10^{-9}\}$, consult Theorem 5 for minimal integer $N_0^\star$, accordingly set $(T,\Omega)$ or $(N,W)$.
+
+\textbf{(2) Computable bounds for cross-terms}
+One FFT obtains $\widehat x$, compute
+$$
+\Xi_W(x):=\left(\int_{\mathbb R}|\widehat x(\delta)|^2\min(2W,|\delta|)\,d\delta\right)^{1/2}.
+$$
+Budget formula
+$$
+|(I-B_W)M_x g_\ast|_2\le \Xi_W(x)+|x|_\infty\sqrt{1-\lambda_0}.
+$$
+If $\widehat x$ pre-filtered and narrowband, $\Xi_W(x)$ significantly reduced.
+
+\textbf{(3) EM order selection}
+Given $(L,\Omega)$, choose smallest $p\in\{2,3,4\}$ such that $\sqrt{L}\Omega^{2p}\le 10^{-3}/(2\zeta(2p))$.
+
+\textbf{(4) Multi-taper/multi-passband}
+Take first $K\approx \lfloor N_0\rfloor$ DPSS for multi-taper; aliasing budget along Alignment 1 accumulates per taper, cross-terms estimated blockwise per Theorem 2 by $\widehat x$'s energy distribution.
+
+\section{Discussion (Risks, Boundaries, Past Work)}
+
+\textbf{Definability boundaries}: Spectral flow = index of projection pairs relies on $P-P_\theta\in\mathcal S_1$. Sharp band-limiting projection and pure modulation difference generally non-trace-class, requiring frequency-domain smoothing first and (when necessary) time-domain localization, then taking spectral projection, finally approaching limit in strong operator topology; integer leading terms insensitive to regularization details.
+
+\textbf{Scales and constants}: Under cycles normalization, BPW's $(2\pi)^m$ and EM constant denominator $(2\pi)^{2p}$ completely cancel; KRD threshold expressed in natural logarithm with $\log(50N_0+25)$, floor in exponent yields minimal integer.
+
+\textbf{Conservative vs tight}: Can generate thresholds per Theorem 5's tight version ($33,42,50$), or under extreme risk aversion choose larger integers, forming conservative redundancy.
+
+\textbf{Historical threads}: Time--band extrema, Toeplitz index/winding number, spectral flow/relative index, and one-sided extrema constitute theoretical backbone; non-asymptotic thresholds connect classical asymptotics with engineering parameterization.
+
+\section{Conclusion}
+
+Under unified normalization and parameter mapping, three error types---main leakage, multiplicative cross-terms, and sum--integral difference---are incorporated into operator-theoretic discipline of ``integer leading terms + analytic tail terms'':
+
+\begin{itemize}
+\item \textbf{Main leakage} precisely characterized by $\lambda_0$, with explicit non-asymptotic bounds generating \textbf{window-shape-independent} minimal integer thresholds;
+\item \textbf{Cross-terms} quantified via Hankel--HS exact formulas, yielding computable bounds without heuristic constants;
+\item \textbf{EM remainder} under cycles normalization exhibits ``$(2\pi)$ complete cancellation,'' with closed-form constants directly interfacing time--band parameters;
+\item \textbf{Integer leading terms} (spectral flow/index of projection pairs) provide topological origin.
+\end{itemize}
+
+The resulting ``finite-order discipline'' achieves both engineering implementation and complete mathematical anchoring.
+
+\appendix
+
+\section{Notation, Units, and Basic Tools}
+
+\begin{itemize}
+\item Normalization: $\widehat f(\xi)=\int_{\mathbb R}f(t)e^{-2\pi i t\xi}\,dt$, $\xi$ in cycles.
+\item Projections: $D_T f=\mathbf 1_{[-T,T]}f$, $B_\Omega=\mathcal F^{-1}\mathbf 1_{[-\Omega,\Omega]}\mathcal F$.
+\item Norms: $|A|_{\mathrm{op}}\le |A|_{\mathrm{HS}}$, Plancherel: $|f|_2=|\widehat f|_2$.
+\item Shannon number: $N_0=2T\Omega=2NW$.
+\end{itemize}
+
+\section{$AB$ and $BA$ Have Identical Non-Zero Spectra}
+
+If $ABx=\lambda x$ with $\lambda\ne0$, then $Bx\ne0$ and $BA(Bx)=\lambda (Bx)$; reverse direction similar. Thus $D_TB_\Omega D_T$ and $B_\Omega D_TB_\Omega$ have identical non-zero spectra; leakage identities in both calibers are equivalent.
+
+\section{PSWF Sturm--Liouville Structure and Principal Value Simplicity}
+
+Variable $x=t/T\in[-1,1]$, $c=\pi T\Omega$. PSWF satisfies
+$$
+(1-x^2)y''(x)-2xy'(x)+(\chi-c^2x^2)y(x)=0.
+$$
+Write
+$$
+L_c y:=-\frac{d}{dx}\!\left((1-x^2)\frac{dy}{dx}\right)+c^2x^2y,
+$$
+then $L_c$ is self-adjoint second-order differential operator on $[-1,1]$. Endpoints $x=\pm1$ are regular singular points, spectrum purely discrete with each eigenvalue simple; eigenfunctions' zero counts match indices. Slepian commutativity shows $K_c$ and $L_c$ share orthogonal eigensystem, so $K_c$'s principal eigenvalue has geometric multiplicity 1.
+
+\textbf{Discrete side}: Toeplitz-type prolate matrix commutes with tridiagonal difference operator; discrete Sturm oscillation theorem guarantees principal value simplicity.
+
+\section{Squared-Sum Aliasing = Out-of-Domain Energy Details}
+
+For $I=[a,a+1)$, we have $\mathbb R\setminus I=\bigsqcup_{k\ne0}(I+k)$ (disjoint). For any $w\in L^2$,
+$$
+\sum_{k\ne0}\int_I|\widehat w(\xi+k)|^2\,d\xi
+=\sum_{k\ne0}\int_{I+k}|\widehat w(\eta)|^2\,d\eta
+=\int_{\mathbb R\setminus I}|\widehat w(\eta)|^2\,d\eta.
+$$
+``Squared-sum'' means taking modulus squared of each translated channel before summing prior to integration; distinguished from engineering measures of ``periodize first then take modulus squared'' (which contain cross-terms).
+
+\section{Hankel--HS Geometric Measure Piecewise Calculation}
+
+For fixed $\delta$, the set
+$$
+S(\delta)=\{\eta\in[-W,W]:|\eta+\delta|>W\}.
+$$
+If $|\delta|\le 2W$, then $S(\delta)$ is union of two endpoint pieces each of length $|\delta|/2$, measure $|\delta|$; if $|\delta|>2W$, then $S(\delta)=[-W,W]$ entirely, measure $2W$. Thus
+$$
+m_W(\delta)=\operatorname{meas}S(\delta)=\min(2W,|\delta|),
+$$
+yielding Theorem 2's HS exact formula.
+
+\section{EM Remainder and ``$(2\pi)$ Cancellation'' Details}
+
+Periodic Bernoulli sup constant
+$$
+\left|\frac{B_{2p}({\cdot})}{(2p)!}\right|_\infty=\frac{2\zeta(2p)}{(2\pi)^{2p}}.
+$$
+If $\operatorname{supp}\widehat g\subset[-\Omega,\Omega]$, then
+$$
+|g^{(2p)}|_{L^1}\le \sqrt{L}|g^{(2p)}|_{L^2}\le \sqrt{L}(2\pi\Omega)^{2p}|g|_2,
+$$
+substituting into EM remainder bound, denominator $(2\pi)^{2p}$ and BPW's $(2\pi)^{2p}$ completely cancel, obtaining
+$$
+\frac{|R_{2p}(g)|}{|g|_2}\le 2\zeta(2p)\sqrt{L}\Omega^{2p}.
+$$
+
+\section{Reproducible Checklist (Pseudocode)}
+
+\textbf{KRD threshold (natural logarithm)}
+\begin{verbatim}
+def N0_star(eps):
+    n = 1
+    while True:
+        U = 10*exp(- (n-7)**2 / (pi**2*log(50*n + 25)) )
+        if U <= eps:
+            return n, (pi*n/2), (n/2)  # (N0*, c*, NW*)
+        n += 1
+\end{verbatim}
+
+\textbf{Hankel--HS cross-term}
+\begin{verbatim}
+# xhat: Fourier samples on grid delta with spacing ddelta
+XiW_sq = sum( abs(xhat)**2 * minimum(2*W, abs(delta)) ) * ddelta
+XiW = sqrt(XiW_sq)
+\end{verbatim}
+
+\textbf{EM remainder threshold}
+\begin{verbatim}
+# choose smallest p in {2,3,4} with 
+# sqrt(L) * Omega**(2*p) <= 1e-3/(2*zeta(2*p))
+\end{verbatim}
+
+\end{document}
+
+

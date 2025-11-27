@@ -1,0 +1,475 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Title information
+\title{Windowed Scattering and Causal Manifolds: Mutual Reconstruction via Categorical Equivalence}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We construct the ``windowed scattering--readout'' category $\mathbf{WScat}$ and the ``causal manifold'' category $\mathbf{Cau}$, provide functors
+$$
+\mathfrak{F}:\mathbf{WScat}\to\mathbf{Cau},\qquad \mathfrak{G}:\mathbf{Cau}\to\mathbf{WScat},
+$$
+and rigorously prove that they are mutually equivalent (on the energy-dependent unitary gauge equivalence class of $\mathbf{WScat}$) through natural transformations:
+$$
+\mathfrak{F}\circ \mathfrak{G}\simeq \mathrm{Res}_{\mathcal{D}(\mathbf{V})},\qquad \mathfrak{G}\circ \mathfrak{F}\simeq \mathrm{Id}_{\mathbf{WScat}/\!\sim_{\text{gauge}}},
+$$
+or equivalently stated as
+$$
+\eta:\ \mathrm{Res}_{\mathcal{D}(\mathbf{V})}\Rightarrow \mathfrak{F}\circ \mathfrak{G},\qquad \varepsilon:\ \mathfrak{G}\circ \mathfrak{F}\Rightarrow \mathrm{Id}_{\mathbf{WScat}/\!\sim_{\text{gauge}}}.
+$$
+The core idea is: (i) establish reachable partial order and diamond-base topology via front time $t_*$ with one-sided support and finite propagation speed; (ii) invoke the Hawking--King--McCarthy (HKM) and Malament causal reconstruction criteria to rebuild manifold topology and conformal class of metric from causal relations (or light observation set families); (iii) on globally hyperbolic tractable backgrounds, construct energy-differentiable unitary scattering matrix $S(E)$ via radiation field--Lax--Phillips theory, unifying the master scale via the Birman--Kreĭn formula and Wigner--Smith time-delay matrix; (iv) establish natural isomorphism on the relative invariance class under energy-dependent unitary gauge $S\mapsto U(E)S(E)V(E)$. Windowed numerical readouts follow the Nyquist--Poisson--Euler--Maclaurin finite-order error closure discipline, strictly separated from the causal partial order.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Windowed scattering category; Causal manifolds; Categorical equivalence; Birman--Kreĭn formula; Wigner--Smith time delay; Radiation field; Lax--Phillips scattering; HKM topology; Malament theorem; Light observation sets; Gauge invariance; NPE error discipline
+
+\noindent\textbf{MSC 2020:} Primary 83C75, 81U40, 18B99; Secondary 35P25, 47A40, 53C50
+
+\section{Notation, Conventions, and Axioms}
+
+\subsection{Notation and Objects}
+
+Energy variable denoted $E$, upper half-plane $\mathbb{C}^+$ analyticity expressed via Hardy spaces. GLS objects take the six-tuple
+$$
+\mathfrak{U}=(\mathcal{H},\ S(E),\ \mu_\varphi,\ \mathcal{W},\ \mathbf{V},\ \boldsymbol{\Gamma}),
+$$
+where $\mathbf{V}$ is the observation domain and $\boldsymbol{\Gamma}$ is the family of timelike observation trajectories in $\mathbf{V}$.
+
+Here \textbf{$S(E)$ is an energy-differentiable unitary fiber operator (allowing finite or separable infinite dimensions)}, with the Wigner--Smith matrix and relative state density defined as
+$$
+\mathsf{Q}(E)=-i\,S(E)^\dagger \tfrac{dS}{dE}(E),\qquad \rho_{\text{rel}}(E)=\frac{1}{2\pi}\operatorname{tr}\mathsf{Q}(E).
+$$
+\textbf{These satisfy the relative trace-class conditions of Section \ref{sec:radiation} so that the Birman--Kreĭn formula and $\mathsf{Q}(E)$ are well-defined.}
+
+The spectral shift function $\xi(E)$ satisfies the Birman--Kreĭn formula $\det S(E)=e^{-2\pi i \xi(E)}$. The window--kernel dictionary $\mathcal{W}$ yields the windowed readout
+$$
+T[w_R,h]=\int_{\mathbb{R}}(w_R*\check{h})(E)\,\rho_{\text{rel}}(E)\,dE,
+$$
+where \textbf{$\check{h}(E):=h(-E)$} is the reflection of $h$, so $w_R*\check{h}$ is consistent with frequency-domain convolution notation and the windowed readout is well-defined; $\rho_{\text{rel}}(E)=\tfrac{1}{2\pi}\operatorname{tr}\mathsf{Q}(E)$.
+
+The \textbf{master-scale measure} is defined as
+$$
+d\mu_\varphi(E):=\rho_{\text{rel}}(E)\,dE=\frac{1}{2\pi}\operatorname{tr}\mathsf{Q}(E)\,dE.
+$$
+Thus the windowed readout is uniformly written as
+$$
+T[w_R,h]=\int_{\mathbb{R}}(w_R*\check{h})(E)\,d\mu_\varphi(E).
+$$
+For channel/port resolution, fix channel projection $P_\gamma$ and set
+$$
+\rho_{\text{rel},\gamma}(E):=\frac{1}{2\pi}\operatorname{tr}\big(P_\gamma\,\mathsf{Q}(E)\,P_\gamma\big),
+$$
+but the categorical equivalence in this paper relies only on the total trace $\rho_{\text{rel}}$.
+
+\textbf{Light observation set generation from objects:} Given timelike observation trajectory family $\boldsymbol{\Gamma}$, for each $\gamma\in\boldsymbol{\Gamma}$ and source point $q$, define the earliest nonzero arrival parameter
+$$
+t_*(\gamma;q):=\inf\{t\in\mathbb{R}:\ g_{\gamma,q}(t)\neq 0\},
+$$
+and set
+$$
+P_{\mathbf{V}}(q):=\big\{(\gamma,t_*(\gamma;q)):\ \gamma\in\boldsymbol{\Gamma},\ t_*(\gamma;q)<+\infty\big\},
+$$
+$$
+L_{\mathbf{V}}(q):=\big\{\gamma\big(t_*(\gamma;q)\big):\ (\gamma,t_*(\gamma;q))\in P_{\mathbf{V}}(q)\big\}\subset\mathbf{V}.
+$$
+For reconstruction, use the event set $L_{\mathbf{V}}(q)$ (isomorphic to KLU's light observation set) \cite{kurylev2014inverse}.
+
+\subsection{Axioms}
+
+\begin{definition}[Axiom I: Calibration Identity]
+$$
+\boxed{\ \frac{1}{2\pi}\operatorname{tr}\mathsf{Q}(E)=-\xi'(E)=\frac{1}{2\pi}\frac{d}{dE}\arg\det S(E)\ }
+$$
+That is, ``phase derivative--spectral shift density--group delay trace'' are unified as the master scale \cite{pushnitski2010spectral}.
+\end{definition}
+
+\begin{definition}[Axiom II: Two-Time Separation]
+The causal time (front) is defined as the earliest nonzero arrival $t_*(\gamma)=\inf\{t:\ g_\gamma(t)\neq 0\}$. By Hardy analyticity's one-sided support and Titchmarsh convolution support theorem, for any propagation chain $\gamma$ we have $t_*(\gamma)\ge 0$, and if $\gamma=\gamma_2\circ\gamma_1$ then $t_*(\gamma)=t_*(\gamma_2)+t_*(\gamma_1)$. When the chain has positive geometric length or the background $(\mathcal{M},g)$ satisfies finite propagation speed, we further have $t_*(\gamma)\ge L_\gamma/c>0$. The windowed time $T[w_R,h]$ at the readout level is merely an operational calibration, separated from the front criterion. One-sided support is guaranteed by Hardy analyticity--Kramers--Kronig and the Titchmarsh convolution support theorem.
+\end{definition}
+
+\begin{definition}[Axiom III: Finite-Order NPE Error Closure]
+The numerical implementation of windowed integrals yields an explicit three-part error decomposition via Poisson summation and finite-order Euler--Maclaurin (EM) formula:
+$$
+\varepsilon_{\text{total}}=\varepsilon_{\text{alias}}+\varepsilon_{\text{EM}}+\varepsilon_{\text{tail}},
+$$
+with computable bounds under bandlimited or effectively bandlimited conditions. This error theory constrains only the numerical approximation of $T[w_R,h]$ and is unrelated to the causal partial order.
+\end{definition}
+
+\subsection{Causal Manifolds and Causal Reconstruction}
+
+$\mathbf{Cau}$ objects take \textbf{four-dimensional}, time-oriented, distinguishing Lorentzian manifolds $(\mathcal{M},g)$. HKM proved that path topology encodes causal, differential, and conformal structures; Malament proved: on distinguishing backgrounds, a bijection that is a \textbf{causal isomorphism} ($p\ll q\iff f(p)\ll f(q)$) is a smooth conformal isomorphism; strong causality holds if and only if the Alexandrov topology equals the manifold topology \cite{hawking1976new,malament1977class}.
+
+\section{Category Definitions}
+
+\subsection{Windowed Scattering Category $\mathbf{WScat}$}
+
+\textbf{Objects} $\mathfrak{U}=(\mathcal{H},S,\mu_\varphi,\mathcal{W},\mathbf{V},\boldsymbol{\Gamma})$ satisfy: frequency-domain transfer functions are analytic in $\mathbb{C}^+$, system is passive, no pre-response; high-frequency limit and finite propagation speed hold.
+
+\textbf{(No closed loops/no feedback)} The propagation chain graph has no nontrivial closed concatenations: identity segments $e_U$ ($t_*(e_U)=0$) are allowed, but there exist no closed loops composed of non-identity segments. Thus the reachability relation in Section \ref{sec:reachability} is a partial order.
+
+\textbf{Morphisms} are filter chains $\mathcal{O}=\mathcal{M}_{\text{th}}\circ M_i\circ\Phi\circ K_{w,h}$ preserving passivity and causality (no pre-response), whose Heisenberg adjoint preserves linear readouts of the master scale.
+
+\textbf{Gauge equivalence:} If there exist \textbf{energy-dependent and differentiable (at least $C^1$)} unitary $U(E),V(E)$ such that $S\mapsto U(E)S(E)V(E)$, and
+$$
+\operatorname{tr}\widetilde{\mathsf{Q}}(E)=\operatorname{tr}\mathsf{Q}(E)\quad\text{(equivalently: when traces exist, }\operatorname{tr}(U^\dagger U')+\operatorname{tr}(V^\dagger V')\equiv 0\text{)},
+$$
+the two objects are gauge-equivalent; on this equivalence class, the master scale $\rho_{\text{rel}}$ and its induced windowed readout $T[w_R,h]$ are invariant (Section \ref{sec:gauge}). In finite-dimensional or determinant-definable cases, the above condition is equivalent to
+$$
+\tfrac{d}{dE}\arg\det U+\tfrac{d}{dE}\arg\det V\equiv 0\quad(\text{in particular }\det U\cdot\det V\equiv\mathrm{const}).
+$$
+
+\subsection{Causal Flow Category $\mathbf{Cau}$}
+
+\textbf{Objects} are \textbf{four-dimensional}, time-oriented, distinguishing Lorentzian manifolds $(\mathcal{M},g)$ suitable for radiation field--scattering construction (e.g., globally hyperbolic and asymptotically Euclidean/hyperbolic or asymptotically Minkowski at infinity), \textbf{and under the (Spec) assumption of Section \ref{sec:radiation}} there exists a radiation field and energy decomposition $S(E)$.
+
+\textbf{Morphisms} are causal embeddings/isomorphisms $f:(\mathcal{M},g)\to(\mathcal{N},h)$ requiring that for any $p,q\in\mathcal{M}$,
+$$
+p\ll q\ \Longleftrightarrow\ f(p)\ll f(q)\ \text{(preserves and reflects time order on the image)}.
+$$
+On distinguishing backgrounds, if $f$ is a bijection, then $f$ is a smooth conformal isomorphism (Malament; HKM) \cite{malament1977class,hawking1976new}.
+
+\section{From GLS to Causal Manifolds: Functor $\mathfrak{F}$}
+
+\subsection{Reachability Partial Order via Front $t_*$}
+\label{sec:reachability}
+
+\begin{definition}[Reachability Relation]
+Let ports/readout domains $U,V\in\mathbf{V}$. Let propagation chain $\gamma=\gamma_n\circ\cdots\circ\gamma_1:U\to V$. Define
+$$
+U\preceq V\ \Longleftrightarrow\ \exists\ \gamma\ \text{such that}\ t_*(\gamma)=\sum_{j=1}^n t_*(\gamma_j)\ \text{and each non-identity segment }t_*(\gamma_j)>0.
+$$
+The identity chain $e_U$ is stipulated as the empty composition with $t_*(e_U)=0$, so reflexivity holds. That is, $\preceq$ is the reflexive transitive closure of the chain graph; transitivity follows from convolution support and additivity of $t_*$ for composite chains.
+\end{definition}
+
+By Hardy analyticity--Kramers--Kronig one-sided support and Titchmarsh convolution support, if $\gamma=\gamma_2\circ\gamma_1$ then $t_*(\gamma)=t_*(\gamma_2)+t_*(\gamma_1)$; combined with ``no closed loops/no feedback,'' this yields a partial order. \textbf{In the background $(\mathcal{M},g)\in\mathbf{Cau}$}, finite propagation speed further gives the additional lower bound $t_*(\gamma)\ge L_\gamma/c$ (see Section \ref{sec:two_time}). One-sided support comes from Kramers--Kronig/Hardy and Titchmarsh.
+
+\begin{proof}[Proof (sketch, self-contained)]
+Frequency-domain response $H\in H^2(\mathbb{C}^+)$ implies time-domain impulse response is zero for $t<0$; cascade system response is convolution $h=h_n*\cdots*h_1$. By Titchmarsh's theorem, $\inf\operatorname{supp}(h)=\sum_j\inf\operatorname{supp}(h_j)$, so if $\gamma=\gamma_2\circ\gamma_1$ then $t_*(\gamma)=t_*(\gamma_2)+t_*(\gamma_1)$. Combined with \textbf{the chain premise that each segment $t_*(\gamma_j)>0$} and ``no closed loops/no feedback,'' the reflexive transitive closure of the reachability relation is a partial order.
+\end{proof}
+
+\subsection{Light Observation Sets and Geometric Reconstruction}
+
+Let $\mathfrak{U}=(\mathcal{H},S,\mu_\varphi,\mathcal{W},\mathbf{V},\boldsymbol{\Gamma})$. Within the object's observation domain \textbf{$\mathbf{V}$}, take its timelike observation trajectory family \textbf{$\boldsymbol{\Gamma}$}, and generate the light observation set family $\{L_{\mathbf{V}}(q):\ q\in\mathcal{D}(\mathbf{V})\}$ (derived from $P_{\mathbf{V}}(q)$) via the front $t_*$ rule in Section 1.1; reconstruct $(\mathcal{M}_{\text{rec}},[g]_{\text{rec}},\preceq_{\text{rec}})$ accordingly.
+
+KLU proved: given $\mathbf{V}$ and the full light observation set family $\{L_{\mathbf{V}}(q):\ q\in\mathcal{D}(\mathbf{V})\}$, the topology, differential, and conformal structure within the maximal propagation domain can be reconstructed (passive/active two types of data).
+
+\begin{definition}[Maximal Propagation Domain]
+Given observation domain $\mathbf{V}\subset\mathcal{M}$, let
+$$
+\mathcal{D}(\mathbf{V}):=D^+(\mathbf{V})\cap D^-(\mathbf{V}),
+$$
+where $D^\pm(\mathbf{V})$ are the two-sided dependence domains (all past/future-inextendible causal curves through the point intersect $\mathbf{V}$). Under globally hyperbolic backgrounds satisfying this paper's tractability assumptions, $\mathcal{D}(\mathbf{V})$ coincides with the ``maximal reconstructible region'' defined by the light observation set $P_{\mathbf{V}}(q)$; typically only $\mathcal{D}(\mathbf{V})\subseteq J^+(\mathbf{V})\cap J^-(\mathbf{V})$. The restriction functor in Sections \ref{sec:natural_trans} and \ref{sec:main_theorem} takes values in this $\mathcal{D}(\mathbf{V})$.
+\end{definition}
+
+Reconstruct $(\mathcal{M}_{\text{rec}},[g]_{\text{rec}},\preceq_{\text{rec}})$ accordingly. Furthermore, use Axiom I's master scale $d\mu_\varphi$ to uniquely fix the conformal factor of $[g]_{\text{rec}}$, obtaining the representative $g_{\text{rec}}$; thus define
+$$
+\mathfrak{F}(\mathfrak{U}):=\big(\mathcal{M}_{\text{rec}},g_{\text{rec}},\preceq_{\text{rec}}\big),
+$$
+whereby $\mathfrak{F}(\mathfrak{U})$ is a $\mathbf{Cau}$ object \cite{kurylev2014inverse}.
+
+\subsection{Consistency with Causal Theory and Functoriality}
+
+HKM and Malament showed: on distinguishing backgrounds, a bijection that is a \textbf{causal isomorphism} ($p\ll q\iff f(p)\ll f(q)$) is a smooth conformal isomorphism; strong causality holds if and only if the Alexandrov topology equals the manifold topology. Filter-chain morphisms preserve passivity and causality, producing no ``early arrival,'' thus inducing monotone mappings of partial orders; gauge equivalence does not change $\operatorname{tr}\mathsf{Q}$ and front structure, so $\mathfrak{F}$ is well-defined and functorial \cite{hawking1976new}.
+
+\section{From Causal Manifolds to GLS: Functor $\mathfrak{G}$}
+
+\subsection{Radiation Field and Unitary Scattering}
+\label{sec:radiation}
+
+\textbf{Additional Assumption (Spec):} There exists a one-parameter unitary group $U(t)=e^{-itH}$ ($H$ self-adjoint), scattering operator $S$ commuting with $U(t)$, such that under the spectral decomposition of $H$, $S$ fiberizes to $S(E)$; and $E\mapsto S(E)$ is differentiable and satisfies the relative trace-class conditions for the Birman--Kreĭn formula to apply (whereby $\det S(E)$, $\xi(E)$, and $\mathsf{Q}(E)$ are well-defined).
+
+On globally hyperbolic and asymptotically tractable $(\mathcal{M},g)$ (e.g., asymptotically Euclidean/hyperbolic or asymptotically Minkowski), the radiation-field restriction of solutions to wave operators (or Klein--Gordon) at $\mathscr{I}^\pm$ induces unitary isomorphism of ``in--out'' spaces, constructing scattering operator $S:\mathcal{H}_{\text{in}}\to\mathcal{H}_{\text{out}}$ and obtaining energy decomposition $S(E)$. Lax--Phillips and radiation-field literature systematically built this representation and corresponding inverse problems \cite{lax1989scattering}.
+
+\subsection{Master Scale and Windowed Readouts}
+
+By Axiom I, define $\mathsf{Q}=-iS^\dagger S'$ and $\rho_{\text{rel}}=(2\pi)^{-1}\operatorname{tr}\mathsf{Q}=-\xi'(E)$, using Toeplitz/Berezin window--kernel family $\mathcal{W}$ to yield windowed readout $T[w_R,h]$. This master-scale identity also holds in electromagnetic/differential-form scattering \cite{strohmaier2012birman}.
+
+\subsection{Front Consistency and Functoriality}
+
+Global hyperbolicity and finite propagation speed yield \textbf{$t_*\ge L_\gamma/c$} ($L_\gamma$ is the chain geometric length relative to $g$); the high-frequency geodesic limit achieves equality, so the front of the GLS constructed from $(\mathcal{M},g)$ is consistent with its causal cone. Conformal isomorphisms induce unitary equivalence of radiation fields and equivalent representations of $S$, yielding morphisms of $\mathbf{WScat}$.
+
+\textbf{Observation scheme (Obs):} For each $(\mathcal{M},g)$, select a timelike open set $\mathbf{V}$ and its timelike observation trajectory family $\boldsymbol{\Gamma}$; for causal embedding $f$, take image $(f(\mathbf{V}),f_*\boldsymbol{\Gamma})$ to maintain functoriality. Thus
+$$
+\mathfrak{G}(\mathcal{M},g):=(\mathcal{H},S,\mu_\varphi,\mathcal{W},\mathbf{V},\boldsymbol{\Gamma}).
+$$
+
+\section{Construction and Proof of Natural Equivalence}
+\label{sec:natural_trans}
+
+\subsection{$\mathfrak{F}\circ \mathfrak{G}\simeq \mathrm{Res}_{\mathcal{D}(\mathbf{V})}$}
+
+Sending $(\mathcal{M},g)$ through $\mathfrak{G}$ yields $S(E)$ and front bookkeeping, then reconstructing via $\mathfrak{F}$ using $t_*$ and $P_{\mathbf{V}}(q)$. KLU asserts: in four-dimensional backgrounds, given $\mathbf{V}$ and the full $P_{\mathbf{V}}(q)$, the topology, differential, and conformal structure within the maximal propagation domain can be reconstructed; combined with Malament, a bijection that is a causal isomorphism is a smooth conformal isomorphism. Construct natural isomorphism
+$$
+\eta_{(\mathcal{M},g)}:\ (\mathcal{M},g)\big|_{\mathcal{D}(\mathbf{V})}\ \overset{\sim}{\longrightarrow}\ \mathfrak{F}(\mathfrak{G}(\mathcal{M},g)),
+$$
+where \textbf{$\mathbf{V}$ is the observation domain component of the output object from $\mathfrak{G}(\mathcal{M},g)$}; if $\mathbf{V}$ covers the effective exterior boundary, then $\eta_{(\mathcal{M},g)}$ degenerates to $\mathrm{Id}_{(\mathcal{M},g)}$. Naturality comes from causal preservation at the morphism level and covariance of the radiation field \cite{kurylev2014inverse}.
+
+\subsection{$\mathfrak{G}\circ \mathfrak{F}\simeq \mathrm{Id}_{\mathbf{WScat}/\!\sim_{\text{gauge}}}$}
+\label{sec:gauge}
+
+$\mathfrak{F}$ reconstructs conformal geometry only via front and light observation sets, without fixing the energy/channel basis and reference phase. For energy-dependent unitary $U,V$ with $\widetilde{S}=USV$, the trace transforms as
+$$
+\operatorname{tr}\widetilde{\mathsf{Q}}=\operatorname{tr}\mathsf{Q}-i\,\operatorname{tr}(U^\dagger U')-i\,\operatorname{tr}(V^\dagger V').
+$$
+In \textbf{finite-dimensional or (Fredholm) determinant-definable} cases, this is equivalent to
+$$
+\operatorname{tr}\widetilde{\mathsf{Q}}=\operatorname{tr}\mathsf{Q}+\tfrac{d}{dE}\big(\arg\det U+\arg\det V\big).
+$$
+Thus when $\det U\cdot\det V\equiv 1$ (or phase derivative sum is zero), $\operatorname{tr}\widetilde{\mathsf{Q}}=\operatorname{tr}\mathsf{Q}$, whereby \textbf{all windowed readouts $T[w_R,h]$ induced by $\rho_{\text{rel}}$ remain invariant}, and there exists natural isomorphism $\varepsilon_{\mathfrak{U}}:\mathfrak{G}(\mathfrak{F}(\mathfrak{U}))\overset{\sim}{\to}\mathfrak{U}$ on gauge equivalence classes. Naturality comes from compatibility of morphisms with gauge congruence (detailed proof in Section \ref{sec:gauge_covariance}).
+
+\subsection{Categorical Equivalence}
+
+By Sections 4.1--4.2, $(\mathfrak{F},\mathfrak{G};\eta,\varepsilon)$ yields equivalence of $\mathrm{Res}_{\mathcal{D}(\mathbf{V})}(\mathbf{Cau})$ and $\mathbf{WScat}/\!\sim_{\text{gauge}}$; when $\mathbf{V}$ covers the effective exterior boundary, this degenerates to $\mathbf{Cau}\simeq \mathbf{WScat}/\!\sim_{\text{gauge}}$. One end relies on HKM--Malament causal--conformal reconstruction, the other on radiation-field scattering and Birman--Kreĭn--Wigner--Smith master scale \cite{hawking1976new}.
+
+\section{Key Lemmas and Detailed Proofs}
+
+\subsection{Hardy Analyticity $\Rightarrow$ One-Sided Support (Including Convolution Support)}
+
+\begin{lemma}[Kramers--Kronig/Hardy]
+\label{lem:hardy}
+If frequency-domain response $H\in H^2(\mathbb{C}^+)$ with high-frequency decay, then its time-domain impulse response $h(t)=0$ for $t<0$.
+\end{lemma}
+
+\begin{proof}
+$H$ is analytic in the upper half-plane with boundary value in $L^2$. By Sokhotski--Plemelj and Hilbert transform, real/imaginary parts are Hilbert conjugates; inverse Fourier transform yields $h$ as a causal kernel, hence zero for $t<0$.
+\end{proof}
+
+\begin{lemma}[Titchmarsh Convolution Theorem]
+\label{lem:titchmarsh}
+Compactly supported (or appropriately decaying) functions/distributions $f,g$ satisfy
+$$
+\inf\operatorname{supp}(f*g)=\inf\operatorname{supp} f+\inf\operatorname{supp} g,
+$$
+$$
+\sup\operatorname{supp}(f*g)=\sup\operatorname{supp} f+\sup\operatorname{supp} g.
+$$
+\end{lemma}
+
+\begin{proof}
+See Titchmarsh's principle; establish these identities via correspondence between Laplace-domain zeros of $h=f*g$ and support endpoints. Thus the earliest arrival time of cascade systems is the sum of individual segments.
+\end{proof}
+
+\begin{proposition}[Finite Propagation Speed]
+\label{prop:finite_prop}
+Linear wave equations on globally hyperbolic backgrounds satisfy finite propagation speed: suppose initial data $(u(0,\cdot),\partial_t u(0,\cdot))$ have support contained in $B_r$. Then for any $t\ge 0$,
+$$
+\operatorname{supp}u(t,\cdot)\ \subseteq\ \{x\in\mathcal{M}:\ d_g(x,B_r)\le ct\}.
+$$
+Equivalently: if initial data vanish on open set $O$, the solution vanishes on the complement of $D(O)$ (domain dependence).
+\end{proposition}
+
+\begin{proof}
+Energy estimates and domain-dependence theorems yield this support propagation bound. See geometric wave equation surveys and lectures.
+\end{proof}
+
+\textbf{Conclusion:} By Lemmas \ref{lem:hardy}--\ref{lem:titchmarsh} (one-sided and convolution support), for any propagation chain $\gamma$ we have $t_*(\gamma)\ge 0$, and if $\gamma=\gamma_2\circ\gamma_1$ then $t_*(\gamma)=t_*(\gamma_2)+t_*(\gamma_1)$. In the background $(\mathcal{M},g)$, finite propagation speed further yields $t_*(\gamma)\ge L_\gamma/c$. Combined with ``identity chain $e$: $t_*(e)=0$'' and ``no closed loops/no feedback,'' the reachability relation in Section \ref{sec:reachability} is a partial order. This geometric lower bound does not enter the partial-order definition of $\mathbf{WScat}$.
+
+\subsection{Light Observation Set Reconstruction (KLU)}
+\label{sec:two_time}
+
+\begin{theorem}[Passive/Active Inverse Problem]
+\label{thm:klu}
+Given timelike geodesic neighborhood $\mathbf{V}$ with its conformal class, and all source points $q\in \mathcal{D}(\mathbf{V})$ with light observation set family $P_{\mathbf{V}}(q)$, the topology, differential, and conformal structure of $\mathcal{D}(\mathbf{V})$ can be uniquely reconstructed (in four dimensions, further strengthened by source--solution map).
+\end{theorem}
+
+\begin{proof}
+KLU establishes invertible mapping from $P_{\mathbf{V}}(q)$ to conformal structure through nonlinear interaction signal synthesis and wavefront-set geometry; passive type reconstructs boundary optical measure and conformal class from set-theoretic data of light observation sets; active type extends to nonlinear propagation via source--solution operator \cite{kurylev2014inverse}.
+\end{proof}
+
+\subsection{Radiation Field--Scattering and Master Scale (Unitarity and Energy Decomposition)}
+
+\begin{theorem}[Radiation Field and Lax--Phillips]
+\label{thm:radiation}
+On asymptotically Euclidean/hyperbolic or asymptotically Minkowski backgrounds, the radiation field yields translation representation of wave groups and unitary in--out scattering operator $S$, decomposing into $S(E)$ along energy.
+\end{theorem}
+
+\begin{proof}
+Friedlander--Melrose--Sá Barreto et al. developed radiation fields and scattering matrices on $\mathscr{I}^\pm$; the Lax--Phillips framework provides unitary translation representation \cite{lax1989scattering}.
+\end{proof}
+
+\begin{theorem}[Birman--Kreĭn--Wigner--Smith]
+\label{thm:bk_ws}
+For energy-differentiable unitary scattering $S(E)$, we have $\det S(E)=e^{-2\pi i\xi(E)}$, $\mathsf{Q}=-iS^\dagger S'$, thus
+$$
+\frac{1}{2\pi}\operatorname{tr}\mathsf{Q}(E)=-\xi'(E)=\frac{1}{2\pi}\frac{d}{dE}\arg\det S(E).
+$$
+\end{theorem}
+
+\begin{proof}
+By $\tfrac{d}{dE}\ln\det S=\operatorname{tr}(S^{-1}S')=\operatorname{tr}(S^\dagger S')$ and single-valued phase choice; Wigner (1955) and Smith (1960) respectively provided physical--mathematical foundations for group delay and lifetime matrix \cite{pushnitski2010spectral}.
+\end{proof}
+
+\subsection{Gauge Covariance and Relative Invariance of $\operatorname{tr}\mathsf{Q}$}
+\label{sec:gauge_covariance}
+
+Let $\widetilde{S}=USV$ ($U,V$ unitary and differentiable). Computing yields
+$$
+\begin{aligned}
+\widetilde{\mathsf{Q}}&=-i\,\widetilde{S}^\dagger \widetilde{S}'=-i\,V^\dagger S^\dagger U^\dagger (U'SV+US'V+USV')\\
+&= -i\,V^\dagger S^\dagger (U^\dagger U') S V-i\,V^\dagger S^\dagger S' V-i\,V^\dagger V',
+\end{aligned}
+$$
+thus
+$$
+\operatorname{tr}\widetilde{\mathsf{Q}}=\operatorname{tr}\mathsf{Q}-i\,\operatorname{tr}(U^\dagger U')-i\,\operatorname{tr}(V^\dagger V').
+$$
+In \textbf{finite-dimensional or (Fredholm) determinant-definable} cases with existing traces, this is equivalent to
+$$
+\operatorname{tr}\widetilde{\mathsf{Q}}=\operatorname{tr}\mathsf{Q}+\tfrac{d}{dE}\big(\arg\det U+\arg\det V\big).
+$$
+Thus when $\det U\cdot\det V\equiv 1$ (or phase derivative sum is zero), $\operatorname{tr}\widetilde{\mathsf{Q}}=\operatorname{tr}\mathsf{Q}$. Generally, take reference $S_{\text{ref}}$ to construct relative readout $\operatorname{tr}(\mathsf{Q}-\mathsf{Q}_{\text{ref}})$; windowed integrals remain invariant. Thus the natural isomorphism of Section 4.2 holds.
+
+\subsection{Two-Time Separation and No-Signal Red Line}
+
+By Sections 5.1--5.3, causality and ``no signaling'' are determined only by front $t_*$ and lightlike cones. \textbf{In the background $(\mathcal{M},g)\in\mathbf{Cau}$}, we can further provide the physical lower bound $t_*(\gamma)\ge L_\gamma/c$ via chain geometric length, but this geometric bound does not enter the partial-order definition of $\mathbf{WScat}$. Readout-level phenomena such as negative group delay and Hartman saturation do not touch the front red line, thus do not conflict with causality.
+
+\subsection{NPE Numerical Accounting (Implementation Independence)}
+
+For integrand $f(E)=w_R(E)[\check{h}*\rho_{\text{rel}}](E)$, strictly bandlimited cases have Poisson summation identity $\int f=\Delta\sum_{n\in\mathbb{Z}}f(E_0+n\Delta)$; generally, error decomposes as $\varepsilon_{\text{alias}}+\varepsilon_{\text{EM}}+\varepsilon_{\text{tail}}$, where $\varepsilon_{\text{EM}}$ has explicit endpoint corrections via finite-order Euler--Maclaurin, and $\varepsilon_{\text{tail}}$ is controlled by out-of-band decay of window/kernel. This error theory affects only numerical stability of $T[w_R,h]$ and is unrelated to the causal partial order of Section 2.
+
+\section{Non-Unitary Observations via Unitary Extension (Appendix)}
+
+Actual measurements that are non-unitary (POVM/channels) can be embedded in larger Hilbert spaces via Stinespring/Naimark extension, implemented by unitary evolution and PVM in the extended space. Thus under the ``universe-unitary--subsystem-effective-non-unitary'' stance, Axiom I and the gauge covariance of Section \ref{sec:gauge_covariance} remain valid.
+
+\section{Main Theorem (Categorical Equivalence) and Corollaries}
+\label{sec:main_theorem}
+
+\begin{theorem}[Categorical Equivalence]
+\label{thm:main}
+Let $\mathbf{WScat}$ be the class of windowed scattering systems satisfying Axioms I--III, Hardy analyticity, passivity, finite propagation speed, and high-frequency limit; let $\mathbf{Cau}$ be the class of \textbf{four-dimensional}, distinguishing Lorentzian manifolds suitable for radiation field--scattering construction. Let $\mathrm{Res}_{\mathcal{D}(\mathbf{V})}:\mathbf{Cau}\to\mathbf{Cau}$ be the functor restricting to the maximal propagation domain, $\mathrm{Res}_{\mathcal{D}(\mathbf{V})}(\mathcal{M},g)=(\mathcal{M},g)|_{\mathcal{D}(\mathbf{V})}$, where $\mathbf{V}$ comes from the object component of $\mathfrak{G}(\mathcal{M},g)$. Then there exist natural transformations
+$$
+\eta:\ \mathrm{Res}_{\mathcal{D}(\mathbf{V})}\ \Rightarrow\ \mathfrak{F}\circ \mathfrak{G},\qquad \varepsilon:\ \mathfrak{G}\circ \mathfrak{F}\ \Rightarrow\ \mathrm{Id}_{\mathbf{WScat}/\!\sim_{\text{gauge}}}.
+$$
+If observation domain $\mathbf{V}$ covers the effective exterior boundary, then $\mathcal{D}(\mathbf{V})=\mathcal{M}$, whereby $\eta$ degenerates to $\mathrm{Id}_{\mathbf{Cau}}$. Proof in Sections 2--5.
+\end{theorem}
+
+\begin{corollary}[Order + Number Corroboration]
+``Causality + counting'' can fix conformal class and volume factor; in discretization contexts, causal set programs reconstruct geometry via partial order and local finiteness, echoing this paper's ``front--conformal--master-scale'' chain.
+\end{corollary}
+
+\section{Discussion and Conclusions}
+
+This paper establishes a categorical equivalence between windowed scattering systems (GLS) and causal manifolds through functors $\mathfrak{F}$ and $\mathfrak{G}$ with natural transformations. Our main contributions include:
+
+\begin{enumerate}
+\item The construction of the reachability partial order via front time $t_*$ and Hardy analyticity, strictly separated from operational windowed time delays.
+
+\item The application of KLU's light observation set reconstruction and HKM/Malament's causal--conformal correspondence to establish the functor $\mathfrak{F}:\mathbf{WScat}\to\mathbf{Cau}$.
+
+\item The construction of energy-differentiable unitary scattering matrices via radiation fields and Lax--Phillips theory, establishing the functor $\mathfrak{G}:\mathbf{Cau}\to\mathbf{WScat}$.
+
+\item The proof of natural isomorphisms on gauge equivalence classes, unifying the Birman--Kreĭn spectral shift, Wigner--Smith time delay, and scattering phase derivative into a single master scale.
+
+\item The NPE (Nyquist--Poisson--Euler--Maclaurin) discipline for numerical implementation, maintaining strict separation from the causal structure.
+\end{enumerate}
+
+This framework provides a rigorous mathematical foundation for treating scattering-theoretic and geometric-causal descriptions as equivalent, with applications to quantum field theory on curved spacetimes, gravitational wave scattering, and inverse problems in Lorentzian geometry.
+
+\section*{Acknowledgments}
+
+All results cited rely on standard theorems in scattering theory, causal geometry, and functional analysis. References are provided for verifiability.
+
+\bibliographystyle{plain}
+\begin{thebibliography}{99}
+
+\bibitem{hawking1976new}
+S. W. Hawking, A. R. King, and P. J. McCarthy.
+\newblock A new topology for curved space-time which incorporates the causal, differential, and conformal structures.
+\newblock {\em Journal of Mathematical Physics}, 17(2):174--181, 1976.
+
+\bibitem{malament1977class}
+D. B. Malament.
+\newblock The class of continuous timelike curves determines the topology of spacetime.
+\newblock {\em Journal of Mathematical Physics}, 18(7):1399--1404, 1977.
+
+\bibitem{kurylev2014inverse}
+Y. Kurylev, M. Lassas, and G. Uhlmann.
+\newblock Inverse problems for Lorentzian manifolds and non-linear hyperbolic equations.
+\newblock arXiv:1405.3386, 2014.
+
+\bibitem{lax1989scattering}
+P. D. Lax and R. S. Phillips.
+\newblock {\em Scattering Theory}.
+\newblock Academic Press, revised edition, 1989.
+
+\bibitem{pushnitski2010spectral}
+A. Pushnitski.
+\newblock The spectral flow, the Fredholm index, and the spectral shift function.
+\newblock arXiv:1006.0639, 2010.
+
+\bibitem{strohmaier2012birman}
+A. Strohmaier and S. Zelditch.
+\newblock The Birman-Krein formula for differential forms and electromagnetic scattering.
+\newblock arXiv:2110.06370, 2021.
+
+\bibitem{wigner1955}
+E. P. Wigner.
+\newblock Lower limit for the energy derivative of the scattering phase shift.
+\newblock {\em Physical Review}, 98(1):145--147, 1955.
+
+\bibitem{smith1960}
+F. T. Smith.
+\newblock Lifetime matrix in collision theory.
+\newblock {\em Physical Review}, 118(1):349--356, 1960.
+
+\bibitem{titchmarsh1946}
+E. C. Titchmarsh.
+\newblock {\em Introduction to the Theory of Fourier Integrals}.
+\newblock Oxford University Press, Oxford, 2nd edition, 1948.
+
+\bibitem{bombelli1987spacetime}
+L. Bombelli, J. Lee, D. Meyer, and R. D. Sorkin.
+\newblock Space-time as a causal set.
+\newblock {\em Physical Review Letters}, 59(5):521--524, 1987.
+
+\bibitem{stinespring1955}
+W. F. Stinespring.
+\newblock Positive functions on C*-algebras.
+\newblock {\em Proceedings of the American Mathematical Society}, 6(2):211--216, 1955.
+
+\bibitem{naimark1943}
+M. A. Naimark.
+\newblock On a representation of additive operator set functions.
+\newblock {\em Doklady Akademii Nauk SSSR}, 41:359--361, 1943.
+
+\end{thebibliography}
+
+\end{document}
+

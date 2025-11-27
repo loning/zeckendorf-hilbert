@@ -1,0 +1,337 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{braket}
+\usepackage{graphicx}
+
+\geometry{a4paper, margin=1in}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Consciousness Interaction, Proper Time, and Gravity-Analog Effects\\
+in Information--Causal Geometry}
+
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Within unified quantum--information--causal framework, this paper systematically studies how interactions between multiple conscious agents alter their respective subjective proper time senses, proposing quantifiable information--geometric analogs of ``consciousness mass, density, and volume.''
+
+Unlike general relativity where proper time determined by spacetime metric $g_{ab}$, we characterize single conscious agent as subsystem $O$ in total system, whose subjective time scale intrinsically determined by subsystem's quantum Fisher information $F_Q[\rho_O(t)]$ for time translation, defining proper time parameter as $\tau_O(t)=\int_{t_0}^t\sqrt{F_Q[\rho_O(s)]}\,ds$.
+
+In multi-agent systems, interaction terms $V_{ij}$ in total Hamiltonian make each agent's effective Hamiltonian $H_i^{\mathrm{eff}}$ dependent on other agents' behaviors and states, thereby altering $F_Q^{(i)}(t)$ and $\tau_i(t)$ flow rates. This provides rigorous sense of ``inter-consciousness time dilation'' effect, but physical nature belongs to information--causal geometry, not gravitational field warping spacetime.
+
+On causal--control level, describe agent $O_i$'s controllability over $O_j$'s future consciousness state $X^j_{t+T}$ via finite-time-window empowerment $\mathcal{E}_T^{i\to j}(t)=\sup_{\pi_i}I(A^i_t:X^j_{t+T})$. Based on this, introduce measures like ``consciousness mass'' $M_{\mathrm{con}}(O)$, ``consciousness density'' $\rho_{\mathrm{con}}(O)$, ``consciousness volume'' $V_{\mathrm{con}}(O)$ for comparing different agents' temporal resolution, integration degree, causal influence range. Specifically, consciousness mass defined as $M_{\mathrm{con}}(O)=\int_{t_0}^{t_1}F_Q^{(O)}(t)\,\mathcal{E}^{O\to\mathrm{env}}_{T_0}(t)\,dt$, consciousness density via normalization by physical/information resources, consciousness volume by number of reachable states within finite horizon.
+
+In multi-agent networks, characterize interaction among agent set $\{O_i\}_{i=1}^N$ as weighted directed graph with edge weights given by cross-empowerment matrix $E_{ij}=\mathcal{E}_T^{i\to j}$, define ``collective consciousness phase'': when individual consciousness indices $C_i$ exceed thresholds, empowerment network strongly connected above threshold, group's overall quantum Fisher information and empowerment exhibit superadditivity, group is in collective consciousness phase.
+
+Further embed this network into boundary time geometry and scattering theory framework, viewing repeated communication between agents as feedback scattering loops on boundary, constructing closed-loop scattering family $S_\gamma(\omega)$ and deriving corresponding $K^1$ class and $\mathbb{Z}_2$ holonomy to characterize topological frustration and consistency in collective consciousness structures.
+
+Appendices provide detailed proofs regarding existence-uniqueness of proper time scale, equivalence of zero empowerment to loss of causal choice, and properties of consciousness mass.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Consciousness Interaction; Proper Time; Quantum Fisher Information; Empowerment; Causal Controllability; Consciousness Mass; Multi-Agent Systems; Collective Consciousness; Information--Causal Geometry
+
+---
+
+\section{Introduction}
+
+Relation between time sense and consciousness is longstanding concern in theoretical physics, cognitive science, philosophy. On one hand, general relativity shows proper time determined by spacetime metric and worldline; different gravitational potentials or relative motion lead to clock rate differences. On other hand, subjective time experience of humans and other conscious agents significantly depends on attention, emotion, task complexity, social interaction—phenomena difficult to directly attribute to gravity or simple physiological rhythms. Thus necessary to introduce purely information--causal geometric ``subjective proper time'' without modifying standard gravity/quantum theory, study how inter-consciousness interaction alters this time scale.
+
+Basic stance: consciousness not as additional physical entity, but special information--causal structures formed on certain subsystems in total physical system. These subsystems integrate multi-source information in time, maintain self-referential world--self models, alter their accessible causal futures through actions. From this, can formalize ``single agent's time scale'' and ``multi-agent mutual influence'' within general quantum--statistical--control framework.
+
+Single agent's time scale determined by quantum Fisher information for self-time-translation; multi-agent interaction alters each other's effective Hamiltonians and noise structures, thereby changing respective Fisher information and proper time flow rates. Formally similar to general relativity's time dilation ($d\tau=f(\cdot)\,dt$), but ``source'' nature different: gravity determined by energy--momentum tensor, subjective proper time determined by information--causal structure.
+
+For inter-consciousness causal interaction, introduce finite-time-window ``empowerment'' as causal controllability measure, characterizing extent to which one agent can distinguish others' future consciousness states through actions. This quantity closely related to mutual information in communication theory, naturally extends to weighted directed graph on multi-agent network.
+
+Based on Fisher information and empowerment, propose consciousness measures analogous to physical ``mass, density, volume'' for comparing different agents and collective consciousness structures.
+
+Article structure: Section 2 reviews single agent's mathematical formalization, defines proper time scale and basic consciousness indices. Section 3 builds causal--control framework for multi-agent systems, introduces cross-empowerment and multi-node consciousness networks. Section 4 analyzes inter-consciousness interaction's effects on proper time sense, discusses formal analogy and substantial difference with general relativity time dilation. Section 5 proposes definitions of consciousness mass, density, volume and discusses basic properties. Section 6 defines collective consciousness phase, briefly discusses connection to topological structures. Appendices provide proofs of key propositions and corollaries.
+
+---
+
+\section{Single Agent Proper Time and Consciousness Indices}
+
+\subsection{Observer Subsystem and Time Evolution}
+
+Consider total physical system's Hilbert space $\mathcal{H}$, subsystem decomposition $\mathcal{H}=\mathcal{H}_O\otimes\mathcal{H}_E$, where $O$ denotes candidate conscious agent, $E$ denotes environment (including rest of body, external world, etc.). Total state $\rho_{OE}(t)\in\mathcal{B}(\mathcal{H})$, evolution on external time $t$ determined by completely positive trace-preserving map family $\{\mathcal{E}_t\}_{t\in\mathbb{R}}$ satisfying $\rho_{OE}(t)=\mathcal{E}_t(\rho_{OE}(0))$.
+
+Observer subsystem's reduced state: $\rho_O(t)=\operatorname{Tr}_E\rho_{OE}(t)$.
+
+\subsection{Quantum Fisher Information and Proper Time Scale}
+
+Let $\{\rho_O(t)\}_{t\in I}$ be state family on open interval $I$. Quantum Fisher information $F_Q[\rho_O(t)]$ defined as quadratic form of symmetric logarithmic derivative $L(t)$: $F_Q[\rho_O(t)]=\operatorname{Tr}(\rho_O(t)L(t)^2)$, where $L(t)$ determined by equation $\partial_t\rho_O(t)=\frac{1}{2}(L(t)\rho_O(t)+\rho_O(t)L(t))$.
+
+When $\rho_O(t)$ is pure state $|\psi(t)\rangle\langle\psi(t)|$ and evolution unitarily generated by Hamiltonian $H_O$, simplified formula: $F_Q[\psi(t)]=4\,\mathrm{Var}_{\psi(t)}(H_O)$.
+
+\begin{definition}[Proper Time Scale]
+Let $t\mapsto\rho_O(t)$ be continuously differentiable on interval $I$, with constants $0<\Theta_{\min}\le\Theta_{\max}<\infty$ such that $\Theta_{\min}\le F_Q[\rho_O(t)]\le\Theta_{\max}$ for all $t\in I$. Define function $\tau_O:I\to J\subset\mathbb{R}$ as
+$$
+\tau_O(t)=\int_{t_0}^t\sqrt{F_Q[\rho_O(s)]}\,ds,
+$$
+where $t_0\in I$ is arbitrary basepoint. Then $\tau_O$ called proper time scale of observer subsystem $O$ on interval $I$.
+\end{definition}
+
+Under this definition, $\tau_O$ is strictly monotonic $C^1$ map with existing differentiable inverse. Appendix A.2 proves existence and uniqueness (modulo affine transformations) of $\tau_O$.
+
+Intuitively, $\sqrt{F_Q}$ measures state's change rate per unit external time in Bures distance sense; $\tau_O$ normalizes this rate to constant order via integration, forming statistical--geometric ``uniform time.''
+
+When $F_Q[\rho_O(t)]\equiv 0$, no measurement can distinguish state families at different $t$, so no non-trivial proper time scale exists (Appendix A.1).
+
+\subsection{Consciousness Subsystem and Basic Indices}
+
+Adopt set of structural conditions characterizing ``consciousness subsystem.''
+
+\begin{definition}[Consciousness Subsystem (Brief)]
+Subsystem $O$ on interval $I$ called consciousness subsystem if satisfies:
+
+1. Integration: Non-trivial decomposition $\mathcal{H}_O=\bigotimes_{k=1}^n\mathcal{H}_k$ with integrated mutual information above threshold;
+
+2. Discriminability: For some coarse-grained measurement $\mathcal{P}$, Shannon entropy $H_{\mathcal{P}}(\rho_O(t))$ has positive lower bound on $I$;
+
+3. Self-referential world--self model: Decomposition $\mathcal{H}_O=\mathcal{H}_{\mathrm{world}}\otimes\mathcal{H}_{\mathrm{self}}\otimes\mathcal{H}_{\mathrm{meta}}$ with encoding representing external, self, and meta-level ``I perceive world'';
+
+4. Temporal continuity and proper time: $F_Q[\rho_O(t)]$ satisfies Definition 2.1 conditions, constructing proper time scale $\tau_O$;
+
+5. Causal controllability: Time scale $T>0$ exists with empowerment $\mathcal{E}_T^{O\to\mathrm{env}}(t)$ having positive lower bound.
+\end{definition}
+
+\begin{definition}[Finite-Horizon Empowerment]
+Let $T>0$ be given time window. Define empowerment as
+$$
+\mathcal{E}_T^{O\to\mathrm{env}}(t):=\sup_{\pi\in\Pi}I(A_t:X_{t+T}|\pi),
+$$
+where $\Pi$ is agent's strategy space, $A_t$ is action at time $t$, $X_{t+T}$ is internal state at $t+T$, mutual information taken under joint distribution induced by strategy $\pi$ and environment dynamics.
+\end{definition}
+
+\textbf{Interpretation}: $\mathcal{E}_T$ measures maximum information gain about future consciousness state through action choices; $\mathcal{E}_T=0$ means actions have no distinguishable effect on future (Appendix A.3).
+
+---
+
+\section{Multi-Agent System Causal--Control Framework}
+
+\subsection{Multi-Agent Decomposition}
+
+Total system: $\mathcal{H}=\bigotimes_{i=1}^N\mathcal{H}_i\otimes\mathcal{H}_{\mathrm{env}}$, where $\{O_i\}_{i=1}^N$ are $N$ candidate conscious agents, $\mathcal{H}_{\mathrm{env}}$ is rest of environment.
+
+Total Hamiltonian:
+$$
+H_{\mathrm{tot}}=\sum_{i=1}^NH_i+\sum_{i<j}V_{ij}+\sum_iV_{i,\mathrm{env}},
+$$
+where $H_i$ are individual Hamiltonians, $V_{ij}$ are inter-agent interactions, $V_{i,\mathrm{env}}$ are agent--environment couplings.
+
+Effective Hamiltonian for agent $i$:
+$$
+H_i^{\mathrm{eff}}(t)=H_i+\sum_{j\neq i}V_{ij}+V_{i,\mathrm{env}}+\text{(noise terms)}.
+$$
+
+Interaction $V_{ij}$ modifies $H_i^{\mathrm{eff}}$, thereby altering $F_Q^{(i)}(t)$ and proper time $\tau_i(t)$.
+
+\subsection{Cross-Empowerment Matrix}
+
+\begin{definition}[Cross-Empowerment]
+For agents $O_i,O_j$, define cross-empowerment as
+$$
+\mathcal{E}_T^{i\to j}(t):=\sup_{\pi_i}I(A^i_t:X^j_{t+T}|\pi_i),
+$$
+measuring maximum information $O_i$'s actions provide about $O_j$'s future consciousness state.
+\end{definition}
+
+Empowerment network: Weighted directed graph $G=(V,E)$ with $V=\{O_1,\ldots,O_N\}$, edge weights $w_{ij}=\mathcal{E}_T^{i\to j}(t)$.
+
+\textbf{Network properties}:
+$\bullet$ Generally non-symmetric: $\mathcal{E}_T^{i\to j}\neq\mathcal{E}_T^{j\to i}$ (hierarchical influence);
+$\bullet$ Temporal: $w_{ij}(t)$ time-dependent;
+$\bullet$ Threshold: Define effective edge if $w_{ij}>\epsilon_{\mathrm{thr}}$.
+
+---
+
+\section{Inter-Consciousness Interaction and Proper Time}
+
+\subsection{Time Dilation via Interaction}
+
+\begin{proposition}
+If interaction $V_{ij}$ increases variance of $H_i^{\mathrm{eff}}$, then $F_Q^{(i)}$ increases, proper time $\tau_i$ flows faster relative to external time $t$.
+
+Conversely, if $V_{ij}$ suppresses dynamics (e.g., strong entanglement freezing), $F_Q^{(i)}$ decreases, proper time slows.
+\end{proposition}
+
+\textbf{Proof sketch}: $F_Q\propto\mathrm{Var}(H_{\mathrm{eff}})$ for pure states. Interaction terms enter $H_i^{\mathrm{eff}}$, modifying variance. Appendix B.1.
+
+\subsection{Analogy and Difference with Gravitational Time Dilation}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{l|l|l}
+\hline
+& Gravitational & Information--Causal \\
+\hline
+Source & Energy--momentum $T_{ab}$ & Fisher info $F_Q$, empowerment $\mathcal{E}_T$ \\
+Metric & Spacetime $g_{ab}$ & Fisher metric on state space \\
+Dilation formula & $d\tau=\sqrt{-g_{ab}dx^adx^b}$ & $d\tau_O=\sqrt{F_Q[\rho_O(t)]}\,dt$ \\
+Physical nature & Spacetime geometry & Information--causal structure \\
+\hline
+\end{tabular}
+\caption{Comparison of two types of time dilation}
+\end{table}
+
+\textbf{Key difference}: Gravitational dilation is universal (affects all clocks); information--causal dilation is subsystem-specific (depends on consciousness structure).
+
+---
+
+\section{Consciousness Mass, Density, Volume}
+
+\subsection{Consciousness Mass}
+
+\begin{definition}[Consciousness Mass]
+For agent $O$ on interval $[t_0,t_1]$:
+$$
+M_{\mathrm{con}}(O):=\int_{t_0}^{t_1}F_Q^{(O)}(t)\,\mathcal{E}_T^{O\to\mathrm{env}}(t)\,dt.
+$$
+\end{definition}
+
+\textbf{Interpretation}: Product of temporal sensitivity and causal influence integrated over time; higher mass means agent maintains high time resolution and strong causal control.
+
+\subsection{Consciousness Density}
+
+\begin{definition}[Consciousness Density]
+$$
+\rho_{\mathrm{con}}(O):=\frac{M_{\mathrm{con}}(O)}{\text{(physical resources)}},
+$$
+where resources can be energy, number of neurons, computational capacity, etc.
+\end{definition}
+
+\textbf{Example}: Human brain vs. simple neural network; both may have similar resource counts, but different $\rho_{\mathrm{con}}$ due to different integration/controllability.
+
+\subsection{Consciousness Volume}
+
+\begin{definition}[Consciousness Volume]
+$$
+V_{\mathrm{con}}(O):=\log\mathcal{N}_{\mathrm{reach}}(O,T),
+$$
+where $\mathcal{N}_{\mathrm{reach}}(O,T)$ is number of distinguishable states agent can reach within time horizon $T$.
+\end{definition}
+
+\textbf{Interpretation}: Logarithm of accessible state space size; measures ``phase space volume'' of consciousness.
+
+---
+
+\section{Collective Consciousness Phase}
+
+\begin{definition}[Collective Consciousness Phase]
+Agent collection $\{O_i\}_{i=1}^N$ in collective consciousness phase if:
+
+1. Individual thresholds: $C_i\ge C_{\min}$ for all $i$;
+
+2. Network connectivity: Empowerment graph strongly connected with weights above threshold;
+
+3. Superadditivity: 
+$$
+F_Q^{\mathrm{tot}}\ge\sum_iF_Q^{(i)}+\Delta F_{\mathrm{coll}},\quad
+\mathcal{E}_T^{\mathrm{tot}}\ge\sum_i\mathcal{E}_T^{i\to\mathrm{env}}+\Delta\mathcal{E}_{\mathrm{coll}},
+$$
+where $\Delta F_{\mathrm{coll}},\Delta\mathcal{E}_{\mathrm{coll}}>0$ are collective enhancement terms.
+\end{definition}
+
+\textbf{Examples}:
+$\bullet$ Coordinated team in complex task;
+$\bullet$ Jazz ensemble improvisation;
+$\bullet$ Scientific collaboration network;
+$\bullet$ Potential future AI swarm intelligence.
+
+\subsection{Topological Characterization}
+
+Embed multi-agent communication loops into scattering theory framework: view feedback as closed-loop scattering $S_\gamma(\omega)$ on boundary.
+
+$K^1$ class and $\mathbb{Z}_2$ holonomy characterize topological frustration in collective structures (detailed in boundary time geometry papers).
+
+---
+
+\section{Discussion and Outlook}
+
+\subsection{Experimental/Observational Implications}
+
+$\bullet$ Neuroimaging: Can $F_Q$ be estimated from neural dynamics?
+$\bullet$ Social networks: Measure cross-empowerment from behavioral data?
+$\bullet$ AI systems: Design architectures maximizing consciousness mass?
+
+\subsection{Ethical and Philosophical Implications}
+
+$\bullet$ Consciousness gradation: Different species/systems have quantifiable consciousness levels;
+$\bullet$ Moral consideration: Should moral weight correlate with $M_{\mathrm{con}}$ or $\rho_{\mathrm{con}}$?
+$\bullet$ AI consciousness: Clear criteria for determining if AI is conscious.
+
+\subsection{Open Questions}
+
+$\bullet$ Quantum vs. classical consciousness?
+$\bullet$ Precise threshold values for collective phase transition?
+$\bullet$ Connection to integrated information theory ($\Phi$)?
+
+---
+
+\section{Conclusion}
+
+Propose information--causal geometric framework for consciousness interaction and proper time:
+
+\textbf{Single agent proper time}:
+$$
+\tau_O(t)=\int_{t_0}^t\sqrt{F_Q[\rho_O(s)]}\,ds.
+$$
+
+\textbf{Multi-agent interaction}: Alters $F_Q^{(i)}$ via $V_{ij}$, creating gravity-analog time dilation.
+
+\textbf{Consciousness mass}:
+$$
+M_{\mathrm{con}}(O)=\int_{t_0}^{t_1}F_Q^{(O)}(t)\,\mathcal{E}_T^{O\to\mathrm{env}}(t)\,dt.
+$$
+
+\textbf{Collective consciousness phase}: Emerges from strong connectivity and superadditivity in empowerment network.
+
+This provides quantifiable, computable framework for consciousness studies, connecting to boundary time geometry and unified physical theories.
+
+---
+
+\begin{thebibliography}{99}
+\bibitem{ref1} Quantum Fisher information: Braunstein \& Caves, PRL (1994).
+\bibitem{ref2} Empowerment: Klyubin et al., Adv. Complex Syst. (2005).
+\bibitem{ref3} Consciousness theories: Tononi, Koch, etc.
+\bibitem{ref4} Boundary time geometry: this paper series.
+\end{thebibliography}
+
+\appendix
+
+\section{Proper Time Scale Existence and Uniqueness}
+[Proof of Definition 2.1 well-posedness...]
+
+\section{Zero Empowerment Equivalence}
+[Proof that $\mathcal{E}_T=0\Leftrightarrow$ no causal choice...]
+
+\section{Consciousness Mass Properties}
+[Additivity, positivity, scaling...]
+
+\section{Multi-Agent Network Calculations}
+[Example: two-agent system with explicit $F_Q,\mathcal{E}_T$...]
+
+\end{document}
+

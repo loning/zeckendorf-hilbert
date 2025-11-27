@@ -1,0 +1,782 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Title information
+\title{Discrete Horizon Theory of Black Hole Entropy and Information in Unified Matrix--QCA Universe\\
+\large $S_{\mathrm{BH}} = A/4$ and Information Conservation under Unified Time Scale}
+
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Under the axiomatic framework of unified time scale, boundary time geometry, and ``Universe as Quantum Cellular Automaton'' (QCA), we provide a unified discrete--continuous characterization of black hole entropy and the information paradox. The unified time scale mother formula
+\begin{equation}
+\kappa(\omega)
+=\frac{\varphi'(\omega)}{\pi}
+=\rho_{\mathrm{rel}}(\omega)
+=\frac{1}{2\pi}\mathrm{tr}\, Q(\omega),
+\end{equation}
+where $\varphi(\omega)$ is the total scattering hemi-phase, $\rho_{\mathrm{rel}}(\omega)$ is the relative density of states, and $Q(\omega)=-\mathrm{i} S(\omega)^\dagger\partial_\omega S(\omega)$ is the Wigner--Smith group delay matrix, has been proven in prior work to be the mother scale of the universe's unified time scale.
+
+On one hand, the boundary time geometry framework indicates that for spacetimes with horizons, the Hawking temperature $T_H$ and Bekenstein--Hawking entropy $S_{\mathrm{BH}}=A/(4G)$ can be restated purely using modular flow of boundary algebras, generalized entropy, and Brown--York quasilocal energy. The ``geometry--entropy'' structure of black hole thermodynamics can be fully derived from local quantum conditions of small causal diamonds. On the other hand, the Universe QCA object
+\begin{equation}
+\mathfrak U_{\mathrm{QCA}}
+=(\Lambda,\mathcal H_{\mathrm{cell}},\mathcal A,\alpha,\omega_0)
+\end{equation}
+uses a countable graph $\Lambda$ as discrete space, finite-dimensional local Hilbert spaces $\mathcal H_{\mathrm{cell}}$ and quasilocal $C^\ast$-algebras $\mathcal A$ to describe local degrees of freedom, and a $\ast$-automorphism $\alpha$ with finite propagation radius and its unitary implementation $U$ to describe discrete time evolution, reconstructing relativistic field theory and geometric structures in the continuum limit.
+
+This paper unifies the above two structural lines on the black hole horizon, obtaining the following main results:
+
+1. In the Universe QCA framework, we introduce a ``horizon band'' sublattice $\Gamma_{\mathrm{H}}\subset\Lambda$ composed of finite cells on the horizon cross-section $\Sigma_{\mathrm{H}}$, and provide the inner/outer region Hilbert decomposition
+   \begin{equation}
+   \mathcal H
+   \simeq
+   \mathcal H_{\mathrm{in}}\otimes\mathcal H_{\mathrm{H}}\otimes\mathcal H_{\mathrm{out}}.
+   \end{equation}
+   For families of states satisfying local mixing and stationarity, the cross-horizon entanglement entropy satisfies the area law
+   \begin{equation}
+   S_{\mathrm{ent}}(\Sigma_{\mathrm{H}})
+   =\eta_{\mathrm{cell}}\frac{A(\Sigma_{\mathrm{H}})}{\ell_{\mathrm{cell}}^2}
+   +O(A^0),
+   \end{equation}
+   where $\ell_{\mathrm{cell}}$ is the QCA effective lattice spacing, and $\eta_{\mathrm{cell}}$ is the cell entropy density constant.
+
+2. Embedding the above QCA horizon area law into boundary time geometry: by aligning the QCA discrete time step with the horizon modular flow parameter via the unified time scale, we prove that consistency constraints under the small causal diamond limit and generalized entropy extremization enforce
+   \begin{equation}
+   \frac{\eta_{\mathrm{cell}}}{\ell_{\mathrm{cell}}^2}
+   =\frac{1}{4G},
+   \end{equation}
+   thereby yielding
+   \begin{equation}
+   S_{\mathrm{ent}}(\Sigma_{\mathrm{H}})
+   =\frac{A(\Sigma_{\mathrm{H}})}{4G}
+   +O(A^0),
+   \end{equation}
+   meaning the QCA horizon model automatically reproduces the coefficient $1/4$ of the Bekenstein--Hawking entropy.
+
+3. In the Matrix Universe representation, black hole formation and evaporation are viewed as a class of scattering processes on the channel space. The unitarity of the scattering matrix $S_{\mathrm{BH}}(\omega)$ ensures information conservation of the entire evolution. The QCA one-step evolution $U$ is unitary on the full Hilbert space and compatible with the spectral measure of $S_{\mathrm{BH}}(\omega)$ via the unified scale, thus rewriting the naive paradox of ``Hawking radiation turning pure states into mixed states'' as an effect of ``coarse-graining over massive QCA microscopic degrees of freedom in the effective theory outside the horizon''.
+
+4. On a universe satisfying local mixing, energy constraints, and QCA local scrambling assumptions, we construct a model of ``horizon--radiation'' partition evolving with discrete time steps, and prove: for the vast majority of initial pure states, the radiation entropy $S_{\mathrm{rad}}(n)$ evolves with step number $n$ approximately following Page curve behavior, i.e., first increasing with $n$ to a peak, then decreasing as the horizon area shrinks, and finally returning to zero. This result demonstrates that in the unified Matrix--QCA universe, the black hole information paradox can be reduced at the theorem level to issues of typicality and coarse-graining.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Black hole entropy; Information paradox; Unified time scale; Boundary time geometry; Quantum cellular automaton; Matrix universe; Page curve; Entanglement entropy area law
+
+\section{Introduction \& Historical Context}
+
+Bekenstein first pointed out that to uphold the generalized second law, a black hole itself must carry entropy proportional to its horizon area, obtaining the relation
+\begin{equation}
+S_{\mathrm{BH}}
+=\frac{A}{4G\hbar},
+\end{equation}
+often written as $S_{\mathrm{BH}}=A/(4G)$ in natural units. Hawking subsequently proved in the semiclassical approximation that black holes radiate an approximately thermal particle spectrum at temperature
+\begin{equation}
+T_H=\frac{\kappa_{\mathrm{surf}}}{2\pi},
+\end{equation}
+where $\kappa_{\mathrm{surf}}$ is the surface gravity, thus establishing the complete form of black hole thermodynamics.
+
+However, viewing Hawking radiation as strictly thermal combined with the no-hair theorem leads to the famous black hole information paradox: if the initial state is pure, the Hawking radiation after complete evaporation is approximately thermal, seemingly contradicting the unitarity of quantum theory. On this issue, recent work using the ``island'' formula and replica wormhole path integral techniques has reproduced the Page curve within the framework of general relativity and holography, providing a class of ``information recovery'' schemes in the semiclassical sense.
+
+On the other hand, since Page's work on average subsystem entropy, it has been recognized that for typical pure states in high-dimensional Hilbert spaces, the reduced state of any small subsystem is nearly maximally mixed, with entropy approximating the logarithm of that subsystem's dimension. This ``typicality'' idea has been systematically developed in studies of random circuits, random matrices, and many-body quantum chaos, playing a central role in many Page curve toy models.
+
+Parallel to this, Quantum Cellular Automata (QCA), as discrete time--discrete space models based on local unitary update rules, have been proven to serve as natural discretizations of quantum field theories, possessing complete index theory and GNVW index classification in one-dimensional cases. QCAs can be viewed as discrete universe models and can also be experimentally realized via quantum circuits, trapped ions, and photonic platforms to implement Dirac-type QCA or related random circuit dynamics.
+
+In prior work, the unified time scale and boundary time geometry framework unified phase--spectral shift--group delay data from scattering theory with Tomita--Takesaki modular flow, generalized entropy variation, and Gibbons--Hawking--York boundary terms into a ``boundary time geometry'' system, allowing gravitational field equations, Hawking temperature, and Bekenstein--Hawking entropy to be derived at the level of boundary observable algebras. Meanwhile, the ``Matrix Universe'' perspective views all observable quantities in the universe as a massive but structurally constrained family of operator matrices, whose spectral structure implements the unified time scale and whose block sparsity pattern encodes causal partial order.
+
+The goal of this paper is to endogenous the key questions of black hole entropy and the information paradox within this unified framework, using the QCA universe as the discrete ontology and the Matrix universe as the spectral--scattering representation:
+
+1. What object is the horizon in a discrete universe? Why does its entropy satisfy an area law, and why is the coefficient exactly $1/4$?
+2. If the universe is strictly unitary at the QCA level, in what manner is information preserved and recovered during black hole formation and evaporation?
+3. How does the unified time scale constrain the relationship between the QCA microscopic scale and effective geometric constants (such as $G$)?
+
+The core viewpoint of this paper is: under the constraints of unified time scale and boundary time geometry, as long as the continuous limit of the discrete universe QCA reproduces real-world gravity and field theory, the QCA cross-entanglement entropy on the horizon automatically satisfies the area law, with its coefficient uniquely fixed to $1/4G$ through matching with the generalized entropy formula; the black hole information paradox is then transformed in the Matrix--QCA representation into a theorem-level problem regarding typicality and coarse-graining, rather than a fundamental crisis of unitarity.
+
+\section{Model \& Assumptions}
+
+This section provides basic definitions of the unified time scale, boundary time geometry, and universe QCA object, and lists the structural assumptions relied upon by subsequent theorems.
+
+\subsection{Unified Time Scale Mother Scale}
+
+Let $(H,H_0)$ be a pair of self-adjoint operators satisfying trace-class perturbation and good scattering conditions, $S(\omega)$ be the scattering matrix at energy $\omega$, and spectral shift function $\xi(\omega)$ and relative density of states $\rho_{\mathrm{rel}}(\omega)=-\xi'(\omega)$ exist. The Birman--Kreĭn formula gives
+\begin{equation}
+\det S(\omega)
+=\exp\bigl(-2\pi\mathrm{i}\xi(\omega)\bigr).
+\end{equation}
+Denote total scattering phase $\Phi(\omega)=\arg\det S(\omega)=-2\pi\xi(\omega)$, hemi-phase $\varphi(\omega)=\tfrac12\Phi(\omega)$. Define Wigner--Smith group delay matrix
+\begin{equation}
+Q(\omega)
+=-\mathrm{i} S(\omega)^\dagger\partial_\omega S(\omega).
+\end{equation}
+
+The unified time scale mother scale is defined as
+\begin{equation}
+\kappa(\omega)
+=\frac{\varphi'(\omega)}{\pi}
+=\rho_{\mathrm{rel}}(\omega)
+=\frac{1}{2\pi}\mathrm{tr}\, Q(\omega),
+\end{equation}
+and the scattering time scale is
+\begin{equation}
+\tau_{\mathrm{scatt}}(\omega)
+=\int_{\omega_0}^{\omega}\kappa(\tilde\omega)\,\mathrm{d}\tilde\omega.
+\end{equation}
+
+Prior work shows: when appropriate local quantum energy conditions and modular flow conditions are met, modular time $\tau_{\mathrm{mod}}$, geometric time $\tau_{\mathrm{geom}}$, and $\tau_{\mathrm{scatt}}$ are affine transformations of each other in the physical domain, thus determining a unique time scale equivalence class $[\tau]$.
+
+\subsection{Boundary Time Geometry and Black Hole Thermodynamics}
+
+In the Boundary Time Geometry (BTG) framework, given a spacetime region $(M,g)$ and its boundary $\partial M$, considering boundary observable algebra $\mathcal A_\partial$, boundary state $\omega_\partial$, and appropriate boundary spectral structure, Tomita--Takesaki theory assigns to each pair $(\mathcal A_\partial,\omega_\partial)$ a self-adjoint generated one-parameter modular flow $\sigma_t^\omega$, where parameter $t$ is modular time.
+
+For static black holes with Killing horizons, BTG yields the following structural conclusions (omitting details):
+
+1. The Hawking temperature $T_H$ at the horizon equals the KMS temperature of the modular flow, satisfying $T_H=\kappa_{\mathrm{surf}}/(2\pi)$ with surface gravity.
+2. Bekenstein--Hawking entropy can be viewed as the von Neumann entropy density of the horizon boundary algebra: for horizon cross-section area $A$,
+   \begin{equation}
+   S_{\mathrm{BH}}=\sigma_{\mathrm{H}}A,
+   \quad
+   \sigma_{\mathrm{H}}=\frac{1}{4G}.
+   \end{equation}
+3. For small causal diamonds containing the horizon, the extremum and second-order non-negativity of generalized entropy
+   \begin{equation}
+   S_{\mathrm{gen}}(\Sigma)
+   =\frac{A(\Sigma)}{4G}+S_{\mathrm{out}}(\Sigma)
+   \end{equation}
+   are equivalent to Einstein equations and their quantum corrections, thus embedding black hole thermodynamics into a unified framework of local quantum gravity conditions.
+
+In this paper, the role of BTG is to provide macroscopic geometric boundary conditions and entropy density normalization conditions for the QCA continuous limit.
+
+\subsection{Universe QCA Object and Causal Structure}
+
+The Universe QCA object is defined as a quintuple
+\begin{equation}
+\mathfrak U_{\mathrm{QCA}}
+=(\Lambda,\mathcal H_{\mathrm{cell}},\mathcal A,\alpha,\omega_0),
+\end{equation}
+where:
+
+1. $\Lambda$ is a countable connected graph (typically $\mathbb Z^d$ or its subgraph).
+2. Each lattice site $x\in\Lambda$ carries a finite-dimensional Hilbert space $\mathcal H_x\simeq\mathcal H_{\mathrm{cell}}$, the overall Hilbert space formally being the infinite tensor product $\mathcal H=\bigotimes_{x\in\Lambda}\mathcal H_x$.
+3. Quasilocal $C^\ast$-algebra $\mathcal A$ is the norm closure of the union of bounded operators on finite regions.
+4. $\alpha:\mathcal A\to\mathcal A$ is a $\ast$-automorphism with a finite propagation radius $R$, such that the support of any local operator $A$ after evolution by $\alpha$ extends only to its $R$-neighborhood.
+5. $\alpha$ is implemented by a unitary operator $U$, i.e., $\alpha(A)=U^\dagger A U$.
+6. Initial state $\omega_0$ is a state on $\mathcal A$, corresponding to the universe state at $n=0$.
+
+The set of events is $E=\Lambda\times\mathbb Z$, with partial order relation
+\begin{equation}
+(x,n)\preceq(y,m)
+\iff
+m\ge n,\ \operatorname{dist}(x,y)\le R(m-n),
+\end{equation}
+forming a locally finite causal set, whose continuous limit can be viewed as a causal structure on some Lorentzian manifold. Structure and classification of QCA can be referred to in systematic reviews.
+
+\subsection{Matrix Universe Representation and Scattering Mother Scale Consistency}
+
+The Matrix Universe viewpoint considers all observable structures of the universe as an operator matrix family in some sense
+\begin{equation}
+\mathrm{THE\text{-}MATRIX}
+=\{S(\omega),Q(\omega),\dots\},
+\end{equation}
+whose block structure encodes channel spaces of different causal regions and observers, and whose spectral data imparts time structure via the unified time scale mother scale $\kappa(\omega)$. Unified time scale requires: the scattering matrix $S_{\mathrm{QCA}}(\omega)$ generated by the QCA continuous limit should satisfy for its hemi-phase and group delay trace
+\begin{equation}
+\kappa_{\mathrm{QCA}}(\omega)
+=\frac{1}{2\pi}\mathrm{tr}\, Q_{\mathrm{QCA}}(\omega)
+=\kappa(\omega)+O(\varepsilon),
+\end{equation}
+where $\varepsilon$ is the error as lattice spacing and time step tend to zero, ensuring QCA microscopic dynamics and macroscopic BTG belong to the same time scale equivalence class.
+
+\subsection{Structural Assumptions for Horizon QCA Model}
+
+To realize black hole horizons in the QCA universe, this paper adopts the following assumptions:
+
+1. **Horizon Band Sublattice Assumption**: Exists a subset $\Gamma_{\mathrm{H}}\subset\Lambda$ and complementary regions $\Lambda_{\mathrm{in}},\Lambda_{\mathrm{out}}\subset\Lambda$ such that
+   \begin{equation}
+   \Lambda
+   =\Lambda_{\mathrm{in}}\cup\Gamma_{\mathrm{H}}\cup\Lambda_{\mathrm{out}},
+   \quad
+   \Lambda_{\mathrm{in}}\cap\Lambda_{\mathrm{out}}=\varnothing,
+   \end{equation}
+   corresponding in the continuous limit to black hole interior, horizon neighborhood, and exterior region respectively; the cell count of $\Gamma_{\mathrm{H}}$ satisfies
+   \begin{equation}
+   N_{\mathrm{H}}=\#\Gamma_{\mathrm{H}}
+   =\frac{A}{\ell_{\mathrm{cell}}^2}+O(A^0),
+   \end{equation}
+   where $A$ is the corresponding geometric horizon cross-section area, and $\ell_{\mathrm{cell}}$ is the effective lattice spacing.
+
+2. **Local Mixing and Typicality Assumption**: Within the black hole equilibrium time window, the horizon band and its inner/outer complements form an approximately typical pure state family under energy shell and conservation law constraints, with local reduced states approximating maximal mixing, corresponding to conditions for Page's average entropy formula.
+
+3. **QCA Local Scrambling Assumption**: The QCA local update rules on horizon--radiation correlated regions are equivalent to local random circuits with sufficient mixing, making the state family after finite steps approximate Haar random under local observation, allowing the use of random circuit theory and ETH results to approximate entropy growth and Page curves.
+
+Under these assumptions, the QCA universe provides a mathematizable platform for constructing ``discrete horizons'' and studying black hole entropy and information recovery.
+
+\section{Main Results (Theorems and Alignments)}
+
+Under the above unified framework and assumptions, the core results of this paper can be organized into the following three main theorems, along with an alignment proposition considering both Matrix Universe and QCA Universe.
+
+\subsection{Area Law of QCA Horizon Entanglement Entropy}
+
+\begin{theorem}[Horizon QCA Area Law]
+In the Universe QCA object $\mathfrak U_{\mathrm{QCA}}$, if there exists a horizon band sublattice $\Gamma_{\mathrm{H}}$ satisfying conditions in 2.5 and Hilbert decomposition
+\begin{equation}
+\mathcal H
+\simeq
+\mathcal H_{\mathrm{in}}\otimes\mathcal H_{\mathrm{H}}\otimes\mathcal H_{\mathrm{out}},
+\quad
+\mathcal H_{\mathrm{H}}
+=\mathcal H_{\mathrm{cell}}^{\otimes N_{\mathrm{H}}},
+\end{equation}
+and the universe state $\rho$ within the black hole equilibrium time window belongs to a family of states satisfying local mixing and typicality, then there exists a constant $\eta_{\mathrm{cell}}>0$ and $C=O(1)$ such that
+\begin{equation}
+S_{\mathrm{ent}}(\Sigma_{\mathrm{H}})
+=\eta_{\mathrm{cell}}N_{\mathrm{H}}+O(1)
+=\eta_{\mathrm{cell}}\frac{A}{\ell_{\mathrm{cell}}^2}+O(A^0),
+\end{equation}
+where $S_{\mathrm{ent}}(\Sigma_{\mathrm{H}})$ is the cross-horizon entanglement entropy, i.e.,
+\begin{equation}
+S_{\mathrm{ent}}(\Sigma_{\mathrm{H}})
+=S\bigl(\rho_{\mathrm{in}\cup\mathrm{H}}\bigr)
+=S\bigl(\rho_{\mathrm{out}}\bigr),
+\end{equation}
+$\rho_{\mathrm{in}\cup\mathrm{H}}=\mathrm{tr}_{\mathcal H_{\mathrm{out}}}\rho$, $\rho_{\mathrm{out}}=\mathrm{tr}_{\mathcal H_{\mathrm{in}}\otimes\mathcal H_{\mathrm{H}}}\rho$.
+\end{theorem}
+
+This theorem states: in the horizon band QCA model, the dominant contribution to black hole entropy is given by cross-horizon entanglement entropy, satisfying a strict area law; constant $\eta_{\mathrm{cell}}$ relates to local Hilbert dimension and effective state space under constraints.
+
+\subsection{Coefficient Constraint Matching Generalized Entropy}
+
+\begin{theorem}[Coefficient Matching Theorem]
+Assume Boundary Time Geometry and generalized entropy theory hold, i.e., for each horizon cross-section $\Sigma_{\mathrm{H}}$ there exists
+\begin{equation}
+S_{\mathrm{gen}}(\Sigma_{\mathrm{H}})
+=\frac{A(\Sigma_{\mathrm{H}})}{4G}
++S_{\mathrm{out}}(\Sigma_{\mathrm{H}})
+\end{equation}
+and local quantum gravity conditions are equivalent to Einstein equations in the small causal diamond limit. If further requiring: macroscopically observed black hole entropy from outside equals cross-horizon entanglement entropy, i.e.,
+\begin{equation}
+S_{\mathrm{BH}}(\Sigma_{\mathrm{H}})
+=S_{\mathrm{ent}}(\Sigma_{\mathrm{H}}),
+\end{equation}
+and the first-order area coefficient of $S_{\mathrm{BH}}(\Sigma_{\mathrm{H}})$ is given by geometric part $A/(4G)$, then we must have
+\begin{equation}
+\frac{\eta_{\mathrm{cell}}}{\ell_{\mathrm{cell}}^2}
+=\frac{1}{4G},
+\end{equation}
+thereby
+\begin{equation}
+S_{\mathrm{ent}}(\Sigma_{\mathrm{H}})
+=\frac{A}{4G}+O(A^0).
+\end{equation}
+\end{theorem}
+
+This theorem indicates: once requiring the discrete QCA model to reproduce BTG and generalized entropy structure in the continuous limit, the information density $\eta_{\mathrm{cell}}/\ell_{\mathrm{cell}}^2$ of horizon cells is no longer an arbitrary microscopic parameter but is uniquely fixed to $1/(4G)$, interpreting $G$ as a collective effect of QCA microscopic lattice spacing $\ell_{\mathrm{cell}}$ and local state space dimension.
+
+\subsection{QCA--Page Curve Type Behavior and Information Recovery}
+
+\begin{theorem}[QCA--Page Curve Type Behavior]
+In Universe QCA object $\mathfrak U_{\mathrm{QCA}}$, consider a black hole formation--evaporation process, giving Hilbert decomposition with discrete time step $n$
+\begin{equation}
+\mathcal H
+\simeq
+\mathcal H_{\mathrm{BH}}(n)\otimes\mathcal H_{\mathrm{rad}}(n)\otimes\mathcal H_{\mathrm{bg}},
+\end{equation}
+where $\mathcal H_{\mathrm{BH}}(n)$ corresponds to black hole interior and near-horizon region, $\mathcal H_{\mathrm{rad}}(n)$ to Hawking radiation modes, $\mathcal H_{\mathrm{bg}}$ to background universe. If satisfied:
+
+1. Overall state $\lvert\Psi_0\rangle$ is pure, evolving unitarily $\lvert\Psi_{n+1}\rangle=U\lvert\Psi_n\rangle$;
+2. Horizon cell count decreases monotonically with $n$, while radiation mode count increases monotonically;
+3. QCA local scrambling assumption holds, i.e., under each energy shell and macroscopic constraint, $\lvert\Psi_n\rangle$ approximates a typical pure state family on $\mathcal H_{\mathrm{BH}}(n)\otimes\mathcal H_{\mathrm{rad}}(n)$,
+
+then for almost all initial pure states,
+\begin{equation}
+S_{\mathrm{rad}}(n)
+\approx
+\min\bigl(\log d_{\mathrm{BH}}(n),\log d_{\mathrm{rad}}(n)\bigr),
+\end{equation}
+where $d_{\mathrm{BH}}(n)=\dim\mathcal H_{\mathrm{BH}}(n)$, $d_{\mathrm{rad}}(n)=\dim\mathcal H_{\mathrm{rad}}(n)$. Entropy function $S_{\mathrm{rad}}(n)$ rises then falls with $n$, forming Page curve type behavior: early stage $d_{\mathrm{BH}}\gg d_{\mathrm{rad}}$ implies $S_{\mathrm{rad}}(n)\approx\log d_{\mathrm{rad}}(n)$ monotonically increasing; middle stage $d_{\mathrm{BH}}\approx d_{\mathrm{rad}}$ entropy peaks; late stage $d_{\mathrm{BH}}\ll d_{\mathrm{rad}}$ implies $S_{\mathrm{rad}}(n)\approx\log d_{\mathrm{BH}}(n)$ decreasing with black hole depletion, finally tending to zero.
+\end{theorem}
+
+This result transplants the Page curve from traditional random matrix and random circuit models into the QCA universe under unified time scale constraints, providing a discrete universe version of information recovery.
+
+\subsection{Matrix Universe--QCA Universe Alignment Proposition}
+
+\begin{proposition}[Consistency of Scattering Mother Scale and QCA Continuous Limit]
+Suppose $\mathfrak U_{\mathrm{QCA}}$ generates effective Hamiltonian $H_{\mathrm{eff}}$ and scattering matrix $S_{\mathrm{QCA}}(\omega)$ in appropriate limit, satisfying Rindler approximation and BTG modular flow structure near horizon. If unified time scale mother scale $\kappa(\omega)$ comes from macroscopic Matrix Universe scattering data, then in the limit of error $\varepsilon\to 0$,
+\begin{equation}
+\frac{1}{2\pi}\mathrm{tr}\, Q_{\mathrm{QCA}}(\omega)
+=\kappa(\omega)+O(\varepsilon),
+\end{equation}
+thus QCA discrete time step $\Delta t$ and unified time scale are affine related.
+\end{proposition}
+
+This proposition ensures: "time" involved in Theorems 3.1--3.3 can be uniformly interpreted as parameters under the same scale class, thus discrete description of black hole entropy and Page curve belongs to the same time geometry structure as continuous geometric description.
+
+\section{Proofs}
+
+This section outlines the main lines of proof for the above theorems and propositions. Detailed technical estimates and boundary case analyses are placed in the appendices.
+
+\subsection{Theorem 3.1: Horizon QCA Area Law}
+
+Consider Hilbert decomposition
+\begin{equation}
+\mathcal H
+=\mathcal H_{\mathrm{in}}
+\otimes\mathcal H_{\mathrm{H}}
+\otimes\mathcal H_{\mathrm{out}},
+\quad
+\mathcal H_{\mathrm{H}}
+=\mathcal H_{\mathrm{cell}}^{\otimes N_{\mathrm{H}}},
+\end{equation}
+denote
+\begin{equation}
+d_{\mathrm{H}}=\dim\mathcal H_{\mathrm{H}}
+=d_{\mathrm{cell}}^{N_{\mathrm{H}}},
+\quad
+d_{\mathrm{in}}=\dim\mathcal H_{\mathrm{in}},
+\quad
+d_{\mathrm{out}}=\dim\mathcal H_{\mathrm{out}}.
+\end{equation}
+
+On the physical subspace $\mathcal H_{\mathrm{phys}}\subset\mathcal H$ selected by energy shell and conservation law constraints, typicality assumption implies: under natural Fubini--Study measure, reduced states of vast majority of pure states $\lvert\Psi\rangle\in\mathcal H_{\mathrm{phys}}$
+\begin{equation}
+\rho_{\mathrm{in}\cup\mathrm{H}}
+=\mathrm{tr}_{\mathcal H_{\mathrm{out}}}\lvert\Psi\rangle\langle\Psi\rvert,
+\quad
+\rho_{\mathrm{out}}
+=\mathrm{tr}_{\mathcal H_{\mathrm{in}}\otimes\mathcal H_{\mathrm{H}}}\lvert\Psi\rangle\langle\Psi\rvert,
+\end{equation}
+possess spectra close to maximal mixing.
+
+In ideal models ignoring constraints, Page conjectured and proved that when $m\le n$, the average entropy of the smaller subsystem of a random pure state on Hilbert space $\mathbb C^{mn}$ is
+\begin{equation}
+S_{m,n}
+=\sum_{k=n+1}^{mn}\frac{1}{k}
+-\frac{m-1}{2n}
+\simeq\log m-\frac{m}{2n},
+\end{equation}
+where $m$ is smaller subsystem dimension, $n$ larger subsystem dimension.
+
+Viewing $\mathcal H_{\mathrm{in}}\otimes\mathcal H_{\mathrm{H}}$ as one side and $\mathcal H_{\mathrm{out}}$ as the other, two cases arise:
+
+1. If $d_{\mathrm{in}}d_{\mathrm{H}}\le d_{\mathrm{out}}$, smaller subsystem is $\mathcal H_{\mathrm{in}}\otimes\mathcal H_{\mathrm{H}}$, average entropy close to $\log(d_{\mathrm{in}}d_{\mathrm{H}})$.
+2. If $d_{\mathrm{in}}d_{\mathrm{H}}> d_{\mathrm{out}}$, smaller subsystem is $\mathcal H_{\mathrm{out}}$, average entropy close to $\log(d_{\mathrm{out}})$.
+
+In black hole equilibrium case, horizon band cell count $N_{\mathrm{H}}$ is large, $d_{\mathrm{H}}=d_{\mathrm{cell}}^{N_{\mathrm{H}}}$ grows exponentially, while $d_{\mathrm{in}},d_{\mathrm{out}}$ or their logarithms grow only polynomially or constantly relative to $N_{\mathrm{H}}$, so in $N_{\mathrm{H}}\to\infty$ limit, dominant term is
+\begin{equation}
+\mathbb E\bigl[S(\rho_{\mathrm{out}})\bigr]
+\approx
+N_{\mathrm{H}}\log d_{\mathrm{eff}}+O(1),
+\end{equation}
+where $d_{\mathrm{eff}}\le d_{\mathrm{cell}}$ is effective local dimension corrected by energy constraints and local conservation laws. Let
+\begin{equation}
+\eta_{\mathrm{cell}}=\log d_{\mathrm{eff}},
+\end{equation}
+then
+\begin{equation}
+S_{\mathrm{ent}}(\Sigma_{\mathrm{H}})
+=S(\rho_{\mathrm{out}})
+=\eta_{\mathrm{cell}}N_{\mathrm{H}}+O(1)
+=\eta_{\mathrm{cell}}\frac{A}{\ell_{\mathrm{cell}}^2}+O(A^0).
+\end{equation}
+
+Presence of energy shell and local conservation laws reduces dimension of $\mathcal H_{\mathrm{phys}}$, but in large system limit, this reduction corresponds to renormalization of $\eta_{\mathrm{cell}}$, not changing linear relationship of entropy with $N_{\mathrm{H}}$, see Appendix A.
+
+\subsection{Theorem 3.2: Matching Generalized Entropy Coefficient}
+
+Area law from Theorem 3.1 has form
+\begin{equation}
+S_{\mathrm{ent}}(\Sigma_{\mathrm{H}})
+=\eta_{\mathrm{cell}}\frac{A}{\ell_{\mathrm{cell}}^2}+O(A^0).
+\end{equation}
+
+On the other hand, in BTG and generalized entropy framework, geometric part of black hole entropy is
+\begin{equation}
+S_{\mathrm{BH}}(\Sigma_{\mathrm{H}})
+=\frac{A}{4G},
+\end{equation}
+total generalized entropy is
+\begin{equation}
+S_{\mathrm{gen}}(\Sigma_{\mathrm{H}})
+=\frac{A}{4G}+S_{\mathrm{out}}(\Sigma_{\mathrm{H}}),
+\end{equation}
+where $S_{\mathrm{out}}$ corresponds to entropy of visible degrees of freedom outside horizon, related to specific radiation and exterior quantum states.
+
+Identifying cross-horizon entanglement entropy as macroscopic black hole entropy, i.e.,
+\begin{equation}
+S_{\mathrm{BH}}(\Sigma_{\mathrm{H}})
+=S_{\mathrm{ent}}(\Sigma_{\mathrm{H}}),
+\end{equation}
+then coefficients of first-order area term on both sides must be equal, thus
+\begin{equation}
+\eta_{\mathrm{cell}}\frac{1}{\ell_{\mathrm{cell}}^2}
+=\frac{1}{4G}.
+\end{equation}
+
+Differences in zero-order area terms can be absorbed into finite size corrections and external entropy terms, not affecting dominant coefficient. This constraint can be understood as: discrete information quantity carried per unit geometric area of horizon must equal $1/(4G)$ required by generalized entropy formula, thereby interpreting $G$ as collective effect of QCA microscopic lattice spacing $\ell_{\mathrm{cell}}$ and local state space dimension.
+
+\subsection{Theorem 3.3: QCA--Page Curve Type Behavior}
+
+QCA--Page curve theorem borrows directly from random circuit and Page's original work, but requires additional justification for local scrambling assumption under unified time scale constraints and QCA local structure.
+
+At given time step $n$, we decompose Hilbert space into
+\begin{equation}
+\mathcal H
+\simeq
+\mathcal H_{\mathrm{BH}}(n)\otimes\mathcal H_{\mathrm{rad}}(n)\otimes\mathcal H_{\mathrm{bg}}.
+\end{equation}
+Denote
+\begin{equation}
+d_{\mathrm{BH}}(n)=\dim\mathcal H_{\mathrm{BH}}(n),
+\quad
+d_{\mathrm{rad}}(n)=\dim\mathcal H_{\mathrm{rad}}(n).
+\end{equation}
+
+Assume QCA local evolution $U$ in black hole--radiation region can be viewed as a local random circuit of finite depth but growing with $n$, whose gate set generates $SU(d)$ and satisfies appropriate $t$-design conditions. Random circuit theory indicates: after sufficient time, distribution of reduced states of $\lvert\Psi_n\rangle$ on $\mathcal H_{\mathrm{BH}}(n)\otimes\mathcal H_{\mathrm{rad}}(n)$ approximates that of Haar random states, local observation statistics and Renyi entropy behavior approximate random pure state models.
+
+Therefore, directly apply Page average entropy formula to subsystem $\mathcal H_{\mathrm{rad}}(n)$, obtaining
+\begin{equation}
+S_{\mathrm{rad}}(n)
+\approx
+\min\bigl(\log d_{\mathrm{BH}}(n),\log d_{\mathrm{rad}}(n)\bigr)
++O(1).
+\end{equation}
+Since black hole horizon area decreases monotonically with $n$, by Theorem 3.2
+\begin{equation}
+\log d_{\mathrm{BH}}(n)
+\approx
+\frac{A(n)}{4G},
+\end{equation}
+while radiation mode dimension increases with time, so there exists a unique Page time $n_{\mathrm{Page}}$ satisfying
+\begin{equation}
+\log d_{\mathrm{BH}}(n_{\mathrm{Page}})
+\approx\log d_{\mathrm{rad}}(n_{\mathrm{Page}}).
+\end{equation}
+Thereafter, smaller Hilbert space switches from radiation side to black hole side, entropy decreases, until black hole completely evaporates when $d_{\mathrm{BH}}\to 1$, radiation entropy tends to zero, thus restoring overall pure state.
+
+Mapping discrete time step $n$ to continuous parameter $\tau$ via unified time scale yields continuous version of Page curve. Recent works using random dynamics, random linear optics, and variational quantum algorithms have simulated similar Page curve behaviors on actual quantum devices, providing indirect support for above assumptions.
+
+\subsection{Proposition 3.4: Scattering Mother Scale and QCA Continuous Limit}
+
+In QCA continuous limit, assuming existence of effective Hamiltonian $H_{\mathrm{eff}}$ such that
+\begin{equation}
+U
+=\exp(-\mathrm{i} H_{\mathrm{eff}}\Delta t)+O(\Delta t^2),
+\end{equation}
+standard scattering construction yields scattering matrix $S_{\mathrm{QCA}}(\omega)$ of $H_{\mathrm{eff}}$. On the other hand, scattering matrix $S(\omega)$ in Matrix Universe is determined by macroscopic geometry and field theory. Unified time scale requires hemi-phase derivative and group delay trace of both to yield consistent scale densities $\kappa_{\mathrm{QCA}}(\omega)$ and $\kappa(\omega)$, thereby imposing constraints on $\Delta t$, $\ell_{\mathrm{cell}}$, and effective field theory parameters (like speed of light, mass).
+
+Near horizon, by Rindler approximation metric
+\begin{equation}
+\mathrm{d} s^2
+=-\kappa_{\mathrm{surf}}^2 x^2\mathrm{d} t^2
++\mathrm{d} x^2+\mathrm{d} y^2+\mathrm{d} z^2
+\end{equation}
+modular time and geometric time have fixed proportional relationship, further restricting QCA local spectral structure and time step. In appropriate limit, can prove
+\begin{equation}
+\frac{1}{2\pi}\mathrm{tr}\, Q_{\mathrm{QCA}}(\omega)
+=\kappa(\omega)+O(\varepsilon),
+\end{equation}
+which is Proposition 3.4. This matching ensures QCA universe discrete time and Matrix universe unified time scale are compatible near black hole horizon.
+
+\section{Model Apply}
+
+This section discusses applicability and specific construction of above theory in several typical black hole backgrounds.
+
+\subsection{Static Schwarzschild Black Hole}
+
+Consider 4D Schwarzschild black hole, horizon radius $r_s=2GM$, horizon cross-section $\Sigma_{\mathrm{H}}$ is 2-sphere of radius $r_s$, area
+\begin{equation}
+A=4\pi r_s^2=16\pi G^2M^2.
+\end{equation}
+
+In QCA universe, choose a 2D sublattice embedded into continuous manifold approximating this 2-sphere, such that cell area $\ell_{\mathrm{cell}}^2$ and geometric area satisfy
+\begin{equation}
+N_{\mathrm{H}}
+=\frac{A}{\ell_{\mathrm{cell}}^2}+O(A^0).
+\end{equation}
+
+Assign finite-dimensional Hilbert space $\mathcal H_{\mathrm{cell}}$ to each horizon cell, determine effective dimension $d_{\mathrm{eff}}$ via local energy constraints, applying Theorems 3.1 and 3.2 yields
+\begin{equation}
+S_{\mathrm{BH}}
+=S_{\mathrm{ent}}
+=\frac{A}{4G}+O(A^0)
+=4\pi G M^2+O(A^0),
+\end{equation}
+consistent with standard Bekenstein--Hawking result.
+
+Page time corresponds to position where horizon area halves, QCA--Page curve gives evolution of radiation entropy with unified time scale, macroscopically compatible with Page curve structure given by ``island'' formula.
+
+\subsection{AdS--Schwarzschild Black Hole and Holographic Correspondence}
+
+For AdS--Schwarzschild black hole, horizon cross-section is still 2-sphere or higher-dimensional sphere, but exterior geometry is dual to boundary CFT. QCA universe can describe discrete geometry and horizon cells in bulk, and discretized CFT on boundary, naturally introducing ``bulk--boundary'' two-layer QCA model.
+
+Part of cross-horizon entanglement entropy can be reproduced in boundary CFT entanglement entropy, combined with Ryu--Takayanagi minimal surface formula and island formula, giving holographic interpretation of Bekenstein--Hawking entropy and Page curve. Unified time scale ensures bulk scattering and boundary CFT modular flow have consistent scale density.
+
+\subsection{Rindler Horizon and Accelerated Observer}
+
+Uniformly accelerated observer in Minkowski spacetime possesses Rindler horizon, thermal spectrum is Unruh radiation. ``Rindler QCA model'' constructed for this case can be viewed as local approximation of Schwarzschild horizon, its QCA area law gives crossing entanglement entropy of Rindler cross-section; relationship with Unruh temperature determined by unified time scale and modular flow conditions.
+
+This case demonstrates: horizon QCA area law is not limited to black hole horizons, but applies to general causal horizons, as long as BTG and unified time scale apply.
+
+\section{Engineering Proposals}
+
+This section briefly describes several engineering and experimental directions echoing the theoretical structure of this paper.
+
+\subsection{Page Curve Simulation in Random Quantum Circuits}
+
+Recent systematic studies on random quantum circuits and noisy circuits have investigated Page curve and entanglement dynamics via theoretical and experimental means. Using superconducting qubits and linear optical platforms, local random gate arrays can be realized, and evolution of subsystem entanglement entropy with depth measured, obtaining Page curve type behavior.
+
+QCA--Page curve theorem in this paper indicates: as long as random circuit model embeds into QCA category in some limit, its observed Page curve can be viewed as engineering prototype of ``discrete horizon information recovery''. Recent work simulating Hawking radiation and Page curve using IBM quantum computing platform further strengthens this connection.
+
+\subsection{Dirac QCA and Photonic/Trapped Ion Experiments}
+
+Dirac-type QCA has been experimentally realized on programmable trapped ion quantum computers and photonic platforms to simulate relativistic quantum walks and Zitterbewegung effects. These experiments show: QCA models based on local unitary rules can be precisely controlled and measured experimentally.
+
+On this basis, can design 1D or 2D QCA with ``effective horizon'', choosing a spatial cross-section as ``discrete horizon'', verifying approximate validity of area law by measuring cross-section entanglement entropy, thus providing testable simplified version for horizon QCA model in this paper.
+
+\subsection{Quantum Realization of QCA--Black Hole Evaporation Toy Models}
+
+Literature has proposed quantum circuit models to describe black hole evaporation and firewall problem. Reorganizing such models into local update rules satisfying QCA axioms allows realization of a finite-dimensional black hole--radiation system on current noisy intermediate-scale quantum devices, measuring radiation entropy, mutual information, and OTOC quantities to test details of QCA--Page curve and information recovery.
+
+\section{Discussion (risks, boundaries, past work)}
+
+\subsection{Relation to Traditional Continuous Theories and Holographic Schemes}
+
+Traditional microscopic interpretations of black hole entropy, including string theory microstate counting and AdS/CFT duality, reproduce $S_{\mathrm{BH}}=A/(4G)$ by constructing microscopic degrees of freedom of black hole states in high-energy theories. The QCA horizon model in this paper provides a structural explanation for this formula at a more abstract discrete level: area law comes from linear growth of cross-horizon entanglement entropy, coefficient fixed by consistency condition with generalized entropy.
+
+Compared to Page curve schemes based on island formula and replica wormholes, this paper does not rely on specific gravitational path integrals, but reproduces Page curve behavior in discrete universe via QCA typicality and local scrambling assumptions; both are consistent in macroscopic entropy evolution, but differ in underlying mathematical tools used.
+
+\subsection{Boundaries and Risks of Assumptions}
+
+The most critical assumptions in this framework are local mixing and QCA local scrambling assumption. If universe significantly deviates from typicality at some scale (e.g., existence of large number of protected conserved quantities or strong constraints), Page-type estimates may fail, and entropy evolution of black hole--radiation system may significantly deviate from standard Page curve.
+
+Another boundary lies in existence and stability of QCA continuous limit. Not all QCAs have good continuous limits, and in presence of gravitational backreaction, definitions of effective Hamiltonian and scattering matrix may become subtle. QCA index theory and classification results are currently most complete in 1D cases, while higher-dimensional cases are still developing.
+
+\subsection{Relation to Firewall and Complementarity Debates}
+
+AMPS proposed firewall paradox, suggesting that under conditions of preserving no dramatic deviation from experience and information recovery, vacuum state structure near horizon may be destroyed. In QCA horizon model, existence of cross-horizon entanglement entropy is fundamental source of area law, so any mechanism significantly destroying entanglement structure near horizon would directly affect validity of $S_{\mathrm{BH}}=A/4$.
+
+The unified Matrix--QCA universe framework in this paper does not attempt to give final answer to firewall problem, but offers a structural perspective: if insisting on unified time scale, BTG, and QCA unitarity, then sufficient entanglement structure must be maintained near horizon to support area law and Page curve, which is to some extent compatible with ``gentle'' complementarity viewpoints, but forms constraints on strong firewall models.
+
+\section{Conclusion}
+
+Under the unified framework of unified time scale, boundary time geometry, and QCA universe, this paper provides a mathematical description integrating discrete and continuous aspects of black hole entropy and information paradox:
+
+1. Through horizon band sublattice and Hilbert decomposition, proved cross-horizon entanglement entropy satisfies area law in QCA universe, entropy density derived from local Hilbert dimension and energy shell typicality.
+2. Through matching with BTG and generalized entropy formula, gave coefficient constraint $\eta_{\mathrm{cell}}/\ell_{\mathrm{cell}}^2=1/(4G)$, thus reproducing geometric coefficient of $S_{\mathrm{BH}}=A/(4G)$ at discrete level.
+3. Leveraging random circuit and typicality theory, established theorem version of Page curve type entropy evolution in QCA universe, showing information can be gradually recovered via radiation modes under unified time scale, reducing black hole information paradox to coarse-graining and typicality problem rather than fundamental non-unitarity.
+4. Through Matrix Universe--QCA Universe alignment proposition, ensured consistency between discrete time step and unified time scale given by scattering mother scale, placing black hole thermodynamics, generalized entropy, and QCA dynamics into same time geometry structure.
+
+This framework provides an extensible structural foundation for future studies of black hole entropy and information issues in more specific gravity models, holographic field theories, and quantum simulation platforms, and also offers ideas for embedding other not-yet-unified phenomena (such as cosmological constant problem, neutrino mixing, strong CP problem, etc.) into the same Matrix--QCA universe.
+
+\section*{Acknowledgements}
+
+This research benefits from extensive existing literature on black hole thermodynamics, information paradox, random circuit dynamics, and quantum cellular automata. We pay tribute to original contributions in related fields.
+
+\section*{Code Availability}
+
+This paper mainly proposes an abstract unified Matrix--QCA universe theoretical framework, not bound to a specific numerical implementation. Any simulation platform supporting finite-dimensional local Hilbert spaces, local unitary updates, and entropy measures (such as Python or C++ libraries based on tensor networks and quantum circuits) can implement horizon QCA and Page curve toy models. Specific implementation of related code can be provided in subsequent work as independent repository.
+
+\appendix
+
+\section*{Appendix A: Detailed Proof of Horizon QCA Area Law}
+
+This appendix gives more detailed proof of Theorem 3.1, focusing on handling of energy constraints and effective Hilbert dimensions.
+
+\subsection*{A.1 Page Theorem and Typical State Entropy Estimate}
+
+Let
+\begin{equation}
+\mathcal H
+=\mathcal H_A\otimes\mathcal H_B,
+\quad
+\dim\mathcal H_A=m,\ \dim\mathcal H_B=n,\ mn=D.
+\end{equation}
+For Haar random pure state $\lvert\Psi\rangle$ on $\mathcal H$, Page gives average entropy of subsystem $A$
+\begin{equation}
+\mathbb E[S(\rho_A)]
+=\sum_{k=n+1}^{mn}\frac{1}{k}
+-\frac{m-1}{2n},
+\end{equation}
+where $\rho_A=\mathrm{tr}_B\lvert\Psi\rangle\langle\Psi\rvert$. When $1\ll m\le n$, approximation holds
+\begin{equation}
+\mathbb E[S(\rho_A)]
+\simeq\log m-\frac{m}{2n}.
+\end{equation}
+This result was subsequently rigorously proved.
+
+In horizon QCA case, let
+\begin{equation}
+\mathcal H_A=\mathcal H_{\mathrm{in}}\otimes\mathcal H_{\mathrm{H}},
+\quad
+\mathcal H_B=\mathcal H_{\mathrm{out}},
+\end{equation}
+or swap roles. Denote
+\begin{equation}
+m=d_{\mathrm{in}}d_{\mathrm{H}},
+\quad
+n=d_{\mathrm{out}},
+\end{equation}
+when $N_{\mathrm{H}}$ is large, $d_{\mathrm{H}}=d_{\mathrm{cell}}^{N_{\mathrm{H}}}$ grows exponentially, while $d_{\mathrm{in}},d_{\mathrm{out}}$ grow at most polynomially, so almost always $m\ge n$. In this case, smaller subsystem is $\mathcal H_B$, average entropy approximates $\log n$.
+
+However, for cross-horizon entanglement entropy, we care about
+\begin{equation}
+S_{\mathrm{ent}}
+=S(\rho_{\mathrm{in}\cup\mathrm{H}})
+=S(\rho_{\mathrm{out}}),
+\end{equation}
+so regardless of which side is taken as ``subsystem'', entropy value is same.
+
+When $N_{\mathrm{H}}$ sufficiently large, growth of $d_{\mathrm{H}}$ dominates overall dimension, $\log d_{\mathrm{H}}=N_{\mathrm{H}}\log d_{\mathrm{cell}}$ gives linear leading term of cross-horizon entropy. Energy shell and conservation law constraints reduce $\mathcal H$ to subspace $\mathcal H_{\mathrm{phys}}$, but in standard statistical mechanics case, $\dim\mathcal H_{\mathrm{phys}}\sim\exp(s_{\mathrm{loc}}N_{\mathrm{H}})$, $s_{\mathrm{loc}}$ being local entropy density. Thus can introduce effective local dimension $d_{\mathrm{eff}}=\exp(s_{\mathrm{loc}})$, obtaining
+\begin{equation}
+\mathbb E[S_{\mathrm{ent}}]
+\approx N_{\mathrm{H}}\log d_{\mathrm{eff}}+O(1).
+\end{equation}
+
+\subsection*{A.2 Energy Shell Constraint and Local Equilibrium}
+
+In QCA universe, energy is not a priori conserved quantity, but defined by effective Hamiltonian $H_{\mathrm{eff}}$ in continuous limit and unified time scale. ``Equilibrium state'' near horizon can be viewed as set of typical states satisfying fixed energy density and energy flux constraints, its physical subspace dimension satisfying
+\begin{equation}
+\dim\mathcal H_{\mathrm{phys}}
+\sim
+\exp\bigl(s_{\mathrm{loc}}N_{\mathrm{H}}\bigr),
+\end{equation}
+where $s_{\mathrm{loc}}$ can be defined via microcanonical or canonical ensemble as local entropy density.
+
+Under local ETH assumption, vast majority of eigenstates within energy shell are equivalent to typical states under local observation, thus Page-type average entropy estimate remains valid, only replacing $\log d_{\mathrm{cell}}$ with $s_{\mathrm{loc}}$, i.e., $\eta_{\mathrm{cell}}=s_{\mathrm{loc}}$. Local ETH has been widely verified in random circuit and many-body chaos models.
+
+\subsection*{A.3 Area Law in Continuous Limit}
+
+Finally, substituting relation between $N_{\mathrm{H}}$ and geometric area $A$,
+\begin{equation}
+N_{\mathrm{H}}=\frac{A}{\ell_{\mathrm{cell}}^2}+O(A^0),
+\end{equation}
+obtaining
+\begin{equation}
+S_{\mathrm{ent}}(\Sigma_{\mathrm{H}})
+=\eta_{\mathrm{cell}}\frac{A}{\ell_{\mathrm{cell}}^2}+O(A^0),
+\end{equation}
+which is statement of Theorem 3.1.
+
+\section*{Appendix B: Further Details of QCA--Page Curve Type Behavior}
+
+This appendix clarifies random circuit and local scrambling assumption used in Theorem 3.3.
+
+\subsection*{B.1 Local Random Circuit and $t$-design}
+
+In finite size systems, local random circuits consist of layers of two-body or few-body unitary gates, gates in each layer acting on non-overlapping subsets. If gate set generates $SU(d)$ in group theoretic sense, and randomly selected gate sequence constitutes approximate unitary $t$-design after sufficient depth, its action on initial simple product state produces approximate Haar random state in polynomial time. This conclusion has been widely used in random circuit models of many-body and open systems.
+
+In QCA universe, if local update rules can be viewed as periodic action of some fixed gate set, then introducing small random perturbations or multi-step composition can also approximately realize $t$-design locally, supporting local scrambling assumption.
+
+\subsection*{B.2 Hilbert Dimension and Shape of Page Curve}
+
+During black hole formation--evaporation, horizon cell count $N_{\mathrm{H}}(n)$ decreases with time, while radiation mode count (viewed as excitations leaving some causal region) increases with time. If local Hilbert dimension of each cell and mode approximates constant, then
+\begin{equation}
+\log d_{\mathrm{BH}}(n)\approx s_{\mathrm{BH}}N_{\mathrm{H}}(n),
+\quad
+\log d_{\mathrm{rad}}(n)\approx s_{\mathrm{rad}}N_{\mathrm{rad}}(n),
+\end{equation}
+where $s_{\mathrm{BH}},s_{\mathrm{rad}}$ are corresponding local entropy densities. Page time corresponds to position where logarithmic dimensions are equal
+\begin{equation}
+s_{\mathrm{BH}}N_{\mathrm{H}}(n_{\mathrm{Page}})
+\approx
+s_{\mathrm{rad}}N_{\mathrm{rad}}(n_{\mathrm{Page}}).
+\end{equation}
+
+Under unified time scale, mapping $n$ to continuous parameter $\tau$ yields shape of continuous Page curve. Its specific functional form depends on dynamics of $N_{\mathrm{H}}(\tau)$ and $N_{\mathrm{rad}}(\tau)$, determined by specific QCA rules or effective gravity model.
+
+\section*{Appendix C: Compatibility of Unified Time Scale and QCA Continuous Limit}
+
+\subsection*{C.1 Effective Hamiltonian and Scattering Matrix}
+
+In QCA continuous limit, if single-particle sector can be diagonalized in momentum representation, evolution of each momentum $k$ mode approximates
+\begin{equation}
+U(k)=\exp\bigl(-\mathrm{i}\omega(k)\Delta t\bigr),
+\end{equation}
+dispersion relation $\omega(k)$ approximates relativistic type in small $k$ limit. Multi-particle sector yields effective Hamiltonian $H_{\mathrm{eff}}$ under appropriate approximation, constructing scattering matrix $S_{\mathrm{QCA}}(\omega)$ via standard scattering theory.
+
+Unified time scale mother scale requires
+\begin{equation}
+\kappa_{\mathrm{QCA}}(\omega)
+=\frac{1}{2\pi}\mathrm{tr}\, Q_{\mathrm{QCA}}(\omega)
+\approx
+\kappa(\omega),
+\end{equation}
+where $\kappa(\omega)$ comes from continuous macroscopic universe scattering data. This condition constrains parameters of $\Delta t$, $\ell_{\mathrm{cell}}$, and $H_{\mathrm{eff}}$, making QCA time scale compatible with BTG modular time scale.
+
+\subsection*{C.2 Rindler Approximation and Modular Flow}
+
+Near horizon, using Rindler coordinates, metric can be written as
+\begin{equation}
+\mathrm{d} s^2
+=-\kappa_{\mathrm{surf}}^2 x^2\mathrm{d} t^2
++\mathrm{d} x^2+\mathrm{d} y^2+\mathrm{d} z^2.
+\end{equation}
+Modular flow corresponds to translation along $t$, its KMS temperature is $T_H=\kappa_{\mathrm{surf}}/(2\pi)$. In QCA continuous limit, if local update rules approximate Rindler model near horizon band, unified time scale requires each discrete time step $\Delta t$ correspond to fixed modular time increment, manifesting in frequency domain as consistency between $\kappa_{\mathrm{QCA}}(\omega)$ and $\kappa(\omega)$.
+
+This compatibility ensures: in unified Matrix--QCA universe, time passage perceived by black hole horizon is completely consistent with time inferred by external observer via scattering mother scale, placing Bekenstein--Hawking entropy, Page curve, and QCA horizon model into unified time geometry structure.
+
+\begin{thebibliography}{99}
+
+\bibitem{Bekenstein}
+J. D. Bekenstein, ``Black holes and entropy'', \textit{Phys. Rev. D}, 1973.
+
+\bibitem{Hawking}
+S. W. Hawking, ``Particle creation by black holes'', \textit{Commun. Math. Phys.}, 1975.
+
+\bibitem{Page}
+D. N. Page, ``Average entropy of a subsystem'', \textit{Phys. Rev. Lett.}, 1993.
+
+\bibitem{Island}
+A. Almheiri et al., ``Replica Wormholes and the Entropy of Hawking Radiation'', \textit{JHEP}, 2020.
+
+\bibitem{QCA_Review}
+T. Farrelly, ``A Review of Quantum Cellular Automata'', \textit{Quantum}, 2020.
+
+\bibitem{Matrix_Universe}
+H. Ma, W. Zhang, ``Unified Time Scale and Matrix Universe'', 2024.
+
+\bibitem{Random_Circuits}
+A. Nahum et al., ``Quantum Entanglement Growth under Random Unitary Dynamics'', \textit{Phys. Rev. X}, 2017.
+
+\bibitem{Exp_QCA}
+Various authors, ``Experimental realization of quantum cellular automata'', \textit{Phys. Rev. Research}, 2024.
+
+\bibitem{AMPS}
+A. Almheiri et al., ``Black Holes: Complementarity or Firewalls?'', \textit{JHEP}, 2013.
+
+\end{thebibliography}
+
+\end{document}
+

@@ -1,0 +1,456 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{braket}
+\usepackage{graphicx}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{axiom}{Axiom}[section]
+
+% Title information
+\title{Unified Time Scale and Time Geometry:\\
+Causal Ordering, Unitary Evolution, and Generalized Entropy}
+
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We propose a ``unified time scale equivalence class'' rigorously gluing three ends of relativity, quantum scattering, and information--holography. Core scale identity unifies derivative of total scattering phase, relative state density, and trace of Wigner--Smith group delay as different projections of same object:
+
+$$
+\boxed{\ \frac{\varphi'(\omega)}{\pi}\;=\;\rho_{\mathrm{rel}}(\omega)\;=\;\frac{1}{2\pi}\operatorname{tr}Q(\omega)\ },\qquad
+Q(\omega)=-\,iS(\omega)^\dagger\partial_\omega S(\omega),\ \varphi=\tfrac{1}{2}\arg\det S.
+$$
+
+In geometry end, Killing time, ADM lapse, null geodesic affine parameter, and FRW conformal time proven mutually rescalable within unified equivalence class; in information--holography end, taking Tomita--Takesaki modular flow as ``intrinsic time,'' controlling generalized entropy extremality on small causal diamonds with QFC/QNEC and relative entropy monotonicity, thus deriving Einstein equations in semiclassical--holographic window. Framework obtains three alignments: (i) phase--proper time equivalence $\phi=(mc^2/\hbar)\int \mathrm{d}\tau$; (ii) gravitational time delay = group delay trace $\Delta T=\partial_\omega\Phi=\operatorname{Tr}Q$; (iii) FRW redshift = phase rhythm ratio $1+z=a(t_0)/a(t_e)=[(\mathrm{d}\phi/\mathrm{d}t)_e]/[(\mathrm{d}\phi/\mathrm{d}t)_0]$. This paper under three axioms of \textbf{causal ordering--unitary evolution--entropy monotonicity/extremality}, establishes existence and affine uniqueness of unified time scale, giving realization schemes for experimental and engineering metrology.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Time Geometry; Unified Time Scale; Wigner--Smith Group Delay; Spectral Shift Function; Killing/ADM/Null/Conformal/Modular Time; Generalized Entropy; QFC/QNEC
+
+\noindent\textbf{MSC 2020:} 83C45, 81U40, 81T20, 83C57
+
+---
+
+\section{Introduction and Historical Context}
+
+Role of time splits in different theories: general relativity scales causal structure with proper time, quantum theory generates unitary evolution with external parameter, information--holography views modular flow as intrinsic ``thermal time.'' Yet when three end readings ``synchronize,'' still lacking rigorous and metrologically measurable common scale. Wigner and Smith introduced derivative of phase with respect to energy in scattering theory defining time delay, trace of Wigner--Smith group delay matrix $Q=-iS^\dagger\partial_\omega S$ equals derivative of total phase $\Phi=\arg\det S$, making idea of ``time = phase gradient'' first land on experimentally readable ruler. Birman--Kreĭn formula characterizing state density change caused by interaction with spectral shift function tightly connects phase of scattering determinant with spectral geometry, thus deriving ``phase derivative = relative state density.''
+
+In relativity side, redshift/clock rate in static spacetime given by $g_{tt}$ or Tolman--Ehrenfest law; lapse $N$ in ADM $(3{+}1)$ decomposition characterizes ratio of coordinate time to proper time; tortoise coordinates and $(u,v)$ in asymptotically flat exterior provide natural null time at infinity; in FRW cosmology $1+z=a(t_0)/a(t_e)$ linearizes null geodesics with conformal time.
+
+In information--holography side, Tomita--Takesaki modular theory endows any (state, algebra) pair with family of intrinsic one-parameter automorphisms (modular flow); Connes--Rovelli thermal time hypothesis views this modular flow as physical time candidate; relative entropy monotonicity, QFC, and QNEC bind changes of generalized entropy together with stress tensor constraints, connecting to field equations and reconstruction in small causal diamond limit.
+
+Above historical threads suggest: \textbf{unifying ``phase--group delay--spectral shift'' with ``clock rate--redshift--affine/conformal time'' and ``modular time--generalized entropy'' into single scale}, hopeful to obtain cross-scale time--geometry framework.
+
+---
+
+\section{Model and Assumptions}
+
+\textbf{(A) Causal and Global Structure}
+Let $(M,g)$ be stably causal Lorentzian manifold; under global hyperbolicity condition there exist smooth time function and smooth decomposition $M\cong \mathbb{R}\times\Sigma$.
+
+\textbf{(B) Scattering and Spectral Shift}
+On absolutely continuous spectral energy window $I\subset\mathbb{R}$, scattering matrix $S(\omega)$ unitary and smooth; define total phase $\Phi=\arg\det S$, group delay $Q=-iS^\dagger\partial_\omega S$. There exists spectral shift function $\xi(\omega)$ and relative state density $\rho_{\mathrm{rel}}=-\xi'$; Birman--Kreĭn formula $\det S(\omega)=\exp[-2\pi i\,\xi(\omega)]$ holds.
+
+\textbf{(C) Unified Scale Identity (Core Assumption)}
+
+$$
+\boxed{\ \frac{\varphi'(\omega)}{\pi}=\rho_{\mathrm{rel}}(\omega)=\frac{1}{2\pi}\operatorname{tr}Q(\omega)\ },\qquad
+\varphi=\tfrac{1}{2}\Phi .
+$$
+
+\textbf{(D) Boundary Entropy and Modular Flow}
+Take small causal diamond $D_{p,r}$ through point $p$, null generator affine parameter $\lambda$; generalized entropy
+
+$$
+S_{\rm gen}(\lambda)=\frac{\mathrm{Area}(\Sigma_\lambda)}{4G\hbar}+S_{\rm out}(\lambda)
+$$
+
+satisfies QFC/QNEC type inequalities and relative entropy monotonicity; modular Hamiltonian $K=-\ln\rho$ generates modular flow $\sigma_s$.
+
+\textbf{(E) Unitary Evolution}
+On state space $\mathcal{H}$ there exists strongly continuous unitary group $U(t)=e^{-iHt}$; semiclassical worldline limit can relate $t$ and $\tau$ through phase density (see Section 4.1).
+
+---
+
+\section{Unified Time Scale: Definition and Three Axioms}
+
+\subsection{Unified Time Scale Equivalence Class}
+
+\begin{definition}[Unified Time Scale (Definition 3.1)]
+There exists equivalence class
+$$
+[T]\sim\{\tau,\ t,\ t_{\rm K},\ (N,N^i),\ \lambda_{\rm null},\ u,v,\ \eta,\ \omega^{-1},\ z,\ s_{\rm mod}\},
+$$
+whose members mutually convertible through monotonic rescaling and geometric/entropy structure, making dynamics local, causally ordered, and entropy structure simplest.
+\end{definition}
+
+\subsection{Three Axioms}
+
+\begin{axiom}[Causal Ordering (Axiom I)]
+In local hyperbolic domain there exists strictly increasing time function, making fundamental equations local (hyperbolic/first-order) form.
+\end{axiom}
+
+\begin{axiom}[Unitary Evolution (Axiom II)]
+There exists strongly continuous unitary group $U(t)$; in semiclassical limit phase--time relation determined by Lagrangian stationary phase (Section 4.1).
+\end{axiom}
+
+\begin{axiom}[Entropy Monotonicity/Extremality (Axiom III)]
+Along null cut family $\{\Sigma_\lambda\}$, $S_{\rm gen}$ satisfies relative entropy monotonicity and QFC/QNEC monotonicity/convexity and takes extremum under physical evolution; modular flow parameter $s$ makes organization law of $S_{\rm gen}$ simplest.
+\end{axiom}
+
+\begin{theorem}[Mutual Implication in Semiclassical--Holographic Window (Theorem 3.2)]
+Under small causal diamond limit and relative entropy monotonicity/QNEC holding:
+$$
+\text{Axiom I}+\text{Axiom II}\ \Longleftrightarrow\ \text{Scale Identity}\ \Longrightarrow\ \text{Axiom III}\ \Longrightarrow\ \text{Einstein Equations}.
+$$
+\end{theorem}
+
+Proof in Section 5 and Appendices D/E.
+
+---
+
+\section{Main Results (Theorems and Alignments)}
+
+\subsection{Phase--Proper Time Equivalence}
+
+\begin{theorem}[Worldline Principal Phase (Theorem 4.1)]
+For narrow wave packet of mass $m$, in semiclassical limit
+$$
+\phi=-\frac{1}{\hbar}S[\gamma_{\rm cl}]=\frac{mc^2}{\hbar}\int_{\gamma_{\rm cl}}\mathrm{d}\tau,\qquad \frac{\mathrm{d}\phi}{\mathrm{d}\tau}=\frac{mc^2}{\hbar}.
+$$
+\end{theorem}
+
+(Proof: worldline path integral stationary phase; see Appendix B.)
+
+\subsection{Gravitational Time Delay = Group Delay Trace}
+
+\begin{theorem}[Eikonal--Scattering Alignment (Theorem 4.2)]
+In geometric optics limit of static or asymptotically flat background,
+$$
+\Delta T(\omega)=\partial_\omega\Phi(\omega)=\operatorname{Tr}Q(\omega).
+$$
+Weak field limit returns to Shapiro delay.
+\end{theorem}
+
+\subsection{Redshift = Phase Rhythm Ratio}
+
+\begin{proposition}[FRW Phase Expression (Proposition 4.3)]
+Under flat FRW metric comoving observers measure
+$$
+1+z=\frac{\nu_e}{\nu_0}=\frac{\left.\frac{\mathrm{d}\phi}{\mathrm{d}t}\right|_{e}}{\left.\frac{\mathrm{d}\phi}{\mathrm{d}t}\right|_{0}}=\frac{a(t_0)}{a(t_e)}.
+$$
+\end{proposition}
+
+(See Appendix C.)
+
+\subsection{Four ``Bridges'' of GR Time Structure}
+
+\textbf{Bridge B (Killing Time--Clock Rate--Redshift)}
+In static metric $\mathrm{d}s^2=-V(\mathbf{x})c^2\mathrm{d}t^2+\cdots$ stationary observers have
+$\mathrm{d}\tau=\sqrt{V}\,\mathrm{d}t$, $\sqrt{V}$ is local redshift/clock rate factor (Tolman--Ehrenfest).
+
+\textbf{Bridge C (ADM Lapse--Local Clock Rate)}
+ADM decomposition $\mathrm{d}s^2=-N^2 \mathrm{d}t^2+h_{ij}(\mathrm{d}x^i+N^i \mathrm{d}t)(\mathrm{d}x^j+N^j \mathrm{d}t)$; Euler family orthogonal to slicing satisfies $\mathrm{d}\tau=N\,\mathrm{d}t$.
+
+\textbf{Bridge D (Null Affine Parameter--Retarded/Advanced/Conformal Time)}
+Asymptotically flat exterior defines tortoise $r^{*}$ and $u=t-r^{*},\ v=t+r^{*}$, monotonically equivalent to null geodesic affine parameter; in FRW $\mathrm{d}\eta=\mathrm{d}t/a(t)$ linearizes null geodesics.
+
+\textbf{Bridge E (Modular Time--Entropy Gradient--Geometric Equations)}
+Parameter $s$ of modular flow $\sigma_s$ provides information-theoretic time; relative entropy monotonicity and QNEC/QFC bind extremality/monotonicity of $\partial_s S_{\rm gen}$ with $\langle T_{kk}\rangle$.
+
+\subsection{Entropic Geometric Form of Einstein Equations}
+
+\begin{theorem}[Entropy--Geometry (Theorem 4.4)]
+Under Axiom III and Raychaudhuri equation, on small causal diamond have
+$$
+R_{\mu\nu}-\tfrac{1}{2}Rg_{\mu\nu}+\Lambda g_{\mu\nu}=8\pi G\,\langle T_{\mu\nu}\rangle .
+$$
+\end{theorem}
+
+(Proof: combining second-order area variation with QNEC/relative entropy, see Appendix D; cf. Jacobson and subsequent holographic arguments.)
+
+\subsection{Unified Scale Identity (Spectral--Scattering--Geometry)}
+
+\begin{corollary}[Corollary 4.5]
+$$
+\boxed{\ \frac{\varphi'(\omega)}{\pi}=\rho_{\mathrm{rel}}(\omega)=\frac{1}{2\pi}\operatorname{tr}Q(\omega)\ } ,
+$$
+obtained by combining Birman--Kreĭn and $\operatorname{Tr}Q=\partial_\omega\Phi$ (Appendix A).
+\end{corollary}
+
+---
+
+\section{Proofs (Key Points)}
+
+\textbf{5.1  Theorem 4.1:} Worldline action stationary phase along timelike geodesic, fluctuations only change quantum prefactor, principal phase gives $\phi=(mc^2/\hbar)\int \mathrm{d}\tau$ (Appendix B).
+
+\textbf{5.2  Theorem 4.2:} Eikonal phase difference $\Delta S\simeq-\hbar\,\omega\,\Delta T$ aligns with scattering $\partial_\omega\Phi=\operatorname{Tr}Q$, yielding $\Delta T=\operatorname{Tr}Q$; weak field test returns to Shapiro delay.
+
+\textbf{5.3  Proposition 4.3:} Null geodesic and scale factor give $\nu\propto 1/a(t)$, redshift as phase rhythm ratio (Appendix C).
+
+\textbf{5.4  Bridges B--E:} Static clock rate, ADM lapse, null coordinates, and modular flow each consistent with standard conclusions and literature (Appendix E).
+
+\textbf{5.5  Theorem 4.4:} Raychaudhuri's second-order area variation $\propto-\int R_{kk}$ combines with QNEC $S''_{\rm out}\ge (2\pi/\hbar)\!\int\!\langle T_{kk}\rangle$, extremality condition $S'_{\rm gen}(0)=0$ yields tensor equation (Appendix D); QFC provides stronger monotonicity background.
+
+---
+
+\section{Model Applications}
+
+\textbf{A. Frequency-Domain Reconstruction of Solar System Geometric Delay}
+Differentiating multi-frequency radar echo phase $\Phi(\omega)$ gives $\Delta T(\omega)=\partial_\omega\Phi=\operatorname{Tr}Q$, compare with Shapiro delay, can parallelly strip plasma dispersion term.
+
+\textbf{B. Phase--Group Delay Unification of Gravitational Lensing}
+Image pair $(i,j)$ Fermat potential difference $\Delta t_{ij}$ equals $\partial_\omega[\Phi_i-\Phi_j]$; broadband electromagnetic/gravitational wave joint use for Hubble constant and mass model systematic error suppression.
+
+\textbf{C. Cosmological ``Phase Ruler''}
+Directly estimate $a(t)$ using phase rhythm ratio of pulsar/FRB, avoiding specific spectral line systematics; ``phase--redshift'' synchronization guaranteed by Proposition 4.3.
+
+\textbf{D. Effective ``Time Refractive Index'' Tomography}
+Invert $n_t=(-g_{tt})^{-1/2}$ from spatial distribution of $\rho_{\mathrm{rel}}(\omega)$ or $\operatorname{tr}Q(\omega)$, cooperating with optical metric--Fermat principle for weak field time delay imaging.
+
+---
+
+\section{Engineering Proposals}
+
+\begin{enumerate}
+\item \textbf{On-chip group delay tomography metrology:} Measure $S(\omega)$ in integrated photonics and real-time compute $\operatorname{Tr}Q(\omega)$, generating equivalent ``gravitational time delay'' map for device inversion and robust design.
+
+\item \textbf{Double-height matter wave standard:} COW geometric arrangement compare $\Delta\phi$ and $\Delta\tau$, test linear regime of $\Delta\phi=(mc^2/\hbar)\Delta\tau$.
+
+\item \textbf{Broadband lens group delay spectrum:} Synchronously fit each image arrival time delay and dispersion using $\partial_\omega\Phi$, reducing time delay cosmology systematic errors.
+
+\item \textbf{``Entropy light cone'' platform:} Measure second-order deformation and energy flow of $S_{\rm out}$ on controllable quantum system, test QNEC/QFC coefficients and saturation conditions.
+\end{enumerate}
+
+---
+
+\section{Discussion (Risks, Boundaries, Past Work)}
+
+\textbf{(i) Spectral endpoints and regularity:} Scale identity requires $S(\omega)$ differentiable and belonging to appropriate determinant class; near resonances and thresholds need contour displacement and trace-class regularization.
+
+\textbf{(ii) Geometric optics and strong fields:} Strong spin/non-static backgrounds need generalized optical metric and coherent transport; near-horizon regions better use null coordinates and numerical ray tracing.
+
+\textbf{(iii) Entropy--geometry assumption domain:} QNEC has general QFT proofs and holographic proofs continuously strengthening (including latest new proof approaches), but still advancing in high curvature, strong quantum gravity regions.
+
+\textbf{(iv) GR time structure unification:} Killing/ADM/null/conformal/modular times are coordinatizations of unified scale in different projections; Bernal--Sánchez's global time functions and ADM foliation provide rigorous foundation.
+
+---
+
+\section{Conclusion}
+
+Under three axioms of \textbf{causal ordering--unitary evolution--entropy monotonicity/extremality}, obtain unified time scale equivalence class, aligning microscopic (phase/scattering), mesoscopic (group delay/redshift), and macroscopic (entropy--geometry) three-end languages. Core conclusions:
+
+$$
+\phi=\frac{mc^2}{\hbar}\!\int \mathrm{d}\tau,\quad
+\Delta T(\omega)=\partial_\omega\Phi(\omega)=\operatorname{Tr}Q(\omega),\quad
+1+z=\frac{(\mathrm{d}\phi/\mathrm{d}t)_e}{(\mathrm{d}\phi/\mathrm{d}t)_0},\quad
+G_{\mu\nu}+\Lambda g_{\mu\nu}=8\pi G\,\langle T_{\mu\nu}\rangle,
+$$
+
+and spectral--scattering--geometry scale identity $\varphi'/\pi=\rho_{\mathrm{rel}}=(2\pi)^{-1}\operatorname{tr}Q$. Time thus can be characterized as: \textbf{equivalence class of one-dimensional parameter making dynamics local, causality clear, entropy structure simplest}; its different ``names'' merely coordinates of same object in different projections.
+
+---
+
+\section*{Acknowledgements, Code Availability}
+
+Thanks to related textbooks and literature. Symbolic derivations and numerical scripts for group delay--time delay reconstruction and FRW phase rhythm demonstration available upon request.
+
+---
+
+\begin{thebibliography}{99}
+
+\bibitem{ref1}
+E. P. Wigner, ``Lower Limit for the Energy Derivative of the Scattering Phase Shift,'' \textit{Phys. Rev.} \textbf{98} (1955) 145.
+
+\bibitem{ref2}
+F. T. Smith, ``Lifetime Matrix in Collision Theory,'' \textit{Phys. Rev.} \textbf{118} (1960) 349.
+
+\bibitem{ref3}
+A. Strohmaier and A. Waters, ``The Birman--Krein formula for differential forms and electromagnetic scattering,'' arXiv:2104.13589.
+
+\bibitem{ref4}
+A. N. Bernal and M. Sánchez, ``Smoothness of time functions and the metric splitting of globally hyperbolic spacetimes,'' \textit{Commun. Math. Phys.} \textbf{257} (2005) 43.
+
+\bibitem{ref5}
+É. Gourgoulhon, \textit{3+1 Formalism and Bases of Numerical Relativity}, Springer (2012); lecture notes (2007).
+
+\bibitem{ref6}
+I. I. Shapiro, ``Fourth Test of General Relativity,'' \textit{Phys. Rev. Lett.} \textbf{13} (1964) 789; see also updates (1971).
+
+\bibitem{ref7}
+D. W. Hogg, ``Distance measures in cosmology,'' arXiv:astro-ph/9905116 (2000).
+
+\bibitem{ref8}
+S. J. Summers, ``Tomita--Takesaki Modular Theory,'' \textit{Encycl. Math. Phys.} (2006).
+
+\bibitem{ref9}
+A. Connes and C. Rovelli, ``Von Neumann Algebra Automorphisms and Time--Thermodynamics Relation in General Covariant Quantum Theories,'' \textit{Class. Quant. Grav.} \textbf{11} (1994) 2899.
+
+\bibitem{ref10}
+R. Bousso, Z. Fisher, S. Leichenauer, A. C. Wall, ``Quantum Focusing Conjecture,'' \textit{Phys. Rev. D} \textbf{93} (2016) 064044.
+
+\bibitem{ref11}
+R. Bousso, Z. Fisher, J. Koeller, S. Leichenauer, A. C. Wall, ``Proof of the Quantum Null Energy Condition,'' \textit{Phys. Rev. D} \textbf{93} (2016) 024017.
+
+\bibitem{ref12}
+S. Balakrishnan, T. Faulkner, Z. U. Khandker, H. Wang, ``A General Proof of the QNEC,'' \textit{JHEP} \textbf{09} (2019) 020.
+
+\bibitem{ref13}
+D. L. Jafferis, A. Lewkowycz, J. Maldacena, S. J. Suh, ``Relative entropy equals bulk relative entropy,'' \textit{JHEP} \textbf{06} (2016) 004.
+
+\bibitem{ref14}
+N. Engelhardt, A. C. Wall, ``Quantum Extremal Surfaces,'' \textit{JHEP} \textbf{01} (2015) 073.
+
+\bibitem{ref15}
+T. Jacobson, ``Thermodynamics of Spacetime: The Einstein Equation of State,'' \textit{Phys. Rev. Lett.} \textbf{75} (1995) 1260.
+
+\bibitem{ref16}
+T. Faulkner, R. G. Leigh, O. Parrikar, H. Wang, ``Modular Hamiltonians for Deformed Half-Spaces and the ANEC,'' \textit{JHEP} \textbf{09} (2016) 038.
+
+\bibitem{ref17}
+T. Hartman, S. Kundu, A. Tajdini, ``Averaged Null Energy Condition from Causality,'' \textit{JHEP} \textbf{07} (2017) 066.
+
+\bibitem{ref18}
+V. Perlick, \textit{Ray Optics, Fermat's Principle, and Applications to GR}, Springer (2000).
+
+\bibitem{ref19}
+Scholarpedia, ``Bondi--Sachs Formalism'' (for retarded time $u$ and advanced time $v$).
+
+\end{thebibliography}
+
+\appendix
+
+\section{Wigner--Smith Group Delay and Spectral--Scattering--Geometry Identity}
+
+\subsection{Birman--Kreĭn and Spectral Shift}
+
+For self-adjoint pair $(H,H_0)$ with trace-class/quasi-trace-class perturbation, spectral shift function $\xi(\omega)$ satisfies
+$$
+\det S(\omega)=e^{-2\pi i\xi(\omega)}\Rightarrow
+\frac{1}{2\pi}\partial_\omega\Phi(\omega)= -\xi'(\omega)=\rho_{\mathrm{rel}}(\omega).
+$$
+(See reference 3.)
+
+\subsection{Trace Identity}
+
+From $Q(\omega)=-iS^\dagger\partial_\omega S$ and $\operatorname{Tr}\ln S=\ln\det S$ obtain
+$$
+\operatorname{Tr}Q(\omega)=\partial_\omega\Phi(\omega).
+$$
+Combining A.1 gives scale identity:
+$$
+\boxed{\ \frac{\varphi'(\omega)}{\pi}=\rho_{\mathrm{rel}}(\omega)=\frac{1}{2\pi}\operatorname{tr}Q(\omega)\ } .
+$$
+
+\section{``Phase--Proper Time'' Under Worldline Path Integral}
+
+Fermi normal coordinate expansion along timelike geodesic $\gamma_{\rm cl}$
+$$
+S[\gamma]=-mc^2\!\int \mathrm{d}\tau+\frac{m}{2}\!\int \mathrm{d}\tau\,\delta_{ij}\dot{y}^i\dot{y}^j+\cdots .
+$$
+Stationary phase gives
+$$
+\phi=-\frac{1}{\hbar}S[\gamma_{\rm cl}]
+=\frac{mc^2}{\hbar}\!\int \mathrm{d}\tau,\qquad \frac{\mathrm{d}\phi}{\mathrm{d}\tau}=\frac{mc^2}{\hbar}.
+$$
+
+\section{Phase Expression of Redshift in FRW Cosmology}
+
+Flat FRW: $\mathrm{d}s^2=-\mathrm{d}t^2+a(t)^2 \mathrm{d}\mathbf{x}^2$. Comoving observer $u^\mu=(1,0,0,0)$, photon eikonal phase $\phi$ has $k_\mu=\partial_\mu\phi$ and
+$$
+\nu=-\frac{1}{2\pi}k_\mu u^\mu=\frac{1}{2\pi}\frac{\mathrm{d}\phi}{\mathrm{d}t}\propto\frac{1}{a(t)} \Rightarrow
+1+z=\frac{(\mathrm{d}\phi/\mathrm{d}t)_e}{(\mathrm{d}\phi/\mathrm{d}t)_0}=\frac{a(t_0)}{a(t_e)} .
+$$
+(Reference 7.)
+
+\section{Generalized Entropy Extremality/Monotonicity and Field Equations}
+
+Let $\{\Sigma_\lambda\}$ be null cut family through $p$. Raychaudhuri: $\dot{\theta}=-\tfrac{1}{2}\theta^2-\sigma^2-R_{kk}$. Second-order area variation
+$\displaystyle \left.\mathrm{d}^2A/\mathrm{d}\lambda^2\right|_{0}\propto -\!\int R_{kk}\,\mathrm{d}A$.
+
+QNEC and relative entropy monotonicity: $\displaystyle \left.\mathrm{d}^2S_{\rm out}/\mathrm{d}\lambda^2\right|_{0}\ge \frac{2\pi}{\hbar}\!\int\!\langle T_{kk}\rangle \mathrm{d}A$.
+
+Extremum $S'_{\rm gen}(0)=0$ combines to give $R_{kk}=8\pi G\langle T_{kk}\rangle$, holding for any $k^\mu$, upgrades to tensor equation and gives $\Lambda$ as integration constant.
+
+\section{Refinement of GR Time Bridges}
+
+\textbf{E.1  Static Spacetime (Killing):} $\xi^\mu$ is timelike Killing vector, stationary observer $u^\mu=\xi^\mu/\sqrt{-\xi^2}$, if $g_{tt}=-V$ then $\mathrm{d}\tau=\sqrt{V}\,\mathrm{d}t$. (Tolman--Ehrenfest temperature redshift law same form.)
+
+\textbf{E.2  ADM Lapse:} $\mathrm{d}s^2=-N^2 \mathrm{d}t^2+h_{ij}(\mathrm{d}x^i+N^i \mathrm{d}t)(\mathrm{d}x^j+N^j \mathrm{d}t)$; slicing orthogonal family satisfies $\mathrm{d}x^i+N^i \mathrm{d}t=0\Rightarrow \mathrm{d}\tau=N\,\mathrm{d}t$.
+
+\textbf{E.3  Null Coordinates:} Schwarzschild exterior $r^*=r+2M\ln|r/2M-1|$, $u=t-r^*$, $v=t+r^*$; in FRW $\mathrm{d}\eta=\mathrm{d}t/a(t)$.
+
+\textbf{E.4  Modular Time:} Given (algebra, state) pair $(\mathcal{A},\omega)$ GNS representation, modular flow $\sigma_s$ intrinsically defines time; under half-space and small deformations, $K$ localizes to $\int T_{kk}$, isomorphic with ANEC/QNEC, JLMS/relative entropy.
+
+\section{Shapiro Delay and Group Delay}
+
+Weak field Schwarzschild exterior
+$$
+\Delta t \simeq \frac{4GM}{c^3}\ln\frac{4r_E r_R}{b^2}+\cdots,
+$$
+consistent with frequency-domain measured $\partial_\omega\Phi=\operatorname{Tr}Q$; multi-frequency echo fitting can separate dispersion and geometric terms.
+
+\section{Existence and Uniqueness of Unified Time Scale}
+
+Given scattering data $(S(\omega))$ satisfying scale identity. Define
+$$
+t-t_0=\int_{\omega_0}^{\omega}\frac{1}{2\pi}\operatorname{Tr}Q(\tilde\omega)\,\mathrm{d}\tilde\omega
+=\int_{\omega_0}^{\omega}\frac{\varphi'(\tilde\omega)}{\pi}\,\mathrm{d}\tilde\omega
+=\int_{\omega_0}^{\omega}\rho_{\mathrm{rel}}(\tilde\omega)\,\mathrm{d}\tilde\omega .
+$$
+In non-degenerate frequency window derivative positive, $t(\omega)$ locally bijective; if another $\tilde{t}$ satisfies same condition, then $\tilde{t}=a t+b$ ($a>0$), giving affine uniqueness.
+
+---
+
+\subsection*{Unified Diagram (Summary)}
+
+$$
+\boxed{
+\begin{array}{c}
+[T]\sim\{\tau,\ t_{\rm K},\,N,\,\lambda,u,v,\,\eta,\,\omega^{-1},\,z,\,s_{\rm mod}\}\\[2pt]
+\Downarrow\\[3pt]
+\phi,\ \Phi(\omega)\ \Longleftrightarrow\ \operatorname{Tr}Q(\omega),\ \rho_{\mathrm{rel}}(\omega)\\[3pt]
+\Longleftrightarrow\ 1+z\ \ (\text{phase rhythm ratio})\ \Longleftrightarrow\ \partial_s S_{\rm gen}\ (\text{extremality/monotonicity})\\[3pt]
+\Longleftrightarrow\ G_{\mu\nu}+\Lambda g_{\mu\nu}=8\pi G\langle T_{\mu\nu}\rangle .
+\end{array}}
+$$
+
+\end{document}
+
+
+
+

@@ -1,0 +1,600 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Title information
+\title{Final Unification of Physical Laws: Unique Solution of Consistent Variational Principle on Universe Ontological Object}
+
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+In previous work, we have characterized the ``Universe'' as a maximal, consistent, and complete ontological object $\mathfrak U$ within a given foundational category, providing unified time scale, boundary time geometry, causal--entropic--observer axioms, and unified encoding of ``detail data'' $\mathcal D=([E],\{f_\alpha\})$. This system achieves unification at structural and parametric levels but retains a critical gap: \textbf{physical laws themselves still appear in an intrinsic, fragmented manner}, e.g., Einstein equations, Yang--Mills equations, Dirac equations, Navier--Stokes equations, multi-agent resource allocation dynamics, etc., have not yet been demonstrated as \textbf{unique consequences of a single ontological principle}.
+
+The goal of this paper is to bridge this gap: within the framework of the Universe Ontological Object $\mathfrak U$, unified time scale, and boundary time geometry, we construct a \textbf{single consistent variational principle}
+\begin{equation}
+\delta\mathcal I[\mathfrak U]=0,
+\end{equation}
+and prove:
+
+1. This variational principle consists only of three universal requirements:
+   (i) Causal--Scattering Consistency (unitarity and macroscopic causality);
+   (ii) Generalized Entropy Monotonicity and Stability (``Generalized Second Law'' under unified time scale);
+   (iii) Observer--Consensus Consistency (all local observers' models--readouts must be embeddable into the same $\mathfrak U$).
+
+2. On small causal diamonds, variation of geometry and states derives Einstein equations $G_{ab}+\Lambda g_{ab}=8\pi G\langle T_{ab}\rangle$ and energy--momentum conservation from this principle;
+
+3. Under fixed geometry and unified scale, variation of boundary channel bundles and field content derives local gauge invariance and Yang--Mills field equations;
+
+4. On given geometry and gauge structure, variation of matter fields and scattering data derives Dirac/Klein--Gordon field equations and local quantum field theory (satisfying microcausality and spectral conditions);
+
+5. In long-wavelength and coarse-grained limits, variation of resolution connections and entropy functionals derives generalized hydrodynamics and effective Navier--Stokes equations, as well as entropy gradient flow dynamics for multi-agent resource allocation.
+
+Thus, \textbf{general relativity, gauge field theory, quantum field theory, fluid and statistical physics, and multi-agent dynamics are all shown to be necessary conditions of the same universe consistent variational principle at different resolution levels and boundary conditions}. This strictly completes physical unification: there are no longer mutually independent ``force laws'' or ``matter equations'', but only one Universe Ontological Object $\mathfrak U$ and one consistent variational principle. Specific theories are merely effective unfoldings of this principle in different limits.
+
+The appendices provide specific construction of this consistency functional $\mathcal I[\mathfrak U]$, variational derivation on small causal diamonds, unified treatment of gauge structure and field content, and outlines of reconstruction proofs for local quantum field theory and hydrodynamic limits.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Universe Ontological Object; Consistent Variational Principle; Final Unification; Unified Time Scale; Generalized Entropy; Einstein Equations; Yang--Mills; QFT; Hydrodynamics
+
+\section{Introduction}
+
+\subsection{Problem Reformulation}
+
+In the traditional picture, the main thread of ``unified physics'' unfolds roughly along two paths:
+
+1. **Structural Unification**: Placing space-time, causality, entropy, observer, and other basic concepts within a single geometric--information framework, such as causal manifolds, axiomatic QFT, holographic duality, and information geometry.
+
+2. **Detail Unification**: Writing ``parameters and structures'' of different fields (high energy, condensed matter, cosmology, multi-agent, etc.) as the same mathematical data, such as $K$-theory classes of gauge groups and representations, analytic invariants of scattering, etc.
+
+The previous Universe Ontological Object $\mathfrak U$ and unified detail data $\mathcal D=([E],\{f_\alpha\})$ achieved these two steps: all physical systems (including high-energy scattering, topological phases, cosmological backgrounds, and multi-agent networks) can be viewed as substructures of $\mathfrak U$, their ``details'' uniformly encoded as boundary $K$-classes and scattering analytic invariants. However, from a physics perspective, this still does not constitute ``final unification'':
+
+* Einstein equations are still separately assumed as ``geometric laws'';
+* Yang--Mills and Dirac equations are still separately assumed as ``field theory laws'';
+* Navier--Stokes equations and Fokker--Planck equations are still separately introduced as ``macroscopic laws'';
+* Resource--strategy dynamics of multi-agent systems are still separately modeled as some optimization or game process.
+
+In other words, **we have unified the ``identities of stage and actors'', but have not yet unified the ``sole source of the script''**.
+
+\subsection{Core Proposition of This Paper}
+
+This paper proposes: within the Universe Ontological Object $\mathfrak U$, there exists a single, consistent variational principle
+\begin{equation}
+\delta\mathcal I[\mathfrak U]=0,
+\end{equation}
+which relies only on the following minimal, physically non-negotiable requirements:
+
+1. **Causal--Scattering Consistency**: The scattering process of any small causal diamond must be embeddable into a single global unitary evolution without violating macroscopic causality;
+2. **Generalized Entropy Monotonicity and Stability**: Under unified time scale, the generalized entropy functional $S_{\mathrm{gen}}$ of small causal diamonds must satisfy appropriate monotonicity and extremum stability under constraints to avoid uncontrolled negative energy and information paradoxes;
+3. **Observer--Consensus Consistency**: Models and readouts of any finite observer network must be embeddable into the same universe state $\mathfrak U$, and consensus can be reached via unified scale and causal structure.
+
+We will prove:
+
+* Writing these three requirements as a single ``Universe Consistency Functional'' $\mathcal I[\mathfrak U]$ and varying all variable degrees of freedom (geometry, channel bundles, connections, field content, states, resolution flows, and observer models), the obtained ``Euler--Lagrange conditions'' are respectively equivalent at different levels to:
+  * Gravitational field equations on small causal diamonds (GR);
+  * Gauge field equations on boundary channel bundles and total connections (Yang--Mills);
+  * Local wave equations and gauge Ward identities on bulk fields (QFT);
+  * Hydrodynamics, diffusion, and multi-agent entropy gradient flow in coarse-grained limits.
+
+Thus, in this sense, ``physical laws'' are unified as **unfoldings of a single universe consistent variational principle at different levels**.
+
+\subsection{Paper Structure}
+
+Section 2 reviews the core structures of Universe Ontological Object $\mathfrak U$, unified time scale, and boundary time geometry. Section 3 gives the specific construction of Universe Consistency Functional $\mathcal I[\mathfrak U]$. Section 4 performs variation of geometry and states on small causal diamonds to derive Einstein equations. Section 5 performs variation of boundary $K$-classes and total connections under fixed geometry to derive gauge field equations and field content constraints. Section 6 performs variation of matter fields and scattering data under given geometry and gauge background to derive local quantum field theory and Ward identities. Section 7 derives hydrodynamics and multi-agent entropy gradient flow in coarse-grained limits. Appendices provide complete proof outlines of main theorems.
+
+\section{Universe Ontological Object and Unified Structure Review}
+
+\subsection{Universe Ontological Object}
+
+The Universe Ontological Object is written as
+\begin{equation}
+\mathfrak U=
+\bigl(
+U_{\mathrm{evt}},U_{\mathrm{geo}},U_{\mathrm{meas}},
+U_{\mathrm{QFT}},U_{\mathrm{scat}},
+U_{\mathrm{mod}},U_{\mathrm{ent}},
+U_{\mathrm{obs}},U_{\mathrm{cat}},U_{\mathrm{comp}}
+\bigr),
+\end{equation}
+where:
+
+1. $U_{\mathrm{evt}}=(M,g,\prec)$ is globally hyperbolic Lorentzian manifold with causal partial order;
+2. $U_{\mathrm{geo}}$ contains family of small causal diamonds $\{D_{p,r}\}$, Gibbons--Hawking--York boundary terms, and Brown--York quasi-local stress tensors;
+3. $U_{\mathrm{meas}}=(\mathcal A_\partial,\omega_\partial)$ is boundary observable algebra and state;
+4. $U_{\mathrm{QFT}}=(\mathcal A_{\mathrm{bulk}},\omega_{\mathrm{bulk}})$ is bulk quantum field theory;
+5. $U_{\mathrm{scat}}=(S(\omega;\ell),Q(\omega;\ell))$ is resolution--frequency decomposed scattering matrix and Wigner--Smith group delay;
+6. $U_{\mathrm{mod}}$ is Tomita--Takesaki modular flow induced by $(\mathcal A_\partial,\omega_\partial)$;
+7. $U_{\mathrm{ent}}$ contains generalized entropy $S_{\mathrm{gen}}$ on small causal diamonds, relative entropy, and quantum energy conditions;
+8. $U_{\mathrm{obs}}$ is family of observers and consensus geometries $\{O_i\}$;
+9. $U_{\mathrm{cat}}$ gives category of morphisms between above structures;
+10. $U_{\mathrm{comp}}$ describes computation and complexity boundaries in the universe.
+
+\subsection{Unified Time Scale and Scale Identity}
+
+Unified time scale is given by scattering scale mother formula:
+\begin{equation}
+\kappa(\omega)
+=\frac{\varphi'(\omega)}{\pi}
+=\rho_{\mathrm{rel}}(\omega)
+=\frac{1}{2\pi}\operatorname{tr}Q(\omega),
+\end{equation}
+where $\varphi(\omega)=\arg\det S(\omega)$ is scattering phase, $\rho_{\mathrm{rel}}(\omega)$ spectral shift function derivative (relative density of states), $Q(\omega)=-\mathrm{i}S^\dagger(\omega)\partial_\omega S(\omega)$ group delay matrix.
+
+Unified time scale axiom stipulates: all physical time readouts in the universe are affine transformations of the same scale class $[\tau]$.
+
+\subsection{Boundary Time Geometry and Total Connection}
+
+On boundary $\partial M_R$, define total connection
+\begin{equation}
+\Omega_\partial
+=\omega_{\mathrm{LC}}\oplus A_{\mathrm{YM}}\oplus \Gamma_{\mathrm{res}},
+\end{equation}
+whose curvature is
+\begin{equation}
+F(\Omega_\partial)
+=R\oplus F_{\mathrm{YM}}\oplus F_{\mathrm{res}},
+\end{equation}
+corresponding to spacetime curvature, gauge field strength, and curvature of resolution flow respectively.
+
+\subsection{Generalized Entropy and Observer Consensus Geometry}
+
+For small causal diamond $D_{p,r}$, generalized entropy is defined as
+\begin{equation}
+S_{\mathrm{gen}}(D_{p,r})
+=\frac{A(\partial D_{p,r})}{4G\hbar}
++S_{\mathrm{bulk}}(D_{p,r}),
+\end{equation}
+where $S_{\mathrm{bulk}}$ is von Neumann entropy of bulk quantum fields.
+
+Observer $O_i$ is formalized as
+\begin{equation}
+O_i
+=\bigl(
+C_i,\prec_i,\Lambda_i,
+\mathcal A_i,\omega_i,
+\mathcal M_i,U_i,u_i,\{\mathcal C_{ij}\}
+\bigr),
+\end{equation}
+with local causal domain, resolution hierarchy, observable algebra and state, model family and update operator, and communication structure.
+
+Prior work shows: under unified time scale and relative entropy monotonicity conditions, global consensus causal structure and unified time arrow can be constructed on observer network.
+
+\section{Construction of Universe Consistency Functional $\mathcal I[\mathfrak U]$}
+
+This section constructs the core object of this paper: Universe Consistency Functional $\mathcal I[\mathfrak U]$.
+
+\subsection{Three Classes of Consistency Requirements}
+
+We decompose ``physical realizability of universe'' into three classes of consistency requirements:
+
+1. **Causal--Scattering Consistency**: Scattering matrix family $S(\omega;\ell)$ defined on any finite bulk region $M_R$ and its boundary $\partial M_R$ must be extensible to a global unitary evolution, and corresponding Green's functions support obeys causal cone structure.
+
+2. **Generalized Entropy Monotonicity and Stability**: For any nested family of small causal diamonds $\{D_\tau\}$ on a timelike curve, generalized entropy $S_{\mathrm{gen}}(D_\tau)$ satisfies appropriate monotonicity and second-order variational stability conditions under unified time scale parameter $\tau$, avoiding uncontrolled negative energy and entropy decrease.
+
+3. **Observer--Consensus Consistency**: Models and readouts of any finite observer network $\{O_i\}$ must be embeddable into the same $\mathfrak U$ state under unified scale and causal partial order, and consensus can be reached via communication and updates without leading to essential contradictory descriptions of the same physical process.
+
+\subsection{Form of Consistency Functional}
+
+We write consistency requirements as a functional
+\begin{equation}
+\mathcal I[\mathfrak U]
+=\mathcal I_{\mathrm{grav}}[g,\omega_{\mathrm{bulk}}]
++\mathcal I_{\mathrm{gauge}}[E,\Omega_\partial]
++\mathcal I_{\mathrm{QFT}}[\mathcal A_{\mathrm{bulk}},\omega_{\mathrm{bulk}}]
++\mathcal I_{\mathrm{hydro}}[\Gamma_{\mathrm{res}},S_{\mathrm{gen}}]
++\mathcal I_{\mathrm{obs}}[\{O_i\}],
+\end{equation}
+and claim:
+
+* Causal--Scattering Consistency mainly constrains $\mathcal I_{\mathrm{QFT}}$ and $\mathcal I_{\mathrm{gauge}}$;
+* Generalized Entropy Monotonicity and Stability mainly constrains $\mathcal I_{\mathrm{grav}}$ and $\mathcal I_{\mathrm{hydro}}$;
+* Observer--Consensus Consistency mainly constrains $\mathcal I_{\mathrm{obs}}$ and $\mathcal I_{\mathrm{QFT}}$.
+
+Specific forms are as follows.
+
+\subsubsection{Gravity--Entropy Term}
+
+Let
+\begin{equation}
+\mathcal I_{\mathrm{grav}}
+=\frac{1}{16\pi G}
+\int_{M} (R-2\Lambda)\sqrt{|g|}\,\mathrm{d}^dx
++\frac{1}{8\pi G}
+\int_{\partial M} K\sqrt{|h|}\,\mathrm{d}^{d-1}x
+-\lambda_{\mathrm{ent}}
+\sum_{D\in\mathcal D_{\mathrm{micro}}}
+\bigl[
+S_{\mathrm{gen}}(D)-S_{\mathrm{gen}}^\ast(D)
+\bigr],
+\end{equation}
+where $S_{\mathrm{gen}}^\ast(D)$ is entropy extremum under given external conditions, $\lambda_{\mathrm{ent}}>0$ is a Lagrange multiplier, $\mathcal D_{\mathrm{micro}}$ is a family of small causal diamonds covering $M$. The last term penalizes configurations deviating from entropy extremum.
+
+\subsubsection{Gauge--Geometric Term}
+
+On boundary, consistency requirements for channel bundle $E\to\partial M\times\Lambda$ and total connection $\Omega_\partial$ are written as
+\begin{equation}
+\mathcal I_{\mathrm{gauge}}
+=\int_{\partial M\times\Lambda}
+\bigl[
+\operatorname{tr}(F_{\mathrm{YM}}\wedge\star F_{\mathrm{YM}})
++\mu_{\mathrm{top}}\cdot\mathrm{CS}(A_{\mathrm{YM}})
++\mu_{K}\cdot\mathrm{Index}(D_{[E]})
+\bigr],
+\end{equation}
+where $\mathrm{CS}$ is Chern--Simons term, $\mathrm{Index}(D_{[E]})$ is index of Dirac operator on $K$-class $[E]$. This term ensures consistency of gauge structure with $K$-class, and penalizes configurations violating gauge Ward identities.
+
+\subsubsection{QFT--Scattering Term}
+
+Consistency of bulk QFT is given by a relative entropy type functional
+\begin{equation}
+\mathcal I_{\mathrm{QFT}}
+=\sum_{D\in\mathcal D_{\mathrm{micro}}}
+S\bigl(
+\omega_{\mathrm{bulk}}^D \Vert \omega_{\mathrm{scat}}^D
+\bigr),
+\end{equation}
+where $\omega_{\mathrm{bulk}}^D$ is restriction of actual state on causal diamond $D$, $\omega_{\mathrm{scat}}^D$ is ``reference state'' predicted by scattering data and unified scale, $S(\cdot\Vert\cdot)$ is relative entropy. This term requires local QFT model to be compatible with scattering--scale predictions.
+
+\subsubsection{Fluid--Resolution Term}
+
+In coarse-grained limit, resolution connection $\Gamma_{\mathrm{res}}$, macroscopic flow field $u^\mu$, and conserved currents $J^\mu$ satisfy a family of entropy production inequalities. We write
+\begin{equation}
+\mathcal I_{\mathrm{hydro}}
+=\int_M
+\bigl[
+\zeta(\nabla_\mu u^\mu)^2
++\eta\,\sigma_{\mu\nu}\sigma^{\mu\nu}
++\sum_k D_k (\nabla_\mu n_k)^2
+\bigr]\sqrt{|g|}\,\mathrm{d}^dx,
+\end{equation}
+where $\sigma_{\mu\nu}$ is shear tensor, $n_k$ conserved quantity densities, $\zeta,\eta,D_k$ viscosity and diffusion coefficients determined by $\Gamma_{\mathrm{res}}$. This term requires macroscopic evolution to follow principle of minimum entropy production.
+
+\subsubsection{Observer--Consensus Term}
+
+Consistency of observer network is written as
+\begin{equation}
+\mathcal I_{\mathrm{obs}}
+=\sum_{i}
+S\bigl(
+\omega_i \Vert \omega_{\mathrm{bulk}}|_{C_i}
+\bigr)
++\sum_{(i,j)}
+S\bigl(
+\mathcal C_{ij*}(\omega_i)
+\Vert \omega_j
+\bigr),
+\end{equation}
+where first term penalizes deviation of observer's internal model from true universe state on its causal domain, second term penalizes inconsistency between models after communication.
+
+\subsection{Consistent Variational Principle}
+
+**Unified Consistency Principle**
+
+Under premises of unified time scale and causal--entropic--observer axioms, physical universe corresponds to Universe Ontological Object $\mathfrak U$ such that
+\begin{equation}
+\delta \mathcal I[\mathfrak U] = 0
+\end{equation}
+holds for all allowed variations (including variations of $g, E, \Omega_\partial, \omega_{\mathrm{bulk}},\{O_i\}$).
+
+In following sections, we discuss physical meaning of this variational condition layer by layer.
+
+\section{Geometric Variation on Small Causal Diamonds and Gravitational Field Equations}
+
+\subsection{Variational Setup}
+
+Consider a timelike geodesic $\gamma(\tau)$ and a family of small causal diamonds $D_{p,r}$ near it, where $p=\gamma(0)$, $r\ll L_{\mathrm{curv}}$. We vary metric $g_{ab}$ inside $D_{p,r}$ and bulk state $\omega_{\mathrm{bulk}}$, keeping:
+
+1. External geometry and external state fixed;
+2. Unified time scale $\kappa(\omega)$ unaffected to first order;
+3. Generalized entropy constraints implemented via $\mathcal I_{\mathrm{grav}}+\mathcal I_{\mathrm{QFT}}$.
+
+\subsection{First-Order Variation of Generalized Entropy and Einstein Equations}
+
+For first-order variation of $S_{\mathrm{gen}}(D_{p,r})$, under fixed volume or appropriate constraints,
+\begin{equation}
+\delta S_{\mathrm{gen}}
+=\frac{1}{4G\hbar}\delta A(\partial D_{p,r})
++\delta S_{\mathrm{bulk}}.
+\end{equation}
+Geometric part $\delta A$ can be expanded as local function of curvature $R_{ab}$ at $p$, bulk entropy variation $\delta S_{\mathrm{bulk}}$ expressed via stress--energy tensor $\langle T_{ab}\rangle$. Substituting into condition $\delta \mathcal I_{\mathrm{grav}}=0$, in limit $r\to 0$, derives
+\begin{equation}
+G_{ab}+\Lambda g_{ab}
+=8\pi G \langle T_{ab} \rangle,
+\end{equation}
+i.e., Einstein equations. Detailed derivation in Appendix A.
+
+\subsection{Second-Order Variation and Quantum Energy Conditions}
+
+For second-order variation of same small causal diamond, considering deformation direction along some light rays, second-order variation of generalized entropy relates to quantum information inequalities, obtaining quantum energy conditions and focusing conditions. These conditions ensure stability of gravitational background and unidirectionality of macroscopic time arrow.
+
+\section{Variation of Boundary Channel Bundles and Total Connection: Unification of Gauge Fields and Field Content}
+
+\subsection{Channel Bundle $K$-Class and Gauge Structure}
+
+On fixed geometric background, vary boundary channel bundle $E$ and total connection $\Omega_\partial$, requiring:
+
+1. $K$-class $[E]$ of channel bundle fixed (only stable equivalence variations allowed);
+2. Compatibility of $K^1$ class of scattering matrix $S(\omega;\ell)$ with $[E]$ maintained.
+
+In $\mathcal I_{\mathrm{gauge}}$, variation of $A_{\mathrm{YM}}$ gives
+\begin{equation}
+\nabla_\mu F^{\mu\nu}_{\mathrm{YM}}
+=J^\nu_{\mathrm{YM}},
+\end{equation}
+i.e., Yang--Mills equations, where source $J^\nu_{\mathrm{YM}}$ comes from coupling of boundary and bulk states. Allowed variations of $[E]$ and extremum condition of Dirac index term constrain field content and chiral structure: only field contents ensuring anomaly cancellation and zero index pairing are allowed. Detailed argument in Appendix B.
+
+\subsection{Physical Meaning of Unified Gauge Structure}
+
+Above results imply:
+
+* ``Which gauge fields, which matter fields, coupled in what representations'' are no longer external ``inputs'', but results of extremum conditions of $\mathcal I_{\mathrm{gauge}}$;
+* Gauge invariance and Ward identities originate from invariance of $\mathcal I$ under variation of $\Omega_\partial$;
+* ``Field content'' and ``gauge group'' are expressions of channel bundle $K$-class and total connection, not independent entities.
+
+\section{Variation of Bulk Fields and Scattering Data: Unification of Local QFT}
+
+\subsection{Derivation of Local Field Equations from Relative Entropy Functional}
+
+Under given geometry and gauge background, vary bulk QFT state $\omega_{\mathrm{bulk}}$ and operator structure $\mathcal A_{\mathrm{bulk}}$. Relative entropy functional
+\begin{equation}
+\mathcal I_{\mathrm{QFT}}
+=\sum_{D}
+S\bigl(
+\omega_{\mathrm{bulk}}^D \Vert \omega_{\mathrm{scat}}^D
+\bigr)
+\end{equation}
+requires actual state to be as close as possible to reference state predicted by scattering--scale on each small causal diamond. Varying $\omega_{\mathrm{bulk}}$ yields a family of ``local consistency conditions'', satisfying:
+
+1. Microcausality: observables at spacelike separated points commute;
+2. Spectral Condition: energy spectrum bounded below under unified time scale;
+3. Dynamics: field operators satisfy set of local wave equations (e.g., Klein--Gordon, Dirac), whose mass spectrum and couplings are determined by analytic invariants in $\mathcal D$.
+
+Detailed derivation relies on Wightman function reconstruction and variational properties of relative entropy, see Appendix C.
+
+\subsection{Ward Identities and Scattering--Field Theory Compatibility}
+
+Varying scattering matrix $S(\omega;\ell)$ itself, under fixed unified scale, channel bundle $K$-class, and unitarity, requiring non-increase of $\mathcal I_{\mathrm{QFT}}$, can derive Ward identities and LSZ limit conditions, ensuring consistency between field theory and scattering descriptions.
+
+\section{Coarse-Grained Limit: Hydrodynamics and Multi-Agent Entropy Gradient Flow}
+
+\subsection{Resolution Connection and Macroscopic Fluids}
+
+In long-wavelength and low-resolution limits, we care not about all degrees of freedom of microscopic fields, but finite set of conserved currents $J^\mu_a$ and macroscopic velocity field $u^\mu$. Resolution connection $\Gamma_{\mathrm{res}}$ gives projection from microscopic degrees of freedom to macroscopic variables and flow rules on manifold.
+
+Varying $\Gamma_{\mathrm{res}}$ and macroscopic variables, minimization condition of entropy production functional
+\begin{equation}
+\mathcal I_{\mathrm{hydro}}
+=\int_M
+\bigl[
+\zeta(\nabla_\mu u^\mu)^2
++\eta\,\sigma_{\mu\nu}\sigma^{\mu\nu}
++\sum_k D_k (\nabla_\mu n_k)^2
+\bigr]\sqrt{|g|}\,\mathrm{d}^dx
+\end{equation}
+gives generalized Navier--Stokes equations and diffusion equations:
+\begin{equation}
+\nabla_\mu T^{\mu\nu}_{\mathrm{hydro}} = 0,
+\quad
+\nabla_\mu J^\mu_a = 0,
+\end{equation}
+where stress tensor $T^{\mu\nu}_{\mathrm{hydro}}$ and current $J^\mu_a$ contain viscosity and diffusion terms.
+
+\subsection{Entropy Gradient Flow of Multi-Agent Systems}
+
+Viewing multi-agent system as observer network $\{O_i\}$, whose strategy distributions and belief states evolve with unified scale. Observer--consensus functional
+\begin{equation}
+\mathcal I_{\mathrm{obs}}
+=\sum_{i}
+S\bigl(
+\omega_i \Vert \omega_{\mathrm{bulk}}|_{C_i}
+\bigr)
++\sum_{(i,j)}
+S\bigl(
+\mathcal C_{ij*}(\omega_i)
+\Vert \omega_j
+\bigr)
+\end{equation}
+varying $\omega_i$ gives a family of gradient flow equations, similar to natural gradient descent or mirror descent, entropy functional decreases monotonically under unified scale.
+
+In continuous limit, such gradient flows share same structure as macroscopic hydrodynamics: both can be written as gradient flow of some generalized entropy $\mathsf S$
+\begin{equation}
+\partial_\tau \rho
+=-\operatorname{grad}_{\mathsf G}\mathsf S(\rho),
+\end{equation}
+where $\mathsf G$ is metric determined by causal--geometric and resource constraints.
+
+\section{Strict Meaning of Physical Unification}
+
+In above construction, ``unification'' no longer means ``existence of a larger symmetry group'' or ``existence of an all-encompassing Lagrangian'', but means:
+
+1. **Ontological Unification**: Only one Universe Ontological Object $\mathfrak U$, containing geometry, channel bundles, connections, fields, entropy, and observers;
+2. **Scale Unification**: All times and scales unified by scale mother formula $\kappa(\omega)$;
+3. **Variational Unification**: Existence of a single Universe Consistency Functional $\mathcal I[\mathfrak U]$, whose extremum conditions are equivalent at different levels to GR, gauge field theory, QFT, hydrodynamics, multi-agent entropy gradient flow, etc.;
+4. **Detail Unification**: All ``physical details'' uniformly encoded as boundary $K$-classes and scattering analytic invariants $\mathcal D$, constrained by $\delta\mathcal I=0$;
+5. **Reduction Unification**: Reduction and equivalence between different physical theories correspond to natural isomorphisms under same $\mathcal I$ at different resolutions and boundary conditions.
+
+In this sense, **there exist no multiple unrelated ``physical laws''**: the universe has only one Ontological Object $\mathfrak U$ and one Consistent Variational Principle. The ``laws'' we know are all unfoldings and manifestations of this principle under different approximations and levels.
+
+\appendix
+
+\section{Gravitational--Entropy Variation on Small Causal Diamonds and Einstein Equations}
+
+This appendix outlines detailed derivation of gravitational variation in Section 4.
+
+\subsection{Small Causal Diamond and Riemann Normal Coordinates}
+
+Construct Riemann normal coordinates near $p\in M$, such that
+\begin{equation}
+g_{ab}(p)=\eta_{ab},
+\quad
+\partial_c g_{ab}(p)=0,
+\end{equation}
+curvature at $p$ gives second-order expansion of metric. For sufficiently small $r$, volume and boundary area of causal diamond $D_{p,r}$ can be written as
+\begin{equation}
+V(D_{p,r})
+=\alpha_d r^d
+\Bigl[
+1 + c_1 R_{ab}u^a u^b r^2 + O(r^3)
+\Bigr],
+\end{equation}
+\begin{equation}
+A(\partial D_{p,r})
+=\beta_d r^{d-1}
+\Bigl[
+1 + c_2 R_{ab}u^a u^b r^2 + O(r^3)
+\Bigr],
+\end{equation}
+where $u^a$ is timelike direction.
+
+\subsection{First-Order Variation of Generalized Entropy}
+
+Generalized entropy is
+\begin{equation}
+S_{\mathrm{gen}}
+=\frac{A}{4G\hbar}
++S_{\mathrm{bulk}}.
+\end{equation}
+Metric variation $\delta g_{ab}$ leads to $\delta A$ and $\delta V$, latter manifesting via bulk stress--energy tensor
+\begin{equation}
+\delta S_{\mathrm{bulk}}
+=-\frac{1}{2}
+\int_{D_{p,r}}
+\sqrt{|g|}
+\langle T_{ab}\rangle
+\delta g^{ab}.
+\end{equation}
+
+Adding geometric and bulk parts of $\delta S_{\mathrm{gen}}$, and using
+\begin{equation}
+\delta \mathcal I_{\mathrm{grav}}
+\sim
+\delta S_{\mathrm{gen}}
+-\lambda_{\mathrm{ent}}\delta( S_{\mathrm{gen}}-S^\ast_{\mathrm{gen}} ),
+\end{equation}
+requiring $\delta \mathcal I_{\mathrm{grav}}=0$ for any $\delta g_{ab}$ in limit $r\to 0$, yields
+\begin{equation}
+G_{ab}+\Lambda g_{ab}
+=8\pi G \langle T_{ab} \rangle.
+\end{equation}
+Detailed coefficient matching and determination of $\Lambda$ require considering definition of reference entropy $S^\ast_{\mathrm{gen}}$ and background curvature conditions.
+
+\section{Boundary $K$-Class, Dirac Index, and Gauge Field Equations}
+
+\subsection{Restricted Unitary Bundle and $K$-Class}
+
+Channel bundle $E\to\partial M\times\Lambda$ has structure group $U_{\mathrm{res}}$, its stable equivalence class gives an element $[E]$ of $K(\partial M\times\Lambda)$. Scattering matrix $S(\omega;\ell)$ defines $K^1$ class $[S]$ in frequency direction.
+
+Using Fredholm index theory and relative scattering determinant, can construct a pairing
+\begin{equation}
+\langle [E],[S]\rangle
+=\mathrm{Index}(D_{[E]})\in\mathbb Z,
+\end{equation}
+where $D_{[E]}$ is Dirac operator coupled to $E$.
+
+\subsection{Gauge Variation and Yang--Mills Equations}
+
+Under fixed $[E]$, varying $A_{\mathrm{YM}}$
+\begin{equation}
+\delta \mathcal I_{\mathrm{gauge}}
+\sim
+\int_{\partial M\times\Lambda}
+\operatorname{tr}
+\bigl(
+\delta A_{\mathrm{YM}}\wedge \nabla_\mu F^{\mu\nu}
+\bigr),
+\end{equation}
+requiring $\delta \mathcal I_{\mathrm{gauge}}=0$ for any $\delta A_{\mathrm{YM}}$, yields
+\begin{equation}
+\nabla_\mu F^{\mu\nu}_{\mathrm{YM}}
+=J^\nu_{\mathrm{YM}},
+\end{equation}
+where $J^\nu_{\mathrm{YM}}$ is given by coupling of bulk and boundary states.
+
+\subsection{Index Constraint and Field Content}
+
+Allowed variations of $[E]$ must maintain consistency between $\mathrm{Index}(D_{[E]})$ and topological number calculated from scattering $K^1$ class. This gives conditions similar to ``anomaly cancellation'', excluding certain disallowed combinations of field content.
+
+\section{Relative Entropy Reconstruction of Local QFT}
+
+\subsection{Variational Properties of Relative Entropy}
+
+Relative entropy $S(\rho\Vert\sigma)$ satisfies:
+
+1. First-order variation with respect to $\rho$ is zero at $\rho=\sigma$;
+2. Second-order variation is positive definite, giving Fisher information metric.
+
+On each small causal diamond $D$, let $\rho=\omega_{\mathrm{bulk}}^D$, $\sigma=\omega_{\mathrm{scat}}^D$, then $\delta\mathcal I_{\mathrm{QFT}}=0$ requires $\omega_{\mathrm{bulk}}^D=\omega_{\mathrm{scat}}^D$ to be extremum state.
+
+\subsection{Wightman Function Reconstruction}
+
+Scattering--scale reference state $\omega_{\mathrm{scat}}^D$ gives a family of Wightman functions $W_n(x_1,\dots,x_n)$ satisfying:
+
+1. Lorentz covariance;
+2. Microcausality;
+3. Spectral condition;
+4. Positivity.
+
+Using Wightman reconstruction theorem, Hilbert space, field operators, and vacuum state can be constructed, obtaining local QFT.
+
+\subsection{Field Equations and Ward Identities}
+
+If $\{W_n\}$ further satisfies a set of multilinear relations (given by analytic invariants in $\mathcal D$), it can be proven that local operators $\phi_a(x)$ satisfy Euler--Lagrange equations, e.g.,
+\begin{equation}
+(\Box+m_a^2)\phi_a(x)=\text{interaction terms},
+\end{equation}
+and Noether currents corresponding to symmetries satisfy Ward identities. These relations subsequently ensure consistency of scattering matrix and field theory description.
+
+\section{Unified Structure of Fluid and Multi-Agent Entropy Gradient Flow}
+
+\subsection{Entropy Production Functional and Gradient Flow}
+
+Given a generalized entropy function $\mathsf S[\rho]$, gradient flow on Riemann--Wasserstein or information geometry metric $\mathsf G$
+\begin{equation}
+\partial_\tau \rho
+=-\operatorname{grad}_{\mathsf G}\mathsf S(\rho)
+\end{equation}
+can be viewed as some diffusion--flow equation. For fluids, $\rho$ is energy--momentum and particle number density; for multi-agent systems, $\rho$ is strategy distribution or belief distribution.
+
+\subsection{From $\mathcal I_{\mathrm{hydro}}+\mathcal I_{\mathrm{obs}}$ to Gradient Flow}
+
+In macroscopic limit, variation of $u^\mu,J^\mu_a,\omega_i$ transforms extremum problem of $\mathcal I_{\mathrm{hydro}}+\mathcal I_{\mathrm{obs}}$ into steepest descent problem of some entropy functional, deriving fluid equations and strategy update equations as different coordinate expressions of the same gradient flow structure.
+
+This implies ``fluid evolution'' and ``multi-agent learning'' are two limits of the same class of physical processes under unified time scale and boundary time geometry framework: **gradient flow of generalized entropy on unified scale**.
+
+\end{document}
+

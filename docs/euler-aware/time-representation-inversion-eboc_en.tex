@@ -1,0 +1,270 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{enumerate}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Representation and Inversion of ``Time'' in EBOC\\
+\vspace{0.3cm}
+\large --- Characterizing ``Sequence'' and ``Choice'' in a Static Block Universe,\\
+and Deriving Consciousness Self-Linearization from Recursive Unfolding\\
+of Observation Windows}
+
+\author{Anonymous Author}
+\date{Version: 2.7}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+In a ``timeless'' static block universe (EBOC), all facts are given as once-for-all structure--measure objects; so-called ``time'' should be a secondary calibration endogenously invertible from that object, not a primitive coordinate. This paper provides a rigorous route under the unified semantics of EBOC: first, via the \textbf{window--consensus} paradigm, we define ``sequence'' as a \textbf{bidirectionally infinite path} (consensus chain) on the function graph driven by a \textbf{unified selector}, ensuring ``unique successor'' through preference aggregation and well-order disambiguation; then, via the identity \textbf{windowed trace = phase--density calibration} (phase derivative = relative density of states = Wigner--Smith group delay trace), we establish ``time readout'' as \textbf{window-weight density integral} and close it under \textbf{finite-order} Nyquist--Poisson--Euler--Maclaurin error discipline; finally, in KL/Bregman information geometry, we characterize the \textbf{recursive unfolding} of observation windows as an I-projection (minimal KL) sequence, thereby obtaining the \textbf{consciousness self-linearization} theorem and inversion parameters in \textbf{dual (expectation) coordinates}. The core conclusion is: the one-dimensionality of ``narrative time'' in EBOC can be endogenously inverted via the combined force of ``structural selection + metric readout''.
+\end{abstract}
+
+\section{Notation \& Axioms / Conventions}
+
+\textbf{(Calibration Card I: Trinity)} The calibration identity holding almost everywhere in the absolutely continuous spectrum
+$$
+\boxed{\,\frac{\varphi'(E)}{\pi}=\rho_{\mathrm{rel}}(E)=\frac{1}{2\pi}\operatorname{tr}\mathsf{Q}(E)\,},\qquad
+\mathsf{Q}(E)=-i\,S(E)^\dagger \frac{dS}{dE}(E).
+$$
+where $S(E)$ is the scattering matrix, $\varphi'(E)$ is the total scattering phase derivative, $\rho_{\mathrm{rel}}$ is the relative density of states; the identity arises on one hand from the Birman--Kreĭn formula
+$$
+\det S(E)=e^{2\pi i\xi(E)}\quad\Rightarrow\quad \xi'(E)=\rho_{\mathrm{rel}}(E)=\frac{1}{2\pi i}\frac{d}{dE}\log\det S(E).
+$$
+\textbf{Define} total scattering phase $\displaystyle \varphi(E):=\frac{1}{2i}\log\det S(E)$ (continuous branch), then
+$$
+\frac{\varphi'(E)}{\pi}=\frac{1}{2\pi i}\frac{d}{dE}\log\det S(E)=\xi'(E)=\rho_{\mathrm{rel}}(E),
+$$
+fully consistent. On the other hand from Wigner--Smith time-delay matrix and Kreĭn--Friedel relation $\rho_{\mathrm{rel}}(E)=\frac{1}{2\pi}\operatorname{tr}\mathsf{Q}(E)$ \cite{yafaev2007}.
+
+\textbf{(Calibration Card II: NPE Finite-Order Discipline)} All windowed computations only allow \textbf{finite-order} Euler--Maclaurin (EM) and Poisson summation; error strictly decomposes as
+$$
+\varepsilon=\varepsilon_{\mathrm{alias}}+\varepsilon_{\mathrm{EM}}+\varepsilon_{\mathrm{tail}},
+$$
+where under Nyquist sampling (band-limited signal, sampling rate $>2B$) $\varepsilon_{\mathrm{alias}}=0$; EM remainder controlled by Bernoulli polynomials and higher-order derivatives of integrand; tail controlled by fast decay and band limitation. This discipline guarantees \textbf{non-increasing singularity} and ``pole = primary scale'' \cite{nyquist_sampling}.
+
+\textbf{Windows and kernels.} On energy axis $\mathbb{R}_E$, given even window $w_R \ge 0$ and front-end kernel $h \ge 0$ (band-limited, regular, and $\int_{\mathbb{R}} h(E)\,dE=1$), convolution denoted $(h\star\rho)(E)$.
+
+\textbf{Working energy band.} Denote
+$$
+\mathcal{B}\ :=\ \operatorname{ess\,supp}\biggl(\sum\nolimits_k w_{R_k}\biggr)\ \subset\ \mathbb{R}_E,
+$$
+the essential support of pointwise weight sum of the window family. All assertions in this paper about \textbf{coverage}, \textbf{bounded overlap (strong/weak)}, readout and inversion are stated on $\mathcal{B}$.
+
+\textbf{Integrability.} Assume $\rho_{\mathrm{rel}}\in L^1_{\mathrm{loc}}(\mathcal{B})$; accordingly all $\int_{E_0}^{E(t)}\rho_{\mathrm{rel}}$ appearing in this paper are well-defined on $\mathcal{B}$.
+
+\textbf{Window family coverage.} Let window family $\{w_{R_k}\}$ satisfy $\displaystyle\sum_k w_{R_k}(E)>0$ a.e. on $\mathcal{B}$.
+
+\textbf{Window family bounded overlap.} \textbf{Strong form:} there exists $C<\infty$ such that $\displaystyle\sum_k w_{R_k}(E)\le C$ a.e.; \textbf{Weak form:} there exist $M<\infty$ and $W_{\max}<\infty$ such that for any $E$, $\#\{k:\,w_{R_k}(E)>0\}\le M$ and $\sup_k\|w_{R_k}\|_\infty\le W_{\max}$. Under either condition and $h\ge 0,\ \int h=1$, we have $\displaystyle\sum_k w_{R_k}(E)\,\bigl(h\star\rho_{\mathrm{rel}}\bigr)(E)\in L^1_{\mathrm{loc}}$; \textbf{accordingly, $F$ defined in \S\ref{sec:inversion} is a locally bounded variation (absolutely continuous) function on $\mathcal{B}$}; if further assuming $\displaystyle\int_{\mathcal{B}}\biggl|\sum_k w_{R_k}(E)\,\bigl(h\star\rho_{\mathrm{rel}}\bigr)(E)\biggr|\,dE<\infty$ (e.g., finite window family, or $\sum_k w_{R_k}\in L^1(\mathcal{B})$ and $\rho_{\mathrm{rel}}\in L^1(\mathcal{B})$), then $F$ is \textbf{globally bounded variation} on $\mathcal{B}$.
+
+\textbf{Window family normalization (PUC) and approximate identity kernel.} Let $\sum_k w_{R_k}(E)\equiv 1$ a.e. on $\mathcal{B}$, take nonnegative kernel family $\{h_\varepsilon\}_{\varepsilon>0}$ satisfying $\int h_\varepsilon=1$ and for all $f\in L^1_{\mathrm{loc}}(\mathcal{B})$ we have $h_\varepsilon\star f\to f$ in $L^1_{\mathrm{loc}}(\mathcal{B})$ ($\varepsilon\to 0$). Under PUC and NPE finite-order discipline, the band-limited quantity $h_\varepsilon\star\rho_{\mathrm{rel}}$ satisfies
+$$
+F_\varepsilon(E):=\sum_k\int_{-\infty}^{E} w_{R_k}(E')\,\bigl(h_\varepsilon\star\rho_{\mathrm{rel}}\bigr)(E')\,dE'
+=\int_{-\infty}^{E}\rho_{\mathrm{rel}}(E')\,dE'+C_\varepsilon+\mathcal{O}(\varepsilon_{\mathrm{EM}}+\varepsilon_{\mathrm{tail}}),
+$$
+where constant $C_\varepsilon$ together with EM/tail terms give a uniform upper bound, and $C_\varepsilon\to C_0$ as $\varepsilon\to 0$.
+
+\textbf{Frames and band limitation.} Multi-window Gabor/frame Parseval/Tight construction and Wexler--Raz biorthogonality provide stability and density criteria for windowed reconstruction and multi-channel cooperation; critical sampling constrained by Balian--Low phenomenon \cite{wexler_raz}.
+
+\textbf{Information geometry.} Adopt Legendre potential $\Lambda$ and Bregman/KL construction: $\nabla\Lambda$ gives expectation coordinates, I-projection is minimal KL under linear moment constraints; KKT conditions characterize unique optimal point and give sensitivity \cite{csiszar_geom}.
+
+\section{Timeless Characterization of ``Sequence'' and ``Choice''}
+
+\subsection{Window Graph, Causal Compatibility, and Feasible Paths}
+
+Take window radius $r$ and allowed fragment set $\mathcal{C}$. Construct De Bruijn-type \textbf{window graph} $\Gamma$: vertices are local fragments of length $2r$, edges are one-step slides; impose \textbf{causal compatibility} (advancing along edges does not violate underlying dependency preorder). Thus \textbf{feasible sequences} $X:\mathbb{Z}\to\mathcal{C}$ on the block correspond one-to-one with \textbf{bidirectional paths} on $\Gamma$ \cite{debruijn_review}.
+
+\subsection{Unified Selector and Function Graph Decomposition}
+
+For each vertex, aggregate multi-agent preferences as weighted extremum, and disambiguate with well-order, obtaining \textbf{unified selector} $\mathrm{Sel}$ and \textbf{deterministic successor}; this yields \textbf{function graph} $\Gamma_{\mathrm{Sel}}$ (each point out-degree $=1$). Any finite out-degree-1 directed graph decomposes into \textbf{several directed cycles} plus their in-trees; periodic points form cycles, others are transient nodes. This paper defines \textbf{bidirectionally infinite consensus chain} as bidirectionally extended paths on cycles \cite{functional_digraph}.
+
+\begin{proposition}[Function Graph Structure--Finite Fragment Case]\label{prop:func_graph}
+Let allowed fragment set $\mathcal{C}$ be finite (equivalently: alphabet finite and window radius finite), then each connected component of $\Gamma_{\mathrm{Sel}}$ contains \textbf{exactly one} directed cycle, with other vertices flowing into that cycle via directed trees; the cycle admits bidirectional infinite paths, called consensus chains. \textbf{General infinite case:} each connected component contains \textbf{at most one} directed cycle.
+\end{proposition}
+
+\begin{proof}
+Function graphs are standard functional digraphs; their decomposition properties are as stated in the literature (cycles + in-trees) \cite{functional_digraph}.
+\end{proof}
+
+\subsection{Linear Extension and Threshold Stability}
+
+For dependency preorder $\preceq$, by Szpilrajn's theorem any partial order extends to a total order; on the consensus chain image set take this \textbf{consistent linear extension} as the index coordinate $t\in\mathbb{Z}$. When weights and disambiguation have minimal gap, unique successor remains invariant under small perturbations (threshold stable) \cite{szpilrajn}.
+
+\begin{definition}[Sequence and Choice]\label{def:sequence_choice}
+\textit{Choice:} Given window state $v$, $\mathrm{Sel}(v)$ selects unique successor edge;\\
+\textit{Sequence:} Bidirectional path $(v_t)_{t\in\mathbb{Z}}$ on $\Gamma_{\mathrm{Sel}}$ satisfying $v_t\to v_{t+1}$.
+\end{definition}
+
+\section{Representation of ``Time'': Phase--Density--Windowed Trace}
+
+\subsection{Phase Derivative = Relative Density of States = Group Delay Trace}
+
+On the absolutely continuous spectrum, the Birman--Kreĭn formula connects spectral shift function $\xi$ and $S(E)$:
+$$
+\det S(E)=e^{2\pi i\xi(E)}\quad\Rightarrow\quad \xi'(E)=\rho_{\mathrm{rel}}(E)=\frac{1}{2\pi i}\frac{d}{dE}\log\det S(E).
+$$
+On the other hand, Wigner--Smith defines $\mathsf{Q}(E)=-iS^\dagger S'$, Kreĭn--Friedel relation gives $\rho_{\mathrm{rel}}(E)=\frac{1}{2\pi}\operatorname{tr}\mathsf{Q}(E)$. Together yield the identity in Calibration Card I \cite{yafaev2007}.
+
+\subsection{Windowed Readout and Non-Asymptotic Closure}
+
+Define \textbf{windowed trace readout}
+$$
+\mathrm{Obs}(R;\rho_{\mathrm{rel}}):=\int_{\mathbb{R}} w_R(E)\,\bigl(h\star\rho_{\mathrm{rel}}\bigr)(E)\,dE.
+$$
+Discrete implementation obeys \textbf{NPE three-way decomposition}: aliasing term (Poisson side), boundary Bernoulli layer (EM side), and tail (band-limited decay). When sampling satisfies Nyquist, $\varepsilon_{\mathrm{alias}}=0$; EM remainder controlled by Bernoulli coefficients and higher-order derivative bounds; tail controlled by band limitation and window regularity, thus no new singularities introduced \cite{dlmf_em}.
+
+\begin{definition}[EBOC Time Readout Functional]\label{def:time_readout}
+Given window family $\{w_{R_k}\}$ and kernel $h$, define
+$$
+\mathcal{T}[\rho_{\mathrm{rel}}]:=\sum_k\int_{\mathbb{R}} w_{R_k}(E)\,\bigl(h\star\rho_{\mathrm{rel}}\bigr)(E)\,dE,
+$$
+and under additional integrability assumption $\displaystyle\int_{\mathcal{B}}|h\star\rho_{\mathrm{rel}}|\,dE<\infty,\quad \sum_k w_{R_k}\in L^\infty(\mathcal{B})\cap L^1(\mathcal{B})$ (or finite window family), $\mathcal{T}[\rho_{\mathrm{rel}}]$ is finite and can be given a uniform upper bound via NPE finite-order error; under Nyquist $\varepsilon_{\mathrm{alias}}=0$ \cite{nyquist_sampling}.
+\end{definition}
+
+\section{Inversion of ``Time'': Recovering Linear Order from Window Data}\label{sec:inversion}
+
+\subsection{Phase Integral Index}
+
+Let consensus chain $C=\{v_t\}_{t\in\mathbb{Z}}$. In $\mathcal{B}$, $E(t)$ is taken from the monotone preimage of the readout functional: denote
+$$
+F(E):=\sum_k\int_{-\infty}^{E} w_{R_k}(E')\,\bigl(h\star\rho_{\mathrm{rel}}\bigr)(E')\,dE'.
+$$
+Under band limitation, Nyquist sampling, $w_{R_k}\ge 0,\ h\ge 0$ \textbf{and window family bounded overlap (strong or weak form)}, $F$ is \textbf{locally bounded variation (absolutely continuous)} on $\mathcal{B}$; if further satisfying the global integrability condition given in the previous section, then $F$ is \textbf{globally bounded variation} on $\mathcal{B}$. On the \textbf{absolutely continuous part} of $\mathcal{B}$, $\rho_{\mathrm{rel}}=\xi'$ a.e. holds, hence \textbf{$\rho_{\mathrm{rel}}\ge 0$ a.e. $\Leftrightarrow\ \xi$ is non-decreasing there}. Under this premise $F$ is \textbf{monotone non-decreasing}; if further adding \textbf{window family coverage} and $\rho_{\mathrm{rel}}>0$ (a.e.), then $F$ is \textbf{strictly monotone}. Select step calibration $\Delta>0$, define \textbf{effective index set}
+$$
+\mathcal{T}_F:=\{t\in\mathbb{Z}\mid t\Delta\in\operatorname{ran}\bigl(F\vert_{\mathcal{B}}\bigr)\}.
+$$
+For $t\in\mathcal{T}_F$, take \textbf{right-continuous generalized inverse}
+$$
+E(t):=F^{-1}(t\Delta),\qquad F^{-1}(y):=\inf\{E:\,F(E)\ge y\}.
+$$
+To eliminate additive constant, take baseline index $t_\star\in\mathcal{T}_F$ and set $E_0:=E(t_\star)$, accordingly define
+$$
+\tau(t):=\int_{E_0}^{E(t)}\rho_{\mathrm{rel}}(E)\,dE=\frac{1}{2\pi}\int_{E_0}^{E(t)}\operatorname{tr}\mathsf{Q}(E)\,dE,
+$$
+by $\rho_{\mathrm{rel}}\in L^1_{\mathrm{loc}}(\mathcal{B})$ in Notation, the above integral is well-defined on $\mathcal{B}$. Thus $\tau(t_\star)=0$; if \textbf{$\rho_{\mathrm{rel}}\ge 0$ (a.e.)} then $\tau$ is \textbf{monotone non-decreasing}, and when \textbf{window family coverage} and $\rho_{\mathrm{rel}}>0$ (a.e.) hold, $\tau$ is \textbf{strictly increasing} \cite{texier2015}.
+
+Under the general condition of only satisfying ``window family coverage + bounded overlap'', $F$ provides strictly monotone energy parameter $E(t)$ and order equivalence; phase coordinate $\tau$ still needs to be constructed through $\int\rho_{\mathrm{rel}}$. If further satisfying \textbf{PUC + approximate identity kernel}, then there exists constant $C$ such that
+$$
+\tau(t)=F(E(t))-F(E_0)+\mathcal{O}(\varepsilon_{\mathrm{EM}}+\varepsilon_{\mathrm{tail}}),
+$$
+thus ``time readout'' can be directly given by prefix windowed readout (up to constant) with error uniformly controlled by NPE discipline.
+
+\subsection{Inversion Theorem}
+
+\begin{theorem}[Time Inversion]\label{thm:time_inversion}
+Under band-limited windows, Nyquist sampling, and finite-order EM conditions:
+
+\begin{enumerate}[(1)]
+\item \textbf{(General condition)} The linear order of any consensus chain $C$ can be inverted from the prefix windowed readout $F$ via the generalized inverse $F^{-1}$ to a strictly monotone energy parameter $E(t)$, and accordingly obtain a bounded variation parameter equivalent to the chain index $t$; if \textbf{$\rho_{\mathrm{rel}}\ge 0$ (a.e.)}, this parameter is \textbf{monotone non-decreasing}, and when \textbf{window family coverage} and $\rho_{\mathrm{rel}}>0$ (a.e.) hold, it is \textbf{strictly increasing}.
+
+\item \textbf{(Additional PUC + approximate identity kernel)} Further we have $\tau(t)=F(E(t))-F(E_0)+\mathcal{O}(\varepsilon_{\mathrm{EM}}+\varepsilon_{\mathrm{tail}})$, thus phase coordinates can be directly recovered from $F$ (or its Nyquist sampling $\{F(E_j)\}$) within a uniform error bound.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+(i) By Calibration Card I and Kreĭn--Friedel relation, reduce windowed trace to $\int \rho_{\mathrm{rel}}$; (ii) Nyquist closes aliasing to zero, EM remainder and tail controlled; (iii) By integrability assumption $\rho_{\mathrm{rel}}\in L^1_{\mathrm{loc}}(\mathcal{B})$ we know $\tau$ is well-defined on $\mathcal{B}$; when \textbf{$\rho_{\mathrm{rel}}\ge 0$ (a.e.)}, $\tau$ is monotone non-decreasing; under \textbf{window family coverage} and $\rho_{\mathrm{rel}}>0$ (a.e.), $\tau$ is strictly monotone and invertible \cite{yafaev2007}.
+\end{proof}
+
+\section{Recursive Unfolding of Observation Windows $\Rightarrow$ Consciousness Self-Linearization}
+
+\subsection{Submission = I-Projection (Minimal KL)}
+
+Let internal state be represented by natural parameter $\theta$, potential function $\Lambda$ of Legendre type, expectation coordinate $X=\nabla\Lambda(\theta)$. Each observation step updates target moment $F_n$ to $F_{n+1}$, \textbf{submission/collapse} equivalent to
+$$
+\theta_{n+1}=\arg\min_{\theta}\bigl\{\mathrm{KL}(P_\theta\|P_{\theta_n})\ \text{s.t.}\ \mathbb{E}_{\theta}[T]=F_{n+1}\bigr\},
+$$
+i.e., I-projection on linear constraints; unique solution exists and satisfies KKT. Bregman--Euclidean Pythagorean property gives optimal decomposition of projection \cite{csiszar_geom}.
+
+\subsection{Linear Response and Quasi-Linear Trajectory}
+
+When window change is ``mild'' and NPE order fixed, then
+$$
+X_{n+1}-X_n=\nabla^2\Lambda(\theta_n)\,(\theta_{n+1}-\theta_n)+o\bigl(\lVert\theta_{n+1}-\theta_n\rVert\bigr),
+$$
+KKT and strong convexity give first-order \textbf{linear response}; reparametrizing the iteration with $\tau$ from \S\ref{sec:inversion}, can be viewed as approximate equal-step advance along some fixed vector $v_\ast$ in expectation coordinates.
+
+\begin{theorem}[Consciousness Self-Linearization]\label{thm:self_linearization}
+Let $\Lambda$ be essentially smooth strictly convex potential; windows $w_R$ and kernel $h$ band-limited and satisfy Wexler--Raz/Parseval frame stability; sampling Nyquist. Then the submission states $\{X_n\}$ driven by recursive windows \textbf{admit a strictly increasing reparametrization map} $\sigma:\mathbb{Z}\to\mathbb{Z}$ and constant vector $v_\ast$ in expectation coordinates, and there exists function $\varepsilon_{\mathrm{micro}}(R,\Delta)=o_{R\to\infty,\ \Delta\to 0}(1)$, such that for any baseline $n$ and all integers $m$
+$$
+\lVert X_{\sigma(n+m)}-X_{\sigma(n)}-m\,v_\ast\rVert\ \le\ |m|\,\Bigl[C\bigl(\varepsilon_{\mathrm{EM}}+\varepsilon_{\mathrm{tail}}\bigr)+\varepsilon_{\mathrm{micro}}(R,\Delta)\Bigr].
+$$
+\textbf{Convention:} $\varepsilon_{\mathrm{micro}}(R,\Delta)$ depends only on window/kernel and NPE order, satisfying $\varepsilon_{\mathrm{micro}}(R,\Delta)\to 0$ (as $R\to\infty,\ \Delta\to 0$ with NPE order fixed), the bound reflects linear accumulation of error with step count $|m|$. Accordingly, consciousness exhibits \textbf{quasi-linear dominant trajectory} in its own dual coordinates.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+Wexler--Raz and Parseval/Tight guarantee readout mapping and reconstruction stability; KKT and Bregman geometry's Pythagorean identity give first-order linearization of each I-projection step; NPE constraint ensures noise terms are entirely dominated by finite-order remainder \cite{wexler_raz}.
+\end{proof}
+
+\section{Unified Trinity of ``Sequence--Choice--Time''}
+
+\begin{itemize}
+\item \textbf{From block to sequence:} Unified selector generates consensus chain (bidirectionally infinite path) on function graph, and via Szpilrajn assigns consistent linear extension;
+\item \textbf{From sequence to time:} Phase--density--group delay calibration identity makes ``time readout'' become integral of window-weighted density; Nyquist--EM guarantee non-asymptotic closure;
+\item \textbf{From time to consciousness:} I-projection on recursive windows enables dual coordinates to acquire quasi-linear principal axis, with $\tau$ as the endogenous parameter of that axis.
+\end{itemize}
+
+\section{Thresholds, Singularities, and Implementation Notes}
+
+\begin{enumerate}
+\item \textbf{Threshold/resonance:} Singularities (such as poles, branch points) of $\varphi'(E)$ (equivalently $\rho_{\mathrm{rel}}(E)$) correspond to continuous spectrum thresholds and resonances; zeros do not constitute general criteria. Windowing and finite-order EM do not increase singularity, maintaining ``pole = primary scale'' \cite{dlmf_em}.
+\item \textbf{Frames and density:} Multi-window Parseval/Tight and Wexler--Raz biorthogonality guarantee robust reconstruction; critical sampling constrained by Balian--Low, redundant sampling intervals recommended \cite{wexler_raz}.
+\item \textbf{Sampling and aliasing:} Band limitation and Nyquist sampling are sufficient conditions for closing aliasing; in engineering implementation, modulation--downsampling strategy can achieve in-band Nyquist \cite{nyquist_sampling}.
+\end{enumerate}
+
+\section{Conclusion}
+
+From the EBOC static block perspective, ``time'' is not a primitive axis but generated in three steps: \textbf{(i) window--consensus} condenses choice into function graph's \textbf{consensus chain}; \textbf{(ii) phase--density} enables the chain to acquire invertible \textbf{time calibration} (windowed trace readout); \textbf{(iii) KL/Bregman} makes \textbf{submission} of recursive windows exhibit \textbf{self-linearization} in dual coordinates. This route is entirely anchored on verifiable criteria: function graph and linear extension, phase--density identity and NPE finite-order error discipline, Legendre--Bregman and KKT optimization structure, thereby reducing the one-dimensionality of ``narrative time'' to the result of \textbf{structural choice + metric readout}.
+
+\begin{thebibliography}{99}
+
+\bibitem{yafaev2007}
+Yafaev, D.R. \textit{The spectral shift function}. arXiv:math/0701301, 2007.
+\url{https://arxiv.org/pdf/math/0701301}
+
+\bibitem{nyquist_sampling}
+\textit{Nyquist--Shannon sampling theorem}. Wikipedia.
+\url{https://en.wikipedia.org/wiki/Nyquist-Shannon_sampling_theorem}
+
+\bibitem{wexler_raz}
+Daubechies, I., Landau, H.J., Landau, Z. \textit{Gabor Time-Frequency Lattices and the Wexler--Raz Identity}. 1994.
+\url{https://sites.math.duke.edu/~ingrid/publications/J_Four_Anala_Appl_1_p437.pdf}
+
+\bibitem{csiszar_geom}
+Csiszár, I. \textit{I-Divergence Geometry of Probability Distributions and Minimization Problems}. 1975.
+\url{https://pages.stern.nyu.edu/~dbackus/BCZ/entropy/Csiszar_geometry_AP_75.pdf}
+
+\bibitem{debruijn_review}
+\textit{A Comprehensive Review of the de Bruijn Graph and Its Applications}.
+\url{https://www.espublisher.com/uploads/article_pdf/es1061.pdf}
+
+\bibitem{functional_digraph}
+\textit{Functional digraph structure}. arXiv:2502.02360, 2025.
+\url{https://arxiv.org/pdf/2502.02360}
+
+\bibitem{szpilrajn}
+\textit{Szpilrajn extension theorem}. Wikipedia.
+\url{https://en.wikipedia.org/wiki/Szpilrajn_extension_theorem}
+
+\bibitem{dlmf_em}
+DLMF: \textit{Sums and Sequences}.
+\url{https://dlmf.nist.gov/2.10}
+
+\bibitem{texier2015}
+Texier, C. \textit{Scattering theory and the Krein--Friedel relation}. arXiv:1507.00075, 2015.
+\url{https://arxiv.org/pdf/1507.00075}
+
+\end{thebibliography}
+
+\end{document}
+

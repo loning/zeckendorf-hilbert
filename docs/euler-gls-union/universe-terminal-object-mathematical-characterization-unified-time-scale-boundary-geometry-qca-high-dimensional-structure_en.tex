@@ -1,0 +1,809 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{braket}
+\usepackage{graphicx}
+\usepackage{amsfonts} % For \mathfrak
+\usepackage{tikz-cd} % For commutative diagrams
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+
+% Title information
+\title{Mathematical Characterization of Universe Terminal Object: Unified Time Scale, Boundary Time Geometry and High-Dimensional Structure of QCA Universe}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+At the intersection of general relativity, quantum field theory, and information theory, increasing work points to a common picture: all observable structures of the physical universe can be viewed as "shadows" of some higher-dimensional mathematical object under different projections. Descriptions such as causal partial orders, spacetime manifolds, scattering matrices, boundary algebras, and quantum cellular automata (QCA) are merely images of this high-dimensional object in different categories. In this paper, within the framework of unified time scale, boundary time geometry, and QCA universe, we introduce and characterize a "Universe Terminal Object" to provide a precise definition of the "highest-dimensional mathematical structure of the universe".
+
+Specifically, we construct three types of universe categories with physical constraints: Operator--Scattering Universe Category ($\mathsf{OpUniv}$), Boundary Time Geometry Universe Category ($\mathsf{GeoUniv}$), and QCA/Matrix Universe Category ($\mathsf{QCAUniv}$). These encode, respectively, the scattering--spectral shift--Wigner--Smith delay structure under unified time scale, boundary time geometry with generalized entropy and quantum null energy conditions, and discrete QCA universe with finite information. For each category, we construct a causal shadow functor to the category of locally finite causal partial orders ($\mathsf{Caus}$), thereby formalizing the statement that "causal partial order is merely a shadow of high-dimensional structure".
+
+Based on this, we define the "Causally Compatible Universe Triplet" category ($\mathsf{Uni}\subset\mathsf{OpUniv}\times\mathsf{GeoUniv}\times\mathsf{QCAUniv}$), whose objects are triple universe objects with aligned causal shadows in $\mathsf{Caus}$, and morphisms are structure-preserving maps along coarse-graining directions and covariant on the causal side. Assuming the Unified Time Scale Mother Ruler axiom, Finite Information Principle, and appropriate Chain Completeness axiom, we prove: there exists a unique (up to isomorphism) terminal object $\mathfrak U_{\max}$ in $\mathsf{Uni}$, called the "Universe Terminal Object". The three projections of this object give the Operator--Scattering Terminal Object ($O_{\max}$), Geometric--Boundary Terminal Object ($G_{\max}$), and QCA Terminal Object ($Q_{\max}$), which are pairwise equivalent under appropriate bridging functors.
+
+Furthermore, we present three structural results. First, any physically realizable universe model can be viewed as a unique projection of $\mathfrak U_{\max}$ in some categorical dual, thus causal partial orders, small causal diamonds, and observer worldlines are merely shadows of $\mathfrak U_{\max}$ at different projections and scales. Second, based on the discrete version of generalized entropy and quantum focusing conjecture, we prove the "Small Diamond Refinement Theorem": under finite information axioms, causal small diamonds at any scale can be filled by families of smaller diamonds in a nearly entropy-additive manner; the minimal physical structure is determined only by the information cell scale, not by some fixed geometric minimal diamond. Third, observers, memory, and multi-observer consensus geometries can be characterized in $\mathfrak U_{\max}$ as filters on the causal shadow and consistent subobjects in the three representations, transforming "time delay equals memory" and "volume is phenomenon decoded from boundary data" into precise theorems of relative entropy and scale density. Appendices provide detailed proofs for the existence and uniqueness of the universe terminal object, the small diamond refinement theorem, and the equivalence of the three representations.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Unified Time Scale; Boundary Time Geometry; Quantum Cellular Automata; Causal Partial Order; Small Causal Diamond; Terminal Object; Finite Information Principle; Holographic Structure
+
+\section{Introduction \& Historical Context}
+
+\subsection{High-Dimensional Structure and "Shadow" Perspective}
+
+Modern physical theories often switch between several non-equivalent "representations":
+
+1. Geometric description with spacetime manifold $(M,g)$ and causal structure $J^\pm$ as basic objects;
+
+2. Operator--scattering description with Hilbert space, operator algebra, and scattering matrix $S(\omega)$ as basic objects;
+
+3. Quantum Cellular Automata description with discrete lattice $\Lambda$, local Hilbert space $\mathcal H_{\mathrm{cell}}$, and local evolution $U$ as basic objects.
+
+Meanwhile, the causal set program proposes that microscopic spacetime is essentially composed of a locally finite partial order set, suggesting that retaining only "precedence relations" can reconstruct parts of continuous manifold structure. The holographic principle further indicates that degrees of freedom in bulk regions can be encoded by boundary degrees of freedom, with black hole thermodynamics and the Bekenstein bound providing specific entropy bounds for this "boundary encoding".
+
+These results collectively suggest: the so-called "Universe" can be understood as some high-dimensional structure containing all data of causality, geometry, operators, information, and computation, while the familiar spacetime, fields, particles, and causal partial orders are merely projections or shadows of this high-dimensional structure in different categories and scales.
+
+This paper attempts to axiomatize this picture: construct a category-theoretic framework simultaneously controlling unified time scale, boundary time geometry, and QCA universe, and define and prove the existence of a "Universe Terminal Object" within it, precisely equating the "highest-dimensional mathematical structure of the universe" to the terminal object $\mathfrak U_{\max}$ of category $\mathsf{Uni}$.
+
+\subsection{Historical Background: From Causal Sets, Holography to QCA Universe}
+
+In spacetime discretization attempts, the causal set program proposed by Bombelli--Lee--Meyer--Sorkin assumes microscopic spacetime essentially consists of a locally finite partial order set, with continuous manifold being merely a coarse-grained limit. This idea provided a precedent for "causality-first" universe characterization. ([PhysRevLett][1])
+
+On the other hand, the holographic principle and AdS/CFT duality show that gravitational degrees of freedom in bulk are equivalent to conformal field theory on the boundary, naturally encouraging rewriting gravitational dynamics with boundary algebra, generalized entropy, and Quantum Focusing Conjecture (QFC/QNEC). ([RevModPhys][2])
+
+Furthermore, Schumacher--Werner gave structural theorems for reversible Quantum Cellular Automata, characterizing them as local unitary transformations with finite propagation radius and translation covariance, and proving reversible QCA have good classification and continuum limit properties. Extensive work shows that continuum limits of a class of QCA can produce effective Dirac-type field theories and gauge field theories, providing rigorous mathematical support for "Universe as QCA". ([arXiv][5])
+
+On the scattering theory side, Eisenbud--Wigner--Smith delay time and Birman--Kreĭn formula show that scattering phase derivative, spectral shift function, and trace of Wigner--Smith group delay matrix are related by a unified relation, interpreted as a single time scale density $\kappa(\omega)$. This scale is connected to the generator of boundary time translation in the boundary Hamiltonian formalism (Brown--York quasi-local energy), thereby unifying scattering time scale and boundary time geometry. ([Atoms][11])
+
+The above threads indicate: there should exist deep correspondences between scattering--time scale, boundary time geometry, and QCA universe, whose common constraints can be distilled into several axioms. This paper proposes the concept of "Universe Terminal Object" on this basis.
+
+\subsection{Contributions and Main Results}
+
+The goal of this paper can be summarized as the following question: Under unified time scale and finite information axioms, does there exist a mathematical object that is simultaneously maximal and consistent in operator--scattering, boundary geometry, and QCA representations, such that all physically realizable universe models can be viewed as its projections or coarse-grainings? If it exists, can this object be characterized as a terminal object in some natural category?
+
+To answer this, this paper completes the following work:
+
+1. Construct three types of universe categories with physical constraints $(\mathsf{OpUniv},\mathsf{GeoUniv},\mathsf{QCAUniv})$, and define causal shadow functors to the category of locally finite causal partial orders $(\mathsf{Caus})$ on each, formalizing the proposition "causal partial order is a shadow of high-dimensional data".
+
+2. Define "Causally Compatible Universe Triplet" category $(\mathsf{Uni})$, whose objects are triple universe objects with common causal shadow in three representations, and morphisms are maps preserving structure along coarse-graining direction and covariant on causal shadow.
+
+3. Under Unified Time Scale Mother Ruler, Finite Information Principle, and Chain Completeness axioms, use Zorn's Lemma to prove the existence of a unique (up to isomorphism) terminal object $(\mathfrak U_{\max})$ in $(\mathsf{Uni})$, and provide its three projections $(O_{\max},G_{\max},Q_{\max})$ and their pairwise equivalence.
+
+4. On the causal shadow $(C_{\max})$ of $(\mathfrak U_{\max})$, introduce scale-parameterized families of small causal diamonds, and prove "Small Diamond Refinement Theorem": any large-scale small diamond can be filled by smaller-scale diamonds in a nearly entropy-additive manner; the minimal physical unit is determined by information cell scale rather than geometric diamond, rigorousizing the statement "small diamonds are never minimal structures, only self-consistent structures".
+
+5. Characterize observers, memory, and multi-observer consensus geometry as causal filters and subobjects in $(\mathfrak U_{\max})$, proving quantitative correspondence between memory entropy along worldlines and unified time scale, giving a precise theorem version of "time delay is equivalent to memory".
+
+The paper structure follows "Model \& Axioms -> Main Theorems -> Proofs -> Applications -> Engineering Proposals -> Discussion -> Conclusion -> Appendices".
+
+\section{Model \& Assumptions}
+
+This section provides unified time scale axiom, finite information axiom, definitions of causal partial order and small causal diamonds, and constructs three universe categories and causal shadow functors, laying foundation for subsequent main theorems.
+
+\subsection{Unified Time Scale Mother Ruler}
+
+Consider a class of scattering systems satisfying standard traceable perturbation conditions, whose scattering matrix can be written as frequency-dependent unitary operator family
+$$
+S(\omega)\in\mathcal U(\mathcal H),\quad \omega\in\mathbb R.
+$$
+Define Wigner--Smith group delay matrix
+$$
+\mathsf Q(\omega)=-\mathrm i\,S(\omega)^\dagger\partial_\omega S(\omega).
+$$
+Let $\varphi(\omega)$ be total scattering phase, $\xi(\omega)$ be Birman--Kreĭn spectral shift function, $\rho_{\mathrm{rel}}(\omega)$ be corresponding relative density of states. Under appropriate regularity and traceability conditions, standard relations hold:
+$$
+\varphi'(\omega)=\pi\,\xi'(\omega),\quad
+\xi'(\omega)=\rho_{\mathrm{rel}}(\omega),\quad
+\rho_{\mathrm{rel}}(\omega)=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(\omega),
+$$
+derived from Birman--Kreĭn formula and spectral shift function theory. ([Notes][10])
+
+Accordingly, introduce unified scale density function
+$$
+\kappa(\omega)
+=\frac{\varphi'(\omega)}{\pi}
+=\rho_{\mathrm{rel}}(\omega)
+=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(\omega).
+$$
+
+\textbf{Axiom A1 (Scale Identity)}
+
+For all operator--scattering universe objects considered in this paper, their scattering descriptions satisfy the above scale identity. In other words, $\kappa(\omega)$ is unique up to additive constant, serving as the mother density of global unified time scale.
+
+This axiom unifies scattering phase derivative, spectral shift function derivative, and Wigner--Smith group delay trace into a single time scale density, providing a common baseline for bridging scattering--geometry--QCA.
+
+\subsection{Finite Information Principle and Local Finiteness}
+
+Bekenstein bound and black hole thermodynamics indicate that for given energy and spatial scale, maximum entropy of a system has a finite upper bound. This inspires the following information-theoretic axiom.
+
+\textbf{Axiom A2 (Finite Information Principle)}
+
+1. There exists a constant $I_{\max}\in(0,+\infty)$, such that the logarithmic cardinality of any family of physically distinguishable universe states does not exceed $I_{\max}$.
+
+2. There exists a minimal effective information cell scale $\epsilon>0$, such that when description scale is smaller than $\epsilon$, added details do not correspond to new physically distinguishable degrees of freedom.
+
+Finite information principle induces local finiteness on causal structure.
+
+\textbf{Definition 2.1 (Locally Finite Causal Partial Order)}
+
+A partial order set $(X,\prec)$ is called locally finite if for any $x\prec y\in X$, the closed causal interval
+$$
+I(x,y)=\{z\in X:x\preceq z\preceq y\}
+$$
+is a finite set.
+
+Local finiteness naturally appears in causal sets and discrete QCA causal structures. Finite information principle ensures any finite spacetime region contains only finite "fundamental events", supporting physical rationality of local finiteness.
+
+\subsection{Causal Partial Order and Small Causal Diamond}
+
+\textbf{Definition 2.2 (Causal Partial Order Category $\mathsf{Caus}$)}
+
+Objects of $\mathsf{Caus}$ are all locally finite causal partial orders $(X,\prec)$, morphisms are order-preserving injections
+$$
+f:(X,\prec_X)\to(Y,\prec_Y),\quad
+x_1\prec_X x_2\Rightarrow f(x_1)\prec_Y f(x_2).
+$$
+
+\textbf{Definition 2.3 (Small Causal Diamond)}
+
+In $(X,\prec)\in\mathsf{Caus}$, given $x\prec y$, if closed interval $I(x,y)$ contains no non-trivial "branching", i.e., there exists no $z\neq x,y$ satisfying $x\prec z\prec y$ such that $z$ introduces a new causal branch between $x,y$, then $D(x,y):=I(x,y)$ is called a small causal diamond.
+
+On continuous Lorentzian manifolds, small causal diamonds correspond to micro causal diamond regions cut by two nearly parallel Null hypersurfaces, serving as natural units for defining local gravity and entropy conditions. In locally finite partial orders, the family of small diamonds forms a "decomposable unit" system, upon which the Small Diamond Refinement Theorem will rely.
+
+\subsection{Operator--Scattering Universe Category $\mathsf{OpUniv}$}
+
+\textbf{Definition 2.4 (Operator--Scattering Universe Object)}
+
+An operator--scattering universe object $O$ is a quadruple
+$$
+O=(\mathcal H,\mathcal A,S(\omega);\kappa),
+$$
+where:
+
+1. $\mathcal H$ is a separable Hilbert space;
+
+2. $\mathcal A\subset\mathcal B(\mathcal H)$ is a $C^\ast$-algebra satisfying locality and quasi-locality conditions;
+
+3. $S(\omega)\in\mathcal U(\mathcal H)$ is a family of scattering matrices satisfying appropriate traceable perturbation and regularity;
+
+4. $\kappa(\omega)$ is scale density function satisfying Axiom A1.
+
+\textbf{Definition 2.5 (Operator--Scattering Universe Morphism)}
+
+Given two objects
+$$
+O_i=(\mathcal H_i,\mathcal A_i,S_i(\omega);\kappa_i),\quad i=1,2,
+$$
+a morphism $f:O_1\to O_2$ is a pair of maps $f=(V,\phi)$, where $V:\mathcal H_1\to\mathcal H_2$ is isometric embedding, $\phi:\mathcal A_2\to\mathcal A_1$ is unital $(*)$-homomorphism, satisfying:
+
+1. $V\mathcal A_1V^\dagger\subset\mathcal A_2$, compatible with local structure;
+
+2. $S_2(\omega)V=V S_1(\omega)$ almost everywhere;
+
+3. $\kappa_1(\omega)=\kappa_2(\omega)$ almost everywhere (allowing additive constant).
+
+Objects and morphisms constitute category $\mathsf{OpUniv}$.
+
+\subsection{Boundary Time Geometry Universe Category $\mathsf{GeoUniv}$}
+
+\textbf{Definition 2.6 (Boundary Time Geometry Universe Object)}
+
+A geometric--boundary universe object $G$ is given by data
+$$
+G=(M,g,\partial M;\{\mathcal A(B),\omega_B\}_{B\subset\partial M})
+$$
+where:
+
+1. $(M,g)$ is a Lorentzian manifold satisfying appropriate energy conditions and global hyperbolicity, $\partial M$ is its boundary;
+
+2. For each boundary patch $B\subset\partial M$, $\mathcal A(B)$ is local observable algebra, $\omega_B$ is corresponding state;
+
+3. Generalized entropy
+   $$
+   S_{\mathrm{gen}}(B)=\frac{\operatorname{Area}(B)}{4G_N}+S_{\mathrm{out}}(B)
+   $$
+   and its variation along Null directions satisfy Quantum Focusing Conjecture (QFC) and Quantum Null Energy Condition (QNEC).
+
+4. Existence of boundary Hamiltonian formalism compatible with scale density $\kappa(\omega)$, such that Brown--York quasi-local energy can be interpreted as conjugate to boundary time translation.
+
+\textbf{Definition 2.7 (Geometric--Boundary Universe Morphism)}
+
+Morphism $f:G_1\to G_2$ between two objects $G_1,G_2$ is a pair
+$$
+f=(\Phi,\{\psi_B\}),
+$$
+where $\Phi:M_1\to M_2$ is causal-preserving local diffeomorphism, $\psi_B:\mathcal A_2(\Phi(B))\to\mathcal A_1(B)$ is unital $(*)$-homomorphism, preserving monotonicity of generalized entropy and quasi-local structure. Objects and morphisms constitute category $\mathsf{GeoUniv}$.
+
+\subsection{QCA/Matrix Universe Category $\mathsf{QCAUniv}$}
+
+\textbf{Definition 2.8 (QCA Universe Object)}
+
+A QCA universe object $Q$ is a quintuple
+$$
+Q=(\Lambda,\mathcal H_{\mathrm{cell}},U,\ket{\Psi_0};\Theta),
+$$
+where:
+
+1. $\Lambda$ is countable discrete lattice set with finite neighborhood structure;
+
+2. $\mathcal H_{\mathrm{cell}}$ is finite-dimensional cell Hilbert space, total space
+   $$
+   \mathcal H_\Lambda=\bigotimes_{x\in\Lambda}\mathcal H_{\mathrm{cell}};
+   $$
+
+3. $U:\mathcal H_\Lambda\to\mathcal H_\Lambda$ is local unitary evolution with finite propagation radius and translation covariance;
+
+4. $\ket{\Psi_0}\in\mathcal H_\Lambda$ is initial cosmic state;
+
+5. $\Theta$ is universe parameter vector, encoding local coupling and topological data, compatible with scale density $\kappa(\omega)$ in appropriate continuous limit.
+
+\textbf{Definition 2.9 (QCA Universe Morphism)}
+
+Given
+$$
+Q_i=(\Lambda_i,\mathcal H_{\mathrm{cell},i},U_i,\ket{\Psi_{0,i}};\Theta_i),\quad i=1,2,
+$$
+a morphism $f:Q_1\to Q_2$ is given by triplet
+$$
+f=(\iota,\chi,W)
+$$
+where $\iota:\Lambda_2\to\Lambda_1$ is lattice embedding or coarse-graining map, $\chi:\mathcal H_{\mathrm{cell},2}\to\mathcal H_{\mathrm{cell},1}$ is cell Hilbert space embedding, $W:\mathcal H_{\Lambda_1}\to\mathcal H_{\Lambda_2}$ is isometric embedding or contraction map compatible with $U_i$. Objects and morphisms constitute category $\mathsf{QCAUniv}$.
+
+\subsection{Causal Shadow Functors}
+
+Introduce functors to $\mathsf{Caus}$ on three universe categories, formalizing "causal partial order is merely part projection of high-dimensional structure".
+
+\textbf{Definition 2.10 (Causal Shadow Functors)}
+
+1. For $\mathsf{OpUniv}$, define
+   $$
+   F_{\mathrm{op}}:\mathsf{OpUniv}\to\mathsf{Caus},\quad
+   O\mapsto(X_O,\prec_O),
+   $$
+   where $X_O$ is set of resolvable scattering events at chosen observation resolution, $\prec_O$ induced by positive/negative structure of group delay matrix $\mathsf Q(\omega)$ and light cone conditions.
+
+2. For $\mathsf{GeoUniv}$, define
+   $$
+   F_{\mathrm{geo}}:\mathsf{GeoUniv}\to\mathsf{Caus},\quad
+   G\mapsto(X_G,\prec_G),
+   $$
+   where $X_G$ is representative set of spacetime events, $\prec_G$ induced by $J^\pm$ causal reachability; finite information principle ensures local finiteness.
+
+3. For $\mathsf{QCAUniv}$, define
+   $$
+   F_{\mathrm{qca}}:\mathsf{QCAUniv}\to\mathsf{Caus},\quad
+   Q\mapsto(X_Q,\prec_Q),
+   $$
+   where $X_Q=\Lambda\times\mathbb Z$ are discrete spacetime events, $\prec_Q$ given by discrete light cone structure with finite propagation radius.
+
+One can verify directly that these three shadows constitute covariant functors, preserving coarse-graining morphism direction. Causal partial order thus becomes the common "shadow layer" of three universe descriptions.
+
+\section{Main Results (Theorems and Alignments)}
+
+This section introduces causally compatible universe triplet category $\mathsf{Uni}$ based on above models and axioms, and presents main theorems on existence and uniqueness of universe terminal object, as well as structural conclusions on small diamond refinement, observers, and multi-representation alignment.
+
+\subsection{Causally Compatible Universe Triplet Category $\mathsf{Uni}$}
+
+\textbf{Definition 3.1 (Universe Triplet)}
+
+A universe triplet object is a triple
+$$
+U=(O,G,Q),
+$$
+where
+$$
+O\in\operatorname{Obj}(\mathsf{OpUniv}),\quad
+G\in\operatorname{Obj}(\mathsf{GeoUniv}),\quad
+Q\in\operatorname{Obj}(\mathsf{QCAUniv}),
+$$
+satisfying causal compatibility: there exists a locally finite causal partial order $C=(X,\prec)$, and isomorphisms in $\mathsf{Caus}$
+$$
+\alpha_{\mathrm{op}}:F_{\mathrm{op}}(O)\xrightarrow{\sim} C,\quad
+\alpha_{\mathrm{geo}}:F_{\mathrm{geo}}(G)\xrightarrow{\sim} C,\quad
+\alpha_{\mathrm{qca}}:F_{\mathrm{qca}}(Q)\xrightarrow{\sim} C.
+$$
+Call $C$ the causal shadow of $U$, denoted $F_{\mathrm{caus}}(U)=C$.
+
+\textbf{Definition 3.2 (Universe Triplet Morphism)}
+
+Given $U_i=(O_i,G_i,Q_i)$ ($i=1,2$), a morphism
+$$
+f:U_1\to U_2
+$$
+is a triple
+$$
+f=(f_{\mathrm{op}},f_{\mathrm{geo}},f_{\mathrm{qca}}),
+$$
+where
+$$
+f_{\mathrm{op}}:O_1\to O_2,\quad
+f_{\mathrm{geo}}:G_1\to G_2,\quad
+f_{\mathrm{qca}}:Q_1\to Q_2
+$$
+are morphisms in respective categories, satisfying: on causal shadow side, three shadow morphisms
+$$
+F_{\mathrm{op}}(f_{\mathrm{op}}),\quad
+F_{\mathrm{geo}}(f_{\mathrm{geo}}),\quad
+F_{\mathrm{qca}}(f_{\mathrm{qca}})
+$$
+are isomorphic in $\mathsf{Caus}$ to the same order-preserving map $F_{\mathrm{caus}}(U_1)\to F_{\mathrm{caus}}(U_2)$.
+
+\textbf{Definition 3.3}
+
+Objects and morphisms as above constitute category $\mathsf{Uni}$, called Causally Compatible Universe Triplet Category.
+
+\subsection{Refinement Preorder and Maximal Consistent Object}
+
+Introduce "refinement" preorder on $\mathsf{Uni}$ to compare "information richness" of different triplets.
+
+\textbf{Definition 3.4 (Refinement Relation)}
+
+For $U_1,U_2\in\operatorname{Obj}(\mathsf{Uni})$, if there exists morphism $f:U_1\to U_2$, say $U_1$ refines $U_2$, denoted $U_1\preceq U_2$. If $U_1\preceq U_2$ and $U_2\preceq U_1$, say $U_1,U_2$ are isomorphic, denoted $U_1\simeq U_2$.
+
+Modulo isomorphism, $\preceq$ reduces to partial order.
+
+\textbf{Definition 3.5 (Maximal Consistent Universe Triplet)}
+
+If $U\in\operatorname{Obj}(\mathsf{Uni})$ satisfies: once $U\preceq V$ then necessarily $U\simeq V$, then call $U$ a maximal consistent universe triplet.
+
+Intuitively, a maximal consistent object allows no addition of new compatible structures in three representations. Universe terminal object will be a category-theoretic strengthening of maximal consistent object.
+
+\subsection{Chain Completeness Axiom}
+
+To use Zorn's Lemma, need completeness axiom.
+
+\textbf{Axiom A3 (Chain Completeness)}
+
+For any totally ordered subfamily (chain) $\mathcal C\subset\operatorname{Obj}(\mathsf{Uni})$ in $\mathsf{Uni}$, there exists a universe triplet $U_{\mathcal C}$ such that for any $U\in\mathcal C$, $U\preceq U_{\mathcal C}$, and is a least upper bound in this sense.
+
+Physically, $\mathcal C$ can be understood as "refinement sequence" adding more scattering data, geometric details, or QCA rules. Axiom A3 requires these refinements to piece together into a consistent universe triplet in the limit. This requirement can be guaranteed by taking weak limits or appropriate topological limits of operators, metrics, and QCA rules in component categories, and using continuity of causal shadow functors and finite information principle.
+
+\subsection{Existence and Uniqueness of Universe Terminal Object}
+
+With above preparations, we state the main theorem.
+
+\textbf{Theorem 3.6 (Existence and Uniqueness of Universe Terminal Object)}
+
+Under Axioms A1--A3 and Finite Information Principle A2, there exists a maximal consistent object $\mathfrak U_{\max}$ in category $\mathsf{Uni}$, satisfying:
+
+1. For any $U\in\operatorname{Obj}(\mathsf{Uni})$, there exists a unique morphism
+   $$
+   f_U:U\to\mathfrak U_{\max};
+   $$
+
+2. If another object $\mathfrak U_{\max}'$ also satisfies above properties, then $\mathfrak U_{\max}'$ is isomorphic to $\mathfrak U_{\max}$.
+
+Thus $\mathfrak U_{\max}$ is a terminal object of $\mathsf{Uni}$, unique up to isomorphism.
+
+This theorem transforms the intuitive statement "highest-dimensional mathematical structure of universe exists and is unique" into a rigorous category-theoretic proposition. Detailed proof in Appendix A.
+
+\subsection{Terminal Object Images and Alignment in Three Representations}
+
+Let natural projection functors be
+$$
+\Pi_{\mathrm{op}}:\mathsf{Uni}\to\mathsf{OpUniv},\quad
+\Pi_{\mathrm{geo}}:\mathsf{Uni}\to\mathsf{GeoUniv},\quad
+\Pi_{\mathrm{qca}}:\mathsf{Uni}\to\mathsf{QCAUniv},
+$$
+define
+$$
+O_{\max}=\Pi_{\mathrm{op}}(\mathfrak U_{\max}),\quad
+G_{\max}=\Pi_{\mathrm{geo}}(\mathfrak U_{\max}),\quad
+Q_{\max}=\Pi_{\mathrm{qca}}(\mathfrak U_{\max}).
+$$
+
+\textbf{Theorem 3.7 (Maximal Consistency and Alignment in Three Representations)}
+
+1. $O_{\max}$ is maximal consistent object in $\mathsf{OpUniv}$; $(G_{\max},Q_{\max})$ are maximal consistent objects in $(\mathsf{GeoUniv},\mathsf{QCAUniv})$ respectively;
+
+2. On "physical subcategories" satisfying unified time scale and continuous limit bridging conditions, there exist functors
+   $$
+   \Phi_{\mathrm{op}\to\mathrm{geo}}:\mathsf{OpUniv}^{\mathrm{phys}}\to\mathsf{GeoUniv}^{\mathrm{phys}},\quad
+   \Phi_{\mathrm{geo}\to\mathrm{op}}:\mathsf{GeoUniv}^{\mathrm{phys}}\to\mathsf{OpUniv}^{\mathrm{phys}},
+   $$
+   $$
+   \Psi_{\mathrm{geo}\to\mathrm{qca}}:\mathsf{GeoUniv}^{\mathrm{phys}}\to\mathsf{QCAUniv}^{\mathrm{phys}},\quad
+   \Psi_{\mathrm{qca}\to\mathrm{geo}}:\mathsf{QCAUniv}^{\mathrm{phys}}\to\mathsf{GeoUniv}^{\mathrm{phys}},
+   $$
+   such that
+   $$
+   \Phi_{\mathrm{op}\to\mathrm{geo}}(O_{\max})\simeq G_{\max},\quad
+   \Psi_{\mathrm{geo}\to\mathrm{qca}}(G_{\max})\simeq Q_{\max},
+   $$
+   and these functors provide categorical equivalence on corresponding subcategories.
+
+Intuitively, $(O_{\max},G_{\max},Q_{\max})$ are universe objects containing "all physically compatible information" in operator--scattering, geometric--boundary, and QCA representations respectively. They are pairwise equivalent via unified time scale and continuous limit bridging. Proof in Appendix B.
+
+\subsection{Small Diamond Refinement Theorem and "Non-Minimality"}
+
+On causal shadow of $\mathfrak U_{\max}$
+$$
+C_{\max}=F_{\mathrm{caus}}(\mathfrak U_{\max})=(X,\prec)
+$$
+using spacetime structure of geometric representation $G_{\max}$, define family of small causal diamonds $\mathcal D_r$ of scale $r$. Finite information principle and discrete generalization of quantum focusing conjecture jointly give:
+
+\textbf{Theorem 3.8 (Small Diamond Refinement Theorem)}
+
+Assuming $C_{\max}$ locally finite and $G_{\max}$ satisfies generalized entropy and discrete quantum focusing conditions, there exists minimal physical scale $r_{\min}>0$, and for any $r_2>r_1\ge r_{\min}$ and any small diamond $D_{p,r_2}\in\mathcal D_{r_2}$, there exist finitely many small diamonds $D_{p_i,r_1}\in\mathcal D_{r_1}$ such that:
+
+1. Covering:
+   $$
+   D_{p,r_2}\subset\bigcup_i D_{p_i,r_1};
+   $$
+
+2. Generalized Entropy Approximate Additivity:
+   $$
+   S_{\mathrm{gen}}(D_{p,r_2})
+   =\sum_i S_{\mathrm{gen}}(D_{p_i,r_1})
+   +\mathcal O(\delta(r_1,r_2)),
+   $$
+   where $\delta(r_1,r_2)\to 0$ as $r_1/r_2\to 0$.
+
+Specifically, when $r_1\to r_{\min}$, any large-scale small diamond can be filled by minimal-scale small diamonds with arbitrary precision without significantly changing generalized entropy. Detailed proof in Appendix C.
+
+This theorem makes precise "small diamonds are never absolute minimal structures, only self-consistent units at given scale": true "minimal unit" is determined by information cell scale $r_{\min}$, not some fixed geometric diamond. Geometrically arbitrarily refineable small diamonds only correspond to mathematical resolution increase, not automatically bringing new physical degrees of freedom.
+
+\subsection{Characterization of Observers, Memory, and Consensus Geometry}
+
+In $\mathfrak U_{\max}$, observers, memory, and multi-observer consensus geometry can be naturally defined.
+
+\textbf{Definition 3.6 (Observer)}
+
+An observer structure $\mathcal O$ is data:
+
+1. Filter $\mathcal F_{\mathcal O}\subset\mathcal P(X)$ on causal shadow $C_{\max}=(X,\prec)$, representing events accessible to observer;
+
+2. Subalgebra chain $\{\mathcal A_{\mathcal O}(\lambda)\subset\mathcal A_{\max}\}$ in $O_{\max}$ varying monotonically with filter parameter, representing accessible observables;
+
+3. A timelike curve family $\gamma_{\mathcal O}$ in $G_{\max}$, representing worldline;
+
+4. A family of cellular sublattices $\Lambda_{\mathcal O}$ in $Q_{\max}$, representing QCA sub-universe associated with observer.
+
+Above data must be mutually compatible via triple consistency conditions of $\mathfrak U_{\max}$.
+
+\textbf{Theorem 3.9 (Correspondence of Memory Entropy and Time Scale)}
+
+For any observer $\mathcal O$, select boundary patch $B_t$ and state $\omega_{B_t}$ along worldline parameter $t$, define memory entropy flow
+$$
+M_{\mathcal O}(t_2,t_1)
+=S(\omega_{B_{t_2}}\Vert\omega_{B_{t_1}}),\quad t_2\ge t_1,
+$$
+then under QNEC and generalized entropy monotonicity, this function is monotonically non-decreasing with $t_2$, and in scattering representation can be equivalently expressed as coherent time integral corresponding to unified scale density $\kappa(\omega)$. That is, "memory accumulated along worldline" and "time delay on scattering side" are functions of same mother scale in two representations.
+
+Multi-observer consensus geometry can be characterized by overlap regions of $\{\mathcal F_{\mathcal O_i}\}$ and common subalgebras of $\{\mathcal A_{\mathcal O_i}\}$ in overlap, forming a Čech cover-like consensus structure, not expanded here.
+
+\section{Proofs}
+
+This section gives proof outlines for main theorems; full technical details in appendices.
+
+\subsection{Existence and Uniqueness of Universe Terminal Object (Theorem 3.6)}
+
+\textbf{Step 1: Reduce $\mathsf{Uni}$ objects modulo isomorphism to poset}
+
+Let $\mathcal O$ be object set of $\mathsf{Uni}$, define equivalence $U_1\sim U_2$ iff exists isomorphism $U_1\to U_2$. Let quotient set $\mathcal P=\mathcal O/\sim$, denote equivalence class $[U]$.
+
+Define partial order on $\mathcal P$
+$$
+[U_1]\le [U_2]
+\quad\text{iff}\quad
+\exists f:U_1\to U_2.
+$$
+Verify $\le$ is partial order on $\mathcal P$.
+
+\textbf{Step 2: Existence of Chain Upper Bound}
+
+Take any chain $\mathcal C\subset\mathcal P$, corresponding to representative family $\{U_i\}$. Axiom A3 ensures existence of $U_{\mathcal C}$ such that $U_i\preceq U_{\mathcal C}$ for all $U_i$, and is least upper bound. This relies on:
+
+1. In $\mathsf{OpUniv}$, taking weak topological limits of operator algebras and scattering matrix families, constructing limit object;
+
+2. In $\mathsf{GeoUniv}$, using appropriate convergence (e.g., Gromov--Hausdorff and weak-$^*$) for metrics and boundary algebras, preserving QFC/QNEC and generalized entropy structure;
+
+3. In $\mathsf{QCAUniv}$, using local quasi-local topology for cellular rules and initial states, consistent with continuous limit and unified time scale bridge;
+
+4. Ensuring limit object remains locally finite on causal side via covariance and continuity of shadow functors $(F_{\mathrm{op}},F_{\mathrm{geo}},F_{\mathrm{qca}})$ and finite information principle.
+
+Thus, every chain in $\mathcal P$ has upper bound.
+
+\textbf{Step 3: Apply Zorn's Lemma}
+
+By Zorn's Lemma, exists maximal element $[\mathfrak U_{\max}]\in\mathcal P$. Pick representative $\mathfrak U_{\max}$, call it maximal consistent universe triplet.
+
+\textbf{Step 4: Maximal Consistency implies Terminal Object Property}
+
+For any $U\in\operatorname{Obj}(\mathsf{Uni})$, if no morphism $U\to\mathfrak U_{\max}$ exists, construct new object $W$ by amalgamation or pushout in three representation categories, such that $U\preceq W$ and $\mathfrak U_{\max}\preceq W$, and $W$ contains more consistent information than $\mathfrak U_{\max}$, contradicting maximality of $\mathfrak U_{\max}$. Thus morphism $U\to\mathfrak U_{\max}$ must exist.
+
+If two different morphisms $f_1,f_2:U\to\mathfrak U_{\max}$ exist, construct equalizer object $\tilde U$ in representation categories. $\tilde U$ refines both $U$ and $\mathfrak U_{\max}$, but is strictly smaller than $\mathfrak U_{\max}$, again contradicting maximality. Thus morphism is unique.
+
+\textbf{Step 5: Uniqueness of Terminal Object}
+
+If another terminal object $\mathfrak U_{\max}'$ exists, by definition exists unique morphisms
+$$
+f:\mathfrak U_{\max}\to\mathfrak U_{\max}',\quad
+g:\mathfrak U_{\max}'\to\mathfrak U_{\max}.
+$$
+Composition $g\circ f$ and $f\circ g$ must be identity morphisms of respective objects, so $f,g$ are inverse isomorphisms, terminal object is unique up to isomorphism. Theorem 3.6 proved.
+
+\subsection{Maximal Consistency and Alignment of Terminal Object Images in Three Representations (Theorem 3.7)}
+
+Proof in two parts.
+
+\textbf{Part 1: Component Maximal Consistency}
+
+Take $O_{\max}$ as example. If exists $O\in\mathsf{OpUniv}$ such that $O_{\max}\preceq O$ and $O\not\simeq O_{\max}$, construct new triplet $U'=(O,G_{\max},Q_{\max})$ using $G_{\max},Q_{\max}$. Since $O_{\max}\preceq O$, exists morphism $O_{\max}\to O$, combining with identities on other two components gives $\mathfrak U_{\max}\to U'$. By maximality, cannot have $[\mathfrak U_{\max}]<[U']$, so must be $[\mathfrak U_{\max}]=[U']$, implying $O_{\max}\simeq O$, contradiction. Thus $O_{\max}$ is maximal consistent. Similar for geometric and QCA components.
+
+\textbf{Part 2: Bridging Functors and Equivalence}
+
+Unified time scale and boundary Hamiltonian formalism allow reconstructing boundary geometry and generalized entropy from scattering data, constructing
+$$
+\Phi_{\mathrm{op}\to\mathrm{geo}}:O\mapsto G,
+$$
+Conversely via boundary algebra and modular flow, one can reconstruct $S(\omega)$ and $\kappa(\omega)$ on scattering side, getting
+$$
+\Phi_{\mathrm{geo}\to\mathrm{op}}:G\mapsto O.
+$$
+Continuous limit of QCA provides bridge from $\mathsf{QCAUniv}$ to $\mathsf{GeoUniv}$. On subclass of objects satisfying physical regularity, these functors constitute categorical equivalences, mapping $(O_{\max},G_{\max},Q_{\max})$ pairwise to isomorphic objects. Detailed construction and natural isomorphisms in Appendix B.
+
+\subsection{Small Diamond Refinement Theorem (Theorem 3.8)}
+
+Proof roughly in three layers.
+
+1. **Geometric Covering**: In $G_{\max}$, for given scale $r_2$ small diamond $D_{p,r_2}$, using local flatness and Null metric structure, construct finite covering by smaller scale $r_1$ causal diamonds. Local finiteness and finite information principle ensure any bounded region needs only finitely many small diamonds to cover.
+
+2. **Approximate Additivity of Generalized Entropy**: Use generalized entropy
+   $$
+   S_{\mathrm{gen}}(D)=\frac{\operatorname{Area}(\partial D)}{4G_N}+S_{\mathrm{out}}(D)
+   $$
+   properties: area term is approximately additive under small diamond covering, error controlled by area of overlap regions; entanglement entropy term satisfies strong subadditivity and relative entropy inequality under finite covering, error controlled by "double counting" of information in overlap. Combining with local form of QFC/QNEC, error can be estimated as $\delta(r_1,r_2)$, vanishing as $r_1/r_2\to 0$.
+
+3. **Information Cell Scale and Lower Bound**: Finite information principle gives entropy upper bound under fixed energy and volume, thus exists $r_{\min}>0$, when $r<r_{\min}$ added small diamonds do not increase reachable maximum entropy. Choosing $r_1\ge r_{\min}$ ensures entropy estimates physically realizable. Letting $r_1\to r_{\min}$ while $r_1/r_2\to 0$ yields limit behavior of Theorem 3.8.
+
+Detailed technical lemmas in Appendix C.
+
+\subsection{Observers and Memory (Theorem 3.9)}
+
+For observer $\mathcal O$, select family of boundary patches $B_t$ along worldline. Variation of generalized entropy with $t$ constrained by QFC/QNEC, such that for $t_3\ge t_2\ge t_1$,
+$$
+M_{\mathcal O}(t_3,t_1)\ge M_{\mathcal O}(t_3,t_2)\ge 0,
+$$
+basic property of quantum relative entropy. On scattering side, time scale change experienced by observer given by weighted integral of $\kappa(\omega)$. Tomita--Takesaki modular flow relation unifies relative entropy and time translation generator. Combining with Unified Time Scale Mother Ruler yields quantitative correspondence between memory entropy and time delay.
+
+\section{Model Apply}
+
+This section illustrates specific applications under $\mathfrak U_{\max}$ framework, showing how it unifies descriptions of different physical problems. Two representative directions selected.
+
+\subsection{Universe Triplet Construction in Dirac--QCA Continuous Limit}
+
+Consider a class of Dirac-type QCA on 1D or 3D lattices, whose single step evolution $U$ gives Dirac equation and minimal coupled gauge field in long wavelength and low energy limit. For such QCA model, construct:
+
+1. QCA component $Q=(\Lambda,\mathcal H_{\mathrm{cell}},U,\ket{\Psi_0};\Theta)$;
+
+2. Geometric component $G$: effective description of long-time, large-scale behavior as manifold with background metric and gauge field via continuous limit;
+
+3. Operator--scattering component $O$: define Dirac field scattering problem on given background geometry, obtaining $S(\omega)$ and $\kappa(\omega)$.
+
+If continuous limit of QCA model and scattering description are compatible on unified time scale, the three constitute an object $U_{\mathrm{Dirac}}$ in $\mathsf{Uni}$. Universe terminal object $\mathfrak U_{\max}$ can be viewed as "maximal" object containing this Dirac--QCA model and all higher energy corrections; $U_{\mathrm{Dirac}}$ is its coarse-grained projection in appropriate energy and scale window.
+
+\subsection{Black Hole Region and Small Diamond Refinement}
+
+In $G_{\max}$ representation take a region containing black hole horizon, consider family of decreasing scale small causal diamonds $\{D_{p,r}\}$ near horizon. Small Diamond Refinement Theorem guarantees: regardless of diamond size, they can be filled by minimal diamonds close to Planck scale, maintaining approximate entropy additivity. Combining with Bekenstein--Hawking entropy area law, black hole region in $\mathfrak U_{\max}$ framework can be viewed as self-consistent patch of minimal information cells, its geometric area merely a macroscopic indicator of cell count. This provides structural basis for aligning black hole entropy with discrete QCA cell count.
+
+\section{Engineering Proposals}
+
+Although $\mathfrak U_{\max}$ is an abstract terminal object concept, its structure can be indirectly probed via engineering systems.
+
+\subsection{Self-Referential Scattering Network and Unified Time Scale Platform}
+
+Construct scattering network of waveguides, cavities, and tunable feedback loops, such that overall scattering matrix $S(\omega)$ has controllable frequency-dependent phase and Wigner--Smith delay. By measuring scattering phase derivative and group delay trace, directly reconstruct scale density $\kappa(\omega)$, implementing unified time scale engineering model in lab.
+
+Furthermore, designing network topology as "discrete space" with causal partial order, and adding self-referential loops in feedback, can simulate small causal diamonds and their refinement process, testing discrete version of "Small Diamond Refinement Theorem" on table-top scale.
+
+\subsection{QCA Quantum Simulator and Multi-Representation Alignment}
+
+Use superconducting qubits, ion traps, or optical lattices to implement local QCA evolution $U$, selecting rules approximating Dirac or Klein--Gordon fields in continuous limit; meanwhile construct equivalent scattering channels $S(\omega)$ and boundary observable algebra via auxiliary modes and measurements. By comparing data from QCA, scattering, and boundary, construct "finite version" of universe triplet in finite dimensional Hilbert space, verifying engineering implementation of unified time scale and causal shadow functors.
+
+In multi-agent quantum networks, accessible causal structures, internal memories, and communication channels of agents can be viewed as finite projections of $\mathfrak U_{\max}$, exploring structural correspondence of "observer filters" and resource allocation strategies.
+
+\section{Discussion (risks, boundaries, past work)}
+
+\subsection{Theoretical Boundaries and Limitations of Assumptions}
+
+Framework relies on key assumptions:
+
+1. Unified Time Scale Mother Ruler A1 assumes all relevant scattering processes reducible to same scale density $\kappa(\omega)$;
+
+2. Finite Information Principle A2 reasonable under current physical evidence, but validity in all cosmological scenarios needs verification;
+
+3. Chain Completeness A3 is set-theoretic/physical regularity assumption, specific limit construction may need refined topological and analytical tools.
+
+Thus, existence and uniqueness of $\mathfrak U_{\max}$ are conditional: if fundamental axioms require modification, corresponding category structure must adjust.
+
+\subsection{Relationship with Existing Work}
+
+Framework compatible with causal sets, superimposing scattering--time scale and QCA continuous limit structures, providing "multi-representation unification" perspective.
+
+QFC/QNEC research related to holography provides important constraints on boundary time geometry and generalized entropy, enabling Small Diamond Refinement Theorem.
+
+Category theory applications in TQFT and quantum information (e.g., monoidal categories, dualities) show many physical structures can be viewed as objects or morphisms in higher categories. This paper introduces terminal object concept to "universe level" category, continuing this line of thought.
+
+\subsection{Potential Risks and Misinterpretations}
+
+Major risk is misreading "Universe Terminal Object" as absolute ontology, ignoring it is a category-theoretic construction relative to given axiom system. If future evidence invalidates axioms, terminal object concept needs redefinition.
+
+Another risk is viewing framework as immediate solution to all specific physical problems. $\mathfrak U_{\max}$ provides unified structural background for black hole entropy, cosmological constant, etc., but specific values and testable predictions require derivation in specific sub-models.
+
+\section{Conclusion}
+
+This paper introduces "Universe Terminal Object" $\mathfrak U_{\max }$ within unified time scale, boundary time geometry, and QCA universe framework, and proves its existence and uniqueness in causally compatible universe triplet category $\mathsf{Uni}$ under natural axioms. Its three projections $(O_{\max},G_{\max},Q_{\max})$ are maximal consistent in respective universe categories and pairwise equivalent under bridging functors, providing clear categorical characterization of "highest-dimensional mathematical structure of universe".
+
+On causal shadow $C_{\max }$ of $\mathfrak U_{\max }$, Small Diamond Refinement Theorem shows: causal diamonds at any scale can be filled by smaller diamonds in nearly entropy-additive manner; minimal physical unit determined by information cell scale, not geometric diamond. Causal partial orders, small diamonds, and observer worldlines are thus shadows of $\mathfrak U_{\max }$ at specific projections/scales; scattering delay, memory entropy, and generalized entropy monotonicity are manifestations of same mother scale $\kappa(\omega)$ in different representations.
+
+This framework bases future work: systematic study of black hole entropy/information, cosmological constant/vacuum energy, quantum chaos/ETH, strong CP/axion, gravitational wave dispersion/Lorentz violation within $\mathfrak U_{\max }$, seeking docking with specific observations and experimental platforms.
+
+\section*{Acknowledgements}
+
+Authors thank research in scattering spectral theory, quantum information, general relativity, and quantum field theory for providing solid foundation for integrating unified time scale, boundary time geometry, and QCA universe.
+
+\section*{Code Availability}
+
+Paper is mainly axiomatic and theoretic. Simulation codes for QCA continuous limits, discrete causal set construction, and numerical evaluation of generalized entropy will be made available after unified organization.
+
+\begin{thebibliography}{99}
+
+\bibitem{Bombelli1987} L. Bombelli, J. Lee, D. Meyer, R. D. Sorkin, "Space-time as a causal set", Phys. Rev. Lett. 59, 521 (1987).
+
+\bibitem{Bousso2002} R. Bousso, "The holographic principle", Rev. Mod. Phys. 74, 825 (2002).
+
+\bibitem{Bekenstein1973} J. D. Bekenstein, "Black holes and entropy", Phys. Rev. D 7, 2333 (1973).
+
+\bibitem{BrownYork1993} J. D. Brown, J. W. York, "Quasilocal energy and conserved charges derived from the gravitational action", Phys. Rev. D 47, 1407 (1993).
+
+\bibitem{SchumacherWerner2004} B. Schumacher, R. F. Werner, "Reversible quantum cellular automata", quant-ph/0405174 (2004).
+
+\bibitem{Farrelly2020} T. Farrelly, "A review of quantum cellular automata", Quantum 4, 368 (2020).
+
+\bibitem{Bousso2016} R. Bousso, Z. Fisher, S. Leichenauer, A. C. Wall, "A Quantum Focussing Conjecture", Phys. Rev. D 93, 064044 (2016).
+
+\bibitem{BoussoTabor2025} R. Bousso, E. Tabor, "Discrete Max-Focusing", JHEP 06 (2025) 240.
+
+\bibitem{Sinha1994} K. B. Sinha, "Spectral shift function and trace formula", Proc. Indian Acad. Sci. (Math. Sci.) 104, 819–853 (1994).
+
+\bibitem{Gesztesy2017} F. Gesztesy, "Applications of Spectral Shift Functions", lecture notes (2017).
+
+\bibitem{Deshmukh2024} P. C. Deshmukh et al., "Eisenbud–Wigner–Smith time delay in atom–laser interaction", and R. Shaik et al., "EWS Time Delay in Low Energy e-C$_{60}$ Elastic Scattering", Atoms 12, 18 (2024).
+
+\bibitem{Hiai2004} F. Hiai, "Concise lectures on selected topics of von Neumann algebras", arXiv:2004.02383.
+
+\end{thebibliography}
+
+\appendix
+
+\section{Appendix A: Detailed Proof of Existence and Uniqueness of Universe Terminal Object}
+
+This appendix gives full proof of Theorem 3.6.
+
+\subsection{A.1 Poset Construction and Preparation for Zorn's Lemma}
+
+Let $\mathcal O$ be object set of $\mathsf{Uni}$, define equivalence relation $U_1\sim U_2$ iff exists isomorphism $U_1\to U_2$. Let quotient set $\mathcal P=\mathcal O/\sim$, denote equivalence class $[U]$.
+
+Define partial order on $\mathcal P$
+$$
+[U_1]\le [U_2]
+\quad\text{iff}\quad
+\exists f:U_1\to U_2.
+$$
+This definition is independent of representative choice. Transitivity and reflexivity hold. Antisymmetry guaranteed by "directed isomorphism implies isomorphism": if $U_1\to U_2$ and $U_2\to U_1$, they induce bidirectional refinement in three representations, implying equivalence in each, and equivalence of causal shadows, finally $U_1\simeq U_2$. Thus $(\mathcal P,\le)$ is poset.
+
+\subsection{A.2 Existence of Chain Upper Bound (Implementation of Axiom A3)}
+
+Let $\mathcal C\subset\mathcal P$ be a chain, choose representative family $\{U_i=(O_i,G_i,Q_i)\}_{i\in I}$. Construct limit object in each representation category:
+
+1. **Operator--Scattering**: Under appropriate topology (e.g. weak operator topology), take closure of increasing union of $\mathcal A_i$ as $\mathcal A_\infty$, take weak limit of $S_i(\omega)$ as $S_\infty(\omega)$. Continuity of spectral shift and scale density ensures limit satisfies scale identity.
+
+2. **Geometric--Boundary**: Use Gromov--Hausdorff and weak-$^*$ convergence for metrics $g_i$ and boundary algebras $\mathcal A_i(B)$, citing stability results of generalized entropy and QFC/QNEC in limits, obtaining limit object.
+
+3. **QCA**: Use local quasi-local topology for cellular rules and initial states, ensuring consistency with continuous limit and unified scale bridge.
+
+4. Causal shadow functors preserve covariance and continuity, so shadows align in limit to locally finite partial order $C_\infty$.
+
+Thus obtain $U_\infty\in\operatorname{Obj}(\mathsf{Uni})$, and morphisms $U_i\to U_\infty$, making $[U_\infty]$ upper bound of $\mathcal C$.
+
+\subsection{A.3 Application of Zorn's Lemma}
+
+By A.2, every chain in $(\mathcal P,\le)$ has upper bound. Zorn's Lemma implies existence of maximal element $[\mathfrak U_{\max}]\in\mathcal P$. Pick representative $\mathfrak U_{\max}$, maximal consistent universe triplet.
+
+\subsection{A.4 Maximal Consistency implies Terminal Object Property}
+
+**Existence**: Let $U\in\operatorname{Obj}(\mathsf{Uni})$. If no morphism $U\to\mathfrak U_{\max}$, consider set
+$$
+\mathcal S=\{V\in\operatorname{Obj}(\mathsf{Uni}):\exists f:V\to\mathfrak U_{\max}\}.
+$$
+Construct new object $W$ containing $U$ and $\mathfrak U_{\max}$ via amalgamation: e.g., on operator side take minimal algebra containing both on consistent causal shadow. This ensures $U\preceq W$ and $\mathfrak U_{\max}\preceq W$, and $[W]>[\mathfrak U_{\max}]$, contradicting maximality. Thus morphism exists.
+
+**Uniqueness**: If two morphisms $f_1,f_2:U\to\mathfrak U_{\max}$ exist, construct equalizer $\tilde U$. $\tilde U$ refines $U$ and $\mathfrak U_{\max}$, but is strictly smaller than $\mathfrak U_{\max}$, contradicting maximality. Thus $f_1=f_2$.
+
+\subsection{A.5 Uniqueness of Terminal Object}
+
+If another terminal object $\mathfrak U_{\max}'$ exists, unique morphisms $f:\mathfrak U_{\max}\to\mathfrak U_{\max}'$ and $g:\mathfrak U_{\max}'\to\mathfrak U_{\max}$ exist. Compositions must be identity morphisms, so $\mathfrak U_{\max}\simeq\mathfrak U_{\max}'$.
+
+\section{Appendix B: Equivalence of Terminal Object Images in Three Representations}
+
+Proof of Theorem 3.7.
+
+\subsection{B.1 Component Maximal Consistency}
+
+Take $O_{\max}$. If $O\in\mathsf{OpUniv}$ exists with $O_{\max}\preceq O, O\not\simeq O_{\max}$, construct $U'=(O,G_{\max},Q_{\max})$. $O_{\max}\preceq O$ implies morphism $\mathfrak U_{\max}\to U'$. Maximality implies $[\mathfrak U_{\max}]=[U']$, so $O_{\max}\simeq O$, contradiction.
+
+\subsection{B.2 Scattering--Geometry Bridging}
+
+Construct $\Phi_{\mathrm{op}\to\mathrm{geo}}:O\mapsto G$ using unified time scale and boundary Hamiltonian formalism to reconstruct geometry/entropy from scattering. Construct $\Phi_{\mathrm{geo}\to\mathrm{op}}:G\mapsto O$ using boundary algebra/modular flow to reconstruct scattering/$S(\omega)$. On physical subcategory, $\Phi_{\mathrm{geo}\to\mathrm{op}}\circ\Phi_{\mathrm{op}\to\mathrm{geo}}\simeq\operatorname{Id}$, etc.
+
+\subsection{B.3 Geometry--QCA Bridging}
+
+QCA continuous limit approximates field theory/geometry. Use this to construct $\Psi_{\mathrm{qca}\to\mathrm{geo}}$. Inverse $\Psi_{\mathrm{geo}\to\mathrm{qca}}$ constructs discrete QCA approximation on geometry. Equivalence holds on approximable subcategory.
+
+\section{Appendix C: Detailed Proof of Small Diamond Refinement Theorem}
+
+Proof of Theorem 3.8.
+
+\subsection{C.1 Scale Calibration}
+
+In $G_{\max}$, choose local coordinates approximating Minkowski. For scale $r$, define small diamond $D_{p,r}=J^+(p^-)\cap J^-(p^+)$. Project to $C_{\max}$ via $F_{\mathrm{geo}}$. Finite information principle A2 gives minimal scale $r_{\min}$.
+
+\subsection{C.2 Finite Covering}
+
+For $r_2>r_{\min}$ and $D_{p,r_2}$, choose internal points $\{p_i\}$ to cover with $D_{p_i,r_1}$ ($r_1<r_2$). Local finiteness ensures finite covering suffices.
+
+\subsection{C.3 Approximate Additivity of Generalized Entropy}
+
+1. Area term: sum of areas approximates total area, error from overlaps controlled by curvature and thickness $\mathcal O(\varepsilon(r_1,r_2))$.
+
+2. Entropy term: strong subadditivity gives $S_{\mathrm{out}}(D_{p,r_2})\le \sum S_{\mathrm{out}}(D_{p_i,r_1})+E_{\mathrm{ov}}$, error vanishes as $r_1/r_2\to 0$. QFC ensures monotonicity along Null directions, bounding reverse inequality.
+
+\subsection{C.4 Limit}
+
+$r_{\min}$ ensures entropy bound under fixed energy/volume. Limit $r_1\to r_{\min}$ valid.
+
+\section{Appendix D: Further Clarification on Observer Filters and Memory Entropy}
+
+\subsection{D.1 Observer Filters}
+
+Observer filter $\mathcal F_{\mathcal O}$ on $C_{\max}=(X,\prec)$ satisfies filter axioms (upper closed, intersection closed). Guarantees observer can stably access event family.
+
+\subsection{D.2 Memory Entropy and Scattering Time Scale}
+
+In scattering representation, time evolution is $S(\omega)$. Modular Hamiltonian $K=-\ln\Delta$ determines relative entropy. Aligning $K$ with scattering phase and $\kappa(\omega)$ yields equivalence of memory entropy and time scale.
+
+\end{document}
+

@@ -1,0 +1,336 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Title information
+\title{Quantum--Classical Unification Theory Within the WSIG--EBOC--RCA Framework}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore\\
+\small (Windowed Scattering \& Information Geometry · Eternal-Block Observer-Computing · Reversible Cellular Automata)}
+
+\date{\today\\
+\small Version: 1.15 (2025-11-02, Asia/Dubai)}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Using the trinity of phase--relative state density--group delay from Windowed Scattering--Information Geometry as the unique master scale for the energy axis, this paper establishes isomorphic semantics between static block geometry and reversible cellular automata, achieving quantum--classical unification. For a scattering pair $(H,H_0)$, the multi-port scattering matrix $S(E)$ on the absolutely continuous spectrum of $H_0$ acts on the open channel subspace at energy $E$ with $S(E)\in U(N(E))$. The Wigner--Smith delay matrix is defined as $\mathsf{Q}(E):=-i\,S(E)^\dagger \partial_E S(E)$, the ac density of relative state density as $\rho_{\mathrm{rel}}(E):=\xi'_{\mathrm{ac}}(E)$, and the half-determinant phase as $\varphi(E):=\pi\,\xi_{\mathrm{ac}}(E)$ (also written as $\tfrac12 \operatorname{Arg}_{\mathrm{ac}}\det S(E)$). At almost every Lebesgue point of the absolutely continuous spectrum of $H_0$, we have
+$$
+\boxed{\ \varphi'(E)=\tfrac12\,\operatorname{tr}\mathsf{Q}(E)=\pi\,\rho_{\mathrm{rel}}(E)\ }.
+$$
+The semiclassical limit is closed to classical Hamiltonian flow, Poisson brackets, and Liouville dynamics through Egorov's theorem, Moyal deformation, and Wigner measure propagation. Readouts employ the Nyquist--Poisson--Euler--Maclaurin (NPE) error ledger to provide non-asymptotic upper bounds, with a variational optimality framework for single/multi-window--multi-kernel configurations (details in §6). The constants $(c,\hbar,e,G,k_{\mathrm{B}})$ achieve metrological correspondence within this system: $c$ is calibrated by front support and group delay; $\hbar$ is the Weyl--Heisenberg central charge scale; $e$ is anchored by the magnetic flux quantum; $G$ is realized through curvature--energy flow correspondence; $k_{\mathrm{B}}$ is fixed by SI constantization. These structures possess realizable isomorphic semantics under EBOC's causal block universe and RCA's discrete light cone.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Quantum-classical unification; WSIG; EBOC; RCA; Wigner-Smith delay; Semiclassical limit; Egorov theorem; Birman-Kreĭn formula
+
+\noindent\textbf{MSC 2020:} 81Q20; 81S30; 47A40; 37N20; 35Q40
+
+\tableofcontents
+
+\section{Axioms and Objects}
+
+\textbf{A1 (Causal--Front):} The world is a causal block $(M,g)$. The null cone $ds^2=0$ determines front velocity $c$. In linear time-invariant (LTI) systems, if the impulse response $h(t)$ is supported on $t\ge 0$ and $h\in L^1(\mathbb{R})$ (or more generally is a tempered distribution with frequency response $H(\omega)$ in the Hardy class), then $H(\omega)$ is analytic in the upper half-plane and satisfies Kramers--Kronig; conversely, if $H$ is bounded analytic in the upper half-plane with appropriate growth/decay, the corresponding $h$ is causal. For time-varying systems, causality is stated via support of the retarded Green's function.
+
+\textbf{A2 (Master Scale--WSIG):} Define
+$$
+\mathsf{Q}(E):=-i\,S(E)^\dagger \partial_E S(E),\qquad
+\tau_{\mathrm{WS}}(E):=\hbar\,\operatorname{tr}\mathsf{Q}(E).
+$$
+Further define the \textbf{per-port average group delay} for multi-port cases as
+$$
+\overline{\tau}(E):=\frac{\hbar}{N(E)}\,\operatorname{tr}\mathsf{Q}(E),\qquad
+N(E):=\text{number of open channels (at that $E$)}.
+$$
+Unless otherwise specified, trace and average are taken over the current open channel subspace; far from channel thresholds, $N(E)$ is constant.
+
+Let the \textbf{scattering pair} $(H,H_0)$ satisfy definable wave operators, with multi-port scattering matrix $S(E)$ on the absolutely continuous spectrum of $H_0$; for each energy $E$, $S(E)$ acts on the open channel subspace with $S(E)\in U(N(E))$.
+
+\textbf{BK Condition (ensuring applicability of spectral shift and determinant phase):} Assume $(H,H_0)$ forms a trace-class perturbation pair in the Birman--Kreĭn sense, e.g.,
+$$
+(H-i)^{-1}-(H_0-i)^{-1}\in\mathfrak{S}_1,
+$$
+then the Kreĭn spectral shift function $\xi$ exists, and at almost every Lebesgue point $E\in\sigma_{\mathrm{ac}}(H_0)$,
+$$
+\det S(E)=\exp\!\big(2\pi i\,\xi(E)\big),\qquad
+-i\,\partial_E\log\det S(E)=2\pi\,\xi'_{\mathrm{ac}}(E).
+$$
+
+Denote the \textbf{ac density of relative state density} as
+$$
+\rho_{\mathrm{rel}}(E):=\xi'_{\mathrm{ac}}(E).
+$$
+To avoid multivaluedness ambiguity in $\operatorname{Arg}$, define
+$$
+\varphi(E):=\pi\,\xi_{\mathrm{ac}}(E)\quad\big(\text{also written as }\tfrac12 \operatorname{Arg}_{\mathrm{ac}}\det S(E)\big).
+$$
+Then at almost every Lebesgue point of the absolutely continuous spectrum of $H_0$,
+$$
+\operatorname{tr}\mathsf{Q}(E)=2\pi\,\rho_{\mathrm{rel}}(E),\qquad
+\varphi'(E)=\tfrac12\,\operatorname{tr}\mathsf{Q}(E)=\pi\,\rho_{\mathrm{rel}}(E).
+$$
+
+\textbf{Regularity and domain:} The following equations involving $\partial_E S(E)$ and $\mathsf{Q}(E)$ are understood on $E\in\sigma_{\mathrm{ac}}(H_0)$ where $S(E)$ is locally absolutely continuous (or has weak derivative) with respect to $E$. This paper defaults to working energy windows far from channel thresholds and branch points; when discussing across thresholds, replace with traces/derivatives on the $N(E)$-dependent open channel subspace.
+
+\textbf{A3 (Bridge Constants):} $\hbar$ is the central parameter of Weyl--Heisenberg; $c$ is realized via front support and group delay metrological correspondence; $e$ is anchored by the magnetic flux quantum; $G$ is realized through curvature--energy flow correspondence; $k_{\mathrm{B}}$ is fixed by SI constantization.
+
+\textbf{A4 (Readout--Error):} Any readout is a ``window × kernel'' weighted average, subject to NPE three-term error closure: aliasing/Poisson, finite-order Euler--Maclaurin remainder, bandwidth tail term.
+
+\textbf{A5 (Realizability--RCA, Reversibility Criterion):} The influence domain of a radius-$r$ reversible cellular automaton (RCA) is a discrete light cone. The necessary and sufficient criterion for reversibility is: the global map is bijective and its inverse is also a cellular automaton.
+
+\section{Trinity Master Scale and Main Theorem}
+
+\subsection{Definition and Notation}
+
+Let the scattering pair $(H,H_0)$ give $S(E)$ on the absolutely continuous spectrum of $H_0$ (acting on the open channel subspace at $E$), with $S(E)\in U(N(E))$. Take
+$$
+\mathsf{Q}(E):=-i\,S^\dagger \partial_E S,\qquad
+\tau_{\mathrm{WS}}(E):=\hbar\,\operatorname{tr}\mathsf{Q}(E),\qquad
+\rho_{\mathrm{rel}}(E):=\xi'_{\mathrm{ac}}(E),
+$$
+$$
+\det S(E)=\exp\!\big(2\pi i\,\xi(E)\big),\qquad
+-i\,\partial_E\log\det S(E)=2\pi\,\xi'_{\mathrm{ac}}(E)\ \text{(a.e. on }\sigma_{\mathrm{ac}}(H_0)\text{, under BK condition)}.
+$$
+
+\subsection{Main Theorem (Trinity)}
+
+\begin{theorem}[Trinity Identity]
+\label{thm:trinity}
+$$
+\boxed{\ \varphi'(E)=\tfrac12\,\operatorname{tr}\mathsf{Q}(E)=\pi\,\rho_{\mathrm{rel}}(E)\ }
+$$
+holds at almost every Lebesgue point of the absolutely continuous spectrum of $H_0$.
+\end{theorem}
+
+\begin{proof}
+From $\det S(E)=\exp\!\big(2\pi i\,\xi(E)\big)$ (BK condition), at almost every Lebesgue point $E\in\sigma_{\mathrm{ac}}(H_0)$,
+$$
+-i\,\partial_E\log\det S(E)=2\pi\,\xi'_{\mathrm{ac}}(E).
+$$
+Unitarity gives $\partial_E\log\det S(E)=\operatorname{tr}\!\big(S^\dagger \partial_E S\big)$. Thus on $E\in\sigma_{\mathrm{ac}}(H_0)$,
+$$
+\operatorname{tr}\mathsf{Q}(E)=-i\,\operatorname{tr}\!\big(S^\dagger \partial_E S\big)=2\pi\,\xi'_{\mathrm{ac}}(E)=2\pi\,\rho_{\mathrm{rel}}(E),
+$$
+and from the BK chain,
+$$
+\varphi'(E)=\pi\,\xi'_{\mathrm{ac}}(E)=\tfrac12\,\operatorname{tr}\mathsf{Q}(E)
+$$
+at almost every Lebesgue point of the absolutely continuous spectrum of $H_0$.
+\end{proof}
+
+\textbf{Single-channel verification:} If $S(E)=e^{2i\delta(E)}$, then
+$$
+\operatorname{tr}\mathsf{Q}(E)=2\,\delta'(E),\qquad
+\rho_{\mathrm{rel}}(E)=\frac{\delta'(E)}{\pi},\qquad
+\varphi'(E)=\delta'(E),
+$$
+consistent with the Friedel relation.
+
+\section{Semiclassical Bridge: Egorov--Moyal--Wigner Measure ($\mathrm{Op}_\hbar$ Notation)}
+
+\textbf{Egorov (leading order):} For Weyl quantization $H=\mathrm{Op}_\hbar(p)$ and classical Hamiltonian flow $\Phi_t$,
+$$
+U_t^\dagger\,\mathrm{Op}_\hbar(a)\,U_t=\mathrm{Op}_\hbar\!\big(a\circ\Phi_t\big)+\mathcal{O}(\hbar),
+$$
+which can extend to Ehrenfest time under appropriate regularity (with $\log(1/\hbar)$ corrections in chaotic cases).
+
+\textbf{Moyal deformation:} Weyl calculus maps $\tfrac{i}{\hbar}[\hat A,\hat B]$ to the Moyal bracket, and
+$$
+\{A,B\}_M=\{A,B\}+\mathcal{O}(\hbar^2).
+$$
+
+\textbf{Wigner measure propagation:} The Wigner measure of a sequence of states propagates along the classical flow, converging to Liouville/Vlasov-type transport equations.
+
+\section{EBOC: Front Support, KK Causality, and Metrological Closure}
+
+\textbf{Front support of retarded Green's function:} For the three-dimensional wave equation, the retarded Green's function is
+$$
+G_{\mathrm{ret}}(t,\mathbf{r})=\frac{\delta\!\big(t-|\mathbf{r}|/c\big)}{4\pi\,|\mathbf{r}|},
+$$
+with support exactly on the front $t=|\mathbf{r}|/c$. When \textbf{§1.A1 conditions are satisfied} ($h\in L^1$ or more generally tempered distribution with frequency response $H$ in Hardy class with appropriate growth/decay), strict causality is \textbf{mutually equivalent} to upper half-plane analyticity and Kramers--Kronig dispersion relations; if these conditions fail, only directional implications hold or additional regularization is needed.
+
+\textbf{Decomposition and validity conditions for metrological closure:} Suppose external links are uniform, and the free propagation phase for each open channel $n=1,\dots,N(E)$ can be written as diagonal factor
+$$
+D_k(E):=\operatorname{diag}\!\big(e^{\,i k_n(E)L}\big),\qquad
+k_n(E)=\frac{E}{\hbar\,v_{p,n}(E)}.
+$$
+Taking decomposition $S(E)=D_k(E)\,U(E)$, from $\dfrac{dk_n}{dE}=\dfrac{1}{\hbar\,v_{g,n}(E)}$ we obtain
+$$
+\operatorname{tr}\mathsf{Q}(E)=\frac{L}{\hbar}\sum_{n=1}^{N(E)}\frac{1}{v_{g,n}(E)}
+\;-\;i\,\operatorname{tr}\!\big(U^\dagger \partial_E U\big).
+$$
+If all channels satisfy $v_{g,n}(E)\approx v_g(E)$ in the given energy window (or $-i\,\operatorname{tr}(U^\dagger\partial_E U)$ has been eliminated with reference link), then
+$$
+\overline{\tau}(E)=\frac{\hbar}{N(E)}\,\operatorname{tr}\mathsf{Q}(E)\;\approx\;\frac{L}{v_g(E)}\quad
+\big(\text{in vacuum, }v_g(E)=c\big).
+$$
+If external links exhibit dispersion or reflection, or the scattering region contains localized states decoupled from ports, separate the continuous part and correct the above decomposition.
+
+\section{RCA: Reversibility Criterion, Discrete Light Cone, and Floquet Spectrum}
+
+On a finite alphabet and $\mathbb{Z}^d$ shift, a continuous global map commuting with shift is a cellular automaton; it is a reversible cellular automaton if and only if the global map is bijective and its inverse is also a cellular automaton. For radius-$r$, lattice spacing $a$, time step $\Delta t$, the influence domain at $t$ steps is $\pm r t$, with discrete ``speed of light'' $c_{\mathrm{disc}}=ra/\Delta t$; the continuum limit aligns with the EBOC front. The quasienergy spectrum of one-step evolution under periodic driving is given by Floquet--Sambe formalism, with energy scale $E=\hbar \omega$ compatible with group delay readouts.
+
+\section{NPE Error Ledger and Window/Kernel Optimization}
+
+\textbf{Poisson--Nyquist (aliasing term):} When band-limiting satisfies the Nyquist--Shannon condition, the aliasing term vanishes; for general windows, the aliasing term can be quantitatively bounded via Poisson summation.
+
+\textbf{Euler--Maclaurin (unified remainder bound):} If $f\in C^{2m}\cap W^{2m,1}(\mathbb{R})$ with $f^{(k)}(\pm\infty)=0$ ($0\le k\le 2m-1$), the even-order truncation remainder satisfies
+$$
+\big|R_{2m}\big|\le \frac{2\,\zeta(2m)}{(2\pi)^{2m}}\int_{\mathbb{R}}\big|f^{(2m)}(x)\big|\,dx,\qquad m\in\mathbb{N}.
+$$
+If decay/integrability fails, truncate with window function and incorporate boundary terms into $R_{2m}$, modifying this bound accordingly.
+
+\textbf{NPE readout notation and total error:} Denote convolution $[\kappa\star f](E):=\int_{\mathbb{R}}\kappa(E-E')\,f(E')\,dE'$. For any window--kernel pair $(w_R,\kappa)$, the readout is written
+$$
+X_W=\frac{1}{2\pi}\int_{\mathbb{R}} w_R(E)\,[\kappa\star f](E)\,dE,
+$$
+with composite error estimated as
+$$
+\mathsf{Err}=\mathcal{O}(\hbar)+\mathcal{O}(\varepsilon_{\mathrm{alias}})+\mathcal{O}(\varepsilon_{\mathrm{EM}})+\mathcal{O}(\varepsilon_{\mathrm{tail}}),
+$$
+where $\varepsilon_{\mathrm{alias}}=0$ (when band-limited), $\varepsilon_{\mathrm{EM}}$ is bounded by the above, and $\varepsilon_{\mathrm{tail}}$ is controlled by out-of-band mass and $|\operatorname{tr}\mathsf{Q}|_\infty$.
+
+\textbf{Multi-window--multi-kernel optimization:} Under Parseval tight frames or Gabor frameworks, fit $\operatorname{tr}\mathsf{Q}$ with target kernel $\kappa$ and minimize functional penalizing $\mathsf{Err}$; feasibility and stability are guaranteed by biorthogonality relations and density theorems.
+
+\section{Typical Models and Unified Inferences}
+
+\textbf{Free propagation link (unified formulation, including multimode):} If external links are uniform and
+$-i\,\operatorname{tr}\!\big(U^\dagger \partial_E U\big)=0$ (or this term has been canceled via reference link), then
+$$
+\operatorname{tr}\mathsf{Q}(E)=\frac{L}{\hbar}\sum_{n=1}^{N(E)}\frac{1}{v_{g,n}(E)},\qquad
+\tau_{\mathrm{WS}}(E)=L\sum_{n=1}^{N(E)}\frac{1}{v_{g,n}(E)},\qquad
+\overline{\tau}(E)=\frac{1}{N(E)}\sum_{n=1}^{N(E)}\frac{L}{v_{g,n}(E)}.
+$$
+If all channels satisfy $v_{g,n}(E)\approx v_g(E)$, this reduces to
+$\tau_{\mathrm{WS}}(E)\approx \dfrac{N(E)\,L}{v_g(E)}$ and $\overline{\tau}(E)\approx \dfrac{L}{v_g(E)}$. If these conditions fail, retain the correction term $-i\,\operatorname{tr}\!\big(U^\dagger \partial_E U\big)$.
+
+\textbf{Discrete light cone of RCA:} For radius-$r$, lattice spacing $a$, time step $\Delta t$, the RCA influence domain at $t$ steps is $\pm r t$, with discrete ``speed of light'' $c_{\mathrm{disc}}=r a/\Delta t$. In the continuum limit, it locally matches the group velocity of classical dispersion only in a linearized energy/wavenumber neighborhood $E_0$:
+$$
+c_{\mathrm{disc}}\ \xrightarrow[\text{continuum limit}]{E\approx E_0}\ v_g(E_0),
+$$
+with vacuum linear dispersion giving the special case $c_{\mathrm{disc}}\to c$.
+
+\textbf{Potential scattering DOS--phase--delay:} If $S(E)=\operatorname{diag}\big(e^{2i\delta_j(E)}\big)$, then
+$$
+\rho_{\mathrm{rel}}(E)=\frac{1}{\pi}\sum_j\delta'_j(E)=\frac{1}{2\pi}\operatorname{tr}\mathsf{Q}(E),
+$$
+with delay peaks characterizing resonance lifetimes.
+
+\textbf{Quantum--classical dynamics reduction:}
+$$
+\frac{d}{dt}\langle \hat{A}\rangle=\frac{i}{\hbar}\langle[\hat{H},\hat{A}]\rangle=\langle\{H,A\}\rangle+\mathcal{O}(\hbar^2),
+$$
+with Wigner measure providing macroscopic transport limit.
+
+\section{Falsifiable Exits and Interfaces}
+
+Given multi-port $S(E)$ or port data, the trinity chain provides consistent predictions for $\varphi'(E)$, $\rho_{\mathrm{rel}}(E)$, $\operatorname{tr}\mathsf{Q}(E)$; any systematic deviation indicates window--kernel or model assumption mismatch. When §7 conditions ($-i\,\operatorname{tr}(U^\dagger \partial_E U)=0$ or baseline canceled) are satisfied, multi-window regression $\overline{\tau}(E)\to L/v_g(E)$ rate is controlled by §6 bounds, experimentally verifiable. RCA prototype $c_{\mathrm{disc}}$-calibration in continuum limit and linearized energy neighborhood $E_0$ locally matches $v_g(E_0)$; quasienergy spectrum readouts should be consistent with continuous links in that neighborhood.
+
+\section{Appendix: Technical Lemmas and Proof Outlines}
+
+\subsection{BK--Kreĭn--WS Chain}
+
+Let the scattering pair $(H,H_0)$ give $S(E)$ on the absolutely continuous spectrum of $H_0$ (with $S(E)\in U(N(E))$). Then
+$$
+\det S(E)=\exp\!\big(2\pi i\,\xi(E)\big)\ \Rightarrow\ -i\,\partial_E\log\det S(E)=2\pi\,\xi'_{\mathrm{ac}}(E)\ \text{(a.e. on }\sigma_{\mathrm{ac}}(H_0)\text{)},
+$$
+$$
+\partial_E\log\det S(E)=\operatorname{tr}\!\big(S^\dagger \partial_E S\big),\qquad
+\mathsf{Q}(E)=-i\,S^\dagger \partial_E S,\qquad
+\rho_{\mathrm{rel}}(E)=\xi'_{\mathrm{ac}}(E),
+$$
+$$
+\varphi(E):=\pi\,\xi_{\mathrm{ac}}(E)\ \big(=\tfrac12 \operatorname{Arg}_{\mathrm{ac}}\det S(E)\big),\qquad \varphi'(E)=\tfrac12\,\operatorname{tr}\mathsf{Q}(E)=\pi\,\rho_{\mathrm{rel}}(E)\ \text{(a.e. on $\sigma_{\mathrm{ac}}(H_0)$)}.
+$$
+
+\subsection{Egorov--NPE Composite Error}
+
+If $f_t=f\circ \Phi_t+\mathcal{O}(\hbar)$, then for
+$$
+X_W=\frac{1}{2\pi}\int_{\mathbb{R}} w_R(E)\,[\kappa\star f_t](E)\,dE
+$$
+we have
+$$
+\mathsf{Err}=\mathcal{O}(\hbar)+\mathcal{O}(\varepsilon_{\mathrm{alias}})+\mathcal{O}(\varepsilon_{\mathrm{EM}})+\mathcal{O}(\varepsilon_{\mathrm{tail}}),
+$$
+where $\varepsilon_{\mathrm{EM}}$ is given by the Euler--Maclaurin bound in §6.
+
+\section{Conclusion}
+
+This paper establishes a quantum--classical unification framework across WSIG--EBOC--RCA: the trinity of phase--relative state density--group delay as the unique master scale for the energy axis; Egorov--Moyal--Wigner measure propagation implementing semiclassical reduction; NPE error ledger providing non-asymptotic verifiable bounds; front support and metrological closure calibrating bridge constants $(c,\hbar,e,G,k_{\mathrm{B}})$. This system possesses isomorphic semantics between static block geometry and discrete reversible dynamics, providing an operational measurement--calibration chain for the quantum--classical interface.
+
+\bibliographystyle{plain}
+\begin{thebibliography}{99}
+
+\bibitem{wigner}
+E. P. Wigner.
+\newblock Lower limit for the energy derivative of the scattering phase shift.
+
+\bibitem{smith}
+F. T. Smith.
+\newblock Lifetime matrix in collision theory.
+\newblock {\em Physical Review}, 118:349--356, 1960.
+
+\bibitem{birman}
+M. Sh. Birman and M. G. Kreĭn.
+\newblock On the theory of wave operators and scattering operators.
+
+\bibitem{egorov}
+Yu. V. Egorov.
+\newblock The canonical transformations of pseudodifferential operators.
+\newblock {\em Uspekhi Matematicheskikh Nauk}, 24(5):235--236, 1969.
+
+\bibitem{moyal}
+J. E. Moyal.
+\newblock Quantum mechanics as a statistical theory.
+\newblock {\em Mathematical Proceedings of the Cambridge Philosophical Society}, 45(1):99--124, 1949.
+
+\bibitem{wigner_fn}
+E. P. Wigner.
+\newblock On the quantum correction for thermodynamic equilibrium.
+\newblock {\em Physical Review}, 40(5):749--759, 1932.
+
+\bibitem{toll}
+J. S. Toll.
+\newblock Causality and the dispersion relation: Logical foundations.
+\newblock {\em Physical Review}, 104(6):1760--1770, 1956.
+
+\bibitem{chl}
+Curtis--Hedlund--Lyndon theorem.
+\newblock Wikipedia entry.
+
+\end{thebibliography}
+
+\end{document}
+

@@ -1,0 +1,769 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{braket}
+\usepackage{graphicx}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Title information
+\title{Unified Theory of Quantum Chaos and Eigenstate Thermalization in QCA Universe\\
+\large ETH, Postulated Chaos and Eigenstate Level Statistics under Unified Time Scale}
+
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+In the framework of Unified Time Scale, Matrix Universe $\mathrm{THE\text{-}MATRIX}$, and Quantum Discrete Cellular Automaton Universe $U_{\mathrm{qca}}$, we construct a systematic theory for Quantum Chaos and the Eigenstate Thermalization Hypothesis (ETH). The Unified Time Scale Mother Formula
+\begin{equation}
+\kappa(\omega)
+=\varphi'(\omega)/\pi
+=\rho_{\mathrm{rel}}(\omega)
+=(2\pi)^{-1}\operatorname{tr}Q(\omega)
+\end{equation}
+unifies the scattering semi-phase derivative, relative density of states, and Wigner--Smith group delay trace into a single time scale density, thereby providing a "Universe Time Mother Ruler" in the Matrix Universe $U_{\mathrm{mat}}$ independent of specific Hamiltonian choices. The Universe as a QCA object
+\begin{equation}
+U_{\mathrm{qca}}=(\Lambda,\mathcal H_{\mathrm{cell}},\mathcal A_{\mathrm{qloc}},\alpha,\omega_0)
+\end{equation}
+describes discrete time evolution via local unitary automorphisms $\alpha$ on a countable lattice, and reconstructs relativistic quantum field theory and geometric structure in the continuum limit.
+
+Based on this, we propose an axiomatic system for "Postulated Chaos QCA" and prove the following main results:
+
+1. On any finite region $\Omega\subset\Lambda$, the restricted finite-dimensional unitary operator $U_\Omega$ satisfies Discrete Time ETH for its quasi-energy spectrum eigenstates with respect to any local operator $O_X$ (support $X\subset\Omega$): for the vast majority of eigenstates $\ket{\psi_n}$ within an energy window,
+\begin{equation}
+\langle\psi_n|O_X|\psi_n\rangle
+=\langle O_X\rangle_{\mathrm{micro}}(\varepsilon_n)
++\mathcal O(\mathrm{e}^{-c|\Omega|}),
+\end{equation}
+and the squared average of off-diagonal matrix elements decays exponentially with volume, achieving eigenstate thermalization for local observables.
+
+2. Under the axioms of "Postulated Chaos QCA" (finite propagation radius, translation symmetry, local gates generating high-order unitary designs, no extra extensive conserved quantities), the quasi-energy level statistics of the finite region $U_\Omega$ converge after unfolding to the Wigner--Dyson distribution of the CUE random matrix class. Its spectral form factor exhibits a typical "ramp--plateau" structure, constituting a standard quantum chaos diagnosis at the QCA level.
+
+3. Relating QCA--ETH to the Unified Time Scale: Under the unified time scale $\tau$, the "thermalization time scale" and the growth rate of local entropy density are jointly controlled by the energy shell average of the scale density $\kappa(\omega)$ and the QCA light cone structure. We prove a "Unified Time--ETH--Entropy Growth Theorem": for any family of finite-density local initial states, the entropy density increases monotonically with $\tau$ and approaches the microcanonical entropy density in the long-time limit.
+
+4. On the global QCA universe object, embedding the above local results into the causal network and unified time scale mother structure shows that the "thermal time arrow" and "macroscopic irreversibility" on the cosmic scale can be understood as structural invariants in the unified Matrix--QCA Universe, rather than additionally introduced dynamical postulates.
+
+The appendix provides: rigorous definitions and equivalent forms of discrete time ETH; exact mapping between local random circuits and QCA; proof details and constant estimates for the QCA--ETH Theorem and CUE level statistics; and a 1D Postulated Chaos QCA model with specific predictions for numerical verification.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Quantum Chaos; Eigenstate Thermalization Hypothesis (ETH); Quantum Cellular Automata (QCA); Unified Time Scale; Matrix Universe; Unitary Design; Spectral Form Factor; Random Matrix Theory
+
+\section{Introduction \& Historical Context}
+
+\subsection{Standard Picture of ETH and Quantum Chaos}
+
+In closed many-body quantum systems, how pure state unitary evolution generates statistical behavior compatible with thermodynamic equilibrium is a core problem in the foundations of quantum statistical mechanics. Integrable systems typically retain a large number of conserved quantities, tending towards a Generalized Gibbs Ensemble after long-time evolution, whereas non-integrable systems in high-energy density regions are widely believed to satisfy the Eigenstate Thermalization Hypothesis (ETH). Deutsch and Srednicki first proposed, through random matrix heuristics and field theory analysis, that in the eigenbasis of a sufficiently chaotic Hamiltonian, the eigenstate matrix elements of a local observable operator $O$ can be written as
+\begin{equation}
+\langle E_\alpha|O|E_\beta\rangle
+=O(\bar E)\delta_{\alpha\beta}
++\mathrm{e}^{-S(\bar E)/2}f_O(\bar E,\omega)R_{\alpha\beta},
+\end{equation}
+where $\bar E=(E_\alpha+E_\beta)/2$, $\omega=E_\alpha-E_\beta$, $S(\bar E)$ is the microscopic entropy, and $R_{\alpha\beta}$ are quasi-Gaussian random numbers with zero mean and unit variance. The diagonal term gives the energy-dependent thermal equilibrium value, while the off-diagonal terms are exponentially small in system volume, ensuring that time-averaged observables approximate the microcanonical ensemble average and time fluctuations are suppressed.
+
+Subsequently, extensive numerical and theoretical work has verified ETH in contexts such as spin chains, Bose/Fermi lattice models, and Floquet many-body systems, systematically analyzing its scope and failure mechanisms (e.g., many-body localization). Parallel to this, research on random matrix theory and quantum chaos provides another diagnostic route: if level statistics exhibit a Wigner--Dyson distribution after appropriate unfolding, and the spectral form factor shows a "ramp--plateau", the system is considered to be in a quantum chaos phase.
+
+\subsection{Discrete Time Systems and Random Quantum Circuits}
+
+In Floquet systems and random quantum circuits, time evolution is described by a single time-step unitary operator $U$, and the quasi-energy spectrum is defined by
+\begin{equation}
+U\ket{\psi_n}=\mathrm{e}^{-\mathrm{i}\varepsilon_n\Delta t}\ket{\psi_n}.
+\end{equation}
+ETH can be rewritten as a statement about quasi-energy eigenstates $\ket{\psi_n}$, where thermal equilibrium corresponds to a microcanonical distribution on a fixed quasi-energy shell. Local random quantum circuits have been proven to achieve high-order unitary designs at polynomial depth, with their eigenstates and spectral statistics strictly approaching the typical properties of Haar random unitary matrices. Recent work has further improved the trade-off between design order and circuit depth, providing finer estimates for "randomness" and "scrambling speed".
+
+These results indicate that in discrete-time many-body systems with locality constraints, quantum chaos and ETH possess the universality predicted by random matrix theory and can be strictly controlled via the language of local random circuits and unitary designs.
+
+\subsection{Structure and Development of Quantum Cellular Automata (QCA)}
+
+Quantum Cellular Automata (QCA) are another class of unitary dynamical models discrete in both time and space, encoding structures like "locality, translation symmetry, finite propagation speed" under rigorous mathematical axioms. Schumacher and Werner provided the definition and structure theorems for reversible QCA, emphasizing that QCA are translation-covariant dynamics with finite propagation radius on infinite lattice systems; the same local rule can generate global time steps under finite periodic boundary conditions. In the 1D case, Gross, Nesme, Vogts, and Werner developed index theory for QCA and quantum walks, providing topological indices on K-theory to classify 1D QCA. Other works characterize the structure and simulability of local QCA from a quantum information perspective.
+
+Compared to local random circuits, QCA are closer to the ideal abstraction of "cosmic dynamics": their definition does not include external noise or measurement, relying only on discrete time-step unitary updates and spatial locality. Therefore, if the cosmic ontology is characterized as a certain QCA, then ETH, quantum chaos, irreversibility, and the thermal time arrow should all find explanations within the QCA framework.
+
+\subsection{Unified Time Scale and Matrix Universe}
+
+In scattering and spectral theory, the Wigner--Smith time delay matrix
+\begin{equation}
+Q(\omega)=-\mathrm{i} S(\omega)^\dagger\partial_\omega S(\omega)
+\end{equation}
+relates the frequency derivative of the multi-channel scattering matrix $S(\omega)$ to "group delay", with its trace giving the total delay time. On the other hand, the Birman--Kre\u{i}n formula and Lifshits--Kre\u{i}n trace formula relate the spectral shift function $\xi(\omega)$ to the scattering determinant $\det S(\omega)$, showing that
+\begin{equation}
+\xi(\omega)
+=-\frac{1}{2\pi\mathrm{i}}\log\det S(\omega),
+\quad
+\rho_{\mathrm{rel}}(\omega)=-\xi'(\omega)
+\end{equation}
+are well-defined for very general operator pairs $(H_0, H)$.
+
+The Unified Time Scale Mother Formula
+\begin{equation}
+\kappa(\omega)
+=\varphi'(\omega)/\pi
+=\rho_{\mathrm{rel}}(\omega)
+=(2\pi)^{-1}\operatorname{tr}Q(\omega)
+\end{equation}
+is interpreted in this context as a unified density of "relative density of states -- group delay -- scattering phase derivative", defining a "Time Mother Ruler" independent of specific coordinates and local Hamiltonian choices.
+
+The Matrix Universe $\mathrm{THE\text{-}MATRIX}$ views the universe as a family of giant scattering matrices $S(\omega)$ decomposed by energy, and their Wigner--Smith matrices $Q(\omega)$, with block sparse structure encoding causal partial order and spectral data realizing the unified time scale. In geometric--boundary time structure, the unified time scale corresponds to objects like modular flow and GHY boundary time translation, thereby downgrading "time" to a function of scattering phase and spectral shift.
+
+\subsection{Objectives and Work Overview}
+
+The goal of this paper is to establish an axiomatic and theorem-based theory for "The validity of Quantum Chaos and ETH in QCA Universe and Level Statistics" under the dual framework of Unified Time Scale and Matrix Universe--QCA Universe.
+
+The core ideas are:
+
+1. Model the universe as a reversible QCA object $U_{\mathrm{qca}}$ satisfying the Schumacher--Werner axioms, obtaining finite-dimensional unitary operators $U_\Omega$ on finite regions.
+
+2. Introduce the axiomatic system of "Postulated Chaos QCA", such that $U_\Omega$ is equivalent to a family of local random circuits at finite depth. These circuits constitute high-order unitary designs within polynomial depth, thereby approximating Haar random unitaries in local observables and spectral statistics.
+
+3. Utilize the ETH typicality of Haar random unitaries and random matrix theory to establish QCA--ETH theorems and CUE-type spectral statistics theorems for the eigenstate matrix elements, level spacings, and spectral form factor of $U_\Omega$.
+
+4. Relate the Unified Time Scale Mother Formula $\kappa(\omega)$ to the discrete time step of QCA, proving the Unified Time--ETH--Entropy Growth Theorem, and restating the thermal time arrow and macroscopic irreversibility at the level of the cosmic causal network.
+
+Following the given structure, the subsequent sections present the model and postulates, main theorems, proofs, model applications, engineering proposals, discussion, conclusion, and detailed proofs in the appendices.
+
+\section{Model & Assumptions}
+
+\subsection{Unified Time Scale Mother Formula and Scattering Structure}
+
+Let $\mathcal H$ be a separable Hilbert space, and $H_0, H$ be a pair of self-adjoint operators satisfying appropriate trace-class perturbation conditions such that wave operators exist and are complete, and the scattering operator
+\begin{equation}
+S= W_+^\dagger W_-
+\end{equation}
+can be written under spectral decomposition as
+\begin{equation}
+S=\int^\oplus S(\omega)\,\mathrm{d}\mu(\omega),
+\end{equation}
+where $\omega$ represents energy or frequency parameter. For almost every $\omega$, $S(\omega)$ is a unitary operator on the fiber Hilbert space.
+
+The Birman--Kre\u{i}n formula asserts the existence of a spectral shift function $\xi(\omega)$ such that
+\begin{equation}
+\xi(\omega)=-\frac{1}{2\pi\mathrm{i}}\log\det S(\omega),
+\quad
+\rho_{\mathrm{rel}}(\omega)=-\xi'(\omega)
+\end{equation}
+giving the relative density of states in broad cases. On the other hand, the Wigner--Smith time delay matrix is defined as
+\begin{equation}
+Q(\omega)=-\mathrm{i} S(\omega)^\dagger\partial_\omega S(\omega),
+\end{equation}
+whose trace characterizes the total group delay time.
+
+The Unified Time Scale Mother Formula is defined as
+\begin{equation}
+\kappa(\omega)
+=\frac{\varphi'(\omega)}{\pi}
+=\rho_{\mathrm{rel}}(\omega)
+=\frac{1}{2\pi}\operatorname{tr}Q(\omega),
+\end{equation}
+where $\varphi(\omega)$ is the scattering semi-phase (phase of the relative scattering determinant). In the unified framework, $\kappa(\omega)$ is regarded as the "Universe Time Density". Any physical time parameter, if obtained through an observable measurement process, belongs to the equivalence class of
+\begin{equation}
+\tau_{\mathrm{scatt}}(\omega)=\int^{\omega}\kappa(\tilde\omega)\,\mathrm{d}\tilde\omega
+\end{equation}
+on large scales.
+
+\subsection{Matrix Universe $\mathrm{THE\text{-}MATRIX}$}
+
+The Matrix Universe object $U_{\mathrm{mat}}$ is defined as
+\begin{equation}
+U_{\mathrm{mat}}
+=\bigl(\mathcal H_{\mathrm{chan}},S(\omega),Q(\omega),\kappa,\mathcal A_\partial,\omega_\partial\bigr),
+\end{equation}
+where:
+1. $\mathcal H_{\mathrm{chan}}=\bigoplus_{v\in V}\mathcal H_v$ is the direct sum of channel Hilbert spaces, each $v$ corresponding to a macroscopic "port" or boundary region;
+2. $S(\omega)\in\mathcal B(\mathcal H_{\mathrm{chan}})$ is a family of frequency-dependent scattering matrices, whose block sparse structure on $V\times V$ encodes causal partial order and interaction structure;
+3. $Q(\omega)=-\mathrm{i} S(\omega)^\dagger\partial_\omega S(\omega)$ is the Wigner--Smith group delay matrix, and the unified time scale density is given by
+   \begin{equation}
+   \kappa(\omega)
+   =(2\pi)^{-1}\operatorname{tr}Q(\omega);
+   \end{equation}
+4. $\mathcal A_\partial$ is the boundary observable algebra, and $\omega_\partial$ is the boundary quantum state, connected to scattering data via boundary time geometry and modular flow.
+
+In this object, quantum chaos and ETH correspond to: scattering phases obeying random matrix theory predictions statistically over energy windows, and local projections under channel decomposition exhibiting only exponentially small deviations between eigenstate averages and corresponding microcanonical averages.
+
+\subsection{QCA Universe $U_{\mathrm{qca}}$}
+
+The QCA Universe object $U_{\mathrm{qca}}$ is defined as
+\begin{equation}
+U_{\mathrm{qca}}
+=(\Lambda,\mathcal H_{\mathrm{cell}},\mathcal A_{\mathrm{qloc}},\alpha,\omega_0),
+\end{equation}
+satisfying the following axioms:
+1. $\Lambda$ is a countable connected graph (typically $\mathbb Z^d$ or its finite metric deformation);
+2. Each lattice site $x\in\Lambda$ carries a finite-dimensional Hilbert space $\mathcal H_x\cong\mathcal H_{\mathrm{cell}}$;
+3. The quasi-local algebra $\mathcal A_{\mathrm{qloc}}$ is the norm closure of all finitely supported operators;
+4. $\alpha:\mathcal A_{\mathrm{qloc}}\to\mathcal A_{\mathrm{qloc}}$ is a $\ast$-automorphism, with a propagation radius $R<\infty$, such that for any finite region $X\subset\Lambda$, an operator $O_X$ supported on $X$ is mapped to an operator supported on
+   \begin{equation}
+   X^{+R}=\{y\in\Lambda\mid \mathrm{dist}(y,X)\le R\};
+   \end{equation}
+5. $\alpha$ is implemented by a global unitary operator $U$, i.e., $\alpha(O)=U^\dagger O U$;
+6. $\alpha$ is translation covariant, i.e., commutes with the lattice translation group action;
+7. The initial state $\omega_0$ is a state on $\mathcal A_{\mathrm{qloc}}$, giving the quantum state of the universe at time step $n=0$.
+
+For any finite region $\Omega\subset\Lambda$, define $\mathcal H_\Omega=\bigotimes_{x\in\Omega}\mathcal H_x$. Restricting $U$ yields $U_\Omega$ (under appropriate boundary conditions), with spectrum
+\begin{equation}
+U_\Omega\ket{\psi_n}
+=\mathrm{e}^{-\mathrm{i}\varepsilon_n\Delta t}\ket{\psi_n}.
+\end{equation}
+These finite-dimensional unitary operators are the fundamental objects for discussing QCA--ETH and level statistics.
+
+\subsection{Postulated Chaos QCA}
+
+To make QCA exhibit statistical properties similar to local random circuits on finite regions, we introduce the following definition.
+
+\begin{definition}[Postulated Chaos QCA]
+A translation-invariant QCA $U$ is called a Postulated Chaos QCA if it satisfies:
+1. **Finite Propagation Radius and Locality:** There exists an integer $R$ such that for any finite $X\subset\Lambda$, $\alpha(\mathcal A_X)\subset\mathcal A_{X^{+R}}$;
+2. **Local Circuit Representation:** On any finite region $\Omega$, $U_\Omega$ can be written in a suitable basis as a finite-depth local quantum circuit
+   \begin{equation}
+   U_\Omega
+   =\prod_{\ell=1}^D U_\ell,\quad
+   U_\ell=\bigotimes_j U_{\ell,j},
+   \end{equation}
+   where each gate $U_{\ell,j}$ acts on a finite subset $X_{\ell,j}\subset\Omega$ and commutes with all gates separated by more than a finite distance;
+3. **Approximate Unitary Design:** There exists $t_0\in\mathbb N$ and a function $\epsilon_t(|\Omega|)$ (decaying exponentially with $|\Omega|$), such that for any $t\le t_0$, the unitary family generated by $U_\Omega$ constitutes an $\epsilon_t$-approximate unitary design in the $t$-th moment, i.e., for any polynomial $P(U, U^\dagger)$ (degree not exceeding $t$),
+   \begin{equation}
+   \Bigl\lVert
+   \mathbb E_{U_\Omega}[P(U_\Omega)]
+   -\mathbb E_{U\sim\mathrm{Haar}}[P(U)]
+   \Bigr\rVert
+   \le\epsilon_t(|\Omega|);
+   \end{equation}
+   where $U\sim\mathrm{Haar}$ denotes Haar random unitary on $U(\dim\mathcal H_\Omega)$.
+4. **No Extra Extensive Conserved Quantities:** Except for possibly a few global quantum numbers (e.g., total particle number, spin), there are no independent extensive local conserved quantities in the system;
+5. **Thermalization Energy Window:** There exists an energy window $I\subset(-\pi/\Delta t, \pi/\Delta t]$, within which the number of eigenstates grows exponentially with $|\Omega|$, and energy level degeneracy produces only finitely many symmetry multiplicities.
+\end{definition}
+
+These conditions encapsulate mature results of local random circuits realizing high-order unitary designs and satisfying ETH, embedding them into the language of QCA.
+
+\subsection{Definition of Discrete Time ETH}
+
+Consider a finite region $\Omega$ and its evolution operator $U_\Omega$, with spectral decomposition as before. For a given energy window center $\varepsilon$ and width $\delta>0$, define the quasi-energy shell subspace
+\begin{equation}
+\mathcal H_{\Omega}(\varepsilon,\delta)
+=\mathrm{span}\{\ket{\psi_n}\mid \varepsilon_n\in(\varepsilon-\delta,\varepsilon+\delta)\},
+\end{equation}
+with dimension denoted by $D_{\varepsilon,\delta}$. Define the microcanonical average
+\begin{equation}
+\langle O_X\rangle_{\mathrm{micro}}(\varepsilon)
+=D_{\varepsilon,\delta}^{-1}
+\sum_{\varepsilon_n\in(\varepsilon-\delta,\varepsilon+\delta)}
+\langle\psi_n|O_X|\psi_n\rangle
+\end{equation}
+(taking $\delta$ scaling polynomially with $|\Omega|$).
+
+\begin{definition}[Discrete Time ETH]
+$U_\Omega$ is said to satisfy Discrete Time ETH for a family of local operators $\{O_X\}$ in energy window $I$, if there exist constant $c>0$ and smooth functions $O_X(\varepsilon)$, $\sigma_X(\varepsilon)$, such that for any $X\subset\Omega$ and the vast majority of $n$ ($\varepsilon_n\in I$):
+1. **Diagonal ETH:**
+   \begin{equation}
+   \langle\psi_n|O_X|\psi_n\rangle
+   =O_X(\varepsilon_n)+\mathcal O(\mathrm{e}^{-c|\Omega|});
+   \end{equation}
+2. **Off-Diagonal ETH:** For almost all $m\neq n$ and $\bar\varepsilon=(\varepsilon_m+\varepsilon_n)/2\in I$,
+   \begin{equation}
+   |\langle\psi_m|O_X|\psi_n\rangle|
+   \le \mathrm{e}^{-S(\bar\varepsilon)/2}\sigma_X(\bar\varepsilon),
+   \end{equation}
+   where $S(\bar\varepsilon)\sim s(\bar\varepsilon)|\Omega|$ is the microcanonical entropy of the energy shell.
+\end{definition}
+
+If this holds for all families of local operators, the QCA is said to satisfy ETH in that region.
+
+\section{Main Results (Theorems and alignments)}
+
+For brevity, denote $\dim\mathcal H_\Omega=D\sim\mathrm{e}^{s|\Omega|}$.
+
+\subsection{QCA--ETH Main Theorem}
+
+\begin{theorem}[QCA--ETH Theorem]
+Let $U$ be a Postulated Chaos QCA, $\Omega\Subset\Lambda$ a sufficiently large finite region, $U_\Omega$ the unitary operator restricted to $\Omega$, and $\{\ket{\psi_n},\varepsilon_n\}$ its quasi-energy eigenpairs. Then there exist an energy window $I$ and a constant $c>0$ such that for any local operator $O_X$ with finite support $X\subset\Omega$, there exists a smooth function $O_X(\varepsilon)$ satisfying:
+
+1. **Diagonal ETH:** For the vast majority of $n$ in the energy window ($\varepsilon_n\in I$),
+   \begin{equation}
+   \langle\psi_n|O_X|\psi_n\rangle
+   =O_X(\varepsilon_n)+\mathcal O(\mathrm{e}^{-c|\Omega|});
+   \end{equation}
+
+2. **Off-Diagonal ETH:** The second moment satisfies
+   \begin{equation}
+   \mathbb E\bigl[|\langle\psi_m|O_X|\psi_n\rangle|^2\bigr]
+   \le \mathrm{e}^{-S(\bar\varepsilon)}g_O(\bar\varepsilon,\omega),
+   \end{equation}
+   where $\bar\varepsilon=(\varepsilon_m+\varepsilon_n)/2$, $S(\bar\varepsilon)\sim s(\bar\varepsilon)|\Omega|$, and $g_O$ is bounded;
+
+3. If the initial state $\ket{\psi_0}$ has a narrow energy distribution within window $I$, i.e., $|c_n|^2$ is significant only for $\varepsilon_n\in I$, then its time-averaged local observation satisfies
+   \begin{equation}
+   \overline{\langle O_X\rangle}
+   =\langle O_X\rangle_{\mathrm{micro}}(\varepsilon)
+   +\mathcal O(\mathrm{e}^{-c|\Omega|}),
+   \end{equation}
+   and time fluctuations are exponentially suppressed by the off-diagonal ETH index.
+\end{theorem}
+
+\subsection{CUE-type Convergence of Quasi-Energy Statistics}
+
+Let $\theta_n=\varepsilon_n\Delta t\in(-\pi,\pi]$, sorted in ascending order and unfolded to variables $s_n$ with average spacing 1.
+
+\begin{theorem}[CUE Behavior of QCA Level Statistics]
+Under the assumptions of Theorem 3.1, the unfolded nearest-neighbor spacing distribution $P(s)$ converges in the limit $|\Omega|\to\infty$ to the Wigner--Dyson distribution of the CUE random matrix ensemble:
+\begin{equation}
+P_{\mathrm{CUE}}(s)
+\sim\frac{32}{\pi^2}s^2\mathrm{e}^{-4s^2/\pi}.
+\end{equation}
+Simultaneously, the normalized spectral form factor
+\begin{equation}
+K(t)
+=D^{-1}|\operatorname{tr} U_\Omega^t|^2
+\end{equation}
+exhibits a "ramp--plateau" structure after appropriate rescaling, consistent with the universal spectral fluctuations of CUE.
+\end{theorem}
+
+\subsection{Unified Time--ETH--Entropy Growth Theorem}
+
+In the QCA Universe, introduce an affine relation between unified time scale $\tau$ and discrete time step $n$:
+\begin{equation}
+\tau=an\Delta t+b,\quad a>0.
+\end{equation}
+Consider a family of "low entropy" initial states $\{\rho_0\}$ within energy window $I$, whose von Neumann entropy density $s_0=S(\rho_0)/|\Omega|$ is less than the microcanonical entropy density $s_{\mathrm{mc}}(\varepsilon)$.
+
+\begin{theorem}[Unified Time--ETH--Entropy Growth]
+Under Postulated Chaos QCA and the assumptions of Theorem 3.1, there exists a function $v_{\mathrm{ent}}(\varepsilon)>0$ and a constant $c'>0$ such that for any finite $X\subset\Omega$, in the unified time scale interval $\tau\in[0,\tau_{\mathrm{th}}]$, the entropy density of the reduced state $\rho_X(\tau)=\operatorname{tr}_{\Omega\setminus X}\rho(\tau)$,
+\begin{equation}
+s_X(\tau)=|X|^{-1}S(\rho_X(\tau)),
+\end{equation}
+satisfies
+\begin{equation}
+s_X(\tau)
+\ge s_0 + v_{\mathrm{ent}}(\varepsilon)\frac{\tau}{\ell_{\mathrm{eff}}}
+-\mathcal O(\mathrm{e}^{-c'|\Omega|}),
+\end{equation}
+and approaches $s_{\mathrm{mc}}(\varepsilon)$ after $\tau\gtrsim\tau_{\mathrm{th}}$. Here $\ell_{\mathrm{eff}}$ is determined by the propagation radius of the QCA and Lieb--Robinson type light cone velocity, and $v_{\mathrm{ent}}(\varepsilon)$ can be written as a function of the average of the unified scale density $\kappa(\omega)$ over window $I$ and local interaction strength.
+\end{theorem}
+
+\subsection{Cosmic Scale ETH and Thermal Time Arrow}
+
+View the QCA Universe $U_{\mathrm{qca}}$ as the direct limit of a family of finite regions $\{\Omega_L\}$, $\Omega_L\nearrow\Lambda$. For each $L$, restricting $U$ yields $U_{\Omega_L}$.
+
+\begin{proposition}[ETH on Cosmic Causal Network]
+If $U$ is a Postulated Chaos QCA, then for any finite causal diamond (determined by some observer's worldline), there exists $L$ such that this diamond is contained in some sufficiently large region $\Omega_L$. Consequently, under the unified time scale, all local observables within this diamond tend to microcanonical equilibrium after a sufficiently long time, and the entropy density grows monotonically with $\tau$ until saturation.
+
+Therefore, the thermal time arrow and macroscopic irreversibility on the cosmic scale can be viewed as structural results jointly determined by QCA--ETH and the Unified Time Scale.
+\end{proposition}
+
+\section{Proofs}
+
+This section provides proofs for the main theorems. Technical derivations of operator integrals, spectral unfolding, and concentration inequalities are placed in the appendices.
+
+\subsection{Local Random Circuits and Approximate Unitary Designs}
+
+Recall the results of local random quantum circuits realizing approximate unitary designs. Brandão, Harrow, and Horodecki proved that on a 1D chain, local random circuits composed of nearest-neighbor two-body gates achieve $t$-th order approximate unitary design within depth $\mathcal O(t^{10}n^2)$. Harrow et al. improved the depth estimate for higher dimensions and more general lattice structures to the optimal scaling of $\mathrm{poly}(t)n^{1/D}$. Subsequent work constructed explicit families of local designs under symmetry constraints and particle number conservation.
+
+These theorems can be summarized as: on a finite region $\Omega$, for a family of local gates satisfying certain genericity and non-degeneracy conditions, the distribution induced by sufficiently deep random circuits on the unitary group is close to Haar in the $t$-th moment sense.
+
+In the definition of Postulated Chaos QCA, the property of approximate unitary design is embedded via the local circuit representation of $U_\Omega$. Since QCA evolution is deterministic rather than random, the "set of multiple time steps $U_\Omega^n$" needs to be viewed as a circuit family: when $n$ varies within an appropriate time window, $\{U_\Omega^n\}$ forms a family of orbits in the local gate parameter space. In some QCAs, this family of orbits is sufficient to realize design properties; more generally, finite super-periods or spatial translations can be introduced in defining the cosmic QCA to achieve "effective randomization". In the postulates of this paper, these details are abstracted as "the unitary family generated by $U_\Omega$ within polynomial time steps is an approximate unitary design".
+
+\subsection{ETH Typicality of Haar Random Unitaries}
+
+For a Haar random unitary $U\in U(D)$, its eigenvectors are uniformly distributed on the complex sphere of the Hilbert space. For any fixed local operator $O_X$, eigenstate matrix element statistics can be calculated using Haar integration formulas. The following conclusions find systematic proofs in random matrix theory and high-dimensional geometry.
+
+\begin{lemma}[Diagonal Statistics of Haar Random Eigenbasis]
+Let $U$ be Haar random, $\{\ket{\psi_n}\}$ be its eigenbasis, and $O_X$ be a local operator supported on $|X|\ll|\Omega|$. Then:
+1. $\mathbb E[\langle\psi_n|O_X|\psi_n\rangle]=\operatorname{tr}(O_X)/D$ is independent of level $n$;
+2. $\mathrm{Var}[\langle\psi_n|O_X|\psi_n\rangle]\sim\mathcal O(D^{-1})$, decaying exponentially with $|\Omega|$;
+3. By Levy's concentration inequality,
+   \begin{equation}
+   \mathbb P\bigl[
+   |\langle\psi_n|O_X|\psi_n\rangle-\operatorname{tr}(O_X)/D|>\epsilon
+   \bigr]
+   \le 2\exp(-cD\epsilon^2/\|O_X\|^2),
+   \end{equation}
+   where $c>0$ is an absolute constant.
+\end{lemma}
+
+\begin{lemma}[Off-Diagonal Statistics of Haar Random Eigenbasis]
+In the same setting, the real and imaginary parts of off-diagonal matrix elements $\langle\psi_m|O_X|\psi_n\rangle$ are approximate Gaussian variables with zero mean and variance $\mathcal O(D^{-1})$, satisfying
+\begin{equation}
+\mathbb E\bigl[|\langle\psi_m|O_X|\psi_n\rangle|^2\bigr]
+=\mathcal O(D^{-1}).
+\end{equation}
+\end{lemma}
+
+These results show that in the typical Haar eigenbasis, eigenstate matrix elements of local operators naturally satisfy the ETH form, and the probability of deviation from the microcanonical average decays exponentially with Hilbert space dimension.
+
+\subsection{Proof of Theorem 3.1}
+
+\begin{proof}[Proof of Theorem 3.1]
+Step 1: Treat $U_\Omega$ as an approximate unitary design.
+From conditions 2 and 3 of Definition 2.1, for a given $t_0$ and sufficiently large $|\Omega|$, the unitary family generated by $U_\Omega$ over multiple time steps differs from the Haar measure $\mu_{\mathrm{Haar}}$ by at most $\epsilon_{t_0}(|\Omega|)$ in the $t_0$-th moment sense, with this error decaying exponentially with $|\Omega|$.
+
+Step 2: Transfer Haar typicality estimates to QCA.
+Diagonal case: Take $t_0\ge 2$. Expand the function
+\begin{equation}
+P(U)=\langle\psi_n(U)|O_X|\psi_n(U)\rangle
+\end{equation}
+where $\ket{\psi_n(U)}$ denotes an eigenvector of $U$. Strictly speaking, writing $U=V D V^\dagger$, the eigenvector distribution is equivalent to the Haar distribution on $V$. Under the premise of approximate design, the difference between the first and second moments of the above matrix elements under the unitary family generated by $U_\Omega$ and under Haar measure is $\mathcal O(\epsilon_{t_0})$. Combined with Lemma 4.1 estimates, we obtain
+\begin{equation}
+\left|
+\langle\psi_n|O_X|\psi_n\rangle
+-\langle O_X\rangle_{\mathrm{micro}}(\varepsilon_n)
+\right|
+\le C_1\mathrm{e}^{-\tilde c|\Omega|}
+\end{equation}
+holding with high probability, where constant $\tilde c>0$ is controlled by $\epsilon_{t_0}$ and Haar concentration constants.
+
+Off-diagonal case: Similarly, apply approximate design to
+\begin{equation}
+P(U)=|\langle\psi_m(U)|O_X|\psi_n(U)\rangle|^2,
+\end{equation}
+transferring the second moment estimate under Haar to $U_\Omega$. By Lemma 4.2, the expectation under Haar is $\mathcal O(D^{-1})$, thus on $U_\Omega$ it remains $\mathcal O(D^{-1})+\mathcal O(\epsilon_{t_0})$, globally decaying exponentially with $|\Omega|$.
+
+Step 3: Derive thermalization from eigenstate ETH.
+Consider an initial state within energy window $I$
+\begin{equation}
+\ket{\psi_0}
+=\sum_{\varepsilon_n\in I}c_n\ket{\psi_n},
+\end{equation}
+evolving as $\ket{\psi(n)}=U_\Omega^n\ket{\psi_0}$. Local observation is
+\begin{equation}
+\langle O_X\rangle(n)
+=\langle\psi(n)|O_X|\psi(n)\rangle
+=\sum_{m,n}c_m^\ast c_n
+\mathrm{e}^{\mathrm{i}(\varepsilon_m-\varepsilon_n)n\Delta t}
+\langle\psi_m|O_X|\psi_n\rangle.
+\end{equation}
+Time averaging eliminates $m\neq n$ oscillating terms, yielding
+\begin{equation}
+\overline{\langle O_X\rangle}
+=\sum_n|c_n|^2\langle\psi_n|O_X|\psi_n\rangle.
+\end{equation}
+If the initial state energy distribution is concentrated, $|c_n|^2$ is approximately constant within window $I$. Combined with diagonal ETH, we get
+\begin{equation}
+\overline{\langle O_X\rangle}
+=\langle O_X\rangle_{\mathrm{micro}}(\varepsilon)
++\mathcal O(\mathrm{e}^{-c|\Omega|}).
+\end{equation}
+Time fluctuations are controlled by off-diagonal terms, with squared magnitude $\mathcal O(D^{-1})$, thus exponentially small in volume.
+
+In summary, the three conclusions in Theorem 3.1 hold.
+\end{proof}
+
+\subsection{Proof of Theorem 3.2}
+
+\begin{proof}[Proof of Theorem 3.2]
+Step 1: Unitary design approximability of spectral statistics.
+Both nearest-neighbor spacing distribution and spectral form factor can be expressed as symmetric polynomial functions of eigenphases $\{\theta_n\}$, which after expansion depend only on finite-order traces $\operatorname{tr} U_\Omega^k$ and their complex conjugates. The standard expressions for CUE spectral statistics are exactly the higher moments of these traces under Haar random unitary.
+
+Since Postulated Chaos QCA provides a finite-order approximate unitary design for $U_\Omega$, under appropriate truncation and expansion precision, the difference in expectation and variance of these trace polynomials between QCA and CUE is at most $\epsilon_{t_0}(|\Omega|)$, decaying exponentially with $|\Omega|$.
+
+Step 2: Unfolding and renormalization.
+Sort the eigenphases on the real axis in ascending order and unfold the density within local energy windows, renormalizing the average spacing to 1. The Wigner--Dyson distribution can be obtained via Fourier transform of two-point cluster function and form factor. Under CUE, these functions can be explicitly calculated.
+
+Step 3: Convergence and concentration.
+By unitary design approximation and concentration inequalities, it can be proved that in the QCA model, these spectral statistics converge to CUE corresponding values in expectation and high probability. Furthermore, the nearest-neighbor spacing distribution and numerical-level spectral form factor in the limit $|\Omega|\to\infty$ are consistent with CUE results.
+
+Recent works on spectral form factor and partial spectral form factor use similar techniques to prove random matrix universality of spectral statistics in many-body systems.
+\end{proof}
+
+\subsection{Proof of Theorem 3.3}
+
+\begin{proof}[Proof of Theorem 3.3]
+Step 1: QCA light cone and information propagation.
+Postulated Chaos QCA has a finite propagation radius $R$, thus in the Heisenberg picture, there exists a Lieb--Robinson-like light cone structure: the support of an operator supported on $X$ after time step $n$ is restricted to $X^{+Rn}$. This property can be used to prove a linear light speed upper bound for entanglement generation and entropy growth.
+
+Step 2: Local randomness and entanglement generation.
+Under the premise of approximate unitary design, repeated action of $U_\Omega$ generates approximate Haar random entangled states in local Hilbert spaces; for any initial state family $\{\rho_0\}$, as long as its energy distribution lies in the chaotic window $I$ and local correlation length is finite, then after time $\mathcal O(|X|)$, the reduced state $\rho_X(\tau)$ will approach the partial trace of the microcanonical state of the energy shell. This can be quantitatively prepared via decoupling theorems and entanglement growth results in random circuits.
+
+Step 3: Introduction of Unified Time Scale.
+The relation between unified time scale $\tau$ and discrete step $n$ is controlled by $\kappa(\omega)$ in scattering theory: within energy window $I$, define average scale density
+\begin{equation}
+\bar\kappa(\varepsilon)
+=\frac{1}{|I|}\int_I\kappa(\omega)\,\mathrm{d}\omega.
+\end{equation}
+Relating QCA quasi-energy spectrum $\varepsilon_n$ to scattering energy $\omega$, we define
+\begin{equation}
+\tau
+=\bar\kappa(\varepsilon)^{-1}n\Delta t
+\end{equation}
+as the evolution parameter under unified time scale. Since $\bar\kappa(\varepsilon)$ is functionally related to density of states $D_{\varepsilon,\delta}$, relaxation time and entropy growth rate can be expressed as functions of $\kappa$.
+
+Step 4: Inequality for entropy density growth.
+Using decoupling techniques and light cone structure, it can be proved that within the time interval $[0, \tau_{\mathrm{th}}]$, $s_X(\tau)$ grows at least linearly at some positive rate. This rate can be bounded as
+\begin{equation}
+v_{\mathrm{ent}}(\varepsilon)
+\propto \bar\kappa(\varepsilon)\,J_{\mathrm{loc}},
+\end{equation}
+where $J_{\mathrm{loc}}$ quantifies local interaction strength and gate "scrambling ability". The thermalization time $\tau_{\mathrm{th}}$ corresponds to the time when $s_X(\tau)$ approaches $s_{\mathrm{mc}}(\varepsilon)$, with its magnitude controlled by $\bar\kappa(\varepsilon)$ and local Hilbert space dimension.
+
+Detailed operator inequalities and information-theoretic estimates are in Appendix B.
+\end{proof}
+
+\subsection{Proof of Proposition 3.4}
+
+\begin{proof}[Proof of Proposition 3.4]
+Every finite causal diamond can be embedded in some sufficiently large finite region $\Omega_L$. Under the unified time scale, if the length of the evolution time interval corresponding to the observer's local worldline does not exceed the thermalization time scale within the chaotic energy window, then Theorems 3.1 and 3.3 ensure that all local observables within the diamond tend to microcanonical equilibrium in the long-time limit. Thereby, the ETH conclusion on finite regions can be generalized to local fragments of the entire cosmic causal network.
+\end{proof}
+
+\section{Model Apply}
+
+This section provides a concrete model of 1D Postulated Chaos QCA and discusses its continuum limit and physical interpretation.
+
+\subsection{1D Brick-Wall QCA Model}
+
+Take $\Lambda=\mathbb Z$, with cell Hilbert space $\mathcal H_x=\mathbb C^q$ (typically $q=2$). Define a two-step update with brick-wall structure:
+1. Even-Odd Layer: Apply two-body gates $U_{\mathrm{even}}$ to all $(2j, 2j+1)$ pairs;
+2. Odd-Even Layer: Apply two-body gates $U_{\mathrm{odd}}$ to all $(2j+1, 2j+2)$ pairs.
+
+The global evolution operator is
+\begin{equation}
+U
+=U_{\mathrm{odd}}U_{\mathrm{even}}
+=\Bigl(\bigotimes_j U_{\mathrm{odd},j}\Bigr)
+\Bigl(\bigotimes_j U_{\mathrm{even},j}\Bigr).
+\end{equation}
+If $U_{\mathrm{even}}, U_{\mathrm{odd}}$ are chosen from a universal gate set generating $SU(q^2)$ and parameters are updated over different time periods, then the restriction $U_\Omega$ of this QCA on any finite interval is equivalent to a local random quantum circuit, satisfying the Postulated Chaos QCA axioms.
+
+In an appropriate continuum limit (time step $\Delta t\to 0$, two-body gates approaching $\exp(-\mathrm{i} h_{x,x+1}\Delta t)$), an effective Hamiltonian can be obtained
+\begin{equation}
+H_{\mathrm{eff}}=\sum_x h_{x,x+1},
+\end{equation}
+whose low-energy part corresponds to a non-integrable spin chain model, known to satisfy ETH and Wigner--Dyson level statistics.
+
+\subsection{Local Thermalization for Observers}
+
+View the above 1D QCA as a spatial slice in a cosmological model. For any observer, their worldline only visits a finite interval $\Omega$ within finite time. Theorems 3.1 and 3.3 assert: regardless of the pure state of the universe as a whole, as long as the energy distribution lies within the chaotic energy window, the observer's local observations on the unified time scale will "forget" initial conditions within finite time, tending towards the microcanonical equilibrium of the corresponding energy shell.
+
+\subsection{Docking with Matrix Universe}
+
+By performing Fourier transform and scattering construction on the QCA Universe, an equivalent scattering matrix $S(\omega)$ can be defined in the frequency domain, such that the spectrum of the Wigner--Smith group delay matrix matches the quasi-energy spectrum $\{\varepsilon_n\}$ of the QCA at low energies and under appropriate coarse-graining. Thus, a quantitative correspondence is established between the unified time scale $\kappa(\omega)$ and the QCA thermalization time scale $\tau_{\mathrm{th}}$.
+
+\section{Engineering Proposals}
+
+\subsection{QCA Implementation in Superconducting Quantum Circuits}
+
+On superconducting qubit platforms, brick-wall structured QCA can be naturally implemented via fixed topology lattices and periodic driving. Each time step implements two layers of nearest-neighbor controlled gates, realizing the global evolution operator $U$. Existing experiments have implemented local random circuits on scales of tens to hundreds of qubits, measuring chaos indicators like OTOC and spectral form factor.
+
+In engineering, one can select a sufficiently universal family of two-qubit gates and perform quasi-random scanning in parameter space, making the unitary family generated within a finite time window approximate a high-order unitary design; truncation to finite regions can be achieved by freezing edge qubits or applying loop boundary conditions.
+
+\subsection{ETH Verification Protocol under Redundant Encoding}
+
+To verify QCA--ETH in the presence of noise, the following protocol can be adopted:
+1. Prepare multiple sets of different low-entropy initial states (e.g., product states or low-entanglement states) on a finite region $\Omega$, with energy distributions concentrated in a certain quasi-energy window;
+2. Measure the expectation values and fluctuations of local operators $O_X$ after several steps $n$ corresponding to the unified time scale;
+3. Verify whether their time averages and sample averages converge to the same microcanonical value, and verify that results from different initial states tend to agree;
+4. Measure the spectral form factor and compare with CUE predictions to verify quantum chaos diagnosis.
+
+\subsection{Numerical Simulation and Code Structure}
+
+Numerically, low-dimensional QCA models can be simulated via Tensor Networks or exact diagonalization. The code structure may include:
+1. **QCA Updater:** Construct discrete time step $U$ according to brick-wall rules;
+2. **Approximate Unitary Design Detection Module:** Calculate empirical distributions of low-order polynomials $P(U)$ and compare with Haar averages;
+3. **ETH Verification Module:** Calculate eigenstate matrix element distributions for local operators;
+4. **Spectral Statistics Module:** Calculate unfolded spacing distributions and spectral form factors.
+
+Code can be implemented in Python/Julia+C++, utilizing sparse matrix and Krylov subspace methods to extend to larger system sizes.
+
+\section{Discussion (risks, boundaries, past work)}
+
+\subsection{Theoretical Boundaries and Failure Cases}
+
+The Postulated Chaos QCA in this paper explicitly excludes integrable QCA, many-body localized QCA, and systems carrying large numbers of local conserved quantities. In these cases, ETH and random matrix spectral statistics generally do not hold; correspondingly, the thermalization process may be altered by widely preserved conserved quantities, leading to Generalized Gibbs Ensembles or non-equilibrium steady states.
+
+Furthermore, certain "dual-unitary" quantum circuits, while combining solvability and strong mixing, exhibit spectral statistics features similar to but not exactly identical to CUE, requiring finer analysis.
+
+\subsection{Relation to Existing Rigorous ETH Results}
+
+Regarding ETH and spectral statistics in Hamiltonian systems and random quantum circuits, rigorous results mainly focus on:
+1. Random matrix and free probability tools for controlling spectral correlation functions and spectral form factors;
+2. Local random circuits and unitary designs, using Markov chain spectral gaps and tensor product expansion theorems to prove mixing times and design orders;
+3. Fine analysis of ETH satisfaction or violation in partially solvable models.
+
+Building on these works, this paper elevates these results to the level of QCA Universe objects, making quantum chaos and ETH in "Universe as QCA" no longer accidental properties of specific models, but structural features determined jointly by Postulated Chaos QCA axioms and the Unified Time Scale.
+
+\subsection{Compatibility with Gravity and Cosmology}
+
+The Unified Time Scale Mother Formula originates from scattering and spectral theory, and its implementation in gravity and cosmology relies on the construction of boundary time geometry and quasi-local energy. Although this paper does not directly address curvature and gravitational field equations, the correspondence between Matrix Universe $U_{\mathrm{mat}}$ and QCA Universe $U_{\mathrm{qca}}$ implies requirements for reconstructing General Relativity and Quantum Field Theory in appropriate continuum limits. Work on QCA continuum limits and quantum walk simulations of the Dirac equation provides comparisons in this direction.
+
+\section{Conclusion}
+
+This paper systematically characterizes the validity of Quantum Chaos and Eigenstate Thermalization in the QCA Universe under the framework of Unified Time Scale and Matrix Universe--QCA Universe. By introducing the axiomatic system of Postulated Chaos QCA, we transplant the unitary design and ETH results of local random circuits into QCA language, proving the QCA--ETH Theorem and CUE-type level statistics convergence; simultaneously, we introduce the Unified Time Scale Mother Formula into entropy growth analysis, giving the Unified Time--ETH--Entropy Growth Theorem.
+
+On the cosmic scale, this framework indicates that the thermal time arrow and macroscopic irreversibility can be viewed as structural invariants of the unified Matrix--QCA Universe, rather than extra dynamical hypotheses. Quantum chaos and ETH are thus elevated from "specific model properties" to "axiomatic attributes of cosmic objects".
+
+\section{Acknowledgements, Code Availability}
+
+This work relies on mature theoretical frameworks including scattering theory, random matrix theory, quantum information, and QCA structure. We express our gratitude for the systematic development in these fields.
+
+Code for numerical verification of Postulated Chaos QCA models can be implemented according to the structure described in Section 5, including QCA updater, unitary design detection module, ETH verification module, and spectral statistics module. Specific implementations can use open-source quantum simulation libraries and linear algebra libraries and are not elaborated here.
+
+\appendix
+
+\section{Appendix A: Equivalent Forms of Discrete Time ETH}
+
+\subsection{A.1 Equivalence of Time Average and Diagonal ETH}
+
+Let the spectral decomposition of the discrete time evolution operator $U_\Omega$ be
+\begin{equation}
+U_\Omega\ket{\psi_n}
+=\mathrm{e}^{-\mathrm{i}\varepsilon_n\Delta t}\ket{\psi_n},
+\end{equation}
+and initial state $\ket{\psi_0}=\sum_n c_n\ket{\psi_n}$. The time average of a local observation is
+\begin{equation}
+\overline{\langle O_X\rangle}
+=\lim_{N\to\infty}\frac{1}{N}\sum_{k=0}^{N-1}
+\langle\psi_0|U_\Omega^{\dagger k}O_XU_\Omega^k|\psi_0\rangle
+=\sum_n|c_n|^2\langle\psi_n|O_X|\psi_n\rangle,
+\end{equation}
+assuming non-degenerate energy levels.
+
+If Diagonal ETH holds, i.e.,
+\begin{equation}
+\langle\psi_n|O_X|\psi_n\rangle
+=O_X(\varepsilon_n)+\delta_n,\quad
+|\delta_n|\le\mathrm{e}^{-c|\Omega|},
+\end{equation}
+and the initial state energy distribution is concentrated in a narrow window, then
+\begin{equation}
+\overline{\langle O_X\rangle}
+=\sum_n|c_n|^2 O_X(\varepsilon_n)
++\mathcal O(\mathrm{e}^{-c|\Omega|})
+\approx O_X(\varepsilon)
+\approx\langle O_X\rangle_{\mathrm{micro}}(\varepsilon).
+\end{equation}
+Therefore, Diagonal ETH is equivalent to thermalization of time-averaged local observations (in the sense of exponentially small error).
+
+\subsection{A.2 Off-Diagonal ETH and Time Fluctuations}
+
+Time fluctuations can be expressed as
+\begin{equation}
+\delta O_X(k)
+=\langle O_X\rangle(k)-\overline{\langle O_X\rangle}
+=\sum_{m\neq n}c_m^\ast c_n
+\mathrm{e}^{\mathrm{i}(\varepsilon_m-\varepsilon_n)k\Delta t}
+\langle\psi_m|O_X|\psi_n\rangle.
+\end{equation}
+An upper bound for its variance is
+\begin{equation}
+\overline{|\delta O_X|^2}
+\le\sum_{m\neq n}|c_m|^2|c_n|^2
+|\langle\psi_m|O_X|\psi_n\rangle|^2.
+\end{equation}
+If Off-Diagonal ETH gives
+\begin{equation}
+\mathbb E\bigl[|\langle\psi_m|O_X|\psi_n\rangle|^2\bigr]
+\le\mathrm{e}^{-S(\bar\varepsilon)}g_O(\bar\varepsilon,\omega),
+\end{equation}
+then given the number of eigenstates in the energy shell $D_{\varepsilon,\delta}\sim\mathrm{e}^{S(\varepsilon)}$, the fluctuation variance is $\mathcal O(\mathrm{e}^{-S(\varepsilon)})$, decaying exponentially with volume.
+
+\subsection{A.3 Relation between Floquet ETH and Hamiltonian ETH}
+
+When an effective continuum limit exists for the QCA, an effective Hamiltonian can be defined
+\begin{equation}
+H_{\mathrm{eff}}
+=\frac{\mathrm{i}}{\Delta t}\log U,
+\end{equation}
+whose spectrum relates to quasi-energy spectrum as $E_n\approx\varepsilon_n$. If $\Delta t$ is sufficiently small and the branch cut of $\log U$ is chosen properly, Floquet ETH and Hamiltonian ETH are equivalent in the same energy window, and microcanonical ensembles and quasi-energy shells can be interchanged.
+
+\section{Appendix B: Technical Details of QCA--ETH Theorem}
+
+\subsection{B.1 Quantitative Bounds for Approximate Unitary Designs}
+
+For a 1D chain of $n$ $q$-dimensional qubits, the design theorem by Brandão--Harrow--Horodecki can be written as: there exist constants $C, c>0$ such that local random circuits of nearest-neighbor gates with depth
+\begin{equation}
+L\ge C t^{10} n^2
+\end{equation}
+constitute an $\epsilon$-approximate $t$-design, where $\epsilon\le\mathrm{e}^{-cn}$.
+
+Harrow et al. further proved that on a $D$-dimensional lattice, the depth scaling can be improved to $\mathrm{poly}(t)n^{1/D}$. Combined with our postulates, we can take $t_0$ as a fixed constant, and $\epsilon_{t_0}(|\Omega|)\le\mathrm{e}^{-c|\Omega|}$.
+
+\subsection{B.2 Haar Integration and Eigenstate Matrix Elements}
+
+Haar integration formulas give
+\begin{equation}
+\int_{U(D)} U_{i_1j_1}\cdots U_{i_kj_k}
+\overline{U_{i'_1j'_1}}\cdots\overline{U_{i'_kj'_k}}\,\mathrm{d}\mu_{\mathrm{Haar}}(U)
+\end{equation}
+expressible using Weingarten functions on the symmetric group $S_k$. For $k\le t_0$, expectations can be expressed as finite sums. This leads to the mean and variance estimates in Lemma 4.1 and Lemma 4.2.
+
+In the QCA scenario, since $U_\Omega$ is an approximate unitary design at order $t_0$, the difference between the above expectations and variances under the distribution induced by $U_\Omega$ and Haar measure is also controlled by $\epsilon_{t_0}$.
+
+\subsection{B.3 Concentration Inequalities}
+
+Lipschitz functions on the complex sphere of Hilbert space satisfy Levy's concentration inequality: for an $L$-Lipschitz function $f$,
+\begin{equation}
+\mathbb P\bigl[|f-\mathbb Ef|>\epsilon\bigr]
+\le 2\exp(-cD\epsilon^2/L^2).
+\end{equation}
+Taking $f$ as functions of $\langle\psi|O_X|\psi\rangle$ or $|\langle\psi_m|O_X|\psi_n\rangle|^2$ yields probability bounds for deviations of eigenstate matrix elements from mean values.
+
+\section{Appendix C: Spectral Form Factor and Wigner--Dyson Distribution}
+
+\subsection{C.1 Spectral Form Factor of CUE}
+
+The spectral form factor of a CUE random matrix $U\in U(D)$ is defined as
+\begin{equation}
+K_{\mathrm{CUE}}(t)
+=D^{-1}\mathbb E\bigl[|\operatorname{tr} U^t|^2\bigr].
+\end{equation}
+Random matrix theory gives an explicit expression in the limit $D\to\infty$: under rescaled time $\tau=t/D$, $K_{\mathrm{CUE}}(\tau)$ exhibits a linear "ramp" and saturation "plateau".
+
+\subsection{C.2 Spectral Form Factor in QCA Models}
+
+In Postulated Chaos QCA, $U_\Omega$ is approximately Haar random on finite-order trace polynomials, so the statistics of $K(t)$ within a finite time window $|t|\le t_{\max}\sim\mathrm{poly}(|\Omega|)$ match $K_{\mathrm{CUE}}(t)$ of CUE, with deviation $\mathcal O(\epsilon_{t_0})$.
+
+Through Fourier transform, $K(t)$ can be related to level correlation functions, thereby obtaining the Wigner--Dyson form for nearest-neighbor spacing distribution and higher-order spacing distributions.
+
+\section{Appendix D: Numerical Verification Framework for 1D Postulated Chaos QCA}
+
+\subsection{D.1 Model Parameter Selection}
+
+In 1D brick-wall QCA, two-body gates can be chosen as
+\begin{equation}
+U_{\mathrm{gate}}
+=\exp\bigl(-\mathrm{i} (J_x\sigma^x\otimes\sigma^x
++J_y\sigma^y\otimes\sigma^y
++J_z\sigma^z\otimes\sigma^z+h_x(\sigma^x\otimes\mathbb{I}+\mathbb{I}\otimes\sigma^x))\Delta t\bigr),
+\end{equation}
+with parameters $(J_x, J_y, J_z, h_x)$ subjected to quasi-random perturbations over different time periods to break integrability and extra symmetries.
+
+\subsection{D.2 Numerical Steps}
+
+1. Construct $U_\Omega$ for a chain of length $L$ and perform exact diagonalization (feasible for $L\le 16$);
+2. Calculate the distribution of matrix elements of local operators (e.g., single-body Pauli matrices or two-body interaction terms) on eigenstates, verifying Diagonal and Off-Diagonal ETH;
+3. Calculate unfolded spacing distribution and spectral form factor, comparing with CUE results;
+4. Simulate time evolution for different initial state families, verifying thermalization of local observables and growth of entropy density, comparing with predictions of Theorem 3.3.
+
+This framework provides a concrete realizable numerical and experimental path for verifying Postulated Chaos QCA axioms and the theorems of this paper.
+
+\end{document}
+

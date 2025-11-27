@@ -1,0 +1,63 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\geometry{a4paper, margin=0.85in}
+\hypersetup{colorlinks=true,linkcolor=blue}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\DeclareMathOperator{\tr}{tr}
+
+\title{Finite-Window Energy and Spectral Conservation}
+\author{Auric\\[5pt]\small Version 1.1}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Establish energy and spectral conservation laws under finite-window measurement. Core result: for windowed readout with window $w$ and spectral density $\rho$, windowed energy $\mathcal{E}_w=\int Ew(E)\rho(E)dE$ satisfies: (i) \textbf{Conservation}: under unitary evolution $\partial_t\mathcal{E}_w=0$ when $w$ time-independent; (ii) \textbf{Covariance}: gauge-invariant under phase transformations; (iii) \textbf{NPE closure}: discrete approximation with alias+EM+tail error decomposition.
+\end{abstract}
+
+\section{Definitions}
+
+\textbf{Windowed energy functional}:
+$$\mathcal{E}_w[\rho]=\int_{\mathbb{R}} E\,w(E)\,\rho(E)\,dE$$
+
+where $w\ge0$ normalized window, $\rho$ spectral density.
+
+\textbf{Spectral measure}: $d\mu_\rho(E)=\rho(E)dE$ for density, general $d\mu_\rho$ for measure.
+
+\section{Main Theorems}
+
+\begin{theorem}[Windowed Energy Conservation]
+For unitary evolution $\partial_t\rho=i[H,\rho]$ and time-independent window $w$, have $\partial_t\mathcal{E}_w=0$.
+\end{theorem}
+
+\begin{theorem}[Gauge Covariance]
+Under gauge transformation $\rho\mapsto U\rho U^\dagger$, $H\mapsto UHU^\dagger$ with $U$ unitary, $\mathcal{E}_w$ invariant.
+\end{theorem}
+
+\begin{theorem}[NPE Error for Windowed Energy]
+Discrete approximation $\widehat{\mathcal{E}}_w=\Delta\sum_n E_n w(E_n)\rho(E_n)$ satisfies
+$$|\mathcal{E}_w-\widehat{\mathcal{E}}_w|\le|\varepsilon_{\mathrm{alias}}|+|\varepsilon_{\mathrm{EM}}|+|\varepsilon_{\mathrm{tail}}|$$
+with $\varepsilon_{\mathrm{alias}}=0$ under Nyquist.
+\end{theorem}
+
+\section{Discussion}
+
+Finite-window framework provides:
+\begin{itemize}
+\item Energy conservation compatible with finite bandwidth
+\item Gauge-invariant formulation
+\item Non-asymptotic error control
+\item Connection to thermodynamics and resource theories
+\end{itemize}
+
+\end{document}
+

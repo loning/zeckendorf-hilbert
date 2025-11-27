@@ -1,0 +1,288 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{braket}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=0.85in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{axiom}[theorem]{Axiom}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Math operators
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Arg}{Arg}
+
+% Title information
+\title{Windowed Energy as Measure Theory\\(WEM: Windowed Energy as Measure)}
+\author{Auric (S-series / EBOC)\\[5pt]
+\small Version 1.4}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Establish self-consistent framework characterizing energy via first moment of windowed relative spectral density. Core scale chain holds almost everywhere on absolutely continuous spectrum:
+
+$$
+\boxed{\ \frac{\varphi'(E)}{\pi}\;=\;\rho_{\mathrm{rel}}(E)\;=\;\frac{1}{2\pi}\operatorname{tr}\mathsf{Q}(E)\ },
+$$
+
+where $\varphi(E)=\tfrac{1}{2}\Arg\det S(E)$, $\mathsf{Q}(E)=-i\,S(E)^\dagger\partial_E S(E)$ is Wigner--Smith group delay matrix, $\rho_{\mathrm{rel}}$ relative spectral density. Define energy functional by weighting $\rho_{\mathrm{rel}}$ with window $w$:
+
+$$
+\mathcal{E}[w]=\int_{\mathbb{R}}E\,w(E)\,\rho_{\mathrm{rel}}(E)\,dE.
+$$
+
+This paper gives: covariant invariance and channel additivity under energy reparametrization--window pushforward; $\log\det$ characterization based on Birman--Kreĭn trace--phase formula and $\det_2$/Koplienko regularization under Hilbert--Schmidt relative perturbation; non-asymptotic error closure under finite-order Euler--Maclaurin (EM) discipline; semantic embedding and Koopman spectral correspondence in EBOC (static block · observation--computation) and RCA (reversible cellular automata). Factual foundations include definition and multi-physics generalizations of group delay matrix, spectral shift function and relative trace, and EM error theory.
+\end{abstract}
+
+\section{Notation \& Axioms / Conventions}
+
+\textbf{Card-1 (Scale Identity Formula)}: Holds a.e. on absolutely continuous spectrum
+
+$$
+\frac{\varphi'(E)}{\pi}=\rho_{\mathrm{rel}}(E)=\frac{1}{2\pi}\operatorname{tr}\mathsf{Q}(E),\qquad
+\mathsf{Q}(E)=-i\,S^\dagger(E)\,\partial_E S(E).
+$$
+
+Single/multi-channel cases consistent with original ``lifetime matrix'' definition, computation and experimental pathways established in electromagnetic, acoustic and other systems.
+
+\textbf{Card-2 (Finite-Order EM--NPE Discipline)}: All discrete approximations adopt only \textbf{finite-order} Euler--Maclaurin expansion; error decomposes as ``alias + Bernoulli correction + tail'', constants depending only on endpoint derivatives and finite-order smoothness.
+
+\textbf{Scattering--Spectral Shift Convention}: In trace class scattering framework
+
+$$
+\det S(E)=\exp\!\big(-2\pi i\,\xi(E)\big),\qquad (\log\det S)'(E)=i\,\operatorname{tr}\mathsf{Q}(E),
+$$
+
+thus $\rho_{\mathrm{rel}}(E)=-\xi'(E)$; under Hilbert--Schmidt relative perturbation replace with Koplienko spectral shift $\eta$ and $\det_2$.
+
+\textbf{Window and Windowed Measure}: Window $w\in L^1(\mathbb{R})\cap C^1$, $w\ge0$, $\int w=1$, $\int |E|w(E)\,dE<\infty$; windowed relative spectral measure $d\mu_w(E)=w(E)\rho_{\mathrm{rel}}(E)\,dE$.
+
+\section{Framework and Basic Objects}
+
+Set separable Hilbert space $(\mathcal{H},\langle\cdot,\cdot\rangle)$, self-adjoint operator pair $(H_0,H)$ wave operators exist and complete; on absolutely continuous spectrum exists differentiable scattering matrix $E\mapsto S(E)\in U(N(E))$. Define
+
+$$
+\mathsf{Q}(E)=-i\,S^\dagger(E)\partial_E S(E),\qquad
+\rho_{\mathrm{rel}}(E)=\frac{1}{2\pi}\operatorname{tr}\mathsf{Q}(E),
+$$
+
+with
+
+$$
+\boxed{\ \mathcal{E}[w]=\int_{\mathbb{R}}E\,w(E)\,\rho_{\mathrm{rel}}(E)\,dE\ }
+$$
+
+as windowed spectral definition of ``energy''. Single-channel $S(E)=e^{2i\delta(E)}$ gives $\operatorname{tr}\mathsf{Q}(E)=2\delta'(E)$, compatible with Friedel-type relation with state density difference (graph networks have local state corrections).
+
+\section{Axioms and Basic Properties}
+
+\begin{axiom}[Observability]
+$\mathcal{E}[w]$ depends only on windowed relative spectral measure $d\mu_w$.
+\end{axiom}
+
+\begin{axiom}[Reparametrization Covariance]
+Set $\phi:\mathbb{R}\to\mathbb{R}$ strictly monotone and $C^1$. Define windowed relative spectral measure
+
+$$
+d\mu_w(E):=w(E)\,\rho_{\mathrm{rel}}(E)\,dE,
+$$
+
+and its pushforward $d\mu_w^\phi:=\phi_* d\mu_w$. Then \textbf{covariant equivalence formula}
+
+$$
+\boxed{\ \mathcal{E}_S^{(\phi)}[w]:=\int_{\mathbb{R}}\phi(E)\,d\mu_w(E)
+=\int_{\mathbb{R}}E\,d\mu_w^\phi(E)\ } .
+$$
+\end{axiom}
+
+\begin{axiom}[Channel Additivity]
+$S=S_1\oplus S_2\Rightarrow \rho_{\mathrm{rel}}=\rho_{\mathrm{rel},1}+\rho_{\mathrm{rel},2}\Rightarrow \mathcal{E}_S[w]=\mathcal{E}_{S_1}[w]+\mathcal{E}_{S_2}[w]$.
+\end{axiom}
+
+\begin{axiom}[Regularized Extension]
+If $S-I\in\mathfrak{S}_2$, maintain structure and characterization of $\mathcal{E}[w]$ using Koplienko spectral shift function $\eta$ and $\det_2$.
+\end{axiom}
+
+\begin{axiom}[Vacuum Truth]
+$S\equiv I\Rightarrow \rho_{\mathrm{rel}}\equiv 0 \Rightarrow \mathcal{E}[w]=0$.
+\end{axiom}
+
+\section{$\log\det$/$\det_2$ Characterization and Relative Trace}
+
+\begin{theorem}[Trace Class Case]
+\label{thm:trace-class}
+If $S-I\in\mathfrak{S}_1$, then
+
+$$
+\mathcal{E}[w]=\frac{1}{2\pi i}\int_{\mathbb{R}}E\,w(E)\,(\log\det S)'(E)\,dE
+= -\int_{\mathbb{R}}E\,w(E)\,\xi'(E)\,dE .
+$$
+\end{theorem}
+
+\begin{proof}
+By $(\log\det S)'=\tr(S^{-1}S')=i\,\tr\mathsf{Q}$ and Card-1 directly derive; $\det S=\exp(-2\pi i\,\xi)$ yields spectral shift version. \end{proof}
+
+\begin{theorem}[Hilbert--Schmidt Case, Safe Statement]
+\label{thm:hilbert-schmidt}
+Set $S(E)-I\in \mathfrak{S}_2$. Then exists Koplienko spectral shift function $\eta\in L^1_{\mathrm{loc}}(\mathbb{R})$, such that for any $f\in C_c^2(\mathbb{R})$ have
+
+$$
+\tr\!\big(f(H)-f(H_0)-f'(H_0)(H-H_0)\big)=\int_{\mathbb{R}} f''(E)\,\eta(E)\,dE .
+$$
+
+In this framework, energy functional still defined as $\mathcal{E}[w]=\int_{\mathbb{R}}E\,w(E)\,\rho_{\mathrm{rel}}(E)\,dE$.
+
+If further satisfy \textbf{additional regularity assumption} (e.g., $\det_{2}S(E)$ exists non-tangential boundary value and a.e. differentiable), can define
+
+$$
+\Xi_{2}(E):=\frac{1}{2\pi i}\,\partial_E\log\det_{2}S(E),
+$$
+
+obtaining expression structurally consistent with trace class case
+
+$$
+\boxed{\ \mathcal{E}[w]=\int_{\mathbb{R}}E\,w(E)\,\Xi_{2}(E)\,dE\ } .
+$$
+\end{theorem}
+
+\section{Variational Structure and Scale Window Family}
+
+Under constraint $\int w=1$, Gateaux derivative
+
+$$
+D\mathcal{E}[w]\!\cdot\!\delta w=\int_{\mathbb{R}}E\,\rho_{\mathrm{rel}}(E)\,\delta w(E)\,dE,
+$$
+
+stationary points satisfy $E\,\rho_{\mathrm{rel}}(E)=\lambda$ on support of $w$. Scale window family
+
+$$
+w_\lambda(E)=\lambda^{-1}w\!\left(\tfrac{E}{\lambda}\right),
+$$
+
+directional derivative
+
+$$
+\boxed{\ \frac{d}{d\lambda}\mathcal{E}[w_\lambda]\Big|_{\lambda=1}
+=-\int_{\mathbb{R}}E\,\rho_{\mathrm{rel}}(E)\,\bigl(w(E)+E\,\partial_E w(E)\bigr)\,dE\ }.
+$$
+
+\section{Finite-Order Euler--Maclaurin (EM) Non-Asymptotic Error Closure}
+
+For uniform grid $E_n=E_0+n\Delta$ discrete approximation
+
+$$
+\widehat{\mathcal{E}}=\sum_{n=-R}^{R}E_n\,w(E_n)\,\rho_{\mathrm{rel}}(E_n)\,\Delta ,
+$$
+
+let $f(E)=E\,w(E)\,\rho_{\mathrm{rel}}(E)\in C^p$, have
+
+$$
+\boxed{\
+\mathcal{E}
+=\widehat{\mathcal{E}}
+-\frac{\Delta}{2}\bigl(f(a)+f(b)\bigr)
+-\frac{B_2}{2!}\Delta^2\bigl(f'(b)-f'(a)\bigr)
+-\frac{B_4}{4!}\Delta^4\bigl(f^{(3)}(b)-f^{(3)}(a)\bigr)-\cdots
+}
+$$
+
+Thus, without endpoint correction error leading term $O(\Delta)$; when $f(a)=f(b)=0$ (window vanishes at endpoints) or using \textbf{trapezoidal/midpoint} symmetric rules, main error improves to $O(\Delta^2)$. Above decomposition still denoted
+
+$$
+\Delta_{\mathrm{NPE}}=\Delta_{\mathrm{alias}}+\Delta_{\mathrm{Bernoulli}}+\Delta_{\mathrm{tail}},
+$$
+
+embodying principle ``smoother window better error'', giving computable bounds of endpoint-dominated terms.
+
+\section{Main Theorems (Selection)}
+
+\begin{theorem}[Reparametrization Covariance Consistency]
+\label{thm:reparametrization}
+For any strictly monotone $C^1$ $\phi$ have
+
+$$
+\mathcal{E}_S^{(\phi)}[w]=\int_{\mathbb{R}}\phi(E)\,d\mu_w(E)
+=\int_{\mathbb{R}}E\,d(\phi_* d\mu_w)(E).
+$$
+\end{theorem}
+
+\begin{proof}
+Pushforward measure definition gives $\int g(E)\,d(\phi_* \mu)(E)=\int g(\phi(E))\,d\mu(E)$. Taking $g(E)=E$ immediately yields conclusion. \end{proof}
+
+\begin{theorem}[Finite-Order EM Stable Bounds--Unified Statement]
+\label{thm:em-bounds}
+Set $f(E)=E\,w(E)\,\rho_{\mathrm{rel}}(E)\in C^{p}([a,b])$, uniform grid $E_n=E_0+n\Delta$ covering effective support, discrete approximation
+
+$$
+\widehat{\mathcal{E}}=\sum_{n=-R}^{R}E_n\,w(E_n)\,\rho_{\mathrm{rel}}(E_n)\,\Delta .
+$$
+
+Then exist constants $C_1,\,C_{2k}$ (depending on endpoint derivatives up to order $2k-1$), such that
+
+$$
+\boxed{\ |\mathcal{E}-\widehat{\mathcal{E}}|
+\;\le\; \tfrac{\Delta}{2}\bigl(|f(a)|+|f(b)|\bigr)
+\;+\;\sum_{k=1}^{\lfloor p/2\rfloor} C_{2k}\,\Delta^{2k}\ }.
+$$
+
+Further, if satisfy any condition: (i) $f(a)=f(b)=0$ or (ii) adopt trapezoidal/midpoint symmetric rules, then leading $O(\Delta)$ vanishes and main order improves to $O(\Delta^{2})$.
+\end{theorem}
+
+\section{Discussion and Outlook}
+
+This work establishes:
+\begin{enumerate}
+\item Windowed energy functional via first moment of relative spectral density
+\item Covariant invariance under reparametrization and window pushforward
+\item $\log\det$/$\det_2$ characterizations in trace class and Hilbert--Schmidt cases
+\item Non-asymptotic EM error closure with explicit bounds
+\item EBOC embedding as observer-independent integrated invariant
+\item RCA embedding via Koopman spectral correspondence
+\end{enumerate}
+
+Key formulas:
+\begin{itemize}
+\item Energy functional: $\mathcal{E}[w]=\int E\,w(E)\,\rho_{\mathrm{rel}}(E)\,dE$
+\item Scale identity: $\varphi'/\pi=\rho_{\mathrm{rel}}=(2\pi)^{-1}\tr\mathsf{Q}$
+\item EM error: $|\mathcal{E}-\widehat{\mathcal{E}}|\le O(\Delta)$ or $O(\Delta^2)$ depending on conditions
+\end{itemize}
+
+Future directions:
+\begin{itemize}
+\item Extension to dissipative and dispersive systems
+\item Statistical theory for chaotic scattering
+\item Numerical implementation and benchmarking
+\item Applications to quantum graphs and photonic systems
+\end{itemize}
+
+\end{document}
+

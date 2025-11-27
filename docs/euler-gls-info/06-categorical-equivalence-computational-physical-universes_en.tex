@@ -1,0 +1,738 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{tikz-cd}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{axiom}[theorem]{Axiom}
+
+% Operators
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Id}{Id}
+
+% Title information
+\title{Theory of Categorical Equivalence\\
+Between Computational Universe and Physical Universe:\\
+Reversible QCA, Unified Time Scale,\\
+and Complexity Geometric Invariants}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+In previous works on the ``computational universe'' series $U_{\mathrm{comp}} = (X,\mathsf{T},\mathsf{C},\mathsf{I})$, we constructed complexity geometry and information geometry at discrete level, obtaining under unified time scale scattering mother scale control manifold $(\mathcal{M},G)$ and task information manifold $(\mathcal{S}_Q,g_Q)$, such that complexity distance and information distance are characterized respectively by geodesic distances of $G$ and $g_Q$ in continuous limit. However, to truly achieve unification of ``computational universe = physical universe'', geometric correspondence alone is insufficient: we need categorical equivalence between two ``universe categories,'' i.e., existence of mutually inverse functors on appropriate subclasses such that objects of physical universe and computational universe can correspond one-to-one, with geometric invariants such as complexity and time scale preserved under this correspondence.
+
+This paper introduces a physical universe category $\mathbf{PhysUniv}$, whose objects are physical universe models satisfying unified time scale assumption
+
+$$
+U_{\mathrm{phys}} =
+(M,g,\mathcal{F},\kappa,\mathsf{S}),
+$$
+
+where $(M,g)$ is spacetime manifold with metric (or more general causal structure), $\mathcal{F}$ is matter field content, $\kappa(\omega)$ is unified time scale density, $\mathsf{S}(\omega)$ is scattering data. Morphisms are geometric mappings preserving causal structure, unified time scale, and scattering structure. We simultaneously review computational universe category $\mathbf{CompUniv}$, whose objects are computational universe objects satisfying finite information density and locality axioms, with morphisms being simulation mappings with complexity upper bounds.
+
+On this basis, we select two subcategories: one is $\mathbf{PhysUniv}^{\mathrm{QCA}}$ consisting of physical universes realizable by reversible quantum cellular automata (QCA), another is $\mathbf{CompUniv}^{\mathrm{phys}}$ consisting of computational universes physically realizable under unified time scale. Reversible QCA is simultaneously a local discrete dynamical system and a physical system satisfying unified time scale controllable scattering structure, thus becoming bridge connecting two categories.
+
+This paper defines two core functors:
+
+\begin{enumerate}
+\item Functor $F:\mathbf{PhysUniv}^{\mathrm{QCA}}\to\mathbf{CompUniv}^{\mathrm{phys}}$, mapping physical universe $U_{\mathrm{phys}}$ through QCA discretization to computational universe $U_{\mathrm{comp}}$;
+\item Functor $G:\mathbf{CompUniv}^{\mathrm{phys}}\to\mathbf{PhysUniv}^{\mathrm{QCA}}$, reconstructing from local reversible computational universe its continuous limit spacetime manifold, unified time scale, and scattering data.
+\end{enumerate}
+
+Under set of explicit technical axioms (QCA universality, local reversibility, unified time scale consistency, and appropriate continuous limit existence), we prove:
+
+\begin{itemize}
+\item $F$ and $G$ are quasi-inverse at object level, i.e., for any $U_{\mathrm{phys}}\in\mathbf{PhysUniv}^{\mathrm{QCA}}$, there exists natural isomorphism
+
+$$
+\eta_{U_{\mathrm{phys}}}:
+U_{\mathrm{phys}}
+\xrightarrow{\ \simeq\ }
+G(F(U_{\mathrm{phys}})),
+$$
+
+for any $U_{\mathrm{comp}}\in\mathbf{CompUniv}^{\mathrm{phys}}$, there exists natural isomorphism
+
+$$
+\epsilon_{U_{\mathrm{comp}}}:
+F(G(U_{\mathrm{comp}}))
+\xrightarrow{\ \simeq\ }
+U_{\mathrm{comp}};
+$$
+
+\item $F$ and $G$ preserve simulation structure at morphism level: geometric invariants such as complexity geometry (metric $G$ and geodesic distance), unified time scale density $\kappa(\omega)$, and scattering phase are stable under categorical equivalence.
+\end{itemize}
+
+Thus obtaining main theorem: on physically realizable subclass, physical universe category and computational universe category are equivalent in categorical sense, they are merely different presentations of same ``unified time scale--complexity geometry--scattering structure'' object from continuous and discrete perspectives.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Computational universe; Physical universe; Category theory; Categorical equivalence; Quantum cellular automata; Unified time scale; Complexity geometry; Scattering theory
+
+\section{Introduction}
+
+Previous works have systematized the ``computational universe'' idea:
+
+\begin{itemize}
+\item At discrete level, a computational universe is quadruple $U_{\mathrm{comp}} = (X,\mathsf{T},\mathsf{C},\mathsf{I})$, where $X$ is configuration set, $\mathsf{T}$ is one-step update relation, $\mathsf{C}$ is single-step cost, $\mathsf{I}$ is information quality function. First two works constructed discrete complexity geometry and discrete information geometry on this basis.
+
+\item Based on unified time scale scattering mother scale
+
+$$
+\kappa(\omega)
+=
+\frac{\varphi'(\omega)}{\pi}
+=
+\rho_{\mathrm{rel}}(\omega)
+=
+\frac{1}{2\pi}\tr\,Q(\omega),
+$$
+
+we introduced physical time scale into computational universe, making its single-step cost a function of group delay matrix, proving that in refinement limit, discrete complexity distance converges to geodesic distance on control manifold $(\mathcal{M},G)$.
+
+\item At task-aware information geometry level, we constructed information manifold $(\mathcal{S}_Q,g_Q)$, writing on joint manifold $\mathcal{E}_Q = \mathcal{M} \times \mathcal{S}_Q$ joint action $\mathcal{A}_Q$ for time--information--complexity, geometrizing ``optimal algorithms'' as ``minimal worldlines.''
+\end{itemize}
+
+Although these results achieved unification from discrete computation to continuous geometry, ``physical universe'' still appears in relatively external position: it is used to provide unified time scale and scattering data, but not yet juxtaposed with computational universe at categorical level. To truly give rigorous meaning to ``universe is computation,'' we need to introduce two ``universe categories'':
+
+\begin{itemize}
+\item A category $\mathbf{PhysUniv}$ with physical theory objects as objects;
+\item A category $\mathbf{CompUniv}$ with computational universe objects as objects.
+\end{itemize}
+
+And give equivalence on appropriate subclass
+
+$$
+\mathbf{PhysUniv}^{\mathrm{QCA}}
+\simeq
+\mathbf{CompUniv}^{\mathrm{phys}}.
+$$
+
+This paper's task is to construct these two categories, relevant subcategories, and functors $F,G$ connecting them, proving categorical equivalence under constraints of unified time scale and complexity geometry.
+
+Section 2 defines physical universe category and QCA-realizable subcategory. Section 3 reviews computational universe category and defines physically realizable subcategory. Section 4 constructs QCA discretization functor $F$ from physical universe to computational universe, Section 5 constructs continuous limit functor $G$ from computational universe to physical universe. Section 6 states and proves main theorem of categorical equivalence, discussing invariance of complexity geometry and unified time scale under this equivalence. Appendices provide detailed axioms, QCA construction, and categorical proofs.
+
+\section{Physical Universe Category and QCA-Realizable Subcategory}
+
+This section constructs physical universe category $\mathbf{PhysUniv}$, selecting within it subcategory $\mathbf{PhysUniv}^{\mathrm{QCA}}$ realizable by reversible QCA.
+
+\subsection{Physical Universe Objects}
+
+Our working physical universe object is multiple object with spacetime geometry, matter fields, and unified time scale structure.
+
+\begin{definition}[Physical Universe Object]
+A physical universe object is quintuple
+
+$$
+U_{\mathrm{phys}}
+=
+(M,g,\mathcal{F},\kappa,\mathsf{S}),
+$$
+
+where:
+
+\begin{enumerate}
+\item $(M,g)$ is four-dimensional Lorentzian manifold or more general causal manifold, $M$ is spacetime manifold, $g$ is metric or equivalent causal structure;
+\item $\mathcal{F}$ is matter field content defined on $(M,g)$ (such as gauge fields, fermion fields), typically solution space of field equations or operator algebra;
+\item $\kappa(\omega)$ is unified time scale density: for selected class of scattering processes, its scattering phase derivative, spectral shift function derivative, and group delay trace satisfy
+
+$$
+\kappa(\omega)
+=
+\frac{\varphi'(\omega)}{\pi}
+=
+\rho_{\mathrm{rel}}(\omega)
+=
+\frac{1}{2\pi}\tr\,Q(\omega);
+$$
+
+\item $\mathsf{S}(\omega)$ is frequency-resolved scattering matrix family of corresponding scattering processes, satisfying standard scattering theory axioms (unitarity, analyticity, etc.).
+\end{enumerate}
+
+We only consider universe objects satisfying ``distinguishable unified time scale,'' i.e., there exists at least one family of scattering processes such that above mother formula holds and $\kappa(\omega)$ is non-degenerate.
+\end{definition}
+
+\subsection{Physical Universe Morphisms}
+
+In category $\mathbf{PhysUniv}$, morphisms should be mappings preserving causal structure, unified time scale, and scattering features.
+
+\begin{definition}[Physical Universe Morphism]
+Given two physical universe objects
+
+$$
+U_{\mathrm{phys}}
+=
+(M,g,\mathcal{F},\kappa,\mathsf{S}),
+\quad
+U_{\mathrm{phys}}'
+=
+(M',g',\mathcal{F}',\kappa',\mathsf{S}'),
+$$
+
+a morphism $f:U_{\mathrm{phys}}\to U_{\mathrm{phys}}'$ consists of following data:
+
+\begin{enumerate}
+\item A smooth mapping $f_M:M\to M'$, locally bijective in causal sense (preserving timelike causal order);
+\item Pushforward $f_{\mathcal{F}}:\mathcal{F}\to\mathcal{F}'$ between field contents, covariant with $f_M$;
+\item Preservation of unified time scale and scattering data: there exists frequency transformation $f_\omega:\Omega\to\Omega'$, such that
+
+$$
+\kappa'(\omega')
+= \kappa(\omega),\quad
+\mathsf{S}'(\omega') \simeq \mathsf{S}(\omega)
+\quad
+\text{when}\ \omega' = f_\omega(\omega),
+$$
+
+where ``$\simeq$'' denotes equivalence under gauge transformation and isomorphism.
+\end{enumerate}
+
+With physical universe objects as objects and physical universe morphisms as morphisms, we form category $\mathbf{PhysUniv}$.
+\end{definition}
+
+\subsection{QCA-Realizable Subcategory $\mathbf{PhysUniv}^{\mathrm{QCA}}$}
+
+We care about those physical universe objects that can be realized or approximated by reversible quantum cellular automata (QCA).
+
+\begin{definition}[QCA-Realizable Physical Universe]
+A physical universe object $U_{\mathrm{phys}}$ is called QCA-realizable if there exist:
+
+\begin{enumerate}
+\item A lattice set $\Lambda \subset M$ and its embedding $i:\Lambda\hookrightarrow M$, forming uniform covering of $M$ at large scales;
+\item Finite-dimensional local Hilbert space $\mathcal{H}_x$ at each lattice point and global Hilbert space
+
+$$
+\mathcal{H} =
+\bigotimes_{x\in\Lambda} \mathcal{H}_x;
+$$
+
+\item A QCA evolution operator $U:\mathcal{H}\to\mathcal{H}$ satisfying locality and reversibility, such that:
+
+\begin{itemize}
+\item Its Lieb--Robinson light cone approximates causal structure of $(M,g)$ at large scales;
+\item Its scattering matrix family $S_{\mathrm{QCA}}(\omega)$ approximates $\mathsf{S}(\omega)$ in appropriate limit, unified time scale density $\kappa_{\mathrm{QCA}}(\omega)$ consistent with $\kappa(\omega)$.
+\end{itemize}
+\end{enumerate}
+
+All QCA-realizable physical universe objects and morphisms induced by QCA simulation form subcategory denoted $\mathbf{PhysUniv}^{\mathrm{QCA}} \subset\mathbf{PhysUniv}$.
+\end{definition}
+
+\section{Computational Universe Category and Physically Realizable Subcategory}
+
+This section reviews definition of computational universe category, selecting within it physically realizable subcategory.
+
+\subsection{Computational Universe Category $\mathbf{CompUniv}$}
+
+A computational universe object is
+
+$$
+U_{\mathrm{comp}}
+=
+(X,\mathsf{T},\mathsf{C},\mathsf{I}),
+$$
+
+satisfying axioms of finite information density, local update, (generalized) reversibility, and cost additivity.
+
+Morphisms are simulation mappings:
+
+\begin{definition}[Simulation Mapping Recalled]
+If there exist $f:X\to X'$ and constants $\alpha,\beta>0$, monotone function $\Phi$, such that
+
+\begin{enumerate}
+\item Step preservation: $(x,y)\in\mathsf{T} \Rightarrow (f(x),f(y))\in\mathsf{T}'$;
+\item Cost control: for any path $\gamma:x\to y$, there exists $\gamma':f(x)\to f(y)$ such that
+
+$$
+\mathsf{C}'(\gamma') \le \alpha \mathsf{C}(\gamma) + \beta;
+$$
+
+\item Information fidelity: $\mathsf{I}(x) \le \Phi(\mathsf{I}'(f(x)))$;
+\end{enumerate}
+
+then $f$ is a simulation mapping from $U_{\mathrm{comp}}$ to $U'_{\mathrm{comp}}$.
+\end{definition}
+
+With computational universe objects as objects and simulation mappings as morphisms, we form category $\mathbf{CompUniv}$.
+
+\subsection{Physically Realizable Subcategory $\mathbf{CompUniv}^{\mathrm{phys}}$}
+
+We need to select those computational universe objects realizable under unified time scale and QCA framework.
+
+\begin{definition}[Physically Realizable Computational Universe]
+Computational universe object $U_{\mathrm{comp}} = (X,\mathsf{T},\mathsf{C},\mathsf{I})$ is called physically realizable if there exist:
+
+\begin{enumerate}
+\item A QCA system $(\Lambda,\mathcal{H}_x,U)$, and configuration encoding mapping $e:X\to\mathcal{H}$ to normalized basis vector subset;
+
+\item A family of control parameters $\theta\in\mathcal{M}$ and scattering matrix family $S(\omega;\theta)$, such that one-step evolution of $U$ corresponds to some control step size;
+
+\item Single-step cost $\mathsf{C}(x,y)$ can be written as discrete integral of unified time scale density:
+
+$$
+\mathsf{C}(x,y)
+=
+\int_{\Omega_{x,y}}
+\kappa(\omega;\theta)\,\mathrm{d}\mu_{x,y}(\omega);
+$$
+
+\item Complexity geometry in refinement limit is approximated by geodesic distance of some control manifold $(\mathcal{M},G)$, as stated in previous theorem on Riemannian limit.
+\end{enumerate}
+
+All physically realizable computational universe objects and morphisms induced by physically realizable simulation form subcategory $\mathbf{CompUniv}^{\mathrm{phys}} \subset\mathbf{CompUniv}$.
+\end{definition}
+
+\section{Functor $F$ from Physical Universe to Computational Universe: QCA Discretization}
+
+This section constructs functor
+
+$$
+F:\mathbf{PhysUniv}^{\mathrm{QCA}}\to\mathbf{CompUniv}^{\mathrm{phys}},
+$$
+
+mapping each QCA-realizable physical universe object to computational universe object.
+
+\subsection{Object Level: QCA Discretization Construction}
+
+Given $U_{\mathrm{phys}} = (M,g,\mathcal{F},\kappa,\mathsf{S})\in\mathbf{PhysUniv}^{\mathrm{QCA}}$, by definition there exist lattice $\Lambda\subset M$ and QCA system $(\Lambda,\mathcal{H}_x,U)$.
+
+\begin{enumerate}
+\item \textbf{Configuration set $X$}: Select set of normalized basis vectors $\mathcal{B}_x$ for each $\mathcal{H}_x$, let
+
+$$
+X = \prod_{x\in\Lambda} \mathcal{B}_x,
+$$
+
+i.e., set of all basis tensor product labels. Any $x\in X$ corresponds to basis vector $|x\rangle\in\mathcal{H}$.
+
+\item \textbf{One-step update relation $\mathsf{T}$}: Define
+
+$$
+\mathsf{T}
+=
+\{ (x,y) \in X\times X : \langle y | U | x \rangle \neq 0 \}.
+$$
+
+If $U$ decomposes into fundamental gate sequence with time step $\Delta t$, we can define $\mathsf{T}$ by this step size as ``one physical time step'' update relation.
+
+\item \textbf{Single-step cost $\mathsf{C}$}: Using unified time scale density $\kappa(\omega)$ and corresponding scattering matrix $\mathsf{S}(\omega)$, assign cost to each $(x,y)\in\mathsf{T}$
+
+$$
+\mathsf{C}(x,y)
+=
+\int_{\Omega_{x,y}}
+\kappa(\omega)\,\mathrm{d}\mu_{x,y}(\omega),
+$$
+
+where $\Omega_{x,y}$ and spectral measure $\mu_{x,y}$ given by local scattering structure of QCA. For non-adjacent pairs $(x,y)\notin\mathsf{T}$ let $\mathsf{C}(x,y)=\infty$.
+
+\item \textbf{Information quality function $\mathsf{I}$}: According to task, choose appropriate observation operator family, translating task information on physical field content $\mathcal{F}$ to $\mathsf{I}:X\to\mathbb{R}$ on configuration space $X$. For example, for output distribution of given scattering experiment, define $\mathsf{I}(x)$ as negative relative entropy or likelihood relative to some target distribution.
+\end{enumerate}
+
+From locality and reversibility of QCA we can verify: $U_{\mathrm{comp}} = (X,\mathsf{T},\mathsf{C},\mathsf{I})$ satisfies computational universe axioms and is physically realizable.
+
+\begin{definition}[Object Mapping]
+Let
+
+$$
+F(U_{\mathrm{phys}})
+=
+(X,\mathsf{T},\mathsf{C},\mathsf{I}).
+$$
+\end{definition}
+
+\subsection{Morphism Level: Discrete Simulation of Physical Universe Morphisms}
+
+Given physical universe morphism
+
+$$
+f:U_{\mathrm{phys}}\to U_{\mathrm{phys}}',
+$$
+
+from its realization at QCA level, we get unitary mapping or isometric embedding $f_{\mathcal{H}}:\mathcal{H}\to\mathcal{H}'$ between Hilbert spaces, thereby inducing basis vector level mapping $f_X:X\to X'$.
+
+We require $f_X$ to satisfy:
+
+\begin{enumerate}
+\item Step preservation: if $(x,y)\in\mathsf{T}$ and $\langle y|U|x\rangle \neq 0$, then $(f_X(x),f_X(y))\in\mathsf{T}'$, corresponding to $\langle f_X(y)|U'|f_X(x)\rangle \neq 0$;
+\item Cost control: there exist $\alpha,\beta>0$, such that for any path $\gamma$ its image $f_X(\gamma)$ has cost satisfying
+
+$$
+\mathsf{C}'(f_X(\gamma))
+\le
+\alpha\,\mathsf{C}(\gamma) + \beta;
+$$
+
+\item Information fidelity: influence of physical morphism on scattering output controlled by $f_{\mathcal{F}}$, thereby inducing monotone function $\Phi$ on task information, such that
+
+$$
+\mathsf{I}(x)
+\le
+\Phi(\mathsf{I}'(f_X(x))).
+$$
+\end{enumerate}
+
+This is precisely the condition for simulation mapping.
+
+\begin{definition}[Morphism Mapping]
+Let
+
+$$
+F(f) = f_X :
+F(U_{\mathrm{phys}}) \rightsquigarrow F(U_{\mathrm{phys}}').
+$$
+\end{definition}
+
+\subsection{Functoriality}
+
+\begin{proposition}
+\label{prop:F-functor}
+Above definition gives covariant functor
+
+$$
+F:\mathbf{PhysUniv}^{\mathrm{QCA}}\to\mathbf{CompUniv}^{\mathrm{phys}}.
+$$
+\end{proposition}
+
+Proof in Appendix A.1. Key is verifying: identity morphism maps to identity simulation mapping, morphism composition at discrete level corresponds to composition of simulation mappings, and complexity and information control parameters satisfy simulation conditions after composition.
+
+\section{Functor $G$ from Computational Universe to Physical Universe: Continuous Limit Reconstruction}
+
+This section constructs functor
+
+$$
+G:\mathbf{CompUniv}^{\mathrm{phys}}\to\mathbf{PhysUniv}^{\mathrm{QCA}},
+$$
+
+starting from physically realizable computational universe, reconstructing continuous physical universe object under constraints of unified time scale and complexity geometry.
+
+\subsection{From Discrete Control to Spacetime Manifold}
+
+Given $U_{\mathrm{comp}} = (X,\mathsf{T},\mathsf{C},\mathsf{I})\in\mathbf{CompUniv}^{\mathrm{phys}}$, by assumption there exist control manifold $(\mathcal{M},G)$ and QCA realization. We first construct spacetime manifold $(M,g)$ from control--complexity geometry.
+
+\begin{enumerate}
+\item Control manifold $\mathcal{M}$ is parameter space for ``space + internal degrees of freedom,'' already equipped with Riemannian metric $G$.
+\item Using unified time scale density $\kappa(\omega;\theta)$, we can construct effective spacetime metric or causal structure $(M,g)$ on $\mathbb{R}\times\mathcal{M}$, e.g., in simplified case let
+
+$$
+M = \mathbb{R}_t \times \mathcal{M},
+\quad
+g = -c^2(\theta)\mathrm{d}t^2 + G_{ab}(\theta)\mathrm{d}\theta^a\mathrm{d}\theta^b,
+$$
+
+where $c(\theta)$ related to $\kappa$, ensuring light cone structure consistent with Lieb--Robinson light cone of QCA.
+\end{enumerate}
+
+More generally, we can jointly define Lorentz-type metric using causal structure (update direction) of complexity graph and unified time scale, such that ``reachability relation'' and ``nonzero propagation velocity'' correspond to causal structure of $g$.
+
+\subsection{Reconstruction of Scattering and Unified Time Scale}
+
+By physically realizable assumption, computational universe has QCA realization $U$, whose scattering matrix family $S_{\mathrm{QCA}}(\omega;\theta)$ realizes frequency domain characteristics of computational update. Using previous unified time scale mother formula, we define
+
+$$
+\kappa(\omega;\theta)
+=
+\frac{1}{2\pi}\tr\,Q_{\mathrm{QCA}}(\omega;\theta),
+\quad
+Q_{\mathrm{QCA}}(\omega;\theta)
+=
+-\mathrm{i}\,S_{\mathrm{QCA}}^\dagger\partial_\omega S_{\mathrm{QCA}}.
+$$
+
+Taking this as unified time scale density of physical universe, define scattering data
+
+$$
+\mathsf{S}(\omega;\theta) = S_{\mathrm{QCA}}(\omega;\theta),
+$$
+
+thereby satisfying scattering and time scale structure axioms of physical universe object.
+
+\subsection{Embedding of Field Content and Information Quality}
+
+Configuration information $X$ and task information $\mathsf{I}$ of computational universe can be embedded into physical field content $\mathcal{F}$ through local operators of QCA, e.g., viewing $X$ as set of expectation values of certain local operators or boundary condition set. More precise approach is constructing local operator algebra net $\mathcal{A}(\mathcal{O})\subset\mathcal{B}(\mathcal{H})$, treating configuration information and task information as functions of these operators under QCA evolution.
+
+From categorical structure perspective, we only need to ensure existence of embedding from $(X,\mathsf{I})$ to $\mathcal{F}$, such that comparison relation of information quality is preserved under this embedding (monotone homomorphism).
+
+\subsection{Object and Morphism Mappings}
+
+\begin{definition}[Object Mapping]
+Given $U_{\mathrm{comp}}\in\mathbf{CompUniv}^{\mathrm{phys}}$, let
+
+$$
+G(U_{\mathrm{comp}})
+=
+(M,g,\mathcal{F},\kappa,\mathsf{S}),
+$$
+
+where $(M,g)$ and $(\kappa,\mathsf{S})$ constructed respectively from control--complexity geometry and QCA scattering structure, $\mathcal{F}$ is field content generated by QCA local operator algebra.
+\end{definition}
+
+\begin{definition}[Morphism Mapping]
+Given simulation mapping
+
+$$
+f:U_{\mathrm{comp}}\rightsquigarrow U_{\mathrm{comp}}',
+$$
+
+its corresponding QCA realization induces mappings between control manifolds, spacetime manifolds, and scattering data
+
+$$
+f_M:M\to M',
+\quad
+f_{\mathcal{F}}:\mathcal{F}\to\mathcal{F}',
+\quad
+f_\omega:\Omega\to\Omega',
+$$
+
+define
+
+$$
+G(f) = (f_M,f_{\mathcal{F}},f_\omega):
+G(U_{\mathrm{comp}})\to G(U_{\mathrm{comp}}').
+$$
+\end{definition}
+
+\begin{proposition}
+\label{prop:G-functor}
+Above definition gives covariant functor
+
+$$
+G:\mathbf{CompUniv}^{\mathrm{phys}}\to\mathbf{PhysUniv}^{\mathrm{QCA}}.
+$$
+\end{proposition}
+
+Proof in Appendix B.1. Key is verifying: controlling inequalities of simulation mapping on complexity and unified time scale preserve scattering mother scale structure and causal structure inclusion and Lipschitz property in continuous limit.
+
+\section{Categorical Equivalence Theorem and Complexity Geometric Invariants}
+
+This section states and proves main theorem: on physically realizable subclass, physical universe category and computational universe category are categorically equivalent, discussing invariance of complexity geometry and unified time scale under this equivalence.
+
+\subsection{Equivalence Axioms}
+
+To state equivalence theorem, we introduce following axiomatic assumptions:
+
+\begin{axiom}[E1: QCA Universality]
+Any $U_{\mathrm{phys}}\in\mathbf{PhysUniv}^{\mathrm{QCA}}$ has QCA realization; any $U_{\mathrm{comp}}\in\mathbf{CompUniv}^{\mathrm{phys}}$ has QCA realization, whose control--complexity geometry is compatible with unified time scale structure of physical universe object.
+\end{axiom}
+
+\begin{axiom}[E2: Continuous Limit Existence]
+For any physically realizable computational universe $U_{\mathrm{comp}}$, its complexity graph converges in Gromov--Hausdorff sense as discrete scale $h\to 0$ to some control manifold $(\mathcal{M},G)$, and can be further extended to spacetime manifold $(M,g)$.
+\end{axiom}
+
+\begin{axiom}[E3: Scattering and Time Scale Consistency]
+QCA scattering matrix family $S_{\mathrm{QCA}}(\omega;\theta)$ approximates physical universe scattering data $\mathsf{S}(\omega)$ in continuous limit, and unified time scale mother scale is preserved between both:
+
+$$
+\kappa_{\mathrm{QCA}}(\omega;\theta)
+=
+\kappa(\omega) + \text{controllable error}.
+$$
+\end{axiom}
+
+\begin{axiom}[E4: Physical Realization of Simulation Mappings]
+Any morphism in category $\mathbf{PhysUniv}^{\mathrm{QCA}}$ can be realized at QCA level as local reversible mapping; any simulation mapping in $\mathbf{CompUniv}^{\mathrm{phys}}$ can be realized through mapping of control--scattering system.
+\end{axiom}
+
+Under this set of axioms, we can prove two categories are quasi-inverse at object and morphism levels.
+
+\subsection{Main Theorem: Categorical Equivalence}
+
+\begin{theorem}[Categorical Equivalence]
+\label{thm:cat-equiv}
+Under axioms E1--E4, functors
+
+$$
+F:\mathbf{PhysUniv}^{\mathrm{QCA}}\to\mathbf{CompUniv}^{\mathrm{phys}},
+\quad
+G:\mathbf{CompUniv}^{\mathrm{phys}}\to\mathbf{PhysUniv}^{\mathrm{QCA}}
+$$
+
+constitute categorical equivalence, i.e., there exist natural isomorphisms
+
+$$
+\eta:\Id_{\mathbf{PhysUniv}^{\mathrm{QCA}}}
+\xRightarrow{\ \sim\ }
+G\circ F,
+\quad
+\epsilon:F\circ G
+\xRightarrow{\ \sim\ }
+\Id_{\mathbf{CompUniv}^{\mathrm{phys}}}.
+$$
+\end{theorem}
+
+\begin{proof}[Proof Outline]
+
+\textbf{1. Essential Surjectivity (Object Level)}
+
+\begin{itemize}
+\item For any $U_{\mathrm{phys}}\in\mathbf{PhysUniv}^{\mathrm{QCA}}$, by axiom E1 has QCA realization, applying $F$ gets $U_{\mathrm{comp}}=F(U_{\mathrm{phys}})$. Applying $G$ again gets $U_{\mathrm{phys}}' = G(U_{\mathrm{comp}})$.
+
+\item By E2--E3, continuous limit spacetime and scattering data of QCA return to original physical universe $U_{\mathrm{phys}}$ (under gauge transformation and isometric isomorphism), therefore there exists natural isomorphism
+
+$$
+\eta_{U_{\mathrm{phys}}}:U_{\mathrm{phys}}\xrightarrow{\ \simeq\ }U_{\mathrm{phys}}' = G(F(U_{\mathrm{phys}})).
+$$
+
+\item Similarly, for any $U_{\mathrm{comp}}\in\mathbf{CompUniv}^{\mathrm{phys}}$, applying $G$ then $F$ gets $U_{\mathrm{comp}}' = F(G(U_{\mathrm{comp}}))$. By E1--E3 and QCA universality, $U_{\mathrm{comp}}'$ isomorphic to $U_{\mathrm{comp}}$ (in simulation mapping sense), giving natural isomorphism
+
+$$
+\epsilon_{U_{\mathrm{comp}}}:
+F(G(U_{\mathrm{comp}}))
+\xrightarrow{\ \simeq\ }
+U_{\mathrm{comp}}.
+$$
+\end{itemize}
+
+\textbf{2. Faithful--Full (Morphism Level)}
+
+\begin{itemize}
+\item For any physical morphism $f:U_{\mathrm{phys}}\to U_{\mathrm{phys}}'$, by E4 can construct local reversible realization at QCA level, thereby obtaining simulation mapping $F(f)$ at computational universe level.
+\item Conversely, for any simulation mapping $g:U_{\mathrm{comp}}\rightsquigarrow U_{\mathrm{comp}}'$, by E4 can construct corresponding physical mapping $G(g)$ at control--scattering system level.
+\item Through standard categorical methods (see Appendix C.1), can prove $F$ and $G$ are faithful and full at morphism level, i.e.,
+
+$$
+\Hom_{\mathbf{PhysUniv}^{\mathrm{QCA}}}(U_{\mathrm{phys}},U_{\mathrm{phys}}')
+\cong
+\Hom_{\mathbf{CompUniv}^{\mathrm{phys}}}(F(U_{\mathrm{phys}}),F(U_{\mathrm{phys}}')),
+$$
+
+$$
+\Hom_{\mathbf{CompUniv}^{\mathrm{phys}}}(U_{\mathrm{comp}},U_{\mathrm{comp}}')
+\cong
+\Hom_{\mathbf{PhysUniv}^{\mathrm{QCA}}}(G(U_{\mathrm{comp}}),G(U_{\mathrm{comp}}')).
+$$
+\end{itemize}
+
+Combining essential surjectivity at object level and faithful--full at morphism level yields categorical equivalence.
+\end{proof}
+
+\subsection{Invariance of Complexity Geometry and Unified Time Scale}
+
+Categorical equivalence is not only set-theoretic one-to-one correspondence, but should also preserve key geometric structures.
+
+\begin{proposition}[Complexity Geometry Invariance]
+\label{prop:geom-inv}
+Under equivalence functors $F,G$:
+
+\begin{enumerate}
+\item Unified time scale density $\kappa(\omega)$ of physical universe object $U_{\mathrm{phys}}$ is compatible with complexity geometry induced by single-step cost $\mathsf{C}$ of its image $F(U_{\mathrm{phys}})$, i.e., discrete complexity distance consistent with geodesic distance of $(\mathcal{M},G)$ in continuous limit;
+\item For any physical morphism $f$ and corresponding simulation mapping $F(f)$, geodesic distance is preserv controledly in complexity geometry, i.e., there exist constants $c_1,c_2>0$ such that
+
+$$
+c_1 d_G(\theta_1,\theta_2)
+\le
+d_G'(f_{\mathcal{M}}(\theta_1),f_{\mathcal{M}}(\theta_2))
+\le
+c_2 d_G(\theta_1,\theta_2).
+$$
+\end{enumerate}
+
+Similar invariance holds under functor $G$ from computational universe to physical universe. Proof relies on stability of unified time scale mother scale and Riemannian limit theorem, see Appendix C.2.
+\end{proposition}
+
+\appendix
+
+\section{Details and Proofs of Functor $F$}
+
+\subsection{Proof of Functoriality}
+
+\begin{proposition}
+Construction $F$ satisfies $F(\mathrm{id}) = \mathrm{id}$ and $F(f\circ g) = F(f)\circ F(g)$.
+\end{proposition}
+
+\begin{proof}
+
+\begin{enumerate}
+\item For any $U_{\mathrm{phys}}$, physical identity morphism corresponds to identity unitary operator at QCA level, inducing identity mapping $\mathrm{id}_X$ on basis vector set. Therefore $F(\mathrm{id}_{U_{\mathrm{phys}}}) = \mathrm{id}_{F(U_{\mathrm{phys}})}$.
+
+\item For morphism composition, let
+
+$$
+f:U_{\mathrm{phys}}\to U_{\mathrm{phys}}',
+\quad
+g:U_{\mathrm{phys}}'\to U_{\mathrm{phys}}'',
+$$
+
+corresponding to QCA level mappings $f_{\mathcal{H}},g_{\mathcal{H}}$, inducing $f_X,g_X$ on configuration sets. Then composite morphism $g\circ f$ corresponds to QCA level mapping $g_{\mathcal{H}}\circ f_{\mathcal{H}}$, whose image on configuration set is $g_X\circ f_X$. Therefore
+
+$$
+F(g\circ f) = g_X\circ f_X = F(g)\circ F(f).
+$$
+
+Complexity control parameters $(\alpha,\beta)$ in simulation conditions compose according to rules in previous discrete complexity geometry after composition, still satisfying simulation mapping requirements.
+\end{enumerate}
+\end{proof}
+
+\section{Details and Proofs of Functor $G$}
+
+\subsection{Proof of Functoriality}
+
+\begin{proposition}
+Construction $G$ satisfies $G(\mathrm{id}) = \mathrm{id}$ and $G(f\circ g) = G(f)\circ G(g)$.
+\end{proposition}
+
+\begin{proof}[Proof Idea]
+
+\begin{enumerate}
+\item For any $U_{\mathrm{comp}}$, identity simulation mapping corresponds to identity evolution at QCA level, control manifold, spacetime manifold, and scattering data all unchanged, therefore $G(\mathrm{id}_{U_{\mathrm{comp}}}) = \mathrm{id}_{G(U_{\mathrm{comp}})}$.
+
+\item For two continuous simulation mappings $f:U_{\mathrm{comp}}\to U_{\mathrm{comp}}'$, $g:U_{\mathrm{comp}}'\to U_{\mathrm{comp}}''$, at QCA level have corresponding control--scattering mappings $f_{\mathcal{M}},g_{\mathcal{M}}$ and $f_\omega,g_\omega$. Image of composite simulation mapping $g\circ f$ at control and scattering level is precisely $g_{\mathcal{M}}\circ f_{\mathcal{M}}$ and $g_\omega\circ f_\omega$, therefore
+
+$$
+G(g\circ f)
+=
+(g_{\mathcal{M}}\circ f_{\mathcal{M}},g_{\mathcal{F}}\circ f_{\mathcal{F}},g_\omega\circ f_\omega)
+=
+G(g)\circ G(f).
+$$
+
+Details rely on controlling conditions of simulation mapping on unified time scale and scattering structure, ensuring combined mapping remains physical morphism.
+\end{enumerate}
+\end{proof}
+
+\section{Proof Outline of Equivalence and Geometric Invariants}
+
+\subsection{Faithful--Full}
+
+For any $U_{\mathrm{phys}},U_{\mathrm{phys}}' \in\mathbf{PhysUniv}^{\mathrm{QCA}}$, QCA realization ensures morphisms at QCA level can be viewed as local reversible unitary transformations or isometric embeddings, whose image on configuration set is precisely simulation mapping. Conversely, any simulation mapping in $\mathbf{CompUniv}^{\mathrm{phys}}$ corresponds to local control operation at QCA level, whose continuous limit is physical morphism. This gives one-to-one correspondence between Hom sets, thereby proving faithful--full.
+
+\subsection{Complexity Geometry Invariance}
+
+By unified time scale mother scale, metric $G$ and scattering data vary together through $Q(\omega;\theta)$. Local reversible transformation at QCA level corresponds to gauge transformation in scattering theory, not changing spectral content of unified time scale density, whereby geodesic distance is preserved in Lipschitz sense. Therefore under categorical equivalence, complexity geometry and unified time scale are ``soft invariants'': between equivalent objects, only vary at constant scale level.
+
+(Detailed technical proof requires Birman--Krein type formula and control of unified time scale on spectral flow, not expanded due to length limitation.)
+
+\end{document}

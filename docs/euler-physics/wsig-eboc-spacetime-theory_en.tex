@@ -1,0 +1,494 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Title information
+\title{WSIG--EBOC Unified Theory of \textbf{Spacetime/Time/Space}}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today\\
+\small Version: 1.45}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Within the WSIG (Windowed Scattering \& Information Geometry) and EBOC (Eternal-Block Observer-Computing) frameworks, we establish an operational spacetime theory based on \textbf{windowed scattering}: taking the \textbf{phase derivative--spectral shift density--Wigner--Smith group delay} triple equivalence as the metrological primitive; using the \textbf{Kramers--Kronig causality--analyticity} (restricted to stable LTI) and the light cone support of wave equation \textbf{retarded Green's function} (time-domain support, applicable to LTV), we provide \textbf{an upper bound in terms of front-propagating optical metric: causal front does not exceed $c$}; and the equality holds \textbf{if and only if the front-detectability condition (§5)} is satisfied. Using the first-detection time of \textbf{threshold mutual information} to establish the \textbf{information light cone bound}: in vacuum or static media (LTI),
+$$
+c_{\rm info}:=\lim_{\delta\downarrow0}\sup \frac{D}{T_\delta}\ \le\ c,
+$$
+with equality $c_{\rm info}=c$ \textbf{if and only if} the \textbf{front-detectability} (§5) holds; \textbf{where} $D=D_{\rm front}$ (link normalization, $t_h=0$) or $D=D_{\rm sys}:=D_{\rm front}+c\,t_h$ (system normalization, $t_h>0$). For LTV, only $T_\delta\ge t_{\min}$ is obtained. We provide \textbf{operational definitions} for \textbf{time} and \textbf{space}, and characterize \textbf{spacetime} as a four-tuple $(\mathcal E,\preceq,g,\mu_\varphi)$: where $\preceq$ is induced by light cone support, $g$ is the (media-inclusive) optical Lorentzian metric, $\mu_\varphi=(\varphi'/\pi)\,dx$ is the \textbf{phase density measure} given by de Branges kernel diagonal. The core theorems prove the four-way equivalence of ``\textbf{phase slope = group delay = spectral shift density = SI realization}'', and provide \textbf{non-asymptotic} detection bounds under the \textbf{Nyquist--Poisson--Euler--Maclaurin (NPE)} error ledger. The theory is compatible with the discrete light cone of the CHL theorem for \textbf{reversible cellular automata (RCA)}, and establishes isomorphisms with density thresholds (Landau, Wexler--Raz, Balian--Low) for sampling/interpolation/frames.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Wigner-Smith group delay; Birman-Kreĭn spectral shift; retarded Green's function; optical metric; information light cone; NPE error ledger; de Branges phase density; reversible cellular automata; Landau density; Balian-Low theorem
+
+\noindent\textbf{MSC 2020:} 81U05; 47A40; 83C05; 94A12; 42C15; 37B15
+
+\tableofcontents
+
+\section{Notation and Preliminaries}
+
+\begin{itemize}
+\item Scattering matrix $S(E)\in U(N)$. \textbf{Wigner--Smith delay matrix} defined as $Q(E):=-\,i\,S(E)^\dagger \tfrac{dS}{dE}(E)$, with $\mathrm{tr}\,Q(E)$ having dimension $1/\text{energy}$; physical \textbf{group delay} is $\tau_{\mathrm{WS}}(E):=\hbar\,\mathrm{tr}\,Q(E)$, with dimension of time. This definition traces back to Smith's characterization of the ``lifetime matrix''. Standard literature defines Wigner--Smith delay as ``derivative of phase with respect to energy'' corresponding to $\mathrm{tr}\,Q$, with $\tau=\hbar\,\mathrm{tr}Q$ having time dimension.
+
+\item \textbf{Birman--Kreĭn (BK) formula}: If $\det S(E)=e^{-2\pi i\,\xi(E)}$, then $\mathrm{tr}\,Q(E)=-2\pi\,\xi'(E)$.
+
+\item \textbf{KK--causality (LTI restricted)}: For \textbf{stable LTI} systems (impulse response $h_{\rm sys}(t)$), strict causality $\Rightarrow$ frequency response analytic in upper half-plane; and under \textbf{additional conditions} ($h_{\rm sys}\in L^1(\mathbb R)$, $H(\omega)$ polynomially bounded growth, no upper half-plane poles, etc.), real and imaginary parts satisfy Kramers--Kronig dispersion, and strict causality can be recovered (analyticity $\Rightarrow$ causality). \textbf{LTV/nonstationary} cases do not apply this frequency-domain equivalence; this paper uses only the time-domain support formulation of $G_{\rm ret}$ (see §5).
+
+\item \textbf{Retarded Green's function}: In 3D \textbf{vacuum unbounded domain}, the solution to the scalar wave equation $\square G_{\rm ret}=\delta$ is $G_{\rm ret}(t,\mathbf r)=\delta(t-|\mathbf r|/c)/(4\pi|\mathbf r|)$, with support exactly at $t=r/c$; \textbf{Maxwell}'s time-domain \textbf{dyadic} kernel is obtained from this scalar kernel via tensor--differential operators (containing $\delta$ and its derivatives), with support likewise \textbf{only on the light cone}. \textbf{In bounded domains/media/dispersion}, \textbf{precursors/tails} generally appear; see \textbf{§0 ``front decomposition (definition)''}.
+
+\item \textbf{Optical metric (Gordon)}: Front time \textbf{satisfies}
+$$
+t_{\min}\ge \frac{d_{\rm front}}{c},
+$$
+where $d_{\rm front}$ is defined by the \textbf{3D Fermat metric} of high-frequency limit refractive index $n_\infty$. The equality $t_{\min}=d_{\rm front}/c$ holds \textbf{if and only if the front-detectability condition (§5)} is satisfied; 3D vacuum pure propagation is a special case. Many passive media satisfy ``vacuumization'' at high frequencies $n(\mathbf x,\omega)\to1$ (thus $n_\infty=1$), giving $d_{\rm front}=|A-B|$; in this case, \textbf{in experimental coordinates} one can unconditionally only assert $t_{\min}\ge |A-B|/c$, and \textbf{only when} the above \textbf{equality condition} holds does one \textbf{recover} ``front velocity $=c$''. (Group velocity can differ from $c$---Sommerfeld--Brillouin precursor). For modern reviews and extensions, see Leonhardt--Philbin and subsequent work.
+
+\item \textbf{Fast/slow light and information velocity}: Experimental and information-theoretic definitions show that \textbf{detectable information velocity does not exceed $c$}.
+
+\item \textbf{NPE error ledger}: Nyquist sampling theorem and aliasing condition (Shannon/Nyquist); Poisson summation formula (NIST DLMF §1.8(iv)); Euler--Maclaurin bounded remainder (DLMF §2.10).
+
+\item \textbf{de Branges kernel diagonal}: For the space $\mathcal H(\mathcal{E})$ of a Hermite--Biehler function $\mathcal{E}$, we have $K(x,x)=\tfrac{1}{\pi}\,\varphi'(x)\,|\mathcal{E}(x)|^{2}$, where $\varphi$ is the phase function. \textbf{(Notation unification)} This paper uses $E$ to denote energy (also as real frequency variable); in de Branges sections, $x$ denotes the same real axis variable and is identified with $E$, written as $x\equiv E$. Thus $\mu_\varphi=(\varphi'(E)/\pi)\,dE$, consistent with the normalization $\tfrac{1}{2\pi}\!\int w_R(E)\,dE=1$ in §2.
+
+\item \textbf{Weyl--Heisenberg representation and uniqueness}: Stone--von Neumann theorem and foundations of coherent/time-frequency frameworks, see Folland.
+
+\item \textbf{Windowed convolution and averaging notation}: Take energy window $w_R\in L^{1}(\mathbb R)$ and \textbf{unit integral kernel} $\eta\in L^{1}(\mathbb R)$. Normalization
+$$
+\frac{1}{2\pi}\int_{\mathbb R} w_R(E)\,dE=1,\qquad \int_{\mathbb R} \eta(\nu)\,d\nu=1.
+$$
+Define convolution and windowed average
+$$
+[\eta\star f](E):=\int_{\mathbb R} \eta(\nu)\,f(E-\nu)\,d\nu,\qquad
+\big\langle f\big\rangle_{w,\eta}:=\frac{1}{2\pi}\int_{\mathbb R} w_R(E)\,[\eta\star f](E)\,dE.
+$$
+For vacuum pure delay link $S_L(E)=e^{iEL/(\hbar c)}$, from $\operatorname{tr}Q_L\equiv L/(\hbar c)$ and the above normalization, we obtain $\hbar\langle \operatorname{tr}Q_L\rangle_{w,\eta}=L/c$ (see §4). \textbf{(Symbol clarification)} This paper uses $\eta$ for \textbf{unit integral kernel} (for windowed readout), $h_{\rm sys}(t)$ for \textbf{system impulse response} (LTI filter), with $t_h:=\inf\{t:\,h_{\rm sys}(t)\neq 0\}$ as its onset delay.
+
+\item \textbf{Distributions and generalized function notation}: $\delta(\cdot)$ denotes the Dirac $\delta$ distribution; $\Theta(t)$ is the Heaviside step function, $\Theta(t)=0\ (t<0)$, $\Theta(t)=1\ (t>0)$ (taking $\Theta(0)=\tfrac{1}{2}$ does not affect results).
+
+\item \textbf{Front decomposition (definition)}: In vacuum or static media (LTI) and satisfying front assumption (F), the retarded Green's function in the \textbf{distributional sense} can be written as
+$$
+G_{\rm ret}(t;x,y)=\sum_{k=0}^{m}K_{k}(x,y)\,\delta^{(k)}\!\Big(t-\tfrac{d_{\rm front}(x,y)}{c}\Big)+\Theta\!\Big(t-\tfrac{d_{\rm front}(x,y)}{c}\Big)\,g(t;x,y),
+$$
+where $m<\infty$, $K_k(x,y)$ are amplitude coefficients of front singularities, $g$ is the \textbf{tail kernel} (locally integrable). We say ``\textbf{front-detectability} (at the distributional level)'' if and only if \textbf{there exists some $k\ge0$ such that $K_k(x,y)\neq0$}; Maxwell case allows $k\ge1$.
+
+\item \textbf{Scattering background and energy representation}: Let $\mathcal H$ be a Hilbert space, $H_0,H$ be self-adjoint operators (free/full Hamiltonian). Assume wave operators $W_\pm:=s\text{-}\lim_{t\to\pm\infty} e^{itH}e^{-itH_0}$ exist and are complete, then scattering operator $\mathsf S:=W_+^*W_-$ fiberizes in energy representation to $S(E)\in U(N)$. Wigner--Smith delay matrix is defined as $Q(E):=-\,i\,S(E)^\dagger\partial_E S(E)$, consistent with notation in §0.
+
+\item \textbf{Trace notation}: This paper uses $\operatorname{tr}$ for finite-dimensional matrix trace (e.g. $S(E)\in U(N)$), reserving $\operatorname{Tr}$ for trace-class operators on Hilbert spaces (e.g. $T_{w_\varphi}$ in §6).
+\end{itemize}
+
+\section{Axioms (WSIG--EBOC Spacetime)}
+
+Let
+$$
+\mathbb S=\bigl(\mathcal E,\ \preceq,\ g,\ \mu_\varphi;\ H,H_0,S(\cdot);\ \mathcal W,\mathcal H\bigr).
+$$
+
+\textbf{Hierarchy clarification}: This paper calls $(\mathcal E,\preceq,g,\mu_\varphi)$ the \textbf{spacetime four-tuple} (ontological layer), while $(H,H_0,S(\cdot);\mathcal W,\mathcal H)$ are \textbf{realization data} (realization layer, used to give windowed scattering readouts and proof chain); these two must not be confused.
+
+We call $\mathbb S$ a \textbf{WSIG--EBOC spacetime} if:
+
+\textbf{(A1) Events and causal order}: $\mathcal E$ is the event set; if the wave equation's $G_{\rm ret}$ \textbf{has nonzero support on the pair $(e_1,e_2)$} (i.e. $G_{\rm ret}(e_2,e_1)\neq0$), then set $e_1\preceq e_2$. For discrete systems, take RCA neighborhood propagation bound (see §9).
+
+\textbf{(A2) Representation and observability}: $\mathcal H$ is a Hilbert space; $(U_\tau,V_\sigma)$ is a projective unitary representation of Weyl--Heisenberg, supporting windowed readouts.
+
+\textbf{(A3) Phase--density--delay dictionary}: There exists window $\mathcal W$ such that windowed readouts of $\partial_E\arg\det S=\mathrm{tr}\,Q=-2\pi\,\xi'(E)$ hold.
+
+\textbf{(A4) Causality--analyticity consistency}: In the \textbf{stable LTI} case, strict causality $\Rightarrow$ frequency response analytic in upper half-plane; and under \textbf{additional conditions} ($h_{\rm sys}\in L^1(\mathbb R)$, $H(\omega)$ polynomially bounded growth, no upper half-plane poles, etc.), real and imaginary parts satisfy Kramers--Kronig dispersion, and strict causality can be recovered (analyticity $\Rightarrow$ causality). \textbf{LTV/nonstationary} cases do not use this frequency-domain equivalence, only the time-domain support formulation of $G_{\rm ret}(t,\tau)$ (see §5). \textbf{In time-invariant/static media}, we \textbf{only assert}
+$$
+t_{\min}\ge \frac{D_{\rm front}}{c},\qquad
+D_{\rm front}=\begin{cases}L,&\text{vacuum},\\ d_{\rm front}(x,y),&\text{media/inhomogeneous/bounded domain}.\end{cases}
+$$
+The equality $t_{\min}=d_{\rm front}/c$ holds \textbf{if and only if front-detectability (§5)} is satisfied; 3D vacuum pure propagation is a special case. If cascaded with a strictly causal LTI filter (impulse response $h_{\rm sys}(t)$, onset delay $t_h:=\inf\{t:\,h_{\rm sys}(t)\neq 0\}$), then
+$$
+t_{\min}\ \ge\ \frac{D_{\rm front}}{c}+t_h,
+$$
+and \textbf{only when front-detectability (§5) is satisfied and there is no systematic cancellation at the front}, do we have
+$$
+t_{\min}=\frac{D_{\rm front}}{c}+t_h.
+$$
+
+\textbf{(A5) Front--information consistency}: In \textbf{vacuum or static media (LTI)}, the first-detection time $T_\delta$ of threshold mutual information satisfies
+$$
+c_{\rm info}:=\lim_{\delta\downarrow0}\sup\frac{D}{T_\delta}\ \le\ c,
+$$
+where $D$ is the \textbf{front optical path} in the normalization used. The equality $c_{\rm info}=c$ holds if and only if \textbf{front-detectability} is satisfied; here \textbf{``front-detectability''} means: \textbf{according to §0 front decomposition} $G_{\rm ret}(t;x,y)=\sum_{k=0}^{m}K_{k}(x,y)\,\delta^{(k)}\!\big(t-\tfrac{D}{c}\big)+\Theta(\cdot)\,g$, \textbf{there exists some $k\ge0$ such that $K_k(x,y)\neq0$}, or the measurement chain contains a \textbf{Dirac pass-through component} (impulse response contains $\delta(t)$), or there exist $t_n\downarrow D/c$ and unit-energy short pulse $\psi$ such that $\int G_{\rm ret}(t_n,\tau;x,y)\psi(\tau)\,d\tau\neq0$. \textbf{(i) Link normalization ($t_h=0$)}: $D=D_{\rm front}$. \textbf{(ii) System normalization ($t_h>0$)}: $D=D_{\rm sys}:=D_{\rm front}+c\,t_h$. \textbf{(LTV supplement)}: For time-varying systems, only assert $T_\delta\ge t_{\min}$ (defined by time-domain support of $G_{\rm ret}(t,\tau)$).
+
+\textbf{(A6) Sampling--error closure}: Readout error is given by NPE three-term decomposition with non-asymptotic upper bounds.
+
+\textbf{(A7) SI alignment}: $c$ takes SI fixed value; ``length from delay'' and ``time from length'' are mutually inverse realizations (§4, §12).
+
+\textbf{(A8) Phase density geometry}: de Branges kernel diagonal $K(x,x)=\tfrac{1}{\pi}\,\varphi'(x)\,|\mathcal{E}(x)|^{2}$ induces $\mu_\varphi:=(\varphi'/\pi)\,dx$ as windowed calibration.
+
+\section{Operational Definitions: Time and Space}
+
+\textbf{Definition 2.1 (Time)} Take window $w_R$ and unit integral kernel $\eta$. For link scattering $S(E)$, define \textbf{windowed group delay readout}
+$$
+\mathsf T[w_R,\eta]:=\hbar\,\frac{1}{2\pi}\int_\mathbb R w_R(E)\,\bigl[\eta\star \mathrm{tr}\,Q\bigr](E)\,dE,
+$$
+where $Q:=-iS^\dagger \tfrac{dS}{dE}$, and $\mathrm{tr}\,Q$ is equivalent to $\partial_E\arg\det S$ and $-2\pi\xi'(E)$.
+
+\textbf{Normalization}: Convention $(2\pi)^{-1}\!\int_{\mathbb R}\! w_R(E)\,dE=1$ and $\int_{\mathbb R}\! \eta(E)\,dE=1$ (unit integral kernel), giving $\mathsf T=L/c$ on vacuum pure delay link. Verification: for $S_L(E)=e^{iEL/(\hbar c)}$ we have constant $\mathrm{tr}\,Q=L/(\hbar c)$, substituting into the above and using the normalization immediately yields $\mathsf T=L/c$; consistent with Theorem 4.1.
+
+For a vacuum link of length $L$, the defined \textbf{time coordinate difference} satisfies $\Delta t=L/c$.
+
+\textbf{Definition 2.2 (Space)} In vacuum, define spatial distance by \textbf{radar distance}: $d(A,B):=\tfrac{c}{2}\,\mathsf T_{\rm roundtrip}(A\to B\to A)$.
+
+In media/inhomogeneous/bounded domains, take high-frequency limit refractive index $n_\infty(\mathbf x)=\lim_{\omega\to\infty}n(\mathbf x,\omega)$. Define 3D \textbf{Fermat (optical) metric}
+$$
+ds_{\rm front}=n_\infty(\mathbf x)\,|d\mathbf x|,
+$$
+and accordingly define \textbf{front optical path}
+$$
+d_{\rm front}(A,B):=\inf_{\gamma:A\to B}\int_\gamma n_\infty(\mathbf x)\,ds,
+$$
+then \textbf{earliest reachable time} satisfies
+$$
+t_{\min}(A,B)\ge \frac{d_{\rm front}(A,B)}{c}.
+$$
+\textbf{Equality holds if and only if front-detectability (§5) is satisfied.} For isotropic case with $n_\infty\equiv1$, $d_{\rm front}=|A-B|$. The above is equivalent to the null geodesic description of 4D Gordon optical metric in the high-frequency limit, but for timing purposes the 3D optical path formulation is more direct.
+
+\textbf{Group refractive index}: For isotropic passive media, define
+$$
+n_g(\mathbf x,\omega):=n(\mathbf x,\omega)+\omega\,\partial_\omega n(\mathbf x,\omega)
+=\frac{c}{v_g(\mathbf x,\omega)},
+$$
+where $v_g$ is the group velocity. Thus group time $t_g=\int_\gamma n_g\,ds/c$, phase time $t_\phi=\int_\gamma n\,ds/c$. \textbf{In general, there is no guarantee of the ordering between $t_g$ or $t_\phi$ and $t_{\min}$} (in anomalous dispersion and gain/loss situations, one can have $t_g<t_{\min}$ or $t_\phi<t_{\min}$). \textbf{What is universal and consistent with causality is only}
+$$
+t_{\min}\ge \frac{d_{\rm front}}{c},\qquad T_{\rm info}\ge t_{\min},
+$$
+and \textbf{only when front-detectability (§5) is satisfied} do we have $t_{\min}=d_{\rm front}/c$, where $T_{\rm info}$ is the first arrival time of any \textbf{detectable information} (see §5).
+
+\textbf{Round-trip time}:
+$$
+\mathsf T_{\mathrm{roundtrip}}(A\to B\to A;\,w_R,\eta)
+:=\mathsf T[w_R,\eta;\,A\to B]+\mathsf T[w_R,\eta;\,B\to A].
+$$
+If link and readout protocol are reciprocal (bidirectional symmetric), then $d(A,B)=\tfrac{c}{2}\,\mathsf T_{\mathrm{roundtrip}}(A\to B\to A)$.
+
+\textbf{Front assumption (F)}: Medium is passive linear, isotropic, and high-frequency refractive index has finite limit
+$$
+n_\infty(\mathbf x):=\lim_{\omega\to\infty}n(\mathbf x,\omega)\in[1,\infty).
+$$
+Accordingly define front optical metric $g^{\rm front}$ and front optical path $d_{\rm front}$. If only upper/lower bounds for $n_\infty$ can be given $1\le \underline n_\infty(\mathbf x)\le n_\infty(\mathbf x)\le \overline n_\infty(\mathbf x)<\infty$, then corresponding front optical paths satisfy $\underline d_{\rm front}\le d_{\rm front}\le \overline d_{\rm front}$. \textbf{In general, one can only unconditionally assert}
+$$
+\boxed{\ t_{\min}(A,B)\ \ge\ \frac{\underline d_{\rm front}(A,B)}{c}\ },
+$$
+while
+$$
+t_{\min}(A,B)\ \le\ \frac{\overline d_{\rm front}(A,B)}{c}
+$$
+\textbf{holds only under additional conditions}: $t_{\min}\le \overline d_{\rm front}/c$ \textbf{only when front-detectability (§5)} holds; if cascaded with a strictly causal LTI filter and onset delay $t_h$ has an upper bound, then
+$$
+t_{\min}\ \ge\ \frac{d_{\rm front}}{c}+t_h,
+$$
+and \textbf{only when front-detectability (§5) is satisfied and there is no systematic cancellation at the front} do we have $t_{\min}=\frac{d_{\rm front}}{c}+t_h\le \frac{\overline d_{\rm front}}{c}+t_h$.
+
+\textbf{Definition 2.3 (Simultaneity slice)} Select a reference worldline and round-trip protocol, let $\Sigma_t:=\{e\in\mathcal E:\ \mathsf T_{\rm roundtrip}=2t\}$, whose three-dimensional metric is induced by radar distance or $g^{\rm front}$.
+
+\section{Structured Definition of Spacetime}
+
+\textbf{Definition 3.1 (WSIG--EBOC Spacetime)} If there exists windowed scattering readout such that:
+
+(1) \textbf{Metric--readout consistency}: On vacuum link $L$ we have $\mathsf T=L/c$; media \textbf{front optical path} is consistent with front, i.e. $d_{\rm front}$ is the \textbf{geodesic optical path minimum} of \textbf{3D Fermat (optical) metric} $ds_{\rm front}=n_\infty|\mathrm dx|$;
+
+(2) \textbf{Triple dictionary}: $\partial_E\arg\det S=\mathrm{tr}\,Q=-2\pi\xi'(E)$;
+
+(3) \textbf{NPE detectability}: Error aliasing/Poisson/EM remainder have global upper bounds;
+
+(4) \textbf{Information--causality consistency (vacuum or static media [LTI])}: First-detection time $T_\delta$ of mutual information satisfies
+$$
+c_{\rm info}:=\lim_{\delta\downarrow0}\sup\frac{D_{\rm front}}{T_\delta}\ \le\ c,
+$$
+with equality $c_{\rm info}=c$ \textbf{only when} \textbf{front-detectability} is satisfied (see A5, §5). \textbf{(Cascade filter supplement)}: If measurement chain contains strictly causal LTI filter with onset delay $t_h>0$, then all $D_{\rm front}$ above \textbf{are replaced by} $D_{\rm sys}:=D_{\rm front}+c t_h$. \textbf{(LTV supplement)}: For time-varying systems, only assert $T_\delta\ge t_{\min}$ (defined by time-domain support of $G_{\rm ret}(t,\tau)$).
+
+Then the four-tuple $(\mathcal E,\preceq,g,\mu_\varphi)$ is a \textbf{spacetime}.
+
+\section{Main Equivalence Theorem (Phase--Delay--Spectral Shift--SI)}
+
+\textbf{Theorem 4.1 (Four-way equivalence)} Let vacuum link $L$ have scattering $S_L(E)=\exp\!\bigl(i E L/(\hbar c)\bigr)$. Then
+$$
+\mathsf T[w_R,\eta;L]
+=\hbar\,\big\langle \partial_E\arg\det S_L\big\rangle_{w,\eta}
+=\hbar\,\big\langle \mathrm{tr}\,Q_L\big\rangle_{w,\eta}
+=-\,\hbar\,2\pi\,\big\langle \xi'(E)\big\rangle_{w,\eta}
+=\frac{L}{c},
+$$
+and in the Nyquist bandwidth limit, the obtained $c=\lim L/\mathsf T$ is independent of window/kernel and agrees with SI value.
+
+\begin{proof}
+\textbf{Assumption (single-mode pure delay link)}: Take single-channel $S_L(E)=\exp\!\bigl(iE L/(\hbar c)\bigr)$. Window $w_R\in L^1(\mathbb R)$, kernel $\eta\in L^1(\mathbb R)$ satisfy normalization
+$$
+\frac{1}{2\pi}\int_{\mathbb R} w_R(E)\,dE=1,\qquad \int_{\mathbb R} \eta(E)\,dE=1.
+$$
+
+\textbf{Lemma 1 (logarithmic derivative = Wigner--Smith)}: For differentiable unitary matrix (scalar here) $S$,
+$$
+\partial_E\arg\det S(E)=\operatorname{Im}\,\partial_E\log\det S(E)
+=\operatorname{Im}\,\operatorname{tr}\!\big(S^\dagger(E)\,\partial_E S(E)\big)
+=-\,i\,\operatorname{tr}\!\big(S^\dagger(E)\,\partial_E S(E)\big)
+=\operatorname{tr}Q(E),
+$$
+where $Q(E):=-\,i\,S^\dagger(E)\,\partial_E S(E)$. For scalar $S_L$, $\operatorname{tr}Q_L(E)=-iS_L^*(E)\partial_E S_L(E)=L/(\hbar c)$ (constant).
+
+\textbf{Lemma 2 (Birman--Kreĭn)}: If $\det S(E)=e^{-2\pi i\,\xi(E)}$, then
+$$
+\operatorname{tr}Q(E)=-2\pi\,\xi'(E).
+$$
+Thus for $S_L$ we get $\xi'(E)=-\,\frac{1}{2\pi}\,\frac{L}{\hbar c}$.
+
+\textbf{Main proof}: Define windowed readout
+$$
+\mathsf T[w_R,\eta;L]
+=\hbar\,\frac{1}{2\pi}\int_{\mathbb R} w_R(E)\,\bigl[\eta\star \operatorname{tr}Q_L\bigr](E)\,dE.
+$$
+Since $\operatorname{tr}Q_L\equiv L/(\hbar c)$ is constant, convolution and integration commute and using both normalizations,
+$$
+\mathsf T[w_R,\eta;L]
+=\hbar\cdot\frac{1}{2\pi}\cdot\frac{L}{\hbar c}\!\int w_R(E)\,dE\cdot\!\int \eta(\nu)\,d\nu
+=\frac{L}{c}.
+$$
+Combining Lemmas 1--2, given the integrand is constant,
+$$
+\mathsf T
+=\hbar\,\big\langle \partial_E\arg\det S_L\big\rangle_{w,\eta}
+=\hbar\,\big\langle \operatorname{tr}Q_L\big\rangle_{w,\eta}
+=-\,\hbar\cdot 2\pi\,\big\langle \xi'(E)\big\rangle_{w,\eta}
+=\frac{L}{c}.
+$$
+
+\textbf{Error closure note (NPE)}: Nyquist/Poisson/Euler--Maclaurin three terms are each 0 in the ``constant integrand'' case: alias term is 0, Poisson periodization term is 0, EM remainder is 0 because higher derivatives are 0. Thus limit is independent of window/kernel and agrees with SI value.
+\end{proof}
+
+\section{Causal Front and Information Light Cone}
+
+\textbf{Theorem 5.1 (Causal front does not exceed $c$; equality condition)} For linear strictly causal, \textbf{time-invariant (static media)} channel, the earliest nonzero response time satisfies
+$$
+t_{\min}\ge \frac{D_{\rm front}}{c},\qquad
+D_{\rm front}=\begin{cases}L,&\text{vacuum},\\ d_{\rm front}(x,y),&\text{media/inhomogeneous/bounded domain}.\end{cases}
+$$
+For \textbf{3D vacuum free space pure propagation}, $t_{\min}=L/c$; for general media/bounded domains, \textbf{if front-detectability (§5)} holds, also $t_{\min}=d_{\rm front}/c$; if cascaded with strictly causal LTI filter, $t_{\min}\ge D_{\rm front}/c+t_h$ (equality requires front-detectability and no cancellation).
+
+\textbf{(LTV remark)}: For linear \textbf{time-varying} systems, front is formulated only via \textbf{time-domain support} of $G_{\rm ret}(t,\tau)$; this paper does not represent time-varying media front by static $d_{\rm front}$.
+
+\begin{proof}
+Assume system is linear, strictly causal, time-invariant (static media). By causality,
+$$
+G_{\rm ret}(t,\tau;x,y)=0\quad\text{when}\quad t<\tau.
+$$
+Let source signal $x$ be supported on $t\ge0$, then
+$$
+y(t)=\int_{\mathbb R}G_{\rm ret}(t,\tau;x,y)\,x(\tau)\,d\tau,\qquad y(t)=0\ (t<0).
+$$
+
+\textbf{Vacuum, uniform, lossless 3D scalar wave equation:}
+$$
+G_{\rm ret}(t,r)=\frac{\delta(t-r/c)}{4\pi r},
+$$
+support only at $t=r/c$, so for link length $L$ we have $t_{\min}(L)=L/c$. \textbf{Maxwell} case uses dyadic kernel applying tensor--differential operators (containing $\delta$ and its derivatives) to the above, support likewise only on light cone, conclusion unchanged.
+
+\textbf{General media/inhomogeneous/bounded domain (infimum calibration)}: Under \textbf{front assumption (F)}, $n_\infty(\mathbf x)$ exists and is finite, from high-frequency geometric optics front propagation bound
+$$
+\operatorname{supp}_t G_{\rm ret}^{\rm med}(t,\tau;x,y)\ \subseteq\ [\,\tau+d_{\rm front}(x,y)/c,\ \infty).
+$$
+Thus when $t<d_{\rm front}(x,y)/c$ response is zero. \textbf{If front-detectability (§5)} holds, then at $t=d_{\rm front}(x,y)/c$ there exists distributional nonzero response (front singularity $\sum_k K_k\delta^{(k)}$ or Dirac pass-through component), giving
+$$
+t_{\min}= \tfrac{d_{\rm front}(x,y)}{c};
+$$
+otherwise only
+$$
+\boxed{\ t_{\min}\ \boldsymbol{\ge}\ \tfrac{d_{\rm front}(x,y)}{c}\ },
+$$
+typically strictly greater. If cascaded with strictly causal LTI filter with onset delay $t_h>0$,
+$$
+t_{\min}\ \ge\ \tfrac{d_{\rm front}(x,y)}{c}+t_h,
+$$
+and \textbf{only when front-detectability (§5) is satisfied and there is no systematic cancellation at the front} can equality be taken.
+
+Thus in vacuum case, when $t<L/c$, for any $\tau\ge 0$, $t-\tau<L/c\Rightarrow G_{\rm ret}(t-\tau,L)=0$, so $y(t)=0$. \textbf{Take unit-energy short pulse family} $x_\eta=\psi_\eta$ ($\psi_\eta\to\delta$ approximate identity kernel), then
+$$
+y_\eta(t)=\big(G_{\rm ret}*\psi_\eta\big)(t)=\frac{\psi_\eta(t-L/c)}{4\pi L},
+$$
+thus $\lim_{\eta\downarrow 0}y_\eta(t)=\delta(t-L/c)/(4\pi L)$, earliest nonzero response still at $t=L/c$. This argument is consistent with ``detectable readout'' calibration.
+\end{proof}
+
+\textbf{Theorem 5.2 (Information light cone; bound and equality condition)} In vacuum or static media (LTI), first-detection time $T_\delta$ of threshold mutual information satisfies
+$$
+c_{\rm info}:=\lim_{\delta\downarrow0}\sup\frac{D}{T_\delta}\ \le\ c,
+$$
+where $D$ is the \textbf{front optical path} in the normalization used. \textbf{Equality $c_{\rm info}=c$ if and only if} \textbf{front-detectability} holds.
+
+\textbf{(i) Link normalization ($t_h=0$)}: $D=D_{\rm front}$; if \textbf{front-detectability} (same definition as A5) holds, then $c_{\rm info}=c$.
+
+\textbf{(ii) System normalization (cascade strictly causal LTI, $t_h>0$)}: $D=D_{\rm sys}:=D_{\rm front}+c\,t_h$; if \textbf{front-detectability} holds, then $c_{\rm info}=c$.
+
+\textbf{(LTV supplement)}: For linear time-varying systems, only assert $T_\delta\ge t_{\min}$.
+
+\begin{proof}
+Let input process $X$ be supported on $t\ge 0$, noise $N$ independent of $X$, receiver observes
+$$
+Y_t := \{Y(s): 0\le s\le t\},\qquad Y(t)=\int_{\mathbb R} G_{\rm ret}(t,\tau;x,y)\,X(\tau)\,d\tau+N(t).
+$$
+
+\textbf{(1) Zero mutual information (before front)}: For case (i), if in \textbf{vacuum} $t<L/c$ (or in \textbf{media/inhomogeneous/bounded domain} $t<d_{\rm front}(x,y)/c$), then $Y(s)=N(s)$, so $I(X;Y_t)=0$. For case (ii), front changes to $D_{\rm sys}/c$.
+
+\textbf{(2) After front}: If \textbf{front-detectability} (case i) or system contains cascade filter (case ii) holds, for any small $\varepsilon>0$, let
+$$
+t_\varepsilon:=\tfrac{D_{\rm front}}{c}+\varepsilon\quad\text{(case i)},\qquad
+t_\varepsilon:=\tfrac{D_{\rm sys}}{c}+\varepsilon\quad\text{(case ii)},
+$$
+take scalar test $X_\alpha(\tau)=\alpha\,\psi(\tau)$ ($\psi$ unit-energy short-time pulse),
+$$
+Z_\varepsilon:=\int_0^{t_\varepsilon}G_{\rm ret}(t_\varepsilon,\tau;x,y)\,\psi(\tau)\,d\tau\neq0.
+$$
+
+Introduce equal-probability symbol $S\in\{\pm1\}$, set $X_S(\tau):=S\,\alpha\,\psi(\tau)$, then $Y(t_\varepsilon)=S\,\alpha\,Z_\varepsilon+N(t_\varepsilon)$. Let $N(t_\varepsilon)\sim\mathcal N(0,\sigma^{2})$, denote $X:=S\,\alpha$, take $\mathrm{SNR}:=\alpha^{2}|Z_\varepsilon|^{2}/\sigma^{2}$. By I--MMSE small SNR slope
+$$
+I\bigl(X;Y(t_\varepsilon)\bigr)=\tfrac{1}{2}\,\mathrm{SNR}+o(\mathrm{SNR})=\frac{\alpha^{2}|Z_\varepsilon|^{2}}{2\sigma^{2}}+o(\alpha^{2}).
+$$
+Since $Y(t_\varepsilon)$ is a measurable function of $Y_{[0,t_\varepsilon]}$, $I\bigl(X;Y_{[0,t_\varepsilon]}\bigr)\ge I\bigl(X;Y(t_\varepsilon)\bigr)$. Given any small $\delta>0$, take
+$$
+\alpha=\alpha(\delta):=\frac{\sqrt{2\,\sigma^{2}\,\delta}}{|Z_\varepsilon|},
+$$
+so $\mathrm{SNR}=\alpha^{2}|Z_\varepsilon|^{2}/\sigma^{2}=2\delta$ (still in small SNR regime), thus
+$$
+I\bigl(X;Y_{[0,t_\varepsilon]}\bigr)\ \ge\ I\bigl(X;Y(t_\varepsilon)\bigr)\ \ge\ \delta.
+$$
+Hence $T_\delta\le t_\varepsilon$. And when $\delta\downarrow0$ we have $\alpha(\delta)\downarrow0$, consistent with ``small signal limit'' assumption. Therefore $\forall \varepsilon>0,\ \exists \delta(\varepsilon)\downarrow 0:\,T_\delta\le t_\varepsilon$, giving case (i) $c_{\rm info}=c$, case (ii) likewise $c_{\rm info}=c$.
+\end{proof}
+
+\section{Phase Density Geometry and Trace Formula}
+
+\textbf{Proposition 6.1} On de Branges space $\mathcal H(\mathcal{E})$, almost everywhere $K(x,x)=\tfrac{1}{\pi}\,\varphi'(x)\,|\mathcal{E}(x)|^{2}$. Thus \textbf{phase density} $\rho(x):=\varphi'(x)/\pi$ gives a natural measure. Let reproducing kernel orthogonal projection $\Pi$, and take $T_{w_\varphi}:=M_{\sqrt{w_\varphi}}\Pi M_{\sqrt{w_\varphi}}$. \textbf{If} $w_\varphi\ge0$ and $w_\varphi\in L^{1}\cap L^\infty(d\mu_\varphi)$ (or understood via monotone truncation limit $w_\varphi^{(n)}\uparrow w_\varphi$), \textbf{then} $T_{w_\varphi}$ is trace class, and
+$$
+\mathrm{Tr}(T_{w_\varphi})=\int_{\mathbb R} w_\varphi(E)\,\rho(E)\,dE,\qquad \rho(E)=\frac{\varphi'(E)}{\pi}.
+$$
+Here integration variable $E$ is consistent with energy variable in §2. This identity is the realization of ``phase--density--delay'' in RKHS.
+
+\section{Sampling/Interpolation/Frames: Density Thresholds and Obstructions}
+
+\begin{itemize}
+\item \textbf{Landau necessary density} (Paley--Wiener special case): Sampling/interpolation sequence must satisfy endpoint density threshold.
+\item \textbf{Wexler--Raz biorthogonal relation}: Characterizes dual window--lattice parameter relations for Gabor frames and generalizations.
+\item \textbf{Balian--Low obstruction}: At critical density, single window cannot be simultaneously time--frequency tightly localized; can circumvent via frames/multiple windows.
+\end{itemize}
+
+\section{NPE Error Ledger (Non-asymptotic Bounds)}
+
+\textbf{Error decomposition and tail term definition}: Convention: non-ideal terms in time readout decompose to $\varepsilon_{\rm alias}$ (aliasing/undersampling), $\varepsilon_{\rm EM}$ (Euler--Maclaurin finite-order remainder), and $\varepsilon_{\rm tail}$ (finite support or non-compact support tail of window/kernel). Take $R>0$ so main support of $w_R$ is contained in $[-R,R]$. Define
+$$
+\varepsilon_{\rm tail}:=\hbar\,\frac{1}{2\pi}\int_{|E|>R} w_R(E)\,[\eta\star \mathrm{tr}Q](E)\,dE.
+$$
+If $\int_{|E|>R}|w_R(E)|\,dE\le \epsilon$, $\eta\in L^{1}$, denote $\Omega_E:=\operatorname{supp}(w_R)\oplus \operatorname{supp}(\eta)$, and $\mathrm{tr}\,Q\in L^\infty(\Omega_E)$, then
+$$
+|\varepsilon_{\rm tail}|\le \frac{\hbar}{2\pi}\,\epsilon\,\|\eta\|_{L^{1}}\,\operatorname*{ess\,sup}_{E\in \Omega_E}|\mathrm{tr}\,Q(E)|.
+$$
+
+\section{Discrete Spacetime and CHL Light Cone}
+
+Let lattice spacing be $a$, discrete time step $\Delta t$. Radius $r$ RCA influence domain at $t$ steps is $\pm r t$, equivalent ``discrete light cone'', with discrete ``speed of light'' defined as
+$$
+c_{\rm disc}=\frac{r\,a}{\Delta t}.
+$$
+\textbf{Curtis--Hedlund--Lyndon theorem} characterizes ``continuous and commutes with shift $\Leftrightarrow$ sliding block code'', and guarantees when reversible the inverse evolution is also CA, achieving reversible causal propagation.
+
+\section{Compatibility with Relativity/Field Theory}
+
+\begin{itemize}
+\item \textbf{Lorentz covariance}: Light cone support of $G_{\rm ret}$ is equivalent to Minkowski light cone.
+\item \textbf{Microcausality/no superluminality}: In fast/slow light systems, ``information velocity $\le c$'' is consistent with spacelike commut activity of quantum fields.
+\item \textbf{Media geometry}: Gordon optical metric absorbs refraction/flow velocity into metric, thus \textbf{in front optical metric} by definition always have ``front $=c$''. \textbf{In experimental coordinates} only guarantee $t_{\min}\ge d_{\rm front}/c$; and \textbf{only when front-detectability (§5)} holds (including $\delta/\delta^{(k)}$ front or Dirac pass-through, or short-pulse limit detectable), can one recover ``front $=c$''. If moreover $n_\infty\equiv1$, then $d_{\rm front}=|A-B|$ (whether equality holds still depends on above condition).
+\end{itemize}
+
+\section{Conclusive Definitions (Summary)}
+
+\begin{itemize}
+\item \textbf{Time}: Under given window--kernel and readout protocol, time is \textbf{windowed group delay coordinate}, i.e. $t\equiv \hbar\int \tfrac{w_R}{2\pi}\,[\eta\!\star\!\mathrm{tr}\,Q]\,dE$.
+\item \textbf{Space}: Via isochronous round-trip readout selected \textbf{simultaneity slice $\Sigma_t$} and its three-dimensional metric. In vacuum defined by radar distance; for media case use \textbf{geodesic optical path minimum} of \textbf{3D Fermat metric} $ds_{\rm front}=n_\infty(\mathbf x)|\mathrm dx|$ induced by \textbf{front optical metric} (high-frequency limit $n_\infty=\lim_{\omega\to\infty}n(\mathbf x,\omega)$ determines) to define $d_{\rm front}$, earliest reachable time satisfies $t_{\min}\ge d_{\rm front}/c$; \textbf{only when front-detectability (§5)} holds, do we have $t_{\min}=d_{\rm front}/c$. \textbf{In front optical metric} wavefront velocity is by definition $c$; \textbf{in experimental coordinates}: if $n_\infty\equiv1$, then $d_{\rm front}=|A-B|$ and unconditionally only $t_{\min}\ge |A-B|/c$; \textbf{only under} front-detectability (§5) (or external strictly causal LTI filter with $t_h>0$ replacing with $D_{\rm sys}$) can one \textbf{recover} ``front velocity $=c$'' conclusion.
+\item \textbf{Spacetime}: Four-tuple $(\mathcal E,\preceq,g,\mu_\varphi)$, where $\preceq$ comes from $G_{\rm ret}$ light cone support, $g$ is (optical) Lorentzian metric, $\mu_\varphi=(\varphi'/\pi)\,dx$ is phase density calibration; detectable and calibratable under NPE ledger, mutually inverse realization with SI.
+\end{itemize}
+
+\section{Implementation Protocol (Brief)}
+
+\begin{enumerate}
+\item Select geometrically known vacuum link $L$;
+\item Broadband excitation, measure $\hat\tau=\mathsf T[w_R,\eta;L]$;
+\item Check Nyquist (bandlimited/anti-aliasing), estimate Poisson/EM remainder;
+\item Take $\hat c=L/\hat\tau$, cross-calibrate with frequency chain/interferometer length chain closed loop.
+\end{enumerate}
+
+\section{Proof Thread and External Index}
+
+\begin{itemize}
+\item $\partial_E\arg\det S=\mathrm{tr}\,Q$ and BK identity: arXiv:1006.0639
+\item KK--causality equivalence (stable LTI restricted) and front light cone: Phys. Rev. 104, 1760
+\item Information light cone and threshold mutual information: Nature 425, 695
+\item NPE three-term decomposition non-asymptotic bounds: Shannon (1949)
+\item de Branges kernel diagonal and phase density: standard de Branges space theory
+\item Weyl--Heisenberg/Stone--von Neumann: Folland (1989)
+\item CHL theorem and discrete light cone: Math. Systems Theory 3 (1969)
+\end{itemize}
+
+\section{References (Bibliographic Information, by Topic)}
+
+\textbf{Scattering and group delay}: F. T. Smith, ``Lifetime Matrix in Collision Theory,'' \emph{Phys. Rev.} 118 (1960) 349--356; A. Pushnitski, ``The Birman--Krein formula\ldots'' (2010, arXiv:1006.0639); M. S. Birman \& D. R. Yafaev, ``The spectral shift function\ldots'' \emph{Alg. Anal.} 4 (1992) 1--20.
+
+\textbf{Causality--dispersion--front}: J. S. Toll, ``Causality and the Dispersion Relation,'' \emph{Phys. Rev.} 104 (1956) 1760--1770; L. Brillouin, \emph{Wave Propagation and Group Velocity}, Academic Press (1960).
+
+\textbf{Optical metric}: W. Gordon, ``Zur Lichtfortpflanzung nach der Relativitätstheorie,'' \emph{Ann. Phys.} 377 (1923) 421--456; U. Leonhardt \& T. G. Philbin, ``General Relativity in Electrical Engineering'' (2006).
+
+\textbf{Information velocity}: M. D. Stenner, D. J. Gauthier, M. A. Neifeld, ``The speed of information in a `fast-light' optical medium,'' \emph{Nature} 425 (2003) 695--698; A. H. Dorrah, M. Mojahedi, \emph{Phys. Rev. A} 90 (2014) 033822.
+
+\textbf{Sampling--Poisson--EM}: C. E. Shannon, ``Communication in the Presence of Noise,'' \emph{Proc. IRE} 37 (1949); H. Nyquist, ``Certain Topics in Telegraph Transmission Theory,'' (1928); NIST DLMF §1.8 (Poisson), §2.10 (Euler--Maclaurin).
+
+\textbf{de Branges spaces}: L. de Branges, \emph{Hilbert Spaces of Entire Functions}, 1968; J. Antezana, J. Marzo, J.-F. Olsen, ``Zeros of random functions generated with de Branges kernels,'' \emph{IMRN} (2017).
+
+\textbf{Gabor/frames/density}: H. J. Landau, ``Necessary density conditions\ldots,'' \emph{Acta Math.} 117 (1967) 37--52; I. Daubechies et al., ``Gabor Time-Frequency Lattices and the Wexler--Raz Identity,'' \emph{JFAA} 1 (1995); C. Heil, \emph{A Basis Theory Primer}, Birkhäuser (2011).
+
+\textbf{Weyl--Heisenberg and uniqueness}: G. B. Folland, \emph{Harmonic Analysis in Phase Space}, Princeton (1989).
+
+\textbf{RCA and CHL}: G. A. Hedlund, ``Endomorphisms and automorphisms of the shift dynamical system,'' \emph{Math. Systems Theory} 3 (1969) 320--375.
+
+\section*{Conclusion (Theorem)}
+
+\textbf{Theorem (Unified Calibration Theorem)}: The $c$ defined by \textbf{Nyquist limit of windowed group delay} on vacuum link is \textbf{uniquely} determined, and is equivalent pairwise to
+
+(A) phase slope/spectral shift density, (B) causal front (KK \& light cone), (C) information light cone (threshold mutual information), (D) SI realization.
+
+Therefore: \textbf{time} is \textbf{windowed group delay coordinate}; \textbf{space} is \textbf{isochronous round-trip slice and its metric}; \textbf{spacetime} is the measurable structure of \textbf{causal order + (optical) metric + phase density measure}. The above equivalence and detectability are supported by proofs and literature in §4--§8.
+
+\begin{proof}
+Let vacuum link $L$. By Theorem 4.1, windowed group delay readout gives $\mathsf T=L/c$. By Theorem 5.1, earliest nonzero response time $t_{\min}(L)=L/c$, so ``phase slope/group delay'' agrees with ``causal front''. By Theorem 5.2, vacuum link because $G_{\rm ret}(t,r)=\delta(t-r/c)/(4\pi r)$ contains front singularity ($\delta$ distribution) satisfies \textbf{front-detectability} condition, so threshold mutual information first-detection time $T_\delta(L)\to L/c$ ($\delta\downarrow 0$), thus ``information light cone'' agrees with front. In SI, $c$ is a fixed constant, length--time mutually inverse realization (§2, §12 round-trip/radar protocol) gives $\hat c=L/\hat\tau$ closed-loop consistency with frequency chain/interferometer length chain. Therefore the four (A) phase slope/spectral shift density, (B) causal front, (C) information light cone, (D) SI realization, are pairwise equivalent.
+\end{proof}
+
+\end{document}
+

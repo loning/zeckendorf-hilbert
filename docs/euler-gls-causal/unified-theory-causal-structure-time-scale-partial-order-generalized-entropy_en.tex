@@ -1,0 +1,870 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{axiom}{Axiom}
+
+% Operators
+\DeclareMathOperator{\tr}{tr}
+
+% Bra-ket notation
+\newcommand{\ket}[1]{|#1\rangle}
+\newcommand{\bra}[1]{\langle#1|}
+
+% Title information
+\title{Unified Theory of Causal Structure:\\
+Time Scale, Partial Order, and Generalized Entropy}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This paper provides a unified characterization of ``what is causality'' within a single mathematical framework. The core thesis is: causality is not an external relation added onto spacetime or quantum states, but rather a unified object jointly defined by the compatibility of three types of structures:
+
+\begin{enumerate}
+\item \textbf{Geometric partial order}: light cone structure on globally hyperbolic Lorentzian manifolds and local partial order of small causal diamonds;
+
+\item \textbf{Unitary evolution and time scale}: unified time scale consisting of scattering phase gradient, Wigner--Smith group delay, and spectral shift function;
+
+\item \textbf{Generalized entropy and information monotonicity}: time arrow characterized by generalized entropy extrema on small causal diamonds and QNEC/QFC-type inequalities.
+\end{enumerate}
+
+On the spectral and scattering side, this paper adopts the scale identity
+
+$$
+\varphi'(\omega)/\pi=\rho_{\mathrm{rel}}(\omega)=(2\pi)^{-1}\tr Q(\omega),
+$$
+
+where $\varphi$ is total scattering semi-phase, $\rho_{\mathrm{rel}}$ is relative state density, $Q(\omega)=-iS(\omega)^\dagger\partial_\omega S(\omega)$ is Wigner--Smith group delay operator. This equality originates from the Birman--Kre\u{\i}n formula and spectral shift function theory, viewing ``time delay'' as derivative of spectral--phase geometry.
+
+On the algebraic quantum field theory and holographic gravity side, this paper characterizes ``modular time'' on causal diamonds via Tomita--Takesaki modular flow and Null--Modular double cover, whose generator is weighted integral of stress--energy tensor along null boundaries, satisfying Markov inclusion-exclusion and strong subadditivity saturation on overlapping causal diamond chains. On gravity and geometry side, introducing Gibbons--Hawking--York boundary term and its null and corner generalizations ensures well-defined variation, Brown--York quasilocal stress tensor becomes Hamiltonian generator of ``time translation'' along boundary, geometric time determined by Hamilton--Jacobi relation.
+
+This paper establishes the following unified proposition: within the semiclassical--holographic window satisfying local quantum energy conditions, Hadamard states, and small causal diamond limit, there exists a class of unified time scale equivalence classes $[\tau]$ such that:
+
+\begin{itemize}
+\item Geometric causal partial order is equivalent to existence of strictly increasing time function $\tau\colon M\to\mathbb{R}$;
+\item Scattering phase gradient and group delay trace give readout of ``observable causal order'' under this scale;
+\item Extrema and monotonicity of generalized entropy $S_{\rm gen}$ on small causal diamonds are equivalent to nonlinear Einstein equations and their stability under this scale.
+\end{itemize}
+
+Thus, causality can be restated as: existence of a partial order--time scale structure self-consistent on geometric, scattering, and entropic facets, topologically non-anomalous. This paper provides axiomatic definition of this structure, proposes several main theorems, and gives proof frameworks related to scale identity, information-geometric variational principle, and Null--Modular double cover in appendices.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Causal structure; Time scale; Partial order; Generalized entropy; Spectral shift function; Wigner--Smith group delay; Birman--Kre\u{\i}n formula; Tomita--Takesaki modular flow; Quantum Null Energy Condition; Small causal diamond; Gibbons--Hawking--York boundary term; Brown--York stress tensor; Null--Modular double cover; Markov property; Information-geometric variational principle
+
+\section{Introduction and Historical Context}
+
+In classical general relativity, causality is often characterized by light cones and time functions. On globally hyperbolic Lorentzian manifolds, stable causality is equivalent to existence of strictly increasing time function $T\colon M\to\mathbb{R}$ such that if $q\in J^+(p)$, then $T(q)\ge T(p)$. This structure guarantees well-posedness of Cauchy problem and condition of ``no closed causal curves.''
+
+In quantum field theory, causality is usually expressed as commutativity of local operators at spacelike separated points, i.e., microcausality. Wightman axioms and algebraic quantum field theory frameworks construct field algebras given causal structure, but rarely reverse the question: can causal partial order be ``recovered'' solely from operator algebra and state structure?
+
+Development of holography and information theory introduced new perspectives characterizing causality via entropy and relative entropy. Jacobson proposed ``entanglement equilibrium hypothesis'': on fixed-volume small geodesic balls, generalized entropy reaches extremum if and only if locally satisfying Einstein equations, establishing correspondence ``gravitational field equations = small ball entanglement extremum condition'' in semiclassical window. Subsequent work further combined Ryu--Takayanagi formula and relative entropy, relating second-order variation of generalized entropy to bulk gauge energy.
+
+On the other hand, long-term development of scattering theory and spectral theory yielded complete ``phase--spectral shift--time delay'' structure. Birman--Kre\u{\i}n formula shows that for pair of self-adjoint operators $(H,H_0)$ satisfying trace-class perturbation conditions, there exists spectral shift function $\xi(\omega)$ determining phase of scattering determinant; this yields equivalence relation between derivative of total scattering phase, derivative of spectral shift function, relative state density, and Wigner--Smith group delay trace. These results indicate that time scale with ``phase gradient as density'' can be established in frequency domain.
+
+A recent important development is proof of quantum null energy condition QNEC. QNEC relates stress--energy expectation value in null direction at a point to second-order deformation of generalized entropy of cut surfaces passing through that point in null direction, being local quantization of ANEC. Koeller--Leichenauer and subsequent work showed that for half-spaces or regions cut by null planes, modular Hamiltonian can be written as local energy flow integral in null direction, establishing ``local modular time--energy flow--QNEC'' connection.
+
+Casini--Huerta--Myers systematically analyzed vacuum modular Hamiltonian for spherical regions in conformal field theory, using conformal transformation to map spherical cut surface to accelerated coordinate system of Rindler wedge, geometrizing modular flow as boost generator, deriving holographic entanglement entropy for spherical regions. Casini--Teste--Torroba studied modular Hamiltonian of general regions on null plane, proving its locality on null plane and establishing Markov property and strong subadditivity saturation.
+
+These scattered developments point to stronger unified picture:
+
+\begin{enumerate}
+\item On scattering and spectral side, time can be understood as parameter determined by phase gradient and group delay scale;
+\item On algebraic and holographic side, modular time is determined by state--algebra pair, geometrically realizable as weighted energy flow on null boundary;
+\item On gravity and geometry side, extrema and monotonicity of generalized entropy on small causal diamonds are equivalent to local gravitational field equations;
+\item On null planes and causal diamond chains, locality and Markov property of modular Hamiltonians give information structure on causal chains.
+\end{enumerate}
+
+The goal of this paper is to incorporate these structures into single axiomatic system, defining ``causality'' as object jointly constituted by partial order, unified time scale, and generalized entropy monotonicity, giving equivalence theorems and topological constraints among the three.
+
+\section{Model and Assumptions}
+
+This section gives geometric, scattering, algebraic, and entropic structures used in this paper, listing axioms and assumptions underlying unified causal theory.
+
+\subsection{Geometric Background and Causal Diamonds}
+
+Let $(M,g)$ be four-dimensional oriented, time-oriented Lorentzian manifold with metric signature $(-,+,+,+)$, satisfying:
+
+\begin{itemize}
+\item Global hyperbolicity: there exists Cauchy slice $\Sigma \subset M$ such that every inextendible timelike or lightlike curve intersects $\Sigma$ exactly once;
+\item Stable causality: no closed causal curves exist, and there exists smooth time function $T\colon M\to\mathbb{R}$ strictly increasing along all future-directed timelike curves.
+\end{itemize}
+
+For any point $p\in M$, taking sufficiently small proper scale $r\ll L_{\rm curv}(p)$, define small causal diamond
+
+$$
+D_{p,r}=J^+(p^-)\cap J^-(p^+),
+$$
+
+where $p^\pm$ are points at proper time $\pm r$ along some reference timelike direction. The boundary of $D_{p,r}$ consists of two families of null hypersurfaces $\mathcal{N}_\pm$ generated by null geodesics and their intersection lines, constituting basic unit of local causal geometry.
+
+\begin{axiom}[Geometric Causal Axiom]
+\label{ax:G}
+\begin{enumerate}
+\item $(M,g)$ satisfies above global hyperbolicity and stable causality;
+\item For any $p$ and sufficiently small $r$, small causal diamond $D_{p,r}$ is homeomorphic to causal diamond in Minkowski space under normal coordinates, with curvature corrections $O(r^2)$.
+\end{enumerate}
+\end{axiom}
+
+\subsection{Scattering System and Spectral Shift Function}
+
+On Hilbert space $\mathcal{H}$ consider pair of self-adjoint operators $(H,H_0)$ satisfying:
+
+\begin{itemize}
+\item $H$ is trace-class perturbation relative to $H_0$, or resolvent difference is trace-class;
+\item Wave operators $W_\pm$ exist and are complete, so scattering operator $S=W_+^\dagger W_-$ is well-defined;
+\item On absolutely continuous spectrum, $S$ fiberizes into unitary matrix family $S(\omega)$.
+\end{itemize}
+
+By spectral shift function theory, there exists locally integrable function $\xi(\omega)$ such that for sufficiently smooth test function $f$,
+
+$$
+\tr(f(H)-f(H_0))=\int_\mathbb{R}\xi(\omega)f'(\omega)\,{\rm d}\omega,
+$$
+
+and Birman--Kre\u{\i}n formula gives
+
+$$
+\det S(\omega)=\exp\bigl(-2\pi i\xi(\omega)\bigr).
+$$
+
+Define total scattering phase
+
+$$
+\Phi(\omega)=\arg\det S(\omega),\qquad \varphi(\omega)=\tfrac{1}{2}\Phi(\omega),
+$$
+
+relative state density
+
+$$
+\rho_{\rm rel}(\omega)=-\xi'(\omega),
+$$
+
+and Wigner--Smith group delay operator
+
+$$
+Q(\omega)=-iS(\omega)^\dagger\partial_\omega S(\omega),
+$$
+
+whose trace $\tr Q(\omega)$ corresponds to group delay at energy $\omega$.
+
+From above definitions obtain scale identity
+
+$$
+\frac{\varphi'(\omega)}{\pi}=\rho_{\rm rel}(\omega)=\frac{1}{2\pi}\tr Q(\omega),
+$$
+
+holding under appropriate regularity and energy window restrictions.
+
+\begin{axiom}[Scattering Scale Axiom]
+\label{ax:S}
+\begin{enumerate}
+\item For considered energy window $I\subset\mathbb{R}$, scale identity holds almost everywhere;
+\item $\rho_{\rm rel}(\omega)\ge 0$ almost everywhere, and $\rho_{\rm rel}\not\equiv 0$;
+\item $Q(\omega)$ is positive semi-definite operator on $I$, and $\tr Q(\omega)$ is locally integrable.
+\end{enumerate}
+\end{axiom}
+
+Based on this define scattering time scale:
+
+\begin{definition}[Scattering Time Scale]
+Relative to reference point $\omega_0\in I$, define
+
+$$
+\tau_{\rm scatt}(\omega)-\tau_{\rm scatt}(\omega_0)
+=\int_{\omega_0}^{\omega}\rho_{\rm rel}(\tilde{\omega})\,{\rm d}\tilde{\omega}
+=\frac{1}{2\pi}\int_{\omega_0}^{\omega}\tr Q(\tilde{\omega})\,{\rm d}\tilde{\omega}.
+$$
+
+By Axiom~\ref{ax:S}, $\tau_{\rm scatt}$ is strictly increasing on $I$.
+\end{definition}
+
+\subsection{Boundary Algebra, Modular Flow, and Null--Modular Double Cover}
+
+Let $\mathcal{A}_\partial$ be observable algebra on appropriate boundary, $\omega$ its faithful normal state. Tomita--Takesaki theory assigns corresponding modular operator $\Delta_\omega$ and modular flow
+
+$$
+\sigma_t^\omega(A)=\Delta_\omega^{it}A\Delta_\omega^{-it}.
+$$
+
+For vacuum state of spherical or wedge regions in Minkowski spacetime, modular flow can be geometrized as Killing flow in corresponding causal diamond or wedge region.
+
+For causal diamond $D(p,q)$, its boundary decomposes into two null hypersurfaces $\mathcal{N}^\pm$; removing corners yields two sheets $E^\pm$. On each sheet introduce affine parameter $\lambda$ and transverse coordinate $x_\perp$, constructing double cover of null boundary
+
+$$
+\widetilde{E}_D=E^+\sqcup E^-.
+$$
+
+Results by Casini--Teste--Torroba et al. show that in conformal field theory vacuum and its appropriate deformations, modular Hamiltonian of $D$ can be written as local energy flow integral along $\widetilde{E}_D$:
+
+$$
+K_D=2\pi\sum_{\sigma=\pm}\int_{E^\sigma}g_\sigma(\lambda,x_\perp)\,T_{\sigma\sigma}(\lambda,x_\perp)\,{\rm d}\lambda\,{\rm d}^{d-2}x_\perp,
+$$
+
+where $T_{\sigma\sigma}$ is stress--energy tensor component in null direction, $g_\sigma$ weight function determined by geometry.
+
+\begin{axiom}[Modular Flow Localization Axiom]
+\label{ax:M}
+\begin{enumerate}
+\item For small causal diamond $D_{p,r}$, above local modular Hamiltonian expression exists within semiclassical--holographic window;
+\item Modular time parameter $t_{\rm mod}$ is monotonically co-oriented with null direction affine parameter $\lambda$.
+\end{enumerate}
+\end{axiom}
+
+\subsection{GHY Boundary Term, Brown--York Stress, and Geometric Time}
+
+In gravitational system with codimension-one boundary $\partial M$, Einstein--Hilbert action
+
+$$
+S_{\rm EH}=\frac{1}{16\pi G}\int_M R\sqrt{-g}\,{\rm d}^4x
+$$
+
+produces normal derivative terms on boundary during variation. To ensure well-defined variation under fixed boundary induced metric $h_{ab}$, must add Gibbons--Hawking--York boundary term
+
+$$
+S_{\rm GHY}=\frac{1}{8\pi G}\int_{\partial M}K\sqrt{|h|}\,{\rm d}^3x,
+$$
+
+plus generalizations to null and corner terms. Brown--York quasilocal stress tensor defined as
+
+$$
+T^{ab}_{\rm BY}=\frac{2}{\sqrt{|h|}}\frac{\delta S}{\delta h_{ab}}
+=\frac{1}{8\pi G}(K^{ab}-Kh^{ab})+\cdots,
+$$
+
+where $\cdots$ denotes null and corner corrections. For Killing vector $t^a$ along boundary time translation, corresponding Hamiltonian is
+
+$$
+H_\partial=\int_\Sigma T^{ab}_{\rm BY}t_a n_b\,{\rm d}^{d-1}x,
+$$
+
+where $\Sigma$ is spatial slice on boundary, $n^a$ its normal. Geometric time $\tau_{\rm geom}$ can be viewed as parameter generated by $H_\partial$, related to boundary action via Hamilton--Jacobi relation.
+
+\begin{axiom}[Boundary Variation Axiom]
+\label{ax:B}
+\begin{enumerate}
+\item Action $S=S_{\rm EH}+S_{\rm GHY}+\cdots$ has well-defined variation under fixed boundary geometric data;
+\item $T^{ab}_{\rm BY}$ is bounded, and $H_\partial$ is well-defined on selected boundary sheet family;
+\item Boundary time translation group $\{\Phi_{\tau_{\rm geom}}\}$ can be conformally aligned with modular flow within semiclassical window.
+\end{enumerate}
+\end{axiom}
+
+\subsection{Generalized Entropy and Local Quantum Conditions}
+
+For cut surface $\Sigma$ inside causal diamond $D_{p,r}$, define generalized entropy
+
+$$
+S_{\rm gen}(\Sigma)=\frac{A(\Sigma)}{4G\hbar}+S_{\rm out}(\Sigma),
+$$
+
+where $S_{\rm out}$ is von Neumann entropy of quantum field outside cut surface. Jacobson's ``entanglement equilibrium'' and subsequent work show that under appropriate constraints, extremum condition of $S_{\rm gen}$ on small balls or small causal diamonds is equivalent to local Einstein equations.
+
+Quantum Null Energy Condition gives local inequality in null direction:
+
+$$
+\langle T_{kk}(x)\rangle_\psi\ge\frac{\hbar}{2\pi}\frac{{\rm d}^2S_{\rm out}}{{\rm d}\lambda^2}(x),
+$$
+
+where $k^a$ is null vector, $\lambda$ its affine parameter. This inequality has been rigorously proven in broad CFT classes, closely related to local modular Hamiltonian deformation.
+
+\begin{axiom}[Generalized Entropy--Energy Axiom]
+\label{ax:E}
+\begin{enumerate}
+\item For each small causal diamond $D_{p,r}$, under fixed appropriate ``volume'' or equivalent local conservation constraint, $S_{\rm gen}$ attains first-order extremum at a reference cut surface;
+\item For all null direction deformations, second-order variation of $S_{\rm gen}$ satisfies QNEC/QFC-type inequalities;
+\item Relative entropy is independent of Cauchy slice foliation, equivalent to Iyer--Wald canonical energy.
+\end{enumerate}
+\end{axiom}
+
+\subsection{Topology and $\mathbb{Z}_2$ Sector Assumption}
+
+In systems with self-referential scattering networks or nontrivial topology, square root of scattering semi-phase gives principal $\mathbb{Z}_2$ bundle whose holonomy $\nu_{\sqrt{S}}(\gamma)\in\{\pm1\}$ can be viewed as topological indicator on loops. Corresponding bulk BF theory sector class $[K]\in H^2(Y,\partial Y;\mathbb{Z}_2)$ describes possible topological anomalies.
+
+\begin{axiom}[Topological Non-anomaly Axiom]
+\label{ax:T}
+In small causal diamond limit and finite regions glued from them, satisfies $[K]=0$, equivalently, for all appropriate closed loops $\gamma$, $\nu_{\sqrt{S}}(\gamma)=+1$.
+\end{axiom}
+
+\section{Main Results: Theorems and Alignments}
+
+Under above axiomatic system, this paper proposes and argues following main results.
+
+\subsection{Theorem 1: Unified Time Scale Equivalence Class}
+
+\begin{theorem}[Unified Time Scale Equivalence Class]
+\label{thm:1}
+Within semiclassical--holographic window where Axioms~\ref{ax:S}, \ref{ax:M}, and \ref{ax:B} hold, there exists time scale equivalence class $[\tau]$ satisfying:
+
+\begin{enumerate}
+\item Scattering time scale $\tau_{\rm scatt}$ belongs to $[\tau]$;
+\item Modular time $\tau_{\rm mod}$ belongs to $[\tau]$;
+\item Geometric time $\tau_{\rm geom}$ belongs to $[\tau]$.
+\end{enumerate}
+
+More specifically, there exist constants $a>0,b\in\mathbb{R}$ such that on considered energy window and causal diamond family,
+
+$$
+\tau_{\rm scatt}=a\tau_{\rm mod}+b,\qquad
+\tau_{\rm geom}=c\tau_{\rm mod}+d,
+$$
+
+where $c>0,d\in\mathbb{R}$ are constants. Equivalence class $[\tau]$ is represented by any of above scales, unique up to affine transformation.
+\end{theorem}
+
+\subsection{Theorem 2: Equivalent Characterizations of Causal Partial Order}
+
+\begin{theorem}[Equivalent Characterizations of Causal Partial Order]
+\label{thm:2}
+In region where Axioms~\ref{ax:G}, \ref{ax:S}, \ref{ax:M}, \ref{ax:E} hold, unified time scale equivalence class $[\tau]$ gives equivalent characterizations of causal partial order:
+
+For any $p,q\in M$, following are equivalent:
+
+\begin{enumerate}
+\item Geometric causality: $q\in J^+(p)$, i.e., there exists future-directed non-spacelike curve from $p$ to $q$;
+\item Time scale monotonicity: there exists $\tau\in[\tau]$ such that for all connections $\gamma$ from $p$ to $q$ along timelike curves, $\tau(p)\le\tau(q)$, with strict inequality for some connecting curve;
+\item Generalized entropy monotonicity: for each sufficiently small causal diamond chain $\{D_j\}$ containing $p,q$, generalized entropy $S_{\rm gen}$ is co-monotone with $\tau$ in null direction, giving non-negative ``entropy distance'' in $p\to q$ limit.
+\end{enumerate}
+
+Thus, causal partial order can equivalently be viewed as ``monotonicity on unified time scale'' or ``monotonic structure of generalized entropy flow on small causal diamond chains.''
+\end{theorem}
+
+\subsection{Theorem 3: Generalized Entropy Variational Principle and Local Gravitational Equations}
+
+\begin{theorem}[IGVP and Einstein Equations]
+\label{thm:3}
+When Axioms~\ref{ax:G} and \ref{ax:E} hold, assuming matter fields satisfy appropriate local conservation conditions and Hadamard state conditions, generalized entropy variational condition on small causal diamonds is equivalent to local Einstein equations:
+
+For any $p\in M$ and sufficiently small $r$, if for all null direction deformations, under fixed appropriate constraints $S_{\rm gen}$ attains first-order extremum at reference cut surface with non-negative second-order variation, then at $p$
+
+$$
+G_{ab}+\Lambda g_{ab}=8\pi G\,T_{ab},
+$$
+
+where $G_{ab}$ is Einstein tensor, $T_{ab}$ matter stress--energy tensor, $\Lambda$ constant.
+
+Conversely, if above gravitational equations hold and matter state satisfies observed local equilibrium condition, then generalized entropy on small causal diamonds satisfies first-order extremum and second-order non-negativity required by Axiom~\ref{ax:E}.
+\end{theorem}
+
+\subsection{Theorem 4: Null--Modular Double Cover, Markov Property, and Causal Chains}
+
+\begin{theorem}[Markov Structure on Causal Chains]
+\label{thm:4}
+When Axioms~\ref{ax:G}, \ref{ax:M}, \ref{ax:E} hold in conformal field theory vacuum or its small deformations, for region family on null plane or causal diamond family $\{D_j\}$ as their conformal images, modular Hamiltonians satisfy inclusion-exclusion structure
+
+$$
+K_{\cup_jD_j}=\sum_{k\ge1}(-1)^{k-1}\sum_{j_1<\cdots<j_k}
+K_{D_{j_1}\cap\cdots\cap D_{j_k}},
+$$
+
+with corresponding relative entropy satisfying Markov property and strong subadditivity saturation. This yields:
+
+\begin{enumerate}
+\item Information propagation on causal diamond chains is ``no extra memory'' Markov process;
+\item Unified time scale $\tau$ on this chain agrees with modular time, co-monotone with null direction affine parameter;
+\item Generalized entropy arrow on small causal diamond chains agrees with geometric causal arrow.
+\end{enumerate}
+\end{theorem}
+
+\subsection{Theorem 5: Equivalence of Topological Non-anomaly and Gauge Energy Non-negativity}
+
+\begin{theorem}[Topological Non-anomaly]
+\label{thm:5}
+When Axiom~\ref{ax:T} holds, in finite regions glued from small causal diamonds, following are equivalent:
+
+\begin{enumerate}
+\item $\mathbb{Z}_2$--BF bulk sector class $[K]=0$;
+\item For all physically allowed closed loops $\gamma$, holonomy of scattering semi-phase square root satisfies $\nu_{\sqrt{S}}(\gamma)=+1$;
+\item On matter configurations satisfying gravitational field equations and local quantum conditions, second-order variation of gauge energy on small causal diamonds is non-negative.
+\end{enumerate}
+
+Conversely, if there exists $[K]\neq 0$ or loop with $\nu_{\sqrt{S}}(\gamma)=-1$, one can construct configuration violating gauge energy non-negativity, breaking consistency of generalized entropy monotonicity and causal arrow.
+\end{theorem}
+
+\section{Proofs}
+
+This section gives proof ideas and key steps for main theorems, placing technical details in appendices.
+
+\subsection{Proof Idea for Theorem~\ref{thm:1}: Unified Time Scale Equivalence Class}
+
+\textbf{Step 1: Existence and affine uniqueness of scattering time scale}
+
+By Axiom~\ref{ax:S}, scale identity holds in energy window $I$, with $\rho_{\rm rel}(\omega)\ge 0$ almost everywhere, not identically zero. Define
+
+$$
+\tau_{\rm scatt}(\omega)-\tau_{\rm scatt}(\omega_0)
+=\int_{\omega_0}^{\omega}\rho_{\rm rel}(\tilde{\omega})\,{\rm d}\tilde{\omega},
+$$
+
+then $\tau_{\rm scatt}$ is strictly increasing continuous function. For any other function $\tilde{\tau}(\omega)$ satisfying same scale density condition, its derivative almost everywhere satisfies
+
+$$
+\frac{{\rm d}\tilde{\tau}}{{\rm d}\omega}=c\,\rho_{\rm rel}(\omega),
+$$
+
+where $c>0$. Integrating yields $\tilde{\tau}=a\tau_{\rm scatt}+b$, i.e., affine uniqueness.
+
+If introducing Poisson or other positive definite window function to construct windowed scale $t_\Delta$, under appropriate analyticity conditions can prove $t_\Delta$ is also strictly increasing and affinely unique, forming ``scattering clock'' on energy window.
+
+Relevant techniques refer to standard proofs of spectral shift function and Birman--Kre\u{\i}n formula, and connection between wave trace invariants and scattering phase derivatives.
+
+\textbf{Step 2: Alignment of modular time and scattering time}
+
+Results by Casini--Huerta--Myers show that for vacuum state of spherical region in conformal field theory, its modular Hamiltonian is conformally equivalent to boost generator of corresponding Rindler wedge, so modular time $t_{\rm mod}$ equals proper time along accelerated trajectory (up to proportionality factor). In holographic case, modular flow corresponds to some Killing flow in bulk, whose parameter agrees with ``geometric time'' in bulk.
+
+On the other hand, scattering system can view boundary modular Hamiltonian as function of boundary scattering Hamiltonian, relating its spectral measure to scattering phase derivative--spectral shift function. Combining scale identity yields: difference in derivatives of modular time and scattering time scale is only constant factor, making them affinely equivalent.
+
+Koeller--Leichenauer and subsequent work on local modular Hamiltonian analysis of null plane deformations show that second-order modular time deformation directly relates to $T_{kk}$, which is controlled by scattering phase and group delay, providing local spectral--energy flow bridge for above equivalence.
+
+\textbf{Step 3: Alignment of geometric time and modular time}
+
+In gravitational system with GHY boundary term, Brown--York quasilocal energy can be viewed as Hamiltonian generator of boundary time translation. Through Hamilton--Jacobi relation, boundary geometric time can be aligned with modular time: KMS property of modular flow and thermal time hypothesis show modular time scale is intrinsically determined by state--algebra pair; when this state is ``thermal vacuum'' of gravitational system, its modular time agrees with boundary Killing time direction. Combining holographic duality and CHM-type construction, can prove difference between geometric time and modular time is only affine transformation.
+
+Combining steps 1--3 yields existence and affine uniqueness of unified time scale equivalence class $[\tau]$.
+
+\subsection{Proof Idea for Theorem~\ref{thm:2}: Equivalent Characterizations of Causal Partial Order}
+
+\textbf{(1) $\Rightarrow$ (2): Geometric causality implies time scale monotonicity}
+
+From stable causality we know there exists time function $T\colon M\to\mathbb{R}$ strictly increasing along every future-directed timelike curve. Any representative $\tau$ in unified time scale equivalence class $[\tau]$ has strictly monotone function $f$ with $T$, i.e., $\tau=f\circ T$. Therefore if $q\in J^+(p)$, along any timelike curve from $p$ to $q$ have $T(q)\ge T(p)$, hence $\tau(q)\ge\tau(p)$, with strict inequality for at least one curve.
+
+\textbf{(2) $\Rightarrow$ (1): Time scale monotonicity implies geometric causality}
+
+If assuming there exists $\tau\in[\tau]$ such that $\tau(q)\ge\tau(p)$, yet $q\notin J^+(p)$, then timelike curve construction passing through $p,q$ and not passing through Cauchy slice exists, causing time function to decrease on some paths, contradicting property that $\tau$ increases monotonically along timelike curves, contradicting Axiom~\ref{ax:G}. Standard Hawking--Ellis theory gives equivalence of ``time function existence and stable causality''; here restated using $\tau$ instead of $T$.
+
+\textbf{(1)+(2) $\Rightarrow$ (3): Geometric causality and time scale monotonicity imply generalized entropy monotonicity}
+
+QNEC gives local inequality in null direction, relating $T_{kk}$ to second-order generalized entropy deformation; IGVP and relative entropy monotonicity relate $T_{kk}$ to geometric $R_{kk}$ and generalized entropy first-order extremum condition. Combining yields: when gravitational field equations hold and matter state satisfies Hadamard condition, along any null generator satisfying geometric causality, second derivative of $S_{\rm gen}$ is non-negative in increasing direction of unified time scale $\tau$, hence $S_{\rm gen}$ is monotone non-decreasing.
+
+On small causal diamond chains, applying above argument to upper and lower cut surfaces of each diamond, using relative entropy's foliation independence on Cauchy slices, extending local monotonicity to entire chain yields (3).
+
+\textbf{(3) $\Rightarrow$ (1): Generalized entropy monotonicity implies geometric causality}
+
+If assuming there exist $p,q$ not satisfying geometric causality yet satisfying (3), then can construct closed null curve along ``time loop'' such that after one circuit geometrically returns to origin, while $S_{\rm gen}$ monotonicity forces each circuit to increase non-negative entropy, unless $T_{kk}=0$ and $R_{kk}=0$, contradicting strictness of QNEC and local non-degeneracy of gravitational field equations. Therefore generalized entropy monotonicity excludes geometrically closed causal paths, restoring geometric causality.
+
+\subsection{Proof Idea for Theorem~\ref{thm:3}: IGVP and Einstein Equations}
+
+Proof of this theorem follows basic approach of Jacobson ``entanglement equilibrium'' and subsequent holographic derivations:
+
+\begin{enumerate}
+\item At $p$ choose Riemann normal coordinates making metric Minkowski at $p$, Christoffel symbols vanish, curvature contributions appear at second and higher orders;
+\item Consider small causal diamond $D_{p,r}$ containing $p$; second-order variation of area near waist surface of boundary in null direction can be expressed using Raychaudhuri equation, containing $R_{kk}$ term;
+\item In first-order generalized entropy variation ${\rm d}S_{\rm gen}/{\rm d}\lambda$, area term provides $R_{kk}$ contribution, entropy term relates to $T_{kk}$ via local first law and relative entropy linear response;
+\item Requiring ${\rm d}S_{\rm gen}/{\rm d}\lambda=0$ under fixed volume or equivalent constraint yields $R_{kk}=8\pi G\,T_{kk}$;
+\item Second-order variation non-negativity uses QNEC/QFC and Hollands--Wald gauge energy non-negativity, ensuring above condition stable in all null directions, obtaining complete $G_{ab}+\Lambda g_{ab}=8\pi G\,T_{ab}$ via Bianchi identity.
+\end{enumerate}
+
+Reverse reasoning substitutes given Einstein equations back into area and entropy variation expressions, verifying generalized entropy extremum and second-order non-negativity.
+
+Relevant complete arguments see Jacobson's original work and subsequent derivations using relative entropy and holographic entanglement.
+
+\subsection{Proof Ideas for Theorems~\ref{thm:4} and \ref{thm:5}}
+
+Theorem~\ref{thm:4} mainly relies on Casini--Teste--Torroba's proof of local modular Hamiltonian expression and Markov property for null plane regions. Core is:
+
+\begin{enumerate}
+\item For arbitrary region family $\{A_j\}$ on null plane $P$, modular Hamiltonian $K_{A_j}$ has local expression in null direction;
+\item Using tensor product structure of relative entropy and modular flow properties, can prove modular Hamiltonians satisfy inclusion-exclusion formula;
+\item Corresponding relative entropy satisfies strong subadditivity saturation, giving Markov condition;
+\item Through conformal transformation mapping null plane regions to causal diamond families, obtaining inclusion-exclusion--Markov structure on causal diamond chains.
+\end{enumerate}
+
+Theorem~\ref{thm:5} relates $\mathbb{Z}_2$ cohomology class $[K]$ of BF bulk sector to holonomy of scattering semi-phase square root and gauge energy non-negativity. Key is: if $[K]\neq 0$, then there exists two-cycle with nonzero $\mathbb{Z}_2$ curvature; can construct field configuration propagating along this cycle such that second-order modular Hamiltonian variation produces negative gauge energy, violating QNEC/QFC. Conversely, if all gauge energy second-order variations non-negative, can prove $[K]=0$, eliminating topological anomaly.
+
+\section{Model Applications}
+
+This section demonstrates application of unified causal structure in several typical cases.
+
+\subsection{Time and Causal Arrow in FRW Cosmology}
+
+Consider flat FRW metric
+
+$$
+{\rm d}s^2=-{\rm d}t^2+a(t)^2({\rm d}r^2+r^2{\rm d}\Omega^2),
+$$
+
+where $a(t)$ is scale factor. Observed redshift $1+z=a(t_0)/a(t_e)$ can be rewritten as proper phase rhythm ratio of emission and reception moments
+
+$$
+1+z=\frac{(\partial_t\phi)_e}{(\partial_t\phi)_0},
+$$
+
+where $\phi$ is phase of some standard spectral line. Using scale identity, can interpret $(\partial_t\phi)$ as rate of unified time scale $\tau$: ${\rm d}\phi/{\rm d}\tau=\omega_{\rm phys}$. Thus redshift in FRW becomes rescaling of unified time scale on cosmological scale, embodying macroscopic manifestation of ``cosmic causal arrow.''
+
+Furthermore, in FRW model containing matter and radiation, Friedmann equations can be viewed as generalizing generalized entropy variation condition on small causal diamonds to average form on conformal time slices, embodying cosmological version of ``generalized entropy geometric equations.''
+
+\subsection{Black Hole Horizon and Page Curve}
+
+During black hole evaporation, can glue small causal diamonds near horizon into chain along horizon. From unified causal structure perspective:
+
+\begin{itemize}
+\item Modular Hamiltonian near horizon localizes as energy flow integral in null direction;
+\item Generalized entropy arrow is monotone along horizon, making Page curve seen by external observer understandable as aggregate readout of $S_{\rm gen}$ for a family of causal diamonds;
+\item QNEC guarantees constraint between local energy flow along horizon and entropy second-order variation, limiting possible ``ultrafast evaporation'' or ``information leakage'' scenarios.
+\end{itemize}
+
+In holographic framework, this description is compatible with island formula and quantum minimal surface condition, embodying role of unified causal structure in horizon--information problem.
+
+\subsection{One-dimensional Scattering and Signal Processing}
+
+In one-dimensional potential scattering or microwave networks, trace of Wigner--Smith group delay matrix can be directly measured via phase frequency response. Under unified causal structure framework:
+
+\begin{itemize}
+\item Causality requires non-negative group delay, giving monotonicity of scattering time scale;
+\item $\tau_{\rm scatt}$ in small frequency window is equivalent to geometric time and modular time;
+\item For feedback scattering networks, self-referential structure may introduce nontrivial $\mathbb{Z}_2$ holonomy, whose existence can be detected via semi-phase jump on frequency closed loop, directly related to topological non-anomaly condition of Theorem~\ref{thm:5}.
+\end{itemize}
+
+These can be realized in microwave circuits, photonic crystals, and cold atom loop systems, providing concrete schemes for experimental paths testing unified time scale and causal arrow.
+
+\section{Engineering Proposals}
+
+Though unified causal structure is established at semiclassical and holographic theory level, many scales and inequalities have directly measurable engineering implications. This section gives several representative proposals.
+
+\subsection{Time Scale Calibration and Cross-platform Calibration}
+
+\begin{enumerate}
+\item \textbf{Microwave network group delay metrology}: Construct multi-port scattering network on known topology, measure $S(\omega)$ and $Q(\omega)$, reconstruct $\rho_{\rm rel}(\omega)$ and $\tau_{\rm scatt}(\omega)$ via scale identity, verify monotonicity and positivity, experimentally realizing ``scattering side'' calibration of unified time scale;
+
+\item \textbf{Optical frequency comb and phase rhythm}: Use optical frequency comb to transfer phase information between different platforms (fiber, integrated photonics, cold atoms), embedding local time scales of each platform into unified phase--frequency scale, constructing unified time scale network across platforms.
+\end{enumerate}
+
+\subsection{Experimental Indirect Detection of Generalized Entropy and Energy Flow}
+
+\begin{enumerate}
+\item \textbf{Approximate QNEC testing in quantum optics}: In finite-mode high-dimensional optical field, construct ``discrete version QNEC'' via entropy--energy measurement of truncated system, testing inequality between generalized entropy second-order deformation and energy flow along some effective null direction, experimentally verifying some finite-dimensional image of QNEC;
+
+\item \textbf{Local modular Hamiltonian in cold atom systems}: Using controllable potential traps and time modulation, construct approximate causal diamond regions in one- or two-dimensional cold atom systems, measuring subsystem entropy variation with local deformation to reconstruct local part of modular Hamiltonian, indirectly testing structure of Null--Modular double cover.
+\end{enumerate}
+
+\subsection{Topological Causal Sector and $\mathbb{Z}_2$ Indicator Measurement}
+
+In scattering networks with loops and feedback, measuring topological properties of scattering phase variation with parameters on closed loops can extract $\nu_{\sqrt{S}}(\gamma)$. Experimentally can through:
+
+\begin{itemize}
+\item Aharonov--Bohm loop with tunable flux;
+\item Andreev reflection at topological superconducting wire endpoints;
+\item Feedback loop phase closure condition in self-referential microwave networks,
+\end{itemize}
+
+detect existence of $\mathbb{Z}_2$ holonomy, experimentally constraining topological non-anomaly condition in Theorem~\ref{thm:5}.
+
+\section{Discussion: Risks, Boundaries, Past Work}
+
+\subsection{Applicability Domain and Boundary Conditions}
+
+Derivation of unified causal structure relies on multiple premises:
+
+\begin{itemize}
+\item Semiclassical or holographic window: gravitational field equations and QFT need to be controllable in a class of effective theories;
+\item Hadamard states and regularity: proofs of generalized entropy and QNEC both depend on state regularity;
+\item Small causal diamond limit: IGVP variational derivation holds strictly only in $r\to 0$ limit.
+\end{itemize}
+
+Therefore, in strong quantum gravity regions, non-local field theory, or systems with serious superselection sectors, above structure may fail or require rewriting.
+
+\subsection{Relation to Existing Causal Concepts}
+
+This paper restates causality as unified object of ``partial order + unified time scale + generalized entropy monotonicity + topological non-anomaly''; compared to traditional geometric causal theory, algebraic quantum field theory microcausality, and holographic causal wedge structure:
+
+\begin{itemize}
+\item On geometric side, unified structure contains Hawking--Ellis causal hierarchy;
+\item On algebraic side, relation between modular flow and local algebra refined via Null--Modular double cover;
+\item On holographic side, correspondence between generalized entropy and bulk geometry interpreted as unified projection of causal arrow on boundary and bulk domains.
+\end{itemize}
+
+\subsection{Risks and Open Problems}
+
+\begin{enumerate}
+\item \textbf{Robustness of QNEC and its generalizations}: Though QNEC has been proven in broad cases, details in non-conformal field theory or strong coupling cases still under study;
+
+\item \textbf{Physical realization of topological anomalies}: Realizability of $\mathbb{Z}_2$ sector in Theorem~\ref{thm:5} in concrete realistic systems and its impact on causality requires more detailed models;
+
+\item \textbf{Discrete causal networks and continuum limit}: Generalizing unified causal structure to causal sets or discrete grids, analyzing stability of partial order and entropy structure in continuum limit, is key problem for further connecting quantum gravity discrete models with continuous general relativity.
+\end{enumerate}
+
+Extensive work on these problems distributed across QFT, holographic gravity, and operator algebra literature; this paper only provides integrated perspective.
+
+\section{Conclusion}
+
+This paper constructs unified theoretical framework around ``causality'' based on unified time scale, boundary time geometry, Null--Modular double cover, and generalized entropy variation. Core conclusions summarized as:
+
+\begin{enumerate}
+\item Within semiclassical--holographic window, there exists unified time scale equivalence class $[\tau]$ gluing scattering time, modular time, and geometric time into single scale;
+
+\item Geometric partial order $(M,\preceq)$, monotonicity on unified scale, and generalized entropy monotonicity on small causal diamond chains are equivalent, giving three complementary characterizations of causality;
+
+\item Generalized entropy variational principle on small causal diamonds is equivalent to local Einstein equations, making gravitational field equations expression of ``how entropy organizes on causal boundary'';
+
+\item Null--Modular double cover and Markov property guarantee information propagation on causal diamond chains has locality and no extra memory structure;
+
+\item Topological non-anomaly of $\mathbb{Z}_2$--BF sector is equivalent to gauge energy non-negativity, topologically constraining allowed sectors of causal structure.
+\end{enumerate}
+
+In this picture, spacetime metric, scattering matrix, modular flow, and generalized entropy are no longer independent objects, but manifestations of same causal structure in different projections. Time is understood as strictly monotone scale coordinate on this structure, whose arrow jointly determined by generalized entropy monotonicity and topological non-anomaly.
+
+\section*{Acknowledgements}
+
+Authors thank research work in relevant fields for foundations provided to this paper, including spectral shift function and Birman--Kre\u{\i}n theory, quantum null energy condition and local modular Hamiltonian, holographic entanglement entropy and gravitational field equations, and series of studies on Null--Modular double cover and Markov property.
+
+\section*{Code Availability}
+
+All results in this paper based on analytical derivations and existing mathematical physics theorems, without specialized numerical code. If future work conducts simulations based on scattering networks and numerical relativity, corresponding code implementations will be made publicly available separately.
+
+\begin{thebibliography}{99}
+
+\bibitem{birman62}
+M. Sh. Birman and M. G. Kre\u{\i}n, ``On the theory of wave and scattering operators,'' Soviet Math. Dokl. 3, 740--744 (1962).
+
+\bibitem{sinha94}
+K. B. Sinha, ``Spectral shift function and trace formula,'' Proc. Indian Acad. Sci. (Math. Sci.) 104, 571--588 (1994).
+
+\bibitem{borthwick21}
+D. Borthwick, ``The Birman--Kre\u{\i}n formula and scattering phase,'' arXiv:2110.06370 (2021).
+
+\bibitem{chm11}
+H. Casini, M. Huerta and R. C. Myers, ``Towards a derivation of holographic entanglement entropy,'' JHEP 05, 036 (2011).
+
+\bibitem{jacobson16}
+T. Jacobson, ``Entanglement Equilibrium and the Einstein Equation,'' Phys. Rev. Lett. 116, 201101 (2016).
+
+\bibitem{qnec16}
+R. Bousso, Z. Fisher, S. Leichenauer and A. C. Wall, ``Proof of the Quantum Null Energy Condition,'' Phys. Rev. D 93, 024017 (2016).
+
+\bibitem{qnec19}
+S. Balakrishnan, T. Faulkner, Z. U. Khandker and H. Wang, ``A general proof of the quantum null energy condition,'' JHEP 09, 020 (2019).
+
+\bibitem{koeller18}
+J. Koeller and S. Leichenauer, ``Local modular Hamiltonians from the quantum null energy condition,'' Phys. Rev. D 97, 065011 (2018).
+
+\bibitem{ctt17}
+H. Casini, E. Teste and G. Torroba, ``Modular Hamiltonians on the null plane and the Markov property of the vacuum state,'' J. Phys. A: Math. Theor. 50, 364001 (2017).
+
+\bibitem{sarosi18}
+G. S\'arosi and T. Ugajin, ``Modular Hamiltonians of excited states, OPE blocks and emergent bulk fields,'' JHEP 01, 012 (2018).
+
+\bibitem{shahbazi20}
+A. Shahbazi-Moghaddam, ``Aspects of Generalized Entropy and Quantum Null Energy Condition,'' PhD thesis, University of California, Berkeley (2020).
+
+\bibitem{oh18}
+E. Oh, I.-Y. Park and S.-J. Sin, ``Complete Einstein equations from the generalized first law of entanglement,'' Phys. Rev. D 98, 026020 (2018).
+
+\end{thebibliography}
+
+\appendix
+
+\section{Scale Identity and Construction of Unified Time Scale}
+
+This appendix gives derivation framework of scale identity and technical details of existence--uniqueness of unified time scale equivalence class.
+
+\subsection{Spectral Shift Function and Birman--Kre\u{\i}n Formula}
+
+Let $(H,H_0)$ be self-adjoint operator pair satisfying difference is trace-class or resolvent difference is trace-class. By spectral shift function theory, there exists unique (modulo constant) function $\xi(\omega)$ such that for any $f\in C_0^\infty(\mathbb{R})$,
+
+$$
+\tr(f(H)-f(H_0))=\int_\mathbb{R}\xi(\omega)f'(\omega)\,{\rm d}\omega.
+$$
+
+Choosing smooth approximation of $f(\lambda)=\chi_{(-\infty,\omega]}(\lambda)$, can interpret $\xi(\omega)$ as trace of two spectral projection difference, i.e.,
+
+$$
+\xi(\omega)=\tr\bigl(E_H((-\infty,\omega])-E_{H_0}((-\infty,\omega])\bigr).
+$$
+
+Birman--Kre\u{\i}n formula gives relation between scattering determinant and spectral shift function:
+
+$$
+\det S(\omega)=\exp\bigl(-2\pi i\xi(\omega)\bigr).
+$$
+
+Taking logarithm and differentiating yields
+
+$$
+\partial_\omega\Phi(\omega)=\partial_\omega\arg\det S(\omega)=-2\pi\xi'(\omega),
+$$
+
+hence define
+
+$$
+\rho_{\rm rel}(\omega)=-\xi'(\omega)=\frac{1}{2\pi}\Phi'(\omega).
+$$
+
+\subsection{Wigner--Smith Group Delay Trace}
+
+Scattering matrix $S(\omega)$ is unitary operator family on absolutely continuous spectrum; its frequency derivative gives Wigner--Smith group delay operator
+
+$$
+Q(\omega)=-iS(\omega)^\dagger\partial_\omega S(\omega).
+$$
+
+By unitarity of $S(\omega)$, $Q(\omega)$ is self-adjoint. Decomposing $S(\omega)$ into eigenphases and eigenvectors, $S(\omega)=\sum_n e^{2i\delta_n(\omega)}\ket{n(\omega)}\bra{n(\omega)}$, then
+
+$$
+Q(\omega)=2\sum_n\frac{\partial\delta_n(\omega)}{\partial\omega}\ket{n(\omega)}\bra{n(\omega)}+\text{off-diagonal terms},
+$$
+
+hence
+
+$$
+\tr Q(\omega)=2\sum_n\frac{\partial\delta_n(\omega)}{\partial\omega}
+=\partial_\omega\Phi(\omega).
+$$
+
+This yields scale identity
+
+$$
+\frac{\varphi'(\omega)}{\pi}=\rho_{\rm rel}(\omega)=\frac{1}{2\pi}\tr Q(\omega).
+$$
+
+In non-local potential or dissipative scattering cases, can generalize above formula using modified determinants and self-adjoint extension theory; form remains unchanged, only requiring renormalization of spectral shift function.
+
+\subsection{Windowed Clock and Affine Uniqueness}
+
+To suppress resonance and high-frequency tail effects, introduce positive definite window function $h_\Delta$ (e.g., Poisson kernel)
+
+$$
+h_\Delta(\omega)=\frac{\Delta}{\pi(\omega^2+\Delta^2)},
+$$
+
+define convolution
+
+$$
+\Theta_\Delta(\omega)=(\rho_{\rm rel}*h_\Delta)(\omega)
+=\int_\mathbb{R}\rho_{\rm rel}(\tilde{\omega})h_\Delta(\omega-\tilde{\omega})\,{\rm d}\tilde{\omega}.
+$$
+
+If $\rho_{\rm rel}(\omega)\ge 0$ and not identically zero in considered energy window, then $\Theta_\Delta(\omega)>0$ almost everywhere. Define windowed time scale
+
+$$
+t_\Delta(\omega)-t_\Delta(\omega_0)=\int_{\omega_0}^{\omega}\Theta_\Delta(\tilde{\omega})\,{\rm d}\tilde{\omega},
+$$
+
+then $t_\Delta$ is strictly increasing and continuous.
+
+For any function $\tilde{t}_\Delta$ satisfying same window condition with derivative almost everywhere proportional to $\Theta_\Delta$, there exist $a>0,b\in\mathbb{R}$ such that $\tilde{t}_\Delta=a t_\Delta+b$. Thus on energy window $I$, scale of ``scattering clock'' is unique up to affine transformation.
+
+\section{Local Derivation of IGVP and Local Einstein Equations}
+
+\subsection{Small Causal Diamond Geometry and Area Variation}
+
+In Riemann normal coordinates at point $p$, metric expands as
+
+$$
+g_{\mu\nu}(x)=\eta_{\mu\nu}-\frac{1}{3}R_{\mu\alpha\nu\beta}(p)x^\alpha x^\beta+O(|x|^3).
+$$
+
+Considering small ball or small causal diamond centered at $p$ with radius $r$, expansion of boundary area and volume contains $R_{\mu\nu}$ contributions. For example $d$-dimensional small ball volume has
+
+$$
+V(B_{p,r})=\frac{\Omega_{d-1}}{d}r^d\Bigl[1-\frac{R(p)}{6(d+2)}r^2+O(r^4)\Bigr].
+$$
+
+Along null vector $k^a$ generated geodesic family, expansion $\theta$ satisfies Raychaudhuri equation
+
+$$
+\frac{{\rm d}\theta}{{\rm d}\lambda}=-\frac{1}{2}\theta^2-\sigma_{ab}\sigma^{ab}-R_{ab}k^ak^b.
+$$
+
+For sufficiently small $r$ and appropriate initial conditions, area second-order variation can be expressed as term containing $R_{kk}$ plus non-negative contributions like $\theta^2,\sigma^2$; in $r\to 0$ limit, $R_{kk}$ dominates area variation.
+
+\subsection{Generalized Entropy Variation and Local First Law}
+
+First-order generalized entropy variation is
+
+$$
+\frac{{\rm d}S_{\rm gen}}{{\rm d}\lambda}
+=\frac{1}{4G\hbar}\frac{{\rm d}A}{{\rm d}\lambda}
++\frac{{\rm d}S_{\rm out}}{{\rm d}\lambda}.
+$$
+
+First-order relative entropy $S(\rho||\sigma)$ variation with respect to source state $\rho$ gives local first law
+
+$$
+\delta S_{\rm out}=\delta\langle K_{\rm mod}\rangle,
+$$
+
+where $K_{\rm mod}$ is modular Hamiltonian of reference state $\sigma$. For spherical region or small causal diamond, can localize $K_{\rm mod}$ as stress--energy tensor integral, yielding
+
+$$
+\frac{{\rm d}S_{\rm out}}{{\rm d}\lambda}
+\propto\int T_{kk}\,{\rm d}\lambda\,{\rm d}^{d-2}x_\perp.
+$$
+
+Requiring ${\rm d}S_{\rm gen}/{\rm d}\lambda=0$ under fixed volume or equivalent constraint, taking $r\to 0$, using proportional relation between $R_{kk}$ term in area variation and above $T_{kk}$ term, can obtain
+
+$$
+R_{kk}=8\pi G\,T_{kk}.
+$$
+
+Holding for all null directions, combined with Bianchi identity and energy--momentum conservation, recovers complete Einstein equations.
+
+\subsection{Second-order Variation and Gauge Energy Non-negativity}
+
+Second-order generalized entropy variation relative to reference state can be written as gauge energy
+
+$$
+\mathcal{E}=\delta^2S_{\rm rel},
+$$
+
+whose non-negativity is equivalent to Hollands--Wald gauge energy non-negativity, quantified in QNEC/QFC results. Gauge energy non-negativity ensures IGVP extremum on small causal diamonds is stable extremum, guaranteeing stability of local Einstein equations and consistency of causal arrow.
+
+\section{Null--Modular Double Cover and Markov Structure}
+
+\subsection{Modular Hamiltonian on Null Plane}
+
+On null plane $P$ of Minkowski space, consider half-space described by lightlike coordinates $(u,v,x_\perp)$, e.g., $v\ge f(x_\perp)$. Casini--Teste--Torroba give local modular Hamiltonian expression in vacuum state:
+
+$$
+K_A=2\pi\int_{A}(\lambda-f(x_\perp))\,T_{vv}(\lambda,x_\perp)\,{\rm d}\lambda\,{\rm d}^{d-2}x_\perp,
+$$
+
+where $A$ is region on null plane. This expression shows modular flow translates points in null direction, modular time linearly related to affine parameter $\lambda$.
+
+\subsection{Inclusion-exclusion Property and Markov Property}
+
+For region family $\{A_j\}$ on null plane, using linear superposition of stress--energy tensor and modular Hamiltonian definition, can prove
+
+$$
+K_{\cup_jA_j}=\sum_{k\ge1}(-1)^{k-1}\sum_{j_1<\cdots<j_k}
+K_{A_{j_1}\cap\cdots\cap A_{j_k}}.
+$$
+
+Relative entropy $S(\rho_A||\sigma_A)$ satisfies strong subadditivity under tensor product structure; combined with above modular Hamiltonian inclusion-exclusion relation, vacuum state of null plane region family satisfies Markov property, i.e., conditional mutual information zero. This means information propagation in causal chain along null direction carries no extra memory, depending only on adjacent segment information.
+
+\subsection{Conformal Mapping to Causal Diamond Families}
+
+Through conformal transformation, can map null plane region families to causal diamond families $\{D_j\}$ in Minkowski space or more general backgrounds. Conformal invariance ensures local structure and inclusion-exclusion properties of modular Hamiltonians preserved, establishing Markov structure on causal diamond chains. Unified time scale $\tau$ on this chain co-monotone with null direction affine parameter, unifying causal arrow, modular time arrow, and generalized entropy arrow.
+
+\end{document}

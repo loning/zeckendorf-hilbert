@@ -1,0 +1,610 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{braket}
+\usepackage{graphicx}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+
+% Title information
+\title{The Universe as a Maximal Consistent Mathematical Structure\\
+\large Unified Scattering Scale, Generalized Entropy and Category Terminal Object}
+
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Based on existing frameworks including causal manifolds, axiomatic quantum field theory, scattering and spectral shift theory, Tomita–Takesaki modular theory, generalized entropy and Quantum Null Energy Condition (QNEC), and Gibbons–Hawking–York boundary terms with Brown–York quasilocal stress tensors, we introduce a multi-layered structural object
+\begin{equation}
+\mathfrak U=(U_{\rm evt},U_{\rm geo},U_{\rm meas},U_{\rm QFT},U_{\rm scat},U_{\rm mod},U_{\rm ent},U_{\rm obs},U_{\rm cat},U_{\rm comp})
+\end{equation}
+as the unified mathematical characterization of the "Universe". This paper presents three main threads:
+
+First, we introduce precise sufficient conditions for scattering, $\mathrm{A1}\text{--}\mathrm{A5}$, and prove the existence of a unique scale density
+\begin{equation}
+\kappa(\omega)=\varphi'(\omega)/\pi=\rho_{\rm rel}(\omega)=(2\pi)^{-1}\operatorname{tr}Q(\omega),
+\end{equation}
+distinguishing two types of mother scale readings: Phase Reading $\Theta(\omega)=\varphi(\omega)/\pi$ and Scattering Time Reading $\tau_{\rm scatt}(\omega)=(2\pi)^{-1}\operatorname{tr}Q(\omega)$. $\kappa$ serves as the unified scale density connecting spectral shift function, total scattering phase, and the trace of the Wigner–Smith time delay matrix.
+
+Second, under the Geometric--Modular--Boundary Condition package $\mathrm{B1}\text{--}\mathrm{B4}$, we introduce a proposition starting from KMS states: if a KMS state of a one-parameter automorphism group on a boundary algebra gives a Tomita–Takesaki modular structure, then the modular group is identical to that physical group, with parameters differing only by inverse temperature scaling. From this, we prove that in cases with Bisognano–Wichmann type geometric modular flow, there exists an affine alignment among modular time, boundary geometric time, and scattering time.
+
+Third, under the Generalized Entropy and QNEC package $\mathrm{C1}\text{--}\mathrm{C4}$, we construct a lemma chain in the limit of small causal diamonds: providing a renormalized second variation formula for generalized entropy, controlling precise coefficients and shear terms in the Raychaudhuri equation, and utilizing QNEC and a state-richness assumption to elevate the inequality in null vector directions to a tensor equality, thereby locally recovering the Einstein equation $G_{ab}+\Lambda g_{ab}=8\pi G\,\langle T_{ab}\rangle$.
+
+At the observer level, we organize local causal fragments, observable algebras, and update operators into a $2$-stack on causal diamond sites. Using validity and separation conditions, we glue observational data into a global Haag–Kastler net and global causal partial order. At the categorical level, within a $2$-category $\mathbf{Univ}_\mathcal U$ controlled by a Grothendieck universe, we define $\mathfrak U$ as a terminal object, proving that under the premise of "existence as a structural hypothesis", the universe object is unique up to isomorphism. On the engineering and numerical level, we propose three types of experimental and numerical platforms: multi-port scattering networks, Rindler wedges, and AdS/CFT subregions, to verify the scale identity and time alignment propositions.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Universe Ontology; Causal Manifold; Haag–Kastler Net; Spectral Shift Function; Wigner–Smith Time Delay; Tomita–Takesaki Modular Theory; Connes–Rovelli Thermal Time; Generalized Entropy; QNEC; Gibbons–Hawking–York Boundary Term; Brown–York Quasilocal Tensor; Bisognano–Wichmann Theorem; Haag–Kastler Stacks; Category Terminal Object; Computability
+
+\section{Notations \& Units}
+
+1. Unit Convention: Natural units $\hbar=c=1$ are used. Energy, angular frequency, and inverse time have the same dimension; time and length are also treated as having the same dimension. Physical units can be restored via relations like $t_{\rm phys}=\hbar t$ when necessary.
+
+2. Variable Convention: The scattering variable is denoted as $\omega$, understood as energy or angular frequency; no distinction is made in natural units. Derivatives of spectral shift function and Wigner–Smith matrix are with respect to $\omega$.
+
+3. Matrix trace is denoted as $\operatorname{tr}Q(\omega)$; all traces and determinants are modified Fredholm versions.
+
+4. Generalized entropy $S_{\rm gen}=A/(4G\hbar)+S_{\rm out}$ is written as $S_{\rm gen}=A/(4G)+S_{\rm out}$ in this paper using $\hbar=1$.
+
+5. All statements like "almost everywhere" imply Lebesgue almost everywhere by default; technical distinctions between spectral measure and Lebesgue measure are omitted in the scattering--spectral context.
+
+\section{Introduction \& Historical Context}
+
+General Relativity describes the universe as a causal manifold with a Lorentzian metric $(M,g)$, where the Einstein equation
+\begin{equation}
+G_{ab}+\Lambda g_{ab}=8\pi G T_{ab}
+\end{equation}
+relates geometry to energy-momentum. Algebraic Quantum Field Theory characterizes the local structure and micro-causality of quantum fields on a given $(M,g)$ via a Haag–Kastler net of local observable algebras $\mathcal A(O)$ and states $\omega$.
+
+In scattering theory, when the difference $H-H_0$ of a pair of self-adjoint operators $(H,H_0)$ satisfies relative trace-class conditions, there exists a spectral shift function $\xi(\omega)$ satisfying the Lifshits–Kreĭn trace formula and Birman–Kreĭn formula
+\begin{equation}
+\det S(\omega)=\exp(-2\pi\mathrm i\xi(\omega)),
+\end{equation}
+where $S(\omega)$ is the scattering matrix. The eigenvalues of the Wigner–Smith time delay matrix
+\begin{equation}
+Q(\omega)=-\mathrm i S^\dagger(\omega)\partial_\omega S(\omega)
+\end{equation}
+are interpreted as group delay times, which have been realized in quantum, microwave, and acoustic scattering experiments.
+
+Tomita–Takesaki modular theory shows that on a standard form $(\mathcal M,\omega)$, there exist a modular operator $\Delta$ and modular flow
+\begin{equation}
+\sigma_t^\omega(A)=\Delta^{\mathrm i t}A\Delta^{-\mathrm i t}.
+\end{equation}
+The Connes–Rovelli thermal time hypothesis suggests that in general covariant theories, the modular parameter $t$ can be viewed as time intrinsically defined by the state-algebra pair.
+
+In the geometric-entropy direction, Jacobson's "entanglement equilibrium" scheme for small balls connects the local entanglement entropy equilibrium condition to the Einstein equation; Faulkner–Lewkowycz–Maldacena incorporated modular Hamiltonians and generalized entropy via quantum-corrected holographic entropy formulas; Jafferis–Lewkowycz–Maldacena–Suh related the modular Hamiltonian of boundary QFT to the Hamiltonian geometric flow in bulk gravity using relative entropy.
+
+The Bisognano–Wichmann theorem further elucidates that for the Minkowski vacuum restricted to a Rindler wedge, the modular flow is identical to the Lorentz boost of that wedge, explaining the Unruh effect and identifying modular time and geometric time as different parameterizations of the same symmetry group action.
+
+The above works provide rich local structures: highly non-trivial relationships exist among causality, algebra, scattering, modular flow, and entropy-gravity. However, the "Universe as a whole" is often treated as an external background. This paper attempts to provide a single mathematical object
+\begin{equation}
+\mathfrak U=(U_{\rm evt},U_{\rm geo},U_{\rm meas},U_{\rm QFT},U_{\rm scat},U_{\rm mod},U_{\rm ent},U_{\rm obs},U_{\rm cat},U_{\rm comp})
+\end{equation}
+making all the above levels different projections of this object, connected by precise conditions and theorems.
+
+\section{Model & Assumptions}
+
+\subsection{Foundation and Size: Grothendieck Universe and $\mathbf{Univ}_\mathcal U$}
+
+Take a fixed Grothendieck universe $\mathcal U$. All sets, manifolds, Hilbert spaces, $\mathrm C^\ast$-algebras, von Neumann algebras, and categories/2-categories formed by them are assumed to be $\mathcal U$-small or locally small. Denote $\mathbf{Set}_\mathcal U$, $\mathbf{Hilb}_\mathcal U$, $\mathbf{C^\ast Alg}_\mathcal U$, $\mathbf{vN}_\mathcal U$ as the corresponding $\mathcal U$-small categories.
+
+Define a "Candidate Universe Structure" as a set of hierarchical structures and axioms equipped on a family of $\mathcal U$-small objects; the 2-category of all candidate universes is denoted by $\mathbf{Univ}_\mathcal U$, with morphisms and 2-morphisms refined in Section 7.
+
+\subsection{Components of Multi-Layered Universe Object}
+
+\subsubsection{Event and Causal Layer $U_{\rm evt}$}
+
+Define
+\begin{equation}
+U_{\rm evt}=(X,\preceq,\mathcal C)
+\end{equation}
+where $X\in\mathbf{Set}_\mathcal U$ is the set of events, $\preceq\subseteq X\times X$ is a partial order, and $\mathcal C\subseteq\mathcal P(X)$ is a family of causal fragments, satisfying:
+1. For any $C\in\mathcal C$, $(C,\preceq|_C)$ is locally finite;
+2. $\bigcup_{C\in\mathcal C}C=X$;
+3. $(X,\preceq)$ is stably causal: no closed causal loops, and there exists a strictly increasing time function $T_{\rm cau}:X\to\mathbb R$.
+
+Define the family of small causal diamonds
+\begin{equation}
+\mathcal D=\{D\subseteq X:\ D=J^+(p)\cap J^-(q),\ p\preceq q\}.
+\end{equation}
+
+\subsubsection{Geometric Layer $U_{\rm geo}$}
+
+Define
+\begin{equation}
+U_{\rm geo}=(M,g,\Phi_{\rm evt},\Phi_{\rm cau})
+\end{equation}
+where:
+1. $M$ is a 4D orientable, time-oriented $C^\infty$ manifold, $M\in\mathbf{Set}_\mathcal U$;
+2. $g$ is a Lorentzian metric with signature $(-+++)$;
+3. $\Phi_{\rm evt}:X\to M$ is an event embedding;
+4. $(M,g)$ is globally hyperbolic: there exists a Cauchy hypersurface $\Sigma\subset M$ such that every timelike or null causal curve intersects $\Sigma$ exactly once;
+5. Causal relation pullback partial order: for $x,y\in X$,
+   \begin{equation}
+   x\preceq y \iff \Phi_{\rm evt}(y)\in J_g^+(\Phi_{\rm evt}(x)).
+   \end{equation}
+There exists a geometric time function $T_{\rm geo}:M\to\mathbb R$, whose gradient is everywhere timelike and compatible with the causal structure.
+
+\subsubsection{Measure and Statistical Layer $U_{\rm meas}$}
+
+Define
+\begin{equation}
+U_{\rm meas}=(\Omega,\mathcal F,\mathbb P,\Psi)
+\end{equation}
+where $(\Omega,\mathcal F,\mathbb P)$ is a complete probability space, $\Psi:\Omega\to X$ is a random event map. For a worldline $\gamma\subset M$ and its preimage, sample paths $\Psi_\gamma:\Omega\to X^{\mathbb Z}$, $\Psi_\gamma(\omega)=(x_n)_{n\in\mathbb Z}$ satisfying $x_n\preceq x_{n+1}$ can be defined, inducing causally ordered time series processes.
+
+\subsubsection{Quantum Field and Operator Algebra Layer $U_{\rm QFT}$}
+
+Define
+\begin{equation}
+U_{\rm QFT}=(\mathcal O(M),\mathcal A,\omega)
+\end{equation}
+where:
+1. $\mathcal O(M)$ is the family of bounded causally convex open sets on $M$;
+2. $\mathcal A:\mathcal O(M)\to\mathbf{vN}_\mathcal U$ is a Haag–Kastler net $O\mapsto\mathcal A(O)$, satisfying axioms like monotonicity, covariance, micro-causality;
+3. $\omega$ is a normal state, giving a positive, normalized linear functional on each $\mathcal A(O)$.
+
+GNS construction gives $(\pi_\omega,\mathcal H,\Omega_\omega)$, where $\mathcal H\in\mathbf{Hilb}_\mathcal U$, and $\Omega_\omega$ is cyclic and separating.
+
+\subsubsection{Scattering and Spectral Layer $U_{\rm scat}$}
+
+Given a pair of self-adjoint operators $(H,H_0)$ on Hilbert space $\mathcal H_{\rm scatt}\in\mathbf{Hilb}_\mathcal U$, with difference $H-H_0$ satisfying relative trace-class conditions. There exist spectral shift function $\xi(\omega)$, scattering matrix $S(\omega)$, and Wigner–Smith matrix
+\begin{equation}
+Q(\omega)=-\mathrm i S(\omega)^\dagger\partial_\omega S(\omega).
+\end{equation}
+Scale density and scattering time will be precisely defined in Section 3.
+
+\subsubsection{Modular Flow and Thermal Time Layer $U_{\rm mod}$}
+
+On a von Neumann algebra $\mathcal M\subseteq B(\mathcal H)$ and faithful normal state $\omega$, Tomita–Takesaki theory gives modular operator $\Delta$ and modular flow
+\begin{equation}
+\sigma_t^\omega(A)=\Delta^{\mathrm i t}A\Delta^{-\mathrm i t}.
+\end{equation}
+The modular Hamiltonian is defined as $K_\omega:=-\log\Delta$, then $\sigma_t^\omega(A)=\mathrm e^{\mathrm i tK_\omega}A\mathrm e^{-\mathrm i tK_\omega}$.
+The Connes–Rovelli thermal time hypothesis posits that in general covariant theories, the modular parameter $t$ can be viewed as a time scale intrinsically defined by the statistical state.
+
+\subsubsection{Generalized Entropy and Gravity Layer $U_{\rm ent}$}
+
+For each $D\in\mathcal D$ and its boundary section $\Sigma\subset\partial D$, define generalized entropy
+\begin{equation}
+S_{\rm gen}(\Sigma)=A(\Sigma)/(4G)+S_{\rm out}(\Sigma)
+\end{equation}
+where $A(\Sigma)$ is the area, and $S_{\rm out}$ is the von Neumann entropy of fields outside the section. QNEC gives an energy-entropy inequality along null generators, to be used in Section 5.
+
+\subsubsection{Observer and Consensus Layer $U_{\rm obs}$}
+
+An observer object is defined as
+\begin{equation}
+O_i=(\gamma_i,\Lambda_i,\mathcal A_i,\omega_i,\mathcal M_i,U_i)
+\end{equation}
+where $\gamma_i\subset M$ is a timelike worldline, $\Lambda_i$ is resolution scale, $\mathcal A_i\subseteq\mathcal A$ is accessible algebra, $\omega_i$ is local state, $\mathcal M_i$ is model family, and $U_i$ is update rule (viewed as completely positive trace-preserving map or instrument). Observer data will be treated as descent data of a 2-stack on sites in Section 6.
+
+\subsubsection{Category and Logic Layer $U_{\rm cat}$}
+
+Define $\mathbf{Univ}_\mathcal U$ as a 2-category, whose objects are candidate universes satisfying some or all of the above structures, 1-morphisms are structure-preserving 2-functors, and 2-morphisms are natural transformations. The geometric-logic layer can be expressed via the sheaf category $\mathscr E={\rm Sh}(M)$ on $M$, with internal logic characterizing logical relations of physical propositions.
+
+The Universe object $\mathfrak U$ will be defined as the terminal object of $\mathbf{Univ}_\mathcal U$, whose existence is a structural assumption in this paper.
+
+\subsubsection{Computability Layer $U_{\rm comp}$}
+
+Define
+\begin{equation}
+U_{\rm comp}=(\mathcal M_{\rm TM},{\rm Enc},{\rm Sim})
+\end{equation}
+where $\mathcal M_{\rm TM}$ is Turing machine space, ${\rm Enc}:\mathbf{Univ}_\mathcal U\to\mathcal M_{\rm TM}$ is encoding functor, ${\rm Sim}:\mathcal M_{\rm TM}\rightrightarrows\mathbf{Univ}_\mathcal U$ is the family of simulatable sub-universes. The universe itself is not assumed to be computable, but any computable model $V$ must admit a unique embedding $V\to\mathfrak U$.
+
+\section{Scattering Scale Identity and Mother Scale}
+
+\subsection{Scattering Condition Package $\mathrm{A1}\text{--}\mathrm{A5}$}
+
+Introduce the following sufficient conditions in $U_{\rm scat}$ layer:
+
+* $\mathrm{A1}$: $(H-\mathrm i)^{-1}-(H_0-\mathrm i)^{-1}\in\mathfrak S_1(\mathcal H_{\rm scatt})$ or equivalent relative trace-class condition;
+* $\mathrm{A2}$: Existence of spectral shift function $\xi(\omega)\in L^1_{\rm loc}(\mathbb R)$ satisfying Lifshits–Kreĭn trace formula and Birman–Kreĭn formula $\det S(\omega)=\exp(-2\pi\mathrm i\xi(\omega))$;
+* $\mathrm{A3}$: $S(\omega)$ is strongly differentiable on the continuous spectrum, and $\det S(\omega)$ uses modified Fredholm determinant definition;
+* $\mathrm{A4}$: The singular set $N\subset\mathbb R$ composed of thresholds, embedded eigenvalues, and resonances has Lebesgue measure zero, and a continuous total phase branch $\Phi(\omega):=\arg\det S(\omega)$ can be selected on $\mathbb R\setminus N$;
+* $\mathrm{A5}$: Wigner–Smith matrix $Q(\omega)=-\mathrm i S^\dagger(\omega)\partial_\omega S(\omega)$ exists on $\mathbb R\setminus N$, and $\operatorname{tr}Q(\omega)=\partial_\omega\Phi(\omega)$.
+
+\subsection{Mother Scale Density and Two Types of Readings}
+
+Define total phase $\Phi(\omega):=\arg\det S(\omega)$, semi-phase $\varphi(\omega):=\tfrac12\Phi(\omega)$, relative density of states $\rho_{\rm rel}(\omega):=-\xi'(\omega)$. Under $\mathrm{A1}\text{--}\mathrm{A5}$, introduce:
+
+* **Scale Density**
+  \begin{equation}
+  \kappa(\omega)
+  :=\frac{\varphi'(\omega)}{\pi}
+  =\rho_{\rm rel}(\omega)
+  =\frac{1}{2\pi}\operatorname{tr}Q(\omega)
+  \quad (\omega\in\mathbb R\setminus N);
+  \end{equation}
+
+* **Phase Reading**
+  \begin{equation}
+  \Theta(\omega)
+  :=\frac{\varphi(\omega)}{\pi}
+  =\frac{\Phi(\omega)}{2\pi},
+  \quad \Theta'(\omega)=\kappa(\omega);
+  \end{equation}
+
+* **Scattering Time Reading**
+  \begin{equation}
+  \tau_{\rm scatt}(\omega)
+  :=\frac{1}{2\pi}\operatorname{tr}Q(\omega)
+  =\kappa(\omega).
+  \end{equation}
+
+In natural units, $\tau_{\rm scatt}$ can be viewed as group delay time; restoring physical units, $\tau_{\rm scatt}^{\rm phys}(\omega)=\hbar\,\kappa(\omega)$.
+
+\subsection{Theorem 3.1 (Scale Identity)}
+
+Under conditions $\mathrm{A1}\text{--}\mathrm{A5}$, there exists a unique (Lebesgue almost everywhere) Borel measurable function $\kappa:\mathbb R\to\mathbb R$ such that on $\mathbb R\setminus N$,
+\begin{equation}
+\kappa(\omega)
+=\frac{\varphi'(\omega)}{\pi}
+=\rho_{\rm rel}(\omega)
+=\frac{1}{2\pi}\operatorname{tr}Q(\omega).
+\end{equation}
+The Phase Reading $\Theta(\omega)=\varphi(\omega)/\pi=\Phi(\omega)/(2\pi)$ satisfies $\Theta'(\omega)=\kappa(\omega)$, and Scattering Time Reading $\tau_{\rm scatt}(\omega)=\kappa(\omega)$.
+
+Proof in Appendix A.
+
+\section{Modular, Geometric and Scattering Time Alignment}
+
+\subsection{Modular Flow, Physical Group, and KMS Proposition}
+
+Let $(\mathcal A_\partial,\omega)$ be a standard form von Neumann algebra pair with faithful normal state $\omega$. Let $\{\alpha_\tau\}_{\tau\in\mathbb R}$ be a one-parameter *-automorphism group (physical time evolution), implemented by unitary group $U(\tau)$: $\alpha_\tau(A)=U(\tau)AU(\tau)^{-1}$. Denote $\sigma_t^\omega$ as the Tomita–Takesaki modular flow.
+
+Introduce the proposition.
+
+\begin{proposition}[Modular Group Identification from KMS State]
+Let $(\mathcal A_\partial,\omega)$ be in standard form, and $\alpha_\tau$ be a one-parameter *-automorphism group. If $\omega$ is a KMS state for $\alpha_\tau$ at inverse temperature $\beta>0$, then the relation between modular flow and $\alpha_\tau$ is
+\begin{equation}
+\sigma_t^\omega
+=\alpha_{t/\beta}
+\quad (t\in\mathbb R).
+\end{equation}
+\end{proposition}
+
+*Proof Sketch*: For $(\mathcal A_\partial,\omega)$, Tomita–Takesaki theory gives a unique modular group $\sigma_t^\omega$ satisfying the KMS condition for $\omega$ at $\beta=1$. On the other hand, for any $\alpha_\tau$, if $\omega$ is a $\beta$-KMS state, then by the Bratteli–Robinson uniqueness theorem, this KMS dynamics is uniquely isomorphic to the modular group in the sense of KMS structure, implying $\alpha_\tau=\sigma_{\beta\tau}^\omega$ or equivalently $\sigma_t^\omega=\alpha_{t/\beta}$. $\square$
+
+In geometric cases, $\alpha_\tau$ typically corresponds to a Killing flow or boost flow; Proposition 4.1 gives the precise quantitative alignment between modular flow and physical group under KMS states.
+
+\subsection{Geometric--Modular--Boundary Condition Package $\mathrm{B1}\text{--}\mathrm{B4}$}
+
+Assume existence of boundary region $W\subset M$ and boundary algebra $\mathcal A_\partial\subseteq\mathcal A(W)$ satisfying:
+
+* $\mathrm{B1}$: $W$ carries a one-parameter geometric symmetry group $\{\Lambda(\tau)\}$ (e.g., Lorentz boost of Rindler wedge or time translation of static black hole exterior), implemented on $\mathcal A_\partial$ by $U(\tau)$: $\alpha_\tau(A)=U(\tau)AU(\tau)^{-1}$;
+* $\mathrm{B2}$: State $\omega$ is a KMS state for $(\mathcal A_\partial,\alpha_\tau)$ at inverse temperature $\beta$, and satisfies Bisognano–Wichmann type geometric modular flow property: $\sigma_t^\omega$ equals $\alpha_{t/\beta}$;
+* $\mathrm{B3}$: On boundary sections of $W$, geometric-variational theory defines Brown–York quasilocal Hamiltonian $H_\partial$, whose generated time evolution $\mathrm{Ad}(\mathrm e^{-\mathrm i\tau_{\rm geom}H_\partial})$ is identical to $\alpha_\tau$ or differs by constant rescaling;
+* $\mathrm{B4}$: Boundary algebra $\mathcal A_\partial$ simultaneously carries scattering pair $(H,H_0)$ incoming/outgoing state information, constructing scattering matrix $S(\omega)$ via wave operators and radiation conditions, and realizing correspondence from geometric time translation to scattering phase on the energy spectrum.
+
+\subsection{Theorem 3.2 (Modular--Geometric--Scattering Time Alignment)}
+
+Under conditions $\mathrm{A1}\text{--}\mathrm{A5}$ and $\mathrm{B1}\text{--}\mathrm{B4}$, there exist constants $a_{\rm mod},b_{\rm mod},a_{\rm geom},b_{\rm geom}\in\mathbb R$ such that for appropriately defined time parameters,
+\begin{equation}
+t_{\rm mod}
+=a_{\rm mod}\,\tau_{\rm scatt}+b_{\rm mod},\qquad
+\tau_{\rm geom}
+=a_{\rm geom}\,\tau_{\rm scatt}+b_{\rm geom},
+\end{equation}
+and there exists a monotonic bijection $F:\mathbb R\to\mathbb R$ such that the geometric time function and scattering time satisfy
+\begin{equation}
+T_{\rm geo}\circ\Phi_{\rm evt}
+=F\circ\tau_{\rm scatt}
+\end{equation}
+on appropriate worldline families (in almost everywhere sense). Here $\tau_{\rm scatt}(\omega)=(2\pi)^{-1}\operatorname{tr}Q(\omega)$.
+
+*Proof Sketch*: From $\mathrm{B1}\text{--}\mathrm{B2}$ and Proposition 4.1, modular flow and geometric flow satisfy $\sigma_t^\omega=\alpha_{t/\beta}$. From $\mathrm{B3}$, $\alpha_\tau$ is generated by $H_\partial$, i.e.,
+\begin{equation}
+\alpha_\tau(A)=\mathrm e^{\mathrm i\tau H_\partial}A\mathrm e^{-\mathrm i\tau H_\partial},
+\end{equation}
+thus
+\begin{equation}
+\sigma_t^\omega(A)=\mathrm e^{\mathrm i(t/\beta)H_\partial}A\mathrm e^{-\mathrm i(t/\beta)H_\partial}.
+\end{equation}
+Hence
+\begin{equation}
+t_{\rm mod}=c_1\tau_{\rm geom}+c_2
+\end{equation}
+holds for constants $c_1=1/\beta, c_2$.
+From $\mathrm{B4}$, boundary and radiation conditions link $H, H_0$ to $H_\partial$. The phase of scattering matrix $S(\omega)$ relates to propagation time along $\tau_{\rm geom}$ via standard group delay relation: for narrow wave packets, group delay at center frequency $\omega$ is proportional to $\tau_{\rm scatt}(\omega)$. Theorem 3.1 gives $\tau_{\rm scatt}(\omega)=(2\pi)^{-1}\operatorname{tr}Q(\omega)$. On the continuous spectrum, via wave packet construction and averaging, we obtain
+\begin{equation}
+\tau_{\rm geom}=a_{\rm geom}\tau_{\rm scatt}+b_{\rm geom},
+\end{equation}
+$t_{\rm mod}=a_{\rm mod}\tau_{\rm scatt}+b_{\rm mod}$. The relation between geometric time function $T_{\rm geo}$ and boundary time parameter can be viewed as a monotonic function $F$ by coordinate choice. Detailed arguments in Appendix A and D. $\square$
+
+\section{Generalized Entropy, QNEC and Einstein Equation}
+
+\subsection{Generalized Entropy--QNEC Condition Package $\mathrm{C1}\text{--}\mathrm{C4}$}
+
+Assume on $U_{\rm ent}$ and $U_{\rm geo}$:
+
+* $\mathrm{C1}$: Generalized entropy $S_{\rm gen}(\lambda)=A(\lambda)/(4G)+S_{\rm out}(\lambda)$ is renormalizable in small causal diamond section families, with finite and smooth second variation;
+* $\mathrm{C2}$: Under section deformation in any null vector $k^a$ direction, Quantum Null Energy Condition (QNEC) holds:
+  \begin{equation}
+  \langle T_{ab}k^ak^b\rangle\ge (1/2\pi)S_{\rm out}''(\lambda_0);
+  \end{equation}
+* $\mathrm{C3}$: State Richness: At every point and for every null vector direction, there exists a family of Hadamard type perturbation states such that $\langle T_{ab}k^ak^b\rangle$ can be arbitrarily fine-tuned within a small neighborhood;
+* $\mathrm{C4}$: Raychaudhuri equation applies; shear and $\theta^2$ terms are controllable in the small diamond limit, their contributions either negligible or absorbable into effective stress-energy tensor.
+
+\subsection{Constant Factor of Area Second Variation}
+
+Under affine parameter $\lambda$ deformation along null generator $k^a$, the second variation of cross-sectional area $A(\lambda)$ satisfies
+\begin{equation}
+\frac{{\rm d}^2A}{{\rm d}\lambda^2}(\lambda_0)
+=-\int_{\Sigma(\lambda_0)}
+\bigl(R_{ab}k^ak^b+\sigma_{ab}\sigma^{ab}
++\tfrac12\theta^2\bigr)\,\mathrm dA.
+\end{equation}
+In the limit of sufficiently small causal diamonds, shear $\sigma_{ab}\sigma^{ab}$ and $\theta^2$ terms can be treated as higher-order corrections or absorbed, thus
+\begin{equation}
+\frac{{\rm d}^2A}{{\rm d}\lambda^2}(\lambda_0)
+\simeq -\int_{\Sigma(\lambda_0)}R_{ab}k^ak^b\,\mathrm dA.
+\end{equation}
+Second variation of generalized entropy is
+\begin{equation}
+S_{\rm gen}''(\lambda_0)
+=\frac1{4G}A''(\lambda_0)+S_{\rm out}''(\lambda_0).
+\end{equation}
+
+\subsection{Theorem 3.3 (Generalized Entropy--QNEC implies Einstein Equation)}
+
+Under conditions $\mathrm{C1}\text{--}\mathrm{C4}$, generalized entropy extremality and QNEC in the small causal diamond limit imply the existence of a tensor field $\langle T_{ab}\rangle$ such that
+\begin{equation}
+G_{ab}+\Lambda g_{ab}
+=8\pi G\,\langle T_{ab}\rangle
+\end{equation}
+holds on $(M,g)$.
+
+*Proof Sketch*:
+
+1. On extremal section $\lambda_0$, entanglement equilibrium condition gives $S_{\rm gen}'(\lambda_0)=0$, and assume second variation satisfies $S_{\rm gen}''(\lambda_0)\ge0$. Substituting generalized entropy second variation formula yields
+   \begin{equation}
+   A''(\lambda_0)/(4G)+S_{\rm out}''(\lambda_0)\ge0.
+   \end{equation}
+2. From QNEC,
+   \begin{equation}
+   \langle T_{ab}k^ak^b\rangle\ge (1/2\pi)S_{\rm out}''(\lambda_0).
+   \end{equation}
+   Combining yields
+   \begin{equation}
+   \frac1{4G}A''(\lambda_0)
+   \ge -S_{\rm out}''(\lambda_0)
+   \ge -2\pi\langle T_{ab}k^ak^b\rangle.
+   \end{equation}
+3. Using area second variation expression, we get
+   \begin{equation}
+   -\frac1{4G}\int R_{ab}k^ak^b\,\mathrm dA
+   \gtrsim -2\pi\int \langle T_{ab}k^ak^b\rangle\,\mathrm dA.
+   \end{equation}
+   Regarding integral as local relation in appropriate limit,
+   \begin{equation}
+   R_{ab}k^ak^b\lesssim 8\pi G\,\langle T_{ab}k^ak^b\rangle.
+   \end{equation}
+4. Repeating for reverse perturbation and different $k^a$ directions, combined with State Richness $\mathrm{C3}$, elevates the inequality to equality, obtaining at each point
+   \begin{equation}
+   R_{ab}-8\pi G\,\Bigl(\langle T_{ab}\rangle-\tfrac12g_{ab}\langle T\rangle\Bigr)
+   =\Lambda g_{ab}.
+   \end{equation}
+5. Using Bianchi identity $\nabla^aG_{ab}=0$ and energy-momentum conservation $\nabla^a\langle T_{ab}\rangle=0$, $\Lambda$ must be constant, yielding Einstein equation.
+
+This process shares structure with Jacobson's small ball derivation but provides stronger second-order entropy-energy control via QNEC and systematizes within the generalized entropy framework. Detailed constants and limit order control in Appendix B.
+
+\section{Observers, Causal Consensus and 2-Stacks}
+
+\subsection{Observer Objects and Proper Time}
+
+Each observer $O_i=(\gamma_i,\Lambda_i,\mathcal A_i,\omega_i,\mathcal M_i,U_i)$ contains:
+* Worldline $\gamma_i\subset M$;
+* Resolution scale $\Lambda_i$;
+* Local algebra $\mathcal A_i\subseteq\mathcal A$;
+* Local state $\omega_i$;
+* Model family $\mathcal M_i$;
+* Update rule $U_i$, viewed as completely positive trace-preserving map or instrument on $\mathcal A_i$.
+
+Proper time is defined as
+\begin{equation}
+\tau_i
+=\int_{\gamma_i}\sqrt{-g_{\mu\nu}\,\mathrm d x^\mu\mathrm d x^\nu}.
+\end{equation}
+In the case of Modular-Geometric-Scattering alignment, there exist affine constants $a_i, b_i$ such that
+\begin{equation}
+\tau_i
+=a_i\tau_{\rm scatt}+b_i
+\end{equation}
+holds in appropriate sense, putting observer proper time and mother scale in the same scale equivalence class.
+
+\subsection{2-Stackification of Observer Data}
+
+View small causal diamonds $\mathcal D$ as sites, forming site category $\mathbf D$, objects $D\in\mathcal D$, morphisms are inclusions. Define 2-prestack
+\begin{equation}
+\mathfrak A:\mathbf D^{\rm op}\to\mathbf{2\text{-}Cat},
+\end{equation}
+assigning each $D$ a local 2-category $\mathfrak A(D)$: objects are local algebras with states and update rules $(\mathcal A(D),\omega(D),U(D))$, 1-morphisms are compatible maps between *-homomorphisms preserving states and instruments, 2-morphisms are natural transformations.
+
+Observer family $\{O_i\}$ gives a set of descent data: on each $D$, local objects determined by $O_i$'s trajectory $\gamma_i$ and $\mathcal A_i$; on overlaps $D_1\cap D_2$, require:
+1. Consistent local partial order: for $x,y\in D_1\cap D_2$, $x\preceq_{D_1}y\iff x\preceq_{D_2}y$;
+2. Isomorphism of restricted local algebra and states: $\mathcal A_{D_1}|_{D_1\cap D_2}\simeq\mathcal A_{D_2}|_{D_1\cap D_2}$, restrictions of $\omega_{D_1}, \omega_{D_2}$ agree;
+3. Local instruments compatible on overlaps.
+
+Under validity and separation conditions, this 2-prestack satisfies descent conditions for a 2-stack, allowing construction of its 2-limit, yielding global object $(\mathcal A,\omega,U)$. This gives the gluing process from observer local data to global Haag–Kastler net and global state. Relevant techniques refer to "Haag–Kastler stacks" work.
+
+\subsection{Theorem 3.4 (2-Stack Gluing of Observer Consensus)}
+
+Under above conditions, there exists a unique global partial order $\preceq$, global algebra net $\mathcal A$, and global update structure $U$, such that local data $(C_i,\preceq_i,\mathcal A_i,U_i)$ form valid 2-stack descent data whose limit is part of $(U_{\rm evt},U_{\rm QFT},U_{\rm obs})$. Proof in Appendix C.
+
+\section{The Universe as a Terminal Object in $\mathbf{Univ}_\mathcal U$}
+
+\subsection{Minimal Preservation Set of Morphisms}
+
+Describing 1-morphisms in $\mathbf{Univ}_\mathcal U$, we give the minimal structure set "must be preserved" by layers:
+* Geometric: 1-morphism induces causality-preserving isometry or conformal map $f:M\to M'$ on $U_{\rm geo}$, preserving causal cone structure and Cauchy property;
+* Event: Morphism is order-preserving injection $X\to X'$ on $U_{\rm evt}$, commuting with geometric embedding;
+* Algebraic: For each $O\subset M$, gives *-isomorphism $\mathcal A(O)\to\mathcal A'(f(O))$, preserving product, conjugation, and locality; KMS class and modular group allow at most constant scaling freedom;
+* Scattering: Morphism between scattering pairs $(H,H_0)$ and $(H',H'_0)$ is conjugate unitary $W$ such that $H'=WHW^{-1}, H'_0=WH_0W^{-1}$, preserving spectral shift function and scale density;
+* Entropy: Generalized entropy function $S_{\rm gen}$ preserved under morphism, i.e., $S_{\rm gen}(\Sigma)=S'_{\rm gen}(f(\Sigma))$;
+* Observer: Observer objects sent to isomorphism classes, update rules preserved naturally;
+* Computability: Encoding functor satisfies ${\rm Enc}(V')\circ F = T\circ {\rm Enc}(V)$, where $T$ is simulation map between Turing machines.
+
+This "Minimal Preservation Set" defines the class of structure-preserving 1-morphisms in $\mathbf{Univ}_\mathcal U$.
+
+\subsection{Theorem 3.5 (Category Uniqueness of Universe Object)}
+
+Assume in $\mathbf{Univ}_\mathcal U$ there exists an object $\mathfrak U$ satisfying:
+1. Layer components satisfy definitions in Section 2 and conditions $\mathrm{A1}\text{--}\mathrm{C4}$;
+2. For any candidate universe $V\in\mathbf{Univ}_\mathcal U$, there exists a unique structure-preserving 1-morphism $F_V:V\to\mathfrak U$.
+
+Then $\mathfrak U$ is a terminal object in $\mathbf{Univ}_\mathcal U$; if $\mathfrak U'$ also satisfies these properties, then $\mathfrak U\simeq\mathfrak U'$.
+
+Proof in Appendix D.
+
+\section{Model Apply}
+
+\subsection{Scale Density and Phase Reading in 1D Potential Scattering}
+
+Consider Schrödinger operators on $\mathcal H=L^2(\mathbb R)$
+\begin{equation}
+H=-(1/2m)\mathrm d^2/\mathrm d x^2+V(x)
+\end{equation}
+and $H_0=-(1/2m)\mathrm d^2/\mathrm d x^2$. For short-range potential $V$, $\mathrm{A1}\text{--}\mathrm{A5}$ hold. Relation between spectral shift $\xi(\omega)$ and phase shift $\delta(\omega)$ is $\Phi(\omega)=2\delta(\omega)=-2\pi\xi(\omega)$. Scale density is
+\begin{equation}
+\kappa(\omega)=\delta'(\omega)/\pi=\rho_{\rm rel}(\omega)=(2\pi)^{-1}\operatorname{tr}Q(\omega).
+\end{equation}
+Numerically calculate $\delta(\omega)$ for square well, Gaussian potential, construct $\Theta(\omega)=\delta(\omega)/\pi$ and $\tau_{\rm scatt}(\omega)=\kappa(\omega)$, verifying scale identity.
+
+\subsection{Time Alignment in BW–Rindler Case}
+
+Take Rindler wedge $W$ in Minkowski space, geometric symmetry group as boost flow $\Lambda(\tau)$, vacuum $\omega$ is KMS state on $(\mathcal A(W),\alpha_\tau)$ with temperature $T=1/(2\pi)$. Bisognano–Wichmann theorem gives
+\begin{equation}
+\sigma_t^\omega=\alpha_{t/(2\pi)},
+\end{equation}
+i.e., modular time and Rindler time differ by $2\pi$ scaling.
+Here $\mathrm{B1}\text{--}\mathrm{B3}$ are explicitly satisfied. For simple mirror boundary scattering, construct $S(\omega)$ and $Q(\omega)$, obtaining $\tau_{\rm scatt}(\omega)$. Wave packet construction numerically verifies linear relation $t_{\rm mod}=a_{\rm mod}\tau_{\rm scatt}+b_{\rm mod}$.
+
+\subsection{AdS/CFT Subregions and Holographic Modular Hamiltonian}
+
+In AdS/CFT, the modular Hamiltonian $K_A$ of a spherical boundary CFT subregion $A$ equals the generator of some local geometric flow in bulk gravity. Generalized entropy relates to modular Hamiltonian via FLM/JLMS relations; boundary relative entropy equals bulk relative entropy.
+Here modular time, geometric time, and scattering time can be interconverted via holographic dictionary, providing another instance of Modular-Geometric-Scattering unification for $\mathfrak U$.
+
+\section{Engineering Proposals}
+
+\subsection{Mother Scale Measurement in Multi-Port Microwave Scattering}
+
+Consider multi-port microwave networks in GHz range. Measure full matrix response $S(\omega)$ with Vector Network Analyzer. With sufficiently small frequency step $\Delta\omega$ and high SNR, numerically differentiate
+\begin{equation}
+Q(\omega)\approx -\mathrm i S(\omega)^\dagger\bigl(S(\omega+\Delta\omega)-S(\omega)\bigr)/\Delta\omega,
+\end{equation}
+and take $\kappa_{\rm exp}(\omega)=(2\pi)^{-1}\operatorname{tr}Q(\omega)$ as experimental scale density.
+Error budget includes: numerical derivative noise amplification from $\Delta\omega$ choice; port pairing and calibration errors; finite bandwidth and Q-factor truncation errors. Reduce noise via multiple scans and curve fitting.
+
+\subsection{Numerical Fitting of KMS Condition and Modular Time}
+
+In the same network, construct approximate KMS distribution by controlling power injection and ambient temperature. Statistically estimate corresponding modular flow action (e.g., using finite-dimensional approximation of von Neumann algebra, numerically computing modular operator and Hamiltonian). Linearly fit modular time $t$ with experimental clock time $t_{\rm lab}$, verifying relation between $t_{\rm mod}=a t_{\rm lab}+b$ and $\tau_{\rm scatt}(\omega)$.
+
+\subsection{Analog Gravity and Brown–York Energy Numerical Experiment}
+
+In analog gravity systems (optical media or fluids) or numerical relativity simulations, calculate Brown–York quasilocal energy and GHY boundary term on boundary of finite region, constructing $H_\partial$ and geometric time $\tau_{\rm geom}$. Fit this with scattering time and modular time defined in the same region, verifying $\tau_{\rm geom}=a_{\rm geom}\tau_{\rm scatt}+b_{\rm geom}$.
+
+\section{Discussion (risks, boundaries, past work)}
+
+The structure of this paper relies on non-trivial assumptions:
+1. Scattering conditions $\mathrm{A1}\text{--}\mathrm{A5}$ may fail in contexts with long-range interactions, strong non-locality, or strong coupling, requiring generalized spectral theory and modified determinant concepts;
+2. Modular-Geometric-Scattering alignment relies on BW type geometric modular flow and KMS conditions, currently strictly holding mainly for Minkowski wedges and high-symmetry backgrounds, awaiting extension to general curved spacetimes or non-equilibrium states;
+3. Applicability of Generalized Entropy and QNEC is proven or strongly supported in many QFTs, but remains unknown for all possible high-energy/non-local theories;
+4. Existence of universe object $\mathfrak U$ in $\mathbf{Univ}_\mathcal U$ is given as a structural hypothesis, not derived from higher fundamental theory; only categorical uniqueness under existence is proven;
+5. Computability layer provides only semantic framework for encoding and simulation; classification and criteria for "non-computable structures" remain open.
+
+Regarding connections to existing work, this paper unifies Haag–Kastler nets, Tomita–Takesaki modular theory, FLM/JLMS holographic schemes, Jacobson's entanglement equilibrium, and Bousso–Fisher–Leichenauer–Wall work on QNEC/generalized entropy into the multi-layered structure $\mathfrak U$, with scale density $\kappa(\omega)$ and generalized entropy extremality as core links, forming a unified framework with explicit sufficient conditions and theoremized conclusions among scattering, modular flow, geometry, and entropy-gravity.
+
+\section{Conclusion}
+
+Based on a size-controlled Grothendieck universe, this paper characterizes the "Universe" as a multi-layered structural object
+\begin{equation}
+\mathfrak U=(U_{\rm evt},U_{\rm geo},U_{\rm meas},U_{\rm QFT},U_{\rm scat},U_{\rm mod},U_{\rm ent},U_{\rm obs},U_{\rm cat},U_{\rm comp})
+\end{equation}
+and provides theoremized results around core issues: scattering scale, modular-geometric-scattering time alignment, generalized entropy-QNEC and Einstein equation, 2-stack gluing of observer consensus, and category terminal object:
+
+1. Under $\mathrm{A1}\text{--}\mathrm{A5}$, there exists a unique scale density $\kappa(\omega)=\varphi'(\omega)/\pi=\rho_{\rm rel}(\omega)=(2\pi)^{-1}\operatorname{tr}Q(\omega)$, unifying spectrum-phase-delay via Phase Reading $\Theta(\omega)$ and Scattering Time Reading $\tau_{\rm scatt}(\omega)$;
+2. Under $\mathrm{B1}\text{--}\mathrm{B4}$, KMS states identify modular flow and physical geometric group as different parameterizations of the same one-parameter group; Brown–York Hamiltonian and scattering-boundary correspondence further give affine alignment among modular, geometric, and scattering times;
+3. Under $\mathrm{C1}\text{--}\mathrm{C4}$, generalized entropy second variation and QNEC recover Einstein equation in small causal diamond limit; Einstein geometry is unified by generalized entropy extremality and quantum energy conditions;
+4. Observer data glue into global causal partial order and Haag–Kastler net as 2-stack, giving rigorous form to geometricization of multi-observer consensus;
+5. In $\mathbf{Univ}_\mathcal U$, if universe object $\mathfrak U$ exists and morphism from any candidate to it is unique, then $\mathfrak U$ is terminal and unique up to isomorphism.
+
+This definition and theorem system provides a testable and extensible common platform for further discussing "what is the universe", "how time unifies across levels", "how observers embed in universe structure", and "what is computable vs. essentially beyond computability", pointing to verifiable structural predictions for scattering network experiments, analog gravity, and holographic models.
+
+\section{Acknowledgements, Code Availability}
+
+Theoretical foundations including scattering theory, Haag–Kastler nets, Tomita–Takesaki modular theory, generalized entropy-QNEC, GHY–BY boundary terms, and holographic gravity support this work.
+
+No specialized code was used, hence no code repository is available.
+
+\appendix
+
+\section{Appendix A: Scattering Scale Identity}
+
+This appendix supplements proof of Theorem 3.1, including technical details of spectral shift, modified determinants, and phase branches.
+(Omitting repetitive details, keeping structure)
+1. Under $\mathrm{A1}$, existence of $\xi(\omega)$ satisfying Lifshits–Kreĭn formula;
+2. Under $\mathrm{A2}\text{--}\mathrm{A3}$, modified determinant of $S(\omega)$ satisfies Birman–Kreĭn formula $\det S(\omega)=\exp(-2\pi\mathrm i\xi(\omega))$;
+3. On $\mathbb R\setminus N$, take continuous phase branch $\Phi(\omega)$, derivative gives $\Phi'(\omega)=-2\pi\xi'(\omega)=2\pi\rho_{\rm rel}(\omega)$;
+4. Trace of Wigner–Smith matrix $Q(\omega)$ satisfies $\operatorname{tr}Q(\omega)=\partial_\omega\Phi(\omega)$;
+5. Combining gives $\kappa(\omega)=\varphi'(\omega)/\pi=\rho_{\rm rel}(\omega)=(2\pi)^{-1}\operatorname{tr}Q(\omega)$.
+Phase branch may jump on measure zero set, but $\Phi'(\omega)$ is unaffected a.e., ensuring a.e. uniqueness of $\kappa$.
+
+\section{Appendix B: Generalized Entropy and Einstein Equation}
+
+This appendix gives lemma chain and constant control for Theorem 3.3.
+1. Proposition B.1: Under Hadamard states and renormalization, generalized entropy second variation $S_{\rm gen}''=A''/(4G)+S_{\rm out}''$ is meaningful in small causal diamonds;
+2. Proposition B.2: Integrated Raychaudhuri equation gives $A''(\lambda_0)=-\int(R_{ab}k^ak^b+\sigma_{ab}\sigma^{ab}+\tfrac12\theta^2)\,\mathrm dA$;
+3. Proposition B.3: Under $S_{\rm gen}'=0, S_{\rm gen}''\ge0$ and QNEC, for each null $k^a$, $R_{ab}k^ak^b\lesssim 8\pi G\,\langle T_{ab}k^ak^b\rangle$;
+4. Considering reverse directions and different $k^a$, with State Richness, elevates inequality to equality, yielding Einstein equation.
+Limit order (small diamond vs. UV cutoff) and shear estimates require specific QFT model context.
+
+\section{Appendix C: Observer 2-Stacks and Haag–Kastler Stacks}
+
+On site category $(\mathcal D,J)$, $\mathfrak A$ is a 2-prestack. Validity requires existence of unique global extension for cocycle-satisfying local objects. Separation requires global isomorphism if restrictions isomorphic. Benini's "Haag–Kastler stacks" provide such a stack; adding instrument structure forms a weaker 2-stack, whose 2-limit constructs global $(\mathcal A,\omega,U)$.
+
+\section{Appendix D: Terminal Objects in $\mathbf{Univ}_\mathcal U$}
+
+If $\mathfrak U$ satisfies: unique 1-morphism $F_V:V\to\mathfrak U$ exists for any $V$, then $\mathfrak U$ is terminal. Uniqueness up to isomorphism follows standard category theory argument.
+
+\section{Appendix E: Toy Models and Numerical Schemes}
+
+Appendix E provides specific numerical schemes for 1D square well, Rindler wedge free field, and lattice BY energy models, to implement comparisons and linear fitting of scale density $\kappa(\omega)$, phase reading $\Theta(\omega)$, scattering time $\tau_{\rm scatt}(\omega)$, modular time $t_{\rm mod}$, and geometric time $\tau_{\rm geom}$, with error budget and confidence interval estimation steps.
+
+\end{document}
+

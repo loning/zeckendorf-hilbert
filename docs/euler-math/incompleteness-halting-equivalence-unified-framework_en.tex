@@ -1,0 +1,276 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Title information
+\title{Incompleteness = Non-Halting: An Equivalence Theorem Under a Unified Framework of Logic--Computation--Information--Dynamics}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today\\
+\small Version: 1.7}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We establish a rigorous equivalence chain across three layers---\textbf{logic--computation}, \textbf{information--measurement}, and \textbf{reversible dynamics}---in an augmentation process subject to a ``liveness (completeness-halting) constraint'': \textbf{unreachable completeness} if and only if \textbf{non-termination}. At the logical layer, Turing's undecidability of the halting problem and the Gödel--Rosser incompleteness theorem form the necessary and sufficient endpoints; at the information--measurement layer, Windowed Scattering--Information Geometry (WSIG) yields, under finite resources, a residual budget composed of \textbf{aliasing--Bernoulli layer--tail term} and \textbf{KL model mismatch}; unless all four ideal conditions---bandlimited+Nyquist, infinite-order EM (or exact-order cases), no tail truncation, and $p=q$---are met simultaneously (including degeneracies), this budget is \textbf{strictly positive} under the corresponding non-degenerate conditions at any finite stage, thus precluding halting under the liveness constraint of ``residual$\to0$''; at the dynamical layer, ``completeness'' is characterized by \textbf{reversible local boundary completion (RLBC)} of reversible cellular automata (RCA), and since surjectivity/reversibility of two-dimensional CA is undecidable and there exists \textbf{no uniform procedure that certifies ``global bijection attained'' for all instances in finite stages}, boundary extension generally cannot be guaranteed to terminate in finite steps. The three layers merge into the main equivalence \textbf{``Incompleteness = Non-Halting''}, with several reproducible instances and extensible directions provided.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Halting problem; Incompleteness; $\Sigma^0_1$-hard; Windowed scattering; Pinsker inequality; Birman--Kreĭn formula; Wigner--Smith group delay; Reversible cellular automata; Garden-of-Eden
+
+\section*{Notation \& Axioms / Conventions}
+
+\textbf{(Card A: Gauge Unification)} We adopt the scattering unified gauge
+\begin{equation}
+\frac{\varphi'(E)}{\pi} = \rho_{\mathrm{rel}}(E) = \frac{1}{2\pi}\operatorname{tr}\mathsf Q(E),\quad \mathsf Q(E)=-i S(E)^\dagger \partial_E S(E).
+\end{equation}
+With the Birman--Kreĭn formula convention $\det S(E)=\exp(2\pi i\xi(E))$, we have $\partial_E\arg\det S(E)=2\pi\xi'(E)=\operatorname{tr}\mathsf Q(E)$. \textbf{Define the total scattering phase}
+\begin{equation}
+\boxed{\varphi(E):=\tfrac{1}{2}\arg\det S(E)\ \text{(continuous branch)}}
+\end{equation}
+so that $\varphi'(E)=\tfrac{1}{2}\operatorname{tr}\mathsf Q(E)$, consistent with the gauge $\rho_{\mathrm{rel}}(E)=(1/2\pi)\operatorname{tr}\mathsf Q(E)$. This notation coincides with the relative density of states under unitary scattering.\,\cite{WignerSmith}
+
+\textbf{(Card B: Finite-Order NPE Discipline)} Any windowed measurement employs the Nyquist--Poisson--Euler--Maclaurin three-fold decomposition: under bandlimiting and Nyquist sampling step, aliasing terms vanish; finite-order Euler--Maclaurin provides only \textbf{bounded and controllable} Bernoulli layer errors; tail terms from truncated windows are controlled by support/regularity. Constant normalization follows NIST DLMF.\,\cite{DLMF}
+
+\textbf{Terminology Convention:} ``Window/measurement/readout'' uniformly refer to operator--measure--function objects (Toeplitz/Berezin compression), without experimental narratives; ``liveness (completeness-halting) constraint'' is defined in §3.1.
+
+\textbf{Probability Notation and KL Convention:} Let $p$ denote the target/true readout reference probability measure and $q$ the model measure; $p\ll q$ means $p$ is absolutely continuous with respect to $q$; $D_{\mathrm{KL}}(p|q)$ uses \textbf{natural logarithm} scale throughout.
+
+\section{Introduction}
+
+In an automatic augmentation process that halts \textbf{only upon achieving completeness} for a problem class $\mathcal Q$, does ``unreachable completeness'' necessarily imply ``non-termination''? We give an affirmative answer and establish equivalent criteria across three layers:
+
+\begin{enumerate}
+\item \textbf{Logic--Computation Layer:} If $\mathcal Q$ is at least $\Sigma^0_1$-hard, halting would decide the halting set, contradicting Turing; in a consistent, recursively enumerable, and arithmetically sufficient stage-theory augmentation, Gödel--Rosser ensures completeness is unreachable at any finite stage, thus the process cannot halt.\,\cite{Turing}
+
+\item \textbf{Information--Measurement Layer:} WSIG provides unified gauge and finite-resource error theory. Unless all four ideal conditions---bandlimited+Nyquist, infinite-order EM (or exact-order), no tail truncation, and $p=q$---hold simultaneously, the NPE decomposition and KL--Pinsker bound guarantee a positive residual budget $\mathscr R>0$ under the corresponding non-degenerate conditions, forcing the process to continue under the ``residual$\to0$'' goal.\,\cite{DLMF}
+
+\item \textbf{Dynamical Layer:} ``Completeness'' is realized as global bijective completion of RCA. Since surjectivity/reversibility of two-dimensional CA is undecidable, \textbf{there exists no uniform procedure that certifies ``global bijection attained'' for all instances in finite stages}; thus boundary extension generally cannot be guaranteed to terminate in finite steps.\,\cite{Kari}
+\end{enumerate}
+
+\section{Preliminaries}
+
+\subsection{Computation and Logic}
+
+\textbf{Notation Supplement (Halting Set):} Denote
+\begin{equation}
+K:=\{(M,x)\mid M(x)\downarrow\}
+\end{equation}
+the Turing \textbf{halting set} ($M$ is a Turing machine, $x$ its input, $M(x)\downarrow$ means halts). Classical result: $K$ is $\Sigma^0_1$-complete.
+
+\textbf{Undecidability of Halting:} No universal algorithm decides whether an arbitrary Turing machine halts.\,\cite{Turing} \textbf{Rice's Theorem:} Any non-trivial semantic property of programs is undecidable.\,\cite{Rice} \textbf{Gödel--Rosser:} A consistent, recursively enumerable, and arithmetically sufficient theory is incomplete; Rosser weakened $\omega$-consistency to mere consistency.\,\cite{Godel} \textbf{$\Sigma^0_1$-hard and r.e.:} $\Sigma^0_1$ is equivalent to recursively enumerable; many-one reduction characterizes ``at least as hard''.\,\cite{Arithmetical}
+
+\subsection{Information Geometry and I-Projection}
+
+\textbf{Pinsker Inequality} (natural log): $\mathrm{TV}(p,q)\le\sqrt{\tfrac12 D_{\mathrm{KL}}(p|q)}$. \textbf{I-Projection:} The minimal $D_{\mathrm{KL}}$ projection $q^\star$ over convex constraint families exists and is unique (under moderate regularity), and is equivalent in statistics and convex optimization.\,\cite{Csiszar}
+
+\subsection{Phase--Density--Delay Gauge and Birman--Kreĭn}
+
+\textbf{Wigner--Smith Group Delay:} $\mathsf Q(E)=-iS^\dagger \partial_E S$, $\partial_E\arg\det S(E)=\operatorname{tr}\mathsf Q(E)$. \textbf{Birman--Kreĭn:} $\det S(E)=\exp(2\pi i\xi(E))$, so $\xi'(E)=\tfrac{1}{2\pi}\operatorname{tr}\mathsf Q(E)$, equivalent to relative density of states.\,\cite{Smith}
+
+\subsection{NPE Three-Fold Decomposition and Nyquist Condition}
+
+If window $w$ and kernel $h$ are bandlimited with sampling step $\Delta<\pi/(\Omega_w+\Omega_h)$, then \textbf{aliasing term is zero}; finite-order Euler--Maclaurin provides Bernoulli layer error upper bound; finite window truncation yields tail term. Constant normalization and formulas per DLMF §1.8 and §2.10.\,\cite{DLMF}
+
+\subsection{Reversible Cellular Automata and Garden-of-Eden}
+
+Surjectivity and reversibility of two-dimensional CA are undecidable; the Garden-of-Eden theorem on amenable groups gives two equivalences: \textbf{existence of no pre-image (Garden-of-Eden configuration) $\Leftrightarrow$ non-surjective}, and \textbf{surjective $\Leftrightarrow$ pre-injective}, linked to reversibility/surjectivity properties.\,\cite{Kari}
+
+\section{Model and Setup}
+
+\subsection{Problem Class and Liveness (Completeness-Halting) Constraint}
+
+Let $\mathcal Q$ be a computably described decision problem class that is at least $\Sigma^0_1$-hard. Process $\mathcal A$ generates a consistent, recursively enumerable theory augmentation
+\begin{equation}
+T_0\subset T_1\subset \cdots,\quad T_t\text{ can decide }q\in\mathcal Q.
+\end{equation}
+Define the \textbf{liveness (completeness-halting) constraint}:
+\begin{equation}
+\boxed{\mathcal A\text{ halts} \Longleftrightarrow T_t\text{ has completely decided all }q\in\mathcal Q}.
+\end{equation}
+
+\subsection{Resource--Window--Kernel Quadruple and Residual Budget}
+
+For any finite resource \textbf{quadruple} $\mathsf R=(R,T,\Delta;M)$ \textbf{and model} $q$, define the \textbf{residual budget}
+\begin{equation}
+\mathscr R:=\underbrace{\mathcal E_{\mathrm{alias}}(\Delta)}_{\text{Poisson}}
++\underbrace{\mathcal E_{\mathrm{EM}}(M)}_{\text{Euler--Maclaurin (absolute value/norm bound of remainder)}}
++\underbrace{\mathcal E_{\mathrm{tail}}(R,T)}_{\text{Truncation}}
++\underbrace{c\sqrt{\tfrac12 D_{\mathrm{KL}}(p|q)}}_{\text{Model mismatch}},
+\end{equation}
+where the three NPE-error terms are \textbf{non-negative} (absolute value or norm upper bound), the last term given by Pinsker as a root upper bound from mismatch to readout difference; constant $c$ absorbs normalization differences.
+
+\subsection{RLBC of RCA}
+
+Let $\Lambda_t\subset\mathbb Z^2$ be an increasing finite domain. RLBC abstracts ``external interpretation/modeling'' as a \textbf{reversible boundary bijection} on $\Lambda_t$, cascaded with interior reversible updates to a global map; ``completeness'' means existence of $t^\star$ such that extension to a \textbf{global bijection} requires no further expansion.
+
+\section{Logic--Computation Layer Main Theorems}
+
+\begin{theorem}[``Halting $\Rightarrow$ Decidability of Halting'', Hence Cannot Halt]\label{thm:halt}
+If $\mathcal Q$ is at least $\Sigma^0_1$-hard and $\mathcal A$ satisfies the liveness constraint, then $\mathcal A$ does not halt.
+\end{theorem}
+\begin{proof}
+Since $\mathcal Q$ is $\Sigma^0_1$-hard, there exists a many-one reduction $f$ such that for any TM-input pair $(M,x)$, $(M,x)\in K\iff f(M,x)\in\mathcal Q$. If $\mathcal A$ halts at $t^\star$, then $T_{t^\star}$ decides $\mathcal Q$, thus decides $K$, contradicting Turing's theorem.\,\cite{Turing}
+\end{proof}
+
+\begin{theorem}[``Unreachable Completeness $\Rightarrow$ Non-Halting'']\label{thm:incomplete}
+If each $T_t$ is consistent, recursively enumerable, and interprets PA, then for $\mathcal Q$ sufficient to express arithmetic, there exists no $t^\star$ such that $T_{t^\star}$ is complete (Gödel--Rosser). By the liveness constraint, $\mathcal A$ does not halt.\,\cite{Godel}
+\end{theorem}
+
+\begin{corollary}[Equivalence]\label{cor:equiv}
+Under the above conditions, $\text{Never complete}\Longleftrightarrow\text{Never halts}$.
+\end{corollary}
+
+\section{Information--Measurement Layer: Forced Non-Halting}
+
+\begin{theorem}[Non-Negative Residual Budget and Sufficient Condition for Strict Positivity]\label{thm:budget}
+For any finite $(R,T,\Delta;M)$ and model $q$, $\mathscr R\ge 0$. Moreover, if at least one of the following four items and its corresponding \textbf{non-degeneracy} condition hold simultaneously, then $\mathscr R>0$:
+\begin{enumerate}
+\item[(i)] Bandlimited+Nyquist \textbf{fails} and combined spectrum has non-zero mass outside $[-\pi/\Delta,\pi/\Delta]$;
+\item[(ii)] $M<\infty$ and the $2M$-th derivative of the relevant function is not identically zero on some interval (then EM remainder's \textbf{upper bound} is strictly positive; per §3.2's ``absolute value/norm upper bound'' inclusion, this term is strictly positive);
+\item[(iii)] Window truncation exists and the observed object has non-zero mass outside the window domain;
+\item[(iv)] $D_{\mathrm{KL}}(p|q)>0$ (zero iff $p=q$ almost everywhere; if they differ on a positive $p$-measure set or $p\not\ll q$, then $>0$, possibly $+\infty$).
+\end{enumerate}
+\end{theorem}
+\begin{proof}[Proof Sketch (Revised)]
+All four terms are non-negative; under respective non-degeneracy conditions, the corresponding term's \textbf{included quantity (upper bound)} is strictly positive, other terms non-negative, so the sum is positive. If all four ideal conditions hold \textbf{simultaneously} (including degeneracies, e.g., truly bandlimited and Nyquist-satisfied, $M$ gives exact precision for involved functions, zero mass outside domain, and $p=q$), then $\mathscr R=0$.\,\cite{DLMF}
+\end{proof}
+
+\begin{theorem}[Correct Relation of ``$\mathscr R$ and Halting'']\label{thm:halt-budget}
+\textbf{Lemma (Necessary Condition for Complete Decision):} If the liveness (completeness-halting) constraint is met at stage $t$, then for the readout--budget definition of §3.2, necessarily $\mathscr R(t)=0$; otherwise there exists ineliminable readout uncertainty, making consistent decision of some $q\in\mathcal Q$ unattainable under finite resources.
+
+Thus, halting can only occur at stages where $\mathscr R=0$. If any non-degeneracy condition of Theorem~\ref{thm:budget} holds, then for any finite stage $t$, $\mathscr R(t)>0$, so cannot halt in finite steps; $\mathscr R(t)$ may approach $0$ with resource investment, which does not affect the ``unreachable completeness $\Rightarrow$ non-halting'' conclusion.
+\end{theorem}
+
+\subsection*{Discussion 5.3 (Observable Image of Phase--Density Mother Gauge)}
+
+Under the gauge unification formula, ideal completeness corresponds to global alignment of $\xi'(E)=\tfrac1{2\pi}\operatorname{tr}\mathsf Q(E)$; under finite resources, ``stochasticity'' is the measurable projection of $\mathscr R>0$.\,\cite{WignerSmith}
+
+\section{Dynamical Layer: Endless Boundary of RLBC}
+
+\begin{theorem}[No Uniform Finite-Stage Certification Procedure]\label{thm:rlbc}
+Define ``completeness'' as existence of $t^\star$ such that RLBC extends to a global bijection. Surjectivity/reversibility of two-dimensional CA is undecidable. If there exists a \textbf{uniform procedure for all instances} that outputs ``attained'' or ``unattainable'' in finite stages (two-sided finite certification), one could construct a decision algorithm, thus deciding surjectivity/reversibility, contradiction. Only one-sided (``attained'' only) finite certification at most gives semi-decidability, insufficient for decidability; thus we assert no ``two-sided'' finite certification uniform procedure exists. Hence, generally RLBC boundary extension is not guaranteed to reach a terminal point in finite steps. Individual special cases (e.g., local permutation-type CA) can prove reversibility in finite stages, not contradicting this conclusion.\,\cite{Kari}
+\end{theorem}
+
+\textbf{Supporting Evidence:} The Garden-of-Eden theorem on amenable groups gives ``surjective $\Leftrightarrow$ pre-injective'', compatible with reversibility characterization.\,\cite{GoE}
+
+\section{Examples and Constructions}
+
+\textbf{Example 7.1 (Windowed Threshold and $\Sigma^0_1$ Embedding):} Construct bandlimited window--kernel such that the predicate ``there exists an energy interval where windowed relative density of states exceeds threshold'' is equivalent to some machine halting; then any finite $(R,T,\Delta;M)$ makes $\mathscr R>0$, forcing the process to continue under the ``reduce residual'' goal. Feasibility relies on gauge unification and Nyquist/EM error theory.\,\cite{DLMF}
+
+\textbf{Example 7.2 (RLBC Completion of RCA):} Take ``whether Garden-of-Eden exists'' or ``global reversibility'' as predicate, gradually expand reversible boundary; designing a terminal certification mechanism for \textbf{all} two-dimensional CA guaranteed to appear in finite stages would yield a decision algorithm, violating undecidability; finite certification for specific reversible/surjective CA does not imply universal decision.\,\cite{Kari}
+
+\section{Interface with Unified System}
+
+\begin{itemize}
+\item \textbf{Gauge Bridge:} $\partial_E\arg\det S=\operatorname{tr}\mathsf Q=2\pi\xi'(E)$ unifies ``phase derivative--group delay--relative density of states''.\,\cite{Smith}
+\item \textbf{NPE-Nyquist Discipline:} $\Delta<\pi/(\Omega_w+\Omega_h)\Rightarrow \mathcal E_{\mathrm{alias}}=0$; finite-order EM and tail terms provide controllable upper bounds.\,\cite{DLMF}
+\item \textbf{I-Projection and Stability:} Minimal $D_{\mathrm{KL}}$ projection gives ``closest attainable model'' readout alignment and stable chain.\,\cite{Csiszar2}
+\end{itemize}
+
+\section{Limitations and Extensions}
+
+\begin{enumerate}
+\item \textbf{About $\mathcal Q$:} The equivalence relies on $\Sigma^0_1$-hardness; weaker classes require individualization.\,\cite{Arithmetical}
+\item \textbf{Scattering Scenarios:} Non-unitary/dissipative systems can be handled with generalized BK and trace formulas; constant normalization depends on specific coupling; see modern surveys.\,\cite{Trace}
+\item \textbf{CA on Groups:} For non-amenable groups, Garden-of-Eden conclusions differ; corrections needed per group properties.\,\cite{GoE}
+\end{enumerate}
+
+\section{Conclusion}
+
+Under the liveness (completeness-halting) constraint, the \textbf{logic--computation layer}'s Turing and Gödel--Rosser, the \textbf{information--measurement layer}'s finite-resource residual budget, and the \textbf{dynamical layer}'s RLBC unreachability tightly interlock into
+\begin{equation}
+\boxed{\text{Never complete} \Longleftrightarrow \text{Never halts}}.
+\end{equation}
+This equivalence grounds the intuition ``stochasticity stems from incompleteness'' on verifiable unified gauge and undecidability criteria, providing structural constraints for windowed readout design and reversible dynamical semantics.
+
+\begin{thebibliography}{99}
+
+\bibitem{Turing}
+A. M. Turing.
+\newblock On Computable Numbers, with an Application to the Entscheidungsproblem.
+\newblock {\em Proc. Lond. Math. Soc.}, 1936.
+
+\bibitem{Rice}
+H. G. Rice.
+\newblock Classes of Recursively Enumerable Sets and Their Decision Problems.
+\newblock {\em Trans. AMS}, 1953.
+
+\bibitem{Godel}
+K. Gödel.
+\newblock Über formal unentscheidbare Sätze der Principia Mathematica und verwandter Systeme I, 1931; J. B. Rosser, Extensions of Some Theorems of Gödel and Church, 1936.
+
+\bibitem{Arithmetical}
+P. G. Hinman.
+\newblock Recursion-Theoretic Hierarchies.
+\newblock Springer, 1978.
+
+\bibitem{Csiszar}
+I. Csiszár.
+\newblock I-Divergence Geometry of Probability Distributions and Minimization Problems.
+\newblock {\em Ann. Probab.}, 1975.
+
+\bibitem{Csiszar2}
+G. L. Gilardoni.
+\newblock On Pinsker's Type Inequalities, 2006.
+
+\bibitem{WignerSmith}
+E. P. Wigner.
+\newblock Lower Limit for the Energy Derivative of the Scattering Phase Shift.
+\newblock {\em Phys. Rev.}, 1955.
+
+\bibitem{Smith}
+F. T. Smith.
+\newblock Lifetime Matrix in Collision Theory.
+\newblock {\em Phys. Rev.}, 1960.
+
+\bibitem{Trace}
+J. Behrndt, M. Malamud, H. Neidhardt.
+\newblock Trace Formulae for Dissipative and Coupled Scattering Systems, 2008.
+
+\bibitem{DLMF}
+NIST DLMF §1.8 (Poisson Summation), §2.10 (Euler--Maclaurin).
+
+\bibitem{Kari}
+J. Kari.
+\newblock Reversibility and Surjectivity Problems of Cellular Automata.
+\newblock {\em JCSS}, 1994.
+
+\bibitem{GoE}
+Moore--Myhill (Garden-of-Eden) and extensions on amenable groups.
+
+\end{thebibliography}
+
+\end{document}
+

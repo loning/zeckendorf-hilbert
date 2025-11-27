@@ -1,0 +1,410 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Title information
+\title{Finite-Window Reversible Completion Entropy:\\
+Axiomatization, Structural Properties, and Non-Asymptotic Error Theory Under EBOC--WSIG--RCA Framework}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today\\
+\small Version: 1.18}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We propose and establish ``finite-window reversible completion entropy'' as a localized information measure for ``record--interpretation'' problems under reversible propagation and energy/regularity constraints: given finite window observation, the logarithm of minimal equivalent representative count (or capacity) of completion set consistent with reversible global dynamics. This measure solely characterizes ``how many reversible worlds interpret the same record'', independent of prior probabilities and mixed-state entropy. We provide rigorous definitions at both discrete reversible cellular automaton (RCA) and continuous windowed scattering--information geometry (WSIG) ends, proving structural properties including monotonicity, reversible covariance, and splice subadditivity; under Toeplitz/Berezin compression and bandlimited/exponential window settings, construct non-asymptotic upper/lower bounds following Nyquist--Poisson--Euler--Maclaurin (NPE) three-fold decomposition with \textbf{finite-order} termination, providing quantitative law ``boundary = information resource'', strictly compatible with unified scale of ``phase derivative--relative state density--Wigner--Smith group delay trace''. Examples of bandlimited signals and RCA with theorem-level proofs conclude the paper.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Reversible completion entropy; EBOC; WSIG; RCA; Finite window; NPE error theory; Trinity scale
+
+\section*{Notation \& Axioms / Conventions}
+
+\begin{enumerate}
+\item \textbf{Trinity Scale Identity} (Trinity) holds almost everywhere on absolutely continuous spectrum:
+\begin{equation}
+\frac{\varphi'(E)}{\pi}=\rho_{\rm rel}(E)=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E),\qquad
+\mathsf Q(E) = -i\, S(E)^\dagger \partial_E S(E),\quad S(E)\in U(N),\quad \varphi(E):=\tfrac12\arg\det S(E).
+\end{equation}
+$\mathsf Q$ is Wigner--Smith group delay matrix, its trace compatible with relative state density; $\det S$ and Kreĭn spectral shift function $\xi$ satisfy Birman--Kreĭn formula $\det S(E)=e^{2\pi i\, \xi(E)}$, thus $\xi'(E)=\tfrac{1}{2\pi i}\partial_E\log\det S(E)=\tfrac{1}{2\pi}\partial_E\arg\det S(E)=\tfrac{1}{2\pi}\operatorname{tr}\mathsf Q(E)$, hence $\varphi'(E)/\pi=\xi'(E)=\rho_{\rm rel}(E)$.
+
+\item \textbf{Window--Readout--Object:} Readout expressed as ``operator--measure--function'' objects. Given window $w$ and kernel scale $h$, corresponding Toeplitz/Berezin compression or localization operator denoted $K_{w,h}$ or $T_{a,w,h}$ (symbol $a$). This paper writes $\mathrm{ker}(w;E)$ for non-negative weight kernel induced by window $w$ and scale $h$ on energy axis (can take $\int \mathrm{ker}(w;E)\,dE=1$ normalization), used to define windowed readouts $\Phi[w],\ \Xi[w]$, etc.
+
+\item \textbf{Error Theory Discipline (NPE):} All approximations decompose into Poisson aliasing term, Euler--Maclaurin (EM) boundary layer, and tail term, strictly terminating at \textbf{finite order} $m$; EM remainder and explicit upper bounds of Bernoulli polynomials/numbers used for non-asymptotic control.
+
+\item \textbf{Reversibility and Propagation Constraints:} Discrete end characterized by RCA's bidirectional reversible evolution (global map bijection, inverse evolution also CA), continuous end by unitary/scattering reversible propagation; Garden-of-Eden theorem and Curtis--Hedlund--Lyndon characterization for equivalence and structure of reversible/surjective/injective.
+
+\item \textbf{Equivalence Classes:} If two global completions related by structure-preserving reversible isomorphism (RCA conjugacy/lattice shift, scattering isospectral isomorphism), they belong to same interpretation equivalence class.
+
+\item \textbf{Measure Convention:} Write $\operatorname{vol}(\cdot)$ for \textbf{counting measure} (RCA end) or \textbf{Lebesgue volume} (WSIG end), multiplicative on product domains; boundary volumes in \textbf{Theorem 5.1} etc. computed per this convention.
+
+\item \textbf{Complexity Unit Convention:} Write $K(y)$ for prefix Kolmogorov complexity, \textbf{in nats}: $K(y):=(\ln 2)\,K_{\rm bits}(y)$. Accordingly, inequalities in §6 and units of $H_W,H_w$ consistent.
+
+\item \textbf{Lattice Distance and Boundary Band (RCA):} On $\mathbb Z^d$, take $\ell_\infty$ distance $\operatorname{dist}(x,W):=\min_{z\in W}|x-z|_\infty$. Define $\partial_r W:=\{x\in\mathbb Z^d:\ 0<\operatorname{dist}(x,W)\le r\}$, its volume computed by counting measure per (6). Boundary bands in §5/§6 interpreted per this metric.
+
+\item \textbf{Notation Unification (Cross-End):} In summary/conclusive statements (§12--§13), write $H$ as total symbol: RCA end $H:=H_W$, WSIG end $H:=H_w$; if distinction needed, explicitly write $H_W,H_w$.
+
+\item \textbf{Norm and Tolerance Ball (WSIG):} Write $|\cdot|_{\mathcal H_w}$ for Hilbert norm of $\mathcal H_w$, $\mathbb B_\varepsilon(y):=\{z\in\mathcal H_w:\ |z-y|_{\mathcal H_w}\le\varepsilon\}$. All sets involving ``tolerance/error'' measured by this norm.
+\end{enumerate}
+
+\section{Problem Setup}
+
+In perspective called \textbf{EBOC} (abstract framework of \textbf{static-block--reversible-consistency completion}, abbreviated herein), record is readout $y$ of global invariant on finite window $W$. Under global reversible dynamics and energy/regularity constraints, define global reversible completion set consistent with $y$, characterize its scale by logarithm of ``equivalent representative count/capacity'', obtaining \textbf{finite-window reversible completion entropy}. This measure describes ``global reversible ambiguity of local record'', emphasizing structural consistency and propagation constraints, not statistical uncertainty.
+
+\section{Discrete End (RCA): Definition and Basic Properties}
+
+Let $\Omega$ be global state space of one- or multi-dimensional CA, update radius $r$, global update $G:\Omega\to\Omega$. If $G$ bijective and $G^{-1}$ also CA, call RCA. Let finite window domain $W\subset\mathbb Z^d$, observation $y\in\mathcal Y^W$. Define completion set consistent with $y$ and reversible
+\begin{equation}
+\mathcal C(y;W):=\{\omega\in\Omega:\ \omega|_W=y,\ \exists \ \text{bidirectional trajectory consistent with global constraints}\}.
+\end{equation}
+With structure-preserving reversible homeomorphism equivalence class $\mathcal C(y;W)/\!\sim_{\rm rev}$, define
+\begin{equation}
+H_W(y):=\log\min\Big\{\#\mathcal R:\ \mathcal R\subset\mathcal C(y;W),\ \mathcal R\ \text{transversally intersects all equivalence classes}\Big\}.
+\end{equation}
+
+\textbf{Convention:} Throughout take $\log$ as natural logarithm (unit: nats); if $\mathcal C(y;W)/\!\sim_{\rm rev}$ infinite set, stipulate $H_W(y):=+\infty$.
+
+\textbf{Convention (Window-Fixed Equivalence Relation)} In definition of $H_W(y)$, $\sim_{\rm rev}$ induced only by structure-preserving reversible isomorphisms \textbf{identity on window $W$ and preserving readout $y$}: for any $\Phi$, require $\Phi|_W=\mathrm{id}$ and $(\Phi\omega)|_W=\omega|_W=y$; continuous end analogous, scattering/unitary isomorphisms need preserve $y$ on image of $K_{w,h}$. Accordingly, $\mathcal C(y;W)/\!\sim_{\rm rev}$ and ``transversal'' operation well-defined on same set.
+
+\textbf{Convention (Feasibility, Revised)} If $\mathcal C(y;W)=\varnothing$, then $H_W(y):=-\infty$ (extended real). Propositions involving $I_{\rm rev}(W_1{:}W_2)$ and splice subadditivity \textbf{stated only when}
+\begin{equation}
+\mathcal C(y;W_1)\neq\varnothing,\ \mathcal C(y;W_2)\neq\varnothing,\ \mathcal C(y;W_1\cup W_2)\neq\varnothing;
+\end{equation}
+otherwise $I_{\rm rev}$ undefined.
+
+\textbf{Supplement ($I_{\rm rev}$ Finiteness):} All statements involving
+\begin{equation}
+I_{\rm rev}(W_1{:}W_2)=H_{W_1}(y_1)+H_{W_2}(y_2)-H_{W_1\cup W_2}(y)
+\end{equation}
+defined and discussed \textbf{only when} $H_{W_1}(y_1),\,H_{W_2}(y_2),\,H_{W_1\cup W_2}(y)\in\mathbb R$ (finite); otherwise $I_{\rm rev}$ undefined.
+
+\begin{theorem}[Monotonicity]
+If $W_1\subseteq W_2$ and $y_i=y|_{W_i}$, then $H_{W_2}(y_2)\le H_{W_1}(y_1)$.
+\end{theorem}
+\begin{proof}
+Constraint increase only filters completions, equivalence class count non-increasing, thus transversal representative count non-increasing, taking logarithm yields conclusion.
+\end{proof}
+
+\begin{theorem}[Reversible Covariance]
+For any structure-preserving reversible transformation $\Phi:\Omega\to\Omega$ (translation, group action, RCA conjugacy), $H_{\Phi(W)}(\Phi(y))=H_W(y)$.
+\end{theorem}
+\begin{proof}
+$\Phi$ induces bijection on global states and equivalence classes, transversal count invariant.
+\end{proof}
+
+\begin{theorem}[Splice--Reversible Mutual Information Identity; Subadditivity as Corollary]
+Let $W=W_1\cup W_2$, two windows interact only through radius-$r$ boundary band; and $\mathcal C(y;W_i),\mathcal C(y;W)\neq\varnothing$ with $H_{W_1}(y_1),H_{W_2}(y_2),H_W(y)\in\mathbb R$. Then have \textbf{identity}
+\begin{equation}
+H_W(y)\ =\ H_{W_1}(y_1)+H_{W_2}(y_2)\ -\ I_{\rm rev}(W_1{:}W_2),
+\end{equation}
+where
+\begin{equation}
+I_{\rm rev}(W_1{:}W_2):=H_{W_1}(y_1)+H_{W_2}(y_2)-H_{W_1\cup W_2}(y).
+\end{equation}
+\textbf{Corollary (Subadditivity):} By §5.2's $I_{\rm rev}(W_1{:}W_2)\ge0$, immediately get
+\begin{equation}
+H_W(y)\ \le\ H_{W_1}(y_1)+H_{W_2}(y_2).
+\end{equation}
+\end{theorem}
+\begin{proof}
+Fiberize equivalence classes, boundary consistency condition produces pairing constraints, defining formula immediately yields above identity decomposition; then use §5.2's non-negativity and monotonicity to obtain corollary.
+\end{proof}
+
+\textbf{Note:} RCA's reversible/surjective/pre-injective structure guaranteed by Garden-of-Eden theorem and Curtis--Hedlund--Lyndon theorem: on $\mathbb Z^d$, \textbf{pre-injective $\Leftrightarrow$ surjective}; and \textbf{reversibility $\Leftrightarrow$ global bijection with inverse rule also CA}, supporting above covariance and splice structure.
+
+\section{Continuous End (WSIG): Toeplitz/Berezin Compression and Capacity Definition}
+
+Let Hilbert space $\mathcal H$, window $w$ and scale $h$ yield compression/localization operator $K_{w,h}:\mathcal H\to \mathcal H_w$, or more specifically Toeplitz/Berezin operator $T_{a,w,h}$ (symbol $a$). For observation $y\in\mathcal H_w$, consider feasible set
+\begin{equation}
+\mathfrak C_w(y):=\Big\{\Psi\in\mathcal E_{\rm rev}:\ K_{w,h}\Psi=y\Big\},
+\end{equation}
+where $\mathcal E_{\rm rev}$ is unitary/scattering reversible propagation class, subject to energy shell and regularity constraints. With \textbf{Fisher--Rao (FR) metric volume} as capacity $\operatorname{Cap}(\cdot)$ (one-time normalization constant $\kappa$ see below), define
+\begin{equation}
+H_w(y):=\log \operatorname{Cap}\big(\mathfrak C_w(y)/\!\sim_{\rm rev}\big).
+\end{equation}
+
+\textbf{Convention:} As above, $\log$ takes natural logarithm (nats); if $\operatorname{Cap}(\mathfrak C_w(y)/\!\sim_{\rm rev})=0$ or $+\infty$, then $H_w(y)$ takes corresponding extended real value.
+
+\textbf{Convention (Capacity and Normalization)} Continuous end uniformly takes $\operatorname{Cap}$ as \textbf{Fisher--Rao volume}: if $\{\Psi(\theta)\}_{\theta\in\Theta}\subset\mathcal E_{\rm rev}$ is smooth parametrization of reversible family, then
+\begin{equation}
+\operatorname{Cap}\big(\mathfrak C_w(y)/\!\sim_{\rm rev}\big)
+:=\kappa\!\int_{\mathfrak C_w(y)/\!\sim_{\rm rev}}\!\sqrt{\det I(\theta)}\,d\theta,
+\end{equation}
+where $I(\theta)$ is Fisher information matrix induced by map $\theta\mapsto K_{w,h}\Psi(\theta)$, $\kappa>0$ one-time normalization constant, chosen such that under §4's scale identity $\Phi[w]=\Xi[w]=\int \mathrm{ker}(w;E)\,\rho_{\rm rel}(E)\,dE$, $H_w$'s unit consistent with nats. Discrete end viewed as counting measure; capacity model not altered hereafter.
+
+\textbf{Convention (Continuous End Feasibility and Finite Volume):} Write $\mathfrak C_w(y)/\!\sim_{\rm rev}$ for reversible equivalence class quotient. All statements involving $\log\operatorname{Cap}(\cdot)$ (including §3.2, §4.1, §8, §9.1, §11) hold \textbf{only when}
+\begin{equation}
+0\ <\ \operatorname{Cap}\big(\mathfrak C_w(y)/\!\sim_{\rm rev}\big)\ <\ \infty
+\end{equation}
+and this quotient set is $C^1$ regular measurable manifold (or covered by finite union of such pieces); if capacity is 0 or $+\infty$, take $H_w(y)=-\infty$ or $+\infty$ and no longer state above equations/inequalities.
+
+\begin{theorem}[Covariance]
+For any unitary/scattering isomorphism $\mathsf U$ and window covariance $\mathsf W$, $H_{\mathsf W w}(\mathsf W y)=H_w(y)$.
+\end{theorem}
+\begin{proof}
+By $\mathsf U$'s unitarity and scattering conformality, and natural covariance under Berezin--Toeplitz quantization, capacity preserved.
+\end{proof}
+
+\begin{theorem}[Revised: Non-Asymptotic Tolerance of NPE Three-Fold]
+If $w$ bandlimited or exponential type and sampling satisfies Nyquist condition, when $0<\operatorname{Cap}(\mathfrak C_w(y)/\!\sim_{\rm rev})<\infty$ and feasible quotient set is $C^1$ regular manifold, exists finite order $m$ and constant $C_{w,h}$, for any $\varepsilon>0$ have
+\begin{equation}
+\Big|\log \operatorname{Cap}\Big(\big\{\Psi:\ |K_{w,h}\Psi-y|_{\mathcal H_w}\le \varepsilon\big\}/\!\sim_{\rm rev}\Big)
+-\log \operatorname{Cap}\big(\mathfrak C_w(y)/\!\sim_{\rm rev}\big)\Big|
+\ \le\ C_{w,h}\,\varepsilon\ +\ \Delta_{\rm NPE}^{(\le m)}.
+\end{equation}
+where $\Delta_{\rm NPE}^{(\le m)}=\Delta_{\rm alias}+\Delta_{\rm Bernoulli}^{(\le m)}+\Delta_{\rm tail}$. This formulation consistent with §8's Toeplitz/Berezin compression result.
+\end{theorem}
+
+\section{Consistency with Trinity Scale}
+
+Define windowed readout quantities
+\begin{equation}
+\Phi[w]:=\int \mathrm{ker}(w;E)\,\frac{\varphi'(E)}{\pi}\,dE,\qquad
+\Xi[w]:=\int \mathrm{ker}(w;E)\,\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)\,dE,
+\end{equation}
+and $\int \mathrm{ker}(w;E)\,\rho_{\rm rel}(E)\,dE$. By trinity identity get $\Phi[w]=\Xi[w]=\int \mathrm{ker}(w;E)\,\rho_{\rm rel}(E)\,dE$. Accordingly obtain:
+
+\begin{theorem}[Scale Compatibility and Local Stability]
+If capacity normalization consistent with above scale, then for smooth deformation $\delta w$ of window and symbol perturbation $\delta a$, exists constant $C$ such that
+\begin{equation}
+|\delta H_w(y)|\le C\big(|\delta w|_{W^{1,1}}+|\delta a|_{W^{1,1}}\big)+O\!\left(\Delta_{\rm NPE}^{(\le m)}\right).
+\end{equation}
+\end{theorem}
+\begin{proof}
+Gateaux variation controlled by first-order response of windowed trace; scale identity unifies $\varphi'(E)/\pi$, $\rho_{\rm rel}(E)$, and $(2\pi)^{-1}\operatorname{tr}\mathsf Q$ normalization; NPE finite-order termination yields non-asymptotic upper bound for residual.
+\end{proof}
+
+\section{Boundary = Information Resource: Propagation Radius and Mutual Information}
+
+RCA's finite propagation radius $r$ or continuous system's finite group delay/microsupport propagation bound means degrees of freedom outside window act through boundary band of thickness $r$.
+
+\begin{definition}[RCA End Boundary Patch Count $\operatorname{Comp}$]
+Let
+\begin{equation}
+\partial_r W:=\{x\in\mathbb Z^d:\ 0<\operatorname{dist}(x,W)\le r\},
+\end{equation}
+where $\operatorname{dist}$ and volume $\operatorname{vol}$ take values per Notation(8)/(6). Define
+\begin{equation}
+\operatorname{Comp}(y;\partial_r W):=\min\Big\{\#\mathcal B:\ \mathcal B\subset\mathcal S(\partial_r W),\ \forall\,\omega\in\mathcal C(y;W)\ \exists\,b\in\mathcal B\ \text{s.t.}\ \omega|_{\partial_r W}=b\Big\},
+\end{equation}
+where $\mathcal S(\partial_r W)$ \textbf{only refers to RCA alphabet configuration space}.
+\end{definition}
+
+\begin{definition}[Boundary Distinguishability, BD]
+For any $\omega,\omega'\in\mathcal C(y;W)$, if $\omega\not\sim_{\rm rev}\omega'$, then
+\begin{equation}
+\omega|_{\partial_r W}\ \ne\ \omega'|_{\partial_r W}.
+\end{equation}
+In other words, \textbf{different equivalence classes must correspond to different boundary patches}.
+\end{definition}
+
+\begin{theorem}[RCA End Boundary-Dominated Upper Bound; Unified Version]
+\textbf{Exists constant} $c>0$ (depending only on propagation radius $r$, dimension, and local rule/alphabet size) such that
+\begin{equation}
+\log \operatorname{Comp}(y;\partial_r W)\ \le\ c\cdot \operatorname{vol}(\partial_r W).
+\end{equation}
+\textbf{If further satisfying boundary distinguishability (Definition 5.1a), then}
+\begin{equation}
+H_W(y)\ \le\ \log \operatorname{Comp}(y;\partial_r W)\ \le\ c\cdot \operatorname{vol}(\partial_r W).
+\end{equation}
+where $\operatorname{vol}$ per ``measure convention(6)'' takes counting measure. \textbf{This theorem does not involve WSIG end}; continuous end's corresponding upper bound and scale control see §9 and §4.
+\end{theorem}
+
+\begin{theorem}[Non-Negativity of Reversible Mutual Information]
+Let
+\begin{equation}
+I_{\rm rev}(W_1{:}W_2):=H_{W_1}(y_1)+H_{W_2}(y_2)-H_{W_1\cup W_2}(y)\ \ge 0,
+\end{equation}
+and monotonically non-decreasing with strengthening boundary consistency constraint; takes extremum when boundary fully closed.
+\end{theorem}
+\begin{proof}
+By equivalence class fiberization and matching number submodularity, combined with reversible consistency, obtain non-negativity and monotonicity.
+\end{proof}
+
+\section{Complexity Lower Bound and Random Robustness}
+
+Write $K(y)$ for computable upper bound proxy of Kolmogorov complexity.
+
+\textbf{Definition (Boundary Length Budget):} Let $\partial_r W$ and constant $c$ as in \textbf{Theorem 5.1}, define
+\begin{equation}
+\mathrm{bdry}(W):=c\cdot \operatorname{vol}(\partial_r W).
+\end{equation}
+
+\textbf{Definition (Model Capacity):} Using constant $c$ from \textbf{Theorem 5.1} and ``measure convention(6)'', define
+\begin{equation}
+\mathrm{ModelCap}(W):=c\cdot \operatorname{vol}(\partial_r W).
+\end{equation}
+Then in weak dependence and finite propagation scenarios, have
+\begin{equation}
+H_W(y)\ \gtrsim\ \big[\,K(y)-\mathrm{bdry}(W)\,\big]_+,\qquad
+H_W(y)\ \lesssim\ \mathrm{ModelCap}(W)=c\cdot \operatorname{vol}(\partial_r W),
+\end{equation}
+where $[x]_+:=\max\{x,0\}$, both ends' constants consistent with \textbf{Theorem 5.1}'s scale. Highly incompressible $y$ needs larger interpretation family, thus raising $H_W$'s lower bound.
+
+\section{Relation to Shannon/von Neumann Entropy}
+
+$H_w$ measures ``structurally consistent reversible interpretation family scale'', while Shannon/von Neumann entropy measures distribution or density matrix uncertainty. In i.i.d. and window scale tending to large limit, unit volume density of $H_w$ can couple with entropy rate; but in strong reversible constraint and boundary-dominated geometric scenarios they separate: $H_w$ more sensitive to ``reversible consistency'' and ``propagation radius''.
+
+\section{Non-Asymptotic Bounds for Toeplitz/Berezin Compression}
+
+Let $T_{a,w,h}$ be Toeplitz/Berezin compression of symbol $a$ and window $w$; write tolerance ball $\mathbb B_\varepsilon(y)$. Exists constant $C_{w,a,h}$ and finite order $m$ such that
+\begin{equation}
+\Big|\log \operatorname{Cap}\Big(\big\{\Psi\in\mathcal E_{\rm rev}:\ |T_{a,w,h}\Psi-y|_{\mathcal H_w}\le \varepsilon\big\}/\!\sim_{\rm rev}\Big)
+-\log \operatorname{Cap}\big(\mathfrak C_w(y)/\!\sim_{\rm rev}\big)\Big|
+\le C_{w,a,h}\,\varepsilon+\Delta_{\rm NPE}^{(\le m)}.
+\end{equation}
+where $\Delta_{\rm NPE}^{(\le m)}$ jointly controlled by Poisson aliasing, EM finite-order boundary layer, and tail term; if $a$ bandlimited/analytic symbol, $w$ exponentially decaying and satisfying frame density condition, constant uniformly bounded by bandwidth and Bernoulli constants.
+
+\section{Nyquist Example for Bandlimited Signals}
+
+Let one-dimensional bandlimited signal, bandwidth $B$, sampling rate $f_s\ge 2B$, window $w$ compact-supported or exponential, energy shell $|\Psi|_{\mathcal H}\le E$.
+
+\begin{theorem}[Boundary Dominance Under Nyquist Condition]
+\begin{equation}
+H_w(y)\ =\ \log \operatorname{Cap}\big(\mathfrak C_w(y)/\!\sim_{\rm rev}\big),
+\end{equation}
+\begin{equation}
+\Bigg|\,\log \operatorname{Cap}\big(\mathfrak C_w(y)/\!\sim_{\rm rev}\big)
+-\log \operatorname{Cap}\big(\text{boundary phase/amplitude degrees of freedom}/\!\sim_{\rm rev}\big)\,\Bigg|
+\le \Delta_{\rm NPE}^{(\le m)}.
+\end{equation}
+When window scale $R\to\infty$ with $B,E$ fixed, unit length $H_w/R\to 0$.
+\end{theorem}
+\begin{proof}
+By Paley--Wiener space's Landau density necessary condition and Poisson summation controlling aliasing error, EM finite-order convergence controls boundary layer; boundary dominance given by finite propagation/kernel decay and frame stability.
+\end{proof}
+
+\textbf{Note (Frame and Uncertainty)} Window family taking tight frame can optimize error constant; Balian--Low forbids simultaneous optimal double-localization at critical density, suggesting capacity lower bound cannot be excessively compressed.
+
+\section{RCA Examples and Theorems}
+
+Consider one-dimensional RCA, radius $r$, window length $R$.
+
+\begin{theorem}[Capacity Upper Bound for Finite-Radius Propagation]
+If length-$2r$ boundary patch uniquely determines extension, then
+\begin{equation}
+H_R(y)\ \le\ \log \#\{\text{boundary patches}\}\ \le\ c\cdot r,
+\end{equation}
+and when $R\to\infty$ with $r$ fixed, unit length $H_R/R\to 0$.
+\end{theorem}
+\begin{proof}
+By Markov-type propagation restriction and boundary determinacy, transversal count bounded by boundary patch count.
+\end{proof}
+
+\begin{theorem}[Splice and Reversible Mutual Information]
+For adjacent windows $W_1,W_2$ with common boundary band,
+\begin{equation}
+I_{\rm rev}(W_1{:}W_2)\ \text{monotonically non-decreasing with strengthening boundary consistency constraint, maximized when closed}.
+\end{equation}
+\end{theorem}
+\begin{proof}
+Analogous to Theorem 2.3; RCA reversibility and Garden-of-Eden/CHL structure ensure reversible consistency and non-negativity of pairing.
+\end{proof}
+
+\section{Variation and Second-Order Structure}
+
+Write $\mathscr F(a,w):=\log\operatorname{Cap}\big(\mathfrak C_w(y)/\!\sim_{\rm rev}\big)$. Within regular classes of symbol/window (bandlimited/analytic/exponential window), have
+\begin{equation}
+\delta \mathscr F=\langle \mathcal G_a,\delta a\rangle+\langle \mathcal G_w,\delta w\rangle+O\!\left(\Delta_{\rm NPE}^{(\le m)}\right),
+\end{equation}
+where sensitivity functionals $\mathcal G_a,\mathcal G_w$ derived from windowed trace and trinity scale; their second-order symmetric part establishes $H^{1/2}$-type stable Hessian lower bound, reflecting capacity function's strong convex/concave complementary structure on feasible domain (depending on capacity model and normalization).
+
+\section{Axiomatization Summary}
+
+\begin{itemize}
+\item \textbf{A1 Reversible Consistency:} Count only completions consistent with observation and reversible;
+\item \textbf{A2 Covariance:} Invariant under structure-preserving reversible transformations;
+\item \textbf{A3 Monotonicity:} Non-increasing with window expansion;
+\item \textbf{A4 Subadditivity:} Corrected by reversible mutual information in splice;
+\item \textbf{A5 NPE--EM Non-Asymptotic Closure:} All errors terminate at \textbf{finite order} with explicit upper bounds;
+\item \textbf{A6 Singularity Non-Increasing/Poles = Principal Scales:} Windowing introduces no stronger singularities, poles determine principal scales;
+\item \textbf{A7 Scale Identity Compatibility:} Strictly consistent with $\varphi'/\pi=\rho_{\rm rel}=(2\pi)^{-1}\operatorname{tr}\mathsf Q$.
+\end{itemize}
+
+\section{Conclusive Theorems}
+
+\begin{theorem}[Well-Definedness and Robustness]
+Under above axioms and regularity conditions, finite-window reversible completion entropy $H$ (RCA end $H_W$, WSIG end $H_w$) well-defined, invariant under reversible isomorphisms, Lipschitz stable under window/symbol perturbations, obtains non-asymptotic upper/lower bounds and variational estimates under NPE--EM discipline; its scale dominated by boundary band and propagation radius, embodying quantitative law ``boundary = information resource''; strictly compatible with trinity scale.
+\end{theorem}
+\begin{proof}
+Synthesis of 3.1, 3.2, 4.1, 5.1, 5.2, and NPE--EM finite-order control.
+\end{proof}
+
+\begin{theorem}[Local Information Law]
+In systems with RCA finite radius or continuous bounded propagation, as window scale increases, unit volume density of $H$ (RCA end $H_W$, WSIG end $H_w$) decays to zero; for bandlimited/exponential windows, decay rate of $H/R$ uniformly controlled by constant set of bandwidth, window decay, and EM order.
+\end{theorem}
+\begin{proof}
+By 5.1's boundary-dominated upper bound and 9.1's Nyquist framework, combined with EM finite-order termination, obtain unit-scale decay.
+\end{proof}
+
+\section*{Appendix A: Explicit Constants of NPE Three-Fold}
+
+\begin{itemize}
+\item \textbf{Poisson Aliasing Term:} Let frequency-domain bandwidth $B$ and sampling interval $\Delta$ satisfy $1/\Delta\ge 2B$ (Nyquist), then aliasing error estimated by window spectrum decay of high-frequency leakage; Poisson summation yields main term of discrete--continuous difference.
+\item \textbf{EM Boundary Layer:} For $p\le m$ order termination, remainder given by $L^\infty$ bound of periodized Bernoulli function $P_p$ and $\zeta(p)$ constant as $\big|R_p\big|\le \tfrac{2\zeta(p)}{(2\pi)^p}\!\int |f^{(p)}|$.
+\item \textbf{Tail Term:} Given by exponential/sub-exponential decay of window and energy shell regularity (finite-order bounded derivatives), yielding geometric or power-law convergence.
+\end{itemize}
+
+\section*{Appendix B: Frame Density and Uncertainty Obstruction}
+
+Under Gabor/multi-window frameworks, Wexler--Raz biorthogonality and Janssen representation guarantee frame stability and density criteria; Landau density theorem yields necessary density for sampling of Paley--Wiener spaces; Balian--Low theorem provides double-localization obstruction at critical density and quantitative strengthened versions, limiting further compression of capacity.
+
+\begin{thebibliography}{99}
+
+\bibitem{WignerSmith}
+Wigner, Smith: Group delay and time-delay matrix; Brouwer--Frahm--Beenakker: Random matrix theory distribution of Q spectrum.
+
+\bibitem{BirmanKrein}
+Birman--Kreĭn formula and spectral shift function surveys and generalizations (Pushnitski; Hanisch et al.).
+
+\bibitem{Berezin}
+Berezin--Toeplitz quantization and localization operators (Engliš; related Toeplitz-localization literature).
+
+\bibitem{Poisson}
+Poisson summation, Euler--Maclaurin formula, and explicit remainder estimates of Bernoulli constants.
+
+\bibitem{GardenEden}
+Garden-of-Eden theorem, Curtis--Hedlund--Lyndon theorem, and RCA reversibility surveys (Kari).
+
+\bibitem{Landau}
+Landau density necessary conditions and recent generalizations; Wexler--Raz, Janssen, and Gabor frame biorthogonality theory; Balian--Low theorem and quantitative versions.
+
+\bibitem{Kolmogorov}
+Kolmogorov complexity, MDL/MML, and coding theorems (Li--Vitányi; Grünwald tutorial).
+
+\end{thebibliography}
+
+\end{document}
+

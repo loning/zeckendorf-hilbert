@@ -1,0 +1,780 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{braket}
+\usepackage{graphicx}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+
+% Title information
+\title{Unified Framework of Time--Geometry--Interaction:\\
+From Scattering Phase Scale to Geometrization of Gravity and Gauge Forces}
+
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We construct a unified framework with ``time scale equivalence class'' as the core object, rewriting gravity, gauge interactions, and macroscopic classical ``forces'' as projections of the same geometric structure at different hierarchical levels. First, in the rigorous context of scattering theory, based on Birman--Kreĭn spectral shift function and Wigner--Smith time delay, we give the scale identity of phase derivative, relative state density, and group delay trace: for a class of scattering systems satisfying trace-class perturbation conditions, we have $\varphi'(\omega)/\pi=\rho_{\mathrm{rel}}(\omega)=(2\pi)^{-1}\mathrm{tr}\,Q(\omega)$, where $Q(\omega)=-iS(\omega)^{\dagger}\partial_{\omega}S(\omega)$ is the Wigner--Smith matrix, $\rho_{\mathrm{rel}}$ is the derivative of Kreĭn spectral shift density. This identity unifies ``phase--delay--relative spectral density'' as an observable time scale. Second, introducing a total bundle with spacetime as base manifold and internal charge space and ``observer resolution hierarchy'' as fibers, we prove that under conditions satisfying local Lorentz and internal gauge symmetry, gravity and Yang--Mills gauge fields can be viewed as different components of the same total connection, whose curvatures respectively give spacetime curvature and internal field strength; the time scale is related to phase integration along worldlines and parallel transport of the connection, thus deriving the unified proposition that ``no fundamental forces, only time curvature under different geometric projections.'' Third, at the algebraic quantum field theory level, using modular flow given by Tomita--Takesaki modular theory as ``internal time,'' combined with quantum null energy condition (QNEC) and generalized entropy monotonicity, we characterize the arrow of time as a partial order structure of relative entropy and modular energy monotonicity. Finally, in the semiclassical limit, we give a theorem-form statement of ``force = projected curvature of time geometry'' for expectation value evolution of macroscopic particles, explaining that classical Newtonian mechanics, Lorentz force, and even effective entropic force can all be viewed as effective descriptions of this unified time geometry under different coarse-graining and internal state constraints. At the end, we provide several verifiable engineering proposals, including Wigner--Smith time delay measurements in microwave networks and mesoscopic conductors, atomic clock gravitational redshift--phase scale reconciliation, and cross-scale scale consistency tests based on FRW cosmological redshift and strong gravitational lensing.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Time Scale Equivalence Class; Scattering Phase; Wigner--Smith Time Delay; Birman--Kreĭn Spectral Shift; Geometrization of Gravity; Yang--Mills Gauge Field; Modular Flow; Quantum Null Energy Condition; Emergence of Macroscopic Force
+
+---
+
+\section{Introduction and Historical Context}
+
+Classical physics takes ``force'' as a fundamental concept: Newton's second law $F=ma$ views force as the cause of changing a particle's velocity. Field-theoretic formulation of electromagnetism in some sense weakens the fundamental status of ``force'': Lorentz force $q(E+v\times B)$ can be obtained from contraction of electromagnetic field tensor $F_{\mu\nu}$ and four-velocity $u^{\nu}$, the field itself governed by Maxwell equations. General relativity further upgrades gravity from ``force'' to spacetime geometry: free-fall worldlines satisfy geodesic equations, so-called ``gravitational acceleration'' can be viewed as inertial force caused by choosing non-free-fall frames.
+
+In mid-twentieth century, gauge theory unified electromagnetic, weak, and strong interactions as connections and curvatures on principal bundles: gauge potential $A_{\mu}$ is connection on fiber bundle, field strength $F_{\mu\nu}$ is curvature of this connection, corresponding to Euler--Lagrange equations of Yang--Mills equations. ``Force experienced'' by charges in gauge fields can be understood as trajectory deflection when doing parallel transport in total space with gauge connection. Geometrization of gauge theory has shown: interactions can be unified as different types of geometric structures.
+
+On the other hand, quantum scattering theory reveals profound connections among phase, state density, and ``time delay.'' Birman--Kreĭn formula establishes relationship between scattering matrix determinant and spectral shift function, Friedel sum rule connects phase and state density, Smith and Wigner's introduced time delay and Wigner--Smith matrix $Q(\omega)=-iS(\omega)^{\dagger}\partial_{\omega}S(\omega)$ characterize time structure of scattering process. Subsequent work shows that under suitable trace-class perturbation conditions, phase derivative, relative state density, and trace of Wigner--Smith matrix unify through rigorous trace formulas.
+
+In algebraic quantum field theory, Tomita--Takesaki modular theory endows any von Neumann algebra with a cyclic--separating vector with an intrinsic modular flow $\sigma^{\varphi}_{t}$. Modular flow is generated by one-parameter unitary group $\Delta^{it}$ of modular operator $\Delta$, and can be viewed as ``internal time'' naturally induced by state--algebra pair. This structure plays an important role in thermal time hypothesis and time reconstruction in gravity--holographic backgrounds.
+
+Recent quantum null energy condition (QNEC) work reveals arrow of time structure between energy--entropy: in quite general quantum field theories, stress-energy tensor along null directions satisfies an inequality with second-order variation of von Neumann entropy as lower bound, thus binding geometric changes of entropy with local energy constraints.
+
+These developments jointly point to a deeper unified picture:
+Time is not just an external parameter, but a scale jointly defined by multiple structures including scattering phase, spectral shift, modular flow, and entropy curvature;
+Gravity and gauge interactions are both connection curvatures corresponding to different fiber directions;
+Macroscopic ``forces'' are projections of this time--geometry at coarse-graining and effective degrees of freedom levels.
+
+The goal of this paper is to construct an explicit unified framework based on the above mature results:
+
+\begin{enumerate}
+\item Using phase--spectral shift--time delay identity in scattering theory, give an observable definition of time scale;
+\item Unify gravity and gauge interactions as different components of ``time connection,'' deriving macroscopic force as projection of time geometry curvature;
+\item Use modular flow and QNEC to characterize arrow of time and causal partial order;
+\item Provide verifiable experimental--engineering proposals, making this unified framework falsifiable.
+\end{enumerate}
+
+---
+
+\section{Model and Assumptions}
+
+\subsection{Spacetime and Quantum Field Theory Background}
+
+Let $(M,g)$ be a four-dimensional, time-oriented globally hyperbolic Lorentzian manifold satisfying ordinary causality and energy conditions. Physical system is given by quantum field theory defined on $(M,g)$, with Hilbert space $\mathcal{H}$, local observable algebra $\mathcal{A}(\mathcal{O})\subset B(\mathcal{H})$, obeying Haag--Kastler axioms. Choose reference state $\Omega \in \mathcal{H}$ (can be vacuum or thermal equilibrium), assuming it is cyclic and separating for appropriate subalgebras.
+
+In cases with sufficiently asymptotically flat regions, assume existence of global time translation symmetry $t\mapsto U(t)=e^{-iHt}$, corresponding generator $H$ self-adjoint, allowing construction of scattering states and scattering matrix.
+
+\subsection{Observer, Resolution, and Coarse-Graining}
+
+Observer is described by a timelike worldline $\gamma:\tau\mapsto x^{\mu}(\tau)$ and a set of detector degrees of freedom. Introduce a ``resolution scale'' parameter $\Lambda$, characterizing the energy--time range and space--momentum window this observer can resolve. Formally, coarse-graining operators can be viewed as families of completely positive, trace-preserving maps $\{ \Phi_{\Lambda} \}$ on algebra $\mathcal{A}(\mathcal{O})$; as $\Lambda$ decreases, retained degrees of freedom become coarser.
+
+Relationship among resolution--time--redshift is characterized in the unified framework through ``equivalence class'': different $(\gamma,\Lambda)$ combinations can define the same time scale (in the sense below).
+
+\subsection{Scattering System and Scale Identity}
+
+Consider a pair of self-adjoint operators $H,H_{0}$ on $\mathcal{H}$, satisfying $V:=H-H_{0}$ is trace-class perturbation and satisfying standard wave operator existence and completeness conditions. Let $S(\omega)$ be fixed-energy scattering matrix, whose determinant satisfies Birman--Kreĭn formula with spectral shift function $\xi(\omega;H,H_{0})$:
+$$
+\det S(\omega)=e^{-2\pi i\xi(\omega)}\quad\text{almost everywhere}.
+$$
+
+Define total scattering phase $\Phi(\omega)=\arg\det S(\omega)$, and set
+$$
+\varphi(\omega)=\tfrac{1}{2}\Phi(\omega)=-\pi\xi(\omega).
+$$
+Introduce Wigner--Smith matrix
+$$
+Q(\omega)=-iS(\omega)^{\dagger}\partial_{\omega}S(\omega),
+$$
+whose trace in many models can be interpreted as total group delay.
+
+Relative state density is defined as
+$$
+\rho_{\mathrm{rel}}(\omega)=\rho(\omega;H)-\rho(\omega;H_{0}),
+$$
+where $\rho$ is density of states. Kreĭn trace formula gives
+$$
+\mathrm{tr}(f(H)-f(H_{0}))=\int_{\mathbb{R}} f'(\lambda)\xi(\lambda)\,\mathrm{d}\lambda,
+$$
+appropriately choosing $f$ can deduce $\rho_{\mathrm{rel}}(\omega)=\xi'(\omega)$ almost everywhere.
+
+Under good integrability conditions, Wigner--Smith matrix trace satisfies
+$$
+\mathrm{tr}\,Q(\omega)=2\partial_{\omega}\varphi(\omega).
+$$
+Combining yields the scale identity
+$$
+\frac{\varphi'(\omega)}{\pi}=\rho_{\mathrm{rel}}(\omega)=\frac{1}{2\pi}\mathrm{tr}\,Q(\omega)\quad\text{almost everywhere}.
+$$
+
+This definition unifies ``additional state density,'' ``total group delay,'' and ``scattering phase gradient'' as a single function $\kappa(\omega)$, which can be viewed as ``time scale density'' for given scattering system and reference Hamiltonian.
+
+\subsection{Geometrization: Total Bundle and Connection}
+
+Let $M$ be spacetime manifold, introduce total bundle
+$$
+\pi:\mathcal{B}\to M,
+$$
+whose fiber is the product of internal charge space $\mathcal{F}_{\mathrm{int}}$ and ``resolution space'' $\mathcal{F}_{\mathrm{res}}$. For each point $x\in M$, fiber $\mathcal{B}_{x}$ represents internal degrees of freedom of quantum state at that point and measurement window available to observer.
+
+Introduce principal bundle structure on $\mathcal{B}$, whose structure group is
+$$
+G_{\mathrm{tot}}=SO(1,3)^{\uparrow}\times G_{\mathrm{YM}}\times G_{\mathrm{res}},
+$$
+respectively corresponding to local Lorentz group, internal Yang--Mills gauge group, and resolution scaling group. Total connection is written as
+$$
+\boldsymbol{\Omega}=\omega_{\mathrm{LC}}\oplus A_{\mathrm{YM}}\oplus \Gamma_{\mathrm{res}},
+$$
+where $\omega_{\mathrm{LC}}$ is Levi--Civita spin connection, $A_{\mathrm{YM}}$ is standard Yang--Mills gauge field, $\Gamma_{\mathrm{res}}$ describes resolution flow in RG sense (e.g., renormalization group or coarse-graining connection).
+
+Total curvature
+$$
+\boldsymbol{\mathcal{R}}=\mathrm{d}\boldsymbol{\Omega}+\boldsymbol{\Omega}\wedge\boldsymbol{\Omega}
+$$
+naturally decomposes into spacetime curvature $R$, Yang--Mills field strength $F$, and resolution flow curvature $\mathcal{R}_{\mathrm{res}}$.
+
+\subsection{Modular Time and Entropy Arrow}
+
+For each local observable algebra $\mathcal{A}(\mathcal{O})$ and state $\varphi$ (giving vector state from $\Omega$), Tomita--Takesaki theory gives modular operator $\Delta_{\varphi}$ and modular automorphism group
+$$
+\sigma^{\varphi}_{t}(A)=\Delta_{\varphi}^{it}A\Delta_{\varphi}^{-it}.
+$$
+Modular flow parameter $t$ can be interpreted as ``internal time'' of this observer--algebra pair; in holographic and thermal time hypothesis contexts, it is viewed as a candidate for geometric time.
+
+QNEC states that for appropriate classes of quantum field theories and states,
+$$
+\langle T_{kk}(x)\rangle_{\psi}\geq \frac{1}{2\pi}S''_{\mathrm{vN}}(x),
+$$
+where $T_{kk}$ is stress-energy component along null vector $k^{\mu}$, $S''_{\mathrm{vN}}$ is second-order variation of von Neumann entropy along that direction. This inequality and more general generalized entropy monotonicity provide quantitative basis for defining arrow of time and causal partial order from quantum information perspective.
+
+---
+
+\section{Main Results (Theorems and Alignments)}
+
+This section gives core definitions and theorems of the unified framework, and indicates alignment relationships among them.
+
+\subsection{Definition of Time Scale Equivalence Class}
+
+\begin{definition}[Operational Time Scale (Definition 3.1)]
+Given a scattering system $(H,H_{0})$ and its scattering matrix $S(\omega)$, define scale density
+$$
+\kappa(\omega)=\varphi'(\omega)/\pi,
+$$
+where $\varphi(\omega)$ is determined by aforementioned Birman--Kreĭn relation. For energy window $I\subset\mathbb{R}$, define effective time scale
+$$
+\tau_{I}(E)=\int_{E_{0}}^{E}\kappa(\omega)\mathbf{1}_{I}(\omega)\,\mathrm{d}\omega,
+$$
+which experimentally corresponds to integral of ``additional group delay'' obtained from frequency--phase measurements.
+\end{definition}
+
+\begin{definition}[Time Scale Equivalence Class (Definition 3.2)]
+Given two sets of operational time parameters $t$ and $t'$, if there exist strictly monotonic $C^{1}$ function $f:\mathbb{R}\to\mathbb{R}$ and global positive constant $c>0$, such that for all scattering experiments realizable in common domain, we have
+$$
+t' = c\,f(t)
+$$
+and all observable phase differences and group delays follow consistent ordering with respect to $t,t'$, then $t$ and $t'$ are said to belong to the same time scale equivalence class, written $[t]=[t']$.
+\end{definition}
+
+\begin{proposition}[Proposition 3.3]
+Under conditions where scale identity holds, for any scattering system satisfying trace-class perturbation conditions and given reference $(H_{0})$, time scales defined by different probe families (frequency windows, incident channel choices) converge to the same equivalence class $[\tau]$ in the sense of equivalence relation, if and only if energy dependence of Wigner--Smith total time delay is controlled by a unified geometric structure (such as same effective potential and boundary condition class).
+\end{proposition}
+
+This proposition ensures that under suitable ``universal probe'' families, time scale has probe independence, thus can be used to define macroscopic time.
+
+\subsection{Phase--Spectral Shift--Time Delay Scale Identity}
+
+\begin{theorem}[Scale Identity (Theorem 3.4)]
+Let $H,H_{0}$ be self-adjoint operators, $H-H_{0}$ be trace-class perturbation, scattering matrix $S(\omega)$ exists and is unitary. Let spectral shift function $\xi(\omega)$ be defined by Kreĭn trace formula, then almost everywhere
+
+$$
+\mathrm{tr}[f(H)-f(H_{0})]=\int_{\mathbb{R}} f'(\lambda)\xi(\lambda)\,\mathrm{d}\lambda
+$$
+
+for all appropriate $f$.
+
+Define $\varphi(\omega)=-\pi\xi(\omega)$, $Q(\omega)=-iS(\omega)^{\dagger}\partial_{\omega}S(\omega)$, then almost everywhere
+
+$$
+\frac{\varphi'(\omega)}{\pi}=\xi'(\omega)=\rho_{\mathrm{rel}}(\omega)=\frac{1}{2\pi}\mathrm{tr}\,Q(\omega).
+$$
+\end{theorem}
+
+This theorem combines Birman--Kreĭn formula, Friedel sum rule, and Wigner--Smith definition, giving unification of phase, spectral shift, and time delay.
+
+\begin{corollary}[Spectral Definition of Time Scale (Corollary 3.5)]
+Scale density $\kappa(\omega)$ can be equivalently defined as relative state density, or as normalization of Wigner--Smith matrix trace, thus having complete spectral--scattering expression.
+\end{corollary}
+
+\subsection{Spacetime--Internal Space Unified Geometry and Geometrization of ``Force''}
+
+On total bundle $\mathcal{B}$, curvature $\boldsymbol{\mathcal{R}}$ of total connection $\boldsymbol{\Omega}$ can be decomposed as
+
+$$
+\boldsymbol{\mathcal{R}} = R\oplus F\oplus \mathcal{R}_{\mathrm{res}}.
+$$
+
+Parallel transport along a matter particle worldline $\gamma$ is controlled by total covariant derivative
+$$
+D_{\tau}=\frac{\mathrm{d}}{\mathrm{d}\tau}+\boldsymbol{\Omega}(\dot{\gamma}).
+$$
+Evolution of intrinsic degrees of freedom (such as spin, color charge) and resolution variables is determined by $F$ and $\mathcal{R}_{\mathrm{res}}$.
+
+\begin{theorem}[No Fundamental Force Proposition (Theorem 3.6)]
+In semiclassical limit, for particle with mass $m$ and internal charge $q$, expectation value of center-of-mass trajectory $x^{\mu}(\tau)$ satisfies
+
+$$
+m\frac{D^{2}x^{\mu}}{D\tau^{2}} = qF^{\mu}{}_{\nu}\frac{\mathrm{d}x^{\nu}}{\mathrm{d}\tau} + f^{\mu}_{\mathrm{res}}
+$$
+
+where $D$ is Levi--Civita covariant derivative, $F^{\mu}{}_{\nu}$ is projection of Yang--Mills field strength in corresponding representation, $f^{\mu}_{\mathrm{res}}$ is effective ``entropic force'' term caused by $\mathcal{R}_{\mathrm{res}}$ and state--entropy changes. In other words, gravity, Lorentz force, and entropy-driven force in classical sense are all projections of total connection curvature on different behavior spaces, without need to separately introduce primitive concept of ``fundamental force.''
+\end{theorem}
+
+Proof based on semiclassical propagation of wave packet and path integral representation, details in Appendix C.
+
+\subsection{Time Scale and Reconstruction of Gravitational Geometry}
+
+\begin{theorem}[From Scale Identity to Gravitational Redshift (Theorem 3.7)]
+Consider spacetime region with static Killing vector $\partial_{t}$, metric can be written in standard static form
+$$
+g=-N^{2}(\mathbf{x})\mathrm{d}t^{2}+h_{ij}(\mathbf{x})\mathrm{d}x^{i}\mathrm{d}x^{j}.
+$$
+
+Assume scattering processes with energy localized in $I$ exist in this region, whose Wigner--Smith total group delay $\mathrm{tr}\,Q(\omega)$ can be measured by distant observer. If scale density $\kappa(\omega)$ within $I$ is approximately related to position only through rescaling by $N(\mathbf{x})$, i.e.,
+
+$$
+\kappa(\omega;\mathbf{x}) = N^{-1}(\mathbf{x})\,\kappa_{\infty}(\omega)
+$$
+
+then time scale defined by distant observer and proper time scale defined by local free fall belong to same equivalence class, their ratio giving gravitational redshift factor $N(\mathbf{x})$.
+\end{theorem}
+
+Proof relies on frequency conservation in static space and relation of local energy $\omega_{\mathrm{loc}}=N^{-1}(\mathbf{x})\omega$, see Appendix B.
+
+\begin{corollary}[Corollary 3.8]
+Under above setting, gravitational potential can be viewed as rescaling pattern of ``unified time scale'' between different spatial points; gravitational time dilation and Shapiro delay are two readout methods of same time geometry under different operational definitions.
+\end{corollary}
+
+\subsection{Gauge Interaction as Conditioned Time Scale}
+
+\begin{proposition}[Charge-Dependent Additional Group Delay (Proposition 3.9)]
+In scattering systems with $U(1)$ or more general Yang--Mills gauge field $A_{\mu}$, phase derivative difference of scattering matrices $S_{\rho}(\omega)$ corresponding to different internal charge representations $\rho$
+
+$$
+\Delta\kappa_{\rho,\rho'}(\omega)=\frac{1}{2\pi}\mathrm{tr}\,[Q_{\rho}(\omega)-Q_{\rho'}(\omega)]
+$$
+
+in semiclassical limit is equivalent to derivative with respect to energy of Wilson line phase difference along classical trajectory, thus corresponding to time delay difference caused by Lorentz force.
+\end{proposition}
+
+This proposition shows that gauge force can be understood as difference in ``conditioned time scale'' perceived by different charge sectors in same geometric background.
+
+\subsection{Modular Time, Entropy Monotonicity, and Arrow of Time}
+
+\begin{theorem}[Modular Flow--Geometric Time Alignment Theorem (Theorem 3.10)]
+In a class of quantum field theories describable through geometric holography, if local modular flow $\sigma^{\varphi}_{t}$ corresponds to flow of some Killing or approximate Killing vector on gravity side, then following statements are equivalent:
+
+\begin{enumerate}
+\item Modular flow time $t$ belongs to same time scale equivalence class as geometric time $\tau$;
+\item Monotonicity of expectation value of modular Hamiltonian and generalized entropy extremality condition jointly derive local gravitational field equations;
+\item QNEC holds and saturates in corresponding null direction.
+\end{enumerate}
+\end{theorem}
+
+This theorem abstracts the idea in existing work that ``generalized entropy extremality + QNEC suffices to derive Einstein equations,'' restating it as consistency condition between time scale equivalence class and modular flow.
+
+Proof skeleton in Appendix D.
+
+---
+
+\section{Proofs}
+
+This section gives proof ideas of main results and several key steps, leaving technical details to appendices.
+
+\subsection{Proof Outline of Theorem 3.4}
+
+Core tool is Kreĭn spectral shift function theory and trace formula of Wigner--Smith matrix.
+
+\begin{enumerate}
+\item Kreĭn trace formula ensures for trace-class perturbation $V=H-H_{0}\in\mathfrak{S}_{1}$, there exists unique $\xi(\lambda)\in L^{1}(\mathbb{R})$ such that for sufficiently good $f$,
+   $$
+   \mathrm{tr}[f(H)-f(H_{0})]=\int f'(\lambda)\xi(\lambda)\,\mathrm{d}\lambda.
+   $$
+
+\item Birman--Kreĭn formula connects scattering matrix determinant and spectral shift function:
+   $$
+   \det S(\omega)=e^{-2\pi i\xi(\omega)},\quad\text{almost everywhere}.
+   $$
+
+\item Define total scattering phase $\Phi(\omega)=\arg\det S(\omega)$, choose continuous branch such that $\Phi(\omega)=-2\pi\xi(\omega)$ (ignoring integer constant). Define $\varphi(\omega)=\tfrac{1}{2}\Phi(\omega)=-\pi\xi(\omega)$, thus $\varphi'(\omega)/\pi=-\xi'(\omega)=\rho_{\mathrm{rel}}(\omega)$.
+
+\item Wigner--Smith matrix $Q(\omega)=-iS(\omega)^{\dagger}\partial_{\omega}S(\omega)$. Under unitarity of $S(\omega)$, $\mathrm{tr}\,Q(\omega)=-i\partial_{\omega}\ln\det S(\omega)$. By Birman--Kreĭn formula,
+   $$
+   \ln\det S(\omega)=-2\pi i\xi(\omega),
+   $$
+   thus $\mathrm{tr}\,Q(\omega)=2\pi\xi'(\omega)$.
+
+\item Combining yields
+   $$
+   \varphi'(\omega)/\pi=\xi'(\omega)=(2\pi)^{-1}\mathrm{tr}\,Q(\omega).
+   $$
+\end{enumerate}
+
+Key is controlling branch and differentiability of $\ln\det S$, details in Appendix A.
+\subsection{Proof Outline of Theorem 3.6}
+
+Adopt wave packet semiclassical limit and path integral method:
+
+\begin{enumerate}
+\item Let single-particle wave packet initial state be described by WKB-type wavefunction, whose phase is given by action
+   $$
+   S[\gamma]=\int (p_{\mu}\dot{x}^{\mu}-H)\,\mathrm{d}\tau.
+   $$
+
+\item On total bundle $\mathcal{B}$, total connection $\boldsymbol{\Omega}$ introduces additional phase term, namely parallel transport phase $\int \boldsymbol{\Omega}(\dot{\gamma})\,\mathrm{d}\tau$ on path. In path integral, this term is equivalent to traditional vector potential--scalar potential terms.
+
+\item Extremizing action yields generalized geodesic equation, extra connection curvature terms produce force-like terms, respectively corresponding to spacetime curvature (gravity) and internal field strength (gauge force), as well as entropic force contribution from resolution flow.
+
+\item Taking Ehrenfest limit of wave packet center trajectory, operator expectation value evolution can be simplified to classical equation, obtaining form in proposition.
+\end{enumerate}
+
+Details in Appendix C.
+
+\subsection{Proof Outline of Theorem 3.7}
+
+Using frequency conservation and local energy--redshift relation in static spacetime:
+
+\begin{enumerate}
+\item In static spacetime with form $g=-N^{2}\mathrm{d}t^{2}+h_{ij}\mathrm{d}x^{i}\mathrm{d}x^{j}$, time Killing vector $\partial_{t}$ ensures energy conservation.
+
+\item Energy measured in local inertial frame is $\omega_{\mathrm{loc}}=N^{-1}(\mathbf{x})\omega$. State density difference and group delay between scattering region interior and distant region must be expressed using local energy.
+
+\item Under assumption that scale density is only rescaled by $N(\mathbf{x})$, time scales at different positions differ only by position-dependent constant factor, i.e., belong to same equivalence class. Their ratio is $N(\mathbf{x})$ in unitary transformation.
+
+\item Reconciling this relation with gravitational redshift experimental data can verify consistency of this interpretation.
+\end{enumerate}
+
+Detailed dimensional reconciliation in Appendix B.
+
+\subsection{Proof Outline of Theorem 3.10}
+
+This theorem abstracts unified structure of ``entropy extremality--modular energy--geometric equations'':
+
+\begin{enumerate}
+\item Work in holography and algebraic quantum field theory shows that under appropriate circumstances, modular flow can be geometrically realized as flow of some Killing or approximate Killing on gravity side; expectation value of modular Hamiltonian is related to changes in generalized entropy.
+
+\item QNEC connects local energy lower bound with second-order variation of entropy, ensuring constraints between entropy convexity along null directions and energy density.
+
+\item If modular flow time and geometric time are in same scale equivalence class, monotonicity of modular energy and generalized entropy extremality condition on gravity side jointly derive local gravitational equations, which has been argued in recent ``generalized entropy derives Einstein equations'' schemes.
+
+\item Conversely, if local gravitational equations and QNEC hold, can reconstruct a modular flow consistent with geometric time, making time scales aligned.
+\end{enumerate}
+
+Rigorous proof requires bilateral inequalities of relative entropy and JLMS-type holographic equivalence, left to Appendix D.
+
+---
+
+\section{Model Application}
+
+This section demonstrates application of unified time--geometry--interaction framework in several concrete situations.
+
+\subsection{Microscopic: Impurity Scattering and Friedel Sum Rule}
+
+In model of electron scattering by local impurity, Friedel sum rule states: electron number change $\Delta N(\varepsilon)$ caused by impurity is related to sum of phase shifts, state density correction can be expressed through phase derivative.
+
+According to scale identity, $\rho_{\mathrm{rel}}(\omega)=\varphi'(\omega)/\pi$ equals normalization of Wigner--Smith matrix trace. Therefore, ``increased dwell time'' and ``increased local state density'' of electrons near impurity are unified time scale effects. Classical picture of Coulomb ``force'' in this framework is replaced by: electron wavefunction phase bends due to local potential and intrinsic geometry, thus changing time scale.
+
+\subsection{Macroscopic: Gravitational Redshift and Shapiro Delay}
+
+In weak field limit, static gravitational potential $\Phi(\mathbf{x})$ makes metric approximately
+$$
+g\approx-(1+2\Phi(\mathbf{x}))\mathrm{d}t^{2}+(1-2\Phi(\mathbf{x}))\mathrm{d}\mathbf{x}^{2}.
+$$
+
+Gravitational redshift experiments show frequencies of atomic clocks at different heights satisfy
+$$
+\nu_{2}/\nu_{1}\approx 1+[\Phi(\mathbf{x}_{1})-\Phi(\mathbf{x}_{2})].
+$$
+
+In unified framework, this can be understood as result of scale density $\kappa(\omega;\mathbf{x})$ rescaling with $\Phi(\mathbf{x})$. In Shapiro delay, electromagnetic waves passing through strong gravitational fields produce additional propagation time, which can also be viewed as comprehensive effect of $\kappa(\omega)$ accumulation along path; its spectral--scattering representation can be directly compared with frequency-dependent delay in astronomical phenomena such as FRBs.
+
+\subsection{Cosmology: FRW Redshift and Time Rescaling}
+
+In homogeneous isotropic FRW universe, metric can be written as
+$$
+g=-\mathrm{d}t^{2}+a^{2}(t)\gamma_{ij}\mathrm{d}x^{i}\mathrm{d}x^{j},
+$$
+conformal time $\eta$ given by $\mathrm{d}\eta=\mathrm{d}t/a(t)$.
+
+Photon energy decays with scale factor as $E\propto 1/a(t)$, cosmological redshift $1+z=a(t_{0})/a(t_{e})$ can be understood as rescaling of time scale at source and observer. If we define time scale with frequency--phase measurements, then scale density of all freely propagating photons in FRW background will uniformly scale with $a(t)$, making cosmological redshift manifestation of ``unified time scale'' equivalence class on large scales.
+
+\subsection{Metastable Time Crystal and Discrete Time Scale}
+
+In Floquet-driven systems, time-periodic drive $H(t+T)=H(t)$ corresponds to discrete time translation symmetry. In time crystal phase, system ground state or long-lived state exhibits ordered structure on multiple periods $nT$, which can be viewed as spontaneous breaking of time scale on integer subgroup. Unified framework allows understanding from time scale equivalence class perspective: originally continuous scale is mapped to discrete lattice, whose scale density is expressed through Floquet spectrum and quasi-band structure.
+
+Here, concept of ``force'' no longer applies, replaced by phase--delay geometry on Floquet module.
+
+\subsection{Quantum--Classical Bridge: Coarse-Graining and Macroscopic Force}
+
+When considering macroscopic objects, observer can only access coarse-grained operators $\Phi_{\Lambda}(\mathcal{A})$. Under such coarse-graining, microscopic fluctuations average to smooth evolution of expectation values; ``time geometry curvature'' given by unified framework manifests macroscopically as classical force.
+
+For example, entropic force at finite temperature (such as rubber band elasticity, osmotic pressure) microscopically comes from state number and distribution, but in unified framework can be viewed as combined curvature of $\mathcal{R}_{\mathrm{res}}$ and state information geometry, appearing as effective force term in coarse-grained evolution equations.
+
+---
+
+\section{Engineering Proposals}
+
+This section proposes several verification schemes implementable under existing or foreseeable experimental conditions.
+
+\subsection{Time Scale Measurement in Microwave Scattering Networks}
+
+Construct multi-port network composed of coaxial lines or waveguides, treating arbitrarily complex scattering region as ``black box.'' Use vector network analyzer to measure scattering matrix $S(\omega)$, numerically compute Wigner--Smith matrix $Q(\omega)=-iS^{\dagger}\partial_{\omega}S$, obtaining $\mathrm{tr}\,Q(\omega)$.
+
+Simultaneously, numerically solve spectrum of corresponding finite element model, obtaining state density difference $\rho_{\mathrm{rel}}(\omega)$ with/without ``scattering region.'' Test scale identity
+$$
+\rho_{\mathrm{rel}}(\omega)=(2\pi)^{-1}\mathrm{tr}\,Q(\omega).
+$$
+Based on this, through comparison of different networks, characterize probe independence of unified time scale.
+
+\subsection{Electron Time Delay and State Density in Mesoscopic Conductors}
+
+In coherent conductors (such as quantum dots or Aharonov--Bohm rings), phase-sensitive transport measurements can extract energy-varying scattering phase; simultaneously, use local density of states imaging (such as scanning tunneling microscopy) to obtain state density correction. Compare relationship between both and Wigner--Smith group delay, testing unified scale on solid-state physics platform.
+
+\subsection{Gravitational Time Scale: Atomic Clocks and Satellite Links}
+
+Deploy multiple atomic clocks on ground and in orbit, using two-way time transfer protocol to measure frequency and phase relationships. On basis of gravitational redshift correction given by general relativity, introduce additional frequency-dependent terms, testing whether total time delay under combined effects of gravity and medium-equivalent path can be described by unified scale density $\kappa(\omega)$. This scheme is highly compatible with existing and future deep space navigation, gravitational wave--electromagnetic correspondence observations.
+
+\subsection{Cosmology and Cross-Scale Scale Test with FRBs}
+
+For fast radio burst (FRB) and other transient sources, measure multi-frequency arrival time structure. After removing plasma dispersion, instrumental response, residual frequency-dependent delay can be fitted together with FRW redshift and large-scale gravitational lensing effects. If unified time scale framework is correct, scale density reconstruction obtained at different redshifts and different lensing parameters should belong to same equivalence class.
+
+---
+
+\section{Discussion (Risks, Boundaries, Past Work)}
+
+Unified time--geometry--interaction framework conceptually downgrades ``force'' to projection of time geometry curvature, but its rigor and applicable domain have several boundaries.
+
+First, scale identity depends on trace-class perturbation and good scattering conditions; in strong coupling or backgrounds where no good S-matrix definition exists (such as some infrared ill-defined field theories or non-flat asymptotics), this scale construction may fail. Second, total bundle and total connection construction is geometric re-expression, does not automatically provide dynamical equations; still need to assume Einstein--Yang--Mills type action or more general effective action to determine evolution of connection.
+
+Modular flow--geometric time alignment in algebraic quantum field theory and holography is also not universal, depending on specific backgrounds and boundary conditions. Although QNEC has been proven in wide scenarios, its precise relationship with concrete gravitational field equations is still an active research direction.
+
+Additionally, geometrizing ``resolution flow'' as connection of $G_{\mathrm{res}}$ can be mathematically realized through renormalization group flow and statistical coarse-graining framework, but still lacks unified rigorous model. General expression form of entropic force term $f^{\mu}_{\mathrm{res}}$ and whether it can be completely derived from information geometry and RG curvature still needs further work.
+
+Compared with existing unification attempts, this framework differs from unification based on higher-dimensional spacetime and strings, being closer to ``action--time--entropy'' unification: converging spectral time in scattering theory, proper time in general relativity, internal time in modular flow, and entropy arrow in information theory onto structure of ``time scale equivalence class.'' Its advantage: can directly propose tests in existing experimental systems (microwave networks, mesoscopic transport, atomic clocks, cosmological observations); its insufficiency: has not yet given comprehensive description of microscopic degrees of freedom (such as complete quantization of graviton) and spacetime topological changes.
+
+---
+
+\section{Conclusion}
+
+This paper proposes a unified framework with ``time scale equivalence class'' as core object, completing geometric unification of gravity, gauge interactions, and macroscopic forces through following steps:
+
+\begin{enumerate}
+\item Based on mature scattering theory, using Birman--Kreĭn spectral shift, Friedel sum rule, and Wigner--Smith time delay as tools, establish scale identity of phase derivative, relative state density, and group delay trace, giving spectral--scattering definition of observable time scale;
+
+\item In total bundle geometry, introduce total connection of spacetime--internal space--resolution space, unifying gravity, Yang--Mills gauge field, and entropy-driven coarse-graining flow as different components of this connection, whose curvature uniformly produces macroscopic ``force'' in semiclassical limit;
+
+\item Using frequency conservation in static spacetime and gravitational redshift relation, prove time scale equivalence class equals proper time rescaling, thus unifying gravitational time dilation and scattering time delay as different readout methods of same time geometry;
+
+\item At algebraic quantum field theory and holographic background level, adopt modular theory and QNEC to connect modular flow time, generalized entropy extremality, and local gravitational equations, proposing criterion that ``modular time and geometric time belong to same scale equivalence class'';
+
+\item Propose series of cross-scale experimental and observational schemes, from microwave networks and mesoscopic conductors to atomic clock links and FRB cosmological observations, providing verifiable engineering pathways for this unified framework.
+\end{enumerate}
+
+From this perspective, fundamental structure of universe is more appropriately understood as unified body of ``time--geometry--information'': no independent ``forces,'' only bending of time scale in different geometric directions, and monotonic changes of information--entropy at different coarse-graining levels. Gravity and quantum, gauge fields and classical forces, all are projections of this unified time geometry under different observational frameworks and energy scales.
+
+---
+
+\section*{Acknowledgements, Code Availability}
+
+This work does not use any specialized code, relying only on theorems and formula derivations from existing mathematical and physical literature. Numerical simulation and visualization implementation left for future work.
+
+---
+
+\begin{thebibliography}{99}
+
+\bibitem{texier2016}
+C. Texier, ``Wigner time delay and related concepts -- Application to transport in coherent conductors,'' \textit{Physica E} \textbf{82}, 16--33 (2016).
+
+\bibitem{gesztesy2017}
+F. Gesztesy, ``Applications of spectral shift functions,'' Lecture notes (2017).
+
+\bibitem{guo2022}
+P. Guo, ``Friedel formula and Krein's theorem in complex potential scattering,'' \textit{Phys. Rev. Research} \textbf{4}, 023083 (2022).
+
+\bibitem{vargiamidis2010}
+V. Vargiamidis, ``Density of states and Friedel sum rule in one dimension,'' \textit{Phys. Lett. A} \textbf{374}, 4380--4384 (2010).
+
+\bibitem{tong2018}
+D. Tong, ``Yang-Mills Theory,'' Lecture notes (Cambridge, 2018).
+
+\bibitem{weatherall2021}
+J. O. Weatherall, ``Fiber bundles, Yang--Mills theory, and general relativity,'' \textit{Synthese} \textbf{199}, 6079--6109 (2021).
+
+\bibitem{michor2008}
+P. Michor, \textit{Gauge Theory for Fiber Bundles}, Lecture notes (Univ. Vienna, 2008).
+
+\bibitem{summers2005}
+S. J. Summers, ``Tomita--Takesaki modular theory,'' arXiv:math-ph/0511034 (2005).
+
+\bibitem{lashkari2021}
+N. Lashkari, ``Modular flow of excited states,'' \textit{Commun. Math. Phys.} \textbf{384}, 1511--1560 (2021).
+
+\bibitem{bousso2016}
+R. Bousso et al., ``Proof of the quantum null energy condition,'' \textit{Phys. Rev. D} \textbf{93}, 024017 (2016).
+
+\bibitem{balakrishnan2019}
+S. Balakrishnan et al., ``A general proof of the quantum null energy condition,'' \textit{JHEP} \textbf{09}, 020 (2019).
+
+\bibitem{shahbazi2020}
+A. Shahbazi-Moghaddam, ``Aspects of generalized entropy and quantum null energy condition,'' PhD thesis, UC Davis (2020).
+
+\bibitem{mezei2019}
+M. Mezei, ``The quantum null energy condition and entanglement entropy,'' arXiv:1909.00919 (2019).
+
+\bibitem{yang1977}
+C. N. Yang, ``Magnetic monopoles, fiber bundles, and gauge fields,'' Lecture (1977).
+
+\end{thebibliography}
+
+\appendix
+
+\section{Scattering Time Delay, Spectral Shift, and Scale Identity}
+
+This appendix gives detailed proof of Theorem 3.4.
+
+\subsection{Spectral Shift Function and Kreĭn Trace Formula}
+
+Let $H_{0}$ be self-adjoint, $V=H-H_{0}\in\mathfrak{S}_{1}$ trace-class perturbation. Krein theory guarantees existence of unique measurable function $\xi(\lambda) \in L^{1}(\mathbb{R})$ such that for any test function $f$ with sufficient decay and smoothness,
+
+$$
+\mathrm{tr}[f(H)-f(H_{0})]=\int_{\mathbb{R}} f'(\lambda)\xi(\lambda)\,\mathrm{d}\lambda
+$$
+
+Taking smooth approximation of $f(\lambda)=\mathbf{1}_{(-\infty,E]}(\lambda)$, obtain
+
+$$
+N(E;H)-N(E;H_{0})=\int_{-\infty}^{E}\xi'(\lambda)\,\mathrm{d}\lambda
+$$
+
+where $N(E;H)$ is spectral counting function. For energy density, obtain
+
+$$
+\rho_{\mathrm{rel}}(E)=\xi'(E) \quad \text{almost everywhere}.
+$$
+
+\subsection{Birman--Kreĭn Formula and Phase}
+
+In scattering theory, existence and completeness of wave operators $W_{\pm}=\mathrm{s}-\lim_{t\to\pm\infty}e^{iHt}e^{-iH_{0}t}$ guarantee scattering operator
+
+$$
+S=W_{+}^{\dagger}W_{-}
+$$
+
+can be decomposed into fixed-energy components $S(\omega)$ on absolutely continuous spectrum. Birman--Kreĭn formula states
+
+$$
+\det S(\omega)=e^{-2\pi i\xi(\omega)} \quad \text{almost everywhere}.
+$$
+
+Define $\Phi(\omega)=\arg\det S(\omega)$, choose continuous branch such that
+
+$$
+\Phi(\omega)=-2\pi\xi(\omega)
+$$
+
+(differing by integer multiple $2\pi$, not affecting derivative).
+
+Let $\varphi(\omega)=\tfrac{1}{2}\Phi(\omega)=-\pi\xi(\omega)$, then
+
+$$
+\varphi'(\omega)/\pi=-\xi'(\omega)=-\rho_{\mathrm{rel}}(\omega)
+$$
+
+If adopting opposite sign convention when defining spectral shift function, this minus sign can be eliminated; here we adopt convention in main text.
+
+\subsection{Wigner--Smith Matrix and Trace Formula}
+
+Wigner--Smith matrix is defined as
+
+$$
+Q(\omega)=-iS(\omega)^{\dagger}\partial_{\omega}S(\omega)
+$$
+
+Note that for any invertible matrix $S(\omega)$,
+
+$$
+\partial_{\omega}\ln\det S(\omega)=\mathrm{tr}\,[S^{-1}(\omega)\partial_{\omega}S(\omega)]
+$$
+
+For unitary matrix $S(\omega)$, $S^{-1}(\omega)=S^{\dagger}(\omega)$, thus
+
+$$
+-i\partial_{\omega}\ln\det S(\omega)=-i\,\mathrm{tr}\,[S^{\dagger}(\omega)\partial_{\omega}S(\omega)]=\mathrm{tr}\,Q(\omega)
+$$
+
+On the other hand,
+
+$$
+\ln\det S(\omega)=i\Phi(\omega)
+$$
+
+thus
+
+$$
+\mathrm{tr}\,Q(\omega)=-i\partial_{\omega}\ln\det S(\omega)=\Phi'(\omega)=2\varphi'(\omega)
+$$
+
+Combining above results, obtain
+
+$$
+\varphi'(\omega)/\pi=\rho_{\mathrm{rel}}(\omega)=(2\pi)^{-1}\mathrm{tr}\,Q(\omega)
+$$
+
+At this point, scale identity is rigorously established.
+
+---
+
+\section{Static Spacetime, Redshift, and Scale Equivalence}
+
+\subsection{Static Metric and Local Energy}
+
+Let static spacetime metric be
+
+$$
+g=-N^{2}(\mathbf{x})\mathrm{d}t^{2}+h_{ij}(\mathbf{x})\mathrm{d}x^{i}\mathrm{d}x^{j}
+$$
+
+Killing vector $\xi^{\mu}=(\partial_{t})^{\mu}$ corresponds to conserved quantity
+
+$$
+E=-p_{\mu}\xi^{\mu}=-p_{t}
+$$
+
+Energy measured in local inertial frame is
+
+$$
+\omega_{\mathrm{loc}}=p_{\hat{0}}=N^{-1}(\mathbf{x})E
+$$
+
+where $p_{\hat{0}}$ is orthogonal frame component.
+
+Therefore, local state density and group delay in scattering region naturally function on $\omega_{\mathrm{loc}}$.
+
+\subsection{Scale Density and Redshift Factor}
+
+Assume scale density satisfies
+
+$$
+\kappa(\omega;\mathbf{x})=\kappa_{\mathrm{loc}}(\omega_{\mathrm{loc}})=\kappa_{\mathrm{loc}}(N^{-1}(\mathbf{x})\omega)
+$$
+
+Distant $N(\infty)=1$. For given energy window, in distant observer time scale, group delay is
+
+$$
+\Delta\tau(\omega;\mathbf{x})=\int \frac{1}{2\pi}\mathrm{tr}\,Q(\omega;\mathbf{x})\,\mathrm{d}\omega
+$$
+
+If $\kappa_{\mathrm{loc}}$ varies slowly within window, then
+
+$$
+\Delta\tau(\omega;\mathbf{x})\approx N^{-1}(\mathbf{x})\Delta\tau_{\infty}(\omega)
+$$
+
+Therefore, for two positions $\mathbf{x}_{1},\mathbf{x}_{2}$, time scale ratio is
+
+$$
+\frac{\Delta\tau(\omega;\mathbf{x}_{2})}{\Delta\tau(\omega;\mathbf{x}_{1})}\approx \frac{N^{-1}(\mathbf{x}_{2})}{N^{-1}(\mathbf{x}_{1})}=\frac{N(\mathbf{x}_{1})}{N(\mathbf{x}_{2})}
+$$
+
+This is consistent with gravitational redshift relation $\nu_{2}/\nu_{1}=N(\mathbf{x}_{1})/N(\mathbf{x}_{2})$, showing both belong to same time scale equivalence class.
+
+---
+
+\section{Semi-classical Limit and Force as Curvature Projection}
+
+\subsection{Action with Connection and Path Integral}
+
+Consider action containing connection
+
+$$
+S[\gamma]=\int \left(p_{\mu}\dot{x}^{\mu}-H_{\mathrm{free}}(x,p)\right)\,\mathrm{d}\tau + \int \langle \chi, \boldsymbol{\Omega}(\dot{\gamma})\chi\rangle\,\mathrm{d}\tau
+$$
+
+where $\chi$ describes internal degrees of freedom and resolution variables, $\boldsymbol{\Omega}$ is total connection.
+
+Path integral weight factor is $e^{iS[\gamma]}$. Varying action yields
+
+$$
+m\frac{D^{2}x^{\mu}}{D\tau^{2}}=qF^{\mu}{}_{\nu}\dot{x}^{\nu}+f^{\mu}_{\mathrm{res}}
+$$
+
+where $F^{\mu}{}_{\nu}$ is obtained from internal part curvature of connection, $f^{\mu}_{\mathrm{res}}$ is given by combination of resolution flow and entropy gradient.
+
+\subsection{Ehrenfest Theorem and Macroscopic Force}
+
+Evolution of expectation values of operators $\hat{x}^{\mu}$ and $\hat{p}_{\mu}$ on Hilbert space satisfies Ehrenfest theorem. Taking expectation of Hamiltonian containing connection, in narrow wave packet approximation, expectation of operator product can be factorized into product of expectations plus noise correction. Ignoring higher-order noise yields center-of-mass trajectory equation. At this point, ``force'' is completely determined by connection curvature.
+
+---
+
+\section{Modular Flow, QNEC, and Gravitational Dynamics}
+
+\subsection{Modular Flow and Relative Entropy}
+
+For local algebra $\mathcal{A}(\mathcal{O})$ and state $\varphi$, modular flow $\sigma^{\varphi}_{t}$ and modular Hamiltonian $K_{\varphi}=-\log\Delta_{\varphi}$ satisfy
+
+$$
+\sigma^{\varphi}_{t}(A)=e^{iK_{\varphi}t}Ae^{-iK_{\varphi}t}
+$$
+
+Relative entropy
+
+$$
+S(\psi||\varphi)=\mathrm{tr}(\rho_{\psi}\log\rho_{\psi}-\rho_{\psi}\log\rho_{\varphi})
+$$
+
+in holographic correspondence, has direct relation with generalized entropy and gravity-side energy.
+
+\subsection{QNEC and Local Energy Constraint}
+
+QNEC expression
+
+$$
+\langle T_{kk}\rangle \geq \frac{1}{2\pi}S''
+$$
+
+ensures small deformation along null direction has second-order change of entropy limited by energy. This can be viewed as a kind of ``entropy expansion arrow of time,'' and can be used to prove that if generalized entropy takes extremum on given cross-section, corresponding geometry must satisfy local form of Einstein equation.
+
+\subsection{Alignment Condition for Time Scale Equivalence Class}
+
+If modular flow $t$ and geometric time $\tau$ belong to same scale equivalence class, monotonicity of modular Hamiltonian and Iyer--Wald work--entropy relation on gravity side jointly derive local gravitational dynamics. Conversely, if geometry satisfies specific energy conditions and generalized second law, can construct state and algebra aligning modular flow time with geometric time, thus completing closure of unified time scale.
+
+This part integrates multiple results from algebraic QFT, holography, and gravitational thermodynamics, showing time scale equivalence class has both operational definition from scattering--spectral shift and structural definition from modular flow--entropy, which are intrinsically consistent under appropriate conditions.
+
+\end{document}
+

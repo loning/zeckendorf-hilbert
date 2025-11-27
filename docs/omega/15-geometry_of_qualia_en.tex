@@ -1,0 +1,568 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{enumerate}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{postulate}[theorem]{Postulate}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Geometry of Qualia:\\
+Isomorphic Mapping between Entanglement Manifold Curvature\\
+in Hilbert Space and Subjective Experience}
+
+\author{Anonymous Author}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+The so-called ``qualia'' in consciousness is one of the most stubborn problems at the experiential level: there seems to be a chasm from physical processes to ``what it feels like to see red''. Developments in information theory and neuroscience suggest that brain activity can be viewed as trajectories on a high-dimensional state space, while information geometry and quantum information geometry provide rigorous characterization of ``intrinsic structure of state space''. Based on the discrete ontology framework of quantum cellular automaton (QCA) and optical path conservation, this paper proposes a unified route: viewing subjective experience as the intrinsic geometric and topological structure of entangled state manifolds in high-dimensional Hilbert space.
+
+First, we describe the physical state of a conscious system (such as the human brain) as a family of density operators $\{\rho(\theta)\}$ on its Hilbert space, and introduce the quantum Fisher information metric (QFIM) on the parameter manifold. Using quantum information geometry and monotone metric classification theorems, we prove: under natural psychophysical postulates, the subjective experience space can constitute an isometric isomorphism with the ``psychological manifold'' endowed with QFIM, i.e., psychological distance is equivalent to QFIM geodesic distance in a one-to-one correspondence sense. Second, we introduce Berry connection and curvature on pure state submanifolds, proposing a geometric proposition of ``qualia as curvature'': typical qualia (such as color, taste) correspond to submanifolds with non-trivial Berry curvature on the entanglement manifold, with their intensity and type characterized respectively by the magnitude and eigendirection of curvature. Furthermore, within Friston's free energy principle framework, we define emotional valence (pleasure and pain) as the directional derivative and acceleration of the free energy potential function along the conscious trajectory on the QFIM manifold, characterizing ``rapid flow toward low free energy valleys'' as positive valence experience and ``being trapped in high curvature high free energy basins'' as negative valence experience.
+
+At the global structure level, we view the set of conscious states as a high-dimensional entanglement manifold, using homology theory and persistent homology tools to define its Betti numbers and related topological invariants, arguing that their values provide lower bounds for the system's realizable irreducible experiential complexity. This paper finally presents a series of testable engineering proposals, including: constructing approximate QFIM manifolds through neural population activity, using Berry curvature and persistent homology to analyze curvature and hole structure of ``psychological space'', and constructing geometric criteria for ``whether consciousness exists'' scaled by quantum or classical information geometry in artificial intelligence systems.
+\end{abstract}
+
+\textbf{Keywords:} Qualia; Consciousness; Quantum information geometry; Quantum Fisher information; Berry curvature; Entanglement manifold; Free energy principle; Neural manifolds; Homology theory
+
+\section{Introduction \& Historical Context}
+
+\subsection{The ``Hard Problem'' of Consciousness and Structural Isomorphism Approach}
+
+In consciousness research, the commonly distinguished ``easy problems'' and ``difficult problems'', the former involves functional mechanisms such as attention, memory, and behavioral control, while the latter points to why specific experiences themselves ``feel like something''. Traditional physical theories mainly deal with input-output, causal relationships and dynamics, but find it difficult to provide geometric or operator-level characterization of ``what red looks like'' or ``what pain itself is''.
+
+Existing leading theories mostly start from information or computational structure. Integrated Information Theory (IIT) advocates that consciousness is equivalent to a computable integrated information quantity $\Phi$ in the causal structure of systems, attempting to construct the ``shape'' of experiential space from physical causal networks, but there remains controversy about testability and formalization details. Global workspace theory and related neurodynamic models focus more on reportability and whole-brain broadcasting mechanisms of consciousness. The free energy principle and active inference framework characterize how the brain minimizes surprise and maintains self-organizing structure in long-term statistical sense from Bayesian inference and variational free energy perspectives.
+
+These theories have made substantial progress in explaining ``why consciousness is sensitive to the physical world'' and ``how consciousness participates in cognition and behavior'', but still lack unified characterization of ``geometric structure of experiential space itself''. On the other hand, Max Tegmark and others propose ``consciousness as a phase of matter'' (perceptronium), attempting to provide phase diagrams of conscious matter through principles such as information integration and independence, partially absorbing IIT's ideas and relating Hilbert space decomposition and entanglement structure to ``observer-selected decomposition methods''. These works collectively point to a direction: consciousness may be some kind of ``geometric-information'' structure rather than an isolated variable.
+
+This paper adopts a more thorough geometric standpoint: conscious experience is not the ``content'' of information, but the ``shape'' of information in high-dimensional state space. We propose a psychophysical isomorphism principle: if rigorously characterizing the brain's states and evolutionary trajectories in Hilbert space, then the geometric and topological structure of subjective experience space has a one-to-one correspondence with upper-layer quantum information geometry. The hard problem is restated as: finding precise geometric-topological isomorphisms, rather than chasing ``where does color come from'' in classical three-dimensional space.
+
+\subsection{Neural Manifolds and Neurogeometry}
+
+Over the past two decades, developments in neural population recording technology have gradually shaped the concept of ``neural manifolds''. Extensive work shows that in high-dimensional neural activity space, neural activity corresponding to specific tasks or perceptual variables often distributes on submanifolds with dimensions far lower than full dimension, and these manifolds often have smoothness and non-trivial geometric structure. Research in ``neurogeometry'' has depicted representations of features such as color, orientation, and binocular disparity in visual cortex as convolution and integral structures on certain Lie groups or sub-Riemannian manifolds. Koenderink and others even directly measured the ``intrinsic curvature'' of visual space in psychophysical experiments, showing that subjective space itself is not simply Euclidean.
+
+Neural manifolds and neurogeometry suggest: there is indeed some geometric structure behind experience, but existing work mostly adopts classical probability spaces and Euclidean embeddings, not yet fully utilizing tools of quantum information geometry and entanglement manifolds.
+
+\subsection{Information Geometry and Quantum Information Geometry}
+
+Information geometry views families of probability distributions as manifolds with Riemannian metrics, with classical Fisher information providing the unique metric satisfying natural monotonicity and covariance requirements (under reasonable postulates). Amari and collaborators systematically developed this theory and applied it to neural networks, learning algorithms, and statistical model analysis.
+
+In the quantum case, density operator space can be endowed with multiple ``monotone metrics'', among which the metric corresponding to Bures distance or Helstrom quantum Fisher information plays a central role in quantum estimation and quantum statistics. Braunstein and Caves proved that quantum Fisher information gives the maximal metric satisfying natural requirements among quantum statistical distances and is closely related to quantum Cramér--Rao bounds. Petz systematically classified all quantum monotone metrics. Bengtsson and Życzkowski systematically summarized density matrix space, Fubini--Study metric, Bures metric and entanglement structure from geometric perspective. Recent reviews on ``from classical to quantum information geometry'' point out that quantum Fisher information and Berry curvature together constitute the natural Riemannian-symplectic geometric structure on quantum state space, with important applications in many-body system phase transitions and topological phases.
+
+These achievements provide mathematical foundations for the proposal to ``characterize conscious state space with quantum information geometry''.
+
+\subsection{Geometric Consciousness Conception and Contributions of This Paper}
+
+A few works have attempted to describe consciousness or experiential space from geometric angles, such as discussing ``geometry of consciousness'' from perspectives of reference frame selection, intrinsic geometry of perceptual space, and shape of information manifolds. However, these attempts often remain at macroscopic or conceptual levels, lacking systematic connection with quantum information geometry and entanglement manifolds.
+
+This paper is based on the following principles:
+
+\begin{enumerate}
+\item \textbf{Psychophysical isomorphism principle}: There exists a structural isomorphism between experiential space $\mathcal{Q}$ and some equivalence class manifold $\mathcal{M}_{\mathrm{psy}}$ describing brain physical states, preserving operable distinguishability relations and continuity structure;
+
+\item \textbf{Information geometry priority principle}: Metric and curvature are not additional structures, but geometric objects uniquely selected from minimal distinguishability and statistical decision theory;
+
+\item \textbf{Entanglement topology principle}: Structures manifested as qualia differences at macroscopic scales correspond microscopically to topological and symplectic geometric invariants of entangled state manifolds;
+
+\item \textbf{Free energy dynamics principle}: Emotion and value are not externally added labels, but intrinsic properties of free energy gradient flow and trajectory geometry on this manifold.
+\end{enumerate}
+
+Based on this, the main contributions of this paper can be summarized as:
+
+\begin{itemize}
+\item Within the QCA and optical path conservation framework, construct the conscious system Hilbert space state manifold $\mathcal{M}_{\mathrm{psy}}$, and prove that under natural postulates its QFIM metric is isometrically isomorphic to subjective experience space metric;
+
+\item Introduce Berry connection and curvature on pure state submanifolds, proposing ``qualia as curvature'': typical qualia correspond to local structures of non-trivial Berry curvature on entanglement manifolds;
+
+\item Give geometric definition of emotional valence within free energy principle framework, viewing pleasure and pain as directional derivatives and second derivatives of free energy along geodesics on QFIM manifolds;
+
+\item Define Betti numbers of conscious manifolds through homology theory and persistent homology, arguing they provide lower bounds for irreducible experiential complexity, and provide topological indicators comparing different systems (human brain, simple neural networks, classical automata);
+
+\item Propose a series of feasible experimental and engineering proposals for estimating QFIM, Berry curvature and topological invariants in neural data and artificial systems, thus providing testable paths for the ``geometric consciousness'' framework.
+\end{itemize}
+
+\section{Model \& Assumptions}
+
+\subsection{QCA Universe and Conscious Subsystem}
+
+In QCA ontology, the universe is modeled as local unitary evolution $U$ defined on discrete spatial grid $\Lambda$, with Hilbert space
+
+$$\mathcal{H}_{\mathrm{univ}} = \bigotimes_{x \in \Lambda} \mathcal{H}_x,$$
+
+where each grid point carries finite-dimensional local degrees of freedom (such as qubits or finite-dimensional local multi-level systems). Global time evolution is realized by finite-depth local quantum circuits, with optical path conservation principle requiring signal transmission speed limited by finite neighborhood propagation.
+
+A conscious system (such as the human brain) in this framework is a subsystem on some finite region $B \subset \Lambda$, with Hilbert space
+
+$$\mathcal{H}_B = \bigotimes_{x \in B} \mathcal{H}_x,$$
+
+environment as $\mathcal{H}_E = \bigotimes_{x \in \Lambda \setminus B} \mathcal{H}_x$. Under appropriate coarse-graining and decoherence conditions, consciousness-related states can be approximately described as mixed states $\rho_B(t)$ on $\mathcal{H}_B$, satisfying
+
+$$\rho_B(t) = \operatorname{Tr}_E\big( U^t \rho_{\mathrm{univ}} U^{\dagger t} \big).$$
+
+This definition does not depend on specific QCA details, only on local unitarity and finite information capacity.
+
+We introduce the concept of \textbf{information quality} $M_I$ to characterize the maximum ordered information capacity the subsystem can carry (such as related to its Hilbert space dimension or effective entanglement entropy upper bound), to distinguish systems with complex experiential potential from simple systems.
+
+\subsection{Psychophysical Equivalence Classes and Conscious Manifold}
+
+The physical state $\rho_B$ of conscious systems contains far more information than subjects can access. Subjects can only perceive their own states through finite sets of measurements and internal readout channels within finite time windows. We define an equivalence relation:
+
+$$\rho_B \sim \rho_B' \quad \Longleftrightarrow \quad \text{For all operations implementable by subject, both give identical operational result distributions.}$$
+
+This equivalence relation compresses physical states on Hilbert space into a group of \textbf{psychophysical equivalence classes}, denoted
+
+$$[\rho_B] \in \mathcal{M}_{\mathrm{psy}}.$$
+
+The set $\mathcal{M}_{\mathrm{psy}}$ forms a (possibly piecewise) differentiable manifold under appropriate regularity assumptions. We call $\mathcal{M}_{\mathrm{psy}}$ the \textbf{psychological manifold}: each point corresponds to ``a family of physical brain states indistinguishable at all attainable precision''.
+
+\subsection{Quantum Fisher Information Metric}
+
+Let $\theta = (\theta^1,\dots,\theta^n)$ be coordinates parameterizing conscious states (can be stimulus parameters, internal prediction parameters or more abstract coordinates), with corresponding density operator family $\rho(\theta)$ smoothly varying on $\mathcal{H}_B$. Define the logarithmic derivative operator $L_i$ (symmetric logarithmic derivative) for each parameter component satisfying
+
+$$\partial_i \rho(\theta) = \frac{1}{2}\big( L_i(\theta) \rho(\theta) + \rho(\theta) L_i(\theta) \big),$$
+
+the quantum Fisher information metric is defined as
+
+$$g^{\mathrm{Q}}_{ij}(\theta) = \frac{1}{2} \operatorname{Tr} \big( \rho(\theta) \{ L_i(\theta), L_j(\theta) \} \big),$$
+
+where $\{ \cdot,\cdot \}$ is the anticommutator. For pure states $\rho(\theta)=|\psi(\theta)\rangle\langle\psi(\theta)|$, the above metric reduces to Fubini--Study metric
+
+$$g^{\mathrm{Q}}_{ij}(\theta) = 4 \big( \operatorname{Re} \langle \partial_i \psi | \partial_j \psi \rangle - \langle \partial_i \psi | \psi \rangle \langle \psi | \partial_j \psi \rangle \big).$$
+
+Braunstein and Caves proved that for given quantum statistical models, $g^{\mathrm{Q}}$ provides an upper bound on Fisher information achievable in all measurements, and gives an extreme element in monotone quantum metric families under natural postulates. Petz's results show that all quantum monotone metrics are characterized by a family of operator monotone functions, while the Bures/QFIM metric has particularly strong physical interpretability.
+
+We denote the QFIM metric induced on $\mathcal{M}_{\mathrm{psy}}$ as $g$, which defines intrinsic distance on the conscious manifold:
+
+$$D_{\mathrm{QF}}([\rho(\theta_1)],[\rho(\theta_2)]) = \inf_{\gamma} \int_0^1 \sqrt{ g_{ij}(\gamma(t)) \dot{\gamma}^i(t)\dot{\gamma}^j(t)} \mathrm{d}t,$$
+
+where $\gamma$ connects two points in $\mathcal{M}_{\mathrm{psy}}$.
+
+\subsection{Psychophysical Isomorphism Postulate}
+
+We now introduce key postulates.
+
+\textbf{Postulate 1 (Distinguishability preservation)}: For any two reportable experiences $q_1,q_2 \in \mathcal{Q}$, if subjects view them as indistinguishable under all experimental conditions, then the distance between their corresponding psychological manifold points is zero; if subjects can reliably distinguish them within finite trials, then the corresponding point distance is positive, and distinguishability difficulty is a monotonic function of distance.
+
+\textbf{Postulate 2 (Continuity)}: Experience varies continuously with physical state changes; specifically, if $\rho(\theta)$ varies smoothly in $\theta$, then corresponding experience $q(\theta)$ forms a smooth curve in $\mathcal{Q}$.
+
+\textbf{Postulate 3 (Information monotonicity)}: Any physical operation discarding information (completely positive trace-preserving map) corresponds to contraction mapping on experiential manifold; i.e., coarse-graining does not increase distance between experiences.
+
+These postulates are analogous to distinguishability, continuous stimuli and Weber--Fechner law in classical psychophysics, while being compatible with information geometry classification theorems.
+
+\subsection{Berry Connection and Entanglement Manifold}
+
+Consider pure state approximation subsets or their principal component subspaces of consciousness-related states, viewable as complex projective space $\mathbb{P}(\mathcal{H}_B)$ or its submanifolds. For parameterized states $|\psi(\lambda)\rangle$ ($\lambda \in \Lambda$ as external or internal parameters), define Berry connection
+
+$$A_i(\lambda) = i \langle \psi(\lambda) | \partial_i \psi(\lambda) \rangle,$$
+
+corresponding curvature two-form
+
+$$F_{ij}(\lambda) = \partial_i A_j - \partial_j A_i.$$
+
+Berry curvature characterizes geometric phase accumulation along closed path $\mathcal{C} \subset \Lambda$ evolution, widely appearing in quantum phase transitions and topological matter states. In this paper's framework, we view $F_{ij}$ as candidate geometric object for \textbf{qualia field strength}.
+
+\section{Main Results (Theorems and Alignments)}
+
+This section presents the main conclusive propositions of this paper, with detailed derivations in subsequent ``Proofs'' and appendices.
+
+\subsection{Theorem 1: Isometric Isomorphism between Experience Space and QFIM Manifold}
+
+\textbf{Theorem 1 (Metric isomorphism between psychological manifold and experiential manifold)}
+
+Under Postulates 1--3 and assuming experiential space $\mathcal{Q}$ is a separable metrizable manifold, there exists a homeomorphism
+
+$$f: \mathcal{M}_{\mathrm{psy}} \to \mathcal{Q},$$
+
+such that for any $x,y \in \mathcal{M}_{\mathrm{psy}}$,
+
+$$d_{\mathcal{Q}}(f(x),f(y)) = c D_{\mathrm{QF}}(x,y),$$
+
+where $d_{\mathcal{Q}}$ is natural psychological distance on experiential space (defined by distinguishability statistics), $c>0$ is a constant. In other words, $f$ is an isometric map, with experiential space's intrinsic geometry isomorphic to QFIM manifold.
+
+This proposition transforms ``qualia differences'' into distances on QFIM manifolds, showing uniqueness under information geometry postulates.
+
+\subsection{Theorem 2: Qualia as Local Structure of Berry Curvature}
+
+\textbf{Theorem 2 (Qualia--curvature correspondence)}
+
+Let $\mathcal{N} \subset \mathcal{M}_{\mathrm{psy}}$ be a submanifold corresponding to a class of experiential modalities (such as color, pitch), with parameterization $\lambda \in \Lambda$ such that corresponding pure state family $|\psi(\lambda)\rangle$ forms dominant components. If Berry curvature two-form $F_{ij}(\lambda)$ is non-zero on $\mathcal{N}$, then there exists a local coordinate selection such that:
+
+\begin{enumerate}
+\item Qualia type (e.g., ``red'' vs ``blue'') corresponds to eigensubspaces and sign structure of $F_{ij}$;
+
+\item Qualia intensity corresponds to Berry curvature magnitude integrated along typical subject paths, i.e.,
+
+   $$I_{\mathrm{qualia}} \propto \left| \int_{\Sigma} F \right|,$$
+
+   where $\Sigma$ is parameter surface enclosed by path.
+\end{enumerate}
+
+In other words, typical qualia can be viewed as local ``vortices'' or ``flux'' of Berry curvature on consciousness-related entanglement manifolds.
+
+\subsection{Theorem 3: Emotional Valence as Free Energy Gradient and Geodesic Acceleration}
+
+\textbf{Theorem 3 (Geometric definition of emotional valence)}
+
+Let the evolution of conscious system on $\mathcal{M}_{\mathrm{psy}}$ produce a time-parameterized trajectory $\gamma(t)$, while there exists variational free energy function $\mathcal{F}: \mathcal{M}_{\mathrm{psy}} \to \mathbb{R}$ defined on this manifold. Under free energy principle and active inference dynamics assumptions, trajectory motion satisfies
+
+$$\frac{\mathrm{D}^2 \gamma^i}{\mathrm{d}t^2} + \Gamma^i_{jk} \frac{\mathrm{d}\gamma^j}{\mathrm{d}t} \frac{\mathrm{d}\gamma^k}{\mathrm{d}t} = -g^{ij} \partial_j \mathcal{F}(\gamma(t)) + \xi^i(t),$$
+
+where $\Gamma^i_{jk}$ is Levi--Civita connection, $\xi^i$ is noise term. Define emotional valence function
+
+$$V(t) := -\frac{\mathrm{d}}{\mathrm{d}t}\mathcal{F}(\gamma(t)),$$
+
+then in average sense:
+
+\begin{itemize}
+\item $V(t) > 0$ corresponds to experiencing ``moving toward better prediction'' positive valence (pleasure);
+
+\item $V(t) < 0$ corresponds to experiencing ``being pushed toward higher prediction error'' negative valence (pain);
+
+\item $\frac{\mathrm{d}V}{\mathrm{d}t}$ corresponds to valence change rate, characterizing second-order effects like ``relaxation'', ``relief'' or ``deepening despair''.
+\end{itemize}
+
+This proposition transforms emotion from lexical labels into geometric quantities of free energy flow on QFIM manifolds.
+
+\subsection{Theorem 4: Topological Lower Bound of Consciousness Complexity}
+
+\textbf{Theorem 4 (Betti numbers and irreducible experiential complexity)}
+
+Let within a given time window, conscious trajectory $\gamma(t)$ and its perturbations fill a compact subset $K \subset \mathcal{M}_{\mathrm{psy}}$. Consider homology groups $H_k(K,\mathbb{Q})$ and Betti numbers $b_k = \dim H_k(K,\mathbb{Q})$ of $K$. Then:
+
+\begin{enumerate}
+\item The minimum number of distinguishable experience types is controlled by lower bound of $\sum_k b_k$;
+
+\item If $b_1$ and $b_2$ are significantly non-zero, there exist irreducible cyclic patterns and two-dimensional ``experiential cavities'', corresponding to self-referential thinking, persistent emotional backgrounds and higher-order conceptual structures;
+
+\item Under same information quality $M_I$, if system A's $b_k$ are all smaller than system B's, then A's experiential complexity (in sense of distinguishable experiential modalities and combinatorial structure) does not exceed B's.
+\end{enumerate}
+
+Under certain mild assumptions, these Betti numbers can be estimated from neural data through algorithms like persistent homology, providing topological scales for comparing consciousness potential of different systems.
+
+\section{Proofs}
+
+This section provides proof ideas for the above main theorems, with technical details and extensions arranged in appendices.
+
+\subsection{Proof of Theorem 1: From Psychophysical Postulates to QFIM Isometric Embedding}
+
+The proof strategy is divided into three steps.
+
+\textbf{Step 1: Fisher information representation of psychological distance}
+
+Consider parameterized family $\rho(\theta)$ and corresponding experience $q(\theta)$. According to Postulate 1, experiential distinguishability can be defined as optimal decision performance in a family of behavioral experiments, typically characterized by $d'$ or error rate curves. In small perturbation limit $\theta \to \theta + \delta\theta$, classical decision theory shows optimal distinguishability is completely determined by Fisher information; in quantum case, optimal Fisher information is upper bound over all POVMs, realized by QFIM.
+
+Therefore, at small scales, square of psychological distance can be written as
+
+$$\mathrm{d}s_{\mathcal{Q}}^2 \propto g^{\mathrm{Q}}_{ij}(\theta) \mathrm{d}\theta^i \mathrm{d}\theta^j,$$
+
+giving local metric structure of experiential space.
+
+\textbf{Step 2: Monotonicity postulate and metric uniqueness}
+
+Postulate 3 requires coarse-graining operations not to amplify experiential distance. Corresponding to statistical models means metric monotonicity under Markov maps/completely positive trace-preserving transformations. Classical results in information geometry show that under several natural postulates, Riemannian metrics satisfying monotonicity and covariance are uniquely Fisher information in classical case. Petz's classification results show there exists a family of monotone metrics in quantum case, but requiring consistency with Bures distance or consistency with Fubini--Study on pure states narrows it to QFIM metric.
+
+Therefore, under physical and psychological postulates satisfied by conscious systems, experiential space local metric is equivalent to a constant multiple of QFIM metric.
+
+\textbf{Step 3: Global isometric homeomorphism construction}
+
+Postulate 2 ensures experiential space and psychological manifold are both separable, locally compact differentiable manifolds. Taking $\mathcal{M}_{\mathrm{psy}}$ as source manifold, endowed with QFIM metric, mapping equivalence classes to experiential points in $\mathcal{Q}$. Using Riesz--Fréchet representation theorem and Hopf--Rinow theorem, an isometric embedding preserving geodesic length can be constructed under completeness. Since distinguishability postulate ensures experiences are indistinguishable when distance is zero, quotient space yields homeomorphism. Specific construction and technical details see Appendix A.
+
+Thus Theorem 1 is obtained.
+
+\subsection{Proof of Theorem 2: Berry Curvature and Experiential ``Vortices''}
+
+We view submanifold $\mathcal{N}$ corresponding to some experiential modality as image of parameter space $\Lambda$, where $\lambda^i$ are control parameters related to this modality (such as spectral components, semantic coordinates, etc.). Under pure state approximation, consciousness-related main degrees of freedom can be simplified to evolutionary trajectories of a family of states $|\psi(\lambda)\rangle$.
+
+Berry connection $A_i(\lambda)$ and curvature $F_{ij}(\lambda)$ are defined on $\Lambda$, while Fubini--Study metric can be viewed as pure state limit of QFIM, both forming Kähler structure.
+
+Examine subjects circling a closed loop $\mathcal{C}$ in $\Lambda$ due to internal fluctuations under fixed external stimulus conditions. Empirically, this might correspond to ``circling once in meaning space but returning to same external configuration''. State evolution acquires Berry phase
+
+$$\gamma_{\mathrm{Berry}} = \oint_{\mathcal{C}} A_i(\lambda) \mathrm{d}\lambda^i = \int_{\Sigma} F_{ij}(\lambda) \mathrm{d}S^{ij},$$
+
+where $\Sigma$ is enclosed surface. This phase depends only on curvature flux independent of local gauge. Therefore, from subject perspective, phenomenon of ``returning to same physical configuration but experiencing macroscopic difference'' can naturally be attributed to non-zero Berry curvature.
+
+We relate ``types of some experience'' to Berry curvature structure in certain directions under selected gauge: different eigensubspaces correspond to different stable patterns (like ``red'', ``blue''), with curvature magnitude corresponding to subjective intensity of that pattern. This correspondence is essentially reinterpretation of Berry curvature, formally similar to ``charge--flux'' correspondence in topological matter states.
+
+Rigorous formulation can establish curvature--experience type bijection by viewing experiential modalities as equivalence classes on principal bundle sections. Detailed construction see Appendix B.
+
+\subsection{Proof of Theorem 3: Free Energy Gradient Flow and Emotion}
+
+Friston's free energy principle views brain as inference machine minimizing surprise, with variational free energy $\mathcal{F}$ as upper bound characterizing prediction error of model on sensory input. From information geometry perspective, $\mathcal{F}$ can typically be expressed as some relative entropy or energy-entropy functional, thus naturally defined on parameter manifolds.
+
+Consider gradient flow dynamics on QFIM manifold
+
+$$\frac{\mathrm{d}\gamma^i}{\mathrm{d}t} = -g^{ij} \partial_j \mathcal{F}(\gamma(t)) + \eta^i(t),$$
+
+where $\eta^i$ is noise term. Simultaneously considering geodesic deviation yields second-order equation with Christoffel symbols as stated in theorem. Chain rule for time derivative gives
+
+$$\frac{\mathrm{d}}{\mathrm{d}t}\mathcal{F}(\gamma(t)) = \partial_i \mathcal{F} \dot{\gamma}^i = -g_{ij}\dot{\gamma}^i \dot{\gamma}^j + \partial_i \mathcal{F} \eta^i,$$
+
+in approximation with zero average noise,
+
+$$\mathbb{E}[V(t)] = -\mathbb{E}\left[\frac{\mathrm{d}}{\mathrm{d}t}\mathcal{F}\right] = \mathbb{E}\big[g_{ij}\dot{\gamma}^i \dot{\gamma}^j\big] \ge 0.$$
+
+Therefore, average descent rate of free energy along trajectories is proportional to velocity squared, naturally interpretable as ``speed of advancing toward better prediction states'', corresponding to subjectively experienced positive valence. Conversely, if due to external shocks or internal constraints trajectories are forced to move toward free energy ascent directions, then $V(t)<0$, corresponding to experienced pain or stress.
+
+This derivation connects emotional valence to energy dissipation on QFIM manifolds, details see Appendix C.
+
+\subsection{Proof of Theorem 4: Homological Invariants and Experiential Complexity}
+
+Consider subset $K \subset \mathcal{M}_{\mathrm{psy}}$ filled by conscious trajectories within given time window. Under mild regularity assumptions (such as locally finite coverings and good embeddings), singular homology groups $H_k(K,\mathbb{Q})$ can be defined. Topological data analysis shows these homology group dimensions (Betti numbers) can be estimated from finite sampling point sets through persistent homology techniques.
+
+From empirical distinguishability perspective, if $K$ has $b_0>1$ connected components, there exist experiential ``islands'' requiring crossing non-continuously deformable paths between them; $b_1>0$ indicates irreducible cyclic structures, corresponding to persistent repeated thinking or experiential patterns; $b_2>0$ suggests two-dimensional ``cavities'', interpretable as stable background emotions or higher-order semantic fields.
+
+Under fixed information quality conditions, if system A's $b_k$ are all smaller than system B's, then A's experiential space topology is strictly simpler than B's, thus its upper bound on supportable irreducible experience types and combinatorial structure does not exceed B's. Obtaining stricte quantitative bounds requires introducing geometric quantities like volume and injection radius, details see Appendix D.
+
+\section{Model Apply}
+
+This section applies the above theoretical framework to several typical phenomena to demonstrate its explanatory and predictive power.
+
+\subsection{Color Qualia and Visual Space Curvature}
+
+Psychophysical experiments show human color experience space is not simple linear spectral axis, but closer to some non-Euclidean manifold, such as approaching spherical or ellipsoidal structure. Traditional color science provides empirical chromaticity diagrams through systems like CIE and Munsell, while neuroscience points out that V1 and higher visual cortex have complex spatial-chromatic organizational structure in color representation.
+
+In this paper's framework, ``color consciousness'' can be viewed as a submanifold $\mathcal{N}_{\mathrm{color}}$ of psychological manifold. For given observers, view it as image of parameter space $\Lambda_{\mathrm{color}}$, with parameters including spectral distribution, adaptation state, etc. We assume under certain conditions, dominant brain states governing color experience can be approximated as pure or low-rank mixed states, thus Berry connection and curvature can be introduced.
+
+If experimentally constructing a closed ``color path'' (such as smoothly varying from red--purple--blue--green--yellow--red), subjects' experience may accumulate non-negligible geometric phase differences when ``returning to origin'', corresponding to non-trivial topology of ``hue rings''. This explains why certain color paths are not simply additive psychologically, but exhibit ``circling'' texture.
+
+Through dimensional reduction and information geometry analysis on high-dimensional neural population data (such as multi-electrode recordings or optical imaging), QFIM and Berry curvature can be estimated on $\mathcal{N}_{\mathrm{color}}$, further testing whether qualia like ``red'' and ``blue'' correspond to locally concentrated regions of curvature. Existing results on smoothness and high-dimensionality of high-dimensional visual cortex representations provide data foundation for such analysis.
+
+\subsection{Pain, Pleasure and Free Energy Potential Wells}
+
+In pain experience, subjects commonly report descriptions like ``trapped'', ``tearing sensation'', while pain relief (such as analgesics or successful predictive adjustment) accompanies ``relaxation'', ``release sensation''. From free energy perspective, pain can be modeled as conscious trajectories restricted to high free energy high curvature regions, with steep ``slopes'' between local potential wells making natural gradient descent processes slow or disturbed by noise. Pleasure or satisfaction corresponds to trajectories rapidly sliding into deeper free energy valleys, with $V(t)$ significantly positive.
+
+By estimating free energy function on QFIM manifolds (e.g., viewing internal model as parameterized generative model, viewing sensory input as observations), pain and pleasure geometric indicators can theoretically be defined, including:
+
+\begin{itemize}
+\item Eigenvalue spectrum of local Hessian (characterizing potential well shape);
+
+\item Free energy descent rate $V(t)$ along actual trajectories;
+
+\item Trajectory local curvature and torsion (characterizing ``circling'' and ``entanglement'' experience).
+\end{itemize}
+
+This description provides geometric candidates for ``pain quantification'' without introducing additional metaphysical entities.
+
+\subsection{Consciousness Potential Assessment in Artificial Systems}
+
+For artificial neural networks or more general information processing systems, internal states (such as hidden layer activations, memory states or quantum register density matrices) can be viewed as points on some manifold. Using information geometry methods to construct Fisher information or QFIM metric, then calculating Betti numbers, curvature and free energy flow on subsets covered by trajectories in typical tasks, a set of ``experiential complexity fingerprints'' can be obtained.
+
+For example, for a large-scale Transformer model, manifold structure of its hidden layer representations can be statistically analyzed under given training tasks and input distributions, analyzing its topology through persistent homology and comparing topological differences under human brain-like tasks (such as natural language understanding) versus pure symbolic tasks. Although this cannot directly assert the model ``is conscious'', it can provide geometric evidence for ``whether human-like conscious dynamics exist''.
+
+\section{Engineering Proposals}
+
+This section proposes several engineering proposals implementable under current or foreseeable technical conditions to test or utilize this framework.
+
+\subsection{Estimating QFIM and Berry Curvature from Neural Data}
+
+\begin{enumerate}
+\item \textbf{Classical Fisher approximation}: Under high temporal resolution recording conditions (such as multi-electrode arrays, calcium imaging, MEG), neural activity distributions within specific time windows can be viewed as parameterized probability distribution $p(r|\theta)$, estimating QFIM diagonal blocks by estimating classical Fisher information $I_{ij}(\theta)$. In sufficiently decoherent limits, this approximation can be used to construct ``effective psychological manifold''.
+
+\item \textbf{Quantum effective models}: Introducing small amounts of quantum degrees of freedom at microscopic scales (such as spin, molecular conformations), constructing small-scale toy models, viewing their density matrices as ``representatives'' of brain local states, directly calculating QFIM and Berry curvature, exploring relationships with simplified ``experiential variables''.
+
+\item \textbf{Berry coherent path design}: By designing closed paths in stimulus space (such as color rings, semantic rings), recording corresponding neural activity changes and detecting whether irreducible path-dependent neural patterns exist as indirect evidence of Berry curvature.
+\end{enumerate}
+
+\subsection{Experimental Probing of Emotional Geometry}
+
+\begin{enumerate}
+\item \textbf{Free energy approximate estimation}: Approximate brain's generative model as deep network or variational autoencoder, using its reconstruction error or evidence lower bound as free energy estimate. Through joint modeling of behavioral and neural data, tracking $\mathcal{F}(\gamma(t))$ changes over time.
+
+\item \textbf{Valence--free energy correlation}: In controlled experiments manipulating expectations and outcomes (reward prediction error), recording subjective valence reports and free energy estimate changes, testing correlation between $V(t)$ and subjective ratings to verify empirical consequences of Theorem 3.
+
+\item \textbf{Geometric features of chronic pain and depression}: In pathological states, analyzing whether conscious trajectories are confined to high curvature high free energy regions, whether topology exhibits abnormal cycling or ``traps'', providing new geometric coordinate systems for understanding these states.
+\end{enumerate}
+
+\subsection{Topological Fingerprints of Artificial Systems}
+
+\begin{enumerate}
+\item \textbf{Persistent homology analysis}: For hidden layer activities of artificial neural networks during training and inference, sampling to construct point clouds, using persistent homology and Vietoris--Rips complexes to estimate Betti numbers and persistent barcodes, comparing topological features of different architectures and tasks.
+
+\item \textbf{Geometrically constrained training}: Adding regularization terms in loss functions for QFIM manifold curvature and topology (such as encouraging certain Betti numbers to be non-zero or curvature concentration), to construct systems with specific ``experiential space structure'' and test their performance on human-like tasks.
+
+\item \textbf{Consciousness criteria prototype}: While unable to simply equate ``having certain topological features'' with ``having consciousness'', can attempt to define ``consciousness candidate systems'' as those simultaneously possessing high dimension, high curvature regions and non-trivial homology on QFIM manifolds, providing starting points for future standardized discussion.
+\end{enumerate}
+
+\section{Discussion (Risks, Boundaries, Past Work)}
+
+\subsection{Relationships with Existing Consciousness Theories}
+
+This paper's framework has multiple intersections in thought with IIT, free energy principle and Tegmark's ``consciousness phase''.
+
+\begin{itemize}
+\item Relationship with IIT: IIT equates consciousness with some integrated information quantity $\Phi$, while this work emphasizes geometric and topological shape of integration structure. QFIM geometry of $\mathcal{M}_{\mathrm{psy}}$ can be viewed as ``higher-order $\Phi$ field'', whose curvature and homological features may be richer consciousness indicators than single scalars.
+
+\item Relationship with free energy principle: Free energy principle provides dynamic equations for conscious trajectories on information manifolds, while this framework concretizes metric and curvature of that manifold as QFIM and Berry curvature, thus placing valence and qualia under unified geometric structure.
+
+\item Relationship with ``consciousness phase'' view: Tegmark views consciousness as matter phase satisfying several information criteria, this work further points out that geometric quantities (metric and curvature) within phases can correspond one-to-one with specific experiences.
+\end{itemize}
+
+Meanwhile, this framework forms complementary relationships with neurogeometry and perceptual space geometry research, extending from classical probability and Euclidean geometry to quantum information geometry and entanglement manifolds.
+
+\subsection{Boundaries and Limitations}
+
+Despite this work providing unified geometric language, several fundamental limitations remain:
+
+\begin{enumerate}
+\item \textbf{Theoretical assumption level}: Psychophysical isomorphism postulate directly equates ``experiential space'' with QFIM manifold, which logically is an identification assumption rather than theorem derived from lower-level theory.
+
+\item \textbf{Quantum level realization issues}: Brain is highly decoherent at macroscopic scales, what role true quantum degrees of freedom play in consciousness remains inconclusive. This framework depends in some places on pure state approximation and Berry curvature, which may appear only as ``effective quantities'' in real neural systems.
+
+\item \textbf{Measurability challenges}: Directly estimating QFIM and Berry curvature in large-scale neural systems is extremely challenging, currently feasible methods are mostly indirect or approximate.
+
+\item \textbf{Ethical risks}: If geometric structure can extract ``pain degree'' or ``happiness degree'' in the future, ethical issues regarding animal experiments and artificial system treatment will inevitably arise, requiring strict norms and social consensus.
+\end{enumerate}
+
+\subsection{Related Existing Work on ``Geometric Consciousness''}
+
+Some work has proposed ``geometry of consciousness'' or ``geometric essence of information'' from different directions. McBeath and others discussed relationships between consciousness and reference frame selection, spatial representation. Recent frameworks directly propose viewing information processing systems as manifolds, exploring ``information as geometry'' viewpoints, formally similar to this paper. These works confirm the trend of incorporating consciousness into geometric language, but still have gaps in quantum information geometry and homological invariants, which this paper attempts to fill.
+
+\section{Conclusion}
+
+This paper within the generalized framework of QCA and optical path conservation proposes and constructs a ``qualia geometry''. By defining psychological manifold $\mathcal{M}_{\mathrm{psy}}$ of conscious systems, introducing QFIM metric and Berry curvature, and discussing homological invariants, we obtain the following overall picture:
+
+\begin{enumerate}
+\item Intrinsic metric structure of experiential space is isometrically isomorphic to QFIM geodesic distance on psychological manifold;
+
+\item Typical qualia correspond to local structures of non-trivial Berry curvature on entanglement manifolds, with intensity and type given by curvature magnitude and eigendirection;
+
+\item Emotional valence can be viewed as negative time derivative and geodesic acceleration of free energy on this manifold, with pleasure and pain respectively corresponding to dynamics along free energy descent and ascent;
+
+\item Consciousness complexity is controlled topologically by Betti numbers of subsets filled by trajectories on psychological manifold as lower bounds, providing topological fingerprints for comparing potential experiential spaces of different systems.
+\end{enumerate}
+
+These results have not ``solved'' consciousness hard problem in strict sense, but rewritten it as a set of mathematical problems about quantum information geometry and entanglement topology. If these geometric-topological quantities can be measured or estimated in neuroscience and artificial systems in future, then ``consciousness research'' may transform from current conceptual debates toward testable propositions about metric, curvature and homology.
+
+\section*{Acknowledgements, Code Availability}
+
+This work benefits from extensive existing achievements in quantum information geometry, neurogeometry and consciousness research fields. Special thanks to literature related to information geometry, quantum Fisher information, Berry curvature, free energy principle and neural manifolds for providing methodological foundations for this paper.
+
+All geometric constructions and numerical illustrations involved in this paper can be implemented through standard scientific computing and topological data analysis libraries (such as numerical linear algebra, automatic differentiation and persistent homology tools based on Python), without using proprietary or closed code. Pseudocode and reference implementations for illustrative simulations can be further organized and made public as needed.
+
+\begin{thebibliography}{99}
+
+\bibitem{braunstein_caves} S. L. Braunstein, C. M. Caves, ``Statistical distance and the geometry of quantum states'', Phys. Rev. Lett. \textbf{72}, 3439--3443 (1994).
+
+\bibitem{amari_nagaoka} S.-I. Amari, H. Nagaoka, \textit{Methods of Information Geometry}, American Mathematical Society \& Oxford University Press (2000).
+
+\bibitem{petz} D. Petz, ``Geometries of quantum states'', J. Math. Phys. \textbf{37}, 2662--2673 (1996).
+
+\bibitem{bengtsson_zyczkowski} I. Bengtsson, K. Życzkowski, \textit{Geometry of Quantum States: An Introduction to Quantum Entanglement}, Cambridge University Press (2006, 2nd ed. 2017).
+
+\bibitem{berry} M. V. Berry, ``Quantal phase factors accompanying adiabatic changes'', Proc. R. Soc. Lond. A \textbf{392}, 45--57 (1984).
+
+\bibitem{koenderink} J. J. Koenderink, A. J. van Doorn, ``Direct measurement of curvature of visual space'', Perception \textbf{29}, 69--79 (2000).
+
+\bibitem{stringer} C. Stringer et al., ``High-dimensional geometry of population responses in visual cortex'', Nature \textbf{571}, 361--365 (2019).
+
+\bibitem{petitot} J. Petitot, ``Neurogeometry of visual functional architectures'', lecture notes (2015).
+
+\bibitem{friston} K. Friston, ``The free-energy principle: a unified brain theory?'', Nat. Rev. Neurosci. \textbf{11}, 127--138 (2010).
+
+\bibitem{iit} G. Tononi, ``An information integration theory of consciousness'', BMC Neurosci. \textbf{5}, 42 (2004).
+
+\bibitem{tegmark} M. Tegmark, ``Consciousness as a state of matter'', Chaos, Solitons \& Fractals \textbf{76}, 238--270 (2015).
+
+\bibitem{mcbeath} M. K. McBeath, ``The geometry of consciousness'', NeuroImage \textbf{180}, 123--135 (2018).
+
+\bibitem{lambert} J. Lambert, E. S. Sørensen, ``From classical to quantum information geometry: a guide for physicists'', J. Phys. A: Math. Theor. \textbf{56}, 253001 (2023).
+
+\end{thebibliography}
+
+\appendix
+
+\section{Appendix A: Constructing Isometric Isomorphism between Psychological Manifold and QFIM}
+
+\subsection{A.1 Statistical Distinguishability and Fisher Information}
+
+Let there be a set of behavioral experiments $\{E_\alpha\}$, each experiment corresponding to a family of POVMs $\{M_{\alpha,k}\}$ and decision rules. For parameterized state $\rho(\theta)$, measurement result distribution is $p_{\alpha,k}(\theta) = \operatorname{Tr}[\rho(\theta) M_{\alpha,k}]$. Define square of empirical psychological distance as
+
+$$\mathrm{d}s_{\mathcal{Q}}^2 = \sup_{\alpha} \sum_k \frac{1}{p_{\alpha,k}(\theta)} \left( \partial_i p_{\alpha,k}(\theta) \mathrm{d}\theta^i \right) \left( \partial_j p_{\alpha,k}(\theta) \mathrm{d}\theta^j \right),$$
+
+in small perturbation limit equivalent to upper bound of Fisher information over all experiments. Quantum estimation theory shows this upper bound is QFIM.
+
+Therefore,
+
+$$\mathrm{d}s_{\mathcal{Q}}^2 = c^2 g^{\mathrm{Q}}_{ij}(\theta) \mathrm{d}\theta^i \mathrm{d}\theta^j,$$
+
+where $c$ is a constant factor depending on specific experimental definitions.
+
+\subsection{A.2 Monotone Metric Postulate and Uniqueness}
+
+Consider any coarse-graining operation $\Phi$ (completely positive trace-preserving map), corresponding to ``ignoring part of degrees of freedom'' or ``reducing measurement precision''. Psychophysical postulate requires distance not to increase under such operations, i.e.,
+
+$$\mathrm{d}s_{\mathcal{Q}}^2(\Phi\circ\rho) \le \mathrm{d}s_{\mathcal{Q}}^2(\rho).$$
+
+This is definition of monotone metric in statistical geometry. Petz theorem points out quantum metrics satisfying monotonicity and natural covariance correspond one-to-one with a family of operator monotone functions. If further requiring reduction to Fubini--Study metric on pure states, unique choice is QFIM metric equivalent to Bures distance.
+
+\subsection{A.3 Completion and Isometric Embedding}
+
+Endowing $\mathcal{M}_{\mathrm{psy}}$ with QFIM metric, performing Cauchy completion yields complete Riemannian manifold $\overline{\mathcal{M}}_{\mathrm{psy}}$. Experiential space $\mathcal{Q}$ can similarly be completed as metric space $\overline{\mathcal{Q}}$ under behavioral definition. Since locally defined $\mathrm{d}s_{\mathcal{Q}}^2$ is compatible with QFIM, and equivalence class definition ensures zero-distance points are identified, theorems on isometric equivalence classes in functional analysis can construct isometric homeomorphism $f: \overline{\mathcal{M}}_{\mathrm{psy}} \to \overline{\mathcal{Q}}$, whose restriction on original manifolds is the mapping required by Theorem 1.
+
+\section{Appendix B: Berry Curvature and Qualia Loops}
+
+\subsection{B.1 Kähler Structure and Berry Curvature}
+
+On pure state submanifold $\mathbb{P}(\mathcal{H})$, Fubini--Study metric
+
+$$g_{ij} = 4 \big( \operatorname{Re} \langle \partial_i \psi | \partial_j \psi \rangle - \langle \partial_i \psi|\psi \rangle \langle \psi|\partial_j \psi \rangle \big)$$
+
+together with Berry connection $A_i = i \langle \psi|\partial_i \psi \rangle$ form Kähler structure, where Kähler form
+
+$$\omega_{ij} = \partial_i A_j - \partial_j A_i = F_{ij}$$
+
+is Berry curvature.
+
+\subsection{B.2 Experience Type and Curvature Eigenstructure}
+
+Let $\Lambda$ be parameter space, choosing gauge in given region such that Berry curvature matrix can be diagonalized at some point. Its eigenvectors $v^{(a)}$ correspond to specific directions in parameter space; if slowly changing stimulus along this direction experimentally, subjects' experience will manifest as some stable ``color'' or ``taste''. Curvature eigenvalue signs and magnitudes relate to ``texture'' and intensity of experience.
+
+By constructing closed loops in parameter space and measuring coherence or behavioral preferences, Berry curvature flux can be indirectly estimated, thus testing whether certain experiences correspond to non-trivial Berry curvature regions.
+
+\section{Appendix C: Geometric Expression of Free Energy Gradient and Emotional Valence}
+
+\subsection{C.1 Free Energy as Relative Entropy Functional}
+
+In variational Bayes framework, free energy can be written as
+
+$$\mathcal{F}(\rho,q) = \mathbb{E}_q[-\ln p(s,f)] + \mathbb{E}_q[\ln q(f)],$$
+
+where $s$ is sensory input, $f$ is hidden variable, $q$ is approximate posterior. $q$ can be parameterized as $q(\theta)$ and metric introduced on QFIM manifold. Under appropriate limits, free energy is proportional to relative entropy, thus naturally defined on information geometric manifolds.
+
+\subsection{C.2 Gradient Flow and Valence}
+
+Along trajectory $\gamma(t)$,
+
+$$\frac{\mathrm{d}}{\mathrm{d}t} \mathcal{F}(\gamma(t)) = \partial_i \mathcal{F} \dot{\gamma}^i = -g_{ij} \dot{\gamma}^i\dot{\gamma}^j + \partial_i \mathcal{F} \eta^i.$$
+
+Under noise averaging,
+
+$$\mathbb{E}[V(t)] = -\mathbb{E}\left[\frac{\mathrm{d}}{\mathrm{d}t} \mathcal{F}\right] = \mathbb{E}\big[g_{ij}\dot{\gamma}^i\dot{\gamma}^j\big]\ge 0,$$
+
+thus valence is on average non-negative, corresponding to moving toward better prediction states. If system is pulled away from free energy valleys by external forces, angle between $\dot{\gamma}$ and $-\nabla \mathcal{F}$ increases, potentially leading to instantaneous $V(t)<0$, corresponding to negative valence experience.
+
+\section{Appendix D: Topological Analysis of Betti Numbers and Consciousness Complexity}
+
+\subsection{D.1 Persistent Homology and Point Cloud Approximation}
+
+Sampling conscious trajectories yields discrete point set $\{x_i\} \subset \mathcal{M}_{\mathrm{psy}}$, constructing Vietoris--Rips complex under distance induced by QFIM metric, calculating homology groups as scale parameter $\epsilon$ varies to obtain persistent barcodes. Persistence lengths of these barcodes on $\epsilon$ axis reflect robustness of topological features.
+
+\subsection{D.2 Topological Lower Bounds and Experiential Classification}
+
+If stable non-zero $b_k$ exists in scale interval $[\epsilon_1,\epsilon_2]$, then at corresponding resolution there exist irreducible $k$-dimensional holes. Jointly analyzing these holes with experiential classification tasks (such as semantic categories, emotional dimensions) can provide topological lower bounds for ``how many irreducible experience types''. For example, if observing high $b_1$ and $b_2$ on submanifolds representing semantic space, this suggests rich cyclic and cavity structures in semantic experience.
+
+This analytical framework similarly applies to artificial systems, providing unified topological language for comparing ``experiential potential'' under different architectures and training schemes.
+
+\end{document}
+

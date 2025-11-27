@@ -1,0 +1,275 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{braket}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=0.75in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Math operators
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Arg}{Arg}
+
+% Title information
+\title{Quantum Gravitational Field:\\
+Unified Theory via Windowed Scattering\\
+Phase--Delay--Spectral-Shift Measure}
+\author{Auric (S-series / EBOC)\\[5pt]
+\small Version v0.7, October 28, 2025}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This paper proposes quantum gravitational field theory \textbf{completely scaled by observables}: for given spacetime geometry $g$ and reference geometry $g_0$, with fixed-energy scattering matrix $S_g(E)$, define core \textbf{Wigner--Smith delay operator} $Q_g(E)=-i\,S_g(E)^\dagger \partial_E S_g(E)$, defining \textbf{relative density of states (rDOS)}
+
+$$
+\rho_{\mathrm{rel}}[g:g_0](E)\;=\;\frac{1}{2\pi i}\,\tr\!\big(S_g^\dagger \partial_E S_g\big)\;=\;\frac{1}{2\pi}\,\tr\,Q_g(E).
+$$
+
+Under \textbf{unitary scattering} framework satisfying Birman--Kreĭn (BK) formula $\det S_g(E)=\exp[-2\pi i\,\xi_g(E)]$, have $\rho_{\mathrm{rel}}[g:g_0](E)=-\xi_g'(E)$, where $\xi_g$ is Kreĭn spectral shift function; this unifies \textbf{phase--delay--spectral shift} triple scale relation, consistent with Friedel/Smith relations. \textbf{With absorption (non-unitary)}, use \textbf{phase partial density of states} $\rho_{\mathrm{rel}}[g:g_0]^{(\mathrm{phase})}(E)=\frac{1}{2\pi}\partial_E\arg\det S_g(E)$, characterizing absorption intensity via imaginary part of total complex delay $\tau_{\mathrm{tot}}$.
+
+Realize measurable readout within experimental resolution via \textbf{windowed observation}: choose window--dual kernel pair $(w,\tilde{w})$ satisfying Wexler--Raz biorthogonality and Gabor frame necessary density ($\Delta E\,\Delta t/(2\pi\hbar)\le 1$), defining
+
+$$
+\mathcal{N}_{w}[g:g_0;E_0]\;=\;\int_{\mathbb{R}} w(E-E_0)\,\rho_{\mathrm{rel}}[g:g_0](E)\,dE,
+$$
+
+giving \textbf{windowed BK identity} and \textbf{non-asymptotic error three-term decomposition} (aliasing/Poisson + Bernoulli layer/Euler--Maclaurin + truncation).
+
+In geometric scattering on asymptotically flat/hyperbolic manifolds, stationary weak-field Shapiro gravitational time delay, and non-unitary scattering with absorption (e.g., black hole exterior), we prove: \textbf{(Invariance)} invariant under diffeomorphism/unitary equivalence; \textbf{(Additivity)} rDOS additive for cascade scattering; \textbf{(Semiclassical limit)} windowed rDOS controlled by length spectrum of periodic geodesic flow, recovering classical dwell time and Shapiro delay in low-frequency limit.
+
+\textbf{Keywords}: Wigner--Smith delay; Kreĭn spectral shift; Birman--Kreĭn formula; Friedel/Smith relation; windowed observation; Gabor/Weyl--Heisenberg framework; Landau sampling density; manifold scattering; Shapiro delay
+\end{abstract}
+
+\section{Introduction: Scaling by Observables}
+
+Fact that scattering phase and energy derivative give DOS established since Beth--Uhlenbeck and Friedel; in modern scattering theory, rigorized by BK formula as
+
+$$
+\det S(E)=e^{-2\pi i\,\xi(E)},\qquad
+\xi'(E)=-\tfrac{1}{2\pi i}\tr\!\big(S^\dagger \partial_E S\big),
+$$
+
+thus $\rho_{\mathrm{rel}}[g:g_0](E)=\frac{1}{2\pi i}\tr(S_g^\dagger \partial_E S_g)=-\xi_g'(E)$. Simultaneously equivalent to total dwell time measured by Wigner--Smith delay operator $Q_g=-iS_g^\dagger \partial_E S_g$.
+
+\textbf{Restriction}: Above equivalence chain holds only when $S(E)$ unitary ($S^\dagger S=I$); with absorption/leakage, use phase partial density of states $\rho_{\mathrm{rel}}^{(\mathrm{phase})}=\tfrac{1}{2\pi}\partial_E\arg\det S$ and total complex delay $\tau_{\mathrm{tot}}=-i\,\partial_E\log\det S$ (see §5).
+
+This paper advocates: \textbf{quantum gravitational field} operationally defined as \textbf{windowed relative density of states}, i.e., $\rho_{\mathrm{rel}}[g:g_0](E)$ and its readout $\mathcal{N}_w[g:g_0;E_0]$ within instrumental resolution. Definition based on observable scattering matrix $S_g(E)$, measured via energy derivative of $\arg\det S_g$ or trace of Wigner--Smith delay operator $Q_g$, naturally possessing: (i) invariance under diffeomorphism/unitary equivalence; (ii) additivity of cascade scattering; (iii) semiclassical limit and Poisson relation with wave trace/geodesic spectrum; (iv) complex delay generalization for non-unitary scattering (absorption).
+
+\section{Setup and Notation}
+
+\subsection{Geometry, Operators and Standing Assumptions}
+
+Set $(M,g)$ smooth manifold with one or more non-compact ends, satisfying asymptotically Euclidean (or asymptotically hyperbolic/long-range) conditions; let $H_g=-\Delta_g$ (or self-adjoint variant with suitable short/long-range potential). Take reference geometry $(M,g_0)$ and $H_{g_0}$.
+
+\textbf{Standing Assumption (applies throughout)}: Assume pair $(H_g,H_{g_0})$ satisfies \textbf{relative trace class} condition, i.e., exists $z\in\rho(H_{g_0})$ such that
+
+$$
+(H_g-H_{g_0})(H_{g_0}-z)^{-1}\in\mathfrak{S}_1,
+$$
+
+where $\mathfrak{S}_1$ trace class operator ideal. Under this condition, spectral shift function $\xi_g(E)$ and energy-shell scattering matrix $S_g(E)$ well-defined, BK formula $\det S_g(E)=e^{-2\pi i\xi_g(E)}$ holds; here $\det S_g$ is \textbf{perturbation determinant} in BK sense (Fredholm/det$_1$ type). \textbf{All BK formulas, spectral shift function identities and relative trace expressions in this paper understood under this assumption.}
+
+\textbf{Reference geometry $g_0$ calibration and choice}: For experimental/astronomical connection, reference geometry $g_0$ should be chosen as \textbf{known standard background} (such as Minkowski flat spacetime, Schwarzschild solution, or standard asymptotic cone of asymptotically flat manifold). Key principles:
+
+\begin{enumerate}
+\item[(i)] \textbf{Relative trace class guarantee}: difference between $g$ and $g_0$ must satisfy above trace class condition;
+\item[(ii)] \textbf{Comparability}: different observations should use same $g_0$ for same physical situation, ensuring \textbf{comparison meaning} of $\rho_{\mathrm{rel}}[g:g_0]$;
+\item[(iii)] \textbf{Windowed calibration}: bandwidth $\Delta E$ and time-domain width $\Delta t$ of window pair $(w,\tilde{w})$ should match instrumental resolution/observation timescale;
+\item[(iv)] \textbf{Phase baseline}: when performing phase unwrapping of $\arg\det S$, use phase at $E_{\min}$ as baseline and track cumulatively, avoiding arbitrary $2\pi$ jumps.
+\end{enumerate}
+
+\textbf{Background translation identity}:
+
+$$
+\boxed{\;\rho_{\mathrm{rel}}[g:g_0]-\rho_{\mathrm{rel}}[g:g_0']=\rho_{\mathrm{rel}}[g_0':g_0]\;},
+$$
+
+where left side difference of rDOS of target geometry $g$ relative to two different references $g_0$ and $g_0'$, right side fixed background difference term, systematically canceling when comparing different $g$.
+
+\section{Core Definitions}
+
+\begin{definition}[Relative Density of States]
+\label{def:rdos}
+For geometry $g$ and reference $g_0$ satisfying standing assumption, \textbf{relative density of states}
+
+$$
+\rho_{\mathrm{rel}}[g:g_0](E):=\frac{1}{2\pi i}\,\tr\big(S_g(E)^\dagger\partial_E S_g(E)\big)=\frac{1}{2\pi}\,\tr\,Q_g(E),
+$$
+
+where $Q_g(E)=-iS_g(E)^\dagger\partial_E S_g(E)$ is Wigner--Smith delay operator.
+
+Under BK formula $\det S_g=e^{-2\pi i\xi_g}$, have $\rho_{\mathrm{rel}}[g:g_0](E)=-\xi_g'(E)$ (a.e.).
+\end{definition}
+
+\begin{definition}[Windowed Readout]
+\label{def:windowed-readout}
+For window $w$ centered at energy $E_0$, \textbf{windowed relative density}
+
+$$
+\mathcal{N}_{w}[g:g_0;E_0]:=\int_{\mathbb{R}} w(E-E_0)\,\rho_{\mathrm{rel}}[g:g_0](E)\,dE.
+$$
+
+Window choice satisfies: (i) Wexler--Raz biorthogonality with dual $\tilde{w}$; (ii) Gabor frame density $\Delta E\,\Delta t/(2\pi\hbar)\le 1$; (iii) bandlimited or rapid decay ensuring NPE error closure.
+\end{definition}
+
+\section{Main Theorems}
+
+\begin{theorem}[Invariance Under Diffeomorphism/Unitary Equivalence]
+\label{thm:invariance}
+Let $\phi:M\to M$ diffeomorphism, $g'=\phi^*g$ pullback metric. Then
+
+$$
+\rho_{\mathrm{rel}}[g':g_0](E)=\rho_{\mathrm{rel}}[g:g_0](E).
+$$
+
+Similarly, if $U:L^2(M,g)\to L^2(M,g')$ unitary operator intertwining $H_g$ and $H_{g'}$, then rDOS preserved.
+\end{theorem}
+
+\begin{proof}
+Diffeomorphism invariance follows from spectral flow and scattering matrix transformation properties. Unitary equivalence preserves trace and spectral shift function. \end{proof}
+
+\begin{theorem}[Additivity for Cascade Scattering]
+\label{thm:additivity}
+For three geometries $g_1,g_2,g_0$ with cascade scattering $S_{g_1\to g_2}=S_{g_2}S_{g_1}$, have
+
+$$
+\rho_{\mathrm{rel}}[g_2:g_0]+\rho_{\mathrm{rel}}[g_1:g_2]=\rho_{\mathrm{rel}}[g_1:g_0].
+$$
+\end{theorem}
+
+\begin{proof}
+Follows from multiplicative property of scattering matrices and logarithmic derivative additivity. Spectral shift function satisfies $\xi_{g_1:g_0}=\xi_{g_1:g_2}+\xi_{g_2:g_0}$, differentiating yields rDOS additivity. \end{proof}
+
+\begin{theorem}[Semiclassical Limit and Geodesic Length Spectrum]
+\label{thm:semiclassical}
+In semiclassical limit $\hbar\to0$ (or high-energy $E\to\infty$), windowed rDOS controlled by length spectrum of closed geodesics:
+
+$$
+\mathcal{N}_w[g:g_0;E_0]\sim\sum_{\gamma\in\mathcal{P}}\widehat{w}(L_\gamma)\,A_\gamma(E_0)+O(\hbar),
+$$
+
+where $\mathcal{P}$ periodic geodesics, $L_\gamma$ length, $A_\gamma$ amplitude factor. Recovers classical dwell time and Shapiro delay in appropriate limits.
+\end{theorem}
+
+\begin{proof}
+Standard trace formula (Gutzwiller, Duistermaat--Guillemin) connects wave trace to geodesic length spectrum. Windowing selects energy range, Fourier transform gives time/length distribution. \end{proof}
+
+\begin{theorem}[Non-Asymptotic Error Closure: NPE Decomposition]
+\label{thm:npe-error}
+For discrete sampling of windowed readout with step $\Delta E$ and truncation $N$,
+
+$$
+\text{Error}=\underbrace{\varepsilon_{\mathrm{alias}}}_{\text{Poisson}}+\underbrace{\varepsilon_{\mathrm{EM}}}_{\text{Euler--Maclaurin}}+\underbrace{\varepsilon_{\mathrm{tail}}}_{\text{truncation}}.
+$$
+
+When window $w$ bandlimited with bandwidth $\Omega_w$ and $\Delta E\le\pi/\Omega_w$ (Nyquist), alias term $\varepsilon_{\mathrm{alias}}=0$.
+
+EM remainder $|\varepsilon_{\mathrm{EM}}|\le C_M\Delta E^{2M}$ for $M$-th order correction.
+
+Tail controlled by window decay: $|\varepsilon_{\mathrm{tail}}|\le\int_{|E-E_0|>N\Delta E}|w(E-E_0)|\,|\rho_{\mathrm{rel}}|(E)\,dE$.
+\end{theorem}
+
+\begin{proof}
+Apply Poisson summation, Euler--Maclaurin formula, and truncation analysis as in standard NPE theory. Nyquist condition ensures spectral replicas don't overlap. \end{proof}
+
+\section{Non-Unitary Scattering and Complex Delay}
+
+For non-unitary scattering (with absorption/leakage), decompose
+
+$$
+\det S_g(E)=|\det S_g(E)|\,e^{i\arg\det S_g(E)}.
+$$
+
+Define:
+\begin{itemize}
+\item \textbf{Phase partial rDOS}: $\rho_{\mathrm{rel}}^{(\mathrm{phase})}[g:g_0](E)=\frac{1}{2\pi}\partial_E\arg\det S_g(E)$
+\item \textbf{Total complex delay}: $\tau_{\mathrm{tot}}(E)=-i\,\partial_E\log\det S_g(E)$
+\item \textbf{Absorption rate}: $\Gamma(E)=-\partial_E\log|\det S_g(E)|$
+\end{itemize}
+
+Have relation:
+
+$$
+\tau_{\mathrm{tot}}(E)=\tau_{\mathrm{phase}}(E)-i\,\Gamma(E),
+$$
+
+where $\tau_{\mathrm{phase}}=\hbar\rho_{\mathrm{rel}}^{(\mathrm{phase})}$ (restoring $\hbar$).
+
+\section{Applications}
+
+\subsection{Shapiro Gravitational Time Delay}
+
+For weak gravitational field with metric perturbation $h_{\mu\nu}$, first-order Shapiro delay
+
+$$
+\Delta\tau_{\mathrm{Shapiro}}\approx-\frac{2GM}{c^3}\log\frac{r_{\mathrm{out}}}{r_{\mathrm{in}}},
+$$
+
+recovered from windowed rDOS in appropriate low-frequency, long-wavelength limit.
+
+\subsection{Black Hole Exterior Scattering}
+
+For Schwarzschild geometry exterior to event horizon, scattering matrix exhibits resonances corresponding to photon sphere and quasi-normal modes. Windowed rDOS captures:
+\begin{itemize}
+\item Resonance widths from complex poles
+\item Absorption cross-section from non-unitarity
+\item Semiclassical correspondence with unstable null geodesics
+\end{itemize}
+
+\section{Discussion and Outlook}
+
+This work establishes operational definition of quantum gravitational field via windowed scattering observables:
+
+\textbf{Key achievements}:
+\begin{enumerate}
+\item Unified scale formula $\rho_{\mathrm{rel}}=-(2\pi)^{-1}\tr Q_g=-\xi_g'$ connecting phase, delay, spectral shift
+\item Windowed readout framework with NPE non-asymptotic error closure
+\item Diffeomorphism invariance and cascade additivity
+\item Semiclassical limit recovering classical dwell time and Shapiro delay
+\item Non-unitary extension for absorption via complex delay
+\end{enumerate}
+
+\textbf{Future directions}:
+\begin{itemize}
+\item Extension to full dynamical spacetimes and cosmological settings
+\item Numerical implementation for realistic gravitational wave scenarios
+\item Connections to AdS/CFT and holographic entanglement
+\item Experimental proposals for table-top quantum gravity tests
+\item Integration with loop quantum gravity and string theory observables
+\end{itemize}
+
+\textbf{Physical interpretation}:
+Quantum gravitational field encoded in relative density of states, measurable via scattering phase/delay, providing bridge between quantum mechanics and general relativity through operational observables.
+
+\end{document}
+

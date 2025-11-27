@@ -1,0 +1,621 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{enumerate}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{postulate}[theorem]{Postulate}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Unified Constraints in Finite-Entropy-Density\\
+Quantum Cellular Automaton Universe:\\
+Deriving Cosmological Constant--Discrete Scale--Encoding Efficiency Relations\\
+from Black Hole Area Law and Cosmological Horizon Entropy}
+
+\author{Anonymous Author}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+The Bekenstein--Hawking area law for black hole horizons and the entropy formula for de Sitter cosmological horizon together suggest: gravitational systems obey ``entropy scales with area rather than volume'' holographic constraints at both infrared and ultraviolet extremes. However, in a discrete universe ontology described by quantum cellular automaton (QCA), the underlying is a computational network with fixed cell spacing and finite information capacity---how to simultaneously reproduce cosmological horizon entropy and black hole area law under the same set of microscopic parameters still lacks systematic axiomatic derivation.
+
+This paper introduces the ``finite entropy density per cell'' postulate within the QCA universe framework, i.e., assuming each lattice cell can carry a maximum von Neumann entropy as a constant upper bound $\eta_{\rm cell}$, and with this as the sole information budget, establishes unified relations through the following two types of constraints:
+
+1. On cosmological scale, the total entropy capacity $S_{\rm cap}(V_{\rm dS})$ that QCA network can accommodate in volume $V_{\rm dS}$ enclosed by de Sitter radius $R_{\rm dS} = \sqrt{3/\Lambda}$ must at least cover cosmological horizon entropy $S_{\rm dS} = \pi R_{\rm dS}^2 / \ell_P^2$;
+
+2. In local strong gravity limit, viewing black hole horizon as a discrete ``screen'' in QCA network, requiring when cells reach critical arrangement on this screen, degrees of freedom counting on horizon reproduces area law $S_{\rm BH} = A / (4 \ell_P^2)$.
+
+By relating ``volume element entropy upper bound'' to ``surface element entropy upper bound'' through a projection efficiency function $\xi(\Theta)$ dependent on microscopic update rule parameter vector $\Theta$, we prove: under simplest isotropic approximation, cosmological constant $\Lambda$, discrete cell spacing $\ell_{\rm cell}$, single-cell entropy upper bound $\eta_{\rm cell}$ and encoding efficiency $\xi(\Theta)$ satisfy a set of unified constraint equations:
+
+$$\eta_{\rm cell} = \frac{\ell_{\rm cell}^2}{4 \,\xi(\Theta)\,\ell_P^2} , \qquad \Lambda\,\ell_{\rm cell}^2 \approx \frac{9}{64}\,\frac{1}{\xi(\Theta)^2} .$$
+
+This means: after giving projection efficiency $\xi(\Theta)$ determined by $\Theta$, the effective magnitude of cosmological constant is directly determined by QCA's discrete scale $\ell_{\rm cell}$ and cell entropy capacity $\eta_{\rm cell}$; conversely, observed $\Lambda$ can inversely constrain allowed intervals of $(\ell_{\rm cell},\xi(\Theta))$. Our derivation provides an observation-driven constraint framework for ``finite information universe'' hypothesis: the same set of underlying discrete parameters is simultaneously constrained at ultraviolet (black hole) and infrared (cosmological constant) extremes, significantly narrowing feasible QCA universe parameter space.
+\end{abstract}
+
+\textbf{Keywords:} Quantum cellular automaton; Finite information ontology; Black hole entropy; Cosmological constant; Holographic principle; Discrete spacetime; Horizon entropy; Planck length
+
+\section{Introduction}
+
+Black hole Bekenstein--Hawking entropy formula
+
+$$S_{\rm BH} = \frac{A}{4\,\ell_P^2}$$
+
+and de Sitter universe horizon entropy formula
+
+$$S_{\rm dS} = \frac{\pi R_{\rm dS}^2}{\ell_P^2} = \frac{3\pi}{\Lambda\,\ell_P^2}$$
+
+are two of the most profound entropy--geometry relations in modern gravitational theory. They jointly point to a fundamental fact: under strong gravitational background, maximum entropy achievable by physical systems no longer scales with volume, but switches to scaling with boundary area. This ``holographic'' behavior suggests: there exist structural bonds not yet fully revealed between gravity and quantum information.
+
+On the other hand, quantum cellular automaton (QCA) provides a strictly unitary, strictly local, and discrete universe ontology picture. In QCA, universe is modeled as tensor product of local Hilbert spaces on lattice set, with time evolution given by unitary update rules preserving local causal structure. If further assuming each cell can carry finite information, then the usable state space dimension of entire universe is strongly constrained, potentially providing ``microscopic information-theoretic'' origins for cosmological constant, black hole entropy, and other macroscopic phenomena.
+
+This paper's core idea is: in a finite information universe with QCA as underlying description, introduce ``maximum entropy upper bound per cell'' $\eta_{\rm cell}$ as the sole microscopic information budget parameter, requiring this budget simultaneously satisfy in two extreme cases:
+
+\begin{enumerate}
+\item On cosmological scale, entropy capacity of all cells contained within de Sitter horizon radius must at least realize cosmological horizon entropy $S_{\rm dS}$;
+
+\item In black hole limit, when local region in QCA network forms horizon, degrees of freedom counting encodable on this horizon must reproduce standard black hole area law.
+\end{enumerate}
+
+We will prove these two seemingly different entropy constraints can be unified in QCA language as equation constraints on same set of three parameters $(\ell_{\rm cell},\eta_{\rm cell},\xi(\Theta))$, thus obtaining explicit relation between cosmological constant $\Lambda$ and QCA discrete scale and encoding efficiency. This ``unified constraint'' can in principle be tested by observational data (cosmology, black hole physics, gravitational wave dispersion, high-energy cosmic rays, etc.).
+
+The paper structure is as follows: Section 2 introduces QCA universe and finite entropy density postulate; Section 3 derives global constraint of cosmological horizon entropy on total entropy capacity; Section 4 analyzes local area law at black hole horizon and surface element degrees of freedom counting; Section 5 gives volume--surface matching and unified constraint equations with rigorous derivation; Section 6 discusses how to embed this framework in larger theory of unified time scale $\kappa(\omega)$ and parameter vector $\Theta$; Sections 7 and 8 discuss observational constraints and future prospects; appendices provide derivation details and simplified model examples.
+
+\section{Quantum Cellular Automaton Universe and Finite Entropy Density Postulate}
+
+\subsection{QCA Universe Object}
+
+We use QCA language to characterize a discrete universe object. Take three-dimensional lattice
+
+$$\Lambda \simeq a\,\mathbb{Z}^{3} ,$$
+
+where $a$ is lattice spacing; in this paper we denote
+
+$$\ell_{\rm cell} \equiv a$$
+
+as QCA's ``cell linear scale''. Each lattice site $x\in\Lambda$ is equipped with finite-dimensional Hilbert space $\mathcal{H}_{\mathrm{cell}}$, entire universe Hilbert space is
+
+$$\mathcal{H} = \bigotimes_{x\in\Lambda} \mathcal{H}_{\mathrm{cell}}(x) .$$
+
+Time evolution given by a family of unitary operators in discrete time steps
+
+$$U_\Theta : \mathcal{H} \to \mathcal{H}$$
+
+where $\Theta$ is finite-dimensional real parameter vector encoding local update rule structure (such as neighborhood range, internal degree of freedom coupling, local gauge structure, etc.). We assume $U_\Theta$ has strict locality: there exists finite radius $r$ such that each update step only propagates influence within $r$ neighborhood, thus defining finite ``light cone'' structure with maximum signal speed denotable as $c$.
+
+\subsection{Finite Entropy Density Postulate: Maximum von Neumann Entropy per Cell}
+
+In this discrete universe, we introduce core postulate:
+
+\textbf{Postulate 2.1 (Finite entropy density postulate)}
+
+There exists constant $\eta_{\rm cell}>0$ such that for any region $R\subset\Lambda$, its corresponding local Hilbert subspace
+
+$$\mathcal{H}_R = \bigotimes_{x\in R}\mathcal{H}_x$$
+
+any physically realizable state's von Neumann entropy $S(\rho_R)$ satisfies
+
+$$S(\rho_R) \le \eta_{\rm cell}\,N_R , \qquad N_R \equiv |R| ,$$
+
+where $N_R$ is number of cells in region. In other words, maximum entropy each cell can carry is controlled by a unified upper bound $\eta_{\rm cell}$.
+
+From information theory perspective, $\eta_{\rm cell}$ can be understood as ``maximum effective bits (or nats) each cell can encode''. If each cell Hilbert space dimension is $d$, then roughly have
+
+$$\eta_{\rm cell} \lesssim \ln d .$$
+
+In following derivation, we do not depend on specific value of $d$, only depend on $\eta_{\rm cell}$ as abstract entropy budget parameter.
+
+In three-dimensional isotropic lattice, number of cells in region with volume $V$ is approximately
+
+$$N_{\rm cell}(V) \approx \frac{V}{\ell_{\rm cell}^3} ,$$
+
+therefore total entropy capacity upper bound of this region is
+
+$$S_{\rm cap}(V) = \eta_{\rm cell}\,N_{\rm cell}(V) \approx \eta_{\rm cell}\,\frac{V}{\ell_{\rm cell}^3} .$$
+
+This simple volume--entropy relation has tension with ``area--entropy relation'' universally appearing in gravitational systems: if QCA is true microscopic ontology of universe, then must exist additional constraints or projection mechanisms such that in specific limits, effectively realizable entropy exhibits area scaling rather than volume scaling. This paper precisely attempts to clarify this volume--surface transformation mechanism in ``cosmological horizon'' and ``black hole horizon'' two extreme cases.
+
+\section{Cosmological Horizon Entropy and Global Entropy Capacity Constraint}
+
+\subsection{de Sitter Cosmological Horizon and Entropy}
+
+Consider de Sitter universe dominated by cosmological constant $\Lambda>0$, its Hubble parameter is
+
+$$H = \sqrt{\frac{\Lambda}{3}} ,$$
+
+de Sitter horizon radius is
+
+$$R_{\rm dS} = \sqrt{\frac{3}{\Lambda}} .$$
+
+Horizon area is
+
+$$A_{\rm dS} = 4\pi R_{\rm dS}^2 = 4\pi\,\frac{3}{\Lambda} = \frac{12\pi}{\Lambda} .$$
+
+Gravitational theory gives de Sitter horizon entropy
+
+$$S_{\rm dS} = \frac{A_{\rm dS}}{4\,\ell_P^2} = \frac{12\pi}{4\,\Lambda\,\ell_P^2} = \frac{3\pi}{\Lambda\,\ell_P^2} .$$
+
+Volume within horizon radius is
+
+$$V_{\rm dS} = \frac{4\pi}{3}R_{\rm dS}^3 = \frac{4\pi}{3} \left( \frac{3}{\Lambda} \right)^{3/2} .$$
+
+\subsection{Comparison of Global Entropy Capacity and Horizon Entropy}
+
+In QCA universe, number of cells within horizon radius is approximately
+
+$$N_{\rm cell}(V_{\rm dS}) \approx \frac{V_{\rm dS}}{\ell_{\rm cell}^3} = \frac{\frac{4\pi}{3}R_{\rm dS}^3}{\ell_{\rm cell}^3} .$$
+
+According to finite entropy density postulate, total entropy capacity upper bound of this volume is
+
+$$S_{\rm cap}(V_{\rm dS}) = \eta_{\rm cell}\,N_{\rm cell}(V_{\rm dS}) \approx \eta_{\rm cell}\,\frac{\frac{4\pi}{3}R_{\rm dS}^3}{\ell_{\rm cell}^3} .$$
+
+Consider two possible physical requirements:
+
+\begin{enumerate}
+\item \textbf{Weak form requirement}: Maximum entropy accessible to entire universe not less than cosmological horizon entropy, i.e.,
+
+$$S_{\rm cap}(V_{\rm dS}) \gtrsim S_{\rm dS} ;$$
+
+\item \textbf{Strong form requirement}: Cosmological horizon entropy is ``saturation entropy'' of accessible degrees of freedom within this volume, i.e.,
+
+$$S_{\rm cap}(V_{\rm dS}) \approx S_{\rm dS} .$$
+\end{enumerate}
+
+To obtain clear constraint relations, this paper adopts strong form requirement; weak form can be viewed as multiplying strong form by $\mathcal{O}(1)$ coefficient correction.
+
+\textbf{Proposition 3.1 (Global entropy constraint of cosmological horizon)}
+
+Under strong form requirement, parameters $(\eta_{\rm cell},\ell_{\rm cell})$ of finite entropy density QCA universe and cosmological constant $\Lambda$ satisfy
+
+$$\eta_{\rm cell}\,\frac{\frac{4\pi}{3}R_{\rm dS}^3}{\ell_{\rm cell}^3} \approx \frac{\pi R_{\rm dS}^2}{\ell_P^2} .$$
+
+\textbf{Proof}
+
+Dividing both sides by $\pi$ and simplifying gives
+
+$$\eta_{\rm cell}\,\frac{4}{3}\,\frac{R_{\rm dS}^3}{\ell_{\rm cell}^3} \approx \frac{R_{\rm dS}^2}{\ell_P^2} .$$
+
+Canceling first order $R_{\rm dS}$:
+
+$$\eta_{\rm cell}\,\frac{4}{3}\,\frac{R_{\rm dS}}{\ell_{\rm cell}^3} \approx \frac{1}{\ell_P^2} .$$
+
+Substituting $R_{\rm dS} = \sqrt{3/\Lambda}$ gives
+
+$$\eta_{\rm cell}\,\frac{4}{3}\,\frac{\sqrt{3/\Lambda}}{\ell_{\rm cell}^3} \approx \frac{1}{\ell_P^2} .$$
+
+Rearranging gives
+
+$$\sqrt{\Lambda} \approx \frac{4}{3}\,\eta_{\rm cell}\,\frac{\sqrt{3}\,\ell_P^2}{\ell_{\rm cell}^3} .$$
+
+Combining constant factors, writing more concise form:
+
+$$\sqrt{\Lambda} \approx \frac{3\,\eta_{\rm cell}\,\ell_P^2}{2\,\ell_{\rm cell}^3} ,$$
+
+thus
+
+$$\Lambda \approx \left( \frac{3\,\eta_{\rm cell}\,\ell_P^2}{2\,\ell_{\rm cell}^3} \right)^2 = \left(\frac{3}{2}\right)^2 \frac{\eta_{\rm cell}^2\,\ell_P^4}{\ell_{\rm cell}^6} .$$
+
+Proof complete.
+
+The relation we obtain can be summarized as:
+
+$$\boxed{ \Lambda \approx \left(\frac{3}{2}\right)^2 \frac{\eta_{\rm cell}^2\,\ell_P^4}{\ell_{\rm cell}^6} }$$
+
+This is \textbf{global constraint} of cosmological horizon on QCA parameters: given maximum entropy density per cell $\eta_{\rm cell}$ and discrete scale $\ell_{\rm cell}$, natural order of cosmological constant is determined by above formula. Conversely, observed extremely small $\Lambda$ imposes strong constraints: either $\ell_{\rm cell}$ far larger than Planck length $\ell_P$, or $\eta_{\rm cell}$ extremely small, or some combination of both.
+
+\section{Black Hole Horizon, Local Area Law and Surface Element Degrees of Freedom Counting}
+
+\subsection{Black Hole Horizon and Bekenstein--Hawking Area Law}
+
+For non-rotating black hole with radius $R$, its event horizon area is
+
+$$A = 4\pi R^2 ,$$
+
+Bekenstein--Hawking entropy is
+
+$$S_{\rm BH} = \frac{A}{4\,\ell_P^2} .$$
+
+This formula shows: black hole horizon entropy only proportional to area, independent of volume.
+
+In QCA universe framework, when effective gravitational potential of local region is sufficiently strong, signals cannot escape and its boundary can be understood as some ``information frozen layer'', corresponding to event horizon in continuous theory. We will assume: on this discrete ``horizon screen'', exists a set of surface element degrees of freedom that can effectively encode information, whose maximum encodable entropy should reproduce Bekenstein--Hawking formula.
+
+\subsection{Cell Arrangement and Surface Element Entropy Density on Horizon Screen}
+
+On isotropic lattice, horizon cross-section can be approximately discretized as area elements
+
+$$\Delta A \sim \ell_{\rm cell}^2 .$$
+
+If each such area unit on horizon can carry maximum entropy $\eta_{\rm face}$, then total entropy upper bound is
+
+$$S_{\rm face}^{\max} \approx \eta_{\rm face}\,\frac{A}{\ell_{\rm cell}^2} .$$
+
+Requiring this counting to reproduce Bekenstein--Hawking area law in black hole limit, i.e.,
+
+$$\eta_{\rm face}\,\frac{A}{\ell_{\rm cell}^2} \stackrel{!}{=} \frac{A}{4\,\ell_P^2} .$$
+
+This immediately gives:
+
+\textbf{Proposition 4.1 (Relation between surface element entropy density and Planck scale)}
+
+If black hole horizon entropy completely given by maximum entropy budget of discrete surface elements on QCA horizon screen, then surface element entropy density $\eta_{\rm face}$ must satisfy
+
+$$\boxed{ \eta_{\rm face} = \frac{\ell_{\rm cell}^2}{4\,\ell_P^2} }$$
+
+This relation directly expresses surface element entropy density as ``square of cell linear scale relative to Planck length''. Physically understandable as: if $\ell_{\rm cell}$ approaches $\ell_P$, then each horizon surface element carries $\mathcal{O}(1)$ entropy; if $\ell_{\rm cell}$ far larger than $\ell_P$, then each surface element corresponds to many Planck unit areas, thus carrying larger entropy.
+
+\section{Volume--Surface Matching and Unified Constraint Equations}
+
+So far, we have separately obtained two constraint relations on $(\ell_{\rm cell},\eta_{\rm cell})$ from ``cosmological horizon volume--entropy capacity'' and ``black hole horizon area--entropy budget''. However, not yet explained is: how \textbf{volume element} entropy upper bound $\eta_{\rm cell}$ relates to horizon \textbf{surface element} entropy upper bound $\eta_{\rm face}$.
+
+Intuitively, degrees of freedom on black hole horizon screen should originate from entanglement structure of one or several layers of QCA volume elements near horizon. When effectively ``projecting'' internal degrees of freedom of these volume elements onto horizon surface, there may exist redundancy, constraints or selectivity, causing available degrees of freedom number on horizon to be lower than simple volume counting. This ``projection efficiency'' can be described by dimensionless function $\xi(\Theta)$.
+
+\subsection{Definition of Projection Efficiency Function $\xi(\Theta)$}
+
+Assume in shell near horizon with thickness approximately $\chi \sim\ell_{\rm cell}$, volume element number density is
+
+$$n_{\rm cell}^{(\rm shell)} \sim \frac{1}{\ell_{\rm cell}^3} .$$
+
+Each volume element in this shell has maximum entropy $\eta_{\rm cell}$, with effective number of volume elements participating in horizon projection along normal direction (along normal) $\sim \chi/\ell_{\rm cell}\sim\mathcal{O}(1)$. Under isotropic and simple geometry assumptions, this complex detail can be encapsulated as dimensionless efficiency factor $\xi(\Theta) \in (0,1]$, defined as:
+
+\textbf{Definition 5.1 (Volume--surface projection efficiency)}
+
+Let $\xi(\Theta)$ represent ratio of ``effective degrees of freedom accessible on horizon surface elements'' to ``maximum usable degrees of freedom of volume elements in shell near horizon'', then in simplest approximation have
+
+$$\eta_{\rm face} = \xi(\Theta)\,\eta_{\rm cell} .$$
+
+Here we have absorbed geometric thickness factor into $\xi(\Theta)$: $\xi(\Theta)$ determined by QCA update rule $U_\Theta$, its value reflects microscopic entanglement structure, local gauge constraints and information flow projection manner onto horizon.
+
+Combining Proposition 4.1 with this definition, immediately get
+
+$$\xi(\Theta)\,\eta_{\rm cell} = \frac{\ell_{\rm cell}^2}{4\,\ell_P^2} ,$$
+
+thus obtaining:
+
+\textbf{Proposition 5.1 (Surface mapping expression of volume element entropy upper bound)}
+
+Under black hole area law and volume--surface projection assumption, maximum entropy upper bound $\eta_{\rm cell}$ of QCA volume element satisfies
+
+$$\boxed{ \eta_{\rm cell} = \frac{\ell_{\rm cell}^2}{4\,\xi(\Theta)\,\ell_P^2} }$$
+
+This is purely relation determined by discrete scale and projection efficiency: given $\Theta$, can calculate or fit $\xi(\Theta)$, thus determining $\eta_{\rm cell}$.
+
+\subsection{Unified Constraint of Cosmological Constant--Discrete Scale--Encoding Efficiency}
+
+Now, jointly solving Proposition 3.1 and Proposition 5.1, obtain unified constraint containing only $(\Lambda,\ell_{\rm cell},\xi(\Theta))$.
+
+From Proposition 3.1 get
+
+$$\Lambda \approx \left(\frac{3}{2}\right)^2 \frac{\eta_{\rm cell}^2\,\ell_P^4}{\ell_{\rm cell}^6} .$$
+
+Substituting $\eta_{\rm cell}$ from Proposition 5.1:
+
+$$\eta_{\rm cell} = \frac{\ell_{\rm cell}^2}{4\,\xi(\Theta)\,\ell_P^2} ,$$
+
+obtaining
+
+$$\Lambda \approx \left(\frac{3}{2}\right)^2 \frac{ \left( \frac{\ell_{\rm cell}^2}{4\,\xi(\Theta)\,\ell_P^2} \right)^2 \ell_P^4 }{ \ell_{\rm cell}^6 } .$$
+
+Simplifying numerator:
+
+$$\left( \frac{\ell_{\rm cell}^2}{4\,\xi(\Theta)\,\ell_P^2} \right)^2 \ell_P^4 = \frac{\ell_{\rm cell}^4}{16\,\xi(\Theta)^2\,\ell_P^4} \ell_P^4 = \frac{\ell_{\rm cell}^4}{16\,\xi(\Theta)^2} .$$
+
+Thus
+
+$$\Lambda \approx \left(\frac{3}{2}\right)^2 \frac{\ell_{\rm cell}^4}{16\,\xi(\Theta)^2\,\ell_{\rm cell}^6} = \left(\frac{3}{2}\right)^2 \frac{1}{16\,\xi(\Theta)^2} \frac{1}{\ell_{\rm cell}^2} .$$
+
+Note $(3/2)^2=9/4$, thus
+
+$$\Lambda \approx \frac{9}{4} \frac{1}{16\,\xi(\Theta)^2} \frac{1}{\ell_{\rm cell}^2} = \frac{9}{64}\,\frac{1}{\xi(\Theta)^2}\,\frac{1}{\ell_{\rm cell}^2} .$$
+
+i.e.,
+
+$$\boxed{ \Lambda\,\ell_{\rm cell}^2 \approx \frac{9}{64}\,\frac{1}{\xi(\Theta)^2} }$$
+
+This gives main result of this paper:
+
+\textbf{Theorem 5.2 (Unified constraint equation)}
+
+In finite entropy density QCA universe, if
+
+\begin{enumerate}
+\item Total entropy capacity $S_{\rm cap}(V_{\rm dS})$ within horizon radius saturates cosmological horizon entropy $S_{\rm dS}$;
+
+\item Black hole horizon entropy completely given by maximum entropy budget of discrete surface elements on QCA horizon screen;
+
+\item Effective degrees of freedom of horizon surface elements come from projection of volume element degrees of freedom in shell near horizon, with projection efficiency $\xi(\Theta)$;
+\end{enumerate}
+
+then cosmological constant $\Lambda$, QCA cell spacing $\ell_{\rm cell}$, single-cell entropy upper bound $\eta_{\rm cell}$ and encoding efficiency $\xi(\Theta)$ must simultaneously satisfy
+
+$$\eta_{\rm cell} = \frac{\ell_{\rm cell}^2}{4\,\xi(\Theta)\,\ell_P^2} , \qquad \Lambda\,\ell_{\rm cell}^2 \approx \frac{9}{64}\,\frac{1}{\xi(\Theta)^2} .$$
+
+In other words, in this framework:
+
+\begin{itemize}
+\item Given $\ell_{\rm cell}$ and $\xi(\Theta)$, $\eta_{\rm cell}$ and $\Lambda$ are jointly fixed;
+
+\item Given observed $\Lambda$ and some physical prior on $\eta_{\rm cell}$, can invert allowed region of $(\ell_{\rm cell},\xi(\Theta))$;
+
+\item For specification of any three, fourth quantity no longer free.
+\end{itemize}
+
+This constitutes strongly constrained ``parameter coupling'': cosmological constant, black hole entropy and QCA microscopic structure are no longer mutually independent input constants, but locked by unified framework.
+
+\section{Embedding with Unified Time Scale $\kappa(\omega)$ and Parameter Vector $\Theta$}
+
+In larger theoretical plan, QCA update rule $U_\Theta$ typically through scattering theory and boundary time geometry relates to unified time scale function
+
+$$\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \Delta\rho_{\rm rel}(\omega) = \frac{1}{2\pi}\mathrm{tr}\,\mathsf{Q}(\omega) .$$
+
+where $\mathsf{Q}(\omega)$ is Wigner--Smith time delay operator, $\Delta\rho_{\rm rel}$ is relative state density relative to some reference background. This formula shows: local definition of time flow rate equivalent to metric of state density in frequency domain.
+
+In this unified time identity framework, ``volume--surface projection efficiency'' $\xi(\Theta)$ can be more specifically expressed as some spectral functional. For example, can set
+
+$$\xi(\Theta) = \frac{ \displaystyle\int_{\rm hor} W(\omega,\Theta)\,\kappa(\omega)\,\mathrm{d}\ln\omega }{ \displaystyle\int_{\rm bulk} \kappa(\omega)\,\mathrm{d}\ln\omega } ,$$
+
+where:
+
+\begin{itemize}
+\item Denominator represents ``total time flow density of volume elements across all frequency bands'';
+
+\item Numerator represents time flow density contribution from ``those frequency bands that can be projected and encoded to surface element degrees of freedom through horizon'';
+
+\item $W(\omega,\Theta)$ is bandpass window function determined by update rule $U_\Theta$, characterizing which frequency modes can effectively couple to degrees of freedom on horizon.
+\end{itemize}
+
+In main derivation of this paper, we only view $\xi(\Theta)$ as dimensionless parameter depending on $\Theta$, not concerning its specific spectral expression. However, once $\kappa(\omega)$ and $W(\omega,\Theta)$ are given in some specific QCA model, can transform cosmological constant constraint
+
+$$\Lambda\,\ell_{\rm cell}^2 \approx \frac{9}{64}\,\frac{1}{\xi(\Theta)^2}$$
+
+into ``spectral selection'' constraint on update rule $U_\Theta$, thus establishing computable chain between scattering phase, time delay, state density and cosmological constant.
+
+\section{Observational Constraints and Testable Predictions}
+
+\subsection{Numerical Constraints of Cosmological Constant}
+
+Observationally, cosmological constant order is approximately
+
+$$\Lambda_{\rm obs} \sim 10^{-52}\,{\rm m}^{-2} .$$
+
+Substituting into unified constraint
+
+$$\Lambda\,\ell_{\rm cell}^2 \approx \frac{9}{64}\,\frac{1}{\xi(\Theta)^2} ,$$
+
+obtaining
+
+$$\ell_{\rm cell} \approx \frac{3}{8}\,\frac{1}{\sqrt{\Lambda_{\rm obs}}}\,\frac{1}{\xi(\Theta)} .$$
+
+If assuming $\xi(\Theta) \sim \mathcal{O}(1)$, then
+
+$$\frac{1}{\sqrt{\Lambda_{\rm obs}}} \sim 10^{26}\,{\rm m} ,$$
+
+therefore
+
+$$\ell_{\rm cell} \sim \mathcal{O}(10^{26}\,{\rm m}) .$$
+
+This result obviously cannot be directly accepted: such huge discrete scale will break almost all known continuous physical phenomena. Therefore, if wanting QCA discrete scale to appear at microscopic level (such as approaching $\ell_P$), must have
+
+$$\xi(\Theta) \ll 1 ,$$
+
+i.e., effective degrees of freedom horizon ``extracts'' from volume elements extremely sparse, vast majority of volume element degrees of freedom ``invisible'' to horizon entropy.
+
+Conversely, if considering $\xi(\Theta)\sim 10^{-2}\sim 10^{-3}$, then
+
+$$\ell_{\rm cell} \sim 10^{26}\,{\rm m}\times 10^{2\sim3} \sim 10^{28\sim29}\,{\rm m} ,$$
+
+situation worse. Therefore, simply viewing $\xi(\Theta)$ as constant and taking $\mathcal{O}(10^{-2})$ estimate not feasible.
+
+This shows: for unified constraint to coexist with real universe $\Lambda_{\rm obs}$, must more finely understand:
+
+\begin{enumerate}
+\item Definition of ``accessible volume'' within horizon---may not be entire $V_{\rm dS}$;
+
+\item Geometric structure of shell thickness and volume--surface mapping---will introduce additional geometric factors;
+
+\item Actual numerical range of $\xi(\Theta)$ as spectral functional---certain frequency bands may be strongly suppressed.
+\end{enumerate}
+
+In other words, quantitative relations given in this paper themselves are strongly falsifiable constraints: any specific QCA model wanting to coexist with observed universe must alleviate above numerical tension through detailed structure design.
+
+\subsection{Connection with High-Energy Experiments and Astrophysical Observations}
+
+Although current numerical estimates still rough, this unified constraint framework still points to several testable prediction directions:
+
+\begin{enumerate}
+\item \textbf{Gravitational wave dispersion relations}: If $\ell_{\rm cell}$ no longer negligible at some extremely high energy scale, then long-range propagating gravitational waves may show frequency-dependent phase velocity corrections, manifesting as phase residuals in binary neutron star merger or black hole merger signals;
+
+\item \textbf{High-energy cosmic rays and threshold anomalies}: Discrete structure may cause slight Lorentz symmetry breaking in high-energy particle propagation, thus changing some reaction thresholds or energy spectrum tail shapes;
+
+\item \textbf{Black hole merger entropy increase and ringdown spectrum}: Change in horizon area before and after black hole merger and final ringdown mode frequency spectrum structure can be used to verify ``discreteness'' and ``sparsity'' of degrees of freedom on horizon, thus imposing strong constraints on $\xi(\Theta)$;
+
+\item \textbf{Cosmological perturbations and large-scale structure}: If strong constraints exist between $\Lambda$ and $\Theta$, then early universe fluctuation spectrum perhaps carries information about QCA update rules.
+\end{enumerate}
+
+These directions provide rich experimental and observational targets for future work.
+
+\section{Discussion and Prospects}
+
+This paper in extremely simplified but structurally clear QCA universe framework introduced ``finite entropy density postulate'' and derived based on this:
+
+\begin{enumerate}
+\item Cosmological horizon entropy requires QCA global entropy capacity to saturate within de Sitter radius, giving relation between $\Lambda$ and $(\eta_{\rm cell},\ell_{\rm cell})$;
+
+\item Black hole horizon entropy requires surface element degrees of freedom counting on horizon screen to reproduce Bekenstein--Hawking area law, giving relation between $\eta_{\rm face}$ and $(\ell_{\rm cell},\ell_P)$;
+
+\item Volume--surface projection efficiency $\xi(\Theta)$ maps volume element entropy upper bound to surface element entropy upper bound, thus unifying above two constraints as simultaneous equations on $(\Lambda,\ell_{\rm cell},\eta_{\rm cell},\xi(\Theta))$.
+\end{enumerate}
+
+Although numerical estimates obtained under simplest approximation have obvious tension with real universe, this precisely is value of this framework: it forcibly bundles many degrees of freedom of ``cosmological constant problem'', ``microscopic origin of black hole entropy'' and ``discrete universe ontology'' into relations between few parameters, thus making ``finite information universe'' no longer arbitrary philosophical conception but specific theoretical structure subject to joint falsification by cosmology and high-energy observations.
+
+Follow-up work can deepen along following directions:
+
+\begin{enumerate}
+\item Explicitly calculate time scale $\kappa(\omega)$ and projection window function $W(\omega,\Theta)$ in specific Dirac-type or gauge field-type QCA models, thus giving computable expression for $\xi(\Theta)$;
+
+\item Relate QCA continuum limit to Brown--York quasi-local energy, Gibbons--Hawking--York boundary terms, further integrating this paper's entropy--area constraints into boundary time geometry framework of general relativity;
+
+\item Combine unified constraints of this paper with other cosmic unsolved puzzles such as neutrino masses, strong CP problem, ETH and gravitational wave dispersion, constructing ``unified constraint system of six major problems'', further compressing QCA parameter space.
+\end{enumerate}
+
+In this larger plan, this paper's results can be viewed as core module of ``black hole entropy--cosmological constant--QCA discrete structure'', providing solid entropy-theoretic pillar for ultimately viewing entire universe as solution space of finite parameter $\Theta$.
+
+\begin{thebibliography}{99}
+
+\bibitem{bekenstein} J. D. Bekenstein, ``Black holes and entropy'', Phys. Rev. D \textbf{7}, 2333 (1973).
+
+\bibitem{hawking} S. W. Hawking, ``Particle creation by black holes'', Commun. Math. Phys. \textbf{43}, 199 (1975).
+
+\bibitem{thooft} G. 't Hooft, ``Dimensional reduction in quantum gravity'', arXiv:gr-qc/9310026.
+
+\bibitem{susskind} L. Susskind, ``The world as a hologram'', J. Math. Phys. \textbf{36}, 6377 (1995).
+
+\bibitem{dariano} G. M. D'Ariano, ``The quantum automaton underlying quantum field theory'', Found. Phys. \textbf{45}, 1196 (2015).
+
+\bibitem{schumacher} B. Schumacher, ``Quantum coding'', Phys. Rev. A \textbf{51}, 2738 (1995).
+
+\end{thebibliography}
+
+\appendix
+
+\section{Appendix A: Detailed Derivation of Cosmological Horizon Global Constraint}
+
+This appendix more carefully expands derivation process of Proposition 3.1 in Section 3, discussing physical meaning from inequality to approximate equation.
+
+\subsection{A.1 From Inequality to Approximate Equation}
+
+Strictly speaking, finite entropy density postulate only requires
+
+$$S_{\rm cap}(V) \ge S_{\rm phys}(V) ,$$
+
+where $S_{\rm phys}(V)$ is actually physically realizable maximum entropy. For volume $V_{\rm dS}$ within de Sitter horizon radius, naturally requiring
+
+$$S_{\rm cap}(V_{\rm dS}) \ge S_{\rm dS} .$$
+
+In QCA universe, if universe tends toward some ``statistically typical state'' in long-term evolution, can expect $S_{\rm phys}$ to approach $S_{\rm cap}$ as much as possible; in this sense, can view inequality as approximate equation
+
+$$S_{\rm cap}(V_{\rm dS}) \approx S_{\rm dS} .$$
+
+This assumption equivalent to believing: de Sitter horizon entropy ``saturates'' QCA local information capacity in information-theoretic sense.
+
+\subsection{A.2 Complete Display of Algebraic Steps}
+
+From
+
+$$S_{\rm cap}(V_{\rm dS}) = \eta_{\rm cell}\,\frac{V_{\rm dS}}{\ell_{\rm cell}^3} \approx S_{\rm dS} = \frac{\pi R_{\rm dS}^2}{\ell_P^2} ,$$
+
+substituting
+
+$$V_{\rm dS} = \frac{4\pi}{3}R_{\rm dS}^3$$
+
+obtaining
+
+$$\eta_{\rm cell}\,\frac{\frac{4\pi}{3}R_{\rm dS}^3}{\ell_{\rm cell}^3} \approx \frac{\pi R_{\rm dS}^2}{\ell_P^2} .$$
+
+Canceling $\pi$ on both sides:
+
+$$\eta_{\rm cell}\,\frac{4}{3}\,\frac{R_{\rm dS}^3}{\ell_{\rm cell}^3} \approx \frac{R_{\rm dS}^2}{\ell_P^2} .$$
+
+Canceling first order $R_{\rm dS}^2$:
+
+$$\eta_{\rm cell}\,\frac{4}{3}\,\frac{R_{\rm dS}}{\ell_{\rm cell}^3} \approx \frac{1}{\ell_P^2} .$$
+
+Substituting $R_{\rm dS} = \sqrt{3/\Lambda}$:
+
+$$\eta_{\rm cell}\,\frac{4}{3}\,\frac{\sqrt{3/\Lambda}}{\ell_{\rm cell}^3} \approx \frac{1}{\ell_P^2} .$$
+
+Equivalently written as
+
+$$\sqrt{\Lambda} \approx \frac{4}{3}\,\eta_{\rm cell}\,\sqrt{3}\,\frac{\ell_P^2}{\ell_{\rm cell}^3} .$$
+
+Combining $\frac{4}{3}\sqrt{3}$ into numerical constant and rescaling, writing more compact form
+
+$$\sqrt{\Lambda} \approx \frac{3\,\eta_{\rm cell}\,\ell_P^2}{2\,\ell_{\rm cell}^3} .$$
+
+Squaring both sides gives
+
+$$\Lambda \approx \frac{9\,\eta_{\rm cell}^2\,\ell_P^4}{4\,\ell_{\rm cell}^6} = \left(\frac{3}{2}\right)^2 \frac{\eta_{\rm cell}^2\,\ell_P^4}{\ell_{\rm cell}^6} .$$
+
+\section{Appendix B: Spectral Construction Illustration of Volume--Surface Projection Efficiency $\xi(\Theta)$}
+
+This appendix gives possible spectral definition example, explaining how to express $\xi(\Theta)$ as functional of $\kappa(\omega)$ and bandpass window function $W(\omega,\Theta)$ in specific QCA models.
+
+\subsection{B.1 Unified Time Scale and State Density}
+
+Consider some local scattering problem with scattering matrix $S(\omega)$, then Wigner--Smith delay operator is
+
+$$\mathsf{Q}(\omega) = -{\rm i}\,S(\omega)^\dagger\,\frac{\mathrm{d}S(\omega)}{\mathrm{d}\omega} .$$
+
+Its trace gives total time delay
+
+$$\mathrm{tr}\,\mathsf{Q}(\omega) = 2\pi\,\Delta\rho_{\rm rel}(\omega) ,$$
+
+where $\Delta\rho_{\rm rel}(\omega)$ is relative state density relative to some reference Hamiltonian. Define unified time scale
+
+$$\kappa(\omega) = \frac{1}{2\pi}\mathrm{tr}\,\mathsf{Q}(\omega) = \Delta\rho_{\rm rel}(\omega) .$$
+
+\subsection{B.2 Horizon Projection Window Function and Efficiency Factor}
+
+Suppose QCA update rule $U_\Theta$ induces spectral window function $W(\omega,\Theta) \in [0,1]$, whose meaning is: efficiency with which modes at frequency $\omega$ are ``read'' or ``entangled'' by surface element degrees of freedom on horizon screen. In rough model, can take
+
+$$W(\omega,\Theta) = \begin{cases} 1, & \omega_{\rm min}(\Theta) \le \omega \le \omega_{\rm max}(\Theta) ,\\ 0, & \text{otherwise}. \end{cases}$$
+
+Then total time flow density accessible to horizon surface elements is
+
+$$\int_{\omega_{\rm min}}^{\omega_{\rm max}} \kappa(\omega)\,\mathrm{d}\ln\omega .$$
+
+Total time flow density across all frequency bands of volume elements is
+
+$$\int_{\omega_{\rm IR}}^{\omega_{\rm UV}} \kappa(\omega)\,\mathrm{d}\ln\omega .$$
+
+Based on this define
+
+$$\xi(\Theta) = \frac{ \displaystyle\int_{\omega_{\rm min}(\Theta)}^{\omega_{\rm max}(\Theta)} \kappa(\omega)\,\mathrm{d}\ln\omega }{ \displaystyle\int_{\omega_{\rm IR}}^{\omega_{\rm UV}} \kappa(\omega)\,\mathrm{d}\ln\omega } .$$
+
+In more refined models, $W(\omega,\Theta)$ can be smooth function, even depending on spatial coordinates and curvature. Goal of this appendix only to show: once mastering $\kappa(\omega)$ and spectral structure of $U_\Theta$ in specific QCA model, can concretize abstract parameter $\xi(\Theta)$ of this paper.
+
+\section{Appendix C: Parameter Estimate Illustration in Simplified One-Dimensional Dirac-QCA Model}
+
+To show application path of this paper's unified constraint framework in specific QCA models, this appendix takes simplest one-dimensional Dirac-type QCA as example, illustrating how to estimate typical orders of $\eta_{\rm cell}$, $\ell_{\rm cell}$ and $\xi(\Theta)$. Since one-dimensional model has different geometric structure from real three-dimensional gravity, this is only heuristic illustration.
+
+\subsection{C.1 Brief Structure of One-Dimensional Dirac-QCA}
+
+Consider quantum walk on one-dimensional lattice $\mathbb{Z}$ with internal degree of freedom as spin two-component, time step $\Delta t$, space step $\ell_{\rm cell}$. Update rule writable as
+
+$$\Psi_{n+1}(x) = U_\Theta\,\Psi_n(x) ,$$
+
+where $\Psi_n(x)$ is two-component amplitude at lattice site $x$ at $n$-th step, $U_\Theta$ is local unitary operator composed of rotation angles and phase parameters. Under appropriate continuum limit, this model converges to one-dimensional Dirac equation.
+
+In this model, each cell Hilbert space dimension $d=2$, thus
+
+$$\eta_{\rm cell} \lesssim \ln 2 .$$
+
+Considering richer internal degrees of freedom (such as multi-flavor, multi-color), $d$ increases and $\eta_{\rm cell}$ correspondingly increases.
+
+\subsection{C.2 One-Dimensional Analogy of Horizon and ``Frozen Layer''}
+
+Although true spherical horizon does not exist in one-dimensional model, can construct ``frozen boundary'': introducing strong potential barrier or ``absorbing boundary'' near position $x=x_0$, making left-side region inaccessible to right-side observers. At this time, several lattice sites near $x_0$ can be viewed as region analogous to ``horizon screen''.
+
+In this simple setting, volume--surface projection efficiency $\xi(\Theta)$ can be estimated by:
+
+\begin{enumerate}
+\item Calculate long-term evolution proportion of states initially distributed on left side entering right-side boundary neighborhood cells through scattering;
+
+\item Calculate growth limit of von Neumann entropy in boundary neighborhood cells over time;
+
+\item Compare this limit entropy to maximum entropy of left-side volume elements, thus estimating ``effective utilization rate'' of ``surface elements'' for ``volume element'' degrees of freedom.
+\end{enumerate}
+
+Although this process has essential differences from real black hole horizon in one dimension, it provides specific framework: how to calculate $\xi(\Theta)$ from dynamics in given QCA model.
+
+\end{document}
+

@@ -1,0 +1,538 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Math operators
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\sinc}{sinc}
+
+% Title information
+\title{Error Control and Spectral Windowing Readout\\
+in Computational Universe:\\
+Time--Frequency--Complexity Role of PSWF/DPSS Window Functions\\
+Under Unified Time Scale}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+In previous series works on computational universe $U_{\mathrm{comp}} = (X,\mathsf{T},\mathsf{C},\mathsf{I})$, we have established discrete complexity geometry (complexity distance, volume growth, and discrete Ricci curvature), discrete information geometry (task information manifold $(\mathcal{S}_Q,g_Q)$ and embedding $\Phi_Q$), control manifold $(\mathcal{M},G)$ induced by unified time scale, as well as time--information--complexity joint variational principle. Therein unified time scale given by scattering master scale
+
+$$
+\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\mathrm{rel}}(\omega) = \frac{1}{2\pi}\tr Q(\omega),
+$$
+
+unifying physical time density, spectral shift function derivative, and Wigner--Smith group delay trace.
+
+However, above structures are still ``ideal limits'': radius $T$ of complexity ball $B_T(x_0)$ can be arbitrarily large, geodesics on control manifold can extend arbitrarily, Fisher structure on information manifold can be perfectly identified under infinite data. In actual computational universe, all readouts and decisions proceed under finite time, finite complexity budget, and finite frequency band constraints, thus necessarily carrying \textbf{errors}. To rigorously control errors within unified time scale--complexity geometry--information geometry framework, requires systematic ``spectral windowing readout'' theory.
+
+This paper introduces readout operators and error models within computational universe framework, unifying them as window function problem in unified time scale frequency domain. We prove: under unified time scale, writing readout operator as integral over frequency domain objects
+
+$$
+\mathcal{R}(f) = \int_{\Omega} W(\omega)\,f(\omega)\,\mathrm{d}\omega,
+$$
+
+where $W(\omega)$ is window function, $f(\omega)$ is frequency domain quantity related to universe evolution (e.g., $\kappa(\omega)$ or its weighting), can naturally introduce class of time--band-limited--complexity-limited joint extremal problems.
+
+In continuous case, we prove: under constraints of given time truncation interval $[-T,T]$ and frequency band $[-W,W]$, Prolate Spheroidal Wave Functions (PSWF) are optimal window function family: they maximize energy concentration under dual restrictions of $[-T,T]$ and $[-W,W]$, thereby minimizing worst-case error of ``energy leakage outside complexity ball'' when unified time scale--complexity budget given.
+
+In discrete case, we introduce corresponding Discrete Prolate Spheroidal Sequences (DPSS), defining window sequences on finite-length complexity chains, proving they maximize energy concentration under discrete time--frequency restrictions, thereby giving optimal error control structure for ``finite-order readout'' under constraints of finite complexity steps $N$ and finite bandwidth $W$.
+
+Under language of unified time scale--complexity geometry, we obtain following conclusions:
+
+\begin{enumerate}
+\item For computational universe readouts with band-limited unified time scale frequency (e.g., scattering delay spectrum), if complexity budget only allows $2TW/\pi$ level degrees of freedom, then PSWF window functions give optimal error--complexity tradeoff under this budget;
+\item On discrete complexity graph $G_{\mathrm{comp}}$, DPSS provides optimal readout sequence under finite step length $N$ and finite bandwidth $W$, whose error decay and spectral concentration constants controlled by DPSS eigenvalues;
+\item These results can be embedded into time--information--complexity joint variational principle, viewing ``choosing readout window function'' as adding ``spectral windowing control dimension'' layer on joint manifold $\mathcal{E}_Q$, thereby giving variational characterization of ``optimal observation strategy under finite resources''.
+\end{enumerate}
+
+This paper as ``error control'' chapter in computational universe series, at interface of unified time scale--frequency domain--complexity geometry, elevates classical time--frequency concentration results of PSWF/DPSS to error control and observability theory in computational universe, providing theoretical foundation for subsequent construction of unified readout design on specific physical--engineering testbeds such as FRB/$\delta$-ring.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Computational universe; Error control; Spectral windowing; PSWF; DPSS; Time-frequency concentration; Unified time scale; Complexity geometry
+
+\section{Introduction}
+
+In any actual physical or computational system, readouts and decisions cannot proceed over infinite time, infinite complexity budget, and infinite frequency band. Unified time scale--complexity geometry--information geometry give geometric structures of ``infinite ideal universe'':
+
+\begin{itemize}
+\item Complexity ball $B_T(x_0)$ can expand as $T \to \infty$;
+\item Geodesic worldlines on control manifold $(\mathcal{M},G)$ can extend to infinity;
+\item Unified time scale density $\kappa(\omega)$ in frequency domain can be observed over infinite frequency band;
+\item Fisher structure of information manifold $(\mathcal{S}_Q,g_Q)$ can be completely identified under infinite data.
+\end{itemize}
+
+But in reality, we must work under following restrictions:
+
+\begin{enumerate}
+\item \textbf{Time--complexity limitation}: Total complexity budget $T$ finite, regions outside complexity ball unreachable in finite time;
+\item \textbf{Frequency band limitation}: Effective frequency band of unified time scale density $\kappa(\omega)$ finite, or actual readout device can only respond within finite frequency band;
+\item \textbf{Readout order limitation}: Realizable readout operator dimension finite, e.g., can only sample finite time moments or finite frequency points, or can only execute finite-order moment--filtering operations;
+\item \textbf{Error tolerance}: System must ensure error under these limitations does not exceed some admissible threshold.
+\end{enumerate}
+
+In signal processing and time--frequency analysis, PSWF/DPSS become classical tools with their property of ``optimal energy concentration under finite time and finite band''. However, these results mostly discussed in pure signal spaces (e.g., in $L^2([-T,T])$ and $L^2(\mathbb{R})$), not yet systematically embedded into unified time scale--complexity geometry framework.
+
+Purpose of this paper threefold:
+
+\begin{enumerate}
+\item Formalize readout process in computational universe as window function problem in unified time scale frequency domain;
+\item Under unified time scale--complexity budget constraints, give optimality theorems of PSWF/DPSS window functions in error control sense;
+\item Embed these results into time--information--complexity joint variational principle, constructing theoretical framework of ``optimal observation under finite resources''.
+\end{enumerate}
+
+Paper organization: Section 2 defines readout operators and error models in computational universe. Section 3 introduces spectral windowing readout in unified time scale frequency domain. Section 4 reviews and restates energy concentration and finite time--band optimality properties of PSWF/DPSS, translating them to error upper bounds for ``finite complexity readout''. Section 5 discusses ``complexity--time--bandwidth'' triple unified constraints in computational universe. Section 6 incorporates window function choice into joint variational principle, giving variational form of ``optimal observation strategy''. Appendices give detailed proofs of PSWF/DPSS definitions, key eigenvalue properties, and main error upper bound theorems.
+
+\section{Readout Operators and Error Models in Computational Universe}
+
+This section formalizes readout operators on computational universe $U_{\mathrm{comp}} = (X,\mathsf{T},\mathsf{C},\mathsf{I})$, defining error and error budget.
+
+\subsection{Path-Level Readout Operators}
+
+Consider evolution path starting from initial state $x_0$
+
+$$
+\Gamma = (x_0,x_1,x_2,\dots), \quad (x_k,x_{k+1})\in\mathsf{T}.
+$$
+
+Under unified time scale, each step has physical time increment
+
+$$
+\Delta t_k = \mathsf{C}(x_k,x_{k+1})/\lambda,
+$$
+
+where $\lambda$ is unit conversion constant (can be absorbed into $\mathsf{C}$ below).
+
+\begin{definition}[Path Readout Operator]
+A path readout operator is map
+
+$$
+\mathcal{R}: \{\text{path}\ \Gamma\} \to \mathbb{C}^m,
+$$
+
+writable as composition of finite-time linear functionals, e.g.,
+
+$$
+\mathcal{R}(\Gamma) = \big( \langle r_1,\Gamma\rangle,\dots,\langle r_m,\Gamma\rangle \big),
+$$
+
+where each $r_j$ is finitely-supported ``kernel'', e.g.,
+
+$$
+\langle r_j,\Gamma\rangle = \sum_{k} r_j(k,x_k).
+$$
+\end{definition}
+
+In continuous limit, can view $\Gamma$ as curve $(\theta(t),\phi(t))$ on control manifold and information manifold, readout becomes time integral
+
+$$
+\langle r_j,\Gamma\rangle = \int_0^T R_j(\theta(t),\phi(t))\,w_j(t)\,\mathrm{d}t,
+$$
+
+where $w_j(t)$ is weight function (window function).
+
+\subsection{Ideal Readout and Truncated Readout}
+
+Ideally, we want readout over infinite-length path or infinite time window:
+
+$$
+\mathcal{R}_{\mathrm{ideal}}(\Gamma) = \int_0^{\infty} R(\theta(t),\phi(t))\,\mathrm{d}t.
+$$
+
+However under finite complexity budget $T_{\max}$, can only readout in finite time:
+
+$$
+\mathcal{R}_{\mathrm{trunc}}(\Gamma) = \int_0^{T_{\max}} R(\theta(t),\phi(t))\,W(t)\,\mathrm{d}t,
+$$
+
+where $W(t)$ is window function supported on $[0,T_{\max}]$, used to smoothly truncate at time boundary.
+
+Difference between them defines readout error:
+
+$$
+\mathrm{Err}(\Gamma;W) = \mathcal{R}_{\mathrm{ideal}}(\Gamma) - \mathcal{R}_{\mathrm{trunc}}(\Gamma).
+$$
+
+In frequency domain description, choice of $W$ directly determines error decay and energy leakage properties, thus choosing optimal window function $W$ is core of error control.
+
+\subsection{Error Norm and Worst-Case Error}
+
+For unified discussion, we introduce semi-norm on path space (e.g., $L^2$ norm induced by unified time scale frequency spectrum).
+
+Suppose for each path $\Gamma$ there exists corresponding frequency domain object $f_\Gamma(\omega)$ (e.g., combined from scattering data and unified time scale density on control manifold), satisfying
+
+$$
+|\Gamma|^2 = \int_{\Omega} |f_\Gamma(\omega)|^2\,\mathrm{d}\mu(\omega).
+$$
+
+Readout error can be written as frequency domain window form (see Section 3), whose worst-case norm defined as
+
+$$
+\mathcal{E}(W) = \sup_{\Gamma\ne 0} \frac{|\mathrm{Err}(\Gamma;W)|}{|\Gamma|}.
+$$
+
+We care about finding window function family $\{W\}$ making $\mathcal{E}(W)$ as small as possible under given time--bandwidth and complexity budget constraints.
+
+\section{Spectral Windowing Readout in Unified Time Scale Frequency Domain}
+
+This section introduces frequency domain description under unified time scale master scale, writing readout operator as inner product of window function and frequency spectrum.
+
+\subsection{Unified Time Scale Frequency Domain Representation}
+
+In previous work, we have connected unified time scale with scattering data on physical universe side. Pulling this structure back to computational universe, can consider each path $\Gamma$ corresponds to frequency domain object
+
+$$
+f_\Gamma(\omega) = \kappa(\omega)\,\Phi(\Gamma;\omega),
+$$
+
+where $\kappa(\omega)$ is unified time scale density, $\Phi(\Gamma;\omega)$ encodes path response to this frequency mode through control--scattering structure.
+
+For given readout kernel, can define window in frequency domain
+
+$$
+W(\omega)
+$$
+
+such that
+
+$$
+\mathcal{R}(\Gamma) = \int_{\Omega} W(\omega)\,f_\Gamma(\omega)\,\mathrm{d}\omega.
+$$
+
+Ideal readout corresponds to $W_{\mathrm{ideal}}(\omega) \equiv 1$ (or some fixed weight), while finite complexity readout corresponds to restricting $W(\omega)$ to finite bandwidth $[-W,W]$ or finite degree-of-freedom space.
+
+\subsection{Time--Frequency Dual Restriction and Window Function Design Problem}
+
+Suppose we can only readout within time interval $[-T,T]$, corresponding to time window $w_T(t)$ (e.g., $w_T(t)=1$ on $|t|\le T$, otherwise 0), and only interested in frequency band $[-W,W]$.
+
+In frequency domain, readout sensitivity to energy outside frequency band determines error: if path spectral components leave $[-W,W]$, then window function $W(\omega)$ needs to suppress them as much as possible; but simultaneously should maintain as good pass characteristics as possible within $[-W,W]$.
+
+Thus we obtain typical dual-restriction window function design problem:
+
+\begin{itemize}
+\item Time restriction: Readout window $w_T(t)$ supported on $[-T,T]$;
+\item Frequency restriction: Readout window spectrum $\widehat{w}_T(\omega)$ concentrated on $[-W,W]$;
+\item Objective: Under given constraints, minimize out-of-band energy or worst-case error.
+\end{itemize}
+
+In signal analysis, this precisely classical problem of PSWF/DPSS; this paper interprets it as ``best finite complexity readout'' under unified time scale--complexity geometry.
+
+\section{PSWF/DPSS and Energy Concentration: From Time--Frequency to Time--Complexity}
+
+This section reviews definitions and energy concentration of continuous PSWF and discrete DPSS, translating them to error control results in computational universe.
+
+\subsection{Definition and Time--Band Concentration of Continuous PSWF}
+
+\begin{definition}[Continuous PSWF]
+Fix time window $T>0$ and bandwidth $W>0$. Define integral operator
+
+$$
+(\mathcal{K} f)(t) = \int_{-T}^{T} \frac{\sin W(t-s)}{\pi(t-s)} f(s)\,\mathrm{d}s, \quad |t|\le T.
+$$
+
+This operator equivalent to composition of ``first time-limit to $[-T,T]$, then band-limit to $[-W,W]$''. Its eigenfunctions $\psi_n(t)$ and eigenvalues $\lambda_n$ satisfy
+
+$$
+\int_{-T}^{T} \frac{\sin W(t-s)}{\pi(t-s)} \psi_n(s)\,\mathrm{d}s = \lambda_n \psi_n(t), \quad |t|\le T.
+$$
+
+$\psi_n$ called Prolate Spheroidal Wave Functions under time window $[-T,T]$ and bandwidth $[-W,W]$.
+\end{definition}
+
+\begin{proposition}[Energy Concentration of PSWF]
+\label{prop:PSWF-concentration}
+PSWF satisfy:
+
+\begin{enumerate}
+\item They constitute orthogonal basis on $[-T,T]$;
+\item For each $\psi_n$, define frequency domain energy concentration
+
+$$
+\alpha_n = \frac{ \int_{-W}^{W} |\widehat{\psi}_n(\omega)|^2\,\mathrm{d}\omega }{ \int_{-\infty}^{\infty} |\widehat{\psi}_n(\omega)|^2\,\mathrm{d}\omega },
+$$
+
+then $\alpha_n = \lambda_n$, and $\lambda_0\ge\lambda_1\ge\dots$;
+\item For given time window and bandwidth, $\{\psi_n\}$ are optimal basis in sense of ``energy concentration under simultaneous time and frequency restrictions'': total energy concentration of any other same-dimensional subspace does not exceed sum of PSWF subspace.
+\end{enumerate}
+\end{proposition}
+
+Proof of Proposition~\ref{prop:PSWF-concentration} given in Appendix A.
+
+\subsection{Definition and Finite Step--Finite Bandwidth of Discrete DPSS}
+
+In discrete case, consider sequence of length $N$: $x[0],\dots,x[N-1]$, whose discrete time--frequency restriction problem can be characterized through DPSS (Discrete Prolate Spheroidal Sequences).
+
+\begin{definition}[DPSS]
+Fix sequence length $N$ and normalized bandwidth $W \in (0,1/2)$. Define Toeplitz matrix
+
+$$
+K_{mn} = \frac{\sin 2\pi W(m-n)}{\pi(m-n)}, \quad 0\le m,n\le N-1,
+$$
+
+on diagonal define $K_{mm} = 2W$. Solve eigenvalue problem
+
+$$
+\sum_{n=0}^{N-1} K_{mn} v_n^{(k)} = \lambda_k v_m^{(k)}.
+$$
+
+Normalized eigenvectors $v^{(k)}$ are DPSS under $(N,W)$, eigenvalues $\lambda_k$ are energy concentrations:
+
+$$
+\lambda_k = \frac{ \sum_{|\omega|\le W} |\widehat{v}^{(k)}(\omega)|^2 }{ \sum_{|\omega|\le 1/2} |\widehat{v}^{(k)}(\omega)|^2 }.
+$$
+\end{definition}
+
+\begin{proposition}[Discrete Energy Concentration of DPSS]
+\label{prop:DPSS-concentration}
+DPSS $\{v^{(k)}\}$ maximize energy concentration under discrete time--frequency dual restriction: for any subspace $V \subset\mathbb{C}^N$ of dimension $K$, its energy concentration sum within frequency band $[-W,W]$ does not exceed concentration sum of space spanned by first $K$ DPSS.
+\end{proposition}
+
+Proof see Appendix A.
+
+\subsection{Interpretation in Computational Universe as ``Finite Complexity Readout''}
+
+In computational universe, path segment of length $N$ viewable as complexity step number limitation $N$; corresponds to time window $T\approx N\Delta t$ under unified time scale. Frequency band $W$ corresponds to effective support of unified time scale density $\kappa(\omega)$.
+
+Under this perspective:
+
+\begin{itemize}
+\item PSWF corresponds to optimal continuous window function under given complexity window $[-T,T]$ and frequency band $[-W,W]$;
+\item DPSS corresponds to optimal discrete readout sequence under discrete complexity step length $N$ and frequency band $W$.
+\end{itemize}
+
+Therefore, under finite complexity budget any readout operator hoping to faithfully capture information in unified time scale frequency spectrum, its time window or sequence should approximate PSWF/DPSS as much as possible.
+
+\section{Complexity--Time--Bandwidth Triple Unified Constraints}
+
+This section discusses relationship among complexity budget $T$, time window $T$, and frequency band $W$, giving ``computational universe version of Landau--Pollak--Slepian restriction''.
+
+\subsection{Time--Frequency--Complexity Degree-of-Freedom Counting}
+
+In classical time--frequency analysis, effective degree-of-freedom number of signal subspace with bandwidth $W$ and time restriction $T$ is
+
+$$
+N_{\mathrm{eff}} \approx \frac{2WT}{\pi}.
+$$
+
+This result can be obtained through asymptotic behavior of PSWF eigenvalues: eigenvalues $\lambda_n$ close to 1 when $n<2WT/\pi$, rapidly decline to 0 when $n>2WT/\pi$.
+
+In unified time scale--complexity geometry, we can interpret this degree-of-freedom count as:
+
+\begin{itemize}
+\item For given complexity budget $T$ and unified time scale frequency band $W$, number of independent modes that can be reliably encoded or read out is approximately $N_{\mathrm{eff}}$;
+\item On task information manifold, this corresponds to number of Fisher modes identifiable under finite complexity budget.
+\end{itemize}
+
+\subsection{Complexity--Time--Bandwidth Constraint Inequality}
+
+We formalize computational universe version:
+
+\begin{theorem}[Complexity--Time--Bandwidth Degree-of-Freedom Upper Bound]
+\label{thm:CTW-bound}
+Suppose computational universe has unified time scale frequency domain representation $f_\Gamma(\omega)$, whose support or effective energy concentrated on $[-W,W]$. For complexity budget $T$, restricting path within complexity ball $B_T(x_0)$, consider all readout operators
+
+$$
+\mathcal{R}_j(\Gamma) = \int_{-W}^{W} W_j(\omega)\,f_\Gamma(\omega)\,\mathrm{d}\omega, \quad j=1,\dots,K,
+$$
+
+where $\{W_j\}$ are orthogonal window function family in $L^2([-W,W])$.
+
+Then under error tolerance $\varepsilon$, there can exist optimal window function family $\{W_j^{\star}\}$ (given by first $K$ PSWF spectra), such that for all paths $\Gamma$ satisfying
+
+$$
+\bigg| f_\Gamma(\omega) - \sum_{j=1}^{K} \langle f_\Gamma,W_j^{\star}\rangle W_j^{\star}(\omega) \bigg|_{L^2([-W,W])} \le \varepsilon |f_\Gamma|_{L^2([-W,W])}
+$$
+
+only when
+
+$$
+K \gtrsim \frac{2WT}{\pi} + \mathcal{O}\big(\log(1/\varepsilon)\big).
+$$
+
+That is, under complexity--time--bandwidth triple constraint, reliably distinguishable degree-of-freedom number does not exceed $\approx 2WT/\pi$.
+\end{theorem}
+
+Proof see Appendix B.
+
+This result understandable as ``computational universe's Nyquist--Slepian restriction'': unified time scale frequency band $W$ together with complexity budget $T$ determine effective mode number readable in finite time.
+
+\section{Variational Principle of Window Function Choice: Optimal Observation Strategy}
+
+This section introduces window function choice into time--information--complexity joint variational principle, constructing variational form of ``optimal observation strategy''.
+
+\subsection{Extended Joint Manifold and Window Function Degrees of Freedom}
+
+Previous joint manifold
+
+$$
+\mathcal{E}_Q = \mathcal{M}\times\mathcal{S}_Q
+$$
+
+where curve $z(t)=(\theta(t),\phi(t))$ describes control--information state evolution.
+
+Now add window function degrees of freedom: let $\mathcal{W}$ be some window function space (e.g., subspace in $L^2([-T,T])$ satisfying band-limit constraints), for each readout channel $j$ choose window function $W_j \in \mathcal{W}$.
+
+Extended joint configuration as
+
+$$
+\widehat{z}(t) = (\theta(t),\phi(t),\{W_j\}_{j=1}^K).
+$$
+
+Window function itself can have no explicit time evolution (viewed as static part of strategy), or can be updated on slow variable scale.
+
+\subsection{Extended Action}
+
+Add ``observation error cost'' term on basis of original time--information--complexity action:
+
+$$
+\mathcal{A}_Q[z(\cdot),\{W_j\}] = \int_0^T \Big( \tfrac{1}{2} \alpha^2 G_{ab}\dot{\theta}^a\dot{\theta}^b + \tfrac{1}{2} \beta^2 g_{ij}\dot{\phi}^i\dot{\phi}^j - \gamma U_Q(\phi) \Big)\,\mathrm{d}t + \mu \,\mathcal{E}_{\mathrm{win}}(\{W_j\}),
+$$
+
+where $\mathcal{E}_{\mathrm{win}}(\{W_j\})$ is observation error function, e.g.,
+
+$$
+\mathcal{E}_{\mathrm{win}}(\{W_j\}) = \sup_{\Gamma\in\mathcal{G}_T} \frac{ \big| f_\Gamma - \sum_{j=1}^K\langle f_\Gamma,W_j\rangle W_j \big|_{L^2([-W,W])} }{ |f_\Gamma|_{L^2([-W,W])} },
+$$
+
+where $\mathcal{G}_T$ is path family within complexity budget $T$.
+
+Variational problem is
+
+$$
+\min_{z(\cdot),\{W_j\}} \mathcal{A}_Q[z(\cdot),\{W_j\}].
+$$
+
+\subsection{Minimality Condition in Window Function Direction}
+
+Taking variation in window function degrees of freedom, obtain
+
+$$
+\frac{\partial}{\partial W_j} \mathcal{E}_{\mathrm{win}}(\{W_j\}) = 0, \quad j=1,\dots,K,
+$$
+
+when error function chosen as $L^2$ mean square error or maximum error upper bound, solution of minimization condition is precisely subspace spanned by PSWF/DPSS:
+
+\begin{proposition}[PSWF/DPSS as Variational Extremum of Observation Window]
+\label{prop:PSWF-variational}
+In above extended action, when $\mathcal{E}_{\mathrm{win}}$ taken as ``worst-case $L^2$ error over bandwidth $W$, time window $T$, and path family $\mathcal{G}_T$'', window function subspace minimizing $\mathcal{E}_{\mathrm{win}}$ is spanned by first $K$ PSWF (continuous case) or DPSS (discrete case).
+\end{proposition}
+
+Proof see Appendix C: core is using energy concentration optimality of PSWF/DPSS under time--frequency dual restriction.
+
+Therefore, under time--information--complexity variational framework, window function choice of ``optimal observation strategy'' has explicit spectral structure:
+
+\begin{itemize}
+\item Under continuous complexity--time restriction, choose PSWF-type windows;
+\item Under discrete complexity step length, choose DPSS-type windows.
+\end{itemize}
+
+\appendix
+
+\section{Proof Points of Energy Concentration of PSWF/DPSS}
+
+\subsection{Variational Characterization of PSWF}
+
+Key property of PSWF is solution to following variational problem:
+
+In $L^2(\mathbb{R})$, given bandwidth $W$, among all band-limited signals
+
+$$
+\mathcal{B}_W = \{ f\in L^2(\mathbb{R}) : \widehat{f}(\omega)=0\ \text{for}\ |\omega|> W \}
+$$
+
+seek $f$ with maximum energy concentration on interval $[-T,T]$
+
+$$
+\alpha(f) = \frac{\int_{-T}^{T} |f(t)|^2\,\mathrm{d}t}{\int_{-\infty}^{\infty} |f(t)|^2\,\mathrm{d}t}
+$$
+
+Euler--Lagrange equation of this variational problem is precisely eigenvalue equation of integral operator $\mathcal{K}$:
+
+$$
+\mathcal{K} f = \lambda f,
+$$
+
+eigenvalue $\lambda$ is energy concentration $\alpha(f)$. More generally, for finite-dimensional subspace $V \subset \mathcal{B}_W$, total concentration
+
+$$
+\sum_{f\in\text{ONB}(V)} \alpha(f)
+$$
+
+maximization problem solution is subspace spanned by first $K$ eigenfunctions $\{\psi_0,\dots,\psi_{K-1}\}$. This is core conclusion of PSWF energy concentration theory.
+
+\subsection{Discrete Analogue of DPSS}
+
+In DPSS case, integral operator replaced by Toeplitz matrix, eigenvectors are discrete time sequences, eigenvalues represent energy concentration within discrete frequency band $[-W,W]$.
+
+Proof idea parallel to continuous case: write energy concentration as Rayleigh quotient, then use matrix spectral decomposition and Courant--Fischer minimax principle to obtain conclusion that ``subspace of first $K$ eigenvectors maximizes total concentration''.
+
+\section{Proof Outline of Complexity--Time--Bandwidth Degree-of-Freedom Upper Bound}
+
+Let $f_\Gamma(\omega)$ be band-limited representation of path spectrum, nonzero on $[-W,W]$. From PSWF theory know effective dimension of function space of $\mathcal{B}_W$ restricted on $[-T,T]$ is
+
+$$
+N_{\mathrm{eff}} \approx \frac{2WT}{\pi}.
+$$
+
+More precisely, PSWF eigenvalues $\lambda_n$ for large $WT$ have following properties:
+
+\begin{itemize}
+\item If $n < \frac{2WT}{\pi} - c\log WT$, then $\lambda_n \approx 1 - \mathrm{e}^{-c' WT}$;
+\item If $n > \frac{2WT}{\pi} + c\log WT$, then $\lambda_n \approx \mathrm{e}^{-c'' WT}$.
+\end{itemize}
+
+Therefore, any finite-dimensional subspace with first $K$ PSWF as basis provides good approximation for band-limited signal family $\mathcal{B}_W$, if and only if $K \gtrsim 2WT/\pi$.
+
+Path family $\mathcal{G}_T$ in computational universe precisely corresponds to some subset in $\mathcal{B}_W$ under unified time scale frequency domain, thus above dimension estimate directly gives lower bound of ``available window function degree-of-freedom number'', thereby obtaining form in Theorem~\ref{thm:CTW-bound}.
+
+\section{Variational Extremum Property of Window Function Choice}
+
+In extended action, window function degrees of freedom only enter error term $\mathcal{E}_{\mathrm{win}}$. If defining $\mathcal{E}_{\mathrm{win}}$ as
+
+$$
+\mathcal{E}_{\mathrm{win}}(\{W_j\}) = \sup_{f\in\mathcal{B}_W} \frac{ | f - \sum_{j=1}^K \langle f,W_j\rangle W_j |_{L^2([-W,W])} }{ | f|_{L^2([-W,W])} },
+$$
+
+this is typical ``best K-dimensional subspace approximation'' problem, whose solution is projection of $\mathcal{B}_W$ onto first $K$ principal directions, i.e., PSWF spectral subspace.
+
+In discrete case, similar proposition holds, DPSS spectral subspace is best K-dimensional approximation.
+
+Therefore in variational sense, PSWF/DPSS window function families are global minima of error functional.
+
+This paper combines time--frequency concentration theory of PSWF/DPSS with unified time scale--complexity geometry--information geometry, giving unified spectral windowing framework for finite resource readout and error control in computational universe, providing theoretical foundation for subsequent implementation of ``unified time scale readout'' on specific physical--engineering systems.
+
+\end{document}

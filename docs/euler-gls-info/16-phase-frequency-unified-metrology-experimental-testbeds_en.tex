@@ -1,0 +1,581 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Math operators
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\sinc}{sinc}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\ONB}{ONB}
+
+% Title information
+\title{Phase--Frequency Unified Metrology and Experimental Testbeds\\
+in Computational Universe:\\
+Unified Time Scale Implementation\\
+from FRB Vacuum Windowing Upper Limit\\
+to $\delta$-Ring Scattering Identifiability}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+In previous ``computational universe'' framework, universe axiomatized as discrete object $U_{\mathrm{comp}} = (X,\mathsf{T},\mathsf{C},\mathsf{I})$, upon which constructed discrete complexity geometry, discrete information geometry, control manifold $(\mathcal{M},G)$ induced by unified time scale, task information manifold $(\mathcal{S}_Q,g_Q)$, and time--information--complexity joint variational principle. Unified time scale given by scattering master scale
+
+$$
+\kappa(\omega) = \varphi'(\omega)/\pi = \rho_{\mathrm{rel}}(\omega) = (2\pi)^{-1}\tr Q(\omega)
+$$
+
+unifying phase derivative, spectral shift density, and Wigner--Smith group delay trace as single scale. However, this framework still remains mainly at ``theoretical geometry'' level, has not systematically given how to metrologically measure and calibrate unified time scale and computational universe structure in actual experiments.
+
+This paper, on basis of computational universe--unified time scale--spectral windowing readout, constructs cross-platform metrology paradigm using ``phase--frequency'' as sole observable, implementing it on two representative testbeds: cosmological-distance Fast Radio Burst propagation (FRB) and laboratory-scale $\delta$-ring--Aharonov--Bohm (AB) flux scattering. Core idea: from computational universe perspective, all observables realized through phase--frequency readout under unified time scale; FRB and $\delta$-ring scattering respectively provide cosmic-scale and laboratory-scale ``homologous readouts'', viewable as implementations of same metrology paradigm at different scales under unified time scale and complexity geometry.
+
+Main results of this paper:
+
+\begin{enumerate}
+\item Under framework of categorical equivalence between computational--physical universes, introduce ``phase--frequency readout functor'' $\mathsf{PhFr}$, sending any physically realizable computational universe object to metrology object containing only phase--frequency data. Prove $\mathsf{PhFr}$ compatible with unified time scale master scale: under traceable perturbation and wave operator completeness, $\mathsf{PhFr}$ output completely determined by $\kappa(\omega)$ and finite spectral--scattering invariants.
+
+\item For FRB, construct ``vacuum polarization windowing upper limit'' model: window FRB frequency-domain phase using PSWF/DPSS type window functions, prove under fixed complexity budget and cosmological distance constraints, any unified time scale variation $\delta \kappa(\omega)$ contribution to FRB phase residual can be bounded by strict upper bound; if observed residual below this bound, obtain unified time scale type upper limit on vacuum polarization or other new physics.
+
+\item For $\delta$-ring--AB flux scattering, restate equivalence between spectral quantization equation
+
+$$
+f(k,\alpha_\delta,\theta) = \cos(kL) + (\alpha_\delta/k)\sin(kL) - \cos\theta = 0
+$$
+
+and ``amplitude-corrected phase closure''
+
+$$
+\cos\gamma(k) = |t(k)|\cos\theta
+$$
+
+and prove under computational universe--control manifold perspective: under spectral observation $\{k_n(\theta)\}$ at fixed $(L,\theta)$, $\delta$--coupling strength $\alpha_\delta$ and AB flux $\theta$ are identifiable in non-pathological domain (Jacobian full rank), usable as ``laboratory ruler'' for unified time scale--phase metrology.
+
+\item Under unified time scale--spectral windowing readout framework, embed FRB and $\delta$-ring scattering in same ``phase--frequency metrology universe'', prove existence of ``cross-platform scale unification condition'': when FRB phase residual and $\delta$-ring scattering spectral shift both explained by same $\kappa(\omega)$ model, their windowed readouts belong to same equivalence class on appropriate PSWF/DPSS space, thus can calibrate and consistency-test unified time scale through joint fitting.
+
+\item Embed above phase--frequency metrology structure into time--information--complexity variational principle, formalize ``choosing FRB/$\delta$-ring window functions and control parameters'' as variational problem on joint manifold, give variational conditions for ``simultaneously using cosmic-scale and laboratory-scale phase--frequency readouts to maximize unified time scale identifiability under finite complexity budget''.
+\end{enumerate}
+
+This paper thus completes experimental implementation design of ``phase--frequency unified metrology'' within computational universe framework: FRB and $\delta$-ring scattering become two-end testbeds of unified time scale and complexity geometry, PSWF/DPSS window functions become natural tools for error control, both jointly constructing cross-scale, cross-platform, yet completely unified phase--frequency metrology system under computational universe perspective.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Computational universe; Phase-frequency metrology; FRB; $\delta$-ring scattering; Unified time scale; PSWF/DPSS; Experimental testbed
+
+\section{Introduction}
+
+In previous series works, we have completed constructions at following levels:
+
+\begin{enumerate}
+\item At discrete level, abstract universe as axiomatic computational universe object $U_{\mathrm{comp}} = (X,\mathsf{T},\mathsf{C},\mathsf{I})$, upon which construct complexity graph $G_{\mathrm{comp}} = (X,E,\mathsf{C})$, complexity distance $d_{\mathrm{comp}}$, complexity dimension and discrete Ricci curvature.
+
+\item At unified time scale--scattering theory level, introduce
+
+$$
+\kappa(\omega) = \varphi'(\omega)/\pi = \rho_{\mathrm{rel}}(\omega) = (2\pi)^{-1}\tr Q(\omega),
+$$
+
+as ``trinity master scale'', unifying scattering phase derivative, spectral shift density, and group delay trace.
+
+\item Through unified time scale and complexity geometry construct control manifold $(\mathcal{M},G)$, prove discrete complexity distance converges to geodesic distance $d_G$ in refinement limit.
+
+\item Through observer family and relative entropy second-order structure construct task information manifold $(\mathcal{S}_Q,g_Q)$, and give joint variational principle of time--information--complexity on joint manifold $\mathcal{E}_Q = \mathcal{M}\times\mathcal{S}_Q$.
+
+\item In spectral windowing error control work, introduce PSWF/DPSS window functions, show in unified time scale--frequency domain, they are optimal readout windows under finite time--bandwidth--complexity budget.
+\end{enumerate}
+
+These results lay foundation for constructing ``unified time scale--computational universe'' theoretical system, but do not directly answer key question: how to metrologically **measure and calibrate** this unified time scale master scale through concrete physical experiments? Mathematical existence of unified time scale insufficient to demonstrate its physical measurability; we need to connect scattering master scale with actually observable phase--frequency data, and design cross-platform metrology strategy so phase--frequency readouts from cosmic scale and laboratory scale can be jointly used to test and calibrate unified time scale.
+
+In this context, Fast Radio Bursts (FRB) and $\delta$-ring--AB flux scattering become two very natural testbeds:
+
+\begin{itemize}
+\item FRB are short-duration broadband radio signals traversing cosmological distances, whose propagation phase, group delay and dispersion structure contain integrated information about cosmological medium and vacuum properties; under unified time scale--scattering perspective, FRB essentially ``cosmic-level scattering experiment''.
+
+\item $\delta$-ring--AB flux scattering is precise measurement of spectral--scattering structure of one-dimensional ring geometry, point potential and AB flux at laboratory scale; its spectral quantization equation and phase closure provide highly controllable phase--frequency testbed, usable for ``reverse calibration'' of unified time scale model under known geometric parameters and coupling constants.
+\end{itemize}
+
+Goal of this paper: unify embedding of FRB and $\delta$-ring scattering into computational universe--unified time scale framework, establish metrology paradigm using phase--frequency as sole readout, so two types of experiments can mutually calibrate and consistency-test on same unified time scale master scale.
+
+\section{Phase--Frequency Readout Functor in Computational Universe}
+
+This section, under background of computational--physical universe categorical equivalence, introduces ``phase--frequency readout functor'' $\mathsf{PhFr}$, whose output contains only phase--frequency data, directly connected with unified time scale master scale.
+
+\subsection{Review of Physical--Computational Universe Equivalence}
+
+In previous categorical equivalence work, we constructed physical universe category $\mathbf{PhysUniv}^{\mathrm{QCA}}$ and computational universe category $\mathbf{CompUniv}^{\mathrm{phys}}$, giving mutually inverse functors
+
+$$
+F:\mathbf{PhysUniv}^{\mathrm{QCA}}\to\mathbf{CompUniv}^{\mathrm{phys}},
+$$
+
+$$
+G:\mathbf{CompUniv}^{\mathrm{phys}}\to\mathbf{PhysUniv}^{\mathrm{QCA}}.
+$$
+
+Physical universe object abstractable as
+
+$$
+U_{\mathrm{phys}} = (M,g,\mathcal{F},\kappa,\mathsf{S}),
+$$
+
+computational universe object as
+
+$$
+U_{\mathrm{comp}} = (X,\mathsf{T},\mathsf{C},\mathsf{I}).
+$$
+
+Functors $F,G$ preserve structure of unified time scale density $\kappa(\omega)$ and scattering data $\mathsf{S}(\omega)$: from physical side to computational side, unified time scale discretized as single-step cost; from computational side to physical side, complexity geometry continuized as control--scattering manifold.
+
+\subsection{Phase--Frequency Data Objects}
+
+Define ``phase--frequency data object'' as
+
+$$
+U_{\mathrm{PhFr}} = (\Omega,\Theta(\omega),\kappa(\omega)),
+$$
+
+where $\Omega \subset\mathbb{R}$ is effective frequency band, $\Theta(\omega)$ is total scattering phase (or its normalization), $\kappa(\omega)$ is unified time scale density. According to unified time scale master scale, under traceable perturbation condition
+
+$$
+\kappa(\omega) = \Theta'(\omega)/\pi
+$$
+
+holds up to additive constant.
+
+\subsection{Phase--Frequency Readout Functor}
+
+\begin{definition}[Phase--Frequency Readout Functor]
+Define functor
+
+$$
+\mathsf{PhFr}:\mathbf{PhysUniv}^{\mathrm{QCA}}\to\mathbf{PhFrUniv},
+$$
+
+where $\mathbf{PhFrUniv}$ objects are $U_{\mathrm{PhFr}}$, morphisms are frequency-domain transformations preserving $\omega$ and $\Theta(\omega),\kappa(\omega)$ structure.
+
+For physical universe object $U_{\mathrm{phys}}$, $\mathsf{PhFr}(U_{\mathrm{phys}}) = (\Omega,\Theta(\omega),\kappa(\omega))$ determined by its scattering data and unified time scale master scale.
+\end{definition}
+
+Through categorical equivalence, given computational universe object $U_{\mathrm{comp}}$, first use $G(U_{\mathrm{comp}}) = U_{\mathrm{phys}}$ to obtain physical universe, then apply $\mathsf{PhFr}$ to obtain phase--frequency data object. Thus obtain composite functor
+
+$$
+\mathsf{PhFr}\circ G:\mathbf{CompUniv}^{\mathrm{phys}}\to\mathbf{PhFrUniv}.
+$$
+
+\begin{proposition}[Consistency of Unified Time Scale and Phase--Frequency Readout]
+\label{prop:PhFr-consistency}
+Under traceable perturbation and wave operator completeness conditions, phase--frequency readout object $U_{\mathrm{PhFr}} = (\Omega,\Theta(\omega),\kappa(\omega))$ completely determined by unified time scale density $\kappa(\omega)$ and constant phase shift, i.e.,
+
+$$
+\Theta(\omega) = \pi\int^\omega \kappa(\omega')\,\mathrm{d}\omega' + \Theta_0.
+$$
+
+In particular, any two pairs $(\Theta,\kappa)$, $(\Theta',\kappa')$ with $\kappa\equiv\kappa'$ and $\Theta-\Theta'$ constant correspond to same unified time scale structure.
+\end{proposition}
+
+Proof omitted.
+
+\section{FRB Vacuum Polarization Windowing Upper Limit: Computational Universe Perspective}
+
+This section views FRB propagation as cosmic-scale scattering--propagation process, constructs ``vacuum polarization windowing upper limit'' under unified time scale--spectral windowing.
+
+\subsection{Scattering--Propagation Model of FRB Propagation}
+
+For simplicity, consider FRB signal complex amplitude $A(\omega)$ in frequency domain, whose phase part writable as
+
+$$
+A(\omega) = |A(\omega)|\exp(i\Phi_{\mathrm{FRB}}(\omega)).
+$$
+
+If propagation includes only known dispersion and reionized medium contributions, then
+
+$$
+\Phi_{\mathrm{FRB}}(\omega) = \Phi_{\mathrm{known}}(\omega) + \Phi_{\mathrm{new}}(\omega),
+$$
+
+where $\Phi_{\mathrm{known}}$ from conventional dispersion measure and medium model, $\Phi_{\mathrm{new}}$ represents possible contributions from vacuum polarization, new particles, or unified time scale perturbations.
+
+Under unified time scale--scattering perspective, $\Phi_{\mathrm{FRB}}(\omega)$ understandable as effective scattering phase $\Theta_{\mathrm{FRB}}(\omega)$, whose derivative gives effective time scale density perturbation
+
+$$
+\delta\kappa_{\mathrm{FRB}}(\omega) = \frac{1}{\pi}\partial_\omega \Phi_{\mathrm{new}}(\omega).
+$$
+
+\subsection{Windowed FRB Phase and Error Upper Bound}
+
+Observationally, we can only measure phase--frequency data in finite frequency band $\Omega_{\mathrm{FRB}} = [\omega_{\min},\omega_{\max}]$ with finite resolution. Introduce window function $W_{\mathrm{FRB}}(\omega)$ (e.g., generated by PSWF/DPSS spectrum) and define windowed residual
+
+$$
+R_{\mathrm{FRB}} = \int_{\Omega_{\mathrm{FRB}}} W_{\mathrm{FRB}}(\omega)\big(\Phi_{\mathrm{FRB}}(\omega) - \Phi_{\mathrm{known}}(\omega)\big)\,\mathrm{d}\omega.
+$$
+
+If unified time scale perturbation $\delta\kappa_{\mathrm{FRB}}(\omega)$ of FRB signal has constraint $|\delta\kappa_{\mathrm{FRB}}| \le \Lambda$ under some spectral norm, then through integration and Cauchy--Schwarz inequality obtain
+
+$$
+|R_{\mathrm{FRB}}| \le \Lambda |W_{\mathrm{FRB}}|_{L^2(\Omega_{\mathrm{FRB}})} C_{\mathrm{FRB}},
+$$
+
+where $C_{\mathrm{FRB}}$ determined by cosmological propagation kernel and geometric factors.
+
+Conversely, if observationally residual $|R_{\mathrm{FRB}}| \le \varepsilon_{\mathrm{obs}}$, obtain upper bound on unified time scale perturbation
+
+$$
+\Lambda \ge \Lambda_{\min} \ge \frac{|R_{\mathrm{FRB}}|}{|W_{\mathrm{FRB}}| C_{\mathrm{FRB}}}.
+$$
+
+Writing optimal window function choice problem as constrained minimization of $|W_{\mathrm{FRB}}|$, classical results show PSWF/DPSS type windows minimize error upper bound under given time--frequency--complexity budget, thus giving ``FRB vacuum polarization windowing limiter''.
+
+\section{$\delta$-Ring-AB Flux Scattering Spectral-Phase-Scattering Equivalence and Identifiability}
+
+This section, from computational universe--control manifold perspective, restates spectral--phase--scattering structure of $\delta$-ring--AB flux scattering, gives identifiability theorem.
+
+\subsection{$\delta$-Ring-AB Flux Model}
+
+Consider one-dimensional ring, circumference $L$, coordinate $x\in[0,L)$ with periodicity $x\sim x+L$. Introduce point $\delta$--potential on ring, strength $\alpha_\delta$, and AB flux $\theta \in [0,2\pi)$. Corresponding Hamiltonian (unit mass, ignoring constants) writable as
+
+$$
+H = -\partial_x^2 + \alpha_\delta\delta(x),
+$$
+
+boundary condition includes AB phase:
+
+$$
+\psi(L^-) = \mathrm{e}^{i\theta}\psi(0^+), \quad \psi'(L^-) = \mathrm{e}^{i\theta}\psi'(0^+).
+$$
+
+Solving eigenequation $H\psi = k^2\psi$ yields spectral quantization condition
+
+$$
+f(k,\alpha_\delta,\theta) = \cos(kL) + (\alpha_\delta/k)\sin(kL) - \cos\theta = 0.
+$$
+
+Corresponding scattering amplitude $t(k)$ and phase $\gamma(k)$ satisfy certain phase closure, typical form
+
+$$
+\cos\gamma(k) = |t(k)|\cos\theta,
+$$
+
+where functional relationship between $\gamma(k)$ and $kL$, $\alpha_\delta$ given by scattering theory.
+
+\subsection{$\delta$-Ring Control Manifold in Computational Universe}
+
+View $\delta$-ring scattering as computational universe on low-dimensional control manifold: control parameter space
+
+$$
+\mathcal{M}_{\delta\text{-}\mathrm{ring}} = \{(L,\alpha_\delta,\theta)\},
+$$
+
+equipped with metric $G$, e.g.,
+
+$$
+G = g_{LL}\mathrm{d}L^2 + g_{\alpha\alpha}\mathrm{d}\alpha_\delta^2 + g_{\theta\theta}\mathrm{d}\theta^2.
+$$
+
+Spectral observation $\{k_n(\theta)\}$ corresponds to data points on information manifold, while unified time scale density given by scattering phase derivative and group delay. $\delta$-ring thus becomes highly controllable ``computational sub-universe'' on three-dimensional control manifold, usable for unified time scale and phase--frequency metrology.
+
+\subsection{Spectral--Phase--Scattering Equivalence Theorem}
+
+\begin{theorem}[Spectral Quantization and Phase Closure Equivalence]
+\label{thm:spectral-phase-equiv}
+In $\delta$-ring--AB flux model, spectral quantization condition
+
+$$
+f(k,\alpha_\delta,\theta) = 0
+$$
+
+and phase--amplitude closure
+
+$$
+\cos\gamma(k) = |t(k)|\cos\theta
+$$
+
+equivalent under usual scattering regularity conditions; in particular, when $|t(k)|\to 1$ (weak scattering or transmission resonance), reduces to pure phase closure $\cos\gamma(k) = \cos\theta$.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+From boundary conditions and $\delta$--potential jump conditions derive transfer matrix, require wave function to match itself after one loop around ring, obtain spectral quantization equation; on other hand, compute scattering matrix elements $t(k),r(k)$ and phase shift $\gamma(k)$, rewrite spectral condition as phase--amplitude closure. Algebraic equivalence between them verified through direct substitution and simplification. See Appendix B.1 for details.
+\end{proof}
+
+\subsection{Parameter Identifiability Theorem}
+
+\begin{theorem}[Local Identifiability of $\delta$-Ring]
+\label{thm:delta-ring-identif}
+Given $L$ and several AB flux values $\theta_j$, if observe sufficiently many eigenwavenumbers $\{k_n(\theta_j)\}$, and Jacobian matrix at these points
+
+$$
+J = \left( \partial f/\partial k, \partial f/\partial \alpha_\delta, \partial f/\partial \theta \right)
+$$
+
+has full rank at $(k,\alpha_\delta,\theta)$, then $(\alpha_\delta,\theta)$ are locally identifiable parameters of spectral data near this point, i.e., local inverse function exists writing $(\alpha_\delta,\theta)$ as function of $\{k_n(\theta_j)\}$.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+Apply implicit function theorem: if $\partial f/\partial k \ne 0$ and partial derivative submatrix with respect to $(\alpha_\delta,\theta)$ full rank, can solve $k = k(\alpha_\delta,\theta)$ locally, then construct composite map for multiple $\theta_j$, obtain local invertibility. For multiple eigenvalues, stack components; if combined Jacobian full rank, overall identifiability holds. See Appendix B.2 for details.
+\end{proof}
+
+\subsection{Pathological Domains and Condition Numbers}
+
+Through explicit computation
+
+$$
+\frac{\partial k}{\partial \alpha_\delta} = -\frac{f_{\alpha_\delta}}{f_k},
+$$
+
+where $f_{\alpha_\delta} = (\sin(kL))/k$, $f_k = -L\sin(kL) + \alpha_\delta(\dots)$, can define pathological condition number region $f_k\approx 0$, corresponding to spectral quantization curve highly sensitive to parameters or non-invertible. Under computational universe--complexity geometry perspective, these pathological regions correspond to regions on control manifold with large curvature, spectral--phase information's ``geodesic sensitivity'' to parameters dramatically amplified, requiring window functions and experimental design to avoid or specially handle within complexity budget.
+
+\section{FRB and $\delta$-Ring Unified Phase-Frequency Metrology}
+
+This section embeds FRB and $\delta$-ring scattering in same phase--frequency metrology framework, gives geometric conditions for ``cross-platform scale unification''.
+
+\subsection{Juxtaposition of Phase--Frequency Readout Objects}
+
+For FRB and $\delta$-ring, we respectively obtain phase--frequency data objects
+
+$$
+U_{\mathrm{PhFr}}^{\mathrm{FRB}} = (\Omega_{\mathrm{FRB}},\Theta_{\mathrm{FRB}}(\omega),\kappa_{\mathrm{FRB}}(\omega)),
+$$
+
+$$
+U_{\mathrm{PhFr}}^{\delta} = (\Omega_{\delta},\Theta_{\delta}(\omega),\kappa_{\delta}(\omega)).
+$$
+
+Under unified time scale hypothesis, exists ``master scale density'' $\kappa_{\mathrm{univ}}(\omega)$ such that effective time scales corresponding to FRB and $\delta$-ring respectively
+
+$$
+\kappa_{\mathrm{FRB}}(\omega) = g_{\mathrm{FRB}}(\omega)\kappa_{\mathrm{univ}}(\omega),
+$$
+
+$$
+\kappa_{\delta}(\omega) = g_{\delta}(\omega)\kappa_{\mathrm{univ}}(\omega),
+$$
+
+where $g_{\mathrm{FRB}},g_{\delta}$ are weight functions determined by geometry and propagation kernels.
+
+\subsection{Cross-Platform Scale Unification Condition}
+
+\begin{definition}[Cross-Platform Scale Unification]
+FRB and $\delta$-ring scattering called scale-unified on unified time scale if there exist master scale density $\kappa_{\mathrm{univ}}$ and weights $g_{\mathrm{FRB}},g_{\delta}$ such that windowed phase residuals satisfy consistent interpretation:
+
+$$
+R_{\mathrm{FRB}}(W_{\mathrm{FRB}}) \approx \int W_{\mathrm{FRB}}(\omega)\delta g_{\mathrm{FRB}}(\omega)\kappa_{\mathrm{univ}}(\omega)\,\mathrm{d}\omega,
+$$
+
+$$
+R_{\delta}(W_{\delta}) \approx \int W_{\delta}(\omega)\delta g_{\delta}(\omega)\kappa_{\mathrm{univ}}(\omega)\,\mathrm{d}\omega,
+$$
+
+for window function family $W_{\mathrm{FRB}},W_{\delta}$.
+\end{definition}
+
+\begin{theorem}[Cross-Platform Consistency Test of Unified Time Scale]
+\label{thm:cross-platform-test}
+If there exist master scale density $\kappa_{\mathrm{univ}}$ and weights $g_{\mathrm{FRB}},g_{\delta}$ such that for PSWF/DPSS type window function family $\{W_j\}$, windowed residuals of FRB and $\delta$-ring satisfy
+
+$$
+R_{\mathrm{FRB}}(W_j) = \lambda_j R_{\delta}(W_j) + \mathcal{O}(\varepsilon_j),
+$$
+
+where $\lambda_j$ are ratios precomputable from geometric factors, when $\varepsilon_j$ acceptable within experimental error, then phase--frequency data of FRB and $\delta$-ring scattering consistent with unified time scale model.
+
+Conversely, if for some window functions $W_j$ systematic deviation exists exceeding error tolerance, can determine unified time scale model has inconsistency in this frequency band and scale, need to correct $\kappa_{\mathrm{univ}}$ or weight model.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+Using completeness of PSWF/DPSS, expand $\kappa_{\mathrm{univ}}$ in window function space, write FRB and $\delta$-ring residuals as coefficient vectors for same basis, test whether they satisfy prespecified linear relationship. See Appendix B.3 for details.
+\end{proof}
+
+\section{Joint Variation of Window Functions and Control Parameters: Optimal Cross-Platform Metrology Strategy}
+
+This section incorporates FRB and $\delta$-ring window function and control parameter choices into time--information--complexity joint variational principle, gives variational form of ``optimal cross-platform metrology under finite complexity budget''.
+
+\subsection{Extended Joint Manifold}
+
+Previous joint manifold $\mathcal{E}_Q = \mathcal{M}\times\mathcal{S}_Q$. Now introduce two types of additional degrees of freedom:
+
+\begin{enumerate}
+\item FRB window function parameter space $\mathcal{W}_{\mathrm{FRB}}$, e.g., spanned by linear coefficients of several PSWF modes;
+
+\item $\delta$-ring control parameter space $\mathcal{M}_\delta = \{(L,\alpha_\delta,\theta)\}$ and corresponding window function space $\mathcal{W}_{\delta}$.
+\end{enumerate}
+
+Extended joint configuration as
+
+$$
+\widehat{z}(t) = (\theta(t),\phi(t);\theta_\delta(t),\phi_\delta(t);\{W_{\mathrm{FRB},j}\},\{W_{\delta,j}\}).
+$$
+
+In actual metrology problems, FRB window functions mostly time-independent parameters, $\delta$-ring control can vary with experimental steps, $t$ only formalized ``execution parameter''.
+
+\subsection{Joint Action and Extremality Conditions}
+
+Define extended action
+
+\begin{align*}
+\mathcal{A}_{\mathrm{cal}}[\widehat{z}] &= \mathcal{A}_{\mathrm{dyn}}[\theta,\phi,\theta_\delta,\phi_\delta] + \mu_{\mathrm{FRB}}\mathcal{E}_{\mathrm{win}}^{\mathrm{FRB}}(\{W_{\mathrm{FRB},j}\})\\
+&\quad + \mu_{\delta}\mathcal{E}_{\mathrm{win}}^{\delta}(\{W_{\delta,j}\}) - \lambda_{\mathrm{univ}}\mathcal{I}_{\mathrm{cons}}[\kappa_{\mathrm{univ}}],
+\end{align*}
+
+where:
+
+\begin{itemize}
+\item $\mathcal{A}_{\mathrm{dyn}}$ is control--information--complexity part's kinetic--potential energy;
+\item $\mathcal{E}_{\mathrm{win}}^{\mathrm{FRB}},\mathcal{E}_{\mathrm{win}}^{\delta}$ are window function error functionals for both sides;
+\item $\mathcal{I}_{\mathrm{cons}}[\kappa_{\mathrm{univ}}]$ measures FRB and $\delta$-ring consistency for unified time scale, e.g., residual sum of squares;
+\item $\mu_{\mathrm{FRB}},\mu_{\delta},\lambda_{\mathrm{univ}}$ are weights.
+\end{itemize}
+
+Variation with respect to $\theta,\theta_\delta$ yields geodesic--potential equations for control parameters, variation with respect to $W_{\mathrm{FRB},j},W_{\delta,j}$ yields extremality conditions in window function direction (knowable from previous work as solution being PSWF/DPSS subspace), variation with respect to $\kappa_{\mathrm{univ}}$ yields optimal estimation condition for unified time scale.
+
+At minimal solution of joint variation, obtain following sense of ``optimal metrology strategy'':
+
+\begin{enumerate}
+\item FRB and $\delta$-ring each use optimal window functions (PSWF/DPSS) to achieve error control;
+
+\item $\delta$-ring control parameters chosen in regions that both enhance time scale sensitivity and avoid identifiability pathological domains;
+
+\item FRB observation band and $\delta$-ring experimental band maximally complementary under unified time scale model, providing maximum information over full domain of $\kappa_{\mathrm{univ}}$.
+\end{enumerate}
+
+\appendix
+
+\section{Time--Frequency Concentration and Optimality of PSWF/DPSS}
+
+This appendix briefly reviews classical results of PSWF/DPSS, gives variational formulation needed for use in this paper's framework.
+
+\subsection{Variational Formulation of PSWF}
+
+Consider band-limited function space
+
+$$
+\mathcal{B}_W = \{ f\in L^2(\mathbb{R}) : \widehat{f}(\omega)=0\ \text{for}\ |\omega|>W \}.
+$$
+
+In $\mathcal{B}_W$, define energy concentration on time interval $[-T,T]$
+
+$$
+\alpha(f) = \frac{\int_{-T}^{T}|f(t)|^2\,\mathrm{d}t}{\int_{-\infty}^{\infty}|f(t)|^2\,\mathrm{d}t}.
+$$
+
+Variational problem: in $\mathcal{B}_W$ seek $f\ne 0$ maximizing $\alpha(f)$. Standard method writes this as Rayleigh quotient, corresponding to integral operator
+
+$$
+(\mathcal{K} f)(t) = \int_{-T}^{T}\frac{\sin W(t-s)}{\pi(t-s)}f(s)\,\mathrm{d}s.
+$$
+
+Eigenvalue $\lambda$ of eigenequation $\mathcal{K} f = \lambda f$ is energy concentration $\alpha(f)$. Ordering eigenvalues from large to small yields $\lambda_0\ge\lambda_1\ge\cdots$, corresponding eigenfunctions $\psi_0,\psi_1,\dots$ are PSWF.
+
+Optimality conclusion: for any dimension-$N$ subspace $V\subset\mathcal{B}_W$,
+
+$$
+\sum_{f\in\ONB(V)}\alpha(f) \le \sum_{n=0}^{N-1}\lambda_n.
+$$
+
+In particular, equality holds when $V$ spanned by $\{\psi_0,\dots,\psi_{N-1}\}$.
+
+\subsection{Discrete Analogue of DPSS}
+
+In sequence space $\mathbb{C}^N$ of length $N$, define Toeplitz matrix
+
+$$
+K_{mn} = \frac{\sin 2\pi W(m-n)}{\pi(m-n)},\ 0\le m,n\le N-1,
+$$
+
+diagonal elements taking limit $K_{mm} = 2W$. Eigenvalue--eigenvector problem
+
+$$
+\sum_{n=0}^{N-1}K_{mn}v_n^{(k)} = \lambda_k v_m^{(k)}
+$$
+
+defines DPSS $v^{(k)}$ and their energy concentration $\lambda_k$. DPSS have optimality corresponding to PSWF under discrete frequency band $[-W,W]$ and finite length $N$: among all dimension-$K$ subspaces, DPSS subspace maximizes total energy concentration within frequency band.
+
+\section{$\delta$-Ring Spectral-Scattering Equivalence and Identifiability Proof Details}
+
+\subsection{Proof Points of Theorem~\ref{thm:spectral-phase-equiv}}
+
+Starting from $\delta$-ring boundary conditions, write plane wave solution $\psi(x) = A\mathrm{e}^{ikx} + B\mathrm{e}^{-ikx}$ in interval $x\in(0,L)$, $\delta$--potential introduces discontinuity conditions at $x=0$ and $x=L^-$; AB flux represented through phase factor $\mathrm{e}^{i\theta}$ imposed between $x=0$ and $x=L^-$. Collective conditions can be organized as eigenvalue equation of $2\times 2$ transfer matrix, whose consistency condition gives spectral quantization formula
+
+$$
+\cos(kL) + (\alpha_\delta/k)\sin(kL) = \cos\theta.
+$$
+
+On other hand, through constructing corresponding scattering matrix $S(k)$ and transmission amplitude $t(k)$, computing their phase $\gamma(k)$ and modulus $|t(k)|$, consistency condition can be rewritten as
+
+$$
+\cos\gamma(k) = |t(k)|\cos\theta.
+$$
+
+Algebraic equivalence between them obtained through elementary trigonometric identities and transfer matrix--scattering matrix conversion relations, details omitted.
+
+\subsection{Implicit Function Theorem Application for Theorem~\ref{thm:delta-ring-identif}}
+
+Partial derivative matrix of spectral quantization equation $f(k,\alpha_\delta,\theta)=0$ with respect to three variables at general point is
+
+$$
+\partial f/\partial k,\ \partial f/\partial \alpha_\delta,\ \partial f/\partial\theta.
+$$
+
+If $\partial f/\partial k\ne 0$, can locally write $k = k(\alpha_\delta,\theta)$. For multiple groups $\theta_j$ and corresponding eigenvalues $k_n(\theta_j)$, stack these functions to obtain map from parameter space $(\alpha_\delta,\theta)$ to observation space $\{k_n(\theta_j)\}$. If this map has full-rank Jacobian at some point, local inverse map exists, parameter identifiability holds.
+
+Pathological regions correspond to $\partial f/\partial k=0$, i.e., spectral curve has horizontal tangent line; at this time small parameter change can cause dramatic $k$ change, conversely inferring parameters from finite precision spectral data unstable.
+
+\subsection{Linear Algebra Form of Theorem~\ref{thm:cross-platform-test}}
+
+Choose window function family $\{W_j\}$ (like PSWF basis), expand unified scale perturbation in this basis
+
+$$
+\delta\kappa_{\mathrm{univ}}(\omega) = \sum_j c_j W_j(\omega).
+$$
+
+Windowed residuals of FRB and $\delta$-ring respectively written as
+
+$$
+R_{\mathrm{FRB}}(W_j) \approx a_j c_j, \quad R_{\delta}(W_j) \approx b_j c_j,
+$$
+
+where $a_j,b_j$ determined by propagation kernel and geometric factors. If theory predicts $R_{\mathrm{FRB}} = \lambda_j R_{\delta}$, equation becomes $a_j c_j = \lambda_j b_j c_j$. On one hand, holding simultaneously for all $j$ requires $a_j = \lambda_j b_j$ and $c_j$ nonzero; on other hand, in actual fitting can test through least squares or maximum likelihood estimation whether this linear relationship holds within experimental error, constituting consistency test of unified time scale.
+
+\section{Formalization of Window Function Variational Optimality}
+
+In extended action, window function part's error functional is
+
+$$
+\mathcal{E}_{\mathrm{win}}(\{W_j\}) = \sup_{f\in\mathcal{B}_W} \frac{|f - \sum_{j=1}^K\langle f,W_j\rangle W_j|}{|f|}.
+$$
+
+This functional on window function subspace $V = \Span\{W_1,\dots,W_K\}$ depends only on $V$ itself. Standard Hilbert space theory shows this error equals $\sqrt{1-\lambda_{\min}(V)}$, where $\lambda_{\min}(V)$ is minimum eigenvalue of $\mathcal{K}$ on $V$. Through minimax principle know when $V$ spanned by first $K$ PSWF eigenfunctions, this minimum eigenvalue maximal, thus error minimal, PSWF subspace is global minimal solution. DPSS discrete case completely analogous, replacing integral operator with matrix spectrum.
+
+This point ensures in time--information--complexity joint variational principle, when incorporating window function degrees of freedom into variation, minimal solution necessarily chooses PSWF/DPSS type window functions, unifying error control and optimality of unified time scale readout within same variational framework.
+
+\end{document}

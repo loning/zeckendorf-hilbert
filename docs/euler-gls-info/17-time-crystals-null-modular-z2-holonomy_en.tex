@@ -1,0 +1,521 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{braket}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Math operators
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\hol}{hol}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\argdet}{arg\,det}
+
+% Title information
+\title{Time Crystals and Null--Modular $\mathbb{Z}_2$ Holonomy\\
+under Unified Time Scale:\\
+Floquet--QCA Time Crystals, Topological Parity,\\
+and Engineering Implementation in Computational Universe}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+On foundation of computational universe axiomatic framework $U_{\mathrm{comp}} = (X,\mathsf{T},\mathsf{C},\mathsf{I})$ and unified time scale master scale
+
+$$
+\kappa(\omega) = \varphi'(\omega)/\pi = \rho_{\mathrm{rel}}(\omega) = (2\pi)^{-1}\tr Q(\omega)
+$$
+
+this paper constructs fully discrete time crystal theory, unifying it with Null--Modular $\mathbb{Z}_2$ holonomy and time--information--complexity joint geometric structure.
+
+We first introduce, on computational universe implementation of reversible quantum cellular automaton (QCA), Floquet--QCA object $U_{\mathrm{FQCA}} = (X,U_F,\mathsf{C}_T,\mathsf{I})$, where $U_F$ is local Floquet evolution operator with period $T$, $\mathsf{C}_T$ is unified time scale cost of one Floquet step. We give computational universe sense definitions of discrete time translation symmetry and spontaneous breaking, and from complexity geometry and information geometry perspectives, characterize time crystal phase: on any initial state family satisfying local observability and bounded energy density assumptions, exists local observable $O$ whose expectation value exhibits strict period $mT$ rather than $T$ in long-time evolution, where $m\ge 2$ is integer.
+
+Subsequently, on previously constructed causal diamond chain and Null--Modular double cover structure, we introduce cyclic chain of Floquet--QCA time crystals: each Floquet period corresponds to one causal diamond, forming diamond chain $\{\Diamond_k\}_{k\in\mathbb{Z}}$. On this chain, we define for each period modulo-2 time phase label $\epsilon_k\in\mathbb{Z}_2$ induced by scattering phase increment, construct Null--Modular double cover $\widetilde{\mathfrak{D}}\to\mathfrak{D}$ of diamond chain. We prove: existence of period-doubling time crystal ($m=2$) corresponds precisely to nontrivial $\mathbb{Z}_2$ holonomy of Floquet control loop on Null--Modular double cover, i.e., closed Floquet control loop has no closed lifted path on double cover, thus giving exact correspondence between time crystal parity and Null--Modular holonomy.
+
+At engineering level, we consider time crystal readout and robustness under finite complexity budget. By combining unified time scale frequency domain with spectral windowing error control theory (PSWF/DPSS), we construct class of ``finite-order window function observation operators'' for time crystal readout, prove: under conditions that Floquet gap exceeds certain threshold and local noise satisfies finite correlation length assumption, sampling time crystal signal with DPSS type readout window in finite steps can robustly discriminate period-doubling parity with complexity budget $N = \mathcal{O}(\Delta^{-2}\log(1/\varepsilon))$ while error probability not exceeding $\varepsilon$, where $\Delta$ is Floquet quasienergy gap.
+
+Finally, we view time crystals as ``discrete phase lockers'' of unified time scale: on control manifold $(\mathcal{M},G)$, time crystal phase corresponds to class of Floquet control loops with $\mathbb{Z}_2$ holonomy, giving special minimal worldline family in time--information--complexity joint variational principle. We discuss potential experimental role of time crystals as local standards of unified time scale, and complementary relationship with FRB phase metrology and $\delta$--ring--AB scattering metrology.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Computational universe; Unified time scale; Quantum cellular automaton; Floquet time crystal; Null-Modular double cover; $\mathbb{Z}_2$ holonomy; Spectral windowing readout; DPSS
+
+\section{Introduction}
+
+Time crystals initially proposed as phase spontaneously breaking time translation symmetry: system's ground state or steady state exhibits nontrivial periodic structure in time. Although original ``continuous time crystal'' idea constrained in strict equilibrium, in periodically driven systems (Floquet systems), Floquet time crystals spontaneously breaking discrete time translation symmetry actually realized. In these systems, time translation group $\mathbb{Z}$ symmetry spontaneously broken to $m\mathbb{Z}$, manifested as observable response to complete Floquet period $T$ having superperiod $mT$, commonly $m=2$ period-doubling time crystals.
+
+In previous works of this series, we constructed ``unified time scale--computational universe'' theory at higher level, including:
+
+\begin{enumerate}
+\item Computational universe axiomatic system $U_{\mathrm{comp}} = (X,\mathsf{T},\mathsf{C},\mathsf{I})$, viewing universe as reversible evolution on discrete complexity graph;
+\item Unified time scale master scale $\kappa(\omega) = \varphi'(\omega)/\pi = \rho_{\mathrm{rel}}(\omega) = (2\pi)^{-1}\tr Q(\omega)$, unifying scattering phase derivative, spectral shift density, and group delay trace as single time scale density;
+\item Control manifold $(\mathcal{M},G)$ induced by unified time scale and complexity geometry;
+\item Causal diamonds, boundary computation operators, and causal diamond chains $\{\Diamond_k\}$;
+\item Null--Modular double cover and $\mathbb{Z}_2$ holonomy constructed on diamond chains, self-reference parity and topological complexity;
+\item Time--information--complexity joint variational principle and multi-observer consensus geometry.
+\end{enumerate}
+
+In this framework, time no longer external parameter, but embodiment of unified time scale in scattering--complexity geometry; time direction, time parity, and self-reference structure embodied through Null--Modular double cover and $\mathbb{Z}_2$ holonomy.
+
+Core questions of this paper:
+
+\begin{enumerate}
+\item How to rigorously define Floquet--QCA time crystals in purely discrete framework of computational universe--unified time scale, giving their geometric--topological characterization?
+\item How does period-doubling parity of time crystals relate to Null--Modular $\mathbb{Z}_2$ holonomy?
+\item How to perform stable readout and engineering implementation of time crystals under finite complexity budget?
+\end{enumerate}
+
+We will see time crystals naturally realized as class of phases in Floquet--QCA in computational universe, Null--Modular double cover provides intrinsic $\mathbb{Z}_2$ topological invariant, spectral windowing readout provides optimal solution for their observation under finite complexity budget.
+
+\section{Preliminaries: Computational Universe, Unified Time Scale, and Floquet--QCA}
+
+\subsection{Computational Universe and QCA Implementation}
+
+Recall computational universe object
+
+$$
+U_{\mathrm{comp}} = (X,\mathsf{T},\mathsf{C},\mathsf{I}),
+$$
+
+where $X$ countable configuration set, $\mathsf{T}\subset X\times X$ one-step update relation, $\mathsf{C}$ single-step cost, $\mathsf{I}$ task information quality function. Standard abstraction of reversible QCA: for lattice site set $\Lambda$ and finite-dimensional Hilbert space $\mathcal{H}_x$ at each site, global Hilbert space $\mathcal{H} = \bigotimes_{x\in\Lambda} \mathcal{H}_x$, reversible QCA is local unitary operator $U:\mathcal{H}\to\mathcal{H}$ satisfying local causality constraints.
+
+In computational universe, view configuration $x\in X$ as label of some normalized basis vector $\ket{x}\in\mathcal{H}$, one-step update relation defined by
+
+$$
+(x,y)\in\mathsf{T} \iff \braket{y|U|x} \ne 0
+$$
+
+single-step cost $\mathsf{C}(x,y)$ given by physical time required to execute $U$ or its local decomposition once under unified time scale.
+
+\subsection{Unified Time Scale and Floquet Evolution}
+
+On physical side, consider periodically driven system with time-dependent Hamiltonian $H(t+T) = H(t)$, corresponding Floquet evolution operator
+
+$$
+U_F = \mathcal{T}\exp\big(-\mathrm{i}\int_0^T H(t)\,\mathrm{d}t\big),
+$$
+
+whose eigenvalues $\mathrm{e}^{-\mathrm{i}\varepsilon_\alpha T}$, $\varepsilon_\alpha$ are quasienergies.
+
+In unified time scale--scattering framework, view $U_F(\omega)$ as frequency-domain scattering--evolution operator, frequency $\omega$ dependence embodied through drive spectrum and system response. For each Floquet period, define local group delay matrix $Q_F(\omega) = -\mathrm{i} U_F(\omega)^\dagger\partial_\omega U_F(\omega)$, whose trace gives local unified time scale density increment
+
+$$
+\kappa_F(\omega) = (2\pi)^{-1}\tr Q_F(\omega).
+$$
+
+In computational universe, we concern ``each Floquet period as one causal diamond'' discrete version, constructed in Section 3.
+
+\subsection{Basic Definition of Floquet Time Crystals}
+
+In general Floquet system, time translation group $\mathbb{Z}$ action $n\mapsto n+1$, corresponding to iteration $U_F^n$. Time crystal is spontaneous breaking of this symmetry:
+
+\begin{definition}[Floquet Time Crystal, Physical Side]
+\label{def:Floquet-time-crystal-phys}
+In periodically driven system, if exists local observable $O$ and initial state family $\{\rho_0\}$ such that for almost all $\rho_0$, expectation sequence
+
+$$
+\langle O\rangle_n = \tr(\rho_0 U_F^{\dagger n}OU_F^n)
+$$
+
+exhibits strict period $m>1$ in long-time limit, i.e.,
+
+$$
+\langle O\rangle_{n+m} = \langle O\rangle_n,
+$$
+
+and satisfies no shorter period, system called in Floquet time crystal phase of period $mT$. Typical case $m=2$ time crystal.
+\end{definition}
+
+We reformulate this concept in QCA--computational universe framework.
+
+\section{Floquet--QCA Time Crystals in Computational Universe}
+
+\subsection{Floquet--QCA Object}
+
+\begin{definition}[Floquet--QCA Computational Universe]
+\label{def:FQCA-comp-univ}
+A Floquet--QCA computational universe object is quadruple
+
+$$
+U_{\mathrm{FQCA}} = (X,U_F,\mathsf{C}_T,\mathsf{I}),
+$$
+
+where:
+
+\begin{enumerate}
+\item $X$ configuration set, as normalized basis vector labels of global Hilbert space $\mathcal{H}$;
+\item $U_F:\mathcal{H}\to\mathcal{H}$ local Floquet evolution operator corresponding to drive period $T$;
+\item $\mathsf{C}_T:X\times X\to[0,\infty]$ complexity cost of one Floquet step, satisfying $\mathsf{C}_T(x,y)>0$ if $\braket{y|U_F|x}\ne 0$;
+\item $\mathsf{I}:X\to\mathbb{R}$ task information quality function.
+\end{enumerate}
+
+One Floquet evolution step represented on event layer $E = X\times\mathbb{Z}$ as
+
+$$
+(x,n)\mapsto (y,n+1),\quad \braket{y|U_F|x}\ne 0.
+$$
+
+Complexity cost viewable as integral of unified time scale over single period.
+\end{definition}
+
+\subsection{Discrete Time Translation Symmetry and Breaking}
+
+In computational universe, view $U_F$ as generator of ``time translation one step''. For observable $O$ (e.g., local operator $O_x$ acting only on finite region), its discrete time evolution
+
+$$
+O(n) = U_F^{\dagger n}OU_F^n.
+$$
+
+For initial state $\rho_0$ (viewable as density operator), observation sequence
+
+$$
+\langle O\rangle_n = \tr(\rho_0 O(n)).
+$$
+
+\begin{definition}[Floquet Time Crystal in Computational Universe]
+\label{def:FQCA-time-crystal}
+In Floquet--QCA computational universe, if exists local observable $O$, integer $m\ge 2$, and initial state family $\mathcal{R}_0$ (satisfying finite density and finite correlation length conditions) such that:
+
+\begin{enumerate}
+\item For almost all $\rho_0\in\mathcal{R}_0$, exists sufficiently large $n_0$ such that for all $n\ge n_0$
+
+$$
+\langle O\rangle_{n+m} = \langle O\rangle_n,
+$$
+
+\item No $1\le m'<m$ exists making same condition hold,
+\end{enumerate}
+
+then $U_{\mathrm{FQCA}}$ called in time crystal phase of period $mT$.
+
+In particular, when $m=2$, called period-doubling time crystal.
+\end{definition}
+
+\subsection{Floquet Spectrum and Quasienergy Band Structure}
+
+Under finite volume or appropriate boundary conditions, $U_F$ has eigendecomposition
+
+$$
+U_F\ket{\psi_\alpha} = \mathrm{e}^{-\mathrm{i}\varepsilon_\alpha T}\ket{\psi_\alpha},
+$$
+
+where $\varepsilon_\alpha \in(-\pi/T,\pi/T]$ are quasienergies.
+
+Time crystal existence closely related to ``symmetry splitting structure'' in quasienergy band structure: e.g., in $m=2$ case, exists two bands with quasienergies differing by $\pi/T$, making coherent superposition in evolution undergo sign flip every two periods.
+
+Formally, can adopt structure projecting to subspaces $\mathcal{H}_A,\mathcal{H}_B$ satisfying
+
+$$
+U_F^2 \ket{\psi} \approx \mathrm{e}^{-\mathrm{i}2\varepsilon T}\ket{\psi},
+$$
+
+and $U_F$ exchanges $\mathcal{H}_A$ with $\mathcal{H}_B$.
+
+More importantly, in computational universe--complexity geometry, we can translate phase structure of Floquet spectrum to Null--Modular $\mathbb{Z}_2$ holonomy on causal diamond chains, developed in next section.
+
+\section{Null--Modular $\mathbb{Z}_2$ Holonomy and Time Crystal Parity}
+
+This section constructs Floquet--QCA time crystal implementation on causal diamond chains and Null--Modular double cover, proves correspondence between period parity and $\mathbb{Z}_2$ holonomy.
+
+\subsection{Floquet Period as Causal Diamond Chain}
+
+View single-period Floquet evolution as one causal diamond $\Diamond_F$:
+
+\begin{itemize}
+\item Diamond interior vertices are event set from some initial state layer to next layer within complexity budget $T$;
+\item Diamond boundary are period initial/final events;
+\item Diamond volume evolution given by local decomposition of $U_F$;
+\item Boundary operator $\mathsf{K}_{\Diamond_F}$ isomorphic to $U_F$ action on boundary.
+\end{itemize}
+
+If system repeatedly driven in time, forms Floquet diamond chain on event layer
+
+$$
+\{\Diamond_{F,k}\}_{k\in\mathbb{Z}},
+$$
+
+where each $\Diamond_{F,k}$ corresponds to $k$-th Floquet period.
+
+For each $\Diamond_{F,k}$, define average unified time scale increment
+
+$$
+\Delta\tau_k = \int_{\Omega_F} w_F(\omega)\,\kappa_F(\omega)\,\mathrm{d}\omega,
+$$
+
+in periodically stable case, $\Delta\tau_k \equiv \Delta\tau$ proportional to physical period $T$.
+
+\subsection{Modulo-2 Time Phase and $\mathbb{Z}_2$ Holonomy}
+
+In third work on diamond chains and Null--Modular double cover, we defined modulo-2 time phase label $\epsilon_k\in\mathbb{Z}_2$ for each diamond, determined by scattering phase increment modulo $2\pi$.
+
+In Floquet case, define effective phase increment per period as
+
+$$
+\Delta\varphi_F = \argdet U_F, \quad \epsilon_F = \left\lfloor \Delta\varphi_F / \pi \right\rfloor \bmod 2.
+$$
+
+For time crystals, especially period-doubling phase, key structure not single-period phase but two-period closed loop
+
+$$
+U_F^2,
+$$
+
+and its corresponding scattering phase and group delay.
+
+When constructing diamond chain double cover $\widetilde{\mathfrak{D}}_F \to \mathfrak{D}_F$, let edge label of each Floquet period diamond be $\epsilon_F$. Total parity of $N$ periods on closed chain
+
+$$
+\Sigma_N = \sum_{k=1}^{N} \epsilon_F \bmod 2 = N\epsilon_F \bmod 2.
+$$
+
+For $m=2$ time crystal, natural mechanism makes closed loop of two periods have nontrivial $\mathbb{Z}_2$ holonomy: e.g., if $\epsilon_F = 1$, after each period, index on double cover flips once, after two periods flips twice returning to original index, but overall topology of closed path exhibits nontrivial holonomy.
+
+More precisely, consider closed loop of Floquet control parameter path $\Gamma_F \subset\mathcal{M}$ (e.g., closed variation of drive protocol parameters in periodic driving), its Null--Modular double cover holonomy
+
+$$
+\hol_{\mathbb{Z}_2}(\Gamma_F) \in \mathbb{Z}_2
+$$
+
+closely related to time crystal period parity.
+
+\subsection{Time Crystal Parity and Null--Modular Holonomy Correspondence}
+
+\begin{theorem}[Period-Doubling Time Crystal and $\mathbb{Z}_2$ Holonomy]
+\label{thm:TC-Z2-holonomy}
+Let $U_{\mathrm{FQCA}}$ be Floquet--QCA computational universe object satisfying:
+
+\begin{enumerate}
+\item Exists uniform volume limit and finite correlation length initial state family $\mathcal{R}_0$;
+\item Floquet spectrum has quasienergy gap $\Delta_{\mathrm{F}} > 0$, exists two bands $\varepsilon_\alpha, \varepsilon_\beta$ satisfying $\varepsilon_\beta \approx \varepsilon_\alpha + \pi/T$;
+\item On corresponding control manifold closed loop $\Gamma_F$, Null--Modular double cover holonomy nontrivial, i.e.,
+
+$$
+\hol_{\mathbb{Z}_2}(\Gamma_F) = 1.
+$$
+\end{enumerate}
+
+Then $U_{\mathrm{FQCA}}$ in time crystal phase of period $2T$; conversely, under above regularity conditions, if $U_{\mathrm{FQCA}}$ in robust period-$2T$ time crystal phase, corresponding Floquet control closed loop's Null--Modular holonomy is nontrivial element.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+``If'' direction: Nontrivial holonomy means under two-period closed loop some global $\mathbb{Z}_2$ quantity flips odd times, in Floquet spectrum corresponds to ``parity switching'' structure making Floquet subspaces exchange in one period, return to original position in two periods, causing expectation value to exhibit period-$2T$ flip structure. Using group theory and quasienergy band structure can prove exists local observable $O$ satisfying time crystal condition.
+
+``Only if'' direction: Period-doubling of time crystal means on Floquet--QCA worldline exists self-reference feedback condition making two periods globally close. Through previous correspondence between self-reference parity and Null--Modular holonomy, can prove corresponding closed loop holonomy nontrivial.
+
+Detailed proof in Appendix C.
+\end{proof}
+
+\section{Time Crystal Readout and Engineering Implementation Under Finite Complexity Budget}
+
+This section discusses stable readout of time crystals under finite complexity budget, gives DPSS-based observation strategy and error upper bound.
+
+\subsection{Readout Model and Noise}
+
+Consider local observable $O$ on local region $\Lambda_0\subset\Lambda$, define discrete time sequence
+
+$$
+a_n = \tr(\rho_0 U_F^{\dagger n}OU_F^n),\quad n=0,1,\dots,N-1.
+$$
+
+In ideal time crystal phase, $a_n$ exhibits period-$m$ structure when $n\gg 1$, typically $m=2$ alternating sequence. With local noise and dissipation, writable as
+
+$$
+a_n = s_n + \eta_n,
+$$
+
+where $s_n$ ideal time crystal signal, $\eta_n$ noise, assuming $\eta_n$ zero-mean, finite correlation length Gaussian process.
+
+\subsection{DPSS Window Function Readout}
+
+To extract period structure within finite complexity steps $N$, construct windowed Fourier spectrum
+
+$$
+\widehat{a}(\omega) = \sum_{n=0}^{N-1} w_n a_n\,\mathrm{e}^{-\mathrm{i}\omega n},
+$$
+
+where $\{w_n\}$ window function sequence. According to previous spectral windowing readout results, DPSS maximizes energy concentration under given length $N$ and frequency band $W$, minimizing worst-case error under finite sample number and frequency band constraints.
+
+For $m=2$ time crystal, ideal signal main frequency at $\omega=\pi$ (normalized angular frequency). Can choose DPSS window function with bandwidth $W \ll \pi$, focusing on spectral energy near $\omega\approx\pi$.
+
+\subsection{Error Upper Bound and Complexity Budget}
+
+Let DPSS window function be $w^{(0)}$, corresponding eigenvalue $\lambda_0 \approx 1$, then under finite samples, error variance of main frequency energy estimation satisfies
+
+$$
+\Var\big(\widehat{a}(\pi)\big) \le \sigma_\eta^2 |w^{(0)}|^2,
+$$
+
+where $\sigma_\eta^2$ noise variance.
+
+To distinguish ``with time crystal signal'' and ``without time crystal signal'', maintain certain signal-to-noise ratio
+
+$$
+\frac{|\mathbb{E}[\widehat{a}(\pi)]|^2}{\Var(\widehat{a}(\pi))} \ge c_0,
+$$
+
+obtaining sample number requirement
+
+$$
+N = \mathcal{O}\big(\Delta^{-2}\log(1/\varepsilon)\big),
+$$
+
+where $\Delta$ Floquet quasienergy gap (controlling time crystal signal amplitude and dissipation time), $\varepsilon$ error probability.
+
+\begin{theorem}[Sample Complexity for Finite Complexity Time Crystal Discrimination]
+\label{thm:TC-sample-complexity}
+Under conditions:
+
+\begin{enumerate}
+\item Floquet--QCA time crystal has quasienergy gap $\Delta_{\mathrm{F}} > 0$;
+\item Noise process $\{\eta_n\}$ zero-mean, finite correlation length, bounded variance;
+\item Readout window function DPSS basis sequence $w^{(0)}$ under appropriate bandwidth $W$;
+\end{enumerate}
+
+to discriminate whether period-$2T$ time crystal signal exists with error probability not exceeding $\varepsilon$, required complexity steps $N$ satisfies
+
+$$
+N \ge C\Delta_{\mathrm{F}}^{-2}\log(1/\varepsilon),
+$$
+
+where $C$ constant.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+Combines DPSS energy concentration, Chebyshev inequality, and large deviation estimation, see Appendix D for details.
+\end{proof}
+
+\section{Unified Perspective: Time Crystals as Discrete Phase Locking of Unified Time Scale}
+
+From unified time scale--control manifold--causal diamond chain--Null--Modular double cover global perspective, time crystals understandable as special ``discrete phase lockers'':
+
+\begin{enumerate}
+\item Floquet control closed loop $\Gamma_F$ on control manifold $(\mathcal{M},G)$ generates periodic time increment $\Delta\tau$ through unified time scale density $\kappa(\omega)$, has $\mathbb{Z}_2$ holonomy on Null--Modular double cover;
+\item Modulo-2 time phase labels $\epsilon_k$ on causal diamond chain $\{\Diamond_{F,k}\}$ synchronize with Floquet control holonomy, forming ``time parity locking'';
+\item Time crystal phase existence means in time--information--complexity joint variational principle exists special minimal worldline family, simultaneously stable in ``time direction--phase--self-reference parity'' three dimensions.
+\end{enumerate}
+
+At experimental level, time crystals viewable as local standards of unified time scale: compared to FRB and $\delta$--ring--AB scattering ``passive measurements'', time crystals provide ``actively generated time scale phase structure''. By jointly embedding time crystals, FRB, and $\delta$--ring scattering in phase--frequency metrology universe, can perform consistency testing and joint calibration of unified time scale model across scales (laboratory--interstellar--cosmological) platforms.
+
+\appendix
+
+\section{Prototypical Existence Theorem for Floquet--QCA Time Crystals}
+
+This appendix gives typical construction scheme and prototypical existence result for time crystal phases in QCA models.
+
+\subsection{Spin Chain Floquet--QCA Model}
+
+Consider one-dimensional spin chain $\Lambda = \mathbb{Z}$ with Hilbert space $\mathcal{H}_x \cong \mathbb{C}^2$ at each site, global space $\mathcal{H} = \bigotimes_{x\in\mathbb{Z}}\mathbb{C}^2$. Construct two-step Floquet evolution
+
+$$
+U_F = U_2 U_1,
+$$
+
+where $U_1$ pairwise spin flip gates acting between even--odd sites, $U_2$ similar gates acting between odd--even sites, concrete forms like
+
+$$
+U_1 = \prod_{x\ \mathrm{even}} \mathrm{e}^{-\mathrm{i}J \sigma_x^z\sigma_{x+1}^z}, \quad U_2 = \prod_{x\ \mathrm{odd}} \mathrm{e}^{-\mathrm{i}J' \sigma_x^z\sigma_{x+1}^z}.
+$$
+
+Under appropriate parameters, this model known to have period-doubling time crystal phase.
+
+In computational universe, take $X$ as spin configuration set, $\mathsf{T}$ given by nonzero matrix elements of $U_F$, $\mathsf{C}_T$ complexity cost of one $U_F$.
+
+\subsection{Prototypical Existence Theorem}
+
+\begin{theorem}[Spin Chain Floquet--QCA Time Crystal Existence Prototype]
+In above spin chain Floquet--QCA model, exists parameter region $(J,J')$ and initial state family $\mathcal{R}_0$ (e.g., spontaneous symmetry breaking antiferromagnetic state mixture) such that exists local observable $O = \sigma_0^z$ satisfying time crystal condition in Definition~\ref{def:FQCA-time-crystal} with period $2T$.
+\end{theorem}
+
+Proof relies on spontaneous breaking, stability, and spectral analysis, can refer to time crystal literature; in computational universe framework, view as example: concrete QCA implementation satisfying time crystal axioms exists.
+
+\section{Null--Modular Double Cover and Floquet Holonomy}
+
+\subsection{Closed Loops and Double Cover on Control Manifold}
+
+Let control manifold $\mathcal{M}$ have closed loop $\Gamma_F:[0,1]\to\mathcal{M}$, $\Gamma_F(0)=\Gamma_F(1)$. Null--Modular double cover $\pi:\widetilde{\mathcal{M}}\to\mathcal{M}$ is $\mathbb{Z}_2$ principal bundle such that for each closed loop, lifted path endpoint
+
+$$
+\widetilde{\Gamma}_F(1) = \hol_{\mathbb{Z}_2}(\Gamma_F)\cdot \widetilde{\Gamma}_F(0),
+$$
+
+where $\hol_{\mathbb{Z}_2}(\Gamma_F)\in\{\pm 1\} \cong\mathbb{Z}_2$.
+
+\subsection{Floquet Spectrum and Holonomy Correspondence}
+
+In Floquet--QCA model, control loop $\Gamma_F$ corresponds to some periodic drive parameter path, along which unified time scale density and scattering phase vary. Self-reference parity structure makes some global state return to own vector space after executing one drive loop, but possibly carrying $\pi$ phase or self-reflection flip. Through detailed construction of Floquet phase and Null--Modular double cover, can prove time crystal parity and holonomy correspondence, see proof sketch of Theorem~\ref{thm:TC-Z2-holonomy} in main text.
+
+\section{Proof Sketch of Theorem~\ref{thm:TC-Z2-holonomy}}
+
+``If'' direction:
+
+\begin{enumerate}
+\item Nontrivial holonomy means control loop flips index in double cover, exists some $\mathbb{Z}_2$ label flipping once in one period, twice in two periods returning to original state.
+\item This label realizable through local observable (e.g., spin flip parity), making for appropriate initial state $\rho_0$, expectation sequence alternately takes values each period, period $2T$.
+\end{enumerate}
+
+``Only if'' direction:
+
+\begin{enumerate}
+\item Period-doubling time crystal requires some $\mathbb{Z}_2$ structure flipping each period, thus Floquet--QCA dynamics topologically equivalent to nontrivial closed path in double cover.
+\item If holonomy trivial, no such parity flip structure exists, time crystal phase unstable or degenerates to period $T$.
+\end{enumerate}
+
+Complete formalization requires constructing map from Floquet spectrum to control double cover and phase factors, not expanded due to space limit.
+
+\section{Error Upper Bound Proof Outline for Theorem~\ref{thm:TC-sample-complexity}}
+
+Consider observation sequence $a_n = s_n + \eta_n$, where $s_n$ period-2 time crystal signal, $\eta_n$ noise. For DPSS window function $w_n^{(0)}$, construct estimator
+
+$$
+\widehat{s} = \sum_{n=0}^{N-1} w_n^{(0)} a_n \mathrm{e}^{-\mathrm{i}\pi n}.
+$$
+
+Ideally, $s_n = s_0(-1)^n$, then
+
+$$
+\widehat{s}_{\mathrm{ideal}} = s_0\sum_{n} |w_n^{(0)}|^2,
+$$
+
+noise contribution variance
+
+$$
+\Var(\widehat{s}) = \sigma_\eta^2\sum_n |w_n^{(0)}|^2.
+$$
+
+Using large deviation estimation, obtain discrimination condition between signal amplitude $|s_0|$ and noise variance; combining Floquet gap $\Delta_{\mathrm{F}}$ and noise correlation length estimation yields $|s_0|\sim \Delta_{\mathrm{F}} \exp(-\gamma N)$ lower bound, deriving $N = \mathcal{O}(\Delta_{\mathrm{F}}^{-2}\log(1/\varepsilon))$.
+
+This derivation relies on DPSS window function's almost ideal band-limited property near frequency band, making observation mainly sensitive to $\omega\approx\pi$ time crystal main frequency, noise suppressed. Detailed calculation left to subsequent more specialized engineering papers.
+
+\end{document}

@@ -1,0 +1,315 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{enumerate}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Reversibilization of Free Will:\\
+Reversible Local Boundary Conditions, KL/Bregman Choice Operators,\\
+and Reversible Ledgers in Reversible Cellular Automata}
+
+\author{Anonymous Author}
+\date{Version: 1.10}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We propose a methodology for rigorously implementing ``free will'' as \textbf{reversible local boundary conditions} (RLBC) on finite domains of \textbf{reversible cellular automata} (RCA), and placing both the \textbf{information fidelity} characterization of ``why choose this not that'' and the \textbf{choice operator} in the same reversible ledger. The core approach is: design each ``decision'' as a \textbf{bijective update} on the boundary strip, carrying reversible \textbf{evidence/randomness registers} when necessary to preserve flattening and sampling paths, so that it \textbf{composes as an overall bijection} with one-step evolution of internal RCA; the decision itself given by \textbf{minimal-KL/I-projection} \textbf{soft selection}, degenerating to \textbf{hard selection} (argmax) in the \textbf{$\Gamma$-limit}, with all information overhead precisely accounted for in \textbf{Bennett reversible embedding} and reversibly recoverable. Reversibility and decidability are guaranteed by CHL representation theorem, Garden-of-Eden theorem, block/partition reversible cellular automaton structure, and linear-boundary matrix criteria; the undecidability of general neighborhoods in two and higher dimensions is circumvented by selecting \textbf{block permutation} or \textbf{linear reversible block} verifiable subclasses. This paper also connects the boundary-decision paradigm with the unified \textbf{windowed readout--phase--relative density of states--group delay} calibration, providing end-to-end error and stability statements.
+\end{abstract}
+
+\section{Notation \& Axioms / Conventions}
+
+\begin{enumerate}
+\item \textbf{RCA and configuration space.} Finite alphabet $A$, $d\ge 1$, full space $X=A^{\mathbb{Z}^d}$. One-time-step global update $F:X\to X$ continuous under Cantor topology and commuting with shifts if and only if it is given by finite-range local rule (Curtis--Hedlund--Lyndon, CHL). If $F$ is bijective, called RCA; on full lattice $\mathbb{Z}^d$, Garden-of-Eden theorem gives \textbf{surjective $\Leftrightarrow$ pre-injective (no twins) $\Leftrightarrow$ no orphans (no predecessor patterns)}, and \textbf{injective $\Rightarrow$ surjective}; thus bijective if and only if both injective and surjective \cite{chl_theorem}.
+
+\item \textbf{Block/partition reversibility and linear reversibility.} Adopt Margolus partition: if \textbf{intra-block transformation is permutation}, then global is reversible; reverse evolution implemented by inverse permutation and reverse-order partition. Reversibility of linear cellular automata under various boundary conditions (including ``intermediate boundary'') reduces to invertibility of rule matrix and Kronecker decomposition criterion \cite{reversible_ca}.
+
+\item \textbf{General undecidability and verifiable subclasses.} Reversibility problem of general-neighborhood CA in two and higher dimensions is \textbf{undecidable} (Kari); therefore this paper focuses on \textbf{block permutation} and \textbf{linear-boundary matrix} two \textbf{verifiable} subclasses \cite{kari_undecidable}.
+
+\item \textbf{Calibration identity (WSIG--EBOC convention).} On windowed scattering calibration, adopt the identity
+$$
+\rho_{\mathrm{rel}}(E)=\frac{1}{2\pi i}\frac{\mathrm{d}}{\mathrm{d}E}\log\det S(E)=\frac{1}{2\pi}\operatorname{tr}Q(E)=\frac{1}{2\pi}\,\varphi'(E),
+$$
+where $Q(E)=-i\,S^{\dagger}(E)\,\partial_E S(E)$, $\det S(E)=e^{i\varphi(E)}$. Birman--Kreĭn formula connects scattering phase and spectral shift function, serving as common mother scale for energy/time readout and ``submission'' \cite{smith1960}.
+
+\item \textbf{Information geometry and choice.} ``Minimal-KL under linear consistency constraints gives exponential family/softmax and satisfies Pythagorean identity and Fenchel duality''; ``TV--KL'' Pinsker bound used for temperature-perturbation-jitter stability estimation \cite{csiszar1975}.
+
+\item \textbf{Reversible ledger.} Only information \textbf{erasure} dissipates (Landauer lower bound); \textbf{logical reversibility} can achieve \textbf{arbitrarily low dissipation} in the limit; random sampling and flattening evidence accounted for through reversible registers (Bennett) \cite{bennett1973}.
+\end{enumerate}
+
+\section{Model: Reversible Local Boundary Conditions (RLBC) on Finite Domain}
+
+Let $\Lambda\Subset\mathbb{Z}^d$ be a connected finite domain, take boundary strip $\partial\Lambda$ of sufficient thickness. One-step internal evolution given by some RCA $F_\Lambda$. Define \textbf{boundary layer operator}
+$$
+\mathsf{B}:\ A^{\partial\Lambda}\times \mathcal{E}\ \longrightarrow\ A^{\partial\Lambda}\times \mathcal{E},
+$$
+where $\mathcal{E}$ is \textbf{reversible auxiliary register} (evidence/randomness/flattening labels, etc.); this paper defaults $\mathcal{E}$ alphabet \textbf{finite}, and localizes configurations by boundary-touching blocks to ensure overall finite-alphabet CA framework (applicable to CHL/GOE). \textbf{One-round evolution} defined as
+$$
+\mathcal{U} \coloneqq F_\Lambda\circ \mathsf{B}\quad\text{(boundary first, then internal)}.
+$$
+Call $\mathsf{B}$ \textbf{reversible local boundary condition} (RLBC) if satisfying:
+
+\begin{itemize}
+\item \textbf{(R1) Locality:} $\mathsf{B}$ can \textbf{read} finite outer shell beyond $\partial\Lambda$ (compress observations into $\mathcal{E}$ if necessary), but \textbf{only writes} $\partial\Lambda$ and $\mathcal{E}$, not touching $\Lambda^\circ$;
+\item \textbf{(R2) Bijectivity:} $(b,\epsilon)\mapsto (b',\epsilon')$ is a permutation;
+\item \textbf{(R3) Evidence accounting:} All randomness, flattening indices, \textbf{selected action index $a^\star$ (or minimal sufficient evidence to reconstruct $a^\star$)} and observation evidence used for decision are written into $\mathcal{E}$ for inversion recovery (Bennett embedding) \cite{bennett1973}.
+\end{itemize}
+
+In partition implementation, let all ``boundary-touching blocks'' each undergo intra-block permutation; by \textbf{parallel direct product of block permutations = permutation}, $\mathsf{B}$ automatically satisfies (R2). Reverse-order Margolus partition and inverse permutations give $\mathsf{B}^{-1}$ \cite{reversible_ca}.
+
+\section{Cascade Reversibility and Decidability}
+
+\begin{proposition}[Finite Domain Cascade as Bijection]\label{prop:cascade}
+Let global $F$ be RCA, and take its local implementation $F_\Lambda$ on $\Lambda$. If $\mathsf{B}$ is RLBC, \textbf{and $\mathsf{B}$ and $F_\Lambda$ adopt partition two-phase (e.g., Margolus) implementation such that boundary-touching blocks in each phase are pairwise disjoint, and execute synchronously according to ``boundary phase $\to$ internal phase'' two-phase schedule}, then
+$$
+\mathcal{U}=F_\Lambda\circ\mathsf{B}
+$$
+is a \textbf{finite-domain bijection} on state $(x|_\Lambda,b,\epsilon)$, with $\mathcal{U}^{-1}=\mathsf{B}^{-1}\circ F_\Lambda^{-1}$. When $\Lambda$ and $\mathsf{B}$ are applied synchronously to the full lattice according to the above \textbf{partition tiling and two-phase schedule}, the resulting global evolution is RCA.
+\end{proposition}
+
+\begin{proof}
+$\mathcal{U}$ is bijective with $\mathcal{U}^{-1}=\mathsf{B}^{-1}\circ F_\Lambda^{-1}$. When $\Lambda$ and $\mathsf{B}$ are applied synchronously to full lattice via partition tiling, by CHL the corresponding global map is continuous and commutes with shifts, and its inverse likewise \cite{chl_theorem}.
+\end{proof}
+
+\begin{proposition}[Decidable Subclasses for Boundary-Internal Unity]\label{prop:decidable}
+In the following two implementation types, reversibility of $\mathcal{U}$ is \textbf{decidable} and inversion constructible:
+
+\begin{itemize}
+\item \textbf{Block/partition RCA:} If and only if each block rule is a permutation \cite{reversible_ca}.
+\item \textbf{Linear-intermediate boundary:} Reversibility reduces to invertibility of rule matrix and its Kronecker decomposition; efficient algorithms available for multi-dimensional and intermediate boundaries \cite{linear_ca}.
+\end{itemize}
+\end{proposition}
+
+\begin{remark}[General Undecidability]
+Reversibility of general-neighborhood CA in two and higher dimensions is undecidable (Kari), hence this paper's RLBC selects from verifiable subclasses \cite{kari_undecidable}.
+\end{remark}
+
+\section{Choice Operator: KL/Bregman Fidelity (Soft$\to$Hard)}
+
+Let boundary feasible action set $\mathcal{A}(b)$. Given baseline $q(\cdot\mid b)$ and moment constraints, introduce feature map $\phi:\mathcal{A}(b)\to\mathbb{R}^m$.
+
+\textbf{Assumption (Feasibility):} $b^\star \in \operatorname{conv}\{\phi(a):a\in\mathcal{A}(b)\}$.
+
+\begin{definition}[Soft Selection / I-Projection]\label{def:soft_selection}
+$$
+p^\star(\cdot\mid b)\in\arg\min_{p\in\Delta(\mathcal{A}(b))}\Big\{D_{\mathrm{KL}}(p\|q):\ \sum_{a}p(a\mid b)\phi(a)=b^\star\Big\},
+$$
+whose KKT condition gives
+$$
+p^\star(a\mid b)\ \propto\ q(a\mid b)\exp\big(\langle \lambda,\phi(a)\rangle\big),
+$$
+i.e., exponential family/softmax; satisfies information geometry's Pythagorean identity and Fenchel-Legendre duality \cite{csiszar1975}.
+\end{definition}
+
+\begin{proposition}[Robustness and TV-KL Bound]\label{prop:tv_kl}
+When temperature/regularization parameter change introduces KL error $\delta$, total variation deviation controlled by Pinsker bound
+$$
+\|p_1-p_2\|_{\mathrm{TV}}\le \sqrt{\tfrac12 D_{\mathrm{KL}}(p_1\|p_2)},
+$$
+serving as ``temperature--jitter'' upper bound; Bretagnolle--Huber bound available for refinement when necessary \cite{pinsker}.
+\end{proposition}
+
+\begin{theorem}[$\Gamma$-Limit: Soft$\to$Hard, via Entropy/KL Regularization]\label{thm:gamma_limit}
+Let $q\in\Delta(\mathcal{A})$, cost $c:\mathcal{A}\to\mathbb{R}$. For $\tau>0$, let
+$$
+p_\tau\in\arg\min_{p\in\Delta(\mathcal{A})}\big\{\langle c,p\rangle+\tau D_{\mathrm{KL}}(p\|q)\big\}
+$$
+then $p_\tau(a)\propto q(a)\exp(-c_a/\tau)$, and as $\tau\downarrow 0$, $p_\tau\Rightarrow \delta_{a^\star}$ where $a^\star\in\arg\min_a c_a$; convergence unique if minimizer unique. \textbf{(With linear moment constraint)} If adding $\sum_a p(a)\phi(a)=b^\star$ with \textbf{feasibility} ($b^\star\in\operatorname{conv}\phi(\mathcal{A})$), then there exists dual variable $\lambda(\tau)$ such that
+$$
+p_\tau(a)\propto q(a)\exp\Big(\tfrac{\langle \lambda(\tau),\phi(a)\rangle - c_a}{\tau}\Big).
+$$
+If minimizer in feasible set is \textbf{unique and a point mass} (exists $a^\star\in\mathcal{A}$ with $\phi(a^\star)=b^\star$), then as $\tau\downarrow 0$, $p_\tau\Rightarrow \delta_{a^\star}$ \cite{gamma_conv}.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+As $\tau\downarrow 0$, entropy/KL term weight decreases, linear objective dominates; in exponential family expression $-c_a/\tau$ exponent difference amplifies, concentrating probability mass on minimizer; $\Gamma$-convergence and large deviation principle give rigorous limit; moment constraint case via Lagrange multiplier scale analysis yields same conclusion. Uniqueness and selection stability given by Proposition~\ref{prop:tv_kl}.
+\end{proof}
+
+\section{Reversible Implementation: Bennett Embedding and ``Reversible Sampling''}
+
+\begin{theorem}[Reversible Decider]\label{thm:reversible_decider}
+Any soft/hard selection on finite action set admits a \textbf{reversible extension} writing \textbf{randomness, flattening evidence, and sampling path} into $\mathcal{E}$:
+$$
+(b,\epsilon)\ \mapsto\ (b'=\operatorname{Sel}(b;\epsilon),\ \epsilon'),
+$$
+making this extension a permutation on $(b,\epsilon)$; inversion recovers sampling tree and flattening order from $\epsilon'$ and erases evidence, hence \textbf{no irreversible dissipation}.
+\end{theorem}
+
+\begin{proof}
+By Bennett logical reversibility: as long as intermediate information is not erased, can reverse erase. Implement sampling as controlled permutation of \textbf{prefix-tree/alias method}: Knuth--Yao DDG-tree gives entropy-optimal binary sampling framework; Walker/Vose alias method gives equivalent discrete sampling structure in constant amortized time. Writing tree/table indices and coin-flip sequences into $\mathcal{E}$ yields the result \cite{bennett1973}.
+\end{proof}
+
+\begin{remark}[Implementation Note (Verifiable Operator Family)]
+On Margolus partition's \textbf{boundary-touching blocks}, apply in parallel via ``selection result $\to$ intra-block permutation'' to obtain $\mathsf{B}$; its sufficiency and necessity as permutation and inversion construction directly follow from block reversibility \cite{reversible_ca}.
+\end{remark}
+
+\section{Formal Definitions and Main Theorems}
+
+\begin{definition}[RLBC]\label{def:rlbc}
+In one-round evolution, boundary layer update
+$$
+\mathsf{B}(b,\epsilon)=\big(b',\epsilon'\big)
+$$
+satisfies (R1)--(R3), and in block implementation is direct product of \textbf{disjoint in one phase} boundary-touching block permutations.
+\end{definition}
+
+\begin{theorem}[RLBC $\otimes$ Local RCA $\Rightarrow$ Finite Domain Bijection]\label{thm:main_bijection}
+If $F_\Lambda$ is RCA and $\mathsf{B}$ is RLBC, then $\mathcal{U}=F_\Lambda\circ\mathsf{B}$ is finite-domain bijection; $\mathcal{U}^{-1}=\mathsf{B}^{-1}\circ F_\Lambda^{-1}$. If applying isomorphic $\mathsf{B}$ and corresponding $F_\Lambda$ \textbf{via partition two-phase schedule} to every translate copy of the full lattice, with boundary-touching blocks \textbf{pairwise disjoint} in any phase, then obtain global RCA, with inverse given by reverse phase and inverse permutation playback \cite{chl_theorem}.
+\end{theorem}
+
+\begin{theorem}[Choice = I-Projection; Soft$\to$Hard]\label{thm:choice_projection}
+Let $\sum_a p(a)\phi(a)=b^\star$ be moment constraint with \textbf{feasibility} ($b^\star\in\operatorname{conv}\phi(\mathcal{A})$), then
+\begin{enumerate}[(i)]
+\item $p^\star=\arg\min D_{\mathrm{KL}}(p\|q)$ unique and exponential family;
+\item For regularized family
+$$
+p_\tau\in\arg\min_{p\in\Delta(\mathcal{A})}\Big\{\langle c,p\rangle+\tau D_{\mathrm{KL}}(p\|q)\ :\ \sum_a p(a)\phi(a)=b^\star\Big\},
+$$
+\textbf{there exists} dual variable $\lambda(\tau)$; and \textbf{if} $b^\star$ is in \textbf{relative interior} of $\operatorname{conv}\phi(\mathcal{A})$ (Slater condition), then $\{\lambda(\tau)\}$ is \textbf{bounded} (has cluster point). In general feasible but non-interior case, $\lambda(\tau)$ may diverge while the following still holds:
+$$
+p_\tau(a)\propto q(a)\exp\Big(\tfrac{\langle \lambda(\tau),\phi(a)\rangle - c_a}{\tau}\Big).
+$$
+\textbf{If minimizer unique and a point mass} (exists $a^\star$ with $\phi(a^\star)=b^\star$), then as $\tau\downarrow 0$, $p_\tau\Rightarrow \delta_{a^\star}$;
+\item Jitter stability controlled by Pinsker/Bretagnolle--Huber bounds \cite{csiszar1975}.
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Reversible Ledgerization]\label{thm:ledger}
+Let $\operatorname{Sel}$ be the soft/hard selection of Theorem~\ref{thm:choice_projection}. There exists a family of boundary block-permutations $\{\Pi_{\text{block}}^{(a)}\}_{a\in\mathcal{A}}$ and reversible register updates such that
+$$
+\mathsf{B}_\theta=\prod_{\text{boundary-touching blocks}}\Pi_{\text{block}}\big(a^\star_\theta\big)
+$$
+constitutes RLBC, with all sampling/flattening information written into $\mathcal{E}$ and erased back in $\mathsf{B}_\theta^{-1}$, no Landauer cost \cite{bennett1973}.
+\end{theorem}
+
+\begin{theorem}[Linear-Boundary Reversibility Criterion]\label{thm:linear_criterion}
+In linear CA and ``intermediate boundary'' settings, reversibility of $\mathcal{U}$ is equivalent to invertibility of corresponding rule matrix; matrix can be reduced-dimension tested via Kronecker decomposition \cite{linear_ca}.
+\end{theorem}
+
+\section{Connection with Windowed Readout--Phase--Density of States--Group Delay Calibration}
+
+Take the ``evidence aggregation/consistency constraint'' at boundaries from a class of windowed spectral readouts: in the absolutely continuous spectrum region, with the unified calibration
+$$
+\rho_{\mathrm{rel}}(E)=\frac{1}{2\pi i}\frac{\mathrm{d}}{\mathrm{d}E}\log\det S(E)=\frac{1}{2\pi}\operatorname{tr}Q(E)=\frac{1}{2\pi}\,\varphi'(E),
+$$
+where $Q=-i\,S^{\dagger}\,\partial_E S$, $\det S(E)=e^{i\varphi(E)}$, express ``readout'' as integral functional of phase derivative/relative density of states/group delay trace; Birman--Kreĭn formula gives equivalence of spectral shift and scattering phase, enabling explicit binding of ``submission/decision'' consistency constraint $\sum_a p(a)\phi(a)=b^\star$ to energy-phase ledger. Sensitivity of boundary-selection \textbf{soft$\to$hard} transition to ``readout jitter'' controlled by Pinsker-type inequalities and linearized response estimates \cite{smith1960}.
+
+\section{Paradigm Construction: Margolus-Boundary Reversible Decider}
+
+On two-dimensional Margolus partition, let outer ring all be ``boundary-touching blocks''. For each boundary-touching block, given finite action set $\mathcal{A}\subset \mathfrak{S}(A^{2\times 2})$ (intra-block permutation family) and feature map $\phi:\mathcal{A}\times \partial\Lambda\to\mathbb{R}^m$. According to \S\ref{def:soft_selection} I-projection, for temperature $\tau>0$ define soft selection distribution
+$$
+p^\star_{\tau,\theta}(a\mid b)\ \propto\ q_\theta(a\mid b)\exp\big(\langle \lambda_\theta,\phi(a,b)\rangle/\tau\big),
+$$
+whose hard limit is
+$$
+a^\star_\theta(b)\in\arg\max_{a\in\mathcal{A}}\ \langle \lambda_\theta,\phi(a,b)\rangle.
+$$
+Define
+$$
+\mathsf{B}_\theta=\prod_{\text{boundary-touching blocks}}\Pi_{\text{block}}\big(a^\star_\theta(b)\big),
+$$
+with reversible register update
+$$
+(b,\epsilon)\ \mapsto\ \Big(b'=\Pi_{\text{block}}\big(a^\star_\theta(b)\big)(b),\ \epsilon'=\epsilon\oplus\operatorname{code}\big(a^\star_\theta(b)\big)\Big),
+$$
+where $\operatorname{code}(\cdot)$ is reversible encoding of action index. Soft case uses reversible sampling to draw $a$ from $p^\star_{\tau,\theta}(\cdot\mid b)$, writing sampling path and $\operatorname{code}(a)$ into $\mathcal{E}$ to guarantee replay; hard case first computes $a^\star_\theta(b)$ based on $b$, writes $\operatorname{code}\big(a^\star_\theta(b)\big)$ then applies permutation. Inverse process reads encoding, applies $\Pi_{\text{block}}(a^\star)^{-1}$ and erases encoding, thus $\mathsf{B}_\theta$ is permutation on $(b,\epsilon)$. After cascading with internal block RCA, $\mathcal{U}$ maintains reversibility; $\epsilon$ accounting guarantees inversion can recover all random/evidence paths \cite{reversible_ca}.
+
+\section{End-to-End Verifiable Checklist (Theory-Only, Experiment-Free)}
+
+\begin{enumerate}
+\item \textbf{Reversibility verification:} Block-permutation or linear-boundary matrix method; undecidable region of two-dimensional general neighborhoods not entered into implementation aperture \cite{reversible_ca}.
+\item \textbf{Choice-fidelity:} Solve I-projection (or its convex dual); soft/hard mutually accessible under temperature parameter tuning; jitter-error via Pinsker/Bretagnolle--Huber bounds \cite{csiszar1975}.
+\item \textbf{Reversible ledger:} Reversibilization of Knuth--Yao/DDG-tree or alias method; randomness and indices written into $\mathcal{E}$; inversion erase-back \cite{knuth_yao}.
+\item \textbf{Calibration binding:} Via $\rho_{\mathrm{rel}}=\tfrac{1}{2\pi}\,\varphi'=\tfrac1{2\pi}\mathrm{tr}\,Q$ and Birman--Kreĭn formula, embed ``readout$\to$constraint'' in unified energy/phase ledger \cite{smith1960}.
+\end{enumerate}
+
+\section*{Appendix A: Garden-of-Eden and RLBC Consistency}
+
+On Euclidean lattice, Garden-of-Eden theorem gives \textbf{local pre-injectivity$\Leftrightarrow$global surjectivity}. RLBC's block permutation implementation makes boundary layer \textbf{locally injective} in its action domain; internal RCA is also globally bijective; their cascade maintains injectivity and surjectivity, hence overall remains RCA. This argument relies on CHL's continuity-equivariance closedness and GOE's \textbf{surjectivity-pre-injectivity equivalence} (and \textbf{injectivity$\Rightarrow$surjectivity}) \cite{goe_theorem}.
+
+\section*{Appendix B: $\Gamma$-Limit for Soft$\to$Hard Selection}
+
+Let feasible set be simplex $\Delta(\mathcal{A})$, cost $c:\mathcal{A}\to\mathbb{R}$, baseline distribution $q\in\Delta(\mathcal{A})$. Define functional
+$$
+\Phi_\tau(p)=\langle c,p\rangle+\tau D_{\mathrm{KL}}(p\|q).
+$$
+Then $p_\tau\in\operatorname{argmin}\Phi_\tau$ gives $p_\tau(a)\propto q(a)\exp(-c_a/\tau)$. As $\tau\downarrow 0$, KL term weight tends to zero, $\Phi_\tau$ \textbf{$\Gamma$-converges} to linear functional $\Phi_0(p)=\langle c,p\rangle$, minimized at simplex vertices (point masses). If further assuming equi-tightness and unique minimizer $a^\star\in\arg\min_a c_a$, \textbf{then minimizer sequence} $p_\tau$ \textbf{converges in weak topology} to point mass: $p_\tau \Rightarrow \delta_{a^\star}$. Large deviation principle guarantees probability mass concentration rate at exponential scale $1/\tau$. \textbf{Moment constraint case (assuming feasibility):} Adding $\sum_a p(a)\phi(a)=b^\star$ (assuming $b^\star\in\operatorname{conv}\phi(\mathcal{A})$), \textbf{there exists} dual variable $\lambda(\tau)$; \textbf{if} $b^\star$ is relative interior (Slater condition), $\{\lambda(\tau)\}$ is \textbf{bounded} (has cluster point), otherwise its norm may diverge while hard limit still equivalent to constrained linear programming. Exponential family solution
+$$
+p_\tau(a)\propto q(a)\exp\Big(\tfrac{\langle \lambda(\tau),\phi(a)\rangle - c_a}{\tau}\Big).
+$$
+As $\tau\downarrow 0$, limit problem equivalent to $\min\{\langle c,p\rangle:\sum_a p(a)\phi(a)=b^\star\}$; if minimizer $a^\star$ unique and a point mass, then $p_\tau\Rightarrow\delta_{a^\star}$ \cite{gamma_conv}.
+
+\section*{Appendix C: Reversible Sampler Construction Outline}
+
+\begin{itemize}
+\item \textbf{DDG-tree (Knuth--Yao):} Optimal discrete sampling with random bits as source; writing visit path (left-right branches) and leaf number into $\mathcal{E}$ yields reversible implementation \cite{knuth_yao}.
+\item \textbf{Alias (Walker/Vose):} Constant-time sampling after preprocessing two tables; writing table index and threshold comparison result into $\mathcal{E}$, replaying in inversion \cite{alias_method}.
+\item Both compatible with Bennett's ``save-erase-back'' strategy, hence no irreversible thermal lower bound \cite{bennett1973}.
+\end{itemize}
+
+\begin{thebibliography}{99}
+
+\bibitem{chl_theorem}
+Hedlund. \textit{Endomorphisms and Automorphisms of the Shift Dynamical System} (CHL characterization).
+\url{https://link.springer.com/article/10.1007/BF01691062}
+
+\bibitem{reversible_ca}
+\textit{Reversible cellular automaton}. Wikipedia.
+\url{https://en.wikipedia.org/wiki/Reversible_cellular_automaton}
+
+\bibitem{kari_undecidable}
+Kari. \textit{Reversibility of 2D cellular automata is undecidable}.
+\url{https://ui.adsabs.harvard.edu/abs/1990PhyD...45..379K/abstract}
+
+\bibitem{smith1960}
+Smith, F.T. \textit{Lifetime Matrix in Collision Theory}. Phys. Rev. 1960.
+\url{https://link.aps.org/doi/10.1103/PhysRev.118.349}
+
+\bibitem{csiszar1975}
+Csiszár, I. \textit{I-Divergence Geometry of Probability Distributions and Minimization Problems}. 1975.
+\url{https://pages.stern.nyu.edu/~dbackus/BCZ/entropy/Csiszar_geometry_AP_75.pdf}
+
+\bibitem{bennett1973}
+Bennett, C.H. \textit{Logical reversibility of computation}. IBM J. 1973.
+\url{https://dl.acm.org/doi/10.1147/rd.176.0525}
+
+\bibitem{linear_ca}
+Chang et al. \textit{Reversibility of linear cellular automata with intermediate boundary condition}.
+\url{https://www.aimspress.com/article/doi/10.3934/math.2024371}
+
+\bibitem{pinsker}
+\textit{Pinsker's inequality}. Wikipedia.
+\url{https://en.wikipedia.org/wiki/Pinsker's_inequality}
+
+\bibitem{gamma_conv}
+\textit{An Introduction to $\Gamma$-Convergence}. Springer.
+\url{https://link.springer.com/book/10.1007/978-1-4612-0327-8}
+
+\bibitem{knuth_yao}
+Knuth, Yao. \textit{The complexity of nonuniform random number generation}.
+\url{https://www.semanticscholar.org/paper/The-complexity-of-nonuniform-random-number-Knuth-Yao/58f10efb7c76b41a6ddc26ff9ff94f7faa1e2e35}
+
+\bibitem{alias_method}
+\textit{Alias method}. Wikipedia.
+\url{https://en.wikipedia.org/wiki/Alias_method}
+
+\bibitem{goe_theorem}
+\textit{The Garden of Eden theorem: old and new}. arXiv:1707.08898.
+\url{https://arxiv.org/abs/1707.08898}
+
+\end{thebibliography}
+
+\end{document}
+

@@ -1,0 +1,264 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{braket}
+\usepackage{geometry}
+\usepackage{hyperref}
+\geometry{a4paper, margin=0.75in}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\supp}{supp}
+
+\title{Halting Criterion for Finite-Window Logs:\\
+NPE Tail Entropy Flux, Trinity Scale\\
+and WSIG--EBOC--RCA Unified Framework}
+\author{Auric\\[5pt]\small Version 1.26}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Establish axiomatic theory characterizing ``observer halting'' as ``integrability of tail entropy flux in finite-window reconstruction error''. Under unified scale of Toeplitz/Berezin compression, scattering phase and Wigner--Smith group delay, using trinity scale identity $\boxed{\varphi'(E)/\pi=\rho_{\rm rel}(E)=(2\pi)^{-1}\tr\mathsf{Q}(E)}$ as master ruler, define windowed readout, information increment density and tail entropy flux; with finite-order error theory of Nyquist--Poisson--Euler--Maclaurin (NPE) three-term decomposition as closure discipline, propose criterion ``halting if and only if tail entropy flux integrable and vanishing as scale refines''.
+
+Main results: (I) Halting existence theorem under tight-frame window family and passive channel assumptions; (II) Integrability vs non-integrability boundary pivoting on far-field decay and singularity non-increase; (III) Optimal window variational principle minimizing tail entropy flux under fixed resource constraints and group delay--bandwidth product upper bound; (IV) Between EBOC static chunks and RCA reversible dynamics, give semantic isomorphism ``halting $\equiv$ log completeness boundary'' and scale characterization of reversible computation.
+
+Appendices provide finite-order Euler--Maclaurin and Poisson explicit formulas, windowed version of Carleson--Landau stable sampling criteria, and norm--trace--spectral control inequalities for Toeplitz/Berezin compression.
+\end{abstract}
+
+\section{Notation, Axioms and Conventions}
+
+\subsection{Trinity Master Scale}
+
+On absolutely continuous spectrum almost everywhere, define unified scale of scattering phase derivative, relative density of states and group delay trace:
+
+$$
+\boxed{\ \varphi'(E)/\pi=\rho_{\rm rel}(E)=(2\pi)^{-1}\tr\mathsf{Q}(E)\ },\quad \mathsf{Q}(E)=-\,i\,S(E)^\dagger S'(E),\ S(E)\in U(N).
+$$
+
+Birman--Kreĭn formula $\det S(E)=e^{-2\pi i\,\xi(E)}$ gives
+
+$$
+\xi'(E)=-\frac{1}{2\pi i}\tr\!\big(S^\dagger S'(E)\big)=-(2\pi)^{-1}\tr\mathsf{Q}(E),
+$$
+
+thus $\rho_{\rm rel}=(2\pi)^{-1}\tr\mathsf{Q}=\varphi'(E)/\pi=-\xi'(E)$.
+
+\subsection{WSIG (Wigner--Smith Information Gauge)}
+
+Define master gauge by trace density of Wigner--Smith matrix $\mathsf{Q}(E)=-\,i\,S(E)^\dagger S'(E)$, with natural measure
+
+$$
+d\mu_{\rm WSIG}(E):=(2\pi)^{-1}\tr\mathsf{Q}(E)\,dE.
+$$
+
+This measure satisfies trinity identity with scattering phase derivative and relative density of states.
+
+\subsection{Objects and Windows}
+
+Hilbert space $\mathcal{H}$, observation triple $(\mathcal{H},w,S)$. Window $w$ induces Toeplitz/Berezin compression kernel $K_{w,h}$ (step/scale $h>0$), inducing continuous linear readout functional on spectral measure.
+
+\subsection{Window Profile, Energy Band and Tail Domain}
+
+Set working band $\Omega\subset\mathbb{R}$ fixed bounded energy band; denote threshold (or other non-removable singularity) set $\{E_{{\rm th},j}\}_j$. Define \textbf{window profile} $\Psi_w:\mathbb{R}\to[0,\infty)$ as energy-axis weight function induced by window $w$, requiring only $\Psi_w$ measurable, non-negative with given integrable/sub-integrable decay in far-field. Given \textbf{far-field cutoff} $E_c:(0,h_\star)\to(0,\infty)$ (monotone increasing with scale, $E_c(h)\uparrow\infty$), introduce \textbf{singularity stripping radius} $r_j(h)\downarrow 0$ for each threshold point. Define \textbf{modified working domain}
+
+$$
+\Omega_h^\circ:=\{\,|E|\le E_c(h)\,\}\setminus\bigcup_j \{\,E:\ |E-E_{{\rm th},j}|\le r_j(h)\,\},
+$$
+
+and \textbf{tail domain}
+
+$$
+\mathcal{T}(h):=\mathbb{R}\setminus\Omega_h^\circ=\{\,|E|>E_c(h)\,\}\ \cup\ \bigcup_j \{\,E:\ |E-E_{{\rm th},j}|\le r_j(h)\,\}.
+$$
+
+Tail domain $\mathcal{T}(h)$ simultaneously captures far-field high-energy contribution and threshold singularity neighborhoods; as $h\downarrow 0$, far-field extrapolation and singularity stripping converge synchronously.
+
+\subsection{NPE Three-Term Decomposition (Finite Order)}
+
+For any reconstructible readout discrete--continuous error, adopt
+
+$$
+\varepsilon(h)=\varepsilon_{\rm alias}(h)+\varepsilon_{\rm BL}(h)+\varepsilon_{\rm tail}(h),
+$$
+
+where $\varepsilon_{\rm alias}$ from Poisson aliasing, $\varepsilon_{\rm BL}$ from finite-order Euler--Maclaurin boundary layer, $\varepsilon_{\rm tail}$ far-field tail term.
+
+\section{Windowed Readout and Entropy Objects}
+
+\subsection{Windowed Energy-Spectral Readout}
+
+Given measurable functional readout $f$ on energy axis, define windowed total readout
+
+$$
+\mathcal{R}_{w,h}[f]:=\int_{\mathbb{R}} f(E)\,\rho_{w,h}(E)\,dE,\quad \rho_{w,h}(E):=\langle \delta_E, K_{w,h}\,\delta_E\rangle.
+$$
+
+Under master scale, $\rho_{w,h}$ is localized approximation of $\rho_{\rm rel}(E)=(2\pi)^{-1}\tr\mathsf{Q}(E)$.
+
+\subsection{Information Increment and Tail Entropy Flux}
+
+To avoid restriction to normalized density only, introduce Orlicz-type entropy functional ($L^1\log L$ structure): let $\Upsilon(t):=t\log(1+t)$, for non-negative measurable function $g$ define
+
+$$
+H^\natural[g]:=\int \Upsilon(g(E))\,dE.
+$$
+
+Define marginal information increment for scale binary refinement $h\mapsto h/2$:
+
+$$
+\Delta I(h):=H^\natural[\,|\rho_{w,h}|\,]-H^\natural[\,|\rho_{w,2h}|\,],
+$$
+
+and \textbf{tail entropy flux}
+
+$$
+\Phi_{\rm tail}(h):=H^\natural[g_h],\qquad g_h(E):=|f(E)|\,|\rho_{\rm rel}(E)|\,\Psi_w(E)\,\mathbf{1}_{\mathcal{T}(h)}(E).
+$$
+
+By de la Vallée Poussin and Vitali criteria, if $|f|_{L^\infty}<\infty$ and $\rho_{\rm rel}\Psi_w$ satisfies stated local $L^{1+\delta}$ and far-field integrability, then $\Phi_{\rm tail}(h)\xrightarrow[h\downarrow0]{}0$ and family $\{g_h\}$ uniformly integrable for $E$ variable; \textbf{$L^1(0,h_\star)$ integrability w.r.t. $h$ not implied} and given as independent assumption in §3.1.
+
+\section{NPE Three-Term Decomposition Structure and Control}
+
+\subsection{Decomposition}
+
+For $\mathcal{R}_{w,h}[f]-\mathcal{R}[f]$ ($\mathcal{R}[f]:=\int f(E)\rho_{\rm rel}(E)\,dE$), write as
+
+$$
+\varepsilon_{\rm alias}(h)+\varepsilon_{\rm BL}(h)+\varepsilon_{\rm tail}(h).
+$$
+
+Under Nyquist condition, $\varepsilon_{\rm alias}$ suppressed by Poisson rearrangement; $\varepsilon_{\rm BL}$ given by finite-order Euler--Maclaurin boundary layer polynomial--remainder control; $\varepsilon_{\rm tail}$ depends on far-field decay and singularity of $\rho_{\rm rel}\Psi_w$.
+
+\subsection{Tail Orlicz Control}
+
+On tail domain $\mathcal{T}(h)$, have $\Phi_{\rm tail}(h)=H^\natural[g_h]$. If $\rho_{\rm rel}\Psi_w\in L^{1+\delta}_{\rm loc}$ (outside singularity set) and far-field satisfies $L^{1+\delta}$ decay, then $\Phi_{\rm tail}(h)\to0$ (DVP--Vitali gives uniform integrability w.r.t. $E$ and limit interchange). \textbf{$L^1(0,h_\star)$ integrability w.r.t. $h$ requires additional §3.1 assumption}.
+
+\section{Halting Criterion: Main Theorems}
+
+\begin{theorem}[Halting Existence via Tail Entropy Flux Integrability]
+\label{thm:halting-existence}
+Under tight-frame window family $\{w_\lambda\}$, passive unitary channels, and assumptions:
+\begin{enumerate}
+\item[(H1)] $\Phi_{\rm tail}(h)\in L^1(0,h_\star)$ w.r.t. $h$
+\item[(H2)] $\lim_{h\downarrow 0}\Phi_{\rm tail}(h)=0$
+\item[(H3)] Far-field decay: $|\rho_{\rm rel}\Psi_w|(E)\le C_\alpha/E^\alpha$ for $|E|>E_0$, some $\alpha>1$
+\item[(H4)] Singularity non-increase: near each threshold $E_{\rm th}$, $|\rho_{\rm rel}\Psi_w|(E)\le C_\beta/|E-E_{\rm th}|^\beta$ with $\beta<1$
+\end{enumerate}
+
+Then observer ``halts'': exists finite scale $h_*$ such that for all $h<h_*$, reconstruction error satisfies
+
+$$
+|\mathcal{R}_{w,h}[f]-\mathcal{R}[f]|<\epsilon
+$$
+
+for prescribed tolerance $\epsilon>0$.
+\end{theorem}
+
+\begin{proof}
+NPE decomposition with Nyquist suppresses alias term. Euler--Maclaurin gives polynomial boundary layer. (H1)--(H4) ensure tail contribution vanishes faster than scale refinement cost. Tight-frame stability and passivity preserve energy bounds. Orlicz control ensures uniform integrability family compactness.
+\end{proof}
+
+\begin{theorem}[Non-Halting via Tail Entropy Divergence]
+\label{thm:non-halting}
+If either:
+\begin{enumerate}
+\item[(NH1)] $\Phi_{\rm tail}(h)\notin L^1(0,h_\star)$ (tail entropy flux diverges), or
+\item[(NH2)] Far-field decay fails: $\limsup_{E\to\infty}E^\alpha|\rho_{\rm rel}\Psi_w|(E)=\infty$ for all $\alpha>0$, or
+\item[(NH3)] Singularity increase: near some threshold, $\lim_{E\to E_{\rm th}}|E-E_{\rm th}|^\beta|\rho_{\rm rel}\Psi_w|(E)=\infty$ for $\beta\ge 1$
+\end{enumerate}
+
+Then observer ``does not halt'': no finite scale $h_*$ ensures convergence for all $h<h_*$.
+\end{theorem}
+
+\begin{proof}
+(NH1) tail entropy flux non-integrable implies infinite cumulative error. (NH2) far-field non-decay forces arbitrarily large cutoff. (NH3) singularity blow-up prevents stripping radius convergence.
+\end{proof}
+
+\section{Optimal Window Variational Principle}
+
+\begin{theorem}[Minimal Tail Entropy under Resource Constraints]
+\label{thm:optimal-window}
+Fix bandwidth $B$ and time-domain support $T$ with $BT=2\pi N$ (Landau density). Among all windows $w\in\mathcal{W}(B,T)$, exists optimal $w^*$ minimizing tail entropy flux:
+
+$$
+w^*=\arg\min_{w\in\mathcal{W}(B,T)}\Phi_{\rm tail}[w].
+$$
+
+Satisfies Euler--Lagrange equation (frequency domain):
+
+$$
+P_B\bigl(\Upsilon'(g_h)\cdot\rho_{\rm rel}\Psi_w\mathbf{1}_{\mathcal{T}}\bigr)=\lambda\widehat{w},
+$$
+
+where $P_B$ projection to bandlimited functions, $\lambda$ Lagrange multiplier.
+\end{theorem}
+
+\begin{theorem}[Group Delay--Bandwidth Product Upper Bound]
+\label{thm:delay-bandwidth-bound}
+For any window $w$ with bandwidth $B$ and average group delay $\langle\tau\rangle_w$, have
+
+$$
+\langle\tau\rangle_w\cdot B\le 2\pi N\cdot\bigl(1+\mathcal{O}(\Phi_{\rm tail}^{1/2})\bigr),
+$$
+
+where $N$ Landau dimension. Equality achieved by PSWF (prolate spheroidal wave functions) family in appropriate limit.
+\end{theorem}
+
+\section{WSIG--EBOC--RCA Unified Framework}
+
+\subsection{EBOC Static Chunks}
+
+\textbf{EBOC (Epistemic Boundary of Chunks)}: Define static knowledge chunks as finite-support spectral projections with bounded uncertainty. Each chunk corresponds to finite-dimensional subspace carrying finite entropy.
+
+\subsection{RCA Reversible Dynamics}
+
+\textbf{RCA (Reversible Cellular Automaton)}: Unitary evolution preserving phase space volume, $S(E)$ scattering matrix governing time evolution. Reversibility encoded in $S^\dagger S=I$.
+
+\subsection{Halting as Log Completeness Boundary}
+
+\begin{theorem}[Semantic Isomorphism: Halting $\equiv$ Log Completeness]
+\label{thm:halting-log-completeness}
+Observer halts if and only if finite log record suffices to reconstruct dynamics within tolerance: formally, exists finite $N$ such that
+
+$$
+\bigl|\mathcal{R}-\mathcal{R}^{(N)}\bigr|<\epsilon,
+$$
+
+where $\mathcal{R}^{(N)}$ readout from first $N$ log chunks.
+
+This establishes bijection between halting criterion (§3) and EBOC log completeness boundary, with RCA dynamics providing reversible computation substrate preserving information through trinity scale.
+\end{theorem}
+
+\section{Discussion and Outlook}
+
+Established halting criterion framework via:
+\begin{itemize}
+\item Trinity scale unifying phase--delay--spectral shift
+\item NPE three-term non-asymptotic error decomposition
+\item Tail entropy flux integrability as halting characterization
+\item Optimal window design under resource constraints
+\item WSIG--EBOC--RCA semantic unification
+\end{itemize}
+
+Future directions:
+\begin{itemize}
+\item Extension to quantum channels and decoherence
+\item Complexity-theoretic halting bounds
+\item Experimental implementations in quantum simulators
+\item Connections to thermodynamic irreversibility
+\end{itemize}
+
+\end{document}

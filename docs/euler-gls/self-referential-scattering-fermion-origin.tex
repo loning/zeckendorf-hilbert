@@ -1,0 +1,359 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Title information
+\title{Fermions from Self-Referential Scattering: Square-Root Branches, Double Covers, and Emergent Statistics}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We define ``self-referential scattering network'' (SSN): a port-based unitary system described by energy-parameterized and output-dependent scattering concatenation $S(E)$, whose external equivalent scattering $T(E)$ is closed-loop fed back to internal ports via port isomorphism $J$, satisfying nonlinear fixed-point equation $T=\Phi_J(T)$ as self-consistency condition. Using Redheffer star product and linear fractional transforms of quantum feedback networks, we establish criteria for existence, unitarity, and spectral structure of closed loops. We prove that under generic position, closed-loop self-consistency equation is equivalent to graph-subspace Riccati equation; via Cayley transform yields self-adjoint generator $H_{\text{eff}}$, exhibiting Puiseux-type square-root branch at critical energies (satisfying Kato generic position condition), inducing global phase double-valuedness and $\mathbb{Z}_2$ monodromy structure; if parameter loop is further homotopically identified with $\mathrm{SO}(3)$ rotation group, yields double-cover interpretation $\mathrm{SU}(2)\to\mathrm{SO}(3)$. Further constructing chiral operator $\Gamma$ via loop orientation--grading, we prove chiral symmetry $\{\Gamma,H_{\text{eff}}\}=0$ and topological index via integer winding number; via Atiyah--Bott--Shapiro (ABS) criterion, this structure is equivalent to Clifford module. Finally, using quantum combs/causal boxes to characterize physical model of ``self-referential measurement'': under compact convex state space and completely positive trace-preserving maps, self-consistent fixed point exists (Schauder); in supersymmetric monoidal category with $\mathbb{Z}_2$ grading satisfying Koszul sign rule, critical double-valued branch corresponds to $\mathbb{Z}_2$ parity grading and CAR algebra, thus treating fermionic statistics and chirality as emergent structure of self-referential scattering closed loops.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Self-referential scattering; Feedback networks; Redheffer star product; Square-root branch; Cayley transform; Spinors; Double cover; Chiral symmetry; CAR algebra; Fermionic statistics; Quantum feedback; Topological winding number
+
+\noindent\textbf{MSC 2020:} Primary 81Q10, 81R25, 47A48; Secondary 81T13, 55R10, 46L87
+
+\section{Notation and Conventions}
+
+Take finite-dimensional complex Hilbert space decomposition $\mathcal{H}=\mathcal{H}_{\text{ext}}\oplus\mathcal{H}_{\text{int}}$. For each energy $E$, scattering concatenation written as block unitary matrix
+$$
+S(E)=
+\begin{pmatrix}
+A(E) & B(E)\\
+C(E) & D(E)
+\end{pmatrix}\in\mathbb{U}(2N),
+\quad
+A:\mathcal{H}_{\text{ext}}\to\mathcal{H}_{\text{ext}},
+\ B:\mathcal{H}_{\text{int}}\to\mathcal{H}_{\text{ext}},
+\ C:\mathcal{H}_{\text{ext}}\to\mathcal{H}_{\text{int}},
+\ D:\mathcal{H}_{\text{int}}\to\mathcal{H}_{\text{int}}.
+$$
+Redheffer star product and linear fractional transform give equivalent external scattering for any feedback operator $K$
+$$
+\Phi(K):=A+B\,K\,(I-DK)^{-1}C,
+$$
+whose definability requires invertibility of $I-DK$; when $S$ is conservative (unitary) and invertibility condition holds, $\Phi$ preserves Schur class and inner function properties \cite{redheffer1962product}.
+
+\section{Self-Referential Scattering Network and Nonlinear Closed Loop}
+
+\begin{definition}[SSN, Port Isomorphism Version]
+\label{def:ssn}
+Take unitary isomorphism $J:\mathcal{H}_{\text{ext}}\to\mathcal{H}_{\text{int}}$. Define
+$$
+\Phi_J(T):=A+B\,(J T J^\dagger)\,(I-D\,J T J^\dagger)^{-1}C,
+$$
+whose definability requires invertibility of $I-D\,J T J^\dagger$. Closed-loop self-consistency equation
+$$
+\boxed{\ T(E)=\Phi_J\big(T(E)\big)\ }.
+$$
+(``Output fed back as input'' means using $J$ to wire external ports to internal ports.)
+\end{definition}
+
+\begin{remark}
+Star product's system interconnection interpretation is isomorphic to cascading/feedback rules of quantum feedback networks; Gough--James series/concatenation product yields algebraic closure of quantum networks \cite{gough2009enhancement}.
+\end{remark}
+
+\section{Existence, Unitarity, and Riccati Structure}
+
+\begin{theorem}[Closed-Loop Existence, Finite-Dimensional]
+\label{thm:existence}
+If $|D(E)|<1$ and $S(E)$ continuous analytic, then $\Phi_J$ self-maps unit closed ball $\overline{\mathbb{B}}=\{T:|T|\le 1\}$. In finite dimensions, $\overline{\mathbb{B}}$ compact convex, thus by Brouwer (or Schauder) theorem, exists at least one closed-loop solution $T(E)$. Uniqueness not generally guaranteed.
+\end{theorem}
+
+\begin{proposition}[Unitarity Transfer]
+\label{prop:unitarity}
+For unitary concatenation $S$, have
+$$
+I-\Phi(K)\,\Phi(K)^\dagger
+= B\,(I-KD)^{-1}\left(I-KK^\dagger\right)(I-D^\dagger K^\dagger)^{-1}B^\dagger.
+$$
+Thus $K$ unitary $\Rightarrow \Phi(K)$ unitary. Taking closed loop $K=J T J^\dagger$, then $T$ unitary $\Leftrightarrow K$ unitary; cannot generally infer $T$ unitary directly from $|D|<1$.
+\end{proposition}
+
+\begin{proposition}[Riccati Equivalence and Graph Subspace]
+\label{prop:riccati}
+Let $M=\begin{pmatrix}A&B\\C&D\end{pmatrix}$. Subspace $\mathsf{Graph}(X)=\{(v,Xv):v\in\mathcal{H}_{\text{ext}}\}$ invariant if and only if
+$$
+X A+X B X - C - D X = 0.
+$$
+Then compression to $\mathsf{Graph}(X)$ yields external scattering $T=A+BX$.
+\end{proposition}
+
+\begin{remark}[Closed Loop--Graph Subspace Alignment]
+In self-referential closed loop taking $K:=J T J^\dagger$, have
+$$
+X=(I-KD)^{-1}K C\quad\bigl(\text{equivalently }X=K(I-DK)^{-1}C\bigr),\qquad T=A+BX,
+$$
+equivalently aligned with $T=\Phi_J(T)$ and $X A+X B X-C-D X=0$.
+\end{remark}
+
+\section{Cayley Transform, Square-Root Branch, and Spinors}
+
+\begin{definition}[Cayley Generator]
+\label{def:cayley}
+If $T$ unitary and $1\notin\sigma(T)$, let
+$$
+H_{\text{eff}}:= i\,(I+T)(I-T)^{-1},
+$$
+then $H_{\text{eff}}$ self-adjoint, and $T=(H_{\text{eff}}-iI)(H_{\text{eff}}+iI)^{-1}$. This bijection equivalently relates transfer functions of conservative scattering to self-adjoint generators of passive systems \cite{staffans2005passive}.
+\end{definition}
+
+\begin{theorem}[Square-Root Branch at Generic Position, Spectral Level]
+\label{thm:square-root}
+Assume $E\mapsto S(E)$ and closed-loop solution $T(E)$ analytic, with $T(E)$ unitary and $1\notin\sigma(T(E))$. Let $H_{\text{eff}}(E)= i\,(I+T(E))(I-T(E))^{-1}$. If at $E_c$, $H_{\text{eff}}(E)$ exhibits double algebraic degeneracy satisfying Kato generic position condition, then eigenvalues/eigenprojections of $H_{\text{eff}}$ in neighborhood of $E_c$ exhibit Puiseux-type $\pm\sqrt{E-E_c}$ branch with sheet exchange \cite{kato1995perturbation}.
+\end{theorem}
+
+\begin{remark}[Double-Valued Phase and Double Cover]
+\label{rem:double-cover}
+Above sheet exchange provides $\mathbb{Z}_2$ monodromy structure (global phase double-valuedness) for parameter loop. If this loop is further homotopically identified with $\mathrm{SO}(3)$ rotation group, yields double-cover interpretation $\mathrm{SU}(2)\to\mathrm{SO}(3)$; otherwise can only assert $\mathbb{Z}_2$ single-valuedness, cannot directly infer $2\pi$ rotation charge as $-1$.
+\end{remark}
+
+\section{Loop Orientation--Chiral Symmetry--Topological Index}
+
+\begin{definition}[Orientation Grading and Chiral Operator]
+\label{def:chiral}
+Decompose internal loop by propagation orientation as $\mathcal{H}_{+}\oplus\mathcal{H}_{-}$, let $\Gamma:=\Pi_+-\Pi_-$ with $\Gamma^2=I$. System has chiral symmetry when
+$$
+\Gamma T\Gamma=T^\dagger.
+$$
+If $T$ unitary and $1\notin\sigma(T)$, its Cayley generator $H_{\text{eff}}=i\,(I+T)(I-T)^{-1}$ satisfies
+$$
+\{\Gamma,H_{\text{eff}}\}=0.
+$$
+\end{definition}
+
+\begin{proposition}[ABS--Clifford Module]
+\label{prop:abs}
+In even dimensions, anticommuting pair $(\Gamma,H_{\text{eff}})$ equivalent to endowing $\mathcal{H}$ with Clifford module structure; homotopy class classified by $K$-theory, establishing ``spinors not as assumption but structural necessity'' \cite{atiyah1964clifford}.
+\end{proposition}
+
+\begin{theorem}[Chiral Winding Number and Edge Modes]
+\label{thm:winding}
+On $S^1$ parameterized by energy or Floquet period, define
+$$
+\nu=\frac{1}{2\pi i}\int_{S^1}\mathrm{tr}\big(T^{-1}\mathrm{d}T\big)\in\mathbb{Z}.
+$$
+When $\{\Gamma,T\}=0$, reduces to winding number of block $Q$; $\nu$ equals spectral flow of zero-energy (or $\pi$-quasi-energy) boundary modes. This invariant consistent with ``chiral Floquet winding number'' in network/Floquet topology \cite{maczewsky2020quantum}.
+\end{theorem}
+
+\section{Emergence of Fermionic Statistics}
+
+\begin{theorem}[$\mathbb{Z}_2$ Grading and CAR Conditions]
+\label{thm:car}
+In supersymmetric monoidal category with $\mathbb{Z}_2$ grading, if tensor exchange satisfies Koszul sign rule and many-body state space taken as exterior algebra $\wedge^\bullet\mathcal{H}$, then second quantization generates CAR algebra inducing fermionic parity superselection; ``having trace/feedback'' alone insufficient to infer above sign rule.
+\end{theorem}
+
+\begin{proposition}[Slater Structure and Second Quantization]
+\label{prop:slater}
+Let single-body equivalent scattering be $T\in\mathbb{U}(N)$. On fermionic Fock space define second quantization $\Gamma(T)\big|_{\wedge^n\mathcal{H}}=T^{\wedge n}$. Then $n\to n$ many-body scattering amplitude equals determinant of single-body amplitude matrix; exchanging two particles yields phase $-1$, i.e., Fermi statistics \cite{derezinski2013introduction}.
+\end{proposition}
+
+\begin{corollary}[Square Root--Double Cover--Parity]
+\label{cor:parity}
+Double-valued branch of \S\ref{thm:square-root} establishes global $\mathbb{Z}_2$ structure; at Fock level becomes parity grading, consistent with fermionic exchange phase.
+\end{corollary}
+
+\begin{remark}[Consistency with Relativistic Spin--Statistics]
+This construction assumes no microcausality but compatible with spin--statistics theorem in algebraic quantum field theory; latter provides sufficient conditions via modular group geometry \cite{guido1995algebraic}.
+\end{remark}
+
+\section{Operationalizable Model for Physical Self-Reference}
+
+Using ``quantum combs/causal boxes'' to characterize memory-bearing measurement--control process: strategy register $\rho_{\mathsf{M}}$ stores previous output and determines next setting. Define self-consistent point of closed-loop supermap $\mathcal{W}$
+$$
+\rho_{\mathsf{M}}^\star=\mathcal{W}\big(\rho_{\mathsf{M}}^\star\big).
+$$
+
+\begin{proposition}[Self-Consistent Point Existence and Uniqueness Conditions]
+\label{prop:self-consistent}
+Closed-loop supermap $\mathcal{W}$ of quantum comb/causal box has self-consistent point on compact convex state space (Schauder). Uniqueness requires additional conditions such as strict contraction or ``primitivity''; non-expansiveness of CPTP alone insufficient to guarantee.
+\end{proposition}
+
+\begin{remark}
+Comb's ``link product'' and causal box's compositional closure allow explicit closed-loop feedback to port scattering, yielding above $T$. This reduces mathematical kernel of ``consciousness--self-referential measurement'' to closed-loop self-consistency of SSN \cite{chiribella2009theoretical}.
+\end{remark}
+
+\section{Testable Predictions and Realizations}
+
+\begin{enumerate}
+\item \textbf{Half-Angle Geometric Phase at Network Critical Point:} In closed-loop network with tunable phase--delay, scan loop around $E_c$ and measure winding of $\det T(E)$, verifying $\pm$ branch and $-1$ global phase. Observation homologous to network/Floquet chiral winding number measurement \cite{maczewsky2020quantum}.
+
+\item \textbf{Quantum Graph Realization:} At quantum graph vertices with boundary condition closed loop, arbitrary $\mathbb{U}(N)$ can be realized as fixed-energy scattering matrix, engineering $\mathbb{Z}_2$ branch and chiral edge modes \cite{kostrykin1999kirchhoff}.
+
+\item \textbf{Quantum Feedback Platforms:} In cavity--quantum circuits, use Gough--James feedback rules to realize $T(E)$; scan shallow--critical--shallow three phases to measure spectral flow and double-valued branch \cite{gough2009enhancement}.
+\end{enumerate}
+
+\section{Correspondence with Existing Theories}
+
+\begin{itemize}
+\item \textbf{With Network/Floquet Topology:} Under chiral symmetry, unit winding number one-to-one corresponds to edge states, equivalent to Floquet topology of IQH network models, yielding precise relation recovering Chern property via energy-dependent parameterization \cite{maczewsky2020quantum}.
+
+\item \textbf{With Colligation--Characteristic Function Theory:} Closed loop of SSN is fixed point of linear fractional self-map of unitary colligation; ``inner function--unitarity'' property consistent with Livšic--Arov--Dym characteristic function framework \cite{arov2012dilation}.
+\end{itemize}
+
+\appendix
+
+\section{Unitary Colligation, Star Product, and Closed-Loop Algebraic Details}
+
+\subsection{Star Product and Push-Through Identity}
+
+From definition
+$$
+\Phi(K)=A+B\,K\,(I-DK)^{-1}C,
+$$
+combining block unitary relations $A^\dagger A+C^\dagger C=I$, $B^\dagger B+D^\dagger D=I$ and push-through identity, can simplify $T^\dagger T$ and $TT^\dagger$ to obtain energy conservation identity of \S\ref{prop:unitarity} \cite{redheffer1962product}.
+
+\subsection{Quantum Feedback Networks}
+
+Series/concatenation/feedback product's system--algebraic consistency yields closed-loop order reduction and unitarity preservation \cite{gough2009enhancement}.
+
+\section{Kato--Puiseux Expansion of Square-Root Branch}
+
+For self-adjoint operator family $H_{\text{eff}}(E)$ in analytic parameter $E$, if double algebraic degeneracy occurs at $E_c$ satisfying Kato generic position condition, then eigenvalues and eigenprojections in neighborhood of $E_c$ admit Puiseux expansion, with dominant singularity as square root $\pm\sqrt{E-E_c}$; analytic continuation along small circle leads to branch sheet exchange (single-root single-sheet case in single-valued--multi-valued scenario) \cite{kato1995perturbation}.
+
+\section{Exterior Algebra and Many-Body Scattering Amplitude}
+
+On fermionic Fock space $\mathcal{F}_-(\mathcal{H})=\bigoplus_{n\ge 0}\wedge^n\mathcal{H}$, second quantization $\Gamma(T)$ satisfies $\Gamma(T)\big|_{\wedge^n}=T^{\wedge n}$. Thus $n$-particle amplitude is Slater determinant of single-body amplitude matrix; exchanging two particles is odd permutation of rows or columns, yielding $-1$ phase and Pauli principle \cite{derezinski2013introduction}.
+
+\section{Topological Invariant of Chiral Class}
+
+In special case $\{\Gamma,T\}=0$, $T$ in $\Gamma$ basis exhibits block off-diagonal $T=\begin{pmatrix}0&Q\\R&0\end{pmatrix}$. Winding number
+$$
+\nu=\frac{1}{2\pi i}\int_{S^1}\mathrm{tr}\big(T^{-1}\mathrm{d}T\big)
+=\frac{1}{2\pi i}\int_{S^1}\mathrm{tr}\big(Q^{-1}\mathrm{d}Q\big)
+=-\frac{1}{2\pi i}\int_{S^1}\mathrm{tr}\big(R^{-1}\mathrm{d}R\big),
+$$
+consistent with boundary spectral flow; in Floquet networks and quantum walks equivalent to integer index at 0/$\pi$-gap \cite{maczewsky2020quantum}.
+
+\section*{Data Availability Statement}
+
+This is a purely theoretical work; no experimental data or datasets involved.
+
+\section*{Acknowledgments}
+
+This work synthesizes standard results in scattering theory, operator perturbation theory, topological phases, and quantum information. All cited results are from peer-reviewed literature; references provided for verification.
+
+\bibliographystyle{plain}
+\begin{thebibliography}{99}
+
+\bibitem{redheffer1962product}
+R. M. Redheffer.
+\newblock On the relation of transmission-line theory to scattering and transfer.
+\newblock {\em Journal of Mathematics and Physics}, 41(1-4):1--41, 1962.
+
+\bibitem{gough2009enhancement}
+J. Gough and M. R. James.
+\newblock The series product and its application to quantum feedforward and feedback networks.
+\newblock {\em IEEE Transactions on Automatic Control}, 54(11):2530--2544, 2009.
+
+\bibitem{arov2012dilation}
+D. Z. Arov and H. Dym.
+\newblock {\em Bitangential Direct and Inverse Problems for Systems of Integral and Differential Equations}.
+\newblock Cambridge University Press, 2012.
+
+\bibitem{staffans2005passive}
+O. J. Staffans.
+\newblock {\em Well-Posed Linear Systems}.
+\newblock Cambridge University Press, 2005.
+
+\bibitem{kato1995perturbation}
+T. Kato.
+\newblock {\em Perturbation Theory for Linear Operators}.
+\newblock Springer, 2nd edition, 1995.
+
+\bibitem{lawson1989spin}
+H. B. Lawson and M.-L. Michelsohn.
+\newblock {\em Spin Geometry}.
+\newblock Princeton University Press, 1989.
+
+\bibitem{atiyah1964clifford}
+M. F. Atiyah, R. Bott, and A. Shapiro.
+\newblock Clifford modules.
+\newblock {\em Topology}, 3(Supplement 1):3--38, 1964.
+
+\bibitem{maczewsky2020quantum}
+L. J. Maczewsky, K. Wang, A. A. Dovgiy, A. E. Miroshnichenko, A. Moroz, M. Ehrhardt, M. Heinrich, D. N. Christodoulides, A. Szameit, and A. A. Sukhorukov.
+\newblock Synthesizing multi-dimensional excitation dynamics and localization transition in one-dimensional lattices.
+\newblock {\em Nature Photonics}, 14(2):76--81, 2020.
+
+\bibitem{abramsky2004categorical}
+S. Abramsky and B. Coecke.
+\newblock A categorical semantics of quantum protocols.
+\newblock In {\em Proceedings of the 19th IEEE Symposium on Logic in Computer Science}, pages 415--425, 2004.
+
+\bibitem{derezinski2013introduction}
+J. Dereziński and C. Gérard.
+\newblock {\em Mathematics of Quantization and Quantum Fields}.
+\newblock Cambridge University Press, 2013.
+
+\bibitem{guido1995algebraic}
+D. Guido and R. Longo.
+\newblock An algebraic spin and statistics theorem.
+\newblock {\em Communications in Mathematical Physics}, 172(3):517--533, 1995.
+
+\bibitem{chiribella2009theoretical}
+G. Chiribella, G. M. D'Ariano, and P. Perinotti.
+\newblock Theoretical framework for quantum networks.
+\newblock {\em Physical Review A}, 80(2):022339, 2009.
+
+\bibitem{kostrykin1999kirchhoff}
+V. Kostrykin and R. Schrader.
+\newblock Kirchhoff's rule for quantum wires.
+\newblock {\em Journal of Physics A: Mathematical and General}, 32(4):595, 1999.
+
+\bibitem{berry1984quantal}
+M. V. Berry.
+\newblock Quantal phase factors accompanying adiabatic changes.
+\newblock {\em Proceedings of the Royal Society of London A}, 392(1802):45--57, 1984.
+
+\bibitem{pancharatnam1956generalized}
+S. Pancharatnam.
+\newblock Generalized theory of interference, and its applications.
+\newblock {\em Proceedings of the Indian Academy of Sciences-Section A}, 44(5):247--262, 1956.
+
+\bibitem{provost1980riemannian}
+J. P. Provost and G. Vallee.
+\newblock Riemannian structure on manifolds of quantum states.
+\newblock {\em Communications in Mathematical Physics}, 76(3):289--301, 1980.
+
+\end{thebibliography}
+
+\end{document}
+

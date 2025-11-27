@@ -1,0 +1,700 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{axiom}[theorem]{Axiom}
+
+% Operators
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Tr}{Tr}
+
+% Title information
+\title{Unified Theory of Observer--Attention--Knowledge Graph\\
+in Computational Universe:\\
+Cognitive Dynamics and Discrete Geometric Structure\\
+Under Finite Resources}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+In previous works on the ``computational universe'' series $U_{\mathrm{comp}} = (X,\mathsf{T},\mathsf{C},\mathsf{I})$, we separately constructed discrete complexity geometry, discrete information geometry, control manifold $(\mathcal{M},G)$ induced by unified time scale, and task information manifold $(\mathcal{S}_Q,g_Q)$, giving on joint manifold $\mathcal{E}_Q = \mathcal{M} \times \mathcal{S}_Q$ joint variational principle for time--information--complexity. These structures characterize ``geometry of computational universe itself'' at ontological level, but have not yet explicitly introduced mathematical object of ``internal observer'': how does observer with finite resources select attention, construct knowledge graph, and gradually accumulate information on complexity--information geometry?
+
+This paper, within framework of computational universe and its continuous geometric limit, gives unified axiomatic and geometric description of ``observer--attention--knowledge graph.'' We first formalize observer as class of state machine with finite memory
+
+$$
+O = (M_{\mathrm{int}},\Sigma_{\mathrm{obs}},\Sigma_{\mathrm{act}},\mathcal{P},\mathcal{U}),
+$$
+
+where $M_{\mathrm{int}}$ is internal memory state space, $\Sigma_{\mathrm{obs}}$ is observation symbol space, $\Sigma_{\mathrm{act}}$ is action space, $\mathcal{P}$ is attention--observation policy, $\mathcal{U}$ is internal update operator. Based on this structure we define time-dependent attention operator
+
+$$
+A_t : X \to [0,1],
+$$
+
+or equivalently visible subset $X_t^{\mathrm{att}} \subset X$, proving: attention operator defines on complexity--information geometry of computational universe a family of time-dependent ``reachable sections,'' thereby imposing constraints on observer's worldline.
+
+Second, we formalize knowledge graph as
+
+$$
+\mathcal{G}_t = (V_t,E_t,w_t,\Phi_t),
+$$
+
+where $V_t$ is finite node set, $E_t \subset V_t\times V_t$ are relation edges, $w_t$ are weights, $\Phi_t:V_t\to\mathcal{S}_Q$ is embedding mapping into task information manifold. We construct knowledge graph Laplace operator $\Delta_t$, proving that in suitable limit, spectrum of $\Delta_t$ approximates Laplace--Beltrami operator on $(\mathcal{S}_Q,g_Q)$, thereby viewing finite-node knowledge graph as ``discrete skeleton'' on information manifold.
+
+Then we introduce observer's extended worldline on joint manifold
+
+$$
+\widehat{z}(t) = (\theta(t),\phi(t),m(t),\mathcal{G}_t,A_t),
+$$
+
+where $(\theta(t),\phi(t))\in\mathcal{E}_Q$ is control--information state, $m(t)\in M_{\mathrm{int}}$ is internal memory, $\mathcal{G}_t$ and $A_t$ are knowledge graph and attention at time $t$. On basis of time--information--complexity joint action, we add observer internal cost and knowledge graph reconstruction cost, obtaining extended observation--computation action, deriving its Euler--Lagrange type conditions, giving variational characterization of ``under finite complexity budget and finite memory, how observer selects attention and updates knowledge graph.''
+
+Finally, we prove two representative results:
+
+\begin{enumerate}
+\item Under local Lipschitz and finite capacity assumptions, information entropy increment observable by observer in any finite time is subject to double upper bound of complexity budget and attention bandwidth, giving class of ``observer version time--information inequality'';
+\item Spectral dimension of knowledge graph tends in long-time limit toward local information dimension of task information manifold, showing that ``knowledge graph of rational observer almost necessarily approximates skeleton of true information geometry in infinite time limit.''
+\end{enumerate}
+
+This paper lays structural foundation at single-observer level for subsequent construction of ``multi-observer--consensus geometry--causal network'' theory, viewing observer as geometric object internal to computational universe rather than external ``measurer.''
+\end{abstract}
+
+\noindent\textbf{Keywords:} Computational universe; Observer theory; Attention mechanism; Knowledge graph; Cognitive dynamics; Finite resources; Complexity geometry; Information manifold; Spectral convergence
+
+\section{Introduction}
+
+In axiomatic framework of computational universe, universe is abstracted as discrete dynamical system $U_{\mathrm{comp}} = (X,\mathsf{T},\mathsf{C},\mathsf{I})$, where $X$ is configuration space, $\mathsf{T}$ is one-step transition relation, $\mathsf{C}$ is single-step cost, $\mathsf{I}$ is information quality. Previous works have constructed under this framework:
+
+\begin{itemize}
+\item Discrete complexity geometry: characterizing problem difficulty and horizons with complexity distance $d_{\mathrm{comp}}$, complexity volume, and discrete Ricci curvature;
+\item Discrete information geometry and task information manifold $(\mathcal{S}_Q,g_Q,\Phi_Q)$: embedding task-relevant visible states into information manifold through observation operator families and relative entropy structure;
+\item Control manifold $(\mathcal{M},G)$ induced by unified time scale: constructing complexity metric through scattering mother scale $\kappa(\omega)$ and group delay matrix $Q(\omega;\theta)$;
+\item Joint variational principle for time--information--complexity on joint manifold $\mathcal{E}_Q = \mathcal{M} \times \mathcal{S}_Q$: geometrizing ``optimal algorithms'' as minimal worldlines.
+\end{itemize}
+
+These structures essentially describe ``how universe evolves'' and ``how information is stored and propagates in universe,'' but have not yet explicitly described ``how observer internal to universe acts on these structures.''
+
+Observers have following characteristics:
+
+\begin{enumerate}
+\item Finite attention: at any moment, can only access small part of $X$, or analyze local region of information manifold $\mathcal{S}_Q$;
+\item Finite memory: capacity of internal state $m(t)$ is finite, can only store finite-dimensional summary;
+\item Knowledge graph: long-term accumulated cognitive structure can be viewed as finite-node graph embedding $\mathcal{S}_Q$, being compressive approximation of information manifold;
+\item Resource constraints: number of computational steps and information acquisition amount executable are limited by complexity budget and time budget.
+\end{enumerate}
+
+Therefore, to characterize observer within computational universe, we need to superimpose on existing geometric structure another layer of ``cognitive geometry'': how attention selects submanifolds, how knowledge graph constructs skeleton on information manifold, how these choices are constrained by complexity geometry and information geometry, and how observer optimizes its cognitive behavior under resource constraints.
+
+Goal of this paper can be summarized as:
+
+\begin{quote}
+Under premise of given unified time scale and complexity--information geometry, give unified axiomatic and variational geometric description of single observer's attention, knowledge graph, and cognitive dynamics.
+\end{quote}
+
+Subsequent multi-observer and consensus geometry can be constructed on this basis through juxtaposition and interaction of multiple observer objects.
+
+\section{Observer Objects in Computational Universe}
+
+This section defines observer objects in computational universe, giving basic interface between them and computational universe.
+
+\subsection{Internal Structure of Observer}
+
+\begin{definition}[Observer Object]
+In computational universe $U_{\mathrm{comp}} = (X,\mathsf{T},\mathsf{C},\mathsf{I})$, an observer object
+
+$$
+O = (M_{\mathrm{int}},\Sigma_{\mathrm{obs}},\Sigma_{\mathrm{act}},\mathcal{P},\mathcal{U})
+$$
+
+consists of following components:
+
+\begin{enumerate}
+\item Internal memory state space $M_{\mathrm{int}}$: countable or finite set, representing observer's internal cognitive state;
+\item Observation symbol space $\Sigma_{\mathrm{obs}}$: finite set, representing symbols (or symbol vectors) obtained from single observation;
+\item Action space $\Sigma_{\mathrm{act}}$: finite set, representing control or query actions observer imposes on universe;
+\item Attention--observation policy
+
+$$
+\mathcal{P}: M_{\mathrm{int}} \to \Delta(\Sigma_{\mathrm{act}}),
+$$
+
+representing distribution of action selection under internal state $m \in M_{\mathrm{int}}$;
+
+\item Internal update operator
+
+$$
+\mathcal{U} : M_{\mathrm{int}}\times\Sigma_{\mathrm{obs}} \to M_{\mathrm{int}},
+$$
+
+representing how to update internal memory under current internal state and observation result.
+\end{enumerate}
+
+For simplification, we assume at any discrete time step $k$:
+
+\begin{enumerate}
+\item Universe is in configuration $x_k \in X$, observer internal state is $m_k \in M_{\mathrm{int}}$;
+\item Observer draws action $a_k \in \Sigma_{\mathrm{act}}$ from $\mathcal{P}(m_k)$;
+\item Universe generates observation symbol $o_k \in \Sigma_{\mathrm{obs}}$ according to $a_k$ and $x_k$ (its distribution determined by universe--observation coupling mechanism);
+\item Observer updates internal state $m_{k+1} = \mathcal{U}(m_k,o_k)$.
+\end{enumerate}
+
+Configuration evolution $x_k \to x_{k+1}$ of universe determined by $\mathsf{T}$ and possibly control mechanism affected by $a_k$.
+\end{definition}
+
+\subsection{Attention Operator}
+
+At discrete level, we formalize observer's ``attention'' as time-dependent weight function on configuration space $X$.
+
+\begin{definition}[Discrete Attention Operator]
+At time step $k$, observer's attention operator is function
+
+$$
+A_k : X \to [0,1],
+$$
+
+satisfying normalization condition
+
+$$
+\sum_{x\in X} A_k(x) = 1,
+$$
+
+or weaker constraint (e.g., total mass not exceeding some constant). We call
+
+$$
+X_k^{\mathrm{att}} = \{ x\in X : A_k(x) > 0 \}
+$$
+
+visible configuration subset at time $k$.
+\end{definition}
+
+Intuitively, $A_k(x)$ represents observer's current attention weight on configuration $x$, typically concentrated around configuration trajectory or some local region.
+
+In continuous limit, we prefer to characterize attention on task information manifold.
+
+\begin{definition}[Attention Density on Information Manifold]
+Under task $Q$, attention can be viewed as probability density $\rho_t(\phi)$ on information manifold $\mathcal{S}_Q$, satisfying
+
+$$
+\rho_t(\phi) \ge 0,
+\quad
+\int_{\mathcal{S}_Q} \rho_t(\phi)\,\mathrm{d}\mu_{g_Q}(\phi) = 1,
+$$
+
+where $\mathrm{d}\mu_{g_Q}$ is volume element of $g_Q$.
+\end{definition}
+
+Under embedding $\Phi_Q:X\to\mathcal{S}_Q$, discrete $A_k$ and continuous $\rho_t$ can correspond through pushforward and sampling.
+
+\section{Knowledge Graph as Discrete Skeleton of Information Manifold}
+
+This section formalizes observer's knowledge graph, embedding it into task information manifold, obtaining bridge between discrete skeleton and continuous information geometry.
+
+\subsection{Definition of Knowledge Graph}
+
+\begin{definition}[Knowledge Graph at Time $t$]
+Observer's knowledge graph at time $t$ is quadruple
+
+$$
+\mathcal{G}_t = (V_t,E_t,w_t,\Phi_t),
+$$
+
+where:
+
+\begin{enumerate}
+\item $V_t$ is finite node set, each node representing a ``concept'' or ``abstract state'';
+\item $E_t \subset V_t\times V_t$ is directed or undirected edge set, representing relationships between concepts (such as causality, implication, similarity, etc.);
+\item $w_t:E_t\to(0,\infty)$ are edge weights, representing relationship strength;
+\item Embedding mapping
+
+$$
+\Phi_t:V_t \to \mathcal{S}_Q,
+$$
+
+embeds each node into some point in task information manifold, making knowledge graph become finite sampling skeleton of $\mathcal{S}_Q$.
+\end{enumerate}
+\end{definition}
+
+\subsection{Consistency of Graph Laplace and Information Laplace}
+
+On knowledge graph $\mathcal{G}_t$ define undirected edge set $\widetilde{E}_t$ and symmetric weights $\widetilde{w}_t$, constructing graph Laplace operator
+
+$$
+(\Delta_t f)(v)
+=
+\sum_{u\sim v} \widetilde{w}_t(v,u)\big(f(u) - f(v)\big),
+\quad f:V_t\to\mathbb{R}.
+$$
+
+On other hand, information manifold has Laplace--Beltrami operator
+
+$$
+\Delta_{g_Q} f(\phi)
+=
+\frac{1}{\sqrt{\det g_Q(\phi)}}
+\partial_i
+\big(
+\sqrt{\det g_Q(\phi)}\,g_Q^{ij}(\phi)\,\partial_j f(\phi)
+\big).
+$$
+
+We hope that in limit of sufficiently large $t$ and sufficiently dense $V_t$, spectrum of $\Delta_t$ approximates spectrum of $\Delta_{g_Q}$.
+
+\begin{definition}[Spectral Approximation]
+Knowledge graph $\mathcal{G}_t$ is said to spectrally approximate on information manifold $(\mathcal{S}_Q,g_Q)$ if there exist embedding $\Phi_t:V_t\to\mathcal{S}_Q$ and appropriate weight normalization such that:
+
+\begin{enumerate}
+\item $\Phi_t(V_t)$ becomes dense in $\mathcal{S}_Q$ as $t \to\infty$;
+\item Kernel weights $\widetilde{w}_t$ constructed based on $\Phi_t$ satisfy that graph Laplace $\Delta_t$ under appropriate scaling $\Gamma$-converges to $\Delta_{g_Q}$.
+\end{enumerate}
+
+This setup is consistent with graph Laplace convergence theory in manifold learning, only here interpreted as ``observer's knowledge graph's asymptotic approximation of information manifold.''
+\end{definition}
+
+\section{Observer Extended Worldline and Cognitive Dynamics}
+
+This section combines observer with control--information geometry, obtaining extended joint state space and worldline.
+
+\subsection{Extended State Space}
+
+Define extended state space of observer--universe joint
+
+$$
+\widehat{\mathcal{E}}_Q
+=
+\mathcal{M} \times \mathcal{S}_Q \times M_{\mathrm{int}} \times \mathfrak{G} \times \mathfrak{A},
+$$
+
+where:
+
+\begin{enumerate}
+\item $\mathcal{M}$ is control manifold, $\mathcal{S}_Q$ is task information manifold;
+\item $M_{\mathrm{int}}$ is internal memory state space;
+\item $\mathfrak{G}$ is collection of all finite knowledge graphs;
+\item $\mathfrak{A}$ is collection of all attention configurations (e.g., probability density $\rho_t$ or discrete weights $A_k$).
+\end{enumerate}
+
+Under time parametrization, joint trajectory of observer--universe is
+
+$$
+\widehat{z}(t)
+=
+\big(
+\theta(t),\phi(t),m(t),\mathcal{G}_t,A_t
+\big).
+$$
+
+\subsection{Observation--Computation Action}
+
+We add observer internal cost and knowledge graph update cost on basis of previous time--information--complexity action $\mathcal{A}_Q$.
+
+Let
+
+$$
+v_{\mathcal{M}}^2(t)
+=
+G_{ab}(\theta(t))\dot{\theta}^a\dot{\theta}^b,
+\quad
+v_{\mathcal{S}_Q}^2(t)
+=
+g_{ij}(\phi(t))\dot{\phi}^i\dot{\phi}^j.
+$$
+
+Define following terms:
+
+\begin{enumerate}
+\item Complexity kinetic energy term
+
+$$
+K_{\mathrm{comp}}(t)
+=
+\tfrac12 \alpha^2 v_{\mathcal{M}}^2(t);
+$$
+
+\item Information kinetic energy term
+
+$$
+K_{\mathrm{info}}(t)
+=
+\tfrac12 \beta^2 v_{\mathcal{S}_Q}^2(t);
+$$
+
+\item Knowledge potential energy term
+
+$$
+U_Q(\phi(t))
+=
+I_Q(\phi(t)),
+$$
+
+where $I_Q$ is task information quality function;
+
+\item Knowledge graph update cost term
+
+$$
+R_{\mathrm{KG}}(t)
+=
+\lambda_{\mathrm{KG}}\,\mathsf{D}\big(\mathcal{G}_{t+\mathrm{d}t},\mathcal{G}_t\big),
+$$
+
+where $\mathsf{D}$ is distance between graphs (e.g., spectral distance or Gromov--Wasserstein distance);
+
+\item Attention configuration cost term
+
+$$
+R_{\mathrm{att}}(t)
+=
+\lambda_{\mathrm{att}}\,\mathsf{C}_{\mathrm{att}}(A_t),
+$$
+
+e.g., in form of entropy regularization or bandwidth constraint.
+\end{enumerate}
+
+\begin{definition}[Observer--Computation Joint Action]
+
+$$
+\widehat{\mathcal{A}}_Q[\widehat{z}(\cdot)]
+=
+\int_0^T
+\Big(
+K_{\mathrm{comp}}(t)
++
+K_{\mathrm{info}}(t)
+-
+\gamma\,U_Q(\phi(t))
++
+R_{\mathrm{KG}}(t)
++
+R_{\mathrm{att}}(t)
+\Big)\,\mathrm{d}t.
+$$
+
+Minimizing $\widehat{\mathcal{A}}_Q$ gives ``optimal'' observation--computation--learning strategy under finite resources.
+\end{definition}
+
+\section{Information Accumulation and Attention--Complexity Inequality}
+
+This section gives representative ``observer version time--information inequality'': under complexity budget and attention bandwidth constraints, information amount observer can accumulate in finite time has upper bound.
+
+\subsection{Information Accumulation Rate}
+
+Let $H_Q(t)$ represent observer's knowledge amount under task $Q$, can be taken as sum of information entropy or relative entropy on internal knowledge graph nodes, e.g.,
+
+$$
+H_Q(t)
+=
+\sum_{v\in V_t}
+\pi_t(v)\,I_Q(\Phi_t(v)),
+$$
+
+where $\pi_t$ is weight distribution on knowledge graph nodes. Information accumulation rate is
+
+$$
+\dot{H}_Q(t)
+=
+\frac{\mathrm{d}}{\mathrm{d}t}H_Q(t).
+$$
+
+We connect this with complexity velocity and attention bandwidth.
+
+\subsection{Attention Bandwidth and Fisher Rate}
+
+Assume at each moment $t$, observer samples information manifold through attention density $\rho_t(\phi)$, its single-step Fisher information acquisition rate $J(t)$ associated with attention bandwidth, e.g.,
+
+$$
+J(t)
+=
+\int_{\mathcal{S}_Q}
+\rho_t(\phi)\,\big|\nabla I_Q(\phi)\big|_{g_Q}^2\,\mathrm{d}\mu_{g_Q}(\phi).
+$$
+
+Under complexity--information joint variational framework, Lipschitz relationship exists between $v_{\mathcal{S}_Q}^2(t)$ and $J(t)$.
+
+\subsection{Information Accumulation Inequality}
+
+Under local Lipschitz conditions and finite attention bandwidth constraints, following inequality can be proved.
+
+\begin{theorem}[Observer Information Accumulation Upper Bound]
+\label{thm:info-bound}
+Assume:
+
+\begin{enumerate}
+\item Task information quality function $I_Q$ is Lipschitz on $\mathcal{S}_Q$ with bounded gradient: there exist $L_I,C_I>0$ such that
+
+$$
+\big|\nabla I_Q(\phi)\big|_{g_Q}
+\le C_I,
+\quad
+\forall \phi\in\mathcal{S}_Q;
+$$
+
+\item Second moment of observer attention density $\rho_t$ is bounded, i.e., there exists $B_{\mathrm{att}}>0$ such that
+
+$$
+\int_{\mathcal{S}_Q}
+\rho_t(\phi)\,
+d_{\mathcal{S}_Q}^2(\phi,\bar{\phi})\,\mathrm{d}\mu_{g_Q}(\phi)
+\le B_{\mathrm{att}},
+$$
+
+for some fixed point $\bar{\phi}$ and all $t\in[0,T]$;
+
+\item Observer's complexity budget is
+
+$$
+C_{\max}
+=
+\int_0^T
+\sqrt{G_{ab}(\theta(t))\dot{\theta}^a\dot{\theta}^b}\,\mathrm{d}t.
+$$
+\end{enumerate}
+
+Then there exists constant $K>0$, depending only on $C_I,B_{\mathrm{att}}$ and joint geometric structure, such that
+
+$$
+H_Q(T) - H_Q(0)
+\le
+K\,C_{\max}.
+$$
+\end{theorem}
+
+Proof in Appendix D.1.
+
+This inequality states: under unified time scale and geometric constraints, information amount observer can accumulate has linear upper bound with respect to available complexity resources, attention only changes proportionality constant without changing linear form.
+
+\section{Knowledge Graph Dimension Convergence and Information Manifold Skeleton}
+
+This section proves that under suitable conditions, spectral dimension of observer's knowledge graph converges in long-time limit to local information dimension of task information manifold.
+
+\subsection{Spectral Dimension of Knowledge Graph}
+
+For knowledge graph $\mathcal{G}_t$, let $\lambda_1^{(t)}\le\lambda_2^{(t)}\le\cdots$ be eigenvalue sequence of graph Laplace operator $-\Delta_t$. Define spectral dimension
+
+$$
+d_{\mathrm{spec}}(t)
+=
+-2 \lim_{\varepsilon\downarrow 0}
+\frac{\log \Tr\,\exp(\varepsilon\Delta_t)}{\log\varepsilon},
+$$
+
+if this limit exists. Intuitively, $d_{\mathrm{spec}}(t)$ describes effective dimension of graph at small scales.
+
+\subsection{Local Information Dimension of Information Manifold}
+
+On information manifold $(\mathcal{S}_Q,g_Q)$, local information dimension can be defined as
+
+$$
+d_{\mathrm{info},Q}(\phi_0)
+=
+\lim_{R\to 0}
+\frac{\log \mu_{g_Q}\big(B_R(\phi_0)\big)}{\log R},
+$$
+
+where $B_R(\phi_0)$ is geodesic ball of radius $R$ near $\phi_0$.
+
+\subsection{Convergence Theorem}
+
+\begin{theorem}[Convergence of Knowledge Graph Spectral Dimension]
+\label{thm:spec-conv}
+Assume:
+
+\begin{enumerate}
+\item Observer's knowledge graph $\mathcal{G}_t = (V_t,E_t,w_t,\Phi_t)$ spectrally approximates on $(\mathcal{S}_Q,g_Q)$ as $t\to\infty$;
+\item Observer's long-term attention covers compact region $K\subset\mathcal{S}_Q$, and $\Phi_t(V_t) \subset K$ for sufficiently large $t$;
+\item For any $\phi_0$ in $K$, local information dimension $d_{\mathrm{info},Q}(\phi_0)$ exists and is constant $d_{\mathrm{info},Q}$.
+\end{enumerate}
+
+Then
+
+$$
+\lim_{t\to\infty} d_{\mathrm{spec}}(t) = d_{\mathrm{info},Q}.
+$$
+\end{theorem}
+
+Proof in Appendix E.1.
+
+This theorem shows: in long-term learning process, spectral dimension of observer's knowledge graph tends toward true dimension of information manifold, meaning knowledge graph gradually becomes high-fidelity skeleton of information manifold geometrically.
+
+\appendix
+
+\section{Formalization Details of Observer Object and Attention Operator}
+
+\subsection{Reachability and Finite Memory of Observer Object}
+
+In main text, we only gave structural definition of observer object. This appendix supplements its reachability and finite memory axioms.
+
+\begin{axiom}[O1: Finite Memory Capacity]
+Internal memory state space $M_{\mathrm{int}}$ is finite set, or can be decomposed into direct product of finite-dimensional registers, each register having finite number of states. This ensures internal representation information at any moment of observer is encodable as finite bit string.
+\end{axiom}
+
+\begin{axiom}[O2: Internal Update Computability]
+Update operator $\mathcal{U}:M_{\mathrm{int}}\times\Sigma_{\mathrm{obs}}\to M_{\mathrm{int}}$ should be computable function under computational universe model, i.e., there exists finite complexity path realizing this update.
+\end{axiom}
+
+\begin{axiom}[O3: Locality of Attention Decision]
+Attention--observation policy $\mathcal{P}$ should only depend on current internal state $m_k$, not on entire history, thereby satisfying Markov property. This is consistent with standard POMDP model.
+\end{axiom}
+
+Under these axioms, observer's behavior can be embedded into discrete dynamical system of computational universe, without introducing external ``super-computational'' components.
+
+\section{Manifold Learning Theory Background of Knowledge Graph Spectral Approximation}
+
+Theory of graph Laplace converging to manifold Laplace--Beltrami has mature results in manifold learning and spectral geometry. This appendix only gives simplified version under this paper's setting.
+
+\subsection{Construction of Kernel Weights and Graph Laplace}
+
+Assume $\mathcal{S}_Q$ is compact manifold, $\{ \phi_v \}_{v\in V_t}$ are point set sampled from $\mathcal{S}_Q$. Define kernel weights
+
+$$
+\widetilde{w}_t(v,u)
+=
+\eta_t^{-d}
+K\left(
+\frac{d_{\mathcal{S}_Q}(\phi_v,\phi_u)}{\eta_t}
+\right),
+$$
+
+where $\eta_t \to 0$, $t\eta_t^d \to \infty$, $K$ is symmetric kernel. Graph Laplace
+
+$$
+(\Delta_t f)(v)
+=
+\sum_{u} \widetilde{w}_t(v,u)\big(f(u)-f(v)\big)
+$$
+
+$\Gamma$-converges to $\Delta_{g_Q}$ after appropriate normalization. This result can be viewed as variant of works by Coifman--Belkin--Niyogi et al.
+
+\section{Euler--Lagrange Form Under Extended Action}
+
+Extended action $\widehat{\mathcal{A}}_Q$ compared to $\mathcal{A}_Q$ adds $R_{\mathrm{KG}}$ and $R_{\mathrm{att}}$, whose variations with respect to $\mathcal{G}_t,A_t$ give optimality conditions for graph update and attention configuration. Formally, can be written as
+
+$$
+\frac{\delta \widehat{\mathcal{A}}_Q}{\delta \mathcal{G}_t}
+=
+0,
+\quad
+\frac{\delta \widehat{\mathcal{A}}_Q}{\delta A_t}
+=
+0.
+$$
+
+In concrete models, can choose $\mathsf{D}$ as Gromov--Wasserstein distance, then first equation corresponds to updating knowledge graph at each moment to optimal matching graph balancing cost and information benefit; second equation corresponds to selecting attention distribution maximizing short-term information gain under given attention bandwidth constraint. Since these variations involve optimization on graph spaces and distribution spaces, technical details are heavy, so we only give structural form in this paper.
+
+\section{Proof of Observer Information Accumulation Inequality}
+
+\subsection{Proof Idea of Theorem~\ref{thm:info-bound}}
+
+For derivative of $H_Q(t)$, using chain rule and Cauchy--Schwarz inequality, we get
+
+$$
+\dot{H}_Q(t)
+=
+\sum_{v\in V_t}
+\dot{\pi}_t(v)\,I_Q(\Phi_t(v))
++
+\sum_{v\in V_t}
+\pi_t(v)\,\nabla I_Q(\Phi_t(v))\cdot\dot{\Phi}_t(v).
+$$
+
+First term can be controlled within constant range through attention and complexity geometry constraints; second term using gradient boundedness and attention second moment boundedness, can estimate
+
+$$
+\big|\dot{H}_Q(t)\big|
+\le
+C_I
+\sqrt{
+\int \rho_t(\phi)\,d_{\mathcal{S}_Q}^2(\phi,\bar{\phi})\,\mathrm{d}\mu_{g_Q}
+}
+\sqrt{v_{\mathcal{S}_Q}^2(t)}
+\le
+K_1 \sqrt{v_{\mathcal{S}_Q}^2(t)}.
+$$
+
+Using weight relation in joint action and coupling of $v_{\mathcal{S}_Q}^2(t)$ with $v_{\mathcal{M}}^2(t)$, can prove
+
+$$
+\int_0^T \sqrt{v_{\mathcal{S}_Q}^2(t)}\,\mathrm{d}t
+\le
+K_2 C_{\max},
+$$
+
+thereby
+
+$$
+H_Q(T) - H_Q(0)
+\le
+K C_{\max}.
+$$
+
+Constant $K$ only depends on geometry and attention bandwidth parameters. Complete technical details involve Jensen inequality and fine comparison of complexity kinetic--information kinetic weights, only overview given here.
+
+\section{Proof Outline of Knowledge Graph Spectral Dimension Convergence}
+
+\subsection{Proof of Theorem~\ref{thm:spec-conv}}
+
+Under assumptions of knowledge graph spectral approximation and information manifold local dimension constancy, heat kernel trace of graph Laplace
+
+$$
+\Tr\,\exp(t\Delta_t)
+$$
+
+has asymptotic behavior as $t\to 0$ that can be approximated by asymptotic expansion of heat kernel trace on continuous manifold, i.e.,
+
+$$
+\Tr\,\exp(t\Delta_t)
+\sim
+(4\pi t)^{-d_{\mathrm{info},Q}/2}
+\sum_{k=0}^\infty a_k t^k.
+$$
+
+By spectral dimension definition
+
+$$
+d_{\mathrm{spec}}(t)
+=
+-2 \lim_{\varepsilon\downarrow 0}
+\frac{\log \Tr\,\exp(\varepsilon\Delta_t)}{\log\varepsilon},
+$$
+
+and heat kernel trace asymptotic form, we obtain
+
+$$
+\lim_{t\to\infty} d_{\mathrm{spec}}(t) = d_{\mathrm{info},Q}.
+$$
+
+Rigorous proof requires constructing error estimate from graph Laplace heat kernel to manifold Laplace--Beltrami heat kernel, controlling error influence in joint limit of $t\to\infty$ and $\varepsilon\downarrow 0$. Such techniques already have mature methods in spectral geometry and graph manifold convergence literature, we do not reproduce all details in this paper.
+
+\end{document}

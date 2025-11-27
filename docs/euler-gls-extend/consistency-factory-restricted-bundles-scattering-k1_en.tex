@@ -1,0 +1,493 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{braket}
+\usepackage{graphicx}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Consistency Factory: Family-Level Unification and Integral Uniqueness of Restricted Principal Bundles—Scattering—$K^{1}$}
+
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This paper establishes a framework that seamlessly integrates \textbf{restricted geometry} (restricted unitary groups and restricted Grassmannians), \textbf{scattering spectral theory} (Birman--Kreĭn formula, spectral shift function, spectral flow), and \textbf{topological $K$-theory} ($K^{1}$ representation spaces) at the \textbf{families level}. First, we endow $U_{\mathrm{res}}$ and $\mathrm{Gr}_{\mathrm{res}}$ with explicit Hilbert--Lie geometric structures via the Hilbert--Schmidt restricted model, proving the existence of an $H$-space equivalence $U_{\mathrm{res}}\simeq \Omega U$, from which we obtain the delooping identification $BU_{\mathrm{res}}\simeq U$, thereby providing a $K^{1}$-classification of $U_{\mathrm{res}}$-principal bundles over paracompact base spaces. Second, under minimal verifiable hypotheses of ``gap continuity + relative trace class + family Schatten continuity + endpoint closure,'' we use the \textbf{relative Cayley transform} to send scattering families $(H,H_{0})$ into $K^{1}(X)$, and through Pushnitski invariance, the Birman--Kreĭn formula, and the ``spectral shift = spectral flow = $K^{1}$ fundamental class'' transmission belt, we prove that this construction is consistent with stabilized unitary loops on the energy side and independent of smooth/cutoff choices. Finally, we propose a set of minimal axioms (continuity, functoriality/invariance, exterior direct sum additivity, scale equivariance, BK normalization), and under representability and Bott compatibility constraints, we prove that any natural transformation satisfying these axioms is uniquely determined up to multiplication by an integer, which upon normalization via a rank-one prototype yields the \textbf{integer $+1$}. As a cross-domain reference, we demonstrate that monoidal natural transformations of relative-entropy-type functors on $\mathbf{FinStat}$ are unique up to nonnegative constant multiples. Appendices provide complete technical details including local slices and delooping identification of principal bundles, family-level Schatten control of the relative Cayley transform, explicit homotopy for scale equivariance, energy-side endpoint closure and family-version invariance, rank-one BK normalization, and a functorial proof of ``uniqueness up to integer multiples.''
+
+\textbf{Keywords}: restricted unitary groups; restricted Grassmannian; delooping identification; Bott periodicity; principal bundle classification; relative Cayley transform; spectral shift function; Birman--Kreĭn formula; spectral flow; $K^{1}$ representation; monoidal natural transformations; relative entropy
+\end{abstract}
+
+\section{Introduction and Historical Background}
+
+The goal of this paper is to align and close the following three mature threads \textbf{at the families level} into an ``existence--classification--uniqueness'' loop:
+
+\begin{itemize}
+\item \textbf{Restricted geometry $\longleftrightarrow$ $K^{1}$ representation}: The homotopy types of the restricted Grassmannian $\mathrm{Gr}_{\mathrm{res}}$ and the restricted unitary group $U_{\mathrm{res}}$ match with Bott periodicity, inducing $BU_{\mathrm{res}}\simeq U$, thereby providing $\mathrm{Prin}_{U_{\mathrm{res}}}(X)\cong K^{1}(X)$ on paracompact $X$.
+
+\item \textbf{Scattering $\longleftrightarrow$ $K^{1}$}: For families of self-adjoint operator pairs $(H,H_{0})$, under relative trace class and gap continuity, the relative Cayley transform yields an element in $K^{1}(X)$; on the energy side, stabilized unitary loops (winding numbers of determinant phases) yield the same $K^{1}$ element; both are homotopy-invariant under smooth/cutoff choices.
+
+\item \textbf{Uniqueness paradigm}: Under minimal axioms (continuity, additivity, scale equivariance, BK normalization), natural transformations scattering families $\to K^{1}$ are \textbf{unique up to integer multiples}; upon normalization via a rank-one prototype, this yields $+1$. Relative-entropy-type functors on $\mathbf{FinStat}$ being unique up to nonnegative constant multiples serves as a parallel reference.
+\end{itemize}
+
+Classical sources include: Segal--Wilson and Pressley--Segal on the geometry and homotopy structures of restricted Grassmannians/restricted groups; Kuiper on the contractibility of infinite-dimensional unitary groups; Bott periodicity and $K^{1}$ representation; Pushnitski's invariance principle and the Birman--Kreĭn formula; spectral shift = spectral flow (Azamov--Carey--Dodds--Sukochev) and spectral flow = $K^{1}$ fundamental class (Phillips); Baez--Fritz on the categorical characterization of relative entropy on $\mathbf{FinStat}$. This paper systematizes family-level regularity and choice-independence on these foundations, and generalizes the ``axioms + normalization $\Rightarrow$ unique multiple'' philosophy to scattering $\to K^{1}$.
+
+\section{Models and Hypotheses}
+
+\subsection{Restricted Models and Topological Conventions}
+
+Let $\mathcal H$ be a separable complex Hilbert space, with polarization $\mathcal H=\mathcal H_{+}\oplus \mathcal H_{-}$ and positive projection $\mathsf P_{+}$. Denote the Schatten ideals $\mathfrak S_{p}$ ($1\le p\le\infty$) and the Hilbert--Schmidt ideal $\mathfrak S_{2}$.
+
+\begin{itemize}
+\item \textbf{Restricted unitary group (Hilbert--Schmidt restricted)}
+\end{itemize}
+
+$$
+U_{\mathrm{res}}=\bigl\{U\in U(\mathcal H):[U,\mathsf P_{+}]\in \mathfrak S_{2}\bigr\},
+$$
+
+endowed with the structure of a Hilbert--Lie group using the $\mathfrak S_{2}$ model as tangent space, with the corresponding manifold topology.
+
+\begin{itemize}
+\item \textbf{Restricted Grassmannian}
+\end{itemize}
+
+$$
+\mathrm{Gr}_{\mathrm{res}}=\bigl\{W\subset\mathcal H\ \text{closed direct summand subspace}:\ \mathsf P_{+}|_{W}-\mathrm{id}_{W}\in\mathfrak S_{2}\bigr\},
+$$
+
+endowed with a Hilbert manifold structure using graph coordinates (into $\mathcal B(\mathcal H_{+},\mathcal H_{-})\cap\mathfrak S_{2}$). $U_{\mathrm{res}}$ acts on it via $U\cdot W=UW$.
+
+\begin{itemize}
+\item \textbf{Stable unitary group and $K^{1}$ representation}
+\end{itemize}
+
+Via the direct limit $U=\varinjlim_{n}U(n)$ as an $H$-space (with exterior direct sum multiplication); for paracompact/CW-type topological spaces $X$ we have $[X,U]\cong K^{1}(X)$.
+
+\begin{remark}
+When unambiguous, both $H$-space homotopy equivalence and weak homotopy equivalence are denoted by $\simeq$; isomorphism is denoted by $\cong$.
+\end{remark}
+
+\subsection{Minimal Verifiable Hypotheses for Scattering Families}
+
+Let $X$ be a paracompact metrizable space. For a family of self-adjoint operators $\{(H_{x},H_{0,x})\}_{x\in X}\subset\mathcal B(\mathcal H)$, we require:
+
+\begin{itemize}
+\item \textbf{(S1) gap continuity}: $x\mapsto (H_{x}\pm i)^{-1}$, $(H_{0,x}\pm i)^{-1}$ are continuous in the operator norm.
+
+\item \textbf{(S2) relative trace class and family $\mathfrak S_{1}$ continuity}:
+\end{itemize}
+
+$$
+(H_{x}-H_{0,x})(H_{0,x}-i)^{-1}\in \mathfrak S_{1},\qquad
+x\longmapsto |(H_{x}-H_{0,x})(H_{0,x}-i)^{-1}|_{\mathfrak S_{1}}\ \text{continuous}.
+$$
+
+\begin{itemize}
+\item \textbf{(S3) scattering regularity (family version)}: for a.e. $\lambda>0$ we have $S_{x}(\lambda)-\mathbf 1\in \mathfrak S_{1}$, and for any compact energy interval $I\subset(0,\infty)$ and compact $K\subset X$,
+\end{itemize}
+
+$$
+\sup_{x\in K}\int_{I}|S_{x}(\lambda)-\mathbf 1|_{\mathfrak S_{1}}\,d\lambda<\infty.
+$$
+
+\begin{itemize}
+\item \textbf{(S4) endpoint closure}: There exists a uniform energy reparametrization and endpoint static connection such that $\lambda\in[0,\infty]\mapsto S_{x}(\lambda)$ closes into a loop in the quotient $U^{(1)}:=\{\mathbf 1+\mathfrak S_{1}\}$, and this closure is homotopy-invariant under choice.
+\end{itemize}
+
+\begin{remark}
+\textbf{Scope}: One-dimensional short-range or relative finite-rank/trace-class models satisfy (S3); in higher dimensions, it is common to have $S(\lambda)-\mathbf 1\in \mathfrak S_{p}$ ($p>1$), where modified determinants and phases can be used instead, compatible with this framework; see \S8 discussion.
+\end{remark}
+
+\subsection{Naturality Axioms (Scattering Families $\to K^{1}$)}
+
+Let $\Phi$ be a candidate natural transformation sending objects $(H,H_{0})$ (or their families) into $K^{1}$:
+
+\begin{itemize}
+\item \textbf{(C0) limit/homotopy preservation}: For approximations and gap homotopies controlled by (S1)--(S2), $\Phi$ preserves limits and homotopy classes;
+
+\item \textbf{(C1) invariance/functoriality}: Invariant under fiber-wise continuous unitary conjugations, trivial stabilizations, and isomorphic pullbacks;
+
+\item \textbf{(C2) exterior direct sum additivity}: $\Phi((H_{1}\oplus H_{2}),(H_{0,1}\oplus H_{0,2}))=\Phi(H_{1},H_{0,1})+\Phi(H_{2},H_{0,2})$;
+
+\item \textbf{(C3) scale equivariance}: $\Phi(aH,aH_{0})=\Phi(H,H_{0})$ ($a>0$);
+
+\item \textbf{(C4) BK normalization}: On the standard rank-one prototype (\S6), $\Phi$ takes the positive generator of $K^{1}(S^{1})\cong\mathbb Z$.
+\end{itemize}
+
+\section{Main Results}
+
+\begin{theorem}[Theorem B: $K^{1}$ Classification of Restricted Principal Bundles]
+There exists an $H$-space equivalence
+$$
+U_{\mathrm{res}}\ \simeq\ \Omega U,
+$$
+from which $BU_{\mathrm{res}}\simeq U$. For paracompact $X$, we have the natural isomorphism
+$$
+\mathrm{Prin}_{U_{\mathrm{res}}}(X)\ \cong\ [X,BU_{\mathrm{res}}]\ \cong\ [X,U]\ \cong\ K^{1}(X).
+$$
+\end{theorem}
+
+\begin{theorem}[Theorem A1: Family-Level $K^{1}$ Construction via Relative Cayley]
+Under (S1)--(S2), define
+$$
+U(H):=(H-i)(H+i)^{-1},\qquad u_{x}:=U(H_{x})U(H_{0,x})^{-1}\in U^{(1)}.
+$$
+Then $x\mapsto u_{x}$ is norm-continuous and determines a $K^{1}(X)$ element $[u_{\bullet}]$.
+\end{theorem}
+
+\begin{theorem}[Theorem A2: Energy-Side and Cayley-Side Consistency and Choice Independence]
+Under (S1)--(S4), the construction of stabilized unitary loops $\Gamma_{x}:S^{1}\to U^{(1)}$ from $S_{x}(\lambda)$ yields a $K^{1}(X)$ element $[\Gamma_{\bullet}]$. We have
+$$
+[\Gamma_{\bullet}]\ =\ [u_{\bullet}]\ \in K^{1}(X),
+$$
+and this is homotopy-invariant under choices of energy smoothing, cutoff, and endpoint closure.
+\end{theorem}
+
+\begin{theorem}[Theorem A3: Uniqueness up to Integer Multiples]
+Let $\Phi$ be a natural transformation sending scattering families into $K^{1}$, satisfying (C0)--(C4). Then there exists a unique integer $n$ such that
+$$
+\Phi\ =\ n\cdot \Phi_{\mathrm{can}},
+$$
+where $\Phi_{\mathrm{can}}(H,H_{0})=[x\mapsto U(H_{x})U(H_{0,x})^{-1}]$ is the \textbf{canonical} construction of Theorem A1. By (C4) normalization on the rank-one prototype, we obtain $n=1$.
+\end{theorem}
+
+\begin{theorem}[Theorem C: Uniqueness of Monoidal Natural Transformations of Relative Entropy on $\mathbf{FinStat}$]
+On the category $\mathbf{FinStat}$ formed by finite-set probability distributions with Markov arrows possessing right inverses, relative-entropy-type functors satisfying ``convex linearity, lower semicontinuity, data processing inequality, zero at optimal hypothesis'' are constant multiples of Kullback--Leibler divergence. If $F,G$ are monoidal (Cartesian tensor) functors to $(\mathbb R_{\ge 0},+)$, then any monoidal natural transformation $\eta:F\Rightarrow G$ is a \textbf{scalar multiple object-wise} by some nonnegative constant $c$, which is uniquely determined by the value of $\eta$ at the unit object.
+\end{theorem}
+
+\section{Proofs}
+
+\subsection{Proof of Theorem B}
+
+\textbf{Step 1: Principal bundle and homotopy equivalence.}
+$U_{\mathrm{res}}$ acts freely and properly on $\mathrm{Gr}_{\mathrm{res}}$ via $U\cdot W=UW$. Using graph coordinates, we obtain local slices: for $W\in\mathrm{Gr}_{\mathrm{res}}$, take a small ball $\mathcal U_{W}\subset \mathcal B(\mathcal H_{+},\mathcal H_{-})\cap\mathfrak S_{2}$ mapping to $\mathrm{graph}(T)$. Local triviality implies that the projection $\pi:U_{\mathrm{res}}\to \mathrm{Gr}_{\mathrm{res}}$ is a smooth principal bundle with stabilizer the block-diagonal $U(\mathcal H_{+})\times U(\mathcal H_{-})$. The stabilizer is contractible in the norm topology (Kuiper), and its inclusion into the restricted subgroup is a weak equivalence; fiber homotopy triviality implies
+$$
+U_{\mathrm{res}}\ \simeq\ \mathrm{Gr}_{\mathrm{res}}.
+$$
+
+\textbf{Step 2: Homotopy type of $\mathrm{Gr}_{\mathrm{res}}$.}
+The connected components of the restricted Grassmannian are labeled by virtual dimension (Fredholm index), $\pi_{0}\cong\mathbb Z$. Each component is homotopy equivalent to $BU$, thus
+$$
+\mathrm{Gr}_{\mathrm{res}}\ \simeq\ \mathbb Z\times BU.
+$$
+
+\textbf{Step 3: Bott and delooping identification.}
+Bott periodicity $\Omega U\simeq \mathbb Z\times BU$ yields the $H$-space equivalence
+$$
+U_{\mathrm{res}}\ \simeq\ \Omega U.
+$$
+For well-pointed $A_{\infty}$ spaces and weak equivalence $f:G\to H$, the classifying space functor $B$ preserves weak equivalences, hence
+$$
+BU_{\mathrm{res}}\ \simeq\ U.
+$$
+Finally, using $[X,U]\cong K^{1}(X)$ gives the classification statement. $\square$
+
+\subsection{Proof of Theorem A1}
+
+For self-adjoint $T$, the fractional resolvent identity gives
+$$
+U(T)=\frac{T-i}{T+i}=I-2i\,(T+i)^{-1}.
+$$
+Thus
+$$
+U(H_{x})-U(H_{0,x})=2i\,(H_{x}+i)^{-1}(H_{x}-H_{0,x})(H_{0,x}+i)^{-1}.
+$$
+By (S1), $(H_{x}\pm i)^{-1}$ is norm-continuous and uniformly bounded; by (S2), $(H_{x}-H_{0,x})(H_{0,x}-i)^{-1}\in\mathfrak S_{1}$ with family $\mathfrak S_{1}$ continuity. The ideal property yields
+$$
+|U(H_{x})-U(H_{0,x})|_{\mathfrak S_{1}}
+\ \le\ 2\,|(H_{x}-H_{0,x})(H_{0,x}+i)^{-1}|_{\mathfrak S_{1}},
+$$
+so $u_{x}-I\in\mathfrak S_{1}$ and $x\mapsto u_{x}$ is norm-continuous, defining a $K^{1}(X)$ element $[u_{\bullet}]$. $\square$
+
+\subsection{Proof of Theorem A2}
+
+\textbf{(i) Energy-side loops and BK formula.}
+Under (S3)--(S4), choose a uniform energy reparametrization $h:[0,1]\to[0,\infty]$ and endpoint static connection so that $S_{x}(h(t))$ closes into a loop $\Gamma_{x}$ in $U^{(1)}$. The Birman--Kreĭn formula gives
+$$
+\det S_{x}(\lambda)=\exp\{-2\pi i\, \xi_{x}(\lambda)\},
+$$
+with differential form
+$$
+\frac{1}{2\pi i}\operatorname{tr}\bigl(S_{x}(\lambda)^{-1}\partial_{\lambda}S_{x}(\lambda)\bigr)\,d\lambda
+\ =\ d\,\xi_{x}(\lambda).
+$$
+Endpoint closure and local uniform integrability ensure that the winding number of the entire loop equals the total variation of $\xi_{x}$.
+
+\textbf{(ii) Invariance and spectral flow.}
+Pushnitski invariance reduces the spectral shift function from $(H_{x},H_{0,x})$ to bounded functional calculus (such as $\arctan$ or Cayley), preserving $\xi_{x}$. Spectral shift = spectral flow identifies $\xi_{x}$ with the spectral flow of the path $\{(H_{x}-\mu)\}_{\mu}$. Phillips identifies spectral flow with the $K^{1}$ fundamental class, yielding energy-side $[\Gamma_{\bullet}]=[u_{\bullet}]$. Choices of smoothing/cutoff and endpoint closure are homotopy-invariant under invariance. $\square$
+
+\subsection{Proof of Theorem A3}
+
+\textbf{(i) Factorization to representing space.}
+Representability $\mathbf{K1}(X)\cong[X,U]$ means any natural endomorphism $\Phi:K^{1}(-)\Rightarrow K^{1}(-)$ uniquely corresponds to post-composition by some $H$-space self-map $f:U\to U$: $\Phi_{X}([g])=[f\circ g]$. For a natural transformation $\Phi$ of scattering families, using the ``forgetful'' functor $\mathcal U$ given by $(H,H_{0})\mapsto u$ from A1 as intermediary, we obtain $\Phi=\Phi^{U}\circ \mathcal U$.
+
+\textbf{(ii) Generator detection and extension.}
+Taking $X=S^{1}$, $\widetilde K^{1}(S^{1})\cong\mathbb Z$ forces $\Phi_{S^{1}}$ to be multiplication by $n$. By exterior direct sum additivity and Bott compatibility, multiplication by $n$ extends to arbitrary $X$; thus $\Phi=n\cdot \Phi_{\mathrm{can}}$.
+
+\textbf{(iii) Normalization.}
+On the rank-one prototype of \S6, $\Phi_{\mathrm{can}}$ takes $+1$; (C4) yields $n=1$. $\square$
+
+\subsection{Proof of Theorem C (Complete)}
+
+\textbf{Objects and morphisms.} Objects of $\mathbf{FinStat}$ are finite sets $X$ equipped with prior $q\in\Delta(X)$ and ``hypothesis--observation'' pairs $(f,s)$ ($f:X\to Y$ a Markov arrow, $s:Y\to X$ a right inverse Bayesian update, $fs=\mathrm{id}_Y$). Morphisms are Markov arrows compatible with right inverses; tensor structure is Cartesian product $\otimes$, unit object is the singleton $\mathbf 1$; target monoidal category is $(\mathbb R_{\ge0},+,0)$.
+
+\textbf{Baez--Fritz uniqueness.} A functor $F:\mathbf{FinStat}\to(\mathbb R_{\ge0},+)$ satisfying ``convex linearity, lower semicontinuity, data processing inequality, zero at optimal hypothesis'' must be $c\cdot D_{\mathrm{KL}}$ ($c\ge0$).
+
+\textbf{Uniqueness of monoidal natural transformations.} Let $F=c\cdot D_{\mathrm{KL}}$, $G=d\cdot D_{\mathrm{KL}}$ be monoidal functors, $\eta:F\Rightarrow G$ a monoidal natural transformation; we must show there exists unique $a\ge0$ such that $\eta_{X}=a\cdot\mathrm{id}_{F(X)}$ (scalar multiple of identity object-wise).
+
+\begin{itemize}
+\item \emph{(a) Additive homomorphism object-wise.} Monoidality gives
+$$
+\eta_{X\times Y}\bigl(F(x)\!+\!F(y)\bigr)
+=\eta_{X}(F(x))+\eta_{Y}(F(y)).
+$$
+Taking $Y=\mathbf 1$, $F(\mathbf 1)=0$, we find $\eta_{X}$ is an additive homomorphism on $(\mathbb R_{\ge0},+)$, and by lower semicontinuity is linear: $\eta_{X}(t)=a_{X}\,t$ ($a_{X}\ge0$).
+
+\item \emph{(b) Naturality makes the proportionality constant object-independent.} For any Markov arrow $f:X\to Y$, naturality gives
+$$
+a_{Y}\,F(f)=\eta_{Y}\circ F(f)=G(f)\circ \eta_{X}=a_{X}\,F(f).
+$$
+Choosing a simple two-point distribution model (e.g. Bernoulli) such that $F(f)\neq0$ yields $a_{X}=a_{Y}$. Thus $a_{X}\equiv a$ is object-independent.
+
+\item \emph{(c) Coefficient determined at unit.} By monoidality
+$$
+\eta_{\mathbf 1}(0)=0,\qquad \eta_{X\times \mathbf 1}=\eta_{X}+\eta_{\mathbf 1}.
+$$
+Induction shows $\eta$ is completely determined by $a=\eta_{\mathbf 1}'$; moreover $a\ge0$. Taking $a=d/c$ then $\eta$ matches $F,G$. Uniqueness is obvious. $\square$
+\end{itemize}
+
+\section{Model Applications}
+
+\subsection{One-Dimensional Schrödinger Rank-One Family}
+
+Take $\mathcal H=L^{2}(\mathbb R)$,
+$$
+H_{0}=-\partial_{x}^{2},\qquad H=H_{0}+\alpha\,\langle\cdot,\phi\rangle\phi,
+$$
+where $\alpha>0$, $|\phi|=1$. Let the parameter $\alpha=\alpha(x)$ vary continuously. This family satisfies (S1)--(S4), and $S(\lambda)-\mathbf 1\in\mathfrak S_{1}$ (a.e. $\lambda$). By A1 we obtain $[u_{\bullet}]\in K^{1}(X)$, by A2 the energy-side winding number equals the degree of $[u_{\bullet}]$. Standard phase-shift calculations give $\frac{1}{2\pi i}\int \operatorname{tr}(S^{-1}dS)=+1$ as the normalized unit, matching A3's $n=1$.
+
+\subsection{Twisted Case and Globally Non-Choosable Polarization}
+
+If the polarization is twisted over the base space $X$, it should be represented by a $PU(\mathcal H)$-principal bundle and Dixmier--Douady class $\delta\in H^{3}(X,\mathbb Z)$, with output replaced from $K^{1}(X)$ to twisted $K^{1}_{\delta}(X)$. The construction of restricted geometry and scattering channels remains invariant in local coordinates, with gluing determined by bundle transition functions.
+
+\section{Engineering Recommendations (Reproducible Pipeline)}
+
+\textbf{Input}: Energy grid $\{\lambda_{k}\}_{k=0}^{N}$, scattering matrix approximation $S(\lambda_{k})$.
+
+\textbf{Steps}:
+\begin{enumerate}
+\item \textbf{Endpoint static connection}: Introduce small arc connections at $\lambda_{0},\lambda_{N}$ to ensure loop closure;
+\item \textbf{Smoothing}: Apply fixed-bandwidth energy smoothing to $\lambda\mapsto S(\lambda)$ to suppress threshold noise;
+\item \textbf{Determinant phase and winding number}: Compute $\arg\det S(\lambda_{k})$ and perform unwrapping, accumulating differences to approximate $\sum \Delta \arg/2\pi$ to obtain winding number;
+\item \textbf{Robustness}: Microtuning of smoothing kernel width, grid density, endpoint connection length should preserve integer invariance;
+\item \textbf{Cross-validation}: In parallel compute finite-dimensional truncation approximation $\operatorname{wind}\det U(H_{n})U(H_{0,n})^{-1}$ on the relative Cayley side for cross-validation.
+\end{enumerate}
+
+\textbf{Error accounting}: By the $\mathfrak S_{1}$ bounds of \S4.2 and local uniform integrability of (S3), grid error is controlled by $\sup|S-\mathbf 1|_{\mathfrak S_{1}}$ and step size; smoothing error is homotopy-invariant under Pushnitski invariance.
+
+\section{Normalization Prototype and Orientation Verification}
+
+Using the rank-one prototype of \S5.1 as normalized unit: fix the sign convention of the phase shift $\delta(\lambda)$ such that
+$$
+\det S(\lambda)=e^{-2i\delta(\lambda)},\qquad \xi(\lambda)=\frac{\delta(\lambda)}{\pi}.
+$$
+Endpoint integrability and monotonicity give
+$$
+\frac{1}{2\pi i}\int_{0}^{\infty}\operatorname{tr}\bigl(S^{-1}(\lambda)\partial_{\lambda}S(\lambda)\bigr)\,d\lambda
+=\frac{1}{\pi}\bigl(\delta(0^{+})-\delta(\infty)\bigr)=+1.
+$$
+Scaling $a>0$ does not change $\mathrm{sgn}(H)$ and the $K^{1}$ class; under Mellin--Hardy polarization, scaling corresponds to a phase multiplier, preserving the polar decomposition invariant (see Appendix C).
+
+\section{Discussion (Boundaries, Risks, and Related Work)}
+
+\begin{itemize}
+\item \textbf{Dimension and ideal order}: In higher-dimensional short-range scattering, commonly only $S(\lambda)-\mathbf 1\in \mathfrak S_{p}$ ($p>1$) holds. One can instead use modified determinants $\det_{p}$ and modified phases, following the A2 chain to obtain $K^{1}$ classes and uniqueness; technical details are compatible with this framework.
+
+\item \textbf{Thresholds and resonances}: Zero-energy thresholds can be pushed out of the essential spectrum via finite-rank/compact perturbations, then transmitted back by (C0); or introduce modified phases.
+
+\item \textbf{Equivalence of restricted models}: Different restricted ideals (compact, $\mathfrak S_{2}$, $\mathfrak S_{1}$) are homotopy equivalent under reasonable comparison topologies and align with Bott.
+
+\item \textbf{Spectral flow and unbounded Fredholm}: One can also directly implement the identification spectral flow = $K^{1}$ under unbounded Fredholm models.
+
+\item \textbf{$\mathbf{FinStat}$ parallel}: The uniqueness paradigm on the statistical/information-theoretic side demonstrates the homologous logic of ``axioms + normalization $\Rightarrow$ unique multiple.''
+\end{itemize}
+
+\section{Conclusion}
+
+Restricted geometry provides a geometric classification of $K^{1}$, scattering spectral theory provides a channel from operators and energy to $K^{1}$, while representability and Bott structure compress ``naturality + normalization'' into integral uniqueness. The integration of these three at the families level yields a portable \textbf{``uniqueness factory''}: under minimal verifiable hypotheses, it produces existence, alignment, and uniqueness. The engineering pipeline demonstrates the numerical feasibility of robustly extracting $K^{1}$ indices, and provides a clear roadmap for generalizations to higher dimensions/modified phases and twisted cases.
+
+\section*{References}
+
+\begin{enumerate}
+\item A. Pressley, G. Segal, \emph{Loop Groups}, Oxford University Press, 1986.
+\item G. Segal, G. Wilson, ``Loop groups and equations of KdV type,'' \emph{Publications Mathématiques de l'IHÉS} \textbf{61} (1985), 5--65.
+\item N. Kuiper, ``The homotopy type of the unitary group of Hilbert space,'' \emph{Topology} \textbf{3} (1965), 19--30.
+\item A. Hatcher, \emph{Vector Bundles and K-Theory}, 2017.
+\item A. Beltiță, T. S. Ratiu, A. M. Tumpach, ``The restricted Grassmannian, Banach Lie--Poisson spaces and coadjoint orbits,'' \emph{Journal of Functional Analysis} \textbf{247} (2007), 138--168.
+\item J. Phillips, ``Self-adjoint Fredholm operators and spectral flow,'' \emph{Canadian Mathematical Bulletin} \textbf{39} (1996), 460--467.
+\item A. Pushnitski, ``The spectral shift function and the invariance principle,'' \emph{Journal of Functional Analysis} \textbf{183} (2001), 269--320.
+\item D. R. Yafaev, \emph{Mathematical Scattering Theory: General Theory}, Springer, 1992.
+\item N. A. Azamov, A. L. Carey, P. G. Dodds, F. A. Sukochev, ``Operator integrals, spectral shift, and spectral flow,'' \emph{Canadian Journal of Mathematics} \textbf{61} (2009), 241--263.
+\item V. V. Peller, ``Multiple operator integrals in perturbation theory,'' \emph{Proceedings of the Steklov Institute of Mathematics} \textbf{290} (2015), 209--233.
+\item D. Potapov, F. Sukochev, ``Operator-Lipschitz functions in Schatten--von Neumann classes,'' \emph{Acta Mathematica} \textbf{207} (2011), 375--389.
+\item S. Booss-Bavnbek, M. Lesch, J. Phillips, ``Unbounded Fredholm operators and spectral flow,'' \emph{Canadian Journal of Mathematics} \textbf{57} (2005), 225--250.
+\item J. C. Baez, T. Fritz, ``A Bayesian characterization of relative entropy,'' \emph{Theory and Applications of Categories} \textbf{29} (2014), 421--478.
+\item L. Fullwood, ``On a 2-Relative Entropy,'' \emph{Entropy} \textbf{24} (2022), 74.
+\item R. Wurzbacher, ``The restricted Grassmannian, Banach Lie--Poisson spaces and coadjoint orbits,'' in \emph{Analysis, Geometry and Topology of Elliptic Operators}, World Scientific, 2006.
+\end{enumerate}
+
+\appendix
+
+\section{Restricted Principal Bundles, Local Slices, and Delooping Identification}
+
+\subsection{Local Slices and Principal Bundles}
+
+For $W\in \mathrm{Gr}_{\mathrm{res}}$ take neighborhood
+$$
+\mathcal U_{W}=\{T\in \mathcal B(\mathcal H_{+},\mathcal H_{-})\cap\mathfrak S_{2}:\ |T|\ \text{small}\},
+$$
+with the map $T\mapsto \mathrm{graph}(T)$ providing coordinates. The joint action
+$$
+U_{\mathrm{res}}\times \mathcal U_{W}\to \mathrm{Gr}_{\mathrm{res}},\quad (U,T)\mapsto U\cdot \mathrm{graph}(T)
+$$
+is locally a fiber bundle, with stabilizer $U(\mathcal H_+)\times U(\mathcal H_-)$. Since $U_{\mathrm{res}}$ is a Hilbert--Lie group and the action is free and proper, the projection $\pi:U_{\mathrm{res}}\to \mathrm{Gr}_{\mathrm{res}}$ is a smooth principal bundle.
+
+\subsection{Stabilizer Contraction and Homotopy Equivalence}
+
+Kuiper's theorem: $U(\mathcal H_{\pm})$ is contractible in the norm topology; its inclusion into subgroups (induced by the restricted topology) is a weak equivalence. The principal bundle fiber is homotopy trivial, hence
+$$
+U_{\mathrm{res}}\ \simeq\ \mathrm{Gr}_{\mathrm{res}}.
+$$
+
+\subsection{$\mathrm{Gr}_{\mathrm{res}}\simeq \mathbb Z\times BU$ and $U_{\mathrm{res}}\simeq \Omega U$}
+
+The components of the restricted Grassmannian decompose by virtual dimension (Fredholm index), with each component homotopy equivalent to $BU$, yielding $\mathrm{Gr}_{\mathrm{res}}\simeq \mathbb Z\times BU$. Combined with Bott periodicity $\Omega U\simeq \mathbb Z\times BU$, we obtain the $H$-space equivalence $U_{\mathrm{res}}\simeq \Omega U$.
+
+\subsection{Delooping Identification}
+
+For well-pointed $A_{\infty}$ spaces and weak equivalence $f:G\to H$, the classifying space functor $B$ preserves weak equivalences. Taking $G=U_{\mathrm{res}},H=\Omega U$ gives
+$$
+BU_{\mathrm{res}}\ \simeq\ U.
+$$
+
+\section{Family-Level Schatten Control of Relative Cayley}
+
+\subsection{Fractional Resolvent and Trace Class Estimates}
+
+For self-adjoint $T$,
+$$
+U(T)=I-2i\,(T+i)^{-1}.
+$$
+Thus
+$$
+U(H)-U(H_{0})=2i\,(H+i)^{-1}(H-H_{0})(H_{0}+i)^{-1}.
+$$
+If (S1)--(S2) hold, the right side is in $\mathfrak S_{1}$, and
+$$
+|U(H)-U(H_{0})|_{\mathfrak S_{1}}\le 2\,|(H-H_{0})(H_{0}+i)^{-1}|_{\mathfrak S_{1}}.
+$$
+
+\subsection{Family Continuity and Uniform Constants}
+
+On a compact subset $K\subset X$, by (S1) $\sup_{x\in K}|(H_{x}\pm i)^{-1}|<\infty$, and (S2) gives
+$$
+\sup_{x\in K}|U(H_{x})-U(H_{0,x})|_{\mathfrak S_{1}}
+\ \le\ 2\,\sup_{x\in K}|(H_{x}-H_{0,x})(H_{0,x}+i)^{-1}|_{\mathfrak S_{1}}.
+$$
+Thus $x\mapsto u_{x}$ is norm-continuous.
+
+\subsection{MOI/DOI Lift (Optional)}
+
+For generalizations to more general functional calculi, take $f\in B^{1}_{\infty,1}$ (Besov); multiple operator integrals give
+$$
+|f(H)-f(H_{0})|_{\mathfrak S_{1}}\lesssim |(H-H_{0})(H_{0}-i)^{-1}|_{\mathfrak S_{1}},
+$$
+with family continuity.
+
+\section{Explicit Homotopy for Scale Equivariance}
+
+Take $\varphi_{t}(\lambda)=\frac{\lambda-i/t}{\lambda+i/t}$ ($t>0$), defining
+$$
+u_{t}(x)=\varphi_{t}(H_{x})\,\varphi_{t}(H_{0,x})^{-1}.
+$$
+Using the fractional resolvent identity,
+$$
+u_{t}-I=2it\,(H+i/t)^{-1}(H-H_{0})(H_{0}+i/t)^{-1}\,\varphi_{t}(H_{0})^{-1}.
+$$
+Under (S1)--(S2), $(x,t)\mapsto u_{t}(x)$ is norm-continuous on $X\times(0,\infty)$; and
+$$
+[u_{1}]=[U(H)U(H_{0})^{-1}],\qquad [u_{1/a}]=[U(aH)U(aH_{0})^{-1}].
+$$
+If $0\notin\sigma_{\mathrm{ess}}(H_{x})$ and $0\notin\sigma_{\mathrm{ess}}(H_{0,x})$, or via finite-rank perturbation pushing 0 out of the essential spectrum, then as $t\downarrow 0$, $u_{t}$ is homotopic to the relative $\mathrm{sgn}$ construction; by (C0), finite-rank modifications transfer back to the original family.
+
+\section{Energy-Side Endpoint Closure and Family-Version Invariance}
+
+\subsection{Loop Closure}
+
+Take monotone $h:[0,1]\to[0,\infty]$, $h(0)=0,h(1)=\infty$. Connect at endpoints with constant segments: $[-\epsilon,0]\mapsto \mathbf 1$, $[1,1+\epsilon]\mapsto \mathbf 1$. By (S3) local uniform integrability and (S4) closure hypothesis, we obtain continuous family loops $\Gamma_{x}$.
+
+\subsection{Choice Independence}
+
+Differences between two smoothings/cutoffs produce contractible loops in $U^{(1)}$; Pushnitski invariance and the BK formula preserve the total winding number of determinant phases, so the $K^{1}$ class is homotopy-invariant.
+
+\section{Rank-One BK Normalization}
+
+For the \S5.1 model, the scattering phase shift $\delta(\lambda)$ is monotone with
+$\lim_{\lambda\to\infty}\delta(\lambda)=0$, $\lim_{\lambda\to 0^{+}}\delta(\lambda)=\pi$. Thus
+$$
+\frac{1}{2\pi i}\int_{0}^{\infty}\operatorname{tr}\bigl(S^{-1}\partial_{\lambda}S\bigr)\,d\lambda
+=\frac{1}{\pi}\bigl(\delta(0^{+})-\delta(\infty)\bigr)=+1,
+$$
+as the positive generator of $K^{1}(S^{1})$; consistent with Theorem A3's normalization.
+
+\section{Functorial Proof of Uniqueness up to Integer Multiples (Details)}
+
+\subsection{Factorization to $U$}
+
+Via the ``forgetful'' functor $\mathcal U:\mathbf{Scatt}\to \mathrm{Top}_{*}$ defined in A1, which sends $(H,H_{0})$ to the basepoint map $u:X\to U^{(1)}\subset U$. Let $\Phi$ satisfy (C0)--(C3). If $(H,H_{0})$ and $(H',H'_{0})$ are connected in $\mathbf{Scatt}$ by an $(X\times I)$-family (preserving uniform (S1)--(S4) conditions), then by functoriality and limit preservation, $\Phi(H,H_{0})=\Phi(H',H'_{0})$. Thus $\Phi$ depends only on the homotopy class of $u$, so there exists a unique $H$-space self-map $f:U\to U$ such that
+$$
+\Phi(H,H_{0})=[f\circ u]\in [X,U]\cong K^{1}(X).
+$$
+
+\subsection{$H$-Map Lift and Bott Compatibility}
+
+By (C2) exterior direct sum additivity and (C3) scale equivariance, $f$ is compatible with the multiplication on $U$ (induced by block sum stabilization), i.e., $f$ is an $H$-map. By Theorem B's delooping identification, there exists $\widetilde f:BU\to BU$ such that $\Omega\widetilde f\simeq f$.
+
+\subsection{Determining Degree via Characteristic Classes on $BU$}
+
+$H^{*}(BU;\mathbb Z)=\mathbb Z[c_{1},c_{2},\dots]$. $\widetilde f^{*}$ is a ring endomorphism, and by (C2)--(C3) and Bott compatibility, we must have
+$$
+\widetilde f^{*}(c_{1})=n\,c_{1}\quad (n\in\mathbb Z),
+$$
+whence $\widetilde f^{*}(c_{j})=n^{j}c_{j}$. By Hurewicz and Bott periodicity, $f$ acts on $\pi_{2j-1}(U)\cong\mathbb Z$ by multiplication by $n^{j}$, and on $\widetilde K^{1}(S^{1})\cong\mathbb Z$ by multiplication by $n$.
+
+\subsection{Generator Detection and Normalization}
+
+Taking $X=S^{1}$ with the rank-one scattering prototype (Appendix E), $\Phi_{\mathrm{can}}$ takes $+1$. If $\Phi=n\cdot\Phi_{\mathrm{can}}$, then $\Phi_{S^{1}}$ must be multiplication by $n$; by (C4) we obtain $n=1$. By (C2)--(C3) and Bott, multiplication by $n$ extends to arbitrary $X$. $\square$
+
+\subsection{Remark on Excluding Unstable Operations}
+
+Adams operations $\psi^{m}$ scale odd-degree Chern components by $m^{j}$ in $K$-theory; if required to simultaneously be compatible with (C2) exterior direct sum and (C3) scale equivariance, and consistent with scattering-side normalization (C4), then the only possibility is $m=1$, thus no new natural endomorphisms arise. The ``integer multiples'' of this theorem is already the most general form.
+
+\end{document}

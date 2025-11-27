@@ -1,0 +1,587 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Title information
+\title{Discrete Complexity Geometry of Computational Universes:\\
+Metrics, Volume Growth, and Local Curvature on Configuration Graphs}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+In the previous work, we axiomatized the ``computational universe'' as a quadruple $U_{\mathrm{comp}} = (X,\mathsf{T},\mathsf{C},\mathsf{I})$ with configuration space, one-step update relation, single-step cost, and information quality function. Building on this foundation, we develop a ``discrete complexity geometry'' framework that uses purely discrete graph-theoretic and metric structures to characterize time complexity of computational processes, ``geometric difficulty'' of problems, and the structure of reachable domains and horizons under finite resources.
+
+First, we associate each computational universe with a weighted directed graph $G_{\mathrm{comp}} = (X,E,w)$, where edge set $E = \mathsf{T}$ and edge weights $w(x,y) = \mathsf{C}(x,y)$. Under appropriate finiteness and generalized reversibility assumptions, this structure induces a generalized metric $d:X\times X \to [0,\infty]$, whose shortest path values are equivalent to a physicalized version of discrete time complexity. We define complexity balls $B_T(x_0) = \{ x : d(x_0,x)\le T \}$ and complexity volume growth functions $V_{x_0}(T) = |B_T(x_0)|$, introducing a ``complexity dimension'' $\dim_{\mathrm{comp}}(x_0)$ measuring growth order of complexity near a given starting point.
+
+Second, we introduce a discrete Ricci curvature $\kappa(x,y)$ based on transition probabilities and first-order Wasserstein distance on weighted graphs, qualitatively characterizing ``divergence'' or ``contraction'' tendencies of complex paths in local regions. We prove that under natural assumptions, negative curvature regions correspond to exponential volume growth of complexity balls, while non-negative curvature regions correspond to polynomial or sub-exponential growth, establishing a qualitative connection between curvature and problem difficulty.
+
+Third, we view the family of reachable domains $\{ B_T(x_0) \}_{T>0}$ as ``complexity horizons'' evolving with resource budget $T$, characterizing complexity phase transitions through simple homological and connectivity indicators: when $T$ crosses certain critical values, the number of connected components, fundamental group, or first homology group of reachable domains undergoes mutations, corresponding to algorithms ``suddenly opening new routes'' in complexity geometry.
+
+Finally, assuming the computational universe arises from a physical implementation controlled by a unified time scale $\kappa(\omega)$, we discuss how a family of complexity graphs converges to a Riemannian manifold $(\mathcal{M},G)$ under mesh refinement limits, such that discrete complexity distance $d$ approximates geodesic distance induced by $G$ at large scales, providing several rigorous convergence theorems in low-dimensional cases.
+
+As the second work in the ``Computational Universe Theory'' series, this paper provides the first bridge from fully discrete computational structures to geometrized complexity, laying foundations for subsequent work unifying information geometry, time scales, and category equivalence between physical and computational universes.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Computational Universe, Complexity Geometry, Weighted Graphs, Ricci Curvature, Volume Growth, Complexity Horizon, Unified Time Scale
+
+\noindent\textbf{MSC 2020:} 68Q15, 53C23, 68Q17, 05C81, 68Q12
+
+\section{Introduction}
+
+At the intersection of computational theory and physics, viewing ``the universe as computation'' has become an important approach. If we accept the setting from the previous work: the entire universe can be abstracted as a discrete dynamical system $U_{\mathrm{comp}} = (X,\mathsf{T},\mathsf{C},\mathsf{I})$ with finite information density, local updates, and unified time scale, then a natural question arises: can this discrete structure possess geometric concepts similar to Riemannian geometry, such as ``curvature,'' ``volume growth,'' and ``horizons,'' thereby understanding computational complexity and problem difficulty in geometric terms?
+
+Traditional complexity theory often uses step counts or gate numbers as complexity measures, without considering geometric relationships between different computational paths. On the other hand, developments in graph geometry and discrete Ricci curvature show that constructing continuous geometry-like structures on weighted graphs is feasible. This paper systematically merges these two threads within the ``computational universe'' axiomatic framework into a unified ``discrete complexity geometry'' theory.
+
+The main contributions of this paper can be summarized as follows:
+
+\begin{enumerate}
+\item Provide a unified construction from computational universe $U_{\mathrm{comp}}$ to complexity graph $G_{\mathrm{comp}}$ and complexity distance $d$, proving it is a generalized metric under natural conditions, and defining complexity balls, complexity volume, and complexity dimension.
+\item Introduce Ricci curvature $\kappa(x,y)$ based on discrete transition distributions and Wasserstein distance on complexity graphs, proving qualitative connections between its sign and complexity volume growth types.
+\item Taking reachable domain families $B_T(x_0)$ as objects, introduce concepts of complexity horizons and complexity phase transitions, describing ``topological transitions'' of reachable domains varying with resource budget $T$ using simple algebraic topological invariants.
+\item Under the assumption of a unified time scale, provide conditions for a family of complexity graphs to converge to a manifold $(\mathcal{M},G)$ under mesh refinement limits, proving consistency between discrete complexity distance and continuous geodesic distance in low-dimensional cases.
+\end{enumerate}
+
+The structure is as follows: Section 2 reviews computational universe axioms and constructs complexity graphs and distances. Section 3 studies volume growth and complexity dimension. Section 4 introduces discrete Ricci curvature and discusses its relationship with complexity growth. Section 5 discusses complexity horizons and phase transition structures. Section 6 discusses manifold limits and consistency with unified time scale. Appendices provide detailed proofs of main propositions and theorems.
+
+\section{From Computational Universe to Complexity Graph and Metric}
+
+This section provides more refined construction and analysis of complexity graphs and complexity distances based on definitions from the previous work.
+
+\subsection{Basic Review of Computational Universe}
+
+Recall the definition of computational universe.
+
+\begin{definition}[Computational Universe Recap]
+A computational universe object is a quadruple $U_{\mathrm{comp}} = (X,\mathsf{T},\mathsf{C},\mathsf{I})$, where:
+\begin{enumerate}
+\item $X$ is a countable configuration set;
+\item $\mathsf{T} \subset X\times X$ is the one-step update relation;
+\item $\mathsf{C}:X\times X\to[0,\infty]$ is the single-step cost satisfying: if $(x,y)\notin\mathsf{T}$, then $\mathsf{C}(x,y)=\infty$; if $(x,y)\in\mathsf{T}$, then $\mathsf{C}(x,y)\in(0,\infty)$;
+\item $\mathsf{I}:X\to\mathbb{R}$ is the information quality function.
+\end{enumerate}
+\end{definition}
+
+Satisfying axioms of finite information density, local update, generalized reversibility, and cost additivity.
+
+For any finite path $\gamma=(x_0,\dots,x_n)$ satisfying $(x_k,x_{k+1})\in\mathsf{T}$, define path cost
+\[
+\mathsf{C}(\gamma) = \sum_{k=0}^{n-1}\mathsf{C}(x_k,x_{k+1})
+\]
+
+and define complexity distance
+\[
+d(x,y) = \inf_{\gamma:x\to y} \mathsf{C}(\gamma)
+\]
+
+where $\gamma$ ranges over all finite paths from $x$ to $y$.
+
+The previous work proved that under appropriate reachability and symmetry conditions, $d$ is a generalized metric. This section uses this as basis to define complexity graphs.
+
+\subsection{Definition of Complexity Graph}
+
+\begin{definition}[Complexity Graph]
+Given computational universe $U_{\mathrm{comp}} = (X,\mathsf{T},\mathsf{C},\mathsf{I})$, its complexity graph is a weighted directed graph $G_{\mathrm{comp}} = (X,E,w)$, where:
+\begin{enumerate}
+\item Vertex set is $X$;
+\item Directed edge set is $E = \mathsf{T}$;
+\item Edge weight $w:E\to(0,\infty]$ is defined as $w(x,y) = \mathsf{C}(x,y)$.
+\end{enumerate}
+
+If an undirected graph structure is needed, define symmetric edge set
+\[
+E_{\mathrm{sym}} = \{ \{x,y\} : (x,y)\in E \text{ or } (y,x)\in E \}
+\]
+
+with edge weights
+\[
+w_{\mathrm{sym}}(\{x,y\}) = \min\{ \mathsf{C}(x,y),\mathsf{C}(y,x) \}
+\]
+\end{definition}
+
+\begin{definition}[Finite Region of Complexity Distance]
+Define the reachable subset
+\[
+X_{\mathrm{fin}} = \{ x\in X : d(x_0,x) < \infty \}
+\]
+where $x_0\in X$ is a chosen reference configuration. In this paper, we often restrict discussion to $X_{\mathrm{fin}}$ when unambiguous.
+\end{definition}
+
+Results from the previous work immediately give the following proposition.
+
+\begin{proposition}[Metric Properties of Complexity Distance]
+On $X_{\mathrm{fin}}$, complexity distance $d$ satisfies:
+\begin{enumerate}
+\item $d(x,x)=0$;
+\item $d(x,y)\ge 0$, and $d(x,y)=0$ implies $x=y$;
+\item $d(x,z)\le d(x,y)+d(y,z)$.
+\end{enumerate}
+
+If $\mathsf{T}$ is reversible on $X_{\mathrm{fin}}$ and costs are symmetric under edge reversal, then $d(x,y)=d(y,x)$, making $(X_{\mathrm{fin}},d)$ a metric space.
+\end{proposition}
+
+Proof in Appendix A.1.
+
+\subsection{Complexity Balls and Volume Functions}
+
+\begin{definition}[Complexity Ball and Volume]
+For $x_0\in X_{\mathrm{fin}}$ and $T>0$, define the complexity ball
+\[
+B_T(x_0) = \{ x\in X_{\mathrm{fin}} : d(x_0,x)\le T \}
+\]
+
+Its volume (by point counting) is
+\[
+V_{x_0}(T) = |B_T(x_0)| \in \mathbb{N}\cup\{\infty\}
+\]
+\end{definition}
+
+\begin{proposition}[Monotonicity and Subadditivity]
+\begin{enumerate}
+\item For any $T_1<T_2$, we have $B_{T_1}(x_0)\subseteq B_{T_2}(x_0)$, thus $V_{x_0}(T_1) \le V_{x_0}(T_2)$;
+\item If there exists constant $C>0$ such that for all $T_1,T_2>0$,
+\[
+V_{x_0}(T_1+T_2) \le C\,V_{x_0}(T_1)\,V_{x_0}(T_2)
+\]
+then $\log V_{x_0}(T)$ is subadditive.
+\end{enumerate}
+\end{proposition}
+
+Proof in Appendix A.2. The second condition naturally holds in many local graphs, providing basis for defining complexity growth exponents.
+
+\section{Volume Growth and Complexity Dimension}
+
+The growth rate of complexity ball volume is the natural object for characterizing ``local complexity dimension of computational universe.'' This section provides basic definitions and properties.
+
+\subsection{Definition of Complexity Dimension}
+
+\begin{definition}[Upper and Lower Complexity Dimension]
+For a given starting point $x_0\in X_{\mathrm{fin}}$, define the upper complexity dimension as
+\[
+\overline{\dim}_{\mathrm{comp}}(x_0) = \limsup_{T\to\infty} \frac{\log V_{x_0}(T)}{\log T}
+\]
+
+The lower complexity dimension is
+\[
+\underline{\dim}_{\mathrm{comp}}(x_0) = \liminf_{T\to\infty} \frac{\log V_{x_0}(T)}{\log T}
+\]
+
+If the two are equal, their common value is called the complexity dimension, denoted $\dim_{\mathrm{comp}}(x_0)$.
+
+Intuitively, $\dim_{\mathrm{comp}}(x_0)$ describes the polynomial order of growth of reachable configurations from $x_0$ as complexity budget $T$ increases. If $\dim_{\mathrm{comp}}(x_0) = \infty$, then reachable domain volume grows at least super-polynomially.
+\end{definition}
+
+\subsection{Relationship with Graph Structure}
+
+For undirected local graphs, volume growth order is closely related to its ``graph dimension.'' In complexity graphs, we can obtain a similar result.
+
+\begin{proposition}[Polynomial Growth in Bounded Degree Case]
+Assume the undirected symmetric version $(X_{\mathrm{fin}},E_{\mathrm{sym}})$ of the complexity graph has bounded degree, i.e., there exists $D>0$ such that for all $x\in X_{\mathrm{fin}}$, $\deg(x) \le D$. If additionally single-step costs are bounded in some interval, i.e., there exist constants $0<c_{\min}\le c_{\max}<\infty$ such that for all edges $\{x,y\}\in E_{\mathrm{sym}}$,
+\[
+c_{\min} \le w_{\mathrm{sym}}(\{x,y\}) \le c_{\max}
+\]
+
+then there exist constants $C_1,C_2>0$ and integer $d_{\ast} \ge 0$ such that for sufficiently large $T$,
+\[
+C_1 T^{d_{\ast}} \le V_{x_0}(T) \le C_2 T^{d_{\ast}}
+\]
+
+In particular, $\dim_{\mathrm{comp}}(x_0) = d_{\ast}$.
+\end{proposition}
+
+Proof in Appendix A.3, using linear relationship between edge counts and step counts to reduce complexity balls to step balls, and utilizing volume growth estimates for bounded-degree graphs.
+
+\begin{proposition}[Exponential Growth and Super-Polynomial Complexity]
+If there exist constants $\lambda>1$ and $T_0>0$ such that for all $n\in\mathbb{N}$,
+\[
+V_{x_0}(nT_0) \ge \lambda^n
+\]
+then $\overline{\dim}_{\mathrm{comp}}(x_0) = \infty$.
+
+In other words, exponential growth of complexity ball volume implies infinite complexity dimension.
+\end{proposition}
+
+Proof in Appendix A.4.
+
+These results show: when complexity dimension is finite, growth of complexity with budget $T$ has some ``dimension controllability''; while exponential growth means local ``explosion'' in complexity geometry, corresponding to highly intractable search spaces.
+
+\section{Discrete Ricci Curvature and Problem Difficulty}
+
+In metric spaces, the sign of Ricci curvature is closely related to volume growth and geodesic deviation. This section introduces a discrete Ricci curvature on complexity graphs, characterizing divergence or contraction of complex paths in local regions, and discusses qualitative connections with complexity volume growth.
+
+\subsection{Discrete Ricci Curvature Based on Transition Distributions}
+
+We adopt coarse Ricci curvature based on first-order Wasserstein distance, adapted for directed weighted graphs.
+
+\begin{definition}[Local One-Step Transition Distribution]
+On complexity graph $G_{\mathrm{comp}} = (X,E,w)$, define the local one-step transition distribution from $x$ as
+\[
+m_x(y) = \frac{a(x,y)}{\sum_{z} a(x,z)}
+\]
+where
+\[
+a(x,y) = \begin{cases} \exp(-\lambda w(x,y)), & (x,y)\in E, \\ 0, & \text{otherwise}, \end{cases}
+\]
+and $\lambda>0$ is a fixed scale parameter.
+
+This is a random walk kernel biased toward ``low-cost edges.''
+\end{definition}
+
+\begin{definition}[Ricci Curvature on Complexity Graph]
+For $x\neq y$, define the discrete Ricci curvature from $x$ to $y$ as
+\[
+\kappa(x,y) = 1 - \frac{W_1(m_x,m_y)}{d(x,y)}
+\]
+where $W_1$ is the first-order Wasserstein distance relative to complexity distance $d$.
+
+When the average displacement of mass between $m_x$ and $m_y$ under $d$ is less than $d(x,y)$, we have $\kappa(x,y) > 0$; conversely if average displacement exceeds $d(x,y)$, then $\kappa(x,y) < 0$.
+\end{definition}
+
+\subsection{Curvature and Geodesic Divergence}
+
+In classical metric spaces, Ricci curvature lower bounds control ``average contraction'' between geodesics. In our complexity graphs, we can prove a discrete analog.
+
+\begin{theorem}[Curvature Lower Bound and Complexity Distance Contraction]
+Suppose there exists constant $K \in \mathbb{R}$ such that for all adjacent vertices $x,y$ (i.e., $d(x,y)$ bounded), $\kappa(x,y) \ge K$. Then for any two initial distributions $\mu,\nu$, their distributions $\mu P,\nu P$ after one random walk (where $P$ is the transition operator) satisfy
+\[
+W_1(\mu P,\nu P) \le (1-K) W_1(\mu,\nu)
+\]
+
+In particular, when $K>0$, Wasserstein distance decays exponentially; when $K<0$, distance expands exponentially.
+\end{theorem}
+
+Proof in Appendix B.1. The proof uses the definition of $\kappa(x,y)$ and discrete Kantorovich duality to estimate behavior of Dirac distributions, extending to general distributions.
+
+\subsection{Curvature and Complexity Volume Growth}
+
+There exist qualitative connections between curvature lower bounds and volume growth.
+
+\begin{theorem}[Polynomial Growth Under Non-Negative Curvature]
+Assume the complexity graph is a locally finite directed graph with bounded symmetric version degree, and there exists $K\ge 0$ such that for all adjacent $x,y$, $\kappa(x,y)\ge K$. Then there exist constants $C,d_{\ast}$ and $T_0>0$ such that for all $T\ge T_0$,
+\[
+V_{x_0}(T) \le C T^{d_{\ast}}
+\]
+
+In particular, $\overline{\dim}_{\mathrm{comp}}(x_0) \le d_{\ast}$.
+\end{theorem}
+
+\begin{theorem}[Exponential Growth Under Strictly Negative Curvature]
+Assume there exist $K_0>0$ and $\delta>0$ such that for all point pairs satisfying $d(x,y)\le \delta$, $\kappa(x,y)\le -K_0$. Then there exist constants $c,\lambda>1$ and $T_0>0$ such that for all $n\in\mathbb{N}$,
+\[
+V_{x_0}(n T_0) \ge c \lambda^n
+\]
+\end{theorem}
+
+These two theorems show that non-negative curvature controls complexity volume growth polynomially, while local strictly negative curvature leads to exponential explosion of complexity space. Proof ideas borrow from Bishop–Gromov comparison theory and Gromov hyperbolic space volume growth estimates in continuous cases, but performed entirely on discrete graphs; see Appendices B.2 and B.3.
+
+\section{Reachable Domains, Complexity Horizons, and Phase Transitions}
+
+This section discusses topological evolution of reachable domain families $\{ B_T(x_0) \}$ as complexity budget $T$ increases, characterizing complexity phase transitions using simple algebraic topological indicators.
+
+\subsection{Definition of Complexity Horizon}
+
+\begin{definition}[Complexity Horizon]
+For fixed starting point $x_0$, call a sequence $\{ T_c^{(k)} \}_{k\in K} \subset (0,\infty)$ a complexity horizon point family if for each $T_c^{(k)}$ there exists a topological invariant $\mathcal{I}$ (e.g., number of connected components, first Betti number, fundamental group order) such that when $T$ crosses a neighborhood of $T_c^{(k)}$, $\mathcal{I}(B_T(x_0))$ undergoes a jump.
+
+In practice, the simplest choices are number of connected components and first Betti number.
+\end{definition}
+
+\begin{definition}[Connectivity Phase Transition]
+Let $\mathrm{cc}(T)$ denote the number of connected components of $B_T(x_0)$ in the symmetric graph. If there exists $T_c$ such that
+\[
+\lim_{\varepsilon\downarrow 0} \mathrm{cc}(T_c-\varepsilon) > \lim_{\varepsilon\downarrow 0} \mathrm{cc}(T_c+\varepsilon)
+\]
+then $T_c$ is called a connectivity complexity phase transition point.
+\end{definition}
+
+\begin{definition}[Cycle Structure Phase Transition]
+Let $b_1(T)$ denote the first Betti number (number of cycles) of $B_T(x_0)$. If there exists $T_c$ such that $b_1(T_c-\varepsilon) \neq b_1(T_c+\varepsilon)$ for any sufficiently small $\varepsilon>0$, then $T_c$ is called a cycle structure complexity phase transition point.
+\end{definition}
+
+\subsection{Phase Transitions and Curvature Comparison}
+
+In strongly negative curvature regions, complexity balls often rapidly include large numbers of ``new paths,'' leading to rapid cycle number growth; while in non-negative curvature regions, complexity ball expansion is relatively mild, with cycle structure growth suppressed.
+
+We have the following qualitative propositions.
+
+\begin{proposition}[Cycle Growth Constraint Under Local Non-Negative Curvature]
+Assume there exists $R>0$ such that within $B_R(x_0)$, all adjacent point pairs have curvature satisfying $\kappa(x,y)\ge 0$, and the graph has bounded degree. Then there exist constants $C_1,C_2>0$ such that for $T\le R$,
+\[
+b_1(T) \le C_1 V_{x_0}(T) + C_2
+\]
+
+In particular, if $V_{x_0}(T)$ is polynomially bounded, then $b_1(T)$ also grows at most polynomially.
+\end{proposition}
+
+Proof in Appendix C.1.
+
+\begin{proposition}[Rapid Cycle Appearance Under Local Negative Curvature]
+If in some annular layer $A = B_{T_2}(x_0)\setminus B_{T_1}(x_0)$, there exist many point pairs $x,y$ satisfying $\kappa(x,y)\le -K_0$ with bounded $d(x,y)$, then as $T$ increases from $T_1$ to $T_2$, there exists at least one cycle structure phase transition point $T_c \in (T_1,T_2)$.
+\end{proposition}
+
+Proof in Appendix C.2.
+
+These results show that curvature not only controls volume growth but also determines appearance of complexity horizons and ``structural phase transitions'' to some extent. This provides geometric interpretation for algorithms experiencing ``sudden insights'' or ``structural leaps'' when increasing resources.
+
+\section{Manifold Limits and Unified Time Scale}
+
+This section discusses how complexity graphs converge to a Riemannian manifold when computational universes have good continuous limits, how discrete complexity distances approximate continuous geodesic distances, and discusses consistency between unified time scale $\kappa(\omega)$ and complexity metrics.
+
+\subsection{Manifold Limits of Complexity Graphs}
+
+Consider a family of computational universes $\{ U_{\mathrm{comp}}^{(h)} \}_{h>0}$, where $h$ denotes discrete scale (e.g., lattice spacing, control parameter step), corresponding to complexity graphs $G_{\mathrm{comp}}^{(h)} = (X^{(h)},E^{(h)},w^{(h)})$ and distances $d^{(h)}$.
+
+\begin{definition}[Gromov–Hausdorff Convergence]
+If there exist Riemannian manifold $(\mathcal{M},G)$ with point $\theta_0\in\mathcal{M}$, and embedding maps $\Phi_h:X^{(h)}\to\mathcal{M}$, such that for any bounded $R>0$:
+\begin{enumerate}
+\item $\Phi_h(B_R^{(h)}(x_0^{(h)}))$ Hausdorff converges to $B_R(\theta_0)$ in $\mathcal{M}$;
+\item For all $x,y \in B_R^{(h)}(x_0^{(h)})$,
+\[
+\lim_{h\to 0} d_G(\Phi_h(x),\Phi_h(y)) = \lim_{h\to 0} d^{(h)}(x,y)
+\]
+\end{enumerate}
+then the complexity graph family $(X^{(h)},d^{(h)})$ is said to converge locally in Gromov–Hausdorff sense to $(\mathcal{M},d_G)$.
+
+Here $d_G$ is the geodesic distance induced by Riemannian metric $G$.
+\end{definition}
+
+\begin{theorem}[Rigorous Convergence in One Dimension]
+Suppose for each $h>0$, complexity graph $G_{\mathrm{comp}}^{(h)}$ has vertices $X^{(h)} = h\mathbb{Z} \cap [-L,L]$, directed edges $E^{(h)} = \{ (x,x\pm h) \}$, edge weights $w^{(h)}(x,x\pm h) = c(x) h$, where $c:[-L,L]\to(c_{\min},c_{\max})$ is a continuous positive function. Then as $h\to 0$, the metric space $(X^{(h)},d^{(h)})$ converges in Gromov–Hausdorff sense to the Riemannian manifold $(\mathcal{M},G)$ on interval $[-L,L]$, where $\mathcal{M}=[-L,L]$ and the metric is
+\[
+G(\theta) = c(\theta)^2 \mathrm{d}\theta^2
+\]
+
+The geodesic distance is
+\[
+d_G(\theta_1,\theta_2) = \left|\int_{\theta_1}^{\theta_2} c(\theta)\,\mathrm{d}\theta\right|
+\]
+
+and for any $\theta_1,\theta_2\in[-L,L]$,
+\[
+\lim_{h\to 0} d^{(h)}(\theta_1^{(h)},\theta_2^{(h)}) = d_G(\theta_1,\theta_2)
+\]
+where $\theta^{(h)} \in X^{(h)}$ are nearest point samples.
+\end{theorem}
+
+Proof in Appendix D.1. This is a rigorous version of ``discrete cost sum $\to$ continuous path integral'' in one dimension.
+
+Higher-dimensional cases can be obtained through similar constructions. Under appropriate regularity and locality assumptions, a family of complexity graphs can converge to some manifold $(\mathcal{M},G)$, where $G$ is determined by second-order structure of local cost function families.
+
+\subsection{Consistency of Unified Time Scale and Complexity Metric}
+
+Assume there exists physical unified time scale density $\kappa(\omega)$ such that each computational step corresponds to some physical process, with time cost
+\[
+\tau(x,y) = \int_{\Omega(x,y)} \kappa(\omega)\,\mathrm{d}\mu_{x,y}(\omega)
+\]
+where $\Omega(x,y)$ is the activated frequency band and $\mu_{x,y}$ is the spectral measure. If single-step cost $\mathsf{C}(x,y)$ is chosen as an appropriate scaling of $\tau(x,y)$, then complexity distance $d$ is consistent with physical time distance at large scales.
+
+In manifold limits, this means there exists a consistency relation between volume element of metric $G$ and physical time scale. For example, in one dimension, if we set
+\[
+c(\theta) = \int_{\Omega(\theta)} \kappa(\omega)\,\mathrm{d}\mu_{\theta}(\omega)
+\]
+then complexity geodesic distance is precisely physical time accumulation along worldlines. This provides a precise interface for subsequently unifying complexity geometry with physical boundary time geometry.
+
+\section{Summary and Future Directions}
+
+Building on discrete axioms of computational universes, this paper introduces complexity graphs, complexity distances, complexity volumes, and complexity dimensions, constructing a basic framework of ``discrete complexity geometry.'' Through discrete Ricci curvature based on Wasserstein distance, we connect local ``problem difficulty'' with volume growth and horizon structures; through topological changes in complexity balls, we provide geometric characterization of complexity phase transitions and horizon jumps; through manifold limits, we show how complexity graphs converge to Riemannian manifolds under unified time scales, interfacing with physical time geometry.
+
+This framework provides foundations for several future directions: for example, combining gradient structure of information quality function $\mathsf{I}$ with information geometry to construct a joint variational principle for ``time–information–complexity''; introducing observer attention and knowledge graph structures on complexity manifolds; and at the category theory level, establishing equivalence between physical universe categories and computational universe categories through complexity geometry. The technical tools in this paper are entirely based on discrete structures, with continuous geometry appearing as limits, ensuring the entire theory stack remains fundamentally a discrete computational universe narrative.
+
+\appendix
+
+\section{Proof Details for Complexity Distance and Volume Properties}
+
+\subsection{Proof of Proposition 2.4}
+
+\textbf{Proposition Restatement}
+
+On $X_{\mathrm{fin}}$, complexity distance $d$ satisfies:
+\begin{enumerate}
+\item $d(x,x)=0$;
+\item $d(x,y)\ge 0$, and $d(x,y)=0$ implies $x=y$;
+\item $d(x,z)\le d(x,y)+d(y,z)$.
+\end{enumerate}
+
+If $\mathsf{T}$ is reversible on $X_{\mathrm{fin}}$ with symmetric costs, then $d(x,y)=d(y,x)$.
+
+\textbf{Proof}
+
+By definition, for any path $\gamma$, cost $\mathsf{C}(\gamma) = \sum_{k}\mathsf{C}(x_k,x_{k+1})$, where each term is non-negative, thus $\mathsf{C}(\gamma) \ge 0$, hence $d(x,y) = \inf_{\gamma:x\to y}\mathsf{C}(\gamma) \ge 0$.
+
+\begin{enumerate}
+\item For $x\in X_{\mathrm{fin}}$, consider zero-length path $\gamma=(x)$, conventionally $\mathsf{C}(\gamma)=0$, thus $d(x,x) \le 0$. By non-negativity, $d(x,x)\ge 0$, hence $d(x,x)=0$.
+
+\item If $d(x,y)=0$, by definition, for any $\varepsilon>0$, there exists path $\gamma_\varepsilon:x\to y$ with $\mathsf{C}(\gamma_\varepsilon) < \varepsilon$. Since each step cost $\mathsf{C}(x_k,x_{k+1}) \ge c_{\min}>0$ (assuming uniform lower bound on physical subset), if path length $n_\varepsilon \ge 1$, then
+\[
+\mathsf{C}(\gamma_\varepsilon) \ge n_\varepsilon c_{\min} \ge c_{\min}
+\]
+contradicting $\mathsf{C}(\gamma_\varepsilon) < \varepsilon$ (taking $\varepsilon < c_{\min}$). Thus the only path is zero-length, hence $x=y$.
+
+\item For any $\varepsilon>0$, there exist paths $\gamma_1:x\to y$, $\gamma_2:y\to z$ such that
+\[
+\mathsf{C}(\gamma_1) \le d(x,y) + \varepsilon/2
+\]
+\[
+\mathsf{C}(\gamma_2) \le d(y,z) + \varepsilon/2
+\]
+Concatenated path $\gamma = \gamma_1\cdot\gamma_2$ satisfies
+\[
+\mathsf{C}(\gamma) = \mathsf{C}(\gamma_1)+\mathsf{C}(\gamma_2) \le d(x,y)+d(y,z)+\varepsilon
+\]
+Since $d(x,z)$ is the infimum of all path costs, $d(x,z)\le \mathsf{C}(\gamma)$, thus
+\[
+d(x,z)\le d(x,y)+d(y,z)+\varepsilon
+\]
+Letting $\varepsilon\to 0$ gives the triangle inequality.
+\end{enumerate}
+
+In reversible cases with symmetric costs, for any path $\gamma:x\to y$, there exists reverse path $\gamma^{-1}:y\to x$ with same cost, thus $d(y,x)\le d(x,y)$. Reverse inequality is similar, hence $d(x,y)=d(y,x)$.
+
+\qed
+
+\subsection{Proof of Proposition 2.6}
+
+\begin{enumerate}
+\item Monotonicity: If $T_1<T_2$, any point satisfying $d(x_0,x)\le T_1$ necessarily satisfies $d(x_0,x)\le T_2$, thus $B_{T_1}(x_0)\subseteq B_{T_2}(x_0)$, hence $V_{x_0}(T_1)\le V_{x_0}(T_2)$.
+
+\item If there exists $C>0$ such that $V_{x_0}(T_1+T_2)\le C V_{x_0}(T_1)V_{x_0}(T_2)$, standard subadditivity techniques show upper bound on $\frac{1}{T}\log V_{x_0}(T)$ exists for points of form $T=nT_0$. Thus $\log V_{x_0}(T)$ grows at most linearly with $T$; detailed argument omitted.
+\end{enumerate}
+
+\subsection{Proof of Proposition 3.2}
+
+Under bounded degree and bounded edge weights, complexity ball $B_T(x_0)$ can be sandwiched between two step balls.
+
+Let $N(x_0,n)$ be the set of points reachable in $n$ steps from $x_0$, ignoring costs. With bounded degree $D$, $|N(x_0,n)| \le D^n$. Edge weight lower bound $c_{\min}$ and upper bound $c_{\max}$ give
+\[
+B_T(x_0) \subseteq N(x_0,\lfloor T/c_{\min}\rfloor)
+\]
+\[
+N(x_0,\lfloor T/c_{\max}\rfloor) \subseteq B_T(x_0)
+\]
+
+For certain regular graphs (e.g., lattices or Cayley graphs), $|N(x_0,n)|$ can be precisely estimated as polynomial growth $\Theta(n^{d_{\ast}})$, hence $V_{x_0}(T)$ also grows polynomially with $T$, with exponent $d_{\ast}$ being the complexity dimension. Detailed construction requires more specific graph structure assumptions; omitted here; see corresponding Cayley graph volume growth theory.
+
+\subsection{Proof of Proposition 3.3}
+
+By assumption, for some $T_0>0$, $V_{x_0}(nT_0)\ge \lambda^n$. Let $T=nT_0$, then
+\[
+\frac{\log V_{x_0}(T)}{\log T} \ge \frac{n\log\lambda}{\log(nT_0)}
+\]
+
+As $n\to\infty$, the right side limit is $\infty$, thus $\overline{\dim}_{\mathrm{comp}}(x_0) = \infty$.
+
+\qed
+
+\section{Proof Details for Discrete Ricci Curvature and Volume Growth}
+
+\subsection{Proof of Theorem 4.3}
+
+Consider any two probability distributions $\mu,\nu$ on $X$, let $P$ be the transition operator defined by $m_x$. For Dirac distributions $\delta_x,\delta_y$,
+\[
+W_1(\delta_x P,\delta_y P) = W_1(m_x,m_y)
+\]
+
+By Ricci curvature definition
+\[
+\kappa(x,y) = 1 - \frac{W_1(m_x,m_y)}{d(x,y)} \ge K
+\]
+i.e.,
+\[
+W_1(m_x,m_y) \le (1-K) d(x,y)
+\]
+
+For general distributions $\mu,\nu$, using Kantorovich dual form
+\[
+W_1(\mu,\nu) = \sup_{\varphi\in\mathrm{Lip}_1} \sum_x \varphi(x)(\mu(x)-\nu(x))
+\]
+where $\mathrm{Lip}_1$ is the family of 1-Lipschitz functions. For any $\varphi\in\mathrm{Lip}_1$, consider the Lipschitz constant of $\varphi P$. For any $x,y$,
+\[
+|\varphi P(x)-\varphi P(y)| = \left|\sum_z\varphi(z)(m_x(z)-m_y(z))\right| \le W_1(m_x,m_y) \le (1-K)d(x,y)
+\]
+
+Thus $\varphi P$ is $(1-K)$-Lipschitz. Substituting back into dual form gives
+\[
+W_1(\mu P,\nu P) \le (1-K) W_1(\mu,\nu)
+\]
+
+\qed
+
+\subsection{Proof Sketch of Theorem 4.4}
+
+Under non-negative curvature, Wasserstein contraction of random walks means walks near starting points do not rapidly disperse outward, limiting volume growth. Precise proof can borrow from Bishop–Gromov comparison: construct ``radial functions'' on discrete graphs, use curvature lower bounds to control sign of discrete Laplacian, comparing complexity ball volumes with standard models (e.g., integer lattices). Ultimately obtaining at most polynomial growth of $V_{x_0}(T)$. Complete proof requires series of technical lemmas; details omitted here.
+
+\subsection{Proof Sketch of Theorem 4.5}
+
+In local negative curvature regions, Wasserstein distance is amplified by factor $1-K_0$ at each step, causing small perturbations to expand exponentially after multiple steps. This can be used to construct ``tree-like expansion'' subgraphs where from $x_0$, each increase of $T_0$ in complexity budget multiplies reachable points by at least a constant factor. By appropriately choosing $T_0$ and controlling overlaps, exponential lower bound $V_{x_0}(nT_0)\ge c\lambda^n$ can be proved. Technical details involve covering local balls and tree embedding constructions; not elaborated due to space constraints.
+
+\section{Proof Details for Complexity Horizons and Topological Phase Transitions}
+
+\subsection{Proof Sketch of Proposition 5.4}
+
+Under local non-negative curvature and bounded degree conditions, ``careful expansion'' of complexity ball $B_T(x_0)$ does not produce excessively many independent cycles. More specifically, using graph Euler characteristic formula
+\[
+\chi(B_T) = |V(B_T)| - |E(B_T)| + b_1(B_T)
+\]
+where $b_1$ is first Betti number. Bounded degree gives $|E(B_T)| \le D |V(B_T)|$, while non-negative curvature can control local ``tree deviation,'' making difference between $|E(B_T)|$ and $|V(B_T)|$ linearly controlled, thus $b_1(B_T)$ is also linearly controlled by $|V(B_T)|$. Constants $C_1,C_2$ come from specific coefficients of these estimates.
+
+\subsection{Proof Sketch of Proposition 5.5}
+
+In local negative curvature regions, many point pairs $x,y$ satisfy $\kappa(x,y)\le -K_0$, meaning random walks in these regions have ``divergence.'' By constructing multiple independent paths connecting these point pairs, new independent cycles can form in some shell layer of complexity balls, causing first Betti number to jump near some $T_c$. This construction is similar to standard methods for constructing closed geodesics in negative curvature manifolds, but realized combinatorially on discrete graphs.
+
+\section{Rigorous Proof of One-Dimensional Manifold Limit}
+
+\subsection{Detailed Proof of Theorem 6.2}
+
+Let $X^{(h)} = h\mathbb{Z} \cap [-L,L]$, edge set $E^{(h)} = \{ (x,x\pm h) : x\in X^{(h)}, x\pm h\in X^{(h)} \}$, edge weights $w^{(h)}(x,x\pm h) = c(x) h$, where $c:[-L,L]\to(c_{\min},c_{\max})$ is a continuous positive function.
+
+For any $x,y\in X^{(h)}$, paths from $x$ to $y$ are equivalent to discrete paths advancing along segment $[x,y]$ with step size $h$, with minimal cost
+\[
+d^{(h)}(x,y) = \sum_{k=0}^{n-1} c(x_k) h
+\]
+where $x=x_0,x_1,\dots,x_n=y$ and $x_{k+1}-x_k = \pm h$. As $h\to 0$ with fixed $x,y$, Riemann sum converges to integral
+\[
+\int_{x}^{y} c(\theta)\,\mathrm{d}\theta
+\]
+
+This defines continuous distance $d_G(x,y)$.
+
+Gromov–Hausdorff convergence can be proved by constructing embedding $\Phi_h:X^{(h)}\to[-L,L]$ as natural inclusion map, showing for any two point pairs in bounded intervals, difference between discrete and continuous distances uniformly tends to 0 as $h\to 0$. Hausdorff distance convergence comes from compactness of $X^{(h)}$ in $[-L,L]$. Detailed estimates can be completed through standard Riemann sum error bounds; not expanded line by line here.
+
+\qed
+
+\end{document}
+

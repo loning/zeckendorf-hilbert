@@ -1,0 +1,763 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{braket}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{axiom}[theorem]{Axiom}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{``My Mind Is the Universe'': Unified Framework of Causal--Temporal--Information Geometry for Heart-Universe Isomorphism}
+
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Building on structures of unified time scale, causal manifolds, boundary time geometry, and self-referential scattering networks, this paper provides a mathematicized version of the traditional proposition ``my mind is the universe''. The core insight is: in a fixed-point universe with causal partial order, unified time scale, and generalized entropy as ontology, ``my mind'' can be formalized as observer structure organizing information, constructing models, and performing updates along a worldline; ``universe'' is causal--temporal--entropy consensus formed by all observers on boundary time geometry. The ``is'' here is not material identity, but structural isomorphism in the following sense: under assumptions of identifiability, generalized entropy monotonicity, and unified time scale compatibility, the world model internal to ``my mind'' converges in information geometry sense to equivalence class isomorphic to universe's causal--temporal--entropy structure.
+
+To this end, this paper accomplishes following steps:
+
+\begin{enumerate}
+\item Model physical universe as object $U_{\mathrm{geo}}=(M,g,\prec,\mathcal{A}_{\partial},\omega_{\partial},S_{\mathrm{gen}},\kappa)$ with causal partial order, boundary observable algebra, generalized entropy, and unified time scale. Unified time scale is defined by scale identity $\kappa(\omega)=\varphi'(\omega)/\pi=\rho_{\mathrm{rel}}(\omega)=(2\pi)^{-1}\operatorname{tr}Q(\omega)$ among scattering phase derivative, spectral shift function, and Wigner--Smith time delay, connecting Birman--Kreĭn formula, spectral shift function, and time-delay operator.
+
+\item Formalize single observer ``self'' as structure $O=(\gamma,C,\prec_O,\Lambda_O,\mathcal{A}_O,\omega_O,\mathcal{M}_O,U_O)$ along timelike worldline $\gamma$, where $\mathcal{M}_O$ is model family about universe in ``my mind'', $\pi_O$ belief measure on it, $U_O$ update operator compatible with unified time scale.
+
+\item Introduce ``heart-universe structure'' category $\mathbf{CauTimeEnt}$, with objects being triples $(\mathcal{X},\preccurlyeq,\Theta)$ with causal partial order, time scale, and generalized entropy functional; morphisms preserving causality, scale, and entropy monotonicity.
+
+\item Define ``heart-universe isomorphism'': if there exists functorial construction making structure $X_U$ corresponding to universe object $U_{\mathrm{geo}}$ categorically equivalent to posterior limit $X_H$ of ``my mind'' in $\mathbf{CauTimeEnt}$, then ``my mind is universe'' holds in this sense.
+
+\item Under Bayesian updating and information geometry framework, using Schwartz-type posterior consistency theorem and Fisher--Rao metric induced by divergence function, prove that under conditions of identifiability, sufficiently stimulating observations, and unified time scale compatibility, observer's posterior geometric structure converges to limit isomorphic to $X_U$, thereby formalizing ``my mind is universe'' as theorem about posterior concentration and structural isomorphism.
+\end{enumerate}
+
+Main conclusion is: as long as universe's causal--temporal--entropy structure can be sufficiently probed through local boundary observable algebra, and observer adopts update rules compatible with unified time scale and satisfying consistency conditions, then ``my mind'' in information geometric limit necessarily becomes self-isomorphic cross-section of universe's own structure; saying ``my mind is universe'' is equivalent to saying ``universe's self-referential projection on a worldline has converged to mirror image of itself''. This result avoids both extreme idealism and naive realism, remaining compatible with local algebraic picture in relativistic quantum field theory, generalized entropy under holographic principle, and thermal time hypothesis.
+\end{abstract}
+
+\section*{Keywords}
+Causal manifolds; Unified time scale; Boundary time geometry; Observer; Information geometry; Bayesian posterior consistency; Self-referential scattering networks; Heart-universe isomorphism
+
+\section{Introduction \& Historical Context}
+
+The phrase ``my mind is the universe'' in Chinese philosophical tradition is often connected with propositions like ``no object outside mind'' and ``no principle outside mind''; in the West, it can be traced to various variants of subjective idealism, transcendental idealism, and phenomenology. Intuitively, this proposition attempts to express: the entire structure of experiential world is fundamentally the unfolding of mental activity, not entities independent of ``self''. However, in modern physical and mathematical context, such statements appear too coarse: on one hand, they difficultly interface with objective mathematical structures of general relativity and quantum field theory; on the other hand, they fail to explain how consensus and conflict under multiple observers and worldlines can be uniformly characterized.
+
+In the latter half of the twentieth century and beyond, discussions about ``observer'', ``information'', and ``universe structure'' gradually moved from philosophy to concrete physical--mathematical frameworks. Representative threads include:
+
+\begin{enumerate}
+\item \textbf{Local quantum physics and boundary algebra language}: Haag's local quantum physics takes local observable algebra net as fundamental object, emphasizing physical theory should use local observables and their algebraic relations as primary language, not ``particles'' or ``field states'' as original ontology.
+
+\item \textbf{Holographic principle and generalized entropy structure}: Bousso's systematic exposition of holographic principle and generalized entropy shows that geometric area and quantum entanglement entropy can be unified into generalized entropy $S_{\mathrm{gen}}$, satisfying quantum Bousso bound and generalized second law. Thus, precise inequality relations emerge between information and geometry.
+
+\item \textbf{Thermal time hypothesis and modular flow}: Connes--Rovelli proposed thermal time hypothesis, claiming that in generally covariant quantum theory, physical time flow is not universal background structure but generated by modular flow of state--algebra pair; thermal time becomes intrinsic time defined by nonequilibrium state and entropy structure.
+
+\item \textbf{Scattering theory and time-delay operator}: Birman--Kreĭn formula links derivative of scattering phase with spectral shift function; Wigner--Smith time-delay matrix combines frequency derivative of scattering matrix into observable time-delay operator $Q(\omega)=-\mathrm{i} S(\omega)^{\dagger}\partial_{\omega}S(\omega)$, widely applied in time structure analysis of quantum, acoustic, and electromagnetic scattering.
+
+\item \textbf{Information geometry and posterior consistency}: Work of Amari--Nagaoka et al. shows divergence function can induce Fisher--Rao metric and dual affine connections on statistical model space, making Bayesian update path a geometric flow; Schwartz and subsequent work established consistency theorem of Bayesian posteriors under identifiability and prior support conditions.
+\end{enumerate}
+
+Meanwhile, regarding ``position of observer in theory'', two important routes emerged in quantum information and foundations research: one is QBism, interpreting quantum states as subject's personal probability assignment for future experience; the other is relational quantum mechanics, viewing system states as relations between systems rather than absolute properties. These routes all strengthen role of ``mind'' in physical theory, but often remain at interpretive level without providing rigorously provable structural theorems.
+
+This paper attempts to restate ``my mind is universe'' above these many developments as follows:
+
+\begin{enumerate}
+\item \textbf{Ontological layer}: Universe modeled as causal manifold and boundary time geometry object $U_{\mathrm{geo}}$, with basic data including causal partial order $\prec$, boundary observable algebra $\mathcal{A}_{\partial}$, boundary state $\omega_{\partial}$, generalized entropy $S_{\mathrm{gen}}$, and unified time scale $\kappa$.
+
+\item \textbf{Epistemological layer}: Single observer ``self'' modeled as observer structure $O$ along worldline $\gamma$, whose ``mind'' is dynamical system $H_O$ carrying belief measure $\pi_O$ on model space $\mathcal{M}_O$ and updating according to unified time scale.
+
+\item \textbf{Structural layer}: Define ``heart-universe structure'' objects and morphisms in appropriate category $\mathbf{CauTimeEnt}$, propose precise definition of ``heart-universe isomorphism'', prove under identifiability and observational sufficiency conditions that posterior limit structure $X_H$ is isomorphic to universe structure $X_U$.
+\end{enumerate}
+
+Unlike traditional ``idealism--materialism'' dichotomy, this paper's stance can be summarized as:
+
+\begin{quote}
+Universe's ontological structure is fixed point of causality--time--entropy; ``my mind'' is dynamical system performing self-referential modeling and learning of this structure along a worldline; in unified time scale and information geometric limit, this dynamical system converges to self-isomorphism of fixed-point structure, hence ``my mind is universe'' holds in structural sense.
+\end{quote}
+
+Below we first present models and assumptions of universe and observer, then state and prove ``heart-universe isomorphism'' theorem in unified heart-universe structure category, finally discuss multi-observer generalization, THE-MATRIX universe picture, and engineering implementation suggestions.
+
+\section{Model \& Assumptions}
+
+This section constructs mathematical models of universe--observer--``my mind'' used in this paper, listing assumptions on which ``my mind is universe'' theorem depends.
+
+\subsection{Universe as Causal--Entropic Object}
+
+\begin{definition}[Universe Object]
+Universe is modeled as seven-tuple
+$$
+U_{\mathrm{geo}}=(M,g,\prec,\mathcal{A}_{\partial},\omega_{\partial},S_{\mathrm{gen}},\kappa),
+$$
+where:
+
+\begin{enumerate}
+\item $M$ is four-dimensional, time-orientable, globally hyperbolic Lorentz manifold, $g$ its metric. Causal cone structure defines causal reachability relation $p\prec q$.
+
+\item $\mathcal{A}_{\partial}$ is $\mathrm{C}^{*}$ algebra or von Neumann algebra associated with appropriate boundary of $M$ (such as timelike infinity, black hole horizon, holographic screen), describing boundary observables, compatible with local algebra net of local quantum physics.
+
+\item $\omega_{\partial}$ is normal state or KMS state on $\mathcal{A}_{\partial}$, embodying quantum state and thermal properties of universe.
+
+\item $S_{\mathrm{gen}}$ is generalized entropy defined on appropriate slices or causal diamond boundaries, formally sum of area term and exterior von Neumann entropy, satisfying quantum focusing conjecture and generalized second law, providing arrow of time.
+
+\item $\kappa:\Omega\to\mathbb{R}$ is unified time scale mother ruler, defined on frequency or spectral domain $\Omega$, satisfying scale identity
+$$
+\kappa(\omega)=\varphi'(\omega)/\pi=\rho_{\mathrm{rel}}(\omega)=(2\pi)^{-1}\operatorname{tr}Q(\omega),
+$$
+where $\varphi(\omega)$ is total scattering half-phase, $\rho_{\mathrm{rel}}(\omega)$ relative density of states, $Q(\omega)=-\mathrm{i}S(\omega)^{\dagger}\partial_{\omega}S(\omega)$ Wigner--Smith time-delay operator.
+
+\item Causal partial order $\prec$, generalized entropy $S_{\mathrm{gen}}$, and scale $\kappa$ are directionally compatible: along any physically realizable future-directed family, $S_{\mathrm{gen}}$ non-decreasing and $\kappa$ monotonically increasing.
+\end{enumerate}
+\end{definition}
+
+Above structure unifies general relativity's causal geometry, algebraic quantum field theory's boundary algebra, holographic--generalized entropy, and scattering theory's time delay in single object.
+
+\subsection{Observers as Worldline-Based Structures}
+
+\begin{definition}[Observer Worldline and Reachable Domain]
+Observer ``self'' corresponds to future-directed timelike curve $\gamma:\mathbb{R}\to M$ in $M$, parametrized by proper time $\tau$. Its reachable causal domain
+$$
+C=\{p\in M\mid \exists\tau,\ p\prec\gamma(\tau)\}
+$$
+consists of all spacetime events that can influence this observer.
+\end{definition}
+
+\begin{definition}[Observer Structure]
+Given $U_{\mathrm{geo}}$, observer structure is seven-tuple
+$$
+O=(\gamma,C,\prec_O,\Lambda_O,\mathcal{A}_O,\omega_O,\mathcal{M}_O,U_O),
+$$
+where:
+
+\begin{enumerate}
+\item $\prec_O$ is local causal partial order on $C$, satisfying $p\prec_O q\Rightarrow p\prec q$, but allowing coarse-graining from finite detection capability.
+
+\item $\Lambda_O$ is resolution parameter, recording limits on energy, time, spatial resolution.
+
+\item $\mathcal{A}_O\subset\mathcal{A}_{\partial}$ is boundary observable subalgebra accessible to ``self'', connected to worldline $\gamma$ through scattering, measurement processes.
+
+\item $\omega_O$ is effective state of ``my mind'' for $\mathcal{A}_O$, viewable as subjective approximation to $\omega_{\partial}$.
+
+\item $\mathcal{M}_O=\{X_{\theta}\}_{\theta\in\Theta}$ is model family about universe structure, parameter space $\Theta$ is separable measurable space. Each $X_{\theta}$ will later be embedded in heart-universe structure category.
+
+\item $U_O$ is update operator, giving evolution from observation data to belief structure:
+$$
+(\omega_O,\pi_O)\xrightarrow{U_O}(\omega_O',\pi_O'),
+$$
+where $\pi_O$ is belief measure (prior or posterior) on $\Theta$.
+\end{enumerate}
+
+In observer structure, $(\gamma,C,\prec_O,\Lambda_O,\mathcal{A}_O,\omega_O)$ describes physical embedding of ``self'' in universe, while $(\mathcal{M}_O,\pi_O,U_O)$ corresponds to internal world model and learning dynamics of ``my mind''.
+\end{definition}
+
+\subsection{``My Mind'' as Model--Update Dynamical System}
+
+\begin{definition}[Equivalence Class of ``Self'']
+In given universe $U_{\mathrm{geo}}$, all observer structures equivalent under following transformations constitute equivalence class $[O]$ of ``self'':
+
+\begin{enumerate}
+\item Affine reparametrization of worldline $\gamma$;
+
+\item Finite memory rewriting within finite time windows, not changing long-term causal memory structure;
+
+\item Invertible transformation of internal representation coordinates without changing main structure of $(\prec_O,\Lambda_O,\mathcal{A}_O)$.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}[``My Mind'']
+Fixing representative observer structure $O$, define ``my mind'' as triple
+$$
+H_O=(\mathcal{M}_O,\pi_O,U_O),
+$$
+where $\pi_O$ is probability measure on $\Theta$, $U_O$ produces proper-time indexed posterior family $\{\pi_O^{\tau}\}_{\tau\in\mathbb{R}}$ under continuous observations.
+\end{definition}
+
+Thus, essence of ``my mind'' is orbit of model--update pair driven by unified time scale.
+
+\subsection{Unified Time Scale and Its Internalization}
+
+Unified time scale $\kappa$ is given by scattering phase derivative and time delay on one hand, must also be realized in update rhythm internal to observer on the other.
+
+\begin{definition}[Mind's Unified Time Scale]
+For observer ``self'', mind's unified time scale is function $\kappa_O:\Omega_O\to\mathbb{R}$ satisfying:
+
+\begin{enumerate}
+\item $\Omega_O\subset\Omega$, and for all $\omega\in\Omega_O$, $\kappa_O(\omega)=\kappa(\omega)$;
+
+\item Update operator $U_O$ decomposes observation flow into time windows corresponding to frequency component $\omega$, whose length is controlled by $\kappa(\omega)$, i.e., each update step corresponds to finite time delay or equivalent time resource.
+\end{enumerate}
+
+Intuitively, time scale used internally by ``my mind'' is not arbitrarily introduced, but pullback of universe mother ruler $\kappa$ on measurable frequency bands.
+\end{definition}
+
+\subsection{Information-Geometric Structure on Model Space}
+
+Statistical model family $\{P_{\theta}\}_{\theta\in\Theta}$ (induced by models $X_{\theta}$ on $\mathcal{A}_O$) on parameter space $\Theta$ can be endowed with information geometric structure. Choosing appropriate divergence function $D(P_{\theta}|P_{\theta'})$, such as Kullback--Leibler divergence, it induces Fisher--Rao metric $g^{\mathrm{FR}}$ and pair of dual affine connections on $\Theta$, making $(\Theta,g^{\mathrm{FR}})$ a statistical manifold.
+
+Posterior evolution $\pi_O^{\tau}$ can be viewed as stochastic dynamical system on this statistical manifold, whose asymptotic behavior is controlled by posterior consistency theory. Unified time scale $\kappa$ affects posterior concentration speed by determining data flow sampling density in proper time and frequency ends.
+
+\subsection{Structural and Statistical Assumptions}
+
+To state main theorem, adopt following assumptions:
+
+\begin{itemize}
+\item \textbf{(A1) Identifiability}: If models $X_{\theta_1}$ and $X_{\theta_2}$ induce identical observation distribution families on observable subalgebra $\mathcal{A}_O$, then $\theta_1=\theta_2$.
+
+\item \textbf{(A2) Prior support}: True universe corresponds to parameter $\theta^{\star}$ belonging to $\Theta$, and prior $\pi_O$ assigns positive mass to any neighborhood containing $\theta^{\star}$.
+
+\item \textbf{(A3) Observational sufficiency}: Under sufficiently long unified time scale, observation data stream $\{D_t\}$ from $\mathcal{A}_O$ makes relative entropy $D(P^{\star}\Vert P_{\theta})$ positive for each $\theta\neq\theta^{\star}$, where $P_{\theta}$ is observation distribution induced by it and $P^{\star}$ is true distribution.
+
+\item \textbf{(A4) Regularity}: Model family and prior satisfy technical conditions of Schwartz-type posterior consistency theorem, such as sufficiently small Kullback--Leibler neighborhoods and separability.
+
+\item \textbf{(A5) Scale compatibility}: Observation design and update step size controlled by unified time scale $\kappa$, not introducing independent external time units; in heart-universe structure embedding, $\kappa$ only allows affine transformations.
+\end{itemize}
+
+Under these assumptions, we can formalize ``my mind is universe'' as posterior convergence and isomorphism theorem in heart-universe structure category.
+
+\section{Main Results (Theorems and Alignments)}
+
+This section constructs heart-universe structure category $\mathbf{CauTimeEnt}$, presents definition of ``heart-universe isomorphism'', and states main theorems for single and multiple observers.
+
+\subsection{Heart--Universe Structural Category}
+
+\begin{definition}[Heart-Universe Structure Object]
+Objects of category $\mathbf{CauTimeEnt}$ are triples
+$$
+X=(\mathcal{X},\preccurlyeq,\Theta_X),
+$$
+where:
+
+\begin{enumerate}
+\item $\mathcal{X}$ is set or measurable space, representing events, cross-sections, or model states;
+
+\item $\preccurlyeq$ is partial order or causal relation on $\mathcal{X}$;
+
+\item $\Theta_X=(\kappa_X,S_X)$ is time--entropy structure, where $\kappa_X$ is scale function on spectral domain, $S_X$ is generalized entropy or information functional defined on appropriate subsets, satisfying monotonicity.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}[Heart-Universe Structure Morphism]
+For objects $X=(\mathcal{X},\preccurlyeq_X,\Theta_X)$, $Y=(\mathcal{Y},\preccurlyeq_Y,\Theta_Y)$, map $f:X\to Y$ is morphism if and only if:
+
+\begin{enumerate}
+\item \textbf{Causal order-preserving}: $x_1\preccurlyeq_X x_2\Rightarrow f(x_1)\preccurlyeq_Y f(x_2)$;
+
+\item \textbf{Time scale compatibility}: There exists monotone function $\alpha:\mathbb{R}\to\mathbb{R}$ such that $\kappa_Y\circ T_f=\alpha\circ\kappa_X$, where $T_f$ is spectral map induced by $f$;
+
+\item \textbf{Entropy monotonicity}: For any allowed region $A\subset\mathcal{X}$, $S_Y(f(A))\ge S_X(A)$, or preserves information monotonicity in appropriate direction.
+\end{enumerate}
+\end{definition}
+
+Universe object $U_{\mathrm{geo}}$ is embedded as object $X_U\in\mathbf{CauTimeEnt}$ through appropriate encoding map $E_U$. Similarly, posterior limit of observer ``my mind'' will be embedded as object $X_H$.
+
+\subsection{Heart--Universe Isomorphism}
+
+\begin{definition}[Heart-Universe Isomorphism]
+Let $X_U,X_H\in\mathbf{CauTimeEnt}$ be universe and ``my mind'' corresponding objects respectively. If there exist morphisms $f:X_U\to X_H$, $g:X_H\to X_U$ such that:
+
+\begin{enumerate}
+\item $g\circ f$ is isomorphic to identity morphism on $X_U$;
+
+\item $f\circ g$ is isomorphic to identity morphism on $X_H$;
+
+\item Time scale transformation is affine function, i.e., $\alpha(t)=at+b$, not changing scale source,
+\end{enumerate}
+
+then $X_H$ and $X_U$ are called isomorphic in heart-universe structure category, denoted $X_H\simeq X_U$. In this sense, ``my mind is universe'' holds.
+\end{definition}
+
+\subsection{Theorem 1: Posterior Structural Consistency (``My Mind Is Universe'')}
+
+\begin{theorem}[Single Observer Heart-Universe Isomorphism]
+Let universe object $U_{\mathrm{geo}}$ satisfy axioms 2.1--2.6, observer ``self'' satisfy assumptions (A1)--(A5). Let $X_U$ be embedding of $U_{\mathrm{geo}}$ in $\mathbf{CauTimeEnt}$, $X_H^T$ be ``my mind'' posterior expectation structure after observation in unified time scale interval $[0,T]$. Then there exist $\theta^{\star}\in\Theta$ and object $X_{\theta^{\star}}$ such that:
+
+\begin{enumerate}
+\item $X_{\theta^{\star}}$ is isomorphic to $X_U$ in $\mathbf{CauTimeEnt}$;
+
+\item As $T\to\infty$, $X_H^T$ converges to $X_{\theta^{\star}}$ in appropriate topology;
+
+\item Thus there exists $T_0$ such that when $T>T_0$, $X_H^T\simeq X_U$.
+\end{enumerate}
+
+In other words, as long as observation time is sufficiently long, posterior structure of ``my mind'' is isomorphic to universe in heart-universe structure category; ``my mind is universe'' holds in limit and sufficiently long time scales.
+\end{theorem}
+
+\subsection{Theorem 2: Multi-Observer Consensus and Shared Universe}
+
+\begin{theorem}[Multi-Observer Heart-Universe Consensus]
+Suppose there exists observer family $\{O_i\}_{i\in I}$, each with model family $\mathcal{M}_{O_i}$, prior $\pi_{O_i}$, and update operator $U_{O_i}$ compatible with unified time scale. Assume:
+
+\begin{enumerate}
+\item Each $O_i$ individually satisfies (A1)--(A5), and true parameter $\theta^{\star}$ is shared by all observers;
+
+\item There exists connected communication graph such that observers can exchange partial observation and model information through channels $\mathcal{C}_{ij}$;
+
+\item Communication and update rules satisfy appropriate consistency and unbiasedness conditions.
+\end{enumerate}
+
+Then there exist joint posterior $\Pi^T$ and corresponding joint heart-universe structure object $X_{\mathrm{joint}}^T$ such that:
+
+\begin{enumerate}
+\item As $T\to\infty$, $\Pi^T$ concentrates on $\theta^{\star}$;
+
+\item Each observer's heart-universe structure object $X_{H_i}^T$ is isomorphic to $X_{\theta^{\star}}$ in $\mathbf{CauTimeEnt}$;
+
+\item Mutually $X_{H_i}^T\simeq X_{H_j}^T$, and isomorphic to $X_U$.
+\end{enumerate}
+
+Therefore, under multi-observer and causal consensus framework, statements ``my mind is universe'', ``their mind is universe'', and ``same universe'' are structurally compatible, not mutually exclusive.
+\end{theorem}
+
+\subsection{Alignment with Matrix Universe and Self-Referential Networks}
+
+To connect with scattering perspective, introduce language of matrix universe THE-MATRIX. Let $\{S(\omega)\}_{\omega\in\Omega}$ be universe's scattering matrix family in some frequency band, forming matrix universe object $\mathrm{THE\text{-}MATRIX}$. Observer ``self'' is realized as one self-referential scattering subnetwork, whose internal memory ports form self-referential structure through feedback, external ports coupling with environment.
+
+In this realization, heart-universe structure object $X_H^T$ can be concretely understood as ``my mind'''s estimate of $\mathrm{THE\text{-}MATRIX}$'s topological and scattering properties. Theorem 3.4 shows that under unified time scale driving, this estimate structurally converges to self-isomorphic image of true matrix universe, thus realizing ``my mind is universe'' in matrix universe picture.
+
+\section{Proofs}
+
+This section provides proof ideas for Theorems 3.4 and 3.5, placing technical details in Appendix B.
+
+\subsection{Bayesian Posterior Consistency as a Structural Statement}
+
+Observation data stream $\{D_t\}$ is determined by universe object $U_{\mathrm{geo}}$ and observable subalgebra $\mathcal{A}_O$. For each parameter $\theta$, model $X_{\theta}$ induces observation distribution family $\{P_{\theta}\}$ on $\mathcal{A}_O$; true universe corresponds to distribution family denoted $P^{\star}$.
+
+Using relative entropy
+$$
+D(P^{\star}\Vert P_{\theta})=\int\log\frac{\mathrm{d}P^{\star}}{\mathrm{d}P_{\theta}}\,\mathrm{d}P^{\star},
+$$
+under assumptions (A1) and (A3), for all $\theta\neq\theta^{\star}$, $D(P^{\star}\Vert P_{\theta})>0$, and $D(P^{\star}\Vert P_{\theta^{\star}})=0$.
+
+Under appropriate regularity conditions, Schwartz and subsequent work show: if prior assigns positive mass to neighborhood of $\theta^{\star}$, then posterior $\pi_O^T$ satisfies for any neighborhood $U$ containing $\theta^{\star}$:
+$$
+\pi_O^T(U)\to 1,\quad T\to\infty,
+$$
+almost surely.
+
+Correspondingly, Fisher--Rao metric $g^{\mathrm{FR}}$ on parameter space $\Theta$ makes posterior concentration process interpretable as asymptotic contraction on statistical manifold: posterior mass contracts toward $\theta^{\star}$ in $g^{\mathrm{FR}}$ sense.
+
+\subsection{From Parameter Convergence to Structural Convergence in $\mathbf{CauTimeEnt}$}
+
+Next need to explain: how posterior concentration of parameter $\theta$ lifts to isomorphic convergence of heart-universe structure object $X_H^T$ toward $X_U$.
+
+\subsubsection{Embedding of Models into $\mathbf{CauTimeEnt}$}
+
+For each $\theta\in\Theta$, define model $X_{\theta}$ as
+$$
+X_{\theta}=(\mathcal{X}_{\theta},\preccurlyeq_{\theta},\Theta_{\theta}),
+$$
+where:
+
+\begin{enumerate}
+\item $\mathcal{X}_{\theta}$ is set of events, cross-sections, or model states encoded by $X_{\theta}$;
+
+\item $\preccurlyeq_{\theta}$ is determined by causal structure of $X_{\theta}$;
+
+\item $\Theta_{\theta}=(\kappa_{\theta},S_{\theta})$ is corresponding time scale and entropy structure, where $\kappa_{\theta}$ is determined through compatibility of model scattering data with unified time scale $\kappa$, $S_{\theta}$ is generalized entropy functional on model.
+\end{enumerate}
+
+Assume continuous embedding exists such that as $\theta\to\theta^{\star}$, $(\mathcal{X}_{\theta},\preccurlyeq_{\theta},\Theta_{\theta})$ converges in some topology or metric to $(\mathcal{X}_{\theta^{\star}},\preccurlyeq_{\theta^{\star}},\Theta_{\theta^{\star}})$, and latter is isomorphic to universe embedding $X_U$. This way, approximate isomorphic morphisms $f_{\theta}:X_{\theta}\to X_U$, $g_{\theta}:X_U\to X_{\theta}$ can be constructed, whose deviation from identity vanishes as $\theta\to\theta^{\star}$.
+
+\subsubsection{Heart Structure as Posterior Expectation}
+
+Define posterior expectation structure of ``my mind'' as
+$$
+X_H^T=\int_{\Theta}X_{\theta}\,\mathrm{d}\pi_O^T(\theta),
+$$
+understandable as ``average'' on heart-universe structure space. Since $\pi_O^T$ concentrates on $\theta^{\star}$ and $X_{\theta}$ is continuous in $\theta$, $X_H^T$ converges topologically to $X_{\theta^{\star}}$. Approximate isomorphic morphisms $f_{\theta}$, $g_{\theta}$ through integration give $f_T:X_H^T\to X_U$, $g_T:X_U\to X_H^T$, approaching categorical isomorphism as $T\to\infty$.
+
+Thus there exists $T_0$ such that when $T>T_0$, $X_H^T$ is isomorphic to $X_U$ in $\mathbf{CauTimeEnt}$; Theorem 3.4 is proved. Formalized proof in Appendix B.
+
+\subsection{Proof of Theorem 3.5: Multi-Observer Consensus}
+
+Multi-observer case can be viewed as Bayesian network with communication structure. Each observer $O_i$ possesses observation data stream $\{D_t^{(i)}\}$, exchanges partial information through communication channels $\mathcal{C}_{ij}$, forming joint posterior $\Pi^T$. Under appropriate assumptions (such as communication graph connected, message exchange not introducing systematic bias), joint posterior still satisfies Schwartz-type consistency conditions, concentrating on $\theta^{\star}$.
+
+Furthermore, since each observer's individual posterior can be viewed as marginal or conditional of joint posterior, parameter convergence still holds. Thus, respective heart-universe structure objects $X_{H_i}^T$ are isomorphic to $X_{\theta^{\star}}$ in limit, also mutually isomorphic, proving Theorem 3.5.
+
+\section{Model Applications}
+
+This section demonstrates applications and interpretations of ``my mind is universe'' theorem from three levels: single observer limit, multi-observer consensus, and scattering realization in matrix universe.
+
+\subsection{Single-Observer Interpretation: Universe as Self-Recognition}
+
+Theorem 3.4 shows that on universe's unified time scale, along a worldline ``self'' continuously observes and learns about universe, whose internal model structure $X_H^T$ is isomorphic to universe structure $X_U$ in long-time limit. This can be understood as:
+
+\begin{itemize}
+\item Universe ontologically is fixed point of causal--temporal--entropy structure $U_{\mathrm{geo}}$;
+
+\item ``My mind'' is self-referential approximation process of this structure along a worldline;
+
+\item Limit state $X_H^{\infty}$ realizes universe's self-recognition of its own structure.
+\end{itemize}
+
+Therefore, ``my mind is universe'' does not mean universe depends on ``self'' for existence, but rather: universe reconstructs its own structure in ``mind'' along ``self'''s worldline in self-isomorphic manner. This result provides precise mathematical supplement to Wheeler's ``participatory universe'' and ``it from bit'': information updating and posterior concentration are not arbitrary subjective activities, but structural isomorphic convergence under constraints of generalized entropy and unified time scale.
+
+\subsection{Multi-Observer Interpretation: Causal Consensus as Shared Self-Recognition}
+
+Theorem 3.5 shows that multiple observers exchange information through causally allowed communication channels, whose joint posterior also converges to true parameter $\theta^{\star}$, causing respective heart-universe structure objects to be mutually isomorphic in limit. This means:
+
+\begin{itemize}
+\item Under sufficiently long time and sufficiently rich communication, internal ``universe images'' of all observers tend toward consistency in causal--temporal--entropy structure;
+
+\item ``My mind is universe'' and ``their mind is universe'' point to same universe fixed-point structure, not competing multiple ontologies;
+
+\item Causal consensus can be understood as isomorphic alignment of heart-universe structure objects in $\mathbf{CauTimeEnt}$.
+\end{itemize}
+
+This picture shares similarities with claims in relational quantum mechanics and QBism that ``different observers give different but compatible world descriptions'', but this paper elevates this claim to structural theorem about posteriors and generalized entropy, providing rigorous framework for ``multi-perspective one-universe'' statement.
+
+\subsection{Toy Model within THE-MATRIX: Self-Referential Scattering}
+
+To give ``my mind is universe'' more operational picture, consider self-referential scattering network in matrix universe $\mathrm{THE\text{-}MATRIX}$ (details in Appendix C):
+
+\begin{enumerate}
+\item Universe in some frequency band described by scattering matrix family $\{S(\omega)\}$, where port set divided into external port cluster $E$, observer port cluster $O_{\mathrm{in}},O_{\mathrm{out}}$, and internal memory port cluster $M_{\mathrm{in}},M_{\mathrm{out}}$.
+
+\item ``My mind'' as scattering subnetwork with tunable internal parameters, internal memory forming self-referential structure through feedback, parameter updating through Bayesian correction of statistical relations of input-output.
+
+\item Unified time scale $\kappa(\omega)$ determines weight and update step size of different frequency sampling; time-delay spectrum $\operatorname{tr}Q(\omega)$ reflects ``time cost'' of each scattering experiment.
+\end{enumerate}
+
+In this model, parameter $\theta$ encodes ``my mind'''s assumptions about global network topology and scattering properties. As long as signal design is sufficiently rich and identifiable, posterior concentration theorem guarantees $\theta$ converges to true parameter $\theta^{\star}$; ``my mind'''s internal representation of $\mathrm{THE\text{-}MATRIX}$ is structurally isomorphic to true network. Since ``my mind'' itself is part of this network, this convergence means: universe constructs correct model about itself through ``self'' scattering subnetwork inside itself.
+
+\section{Engineering Proposals}
+
+Although this paper is primarily theoretical work, its structure still points to several explorable engineering schemes for realizing or simulating partial mechanisms of ``my mind is universe'' in experiments and information systems.
+
+\subsection{Scattering Networks with Learnable Internal Observers}
+
+Consider constructing programmable scattering networks on microwave, electromagnetic, or acoustic platforms, where:
+
+\begin{enumerate}
+\item External channels realize environment ports $E$;
+
+\item Some channels implement ``observer ports'' $O_{\mathrm{in}},O_{\mathrm{out}}$, connected to reconfigurable internal subnetwork;
+
+\item Internal subnetwork carries tunable parameters (e.g., variable capacitors, inductors, or digitized delay lines), performing online updates according to observation data under control system driving.
+\end{enumerate}
+
+By measuring Wigner--Smith time-delay matrix and scattering phase, unified time scale mother ruler $\kappa(\omega)$ can be extracted, evaluating time resources consumed and information gain obtained per update.
+
+On such platform, ``artificial mind'' $H_O$ can be realized, observing how its posterior model structurally converges to network's true topology, simulating ``my mind is universe'' within finite experimental system.
+
+\subsection{Information-Geometric Learning Agents on Causal Data}
+
+Another realization is constructing information geometry-driven learning agent, simplifying universe to data stream generated by causal network; agent internally maintains parametrized causal models (such as structural equation models or directed acyclic graphs), performing Bayesian updates under unified time scale.
+
+At engineering level, part of heart-universe isomorphism mechanism can be verified through:
+
+\begin{enumerate}
+\item Using information geometric methods to monitor posterior concentration degree under Fisher--Rao metric;
+
+\item Comparing differences between agent's internal causal graph and true data-generating causal graph in partial order and entropy structure;
+
+\item Evaluating impact of different time scale designs (e.g., different sampling frequencies and bandwidths) on convergence speed and final structural isomorphism.
+\end{enumerate}
+
+\subsection{Astrophysical and Cosmological Data as Boundary Observables}
+
+At more macroscopic level, astronomical observations (such as cosmic microwave background, fast radio bursts) can be viewed as data stream from universe boundary algebra $\mathcal{A}_{\partial}$. Unified time scale can be related to observables like cosmological redshift, propagation time delay, viewing observational engineering as extreme version of heart-universe isomorphism theorem.
+
+In this framework, large-scale observational engineering can be understood as multiple ``Earth-level observers''' joint approximation of universe's causal--entropy structure over long time scales; whether their posterior models tend toward consistency at generalized entropy and time scale levels can become quantitative indicator for judging ``whether human minds structurally approach universe ontology''.
+
+\section{Discussion (Risks, Boundaries, Past Work)}
+
+\subsection{Conceptual Positioning}
+
+This paper positions ``my mind is universe'' as theorem about posterior consistency and heart-universe structural isomorphism, not an interpretive stance. This distinction differs from QBism and relational quantum mechanics: latter interpret quantum states as subjective experience or inter-system relations, while this paper emphasizes structural limits under constraints of generalized entropy and unified time scale.
+
+Advantages of this approach:
+
+\begin{itemize}
+\item Gives ``my mind'' and ``universe'' equally rigorous mathematical object status;
+
+\item Interprets ``is'' as categorical isomorphism, not ontological material or entity identity;
+
+\item Can be unified at levels of multiple observers, matrix universe, and engineering realization.
+\end{itemize}
+
+Meanwhile, this stance also has boundaries and risks.
+
+\subsection{Boundaries and Limitations}
+
+\begin{enumerate}
+\item \textbf{Choice dependence of model family and prior}: If true universe not in closure of model family $\mathcal{M}_O$, posterior consistency and heart-universe isomorphism may fail; this corresponds to observer's ``ontological blind spot'' problem.
+
+\item \textbf{Identifiability and observational resource limits}: Identifiability assumption requires observable data have sufficient discriminating power for different parameters; in universes with limited observational resources or obstructions, this condition may not be satisfied.
+
+\item \textbf{Applicability range of unified time scale assumption}: Scale identity $\kappa(\omega)=\varphi'(\omega)/\pi=\rho_{\mathrm{rel}}(\omega)=(2\pi)^{-1}\operatorname{tr}Q(\omega)$ depends on appropriate conditions of scattering system; in more general gravitational--quantum backgrounds, more generalized spectral--temporal structures needed as replacement.
+
+\item \textbf{Incomplete state of generalized entropy and quantum gravity}: Definition of generalized entropy, quantum focusing conjecture, and cosmological generalized second law still under development; this paper to some extent presupposes their validity.
+\end{enumerate}
+
+Therefore, ``my mind is universe'' in this framework is conditional theorem: its validity depends on universe and observer satisfying above assumptions, not unconditional metaphysical declaration.
+
+\subsection{Relation to Prior Work}
+
+\begin{itemize}
+\item Compared with \textbf{relational quantum mechanics}, this paper introduces causal manifolds and generalized entropy as background structure at macroscopic level, generalizing relationality to three-layer structure of causality--time--entropy, not limited to microscopic quantum events.
+
+\item Compared with \textbf{QBism}, this paper also emphasizes subjective perspective and probability updating, but introduces unified time scale and Bayesian consistency, embedding ``subjective probability'' in geometric framework with strong constraints on universe structure.
+
+\item Compared with \textbf{thermal time hypothesis}, this paper generalizes time scale from modular flow to scattering phase and time delay, extending Connes--Rovelli's idea to unified time scale mother ruler level.
+
+\item Compared with \textbf{holographic principle and generalized entropy research}, this paper does not attempt to derive new entropy inequalities, but takes existing generalized entropy monotonicity as constraint in heart-universe structure category to control learning direction of ``my mind''.
+\end{itemize}
+
+\section{Conclusion}
+
+Within unified framework of causal manifolds, boundary time geometry, unified time scale, and information geometry, this paper provides axiomatizable, theorem-provable version of traditional proposition ``my mind is universe''. Core contributions can be summarized as:
+
+\begin{enumerate}
+\item Propose unified definition of universe object $U_{\mathrm{geo}}$ and observer--``my mind'' object $H_O$, introduce heart-universe structure category $\mathbf{CauTimeEnt}$, integrating causal partial order, time scale, and generalized entropy into single structural language;
+
+\item Propose concept of ``heart-universe isomorphism'' in $\mathbf{CauTimeEnt}$, interpreting ``my mind is universe'' as categorical isomorphism between heart-universe structures, not simple identity of material entities;
+
+\item Relying on Bayesian posterior consistency and information geometry, prove single-observer and multi-observer versions of heart-universe isomorphism theorem, showing that under conditions of identifiability and unified time scale compatibility, posterior structure of ``my mind'' necessarily isomorphic to universe structure in long-time limit;
+
+\item Through toy model of matrix universe and self-referential scattering networks, demonstrate how ``my mind is universe'' can be realized in concrete operator--matrix framework, proposing several engineering schemes for partially simulating this mechanism in experiments and information systems.
+\end{enumerate}
+
+In this sense, ``my mind is universe'' is no longer slogan leaning toward idealism, but becomes structural proposition about how universe realizes self-cognition through observers within itself: universe in long-term learning process on a worldline replicates its causal--temporal--entropy structure into ``my mind'', achieving self-isomorphism in heart-universe structure category. This unified framework provides foundation for further integrating causal manifolds, holographic principle, thermal time hypothesis, and information geometry into broader ``heart-universe unification theory''.
+
+\section*{Acknowledgements \& Code Availability}
+
+\textbf{Acknowledgements.} This paper relies on rich existing results in local quantum physics, holographic principle, generalized entropy, thermal time hypothesis, scattering theory, and information geometry to provide unified restatement of ``my mind is universe'' proposition. Deep gratitude to work of many researchers in related fields.
+
+\textbf{Code Availability.} This paper is pure theoretical work, not using numerical code or public software implementations; if numerical simulations and scattering network experiments are undertaken in future, code and data descriptions will be provided in corresponding work.
+
+\section*{Appendix A: Axiomatic System of Universe--Observer--``My Mind''}
+
+This appendix presents axiomatic system used in this paper for reuse in other manuscripts.
+
+\subsection*{A.1 Universe Ontological Axioms}
+
+\begin{axiom}[Causal Manifold]
+Universe spacetime $(M,g)$ is four-dimensional, time-orientable, globally hyperbolic Lorentz manifold with well-defined causal cones and causal reachability relation $\prec$, satisfying standard causality conditions.
+\end{axiom}
+
+\begin{axiom}[Boundary Algebra and State]
+There exists $\mathrm{C}^{*}$ algebra $\mathcal{A}_{\partial}$ associated with appropriate boundary $\partial M$ or effective boundary of $M$ and normal state $\omega_{\partial}$ on it. Physical observables are represented by self-adjoint elements in $\mathcal{A}_{\partial}$ or their functions.
+\end{axiom}
+
+\begin{axiom}[Generalized Entropy and Arrow of Time]
+For any spatial slice or causal diamond boundary $\Sigma$, define generalized entropy
+$$
+S_{\mathrm{gen}}(\Sigma)=\frac{\operatorname{Area}(\Sigma)}{4G\hbar}+S_{\mathrm{out}}(\Sigma),
+$$
+where $S_{\mathrm{out}}$ is von Neumann entropy of exterior region. $S_{\mathrm{gen}}$ satisfies relative entropy monotonicity and appropriate quantum focusing inequalities, providing arrow of time.
+\end{axiom}
+
+\begin{axiom}[Unified Time Scale]
+There exists scale function $\kappa:\Omega\to\mathbb{R}$ such that for scattering channel's total half-phase $\varphi(\omega)$, spectral shift function $\xi(\omega)$, time-delay matrix $Q(\omega)$:
+$$
+\kappa(\omega)=\varphi'(\omega)/\pi=\rho_{\mathrm{rel}}(\omega)=(2\pi)^{-1}\operatorname{tr}Q(\omega),
+$$
+where $\rho_{\mathrm{rel}}(\omega)$ and $\xi(\omega)$ related to scattering matrix $\det S(\omega)$ through Birman--Kreĭn formula.
+\end{axiom}
+
+\subsection*{A.2 Observer and ``My Mind'' Axioms}
+
+\begin{axiom}[Observer Worldline]
+Each observer corresponds to future-directed timelike curve $\gamma$ in $M$, whose proper time parameter $\tau$ is determined up to affine transformation given metric $g$.
+\end{axiom}
+
+\begin{axiom}[Finite Resolution and Local Causality]
+For observer ``self'', there exists resolution parameter $\Lambda_O$ such that local causal partial order $\prec_O$ defined on reachable domain $C$ is coarse-graining of $\prec$.
+\end{axiom}
+
+\begin{axiom}[Observable Subalgebra]
+For observer ``self'', there exists $\mathcal{A}_O\subset\mathcal{A}_{\partial}$; all observation data comes from $\mathcal{A}_O$.
+\end{axiom}
+
+\begin{axiom}[Model Family and Prior]
+``My mind'' contains model family $\mathcal{M}_O=\{X_{\theta}\}_{\theta\in\Theta}$ and prior measure $\pi_O$ on it; true universe corresponds to parameter $\theta^{\star}\in\Theta$.
+\end{axiom}
+
+\begin{axiom}[Update Rule and Scale Compatibility]
+There exists update operator $U_O$ mapping prior and observation data stream to time-evolving posterior family $\{\pi_O^T\}$, satisfying:
+
+\begin{enumerate}
+\item \textbf{Consistency}: Update within any finite time window equivalent to one-time Bayesian update for all observations in that window;
+
+\item \textbf{Locality}: Update depends only on current time window and current posterior;
+
+\item \textbf{Scale compatibility}: Update step size consistent with unified time scale $\kappa$; each step corresponds to finite time window whose length controlled by $\kappa(\omega)$ in relevant frequency band.
+\end{enumerate}
+\end{axiom}
+
+\subsection*{A.3 Heart-Universe Structure Category Axioms}
+
+\begin{axiom}[Objects and Morphisms]
+Objects and morphisms of $\mathbf{CauTimeEnt}$ as defined in main text Definitions 3.1 and 3.2; all universe objects and ``my mind'' limit objects can be embedded therein.
+\end{axiom}
+
+\begin{axiom}[Universe Embedding]
+There exists embedding $E_U$ mapping $U_{\mathrm{geo}}$ to $X_U\in\mathbf{CauTimeEnt}$, preserving causal, scale, and generalized entropy structures.
+\end{axiom}
+
+\begin{axiom}[Heart Limit Object]
+For any observer ``self'', its posterior evolution $\{\pi_O^T\}$ in some limit (e.g., Cesàro average or almost everywhere limit) defines heart-universe structure object $X_H$, representing ``my mind'''s limit world model under infinite unified time scale.
+\end{axiom}
+
+Under this axiomatic system, Theorems 3.4 and 3.5 can be viewed as compatibility theorems between universe ontology and observer epistemology.
+
+\section*{Appendix B: Proof of Posterior Concentration and Heart-Universe Structural Isomorphism}
+
+This appendix provides proof details for Theorems 3.4 and 3.5.
+
+\subsection*{B.1 Schwartz-Type Posterior Consistency}
+
+Consider independent identically distributed or conditionally independent observation case. Denote true observation distribution as $P^{\star}$, model-induced distribution as $\{P_{\theta}\}$. Assume there exists measure $\mu$ such that distributions are absolutely continuous with densities $p^{\star},p_{\theta}$ respectively.
+
+Define relative entropy
+$$
+D(P^{\star}\Vert P_{\theta})=\int\log\frac{p^{\star}}{p_{\theta}}\,p^{\star}\,\mathrm{d}\mu.
+$$
+
+Identifiability and observational sufficiency assumptions ensure for $\theta\neq\theta^{\star}$, $D(P^{\star}\Vert P_{\theta})>0$.
+
+For any neighborhood $U\ni\theta^{\star}$, denote $U^c=\Theta\setminus U$. By compactness or separability, finite cover can be extracted from $U^c$ such that there exists $\varepsilon>0$ with $D(P^{\star}\Vert P_{\theta})>\varepsilon$ for all $\theta\in U^c$.
+
+For each $\theta$, define likelihood ratio
+$$
+L_T(\theta)=\prod_{t=1}^T\frac{p_{\theta}(D_t)}{p^{\star}(D_t)},
+$$
+whose logarithm is
+$$
+\log L_T(\theta)=\sum_{t=1}^T\log\frac{p_{\theta}(D_t)}{p^{\star}(D_t)}.
+$$
+
+By law of large numbers, almost surely
+$$
+\frac{1}{T}\log L_T(\theta)\to -D(P^{\star}\Vert P_{\theta})\le -\varepsilon.
+$$
+
+Thus for large $T$, $L_T(\theta)\le\mathrm{e}^{-\varepsilon T}$.
+
+Posterior mass on $U^c$ is
+$$
+\pi_O^T(U^c)=\frac{\int_{U^c}L_T(\theta)\,\mathrm{d}\pi_O(\theta)}{\int_{\Theta}L_T(\theta)\,\mathrm{d}\pi_O(\theta)}.
+$$
+
+Numerator controlled by $\mathrm{e}^{-\varepsilon T}\pi_O(U^c)$, while denominator lower bound obtained from Kullback--Leibler neighborhood near true value and prior positive mass, yielding $\pi_O^T(U^c)\to 0$. Therefore for any $U\ni\theta^{\star}$, $\pi_O^T(U)\to 1$; posterior consistency holds.
+
+\subsection*{B.2 Structural Embedding and Continuity}
+
+In heart-universe structure category, for each $\theta$, construct object
+$$
+X_{\theta}=(\mathcal{X}_{\theta},\preccurlyeq_{\theta},\Theta_{\theta}).
+$$
+
+Require:
+
+\begin{enumerate}
+\item There exists unified structure space such that $\theta\mapsto X_{\theta}$ is continuous in some appropriate topology;
+
+\item There exist morphism pairs $(f_{\theta},g_{\theta})$ parametrized by $\theta$ satisfying
+$$
+g_{\theta}\circ f_{\theta}\simeq\operatorname{id}_{X_{\theta}},\quad f_{\theta}\circ g_{\theta}\simeq\operatorname{id}_{X_U},
+$$
+with isomorphism error approaching zero as $\theta\to\theta^{\star}$.
+\end{enumerate}
+
+This step in concrete construction can utilize fact: difference between universe embedding $X_U$ and model $X_{\theta}$ can be measured by set of control quantities, such as measure of causal partial order difference, $L^p$ distance of time scale functions, supremum difference of generalized entropy functions, proving these quantities continuous in parameter $\theta$.
+
+\subsection*{B.3 Proof of Theorem 3.4}
+
+Posterior consistency ensures for any $\varepsilon>0$, there exist neighborhood $U_{\varepsilon}\ni\theta^{\star}$ and $T_{\varepsilon}$ such that when $T>T_{\varepsilon}$, $\pi_O^T(U_{\varepsilon})>1-\varepsilon$. Let $\delta(\theta)$ measure structural difference between $X_{\theta}$ and $X_U$, satisfying $\delta(\theta)\to 0$ as $\theta\to\theta^{\star}$.
+
+Difference of posterior expectation structure $X_H^T$ can be estimated as
+$$
+\Delta_T=\int_{\Theta}\delta(\theta)\,\mathrm{d}\pi_O^T(\theta).
+$$
+
+Decomposing integral into $U_{\varepsilon}$ and $U_{\varepsilon}^c$ parts:
+$$
+\Delta_T\le\sup_{\theta\in U_{\varepsilon}}\delta(\theta)\cdot\pi_O^T(U_{\varepsilon})+\sup_{\theta\in U_{\varepsilon}^c}\delta(\theta)\cdot\pi_O^T(U_{\varepsilon}^c).
+$$
+
+Since $\delta(\theta)$ on $U_{\varepsilon}$ can take arbitrarily small values, while $\pi_O^T(U_{\varepsilon}^c)$ approaches zero as $T\to\infty$, obtain $\Delta_T\to 0$. Thus $X_H^T$ structurally converges to $X_U$; using stability of approximate isomorphic morphisms, for sufficiently large $T$, there exists exact isomorphism $X_H^T\simeq X_U$; Theorem 3.4 proved.
+
+\subsection*{B.4 Proof of Theorem 3.5}
+
+In multi-observer case, joint posterior $\Pi^T$ can be constructed through distribution family $\{P_{\theta}^{(\mathrm{joint})}\}$ and joint observation data. Identifiability and observational sufficiency conditions need generalization to joint system, but under assumptions of connected communication graph and unbiased messages, extended Schwartz theorem or its non-i.i.d. version can be used to prove joint posterior concentrates on $\theta^{\star}$.
+
+Subsequently, individual posteriors can be viewed as marginals or conditionals of joint posterior, hence also concentrate on $\theta^{\star}$. Thus, each observer's heart-universe structure object $X_{H_i}^T$ is isomorphic to $X_U$ in limit, also mutually isomorphic; Theorem 3.5 proved.
+
+\section*{Appendix C: Self-Referential Scattering Network Toy Model}
+
+This appendix provides toy model realizing ``my mind is universe'' in matrix universe THE-MATRIX.
+
+\subsection*{C.1 Network Architecture}
+
+Consider finite-dimensional scattering network whose port set divided into three classes:
+
+\begin{enumerate}
+\item External port cluster $E$: representing rest of universe unrelated to observer;
+
+\item Observer port cluster $O_{\mathrm{in}},O_{\mathrm{out}}$: related to ``my mind'''s sensing and actuation;
+
+\item Internal memory port cluster $M_{\mathrm{in}},M_{\mathrm{out}}$: representing internal state of ``my mind''.
+\end{enumerate}
+
+Overall scattering matrix can be written in block form
+$$
+S(\omega)=
+\begin{pmatrix}
+S_{EE}(\omega) & S_{EO}(\omega) & S_{EM}(\omega)\\
+S_{OE}(\omega) & S_{OO}(\omega) & S_{OM}(\omega)\\
+S_{ME}(\omega) & S_{MO}(\omega) & S_{MM}(\omega)
+\end{pmatrix}.
+$$
+
+Here $S_{MM}(\omega)$ describes scattering among internal memories; self-referentiality embodied in feedback coupling between $S_{MM}$ and $S_{MO},S_{OM}$.
+
+\subsection*{C.2 Internal Model and Learning Rule}
+
+Assume scattering matrix controlled by finite-dimensional parameter $\theta$; $S(\omega;\theta)$ is model family; ``my mind'''s model family $\mathcal{M}_O$ is $\{S(\omega;\theta)\}_{\theta\in\Theta}$. True universe corresponds to parameter $\theta^{\star}$.
+
+Learning process of ``my mind'' can be described as:
+
+\begin{enumerate}
+\item Under unified time scale control, probe network with frequency-controllable manner through $O_{\mathrm{in}},O_{\mathrm{out}}$, collecting input-output pairs;
+
+\item Perform Bayesian update on this data over model family, obtaining posterior $\pi_O^T$;
+
+\item Choose posterior expectation or maximum a posteriori parameter $\hat{\theta}_T$ to update scattering properties $S_{MM}(\omega)$ of internal memory subnetwork.
+\end{enumerate}
+
+Unified time scale $\kappa(\omega)$ achieves balance between data acquisition and parameter updating by controlling frequency sampling and time delay.
+
+\subsection*{C.3 Emergence of Heart--Universe Isomorphism}
+
+In above setting, heart-universe structure object $X_H^T$ can be constructed from ``my mind'''s estimate of $S(\omega)$, whose causal--temporal--entropy structure comes from:
+
+\begin{enumerate}
+\item Network topology and paths between ports determine causal partial order;
+
+\item Scattering phase and time delay determine realization of unified time scale;
+
+\item Generalized entropy defined through energy and mode distribution on channels determines entropy structure.
+\end{enumerate}
+
+As long as model family is identifiable and prior supports true parameter, posterior $\pi_O^T$ concentrates on $\theta^{\star}$, making scattering matrix $\hat{S}(\omega)$ estimated internally by ``my mind'' converge to $S(\omega;\theta^{\star})$ in appropriate topology. Therefore, heart-universe structure object $X_H^T$ is isomorphic to true matrix universe object $X_U$ in limit.
+
+In other words, in this toy model, ``my mind is universe'' concretely manifests as: self-referential scattering subnetwork driven by unified time scale and Bayesian updating necessarily learns and replicates topology and scattering properties of entire network in structure, and this network itself is ``universe''. Universe constructs correct image about itself inside itself through self-referential scattering network ``my mind'', thus realizing ``my mind is universe'' in rigorous sense.
+
+\end{document}
+

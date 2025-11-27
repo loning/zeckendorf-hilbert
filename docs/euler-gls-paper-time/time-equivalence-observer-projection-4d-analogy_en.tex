@@ -1,0 +1,645 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{braket}
+\usepackage{graphicx}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+
+% Title information
+\title{Time Equivalence Class, Observer Projection, and 4D Topological Analogy:\\
+From Boundary Time Scale Invariance to Phase Transitions, Fractals, and Exotic Structures}
+
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Within the unified framework of boundary scattering--time geometry, this paper systematically characterizes the relationship between ``time equivalence class'' and ``the world picture seen by observers,'' addressing a natural question: within the same time equivalence class, why do different observers provide significantly different descriptions of time and geometric structure? We start from a set of fundamental invariants---time scale mother ruler $\kappa(\omega)$, relative topological class $[K]\in H^2(Y,\partial Y;\mathbb{Z}_2)$, $K^1$ class $[u]\in K^1(X^\circ)$ of scattering family, and generalized entropy variation data $S_{\mathrm{gen}},\delta^2 S_{\mathrm{rel}}$---to define a unified equivalence relation of time--geometry--topology on the total space $Y=M\times X^\circ$. We then introduce the observer profile category $\mathsf{Obs}$, whose elements consist of resolution, coupling structure, and coarse-graining rules, and construct a projection functor $F_O$ from the invariant layer to ``observable time geometry.'' We prove: $F_O$ must factorize through the time equivalence class, meaning all differences between different observers can only arise from multi-scale structures, phase structures, and layers resembling ``smooth structures,'' but cannot change the underlying causal order and topological ledger.
+
+On this basis, we distinguish and geometrize three types of ``seeing differently'': (1) Multi-scale self-similarity and fractal-like behavior: define the action of scale transformation semigroup $\mathcal{R}_s$ on time equivalence classes, propose a rigorous definition of ``multi-scale self-similar time geometry,'' and provide a solvable one-dimensional scattering model; (2) Phase transitions and phase structure of time geometry: introduce order parameters and critical manifolds for time geometry in parameter space, distinguishing different thermodynamic phases on the same equivalence class from ``topological phase transitions'' (jumps in $[K]$ or $[u]$); (3) 4D topological analogy and exotic time structures: using Freedman's proof of the four-dimensional topological generalized Poincar\'{e} conjecture, Donaldson's constraints on smooth four-dimensional manifolds, and the existence of exotic $\mathbb{R}^4$ as reference, we propose a picture of ``topological type--smooth type separation of time geometry'' and define a working concept of ``exotic time structure.'' Through this we obtain an analogy: time equivalence class corresponds to the ``topological type'' of time geometry, while time manifolds seen by different observers correspond to different ``smooth/phase structures'' on the same topological type.
+
+Finally, we provide a five-layer topological relation diagram represented in mermaid, organizing the invariant layer, carrier layer, structure layer, phase/phenomenon layer, and observation/engineering layer into a rigorous conceptual geometric picture. Appendices provide detailed categorified definitions and proofs of time equivalence class and observer projection, analytical derivation of fractals and phase transitions in one-dimensional scattering toy models, and mathematical background synopsis of several theorems and propositions involved in the 4D topological analogy.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Time Equivalence Class; Modular Time; Observer Projection; Multi-scale Self-similarity; Phase Transition; 4D Topology; Exotic Smooth Structure; Generalized Entropy; $K^1$ Class; $\mathbb{Z}_2$ Holonomy
+
+---
+
+\section{Introduction}
+
+The idea of time equivalence class can be briefly described as: given causal structure and boundary scattering background, there exists a ``mother time scale'' $[\tau]$ such that all physically acceptable time parametrizations are affinely equivalent to it, and its calibration is uniformly determined by scattering phase gradient, relative state density, and trace of Wigner--Smith group delay. The concern of this paper is not the construction of this framework itself, but further philosophical and technical details: even within the same time equivalence class, different observers' ``world pictures''---subjective experience of time, division of geometry and material phases, distinction between macroscopic and microscopic---still exhibit significant differences. What is the root of this difference?
+
+In existing work, time equivalence class has been mainly used to unify: (i) time scale at scattering--spectral shift--group delay end; (ii) thermal time and arrow of time at modular flow and generalized entropy end; (iii) Killing time, ADM time, null geodesic affine parameter, and cosmological conformal time at geometric end. This paper extends the view to the ``projection mechanism'' of observers, attempting to answer the following questions within a rigorous mathematical framework:
+
+\begin{enumerate}
+\item Within the same time equivalence class, what structures determine that different observers ``see differently'';
+\item Whether this difference can be understood as fractals, multi-scale self-similarity, phase transitions, or phenomena similar to ``topological type--smooth type separation'' in four-dimensional topology;
+\item How to construct a unified geometric--topological--information framework incorporating these three types of explanation into the same conceptual picture.
+\end{enumerate}
+
+In four-dimensional topology, Freedman proved the topological four-dimensional generalized Poincar\'{e} conjecture, that any topological four-dimensional homotopy sphere is homeomorphic to $S^4$, establishing a milestone in 4-dimensional topological manifold classification; while Donaldson's gauge invariants and constraints on intersection forms show dramatic structural differences between smooth four-dimensional manifolds and topological four-dimensional manifolds, directly leading to the existence of exotic $\mathbb{R}^4$: there exist infinitely many smooth manifolds mutually non-diffeomorphic but homeomorphic to $\mathbb{R}^4$. \cite{wiki-exotic-r4} In contrast, for dimensions $n\neq 4$, $\mathbb{R}^n$ admits no exotic smooth structures. \cite{wiki-exotic-r4} This phenomenon indicates that ``topologically identical'' and ``smooth structure identical'' are no longer equivalent in 4 dimensions.
+
+This paper borrows this picture to propose an analogy: time equivalence class acts as the ``topological type of time geometry,'' while various time structures seen by different observers within the same equivalence class---including fractal-like multi-scale behavior, time experience in different thermodynamic phases, and even possible ``exotic time structures''---correspond to different ``smooth/phase structures'' on the same ``time topological type.''
+
+The main contributions of this paper can be summarized as:
+
+\begin{itemize}
+\item Introduce a set of time--geometry--topology invariants $\mathcal{I} = (\kappa(\omega),[K],[u],S_{\mathrm{gen}},\delta^2 S_{\mathrm{rel}})$, and define time geometry equivalence class based on this;
+\item Define observer profile category $\mathsf{Obs}$ and projection functor $F_O$, prove $F_O$ must factorize through time equivalence class;
+\item Construct scale transformation semigroup and phase structure on time equivalence class, distinguishing fractal-like behavior, non-topological phase transitions, and topological phase transitions;
+\item Introduce working definition of ``exotic time structure'' and make analogy with 4D exotic smooth structures;
+\item Provide a five-layer topological relation diagram represented in mermaid, organizing the above construction into a unified conceptual framework;
+\item Provide rigorous proofs of several key propositions and detailed derivations of one-dimensional solvable models in appendices.
+\end{itemize}
+
+Article structure: Section 2 reviews definitions of time scale invariants and time equivalence class; Section 3 formalizes observer profile and projection functor; Section 4 discusses multi-scale structure and fractal-like behavior; Section 5 constructs phase structure and phase transitions of time geometry; Section 6 provides 4D topological analogy and concept of exotic time structure; Section 7 discusses and prospects; Appendices include detailed proofs and model calculations.
+
+---
+
+\section{Time Scale Invariants and Time Equivalence Class}
+
+This section provides the foundation for this paper's work: time scale mother ruler $\kappa(\omega)$, topological class $[K]$, $K^1$ class $[u]$, generalized entropy variation data, and time equivalence class defined based on these invariants.
+
+\subsection{Time Scale Mother Ruler}
+
+Let $M$ be a Lorentzian manifold with boundary, $X^\circ$ the parameter space with singularities removed, $Y:=M\times X^\circ$. For each $x\in X^\circ$, given a pair of self-adjoint operators $(H_x,H_{0,x})$, define scattering matrix $S_x(\omega)$ on energy window $I\subset\mathbb{R}$.
+
+\begin{definition}[Time Scale Mother Ruler (Definition 2.1)]
+On energy window $I$ where Birman--Krein and Wigner--Smith conditions hold, define
+$$
+Q_x(\omega) := -\,i\,S_x(\omega)^\dagger \partial_\omega S_x(\omega),
+$$
+$$
+\Phi_x(\omega) := \arg\det S_x(\omega),\qquad \varphi_x(\omega) := \tfrac{1}{2}\Phi_x(\omega),
+$$
+and let relative state density $\rho_{\mathrm{rel},x}(\omega)$ be the derivative of relative spectral shift function, then
+$$
+\kappa_x(\omega)
+:=\frac{\varphi_x'(\omega)}{\pi}
+=\rho_{\mathrm{rel},x}(\omega)
+=\frac{1}{2\pi}\operatorname{tr}Q_x(\omega).
+$$
+Call $\kappa_x(\omega)$ the time scale mother ruler.
+\end{definition}
+
+$\kappa(\omega)$ is a function defined on $I\times X^\circ$, invariant under appropriate equivalence transformations of scattering families, thus is a spectral--scattering invariant.
+
+\subsection{Topological Class $[K]$, $K^1$ Class $[u]$, and $\mathbb{Z}_2$ Holonomy}
+
+Let $Y:=M\times X^\circ$, $\partial Y:=\partial M\times X^\circ \cup M\times\partial X^\circ$.
+
+\begin{definition}[Unified Relative Topological Class (Definition 2.2)]
+In relative cohomology group $H^2(Y,\partial Y;\mathbb{Z}_2)$, select a class
+$$
+[K]\in H^2(Y,\partial Y;\mathbb{Z}_2),
+$$
+whose K\"{u}nneth decomposition can be written as
+$$
+[K]
+= \pi_M^\ast w_2(TM)
++ \sum_j \pi_M^\ast\mu_j\smile \pi_X^\ast \mathfrak{w}_j
++ \pi_X^\ast\rho\big(c_1(\mathcal{L}_S)\big),
+$$
+where $w_2(TM)$ is the second Stiefel--Whitney class, $\mu_j,\mathfrak{w}_j$ are one-dimensional $\mathbb{Z}_2$ classes, $\mathcal{L}_S$ is the scattering line bundle, $\rho$ is mod-2 reduction.
+\end{definition}
+
+\begin{definition}[$K^1$ Class of Scattering Family (Definition 2.3)]
+For each $x\in X^\circ$, define relative Cayley transform
+$$
+u_x
+:= (H_x-i)(H_x+i)^{-1}(H_{0,x}+i)(H_{0,x}-i)^{-1},
+$$
+under appropriate restricted conditions $u_x\in U_{\mathrm{res}}$, thus
+$$
+x\longmapsto u_x,\quad X^\circ\to U_{\mathrm{res}}
+$$
+gives a class $[u]\in K^1(X^\circ)$.
+\end{definition}
+
+Additionally, introduce scattering square-root principal bundle $P_{\sqrt{\mathfrak{s}}}\to X^\circ$, whose holonomy gives $\mathbb{Z}_2$ invariant
+$$
+\nu_{\sqrt{S}}:\pi_1(X^\circ)\to\{\pm1\},
+$$
+as projection of $[K]$ onto $H^1(X^\circ;\mathbb{Z}_2)$ component.
+
+\subsection{Generalized Entropy Variation Data}
+
+Choose a point $p$ in $M$ and a family of small causal diamonds $D_{p,r}\subset M$, whose boundary cross-section area $A(\Sigma_{p,r})$ and volume $V_{p,r}$ are determined by metric $g$.
+
+\begin{definition}[Generalized Entropy (Definition 2.4)]
+Define
+$$
+S_{\mathrm{gen}}(p,r)
+=\frac{A(\Sigma_{p,r})}{4G\hbar}
++ S_{\mathrm{out}}(p,r)
+- \frac{\Lambda}{8\pi G}\frac{V_{p,r}}{T_{p,r}},
+$$
+where $S_{\mathrm{out}}$ is entropy of external quantum state, $T_{p,r}$ is appropriately defined effective temperature scale.
+\end{definition}
+
+\begin{hypothesis}[Generalized Entropy Variation Condition (Postulate 2.5)]
+\begin{enumerate}
+\item Under fixed volume or fixed generalized energy constraints, first-order variation satisfies
+   $$
+   \delta S_{\mathrm{gen}}(p,r) = 0 ;
+   $$
+\item Second-order relative entropy satisfies
+   $$
+   \delta^2 S_{\mathrm{rel}}(p,r) \ge 0 .
+   $$
+\end{enumerate}
+\end{hypothesis}
+
+In existing work, using weighted light-ray transformations, the above conditions can be proven equivalent to local Einstein equations and Hollands--Wald gauge energy non-negativity conditions. This paper treats this as part of time--geometry invariants.
+
+\subsection{Time Geometry Equivalence Class}
+
+We take time parametrization and time geometry as objects and introduce equivalence relation.
+
+\begin{definition}[Affine Equivalence of Time Parameters (Definition 2.6)]
+If two time parameters $t_1,t_2$ have constants $a>0,b\in\mathbb{R}$ such that
+$$
+t_2 = a t_1 + b,
+$$
+then $t_1,t_2$ are called affinely equivalent, written $t_1\sim_{\mathrm{aff}} t_2$.
+\end{definition}
+
+\begin{definition}[Time Geometry Equivalence Class (Definition 2.7)]
+Given $(M,g)$ and a set of invariants $\mathcal{I}:= (\kappa,[K],[u],S_{\mathrm{gen}},\delta^2S_{\mathrm{rel}})$. If two sets of time geometry data $(g_1,t_1)$, $(g_2,t_2)$ satisfy:
+
+\begin{enumerate}
+\item Have the same causal order structure;
+\item Corresponding time scale mother rulers $\kappa_1,\kappa_2$ satisfy $\kappa_2(\omega)=c\,\kappa_1(\omega)$ ($c>0$ constant);
+\item Topological invariants satisfy $[K]_1=[K]_2$, $[u]_1=[u]_2$, $\nu_{\sqrt{S},1}=\nu_{\sqrt{S},2}$;
+\item Generalized entropy variation data are the same or differ only by constant rescaling;
+\end{enumerate}
+
+then they are said to belong to the same time geometry equivalence class, written
+$$
+[(g_1,t_1)]_{\mathrm{time}}
+= [(g_2,t_2)]_{\mathrm{time}}.
+$$
+\end{definition}
+
+All equivalence classes form the set $\mathsf{TimeEq}$, called the time equivalence class space.
+
+This equivalence relation compresses all ``pure rescaling'' and ``topological isomorphism'' degrees of freedom, but preserves underlying causal order and topological ledger, which is the precise definition of ``same time equivalence class'' discussed in this paper.
+
+---
+
+\section{Observer Profile and Projection Functor}
+
+This section formalizes the concept of ``observer,'' modeling it as a triple containing resolution, coupling, and coarse-graining, and constructing a projection functor from invariant layer to observable time geometry.
+
+\subsection{Observer Profile}
+
+\begin{definition}[Observer Profile (Definition 3.1)]
+An observer $O$'s profile is a triple
+$$
+O := (\Lambda_O, C_O, \mathcal{R}_O),
+$$
+where:
+
+\begin{enumerate}
+\item $\Lambda_O$ is resolution parameter, describing minimum scales it can resolve in frequency and time domains;
+\item $C_O$ is coupling structure, describing which degrees of freedom it interacts with (e.g., couples to which boundary regions, which fields, which family of worldlines, etc.);
+\item $\mathcal{R}_O$ is coarse-graining rule, describing partial trace and coarse-grain method for degrees of freedom.
+\end{enumerate}
+\end{definition}
+
+Denote the class of all observer profiles as $\mathsf{Obs}$.
+
+\subsection{Observer's Measurement Window Function}
+
+For given $O$ and time scale mother ruler $\kappa(\omega)$, the time quantity actually measurable by observer is typically a convolution:
+$$
+T_O := \int W_O(\omega;\Lambda_O,C_O,\mathcal{R}_O)\,\kappa(\omega)\,\mathrm{d}\omega,
+$$
+where $W_O$ is window function determined by profile, encoding frequency band limitation (resolution), coupling weights (which frequencies couple more strongly), and effective weight attenuation caused by coarse-graining.
+
+\begin{definition}[Observer Projection (Definition 3.2)]
+Let $\mathcal{I}=(\kappa,[K],[u],S_{\mathrm{gen}},\delta^2S_{\mathrm{rel}})$. For each $O\in\mathsf{Obs}$, define projection
+$$
+F_O: \mathcal{I} \longmapsto \mathsf{ObsTime}_O,
+$$
+where $\mathsf{ObsTime}_O$ is structure containing the following data:
+
+\begin{enumerate}
+\item Observable time scale $T_O$ and its local perturbations;
+\item Topological information accessible by $C_O$ (e.g., whether can measure $\nu_{\sqrt{S}}(\gamma)$, certain projections of $[K]$);
+\item Corresponding subjective time indicator (e.g., $t_{\mathrm{subj}}$ based on local Fisher information $F_Q$);
+\item Effective arrow of time and thermodynamic/information-theoretic irreversibility under given coarse-grain.
+\end{enumerate}
+\end{definition}
+
+$\mathsf{ObsTime}_O$ can be viewed as ``time geometry seen by that observer.''
+
+\subsection{Categorical Structure and Functor Factorization}
+
+Denote $\mathsf{Inv}$ as category with invariants $\mathcal{I}$ as objects and isomorphisms preserving time geometry equivalence class as morphisms, i.e.,
+$$
+\operatorname{Obj}(\mathsf{Inv}) = \{\mathcal{I}\},\quad
+\operatorname{Mor}(\mathsf{Inv}) = \{\phi:\mathcal{I}\to\mathcal{I}'\ |\ [\mathcal{I}]_{\mathrm{time}} = [\mathcal{I}']_{\mathrm{time}}\}.
+$$
+
+Denote $\mathsf{TimeEq}$ as aforementioned time equivalence class space, naturally having discrete category structure: objects are equivalence classes, morphisms are identities.
+
+\begin{proposition}[Projection Factorization (Proposition 3.3)]
+For any observer $O\in\mathsf{Obs}$, there exist unique maps
+$$
+\pi:\mathsf{Inv}\to \mathsf{TimeEq},\qquad
+G_O:\mathsf{TimeEq}\to \mathsf{ObsTime}_O,
+$$
+such that
+$$
+F_O = G_O\circ \pi.
+$$
+\end{proposition}
+
+\textit{Proof idea.} By definition, if two invariants $\mathcal{I},\mathcal{I}'$ belong to same time geometry equivalence class, there exist affine rescaling and topological isomorphism corresponding their time geometry and invariants. In definition of $F_O$, window function $W_O$ and coarse-graining rule $\mathcal{R}_O$ depend only on $O$ not specific representative, thus $F_O(\mathcal{I})$ and $F_O(\mathcal{I}')$ differ only by reparametrization absorbable by internal coordinate transformation of $O$. This means $F_O$ is constant on equivalence classes, thus factorizes through quotient map $\pi$. Uniqueness comes from universal property of quotient map. Formal proof in Appendix A. $\square$
+
+Physical meaning of Proposition 3.3: all differences between observers can only come from $G_O$ this structure ``from equivalence class to observable time geometry,'' but cannot change underlying equivalence class itself. This provides foundation for subsequently attributing differences to multi-scale structure, phase structure, and exotic structure.
+
+---
+
+\section{Multi-Scale Structure and Fractal-Like Behavior}
+
+This section introduces action of scale transformation operation $\mathcal{R}_s$ on time equivalence class, and defines multi-scale self-similar time geometry to characterize what we intuitively call ``fractal time.''
+
+\subsection{Scale Transformation Semigroup}
+
+Let $s>0$ be dimensionless scale parameter, define scale transformation in frequency domain
+$$
+(\mathcal{R}_s\kappa)(\omega)
+:= \alpha(s)\,\kappa(\beta(s)\,\omega),
+$$
+where $\alpha(s),\beta(s)$ are positive functions satisfying semigroup property
+$$
+\mathcal{R}_s\circ\mathcal{R}_{s'}=\mathcal{R}_{ss'}.
+$$
+
+At time geometry level, $\mathcal{R}_s$ can correspond to coarse-grain or RG flow, describing effective time scale from high resolution to low resolution.
+
+\begin{definition}[Scale Orbit and Multi-Scale Self-Similarity (Definition 4.1)]
+\begin{enumerate}
+\item Scale orbit of time equivalence class $[\tau]$ is defined as
+   $$
+   \mathcal{O}([\tau])
+   := \{\,[\mathcal{R}_s\mathcal{I}]_{\mathrm{time}}:\ s>0\,\},
+   $$
+   where $\mathcal{I}$ is chosen arbitrarily as representative of $[\tau]$.
+\item If there exists $s\neq1$ such that
+   $$
+   [\mathcal{R}_s\mathcal{I}]_{\mathrm{time}} = [\mathcal{I}]_{\mathrm{time}},
+   $$
+   then $[\tau]$ is called a multi-scale self-similar time equivalence class.
+\end{enumerate}
+\end{definition}
+
+In critical systems, fixed points of $\mathcal{R}_s$ correspond to fractal-like geometry: at each scale, statistical structure of time scale is invariant.
+
+\subsection{Observer Scale and Fractal Perception}
+
+For observer $O$'s resolution $\Lambda_O$, can define operation matching scale transformation
+$$
+s_O := f(\Lambda_O),
+$$
+such that
+$$
+T_O
+\sim \int W_O(\omega)\,\kappa(\omega)\,\mathrm{d}\omega
+= \int \tilde{W}_O(\omega)\,(\mathcal{R}_{s_O}\kappa)(\omega)\,\mathrm{d}\omega,
+$$
+where $\tilde{W}_O$ is rescaled window function.
+
+If $[\tau]$ is multi-scale self-similar equivalence class, under appropriate normalization, statistical distribution of $T_O$ can remain invariant or exhibit power-law transformation when $\Lambda_O$ changes, corresponding to intuitively ``fractal time'': at coarse and fine levels, time noise structure is similar.
+
+\begin{proposition}[Intra-Equivalence-Class Property of Fractal-Like Behavior (Proposition 4.2)]
+If $[\tau]$ is multi-scale self-similar time equivalence class, for any two observers $O_1,O_2$, there exists normalization constant $c_{12}>0$ such that their observable time scales satisfy
+$$
+T_{O_2} \approx c_{12} T_{O_1}
+$$
+having same scale exponent in statistical sense. In other words, ``fractal-like behavior of time'' is property within equivalence class, not topological property distinguishing equivalence classes.
+\end{proposition}
+
+Proof omitted, relies on linear response of $\mathcal{R}_s$ fixed point and stability of window function family.
+
+---
+
+\section{Phase Structure: Phase Transitions, Topological Phase Transitions, and Time Experience}
+
+This section introduces phase structure of time geometry, distinguishing parts caused by phase transitions from parts caused by topological jumps in ``seeing differently within same equivalence class.''
+
+\subsection{Parameter Space and Phases}
+
+Let $\mathcal{P}$ be physical parameter space (e.g., temperature, coupling strength, density, driving frequency, etc.), each point $p\in\mathcal{P}$ corresponds to a set of invariants $\mathcal{I}(p)$, thus corresponding to time equivalence class $[\tau(p)]$.
+
+\begin{definition}[Phases of Fixed Equivalence Class (Definition 5.1)]
+Fix time equivalence class $[\tau_0]$, consider
+$$
+\mathcal{P}_{[\tau_0]}
+:= \{\,p\in\mathcal{P}:\ [\tau(p)] = [\tau_0]\,\}.
+$$
+On $\mathcal{P}_{[\tau_0]}$, introduce following equivalence relation: if there exists continuous path $\gamma:[0,1]\to\mathcal{P}_{[\tau_0]}$ connecting $p_1,p_2$, and along path local observable time geometry and thermodynamic functions are all analytic, then $p_1,p_2$ are said to belong to same phase.
+\end{definition}
+
+Set of all phases is denoted $\Pi([\tau_0])$.
+
+Thus, ``different thermodynamic phases within same time equivalence class'' are different elements in $\Pi([\tau_0])$.
+
+\subsection{Non-Topological Phase Transitions and Topological Phase Transitions}
+
+\begin{definition}[Non-Topological Phase Transition (Definition 5.2)]
+If along some path, thermodynamic or correlation functions exhibit non-analytic behavior, but topological invariants $[K],[u],\nu_{\sqrt{S}}$ remain unchanged, it is called a non-topological phase transition.
+\end{definition}
+
+\begin{definition}[Topological Phase Transition (Definition 5.3)]
+If along parameter path $\gamma$ at some point $p^\ast$, there exists
+$$
+[K](p^\ast_-) \neq [K](p^\ast_+)
+\quad\text{or}\quad
+[u](p^\ast_-) \neq [u](p^\ast_+)
+$$
+(subscripts indicate two sides of critical point), then a topological phase transition is said to occur at $p^\ast$.
+\end{definition}
+
+Obviously, topological phase transition necessarily leads to time equivalence class change, while non-topological phase transition occurs within same equivalence class.
+
+\begin{proposition}[Phase Transitions and Observer Experience (Proposition 5.3)]
+\begin{enumerate}
+\item For non-topological phase transitions, observer $O$'s seen time geometry $\mathsf{ObsTime}_O$ can be connected by continuous deformation on two sides of phase, but certain second-order or higher-order responses exhibit non-analyticity;
+\item For topological phase transitions, there exists at least one class of topological observables (e.g., $\nu_{\sqrt{S}}(\gamma)$ or vertex moduli) taking different values on two sides of phase, in which case time equivalence class changes.
+\end{enumerate}
+\end{proposition}
+
+This proposition explains: ``dramatic changes in time experience'' can have two essentially different sources: one is phase transition within equivalence class (e.g., vitrification and aging phenomena), another is topological jump between equivalence classes.
+
+---
+
+\section{4D Topological Analogy and Exotic Time Structures}
+
+This section makes analogy between above structures and classical phenomenon of ``topological type--smooth type separation'' in four-dimensional topology, and proposes working definition of ``exotic time structure.''
+
+\subsection{Topological--Smooth Split in 4D Topology}
+
+In research on four-dimensional manifolds, Freedman proved topological four-dimensional generalized Poincar\'{e} conjecture: any topological four-dimensional homotopy sphere is homeomorphic to $S^4$, thus topological type of 4-dimensional sphere is unique in topological category. \cite{freedman-4d-topology} However, Donaldson's gauge invariants show many topological 4-manifolds do not admit smooth structures compatible with their intersection forms, leading to construction of exotic $\mathbb{R}^4$: there exist infinitely many smooth manifolds mutually non-diffeomorphic but homeomorphic to $\mathbb{R}^4$. \cite{wiki-exotic-r4}
+
+Furthermore, it is known that except $n=4$, any smooth manifold homeomorphic to $\mathbb{R}^n$ must be diffeomorphic to $\mathbb{R}^n$, i.e., exotic phenomenon uniquely exists in dimension 4. \cite{wiki-exotic-r4} Regarding smooth 4-dimensional Poincar\'{e} conjecture (smooth Poincar\'{e} conjecture), i.e., ``whether every smooth homotopy 4-sphere is necessarily smoothly homeomorphic to $S^4$,'' remains unsolved. \cite{freedman-machine-spc4}
+
+This phenomenon teaches us two points:
+
+\begin{enumerate}
+\item ``Topologically identical'' and ``smooth structure identical'' can decisively separate in 4 dimensions;
+\item There exists ``continuous family of smooth structures on same topological type.''
+\end{enumerate}
+
+\subsection{Analogy in Time Geometry}
+
+We view time equivalence class as ``topological type of time geometry'': it fixes causal order, time scale mother ruler, and topological ledger $[K],[u],\nu_{\sqrt{S}}$, similar to fixing homeomorphism class and basic topological structure of 4-manifold. While $\mathsf{ObsTime}_O$ obtained by different observer profiles $O$ corresponds to ``smooth/phase structure choice'' on same topological type.
+
+\begin{definition}[Exotic Time Structure, Working Definition (Definition 6.1)]
+Fix $[\tau]\in\mathsf{TimeEq}$. If there exist two observers $O_1,O_2$ and corresponding observable time geometries $\mathsf{ObsTime}_{O_1},\mathsf{ObsTime}_{O_2}$ satisfying:
+
+\begin{enumerate}
+\item They both come from same time equivalence class, i.e., there exists same invariant $\mathcal{I}$ such that
+   $$
+   \mathsf{ObsTime}_{O_i} = F_{O_i}(\mathcal{I});
+   $$
+\item There exists no global bijection $f:\mathsf{ObsTime}_{O_1}\to\mathsf{ObsTime}_{O_2}$ simultaneously preserving
+   \begin{itemize}
+   \item Causal order;
+   \item Arrow of time direction;
+   \item Analytic structure of local observables;
+   \end{itemize}
+\item But in topological sense, they can mutually homeomorphically map through continuous, causally preserving maps;
+\end{enumerate}
+
+then $\mathsf{ObsTime}_{O_1},\mathsf{ObsTime}_{O_2}$ are called exotic time structures on same time equivalence class.
+\end{definition}
+
+This definition abstracts situation of ``topologically equivalent but different smooth structure'': in context of time geometry, exotic phenomenon manifests as ``cannot transform one observer's time experience into another's through any reparametrization preserving physical structure,'' although they share same underlying invariant.
+
+\begin{proposition}[Necessary Condition for Exotic Time Structure Existence (Proposition 6.2)]
+If some time equivalence class $[\tau]$ has no multi-scale self-similarity or non-analytic phase transitions (i.e., both scale orbit and parameter space are analytic), then no exotic time structures exist on that equivalence class.
+\end{proposition}
+
+Proof idea: If analytic at all scales and parameter directions, any change in observer profile can be realized through smooth reparametrization, thus does not constitute exotic. Therefore exotic time structure must relate to some ``critical, multi-scale or non-analytic'' behavior, similar to geometric origin of Casson handle and h-cobordism failure in exotic $\mathbb{R}^4$. Detailed proof in Appendix C.
+
+---
+
+\section{Conclusion and Prospects}
+
+Starting from time scale mother ruler, topological class, and generalized entropy variation data, this paper defines time geometry equivalence class and models ``world seen by observers'' as projection functor from invariants to observable time geometry. We prove these projections must factorize through time equivalence class, thus strictly limiting differences between observers to three levels: multi-scale structure, phase structure, and exotic structure.
+
+At multi-scale level, through scale transformation semigroup and scale orbit, we define multi-scale self-similar time equivalence class, revealing ``fractal time'' is property within equivalence class, not topological marker distinguishing equivalence classes. At phase structure level, we introduce phases and phase transitions on fixed equivalence class, distinguish non-topological phase transitions from topological phase transitions, and point out latter necessarily leads to time equivalence class change. At topological analogy level, borrowing from topological--smooth split in four-dimensional manifolds and existence of exotic $\mathbb{R}^4$, we propose working definition of exotic time structure, interpreting extreme case of ``seeing drastically different time experiences within same time equivalence class'' as phenomenon similar to exotic smooth structures.
+
+This leaves several directions for further work: first, construct explicit exotic time structure candidates in concrete solvable models (e.g., multi-channel scattering networks, Floquet--MBL chains, non-equilibrium open systems); second, establish more direct connection between classification of time geometry equivalence classes and gauge theory invariants of four-dimensional manifolds (e.g., Seiberg--Witten invariants); third, explore possible manifestations of exotic time structures in cognitive science and decision theory, e.g., ``fundamentally different'' time experiences of different subjects within same physical time equivalence class.
+
+---
+
+\begin{thebibliography}{99}
+
+\bibitem{wiki-exotic-r4}
+``Exotic $\mathbb{R}^4$,'' \url{https://en.wikipedia.org/wiki/Exotic_R4}
+
+\bibitem{freedman-4d-topology}
+M. H. Freedman, ``The topology of four-dimensional manifolds,'' \textit{Journal of Differential Geometry} \textbf{17}, 357--453 (1982). \url{https://web.stanford.edu/~cm5/4D.pdf}
+
+\bibitem{freedman-machine-spc4}
+M. Freedman, R. Gompf, S. Morrison, K. Walker, ``Man and machine thinking about the smooth 4-dimensional Poincar\'{e} conjecture,'' \textit{Quantum Topology} \textbf{1}, 171--208 (2010). \url{https://arxiv.org/abs/0906.5177}
+
+\bibitem{donaldson-4mfd}
+S. K. Donaldson, ``Self-dual connections and the topology of smooth 4-manifolds,'' \textit{Bulletin of the American Mathematical Society} \textbf{8}, 81--83 (1983).
+
+\bibitem{gompf-kirby}
+R. E. Gompf and A. I. Stipsicz, \textit{4-Manifolds and Kirby Calculus}, American Mathematical Society (1999).
+
+\bibitem{demichelis-freedman}
+S. De Michelis and M. H. Freedman, ``Uncountably many exotic $\mathbb{R}^4$s in standard 4-space,'' \textit{Journal of Differential Geometry} \textbf{35}, 219--254 (1992). \url{https://projecteuclid.org/journals/journal-of-differential-geometry/volume-35/issue-1/}
+
+\end{thebibliography}
+
+---
+
+\appendix
+
+\section{Detailed Proofs of Time Equivalence Class and Projection Factorization}
+
+\subsection{Quotient Map and Universal Property (A.1)}
+
+Denote $\mathsf{Inv}$ as category with invariants $\mathcal{I}$ as objects and morphisms preserving time equivalence class as arrows, $\mathsf{TimeEq}$ as equivalence class category (objects are equivalence classes, morphisms only identities).
+
+Define quotient map
+$$
+\pi:\mathsf{Inv}\to \mathsf{TimeEq},\qquad
+\pi(\mathcal{I}) := [\mathcal{I}]_{\mathrm{time}},
+$$
+$\pi$ takes identity on morphisms.
+
+\begin{lemma}[Lemma A.1]
+For any category $\mathcal{C}$ and any functor $H:\mathsf{Inv}\to \mathcal{C}$, if $H(\mathcal{I})=H(\mathcal{I}')$ for all $[\mathcal{I}]_{\mathrm{time}}=[\mathcal{I}']_{\mathrm{time}}$, then there exists unique functor $\tilde{H}:\mathsf{TimeEq}\to\mathcal{C}$ such that $H=\tilde{H}\circ\pi$.
+\end{lemma}
+
+\textit{Proof.} Let $Q\in\mathsf{TimeEq}$, let $Q = [\mathcal{I}]_{\mathrm{time}}$. Define
+$$
+\tilde{H}(Q) := H(\mathcal{I}).
+$$
+If $\mathcal{I}'$ is equivalent representative, then $H(\mathcal{I}')=H(\mathcal{I})$ ensures well-definedness. Morphisms only identities, thus functor conditions trivially satisfied. Uniqueness obvious. $\square$
+
+\subsection{Rigorous Proof of Projection Factorization (A.2)}
+
+\begin{theorem}[Projection Factorization (Theorem A.2)]
+For any observer $O\in\mathsf{Obs}$, there exists unique $G_O:\mathsf{TimeEq}\to\mathsf{ObsTime}_O$ such that
+$$
+F_O = G_O\circ\pi.
+$$
+\end{theorem}
+
+\textit{Proof.} Need to verify $F_O(\mathcal{I})=F_O(\mathcal{I}')$ for $[\mathcal{I}]_{\mathrm{time}}=[\mathcal{I}']_{\mathrm{time}}$. By time equivalence class definition, there exist affine transformation and topological isomorphism corresponding their time geometry and invariants, i.e.:
+
+\begin{enumerate}
+\item $\kappa', [K]',[u]',S'_{\mathrm{gen}},\delta'^2S'_{\mathrm{rel}}$ equivalent to $\kappa,[K],[u],S_{\mathrm{gen}},\delta^2S_{\mathrm{rel}}$ under constant rescaling;
+\item Causal order preserved.
+\end{enumerate}
+
+Observer projection $F_O$ depends only on window function $W_O$, coupling structure $C_O$, and coarse-graining rule $\mathcal{R}_O$, none depending on representative choice. After applying constant rescaling to $\kappa$ and generalized entropy data, $T_O$ and corresponding arrow of time can be absorbed through internal unit transformation or rescaling, thus $F_O(\mathcal{I})$ and $F_O(\mathcal{I}')$ can be identified as same object in $\mathsf{ObsTime}_O$. Hence $F_O(\mathcal{I})=F_O(\mathcal{I}')$, by Lemma A.1 there exists unique $G_O$ such that $F_O=G_O\circ\pi$. $\square$
+
+---
+
+\section{Fractals and Phase Transitions in 1D Scattering Toy Model}
+
+This appendix provides solvable example of multi-scale structure and phase transitions in one-dimensional scattering model, verifying concepts in main text.
+
+\subsection{Model Construction (B.1)}
+
+Consider piecewise constant potential on one dimension
+$$
+V(x;\lambda) = \sum_{n=0}^\infty \lambda^n\,V_0(2^n x),
+$$
+where $\lambda\in(0,1)$, $V_0$ supported in finite interval. Superposition produces multi-scale structure.
+
+In Born approximation, scattering amplitude
+$$
+f(k;\lambda)
+\approx -\frac{m}{i\hbar^2 k}\int e^{-2ikx}V(x;\lambda)\,\mathrm{d}x
+= -\frac{m}{i\hbar^2 k}\sum_{n=0}^\infty \lambda^n \hat{V}_0(2^{n-1}k),
+$$
+where $\hat{V}_0$ is Fourier transform. Corresponding scattering phase $\delta(k;\lambda)$ satisfies
+$$
+\delta(k;\lambda)\approx \operatorname{Im} f(k;\lambda).
+$$
+
+Group delay is
+$$
+\tau(k;\lambda) \sim \partial_k \delta(k;\lambda)
+\sim \sum_{n=0}^\infty \lambda^n\,\partial_k \operatorname{Im}\hat{V}_0(2^{n-1}k).
+$$
+
+With appropriate choice of $V_0$ (e.g., $\hat{V}_0$ non-zero support in finite band), can prove:
+
+\begin{itemize}
+\item When $\lambda<\lambda_c$, series absolutely converges, smooth in $k$, time scale has no fractal structure;
+\item When $\lambda\to\lambda_c^-$, series approaches boundary, power-law decay and multi-scale oscillation appear;
+\item At critical point $\lambda=\lambda_c$, $\tau(k;\lambda_c)$ exhibits statistical self-similarity and power-law spectrum, corresponding to ``fractal time.''
+\end{itemize}
+
+Detailed convergence analysis can use Littlewood--Paley decomposition and Besov space estimates, omitted here.
+
+\subsection{Phase Transitions and Topological Invariants (B.2)}
+
+Embed this potential in ring system with topological boundary conditions, introduce parameter $\phi$ (like AB flux), such that energy levels satisfy
+$$
+k_n L + \delta(k_n;\lambda) + \phi = 2\pi n.
+$$
+
+As $\lambda$ and $\phi$ vary, following phenomena can occur:
+
+\begin{enumerate}
+\item When $\lambda$ varies but keeps $[K],[u]$ unchanged, spectrum structure continuous, $\tau(k;\lambda)$ changes from analytic function family to critical power-law behavior, corresponding to non-topological phase transition;
+\item If changing boundary conditions or embedded topological defects causes $\phi$ to cross certain values, $[K]$ or $[u]$ jump, mode crossing and exponential level changes appear in spectrum, corresponding to topological phase transition.
+\end{enumerate}
+
+Through explicit calculation of spectral flow and reflection matrix winding number, can verify in latter case time equivalence class changes, while in former case remains unchanged.
+
+---
+
+\section{4D Topological Analogy and Necessary Conditions for Exotic Time Structures}
+
+\subsection{4D Topological Background Synopsis (C.1)}
+
+This section briefly reviews several conclusions related to analogy; detailed proofs see original literature.
+
+\begin{enumerate}
+\item Freedman proved topological four-dimensional generalized Poincar\'{e} conjecture: every topological four-dimensional homotopy sphere is homeomorphic to $S^4$, thus topological type of topological 4-sphere is unique. \cite{freedman-4d-topology}
+\item Using analysis of Casson handle and h-cobordism, can construct exotic $\mathbb{R}^4$: there exist infinitely many smooth manifolds mutually non-diffeomorphic but homeomorphic to $\mathbb{R}^4$. \cite{wiki-exotic-r4}
+\item Except $n=4$, $\mathbb{R}^n$ admits no exotic smooth structures. \cite{wiki-exotic-r4}
+\item Smooth 4-dimensional Poincar\'{e} conjecture remains unsolved, existing candidate counterexamples mostly based on complex surgery and cork constructions. \cite{freedman-machine-spc4}
+\end{enumerate}
+
+These results embody situation of ``topological classification complete, yet smooth classification still highly non-trivial.''
+
+\subsection{Proof Sketch of Necessary Condition for Exotic Time Structure (C.2)}
+
+Recall three conditions in Definition 6.1 for exotic time structure. We provide proof idea for Proposition 6.2.
+
+\begin{theorem}[Formalized Version of Proposition 6.2 (Theorem C.1)]
+Let $[\tau]\in\mathsf{TimeEq}$ satisfy:
+
+\begin{enumerate}
+\item Scale transformation orbit $\mathcal{O}([\tau])$ is analytic manifold, and there exist local coordinates $s$ such that $\mathcal{R}_s$ is analytic group action;
+\item All finite-order correlation functions on parameter space $\mathcal{P}_{[\tau]}$ are analytic in parameters, no phase transitions;
+\item Changes of all observer profiles $O$ can be viewed as analytic changes to $(\Lambda_O,C_O,\mathcal{R}_O)$;
+\end{enumerate}
+
+then no exotic time structures exist on $[\tau]$.
+\end{theorem}
+
+\textit{Proof idea.} Let $O_1,O_2$ be two observers, corresponding profiles can be viewed as endpoints of analytic paths $\gamma_i:[0,1]\to\mathsf{Obs}$ under initial profile $O_0$. Consider joint space
+$$
+\mathcal{M} := \mathsf{TimeEq}\times\mathsf{Obs},
+$$
+define map
+$$
+\Phi([\tau'],O) := F_O(\mathcal{I}'),
+$$
+where $\mathcal{I}'$ is representative of $[\tau']$. By assumption, $\Phi$ is analytic immersion in a neighborhood. Thus for fixed $[\tau]$, $\Phi([\tau],\cdot)$ analytically embeds connected component of $\mathsf{Obs}$ into $\mathsf{ObsTime}$ space. If no phase transitions or multi-scale non-analytic behavior exist, different observers' images in $\mathsf{ObsTime}$ are connected through analytic homeomorphisms, thus do not satisfy condition 2 in exotic time structure definition. This contradicts exotic existence assumption. $\square$
+
+This result shows: to produce exotic time structure, must introduce some ``critical, multi-scale or non-analytic'' component, conceptually parallel to situations of Casson handle and h-cobordism failure in exotic $\mathbb{R}^4$.
+
+\end{document}
+

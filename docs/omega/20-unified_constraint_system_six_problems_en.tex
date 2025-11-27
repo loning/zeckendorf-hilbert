@@ -1,0 +1,695 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{enumerate}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{principle}[theorem]{Principle}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Unified Constraint System and Self-Consistency Audit Framework\\
+for Six Unsolved Problems:\\
+A Structured Approach Based on Unified Time Scale $\kappa(\omega)$\\
+and Cosmic Parameter Vector $\Theta$}
+
+\author{Anonymous Author}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+General relativity and quantum field theory are highly successful within their respective domains, yet exhibit systematic tensions in several key problems: microscopic origin of black hole entropy, naturalness of cosmological constant, neutrino mass and flavor mixing structure, universality of eigenstate thermalization hypothesis (ETH), strong CP problem, and boundaries of gravitational wave dispersion and Lorentz violation. Traditional treatments view them as six mutually independent ``unsolved problems''.
+
+In this paper, within framework of unified time scale and quantum cellular automaton (QCA)/matrix universe ontology, we introduce finite-dimensional cosmic parameter vector $\Theta$ and unify above six problems as constraint equation system
+
+$$C_i(\Theta) = 0,\qquad i = 1,\dots,6,$$
+
+where each $C_i$ corresponds to physical module: black hole entropy, cosmological constant, neutrinos, ETH, strong CP, gravitational wave dispersion. Core structural tool is unified time identity
+
+$$\kappa(\omega) \equiv \frac{\varphi'(\omega)}{\pi} = \rho_{\mathrm{rel}}(\omega) = \frac{1}{2\pi}\,\mathrm{tr}\,\mathsf{Q}(\omega),$$
+
+unifying scattering phase derivative, relative density of states (DOS) and Wigner--Smith delay operator trace as single ``time density'' scale, imposing strict finite-order Euler--Maclaurin--Poisson (EMP) error control principle between discrete QCA and continuous effective field theory.
+
+This paper constructs six-module unified ``self-consistency audit'' framework: under same mother scale $\kappa(\omega)$, check whether each module's DOS usage has double counting, conflicts or incompatible implicit assumptions; simultaneously through ``conflict matrix''
+
+$$M_{ij} = \big\langle \nabla_\Theta C_i,\,\nabla_\Theta C_j \big\rangle_{\Sigma^{-1}}$$
+
+quantify tension of different physical constraints in parameter space. We give several general theorems: (i) when six constraint functions have independent gradients and positive definite conflict matrix at some point $\Theta_*$, locally there exists common solution manifold with dimension $\dim \Theta - 6$; (ii) if DOS contributions undergo orthogonal decomposition through window functions, repeated counting of same high-frequency modes by black hole entropy, cosmological constant and gravitational wave dispersion can be formally eliminated.
+
+On this basis, we propose minimal parameter subset
+
+$$\Theta_{\min} = \{\ell_{\mathrm{cell}},\,\alpha,\,r,\,\omega_{\mathrm{int},i},\,\lambda_{\mathrm{ETH}},\,\phi_{\mathrm{topo}}\},$$
+
+anchored respectively by gravitational wave dispersion, QCA continuum limit, neutrino oscillation spectrum, cold atom/solid chaos characteristics and strong CP detection experiments. This paper does not claim to give ``final theory'', but proposes operational, numerically and experimentally constrainable and falsifiable unified structure: rewriting six unsolved problems as joint feasibility problem on finite-dimensional parameter vector, providing systematic self-audit and conflict diagnosis tools.
+\end{abstract}
+
+\textbf{Keywords:} Unified time scale; Quantum cellular automaton; Black hole entropy; Cosmological constant; Neutrino mass and mixing; ETH; Strong CP problem; Gravitational wave dispersion; Density of states; Self-consistency audit
+
+\section{Introduction}
+
+\subsection{Problem Background and Goals}
+
+Modern fundamental physics faces a group of highly stubborn and mutually entangled problems:
+
+\begin{enumerate}
+\item Microscopic origin of black hole entropy: why black hole entropy precisely satisfies $S = A/4$ (in $G = \hbar = c = k_B = 1$ units), how to define and count cell-level degrees of freedom.
+
+\item Cosmological constant problem: huge hierarchy difference between vacuum energy calculation and observed value, ``flow'' and renormalization structure of effective cosmological constant $\Lambda_{\mathrm{eff}}$.
+
+\item Neutrino mass and flavor mixing: geometric meaning of PMNS matrix, mass hierarchy and possible topological or information-theoretic origins.
+
+\item ETH and quantum chaos: in finite information universe and discrete QCA framework, whether ETH is universal, how to be consistent with black hole thermodynamics and cosmological entropy budget simultaneously.
+
+\item Strong CP problem: why effective QCD angle parameter $\bar\theta$ is extremely small or even zero, whether can be naturally explained by topological self-referential structure and $\mathbb{Z}_2$ phase selection.
+
+\item Gravitational wave dispersion and Lorentz violation: if underlying is discrete cellular universe, whether gravitational waves necessarily show observable dispersion in Planck neighborhood, what common constraints exist with $\Lambda_{\mathrm{eff}}$ and black hole ringdown modes.
+\end{enumerate}
+
+Traditional research mostly treats these problems separately, rarely viewing them in same parameter space as joint constraints on finite ``cosmic parameters'' $\Theta$. Core goal of this paper is:
+
+\begin{itemize}
+\item Introduce unified time scale and density of states identity, unifying discrete QCA and continuous scattering/gravitational description on ``mother scale'' $\kappa(\omega)$;
+
+\item Rewrite above six problems as six constraint equations $C_i(\Theta) = 0$, analyzing structure of their common solution space;
+
+\item Propose formalized ``self-consistency audit'' and ``conflict matrix'' tools for diagnosing potential tensions and double counting problems between modules;
+
+\item Explicitly point out what still needs rigorous proof, giving operable frontier observational prediction directions.
+\end{itemize}
+
+This paper does not depend on specific microscopic dynamical details (e.g., specific QCA update rules), but provides unified ``framework theory'' from structural and constraint perspectives: as long as there exists $\Theta_*$ satisfying consistency conditions listed in this paper, six unsolved problems obtain unified description in same parameter vector; conversely, if all feasible $\Theta$ can be experimentally excluded, it indicates framework itself needs modification or abandonment.
+
+\subsection{Unified Time Scale and ``Mother Scale'' Concept}
+
+Key assumption of this paper is existence of unified ``time density/scale'' function $\kappa(\omega)$, manifesting in different representations as:
+
+$$\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\mathrm{rel}}(\omega) = \frac{1}{2\pi}\,\mathrm{tr}\,\mathsf{Q}(\omega),$$
+
+where:
+
+\begin{itemize}
+\item $\varphi(\omega)$ is appropriately defined scattering phase shift (or phase offset);
+
+\item $\rho_{\mathrm{rel}}(\omega)$ is relative density of states relative to some trivial reference background;
+
+\item $\mathsf{Q}(\omega)$ is Wigner--Smith delay operator; its trace gives total time delay.
+\end{itemize}
+
+This identity has solid foundation in rigorous scattering theory context, while naturally extending in QCA continuum limit and boundary time geometry (e.g., Brown--York energy, Gibbons--Hawking--York boundary terms). Working principles adopted in this paper are:
+
+\begin{itemize}
+\item All observables should ultimately be writable as appropriate window function integrals or functionals of $\kappa(\omega)$;
+
+\item In discrete/continuous conversion, must use finite-order Euler--Maclaurin + Poisson expansion with explicit error order control, forbidding non-physical extrapolation of ``infinite smoothness'';
+
+\item Singularities and poles of density of states represent true ``master scales'' (e.g., Planck scale, horizon critical layer), cannot be arbitrarily smoothed or double counted.
+\end{itemize}
+
+On this mother scale, we construct cosmic parameter vector $\Theta$ and unify physical constraints of six modules in unified form $C_i(\Theta) = 0$.
+
+\section{Cosmic Parameter Vector and Unified Constraint System}
+
+\subsection{Decomposition of Parameter Vector $\Theta$}
+
+We assume universe is given by finite information QCA/matrix structure, abstractable as:
+
+\begin{itemize}
+\item A discrete lattice or cell set $\Lambda(\Theta)$;
+
+\item Finite-dimensional Hilbert space $\mathcal{H}_{\mathrm{cell}}(\Theta)$ carried by each cell;
+
+\item Local unitary evolution $U_\Theta$ or corresponding $C^*$-algebra automorphism $\alpha_\Theta$;
+
+\item Set of initial or boundary states $\omega_0^\Theta$.
+\end{itemize}
+
+Cosmic parameter vector $\Theta$ can be divided into three types of components:
+
+\begin{enumerate}
+\item Structural parameters $\Theta_{\mathrm{struct}}$: cell spacing $\ell_{\mathrm{cell}}$, connection topology, symmetry groups, etc.;
+
+\item Dynamical parameters $\Theta_{\mathrm{dyn}}$: local Hamiltonian, coupling constants, information rate allocation rules, etc.;
+
+\item Initial condition parameters $\Theta_{\mathrm{init}}$: initial entanglement structure, macroscopic background density, etc.
+\end{enumerate}
+
+This paper focuses on minimal but sufficiently rich subset:
+
+$$\Theta_{\min} = \{\ell_{\mathrm{cell}},\,\alpha,\,r,\,\omega_{\mathrm{int},i},\,\lambda_{\mathrm{ETH}},\,\phi_{\mathrm{topo}}\},$$
+
+where:
+
+\begin{itemize}
+\item $\ell_{\mathrm{cell}}$: cell spatial scale, controlling discrete effects and gravitational wave dispersion;
+
+\item $\alpha, r$: coefficients and powers characterizing leading correction terms in GW dispersion relation;
+
+\item $\omega_{\mathrm{int},i}$: internal frequencies related to neutrino mass eigenvalues (through $m_i c^2 = \hbar\omega_{\mathrm{int},i}$);
+
+\item $\lambda_{\mathrm{ETH}}$: characteristic parameter characterizing quantum chaos/microscopic Lyapunov level;
+
+\item $\phi_{\mathrm{topo}}$: parameter controlling self-referential scattering and $\mathbb{Z}_2$ topological phase, directly related to strong CP effective angle.
+\end{itemize}
+
+In complete theory, $\Theta$ certainly includes far more, but if six unsolved problems can mainly constrain above subset, we can analyze its solution space separately.
+
+\subsection{Formalization of Six Constraint Equations}
+
+We write six physical problems respectively as
+
+$$C_i(\Theta) = 0,\quad i=1,\dots,6,$$
+
+specifying explicit physical meaning for each $C_i$:
+
+\begin{enumerate}
+\item Black hole entropy constraint
+
+$$C_1(\Theta) :\quad S_{\mathrm{QCA}}(A;\Theta) - \frac{A}{4} = 0.$$
+
+where $S_{\mathrm{QCA}}(A;\Theta)$ is horizon entropy obtained from QCA link counting.
+
+\item Cosmological constant constraint
+
+$$C_2(\Theta) :\quad \Lambda_{\mathrm{eff}}(\mu;\Theta) - \Lambda_{\mathrm{obs}} = 0,$$
+
+where $\Lambda_{\mathrm{eff}}(\mu;\Theta)$ is given by DOS window function integral, $\Lambda_{\mathrm{obs}}$ is observed value.
+
+\item Neutrino mass and mixing constraint
+
+$$C_3(\Theta) :\quad \mathcal{F}_{\nu}(\Theta) - \mathcal{F}_{\nu}^{\mathrm{exp}} = 0,$$
+
+here $\mathcal{F}_{\nu}$ represents set of functions including mass squared differences, mixing angles and CP phases.
+
+\item ETH constraint
+
+$$C_4(\Theta) :\quad \mathcal{E}_{\mathrm{ETH}}(\Theta) - \mathcal{E}_{\mathrm{target}} = 0,$$
+
+$\mathcal{E}_{\mathrm{ETH}}$ represents deviation indicator of local spectral statistics and eigenstate observable matrix elements.
+
+\item Strong CP constraint
+
+$$C_5(\Theta) :\quad \bar\theta(\Theta) - \bar\theta_{\mathrm{exp}} \approx 0,$$
+
+where experimental upper bound $\bar\theta_{\mathrm{exp}}$ is extremely close to zero.
+
+\item Gravitational wave dispersion constraint
+
+$$C_6(\Theta) :\quad \mathcal{D}_{\mathrm{GW}}(\Theta) - \mathcal{D}_{\mathrm{data}} = 0,$$
+
+$\mathcal{D}_{\mathrm{GW}}$ summarizes frequency-dependent corrections of GW propagation phase, group velocity and ringdown mode frequencies.
+\end{enumerate}
+
+Core task of unified constraint system is to analyze whether
+
+$$\mathcal{S} = \bigcap_{i=1}^6 \{\Theta\mid C_i(\Theta)=0\}$$
+
+is non-empty, and its local structure (dimension, regularity, whether natural prior measure contraction exists).
+
+\section{Unified Time Identity and DOS--Window Function Discipline}
+
+\subsection{Scattering Version of Unified Time Identity}
+
+Consider system with well-defined scattering theory, whose scattering matrix can be written as
+
+$$S(\omega) = \exp\big(2\mathrm{i}\,\delta(\omega)\big),$$
+
+where $\delta(\omega)$ is total phase shift (or appropriate trace of phase shift operator). Classical Birman--Kreĭn and Lifshits--Kreĭn formulas show relative density of states can be expressed as phase shift derivative:
+
+$$\rho_{\mathrm{rel}}(\omega) = \frac{1}{\pi}\,\delta'(\omega).$$
+
+On the other hand, Wigner--Smith delay operator is defined as
+
+$$\mathsf{Q}(\omega) = -\mathrm{i}S^\dagger(\omega)\,\frac{\mathrm{d}S(\omega)}{\mathrm{d}\omega}.$$
+
+Taking its trace yields
+
+$$\mathrm{tr}\,\mathsf{Q}(\omega) = 2\,\delta'(\omega).$$
+
+Thus have unified time identity
+
+$$\kappa(\omega) = \frac{\delta'(\omega)}{\pi} = \rho_{\mathrm{rel}}(\omega) = \frac{1}{2\pi}\,\mathrm{tr}\,\mathsf{Q}(\omega).$$
+
+\textbf{Definition 3.1 (Unified time scale)}
+
+In this paper's framework, unified time scale $\kappa(\omega)$ is viewed as ``time flow rate/time density'', all macroscopic time delays, redshift factors and local ``clock rate'' changes must be reducible to functions or appropriate frequency band integrals of $\kappa(\omega)$.
+
+\subsection{QCA and Discrete--Continuous Conversion EMP Discipline}
+
+In QCA universe, energy spectrum is essentially discrete:
+
+$$\omega_n = \omega_n(\Theta),\quad n\in\mathbb{Z},$$
+
+corresponding to finite cell dimension and finite total volume. Emergence of macroscopic continuous DOS comes from large volume limit and window averaging. We adopt following discipline:
+
+\begin{enumerate}
+\item Use finite-order Euler--Maclaurin expansion to approximate sum $\sum_n f(\omega_n)$ as integral $\int f(\omega)\rho(\omega)\,\mathrm{d}\omega$ plus finite number of boundary and higher derivative correction terms;
+
+\item Use Poisson summation formula to handle lattice/crystal momentum and frequency, making high-frequency aliasing appear as explicit oscillation terms;
+
+\item In all physical formulas, only allow keeping finite-order EMP approximation with upper bound order of error, e.g., $\mathcal{O}(\ell_{\mathrm{cell}}^p)$, rather than formally letting $\ell_{\mathrm{cell}} \to 0$ then ignoring all discrete effects.
+\end{enumerate}
+
+\textbf{Principle 3.2 (No singularity increase \& pole = master scale)}
+
+In any discrete-to-continuous extrapolation, not allowed to introduce stronger singularities than original discrete model; poles and eigenvalue accumulation points of density of states must correspond to physical master scales (such as horizon, Planck scale or topological phase transition points), not smoothed away or double counted.
+
+This principle particularly applies to following three classes of physical quantities:
+
+\begin{itemize}
+\item Density of states and entropy near black hole horizon;
+
+\item Zero-point energy contribution and high-frequency cutoff of cosmological constant;
+
+\item Higher-order corrections of $k\ell_{\mathrm{cell}}$ in gravitational wave dispersion.
+\end{itemize}
+
+\section{Unified Structure of Six Physical Modules}
+
+This section gives structured description of six modules under unified framework, emphasizing DOS resources they share or potentially conflict over.
+
+\subsection{Black Hole Entropy Module: Horizon Link Counting and $S = A/4$}
+
+In QCA universe, we model black hole horizon as limiting layer of information rate circle
+
+$$v_{\mathrm{ext}}^2 + v_{\mathrm{int}}^2 = c^2$$
+
+where on horizon
+
+$$v_{\mathrm{ext}} \to 0,\quad v_{\mathrm{int}} \to c,$$
+
+i.e., external propagation velocity freezes, all information rate allocated to internal oscillation. This ``information frozen layer'' can be viewed as critical density of states layer, whose microscopic degrees of freedom can be counted by number of entanglement links crossing this layer.
+
+Denoting link entropy density per unit area as $\eta_{\mathrm{cell}}(\Theta)$, cell area as $\ell_{\mathrm{cell}}^2$, total entropy is
+
+$$S_{\mathrm{QCA}}(A;\Theta) = \eta_{\mathrm{cell}}(\Theta)\,\frac{A}{\ell_{\mathrm{cell}}^2} + \mathcal{O}\big(A^0\big).$$
+
+Black hole entropy constraint $C_1(\Theta)=0$ requires
+
+$$\eta_{\mathrm{cell}}(\Theta)\,\frac{1}{\ell_{\mathrm{cell}}^2} = \frac{1}{4}.$$
+
+\textbf{Proposition 4.1 (DOS reducibility)}
+
+If horizon link counting can be expressed through local DOS $\rho_{\mathrm{hor}}(\omega;\Theta)$ as
+
+$$S_{\mathrm{QCA}}(A;\Theta) = \int W_{\mathrm{hor}}(\omega;\Theta)\,\rho_{\mathrm{hor}}(\omega;\Theta)\,\mathrm{d}\omega,$$
+
+where $W_{\mathrm{hor}}$ is appropriate window function, then under unified time identity there must exist gauge choice
+
+$$\rho_{\mathrm{hor}}(\omega;\Theta) = \kappa_{\mathrm{hor}}(\omega;\Theta)$$
+
+making horizon entropy counting reducible to integral of scattering phase or delay time.
+
+\textit{Proof outline.}
+
+Using quasi-normal modes spectrum in local static background, view perturbation modes near horizon as scattering problem, adopting DOS in phase shift representation. Unified time identity guarantees equivalence between DOS and time delay, while link counting as entanglement entropy should be expressible as weighted integral over these modes. Rigorous proof requires constructing concrete QCA--continuum mapping, this section only gives structural argument.
+
+Black hole module and cosmological constant module share core resource: zero-point energy and density of states of high-frequency modes. To avoid double counting, must explicitly distinguish window function supports between ``DOS entering horizon entropy'' and ``DOS entering $\Lambda_{\mathrm{eff}}$''.
+
+\subsection{Cosmological Constant Module: DOS--Window Function Flow of $\Lambda_{\mathrm{eff}}$}
+
+Assume vacuum effective cosmological constant variation with some renormalization scale $\mu$ can be written as
+
+$$\Lambda_{\mathrm{eff}}(\mu) - \Lambda_{\mathrm{eff}}(\mu_0) = \int_{\mu_0}^{\mu} \Xi(\omega;\Theta)\,\mathrm{d}\ln\omega,$$
+
+where kernel function $\Xi(\omega;\Theta)$ is composed of unified time scale and DOS window function:
+
+$$\Xi(\omega;\Theta) = F\big[\kappa(\omega;\Theta),\,W_\Lambda(\omega;\Theta)\big],$$
+
+$W_\Lambda$ is energy band and mode types selected to serve cosmological constant integral.
+
+\textbf{Principle 4.2 (DOS non-repeated counting)}
+
+DOS window function $W_\Lambda$ used to define $\Lambda_{\mathrm{eff}}$ must be linearly independent in support from window functions $W_{\mathrm{hor}}$ for black hole horizon entropy and $W_{\mathrm{GW}}$ for GW dispersion, or avoid repeated counting contributions of same set of modes through orthogonalization or projection in overlap regions.
+
+This means when constructing $\Xi(\omega;\Theta)$ we need ``DOS audit table'', explicitly stating: which modes are counted in large-scale vacuum energy, which modes are ``stripped'' and separately appear as black hole entropy or propagation effects.
+
+\subsection{Neutrino Module: Internal Frequency, Flavor Bundle Connection and Topology}
+
+Under QCA universe, particle mass can be defined through internal frequency
+
+$$m_i c^2 = \hbar \omega_{\mathrm{int},i},$$
+
+information rate circle gives constraint between external group velocity and internal evolution. For neutrinos, mixing between flavor states and mass states can be viewed as connection parallel transport defined on some ``flavor bundle'':
+
+$$U_{\mathrm{PMNS}} = \mathcal{P}\exp\left( \mathrm{i}\int_\gamma \mathcal{A}_{\mathrm{flavor}} \right),$$
+
+where $\gamma$ is path in some abstract ``cosmic parameter space'' or spacetime--parameter joint space, $\mathcal{A}_{\mathrm{flavor}}$ is flavor connection.
+
+Neutrino constraint $C_3(\Theta)$ can be viewed as constraint set on $\omega_{\mathrm{int},i}$ and connection geometric parameters, such that:
+
+\begin{itemize}
+\item Mass squared differences $\Delta m_{ij}^2$ and oscillation length $L_{\mathrm{osc}}$ agree with observations;
+
+\item Local decoherence time $\tau_{\mathrm{decoh}}(\Theta)$ given by ETH module satisfies
+
+$$\tau_{\mathrm{decoh}}(\Theta) \gg \frac{L_{\mathrm{osc}}}{c},$$
+
+ensuring neutrino oscillations on cosmological baseline remain coherent and observable.
+\end{itemize}
+
+Key resource neutrino module shares with strong CP module is ``phase'': flavor geometric phase on one hand, topological $\mathbb{Z}_2$ phase related to self-referential scattering on the other.
+
+\subsection{ETH Module: Eigenstate Thermalization and Horizon Limit}
+
+ETH module focuses on eigenstate and microscopic chaos properties of large systems in QCA. We use parameter $\lambda_{\mathrm{ETH}}(\Theta)$ to characterize local chaos strength, such as convergence rate of spectral statistics to Wigner--Dyson distribution or microscopic Lyapunov exponent of local operators.
+
+ETH constraint $C_4(\Theta)=0$ requires:
+
+\begin{enumerate}
+\item For given energy density interval, ETH approximation holds, making macroscopic thermodynamics and standard statistical mechanics effective;
+
+\item At black hole limiting energy density, microscopic state count given by ETH is consistent with QCA horizon link counting, i.e., there exists
+
+$$\lim_{E\to E_{\mathrm{BH}}} S_{\mathrm{ETH}}(E;\Theta) = S_{\mathrm{QCA}}(A;\Theta) = \frac{A}{4}.$$
+\end{enumerate}
+
+This gives non-trivial ``limiting consistency condition'': black hole entropy and large system ETH entropy need to connect at high-energy limit.
+
+Potential conflict between ETH module and neutrino/strong CP modules lies in: ETH tends to ``smooth out phase information'', while flavor geometry and topological phases need protection in specific subspaces. Therefore need to construct protected subspace $\mathcal{H}_{\mathrm{topo}}$, letting ETH only act on its orthogonal complement.
+
+\subsection{Strong CP Module: Self-Referential Scattering and $\mathbb{Z}_2$ Exchange Phase}
+
+Strong CP problem in QCA framework can be understood as: there exist two topological phase choices $\phi_{\mathrm{topo}} = 0,\pi$ on double cover line bundle of self-referential scattering structure, corresponding to $\mathbb{Z}_2$ classification. Effective QCD angle $\bar\theta(\Theta)$ is determined by global choice of topological line bundle.
+
+\textbf{Proposition 4.3 (Phase decomposition)}
+
+Assume total phase space is direct sum
+
+$$\Phi_{\mathrm{total}} = \Phi_{\mathrm{topo}} \oplus \Phi_{\mathrm{flavor}},$$
+
+where $\Phi_{\mathrm{topo}} \cong \mathbb{Z}_2$ represents topological phase of self-referential scattering, $\Phi_{\mathrm{flavor}} \cong U(1)^k$ represents CKM/PMNS type geometric phases, then strong CP effective angle can be written as
+
+$$\bar\theta(\Theta) = f_{\mathrm{topo}}(\phi_{\mathrm{topo}}) + f_{\mathrm{flavor}}(\Theta_{\mathrm{flavor}}),$$
+
+where $f_{\mathrm{topo}}$ and $f_{\mathrm{flavor}}$ are decomposable in eigenbasis, with former only taking discrete values.
+
+If there exists natural ``minimum energy'' or ``maximum symmetry'' selection rule making $\phi_{\mathrm{topo}} = 0$ statistically dominant, then $\bar\theta$ naturally tends toward zero without additional fine-tuning.
+
+Potential risk between strong CP module and GW dispersion module: any lattice orientation or chiral structure may induce effective P/CP breaking, thus need to prove these effects are higher-order $\mathcal{O}(\ell_{\mathrm{cell}}^q)$ and far below strong CP experimental upper bound.
+
+\subsection{Gravitational Wave Dispersion Module: $\ell_{\mathrm{cell}}$ and Propagator Corrections}
+
+Under discrete cellular universe, effective dispersion relation of gravitational waves can be written as
+
+$$\omega^2 = k^2 c^2 \big[1 + \alpha(\Theta)\,(k\ell_{\mathrm{cell}})^{2r} + \cdots\big],$$
+
+where $r \ge 1$ is integer or half-integer, $\alpha(\Theta)$ is dimensionless coefficient.
+
+GW dispersion constraint $C_6(\Theta)=0$ primarily comes from:
+
+\begin{itemize}
+\item Ground and space gravitational wave detector constraints on propagation velocity and phase drift in different frequency bands;
+
+\item Sensitivity of post-merger black hole ringdown mode frequency and damping time to dispersion, and joint fitting with horizon microscopic DOS.
+\end{itemize}
+
+Key requirement is distinguishing ``propagator corrections'' from ``vacuum energy shifts'': former corresponds to non-local or higher derivative terms in propagation dynamics, latter corresponds to zeroth-order curvature term $\Lambda g_{\mu\nu}$ in effective action.
+
+\section{Self-Consistency Audit and Conflict Matrix}
+
+\subsection{Definition of Conflict Matrix}
+
+In unified constraint system, constraints of different modules often share partial parameter components. To quantify whether they ``pull against each other'' in parameter space, we define conflict matrix
+
+$$M_{ij} = \big\langle \nabla_\Theta C_i,\,\nabla_\Theta C_j \big\rangle_{\Sigma^{-1}},$$
+
+where $\Sigma$ is parameter prior covariance or weight matrix, $\langle \cdot,\cdot\rangle_{\Sigma^{-1}}$ is corresponding inner product.
+
+Intuitively, if $M_{ij} > 0$ and numerically significant, indicates $C_i$ and $C_j$ tend to contract feasible domain in similar directions; if $M_{ij} < 0$ with large absolute value, means they ``pull against each other'' in parameter space, possibly structural conflict.
+
+\subsection{Common Solution Space Theorem}
+
+\textbf{Theorem 5.1 (Local common solution manifold theorem)}
+
+Let $\Theta$ be $n$-dimensional parameter vector, $C_i(\Theta) \in \mathbb{R}$ be $C^1$ smooth functions, $i=1,\dots,6$. If there exists point $\Theta_*$ satisfying:
+
+\begin{enumerate}
+\item $C_i(\Theta_*) = 0$ for all $i$;
+
+\item Gradient vectors $\nabla_\Theta C_1(\Theta_*),\dots,\nabla_\Theta C_6(\Theta_*)$ are linearly independent;
+\end{enumerate}
+
+then in some neighborhood $U \subset \mathbb{R}^n$ of $\Theta_*$, solution set
+
+$$\mathcal{S}\cap U = \{\Theta\in U\mid C_i(\Theta)=0,\ i=1,\dots,6\}$$
+
+is $C^1$ smooth submanifold with dimension $n-6$.
+
+\textit{Proof.}
+
+This is direct application of implicit function theorem. Denote
+
+$$C(\Theta) = (C_1(\Theta),\dots,C_6(\Theta)):\mathbb{R}^n\to\mathbb{R}^6.$$
+
+Condition (2) is equivalent to Jacobian matrix
+
+$$J_C(\Theta_*) = \left(\frac{\partial C_i}{\partial \Theta_j}\right)_{6\times n}$$
+
+having full rank in row space. By implicit function theorem, there exists local parameterization solving six constraints as functions of $6$ parameters, thus solution set is $n-6$ dimensional smooth manifold.
+
+This theorem gives not existence proof, but structural statement: once can find parameter point $\Theta_*$ satisfying all six constraints numerically or analytically, then nearby ``theory family'' automatically constitutes low-dimensional manifold, convenient for error propagation and predictive analysis.
+
+\subsection{Conflict Criterion and ``Structural Contradiction''}
+
+In practical applications, we often lack precise $\Theta_*$, but obtain approximate feasible domain through fitting and constraints. At this time conflict matrix serves as diagnostic tool.
+
+\textbf{Definition 5.2 (Structural conflict)}
+
+If there exist index pair $(i,j)$ and some small parameter variation $\delta\Theta$ such that
+
+$$\langle \nabla_\Theta C_i,\delta\Theta\rangle < 0,\quad \langle \nabla_\Theta C_j,\delta\Theta\rangle > 0,$$
+
+and in all directions satisfying $\langle \nabla_\Theta C_k,\delta\Theta\rangle\le 0$ (not increasing tensor for other $k$), this pair $(i,j)$ always shows opposite trend, then call modules $i$ and $j$ having first-order structural conflict.
+
+This situation indicates: without relaxing other constraints, any parameter adjustment trying to improve $C_i$ will worsen $C_j$, and vice versa. This usually means systematic assumptions need modification, not simple ``parameter tuning''.
+
+\section{Minimal Parameter Subset $\Theta_{\min}$ and Observational Anchor Points}
+
+\subsection{Parameter--Observation Pairing Principle}
+
+To avoid excessive degrees of freedom, we adopt following strategy: assign primary observational anchor point for each component of $\Theta_{\min}$:
+
+\begin{itemize}
+\item $\ell_{\mathrm{cell}}$: high-frequency gravitational wave dispersion and ringdown mode shift;
+
+\item $\alpha,r$: cross-band phase drift and group velocity--frequency relation;
+
+\item $\omega_{\mathrm{int},i}$: mass squared differences and hierarchy structure given by neutrino oscillation spectrum;
+
+\item $\lambda_{\mathrm{ETH}}$: chaos indicators such as spectral statistics and OTOC growth in cold atom/solid systems;
+
+\item $\phi_{\mathrm{topo}}$: electric dipole moment experiments and strong CP upper bound;
+\end{itemize}
+
+while requiring: any newly introduced free parameter that cannot find independent observational anchor point should be introduced cautiously or eliminated.
+
+\subsection{Unified Cost Function and OverCount Penalty Term}
+
+In numerical fitting or Bayesian inversion, can define unified cost function
+
+$$\mathcal{L}(\Theta) = \sum_{i=1}^6 |C_i(\Theta)|_{\Sigma_i}^2 + \beta\,\mathrm{OverCountPenalty}(\Theta),$$
+
+where $|\cdot|_{\Sigma_i}$ is error weight for each module, OverCountPenalty specifically penalizes following situations:
+
+\begin{itemize}
+\item Black hole entropy and cosmological constant use DOS window functions with highly overlapping supports;
+
+\item Cosmological constant and GW dispersion use same high-frequency modes as both ``vacuum energy'' and ``propagation correction'';
+
+\item ETH and black hole entropy double count ``high-energy density of states''.
+\end{itemize}
+
+Specific form can adopt window function inner product method, e.g.,
+
+$$\mathrm{OverCountPenalty}(\Theta) \propto \int W_{\mathrm{hor}}(\omega;\Theta)\,W_{\Lambda}(\omega;\Theta)\,\mathrm{d}\omega + \cdots,$$
+
+i.e., larger overlap integral, larger penalty.
+
+\section{Testable Predictions and Experimental Frontiers}
+
+Although this paper is mainly theoretical structural work, under unified constraint framework can still derive series of testable frontier prediction directions, mainly including:
+
+\begin{enumerate}
+\item \textbf{Joint fitting of GW dispersion and black hole ringdown modes}
+
+Simultaneously fit propagation dispersion and ringdown frequency shift using same set $(\ell_{\mathrm{cell}},\alpha,r)$, if no common feasible region found, indicates ``single cell scale'' assumption needs modification.
+
+\item \textbf{Indirect constraints from neutrino mass hierarchy and GW dispersion}
+
+If scaling law exists between $\omega_{\mathrm{int},i}$ and $\ell_{\mathrm{cell}}$ (e.g., through QCA continuum limit), precise neutrino spectrum measurement can indirectly constrain Planck neighborhood dispersion magnitude.
+
+\item \textbf{ETH--BH limiting consistency test}
+
+Through measuring high-energy behavior of $S_{\mathrm{ETH}}(E)$ in controllable many-body systems, test whether it approaches area scaling rather than volume scaling, providing collateral or counter-evidence for black hole entropy--ETH unification.
+
+\item \textbf{Cross-constraints between strong CP and GW anisotropy}
+
+If lattice chiral structure introduces effective CP breaking, high-precision measurements of GW anisotropy and polarization-dependent effects can provide independent constraints for strong CP module.
+\end{enumerate}
+
+Common feature of these directions: they do not require complete knowledge of QCA details, only assuming finite-dimensional parameter vector and above unified structure can gradually narrow feasible domain of $\Theta$, even completely exclude certain model classes.
+
+\section{Discussion and Prospects}
+
+Unified constraint system and self-consistency audit framework proposed in this paper attempts to transform six unsolved problems from ``six isolated intractable problems'' to ``joint feasibility problem in finite-dimensional parameter space''. Core technical points include:
+
+\begin{itemize}
+\item Unified time identity $\kappa(\omega)$ unifies scattering, DOS and time delay as single scale;
+
+\item Strict EMP discipline prevents introducing uncontrollable singularities and double counting in discrete--continuous conversion;
+
+\item Conflict matrix and OverCount penalty provide quantitative indicators for structural self-audit;
+
+\item Minimal parameter subset $\Theta_{\min}$ pairs with observational anchor points, avoiding unconstrained degrees of freedom.
+\end{itemize}
+
+Key problems still open and needing further rigorous work include:
+
+\begin{enumerate}
+\item Rigorously derive black hole horizon link entropy from concrete QCA model and prove $S = A/4$;
+
+\item Construct generalized expression of unified time scale and DOS in fully relativistic background, seamlessly interfacing with Brown--York energy and Gibbons--Hawking--York boundary terms;
+
+\item Give naturalness proof of $\bar\theta(\Theta)$, i.e., quantified rate of posterior distribution contraction to zero under reasonable priors;
+
+\item Construct unified cost function in concrete experimental fitting and test whether non-empty joint feasible domain exists.
+\end{enumerate}
+
+Regardless whether final result is ``successfully finding self-consistent $\Theta_*$'' or ``proving joint feasible domain empty under all reasonable priors'', this unified constraint--audit framework itself has methodological significance: it requires us when introducing any new degree of freedom or new physics, simultaneously check its global impact on six modules and DOS resources, not just locally patching certain phenomenon.
+
+\begin{thebibliography}{99}
+
+\bibitem{birman_krein} M. S. Birman, M. G. Kreĭn, ``On the theory of wave operators and scattering operators'', Dokl. Akad. Nauk SSSR \textbf{144}, 475--478 (1962).
+
+\bibitem{bekenstein} J. D. Bekenstein, ``Black holes and entropy'', Phys. Rev. D \textbf{7}, 2333 (1973).
+
+\bibitem{weinberg_cc} S. Weinberg, ``The cosmological constant problem'', Rev. Mod. Phys. \textbf{61}, 1 (1989).
+
+\bibitem{eth_review} L. D'Alessio, Y. Kafri, A. Polkovnikov, M. Rigol, ``From quantum chaos and eigenstate thermalization to statistical mechanics and thermodynamics'', Adv. Phys. \textbf{65}, 239 (2016).
+
+\bibitem{strong_cp} R. D. Peccei, H. R. Quinn, ``CP conservation in the presence of pseudoparticles'', Phys. Rev. Lett. \textbf{38}, 1440 (1977).
+
+\bibitem{gw_dispersion} N. Yunes, X. Siemens, ``Gravitational-wave tests of general relativity with ground-based detectors and pulsar-timing arrays'', Living Rev. Relativ. \textbf{16}, 9 (2013).
+
+\end{thebibliography}
+
+\appendix
+
+\section{Appendix A: Technical Details of Unified Time Identity and DOS}
+
+\subsection{A.1 Birman--Kreĭn Type Formula and Relative Density of States}
+
+In case with well-defined scattering theory, let difference between $H$ and reference Hamiltonian $H_0$ be short-range perturbation, then wave operators exist
+
+$$\Omega^\pm = \lim_{t\to\pm\infty} e^{\mathrm{i}Ht}e^{-\mathrm{i}H_0 t},$$
+
+scattering operator defined as
+
+$$S = (\Omega^+)^\dagger\Omega^-.$$
+
+Performing spectral decomposition on energy-resolved scattering operator $S(\omega)$,
+
+$$S(\omega) = e^{2\mathrm{i}\delta(\omega)},$$
+
+where $\delta(\omega)$ is appropriate trace or sum of diagonal elements of phase shift operator. Relative density of states defined as
+
+$$\rho_{\mathrm{rel}}(\omega) = \mathrm{tr}\Big(\delta(H-\omega) - \delta(H_0-\omega)\Big).$$
+
+Standard result shows
+
+$$\rho_{\mathrm{rel}}(\omega) = \frac{1}{\pi}\,\delta'(\omega).$$
+
+On the other hand, Wigner--Smith delay operator
+
+$$\mathsf{Q}(\omega) = -\mathrm{i}S^\dagger(\omega)\,\frac{\mathrm{d}S(\omega)}{\mathrm{d}\omega},$$
+
+in single-channel case
+
+$$S(\omega) = e^{2\mathrm{i}\delta(\omega)} \Rightarrow \mathsf{Q}(\omega) = 2\delta'(\omega),$$
+
+in multi-channel case holds for trace
+
+$$\mathrm{tr}\,\mathsf{Q}(\omega) = 2\,\delta'(\omega).$$
+
+Thus unified time identity
+
+$$\kappa(\omega) = \frac{\delta'(\omega)}{\pi} = \rho_{\mathrm{rel}}(\omega) = \frac{1}{2\pi}\,\mathrm{tr}\,\mathsf{Q}(\omega).$$
+
+\subsection{A.2 Euler--Maclaurin and Poisson Error Upper Bounds}
+
+Consider summation over discrete spectrum $\omega_n$ in QCA:
+
+$$\sum_{n} f(\omega_n) \approx \int f(\omega)\rho(\omega)\,\mathrm{d}\omega + \text{boundary terms} + \text{higher-order corrections}.$$
+
+If spectrum like uniform lattice $\omega_n = n\Delta\omega$, can use Poisson summation formula
+
+$$\sum_{n\in\mathbb{Z}} f(n\Delta\omega) = \frac{1}{\Delta\omega}\sum_{k\in\mathbb{Z}} \hat f\left(\frac{2\pi k}{\Delta\omega}\right),$$
+
+where $\hat f$ is Fourier transform. After truncating to finite $k$, higher-order terms naturally represent aliasing error, whose amplitude decays rapidly with smoothness of $f$.
+
+Euler--Maclaurin formula gives
+
+$$\sum_{n=a}^b f(n) = \int_a^b f(x)\,\mathrm{d}x + \frac{f(a)+f(b)}{2} + \sum_{k=1}^p \frac{B_{2k}}{(2k)!} \big(f^{(2k-1)}(b)-f^{(2k-1)}(a)\big) + R_p,$$
+
+where $B_{2k}$ are Bernoulli numbers, $R_p$ is remainder term. Only keeping finite order $p$ and estimating upper bound of $R_p$ suffices.
+
+In this paper's framework, we require every discrete--continuous replacement accompanied by explicit order $p$ and error estimate $R_p \sim \mathcal{O}(\ell_{\mathrm{cell}}^p)$, to avoid artificially introducing unbounded or uncontrolled contributions in high-frequency region.
+
+\section{Appendix B: Linear Algebra Properties of Conflict Matrix}
+
+Let
+
+$$g_i = \nabla_\Theta C_i(\Theta_*),$$
+
+computed at some feasible approximation point $\Theta_*$. Define weighted inner product
+
+$$\langle g_i,g_j\rangle_{\Sigma^{-1}} = g_i^\top \Sigma^{-1} g_j,$$
+
+where $\Sigma$ is positive definite covariance. Conflict matrix
+
+$$M = (M_{ij}),\quad M_{ij} = \langle g_i,g_j\rangle_{\Sigma^{-1}}$$
+
+has following properties:
+
+\begin{enumerate}
+\item $M$ is positive semidefinite, rank lower than 6 if and only if all $g_i$ are linearly dependent;
+
+\item If $M$ is positive definite, then $g_i$ are linearly independent, implicit function theorem can be used to prove existence of local common solution manifold (see Theorem 5.1 in main text);
+
+\item When significant negative eigenvalues exist, indicates some constraints strongly oppose in parameter space, suggesting structural conflict or incompatible model assumptions.
+\end{enumerate}
+
+In actual numerical treatment, $M$ can also be used to construct principal components of ``tension directions'', judging which theoretical modules need priority examination and modification.
+
+\section{Appendix C: Parameter--Observation Mapping and Error Propagation Illustration}
+
+In Bayesian framework, can specify prior distribution $p(\Theta_{\min})$ for $\Theta_{\min}$, observational data $D$ (set including GW, CMB, neutrino experiments etc.) defines likelihood
+
+$$\mathcal{L}(D\mid \Theta_{\min}) \propto \exp\big(-\mathcal{L}(\Theta_{\min})\big),$$
+
+where $\mathcal{L}(\Theta_{\min})$ is unified cost value defined in main text.
+
+Posterior distribution is
+
+$$p(\Theta_{\min}\mid D) \propto \mathcal{L}(D\mid \Theta_{\min})\,p(\Theta_{\min}).$$
+
+In Gaussian approximation, can expand at some posterior peak $\Theta_*$
+
+$$\mathcal{L}(\Theta_{\min}) \approx \mathcal{L}(\Theta_*) + \frac{1}{2}(\Theta-\Theta_*)^\top H (\Theta-\Theta_*),$$
+
+where $H$ is Hessian matrix. Conflict matrix $M$ is structurally closely related to $H$: if strong tension exists between some modules, posterior variance in corresponding directions will be significantly compressed or even cause feasible domain to contract to approximate empty set, this information can all be obtained through spectral analysis of $H$ and $M$.
+
+Although this paper does not expand specific data analysis, above form suffices to show: once given concrete QCA model family and experimental dataset, unified constraint system can undergo quantified testing with standard statistical--numerical methods, transforming philosophical question of ``whether universe is encoded by finite-dimensional $\Theta$'' into series of computable, falsifiable physical and mathematical problems.
+
+\end{document}
+

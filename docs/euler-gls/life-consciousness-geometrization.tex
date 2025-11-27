@@ -1,0 +1,330 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Title information
+\title{Life and Consciousness as Geometric Structures: An Information-Thermodynamic Framework}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We establish a unified framework centered on open-system geometric thermodynamics and information geometry: characterizing life as geometric structure sustained by persistent negative entropy flux, characterizing consciousness as self-referential measurement--control processes with Markov blanket decomposition, and characterizing evolution as minimal-dissipation paths on Fisher/Shahshahani and Wasserstein metrics under energy--information budget constraints. The framework employs contact geometry to characterize potential--flow and entropy production in non-equilibrium open systems, unifies inference and learning via I/m-projections and natural gradients in information geometry, and expresses Fokker--Planck dynamics as steepest descent flow of free energy via the JKO variational scheme. At the stochastic thermodynamics level, universal lower bounds for work--precision--time are provided through the Jarzynski equality with its mutual-information-generalized form, thermodynamic uncertainty relations, and speed limits. We introduce windowed readouts and master scales to homogenize energy--information--delay measurements, and propose operational readouts via open-system effective group delay and Toeplitz/Berezin compression. Testable criteria and several main theorems for life, consciousness, and evolution are provided, with proof chains detailed in appendices.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Open systems; Contact geometry; Information geometry; Wasserstein flow; Natural gradient; Thermodynamic length; Thermodynamic uncertainty relation; Speed limit; Markov blanket; Jarzynski--Sagawa--Ueda; Landauer bound; Self-referential measurement; Replicator dynamics
+
+\noindent\textbf{MSC 2020:} Primary 80A17, 82C05, 53D10; Secondary 62B10, 92C42, 68Q85
+
+\section{Notation, Objects, and Axioms}
+
+\subsection{Windowed Readouts and Master Scale}
+
+\begin{itemize}
+\item Inverse temperature notation: $\beta:=(k_{\text{B}}T)^{-1}$. The work--information identities and continuous monitoring martingale $\Gamma_t=\exp[-\beta W_t+\beta\Delta F_t-I_t]$ (Section \ref{sec:windowed}) and $\langle e^{-\beta W+\beta\Delta F-I}\rangle=1$ (Appendix \ref{app:work_info}) throughout use this as the unified thermal parameter convention.
+
+\item Energy-spectrum window kernel and time window denoted $w(E)$, $h(t)$ respectively; windowed readout denoted as linear functional $\langle f\rangle_{w,h}=\int W(E)\,f(E)\,d\mu(E)$, where $W$ is the weight induced by convolution of $w,h$.
+
+\item \textbf{Using scattering--spectral shift master-scale identity as global calibration (master ruler):} Let the \textbf{total scattering phase} $\varphi(E):=\arg\det \mathsf{S}(E)$ of scattering matrix $\mathsf{S}(E)$ (equivalent to spectral shift function $\xi(E)=\varphi(E)/(2\pi)$), and define the Wigner--Smith \textbf{group delay matrix} $\mathsf{Q}(E):=-i\,\mathsf{S}^\dagger(E)\,\partial_E\mathsf{S}(E)$. Then
+$$
+\boxed{\ \frac{\varphi'(E)}{2\pi}=\rho_{\text{rel}}(E)=\frac{1}{2\pi}\mathrm{tr}\,\mathsf{Q}(E)\ }.
+$$
+This identity is used throughout as the common calibration for energy--information--delay (using $\mathsf{Q}_{\text{eff}}$ in open-system extensions).
+\end{itemize}
+
+\subsection{Contact Geometry--Open Systems}
+
+\begin{itemize}
+\item Contact manifold $(\mathcal{C},\alpha)$ takes Darboux coordinates $(x^i,y_i,z)$ satisfying $\alpha=dz-y_i\,dx^i$. Contact Hamiltonian $H$ determines vector field $X_H$ via $\iota_{X_H}\alpha=-H$, $\iota_{X_H}d\alpha=dH-(\mathcal{R} H)\alpha$, where $\mathcal{R}$ is the Reeb vector field satisfying $\alpha(\mathcal{R})=1$, $\iota_{\mathcal{R}}d\alpha=0$; this unifies geometric descriptions of potential--force--flow and entropy production, used for port coupling in non-equilibrium open systems.
+\end{itemize}
+
+\subsection{Information Geometry--Natural Gradient}
+
+\begin{itemize}
+\item Probability manifold $\mathcal{P}=\{p_\theta\}$ equipped with Fisher--Rao metric $g_{ij}(\theta)=\mathbb{E}_\theta[\partial_i\log p_\theta\,\partial_j\log p_\theta]$. Natural gradient denoted $\widetilde{\nabla} f=g^{-1}\nabla f$. \textbf{I (information)/e (exponential)-projection minimizes $D_{\text{KL}}(p\Vert q)$; m (mixture/M)-projection minimizes $D_{\text{KL}}(q\Vert p)$.}
+\end{itemize}
+
+\subsection{Wasserstein--JKO and Gradient Flow}
+
+\begin{itemize}
+\item On $W_2$--Wasserstein space, the steepest descent flow of free-energy functional $\mathcal{F}[p]=\int p\log p+\int Vp$ corresponds to the Fokker--Planck equation; discretization via JKO scheme $p_{k+1}=\arg\min_p\{\mathcal{F}[p]+\tfrac{1}{2h}W_2^2(p,p_k)\}$.
+\end{itemize}
+
+\subsection{Observation--Computation and Error Discipline}
+
+\begin{itemize}
+\item Readout operators employ Toeplitz/Berezin compression $\mathsf{K}_{w,h}=\Pi_w M_W \Pi_w$, ensuring positivity and semiclassical consistency.
+\item Error budgets follow ``Nyquist--Poisson--Euler--Maclaurin (NPE)'' finite-order discipline: $\varepsilon_{\text{tot}}=\varepsilon_{\text{alias}}+\varepsilon_{\text{EM}}+\varepsilon_{\text{tail}}$, with tail entropy flux $\mathscr{T}_R$ providing halting criterion (see Appendix \ref{app:npe}).
+\end{itemize}
+
+\subsection{Markov Blanket and Self-Referential Measurement}
+
+\begin{itemize}
+\item Partition system variables into internal $s_{\text{int}}$, external $s_{\text{ext}}$, sensory $o$, active $a$, satisfying conditional independence and blanket properties; self-referential measurement--control uses variational free energy $\mathcal{F}=\mathbb{E}_{q_\phi}[\log q_\phi(s\mid o)-\log p_\theta(s,o)]$ as potential function.
+\end{itemize}
+
+\section{Geometric Thermodynamic Structure of Open Systems}
+
+Contact geometry provides natural $(2n\!+\!1)$-dimensional structure for thermodynamic state space; the first/second laws of thermodynamics correspond to invariants and divergence terms under contact transformations. Open systems can couple with the environment through ports (supply--drain), forming steady-flux networks and maintaining ordered structures under non-equilibrium. This geometrization approach is consistent with ``port-Hamiltonian/Dirac structures'' and has been systematically used for non-equilibrium thermodynamics and engineering system modeling. These perspectives and formulations are systematically expounded and unified in existing literature \cite{bravetti2017contact}.
+
+Stochastic thermodynamics elevates work, heat, and entropy production to single-trajectory level, yielding universal fluctuation theorems and identities (Jarzynski equality); in open systems with measurement--feedback, mutual-information correction terms characterize extractable work as ``information is a resource,'' with corresponding generalized identities providing work--information budget closure \cite{seifert2012stochastic}.
+
+\section{Information Geometry and Free-Energy Gradient Flow}
+
+On statistical manifolds, natural gradients induced by Fisher--Rao metric provide steepest descent directions for inference and learning; this is consistent with ELBO minimization in variational Bayes. On the other hand, Fokker--Planck dynamics can be viewed as steepest descent flow of free energy on $W_2$ space (JKO scheme), thus unifying ``diffusion--potential landscape'' with ``optimal transport--descent.'' Together, these provide a geometric bridge ``from data to dynamics'' \cite{amari2000methods}.
+
+Under finite-time driving, friction tensors and thermodynamic metrics can be defined in linear response approximation; lower bounds on dissipative work are characterized by thermodynamic length, with minimal-dissipation protocols being geodesics on this metric. These results have direct testability in molecular-scale driving and information processing \cite{sivak2012thermodynamic}.
+
+\section{Conceptual Characterizations}
+
+\begin{definition}[Life = Negative-Entropy Geometric Structure]
+\label{def:life}
+Let an open system be coupled by contact system $(\mathcal{C},\alpha,H)$ and probability manifold $\mathcal{P}$. System entropy satisfies $\dot{S}_{\text{sys}}=\dot{S}_{\text{e}}+\dot{S}_{\text{i}}$, $\dot{S}_{\text{i}}\ge 0$. If there exists persistent negative entropy flux $J_N:=-\dot{S}_{\text{e}}>0$ such that $\sup_{t}S_{\text{sys}}(t)<\infty$, and the contact flow is input--state stable (ISS) and reachable under given port constraints, we say the system is in a life state. This life state is maintained by geometric structure sustained by negative entropy flux.
+\end{definition}
+
+\begin{definition}[Consciousness = Self-Referential Measurement Process]
+\label{def:consciousness}
+Let generative model $p_\theta(s,o)$ and recognition density $q_\phi(s\mid o)$ evolve under blanket conditions of Markov blanket $(s_{\text{int}},s_{\text{ext}};o,a)$, with updates realized via \textbf{m-projection (minimizing $D_{\text{KL}}(q_\phi\Vert p_\theta)$)/natural gradient} achieving descent of $\mathcal{F}(\phi,\theta)$; measurement--feedback introduces mutual information $I$, with work--free-energy difference satisfying $\langle W\rangle\ge \Delta F-k_{\text{B}}T\langle I\rangle$. We call this minimization--control closed loop the abstraction of consciousness \cite{friston2010free}.
+\end{definition}
+
+\begin{definition}[Evolution = Geometric Optimization Path]
+\label{def:evolution}
+On strategy simplex $\Delta^{n-1}$, \textbf{if there exists potential function $V(\mathbf{x})$ such that $f_i=\partial_{x_i}V$ (potential game/integrable)}, then replicator dynamics $\dot{x}_i=x_i(f_i-\bar{f})$ is a \textbf{gradient flow} of Shahshahani/Fisher metric; evolutionary trajectories are curves minimizing thermodynamic length and entropy production on Fisher or Wasserstein metrics under given budget and environmental constraints \cite{harper2009information}.
+\end{definition}
+
+\section{Main Theorems and Testable Criteria}
+
+\begin{theorem}[Negative-Entropy--Steady-State Criterion for Life (Theorem A)]
+\label{thm:life}
+\textbf{Statement:} An open contact--stochastic coupled system admits a life state if and only if it satisfies:
+\begin{enumerate}
+\item[(i)] $\dot{S}_{\text{i}}\ge 0$;
+\item[(ii)] There exists $J_N>0$ such that $\limsup_{t\to\infty}S_{\text{sys}}(t)<\infty$;
+\item[(iii)] The contact flow is input--state stable (ISS) and reachable under port constraints.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+From control-volume entropy balance and $\dot{S}_{\text{i}}\ge 0$, boundedness of $\int_0^T(\dot{S}_{\text{i}}-J_N)\,dt$ implies boundedness of $S_{\text{sys}}$; conservation--production decomposition of contact systems and port energy balance yield steady-flux networks; ISS and reachability ensure steady state is maintained under small perturbations. See Appendix \ref{app:life}.
+\end{proof}
+
+\begin{theorem}[Work--Information Lower Bound and Natural Gradient Closure for Consciousness (Theorem B)]
+\label{thm:consciousness}
+\textbf{Statement:} In self-referential measurement--feedback processes with Markov blanket, average work satisfies $\langle W\rangle \ge \Delta F-k_{\text{B}}T\langle I\rangle$. When recognition/parameter updates take Fisher natural gradient (step size constrained by geometry), the descent rate of $\mathcal{F}$ is locally optimal and jointly constrained with energy cost through the Landauer bound and thermodynamic metric.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+Work--information lower bound obtained from generalized Jarzynski equality with mutual information via Jensen's inequality; natural gradient is steepest descent direction under Fisher metric; combining with Landauer minimum dissipation and finite-time erasure cost yields closed budget. See Appendices \ref{app:natural_gradient}, \ref{app:work_info} \cite{sagawa2010generalized}.
+\end{proof}
+
+\begin{theorem}[Minimal Dissipation and Speed Limit for Evolution (Theorem C)]
+\label{thm:evolution}
+\textbf{Statement:} When control parameter $\lambda(t)$ drives non-equilibrium process within duration $\tau$, excess dissipated work under linear response has lower bound $\langle W_{\text{ex}}\rangle\ge \mathcal{L}^2/\tau$, where thermodynamic length $\mathcal{L}=\int_0^\tau \sqrt{\dot{\lambda}^\top \zeta(\lambda)\dot{\lambda}}\,dt$; minimal-dissipation protocol is geodesic; transition speed of Markov processes is constrained by speed limits from entropy production and dynamical activity. \textbf{Under potential game/integrability conditions}, replicator dynamics is gradient flow of Shahshahani metric, consistent with the above ``geodesic--optimal protocol.''
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+Lower bound on $\langle W_{\text{ex}}\rangle$ from thermodynamic metric construction and Cauchy--Schwarz; speed limit from dynamical activity--entropy production trade-off inequality; replicator--natural gradient isomorphism in Appendix \ref{app:replicator} \cite{sivak2012thermodynamic}.
+\end{proof}
+
+\begin{theorem}[Thermodynamic Uncertainty Relation for Life--Measurement Bound (Theorem D)]
+\label{thm:tur}
+\textbf{Statement:} In steady-state biochemical/signal networks, relative variance--mean precision of any countable current is constrained by lower bound $\mathrm{Var}(J_t)/\langle J_t\rangle^2 \ge 2/(t\,\Sigma)$ (or equivalent form), where $\Sigma$ is entropy production rate; thus given precision $\epsilon$ requires cost $\gtrsim 2k_{\text{B}}T/\epsilon^2$.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+TUR derived from large deviations and fluctuation theorem; lower bound is universal for steady-state Markov networks, forming ``energy--precision'' life--perception measurement limits. See Appendix \ref{app:tur} \cite{barato2015thermodynamic}.
+\end{proof}
+
+\section{Windowed Readouts, Effective Group Delay, and Experimental Protocols}
+\label{sec:windowed}
+
+\textbf{Open-system effective group delay:} Convention $A^\sharp:=A^\dagger$. When response/scattering function $\mathsf{G}(\omega)$ is non-unitary, take its polar decomposition $\mathsf{G}(\omega)=\mathsf{U}(\omega)\mathsf{H}(\omega)$ ($\mathsf{U}$ unitary, $\mathsf{H}$ positive definite), and define via unitary factor
+$$
+\boxed{\ \mathsf{Q}_{\text{eff}}(\omega):=-i\,\mathsf{U}^\dagger(\omega)\,\partial_\omega \mathsf{U}(\omega)\ }.
+$$
+Thus $(2\pi)^{-1}\mathrm{tr}\,\mathsf{Q}_{\text{eff}}\in\mathbb{R}$, homogeneous with $\rho_{\text{rel}}$; combined with windowed tracing $\big\langle (2\pi)^{-1}\mathrm{tr}\,\mathsf{Q}_{\text{eff}}\big\rangle_{w,h}$, cross-scale calibration can be performed.
+
+\textbf{Readout operators and error discipline:} Implement windowed operator readouts via $\mathsf{K}_{w,h}$; error budgets controlled by NPE finite-order discipline; convergence of tail entropy flux $\mathscr{T}_R$ provides halting criterion (Appendix \ref{app:npe}).
+
+\textbf{Protocols and testability:} (i) Continuous monitoring constructs martingale $\Gamma_t=\exp[-\beta W_t+\beta\Delta F_t-I_t]$ testing work--information identity; (ii) compare behavioral/neural readouts with covariance of $\langle (2\pi)^{-1}\mathrm{tr}\,\mathsf{Q}_{\text{eff}}\rangle_{w,h}$; (iii) verify thermodynamic length bounds on microsystems via minimal-dissipation geodesic protocols. Experimental feasibility of generalized identities and metric--geodesic has been repeatedly demonstrated in statistical physics and biophysics contexts \cite{sagawa2010generalized}.
+
+\section{Geometry of Consciousness: Markov Blanket, m-Projection, and Continuous Measurement}
+
+Consciousness viewed as self-referential measurement--control: internal generative model and recognition density minimize $\mathcal{F}$ via \textbf{m-projection (reverse KL)/natural gradient} under Markov blanket blanket, with action as policy control minimizing expected free energy. Physical realizability bounds of this process are jointly determined by Landauer minimum dissipation, Jarzynski--Sagawa--Ueda work--information inequality, and thermodynamic metric; for continuous-type observations, stochastic master equation for posterior state can be obtained under Belavkin filtering, realizing continuous-time closure of consciousness--observation \cite{friston2010free}.
+
+\section{Geometry of Evolution: Consistency of Natural Selection and Natural Gradient}
+
+\textbf{Under potential game conditions (existence of $V$ such that $f_i=\partial_{x_i}V$)}, replicator dynamics is \textbf{gradient flow} of Shahshahani (i.e., Fisher restricted to simplex) metric; thus ``fitness ascent'' is equivalent to steepest ascent/descent (depending on potential function definition) under Fisher metric. Writing mutation--selection--migration as free-energy descent flow on Wasserstein space can be unified with JKO scheme, providing ``cost--time--precision'' triple trade-off under frameworks of thermodynamic length and speed limits \cite{harper2009information}.
+
+\section{Master-Scale Homogenization for Life--Consciousness}
+
+Extending master scale $\varphi'/(2\pi)=\rho_{\text{rel}}=(2\pi)^{-1}\mathrm{tr}\,\mathsf{Q}$ to open systems, replacing $\mathsf{Q}$ with $\mathsf{Q}_{\text{eff}}$, implementing homogeneous dimensioning of energy--information--delay via windowed readouts across metabolic--signal--neural--behavioral layers; compatible with operator readouts of Toeplitz/Berezin compression, providing unified calibration for cross-scale data assimilation and inversion. Combined with Zeckendorf reversible logs for integerized bookkeeping of windowed loads, ensuring cross-window reproducibility and consistent interfacing.
+
+\appendix
+
+\section{Open-System Entropy Budget and Proof of Theorem A}
+\label{app:life}
+
+For control volume $\Omega$ with boundary $\partial\Omega$, entropy balance is
+$$
+\frac{d S_{\text{sys}}}{dt}=\int_\Omega \sigma(\mathbf{x})\,d\mathbf{x}-\int_{\partial\Omega}\frac{\mathbf{J}_q\!\cdot\!\mathbf{n}}{T}\,dA+\sum_k\int_{\partial\Omega}\frac{\mu_k}{T}\,\mathbf{J}_k\!\cdot\!\mathbf{n}\,dA,
+$$
+where $\sigma\ge 0$. Let $\dot{S}_{\text{e}}=-\int_{\partial\Omega}\big(\mathbf{J}_q/T-\sum_k\mu_k\mathbf{J}_k/T\big)\cdot\mathbf{n}\,dA$, then $\dot{S}_{\text{sys}}=\dot{S}_{\text{e}}+\dot{S}_{\text{i}}$, $\dot{S}_{\text{i}}=\int_\Omega \sigma\ge 0$. If there exists $J_N=-\dot{S}_{\text{e}}>0$ such that $\int_0^\infty(\dot{S}_{\text{i}}-J_N)\,dt$ is bounded, then $\sup_t S_{\text{sys}}(t)<\infty$. Contact system written as $X_H=X_{\text{cons}}+X_{\text{prod}}$, where divergence of $X_{\text{prod}}$ equals $\sigma$; port power balance and ISS yield steady-state reachability, hence life state is mutually equivalent to three conditions. Reference general arguments for stability of contact thermodynamics and dissipative structures \cite{bravetti2017contact}.
+
+\section{m-Projection, Natural Gradient, and ELBO Monotonicity}
+\label{app:natural_gradient}
+
+Under exponential family approximation and smooth constraints, Euclidean gradient of ELBO becomes natural gradient step $\Delta\theta=-\eta\,g^{-1}\nabla_\theta \mathcal{F}$ after Fisher preconditioning. Since $g$ is positive definite, taking sufficiently small $\eta$ ensures $\mathcal{F}$ descends at each step with locally optimal descent rate; this is equivalent to steepest descent on statistical manifold. Standard results in information geometry guarantee orthogonal decomposition and uniqueness of I/m-projections (under appropriate convexity assumptions) \cite{amari2000methods}.
+
+\section{Shahshahani Geometric Proof of Replicator Dynamics}
+\label{app:replicator}
+
+On simplex $\Delta^{n-1}$, take Shahshahani metric $g_{ij}=\delta_{ij}/x_i$. Let Euclidean gradient of potential function $V(\mathbf{x})$ be $f_i=\partial_{x_i}V$. Under simplex constraint $\sum_i x_i=1$, natural gradient requires projection to tangent space:
+$$
+\mathrm{grad}_g V=\Pi_x\,g^{-1}\nabla V,\qquad \Pi_x:\ T_x\mathbb{R}^n\to T_x\Delta^{n-1}.
+$$
+Since $g^{-1}\nabla V=(x_i f_i)_i$, we have
+$$
+(\mathrm{grad}_g V)_i=x_i f_i - x_i\sum_j x_j f_j=x_i\big(f_i-\bar{f}\big),\ \ \bar{f}=\sum_j x_j f_j,
+$$
+thus obtaining replicator equation $\dot{x}_i=x_i(f_i-\bar{f})$. This result is equivalent to ``replicator $=$ Fisher natural gradient,'' systematically expounded in information geometry--evolutionary game literature \cite{harper2009information}.
+
+\section{Thermodynamic Length and Minimal-Dissipation Protocols}
+
+Under linear response, excess dissipated work $\langle W_{\text{ex}}\rangle=\int_0^\tau \dot{\lambda}^\top\zeta(\lambda)\dot{\lambda}\,dt$. Let $\mathcal{L}=\int_0^\tau \sqrt{\dot{\lambda}^\top\zeta(\lambda)\dot{\lambda}}\,dt$. By Cauchy--Schwarz inequality, $\langle W_{\text{ex}}\rangle\ge \mathcal{L}^2/\tau$. Equality holds if and only if $\sqrt{\zeta}\dot{\lambda}$ has constant norm, i.e., $\lambda$ advances at constant velocity along geodesic. This theorem is fully consistent with ``thermodynamic metric--optimal protocol'' \cite{sivak2012thermodynamic}.
+
+\section{Work--Information Inequality and Landauer Bound}
+\label{app:work_info}
+
+Generalized Jarzynski equality with feedback is $\langle e^{-\beta W+\beta\Delta F-I}\rangle=1$. By Jensen's inequality, $\langle W\rangle\ge \Delta F-k_{\text{B}}T\langle I\rangle$. For logically irreversible processes, minimum dissipation satisfies Landauer bound $\Delta Q\ge k_{\text{B}}T\ln 2$; minimum work--dissipation for finite-time erasure is determined by specific implementation and protocol, but strict rate--cost trade-offs exist \cite{sagawa2010generalized}.
+
+\section{NPE Finite-Order Error and Halting Criterion}
+\label{app:npe}
+
+Let windowed tail entropy flux $\mathscr{T}_R=\int_{\mathbb{R}\setminus[-R,R]}W(E)\,|\rho_{\text{rel}}(E)|\,dE$. If $\int_{R_0}^\infty \mathscr{T}_R\,dR/R<\infty$ and $\lim_{R\to\infty}\mathscr{T}_R=0$, then for given tolerance $\epsilon$ there exists $R_\epsilon$ such that $\mathscr{T}_{R_\epsilon}<\epsilon$. Aliasing and EM remainder are bounded by Nyquist condition and finite-order formula respectively; combined yields halting threshold and experimental/simulation sampling rate selection criteria.
+
+\section{Thermodynamic Uncertainty Relations and Speed Limits}
+\label{app:tur}
+
+TUR for steady-state Markov networks yields series lower bound $\mathrm{Var}(J_t)/\langle J_t\rangle^2 \ge 2/(t\,\Sigma)$, or equivalent $\epsilon^{-2}$-type energy--precision cost; speed limits yield shortest transition time lower bounds under given entropy production, with dynamical activity as key scale. Together they constitute ``precision--cost--time'' geometric bounds for life--perception--action \cite{barato2015thermodynamic}.
+
+\section*{Acknowledgments}
+
+All results cited rely on standard theorems in thermodynamics, information geometry, and stochastic processes. References are provided for verifiability.
+
+\bibliographystyle{plain}
+\begin{thebibliography}{99}
+
+\bibitem{seifert2012stochastic}
+U. Seifert.
+\newblock Stochastic thermodynamics, fluctuation theorems and molecular machines.
+\newblock {\em Reports on Progress in Physics}, 75(12):126001, 2012.
+
+\bibitem{sagawa2010generalized}
+T. Sagawa and M. Ueda.
+\newblock Generalized Jarzynski equality under nonequilibrium feedback control.
+\newblock {\em Physical Review Letters}, 104(9):090602, 2010.
+
+\bibitem{sivak2012thermodynamic}
+D. A. Sivak and G. E. Crooks.
+\newblock Thermodynamic metrics and optimal paths.
+\newblock {\em Physical Review Letters}, 108(19):190602, 2012.
+
+\bibitem{jordan1998variational}
+R. Jordan, D. Kinderlehrer, and F. Otto.
+\newblock The variational formulation of the Fokker--Planck equation.
+\newblock {\em SIAM Journal on Mathematical Analysis}, 29(1):1--17, 1998.
+
+\bibitem{barato2015thermodynamic}
+A. C. Barato and U. Seifert.
+\newblock Thermodynamic uncertainty relation for biomolecular processes.
+\newblock {\em Physical Review Letters}, 114(15):158101, 2015.
+
+\bibitem{shiraishi2018speed}
+N. Shiraishi, K. Funo, and K. Saito.
+\newblock Speed limit for classical stochastic processes.
+\newblock {\em Physical Review Letters}, 121(7):070601, 2018.
+
+\bibitem{bravetti2017contact}
+A. Bravetti.
+\newblock Contact Hamiltonian dynamics: The concept and its use.
+\newblock {\em Entropy}, 19(10):535, 2017.
+
+\bibitem{vanderschaft2018geometry}
+A. van der Schaft and B. Maschke.
+\newblock Geometry of thermodynamic processes.
+\newblock {\em Entropy}, 20(12):925, 2018.
+
+\bibitem{amari2000methods}
+S. Amari and H. Nagaoka.
+\newblock {\em Methods of Information Geometry}.
+\newblock American Mathematical Society, 2000.
+
+\bibitem{amari1998natural}
+S. Amari.
+\newblock Natural gradient works efficiently in learning.
+\newblock {\em Neural Computation}, 10(2):251--276, 1998.
+
+\bibitem{friston2010free}
+K. Friston.
+\newblock The free-energy principle: A unified brain theory?
+\newblock {\em Nature Reviews Neuroscience}, 11(2):127--138, 2010.
+
+\bibitem{parr2022active}
+T. Parr, G. Pezzulo, and K. Friston.
+\newblock {\em Active Inference: The Free Energy Principle in Mind, Brain, and Behavior}.
+\newblock MIT Press, 2022.
+
+\bibitem{landauer1961irreversibility}
+R. Landauer.
+\newblock Irreversibility and heat generation in the computing process.
+\newblock {\em IBM Journal of Research and Development}, 5(3):183--191, 1961.
+
+\bibitem{giorgini2023thermodynamic}
+L. T. Giorgini.
+\newblock Thermodynamic cost of erasing information in finite time.
+\newblock {\em Physical Review Research}, 5(2):023084, 2023.
+
+\bibitem{harper2009information}
+M. Harper.
+\newblock Information geometry and evolutionary game theory.
+\newblock arXiv:0911.1383, 2009.
+
+\end{thebibliography}
+
+\end{document}
+

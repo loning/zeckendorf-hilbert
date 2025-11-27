@@ -1,0 +1,945 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{braket}
+\usepackage{graphicx}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+\newtheorem{axiom}[theorem]{Axiom}
+
+% Title information
+\title{Quantum--Classical Bridge on Time Scale:\\
+Phase, Time Delay, Redshift, and Gravity--Entropy Geometry}
+
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Under the unified ``time scale'' perspective, this paper systematically constructs a set of equivalence relations among quantum phase, proper time, scattering group delay, cosmological redshift, and boundary entropy evolution, organizing them into an axiomatizable quantum--classical bridge framework. On the geometric end, proper time $\mathrm{d}\tau=\sqrt{-g_{\mu\nu}\mathrm{d}x^\mu \mathrm{d}x^\nu}$ and generalized entropy $S_{\mathrm{gen}}$ on causal boundaries are taken as fundamental objects; on the quantum end, path integral phase $\phi=-S/\hbar$, total phase $\Phi(\omega)$ of scattering matrix $S(\omega)$, and Wigner--Smith group delay operator $Q(\omega)=-iS(\omega)^\dagger \partial_\omega S(\omega)$ are taken as fundamental objects. We propose and adopt the unified scale identity
+
+$$
+\frac{\varphi'(\omega)}{\pi}=\rho_{\mathrm{rel}}(\omega)=\frac{1}{2\pi}\operatorname{tr}Q(\omega),
+$$
+
+where $\varphi(\omega)$ is normalized total phase, $\rho_{\mathrm{rel}}$ is relative state density. We prove: under semiclassical limit and appropriate regularity assumptions
+
+\begin{enumerate}
+\item When single-particle wave packet propagates along classical geodesic, its phase $\phi$ is equivalent to a linear function of proper time accumulated along that worldline $\phi=-mc^2\int \mathrm{d}\tau/\hbar$, thus proper time scale can be viewed as ``geometric parameter of phase'';
+\item In static or asymptotically flat gravitational fields, gravitational time delay of photons or matter waves equals derivative of scattering phase with respect to frequency, i.e., equals trace of Wigner--Smith group delay, thus gravitational time dilation can be interpreted as curvature of ``phase--frequency geometry'';
+\item In FRW cosmological background, redshift $1+z=a(t_0)/a(t_e)$ can be equivalently written as ratio of phase frequency $(\mathrm{d}\phi/\mathrm{d}t)$ on same photon worldline at emission and detection events, thus cosmological redshift becomes phase expression of ``cosmic time scale shear'';
+\item In local causal diamonds, taking extremality and monotonicity of generalized entropy $S_{\mathrm{gen}}=A/(4G\hbar)+S_{\mathrm{out}}$ (along null generator parameter $\lambda$) as axioms, Einstein equations with cosmological constant can be derived in semiclassical--holographic window, viewing gravitational geometry as ``effective equations for how entropy organizes along time scale on causal boundaries.''
+\end{enumerate}
+
+This yields a unified ``time--phase--entropy--geometry'' correspondence diagram. Appendices provide: derivation of scale identity between Wigner--Smith group delay and spectral shift--state density; semiclassical proof of ``phase--proper time'' equivalence under worldline path integral; refinement of redshift--phase expression in FRW cosmology; and detailed proof outline of deriving Einstein equations from generalized entropy extremality and quantum energy conditions on local causal diamonds.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Time Scale; Wigner--Smith Group Delay; Proper Time; Cosmological Redshift; Generalized Entropy; Entropic Interpretation of Einstein Equations
+
+\noindent\textbf{MSC (2020):} 83C45, 81T20, 81U40, 83C57
+
+---
+
+\section{Introduction}
+
+Time plays different roles in classical physics and quantum theory: in general relativity, time and space together form four-dimensional spacetime manifold, whose proper time scale $\mathrm{d}\tau$ is determined by metric $g_{\mu\nu}$; in quantum mechanics and quantum field theory, time is more manifested through phase factor $\exp(-iEt/\hbar)$ and unitary evolution operator $U(t)$. Wigner--Smith group delay operator $Q(\omega)$ introduced in scattering theory provides an operational scale of ``time as phase derivative with respect to frequency''; cosmological redshift reflects macroscopic shear of ``time rhythm'' through changes in frequency or wavelength due to cosmic scale factor evolution.
+
+On the other hand, black hole thermodynamics, Jacobson-type entropic interpretation, and holographic--entanglement geometry research show: gravitational geometry can be viewed as macroscopic equations of certain ``entropy--information organization,'' especially on causal boundaries and local horizons, extremality and monotonicity of generalized entropy $S_{\mathrm{gen}}$ impose mandatory constraints on spacetime curvature.
+
+Behind these seemingly disparate phenomena is a common structure: they all use ``time scale'' as bridge, connecting quantum phase, classical clocks, scattering delay, redshift, and entropy flow. The goal of this paper is to systematically, clearly, and axiomatically characterize this structure, providing rigorous equivalence or correspondence relations.
+
+This paper develops around the following main questions:
+
+\begin{enumerate}
+\item How to view quantum phase, group delay, proper time, and cosmological redshift as different cross-sections of the same ``time geometry'' under unified scale?
+\item Under what assumptions can we equate how generalized entropy organizes along time on causal boundaries with macroscopic gravitational equations (Einstein equations)?
+\item How do these equivalence relations naturally connect quantum with classical, microscopic with macroscopic in semiclassical limit?
+\end{enumerate}
+
+To this end, Section 2 gives notations and axiomatic scale identity; Sections 3--5 successively construct precise correspondences of ``phase--proper time,'' ``time delay--gravitational time dilation,'' ``redshift--time scale shear''; Section 6 gives entropic geometry theorem of ``generalized entropy evolution--gravitational equations'' in causal diamond framework. Section 7 summarizes these bridges as a geometric picture. Appendices provide detailed proofs of main technical results.
+
+---
+
+\section{Notations and Basic Structures}
+
+\subsection{Geometric End: Spacetime, Proper Time, and Causal Diamonds}
+
+Let $(M,g_{\mu\nu})$ be geodesically complete Lorentzian spacetime manifold, metric signature $(-+++)$. Proper time of timelike curve $\gamma(\lambda)$ is
+
+$$
+\mathrm{d}\tau = \sqrt{-g_{\mu\nu}\frac{\mathrm{d}x^\mu}{\mathrm{d}\lambda}\frac{\mathrm{d}x^\nu}{\mathrm{d}\lambda}}\,\mathrm{d}\lambda.
+$$
+
+In local discussions, choose point $p\in M$ and small parameter $r\ll L_{\mathrm{curv}}$, define small causal diamond at that point
+
+$$
+D_{p,r} := J^+(p^-)\cap J^-(p^+),
+$$
+
+where $p^\pm$ are points offset by proper time $\pm r$ along some chosen timelike direction. Boundary of $D_{p,r}$ is generated by two families of null geodesics, forming local causal boundary.
+
+\subsection{Quantum and Scattering End: S-Matrix and Wigner--Smith Group Delay}
+
+Let $H_0$ be free Hamiltonian, $H$ be Hamiltonian with interaction term. Under standard scattering assumptions, wave operators
+
+$$
+\Omega^\pm = \operatorname{s-}\lim_{t\to \pm\infty}e^{iHt}e^{-iH_0 t}
+$$
+
+exist and are complete, scattering operator defined as
+
+$$
+S := (\Omega^+)^\dagger \Omega^-.
+$$
+
+In energy or frequency representation, absolutely continuous spectrum $\omega\in I\subset\mathbb{R}$ gives for each $\omega$ finite-dimensional channel space $\mathcal{H}_\omega\simeq\mathbb{C}^{N(\omega)}$, with unitary matrix $S(\omega)$. Define total scattering phase
+
+$$
+\Phi(\omega) := \arg\det S(\omega).
+$$
+
+\begin{definition}[Wigner--Smith Group Delay Operator (Definition 2.1)]
+Under frequency differentiability assumption, define
+
+$$
+Q(\omega):=-i\,S(\omega)^\dagger\partial_\omega S(\omega),
+$$
+
+called Wigner--Smith group delay operator. $Q(\omega)$ is self-adjoint matrix, whose eigenvalues denoted $\tau_j(\omega)$ can be interpreted as group delays of respective channels. Trace gives total group delay
+
+$$
+\operatorname{Tr} Q(\omega)=\partial_\omega \Phi(\omega).
+$$
+\end{definition}
+
+\subsection{Spectral Shift Function and Relative State Density}
+
+Under suitable traceable perturbation assumption, let $\xi(\omega)$ be Kreĭn spectral shift function, $\rho_{\mathrm{rel}}(\omega)$ be relative state density. Classical result gives
+
+$$
+\Phi(\omega)=-2\pi\,\xi(\omega),\qquad
+\rho_{\mathrm{rel}}(\omega)=-\partial_\omega\xi(\omega).
+$$
+
+Thus
+
+$$
+\partial_\omega\Phi(\omega)=2\pi\,\rho_{\mathrm{rel}}(\omega).
+$$
+
+\subsection{Unified Scale Identity}
+
+Combining Sections 2.2--2.3, we obtain the following scale identity.
+
+\begin{axiom}[Time Scale Unification (Axiom 2.2)]
+For all considered scattering configurations and energy windows, there exist well-defined generalized phase $\varphi(\omega)$ and relative state density $\rho_{\mathrm{rel}}(\omega)$ such that
+
+$$
+\frac{\varphi'(\omega)}{\pi}
+=\rho_{\mathrm{rel}}(\omega)
+=\frac{1}{2\pi}\operatorname{tr}Q(\omega),
+$$
+
+where $\operatorname{tr}$ is trace on channel space, $Q(\omega):=Q(\omega)$.
+\end{axiom}
+
+This identity unifies three types of objects on same time scale:
+
+\begin{enumerate}
+\item Phase derivative $\varphi'(\omega)$: curvature of phase--frequency geometry;
+\item Relative state density $\rho_{\mathrm{rel}}(\omega)$: correction to spectral--state density;
+\item Group delay trace $\operatorname{tr}Q(\omega)$: arrival time offset relative to free propagation.
+\end{enumerate}
+
+All time scale-related quantities in what follows will be written back to this identity as much as possible.
+
+\subsection{Cosmological Time and Redshift}
+
+Consider spatially homogeneous isotropic FRW metric (taking $k=0$ temporarily)
+
+$$
+\mathrm{d}s^2=-\mathrm{d}t^2+a(t)^2\,\mathrm{d}\mathbf{x}^2.
+$$
+
+For photon propagating along comoving coordinate $\mathbf{x}(t)$, null geodesic condition $\mathrm{d}s^2=0$ gives
+
+$$
+\frac{\mathrm{d}\mathbf{x}}{\mathrm{d}t}=\pm \frac{1}{a(t)}\,\hat{\mathbf{n}}.
+$$
+
+Cosmological redshift defined as
+
+$$
+1+z:=\frac{\lambda_0}{\lambda_e}
+=\frac{\nu_e}{\nu_0}
+=\frac{a(t_0)}{a(t_e)},
+$$
+
+where subscripts $e,0$ denote emission and observation events respectively.
+
+\subsection{Boundary Generalized Entropy and Time Parameter}
+
+In quantum field theory with gravity, consider boundary $\Sigma$ of some causal region and its external (or internal) quantum field degrees of freedom, define generalized entropy
+
+$$
+S_{\mathrm{gen}}(\Sigma) := \frac{\operatorname{Area}(\Sigma)}{4G\hbar}+S_{\mathrm{out}}(\Sigma),
+$$
+
+where $S_{\mathrm{out}}$ is von Neumann entropy relative to $\Sigma$. When deforming $\Sigma$ along some null generator family $\gamma(\lambda)$, taking affine parameter $\lambda$ as ``boundary time,'' study extremality and monotonicity properties of $S_{\mathrm{gen}}(\lambda)$, giving ``how entropy organizes with time.''
+
+\begin{axiom}[Boundary Entropy Time Evolution Axiom (Axiom 2.3)]
+Under appropriate energy conditions and semiclassical assumptions, for small causal diamond $D_{p,r}$ at any point $p$, the boundary admits a family of local cuts $\{\Sigma_\lambda\}$ such that
+
+\begin{enumerate}
+\item Under appropriate constraints (fixed local energy or effective volume), $S_{\mathrm{gen}}(\lambda)$ takes extremum at $\lambda=0$;
+\item For extrapolation along any null direction, $S_{\mathrm{gen}}(\lambda)$ satisfies appropriate monotonicity or convexity conditions (such as QNEC/QFC type inequalities) under physical evolution.
+\end{enumerate}
+\end{axiom}
+
+We will use this axiom and scale identity as basis to give entropic geometric interpretation of gravitational equations.
+
+---
+
+\section{Equivalence of Phase and Proper Time}
+
+This section discusses semiclassical propagation of single particle or narrow wave packet in curved spacetime, explaining that essence of quantum phase is proper time accumulated along worldline, thereby connecting quantum and classical on time scale.
+
+\subsection{Worldline Action and Path Integral}
+
+For point particle of mass $m$, classical worldline action can be taken as
+
+$$
+S[\gamma]= -mc^2\int_\gamma \mathrm{d}\tau
+= -mc^2\int\sqrt{-g_{\mu\nu}\frac{\mathrm{d}x^\mu}{\mathrm{d}\lambda}\frac{\mathrm{d}x^\nu}{\mathrm{d}\lambda}}\,\mathrm{d}\lambda.
+$$
+
+Quantum amplitude in worldline path integral framework is formally written as
+
+$$
+\mathcal{A}(x_f,x_i)
+\simeq \int_{\gamma:x_i\to x_f}\mathcal{D}\gamma\,
+\exp\Bigl(\frac{i}{\hbar}S[\gamma]\Bigr).
+$$
+
+In semiclassical limit $\hbar\to 0$, main contribution comes from stationary phase trajectories, i.e., worldlines $\gamma_{\mathrm{cl}}$ satisfying geodesic equation.
+
+\subsection{Phase--Proper Time Theorem}
+
+\begin{theorem}[Phase--Proper Time Equivalence (Theorem 3.1)]
+Let narrow wave packet propagate in curved spacetime, whose center trajectory $\gamma_{\mathrm{cl}}$ is timelike geodesic for particle of mass $m$. Then in semiclassical approximation, phase evolution of wave packet center is
+
+$$
+\phi = -\frac{1}{\hbar}S[\gamma_{\mathrm{cl}}]
+= \frac{mc^2}{\hbar}\int_{\gamma_{\mathrm{cl}}} \mathrm{d}\tau,
+$$
+
+thus instantaneous phase frequency satisfies
+
+$$
+\frac{\mathrm{d}\phi}{\mathrm{d}\tau}
+=\frac{mc^2}{\hbar}.
+$$
+\end{theorem}
+
+\textit{Proof.} Construct narrow wave packet initial state in some local Fermi normal coordinate system, concentrating it in phase space at classical initial condition $(x_i,p_i)$. Path integral can be expanded using stationary phase approximation in semiclassical limit. Let $\gamma_{\mathrm{cl}}$ be unique geodesic satisfying given boundary conditions, then
+
+\begin{enumerate}
+\item For each path $\gamma$, amplitude phase is $\phi[\gamma]=S[\gamma]/\hbar$;
+\item In limit $\hbar\to 0$, trajectory with maximum weight is that with $\delta S=0$, i.e., geodesic $\gamma_{\mathrm{cl}}$;
+\item On that trajectory $S[\gamma_{\mathrm{cl}}]=-mc^2\int \mathrm{d}\tau$.
+\end{enumerate}
+
+Therefore, total phase of dominant state is
+
+$$
+\phi = -\frac{1}{\hbar}S[\gamma_{\mathrm{cl}}]
+= \frac{mc^2}{\hbar}\int \mathrm{d}\tau.
+$$
+
+Taking derivative with respect to proper time gives
+
+$$
+\frac{\mathrm{d}\phi}{\mathrm{d}\tau}
+=\frac{mc^2}{\hbar},
+$$
+
+completing the proof. $\square$
+
+\begin{corollary}[Quantum Time Scale (Corollary 3.2)]
+For particle of mass $m$, its phase rotation frequency on proper time scale is constant $mc^2/\hbar$. Therefore, proper time $\mathrm{d}\tau$ is equivalent to quantum phase difference $\mathrm{d}\phi$, differing only by constant factor:
+
+$$
+\mathrm{d}\phi = \frac{mc^2}{\hbar}\,\mathrm{d}\tau.
+$$
+\end{corollary}
+
+This shows: on geometric end, proper time is intrinsic scale along worldline; on quantum end, phase is ``angular coordinate'' under that scale. Linear equivalence between them provides unified background for subsequent ``time delay--group delay,'' ``redshift--phase rhythm.''
+
+---
+
+\section{Scattering Time Delay and Gravitational Time Dilation}
+
+This section examines propagation of light or matter waves in static or asymptotically flat gravitational fields, explaining that gravitational time delay equals derivative of scattering phase with respect to frequency, thus can be scaled by Wigner--Smith group delay.
+
+\subsection{Static Metric and Refractive Index Perspective}
+
+Consider static metric
+
+$$
+\mathrm{d}s^2=-V(\mathbf{x})\,c^2\mathrm{d}t^2+g_{ij}(\mathbf{x})\,\mathrm{d}x^i \mathrm{d}x^j,
+$$
+
+where $V(\mathbf{x})>0$. Introduce ``time refractive index''
+
+$$
+n_t(\mathbf{x}):=V(\mathbf{x})^{-1/2}
+=\left(-g_{tt}(\mathbf{x})\right)^{-1/2}.
+$$
+
+For wave field of fixed frequency $\omega$, eikonal equation in geometrical optics limit can be written as
+
+$$
+g^{\mu\nu}\partial_\mu \phi\,\partial_\nu \phi=0,
+$$
+
+whose solution $\phi$ gives wavefront phase. If taking $\phi = -\omega t+S(\mathbf{x})$, spatial part satisfies optical Fermat principle similar to refractive index $n_t(\mathbf{x})$.
+
+\subsection{Time Delay and Phase Derivative}
+
+Let there be two paths: one in gravitational field $\gamma_g$, one in flat background $\gamma_0$, corresponding to propagation times $T_g(\omega)$ and $T_0(\omega)$ respectively. Define time delay
+
+$$
+\Delta T(\omega):=T_g(\omega)-T_0(\omega).
+$$
+
+On the other hand, gravitational field correction to total phase $\Delta\Phi(\omega)$ is action difference along classical path divided by $\hbar$. For fixed-frequency wave, action difference mainly comes from time refractive index correction, can be written as
+
+$$
+\Delta\Phi(\omega)
+\simeq -\omega\,\Delta T(\omega),
+$$
+
+where terms weakly dependent on frequency are ignored. Thus
+
+$$
+\Delta T(\omega)
+=-\partial_\omega\Delta\Phi(\omega)
+$$
+
+In description with $\omega$ as spectral parameter, this is precisely definition of group delay.
+
+Combining scale identity
+
+$$
+\partial_\omega\Phi(\omega)=\operatorname{Tr}Q(\omega),
+$$
+
+we obtain:
+
+\begin{theorem}[Gravitational Time Delay--Group Delay Equivalence (Theorem 4.1)]
+Under appropriate geometrical optics and semiclassical assumptions, for fixed-frequency wave propagating in static gravitational field background, macroscopically observable gravitational time delay $\Delta T(\omega)$ is equivalent to derivative of total scattering phase $\Phi(\omega)$ with respect to frequency, i.e., equivalent to trace of Wigner--Smith group delay operator $Q(\omega)$:
+
+$$
+\Delta T(\omega)
+=\partial_\omega\Phi(\omega)
+=\operatorname{Tr}Q(\omega).
+$$
+\end{theorem}
+
+\textit{Proof outline.} In eikonal approximation, phase function $\phi$ satisfies Hamilton--Jacobi equation, phase accumulation on path proportional to classical action. For fixed-frequency state, time direction action contribution is $-\omega T$. Comparing configurations with/without gravitational field, action difference is $-\omega \Delta T$, thus total phase difference satisfies $\Delta\Phi=-\omega\Delta T$. Differentiating with respect to frequency gives $\Delta T=-\partial_\omega\Delta\Phi$. Meanwhile, from scattering theory $\partial_\omega\Phi=\operatorname{Tr}Q$. Identifying both gives this equivalence relation. $\square$
+
+This theorem shows: macroscopic ``time dilation'' or ``time delay'' usually understood as caused by spacetime curvature, is completely equivalent to scattering group delay in frequency domain. Therefore, through scale identity, gravitational time effects can be described by unified time scale object $\rho_{\mathrm{rel}}(\omega)$.
+
+---
+
+\section{Cosmological Redshift as Time Scale Shear}
+
+This section considers light propagation and redshift in FRW universe, explaining that redshift can be viewed as shear of ``time scale'' on same photon worldline, expressible as ratio of phase frequency at different events.
+
+\subsection{FRW Geometry and Redshift Formula}
+
+As in Section 2.5, for flat FRW universe, metric is
+
+$$
+\mathrm{d}s^2=-\mathrm{d}t^2+a(t)^2\,\mathrm{d}\mathbf{x}^2.
+$$
+
+For photon propagating along comoving coordinate, using conformal time $\eta$ defined by $\mathrm{d}\eta=\mathrm{d}t/a(t)$, metric written as
+
+$$
+\mathrm{d}s^2=a(\eta)^2(-\mathrm{d}\eta^2+\mathrm{d}\mathbf{x}^2).
+$$
+
+Null geodesic satisfies
+
+$$
+\frac{\mathrm{d}\mathbf{x}}{\mathrm{d}\eta}=\pm \hat{\mathbf{n}},
+$$
+
+i.e., photon propagates in conformal time--space as if in flat Minkowski space.
+
+Consider measurement of frequency $\nu$: for observer at rest in comoving coordinates, four-velocity is $u^\mu = (1,0,0,0)$, photon four-momentum $k^\mu$ satisfies $\nu\propto -k_\mu u^\mu$. Obtain
+
+$$
+\nu\propto \frac{1}{a(t)},
+$$
+
+thus redshift
+
+$$
+1+z=\frac{\nu_e}{\nu_0}=\frac{a(t_0)}{a(t_e)}.
+$$
+
+\subsection{Geometric Interpretation of Phase Rhythm}
+
+Let photon phase function be $\phi(x)$. Along null geodesic $\gamma$ with parameter $\lambda$ have
+
+$$
+\frac{\mathrm{d}\phi}{\mathrm{d}\lambda} = k_\mu \frac{\mathrm{d}x^\mu}{\mathrm{d}\lambda},
+$$
+
+where $k_\mu$ is four-wavevector. For some observer, proper time is proper time $\tau$. Frequency defined as
+
+$$
+\nu := \frac{1}{2\pi}\frac{\mathrm{d}\phi}{\mathrm{d}\tau}.
+$$
+
+For comoving observer, $\tau=t$. Thus
+
+$$
+\nu(t) = \frac{1}{2\pi}\frac{\mathrm{d}\phi}{\mathrm{d}t}.
+$$
+
+From previous result, $\nu\propto 1/a(t)$, therefore can write
+
+$$
+\frac{\left.\frac{\mathrm{d}\phi}{\mathrm{d}t}\right|_{t=t_e}}{\left.\frac{\mathrm{d}\phi}{\mathrm{d}t}\right|_{t=t_0}}
+=\frac{\nu_e}{\nu_0}
+=1+z.
+$$
+
+This gives:
+
+\begin{proposition}[Redshift--Phase Rhythm Equivalence (Proposition 5.1)]
+In FRW universe, ratio of phase time derivatives at emission event $e$ and observation event $0$ on same photon worldline equals cosmological redshift:
+
+$$
+1+z
+=\frac{\nu_e}{\nu_0}
+=\frac{\left.\frac{\mathrm{d}\phi}{\mathrm{d}t}\right|_{e}}{\left.\frac{\mathrm{d}\phi}{\mathrm{d}t}\right|_{0}}.
+$$
+\end{proposition}
+
+Since $\phi$ also satisfies Hamilton--Jacobi equation of geometrical optics, it can also be understood as angular coordinate of certain ``cosmic time scale.'' Redshift is therefore ratio measurement of this scale at two epochs, i.e., macroscopic manifestation of ``time scale shear.''
+
+\subsection{Relation to Unified Scale Identity}
+
+If viewing cosmological propagation as certain effective scattering process, can formally introduce equivalent scattering matrix $S(\omega)$, whose total phase $\Phi(\omega)$ can be given by eikonal integral along conformal time path. Then redshift can be viewed as difference in ``phase gradient'' of $\Phi(\omega)$ at different cosmic time cross-sections. Through scale identity
+
+$$
+\frac{\varphi'(\omega)}{\pi}
+=\rho_{\mathrm{rel}}(\omega)
+=\frac{1}{2\pi}\operatorname{tr}Q(\omega),
+$$
+
+can characterize redshift's effect on state density and group delay in frequency space, thus bringing cosmological observations into same time scale framework.
+
+---
+
+\section{Boundary Entropy, Causal Structure, and Gravity as Entropy Organization}
+
+This section examines properties of generalized entropy evolution along boundary ``time'' in local causal diamonds, explaining that under appropriate axioms, macroscopic gravitational equations can be viewed as effective description of ``how entropy--energy organizes on causal boundaries.''
+
+\subsection{Local Rindler Horizon and Local Thermodynamics}
+
+In neighborhood of any point $p\in M$, can choose local inertial frame such that metric approximately Minkowski, and construct local Rindler horizon passing through $p$. Null generator parameter $\lambda$ of this horizon can be viewed as its ``boundary time,'' corresponding to observer's Rindler time parameter. For this horizon, related local Unruh temperature $T$ and heat flow $\delta Q$ satisfy local thermodynamic relation
+
+$$
+\delta Q = T\,\delta S,
+$$
+
+where $\delta S$ is horizon entropy change, assumed in gravitational theory proportional to horizon area variation $\delta A$.
+
+\subsection{Generalized Entropy and Small Causal Diamond}
+
+Return to small causal diamond $D_{p,r}$ in Section 2.1. Its boundary can be viewed as kind of local ``closed horizon,'' with two intersecting null directions. For quantum field state inside $D_{p,r}$, consider local cut family $\{\Sigma_\lambda\}$ passing through one null direction, define generalized entropy
+
+$$
+S_{\mathrm{gen}}(\lambda)
+= \frac{\operatorname{Area}(\Sigma_\lambda)}{4G\hbar}
++ S_{\mathrm{out}}(\Sigma_\lambda).
+$$
+
+\begin{axiom}[Local Generalized Entropy Extremality and Monotonicity (Axiom 6.1)]
+In small scale limit $r\to 0$, there exists cut family $\{\Sigma_\lambda\}$ and affine parameter choice such that:
+
+\begin{enumerate}
+\item At $\lambda=0$, under fixed ``effective volume'' or equivalent local conserved quantity constraint, $S_{\mathrm{gen}}(\lambda)$ takes extremum, i.e.,
+
+$$
+\left.\frac{\mathrm{d}S_{\mathrm{gen}}}{\mathrm{d}\lambda}\right|_{\lambda=0}=0;
+$$
+
+\item For small deformation in future direction, $\mathrm{d}^2 S_{\mathrm{gen}}/\mathrm{d}\lambda^2$ and local stress--energy tensor component $T_{kk}$ satisfy QNEC-like inequality, ensuring appropriate monotonicity or convexity.
+\end{enumerate}
+
+Here $k^\mu$ is null generator direction, $T_{kk}=T_{\mu\nu}k^\mu k^\nu$.
+\end{axiom}
+
+\subsection{Raychaudhuri Equation and Area Variation}
+
+Consider congruence along null generator $k^\mu$, let $\theta$ be expansion, $\sigma_{\mu\nu}$ be shear tensor. Raychaudhuri equation gives
+
+$$
+\frac{\mathrm{d}\theta}{\mathrm{d}\lambda}
+= -\frac{1}{2}\theta^2
+-\sigma_{\mu\nu}\sigma^{\mu\nu}
+-R_{\mu\nu}k^\mu k^\nu.
+$$
+
+At small scale and appropriate conditions, gradient term and shear can be ignored or represented by higher-order terms. Area element $\mathrm{d}A$ evolution satisfies
+
+$$
+\frac{\mathrm{d}}{\mathrm{d}\lambda}\mathrm{d}A = \theta\,\mathrm{d}A.
+$$
+
+Thus second derivative of area variation contains $R_{\mu\nu}k^\mu k^\nu$ term.
+
+\subsection{Entropy Extremality and Einstein Equation}
+
+First variation of generalized entropy can be written as
+
+$$
+\frac{\mathrm{d}S_{\mathrm{gen}}}{\mathrm{d}\lambda}
+= \frac{1}{4G\hbar}\frac{\mathrm{d}A}{\mathrm{d}\lambda}
++\frac{\mathrm{d}S_{\mathrm{out}}}{\mathrm{d}\lambda}.
+$$
+
+At $\lambda=0$, Axiom 6.1 requires $\mathrm{d}S_{\mathrm{gen}}/\mathrm{d}\lambda=0$. Using Raychaudhuri equation and relation between stress--energy and entropy flow (e.g., through local first law or linear response of relative entropy), can derive equation relating $R_{\mu\nu}$ and $T_{\mu\nu}$.
+
+\begin{theorem}[Local Entropic Geometric Form of Einstein Equation (Theorem 6.2)]
+Assume Axiom 6.1 holds, and local quantum field theory satisfies appropriate energy conditions and relative entropy monotonicity. Then in small causal diamond limit, metric must satisfy local field equation
+
+$$
+R_{\mu\nu}-\frac{1}{2}Rg_{\mu\nu}+\Lambda g_{\mu\nu}
+= 8\pi G\,\langle T_{\mu\nu}\rangle,
+$$
+
+where $\Lambda$ is cosmological constant in form of integration constant.
+\end{theorem}
+
+\textit{Proof outline.} Main steps:
+
+\begin{enumerate}
+\item Using Raychaudhuri equation, express second derivative of area variation $\frac{\mathrm{d}^2A}{\mathrm{d}\lambda^2}$ as function of $R_{\mu\nu}k^\mu k^\nu$ and $\theta,\sigma$;
+\item Using local thermodynamic relation and linear response of relative entropy--modular Hamiltonian, relate $\mathrm{d}S_{\mathrm{out}}/\mathrm{d}\lambda$ to $\langle T_{kk}\rangle$;
+\item Using extremality condition $\left.\mathrm{d}S_{\mathrm{gen}}/\mathrm{d}\lambda\right|_{\lambda=0}=0$ of Axiom 6.1, obtain proportionality relation between $R_{kk}$ and $\langle T_{kk}\rangle$;
+\item Using equation $R_{\mu\nu}k^\mu k^\nu$ for all null directions $k^\mu$ and Bianchi identity, elevate proportionality relation to tensor equation, obtaining Einstein equation, identifying proportionality coefficient as $8\pi G$, absorbing extra constant term into cosmological constant $\Lambda$.
+\end{enumerate}
+
+Detailed derivation in Appendix D. $\square$
+
+Therefore, macroscopic gravitational geometry (Einstein equations) can be understood as: on each local causal diamond, generalized entropy $S_{\mathrm{gen}}$ as function of causal boundary evolving with ``boundary time'' $\lambda$, constraints imposed by its extremality and monotonicity. This is precise theorem-form statement of ``gravity is how entropy organizes on causal boundaries.''
+
+---
+
+\section{Unified Picture: Time as Quantum--Classical Bridge}
+
+Synthesizing previous results, we can give following unified picture:
+
+\begin{enumerate}
+\item At worldline level: proper time $\mathrm{d}\tau$ linearly equivalent to quantum phase $\mathrm{d}\phi$ (Theorem 3.1), time is parameter of phase geometry;
+\item At scattering/propagation level: macroscopically observable time delay equivalent to derivative of scattering phase with respect to frequency, i.e., group delay trace $\operatorname{Tr}Q(\omega)$ (Theorem 4.1), time delay is curvature of phase--frequency geometry;
+\item At cosmological level: redshift $1+z$ can be expressed as ratio of phase time derivatives on same photon worldline at two events (Proposition 5.1), redshift is shear of time scale with cosmic evolution;
+\item At causal boundary level: extremality and monotonicity conditions of generalized entropy $S_{\mathrm{gen}}(\lambda)$ with boundary time $\lambda$ (Theorem 6.2) derive Einstein equations, macroscopic gravitational geometry is effective description of ``how entropy organizes with time scale'';
+\item At frequency/spectral level: scale identity $\varphi'/\pi=\rho_{\mathrm{rel}}=(2\pi)^{-1}\operatorname{tr}Q$ unifies phase derivative, relative state density, and group delay on same time scale, providing spectral geometric bridge from microscopic scattering to macroscopic time delay and redshift.
+\end{enumerate}
+
+This picture can be abstracted as commutative diagram: time scale as central object, whose different ``projections'' respectively give quantum phase, scattering delay, cosmological redshift, and generalized entropy evolution, while macroscopic gravitational geometry is tensor equation ensuring consistency of these projections. Quantum--classical relation is compressed into one sentence: they are completely aligned in language of ``time scale.''
+
+---
+
+\appendix
+
+\section{Wigner--Smith Group Delay and Scale Identity}
+
+This appendix provides proof outline of scale identity
+
+$$
+\frac{\varphi'(\omega)}{\pi}
+=\rho_{\mathrm{rel}}(\omega)
+=\frac{1}{2\pi}\operatorname{tr}Q(\omega)
+$$
+
+\subsection{Spectral Shift Function and Birman--Kreĭn Formula}
+
+Let $H_0,H$ be pair of self-adjoint operators, satisfying $H-H_0$ is trace-class or relative trace-class perturbation. Let $\xi(\omega)$ be Kreĭn spectral shift function, whose definition satisfies for any smooth compactly supported function $f$
+
+$$
+\operatorname{Tr}\bigl(f(H)-f(H_0)\bigr)
+=\int f'(\omega)\,\xi(\omega)\,\mathrm{d}\omega.
+$$
+
+Relative state density defined as
+
+$$
+\rho_{\mathrm{rel}}(\omega):=-\partial_\omega\xi(\omega).
+$$
+
+On other hand, under scattering assumption, there exists scattering matrix $S(\omega)$, total phase $\Phi(\omega)=\arg\det S(\omega)$. Birman--Kreĭn formula gives
+
+$$
+\det S(\omega)=\exp\bigl(-2\pi i\,\xi(\omega)\bigr).
+$$
+
+Taking argument yields
+
+$$
+\Phi(\omega)=-2\pi\,\xi(\omega)\mod 2\pi.
+$$
+
+\subsection{Phase Derivative and Relative State Density}
+
+Differentiating both sides of above relation with respect to $\omega$:
+
+$$
+\partial_\omega\Phi(\omega)=-2\pi\,\partial_\omega\xi(\omega)
+=2\pi\,\rho_{\mathrm{rel}}(\omega).
+$$
+
+Let $\varphi(\omega):=\Phi(\omega)/2$ or more generally normalized phase, then
+
+$$
+\frac{\varphi'(\omega)}{\pi}
+=\rho_{\mathrm{rel}}(\omega).
+$$
+
+\subsection{Trace of Wigner--Smith Group Delay}
+
+By definition
+
+$$
+Q(\omega)=-iS(\omega)^\dagger\partial_\omega S(\omega).
+$$
+
+Since $S(\omega)$ is unitary matrix, can write $S(\omega)=\exp(iK(\omega))$, where $K(\omega)$ is self-adjoint matrix. Then
+
+$$
+\det S(\omega)
+=\exp\bigl(i\operatorname{Tr}K(\omega)\bigr),
+$$
+
+thus
+
+$$
+\Phi(\omega)
+=\operatorname{Tr}K(\omega).
+$$
+
+Taking trace of $Q(\omega)$:
+
+$$
+\operatorname{Tr}Q(\omega)
+=-i\operatorname{Tr}\bigl(S^\dagger\partial_\omega S\bigr)
+=-i\partial_\omega\operatorname{Tr}\bigl(\ln S\bigr)
+=\partial_\omega\Phi(\omega),
+$$
+
+using spectral decomposition of $\ln S$ and relation $\operatorname{Tr}\ln S=\ln\det S$.
+
+Combining above
+
+$$
+\operatorname{Tr}Q(\omega)
+=\partial_\omega\Phi(\omega)
+=2\pi\,\rho_{\mathrm{rel}}(\omega).
+$$
+
+This gives scale identity
+
+$$
+\frac{\varphi'(\omega)}{\pi}
+=\rho_{\mathrm{rel}}(\omega)
+=\frac{1}{2\pi}\operatorname{tr}Q(\omega).
+$$
+
+Proof complete.
+
+---
+
+\section{Phase--Proper Time Proof Details Under Worldline Path Integral}
+
+This appendix supplements path integral proof details of Theorem 3.1.
+
+\subsection{Local Fermi Normal Coordinates and Geodesic Expansion}
+
+In neighborhood of given timelike geodesic $\gamma_{\mathrm{cl}}$, can construct Fermi normal coordinates $(\tau,y^i)$ such that metric locally expands on $\gamma_{\mathrm{cl}}$ as
+
+$$
+\mathrm{d}s^2=-\mathrm{d}\tau^2+\delta_{ij}\mathrm{d}y^i \mathrm{d}y^j+\mathcal{O}(y^2).
+$$
+
+Approximately Minkowski spacetime with perturbations in small neighborhood.
+
+\subsection{Gaussian Approximation of Path Integral}
+
+Particle action
+
+$$
+S[\gamma]=-mc^2\int \mathrm{d}\tau \sqrt{1-\delta_{ij}\dot{y}^i\dot{y}^j+\cdots},
+$$
+
+expands at small velocity and small offset as
+
+$$
+S[\gamma]
+\approx -mc^2\int \mathrm{d}\tau
++\frac{m}{2}\int \mathrm{d}\tau\,\delta_{ij}\dot{y}^i\dot{y}^j+\cdots.
+$$
+
+Path integral can be separated into classical part and fluctuation part:
+
+$$
+\mathcal{A}\sim e^{\frac{i}{\hbar}S[\gamma_{\mathrm{cl}}]}
+\int \mathcal{D} y^i \exp\Bigl(\frac{i}{\hbar}S_{\mathrm{quad}}[y]\Bigr),
+$$
+
+where $S_{\mathrm{quad}}$ is quadratic term in $y^i$. Latter gives Gaussian integral, determining amplitude modulus and prefactor, while classical action $S[\gamma_{\mathrm{cl}}]$ gives principal phase.
+
+\subsection{Proper Time and Phase Frequency}
+
+From
+
+$$
+S[\gamma_{\mathrm{cl}}]=-mc^2\int \mathrm{d}\tau,
+$$
+
+obtain
+
+$$
+\phi=-\frac{1}{\hbar}S[\gamma_{\mathrm{cl}}]
+=\frac{mc^2}{\hbar}\int \mathrm{d}\tau.
+$$
+
+Differentiating with respect to $\tau$ gives
+
+$$
+\frac{\mathrm{d}\phi}{\mathrm{d}\tau}=\frac{mc^2}{\hbar},
+$$
+
+showing that on proper time scale, particle phase rotates at constant frequency. This result consistent with solution $e^{-iEt/\hbar}$ in local inertial frame with $E\approx mc^2$. Proof complete.
+
+---
+
+\section{Refinement of Redshift--Phase Expression in FRW Universe}
+
+This appendix refines derivation in Proposition 5.1 of ``redshift equals phase time derivative ratio.''
+
+\subsection{Photon Four-Momentum and Frequency}
+
+Under FRW metric, photon four-momentum $k^\mu$ satisfies null condition $g_{\mu\nu}k^\mu k^\nu=0$. For comoving observer $u^\mu=(1,0,0,0)$, measured frequency is
+
+$$
+\nu = -\frac{1}{2\pi}k_\mu u^\mu
+=\frac{1}{2\pi}k^0,
+$$
+
+where $k^0=\mathrm{d}t/\mathrm{d}\lambda$ related to affine parameter $\lambda$. Combined with null geodesic equation, obtain $k^0\propto 1/a(t)$.
+
+\subsection{Eikonal Phase and Frequency}
+
+Let photon phase be $\phi(x)$, then $k_\mu=\partial_\mu\phi$. Along observer worldline $x^\mu(\tau)$ have
+
+$$
+\frac{\mathrm{d}\phi}{\mathrm{d}\tau}
+=\partial_\mu\phi\,\frac{\mathrm{d}x^\mu}{\mathrm{d}\tau}
+=k_\mu u^\mu
+=-2\pi\nu.
+$$
+
+For comoving observer $\tau=t$, thus
+
+$$
+\frac{\mathrm{d}\phi}{\mathrm{d}t}=-2\pi\nu.
+$$
+
+Therefore
+
+$$
+\frac{\left.\frac{\mathrm{d}\phi}{\mathrm{d}t}\right|_e}{\left.\frac{\mathrm{d}\phi}{\mathrm{d}t}\right|_0}
+=\frac{\nu_e}{\nu_0}
+=1+z.
+$$
+
+Proof complete.
+
+---
+
+\section{Derivation Outline of Generalized Entropy Extremality and Einstein Equations}
+
+This appendix gives detailed derivation framework of Theorem 6.2, focusing on showing how ``generalized entropy organization along boundary time'' constrains geometry.
+
+\subsection{Small Causal Diamond and Null Generator Parameter}
+
+In neighborhood of point $p$, choose timelike vector field $\xi^\mu$, construct small causal diamond $D_{p,r}$. Its boundary can be generated by two families of null geodesics, corresponding to future and past directions respectively. Choose one family of future null generators, parametrized by affine parameter $\lambda$, such that $\lambda=0$ corresponds to cross-section passing through $p$.
+
+For each $\lambda$, define transverse cut $\Sigma_\lambda$, whose area is $A(\lambda)$, generalized entropy is
+
+$$
+S_{\mathrm{gen}}(\lambda)
+=\frac{A(\lambda)}{4G\hbar}
++S_{\mathrm{out}}(\lambda).
+$$
+
+\subsection{First Variation: Extremality Condition}
+
+First variation of generalized entropy is
+
+$$
+\frac{\mathrm{d}S_{\mathrm{gen}}}{\mathrm{d}\lambda}
+=\frac{1}{4G\hbar}\frac{\mathrm{d}A}{\mathrm{d}\lambda}
++\frac{\mathrm{d}S_{\mathrm{out}}}{\mathrm{d}\lambda}.
+$$
+
+Area variation satisfies
+
+$$
+\frac{\mathrm{d}A}{\mathrm{d}\lambda}=\int_{\Sigma_\lambda}\theta\,\mathrm{d}A,
+$$
+
+where $\theta$ is expansion. Taking $\lambda=0$, Axiom 6.1 requires under appropriate constraint
+
+$$
+\left.\frac{\mathrm{d}S_{\mathrm{gen}}}{\mathrm{d}\lambda}\right|_{\lambda=0}=0.
+$$
+
+On other hand, linear response of $S_{\mathrm{out}}$ to small deformation can be related to expectation value of modular Hamiltonian, i.e.,
+
+$$
+\frac{\mathrm{d}S_{\mathrm{out}}}{\mathrm{d}\lambda}
+= 2\pi \int_{\Sigma_\lambda} \lambda\,\langle T_{kk}\rangle\,\mathrm{d}A+\cdots,
+$$
+
+taking appropriate limit near $\lambda=0$ yields term proportional to $\langle T_{kk}\rangle$. This step relies on local first law and relative entropy linear response.
+
+Combining, first-order extremality condition gives preliminary form of proportionality relation between $R_{kk}$ and $\langle T_{kk}\rangle$.
+
+\subsection{Second Variation and Raychaudhuri Equation}
+
+Consider second variation
+
+$$
+\frac{\mathrm{d}^2S_{\mathrm{gen}}}{\mathrm{d}\lambda^2}
+=\frac{1}{4G\hbar}\frac{\mathrm{d}^2A}{\mathrm{d}\lambda^2}
++\frac{\mathrm{d}^2S_{\mathrm{out}}}{\mathrm{d}\lambda^2}.
+$$
+
+Second variation of area uses Raychaudhuri equation:
+
+$$
+\frac{\mathrm{d}\theta}{\mathrm{d}\lambda}
+= -\frac{1}{2}\theta^2
+-\sigma_{\mu\nu}\sigma^{\mu\nu}
+-R_{\mu\nu}k^\mu k^\nu.
+$$
+
+At $\lambda=0$ can choose initial condition such that $\theta=0$, shear contribution absorbed by higher-order terms, obtaining
+
+$$
+\left.\frac{\mathrm{d}\theta}{\mathrm{d}\lambda}\right|_{\lambda=0}
+\approx -R_{kk},
+$$
+
+thus
+
+$$
+\left.\frac{\mathrm{d}^2A}{\mathrm{d}\lambda^2}\right|_{\lambda=0}
+= \int_{\Sigma_0} \left.\frac{\mathrm{d}\theta}{\mathrm{d}\lambda}\right|_{\lambda=0} \mathrm{d}A
+\approx -\int_{\Sigma_0} R_{kk}\,\mathrm{d}A.
+$$
+
+On other hand, $\mathrm{d}^2 S_{\mathrm{out}}/\mathrm{d}\lambda^2$ related to energy flow fluctuations and quantum energy conditions (such as QNEC), latter gives
+
+$$
+\frac{\mathrm{d}^2S_{\mathrm{out}}}{\mathrm{d}\lambda^2}
+\leq 2\pi \int_{\Sigma_0} \langle T_{kk}\rangle\,\mathrm{d}A,
+$$
+
+or equality under saturation condition.
+
+\subsection{From Scalar Relation to Tensor Equation}
+
+Substituting above expressions into generalized entropy second variation formula, combined with monotonicity or convexity requirement, obtain
+
+$$
+-\frac{1}{4G\hbar}\int_{\Sigma_0} R_{kk}\,\mathrm{d}A
++ 2\pi \int_{\Sigma_0} \langle T_{kk}\rangle\,\mathrm{d}A \ge 0,
+$$
+
+equality under saturation or extremality condition. Since cut and direction $k^\mu$ can be arbitrarily chosen locally, above formula holds for all null directions and small cuts, meaning at point $p$
+
+$$
+R_{\mu\nu}k^\mu k^\nu
+= 8\pi G\,\langle T_{\mu\nu}\rangle k^\mu k^\nu
+$$
+
+holds for all null vectors $k^\mu$.
+
+Thus tensor
+
+$$
+E_{\mu\nu}:=R_{\mu\nu}-8\pi G\,\langle T_{\mu\nu}\rangle
+$$
+
+satisfies $E_{\mu\nu}k^\mu k^\nu=0$ for all null vectors, yielding $E_{\mu\nu}=\Lambda g_{\mu\nu}$, where $\Lambda$ is some constant. Using Bianchi identity $\nabla^\mu(R_{\mu\nu}-\frac{1}{2}Rg_{\mu\nu})=0$ and energy--momentum conservation $\nabla^\mu T_{\mu\nu}=0$, can identify $\Lambda$ as cosmological constant, obtaining
+
+$$
+R_{\mu\nu}-\frac{1}{2}Rg_{\mu\nu}+\Lambda g_{\mu\nu}
+=8\pi G\,\langle T_{\mu\nu}\rangle.
+$$
+
+Proof complete.
+
+---
+
+This paper, under unified time scale perspective, organizes quantum phase, proper time, scattering group delay, cosmological redshift, and generalized entropy evolution into self-consistent geometric--entropic--spectral framework, on this basis giving entropic geometric interpretation of macroscopic gravitational equations.
+
+\end{document}
+
+
+
+

@@ -1,0 +1,307 @@
+\documentclass{article}
+
+% Pass options to natbib before neurips_2025
+\PassOptionsToPackage{numbers,compress}{natbib}
+
+% Submission version: do not add final or preprint
+\usepackage{neurips_2025}
+
+% For camera-ready:
+% \usepackage[final]{neurips_2025}
+
+% For non-anonymous preprint on arXiv:
+% \usepackage[preprint]{neurips_2025}
+
+% Common packages (avoid conflicts with neurips_2025)
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{nicefrac}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{braket}
+
+% Theorem environments
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Universal Catastrophic Safety Undecidability and Capability--Risk Upper Bound Frontier: Unified Theorems, Complexity Positioning, and Engineering Pathways}
+
+% Submission stage is double blind, so use anonymous
+\author{%
+  Anonymous Authors \\
+  Affiliation \\
+  \texttt{email@example.com}
+  % \And
+  % Another Author \\
+  % Another Affiliation \\
+  % \texttt{email2@example.com}
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Establish two foundational boundaries for general learning and decision systems. First, provide catastrophic safety determination undecidability for interactive agent--environment systems: under extremely weak modeling assumptions, for any extension-closed regular bad-prefix specification, whether threshold safety satisfied admits no global algorithm; under restricted subclass of deterministic environments and computable strategies, further position as \textbf{$\Sigma_1^0$-complete/$\Pi_1^0$-complete}. Second, provide \textbf{capability--worst-risk upper bound frontier} induced by joint PAC-Bayes high-probability bound, mutual information expected bound, and Wasserstein-1 distributionally robust optimization (Kantorovich--Rubinstein duality); via point perturbation adversary establish universal \textbf{geometric lower bound}, together with robust--accuracy impossibility and robust generalization sample complexity lower bound, forming "upper bound--lower bound" dual support. Thereby propose "scope restriction--runtime shielding--risk budget--structural prior" governance blueprint, providing minimal reproducible ImageNet-C + Shield experimental skeleton and metric configuration.
+\end{abstract}
+
+\section{Introduction \& Historical Context}
+
+Algorithmic decidability and program semantics reveal fundamental limits of universal verification: halting problem undecidable~\cite{turing1936computable}, Rice theorem states any non-trivial semantic property undecidable~\cite{rice1953classes}. Transplanting this idea to interactive agent--environment setting, obtain general determination unavailability for "whether triggering catastrophic specification". This direction resonates with undecidability results for infinite-horizon probabilistic planning/partially observable decision at threshold and plan existence~\cite{madani1999undecidability}. On the other hand, modern learning theory reveals capability and robustness cannot advance without cost: PAC-Bayes~\cite{mcallester1999pacbayes,catoni2007pacbayes,alquier2021user} and mutual information paradigm~\cite{xu2017information,steinke2020reasoning,bu2020tightening} characterize complexity/information amount influence on generalization, Wasserstein-DRO~\cite{villani2009optimal,esfahani2018data,sinha2018certifying} characterizes worst-risk under distribution shift; simultaneously, robust--accuracy impossibility~\cite{tsipras2019robustness} and robust generalization sample complexity lower bound~\cite{schmidt2018adversarially} rigorously proven in natural model families. Two boundaries jointly point toward governance principles: acknowledging general static certification impossibility and capability--risk hard trade-off, adopt layered scheme of scope restriction, runtime shielding, and risk budget.
+
+\section{Model \& Assumptions}
+
+\subsection{Interaction Semantics and Temporal Assumptions}
+
+\begin{itemize}
+\item Action and observation alphabets $\mathcal A,\mathcal O$ finite; history $h_{1:t}\in(\mathcal A\times\mathcal O)^t$.
+\item \textbf{Computable policy}: Agent $A$ is function $A:(\mathcal A\times\mathcal O)^\star\to \mathcal A$, for any $h_{<t}$ exists finite time producing $a_t=A(h_{<t})$ at step $t$ (allowing internal randomization via sampling program implementation). This assumption satisfied throughout undecidability construction and completeness positioning.
+\item Environment $E$ specified by history conditional probability $\mu(o_t\mid h_{<t},a_t)$. Main results use \textbf{deterministic trivial environment} $E_0$: always returns fixed observation $o_\bot$.
+\end{itemize}
+
+\subsection{Safety Property and Regular Bad Prefix}
+
+\begin{itemize}
+\item Let $\Sigma=(\mathcal A\times\mathcal O)^\star$. Call $B\subseteq \Sigma$ \textbf{bad prefix language} if for any $u\in B$ and any extension $v\in\Sigma$, have $uv\in B$ (\textbf{extension-closed}). Corresponding \textbf{safe prefix set} $S=\Sigma\setminus B$ then \textbf{prefix-closed}.
+\item Specification adopts \textbf{regular bad prefix language} $B$ (equivalent to safe prefix recognized by DFA/safety automaton). Violation event
+$$
+\mathsf{Bad}=\{\exists t:\ h_{1:t}\in B\},\qquad \tau(h)=\inf\{t:\ h_{1:t}\in B\}.
+$$
+\item \textbf{Threshold safety predicate}: Given $\varepsilon\in[0,1)$,
+$$
+\operatorname{Safe}_\varepsilon(A,E,B):=\ \Pr_\mu(\mathsf{Bad})\ \le\ \varepsilon.
+$$
+\end{itemize}
+
+\subsection{Learning--Evaluation and Distributional Robustness}
+
+\begin{itemize}
+\item Data domain $\mathcal Z$ with metric $d$; sample $S=(Z_i)_{i=1}^n\sim D^n$.
+\item Learning algorithm outputs posterior $Q_S\in\mathcal P(\mathcal H)$. Loss $\ell:\mathcal H\times\mathcal Z\to[0,1]$.
+\item \textbf{Lipschitz assumption}: Exists uniform constant $L>0$ such that for any $h\in\mathcal H$, mapping $z\mapsto \ell(h,z)$ is $L$-Lipschitz with respect to $d$ (0-1 loss not applicable, adopt smooth surrogates like cross-entropy/hinge; controllable via spectral norm constraint and gradient clipping).
+\item Wasserstein-1 ball $\mathbb B_\rho(D)=\{D':W_1(D',D)\le\rho\}$; robust risk
+$$
+R^{\rm rob}_\rho(Q):=\sup_{D'\in\mathbb B_\rho(D)}\ \mathbb E_{h\sim Q,z\sim D'}[\ell(h,z)].
+$$
+\end{itemize}
+
+\section{Main Results (Theorems and Alignments)}
+
+\begin{theorem}[1: Universal Catastrophic Safety Determination Undecidable]
+Exists regular bad prefix family $\mathfrak B$ such that no algorithm can determine for all computable policies $A$, computable environments $E$, $B\in\mathfrak B$, and any rational $\varepsilon\in[0,1)$ the truth value of $\operatorname{Safe}_\varepsilon(A,E,B)$.
+\end{theorem}
+
+\begin{theorem}[1': Complexity Positioning of Restricted Subclass]
+Under deterministic environment $E_0$ and computable policy class, let
+$$
+\text{UNSAFE}=\{(A,E_0,B,\varepsilon):\Pr(\mathsf{Bad})>\varepsilon\},\quad \varepsilon<1.
+$$
+Then $\text{UNSAFE}$ is \textbf{$\Sigma_1^0$-complete}, its complement $\text{SAFE}$ is \textbf{$\Pi_1^0$-complete}. In this subclass $\Pr(\mathsf{Bad})\in\{0,1\}$, thus "$\Pr(\mathsf{Bad})>\varepsilon$" equivalent to "occurrence" for any $\varepsilon<1$.
+\end{theorem}
+
+\begin{theorem}[2: Capability--Worst Risk Upper Bound Frontier: PAC-Bayes + KR]
+For any prior $P$ and $\delta\in(0,1)$, with probability at least $1-\delta$ (over $S\sim D^n$) have
+$$
+\boxed{\,R^{\rm rob}_\rho(Q)\ \le\ \widehat R_S(Q)\ +\ \sqrt{\frac{\mathrm{KL}(Q\Vert P)+\ln(1/\delta)}{2n}}\ +\ L\rho.\,}
+$$
+Right-hand three terms respectively empirical error, complexity/confidence term, and distribution shift linear penalty, constituting \textbf{upper bound induced capability--risk frontier}.
+\end{theorem}
+
+\begin{theorem}[2': High-Probability Mutual Information Bound: Paradigmatic Statement]
+Let loss $\ell\in[0,1]$ with sub-Gaussian constant $\sigma$ for each sample point. If learning algorithm satisfies \textbf{conditional mutual information} upper bound $\mathrm{CMI}(S;Q_S)\le \Gamma$ or equivalent strength uniform stability, then exists constant $c>0$ such that for any $\delta\in(0,1)$,
+$$
+\boxed{\,\Pr\!\left(\ R_D(Q_S)\ \le\ \widehat R_S(Q_S)\ +\ \sqrt{\frac{2\sigma^2(\Gamma+c\ln(1/\delta))}{n}}\ \right)\ \ge\ 1-\delta.\,}
+$$
+Juxtaposing (2) with (1), obtain high-probability \textbf{frontier} expression for data-dependent posterior: take smaller of two right-hand sides as operational upper bound for capability--risk curve.
+\end{theorem}
+
+\begin{theorem}[3: Point Perturbation Geometric Lower Bound and Distribution Ball Inclusion]
+For any classifier $f$ and $\rho>0$, define
+$$
+\mathcal R^{\rm adv}_\rho(f)=\Pr_{(z,y)\sim D}\big[\exists z'\in B_\rho(z):\ f(z')\ne y\big],
+$$
+where $B_\rho(z)=\{z': d(z,z')\le\rho\}$ with label preserving. Then
+$$
+\boxed{\,\sup_{D'\in\mathbb B_\rho(D)}\ R_{D'}(f)\ \ge\ \mathcal R^{\rm adv}_\rho(f).\,}
+$$
+(3) holds on any metric and task, providing universal lower bound "foundation" matching (1). Under Gaussian mixtures and $\ell_p$ perturbations, exist constructive lower bounds for robust--accuracy impossibility and robust generalization sample complexity lower bound.
+\end{theorem}
+
+\begin{proposition}[1: Tightness of KR Linear Term]
+For any $L,\rho>0$ and metric space, exists $L$-Lipschitz function $f$ and distribution pair $(D,D')$ such that $W_1(D',D)=\rho$ and
+$$
+\sup_{W_1(D',D)\le \rho}\ \mathbb E_{D'}[f]-\mathbb E_D[f]\ =\ L\rho.
+$$
+Indicates first-order form $L\rho$ cannot be improved under uniform Lipschitz constant condition.
+\end{proposition}
+
+\section{Proofs}
+
+\subsection{Theorem 1 (Undecidability)}
+
+Take trivial environment $E_0$. Given Turing machine--input pair $\langle M,x\rangle$, construct computable policy
+$$
+A_{M,x}(h_{<t})=\begin{cases}
+a_\star,&\text{if }M(x)\text{ halts within }t\text{ steps},\\
+a_0,&\text{otherwise}.
+\end{cases}
+$$
+Let bad prefix language $B=\{h:\ \text{some step action is }a_\star\}$, regular and extension-closed. Then
+$$
+\Pr(\mathsf{Bad})=\mathbf 1\{M(x)\ \text{halts}\}.
+$$
+If universal decider exists determining $\operatorname{Safe}_\varepsilon(A,E,B)$ truth/falsity for any input ($\varepsilon<1$), obtain halting determination, contradiction. Proved.
+
+\subsection{Theorem 1' ($\Sigma_1^0/\Pi_1^0$ Complete)}
+
+\textbf{Many-one reduction}: Mapping $R:\langle M,x\rangle\mapsto (A_{M,x},E_0,B,\varepsilon)$ polynomial-time computable, and $\langle M,x\rangle\in\text{HALT}\iff (A_{M,x},E_0,B,\varepsilon)\in\text{UNSAFE}$ ($\varepsilon<1$).
+\textbf{Membership}: Under $E_0$ and deterministic $A$, $\Pr(\mathsf{Bad})\in\{0,1\}$. If unsafe, exists minimal $\tau$ making $h_{1:\tau}\in B$, enumerate to this prefix accepts, thus $\text{UNSAFE}\in\Sigma_1^0$, complement in $\Pi_1^0$. Combining with reduction obtains completeness. Proved.
+
+\subsection{Theorem 2 (Upper Bound Frontier)}
+
+PAC-Bayes (McAllester/Catoni variant)~\cite{mcallester1999pacbayes,catoni2007pacbayes} provides
+$$
+R_D(Q)\ \le\ \widehat R_S(Q)+\sqrt{\frac{\mathrm{KL}(Q\Vert P)+\ln(1/\delta)}{2n}}
+\quad(\text{with probability}\ge 1-\delta).
+$$
+Kantorovich--Rubinstein (KR) duality~\cite{villani2009optimal} indicates for any $L$-Lipschitz function $g$,
+$$
+\sup_{W_1(D',D)\le\rho}\ \mathbb E_{D'}[g]\ \le\ \mathbb E_D[g]+L\rho.
+$$
+Applying to $g(z)=\mathbb E_{h\sim Q}\ell(h,z)$ yields (1). Proved.
+
+\subsection{Theorem 2' (High-Probability Mutual Information)}
+
+Let $\ell$ bounded with each point $\sigma$-sub-Gaussian. If algorithm satisfies $\mathrm{CMI}(S;Q_S)\le\Gamma$, then via information compression and variational inequality obtain
+$$
+\Pr\!\left(\ R_D(Q_S)-\widehat R_S(Q_S)\ \le\ \sqrt{\tfrac{2\sigma^2(\Gamma+c\ln(1/\delta))}{n}}\ \right)\ \ge\ 1-\delta,
+$$
+where constant $c$ given by tail control. Juxtaposing with (1) obtains frontier high-probability form. Proved.
+
+\subsection{Theorem 3 (Point Perturbation Lower Bound)}
+
+For any measurable selection operator $T:\mathcal Z\to\mathcal Z$ with $d(z,T(z))\le\rho$ almost surely, let $D'=(T,y)_\# D$. Taking coupling $\pi(dz,dz')=D(dz)\delta_{T(z)}(dz')$, then $\mathbb E_\pi d(Z,Z')\le\rho$; thus $W_1(D',D)\le\rho$. If $f(T(z))\ne y$ then errs under $D'$, further
+$$
+\sup_{D'\in\mathbb B_\rho(D)}R_{D'}(f)\ \ge\ \mathbb E_D\big[\mathbf 1\{\exists z'\in B_\rho(z):f(z')\ne y\}\big]=\mathcal R^{\rm adv}_\rho(f).
+$$
+Proved.
+
+\subsection{Proposition 1 (Tightness)}
+
+Take $D=\delta_0, D'=\delta_{\rho u}$ and $f(z)=L|z|_2$ yields result. Proved.
+
+\section{Model Apply}
+
+\begin{itemize}
+\item \textbf{Autonomous control and tool-using agents}: Theorem 1 rules out general static certification, recommend restricting policy space and interfaces to verifiable sublanguages; during deployment suppress transgression via shields and interruptible protocols.
+\item \textbf{Perception--decision systems}: According to (1)(2) establish \textbf{risk budget}: under given $(n,\rho)$ enhancing capability (larger model/weaker prior) requires correspondingly increased sample size, enhanced structural prior, or compressed $L$.
+\item \textbf{Evaluation and calibration}: Adopt corruption and perturbation benchmarks (e.g., ImageNet-C~\cite{hendrycks2019benchmarking}) and uncertainty measures (NLL/ECE), jointly "violation rate--task accuracy" dual-axis curves exhibiting "capability--risk frontier" and shield interception effectiveness.
+\end{itemize}
+
+\section{Engineering Proposals}
+
+\begin{enumerate}
+\item \textbf{Scope restriction}: Design policy and tool invocation via verifiable subsets (restricted DSL/interfaces), ensuring safety specifications implemented by online discrimination via DFA/LTL synthesis safe prefix recognizers.
+\item \textbf{Runtime shield}: Synthesize pre-/post-shields via LTL$\to$DFA$\to$safety automaton generator~\cite{alshiekh2018safe,koenighofer2024shields}; pre-shield filters unsafe action set, post-shield replaces with nearby safe action via minimal correction principle; probabilistic shield controls false rejection/false negative via confidence threshold.
+\item \textbf{Risk budget}: Treat $(\widehat R_S,\mathrm{KL},I,\rho,L)$ as budget quintuple; configure "data--prior--shift--Lipschitz" balancing strategy respectively during development and deployment phases.
+\item \textbf{Structural prior and impact regularization}: Adopt equivariant structures, spectral norm constraints, and reversibility penalties (AUP~\cite{turner2020conservative}) reducing complexity and side-effect propensity.
+\item \textbf{Distributionally robust training and uncertainty governance}: Combine Wasserstein-DRO~\cite{esfahani2018data}/adversarial training~\cite{sinha2018certifying} with deep ensembles, temperature calibration; handle high uncertainty via rejection--degradation--handoff open-loop strategy.
+\item \textbf{Interruptibility}: Embed unbiased interruptible protocols~\cite{orseau2016safely} in updating and exploration, preventing policy learning incentives to circumvent intervention.
+\end{enumerate}
+
+\section{Discussion (Risks, Boundaries, Past Work)}
+
+\begin{itemize}
+\item \textbf{Boundary meaning}: Undecidability negates "general, global, one-time" static proof; under restricted model families (finite horizon, fully observable, discounted MDP, etc.) strong guarantees still obtainable.
+\item \textbf{Upper bound--lower bound enclosure}: KR linear term with PAC-Bayes/mutual information provide operational upper bounds; point perturbation lower bound with robust--accuracy impossibility~\cite{tsipras2019robustness}, robust generalization sample complexity lower bound~\cite{schmidt2018adversarially} indicate "zero-cost both" unattainable not artifact of loose analysis.
+\item \textbf{Relationship with existing work}: Theorem 1 equivalent to Rice/halting~\cite{turing1936computable,rice1953classes}, complements infinite-horizon probabilistic planning undecidability~\cite{madani1999undecidability}; Theorem 2 consistent with distributionally robust optimization~\cite{esfahani2018data}, PAC-Bayes~\cite{mcallester1999pacbayes,catoni2007pacbayes}, mutual information paradigm~\cite{xu2017information,steinke2020reasoning}; Theorem 3 matches constructive lower bounds and sample complexity lower bounds in adversarial robustness literature~\cite{tsipras2019robustness,schmidt2018adversarially}; shields and interruptibility~\cite{alshiekh2018safe,orseau2016safely} correspond to runtime enforcement systems in safe reinforcement learning and formal methods.
+\end{itemize}
+
+\section{Conclusion}
+
+General catastrophic safety determination unattainable in principle, capability enhancement and robustness admit hard trade-off jointly driven by complexity/information amount and distribution shift. Based on this, governance schemes should center on scope restriction, runtime shielding, and risk budget, proving within verifiable subdomain, backstopping via shields and interruptibility during deployment, suppressing shift risk via structural prior and distributionally robust techniques during training.
+
+\section*{Acknowledgements}
+
+Thank related research in decidability, distributionally robust optimization, information-theoretic generalization, and safe reinforcement learning fields. Minimal reproducible experiment suggestion: based on public corruption benchmarks, LTL$\to$DFA tools, and adversarial/robust training libraries reproduce "risk budget curve--violation rate" dual-axis diagram; repository should include data scripts, specification examples, training/inference and shield modules, hyperparameter tables, and one-click scripts.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\appendix
+
+\section{Semantics and Measurability}
+
+Let cylinder $\sigma$-algebra generated on $\Sigma$. Computable policy and environment jointly induce history distribution
+$$
+\mathbb P(h_{1:t})=\prod_{s=1}^t \big[A(a_s\mid h_{<s})\cdot \mu(o_s\mid h_{<s},a_s)\big].
+$$
+Bad prefix language $B$ extension-closed and regular, event $\mathsf{Bad}=\{\exists t:\ h_{1:t}\in B\}$ measurable; first violation time $\tau(h)$ is stopping time.
+
+\section{"First Appearance $a_\star$" and Regular Bad Prefix}
+
+Define
+$$
+B_{\text{hit}}=\{h:\ \exists i\le |h|,\ a_i=a_\star\}.
+$$
+If $u\in B_{\text{hit}}$ and $v$ is any extension, then $uv\in B_{\text{hit}}$, thus extension-closed. Corresponding safe prefix set $S=\Sigma\setminus B_{\text{hit}}$ is prefix-closed.
+
+\section{Binary Probability and Threshold Lemma}
+
+Under $E_0$ and deterministic $A$, $\mathsf{Bad}$ is event "whether appears $a_\star$", taking only values 0 or 1. For any rational $\varepsilon<1$, have
+$$
+\Pr(\mathsf{Bad})>\varepsilon\ \Longleftrightarrow\ \Pr(\mathsf{Bad})=1\ \Longleftrightarrow\ \mathsf{Bad}\text{ occurs}.
+$$
+
+\section{Many-One Reduction Details}
+
+Mapping $R$ sends $\langle M,x\rangle$ to $(A_{M,x},E_0,B_{\text{hit}},\varepsilon)$.
+
+\begin{itemize}
+\item \textbf{Correctness}: If $M(x)$ halts, exists $t_0$ making $A_{M,x}$ output $a_\star$ at $t_0$, thus $\mathsf{Bad}$ occurs; otherwise not.
+\item \textbf{Computability}: Constructing $A_{M,x}$ and DFA recognition for $B_{\text{hit}}$ both completed in polynomial time.
+\item \textbf{Completeness}: By $\text{HALT}\le_m \text{UNSAFE}$ and membership obtain $\Sigma_1^0$-complete; complement problem obtains $\Pi_1^0$-complete.
+\end{itemize}
+
+\section{PAC-Bayes and KR Duality Composition}
+
+Let $g_Q(z)=\mathbb E_{h\sim Q}\ell(h,z)$. If $\ell\in[0,1]$ and $z\mapsto\ell(h,z)$ uniformly $L$-Lipschitz, then $g_Q$ also $L$-Lipschitz. KR duality~\cite{villani2009optimal} provides
+$$
+\sup_{W_1(D',D)\le\rho}\mathbb E_{D'}g_Q\le \mathbb E_D g_Q+L\rho.
+$$
+PAC-Bayes basic formula~\cite{mcallester1999pacbayes,catoni2007pacbayes} bounds $\mathbb E_D g_Q$ and $\widehat R_S(Q)$ difference with probability $1-\delta$, composition yields (1).
+
+\section{Mutual Information High-Probability Bound (CMI Paradigm)}
+
+Under $\ell\in[0,1]$ and pointwise $\sigma$-sub-Gaussian, conditional mutual information $\mathrm{CMI}(S;Q_S)\le\Gamma$ induces~\cite{xu2017information,steinke2020reasoning,bu2020tightening}
+$$
+\Pr\left(\,R_D(Q_S)-\widehat R_S(Q_S) \le \sqrt{\tfrac{2\sigma^2(\Gamma+c\ln(1/\delta))}{n}}\,\right)\ge 1-\delta.
+$$
+Proof based on information compression inequality and PAC-Bayesian-style variational techniques; when replacing CMI with uniform stability, same-order tail bound obtainable.
+
+\section{Point Perturbation Lower Bound Measurable Selection and Label Preserving}
+
+Let metric space separable with complete Borel $\sigma$-algebra. When selecting for each $(z,y)$ $z'\in B_\rho(z)$ making $f$ err, adopt Borel measurable selection lemma defining operator $T(z)$; label preserving assumption ensures pushforward $D'=(T,y)_\#D$ consistent with task. If error-causing perturbation non-existent, set $T(z)=z$. This yields (3).
+
+\section{Lipschitz Constant and Surrogate Loss}
+
+0-1 loss does not satisfy Lipschitz assumption; use surrogate losses like cross-entropy/hinge, control $L$ via spectral norm constraints, gradient clipping, and Lipschitz network structures. This control enters (1) linear term, determining $\rho$-sensitivity.
+
+\section{Engineering Metrics and Indicators}
+
+\textbf{Risk budget curve}: Horizontal axis is complexity/information term (model scale or prior strength, $I(S;Q_S)$ proxy), vertical axis is $R^{\rm rob}_\rho$ estimate or its upper bound; overlay "violation rate--task accuracy" dual-axis curves (with/without shield two curves), exhibiting runtime shielding violation suppression effect at similar accuracy.
+
+\end{document}

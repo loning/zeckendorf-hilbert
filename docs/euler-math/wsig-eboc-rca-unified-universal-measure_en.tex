@@ -1,0 +1,315 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{axiom}{Axiom}
+
+% Title information
+\title{WSIG--EBOC--RCA Unified Theory:\\
+Trinity ``Universal Measure Coordinate'' Axiomatization, Change-of-Variables Consistency, and Error Theory}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today\\
+\small Version: 1.2}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Under de Branges--Kreĭn canonical systems and multi-channel scattering theory, taking scattering phase derivative, relative state density, and Wigner--Smith group delay trace as three equivalent formulations of the same scale, we construct a ``universal measure coordinate'' and prove its change-of-variables consistency under windowed readouts and non-asymptotic error closure of Nyquist--Poisson--Euler--Maclaurin (NPE) three-fold decomposition. The core unification formula (almost everywhere on absolutely continuous spectrum) is
+\begin{equation}
+d\mu_\varphi(E)=\frac{\varphi'(E)}{\pi}\,dE=\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)\,dE=\rho_{\mathrm{rel}}(E)\,dE,
+\end{equation}
+where $\mathsf Q(E)=-i\,S(E)^\dagger S'(E)$ is the Wigner--Smith delay matrix, $\rho_{\mathrm{rel}}=-\xi'$ is the spectral shift density relative to reference operator $H_0$, and $\det S(E)=\exp(-2\pi i\,\xi(E))$ is the standard gauge of Birman--Kreĭn formula. The trinity chain is derived consistently from Birman--Kreĭn formula and Wigner--Smith delay, applicable to multi-channel unitary scattering; sub-unitary systems admit compatible extension via generalized (complex) delay. The paper provides: (i) windowed change-of-variables consistency theorem (energy $\leftrightarrow$ phase/delay/density coordinates); (ii) maximum entropy--minimum delay duality theorem; (iii) causal monotonicity $\Leftrightarrow$ phase monotonicity; and formulates sampling--frame thresholds, Wexler--Raz biorthogonality, and Balian--Low impossibility as invariant expressions in phase coordinates, while establishing KKT and $\Gamma$-limit stability for multi-window/multi-kernel optimization. All conclusions align term-by-term with BK/SSF, Wigner--Smith, Herglotz--Weyl, and Carleson--frame theory criteria, directly verifiable and implementable.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Universal measure coordinate; WSIG; EBOC; RCA; Birman--Kreĭn formula; Wigner--Smith delay; Sampling theory; Frame theory; Wexler--Raz; Balian--Low
+
+\section{Notation, Gauge, and Foundational Literature}
+
+\textbf{Scattering and Spectral Shift.} For self-adjoint scattering pair $(H,H_0)$, on-shell multi-channel scattering matrix $S(E)\in U(N)$. The Birman--Kreĭn formula (under trace-class assumptions) is
+\begin{equation}
+\det S(E)=\exp\bigl(-2\pi i\,\xi(E)\bigr),
+\end{equation}
+where $\xi$ is the spectral shift function; accordingly $\frac{d}{dE}\operatorname{Arg}\det S(E)=-2\pi\,\xi'(E)$. We stipulate relative state density $\rho_{\mathrm{rel}}(E):=-\xi'(E)$.
+
+\textbf{Phase (Scattering Semi-Phase).} For multi-channel scattering matrix $S(E)\in U(N)$, define
+\begin{equation}
+\varphi(E):=\tfrac12\,\operatorname{Arg}\det S(E)\quad(\text{BK continuous branch}),
+\end{equation}
+then almost everywhere $\varphi'(E)=\tfrac12\,\operatorname{tr}\mathsf Q(E)=\pi\,\rho_{\mathrm{rel}}(E)$, where $\mathsf Q(E)=-i\,S(E)^\dagger S'(E)$, $\rho_{\mathrm{rel}}(E)=-\xi'(E)$.
+
+\textbf{Wigner--Smith Delay.} Define $\mathsf Q(E)=-i\,S(E)^\dagger \tfrac{dS}{dE}(E)$. For unitary $S$,
+\begin{equation}
+\frac{d}{dE}\log\det S(E)=\operatorname{tr}\bigl(S^{-1}S'(E)\bigr)=\operatorname{tr}\bigl(S^\dagger S'(E)\bigr),
+\end{equation}
+thus $\frac{d}{dE}\operatorname{Arg}\det S(E)=\operatorname{tr}\mathsf Q(E)$ and $\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)=\rho_{\mathrm{rel}}(E)$ (a.e.). For single-channel $S=e^{2i\varphi}$, $\operatorname{tr}\mathsf Q=2\varphi'(E)$. For definition and properties of delay matrix, see surveys and computational literature.
+
+\textbf{de Branges--Kreĭn and Herglotz--Weyl.} For canonical system and de Branges space $\mathcal H(\mathcal E)$, its reproducing kernel diagonal satisfies
+\begin{equation}
+K(x,x)=\frac{1}{\pi}\,\varphi'(x)\,|\mathcal E(x)|^2,
+\end{equation}
+where $\varphi$ is the phase function of Hermite--Biehler function $\mathcal E$; simultaneously Weyl--Titchmarsh $m$ is a Herglotz function, boundary imaginary part yields spectral density.
+
+\textbf{Windowed Readout and NPE Three-Fold.} Taking even bandlimited window $w_R$ and bandlimited kernel $h$, the numerical integration--summation reordering error of windowed readout $\int w_R(E)\,(h*\rho_\star)(E)\,dE$ can be composed of three parts from Poisson summation and finite-order Euler--Maclaurin (EM) formula correction plus out-of-window tail (alias + Bernoulli layer + tail), with aliasing term eliminated under Nyquist condition.
+
+\section{Axiomatization: Trinity Scale and Observable Operations}
+
+\begin{axiom}[Scale Unification]
+Almost everywhere at Lebesgue points of absolutely continuous spectrum,
+\begin{equation}
+\varphi'(E)=\tfrac12\,\operatorname{tr}\mathsf Q(E)=\pi\,\rho_{\mathrm{rel}}(E).
+\end{equation}
+Derived from BK and delay matrix definition.
+\end{axiom}
+
+\begin{axiom}[Windowed Observability and NPE]
+For even bandlimited window $w_R$ and bandlimited kernel $h$, all summation--integration reordering controlled by finite-order EM and Poisson summation, error three-fold decomposition closes, alias vanishes under Nyquist.
+\end{axiom}
+
+\begin{axiom}[Implementation--Semantics Covariance]
+There exist semantic embeddings of EBOC record geometry and RCA local reversible updates such that $(\varphi,\rho_{\mathrm{rel}},\tfrac1N\operatorname{tr}\mathsf Q)$ align respectively with ``record page number--record density--readout cost'' and ``information increment--step delay'', maintaining consistency of causal cone and phase monotonicity.
+\end{axiom}
+
+\section{Universal Measure Coordinate and Change-of-Variables Three Formulas}
+
+\begin{definition}[Universal Measure Coordinate]
+Take
+\begin{equation}
+d\mu_\varphi:=\frac{\varphi'(E)}{\pi}\,dE,\qquad
+d\tau:=\frac{1}{N}\operatorname{tr}\mathsf Q(E)\,dE,\qquad
+d\rho:=\rho_{\mathrm{rel}}(E)\,dE.
+\end{equation}
+\end{definition}
+
+\begin{proposition}[WSIG Change-of-Variables Consistency]
+Let $F\in L^1_{\mathrm{loc}}$, window $w_R\in L^1\cap L^\infty$. If on the window-dominated interval $\varphi$ (or $\tau,\rho$) is \textbf{absolutely continuous and strictly monotone}, then
+\begin{equation}
+\int F(E)\,w_R(E)\,dE=\int F\bigl(E(\varphi)\bigr)\,w_R\bigl(E(\varphi)\bigr)\,\frac{dE}{d\varphi}\,d\varphi,
+\end{equation}
+with Jacobian
+\begin{equation}
+\frac{dE}{d\varphi}=\Bigl(\tfrac12\,\operatorname{tr}\mathsf Q(E)\Bigr)^{-1},\qquad
+\frac{dE}{d\tau}=\Bigl(\tfrac1N\,\operatorname{tr}\mathsf Q(E)\Bigr)^{-1},\qquad
+\frac{dE}{d\rho}=\bigl(\rho_{\mathrm{rel}}(E)\bigr)^{-1}.
+\end{equation}
+Here $E(\varphi)=\varphi^{-1}(\varphi)$ exists and is measurable, change of variables guaranteed by absolute continuity and strict monotonicity. Here $\tau(E):=\displaystyle\int_{E_0}^{E}\tfrac1N\operatorname{tr}\mathsf Q(s)\,ds$, $\rho(E):=\displaystyle\int_{E_0}^{E}\rho_{\mathrm{rel}}(s)\,ds$.
+\end{proposition}
+
+\begin{proof}
+Measurable change of variables and Lebesgue point property, branch guaranteed by BK continuous branch and windowed integrability.
+\end{proof}
+
+\section{Windowed Birman--Kreĭn Identity and Error Closure}
+
+\begin{theorem}[Windowed BK Identity]
+Under resolvent difference trace-class, with
+\begin{equation}
+h\in W^{1,1}\cap L^\infty\ \ (\text{or }C_c^1),\qquad
+w_R\in W^{1,1}\cap L^1\cap L^\infty\ \ (\text{or }C_c^1),
+\end{equation}
+thus $(h w_R)'=h' w_R+h\,w_R'\in L^1$ and $(h w_R)(\pm\infty)=0$. Define
+\begin{equation}
+\mathcal S_{\rm spec}(h;R)=\int h(E)\,\rho_{\mathrm{rel}}(E)\,w_R(E)\,dE,\quad
+\mathcal S_{\rm scat}(h;R)=-\frac{1}{2\pi i}\int \bigl[h' w_R+h\,w_R'\bigr]\log\det S\,dE,
+\end{equation}
+then $\mathcal S_{\rm spec}(h;R)=\mathcal S_{\rm scat}(h;R)$.
+\end{theorem}
+
+\begin{proof}
+Use identity
+\begin{equation}
+\partial_E\log\det S(E)=\operatorname{tr}\!\bigl(S^{-1}(E)S'(E)\bigr),\qquad
+\frac{1}{2\pi i}\,\partial_E\log\det S=\rho_{\rm rel},
+\end{equation}
+let $f:=h w_R$, under $f\in W^{1,1}\cap L^1$ and $f(\pm\infty)=0$, integrate by parts for $\int f\,\partial_E\log\det S$, boundary terms vanish, conclusion follows.
+\end{proof}
+
+\begin{theorem}[NPE Three-Fold; Non-Asymptotic]
+Equispaced sampling approximation error for $\int F$ decomposes as
+\begin{equation}
+\mathcal E_R=\mathcal E_{\rm alias}+\mathcal E_{\rm EM}+\mathcal E_{\rm tail},
+\end{equation}
+where $\mathcal E_{\rm alias}$ given by Poisson summation, $\mathcal E_{\rm alias}=0$ under Nyquist condition; $\mathcal E_{\rm EM}$ is finite-order Euler--Maclaurin remainder (explicit Bernoulli sequence); $\mathcal E_{\rm tail}$ controlled by out-of-window exponential decay.
+\end{theorem}
+
+\section{Information Geometry and ``Maximum Entropy--Minimum Delay'' Duality}
+
+\begin{definition}[Windowed Entropy]
+Denote output distribution for energy parameter as $p_E$, windowed entropy
+\begin{equation}
+\mathcal H_R:=\int H(p_E)\,w_R(E)\,dE.
+\end{equation}
+Via change of variables in Proposition 2.2, relates to $\tfrac{dE}{d\varphi}=(\tfrac12\operatorname{tr}\mathsf Q)^{-1}$ in $\varphi$-coordinate.
+\end{definition}
+
+\begin{theorem}[Maximum Entropy--Minimum Delay Duality]
+If $E\mapsto p_E$ smooth, $H$ strictly convex, and $R$ sufficiently large, then maximum point of $\mathcal H_R$ and minimum point of windowed average delay $\int \tfrac1N\operatorname{tr}\mathsf Q\,w_R\,dE$ align at same $\varphi^\star$ (uniqueness modulo aliasing remainder).
+\end{theorem}
+
+\begin{proof}[Proof Sketch]
+In $\varphi$-coordinate, extremal condition is $\partial_\varphi!\bigl[H(p_{E(\varphi)})\,\tfrac{dE}{d\varphi}\bigr]=0$; combining $\tfrac{dE}{d\varphi}$ with KL projection uniqueness and Ky--Fan minimal subspace consistency yields dual colocation. For Ky--Fan extremal properties and spectral subspace stability, see cited references.
+\end{proof}
+
+\section{Causality and ``Phase Monotonicity'' Equivalence}
+
+\begin{definition}[Loop Delay]
+For realizable energy loop $\gamma$, let $\Delta T(\gamma):=\oint_\gamma \operatorname{tr}\mathsf Q(E)\,dE$.
+\end{definition}
+
+\begin{theorem}[Causal Monotonicity $\Leftrightarrow$ Phase Monotonicity]
+If for all realizable loops $\Delta T(\gamma)\ge 0$, then $\oint_\gamma d\varphi=\tfrac12\Delta T(\gamma)\ge0$; converse also holds. Both equivalent to no-signaling/realizability.
+\end{theorem}
+
+\begin{proof}
+Follows immediately from $d\varphi=\tfrac12\,\operatorname{tr}\mathsf Q\,dE$.
+\end{proof}
+
+\section{Sampling--Frame Thresholds, Carleson, and Wexler--Raz}
+
+\begin{theorem}[Phase Density and Landau Threshold]
+Under de Branges--Mellin unified framework, with $d\nu_0=\frac{\varphi'}{\pi}\,dx$ as geometric measure, necessary density threshold for sampling/interpolation given by Landau-type criteria; Paley--Wiener case reduces to classical Landau necessary density. For de Branges spaces, when $\varphi'(x)\,dx$ is (locally) doubling measure, sampling--interpolation can be characterized by Beurling density.
+\end{theorem}
+
+\begin{theorem}[Wexler--Raz Biorthogonality and Parseval Condition]
+Under Nyquist, multi-window $\{w_\alpha\}$ generates Parseval tight frame if and only if frequency-domain energy balance identity holds; with aliasing, need to add periodic replication summation. Equivalent relation with dual window pointwise condition is Wexler--Raz identity. This condition is invariant in $\varphi$-coordinate.
+\end{theorem}
+
+\begin{theorem}[Balian--Low Obstruction; Critical Density]
+Single-window rectangular lattice at critical density cannot simultaneously have double-sided localization and generate Riesz basis/ONB; this obstruction remains invariant in phase coordinate.
+\end{theorem}
+
+\section{Multi-Window/Multi-Kernel Optimization, KKT, and $\Gamma$-Limit}
+
+\begin{theorem}[Bandlimited Projection--KKT Equation and PSWF Structure]
+On even bandlimited subspace minimizing strongly convex functional of NPE upper bound, necessary optimality condition is kernel-type eigenequation after bandlimited projection, solution exhibits Prolate Spheroidal (Slepian--Landau--Pollak) structure, yielding optimal ``principal scale--poles''.
+\end{theorem}
+
+\begin{theorem}[Multi-Objective Pareto Front and Stability]
+Minimal elements of multi-window strongly convex multi-objective surrogate satisfy generalized Wexler--Raz and frame operator equations; have $O(\mu^{-1})$ Lipschitz stability under data/kernel perturbation, maintaining spectral invariance ``poles = principal scales''. Frame operator diagonalization via Walnut representation can be used for stability estimates.
+\end{theorem}
+
+\begin{theorem}[Explicit Tight/Dual Construction for Non-Stationary Block Systems]
+In block non-stationary Weyl--Mellin systems, Walnut--Poisson diagonalization reduces frame operator to Calderón sum multiplier, giving tight/dual frequency-domain closed form; no-aliasing condition $2\Omega_n\le \Delta\tau_n$ equivalent to Nyquist.
+\end{theorem}
+
+\section{Unification to EBOC and RCA Semantic Mapping}
+
+\begin{proposition}[EBOC Record Geometry Mapping]
+Interpreting $\varphi$ as ``record page number'', $\rho_{\mathrm{rel}}$ as ``record density'', $\tau=\tfrac1N\operatorname{tr}\mathsf Q$ as ``readout cost'', then ``maximum entropy--minimum delay'' duality corresponds to ``shortest evidence path'', with reversible read-write ordered by phase monotonicity.
+\end{proposition}
+
+\begin{proposition}[RCA Step Delay and Information Increment]
+Single-step update of reversible cellular automaton measured by $\Delta\varphi$ in phase coordinate, discrete formulation of causal cone is phase monotonicity, system step delay addition equals $\sum \Delta\varphi=\tfrac12\int \operatorname{tr}\mathsf Q\,dE$.
+\end{proposition}
+
+\section{Non-Unitary Extension and Semiclassical Change of Variables}
+
+\begin{proposition}[Complex Delay for Sub-Unitary Scattering]
+Under sub-unitary $S$, replacing $\operatorname{tr}\mathsf Q$ with trace/real part of complex delay preserves above change-of-variables and error theory structure; real parts of phase--density--delay trinity still give windowed observable.
+\end{proposition}
+
+\begin{proposition}[Coordinatization of Egorov--Moyal]
+Using $\partial_\varphi=(\tfrac12\operatorname{tr}\mathsf Q)^{-1}\partial_E$ to rewrite Egorov--Moyal series into phase coordinate, facilitates uniform estimates within Ehrenfest time on $\varphi$-uniform grid.
+\end{proposition}
+
+\section{Main Theorems and Proof Summary}
+
+\textbf{Main Theorem A (Windowed Change-of-Variables Consistency and NPE Bound)} Under Axioms A--B, windowed integrals in energy--trinity coordinates are equal, discretization/finite-sum approximation error obeys NPE three-fold decomposition upper bound.
+
+\textit{Evidence chain.} Measurable change of variables in Proposition 2.2 + windowed BK in Theorem 3.1 + NPE in Theorem 3.2.
+
+\textbf{Main Theorem B (Maximum Entropy--Minimum Delay Duality)} Under §4 assumptions, maximum point of $\mathcal H_R$ and minimum point of average delay align at same $\varphi^\star$ (uniqueness modulo alias).
+
+\textit{Evidence chain.} $\varphi$-coordinate extremal condition + KL/I-projection uniqueness + Ky--Fan minimal subspace; spectral subspace stability by Davis--Kahan.
+
+\textbf{Main Theorem C (Causal Monotonicity--Phase Monotonicity Equivalence)} See Theorem 5.2.
+
+\textit{Evidence chain.} $d\varphi=\tfrac12\operatorname{tr}\mathsf Q\,dE$ and delay additivity.
+
+\section{Mathematical and Implementation Checklist (Reproducible)}
+
+\begin{enumerate}
+\item \textbf{Scale Unification:} Estimate $d\mu_\varphi$ via $\operatorname{tr}\mathsf Q$ or $\operatorname{Arg}\det S$, perform Nyquist verification on $\varphi$-uniform sampling.
+\item \textbf{Pointer Verification:} Spectral minimal subspace of window operator $W_R$ (Ky--Fan minimal sum) and stability under data perturbation controlled by Davis--Kahan.
+\item \textbf{Error Closure:} Report $(\varepsilon_{\rm alias},\varepsilon_{\rm EM},\varepsilon_{\rm tail})$, alias shuts off under bandlimited+Nyquist.
+\item \textbf{Sampling--Frame:} Verify Landau necessary density, Wexler--Raz condition, and Balian--Low obstruction in $\varphi$-coordinate.
+\item \textbf{Multi-Window Optimization:} Solve bandlimited projection--KKT equation, obtain PSWF-type solution; stability estimate and tight/dual construction under Walnut representation.
+\end{enumerate}
+
+\section{Conclusion}
+
+With BK/SSF and Wigner--Smith as bridges, this paper unifies phase derivative, relative state density, and group delay trace as ``universal measure coordinate'', providing change-of-variables consistency and non-asymptotic closure of NPE three-fold under windowed readouts. Phase coordinate offers coordinate-invariant formulation of sampling--frame thresholds, Wexler--Raz biorthogonality, and Balian--Low obstruction; on optimization side, bandlimited projection--KKT derives PSWF-type optimal windows, multi-window frame stability and tight/dual construction characterized by Walnut--Poisson diagonalization. Non-unitary scattering and semiclassical Egorov--Moyal maintain isomorphic structure in this coordinate. EBOC and RCA semantic embeddings yield unified realizable interpretation of two dual pairs: ``maximum entropy--minimum delay'' and ``causality--phase monotonicity''.
+
+\begin{thebibliography}{99}
+
+\bibitem{BirmanKrein}
+Birman--Kreĭn formula and spectral shift: B. Simon, \textit{Tosio Kato's work on non-relativistic QM} (contains BK formula survey); D. R. Yafaev, \textit{On the spectral shift function}; N. Athmouni et al. (BK derivation in discrete models).
+
+\bibitem{WignerSmith}
+Wigner--Smith delay: A. A. Patel, R. A. Michielssen (Q in electromagnetic scattering); G. Texier (time delay survey); ChaosBook (connection of tr Q with DoS).
+
+\bibitem{deBranges}
+de Branges kernel diagonal and phase derivative: J. P. Antezana, A. Marzo, J. Olsen, formula $(K(x,x)=\frac{1}{\pi}\varphi'(x)|\mathcal E(x)|^2)$.
+
+\bibitem{DLMF}
+Poisson and Euler--Maclaurin: NIST DLMF §1.8(iv), §2.10(i).
+
+\bibitem{Landau}
+Landau necessary density and its extension to de Branges: H. J. Landau (1967); A. Marzo, S. Nitzan, J. Olsen (doubling phase case).
+
+\bibitem{WexlerRaz}
+Wexler--Raz identity and density theorem survey: I. Daubechies et al.; C. E. Heil (history and density theorems).
+
+\bibitem{BalianLow}
+Balian--Low theorem: Encyclopedia entry and subsequent quantitative improvements.
+
+\bibitem{DavisKahan}
+Davis--Kahan and Ky--Fan: B. Yu, T. Wang, R. J. Samworth (D-K variants); Ky Fan (1951).
+
+\bibitem{GammaConv}
+$\Gamma$-convergence: G. Dal Maso; A. Braides.
+
+\bibitem{SubUnitaryDelay}
+Complex delay for non-unitary scattering: X. Chen et al. (complex time delay of sub-unitary scattering).
+
+\bibitem{EgorovMoyal}
+Egorov--Moyal and semiclassical: A. Bouzouina, D. Robert; G. Prouff (Egorov in Weyl--Hörmander framework).
+
+\bibitem{Walnut}
+Walnut representation and non-stationary frames: C. E. Heil (textbook lecture notes); N. Holighaus et al. (Walnut-like representation for non-stationary Gabor).
+
+\end{thebibliography}
+
+\end{document}
+

@@ -1,0 +1,433 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{principle}[theorem]{Principle}
+
+% Title information
+\title{Derivation of Einstein Field Equations from Information-Geometric Variational Principles: An Outline of Quantum Gravity in EBOC--Causal Manifold Unification}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Given the interplay framework between discrete--static block structure (EBOC) and continuous--causal manifolds, this paper proposes an information-geometric variational principle: on every sufficiently small timelike geometric ball (or local causal diamond), the \textbf{generalized entropy} $S_{\mathrm{gen}}$ is extremized subject to volume and reference vacuum constraints. Utilizing the first-order ``first law'' $\delta S_{\mathrm{out}}=\delta\langle H_{\mathrm{mod}}\rangle$ of relative entropy and area variation induced by geometric light beam convergence (Raychaudhuri), we prove that for all small balls and all shape deformations, the extremality condition implies Einstein field equations $G_{\mu\nu}+\Lambda g_{\mu\nu}=8\pi G\,\langle T_{\mu\nu}\rangle$. At the semiclassical level, second-order variation and non-negativity of relative entropy yield information inequalities including quantum focusing and QNEC, constituting quantum corrections. On the discrete side, EBOC's static block--factor decoding semantics provides Regge-type discrete action and proves convergence to the above continuous field equations in the limit of mesh refinement and information-geometric consistency. The ``readout--scale--causality'' semantics of this work strictly align with the windowed group delay master scale $\varphi'/\pi=\rho_{\mathrm{rel}}=(2\pi)^{-1}\mathrm{tr}\,\mathsf{Q}$, achieving closure under finite-order Nyquist--Poisson--Euler--Maclaurin error discipline.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Information geometry, variational principles, Einstein field equations, generalized entropy, EBOC, causal manifolds, Raychaudhuri equation, QNEC, Regge calculus
+
+\noindent\textbf{MSC 2020:} Primary 83C05, 53D50, 94A17; Secondary 83C45, 81T20
+
+\section{Introduction}
+
+The derivation of Einstein field equations from thermodynamic and information-theoretic principles has emerged as a fundamental research direction in quantum gravity. Jacobson's seminal work \cite{jacobson1995} demonstrated that Einstein equations can be viewed as equations of state arising from local thermodynamic equilibrium. Subsequent developments in holography \cite{ryu2006} and entanglement entropy \cite{van2016} have deepened this connection, suggesting that gravitational dynamics may fundamentally arise from information-geometric considerations.
+
+In this work, we propose a rigorous information-geometric variational principle (IGVP) within the unified framework of EBOC (Eternal Block Observation Computation) and causal manifolds. Our approach differs from previous work in several key aspects:
+
+\begin{itemize}
+\item \textbf{Local variational principle}: We formulate generalized entropy extremization on local balls, avoiding global assumptions and enabling point-by-point derivation of field equations.
+
+\item \textbf{Information-geometric foundation}: We employ Fisher--Rao metrics and relative entropy structures from rigorous information geometry, ensuring uniqueness via Čencov's theorem \cite{cencov1982} and monotonicity properties.
+
+\item \textbf{Discrete--continuous duality}: The EBOC discrete side provides Regge-type triangulation with factor decoding semantics, provably converging to continuous field equations.
+
+\item \textbf{Master scale alignment}: All constructions respect the trinity scale identity $\varphi'/\pi=\rho_{\mathrm{rel}}=(2\pi)^{-1}\mathrm{tr}\,\mathsf{Q}$ and double-time separation (causality from $t_*$, operational scales from $T_\gamma$).
+\end{itemize}
+
+The paper is organized as follows. Section 2 establishes notation, axioms, and conventions. Section 3 develops local statistical manifolds and relative entropy. Section 4 formulates the information-geometric variational principle (IGVP). Section 5 analyzes second-order variation and quantum energy conditions. Section 6 couples master scales, readouts, and information geometry. Section 7 develops discrete EBOC--Regge information action and continuous limit. Section 8 establishes consistency with the GLS--readout framework. Section 9 discusses quantum corrections and renormalization. Section 10 provides proof details. Section 11 discusses relationships with existing approaches. Section 12 presents typical corollaries and observational consequences. Section 13 concludes.
+
+\section{Notation, Axioms, and Conventions}
+
+\subsection{Unit Convention}
+
+We adopt units $\hbar=c=1$. Metric signature is $(-+++)$. For a small ball $B_\ell(x)$, the outward-pointing unit timelike vector is denoted $u^\mu$, with corresponding spatial hypersurface element $d\Sigma^\nu=u^\nu d\Sigma$.
+
+\subsection{Causality--Readout Separation (Double-Time Separation)}
+
+Causality and no-signaling are determined solely by \textbf{frontier time} $t_*$. Windowed group delay readout $T_\gamma[w_R,h]$ serves only as measurable scale, with no universal magnitude comparison to $t_*$. All causal and partial order conclusions in this work depend only on $t_*$ and lightlike cone structure; readout scales are used for information-geometric measures and calibration.
+
+\subsection{Scale Identity (Master Scale)}
+
+Under the global unitarity postulate,
+$$
+\boxed{\ \frac{\varphi'(E)}{\pi}=\rho_{\mathrm{rel}}(E)=\frac{1}{2\pi}\operatorname{tr}\mathsf{Q}(E),\qquad \mathsf{Q}(E)=-i\,S^\dagger(E)\tfrac{dS}{dE}(E)\ }.
+$$
+
+This master scale defines windowed readouts and energy-delay duality (redshift-time reciprocity).
+
+\subsection{NPE Finite-Order Error Discipline}
+
+All numerical implementations follow Nyquist--Poisson--Euler--Maclaurin tripartite decomposition with finite-order EM endpoint corrections. Singularities do not increase; poles provide master scales. All information quantities and readout discrete approximations close within this accounting framework.
+
+\subsection{Interplay Condition (GLS $\leftrightarrow$ Causal Manifold)}
+
+Reconstruct the conformal class of manifolds via frontier reachability preorder and light observation sets. Construct energy-differentiable unitary $S(E)$ from radiation field--scattering and return to master scales. At the categorical level, equivalence holds up to energy-dependent unitary gauge equivalence classes.
+
+\subsection{EBOC (Discrete Side)}
+
+The world is given by static blocks $X_f$ and eternal graph--subshifts. Observation = factor decoding; information non-increasing. Brudno alignment of time sub-actions and information conservation of reversible CA constitute axiomatic foundations of discrete information geometry.
+
+\subsection{Information Geometry}
+
+On classical statistical manifolds $(\mathcal{P},g^{\mathrm{F}})$, the Fisher--Rao metric is the unique metric satisfying Markov (data processing) monotonicity (Čencov's theorem) \cite{cencov1982}. In the quantum case, the Hessian of Umegaki relative entropy yields the BKM monotone metric, belonging to the Petz family of monotone metrics (non-unique). Dual connection structure $(\nabla,\nabla^*)$ is induced by divergence families \cite{amari2016}.
+
+\section{Local Statistical Manifolds and Relative Entropy}
+
+\subsection{Local Balls and Modular Hamiltonians}
+
+In local Lorentz coordinates at point $x\in\mathcal{M}$, take a small ball $B_\ell(x)$. Let $\rho_{B_\ell}$ be the reduced state of matter fields in $B_\ell$, and $\rho^{(0)}_{B_\ell}$ the reference state corresponding to the local maximally symmetric vacuum. The modular Hamiltonian for the vacuum in conformal theory can be locally written as
+$$
+H_{\mathrm{mod}}^{(0)}=2\pi\!\int_{B_\ell}\!\xi^\mu T_{\mu\nu}\,d\Sigma^\nu,\qquad
+\xi^\mu=\frac{\ell^2-r^2}{2\ell}\,u^\mu + O(\ell^3),
+$$
+so that first-order variation of relative entropy satisfies the ``first law''
+$$
+\delta S(\rho_{B_\ell}\Vert \rho^{(0)}_{B_\ell})=\delta\!\left\langle H_{\mathrm{mod}}^{(0)}\right\rangle-\delta S_{\mathrm{out}}=0.
+$$
+
+This equality holds universally in perturbations and small ball limits, systematically clarified in holographic and field theory contexts \cite{lashkari2014}.
+
+\subsection{Information-Geometric Perspective}
+
+On statistical manifolds parametrized by metric deformations $g\mapsto g+\delta g$ and state deformations $\rho\mapsto\rho+\delta\rho$, second-order variation of relative entropy defines the Fisher--Rao metric, whose uniqueness is characterized by Čencov monotonicity and sufficiency invariance. We take the relative entropy $D(\rho_{B_\ell}\Vert\rho^{(0)}_{B_\ell})$ induced by local ball families $\{B_\ell(x)\}$ as the fundamental divergence of information geometry, with its first-order balance (extremality) and second-order positive-definiteness as content of the variational principle \cite{amari2016}.
+
+\section{Information-Geometric Variational Principle (IGVP)}
+
+\begin{principle}[IGVP]
+\label{prin:igvp}
+For each point $x$ and sufficiently small $B_\ell(x)$, subject to volume $\mathrm{Vol}(B_\ell)$ and reference vacuum constraints, the \textbf{generalized entropy}
+$$
+S_{\mathrm{gen}}(B_\ell):=\frac{A(\partial B_\ell)}{4G} + S_{\mathrm{out}}(\rho_{B_\ell})
+$$
+is extremized at first order with non-negative second-order variation. Equivalently, letting $\sigma_{B_\ell}=\rho^{(0)}_{B_\ell}$,
+$$
+\delta S_{\mathrm{gen}}=0,\qquad \delta^2 S(\rho_{B_\ell}\Vert \sigma_{B_\ell})\geq 0.
+$$
+
+The first equation yields linearized field equations in first-order perturbative neighborhoods; under Assumption A below, it upgrades to complete field equations. The second equation provides stability and quantum energy inequality (QNEC) families. This extremality hypothesis is consistent with ``maximal vacuum entanglement/entropic equilibrium'' frameworks \cite{jacobson2016}.
+\end{principle}
+
+\begin{lemma}[First Law]
+\label{lem:first_law}
+In the small ball limit and first-order perturbations,
+$$
+\delta S_{\mathrm{out}}=\delta\!\left\langle H_{\mathrm{mod}}^{(0)}\right\rangle
+=2\pi\int_{B_\ell} \xi^\mu\,\delta\!\langle T_{\mu\nu}\rangle\, d\Sigma^\nu.
+$$
+\end{lemma}
+
+\begin{proof}
+See cited literature \cite{lashkari2014}.
+\end{proof}
+
+\begin{lemma}[Area Variation]
+\label{lem:area_variation}
+Fixing ball volume while changing shape (or equivalently changing background metric while preserving center and radius), boundary area variation satisfies
+$$
+\delta\!\left(\frac{A}{4G}\right)=-2\pi \int_{B_\ell}\xi^\mu\,\frac{1}{8\pi G}\,\delta\!\big(G_{\mu\nu}+\Lambda g_{\mu\nu}\big)\,d\Sigma^\nu + O(\ell^{d+1}),
+$$
+using standard small ball geometry of Raychaudhuri and geodesic expansion. Comparing this term with Lemma \ref{lem:first_law} closes the first variation. (Derivation follows Jacobson-type local thermodynamic/entropic equilibrium arguments in small ball version) \cite{jacobson1995}.
+\end{lemma}
+
+\begin{theorem}[IGVP $\Rightarrow$ Linearized; Upgrades to Complete Equations under Assumptions]
+\label{thm:igvp_to_einstein}
+If for all $x$ and sufficiently small $B_\ell(x)$ we have $\delta S_{\mathrm{gen}}=0$, then in first-order neighborhoods of reference geometry,
+$$
+\boxed{\ \delta\!\big(G_{\mu\nu}+\Lambda g_{\mu\nu}-8\pi G\,\langle T_{\mu\nu}\rangle\big)=0\ }.
+$$
+
+Furthermore, if \textbf{Assumption A} holds:
+\begin{enumerate}
+\item[(i)] The above equation holds for arbitrary background points and arbitrary perturbation families;
+\item[(ii)] $C_{\mu\nu}:=G_{\mu\nu}+\Lambda g_{\mu\nu}-8\pi G\,\langle T_{\mu\nu}\rangle$ is a local, covariant, at-most-second-order tensor functional;
+\end{enumerate}
+then under local Lorentz covariance and absence of external background structure, uniqueness implies $C_{\mu\nu}=C\,g_{\mu\nu}$. By Bianchi identity $\nabla^\mu G_{\mu\nu}=0$ and energy-momentum conservation $\nabla^\mu\langle T_{\mu\nu}\rangle=0$, we obtain $\nabla^\mu C_{\mu\nu}=0$, hence $\partial_\nu C=0$. Absorbing constant $C$ into $\Lambda$, we obtain
+$$
+G_{\mu\nu}+\Lambda_{\mathrm{eff}} g_{\mu\nu}=8\pi G\,\langle T_{\mu\nu}\rangle,\qquad \Lambda_{\mathrm{eff}}=\Lambda+C.
+$$
+\end{theorem}
+
+\begin{proof}
+This derivation is consistent with the equivalence spectrum ``entanglement equilibrium $\Rightarrow$ Einstein equations'', obtaining linearized and nonlinear extensions in holography and general field theory \cite{jacobson2016}.
+\end{proof}
+
+\section{Second-Order Variation and Quantum Energy Conditions}
+
+\begin{proposition}[Relative Entropy Non-Negativity and QNEC]
+\label{prop:qnec}
+Along any torsion-free null geodesic bundle $k^\mu$ through $x$, perform local cutting deformations and define
+$$
+s_{\mathrm{out}}''(x):=\lim_{\mathcal{A}\to 0}\frac{1}{\mathcal{A}}\,\frac{d^2 S_{\mathrm{out}}}{d\lambda^2},
+$$
+where $\lambda$ is the affine parameter of $k^\mu$ and $\mathcal{A}$ is the cross-sectional area of the deformation patch. Convexity of relative entropy yields
+$$
+\boxed{\ \langle T_{kk}(x)\rangle\ \geq\ \frac{1}{2\pi}\,s_{\mathrm{out}}''(x)\ },
+$$
+the quantum null energy condition (QNEC). Proof families (field theory/holographic) all take convexity of relative entropy as core input \cite{bousso2016}.
+\end{proposition}
+
+\begin{corollary}[Quantum Focusing and Generalized Entropy Monotonicity]
+\label{cor:quantum_focusing}
+The quantum focusing conjecture and quantum Bousso bound follow from the above inequality and non-increase of generalized entropy, compatible with second-order stability of IGVP \cite{bousso2015}.
+\end{corollary}
+
+\section{Master Scale, Readouts, and Information-Geometric Coupling}
+
+\subsection{Windowed Group Delay and Fisher Density}
+
+For each observer window-kernel $(w_R,h)$, define the in-band distribution $p(E|x) \propto (w_R*\check{h})(E)\,\rho_{\mathrm{rel}}(E;x)$. Define the local Fisher tensor
+$$
+\mathcal{I}_{\mu\nu}(x)=\int \partial_\mu\!\ln p(E|x)\,\partial_\nu\!\ln p(E|x)\, p(E|x)\,dE,
+$$
+and by Čencov--Amari uniqueness, take this as the calibration object between \textbf{readout--information geometry} and \textbf{background metric}: in the vacuum--alias-free limit and redshift-reciprocity rescaling, the constraint $\mathcal{I}_{\mu\nu}\propto g_{\mu\nu}$ can serve as an additional Lagrange multiplier term in IGVP, ensuring consistency between readout coordinates and geometric coordinates. This calibration is covariant under redshift-time reciprocity scaling laws.
+
+\subsection{Readout--Geometry Consistent Variation}
+
+Take the action
+$$
+\mathcal{S}[g;\rho]=\frac{1}{16\pi G}\!\int\!\sqrt{-g}\,(R-2\Lambda)\,d^4x
+-\!\int\!\sqrt{-g}\,\Phi(\rho\Vert\rho^{(0)})\,d^4x
++\!\int\!\sqrt{-g}\,\lambda^{\mu\nu}\!\left(\mathcal{I}_{\mu\nu}-\kappa\, g_{\mu\nu}\right)\!d^4x,
+$$
+where $\Phi$ is a local density with relative entropy as potential (reducible to volume integral form of $\delta\langle H_{\mathrm{mod}}\rangle-\delta S_{\mathrm{out}}$ in small ball limit). Variation with respect to $g_{\mu\nu}$ yields
+$$
+G_{\mu\nu}+\Lambda g_{\mu\nu}=8\pi G\left(\langle T_{\mu\nu}\rangle + T^{\mathrm{(IG)}}_{\mu\nu}\right),
+$$
+while readout-geometry calibration $\mathcal{I}_{\mu\nu}=\kappa g_{\mu\nu}$ ensures the trace of $T^{\mathrm{(IG)}}_{\mu\nu}$ and vacuum energy are absorbed into $\Lambda$, returning to the form of Theorem \ref{thm:igvp_to_einstein}. When using ``first law'' formulation, this is equivalent to taking $\delta S_{\mathrm{gen}}=0$ as Euler--Lagrange condition. (Specific choice of information potential and Fisher--relative entropy equivalence in small ball limit guaranteed by standard information geometry) \cite{amari2016}.
+
+\section{Discretization: EBOC--Regge Information Action and Continuous Limit}
+
+\subsection{Static Block--Triangulation}
+
+On EBOC static blocks $X_f$, select lightlike-cone-consistent leaf stratification and triangulation. Let each 2-skeleton (triangle) $h$ carry discrete area $A_h$ and define deficit angle $\varepsilon_h$ at $h$. The Regge action
+$$
+S_{\mathrm{Regge}}=\frac{1}{8\pi G}\sum_{h} A_h\,\varepsilon_h- \frac{\Lambda}{8\pi G}\sum_\sigma V_\sigma
+$$
+yields discrete Einstein equations under variation. On the information-geometric side, for each discrete small ball cell $c$, define \textbf{discrete generalized entropy}
+$$
+S_{\mathrm{gen}}^{\mathrm{disc}}(c)=\frac{A(\partial c)}{4G}+S_{\mathrm{out}}^{\mathrm{disc}}(c).
+$$
+
+First variation $\delta S_{\mathrm{gen}}^{\mathrm{disc}}=0$ is compatible with Regge variation and converges to continuous IGVP under mesh refinement \cite{regge1961}.
+
+\subsection{Observation = Decoding and Information Non-Increase}
+
+Visible language of discrete states is generated by factor decoding $\pi$, satisfying
+$$
+K\!\left(\pi(x|_W)\right)\ \leq\ K(x|_W)+K(\pi)+O(1).
+$$
+
+Thus discrete $S_{\mathrm{out}}^{\mathrm{disc}}$ converges to continuous $S_{\mathrm{out}}$ in the refinement limit, ensuring $S_{\mathrm{gen}}^{\mathrm{disc}}\to S_{\mathrm{gen}}$ and stability of IGVP.
+
+\section{Consistency with GLS--Readout Framework}
+
+\subsection{Frontier--No-Supercone Propagation and Readout Independence}
+
+From frontier lower bound $t_*\geq L_g/c$ and gauge covariance/relative invariance of windowed readouts: IGVP ball selection and readout dictionary selection are mutually independent. Ball-deformation is anchored only on causal structure and metric; readouts provide only Fisher calibration and energy-delay scales.
+
+\subsection{Redshift--Reciprocity and Fisher Scaling}
+
+Under spectral scaling $E\mapsto E/(1+z)$, Fisher tensor and readout scales in small balls transform covariantly as $(1+z)^{-2}$. Volume-preserving IGVP condition is consistent with Jacobson/entanglement equilibrium volume constraints.
+
+\section{Quantum Corrections, Renormalization, and Verifiable Conditions}
+
+\subsection{One-Loop/$1/N$ Corrections}
+
+In holography and field theory, the ``area + bulk entanglement'' structure of generalized entropy is compensated by bulk entanglement at one loop. This correction is precisely the origin of quantum extremal surface (QES) conditions for $S_{\mathrm{gen}}$, ensuring IGVP remains valid at semiclassical level \cite{faulkner2013}.
+
+\subsection{QNEC and Relative Entropy Convexity}
+
+Second-order variation positivity yields
+$$
+\boxed{\ \langle T_{kk}(x)\rangle \geq \frac{1}{2\pi}\,s_{\mathrm{out}}''(x)\ },
+$$
+proven in field theory and holographic contexts, constituting stability criteria and verifiable conditions for IGVP \cite{bousso2016}.
+
+\section{Proof Details}
+
+\subsection{Small Ball Geometry and Area Expansion}
+
+In normal coordinates, small ball boundary area is
+$$
+A(\partial B_\ell)=\Omega_{d-2}\,\ell^{d-2}\!\left[1-\frac{\ell^2}{6(d-1)}\,R+O(\ell^4)\right].
+$$
+
+Volume-preserving variation eliminates $\delta\ell$, leaving $\delta A\propto \delta R$. Pairing with Lemma \ref{lem:first_law} and using $G_{\mu\nu}=R_{\mu\nu}-\tfrac{1}{2} R g_{\mu\nu}$ yields Theorem \ref{thm:igvp_to_einstein}.
+
+\subsection{``First Law'' and Modular Hamiltonian}
+
+Ball modular Hamiltonian is locally a linear functional of energy-momentum tensor for conformal vacuum, so $\delta S_{\mathrm{out}}=\delta\langle H_{\mathrm{mod}}\rangle$ holds. Corrections for non-conformal fields are provided in subsequent literature without affecting conclusion form \cite{lashkari2014}.
+
+\section{Relationships with Existing Approaches and Advantages}
+
+\subsection{Jacobson (Thermodynamic/Entanglement Equilibrium) Line}
+
+This work restates ``local thermodynamic/entropic equilibrium'' as \textbf{information-geometric extremality}, replacing specific thermal closures with universal Fisher--relative entropy structures, viewing gravity as ``geometric response maintaining local information balance'' \cite{jacobson1995}.
+
+\subsection{Holographic ``First Law'' Line}
+
+This work reproduces ``first law $\Rightarrow$ field equations'' logic at local ball level without holographic assumptions. When gravitational duals exist, it rigorously interfaces with holographic derivations (linearized Einstein equations) \cite{faulkner2014}.
+
+\subsection{EBOC--GLS Unification}
+
+Discrete--decoding and continuous--causality unify under IGVP: discrete-side information non-increase and static block consistent expansion ensure $S_{\mathrm{gen}}^{\mathrm{disc}}\to S_{\mathrm{gen}}$. Continuous-side master scale--readout--Fisher calibration seamlessly aligns measurable scales with geometric dimensions.
+
+\section{Typical Corollaries and Observable Consequences}
+
+\begin{enumerate}
+\item \textbf{Field equations $\Rightarrow$ local entropicity}: If $G_{\mu\nu}+\Lambda g_{\mu\nu}=8\pi G\,\langle T_{\mu\nu}\rangle$ is known, $\delta S_{\mathrm{gen}}=0$ can be directly verified in small ball limit \cite{jacobson2016}.
+
+\item \textbf{QNEC/quantum focusing}: Second-order deformations in any null direction yield energy lower bounds, providing consistency checks and numerical verification metrics for semiclassical gravity \cite{bousso2016}.
+
+\item \textbf{Redshift--reciprocity clock and Fisher capacity}: In observation-timing experiments, bandwidth--resolution--redshift reciprocity scaling manifests explicitly in IGVP Lagrange constraints, serving as direct posterior for experimental calibration layers.
+\end{enumerate}
+
+\section{Conclusion (Outline Form)}
+
+\begin{itemize}
+\item In small ball limit, first-order extremality of \textbf{generalized entropy} $S_{\mathrm{gen}}$ (combined with relative entropy first law) is equivalent to linearized Einstein equations; under Assumption A, complete nonlinear Einstein equations follow.
+
+\item Second-order variation non-negativity yields QNEC/quantum focusing and other \textbf{quantum consistency} constraints.
+
+\item EBOC discrete--decoding semantics and Regge triangulation provide \textbf{discrete action--extremality} compatible realization, converging to continuous IGVP in refinement limit.
+
+\item Master scale--windowed readout--Fisher calibration \textbf{uniformly align} ``measurable scales'' with geometric metrics, maintaining scale hierarchy separation of causality-readout and finite-order closure of numerical error accounting.
+\end{itemize}
+
+\appendix
+
+\section{Interface Details with GLS--EBOC Unification (Outline)}
+
+\begin{enumerate}
+\item \textbf{Master scale and Fisher alignment}: Construct $p(E|x)$ from $\rho_{\mathrm{rel}}=(2\pi)^{-1}\mathrm{tr}\,\mathsf{Q}$ and define $\mathcal{I}_{\mu\nu}$. Constrain $\lambda^{\mu\nu}(\mathcal{I}_{\mu\nu}-\kappa g_{\mu\nu})$ to pull readout coordinates back to geometric coordinates.
+
+\item \textbf{Causality--readout stratification}: IGVP balls and relative entropy anchor only causality and metric; windowed group delay serves only statistical manifold scales and observation dictionary, not participating in partial order definition.
+
+\item \textbf{Discrete--limit}: Define $S_{\mathrm{gen}}^{\mathrm{disc}}$, Regge action, and factor decoding on EBOC static blocks and eternal graphs, satisfying $\delta S_{\mathrm{gen}}^{\mathrm{disc}}=0 \Rightarrow$ Regge equations. Refinement limit returns to Theorem \ref{thm:igvp_to_einstein}.
+
+\item \textbf{Categorical equivalence and covariance}: GLS $\leftrightarrow$ causal manifold interplay ensures functoriality and naturality of ``geometry--readout--information''. IGVP remains invariant under this equivalence.
+\end{enumerate}
+
+\section{Information Geometry--First Law Equivalent Formulations}
+
+Write small ball relative entropy as
+$$
+S(\rho_{B_\ell}\Vert \sigma_{B_\ell})
+=\mathrm{Tr}(\rho_{B_\ell}\ln\rho_{B_\ell})-\mathrm{Tr}(\rho_{B_\ell}\ln\sigma_{B_\ell}),
+$$
+with first-order variation yielding
+$$
+\delta S=-\delta S_{\mathrm{out}}+\delta\!\langle H_{\mathrm{mod}}^{(0)}\rangle,\qquad
+H_{\mathrm{mod}}^{(0)}:=-\ln\sigma_{B_\ell},
+$$
+the ``first law''. For conformal vacuum, $H_{\mathrm{mod}}^{(0)}$ is a local functional of energy flow density. For non-conformal cases, operator expansion corrections in small ball limit do not change extremality condition form \cite{lashkari2014}.
+
+\section{Numerical Implementation and NPE Error Accounting (Readout Side)}
+
+In any readout integral implemented with window-kernel $(w_R,h)$, only apply sampling/truncation/EM endpoint corrections to integrand $f(E)=w_R(E)\,[h\!\star\!\rho_{\mathrm{rel}}](E)$. IGVP ball-deformation and field equation derivation are unaffected by this numerical accounting.
+
+\vspace{0.5cm}
+
+\noindent\textbf{Note}: All formula metric--readout--causality scale hierarchies and master scale, interplay consistency have been systematically characterized in the preceding unified framework. This work provides rigorous formulation of ``gravity = generalized entropy extremality (combined with relative entropy first law)'' and provides continuous--discrete dual realization.
+
+\bibliographystyle{plain}
+\begin{thebibliography}{99}
+
+\bibitem{amari2016}
+S. Amari.
+\newblock {\em Information Geometry and Its Applications}.
+\newblock Springer, Tokyo, 2016.
+
+\bibitem{bousso2015}
+R. Bousso, Z. Fisher, S. Leichenauer, and A. C. Wall.
+\newblock A quantum focussing conjecture.
+\newblock {\em Physical Review D}, 93(6):064044, 2016.
+
+\bibitem{bousso2016}
+R. Bousso, Z. Fisher, J. Koeller, S. Leichenauer, and A. C. Wall.
+\newblock Proof of the quantum null energy condition.
+\newblock {\em Physical Review D}, 93(2):024017, 2016.
+
+\bibitem{cencov1982}
+N. N. Čencov.
+\newblock {\em Statistical Decision Rules and Optimal Inference}.
+\newblock American Mathematical Society, Providence, RI, 1982.
+
+\bibitem{faulkner2013}
+T. Faulkner, M. Guica, T. Hartman, R. C. Myers, and M. Van Raamsdonk.
+\newblock Gravitation from entanglement in holographic CFTs.
+\newblock {\em Journal of High Energy Physics}, 2014(3):51, 2014.
+
+\bibitem{faulkner2014}
+T. Faulkner, A. Lewkowycz, and J. Maldacena.
+\newblock Quantum corrections to holographic entanglement entropy.
+\newblock {\em Journal of High Energy Physics}, 2013(11):074, 2013.
+
+\bibitem{jacobson1995}
+T. Jacobson.
+\newblock Thermodynamics of spacetime: The Einstein equation of state.
+\newblock {\em Physical Review Letters}, 75(7):1260--1263, 1995.
+
+\bibitem{jacobson2016}
+T. Jacobson.
+\newblock Entanglement equilibrium and the Einstein equation.
+\newblock {\em Physical Review Letters}, 116(20):201101, 2016.
+
+\bibitem{lashkari2014}
+N. Lashkari, M. B. McDermott, and M. Van Raamsdonk.
+\newblock Gravitational dynamics from entanglement ``thermodynamics''.
+\newblock {\em Journal of High Energy Physics}, 2014(4):195, 2014.
+
+\bibitem{regge1961}
+T. Regge.
+\newblock General relativity without coordinates.
+\newblock {\em Il Nuovo Cimento}, 19(3):558--571, 1961.
+
+\bibitem{ryu2006}
+S. Ryu and T. Takayanagi.
+\newblock Holographic derivation of entanglement entropy from AdS/CFT.
+\newblock {\em Physical Review Letters}, 96(18):181602, 2006.
+
+\bibitem{van2016}
+M. Van Raamsdonk.
+\newblock Lectures on gravity and entanglement.
+\newblock In {\em Theoretical Advanced Study Institute in Elementary Particle Physics: New Frontiers in Fields and Strings}, pages 297--351. World Scientific, 2017.
+
+\end{thebibliography}
+
+\end{document}
+

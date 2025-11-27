@@ -1,0 +1,1162 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{assumption}{Assumption}
+
+% Operators
+\DeclareMathOperator{\tr}{tr}
+
+% Title information
+\title{Observer Properties and Consensus Geometry on Causal Networks:\\
+Unified Formalization of Local Partial Orders, Information States, and Update Operators}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\mailtitle
+
+\begin{abstract}
+In a worldview based on causal partial orders, any single observer possesses only a local fragment: partial events at finite resolution, partial causal relations, and partial information states on locally observable algebras. Multiple observers attempt to achieve ``consensus'' on the same universe causal network through communication and updates, thereby reconstructing a consistent world description. In the abstract causal network framework, this paper formalizes observers as multi-component objects equipped with geometric domains, local partial orders, resolution scales, observable algebras, boundary states, model families, state update operators, and utility functions, establishing a unified theory of ``consensus geometry.''
+
+At the geometric level, given a family of local causal fragments $\{(C_i,\prec_i)\}_{i\in I}$ covering event set $X$, if local partial orders satisfy \v{C}ech-type consistency conditions in overlapping regions, then there exists a unique global partial order $(X,\prec)$ as causal consensus extension; otherwise causal consensus exists at most at coarser resolution levels. Resolution is characterized by event partitions $P_i$ and observable algebras $\mathcal{A}_i$; the richness of common refinement $P_\ast$ and algebra intersection $\mathcal{A}_{\mathrm{com}}=\bigcap_i\mathcal{A}_i$ determines the fineness of achievable consensus.
+
+At the information and dynamical level, consider state families $\{\omega_i^{(t)}\}$ on common observable algebra $\mathcal{A}_{\mathrm{com}}$, communication channels $T_{ij}$, and weight matrix $W=(w_{ij})$. Based on Umegaki relative entropy
+
+$$
+D(\rho\|\sigma)=\tr\big(\rho(\log\rho-\log\sigma)\big)
+$$
+
+and its data processing inequality, we construct weighted total deviation function
+
+$$
+\Phi^{(t)}=\sum_{i\in I}\lambda_i D\big(\omega_i^{(t)}\|\omega_\ast\big),
+$$
+
+proving that when channels satisfy data processing inequality, communication graph is strongly connected, weight matrix is primitive, and common fixed point $\omega_\ast$ exists, $\Phi^{(t)}$ is a strictly monotone non-increasing Lyapunov function, making state iteration converge to unique state consensus $\omega_{\mathrm{cons}}=\omega_\ast$. This structure simultaneously encompasses classical average consensus algorithms and contractive flows on quantum channels.
+
+At the model level, viewing candidate causal dynamical models as elements of compact space $\mathcal{M}$, under appropriate identifiability and large deviation conditions, we prove that as observation data increases, the intersection of acceptable model sets $\mathcal{M}_i^{(T)}$ of each observer contracts with probability one to the unique true model $M^\ast$, achieving model consensus.
+
+The above geometric, informational, and model structures are unified into a ``consensus feasible region'' $\mathcal{O}_{\mathrm{cons}}$ in observer property space $\mathcal{O}$. This paper provides several necessary or sufficient conditions for causal consensus, state consensus, and model consensus, proposing a set of quantitative indicators including geometric overlap degree, resolution compatibility, algebra intersection dimension, relative entropy deviation, and communication graph connectivity, demonstrating how to systematically analyze ``how multiple observers weave the same causal world'' from the causal network perspective.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Causal network; Partial order; Observer; Resolution; Observable algebra; Relative entropy; Quantum channels; Distributed consensus; \v{C}ech consistency; Model selection
+
+\section{Introduction and Historical Context}
+
+In the mainstream picture of relativity and quantum field theory, spacetime causal structure can be abstracted as partial order $\prec$ on event set $M$, e.g., the causal set approach models Lorentzian spacetime as a locally finite partially ordered set $(M,\prec)$. Within this structure, a single observer collects local information along its worldline and forms a subjective model of the ``world'' at finite resolution and finite bandwidth. On the other hand, in distributed systems and multi-agent control, extensive work studies how multiple nodes achieve average consensus or consistent estimation under communication constraints through iterative updates.
+
+Although these two application contexts are vastly different, they share a common abstract core: multiple ``observers'' with local perspectives and local information states located on the same underlying causal structure, attempting to construct a consistent ``global description'' through communication and updates. In topology and sheaf theory, this problem appears in the form of ``can local data be glued into global objects,'' with rigorous tools being sheaf locality and gluing conditions, and \v{C}ech cohomology. In causal and structural learning frontiers, people are beginning to use partial orders and information geometry to characterize more general causal structures and their identifiable content.
+
+On the other hand, relative entropy and its monotonicity constitute an important cornerstone of quantum and classical information theory. The joint convexity and data processing inequality of Umegaki relative entropy play core roles in quantum channel analysis, thermodynamic inequalities, and information geometry. These results guarantee that under completely positive trace-preserving maps, distinguishability between states does not increase, naturally providing Lyapunov function candidates for ``state consensus'' convergence.
+
+Based on the above background, this work attempts to give general answers to the following questions at an abstract level:
+
+\begin{enumerate}
+\item How to uniformly describe the geometric, algebraic, and informational properties of ``observers'' in causal network language?
+\item Under what conditions can local partial orders be glued into a single global causal network, achieving causal consensus?
+\item Under what conditions can observer state iterations on common observable algebras converge to unified state consensus?
+\item Under what identifiability conditions will the intersection of observer model families almost surely contract to the unique true model as data accumulates, forming model consensus?
+\end{enumerate}
+
+In existing literature, reconstruction of causal structure mostly focuses on ``recovering topology and metric from global causal partial order,'' while distributed consensus mostly assumes underlying system dynamics is known. This paper starts from the opposite direction: assuming what is given is multiple observers' local causal fragments and information states, studying under what conditions a common causal network and consensus state can be recovered from this local data.
+
+The main contributions of this paper can be summarized as:
+
+\begin{itemize}
+\item Formalizing observer as multi-component structure
+
+$$
+O_i=(C_i,\prec_i,\Lambda_i,\mathcal{A}_i,\omega_i,\mathcal{M}_i,U_i,u_i,\{\mathcal{C}_{ij}\}_{j\in I}),
+$$
+
+separately characterizing geometric domain, local partial order, resolution, observable algebra, state, model family, update rule, utility function, and communication structure, thereby unifying abstract descriptions of physical observers and computational nodes.
+
+\item At the geometric and partial order level, giving sufficient conditions for local causal fragments $\{(C_i,\prec_i)\}$ to be glued into unique global partial order $(X,\prec)$, with core being coverage, finite overlap, and \v{C}ech-type consistency; and pointing out that if this condition breaks, strong-form causal consensus is unattainable.
+
+\item At the information level, constructing common observable algebra $\mathcal{A}_{\mathrm{com}}=\bigcap_i\mathcal{A}_i$ and state family $\{\omega_i^{(t)}\}$, proving that when channels are completely positive trace-preserving maps satisfying data processing inequality, communication graph is strongly connected, and common fixed point $\omega_\ast$ exists, weighted relative entropy
+
+$$
+\Phi^{(t)}=\sum_i\lambda_i D\big(\omega_i^{(t)}\|\omega_\ast\big)
+$$
+
+is a Lyapunov function, guaranteeing state consensus convergence. This structure simultaneously encompasses classical average consensus, distributed filtering, and quantum network symmetrization and steady state design.
+
+\item At the model level, giving identifiability assumptions based on large deviations and Kullback--Leibler divergence, proving that as observation time $T\to\infty$, the intersection of threshold-screened model sets $\mathcal{M}_i^{(T)}$ of each observer contracts with probability one to unique true model $M^\ast$.
+
+\item Abstracting the above conditions into a ``consensus feasible region'' $\mathcal{O}_{\mathrm{cons}}$ in observer property space $\mathcal{O}$, and demonstrating through several finite examples the mechanism of causal consensus failure and recovery of weak consensus through coarse-graining.
+\end{itemize}
+
+The subsequent structure is arranged as follows: first giving models and assumptions; then stating main theorems and their proof frameworks; then discussing several applications and engineering suggestions; finally summarizing and giving detailed proofs and examples in appendices.
+
+\section{Model and Assumptions}
+
+\subsection{Event Set and Local Causal Fragments}
+
+Let $X$ be the event set. We do not presuppose a global causal relation on $X$, but rather assume observations appear only in the form of local partial orders.
+
+\begin{definition}[Local Causal Fragment]
+A local causal fragment is a pair $(C,\prec_C)$, where $C\subseteq X$ is an event subset and $\prec_C$ is a partial order relation on $C$, i.e., satisfying for all $x,y,z\in C$:
+
+\begin{enumerate}
+\item Reflexivity: $x\preceq_C x$;
+\item Antisymmetry: if $x\preceq_C y, y\preceq_C x$ then $x=y$;
+\item Transitivity: if $x\preceq_C y, y\preceq_C z$ then $x\preceq_C z$.
+\end{enumerate}
+
+We customarily use $x\prec_C y$ to denote $x\preceq_C y$ and $x\neq y$.
+\end{definition}
+
+In a family of observers $\{O_i\}_{i\in I}$, each observer $O_i$ is associated with a local causal fragment $(C_i,\prec_i)$. Assume coverage condition
+
+$$
+\bigcup_{i\in I} C_i = X,
+$$
+
+meaning each event is accessed by at least some observer.
+
+To avoid pathological cases, we further assume finite overlap condition: for any $x\in X$, the set $\{i\in I: x\in C_i\}$ is finite.
+
+\subsection{Observer Property Vectors}
+
+\begin{definition}[Observer]
+Observer $O_i$ is the following multi-component object:
+
+$$
+O_i = \big(C_i,\ \prec_i,\ \Lambda_i,\ \mathcal{A}_i,\ \omega_i,\ \mathcal{M}_i,\ U_i,\ u_i,\ \{\mathcal{C}_{ij}\}_{j\in I}\big),
+$$
+
+where:
+
+\begin{enumerate}
+\item $C_i\subseteq X$: reachable causal domain, giving the set of events that observer can directly observe or influence.
+
+\item $\prec_i$: local causal partial order defined on $C_i$.
+
+\item $\Lambda_i$: resolution scale, can be viewed as coarse-graining map from ideal fine event space $X_{\mathrm{fine}}$ to $C_i$, or equivalently as a partition $P_i=\{B_{i,\alpha}\}_{\alpha\in I_i}$; higher resolution corresponds to finer partition.
+
+\item $\mathcal{A}_i$: observable algebra, typically a $C^\ast$ subalgebra of bounded operator algebra on some Hilbert space, containing measurable and controllable quantities.
+
+\item $\omega_i:\mathcal{A}_i\to\mathbb{C}$: state, a positive normalized linear functional, characterizing observer's belief on $\mathcal{A}_i$; in finite dimension corresponds to density matrix $\rho_i$.
+
+\item $\mathcal{M}_i\subseteq\mathcal{M}$: candidate model family, where $\mathcal{M}$ is compact space of causal dynamical models, e.g., causal Markov networks, Lagrangians, or transition kernels.
+
+\item $U_i$: state update operator
+
+$$
+U_i:\ (\omega_i,\ d)\mapsto \omega_i',
+$$
+
+mapping data $d$ and current state to new state; specialized to linear averaging form in consensus iteration below.
+
+\item $u_i$: utility function or preference function, defined on action space $\mathcal{H}$ or model space $\mathcal{M}$, used for decision-making.
+
+\item $\mathcal{C}_{ij}$: structural parameters of communication channel, describing bandwidth, latency, noise, trust weights, etc., from $O_j$ to $O_i$, inducing completely positive trace-preserving map $T_{ij}$ at information level.
+\end{enumerate}
+
+This paper mainly focuses on the impact of the first seven components and communication graph structure on consensus existence and convergence.
+\end{definition}
+
+\subsection{Communication Graph and Channel Model}
+
+Let $G_{\mathrm{comm}}=(I,E_{\mathrm{comm}})$ be the communication graph, with vertex set being observer indices $I$, and edge set
+
+$$
+E_{\mathrm{comm}}=\big\{\{i,j\}: \text{there exists at least one direction of nonzero bandwidth between } i,j\big\}.
+$$
+
+On common observable algebra, communication channels are represented by completely positive trace-preserving maps:
+
+\begin{assumption}[Communication Channels]
+\begin{enumerate}
+\item For each directed edge $j\to i$, there exists completely positive trace-preserving map (CPTP map) $T_{ij}:\mathcal{S}(\mathcal{A}_{\mathrm{com}})\to\mathcal{S}(\mathcal{A}_{\mathrm{com}})$, where $\mathcal{S}(\cdot)$ denotes state space; if no edge, then $T_{ij}$ is zero operator.
+
+\item There exists weight matrix $W=(w_{ij})_{i,j\in I}$ satisfying $w_{ij}\ge 0,\ \sum_j w_{ij}=1$, and $w_{ij}>0$ only when there exists $j\to i$ direction communication.
+\end{enumerate}
+\end{assumption}
+
+The common observable algebra is defined as
+
+$$
+\mathcal{A}_{\mathrm{com}}:=\bigcap_{i\in I}\mathcal{A}_i,
+$$
+
+assuming $\mathcal{A}_{\mathrm{com}}$ is nontrivial except scalar multiples of the identity element.
+
+\subsection{Models and Probabilistic Structure}
+
+Let observation data sequence $\mathcal{D}=(d^{(1)},\dots,d^{(T)})$ be generated under true model $M^\dagger\in\mathcal{M}$. Each observer $O_i$ has likelihood function $L_i(M;\mathcal{D})$ or posterior density $\pi_i(M\mid\mathcal{D})$. The acceptable model set after threshold screening is defined as
+
+$$
+\mathcal{M}_i^{(T)}:=\big\{M\in\mathcal{M}_i:\ L_i(M;\mathcal{D})\ge \epsilon_i(T)\big\},
+$$
+
+where threshold $\epsilon_i(T)$ varies with data volume.
+
+In model consensus discussion we adopt the following identifiability and consistency assumptions, with specific statements in theorems later.
+
+\section{Main Results: Theorems and Alignments}
+
+This section presents the main theorems and structural conclusions of this paper. Proof details are concentrated in subsequent Proofs section and appendices.
+
+\subsection{Causal Consensus: Gluing Theorem for Local Partial Orders}
+
+First we give the definition of strong-form causal consensus.
+
+\begin{definition}[Causal Consensus]
+The observer family $\{O_i\}_{i\in I}$ achieves causal consensus if there exists partially ordered set $(X,\prec)$ and injective maps
+
+$$
+e_i: C_i\hookrightarrow X
+$$
+
+satisfying:
+
+\begin{enumerate}
+\item For any $x,y\in C_i$,
+
+$$
+x\prec_i y\iff e_i(x)\prec e_i(y).
+$$
+
+\item For any $x\in C_i\cap C_j$, we have $e_i(x)=e_j(x)$.
+\end{enumerate}
+
+In this case, $(X,\prec)$ is called the causal consensus extension of local causal fragments.
+\end{definition}
+
+Consistency of local partial orders in overlapping regions is characterized by \v{C}ech-type conditions.
+
+\begin{definition}[\v{C}ech-type Consistency]
+For any finite subset $J\subseteq I$, denote
+
+$$
+C_J:=\bigcap_{j\in J}C_j.
+$$
+
+If there exists partial order $\prec_J$ defined on $C_J$ such that for all $j\in J$ and $x,y\in C_J$,
+
+$$
+x\prec_J y\iff x\prec_j y,
+$$
+
+then the local partial order family $\{\prec_i\}$ is consistent on $C_J$. If this holds for all finite $J$, the family $\{\prec_i\}$ satisfies \v{C}ech-type consistency.
+\end{definition}
+
+Under coverage and finite overlap, we have the following gluing theorem.
+
+\begin{theorem}[Causal Network Gluing Theorem]
+\label{thm:gluing}
+Let $\{(C_i,\prec_i)\}_{i\in I}$ be a family of local causal fragments on $X$ satisfying:
+
+\begin{enumerate}
+\item Coverage: $\bigcup_i C_i = X$;
+\item Finite overlap: for any $x\in X$, the set $\{i: x\in C_i\}$ is finite;
+\item \v{C}ech-type consistency: as in Definition~2.2.
+\end{enumerate}
+
+Then there exists unique partial order $\prec$ such that:
+
+\begin{enumerate}
+\item $(X,\prec)$ is a partially ordered set;
+\item For each $i$, the restriction of $\prec$ to $C_i$ equals $\prec_i$.
+\end{enumerate}
+
+In other words, $(X,\prec)$ is a causal consensus extension, unique up to isomorphism.
+\end{theorem}
+
+This theorem shows: the key to strong-form causal consensus existence is that the cover formed by local causal fragments satisfies \v{C}ech-type consistency. Otherwise, strong consensus is unattainable; weak consensus can only be discussed at coarser resolution levels.
+
+\subsection{Resolution, Common Refinement, and Consensus Limit}
+
+Resolution structure is characterized by event partitions.
+
+\begin{definition}[Partition and Common Refinement]
+Let $X_{\mathrm{fine}}$ be the ideal fine event set. In a family of partitions $\{P_i\}_{i\in I}$, each
+
+$$
+P_i=\{B_{i,\alpha}\}_{\alpha}
+$$
+
+is a partition of $X_{\mathrm{fine}}$. If there exists partition $P_\ast$ such that for each $i$, $P_i$ is a coarsening of $P_\ast$, i.e., for any $B\in P_i$ there exists $B'\in P_\ast$ with $B\subseteq B'$, then $P_\ast$ is called a common refinement.
+\end{definition}
+
+Common refinement existence can be described by equivalence relations. Partition $P_i$ corresponds to equivalence relation
+
+$$
+x\sim_i y\iff \exists B\in P_i: x,y\in B.
+$$
+
+Common refinement exists if and only if the intersection relation
+
+$$
+R:=\bigcap_i \sim_i
+$$
+
+is an equivalence relation.
+
+In finite cases, the condition for common refinement existence can be restated as ``no interlaced block conflicts,'' with specific statements in Appendix~B.
+
+The limit structure of resolution consensus is the quotient space after events are compressed by equivalence classes of $R$. Higher resolution and finer common refinement enable richer causal structures that consensus can distinguish.
+
+\subsection{Observable Algebra Intersection and State Consensus}
+
+The common observable algebra is defined as
+
+$$
+\mathcal{A}_{\mathrm{com}}:=\bigcap_{i\in I}\mathcal{A}_i.
+$$
+
+Assume $\mathcal{A}_{\mathrm{com}}$ is nontrivial except scalar multiples of the identity element.
+
+Let $\omega_i^{(t)}\in\mathcal{S}(\mathcal{A}_{\mathrm{com}})$ be observer $O_i$'s state estimate on common algebra at time $t$, with update rule being linear averaging type
+
+$$
+\omega_i^{(t+1)}=\sum_{j\in I}w_{ij}T_{ij}\big(\omega_j^{(t)}\big),
+$$
+
+where $T_{ij}$ are CPTP maps and $W=(w_{ij})$ is row stochastic matrix.
+
+Relative entropy takes Umegaki form: in finite dimension, if $\omega=\omega_\rho,\ \omega'=\omega_\sigma$ correspond to density matrices $\rho,\sigma$, then
+
+$$
+D(\omega\|\omega'):=D(\rho\|\sigma)
+=\tr\big(\rho(\log\rho-\log\sigma)\big).
+$$
+
+\begin{proposition}[Single-step Contraction of Relative Entropy]
+\label{prop:contraction}
+Let $\omega_\ast\in\mathcal{S}(\mathcal{A}_{\mathrm{com}})$ be some fixed state. Assume:
+
+\begin{enumerate}
+\item Each $T_{ij}$ satisfies data processing inequality, i.e., for all states $\omega,\omega'$,
+
+$$
+D\big(T_{ij}(\omega)\|T_{ij}(\omega')\big)\le D(\omega\|\omega');
+$$
+
+\item Weight matrix $W$ is row stochastic, and there exists weight $\lambda_i>0$ satisfying $\sum_i\lambda_i=1$ and $\lambda^\top W=\lambda^\top$.
+\end{enumerate}
+
+Define total deviation function
+
+$$
+\Phi^{(t)}:=\sum_{i\in I}\lambda_i D\big(\omega_i^{(t)}\|\omega_\ast\big).
+$$
+
+Then for any $t$,
+
+$$
+\Phi^{(t+1)}\le \Phi^{(t)}.
+$$
+\end{proposition}
+
+This proposition shows: under natural weighting conditions, relative entropy is monotone non-increasing under consensus iteration, providing Lyapunov function candidate for consensus convergence.
+
+If we further assume common fixed point exists and communication graph has sufficient mixing, we obtain state consensus convergence theorem.
+
+\begin{assumption}[Common Fixed Point and Primitivity]
+\label{assump:fixed}
+\begin{enumerate}
+\item Communication graph $G_{\mathrm{comm}}$ is strongly connected.
+\item Weight matrix $W$ is primitive, i.e., there exists $k\in\mathbb{N}$ such that $W^k$ has all positive elements.
+\item There exists state $\omega_\ast\in\mathcal{S}(\mathcal{A}_{\mathrm{com}})$ satisfying for all $i,j$
+
+$$
+T_{ij}(\omega_\ast)=\omega_\ast.
+$$
+\end{enumerate}
+\end{assumption}
+
+\begin{theorem}[Convergence of State Consensus]
+\label{thm:state}
+Under Assumption~\ref{assump:fixed}, for any initial state family $\{\omega_i^{(0)}\}_{i\in I}$, the iteration
+
+$$
+\omega_i^{(t+1)}=\sum_j w_{ij}T_{ij}(\omega_j^{(t)})
+$$
+
+converges to unified state $\omega_\ast$, i.e.,
+
+$$
+\lim_{t\to\infty}\omega_i^{(t)}=\omega_\ast,\quad\forall i\in I.
+$$
+\end{theorem}
+
+In the classical case, the above result reduces to standard conclusions of linear average consensus; in the quantum case, it corresponds to a class of quantum Markov chains with common fixed point converging to unique steady state.
+
+\subsection{Model Consensus and Almost Sure Identification of True Model}
+
+Let model space $\mathcal{M}$ be a compact metric space, with true model $M^\dagger\in\mathcal{M}$. For each $M\in\mathcal{M}$, denote $P_M$ as its induced data distribution.
+
+\begin{assumption}[Identifiability and Large Deviations]
+\label{assump:ident}
+\begin{enumerate}
+\item There exists unique $M^\ast\in\mathcal{M}$ such that for any $M\neq M^\ast$, KL divergence satisfies
+
+$$
+D\big(P_{M^\ast}\|P_{M}\big)>0.
+$$
+
+\item For each observer $i$, threshold $\epsilon_i(T)$ can be chosen as function of data length $T$ such that under true model $M^\ast$, as $T\to\infty$
+
+$$
+\mathbb{P}_{M^\ast}\big(M^\ast\in\mathcal{M}_i^{(T)}\big)\to 1,\qquad
+\mathbb{P}_{M^\ast}\big(\exists M\neq M^\ast,\ M\in\mathcal{M}_i^{(T)}\big)\to 0.
+$$
+\end{enumerate}
+
+This condition can be verified through law of large numbers and Sanov-type large deviation results.
+\end{assumption}
+
+\begin{theorem}[Almost Sure Contraction of Model Consensus]
+\label{thm:model}
+Under Assumption~\ref{assump:ident}, for any $\delta>0$, there exists $T_0$ such that when $T\ge T_0$,
+
+$$
+\mathbb{P}_{M^\ast}\Big(\bigcap_{i\in I}\mathcal{M}_i^{(T)}=\{M^\ast\}\Big)\ge 1-\delta.
+$$
+
+In other words, as observation time tends to infinity, the intersection of acceptable model sets of all observers contracts with probability one to unique true model $M^\ast$, achieving strong-form model consensus.
+\end{theorem}
+
+\subsection{Consensus Geometry and Indicator System}
+
+Synthesizing the above results, in observer property space
+
+$$
+\mathcal{O} := \prod_{i\in I}\Big(\mathcal{P}(X)\times\mathsf{Posets}\times\mathsf{Res}\times\mathsf{Alg}\times\mathcal{S}\times\mathsf{Models}\times\mathsf{Updates}\Big)\times\mathsf{Comm},
+$$
+
+define subset $\mathcal{O}_{\mathrm{cons}}\subseteq\mathcal{O}$ as all satisfying:
+
+\begin{enumerate}
+\item There exists causal consensus extension $(X,\prec)$;
+\item There exists state consensus $\omega_{\mathrm{cons}}$;
+\item There exists nonempty model consensus set $\mathcal{M}_{\mathrm{cons}}$ (single point in strong form).
+\end{enumerate}
+
+Call $\mathcal{O}_{\mathrm{cons}}$ the feasible region of consensus geometry.
+
+Based on this, introduce the following indicators:
+
+\begin{itemize}
+\item Geometric overlap degree:
+
+$$
+\theta_{ij}:=\frac{\mu(C_i\cap C_j)}{\mu(C_i\cup C_j)},
+$$
+
+where $\mu$ is counting measure or volume measure.
+
+\item Resolution compatibility degree: based on common refinement existence and complexity characterization of equivalence relation $R$.
+
+\item Algebra intersection dimension:
+
+$$
+d_{\mathrm{com}}:=\dim\mathcal{A}_{\mathrm{com}},
+$$
+
+and relative indicator
+
+$$
+\eta_{ij}:=\frac{\dim(\mathcal{A}_i\cap\mathcal{A}_j)}{\sqrt{\dim\mathcal{A}_i\,\dim\mathcal{A}_j}}.
+$$
+
+\item Information deviation: relative entropy-type deviation
+
+$$
+\Phi^{(t)}=\sum_i\lambda_i D\big(\omega_i^{(t)}\|\omega_{\mathrm{cons}}\big).
+$$
+
+\item Communication connectivity: characterized by strong connectivity of $G_{\mathrm{comm}}$ and primitivity of $W$.
+\end{itemize}
+
+These indicators together constitute geometric--informational description of $\mathcal{O}_{\mathrm{cons}}$, providing quantitative tools for analyzing ``consensus difficulty.''
+
+\section{Proofs}
+
+This section outlines proof ideas for main theorems, placing rigorous derivations and technical details in Appendices~A--D.
+
+\subsection{Proof Outline for Causal Network Gluing Theorem (Theorem~\ref{thm:gluing})}
+
+Define relation on $X$
+
+$$
+xRy\iff \exists i\in I:\ x,y\in C_i,\ x\prec_i y.
+$$
+
+\v{C}ech-type consistency guarantees: if $x,y$ are simultaneously in multiple $C_i$, causal judgments are consistent everywhere, so there will not be $x\prec_i y$ while at another $j$ having $y\prec_j x$ contradiction. This makes $R$ antisymmetric.
+
+Take transitive closure of $R$ to define $\prec$. Need to prove $\prec$ still has no nontrivial cycles. If there exists cycle $x_0\prec x_1\prec\cdots\prec x_n=x_0$, finite overlap property shows this cycle falls in union of finitely many $C_i$; for the unified partial order $\prec_J$ on intersection $C_J$ of these $i$, it must contain this cycle, hence appearing $x_0\prec_J x_0$ contradiction in $\prec_J$.
+
+Local consistency follows from this observation: if $x,y\in C_i$ and $x\prec_i y$, then clearly $x\prec y$; conversely, if $x,y\in C_i$ and $x\prec y$, then there exists finite chain
+
+$$
+x=x_0R x_1R\cdots R x_n=y.
+$$
+
+These relations come from several $C_{i_k}$; using \v{C}ech consistency we can contract chain to single-step partial order $x\prec_i y$ in $C_i$. Uniqueness comes from strong constraints of coverage and local consistency; see Appendix~A for details.
+
+\subsection{Conditions for Common Refinement Existence (Proposition~5.2)}
+
+Partitions and equivalence relations are in one-to-one correspondence; common refinement is equivalent to existence of equivalence relation $\sim_\ast$ contained in all $\sim_i$. Intersection relation
+
+$$
+R:=\bigcap_i \sim_i
+$$
+
+is always reflexive and symmetric; key is whether it is transitive. If not transitive, then there exist $xRy,yRz$ but $x\not R z$. This corresponds to existence of partition configuration where $x,y$ are in same block in some $P_i$, $(y,z)$ in same block in some $P_j$, $(z,x)$ in same block in some $P_k$, while in another partition $(x,z)$ are separated, forming ``interlaced block conflict.'' Conversely, if no such conflict exists, then any triple connected through finite chains is simultaneously identified by all $\sim_i$ as same equivalence class, hence $R$ is transitive. See Appendix~B for details.
+
+\subsection{Relative Entropy Lyapunov Property and State Consensus Convergence (Proposition~\ref{prop:contraction} and Theorem~\ref{thm:state})}
+
+For a single time step,
+
+$$
+\omega_i^{(t+1)}=\sum_j w_{ij}T_{ij}(\omega_j^{(t)}).
+$$
+
+Using joint convexity of relative entropy and data processing inequality,
+
+$$
+D\big(\omega_i^{(t+1)}\|\omega_\ast\big)
+\le \sum_j w_{ij}D\big(T_{ij}(\omega_j^{(t)})\|T_{ij}(\omega_\ast)\big)
+\le \sum_j w_{ij}D\big(\omega_j^{(t)}\|\omega_\ast\big).
+$$
+
+Summing over $i$ with $\lambda_i$ weights, under $\lambda^\top W=\lambda^\top$ condition we get $\Phi^{(t+1)}\le\Phi^{(t)}$.
+
+When common fixed point $\omega_\ast$ exists, $W$ is primitive, and communication graph is strongly connected, the overall iteration can be viewed as quantum channel $\mathcal{T}$ acting on tensor space, with unique fixed point being $\omega_\ast^{\otimes I}$. Combination of Lyapunov function monotonicity and primitivity guarantees all trajectories converge to this fixed point; see Appendix~C for details.
+
+\subsection{Probabilistic Argument for Model Consensus Contraction (Theorem~\ref{thm:model})}
+
+Under true model $M^\ast$, likelihood ratio
+
+$$
+\frac{1}{T}\log\frac{L_i(M^\ast;\mathcal{D})}{L_i(M;\mathcal{D})}
+$$
+
+almost surely converges to $D(P_{M^\ast}\|P_M)>0$. Therefore threshold $\epsilon_i(T)$ can be chosen such that exclusion probability of $M^\ast$ tends to zero, while retention probability of any $M\neq M^\ast$ tends to zero, achieving ``true model retained, false models eliminated'' with probability one. Taking conjunction of above events over finite observer family yields intersection single-point property; see Appendix~D for details.
+
+\section{Model Applications}
+
+This section gives three typed examples illustrating how the above theory is concretely instantiated in different contexts.
+
+\subsection{Consensus Failure and Coarse-graining Repair in Finite Causal Network}
+
+Consider finite event set $X=\{a,b,c\}$, three observers:
+
+\begin{itemize}
+\item $O_1$: $C_1=\{a,b\}$, $a\prec_1 b$;
+\item $O_2$: $C_2=\{b,c\}$, $b\prec_2 c$;
+\item $O_3$: $C_3=\{c,a\}$, $c\prec_3 a$.
+\end{itemize}
+
+Geometrically, $\{C_i\}$ covers $X$ and overlaps form ring structure. Partial orders within each overlap region are internally consistent, but overall combination forms cycle
+
+$$
+a\prec_1 b\prec_2 c\prec_3 a.
+$$
+
+If there exists global partial order $\prec$ embedding each local partial order, it must simultaneously satisfy
+
+$$
+a\prec b,\quad b\prec c,\quad c\prec a,
+$$
+
+contradicting antisymmetry of partial order. Therefore no strong-form causal consensus extension exists.
+
+If we allow introducing equivalence relation $\sim$ making $a\sim b\sim c$, then quotient set
+
+$$
+\tilde{X}:=X/\!\sim =\{\tilde{x}\}
+$$
+
+contains only single equivalence class. Then the only possible partial order is $\tilde{x}\preceq\tilde{x}$; in this extremely coarse perspective, all local partial orders degenerate to reflexive relations, and causal consensus holds at this level.
+
+This example shows:
+
+\begin{enumerate}
+\item Geometric connectivity is necessary but not sufficient for strong-form causal consensus;
+\item Consistency of local partial orders in overlapping regions is key to eliminating causal cycles;
+\item When strong consensus breaks, weak consensus can be recovered through event equivalence class compression, but at cost of losing detailed structure.
+\end{enumerate}
+
+This example provides a simple discrete model for ``causal cycles'' and ``resolution tradeoffs'' phenomena in more complex causal networks. See Appendix~E for details.
+
+\subsection{Local Observers in Relativistic Causal Sets}
+
+In the causal set approach, spacetime $(M,g)$ in general relativity is replaced by locally finite partial order $(C,\prec)$. Let $\{C_i\}$ be several local sub-causal sets, each corresponding to accessible event set of observer on different worldlines; $\prec_i$ is partial order determined by light cone on this subset. If spacetime satisfies appropriate global hyperbolicity and causal stability, one can construct cover satisfying \v{C}ech-type consistency, whose global glued partial order is isomorphic to original causal set. This shows that under appropriate geometric conditions, local causal fragments suffice to recover global causal network.
+
+In more realistic situations, different observers are affected by clock errors and measurement noise, their local partial orders only approximately satisfy \v{C}ech conditions. In this case, one can use ``approximate partial order'' and ``approximate consensus'' to extend this paper's framework, analyzing how much overlap degree and how strong connectivity are needed to recover macroscopic causal structure within error level.
+
+\subsection{State Consensus in Distributed Sensing and Quantum Networks}
+
+In distributed estimation and control, a common scenario is multiple sensor nodes observing same dynamical system and achieving average consensus or estimation consensus through communication. In this case:
+
+\begin{itemize}
+\item Event set $X$ is measurement timestamps and observation results;
+\item $C_i$ consists of node $i$'s timestamp subset and local observations;
+\item $\mathcal{A}_i$ is node local state space, $\omega_i$ is estimation distribution;
+\item $T_{ij}$ corresponds to transmission and aggregation operations in channel;
+\item $W$ corresponds to adjacency weights.
+\end{itemize}
+
+If communication graph is strongly connected and weight matrix is appropriately chosen, Theorem~\ref{thm:state} of this paper reproduces structural conditions for consensus convergence in classical average consensus and distributed Kalman filtering.
+
+In quantum networks, nodes are quantum systems, local states described by density matrices $\rho_i$, links are CPTP maps; through symmetrization and Lindblad dynamics design, network can be made to converge to consensus state with specific symmetry or steady state. The relative entropy Lyapunov structure and common fixed point condition given in this paper precisely provide abstract unified statement for this convergence.
+
+\section{Engineering Proposals}
+
+From engineering design perspective, consensus geometry theory provides several directly applicable principles for ``how to construct multi-observer system that necessarily converges to target consensus.''
+
+\begin{enumerate}
+\item \textbf{Coverage and Overlap Design}
+
+\begin{itemize}
+\item When designing observer reachable domains $C_i$, ensure coverage set is geometrically connected and avoid local partial order conflicts causing causal cycles as in Appendix~E.
+\item Event domains can be abstracted as graphs or manifolds; optimize observer domains similar to sensor coverage problems, making geometric overlap degree $\theta_{ij}$ reach given lower bound, thereby improving feasibility of causal consensus and state consensus.
+\end{itemize}
+
+\item \textbf{Resolution and Observable Algebra Configuration}
+
+\begin{itemize}
+\item To ensure nontrivial state consensus, maximize dimension $d_{\mathrm{com}}$ of common observable algebra $\mathcal{A}_{\mathrm{com}}$. In system design, this can be interpreted as: establish unified calibration and encoding format for key observables, making different nodes use compatible observation spaces for same physical quantity.
+\item Under cost constraints, ``resolution'' can be viewed as resource; optimize choice for event partition $P_i$ and common refinement $P_\ast$ existence.
+\end{itemize}
+
+\item \textbf{Communication Graph and Weight Matrix Selection}
+
+\begin{itemize}
+\item Communication graph $G_{\mathrm{comm}}$ should be strongly connected; in scenarios with high real-time requirements, further ensure it has small diameter.
+\item Weight matrix $W$ should be designed as primitive matrix, e.g., adopting doubly stochastic matrix or Metropolis--Hastings weights, to ensure unique Perron eigenvector exists and accelerate convergence.
+\end{itemize}
+
+\item \textbf{Channel and Common Fixed Point Engineering}
+
+\begin{itemize}
+\item In quantum or probabilistic channel design, ensure common fixed point $\omega_\ast$ exists through engineering means, e.g., in open quantum systems lock steady state through Lindbladian construction.
+\item In classical systems, this corresponds to introducing ``consensus prior'' or ``common calibration'' mechanism at algorithm level, making all update operators gradually attract state to same reference state when no new data.
+\end{itemize}
+
+\item \textbf{Model Screening and Threshold Strategy}
+
+\begin{itemize}
+\item To ensure almost sure contraction of model consensus, threshold $\epsilon_i(T)$ should increase appropriately as data volume grows, making retention probability of false models decay exponentially, while keeping retention probability of true model approaching one.
+\item In engineering, combined threshold strategy based on information criteria (e.g., AIC, BIC, or MDL) can be adopted, enabling each observer to run model screening locally and independently, yet still converge to consistent model in intersection.
+\end{itemize}
+\end{enumerate}
+
+These suggestions can directly serve as design guidance in self-organizing sensor networks, distributed AI model fusion, and data integration of multi-detector physics experiments.
+
+\section{Discussion: Risks, Boundaries, Past Work}
+
+The consensus geometry framework proposed in this paper structurally contains several assumptions and limitations that need careful treatment in specific applications.
+
+\begin{enumerate}
+\item \textbf{Assumptions about Causal Consensus}
+
+\begin{itemize}
+\item Strong-form causal consensus requires local partial orders to be completely consistent on all finite overlaps, which in real physics often holds only approximately due to measurement errors, coordinate choices, and renormalization effects. More refined theory needs to allow ``approximate \v{C}ech consistency'' and give stability bounds for causal network reconstruction.
+\item For spacetimes with topological defects or closed timelike curves, strong-form causal consensus may not exist at all; in this case consensus definition should be restricted to some good subdomain.
+\end{itemize}
+
+\item \textbf{Boundaries of Relative Entropy Lyapunov Structure}
+
+\begin{itemize}
+\item Monotonicity of Umegaki relative entropy depends on channel being completely positive trace-preserving and finite-dimensional assumption; in unbounded operator or infinite-dimensional cases additional technical conditions are needed.
+\item For more general R\'enyi relative entropy or other divergences, data processing inequality may hold only within parameter intervals; appropriate divergence form needs to be chosen for specific applications.
+\end{itemize}
+
+\item \textbf{Identifiability Assumptions for Model Consensus}
+
+\begin{itemize}
+\item Identifiability requires data distributions induced by different models to be strictly distinguishable in information distance, which may not hold in presence of symmetries, decoherence, or strong noise.
+\item For complex causal structures, local observations are often sensitive only to certain equivalence classes of models; in this case limiting object of model consensus is equivalence class rather than single model, requiring adjustment of theoretical statement.
+\end{itemize}
+
+\item \textbf{Relation to Existing Work}
+
+\begin{itemize}
+\item In causal structure and topology aspects, this work can be viewed as abstract extension of classical conclusion of ``reconstructing spacetime from causal partial order,'' emphasizing role of local fragments and multi-observer structure in gluing process.
+\item In consensus algorithms aspect, this paper provides unified Lyapunov perspective encompassing classical average consensus, distributed filtering, and quantum network symmetrization, echoing existing research on linear iteration and quantum Markov chain convergence.
+\item In sheaf and sheaf structure aspects, \v{C}ech consistency of local partial orders and common refinement problem can be viewed as simplified version of gluing problems in noncommutative geometry and sheaf theory, promising further development into ``causal sheaf'' perspective.
+\end{itemize}
+
+\item \textbf{Potential Risks and Extension Directions}
+
+\begin{itemize}
+\item This paper does not explicitly handle malicious or Byzantine observers; in presence of nodes intentionally throwing incorrect partial orders or states, causal consensus and state consensus may fail, requiring introduction of robust consensus and fault tolerance mechanisms.
+\item For systems with self-reference or circular information structure, there may be situations of ``local consensus self-consistent but globally non-embeddable,'' related to recent research on circular information structure and non-classical causal models.
+\end{itemize}
+\end{enumerate}
+
+In summary, consensus geometry framework provides unified context for structural analysis of multi-observer causal world, but extensions to infinite dimension, strong noise, and adversarial environments still require further research.
+
+\section{Conclusion}
+
+This paper systematically constructs theoretical framework of ``observer properties and consensus geometry on causal networks'' at intersection of abstract causal networks and information geometry. By formalizing observers as multi-component objects with geometric domains, local partial orders, resolution scales, observable algebras, information states, model families, and update operators, the following main conclusions are obtained:
+
+\begin{enumerate}
+\item Under coverage, finite overlap, and \v{C}ech-type consistency conditions, local causal fragments can be glued into unique global partial order, achieving strong-form causal consensus; otherwise strong consensus is unattainable, weak consensus can only be discussed at coarse-graining levels.
+
+\item Resolution structure and observable algebra intersection determine fineness of consensus; dimension of common refinement and common algebra are natural indicators of ``consensus resolution.''
+
+\item On common algebra, Lyapunov function measured by Umegaki relative entropy can characterize monotone convergence of state consensus iteration; under conditions of strongly connected communication graph, primitive weight matrix, and common fixed point existence, states necessarily converge to unified consensus state.
+
+\item Under appropriate identifiability and large deviation conditions, intersection of threshold-screened model sets of each observer contracts with probability one to unique true model, achieving strong-form model consensus.
+
+\item By introducing indicators such as geometric overlap degree, resolution compatibility, algebra intersection dimension, and relative entropy deviation, construct consensus feasible region in observer property space, providing quantitative tools for analyzing ``whether consensus occurs easily.''
+\end{enumerate}
+
+Future directions include: developing functional analysis version of causal consensus in infinite dimension and continuous field theory; restating consensus geometry in sheaf and higher category frameworks; introducing robust and fault-tolerant structures against malicious observers; and embedding this framework into broader ``value--causality--information'' unified system to explore relationship between free choice and causal consensus.
+
+\section*{Acknowledgements, Code Availability}
+
+This work is based on public literature and theoretical tools for derivation and construction.
+
+This research did not use any specialized numerical code or simulation programs, so no publicly available code implementation exists.
+
+\begin{thebibliography}{99}
+
+\bibitem{surya19}
+S. Surya, ``The causal set approach to quantum gravity,'' \emph{Living Rev. Relativity}, 22, 5 (2019).
+
+\bibitem{martin10}
+K. Martin, P. Panangaden, ``Spacetime geometry from causal structure and a measurement,'' \emph{Proc. Symp. Appl. Math.}, 68, 191--206 (2010).
+
+\bibitem{ansanelli24}
+M. M. Ansanelli et al., ``Everything that can be learned about a causal structure,'' arXiv:2407.01686 (2024).
+
+\bibitem{vilasini24}
+V. Vilasini, E. Portmann, A. J. P. Garner, ``Embedding cyclic information-theoretic structures in acyclic causal models,'' \emph{Phys. Rev. A} 110, 022227 (2024).
+
+\bibitem{schapira22}
+P. Schapira, ``An Introduction to Categories and Sheaves,'' Lecture Notes (2022).
+
+\bibitem{stacks}
+\emph{The Stacks Project}, Tag 04TP, ``Glueing sheaves'' (online monograph).
+
+\bibitem{schreiber08}
+U. Schreiber, Z. \v{S}koda, ``Categorified symmetries,'' Lecture Notes (2008).
+
+\bibitem{xiao06}
+L. Xiao, S. Boyd, S.-J. Kim, ``Distributed average consensus with least-mean-square deviation,'' \emph{Proc. MTNS} (2006).
+
+\bibitem{merched25}
+R. Merched, ``On Distributed Average Consensus Algorithms,'' arXiv:2502.16200 (2025).
+
+\bibitem{parlangeli24}
+G. Parlangeli, A. D'Innocenzo, ``A distributed algorithm for reaching average consensus with unbalanced edge weights,'' \emph{Electronics} 13, 4114 (2024).
+
+\bibitem{fawzi21}
+H. Fawzi, O. Fawzi, ``Defining quantum divergences via convex optimization,'' \emph{Quantum} 5, 387 (2021).
+
+\bibitem{evert20}
+E. Evert et al., ``Equality conditions of data processing inequality for $\alpha$--$z$ relative entropies,'' \emph{J. Math. Phys.} 61, 102201 (2020).
+
+\bibitem{carlen22}
+E. A. Carlen, E. H. Lieb, M. Loss, ``Monotonicity versions of Epstein's concavity theorem and related inequalities,'' \emph{Linear Algebra Appl.} 645, 100--134 (2022).
+
+\bibitem{matheus25}
+S. Matheus, ``On the monotonicity of relative entropy,'' \emph{Entropy} 27, 954 (2025).
+
+\bibitem{mosonyi14}
+M. Mosonyi, ``Convexity properties of the quantum R\'enyi divergences,'' \emph{Rev. Math. Phys.} 26, 1450001 (2014).
+
+\bibitem{ruskai02}
+M. B. Ruskai, S. Szarek, E. Werner, ``An analysis of completely positive trace-preserving maps on $M_2$,'' \emph{Linear Algebra Appl.} 347, 159--187 (2002).
+
+\bibitem{guo25}
+J. Guo et al., ``Designing open quantum systems with known steady states,'' \emph{Quantum} 9, 1612 (2025).
+
+\bibitem{ticozzi12}
+F. Ticozzi, L. Viola, ``Stabilizing entangled states with quasi-local quantum dynamical semigroups,'' \emph{Phil. Trans. R. Soc. A} 370, 5259--5269 (2012).
+
+\bibitem{montanari10}
+A. Montanari, S. S. Sanghavi, ``Distributed consensus by belief propagation,'' \emph{IEEE Trans. Inf. Theory} 56, 476--488 (2010).
+
+\bibitem{ghion23}
+D. Ghion et al., ``Robust distributed Kalman filtering with event-triggered communication,'' \emph{J. Franklin Inst.} 360, 13564--13590 (2023).
+
+\bibitem{ban24}
+T. Ban et al., ``Differentiable structure learning with partial orders,'' \emph{Adv. Neural Inf. Process. Syst.} 37 (2024).
+
+\bibitem{anderson14}
+E. Anderson, ``Spaces of spaces,'' arXiv:1412.0239 (2014).
+
+\bibitem{zaghi23}
+A. Zaghi, ``Relational quantum dynamics as a topological and cohomological framework,'' Preprint (2023).
+
+\bibitem{bullo22}
+F. Bullo, ``Lectures on Network Systems,'' Version 1.6 (2022).
+
+\end{thebibliography}
+
+\appendix
+
+\section{Rigorous Proof of Causal Network Gluing Theorem}
+
+\begin{theorem}[Restatement of Theorem~\ref{thm:gluing}]
+Let $\{(C_i,\prec_i)\}_{i\in I}$ be a family of local causal fragments on $X$ satisfying:
+
+\begin{enumerate}
+\item $\bigcup_i C_i = X$;
+\item For any $x\in X$, the set $\{i: x\in C_i\}$ is finite;
+\item For any finite $J\subseteq I$, there exists partial order $\prec_J$ defined on $C_J=\bigcap_{j\in J}C_j$ such that for all $j\in J$ and $x,y\in C_J$,
+
+$$
+x\prec_J y\iff x\prec_j y.
+$$
+\end{enumerate}
+
+Then there exists unique partial order $\prec$ such that for each $i$, restriction of $\prec$ to $C_i$ equals $\prec_i$.
+\end{theorem}
+
+\begin{proof}
+\textbf{(1) Define global relation}
+
+Define binary relation on $X$
+
+$$
+xRy\iff \exists i\in I\ \text{such that}\ x,y\in C_i,\ x\prec_i y.
+$$
+
+By partial order properties, $R$ is clearly irreflexive (i.e., no $xRx$), but transitivity is not yet known.
+
+\textbf{(2) Antisymmetry and no local contradiction}
+
+If there exist $x,y$ such that $xRy$ and $yRx$ simultaneously hold, then there exist $i,j$ such that
+
+\begin{itemize}
+\item $x,y\in C_i$ and $x\prec_i y$;
+\item $x,y\in C_j$ and $y\prec_j x$.
+\end{itemize}
+
+Taking $J=\{i,j\}$, we have $x,y\in C_J$, and \v{C}ech consistency requires $\prec_J$ on $C_J$ to be consistent with $\prec_i,\prec_j$, forcing $x\prec_J y$ and $y\prec_J x$ to hold simultaneously, contradicting $\prec_J$ being partial order. Therefore $R$ is antisymmetric.
+
+\textbf{(3) Transitive closure and cycle exclusion}
+
+Define $\prec$ as transitive closure of $R$, i.e., $x\prec y$ if and only if there exists finite chain
+
+$$
+x=x_0 R x_1 R \cdots R x_n = y.
+$$
+
+Need to prove $\prec$ is antisymmetric. If there exists $x\neq y$ with $x\prec y$ and $y\prec x$, splicing chains yields nontrivial closed cycle
+
+$$
+x=x_0 R x_1 R \cdots R x_n = x,
+$$
+
+where $n\ge 1$.
+
+For each relation $x_k R x_{k+1}$, there exists $i_k$ with $x_k,x_{k+1}\in C_{i_k}$ and $x_k\prec_{i_k} x_{k+1}$. Finite overlap property guarantees set $\{i_k\}_{k=0}^{n-1}$ is finite; taking
+
+$$
+J=\{i_0,\dots,i_{n-1}\},
+$$
+
+all points on cycle $\{x_k\}$ belong to
+
+$$
+\bigcup_{i\in J}C_i,
+$$
+
+and for each adjacent pair $(x_k,x_{k+1})$, there exists $i_k\in J$ making it have $x_k\prec_{i_k} x_{k+1}$ in $C_{i_k}$.
+
+By \v{C}ech consistency, unified partial order $\prec_J$ exists on $C_J=\bigcap_{i\in J}C_i$, with each local partial order consistent with $\prec_J$ in overlaps. Through finite-step expansion and transitivity, we get in $C_J$
+
+$$
+x\prec_J x,
+$$
+
+contradicting partial order definition. Therefore $\prec$ is antisymmetric.
+
+Reflexivity can be obtained by defining non-strict relation $\preceq$ as
+
+$$
+x\preceq y\iff x=y\ \text{or}\ x\prec y.
+$$
+
+Transitivity is guaranteed by transitive closure definition.
+
+\textbf{(4) Local consistency}
+
+For any $i$ and $x,y\in C_i$, if $x\prec_i y$, then clearly $xRy$, hence $x\prec y$, obtaining that $\prec$ extends $\prec_i$ on $C_i$.
+
+Conversely, if $x,y\in C_i$ and $x\prec y$, then there exists finite chain
+
+$$
+x=x_0 R x_1 R \cdots R x_n = y.
+$$
+
+Each step $x_k R x_{k+1}$ is produced via some $C_{i_k}$. Using \v{C}ech consistency, on
+
+$$
+C_{J'}:=\bigcap_{k}C_{i_k}\cap C_i
+$$
+
+there exists unified partial order $\prec_{J'}$, with for each $k$
+
+$$
+x_k\prec_{J'} x_{k+1}.
+$$
+
+By transitivity we get $x\prec_{J'} y$; then by $\prec_{J'}$ being consistent with $\prec_i$ on $C_{J'}$, we obtain $x\prec_i y$.
+
+Therefore restriction of $\prec$ to each $C_i$ is consistent with $\prec_i$.
+
+\textbf{(5) Uniqueness}
+
+If there exists another partial order $\prec'$ satisfying same conditions, then for each $i$, $\prec'|_{C_i}=\prec_i=\prec|_{C_i}$. By coverage property, for any $x,y\in X$, if $x\prec y$, then there exists chain segmentally falling in each $C_i$; these relations must also hold in $\prec'$, and vice versa, hence $\prec=\prec'$. In sense allowing bijective relabeling of $X$, we obtain isomorphism uniqueness.
+\end{proof}
+
+\section{Proof of Common Refinement Proposition}
+
+\begin{proposition}[Equivalent Characterization of Common Refinement Existence]
+Let $X_{\mathrm{fine}}$ be finite set, $\{P_i\}_{i\in I}$ a family of partitions on it. For each $i$, define equivalence relation
+
+$$
+x\sim_i y\iff \exists B\in P_i:\ x,y\in B.
+$$
+
+Let
+
+$$
+R:=\bigcap_{i\in I}\sim_i.
+$$
+
+Then the following two are equivalent:
+
+\begin{enumerate}
+\item There exists common refinement $P_\ast$ such that for each $i$, $P_i$ is coarsening of $P_\ast$;
+\item Relation $R$ is equivalence relation (i.e., reflexive, symmetric, and transitive).
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) If common refinement $P_\ast$ exists, then corresponding equivalence relation $\sim_\ast$ satisfies $\sim_\ast\subseteq \sim_i$ for all $i$, therefore $\sim_\ast\subseteq R$. On the other hand, for any $x,y$ if $x\sim_\ast y$, then $x,y$ must belong to same $P_\ast$ block, and $P_\ast$ is finest partition, so when any equivalence relation $R$ is contained in all $\sim_i$, necessarily $\sim_\ast=R$. Therefore $R$ is equivalence relation.
+
+(2) If $R$ is equivalence relation, then its equivalence class set
+
+$$
+P_R:=\{[x]_R: x\in X_{\mathrm{fine}}\}
+$$
+
+is a partition, and from $R\subseteq \sim_i$ we know $P_i$ is coarsening of $P_R$. Therefore $P_R$ is common refinement.
+
+When transitivity is absent, no equivalence relation contained in all $\sim_i$ exists, hence no common refinement exists. Specific ``interlaced block conflict'' construction and details see main text and discussion; not repeated here.
+\end{proof}
+
+\section{Convergence of Relative Entropy-type Consensus Process}
+
+\subsection{Detailed Proof of Proposition~\ref{prop:contraction}}
+
+\begin{proposition}[Single-step Contraction of Relative Entropy]
+Under Assumption~2.5 conditions, for any $t\in\mathbb{N}$,
+
+$$
+\Phi^{(t+1)}\le \Phi^{(t)}.
+$$
+\end{proposition}
+
+\begin{proof}
+For fixed $i$,
+
+$$
+\omega_i^{(t+1)}=\sum_j w_{ij}T_{ij}(\omega_j^{(t)}).
+$$
+
+By joint convexity of relative entropy,
+
+$$
+D\big(\omega_i^{(t+1)}\|\omega_\ast\big)
+\le \sum_j w_{ij}D\big(T_{ij}(\omega_j^{(t)})\|T_{ij}(\omega_\ast)\big).
+$$
+
+By data processing inequality,
+
+$$
+D\big(T_{ij}(\omega_j^{(t)})\|T_{ij}(\omega_\ast)\big)\le D\big(\omega_j^{(t)}\|\omega_\ast\big).
+$$
+
+Combining yields
+
+$$
+D\big(\omega_i^{(t+1)}\|\omega_\ast\big)
+\le \sum_j w_{ij}D\big(\omega_j^{(t)}\|\omega_\ast\big).
+$$
+
+Multiplying both sides by $\lambda_i$ and summing over $i$,
+
+\begin{align*}
+\Phi^{(t+1)}
+&=\sum_i \lambda_i D\big(\omega_i^{(t+1)}\|\omega_\ast\big)\\
+&\le \sum_i \lambda_i\sum_j w_{ij}D\big(\omega_j^{(t)}\|\omega_\ast\big)\\
+&= \sum_j\Big(\sum_i \lambda_i w_{ij}\Big) D\big(\omega_j^{(t)}\|\omega_\ast\big).
+\end{align*}
+
+Under $\lambda^\top W=\lambda^\top$ condition, $\sum_i\lambda_i w_{ij}=\lambda_j$, hence
+
+$$
+\Phi^{(t+1)}\le \sum_j\lambda_j D\big(\omega_j^{(t)}\|\omega_\ast\big)=\Phi^{(t)}.
+$$
+
+Proposition is proved.
+\end{proof}
+
+\subsection{Proof Framework for Theorem~\ref{thm:state}}
+
+To prove trajectory convergence to $\omega_\ast$, two complementary perspectives can be adopted:
+
+\begin{enumerate}
+\item View overall state family $\Omega^{(t)}:=(\omega_i^{(t)})_{i\in I}$ as point on product state space $\mathcal{S}(\mathcal{A}_{\mathrm{com}})^{\otimes I}$, define overall channel
+
+$$
+\mathcal{T}(\Omega) = \big(\sum_j w_{ij}T_{ij}(\omega_j)\big)_{i\in I}.
+$$
+
+Under Assumption~\ref{assump:fixed} conditions, $\mathcal{T}$ is primitive CPTP map with $\Omega_\ast:=(\omega_\ast)_{i\in I}$ as unique fixed point. Primitivity and compactness guarantee $\mathcal{T}^t(\Omega^{(0)})\to \Omega_\ast$.
+
+\item Using Lyapunov function $\Phi^{(t)}$ monotone non-increasing with lower bound zero, combined with primitivity of $\mathcal{T}$, nontrivial limit cycles or fixed point families can be excluded, ultimately obtaining all components converging to $\omega_\ast$.
+\end{enumerate}
+
+Complete technical details can be established using generalizations of Perron--Frobenius theory on Banach spaces and quantum Markov chain convergence theorems; omitted here.
+
+\section{Proof of Model Consensus Contraction Theorem}
+
+\begin{theorem}[Restatement of Theorem~\ref{thm:model}]
+Under identifiability and large deviation Assumption~\ref{assump:ident} conditions, for any $\delta>0$, there exists $T_0$ such that when $T\ge T_0$,
+
+$$
+\mathbb{P}_{M^\ast}\Big(\bigcap_{i\in I}\mathcal{M}_i^{(T)}=\{M^\ast\}\Big)\ge 1-\delta.
+$$
+\end{theorem}
+
+\begin{proof}
+\textbf{(1) Single observer consistency}
+
+For fixed $i$, by Assumption~\ref{assump:ident}(2) there exists $T_i(\delta)$ such that when $T\ge T_i(\delta)$,
+
+$$
+\mathbb{P}_{M^\ast}\big(M^\ast\in\mathcal{M}_i^{(T)}\big)\ge 1-\frac{\delta}{2|I|},
+$$
+
+and
+
+$$
+\mathbb{P}_{M^\ast}\big(\exists M\neq M^\ast,\ M\in\mathcal{M}_i^{(T)}\big)\le \frac{\delta}{2|I|}.
+$$
+
+\textbf{(2) Joint event estimate}
+
+Denote events
+
+$$
+E_1:=\bigcap_{i\in I}\{M^\ast\in\mathcal{M}_i^{(T)}\},\qquad
+E_2:=\bigcap_{i\in I}\{\nexists M\neq M^\ast:\ M\in\mathcal{M}_i^{(T)}\}.
+$$
+
+By union bound and above estimates,
+
+$$
+\mathbb{P}_{M^\ast}(E_1)\ge 1-\frac{\delta}{2},\qquad
+\mathbb{P}_{M^\ast}(E_2)\ge 1-\frac{\delta}{2}.
+$$
+
+Hence
+
+$$
+\mathbb{P}_{M^\ast}(E_1\cap E_2)\ge 1-\delta.
+$$
+
+\textbf{(3) Intersection single-point property}
+
+On event $E_1\cap E_2$, for each $i$, $\mathcal{M}_i^{(T)}$ contains $M^\ast$ and no other model. Therefore
+
+$$
+\bigcap_{i\in I}\mathcal{M}_i^{(T)}=\{M^\ast\}.
+$$
+
+Taking $T_0=\max_i T_i(\delta)$, when $T\ge T_0$ the conclusion holds.
+\end{proof}
+
+\section{Finite Example: Consensus Failure and Coarse-graining Repair with Three Observers}
+
+\begin{example}[Three-node Causal Cycle]
+Let $X=\{a,b,c\}$. Three observers:
+
+\begin{itemize}
+\item $O_1$: $C_1=\{a,b\}$, partial order $a\prec_1 b$;
+\item $O_2$: $C_2=\{b,c\}$, partial order $b\prec_2 c$;
+\item $O_3$: $C_3=\{c,a\}$, partial order $c\prec_3 a$.
+\end{itemize}
+
+Geometrically, $\{C_i\}$ covers $X$ with overlaps forming ring structure. Partial orders within each overlap region are internally self-consistent, but overall combination forms cycle
+
+$$
+a\prec_1 b\prec_2 c\prec_3 a.
+$$
+
+If there exists global partial order $\prec$ embedding each local partial order, it must simultaneously satisfy
+
+$$
+a\prec b,\quad b\prec c,\quad c\prec a,
+$$
+
+contradicting antisymmetry of partial order. Therefore no strong-form causal consensus extension exists.
+\end{example}
+
+\textbf{Coarse-graining repair}
+
+If we allow introducing equivalence relation $\sim$ making $a\sim b\sim c$, then quotient set
+
+$$
+\tilde{X}:=X/\!\sim =\{\tilde{x}\}
+$$
+
+contains only single equivalence class. Then the only possible partial order is $\tilde{x}\preceq\tilde{x}$; in this extremely coarse perspective, all local partial orders degenerate to reflexive relations, and causal consensus holds at this level.
+
+This example shows:
+
+\begin{enumerate}
+\item Geometric connectivity is necessary but not sufficient for strong-form causal consensus;
+\item Consistency of local partial orders in overlapping regions is key to eliminating causal cycles;
+\item When strong consensus breaks, weak consensus can be recovered through event equivalence class compression, but at cost of losing detailed structure.
+\end{enumerate}
+
+This example provides simple discrete model for ``causal cycles'' and ``resolution tradeoffs'' phenomena in more complex causal networks.
+
+\end{document}

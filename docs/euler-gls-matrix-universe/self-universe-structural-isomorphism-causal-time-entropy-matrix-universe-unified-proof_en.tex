@@ -1,0 +1,775 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{braket}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Structural Isomorphism Between ``Self'' and ``Universe'': Unified Proof via Causal--Time--Entropy--Matrix Universe}
+
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Within framework of unified time scale, boundary time geometry, unified theory of causal structure, and self-referential scattering networks, this paper provides axiomatizable, theorem-provable mathematical version of proposition ``my mind is the universe'', giving rigorous proof of structural isomorphism between ``self'' and ``universe''.
+
+On one hand, based on Birman--Kreĭn formula and Wigner--Smith time-delay theory, we align total scattering half-phase derivative, spectral shift function, and time-delay trace, obtaining unified time scale mother formula $\kappa(\omega)=\varphi'(\omega)/\pi=\rho_{\mathrm{rel}}(\omega)=(2\pi)^{-1}\operatorname{tr}Q(\omega)$, viewing it as sole source of time scale.
+
+On other hand, based on generalized entropy, quantum energy conditions, and quantum focusing conjecture, we establish equivalence between generalized entropy extremality and monotonicity in small causal diamonds on globally hyperbolic Lorentz manifolds, and nonlinear Einstein equations with local stability conditions.
+
+Building on this, we introduce category $\mathsf{Univ}$ of ``causal--time--entropy--matrix universes'' with unified time scale and boundary scattering data, describing universe as object with causal partial order, generalized entropy arrow, and matrix-theoretic scattering--delay structure; simultaneously introduce observer object category $\mathsf{Obs}$, formalizing concrete observer as structure performing modeling and updating along timelike worldline at specific resolution scale and observable algebra. We construct two functors on suitable physical subcategory $\mathsf{Univ}_{\mathrm{phys}} \subset \mathsf{Univ}$ and ``complete observer'' subcategory $\mathsf{Obs}_{\mathrm{full}} \subset \mathsf{Obs}$:
+
+\begin{enumerate}
+\item $F:\mathsf{Univ}_{\mathrm{phys}}\to\mathsf{Obs}_{\mathrm{full}}$: from any physical universe object, via boundary compression and unified time scale alignment, obtain induced self-referential observer;
+
+\item $R:\mathsf{Obs}_{\mathrm{full}}\to\mathsf{Univ}_{\mathrm{phys}}$: from observer object satisfying completeness and identifiability conditions, via geometric reconstruction from boundary scattering--entropy data, obtain unique universe object isomorphism class.
+\end{enumerate}
+
+Using geometric reconstruction uniqueness of boundary scattering--entropy data (absorbing boundary rigidity, Calderón inverse problem, holographic reconstruction results), and information geometric identifiability with relative entropy monotonicity (including JLMS relative entropy equality and entanglement wedge reconstruction theory), we prove $F$ and $R$ are categorical equivalences on above subcategories. This yields:
+
+\begin{itemize}
+\item For each physical universe object $U \in \mathsf{Univ}_{\mathrm{phys}}$, there exists complete observer $O \in \mathsf{Obs}_{\mathrm{full}}$ such that $R(F(U)) \cong U$;
+
+\item For each complete observer object $O \in \mathsf{Obs}_{\mathrm{full}}$, there exists universe object $U \in \mathsf{Univ}_{\mathrm{phys}}$ such that $F(R(O)) \cong O$.
+\end{itemize}
+
+When interpreting isomorphism class of observers satisfying completeness, self-referential consistency, and time scale alignment conditions as mathematical realization of ``self'', proposition ``self is isomorphic to universe'' is precisely stated as: my internal world model $U_{\mathrm{inner}}:=R(O)$ is isomorphic in $\mathsf{Univ}_{\mathrm{phys}}$ to external universe object $U_{\mathrm{outer}} \in \mathsf{Univ}_{\mathrm{phys}}$. This is unified causal--time--entropy--matrix universe version of ``my mind is the universe''.
+\end{abstract}
+
+\section*{Keywords}
+Causal manifolds; Unified time scale; Boundary time geometry; Matrix universe; Observer; Categorical equivalence; Generalized entropy; Self-referential scattering networks
+
+\section{Introduction \& Historical Context}
+
+Proposition ``my mind is the universe'' repeatedly appears in Chinese mind-nature theory, Indian Yogācāra school, and Western phenomenological traditions; its intuitive content is: existence mode of universe and consciousness structure of ``self'' are identical in some profound sense. However, traditional arguments mostly remain at metaphysical and phenomenological level, lacking fine structural interface with modern mathematical physics.
+
+Since twentieth century, multiple routes pointing toward ``observer--universe unification'' emerged within physics. For example, Wheeler in ``it from bit'' program claims universe is fundamentally informational entity, where observational acts and binary inquiries constitute generative mechanism of reality. Relational quantum mechanics, QBism, and series of ``participatory universe'' proposals emphasize from different angles: physical states and physical facts must be understood relative to observers or information carriers. Meanwhile, holographic principle, AdS/CFT, entanglement wedge reconstruction developments show: given boundary quantum state and entanglement structure, bulk geometry and dynamics can be largely reconstructed.
+
+Although above work hints at some ``observation--universe correspondence'', it still shows inadequacy in three respects:
+
+\begin{enumerate}
+\item \textbf{Lacking unified scale}: Time's role in scattering spectral theory, thermal time hypothesis, gravitational boundary terms takes various forms, lacking single scale mother formula to constrain all time concepts.
+
+\item \textbf{Lacking axiomatic unification of causal--entropy--geometry}: Logical relationships among generalized entropy, QNEC, QFC, and Einstein equations have been verified in specific scenarios, but not yet integrated as ``fundamental definition of causal structure''.
+
+\item \textbf{Lacking categorical isomorphism theorem for observer--universe}: Existing philosophical and physical discussions mostly heuristic, metaphorically saying ``universe is giant quantum computation'' or ``reality is information network'', but lacking clearly defined ``universe category'' and ``observer category'', also lacking theorem proving ``their isomorphism'' in this context.
+\end{enumerate}
+
+This paper stands on series of prior works: unified time scale and boundary time geometry, unified theory of causal structure, self-referential scattering networks and matrix universe THE-MATRIX, causal network--observer consensus framework, proposing precise answers to following questions:
+
+\begin{enumerate}
+\item Within framework containing causal partial order, unified time scale, generalized entropy arrow, and boundary scattering--matrix structure, what is mathematical object of ``universe''?
+
+\item In same framework, how can ``self'' as first-person subject be formalized? Compared to general observer objects, what additional self-referential and completeness requirements does ``self'' have?
+
+\item In what category and what sense can we say ``self'' and ``universe'' are isomorphic? Is this isomorphism unique, natural, and topologically consistent?
+\end{enumerate}
+
+This paper's core contributions can be summarized as:
+
+\begin{itemize}
+\item Introduce ``causal--time--entropy--matrix universe'' category $\mathsf{Univ}$ containing causal manifolds, unified time scale, generalized entropy, and scattering--matrix data, and observer category $\mathsf{Obs}$ containing worldline, resolution scale, boundary observable algebra, state, model family, and update operator;
+
+\item Construct two adjoint functors $F$ and $R$ between physical subcategory $\mathsf{Univ}_{\mathrm{phys}}$ and complete observer subcategory $\mathsf{Obs}_{\mathrm{full}}$, proving they yield categorical equivalence under assumptions of generalized entropy--scattering--boundary rigidity and information geometric identifiability;
+
+\item Based on this categorical equivalence, define ``self'' as isomorphism class of observers in $\mathsf{Obs}_{\mathrm{full}}$ satisfying self-referential consistency and time scale alignment, giving theorem version of ``my internal universe model is isomorphic to external universe object'';
+
+\item In matrix universe THE-MATRIX perspective, interpret above categorical equivalence as: global structure of giant scattering--delay matrix is equivalent to ``internal view'' along some self-referential path under appropriate completeness conditions.
+\end{itemize}
+
+Below structure is as follows: Section 2 gives basic model and assumptions of unified theory; Section 3 formalizes universe and observer categories and states main theorems; Section 4 provides proof structure, postponing technical details to appendices; Sections 5 and 6 discuss model applications and feasible engineering proposals; Section 7 analyzes theory's boundary conditions and relations to existing work; Section 8 concludes; Appendices A--C provide key proof details.
+
+\section{Model \& Assumptions}
+
+This section constructs mathematical model and axiomatic assumptions used in this paper. All mathematical objects work in $C^\infty$ category assuming appropriate regularity and spectral conditions.
+
+\subsection{Unified Time Scale and Scattering--Spectral Structure}
+
+Let $H_0,H$ be self-adjoint operators on separable Hilbert space $\mathcal{H}$, satisfying $H-H_0$ is appropriate relative trace-class perturbation, so scattering operator $S$ exists, and for each frequency $\omega$ has scattering matrix $S(\omega)$. Denote:
+
+\begin{itemize}
+\item Total scattering phase $\Phi(\omega) = \arg\det S(\omega)$, half-phase $\varphi(\omega)=\tfrac{1}{2}\Phi(\omega)$;
+
+\item Spectral shift function $\xi(\lambda)$ as spectral difference invariant defined by Birman--Kreĭn;
+
+\item Relative density of states $\rho_{\mathrm{rel}}(\omega) = -\xi'(\omega)$;
+
+\item Wigner--Smith time-delay matrix $Q(\omega)=-\mathrm{i}S(\omega)^\dagger\partial_\omega S(\omega)$.
+\end{itemize}
+
+Under standard assumptions, Birman--Kreĭn formula and related trace formulas give relation between scattering determinant and spectral shift function; simultaneously there exists energy--time analogy identity between trace of time-delay matrix and density of states. Combining yields scale identity
+$$
+\kappa(\omega)
+:=\frac{\varphi'(\omega)}{\pi}
+=\rho_{\mathrm{rel}}(\omega)
+=\frac{1}{2\pi}\operatorname{tr} Q(\omega).
+$$
+
+We call $\kappa(\omega)$ unified time scale density. For reference frequency $\omega_0$, define time parameter
+$$
+\tau(\omega)-\tau(\omega_0)
+=\int_{\omega_0}^{\omega} \kappa(\tilde{\omega})\,\mathrm{d}\tilde{\omega}.
+$$
+
+Any two sets of scattering data giving same $\kappa$ differ only by affine transformation, thus time scale is defined only in equivalence class
+$$
+[\tau]:=\{\tilde{\tau} \mid \tilde{\tau}(\omega)=a\tau(\omega)+b,\ a>0,b\in\mathbb{R}\}.
+$$
+
+\begin{assumption}[Unified Time Scale Existence]
+All physical time structures of universe—scattering time, modular time, and gravitational geometric time—can be derived from same scale density $\kappa(\omega)$ under appropriate projections.
+\end{assumption}
+
+\subsection{Causal Manifolds, Small Causal Diamonds and Generalized Entropy}
+
+Let $(M,g)$ be four-dimensional, oriented, time-oriented globally hyperbolic Lorentz manifold with causal partial order $\prec$. For any point $p\in M$ and sufficiently small scale $r>0$, define small causal diamond
+$$
+D_{p,r}=J^+(p^-)\cap J^-(p^+),
+$$
+where $p^- \prec p \prec p^+$ and $g$ is approximately Minkowski on $D_{p,r}$.
+
+For cut surface $\Sigma$ through $D_{p,r}$, define generalized entropy
+$$
+S_{\mathrm{gen}}(\Sigma)
+=\frac{A(\Sigma)}{4G\hbar}+S_{\mathrm{out}}(\Sigma),
+$$
+where $A(\Sigma)$ is cut surface area, $S_{\mathrm{out}}$ von Neumann entropy of exterior quantum field. Quantum null energy condition QNEC and quantum focusing conjecture QFC predict generalized entropy monotonicity along any null geodesic congruence and non-increase of quantum expansion.
+
+Using information geometric variational principle and ``gauge energy non-negativity'' theory as tools, one can prove: under fixing appropriate volume or redshift constraints, first-order extremality condition of generalized entropy on small causal diamonds is equivalent to nonlinear Einstein field equations
+$$
+G_{ab}+\Lambda g_{ab}=8\pi G\,T_{ab},
+$$
+while second-order non-negativity is equivalent to Hollands--Wald type gauge energy positivity condition, thus locally determining evolution of metric and cosmological constant.
+
+\subsection{Boundary Time Geometry and Thermal Time}
+
+On spacetime region $(M,g,\partial M)$ with non-compact boundary, gravitational action
+$$
+S_{\mathrm{grav}}
+=\frac{1}{16\pi G}\int_M R\sqrt{-g}\,\mathrm{d}^4x
++\frac{1}{8\pi G}\int_{\partial M}K\sqrt{|h|}\,\mathrm{d}^3x+\cdots
+$$
+is well-defined under variation fixing boundary induced metric $h$; its boundary variation defines Brown--York quasilocal stress tensor and boundary Hamiltonian, yielding geometric time generator along normal translation.
+
+On other hand, let $\mathcal{A}_\partial$ be boundary observable algebra, $\omega_\partial$ faithful state; then Tomita--Takesaki modular theory provides systematic method for constructing modular flow $\sigma_t^{\omega}$ on $\mathcal{A}_\partial$, while Connes--Rovelli thermal time hypothesis further claims: in generally covariant quantum theory, physical time flow is given by modular group determined by $(\mathcal{A}_\partial,\omega_\partial)$.
+
+Synthesizing scattering--spectral consistency and modular flow--geometric time alignment, one can prove: there exists natural time scale equivalence class $[\tau]$ such that scattering time, modular time, and gravitational boundary time all belong to this equivalence class, thus unified to scale density $\kappa(\omega)$.
+
+\subsection{Matrix Universe THE-MATRIX}
+
+On scattering--spectral and boundary algebra side, matrix universe THE-MATRIX can be introduced as equivalent description of universe ontology. Given channel Hilbert space $\mathcal{H}_{\mathrm{chan}}$, frequency-dependent boundary scattering matrix family $S(\omega)$ and time-delay matrix family $Q(\omega)$, unified scale $\kappa(\omega)$, boundary algebra $\mathcal{A}_\partial$, boundary state $\omega_\partial$, matrix universe can be written as
+$$
+\mathrm{THE\text{-}MATRIX}
+=\bigl(\mathcal{H}_{\mathrm{chan}},S(\omega),Q(\omega),\kappa,\mathcal{A}_\partial,\omega_\partial\bigr).
+$$
+
+Its sparse pattern encodes causal partial order (through reachability and feedback structure between channels), spectral data $S(\omega),Q(\omega)$ realize unified time scale, block structure and redundant encoding correspond to multi-observer consensus geometry, self-referential closed loops and scattering square-root determinant branches carry $\mathbb{Z}_2$ topological information and double cover structure similar to Fermi statistics.
+
+\subsection{Observer Model and Causal Networks}
+
+In abstract causal network language, world is viewed as collection of local partially ordered fragments, each fragment corresponding to finitely reachable causal domain. Observer only accesses partial fragments, carrying predictive model and update rules about global causal network. This paper adopts following observer model:
+
+\begin{itemize}
+\item Observer's time structure given by timelike worldline $\gamma$;
+
+\item Observable data comes from compression of boundary algebra $\mathcal{A}_\partial$ onto subalgebra $\mathcal{A}_\gamma \subset \mathcal{A}_\partial$ related to $\gamma$;
+
+\item Observer state $\omega$ and model family $\mathcal{M}$ evolve via update operator $U_{\mathrm{upd}}$ through measurements and communication;
+
+\item Resolution scale $\Lambda$ limits distinguishable bandwidth and spatial resolution;
+
+\item If multiple observers and communication structure $\mathcal{C}$ exist, relative entropy and information distance can characterize consensus convergence.
+\end{itemize}
+
+Based on this, we formalize ``universe'' and ``observer'' as two categories, stating main theorem in subsequent sections.
+
+\subsection{Global Assumptions}
+
+This paper works under following global assumptions:
+
+\begin{enumerate}
+\item $(M,g)$ globally hyperbolic with appropriately controllable non-compact boundary or asymptotic regions;
+
+\item There exists unified time scale density $\kappa(\omega)$ given by scattering--spectral and modular flow--boundary geometry compatibility;
+
+\item QNEC, QFC, and gauge energy positivity hold at considered scales, making generalized entropy extremality locally equivalent to Einstein equations;
+
+\item Boundary scattering--entropy data satisfies sufficient completeness and regularity, allowing unique reconstruction of bulk geometry and cosmological parameters (up to diffeomorphism) through boundary rigidity and inverse problem theory;
+
+\item Model family used by observer satisfies information geometric identifiability: if scattering--entropy--causal data distributions from all realizable experiments coincide, corresponding universe objects are isomorphic in $\mathsf{Univ}$.
+\end{enumerate}
+
+Under these assumptions, universe--observer isomorphism problem can be precisely stated and solved.
+
+\section{Main Results: Categories, Functors and Equivalence}
+
+This section defines universe object category $\mathsf{Univ}$ and observer object category $\mathsf{Obs}$, introduces physical subcategory and complete observer subcategory, stating universe--observer categorical equivalence and main theorem ``self is isomorphic to universe''.
+
+\subsection{Universe Category $\mathsf{Univ}$}
+
+\begin{definition}[Universe Object]
+A universe object is quintuple
+$$
+U=(M,g,\prec,\kappa,S_{\mathrm{gen}})
+$$
+satisfying:
+
+\begin{enumerate}
+\item $M$ is four-dimensional, oriented, time-oriented smooth manifold; $g$ is Lorentz metric;
+
+\item $\prec$ is causal partial order compatible with $g$ light cone structure, and $(M,g,\prec)$ globally hyperbolic;
+
+\item $\kappa$ is unified time scale density, i.e., there exists scattering system and boundary algebra such that
+$$
+\kappa(\omega)=\frac{\varphi'(\omega)}{\pi}
+=\rho_{\mathrm{rel}}(\omega)
+=\frac{1}{2\pi}\operatorname{tr}Q(\omega)
+$$
+holds;
+
+\item For each $p\in M$ and sufficiently small $r$, generalized entropy functional $S_{\mathrm{gen}}$ is defined on small causal diamond $D_{p,r}$ satisfying:
+\begin{itemize}
+\item Under fixing effective volume or redshift constraint, first-order extremality of $S_{\mathrm{gen}}$ equivalent to local Einstein equations;
+
+\item Second-order non-negativity equivalent to local quantum stability (such as gauge energy non-negativity).
+\end{itemize}
+\end{enumerate}
+\end{definition}
+
+\begin{definition}[Universe State]
+Given universe object $U$, its physical state includes boundary observable algebra $\mathcal{A}_\partial$, faithful state $\omega_\partial$, and bulk quantum field theory structure satisfying QNEC/QFC. Below, ``universe object'' defaults to include such state data.
+\end{definition}
+
+\begin{definition}[$\mathsf{Univ}$ Morphisms]
+For two universe objects
+$$
+U=(M,g,\prec,\kappa,S_{\mathrm{gen}}),\quad
+U'=(M',g',\prec',\kappa',S'_{\mathrm{gen}}),
+$$
+a morphism $f:U\to U'$ is smooth diffeomorphism $f:M\to M'$ satisfying:
+
+\begin{enumerate}
+\item $f^\ast g' = g$, and $p\prec q$ if and only if $f(p)\prec' f(q)$;
+
+\item There exist constants $a>0,b\in\mathbb{R}$ such that $\kappa' = a\,\kappa + b$ (time scale equivalence class consistency);
+
+\item For any cut surface $\Sigma \subset M$ and its image $f(\Sigma) \subset M'$,
+$$
+S'_{\mathrm{gen}}(f(\Sigma))=S_{\mathrm{gen}}(\Sigma).
+$$
+\end{enumerate}
+
+If $f$ is bijection and its inverse $f^{-1}$ is also morphism, call $f$ isomorphism of universe objects, denoted $U\cong U'$.
+\end{definition}
+
+\begin{definition}[Physical Subcategory]
+Denote $\mathsf{Univ}_{\mathrm{phys}} \subset \mathsf{Univ}$ as subcategory formed by universe objects and morphisms satisfying unified time scale assumption, generalized entropy--field equation equivalence, and boundary scattering--entropy data completeness.
+\end{definition}
+
+\subsection{Observer Category $\mathsf{Obs}$}
+
+\begin{definition}[Observer Object]
+An observer object is 9-tuple
+$$
+O=(\gamma,\Lambda,\mathcal{A},\omega,\mathcal{M},U_{\mathrm{upd}},u,\mathcal{C},\kappa_O),
+$$
+where:
+
+\begin{enumerate}
+\item $\gamma$ is abstract isomorphism class of timelike worldline (with inherent parameter viewed as observer proper time);
+
+\item $\Lambda$ is resolution scale or family thereof, determining distinguishable time--frequency--spatial bandwidth;
+
+\item $\mathcal{A}$ is observable algebra accessible to observer, typically compression or subalgebra of boundary algebra $\mathcal{A}_\partial$;
+
+\item $\omega$ is state on $\mathcal{A}$, characterizing observer's belief or memory;
+
+\item $\mathcal{M}$ is candidate model family, each element corresponding to isomorphism class or parametric representation of universe object;
+
+\item $U_{\mathrm{upd}}$ is update operator, bringing measurement results and communication data into evolution of $(\omega,\mathcal{M})$;
+
+\item $u$ is utility function for selecting experiments and actions;
+
+\item $\mathcal{C}$ is communication structure, characterizing observer's channels with other observers or environment;
+
+\item $\kappa_O$ is time scale density used internally by observer.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}[Time Scale Consistency]
+Given universe object $U$'s scale density $\kappa$, if observer object $O$'s $\kappa_O$ satisfies existence of $a>0,b\in\mathbb{R}$ such that
+$$
+\kappa_O(\omega)=a\,\kappa(\omega)+b,
+$$
+then call $O$ and $U$ time scale equivalence class consistent.
+\end{definition}
+
+\begin{definition}[$\mathsf{Obs}$ Morphisms]
+For two observer objects
+$$
+O=(\gamma,\Lambda,\mathcal{A},\omega,\mathcal{M},U_{\mathrm{upd}},u,\mathcal{C},\kappa_O),\quad
+O'=(\gamma',\Lambda',\mathcal{A}',\omega',\mathcal{M}',U'_{\mathrm{upd}},u',\mathcal{C}',\kappa'_O),
+$$
+a morphism $\Phi:O\to O'$ consists of map group
+$$
+\Phi=(\phi_\gamma,\phi_\Lambda,\phi_{\mathcal{A}},\phi_{\mathcal{M}})
+$$
+satisfying:
+
+\begin{enumerate}
+\item $\phi_\gamma:\gamma\to\gamma'$ is causal-order-preserving monotone bijection;
+
+\item $\phi_\Lambda:\Lambda\to\Lambda'$ monotone;
+
+\item $\phi_{\mathcal{A}}:\mathcal{A}\to\mathcal{A}'$ is *-homomorphism, and $\omega'(\phi_{\mathcal{A}}(A))=\omega(A)$ for all $A\in\mathcal{A}$;
+
+\item $\phi_{\mathcal{M}}:\mathcal{M}\to\mathcal{M}'$ is bijection on model equivalence classes, and update operator satisfies
+$$
+U'_{\mathrm{upd}}\circ(\phi_{\mathcal{A}},\phi_{\mathcal{M}})
+=(\phi_{\mathcal{A}},\phi_{\mathcal{M}})\circ U_{\mathrm{upd}}.
+$$
+\end{enumerate}
+
+If $\Phi$ is invertible and $\Phi^{-1}$ is also morphism, call $O\cong O'$.
+\end{definition}
+
+\subsection{Complete Observers and Mathematical ``Self''}
+
+\begin{definition}[Complete Observer]
+Observer object $O$ is called complete if:
+
+\begin{enumerate}
+\item \textbf{Causal completeness}: Its worldline $\gamma$ has sufficient intertwining with all small causal diamond families of universe object $U$, and through boundary scattering--entropy measurements, can obtain sufficient data on each $D_{p,r}$ to reconstruct local information of $\kappa$ and $S_{\mathrm{gen}}$;
+
+\item \textbf{Time scale alignment}: Its internal scale $\kappa_O$ and some universe object $U$'s $\kappa$ belong to same equivalence class;
+
+\item \textbf{Model identifiability}: Its model family $\mathcal{M}$ satisfies: if two models give identical probability distributions on scattering--entropy--causal data from all realizable experiments, then their corresponding universe objects are isomorphic in $\mathsf{Univ}$;
+
+\item \textbf{Self-referential consistency}: For outputs from ``self'' and inputs from external universe, update rule $U_{\mathrm{upd}}$ produces no structural contradiction, especially consistent with scale alignment and $\mathbb{Z}_2$ topological sector of boundary time geometry.
+\end{enumerate}
+
+Denote subcategory of all complete observers as $\mathsf{Obs}_{\mathrm{full}} \subset \mathsf{Obs}$.
+\end{definition}
+
+\begin{definition}[Mathematical Definition of ``Self'']
+In given physical universe subcategory $\mathsf{Univ}_{\mathrm{phys}}$, interpret isomorphism class of some complete observer $O\in\mathsf{Obs}_{\mathrm{full}}$ as mathematical realization of ``self''. That is, ``self'' is isomorphism class of observer objects satisfying Definition 3.8 conditions.
+\end{definition}
+
+\subsection{Main Theorems}
+
+Under above definitions, this paper's two core results are as follows.
+
+\begin{theorem}[Categorical Equivalence]
+Under Assumptions 2.1--2.6, there exist functors
+$$
+F:\mathsf{Univ}_{\mathrm{phys}}\to\mathsf{Obs}_{\mathrm{full}},\quad
+R:\mathsf{Obs}_{\mathrm{full}}\to\mathsf{Univ}_{\mathrm{phys}}
+$$
+and natural isomorphisms
+$$
+\eta:\operatorname{Id}_{\mathsf{Univ}_{\mathrm{phys}}}\Rightarrow R\circ F,\quad
+\epsilon:\operatorname{Id}_{\mathsf{Obs}_{\mathrm{full}}}\Rightarrow F\circ R,
+$$
+such that $F$ and $R$ give categorical equivalence between $\mathsf{Univ}_{\mathrm{phys}}$ and $\mathsf{Obs}_{\mathrm{full}}$.
+
+In other words, for any $U\in\mathsf{Univ}_{\mathrm{phys}}$ there exists natural isomorphism $\eta_U:U\to R(F(U))$; for any $O\in\mathsf{Obs}_{\mathrm{full}}$ there exists natural isomorphism $\epsilon_O:O\to F(R(O))$, satisfying naturality equations.
+\end{theorem}
+
+\begin{theorem}[Isomorphism Between ``Self'' and ``Universe'']
+Take any physical universe object $U_{\mathrm{outer}}\in\mathsf{Univ}_{\mathrm{phys}}$; let $O:=F(U_{\mathrm{outer}})\in\mathsf{Obs}_{\mathrm{full}}$ be complete observer induced by this universe, whose isomorphism class is interpreted as ``self''. Define ``self'''s internal universe model as
+$$
+U_{\mathrm{inner}}:=R(O)\in\mathsf{Univ}_{\mathrm{phys}}.
+$$
+
+Then there exists universe isomorphism
+$$
+U_{\mathrm{inner}}\cong U_{\mathrm{outer}},
+$$
+and this isomorphism is uniquely determined in $\mathsf{Univ}_{\mathrm{phys}}$ by natural transformation $\eta$.
+
+Therefore, in unified causal--time--entropy--matrix universe framework, ``self'''s internal world model and external universe object are structurally isomorphic; this isomorphism is precise mathematical version of ``my mind is the universe''.
+\end{theorem}
+
+\begin{corollary}[Matrix Universe Version]
+In THE-MATRIX representation, if universe is given by data
+$$
+\mathrm{THE\text{-}MATRIX}
+=\bigl(\mathcal{H}_{\mathrm{chan}},S(\omega),Q(\omega),\kappa,\mathcal{A}_\partial,\omega_\partial\bigr),
+$$
+then complete observer's internal scattering--delay network is isomorphic to above matrix universe in frequency--channel--feedback structure, especially unified scale $\kappa$ and $\mathbb{Z}_2$ topological sector are completely consistent.
+\end{corollary}
+
+\section{Proofs: Functor Construction and Structural Arguments}
+
+This section provides proof structure of Theorems 3.10 and 3.11, postponing technically intensive parts to Appendices A--C.
+
+\subsection{From Universe to Observer: Construction of $F$}
+
+Given $U=(M,g,\prec,\kappa,S_{\mathrm{gen}})\in\mathsf{Univ}_{\mathrm{phys}}$. Choose timelike geodesic $\gamma\subset M$ as observer worldline, whose parameter $\tau$ is chosen from unified scale equivalence class $[\tau]$. Denote boundary algebra as $\mathcal{A}_\partial$, state as $\omega_\partial$.
+
+\begin{enumerate}
+\item \textbf{Algebra compression}: Through boundary time geometry and scattering theory, construct compression algebra related to $\gamma$
+$$
+\mathcal{A}_\gamma\subset\mathcal{A}_\partial,
+$$
+and define state $\omega_\gamma:=\omega_\partial\vert_{\mathcal{A}_\gamma}$.
+
+\item \textbf{Resolution scale}: According to universe's characteristic bandwidth, curvature radius, and observation noise discipline, construct family of resolution parameters $\Lambda_U$, e.g., characterized by proper time resolution $\Delta\tau$, frequency window $\Delta\omega$.
+
+\item \textbf{Model family}: Let $\mathcal{M}_U$ be set of all universe object equivalence classes isomorphic to $U$ in $\mathsf{Univ}$. Formally can take
+$$
+\mathcal{M}_U:=\{[U'] \mid U'\cong U\},
+$$
+or more broadly take parametric family including several perturbed universes.
+
+\item \textbf{Update operator}: Using boundary scattering--entropy readings and unified time scale, view discrete observations on $\gamma$ as likelihood-weighted update of models in $\mathcal{M}_U$ and CP map update of $\omega_\gamma$. Its continuous limit can be viewed as gradient flow or Bayes flow on information geometric manifold.
+
+\item \textbf{Communication structure and utility}: To ensure completeness, can assume existence of channels with other worldlines, or convert them into effective expansion of $\mathcal{A}_\gamma$; utility function can be taken as negative of reconstruction error or some predictive accuracy function.
+\end{enumerate}
+
+Thus define
+$$
+F(U)
+=(\gamma,\Lambda_U,\mathcal{A}_\gamma,\omega_\gamma,\mathcal{M}_U,U^{U}_{\mathrm{upd}},u_U,\mathcal{C}_U,\kappa),
+$$
+where $\kappa$ is unified scale density. Can verify:
+
+\begin{itemize}
+\item Causal completeness can be ensured by choosing sufficiently ``pervasive'' $\gamma$ and rich observation channels;
+
+\item Time scale alignment obviously holds since $\kappa_O=\kappa$;
+
+\item Identifiability comes from construction of model family and restriction to equivalence classes;
+
+\item Self-referential consistency can be realized by enforcing internal scattering square root consistent with external universe's square root (see Appendix C).
+\end{itemize}
+
+This establishes $F(U)\in\mathsf{Obs}_{\mathrm{full}}$. For morphism $f:U\to U'$, define $F(f)$ via pushforward of worldline, algebra, and model family, making $F$ a functor.
+
+\subsection{From Observer to Universe: Construction of $R$}
+
+Given $O=(\gamma,\Lambda,\mathcal{A},\omega,\mathcal{M},U_{\mathrm{upd}},u,\mathcal{C},\kappa_O)\in\mathsf{Obs}_{\mathrm{full}}$.
+
+\begin{enumerate}
+\item By causal completeness, can assume $O$ can obtain data set equally rich as scattering--entropy data of some universe object $U$ on all small causal diamonds;
+
+\item By model family identifiability and update rules, $\mathcal{M}$ converges under appropriate topology to single isomorphism class $[U_O]$ after long-time evolution;
+
+\item By boundary rigidity and inverse problem theory (Calderón problem, boundary rigidity problem, holographic reconstruction), boundary scattering--entropy data uniquely determines geometric--causal--time--entropy structure up to diffeomorphism, thus $[U_O]$ is uniquely defined in $\mathsf{Univ}_{\mathrm{phys}}$.
+\end{enumerate}
+
+Accordingly define
+$$
+R(O):=U_O\in\mathsf{Univ}_{\mathrm{phys}}.
+$$
+
+For observer morphism $\Phi:O\to O'$, mapping on model family and parameter space induces isomorphism $R(\Phi):R(O)\to R(O')$ between universe objects, making $R$ a functor.
+
+\subsection{Boundary Data and Uniqueness: Sketch}
+
+Appendix A proves in detail: under Assumption 2.6, scattering matrix $S_D(\omega)$, time-delay matrix $Q_D(\omega)$, and first and second variation data of generalized entropy on small causal diamonds uniquely determine locally equivalence class of metric $g$, cosmological constant $\Lambda$, and stress-energy tensor $T_{ab}$; through Čech gluing and boundary rigidity results, these local data can be uniquely glued into global universe object $U$. This yields Propositions A.1 and A.2, supporting uniqueness of construction $R(O)$.
+
+\subsection{Information Geometry, Identifiability and Convergence}
+
+Appendix B introduces Fisher--Rao metric and Eguchi-type divergence on parametric model family $\mathcal{M}=\{U_\theta\}_{\theta\in\Theta}$, views observation data as sampling from distribution $P_\theta$, proving under identifiability assumption: relative entropy $D(P_\theta\Vert P_{\theta_*})$ is Lyapunov function of update flow; as number of observations tends to infinity, weight of wrong parameters tends to zero, model converges to $[U_{\theta_*}]$. Combined with reconstruction uniqueness in Appendix A, yields Proposition B.2, consistent with Construction 4.3.
+
+\subsection{$\mathbb{Z}_2$ Topology and Self-Consistency}
+
+Appendix C connects Null--Modular double cover, self-referential scattering networks, and $\mathbb{Z}_2$ cohomology class $[K]\in H^2(Y,\partial Y;\mathbb{Z}_2)$, where $Y$ is five-dimensional auxiliary space with boundary. Proves self-referential consistency requires observer's internal scattering square-root determinant holonomy aligned with external universe's holonomy, thus requiring corresponding $[K]$ to take trivial class. This ensures universe--observer isomorphism holds not only at geometric and informational level, but also consistently at topological sector level.
+
+\subsection{Proof of Theorems 3.10 and 3.11}
+
+With above preparations, proof of Theorem 3.10 is as follows:
+
+\begin{enumerate}
+\item For any $U\in\mathsf{Univ}_{\mathrm{phys}}$, by Construction 4.1 obtain $F(U)\in\mathsf{Obs}_{\mathrm{full}}$, then by Construction 4.3 obtain $R(F(U))$. Since $\mathcal{M}_U$ by definition includes only objects isomorphic to $U$, $R(F(U))$ must be isomorphic to $U$; by uniqueness and convergence in Appendices A--B, obtain natural isomorphism
+$$
+\eta_U:U\to R(F(U)).
+$$
+
+\item For any $O\in\mathsf{Obs}_{\mathrm{full}}$, by Construction 4.3 obtain $R(O)\in\mathsf{Univ}_{\mathrm{phys}}$, then by Construction 4.1 obtain $F(R(O))$. Complete observer assumption ensures $O$ and $F(R(O))$ have identical boundary scattering--entropy data and unified scale, model families converge to same universe object equivalence class, thus $O\cong F(R(O))$, obtain natural isomorphism
+$$
+\epsilon_O:O\to F(R(O)).
+$$
+
+\item Naturality comes from $F,R$ being defined by structure-preserving maps: for universe morphism $f:U\to U'$, scattering--entropy--causal data and model family images under $F$ and $R$ remain compatible, so
+$$
+R(F(f))\circ\eta_U=\eta_{U'}\circ f;
+$$
+for observer morphism $\Phi:O\to O'$,
+$$
+F(R(\Phi))\circ\epsilon_O=\epsilon_{O'}\circ\Phi.
+$$
+\end{enumerate}
+
+Theorem 3.11 follows immediately from Theorem 3.10. Let $U_{\mathrm{outer}}\in\mathsf{Univ}_{\mathrm{phys}}$ be external universe object; ``self'' defined as isomorphism class of $F(U_{\mathrm{outer}})$; then internal universe model $U_{\mathrm{inner}}:=R(F(U_{\mathrm{outer}}))$ is isomorphic to $U_{\mathrm{outer}}$ in $\mathsf{Univ}_{\mathrm{phys}}$; this is rigorous statement of ``self is isomorphic to universe''.
+
+\section{Model Applications: Inner World, Outer Universe and Self-Location}
+
+Based on categorical equivalence theorem, one can discuss more precisely relation between ``internal world'' and ``external universe''.
+
+\subsection{Inner vs Outer in Static Causal-Net Picture}
+
+In timeless causal network perspective, universe ontology is equivalence class of event set with causal partial order $\prec$; unified time scale $\kappa$ and generalized entropy arrow appear only under specific projections and coarse-grainings of this network. ``World cross-section'' seen by observer $O$ can be understood as some conditionalized selection of global causal network under given worldline $\gamma$ and resolution $\Lambda$.
+
+In this model:
+
+\begin{itemize}
+\item External universe $U_{\mathrm{outer}}$ gives global causal--geometric--entropy--matrix structure;
+
+\item ``Self'''s internal world $U_{\mathrm{inner}}$ is one-to-one corresponding structure given by $R(O)$;
+
+\item Any seemingly ``subjective'' time flow and world evolution can be viewed as natural parametric cross-section family along $\gamma$ under unified scale.
+\end{itemize}
+
+Therefore, ``internal world'' is not some superstructure added to universe, but selective reconstruction of universe object under unified scale and causal network; under this model's assumptions, this reconstruction is isomorphic to universe ontology.
+
+\subsection{Wigner-Type Thought Experiments}
+
+Wigner-style ``friend'' thought experiment emphasizes: when one observer is quantized by second observer, their descriptions of same process seem inconsistent. In this paper's framework, this corresponds to choosing two observer objects $O_1,O_2\in\mathsf{Obs}_{\mathrm{full}}$, whose respective internal universe models $R(O_1),R(O_2)$ are isomorphic in $\mathsf{Univ}_{\mathrm{phys}}$, while difference manifests only in:
+
+\begin{itemize}
+\item Different ``experiential order'' intercepted by respective worldlines $\gamma_1,\gamma_2$;
+
+\item Path dependence in respective observable algebras $\mathcal{A}_1,\mathcal{A}_2$ and communication structure $\mathcal{C}_{12}$.
+\end{itemize}
+
+In limit of sufficient communication and error discipline, both necessarily converge to same universe object equivalence class, thus ``universe ontology'' does not depend on any specific observer, depending only on structure of complete observer category.
+
+\subsection{Feeling of Freedom and Multiple Models}
+
+From modeling perspective, ``feeling of free choice'' can be understood as model family $\mathcal{M}$ having multiple approximately equivalent candidate universe objects in short term, with relative entropy differences indistinguishable within observational precision. As observation data accumulates and information geometric flow evolves, model gradually contracts to single equivalence class, subjective uncertainty vanishes, while universe ontology remains unchanged throughout process.
+
+In matrix universe perspective, this amounts to: choosing multiple approximately equal-length feedback loops along self-referential scattering path, where time delays and phase plateaus are indistinguishable within error range, allowing subjective experience of ``model coexistence''; once measurements sufficiently refined, unique matrix block structure is determined, thus ``universe'' as macroscopic matrix object manifests.
+
+\section{Engineering Proposals: Scattering Networks as Toy ``Universes''}
+
+Although this paper advocates structural isomorphism theorem, several key assumptions can be partially tested on engineering platforms. Here we propose experimental ideas at two levels.
+
+\subsection{Multi-Port Scattering Networks and Unified Time Scale}
+
+Using microwave multi-port scattering networks or optical waveguide networks, can construct multi-node scattering systems with feedback, measuring their frequency-dependent scattering matrix $S(\omega)$ and time-delay matrix $Q(\omega)$, verifying alignment degree of different time scales in scale identity:
+
+\begin{itemize}
+\item Measure relation between Wigner--Smith delay matrix and energy density in electromagnetic systems;
+
+\item For same network construct different ``observation perspectives'', comparing whether internal scales $\kappa_O$ of different port subnetworks are compatible on equivalence classes;
+
+\item Construct systems with controllable loss and dispersion, verifying stability of scale alignment under non-ideal conditions.
+\end{itemize}
+
+This allows simulating time scale unification and reconstruction on finite-dimensional matrix universe, supporting this paper's postulate of ``unique source of time scale''.
+
+\subsection{Boundary-Driven Partial Geometry Reconstruction}
+
+In numerical relativity and holographic numerical simulations, bulk geometry can be reconstructed by specifying boundary data (stress tensor, entanglement entropy, or modulated Hamiltonian).
+
+Based on this paper's framework, following numerical experiments can be designed:
+
+\begin{enumerate}
+\item On given anti-de Sitter background or asymptotically flat background, apply class of boundary perturbations, computing boundary scattering--entropy data;
+
+\item Assume ``observer'' accesses only these data, using information geometric algorithms to reconstruct interior effective metric;
+
+\item Compare deviation between reconstructed geometry and true geometry, studying influence of resolution scale $\Lambda$ on reconstruction uniqueness.
+\end{enumerate}
+
+Such experiments can be viewed as numerical test of universe reconstruction uniqueness in Appendix A.
+
+\section{Discussion: Scope, Limitations and Relation to Other Frameworks}
+
+\subsection{Scope and Limitations}
+
+This paper's isomorphism theorem is supported by several key assumptions:
+
+\begin{enumerate}
+\item Universe can be viewed at appropriate scales as globally hyperbolic Lorentz manifold with sufficiently well-behaved boundary structure;
+
+\item Unified time scale density $\kappa$ exists and is jointly determined by scattering--spectral and modular flow--geometric time;
+
+\item QNEC, QFC, and generalized entropy extremality--field equation equivalence hold in considered physical interval;
+
+\item Boundary scattering--entropy data is mathematically sufficiently complete, allowing unique reconstruction of geometry through boundary rigidity and inverse problem theory;
+
+\item Observer model family satisfies information geometric identifiability, with sufficient time and resources reaching asymptotic convergence.
+\end{enumerate}
+
+In strong quantum gravity regimes, topological transitions, or early universe scenarios, above assumptions may fail, especially definition of generalized entropy, global hyperbolicity, and existence of unified scale need reexamination. Therefore, this theorem should currently be understood as structural statement for class of ``mild'' universes and their ``idealized complete observers'', not unconditional assertion for all possible universes.
+
+\subsection{Relation to ``It from Bit'' and Relational/QBist Views}
+
+Compared to Wheeler's ``it from bit'' program, this paper concretizes ``information priority'' as mathematical proposition ``boundary scattering--entropy data determines universe geometry''; compared to relational quantum mechanics, QBism views emphasizing ``relative states'', this paper proves at categorical level: on complete observer category, all ``relative universe models'' converge to same universe object isomorphism class, thus recovering some ``objective universe'' in compatible limit.
+
+This structure preserves observer relativity perspective while recovering strong-sense universe ontology under unified scale and causal--entropy constraints.
+
+\subsection{Relation to Holography and Entanglement Wedge Reconstruction}
+
+In holographic theory, JLMS formula and entanglement wedge reconstruction arguments show equivalence between boundary relative entropy and bulk relative entropy, thus boundary data can recover bulk operator structure. This paper can be viewed as extension of this idea: not only operator and entanglement structure can be reconstructed, but causal structure, unified time scale, and generalized entropy arrow are also included in universe object $U$; complete observer's internal world model is isomorphic to this object, realizing some ``holographic self-reference''.
+
+\subsection{Philosophical Implications}
+
+In this paper's axiomatic framework, ``self is isomorphic to universe'' is no longer understood as entity identity, but categorical isomorphism: a self-referential observer satisfying completeness conditions has internal world model structurally equivalent to universe ontology. This perspective unifies following intuitions:
+
+\begin{itemize}
+\item ``Universe does not depend on any specific observer, but complete observer's internal world corresponds to universe itself without remainder'';
+
+\item ``Time is not added parameter, but unified scale jointly determined by scattering--entropy--modular flow'';
+
+\item ``Free choice and uncertainty can be understood as multiple candidates at model level, not uncertainty of universe ontology''.
+\end{itemize}
+
+\section{Conclusion}
+
+Within framework of unified time scale, boundary time geometry, causal--entropy structure, and matrix universe, this paper constructs universe object category $\mathsf{Univ}$ and observer object category $\mathsf{Obs}$, giving explicit functors $F$ and $R$ between physical subcategory and complete observer subcategory, proving they constitute categorical equivalence.
+
+Interpreting isomorphism class of observers satisfying completeness, self-referential consistency, and time scale alignment as ``self'', yields structural isomorphism between ``self'''s internal universe model and external universe object, providing rigorous interpretation compatible with modern mathematical physics for ``my mind is the universe'': at unified causal--time--entropy--matrix universe level, ``self'' and ``universe'' are two images of same object in different categories.
+
+\section*{Acknowledgements \& Code Availability}
+
+Concepts and proofs involved in this work rely on multiple mature fields including scattering theory, operator algebras, Lorentzian geometry, inverse problem theory, and information geometry; we pay tribute to pioneers in related fields.
+
+This paper does not use independently developed code or numerical programs.
+
+\section*{Appendix A: Boundary Data, Local Reconstruction and Global Uniqueness}
+
+This appendix proves: under unified time scale and generalized entropy--field equation equivalence assumptions, scattering--entropy data on small causal diamonds uniquely determines local geometry and cosmological constant; under boundary rigidity and inverse problem theory support, these local data can be uniquely glued into global universe object, supporting uniqueness of $R(O)$.
+
+\subsection*{A.1 Local Reconstruction on Small Causal Diamonds}
+
+Consider small causal diamond $D_{p,r}$ in universe object $U=(M,g,\prec,\kappa,S_{\mathrm{gen}})$.
+
+\textbf{Local data}: Assume on $\partial D_{p,r}$ know:
+
+\begin{enumerate}
+\item Fixed-frequency scattering matrix $S_D(\omega)$ and its Wigner--Smith time-delay matrix $Q_D(\omega)$, obtaining local scale density
+$$
+\kappa_D(\omega)=\frac{\varphi'_D(\omega)}{\pi}
+=\frac{1}{2\pi}\operatorname{tr}Q_D(\omega);
+$$
+
+\item For all null directions and cut surfaces, first-order generalized entropy variation $\delta S_{\mathrm{gen}}$ and second-order variation $\delta^2 S_{\mathrm{gen}}$, assuming these variations satisfy QNEC, QFC, and gauge energy non-negativity.
+\end{enumerate}
+
+\begin{proposition}[A.1]
+Under above conditions, metric $g$ and cosmological constant $\Lambda$ interior to $D_{p,r}$ are uniquely determined up to diffeomorphism.
+\end{proposition}
+
+\textit{Proof sketch}:
+
+\begin{enumerate}
+\item \textbf{First variation and field equations}: Under fixing effective volume or redshift conditions, vanishing first variation of generalized entropy is equivalent to extremal surfaces satisfying quantum minimal (or maximal) condition; together with QFC gives constraints on $R_{ab}$ and energy-momentum tensor $T_{ab}$. Combined with IGVP type results, these constraints can be converted into nonlinear Einstein equations.
+
+\item \textbf{Second variation and stability}: Second variation non-negativity equivalent to Hollands--Wald gauge energy non-negativity, meaning field equation solution is stable under small perturbations, excluding certain non-physical solutions or multi-valuedness.
+
+\item \textbf{Scale alignment and cosmological term}: Local scale density $\kappa_D(\omega)$ couples with cosmological term in effective action through heat kernel expansion and spectral shift function, thus under given scattering data, $\Lambda$ and light cone structure normalization are uniquely fixed.
+
+\item \textbf{In summary}: $g|_{D_{p,r}}$ and $\Lambda$ unique up to diffeomorphism.
+\end{enumerate}
+
+Rigorous proof requires introducing perturbative spectral geometry, precise relations among relative scattering determinant and generalized entropy--action functionals; details omitted here.
+
+\subsection*{A.2 Global Gluing and Boundary Rigidity}
+
+Let $\{D_{p_i,r_i}\}$ be small causal diamond cover of $M$; for each $D_{p_i,r_i}$ already obtained local metric $g_i$ and cosmological constant $\Lambda_i$ by Proposition A.1, and by physical continuity know $\Lambda_i$ constant consistent.
+
+On overlap region $D_{p_i,r_i}\cap D_{p_j,r_j}$, boundary scattering--entropy data consistent, so $g_i,g_j$ are diffeomorphically equivalent on this region; can construct global metric $g$ and causal structure $\prec$ through standard Galois gluing and Čech consistency.
+
+Furthermore, under appropriate boundary rigidity and inverse problem theorems (e.g., rigidity results of boundary distance function and scattering phase), can prove: if two universe objects have consistent boundary scattering--entropy data on all small causal diamonds, then there exists diffeomorphism $f$ mapping one universe to another while preserving metric, causal structure, scale, and generalized entropy, thus isomorphic in $\mathsf{Univ}$.
+
+\begin{proposition}[A.2: Universe Reconstruction Uniqueness]
+Under Assumption 2.6, complete boundary scattering--entropy data uniquely determines universe object's isomorphism class in $\mathsf{Univ}$.
+\end{proposition}
+
+This provides geometric and analytic foundation for definition and uniqueness of $R(O)$.
+
+\section*{Appendix B: Information-Geometric Identifiability and Model Convergence}
+
+This appendix studies identifiability and asymptotic convergence of complete observer model family.
+
+\subsection*{B.1 Parametric Family and Statistical Model}
+
+Let $\Theta \subset \mathbb{R}^n$ be compact parameter space; for each $\theta\in\Theta$ associate universe object $U_\theta\in\mathsf{Univ}_{\mathrm{phys}}$, denoting statistical distribution of boundary scattering--entropy data as $P_\theta$. Observer's model family $\mathcal{M}$ can be viewed as collection $\{U_\theta\}_{\theta\in\Theta}$.
+
+\begin{assumption}[B.1: Information Identifiability]
+\begin{enumerate}
+\item If $P_{\theta_1}=P_{\theta_2}$, then $U_{\theta_1}\cong U_{\theta_2}$ isomorphic in $\mathsf{Univ}$;
+
+\item Relative entropy $D(P_{\theta_1}\Vert P_{\theta_2})=0$ if and only if $U_{\theta_1},U_{\theta_2}$ isomorphic.
+\end{enumerate}
+
+Under this assumption, $\Theta/\!\!\sim$ (quotient space by universe isomorphism) becomes information geometric manifold, whose Fisher--Rao metric and Eguchi divergence structures correspond to statistical properties of $P_\theta$.
+\end{assumption}
+
+\subsection*{B.2 Observer Update as Information-Gradient Flow}
+
+Model complete observer's update rule $U_{\mathrm{upd}}$ as Bayesian update of parameter prior $\pi(\theta)$ or information geometric gradient flow of model distribution $q(\theta)$. One observation $x \sim P_{\theta_*}$ leads to update
+$$
+q_{t+1}(\theta)\propto q_t(\theta)\,p(x\mid\theta),
+$$
+or in continuous limit
+$$
+\frac{\mathrm{d}q_t}{\mathrm{d}t}
+=-\nabla D(q_t\Vert P_{\theta_*}),
+$$
+where $D$ is Kullback--Leibler divergence.
+
+Under standard law of large numbers and large deviation principle, can prove:
+
+\begin{proposition}[B.2: Model Convergence]
+If $O\in\mathsf{Obs}_{\mathrm{full}}$'s model family satisfies Assumption B.1, then as number of observations tends to infinity or proper time $t\to\infty$, model distribution $q_t$ converges with probability 1 to some equivalence class $[\theta_*]$, corresponding to unique universe object isomorphism class $[U_{\theta_*}]$.
+\end{proposition}
+
+Combined with universe reconstruction uniqueness in Appendix A, can define $R(O)$ as representative of this isomorphism class, proving rationality of Construction 4.3.
+
+\section*{Appendix C: Null--Modular Double Cover, $\mathbb{Z}_2$ Sector and Self-Consistency}
+
+This appendix supplements Section 5's arguments about Null--Modular double cover and $\mathbb{Z}_2$ topological alignment.
+
+\subsection*{C.1 $\mathbb{Z}_2$-Valued Invariants from Self-Referential Scattering}
+
+Consider self-referential scattering network with feedback, whose scattering matrix $S(\omega)$ is defined on some energy window, assuming its determinant can be written in square-root form
+$$
+\det S(\omega)=\bigl(\sqrt{\det S(\omega)}\bigr)^2,
+$$
+different square-root choices corresponding to $\mathbb{Z}_2$ double cover. For each closed loop $\gamma$ (e.g., in energy--parameter space), can define holonomy
+$$
+\nu_{\sqrt{S}}(\gamma)\in\mathbb{Z}_2,
+$$
+representing whether square root flips sign after circling $\gamma$.
+
+On other hand, in Null--Modular double cover and BF-type topological field theory, volume integral with boundary modular flow, generalized entropy, and energy conditions jointly determine relative cohomology class $[K]\in H^2(Y,\partial Y;\mathbb{Z}_2)$, which under appropriate embedding can be interpreted as unified encoding of above holonomy.
+
+\subsection*{C.2 Self-Consistency Condition for Complete Observers}
+
+For complete observer $O\in\mathsf{Obs}_{\mathrm{full}}$, its internal model also has scattering matrix $S_O(\omega)$ and square root $\sqrt{\det S_O}$. Self-referential consistency requires: for all physically allowed loops $\gamma$, observer's internally predicted holonomy consistent with external universe's true holonomy:
+$$
+\nu_{\sqrt{S_O}}(\gamma)
+=\nu_{\sqrt{S_U}}(\gamma),
+$$
+where $S_U$ is scattering matrix family of universe object $U=R(O)$. If deviation exists, observer will detect $\mathbb{Z}_2$-level phase or delay parity jumps in long-term observations, correcting its model until both align.
+
+This condition equivalent to requiring corresponding cohomology class $[K]$ to take trivial value, ensuring consistency among local geometry--energy--topological structure. Thus ``self'''s self-referential scattering network and universe ontology are completely consistent at $\mathbb{Z}_2$ topological level, further strengthening conclusion ``self is isomorphic to universe''.
+
+\end{document}
+

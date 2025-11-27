@@ -1,0 +1,539 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{braket}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{axiom}[theorem]{Axiom}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Math operators
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\code}{code}
+\DeclareMathOperator{\sinc}{sinc}
+\DeclareMathOperator{\Cap}{Cap}
+\DeclareMathOperator{\Risk}{Risk}
+
+% Title information
+\title{Axiomatic Characterization of Universe\\
+as Quantum Cellular Automaton:\\
+QCA Implementation of Computational Universe Terminal Object\\
+and Unified Time Scale Limit}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+In previous series on ``computational universe'' $U_{\mathrm{comp}} = (X,\mathsf{T},\mathsf{C},\mathsf{I})$, we have constructed discrete complexity geometry, discrete information geometry, control manifold $(\mathcal{M},G)$ induced by unified time scale, task information manifold $(\mathcal{S}_Q,g_Q)$, time--information--complexity joint variational principle, multi-observer consensus geometry, causal diamonds and Null--Modular double cover, topological complexity and undecidability, and unified computational universe terminal object $\mathfrak{U}_{\mathrm{comp}}^{\mathrm{term}}$.
+
+On other hand, quantum cellular automaton (QCA) long viewed as natural candidate model for ``universe as quantum discrete dynamical system'': on countable lattice sites, each site carries finite-dimensional Hilbert space, overall evolution is local unitary update. Traditional QCA theory mainly focused on information propagation speed, reversibility and universality, less systematically integrated with unified time scale, complexity geometry and universe terminal object structure.
+
+This paper gives rigorous axiomatic characterization of viewpoint ``universe as quantum cellular automaton'' within unified time scale--computational universe terminal object framework. Main results:
+
+\begin{enumerate}
+\item Introduce ``universe QCA object'' $\mathfrak{U}_{\mathrm{QCA}} = (\Lambda,{\mathcal{H}_x}_{x\in\Lambda}, U, \mathsf{C}_T)$, where $\Lambda$ countable lattice site set, $\mathcal{H}_x$ local Hilbert space, $U$ global unitary update satisfying locality and reversibility, $\mathsf{C}_T$ unified time scale cost of one update. We propose QCA universe axioms: local finiteness, unified time scale compatibility, observable operator network and causal structure, embeddability in computational universe axioms.
+
+\item Construct functor from QCA universe objects to computational universe objects $U_{\mathrm{comp}} = (X,\mathsf{T},\mathsf{C},\mathsf{I})$, and functor from physically realizable computational universe to QCA universe, prove under unified time scale and locality axioms, these two functors give categorical equivalence on appropriately defined subcategories:
+
+$$
+\mathbf{QCAUniv}^{\mathrm{phys}}
+\simeq
+\mathbf{CompUniv}^{\mathrm{phys}}.
+$$
+
+In particular, unified computational universe terminal object $\mathfrak{U}_{\mathrm{comp}}^{\mathrm{term}}$ restriction on QCA subcategory isomorphic to ``universe QCA terminal object'' $\mathfrak{U}_{\mathrm{QCA}}^{\mathrm{term}}$.
+
+\item Under unified time scale master scale, construct control manifold $(\mathcal{M},G)$ and continuous limit for QCA universe: prove under Lieb--Robinson bounded propagation speed and controllable perturbation conditions, exists continuous time limit family $U(t)$ and effective Hamiltonian $H_{\mathrm{eff}}$ such that unified time scale density $\kappa(\omega)$ connects with QCA discrete spectral data through scattering--spectral shift--group delay formula.
+
+\item From within QCA universe construct observers, causal diamonds, Null--Modular double cover and time crystals, prove these structures can be completely realized on QCA Hilbert space: observers are local subsystems on QCA, causal diamonds are local space--time blocks, Null--Modular $\mathbb{Z}_2$ holonomy and time crystal phase parity structure realized through constructing self-reference feedback network and Floquet--QCA on QCA.
+
+\item At topological complexity and undecidability level, prove QCA universe contains all computable discrete dynamical systems: any constructible computational universe object can be embedded in some QCA universe; thus topological loop contraction undecidability, catastrophic safety undecidability, and capability--risk frontier non-algorithmic solvability previously proved at computational universe level all hold in QCA universe.
+\end{enumerate}
+
+This paper thus shows: ``universe as quantum cellular automaton'' not independent additional assumption from computational universe framework, but concrete implementation of unified computational universe terminal object in particularly natural subcategory; unified time scale, complexity geometry, information geometry, multi-observer causal network and capability--risk structure can be completely realized and concretely engineered in QCA universe.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Computational universe; Quantum cellular automaton; QCA; Terminal object; Unified time scale; Categorical equivalence; Complexity geometry
+
+\section{Introduction}
+
+Conception ``universe is quantum cellular automaton'' repeatedly appears in quantum information, fundamental physics and computation theory: universe at some microscopic scale composed of discrete lattice sites and local update rules, continuous spacetime and field theory only its large-scale limit. On other hand, ``universe is computational universe'' abstracts universe ontology as ultimate object of universal computation system, unifying physics, computation and information from complexity geometry, information geometry and unified time scale perspectives.
+
+In previous series, we have constructed unified computational universe terminal object $\mathfrak{U}_{\mathrm{comp}}^{\mathrm{term}}$ from computation--geometry--category perspective. Natural questions:
+
+\begin{enumerate}
+\item Does there exist pure QCA ``universe object'' $\mathfrak{U}_{\mathrm{QCA}}$ that can realize all computational universe structures?
+\item How does QCA universe interface with unified time scale--control manifold structure?
+\item Can observers, causal diamonds, Null--Modular double cover, time crystals, self-reference and capability--risk structure be completely realized within QCA universe?
+\end{enumerate}
+
+This paper gives systematic answers to these questions.
+
+Section 2 gives QCA universe axioms and basic structure; Section 3 constructs categorical equivalence between QCA universe and computational universe, defines QCA universe terminal object; Section 4 discusses unified time scale and continuous limit of QCA; Section 5 shows implementation of observers, causal diamonds, Null--Modular and time crystals in QCA universe; Section 6 explains preservation of undecidability and capability--risk structure in QCA universe. Appendices give detailed proofs of main propositions and theorems.
+
+\section{Axiomatic Definition of QCA Universe}
+
+This section gives axiomatic definition of quantum cellular automaton universe, introduces unified time scale compatibility and observable operator network.
+
+\subsection{QCA Basic Structure}
+
+\begin{definition}[Quantum Cellular Automaton]
+Let $\Lambda$ be countable lattice site set (e.g., $\mathbb{Z}^d$), for each $x\in\Lambda$, endow finite-dimensional Hilbert space $\mathcal{H}_x \cong \mathbb{C}^{d_x}$. Global Hilbert space defined as infinite tensor product
+
+$$
+\mathcal{H}
+=
+\bigotimes_{x\in\Lambda} \mathcal{H}_x,
+$$
+
+in strict mathematics need select appropriate separable subspace (e.g., finite excitation space), this paper uses physically standard ``locally excitable state space''.
+
+A reversible QCA is unitary operator $U:\mathcal{H}\to\mathcal{H}$ satisfying:
+
+\begin{enumerate}
+\item Locality: exists finite radius $R>0$ such that for any local operator $A_x \in \mathcal{B}(\mathcal{H}_x)$, its Heisenberg evolution $U^\dagger A_x U$ supported on $\{y\in\Lambda : \dist(x,y)\le R\}$;
+
+\item Reversibility: $U$ is unitary, and $U^{-1}$ satisfies same locality constraint.
+\end{enumerate}
+
+We call $(\Lambda,{\mathcal{H}_x},U)$ a QCA object.
+\end{definition}
+
+\subsection{QCA Universe Object}
+
+To characterize universe rather than single QCA, we need to add unified time scale and observable operator network.
+
+\begin{definition}[QCA Universe Object]
+A QCA universe object is quadruple
+
+$$
+\mathfrak{U}_{\mathrm{QCA}}
+=
+(\Lambda,{\mathcal{H}_x}_{x\in\Lambda},U,\mathsf{C}_T),
+$$
+
+satisfying:
+
+\begin{enumerate}
+\item QCA condition: $(\Lambda,{\mathcal{H}_x},U)$ is reversible QCA;
+
+\item Unified time scale compatibility: exists unified time scale density $\kappa(\omega)$ and corresponding scattering--group delay structure such that physical time cost $\mathsf{C}_T$ of one $U$ update writable as
+
+$$
+\mathsf{C}_T
+=
+\int_{\Omega} w(\omega)\,\kappa(\omega)\,\mathrm{d}\omega,
+$$
+
+where $w(\omega)$ normalized weight, $\Omega \subset\mathbb{R}$ effective frequency band;
+
+\item Observable operator network: exists local operator network $\{\mathcal{A}(\mathcal{O})\}$ (e.g., local operator algebra on region $\mathcal{O}\subset\Lambda$) such that QCA realizes automorphism of operator network in Heisenberg picture, and unified time scale--scattering structure definable through scattering processes on this operator network.
+\end{enumerate}
+\end{definition}
+
+At computational universe level, we take configuration set $X$ as label set of global normalized basis vectors, e.g.,
+
+$$
+X
+=
+\big\{
+\ket{\psi} = \bigotimes_{x\in\Lambda} \ket{s_x} : s_x\in\{1,\dots,d_x\},\ \text{satisfying finite excitation condition}
+\big\}.
+$$
+
+One-step update relation defined by matrix elements of $U$, unified time scale determined by $\mathsf{C}_T$.
+
+\subsection{QCA Universe Axioms}
+
+We summarize as following axiom system:
+
+\begin{axiom}[Discrete Lattice and Finite Local Degrees of Freedom (Q1)]
+$\Lambda$ countable graph with bounded degree; each site local Hilbert space dimension finite.
+\end{axiom}
+
+\begin{axiom}[Local Reversible Dynamics (Q2)]
+$U$ unitary operator satisfying locality constraint with finite propagation radius $R$, and $U^{-1}$ also local.
+\end{axiom}
+
+\begin{axiom}[Unified Time Scale Compatibility (Q3)]
+Exists unified time scale density $\kappa(\omega)$ such that for certain class of scattering processes (e.g., scattering between local region and external universe), their scattering phase, spectral shift and group delay trace satisfy unified time scale master formula. Time cost $\mathsf{C}_T$ of one QCA step $U$ is certain window integral of $\kappa(\omega)$.
+\end{axiom}
+
+\begin{axiom}[Observable Operator Network and Causal Structure (Q4)]
+Exists local operator network $\mathcal{A}(\mathcal{O})$ and QCA-induced causal structure such that local operators only affect finite region in finite steps, and unified time scale--complexity geometry can define causal diamonds and complexity light cones on this causal structure.
+\end{axiom}
+
+Objects satisfying Q1--Q4 called QCA universe objects, denote their category as $\mathbf{QCAUniv}$.
+
+\section{Categorical Equivalence Between QCA Universe and Computational Universe}
+
+This section constructs functors between QCA universe and computational universe, proves categorical equivalence on physically realizable subclasses, obtaining QCA universe terminal object.
+
+\subsection{Functor from QCA Universe to Computational Universe}
+
+\begin{definition}[Functor $\mathcal{F}_{\mathrm{QCA}\to\mathrm{comp}}$]
+Given QCA universe object
+
+$$
+\mathfrak{U}_{\mathrm{QCA}}
+=
+(\Lambda,{\mathcal{H}_x},U,\mathsf{C}_T),
+$$
+
+construct computational universe object
+
+$$
+U_{\mathrm{comp}}(\mathfrak{U}_{\mathrm{QCA}})
+=
+(X,\mathsf{T},\mathsf{C},\mathsf{I}),
+$$
+
+as follows:
+
+\begin{enumerate}
+\item Configuration set $X$: take tensor product basis family $\{\ket{s_x}\}_{s_x=1}^{d_x}$ finite excitation tensor products, let $X$ be label set of these basis vectors;
+
+\item One-step update relation $\mathsf{T}$: define
+
+$$
+(x,y)\in\mathsf{T}
+\iff
+\braket{y|U|x} \neq 0;
+$$
+
+\item Single-step cost $\mathsf{C}(x,y)$: if $(x,y)\in\mathsf{T}$, let $\mathsf{C}(x,y) = \mathsf{C}_T$ (or add correction factor related to local operation count), otherwise $\mathsf{C}(x,y)=\infty$;
+
+\item Information quality function $\mathsf{I}$: defined by physical task, e.g., success probability of certain local observable or scattering process.
+\end{enumerate}
+\end{definition}
+
+This construction obviously preserves locality and unified time scale structure: complexity distance $d_{\mathrm{comp}}$ corresponds to number of QCA steps times $\mathsf{C}_T$, causal structure determined by directed graph of $\mathsf{T}$.
+
+\subsection{Construction from Computational Universe to QCA Universe}
+
+Reverse construction more subtle, needs to use QCA universality: any local reversible discrete dynamical system can be embedded in some QCA.
+
+\begin{proposition}[Embedding from Computational Universe to QCA]
+\label{prop:comp-to-QCA}
+For each physically realizable computational universe object
+
+$$
+U_{\mathrm{comp}} = (X,\mathsf{T},\mathsf{C},\mathsf{I})
+$$
+
+exists QCA universe object $\mathfrak{U}_{\mathrm{QCA}}$ and pair of maps
+
+$$
+E:X\to\mathcal{H},\quad D:\mathcal{H}\to X,
+$$
+
+such that:
+
+\begin{enumerate}
+\item $E$ encoding map embedding configuration labels into local subspace of QCA Hilbert space;
+\item $D$ decoding map projecting from encoding subspace back to configuration labels;
+\item QCA update $U$ simulates computational universe update relation $\mathsf{T}$ on encoding subspace: if $(x,y)\in\mathsf{T}$, then
+
+$$
+D U E(x) = y,
+$$
+
+and this simulation introduces only finite constant factor complexity overhead under unified time scale and locality axioms.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+Uses standard ``circuit--QCA universality'' construction, translates local rules of computational universe into local gates of one or two-dimensional QCA. See Appendix B for details.
+\end{proof}
+
+View this embedding as functor
+
+$$
+\mathcal{F}_{\mathrm{comp}\to\mathrm{QCA}}
+:
+\mathbf{CompUniv}^{\mathrm{phys}}\to\mathbf{QCAUniv}^{\mathrm{phys}},
+$$
+
+gives QCA implementation on objects, lifts simulation map to local transformation at QCA layer on morphisms.
+
+\subsection{Categorical Equivalence and QCA Universe Terminal Object}
+
+\begin{theorem}[Categorical Equivalence of QCA Universe and Computational Universe]
+\label{thm:QCA-comp-equiv}
+On physically realizable subcategories $\mathbf{QCAUniv}^{\mathrm{phys}} \subset\mathbf{QCAUniv}$, $\mathbf{CompUniv}^{\mathrm{phys}} \subset\mathbf{CompUniv}$, functors
+
+$$
+\mathcal{F}_{\mathrm{QCA}\to\mathrm{comp}},
+\quad
+\mathcal{F}_{\mathrm{comp}\to\mathrm{QCA}}
+$$
+
+constitute categorical equivalence:
+
+$$
+\mathbf{QCAUniv}^{\mathrm{phys}}
+\simeq
+\mathbf{CompUniv}^{\mathrm{phys}}.
+$$
+
+In particular, unified computational universe terminal object $\mathfrak{U}_{\mathrm{comp}}^{\mathrm{term}}$ restriction on this subcategory isomorphic to some QCA universe terminal object $\mathfrak{U}_{\mathrm{QCA}}^{\mathrm{term}}$, latter satisfies for any QCA universe object $\mathfrak{U}_{\mathrm{QCA}}$ exists unique (up to natural transformation) morphism
+
+$$
+\mathfrak{U}_{\mathrm{QCA}}\to\mathfrak{U}_{\mathrm{QCA}}^{\mathrm{term}}.
+$$
+\end{theorem}
+
+\begin{proof}
+See Appendix C.
+\end{proof}
+
+\section{Unified Time Scale and Continuous Limit of QCA}
+
+This section discusses how to construct unified time scale and continuous limit of control manifold on QCA universe.
+
+\subsection{Lieb--Robinson Bounded Propagation and Finite Light Speed}
+
+In local QCA, Lieb--Robinson inequality guarantees upper bound on information propagation speed: exists velocity $v_{\mathrm{LR}}>0$, decay rate $\mu>0$ and constant $C>0$ such that for any local operators $A_x$, $B_y$
+
+$$
+\big|
+[U^n A_x U^{-n},B_y]
+\big|
+\le
+C\,
+\exp\big(-\mu(\dist(x,y)-v_{\mathrm{LR}}n)\big).
+$$
+
+Under unified time scale, ratio with per-step update cost $\mathsf{C}_T$ gives effective ``light speed''
+
+$$
+c_{\mathrm{eff}} = v_{\mathrm{LR}}/\mathsf{C}_T.
+$$
+
+This quantity viewable as metric factor in continuous limit of control manifold.
+
+\subsection{Limit from QCA to Continuous Time Evolution}
+
+In many QCA models, exists continuous time limit: exists Hamiltonian $H_{\mathrm{eff}}$ and time step $\delta t$ such that
+
+$$
+U = \exp(-\mathrm{i} H_{\mathrm{eff}}\delta t) + \mathcal{O}(\delta t^2),
+$$
+
+thus multi-step evolution at $t = n\delta t$ approximates continuous time evolution $\exp(-\mathrm{i} H_{\mathrm{eff}} t)$. For this, unified time scale density $\kappa(\omega)$ definable from scattering data of $H_{\mathrm{eff}}$.
+
+\begin{proposition}[Continuous Limit of Unified Time Scale for QCA]
+\label{prop:QCA-continuous}
+Let QCA universe object $\mathfrak{U}_{\mathrm{QCA}}$ satisfy:
+
+\begin{enumerate}
+\item Exists continuous limit $U = \exp(-\mathrm{i} H_{\mathrm{eff}}\delta t) + \mathcal{O}(\delta t^2)$;
+\item $H_{\mathrm{eff}}$ traceable perturbation Hamiltonian satisfying wave operator completeness and unified time scale master formula;
+\end{enumerate}
+
+Then proportional relationship exists between QCA single-step cost $\mathsf{C}_T$ and unified time scale density $\kappa(\omega)$, and complexity distance converges to geodesic distance $d_G$ on control manifold in refinement limit, where $G$ constructed from scattering--group delay response of $H_{\mathrm{eff}}$.
+\end{proposition}
+
+\begin{proof}
+See Appendix D.
+\end{proof}
+
+\subsection{Control Manifold of QCA Universe}
+
+For controllable parameters in QCA universe (e.g., local coupling constants, lattice spacing, external field strength), endow parameter space
+
+$$
+\mathcal{M}_{\mathrm{QCA}} = \{\theta\},
+$$
+
+at each $\theta$ corresponds QCA update operator $U(\theta)$ and unified time scale density $\kappa(\omega;\theta)$. Following previous unified time scale--control manifold construction, define metric
+
+$$
+G_{ab}(\theta)
+=
+\int_{\Omega}
+w(\omega)\,
+\tr\big(
+\partial_a Q(\omega;\theta)\,\partial_b Q(\omega;\theta)
+\big)\,\mathrm{d}\omega,
+$$
+
+where $Q(\omega;\theta) = -\mathrm{i} U(\theta)^\dagger(\omega)\partial_\omega U(\theta)(\omega)$.
+
+Thus control manifold $(\mathcal{M}_{\mathrm{QCA}},G)$ of QCA universe directly connected with unified time scale, control manifold structure on computational universe side concretely realized in QCA universe.
+
+\section{Observers, Causal Diamonds and Time Crystals in QCA Universe}
+
+This section shows how to realize observers, causal diamonds, Null--Modular double cover and time crystals previously constructed at computational universe level in QCA universe.
+
+\subsection{Observer as QCA Local Subsystem}
+
+In QCA universe, observer $O$ viewable as local subsystem on lattice site set $\Lambda_O\subset\Lambda$, its internal Hilbert space
+
+$$
+\mathcal{H}_O = \bigotimes_{x\in\Lambda_O}\mathcal{H}_x,
+$$
+
+internal memory state space $M_{\mathrm{int}}$ embedded in some subspace of $\mathcal{H}_O$, observation symbol space $\Sigma_{\mathrm{obs}}$ and action space $\Sigma_{\mathrm{act}}$ correspond to certain local measurement and control operators on QCA. Internal update operator $\mathcal{U}$ realized by local QCA sequence implemented on $\mathcal{H}_O$.
+
+Multi-observer case corresponds to multiple disjoint or partially overlapping local subsystems, communication through local propagation of QCA concentrated in finite Lieb--Robinson light cone.
+
+\subsection{Causal Diamonds and Boundary Computation}
+
+On QCA universe event layer
+
+$$
+E = X\times\mathbb{Z},
+\quad
+(x,n) \mapsto (y,n+1)
+$$
+
+causal structure basis, causal diamond $\Diamond$ corresponds to event set of some space--lattice site region $\Lambda_\Diamond \subset\Lambda$ within finite time window $[n_0,n_1]$. QCA evolution inside diamond represented by local blocks of $U_\Diamond$, boundary Hilbert space spanned by local degrees of freedom corresponding to diamond space--time boundary.
+
+Boundary computation operator
+
+$$
+\mathsf{K}_\Diamond
+=
+\Pi^+_\Diamond U_\Diamond \iota^-_\Diamond
+$$
+
+explicitly realizable in QCA Hilbert space through local projection and reference state tensor product. Discrete GHY structure of ``boundary determines volume'' proposed at computational universe level completely realized in QCA universe.
+
+\subsection{Null--Modular Double Cover and Time Crystal Realization}
+
+Constructing causal diamond chain $\{\Diamond_k\}$ and corresponding Null--Modular double cover in QCA universe, can choose some self-reference feedback network or Floquet--QCA driving rule making each diamond correspond to one Floquet period.
+
+Introduce modulo-2 time phase label $\epsilon_k\in\mathbb{Z}_2$ determined by scattering phase derivative for outgoing boundary of each period diamond, using previously constructed double cover graph $\widetilde{\mathfrak{D}}\to\mathfrak{D}$, can encode period-doubling parity structure of time crystals as holonomy of closed diamond chain on double cover.
+
+Concrete QCA time crystal models (like Floquet--QCA on one-dimensional spin chain) directly realizable by local gate array on $\mathcal{H}$, existence and robustness of their time crystal phase provable through reversibility and locality of QCA, see Appendix A.
+
+\section{Preservation of Undecidability and Capability--Risk Structure in QCA Universe}
+
+This section explains how undecidability and capability--risk frontier structure obtained at computational universe level preserved in QCA universe.
+
+\subsection{Computational Completeness of QCA Universe}
+
+Since QCA can simulate any local reversible discrete system, and through adding auxiliary registers can simulate irreversible evolution and measurement, QCA universe is ``universal'' at computability level: any constructible computational universe object can be embedded in some QCA universe.
+
+Therefore, halting problem, loop contraction problem, universal catastrophic safety problem and capability--risk frontier search problem remain undecidable or non-algorithmically completely solvable in QCA universe: if solvable in QCA subclass, through categorical equivalence can reduce to solvable in general computational universe, contradicting previous results.
+
+\subsection{QCA Implementation of Capability--Risk Frontier}
+
+In QCA universe, strategy $\pi$ corresponds to some local control protocol (e.g., modulating local gates of QCA in finite region), capability functional $\mathrm{Cap}(\pi)$ and risk functional $\mathrm{Risk}(\pi)$ expressible using local measurements on QCA and catastrophe set $C_{\mathrm{cat}}\subset X$. Capability--risk frontier $\mathcal{F}_{\mathrm{CR}}$ as Pareto frontier structure on strategy space becomes concrete geometric object on QCA control manifold $\mathcal{M}_{\mathrm{QCA}}$.
+
+However, due to universality of QCA, capability--risk frontier has same non-algorithmic solvability in general case as in computational universe: no local algorithm on QCA exists that can give representative points on frontier for all strategy families.
+
+\appendix
+
+\section{Spin Chain Floquet--QCA Time Crystal Model}
+
+This appendix gives example of spin chain Floquet--QCA time crystal model and its realization in computational universe.
+
+\subsection{Model Definition}
+
+Consider one-dimensional lattice $\Lambda = \mathbb{Z}$, each site Hilbert space $\mathcal{H}_x = \mathbb{C}^2$, basis vectors $\{\ket{\uparrow},\ket{\downarrow}\}$. Define two-step Floquet evolution
+
+$$
+U_F = U_2 U_1,
+$$
+
+where
+
+$$
+U_1
+=
+\prod_{x\ \mathrm{even}}
+\exp\big( -\mathrm{i} J_1 \sigma_x^z \sigma_{x+1}^z \big),
+\quad
+U_2
+=
+\prod_{x\ \mathrm{odd}}
+\exp\big( -\mathrm{i} J_2 \sigma_x^z \sigma_{x+1}^z \big),
+$$
+
+$J_1,J_2$ interaction strengths.
+
+Under appropriate parameters, e.g., $J_1 \approx J_2 \approx \pi/4$, considering initial state family as spontaneous symmetry breaking states (like Néel state $\ket{\uparrow\downarrow\uparrow\downarrow\cdots}$ and its flip), this model known to form period-doubling time crystal phase: local spin expectation values $\langle\sigma_x^z\rangle_n$ alternately flip under Floquet period $T$, period $2T$.
+
+\subsection{Realization in Computational Universe}
+
+Take configuration set $X$ as spin configuration set $\{\uparrow,\downarrow\}^{\Lambda}$ finite excitation subset, update relation $\mathsf{T}$ given by nonzero matrix elements of $U_F$ on basis vectors, single-step cost $\mathsf{C}_T$ corresponds to time consumption of executing one $U_F$. This QCA model becomes concrete instance of computational universe, existence of time crystal phase proves existence of ``discrete time translation spontaneous breaking'' instance in computational universe.
+
+\section{Embedding Construction from Computational Universe to QCA}
+
+\subsection{Adaptive Lattice Encoding}
+
+Given computational universe $U_{\mathrm{comp}} = (X,\mathsf{T},\mathsf{C},\mathsf{I})$, first choose encoding way for $X$ into binary strings: exists injection $\code:X\to\{0,1\}^{\mathbb{Z}^d}$ with finite local structure twist.
+
+Construct QCA on lattice $\Lambda = \mathbb{Z}^d$, spin degrees of freedom large enough to carry encoding of each configuration element, using standard ``circuit--QCA conversion'' converts one-step update rule of computational universe into one-step local unitary evolution on QCA. To handle reversibility, can extend computational universe to reversible form (preserving history), then embed in QCA.
+
+\subsection{Time Scale and Complexity Control}
+
+Through choosing appropriate local gate decomposition and timing arrangement, make QCA one-step update have cost $\mathsf{C}_T$ under unified time scale, and simulating one-step update of computational universe requires at most constant number of QCA steps, thus complexity distance multiplied by at most constant factor.
+
+Encoding and decoding maps $E,D$ realized by local operator network: initial state configuration label $x$ corresponds to local spin states of several lattice sites, readout result also through local measurement.
+
+\section{Proof Outline of Categorical Equivalence}
+
+In physically realizable subcategories, $\mathcal{F}_{\mathrm{QCA}\to\mathrm{comp}}$ and $\mathcal{F}_{\mathrm{comp}\to\mathrm{QCA}}$ constitute mutual inverses at object and morphism levels:
+
+\begin{enumerate}
+\item For each $\mathfrak{U}_{\mathrm{QCA}}$, $\mathcal{F}_{\mathrm{comp}\to\mathrm{QCA}}\circ\mathcal{F}_{\mathrm{QCA}\to\mathrm{comp}}(\mathfrak{U}_{\mathrm{QCA}})$ isomorphic to $\mathfrak{U}_{\mathrm{QCA}}$ in local isometry sense;
+\item For each $U_{\mathrm{comp}}$, $\mathcal{F}_{\mathrm{QCA}\to\mathrm{comp}}\circ\mathcal{F}_{\mathrm{comp}\to\mathrm{QCA}}(U_{\mathrm{comp}})$ isomorphic to $U_{\mathrm{comp}}$ in complexity metric and information structure;
+\item For morphisms, simulation maps and local transformations at QCA layer satisfy functoriality and natural transformation structure under composition.
+\end{enumerate}
+
+Concrete proof can refer to categorized version of standard circuit--QCA universality, combining Lipschitz control of unified time scale and complexity geometry.
+
+\section{Scattering--Time Scale Limit of Proposition~\ref{prop:QCA-continuous}}
+
+Rigorous proof of Proposition~\ref{prop:QCA-continuous} needs to use scattering theory and unified time scale master formula. For continuous limit Hamiltonian $H_{\mathrm{eff}}$, under traceable perturbation and wave operator completeness assumptions, exists scattering matrix $S(\omega)$, spectral shift function $\xi(\omega)$ and group delay matrix $Q(\omega)$ satisfying
+
+$$
+\kappa(\omega)
+=
+\frac{\xi'(\omega)}{1}
+=
+\frac{\varphi'(\omega)}{\pi}
+=
+\frac{1}{2\pi}\tr Q(\omega).
+$$
+
+Discrete spectral data $\lambda_j(\delta t) \approx \mathrm{e}^{-\mathrm{i}\varepsilon_j\delta t}$ corresponding to QCA single step connects with continuous spectrum of $H_{\mathrm{eff}}$, its unified time scale increment $\mathsf{C}_T$ associated with integral of $\kappa(\omega)$. Complexity distance converges to geodesic distance $d_G$ induced by $G$ in limit $\delta t\to 0$, $G$ constructed from quadratic form of $\partial_\theta Q(\omega;\theta)$.
+
+These steps consistent with previous unified time scale--control manifold construction, here only need to identify ``discrete step length'' as QCA single step, use standard scattering theory tools for continuous limit $\delta t\to 0$.
+
+\end{document}

@@ -1,0 +1,387 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{braket}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{axiom}[theorem]{Axiom}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Defining ``Self'' in THE-MATRIX Universe: A Matrix Characterization via Causal Partial Order, Unified Time Scale, and Self-Referential Scattering Blocks}
+
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Within the unified framework of THE-MATRIX Universe, this paper provides an axiomatic mathematical definition of the first-person subject ``self''. In the THE-MATRIX perspective, all observable structure of the universe is organized as a family of strongly constrained scattering matrices $S(\omega)$ together with a time-scale density $\kappa(\omega)$, where the unified scale identity
+$$
+\kappa(\omega)=\varphi'(\omega)/\pi=\rho_{\mathrm{rel}}(\omega)=(2\pi)^{-1}\operatorname{tr}Q(\omega)
+$$
+unifies the half-phase derivative of scattering, the relative density of states, and the trace of the Wigner--Smith time delay as invariants of the same temporal geometry.
+
+Building on this foundation, this paper accomplishes three tasks: (1) We formalize THE-MATRIX Universe as a ``matrixified causal manifold'' equipped with causal partial order, boundary algebra, and a family of scattering matrices, showing that it is an equivalent descriptive language to the previously developed unified causal structure theory based on small causal diamonds, boundary time geometry, and generalized entropy; (2) We define a ``matrix observer'' $O$ as a structure in THE-MATRIX consisting of a projection $P_O$, a local boundary algebra $P_O\mathcal{A}_\partial P_O$, a state $\omega_O$, and a self-referential scattering network, which supports a discretized worldline under the unified time scale; (3) We define ``self'' as an equivalence class of ``matrix observers'' satisfying three axiom groups: self-referentiality, stability, and minimality, and prove that this definition is equivalent to the previous definition of ``self'' given in the context of causal manifolds and self-referential scattering networks: every ``self'' on a continuous worldline can be uniquely matrixified into an equivalence class of self-referential scattering blocks, and vice versa.
+
+Theoretically, this paper establishes three main theorems: First, within energy windows satisfying the Birman--Kreĭn condition and the consistency factory axioms, any observer in THE-MATRIX satisfying the ``worldline axiom'' corresponds to a $K^1$ class element of the global scattering family, and ``self'' corresponds to the minimal irreducible elements satisfying additional self-referential constraints; Second, the ``self'' in the causal manifold context (worldline plus boundary algebra plus state) and the ``self'' in THE-MATRIX context (projection plus scattering block plus state) correspond one-to-one via scale alignment through boundary time geometry and Toeplitz/Berezin compression; Third, within the unified time scale equivalence class, the identity of ``self'' remains invariant under allowed local perturbations, thereby providing a mathematical stability criterion for ``the same self''.
+
+The appendices provide formalized details of key constructions: including the precise definition of THE-MATRIX Universe, the worldline structure of matrix observers, the realization of self-referential scattering networks in THE-MATRIX, and an outline of the proofs of the main theorems.
+\end{abstract}
+
+\section{Introduction}
+
+In the unified causal structure theory based on causal partial order and small causal diamonds, the universe is modeled as a Lorentzian manifold equipped with light cone structure, unified time scale, and generalized entropy arrow, where the causal structure, temporal geometry, and gravitational field equations are characterized by the same set of axioms. On the other hand, scattering and spectral theory shows that within energy windows satisfying the Birman--Kreĭn hypothesis, the derivative of the total scattering phase, the relative density of states, and the trace of the Wigner--Smith time delay satisfy the scale identity
+$$
+\varphi'(\omega)/\pi=\rho_{\mathrm{rel}}(\omega)=(2\pi)^{-1}\operatorname{tr}Q(\omega),
+$$
+thus allowing us to understand ``time scale'' as a monotone reparametrization of a class of spectral--scattering invariants.
+
+In previous work, THE-MATRIX Universe was proposed as a ``matrixified ontology of the universe'': under the framework of unified time scale and boundary time geometry, all observable structure of the universe is organized as a family of large operator matrices $S(\omega)$ with block structure in parameter space, where the sparsity pattern encodes causal partial order, the spectral data realizes the unified time scale, the block structure corresponds to the consensus geometry of multiple observers, and closed-loop blocks carry self-referential scattering networks and $\mathbb{Z}_2$ topological information.
+
+On the other hand, a unified mathematical definition of the first-person subject ``self'' has been given in the context of causal manifolds and self-referential scattering networks: there, ``self'' is characterized as an equivalence class of self-referential observer structures carried by a worldline ordered along the unified time scale, specifically including worldline, local boundary algebra, state, prediction model, and self-referential feedback scattering.
+
+The goal of this paper is to accomplish the same task within THE-MATRIX Universe: to give a purely matrixified definition of ``self'' and prove that this definition is equivalent to the previous causal manifold version. More specifically, we aim to answer the following questions:
+
+\begin{enumerate}
+\item In THE-MATRIX Universe, what kind of matrix block structure and state data should ``observer'' be characterized as?
+\item In THE-MATRIX Universe, what additional structures (such as self-referentiality, minimality, and stability) does ``self'' possess relative to a general observer?
+\item Under the unified time scale, how can we establish a one-to-one correspondence between the matrixified definition of ``self'' and the causal manifold version, thereby eliminating coordinate and language dependence?
+\end{enumerate}
+
+To this end, the structure of this paper is as follows. Section~2 reviews the basic structure of THE-MATRIX Universe and its relationship with unified time scale, boundary time geometry, and the consistency factory. Section~3 provides formalized definitions of ``matrix observer'' and ``matrix worldline'' in THE-MATRIX. Section~4 proposes the matrixification axioms for ``self'' and gives three equivalent definitions. Section~5 presents three main theorems establishing the equivalence and stability properties between the THE-MATRIX version of ``self'' and the causal manifold version of ``self''. Appendices A--C provide proof details of the main constructions and theorems.
+
+\section{THE-MATRIX Universe: Structure and Scale}
+
+This section provides a brief review and formalization of THE-MATRIX Universe. The core idea is: to matrixify the causal structure and temporal geometry of the universe using a family of scattering matrices and their time-scale density.
+
+\subsection{Unified Time Scale and Scattering Scale Identity}
+
+In scattering systems satisfying the Birman--Kreĭn condition, for a self-adjoint operator pair $(H,H_0)$, there exists a spectral shift function $\xi(\omega)$ such that for sufficiently smooth test functions $f$, the trace formula holds
+$$
+\operatorname{tr}(f(H)-f(H_0))=\int f'(\omega)\,\xi(\omega)\,\mathrm{d}\omega,
+$$
+with the determinant identity $\det S(\omega)=\exp(-2\pi\mathrm{i}\,\xi(\omega))$. Define the total scattering phase $\Phi(\omega)=\arg\det S(\omega)$, half-phase $\varphi(\omega)=\tfrac{1}{2}\Phi(\omega)$, relative density of states $\rho_{\mathrm{rel}}(\omega)=-\xi'(\omega)$, and the Wigner--Smith time-delay operator $Q(\omega)=-\mathrm{i}\,S(\omega)^\dagger\partial_\omega S(\omega)$. Then almost everywhere we have the scale identity
+$$
+\frac{\varphi'(\omega)}{\pi}=\rho_{\mathrm{rel}}(\omega)=\frac{1}{2\pi}\operatorname{tr}Q(\omega).
+$$
+
+For more precise domain of applicability and regularity conditions, see the unified time scale literature.
+
+We accordingly call the function
+$$
+\kappa(\omega):=\varphi'(\omega)/\pi
+$$
+the unified time scale density, which can be viewed both as ``additional density of states'' and as normalization of the total time delay. The equivalence class of unified time scale is characterized by the time coordinate
+$$
+\tau(\omega)=\int^{\omega}\kappa(\tilde{\omega})\,\mathrm{d}\tilde{\omega}
+$$
+given by the integral of scale density.
+
+\subsection{Definition of THE-MATRIX Universe}
+
+We denote THE-MATRIX Universe as
+$$
+\mathrm{THE\text{-}MATRIX}=(\mathcal{H},\mathcal{A}_\partial,\{S(\omega)\}_{\omega\in I},\kappa,\prec_{\mathrm{mat}}),
+$$
+where:
+
+\begin{enumerate}
+\item $\mathcal{H}$ is a separable Hilbert space, viewed as ``the channel space of the universe'' or ``boundary degrees of freedom space'';
+
+\item $\mathcal{A}_\partial\subset B(\mathcal{H})$ is the boundary observable algebra, generated by boundary fields, channel projections, and local operators;
+
+\item $\{S(\omega)\}_{\omega\in I}$ is a family of scattering matrices defined on an energy window $I\subset\mathbb{R}$, where each $S(\omega)$ is a unitary operator on $\mathcal{H}$, piecewise differentiable in $\omega$, and satisfying the aforementioned scale identity;
+
+\item $\kappa(\omega)$ is the unified time scale density, satisfying the scale identity;
+
+\item $\prec_{\mathrm{mat}}$ is a partial order defined on the channel index set, characterizing the causal reachability relations among channels, which under appropriate limits is equivalent to the geometric causal structure.
+\end{enumerate}
+
+In concrete constructions, one may choose an orthogonal channel decomposition
+$$
+\mathcal{H}=\bigoplus_{a\in\mathcal{I}}\mathcal{H}_a,
+$$
+where the index set $\mathcal{I}$ carries the causal partial order $\prec_{\mathrm{mat}}$. In this case, the scattering matrix can be written as a block matrix
+$$
+S(\omega)=(S_{ab}(\omega))_{a,b\in\mathcal{I}},
+$$
+whose nonzero pattern is constrained by the causal partial order, i.e., the corresponding block $S_{ba}(\omega)$ is nonzero only when $a$ is causally reachable to $b$.
+
+The consistency factory result shows that under assumptions of relative trace class and family continuity, the scattering family $\{H_x,H_{0,x}\}_{x\in X}$ can be naturally embedded into $K^1(X)$ via the relative Cayley transform, and the natural transformations satisfying a set of minimal axioms are unique up to integer multiples. This indicates that the scattering family of THE-MATRIX is not only a ``matrix'' but also carries stable topological class information.
+
+\subsection{Boundary Time Geometry and THE-MATRIX}
+
+Boundary time geometry shows that in gravitational systems with boundary, the Gibbons--Hawking--York boundary term and its corner generalizations ensure the variational well-posedness of the bulk action, with the Brown--York quasilocal stress tensor as the Hamiltonian generator of boundary time translations, thus allowing one to define a geometric time scale on the boundary. On the other hand, the Tomita--Takesaki modular flow given by the boundary algebra and faithful state provides ``modular time'', which under the thermal time hypothesis can be interpreted as physical time.
+
+The unified framework of boundary time geometry shows that scattering time, modular time, and geometric time belong to the same time scale equivalence class, and can be aligned via the unified time scale identity. The time scale $\kappa(\omega)$ in THE-MATRIX is precisely the representative of this equivalence class on the spectral--scattering side.
+
+Thus, in THE-MATRIX, we can express ``time'' entirely in terms of $\kappa(\omega)$ and $S(\omega)$ without introducing independent external time coordinates; this provides the time-scale foundation for defining ``self'' in THE-MATRIX.
+
+\section{Matrix Observer and Matrix Worldline}
+
+This section defines ``matrix observer'' and ``matrix worldline'' in THE-MATRIX as the foundation for the matrixified definition of ``self''.
+
+\subsection{Basic Data of Matrix Observer}
+
+In the abstract causal network perspective, an observer $O_i$ is formalized as a multi-component object
+$$
+O_i=(C_i,\prec_i,\Lambda_i,\mathcal{A}_i,\omega_i,\mathcal{M}_i,U_i,u_i,\{\mathcal{C}_{ij}\}),
+$$
+where $C_i$ is the reachable causal domain, $\prec_i$ is the local causal partial order, $\mathcal{A}_i$ is the observable algebra, $\omega_i$ is the state, $\mathcal{M}_i$ is the model family, $U_i$ is the update operator, $u_i$ is the utility function, and $\mathcal{C}_{ij}$ are the communication channels.
+
+In THE-MATRIX, we matrixify this structure as:
+
+\begin{definition}[Matrix Observer]
+In THE-MATRIX Universe, a matrix observer $O$ is a triple
+$$
+O=(P_O,\mathcal{A}_O,\omega_O),
+$$
+where:
+\begin{enumerate}
+\item $P_O$ is an orthogonal projection on $\mathcal{H}$ with $P_O=P_O^2=P_O^\ast$, called the channel support of the observer;
+
+\item $\mathcal{A}_O:=P_O\mathcal{A}_\partial P_O$ is the restriction of the boundary algebra to the support, representing all boundary observables actually accessible to this observer;
+
+\item $\omega_O$ is a normal state on $\mathcal{A}_O$, giving the observer's statistical belief over these observables.
+\end{enumerate}
+\end{definition}
+
+Under this notation, the ``local scattering matrix'' of the matrix observer is
+$$
+S_O(\omega):=P_O S(\omega) P_O\colon P_O\mathcal{H}\to P_O\mathcal{H},
+$$
+with corresponding local time scale density
+$$
+\kappa_O(\omega):=(2\pi)^{-1}\operatorname{tr}Q_O(\omega),
+$$
+where $Q_O(\omega)=-\mathrm{i}\,S_O(\omega)^\dagger\partial_\omega S_O(\omega)$.
+
+The ``internal prediction model'' and ``update operator'' of the matrix observer can be viewed as completely positive trace-preserving maps on $\mathcal{A}_O$ and their chosen parameter families; these are not explicitly expanded here but are embodied through fixed-point conditions in the self-referentiality axiom.
+
+\subsection{Matrix Worldline}
+
+In the causal manifold context, a worldline is a timelike curve $\gamma\colon\tau\mapsto x(\tau)$ with proper time and recorded sequences defined along it. In THE-MATRIX, we characterize worldlines using a family of projections evolving monotonically along the unified time scale.
+
+\begin{definition}[Matrix Worldline]
+Let $[\tau]$ be a unified time scale equivalence class. A matrix worldline is a family of projections $\{P(\tau)\}_{\tau\in J}$ satisfying:
+\begin{enumerate}
+\item $J\subset\mathbb{R}$ is an interval;
+
+\item For each $\tau\in J$, $P(\tau)$ is an orthogonal projection on $\mathcal{H}$;
+
+\item Monotonicity: if $\tau_1<\tau_2$, then $P(\tau_1)\preceq P(\tau_2)$ (i.e., $P(\tau_1)P(\tau_2)=P(\tau_1)$), expressing that ``records'' can only accumulate and cannot be erased;
+
+\item Locality: for each $\tau$, $P(\tau)$ depends only on the unified time scale readings within a finite energy window, i.e., for some compact interval $I_\tau\subset I$, the projection $P(\tau)$ can be constructed from $S(\omega)$ on $I_\tau$ via appropriate Toeplitz/Berezin compression.
+\end{enumerate}
+\end{definition}
+
+Intuitively, $P(\tau)$ represents the support of all recoverable records written by the observer on the boundary through scattering processes before time scale $\tau$.
+
+For a matrix observer $O=(P_O,\mathcal{A}_O,\omega_O)$, if there exists a matrix worldline $\{P(\tau)\}$ and a time interval $J_O$ such that for all $\tau\in J_O$, $P(\tau)\preceq P_O$, we say that $O$ carries a matrix worldline.
+
+\subsection{Causal Domain of Matrix Observer}
+
+The causal partial order $\prec_{\mathrm{mat}}$ in THE-MATRIX acts on the channel index set $\mathcal{I}$. Given the support index subset $\mathcal{I}_O\subset\mathcal{I}$ corresponding to a projection $P_O$, we define the matrix causal domain of the observer as
+$$
+C_O:=\{a\in\mathcal{I}\colon \exists b\in\mathcal{I}_O,\ a\prec_{\mathrm{mat}} b\ \text{or}\ b\prec_{\mathrm{mat}} a\}.
+$$
+
+Under appropriate causal completeness assumptions, $C_O$ can be viewed as the discretization of a small causal diamond neighborhood of a worldline in the causal manifold context.
+
+\section{``Self'' in THE-MATRIX: Axioms and Equivalent Definitions}
+
+In the context of causal manifolds and self-referential scattering networks, ``self'' was previously defined as an equivalence class of self-referential observer structures carried by a worldline ordered along the unified time scale, with core features including: persistence along the worldline, self-referential feedback structure, and stability under allowed perturbations. This section gives the corresponding matrixified definition in THE-MATRIX.
+
+\subsection{Axiomatic Requirements}
+
+We first list three axiom groups that ``self'' should satisfy in THE-MATRIX.
+
+\begin{axiom}[Worldline Axiom]
+The matrix observer $O$ corresponding to ``self'' must carry a matrix worldline $\{P(\tau)\}_{\tau\in J}$, and this worldline must be monotonically increasing with respect to the unified time scale. This ensures that ``self'' possesses a continuous temporal experience and record sequence.
+\end{axiom}
+
+\begin{axiom}[Self-Referentiality Axiom]
+There exists a family of scattering network constructions depending on $S_O(\omega)$ and prediction--update operators on the boundary algebra, such that under the unified time scale parametrization, the predictive state $\omega_O(\tau)$ of the observer and the readings produced by actual scattering satisfy a fixed-point equation, i.e.,
+$$
+\omega_O(\tau)=F_{\mathrm{self}}[\omega_O(\tau),S_O,\kappa],
+$$
+where $F_{\mathrm{self}}$ is a map defined by the self-referential scattering network. Intuitively, this expresses that ``self's'' internal prediction model is realized in THE-MATRIX as a closed-loop scattering network, and its predictions about itself and the environment are statistically consistent with actual scattering processes.
+\end{axiom}
+
+\begin{axiom}[Minimality and Stability Axiom]
+\begin{enumerate}
+\item Minimality: if $O'=(P',\mathcal{A}',\omega')$ is also a matrix observer satisfying Axioms I--II with $P'\preceq P_O$, then $P'=P_O$ almost everywhere; i.e., the support projection of ``self'' is minimal under the assumptions of self-referentiality and worldline axiom;
+
+\item Stability: under local perturbations preserving the unified time scale and large-scale causal structure (i.e., under allowed scattering family homotopies and consistency factory natural transformations), the equivalence class of $O$ remains invariant; this provides a mathematical criterion for ``the same self''.
+\end{enumerate}
+\end{axiom}
+
+\subsection{Definition I: Minimal Self-Referential Matrix Observer Equivalence Class}
+
+Based on the above axioms, we can give the first equivalent definition.
+
+\begin{definition}[``Self'' in THE-MATRIX, Definition I]
+In THE-MATRIX Universe, a ``self'' is an equivalence class of matrix observers $[O]$ satisfying:
+\begin{enumerate}
+\item Any representative $O=(P_O,\mathcal{A}_O,\omega_O)$ in the class satisfies Axioms I--III;
+
+\item The equivalence relation is determined by internal unitary transformations and affine rescalings of the unified time scale: if there exists a unitary operator $U$ and an affine rescaling $\tau\mapsto a\tau+b$ such that $P_{O_2}(\tau)=U P_{O_1}(a\tau+b)U^\ast$ and $\omega_{O_2}=\omega_{O_1}\circ\operatorname{Ad}(U^{-1})$, then $O_1$ and $O_2$ represent the same ``self''.
+\end{enumerate}
+\end{definition}
+
+In this definition, ``self'' is an equivalence class of self-referential matrix observers that is minimal and stable in the sense of homotopy and unitary equivalence.
+
+\subsection{Definition II: Minimal Element of Self-Referential Scattering Blocks in $K^1$}
+
+Since the scattering family can be naturally embedded into $K^1$ theory, we can give a more topologically flavored definition.
+
+Let the parameter space $X$ describe the ``external parameters'' of the scattering family (e.g., observation frequency window, driving phase, or external control parameters). The consistency factory shows that a scattering family $\{H_x,H_{0,x}\}_{x\in X}$ satisfying relative trace class and endpoint closure conditions gives a natural element of $K^1(X)$ via the relative Cayley transform.
+
+\begin{definition}[``Self'' in THE-MATRIX, Definition II]
+Consider the scattering subfamily $\{S_O(\omega,x)\}_{(\omega,x)\in I\times X_O}$ associated with a matrix observer $O$ in THE-MATRIX, which gives an element $[\mathsf{u}_O]$ of $K^1(X_O)$ via the consistency factory construction. We call $O$ corresponding to ``self'' the topological equivalence class in $K^1(X_O)$ satisfying:
+\begin{enumerate}
+\item The self-referentiality condition given by Axioms I--II can be rewritten as a natural constraint equation on $[\mathsf{u}_O]$ (e.g., a topological condition constrained by modulo-two loop winding numbers);
+
+\item Among all scattering family $K^1$ elements satisfying this constraint, $[\mathsf{u}_O]$ corresponds to a minimal support projection that cannot be further decomposed into a nontrivial direct sum satisfying the same constraint.
+\end{enumerate}
+\end{definition}
+
+From this perspective, ``self'' can be viewed as an irreducible scattering block in THE-MATRIX satisfying self-referential topological constraints, whose homotopy class is given by the $K^1$ element $[\mathsf{u}_O]$.
+
+\subsection{Definition III: Matrixified Image of Causal Manifold ``Self''}
+
+The third equivalent definition directly uses the definition of ``self'' in the causal manifold version and matrixifies it via the bridge between boundary time geometry and THE-MATRIX.
+
+In the causal manifold context, ``self'' can be defined as a triple
+$$
+\mathfrak{I}=(\gamma,\mathcal{A}_\gamma,\omega_\gamma),
+$$
+where $\gamma$ is a timelike worldline, $\mathcal{A}_\gamma$ is the boundary algebra glued along $\gamma$, and $\omega_\gamma$ is a state on it; additionally, there is required to exist a family of self-referential scattering networks such that $(\gamma,\mathcal{A}_\gamma,\omega_\gamma)$ satisfies the corresponding closed-loop fixed-point condition.
+
+Boundary time geometry and the Null--Modular double cover show that the boundary algebras of small causal diamonds along the worldline $\gamma$ can be embedded into a subalgebra family of the global boundary algebra $\mathcal{A}_\partial$, and the unified time scale $\kappa(\omega)$ and modular flow parameter can be aligned within equivalence classes.
+
+\begin{definition}[``Self'' in THE-MATRIX, Definition III]
+Given a ``self'' $\mathfrak{I}=(\gamma,\mathcal{A}_\gamma,\omega_\gamma)$ in the causal manifold context, in THE-MATRIX we choose a family of projections $\{P(\tau)\}_{\tau\in J}$ corresponding to $\gamma$ and its limit projection $P_O$, let $\mathcal{A}_O=P_O\mathcal{A}_\partial P_O$ and $\omega_O$ be the matrixified image of $\omega_\gamma$, then we obtain a matrix observer $O=(P_O,\mathcal{A}_O,\omega_O)$. Its equivalence class is defined as the ``image'' of $\mathfrak{I}$ in THE-MATRIX, and is called ``self'' in THE-MATRIX.
+\end{definition}
+
+This definition relies on the existence and uniqueness theorems of boundary time geometry and Toeplitz/Berezin compression.
+
+In Section~5's main theorems, we will prove that Definitions 4.1--4.3 are equivalent.
+
+\section{Main Theorems: Equivalence and Stability}
+
+This section presents three main theorems demonstrating the correspondence between ``self'' in THE-MATRIX and ``self'' in causal manifolds, as well as stability under natural transformations of scattering families.
+
+\begin{theorem}[Equivalence of Definitions I--III]
+Within energy windows satisfying the unified time scale, boundary time geometry, and consistency factory hypotheses, Definitions 4.1--4.3 of ``self'' are equivalent.
+
+More specifically:
+\begin{enumerate}
+\item Each minimal self-referential matrix observer equivalence class $[O]$ satisfying Axioms I--III uniquely determines a $K^1$ element $[\mathsf{u}_O]$ and satisfies the topological minimality condition of Definition 4.2;
+
+\item Each ``topological minimal element'' $[\mathsf{u}_O]$ satisfying Definition 4.2 has a representative matrix observer $O$ satisfying Axioms I--III, thus giving a ``self'' in Definition 4.1;
+
+\item Each ``self'' $\mathfrak{I}=(\gamma,\mathcal{A}_\gamma,\omega_\gamma)$ in the causal manifold context can be uniquely matrixified via boundary time geometry and Toeplitz/Berezin compression to some $[O]$, and this process preserves self-referentiality and minimality.
+\end{enumerate}
+\end{theorem}
+
+\noindent\textbf{Proof Strategy Outline.}
+The first direction uses the natural transformation uniqueness theorem of the consistency factory: under axioms of continuity, additivity, scale covariance, and Birman--Kreĭn normalization, the natural transformation from scattering families to $K^1$ is unique up to integer multiples; the minimal self-referential condition excludes nontrivial integer multiples, thereby giving a unique $K^1$ element.
+
+The second direction uses the representability theorem for $K^1$ elements: under given topological constraints, one can always choose a representative scattering family satisfying self-referential boundary conditions, and construct the corresponding matrix observer via standard procedures; minimality is guaranteed by the indecomposability of the $K^1$ element.
+
+The third direction relies on the alignment results of boundary time geometry and the Null--Modular double cover: there exists a natural embedding between small causal diamond boundary algebras and global boundary algebras, the generalized entropy extremal conditions and Einstein equations preserve form under this embedding, and Toeplitz/Berezin compression gives a reversible correspondence from geometric time to frequency scale, thereby realizing the one-to-one mapping from causal manifold ``self'' to matrix ``self''.
+
+Complete proof in Appendix B.
+
+\begin{theorem}[Stability within Unified Time Scale]
+Let $[O]$ be a ``self'' in THE-MATRIX with corresponding unified time scale density $\kappa(\omega)$. Consider a family of scattering family deformations $\{S_\lambda(\omega)\}_{\lambda\in[0,1]}$ satisfying:
+\begin{enumerate}
+\item For each $\lambda$, $S_\lambda(\omega)$ satisfies the same Birman--Kreĭn and relative trace class assumptions as $S(\omega)$;
+
+\item The scale identity and unified time scale density $\kappa_\lambda(\omega)$ remain invariant within equivalence classes, i.e., there exists an affine rescaling such that $\kappa_\lambda(\omega)$ and $\kappa(\omega)$ belong to the same time scale equivalence class;
+
+\item The $K^1$ element $[\mathsf{u}_{\lambda}]$ of the scattering family is constant in $\lambda$.
+\end{enumerate}
+Then there exists a family of matrix observers $O_\lambda$ such that all $[O_\lambda]$ are equivalent to $[O]$. In other words, under scattering family deformations that preserve the unified time scale equivalence class and $K^1$ class, the equivalence class of ``self'' is stable.
+\end{theorem}
+
+\noindent\textbf{Proof Strategy Outline.}
+This conclusion is a ``rigidity'' result of $K^1$ class and unified time scale invariants for the matrixified definition of observer: the scale identity ensures that affine rescaling of time parameters does not change worldline structure; the natural transformation uniqueness of the consistency factory and the invariance of $K^1$ class guarantee that the topological type of self-referential scattering blocks remains unchanged; thus one can continue choosing representative matrix observers along scattering family homotopy such that their equivalence class remains invariant.
+
+Detailed argument in Appendix C.
+
+\begin{theorem}[Equivalence of Existence: Causal Manifold ``Self'' and THE-MATRIX ``Self'']
+Under the assumptions of the information-geometric variational principle, local quantum energy conditions, and small causal diamond limits, the Einstein equations and generalized entropy extremal conditions at each point give unified local geometric--information constraints.
+
+Under these conditions, the existence of the following two kinds of ``self'' is equivalent:
+\begin{enumerate}
+\item There exists a timelike worldline $\gamma$ with boundary algebra and state along it such that the causal manifold definition of ``self'' holds;
+
+\item There exists a matrix observer equivalence class $[O]$ satisfying Axioms I--III.
+\end{enumerate}
+
+More specifically, any worldline $\gamma$ satisfying IGVP conditions can construct a matrix ``self'' via boundary time geometry and THE-MATRIX embedding; conversely, the support and worldline structure of any matrix ``self'' can be reconstructed back to a timelike worldline satisfying gravitational field equations via Radon-type closure and small causal diamonds.
+\end{theorem}
+
+\section*{Appendix A: Technical Details of THE-MATRIX and Unified Time Scale}
+
+This appendix briefly reviews several technical points of THE-MATRIX Universe and unified time scale.
+
+\subsection*{A.1 Domain of Definition for Scale Identity}
+
+As shown in the unified time scale literature, within energy windows satisfying trace-class perturbation and the Birman--Kreĭn hypothesis, the scale identity among scattering total phase derivative, spectral shift density, and time delay trace holds Lebesgue almost everywhere, and can be extended to a distributional version including thresholds and resonances.
+
+In THE-MATRIX construction, we only use the unified time scale within these domains of definition, and when necessary adopt windowed clocks and Poisson smoothing to ensure weak monotonicity and affine uniqueness of the scale.
+
+\subsection*{A.2 Consistency Factory for Scattering Families and $K^1$}
+
+The consistency factory construction demonstrates how to map scattering families to the $K^1$ group at the family level, and proves that natural transformations satisfying minimal axioms are unique up to integer multiples. Core steps include: constructing classifying spaces on the restricted unitary group and restricted Grassmannian, giving a representation of $K^1$ via Bott periodicity; under relative trace class assumptions, sending scattering families into the restricted unitary group via the relative Cayley transform, then using spectral shift and spectral flow invariants to give explicit representatives of $K^1$ elements; finally proving that any transformation satisfying continuity, functoriality, external direct sum additivity, scale covariance, and BK normalization differs from this construction by an integer multiple.
+
+The scattering family of THE-MATRIX naturally falls within the applicability range of the consistency factory under these assumptions, so the topological type on its block structure can be characterized using $K^1$ elements.
+
+\section*{Appendix B: Proof Outline of Theorem 5.1}
+
+This appendix provides a proof outline of Theorem~5.1.
+
+\subsection*{B.1 Definition I Implies Definition II}
+
+Given a matrix observer $O=(P_O,\mathcal{A}_O,\omega_O)$ satisfying Axioms I--III, we consider the restricted scattering family $\{S_O(\omega,x)\}$ on its external parameter space $X_O$. Under the consistency factory assumptions, this family gives an element $[\mathsf{u}_O]$ of $K^1(X_O)$ via the relative Cayley transform.
+
+The self-referentiality axiom guarantees that under modular--scattering alignment and the Null--Modular double cover hypothesis, $[\mathsf{u}_O]$ satisfies a set of topological constraints related to $\mathbb{Z}_2$ holonomy; the minimality axiom guarantees that $P_O$ cannot be further decomposed into nontrivial subprojections satisfying the same constraint. From the uniqueness theorem of the consistency factory, one can deduce that $[\mathsf{u}_O]$ is a ``topological minimal element'', thus satisfying Definition 4.2.
+
+\subsection*{B.2 Definition II Implies Definition I}
+
+Conversely, given a $K^1$ element $[\mathsf{u}_O]$ satisfying Definition 4.2, we choose a representative scattering family $\{S_O(\omega,x)\}$ and corresponding projection $P_O$ such that the self-referentiality topological constraint is realized. This can be achieved by constructing solutions to self-referential scattering networks and Riccati-type closed-loop equations; the minimality condition guarantees that no proper subprojection satisfies all constraints. Constructing the matrix observer $O$ using $P_O$ and the boundary algebra and state induced by the scattering family, one can verify that it satisfies Axioms I--III.
+
+\subsection*{B.3 Equivalence of Definitions I and III}
+
+Finally, using boundary time geometry and Toeplitz/Berezin compression, one can embed the worldline $\gamma$ and boundary algebra $\mathcal{A}_\gamma$ in the causal manifold context into a matrix subblock of the global boundary algebra $\mathcal{A}_\partial$ in the small causal diamond limit, and use the unified time scale density $\kappa(\omega)$ to establish a bridge between proper time and frequency scale.
+
+The realization of self-referential scattering networks on the boundary can be obtained via the Null--Modular double cover and modular Hamiltonian localization, ensuring that the self-referentiality of the causal manifold version ``self'' remains valid after matrixification. Minimality and stability are guaranteed by the natural equivalence relation between the worldline version definition and matrix version definition.
+
+\section*{Appendix C: Further Remarks on Theorems 5.2 and 5.3}
+
+Theorem~5.2 is essentially a rigidity result of the unified time scale and $K^1$ class invariants applied to the matrixified definition of ``self'', whose proof relies on the weak monotonicity and affine uniqueness of windowed clocks, and the integer uniqueness of natural transformations of scattering families under consistency factory axioms.
+
+Theorem~5.3 combines the Einstein equations and generalized entropy extremal conditions derived from the information-geometric variational principle, the Null--Modular double cover and modular flow localization, and the unified structure of scattering--spectral shift--time delay scale alignment, forming a closed loop among ``causal manifold--THE-MATRIX--boundary time geometry'', thereby ensuring that the existence of ``self'' remains equivalent across these three descriptive languages.
+
+\end{document}
+

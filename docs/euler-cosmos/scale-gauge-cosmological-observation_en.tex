@@ -1,0 +1,365 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{enumerate}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Scale-Gauged Cosmological Observation Theory\\
+\vspace{0.3cm}
+\large --- Rigorous Equivalence of ``Expansion $\equiv$ Resolution Enhancement'',\\
+Axiomatic Readout, Relativistic Reformulation, Information Boundary,\\
+and Turing Semantics}
+
+\author{Anonymous Author}
+\date{Version: 1.15}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+\textbf{Abstract:} We establish a cosmological observation theory centered on the duality between the scale gauge (denoted $a(t)$) and the internal observational metric (c-lock, denoted $R(t)$). Setting $a(t) = R(t)^{-1}$ and $\kappa(t) := \dot{a}/a = -\dot{R}/R$, cosmological redshift and time dilation unify as Mellin dilation on the energy axis: $1+z = a(t_0)/a(t_e) = R(t_e)/R(t_0)$, $\nu_0 = \nu_e/(1+z)$, $\Delta t_0 = (1+z)\Delta t_e$. All readouts are aligned on the ``mother scale'':
+$$
+\boxed{\,\rho(E) = -\xi'(E) = \frac{1}{2\pi}\operatorname{tr}\mathsf{Q}(E) = \frac{1}{2\pi i}\,\partial_E\log\det S(E) = \frac{\varphi'(E)}{2\pi}\,,\quad \mathsf{Q} := -i\,S^\dagger S'\,},
+$$
+where $\rho$ is the relative density of states, $\mathsf{Q}$ is the Wigner--Smith group delay matrix, and $\varphi$ is the total scattering phase. The mother scale is equivalently characterized by the Birman--Kreĭn formula and the group delay definition, providing cross-device comparable calibration unity (fixed units; dimension $E^{-1}$). Readout errors obey ``Nyquist--Poisson--Euler--Maclaurin (NPE) finite-order closure'': Nyquist cutoff eliminates aliasing, Poisson summation bridges discrete--continuous, and finite-order Euler--Maclaurin (EM) encapsulates endpoint errors with Bernoulli layers and tail bounds. Under Landau density threshold and Wexler--Raz dual frame conditions, window shrinking $r\downarrow$ maintains \textbf{non-increasing singularity}; whereas the monotonicity and scaling of Fisher information with respect to $r$ \textbf{depend on noise model and normalization choice}, and no universal monotonicity or $r^{-2}$ lower bound exists in general. The linear stabilizer preserving ``light cone + mother scale'' uniquely corresponds to the Lorentz group; in the FRW background, the unified frequency shift law $1+z = ((k_\mu u^\mu)_e)/((k_\mu u^\mu)_o)$ naturally yields Etherington's distance duality $D_L = (1+z)^2 D_A$ and Tolman's surface brightness $(1+z)^{-4}$. Via reversible causal automaton (RCA/QCA) semantics, we provide a unified formulation of ``light'', ``redshift'', ``shared master frequency'', and ``$c$-limited allocation of attention/action resources''. This paper distinguishes ``gauge'' from ``true dynamics'' and proposes falsifiability criteria and an engineering ``resolution allocation matrix'' approach.
+\end{abstract}
+
+\section{Notation, Axioms, and Conventions}
+
+\subsection{Observational Objects and Scattering Geometry}
+
+\begin{enumerate}
+\item Background Hilbert space $\mathcal{H}$; energy parameter $E \in \mathbb{R}$.
+\item Scattering matrix $S(E)$ and Wigner--Smith matrix $\mathsf{Q}(E) = -i\,S^\dagger(E)\,\partial_E S(E)$.
+\item Total scattering phase $\varphi(E) = \arg\det S(E)$.
+\item \textbf{Trinity mother scale}:
+$$
+\rho(E) := -\xi'(E) = \frac{1}{2\pi}\operatorname{tr}\mathsf{Q}(E) = \frac{1}{2\pi i}\partial_E\log\det S(E) = \frac{\varphi'(E)}{2\pi}\,,
+$$
+where the equivalence follows from the Birman--Kreĭn formula $\det S(E) = e^{-2\pi i\,\xi(E)}$ (with $\xi(E)$ the spectral shift function) and the group delay definition; thus $\rho(E) = -\xi'(E)$ holds. This relation holds in generalized scattering and geometric settings \cite{wigner2018}.
+\end{enumerate}
+
+\subsection{Scale Gauge / c-lock}
+
+The external scale factor $a(t)$ and the internal observational metric $R(t)$ satisfy
+$$
+a(t) = R(t)^{-1},\qquad \kappa(t) := \frac{\dot{a}}{a} = -\frac{\dot{R}}{R}.
+$$
+Let the internal master frequency be $f_{\mathrm{clk}}(t) := \frac{c}{\ell_{\mathrm{clk}}(t)} = \frac{c}{R(t)\,\ell_*}$, where $\ell_*$ is a fixed mother scale length constant and $R(t)$ is the dimensionless internal metric satisfying $a(t) = R(t)^{-1}$. Any ``resolution enhancement'' operation refers to $r\downarrow$ or sampling density $\mathrm{dens}(\Lambda)\uparrow$.
+
+\subsection{NPE Finite-Order Closure (Non-Asymptotic)}
+
+\begin{itemize}
+\item \textbf{Nyquist:} For band-limited targets, aliasing is zero when sampling rate exceeds twice the bandwidth; for non-band-limited cases, aliasing terms are explicitly accounted for \cite{nyquist}.
+\item \textbf{Poisson:} Discrete--continuous bridging via Poisson summation, allowing lattice sums to switch to frequency-domain comb spectra \cite{dlmf_fourier}.
+\item \textbf{Euler--Maclaurin (finite-order):} Endpoint layers and tail bounds given by Bernoulli polynomials, with truncation order $p$ fixed and error bounds auditable \cite{dlmf_bernoulli}.
+\end{itemize}
+
+\textbf{Error notation definition:} Denote by $\varepsilon_{\mathrm{alias}}(r) \ge 0$ the $L^1$-upper bound of \textbf{aliasing terms} introduced via Poisson summation; when the Nyquist condition is satisfied, $\varepsilon_{\mathrm{alias}}(r) = 0$. Denote by $\varepsilon_{\mathrm{EM}}(\delta;r;p) \ge 0$ the ``endpoint layer + tail'' budget after truncating the Euler--Maclaurin formula at fixed order $p$ ($\delta$ is the sampling step/equivalent grid spacing). There exists a constant $C_{2p}(r)$ such that
+$$
+\varepsilon_{\mathrm{EM}}(\delta;r;p) \le C_{2p}(r)\,\delta^{2p}.
+$$
+In general, \textbf{no universal power-law relation} with $r$ is claimed; if further regularity such as $w \in W^{2p,1}$, $h*\rho \in L^1_{\mathrm{loc}}$ is given, one may derive $C_{2p}(r) \lesssim r^{-2p}$, whence $\varepsilon_{\mathrm{EM}}(\delta;r;p) = O(\delta^{2p}r^{-2p})$ as a \textbf{model-dependent} conclusion. This order bound requires assuming $h*\rho$ is piecewise $C^{2p}$ on the thickening $K^\uparrow$ (where $K^\uparrow := K + \operatorname{supp}(w_r*h)$) of the working compact domain $K$ with bounded derivatives; \textbf{or} under weaker $BV$ assumptions, all jump contributions are incorporated into the Bernoulli endpoint layers before estimation (yielding only a $BV$-version bound, \textbf{not equivalent to piecewise $C^{2p}$}). Beyond this regularity regime, this paper does not claim such order.
+
+\subsection{Frame and Density Threshold}
+
+We adopt the Gabor/Weyl--Heisenberg framework: for window $w$ and lattice $\Lambda$, we require Landau necessary density and Wexler--Raz duality to ensure stable invertible reconstruction \cite{landau_density}.
+
+\section{Expansion $\equiv$ Resolution Enhancement: Mellin Dilation and Unified Frequency Shift}
+
+\begin{definition}[Scale Gauge]\label{def:scale_gauge}
+A choice $(a,R)$ satisfying $a(t) = R(t)^{-1}$ is called a \textbf{scale gauge}. Under this gauge, external ``expansion'' and internal ``resolution enhancement'' are rigorously equivalent to Mellin dilation on the energy axis.
+\end{definition}
+
+\begin{theorem}[Redshift--Dilation Equivalence]\label{thm:redshift}
+For the same photon observed at emission $t_e$ and observation $t_0$, we have
+$$
+1+z = \frac{a(t_0)}{a(t_e)} = \frac{R(t_e)}{R(t_0)},\qquad
+\nu_0 = \frac{\nu_e}{1+z},\qquad
+\Delta t_0 = (1+z)\Delta t_e.
+$$
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+In the FRW metric, the frequency is $\omega = -k_\mu u^\mu$, hence $1+z = ((k_\mu u^\mu)_e)/((k_\mu u^\mu)_o)$; parallel transport of $k^\mu$ along null geodesics yields $\omega \propto a^{-1}$. Substituting $a = R^{-1}$ completes the proof \cite{distance_cosmo}.
+\end{proof}
+
+\begin{proposition}[Etherington Duality and Tolman Decay]\label{prop:etherington}
+If photon number is conserved, geometry is described by metric gravity, and light follows unique null geodesics, then
+$$
+D_L = (1+z)^2 D_A,\qquad I_{\mathrm{obs}} = \frac{I_{\mathrm{em}}}{(1+z)^4}.
+$$
+This conclusion is independent of the choice of scale gauge and is a geometric--counting invariant \cite{etherington}.
+\end{proposition}
+
+\section{Relativistic Windowed Reformulation: Stabilizer of Light Cone + Mother Scale}
+
+\begin{theorem}[Lorentz Group = Stabilizer]\label{thm:lorentz_stabilizer}
+The group of \textbf{linear} transformations preserving the Minkowski light cone structure and the mother scale is isomorphic to $SO^+(1,3)$.
+\end{theorem}
+
+\begin{proof}[Argument]
+After fixing the origin (removing translational freedom), the group of linear automorphisms preserving causal order is generated by $\mathbb{R}_+ \times SO^+(1,3)$; requiring mother scale invariance (excluding global dilation) leaves only $SO^+(1,3)$. This is consistent with Alexandrov--Zeeman-type theorems \cite{zeeman_causality}.
+\end{proof}
+
+\begin{proposition}[GR Local Covariantization and Unified Frequency Shift]\label{prop:gr_unified_shift}
+By locally flattening ``light cone + mother scale'' at each point of the manifold, the unified frequency shift law
+$$
+1+z = \frac{(k_\mu u^\mu)_e}{(k_\mu u^\mu)_o},
+$$
+is compatible with the stationary-phase condition of geodesic equations and consistent with standard SR/GR kinematics \cite{wald_gr}.
+\end{proposition}
+
+\section{Essence of Resolution Enhancement: Information Geometry and Singularity Conservation}
+
+Let the \textbf{normalized window} $w_r(x) := \frac{1}{r}w(x/r)$, where $w \ge 0$, $w \in W^{1,1}(\mathbb{R})$, $\int_{\mathbb{R}} w = 1$ (optionally: $\int x\,w(x)\,dx = 0$), convolution kernel $h$, and observable
+$$
+g_r(E) = (w_r * h * \rho)(E).
+$$
+
+\begin{proposition}[Scale Bound and Convergence of Gradient Response]\label{prop:gradient_scale}
+Let $w \ge 0$, $w \in W^{1,1}(\mathbb{R})$, $\int w = 1$, and \textbf{$h*\rho \in L^1_{\mathrm{loc}}$ (or $BV$)}, with $g_r = w_r * h * \rho$. For compact domain $K$,
+$$
+|\partial_E g_r|_{L^1(K)} \le \frac{|w'|_{L^1}}{r}\,|h*\rho|_{L^1(K^\uparrow)}.
+$$
+
+\textbf{Convergence by cases:}
+
+(i) If $h*\rho \in W^{1,1}(K^\uparrow)$ and $w \ge 0$, $\int w = 1$, then
+$$
+\lim_{r\downarrow 0}\,|\partial_E g_r - (h*\rho)'|_{L^1(K)} = 0,\qquad
+|\partial_E g_r|_{L^1(K)} \le |(h*\rho)'|_{L^1(K^\uparrow)}.
+$$
+
+(ii) If $h*\rho \in BV(K^\uparrow)$ (not necessarily in $W^{1,1}$), then
+$$
+g_r \xrightarrow[r\downarrow 0]{} h*\rho\quad\text{in }L^1(K),\qquad
+|\partial_E g_r|_{L^1(K)} \le \mathrm{TV}(h*\rho;K^\uparrow),
+$$
+and $\partial_E g_r \stackrel{*}{\rightharpoonup} D(h*\rho)$ in the weak$^*$ sense in measure space. We do not claim convergence of $|\partial_E g_r - (h*\rho)'|_{L^1}$ in this case.
+
+\textbf{NPE estimator version} (for discrete implementation $\widehat{g}_r$):
+$$
+|\partial_E \widehat{g}_r|_{L^1(K)} \le \frac{|w'|_{L^1}}{r}\,|h*\rho|_{L^1(K^\uparrow)} + \varepsilon_{\mathrm{alias}}(r) + \varepsilon_{\mathrm{EM}}(\delta;r;p).
+$$
+If the Nyquist condition is satisfied, $\varepsilon_{\mathrm{alias}}(r) = 0$, leaving only the EM endpoint--tail budget.
+\end{proposition}
+
+The above shows: reducing $r$ improves edge \textbf{approximation}, but does not produce a universal $1/r$ \textbf{lower bound} growth. Here $K^\uparrow := K + \operatorname{supp}(w_r * h)$ denotes the thickening of the compact domain $K$ by the effective support of the convolution kernel \cite{dlmf_bernoulli}.
+
+\begin{proposition}[Model Dependence of Fisher Information]\label{prop:fisher_model}
+Under the premise that Nyquist and NPE error budgets ($\varepsilon_{\mathrm{alias}}$, $\varepsilon_{\mathrm{EM}}$) are auditable, the monotonicity and scaling of $\mathcal{I}_r(\theta)$ with respect to $r$ \textbf{depend on noise model and normalization choice}; in general, \textbf{no universal $r^{-2}$ lower bound or monotonicity conclusion exists}. Once noise statistics (e.g., AWGN/Poisson) and window normalization (e.g., $\int w = 1$ or $|w_r|_2$ fixed) are specified, one may derive the corresponding $r$-scaling and comparison results \cite{nyquist}.
+\end{proposition}
+
+\begin{theorem}[Non-Increasing Singularity]\label{thm:singularity}
+Legitimate window switching ($w \mapsto w_r$ with fixed-order EM budget) corresponds to smoothing that does not \textbf{introduce new} singularities of $h*\rho$; thus under alias control and auditable EM error, resolution enhancement does not ``manufacture spurious peaks''. The \textbf{location and order} of singularities may be affected by smoothing; this paper makes no invariance claims \cite{dlmf_fourier}.
+\end{theorem}
+
+\section{Stable Reconstruction and Frame Threshold}
+
+\begin{theorem}[Landau Necessary Density]\label{thm:landau}
+Stable sampling of band-limited Paley--Wiener-type spaces requires lower Beurling density not less than the bandwidth volume constant; if insufficient, reconstruction condition number explodes \cite{landau_density}.
+\end{theorem}
+
+\begin{theorem}[Wexler--Raz Duality and Tight Frames]\label{thm:wexler_raz}
+For Gabor systems, the Wexler--Raz biorthogonality relation characterizes the orthogonality condition of dual windows; there exists a parameter regime where tight frames hold, making reconstruction robust. Multi-window fusion reduces estimation variance from $\sigma^2$ to approximately $\sigma^2/K$ under statistical independence approximation \cite{gabor_wexler}.
+\end{theorem}
+
+\begin{remark}[Balian--Low Barrier]
+Orthonormal bases at critical density cannot simultaneously achieve good time-frequency localization (Balian--Low), suggesting the need for redundant frames rather than critical bases \cite{balian_low}.
+\end{remark}
+
+\section{Gauge vs. True Dynamics: Falsifiability Fingerprints}
+
+Define cosmological \textbf{state fingerprints}: deceleration $q := -\ddot{a}a/\dot{a}^2$, jerk $j := \frac{d^3a/dt^3}{aH^3}$. Define
+$$
+\eta(z) := \frac{D_L}{(1+z)^2 D_A}.
+$$
+
+\textbf{Criterion:} If $\eta(z) \equiv 1$, and under NPE budget closure and mother scale invariance there are \textbf{no new singularities/spurious peaks}, then it belongs to \textbf{gauge layer consistency}; if $\eta(z) \neq 1$ or \textbf{new singularities/spurious peaks} appear, it points to \textbf{true dynamics/new physics} (such as optical depth, non-metric effects, or photon non-conservation) \cite{distance_duality}.
+
+\section{RCA/QCA Semantics: Light Cone, Redshift, and $c$-Limited Allocation}
+
+\begin{definition}[Causal Cone and ``Light'']\label{def:causal_cone}
+Local reversible update lattice dynamics satisfying Lieb--Robinson bounds induce an effective ``light cone''; the minimal notation flow saturating this bound is called ``light'' \cite{lieb_robinson}.
+\end{definition}
+
+\begin{proposition}[Discrete Formulation of Redshift]\label{prop:discrete_redshift}
+Timing with master frequency $f_{\mathrm{clk}}(t) = \frac{c}{R(t)\,\ell_*}$, the discrete period of the same symbol stream observed satisfies
+$$
+P_0 = (1+z)P_e,\qquad \nu_0 = \nu_e/(1+z),
+$$
+i.e., cosmological redshift's discrete time dilation, consistent with the continuous formulation. (Direct discretization of the unified frequency shift law from \S\ref{thm:redshift}.)
+\end{proposition}
+
+\begin{proposition}[$c$-Limited Allocation of Attention/Action]\label{prop:c_limited}
+Let resource density--flux pair $(\rho,J)$ satisfy conservation $\partial_t\rho + \nabla\!\cdot J = s$ and constraint $|J| \le c\,\rho$; then influence can propagate within the causal cone only at speeds not exceeding $c$; this ``scheduling light speed'' is consistent with the Lieb--Robinson velocity \cite{lieb_robinson_speed}.
+\end{proposition}
+
+\section{Information Boundary and Velocity Limit}
+
+\begin{proposition}[Processing Rate Upper Bound: Quantum Speed Limit]\label{prop:quantum_speed}
+The Mandelstam--Tamm and Margolus--Levitin bounds give the shortest evolution time and maximum state change rate; thus under given energy/power budget, any ``resolution enhancement--processing rate'' is limited by them, not relaxed by scale gauge choice \cite{quantum_speed}.
+\end{proposition}
+
+\section{Operational Protocol for Observation--Reconstruction--Duality Consistency}
+
+\textbf{Protocol A (Mother Scale Triple Closure):} For the same object, compute simultaneously $\varphi'(E)/(2\pi)$, $(2\pi)^{-1}\operatorname{tr}\mathsf{Q}(E)$, $\rho(E)$, requiring curve and directional pole consistency to verify calibration unity and Birman--Kreĭn--Wigner--Smith mutual verification \cite{wigner2018}.
+
+\textbf{Protocol B (NPE Budget):} For each data pipeline, report ``alias = 0/$\neq 0$, EM order $p$, tail bound''; under Nyquist satisfaction and specified noise/normalization, $r\downarrow$ \textbf{reduces bias} but \textbf{variance typically increases} (bandwidth optimization needed); \textbf{no new singularities, no spurious peaks} guaranteed by \S\ref{thm:singularity} ``non-increasing singularity'' and alias/EM budget \cite{nyquist}.
+
+\textbf{Protocol C (Geometric Duality Check):} Construct $\eta(z) = D_L/[(1+z)^2 D_A]$ and perform Tolman exponent regression (expecting $n=4$) as ``gauge vs. dynamics'' consistency evidence \cite{etherington}.
+
+\textbf{Protocol D (Resolution Allocation Matrix):} In time/frequency/angle/scale--phase coordinates, take
+$$
+M^\star = \arg\max_{M \succeq 0,\,\operatorname{tr}M = \chi}\,\big\langle M,\,\nabla_{\mathbf{r}}\mathcal{I}\,\nabla_{\mathbf{r}}\mathcal{I}^\top\big\rangle,
+$$
+where $\chi > 0$ is a fixed resource budget constant (independent of $\kappa(t) = \dot{a}/a$), $\mathbf{r} = (t,\omega,\vartheta,s)$ collects time/frequency/angle/scale--phase coordinates (tailorable by task). Report Fisher information gain and condition number improvement.
+
+\section{Minimal Sufficiency of the Theory}
+
+\begin{enumerate}
+\item \textbf{Scale gauge $a = R^{-1}$:} Unifies ``external expansion'' and ``internal resolution enhancement'' as the same Mellin dilation, without changing intrinsic singularities.
+\item \textbf{Mother scale calibration:} Unifies readout via $\rho = -\xi' = \frac{1}{2\pi}\mathrm{tr}\,\mathsf{Q} = \frac{1}{2\pi i}\partial_E\log\det S = \frac{\varphi'}{2\pi}$, cross-device comparable \cite{wigner2018}.
+\item \textbf{NPE finite-order closure:} Closes error budget with Poisson--EM finite-order discipline; Nyquist eliminates aliasing \cite{dlmf_fourier}.
+\item \textbf{Frame threshold:} Landau necessary density and Wexler--Raz duality ensure stable invertible reconstruction \cite{frame_density}.
+\item \textbf{Relativistic consistency:} Stabilizer of light cone + mother scale yields Lorentz group; in FRW, unified frequency shift law, Etherington, and Tolman naturally hold \cite{zeeman_causality}.
+\end{enumerate}
+
+\section{Appendix: Correspondence of Standard Results with This Paper's Structure}
+
+\begin{itemize}
+\item \textbf{Wigner--Smith group delay and ``density--phase derivative'' triple equivalence:} Group delay matrix definition and experimental measurability, and the Birman--Kreĭn relation between $\det S$ and spectral shift function, support mother scale calibration \cite{chaosbook}.
+\item \textbf{Covariant formulation of redshift:} $\omega = -k_\mu u^\mu$ and $1+z = ((k_\mu u^\mu)_e)/((k_\mu u^\mu)_o)$; standard composition and duality of cosmological distance measures \cite{wald_gr}.
+\item \textbf{Tolman $(1+z)^{-4}$ and duality test:} Observational calibration and methodological guidance \cite{tolman_test}.
+\item \textbf{Alexandrov--Zeeman theorem:} Causal structure determines (up to global dilation) Lorentz--Poincaré group; removing global dilation yields Lorentz group \cite{zeeman_causality}.
+\item \textbf{Landau density, Wexler--Raz, Balian--Low:} Three-point balance of stable sampling--duality--impossibility of simultaneous localization \cite{landau_density}.
+\item \textbf{Lieb--Robinson and QCA:} Effective ``light speed'' on lattice and causal cone of reversible updates \cite{lieb_robinson}.
+\item \textbf{Quantum speed limit:} Resolution enhancement and processing rate uniformly constrained by MT/ML-type bounds \cite{quantum_speed}.
+\end{itemize}
+
+\section*{Proof Appendix (Selected)}
+
+\subsection*{A. Birman--Kreĭn--Group Delay--Phase Derivative Trinity}
+
+Let $S(E)$ be a unitary scattering matrix. By Smith's definition $\mathsf{Q}(E) = -i\,S^\dagger S'$,
+$$
+\operatorname{tr}\mathsf{Q} = -i\,\operatorname{tr}(S^\dagger S') = -i\,\partial_E\log\det S\,,
+$$
+using $\partial_E\log\det S = \operatorname{tr}(S^{-1}S') = \operatorname{tr}(S^\dagger S')$ (since $S$ is unitary). By $\det S(E) = e^{-2\pi i\xi(E)}$ and $\operatorname{tr}\mathsf{Q} = -i\,\partial_E\log\det S$, we get $\frac{1}{2\pi}\operatorname{tr}\mathsf{Q} = -\xi'(E)$. Also $\varphi(E) = \arg\det S(E) = -2\pi\xi(E)$, hence $\varphi'(E) = -2\pi\xi'(E)$. Thus
+$$
+\rho(E) = -\xi'(E) = \frac{1}{2\pi}\operatorname{tr}\mathsf{Q}(E) = \frac{1}{2\pi i}\partial_E\log\det S(E) = \frac{\varphi'(E)}{2\pi}\,.
+$$
+\cite{wigner2018}
+
+\subsection*{B. Geometric Origin of Etherington and Tolman}
+
+Under unique null geodesics, photon number conservation, and metric gravity, transformation of angular area element and intrinsic luminosity yields $D_L = (1+z)^2 D_A$; combining the $(1+z)^{-1} \times (1+z)^{-1}$ factor of photon energy/arrival rate per unit time--unit area flux with the $(1+z)^{-2}$ scaling of visual angle area, we obtain Tolman surface brightness decay $(1+z)^{-4}$ \cite{etherington}.
+
+\subsection*{C. Alexandrov--Zeeman Stabilizer to Lorentz Group}
+
+After fixing the origin, linear maps preserving causal order are generated by $\mathbb{R}_+ \times SO^+(1,3)$; invoking mother scale invariance removes global dilation, leaving $SO^+(1,3)$ \cite{zeeman_causality}.
+
+\subsection*{D. Landau--Wexler--Raz--Balian--Low Frame Triangle}
+
+Landau lower bound gives necessary sampling point density; Wexler--Raz characterizes dual windows making reconstruction operator identity; Balian--Low declares orthonormal bases at critical density cannot be simultaneously well-localized, hence engineering uses redundant tight frames \cite{frame_density}.
+
+\section*{Tooling Definitions and Symbol Index}
+
+\begin{itemize}
+\item $a(t)$: scale factor; $R(t) = a(t)^{-1}$: internal metric; $\kappa = \dot{a}/a$.
+\item $S(E)$, $\mathsf{Q}(E)$, $\varphi(E)$, $\rho(E)$: trinity mother scale objects \cite{wigner2018}.
+\item NPE: Nyquist (aliasing account/cutoff)--Poisson (summation bridge)--Euler--Maclaurin (finite-order Bernoulli layers and tail) \cite{nyquist}.
+\item Frame density and duality: Landau necessary density, Wexler--Raz duality, Balian--Low restriction \cite{landau_density}.
+\item Unified frequency shift: $1+z = ((k_\mu u^\mu)_e)/((k_\mu u^\mu)_o)$ \cite{wald_gr}.
+\end{itemize}
+
+\begin{thebibliography}{99}
+
+\bibitem{wigner2018}
+Wigner-Smith time-delay matrix in chaotic cavities with non-ideal coupling.
+\url{https://arxiv.org/pdf/1804.09580}
+
+\bibitem{nyquist}
+Nyquist--Shannon sampling theorem.
+\url{https://en.wikipedia.org/wiki/Nyquist-Shannon_sampling_theorem}
+
+\bibitem{dlmf_fourier}
+DLMF: 1.8 Fourier Series.
+\url{https://dlmf.nist.gov/1.8}
+
+\bibitem{dlmf_bernoulli}
+DLMF: 24.2 Bernoulli Numbers and Polynomials.
+\url{https://dlmf.nist.gov/24.2}
+
+\bibitem{landau_density}
+Revisiting Landau's density theorems for Paley--Wiener spaces.
+\url{https://www.numdam.org/item/10.1016/j.crma.2012.05.003.pdf}
+
+\bibitem{distance_cosmo}
+Distance measures in cosmology.
+\url{https://arxiv.org/abs/astro-ph/9905116}
+
+\bibitem{etherington}
+Etherington's reciprocity theorem.
+\url{https://en.wikipedia.org/wiki/Etherington's_reciprocity_theorem}
+
+\bibitem{zeeman_causality}
+Zeeman, E.C.: Causality Implies the Lorentz Group.
+\url{https://www.math.tecnico.ulisboa.pt/~jnatar/nonarxivpapers/Zeeman1964.pdf}
+
+\bibitem{wald_gr}
+Wald, R.M.: Lecture Notes on General Relativity.
+\url{https://arxiv.org/pdf/gr-qc/9712019}
+
+\bibitem{gabor_wexler}
+Gabor Time-Frequency Lattices and the Wexler--Raz Identity.
+\url{https://sites.math.duke.edu/~ingrid/publications/J_Four_Anala_Appl_1_p437.pdf}
+
+\bibitem{balian_low}
+Gabor Schauder bases and the Balian-Low theorem.
+\url{https://heil.math.gatech.edu/papers/bltschauder.pdf}
+
+\bibitem{distance_duality}
+Cosmic distance duality and cosmic transparency.
+\url{https://arxiv.org/pdf/1210.2642}
+
+\bibitem{lieb_robinson}
+Lieb--Robinson bounds.
+\url{https://en.wikipedia.org/wiki/Lieb-Robinson_bounds}
+
+\bibitem{lieb_robinson_speed}
+Lieb-Robinson Bounds and the Speed of Light.
+\url{https://link.aps.org/doi/10.1103/PhysRevLett.102.017204}
+
+\bibitem{quantum_speed}
+Mathematical analysis of the Mandelstam--Tamm time-energy uncertainty.
+\url{https://pubs.aip.org/aip/jmp/article-pdf/doi/10.1063/1.1897164/14813474/052108_1_online.pdf}
+
+\bibitem{frame_density}
+Necessary density conditions for sampling and interpolation.
+\url{https://msp.org/apde/2024/17-2/apde-v17-n2-p06-p.pdf}
+
+\bibitem{chaosbook}
+Wigner, E.P.: Lower Limit for the Energy Derivative of the Scattering Phase Shift.
+\url{https://chaosbook.org/library/WignerDelay55.pdf}
+
+\bibitem{tolman_test}
+The Tolman Surface Brightness Test for the Reality of the Expansion.
+\url{https://arxiv.org/abs/astro-ph/0102213}
+
+\end{thebibliography}
+
+\end{document}
+

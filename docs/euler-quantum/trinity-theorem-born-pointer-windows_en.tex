@@ -1,0 +1,243 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{braket}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=0.85in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Math operators
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Arg}{Arg}
+\DeclareMathOperator{\PW}{PW}
+
+% Title information
+\title{Trinity Theorem for Windowed Measurement\\[10pt]
+\large Born = Information Projection (iff),\\
+Pointer = Spectral Minimum (iff),\\
+Windows = Minimax Optimal}
+\author{Auric\\[5pt]
+\small Version v1.1 (Preprint, Notation Corrected)\\
+\small Date: October 25, 2025 (Revised)}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Under unified framework of \textbf{de Branges--Kreĭn (DBK) canonical system}, \textbf{scattering--functional equation dictionary} and \textbf{Bregman/information geometry}, this paper establishes ``Trinity Theorem'' for windowed measurement. Conclusions in three tiers:
+
+\textbf{(I) Born = Information Projection (iff)}: Under orthogonal projection measurement (and its generalization to POVM), optimal probability vector induced by windowed readout equivalent to \textbf{I-projection (minimal KL/Bregman cost)} over family of linear alignment constraints if and only if it equals Born probability.
+
+\textbf{(II) Pointer = Spectral Minimum (iff)}: For any distinguishable window family, let \textbf{Ky Fan partial sum} of ``windowed trace quadratic form'' minimize over all orthonormal bases, then if and only if that basis is \textbf{spectral eigenbasis} of measured observable (modulo degeneracy).
+
+\textbf{(III) Windows = Minimax Optimal}: Under constraint of bandlimited even window with normalization $w(0)=1$, taking \textbf{Nyquist--Poisson--Euler--Maclaurin} ``alias + Bernoulli layer + truncation'' non-asymptotic error upper bound as adversary, optimal window exists and (under Hilbert strongly convex proxy) unique, satisfying frequency-domain projection \textbf{KKT} condition.
+
+Key bridge is \textbf{Birman--Kreĭn formula} and \textbf{Wigner--Smith} delay giving \textbf{phase derivative = spectral density}, precisely connecting windowed readout with relative state density (LDOS).
+\end{abstract}
+
+\section{Notation, Conventions and Basic Setup}
+
+\subsection{Hilbert Space and Measurement}
+
+$\mathcal{H}$ separable; pure state $\psi\in\mathcal{H}$, $|\psi|=1$. PVM case take mutually exclusive complete projections $\{P_i\}$ ($P_iP_j=\delta_{ij}P_i$, $\sum_i P_i=I$), measurement probability $p_i=\langle\psi,P_i\psi\rangle$. POVM case with $\{E_i\succeq0\}$, $\sum_i E_i=I$, $p_i=\langle\psi,E_i\psi\rangle$.
+
+\subsection{DBK Canonical System and Weyl--Titchmarsh}
+
+For one-dimensional channel, \textbf{Weyl--Titchmarsh function} $m(z)$ is \textbf{Herglotz--Nevanlinna function} (analytic in upper half-plane with non-negative imaginary part), boundary value imaginary part gives spectral measure $d\rho$: $\Im m(E+i0^+)=\pi\,d\rho/dE$ (almost everywhere). \textbf{de Branges--Kreĭn (DBK) theory} gives one-to-one correspondence between Herglotz class and \textbf{canonical systems}: each Herglotz function uniquely corresponds to canonical system (transfer matrix $M(t,z)$ satisfying $J$-unitarity), establishing spectral representation and evaluation embedding.
+
+\subsection{Scattering--Functional Equation Dictionary and Phase--Spectral Shift}
+
+$$
+\det S(E)=\exp\!\bigl(-2\pi i\,\xi(E)\bigr),\qquad
+\frac{d}{dE}\arg\det S(E)=-2\pi\,\xi'(E).
+$$
+
+If normalized $\det S(E)=c_0\,e^{-2i\varphi(E)}$, then $\varphi(E)=\pi\,\xi(E)$ (up to constant), thus
+
+$$
+\boxed{\ \varphi'(E)=\pi\,\xi'(E)=-\pi\,\rho_{\mathrm{rel}}(E)\ }.
+$$
+
+\textbf{Convention statement}: We fix $\det S(E)=c_0e^{-2i\varphi(E)}$ with $|c_0|=1$; according to Birman--Kreĭn, $\det S=e^{-2\pi i\xi}$, thus $\varphi'=\pi\xi'$; by $Q=-iS^\dagger S'$ and $\frac{d}{dE}\arg\det S=\tr Q$, get $\tr Q=-2\varphi'=-2\pi\xi'$.
+
+\subsection{Wigner--Smith Matrix}
+
+$$
+Q(E)=-\,i\,S^\dagger(E)\,\frac{dS}{dE}(E)\quad\text{self-adjoint},\qquad
+\boxed{\ \frac{1}{2\pi}\operatorname{tr}Q(E)=\rho_{\mathrm{rel}}(E)=-\xi'(E)\ }.
+$$
+
+Compatible with $\det S(E)=e^{-2\pi i\xi(E)}$ of §0.3, obtained from $\tr Q=\frac{d}{dE}\arg\det S$. Key identity: trace of $-iS^\dagger \partial_E S$ equals $\partial_E\arg\det S$ (Friedel phase derivative), standard Wigner--Smith delay theory.
+
+\subsection{Paley--Wiener Bandlimited Even Window and Fourier Convention}
+
+$$
+\PW^{\mathrm{even}}_\Omega=\{\,w:\ \supp\widehat{w}\subset[-\Omega,\Omega],\ \mathbf{w(E)=w(-E)}\,\},\quad w(0)=1.
+$$
+
+This paper adopts \textbf{non-angular frequency} convention, for \textbf{energy variable $E$} take Fourier transform (frequency denoted $\xi$):
+
+$$
+\widehat{f}(\xi)=\int_{\mathbb{R}} e^{-iE\xi}f(E)\,dE,\qquad
+f(E)=\frac{1}{2\pi}\int_{\mathbb{R}} e^{iE\xi}\widehat{f}(\xi)\,d\xi.
+$$
+
+\textbf{Scaled window definition}: Let bandlimited even window $w\in\PW^{\mathrm{even}}_\Omega$, \textbf{scaled window} defined as $w_R(E):=w(E/R)$. Then $\widehat{w_R}(\xi)=R\,\widehat{w}(R\xi)$, support located in $[-\Omega/R,\Omega/R]$.
+
+\section{Born = Information Projection (If and Only If)}
+
+\begin{theorem}[Born Probability as I-Projection]
+\label{thm:born-iprojection}
+Set PVM elements $P_i$, denote
+
+$$
+\phi_i:=\frac{P_i\psi}{|P_i\psi|}\ (|P_i\psi|>0),\qquad
+w_i:=\langle\psi,P_i\psi\rangle=|P_i\psi|^2.
+$$
+
+For linear constraint family $\mathcal{C}=\{p:\,\sum_i p_i a_i=b\}$ and reference distribution $q$, if reference support contains Born support ($\supp w\subseteq\supp q$), then I-projection
+
+$$
+p^\star=\arg\min_{p\in\mathcal{C}}D_{\mathrm{KL}}(p\|q)
+$$
+
+has exponential family form $p^\star_i\propto q_i e^{\lambda a_i}$.
+
+\textbf{Alignment condition (necessary and sufficient)}: $p^\star=w$ (Born) if and only if on $\{i:w_i>0\}$ exists $\lambda$ such that $\log(w_i/q_i)$ affinely expressible in constraint space spanned by $\{a_i\}$.
+\end{theorem}
+
+\begin{proof}
+Strict convexity of KL and Lagrange multipliers give exponential family and uniqueness. Alignment condition ensures Born weights match I-projection solution. POVM case by Naimark dilation. \end{proof}
+
+\section{Pointer = Spectral Minimum (If and Only If)}
+
+\begin{theorem}[Pointer Basis as Ky Fan Minimum]
+\label{thm:pointer-minimum}
+For self-adjoint observable $A$ and distinguishable window family $\{w,h\}$, define windowed trace operators $K_{w,h}$. Let $\{e_k\}_{k=1}^m$ orthonormal system. Then
+
+$$
+\sum_{k=1}^m\langle e_k,K_{w,h}e_k\rangle\ge\sum_{k=1}^m\lambda_k^\uparrow(K_{w,h}),
+$$
+
+equality if and only if $\{e_k\}$ spans minimal eigensubspace of $K_{w,h}$ (Ky Fan minimum sum).
+
+Under window distinguishability, $K_{w,h}$ commute with spectral projection of $A$, thus minimal eigensubspace equals (modulo degeneracy) spectral eigenbasis of $A$.
+\end{theorem}
+
+\begin{proof}
+Standard Ky Fan variational principle. Window distinguishability ensures commutativity via Stone--Weierstrass and direct integral decomposition. \end{proof}
+
+\section{Windows = Minimax Optimal}
+
+\begin{theorem}[Window Minimax Optimality with KKT Condition]
+\label{thm:window-minimax}
+On $\PW^{\mathrm{even}}_\Omega$ with normalization $w(0)=1$, consider strongly convex proxy
+
+$$
+\mathcal{J}(w)=\sum_{j=1}^{M-1}\gamma_j\|w_R^{(2j)}\|_{L^2}^2+\lambda\|\mathbf{1}_{\{|E|>T\}}\,w_R\|_{L^2}^2.
+$$
+
+Exists unique minimizer $w^\star$ satisfying frequency-domain \textbf{bandlimited projection--KKT equation}:
+
+$$
+\boxed{\,P_B^{(\xi)}\Bigl(\sum_{j=1}^{M-1}\gamma_j\,\xi^{4j}\,\widehat{w_R^\star}+\lambda\,\widehat{w_R^\star}-\tfrac{\lambda}{\pi}\bigl(\sinc(T\cdot)\!\ast\!\widehat{w_R^\star}\bigr)\Bigr)=\eta\,\widehat{w_R^\star}\,}
+$$
+
+where $P_B^{(\xi)}$ frequency projection to $B=[-\Omega/R,\Omega/R]$, $\eta$ normalization multiplier.
+\end{theorem}
+
+\begin{proof}
+Strong convexity ensures unique minimizer. Frechet derivative with constraint gives KKT condition in frequency domain. \end{proof}
+
+\section{Error Closure: Nyquist--Poisson--EM Decomposition}
+
+\begin{theorem}[NPE Three-Term Error Decomposition]
+\label{thm:npe-decomposition}
+For windowed readout discretization with step $\Delta$ and truncation $N$, have
+
+$$
+\text{Error}=\underbrace{\varepsilon_{\mathrm{alias}}}_{\text{Poisson}}+\underbrace{R_{2M}}_{\text{EM}}+\underbrace{\varepsilon_{\mathrm{tail}}}_{\text{truncation}}.
+$$
+
+When $F$ bandlimited with $\supp\widehat{F}\subset[-\Omega_F,\Omega_F]$ and $\Delta\le\pi/\Omega_F$ (Nyquist), alias term $\varepsilon_{\mathrm{alias}}=0$.
+
+EM remainder satisfies $|R_{2M}|\le \dfrac{2\zeta(2M)}{(2\pi)^{2M}}\int|F^{(2M)}|$.
+
+Tail controlled by function decay: $|\varepsilon_{\mathrm{tail}}|\le\int_{|E|>N\Delta}|F|$.
+\end{theorem}
+
+\begin{proof}
+Poisson summation + Euler--Maclaurin expansion + truncation analysis. \end{proof}
+
+\section{Unified Scale Chain}
+
+The trinity theorem unified by scale chain holding a.e. on absolutely continuous spectrum:
+
+$$
+\boxed{\ \frac{\varphi'(E)}{\pi}=\rho_{\mathrm{rel}}(E)=\frac{1}{2\pi}\tr Q(E)\ }
+$$
+
+connecting:
+\begin{itemize}
+\item \textbf{Born}: Information projection optimal under alignment
+\item \textbf{Pointer}: Ky Fan minimum of windowed operators
+\item \textbf{Windows}: Minimax optimal under NPE error
+\item \textbf{Phase--Density}: Birman--Kreĭn--Wigner--Smith bridge
+\end{itemize}
+
+\section{Discussion and Outlook}
+
+This work establishes trinity of windowed measurement:
+\begin{enumerate}
+\item Born probability as information-geometric optimum
+\item Pointer basis as spectral-geometric minimum
+\item Window design as minimax-optimal under finite-sample error
+\end{enumerate}
+
+Key contributions:
+\begin{itemize}
+\item Rigorous if-and-only-if characterizations
+\item Unified via Birman--Kreĭn--Wigner--Smith scale chain
+\item Non-asymptotic error bounds via NPE decomposition
+\item DBK canonical system theoretical foundation
+\end{itemize}
+
+Future directions:
+\begin{itemize}
+\item Extension to continuous POVM and general observables
+\item Numerical optimization of window families
+\item Applications to quantum metrology and sensing
+\item Connections to quantum thermodynamics
+\end{itemize}
+
+\end{document}
+

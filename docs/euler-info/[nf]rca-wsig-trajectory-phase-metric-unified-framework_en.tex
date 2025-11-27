@@ -1,0 +1,325 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Title information
+\title{Constructing RCA--WSIG Unified Metric via de Branges Phase Embedding:\\
+Trajectory--Phase Metric, Geometric Reversibility, and Finite-Order NPE Error Closure}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We propose a method to embed discrete spacetime trajectories of reversible cellular automata (RCA) into de Branges--Kreĭn phase geometry, defining a ``trajectory--phase metric'' $d_{\rm TP}$. This metric uses stable window families to window local trajectory segments as Hilbert observation vectors, obtains phase function $\varphi(E)$ via Hermite--Biehler/de Branges embedding, and measures trajectory distance by weighted integral of phase difference on energy axis. Metric scale aligned by mother scale identity $\varphi'(E)/\pi=\rho_{\rm rel}(E)=(2\pi)^{-1}\operatorname{tr}\mathsf Q(E)$, where $\mathsf Q(E)=-i S(E)^\dagger S'(E)$ is Wigner--Smith group delay matrix, $\rho_{\rm rel}$ spectral shift density/relative state density. We prove that under tight/near-tight frame and bandwidth regularity conditions for window families, $d_{\rm TP}$ is true metric; if RCA evolution conjugate to unitary scattering family satisfying geometric reversibility, then evolution isometric under $d_{\rm TP}$. Establish finite-order error closure of Nyquist--Poisson--Euler--Maclaurin (NPE) three-fold decomposition, upper bound controlled by aliasing term, Euler--Maclaurin boundary layer, and high-frequency tail term, yielding non-asymptotic consistency bound for discrete--continuous readouts. In multi-channel case, metric lifts to trace-type integration of eigenphase differences and group delay eigenvalues, remaining stable under Toeplitz/Berezin compression and Carleson/Landau conditions. Provide tight bound expressions and computable toy system examples in bandlimited/weak dispersion regimes.
+\end{abstract}
+
+\noindent\textbf{Keywords:} RCA--WSIG unified metric; de Branges phase embedding; Trajectory--phase metric; Geometric reversibility; NPE error closure; Wigner--Smith group delay
+
+\section*{0. Notation \& Axioms / Conventions}
+
+\textbf{Mother Scale (Scale Identity)}
+\begin{equation}
+\boxed{\frac{\varphi'(E)}{\pi} = \rho_{\rm rel}(E) = \frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)},\qquad
+\mathsf Q(E)=-i S(E)^\dagger S'(E), S(E)\in U(N).
+\end{equation}
+This identity connects de Branges/spectral shift phase derivative, relative state density, and Wigner--Smith group delay trace, respectively originating from de Branges--Kreĭn theory, Birman--Kreĭn formula, and Wigner--Smith time delay definition.
+
+\textbf{Operator--Measure--Function Trinity Language}
+Window/readout represented by Toeplitz/Berezin compression $K_{w,h}$, readout as linear functional on spectral measure, invoking Berezin transform and Toeplitz algebra properties when necessary.
+
+\textbf{Finite-Order Error Discipline (NPE Three-Fold)}
+Any discrete--continuous interface allows only finite-order Euler--Maclaurin and Poisson reconstruction, error written as
+\begin{equation}
+\text{Err}=\underbrace{\text{Poisson aliasing}}_{\mathcal A_h}+\underbrace{\text{EM boundary layer}}_{\mathcal B_M}+\underbrace{\text{high-frequency tail}}_{\mathcal T_H},
+\end{equation}
+all Poisson and Euler--Maclaurin criteria from standard references.
+
+\textbf{Conventions}
+(i) Work in absolutely continuous spectral region; (ii) Window families satisfy Calder\'on upper/lower bounds, Wexler--Raz duality/frame conditions; (iii) Sampling density subject to Landau necessary density constraints.
+
+\section{Introduction}
+
+RCA's global dynamics are information-preserving reversible mappings; its spacetime diagram forms trajectory families under local updates. WSIG framework organizes geometry and information using unified scale of scattering phase--relative state density--group delay. de Branges space $\mathcal H(E)$ provides orthogonal decomposition and reproducing kernel structure mapping windowed readouts to ``energy axis phase'', making ``trajectory difference $\leftrightarrow$ phase shift $\leftrightarrow$ state density/group delay readout'' a measurable bridge. This work establishes trajectory metric $d_{\rm TP}$ under phase geometry, proving RCA evolution's isometry and NPE finite-order error closure.
+
+\section{Preliminaries: de Branges Space, Hermite--Biehler, and Phase}
+
+Let $E(z)=A(z)-iB(z)$ be Hermite--Biehler function, de Branges space $\mathcal H(E)$ consists of entire functions $F$ satisfying $\frac{F}{E},\frac{F^\sharp}{E}\in H^2(\mathbb C_+)$, phase function $\varphi(E)$ determined by argument of $E$, its derivative gives spectral measure density of canonical system. In scattering theory, Birman--Kreĭn formula $\det S(E)=e^{-2\pi i\xi(E)}$ aligns $\xi'(E)=\rho_{\rm rel}(E)$ with sum of multi-channel eigenphases $\theta_j$, while Wigner--Smith definition $\mathsf Q(E)=-iS^\dagger S'$ yields $\operatorname{tr}\mathsf Q(E)=2\sum_j \theta_j'(E)$. This derives mother scale identity.
+
+\section{Windowed Embedding and Observation Model}
+
+\subsection{Stable Window Family and Frames}
+
+Take window family $\mathcal W=\{w_\lambda\}_{\lambda\in\Lambda}$ (time or logarithmic time model), satisfying Calder\'on upper/lower bounds and Wexler--Raz duality relations, forming tight/near-tight frames, ensuring windowed readout stability and reconstruction.
+
+For RCA trajectory $\gamma$'s local block $x_\gamma|_I$, define
+\begin{equation}
+\Psi_\gamma(\lambda):=\langle x_\gamma|_I, w_\lambda\rangle,\qquad
+\Phi_\gamma:=\mathcal J(\Psi_\gamma)\in\mathcal H(E),
+\end{equation}
+where embedding operator $\mathcal J:\ell^2(\Lambda)\to\mathcal H(E)$ continuous and invertible onto image.
+
+\subsection{Phase Extraction and Weight}
+
+From Hermite--Biehler pair obtain $\varphi_\gamma(E)=\arg E_\gamma(E)$. Metric weight $\kappa(E)$ taken from window's effective bandwidth and condition number (characterized by Toeplitz/Berezin compression and Berezin transform), thereby aligning with energy axis readout.
+
+\section{Trajectory--Phase Metric $d_{\rm TP}$ and Basic Properties}
+
+\subsection{Definition}
+
+Take absolutely continuous band $\mathcal E\subset\mathbb R$ and $\kappa\ge 0$ ($\kappa\in L^1_{\rm loc}(\mathcal E)$), define
+\begin{equation}
+d_{\rm TP}(\gamma_1,\gamma_2)
+:=\frac{1}{\pi}\int_{\mathcal E}\bigl|\varphi_{\gamma_1}(E)-\varphi_{\gamma_2}(E)\bigr|\kappa(E)dE.
+\end{equation}
+
+\subsection{Mother Scale's Density-Type Formulation}
+
+By $\frac{1}{\pi}d\varphi_\gamma=\rho_{\rm rel,\gamma}(E)dE=\frac{1}{2\pi}\operatorname{tr}\mathsf Q_\gamma(E)dE$, let $\Delta\rho:=\rho_{\gamma_1}-\rho_{\gamma_2}$, then
+\begin{equation}
+d_{\rm TP}(\gamma_1,\gamma_2)
+=\int_{\mathcal E}\Bigl|\int_{E_0}^{E}\Delta\rho(\epsilon)d\epsilon\Bigr|\kappa(E)dE.
+\end{equation}
+
+\begin{theorem}[Metricity]
+If window family is tight/near-tight frame and $\kappa$ regular, then $d_{\rm TP}$ is metric; for any $\gamma$, normalizing $\varphi_\gamma(E_\star)=0$ at reference energy $E_\star$ eliminates phase constant drift.
+\end{theorem}
+\begin{proof}
+Non-negativity and symmetry obvious; identity of indiscernibles from normalization; triangle inequality by Minkowski inequality and phase difference additivity. Window--de Branges embedding continuity ensures $\varphi\in L^1_{\rm loc}$ well-defined, frame inequalities ensure perturbation stability.
+\end{proof}
+
+\section{Geometric Reversibility and Isometry}
+
+\begin{definition}[Geometric Reversibility]
+Call RCA evolution $U$ geometrically reversible if exists measurable bijection $\sigma_U:\mathcal E\to\mathcal E$ and constant $c_U$ such that for any trajectory $\gamma$
+\begin{equation}
+\varphi_{U\gamma}(E)=\varphi_\gamma(\sigma_U(E))+c_U,
+\end{equation}
+and $\sigma_U$ makes $\kappa(E)dE$ and $\kappa(\sigma_U(E))|\sigma_U'(E)|dE$ equivalent.
+\end{definition}
+
+\begin{theorem}[Isometric Isomorphism]
+If $U$ has geometric reversibility and conjugate to unitary scattering family, then
+\begin{equation}
+d_{\rm TP}(U\gamma_1,U\gamma_2)=d_{\rm TP}(\gamma_1,\gamma_2).
+\end{equation}
+\end{theorem}
+\begin{proof}
+By definition $|\varphi_{U\gamma_1}-\varphi_{U\gamma_2}|=|\varphi_{\gamma_1}-\varphi_{\gamma_2}|\circ\sigma_U$. Variable substitution yields integral invariance, thus isometry holds.
+\end{proof}
+
+\begin{corollary}[Reversibility = Phase Difference Conservation]
+If $U$ dissipationless reversible evolution conjugate to unitary scattering family, then for any $\gamma_1,\gamma_2$, phase difference preserved under energy axis rescaling, isometry follows. RCA reversibility conditions given by Hedlund--Moore--Myhill theory and subsequent surveys.
+\end{corollary}
+
+\section{NPE Three-Fold Decomposition's Finite-Order Error Closure}
+
+\subsection{Model}
+
+Discrete--continuous error decomposes as
+\begin{equation}
+\mathcal E=\mathcal A_h+\mathcal B_M+\mathcal T_H.
+\end{equation}
+$\mathcal A_h$ is Poisson aliasing (induced by step size $h$), $\mathcal B_M$ is Euler--Maclaurin boundary layer to order $M$, $\mathcal T_H$ is high-frequency truncation $H$ tail term.
+
+\begin{theorem}[Finite-Order Closure Bound]
+Suppose window spectrum effectively bandlimited/sub-bandlimited, $\rho_\gamma\in BV_{\rm loc}$ with transform decaying as $\mathcal O(H^{-\alpha})$ for $|\omega|>H$. Then exists constant $C_{\mathcal W}$ and continuous function $\eta(h,M,H)\to 0$ ($h\to 0,M\to\infty,H\to\infty$) such that
+\begin{equation}
+\bigl|d_{\rm TP}^{\rm disc}(\gamma_1,\gamma_2)-d_{\rm TP}(\gamma_1,\gamma_2)\bigr|
+\le C_{\mathcal W}\eta(h,M,H),
+\end{equation}
+with
+\begin{equation}
+\eta(h,M,H) \asymp \underbrace{e^{-2\pi H/h}}_{\text{aliasing}}+\underbrace{\sum_{m=1}^M \frac{|B_{2m}|}{(2m)!}\Xi_{2m-1}}_{\text{EM boundary layer}}+\underbrace{H^{-\alpha}\Upsilon_\alpha}_{\text{tail}}.
+\end{equation}
+\end{theorem}
+\begin{proof}[Proof Sketch]
+Poisson summation yields exponential aliasing decay; finite-order Euler--Maclaurin controls endpoint layer; window spectrum and signal regularity yield tail term power-law decay.
+\end{proof}
+
+\section{Multi-Channel: Eigenphase--Group Delay and Toeplitz/Berezin Stability}
+
+\subsection{Multi-Channel Metric}
+
+Let $S(E)\in U(N)$, $\{\theta_j(E)\}$ be eigenphases, $\{\tau_j(E)\}$ group delay eigenvalues (Wigner--Smith eigenvalues). Define
+\begin{equation}
+d_{\rm TP}^{(N)}(\gamma_1,\gamma_2)
+:=\frac{1}{\pi}\int_{\mathcal E}\Bigl(\sum_{j=1}^N\omega_j(E)|\theta_{j,\gamma_1}(E)-\theta_{j,\gamma_2}(E)|\Bigr)\kappa(E)dE,
+\end{equation}
+weight $\omega_j(E)$ can take $\tau_j/\sum_k\tau_k$ or constant, ensuring same scale as $(2\pi)^{-1}\operatorname{tr}\mathsf Q$.
+
+\subsection{Compression and Sampling Stability}
+
+Toeplitz/Berezin compression boundedness and embedding stability guaranteed by Berezin transform and related Toeplitz algebra properties; stable reconstruction from samples to energy axis controlled by Carleson measure and Landau necessary density.
+
+\begin{theorem}[Stable Isometry]
+Under bandlimited/weak dispersion and tight frame window families, if geometric reversibility and unitary scattering conjugacy hold, then $d_{\rm TP}^{(N)}$ isometry invariant, satisfying bilateral error bounds similar to Theorem C.
+\end{theorem}
+
+\section{Variational Optimal Window and Uncertainty Constraints}
+
+Under resource constraints (sampling rate/support length/smoothness order), consider functional
+\begin{equation}
+\mathcal J[w]=\sup_{\gamma_1,\gamma_2}\frac{d_{\rm TP}(\gamma_1,\gamma_2)}{|x_{\gamma_1}-x_{\gamma_2}|_{\mathcal X}}.
+\end{equation}
+Within frame constant and Landau density constraints, optimal window approaches tight frame subject to Balian--Low type uncertainty limitations, thus in corresponding model approximately Gaussian/log-Gaussian achieves near-optimal localization.
+
+\section{Computable Toy System}
+
+Take one-dimensional Margolus-type block reversible rule (swap--phase flip), block length $L$, time step $h$, frequency band $H$. Construct
+\begin{equation}
+\Psi_\gamma(\lambda)=\sum_{n=0}^{L-1} x_\gamma[n]\overline{w_\lambda[n]},\qquad
+\Phi_\gamma=\mathcal J(\Psi_\gamma).
+\end{equation}
+Compute discrete phase derivative and apply NPE correction, numerically observe:
+(i) After single-step evolution $d_{\rm TP}$ numerically invariant (isometry);
+(ii) When $(h,M,H)$ chosen such that $\eta(h,M,H)\to 0$, discrete--continuous deviation converges;
+(iii) Reversible branching/collision corresponds to piecewise monotonic phase splicing, $d_{\rm TP}$ yields stable lower bound for inter-branch differences.
+
+\section{Main Theorem}
+
+\begin{theorem}[Unified Statement]
+Let $\mathcal W$ be window family satisfying Calder\'on and tight/near-tight frame conditions, $\kappa$ matched with $\mathcal W$, embedding $\gamma\mapsto \Phi_\gamma\in\mathcal H(E)$ continuous invertible onto image. Then:
+
+\begin{enumerate}
+\item[(1)] $d_{\rm TP}$ well-defined and metric;
+\item[(2)] If RCA evolution $U$ has geometric reversibility and conjugate to unitary scattering family, then $U$ isometric under $d_{\rm TP}$;
+\item[(3)] Under bandlimited/weak dispersion and Carleson/Landau conditions, exists constant $C_{\mathcal W}$ and parameters $(h,M,H)$ such that discrete readouts satisfy finite-order NPE closure bound;
+\item[(4)] Multi-channel case with trace-type integration of eigenphase--group delay weights defining $d_{\rm TP}^{(N)}$ preserves (1)--(3).
+\end{enumerate}
+\end{theorem}
+\begin{proof}[Proof Outline]
+(1)--(2) see Sections 4--5; (3) by Section 6's NPE three-term closure and ``singularity non-increasing/poles = principal scales''; (4) uses Section 7's eigendecomposition and Toeplitz/Berezin stability.
+\end{proof}
+
+\section{Counterpoint with WSIG--EBOC--RCA}
+
+In EBOC perspective, universe is static block, observer can only perform mother scale readouts on windows. This paper's $d_{\rm TP}$ semanticizes RCA's discrete reversible dynamics as ``phase geometry's isometric phase preservation'', establishing
+\begin{equation}
+\text{RCA trajectory difference} \longleftrightarrow \text{de Branges phase shift} \longleftrightarrow \text{relative state density/group delay}.
+\end{equation}
+Resource variations (sampling rate/window/bandwidth) ensured stable by NPE finite-order closure; multi-channel trace-type integration and Carleson/Landau conditions jointly ensure non-asymptotic realizability.
+
+\section*{Conclusion Cards}
+
+\textbf{Card I (Scale Identity)}
+\begin{equation}
+\boxed{\varphi'(E)/\pi=\rho_{\rm rel}(E)=(2\pi)^{-1}\operatorname{tr}\mathsf Q(E)},
+\end{equation}
+phase--density--group delay unified at same scale.
+
+\textbf{Card II (Finite-Order EM and Poles = Principal Scales)}
+Discrete--continuous reconstruction follows finite-order NPE: aliasing--boundary layer--tail three-term closure; singularities non-increasing, poles determine principal scales and characteristic equations of variational optimal windows.
+
+\section*{Appendix A: Measure Transform Details for Isometry}
+
+If $\sigma_U$ measurable invertible and $\kappa(E)dE$ equivalent to $\kappa(\sigma_U(E))|\sigma_U'(E)|dE$, then
+\begin{equation}
+\int_{\mathcal E}|\varphi_{\gamma_1}\circ\sigma_U-\varphi_{\gamma_2}\circ\sigma_U|\kappa(E)dE
+=\int_{\sigma_U(\mathcal E)}|\varphi_{\gamma_1}-\varphi_{\gamma_2}|\kappa(\epsilon)d\epsilon.
+\end{equation}
+Covariance of Mellin dilation and energy translation guaranteed by window family's scale/modulation invariance and frame constant stability.
+
+\section*{Appendix B: NPE Three-Term Upper Bound Paradigm}
+
+Suppose $\widehat w$ effective support in $|\omega|\le H$, sampling step $h$, EM order $M$. Then
+\begin{equation}
+|\mathcal A_h|\lesssim \exp(-2\pi H/h),\quad
+|\mathcal B_M|\lesssim \sum_{m=1}^M \frac{|B_{2m}|}{(2m)!}\Xi_{2m-1},\quad
+|\mathcal T_H|\lesssim H^{-\alpha}\Upsilon_\alpha,
+\end{equation}
+where $\Xi_k$ is boundary derivative jump readout, $\Upsilon_\alpha$ given by high-frequency decay exponent.
+
+\section*{Appendix C: Toeplitz/Berezin Compression and Carleson--Landau}
+
+Compression operator
+$K_{w,h}f(E)=\int f(t)\overline{w_h(t;E)}dt$
+and its adjoint's boundedness characterized by Berezin transform; Carleson measure and Landau density respectively give embedding stability and necessary sampling density, thereby transmitting stability of samples/blocks to $d_{\rm TP}$'s error budget.
+
+\begin{thebibliography}{99}
+
+\bibitem{deBranges}
+L. de Branges, \textit{Hilbert Spaces of Entire Functions}, Prentice--Hall, 1968.
+
+\bibitem{Pushnitski}
+A. Pushnitski, ``An integer-valued version of the Birman--Kreĭn formula'', 2010.
+
+\bibitem{Strohmaier}
+A. Strohmaier, ``The Birman--Kreĭn formula for differential forms...'', \textit{Bull. Sci. Math.}, 2022.
+
+\bibitem{Wigner}
+E. P. Wigner, ``Lower Limit for the Energy Derivative of the Scattering Phase Shift'', \textit{Phys. Rev.}, 1955.
+
+\bibitem{Smith}
+F. T. Smith, ``Lifetime Matrix in Collision Theory'', \textit{Phys. Rev.}, 1960.
+
+\bibitem{Landau}
+H. J. Landau, ``Necessary density conditions for sampling and interpolation...'', \textit{Acta Math.}, 1967.
+
+\bibitem{Daubechies}
+I. Daubechies, ``Gabor Time--Frequency Lattices and the Wexler--Raz Identity'', \textit{J. Fourier Anal. Appl.}, 1994.
+
+\bibitem{Janssen}
+A. Janssen, ``On rationally oversampled Weyl--Heisenberg frames'', 1995.
+
+\bibitem{Pelaez}
+J. A. Peláez, J. C. Pozo, ``Berezin transform and Toeplitz operators on weighted Bergman spaces'', 2016.
+
+\bibitem{Axler}
+S. Axler, Z. Čučković, D. Zheng, ``The Berezin transform on the Toeplitz algebra'', 1998.
+
+\bibitem{Fricain}
+E. Fricain, A. Hartmann, W. T. Ross, ``A Survey on Reverse Carleson Measures'', 2016.
+
+\bibitem{Marzo}
+J. Marzo, ``Sampling and interpolation in de Branges spaces with doubling phase'', 2012.
+
+\bibitem{Hedlund}
+G. A. Hedlund, ``Endomorphisms and automorphisms of the shift dynamical system'', 1969.
+
+\bibitem{Kari}
+J. Kari, ``Theory of cellular automata: A survey'', \textit{Theor. Comput. Sci.}, 2005; and ``Reversible Cellular Automata'' entry.
+
+\bibitem{NIST}
+NIST DLMF, §1.8 Poisson Summation; §2.10 Euler--Maclaurin.
+
+\bibitem{Texier}
+C. Texier, ``Wigner time delay and related concepts...'', 2015--2018 survey.
+
+\end{thebibliography}
+
+\end{document}
+

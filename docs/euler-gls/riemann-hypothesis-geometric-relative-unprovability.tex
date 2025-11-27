@@ -1,0 +1,409 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Title information
+\title{The Riemann Hypothesis in Band-Limited Subsystems: Geometric Formulation and Relative Unprovability}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Under the unified syntax of ``windowed scattering--Toeplitz/Berezin compression--trinity master scale,'' we geometrize the Riemann Hypothesis equivalently into two global statements: first, that the readout quadratic form induced by the explicit formula is globally non-negative on the self-convolution positive-definite kernel cone; second, that the generator spectrum co-calibrated with it is strictly localized on the critical axis. In an axiomatic subsystem admitting only finite windows, finite bandwidth, and finite-order Euler--Maclaurin corrections, we establish two relative unprovability theorems: (A) no matter how many in-band kernels and finite-order error ledgers are used, global positivity cannot be decided within this subsystem; (B) under the heat-flow threshold formulation, the single-point threshold is likewise undecidable within this subsystem. The proof relies on the master-scale identity
+$$
+\frac{\varphi'(E)}{\pi}=\rho_{\text{rel}}(E)=\frac{1}{2\pi}\operatorname{tr}\,\mathsf{Q}(E),
+$$
+the windowed Helffer--Sjöstrand trace formula, the positivity-preservation criterion for Toeplitz/Berezin compression, and the Poisson--finite-order Euler--Maclaurin (NPE) discipline. The master-scale identity is concatenated via the Birman--Kreĭn relation between the Wigner--Smith group delay and Kreĭn spectral shift function, consistent with standard literature on ``phase--density of states--group delay--trace formula.''
+\end{abstract}
+
+\noindent\textbf{Keywords:} Riemann Hypothesis geometrization; Explicit formula positivity; Toeplitz/Berezin compression; Windowed Helffer--Sjöstrand trace formula; Nyquist--Poisson--Euler--Maclaurin finite-order discipline; Band-limited incompleteness; Heat-flow threshold
+
+\noindent\textbf{MSC 2020:} Primary 11M26, 42A38, 47B35; Secondary 81U15, 94A20
+
+\section{Notation and Axioms}
+
+\subsection{Observation Triple and Master Scale}
+
+Take energy-parameterized scattering matrix family $S(E)\in\mathsf{U}(N)$ ($E\mapsto S(E)$ differentiable), define Wigner--Smith time-delay matrix
+$$
+\mathsf{Q}(E)=-\,i\,S(E)^\dagger \partial_E S(E).
+$$
+Let total scattering phase $\varphi(E)=\tfrac{1}{2}\arg\det S(E)$ and relative state density $\rho_{\text{rel}}(E)$. This paper uses the following master-scale identity as calibration:
+$$
+\boxed{\ \frac{\varphi'(E)}{\pi}=\rho_{\text{rel}}(E)=\frac{1}{2\pi}\operatorname{tr}\,\mathsf{Q}(E)\ }.
+$$
+The right-hand side relation ``$\operatorname{tr}\,\mathsf{Q}$ equals (relative) density of states'' is widely used in quantum scattering and mesoscopic transport; the left-hand side is aligned via the Birman--Kreĭn formula $\det S(E)=e^{-2\pi i\,\xi(E)}$ and $\rho_{\text{rel}}=-\xi'$ \cite{cunden2015statistical}.
+
+\subsection{Windowed Trace Formula}
+
+For windowed functional calculus (Helffer--Sjöstrand) of $f\in C_c^\infty(\mathbb{R})$, we have
+$$
+\mathrm{Tr}\big(f(H)-f(H_0)\big)=\int_\mathbb{R} f'(E)\,\xi(E)\,dE,
+$$
+which can be equivalently stated as
+$$
+\mathrm{Tr}\big(f(H)-f(H_0)\big)=\frac{1}{2\pi i}\int_{\mathbb{R}} f(E)\,\partial_E\log\det S(E)\,dE,
+$$
+obtained from integration by parts and the Birman--Kreĭn relation $\partial_E\log\det S=-2\pi i\,\xi'$. Thus at the windowed level, ``trace--phase--shift--group delay--density of states'' are co-calibrated and measurable \cite{gesztesy1999krein}.
+
+\subsection{Toeplitz/Berezin Compression and Positivity Preservation}
+
+In Hardy/Bergman spaces, let $\Pi_w$ denote the projection associated with window $w$ and $M_h$ denote the multiplier; Toeplitz/Berezin compression is defined as
+$$
+K_{w,h}:=\Pi_w M_h \Pi_w .
+$$
+When symbol $h\ge 0$ and the measure satisfies the Carleson condition, $K_{w,h}$ is a positive operator; the corresponding linear readout functional preserves positivity \cite{zhao2014positivity}.
+
+\subsection{NPE (Nyquist--Poisson--Euler--Maclaurin) Finite-Order Discipline}
+
+The discrete--continuous bridge is connected by Poisson summation and Euler--Maclaurin correction of at most order $p$, with tail controlled by window decay and higher-order derivatives. The finite-bandwidth assumption comes from the classical framework of Nyquist--Shannon sampling and Landau density conditions \cite{shannon1949communication}.
+
+\section{Geometrization Propositions and Equivalence}
+
+\subsection{Self-Convolution Positive-Definite Kernel Cone and Readout Quadratic Form}
+
+Let
+$$
+\mathcal{C}_+:=\{\,k=\varphi\ast\tilde\varphi:\ \varphi\in\mathcal{S}(\mathbb{R})\,\},\qquad
+\widehat{k}(\omega)=|\widehat{\varphi}(\omega)|^2\ge 0.
+$$
+Define readout
+$$
+\mathcal{D}[k]:=\int_\mathbb{R} k(E)\,\rho_{\text{rel}}(E)\,dE
+=\frac{1}{2\pi i}\int_{\mathbb{R}} k(E)\,\partial_E\log\det S(E)\,dE
+=-\frac{1}{2\pi i}\int_{\mathbb{R}} k'(E)\,\log\det S(E)\,dE.
+$$
+Via windowed trace formula and integration by parts, the above three formulations are equivalent \cite{cunden2015statistical}.
+
+\subsection{Two Formulations of Geometrized RH}
+
+\begin{itemize}
+\item \textbf{(P) Global Positivity Formulation:} For all $k\in\mathcal{C}_+$, $\mathcal{D}[k]\ge 0$.
+\item \textbf{(S) Spectral Localization Formulation:} There exists a generator $\mathcal{D}_{\text{geom}}$ whose spectrum lies entirely on $\{\tfrac{1}{2}+i\mathbb{R}\}$, aligned with $\rho_{\text{rel}}$ under windowed readout.
+\end{itemize}
+
+These two are equivalent to Weil's explicit formula positivity criterion: RH is equivalent to non-negativity of the distribution formed by the explicit formula on the cone of convolution squares of test functions \cite{weil1952formules}.
+
+\section{Finite-Resource Subsystem $\mathsf{T}_{\text{win}}(R,\Omega,p)$}
+
+\subsection{Definition}
+
+Given $(R,\Omega,p)\in(0,\infty)^3$, $\mathsf{T}_{\text{win}}(R,\Omega,p)$ admits the following primitives:
+\begin{enumerate}
+\item[(a)] Only finite sets of window--kernel pairs $\{(w_{R_j},h_j)\}_{j=1}^{m}$ generating kernels
+$$
+k_j:=w_{R_j}\!\ast \check{h}_j,\qquad \operatorname{supp}\widehat{k_j}\subset[-\Omega,\Omega];
+$$
+\item[(b)] All readouts realized via master scale and windowed trace formula;
+\item[(c)] Discrete--continuous bridge uses only Poisson and Euler--Maclaurin of at most order $p$, errors capped by uniform bounds \cite{miller2003summation}.
+\end{enumerate}
+
+\subsection{Interpretation}
+
+$\mathsf{T}_{\text{win}}$ can access evidence only in the form of finitely many in-band readouts $\{\mathcal{D}[k_j]\}_{j=1}^m$ and their finite-order error bounds. Thus it cannot distinguish two ``spectral data'' that agree on $[-\Omega,\Omega]$ but differ out-of-band. This is the core of band-limited incompleteness \cite{landau1967necessary}.
+
+\section{Band-Limited Incompleteness}
+
+\begin{theorem}[Band-Limited Incompleteness]
+\label{thm:incompleteness}
+Given any finite set $\{k_j\}_{j=1}^m\subset\mathcal{C}_+$ and $\varepsilon>0$, there exist two windowed-equivalent spectral densities $\rho_{\text{rel}}^{\pm}$ satisfying for all $1\le j\le m$,
+$$
+\Bigl|\int k_j \rho_{\text{rel}}^{+}-\int k_j \rho_{\text{rel}}^{-}\Bigr|<\varepsilon,
+$$
+but there exists some $k_\star\in\mathcal{C}_+$ such that
+$$
+\int k_\star \rho_{\text{rel}}^{+}>0,\qquad \int k_\star \rho_{\text{rel}}^{-}<0.
+$$
+Thus $\mathsf{T}_{\text{win}}(R,\Omega,p)$ cannot decide with finite evidence the truth value of ``for all $k\in\mathcal{C}_+$, $\mathcal{D}[k]\ge 0$.''
+\end{theorem}
+
+\begin{proof}
+Let uniform bandwidth $\Omega=\max_j\mathrm{band}(\widehat{k_j})$. Take $\widehat{\psi}\in C_c^\infty(\mathbb{R})$ real even and non-negative, with
+$$
+\operatorname{supp}\widehat{\psi}\subset\{|\omega|\ge 2\Omega\},
+$$
+and denote its inverse transform by $\psi$. Let $\widehat{\eta}:=|\widehat{\psi}|^2$, denoting its inverse transform by $\eta$. Given baseline $\rho_0\in\mathcal{S}'(\mathbb{R})$ and small parameter $\delta>0$, set
+$$
+\rho_{\text{rel}}^{\pm}=\rho_0\pm\delta\,\eta.
+$$
+For each in-band kernel $k_j$, by disjoint Fourier support and Parseval identity,
+$$
+\int k_j \eta=\frac{1}{2\pi}\int \widehat{k_j}(\omega)\,\widehat{\eta}(\omega)\,d\omega=0,
+$$
+thus
+$$
+\int k_j\rho_{\text{rel}}^{+}=\int k_j\rho_{\text{rel}}^{-}=\int k_j\rho_0 .
+$$
+Moreover, by NPE finite-order discipline, any error ledger formed by combinations of Poisson and at most order $p$ Euler--Maclaurin depends only on in-band information and endpoint derivatives, so we can adjust $\delta$ and window parameters to make the two sides differ by $<\varepsilon$ in all visible evidence \cite{miller2003summation}.
+
+On the other hand, take $\varphi_\star=\psi$ and set $k_\star=\varphi_\star\ast\tilde{\varphi}_\star\in\mathcal{C}_+$. Then
+$$
+\int k_\star \eta=\frac{1}{2\pi}\int |\widehat{\psi}(\omega)|^4\,d\omega>0,
+$$
+thus
+$$
+\int k_\star \rho_{\text{rel}}^{+}-\int k_\star \rho_{\text{rel}}^{-}=2\delta\int k_\star \eta
+=\frac{\delta}{\pi}\int |\widehat{\psi}(\omega)|^4\,d\omega\neq 0.
+$$
+With appropriate sign of $\delta$, one obtains one positive and one negative. Theorem proved.
+\end{proof}
+
+\begin{remark}
+The above construction essentially employs both Paley--Wiener and Bochner theorems: Fourier images of kernels in $\mathcal{C}_+$ are non-negative; out-of-band perturbations can be orthogonal to them; band-limited measurements are ``blind'' to out-of-band perturbations \cite{paley1934fourier}.
+\end{remark}
+
+\section{Relative Unprovability of Heat-Flow Threshold}
+
+Let log-frequency-domain heat kernel $h_\lambda=\exp(\lambda\partial_E^2)$ ($\lambda\ge 0$), define
+$$
+F(\lambda):=\inf_{\substack{k\in\mathcal{C}_+\\ \int_{\mathbb{R}}k(E)\,dE=1}}\ \int_{\mathbb{R}} (k\ast h_\lambda)(E)\,\rho_{\text{rel}}(E)\,dE.
+$$
+
+\begin{lemma}[Monotonicity and Strong Smoothing Limit]
+\label{lem:monotonicity}
+Let $\mathcal{K}=\{k\in\mathcal{C}_+:\int k=1\}$. Since $h_{\lambda+\tau}=h_\lambda\ast h_\tau$ and $\int h_\tau=1$, the map $k\mapsto k\ast h_\tau$ maps $\mathcal{K}$ back to itself, thus
+$$
+F(\lambda+\tau)=\inf_{k\in\mathcal{K}}\langle k\ast h_\tau,\rho\ast h_\lambda\rangle
+\ \ge\ \inf_{k\in\mathcal{K}}\langle k,\rho\ast h_\lambda\rangle
+\ =\ F(\lambda).
+$$
+If $\int\rho_{\text{rel}}=0$, then $\rho\ast h_\lambda\to 0$, thus $\lim_{\lambda\to\infty}F(\lambda)=0$.
+\end{lemma}
+
+\begin{theorem}[Heat-Flow Single-Point Threshold Undecidable in $\mathsf{T}_{\text{win}}$]
+\label{thm:threshold}
+In $\mathsf{T}_{\text{win}}(R,\Omega,p)$, the truth value of $F(0)\ge 0$ cannot be decided with finite evidence.
+\end{theorem}
+
+\begin{proof}
+Following the construction of Theorem \ref{thm:incompleteness}, take $\rho_{\text{rel}}^{\pm}=\rho_0\pm \delta\,\eta$ with $\operatorname{supp}\widehat{\eta}\subset\{|\omega|\ge 2\Omega\}$. For each in-band kernel $k_j$ and any $\lambda>0$,
+$$
+\Bigl|\int (k_j\ast h_\lambda)\,\eta\Bigr|
+=\Bigl|\frac{1}{2\pi}\int \widehat{k_j}(\omega)\,e^{-\lambda\omega^2}\,\widehat{\eta}(\omega)\,d\omega\Bigr|
+\le C\,e^{-4\lambda\Omega^2},
+$$
+so when $\lambda$ is sufficiently large, the two data are indistinguishable in $\mathsf{T}_{\text{win}}$'s visible evidence and yield the same non-negative limit (Lemma \ref{lem:monotonicity}). However, at $\lambda=0$,
+$$
+\int k_\star \rho_{\text{rel}}^{+}-\int k_\star \rho_{\text{rel}}^{-}=\frac{\delta}{\pi}\int |\widehat{\psi}(\omega)|^4\,d\omega\neq 0,
+$$
+thus there exists $k_\star$ such that the readouts of the two data have opposite signs at the single-point threshold. Since $\mathsf{T}_{\text{win}}$ can only access in-band evidence, it cannot establish the truth value of the proposition $F(0)\ge 0$ within this subsystem with finite evidence. Proof complete.
+\end{proof}
+
+\begin{remark}
+The ``non-increase of extractable dissipation'' tendency of heat-kernel smoothing is coordinated with time delay--density of states in quantum scattering and entropy production monotonicity of non-equilibrium quantum semigroups \cite{martin2016wigner}.
+\end{remark}
+
+\section{Closure Relation with Geometrized RH}
+
+Without imposing ``finite window--finite bandwidth--finite order'' constraints, working over all of $\mathcal{C}_+$:
+
+\begin{itemize}
+\item Formulation (P)'s global positivity is equivalent to Weil's explicit formula positivity criterion, thus equivalent to RH;
+\item Formulation (S) corresponds to ``generator spectrum on critical axis'' scattering--spectral localization, consistently aligned with $\rho_{\text{rel}}$ under windowed readout via master scale and trace formula.
+\end{itemize}
+
+This paper's theorems show: under finite-resource constraints of $\mathsf{T}_{\text{win}}(R,\Omega,p)$, both are merely relatively unprovable propositions \cite{weil1952formules}.
+
+\section{Discussion and Extensions}
+
+\begin{enumerate}
+\item \textbf{Band-Limited Incompleteness and Sampling Density:} The ``finite visible evidence'' of $\mathsf{T}_{\text{win}}$ aligns with Landau necessary density (Paley--Wiener spaces): finite in-band information is insufficient to uniquely recover out-of-band features, equivalent to ill-posedness of sampling--reconstruction \cite{landau1967necessary}.
+
+\item \textbf{Toeplitz/Berezin and Carleson:} This paper only uses the basic fact ``non-negative symbol $\Rightarrow$ compression preserves positivity, Carleson $\Rightarrow$ boundedness,'' all valid in large-scale Bergman/Hardy spaces \cite{zhao2014positivity}.
+
+\item \textbf{Universality of Master Scale:} $\rho_{\text{rel}}=(2\pi)^{-1}\operatorname{tr}\mathsf{Q}$ and $\varphi'=\pi\,\rho_{\text{rel}}$ close via the Wigner--Smith--Friedel--Birman--Kreĭn system, the core of scattering--DOS duality \cite{martin2016wigner}.
+\end{enumerate}
+
+\appendix
+
+\section{Proof of Master-Scale Identity}
+
+Let $\xi(E)$ be the Kreĭn spectral shift; the Birman--Kreĭn formula yields $\det S(E)=e^{-2\pi i\,\xi(E)}$, thus
+$$
+\partial_E\log\det S(E)=-2\pi i\,\xi'(E).
+$$
+On the other hand, Wigner--Smith defines $\mathsf{Q}(E)=-\,i\,S^\dagger S'$, thus
+$$
+\operatorname{tr}\,\mathsf{Q}(E)=-\,i\,\partial_E\log\det S(E)=\partial_E\arg\det S(E)=-\,2\pi\,\xi'(E).
+$$
+Setting $\rho_{\text{rel}}=-\xi'$, we obtain
+$$
+\frac{1}{2\pi}\operatorname{tr}\,\mathsf{Q}(E)=\rho_{\text{rel}}(E),\qquad
+\varphi'(E)=\tfrac{1}{2}\partial_E\arg\det S(E)=\pi\,\rho_{\text{rel}}(E).
+$$
+Consistent with Friedel's rule ``total phase derivative--density of states,'' thus establishing the master-scale identity \cite{birman1962theory}.
+
+\section{Windowed Helffer--Sjöstrand Trace Formula and Readout Co-Calibration}
+
+Helffer--Sjöstrand functional calculus gives for $f\in C_c^\infty(\mathbb{R})$
+$$
+f(H)=\frac{1}{\pi}\int_{\mathbb{C}}\bar{\partial}\tilde{f}(z)\,(z-H)^{-1}\,dx\,dy,
+$$
+therefore
+$$
+\mathrm{Tr}\big(f(H)-f(H_0)\big)=\int f'(E)\,\xi(E)\,dE.
+$$
+Taking $f'=k$ belonging to the measurable class generated by window--kernel convolutions, combining Appendix A's master-scale identity, we obtain
+$$
+\int k(E)\,\rho_{\text{rel}}(E)\,dE=\frac{1}{2\pi}\int k(E)\,\operatorname{tr}\,\mathsf{Q}(E)\,dE,
+$$
+i.e., ``readout $=$ spectral measure linear functional'' \cite{helffer1989equation}.
+
+\section{Positivity Preservation and Carleson Condition for Toeplitz/Berezin Compression}
+
+On Bergman/Hardy spaces, Toeplitz operator $T_\mu f=\Pi (f\,d\mu)$. If $\mu$ is positive and is a Carleson measure for the respective space, then $T_\mu$ is bounded and positive; if symbol $h\ge 0$, then $\Pi M_h\Pi\ge 0$. This ensures positivity of the readout quadratic form induced by $(w_R\!\ast\check{h})$ \cite{pau2015carleson}.
+
+\section{NPE Finite-Order Error Closure}
+
+\begin{itemize}
+\item \textbf{Poisson:} For Schwartz function $s$ and its Fourier transform $S$, periodization--sampling are rigorously connected by Poisson formula.
+\item \textbf{Euler--Maclaurin (at most order $p$):} Remainder of difference--integral conversion given by endpoint higher-order derivatives and Bernoulli polynomials, with explicit upper bounds; finite-order ledger cannot ``recover'' out-of-band information.
+\item \textbf{Conclusion:} Any procedure relying only on $[-\Omega,\Omega]$ in-band spectrum and finite-order endpoint corrections is blind to perturbations $\eta$ with ``support off-band'' \cite{miller2003summation}.
+\end{itemize}
+
+\section{High-Frequency Invisible Perturbations and Separating Hyperplanes}
+
+Let $\eta$'s Fourier support be disjoint from $[-\Omega,\Omega]$. For any in-band kernel $k$, $\langle k,\eta\rangle=0$. Meanwhile take $k_\star=\varphi_\star\ast\tilde{\varphi}_\star$, where we first write $\widehat{\eta}=|\widehat{\psi}|^2$ ($\widehat{\psi}\in C_c^\infty$ real even and non-negative, support off-band), then set $\varphi_\star=\psi$. Thus
+$$
+\langle k_\star,\eta\rangle=\frac{1}{2\pi}\int |\widehat{\psi}(\omega)|^4\,d\omega>0.
+$$
+Thus from $\rho_{\text{rel}}^{\pm}=\rho_0\pm\delta\,\eta$ one can construct a handle on $\mathcal{C}_+$ such that finite evidence agrees while global positivity yields opposite conclusions. This separation construction relies on Bochner theorem ($\widehat{k}\ge 0$) and Paley--Wiener (controllable support) \cite{bochner1959lectures}.
+
+\section{Heat-Flow Threshold Limit and Monotonicity}
+
+Let $\mathcal{K}=\{k\in\mathcal{C}_+:\int k=1\}$. Using
+$$
+\int (k\ast h_\lambda)\rho=\int k\,(\rho\ast h_\lambda)
+$$
+and $\int(k\ast h_\tau)=\int k$, $\mathcal{K}$ is invariant under $*h_\tau$, thus $F(\lambda+\tau)\ge F(\lambda)$; if $\int\rho_{\text{rel}}=0$, then $\rho\ast h_\lambda\to 0$, thus $\lim_{\lambda\to\infty}F(\lambda)=0$ \cite{birman1962theory}.
+
+\section*{Acknowledgments}
+
+The ``windowed scattering--Toeplitz/Berezin compression--master scale'' syntax and several anchor formulas used in this paper can all be found in equivalent forms in standard literature. The term ``unprovability'' in this paper is relative to the explicitly defined finite-resource subsystem $\mathsf{T}_{\text{win}}(R,\Omega,p)$ and does not involve stronger metalogical unprovability.
+
+\bibliographystyle{plain}
+\begin{thebibliography}{99}
+
+\bibitem{birman1962theory}
+M. Sh. Birman and M. G. Kreĭn.
+\newblock On the theory of wave and scattering operators.
+\newblock {\em Doklady Akademii Nauk SSSR}, 144:475--478, 1962.
+
+\bibitem{yafaev2010mathematical}
+D. R. Yafaev.
+\newblock {\em Mathematical Scattering Theory: General Theory}.
+\newblock American Mathematical Society, 2010.
+
+\bibitem{helffer1989equation}
+B. Helffer and J. Sjöstrand.
+\newblock Equation de Schrödinger avec champ magnétique et équation de Harper.
+\newblock In {\em Schrödinger Operators}, pages 118--197. Springer, 1989.
+
+\bibitem{dimassi1999spectral}
+M. Dimassi and J. Sjöstrand.
+\newblock {\em Spectral Asymptotics in the Semi-classical Limit}.
+\newblock Cambridge University Press, 1999.
+
+\bibitem{gesztesy1999krein}
+F. Gesztesy, A. Pushnitski, and B. Simon.
+\newblock On the Koplienko spectral shift function, I. Basics.
+\newblock {\em Zhurnal Matematicheskoi Fiziki, Analiza, Geometrii}, 4(1):63--107, 2008.
+
+\bibitem{cunden2015statistical}
+F. D. Cunden, F. Mezzadri, N. Simm, and P. Vivo.
+\newblock Statistical distribution of the Wigner-Smith time-delay matrix moments for chaotic cavities.
+\newblock {\em Physical Review E}, 91(6):060102, 2015.
+
+\bibitem{martin2016wigner}
+P. A. Martin.
+\newblock Wigner time delay and related concepts: Application to transport in coherent conductors.
+\newblock arXiv:1507.00075, 2016.
+
+\bibitem{weil1952formules}
+A. Weil.
+\newblock Sur les ``formules explicites'' de la théorie des nombres premiers.
+\newblock {\em Communications du séminaire mathématique de l'université de Lund}, pages 252--265, 1952.
+
+\bibitem{conrey2019weil}
+B. Conrey.
+\newblock Weil's explicit formula and positivity criterion.
+\newblock Lecture Notes, 2019.
+
+\bibitem{zhao2014positivity}
+X. Zhao and D. Zheng.
+\newblock Positivity of Toeplitz operators via Berezin transform.
+\newblock {\em Journal of Mathematical Analysis and Applications}, 416(2):881--900, 2014.
+
+\bibitem{pau2015carleson}
+J. Pau and J. A. Peláez.
+\newblock Carleson measures and Toeplitz operators for weighted Bergman spaces on the unit ball.
+\newblock {\em Michigan Mathematical Journal}, 64(4):759--796, 2015.
+
+\bibitem{shannon1949communication}
+C. E. Shannon.
+\newblock Communication in the presence of noise.
+\newblock {\em Proceedings of the IRE}, 37(1):10--21, 1949.
+
+\bibitem{landau1967necessary}
+H. J. Landau.
+\newblock Necessary density conditions for sampling and interpolation of certain entire functions.
+\newblock {\em Acta Mathematica}, 117(1):37--52, 1967.
+
+\bibitem{miller2003summation}
+S. D. Miller and W. Schmid.
+\newblock Summation formulas, from Poisson and Voronoi to the present.
+\newblock In {\em Noncommutative Harmonic Analysis}, pages 419--440. Birkhäuser, 2004.
+
+\bibitem{paley1934fourier}
+R. E. A. C. Paley and N. Wiener.
+\newblock {\em Fourier Transforms in the Complex Domain}.
+\newblock American Mathematical Society, 1934.
+
+\bibitem{bochner1959lectures}
+S. Bochner.
+\newblock {\em Lectures on Fourier Integrals}.
+\newblock Princeton University Press, 1959.
+
+\bibitem{connes2021weil}
+A. Connes and C. Consani.
+\newblock Weil positivity and trace formula.
+\newblock arXiv:2104.12075, 2021.
+
+\end{thebibliography}
+
+\end{document}
+

@@ -1,0 +1,431 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Title information
+\title{Hierarchical ``Halting''--``View-Relative Completeness'' Unified Theory\\
+(Formal Construction Under EBOC--WSIG--RBIT Framework)}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today\\
+\small Version: 1.29}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Under the frameworks of Windowed Scattering--Information Geometry (WSIG/CCS), Eternal-Static-Block Computation (EBOC), and Resource-Bounded Incompleteness Theory (RBIT), we establish view- and resource-dependent hierarchical ``halting'' criteria and provide equivalence theorems consistent with sampling--frame thresholds, Poisson--Euler--Maclaurin (EM) error theory, and ``trinity'' scale (phase derivative--relative state density--group delay). We unify the sign and branch conventions of the trinity equality chain, clarify the interchangeable use of $\Phi_f=\arg\det S$'s absolutely continuous branch and Birman--Kreĭn (BK) gauge; characterize ``readout/pointer'' and Ky--Fan minimum at operator level; tighten equivalence conditions of ``sampling-period closed-loop'' and ``readout halting'' under strict bandlimiting and tight frame regularity premises; and restate RBIT assertions in Gödel--Chaitin type and extension chain incompleteness.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Hierarchical halting; View-relative completeness; WSIG; EBOC; RBIT; Trinity scale; Sampling theory; Frame theory
+
+\section{Notation, Gauge, and Regularity Discipline}
+
+\subsection{View Quadruple and Windowed Readout}
+
+Let the \textbf{view quadruple} be
+\begin{equation}
+\mathrm{View}=(H_0,\,w_R,\,h,\,\mathsf{sample}),
+\end{equation}
+and introduce \textbf{window center parameter} $c\in\mathbb R$. Define shifted-scaled window
+\begin{equation}
+w_{R,c}(E):=R^{-1}\,w\!\left(\frac{E-c}{R}\right).
+\end{equation}
+where $H_0$ is reference end (free end of scattering pair $(H,H_0)$), $w_R$ is energy window (scale $R$), $h$ is bandlimited frontend kernel, $\mathsf{sample}$ is sampling/frame scheme (step $\Delta$, point set $\Lambda$, etc.). Windowed readout takes
+\begin{equation}
+\mathrm{Obs}(R,\Delta;\,c)=\int_{\mathbb R} w_{R,c}(E)\,\bigl(h\ast\rho_\star\bigr)(E)\,dE
++\varepsilon_{\mathrm{alias}}+\varepsilon_{\mathrm{EM}}+\varepsilon_{\mathrm{tail}},
+\end{equation}
+where $\rho_\star$ can take relative state density $\rho_{\mathrm{rel}}$ or Herglotz density $\rho_m$. Throughout we uniformly adopt standard convolution
+\begin{equation}
+(h\ast\rho)(E):=\int_{\mathbb R} h(E-E')\,\rho(E')\,dE'.
+\end{equation}
+
+When necessary, use $w_{R,c}$ as weight measure without affecting regularity and error theory conclusions.
+
+\textbf{Window Normalization and Baseline (Zero-Sum Condition):} Adopt one of two gauges:
+
+(A) \textbf{Zero-Mean Window:} $\int_{\mathbb R} w_R(E)\,dE=0$.
+
+(B') \textbf{External Baseline (Non-Trivial Zero-Sum):} Take $c_R^{\mathrm{ext}}$ independent of $\rho_{\mathrm{rel}}$ (obtainable from reference end $H_0$'s density $\rho_{m_0}$ or independent low-pass calibration), define $\tilde\rho_{\mathrm{rel}}:=\rho_{\mathrm{rel}}-c_R^{\mathrm{ext}}$. Then
+\begin{equation}
+\int_{\mathbb R} w_R\,\tilde\rho_{\mathrm{rel}}=0 \quad\Longleftrightarrow\quad
+\int_{\mathbb R} w_R\,\rho_{\mathrm{rel}}=\Bigl(\int_{\mathbb R} w_R\Bigr)c_R^{\mathrm{ext}} .
+\end{equation}
+
+\textbf{Equivalence Applicability:} Theorem A.1 in §2 is uniformly stated under gauge (A) or (B') to avoid tautology from endogenous baseline.
+
+\textbf{Translation Invariance:} For any $c\in\mathbb R$,
+\begin{equation}
+\int_{\mathbb R} w_{R,c}(E)\,dE=\int_{\mathbb R} w_R(E)\,dE,
+\end{equation}
+thus zero-sum/baseline relations under gauge (A)/(B') are strictly consistent with subsequent conditions formulated via $w_{R,c}$.
+
+\textbf{(Unified Notation)} To cover both gauges (A)/(B'), write
+\begin{equation}
+\bar\rho_{\mathrm{rel}}:=\begin{cases}
+\rho_{\mathrm{rel}}, & \text{gauge (A)};\\[2pt]
+\tilde\rho_{\mathrm{rel}}, & \text{gauge (B′)}.
+\end{cases}
+\end{equation}
+Hereafter all mentions of ``zero-sum/balanced flux'' expressed via $\bar\rho_{\mathrm{rel}}$; if smoothing adopted, uniformly compute via $h\ast\bar\rho_{\mathrm{rel}}$.
+
+\textbf{Regularity and Bandlimiting Discipline (Poisson--EM Non-Introducing Singularities):} Fix an \textbf{EM truncation order} $M\ge 1$. To ensure Poisson--EM error closure without introducing new singularities, require $h\in C^{2M}(\mathbb R)\cap L^1$, $w_R\in C_c^{2M}(\mathbb R)$ or strictly bandlimited, and $(h\ast\rho_\star)$'s derivatives up to order $2M$ integrable at window endpoints; then EM truncation remainder consists only of endpoint derivatives and Bernoulli polynomials, Poisson term auditable or zero under bandlimiting or sufficient decay.
+
+Above regularity and Poisson--EM closure \textbf{confined to} $\sigma_{\mathrm{ac}}(H)$; for $\delta$-mass in $\sigma_{\mathrm{pp}}(H)$, adopt $w_R$ support avoidance or suppress its contribution via $h$'s smooth convolution, thus maintaining ``non-introducing singularities''.
+
+\subsection{Windowed Scattering ``Trinity'' Scale (Normalization, Branch, and BK Sign)}
+
+Almost everywhere on absolutely continuous spectrum, take scattering matrix $S(E)\in U(N)$, Wigner--Smith matrix
+\begin{equation}
+\mathsf Q(E):=-i\,S(E)^\dagger\,\partial_E S(E),
+\end{equation}
+global phase
+\begin{equation}
+\Phi_f(E):=\arg\det S(E),\qquad \varphi(E):=\tfrac12\,\Phi_f(E).
+\end{equation}
+Define relative state density (Krein--Friedel sense)
+\begin{equation}
+\rho_{\mathrm{rel}}(E):=\frac{1}{2\pi}\,\partial_E\Phi_f(E).
+\end{equation}
+On $\sigma_{\mathrm{ac}}$, fix absolutely continuous branch of $\Phi_f$, thus $\partial_E\Phi_f$ unique almost everywhere; equivalently, using BK gauge $\det S(E)=\exp(-2\pi i\,\xi(E))$, $\rho_{\mathrm{rel}}(E)=-\xi'(E)$.
+
+\textbf{One-Line Derivation:}
+\begin{equation}
+\operatorname{tr}\mathsf Q(E)=-i\,\operatorname{tr}\bigl(S^\dagger \partial_E S\bigr)
+=-i\,\partial_E\log\det S(E)
+=\partial_E\Phi_f(E).
+\end{equation}
+Accordingly, strict equality chain holds almost everywhere on $\sigma_{\mathrm{ac}}$:
+\begin{equation}
+\boxed{\ \varphi'(E)=\tfrac12\,\operatorname{tr}\mathsf Q(E)=\pi\,\rho_{\mathrm{rel}}(E)\ }.
+\end{equation}
+
+\subsection{Sampling--Frame Thresholds and Impossibilities}
+
+With phase density $d\nu=\tfrac{\varphi'}{\pi}\,dE$ as geometric scale: Landau provides necessary density lower bound for sampling/interpolation; Wexler--Raz dual characterizes Gabor/multi-window frame consistency; Balian--Low theorem gives global localization obstruction at critical lattice. These jointly delimit applicability domain of stable readout and fixed-point criteria.
+
+\textbf{Strict Definition of Nyquist Threshold:} Write windowed-smoothed density $g_{R,c}(E):=w_{R,c}(E)\,(h\ast\rho_\star)(E)$, its Fourier support half-width
+\begin{equation}
+\Omega_{\mathrm{eff}}(R):=\inf\{\Omega>0:\ \operatorname{supp}\widehat{g_{R,c}}\subseteq[-\Omega,\Omega]\}.
+\end{equation}
+Define aliasing threshold
+\begin{equation}
+\Delta_c(R):=\frac{\pi}{\Omega_{\mathrm{eff}}(R)}.
+\end{equation}
+Aliasing is zero if and only if $\operatorname{supp}\widehat{g_{R,c}}\subseteq[-\pi/\Delta,\pi/\Delta]$; sufficient condition is $\Delta\le \Delta_c(R)$ (translation doesn't change frequency domain support).
+
+\subsection{``Readout/Pointer'' Operator-Level Definition and Ky--Fan Minimum; Born = I-Projection}
+
+Induce positive operator $W_R$ (Toeplitz/Gram form) from $w_R$ and $h$. \textbf{One verifiable construction (positive-definite, trace-class, robust):} Let
+\begin{equation}
+u_{R,c}(E):=w_{R,c}(E)^2\quad(\text{or take }u_{R,c}(E)=|w_{R,c}(E)|),
+\end{equation}
+take measurable matrix kernel $K_h:\mathbb R\to\mathbb C^{N\times N}$, define
+\begin{equation}
+W_R:=\int_{\mathbb R} u_{R,c}(E)\,K_h(E)^\dagger K_h(E)\,dE .
+\end{equation}
+Then $W_R\ge 0$ and $\operatorname{tr}W_R<\infty$; \textbf{add non-triviality constraint} $\operatorname{tr}W_R>0$, thus
+\begin{equation}
+p(j)=\frac{\lambda_j}{\operatorname{tr}W_R},\qquad \sum_{j=1}^N p(j)=1
+\end{equation}
+well-defined. This construction only applies to ``pointer/Ky--Fan'' criterion (iii), not changing (i)(ii)(iv)'s window weight and zero-sum criteria (still computed via $w_{R,c}$).
+
+\textbf{Action Space and Dimension:} Below stipulate $W_R$ acts on \textbf{channel space} $\mathbb C^N$ (induced by window/kernel energy weighting on each channel), so its spectral decomposition written as $\{(\lambda_j,\psi_j)\}_{j=1}^N$, with this $N$ as dimensional reference for subsequent rank conditions like $\operatorname{rank}P^\perp=N-k$. Correspondingly, index $j$ in $p(j)=\langle\psi_j,W_R\psi_j\rangle/\operatorname{tr}W_R$ takes $1\le j\le N$.
+
+Let $W_R=\sum_j \lambda_j\,\mathbb P_{\psi_j}$ be spectral decomposition. \textbf{Eigenvalue Gauge:} Take $\{\psi_j\}_{j=1}^N$ as \textbf{orthonormal} eigensystem, let $\mathbb P_{\psi_j}=|\psi_j\rangle\langle\psi_j|$, then $\langle\psi_j,W_R\psi_j\rangle=\lambda_j$, $\operatorname{tr}\mathbb P_{\psi_j}=1$. Accordingly define
+\begin{equation}
+p(j):=\frac{\langle \psi_j,\,W_R\,\psi_j\rangle}{\operatorname{tr}W_R}
+=\frac{\lambda_j}{\operatorname{tr}W_R},\qquad \sum_{j=1}^N p(j)=1 .
+\end{equation}
+Take admissible family as coaxial mixed family
+\begin{equation}
+\mathcal M:=\Bigl\{\sum_j g_j\,\mathbb P_{\psi_j}:\ g_j\ge 0,\ \sum_j g_j=1\Bigr\}.
+\end{equation}
+
+\textbf{Tighten admissible family to coaxial block-coarsened family:} Take partition of index set $\mathcal P=\{B_\alpha\}$, and block weights $\mu_\alpha\ge 0,\ \sum_\alpha \mu_\alpha=1$, define
+\begin{equation}
+\Pi_{\mathcal P,\mu}:=\sum_\alpha \mu_\alpha\,\frac{1}{|B_\alpha|}\sum_{j\in B_\alpha}\mathbb P_{\psi_j}\in\mathcal M .
+\end{equation}
+Corresponding block-coarsening channel $\Gamma_{\mathcal P}$ is intra-class uniformization on $\{\psi_j\}$ basis:
+\begin{equation}
+(\Gamma_{\mathcal P}p)(j)=\frac{1}{|B_\alpha|}\sum_{k\in B_\alpha}p(k),\qquad j\in B_\alpha .
+\end{equation}
+
+\textbf{(Notation Clarification)} $\Gamma_{\mathcal P}$ is channel (Markov linear operator), $\Pi_{\mathcal P,\mu}$ is mixed state; they are different objects. This paper \textbf{does not} use notation $\Gamma_{\Pi_{\mathcal P,\mu}}$.
+
+\textbf{Non-Degenerate Coarsening Assumption:} Unless otherwise stated, partition $\mathcal P$ is not single-point refinement, i.e., exists $\alpha$ with $|B_\alpha|\ge 2$. This constraint excludes trivial case $\Gamma_{\mathcal P}=\mathrm{Id}$, making conclusion ``Born=I-projection fixed point holds only with intra-block spectral degeneracy'' consistent with feasible set.
+
+Given rank $k$, define ``pointer projection''
+\begin{equation}
+P_k^\star\in\arg\min_{\substack{P:\,P^2=P,\ P^\dagger=P,\\ \operatorname{rank} P=k}}\ \operatorname{tr}(P W_R),
+\end{equation}
+whose optimal value equals sum of smallest $k$ eigenvalues of $W_R$ (Ky--Fan principal spectral sum minimization). \textbf{Dual Explanation:} Let \textbf{complementary projection} $P^\perp:=I-P$ (also orthogonal projection), then
+\begin{equation}
+\min_{\substack{P^\perp:\,(P^\perp)^2=P^\perp,\, (P^\perp)^\dagger=P^\perp,\\ \operatorname{rank}P^\perp=N-k}}\operatorname{tr}(P^\perp W_R)
+\end{equation}
+equivalent to maximization for $P$, choosing largest $k$ eigenvalues; this paper's gauge fixes adoption of ``\textbf{Pointer=Ky--Fan Minimum}''. On probability side, perform Csiszár I-projection with \textbf{channel family} (\textbf{two-block threshold feasible set}):
+\begin{equation}
+\Gamma^\star\in\arg\min_{\mathcal P\in\mathfrak T_2} D_{\mathrm{KL}}\bigl(p\ \Vert\ \Gamma_{\mathcal P}p\bigr),\qquad
+\mathfrak T_2:=\bigl\{\mathcal P=\{B_{\downarrow},B_{\uparrow}\}\ \text{induced by spectral threshold of }W_R\bigr\}.
+\end{equation}
+
+Under coaxial partitioning and frame regularity, \textbf{pointer Ky--Fan minimum} and this \textbf{two-block threshold} I-projection optimal channel $\Gamma_{\mathcal P^\ast}$ are \textbf{compatible but generally non-equivalent}.
+
+\textbf{Only when simultaneously satisfying} (a) \textbf{intra-block spectral degeneracy} \textbf{and} (b) \textbf{strict bandlimiting + perfect reconstruction}, holds
+\begin{equation}
+\text{(iii′)}\ \Longleftrightarrow\ \text{(i)}\ \Longleftrightarrow\ \text{(ii)}\ \Longleftrightarrow\ \text{(iv)} .
+\end{equation}
+If only satisfying (a) without (b), only have
+\begin{equation}
+\text{(iii′)}\ \Longleftrightarrow\ \text{(i)}\ \Longleftrightarrow\ \text{(ii)},
+\end{equation}
+while (iv) is only \textbf{near-closed-loop within error budget} (not included in equivalence). See §2's (iii′) and its two ``moreover'' clauses for details. Thus this paper fixes adoption of ``\textbf{Pointer=Ky--Fan Minimum}'' as \textbf{necessary} criterion for stability; if intra-block degeneracy exists, then ``Born=I-projection fixed point'' holds simultaneously.
+
+\section{Hierarchical ``Halting'' Predicates}
+
+Let system $S$, resource $\mathcal R=(L;m,N,\varepsilon)$, view $\mathrm{View}=(H_0,w_R,h,\mathsf{sample})$. Define
+\begin{equation}
+\mathsf H_0\Rightarrow \mathsf H_1\Rightarrow \mathsf H_2\Rightarrow \mathsf H_3\Rightarrow \mathsf H_4\Rightarrow \mathsf H_5,
+\end{equation}
+converse generally doesn't hold:
+
+\begin{itemize}
+\item $\mathsf H_0$: Syntactic halting (no successor state).
+\item $\mathsf H_1$: Dynamical halting (function graph enters loop); loop length $p=1$ is \textbf{self-loop fixed point}, \textbf{non-equivalent} to ``no successor'' $\mathsf H_0$; $p>1$ is oscillatory halting.
+\item $\mathsf H_2$: Readout halting. Fix $\mathrm{View}$, write windowed-smoothed density $g_{R,c}(E):=w_{R,c}(E)\,(h\ast\rho_\star)(E)$. If its Fourier support satisfies
+\begin{equation}
+\operatorname{supp}\widehat{g_{R,c}}\subseteq[-\pi/\Delta,\ \pi/\Delta],
+\end{equation}
+then $\varepsilon_{\mathrm{alias}}=0$. A set of sufficient conditions is
+\begin{equation}
+\operatorname{supp}\widehat{w_R}\subseteq[-\Omega_w,\Omega_w],\quad
+\operatorname{supp}\widehat{h}\subseteq[-\Omega_h,\Omega_h],\quad
+\operatorname{supp}\widehat{\rho_\star}\subseteq[-\Omega_\rho,\Omega_\rho],
+\end{equation}
+with $\Omega_w+\Omega_h+\Omega_\rho\le\pi/\Delta$. Simultaneously require
+\begin{equation}
+\frac{d}{d\log R}\mathrm{Obs}(R,\Delta;\,c)\to 0,\quad \varepsilon_{\mathrm{EM}},\varepsilon_{\mathrm{tail}} \text{ controlled},
+\end{equation}
+and \textbf{balanced flux} satisfies
+\begin{equation}
+\int_{\mathbb R} w_{R,c}(E)\,\bar\rho_{\mathrm{rel}}(E)\,dE=0.
+\end{equation}
+where $\frac{d}{d\log R}$ uniformly refers to logarithmic scale derivative under $w_{R,c}(E)=R^{-1}w\!\bigl((E-c)/R\bigr)$ with \textbf{fixed $c$}.
+\item $\mathsf H_3$: Trinity halting. Satisfies $\varphi'=\tfrac12\operatorname{tr}\mathsf Q=\pi\rho_{\mathrm{rel}}$ and ``Pointer=Ky--Fan minimum stable'' (if $W_R$ intra-block degenerate, then Born=I-projection fixed point also holds).
+\item $\mathsf H_4$: Multi-view halting (reaching $\mathsf H_3$ uniformly over view family $\mathfrak V$).
+\item $\mathsf H_5$: Theoretical halting/resource completeness (globally unreachable at RBIT level).
+\end{itemize}
+
+\section{Main Theorem A (Under Fixed View: ``Relative Halting $\Leftrightarrow$ Sampling-Period Closed-Loop'')}
+
+\begin{theorem}[Tightened Equivalence]
+Let $\mathrm{View}=(H_0,w_R,h,\mathsf{sample})$ satisfy: effective bandwidth $\Omega_{\mathrm{eff}}(R)$ of $g_{R,c}$ finite and $\Delta\le\Delta_c(R)=\pi/\Omega_{\mathrm{eff}}(R)$ (thus $\varepsilon_{\mathrm{alias}}=0$), windows/bases used constitute tight frame (Parseval; or frame bounds uniform and normalized), and satisfy §0.4's \textbf{structural coaxial assumption} and \textbf{coaxial block-coarsening channel} ($\mathcal M,\ \Gamma_{\mathcal P}$) hold.
+
+\textbf{(Measure Unification Convention)} Uniformly write
+\begin{equation}
+\bar\rho_{\mathrm{rel}}:=\begin{cases}
+\rho_{\mathrm{rel}}, & \text{gauge (A)};\\
+\tilde\rho_{\mathrm{rel}}, & \text{gauge (B′)}.
+\end{cases}
+\end{equation}
+If (i)'s observation main term adopts smoothing $h\ast\rho_{\mathrm{rel}}$, then in (ii) synchronously express zero-sum via $h\ast\bar\rho_{\mathrm{rel}}$ to ensure (i)'s observation main term and (ii)'s zero-sum criterion are in same measure.
+
+\textbf{(Phase Monotonicity)} On window support require $\varphi$ monotone non-decreasing to ensure generalized inverse $E(\cdot)$ in (iv) well-defined; if not satisfied, (iv) doesn't participate in equivalence chain.
+
+Under §0.1 gauge (A) or (B') and threshold/frame regularity premises:
+
+\textbf{(Strict Bandlimiting)} If $w_R,h,\rho_\star$ \textbf{strictly bandlimited} and $\Delta\le\Delta_c(R)$ (no aliasing), and \textbf{moreover} adopt Poisson--Shannon \textbf{perfect reconstruction} of Parseval tight frame (or equivalent exact summation) to compute readout, making $\varepsilon_{\mathrm{EM}}=\varepsilon_{\mathrm{tail}}=0$, then \textbf{(i) $\Leftrightarrow$ (ii) $\Leftrightarrow$ (iv)};
+
+\textbf{(General Regularity)} Under only Poisson--EM regularity and bounded tail, \textbf{(i) $\Leftrightarrow$ (ii)}; (iv) is only \textbf{near-closed-loop within error budget} (gives \textbf{$(i)\Rightarrow(iv)$}; while \textbf{(iv) only implies approximate zero-sum}, i.e., (ii) holds approximately in sense of $\varepsilon_{\mathrm{EM}}+\varepsilon_{\mathrm{tail}}$, \textbf{does not} imply strict equality of (ii)).
+
+\textbf{Moreover:}
+
+\textbf{(Strict Bandlimiting+Perfect Reconstruction)} Under strict bandlimiting and perfect reconstruction premise, if and only if $W_R$ intra-block degenerate, exists channel $\Gamma_{\mathcal P}$ such that \textbf{(iii′) $\Longleftrightarrow$ (i) $\Longleftrightarrow$ (ii) $\Longleftrightarrow$ (iv)};
+
+\textbf{(General Regularity)} If and only if $W_R$ intra-block degenerate, then \textbf{(iii′) $\Longleftrightarrow$ (i) $\Longleftrightarrow$ (ii)}, while (iv) is only \textbf{near-closed-loop within error budget} and not equivalent. In general, ``Pointer=Ky--Fan minimum'' (denoted (iii)) is \textbf{compatible but not necessarily equivalent} to above criteria.
+
+(i) Readout halting ($\mathsf H_2$; definition see §1, includes Nyquist no-aliasing, Poisson--EM error controlled, and balanced flux zero-sum);
+
+(ii) $\displaystyle \int_{\mathbb R} w_{R,c}(E)\,\bar\rho_{\mathrm{rel}}(E)\,dE=0$;
+
+(iii) Pointer basis is Ky--Fan minimum;
+
+(iii′) \textbf{Two-block threshold Born = I-projection fixed point (coaxial partition):} Exists two-block channel $\Gamma_{\mathcal P}\in\{\Gamma_{\mathcal P}:\mathcal P\in\mathfrak T_2\}$ induced by spectral threshold of $W_R$, such that
+\begin{equation}
+p=\Gamma_{\mathcal P}p .
+\end{equation}
+This fixed point \textbf{holds non-trivially if and only if} $W_R$ has \textbf{spectral degeneracy} within each non-trivial block $B_\alpha$ (i.e., $\lambda_j$ constant on $B_\alpha$); then (iii′)'s equivalence conclusion with (i)(ii) (and under ``strict bandlimiting+perfect reconstruction'' with (iv)) consistent with above ``moreover'' two paragraphs.
+
+(iv) \textbf{One-step closed-loop of phase-coordinate uniform sampling (generalized inverse version):} Take right-continuous generalized inverse
+\begin{equation}
+E(\theta):=\inf\{E:\,\varphi(E)\ge \theta\}.
+\end{equation}
+Given \textbf{window center} $c_n$, set
+\begin{equation}
+c_{n+1}:=E\bigl(\varphi(c_n)+\pi\bigr).
+\end{equation}
+When $\Delta\le \Delta_c(R)$ and tight frame regularity (verifiable via Wexler--Raz dual kernel):
+
+\textbf{(Strict Bandlimiting)} If $w_R,\,h,\,\rho_\star$ \textbf{strictly bandlimited} and $\Delta\le \Delta_c(R)$, then $\varepsilon_{\mathrm{alias}}=0$; if \textbf{moreover} adopt Parseval tight frame and Poisson--Shannon \textbf{perfect reconstruction} (or equivalent exact summation formula) to compute windowed readout, can make $\varepsilon_{\mathrm{EM}}=\varepsilon_{\mathrm{tail}}=0$; under this premise
+\begin{equation}
+\mathrm{Obs}(R,\Delta;\,c_{n+1})=\mathrm{Obs}(R,\Delta;\,c_n).
+\end{equation}
+\textbf{Otherwise}, only obtain near-closed-loop within error budget (consistent with next ``general regularity'').
+
+\textbf{(General Regularity)} Under only §0.1's Poisson--EM regularity and bounded tail, closed-loop is \textbf{near-closed-loop within error budget}:
+\begin{equation}
+\mathrm{Obs}(R,\Delta;\,c_{n+1})\approx \mathrm{Obs}(R,\Delta;\,c_n),
+\end{equation}
+with deviation controlled by $\varepsilon_{\mathrm{EM}}+\varepsilon_{\mathrm{tail}}$.
+\end{theorem}
+
+\begin{proof}[Proof Sketch]
+\begin{itemize}
+\item $(ii)\Rightarrow(i)$: Main term zero and Poisson--EM controlled;
+\item \textbf{(Strict Bandlimiting+Perfect Reconstruction)} $(iv)\Rightarrow(ii)$: Under strict bandlimiting and Poisson--Shannon perfect reconstruction, via Parseval and kernel diagonal identity, reduce one-step closed-loop to density zero-sum; \textbf{(General Regularity)} only implies \textbf{approximate zero-sum}, with deviation controlled by $\varepsilon_{\mathrm{EM}}+\varepsilon_{\mathrm{tail}}$;
+\item $(i)\Rightarrow(iv)$: Under Nyquist and tight frame premise, \textbf{strict bandlimiting+perfect reconstruction} gives equality closed-loop; \textbf{otherwise} \textbf{near-closed-loop within error budget} (deviation controlled by $\varepsilon_{\mathrm{EM}}+\varepsilon_{\mathrm{tail}}$).
+\item \textbf{Side Note:} From $(i)$ can construct \textbf{non-increasing} Ky--Fan objective, but \textbf{not guaranteed to reach minimum}, so (iii) is \textbf{compatible but not equivalent} with (i)(ii)(iv); (iii′)'s equivalence scope see case-by-case statements in above summary.
+\end{itemize}
+
+Thresholds and obstructions jointly guaranteed by Landau necessary density, Wexler--Raz duality, and Balian--Low theorem.
+\end{proof}
+
+\section{Main Theorem B (Changing View $\equiv$ Adding Theory/Extending Dictionary)}
+
+\begin{definition}[View Extension]
+$\mathrm{View}\mapsto\mathrm{View}'$ includes $H_0\mapsto H_0'$ (relabeling $\rho_{\mathrm{rel}}$), $(w_R,h,\mathsf{sample})\mapsto(w_{R'},h',\mathsf{sample}')$ and scale (Mellin/logarithmic) switching.
+\end{definition}
+
+\begin{theorem}[Invariants and Re-Illumination]
+Under Poisson--EM regularity and tight frame premise, view extension generates no new singularities, but can change visibility of windowed phase density: $\mathsf H_3$ under one view can be broken by another view, thus revealing new oscillation--period.
+\end{theorem}
+
+\section{RBIT Interface: Completeness Growth = Halting Boundary Extrapolation}
+
+\begin{theorem}[Chaitin-Type Incompleteness]
+For any consistent and computably enumerable theory $T$ interpreting PA, exists constant $c_T$ such that when $n>c_T$, concrete proposition ``$K(x)\ge n$'' is true but unprovable in $T$.
+\end{theorem}
+
+\begin{theorem}[Extension Chain Non-Termination]
+For any consistent and computable extension chain $T_{t+1}=T_t+\Delta_t$, each stage $t$ has $G^{(t)}$ undecidable in $T_t$.
+\end{theorem}
+
+\begin{corollary}
+In resource--statistics unified coordinate $\mathcal R=(L;m,N,\varepsilon)$ and view family $\mathfrak V$, ``pursuing completeness'' i.e., continuously expanding resources and extending views, is structurally equivalent to ``pursuing non-halting''.
+\end{corollary}
+
+\section{EBOC--Consensus Chain Discrete Mirror and Computability}
+
+Under causal net--window constraint--uniform choice function, obtain unique successor function graph $f:V\to V$. Its connected components decompose into directed loops and attached in-trees (line/half-line as limit cases); ``halting'' is self-loop (length $1$ loop), general $p>1$ is oscillatory non-halting. Loop detection achievable in linear time, constant space.
+
+\section{Operationalization of ``Heat Death'' and Verifiable Scheme}
+
+\begin{definition}[View-Relative Heat Death]
+Given $\mathrm{View}$, if
+\begin{equation}
+\int w_{R,c}(E)\,\bar\rho_{\mathrm{rel}}(E)\,dE\approx 0,\qquad
+\int w_{R,c}(E)\,\tfrac12\operatorname{tr}\mathsf Q(E)\,dE\approx 0,
+\end{equation}
+and Poisson--EM three-fold error closes within budget, then reaches view-relative heat death.
+\end{definition}
+
+\textbf{Protocol (Verifiable Closed-Loop):} Reference calibration (inverting $(H,H_0)$'s $\rho_m,\rho_{m_0}$); window/kernel KKT optimum; record $(\Delta,M,L)$ and Landau threshold, multi-window frame verified via Wexler--Raz dual kernel; jointly solve Ky--Fan minimum and minimum-KL criterion; scan views over $H_0$, window/kernel/scale to detect ``re-illumination''.
+
+\section{Engineering Thresholds and Cross-Domain Consistency}
+
+\begin{enumerate}
+\item \textbf{Nyquist Alias Elimination:} Strict bandlimiting and $\Delta\le\Delta_c$ make $\varepsilon_{\mathrm{alias}}=0$, Poisson for alias audit.
+\item \textbf{Frame Stability and Obstruction:} Count via $d\nu=\tfrac{\varphi'}{\pi}\,dE$, Landau lower bound, Wexler--Raz duality, and Balian--Low obstruction jointly control stability domain and critical degeneracy.
+\item \textbf{EM Truncation:} Finite-order EM only introduces endpoint Bernoulli correction, generates no new singularities.
+\item \textbf{Group Delay Cross-Domain Unification:} $\mathsf Q=-i\,S^\dagger \partial_E S$ has unified expression and statistical structure in quantum, acoustic, and electromagnetic scattering.
+\end{enumerate}
+
+\section{Conclusion}
+
+Under trinity scale $\varphi'(E)=\tfrac12\operatorname{tr}\mathsf Q(E)=\pi\rho_{\mathrm{rel}}(E)$ and Poisson--EM regularity discipline, \textbf{under fixed view}:
+
+\textbf{(Strict Bandlimiting+Perfect Reconstruction)} If strictly bandlimited and adopting Poisson--Shannon perfect reconstruction of Parseval tight frame (or equivalent exact summation), making $\varepsilon_{\mathrm{EM}}=\varepsilon_{\mathrm{tail}}=0$, then (when $\varphi$ monotone non-decreasing on window support)
+\begin{equation}
+\boxed{\ \text{(i) Readout halting }\Longleftrightarrow\ \text{(ii) Window-weighted zero-sum }\Longleftrightarrow\ \text{(iv) Phase--period closed-loop}\ }
+\end{equation}
+
+\textbf{(General Regularity)} Only have \textbf{(i) $\Leftrightarrow$ (ii)}; (iv) gives \textbf{near-closed-loop within error budget}, compatible but not equivalent to (i)(ii).
+
+``Pointer=Ky--Fan minimum'' (denoted (iii)) is \textbf{compatible} with above criteria, but generally \textbf{non-equivalent} (serves as \textbf{necessary} criterion for stability, not claiming equivalence with (i)(ii) or (iv)). Regarding (iii′):
+
+\textbf{(Strict Bandlimiting+Perfect Reconstruction)} Under strict bandlimiting and perfect reconstruction premise, if and only if $W_R$ has intra-block \textbf{spectral degeneracy}, exists channel $\Gamma_{\mathcal P}$ such that \textbf{(iii′) $\Longleftrightarrow$ (i) $\Longleftrightarrow$ (ii) $\Longleftrightarrow$ (iv)};
+
+\textbf{(General Regularity)} If and only if $W_R$ intra-block spectrally degenerate, then \textbf{(iii′) $\Longleftrightarrow$ (i) $\Longleftrightarrow$ (ii)}, while (iv) is only \textbf{near-closed-loop within error budget}, not included in equivalence.
+
+View extension equivalent to adding theory/extending dictionary, can break existing halting and re-illuminate new oscillation; RBIT level guarantees this re-illumination never terminates.
+
+\section*{Terminology Alignment}
+
+EBOC: Eternal-Static-Block·Observation--Computation; WSIG/CCS: Windowed Scattering--Information Geometry (phase derivative--relative state density--group delay); RBIT: Resource-Bounded Incompleteness Theory. Throughout uniformly adopt
+\begin{equation}
+\varphi'(E)=\tfrac12\operatorname{tr}\mathsf Q(E)=\pi\rho_{\mathrm{rel}}(E)
+\end{equation}
+as unique energy scale mother gauge, maintaining consistent chain equality notation and sign at all appearances.
+
+\begin{thebibliography}{99}
+
+\bibitem{BirmanKrein}
+Birman--Kreĭn formula and spectral shift function.
+
+\bibitem{WignerSmith}
+Wigner--Smith delay matrix and group delay.
+
+\bibitem{Landau}
+H. J. Landau, Necessary density conditions for sampling and interpolation.
+
+\bibitem{WexlerRaz}
+Wexler--Raz identity and Gabor frame theory.
+
+\bibitem{BalianLow}
+Balian--Low theorem and time-frequency localization.
+
+\bibitem{KyFan}
+Ky Fan maximum principles and eigenvalue inequalities.
+
+\bibitem{Godel}
+K. Gödel, Incompleteness theorems.
+
+\bibitem{Chaitin}
+G. J. Chaitin, Algorithmic information theory.
+
+\end{thebibliography}
+
+\end{document}
+

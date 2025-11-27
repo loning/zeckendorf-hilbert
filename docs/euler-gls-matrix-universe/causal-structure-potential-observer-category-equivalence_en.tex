@@ -1,0 +1,456 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{braket}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{axiom}[theorem]{Axiom}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Equivalence Characterization of Causal Structure and Potential Observer Category: Unified Time Scale, No-Local-Observer Limit, and Universe Ontology}
+
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Within the framework of unified time scale, boundary time geometry, and GLS universe objects, this paper provides a rigorously formalized answer to the question: ``Can causality be viewed as a product of observers?'' The core conclusions are:
+
+\begin{enumerate}
+\item Given a geometric--dynamical universe object $\mathfrak{U}_{\mathrm{geo}} = (X,\preceq,M,g,\hat{H},\dots)$, we can construct a category $\mathsf{Obs}_{\mathrm{pot}}$ consisting of all ``potential observers'', whose objects are timelike worldlines with memory systems, and whose morphisms are coarse-graining maps preserving causal and informational consistency.
+
+\item Using the ``reachable memory structure'' of $\mathsf{Obs}_{\mathrm{pot}}$, we can reconstruct a partial order $\preceq_{\mathrm{obs}}$ without explicitly referencing $(X,\preceq)$, representing ``event precedence relations that can be stably recorded in memory by some potential observer''.
+
+\item Under natural physical assumptions of locality, information reachability, and decoherence stability, we prove that $\preceq_{\mathrm{obs}} = \preceq$. Therefore, the causal structure of the universe and the potential observer category are mutually equivalent descriptions in a natural sense.
+\end{enumerate}
+
+Based on this, we distinguish between the ``potential observer category'' and the ``actual observer subset'' $\mathcal{A} \subset \mathrm{Obj}(\mathsf{Obs}_{\mathrm{pot}})$. The so-called ``no-observer limit'' does not completely erase all observational structure, but merely sets $\mathcal{A} = \varnothing$ (no local observers), while the potential observer category and geometric--scattering layer still exist. The global pure state of the universe $\rho_{\mathrm{global}}(t)$ and the unified time scale
+$$
+\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\mathrm{rel}}(\omega) = \frac{1}{2\pi}\mathrm{tr}\,Q(\omega)
+$$
+can be interpreted as the internal memory and time scale of the ``universe self-referential super-observer'', thereby dissolving the ontological tension of ``whether a no-observer universe still has causality''.
+
+The main theorem of this paper shows that under the GLS universe object axiom system, ``causal structure as memory reachability relation of potential observers'' is a rigorously provable equivalence, while ``actual observer networks'' are merely activated subfamilies within the potential observer category. The appendices provide formalized category constructions, definitions of reachable partial orders, and consistency proofs between unified time scale and decoherence--quantum Darwinism.
+\end{abstract}
+
+\section*{Keywords}
+Causal structure; Potential observer category; Unified time scale; GLS universe objects; No-local-observer limit; Memory reachable partial order; Quantum Darwinism
+
+\section{Introduction}
+
+Observers play a dual role in contemporary discussions of quantum gravity, quantum information, and cosmological ontology:
+
+On the one hand, general relativity and quantum field theory, given $M,g_{\mu\nu}$ and local Hamiltonian $\hat{H}$, seem capable of defining causal structure, time evolution, and scattering processes without any mention of ``observers''; on the other hand, quantum measurement, decoherence, quantum Darwinism, and relational quantum mechanics emphasize that all physically accessible ``events'' and ``causality'' are always realized through some class of information carriers and memory systems (i.e., generalized observers).
+
+This paper attempts to provide a consistent mathematical answer to the following questions:
+
+\begin{enumerate}
+\item Can the causal partial order $(X,\preceq)$ of the universe be equivalently understood as the aggregate structure of ``memory reachability relations of all potential observers''?
+
+\item In the ``no-observer limit'' (especially in the early universe), how do causal structure and unified time scale maintain their ontological existence in the absence of local observers?
+
+\item Within the framework of unified time scale $\kappa(\omega)$, boundary time geometry, and GLS categorical universe objects, how can ``global state objectivity, local state relationality'' be compatible with ``causal--observer equivalence''?
+\end{enumerate}
+
+Existing discussions often remain at the interpretational level: e.g., ``whether the moon exists when no one observes it'', ``whether causality depends on observers'', etc. The goal of this paper is not to propose a new philosophical position, but to provide a formalizable, theoremizable answer within the already constructed framework of unified time scale and GLS universe objects, such that:
+
+\begin{itemize}
+\item geometric--scattering causal structure and
+\item memory reachability of potential observer category
+\end{itemize}
+
+mutually reconstruct each other mathematically, thereby realizing a rigorous version of ``causality as observer'' in the sense of categorical equivalence.
+
+The main thread of this paper is as follows: Section~2 reviews the core components of GLS universe objects and unified time scale; Section~3 defines the potential observer category $\mathsf{Obs}_{\mathrm{pot}}$; Section~4 introduces the partial order $\preceq_{\mathrm{obs}}$ induced by the memory structure of potential observers, and proves $\preceq_{\mathrm{obs}} = \preceq$ under appropriate assumptions; Section~5 discusses the no-local-observer limit and the ontological status of the universe ``super-observer''; Section~6 analyzes the compatibility of unified time scale, decoherence, and quantum Darwinism within this framework. Appendices provide formalized proof details and several technical lemmas.
+
+\section{GLS Universe Objects and Geometric--Scattering Causal Structure}
+
+\subsection{Geometric--Dynamical Universe Object}
+
+We adopt a class of abstract GLS universe objects, whose geometric--dynamical layer provides the following data:
+
+\begin{itemize}
+\item Event set $X$, understood as ``localizable events'' on spacetime manifold $M$ with some discrete or continuous indexing;
+\item Causal partial order $\preceq \subset X\times X$, satisfying reflexivity, antisymmetry, and transitivity, compatible with the light cone structure of $M,g_{\mu\nu}$;
+\item Metric geometry $(M,g)$, or its discrete substitute in QCA universe, such as causal networks with bounded degree, lattices, etc.;
+\item Local dynamics: either Hamiltonian $\hat{H}$ with corresponding unitary evolution $U(t) = \exp(-\mathrm{i} \hat{H} t)$, or discrete-time quantum cellular automaton update operator $\mathcal{U}$, whose local support respects causal structure.
+\end{itemize}
+
+\begin{definition}[Geometric--Dynamical GLS Universe Object]
+A geometric--dynamical GLS universe object is
+$$
+\mathfrak{U}_{\mathrm{geo}} = (X,\preceq,M,g,\hat{H},\dots),
+$$
+where $(X,\preceq)$ represents the causal partial order, $(M,g)$ is the continuous geometric background (or QCA substitute), $\hat{H}$ or $\mathcal{U}$ is the local dynamics, satisfying micro-causality and energy conditions among standard assumptions.
+\end{definition}
+
+At this level, causal structure is viewed as a geometric--dynamical ontological structure, independent of the existence of actual observers.
+
+\subsection{Unified Time Scale and Scattering Causality}
+
+The unified time scale is provided by scattering theory. Consider a class of scattering systems satisfying trace-class perturbation and wave operator completeness conditions. The total phase $\varphi(\omega)$ of the scattering matrix $S(\omega)$, the spectral shift function density $\rho_{\mathrm{rel}}(\omega)$, and the Wigner--Smith time-delay matrix
+$$
+Q(\omega) = -\mathrm{i} S(\omega)^\dagger \partial_\omega S(\omega)
+$$
+satisfy the unified scale identity:
+$$
+\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\mathrm{rel}}(\omega) = \frac{1}{2\pi}\mathrm{tr}\,Q(\omega).
+$$
+
+Here $\kappa(\omega)$ can be interpreted as the ``mother time scale density'' defined in the frequency domain, whose integral gives effective arrival time, delay accumulation, etc.
+
+The relationship between unified time scale and causal structure can be roughly understood as:
+
+\begin{itemize}
+\item The geometric--dynamical layer determines which events can influence each other (causal partial order);
+\item The scattering--scale layer provides the ``temporal weight and resolution'' of these causal relations in the frequency/energy domain.
+\end{itemize}
+
+In this paper, we assume that the unified time scale is constructed completely within the GLS framework; the focus is on ``how to embed the observer layer on this foundation and formally realize causal--observer equivalence''.
+
+\section{Construction of Potential Observer Category}
+
+This section defines the concept of ``potential observer'', making it depend only on the geometric--dynamical universe object $\mathfrak{U}_{\mathrm{geo}}$, independent of whether actual observers exist in any particular universe history.
+
+\subsection{Worldline and Memory System of Potential Observer}
+
+Intuitively, an observer requires at least:
+
+\begin{enumerate}
+\item A worldline respecting the causal partial order (timelike trajectory);
+\item An internal ``memory system'' evolving along the worldline;
+\item Ability to interact with local observable algebras and update memory.
+\end{enumerate}
+
+\begin{definition}[Potential Observer Object]
+Given a GLS universe object $\mathfrak{U}_{\mathrm{geo}}$, the data of a potential observer $\mathcal{O}$ includes:
+
+\begin{enumerate}
+\item A causal chain $L_{\mathcal{O}} \subset X$, i.e., for any $x,y\in L_{\mathcal{O}}$, either $x\preceq y$ or $y\preceq x$;
+
+\item A family of memory Hilbert spaces and states $(\mathcal{H}_{\mathcal{O}},\mu(\tau))$ evolving with parameter $\tau$;
+
+\item For each $x\in L_{\mathcal{O}}$, there exists a local observable algebra $\mathcal{A}(x) \subset \mathcal{B}(\mathcal{H}_x)$ and CPTP channel
+$$
+\Phi_x: \mathcal{B}(\mathcal{H}_x)\otimes\mathcal{B}(\mathcal{H}_{\mathcal{O}}) \to \mathcal{B}(\mathcal{H}_{\mathcal{O}}),
+$$
+describing the process of ``reading information from local system and writing to memory''.
+\end{enumerate}
+
+We call $\mathcal{O}$ a potential observer when its $(\mathcal{H}_{\mathcal{O}}, \mu(\tau),\Phi_x)$ is compatible with the local dynamics $\hat{H}$ or QCA rules of $\mathfrak{U}_{\mathrm{geo}}$, i.e., does not violate micro-causality and energy constraints.
+\end{definition}
+
+\begin{definition}[Potential Observer Category]
+Let $\mathsf{Obs}_{\mathrm{pot}}$ be the category where:
+\begin{itemize}
+\item Objects are all potential observers $\mathcal{O}$;
+\item Morphisms $f:\mathcal{O}\to\mathcal{O}'$ are maps preserving worldline causal ordering and memory information reachability, including reparametrization, memory coarse-graining, and internal encoding transformations, such that $f$ does not introduce superluminal information flow.
+\end{itemize}
+\end{definition}
+
+Intuitively, $\mathsf{Obs}_{\mathrm{pot}}$ describes all observer worldlines and memory structures that are physically ``possible'' under a given geometric--dynamical universe object, without requiring them to be actually activated in any particular universe history.
+
+\subsection{Actual Observer Subset}
+
+In a concrete universe history, the observers that truly ``emerge'' occupy only a small fraction of the potential observer set.
+
+\begin{definition}[Actual Observer Set]
+The actual observer set $\mathcal{A}$ is defined as a subset of $\mathsf{Obs}_{\mathrm{pot}}$:
+$$
+\mathcal{A} \subset \mathrm{Obj}(\mathsf{Obs}_{\mathrm{pot}}),
+$$
+representing observers whose memory systems are actually activated and participate in information storage in a given universe evolution history.
+\end{definition}
+
+Thus, the ``no-local-observer limit'' should be more precisely stated as:
+$$
+|\mathcal{A}| = 0
+$$
+rather than $\mathsf{Obs}_{\mathrm{pot}}$ being empty. The potential observer category still exists as determined by $\mathfrak{U}_{\mathrm{geo}}$.
+
+\section{Equivalence of Causal Partial Order and Observer Memory Reachable Partial Order}
+
+This section constructs a partial order $\preceq_{\mathrm{obs}}$ determined solely by the potential observer category, and proves under reasonable assumptions that it coincides with the geometric--dynamical causal partial order $\preceq$.
+
+\subsection{Defining Reachable Partial Order from Potential Observers}
+
+\begin{definition}[Memory Reachability Relation]
+For any $x,y\in X$, define the relation $x \preceq_{\mathrm{obs}} y$ as:
+
+There exists some potential observer $\mathcal{O}\in\mathsf{Obs}_{\mathrm{pot}}$, and parameters $\tau_x < \tau_y$, such that:
+
+\begin{enumerate}
+\item $x,y\in L_{\mathcal{O}}$ and correspond to worldline points at times $\tau_x,\tau_y$;
+
+\item In the memory state $\mu(\tau_y)$ at time $\tau_y$, information about event $x$ can still be recovered through some observable means (possibly coarse-grained).
+\end{enumerate}
+
+Denoted as:
+$$
+x \preceq_{\mathrm{obs}} y \iff \exists\mathcal{O},\tau_x<\tau_y: x,y\in L_{\mathcal{O}},\; \mathsf{Info}_x \hookrightarrow \mu(\tau_y).
+$$
+
+Here $\mathsf{Info}_x \hookrightarrow \mu(\tau_y)$ indicates that there exists some observable algebra element, POVM, or post-processing procedure that can recover statistical information about $x$ from $\mu(\tau_y)$.
+\end{definition}
+
+\begin{proposition}
+Under the above definition, $\preceq_{\mathrm{obs}}$ is a partial order relation on $X$.
+\end{proposition}
+
+\noindent\textbf{Proof.} Reflexivity is obtained by taking $x=y$ without evolving memory; antisymmetry and transitivity depend on the causality of observer worldlines and monotonicity of memory updates; see Appendix A.1 for details. \qed
+
+\subsection{Geometric Causality Implies Memory Reachable Partial Order}
+
+\begin{theorem}[Geometric Causality Implies Memory Reachability]
+If $x\preceq y$ (geometric--dynamical causal partial order), then under locality and observability assumptions, we must have $x\preceq_{\mathrm{obs}} y$.
+\end{theorem}
+
+\noindent\textbf{Proof (Sketch).}
+From $x\preceq y$ and the micro-causality of $\mathfrak{U}_{\mathrm{geo}}$, there exists a causal curve (timelike or null) extending from $x$ to $y$. Along this curve, construct a potential observer $\mathcal{O}$ whose worldline $L_{\mathcal{O}}$ contains $x,y$, and at time $x$ interacts with the local observable algebra $\mathcal{A}(x)$, writing some information about $x$ into memory $\mu(\tau_x)$.
+
+Since local dynamics and energy conditions guarantee that information is not completely annihilated in finite time, there exists $\tau_y > \tau_x$ such that $\mu(\tau_y)$ still retains recoverable $\mathsf{Info}_x$. Thus $x\preceq_{\mathrm{obs}} y$. Formalized proof in Appendix A.2. \qed
+
+This theorem shows that every causal relation given by the geometric--dynamical layer can be realized by the memory trajectory of some potential observer, hence $\preceq \subseteq \preceq_{\mathrm{obs}}$.
+
+\subsection{Memory Reachable Partial Order Implies Geometric Causality}
+
+The more constraining half is the converse:
+
+\begin{theorem}[Memory Reachability Implies Geometric Causality]
+In GLS universe objects assuming ``no superluminal information flow'', if $x\preceq_{\mathrm{obs}} y$, then we must have $x\preceq y$.
+\end{theorem}
+
+\noindent\textbf{Proof (Sketch).}
+Assume $x\not\preceq y$ and $y\not\preceq x$, i.e., $x,y$ are spacelike separated or incomparable. If there exists a potential observer $\mathcal{O}$ whose memory $\mu(\tau_y)$ at time $\tau_y$ still retains recoverable $\mathsf{Info}_x$, this implies an information flow channel from $x$ to $y$ passing through the observer's internal degrees of freedom.
+
+But under GLS axioms, the observer is also just a physical subsystem of the universe, whose internal propagation obeys the same causal partial order. Therefore, memory reachability from $x$ to $y$ implies the existence of some timelike curve from $x$ leading to $y$, contradicting the spacelike separation assumption.
+
+Formally, the observer can be viewed as a local system embedded in $M$, whose internal propagation cone is contained within the background light cone. If the memory reachability structure can transmit information between $x,y$, then necessarily $x\preceq y$. See Appendix A.3 for details. \qed
+
+From Theorems 4.3 and 4.4, we immediately obtain:
+
+\begin{corollary}
+Under the locality and micro-causality assumptions of GLS universe objects,
+$$
+\preceq_{\mathrm{obs}} = \preceq.
+$$
+\end{corollary}
+
+This shows that the geometric--dynamical causal partial order of the universe is completely equivalent to the partial order of ``memory reachability relations of all potential observers''. In other words, causal structure and potential observer category are mutually equivalent presentations of the same universal terminal object in a natural sense.
+
+We can therefore understand ``causal structure'' as ``memory structure of potential observer networks'' without loss of generality, and vice versa. This is the core mathematical result of this paper.
+
+\section{No-Local-Observer Limit and ``Universe Super-Observer''}
+
+\subsection{Reinterpretation of No-Local-Observer Limit}
+
+In previous discussions of ``no-observer universe'', we consider the limit $|\mathcal{A}| \to 0$. Combined with the equivalence theorem of the previous section, we can provide a more precise formulation.
+
+\begin{definition}[No-Local-Observer Limit]
+In GLS universe objects, the ``no-observer limit'' should be strictly understood as the ``no-local-actual-observer limit'':
+$$
+|\mathcal{A}| = 0, \quad \mathsf{Obs}_{\mathrm{pot}} \neq \varnothing.
+$$
+
+At this point, the geometric--dynamical causal partial order $(X,\preceq)$ and potential observer category $\mathsf{Obs}_{\mathrm{pot}}$ still exist, the memory reachable partial order $\preceq_{\mathrm{obs}}$ and $\preceq$ still satisfy the equivalence theorem; only no subsystem is actually activated as a ``local observer''.
+\end{definition}
+
+Physically, this corresponds to the early universe or structureless universe: geometry, fields, scattering, and unified time scale already exist, causal structure exists as an ontological object, but no complex subsystem has yet formed a stable memory carrier.
+
+At this point, ``causality as potential observer network'' still holds, only all observers are in the ``potential'' state.
+
+\subsection{Universe as a Whole as ``Super-Observer''}
+
+In the GLS framework, the global pure state of the universe $\rho_{\mathrm{global}}(t)$ can be viewed as a self-referential ``super-observer memory''.
+
+\begin{definition}[Universe Super-Observer]
+Define a special potential observer $\mathcal{O}_{\mathrm{univ}}$:
+
+\begin{enumerate}
+\item $L_{\mathcal{O}_{\mathrm{univ}}} = X$, i.e., its worldline ``traverses all events'' in an abstract sense;
+
+\item The memory Hilbert space is the global Hilbert space $\mathcal{H}_{\mathrm{global}}$, with memory state $\rho_{\mathrm{global}}(t)$;
+
+\item Memory update is given by unitary evolution $U(t) = \exp(-\mathrm{i} \hat{H} t)$, i.e.,
+$$
+\rho_{\mathrm{global}}(t) = U(t)\rho_{\mathrm{global}}(0)U(t)^\dagger.
+$$
+\end{enumerate}
+\end{definition}
+
+Although this ``super-observer'' is difficult to concretize as any local physical entity, ontologically it can be viewed as an ``EBOC-style eternal block'' observer: its memory is the global pure state of the universe, recording the statistical structure of all possible events in the most detailed manner.
+
+\begin{proposition}
+In the no-local-observer limit $|\mathcal{A}|=0$, the universe still has a unique super-observer $\mathcal{O}_{\mathrm{univ}}$, whose memory state $\rho_{\mathrm{global}}(t)$ and corresponding causal--scattering structure completely determine the causal partial order $\preceq$ and potential observer category $\mathsf{Obs}_{\mathrm{pot}}$.
+\end{proposition}
+
+Therefore, ``no-observer universe'' in the strict GLS sense should be understood as ``no-local-observer universe'', not ``no-observer-whatsoever universe''. The universe as a whole can always be viewed as its own ``super-observer'', whose self-referential memory structure together with the unified time scale defines the universe ontology.
+
+\section{Compatibility of Unified Time Scale, Decoherence, and Quantum Darwinism}
+
+This section explains how unified time scale and decoherence--quantum Darwinism naturally embed into the ``causal--observer equivalence'' framework, resolving the controversy of ``whether wavefunction collapses due to observers''.
+
+\subsection{Decoherence as Information Diffusion in Potential Observer Network}
+
+Consider the standard decoherence model of system $S$ and environment $E$. Initial pure state
+$$
+\ket{\Psi(0)} = \ket{\psi_S}\otimes\ket{0_E}
+$$
+evolves under interaction Hamiltonian to entangled state
+$$
+\ket{\Psi(t)} = \sum_i c_i(t)\ket{i_S}\otimes\ket{\phi_i^E(t)}.
+$$
+
+If $\ket{\phi_i^E(t)}$ are approximately orthogonal, the reduced system state
+$$
+\rho_S(t) \approx \sum_i |c_i(t)|^2 \ket{i_S}\bra{i_S}
+$$
+appears as a diagonal classical mixture. This process can be viewed as: a large number of potential observers in the environment (such as local degrees of freedom of environment subblocks $E_k$) redundantly record pointer state information about $S$ in their respective memory degrees of freedom.
+
+In the framework of this paper, this corresponds to:
+
+\begin{itemize}
+\item There exist many objects in the potential observer category $\mathsf{Obs}_{\mathrm{pot}}$ whose worldlines pass through events where $S$ occurs, storing redundant information about $\ket{i_S}$ in memory states;
+
+\item ``Pointer states'' are the encodings most stable and redundant in the memories of these potential observers.
+\end{itemize}
+
+Quantum Darwinism further emphasizes: classical objectivity arises from redundant copying of information in the environment; in our language, this is equivalent to: certain event sets leave consistent traces in the memories of many objects in $\mathsf{Obs}_{\mathrm{pot}}$, thereby forming causal structure with broad consensus on $\preceq_{\mathrm{obs}}$.
+
+\subsection{Unified Time Scale as Time Parameter of Super-Observer}
+
+The unified time scale $\kappa(\omega)$ in this framework is naturally interpreted as the ``frequency-domain time coordinate of the super-observer''.
+
+\begin{itemize}
+\item For the super-observer $\mathcal{O}_{\mathrm{univ}}$, $\kappa(\omega)$ provides a consistent scale for scattering phase derivative, spectral shift density, and Wigner--Smith delay trace, serving as the ``mother scale'' for the universe's overall frequency-domain causal structure.
+
+\item For any local potential observer $\mathcal{O}$, its local temporal experience can be viewed as some sampling and coarse-graining of $\kappa(\omega)$, e.g., measuring the local delay spectrum through local scattering processes to define its own time.
+\end{itemize}
+
+The causal--observer equivalence theorem guarantees that whether from the geometric--scattering side (via $\kappa(\omega)$ and $\preceq$) or from the observer network side (via potential observer memory and $\preceq_{\mathrm{obs}}$), the resulting time arrow and causal ordering are consistent.
+
+\subsection{GLS Version of Wavefunction Ontology}
+
+In this framework, the wavefunction (or more precisely, the global density operator) plays a dual role:
+
+\begin{enumerate}
+\item As the memory state $\rho_{\mathrm{global}}$ of the super-observer $\mathcal{O}_{\mathrm{univ}}$, it is part of the universe's ontological structure, independent of any specific local observer;
+
+\item As the reduced state $\rho_\alpha = \mathrm{tr}_{\overline{C_\alpha}}(\rho_{\mathrm{global}})$ of local observer $\mathcal{O}_\alpha$, it is a relational object relative to its causal fragment $C_\alpha$.
+\end{enumerate}
+
+Decoherence and quantum Darwinism explain: the stability of local reduced states in the potential observer network determines the emergence of ``classical reality'', not the introduction of ``consciousness'' or ``specific types of observers''. The causal--observer equivalence further shows that these stable structures can be completely rewritten in terms of potential observer memory reachability relations, equivalent to the geometric--scattering causal partial order.
+
+\section{Discussion and Prospects}
+
+The ``causal--potential observer category equivalence'' construction presented in this paper provides a self-consistent ontological picture for the relationships among unified time scale, GLS universe objects, and no-local-observer limit:
+
+\begin{itemize}
+\item Geometric--scattering side: describing the causal and temporal structure of the universe via $(X,\preceq,M,g,\hat{H})$ and $\kappa(\omega)$;
+
+\item Observer side: describing all feasible observational structures via potential observer category $\mathsf{Obs}_{\mathrm{pot}}$ and memory reachable partial order $\preceq_{\mathrm{obs}}$;
+
+\item Equivalence theorem: $\preceq_{\mathrm{obs}} = \preceq$ makes ``causality'' and ``observer network'' two presentations of the same universal terminal object, naturally reinterpreting ``no-observer universe'' discussions as ``no-local-observer but with super-observer and potential observer universe''.
+\end{itemize}
+
+Future work directions include: in specific QCA universe models and THE-MATRIX Universe, explicitly constructing $\mathsf{Obs}_{\mathrm{pot}}$, and verifying whether causal--observer equivalence still holds under finite size and finite information conditions, and how it further couples with black hole information paradox, cosmological constant problem, etc.
+
+\section*{Appendix A: Formalized Properties and Proofs of Memory Reachable Partial Order}
+
+\subsection*{A.1 Partial Order Properties of Memory Reachability Relation}
+
+In Definition 4.1, the memory reachability relation $\preceq_{\mathrm{obs}}$ must satisfy the three partial order axioms.
+
+\noindent\textbf{Reflexivity.}
+For any $x\in X$, construct a degenerate potential observer $\mathcal{O}_x$ whose worldline contains only event $x$, with memory system reading its own state or external metric information at $x$ and immediately writing back. Then $x \preceq_{\mathrm{obs}} x$.
+
+\noindent\textbf{Antisymmetry.}
+If $x\preceq_{\mathrm{obs}} y$ and $y\preceq_{\mathrm{obs}} x$, then there exist potential observers $\mathcal{O}_1,\mathcal{O}_2$ and parameters $\tau_x<\tau_y$, $\tau_y'<\tau_x'$, such that $\mathcal{O}_1$'s memory at $\tau_y$ contains information about $x$, and $\mathcal{O}_2$'s memory at $\tau_x'$ contains information about $y$. This means information flows exist from $x$ to $y$ and from $y$ to $x$. Under GLS axioms' no-closed-causal-curve and no-superluminal-propagation conditions, this can only occur in the degenerate case $x = y$ (otherwise constructing closed timelike curves or superluminal signals). Thus if $x\preceq_{\mathrm{obs}} y,y\preceq_{\mathrm{obs}} x$ then $x=y$.
+
+\noindent\textbf{Transitivity.}
+If $x\preceq_{\mathrm{obs}} y$ and $y\preceq_{\mathrm{obs}} z$, then there exist potential observers $\mathcal{O}_1$ and $\mathcal{O}_2$ whose memories at appropriate times contain $\mathsf{Info}_x$ and $\mathsf{Info}_y$ respectively. Construct a new potential observer $\mathcal{O}_3$ traveling along a composite causal path containing $x,y,z$, inheriting memory contents from $\mathcal{O}_1,\mathcal{O}_2$ along the way (this is allowed, as $\mathsf{Obs}_{\mathrm{pot}}$ permits coarse-graining and merging maps). Then $\mathcal{O}_3$'s memory when passing through $z$ can contain $\mathsf{Info}_x$, thus $x\preceq_{\mathrm{obs}} z$.
+
+Therefore $\preceq_{\mathrm{obs}}$ is a partial order.
+
+\subsection*{A.2 Detailed Proof: Geometric Causality Implies Memory Reachability}
+
+Given $x\preceq y$, this means there exists a timelike or null curve $\gamma:[0,1]\to M$ satisfying $\gamma(0)=x,\gamma(1)=y$, with $\gamma$ always lying within the future light cone of $x$ and past light cone of $y$.
+
+Under the local dynamics setting of GLS universe objects, there exists a local system $S$ propagating along $\gamma$, with internal Hilbert space $\mathcal{H}_S$ locally coupled to background fields. We can choose the potential observer $\mathcal{O}$'s worldline as $\gamma$, with memory system $\mathcal{H}_{\mathcal{O}}$ locally coupling with $\mathcal{H}_S$ at $x$:
+$$
+\Phi_x: \mathcal{B}(\mathcal{H}_x)\otimes\mathcal{B}(\mathcal{H}_{\mathcal{O}}) \to \mathcal{B}(\mathcal{H}_{\mathcal{O}}),
+$$
+writing statistical information of some observable about event $x$ into memory state $\mu(\tau_x)$. Thereafter, the dynamics along $\gamma$ is a local unitary action on $\mathcal{H}_S\otimes\mathcal{H}_{\mathcal{O}}$. In finite time, assuming no absolute entropy mechanism completely erases $\mathsf{Info}_x$, at some time $\tau_y$ near $y$ there remains some recoverable information about $x$ in $\mu(\tau_y)$, e.g., statistical bias of some POVM.
+
+Therefore there exists potential observer $\mathcal{O}$ such that $x,y\in L_{\mathcal{O}}$ and $\mathsf{Info}_x\hookrightarrow\mu(\tau_y)$, i.e., $x\preceq_{\mathrm{obs}} y$.
+
+Rigorous proof requires quantitative assumptions on ``information not completely erased in finite time'', e.g., spectral boundedness of local Hamiltonian, fidelity lower bounds for finite-dimensional memory systems, etc. As long as these assumptions are satisfied, Theorem 4.3 holds.
+
+\subsection*{A.3 Detailed Proof: Memory Reachability Implies Geometric Causality}
+
+Assume $x\not\preceq y$ and $y\not\preceq x$, i.e., $x,y$ are incomparable in geometric causal structure, typically spacelike separated.
+
+If $x\preceq_{\mathrm{obs}} y$, then there exists potential observer $\mathcal{O}$ whose worldline $L_{\mathcal{O}}$ contains $x,y$ with parameters $\tau_x<\tau_y$, and memory $\mu(\tau_y)$ at time $\tau_y$ can still recover $\mathsf{Info}_x$.
+
+Because the observer is a physical subsystem in the universe, its internal degrees of freedom evolution is governed by $(M,g,\hat{H})$, and its worldline $L_{\mathcal{O}}$ must itself be a causal curve. Since $x,y \in L_{\mathcal{O}}$ and $\tau_x<\tau_y$, then $x$ must be in the causal past of $y$ or vice versa; in particular, if $\mathcal{O}$ has no superluminal propagation capability, then $x$ must necessarily be in the causal past of $y$, i.e., $x\preceq y$.
+
+Therefore, if $x\not\preceq y$, then no potential observer's memory trajectory can contain recoverable information about $x$ at $y$, i.e., $x\not\preceq_{\mathrm{obs}} y$.
+
+Thus, the assumption of no superluminal information flow together with the assumption of observer as physical system guarantees $\preceq_{\mathrm{obs}} \subseteq \preceq$, which combined with Theorem 4.3 yields equivalence.
+
+\section*{Appendix B: Coupling Illustration with Unified Time Scale and QCA Universe}
+
+\subsection*{B.1 Potential Observer Category in QCA Universe}
+
+In QCA universe, the event set $X$ can be written as Cartesian product of cells and time points:
+$$
+X = \Lambda\times\mathbb{Z},
+$$
+where $\Lambda$ is spatial lattice, time steps are integers. Causal partial order is given by QCA's local update rules: if a cell's state at time $t$ can influence another cell's state at time $t+1$, then the corresponding events in $X$ have $(x,t)\preceq(y,t+1)$.
+
+Potential observer objects can be chosen as trajectories of some connected cell subset with their internal registers. Memory reachable partial order $\preceq_{\mathrm{obs}}$ can be directly defined by the set of all possible QCA embeddings of ``worldlines with registers''. Due to QCA's locality and finite propagation speed, the above theorems hold equally in the discrete case.
+
+\subsection*{B.2 Implementation of Unified Time Scale in QCA Universe}
+
+In QCA universe, one can construct a class of scattering processes: choose a finite region as scattering center, send incident wavepackets from one side, and read phase and delay of outgoing wavepackets on the other side. The total phase $\varphi(\omega)$ and trace of Wigner--Smith delay matrix $Q(\omega)$ in the corresponding scattering matrix $S(\omega)$ give the unified time scale density $\kappa(\omega)$.
+
+Since QCA's causal structure is completely determined by its adjacency relations and update rules, the potential observer category and memory reachable partial order can be explicitly constructed in this discrete model, allowing numerical verification of the equivalence theorem: e.g., checking whether the partial order constructed from QCA adjacency relations coincides with the partial order constructed from all potential observer memory paths.
+
+\section*{Appendix C: No-Local-Observer Limit and Cosmological Initial State}
+
+In cosmological scenarios, at $t \ll t_{\mathrm{rec}}$ (before recombination), no stable structures have yet formed macroscopic observers, but the geometric--scattering layer is already completely defined.
+
+In this case:
+
+\begin{itemize}
+\item The geometric--dynamical causal structure $(X,\preceq)$ and unified time scale $\kappa(\omega)$ are already determined by general relativity and vacuum fluctuations of quantum field theory;
+
+\item The potential observer category $\mathsf{Obs}_{\mathrm{pot}}$ is already defined by ``all possible timelike trajectories and local observable algebras'';
+
+\item The actual observer set $\mathcal{A}$ is still empty.
+\end{itemize}
+
+As the universe cools and structures form, some objects in the potential observers are activated as actual observers, forming monotonically growing $\mathcal{A}(t)$. This process can be viewed as the history of ``potential causal--observer structure gradually being locally realized'', not ``causality created by observers''.
+
+Under the Hartle--Hawking no-boundary proposal, the initial universe state $\ket{\Psi_{\mathrm{HH}}}$ as the initial state of super-observer memory carries all potential information of the entire causal--scattering structure. In the ``no-local-observer limit'', the universe still self-consistently acts as a self-referential observer, evolving unitarily along the unified time scale.
+
+\end{document}
+

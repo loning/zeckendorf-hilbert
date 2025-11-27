@@ -1,0 +1,488 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\geometry{a4paper, margin=1in}
+\hypersetup{colorlinks=true,linkcolor=blue}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{axiom}[theorem]{Axiom}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Error Geometry and Causal Robustness:\\A Unified Geometric Framework from Parameter Confidence Ellipsoids to Multi-Experiment Trust Regions}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher \and $^2$National University of Singapore}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This paper proposes a unified framework for transforming statistical errors into ``geometric boundaries'' and systematically embedding it into causal inference and experimental design. The core idea is: given an estimator and its error in parameter space, we no longer treat ``confidence intervals/standard errors'' as auxiliary information, but elevate them to ``trust regions'' in parameter space---geometric objects with metric structure; all causal conclusions, robustness judgments, and experimental planning are characterized through inclusion, intersection, union, and linear images among these geometric regions. Specifically, this paper first constructs confidence ellipsoids using typical asymptotic normality and information matrices under general parametric models, endowing parameter space with local Riemannian metric structure; second, in causal inference, we unify ``identifiable sets'' and ``trust regions'' as two types of sets in the same parameter space, characterizing provable causal conclusions and admissible extrapolation directions through their intersections; further, in multi-experiment/multi-model scenarios, we construct consensus regions and conflict regions via intersections, unions, and mappings of trust regions, forming a kind of ``geometrized meta-analysis''; finally, in experimental design and observation planning, we formalize the objective of ``shrinking trust region volume/semi-axes'' as an optimization problem over design variables, providing several solvable instances under linear models and instrumental variable models. The appendix provides rigorous proofs of main theorems, including coverage properties of confidence ellipsoids, robustness criteria for causal effects, and equivalence relations between design criteria and Fisher information.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Error Geometry; Confidence Ellipsoid; Causal Inference; Identifiable Set; Experimental Design; Fisher Information
+
+\noindent\textbf{MSC 2020:} 62F12, 62K05, 62P25, 62R01
+
+\tableofcontents
+
+\section{Introduction}
+
+Statistical inference is traditionally presented in the form of ``point estimate + confidence interval'', while causal inference follows the basic structure of ``identification assumptions + point estimate + sensitivity analysis''. In practice of decision-making and engineering applications, researchers often face three types of problems:
+
+\begin{enumerate}
+\item Given finite samples, \textbf{which causal conclusions are truly supported by data, rather than mere illusions of point estimates}?
+
+\item When aggregating different experiments, different models, or even different data sources, \textbf{how should we systematically see consensus and conflicts among various results}?
+
+\item Under limited resources, \textbf{how can we maximize ``geometric resolution'' for specific causal effects or parameter directions through experimental design}?
+\end{enumerate}
+
+These problems differ in form but share a common feature: they all relate to ``error'', and the essence of ``error'' is not just a variance or a confidence interval, but a geometric object with shape, direction, and boundary. The goal of this paper is to thoroughly formalize this intuitive ``geometric nature''.
+
+We adopt the following viewpoint:
+
+\begin{itemize}
+\item For any estimate $\hat\theta$ of parameter $\theta\in\Theta\subset\mathbb R^d$, its error naturally induces a region $\mathcal R\subset\Theta$ with metric structure, which can be called a ``trust region'';
+
+\item Causal conclusions are not statements about single point $\hat\theta$, but about the range of some function $\psi(\theta)$ over $\theta\in\mathcal R\cap\mathcal I$, where $\mathcal I$ is the identifiable set;
+
+\item Results from multiple experiments, models, and different assumptions can be unified as multiple trust regions $\mathcal R_k$ in the same parameter space or its projection, whose intersections, unions, and symmetric differences naturally characterize parameter ranges that are ``robustly consistent'', ``contestable'', or ``significantly conflicting'';
+
+\item Experimental design and observation planning can be viewed as an optimization problem of ``actively shaping the geometric shape of future trust regions'', aiming to shrink semi-axes of trust regions in specific directions (such as some causal effect) or reduce their volume.
+\end{itemize}
+
+In this framework, ``error geometry'' is no longer just an appendage of results, but becomes the core structure of the entire causality-decision process. This paper will start from the most basic parametric models, construct this geometric framework, and provide provable properties and computable implementations under several specific models.
+
+\section{Parametric Models and Geometric Structure of Trust Regions}
+
+\subsection{Parametric Models and Estimators}
+
+Let observed data be $X_1,\dots,X_n$, defined on sample space $\mathcal X$, assuming their distribution belongs to a family of probability measures $\{P_\theta:\theta\in\Theta\subset\mathbb R^d\}$. Let $\theta_0\in\Theta$ be the ``true parameter'', $\hat\theta_n=\hat\theta_n(X_1,\dots,X_n)$ some estimator.
+
+We assume there exists the usual asymptotic linearity and normality structure:
+
+$$\sqrt{n}(\hat\theta_n - \theta_0) \overset{d}\longrightarrow \mathcal N(0, I(\theta_0)^{-1}),$$
+
+where $I(\theta_0)$ is the Fisher information matrix, positive definite and continuous. Further assume there exists consistent estimate $\hat I_n$ such that $\hat I_n\xrightarrow{P}I(\theta_0)$.
+
+\subsection{Local Metric Induced by Fisher Information}
+
+At each point $\theta$ of $\Theta$, define bilinear form
+
+$$g_\theta(u,v) := u^\top I(\theta) v,\qquad u,v\in\mathbb R^d,$$
+
+then $g$ is a local Riemannian metric on $\Theta$ (under differentiability conditions). Intuitively, eigendirections of $I(\theta)$ describe ``easy/difficult to distinguish'' parameter directions: the smaller the variance along some direction, the larger the ``unit length'' in that direction under information metric, and vice versa.
+
+Under finite sample $n$, using $\hat I_n$ we obtain empirical metric
+
+$$\hat g_n(u,v) := u^\top \hat I_n v,$$
+
+which converges to $g_{\theta_0}$ in probability sense.
+
+\subsection{Confidence Ellipsoid as Trust Region}
+
+For given significance level $\alpha\in(0,1)$, define the quantile $\chi^2_{d,1-\alpha}$ of $d$-dimensional chi-square distribution, construct trust region
+
+$$\mathcal R_n(\alpha) := \{\theta\in\Theta: n(\theta-\hat\theta_n)^\top \hat I_n (\theta-\hat\theta_n) \le \chi^2_{d,1-\alpha}\}.$$
+
+It is an ellipsoid centered at $\hat\theta_n$, with shape determined by $\hat I_n^{-1}$, characterizing parameter uncertainty. Classical theory guarantees:
+
+\begin{theorem}[Asymptotic Coverage]\label{thm:asymp-coverage}
+Under the above regularity conditions, for any fixed $\alpha\in(0,1)$,
+
+$$P_{\theta_0}\bigl(\theta_0\in\mathcal R_n(\alpha)\bigr) \longrightarrow 1-\alpha,\qquad n\to\infty.$$
+\end{theorem}
+
+This theorem is proved in Appendix A.1.
+
+Therefore, $\mathcal R_n(\alpha)$ can be viewed as a ``trust region containing true value $\theta_0$ with probability $1-\alpha$''. Under information metric $g_{\theta_0}$, semi-axis lengths of $\mathcal R_n(\alpha)$ are inversely proportional to eigenvalues of Fisher information and proportional to $1/\sqrt{n}$.
+
+\section{Error as Geometric Boundary: Operations and Projections of Trust Regions}
+
+This section systematically transforms ``error'' into ``geometric boundary'' and discusses several basic operations: projection, linear image, and nonlinear image.
+
+\subsection{Linear Function Image and Ellipsoid Projection}
+
+Let the target of interest be linear function $\psi(\theta)=c^\top\theta$, where $c\in\mathbb R^d$. On ellipsoid $\mathcal R_n(\alpha)$, the range of $\psi$ is
+
+$$\Psi_n(\alpha) := \{\psi(\theta):\theta\in\mathcal R_n(\alpha)\} = \bigl[\psi_{\min,n},\psi_{\max,n}\bigr].$$
+
+This interval can be analytically calculated. Note that
+
+$$\psi(\theta) = c^\top\theta = c^\top\hat\theta_n + c^\top(\theta-\hat\theta_n),$$
+
+with constraint $n(\theta-\hat\theta_n)^\top \hat I_n (\theta-\hat\theta_n) \le \chi^2_{d,1-\alpha}$. Let $h=\theta-\hat\theta_n$, the problem becomes maximizing/minimizing linear function $c^\top h$ under ellipsoid constraint. Classical optimization conclusion gives
+
+$$\psi_{\max,n} = c^\top\hat\theta_n + \sqrt{\frac{\chi^2_{d,1-\alpha}}{n} c^\top \hat I_n^{-1} c},$$
+
+$$\psi_{\min,n} = c^\top\hat\theta_n - \sqrt{\frac{\chi^2_{d,1-\alpha}}{n} c^\top \hat I_n^{-1} c}.$$
+
+Therefore, confidence interval for linear target is naturally given by geometric relationship between ellipsoid and direction vector $c$.
+
+\begin{proposition}[Optimal Bounds for Linear Target]\label{prop:linear-bounds}
+For any $c\in\mathbb R^d$, the minimum and maximum values of $\psi(\theta)=c^\top\theta$ on $\mathcal R_n(\alpha)$ are as shown above, and this interval has coverage probability $1-\alpha$ in asymptotic sense.
+\end{proposition}
+
+Proof is in Appendix A.2.
+
+\subsection{Local Linear Approximation of Nonlinear Functions}
+
+If $\psi:\Theta\to\mathbb R^k$ is differentiable, then near $\hat\theta_n$ we can make first-order approximation
+
+$$\psi(\theta) \approx \psi(\hat\theta_n) + D\psi(\hat\theta_n)(\theta-\hat\theta_n),$$
+
+where Jacobian matrix $D\psi(\hat\theta_n)\in\mathbb R^{k\times d}$ has $i$-th row as $\nabla\psi_i(\hat\theta_n)^\top$. Then $\psi(\mathcal R_n(\alpha))$ under first-order approximation is an ellipsoid in $\mathbb R^k$:
+
+$$\mathcal S_n(\alpha) := \left\{ y\in\mathbb R^k: n(y-\psi(\hat\theta_n))^\top \bigl(D\psi(\hat\theta_n)\hat I_n^{-1}D\psi(\hat\theta_n)^\top\bigr)^{-1}(y-\psi(\hat\theta_n)) \le \chi^2_{k,1-\alpha}\right\},$$
+
+where existence of inverse matrix requires row vectors of $D\psi(\hat\theta_n)$ to be linearly independent under information metric. This result is essentially a restatement of Delta method in geometric language.
+
+\subsection{Support Function Form for Multi-Parameter and Multi-Target}
+
+In more general cases, we can use support functions to characterize arbitrary convex target sets. On convex ellipsoid $\mathcal R_n(\alpha)$, its support function is
+
+$$h_{\mathcal R_n(\alpha)}(u) := \sup_{\theta\in\mathcal R_n(\alpha)} u^\top\theta = u^\top\hat\theta_n + \sqrt{\frac{\chi^2_{d,1-\alpha}}{n} u^\top \hat I_n^{-1} u}.$$
+
+Therefore, any target set defined by collection of linear functionals $\{u: u\in\mathcal U\}$ can have its boundary directly calculated through support function. An important application in causal inference scenarios is: when we care about a family of linear causal effects (such as heterogeneous effects across multiple groups), we can uniformly provide their worst/best cases on trust regions through support functions.
+
+\section{Identifiable Sets and Trust Regions in Causal Inference}
+
+\subsection{Causal Models and Identifiable Sets}
+
+In causal inference, parameter $\theta$ usually has structural interpretation, such as average treatment effect in potential outcome models, path coefficients in structural equation models, local average treatment effect in instrumental variable models, etc. In cases of non-identification or partial identification, what data and assumptions can determine is only an \textbf{identifiable set}
+
+$$\mathcal I := \{\theta\in\Theta: \theta \text{ is compatible with observed distribution and causal assumptions}\}.$$
+
+For example, when violating certain exclusion restrictions or with selection bias, identifiable sets are often convex sets, semi-algebraic sets, or general closed sets, rather than single points.
+
+\subsection{Data-Driven Estimation of Identifiable Sets}
+
+Under finite samples, we typically approximate $\mathcal I$ through estimated inequalities. For example, if causal constraints can be expressed as parameter constraints
+
+$$g_j(\theta)\le 0,\quad j=1,\dots,m,$$
+
+while we can only estimate empirical version $\hat g_{j,n}(\theta)$ of $g_j(\theta)$, common practice is using ``relaxed inequalities''
+
+$$\hat g_{j,n}(\theta) \le b_{j,n},$$
+
+where $b_{j,n}$ is upper bound (such as threshold after multiple testing correction), thus obtaining data-driven identifiable set estimate
+
+$$\hat{\mathcal I}_n := \{\theta\in\Theta: \hat g_{j,n}(\theta)\le b_{j,n}, j=1,\dots,m\}.$$
+
+Under suitable conditions it can be proved that $\hat{\mathcal I}_n$ converges to $\mathcal I$ in appropriate sense.
+
+\subsection{Intersection of Identifiable Set and Trust Region}
+
+This paper proposes: \textbf{Causal conclusions should be based on $\mathcal R_n(\alpha)\cap\hat{\mathcal I}_n$ rather than merely on $\hat\theta_n$}. For given causal function $\psi:\Theta\to\mathbb R^k$, we care about
+
+$$\mathcal C_n(\alpha) := \{\psi(\theta):\theta\in\mathcal R_n(\alpha)\cap\hat{\mathcal I}_n\}.$$
+
+If $\mathcal C_n(\alpha)$ has consistent sign in some direction or component, or is restricted to some desired interval, we can say this causal conclusion is ``geometrically robust'' at significance level $\alpha$.
+
+\begin{definition}[Geometric Robustness]\label{def:geom-robust}
+Let $\psi:\Theta\to\mathbb R$ be a scalar causal target, $\mathcal R_n(\alpha)$ a $1-\alpha$ level trust region, $\hat{\mathcal I}_n$ sample approximation of identifiable set. If there exists interval $[L,U] \subset\mathbb R$ such that
+
+$$\mathcal C_n(\alpha)=\{\psi(\theta):\theta\in\mathcal R_n(\alpha)\cap\hat{\mathcal I}_n\} \subset [L,U],$$
+
+then say ``at level $\alpha$, causal conclusion $\psi(\theta)\in[L,U]$ is geometrically robust''.
+\end{definition}
+
+In particular, when $L>0$ (or $U<0$), robust judgment can be made about effect direction.
+
+\subsection{A Typical Criterion: Linear Causal Effect}
+
+Let $\psi(\theta)=c^\top\theta$ be linear causal effect (such as some linear combination in multi-parameter model corresponding to average treatment effect), and identifiable set can be represented as linear inequalities
+
+$$A\theta \le b,$$
+
+then $\mathcal R_n(\alpha)\cap\hat{\mathcal I}_n$ is intersection of ellipsoid and polyhedron, a convex set. Extreme values of causal effect can be given by following convex optimization problem:
+
+$$\psi_{\max,n}^* := \sup\{c^\top\theta:\theta\in\mathcal R_n(\alpha), A\theta\le b\},$$
+
+$$\psi_{\min,n}^* := \inf\{c^\top\theta:\theta\in\mathcal R_n(\alpha), A\theta\le b\}.$$
+
+In many applications, this problem can be efficiently solved through quadratic programming or semidefinite programming. Clearly,
+
+$$\mathcal C_n(\alpha) = \bigl[\psi_{\min,n}^*,\psi_{\max,n}^*\bigr].$$
+
+\begin{theorem}[Geometric Robustness Criterion for Linear Causal Effect]\label{thm:linear-causal-robust}
+Under above setting, if for some $\delta>0$,
+
+$$\psi_{\min,n}^* \ge \delta>0,$$
+
+then at significance level $\alpha$, can conclude causal conclusion ``effect is positive and at least $\delta$'', and this conclusion holds for all $\theta\in\mathcal R_n(\alpha)\cap\hat{\mathcal I}_n$.
+\end{theorem}
+
+Proof is in Appendix A.3.
+
+This criterion elevates ``point estimate significance'' to ``significance over all trusted candidate parameters'', naturally excluding spurious significance that may arise from relying only on point estimates while ignoring parameter correlations.
+
+\section{Multiple Experiments and Models: Intersection, Union, and Conflict Structure of Trust Regions}
+
+In reality, we often need to synthesize results from different experiments, different data sources, or even different models. This paper advocates: \textbf{The natural objects for multi-experiment aggregation are not ``several point estimates'', but ``several trust regions''}.
+
+\subsection{Intersection and Consensus of Multiple Trust Regions}
+
+Suppose there are $K$ experiments/data sources/models giving trust regions $\mathcal R_{n_k}^{(k)}(\alpha_k)$ on same parameter space $\Theta$, $k=1,\dots,K$. Define overall consensus region
+
+$$\mathcal R_{\mathrm{cons}} := \bigcap_{k=1}^K \mathcal R_{n_k}^{(k)}(\alpha_k).$$
+
+If the causal function of interest is $\psi:\Theta\to\mathbb R^d$, then its image on consensus region is
+
+$$\mathcal C_{\mathrm{cons}} := \{\psi(\theta):\theta\in\mathcal R_{\mathrm{cons}}\}.$$
+
+If $\mathcal R_{\mathrm{cons}}$ is non-empty and ``small'', it indicates high consistency among different experiments; conversely, if $\mathcal R_{\mathrm{cons}}$ is empty, can clearly say ``there exists fundamental conflict among these experiments/models'', rather than vaguely relying on ``some estimation differences''.
+
+\subsection{Union and Admissible Sets}
+
+On the other hand, define admissible region as
+
+$$\mathcal R_{\mathrm{perm}} := \bigcup_{k=1}^K \mathcal R_{n_k}^{(k)}(\alpha_k),$$
+
+which characterizes the parameter set ``supported by at least one experiment''. In some decision problems (such as tolerating partial experiment failure or model misspecification), we may only require conclusions to hold on $\mathcal R_{\mathrm{perm}}$.
+
+\subsection{Conflict Region and Uncertainty Decomposition}
+
+Define conflict region as symmetric difference
+
+$$\mathcal R_{\mathrm{conflict}} := \left(\bigcup_{k=1}^K \mathcal R_{n_k}^{(k)}\right)\setminus\left(\bigcap_{k=1}^K \mathcal R_{n_k}^{(k)}\right),$$
+
+where if some point $\theta$ is only supported by partial experiments (while excluded by others), then belongs to this region. By visualizing parameter space as partition of ``consensus--conflict--unconstrained'', can intuitively identify which parameter directions' conclusions are most sensitive to experiment selection.
+
+\section{Experimental Design and Observation Planning: Trust Region as Objective Function}
+
+In above framework, the essence of experimental design is: \textbf{Shaping the shape and size of future trust regions through choosing experimental schemes or observation strategies}. This section provides formalized characterization under classical linear models and general Fisher information background.
+
+\subsection{Fisher Information and Region Volume}
+
+In regular models, with sample size $n$, information matrix can usually be expressed as
+
+$$I_n(\theta) = n I_1(\theta),$$
+
+where $I_1(\theta)$ is information from single observation. For given design parameter $\xi$ (such as distribution of samples over different treatment/covariate configurations), single observation information can be written as $I_1(\theta;\xi)$. Therefore,
+
+$$I_n(\theta;\xi) = n I_1(\theta;\xi).$$
+
+Volume of ellipsoidal trust region is proportional to $\det\bigl(I_n(\theta_0;\xi)\bigr)^{-1/2}$. More precisely, when $\mathcal R_n(\alpha;\xi)$ is ellipsoid based on $I_n(\theta_0;\xi)$, its Lebesgue volume is
+
+$$\operatorname{Vol}\bigl(\mathcal R_n(\alpha;\xi)\bigr) = C_{d,\alpha}\,\bigl(\det I_n(\theta_0;\xi)\bigr)^{-1/2},$$
+
+where constant $C_{d,\alpha}$ only depends on dimension $d$ and $\alpha$. Therefore, minimizing region volume is equivalent to maximizing $\det I_n(\theta_0;\xi)$.
+
+\begin{definition}[Error Geometric Characterization of D-Optimal Design]\label{def:d-optimal}
+If design $\xi^*$ satisfies
+
+$$\det I_n(\theta_0;\xi^*) = \sup_{\xi} \det I_n(\theta_0;\xi),$$
+
+then call $\xi^*$ D-optimal design. Geometrically, it makes trust region volume minimal under given $n$, thus most compact overall.
+\end{definition}
+
+Classical D-optimality conclusions are restated in error geometric language in Appendix A.4.
+
+\subsection{Directional Resolution: A-Optimal and c-Optimal}
+
+If focus is on specific linear causal effect $\psi(\theta)=c^\top\theta$, then its asymptotic variance is
+
+$$\operatorname{Var}\bigl(\hat\psi\bigr) \approx \frac{1}{n}c^\top I_1(\theta_0;\xi)^{-1} c.$$
+
+From error geometry perspective, this is exactly the squared length of principal semi-axis of trust ellipsoid in direction $c$ (ignoring constants). Therefore, minimizing this variance is equivalent to maximizing resolution in direction $c$.
+
+\begin{definition}[c-Optimal Design]\label{def:c-optimal}
+If design $\xi^*$ satisfies
+
+$$c^\top I_1(\theta_0;\xi^*)^{-1} c = \inf_{\xi} c^\top I_1(\theta_0;\xi)^{-1} c,$$
+
+then call $\xi^*$ c-optimal design.
+\end{definition}
+
+From geometric perspective: c-optimal design does not pursue minimal overall ellipsoid volume, but specifically compresses semi-axis in direction $c$, i.e., focuses on enhancing geometric resolution of this causal effect.
+
+\section{Examples of Error Geometry in Typical Models}
+
+This section briefly demonstrates specific forms of error geometry framework under several common models for readers to gain intuitive impression.
+
+\subsection{Confidence Ellipsoid and Effect Interval in Linear Regression Models}
+
+Consider linear regression model
+
+$$Y_i = x_i^\top\beta + \varepsilon_i,\quad \varepsilon_i\sim\mathcal N(0,\sigma^2),$$
+
+where $x_i\in\mathbb R^p$ are known covariates, $\beta\in\mathbb R^p$ are regression coefficients. Let $X$ be design matrix, OLS estimate is
+
+$$\hat\beta = (X^\top X)^{-1} X^\top Y.$$
+
+Classical result gives
+
+$$\hat\beta\sim\mathcal N\left(\beta, \sigma^2(X^\top X)^{-1}\right).$$
+
+Therefore, information matrix is $I(\beta) = \sigma^{-2} X^\top X$, trust ellipsoid is
+
+$$\mathcal R(\alpha) = \{\beta: (\beta-\hat\beta)^\top X^\top X (\beta-\hat\beta) \le \sigma^2\chi^2_{p,1-\alpha}\}.$$
+
+For any linear prediction $\psi(\beta)=x_{\text{new}}^\top\beta$, its interval on $\mathcal R(\alpha)$ is
+
+$$x_{\text{new}}^\top\hat\beta \pm \sqrt{\chi^2_{p,1-\alpha}\,\sigma^2 x_{\text{new}}^\top (X^\top X)^{-1} x_{\text{new}}},$$
+
+which is completely consistent with classical linear regression confidence interval, but in this framework is interpreted as ``geometric projection of trust ellipsoid in direction $x_{\text{new}}$''.
+
+\subsection{Identifiable Set and Ellipsoid Constraint in Instrumental Variable Models}
+
+In simple linear IV models, when weak instruments exist or exclusion hypothesis is violated, structural parameters may only be partially identifiable. At this time identifiable set $\mathcal I$ is usually some polyhedron or more complex convex set. Intersecting it with confidence ellipsoid $\mathcal R_n(\alpha)$, can obtain geometric constraints on structural parameters, thus providing robust intervals for range of local average treatment effect.
+
+In many cases, this problem can be reduced to ``extremum of linear function on intersection of ellipsoid and polyhedron'', solvable using quadratic programming, essentially the geometric robustness criterion described in Section 4.4.
+
+\section{Discussion and Outlook}
+
+This paper provides a unified perspective that elevates ``error'' to ``geometric boundary'', and systematically restates classical topics such as confidence intervals, causal identifiable sets, multi-experiment aggregation, and experimental design on this basis. Core points can be summarized as:
+
+\begin{enumerate}
+\item Trust region $\mathcal R_n(\alpha)$ is an ellipsoid or more general convex set in parameter space, carrying local metric structure induced by Fisher information;
+
+\item Causal conclusions should be tested on $\mathcal R_n(\alpha)\cap\hat{\mathcal I}_n$ rather than merely relying on point estimates;
+
+\item Multiple experiments and models naturally induce intersections, unions, and symmetric differences of trust regions, whose geometric decomposition characterizes consensus, conflict, and uncertainty structure;
+
+\item Experimental design can be viewed as an optimization problem of ``shaping future trust region geometry'', formally equivalent to classical criteria such as D-optimal, A-optimal, and c-optimal.
+\end{enumerate}
+
+Further directions include: combining this paper's error geometry framework with information geometry (Fisher--Rao metric), functional parameters (such as density curves or response surfaces), high-dimensional sparse structures (such as polyhedral regions under $\ell_1$ constraints), and dynamic causal structures (time series and event history models); in these extensions, ``trust regions'' will no longer be finite-dimensional ellipsoids, but complex sets on Banach spaces or manifolds, yet their essence as ``error boundaries'' remains unchanged.
+
+\appendix
+
+\section{Proofs of Main Theorems and Propositions}
+
+\subsection{Proof of Theorem~\ref{thm:asymp-coverage} (Asymptotic Coverage of Confidence Ellipsoid)}
+
+\textbf{Theorem Restatement.} Under regularity conditions, let $\hat\theta_n$ satisfy
+
+$$\sqrt{n}(\hat\theta_n-\theta_0)\xrightarrow{d}\mathcal N(0, I(\theta_0)^{-1}),$$
+
+and $\hat I_n\xrightarrow{P}I(\theta_0)$, then for any fixed $\alpha\in(0,1)$,
+
+$$P_{\theta_0}\bigl(\theta_0\in\mathcal R_n(\alpha)\bigr)\to 1-\alpha.$$
+
+\textbf{Proof.} Let
+
+$$Z_n := \sqrt{n}(\hat\theta_n-\theta_0),\qquad I_0:=I(\theta_0),$$
+
+then $Z_n\xrightarrow{d} Z\sim\mathcal N(0,I_0^{-1})$. Note that event $\theta_0\in\mathcal R_n(\alpha)$ is equivalent to
+
+$$n(\theta_0-\hat\theta_n)^\top \hat I_n (\theta_0-\hat\theta_n) \le \chi^2_{d,1-\alpha},$$
+
+i.e.,
+
+$$Z_n^\top \hat I_n Z_n \le \chi^2_{d,1-\alpha}.$$
+
+By Slutsky's theorem, $\hat I_n\xrightarrow{P}I_0$, so $Z_n^\top\hat I_n Z_n \xrightarrow{d} Z^\top I_0 Z$. For $Z\sim\mathcal N(0,I_0^{-1})$,
+
+$$Z^\top I_0 Z \sim \chi^2_d.$$
+
+Therefore,
+
+$$P_{\theta_0}\bigl(\theta_0\in\mathcal R_n(\alpha)\bigr) = P\bigl(Z_n^\top\hat I_n Z_n\le \chi^2_{d,1-\alpha}\bigr) \longrightarrow P\bigl(Z^\top I_0 Z \le \chi^2_{d,1-\alpha}\bigr) = 1-\alpha.$$
+
+QED.
+
+\subsection{Proof of Proposition~\ref{prop:linear-bounds} (Optimal Bounds for Linear Target)}
+
+\textbf{Proposition Restatement.} On $\mathcal R_n(\alpha)$, minimum and maximum values of linear function $\psi(\theta)=c^\top\theta$ are
+
+$$\psi_{\max,n} = c^\top\hat\theta_n + \sqrt{\frac{\chi^2_{d,1-\alpha}}{n} c^\top \hat I_n^{-1} c},$$
+
+$$\psi_{\min,n} = c^\top\hat\theta_n - \sqrt{\frac{\chi^2_{d,1-\alpha}}{n} c^\top \hat I_n^{-1} c}.$$
+
+\textbf{Proof.} Let $h=\theta-\hat\theta_n$, constraint becomes
+
+$$n h^\top \hat I_n h \le \chi^2_{d,1-\alpha}.$$
+
+Objective function is
+
+$$\psi(\theta) = c^\top\hat\theta_n + c^\top h.$$
+
+Therefore maximizing $\psi(\theta)$ is equivalent to maximizing $c^\top h$ on ellipsoid
+
+$$\mathcal E := \{h: h^\top \hat I_n h \le \chi^2_{d,1-\alpha}/n\}.$$
+
+Standard quadratically constrained linear programming conclusion or Cauchy--Schwarz inequality gives
+
+$$\sup_{h\in\mathcal E} c^\top h = \sqrt{\chi^2_{d,1-\alpha}/n}\,\sqrt{c^\top \hat I_n^{-1} c},$$
+
+minimum value is opposite number. Therefore
+
+$$\psi_{\max,n} = c^\top\hat\theta_n + \sqrt{\frac{\chi^2_{d,1-\alpha}}{n} c^\top \hat I_n^{-1} c},$$
+
+$$\psi_{\min,n} = c^\top\hat\theta_n - \sqrt{\frac{\chi^2_{d,1-\alpha}}{n} c^\top \hat I_n^{-1} c}.$$
+
+QED.
+
+\subsection{Proof of Theorem~\ref{thm:linear-causal-robust} (Geometric Robustness Criterion for Linear Causal Effect)}
+
+\textbf{Theorem Restatement.} Let $\mathcal R_n(\alpha)$ be trust ellipsoid, $\hat{\mathcal I}_n=\{\theta:A\theta\le b\}$ be linear identifiable set, $\psi(\theta)=c^\top\theta$. If
+
+$$\psi_{\min,n}^* := \inf\{c^\top\theta:\theta\in\mathcal R_n(\alpha),A\theta\le b\} \ge \delta > 0,$$
+
+then at significance level $\alpha$, can assert that for all $\theta\in\mathcal R_n(\alpha)\cap\hat{\mathcal I}_n$, $\psi(\theta)\ge \delta >0$, i.e., ``causal effect is positive and at least $\delta$'' is geometrically robust.
+
+\textbf{Proof.} By definition, any $\theta$ in $\mathcal R_n(\alpha)\cap\hat{\mathcal I}_n$ satisfies $A\theta\le b$ and $\theta\in\mathcal R_n(\alpha)$. Therefore, for any $\theta\in\mathcal R_n(\alpha)\cap\hat{\mathcal I}_n$,
+
+$$\psi(\theta) = c^\top\theta \ge \inf\{c^\top\theta:\theta\in\mathcal R_n(\alpha),A\theta\le b\} = \psi_{\min,n}^* \ge \delta.$$
+
+That is
+
+$$\mathcal C_n(\alpha) = \{\psi(\theta):\theta\in\mathcal R_n(\alpha)\cap\hat{\mathcal I}_n\} \subset [\delta,\infty).$$
+
+Since construction of $\mathcal R_n(\alpha)$ guarantees its asymptotic coverage probability is $1-\alpha$, under usual conditions can consider ``true parameter $\theta_0$'' falls in $\mathcal R_n(\alpha)$ with probability approximately $1-\alpha$; if $\theta_0\in\mathcal I$ and $\hat{\mathcal I}_n$ is good approximation, then above conclusion can be interpreted in asymptotic sense as level $\alpha$ significant conclusion. Rigorous probabilistic statement requires introducing joint coverage and uniform convergence, not elaborated here. QED.
+
+\subsection{Equivalence of D-Optimal Design and Trust Region Volume}
+
+\begin{proposition}[Error Geometric Characterization of D-Optimal Design]\label{prop:d-optimal-volume}
+In regular model with sample size $n$, information matrix $I_n(\theta_0;\xi) = n I_1(\theta_0;\xi)$, volume of confidence ellipsoid $\mathcal R_n(\alpha;\xi)$ constructed based on $I_n(\theta_0;\xi)$ satisfies
+
+$$\operatorname{Vol}\bigl(\mathcal R_n(\alpha;\xi)\bigr) = C_{d,\alpha}\,\bigl(\det I_n(\theta_0;\xi)\bigr)^{-1/2},$$
+
+where $C_{d,\alpha}$ is independent of $\xi$. Therefore, maximizing $\det I_n(\theta_0;\xi)$ is equivalent to minimizing $\operatorname{Vol}(\mathcal R_n(\alpha;\xi))$.
+\end{proposition}
+
+\textbf{Proof.} Let $A(\xi) := I_n(\theta_0;\xi)$, then ellipsoid is defined as
+
+$$\mathcal R_n(\alpha;\xi) = \{\theta: (\theta-\hat\theta_n)^\top A(\xi) (\theta-\hat\theta_n) \le c\},$$
+
+where $c=\chi^2_{d,1-\alpha}$ is constant. Let $y=A(\xi)^{1/2}(\theta-\hat\theta_n)$, then mapping $\theta\mapsto y$ is linear homeomorphism with Jacobian $\det A(\xi)^{1/2}$. In $y$-space, ellipsoid becomes Euclidean ball $B_d(\sqrt{c})$ with radius $\sqrt{c}$, whose volume is
+
+$$\operatorname{Vol}(B_d(\sqrt{c})) = \frac{\pi^{d/2} c^{d/2}}{\Gamma(d/2+1)}.$$
+
+Therefore
+
+$$\operatorname{Vol}\bigl(\mathcal R_n(\alpha;\xi)\bigr) = \frac{\operatorname{Vol}(B_d(\sqrt{c}))}{\det A(\xi)^{1/2}} = C_{d,\alpha}\,(\det A(\xi))^{-1/2},$$
+
+where $C_{d,\alpha} := \operatorname{Vol}(B_d(\sqrt{c}))$ is independent of $\xi$. Thus minimizing volume is equivalent to maximizing $\det A(\xi) = \det I_n(\theta_0;\xi)$. QED.
+
+\section*{References (Indicative)}
+
+\begin{enumerate}
+\item Bickel, P. J., \& Doksum, K. A. (2015). \emph{Mathematical Statistics: Basic Ideas and Selected Topics}.
+
+\item van der Vaart, A. W. (1998). \emph{Asymptotic Statistics}.
+
+\item Lehmann, E. L., \& Casella, G. (1998). \emph{Theory of Point Estimation}.
+
+\item Pukelsheim, F. (2006). \emph{Optimal Design of Experiments}.
+
+\item Manski, C. F. (2003). \emph{Partial Identification of Probability Distributions}.
+
+\item Imbens, G. W., \& Rubin, D. B. (2015). \emph{Causal Inference for Statistics, Social, and Biomedical Sciences}.
+
+\item Pearl, J. (2009). \emph{Causality: Models, Reasoning, and Inference}.
+\end{enumerate}
+
+\end{document}

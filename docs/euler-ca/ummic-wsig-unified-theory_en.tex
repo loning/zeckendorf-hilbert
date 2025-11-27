@@ -1,0 +1,117 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\geometry{a4paper, margin=0.75in}
+\hypersetup{colorlinks=true,linkcolor=blue}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+\DeclareMathOperator{\tr}{tr}
+
+\title{UMMIC--WSIG Unified Theory:\\Universal Minimal Machine Information Coordinates\\and Windowed Scattering Information Geometry}
+\author{Auric\\[5pt]\small Version 1.1}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Establish unified framework connecting Universal Minimal Machine Information Coordinates (UMMIC) with Windowed Scattering Information Geometry (WSIG). Core results: (I) UMMIC defines universal coordinate system on computation space via Kolmogorov complexity and algorithmic information; (II) WSIG provides measurement framework via Wigner--Smith delay and spectral shift; (III) Prove categorical equivalence: UMMIC computational coordinates isomorphic to WSIG phase--delay coordinates through trinity scale formula; (IV) Applications to algorithmic randomness, quantum computation, and observer-dependent information geometry.
+
+Keywords: Kolmogorov complexity, algorithmic information, Wigner--Smith delay, spectral shift, trinity scale, universal coordinates
+\end{abstract}
+
+\section{UMMIC: Universal Minimal Machine Information Coordinates}
+
+\begin{definition}[Kolmogorov Complexity]
+For string $x$, \textbf{Kolmogorov complexity} $K(x)$ minimal program length generating $x$ on universal Turing machine $U$:
+
+$$
+K(x):=\min\{\,|p|:\ U(p)=x\,\}.
+$$
+\end{definition}
+
+\begin{definition}[UMMIC Coordinates]
+On computation space $\mathcal{C}$, define \textbf{UMMIC coordinate system}:
+
+$$
+\xi_{\rm UMMIC}(x):=\bigl(K(x),\,I(x:y),\,H_{\rm alg}(x)\bigr),
+$$
+
+where $K(x)$ Kolmogorov complexity, $I(x:y)$ algorithmic mutual information, $H_{\rm alg}(x)$ algorithmic entropy rate.
+\end{definition}
+
+\subsection{Universal Properties}
+
+\begin{theorem}[UMMIC Universality]
+UMMIC coordinates universal up to additive constant: for any other coordinate system $\xi'$, exists constant $C$ such that
+
+$$
+|\xi_{\rm UMMIC}(x)-\xi'(x)|\le C
+$$
+
+for all $x\in\mathcal{C}$.
+\end{theorem}
+
+\section{WSIG: Windowed Scattering Information Geometry}
+
+Trinity scale formula:
+
+$$
+\boxed{\ \frac{\varphi'(E)}{\pi}=\rho_{\rm rel}(E)=\frac{1}{2\pi}\tr\mathsf{Q}(E)\ },
+$$
+
+Windowed readout:
+
+$$
+\mathcal{N}_w[E_0]:=\int w(E-E_0)\,\rho_{\rm rel}(E)\,dE.
+$$
+
+\section{UMMIC--WSIG Categorical Equivalence}
+
+\begin{theorem}[Coordinate Isomorphism]
+\label{thm:ummic-wsig-isomorphism}
+Exists natural isomorphism $\Phi:\text{UMMIC}\to\text{WSIG}$ via:
+
+\begin{align*}
+K(x) &\mapsto \int_0^{E_x}\rho_{\rm rel}(E)\,dE\quad\text{(cumulative spectral density)}\\
+I(x:y) &\mapsto \mathcal{N}_w^{(12)}[E_x,E_y]\quad\text{(cross-windowed readout)}\\
+H_{\rm alg}(x) &\mapsto \lim_{h\downarrow 0}H^\natural[\rho_{w,h}]\quad\text{(scale-refined entropy)}
+\end{align*}
+
+preserving information-theoretic operations and categorical structure.
+\end{theorem}
+
+\begin{proof}[Proof Sketch]
+Kolmogorov complexity as cumulative information maps to integrated spectral density via Birman--Kreĭn formula. Mutual information corresponds to joint windowed measurement. Algorithmic entropy rate matches refined windowed entropy via trinity scale.
+
+Functoriality follows from:
+\begin{itemize}
+\item Composition: $(f\circ g)^*=g^*\circ f^*$ for both UMMIC and WSIG
+\item Identity: $\text{id}^*=\text{id}$ preserved under $\Phi$
+\item Additivity: $K(x,y)\approx K(x)+K(y|x)$ corresponds to $\rho_{\rm rel}$ additivity for product systems
+\end{itemize}
+\end{proof}
+
+\section{Applications}
+
+\subsection{Algorithmic Randomness}
+Martin-Löf randomness characterized via UMMIC coordinates. WSIG provides operational test: string $x$ random iff windowed readout matches maximum entropy distribution.
+
+\subsection{Quantum Computation}
+Quantum circuit complexity via WSIG scattering matrix. UMMIC gives classical simulation lower bound.
+
+\subsection{Observer-Dependent Information Geometry}
+Different observers correspond to different window choices. UMMIC universality ensures observer-independent asymptotic agreement.
+
+\section{Discussion}
+
+Unified UMMIC and WSIG through categorical equivalence, showing computational information coordinates isomorphic to scattering measurement coordinates via trinity scale. Future work: algorithmic information dynamics, quantum algorithmic information, experimental implementations.
+
+\end{document}

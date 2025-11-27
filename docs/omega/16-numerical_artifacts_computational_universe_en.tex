@@ -1,0 +1,586 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{enumerate}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Numerical Artifacts of the Computational Universe:\\
+Detecting Planck-Scale Truncation Errors and Anisotropy\\
+in Physical Experiments}
+
+\author{Anonymous Author}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+If the universe is a dynamical system realized by underlying discrete computational processes, then finite memory, finite clock frequency and finite numerical precision must leave extremely weak but in-principle detectable ``numerical artifacts'' in macroscopic physics. In computational universe models prototyped by quantum cellular automaton (QCA), this paper provides a systematic analytical framework, uniformly expressing spatial lattice discretization near Planck scale, finite-precision rounding errors, and algorithm-level resource scheduling (``lazy computation'') as higher-dimensional operators and weak Lorentz-violating parameters in effective field theory, relating them to existing and anticipated experimental constraints. The main conclusions of this paper are:
+
+(1) Any local QCA on a cubic lattice approximating Lorentz-invariant dispersion relations necessarily includes direction-dependent $\mathcal{O}((pa)^4)$ anisotropic corrections in high-momentum dispersion, causing weak differences in group velocities of extremely high-energy particles and photons across spatial directions;
+
+(2) If underlying hardware uses finite-precision number domains not completely eliminated by perfect reversible computation or error-correction coding, it manifests macroscopically as conservation law noise strengthening with energy, giving upper bounds on ``effective truncation error'' indicator $\epsilon_{\mathrm{eff}}$ in ultra-high-energy cosmic rays and long-baseline gravitational wave propagation;
+
+(3) If there exists ``computational resolution allocation'' adaptive to local entropy or observer information density, slight effective constant drift may appear in cosmological void regions, such as spatial modulation of fine-structure constant $\alpha$ or vacuum energy density $\Lambda_{\mathrm{eff}}$. Combining ultra-high-energy cosmic rays, energy-dependent time delays in gamma-ray bursts, high-precision optical resonators and atomic clock network observations, this paper provides currently obtainable quantitative constraints and proposes several ``computational forensics'' experimental proposals oriented toward next-generation observation facilities, hoping to find traces of computational universe in noise.
+\end{abstract}
+
+\textbf{Keywords:} Simulation hypothesis; Quantum cellular automaton; Numerical artifacts; Lorentz invariance tests; Ultra-high-energy cosmic rays; Gamma-ray bursts; Atomic clock networks; Fine-structure constant
+
+\section{Introduction \& Historical Context}
+
+The simulation hypothesis at philosophical level is most representatively expressed in Bostrom's argument for ``ancestor simulation'', i.e., under the premise that highly developed civilizations can run large-scale high-fidelity simulations, the prior probability of us being in a simulation may far exceed being in ``base reality''. Meanwhile, physics conceptions of computational universe---including reversible computation, cellular automaton universe, information gravity, etc.---attempt to view physical laws as emergent forms of some underlying computational rules.
+
+In such conceptions, Beane et al. first proposed a clear testable idea: if the universe runs as lattice gauge field theory numerical simulation on a cubic lattice, then lattice spacing $a$ cannot be infinitely small, and its finite value will manifest as direction-dependent cutoff and anisotropy in GZK cutoff structure in high-energy cosmic ray spectra, yielding lower bound $a^{-1} \gtrsim 10^{11} \,\mathrm{GeV}$. Recently, Vazza et al. systematically quantified physical realizability of simulated universe from information energy cost and astrophysical observations perspectives, pointing out that reproducing observed universe under finite computational resources must face stringent energy and entropy budget constraints.
+
+On the other hand, numerous high-precision experiments continuously test basic postulates of special and general relativity. Including modern Michelson--Morley experiments using cooled optical resonators, giving upper limits on light speed anisotropy $\Delta c/c \sim 10^{-15}$ level; Fermi-LAT analysis of gamma-ray burst time delays pushing scale of linear energy-dependent light speed correction close to or beyond Planck scale; and atomic clock comparisons giving tight limits on temporal variation and spatial variation of fine-structure constant. Combined with quasar absorption lines, cosmic microwave background and cosmological data, constraints on $\alpha$ and other fundamental constants' variation on cosmological scales are also becoming stringent.
+
+The above work shows: even temporarily setting aside simulation hypothesis, high-precision testing of Lorentz invariance, conservation laws and constant stability itself has become a mature experimental field. However, existing discussions often view ``simulated universe'' and ``quantum gravity corrections'', ``effective field theory higher-dimensional operators'' etc. as independent frameworks from each other.
+
+This paper's goal is: on quantum cellular automaton discrete ontology, introduce explicit ``computational resource limitation'' assumptions, transforming ``universe as numerical simulation'' into a set of specific effective parameterizations, thus establishing a ``computational forensics'' directly interfaceable with existing high-precision experiments. Its core ideas are:
+
+\begin{enumerate}
+\item View spatial lattice discretization as QCA geometric structure, analyzing its impact on dispersion relations and symmetries;
+
+\item Abstract finite numerical precision as weak random breaking of unitarity and conservation laws, providing quantitative mapping to macroscopic observations;
+
+\item View resource scheduling and resolution adaptation as low-frequency modulation of effective constants in spacetime, using atomic clocks, cosmological observations and large-scale structure data for constraints.
+\end{enumerate}
+
+This work does not attempt to prove simulation hypothesis ``holds'', but provides: if the universe can be approximated by such computational models, what experimental constraints any reasonable simulation must satisfy; conversely, once phenomena significantly conflicting with these constraints are discovered, it may provide non-trivial support for such computational universe models.
+
+\section{Model \& Assumptions}
+
+\subsection{QCA Prototype of Computational Universe}
+
+We adopt the following abstract model to describe computational universe:
+
+\begin{enumerate}
+\item Spacetime is represented as three-dimensional cubic lattice $\Lambda \cong a\mathbb{Z}^3$, with time discretized in steps $\Delta t$.
+
+\item Each lattice site $x \in \Lambda$ has finite-dimensional local Hilbert space $\mathcal{H}_x \cong \mathbb{C}^d$, with global Hilbert space $\mathcal{H} = \bigotimes_{x\in\Lambda} \mathcal{H}_x$.
+
+\item Time evolution is given by local unitary operator $U$ with finite action range $R$, i.e.,
+
+$$|\ket{\psi(t+1)} = U \ket{\psi(t)}, \quad U = \prod_{X\subset \Lambda} U_X,$$
+
+where each $U_X$ acts only on finite subsets with diameter $\le R$.
+
+\item In long-wavelength limit $a\to 0, \Delta t \to 0$, effective dynamics of single-particle excitations can be approximated by Lorentz-invariant continuous field theory (such as scalar field, Dirac field or Maxwell field).
+\end{enumerate}
+
+In ``ideal mathematical QCA'', $U$ is exactly unitary, with lattice spacing $a$ and time step $\Delta t$ only as scaling parameters, not introducing any numerical errors. Under simulation hypothesis, hardware (or formal structure realization) actually executing $U$ is subject to following constraints:
+
+\begin{itemize}
+\item Numerical domain is finite-precision: such as finite-word-length integers or floating-point numbers;
+
+\item Storage capacity is finite: can only accommodate finite numbers of lattice sites and internal degrees of freedom;
+
+\item Computational resources are finite: number of logic gates executable per step is finite, thus requiring scheduling and approximation.
+\end{itemize}
+
+In this model, we view ``ideal QCA'' as target dynamics, with deviations from hardware implementation all viewed as ``numerical artifacts''. These artifacts are parameterized into three types:
+
+\begin{enumerate}
+\item \textbf{Lattice anisotropy artifacts}: Since $\Lambda$ has only finite rotation group $O_h$ symmetry, Lorentz invariance in long-wavelength limit only approximately holds in window $pa \ll 1$, with systematic anisotropic corrections appearing in high-momentum or high-frequency bands.
+
+\item \textbf{Finite-precision artifacts}: Each unitary evolution step can only be approximately implemented in hardware, introducing random or biased numerical rounding errors, causing weak breaking of unitarity and conservation laws.
+
+\item \textbf{Resource scheduling artifacts}: To reduce resource consumption, simulators may adopt sparse updates, coarse lattices or lower precision representations for ``low-complexity regions'', causing equivalent physical constants to slowly vary across spatial regions.
+\end{enumerate}
+
+At model level, we introduce three dimensionless parameters to characterize their magnitudes:
+
+\begin{itemize}
+\item Lattice scale parameter $\eta_a = a M_{\mathrm{P}}$, where $M_{\mathrm{P}}$ is Planck energy scale;
+
+\item Effective truncation error parameter $\epsilon_{\mathrm{eff}}$, representing relative error in energy/probability conservation per local evolution step;
+
+\item Resolution modulation parameter $\delta_{\mathrm{res}}(x)$, representing deviation of effective constants from average values in different cosmological environments.
+\end{itemize}
+
+Our goal is to extract upper bounds or ``detectable windows'' on $\eta_a, \epsilon_{\mathrm{eff}}, \delta_{\mathrm{res}}$ from various observations.
+
+\section{Main Results (Theorems and alignments)}
+
+\subsection{Theorem 1: High-Energy Anisotropic Dispersion of Cubic Lattice QCA}
+
+Consider three-dimensional QCA satisfying translation invariance and locality, approaching scalar or optical wave equations in long-wavelength limit. Its single-particle dispersion relation $\omega(\mathbf{k})$ can be expanded in region $|\mathbf{k}|a \ll 1$ as
+
+$$\omega^2(\mathbf{k}) = c^2 \mathbf{k}^2 + m^2 c^4 + a^2 \left( \beta_1 \sum_{i=1}^3 k_i^4 + \beta_2 \sum_{i<j} k_i^2 k_j^2 \right) + \mathcal{O}(a^4 k^6),$$
+
+where $\mathbf{k}=(k_x,k_y,k_z)$, $\beta_1, \beta_2$ are dimensionless coefficients determined by QCA local structure.
+
+In massless limit $m=0$, group velocity
+
+$$\mathbf{v}_g(\mathbf{k}) = \nabla_{\mathbf{k}} \omega(\mathbf{k})$$
+
+exhibits direction dependence at $a^2$ order. Specifically, for given magnitude $|\mathbf{k}|=k$, group velocity corrections along lattice axis $\mathbf{k} = (k,0,0)$ and along body diagonal $\mathbf{k} = (k/\sqrt{3},k/\sqrt{3},k/\sqrt{3})$ satisfy
+
+$$\Delta v_g^{\mathrm{axis}} - \Delta v_g^{\mathrm{diag}} = \mathcal{O}(a^2 k^3) \neq 0,$$
+
+therefore anisotropy in light speed or high-energy particle propagation speed must appear in high-energy region.
+
+This conclusion is consistent with early analysis of lattice anisotropy artifacts in lattice gauge field theory, also forming basis for using cosmic rays and high-energy photons to constrain ``cosmic lattice spacing''.
+
+\subsection{Theorem 2: Conservation Law Noise Scaling from Finite-Precision Rounding Errors}
+
+Assume underlying hardware introduces local non-unitary perturbations with relative scale $\epsilon \ll 1$ when implementing single-step evolution $U$, approximable by Lindblad-type effective evolution
+
+$$\rho(t+\Delta t) = U \rho(t) U^\dagger + \epsilon \,\mathcal{D}[\rho(t)] + \mathcal{O}(\epsilon^2),$$
+
+where $\mathcal{D}$ is some completely positive dissipative superoperator. If errors are approximately independent and identically distributed in time, then after $N$ evolution steps, standard deviation of expectation value deviation of some conserved quantity $Q$ (such as total energy or momentum) from ideal value satisfies
+
+$$\sigma_Q(N) \sim \sqrt{N} \,\epsilon\, Q_{\mathrm{char}},$$
+
+where $Q_{\mathrm{char}}$ is characteristic scale. Taking universe age $T_{\mathrm{U}}$ and Planck time $t_{\mathrm{P}}$ to define effective step number $N \sim T_{\mathrm{U}}/t_{\mathrm{P}} \sim 10^{61}$, then only when
+
+$$\epsilon_{\mathrm{eff}} \lesssim 10^{-30}$$
+
+can nearly strict conservation laws still be observed macroscopically. Here $\epsilon_{\mathrm{eff}}$ is effective truncation error after possible error-correction coding and reversible computation elimination. This estimate shows: if universe is QCA simulation realized with finite precision, underlying must use extremely efficient error correction and reversible logic to be compatible with existing observations on energy and momentum conservation.
+
+\subsection{Proposition 3: Resource Scheduling and Spatial Modulation of Effective Constants}
+
+Suppose simulator adopts ``hierarchical resolution'' strategy: selecting different discrete steps $(a(x), \Delta t(x))$ and numerical precision $n_{\mathrm{bit}}(x)$ based on local complexity indicator function $\chi(x)$ (such as local entropy density or observer density). For low-energy effective field theory, this is equivalent to introducing spatially slowly-varying renormalization constants $g_i(x)$ in Lagrangian. For example in electromagnetic interaction term
+
+$$\mathcal{L}_{\mathrm{EM}} = -\frac{1}{4} Z_F(x) F_{\mu\nu}F^{\mu\nu} + Z_\psi(x) \bar{\psi} i\gamma^\mu D_\mu \psi + \cdots,$$
+
+will cause effective fine-structure constant
+
+$$\alpha(x) \propto \frac{Z_\psi^2(x)}{Z_F(x)}$$
+
+to exhibit spatial modulation. If $Z_F, Z_\psi$ vary smoothly on cosmological scales, linearization approximation $\Delta \alpha/\alpha \approx \kappa \,\Delta\chi$ can be used. Existing atomic clock comparisons, quasar absorption lines and cosmological data give upper limits on $\Delta\alpha/\alpha$ typically in $10^{-7}\text{--}10^{-15}$ range, thus can be directly transformed into constraints on resource scheduling intensity $\kappa \Delta\chi$.
+
+\section{Proofs}
+
+\subsection{4.1 Proof of Theorem 1: Derivation of Cubic Lattice QCA Anisotropic Dispersion}
+
+For brevity, take three-dimensional scalar field's discrete wave equation as example, whose continuous form is
+
+$$\partial_t^2 \phi = c^2 \nabla^2 \phi.$$
+
+On cubic lattice adopt standard second-order difference discretization Laplacian
+
+$$(\nabla^2_a \phi)(\mathbf{x}) = \frac{1}{a^2} \sum_{i=1}^3 \left[ \phi(\mathbf{x}+a\hat{e}_i) + \phi(\mathbf{x}-a\hat{e}_i) - 2\phi(\mathbf{x}) \right].$$
+
+Let
+
+$$\phi(\mathbf{x},t) = \exp\left[i(\mathbf{k}\cdot\mathbf{x} - \omega t)\right],$$
+
+substituting into discrete equation yields dispersion relation
+
+$$\omega^2(\mathbf{k}) = \frac{4c^2}{a^2}\sum_{i=1}^3 \sin^2\left(\frac{k_i a}{2}\right).$$
+
+Expand under $|k_i a|\ll 1$
+
+$$\sin\left(\frac{k_i a}{2}\right) = \frac{k_i a}{2} - \frac{(k_i a)^3}{48} + \mathcal{O}(a^5 k_i^5),$$
+
+thus
+
+$$\sin^2\left(\frac{k_i a}{2}\right) = \frac{k_i^2 a^2}{4} - \frac{k_i^4 a^4}{48} + \mathcal{O}(a^6 k_i^6).$$
+
+Substituting gives
+
+$$\omega^2(\mathbf{k}) = c^2 \sum_{i=1}^3 k_i^2 - \frac{c^2 a^2}{12} \sum_{i=1}^3 k_i^4 + \mathcal{O}(a^4 k^6).$$
+
+First term is isotropic $c^2 \mathbf{k}^2$, second term is component-dependent $\sum k_i^4$ form. Note $\sum k_i^4$ is not constant under $\mathrm{SO}(3)$, only remaining symmetric under finite group $O_h$.
+
+Introducing mass term $m^2 c^4$ does not change high-momentum anisotropic term structure, only slightly modifying dispersion in low-energy region. For more general QCA, as long as maintaining translation invariance and locality, long-wavelength limit can be characterized by effective Hamiltonian
+
+$$H_{\mathrm{eff}} = c \boldsymbol{\alpha}\cdot\mathbf{p} + \beta m c^2 + a^2 \sum_{i,j} \gamma_{ij} p_i^2 p_j^2 + \cdots$$
+
+where $\boldsymbol{\alpha}, \beta, \gamma_{ij}$ are various matrices or constants, $p_i = \hbar k_i$. Expanding energy spectrum squared can obtain $\sum k_i^4$ structure isomorphic to above scalar case, thus Theorem 1 holds for broad QCA models.
+
+To show direction dependence, compare two wavevector types:
+
+1. Axial: $\mathbf{k} = (k,0,0)$. Then
+
+$$\omega^2_{\mathrm{axis}}(k) = c^2 k^2 - \frac{c^2 a^2}{12}k^4 + \mathcal{O}(a^4 k^6).$$
+
+2. Body diagonal: $\mathbf{k} = (k/\sqrt{3},k/\sqrt{3},k/\sqrt{3})$. Then
+
+$$\sum_{i=1}^3 k_i^4 = 3\left(\frac{k}{\sqrt{3}}\right)^4 = \frac{k^4}{3},$$
+
+therefore
+
+$$\omega^2_{\mathrm{diag}}(k) = c^2 k^2 - \frac{c^2 a^2}{36}k^4 + \mathcal{O}(a^4 k^6).$$
+
+Difference at $\mathcal{O}(a^2 k^4)$ between them is
+
+$$\omega^2_{\mathrm{axis}}(k) - \omega^2_{\mathrm{diag}}(k) = -\frac{c^2 a^2}{18}k^4 + \mathcal{O}(a^4 k^6)\neq 0,$$
+
+thus group velocity
+
+$$v_g = \frac{\partial \omega}{\partial k}$$
+
+corrections also exhibit same-order difference, i.e.,
+
+$$\Delta v_g^{\mathrm{axis}} - \Delta v_g^{\mathrm{diag}} = \mathcal{O}(a^2 k^3).$$
+
+Therefore, as long as $a$ is finite and high-energy particles can probe region $ka \sim 1$, lattice anisotropy must become observable effect. For massless photons, this means light speed becomes direction function near Planck energy scale, which is precisely basis idea for using cosmic ray arrival direction distribution to constrain lattice spacing.
+
+\subsection{4.2 Proof of Theorem 2: Random Walk Scaling of Finite-Precision Errors}
+
+Consider Kraus representation of single-step evolution
+
+$$\rho \mapsto \sum_\alpha K_\alpha \rho K_\alpha^\dagger,$$
+
+where in ideal unitary case there is only one operator $K_0 = U$ with $U^\dagger U = \mathbb{I}$. Finite-precision implementation can be viewed as adding small perturbations near $U$, such that
+
+$$K_0 = \sqrt{1-\epsilon^2}\,U,\quad K_j = \epsilon L_j,\; j=1,\dots,M,$$
+
+satisfying $\sum_\alpha K_\alpha^\dagger K_\alpha = \mathbb{I}$, $\epsilon\ll 1$. Let $Q$ be observable conserved in ideal case, i.e., $[Q,U]=0$. After single step, change in expectation value of $Q$ is
+
+$$\delta \langle Q \rangle = \mathrm{Tr}(Q\rho') - \mathrm{Tr}(Q\rho),$$
+
+where
+
+$$\rho' = \sum_\alpha K_\alpha \rho K_\alpha^\dagger.$$
+
+Expanding gives
+
+$$\delta\langle Q\rangle = \epsilon^2 \sum_{j} \mathrm{Tr}\left( Q L_j \rho L_j^\dagger \right) - \epsilon^2 \mathrm{Tr}(Q\rho) + \mathcal{O}(\epsilon^3).$$
+
+If $L_j$ satisfy some ``zero average'' condition (such as symmetric noise), single-step expectation deviation can be zero, but variance is non-zero. Define
+
+$$\delta Q_n = \langle Q\rangle_n - \langle Q\rangle_{n-1},$$
+
+then under independent identically distributed approximation, its variance
+
+$$\mathbb{E}[(\delta Q_n)^2] \sim \epsilon^2 Q_{\mathrm{char}}^2,$$
+
+where $Q_{\mathrm{char}}$ is typical scale determined by $L_j$ and $\rho$. Cumulative deviation after total steps $N$
+
+$$\Delta Q_N = \sum_{n=1}^N \delta Q_n$$
+
+satisfies
+
+$$\mathbb{E}[\Delta Q_N]=0,\quad \mathrm{Var}(\Delta Q_N) = N\,\mathrm{Var}(\delta Q_1)\sim N\epsilon^2 Q_{\mathrm{char}}^2,$$
+
+i.e.,
+
+$$\sigma_Q(N) \sim \sqrt{N} \,\epsilon\, Q_{\mathrm{char}}.$$
+
+Taking $Q$ as total energy or momentum, $Q_{\mathrm{char}}$ approximately system total energy or typical particle energy. If wanting to maintain macroscopically observed conservation precision on universe age scale, such as relative deviation $\sigma_Q/Q_{\mathrm{char}} \lesssim 10^{-n}$, then have
+
+$$\epsilon_{\mathrm{eff}} \lesssim 10^{-n}/\sqrt{N}.$$
+
+If $N \sim 10^{61}$, then even $n=10$ requires $\epsilon_{\mathrm{eff}} \lesssim 10^{-40}$. In reality, conservation law test precision varies by system, but this order-of-magnitude estimate already shows: if ``floating-point number''-like direct rounding errors exist, their bare value $\epsilon$ must be greatly suppressed through reversible computation and error-correction coding, with only extremely weak ``residual noise'' $\epsilon_{\mathrm{eff}}$ manifesting macroscopically.
+
+In astrophysical environments, such as propagation step number for ultra-high-energy cosmic rays from source to Earth can be estimated as
+
+$$N_{\mathrm{UHECR}} \sim \frac{L}{\lambda_{\mathrm{int}}},$$
+
+where $L$ is propagation distance, $\lambda_{\mathrm{int}}$ is typical mean free path of interaction or scattering. Even adopting macroscopic step $\lambda_{\mathrm{int}} \sim 1\,\mathrm{Mpc}$ coarse-graining, $L \sim 100\,\mathrm{Mpc}$ still gives $N_{\mathrm{UHECR}}\sim 10^2$. At this time if $\epsilon_{\mathrm{eff}} \sim 10^{-20}$, cumulative energy relative deviation only $10^{-19}$ level, far below typical observation uncertainty. Conversely, if viewing Planck time as basic step, constraints become extremely stringent. This shows different physical processes and time scales can separately constrain different combinations of $\epsilon_{\mathrm{eff}}$, providing hierarchical picture for ``computational universe'' error budget.
+
+\subsection{4.3 Proof of Proposition 3: Effective Field Theory Expression of Resource Scheduling and $\alpha(x)$ Modulation}
+
+In general effective field theory, renormalization factors $Z_i(\mu)$ depend on energy scale $\mu$, but assumed spatially uniform. If introducing slow dependence on spatial coordinate $x$, then at tree level can view it as external field background. Fine-structure constant definition is
+
+$$\alpha(x) = \frac{e^2}{4\pi \varepsilon_0 \hbar c} \,\frac{Z_\psi^2(x)}{Z_F(x)},$$
+
+therefore
+
+$$\frac{\Delta \alpha}{\alpha} \approx 2\frac{\Delta Z_\psi}{Z_\psi} - \frac{\Delta Z_F}{Z_F}.$$
+
+Suppose resource scheduling strategy provides high resolution in high-complexity regions, i.e., $Z_i = Z_i^{(0)}$, in low-complexity regions has slight deviation $\delta Z_i$. If $\delta Z_i/Z_i^{(0)} \sim \lambda\,\Delta \chi$ linearly depends on complexity indicator function change, then
+
+$$\frac{\Delta \alpha}{\alpha} \sim \lambda_{\alpha} \Delta \chi.$$
+
+Atomic clock comparison experiments give upper limits on $\alpha$ temporal drift $|\dot{\alpha}/\alpha| \lesssim 10^{-17}\,\mathrm{yr}^{-1}$ level, while quasar absorption lines and cosmic microwave background give constraints on spatial drift $|\Delta\alpha/\alpha| \lesssim 10^{-7}\text{--}10^{-5}$ level, depending on redshift and sample. In ``lazy computation'' scenario, can view cosmic voids and dense galaxy clusters as two extremes of $\chi$, with relative difference $\Delta\chi \sim 1$, thus above results directly transform to upper limits on $\lambda_{\alpha}$. These quantitative relationships will be further concretized in later model application sections.
+
+\section{Model Apply}
+
+This section maps these three types of numerical artifacts to existing or anticipated observation windows.
+
+\subsection{5.1 Lattice Anisotropy and Ultra-High-Energy Cosmic Ray Spectra}
+
+Beane et al. studied impact of QCD model realized on cubic lattice on cosmic rays, pointing out if universe is numerical simulation using Wilson fermions and cubic lattice, then due to Brillouin zone structure in lattice momentum space, high-energy cosmic ray spectrum cutoff will exhibit anisotropy related to lattice directions. From QCA perspective, this idea can be generalized as:
+
+\begin{itemize}
+\item Lattice dispersion relation begins deviating from continuous Lorentz form when $ka \lesssim 1$;
+
+\item For ultra-high-energy protons or nuclei, their energy spectrum upper limit and propagation attenuation will depend on their direction in momentum space relative to lattice axis;
+
+\item If observed GZK cutoff exhibits systematic bias in celestial sphere related to some fixed direction, which cannot be simplified as result of local astrophysical structure (such as Galactic magnetic field or source distribution), can be viewed as candidate signal for lattice anisotropy.
+\end{itemize}
+
+Currently Pierre Auger Observatory and Telescope Array observations of ultra-high-energy cosmic ray arrival direction anisotropy show anisotropy related to large-scale structure, but no universal deviation pointing to some fixed cosmological axis has been found. Existing data typically transforms to upper limits on $\Delta c/c$ around $10^{-20}\text{--}10^{-21}$ level in energy band $E\sim 10^{19}\text{--}10^{20} \,\mathrm{eV}$, thus giving lower bound $a^{-1} \gtrsim 10^{11}\text{--}10^{12} \,\mathrm{GeV}$, consistent with lattice gauge field theory analysis.
+
+\subsection{5.2 Energy-Dependent Light Speed and Gamma-Ray Burst Time Delays}
+
+If rewriting lattice and finite-precision artifacts together as effective Lorentz-violating terms, high-energy photon dispersion relation can be written as
+
+$$E^2 = p^2 c^2 \left[ 1 + \xi_1 \left(\frac{E}{E_{\mathrm{QG}}}\right) + \xi_2 \left(\frac{E}{E_{\mathrm{QG}}}\right)^2 + \cdots \right],$$
+
+where $E_{\mathrm{QG}}$ is equivalent quantum gravity or lattice energy scale, $\xi_n$ are coefficients controlled by numerical artifacts. Effective light speed change with energy in first-order approximation is
+
+$$v(E) \approx c \left[ 1 - \frac{n+1}{2}\xi_n \left(\frac{E}{E_{\mathrm{QG}}}\right)^n \right].$$
+
+For transient sources at redshift $z$ (GRB, blazar outbursts, etc.), arrival time delay between different energy photons
+
+$$\Delta t \sim \frac{n+1}{2H_0} \,\xi_n \frac{\Delta E^n}{E_{\mathrm{QG}}^n} \int_0^z \frac{(1+z')^n}{\sqrt{\Omega_m(1+z')^3 + \Omega_\Lambda}}\,\mathrm{d}z'.$$
+
+Fermi-LAT analysis of several bright GRBs shows no significant energy-dependent delay in $E\sim \mathrm{GeV}$ range, thus giving strong limits on linear term $n=1$ and quadratic term $n=2$: for linear case $E_{\mathrm{QG}} \gtrsim E_{\mathrm{P}}$, for quadratic case $E_{\mathrm{QG}} \gtrsim 10^{10}\,\mathrm{GeV}$ typical order.
+
+In computational universe framework, $E_{\mathrm{QG}}$ can be related to lattice spacing $a$ and effective truncation error $\epsilon_{\mathrm{eff}}$. For example if numerical artifacts mainly from lattice, then $E_{\mathrm{QG}} \sim \hbar c/a$; if mainly from finite precision, then $\xi_n$ will be some function of $\epsilon_{\mathrm{eff}}$. Thus GRB time delay constraints can be rewritten as joint upper bounds on $a$ and $\epsilon_{\mathrm{eff}}$.
+
+\subsection{5.3 Light Speed Anisotropy and Modern Michelson--Morley Experiments}
+
+Modern Michelson--Morley type experiments adopt ultra-stable frequency optical resonators, comparing light speed differences on two mutually perpendicular interferometer arms, achieving scanning of different spatial directions through Earth's rotation and revolution. Müller et al. compressed light speed anisotropy relative upper limit to $\Delta c/c \lesssim 10^{-15}$ level through cooled optical resonator experiments, giving corresponding inequalities in Robertson--Mansouri--Sexl parameterization framework.
+
+If lattice anisotropy-induced light speed direction dependence can be approximately written in low-energy region as
+
+$$\frac{\Delta c(\theta,\phi)}{c} \sim \lambda_{\mathrm{ani}} \left(\frac{E}{E_{\mathrm{QG}}}\right)^2,$$
+
+then experimental frequency typically corresponds to $E\sim \mathrm{eV}$ level, even if $E_{\mathrm{QG}} \sim E_{\mathrm{P}}$, still have $(E/E_{\mathrm{QG}})^2 \sim 10^{-56}$, far below existing sensitivity. Thus low-energy optical experiments mainly constrain ``energy-independent'' anisotropy, i.e., if energy-independent lattice preferred direction exists, must make its weight $\lambda_{\mathrm{ani}} \lesssim 10^{-15}$. This means if computational universe failed to achieve energy-dependent suppression when setting up QCA model, macroscopic low-energy experiments suffice to exclude most ``coarse lattice'' constructions.
+
+\subsection{5.4 Atomic Clock Networks and Spacetime Drift of $\alpha$}
+
+Atomic clocks test fundamental constant variations by comparing stability of different transition frequencies, such as hydrogen hyperfine structure, optical transitions or highly charged ion clocks. Prestage et al. early obtained limit $|\Delta\alpha/\alpha| \lesssim 10^{-14}$ (over hundred-day time scale) using hydrogen microwave standard and mercury ion clock frequency comparison; with development of optical lattice clocks and highly charged ion clocks, this constraint has been further tightened, with specially designed clocks having enhanced sensitivity to $\alpha$ variation.
+
+In computational universe scenario, if ``resource scheduling'' mechanism causes slightly different discretization strategies in different spatial regions or gravitational potentials, $\alpha$ effective value may exhibit environment-related drift. Quasar absorption line data gives typical constraints $|\Delta\alpha/\alpha| \lesssim 10^{-6}\text{--}10^{-5}$ on cosmological scales; recent CMB and distance--modulus relation analyses also independently tested spatial modulation of $\alpha$. Synthesizing these results: between ``low-complexity'' cosmic voids and ``high-complexity'' galaxy clusters, if $\Delta\chi \sim 1$, then $|\lambda_{\alpha}| \lesssim 10^{-6}\text{--}10^{-5}$; while on gravitational potential variations near Earth orbit and solar activity cycle scales, then $|\lambda_{\alpha}| \lesssim 10^{-15}$.
+
+\section{Engineering Proposals}
+
+This section proposes several targeted ``computational forensics'' experimental proposals based on existing experiments, aiming to maximize constraint capability on $\eta_a, \epsilon_{\mathrm{eff}}, \delta_{\mathrm{res}}$.
+
+\subsection{6.1 ``Lattice Pattern'' Analysis of Ultra-High-Energy Cosmic Ray Anisotropy Survey}
+
+Existing ultra-high-energy cosmic ray anisotropy analyses mostly focus on correlations with large-scale structure or Galactic magnetic fields. To target lattice anisotropy, this work suggests introducing following analysis steps:
+
+\begin{enumerate}
+\item Select family of spherical harmonic bases on celestial sphere matching cubic lattice symmetry group $O_h$, expanding cosmic ray arrival direction angular distribution on these basis functions;
+
+\item Focus analysis on multipole moments related to $l=4$ mode, because $\sum k_i^4$ corresponding angular dependence can be represented by quadrupole and hexapole component combinations;
+
+\item Differentiate observed $O_h$-structure components from ``astrophysical background'' obtained from isotropic sources, Galactic magnetic field and large-scale structure simulations, identifying any residual ``lattice-type'' patterns.
+\end{enumerate}
+
+If significant $O_h$-structure deviation still not found in sample $E > 5\times 10^{19}\,\mathrm{eV}$, then Beane et al.'s $a^{-1} \gtrsim 10^{11}\,\mathrm{GeV}$ type constraint can be further raised by more than one order of magnitude.
+
+\subsection{6.2 Multi-Color Multi-Station Gamma-Ray Burst Joint Timing}
+
+Current Fermi-LAT, MAGIC, HESS and other facilities have analyzed energy-dependent delays of GRBs, but different instruments have different focuses in energy band and time resolution. For computational universe dispersion effects, dedicated joint observation activities can be designed with following features:
+
+\begin{enumerate}
+\item Simultaneous high-time-resolution observations in keV--MeV and GeV--TeV multi-energy bands to increase $\Delta E^n$;
+
+\item Prioritize GRBs with sharp rising edges or short pulse structures to reduce intrinsic source delay uncertainty;
+
+\item Introduce ``lattice direction'' hypothesis in statistical analysis, i.e., assuming specific spatial directions exist with enhanced or weakened dispersion effects, performing conditional grouping for different GRB celestial distributions.
+\end{enumerate}
+
+Through this strategy, hopes to advance constraints on quadratic energy-dependent dispersion by one to two orders of magnitude, thus more sensitively testing QCA lattice artifacts.
+
+\subsection{6.3 Rotating Optical Resonator Array and Ground ``Michelson--Morley Network''}
+
+To improve sensitivity to light speed anisotropy, multiple high-stability optical resonators can be deployed globally to form a ``Michelson--Morley network'', achieving long-term coherent data accumulation through satellite time synchronization. Experimental points include:
+
+\begin{enumerate}
+\item Each station configures multiple mutually orthogonal resonators, mechanically rotating at predetermined rate to realize scanning spatial directions in short time;
+
+\item Different station distributions on Earth should cover different latitudes and longitudes as much as possible to eliminate local systematic errors;
+
+\item Data analysis introduces templates pointing to Galactic plane, superGalactic plane and candidate ``lattice axes'' specific directions, performing template fitting on frequency drift.
+\end{enumerate}
+
+If long-term operation finds no frequency modulation related to any fixed cosmological direction, ``energy-independent'' lattice anisotropy can be further compressed to $\Delta c/c \lesssim 10^{-18}$ or lower.
+
+\subsection{6.4 Deep Space Atomic Clocks and ``Resolution Detection'' of Cosmic Voids}
+
+To test ``lazy computation'' hypothesis, high-stability atomic clocks (including highly charged ion clocks) can be carried on future deep space missions, continuously comparing frequencies as spacecraft traverse different gravitational potentials and large-scale structure environments. Specific proposals include:
+
+\begin{enumerate}
+\item Deploy standard clocks in Solar System outer orbits or Lagrange points, comparing with ground clocks through optical links, testing whether $\alpha$ and other constants have additional drift different from traditional gravitational redshift;
+
+\item In future missions reachable to interstellar medium, deliberately select approaching cosmic void directions, using long-term link comparisons to test slight deviations of $\alpha$ in ``low-complexity'' environments;
+
+\item Jointly analyze obtained data with quasar absorption line and CMB $\alpha$ constraints, constructing three-dimensional ``computational resolution mapping'' of $\delta_{\mathrm{res}}(x)$ for whole universe.
+\end{enumerate}
+
+\section{Discussion (risks, boundaries, past work)}
+
+\subsection{7.1 Relationship with Quantum Gravity and Effective Field Theory Frameworks}
+
+Many quantum gravity quantization schemes (such as loop quantum gravity, non-commutative geometry, doubly special relativity, etc.) similarly predict Lorentz violation or corrections near Planck scale, whose mathematical forms often resemble lattice artifacts, such as $p^3/M_{\mathrm{P}}$ or $p^4/M_{\mathrm{P}}^2$ correction terms in dispersion relations. Therefore, even if observing some high-energy dispersion or anisotropy, its interpretation need not point to simulation hypothesis, but may only be quantum gravity effects.
+
+This paper's contribution is: providing a set of internally consistent parameterizations within QCA and computational universe framework, such that numerical artifacts from different sources (lattice, finite precision, resource scheduling) can all be embedded in effective field theory and directly correspond to experimental data. Simultaneously showing if wanting compatibility with existing high-precision experiments, any ``computational universe'' hardware implementation must approach extreme limit of ``perfect reversible computation and large-scale error correction''.
+
+\subsection{7.2 Risks of Statistical and Systematic Errors}
+
+In ultra-high-energy cosmic ray, GRB and cosmological constant drift analyses, systematic errors are often difficult to completely control. For example:
+
+\begin{itemize}
+\item Cosmic ray source distribution and magnetic field models have uncertainties;
+
+\item GRB source intrinsic emission delay may be energy-dependent;
+
+\item Quasar absorption line measurements subject to instrumental wavelength calibration and absorption cloud self dynamics.
+\end{itemize}
+
+These factors may all produce seemingly ``numerical artifact'' signals. Therefore any claims about ``computational universe traces'' must be on strict systematic error analysis foundation and require consistent support from multiple independent observations.
+
+\subsection{7.3 Interpretation Space of Observational Constraints}
+
+Existing experiments give extremely strong constraints on Lorentz violation and constant drift, which can be interpreted from two angles:
+
+\begin{enumerate}
+\item If universe is computational, then its underlying implementation is highly sophisticated, with numerical artifacts compressed to limits;
+
+\item Universe is not realized in ``finite-word-length digital simulation'' manner, or its realization form mathematically equivalent to ideal QCA or continuous field theory, not containing numerical artifacts.
+\end{enumerate}
+
+This paper does not attempt to choose between these two interpretations, but emphasizes: regardless which, experimental results describe ``allowed deviation space''. If future experiments still find no significant deviation, parameter space of numerical artifacts can be further compressed; if systematic anomalies appear, need to distinguish and compare among quantum gravity, dark energy new physics and computational universe three interpretations.
+
+\subsection{7.4 Connection with Recent Simulated Universe Feasibility Studies}
+
+Vazza et al. recently from information and energy budget perspective assessed computational resources needed to reproduce observed universe in strict physical sense, pointing out if attempting to reproduce real universe in ``base universe'' through explicit numerical simulation manner, energy consumption may far exceed feasible range. This conclusion challenges ``naive numerical simulation'', but still reserves space for ``formal computational universe'' (such as mathematical structures, reversible QCA, etc.). This paper works within latter framework while borrowing former's resource estimation results to provide qualitative boundaries for reasonable values of $\eta_a, \epsilon_{\mathrm{eff}}, \delta_{\mathrm{res}}$:
+
+\begin{itemize}
+\item If $a$ too small, then simulation required storage and computational complexity explodes;
+
+\item If $\epsilon_{\mathrm{eff}}$ too large, then conflicts with experimental observations;
+
+\item If resource scheduling too aggressive, then must produce observable constant drift on cosmological scales.
+\end{itemize}
+
+\section{Conclusion}
+
+This paper within unified framework of quantum cellular automaton and computational universe concretizes ``simulation hypothesis'' into a set of parameterized models directly interfaceable with experiments. Through systematic analysis of cubic lattice dispersion relations, higher-dimensional effective operators and finite-precision random noise, we obtain following main conclusions:
+
+\begin{enumerate}
+\item Any QCA on cubic lattice approximating Lorentz-invariant field theory unavoidably exhibits $\mathcal{O}(a^2k^4)$ order anisotropic dispersion corrections in high-momentum region, thus causing direction dependence of high-energy particles and light speed.
+
+\item Finite-precision numerical implementation if not eliminated by perfect reversible computation and error correction will manifest macroscopically as random walk deviation of conservation laws. If taking Planck time as basic step, then for compatibility with existing observations, effective truncation error $\epsilon_{\mathrm{eff}}$ must be far below errors allowed by traditional floating-point numbers.
+
+\item Resource scheduling and ``lazy computation'' scenarios can be rewritten in effective field theory as slow dependence of fundamental constants on spatial background, whose magnitude is strictly constrained by atomic clocks, quasar absorption lines and cosmological data.
+
+\item Combining ultra-high-energy cosmic rays, gamma-ray burst time delays, modern Michelson--Morley experiments and atomic clock networks, can establish multi-dimensional constraint space on lattice spacing, truncation error and resolution modulation, providing quantitative framework for computational universe ``error budget''.
+
+\item This paper proposes series of ``computational forensics'' experimental proposals oriented toward future observation facilities, including lattice pattern cosmic ray anisotropy analysis, multi-station multi-color GRB joint timing, global optical resonator network and deep space atomic clock missions, providing paths for further compressing numerical artifact parameter space.
+\end{enumerate}
+
+These results have not proven universe must be simulation, but show if universe is realized computationally, then its hardware and algorithms must satisfy extremely stringent physical consistency conditions. Conversely, any future discoveries of subtle but robust Lorentz violation or constant drift can be reinterpreted through this framework as potential traces of ``computational universe''. This perspective provides additional interpretive dimension for high-precision physics experiments, while endowing simulation hypothesis with specific, falsifiable content.
+
+\section*{Acknowledgements, Code Availability}
+
+The author thanks public literature and data compilation work on quantum cellular automata, simulated universe and high-precision physics experiments, which provided necessary background and quantitative benchmarks for this paper. This paper is theoretical analysis, not involving new code implementations. If conducting specific data fitting and numerical simulations based on this parameterization in future, related code can be made public on appropriate platforms.
+
+\begin{thebibliography}{99}
+
+\bibitem{beane} S. R. Beane, Z. Davoudi, M. J. Savage, ``Constraints on the universe as a numerical simulation'', Eur. Phys. J. A \textbf{50}, 148 (2014).
+\url{https://arxiv.org/abs/1210.1847}
+
+\bibitem{vazza} F. Vazza, et al., ``Astrophysical constraints on the simulation hypothesis for the universe'', Front. Phys. (2025).
+\url{https://www.frontiersin.org/journals/physics/articles/10.3389/fphy.2025.1561873}
+
+\bibitem{muller} H. Müller, S. Herrmann, A. Saenz, A. Peters, C. Lämmerzahl, ``Modern Michelson--Morley experiment using cryogenic optical resonators'', Phys. Rev. Lett. \textbf{91}, 020401 (2003).
+\url{https://arxiv.org/abs/physics/0305117}
+
+\bibitem{fermi_lat} V. Vasileiou, et al., ``Constraints on Lorentz Invariance Violation with Fermi-LAT Observations of Gamma-Ray Bursts'', Phys. Rev. D \textbf{87}, 122001 (2013).
+\url{https://arxiv.org/abs/1308.6403}
+
+\bibitem{prestage} J. D. Prestage, R. L. Tjoelker, L. Maleki, ``Atomic Clocks and Variations of the Fine Structure Constant'', Phys. Rev. Lett. \textbf{74}, 3511 (1995).
+\url{https://link.aps.org/doi/10.1103/PhysRevLett.74.3511}
+
+\bibitem{wilczynska} M. R. Wilczynska, et al., ``Four direct measurements of the fine-structure constant 13 billion years ago'', Sci. Adv. \textbf{6}, eaay9672 (2020).
+\url{https://pmc.ncbi.nlm.nih.gov/articles/PMC7182409/}
+
+\bibitem{hci_clocks} Y.-M. Yu, et al., ``Highly charged ion (HCI) clocks: Frontier candidates for tests of fundamental physics'', Front. Phys. \textbf{11}, 1104848 (2023).
+\url{https://www.frontiersin.org/journals/physics/articles/10.3389/fphy.2023.1104848}
+
+\bibitem{cmb_alpha} H. M. Tohfa, et al., ``Cosmic microwave background search for fine-structure constant variations'', Phys. Rev. D \textbf{109}, 103529 (2024).
+\url{https://link.aps.org/doi/10.1103/PhysRevD.109.103529}
+
+\bibitem{lorentz_grb} S. Zhang, B.-Q. Ma, ``Lorentz violation from gamma-ray bursts'', Astropart. Phys. \textbf{61}, 108--113 (2015).
+\url{https://www.sciencedirect.com/science/article/pii/S0927650514000541}
+
+\end{thebibliography}
+
+\appendix
+
+\section{Appendix A: Group Theory Analysis of Cubic Lattice Dispersion and $\mathrm{SO}(3)$ Breaking}
+
+In Theorem 1 derivation, we demonstrated $\sum k_i^4$ structure emergence through specific difference operators. This appendix provides more general explanation based on group theory.
+
+In continuous case, Lorentz-invariant or rotation-invariant dispersion correction terms must consist of polynomials of $k^2 = \sum k_i^2$, such as $k^4, k^6$ etc., corresponding to scalar parts of $\mathrm{SO}(3)$ invariant tensors. On cubic lattice, symmetry group reduces to $O_h$. Under this group, momentum polynomials decompose according to irreducible representations, including scalar representation $A_1$, doubly degenerate representation $E$ and triply degenerate representation $T_2$ etc.
+
+Fourth-order polynomial space can be decomposed as
+
+$$\mathcal{P}_4(\mathbf{k}) \cong A_1 \oplus E \oplus T_2,$$
+
+where $A_1$ basis can take
+
+$$k_x^4 + k_y^4 + k_z^4,$$
+
+while $E$ and $T_2$ correspond to different non-scalar combinations, such as
+
+$$2k_z^4 - k_x^4 - k_y^4,\quad k_x^4 - k_y^4,$$
+
+etc. If requiring dispersion relation to remain scalar under $O_h$, can only choose $A_1$ component, i.e., $\sum k_i^4$. But $A_1$ is not scalar relative to $\mathrm{SO}(3)$, but linear combination of scalar $k^4$ and higher-order spherical harmonics $Y_{4m}$. Specifically, have
+
+$$\sum_{i=1}^3 k_i^4 = \frac{3}{5}k^4 + \text{(anisotropic terms related to } Y_{4m}\text{)}.$$
+
+This shows even remaining scalar under lattice symmetry group, still unavoidably introduces ``residual'' anisotropy relative to full rotation group. This anisotropy's angular dependence is characterized by $l=4$ spherical harmonic coefficients, which is precisely group theory foundation for proposing $l=4$ mode analysis of cosmic ray anisotropy in Section 6.1.
+
+For higher-order corrections $\mathcal{O}(a^4k^6)$ etc., can similarly analyze $\mathcal{P}_6(\mathbf{k})$ decomposition under $O_h$. As long as not introducing additional ``improvement'' operators (such as lattice improvement schemes), these anisotropic components are difficult to completely eliminate in high-energy region.
+
+\section{Appendix B: Multi-Scale Constraints of Finite-Precision Noise}
+
+In Theorem 2, we adopted single step $\Delta t \sim t_{\mathrm{P}}$ estimation. In actual physical processes there exist multiple effective time scales, this appendix provides multi-scale decomposition constraint structure.
+
+Let some physical process natural time scale be $\tau$, with one ``macroscopic event'' occurring on this scale (such as one scattering, one cosmic ray free propagation segment, one gravitational wave passage through detector). In computational universe framework, this time period corresponds to $N_\tau$ underlying time steps, each introducing relative error $\epsilon$. If macroscopic observable $Q$ sensitivity to each macroscopic event is $\delta Q_\tau \sim \sqrt{N_\tau}\epsilon Q_{\mathrm{char}}$, while experimental relative precision on $Q$ at this scale is $\sigma_Q/Q_{\mathrm{char}}$, then have
+
+$$\epsilon_{\mathrm{eff}} \lesssim \frac{\sigma_Q/Q_{\mathrm{char}}}{\sqrt{N_\tau}}.$$
+
+Different physical processes give different $N_\tau$ and $\sigma_Q$:
+
+\begin{enumerate}
+\item \textbf{Laboratory energy conservation tests}: Such as atomic transition energy level fine structure, time scale $\tau \sim 10^{-8}\,\mathrm{s}$, precision $\sigma_E/E \sim 10^{-12}\text{--}10^{-15}$.
+
+\item \textbf{Astrophysical processes}: Such as pulsar rotation period evolution, $\tau \sim 10^7\text{--}10^8\,\mathrm{s}$, precision $\sigma_f/f \sim 10^{-15}\text{--}10^{-18}$.
+
+\item \textbf{Cosmological processes}: Such as cosmic expansion history and CMB anisotropy, $\tau \sim 10^{13}\text{--}10^{17}\,\mathrm{s}$, precision depends on observables.
+\end{enumerate}
+
+Considering above various constraints simultaneously, can construct ``error manifold'' of $\epsilon_{\mathrm{eff}}$ at different energy and time scales, further delimiting which types of computational universe implementations are incompatible with existing observations. For example if some implementation causes extremely large $N_\tau$ in high-energy processes, then its constraint on $\epsilon_{\mathrm{eff}}$ is stronger than low-energy processes; conversely, if underlying algorithm adopts more refined reversible computation in high-energy region while allowing slightly larger errors in low-energy region, constraint structure may invert.
+
+\section{Appendix C: Simplified Model of ``Lazy Computation'' and Cosmic Voids}
+
+To quantitatively examine possible $\alpha(x)$ drift under ``lazy computation'' hypothesis, construct following simplified model:
+
+\begin{enumerate}
+\item Divide universe into two types of regions: dense region $D$ (galaxies and galaxy clusters) and void region $V$;
+
+\item In dense region, simulator uses high-resolution parameters $(a_D,\Delta t_D,n_D)$; in void region uses coarse-resolution parameters $(a_V,\Delta t_V,n_V)$, where $a_V > a_D$, $\Delta t_V > \Delta t_D$ or $n_V < n_D$;
+
+\item Assume electromagnetic field renormalization constants in these two types of regions satisfy
+
+$$Z_F^{(V)} = Z_F^{(D)}(1+\delta_F),\quad Z_\psi^{(V)} = Z_\psi^{(D)}(1+\delta_\psi),$$
+
+then
+
+$$\frac{\Delta\alpha}{\alpha} = \frac{\alpha_V - \alpha_D}{\alpha_D} \approx 2\delta_\psi - \delta_F.$$
+
+If assuming $\delta_F,\delta_\psi$ are analytic functions of $a$ and $\Delta t$, for example
+
+$$\delta_F \sim c_1 (a_V^2 - a_D^2)\Lambda^2 + c_2 (\Delta t_V - \Delta t_D)\Lambda + \cdots,$$
+
+where $\Lambda$ is some renormalization cutoff, then can express $\Delta\alpha/\alpha$ as combination of $a_V,a_D,\Delta t_V,\Delta t_D$. Substituting observed $|\Delta\alpha/\alpha|$ upper limit yields constraints on allowed resolution differences.
+\end{enumerate}
+
+For example if quasar absorption line observations show $|\Delta\alpha/\alpha| \lesssim 10^{-6}$ in range $z\sim 2\text{--}4$, then roughly can consider $|2\delta_\psi - \delta_F| \lesssim 10^{-6}$. If renormalization coefficients have $\mathcal{O}(1)$ coefficients for $a^2 \Lambda^2$, then must require $|a_V^2 - a_D^2|\Lambda^2 \lesssim 10^{-6}$, in case $\Lambda \sim M_{\mathrm{P}}$, this means even in cosmic voids, compared to dense regions, lattice spacing can only increase by less than relative $10^{-6}$ order of one Planck length. This result shows: under relatively natural renormalization assumptions, ``lazy computation'' has almost no adjustment room on cosmological scales, unless its impact on low-energy electromagnetic effects is precisely canceled in some way.
+
+\end{document}
+

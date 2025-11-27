@@ -1,0 +1,1428 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+% 放在 hyperref 之后或之前均可, 建议在 hyperref 之后
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% 修复未定义的 outline 环境
+\usepackage{outlines}
+
+% 为零散 Unicode 符号提供安全映射, 避免直接用 CJK 与特殊字符
+\DeclareUnicodeCharacter{2192}{\textrightarrow}   % →
+\DeclareUnicodeCharacter{2194}{\leftrightarrow}   % ↔
+\DeclareUnicodeCharacter{2264}{\leq}              % ≤
+\DeclareUnicodeCharacter{2265}{\geq}              % ≥
+\DeclareUnicodeCharacter{2248}{\approx}           % ≈
+\DeclareUnicodeCharacter{2212}{-}                 % −
+\DeclareUnicodeCharacter{2014}{---}               % — emdash
+\DeclareUnicodeCharacter{2013}{--}                % – endash
+\DeclareUnicodeCharacter{7AEF}{end}               % 端 → end
+
+\usepackage{enumitem}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{axiom}{Axiom}
+
+% Title information
+\title{Unified Framework of Windowed Scattering, Causal Manifolds, and Filter Chains: Axiomatic Theory of Group Delay, Redshift, and Light Speed with Non-Asymptotic Error Closure}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Within the unified context of ``universe = Generalized Light Structure (GLS),'' ``observer = filter chain (windowed compression $\to$ CP channel $\to$ POVM $\to$ threshold counting),'' and ``causality = lightlike cone preorder,'' we establish an axiomatic theory with the master scale
+$$
+\boxed{\ \frac{\varphi'(E)}{\pi}=\rho_{\rm rel}(E)=\frac{1}{2\pi}\operatorname{tr}\mathsf{Q}(E),\qquad \mathsf{Q}(E)=-i\,S(E)^\dagger \tfrac{dS}{dE}(E)\ }
+$$
+(phase derivative---relative density of states---Wigner--Smith group delay trace). \textbf{Causal red line:} Windowed group delay readout $T_\gamma[w_R,h]$ serves solely as operational time scale (can be negative in narrowband/resonance, having no universal size comparison with wavefront time $t_*$); causality determined exclusively by $t_*$ and lightlike cone partial order. Core results: (i) windowed group delay readout provides operational time scale, proven series-parallel additive and gauge covariant/relatively invariant (invariant when $U,V$ energy-independent or more generally $\partial_E(\arg\det U+\arg\det V)=0$); in vacuum links satisfying Nyquist discipline, high-frequency/alias-free limit aligns with wavefront velocity calibrating $c$; (ii) redshift characterized by spectral scaling with reciprocal time scaling law; (iii) light speed $c$ normed by vacuum wavefront, yielding wavefront lower bound and no-supercone propagation for arbitrary physical channels; (iv) ``GLS $\leftrightarrow$ causal manifold'' mutual construction outline with skeleton and consistency conditions---rigorous proof and naturality verification in separate work; (v) wave-particle duality and double-slit windowed complementarity $D^2+V^2\le 1$ unified in same ledger; (vi) spectral resolution enhancement (bandwidth narrowing) and redshift amplification are dual; conversely, temporal/image resolution enhancement ($\sigma_T$ decrease) and blueshift (bandwidth increase) are dual, consistent with $\sigma_T\gtrsim C_{w,h}/B$ in \S4.4, yielding Nyquist--Poisson--Euler--Maclaurin (NPE) finite-order error closure and engineering prescription; (vii) high-frequency platform bridge: under \S4 premises, blueshift limit of any fixed-shape normalized window family---single channel $\lim_{E_0\to\infty}T_\gamma=t_*$, multichannel $\lim_{E_0\to\infty}T_{\mathcal{C}}=N_{\rm eff}t_*$ and per-mode average $\lim_{E_0\to\infty}\overline{T}_{\mathcal{C}}=t_*$, treating causal wavefront $t_*$ as operational limit scale of $T_\gamma$ and $\overline{T}_{\mathcal{C}}$. Theory employs operator-measure-function language throughout (Toeplitz/Berezin compression $K_{w,h}$, readout = linear functional on spectral measure), unifying all time/density readouts under global unitarity postulate by $\mathsf{Q}=-iS^\dagger S'$; experimental non-unitarity traced back to master scale via unitary dilation $\widehat{S}$.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Generalized light structure; Wigner--Smith time delay; Birman--Kre\u{\i}n formula; Spectral shift; Windowed compression; Toeplitz/Berezin quantization; Group delay; Redshift; Nyquist--Poisson--Euler--Maclaurin; NPE error closure; Causal manifold; Filter chain; POVM; Hardy space; Kramers--Kronig
+
+\noindent\textbf{MSC 2020:} Primary 47A40, 81U20, 83C10; Secondary 42C40, 94A20, 42A38
+
+\section{Notation, Axioms, and Conventions}
+
+\subsection{Unit and Constant Norms}
+
+Default convention: $\hbar=1$ (when necessary also $c=1$). Restoring SI units, all time readouts derived from $\operatorname{tr}\mathsf{Q}$ need multiplication by $\hbar$, i.e., $T_{\rm phys}=\hbar\,T$; correspondingly, if $c$ not set to 1, restore light-path dimension by $L/c$.
+
+\textbf{Notation:} Take $\hbar=1$, identifying $E\equiv\omega$ (energy with angular frequency); both used interchangeably throughout for typesetting needs only.
+
+\textbf{Terminology alignment:} In this work, ``time'' without qualification refers to causal time $t_*$; $T_\gamma[w_R,h]$ termed windowed group delay readout or operational time scale.
+
+\subsection{Three-Part Time Principle}
+
+\textbf{Principle (dual-time separation):} Preorder and light speed norm determined solely by causal wavefront $t_*$, with $t_*(\gamma)\ge L_g/c$; windowed group delay readout $T_\gamma[w_R,h]$ (Definition 4.1) serves only as operational scale, having no universal size comparison with $t_*$ (allowing $T_\gamma<0$). Accordingly, this section tripartitions $\{t_*,\,T_\gamma,\,T_{\gamma\mid a}\}$ establishing ``causal--readout'' hierarchy.
+
+To prevent conflating ``readout with ontology,'' uniform stipulation:
+
+\textbf{(1) Causal time $t_*$:} Defined by earliest nonzero arrival of output impulse response of chain $\gamma$, $t_*(\gamma)=\inf\{\,t:\,g_\gamma(t;L_\gamma)\neq 0\,\}$, used solely for establishing reachability preorder and lightlike cone; see \S2 and \S4 wavefront lower bound.
+
+\textbf{(2) Windowed time $T_\gamma[w_R,h]$:} In-band linear readout of phase derivative, serving as operational quantity for time scale, not participating in preorder definition; can be negative in narrowband/resonance, having no universal size comparison with $t_*$.
+
+\textbf{(3) Conditioned time family $\{T_{\gamma\mid a}\}$:} Conditional readout family obtained after applying complete instrument $\{\mathcal{I}_a\}$ to idle/relay ports, whose unconditional master scale satisfies convex averaging identity
+$$
+\sum_a p_a\,T_{\gamma\mid a}[w_R,h]\ =\ T_\gamma[w_R,h],\qquad
+p_a:=\operatorname{Tr}\big[(\mathrm{Id}\otimes\mathcal{I}_a)(\rho)\big],
+$$
+embodying ``conditional sample rearrangement $\neq$ temporal ontological superposition.'' (Proposition and proof in \S5)
+
+\subsection{GR Covariance Statement (Events--Worldlines--Proper Time)}
+
+On curved spacetime $(\mathcal{M},g)$, event means $p\in\mathcal{M}$; observer is integral curve (worldline) $\gamma$ of unit timelike vector field $u^\mu$. Signature $(-+++)$ adopted. Proper time of timelike curve satisfies $c^{2}\,d\tau^{2}=-g_{\mu\nu}(x)\,dx^{\mu}dx^{\nu}$; lightlike wavefront given by $ds^{2}=0$. Geometric wavefront baseline $L$ in \S4--\S7 uniformly interpreted on curved spacetime as light-cone distance $L_{g}$ induced by $g$'s lightlike cone; thus wavefront criterion uniformly expressed as
+$$
+t_{*}(\gamma)\ \ge\ \frac{L_{g}}{c}.
+$$
+\textbf{Red line reiteration:} $t_*$ and preorder induced by it determine causality; windowed group delay readout $T_{\gamma}[w_R,h]$ serves only as measurable scale, not participating in preorder definition.
+
+\subsection{Axiom I (Scale Identity | Global Unitarity Postulate)}
+
+\textbf{Postulate (global unitarity):} Universe viewed as closed system; exists absolutely continuous spectral interval with energy $E$ as coordinate, in-band scattering matrix $S(E)\in C^1\cap\mathsf{U}(N)$ unitary. From Birman--Kre\u{\i}n formula
+$$
+\det S(E)=e^{-2\pi i\xi(E)},\qquad \mathsf{Q}(E)=-i\,S^\dagger(E)S'(E),
+$$
+\textbf{deduce}
+$$
+\rho_{\rm rel}(E):=-\xi'(E)=\frac{1}{2\pi}\operatorname{tr}\mathsf{Q}(E).
+$$
+We accordingly \textbf{define} phase measure $\mu_\varphi$: let
+$$
+d\mu_\varphi^{\rm ac}(E):=\rho_{\rm rel}(E)\,dE,
+$$
+equivalently written
+$$
+\boxed{\,\frac{\varphi'(E)}{\pi}=\rho_{\rm rel}(E)=\frac{1}{2\pi}\operatorname{tr}\mathsf{Q}(E)=-\xi'(E)\,}.
+$$
+
+\textbf{Phase $\varphi$ normalization:}
+
+Let $\operatorname{Log}\det S(E)$ be continuous branch chosen in-band (can specify $\arg\det S(E_\star)\in(-\pi,\pi]$ at reference frequency $E_\star$). Define
+$$
+\varphi(E):=\frac{1}{2i}\,\operatorname{Log}\det S(E)\quad\Rightarrow\quad
+\frac{\varphi'(E)}{\pi}=\frac{1}{2\pi}\operatorname{tr}\mathsf{Q}(E)=-\xi'(E).
+$$
+This work uses only $\varphi'(E)$, independent of constant phase. In single-channel case $S(E)=e^{2i\delta(E)}$ reduces to $\varphi=\delta$, thus
+$$
+\boxed{\ \frac{\varphi'(E)}{\pi}=\frac{\delta'(E)}{\pi}=\frac{1}{2\pi}\operatorname{tr}\mathsf{Q}(E)\ }.
+$$
+
+\textbf{Prescription:} Any experimental loss/gain viewed as tracing out environmental degrees of freedom; theoretical analysis uniformly handled through unitary dilation $\widehat{S}(E)$, evaluating all time/density readouts with $\mathsf{Q}(\widehat{S})=-i\widehat{S}^\dagger\widehat{S}'$. This work does not introduce $\widetilde{\mathsf{Q}}:=-iS^{-1}S'$.
+
+\subsection{Axiom II (Finite-Order EM and Poles = Master Scale)}
+
+All discrete-continuous conversions and windowed readouts follow NPE tripartition
+$$
+\varepsilon_{\rm total}=\varepsilon_{\rm alias}+\varepsilon_{\rm EM}+\varepsilon_{\rm tail},
+$$
+where $h,w$ strictly band-limited with frequency support $\mathrm{supp}\,\widehat{h}\subset[-\Omega_h,\Omega_h]$, $\mathrm{supp}\,\widehat{w}\subset[-\Omega_w,\Omega_w]$. With window family $w_R(E)=w((E-E_0)/R)$, $\mathrm{supp}\,\widehat{w_R}\subset[-\Omega_w/R,\Omega_w/R]$. Thus sampling interval
+$$
+\Delta\le \frac{\pi}{\Omega_h+\Omega_w/R}
+$$
+yields $\varepsilon_{\rm alias}=0$ (Nyquist--Shannon); approximately band-limited/effective bandwidth scenarios retain $\varepsilon_{\rm alias}$ as estimable residual. $\varepsilon_{\rm EM}$ controlled by finite-order Euler--Maclaurin (endpoint Bernoulli layers and explicit remainder); $\varepsilon_{\rm tail}$ controlled by out-of-window decay. Singularities non-increasing, poles determine master scale.
+
+\subsection{Notation Conventions}
+
+Convention: $(h\star f)(E):=(h*f)(E)$ where $\check{h}(E):=h(-E)$, asterisk denotes convolution over energy variable. Window family taken as $w_R(E)=w((E-E_0)/R)$, default $w$ even function belonging to $L^1\cap C^M$ supporting used Euler--Maclaurin order; kernel $h$ also taken $h\in L^1\cap C^M$, specific normalization stated in context.
+
+\textbf{EM applicable domain (supplement):} For finite-order EM error bound to hold rigorously, using $2M$ order formula assumes $f=w_R\cdot(h\!\star\!\rho_{\rm rel})\in W^{2M,1}(\mathbb{R})$. Sufficient condition: $w,h\in W^{2M,1}$ and $\rho_{\rm rel}\in L^\infty_{\rm loc}$. Thus Appendix B bounds all directly applicable.
+
+\textbf{Fourier norm:} $\widehat{f}(\omega):=\displaystyle\int_{\mathbb{R}} f(E)\,e^{-i\omega E}\,dE$, $f(E)=\displaystyle\frac{1}{2\pi}\int_{\mathbb{R}}\widehat{f}(\omega)\,e^{i\omega E}\,d\omega$. Under this norm, Nyquist condition $\Delta\le \pi/(\Omega_h+\Omega_w/R)$ and Appendix B Poisson formula $2\pi$ factors and phase conventions consistent.
+
+\textbf{Area norm:} This work chooses window-kernel normalization such that
+$$
+\boxed{\ \int_{\mathbb{R}} (w_R*\check{h})(E)\,dE=2\pi\ }.
+$$
+This norm ensures when $(2\pi)^{-1}\operatorname{tr}\mathsf{Q}$ approximately constant in-band, $T_\gamma$ numerically equals that constant. Specifically, for single-channel pure delay $S(E)=e^{iE\tau}$ or $S(E)=e^{2i\delta(E)}$, under this normalization directly yields $T_\gamma=\tau$ or $T_\gamma=L/c$, independent of window-kernel specifics.
+
+\textbf{BK differentiable version applicable domain (supplement):}
+
+In working band, assume scattering system satisfies sufficient conditions making spectral shift function $\xi(E)$ absolutely continuous (e.g., wave operators complete, or $(H-H_0)$ belongs to trace-class type perturbation classical case), thus $\xi'\in L^1_{\rm loc}$, and
+$$
+\frac{d}{dE}\arg\det S(E)=-2\pi\,\xi'(E)\quad \text{a.e.}
+$$
+Thus with $\operatorname{tr}\mathsf{Q}=-i\,\tfrac{d}{dE}\log\det S$ can align almost everywhere, obtaining $(2\pi)^{-1}\operatorname{tr}\mathsf{Q}=-\xi'$.
+
+\noindent $S(E)\in\mathsf{U}(N)$: multichannel scattering matrix, $\mathsf{Q}=-iS^\dagger S'$. $\quad$ $\rho_{\rm rel}=-\xi'(E)=(2\pi)^{-1}\operatorname{tr}\mathsf{Q}$. $\quad$ Window-kernel: even window $w_R(E)=w((E-E_0)/R)$, front kernel $h$. $\quad$ Compression $K_{w,h}$: Toeplitz/Berezin type.
+
+\begin{lemma}[Scale identity trace-spectral shift relation]
+\label{lem:scale-identity}
+From $\det S(E)=e^{-2\pi i\xi(E)}$ and $\mathsf{Q}=-iS^\dagger S'$ obtain $\tfrac{d}{dE}\log\det S(E)=-2\pi i\,\xi'(E)$ and $\operatorname{tr}\mathsf{Q}(E)=-i\,\tfrac{d}{dE}\log\det S(E)$, thus $(2\pi)^{-1}\operatorname{tr}\mathsf{Q}(E)=-\xi'(E)$.
+\end{lemma}
+
+\textbf{Sign convention:} $\frac{1}{2\pi}\operatorname{tr}\mathsf{Q}=-\xi'(E)=\frac{\delta'(E)}{\pi}$ $\Rightarrow$ $\boxed{\ \delta(E)=-\pi\,\xi(E)+\mathrm{const}\ }$.
+
+\begin{lemma}[Existence/minimal dimension of unitary dilation]
+\label{lem:dilation}
+If effective scattering $S_{\rm eff}(E)$ is contraction operator family (passive, $\|S_{\rm eff}\|\le 1$) and measurable/moderately smooth in $E$, there exists minimal-dimensional unitary dilation $\widehat{S}(E)\in\mathsf{U}(N+M)$ such that $S_{\rm eff}=P_{\mathcal{C}}\widehat{S} P_{\mathcal{C}}$; this dilation unique up to unitary equivalence. Based on Stinespring/Naimark/Sz.-Nagy dilation theory, proof not expanded here.
+\end{lemma}
+
+\textbf{Regularity supplement (differentiability premise):} For $\widehat{\mathsf{Q}}(E)=-i\,\widehat{S}^\dagger\widehat{S}'(E)$ well-defined and integrable, assume existence of minimal-dimensional unitary dilation family $E\mapsto\widehat{S}(E)\in\mathsf{U}(N+M)$ satisfying $\widehat{S}\in C^1(\mathbb{R})$ (or absolutely continuous $W^{1,1}_{\rm loc}$), and $\operatorname{tr}\,\widehat{\mathsf{Q}}\in L^1_{\rm loc}(\mathbb{R})$. This assumption only embeds experimentally smooth non-unitary effects into conservative extension, not changing physical content. Engineering-wise guaranteed by channel frequency response band-limitation and regularity.
+
+\begin{remark}[Regularity Box: unified summary of premises]
+\label{rem:regularity}
+Throughout this work, we assume:
+\begin{enumerate}[label=(\roman*), leftmargin=*]
+\item \textbf{Scattering regularity:} In-band $S(E)\in C^1(\mathbb{R})\cap\mathsf{U}(N)$, or for open subsystems, minimal unitary dilation $\widehat{S}(E)\in C^1(\mathbb{R})\cap\mathsf{U}(N+M)$ exists.
+\item \textbf{Spectral shift integrability:} $\xi'(E)\in L^1_{\rm loc}(\mathbb{R})$, guaranteeing $(2\pi)^{-1}\operatorname{tr}\mathsf{Q}=-\xi'$ makes sense almost everywhere.
+\item \textbf{Window-kernel integrability:} $(w_R*\check{h})\in L^1(\mathbb{R})$ and $(w_R*\check{h})\cdot\operatorname{tr}\mathsf{Q}\in L^1(\mathbb{R})$, ensuring windowed readout $T_\gamma[w_R,h]$ well-defined.
+\item \textbf{Band-limitation (for NPE):} $\widehat{w},\widehat{h}$ have compact support or controlled decay, allowing Nyquist--Shannon sampling and finite-order Euler--Maclaurin approximation with explicit error bounds.
+\end{enumerate}
+These are the only regularity premises used throughout. All main results hold under these assumptions.
+\end{remark}
+
+\section{GLS and Filter Chains}
+
+\subsection{Object Layer}
+
+\begin{definition}[GLS]
+\label{def:gls}
+Let
+$$
+\mathfrak{U}=(\mathcal{H},\ S(E),\ \mu_\varphi,\ \mathcal{W}),
+$$
+where $d\mu_\varphi^{\rm ac}=(\varphi'/\pi)\,dE$, $\mathcal{W}$ is implementable window-kernel dictionary. For arbitrary state $\rho$, windowed readout defined as
+$$
+\boxed{\ \mathrm{Obs}(w_R,h;\rho):=\operatorname{Tr}(K_{w,h}\rho)
+=\int_{\mathbb{R}} w_R(E)\,[\,h\!\star\!\rho_{\rm state}\,](E)\,dE\ }.
+$$
+\end{definition}
+
+\textbf{Numerical implementation (NPE):} When using sampling/truncation/finite-order Euler--Maclaurin for numerical implementation, denote integrand
+$$
+f(E):=w_R(E)\,[\,h\!\star\!\rho_{\rm state}\,](E),
+$$
+at sampling points $E_n=E_0+n\Delta$, truncation $|n|\le N$, EM order $2M$, realized readout defined as
+$$
+\mathrm{Obs}_{\rm NPE}(w_R,h;\rho):=\Delta\sum_{|n|\le N} f(E_n),
+$$
+then relation between exact and realized value is
+$$
+\mathrm{Obs}(w_R,h;\rho)=\mathrm{Obs}_{\rm NPE}(w_R,h;\rho)+\varepsilon_{\rm tail}+\varepsilon_{\rm alias}+\varepsilon_{\rm EM},
+$$
+where conditions and bounds for three error terms see \S3.3 and Appendix B; this decomposition does not change exact integral definition, only describes deviation ledger of numerical approximation.
+
+Here $\rho_{\rm state}(E):=\dfrac{d\mu_\rho^{\rm ac}}{dE}$ is energy spectral density of state $\rho$ relative to Lebesgue measure $dE$; while $\rho_{\rm rel}(E):=-\xi'(E)=(2\pi)^{-1}\operatorname{tr}\mathsf{Q}(E)$ belongs to channel/scattering data. Only when choosing reference state $\rho_{\rm ref}$ satisfying $d\mu_{\rho_{\rm ref}}^{\rm ac}=\rho_{\rm rel}(E)\,dE$ can $\rho_{\rm rel}$ replace $\rho_{\rm state}$ in formula; other cases must explicitly distinguish them.
+
+\textbf{General spectral decomposition (measure version):} Let
+$$
+\mu_\rho=\mu_\rho^{\rm ac}+\sum_k p_k\,\delta_{E_k}+\mu_\rho^{\rm sc}.
+$$
+For arbitrary integrable kernel $h$, define measure convolution
+$$
+(h*\mu_\rho)(E):=\int h(E-\xi)\,d\mu_\rho(\xi).
+$$
+Then
+$$
+\boxed{\ \mathrm{Obs}(w_R,h;\rho)=\int_{\mathbb{R}} w_R(E)\,(h*\mu_\rho)(E)\,dE\ }
+$$
+explicitly decomposes as
+$$
+\mathrm{Obs}=\int w_R(E)\,[h*\mu_\rho^{\rm ac}](E)\,dE
+\;+\;\sum_k p_k\,(w_R*\check{h})(E_k)
+\;+\;\int w_R(E)\,[h*\mu_\rho^{\rm sc}](E)\,dE.
+$$
+Pure AC case reduces to main text formula; thus ``$\rho_{\rm rel}\neq\rho_{\rm state}$'' domain distinction remains mandatory.
+
+\textbf{Note:} For arbitrary finite measure $\mu$ and $h\in L^1$, $(h*\mu)\in L^\infty(\mathbb{R})\cap UC(\mathbb{R})$ (bounded and uniformly continuous), so third term computed as function integral.
+
+\textbf{Two readout types comparison table (domain and role mandatory columns):}
+
+\begin{center}
+\begin{tabular}{|l|p{5cm}|p{5cm}|}
+\hline
+Item & State readout $\mathrm{Obs}(w_R,h;\rho)$ & Channel master scale readout $T_\gamma[w_R,h]$ \\
+\hline
+Object & Energy spectral density of quantum state $\rho$ & Channel/scattering data $S(E)$ or $\mathsf{Q}(E)$ \\
+\hline
+Dependent quantity & $\rho_{\rm state}(E)=\frac{d\mu_\rho^{\rm ac}}{dE}$ & $\rho_{\rm rel}(E)=(2\pi)^{-1}\operatorname{tr}\mathsf{Q}(E)$ \\
+\hline
+Affected by CP channel/POVM & Yes (branches after conditioning) & No (depends only on channel master scale) \\
+\hline
+Cross-instrument additivity & No (requires convex combination or run-frequency weighting) & Additive under series/parallel (Theorem 3.2) \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Warning:} $\rho_{\rm rel}\neq\rho_{\rm state}$ in any case (unless explicitly constructing reference state $\rho_{\rm ref}$ such that $d\mu_{\rho_{\rm ref}}^{\rm ac}=\rho_{\rm rel}\,dE$); they belong to different domains, cannot be casually swapped.
+
+\subsection{Operational Syntax: Filter Chain}
+
+\begin{definition}[Filter chain]
+\label{def:filter-chain}
+One observation process
+$$
+\boxed{\ \mathcal{O}=\mathcal{M}_{\rm th}\circ \{M_i\}\circ \Phi\circ K_{w,h}\ }
+$$
+with $K_{w,h}$ locating bandwidth and geometry, $\Phi$ representing coupling/decoherence (CP), $\{M_i\}$ as POVM readout basis, $\mathcal{M}_{\rm th}$ thresholding flux into clicks. Born probability and minimum KL projection consistency see \S10.
+\end{definition}
+
+\section{Causal Manifold Emergence}
+
+\textbf{Premise dependency statement:} This section's preorder/partial order conclusions all understood under \S5 premises (i)--(iv) (LTI+causal+Hardy, high-frequency vacuum limit, locality, passivity); \S5.2 will provide wavefront lower bound proof.
+
+\subsection{Events and Simultaneity (Einstein Synchronization)}
+
+Given observer worldline $\gamma$ and its local inertial slice $(t,\mathbf{x})$. For any event $q$, let $\gamma$ emit light signal at time $t_{\rm send}$ and receive echo at $t_{\rm recv}$, define
+$$
+t_{\rm sim}(q):=\tfrac12\big(t_{\rm send}+t_{\rm recv}\big).
+$$
+Call $q$ ``simultaneous'' with event on $\gamma$ at $t_{\rm sim}(q)$. This ``simultaneity'' depends on observer's 4-velocity $u^\mu$, equivalent to taking spatial hypersurface orthogonal to $u^\mu$; it only serves slicing and coordinate selection, not changing \S2.1 reachability preorder. Between two inertial frames $S,S'$ in Minkowski spacetime, Lorentz transformation gives relative simultaneity formula
+$$
+\Delta t'=\gamma\left(\Delta t-\frac{v\,\Delta x}{c^{2}}\right),\qquad \gamma=\frac{1}{\sqrt{1-v^{2}/c^{2}}}.
+$$
+Thus ``whether simultaneous'' is not spacetime ontological proposition but observer-dependent slicing choice; causality still determined solely by $t_*$ and lightlike cone.
+
+\subsection{Upper Half-Plane Analyticity (Hardy) $\Rightarrow$ One-Sided Support and Partial Order}
+
+\textbf{Signed measure clarification:} Since $\rho_{\rm rel}(E)=(2\pi)^{-1}\operatorname{tr}\mathsf{Q}(E)$ can take negative values (e.g., in narrowband/resonance regions), the measure $\mu_\varphi$ with $d\mu_\varphi=\rho_{\rm rel}(E)\,dE$ is a signed measure, not a positive measure. This section only requires $\rho_{\rm rel}\in L^2(\mathbb{R})$ to ensure $m(z)\in H^2(\mathbb{C}^+)$; we do not claim $m(z)$ is a Herglotz function (which would require positivity).
+
+Take upper half-plane Cauchy transform
+$$
+m(z)=\int_{\mathbb{R}}\frac{d\mu_\varphi(E)}{E-z},
+$$
+where $\mu_\varphi$ defined by Axiom I. To apply Paley--Wiener/Titchmarsh and Kramers--Kronig, this manuscript in \S2--\S4 assumes $\mu_\varphi$ absolutely continuous with $\rho_{\rm rel}\in L^2(\mathbb{R})$, thus
+$$
+m(z)=\int_{\mathbb{R}}\frac{d\mu_\varphi(E)}{E-z}\in H^2(\mathbb{C}^+).
+$$
+If experimental non-unitarity introduces singular contributions that cannot be ignored, uniformly incorporate into environment degrees of freedom of unitary dilation $\widehat{S}$ without counting toward singular part of $\mu_\varphi$.
+
+\textbf{Object pairing clarification:} This work \S2--\S4 assumes system's frequency-domain transfer function/scattering function analytic in upper half-plane with Hardy boundary value, thus by Paley--Wiener/Titchmarsh and Kramers--Kronig can deduce corresponding time-domain impulse response $g(t)$ one-sided support (normalized $t\ge 0$) and real/imaginary part Hilbert conjugate. $m(z)$ serves only as Cauchy transform induced by $\mu_\varphi$, used for phase-density Hilbert relation bookkeeping; one-sided support comes from transfer function/scattering function Hardy property not $m(z)$.
+
+\textbf{Convention (curved spacetime notation unification):} From this section, geometric length of chain denoted $L_\gamma:=L_g(\gamma)$, whose infimum is $L_*(x,y)$. Partial order criterion consistent with \S4.1 wavefront norm.
+
+\begin{definition}[Wavefront time and geometric quantities]
+\label{def:wavefront}
+Let chain set $\Gamma(x,y):=\{\gamma:x\to y\}$. If $\Gamma(x,y)\neq\varnothing$, define
+$$
+t_*(\gamma):=\inf\{\,t:\,g_\gamma(t;L_\gamma)\neq 0\,\},\qquad
+\tau(x,y):=\inf_{\gamma\in\Gamma(x,y)} t_*(\gamma),\qquad
+L_*(x,y):=\inf_{\gamma\in\Gamma(x,y)} L_\gamma,
+$$
+where $L_\gamma:=L_g(\gamma)$ induced by background metric $g$'s lightlike cone.
+Convention: when $\Gamma(x,y)=\varnothing$, $\tau(x,y)$ and $L_*(x,y)$ denoted $+\infty$.
+\end{definition}
+
+\begin{definition}[Reachability preorder]
+\label{def:preorder}
+Define preorder relation
+$$
+\boxed{\ x\preceq y\;\Longleftrightarrow\;\Gamma(x,y)\neq\varnothing\ }.
+$$
+\end{definition}
+
+\textbf{Corollary of Theorem 5.2 (geometric wavefront criterion equivalence):} Under \S5 premises (i)--(iv) (LTI+Hardy causality, high-frequency vacuum limit, locality, passivity), Theorem 5.2 yields for any chain $t_*(\gamma)\ge L_\gamma/c$. Thus
+$$
+\Gamma(x,y)\neq\varnothing\quad \Longrightarrow\quad \tau(x,y)\ge \frac{L_*(x,y)}{c}.
+$$
+Thus under this premise, above reachability preorder $x\preceq y$ and geometric wavefront criterion ``$\Gamma(x,y)\neq\varnothing$ and $\tau(x,y)\ge L_*(x,y)/c$'' are equivalent. Inequality form retained to highlight geometric wavefront baseline $c$; windowed group delay readout $T_\gamma[w_R,h]$ does not participate in preorder definition.
+
+\textbf{Convention (identity chain):} For each $x$, $\Gamma(x,x)$ contains identity chain $e_x$, stipulate $L_{e_x}=0$, $g_{e_x}(t;0)=\delta(t)$, thus $t_*(e_x)=0$. Then $\tau(x,x)=0=L_*(x,x)/c$, reflexivity immediately obtained by definition.
+
+\textbf{Assumption (no closed causal loops):} No $x\neq y$ exists such that $x\preceq y$ and $y\preceq x$. Define lightlike cone boundary
+$$
+\partial J^+(x):=\{\,y\in J^+(x):\ \tau(x,y)=L_*(x,y)/c\,\},\qquad
+J^+(x):=\{\,y:\Gamma(x,y)\neq\varnothing,\ x\preceq y\,\}.
+$$
+
+\begin{proposition}[Partial order property, depending on wavefront lower bound]
+\label{prop:partial-order}
+Under wavefront lower bound assumption (i.e., for any chain $\gamma$ have $t_*(\gamma)\ge L_\gamma/c$; this assumption deducible from \S5 premises (i)--(iv), see Theorem 5.2) and ``no closed causal loops'' condition, $\preceq$ is partial order.
+\end{proposition}
+
+\begin{proof}
+Reflexivity from identity chain $e_x$; let $x\preceq y$ and $y\preceq z$, take any concatenated chain $\gamma=\gamma_{z\leftarrow y}\circ\gamma_{y\leftarrow x}$. By convolution support Minkowski sum property, have
+$$
+t_*(\gamma)\ \ge\ t_*(\gamma_{z\leftarrow y})+t_*(\gamma_{y\leftarrow x})\ (\text{equality when boundaries don't cancel}),
+$$
+then by wavefront lower bound
+$$
+t_*(\gamma)\ \ge\ \frac{L_{\gamma_{z\leftarrow y}}+L_{\gamma_{y\leftarrow x}}}{c}\ \ge\ \frac{L_*(x,z)}{c}.
+$$
+Thus taking infimum over all chains yields $\tau(x,z)\ge L_*(x,z)/c$, thus $x\preceq z$; antisymmetry given by ``no closed causal loops.''
+\end{proof}
+
+Windowed group delay readout $T_\gamma[w_R,h]$ is frequency-domain weighted readout of phase derivative, having no general size comparison relation with wavefront time $t_*(\gamma)$.
+
+\subsection{Phase Singularity $\Rightarrow$ Earliest Arrival and Causal Boundary}
+
+de Branges phase jumps/poles (Hermite--Biehler zeros, scattering phase shift sudden changes) correspond to arrival singularities (stationary phase/equi-temporal sets), providing detectable peak markers for light-cone edge.
+
+\section{Operational Time Scale: Windowed Group Delay Readout}
+
+\subsection{Definition}
+
+Following $T_\gamma[w_R,h]$ is in-band readout of phase derivative, serving as operational readout for time scale, not wavefront time $t_*$.
+
+\textbf{Convergence premise:} This section assumes $(w_R*\check{h})\in L^1(\mathbb{R})$, $\operatorname{tr}\mathsf{Q}\in L^1_{\rm loc}(\mathbb{R})$, and $(w_R*\check{h})\cdot \operatorname{tr}\mathsf{Q}\in L^1(\mathbb{R})$, thus $T_\gamma[w_R,h]$ integral well-defined. Engineering-wise guaranteed by Axiom II band-limitation and $\mathsf{Q}$ polynomial growth bound.
+
+\begin{definition}[Windowed group delay readout]
+\label{def:windowed-delay}
+For causally reachable propagation-readout chain $\gamma$ and window-kernel $(w_R,h)$, define
+$$
+\boxed{\ T_\gamma[w_R,h]\;:=\;\int_{\mathbb{R}} (w_R*\check{h})(E)\,\frac{1}{2\pi}\operatorname{tr}\mathsf{Q}_\gamma(E)\,dE\ },\qquad \check{h}(E):=h(-E),
+$$
+and convention $(h\star f)(E)=(h*f)(E)$. Equivalently,
+$$
+T_\gamma[w_R,h]=\int_{\mathbb{R}} w_R(E)\,[\,h\!\star\!\rho_{\rm rel}\,](E)\,dE.
+$$
+This quantity realizes ``in-band time'' implementable readout on master scale. Subsequent all formulas about sampling and NPE act on integrand
+$$
+f(E):=w_R(E)\big[h\!\star\!\rho_{\rm rel}\big](E),
+$$
+taking this $f$ as sole object of error estimation.
+\end{definition}
+
+\textbf{Forward declaration (multichannel total delay vs geometric wavefront):} Multichannel case $T_\gamma$ measures channel-summed total delay (counted by $\operatorname{tr}I$); for geometric wavefront scale, use per-mode average $\overline{T}_{\mathcal{C}}$ (see Definition 4.3 and Proposition 4.8). High-frequency platform limit: $\lim T_{\mathcal{C}}=N_{\rm eff}t_*$ (total delay) while $\lim\overline{T}_{\mathcal{C}}=t_*$ (geometric wavefront).
+
+\textbf{Side note A (signed density and negativity possible):} $(2\pi)^{-1}\operatorname{tr}\mathsf{Q}$ is signed density (density of signed measure), narrowband/resonance can cause $T_\gamma<0$; has no universal size comparison with wavefront time $t_*$. \textbf{Misunderstanding prevention emphasis:} ``negative $T_\gamma$'' only reflects in-band phase derivative weighting being negative; does not compare size with $t_*$, also does not participate in causal determination (causality determined solely by $t_*$ and partial order).
+
+\textbf{Side note B (pure delay calibration):} For single-channel pure delay $S(E)=e^{iE\tau}$ or $S(E)=e^{2i\delta(E)}$, under above area norm $\int(w_R*\check{h})=2\pi$ have $T_\gamma=\tau$ or $T_\gamma=L/c$. This ensures windowed readout directly aligns with geometric quantity in standard case. \textbf{Numerical implementation suggestion:} Use pure delay reference source for first-order calibration (absorbing $\int(w_R*\check{h})$ estimation error into constant factor), avoiding absolute time standard drift due to small normalization errors; suggest reporting ``pure delay baseline'' calibration factor once, merging its uncertainty into $T_\gamma$ systematic error.
+
+\textbf{Postulate (incomparability):} For any chain $\gamma$ and any window-kernel $(w_R,h)$, no universal constants $C_1,C_2$ exist making $C_1\,t_*(\gamma)\le T_\gamma[w_R,h]\le C_2\,t_*(\gamma)$ hold universally; reverse comparison also fails. Only in vacuum link, Nyquist discipline satisfied and impulse arriving along geodesic limit case can they coincide at calibration layer, used for calibrating master scale rather than defining partial order.
+
+\subsection{Series-Parallel Additivity, Gauge Covariance}
+
+\begin{theorem}[Additivity, unitary scattering]
+\label{thm:additivity}
+Let in $w_R$ band $S_j^\dagger(E)S_j(E)=I\ (j=1,2)$. If $\gamma=\gamma_2\circ\gamma_1$, then
+$$
+\operatorname{tr}\mathsf{Q}_{\gamma_2\circ\gamma_1}
+=\operatorname{tr}\mathsf{Q}_{\gamma_2}+\operatorname{tr}\mathsf{Q}_{\gamma_1},\qquad
+T_{\gamma_2\circ\gamma_1}[w_R,h]=T_{\gamma_2}[w_R,h]+T_{\gamma_1}[w_R,h].
+$$
+\end{theorem}
+
+\begin{proof}
+From $(S_2S_1)'=S_2'S_1+S_2S_1'$ get $\mathsf{Q}(S_2S_1)=S_1^\dagger\mathsf{Q}(S_2)S_1+\mathsf{Q}(S_1)$; taking trace using cyclic invariance yields first formula; substituting into definition yields second.
+\end{proof}
+
+\textbf{Remark (unitary version):} By Axiom I (scale identity | global unitarity postulate), any series/parallel network viewable as block construction of single unitary dilation $\widehat{S}$, thus additivity of $\operatorname{tr}\mathsf{Q}$ and $T_\gamma[w_R,h]$ directly holds in unitary framework, needing no other alternative prescriptions.
+
+\textbf{Engineering sufficient condition (open subsystem cascade additivity):} For open subsystem unitary dilations $\widehat{S}_1,\widehat{S}_2$, if in-band cross-block norms $\|P_{\mathcal{C}}\widehat{S}_2P_{\mathcal{C}}^\perp\|,\|P_{\mathcal{C}}^\perp\widehat{S}_1P_{\mathcal{C}}\|$ negligible (``no parasitic bypass coupling''), then
+$$
+T_{\mathcal{C}}[\gamma_2\circ\gamma_1]\approx T_{\mathcal{C}}[\gamma_2]+T_{\mathcal{C}}[\gamma_1],
+$$
+
+\textbf{Area norm reminder:} $\int_{\mathbb{R}}(w_R*\check{h})\,dE=2\pi$ $\Rightarrow$ $C=1$.
+
+with error bound
+$$
+\big|T_{\mathcal{C}}[\gamma_2\circ\gamma_1]-T_{\mathcal{C}}[\gamma_2]-T_{\mathcal{C}}[\gamma_1]\big|
+\ \lesssim\ C\,\sup_{E\in{\rm supp}(w_R*\check{h})}\Big(\|P_{\mathcal{C}}\widehat{S}_2P_{\mathcal{C}}^\perp\|+\|P_{\mathcal{C}}^\perp\widehat{S}_1P_{\mathcal{C}}\|\Big),
+$$
+where $P_{\mathcal{C}}$ is orthogonal projection of accessible subspace (determining $N_{\rm eff}$); constant $C=C(w,h)$ depends only on window-kernel area norm and effective bandwidth $B=\Omega_h+\Omega_w/R$, can take explicit form $C=\|w_R*\check{h}\|_{L^1}/(2\pi)$. When $(w_R*\check{h})\ge 0$ and $\int(w_R*\check{h})=2\pi$, $C=1$. \textbf{Reporting recommendation:} Experiments should provide this error bound or note estimation method in Appendix B.
+
+\begin{definition}[Accessible subspace readout]
+\label{def:accessible}
+For open subsystem, denote $P_{\mathcal{C}}$ as orthogonal projection of accessible subspace, define accessible channel windowed group delay readout (total delay)
+$$
+\boxed{\ T_{\mathcal{C}}[w_R,h]:=\int (w_R*\check{h})(E)\,\frac{1}{2\pi}\,\operatorname{tr}\big(P_{\mathcal{C}}\mathsf{Q}(E) P_{\mathcal{C}}\big)\,dE\ },\quad
+N_{\rm eff}:=\mathrm{rank}\,P_{\mathcal{C}}.
+$$
+This measures channel-summed total delay. Define per-mode average (geometric wavefront scale)
+$$
+\boxed{\ \overline{T}_{\mathcal{C}}[w_R,h]:=\frac{1}{N_{\rm eff}}\,T_{\mathcal{C}}[w_R,h]\ }.
+$$
+\end{definition}
+
+\textbf{Premise convention:} Following defaults $P_{\mathcal{C}}$ energy-independent. If $P_{\mathcal{C}}$ varies slowly with $E$, uniformly switch to relative readout $T_{\rm rel}$, recording same basis $(U,V)$ and covariantly transported $P_{\mathcal{C}}(E)$ to cancel gauge terms (see Proposition 4.4 and subsequent ``operational prescription'').
+
+\begin{proposition}[Gauge covariance and relative invariance; supplement regularity and topological terms]
+\label{prop:gauge}
+Let $U,V\in C^1(\mathbb{R},\mathsf{U}(N))$ with
+$$
+-i\,\operatorname{tr}(U^\dagger U')=\partial_E\arg\det U,\quad -i\,\operatorname{tr}(V'V^\dagger)=\partial_E\arg\det V.
+$$
+Then
+$$
+\operatorname{tr}\mathsf{Q}(USV)=\operatorname{tr}\mathsf{Q}(S)+\partial_E\arg\!\big(\det U\cdot\det V\big).
+$$
+\end{proposition}
+
+\begin{proof}[Derivation points (operator level)]
+$$
+\mathsf{Q}(USV)=V^\dagger\mathsf{Q}(S)V-i\,V^\dagger S^\dagger\big(U^\dagger U'\big)SV-i\,V^\dagger V'.
+$$
+Taking trace and using cyclic invariance yields above identity.
+\end{proof}
+
+\textbf{Identity:} $-i\,\operatorname{tr}(U^\dagger U')=\partial_E\arg\det U$, $-i\,\operatorname{tr}(V'V^\dagger)=\partial_E\arg\det V$. Thus $\partial_E\!\left(\arg\det U+\arg\det V\right)=0$ is necessary and sufficient condition for $T_\gamma$ invariance; otherwise uniformly use relative readout $T_{\rm rel}$.
+
+\textbf{Invariance condition and relative readout cancellation:} If $\partial_E\arg(\det U\cdot\det V)\equiv0$ or in-window net winding number $w_{\rm net}=0$, then $T_\gamma$ invariant; general case use
+$$
+T_{\rm rel}:=T_\gamma[w_R,h;S]-T_\gamma[w_R,h;S_{\rm ref}]
+$$
+and make same choice/archival for $(U,V)$, can completely cancel gauge and topological terms (consistent with text ``operational prescription'').
+
+\textbf{Winding number term warning:} If net winding number $w_{\rm net}\ne 0$ of $\arg\det U\det V$ in window, even if $\partial_E(\arg\det U+\arg\det V)=0$ holds almost everywhere, will produce non-negligible topological bias. In this case should uniformly switch to relative readout and archive same $(U,V)$ choice.
+
+When $U,V$ energy-independent, or more generally $\partial_E(\arg\det U+\arg\det V)=0$ (equivalent to phase of $\det U\cdot\det V$ energy-independent), additional term vanishes, thus $\operatorname{tr}\mathsf{Q}$ remains invariant. General case adopts relative readout
+$$
+T_{\rm rel}(\gamma):=T_\gamma[w_R,h;S]-T_\gamma[w_R,h;S_{\rm ref}],
+$$
+where $S_{\rm ref}$ and $S$ adopt same energy-dependent basis choice (same $U,V$), ensuring gauge terms completely cancel. If net winding number $w_{\rm net}\in\mathbb{Z}$ of $\arg\det U\det V$ exists in window, need to remove topological bias from main reported absolute time standard; cross-experiment/cross-device comparisons uniformly adopt relative readout $T_{\rm rel}$, automatically eliminating gauge terms and topological bias.
+
+\textbf{Operational prescription (uniqueness of relative readout):} To ensure gauge term complete cancellation of relative readout $T_{\rm rel}$, cross-experiment/cross-device comparisons must archive and replay same $(U(E),V(E))$ choice (or parameter hash). Suggest providing explicit form or numerical file of basis transformation function in experiment report appendix, ensuring independent teams can precisely reproduce relative readout cancellation mechanism.
+
+\textbf{Warning (gauge covariance boundary of accessible subspace readout):} For accessible readout $T_{\mathcal{C}}$ of Definition 3.2b, when energy-dependent cross-subspace mixing exists (accessible $\leftrightarrow$ inaccessible), if $P_{\mathcal{C}}$ not covariantly transported with $E$, $T_{\mathcal{C}}$ may be affected by gauge terms. This work defaults $P_{\mathcal{C}}$ energy-independent; if energy dependence unavoidable, should treat $P_{\mathcal{C}}(E)$ as covariant field for joint transformation, or uniformly switch to relative readout $T_{\rm rel}$ with common basis choice to eliminate gauge bias.
+
+\textbf{Prescription (energy-dependent case):} If $P_{\mathcal{C}}$ unavoidably varies slowly with $E$, uniformly adopt same energy-dependent basis and covariantly transported $P_{\mathcal{C}}(E)$ to compute relative readout $T_{\rm rel}$, archiving basis choice and net winding number $w_{\rm net}$ in methodology appendix. This prescription ensures gauge terms precisely cancel in cross-experiment comparisons.
+
+\subsection{Non-Asymptotic Error Closure (NPE)}
+
+\textbf{Reminder (object uniqueness):} This section all sampling/aliasing/EM/tail errors act only on numerical approximation of integrand $f(E)=w_R(E)\,[\,h\!\star\!\rho_{\rm rel}\,](E)$, not involving any modification of causal time $t_*$ or reachability partial order.
+
+\textbf{Emphasis (strict band-limited + Nyquist $\Rightarrow$ exact equality, three errors all zero):} In strictly band-limited and Nyquist condition satisfied case, theorem gives exact equality, then $\varepsilon_{\rm alias}=\varepsilon_{\rm EM}=\varepsilon_{\rm tail}=0$. Do not introduce approximation terms or EM correction in this case, avoiding misusing exact equality as approximate sum.
+
+\textbf{In-domain/out-of-domain switching red line:} Only once any condition breaks (approximately band-limited or sampling not satisfying Nyquist), activate $\varepsilon_{\rm alias},\varepsilon_{\rm EM},\varepsilon_{\rm tail}$ ledger; strictly prohibit introducing EM correction or misusing exact formula as approximate sum in-domain (strictly band-limited + Nyquist).
+
+\textbf{Nyquist discipline precise definition:} ``Satisfying Nyquist discipline'' = strictly band-limited ($\widehat{w},\widehat{h}$ strictly band-limited) and $\Delta\le \pi/(\Omega_h+\Omega_w/R)$. Then aliasing, EM and tail errors all zero, Poisson summation gives exact equality.
+
+\begin{proposition}[Discrete implementation; separate statement of exact and approximate]
+\label{prop:discrete}
+Let $f(E):=w_R(E)\,[\,h\!\star\!\rho_{\rm rel}\,](E)$, sampling points $E_n=E_0+n\Delta$.
+
+\textbf{(A) Exact sampling formula (strictly band-limited + Nyquist):} If $\widehat{w},\widehat{h}$ strictly band-limited and $f\in\mathsf{PW}_B\cap L^1(\mathbb{R})$ (strictly band-limited and integrable), where $B:=\Omega_h+\Omega_w/R$, and satisfying
+$$
+\Delta\le \frac{\pi}{B},
+$$
+then by Poisson summation
+$$
+\boxed{\ T_\gamma[w_R,h]=\int_{\mathbb{R}} f(E)\,dE=\Delta\sum_{n\in\mathbb{Z}} f(E_n)\ }.
+$$
+Then $\varepsilon_{\rm alias}=\varepsilon_{\rm EM}=\varepsilon_{\rm tail}=0$. Under strict band-limitation, above holds for any $E_0$ (aliasing term identically zero).
+
+\textbf{(B) Approximate implementation error decomposition (approximately band-limited or numerical truncation):} If $f$ only approximately band-limited or implementation truncates infinite sum to $|n|\le N$, then
+$$
+T_\gamma[w_R,h]=\Delta\sum_{|n|\le N} f(E_n)+\varepsilon_{\rm tail}+\varepsilon_{\rm alias}+\varepsilon_{\rm EM},
+$$
+where
+$$
+\varepsilon_{\rm tail}:=\Delta\sum_{|n|>N} f(E_n),\qquad
+|\varepsilon_{\rm alias}|\ \le\ \sum_{k\ne 0}\Big|\widehat{f}\Big(\tfrac{2\pi k}{\Delta}\Big)\Big|.
+$$
+\end{proposition}
+
+\textbf{Engineering bound (given by support and convolution structure):} If $\mathrm{supp}\,\widehat{w_R}\subset[-\Omega_w/R,\Omega_w/R]$ and $\mathrm{supp}\,\widehat{h}\subset[-\Omega_h,\Omega_h]$, then
+$$
+\Big|\widehat{f}\Big(\tfrac{2\pi k}{\Delta}\Big)\Big|
+=\Big|\big(\widehat{w_R}\ast(\widehat{h}\,\widehat{\rho_{\rm rel}})\big)\Big(\tfrac{2\pi k}{\Delta}\Big)\Big|
+\le \int_{-\Omega_w/R}^{\Omega_w/R}|\widehat{w_R}(\xi)|\,
+\big|\widehat{h}\,\widehat{\rho_{\rm rel}}\big(\tfrac{2\pi k}{\Delta}-\xi\big)\big|\,d\xi.
+$$
+Thus when $\Delta\le \pi/(\Omega_h+\Omega_w/R)$, above is 0 for all $k\ne0$ (no aliasing); approximately band-limited case provides computable numerical bound.
+
+\textbf{NPE implementation checklist (engineering prescription):} For approximately band-limited case or finite truncation, control $\varepsilon_{\rm EM}$ as follows. Given target error threshold $\varepsilon_{\rm tol}$, take minimal order $M$ such that
+$$
+\sum_{m=1}^{M}\frac{|B_{2m}|}{(2m)!}\Big|f^{(2m-1)}\Big|_{L^1}\ \le\ \tfrac12\,\varepsilon_{\rm tol},
+$$
+simultaneously choosing Euler--Maclaurin remainder bound $|R_{2M}|\le \tfrac12\,\varepsilon_{\rm tol}$. Then $|\varepsilon_{\rm EM}|$ controllable within $\varepsilon_{\rm tol}$. For tail term, if $w_R$ has $L^1$ control on $|E-E_0|>\Lambda R$ and $|g|_{L^\infty}$ bounded, then
+$$
+|\varepsilon_{\rm tail}|\ \le\ \Big|w_R\mathbf{1}_{|E-E_0|>\Lambda R}\Big|_{L^1}\,|g|_{L^\infty}.
+$$
+Complete error bounds and Poisson formula details in Appendix B.
+
+\subsection{Operational Time-Energy Resolution Discipline (UR)}
+
+Take window-kernel effective bandwidth $B:=\Omega_h+\Omega_w/R$ (see Axiom II and \S3.3 notation). Denote robust scale of readout distribution induced by $K_{w,h}$ as $\sigma_T$, with energy domain scale $\sigma_E$ same norm. \textbf{Fourier convention note:} Under this work's Fourier norm $\widehat{f}(\omega)=\int f(E)e^{-i\omega E}dE$, the Heisenberg uncertainty relation yields $\sigma_T\sigma_E\ge \tfrac{1}{2}$ with constant $\tfrac{1}{2}$ (not $\hbar/2$ as $\hbar=1$ by convention; in angular-frequency energy convention, this constant $\tfrac{1}{2}$ comes from $2\pi$ normalization).
+
+\textbf{Premise:} Following conclusions rigorously hold under premise $F(E)=(w_R*\check{h})(E)\ge 0$ almost everywhere. Engineering-wise achievable by choosing positive-weight window and kernel; if $F$ may change sign, should use subsequent $L^2$ version definition.
+
+\textbf{Working definition (RMS version; window-shape dependent):}
+
+Let effective instrumental function $F(E):=(w_R*\check{h})(E)$ and take area norm $\int F\,dE=2\pi$. Define
+$$
+\mu_E:=\frac{1}{2\pi}\!\int E\,F(E)\,dE,\quad
+\sigma_E^2:=\frac{1}{2\pi}\!\int (E-\mu_E)^2 F(E)\,dE.
+$$
+Let $g(t):=\frac{1}{2\pi}\!\int F(E)\,e^{iEt}\,dE$ (time-domain kernel of $F$),
+$$
+\sigma_T^2:=\frac{\int t^2|g(t)|^2\,dt}{\int |g(t)|^2\,dt}.
+$$
+Heisenberg form gives $\sigma_T\,\sigma_E\ge \tfrac12$. If $F\ge 0$ and $\int F\,dE=2\pi$, further satisfying strictly band-limited $\mathrm{supp}\,F\subset[-B,B]$ (here $B=\Omega_h+\Omega_w/R$), then $\sigma_E\le B$, thus
+$$
+\boxed{\ \sigma_T\ \ge\ \frac{1}{2B}\ }.
+$$
+When $F$ may change sign, above Heisenberg form should use subsequent $L^2$ definition, and inequality rigorously holds.
+Thus under ``band-limited + Nyquist,'' conservative constant can take $C_{w,h}=\tfrac12$; if numerically obtaining smaller $\sigma_E$ for given window/kernel, automatically improve to $\sigma_T\ge(C_{w,h}/B)$ with $C_{w,h}:=\tfrac{B}{2\sigma_E}\ge \tfrac12$.
+
+\textbf{Note:} This definition fully compatible with \S3.3 NPE ledger; if adopting ``area-preserving rescaling,'' $\sigma_T,\sigma_E$ scaling consistent with \S6.2 redshift reciprocity.
+
+\textbf{Note (signed density case):} If $F(E)$ may change sign in-band, to obtain Heisenberg form completely based on $L^2$, can instead use
+$$
+\sigma_E^2 := \frac{\int (E-\mu_E)^2 |F(E)|^2\,dE}{\int |F(E)|^2\,dE},\quad
+\sigma_T^2 := \frac{\int t^2 |g(t)|^2\,dt}{\int |g(t)|^2\,dt}.
+$$
+Under this work's Fourier norm still have $\sigma_T\sigma_E\ge \tfrac12$. Main text continues using linear weight $F$ for accounting with scale normalization; two definitions give consistent $1/B$ level lower bound under ``strictly band-limited + Nyquist.''
+
+\begin{proposition}[UR operational lower bound]
+\label{prop:ur}
+Under band-limited and Nyquist conditions, for any chain $\gamma$ and band-limited window-kernel $(w_R,h)$, have
+$$
+\sigma_T\ \gtrsim\ \frac{C_{w,h}}{B},\qquad
+\sigma_T\,\sigma_E\ \gtrsim\ \tfrac12\,C_{w,h},
+$$
+where constant $C_{w,h}\in(0,1]$ depends only on window-kernel smoothness and normalization. This lower bound pairs with \S3.3 NPE upper bound template ($\varepsilon_{\rm alias},\varepsilon_{\rm EM},\varepsilon_{\rm tail}$), forming non-asymptotic upper-lower bound closure of ``measurable time scale'': upper bound by NPE error control, lower bound by bandwidth $B$ defining resolution.
+\end{proposition}
+
+\textbf{Remark (GR covariance):} On curved spacetime $(\mathcal{M},g)$, $\sigma_E$ takes local orthonormal frame energy, UR conclusion remains invariant in local Lorentz frame; redshift only rescales $\sigma_E$, thus rescaling $\sigma_T$ by same ledger.
+
+\subsection{High-Frequency Platform Bridge and Squeeze Bound}
+
+This section under \S4 premises (i), (ii), (iii), (iv) (LTI+Hardy causality, high-frequency vacuum limit, locality, passivity), provides operational bridge between $T_\gamma$ and wavefront time $t_*$.
+
+\textbf{Wavefront factorization:} For any chain $\gamma$ exists constant $t_*(\gamma)\ge 0$, define remainder scattering function
+$$
+\boxed{\ S_0(E):=e^{-iE t_*(\gamma)}S(E)\ }\quad\text{(equivalent to }S(E)=e^{+iE t_*(\gamma)}S_0(E)\text{)},
+$$
+where $\mathsf{Q}_0(E):=-i\,S_0^\dagger(E)S_0'(E)$. Then
+$$
+\boxed{\ \mathsf{Q}(E)=t_*(\gamma)\,I\ +\ \mathsf{Q}_0(E)\ },
+$$
+under area norm $\int(w_R*\check{h})=2\pi$ obtain decomposition identity
+$$
+\boxed{\ T_\gamma[w_R,h]=t_*(\gamma)\,\operatorname{tr}I\ +\ \int_{\mathbb{R}}(w_R*\check{h})(E)\,\frac{1}{2\pi}\operatorname{tr}\mathsf{Q}_0(E)\,dE\ }.
+$$
+
+Under premises (i)--(iv) plus platform consistency $\sup_{E\in[E_0-B,E_0+B]}|\operatorname{tr}\mathsf{Q}_0(E)|\to 0$ when $E_0\to\infty$, above decomposition and Theorem 4.7 platform limit and uniqueness hold.
+
+\textbf{Uniqueness (if and only if):}
+
+Let $S(E)=e^{iEt_*}S_0(E)$, if $t_*'$ and $S_0'$ exist such that $S(E)=e^{iEt_*'}S_0'(E)$, then $S_0'(E)=e^{iE(t_*-t_*')}S_0(E)$. Under ``vacuum platform consistency'' condition
+$$
+\lim_{E_0\to\infty}\sup_{E\in[E_0-B,E_0+B]}|\operatorname{tr}\mathsf{Q}_0(E)|=0
+$$
+if and only if $t_*'=t_*$. Otherwise, extra linear phase $e^{iE(t_*-t_*')}$ leaves ineliminable constant bias on platform.
+
+\begin{theorem}[HF platform limit, single channel]
+\label{thm:platform-single}
+\textbf{Premise (platform consistency):} $S(E)=e^{iEt_*}S_0(E)$ and exists $B>0$ such that for any growing center frequency $E_0$, have $\sup_{E\in[E_0-B,E_0+B]}|\operatorname{tr}\mathsf{Q}_0(E)|\xrightarrow[E_0\to\infty]{}0$ (uniformly approaching zero in-window). This condition guaranteed by $\operatorname{tr}\mathsf{Q}_0\in C_0(\mathbb{R})$.
+
+Following conclusion independent of \S4 wavefront lower bound. For any fixed-shape normalized window family $F_{E_0}(E):=(w_R*\check{h})(E-E_0)$ ($\int F_{E_0}=2\pi$), in single channel ($N=1$) have
+$$
+\boxed{\ \lim_{E_0\to+\infty} T_\gamma[w_R(\cdot-E_0),h]=t_*(\gamma)\ }
+$$
+and finite-band squeeze:
+$$
+\boxed{\ \big|T_\gamma[w_R(\cdot-E_0),h]-t_*(\gamma)\big|
+\ \le\ \frac{\|w_R*\check{h}\|_{L^1}}{2\pi}\,\sup_{E\in\mathrm{supp}\,F_{E_0}}\big|\operatorname{tr}\mathsf{Q}_0(E)\big|
+\ \xrightarrow[E_0\to\infty]{}\ 0\ }.
+$$
+If further assume $(w_R*\check{h})\ge 0$ and $\int=2\pi$, right side constant is 1.
+\end{theorem}
+
+\textbf{Verifiability suggestion:} Report $\sup_{E\in[E_0-B,E_0+B]}|\operatorname{tr}\mathsf{Q}_0(E)|$ curve on platform segment ($E_0$ scan interval), comparing with target error threshold; suggest plotting this bound monotonically decreasing with $E_0$ to verify uniform approach-to-zero assumption.
+
+\begin{proposition}[Multichannel geometric wavefront limit]
+\label{prop:platform-multi}
+For multichannel ($N\ge1$) system, use per-mode average $\overline{T}_{\mathcal{C}}[w_R,h]$ (Definition 4.3). Have
+$$
+\boxed{\ \lim_{E_0\to+\infty}\overline{T}_{\mathcal{C}}[w_R(\cdot-E_0),h]=t_*(\gamma)\ }
+$$
+and squeeze bound
+$$
+\big|\overline{T}_{\mathcal{C}}[w_R(\cdot-E_0),h]-t_*(\gamma)\big|
+\ \le\ \frac{\|w_R*\check{h}\|_{L^1}}{2\pi N_{\rm eff}}\,\sup_{E\in\mathrm{supp}\,F_{E_0}}\big|\operatorname{tr}\mathsf{Q}_0(E)\big|
+\ \xrightarrow[E_0\to\infty]{}\ 0.
+$$
+\end{proposition}
+
+\textbf{Platform value comparison formula:} High-frequency limit has
+$$
+\boxed{\ \lim_{E_0\to+\infty}T_{\mathcal{C}}(E_0)=N_{\rm eff}t_*,\qquad
+\lim_{E_0\to+\infty}\overline{T}_{\mathcal{C}}(E_0)=t_*\ }.
+$$
+
+\textbf{Warning (multichannel platform value):} In multichannel system ($N_{\rm eff}>1$), $T_{\mathcal{C}}$ high-frequency platform value is $N_{\rm eff}t_*$ (total delay), while per-mode average $\overline{T}_{\mathcal{C}}$ platform value is $t_*$ (geometric wavefront). For cross-experiment comparison or calibrating geometric wavefront, recommend using $\overline{T}_{\mathcal{C}}$, whose platform limit uniformly $t_*$ (not $N_{\rm eff}t_*$).
+
+\textbf{Engineering implementation tip:} Fix window shape $(w_R,h)$ scan along frequency $E_0$ with equal step, plotting $T_\gamma(E_0)$ (single channel) or $\overline{T}_{\mathcal{C}}(E_0)$ (multichannel) curve, high-frequency segment platform value is $t_*$ calibration quantity; evaluate systematic error by above squeeze bound. Window center $E_0$ scan and report corresponding Nyquist check (whether satisfying \S3.3 ``strictly band-limited + Nyquist $\Rightarrow$ exact equality''), otherwise simultaneously provide alias/EM/tail error bounds (see Appendix B).
+
+\section{Light Speed and Lightlike Cone: Wavefront Calibration and No-Supercone Propagation}
+
+\textbf{Premise:} Following propositions about wavefront and no-supercone propagation built on:
+
+(i) \textbf{LTI + causal + upper half-plane analyticity (Hardy):} Frequency-domain response upper half-plane analyticity and Hardy boundary value guarantee Kramers--Kronig--Hilbert relations; if further assuming passivity, can be included in Herglotz class;
+
+(ii) \textbf{High-frequency vacuum limit:} For any propagation segment $T(\omega;L)$, have $\lim_{|\omega|\to\infty}T(\omega;L)\,e^{-i\omega L/c}=1$ (in passive-causal medium by Kramers--Kronig relations can deduce $\lim_{|\omega|\to\infty}n(\omega)=1$, thus this limit guaranteed by $n(\omega)\to 1$);
+
+(iii) \textbf{Locality/finite propagation velocity:} Chain composed of elements satisfying hyperbolic local dynamics, whose Green function (or impulse response) has finite wavefront;
+
+(iv) \textbf{Passivity:} No superluminal response caused by active gain.
+
+\subsection{Wavefront Norm of Light Speed}
+
+\begin{definition}[Light speed $c$]
+\label{def:light-speed}
+Vacuum impulse response $g_0(t;L)$ earliest nonzero arrival $t_{\rm front}(L)$ gives
+$$
+c:=\lim_{L\to\infty}\frac{L}{t_{\rm front}(L)}.
+$$
+If limit does not exist, define $c:=\sup_{L>0}\frac{L}{t_{\rm front}(L)}$ as norm constant; this constant related to background metric $g$ conformal class.
+\end{definition}
+
+Here $L$ represents light path (geodesic length) between two points under vacuum metric, definition independent of medium; medium dispersion and absorption effects only manifest in system response without changing wavefront lower bound geometric baseline. This $L$ also used in \S4.2 criterion baseline for $t_*(\gamma)\ge L/c$. Wavefront velocity consistent with causality (Sommerfeld--Brillouin precursor).
+
+\textbf{Logical priority clarification (avoiding circular assumption):} Premise (iii) only assumes local dynamics hyperbolic with finite wavefront; truly fixing geometric light speed $c$ as norm constant of wavefront velocity is this section Definition 5.1 (defined by limit/supremum of vacuum impulse wavefront). Accordingly, Theorem 5.2 gives $t_*(\gamma)\ge L_\gamma/c$ not presupposing conclusion in premise, but inequality deduced from premises (i)--(iv) after clarifying norm $c$. Premise (iii) and Definition 5.1 have different logical status, not constituting circularity.
+
+\textbf{Curved spacetime unification:} Replace $L$ in above with light-cone distance $L_{g}$ induced by background metric $g$'s lightlike cone, taking
+$$
+c:=\lim_{L_{g}\to\infty}\frac{L_{g}}{t_{\rm front}(L_{g})}
+$$
+as wavefront norm constant. Thus for any propagation-readout chain $\gamma$ always have $t_{*}(\gamma)\ge L_{g}/c$. This replacement only depends on conformal class of $g$, thus unrelated to medium dispersion.
+
+\subsection{No-Supercone Propagation---Wavefront Readout}
+
+\begin{theorem}[Wavefront lower bound]
+\label{thm:wavefront-bound}
+\textbf{Premises:} Assume (i) LTI + causal + upper half-plane analyticity (Hardy); (ii) high-frequency vacuum limit $\lim_{|\omega|\to\infty}T(\omega;L)\,e^{-i\omega L/c}=1$; (iii) locality/finite propagation velocity: chain composed of elements satisfying hyperbolic local dynamics (in the sense of standard PDE theory; see e.g., H\"{o}rmander \cite{hormander1983}), whose Green function has finite wavefront; (iv) passivity: no active gain producing superluminal response.
+
+Under these premises, any chain $\gamma$ output impulse response $g_\gamma(t;L_\gamma)$ identically 0 for $t<L_\gamma/c$, thus
+$$
+t_*(\gamma)\ \ge\ L_\gamma/c,
+$$
+equality if and only if chain's high-frequency propagator reaches along geodesic in vacuum limit.
+\end{theorem}
+
+\textbf{Note:} Windowed group delay readout $T_\gamma[w_R,h]$ still not wavefront time, can be negative in narrowband/resonance, no universal comparison inequality between them.
+
+\begin{proof}[Proof sketch]
+(1) \textbf{(Single element)} Premise (iii) (hyperbolic local dynamics) guarantees finite wavefront propagation speed; combined with passivity (iv), for each segment of length $L$ have $g(t;L)=0$ for $t<L/c$. This follows from standard finite propagation speed results for hyperbolic systems (see H\"{o}rmander \cite{hormander1983}, Lax--Phillips \cite{lax1967}).
+
+(2) \textbf{(Series)} Two-segment convolution $g_{2\circ1}=g_2*g_1$ support is support Minkowski sum, thus $t_*(\gamma_2\circ\gamma_1)\ge t_*(\gamma_2)+t_*(\gamma_1)$ (standard convolution support property).
+
+(3) \textbf{(Parallel)} Parallel system earliest nonzero arrival time is minimum of branch lower bounds, still not less than $L_{\rm min}/c$.
+
+(4) \textbf{(Network to geometry)} Chain length additive, taking infimum $L_\gamma$ over all reachable chains, get $t_*(\gamma)\ge L_\gamma/c$. Here ``chain length additive'' means piecewise lightlike propagation segments on fixed background metric $g$ arc-length additive.
+
+(5) \textbf{(Equality condition)} If and only if high-frequency propagator reaches along geodesic (by premise (ii)) and boundaries don't cancel in the convolution (by causality from premise (i)).
+\end{proof}
+
+\textbf{Red line statement:} This work all ``causal/no-signal/order-independent'' conclusions uniformly take wavefront time $t_*$ and lightlike cone partial order induced by it as sole criterion; windowed readout $T_\gamma[w_R,h]$ serves only as measurable scale, not participating in any causal determination.
+
+\subsection{Einstein Train Paradox GLS Analysis}
+
+\textbf{Setup:} In track frame $S$, train length $L$, lightning events $A,B$ at two ends simultaneous in $S$: $\Delta t:=t_B-t_A=0$, $\Delta x:=x_B-x_A=L$. Train frame $S'$ moves along $+x$ direction with velocity $v$, observer $O'$ at train midpoint in $S'$ origin.
+
+\textbf{Lorentz analysis:} By
+$$
+\Delta t'=\gamma\left(\Delta t-\frac{v\,\Delta x}{c^{2}}\right)=-\gamma\,\frac{vL}{c^{2}}\neq 0
+$$
+conclude: in $S'$, front-end lightning arrives at $O'$ first, rear-end arrives later, no cross-frame consistent ``simultaneity'' exists.
+
+\textbf{GLS interpretation:} Events $A,B$ and event where $O'$ located are all mutually spacelike separated, thus in \S2 partial order neither $A\preceq B$ nor $B\preceq A$. Each frame's ``simultaneity'' only their respective worldline family slicing choice; causality only constrained by wavefront criterion
+$$
+t_{*}(\gamma)\ \ge\ \frac{L_{g}}{c},
+$$
+thus no paradox. Windowed group delay readout $T_{\gamma}[w_R,h]$ may vary arrival ``readout'' numerical value with filter parameters and frequency band, but it doesn't change edge statistics, doesn't generate super-causality, also doesn't participate in ``simultaneity'' definition. This completely consistent with this work's ``red line statement.''
+
+\begin{proposition}[Simultaneity decidability under UR bandwidth]
+\label{prop:simultaneity}
+Let windowed readout difference of two-end events $A,B$ be $\Delta T:=T_{\gamma_A}[w_R,h]-T_{\gamma_B}[w_R,h]$, resolution threshold $\sigma_T$ (\S4.4). If $|\Delta T|\le \sigma_T$, then under given window-kernel and bandwidth ``simultaneous/sequential'' undecidable; if $|\Delta T|>\sigma_T$, its sign consistent with simultaneity relativity given by special relativity Lorentz transformation, i.e., when base frame has $\Delta t=0,\ \Delta x=L$, moving frame satisfies
+$$
+\operatorname{sign}\Delta T\ =\ \operatorname{sign}\big(\gamma(\Delta t- v\Delta x/c^2)\big)\ =\ -\,\operatorname{sign}(v),
+$$
+where $\gamma=(1-v^2/c^2)^{-1/2}$. Here $\Delta T$ affected by Doppler rescaling and in-band dispersion, but its decidability threshold fixed by $\sigma_T$.
+\end{proposition}
+
+\textbf{Corollary (three-ledger reconciliation):} In any reference frame and curved spacetime local frame, $t_*$ gives insurmountable causal boundary (``earliest reachable''), $\tau$ gives worldline proper duration, $T_\gamma$ gives in-band readout scale; UR lower bound $\sigma_T$ defines minimum time difference of ``decidable simultaneity.'' Thus ``train paradox'' only mixing of different ledgers: discussing ``sequence'' using $\tau$/$T_\gamma$ produces superficial conflict, but adding $\sigma_T$ decidability threshold and $t_*$ wavefront red line, three completely consistent.
+
+\subsection{Quantum Tunneling and Hartman Effect: Group Delay and Wavefront Consistency}
+
+Let one-dimensional potential barrier scattering matrix $S(E)\in\mathsf{U}(2)$ satisfy \S4 upper half-plane analyticity and high-frequency vacuum limit. Denote transmission amplitude $t(E)=|t(E)|e^{i\phi_t(E)}$, and Wigner--Smith matrix $\mathsf{Q}(E)=-i\,S^\dagger(E)\tfrac{dS}{dE}(E)$.
+
+\begin{theorem}[Wavefront lower bound preserved]
+\label{thm:tunneling}
+Any chain $\gamma_{\rm tun}$ earliest nonzero arrival time satisfies
+$$
+t_*(\gamma_{\rm tun})\ \ge\ \frac{L_\gamma}{c},
+$$
+independent of whether in tunneling region and barrier thickness; equality only achieved in high-frequency geodesic limit.
+\end{theorem}
+
+\begin{proposition}[Hartman consistency]
+\label{prop:hartman}
+For narrowband readout,
+$$
+T_{\gamma_{\rm tun}}[w_R,h]
+\simeq \int (w_R*\check{h})(E)\,\frac{d\phi_t}{dE}(E)\,\frac{dE}{\pi},
+$$
+may exhibit saturation with barrier thickness or negative value under strong resonance. This phenomenon only reflects in-band phase compensation, not corresponding to any signal wavefront advancement:
+$$
+\text{``negative/saturated }T_\gamma\text{''}\ \not\Rightarrow\ \text{``}t_*<L/c\text{''}.
+$$
+Because $t_*$ dominated by high-frequency end (\S4.2), while $T_\gamma$ dominated by in-band phase derivative, different ledgers: $t_*$ defines partial order, $T_\gamma$ defines scale.
+\end{proposition}
+
+\textbf{Anti-misreading emphasis:} Negative or saturated $T_\gamma$ does not imply wavefront time advancement. The inequality $t_*(\gamma)\ge L_\gamma/c$ (Theorem 5.2) remains valid independent of $T_\gamma$ sign or magnitude. Causality determined solely by $t_*$ and lightlike cone partial order, not by windowed group delay readout $T_\gamma[w_R,h]$.
+
+\textbf{Remark (GR covariance):} On curved spacetime, $t_*$ determined by shortest lightlike geodesic and local refraction (including Shapiro delay), maintaining ``no-supercone propagation''; while $T_\gamma$ rescales with local potential well phase response, but doesn't change partial order.
+
+\section{Wave-Particle Unification and Source of ``Different Pictures''}
+
+\subsection{Homologous Dual Readouts: Expectation and Counting}
+
+Same $K_{w,h}$ induces
+$$
+\text{(wave)}\ \ \mathrm{Obs}(w_R,h)=\operatorname{Tr}(K_{w,h}\rho),\qquad
+\text{(particle)}\ \ \mathbb{E} N_{w,h}=\operatorname{Tr}\big(K_{w,h}\,\Phi(\rho)\big)=\operatorname{Tr}\big(\Phi^\dagger(K_{w,h})\,\rho\big).
+$$
+where $\Phi^\dagger$ is Heisenberg adjoint of $\Phi$. Both time scales measured by $T_\gamma[w_R,h]$; $\Phi,\{M_i\},\mathcal{M}_{\rm th}$ only change statistical appearance, not master scale.
+
+\subsection{Double-Slit Windowed Complementarity}
+
+Let path projections $P_1,P_2$, which-way decoherence $\mathcal{D}_\eta(\rho)=(1-\eta)\rho+\eta\sum_j P_j\rho P_j$. Screen intensity with window-kernel $(w_R,h)$
+$$
+I(\eta)\ \propto\ \sum_{j}\langle K_{w,h}P_j\psi,P_j\psi\rangle
++2(1-\eta)\,\Re\langle K_{w,h}P_1\psi,P_2\psi\rangle.
+$$
+
+\begin{theorem}[Windowed complementarity inequality]
+\label{thm:complementarity}
+Visibility $V$ and distinguishability $D$ (Helstrom distance) satisfy $D^2+V^2\le 1$, equality achieved in pure state and ideal distinguish/ideal coherence limits.
+\end{theorem}
+
+\begin{proof}[Proof outline]
+Use CPTP contractivity and Cauchy--Schwarz to control cross-block norm; embed binary classification minimal error bound (Helstrom) in windowed scenario, reproducing Englert inequality.
+\end{proof}
+
+\textbf{Applicability constraint:} When experiment has loss or gain, uniformly define and evaluate $D,V$ and $T_\gamma$ at minimal unitary dilation $\widehat{S}$ level then project to accessible subspace. This constraint consistent with Axiom I ``global unitarity postulate.''
+
+\subsection{Delayed-Choice Quantum Eraser (DCQE)}
+
+\textbf{Note: All conclusions in this section hold within same complete instrument.}
+
+\textbf{Setup:} Let double-slit path projections $P_1,P_2$. Introduce ``signal--idler'' split $\mathcal{H}=\mathcal{H}_s\otimes\mathcal{H}_i$, take orthogonal idler basis $\{\lvert I_1\rangle,\lvert I_2\rangle\}$. Define unitary entangler action on state space as
+$$
+U_{\rm ent}\big(\lvert\psi\rangle_s\otimes\lvert0\rangle_i\big)\ =\ \sum_{j=1}^{2}\big(P_j\lvert\psi\rangle_s\big)\otimes\lvert I_j\rangle_i,\qquad \langle I_1\mid I_2\rangle=0,
+$$
+where $P_j$ only selects path component; subsequent intensity and time readouts computed by this work's same $K_{w,h}$ and $T_{\rm sig}$ ledger. Screen readout given by same window-kernel $K:=K_{w,h}$, idler end choice switches between two measurement bases:
+
+(i) which-way basis $\{\Pi_{I_1},\Pi_{I_2}\}$; (ii) eraser basis $\{\Pi_{E_\pm}\}$, where
+$$
+\lvert E_\pm\rangle=\tfrac{1}{\sqrt2}\big(\lvert I_1\rangle \pm e^{i\phi}\lvert I_2\rangle\big),\quad \Pi_{E_\pm}=\lvert E_\pm\rangle\langle E_\pm\rvert.
+$$
+
+\textbf{Notation (signal chain and marginal group delay):} Denote source$\to$screen physical propagation-readout chain as $\gamma_s$. Define
+$$
+T_{\gamma_s}[w_R,h]\;:=\;\int (w_R*\check{h})(E)\,\frac{1}{2\pi}\operatorname{tr}\mathsf{Q}_{\gamma_s}(E)\,dE,
+$$
+where $\mathsf{Q}_{\gamma_s}(E)$ is Wigner--Smith matrix of corresponding scattering function for this chain, $\check{h}(E):=h(-E)$. To be consistent with subsequent writing, convention
+$$
+T_{\rm sig}[w_R,h]\ \equiv\ T_{\gamma_s}[w_R,h],\qquad
+\operatorname{tr}\mathsf{Q}_{\rm sig}(E)\ \equiv\ \operatorname{tr}\mathsf{Q}_{\gamma_s}(E).
+$$
+Thus all equations in \S5.4 and \S12 should be understood as statements about $\gamma_s$; particularly, any complete instrument at idler end only changes conditional binning, not changing $\mathsf{Q}_{\gamma_s}$, thus
+$$
+T_{\rm sig}[w_R,h\mid \{\mathcal{I}_a^i\}]=T_{\rm sig}[w_R,h],\quad
+\sum_a p_a\,T_{\rm sig}[w_R,h\mid a]=T_{\rm sig}[w_R,h],
+$$
+consistent with Theorem 5.4 and Proposition 5.5.
+
+\textbf{Definition (coincidence-contribution, unnormalized):} Denote source state $\rho_s$ and total state $\rho_{si}=U_{\rm ent}(\rho_s\otimes\lvert0\rangle\langle0\rvert)U_{\rm ent}^\dagger$. For idler outcome $\alpha\in\{I_1,I_2,E_+,E_-\}$, define
+$$
+I_\alpha(w_R,h):=\operatorname{Tr}\Big[(K\otimes \Pi_\alpha)\,\rho_{si}\Big].
+$$
+
+\textbf{Supplementary definition (intensity conditioning and weighted recovery formula):} Let
+$$
+p_\alpha:=\operatorname{Tr}\Big[(\mathbf{1}\otimes \Pi_\alpha)\,\rho_{si}\Big],\qquad
+I(w_R,h\mid \alpha):=\frac{I_\alpha(w_R,h)}{p_\alpha}.
+$$
+Then have intensity weighted recovery formula
+$$
+\boxed{\quad I_{\rm uncond}(w_R,h)=\sum_{\alpha}p_\alpha\,I(w_R,h\mid \alpha)\quad}
+$$
+This completely consistent with Theorem 5.4(i) no-signal sum form, and belongs to same linear ledger as Proposition 5.5 time convex averaging.
+
+\textbf{Domain convention (zero-measure events and complete instruments):} Denote idler end single complete instrument as $\{\Pi_a\}_a$ (such as which-way: $\{I_1,I_2\}$; or eraser: $\{E_+,E_-\}$). Convex averaging identity only sums over terms with $p_a>0$; conditional quantities with $p_a=0$ undefined and don't participate in sum (zero-measure set). Then
+$$
+I_{\rm uncond}(w_R,h)=\sum_{a:p_a>0}p_a\,I(w_R,h\mid a),\qquad
+p_a=\operatorname{Tr}\Big[(\mathbf{1}\otimes\Pi_a)\,\rho_{si}\Big],
+$$
+holds only within this complete instrument. Time readout similarly:
+$$
+T_{\rm sig}[w_R,h]=\sum_{a:p_a>0}p_a\,T_{\rm sig}[w_R,h\mid a]
+$$
+also only holds for same complete instrument. This convention consistent with \S7.3 ``$\sum_a p_a(\cdot\mid a)=(\cdot)$.''
+
+\begin{proposition}[Unconditional = no interference; erasure = conditional fringes]
+\label{prop:dcqe-fringes}
+(1) Unconditional marginal intensity equivalent to decoherence:
+$$
+I_{\rm uncond}(w_R,h):=\sum_{j=1}^2 I_{I_j}(w_R,h)=\operatorname{Tr}\Big(K\,\sum_{j=1}^2 P_j\rho_s P_j\Big),
+$$
+cross terms vanish, thus no interference on screen.
+
+(2) Conditional coincidence under eraser basis shows complementary phase:
+$$
+I_\pm(w_R,h)=\sum_{j=1}^2 \operatorname{Tr}\big(K\,P_j\rho_s P_j\big)\ \pm\ 2\,\Re\Big(e^{i\phi}\operatorname{Tr}(K\,P_1\rho_s P_2)\Big),
+$$
+two patterns with opposite phase, visibility reaching complementarity upper bound in pure state and ideal stable window.
+\end{proposition}
+
+\begin{theorem}[No-signaling and group delay invariance]
+\label{thm:dcqe-nosignal}
+Let idler end adopt any complete instrument $\{\mathcal{I}_a^i\}$ (including which-way or erasure as special cases), then
+
+(i) Screen unconditional distribution independent of idler choice and measurement order:
+$$
+\sum_a I_a(w_R,h)=\operatorname{Tr}\big(K\,\operatorname{Tr}_i\rho_{si}\big),\qquad \sum_a \mathcal{I}_a^i=\Phi_i\ \text{is CPTP};
+$$
+
+(ii) Signal channel windowed group delay readout independent of erasure choice:
+$$
+T_{\rm sig}[w_R,h\mid \{\mathcal{I}_a^i\}]=\int (w_R*\check{h})(E)\,\frac{1}{2\pi}\operatorname{tr}\mathsf{Q}_{\rm sig}(E)\,dE=T_{\rm sig}[w_R,h].
+$$
+\end{theorem}
+
+\begin{proof}[Proof points]
+Completeness and partial trace give $\sum_a(\mathrm{Id}_s\otimes\mathcal{I}_a^i)(\rho_{si})=(\mathrm{Id}_s\otimes\Phi_i)(\rho_{si})$, taking $\operatorname{Tr}_i$ yields unconditional invariance; $\mathsf{Q}_{\rm sig}$ determined by signal scattering function, independent of idler local measurement basis, thus $T_{\rm sig}$ invariant.
+\end{proof}
+
+\begin{proposition}[Macroscopic time non-superposition = convex averaging]
+\label{prop:time-convex}
+Let idler end complete instrument $\{\mathcal{I}_a^i\}$ satisfy $\sum_a\mathcal{I}_a^i=\Phi_i$ (CPTP). Let $p_a:=\operatorname{Tr}\big[(\mathrm{Id}_s\otimes\mathcal{I}_a^i)(\rho_{si})\big]$. Then
+$$
+\sum_a p_a\,T_{\rm sig}[w_R,h\mid a]\ =\ T_{\rm sig}[w_R,h].
+$$
+\end{proposition}
+
+\begin{proof}[Proof points]
+Linearity and completeness: $\sum_a(\mathrm{Id}_s\otimes\mathcal{I}_a^i)=\mathrm{Id}_s\otimes\Phi_i$, while $T_{\rm sig}$ determined only by $\mathsf{Q}_{\rm sig}$, taking partial trace yields result.
+\end{proof}
+
+Consistent with \S7 ``no-signal/time-order-independence.''
+
+\textbf{Remark (delay and spacelike separation):} When screen and idler readout regions spacelike separated, by \S7 windowed microcausality, $[K[U_x],\mathbf{1}\otimes\Pi_\alpha[U_y]]=0$, thus ``delayed choice'' doesn't introduce any super-causal effect; only rearranges samples at coincidence (conditioning) level, marginal statistics and group delay readout remain invariant. Its no-signaling and time-order-independence root from partial order structure determined by $t_*$, not $T_\gamma$.
+
+\section{Redshift: Spectral Scaling and Time Reciprocity}
+
+\subsection{Definition}
+
+\begin{definition}[Redshift]
+\label{def:redshift}
+For source-receiver, on master scale
+$$
+1+z=\frac{E_{\rm src}}{E_{\rm obs}}=\frac{\nu_{\rm src}}{\nu_{\rm obs}}.
+$$
+\end{definition}
+
+\subsection{Reciprocal Scaling Law}
+
+\textbf{Norm convention:} This work defaults to using no-amplitude-rescaling norm and states all main results in this norm. Area-preserving rescaling only used in engineering reproduction instances needing to maintain $\int(w_R*\check{h})=2\pi$ invariant.
+
+\textbf{Assumption (spectral uniform scaling):} Exists $z>-1$ such that $S_{\rm obs}(E)=S_{\rm src}((1+z)E)$, ensuring $S,\ S'$ measurable and integrable in scaling domain; simultaneously assume source-end window/kernel satisfies Axiom II band-limitation and sampling premises.
+
+\begin{theorem}[Redshift-time reciprocal scaling]
+\label{thm:redshift-scaling}
+If spectral scaling $E\mapsto E/(1+z)$, then for any chain $\gamma$ and window-kernel $(w_R,h)$,
+$$
+\boxed{\ 
+T_\gamma^{\rm obs}[w_R,h]
+=\frac{1}{1+z}\,T_\gamma\!\big[w_R^{\langle 1/(1+z)\rangle},\,h^{\langle 1/(1+z)\rangle}\big],\quad
+w_R^{\langle a\rangle}(E):=w_R(aE),\ \ h^{\langle a\rangle}(E):=h(aE).
+\ }
+$$
+Equivalently,
+$$
+T_\gamma^{\rm obs}[w_R,h]
+=\int_{\mathbb{R}}(w_R*\check{h})\!\Big(\frac{E}{1+z}\Big)\,
+\frac{1}{2\pi}\operatorname{tr}\mathsf{Q}_\gamma(E)\,dE.
+$$
+\end{theorem}
+
+\textbf{Band-limitation and sampling covariance:} If $\widehat{w},\widehat{h}$ strictly band-limited, then $w_R^{\langle a\rangle},h^{\langle a\rangle}$ still strictly band-limited, frequency support scaling to $\mathrm{supp}\,\widehat{w_R^{\langle a\rangle}}\subset[-a\,\Omega_w/R,\ a\,\Omega_w/R]$, $\mathrm{supp}\,\widehat{h^{\langle a\rangle}}\subset[-a\,\Omega_h,\ a\,\Omega_h]$, thus effective bandwidth becomes $B'=a(\Omega_h+\Omega_w/R)$, Axiom II premises remain valid under this model.
+
+\textbf{Nyquist scaling law:} Under spectral scaling $E\mapsto E/(1+z)$, window-kernel scales to $w_R^{\langle a\rangle}(E)=w_R(aE),\ h^{\langle a\rangle}(E)=h(aE)$ ($a=1/(1+z)$). Observer end effective bandwidth $B_{\rm obs}=a(\Omega_h+\Omega_w/R)$, thus Nyquist condition becomes
+$$
+\boxed{\ \Delta_{\rm obs}\ \le\ \frac{\pi}{a(\Omega_h+\Omega_w/R)}\ =\ (1+z)\cdot\frac{\pi}{\Omega_h+\Omega_w/R}\ }.
+$$
+\textbf{Summary:} Observing redshifted signal ($z>0$), effective bandwidth narrows to $a=1/(1+z)$ times, thus sampling interval Nyquist upper limit relaxes $(1+z)$ times; blueshift opposite. This coordinately consistent with time reciprocal scaling law $T_{\rm obs}=(1+z)^{-1}T_{\rm src}$.
+
+\textbf{Option (area-preserving rescaling):} To maintain normalization $\int(w_R*\check{h})=2\pi$ invariant under spectral scaling, can adopt symmetric amplitude rescaling:
+$$
+\widetilde{w}_R^{\langle a\rangle}(E):=a\,w_R(aE),\qquad
+\widetilde{h}^{\langle a\rangle}(E):=a\,h(aE),
+$$
+where $a=1/(1+z)$. From $(f^{\langle a\rangle}*g^{\langle a\rangle})(E)=\frac{1}{a}(f*g)(aE)$ and symmetric amplitude rescaling $\tilde{f}^{\langle a\rangle}=a f^{\langle a\rangle}$ can get $\int(\tilde{f}^{\langle a\rangle}*\tilde{g}^{\langle a\rangle})=\int(f*g)$, thus area preserved. Thus $\int(\widetilde{w}_R^{\langle a\rangle}*\widetilde{\check{h}}^{\langle a\rangle})=2\pi$ identically holds, redshift/blueshift doesn't change ``area'' norm, have
+$$
+T_\gamma^{\rm obs}[\widetilde{w}_R,\widetilde{h}]=(1+z)\,T_\gamma\!\big[\widetilde{w}_R^{\langle 1/(1+z)\rangle},\,\widetilde{h}^{\langle 1/(1+z)\rangle}\big].
+$$
+
+\textbf{Two norm comparison formula} (for engineering reproduction):
+$$
+\begin{aligned}
+&\text{(no-amplitude rescaling)}\quad T_{\rm obs}[w,h]=\frac{1}{1+z}\,T\!\big[w^{\langle\frac{1}{1+z}\rangle},h^{\langle\frac{1}{1+z}\rangle}\big];\\
+&\text{(area-preserving)}\quad T_{\rm obs}[\tilde{w},\tilde{h}]=(1+z)\,T\!\big[\tilde{w}^{\langle\frac{1}{1+z}\rangle},\tilde{h}^{\langle\frac{1}{1+z}\rangle}\big].
+\end{aligned}
+$$
+\textbf{Note:} Two writings only window-kernel norm choices, not changing physical content; cross-experiment comparisons must unify norm, clearly noting used norm in report.
+
+\textbf{Reporting norm---mandatory items} (redshift/blueshift experiments):
+\begin{enumerate}[leftmargin=*]
+\item Explicitly state in caption or methods section: using ``no-amplitude rescaling'' or ``area-preserving rescaling'' norm;
+\item Report $\int(w_R*\check{h})$ normalization condition: provide numerical value or note whether satisfying $\int=2\pi$;
+\item Archive window-kernel functions for cross-team comparison: provide explicit form of $(w,h)$ or numerical file for independent verification.
+\end{enumerate}
+
+\begin{proof}[Proof points]
+$\operatorname{tr}\mathsf{Q}_{\rm obs}(E)=(1+z)\,\operatorname{tr}\mathsf{Q}\big((1+z)E\big)$, and $(f*g)\big(aE\big)=a\,\big(f^{\langle a\rangle}*g^{\langle a\rangle}\big)(E)$.
+\end{proof}
+
+\section{Windowed Microcausality and Causal Adaptation of Filter Chains}
+
+\subsection{Spacelike Separation and Commutation}
+
+\textbf{Localization convention (this section):} On causal manifold $(\mathcal{M},\preceq)$, for any open set $U\subset\mathcal{M}$ denote $P_U$ as local projection/truncation operator on $U$, define local window-kernel
+$$
+K_{w,h}[U]:=P_U K_{w,h} P_U,
+$$
+such that $\mathrm{supp}\,K_{w,h}[U]\subset U$. Call $U_x,U_y$ spacelike separated if and only if $U_x\cap J^\pm(U_y)=\varnothing$. All following statements target local operators $K_{w,h}[U]$.
+
+\begin{definition}[Spacelike separation]
+\label{def:spacelike}
+Two local window-kernel support domains $U_x,U_y$ neither falling into each other's forward/backward cones.
+\end{definition}
+
+\begin{proposition}[Windowed microcausality]
+\label{prop:microcausality}
+Let $K_{w_x,h_x}[U_x],K_{w_y,h_y}[U_y]$ belong to local algebra net satisfying microcausality (e.g., Wightman/Haag--Kastler) conditions, and support regions spacelike separated, then
+$$
+[K_{w_x,h_x}[U_x],K_{w_y,h_y}[U_y]]=0.
+$$
+If further assume Heisenberg adjoint of related CP/POVM operations keeps respective operator algebras within local subalgebras generated by $K_{w_x,h_x}[U_x]$, $K_{w_y,h_y}[U_y]$, and supports continue spacelike separated, then $\mathcal{O}_y\circ \mathcal{O}_x=\mathcal{O}_x\circ \mathcal{O}_y$. This statement isomorphic to QFT microcausality $[\mathscr{O}(x),\mathscr{O}(y)]=0$.
+\end{proposition}
+
+\subsection{Causal Adaptation and Composition Law}
+
+\begin{definition}[Causal adaptation]
+\label{def:adaptation}
+Filter family $\{\mathcal{O}_t\}$ along worldline $\gamma$, if its support contained in $J^-(\gamma(t))$ and only acts on subalgebra generated by $K_{w_t,h_t}$, then called causally adapted.
+\end{definition}
+
+\begin{proposition}[Composition law]
+\label{prop:composition}
+Segmented filters satisfy
+$$
+\mathcal{O}_{[t_0,t_n]}=\mathcal{O}_{[t_{n-1},t_n]}\circ\cdots\circ \mathcal{O}_{[t_0,t_1]},
+$$
+adjacent spacelike-separated segments can commute, otherwise compose in time order.
+\end{proposition}
+
+\subsection{Delayed Choice No-Signaling and Time-Order-Independence}
+
+\begin{proposition}[No-signaling]
+\label{prop:nosignal-dcqe}
+For any signal-idler total state $\rho_{si}$ and any idler end complete instrument $\{\mathcal{I}_a^i\}$ ($\sum_a\mathcal{I}_a^i=\Phi_i$ is CPTP), have
+$$
+\operatorname{Tr}_i\Big[(\mathrm{Id}_s\otimes\sum_a\mathcal{I}_a^i)(\rho_{si})\Big]=\operatorname{Tr}_i(\rho_{si}),
+$$
+thus any screen local window-kernel $K_{w,h}[U_x]$ unconditional readout independent of idler end measurement basis, whether erased, and order.
+\end{proposition}
+
+\begin{proposition}[Time-order-independence]
+\label{prop:time-order}
+If screen domain $U_x$ and idler domain $U_y$ spacelike separated, then for any $K_{w,h}[U_x]$ and idler end projection $\Pi_\alpha[U_y]$ have
+$$
+[K_{w,h}[U_x],\mathbf{1}\otimes\Pi_\alpha[U_y]]=0,
+$$
+thus whether ``measure screen first then erase'' or ``erase first then measure screen,'' unconditional distribution consistent; conditional coincidence only changes sample grouping, not changing marginal. Consistent with \S5.4 Theorem 5.4. Its no-signaling and time-order-independence source from partial order structure, not $T_\gamma$.
+\end{proposition}
+
+\textbf{Note (ledger perspective):} Screen unconditional distribution and windowed group delay readout belong to same master scale linear functionals; delayed choice only produces conditional binning not ontological ``time superposition.'' Thus for any complete binning $\{a\}$, identically have $\sum_a p_a\,(\cdot\mid a)=(\cdot)$, where ``$(\cdot)$'' can take intensity or $T_{\rm sig}$. This consistent with Proposition 5.5 convex averaging equality, also sourcing from partial order structure defined by $t_*$ together with Proposition 8.5--8.6 no-signaling and order-independence.
+
+\section{Mutual Construction Outline: GLS $\leftrightarrow$ Causal Manifold (Construction Skeleton and Future Work)}
+
+\textbf{Note:} This section provides GLS and causal manifold mutual construction skeleton thinking and construction points; rigorous functoriality and natural isomorphism proofs in separate work. Following statements are outline nature, should not be understood as proven equivalence.
+
+\textbf{Positioning clarification (preventing misunderstanding):} This section is construction skeleton and consistency expectation, not proven equivalence; current work does not depend on this equivalence prior establishment. All conclusions of \S1--\S7 independently hold under respective clear premises, unrelated to whether this section's mutual construction outline ultimately proven equivalent. This section only provides future work directional framework.
+
+\subsection{Categories}
+
+$\mathbf{WScat}$: objects are $(S,\mu_\varphi,\mathcal{W})$, morphisms are filter chains preserving Axiom I/II;
+$\mathbf{Cau}$: objects are causal manifolds $(\mathcal{M},\preceq)$, where $\preceq$ is partial order obtained from \S2.1 reachability preorder under no-closed-causal-loops assumption (or quotient partial order in general case); morphisms are mappings preserving lightlike cone and this partial order.
+
+\subsection{Construction and Conclusions}
+
+\begin{outline}[GLS $\leftrightarrow$ causal manifold mutual construction skeleton]
+\label{outline:mutual}
+Exist constructive functors
+$$
+\mathfrak{F}:\mathbf{WScat}\to\mathbf{Cau},\qquad \mathfrak{G}:\mathbf{Cau}\to\mathbf{WScat},
+$$
+and anticipate natural isomorphisms $\mathfrak{F}\circ\mathfrak{G}\simeq \mathrm{Id}_{\mathbf{Cau}}$, $\mathfrak{G}\circ\mathfrak{F}\simeq \mathrm{Id}_{\mathbf{WScat}}$ exist. This manuscript only provides construction skeleton, leaving rigorous proof and naturality verification for separate work.
+\end{outline}
+
+\textbf{Construction points:} $\mathfrak{F}$ generates partial order and cones using wavefront sets/earliest-arrival sets (determined by $t_*(\cdot)$) and phase singularities; $\operatorname{tr}\mathsf{Q}$ only used for readout layer scale and calibration (in vacuum link satisfying Nyquist discipline high-frequency/alias-free limit, can be used for consistent alignment with wavefront velocity calibrating $c$); $\mathfrak{G}$ uses proper time/light-cone parameterization to construct band-limited window-kernel and apply Berezin compression, making $\varphi'/\pi=(2\pi)^{-1}\operatorname{tr}\mathsf{Q}$ and NPE closure simultaneously hold.
+
+\section{Spectral Resolution--Redshift Duality and Scale Renormalization (Opposite Relation with Temporal/Image Resolution)}
+
+Let band-limited even window $w\in\mathsf{PW}_\Omega$, uniformly take
+$$
+w_R(E)=w\!\big((E-E_0)/R\big).
+$$
+
+Spectral resolution enhancement corresponds to effective bandwidth $B$ narrowing ($R\mapsto\lambda R,\ \lambda>1$), dual to redshift amplification; while temporal/image resolution enhancement ($\sigma_T\downarrow$) requires $B$ increase ($R\mapsto R/\lambda$), dual to blueshift. Both belong to two sides of Fourier duality, completely consistent with \S4.4 UR lower bound $\sigma_T\gtrsim C_{w,h}/B$.
+
+\textbf{Terminology clarification:}
+$$
+\begin{aligned}
+&\text{temporal/image resolution enhancement}\quad \Rightarrow\quad \sigma_T\downarrow\quad \Rightarrow\quad B\uparrow\quad \text{(blueshift, }R\downarrow\text{)};\\
+&\text{spectral resolution enhancement}\quad \Rightarrow\quad \Delta E\downarrow\quad \Rightarrow\quad B\downarrow\quad \text{(redshift, }R\uparrow\text{)}.
+\end{aligned}
+$$
+This section focuses on spectral resolution--redshift duality ($R\uparrow \leftrightarrow$ bandwidth narrowing $\leftrightarrow$ redshift amplification), under this duality framework, aliasing shuts off, EM endpoint error and tail term evolution with $R$ scales by computable law, covariant with spectral scaling.
+
+\section{Born Probability = Minimum KL Projection; Pointer Basis = Spectral Extremum}
+
+On implementable readout dictionary, Born probability equivalent to I-projection (minimum KL) from reference distribution to linear constraint family; information geometry projection and generalized Pythagorean theorem are operational basis. Stable readout basis corresponds to spectral extremum direction of $K_{w,h}$ (or its functional calculus), thus ``polarization/pointer'' becomes spectral geometric object.
+
+\section{Interface with RCA/EBOC (Discrete-Continuous Unification)}
+
+\subsection{Trajectory-Phase Embedding and Group Delay Velocity}
+
+Embed Reversible Cellular Automaton (RCA) trajectory local blocks into de Branges--Kre\u{\i}n phase geometry using stable window family, defining ``trajectory-phase metric'' $d_{\rm TP}$. RCA wavefront slope corresponds to effective velocity derived from GLS group delay, windowed readout unifying discrete-continuous time scale.
+
+\subsection{EBOC Interpretation}
+
+EBOC ``static blocks'' in GLS manifest as globally reversible scattering network; observer is moving filter chain within. ``Incompleteness = non-halting'' transliteration can be stated as: finite-window reconstruction error tail term entropy flux non-integrable/non-decaying, relating to \S3 NPE tail term control.
+
+\section{Paradigms and Examples}
+
+\subsection{Phaser Timing}
+
+\textbf{Notation reminder:} As stated in \S1.1, $E\equiv\omega$ (energy with angular frequency) throughout this section.
+
+Single channel $S(E)=e^{2i\delta(E)}$ then $\operatorname{tr}\mathsf{Q}(E)=2\delta'(E)$. Narrowband window approximation:
+$$
+T\approx \int w_R(E)\frac{\delta'(E)}{\pi}\,dE
+\approx \frac{1}{\pi}\Big[\delta\!\big(E_0+\tfrac{\Delta E}{2}\big)-\delta\!\big(E_0-\tfrac{\Delta E}{2}\big)\Big].
+$$
+(Wigner phase derivative timing)
+
+\textbf{Applicable domain:} Above narrowband approximation robust when window width sufficiently small and $\delta(E)$ approximately linear in-window; strong resonance/fast dispersion cases should return to mother formula $T=\int (w_R*\check{h})\,\tfrac{1}{2\pi}\operatorname{tr}\mathsf{Q}\,dE$ and control alias/EM/tail by \S3.3 NPE ledger.
+
+\subsection{Double-Slit---Polarization (Cross-Term Tuning)}
+
+Adjusting which-way intensity by $\eta$, visibility $V$ monotonically decreases, distinguishability $D$ monotonically increases, and $D^2+V^2\le 1$; cross term only survives in intersection of two window future cones.
+
+\subsection{Redshift Clock}
+
+After aligning master scale with $(\nu_{\rm src},\nu_{\rm obs})$, $1+z=\nu_{\rm src}/\nu_{\rm obs}$. By \S6.2 exact substitution,
+$$
+T_{\rm obs}[w_R,h]
+=\int_{\mathbb{R}}(w_R*\check{h})\!\Big(\frac{E}{1+z}\Big)\,\frac{1}{2\pi}\operatorname{tr}\mathsf{Q}(E)\,dE
+=\frac{1}{1+z}\,T_{\rm src}\!\big[w_R^{\langle 1/(1+z)\rangle},\,h^{\langle 1/(1+z)\rangle}\big].
+$$
+
+\subsection{Double-Slit Delayed Erasure (DCQE)}
+
+Take far-field approximation two-slit amplitudes $\psi_{1,2}(x)$, screen choose position window-kernel $K_{w,h}$ ($w_R$ locating at image plane segment, $h$ taking near-$\delta$ kernel to read out intensity). Let source state $\rho_s$ be pure state $\lvert\psi_s\rangle\langle\psi_s\rvert$, $\lvert\psi_s\rangle=\tfrac{1}{\sqrt2}(\lvert1\rangle+e^{i\theta}\lvert2\rangle)$. Then
+
+\begin{itemize}[leftmargin=*]
+\item \textbf{Unconditional:} $I_{\rm uncond}(x)\propto |\psi_1(x)|^2+|\psi_2(x)|^2$.
+
+\item \textbf{Eraser coincidence:}
+$$
+I_\pm(x)\ \propto\ |\psi_1(x)|^2+|\psi_2(x)|^2\ \pm\ 2\,\big|\psi_1(x)\psi_2(x)\big|\cos\big(\Delta k\cdot x+\theta+\phi\big).
+$$
+Two patterns opposite phase, sum back to unconditional distribution.
+
+\item \textbf{Intensity---weighted recovery formula (DCQE; by instrument separated):}
+$$
+\boxed{\ I_{\rm uncond}
+=\sum_{\alpha\in\{I_1,I_2\}}p_{\alpha}^{(\mathrm{ww})}\,I(\cdot\mid \alpha)
+=\sum_{\beta\in\{E_+,E_-\}}p_{\beta}^{(\mathrm{er})}\,I(\cdot\mid \beta)\ }
+$$
+where upper, lower formulas correspond to which-way and eraser two respective complete instruments; if experiment runs two instruments mixed by frequency $\lambda_{\mathrm{ww}},\lambda_{\mathrm{er}}$ ($\lambda_{\mathrm{ww}}+\lambda_{\mathrm{er}}=1$), then
+$$
+I_{\rm uncond}
+=\lambda_{\mathrm{ww}}\sum_{\alpha\in\{I_1,I_2\}}p_{\alpha}^{(\mathrm{ww})}I(\cdot\mid \alpha)
++\lambda_{\mathrm{er}}\sum_{\beta\in\{E_+,E_-\}}p_{\beta}^{(\mathrm{er})}I(\cdot\mid \beta).
+$$
+
+\item \textbf{Group delay consistency:} For any $\alpha\in\{\pm, I_1,I_2\}$,
+$$
+T_{\rm sig}[w_R,h\mid \alpha]=\int (w_R*\check{h})(E)\,\frac{1}{2\pi}\operatorname{tr}\mathsf{Q}_{\rm sig}(E)\,dE,
+$$
+independent of erasure choice; when $w_R,h$ satisfy Axiom II band-limitation and Nyquist condition, NPE error closure simultaneously holds.
+
+\item \textbf{Consistency---convex averaging (time; by instrument separated):}
+$$
+\boxed{\ T_{\rm sig}[w_R,h]
+=\sum_{\alpha\in\{I_1,I_2\}}p_{\alpha}^{(\mathrm{ww})}\,T_{\rm sig}[w_R,h\mid \alpha]
+=\sum_{\beta\in\{E_+,E_-\}}p_{\beta}^{(\mathrm{er})}\,T_{\rm sig}[w_R,h\mid \beta]\ }
+$$
+Mixed running similarly add $\lambda_{\mathrm{ww}},\lambda_{\mathrm{er}}$ convex combination. Above rewrite completely aligns with \S6.3 supplementary definition, Proposition 5.5 and \S8.3 ledger identity, excluding normalization and consistency issues caused by cross-instrument summation.
+\end{itemize}
+
+\subsection{Time-Domain Double-Slit: Ultrafast Time-Varying Mirror (ITO/ENZ)}
+
+Adopt ITO thin film near ENZ region to construct switchable ``time mirror,'' using two ultrashort pump pulses at times $t_1,t_2$ to rapidly transition reflectivity, equivalent to applying two ``time slits'' to incident probe pulse. As interval $\Delta t=t_2-t_1$ tunes, reflection spectrum shows clear interference fringes, period satisfying $\Delta\omega \simeq 2\pi/\Delta t$.
+
+View time-domain double-slit as instantaneous modulation of reflection channel, equivalent frequency-domain action is multiplication by
+$$
+M(\omega)=r_1+r_2e^{-i\omega\Delta t},
+$$
+where $r_{1,2}$ are complex amplitudes of two openings. Reflection spectrum intensity
+$$
+I_{\rm ref}(\omega)\ \propto\ \big|M(\omega)\big|^2\,I_{\rm in}(\omega)
+=\Big(|r_1|^2+|r_2|^2+2|r_1r_2|\cos[\omega\Delta t+\phi]\Big)\,I_{\rm in}(\omega),
+$$
+$\phi=\arg r_2-\arg r_1$. This completely isomorphic to spatial double-slit angular spectrum fringes, only exchanging ``spatial displacement $\leftrightarrow$ time delay'' into ``angular frequency fringes,'' \S7.2 spectral scaling-time reciprocity directly applicable.
+
+Express time-varying mirror as equivalent scattering function $S_{\rm eff}(\omega)=M(\omega)\,S_0(\omega)$ modulating static channel $S_0$. Since generally $|M(\omega)|\ne 1$, $S_{\rm eff}$ non-unitary; by Axiom I (global unitarity), should first take minimal unitary dilation $\widehat{S}_{\rm eff}(\omega)$ (single-channel case can take $2\times2$ dilation, making $S_{\rm eff}$ its upper-left block), with
+$$
+\frac{1}{2\pi}\operatorname{tr}\mathsf{Q}_{\widehat{S}}(\omega)
+=\frac{1}{2\pi}\frac{d}{d\omega}\arg\det\widehat{S}(\omega)
+$$
+defining master scale. Thus relative to static channel group delay density increment is
+$$
+\delta\left(\tfrac{1}{2\pi}\operatorname{tr}\mathsf{Q}\right)
+=\tfrac{1}{2\pi}\tfrac{d}{d\omega}\arg\det\widehat{S}_{\rm eff}(\omega)
+-\tfrac{1}{2\pi}\tfrac{d}{d\omega}\arg\det\widehat{S}_{0}(\omega).
+$$
+If and only if $|M(\omega)|\equiv1$ (pure phase modulation), above reduces to
+$$
+\delta\left(\tfrac{1}{2\pi}\operatorname{tr}\mathsf{Q}\right)=\tfrac{1}{2\pi}\tfrac{d}{d\omega}\arg M(\omega).
+$$
+Thus ``windowed group delay readout'' should be written
+$$
+T[w_R,h]=\int_{\mathbb{R}}(w_R*\check{h})(\omega)\,\frac{1}{2\pi}\operatorname{tr}\mathsf{Q}_{\widehat{S}_{\rm eff}}(\omega)\,d\omega,
+$$
+and can perform numerical implementation under ``static background + time slit($M$) term'' decomposition, consistent with \S3.1 operational time scale definition. Complementarity $D^2+V^2\le 1$ (\S5) and no-signal conclusions (\S5.3, \S7.3) remain invariant; \S4 wavefront lower bound $t_*\ge L_\gamma/c$ unaffected by opening-closing sequence, fringes follow \S3.3 NPE finite-order error closure.
+
+\appendix
+
+\section{Proof of Windowed Complementarity $D^2+V^2\le 1$}
+
+Denote $K=K_{w,h}$. Define unnormalized conditional states for two paths
+$$
+\tilde\rho_1:=P_1 K\rho K P_1,\qquad \tilde\rho_2:=P_2 K\rho K P_2,
+$$
+and normalize
+$$
+\rho_1:=\frac{\tilde\rho_1}{\operatorname{Tr}\tilde\rho_1},\qquad \rho_2:=\frac{\tilde\rho_2}{\operatorname{Tr}\tilde\rho_2}.
+$$
+Let $\Pi$ be optimal POVM for binary classification, then Helstrom distance $D=\tfrac12|\rho_1-\rho_2|_1$ gives minimal error bound. Cross visibility $V$ induced by off-diagonal block normalized quantity of $K$. Using CPTP contractivity and Cauchy--Schwarz obtain
+$$
+D^2+V^2\le 1,
+$$
+equality in pure state and ideal distinguish/ideal coherence.
+
+\section{NPE Tripartition Upper Bound Template}
+
+Take even window $w_R(E)=w((E-E_0)/R)$, where $E_0$ is center frequency. Following all derivatives and integrals with respect to $E$ not shifted variable. \textbf{Notation unification:} $(w_R h)$ appearing in this section denotes function product not convolution; let
+$$
+g(E):=(h\!\star\!\rho_{\rm rel})(E),\qquad f(E):=w_R(E)\,g(E),
+$$
+subsequent all error bounds given for $f$.
+
+\textbf{Poisson base formula:} For above $f$ have
+$$
+\int_{\mathbb{R}} f(E)\,dE=\Delta\sum_{n\in\mathbb{Z}} f(E_0+n\Delta)-\sum_{k\ne 0}e^{i(2\pi k/\Delta)E_0}\widehat{f}\Big(\tfrac{2\pi k}{\Delta}\Big).
+$$
+If $\mathrm{supp}\,\widehat{f}\subset(-2\pi/\Delta,2\pi/\Delta)$, second term zero (no alias), integral exactly equals infinite sampling sum. Only when $f$ approximately band-limited or implementation truncates infinite sum, introduce this work's NPE $\varepsilon_{\rm alias},\varepsilon_{\rm tail}$, and when using finite-order Euler--Maclaurin $\varepsilon_{\rm EM}$.
+
+\textbf{Poisson aliasing (general approximately band-limited):} From
+$$
+\Delta\sum_{n\in\mathbb{Z}} f(E_0+n\Delta)=\sum_{k\in\mathbb{Z}}e^{i(2\pi k/\Delta)E_0}\,\widehat{f}\Big(\tfrac{2\pi k}{\Delta}\Big)
+$$
+obtain
+$$
+|\varepsilon_{\rm alias}|
+=\Bigg|\sum_{k\ne 0}e^{i(2\pi k/\Delta)E_0}\,\widehat{f}\Big(\tfrac{2\pi k}{\Delta}\Big)\Bigg|
+\ \le\ \sum_{k\ne 0}\Big|\widehat{f}\Big(\tfrac{2\pi k}{\Delta}\Big)\Big|,\qquad \widehat{f}=\widehat{w_R}\ast(\widehat{h}\,\widehat{\rho_{\rm rel}}).
+$$
+
+\textbf{(Computable support-type bound):} If $\mathrm{supp}\,\widehat{w_R}\subset[-\Omega_w/R,\Omega_w/R]$, $\mathrm{supp}\,\widehat{h}\subset[-\Omega_h,\Omega_h]$, then
+$$
+\Big|\widehat{f}\Big(\tfrac{2\pi k}{\Delta}\Big)\Big|
+\le \int_{-\Omega_w/R}^{\Omega_w/R}|\widehat{w_R}(\xi)|\,
+\big|\widehat{h}\,\widehat{\rho_{\rm rel}}\big(\tfrac{2\pi k}{\Delta}-\xi\big)\big|\,d\xi,
+$$
+thus when $\Delta\le \pi/(\Omega_h+\Omega_w/R)$, aliasing term strictly 0 (Nyquist--Shannon). Approximately band-limited/finite-order implementation, above provides stable numerical bound, consistent with main text \S3.3 NPE ledger.
+
+\textbf{EM order selection (prescription):} Given target error threshold $\varepsilon_{\rm tol}$, take minimal $M$ such that
+$$
+\sum_{m=1}^{M}\frac{|B_{2m}|}{(2m)!}\Big|f^{(2m-1)}\Big|_{L^1}\ \le\ \tfrac12\,\varepsilon_{\rm tol},
+$$
+simultaneously choosing Euler--Maclaurin remainder bound $|R_{2M}|\le \tfrac12\,\varepsilon_{\rm tol}$. This way $|\varepsilon_{\rm EM}|$ controllable within specified tolerance.
+
+\textbf{Finite-order EM:} Let take to $2M$ order, then
+$$
+|\varepsilon_{\rm EM}|\ \le\ \sum_{m=1}^{M}\frac{|B_{2m}|}{(2m)!}\,\Big|f^{(2m-1)}\Big|_{L^1}\;+\;|R_{2M}|,
+$$
+where $R_{2M}$ is DLMF form remainder (can explicitly express using periodized Bernoulli functions and estimate bound).
+
+\textbf{Tail term:} If $w_R$ $L^1$ controllable on $|E-E_0|>\Lambda R$, and $|g|_{L^\infty}$ bounded, then
+$$
+|\varepsilon_{\rm tail}|\ \le\ \Big|w_R\mathbf{1}_{|E-E_0|>\Lambda R}\Big|_{L^1}\,|g|_{L^\infty}.
+$$
+Scale transformation $R\mapsto\lambda R$ and spectral scaling $E\mapsto E/(1+z)$, above bounds scale by Fourier-sampling duality covariance.
+
+\textbf{UR skeleton (\S4.4 derivation outline):}
+
+Let $F(E):=(w_R*\check{h})(E)/(2\pi)$ normalized viewed as band-limited kernel (effective bandwidth $B$). Its time-domain kernel $K(t)=\int F(E)e^{-iEt}\,dE$ satisfies Bernstein inequality $\|K'\|_2\le B\,\|K\|_2$. Defining $\sigma_T$, $\sigma_E$ using second moments or robust scales, combined with Parseval can get $\sigma_T\sigma_E\gtrsim \tfrac12 C_{w,h}$, and controlled by scale $B$ obtaining $\sigma_T\gtrsim C_{w,h}/B$. Constant $C_{w,h}\in(0,1]$ depends only on window-kernel regularity and area norm.
+
+\section{Mutual Construction Outline Category Theory Skeleton}
+
+Objects: $\mathbf{WScat}$ morphisms are filter chains preserving Axiom I/II; $\mathbf{Cau}$ morphisms are mappings preserving lightlike cone and partial order.
+$\mathfrak{F}$: constructs partial order and cones using wavefront sets/earliest-arrival sets; $\operatorname{tr}\mathsf{Q}$ only used for readout scale and calibration (in vacuum link satisfying Nyquist discipline high-frequency/alias-free limit, can be used for consistent alignment with wavefront velocity $c$).
+$\mathfrak{G}$: uses proper time to construct band-limited window-kernel and apply Berezin compression, making scale identity and NPE closure simultaneously hold.
+
+\section{Toeplitz/Berezin Compression and de Branges Background}
+
+Toeplitz/Berezin framework provides operatorized implementation path for windowed readout; de Branges spaces provide holomorphic-measure correspondence for phase $\varphi$ and its derivative, thus seamlessly interfacing with spectral shift-group delay scale identity.
+
+\section*{Conclusion Highlights}
+
+\begin{itemize}[leftmargin=*]
+\item Trinity scale $\varphi'/\pi=\rho_{\rm rel}=(2\pi)^{-1}\operatorname{tr}\mathsf{Q}$ unifies phase-density-group delay;
+\item Windowed group delay readout provides operational time scale, with additivity and gauge covariance (relative invariance), non-asymptotically closed under NPE discipline;
+\item Vacuum wavefront norming $c$ yields no-supercone propagation and arrival time lower bound;
+\item High-frequency platform bridge: any fixed-shape normalized window blueshift limit---single channel $\displaystyle \lim_{E_0\to\infty}T_\gamma=t_*$; multichannel $\displaystyle \lim_{E_0\to\infty}T_{\mathcal{C}}=N_{\rm eff}t_*$ and $\displaystyle \lim_{E_0\to\infty}\overline{T}_{\mathcal{C}}=t_*$. Recommend using per-mode average $\overline{T}_{\mathcal{C}}$ to calibrate geometric wavefront, avoiding confusion between total delay and geometric wavefront;
+\item Redshift-time satisfies reciprocal scaling law; spectral resolution enhancement (bandwidth narrowing) and redshift amplification strictly dual; temporal/image resolution enhancement ($\sigma_T\downarrow$) and blueshift (bandwidth increase) strictly dual, consistent with \S4.4 $\sigma_T\gtrsim C_{w,h}/B$;
+\item Double-slit windowed complementarity $D^2+V^2\le1$ and which-way tuning unified under same master scale;
+\item Propose GLS $\leftrightarrow$ causal manifold mutual construction outline, reserving rigorous proof and verification of natural isomorphism for subsequent work.
+\end{itemize}
+
+\bibliographystyle{plain}
+\begin{thebibliography}{99}
+
+\bibitem{pushnitski2010}
+A. Pushnitski.
+\newblock An integer-valued version of the Birman--Kre\u{\i}n formula.
+\newblock arXiv:1006.0639, 2010.
+
+\bibitem{smith1960}
+F. T. Smith.
+\newblock Lifetime Matrix in Collision Theory.
+\newblock {\em Physical Review}, 118(1):349--356, 1960.
+
+\bibitem{englert1996}
+B.-G. Englert.
+\newblock Fringe Visibility and Which-Way Information: An Inequality.
+\newblock {\em Physical Review Letters}, 77(11):2154--2157, 1996.
+
+\bibitem{helstrom1976}
+C. W. Helstrom.
+\newblock {\em Quantum Detection and Estimation Theory}.
+\newblock Academic Press, 1976.
+
+\bibitem{debranges1968}
+L. de Branges.
+\newblock {\em Hilbert Spaces of Entire Functions}.
+\newblock Prentice-Hall, 1968.
+
+\bibitem{bottcher2006}
+A. B\"{o}ttcher and B. Silbermann.
+\newblock {\em Analysis of Toeplitz Operators}.
+\newblock Springer, 2nd edition, 2006.
+
+\bibitem{dlmf}
+NIST Digital Library of Mathematical Functions.
+\newblock \url{https://dlmf.nist.gov}, Release 1.1.10, 2023.
+
+\bibitem{nyquist}
+H. Nyquist.
+\newblock Certain topics in telegraph transmission theory.
+\newblock {\em Transactions of the AIEE}, 47(2):617--644, 1928.
+
+\bibitem{shannon1949}
+C. E. Shannon.
+\newblock Communication in the presence of noise.
+\newblock {\em Proceedings of the IRE}, 37(1):10--21, 1949.
+
+\bibitem{titchmarsh1948}
+E. C. Titchmarsh.
+\newblock {\em Introduction to the Theory of Fourier Integrals}.
+\newblock Oxford University Press, 2nd edition, 1948.
+
+\bibitem{paley1934}
+R. E. A. C. Paley and N. Wiener.
+\newblock {\em Fourier Transforms in the Complex Domain}.
+\newblock American Mathematical Society, 1934.
+
+\bibitem{duren1970}
+P. Duren.
+\newblock {\em Theory of $H^p$ Spaces}.
+\newblock Academic Press, 1970.
+
+\bibitem{brillouin1960}
+L. Brillouin.
+\newblock {\em Wave Propagation and Group Velocity}.
+\newblock Academic Press, 1960.
+
+\bibitem{hormander1983}
+L. H\"ormander.
+\newblock {\em The Analysis of Linear Partial Differential Operators II}.
+\newblock Springer, 1983.
+
+\bibitem{lax1967}
+P. D. Lax and R. S. Phillips.
+\newblock {\em Scattering Theory}.
+\newblock Academic Press, 1967.
+
+\bibitem{slepian1961}
+D. Slepian and H. O. Pollak.
+\newblock Prolate spheroidal wave functions, Fourier analysis and uncertainty---I.
+\newblock {\em Bell System Technical Journal}, 40(1):43--63, 1961.
+
+\bibitem{landau1961}
+H. J. Landau and H. O. Pollak.
+\newblock Prolate spheroidal wave functions, Fourier analysis and uncertainty---II.
+\newblock {\em Bell System Technical Journal}, 40(1):65--84, 1961.
+
+\bibitem{tirole2023}
+R. Tirole et al.
+\newblock Double-slit time diffraction at optical frequencies.
+\newblock {\em Nature Physics}, 19(7):999--1002, 2023.
+
+\bibitem{castelvecchi2023}
+D. Castelvecchi.
+\newblock Light waves squeezed through `slits in time'.
+\newblock {\em Nature News}, 2023.
+
+\bibitem{vezzoli2022}
+S. Vezzoli et al.
+\newblock Saturable Time-Varying Mirror Based on an Epsilon-Near-Zero Material.
+\newblock {\em Physical Review Applied}, 18(5):054067, 2022.
+
+\end{thebibliography}
+
+\end{document}

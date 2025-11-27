@@ -1,0 +1,347 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{enumerate}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{MCCI: Unified Theory of Mental Holes--Causality--Choice Architecture\\
+\vspace{0.3cm}
+\large (With Definitions--Criteria--Theorems--Proofs--Verification Protocols,\\
+Compatible with WSIG / EBOC / RCA--CID)}
+
+\author{Auric (S-series / EBOC)}
+\date{Version: v1.7 (2025-11-05, Asia/Singapore)}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Keywords:} Mental holes; Causal diagrams (SCM); Choice architecture (default/framing/order); Bias--noise decomposition; Loss aversion; Reference point; CATE; I-projection (KL/Bregman); WSIG; EBOC; RCA--CID
+
+\textbf{MSC:} 62Cxx; 62Pxx; 68Txx; 91Bxx; 94Axx
+
+\begin{abstract}
+We construct a theory of ``mental holes'' verifiable under the triple norm of probability--utility--causality: given a rational baseline strategy and an embedding of observable architecture variables, we define the total deviation functional and its four-dimensional decomposition (bias, noise, causal mismatch, architecture sensitivity), provide identification criteria via backdoor/frontdoor/instrumental variables/discontinuity/difference-in-differences, and specify minimal experimental designs. Under I-projection and Bregman geometry, we prove the ``Pythagoras--decoupling'' structure and derive realizable estimation--audit pipelines (DQC). In the WSIG dictionary, the I-projection of the rational constraint family is viewed as the ``readout norm'', and deviations are written as KL/Bregman distances; in EBOC, the pipeline is implemented as ``window selection leaf'' rules; in RCA--CID, reversible logs guarantee intervention replayability and external audit. We also provide an in-model determination criterion for ``loss aversion--love'' via the indicator $L = \eta(\lambda-1)$ (concern weight $\times$ fracture coefficient). Core proofs follow Csiszár's I-projection and Bregman--Pythagoras, Pearl's causal criteria, and modern estimation theory.
+\end{abstract}
+
+\section{Notation \& Axioms / Conventions (WSIG--EBOC--RCA Unity)}
+
+\textbf{A1 (Measure--Strategy--Readout):} The observation triple $(\mathcal{H},w,\mathcal{D})$ induces windowed readouts; all strategies and distributions on the standard simplex are metrized by Bregman divergence $D_\phi(\cdot\|\cdot)$ and KL; rational baseline given by I-projection on constraint families \cite{csiszar1975}.
+
+\textbf{A2 (Calibration Identity, WSIG card):} Under the unified calibration of scattering--information geometry, we adopt the mother scale $\varphi'(E)/\pi = \rho_{\mathrm{rel}}(E) = (2\pi)^{-1}\,\mathrm{tr}\,\mathsf{Q}(E)$, where $\mathsf{Q} := -\mathrm{i}\,S^\dagger \partial_E S$ is the Wigner--Smith group delay matrix; as the measure coordinate connecting to this system \cite{smith1960}.
+
+\textbf{A3 (Finite-order NPE discipline):} All discrete--continuous transformations and windowed integrations uniformly adopt ``finite-order Euler--Maclaurin + Poisson'' three-term error closure, asserting non-increasing singularity and pole = primary scale.
+
+\textbf{A4 (RCA--CID reversibility):} Implementation and audit are uniformly mapped to Bennett reversible computation and Zeckendorf-encoded logs; guaranteeing reversible replay of interventions and estimation versions \cite{bennett1973}.
+
+\section{Model and Baseline Norm}
+
+\textbf{Variables:} Context $X$, action $A \in \mathcal{A}$, outcome $Y$, unobserved disturbance $U$; \textbf{architecture variables} $C = (F,D,S)$ for presentation framing, default selection, presentation order.
+
+\textbf{SCM:} Directed acyclic graph $G$ and structural equations $V_i := f_i(\mathrm{Pa}(V_i),U_i)$.
+
+\textbf{Rational baseline:} Under identified intervention distribution $P(Y\mid do(A=a),X)$ and utility $u$, the Bayes--decision optimal strategy
+$$
+\pi^\star(\cdot\mid x) \in \arg\max_\pi\,\mathbb{E}\left[u(Y)\mid do(A\sim \pi(\cdot\mid x)),X=x\right].
+$$
+
+\textbf{Actual strategy:} $\pi(\cdot\mid x,c)$ may explicitly depend on $c$.
+
+\textbf{Divergence:} Take KL or general Bregman divergence $D_\phi$.
+
+\section{Definitions: Deviation Functional and Four-Dimensional Decomposition of Mental Holes}
+
+\begin{definition}[Total Deviation--Repeated Review Unification]\label{def:total_deviation}
+For each context $X=x$, fix a \textbf{baseline presentation} $c_0$; let the $r$-th review's strategy be $\pi^{(r)}(\cdot\mid x,c_0)$. Define
+$$
+\mathcal{L} := \mathbb{E}_X\,\mathbb{E}_r\big[D_\phi\big(\pi^\star(\cdot\mid X)\|\pi^{(r)}(\cdot\mid X,c_0)\big)\big].
+$$
+(Architecture sensitivity is separately measured by $\mathrm{AS}$ and its regularization term $\mathcal{R}_{\mathrm{AS}}$; see Theorem~\ref{thm:bregman_decomp}.)
+\end{definition}
+
+\begin{definition}[Same-Case Repetition and Four Components]\label{def:four_components}
+For the same case $x$, repeat reviews $A^{(r)} \sim \pi^{(r)}(\cdot\mid x,c)$. Here $\pi^{(r)}(\cdot\mid x,c)$ denotes the action distribution of the $r$-th review (or reviewer); its Bregman centroid
+$$
+\bar{\pi}_\phi(\cdot\mid x,c) := (\nabla\phi)^{-1}\big(\mathbb{E}_r[\nabla\phi(\pi^{(r)}(\cdot\mid x,c))]\big).
+$$
+Define
+\begin{align*}
+\mathrm{Bias}(x) &:= D_\phi\big(\pi^\star(\cdot\mid x)\|\bar{\pi}_\phi(\cdot\mid x,c)\big),\\
+\mathrm{Noise}(x) &:= \mathbb{E}_r\big[D_\phi\big(\bar{\pi}_\phi(\cdot\mid x,c)\|\pi^{(r)}(\cdot\mid x,c)\big)\big],\\
+\mathrm{CM}(x) &:= \Big(\mathbb{E}[u(Y)\mid A\sim \bar{\pi}_\phi(\cdot\mid x,c),X=x]\\
+&\qquad-\mathbb{E}[u(Y)\mid do(A\sim \bar{\pi}_\phi(\cdot\mid x,c)),X=x]\Big)^{2} \ge 0,\\
+\mathrm{AS}(x) &:= \sup_{c,c'}D_\phi\big(\pi(\cdot\mid x,c)\|\pi(\cdot\mid x,c')\big).
+\end{align*}
+\end{definition}
+
+\begin{definition}[Strength Indicator]\label{def:defect}
+Given weights $\omega\succ 0$, define
+$$
+\mathrm{Defect} := \mathbb{E}_X\Big[\omega_b\,\mathrm{Bias}(X)+\omega_n\,\mathrm{Noise}(X)+\omega_c\,\mathrm{CM}(X)+\omega_a\,\mathrm{AS}(X)\Big].
+$$
+Note: The four terms here correspond one-to-one with $\mathcal{B},\mathcal{N},\mathcal{C},\mathcal{R}_{\mathrm{AS}}$ in Section~\ref{sec:core_theorems}, where $\mathcal{C} = \mathbb{E}_X[\mathrm{CM}(X)]$ and $\mathcal{R}_{\mathrm{AS}}$ is the penalty functional for $\mathrm{AS}$.
+\end{definition}
+
+\section{Causal Embedding and Identification Criteria}
+
+\textbf{Architecture embedding:} Incorporate $C$ as parent or co-parent of $A$ into $G$: $C \to A \to Y$; allow $C$ to alter information presentation and observation channels but not the structural equations of potential outcomes $Y(a)$.
+
+\textbf{Backdoor criterion:} If there exists $Z \subset X$ blocking all backdoor paths from $A$ to $Y$, then $P(y\mid do(a)) = \sum_z P(y\mid a,z)P(z)$ \cite{pearl_backdoor}.
+
+\textbf{Frontdoor/IV/RD/DiD:} For unobserved confounding, use frontdoor variables, qualified instruments (relevance, exclusion, monotonicity), regression discontinuity, and modern multi-period DiD (including staggered treatment timing and continuous intensity) respectively \cite{frontdoor2024,did_callaway}.
+
+\section{Three Core Theorems and Proofs}\label{sec:core_theorems}
+
+\begin{theorem}[Bregman--Pythagoras Dual Decomposition + Regularization]\label{thm:bregman_decomp}
+For each $x$, taking expectation over $r$ yields
+$$
+\mathbb{E}_r\Big[D_\phi\big(\pi^\star\|\pi^{(r)}\big)\Big]
+= D_\phi\big(\pi^\star\|\bar{\pi}_\phi\big)+\mathbb{E}_r\Big[D_\phi\big(\bar{\pi}_\phi\|\pi^{(r)}\big)\Big].
+$$
+Taking expectation over $X$, by Definition~\ref{def:total_deviation} we obtain
+$$
+\mathcal{L}=\underbrace{\mathbb{E}_X\big[D_\phi(\pi^\star\|\bar{\pi}_\phi)\big]}_{\mathcal{B}}
++\underbrace{\mathbb{E}_X\big[\mathbb{E}_r D_\phi(\bar{\pi}_\phi\|\pi^{(r)})\big]}_{\mathcal{N}}.
+$$
+Introducing regularization to penalize causal mismatch and architecture sensitivity, define
+$$
+\mathcal{L}_{\mathrm{aug}} := \mathcal{L}+\underbrace{\mathbb{E}_X[\mathrm{CM}(X)]}_{\mathcal{C}}+\underbrace{\Psi_{\mathrm{AS}}}_{\mathcal{R}_{\mathrm{AS}}}\quad\Rightarrow\quad
+\mathcal{L}_{\mathrm{aug}}=\mathcal{B}+\mathcal{N}+\mathcal{C}+\mathcal{R}_{\mathrm{AS}},
+$$
+where $\mathcal{C},\mathcal{R}_{\mathrm{AS}} \ge 0$.
+\end{theorem}
+
+\begin{proof}
+The Bregman three-point identity
+$D_\phi(x_1\|x_3) = D_\phi(x_1\|x_2)+D_\phi(x_2\|x_3)+\langle x_1-x_2,\nabla\phi(x_3)-\nabla\phi(x_2)\rangle$,
+taking $x_1=\pi^\star,x_2=\bar{\pi}_\phi,x_3=\pi^{(r)}$ and conditional expectation over $r$, using $\bar{\pi}_\phi=(\nabla\phi)^{-1}\mathbb{E}[\nabla\phi(\pi^{(r)})]$ to make the cross term 0 (Bregman centroid first-order condition), yields the first identity and baseline equality; $\mathrm{CM}(X)$ is defined as a nonnegative squared difference by Definition~\ref{def:four_components}, $\Psi_{\mathrm{AS}}$ is the penalty functional for $\mathrm{AS}$; incorporating both as regularization terms gives the augmented $\mathcal{L}_{\mathrm{aug}}$ \cite{banerjee2005}.
+\end{proof}
+
+\begin{theorem}[Architecture Equivalence and Architecture Effect]\label{thm:arch_equiv}
+If two presentations $c,c'$ only affect information channels without altering the structure of $Y(a)$, then
+$$
+\mathrm{AS}(x)=0 \iff \pi(\cdot\mid x,c)=\pi(\cdot\mid x,c')\ \text{almost surely}.
+$$
+If $\mathrm{AS}(x)>0$, there exists an \textbf{architecture effect} induced by pure presentation difference $P(a\mid x,c) \neq P(a\mid x,c')$.
+\end{theorem}
+
+\begin{proof}
+By positive definiteness of divergence and the definition, immediate.
+\end{proof}
+
+\begin{theorem}[In-Model Determination of ``Loss Aversion--Love'']\label{thm:loss_love}
+Let $s \in \{0,1\}$, reference point $s^\ast=1$, other's welfare weight $\eta \ge 0$, fracture loss coefficient $\lambda>1$,
+$$
+U(x,y,s) = u(x)+\eta\,u(y)+v(s-s^\ast),\qquad
+v(z) =
+\begin{cases}
+\alpha\,z,& z\ge 0,\\[2pt]
+-\lambda\,\beta(-z),& z<0.
+\end{cases}
+$$
+where $\beta(\cdot)>0,\ \beta(0)=0$. Operationalize ``love'' as: WTP to reduce separation probability from $\varepsilon\downarrow 0$ to $0$ exceeds the baseline implied solely by risk aversion of $u$. Then under the premise $\lambda>1$,
+$$
+\text{Love}\ \Longleftrightarrow\ \eta>0,\qquad
+L := \eta(\lambda-1)>0.
+$$
+\end{theorem}
+
+\begin{proof}
+At first-order approximation,
+$$
+\mathrm{WTP}\ \sim\ \varepsilon\Big(\eta\cdot\Delta u+(\lambda-1)\cdot\beta(1)\Big),
+$$
+where $\Delta u$ represents the marginal difference in other's welfare between $s=1$ and $s=0$; if $\eta=0$, this term vanishes; if $\lambda=1$, there is no loss aversion correction for separation. Both being positive yields positive WTP excess.
+\end{proof}
+
+\section{Identification and Estimation (DQC: Document--Counter--Causalize--Audit)}
+
+\textbf{D1 Document:} Case file contains $(X,C,\mathcal{A},\text{objective},\text{constraints})$.
+
+\textbf{D2 Counter-framing:} Apply two or more $C$ to the same case (gain/loss framing, default switching, order shuffling), compute
+$$
+\widehat{\mathrm{AS}}(x) = \max_{c,c'} D_\phi\big(\hat{\pi}(\cdot\mid x,c),\hat{\pi}(\cdot\mid x,c')\big),
+$$
+flag as ``architecture sensitive'' if above threshold.
+
+\textbf{D3 Causalization:} Draw DAG and identify via backdoor/frontdoor/IV/RD/DiD criteria; prioritize small-scale randomization for randomizable cases. Estimate $\mathrm{ATE} = \mathbb{E}[Y(1)-Y(0)]$, $\mathrm{CATE}(x) = \mathbb{E}[Y(1)-Y(0)\mid X=x]$. For observational data, use IPW/DR/TMLE and causal forests; perform $\Gamma$-sensitivity analysis for unobserved confounding \cite{bang_robins}.
+
+\textbf{D4 Audit (Noise audit):} Same-case multi-evaluation estimates $\mathrm{Noise}$ and aggregates
+$$
+\widehat{\mathrm{Defect}} = \omega_b\widehat{\mathcal{B}}+\omega_n\widehat{\mathcal{N}}+\omega_c\widehat{\mathcal{C}}+\omega_a\widehat{\mathrm{AS}}.
+$$
+Distinguish ``level noise/pattern noise/occasion noise'' in reports and provide ``decision hygiene'' protocols (independent judgment, aggregation, multi-source evidence) \cite{kahneman_noise}.
+
+\section{Identification Criteria and Minimal Experimental Design (Quick Reference)}
+
+\textbf{Backdoor:} Select $Z$ blocking all paths with arrows into $A$, use $\sum_z P(y\mid a,z)P(z)$ \cite{pearl_backdoor}.
+
+\textbf{Frontdoor:} When complete mediator $M$ exists and $A \to M$ has no backdoor, $M \to Y$ is backdoor-adjustable, $P(y\mid do(a))$ is identifiable \cite{frontdoor2024}.
+
+\textbf{Instrumental Variables (IV):} $Z$ relevant to $A$, independent of $Y(a)$, affects $Y$ only through $A$; under monotonicity identifies LATE \cite{angrist_iv}.
+
+\textbf{Regression Discontinuity (RD):} Continuity assumption at threshold guarantees local average causal effect identification \cite{rd_guide}.
+
+\textbf{Multi-period DiD:} Under staggered treatment and heterogeneous effects, use Callaway--Sant'Anna / Sun--Abraham families and extensions to continuous treatment intensity \cite{did_callaway}.
+
+\section{Estimators and Error Discipline (Non-Asymptotic Implementation)}
+
+\textbf{IPW / DR:} Utilize double robustness of propensity score and outcome regression; report small-sample corrections and trimming robustness \cite{bang_robins}.
+
+\textbf{TMLE:} Two-step substitution estimation respecting efficiency influence function of target functional, easy to integrate with ML; provide influence function standard errors \cite{tmle2006}.
+
+\textbf{Causal forests / Generalized random forests:} Estimate CATE and uncertainty, handle cluster errors \cite{grf2019}.
+
+\textbf{Sensitivity analysis:} Rosenbaum $\Gamma$ bounds, marginal sensitivity model and its sharper variants \cite{rosenbaum_sens}.
+
+\textbf{NPE error budget:} For all discrete--continuous transformations, report three parts: aliasing, boundary layer (Bernoulli), and tail with total bounds.
+
+\section{Isomorphic Connection with WSIG / EBOC / RCA--CID}
+
+\textbf{WSIG (I-projection = Born readout):} The I-projection $q^\star = \arg\min_{q\in\mathcal{Q}}\mathrm{KL}(p\|q)$ on rational constraint family $\mathcal{Q}$ is the ``norm readout''; total deviation $\mathcal{L} = \mathrm{KL}(q^\star\|p_\pi)$ is the readout--strategy relative deviation; Bregman--Pythagoras gives the additive ``bias + noise'' structure \cite{csiszar1975}.
+
+\textbf{EBOC (static block):} Case files and randomized designs are window selection rules on static block measures, not altering global measure; time is viewed as leaf reading of blocks, with order induced by selection rules.
+
+\textbf{RCA--CID (reversible log):} Embed DQC pipeline in reversible cellular automata; all intervention--estimation versions recorded in CID logs encoded in Zeckendorf normal form, and Bennett reversible embedding guarantees replayability and external audit \cite{bennett1973}.
+
+\textbf{Calibration alignment:} In scenarios requiring convergence with energy spectrum calibration, cite $\varphi'/\pi = \rho_{\mathrm{rel}} = (2\pi)^{-1}\,\mathrm{tr}\,\mathsf{Q}$ as universal coordinate; group delay--bandwidth resource constraints become global budget for DQC \cite{smith1960}.
+
+\section{Experimental Blueprint and Reproducibility Checklist}
+
+\textbf{A/B (default effect):} Randomize $D \in \{\text{opt-in},\text{opt-out}\}$; test $\Delta\mathrm{ATE}$ and $\widehat{\mathrm{AS}}$.
+
+\textbf{Dual-framing review:} Same notification presented in gain/loss versions; estimate $\mathrm{CATE}$ with TMLE \cite{tmle2006}.
+
+\textbf{Noise audit:} Same-case multi-evaluation; distinguish level/occasion/pattern noise and report post-reduction magnitude and stability \cite{kahneman_noise}.
+
+\textbf{``Love'' indicator:} Construct insurance-type choice with small-probability separation on voluntary sample; estimate $\widehat{L} = \hat{\eta}(\hat{\lambda}-1)$ and link with satisfaction/reciprocity secondary endpoints.
+
+\textbf{Governance and fairness:} Report $\mathrm{CATE}$, $\widehat{\mathrm{AS}}$ for key subgroups; set ``architecture fairness'' thresholds and notification norms.
+
+\section{Further Properties and Corollaries}
+
+\begin{corollary}[Backdoor Adjustment $\Rightarrow$ Causal Mismatch Term Vanishes]\label{cor:backdoor}
+If there exists $Z$ satisfying the backdoor criterion, and when computing $\mathrm{CM}$ full adjustment is performed on $Z$, then $\mathcal{C}=0$ \cite{pearl_backdoor}.
+\end{corollary}
+
+\begin{corollary}[KL Special Case Centroid]\label{cor:kl_centroid}
+When $D_\phi = \mathrm{KL}$ and the first argument is on the simplex, $\bar{\pi}_\phi$ is a geometric-mean-type centroid, ensuring the cross term in Theorem~\ref{thm:bregman_decomp} vanishes \cite{csiszar1975}.
+\end{corollary}
+
+\begin{corollary}[Sufficiency of Decision Hygiene]\label{cor:hygiene}
+Independent judgment and de-echo-chamber aggregation on the Bregman platform are equivalent to minimizing $\mathbb{E}_r[D_\phi(\bar{\pi}_\phi\|\pi^{(r)})]$, thus directly reducing $\mathcal{N}$ \cite{kahneman_barrons}.
+\end{corollary}
+
+\begin{corollary}[Group Delay Budget]\label{cor:delay_budget}
+In systems calibrated with $\mathrm{tr}\,\mathsf{Q}$, total complexity of windowed evaluation is constrained by group delay--bandwidth product upper bound, serving as resource budget for DQC \cite{smith1960}.
+\end{corollary}
+
+\section{Proof Details (Selected)}
+
+\textbf{(I) Bregman--Pythagoras:} Banerjee et al.'s general treatment of Bregman three-point identity and clustering centroid, combined with Csiszár I-projection geometry, gives the first-order condition $\bar{\pi}_\phi = (\nabla\phi)^{-1}\mathbb{E}[\nabla\phi(\pi^{(r)})]$, hence cross term is 0 \cite{banerjee2005}.
+
+\textbf{(II) Causal identification:} Pearl's backdoor/frontdoor; Angrist--Imbens--Rubin IV and LATE; Hahn--Todd--van der Klaauw RD; Callaway--Sant'Anna (and subsequent extensions) multi-period and continuous treatment DiD \cite{pearl_causality}.
+
+\textbf{(III) Estimation theory:} Bang--Robins DR; van der Laan--Rubin TMLE; Athey--Wager causal and generalized random forests; Rosenbaum and recent sensitivity reviews \cite{bang_robins}.
+
+\textbf{(IV) WSIG calibration:} Wigner--Smith group delay and Birman--Kreĭn formula provide equivalent coordinates of calibration--phase--spectrum, used as measure coordinate converging with this theory \cite{smith1960}.
+
+\textbf{(V) RCA--CID reversibility:} Bennett's logical reversibility and Zeckendorf theorem guarantee reversible replay and unique factorization of logs, enabling external audit of intervention--estimation versions \cite{bennett1973}.
+
+\section{Implementation Blueprint (Engineering Minimal Set)}
+
+\begin{enumerate}
+\item \textbf{Diagramming and criteria:} Each online decision flow first draws DAG and marks backdoor sets/available instruments/possible thresholds and temporal staggering.
+\item \textbf{Online DQC:} Case file template + dual-framing questionnaire + small-scale randomization; automated IPW/DR/TMLE/causal forests; accompanied by Rosenbaum $\Gamma$ report \cite{rbounds}.
+\item \textbf{Audit and governance:} Report $\mathrm{CATE}$, $\widehat{\mathrm{AS}}$ and $\widehat{\mathrm{Defect}}$ (including $\widehat{\mathcal{B}},\widehat{\mathcal{N}},\widehat{\mathcal{C}},\widehat{\mathrm{AS}}$) for key subgroups; set ``architecture fairness'' thresholds and review frequency.
+\item \textbf{RCA--CID:} Use Zeckendorf-log to carry versions; declare reversible replay interface and audit API.
+\end{enumerate}
+
+\section*{One-Sentence Summary}
+
+``Mental holes'' are decomposable deviations of strategy relative to rational baseline; via causal criteria and I-projection, they are operationalized into measurable indicators; DQC converts doubt into institutionalized improvement and guarantees auditability and portability within the unified language of WSIG / EBOC / RCA--CID.
+
+\begin{thebibliography}{99}
+
+\bibitem{csiszar1975}
+Csiszár, I. \textit{I-Divergence Geometry of Probability Distributions and Minimization Problems}. Ann. Probab. 1975.
+\url{https://projecteuclid.org/journals/annals-of-probability/volume-3/issue-1}
+
+\bibitem{smith1960}
+Smith, F.T. \textit{Lifetime Matrix in Collision Theory}. Phys. Rev. 1960.
+\url{https://link.aps.org/doi/10.1103/PhysRev.118.349}
+
+\bibitem{bennett1973}
+Bennett, C.H. \textit{Logical Reversibility of Computation}. IBM J. 1973.
+\url{https://users.cs.duke.edu/~reif/courses/complectures/AltModelsComp/Bennett/LogRevComp.pdf}
+
+\bibitem{pearl_backdoor}
+Pearl, J. \textit{Causal diagrams for empirical research}. Biometrika 1995.
+\url{https://fitelson.org/woodward/pearl_95.pdf}
+
+\bibitem{frontdoor2024}
+\textit{The Front-door Criterion in the Potential Outcome Framework}. arXiv 2024.
+\url{https://www.arxiv.org/pdf/2412.10600}
+
+\bibitem{banerjee2005}
+Banerjee, A., Merugu, S., Dhillon, I., Ghosh, J. \textit{Clustering with Bregman Divergences}. JMLR 2005.
+\url{https://www.jmlr.org/papers/volume6/banerjee05b/banerjee05b.pdf}
+
+\bibitem{bang_robins}
+Bang, H., Robins, J. \textit{Doubly Robust Estimation in Missing Data and Causal Inference}. 2005.
+\url{https://www.math.mcgill.ca/dstephens/SISCR2018/Articles/bang_robins_2005.pdf}
+
+\bibitem{kahneman_noise}
+Kahneman, D., Sibony, O., Sunstein, C. \textit{Noise: A Flaw in Human Judgment}. 2021.
+\url{https://en.wikipedia.org/wiki/Noise:_A_Flaw_in_Human_Judgment}
+
+\bibitem{angrist_iv}
+Angrist, J., Imbens, G., Rubin, D. \textit{Identification of Causal Effects Using Instrumental Variables}. JASA 1996.
+\url{https://www.math.mcgill.ca/dstephens/AngristIV1996-JASA-Combined.pdf}
+
+\bibitem{rd_guide}
+\textit{Regression Discontinuity Designs: A Guide to Practice}. NBER Working Paper.
+\url{https://www.nber.org/system/files/working_papers/w13039/w13039.pdf}
+
+\bibitem{did_callaway}
+Callaway, B., Sant'Anna, P. \textit{Difference-in-Differences with multiple time periods}. 2021.
+\url{https://file-lianxh.oss-cn-shenzhen.aliyuncs.com/Refs/2025-08-Yang/Callaway_2021_Difference-in-Differences_with_multiple_time_periods.pdf}
+
+\bibitem{tmle2006}
+\textit{Targeted Maximum Likelihood Learning}. 2006.
+\url{https://www.degruyterbrill.com/document/doi/10.2202/1557-4679.1043/html}
+
+\bibitem{grf2019}
+Athey, S., Tibshirani, J., Wager, S. \textit{Generalized random forests}. Ann. Stat. 2019.
+\url{https://projecteuclid.org/journals/annals-of-statistics/volume-47/issue-2/Generalized-random-forests/10.1214/18-AOS1709.full}
+
+\bibitem{rosenbaum_sens}
+Rosenbaum, P. \textit{An Introduction to Sensitivity Analysis for Unobserved Confounding}. PMC.
+\url{https://pmc.ncbi.nlm.nih.gov/articles/PMC3800481/}
+
+\bibitem{kahneman_barrons}
+\textit{Daniel Kahneman Says Noise Is Wrecking Your Judgment}. Barron's 2021.
+\url{https://www.barrons.com/articles/economist-daniel-kahneman-says-noise-is-wrecking-your-judgment-51622228892}
+
+\bibitem{pearl_causality}
+Pearl, J. \textit{Causality}. 2009.
+\url{https://archive.illc.uva.nl/cil/uploaded_files/inlineitem/Pearl_2009_Causality.pdf}
+
+\bibitem{rbounds}
+\textit{An R Package for Targeted Maximum Likelihood Estimation}. J. Stat. Softw. 2011.
+\url{https://www.jstatsoft.org/article/view/v051i13/653}
+
+\end{thebibliography}
+
+\end{document}
+

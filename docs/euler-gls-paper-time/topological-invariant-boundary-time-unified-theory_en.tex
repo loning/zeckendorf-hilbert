@@ -1,0 +1,556 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{braket}
+\usepackage{graphicx}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{postulate}[theorem]{Postulate}
+
+% Title information
+\title{Topological Invariant-Driven Unified Theory of Boundary Time--Geometry--Topology}
+
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This paper constructs a complete unified theory framework starting from topological invariants, organizing structures of time scale, scattering topology, gravitational field equations, time crystals, self-referential scattering networks, and consciousness--decision time into a hierarchical conceptual geometric picture. The core idea is: on total space $Y = M \times X^\circ$, there exists a small group of topological and spectral invariants—time scale mother ruler $\kappa(\omega)$, $\mathbb{Z}_2$ holonomy of scattering square root $\nu_{\sqrt{S}}(\gamma)$, relative cohomology class $[K] \in H^2(Y,\partial Y;\mathbb{Z}_2)$, $K^1$ class of scattering family $[u] \in K^1(X^\circ)$, and generalized entropy variation conditions $S_{\mathrm{gen}},\delta^2 S_{\mathrm{rel}}$. These invariants generate a batch of structure layers through carriers such as principal bundles, spectral bundles, and boundary spectral triples: Boundary Time Geometry (BTG), Null--Modular double cover and $\mathbb{Z}_2$-BF top term, Information Geometric Variational Principle (IGVP), Self-referential Scattering Network (SSN), time crystal structures, and unified time scale geometry. Furthermore, these structures macroscopically manifest as general relativistic equations and running cosmological constant, quantum--classical time bridge, entanglement--consciousness--time unified delay, topological origin of fermions and topological superconductor endpoints, and multiple time crystal phases. Finally, these phases are observed and engineered in Fast Radio Bursts, deep space links, 1D $\delta$-potential rings and Aharonov--Bohm rings, topological endpoint cQED devices, and microwave Floquet networks, all falling under the same finite-order Nyquist--Poisson--Euler--Maclaurin (NPE) error discipline.
+
+The paper provides a topological relationship diagram described in mermaid, organizing entire theory into five layers: mother invariant layer, carrier layer, structure layer, phase/phenomenon layer, and observation/engineering layer. Main results can be summarized as three unification principles: (1) Time unification principle: time scale mother ruler $\kappa(\omega)$ induces unique time equivalence class $[\tau]$, unifying scattering time, modular time, and geometric time as boundary translation operator; (2) Topology--gravity unification principle: under local IGVP and Null--Modular assumptions, Einstein equations and non-negativity of gauge energy equivalent to vanishing of relative $\mathbb{Z}_2$ class $[K]$, i.e., ``no topological anomaly''; (3) Dynamics--topology unification principle: time crystals, self-referential scattering networks, and fermionic statistics can all be viewed as different projections of $[K]$ and $[u]$ in time direction and parameter space. Overall, universe is characterized as boundary scattering network with $\mathbb{Z}_2$ and $K^1$ structure, time is unique mother ruler scaled by phase gradient on it, while geometry, topology, consciousness, and engineering readouts are multiple expansions of this mother ruler.
+\end{abstract}
+
+---
+
+\section{Preliminaries: Total Space, Scattering Systems, and Time Scale Invariants}
+
+\subsection{Total Space and Parametrized Scattering Systems}
+
+Let $(M,g)$ be Lorentzian manifold with boundary, $\partial M$ be external boundary or causal section. Let $X$ be parameter space (such as external field strength, topological flux, driving period, etc.), $D \subset X$ be discriminant, let depleted parameter space be $X^\circ = X \setminus D$. Define total space
+$$
+Y := M \times X^\circ,\qquad \partial Y := \partial M \times X^\circ \,\cup\, M \times \partial X^\circ .
+$$
+
+At each point $x \in X^\circ$, consider pair of self-adjoint operators $(H_x,H_{0,x})$ and corresponding scattering matrix $S_x(\omega)$. Assume $S_x(\omega)$ is differentiable on energy interval $I \subset \mathbb{R}$ and satisfies standard trace-class perturbation assumption.
+
+Define Wigner--Smith time delay matrix
+$$
+Q_x(\omega) := -\,i\,S_x(\omega)^\dagger \,\partial_\omega S_x(\omega),
+$$
+whose trace $\operatorname{tr}Q_x(\omega)$ characterizes total group delay. Let
+$$
+\Phi_x(\omega) := \arg\det S_x(\omega),\qquad
+\varphi_x(\omega) := \tfrac{1}{2}\Phi_x(\omega)
+$$
+be total scattering phase and its half-phase.
+
+\subsection{Time Scale Mother Ruler}
+
+\begin{definition}[Time Scale Mother Ruler (Definition 1.1)]
+Under above conditions, define time scale density
+$$
+\kappa_x(\omega)
+:=\frac{\varphi_x'(\omega)}{\pi}
+=\rho_{\mathrm{rel},x}(\omega)
+=\frac{1}{2\pi}\operatorname{tr}Q_x(\omega),
+$$
+where $\rho_{\mathrm{rel},x}(\omega)$ is relative state density or derivative of Kreĭn spectral shift density.
+\end{definition}
+
+$\kappa_x(\omega)$ is function defined on $I \times X^\circ$, with following properties:
+
+\begin{enumerate}
+\item For each fixed $x$, $\kappa_x(\omega)$ is locally integrable on $I$;
+\item Under appropriate trace-class conditions, $\int_I \kappa_x(\omega)\,\mathrm{d}\omega$ equals relative spectral flow;
+\item For any smooth parameter path $\gamma:[0,1]\to X^\circ$, $\kappa_{\gamma(t)}(\omega)$ varies continuously with $t$.
+\end{enumerate}
+
+\begin{proposition}[Proposition 1.2]
+On given scattering family $(H_x,H_{0,x})_{x\in X^\circ}$, $\kappa_x(\omega)$ is invariant under any equivalent choice satisfying Birman--Kreĭn conditions, hence is spectral--scattering invariant of this relative class.
+\end{proposition}
+
+\textbf{Interpretation:} $\kappa(\omega)$ simultaneously unifies scattering phase gradient, relative state density, and Wigner--Smith group delay trace, serving as mother scale for all subsequent time structures.
+
+---
+
+\section{Topological Invariants: $\mathbb{Z}_2$ Holonomy, Relative Class $[K]$, and $K^1$}
+
+\subsection{Scattering Square Root and $\mathbb{Z}_2$ Holonomy}
+
+Within energy window $I$, introduce compressed scattering determinant $\det_p S_x(\omega)$, whose logarithm gives renormalized spectral shift function $\xi_p(\omega;x)$. Define single-valued function
+$$
+\mathfrak{s}(x) := e^{-2\pi i \xi_p(\omega_0;x)},
+$$
+where $\omega_0 \in I$ is fixed reference energy. For each $x\in X^\circ$, choose square root satisfying
+$$
+\sigma(x)^2 = \mathfrak{s}(x)
+$$
+defining principal bundle
+$$
+P_{\sqrt{\mathfrak{s}}} := \{(x,\sigma):\ x\in X^\circ,\ \sigma^2=\mathfrak{s}(x) \}\to X^\circ .
+$$
+
+For any closed loop $\gamma:S^1\to X^\circ$, define holonomy
+$$
+\nu_{\sqrt{S}}(\gamma) := \operatorname{Hol}(P_{\sqrt{\mathfrak{s}}},\gamma)\in\{+1,-1\}.
+$$
+
+\begin{definition}[$\mathbb{Z}_2$ Holonomy (Definition 2.1)]
+Invariant
+$$
+\nu_{\sqrt{S}}: \pi_1(X^\circ)\to \{\pm1\}
+$$
+is called $\mathbb{Z}_2$ holonomy of scattering square root, recording whether half-phase branch flips when traversing closed loop.
+\end{definition}
+
+This is core discrete invariant for subsequent Null--Modular double cover, time crystal topological anomaly, and fermionic statistics.
+
+\subsection{Relative Cohomology Class $[K] \in H^2(Y,\partial Y;\mathbb{Z}_2)$}
+
+Using K\"{u}nneth decomposition
+$$
+H^2(Y,\partial Y;\mathbb{Z}_2)
+\cong
+H^2(M,\partial M;\mathbb{Z}_2)\otimes H^0(X^\circ;\mathbb{Z}_2)
+\oplus
+H^1(M,\partial M;\mathbb{Z}_2)\otimes H^1(X^\circ;\mathbb{Z}_2)
+\oplus
+H^0(M;\mathbb{Z}_2)\otimes H^2(X^\circ,\partial X^\circ;\mathbb{Z}_2),
+$$
+any class $[K]$ can be written as
+$$
+[K] = \pi_M^\ast w_2(TM)
++ \sum_j \pi_M^\ast \mu_j \smile \pi_X^\ast \mathfrak{w}_j
++ \pi_X^\ast \rho\big(c_1(\mathcal{L}_S)\big),
+$$
+where $w_2(TM)\in H^2(M;\mathbb{Z}_2)$ is second Stiefel--Whitney class, $\mu_j\in H^1(M,\partial M;\mathbb{Z}_2)$ and $\mathfrak{w}_j\in H^1(X^\circ;\mathbb{Z}_2)$ correspond to various one-dimensional $\mathbb{Z}_2$ bundles, $\rho$ is mod-2 reduction, $\mathcal{L}_S$ is scattering line bundle.
+
+\begin{definition}[Relative Topological Class (Definition 2.2)]
+Call
+$$
+[K] \in H^2(Y,\partial Y;\mathbb{Z}_2)
+$$
+unified relative topological class, encoding spacetime spin obstruction, parameter space $\mathbb{Z}_2$ bundles, and torsion of scattering line bundle together.
+\end{definition}
+
+\subsection{$K^1$ Class of Scattering Family}
+
+For each $x\in X^\circ$, define relative Cayley transform
+$$
+u_x := (H_x-i)(H_x+i)^{-1}(H_{0,x}+i)(H_{0,x}-i)^{-1}.
+$$
+Under appropriate restricted conditions, $u_x$ falls in restricted unitary group $U_{\mathrm{res}}$, thus determining mapping
+$$
+X^\circ\ni x\longmapsto u_x \in U_{\mathrm{res}}.
+$$
+
+\begin{definition}[$K^1$ Class of Scattering Family (Definition 2.3)]
+Above mapping defines $K$-theory class
+$$
+[u]\in K^1(X^\circ),
+$$
+called $K^1$ class of scattering family. Its integer-valued spectral flow gives number of modes crossing eigenvalue $0$ during parameter evolution, and will play role in topological classification of self-referential scattering networks and time crystals.
+\end{definition}
+
+\subsection{Generalized Entropy Invariants and Relative Entropy Second-Order Condition}
+
+Choose point $p\in M$ and its neighborhood in $M$, for each scale $r>0$ construct small causal diamond $D_{p,r} \subset M$. Let $\Sigma_{p,r}$ be diamond boundary section, $A(\Sigma_{p,r})$ be its area, $V_{p,r}$ be corresponding volume, $T_{p,r}$ be appropriately defined ``effective temperature scale.''
+
+\begin{definition}[Generalized Entropy Function (Definition 2.4)]
+On $D_{p,r}$ define generalized entropy
+$$
+S_{\mathrm{gen}}(p,r)
+= \frac{A(\Sigma_{p,r})}{4G\hbar}
++ S_{\mathrm{out}}(p,r)
+- \frac{\Lambda}{8\pi G}\frac{V_{p,r}}{T_{p,r}},
+$$
+where $S_{\mathrm{out}}$ is von Neumann entropy of external quantum field.
+\end{definition}
+
+\begin{postulate}[Generalized Entropy Variation Condition (Postulate 2.5)]
+\begin{enumerate}
+\item First variation extremality: under appropriate constraints (such as fixed volume or fixed generalized energy),
+   $$
+   \delta S_{\mathrm{gen}}(p,r) = 0 .
+   $$
+\item Second-order relative entropy non-negativity:
+   $$
+   \delta^2 S_{\mathrm{rel}}(p,r) \ge 0 ,
+   $$
+   where $S_{\mathrm{rel}}$ is relative entropy or gauge energy equivalent.
+\end{enumerate}
+\end{postulate}
+
+This set of conditions will be proven equivalent to local Einstein equations and gauge energy non-negativity, connected to $[K]$ through Null--Modular structure.
+
+---
+
+\section{Carriers: Principal Bundles, Spectral Bundles, and Boundary Spectral Triples}
+
+\subsection{Principal Bundles and $K$-Theory Geometry}
+
+Previous section already introduced three principal or vector bundles corresponding to topological invariants:
+
+\begin{enumerate}
+\item Scattering square root principal bundle $P_{\sqrt{\mathfrak{s}}} \to X^\circ$, whose holonomy gives $\nu_{\sqrt{S}}(\gamma)$;
+\item Scattering line bundle $\mathcal{L}_S \to X^\circ$, whose first Chern class $c_1(\mathcal{L}_S)$ injects into $H^2(X^\circ,\partial X^\circ;\mathbb{Z}_2)$ component of $[K]$ via mod-2 reduction;
+\item Restricted unitary principal bundle $P_{U_{\mathrm{res}}} \to X^\circ$, classifying $K^1(X^\circ)$, whose equivalence class is $[u]$.
+\end{enumerate}
+
+These bundles, after pullback on $Y = M\times X^\circ$, together with spin bundle and time translation bundle of $M$, form unified geometric background.
+
+\subsection{Boundary Spectral Triple and Boundary Algebra}
+
+Let $\mathcal{A}_\partial$ be boundary observable algebra (e.g., generated by field operators with boundary conditions), $\mathcal{H}_\partial$ be its GNS Hilbert space, $D_\partial$ be appropriate Dirac-type operator, then triple
+$$
+(\mathcal{A}_\partial,\mathcal{H}_\partial,D_\partial)
+$$
+characterizes metric data on boundary in noncommutative geometric sense. Modular flow $\sigma_t^\omega$ as family of outer automorphisms is determined by state--algebra pair $(\omega,\mathcal{A}_\partial)$, giving ``modular time.''
+
+\subsection{Small Causal Diamond Family and Light-Ray Transform}
+
+Elaborating IGVP in $M$ requires family of small causal diamonds $\{D_{p,r}\}$, whose null generator lines on boundary are measure spaces, supporting weighted light-ray transform. Through projection integrals of $R_{ab}$ and $T_{ab}$, can use Radon-type closure theorem to reverse engineer pointwise field equations from integral conditions along null directions. This provides geometric basis for subsequent transformation from generalized entropy extremality conditions to Einstein equations.
+
+---
+
+\section{Structure Layers: BTG, Null--Modular, IGVP, SSN, and Time Crystals}
+
+\subsection{Boundary Time Geometry BTG and Time Equivalence Class}
+
+On boundary $\partial M$, there exist three natural time scales:
+
+\begin{enumerate}
+\item \textbf{Scattering time scale}
+   Induced by time scale mother ruler:
+   $$
+   \mathrm{d}\tau_{\mathrm{scatt}}(x)
+   := \frac{1}{2\pi}\operatorname{tr}Q_x(\omega)\,\mathrm{d}\omega .
+   $$
+\item \textbf{Modular time scale}
+   Given by parameter $t_{\mathrm{mod}}$ of modular flow $\sigma_t^\omega$.
+\item \textbf{Geometric time scale}
+   Boundary time translation parameter $t_{\mathrm{geom}}$ generated by Brown--York boundary stress tensor and GHY boundary Hamiltonian.
+\end{enumerate}
+
+\begin{definition}[Time Equivalence Class (Definition 4.1)]
+If two time parameters $t_1,t_2$ satisfy for constants $a>0,b\in\mathbb{R}$
+$$
+t_2 = a t_1 + b,
+$$
+then $t_1,t_2$ are said to belong to same time equivalence class, written $[t_1]=[t_2]$. Set of all equivalence classes denoted $[\tau]$.
+\end{definition}
+
+\begin{theorem}[Boundary Time Geometry Unification Theorem, BTG (Theorem 4.2)]
+Under appropriate integrability and matching conditions (scattering--modular flow consistency, boundary Hamiltonian differentiability, metric and scattering background compatibility), there exists unique time equivalence class $[\tau]$ such that scattering time scale, modular time scale, and geometric time scale all belong to $[\tau]$. In other words,
+$$
+[\tau_{\mathrm{scatt}}] = [\tau_{\mathrm{mod}}] = [\tau_{\mathrm{geom}}].
+$$
+\end{theorem}
+
+This equivalence class is called boundary clock, restating ``time'' as unified translation operator on boundary.
+
+\subsection{Null--Modular Double Cover and $\mathbb{Z}_2$-BF Top Term}
+
+On $Y = M\times X^\circ$, consider family of small causal diamonds, whose modular Hamiltonian integrated on two null sheets gives Null--Modular structure. Introduce $\mathbb{Z}_2$-valued 2-form representative $[K]$, construct BF top term
+$$
+S_{\mathrm{BF}}[K,a] := \pi i \int_Y K\smile a,
+$$
+where $a$ is $\mathbb{Z}_2$ gauge field. This top term assigns weight $(-1)^{\int_Y K\smile a}$ to each topological sector in quantum path integral, thus projecting partition function onto physical sector satisfying $[K]=0$.
+
+\begin{proposition}[Null--Modular Projection (Proposition 4.3)]
+If requiring global partition function remain non-degenerate under all compactly supported topological perturbations, must have
+$$
+[K] = 0\in H^2(Y,\partial Y;\mathbb{Z}_2),
+$$
+equivalently, $\mathbb{Z}_2$ holonomy of scattering square root satisfies on all physical closed loops
+$$
+\nu_{\sqrt{S}}(\gamma) = +1 .
+$$
+\end{proposition}
+
+\subsection{Information Geometric Variational Principle IGVP and Einstein Equations}
+
+On small diamond $D_{p,r}$, impose Postulate 2.5's extremality and second-order non-negativity on generalized entropy $S_{\mathrm{gen}}(p,r)$. Using weighted light-ray transform, transform constraints along null directions into tensor equations.
+
+\begin{theorem}[IGVP--Gravitational Field Equation Unification Theorem (Theorem 4.4)]
+Under premise of Postulate 2.5, there exist renormalized gravitational constant $G_{\mathrm{ren}}$ and effective cosmological constant $\Lambda_{\mathrm{eff}}$ such that on $M$
+$$
+G_{ab} + \Lambda_{\mathrm{eff}} g_{ab}
+= 8\pi G_{\mathrm{ren}}\,\langle T^{\mathrm{tot}}_{ab}\rangle,
+$$
+where $T^{\mathrm{tot}}_{ab}$ includes matter field, effective modular energy, and topological term contributions. Conversely, under given field equations and appropriate energy conditions, can construct $S_{\mathrm{gen}}$ satisfying Postulate 2.5. Therefore, IGVP is equivalent to local gravitational field equations under above assumptions.
+\end{theorem}
+
+\subsection{Self-Referential Scattering Network and $K^1$ Class}
+
+Self-referential scattering network consists of family of node scattering matrices and feedback connections, can be written as global scattering matrix $S^{\circlearrowleft}_x(\omega)$ using Redheffer star product or Schur complement formula. As parameter $x\in X^\circ$ varies, global operator family $H^{\circlearrowleft}_x$ defines $K^1$ class $[u^{\circlearrowleft}]$.
+
+Equivalence of spectral flow and $K^1$ index shows: when parameter evolves around closed loop $\gamma$, mod-2 spectral flow
+$$
+\operatorname{SF}(H^{\circlearrowleft}_{\gamma(t)}) \mod 2
+$$
+equals scattering square root holonomy $\nu_{\sqrt{S^{\circlearrowleft}}}(\gamma)$, thus corresponding to relevant component of relative class $[K]$. Thus, ``minus sign from two exchanges'' can be viewed as $\mathbb{Z}_2$ holonomy of self-referential scattering network, naturally connecting with fermionic statistics.
+
+\subsection{Time Crystal Structure and Topological Constraints}
+
+In Floquet / Lindblad / quasi-periodic driven systems, time translation group is reduced to discrete or multi-frequency lattice, topological structure of quasi-energy spectrum controlled by scattering line bundle $\mathcal{L}_S$ and projection of $[K]$. $\pi$-spectral pairing and odd-period equivalence phenomena of discrete time crystals can all be viewed as ``time direction topological incompatibility'' caused by non-trivial projection of $[K]$ on $H^2(X^\circ,\partial X^\circ;\mathbb{Z}_2)$.
+
+---
+
+\section{Phases and Phenomena: Geometry, Fermions, Consciousness, and Time Crystals}
+
+\subsection{General Relativity and Running Cosmological Constant}
+
+After obtaining local gravitational equations from Theorem 4.4, can introduce generalized scattering phase $\Theta(\omega;\mu)$ in frequency domain, where $\mu$ is renormalization scale. Define window function $W$ and consider log-frequency window average
+$$
+\Xi_W(\mu)
+:=\int \mathrm{d}\ln\omega\,
+\omega\,\partial_\omega\operatorname{tr}Q(\omega)\,
+W\bigl(\ln(\omega/\mu)\bigr).
+$$
+Then effective cosmological constant satisfies flow equation
+$$
+\partial_{\ln\mu}\Lambda_{\mathrm{eff}}(\mu)
+= \kappa_\Lambda \,\Xi_W(\mu),
+$$
+where $\kappa_\Lambda$ is constant. Thus, running of cosmological constant is viewed as windowed integral of time scale mother ruler on logarithmic frequency.
+
+\subsection{Quantum--Classical Time Bridge and Redshift}
+
+In semiclassical limit, phase $\phi$ and action $S$ satisfy $\phi = -S/\hbar$, in free propagation case can be written as
+$$
+\phi = \frac{mc^2}{\hbar}\int \mathrm{d}\tau,
+$$
+where $\mathrm{d}\tau$ is proper time element. On other hand, Shapiro delay and gravitational time dilation can be expressed using scattering phase derivative:
+$$
+\Delta t_{\mathrm{Shapiro}}
+\sim \partial_\omega \Phi(\omega).
+$$
+Cosmological redshift satisfies
+$$
+1+z
+= \frac{a(t_0)}{a(t_e)}
+= \frac{(\mathrm{d}\phi/\mathrm{d}t)_e}{(\mathrm{d}\phi/\mathrm{d}t)_0},
+$$
+manifesting as ratio of phase rhythms. Through BTG time equivalence class $[\tau]$, all these macroscopic time effects can be rescaled to time scale mother ruler $\kappa(\omega)$, thus realizing quantum--classical time bridge.
+
+\subsection{Entanglement--Consciousness--Time Unified Delay}
+
+Under local system--environment partition, local quantum Fisher information $F_Q(t)$ determines distinguishable evolution rate. Define ``subjective time scale''
+$$
+\mathrm{d}t_{\mathrm{subj}} \sim F_Q(t)^{-1/2} \mathrm{d}t .
+$$
+On other hand, discount kernel $V(t)$ in decision theory relates to effective horizon $T_\ast$ through
+$$
+\int_0^{T_\ast} V(t)\,\mathrm{d}t \approx \text{constant}
+$$
+while delay at physical layer is given by group delay integral
+$$
+\int \kappa(\omega)\,\mathrm{d}\omega
+$$
+By unifying $F_Q$, $V(t)$, and $\kappa(\omega)$ on same time equivalence class $[\tau]$, obtain unified delay geometry covering three layers of physics, consciousness, and social decision: enhanced coupling manifests in spectral domain as resonance narrowing and delay increase, in consciousness layer as subjective clock ``slowing down,'' in decision layer as increased discount factor and extended horizon.
+
+\subsection{Fermions, Topological Superconductor Endpoints, and Self-Referential Scattering}
+
+As described in Section 4, $\mathbb{Z}_2$ holonomy of self-referential scattering network is equivalent to mod-2 spectral flow, determining double cover structure of feedback network. Embedding this structure into 1D topological superconductor / Majorana model, determinant sign or Pfaffian index of endpoint reflection matrix $r(0)$ directly gives topological number. Thus can propose:
+
+\begin{proposition}[Scattering Origin of Fermionic Double Cover (Proposition 5.1)]
+In topological superconductor endpoint model satisfying self-referential scattering and Null--Modular conditions, fermionic statistics and topological number of Majorana modes can be uniformly characterized as $\mathbb{Z}_2$ holonomy of scattering square root principal bundle, i.e., $\nu_{\sqrt{S}}(\gamma)$, controlled by relevant component of relative class $[K]$.
+\end{proposition}
+
+\subsection{Time Crystal Phases and Topological Classification}
+
+In different cases of Floquet / MBL / open systems, time crystal phases, prethermal time crystals, open time crystals, and time quasicrystals can all be classified by scattering line bundle $\mathcal{L}_S$ and projection of $[K]$. Specifically, phenomena like $\pi$-spectral pairing and odd-period equivalence correspond to $\nu_{\sqrt{S}}(\gamma) = -1$ on certain driving parameter closed loops, i.e., $\mathbb{Z}_2$ topological obstruction in time direction, while different stability regions are jointly determined by generalized entropy variation conditions and environment coupling strength.
+
+---
+
+\section{Observation and Engineering: Unified Metrology and Finite-Order Discipline}
+
+\subsection{Phase--Frequency Metrology Paradigm}
+
+Write all observations as unified linear model
+$$
+m(\omega)
+= \int \mathcal{K}(\omega,\chi)\,x(\chi)\,\mathrm{d}\chi
++ \sum_p a_p \Pi_p(\omega)
++ \epsilon(\omega),
+$$
+where $x(\chi)$ is quantity to be reconstructed (e.g., refractive index correction, effective potential, topological source), $\mathcal{K}$ is kernel, $\Pi_p$ are known basis functions, $\epsilon$ is noise. By constructing family of frequency windows $W_j(\omega)$ and performing generalized least squares, can estimate mother invariants $\kappa(\omega)$, $\nu_{\sqrt{S}}$, and related projections under unified error model.
+
+\subsection{FRB and Deep Space Links}
+
+In FRB and deep space link scenarios, phase--frequency measurements mainly give behavior of group delay varying with frequency, theoretically providing upper bounds on vacuum polarization, cosmological constant running, and other weak effects. Since signal is far below noise, actual result is constraint interval on $\Xi_W(\mu)$ rather than exact value.
+
+\subsection{1D $\delta$-Ring and AB Ring}
+
+In 1D potential rings or Aharonov--Bohm rings, spectral quantization condition can be written as phase closure equation, scattering phase and AB flux jointly determine eigenvalues. Through precise measurement of energy level structure and phase jumps, can extract $\kappa(\omega)$ and certain topological indices, serving as ``small anatomical model'' to verify predictions about time scale and topological winding in unified theory.
+
+\subsection{Topological Endpoints and cQED Platform}
+
+On superconducting quantum circuit and cQED platforms, topological superconductor endpoints couple with resonator cavities, changes in endpoint scattering phase lead to measurable shifts in cavity frequency and quality factor. Through parametric scanning, can experimentally reconstruct $\nu_{\sqrt{S}}(\gamma)$, thus verifying picture of self-referential scattering--fermionic double cover.
+
+\subsection{Microwave Networks and Floquet Experiments}
+
+Microwave networks implement discrete nodes and transmission lines with coaxial cables, power dividers, and adjustable phase shifters, precisely controlling topological structure and feedback paths, serving as ideal platform for realizing self-referential scattering networks and time crystals. By measuring network S-matrix behavior varying with frequency and parameters, can directly access time scale mother ruler $\kappa(\omega)$ and topological invariants.
+
+\subsection{Finite-Order NPE Discipline and PSWF/DPSS Windows}
+
+All observational data theoretical interpretations must obey unified finite-order NPE discipline: only allow finite-order Euler--Maclaurin and Poisson resummation, remainder controlled by explicit constants; sampling and truncation errors given through principal eigenvalue $\lambda_0$ of Prolate Spheroidal Wave Functions (PSWF) or Discrete Prolate Spheroidal Sequences (DPSS), thus suppressing aliasing and leakage errors below controllable threshold. This ensures finally extracted invariants can still be viewed as reliable observational proxies for time scale mother ruler and topological classes.
+
+---
+
+\section{Topological Relationship Diagram: Five-Layer Structure from Invariants to Observations}
+
+This section provides topological relationship diagram described in mermaid, organizing entire theory into five layers: invariant layer, carrier layer, structure layer, phase/phenomenon layer, and observation/engineering layer. Node labels in diagram use English for direct use in actual plotting.
+
+\begin{verbatim}
+graph TD
+
+  %% Layer 0: Invariants
+  subgraph L0[Layer 0: Invariants]
+    L0_T["kappa(omega): time-scale invariant"]
+    L0_Z2["nu_sqrt_S(gamma): Z2 holonomy"]
+    L0_K["[K]: relative Z2 class"]
+    L0_K1["[u]: K^1 scattering class"]
+    L0_Sgen["S_gen, delta^2 S_rel: generalized entropy"]
+  end
+
+  %% Layer 1: Carriers
+  subgraph L1[Layer 1: Carriers]
+    L1_Y["Y = M × X°"]
+    L1_Psqrt["P_sqrt_s -> X_0"]
+    L1_Ls["Scattering line bundle L_S"]
+    L1_Ures["U_res principal bundle"]
+    L1_Ap["Boundary spectral triple A_partial"]
+    L1_M[Spacetime M, causal diamonds]
+  end
+
+  %% Layer 2: Structures
+  subgraph L2[Layer 2: Structures]
+    L2_BTG["BTG: boundary time geometry"]
+    L2_UT[Unified time scale geometry]
+    L2_NM["Null–Modular double cover + Z2-BF"]
+    L2_IGVP["IGVP: info-geom variational principle"]
+    L2_SSN["SSN: self-referential scattering network"]
+    L2_TC[Time-crystal structures]
+  end
+
+  %% Layer 3: Phases / Phenomena
+  subgraph L3[Layer 3: Phases / Phenomena]
+    L3_GR["GR eqs and running Lambda_eff"]
+    L3_QC["Quantum–classical time bridge"]
+    L3_ECT["Entanglement–Consciousness–Time delay"]
+    L3_Fermion[Fermionic double cover & topo endpoints]
+    L3_TCPhase["Time-crystal phases (DTC, MBL, open, quasi)"]
+  end
+
+  %% Layer 4: Observables / Engineering
+  subgraph L4[Layer 4: Observables & Engineering]
+    L4_FRB["FRB / deep-space phase–freq metrology"]
+    L4_DR["1D delta-ring / AB ring"]
+    L4_TopEP[Topological endpoints / cQED]
+    L4_MW[Microwave & Floquet networks]
+    L4_NPE["NPE finite-order discipline + PSWF/DPSS"]
+  end
+
+  %% Edges: Invariants -> Carriers
+  L0_T  --> L1_Y
+  L0_Z2 --> L1_Psqrt
+  L0_K  --> L1_Y
+  L0_K1 --> L1_Ures
+  L0_Sgen --> L1_M
+
+  %% Edges: Invariants -> Structures
+  L0_T  --> L2_BTG
+  L0_T  --> L2_UT
+  L0_T  --> L2_TC
+  L0_T  --> L2_SSN
+
+  L0_Z2 --> L2_NM
+  L0_K  --> L2_NM
+  L0_K  --> L2_TC
+  L0_K  --> L2_SSN
+
+  L0_K1 --> L2_SSN
+  L0_Sgen --> L2_IGVP
+  L0_Sgen --> L2_NM
+
+  %% Edges: Carriers -> Structures
+  L1_Y    --> L2_NM
+  L1_Psqrt--> L2_NM
+  L1_Ls   --> L2_TC
+  L1_Ures --> L2_SSN
+  L1_Ap   --> L2_BTG
+  L1_M    --> L2_IGVP
+
+  %% Edges: Structures -> Structures (internal links)
+  L2_BTG  --> L2_UT
+  L2_IGVP --> L2_NM
+
+  %% Edges: Structures -> Phases
+  L2_IGVP --> L3_GR
+  L2_NM   --> L3_GR
+  L2_BTG  --> L3_QC
+  L2_UT   --> L3_QC
+  L2_BTG  --> L3_ECT
+  L2_IGVP --> L3_ECT
+  L2_SSN  --> L3_Fermion
+  L2_NM   --> L3_Fermion
+  L2_TC   --> L3_TCPhase
+  L2_NM   --> L3_TCPhase
+
+  %% Edges: Phases -> Observables
+  L3_GR      --> L4_FRB
+  L3_QC      --> L4_FRB
+  L3_QC      --> L4_DR
+  L3_Fermion --> L4_DR
+  L3_Fermion --> L4_TopEP
+  L3_TCPhase --> L4_TopEP
+  L3_TCPhase --> L4_MW
+
+  %% Observables -> NPE discipline
+  L4_FRB  --> L4_NPE
+  L4_DR   --> L4_NPE
+  L4_TopEP--> L4_NPE
+  L4_MW   --> L4_NPE
+\end{verbatim}
+
+This topological relationship diagram starts from mother invariants, generates unified structure layer through geometric carriers such as principal bundles and spectral bundles, expands downward into multiple physical and information phases, finally manifesting on diverse observation and engineering platforms, all uniformly governed by same phase--frequency metrology and finite-order error discipline. Entire theory can thus be viewed as multi-layer conceptual geometric picture of ``boundary time--geometry--topology--consciousness--engineering'' expanding downward from topological invariants.
+
+\end{document}
+

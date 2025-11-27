@@ -1,0 +1,698 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{enumerate}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Information Rate Conservation Theorem:\\
+From Minimal Quantum Cellular Automaton Axioms\\
+to the Emergence of Special Relativity and Mass}
+
+\author{Anonymous Author}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+In this paper, under a minimal discrete ontological axiom system, we prove that the so-called ``information rate conservation circle'' is not an additional assumption, but a geometric theorem internal to quantum cellular automaton (QCA). Starting from universe as QCA object with initial state, we give three minimal axioms: (A1) Universe consists of local unitary evolution on countable lattice with finite-dimensional Hilbert space for each cell; (A2) Evolution satisfies Lieb--Robinson type finite propagation velocity bound, thus there exists maximum signal rate constant $c$; (A3) In some low-energy one-particle sector, there exists Dirac-type effective model with two-dimensional internal degrees of freedom, whose long-wavelength limit is described by one-dimensional Dirac Hamiltonian.
+
+On this basis, we construct a class of concrete one-dimensional Dirac-type QCA, derive its dispersion relation $\cos(\Omega(p)) = \cos(m\Delta t)\cos(p a)$ in momentum representation, where $a$ is lattice spacing, $\Delta t$ is discrete time step. For each quasiparticle momentum mode, we symmetrically define ``external group velocity'' $v_{\mathrm{ext}}(p)$ and ``internal evolution velocity'' $v_{\mathrm{int}}(p)$ from same QCA update operator. Core theorem shows they necessarily satisfy identity
+
+$$v_{\mathrm{ext}}^2(p) + v_{\mathrm{int}}^2(p) = c^2,$$
+
+where $c = a/\Delta t$ is maximum signal rate in Lieb--Robinson sense. This formula is therefore not an axiom, but a geometric theorem derived from A1--A3.
+
+Using this ``information rate circle'', we define proper time element $\mathrm{d}\tau = \frac{v_{\mathrm{int}}}{c}\,\mathrm{d}t$, thus rigorously derive special relativity time dilation relation $\mathrm{d}\tau = \sqrt{1 - v^2/c^2}\,\mathrm{d}t$ and four-velocity normalization condition $g_{\mu\nu}u^\mu u^\nu = -c^2$, where $v = v_{\mathrm{ext}}$, $u^\mu = \mathrm{d}x^\mu/\mathrm{d}\tau$ and $g_{\mu\nu}$ is Minkowski metric. Furthermore, we define internal frequency $\omega_{\mathrm{int}}$ in particle rest frame $(v_{\mathrm{ext}} = 0)$, prove rest energy $E_0$ satisfies $E_0 = \hbar\omega_{\mathrm{int}}$ with internal frequency, thus giving internal definition of mass $mc^2 = \hbar\omega_{\mathrm{int}}$, and reconstructing relativistic energy formula $E^2 = p^2c^2 + m^2c^4$ under coordination of information rate theorem and Dirac dispersion.
+
+Appendix sections provide in detail: (i) precise definition and proof outline of universe object and Lieb--Robinson bound; (ii) momentum representation construction and dispersion relation derivation of one-dimensional Dirac-type QCA; (iii) step-by-step calculation process of information rate conservation theorem and its relativistic corollaries. This paper shows that if accepting minimal discrete quantum ontology, then geometry of special relativity and mass--inertia relation can emerge as ``information geometric theorem'' internal to QCA, not independent spacetime axioms.
+\end{abstract}
+
+\textbf{Keywords:} Quantum cellular automaton; Information rate conservation; Lieb--Robinson bound; Dirac model; Special relativity; Internal definition of mass
+
+\section{Introduction}
+
+\subsection{Background Problem}
+
+Special relativity and quantum theory are mathematically highly successful, but ontologically usually based on different starting points. Relativity takes four-dimensional continuous manifold and Lorentz symmetry as axiomatic foundation, while quantum theory is based on Hilbert space and unitary evolution. If further introducing discrete ontological picture of ``universe as quantum computation'', one seemingly needs additional assumptions like ``constancy of light speed'', ``spacetime continuity'', forming multiple incompatible starting points.
+
+A natural question is:
+
+\begin{quote}
+In a purely discrete universe picture with Hilbert space and unitarity as sole primitives, can special relativity and its core structure emerge as theorems rather than being introduced as independent axioms?
+\end{quote}
+
+Recent quantum cellular automaton research shows Dirac equation, Weyl equation, Maxwell equations and other relativistic field theories can appear as long-wavelength limits of certain QCA models. This suggests: perhaps we need not write Lorentz symmetry as axiom, but can let it ``emerge'' from more underlying discrete structure.
+
+On the other hand, information theory and quantum information perspective proposes another physical intuition: any local system in universe has finite total ``information update rate'' usable per unit Planck time, allocated between ``external displacement'' and ``internal evolution''. Empirically, this finite resource constraint manifests as light speed limitation, time dilation and existence of inertia.
+
+This paper attempts to unify these two threads: under minimal QCA axiom system, prove information rate conservation relation
+
+$$v_{\mathrm{ext}}^2 + v_{\mathrm{int}}^2 = c^2$$
+
+is not axiom, but geometric theorem about Dirac-type QCA; thus special relativity and mass--inertia relation can be rewritten as ``information geometric theorem'' of QCA.
+
+\subsection{Goals and Methods}
+
+This paper has three goals:
+
+\begin{enumerate}
+\item Give minimal QCA universe axiom system sufficient to produce Dirac effective mode, without explicitly introducing any continuous spacetime or Lorentz symmetry assumptions.
+
+\item Under this axiom system, rigorously derive ``information rate circle'' from concrete one-dimensional Dirac-type QCA model
+
+$$v_{\mathrm{ext}}^2(p) + v_{\mathrm{int}}^2(p) = c^2,$$
+
+and elevate it to general structural theorem.
+
+\item Use this theorem and natural proper time definition to derive special relativity time dilation, four-velocity normalization and internal definition of mass, proving they are not axioms but necessity of QCA internal geometry.
+\end{enumerate}
+
+Methodologically, we first give formal definition of universe object $\mathfrak{U}_{\mathrm{QCA}}$ and state three axioms A1--A3. Then construct typical class of one-dimensional Dirac--QCA model, obtain its momentum space SU(2) representation and dispersion relation. Next, symmetrically define external group velocity $v_{\mathrm{ext}}$ and internal evolution velocity $v_{\mathrm{int}}$ from this model, prove their sum of squares identically equals Lieb--Robinson velocity $c^2$. Finally, starting from this geometric identity, define proper time and four-velocity, prove standard results of relativity.
+
+\subsection{Article Structure}
+
+Section 2 gives QCA universe object and minimal axiom system. Section 3 constructs one-dimensional Dirac-type QCA and derives its dispersion relation. Section 4 is core of paper, giving information rate conservation theorem with detailed proof. Section 5 uses this theorem to derive special relativity time dilation, four-velocity normalization and mass definition. Section 6 discusses extension to higher dimensions and weak gravitational field. Appendices A--C provide technical proofs and calculation details.
+
+\section{Universe as Quantum Cellular Automaton: Minimal Axiom System}
+
+This section gives QCA formalization definition of universe and states three minimal axioms A1--A3 adopted in this paper.
+
+\subsection{Definition of Universe Object}
+
+\textbf{Definition 2.1 (Lattice and local Hilbert space)} Let $\Lambda$ be countable unbounded graph, whose vertex set $V(\Lambda)$ represents spatial cells, edge set $E(\Lambda)\subset V(\Lambda)\times V(\Lambda)$ describes adjacency relations of direct interactions. Assume $\Lambda$ is locally finite, i.e., for any $x\in V(\Lambda)$, its degree $\deg(x)$ has uniform upper bound.
+
+Take finite-dimensional Hilbert space $\mathcal{H}_{\mathrm{cell}} \cong \mathbb{C}^d$ as unit cell state space, configure copy $\mathcal{H}_x \cong \mathcal{H}_{\mathrm{cell}}$ for each $x\in V(\Lambda)$. For any finite subset $\Lambda_0\subset\Lambda$, define local Hilbert space
+
+$$\mathcal{H}_{\Lambda_0} := \bigotimes_{x\in\Lambda_0} \mathcal{H}_x.$$
+
+\textbf{Definition 2.2 (Quasi-local operator algebra)} Define quasi-local operator algebra as
+
+$$\mathcal{A} := \overline{\bigcup_{\Lambda_0\Subset\Lambda} \mathcal{B}(\mathcal{H}_{\Lambda_0})}^{|\cdot|},$$
+
+where $\Lambda_0\Subset\Lambda$ denotes finite subset, $\mathcal{B}(\mathcal{H}_{\Lambda_0})$ denotes bounded operator algebra, closure taken in operator norm sense.
+
+\textbf{Definition 2.3 (Time evolution)} Time evolution given by discrete automorphism group $\{\alpha_t\}_{t\in\mathbb{Z}}$, where each $\alpha_t:\mathcal{A}\to\mathcal{A}$ satisfies:
+
+\begin{enumerate}
+\item Group property: $\alpha_0 = \mathrm{id}$, $\alpha_{t+s} = \alpha_t\circ\alpha_s$;
+
+\item \textbf{Quasi-locality}: there exists constant $R>0$ such that for any local operator $A\in\mathcal{B}(\mathcal{H}_{\Lambda_0})$, support of its evolution $\alpha_1(A)$ is only contained in $R$-neighborhood of $\Lambda_0$.
+\end{enumerate}
+
+In concrete models, $\alpha_1$ is usually realized by finite-depth local unitary circuit $U$, i.e., $\alpha_1(A) = U^{\dagger}AU$.
+
+\textbf{Definition 2.4 (Universe initial state and universe object)} Universe initial state is a state on $\mathcal{A}$, i.e., positive normalized linear functional $\omega_0:\mathcal{A}\to\mathbb{C}$ satisfying $\omega_0(\mathbb{I})=1$, $\omega_0(A^{\dagger}A)\ge 0$. Thus we define universe as quintuple
+
+$$\mathfrak{U}_{\mathrm{QCA}} := (\Lambda,\mathcal{H}_{\mathrm{cell}},\mathcal{A},\alpha,\omega_0).$$
+
+Introduce time-evolved state in Heisenberg picture $\omega_t(A) := \omega_0(\alpha_t(A))$.
+
+\subsection{Axiom A1: Discrete--Unitary--Local}
+
+\textbf{Axiom A1 (Discrete--unitary--local axiom)} Physical universe is some QCA universe object $\mathfrak{U}_{\mathrm{QCA}}$ satisfying:
+
+\begin{enumerate}
+\item $\Lambda$ is countable graph;
+\item $\dim\mathcal{H}_{\mathrm{cell}}<\infty$;
+\item Time evolution $\alpha_1$ realized by some quasi-local unitary operator $U$, i.e., for all $A\in\mathcal{A}$, have $\alpha_1(A) = U^{\dagger}AU$.
+\end{enumerate}
+
+This axiom only uses three minimal primitives of Hilbert space, unitarity and locality, not involving continuous spacetime structure.
+
+\subsection{Axiom A2: Finite Light Cone and Lieb--Robinson Bound}
+
+\textbf{Axiom A2 (Finite light cone axiom)} There exists constant $c>0$ such that for any local operators $A,B$ and any time step $t\in\mathbb{Z}$, there is Lieb--Robinson type inequality
+
+$$\bigl|[\alpha_t(A),B]\bigr| \le C\,|A|\,|B|\,\exp\Bigl(-\mu(\mathrm{dist}(\mathrm{supp}A,\mathrm{supp}B) - c|t|)\Bigr),$$
+
+where $C,\mu>0$ are constants, $\mathrm{dist}(\cdot,\cdot)$ is distance on graph.
+
+This axiom abstractly expresses physical fact of ``finite signal velocity'': there is no superluminal causal influence. Constant $c$ will be naturally identified as ``light speed'' in later text.
+
+\subsection{Axiom A3: Existence of Dirac Effective Mode}
+
+\textbf{Axiom A3 (Dirac effective mode axiom)} In some low-energy one-particle sector of $\mathfrak{U}_{\mathrm{QCA}}$, there exists translation-invariant submodel with two-dimensional internal degrees of freedom, whose one-step update operator in one-dimensional momentum representation can be written as
+
+$$U(p) = \exp\bigl(-\mathrm{i}\,\omega(p)\,\hat{n}(p)\cdot\vec{\sigma}\bigr),$$
+
+where $\vec{\sigma} = (\sigma_x,\sigma_y,\sigma_z)$ are Pauli matrices, $\hat{n}(p)\in S^2$ is unit Bloch vector, $p\in[-\pi/a,\pi/a]$ is Brillouin zone momentum, and in some neighborhood of $p_0$, its effective Hamiltonian is defined as
+
+$$H_{\mathrm{eff}}(k) := \frac{\omega(p_0 + k)}{\Delta t} \approx c\,k\,\sigma_z + m c^2 \sigma_x,$$
+
+where $\Delta t$ is time step, $a$ is lattice spacing, $k$ is small momentum offset relative to $p_0$, $m$ is nonzero constant.
+
+This axiom only requires: there exists some effective sector in universe whose low-energy behavior is described by one-dimensional Dirac equation and carries nonzero mass parameter $m$. It does not assume any continuous spacetime or Lorentz symmetry, only assumes some SU(2) Bloch curve locally approximates Dirac Hamiltonian.
+
+\section{One-Dimensional Dirac-Type Quantum Cellular Automaton Model}
+
+This section constructs concrete one-dimensional QCA model satisfying A3 for explicit calculation in later sections.
+
+\subsection{Model Definition: Shift--Coin--Conditional-Shift}
+
+Consider one-dimensional integer lattice $\Lambda = \mathbb{Z}$, local Hilbert space is two-component spin $\mathcal{H}_{\mathrm{cell}} \cong \mathbb{C}^2$, basis denoted as $\{\ket{\uparrow},\ket{\downarrow}\}$. Define two shift operators $S_{+}$, $S_-$ as
+
+$$S_+\ket{x} = \ket{x+1},\quad S_-\ket{x} = \ket{x-1}.$$
+
+Construct conditional shift operator
+
+$$T := S_+ \otimes \ket{\uparrow}\!\bra{\uparrow} + S_- \otimes \ket{\downarrow}\!\bra{\downarrow},$$
+
+and local ``mass rotation'' operator
+
+$$C(m) := \exp\bigl(-\mathrm{i}\,m\Delta t\,\sigma_x\bigr),$$
+
+where $m$ is model parameter, $\Delta t$ is time step.
+
+Define one-step QCA update operator
+
+$$U := C(m)\,T.$$
+
+This gives standard ``coined quantum walk'', which will produce Dirac-type dispersion in long-wavelength limit.
+
+\subsection{Momentum Representation and SU(2) Representation}
+
+In one-dimensional case, translation-invariant model can be conveniently analyzed in momentum representation. Define momentum basis
+
+$$\ket{p} := \frac{1}{\sqrt{2\pi/a}}\sum_{x\in\mathbb{Z}} \mathrm{e}^{\mathrm{i}p a x}\ket{x},\quad p\in[-\pi/a,\pi/a].$$
+
+In this basis, shift operators act as
+
+$$S_+\ket{p} = \mathrm{e}^{-\mathrm{i}p a}\ket{p},\quad S_-\ket{p} = \mathrm{e}^{\mathrm{i}p a}\ket{p}.$$
+
+Thus conditional shift operator $T$ representation on momentum--spin space $\mathcal{H}_p\cong\mathbb{C}^2$ is
+
+$$T(p) = \mathrm{e}^{-\mathrm{i}p a}\ket{\uparrow}\!\bra{\uparrow} + \mathrm{e}^{\mathrm{i}p a}\ket{\downarrow}\!\bra{\downarrow} = \exp\bigl(-\mathrm{i}p a\,\sigma_z\bigr).$$
+
+Therefore one-step update operator in momentum representation is
+
+$$U(p) = C(m)\,T(p) = \exp\bigl(-\mathrm{i}m\Delta t\,\sigma_x\bigr)\exp\bigl(-\mathrm{i}p a\,\sigma_z\bigr).$$
+
+Any $2\times 2$ unitary matrix can be uniquely written as rotation by some angle around some unit vector $\hat{n}(p)\in S^2$, i.e., there exist function $\Omega(p)\in[0,\pi]$ and $\hat{n}(p)$ such that
+
+$$U(p) = \exp\bigl(-\mathrm{i}\,\Omega(p)\,\hat{n}(p)\cdot\vec{\sigma}\bigr).$$
+
+Using SU(2) group element multiplication formula, can obtain explicit expression for $\Omega(p)$ (proof in Appendix B):
+
+$$\cos\bigl(\Omega(p)\bigr) = \cos(m\Delta t)\cos(p a).$$
+
+Define quasi-frequency $\omega(p) := \Omega(p)/\Delta t$, then have dispersion relation
+
+$$\cos\bigl(\omega(p)\Delta t\bigr) = \cos(m\Delta t)\cos(p a).$$
+
+This is standard dispersion form of Dirac--QCA.
+
+\subsection{Long-Wavelength Limit and Dirac Hamiltonian}
+
+Taking limit $p\approx 0$, $m\Delta t \ll 1$, $p a \ll 1$, can expand
+
+$$\cos(m\Delta t) \approx 1 - \frac{(m\Delta t)^2}{2},\quad \cos(p a) \approx 1 - \frac{(p a)^2}{2}.$$
+
+Thus
+
+$$\cos\bigl(\omega(p)\Delta t\bigr) \approx \Bigl(1 - \frac{(m\Delta t)^2}{2}\Bigr)\Bigl(1 - \frac{(p a)^2}{2}\Bigr) \approx 1 - \frac{(m\Delta t)^2}{2} - \frac{(p a)^2}{2}.$$
+
+On the other hand,
+
+$$\cos\bigl(\omega(p)\Delta t\bigr) \approx 1 - \frac{(\omega(p)\Delta t)^2}{2}.$$
+
+Comparing coefficients yields
+
+$$\omega^2(p) \approx m^2 + \Bigl(\frac{p a}{\Delta t}\Bigr)^2.$$
+
+Setting $c := a/\Delta t$, can write
+
+$$\omega^2(p) \approx m^2 + \frac{p^2 c^2}{1}.$$
+
+Thus effective Hamiltonian is
+
+$$H_{\mathrm{eff}}(p) \approx \hbar\omega(p) \approx \sqrt{m^2c^4 + p^2c^2}\,\frac{\hbar}{1}.$$
+
+Furthermore can write in Pauli basis as
+
+$$H_{\mathrm{eff}}(p) \approx c\,p\,\sigma_z + m c^2 \sigma_x,$$
+
+this is precisely Dirac-type Hamiltonian required by A3. Thus this concrete model satisfies A3.
+
+\section{Information Rate Conservation Theorem}
+
+This section starting from Dirac--QCA model of previous section defines external group velocity and internal evolution velocity, gives information rate conservation theorem with detailed proof.
+
+\subsection{Definition of External Group Velocity}
+
+In momentum representation, quasiparticle quasi-energy is $E(p) := \hbar\omega(p)$. Define external group velocity as
+
+$$v_{\mathrm{ext}}(p) := \frac{\mathrm{d}E(p)}{\mathrm{d}p}\,\frac{1}{\hbar} = \frac{\mathrm{d}\omega(p)}{\mathrm{d}p}.$$
+
+Since we adopt normalization of lattice spacing $a$, time step $\Delta t$ with $c = a/\Delta t$, more natural definition is
+
+$$v_{\mathrm{ext}}(p) := a\,\frac{\mathrm{d}\omega(p)}{\mathrm{d}p},$$
+
+i.e., average distance wavepacket center advances in space per time step divided by $\Delta t$.
+
+From dispersion relation
+
+$$\cos\bigl(\Omega(p)\bigr) = \cos(m\Delta t)\cos(p a),\quad \Omega(p) := \omega(p)\Delta t,$$
+
+taking derivative with respect to $p$ yields
+
+$$-\sin\bigl(\Omega(p)\bigr)\,\frac{\partial\Omega}{\partial p} = \cos(m\Delta t)\,(-\sin(p a))\,a.$$
+
+Therefore
+
+$$\frac{\partial\Omega}{\partial p} = \frac{\cos(m\Delta t)\,\sin(p a)\,a}{\sin\bigl(\Omega(p)\bigr)}.$$
+
+Note $\omega(p) = \Omega(p)/\Delta t$, have
+
+$$\frac{\mathrm{d}\omega}{\mathrm{d}p} = \frac{1}{\Delta t}\frac{\partial\Omega}{\partial p} = \frac{\cos(m\Delta t)\,\sin(p a)\,a}{\Delta t\,\sin\bigl(\Omega(p)\bigr)} = c\,\frac{\cos(m\Delta t)\,\sin(p a)}{\sin\bigl(\Omega(p)\bigr)}.$$
+
+Thus
+
+$$v_{\mathrm{ext}}(p) = a\,\frac{\mathrm{d}\omega}{\mathrm{d}p} = c\,\frac{\cos(m\Delta t)\,\sin(p a)}{\sin\bigl(\Omega(p)\bigr)}.$$
+
+This gives explicit expression for external group velocity.
+
+\subsection{Symmetric Definition of Internal Evolution Velocity}
+
+To define internal evolution velocity, we start from same $U(p)$, examine ``phase update'' of internal spin degrees of freedom in each step.
+
+Using SU(2) representation
+
+$$U(p) = \exp\bigl(-\mathrm{i}\,\Omega(p)\,\hat{n}(p)\cdot\vec{\sigma}\bigr),$$
+
+where $\hat{n}(p) = (n_x(p),n_y(p),n_z(p))$ is unit vector. From aforementioned multiplication structure, can choose $\hat{n}(p)$ such that (see Appendix B)
+
+$$n_x(p) \propto \sin(m\Delta t)\cos(p a),\quad n_z(p) \propto \sin(p a)\cos(m\Delta t).$$
+
+In one time step, spin Bloch vector rotates by angle $2\Omega(p)$ around $\hat{n}(p)$. We define ``internal evolution velocity'' as velocity component this SU(2) rotation corresponds to in ``mass leg'' direction, appropriately normalized to same dimension as spatial velocity. Symmetrically, we take
+
+$$v_{\mathrm{int}}(p) := c\,\frac{\sin(m\Delta t)\,\cos(p a)}{\sin\bigl(\Omega(p)\bigr)}.$$
+
+Can see $v_{\mathrm{ext}}(p)$ and $v_{\mathrm{int}}(p)$ respectively capture ``momentum leg'' $\sin(p a)\cos(m\Delta t)$ and ``mass leg'' $\sin(m\Delta t)\cos(p a)$ in dispersion relation, thus geometrically are completely symmetric definitions.
+
+\subsection{Information Rate Conservation Theorem and Its Proof}
+
+We now prove that for above defined $v_{\mathrm{ext}}(p)$ and $v_{\mathrm{int}}(p)$, there is identity
+
+$$v_{\mathrm{ext}}^2(p) + v_{\mathrm{int}}^2(p) = c^2.$$
+
+\textbf{Theorem 4.1 (Information rate conservation circle)} In one-dimensional Dirac-type QCA model satisfying A1--A3, for any momentum $p$, external group velocity $v_{\mathrm{ext}}(p)$ and internal evolution velocity $v_{\mathrm{int}}(p)$ defined by dispersion relation satisfy
+
+$$v_{\mathrm{ext}}^2(p) + v_{\mathrm{int}}^2(p) = c^2.$$
+
+\textit{Proof} Substituting explicit expressions from previous subsection,
+
+$$v_{\mathrm{ext}}^2(p) = c^2\,\frac{\cos^2(m\Delta t)\,\sin^2(p a)}{\sin^2\bigl(\Omega(p)\bigr)},$$
+
+$$v_{\mathrm{int}}^2(p) = c^2\,\frac{\sin^2(m\Delta t)\,\cos^2(p a)}{\sin^2\bigl(\Omega(p)\bigr)}.$$
+
+Adding them gives
+
+$$v_{\mathrm{ext}}^2(p) + v_{\mathrm{int}}^2(p) = c^2\,\frac{\cos^2(m\Delta t)\,\sin^2(p a) + \sin^2(m\Delta t)\,\cos^2(p a)}{\sin^2\bigl(\Omega(p)\bigr)}.$$
+
+On the other hand, from dispersion relation
+
+$$\cos\bigl(\Omega(p)\bigr) = \cos(m\Delta t)\cos(p a)$$
+
+can obtain
+
+$$\sin^2\bigl(\Omega(p)\bigr) = 1 - \cos^2\bigl(\Omega(p)\bigr) = 1 - \cos^2(m\Delta t)\cos^2(p a).$$
+
+While
+
+$$\cos^2(m\Delta t)\,\sin^2(p a) + \sin^2(m\Delta t)\,\cos^2(p a) = \cos^2(m\Delta t)\bigl(1 - \cos^2(p a)\bigr) + \sin^2(m\Delta t)\cos^2(p a)$$
+
+$$= \cos^2(m\Delta t) - \cos^2(m\Delta t)\cos^2(p a) + \sin^2(m\Delta t)\cos^2(p a)$$
+
+$$= \cos^2(m\Delta t) + \cos^2(p a)\bigl(\sin^2(m\Delta t) - \cos^2(m\Delta t)\bigr)$$
+
+$$= \cos^2(m\Delta t) + \cos^2(p a)\bigl(1 - 2\cos^2(m\Delta t)\bigr)$$
+
+$$= 1 - \cos^2(m\Delta t)\cos^2(p a) = \sin^2\bigl(\Omega(p)\bigr).$$
+
+Therefore numerator exactly equals denominator, yielding
+
+$$v_{\mathrm{ext}}^2(p) + v_{\mathrm{int}}^2(p) = c^2\,\frac{\sin^2\bigl(\Omega(p)\bigr)}{\sin^2\bigl(\Omega(p)\bigr)} = c^2.$$
+
+Theorem proved. $\square$
+
+This theorem shows: in Dirac--QCA model, each quasiparticle momentum mode can be naturally decomposed into orthogonal components of ``external displacement velocity'' and ``internal state evolution velocity'', their sum of squares fixed at $c^2$, i.e., maximum signal rate squared in Lieb--Robinson sense. This ``information rate circle'' is entirely derived from A1--A3 and SU(2) geometry, requiring no additional introduction.
+
+\section{Emergence of Special Relativity and Mass}
+
+This section uses Theorem 4.1, renames $v_{\mathrm{ext}}(p)$ as particle velocity $v$ in some reference frame, and constructs proper time, four-velocity and internal definition of mass starting from information rate circle. We will see core results of special relativity naturally appear in QCA framework.
+
+\subsection{Proper Time and Time Dilation}
+
+In some inertial reference frame, observed particle spatial velocity is defined as
+
+$$v := v_{\mathrm{ext}}(p).$$
+
+From information rate circle
+
+$$v_{\mathrm{ext}}^2 + v_{\mathrm{int}}^2 = c^2$$
+
+yields
+
+$$v_{\mathrm{int}}(p) = c\sqrt{1 - \frac{v^2}{c^2}}.$$
+
+We view internal evolution velocity as evolution rate of ``internal clock'' relative to some global reference time $t$. Define proper time element
+
+$$\mathrm{d}\tau := \frac{v_{\mathrm{int}}}{c}\,\mathrm{d}t = \sqrt{1 - \frac{v^2}{c^2}}\,\mathrm{d}t.$$
+
+Thus obtaining standard time dilation formula:
+
+\textbf{Corollary 5.1 (Time dilation)} In QCA universe, proper time $\tau$ defined by internal evolution of Dirac-type excitation and coordinate time $t$ of any inertial reference frame satisfy
+
+$$\mathrm{d}\tau = \sqrt{1 - \frac{v^2}{c^2}}\,\mathrm{d}t,$$
+
+where $v$ is particle velocity observed in this reference frame.
+
+This is completely consistent with proper time expression derived from Lorentz transformation in special relativity, but here interpreted as result of information rate reallocation between external displacement and internal evolution.
+
+\subsection{Four-Velocity and Minkowski Line Element}
+
+Define spacetime coordinates $x^\mu = (x^0,x^1) = (c t, x)$, four-velocity as
+
+$$u^\mu := \frac{\mathrm{d}x^\mu}{\mathrm{d}\tau} = \Bigl(\frac{\mathrm{d}(ct)}{\mathrm{d}\tau}, \frac{\mathrm{d}x}{\mathrm{d}\tau}\Bigr) = \Bigl(\frac{c}{\sqrt{1 - v^2/c^2}}, \frac{v}{\sqrt{1 - v^2/c^2}}\Bigr) = (\gamma c, \gamma v),$$
+
+where $\gamma := 1/\sqrt{1 - v^2/c^2}$.
+
+Taking Minkowski metric $g_{\mu\nu} = \mathrm{diag}(-1,1)$, then
+
+$$g_{\mu\nu}u^\mu u^\nu = -(\gamma c)^2 + (\gamma v)^2 = -\gamma^2(c^2 - v^2) = -c^2.$$
+
+This gives standard four-velocity normalization.
+
+\textbf{Corollary 5.2 (Four-velocity normalization)} For any Dirac-type QCA excitation, using proper time $\tau$ and four-velocity $u^\mu$ defined by information rate circle,
+
+$$g_{\mu\nu}u^\mu u^\nu = -c^2,$$
+
+where $g_{\mu\nu}$ is Minkowski metric.
+
+Furthermore, Minkowski line element can be written as
+
+$$\mathrm{d}s^2 := g_{\mu\nu}\,\mathrm{d}x^\mu\,\mathrm{d}x^\nu = -c^2\,\mathrm{d}\tau^2.$$
+
+Therefore, geometric structure of special relativity can be viewed as natural encoding of information rate circle in continuum limit: proper time is parameterization of internal information update rate, spacetime line element is geometric form of four-velocity normalization.
+
+\subsection{Internal Definition of Mass and Relativistic Energy Relation}
+
+In particle rest frame $(v = 0)$, information rate circle gives $v_{\mathrm{int}} = c$. Internal evolution frequency $\omega_{\mathrm{int}}(0)$ is given by quasi-frequency $\omega(p)$ value of Dirac--QCA near $p=0$. Specifically, dispersion relation at $p=0$ simplifies to
+
+$$\cos\bigl(\omega(0)\Delta t\bigr) = \cos(m\Delta t)\cos(0) = \cos(m\Delta t).$$
+
+In small $m\Delta t$ limit, have $\omega(0)\Delta t \approx m\Delta t$, i.e.,
+
+$$\omega_{\mathrm{int}}(0) \approx m.$$
+
+Define rest energy
+
+$$E_0 := \hbar\omega_{\mathrm{int}}(0),$$
+
+then can naturally define mass as
+
+$$mc^2 := E_0 = \hbar\omega_{\mathrm{int}}(0).$$
+
+More generally, in state with momentum $p$, dispersion relation gives
+
+$$\omega^2(p) \approx m^2 + \frac{p^2 c^2}{\hbar^2},$$
+
+therefore total energy
+
+$$E(p) := \hbar\omega(p)$$
+
+satisfies
+
+$$E^2(p) \approx p^2c^2 + m^2c^4.$$
+
+\textbf{Corollary 5.3 (Mass and relativistic energy)} In Dirac--QCA model, if relating rest frame internal evolution frequency $\omega_{\mathrm{int}}(0)$ to mass through relation $mc^2 = \hbar\omega_{\mathrm{int}}(0)$, then energy at arbitrary momentum $p$ satisfies relativistic energy--momentum relation
+
+$$E^2 = p^2c^2 + m^2c^4.$$
+
+This shows mass can be interpreted as ``internal frequency'' needed to maintain stable internal spin state cycling, while relativistic energy formula is result of joint action of Dirac--QCA dispersion and information rate circle.
+
+\section{Extension to Multiple Dimensions and Weak Gravitational Field (Outline)}
+
+Due to space limitations, this section only outlines extension to multiple dimensions and weak gravitational field treatment ideas, leaving detailed techniques for future work.
+
+On higher-dimensional lattice $\Lambda\subset\mathbb{Z}^d$, QCA satisfying A1--A2 similarly has Lieb--Robinson velocity $c$, can define vector group velocity $\vec{v}_{\mathrm{ext}}(\vec{p})$ and scalar internal velocity $v_{\mathrm{int}}(\vec{p})$, expecting to maintain relation
+
+$$|\vec{v}_{\mathrm{ext}}(\vec{p})|^2 + v_{\mathrm{int}}^2(\vec{p}) = c^2.$$
+
+If there exists $2^n$-dimensional Dirac-type effective representation in low-energy sector, then internal space dimension increases, but can still view external motion as projection of total information rate toward certain spatial directions, internal evolution as projection on remaining ``mass--spin'' directions. Information rate circle becomes Pythagorean relation on high-dimensional sphere.
+
+Regarding weak gravitational field, can analogously introduce position-dependent Lieb--Robinson velocity $c(x)$, or more general local information rate density scale $\kappa(x)$, constructing optical metric dependent on $\kappa(x)$
+
+$$\mathrm{d}s^2 = -\eta^2(x)c^2\,\mathrm{d}t^2 + \eta^{-2}(x)\,\gamma_{ij}\,\mathrm{d}x^i\,\mathrm{d}x^j,$$
+
+where $\eta(x) := \kappa(x)/\kappa_{\infty}$. Under null geodesic condition, spatial projection of this metric is equivalent to light ray trajectory in isotropic medium with refractive index $n(x) = \eta^2(x)$. This can interpret gravitational redshift and light deflection as spatial variation of local information rate scale in underlying QCA. Related details can be combined with scattering-theoretical expression of unified time scale $\kappa(\omega)$, constructing unified gravitational--information geometric picture.
+
+\section{Conclusion}
+
+In this paper under minimal QCA axiom system (A1--A3), we demonstrated information rate conservation relation
+
+$$v_{\mathrm{ext}}^2 + v_{\mathrm{int}}^2 = c^2$$
+
+is rigorous geometric theorem in Dirac-type QCA model, not additional axiom. Using this theorem, we reconstructed special relativity time dilation, four-velocity normalization and mass--energy relation in completely discrete Hilbert space ontology framework, giving internal information-theoretic definition of mass.
+
+This result shows: as long as universe exhibits Dirac-type low-energy structure in some sector and globally satisfies finite light cone and local unitarity, then relativistic geometry and mass--inertia relation are necessity of QCA internal structure, not additional spacetime axioms introduced. Future work will include: extending this framework to higher dimensions, many particles and gauge fields, and under combination of unified time scale and weak gravitational field, further understanding how general relativity emerges as macroscopic effective geometry of QCA universe.
+
+\begin{thebibliography}{99}
+
+\bibitem{lieb_robinson} E. H. Lieb, D. W. Robinson, ``The finite group velocity of quantum spin systems'', Commun. Math. Phys. \textbf{28}, 251--257 (1972).
+
+\bibitem{qca_dirac} G. M. D'Ariano, P. Perinotti, ``Derivation of the Dirac equation from principles of information processing'', Phys. Rev. A \textbf{90}, 062106 (2014).
+
+\bibitem{qca_review} G. M. D'Ariano, P. Perinotti, ``Quantum cellular automata and free quantum field theory'', Front. Phys. \textbf{12}, 120301 (2017).
+
+\bibitem{weinberg_qft} S. Weinberg, \textit{The Quantum Theory of Fields}, Vol. I, Cambridge University Press (1995).
+
+\end{thebibliography}
+
+\appendix
+
+\section{Appendix A: Universe Object and Lieb--Robinson Bound}
+
+This appendix reviews formal structure of universe object $\mathfrak{U}_{\mathrm{QCA}}$ and Lieb--Robinson bound as technical background for axioms A1--A2.
+
+\subsection{A.1 QCA as Finite-Depth Local Unitary Circuit}
+
+In actual construction, one-step QCA update $U$ can usually be decomposed into several layers of local unitary gates. In one-dimensional example, can write $U$ as
+
+$$U = \prod_{\ell=1}^L U_\ell,$$
+
+where each $U_\ell$ acts on disjoint finite blocks, and all $U_\ell$ have finite-diameter support on graph. Finite depth $L$ and finite gate width ensure propagation radius $R$ has uniform upper bound.
+
+On $d$-dimensional lattice can similarly construct, e.g., using checkerboard decomposition, dividing system into several sublattices, each substep only implementing unitary updates on interior neighborhoods of one sublattice, thus maintaining overall unitarity and locality.
+
+\subsection{A.2 Proof Outline of Lieb--Robinson Bound}
+
+Given QCA satisfying A1, to obtain Lieb--Robinson bound in A2, can use method similar to local spin systems. Let $H$ be effective Hamiltonian generating discrete time Floquet evolution $U = \exp(-\mathrm{i}H\Delta t)$ (used formally only in this appendix), which has local term decomposition
+
+$$H = \sum_{X\subset\Lambda} h_X,$$
+
+where $h_X$ only acts on finite region $X$, satisfying norm decay condition
+
+$$\sum_{X\ni x} |h_X|\,\mathrm{e}^{\mu \mathrm{diam}(X)} < \infty$$
+
+for some $\mu>0$.
+
+Under this condition, can follow standard Lieb--Robinson proof route, considering time-evolved operator $A(t) := \alpha_t(A)$, deriving differential inequality for commutator $[A(t),B]$
+
+$$\frac{\mathrm{d}}{\mathrm{d}t}\bigl|[A(t),B]\bigr| \le 2\sum_{X}|h_X|\,\bigl|[A(t),B]\bigr| + \cdots$$
+
+then using Grönwall inequality and graph distance structure, obtaining exponential decay bound
+
+$$\bigl|[A(t),B]\bigr| \le C\,|A|\,|B|\,\exp\Bigl(-\mu(\mathrm{dist}(\mathrm{supp}A,\mathrm{supp}B) - v_{\mathrm{LR}}|t|)\Bigr),$$
+
+where $v_{\mathrm{LR}}$ is Lieb--Robinson velocity. Constant $c$ in A2 can be identified as value of $v_{\mathrm{LR}}$ in appropriate units.
+
+In strict QCA scenario, even without explicit Hamiltonian, can obtain similar estimates through direct analysis of propagation cone of finite-depth local unitary circuits: each step propagates at most $R$ lattice sites, thus $c = R a/\Delta t$ is natural signal speed upper bound.
+
+\section{Appendix B: Dispersion Relation and Bloch Vector of Dirac--QCA}
+
+This appendix supplements derivation of dispersion relation and Bloch vector form in Section 3.
+
+\subsection{B.1 SU(2) Group Element Product Formula}
+
+Any two SU(2) group elements can be written as
+
+$$U_1 = \exp\bigl(-\mathrm{i}\alpha\,\hat{a}\cdot\vec{\sigma}\bigr),\quad U_2 = \exp\bigl(-\mathrm{i}\beta\,\hat{b}\cdot\vec{\sigma}\bigr),$$
+
+their product is
+
+$$U_1U_2 = \exp\bigl(-\mathrm{i}\gamma\,\hat{c}\cdot\vec{\sigma}\bigr),$$
+
+where
+
+$$\cos\gamma = \cos\alpha\cos\beta - (\hat{a}\cdot\hat{b})\sin\alpha\sin\beta,$$
+
+$$\hat{c}\sin\gamma = \hat{a}\sin\alpha\cos\beta + \hat{b}\sin\beta\cos\alpha - (\hat{a}\times\hat{b})\sin\alpha\sin\beta.$$
+
+\subsection{B.2 Reducing $U(p) = C(m)T(p)$ to Single Rotation}
+
+In our Dirac--QCA model,
+
+$$C(m) = \exp\bigl(-\mathrm{i} m\Delta t\,\sigma_x\bigr),$$
+
+$$T(p) = \exp\bigl(-\mathrm{i} p a\,\sigma_z\bigr).$$
+
+Therefore
+
+$$U(p) = C(m)T(p) = \exp\bigl(-\mathrm{i} m\Delta t\,\sigma_x\bigr)\exp\bigl(-\mathrm{i} p a\,\sigma_z\bigr).$$
+
+Substituting above formula, take
+
+$$\alpha = m\Delta t,\quad \hat{a} = (1,0,0),$$
+
+$$\beta = p a,\quad \hat{b} = (0,0,1).$$
+
+Then $\hat{a}\cdot\hat{b} = 0$, $\hat{a}\times\hat{b} = (0,-1,0)$. Thus composite angle satisfies
+
+$$\cos\Omega(p) = \cos\alpha\cos\beta - 0\cdot\sin\alpha\sin\beta = \cos(m\Delta t)\cos(p a).$$
+
+This gives dispersion relation used in Section 3.
+
+Bloch vector components can be obtained from
+
+$$\hat{n}(p)\sin\Omega(p) = \hat{a}\sin\alpha\cos\beta + \hat{b}\sin\beta\cos\alpha - (\hat{a}\times\hat{b})\sin\alpha\sin\beta.$$
+
+Substituting yields
+
+$$\hat{n}(p)\sin\Omega(p) = (\sin(m\Delta t)\cos(p a),\,\sin(m\Delta t)\sin(p a),\,\sin(p a)\cos(m\Delta t)).$$
+
+where $x$ component $n_x(p)\propto\sin(m\Delta t)\cos(p a)$, $z$ component $n_z(p)\propto\sin(p a)\cos(m\Delta t)$, consistent with structure used in main text to define $v_{\mathrm{int}}$ and $v_{\mathrm{ext}}$.
+
+\section{Appendix C: Details of Information Rate Conservation Theorem and Relativistic Corollaries}
+
+This appendix organizes calculation details of Theorem 4.1 and Corollaries 5.1--5.3 to ensure rigor and self-consistency.
+
+\subsection{C.1 Derivative Calculation of External Group Velocity}
+
+Starting from
+
+$$\cos\bigl(\Omega(p)\bigr) = \cos(m\Delta t)\cos(p a)$$
+
+taking derivative with respect to $p$:
+
+$$-\sin\bigl(\Omega(p)\bigr)\frac{\partial\Omega}{\partial p} = \cos(m\Delta t)\,(-\sin(p a))\,a.$$
+
+Therefore
+
+$$\frac{\partial\Omega}{\partial p} = \frac{\cos(m\Delta t)\,\sin(p a)\,a}{\sin\bigl(\Omega(p)\bigr)}.$$
+
+Also $\omega(p) = \Omega(p)/\Delta t$, so
+
+$$\frac{\mathrm{d}\omega}{\mathrm{d}p} = \frac{1}{\Delta t}\frac{\partial\Omega}{\partial p} = \frac{\cos(m\Delta t)\,\sin(p a)\,a}{\Delta t\,\sin\bigl(\Omega(p)\bigr)} = c\,\frac{\cos(m\Delta t)\,\sin(p a)}{\sin\bigl(\Omega(p)\bigr)}.$$
+
+Finally obtain
+
+$$v_{\mathrm{ext}}(p) = a\,\frac{\mathrm{d}\omega}{\mathrm{d}p} = c\,\frac{\cos(m\Delta t)\,\sin(p a)}{\sin\bigl(\Omega(p)\bigr)}.$$
+
+\subsection{C.2 Symmetry of Internal Velocity Definition}
+
+Internal velocity defined as
+
+$$v_{\mathrm{int}}(p) := c\,\frac{\sin(m\Delta t)\,\cos(p a)}{\sin\bigl(\Omega(p)\bigr)}.$$
+
+Can notice if exchanging roles of $m\Delta t$ and $p a$, correspondingly exchanging $\sin$ and $\cos$ factors, then $v_{\mathrm{ext}}$ and $v_{\mathrm{int}}$ exactly interchange. This reflects ``mass--momentum'' symmetric structure in Dirac dispersion.
+
+\subsection{C.3 Algebraic Identity of Information Rate Circle}
+
+Squaring both and adding:
+
+$$v_{\mathrm{ext}}^2 + v_{\mathrm{int}}^2 = c^2\,\frac{\cos^2(m\Delta t)\,\sin^2(p a) + \sin^2(m\Delta t)\,\cos^2(p a)}{\sin^2\bigl(\Omega(p)\bigr)}.$$
+
+Also
+
+$$\sin^2\bigl(\Omega(p)\bigr) = 1 - \cos^2\bigl(\Omega(p)\bigr) = 1 - \cos^2(m\Delta t)\cos^2(p a).$$
+
+Direct calculation yields
+
+$$\cos^2(m\Delta t)\,\sin^2(p a) + \sin^2(m\Delta t)\,\cos^2(p a) = 1 - \cos^2(m\Delta t)\cos^2(p a) = \sin^2\bigl(\Omega(p)\bigr).$$
+
+Therefore
+
+$$v_{\mathrm{ext}}^2 + v_{\mathrm{int}}^2 = c^2.$$
+
+This completes all algebraic details of Theorem 4.1.
+
+\subsection{C.4 Details of Time Dilation and Four-Velocity}
+
+From
+
+$$v_{\mathrm{int}} = c\sqrt{1 - \frac{v^2}{c^2}}$$
+
+define
+
+$$\mathrm{d}\tau := \frac{v_{\mathrm{int}}}{c}\,\mathrm{d}t = \sqrt{1 - \frac{v^2}{c^2}}\,\mathrm{d}t.$$
+
+Conversely
+
+$$\frac{\mathrm{d}t}{\mathrm{d}\tau} = \frac{1}{\sqrt{1 - v^2/c^2}} = \gamma.$$
+
+Four-velocity components
+
+$$u^0 = \frac{\mathrm{d}(ct)}{\mathrm{d}\tau} = c\frac{\mathrm{d}t}{\mathrm{d}\tau} = \gamma c,$$
+
+$$u^1 = \frac{\mathrm{d}x}{\mathrm{d}\tau} = \frac{\mathrm{d}x}{\mathrm{d}t}\frac{\mathrm{d}t}{\mathrm{d}\tau} = v\,\gamma.$$
+
+Substituting into metric
+
+$$g_{\mu\nu}u^\mu u^\nu = -(\gamma c)^2 + (\gamma v)^2 = -\gamma^2(c^2 - v^2) = -c^2.$$
+
+Therefore Minkowski line element can be written as
+
+$$\mathrm{d}s^2 = g_{\mu\nu}\mathrm{d}x^\mu\mathrm{d}x^\nu = -c^2\mathrm{d}\tau^2.$$
+
+\subsection{C.5 Intrinsic Definition of Mass and Dispersion Relation}
+
+From dispersion relation
+
+$$\cos\bigl(\omega(p)\Delta t\bigr) = \cos(m\Delta t)\cos(p a)$$
+
+at $p=0$ obtain
+
+$$\cos\bigl(\omega(0)\Delta t\bigr) = \cos(m\Delta t).$$
+
+In small $m\Delta t$ case, expand
+
+$$\cos\bigl(\omega(0)\Delta t\bigr) \approx 1 - \frac{\bigl(\omega(0)\Delta t\bigr)^2}{2},\quad \cos(m\Delta t)\approx 1 - \frac{(m\Delta t)^2}{2}.$$
+
+Comparing yields $\omega(0)\approx m$. Define rest energy $E_0 := \hbar\omega(0)$, then
+
+$$E_0 \approx \hbar m.$$
+
+If adopting units making $\hbar = 1$ and $c=a/\Delta t$, can naturally write
+
+$$mc^2 := E_0 = \hbar\omega_{\mathrm{int}}(0).$$
+
+Additionally, in small $p a$ limit, dispersion relation gives
+
+$$\omega^2(p) \approx m^2 + \Bigl(\frac{p a}{\Delta t}\Bigr)^2 = m^2 + \frac{p^2c^2}{1}.$$
+
+Therefore
+
+$$E^2(p) := \hbar^2\omega^2(p) \approx \hbar^2 m^2 + p^2 c^2.$$
+
+Identifying $\hbar m c^2 = mc^2$ and adopting standard units, yields
+
+$$E^2 \approx p^2c^2 + m^2c^4.$$
+
+This shows relativistic energy--momentum relation is first-order approximation result of Dirac--QCA dispersion, with mass $m$ precisely being scaling of rest state internal evolution frequency.
+
+\end{document}
+

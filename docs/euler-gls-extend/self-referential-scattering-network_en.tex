@@ -1,0 +1,483 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{braket}
+\usepackage{graphicx}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Self-Referential Scattering Networks: Connection Matrix Synthesis, $J$-Unitary Robustness, and Floquet Band-Edge Topology}
+
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore\\
+\small Version 1.10}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+In Self-Referential Scattering Networks (SSN), this paper provides closed-loop methodology from \textbf{design--implementation--readout--falsification} to \textbf{theorem-level guarantees}. Under \textbf{trace-class calibration}, establish \textbf{mod-two equivalence} between global half-phase ($\sqrt{\det}$ covering) holonomy, spectral shift, spectral flow through $-1$, and discriminant transversality. Compared to previous draft, this version completes \textbf{verifiable details and checkable constants} at five key junctures: (i) Section 3 adds \textbf{bridging lemma} for ``$\log\det$ regularization--Birman--Kreĭn--$-1$ spectral flow--mod-two intersection number'' with half-page \textbf{self-contained proof}; (ii) Section 4 provides \textbf{quantitative structural lemma} for ``\textbf{no spurious crossing}'' after star product, specifying \textbf{comparison principle} and \textbf{design line} for principal block minimal gradient $g_{\min}$ and mutual coupling upper bound $r_{\max}$; (iii) Section 5 formulates \textbf{binarized projection + majority voting} as \textbf{concentration inequality}, providing explicit relation between misclassification rate and sample number with \textbf{correlation correction}; (iv) Section 6 characterizes robust domain via $J$-inner-product normalized \textbf{imaginary Rayleigh quotient (Kreĭn angle)}, constructs \textbf{polarization homotopy}, provides feasible upper bound for threshold function $\varepsilon_0(\eta,\beta)$, uniformly ensuring Cayley denominator invertibility and discriminant non-crossing; (v) Section 7 formulates \textbf{phase-type Floquet index} \textbf{truncation independence} and \textbf{gauge independence} as theorems, \textbf{completing regularization consistency and failure detection via $\det_2$ in Hilbert--Schmidt scenario}. Engineering side provides simulatable Schur-closed form for two-port ``coupler--microring--gain'' prototype, quantifying square-root scaling and threshold selection basis for group delay ``double-peak merging''.
+
+\textbf{Keywords}: Closed-loop scattering; Redheffer star product; Schur complement; Herglotz/Nevanlinna; discriminant; spectral shift and spectral flow; mod-two Levinson; $J$-unitary; Kreĭn angle; Floquet phase-type index.
+\end{abstract}
+
+\section{Calibration and Basic Objects}
+
+\textbf{Frequency domain and variables}: $\omega$ as angular frequency (static $\omega\in\mathbb{R}$; periodic systems $\omega\in[-\pi/T,\pi/T]$), upper half-plane calibration takes $z=\omega+\mathrm{i}0^+$. Exchange with unit circle calibration via Cayley map when necessary, maintaining orientation consistency.
+
+\textbf{Scattering and star product}: Portized node scattering $S_j(z)$ through interconnection (including feedback) yields closed-loop $S^{\circlearrowleft}(z)$ via Redheffer star product and Schur complement.
+
+\textbf{Cayley duality} (unified notation):
+
+$$
+S^{\circlearrowleft}(z)=(I-\mathrm{i}K(z))(I+\mathrm{i}K(z))^{-1},\qquad
+K(z)=-\mathrm{i}\bigl(I+S^{\circlearrowleft}(z)\bigr)^{-1}\bigl(I-S^{\circlearrowleft}(z)\bigr).
+$$
+
+\textbf{Trace-class and regularization}: All results related to spectral shift $\xi$ and Birman--Kreĭn uniformly assume $S^{\circlearrowleft}-I\in\mathfrak{S}_1$ using $\det$. For infinite dimensions (e.g., Floquet sidebands) first truncate finitely, use $\det_2$ when necessary; this paper's \textbf{mod-two conclusions independent of $\det/\det_2$ choice} (see Appendix F).
+
+\textbf{$J$-unitary calibration}: $J=J^\dagger=J^{-1}$, $S^\sharp=J^{-1}S^\dagger J$, $S^\dagger J S=J$. Non-Hermitian robustness stated under this calibration.
+
+\section{Discriminant, Local Model, and Transversality}
+
+On parameter manifold $X$ define codimension-one piecewise smooth submanifold family $D=\bigsqcup_b D_b$, whose local models include Jost zeros, threshold opening/closing, embedded eigenvalues, and EP coalescence. After removal $X^\circ=X\setminus D$. For closed path $\gamma\subset X^\circ$, mod-two intersection number $I_2(\gamma,D)$ is parity of transverse points. Endpoints/thresholds excised via small semicircles merged into $D$ boundary component. Closed-loop implementation level can use
+
+$$
+D=\Bigl\{(\omega,\vartheta):\ \sigma_{\min}\bigl(I-\mathcal{C}(\omega,\vartheta)\,S_{ii}(\omega,\vartheta)\bigr)=0\Bigr\},
+$$
+
+equivalent to $\det(I-\mathcal{C}S_{ii})=0$ at general position.
+
+\section{Mod-Two Half-Phase--Spectral-Shift--Spectral-Flow--Intersection: Bridging Lemma and Equivalence Theorem (Trace-Class)}
+
+\begin{definition}[3.1: Global Half-Phase]
+
+$$
+\nu_{\sqrt{\det S^{\circlearrowleft}}}(\gamma)
+=\exp\Bigl(\mathrm{i}\oint_{\gamma}\tfrac{1}{2}\,\mathrm{d}\arg\det S^{\circlearrowleft}\Bigr)\in\{\pm1\}.
+$$
+\end{definition}
+
+\begin{lemma}[3.2: $\log\det$ Regularization and Endpoint Treatment]
+If along closed path $\gamma$ almost everywhere $S^{\circlearrowleft}$ unitary with $S^{\circlearrowleft}-I\in\mathfrak{S}_1$, then $\log\det S^{\circlearrowleft}$ admits continuous continuation along $\gamma$ and is integrable; after treating endpoints/thresholds per §2 small semicircle excision rule, $\oint_\gamma \tfrac{1}{2}\,\mathrm{d}\arg\det S^{\circlearrowleft}$ well-defined ($\bmod\ 2\pi$).
+\end{lemma}
+
+\begin{lemma}[3.3: Birman--Kreĭn--$-1$ Spectral Flow Bridge: Two-Step Verifiable Details]
+Denote $\xi(\omega)$ as spectral shift. Then
+(i) By BK formula $\det S(\omega)=\exp\{-2\pi\mathrm{i}\,\xi(\omega)\}$, arbitrary branch change makes $\xi\mapsto\xi+n$ ($n\in\mathbb{Z}$), contributing $\exp\{\mathrm{i}\oint \tfrac{1}{2}\,\mathrm{d}(2\pi n)\}=1$ to half-phase, thus \textbf{mod-two invariant};
+(ii) Let $S(\tau)=V(\tau)\,e^{\mathrm{i}\Phi(\tau)}\,U(\tau)$ be local Schur form with at $\tau=\tau_c$ only one simple eigenphase $\phi_j$ crossing $\pi$ ($-1$), then $\xi$ jump is $\pm 1$ while $\mathrm{Sf}_{-1}=1$. Multiple crossings decompose into finite simple crossings, thus
+
+$$
+\exp\Bigl(-\mathrm{i}\pi\oint_\gamma \mathrm{d}\xi\Bigr)=(-1)^{\mathrm{Sf}_{-1}(S^{\circlearrowleft}\circ\gamma)}.
+$$
+\end{lemma}
+
+\begin{proposition}[3.4: Base-Point and Branch Independent Mod-Two Property]
+For arbitrary base point and continuous branch continuation, $\nu_{\sqrt{\det S^{\circlearrowleft}}}(\gamma)$ invariant; allowed endpoint treatment equivalent to adding boundary homotopy on $D$, mod-two value preserved.
+\end{proposition}
+
+\begin{theorem}[3.5: Four-Fold Equivalence]
+If along $\gamma$ almost everywhere $S^{\circlearrowleft}$ unitary with $S^{\circlearrowleft}-I\in\mathfrak{S}_1$, then
+
+$$
+\nu_{\sqrt{\det S^{\circlearrowleft}}}(\gamma)
+=\exp\Bigl(-\mathrm{i}\pi\oint_\gamma \mathrm{d}\xi\Bigr)
+=(-1)^{\mathrm{Sf}_{-1}\bigl(S^{\circlearrowleft}\circ\gamma\bigr)}
+=(-1)^{I_2(\gamma,D)}.
+$$
+\end{theorem}
+
+\section{``No Spurious Crossing'' After Star Product and $\mathbb{Z}_2$ Combinatorial Law (Quantitative Version)}
+
+\textbf{Block notation}:
+
+$$
+S^{(k)}=\begin{pmatrix}
+S^{(k)}_{ee} & S^{(k)}_{ei}\\[2pt]
+S^{(k)}_{ie} & S^{(k)}_{ii}
+\end{pmatrix},\quad k=1,2.
+$$
+
+\begin{lemma}[4.1: Structural Lemma for No Spurious Crossing: Quantitative Conditions with Tubular Separation]
+Assume in neighborhood $U\subset X^\circ$ satisfying
+(i) Schur invertibility lower bound: $\sigma_{\min}\bigl(I-S^{(1)}_{ii}S^{(2)}_{ii}\bigr)\ge \delta>0$;
+(ii) Mutual coupling smallness: $\|S^{(1)}_{ei}\|_2,\|S^{(2)}_{ie}\|_2\le \rho<1$;
+\textbf{(iii) Tubular separation}: For zero sets $D_{(k)}$ of $k=1,2$ exists uniform tubular radius $\tau_\ast>0$, take $0<\tau\le\tau_\ast$ such that $N_\tau(D_{(1)})$, $N_\tau(D_{(2)})\subset U$ and disjoint.
+
+Define principal discriminant $\Phi_k(\vartheta)=\det\bigl(I-\mathcal{C}S^{(k)}_{ii}\bigr)$ and principal block minimal gradient
+
+$$
+g_{\min}=\inf_{\vartheta\in U}\min\bigl\{\,|\nabla_\vartheta \Phi_1(\vartheta)|,\ |\nabla_\vartheta \Phi_2(\vartheta)|\,\bigr\}.
+$$
+
+Then mutual coupling residual upper bound exists
+
+$$
+r_{\max}\ \le\ \frac{\|S^{(1)}_{ei}\|_2\,\|S^{(2)}_{ie}\|_2}{\delta^2},
+$$
+
+and when
+
+$$
+r_{\max}\ <\ (\tau g_{\min})^2
+$$
+
+network discriminant is transverse disjoint union of subnet discriminants: $D_{\mathrm{net}}=D_{(1)}\sqcup D_{(2)}$, with
+
+$$
+I_2(\gamma,D_{\mathrm{net}})=I_2(\gamma,D_{(1)})+I_2(\gamma,D_{(2)})\ \bmod 2.
+$$
+
+\emph{Proof essentials}: By tubular separation and mean value theorem, outside tubes have $|\Phi_1(\vartheta)|\wedge|\Phi_2(\vartheta)|\ge \tau g_{\min}$, thus $|\Phi_1(\vartheta)\Phi_2(\vartheta)|\ge (\tau g_{\min})^2$; when $r_{\max}<(\tau g_{\min})^2$, mutual coupling remainder insufficient to introduce new zeros outside tubes. In each single tube use implicit function theorem obtaining zero set as normal small deformation of original zero set, obtaining transverse disjoint union since tubes non-intersecting.
+\end{lemma}
+
+\textbf{Engineering design line (verifiable)}
+Take $\delta=\inf_{U}\sigma_{\min}(I-S^{(1)}_{ii}S^{(2)}_{ii})$. If
+
+$$
+\|S^{(1)}_{ei}\|_2\,\|S^{(2)}_{ie}\|_2\ \le\ \tfrac{1}{2}\,\delta^2\,(\tau g_{\min})^2,
+$$
+
+then $r_{\max}\le\tfrac{1}{2}(\tau g_{\min})^2<(\tau g_{\min})^2$, satisfying lemma sufficient condition.
+
+\textbf{Boundary and failure mode 4.2}: When $\delta\to 0^+$ or $\rho\to 1^-$, near-tangent crossing and resonance-induced ``spurious crossing'' may occur. Should real-time monitor $\sigma_{\min}(I-\mathcal{C}S_{ii})$ margin and $g_{\min}$ numerical estimate, shrink $U$ or reconfigure ports when necessary.
+
+\begin{theorem}[4.3: $\mathbb{Z}_2$ Combinatorial Law]
+Under lemma conditions, $\boldsymbol{\nu}_{\mathrm{net}}=\boldsymbol{\nu}_{(1)}\odot\boldsymbol{\nu}_{(2)}$ (component-wise multiplication, mod-two addition).
+\end{theorem}
+
+\section{Binarized Projection, Concentration Inequality, and Dealiasing}
+
+\textbf{Phase increment and binarization}:
+
+$$
+\Delta\phi_{ab}=\frac{1}{2}\Bigl[\arg\det S\bigl(\gamma_a;\theta_b+\delta\bigr)-\arg\det S\bigl(\gamma_a;\theta_b-\delta\bigr)\Bigr]_{\mathrm{cont}},\qquad
+\Pi(\Delta\phi_{ab})=\mathbf{1}_{\{|\Delta\phi_{ab}|\ge \pi/2\}}.
+$$
+
+\begin{definition}[Effective Phase Window]
+Assume experiment/simulation uses measurement grid $\mathcal{G}=\{(a,b)\}$, define $\Delta\phi_{ab}$ and binarization rule $\Pi(\cdot)$ per above formula. Define
+
+$$
+\Delta\phi_{\mathrm{eff}}:=\operatorname*{ess\,inf}_{(a,b)\in\mathcal{G}}\,|\Delta\phi_{ab}|.
+$$
+
+When bounded additive noise $\varepsilon$ exists with $|\varepsilon|\le \epsilon$, adopt threshold condition $\Delta\phi_{\mathrm{eff}}>\frac{\pi}{2}+2\epsilon$; accordingly obtain Theorem 5.1's misclassification rate and sample complexity estimate.
+\end{definition}
+
+\textbf{Hypothesis (independence and sub-Gaussian)}
+Measurement samples $\{\widehat{\Delta\phi}_{ab}^{(n)}\}_{n=1}^N$ independent, $\mathbb{E}\,\widehat{\Delta\phi}_{ab}^{(n)}=\Delta\phi_{ab}$, sub-Gaussian with proxy variance $\sigma^2$.
+
+\begin{theorem}[5.1: Error Bound and Sample Complexity for Majority Voting]
+
+Assume measurement samples $\{\widehat{\Delta\phi}_{ab}^{(n)}\}_{n=1}^N$ mutually independent, $\mathbb{E}\,\widehat{\Delta\phi}_{ab}^{(n)}=\Delta\phi_{ab}$, sub-Gaussian with proxy variance $\sigma^2$; with bounded additive bias $|\varepsilon|\le\epsilon$. Denote
+
+$$
+m:=\Delta\phi_{\mathrm{eff}}-\frac{\pi}{2}-2\epsilon>0,\qquad
+q:=\mathbb{P}\big(|\widehat{\Delta\phi}_{ab}^{(n)}|<\tfrac{\pi}{2}\big).
+$$
+
+Then
+
+$$
+q\ \le\ 2\exp\Bigl(-\frac{m^2}{2\sigma^2}\Bigr),\qquad
+\mathbb{P}(\text{majority voting misjudgment})\ \le\ \exp\Bigl(-2N\big(\tfrac{1}{2}-q\big)^2\Bigr).
+$$
+
+Given target error $\delta\in(0,1)$, sufficient condition is
+
+$$
+N\ \ge\ \frac{\log(1/\delta)}{2\big(\tfrac{1}{2}-2e^{-m^2/(2\sigma^2)}\big)^2},
+$$
+
+requiring $m>\sigma\sqrt{2\log 4}$ ensuring $q<\tfrac{1}{2}$ for majority voting convergence. If oversampling correlation exists, replace $N$ in above formula with effective sample number $N_{\mathrm{eff}}$.
+\end{theorem}
+
+\begin{proposition}[5.2: Dealiasing and Secondary Evidence Fusion]
+For multiple crossings or near-threshold masking:
+(i) Adopt multi-window sliding and anchor continuity strategy;
+(ii) Fuse group delay double-peak merging, confirming ``crossing'' only when both fingerprints synchronize;
+(iii) When crosstalk occurs, add redundant columns nearly orthogonal to existing sensitivity, recalculate Gram criterion until full rank.
+\end{proposition}
+
+\section{$J$-Unitary Robustness: Kreĭn Angle, Polarization Homotopy, and Threshold Function}
+
+\textbf{Kreĭn angle and angle gap}: \textbf{Assume $\langle\psi_j(\tau),J\psi_j(\tau)\rangle\neq0$ (non-neutral eigenstate), otherwise $\varkappa_j$ undefined, and that parameter point viewed as robust domain boundary and excluded.} Define
+
+$$
+\varkappa_j(\tau)=\frac{\operatorname{Im}\,\langle \psi_j(\tau)\,,J\,S^{-1}(\partial_\tau S)\,\psi_j(\tau)\rangle}{\langle \psi_j(\tau)\,,J\,\psi_j(\tau)\rangle},
+$$
+
+consistent with $\partial_\tau\phi_j$ in unitary limit $J=I$, used as \textbf{phase slope}. \textbf{Angle gap} defined as
+
+$$
+\eta:=\min_{j}\ \inf_{\tau}\operatorname{dist}\bigl(\phi_j(\tau),\,\pi+2\pi\mathbb{Z}\bigr)\in(0,\pi].
+$$
+
+Near $J$-unitary there exist $c_\pm(\varepsilon)\to1$ making $c_{-}\,|\partial_\tau\phi_j|\le |\varkappa_j|\le c_{+}\,|\partial_\tau\phi_j|$. \emph{Note: $\varkappa_j$ only as slope control term, not participating in $\eta$ definition}.
+
+\begin{lemma}[6.1: Estimate from $(S^\dagger J S-J)$ to $(K-K^\sharp)$]
+
+Assume $S(\tau)$ pointwise invertible along considered parameter domain, with
+
+$$
+\sup_\tau|S(\tau)|<\infty,\quad \sup_\tau|S(\tau)^{-1}|<\infty,\quad
+|S^\dagger J S-J|\le \varepsilon,\quad
+\beta=\inf_\tau\sigma_{\min}(I+\mathrm{i}K(\tau))>0.
+$$
+
+Then constant $C=C\big(\beta,\ \sup|S|,\ \sup|S^{-1}|\big)$ exists making
+
+$$
+|K-K^\sharp|\ \le\ C\,\varepsilon.
+$$
+
+\emph{Proof essentials}: Use Fréchet differential of Cayley inverse map $K=-\mathrm{i}(I+S)^{-1}(I-S)$ with $J$-conjugation and bounded multiplier inequality.
+\end{lemma}
+
+\textbf{Construction 6.2 (polarization homotopy)}
+Let
+
+$$
+K_t=(1-t)\,K+t\,\tfrac{1}{2}(K+K^\sharp),\qquad
+S_t=(I-\mathrm{i}K_t)(I+\mathrm{i}K_t)^{-1},\quad t\in[0,1].
+$$
+
+By Lemma 6.1 and Neumann lemma obtain
+
+$$
+\sigma_{\min}\bigl(I+\mathrm{i}K_t(\tau)\bigr)\ \ge\ \beta-\tfrac{t}{2}C\,\varepsilon,
+$$
+
+thus when $\varepsilon<2\beta/C$, $(I+\mathrm{i}K_t)$ invertible throughout $t\in[0,1]$, $S_t$ well-defined. In near $J$-unitary calibration, constant $\alpha>0$ exists (depending on $|S|$, $|S^{-1}|$, $\beta$) making
+
+$$
+\varepsilon_0(\eta,\beta)\ :=\ \min\left\{\frac{2\beta}{C},\ \alpha\,\sin^2\!\frac{\eta}{2}\right\}
+$$
+
+\textbf{feasible upper bound}: when $\|S^\dagger J S-J\|\le \varepsilon<\varepsilon_0(\eta,\beta)$ with $\eta>0$, homotopy $\{S_t\}$ doesn't intersect $D$, with Cayley denominator invertible throughout.
+
+\begin{theorem}[6.3: Homotopy Robustness]
+If homotopy $\{S_t\}$ satisfying above formula exists without intersecting $D$ throughout, then $\nu_{\sqrt{\det S^{\circlearrowleft}}}$ equals unitary limit value.
+\end{theorem}
+
+\textbf{Square root asymptotics (engineering fingerprint)}: Dominant branching $2\times2$ effective subspace yields
+
+$$
+\arg\det S(t)=\arg\det S(t_c)\pm \arctan\bigl(\kappa^{1/2}|t-t_c|^{1/2}\bigr)+O\bigl(|t-t_c|^{3/2}\bigr),
+$$
+
+group delay exhibits symmetric double-peak merging, peak separation $\Delta\omega=C\sqrt{|t-t_c|}+O\bigl(|t-t_c|^{3/2}\bigr)$. Higher-order roots (EP order $>2$) mod-two equivalent to square root.
+
+\section{Floquet-SSN: Phase-Type Band-Edge Index, Truncation and Gauge Independence}
+
+\begin{definition}[7.1: Phase-Type Index]
+Truncate sideband to $|n|\le N$ obtaining finite-dimensional $S_F^{(N)}(\omega)$, define
+
+$$
+\nu_F^{(N)}=\exp\Bigl(\frac{\mathrm{i}}{2}\int_{-\pi/T}^{\pi/T}\partial_\omega\arg\det S_F^{(N)}(\omega)\,\mathrm{d}\omega\Bigr)\in\{\pm1\}.
+$$
+
+Equivalently,
+
+$$
+\nu_F^{(N)}=\exp\Bigl(\frac{\mathrm{i}}{2}\int_{-\pi/T}^{\pi/T}\operatorname{Im}\,\partial_\omega\log\det S_F^{(N)}(\omega)\,\mathrm{d}\omega\Bigr).
+$$
+\end{definition}
+
+\begin{theorem}[7.2: Truncation Independence: Norm/HS Version]
+If $S_F^{(N)}\to S_F$ in operator norm or Hilbert--Schmidt topology, with endpoints $\omega=\pm\pi/T$ having no $N$-migrating branching, then $N_\ast$ exists making $\nu_F^{(N)}$ stable for $N\ge N_\ast$; define $\nu_F=\nu_F^{(N_\ast)}$. In \textbf{Hilbert--Schmidt scenario}, replace $\det$ differential with Koplienko spectral shift and $\det_2$ derivative recipe, combined with Appendix F mod-two consistency, obtaining same $\nu_F$. \textbf{Strong convergence alone insufficient to ensure $\det_2$ and second-order trace formula well-definedness, thus not included in theorem premise.}
+\end{theorem}
+
+\begin{lemma}[7.3: Gauge Independence]
+If $S_F(\omega)\mapsto U_L(\omega)\,S_F(\omega)\,U_R(\omega)$ where $U_{L,R}$ continuous with $|\det U_{L,R}|=1$, satisfying band-edge gluing condition
+
+$$
+[\arg\det U_L+\arg\det U_R]_{-\pi/T}^{\pi/T}\in 4\pi\mathbb{Z},
+$$
+
+then
+
+$$
+\int_{-\pi/T}^{\pi/T}\partial_\omega\arg\det S_F(\omega)\,\mathrm{d}\omega
+$$
+
+mod-two value invariant.
+\end{lemma}
+
+\begin{theorem}[7.4: Band-Edge Equivalence]
+If endpoints satisfy square root local model with Theorem 7.2 holding, then
+
+$$
+\nu_F=(-1)^{I_2\bigl([-\pi/T,\pi/T],D_F\bigr)}.
+$$
+\end{theorem}
+
+\textbf{Failure mode 7.5 (detection and fault tolerance threshold)}
+When truncation induces endpoint pseudo-branching, monitor
+
+$$
+\min_{\omega\in\{\pm\pi/T\}}\sigma_{\min}\!\bigl(I-\mathcal{C}S_{ii}^{(N)}(\omega)\bigr)\ \ge\ \delta_F,
+$$
+
+requiring $\nu_F^{(N)}=\nu_F^{(N+1)}=\nu_F^{(N+2)}$ continuous three-order consistency to judge ``stable''.
+
+\section{Prototype and SOP}
+
+\textbf{8.1 Two equivalent paths for single crossing}:
+(i) Complex parameter small loop: $\lambda$ circles Jost zero once in complex plane;
+(ii) Real parameter traverse + frequency domain readout: Real parameter traverses $D$, select single branch in frequency domain using anchor continuity. Both homotopy equivalent. Along any \textbf{closed loop} from complex parameter small loop or ``real parameter traverse + return closure'', have
+
+$$
+\oint \mathrm{d}\arg\det S=\pm 2\pi,\qquad
+\exp\Bigl(\tfrac{\mathrm{i}}{2}\oint \mathrm{d}\arg\det S\Bigr)=-1,
+$$
+
+fully consistent with §3 half-phase--spectral-flow parity.
+
+\textbf{8.2 Two-port ``coupler--microring--gain'' prototype (simulatable)}:
+Coupler
+
+$$
+C(\kappa)=
+\begin{pmatrix}
+\sqrt{1-\kappa^2} & \mathrm{i}\kappa\\
+\mathrm{i}\kappa & \sqrt{1-\kappa^2}
+\end{pmatrix},\qquad
+\mathcal{C}(\omega,t)=\rho\,\mathrm{e}^{\mathrm{i}\phi(\omega,t)}.
+$$
+
+Effective scattering (Schur-closure)
+
+$$
+S^{\circlearrowleft}=S_{ee}+S_{ei}\bigl(I-\mathcal{C}\,S_{ii}\bigr)^{-1}\mathcal{C}\,S_{ie}.
+$$
+
+In critical neighborhood of $\mathcal{C}\,S_{ii}\to I$ falls back to §8.1 square root model, directly reproducing $\Delta\varphi=\pi$ and group delay double-peak merging.
+
+\textbf{8.3 SOP and criteria}: Port de-embedding → sweep feedback crossing $D$ → use $\Delta\phi_{\mathrm{eff}}>\pi/2+2\epsilon$ and double-peak merging as passing condition; triple fingerprint asynchrony vetoes causal chain, returning to column controllability procedure for redundant column addition or frequency window reselection.
+
+\section{Readout and Wigner--Smith Unified Calibration}
+
+$$
+\partial_\omega \log\det S=\mathrm{tr}\bigl(S^{-1}\partial_\omega S\bigr),\qquad
+\partial_\omega \arg\det S=\operatorname{Im}\,\mathrm{tr}\bigl(S^{-1}\partial_\omega S\bigr).
+$$
+
+In unitary case let $Q(\omega)=-\mathrm{i}\,S^\dagger\partial_\omega S$, then $\partial_\omega \arg\det S=\mathrm{tr}\,Q(\omega)$. In $J$-unitary case can also write $\partial_\omega \arg\det S=\operatorname{Im}\,\mathrm{tr}(S^\sharp\partial_\omega S)$.
+
+\section{Conclusion}
+
+This paper rigorizes ``half-phase--spectral-shift--spectral-flow--intersection'' four-fold equivalence via \textbf{bridging lemma}; ensures star-product interconnection discriminant transverse disjoint union and $\mathbb{Z}_2$ combinatorial law via \textbf{quantitative structural lemma}; guarantees binarized projection reproducibility via \textbf{concentration inequality}; characterizes near $J$-unitary robust domain and threshold via \textbf{Kreĭn angle and polarization homotopy}; closes band-edge topological readout chain via \textbf{phase-type Floquet index} and \textbf{truncation/gauge independence theorems}. Combined with minimal prototype and SOP, provides programmable implementation and counterfactual verification for ``closed-loop self-consistency $\Rightarrow$ square-root criticality $\Rightarrow$ double Riemann sheet $\Rightarrow \mathbb{Z}_2$ half-phase''.
+
+\section*{References (Selected)}
+
+[1] R. Redheffer, ``On a Certain Linear Fractional Transformation,'' \emph{Pacific J. Math.}, \textbf{9} (1959) 871--893.
+
+[2] J. Gough, M. R. James, ``The Series Product and Its Application to Quantum Feedforward and Feedback Networks,'' \emph{IEEE TAC}, \textbf{54} (2009) 2530--2544.
+
+[3] B. Simon, \emph{Trace Ideals and Their Applications}, 2nd ed., AMS (2005).
+
+[4] M. Sh. Birman, M. G. Kreĭn, ``On the Theory of Wave and Scattering Operators,'' \emph{Sov. Math. Dokl.}, \textbf{3} (1962) 740--744.
+
+[5] L. Koplienko, ``Trace Formula for Perturbations of Class $\mathfrak{S}_2$,'' \emph{Sb. Math.}, \textbf{122} (1983) 457--486.
+
+[6] E. P. Wigner, ``Lower Limit for the Energy Derivative of the Scattering Phase Shift,'' \emph{Phys. Rev.}, \textbf{98} (1955) 145--147; F. T. Smith, ``Lifetime Matrix in Collision Theory,'' \emph{Phys. Rev.}, \textbf{118} (1960) 349--356.
+
+[7] T. Ya. Azizov, I. S. Iokhvidov, \emph{Linear Operators in Spaces with an Indefinite Metric}, Wiley (1989).
+
+[8] D. Z. Arov, H. Dym, \emph{$J$-Contractive Matrix-Valued Functions and Related Topics}, CUP (2008).
+
+[9] I. C. Fulga, F. Hassler, A. R. Akhmerov, ``Scattering Formula for the Topological Quantum Number,'' \emph{Phys. Rev. B}, \textbf{85} (2012) 165409.
+
+[10] M. S. Rudner, N. H. Lindner, E. Berg, M. Levin, ``Anomalous Edge States...,'' \emph{Phys. Rev. X}, \textbf{3} (2013) 031005.
+
+\appendix
+
+\section{Notation and Regularization}
+
+\textbf{Notation}: $J$ (Kreĭn metric), $S^\sharp=J^{-1}S^\dagger J$; $\mathfrak{S}_1/\mathfrak{S}_2$ (trace-class/HS); $\det_\star$ (finite-dimensional take $\det$, HS take $\det_2$); $D,D_F$ (discriminant/band-edge discriminant); $\Lambda$, $\Pi_\tau$, $\eta$, $Q=-\mathrm{i}S^\dagger\partial_\omega S$, $\nu_{\sqrt{\det S^{\circlearrowleft}}}$, $\nu_F$.
+
+\textbf{Calibration}: Main text adopts $\mathfrak{S}_1$. HS case stabilizes with $\det_2$; four-fold equivalence and $\nu_F$ mod-two value independent of $\det/\det_2$ choice (see Appendix F).
+
+\section{Covering--Lifting and $\mathbb{Z}_2$ Reduction}
+
+Square covering $p:z\mapsto z^2$ corresponds to multiplication by two in cohomology: $s:X^\circ\to U(1)$ exists making $s^2=\det S^{\circlearrowleft}$ if and only if $[\det S^{\circlearrowleft}]\in 2H^1(X^\circ;\mathbb{Z})$. Its $\mathbb{Z}_2$ reduction is this paper's global half-phase invariant.
+
+\section{Square Root Puiseux Asymptotics and Error}
+
+For $2\times2$ effective subblock $M(t)$ with $\Delta(t)\approx \Delta'(t_c)(t-t_c)$, Cayley mapping to $S(t)=(I-\mathrm{i}M)(I+\mathrm{i}M)^{-1}$ has leading term
+
+$$
+\pm\,\arctan\bigl(\kappa^{1/2}|t-t_c|^{1/2}\bigr)+O\bigl(|t-t_c|^{3/2}\bigr),
+$$
+
+group delay exhibits symmetric double-peak merging, peak separation $\Delta\omega=C\sqrt{|t-t_c|}+O\bigl(|t-t_c|^{3/2}\bigr)$. Substituting into §5's $\Delta\phi_{\mathrm{eff}}$ yields sample complexity estimate.
+
+\section{Target-to-Device Execution Checklist and $\ell$}
+
+Open-loop calibration and de-embedding → choose $W$ and step size → compute $\mathcal{S}_{\theta_b}(\omega)=\partial_{\theta_b}\arg\det S(\omega)$ integrating into $M$ → obtain $\Pi(M)$ via $\pi/2\pm\tau$ checking rank → solve $\Pi(M)\mathbf{x}=\ell$ selecting columns → trigger column-by-column with $\Delta\varphi=\pi$, double-peak merging as stop → counterfactual verification and archive.
+$\ell=(1-\boldsymbol{\nu}^\star)/2\in\{0,1\}^m$ ($\nu^\star=+1\mapsto0$, $\nu^\star=-1\mapsto1$).
+
+\section{Kreĭn Angle and Homotopy Threshold under $J$-Unitary}
+
+Assume $S^\dagger J S=J$, denote $X=S^{-1}\dot{S}$. By differentiation $X^\sharp=-X$ ($J$-skew-Hermitian). For $(\lambda_j=\mathrm{e}^{\mathrm{i}\theta_j},v_j)$:
+
+$$
+\dot{\theta}_j=\frac{\operatorname{Im}\,\langle v_j\,,JX\,v_j\rangle}{v_j^\dagger J v_j},\qquad
+\varkappa_j=\frac{\operatorname{Im}\,\langle v_j\,,JX\,v_j\rangle}{v_j^\dagger J v_j}.
+$$
+
+From above two formulas pointwise obtain $\varkappa_j=\dot{\theta}_j$, thus
+
+$$
+|\dot{\theta}_1-\dot{\theta}_2|=|\varkappa_1-\varkappa_2|.
+$$
+
+By Lemma 6.1 obtain $\|K-K^\sharp\|\le C\,\varepsilon$. Take $K_t=(1-t)K+t(K+K^\sharp)/2$, $S_t=(I-\mathrm{i}K_t)(I+\mathrm{i}K_t)^{-1}$. By Neumann lemma obtain $\sigma_{\min}(I+\mathrm{i}K_t)\ge\beta-\tfrac{t}{2}C\,\varepsilon$, thus when $\varepsilon<2\beta/C$, $S_t$ well-defined. If $\|S^\dagger J S-J\|\le \varepsilon$ with $\eta>0$, constant $\alpha>0$ exists making $\varepsilon_0(\eta,\beta)=\min\{2\beta/C,\ \alpha\sin^2(\eta/2)\}$ feasible upper bound, uniformly ensuring Cayley denominator invertibility and discriminant non-crossing.
+
+\section{Regularization Independence (Unified Proposition)}
+
+\begin{proposition}[F.1: $\det/\det_2$ Mod-Two Consistency]
+Assume along closed path $\gamma$ almost everywhere $S^{\circlearrowleft}$ unitary. If $S^{\circlearrowleft}-I\in\mathfrak{S}_1$ then
+
+$$
+\exp\Bigl(\mathrm{i}\oint_\gamma \tfrac{1}{2}\,\partial\log\det S^{\circlearrowleft}\Bigr)
+=(-1)^{\mathrm{Sf}_{-1}}=(-1)^{I_2}.
+$$
+
+If only $S^{\circlearrowleft}-I\in\mathfrak{S}_2$, take $\mathfrak{S}_1$ approximation family $S_\epsilon^{\circlearrowleft}\to S^{\circlearrowleft}$ in HS topology, define half-phase via $\det_2$, then
+
+$$
+\lim_{\epsilon\to0}\exp\Bigl(\mathrm{i}\oint_\gamma \tfrac{1}{2}\,\partial\log\det S_\epsilon^{\circlearrowleft}\Bigr)
+=\exp\Bigl(\mathrm{i}\oint_\gamma \tfrac{1}{2}\,\partial\log\det_2 S^{\circlearrowleft}\Bigr),
+$$
+
+with both sides' mod-two value consistent with $\mathrm{Sf}_{-1}$, $I_2$.
+\end{proposition}
+
+\section{Floquet Truncation, Convergence, and Failure Mode}
+
+Truncate $S_F$ sideband to $|m|\le M$ obtaining $S_F^{(M)}$. If $\sum_{|m|>M}\|K_m\|\to0$ (\textbf{operator norm or HS convergence; this condition implies operator norm convergence}), with endpoints having no $M$-migrating branching, then $\sup_\omega \|S_F^{(M+1)}-S_F^{(M)}\|\to 0$, $M_0$ exists making $\nu_F^{(M)}$ stable for $M\ge M_0$. Detection quantities: endpoint singular value threshold $\delta_F$ and ``plateau stability'' criterion ($\nu_F^{(M)}=\nu_F^{(M+1)}=\nu_F^{(M+2)}$). When abnormal drift occurs increase $M$ or reduce coupling bandwidth to avoid pseudo-branching.
+
+\end{document}
+
+

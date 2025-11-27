@@ -1,0 +1,445 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{axiom}{Axiom}
+
+% Title information
+\title{Axiomatic Quantum Measurement Theory: Static Block Superpositions, Semantic Collapse, and Causal Network Entanglement}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Under the unified perspective of ``discrete--static blocks (EBOC)'' and ``continuous--causal manifolds/gauge systems,'' we construct an axiomatic framework for quantum measurement: wave functions are characterized as complex-amplitude superpositions of compatible SBUs (Static Block Units) in static blocks; collapse is characterized as observer anchor switching and $\pi$-semantic collapse from operator algebras to classical record algebras; entanglement is characterized as conditional mutual information and quantum Markov property in causal networks. Mathematically, quantum instruments and POVMs serve as core objects, with Stinespring/Naimark/Kraus representations, Lüders update, relative entropy minimization principle, and Belavkin filtering closing the ``measurement--update--record'' chain; at the information-geometric level, strong subadditivity and conditional mutual information control causal propagation of entanglement and ``no-signaling.'' At the readout--geometry interface, employing windowed compression $K_{w,h}$ and ``trinity master-scale'' $\displaystyle\frac{\varphi_{\text{m}}'}{\pi}=\rho_{\text{rel}}=\frac{1}{2\pi}\mathrm{tr}\,\mathsf{Q}$ unified readout framework, with non-asymptotic error closure under Nyquist--Poisson--Euler--Maclaurin (finite-order) discipline; this identity holds almost everywhere on absolutely continuous spectrum, thereby rigorously unifying ``phase derivative--relative spectral density--Wigner--Smith group delay.'' Davies--Lewis instruments/POVMs, postulated Lüders rule, Stinespring--Kraus--Naimark representations, and Belavkin continuous measurement stochastic filtering provide testable anchor points; Birman--Kreĭn identity, Kreĭn--Friedel--Lloyd bridge, and de Branges kernel diagonal formula provide spectral/functional-analytic basis for unified readout of ``windowed--spectral--scattering.''
+\end{abstract}
+
+\noindent\textbf{Keywords:} Quantum measurement; EBOC; Static block units; POVM; Quantum instruments; Lüders rule; I-projection; Belavkin filtering; Master scale; Wigner--Smith time delay; Birman--Kreĭn; Spectral shift; Windowed readout; Toeplitz/Berezin compression; Causal network; Conditional mutual information
+
+\noindent\textbf{MSC 2020:} Primary 81P15, 81S22, 47A40; Secondary 94A17, 42C40, 81P45
+
+\section{Notation, Axioms, and Conventions}
+
+\subsection{Notation and Conventions}
+
+Units: $\hbar=c=1$. Hilbert space $\mathcal{H}$, observable algebra $\mathcal{A}\subseteq\mathcal{B}(\mathcal{H})$, classical record algebra $\mathcal{O}\cong L^\infty(\mathcal{X})$. Measurement represented by Davies--Lewis instruments $\{\mathcal{I}_\Delta\}_{\Delta\in\mathcal{B}(\mathcal{X})}$ and POVM $E(\cdot)$; Heisenberg image
+$$
+\pi^\ast(f)=\int_{\mathcal{X}} f(x)\,E(dx),
+$$
+reducing to $\pi^\ast(f)=\sum_x f(x)E_x$ when $\mathcal{X}$ discrete. Kraus representation equivalent to Stinespring dilation (for CP maps); POVM equivalent to PVM via Naimark extension (for measures). Lüders update covers projection measurement limit; Belavkin filtering for continuous measurement \cite{davies1970operational}.
+
+\subsection{Spectral Measure Notation}
+
+Denote $E_H:\mathcal{B}(\mathbb{R})\to\mathcal{B}(\mathcal{H})$ as spectral projection measure of self-adjoint operator $H$; for any bounded Borel function $f$,
+$$
+f(H)=\int_{\mathbb{R}} f(E)\,dE_H(E).
+$$
+Thus $\int w_R(E)\,dE_H$ in \S\ref{sec:windowed} is $w_R(H)$.
+
+\subsection{Convolution and Windowing}
+
+Take window--kernel pair $(w_R,h)$, convolution $(h\star f)(E)=\int_{\mathbb{R}}h(E-E')f(E')\,dE'$. Windowed readout defined as $\langle K_{w,h}\rangle=\int_{\mathbb{R}} w_R(E)\,(h\star\rho_\star)(E)\,dE$, where $\rho_\star\in\{\rho_{\text{abs}},\rho_{\text{rel}}\}$. Here $\rho_{\text{abs}}(E)$ is absolute spectral density/density of states, defined for any $f\in C_0^\infty(\mathbb{R})$ as
+$$
+\mathrm{Tr}\,f(H)=\int_{\mathbb{R}} f(E)\,\rho_{\text{abs}}(E)\,dE,
+$$
+with window operator $W_R$ or volume normalization ensuring finiteness as needed. Nyquist--Poisson--Euler--Maclaurin (finite-order) yields non-asymptotic error ledger; under band-limited and Nyquist conditions, aliasing error is zero \cite{higgins1985five}.
+
+\subsection{Master Scale and Scattering}
+
+Define \textbf{master-scale phase}
+$$
+\varphi_{\text{m}}(E):=\tfrac{1}{2}\arg\det S(E)=-\pi\,\xi(E).
+$$
+Under standard regularity (relative trace-class perturbation, existence of scattering matrix), almost everywhere on absolutely continuous spectrum
+$$
+\frac{\varphi'_{\text{m}}(E)}{\pi}=\rho_{\text{rel}}(E)=\frac{1}{2\pi}\mathrm{tr}\,\mathsf{Q}(E),
+$$
+where $\det S=e^{-2\pi i\xi}$, $\rho_{\text{rel}}=-\xi'$, $\mathsf{Q}=-i\,S^\dagger \tfrac{dS}{dE}$ \cite{pushnitski2010representation}.
+
+\subsection{de Branges Anchor}
+
+Let $\varphi_{\text{dB}}(x):=-\arg E(x)$. Then
+$$
+\frac{K(x,x)}{|E(x)|^2}=\frac{\varphi'_{\text{dB}}(x)}{\pi}.
+$$
+\textbf{Bridge condition:} If and only if $E$ is generated by canonical system corresponding to $(H,H_0)$ and aligned with scattering data, $\varphi_{\text{dB}}(x)=\varphi_{\text{m}}(x)$ holds almost everywhere; in general case, this only provides \textbf{function-theoretic calibration scale} for ``phase--density,'' not unconditionally identical to $\rho_{\text{rel}}$ \cite{debranges1968hilbert}.
+
+\section{Wave Function: Compatible SBU Superposition in EBOC Static Blocks}
+
+\begin{definition}[SBU, Decoherence Functional, and Compatible Partition]
+\label{def:sbu}
+Let $\mathfrak{B}$ be family of history classes in static blocks; interference/decoherence functional $D:\mathfrak{B}\times\mathfrak{B}\to\mathbb{C}$ given. If there exists subfamily $\mathcal{C}\subset\mathfrak{B}$ such that for any $B\neq B'\in\mathcal{C}$, $D(B,B')=0$, then $\mathcal{C}$ is called compatible (decoherent) partition. Wave function $\psi:\mathfrak{B}\to\mathbb{C}$ on compatible partition satisfies $\sum_{B\in\mathcal{C}}|\psi(B)|^2=1$, defining probability $\mathbb{P}(B)=D(B,B)=|\psi(B)|^2$ $(B\in\mathcal{C})$.
+\end{definition}
+
+\begin{proposition}[Decoherence Induction]
+\label{prop:decoherence}
+If interference functional for selected history classes is diagonal, then $\mathbb{P}$ coincides with Born probability.
+\end{proposition}
+
+\begin{proof}[Proof Sketch]
+Coherence terms vanish, reducing to orthogonal decomposition; see Section \ref{sec:born} for Born--I-projection equivalence.
+\end{proof}
+
+\section{Collapse: Anchor Switching and $\pi$-Semantics}
+
+\begin{definition}[Instrument and Classicalization]
+\label{def:instrument}
+Heisenberg classicalization of instrument $\{\mathcal{I}_\Delta\}_{\Delta\in\mathcal{B}(\mathcal{X})}$ and POVM $E(\cdot)$ is
+$$
+\pi^\ast(f)=\int_{\mathcal{X}} f(x)\,E(dx),
+$$
+reducing to $\pi^\ast(f)=\sum_x f(x)E_x$ in discrete case. Choosing record algebra basis is ``anchoring''; anchor switching corresponds to basis change $\mathcal{O}\to\mathcal{O}'$.
+\end{definition}
+
+\begin{theorem}[Lüders/Instrument Update]
+\label{thm:luders}
+When outcome algebra and measurement PVM are co-diagonal and \textbf{$\mathrm{tr}(\rho P_x)>0$}, selective conditional state update is
+$$
+\rho\mapsto\rho_x=\frac{P_x\rho P_x}{\mathrm{tr}(\rho P_x)}.
+$$
+\textbf{If $\mathrm{tr}(\rho P_x)=0$, conditional state for this outcome is undefined.} General POVM can be extended to PVM via Naimark extension, then recovered to Schrödinger picture via Stinespring/Kraus \cite{busch2009luders}.
+\end{theorem}
+
+\begin{proof}[Proof Sketch]
+Naimark gives $E_x=V^\ast P_x V$; Stinespring gives $\Phi(A)=V^\ast\pi(A)V$. Selective update realized by conditioning and contraction $V$; projection case recovers Lüders form.
+\end{proof}
+
+\section{Entanglement: Information Correlation and No-Signaling in Causal Networks}
+
+\begin{definition}[Conditional Mutual Information and Quantum Markov]
+\label{def:cmi}
+Conditional mutual information $I(A:C|B)=S(AB)+S(BC)-S(ABC)-S(B)\ge 0$. Equality if and only if state is short quantum Markov chain (recovery map exists making $A\leftrightarrow C|B$ independent) \cite{lieb1973proof}.
+\end{definition}
+
+\begin{proposition}[Operator Condition for No-Signaling]
+\label{prop:nosignal}
+If regional algebras commute at spacelike separation and local operations are CPTP (CP and trace-preserving), then no superluminal signals exist; in AQFT can be characterized by CP local operations and ``funnel property'' \cite{buchholz2017local}.
+\end{proposition}
+
+\begin{remark}
+Above connection between information theory and algebraic causality provides criterion for ``entanglement propagation constraint,'' compatible with ``record algebra anchoring.''
+\end{remark}
+
+\section{Continuous Measurement and Quantum Trajectories}
+
+\begin{theorem}[Belavkin Filtering]
+\label{thm:belavkin}
+Under QND and Markov approximation, recorded history yields quantum stochastic differential equation for posterior state; discrete weak measurement limit and trajectory averaging recover Lindblad master equation \cite{belavkin1992quantum}.
+\end{theorem}
+
+\begin{proof}[Proof Sketch]
+Use quantum stochastic calculus to establish filtering equation for observation process; counting-type and diffusion-type equations are mutual limits; see original work for details \cite{belavkin2005notes}.
+\end{proof}
+
+\section{Unified Measurement Variational Principle (I-Projection)}
+
+\begin{theorem}[Relative Entropy Minimization and Lüders/I-Projection Consistency Conditions]
+\label{thm:iprojection}
+(a) \textbf{Selective update:} Given projection measurement $\{P_x\}$ with outcome $x$, \textbf{if $\mathrm{tr}(\rho P_x)>0$}, unique solution minimizing $D(\rho'\Vert\rho)$ under constraints $\rho'\ge0$, $\mathrm{tr}\rho'=1$, $\mathrm{supp}(\rho')\subseteq\mathrm{ran}(P_x)$ is
+$$
+\rho'_x=\frac{P_x\rho P_x}{\mathrm{tr}(\rho P_x)}\quad\text{(Lüders conditional state)}.
+$$
+\textbf{If $\mathrm{tr}(\rho P_x)=0$, constraint set is empty, conditional state undefined.}
+
+(b) \textbf{Non-selective update:} Let prior be \textbf{faithful state} $\rho\succ0$; if $\rho$ not full-rank, \textbf{restrict throughout to} $\mathrm{supp}(\rho)$ and replace with restricted $\log\rho$. If $[\rho,P_x]=0$ and adopting alignment constraints $\mathrm{tr}(\rho'P_x)=\mathrm{tr}(\rho P_x)$ (for all $x$), then I-projection solution is $\rho'=\sum_x P_x\rho P_x$; in general non-commutative case only obtain
+$$
+\rho' \propto \exp\!\Bigl(\log\rho-\sum_x\lambda_x P_x\Bigr)\quad\text{(on }\mathrm{supp}(\rho)\text{)},
+$$
+typically not identical to Lüders \cite{csiszar2004information}.
+\end{theorem}
+
+\begin{proof}
+(a) Direct from constraints and strict convexity; (b) from Lagrangian duality and commutativity condition.
+\end{proof}
+
+\begin{corollary}[Born = I-Projection Limit]
+\label{cor:born-limit}
+For projection measurement, when window/noise scale $\tau\downarrow 0$ (hard limit), softmax weights converge to one-hot kernel limit, yielding $p_x=\mathrm{tr}(\rho P_x)$, i.e., Born rule.
+\end{corollary}
+
+\section{Windowed Readout and Three-Part Error Decomposition}
+\label{sec:windowed}
+
+\begin{definition}[Windowed Readout and Toeplitz/Berezin Compression]
+\label{def:windowed}
+Let window operator $W_R=\int w_R(E)\,dE_H$; then Toeplitz/Berezin compression and kernel smoothing induce readout $\langle K_{w,h}\rangle=\int_{\mathbb{R}} w_R(E)\,(h\star\rho_\star)(E)\,dE$. Berezin transform characterizes symbol-to-operator mapping and its compactness/trace-class property.
+\end{definition}
+
+\begin{remark}[Compactness Constraint]
+Fix window operator as
+$$
+W_R:=P_R\Bigl(\int_{\mathbb{R}} w_R(E)\,dE_H\Bigr)P_R,
+$$
+where $P_R$ is finite-rank (or Hilbert--Schmidt) localization projection (Toeplitz/Berezin compression). Thus $W_R$ self-adjoint and compact, with discrete spectrum; Ky Fan extremal characterization of \S\ref{sec:pointer} applies \cite{axler2015berezin}.
+\end{remark}
+
+\begin{theorem}[Nyquist--Poisson--Euler--Maclaurin Non-Asymptotic Error]
+\label{thm:npe}
+For equispaced sampling--finite-sum approximation of $F(E)=w_R(E)\,(h\star\rho_\star)(E)$, have
+$\mathcal{E}_R=\mathcal{E}_{\text{alias}}+\mathcal{E}_{\text{EM}}+\mathcal{E}_{\text{tail}}$; if $F$ band-limited and sampling rate satisfies Nyquist, then $\mathcal{E}_{\text{alias}}=0$; finite-order Euler--Maclaurin gives explicit remainder upper bound \cite{higgins1985five}.
+\end{theorem}
+
+\begin{proof}[Proof Sketch]
+Poisson summation converts sampling error to frequency-domain sidelobes; band-limited and Nyquist kill aliasing; EM bounded remainder given by periodization of Bernoulli polynomials and bounded integrability of $f^{(p)}$ \cite{borwein2013aliasing}.
+\end{proof}
+
+\section{Phase--Density--Group Delay ``Trinity'' and Windowed BK Identity}
+
+\begin{theorem}[Birman--Kreĭn and Wigner--Smith]
+\label{thm:bk-ws}
+Let $(H,H_0)$ be relative trace-class perturbation with scattering matrix $S(E)$ and spectral shift function $\xi(E)$. Then $\det S(E)=e^{-2\pi i\,\xi(E)}$, $\rho_{\text{rel}}(E)=-\xi'(E)$, $\mathsf{Q}(E)=-i\,S^\dagger(E)\frac{dS}{dE}(E)$, and
+$$
+\mathrm{tr}\,\mathsf{Q}(E)=-2\pi\,\xi'(E),\qquad
+\frac{\varphi_{\text{m}}'(E)}{\pi}=\rho_{\text{rel}}(E)=\frac{1}{2\pi}\mathrm{tr}\,\mathsf{Q}(E)
+$$
+holds almost everywhere \cite{pushnitski2010representation}.
+\end{theorem}
+
+\begin{proof}[Proof Outline]
+From Lifshits--Kreĭn trace formula and BK identity obtain $\xi'$ as spectral difference density; Wigner--Smith definition gives
+$$
+\partial_E\arg\det S=\frac{1}{i}\partial_E\log\det S=\frac{1}{i}\mathrm{tr}\,S^\dagger S'=\mathrm{tr}\,\mathsf{Q},
+$$
+combining yields master identity. For non-unitary extensions see recent literature (complex dissipative case), but this framework takes unitary branch under cosmic closure/unitarity assumption \cite{peller2016lifshits}.
+\end{proof}
+
+\begin{theorem}[Windowed BK Identity]
+\label{thm:windowed-bk}
+Let $f=h\star w_R \in C_0^\infty$. Then
+$\mathrm{Tr}\,f(H)-\mathrm{Tr}\,f(H_0)=\int_{\mathbb{R}} f'(E)\,\xi(E)\,dE$
+and
+$-\frac{1}{2\pi i}\int_{\mathbb{R}} f'(E)\,\log\det S(E)\,dE=\int_{\mathbb{R}} f'(E)\,\xi(E)\,dE$,
+thus windowed ``spectrum--scattering--phase'' integral-level bridge holds.
+\end{theorem}
+
+\begin{proof}[Proof Sketch]
+Via Helffer--Sjöstrand formula and applicability of Kreĭn trace formula for operator Lipschitz class functions \cite{helffer1989equation}.
+\end{proof}
+
+\section{Born Rule Completion: I-Projection and Orthogonal Limit}
+\label{sec:born}
+
+\begin{theorem}[Born = I-Projection Iff]
+\label{thm:born-iprojection}
+Under projection measurement, probability vector $p$ generated by unique I-projection solution on linear alignment constraints equals Born probability if and only if Lagrange multipliers of dual problem satisfy spectral diagonal condition (i.e., pointer basis co-diagonal). In this case Lüders update and I-projection coincide \cite{shore1980axiomatic}.
+\end{theorem}
+
+\begin{proof}[Proof Sketch]
+Under diagonalization, exponential family degenerates to weighting on spectral measure; in limit $\tau\downarrow 0$, softmax converges to projection selection, completing consistency with Lüders.
+\end{proof}
+
+\section{Pointer Basis Selection: Spectral Variational Characterization}
+\label{sec:pointer}
+
+\begin{theorem}[Ky Fan Spectral Extremal Characterization of Pointer Basis]
+\label{thm:kyfan}
+Let window operator $W_R$ be self-adjoint compact operator, $P_V$ orthogonal projection onto any $k$-dimensional subspace $V$. Then
+$$
+\min_{\dim V=k}\mathrm{Tr}(P_V W_R)=\sum_{j=1}^k \lambda_j^{\uparrow}(W_R),
+$$
+minimum achieved by smallest $k$ eigenprojections of $W_R$. Thus ``pointer basis'' can be characterized as eigenbasis minimizing $\mathrm{Tr}(P_V W_R)$; this formulation equivalent to Ky Fan minimum sum principle \cite{fan1951maximum}.
+\end{theorem}
+
+\begin{proof}[Proof Sketch]
+Direct from Ky Fan minimum sum principle; minimum achieved by smallest eigenprojections.
+\end{proof}
+
+\appendix
+
+\section{de Branges Kernel Diagonal and Phase Density}
+
+de Branges structure function $E=A-iB$ (Hermite--Biehler class) with phase $\varphi_{\text{dB}}(x)=-\arg E(x)$.
+
+\begin{remark}[Notation Supplement]
+Let $E^\sharp(z):=\overline{E(\overline{z})}$ (de Branges adjoint entire function).
+\end{remark}
+
+Kernel formula written as
+$$
+K(z,w)=\frac{E(z)\overline{E(w)}-E^\sharp(z)\,\overline{E^\sharp(w)}}{2\pi i\,(z-\overline{w})},
+$$
+diagonalizing on real axis as
+$$
+K(x,x)=\frac{\varphi'_{\text{dB}}(x)}{\pi}|E(x)|^2.
+$$
+This is function-theoretic anchor point for ``phase density scale'' \cite{debranges1968hilbert}.
+
+\section{Kreĭn--Friedel--Lloyd Bridge and Time Delay}
+
+Friedel formula gives relative DOS
+$$
+\rho_{\text{rel}}(E)=\frac{1}{\pi}\partial_E\varphi_{\text{m}}(E),
+$$
+consistent with BK identity; where $M:=\dim S(E)$ is number of open channels, $\mathrm{tr}$ denotes trace over channel space. Wigner--Smith gives
+$$
+\tau_W(E)=\frac{1}{M}\mathrm{tr}\,\mathsf{Q}(E)=-\frac{i}{M}\partial_E\log\det S(E).
+$$
+Thus ``phase derivative--relative DOS--group delay'' triple unification \cite{friedel1952distribution}.
+
+\section{Nyquist--Poisson--EM Error Closure Details}
+
+Poisson summation expresses sampling error as sum of high-frequency image differences; band-limited and Nyquist condition annihilate aliasing terms. Finite-order Euler--Maclaurin uses periodized Bernoulli functions to give remainder integral expression and upper bound estimate; for analytic/band-limited $F$ can give explicit non-asymptotic upper bound, closing windowed ledger \cite{higgins1985five}.
+
+\section{Conclusion}
+
+(i) With instruments/POVMs--I-projection--Lüders/Belavkin as core, can close ``measurement--update--record'' categorically; (ii) with $\boxed{\varphi'_{\text{m}}/\pi=\rho_{\text{rel}}=(2\pi)^{-1}\mathrm{tr}\,\mathsf{Q}}$ as master scale, and with de Branges kernel diagonal and BK/Helffer--Sjöstrand as anchors, realize testable unification of ``windowed--spectral--scattering''; (iii) Nyquist--Poisson--EM finite-order discipline ensures non-asymptotic error closure; (iv) conditional mutual information and quantum Markov property provide causal constraints on entanglement propagation and no-signaling. These four points unify EBOC static block SBU superposition, anchor-switching $\pi$-semantic collapse, and causal network entanglement within the same measurement theory framework.
+
+\section*{Acknowledgments}
+
+All results cited rely on standard theorems in quantum measurement theory, spectral theory, and information theory. References provided for verifiability.
+
+\bibliographystyle{plain}
+\begin{thebibliography}{99}
+
+\bibitem{davies1970operational}
+E. B. Davies and J. T. Lewis.
+\newblock An operational approach to quantum probability.
+\newblock {\em Communications in Mathematical Physics}, 17(3):239--260, 1970.
+
+\bibitem{stinespring1955positive}
+W. F. Stinespring.
+\newblock Positive functions on C*-algebras.
+\newblock {\em Proceedings of the American Mathematical Society}, 6(2):211--216, 1955.
+
+\bibitem{naimark1943spectral}
+M. A. Naimark.
+\newblock On a representation of additive operator set functions.
+\newblock {\em Comptes Rendus de l'Académie des Sciences de l'URSS}, 41(9):359--361, 1943.
+
+\bibitem{kraus1983states}
+K. Kraus.
+\newblock {\em States, Effects, and Operations: Fundamental Notions of Quantum Theory}.
+\newblock Springer, 1983.
+
+\bibitem{busch2009luders}
+P. Busch.
+\newblock Lüders rule.
+\newblock In D. Greenberger, K. Hentschel, and F. Weinert, editors, {\em Compendium of Quantum Physics}, pages 356--358. Springer, 2009.
+
+\bibitem{belavkin1992quantum}
+V. P. Belavkin.
+\newblock Quantum continual measurements and a posteriori collapse on CCR.
+\newblock {\em Communications in Mathematical Physics}, 146(3):611--635, 1992.
+
+\bibitem{belavkin2005notes}
+V. P. Belavkin.
+\newblock Quantum stochastic calculus and quantum nonlinear filtering.
+\newblock {\em Journal of Multivariate Analysis}, 42(2):171--201, 1992.
+
+\bibitem{lieb1973proof}
+E. H. Lieb and M. B. Ruskai.
+\newblock Proof of the strong subadditivity of quantum-mechanical entropy.
+\newblock {\em Journal of Mathematical Physics}, 14(12):1938--1941, 1973.
+
+\bibitem{hayden2004structure}
+P. Hayden, R. Jozsa, D. Petz, and A. Winter.
+\newblock Structure of states which satisfy strong subadditivity of quantum entropy with equality.
+\newblock {\em Communications in Mathematical Physics}, 246(2):359--374, 2004.
+
+\bibitem{buchholz2017local}
+D. Buchholz and C. Solveen.
+\newblock Local operations and completely positive maps in algebraic quantum field theory.
+\newblock arXiv:1704.01229, 2017.
+
+\bibitem{pushnitski2010representation}
+A. Pushnitski.
+\newblock Representation for the spectral shift function for perturbations of fixed sign.
+\newblock {\em St. Petersburg Mathematical Journal}, 9(6):1181--1194, 1998.
+
+\bibitem{debranges1968hilbert}
+L. de Branges.
+\newblock {\em Hilbert Spaces of Entire Functions}.
+\newblock Prentice-Hall, 1968.
+
+\bibitem{csiszar2004information}
+I. Csiszár and F. Matúš.
+\newblock Information projections revisited.
+\newblock {\em IEEE Transactions on Information Theory}, 49(6):1474--1490, 2003.
+
+\bibitem{higgins1985five}
+J. R. Higgins.
+\newblock Five short stories about the cardinal series.
+\newblock {\em Bulletin of the American Mathematical Society}, 12(1):45--89, 1985.
+
+\bibitem{axler2015berezin}
+S. Axler and D. Zheng.
+\newblock The Berezin transform on the Toeplitz algebra.
+\newblock {\em Studia Mathematica}, 127(2):113--136, 1998.
+
+\bibitem{borwein2013aliasing}
+D. Borwein, J. M. Borwein, I. E. Leonard, and L. Jörgenson.
+\newblock Aliasing error for sampling series derivatives.
+\newblock {\em Rendiconti del Circolo Matematico di Palermo}, 52(2):345--360, 2003.
+
+\bibitem{peller2016lifshits}
+V. V. Peller.
+\newblock The Lifshits--Kreĭn trace formula and operator Lipschitz functions.
+\newblock {\em Proceedings of the American Mathematical Society}, 144(12):5207--5215, 2016.
+
+\bibitem{helffer1989equation}
+B. Helffer and J. Sjöstrand.
+\newblock Equation de Schrödinger avec champ magnétique et équation de Harper.
+\newblock In {\em Schrödinger Operators}, pages 118--197. Springer, 1989.
+
+\bibitem{shore1980axiomatic}
+J. E. Shore and R. W. Johnson.
+\newblock Axiomatic derivation of the principle of maximum entropy and the principle of minimum cross-entropy.
+\newblock {\em IEEE Transactions on Information Theory}, 26(1):26--37, 1980.
+
+\bibitem{fan1951maximum}
+K. Fan.
+\newblock Maximum properties and inequalities for the eigenvalues of completely continuous operators.
+\newblock {\em Proceedings of the National Academy of Sciences}, 37(11):760--766, 1951.
+
+\bibitem{friedel1952distribution}
+J. Friedel.
+\newblock The distribution of electrons round impurities in monovalent metals.
+\newblock {\em The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science}, 43(337):153--189, 1952.
+
+\bibitem{birman1962theory}
+M. Sh. Birman and M. G. Kreĭn.
+\newblock On the theory of wave operators and scattering operators.
+\newblock {\em Doklady Akademii Nauk SSSR}, 144:475--478, 1962.
+
+\bibitem{martin2016wigner}
+P. A. Martin.
+\newblock Wigner time delay and related concepts: Application to transport in coherent conductors.
+\newblock arXiv:1507.00075, 2016.
+
+\end{thebibliography}
+
+\end{document}
+

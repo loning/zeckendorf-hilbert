@@ -1,0 +1,310 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Title information
+\title{WSIG--EBOC--RCA Unified Theory:\\
+Geometric Reformulation of the Speed of Light Constant via ``Window--Group Delay Ratio Invariant'' as Master Scale}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today\\
+\small Version: 1.4}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Within the unified framework of Windowed Scattering and Information Geometry (WSIG), Eternal Block Observer-Computing (EBOC), and Reversible Cellular Automata (RCA), we define the \textbf{window--group delay ratio} for any observational triple $(\mathcal H,w,S)$ as
+$$
+\chi(\mathcal H,w,S):=\frac{\Delta[w]}{\langle\tau_g\rangle_w},
+$$
+where $\Delta[w]$ is the effective span of window $w$, and $\langle\tau_g\rangle_w$ is the window-weighted average of Wigner--Smith group delay. \textbf{Under Assumption A (§1)}, we prove that $\chi$ is an \textbf{invariant} under all \textbf{reversible observational transformations} (information-preserving coordinate/scale rescaling, unitary prefiltering, frame/sampling rearrangement, and reversible lattice updates), with the common value denoted $c$. In the spacetime geometric interpretation, taking $\Delta[w]$ as effective spatial length and $\langle\tau_g\rangle_w$ as time delay, $c$ is equivalent to the \textbf{maximal slope of the reachable signal cone}, isomorphic to the speed of light constant. This construction is anchored in the following established chain identities and criteria: unification of \textbf{phase derivative--spectral shift density--group delay} (a.e. on absolutely continuous spectrum), Birman--Kreĭn identity and trace characterization of Wigner--Smith matrix $\mathsf Q=-i\,\hbar\,S^\dagger \partial_E S$; \textbf{NPE non-asymptotic error theory} for windowed readouts; Wexler--Raz conditions, Landau density threshold, and Balian--Low obstruction for Gabor/non-stationary Gabor frames; and ``read-commit'' consistency of I-projection and Ky--Fan minimization. At singularities/thresholds, zero-pole structure is controlled by de Branges--Kreĭn and Rouché-type stability criteria, ensuring verifiable stability of $\chi$. We further prove that the ``front slope'' refinement limit $c_{\rm RCA}$ of RCA is consistent with the continuous scattering side constant $c$, and provide reproducible experimental protocols for multi-window--multi-channel configurations (including sampling rate, window order, and confidence interval construction).
+\end{abstract}
+
+\noindent\textbf{Keywords:} Wigner-Smith group delay; Birman-Kreĭn spectral shift; de Branges-Kreĭn canonical systems; Windowed trace; NPE error decomposition; Frame/sampling density; Information geometry; Reversible cellular automata
+
+\noindent\textbf{MSC 2020:} 81U05; 47A40; 94A12; 42C15; 37B15
+
+\tableofcontents
+
+\section{Notation, Conventions, and Axioms}
+
+\subsection{Basic Notation and Known Chain}
+
+Energy variable $E\in\mathbb R$. Scattering matrix $S(E)\in U(N)$ (a.e. differentiable). Wigner--Smith delay matrix
+
+$$
+\mathsf Q(E):=-i\,\hbar\,S(E)^\dagger\,\frac{dS}{dE}(E).
+$$
+
+At almost every Lebesgue point of the absolutely continuous spectrum,
+
+$$
+\frac{1}{2\pi\hbar}\operatorname{tr}\mathsf Q(E)\ =\ \rho_{\rm rel}(E)\ =\ \frac{1}{\pi}\,\varphi'(E)\ =\ -\,\xi'(E)\quad\text{(a.e.)},
+$$
+
+where $\xi$ is the spectral shift function (derivative form of Birman--Kreĭn $\det S(E)=\exp(-2\pi i\,\xi(E))$), $\rho_{\rm rel}$ is the relative state density, $\varphi(E):=\tfrac12\operatorname{Arg}\det S(E)$. See Wigner--Smith matrix formalism, BK identity and modern formulations.
+
+\textbf{Windowed readouts and error theory} employ Nyquist--Poisson--Euler--Maclaurin (NPE) three-term decomposition: discretization aliasing (Poisson), endpoint Bernoulli layer (finite-order Euler--Maclaurin), and out-of-window tail term (bounded by decay/bandlimiting). Related formulas and unified error bounds appear in DLMF (Poisson and EM) and unified error estimation literature.
+
+\subsection{Observational Triple and Reversible Observational Transformation Group}
+
+\textbf{Observational triple} $(\mathcal H,w,S)$: $\mathcal H$ is the carrier, $w$ is an even window (strictly bandlimited Paley--Wiener or exponentially decaying) allowing scaling $w_R(x)=w(x/R)$, $S(E)$ is the (multi-channel) scattering matrix. \textbf{Reversible observational transformation group} $\mathcal G$ is generated by the following information-preserving operations:
+
+\begin{enumerate}
+\item Coordinate diffeomorphisms and scale/rate rescaling;
+\item Unitary prefiltering on bandlimited subspaces (functional calculus);
+\item Frame/sampling rearrangement (tight/Parseval frames and dual windows, Wexler--Raz conditions);
+\item Reversible local updates on discrete lattice (RCA), whose frequency side is bridged to continuous windows/frames by non-stationary Gabor frameworks.
+\end{enumerate}
+
+\subsection{Effective Span of Window and Group Delay Average}
+
+\textbf{Effective span} $\Delta[w]$: Take a radius/quadratic form covariant with experimental geometry (such as time radius $\Delta_t$, spatial radius $\Delta_x$), required to be homogeneous under scaling/translation/unitary prefiltering.
+
+\textbf{Group delay average}
+
+$$
+\boxed{\ \langle\tau_g\rangle_w\ :=\ \frac{\displaystyle\int \Big(\tfrac{1}{2\pi}\operatorname{tr}\mathsf Q(E)\Big)\,K_w(E)\,dE}{\displaystyle\int K_w(E)\,dE}\ =\ \hbar\,\frac{\displaystyle\int \rho_{\rm rel}(E)\,K_w(E)\,dE}{\displaystyle\int K_w(E)\,dE}\ }.
+$$
+
+where $K_w$ is the energy kernel induced by the window; by a.e. equivalence in the above equation, one can also replace the integrand with $\rho_{\rm rel}(E)$, $\varphi'(E)/\pi$, or $-\xi'(E)$.
+
+\section{Main Definition and Invariance Theorem}
+
+\begin{definition}[Window--Group Delay Ratio and Master Scale]
+\label{def:chi}
+$$
+\boxed{\ \chi(\mathcal H,w,S):=\frac{\Delta[w]}{\langle\tau_g\rangle_w}\ }.
+$$
+If for all $T\in\mathcal G$ and admissible window families $w$, we have $\chi(\mathcal H,w,S)=\chi\big(T(\mathcal H,w,S)\big)=:c$, then $c$ is called the \textbf{window--group delay ratio invariant} (master scale).
+\end{definition}
+
+\begin{proposition}[$\mathcal G$-Invariance of $\chi$ Under Assumption A]
+\label{prop:invariance}
+\textbf{Assumption A (Covariance and Measurability):} The following conditions are satisfied:
+
+\begin{enumerate}
+\item[(i)] Under unit/coordinate scaling and energy reparametrization (without Lorentz boost), $\Delta[w]$ and $\langle\tau_g\rangle_w$ covary with the same dimension order; for Lorentz transformations, see the cone boundary upper bound formulation in §3;
+
+\item[(ii)] Unitary prefiltering on bandlimited even subspaces preserves window support and energy;
+
+\item[(iii)] Frame/sampling rearrangement after Parseval normalization does not change dimensions and readouts;
+
+\item[(iv)] RCA refinement limit and non-stationary Gabor frameworks ensure that the discrete front slope is consistent with the continuous side readout.
+\end{enumerate}
+
+\textbf{Conclusion:} Under Assumption A, $\chi$ is invariant under $\mathcal G$.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+(i) \textbf{Unit/coordinate covariance (non-boost):} Under unit scaling and energy reparametrization, $\Delta[w]$ and $\langle\tau_g\rangle_w$ transform with the same order, so the ratio is invariant; Lorentz covariance does not rely on term-by-term homogeneity but is obtained through the maximal slope $c:=\sup_w \Delta[w]/\langle\tau_g\rangle_w$ defined in §3;
+
+(ii) \textbf{Prefilter/functional calculus:} Unitary prefiltering on bandlimited even subspaces does not change the support and energy of $\widehat w$; windowed trace readout convolved with $\operatorname{tr}\mathsf Q$ under NPE discipline only produces unified error orders (Bernoulli layer and tail term), not affecting the limit ratio;
+
+(iii) \textbf{Frame/sampling rearrangement:} Wexler--Raz conditions and frame operator characterization ensure that windowed readouts are invariant after Parseval constant normalization, and the metric of $\Delta[w]$ is preserved under isometry group, hence $\chi$ is invariant;
+
+(iv) \textbf{RCA reversible update:} Under refinement limit, non-stationary Gabor diagonalization and Walnut/Calderón sum ensure that the energy--time scale of discrete front slope aligns with continuous $\langle\tau_g\rangle_w$, with limit ratio consistent with $c$.
+\end{proof}
+
+\section{Phase--Density--Delay Chain and Windowed Readout}
+
+\subsection{Phase Derivative = Spectral Shift Density = Group Delay (WS--BK Chain)}
+
+From the determinant phase of $S$ and the Wigner--Smith matrix definition,
+
+$$
+\boxed{\ \frac{1}{2\pi\hbar}\operatorname{tr}\mathsf Q(E)\ =\ \rho_{\rm rel}(E)\ =\ \frac{1}{\pi}\,\varphi'(E)\ =\ -\,\xi'(E)\quad\text{(a.e.)}\ }.
+$$
+
+The first equality uses $S^{-1}=S^\dagger$ and $\partial_E\log\det S=\operatorname{tr}(S^{-1}\partial_E S)$; the BK formula gives $\det S=\exp(-2\pi i\xi)$ (adopting BK sign convention; if using $\det S=\exp(+2\pi i\xi)$, the right-hand side sign changes to positive). The Friedel--Kreĭn relation and Wigner--Smith unify the scales of phase derivative, spectral density, and time delay.
+
+\subsection{Windowed Trace and NPE Three-Term Error Decomposition}
+
+The total error in discrete implementation decomposes as
+
+$$
+\text{error}=\underbrace{\text{alias}}_{\text{Poisson}}\ +\ \underbrace{\text{Bernoulli layer}}_{\text{finite-order EM}}\ +\ \underbrace{\text{tail}}_{\text{out-of-window truncation}},
+$$
+
+Strict bandlimiting and Nyquist step size can make $\text{alias}=0$; the Bernoulli layer is determined by endpoint derivatives and can be closed at finite order; the tail term gives an integrable upper bound from window decay. This discipline supports reproducible readouts of $\langle\tau_g\rangle_w$ and non-asymptotic stable estimation of $\chi$.
+
+\section{Geometric Realization of Speed of Light: $c$ as Maximal Slope}
+
+In the spacetime geometric interpretation, taking $\Delta[w]$ as effective spatial length and $\langle\tau_g\rangle_w$ as time delay, $\chi=\Delta[w]/\langle\tau_g\rangle_w$ has velocity dimension. Under this paper's reversible observational transformations $\mathcal G$ (unit/coordinate rescaling, unitary prefiltering, frame/sampling rearrangement, RCA refinement), $\chi$ is invariant. In the special relativistic case, define
+
+$$
+c:=\sup_{w}\frac{\Delta[w]}{\langle\tau_g\rangle_w},
+$$
+
+interpreting it as the \textbf{maximal slope of the reachable signal cone}; this upper bound is a Lorentz invariant, hence isomorphic to the speed of light constant. This statement relies on the scale unification and multi-channel trace formulation in §2. For non-unitary/open systems, one can introduce complex time delay and replace with generalized scales such as $\partial_E \Im\log\det S$; in this case, the strict equality $\tfrac{1}{2\pi\hbar}\operatorname{tr}\mathsf Q=\rho_{\rm rel}$ \textbf{no longer} holds (this equality only holds when $S$ is unitary).
+
+\section{Discrete--Continuous Bridging and RCA Front Slope}
+
+Diagonalizing the block system with non-stationary Weyl--Heisenberg (Gabor) frameworks, using Walnut-type representation and ``painless'' construction to control energy conservation and stability; under tight/dual and frame bound clamping, refining the grid yields
+
+$$
+\lim_{\text{refinement}}\ \frac{\Delta_{\rm lattice}}{\tau_{\rm steps}}=c_{\rm RCA}=c.
+$$
+
+Non-stationary Gabor and ``painless'' expansion provide explicit construction and stability radius, achieving quantitative consistency between discrete and continuous.
+
+\section{Error Theory and Optimal Window/Kernel Design}
+
+Formulate window/kernel design as a convex variational problem on bandlimited even subspaces: for fixed $(\Delta,M,T)$ (span, EM order, total sampling duration), minimize the variance of $\langle\tau_g\rangle_w$ estimation subject to NPE error upper bound constraints. In strongly convex cases, the solution is unique; in weakly sparse cases, Γ-limit convergence is obtained via Bregman--KL regularization. The Pareto frontier for multi-windows can be given by generalized biorthogonal $(GG^\dagger)$ reconstruction, with robust redundancy achieved under Parseval frameworks. The Nyquist rate is determined by the ``sum width'' of the sampled integrand; when strictly bandlimited, $\text{alias}=0$.
+
+\section{Threshold/Resonance/Singularity Stability and Trace--Weyl Type Laws}
+
+Under de Branges--Kreĭn canonical systems, control zero-pole distribution via spectral function and Hermite--Biehler structure; Rouché-type radius ensures windowing and finite-order exchange do not introduce new singularities and pole orders do not increase. Trace and multiplicative formulas of time--frequency localization (Toeplitz/Anti-Wick) operators provide Weyl-type weak limits where ``symbol integral = trace'', thus giving stable readouts of $\langle\tau_g\rangle_w$.
+
+\section{Sampling Density Threshold and Balian--Low Obstruction}
+
+With phase density induced by $\varphi'(E)$ as scale, Landau-type necessary density holds; sufficiency also follows under one-component/doubling-phase conditions. Single window + rectangular lattice at critical density is subject to Balian--Low restriction; experimental realization requires multi-window/non-uniform or supercritical density strategies.
+
+\section{EBOC Semantics: Read-Commit Consistency\\
+(Born = I-Projection; Pointer Basis = Spectral Minimum)}
+
+In information geometry, I-projection (minimizing $D_{\mathrm{KL}}$) produces the most ``faithful'' update on a given constraint family; when constraints align with device dictionary (windows/frames), and temperature limit goes from soft to hard, an equivalent commitment mechanism to Born rule emerges. Statistical sensitivity is controlled by KL--Pinsker inequality, directly giving estimation bandwidth and confidence intervals. Pointer basis selection can be formulated as Ky--Fan partial sum minimization (minimizing sum of first $k$ eigenvalues/singular values), consistent with ``spectrally simplest'' stable readout.
+
+\section{Multi-Channel Unification and Sign Conventions}
+
+For $N$ channels, take scalar
+
+$$
+\rho_\Sigma(E):=\operatorname{tr}(\rho-\rho_0)(E)=\frac{1}{2\pi\hbar}\operatorname{tr}\mathsf Q(E).
+$$
+
+Under the sign convention $\det S(E)=\exp(-2\pi i\,\xi(E))$, we have $\rho_\Sigma(E)=-\,\xi'(E)$; if using $\det S(E)=\exp(+2\pi i\,\xi(E))$, the sign changes to positive, not affecting this paper's ratio structure.
+
+\section{Verifiable Statements and Reproducibility Protocol}
+
+\textbf{(A) Window independence (across window families):} Select two window families (bandlimited and exponential), several scales $R$; after unified NPE correction, $\Delta[w]/\langle\tau_g\rangle_w$ converges to the same $c$, outputting non-asymptotic confidence intervals (KL--Pinsker).
+
+\textbf{(B) Transformation covariance (across $\mathcal G$):} After coordinate rescaling, prefiltering, and frame/sampling rearrangement, repeat readouts; $\chi$ is invariant within error bands; also holds after taking trace over multiple channels.
+
+\textbf{(C) Discrete--continuous bridging:} The shortest update cone slope of RCA converges to $c$ with refinement and non-stationary frame diagonalization; numerical stability and tolerance budget are given under tight/dual and frame bound clamping.
+
+\textbf{(D) Statistical closure:} Commitment = I-projection; construct $\widehat c_i=\Delta[w^{(i)}]/\langle\tau_g\rangle_{w^{(i)}}$ and merge via KL--Pinsker, producing confidence bands and optimal multi-window Pareto selection.
+
+\section{Discussion and Boundaries}
+
+\begin{enumerate}
+\item \textbf{Units and dimensions:} If $\Delta[w]$ takes spatial scale and $\langle\tau_g\rangle_w$ takes time delay, then $\chi$ has velocity dimension; if both are in dimensionless logarithmic/Mellin scale formulation, translation to velocity upper bound requires geometric dictionary.
+
+\item \textbf{Non-unitary/open systems:} Can use complex time delay and generalized scales like $\partial_E \Im\log\det S$ as replacement; $\chi$ ratio structure can continue; but equality $\tfrac{1}{2\pi\hbar}\operatorname{tr}\mathsf Q=\rho_{\rm rel}$ \textbf{only holds for unitary scattering}, not strictly equivalent to $\rho_{\rm rel}$ in non-unitary cases.
+
+\item \textbf{Thresholds/resonances:} de Branges--Kreĭn and Rouché-type stability ensure windowing and finite-order exchange do not increase singularities; after removing finite neighborhoods, uniform limits and confidence intervals of $\chi$ can still be constructed.
+
+\item \textbf{Critical density obstruction:} Single window rectangular lattice at critical density is subject to Balian--Low restriction; recommend multi-window/non-uniform or supercritical density experimental schemes.
+\end{enumerate}
+
+\section{Conclusion}
+
+With the group invariance of the \textbf{window--group delay ratio} $\chi=\Delta/\langle\tau_g\rangle$ as core, we establish a reformulation of the ``speed of light constant'' as a \textbf{geometric invariant}. This master scale $c$ is consistent across quantum/classical, continuous/discrete, multi-channel/single-channel, and read-commit layers, guaranteed by NPE non-asymptotic error theory and frame/sampling discipline in finite-resource realistic readouts. The core scale chain $\displaystyle\frac{1}{2\pi\hbar}\operatorname{tr}\mathsf Q=\rho_{\rm rel}=\frac{1}{\pi}\,\varphi'(E)=-\,\xi'(E)$, together with BK, WS, Wexler--Raz, Landau, Balian--Low and other criteria, constitutes a verifiable, reproducible theory--experiment closed loop.
+
+\section*{Appendix A: Dimensions and Conventions}
+
+\begin{itemize}
+\item If $\Delta[w]$ takes spatial length and $\langle\tau_g\rangle_w$ takes time, then $\chi$ has velocity dimension; if in dimensionless logarithmic/Mellin scale formulation, translation via geometric dictionary is needed.
+\item This paper adopts $\mathsf Q=-i\hbar S^\dagger\partial_E S$; thus $\tfrac{1}{2\pi\hbar}\operatorname{tr}\mathsf Q=\rho_{\rm rel}=\varphi'/\pi=-\xi'$ (BK sign convention $\det S=\exp(-2\pi i\xi)$). If using $\det S=\exp(+2\pi i\xi)$, the $\xi'$ term on the right-hand side changes sign to positive, not affecting $\chi$ ratio structure and readout flow.
+\end{itemize}
+
+\section*{Appendix B: Minimal Reproducible Experimental Checklist}
+
+\begin{enumerate}
+\item Select two window families (bandlimited PW and exponential), each with 3--4 scales $R$;
+\item Select bandlimited front-end kernel $h$ (two sum widths), set Nyquist sampling step according to integrand bandwidth sum width;
+\item Apply finite-order EM correction with $M=2,3$, explicit upper bound on Bernoulli layer;
+\item Use Parseval-on-$\mathcal V$ multi-window scheme to reduce variance and implement $(GG^\dagger)$ reconstruction;
+\item Output $\widehat c_i=\Delta[w^{(i)}]/\langle\tau_g\rangle_{w^{(i)}}$ and weighted merged estimate $\widehat c$ (KL--Pinsker confidence band);
+\item After coordinate rescaling/prefiltering/frame rearrangement, retest to verify $\mathcal G$-invariance of $\widehat c$.
+\end{enumerate}
+
+\bibliographystyle{plain}
+\begin{thebibliography}{99}
+
+\bibitem{wigner}
+E. P. Wigner.
+\newblock Lower limit for the energy derivative of the scattering phase shift.
+\newblock {\em Physical Review}, 98(1):145--147, 1955.
+
+\bibitem{smith}
+F. T. Smith.
+\newblock Lifetime Matrix in Collision Theory.
+\newblock {\em Physical Review}, 118(1):349--356, 1960.
+
+\bibitem{birman_krein}
+M. Sh. Birman and M. G. Kreĭn.
+\newblock On the theory of wave operators and scattering operators.
+\newblock {\em Doklady Akademii Nauk SSSR}, 144:475--478, 1962.
+
+\bibitem{pushnitski}
+A. Pushnitski.
+\newblock An integer-valued version of the Birman--Kreĭn formula.
+\newblock {\em arXiv:1006.0639}, 2010.
+
+\bibitem{daubechies}
+I. Daubechies, A. Grossmann, and Y. Meyer.
+\newblock Painless nonorthogonal expansions.
+\newblock {\em Journal of Mathematical Physics}, 27(5):1271--1283, 1986.
+
+\bibitem{wexler_raz}
+D. Gabor.
+\newblock Theory of communication.
+\newblock {\em Journal of the Institution of Electrical Engineers}, 93(26):429--457, 1946.
+
+\bibitem{landau}
+H. J. Landau.
+\newblock Necessary density conditions for sampling and interpolation of certain entire functions.
+\newblock {\em Acta Mathematica}, 117:37--52, 1967.
+
+\bibitem{balian_low}
+C. Heil.
+\newblock Gabor Schauder bases and the Balian--Low theorem.
+\newblock In \textit{Approximation Theory IX}, pages 177--184, 1998.
+
+\bibitem{debranges}
+L. de Branges.
+\newblock Hilbert Spaces of Entire Functions.
+\newblock Prentice-Hall, 1968.
+
+\bibitem{csiszar}
+I. Csiszár.
+\newblock $I$-divergence geometry of probability distributions and minimization problems.
+\newblock {\em The Annals of Probability}, 3(1):146--158, 1975.
+
+\end{thebibliography}
+
+\end{document}
+

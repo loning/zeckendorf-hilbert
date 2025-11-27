@@ -1,0 +1,542 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{braket}
+\usepackage{graphicx}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Title information
+\title{Unified Time Scale and Time Geometry:\\
+Equivalence, Domains, and Solvable Models of Spectral--Scattering--Causal--Entropy}
+
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We propose and rigorously characterize a ``unified time scale'' framework, aligning phase gradient readings, relative state density, and trace of Wigner--Smith group delay within strict scattering theory domain, thus defining \textbf{time scale} as monotonic reparametrization of a class of spectral--scattering invariants. The identity
+
+$$
+\boxed{\ \frac{\varphi'(\omega)}{\pi}=\rho_{\mathrm{rel}}(\omega)=\frac{1}{2\pi}\operatorname{Tr}Q(\omega)\ },\qquad
+Q(\omega)=-\,i\,S(\omega)^\dagger\partial_\omega S(\omega),\quad \varphi=\tfrac{1}{2}\arg\det S
+$$
+
+holds within energy windows satisfying \textbf{elastic--unitary scattering} and Birman--Kreĭn assumptions; for \textbf{absorptive/non-unitary} and \textbf{long-range potential} cases, we propose verifiable generalizations: introducing \textbf{complex time delay}, \textbf{dwell time}, and \textbf{phase renormalization}, using Poisson--convolution to give existence and affine uniqueness of \textbf{windowed clocks}. Paper further constructs model-based proof of \textbf{eikonal phase derivative = geometric Shapiro delay} in general relativity end (Schwarzschild exterior scalar wave, high-frequency/high-angular-momentum limit), expresses redshift as \textbf{phase rhythm ratio} in cosmological end, and states ``entropy extremality $\to$ geometric equations'' as \textbf{conditional proposition} in information--holography end with \textbf{relative entropy monotonicity and QNEC} as core assumptions. Entire text emphasizes \textbf{domain of equivalence relations} and \textbf{solvable examples}, giving engineering-realizable multi-frequency group delay metrology and lensing delay inversion schemes.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Wigner--Smith group delay; spectral shift function; Birman--Kreĭn formula; eikonal phase; Shapiro delay; Bondi--Sachs time; Tolman--Ehrenfest redshift; QNEC; generalized entropy
+
+\noindent\textbf{MSC 2020:} 81U40, 47A40, 83C57, 83C45
+
+---
+
+\section{Introduction and Historical Context}
+
+Group delay introduced by Wigner and Smith in elastic scattering, defined as derivative of group phase with respect to frequency; trace of its matrix form $Q=-iS^\dagger\partial_\omega S$ equals derivative of total scattering phase $\Phi=\arg\det S$, thus fixing experimental reading of ``time delay = phase gradient'' as invariant. On other hand, Birman--Kreĭn formula connects scattering determinant with spectral shift function $\xi$ via $\det S(\omega)=e^{-2\pi i\xi(\omega)}$, giving $\tfrac{1}{2\pi}\partial_\omega\Phi=-\xi'=\rho_{\rm rel}$. This bridge establishes unification of ``phase slope--relative state density--group delay trace.''
+
+In gravity end, eikonal amplitude method and geometric optics show: \textbf{eikonal phase derivative with respect to energy/frequency} gives \textbf{deflection angle and time delay} (Shapiro delay). In cosmology, FRW redshift relation $1+z=a(t_0)/a(t_e)$ can be written as phase rhythm ratio $(d\phi/dt)_e/(d\phi/dt)_0$. Far-field null infinity \textbf{Bondi--Sachs} framework uses retarded time $u$ to regularize outgoing null surface, providing natural boundary time for gravitational scattering and phase readings.
+
+In information--holography end, \textbf{relative entropy monotonicity} and \textbf{QNEC} have been proven in general QFT, QFC as conjecture verified in wide range of cases; these inequalities connect second-order deformation of \textbf{generalized entropy} with energy conditions, forming conditional route from ``entropy extremality'' to ``geometric equations.''
+
+Goal of this paper is: within \textbf{strict domains} organize above bridges, give unified clock scale covering \textbf{elastic--non-unitary, short-range--long-range} cases, and confirm ``phase gradient = geometric time delay'' alignment with \textbf{solvable models}.
+
+---
+
+\section{Model and Assumptions}
+
+\subsection{Scattering Pair and Spectral Shift Framework}
+
+Let $(H,H_0)$ be pair of self-adjoint operators satisfying \textbf{trace-class/quasi-trace-class} perturbation assumption (e.g., $H-H_0\in \mathfrak{S}_1$ or $(H-i)^{-1}-(H_0-i)^{-1}\in \mathfrak{S}_1$). Then there exists \textbf{spectral shift function} $\xi(\lambda)$ such that for sufficiently smooth $f$
+
+$$
+\operatorname{Tr}\bigl(f(H)-f(H_0)\bigr)=\int_{\mathbb{R}} f'(\lambda)\,\xi(\lambda)\,\mathrm{d}\lambda .
+$$
+
+If absolutely continuous spectral energy window $I\subset\mathbb{R}$ has wave operators existing and scattering matrix $S(\omega)$ differentiable and \textbf{unitary}, then Birman--Kreĭn formula
+
+$$
+\det S(\omega)=e^{-2\pi i\,\xi(\omega)}
+$$
+
+holds and continuous branch of $\Phi(\omega)=\arg\det S(\omega)$ can be chosen.
+
+\begin{definition}[Relative State Density (Definition 2.1)]
+Denote $\rho_{\rm rel}(\omega):=-\xi'(\omega)$. At Lebesgue-a.e. points in $I$ have
+$$
+\frac{1}{2\pi}\,\partial_\omega\Phi(\omega)=\rho_{\rm rel}(\omega).
+$$
+\end{definition}
+
+\textbf{Domain remark:} Above equality may hold only in distributional or bounded variation (BV) sense at \textbf{thresholds, bound states, and resonance points}; branch of $\Phi$ fixed jointly by analytic continuation of $S(\omega)$ and far-field normalization (Appendix A).
+
+\subsection{Wigner--Smith Group Delay}
+
+For unitary $S(\omega)$ define
+$$
+Q(\omega)=-i\,S(\omega)^\dagger\,\partial_\omega S(\omega) ,
+$$
+then $Q$ self-adjoint, and \textbf{trace identity}
+$$
+\partial_\omega\Phi(\omega)=\operatorname{Tr}Q(\omega)
+$$
+holds in $I$, thus
+$$
+\boxed{\ \frac{\varphi'(\omega)}{\pi}=\rho_{\rm rel}(\omega)=\frac{1}{2\pi}\operatorname{Tr}Q(\omega)\ },\qquad \varphi=\tfrac{1}{2}\Phi .
+$$
+
+This is ``scale identity'' in \textbf{elastic--unitary} domain.
+
+\textbf{Counterexample and lower bound:} Group delay can take \textbf{negative} values near anti-resonances (anomalous delay); but Wigner causality gives \textbf{lower bound} on energy derivative and overall sum constraint. This paper obtains weak monotonicity and affine uniqueness under \textbf{windowed clocks} (§4.2, Appendix B).
+
+\subsection{Non-Unitary/Absorptive and Generalized Time Delay}
+
+When external visible channels incomplete or absorption exists (black hole horizon, lossy media, open cavities), $S$ non-unitary. Take
+$$
+Q_{\rm gen}(\omega):=-i\,S(\omega)^{-1}\partial_\omega S(\omega),
+$$
+whose trace generally complex; can define \textbf{real part} as generalized Wigner delay, \textbf{imaginary part} related to absorption/gain; can also introduce dwell time and transmission--reflection decomposition. This paper in §4.3 gives relationship with $\partial_\omega\arg\det S$ and metrological meaning.
+
+\subsection{Long-Range Potential and Phase Renormalization}
+
+For Coulomb/gravity $1/r$ long-range potentials, need use \textbf{modified wave operators} and \textbf{phase renormalization} (Dollard/Isozaki--Kitada type), removing logarithmic terms in asymptotic phase. This paper for Schwarzschild exterior scalar wave under \textbf{tortoise coordinates} and Regge--Wheeler equation constructs \textbf{renormalized phase} $\Phi_{\rm ren}(\omega)$, proving
+$$
+\partial_\omega\Phi_{\rm ren}(\omega)=\Delta T_{\rm Shapiro}(\omega)+o(1)
+$$
+holds in high-frequency/high-angular-momentum limit (§5, Appendix D).
+
+\subsection{Geometry and Boundary Time}
+
+Local clock rate/redshift in static spacetime controlled by $g_{tt}$ or Tolman--Ehrenfest law; lapse $N$ in ADM decomposition gives ratio of coordinate time to proper time; remote boundary \textbf{Bondi--Sachs retarded time} $u$ provides natural ``scattering time'' at null infinity.
+
+\subsection{Information--Holography Assumption Domain}
+
+Relative entropy monotonicity and \textbf{QNEC} hold in general QFT; QFC as conjecture provides stronger structure. This paper states ``entropy extremality $\to$ field equations'' as \textbf{conditional proposition}, asserting only under small causal diamonds, Hadamard states, weak curvature, and appropriate deformation classes (§6, Appendix F).
+
+---
+
+\section{Main Results (Theorems and Alignments)}
+
+\subsection{Domain Theorem of Scale Identity}
+
+\begin{theorem}[Elastic--Unitary Domain (Theorem 3.1)]
+Let $(H,H_0)$ be self-adjoint scattering pair satisfying §2.1 trace-class assumption. Let $I\subset\mathbb{R}$ be absolutely continuous spectral energy window, $S(\omega)\in C^1(I;U(N(\omega)))$ with isolated set $\Sigma\subset I$ of thresholds and resonances absent. Then in $I\setminus\Sigma$ have
+$$
+\frac{\varphi'(\omega)}{\pi}=\rho_{\mathrm{rel}}(\omega)=\frac{1}{2\pi}\operatorname{Tr}Q(\omega)\quad\text{(Lebesgue-a.e.)} .
+$$
+\end{theorem}
+
+On $\Sigma$ this equality holds in BV/distributional sense, jumps of $\Phi$ with bound state--resonance contributions given by Levinson/Friedel integral (Appendix A).
+
+\textit{Proof:} See Appendix A (Birman--Kreĭn + trace identity + differentiability and branch choice).
+
+\textbf{Note (long-range--renormalization):} If potential long-range, then there exists renormalized phase $\Phi_{\rm ren}$ such that identity holds after renormalization; proof in Appendix D.1 (Dollard/Isozaki--Kitada framework).
+
+\subsection{Existence and Affine Uniqueness of Windowed Clocks}
+
+\begin{definition}[Poisson--Windowed Clock (Definition 3.2)]
+Take Poisson kernel of width $\Delta>0$
+$$
+P_\Delta(x)=\frac{1}{\pi}\frac{\Delta}{x^2+\Delta^2},\qquad \int_{\mathbb{R}}P_\Delta(x)\,\mathrm{d}x=1.
+$$
+Define \textbf{windowed scale density}
+$$
+\Theta_\Delta(\omega):=\bigl(\rho_{\rm rel}*P_\Delta\bigr)(\omega)=\frac{1}{2\pi}\bigl(\operatorname{Tr}Q*P_\Delta\bigr)(\omega)
+$$
+and \textbf{clock}
+$$
+t_\Delta(\omega)-t_\Delta(\omega_0)=\int_{\omega_0}^\omega \Theta_\Delta(\tilde\omega)\,\mathrm{d}\tilde\omega .
+$$
+\end{definition}
+
+\begin{theorem}[Weak Monotonicity and Affine Uniqueness (Theorem 3.3)]
+If $S$ analytic in upper half-plane with no upper half-plane poles, and $\Delta$ of constant order larger than minimum resonance width/spacing within given energy window, then $\Theta_\Delta(\omega)>0$ holds in measure sense, thus $t_\Delta$ strictly increasing; if $\tilde{t}_\Delta$ is clock given by another window family satisfying same window condition, then there exist $a>0,b\in\mathbb{R}$ such that
+$$
+\tilde{t}_\Delta=a\,t_\Delta+b.
+$$
+\end{theorem}
+
+\textit{Proof key points:} $\log\det S$ is Nevanlinna--Herglotz type function, whose boundary imaginary part is distribution $-2\pi\xi'$; Poisson smoothing gives harmonic continuation and suppresses oscillation terms of local negative delay; window width condition ensures positive margin covers anti-resonance negative lobes (Appendix B; counterexamples and numerics in §5.3).
+
+\textbf{Comment:} This theorem responds to fact that ``group delay can be locally negative'': \textbf{clock driven by windowed state density}, satisfying weak monotonicity and affine uniqueness, not pointwise monotonicity.
+
+\subsection{Generalized Identity for Non-Unitary/Absorptive}
+
+\begin{proposition}[Generalized Time Delay and Phase (Proposition 3.4)]
+For non-unitary $S$ define $Q_{\rm gen}=-iS^{-1}\partial_\omega S$. Then
+$$
+\partial_\omega\log\det S(\omega)=i\,\operatorname{Tr}Q_{\rm gen}(\omega),\qquad
+\partial_\omega\arg\det S=\Re\,\operatorname{Tr}Q_{\rm gen},
+$$
+can define \textbf{real delay} $\tau_{\rm Re}:=(1/2\pi)\Re\,\operatorname{Tr}Q_{\rm gen}$ and \textbf{absorption rate} $\alpha:=(1/2\pi)\Im\,\operatorname{Tr}Q_{\rm gen}$. In small absorption limit $|S^\dagger S-\mathbf{1}|\ll1$ have $\tau_{\rm Re}=(2\pi)^{-1}\operatorname{Tr}Q+O(|S^\dagger S-\mathbf{1}|)$.
+\end{proposition}
+
+\subsection{Eikonal Phase and Geometric Shapiro Delay}
+
+\begin{theorem}[High-Frequency/High-$l$ Limit (Theorem 3.5)]
+Renormalized phase $\Phi_{\rm ren}(\omega)$ of Schwarzschild exterior scalar wave (frequency $\omega$) satisfies in eikonal limit
+$$
+\partial_\omega\Phi_{\rm ren}(\omega)=\Delta T_{\rm Shapiro}(\omega)+O(\omega^{-1}),
+$$
+where $\Delta T_{\rm Shapiro}$ is Shapiro delay of geometric ray path.
+\end{theorem}
+
+\textit{Proof:} See §5 (WKB phase difference = action difference, using tortoise coordinates and high-frequency decomposition of Regge--Wheeler potential; phase branch normalized with field-free reference).
+
+\subsection{Redshift = Phase Rhythm Ratio and Boundary Time}
+
+Under FRW metric, time derivative of photon phase $\phi$ proportional to observed frequency, obtaining
+$$
+1+z=\frac{\nu_e}{\nu_0}=\frac{(d\phi/dt)_e}{(d\phi/dt)_0}=\frac{a(t_0)}{a(t_e)} ,
+$$
+this formula unifies cosmological redshift as \textbf{boundary phase rhythm ratio}.
+
+\subsection{Entropy Extremality $\to$ Geometric Equations: Conditional Proposition}
+
+\begin{proposition}[Conditional (Proposition 3.6)]
+Under small causal diamond limit, Hadamard state, weak curvature, and appropriate deformation class, if assuming relative entropy monotonicity and \textbf{QNEC}, then second-order deformation of generalized entropy combined with Raychaudhuri equation yields
+$$
+R_{\mu\nu}-\tfrac{1}{2} Rg_{\mu\nu}+\Lambda g_{\mu\nu}=8\pi G\,\langle T_{\mu\nu}\rangle .
+$$
+\end{proposition}
+
+\textit{Explanation:} QFC not universal theorem, this paper does not use it as sufficient condition; proposition only holds under above assumptions and local window, technically supported by Jacobson ``equation of state'' and subsequent JLMS/deformation modular Hamiltonian (Appendix F).
+
+---
+
+\section{Proofs (Summary; Details in Appendices)}
+
+\subsection{Theorem 3.1}
+
+Birman--Kreĭn gives $\det S=e^{-2\pi i\xi}$; differentiating with respect to $\omega$ gives $\Phi'=-2\pi\xi' = 2\pi\rho_{\rm rel}$. On other hand $\operatorname{Tr} Q=\partial_\omega\operatorname{Tr}\log S=\partial_\omega\Phi$. Combining gives identity; understood as BV/distribution at thresholds and resonances (Appendix A).
+
+\subsection{Theorem 3.3}
+
+$\log\det S$ is Nevanlinna--Herglotz function; its boundary imaginary part is distribution $-2\pi\xi'$. Poisson smoothing equals boundary value of harmonic continuation to upper half-plane; choosing $\Delta$ larger than minimum resonance width, local fluctuations of negative delay covered by positive envelope, thus $\Theta_\Delta>0$ a.e.; affine uniqueness from unit normalization and additive constant freedom (Appendix B). Counterexamples (negative delay) and window threshold quantitatively shown in one-dimensional solvable potentials (§5.3).
+
+\subsection{Proposition 3.4}
+
+For invertible $S$ use Jacobi identity $\partial_\omega\log\det S=\operatorname{Tr}(S^{-1}\partial_\omega S)=i\,\operatorname{Tr} Q_{\rm gen}$. Taking real and imaginary parts gives statement; small absorption expansion in Appendix C.
+
+\subsection{Theorem 3.5}
+
+In Schwarzschild exterior, express transmission/reflection phase using WKB solution of Regge--Wheeler equation; at high frequency/high $l$ phase difference equals geometric action difference, $\partial_\omega$ gives Shapiro delay; long-range phase treated with tortoise coordinates and reference phase renormalization (Appendix D).
+
+\subsection{Proposition 3.6}
+
+Relative entropy monotonicity gives linear relationship between modular Hamiltonian and energy-momentum tensor; QNEC relates lower bound of second-order deformation of generalized entropy with $T_{kk}$, combined with Raychaudhuri equation and extremality condition yields tensor form in each null direction; $\Lambda$ as integration constant (Appendix F).
+
+---
+
+\section{Model Applications}
+
+\subsection{Schwarzschild Exterior: $\partial_\omega\Phi$ and Shapiro Delay}
+
+Starting from Regge--Wheeler equation, construct eikonal solution and phase renormalization $\Phi_{\rm ren}$, numerical/asymptotic comparison shows $\partial_\omega\Phi_{\rm ren}(\omega)$ consistent with geometric $\Delta T_{\rm Shapiro}$ (deviation $O(\omega^{-1})$). Provides end-to-end chain from \textbf{wave equation $\to$ S-matrix $\to$ phase derivative $\to$ geometric time delay}.
+
+\subsection{Lensing: $\partial_\omega (\Phi_i-\Phi_j)=\Delta t_{ij}$}
+
+Derivative of phase of Kirchhoff integral amplification factor $F(\omega)$ with respect to $\omega$ gives Fermat arrival time delay; in thin lens limit with point mass/SIS model obtains unified frequency-domain--time-domain fitting of multi-image time delays.
+
+\subsection{One-Dimensional Solvable Potential and Negative Delay}
+
+Choose solvable potential containing anti-resonance, showing local negative values and sum rule of $\operatorname{Tr} Q(\omega)$; verify weak monotonicity critical width of \textbf{windowed clock} with $\Delta$ as variable. Reference Winful's review on Hartman/anomalous delay and electromagnetic/acoustic extensions.
+
+---
+
+\section{Engineering Proposals}
+
+\begin{enumerate}
+\item \textbf{Multi-frequency Shapiro--group delay parallel inversion:} Measure phase $\Phi(\omega)$ in planetary occultation geometry, compute $\partial_\omega\Phi$ parallel deconvolution with coronal plasma dispersion, combined with hydrogen clock and stable link gives \textbf{absolute phase reference}.
+
+\item \textbf{On-chip Wigner--Smith tomography metrology:} Construct $Q=-iS^\dagger \partial_\omega S$ in multi-port S-parameter metrology, use trace invariance for device tolerance inversion and group delay imaging.
+
+\item \textbf{Wave lensing broadband time delay spectrum:} Fit multi-image arrival time delays and dispersion using $\partial_\omega\Phi$, reducing time delay cosmology systematic errors.
+\end{enumerate}
+
+---
+
+\section{Discussion (Risks, Boundaries, Past Work)}
+
+\begin{itemize}
+\item \textbf{Domain and regularity:} Scale identity clearest under \textbf{elastic--unitary} and \textbf{short-range} classes; needs BV/distributional understanding at thresholds/resonances; long-range potentials need renormalization.
+
+\item \textbf{Negative delay and windowing:} Group delay can be locally negative; \textbf{Poisson--windowing} provides weakly monotonic clock. Sufficient conditions and minimum window width of this construction depend on resonance spectrum.
+
+\item \textbf{Non-unitary generalization:} In absorptive/open systems, $\Re\,\operatorname{Tr} Q_{\rm gen}$ gives measurable ``real delay,'' $\Im\,\operatorname{Tr} Q_{\rm gen}$ measures absorption; quantitative relationship with dwell time/energy storage exists.
+
+\item \textbf{Geometry end:} Eikonal--geometric optics connection most direct in static/weak fields; strong fields and rotation need more refined coherent transport and numerical ray tracing.
+
+\item \textbf{Information--holography:} This paper avoids treating QFC as theorem, only giving conditional proposition under QNEC and relative entropy monotonicity.
+\end{itemize}
+
+---
+
+\section{Conclusion}
+
+Within strict scattering domain, this paper defines \textbf{time scale} as monotonic reparametrization of spectral--scattering invariant, core object being
+$$
+\frac{\varphi'(\omega)}{\pi}\equiv \rho_{\rm rel}(\omega)\equiv \frac{1}{2\pi}\operatorname{Tr}Q(\omega).
+$$
+
+We specify its \textbf{domain} (elastic--unitary, short-range, energy windows away from thresholds/resonances) and \textbf{generalizations} (non-unitary/absorptive, phase renormalization for long-range potentials), propose \textbf{Poisson--windowed clock} proving weak monotonicity and affine uniqueness, give end-to-end model-based proof of \textbf{eikonal phase--Shapiro delay} in Schwarzschild exterior, and write cosmological redshift as \textbf{phase rhythm ratio}. In information--holography end, state conditional proposition of ``entropy extremality $\to$ geometric equations'' based on QNEC/relative entropy monotonicity. Thus forming \textbf{unified time geometry} from spectral--scattering to causal--entropy.
+
+---
+
+\section*{Acknowledgements, Code Availability}
+
+Thanks to public textbooks and papers; phase renormalization and Schwarzschild eikonal numerical scripts, windowed clock demonstration, and group delay curve fitting code for one-dimensional potentials available upon request.
+
+---
+
+\begin{thebibliography}{99}
+
+\bibitem{ref1}
+E. P. Wigner, ``Lower Limit for the Energy Derivative of the Scattering Phase Shift,'' \textit{Phys. Rev.} \textbf{98}, 145 (1955).
+
+\bibitem{ref2}
+F. T. Smith, ``Lifetime Matrix in Collision Theory,'' \textit{Phys. Rev.} \textbf{118}, 349 (1960).
+
+\bibitem{ref3}
+J. Behrndt, M. M. Malamud, H. Neidhardt, ``Scattering matrices and Weyl functions,'' \textit{Proc. London Math. Soc.} \textbf{97}, 568--598 (2008).
+
+\bibitem{ref4}
+D. R. Yafaev, \textit{Mathematical Scattering Theory: Analytic Theory}, AMS (2010).
+
+\bibitem{ref5}
+D. Borthwick, \textit{Spectral Theory of Infinite-Area Hyperbolic Surfaces}, Birkhäuser (2016).
+
+\bibitem{ref6}
+A. M. Steinberg, P. G. Kwiat, R. Y. Chiao, ``Measurement of the single-photon tunneling time,'' \textit{Phys. Rev. Lett.} \textbf{71}, 708 (1993).
+
+\bibitem{ref7}
+H. G. Winful, ``Tunneling time, the Hartman effect, and superluminality: A proposed resolution of an old paradox,'' \textit{Phys. Rep.} \textbf{436}, 1--69 (2006).
+
+\bibitem{ref8}
+A. Grabsch, D. P. Karevski, ``Time delay distributions in chaotic systems,'' \textit{Phys. Rev. E} \textbf{97}, 052210 (2018).
+
+\bibitem{ref9}
+M. Accettulli Huber et al., ``Eikonal phase matrix, deflection angle, and time delay in effective field theories of gravity,'' \textit{Phys. Rev. D} \textbf{102}, 046014 (2020).
+
+\bibitem{ref10}
+R. Takahashi, ``Wave effects in the gravitational lensing of electromagnetic radiation by a cosmic string,'' \textit{Astron. Astrophys.} \textbf{423}, 787 (2004).
+
+\bibitem{ref11}
+S. M. Carroll, \textit{Spacetime and Geometry: An Introduction to General Relativity}, Addison Wesley (2004).
+
+\bibitem{ref12}
+R. C. Tolman, P. Ehrenfest, ``Temperature Equilibrium in a Static Gravitational Field,'' \textit{Phys. Rev.} \textbf{36}, 1791 (1930).
+
+\bibitem{ref13}
+D. W. Hogg, ``Distance measures in cosmology,'' arXiv:astro-ph/9905116.
+
+\bibitem{ref14}
+T. Faulkner et al., ``Nonlinear Gravity from Entanglement in Conformal Field Theories,'' \textit{JHEP} \textbf{08}, 057 (2014).
+
+\bibitem{ref15}
+S. Balakrishnan et al., ``A General Proof of the Quantum Null Energy Condition,'' \textit{JHEP} \textbf{09}, 020 (2019).
+
+\bibitem{ref16}
+T. Jacobson, ``Thermodynamics of Spacetime: The Einstein Equation of State,'' \textit{Phys. Rev. Lett.} \textbf{75}, 1260 (1995).
+
+\end{thebibliography}
+
+\appendix
+
+\section{Rigorous Domain of Scale Identity (Elastic--Unitary, Short-Range)}
+
+\subsection{SSF and Birman--Kreĭn}
+
+Under $H-H_0\in\mathfrak{S}_1$ or resolvent difference trace-class, spectral shift function $\xi$ exists satisfying trace formula and
+$$
+\det S(\omega)=e^{-2\pi i\,\xi(\omega)} .
+$$
+Choosing continuous branch satisfying $\arg \det S(\omega)\to0$ ($|\Im\omega|\to\infty$), obtain $\Phi(\omega)=-2\pi\xi(\omega)\ \mathrm{mod}\ 2\pi$. A.e. derivative with respect to $\omega$ gives
+$$
+\frac{1}{2\pi}\Phi'(\omega)=\rho_{\rm rel}(\omega),\qquad \rho_{\rm rel}=-\xi'.
+$$
+Understood as BV/distribution at threshold/resonance points $\Sigma$; Levinson/Friedel integral controls $\int \rho_{\rm rel}$ and bound state counting.
+
+\subsection{Trace Identity and Traceability of $Q$}
+
+Under finite channels or $S(\omega)-\mathbf{1}$ trace-class condition,
+$$
+\operatorname{Tr} Q(\omega)=\partial_\omega\operatorname{Tr}\log S(\omega)=\partial_\omega \Phi(\omega).
+$$
+Combining with A.1 gives scale identity in elastic--unitary domain.
+
+\subsection{Long-Range Potentials}
+
+For Coulomb/gravity $1/r$ potentials, adopt Dollard/Isozaki--Kitada modified wave operators, define renormalized phase $\Phi_{\rm ren}$ (removing logarithmic terms and far-field corrections), identity holds under $\Phi_{\rm ren}$ (see Gâtel--Yafaev and related long-range scattering literature).
+
+---
+
+\section{Windowed Clock and Weak Monotonicity Theorem}
+
+\subsection{Positive Envelope of Poisson Smoothing}
+
+$\log\det S(z)$ is Herglotz function in $\Im z>0$, boundary imaginary part is distribution $-2\pi\xi'$. Poisson integral
+$$
+u_\Delta(\omega)=\int_{\mathbb{R}} P_\Delta(\omega-\lambda)\,\bigl(-2\pi\xi'(\lambda)\bigr)\,\mathrm{d}\lambda
+$$
+is harmonic regularization; if $S$ has no poles in upper half-plane, then $u_\Delta$ is principal value limit of non-negative function. Taking $\Theta_\Delta=\tfrac{1}{2\pi}(u_\Delta)$ yields $\Theta_\Delta\ge 0$; when $\Delta$ larger than minimum resonance width, $\Theta_\Delta>0$ a.e., thus $t_\Delta$ strictly increasing.
+
+\subsection{Affine Uniqueness}
+
+If $\tilde{t}_\Delta$ generated by another kernel $\tilde{P}_\Delta$ (same order width) satisfying \textbf{normalization} $\int \tilde{P}_\Delta=1$, then $\mathrm{d}t$ and $\mathrm{d}\tilde{t}$ differ only by constant multiple, integrating gives $\tilde{t}=a t+b$. Window family change causes fine-tuning of $a$, but does not change time arrow and affine class.
+
+\subsection{Counterexample and Critical Window}
+
+Reference one-dimensional solvable potential $\operatorname{Tr} Q(\omega)$ curves: significant negative lobes exist; when $\Delta$ below resonance spacing, $\Theta_\Delta$ can be non-positive in narrow region; numerics show $\Delta\gtrsim\Gamma_{\rm min}$ recovers a.e. positivity (§5.3).
+
+---
+
+\section{Generalized Delay for Non-Unitary/Absorptive Systems}
+
+\subsection{$Q_{\rm gen}$ and $\log\det S$}
+
+For invertible $S$, $\partial_\omega\log\det S=\operatorname{Tr}(S^{-1}\partial_\omega S)=i\operatorname{Tr} Q_{\rm gen}$. Taking real part yields
+$$
+\partial_\omega\arg\det S=\Re\,\operatorname{Tr} Q_{\rm gen}.
+$$
+Small absorption expansion: let $S^\dagger S=\mathbf{1}-\epsilon R$, then
+$$
+\operatorname{Tr} Q_{\rm gen}=\operatorname{Tr} Q + O(\epsilon),\quad \epsilon\ll1 .
+$$
+
+\subsection{Dwell Time and Energy Storage}
+
+In electromagnetic/acoustic settings, $\operatorname{Tr} Q$ related to volume integral of energy storage in cavity; for non-unitary needs compensate flux balance of leakage channels.
+
+---
+
+\section{Eikonal Phase and Shapiro Delay in Schwarzschild Exterior}
+
+\subsection{Wave Equation and Phase Renormalization}
+
+Scalar wave satisfies Regge--Wheeler equation; construct transmission/reflection phase $\Phi_l(\omega)$ using tortoise coordinate $r^*$ and WKB approximation. Long-range term causes logarithmic phase; define
+$$
+\Phi_{\rm ren}(\omega)=\Phi(\omega)-\Phi_{\rm Coulomb}(\omega),
+$$
+normalized with $M\to0$ reference solution.
+
+\subsection{Action Difference = Time Delay}
+
+Under geometric optics eikonal phase difference $\Delta\phi$ equals action difference; $\partial_\omega$ yields arrival time difference $\Delta T$. Shapiro delay of Schwarzschild ray
+$$
+\Delta T \simeq \frac{4GM}{c^3}\ln\frac{4r_E r_R}{b^2}+\cdots
+$$
+highly consistent with $\partial_\omega\Phi_{\rm ren}$ (numerics and asymptotics shown in §5.1).
+
+---
+
+\section{Standard Bridges of Geometry and Boundary Time}
+
+\subsection{Static Spacetime and Tolman--Ehrenfest}
+
+In $\mathrm{d}s^2=-V(\mathbf{x})c^2 \mathrm{d}t^2+\cdots$ stationary observers satisfy $\mathrm{d}\tau=\sqrt{V}\,\mathrm{d}t$; thermal equilibrium gives $T\sqrt{V}=\mathrm{const}$.
+
+\subsection{ADM Lapse}
+
+$\mathrm{d}s^2=-N^2\mathrm{d}t^2+h_{ij}(\mathrm{d}x^i+N^i \mathrm{d}t)(\mathrm{d}x^j+N^j \mathrm{d}t)$; Euler family orthogonal to slicing satisfies $\mathrm{d}\tau=N\,\mathrm{d}t$.
+
+\subsection{Bondi--Sachs Retarded Time}
+
+Asymptotically flat exterior uses $u=t-r^*$ to regularize outgoing null surface, providing natural ``boundary time'' for far-field phase readings.
+
+\subsection{Phase Expression of FRW Redshift}
+
+$\nu\propto -k\cdot u=(2\pi)^{-1}\mathrm{d}\phi/\mathrm{d}t\propto a(t)^{-1}$, thus $1+z=a_0/a_e$.
+
+---
+
+\section{Entropy Extremality and Geometric Equations (Conditional)}
+
+\subsection{Deformation Modular Hamiltonian and ANEC/QNEC}
+
+Half-space modular Hamiltonian locally $\int T_{kk}$ under first-order deformation; ANEC provable from relative entropy monotonicity; QNEC holds in general QFT.
+
+\subsection{Small Causal Diamond and Raychaudhuri}
+
+Second-order area deformation gives $\int R_{kk}$; combined with $S''_{\rm out}\ge (2\pi/\hbar)\int\langle T_{kk}\rangle$ under QNEC, together with extremality condition $S'_{\rm gen}(0)=0$ yields $R_{kk}=8\pi G\langle T_{kk}\rangle$; holding on each $k$ upgrades to tensor equation; $\Lambda$ as integration constant.
+
+\subsection{Applicability Domain}
+
+Proposition depends on: Hadamard state, weak curvature, small deformation, locally integrable regularization terms. If QFC holds can weaken technical assumptions, but this paper does not use it as necessary condition.
+
+---
+
+\section{Categorical Definition of Equivalence Class ``Time''}
+
+\subsection{Objects and Morphisms}
+
+Define objects of category $\mathsf{Time}$ as four-tuple $\mathcal{T}=(I,S,\mu,\preceq)$:
+\begin{itemize}
+\item $I$ is energy window/parameter domain;
+\item $S(\omega)$ is scattering matrix family satisfying corresponding domain assumptions;
+\item $\mu(\omega)$ is time scale density (such as $\rho_{\rm rel}$, $\tfrac{1}{2\pi}\operatorname{Tr} Q$, $\Theta_\Delta$);
+\item $\preceq$ is causal order (induced by geometric/boundary time function).
+\end{itemize}
+
+Morphisms are \textbf{monotonic rescalings} $f:I\to I'$ such that $\mu'(\omega')\,\mathrm{d}\omega'=\mu(\omega)\,\mathrm{d}\omega$ and preserve direction of $\preceq$. Equivalence relation defined as existence of affine morphism $f(\omega)=a\omega+b$ or corresponding time affine $t'=a t+b$, satisfying same order width condition on window family (§3.2).
+
+\subsection{Existence--Uniqueness (Weak) Theorem}
+
+Within domain of §2.1--2.4, $\mathcal{T}$ exists; if taking scale with Poisson--windowed density $\Theta_\Delta$, then time function unique in affine sense (Theorem 3.3). Time functions at geometry and information ends align with $\mathsf{Time}$ through natural transformations (eikonal phase/modular flow parameters), forming unified scale.
+
+---
+
+\textbf{Diagram (Unified Scale)}
+
+$$
+\boxed{
+\begin{array}{c}
+\text{Spectrum/Scattering: }\ \dfrac{\varphi'}{\pi}\equiv \rho_{\rm rel}\equiv \dfrac{1}{2\pi}\operatorname{Tr} Q
+\ \xrightarrow[\text{Poisson}]{\ \Delta\ }
+\Theta_\Delta\ \xrightarrow{\int \mathrm{d}\omega}\ t_\Delta \\[2pt]
+\Downarrow\ (\text{eikonal})\qquad\qquad\qquad\qquad\Downarrow\ (\text{FRW}) \\[2pt]
+\Delta T_{\rm Shapiro}=\partial_\omega\Phi_{\rm ren}\qquad 1+z=\dfrac{(\mathrm{d}\phi/\mathrm{d}t)_e}{(\mathrm{d}\phi/\mathrm{d}t)_0} \\[2pt]
+\Downarrow\ (\text{QNEC \& }S_{\rm gen}) \\[2pt]
+R_{\mu\nu}-\tfrac{1}{2} Rg_{\mu\nu}+\Lambda g_{\mu\nu}=8\pi G\langle T_{\mu\nu}\rangle\ \ (\text{conditional})
+\end{array}
+}
+$$
+
+\end{document}
+
+
+
+

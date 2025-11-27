@@ -1,0 +1,318 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{braket}
+\usepackage{graphicx}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+
+% Title information
+\title{Time Equivalence Class and Generalized Entropy Optimization:\\
+Unified Rates, Rigorous Axioms, and Observation-Oriented Closed Framework}
+
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We propose and rigorize a unified framework centered on the time equivalence class $[T]$, placing the ``arrow of time,'' ``black hole information,'' ``cosmological redshift/constant,'' and measurable ``delay--phase--spectral shift'' on a common computational/observational platform. First, we provide a precise definition of $[T]$, prove reflexivity, symmetry, and transitivity of the equivalence relation, and clarify covariance criteria with respect to cut families and preservation under state/region changes. Second, we establish the \textbf{unified rate identity}
+$$
+\boxed{\ \rho_{\mathrm{rel}}(\omega)=\frac{1}{2\pi}\,\partial_\omega \phi(\omega)=\frac{1}{2\pi}\operatorname{Tr}Q(\omega)\ },
+$$
+where $Q(\omega)=-i\,S^\dagger(\omega)\partial_\omega S(\omega)$ is the Wigner--Smith time delay operator, $\phi(\omega)=\arg\det S(\omega)$ is the total scattering phase, $\rho_{\mathrm{rel}}(\omega)$ is the spectral density defined by spectral shift/relative entropy; this identity arises from Birman--Kreĭn relations and observable phase--delay measurements, with consistent dimensions and invertibility. Third, in the semiclassical regime with Hadamard states and weak curvature, via the chain ``relative entropy monotonicity $\Rightarrow$ QNEC $\Rightarrow$ local GSL/QFC,'' we prove: along a null geodesic family with affine parameter $\lambda$, $S_{\mathrm{gen}}$ is monotonic; reparametrization by $[T]$ gives $S_{\mathrm{gen}}$ monotonicity with respect to representative time $t$, thus the arrow of time emerges as an output property. Fourth, using algebraic embedding/entanglement wedge language, we show ``fixed-projection non-decodability $\equiv$ time-map singularity at event horizon,'' and realize analytic continuation through extremal switching of the island formula, thereby recovering the Page curve. Fifth, we view $\Lambda$ as a global calibration integration constant of $[T]$ (compatible with four-form mechanisms), emphasizing its distinction from the measurable effect of local ``vacuum energy density.'' Finally, we provide three operational verification pathways: dispersion--geometry coupled time delay of order $\omega^{-2}$ in curved spacetime plasma geometrical optics (with null-test protocol), hierarchical Bayesian test of ``redshift--decoherence slope'' for FRBs, and time-delay Bell witness and chiral splitting in cryogenic multi-mode cavities. Appendices include: complete proofs of three equivalence properties; operator--spectral shift derivation of the unified rate identity; proof of main theorems driven by QNEC/GSL; curved spacetime--plasma eikonal expansion (showing conditions for absence of $\omega^{-1}$ principal term); gauging, stability, and low-energy constraints of time-field theory.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Time Equivalence Class; Modular Time; Generalized Entropy; QNEC; QFC; QES/Island Formula; Wigner--Smith Time Delay; Birman--Kreĭn Spectral Shift; Plasma Geometrical Optics; Hierarchical Bayesian
+
+---
+
+\section{Introduction and Historical Context}
+
+The generalized entropy $S_{\mathrm{gen}}=A/4G\hbar+S_{\mathrm{out}}$ in semiclassical quantum gravity connects geometry and information. Non-perturbative reconstruction of the Page curve relies on quantum extremal surfaces and the island formula; QNEC and (local) QFC relate null-directional entropy deformation to stress-energy tensors and quantum focusing, and can be derived from relative entropy monotonicity. On the other hand, Tomita--Takesaki modular theory views the modular flow $\sigma^\omega_s$ of a state--algebra pair $(\mathcal{A},\omega)$ as ``intrinsic time,'' providing mathematical support for the perspective that ``time emerges from information--causal structure.'' On the scattering side, the Wigner--Smith delay operator and total scattering phase $\phi$ are directly measurable, and the Kreĭn spectral shift function $\xi(\omega)$ couples with $\det S(\omega)$ via the Birman--Kreĭn formula. This paper closes these supporting points into a unified whole: governing ``time'' through the equivalence class structure of $[T]$, and bringing phase--delay--spectral shift into a common experimentally accessible gauge through the \textbf{unified rate}.
+
+---
+
+\section{Model and Assumptions}
+
+\subsection{Time Equivalence Class and Covariance}
+
+\textbf{Objects}: Globally hyperbolic $(\mathcal{M},g)$; region family $\mathfrak{R}$; state--algebra pairs $\{(\mathcal{A}(R),\omega_R)\}_{R\in\mathfrak{R}}$; cut cluster of null geodesic families $\mathfrak{C}$.
+
+\begin{definition}[Equivalence (Definition 2.1)]
+For fixed $(\mathcal{A}(R),\omega_R,\mathfrak{C})$, we say $T_1\sim T_2$ if there exist an outer automorphism $\Phi\in{\mathrm{Out}}(\mathcal{A}(R))$ and a strictly monotonic $f:\mathbb{R}\!\to\!\mathbb{R}$ such that
+$$
+\Phi\circ \sigma^{\omega_R}_s\circ \Phi^{-1}=\sigma^{\omega_R}_{f(s)}\quad\text{and}\quad
+\mathcal{E}(\mathfrak{C};T_1)=\mathcal{E}(\mathfrak{C};T_2),
+$$
+where $\mathcal{E}$ represents the ``generalized entropy monotonicity/extremal structure'' (quantum expansion signature and null set) along null generators of $\mathfrak{C}$.
+\end{definition}
+
+\begin{proposition}[Three Properties (Proposition 2.2)]
+$\sim$ is an equivalence relation; for completely positive trace-preserving maps induced by state/region homotopy deformations, if the outer conjugacy class of relative modular flow is invariant, then $[T]$ is preserved. Under cut family refinement, if $\Theta_{\mathrm{q}}\ge 0$, then $\mathcal{E}$ is preserved, and $[T]$ is said to be covariant under that null geodesic family. Proof in Appendix A.1--A.2.
+\end{proposition}
+
+\subsection{Unified Rate and Dimensional Consistency}
+
+\textbf{Wigner--Smith and Phase}: $Q(\omega)=-i\,S^\dagger\partial_\omega S$, $\operatorname{Tr}Q=\partial_\omega \arg\det S=\partial_\omega\phi$.
+
+\textbf{Spectral Shift and Phase}: Birman--Kreĭn: $\det S(\omega)=e^{-2\pi i\,\xi(\omega)}\Rightarrow \partial_\omega\phi=-2\pi\,\xi'(\omega)$.
+
+\textbf{Unified Rate}:
+$$
+\boxed{\ \rho_{\mathrm{rel}}(\omega)=-\xi'(\omega)=\frac{1}{2\pi}\partial_\omega\phi(\omega)=\frac{1}{2\pi}\operatorname{Tr}Q(\omega)\ }.
+$$
+
+The definition of $\rho_{\mathrm{rel}}$ adopts local window variation, so that $S(\rho|\sigma)=\int \rho_{\mathrm{rel}}(\omega)\,{\mathrm{d}}\omega$; dimensions are consistent with $\partial_\omega\phi$, $\operatorname{Tr}Q$. Numerical inversion is regularized using Kramers--Kronig and phase unwrapping. Derivation and inversion details in Appendix A.3.
+
+\subsection{Domain of Assumptions and Failure Conditions}
+
+Hadamard states, weak curvature, local Rindler approximation and controlled deformations; geometric configurations restricted to quantum light sheets/event horizons and other GSL-applicable situations. Failure domains: strong curvature neighborhoods, non-Hadamard states, UV-dominated deviations, etc.
+
+---
+
+\section{Main Results (Theorems and Alignments)}
+
+\subsection{Theorem 3.1 (Arrow of Time = Output of Generalized Entropy Monotonicity)}
+
+Within the domain of Section 2.3, along a specified quantum light sheet with affine parameter $\lambda$: ${\mathrm{d}}S_{\mathrm{gen}}/{\mathrm{d}}\lambda\ge 0$. For any $t\in[T]$, if $t=f(\lambda)$ with $f'>0$, then ${\mathrm{d}}S_{\mathrm{gen}}/{\mathrm{d}}t\ge 0$. Proof chain and failure conditions detailed in Appendix B.
+
+\subsection{Theorem 3.2 (Black Hole Information: Fixed-Projection Non-Decodability and Island Formula Analytic Continuation)}
+
+Using algebraic embedding $\mathcal{A}(\mathcal{I}^+)\subset \mathcal{A}(\mathcal{D})$ to express external observations; fixed projection corresponds to irreversible CPTP dimensionality reduction maps, ``information loss'' is merely non-decodability under that projection. Island formula through saddle-point switching (QES) is equivalent to analytic continuation within $[T]$, expanding the reconstructable domain $\Rightarrow$ Page curve recovery. Appendix C provides explicit isomorphism in JT scenarios.
+
+\subsection{Proposition 3.3 (Redshift = Time Unit Rescaling)}
+
+$(1+z)=(k\!\cdot\!u)_e/(k\!\cdot\!u)_o$ is a covariant expression of ``rhythm ratio,'' equivalent to FRW $a_0/a_e$. The increment is manifested in the unified rate directly relating this ratio to observational inversion of $\phi'(\omega)$ and $\rho_{\mathrm{rel}}$.
+
+\subsection{Theorem 3.4 (Time Holography and Time Quantum Error Correction)}
+
+JLMS and entanglement wedge nesting imply: $[T(p)]=\Pi(s,\gamma_p)$; the projection family of $[T]$ satisfies Knill--Laflamme conditions on code subspace $\mathcal{C}$, thus ``time-selection errors'' can be corrected by equivalence class redundancy. Appendix D provides modular Berry curvature and measurable phases of path dependence.
+
+\subsection{Theorem 3.5 ($\Lambda$ as Gauge--Integration Constant and Four-Form Discretization)}
+
+Trace-free/Unimodular and four-form mechanisms make $\Lambda$ an integration constant; in the thermal time gauge its semantics is a global calibration of $[T]$, compatible with near-discrete spectrum induced by axion--four-form quantization. Appendix E provides action and variation.
+
+---
+
+\section{Proofs}
+
+\subsection{Arrow of Time (Theorem 3.1)}
+
+Relative entropy monotonicity $\Rightarrow$ ANEC/QNEC; combined with quantum Raychaudhuri gives quantum expansion non-increase in null direction, $S_{\mathrm{gen}}$ monotonicity. Strict monotonicity of $t=f(\lambda)$ gives monotonicity for any representative time. Failure domains include strong curvature and non-Hadamard states. Details in Appendix B.
+
+\subsection{Coordinate-Independent Formulation of Black Hole Information (Theorem 3.2)}
+
+Characterize ``non-decodability'' using relative entropy and Petz recovery; extremal switching of island formula is equivalent to changing representative of $[T]$ and expanding entanglement wedge. In JT model, demonstrate this equivalence using replica geometry.
+
+\subsection{Unified Rate (Equation 2.2)}
+
+Birman--Kreĭn: $\det S=e^{-2\pi i\xi}\Rightarrow \partial_\omega\phi=-2\pi\xi'$; multi-channel $\operatorname{Tr}Q=\partial_\omega\phi$. Define $\rho_{\mathrm{rel}}=-\xi'$ to obtain the stated identity. Numerical inversion controls noise amplification using phase unwrapping and Kramers--Kronig regularization.
+
+---
+
+\section{Model Application: Two Minimal Models}
+
+\subsection{1+1 Dimensional CFT--Rindler}
+
+Single-channel scattering $S=e^{i\phi}\Rightarrow Q=\partial_\omega\phi$; decompose relative entropy into spectral window integrals to verify $\rho_{\mathrm{rel}}=(2\pi)^{-1}\partial_\omega\phi$. KMS scale consistent with modular flow rescaling.
+
+\subsection{JT Gravity + Free Field}
+
+Page transition corresponds to QES saddle-point switching; analytic continuation in $[T]$ converts external projection ``non-decodability'' to expanded reconstruction domain ``decodability.'' Appendix C provides equation family and schematic curves.
+
+---
+
+\section{Engineering Proposals (Magnitudes, Systematics, and Null-Tests)}
+
+\subsection{Deep Space Multi-Frequency Links: Time Delay in Curved Spacetime--Plasma Eikonal}
+
+\textbf{Geometrical Optics}: Static weak field $\Phi/c^2\ll 1$, isotropic plasma:
+$$
+n(\omega,x)=\sqrt{1-\omega_p^2(x)/\omega^2},\qquad
+\frac{{\mathrm{d}}t}{{\mathrm{d}}\ell}\simeq \frac{1}{c}\Big(1+\frac{2\Phi}{c^2}\Big)\Big(1+\frac{\omega_p^2}{2\omega^2}\Big).
+$$
+
+Path variation gives
+$$
+\Delta t(\omega)=\Delta t_{\mathrm{Shapiro}}+\int\!\frac{\omega_p^2}{2\omega^2}\frac{{\mathrm{d}}\ell}{c}
++\int\!\frac{\Phi}{c^2}\,\frac{\omega_p^2}{\omega^2}K(x)\frac{{\mathrm{d}}\ell}{c}+O(\omega^{-4}).
+$$
+
+\textbf{Conclusion}: Dominant coupling term is $\omega^{-2}$ rather than $\omega^{-1}$; $\omega^{-1}$ only possible in anisotropic media or strong non-adiabatic fluids.
+
+\textbf{Magnitudes and Systematics}: Ka/X (8--32 GHz) at impact angles $5^\circ\!-\!15^\circ$ can achieve picosecond-level differences; main systematic errors are ionospheric/heliospheric modeling and hardware nonlinearity.
+
+\textbf{Null-Tests}: Geometric commutation (impact angle flip) should preserve $\omega^{-2}$ scaling while changing geometric weight sign; day-night difference for same geometry cancels ionospheric principal term.
+
+\textbf{Facilities}: DSN X/Ka and DSAC stability links.
+
+\subsection{FRB ``Redshift--Decoherence Slope'' Hierarchical Bayesian}
+
+\textbf{Model}: $W\sim W_0(1+z)^\alpha(\nu/\nu_0)^{-\beta}$, host/IGM/instrument components in hierarchical priors; selection function based on channelization threshold and DM--$z$ inversion uncertainty.
+
+\textbf{Power}: Catalog-1 and subsequent localized samples at $N\sim10^2\!-\!10^3$ can distinguish the null hypothesis $\alpha=0$ at $5\sigma$; null-test with randomized $z$ should wash out slope.
+
+\subsection{Cryogenic Multi-Mode Cavity: Time Delay Bell Witness and Chiral Splitting}
+
+\textbf{Bell--Time Delay Witness}: $\mathcal{W}=|{\mathrm{Tr}}Q_A\otimes{\mathrm{Tr}}Q_B-{\mathrm{Tr}}Q_{AB}|$, classical $\le0$, quantum coupling $\mathcal{W}>0$.
+
+\textbf{Chiral Splitting}: Controlled micro-distortion and gravity--electromagnetic weak coupling cause $\Delta t_{\mathrm{chiral}}\propto \omega$ linear splitting.
+
+\textbf{Noise Budget}: Contributions from phase white noise, TLS $1/f$, thermally induced frequency shifts, mechanical microphonics, counting dead time, etc., and target sub-picosecond sensitivity are provided in Appendix G with formulas/tables.
+
+---
+
+\section{Time-Field Theory: Gauging, Stability, and Low-Energy Constraints}
+
+Introduce ``clock 1-form''
+$$
+u_\mu=\frac{\partial_\mu T}{\sqrt{-\,\partial_\alpha T\,\partial^\alpha T}},
+$$
+construct minimal action
+$$
+\mathcal{L}_T=\frac{M_T^2}{2}\Big[c_1\nabla_\mu u_\nu\nabla^\mu u^\nu+c_2(\nabla_\mu u^\mu)^2+c_3 a_\mu a^\mu\Big]+V(T)+\mathcal{L}_{\mathrm{matter}}(\psi;u_\mu),
+$$
+using St\"{u}ckelberg to handle reparametrization redundancy $T\!\mapsto\!f(T)$. Ghost-free and causally stable domain, PPN and gravitational Cherenkov constraints give feasible subspace for $(c_i)$; key distinction from \ae ther/khronon is: the ``preferred direction'' here is merely a gauge representative of equivalence class, observability concentrated on rate invariants $\partial_\omega\phi$, $\operatorname{Tr}Q$ rather than anisotropy.
+
+---
+
+\section{Discussion (Consistency, Boundaries, and Connections)}
+
+\begin{itemize}
+\item \textbf{Consistency}: Main theorems are strictly restricted to Hadamard/weak curvature and quantum light sheet/event horizon geometry; outside the domain, only conjecture strength is maintained.
+\item \textbf{Black Hole Information}: Algebraic--island formula isomorphism avoids coordinate dependence; JT scenarios provide checkable instances.
+\item \textbf{$\Lambda$}: As a gauge integration constant, not equal to ``vacuum energy density''; compatible with four-form discretization/axion mechanisms.
+\item \textbf{Verifiability}: Deep space links and FRB pipelines provide reproducible implementation elements and null-tests; cryogenic cavity experiments provide indoor repeatable verification platforms.
+\end{itemize}
+
+---
+
+\section{Conclusion}
+
+We establish the rigorous equivalence structure of $[T]$ and the unified rate, provide common semantics for arrow of time, black hole information, redshift, and $\Lambda$, and ground the unification of ``time--causality--information'' at the data level through implementable observational/experimental pathways. This framework closes under the triple criteria of ``provable--quantifiable--verifiable.''
+
+---
+
+\section*{Acknowledgements, Code Availability}
+
+Thanks to public literature and materials on QNEC/QFC, QES/island formula, modular theory, spectral shift--scattering theory, and curved spacetime plasma geometrical optics. Appendices provide inversion from phase data to $\rho_{\mathrm{rel}}$ and minimalist implementation protocol for FRB hierarchical Bayesian.
+
+---
+
+\section*{References}
+
+\begin{enumerate}
+\item[{[1]}] Bousso, Fisher, Leichenauer, Wall. ``Quantum focussing and inequalities,'' \textit{Phys. Rev. D} 93 (2016).
+\item[{[2]}] Faulkner et al. ``Modular Hamiltonians for deformed half-spaces and the ANEC,'' \textit{JHEP} (2016).
+\item[{[3]}] Engelhardt \& Wall. ``Quantum extremal surfaces,'' \textit{JHEP} 01 (2015) 073.
+\item[{[4]}] Almheiri et al. ``Replica wormholes and the entropy of Hawking radiation,'' \textit{JHEP} 05 (2020) 013.
+\item[{[5]}] Connes \& Rovelli. ``Von Neumann algebra automorphisms and the thermal time hypothesis,'' (1994).
+\item[{[6]}] Smith. ``Lifetime matrix in collision theory,'' \textit{Phys. Rev.} 118 (1960). (Wigner--Smith)
+\item[{[7]}] Birman \& Kreĭn. ``On wave and scattering operators,'' \textit{Sov. Math. Dokl.} (1962).
+\item[{[8]}] Perlick. ``Ray optics in a plasma on a GR spacetime,'' and related works.
+\item[{[9]}] Bisnovatyi-Kogan \& Tsupko. ``Gravitational lensing in plasma,'' reviews (2015--2022).
+\item[{[10]}] Rogers. ``Frequency-dependent lensing in plasma,'' \textit{MNRAS} 451 (2015).
+\item[{[11]}] JLMS and successors: boundary--bulk relative entropy equivalence.
+\item[{[12]}] Standard cosmology texts for redshift--projection identity.
+\item[{[13]}] DSN/DSAC capability briefs.
+\item[{[14]}] CHIME/FRB Collaboration. ``The first catalog,'' \textit{ApJS} 257 (2021).
+\end{enumerate}
+
+---
+
+\appendix
+
+\section{Proofs of Equivalence Relation and Unified Rate}
+
+\subsection{Three Properties and Outer Conjugacy (A.1)}
+
+Group action of $\mathcal{G}={\mathrm{Out}}(\mathcal{A})\rtimes{\mathrm{Diff}_+}(\mathbb{R})$ and order preservation give reflexivity--symmetry--transitivity; preservation under state/region homotopy classes guaranteed by outer conjugacy invariance.
+
+\subsection{Cut Family Covariance (A.2)}
+
+Within QNEC sufficient-necessary domain, cut refinement corresponds to subalgebra restriction, $S_{\mathrm{gen}}$ order property preserved.
+
+\subsection{Birman--Kreĭn $\Rightarrow$ Unified Rate (A.3)}
+
+$\det S=e^{-2\pi i\xi}\Rightarrow \partial_\omega\phi=-2\pi\xi'$; multi-channel $\operatorname{Tr}Q=\partial_\omega\phi$, yielding $\rho_{\mathrm{rel}}=-(\xi')=(2\pi)^{-1}\operatorname{Tr}Q$. Phase unwrapping and Kramers--Kronig provide robust inversion.
+
+\section{Relative Entropy $\Rightarrow$ QNEC $\Rightarrow$ Local GSL Form}
+
+\textbf{B.1} Data processing inequality and subalgebra restriction;
+
+\textbf{B.2} Second-order formula for modular Hamiltonian under half-space deformation derives ANEC/QNEC;
+
+\textbf{B.3} Quantum Raychaudhuri combined gives $\Theta_{\mathrm{q}}\le 0$, hence ${\mathrm{d}}S_{\mathrm{gen}}/{\mathrm{d}}\lambda\ge 0$.
+
+\section{Algebraic Proposition of Black Hole Information and JT Example}
+
+\textbf{C.1} Fixed projection corresponds to irreversible CPTP, Petz recovery quantifies ``non-decodability'';
+
+\textbf{C.2} Island formula saddle-point switching equivalent to changing representative in $[T]$ and expanding entanglement wedge;
+
+\textbf{C.3} JT scenario: replica geometry saddle-point switching example diagram for spectral window projection of $\phi'(\omega)$.
+
+\section{Modular Berry and Time Quantum Error Correction}
+
+\textbf{D.1} $[T(p)]=\Pi(s,\gamma_p)=\mathrm{P}\exp\!\int_{\gamma_p}\!\mathcal{A}_{\mathrm{mod}}$;
+
+\textbf{D.2} Knill--Laflamme condition satisfaction and threshold under ``time-selection error'' noise model.
+
+\section{$\Lambda$ as Gauge--Integration Constant and Four-Form}
+
+\textbf{E.1} Action and variation;
+
+\textbf{E.2} Near-discrete spectrum under quantization/axion coupling;
+
+\textbf{E.3} Semantic correspondence with equivalence class calibration zero point.
+
+\section{FRB Hierarchical Bayesian Pipeline (Reproducible Implementation Skeleton)}
+
+Minimalist flow for likelihood, priors, selection function, posterior-predictive, and null-tests.
+
+\section{Cryogenic Cavity Experiment Noise Budget}
+
+Contribution formulas, representative parameters, and configuration table for achieving sub-picosecond for phase white noise, TLS $1/f$, thermally induced frequency shifts, mechanical microphonics, readout dead time.
+
+---
+
+\section*{Symbol Table}
+
+$[T]$; $\sigma_s^\omega$; $\phi(\omega)$; $Q(\omega)$; $\rho_{\mathrm{rel}}$; $\Theta_{\mathrm{q}}$; $\lambda$; $\mathcal{C}$.
+
+\end{document}
+

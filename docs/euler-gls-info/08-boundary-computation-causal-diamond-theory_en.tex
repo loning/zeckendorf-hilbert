@@ -1,0 +1,729 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{braket}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Operators
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Vol}{Vol}
+
+% Title information
+\title{Boundary Computation and Causal Diamond Theory\\
+in Computational Universe:\\
+Finite Blocks, Boundary Operators,\\
+and Discrete GHY Structure Under Unified Time Scale}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+In previous works on computational universe $U_{\mathrm{comp}} = (X,\mathsf{T},\mathsf{C},\mathsf{I})$ series, we have given discrete complexity geometry (complexity distance, volume growth, and discrete Ricci curvature on configuration graph), discrete information geometry (task-aware relative entropy and Fisher structure), control manifold $(\mathcal{M},G)$ induced by unified time scale, joint variational principle for time--information--complexity, proving that physical universe category and computational universe category are categorically equivalent on reversible QCA subclass. These structures characterize geometric and variational structure of complexity and information at scale of ``global universe'', but have not systematically discussed computation on \textbf{locally finite blocks}: under given time/complexity budget, how evolution inside finite ``computational region'' is completely encoded by its boundary, thereby realizing true ``boundary computation''.
+
+This paper introduces concepts of \textbf{discrete causal structure} and \textbf{causal diamond} within computational universe framework, formalizing finite time--complexity reachable region as finite subgraph, decomposing its boundary into ``incoming boundary'' and ``outgoing boundary''. Under reversible update assumption, we prove: on any causal diamond, there exists \textbf{boundary computation operator} defined by path sum/operator elimination
+
+$$
+\mathsf{K}_\Diamond : \mathcal{B}^-_\Diamond \longrightarrow \mathcal{B}^+_\Diamond,
+$$
+
+such that all reversible evolution on internal volume is compressively encoded on boundary; furthermore, in continuous limit of unified time scale and control manifold $(\mathcal{M},G)$, construction of $\mathsf{K}_\Diamond$ can be viewed as computational universe realization of discrete version of ``GHY boundary term + bulk minimization'' principle.
+
+Specifically, this paper first introduces discrete time coordinate and computational causal partial order on event layer $E = X\times\mathbb{N}$, defining complexity light cone and reachable region under finite complexity budget. Then, for given input event $e_{\mathrm{in}}$ and output event $e_{\mathrm{out}}$, we define minimal closed region satisfying budget constraint as \textbf{causal diamond} $\Diamond(e_{\mathrm{in}},e_{\mathrm{out}};T,C)$, performing incoming--outgoing decomposition on its boundary $\partial\Diamond$.
+
+In reversible computational universe, we construct bulk update operator $U_\Diamond$ and boundary Hilbert spaces $\mathcal{B}^-_\Diamond,\mathcal{B}^+_\Diamond$, proving existence of unique (under gauge equivalence) boundary operator $\mathsf{K}_\Diamond$ such that
+
+$$
+\mathsf{K}_\Diamond
+=
+\Pi^+_\Diamond\,U_\Diamond\,\iota^-_\Diamond,
+$$
+
+where $\iota^-_\Diamond$ is embedding mapping from incoming boundary into bulk state, $\Pi^+_\Diamond$ is projection onto outgoing boundary. We further give purely discrete construction based on path sum and graph Schur elimination, proving this construction converges in control manifold refinement limit to boundary time operator induced by unified time scale, thereby unifying scattering time scale and ``boundary computation'' in same geometric framework.
+
+Finally, on basis of time--information--complexity joint variational principle, we introduce \textbf{discrete action} for single causal diamond, proving that under fixed boundary data and unified time scale conditions, evolution on internal bulk is ``action minimum solution under fixed boundary'', whose discrete Euler--Lagrange conditions equivalent to compatibility conditions between bulk update and boundary operator. This result provides computational universe correspondence of discrete version of ``GHY boundary term + bulk minimization'' structure, laying foundation for subsequent higher-level structures such as causal diamond splicing, multi-observer network, and Null--Modular double cover.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Computational universe; Causal diamond; Boundary computation; Discrete causal structure; Unified time scale; GHY boundary term; Path integral; Reversible computation
+
+\section{Introduction}
+
+In unified scheme of computational universe, entire universe is characterized as reversible discrete dynamical system on countable configuration set $X$, update relation $\mathsf{T} \subset X\times X$ together with single-step cost $\mathsf{C}$ defining complexity geometry with unified time scale; simultaneously, task-aware information manifold $(\mathcal{S}_Q,g_Q)$ characterizes through observation operator families and relative entropy structure ``visible information structure universe carries under some task''. Under this framework, we have established from global perspective:
+
+\begin{enumerate}
+\item Discrete geometry and complexity dimension on complexity graph;
+\item Fisher structure and task information distance on information geometry;
+\item Control manifold $(\mathcal{M},G)$ induced by unified time scale and continuous limit of complexity metric;
+\item Time--information--complexity variational principle on joint manifold $\mathcal{E}_Q = \mathcal{M}\times\mathcal{S}_Q$;
+\item Categorical equivalence between physical universe category and computational universe category;
+\item Basic structure of single observer's attention, knowledge graph, and cognitive dynamics.
+\end{enumerate}
+
+However, these structures still tend toward \textbf{global or semi-global perspective}: geometric descriptions of control manifold $\mathcal{M}$ and information manifold $\mathcal{S}_Q$ are structures ``over all possible control and information states'', while actual computation and observation often occur in \textbf{local blocks} with finite time and finite complexity budget.
+
+In continuous physical theory, natural object of this ``locally finite block'' is \textbf{small causal diamond}: in spacetime $(M,g)$ given two events $p \ll q$, define
+
+$$
+\Diamond(p,q)
+=
+J^+(p)\cap J^-(q),
+$$
+
+whose boundary consists of two null sheets and spatial sections, area, volume, boundary torsion, and generalized entropy on small causal diamond play important roles under quantum energy conditions and QNEC/QFC framework. In works on unified time scale--boundary time geometry, small causal diamond is used to define local energy conditions and boundary Hamiltonian.
+
+In computational universe, we hope to construct similar object in \textbf{completely discrete} framework: under premise of given input configuration and output configuration, finite time/complexity budget, define minimal ``finite computational block'' whose boundary completely determines internal evolution, and under unified time scale, natural relationship exists between its boundary operator and time scale. This is \textbf{causal diamond} and \textbf{boundary computation operator} theory we will construct in this paper.
+
+From computational perspective, causal diamond is \textbf{finite subcircuit/finite sub-QCA block}, whose interior can be very large and complex, but from external observer's perspective, only manifests as ``operator from incoming boundary to outgoing boundary''---this is core idea of boundary computation.
+
+This paper will give precise discretization, geometrization, and variationalization expression of this idea.
+
+\section{Discrete Causal Structure of Computational Universe}
+
+This section introduces time layer and causal partial order on computational universe $U_{\mathrm{comp}} = (X,\mathsf{T},\mathsf{C},\mathsf{I})$, thereby defining complexity light cone and finite-budget reachable region.
+
+\subsection{Event Layer and Time Coordinate}
+
+For convenience of discussion, explicitly introduce discrete time step $k\in\mathbb{N}$, defining event layer
+
+$$
+E = X\times\mathbb{N}.
+$$
+
+An event written as
+
+$$
+e = (x,k) \in E,
+$$
+
+representing ``at step $k$ universe is in configuration $x$''.
+
+In case without external force control, universe evolution given by $\mathsf{T}$: if $(x,y)\in\mathsf{T}$, then there exists event update
+
+$$
+(x,k) \to (y,k+1).
+$$
+
+Therefore one-step update relation on event layer can be defined as
+
+$$
+\mathsf{T}_E
+=
+\{ ((x,k),(y,k+1)) : (x,y)\in\mathsf{T} \}.
+$$
+
+More generally, if control/action allowed to participate in update, update relation can be extended to action-labeled $\mathsf{T}_{E,\mathrm{act}}$, this paper only concerns basic case without explicit action labels, actions can be absorbed into configuration.
+
+\subsection{Causal Partial Order and Complexity Light Cone}
+
+\begin{definition}[Causal Reachability and Partial Order]
+On event layer $E$ define relation
+
+$$
+e \preceq e'
+\quad\Longleftrightarrow\quad
+\exists
+\ \text{finite path}\
+e = e_0 \to e_1 \to \dots \to e_n = e',
+$$
+
+where $(e_k,e_{k+1})\in\mathsf{T}_E$.
+
+Clearly $\preceq$ is partial order relation (on reachable subset), representing ``$e'$ can be obtained from $e$ by finite-step updates''. If $e \preceq e'$ and $e\neq e'$, write $e \prec e'$.
+\end{definition}
+
+Under unified time scale, single-step cost $\mathsf{C}$ interpreted as physical time cost. We lift it to event layer: for
+
+$$
+e = (x,k),
+\quad
+e' = (y,k+1),
+$$
+
+if $(x,y)\in\mathsf{T}$, define
+
+$$
+\mathsf{C}_E(e,e') = \mathsf{C}(x,y),
+$$
+
+otherwise $\mathsf{C}_E(e,e') = \infty$. For event path $\Gamma = (e_0,\dots,e_n)$ define path cost
+
+$$
+\mathsf{C}_E(\Gamma)
+=
+\sum_{i=0}^{n-1}\mathsf{C}_E(e_i,e_{i+1}).
+$$
+
+\begin{definition}[Complexity Distance and Light Cone]
+For events $e,e'\in E$, define complexity distance
+
+$$
+d_E(e,e')
+=
+\inf_{\Gamma:e\to e'} \mathsf{C}_E(\Gamma).
+$$
+
+For given event $e_0$ and budget $T>0$, define complexity future light cone
+
+$$
+J^+_T(e_0)
+=
+\{ e\in E : e_0 \preceq e,\ d_E(e_0,e)\le T \},
+$$
+
+complexity past light cone
+
+$$
+J^-_T(e_0)
+=
+\{ e\in E : e \preceq e_0,\ d_E(e,e_0)\le T \}.
+$$
+
+These sets characterize event regions that can affect/be affected from $e_0$ under complexity budget $T$.
+\end{definition}
+
+\section{Causal Diamond and Its Boundary}
+
+This section defines causal diamond in computational universe and incoming--outgoing decomposition of boundary.
+
+\subsection{Causal Diamond}
+
+\begin{definition}[Causal Diamond]
+Given two events
+
+$$
+e_{\mathrm{in}} = (x_{\mathrm{in}},k_{\mathrm{in}}),
+\quad
+e_{\mathrm{out}} = (x_{\mathrm{out}},k_{\mathrm{out}}),
+\quad
+k_{\mathrm{out}}>k_{\mathrm{in}},
+$$
+
+and complexity budget $T>0$. If there exists at least one path $\Gamma:e_{\mathrm{in}}\to e_{\mathrm{out}}$ satisfying $\mathsf{C}_E(\Gamma)\le T$, then define causal diamond spanned by $e_{\mathrm{in}}$ and $e_{\mathrm{out}}$ under budget $T$ as
+
+$$
+\Diamond(e_{\mathrm{in}},e_{\mathrm{out}};T)
+=
+J^+_T(e_{\mathrm{in}})
+\cap
+J^-_T(e_{\mathrm{out}}).
+$$
+
+When no confusion, simply write $\Diamond$.
+\end{definition}
+
+Intuitively, $\Diamond$ is collection of all intermediate events that can propagate from $e_{\mathrm{in}}$ to $e_{\mathrm{out}}$ under complexity budget $T$, being ``finite computational block'' in computational universe.
+
+\subsection{Volume and Boundary of Diamond}
+
+Define diamond volume as
+
+$$
+\Vol(\Diamond) = | \Diamond |,
+$$
+
+i.e., number of internal event nodes (or graph volume considering edges).
+
+In graph theory sense, diamond as finite subgraph $G_\Diamond = (V_\Diamond,E_\Diamond)$, where
+
+$$
+V_\Diamond = \Diamond,
+\quad
+E_\Diamond = \{ (e,e')\in\mathsf{T}_E : e,e'\in\Diamond \}.
+$$
+
+For $V_\Diamond$, naturally define boundary
+
+$$
+\partial\Diamond
+=
+\{ e\in V_\Diamond : \exists e'\notin V_\Diamond,\ (e,e')\in\mathsf{T}_E \ \text{or}\ (e',e)\in\mathsf{T}_E \}.
+$$
+
+Furthermore, we decompose boundary by time direction.
+
+\begin{definition}[Incoming/Outgoing Boundary]
+Denote
+
+$$
+\partial^- \Diamond
+=
+\{ e\in\partial\Diamond : \exists e'\notin V_\Diamond,\ (e,e')\in\mathsf{T}_E \},
+$$
+
+$$
+\partial^+ \Diamond
+=
+\{ e\in\partial\Diamond : \exists e'\notin V_\Diamond,\ (e',e)\in\mathsf{T}_E \}.
+$$
+
+That is, boundary events that can flow out from diamond interior to exterior constitute outgoing boundary, boundary events that can flow in from exterior to diamond interior constitute incoming boundary. In many natural cases $e_{\mathrm{in}}\in\partial^-\Diamond$, $e_{\mathrm{out}}\in\partial^+\Diamond$.
+\end{definition}
+
+\section{Boundary Computation Operator in Reversible Computation}
+
+This section constructs bulk update operator and boundary operator in reversible computational universe, proving ``internal bulk can be compressively encoded on boundary''.
+
+\subsection{Bulk Update Operator}
+
+Assume computational universe corresponds to reversible QCA realization, configuration space $X$ corresponds to Hilbert space basis vector set, update relation given by global unitary operator $U:\mathcal{H}\to\mathcal{H}$. Each event degree of freedom in event layer $E$ can correspond to Hilbert space on some time slice.
+
+On finite diamond $\Diamond$, we can decompose Hilbert space as
+
+$$
+\mathcal{H}
+=
+\mathcal{H}_\Diamond \otimes \mathcal{H}_{\Diamond^c},
+$$
+
+where $\mathcal{H}_\Diamond$ spanned by local degrees of freedom corresponding to $V_\Diamond$, $\mathcal{H}_{\Diamond^c}$ is its complement space. Due to update locality, evolution over finite time interval can be viewed as some constrained operator $U_\Diamond$ acting on $\mathcal{H}_\Diamond$, satisfying
+
+$$
+U
+\simeq
+U_{\Diamond}\otimes U_{\Diamond^c}
+\quad
+\text{on}\ \Diamond\ \text{related degrees of freedom}.
+$$
+
+We only need to view $U_\Diamond$ as unitary operator acting on $\mathcal{H}_\Diamond$, representing total evolution over some time period inside causal diamond.
+
+\subsection{Boundary Hilbert Space and Embedding/Projection}
+
+Further decompose diamond internal degrees of freedom into internal bulk degrees of freedom and boundary degrees of freedom
+
+$$
+\mathcal{H}_\Diamond
+=
+\mathcal{H}_{\mathrm{bulk},\Diamond}
+\otimes
+\mathcal{H}^-_\Diamond
+\otimes
+\mathcal{H}^+_\Diamond,
+$$
+
+where $\mathcal{H}^-_\Diamond$ spanned by local degrees of freedom corresponding to incoming boundary $\partial^-\Diamond$, $\mathcal{H}^+_\Diamond$ spanned by degrees of freedom corresponding to outgoing boundary $\partial^+\Diamond$, $\mathcal{H}_{\mathrm{bulk},\Diamond}$ is remaining internal bulk degrees of freedom.
+
+Define boundary Hilbert spaces
+
+$$
+\mathcal{B}^-_\Diamond = \mathcal{H}^-_\Diamond,
+\quad
+\mathcal{B}^+_\Diamond = \mathcal{H}^+_\Diamond.
+$$
+
+Natural embedding and projection exist between interior--boundary:
+
+\begin{itemize}
+\item Incoming embedding operator
+
+$$
+\iota^-_\Diamond :
+\mathcal{B}^-_\Diamond
+\to
+\mathcal{H}_{\mathrm{bulk},\Diamond}\otimes \mathcal{B}^-_\Diamond\otimes\mathcal{B}^+_\Diamond,
+$$
+
+typically taken as tensor embedding on given reference bulk state $\ket{0_{\mathrm{bulk}}}$ and outgoing boundary reference state $\ket{0_{+}}$:
+
+$$
+\iota^-_\Diamond \ket{\psi^-}
+=
+\ket{0_{\mathrm{bulk}}}\otimes\ket{\psi^-}\otimes\ket{0_{+}}.
+$$
+
+\item Outgoing projection operator
+
+$$
+\Pi^+_\Diamond :
+\mathcal{H}_{\mathrm{bulk},\Diamond}\otimes \mathcal{B}^-_\Diamond\otimes\mathcal{B}^+_\Diamond
+\to
+\mathcal{B}^+_\Diamond,
+$$
+
+e.g., taking partial inner product with some observation state on bulk and incoming boundary.
+\end{itemize}
+
+In more general construction, can also consider partial trace or measurement operations on bulk and incoming boundary, here adopt simplest ``reference state + partial inner product'' form to highlight structure.
+
+\subsection{Existence and Uniqueness of Boundary Computation Operator}
+
+\begin{definition}[Boundary Computation Operator]
+Under above setup, define boundary computation operator
+
+$$
+\mathsf{K}_\Diamond
+=
+\Pi^+_\Diamond\,U_\Diamond\,\iota^-_\Diamond :
+\mathcal{B}^-_\Diamond \to \mathcal{B}^+_\Diamond.
+$$
+
+Intuitively, $\mathsf{K}_\Diamond$ gives effective operator from incoming boundary to outgoing boundary under conditions of all evolution in bulk interior and fixed reference bulk/boundary states, compressively encoding all computation inside diamond.
+\end{definition}
+
+\begin{theorem}[Gauge Uniqueness of Boundary Operator]
+\label{thm:boundary-unique}
+Under conditions of given incoming embedding and outgoing projection, boundary computation operator $\mathsf{K}_\Diamond$ is unique under local unitary transformations of internal bulk degrees of freedom, i.e., if
+
+$$
+U'_\Diamond
+=
+(V_{\mathrm{bulk}}\otimes\mathrm{id})\,U_\Diamond\,(W_{\mathrm{bulk}}\otimes\mathrm{id}),
+$$
+
+where $V_{\mathrm{bulk}},W_{\mathrm{bulk}}$ only act on $\mathcal{H}_{\mathrm{bulk},\Diamond}$, then corresponding boundary operator $\mathsf{K}'_\Diamond$ same as $\mathsf{K}_\Diamond$ on $\mathcal{B}^\pm_\Diamond$.
+\end{theorem}
+
+\begin{proof}
+See Appendix A.1. Key point of proof is that local unitary transformations cancel on reference bulk state and bulk--boundary projection, bulk degrees of freedom ``traced out'', leaving boundary operator depending only on equivalence class.
+\end{proof}
+
+Therefore, after fixing reference bulk state and boundary measurement method, evolution inside diamond compresses on boundary into gauge-unique operator $\mathsf{K}_\Diamond$, this is rigorous expression of ``boundary computation'' in computational universe.
+
+\subsection{Discrete Construction via Path Sum and Schur Elimination}
+
+For classical reversible computational universe (e.g., reversible CA or reversible Turing machine), boundary operator can be expressed directly using path sum and graph Schur elimination.
+
+Let transition matrix on diamond subgraph $G_\Diamond = (V_\Diamond,E_\Diamond)$ be $T_\Diamond$, with bulk/boundary block form
+
+$$
+T_\Diamond
+=
+\begin{pmatrix}
+T_{\mathrm{bb}} & T_{\mathrm{b}+} \\
+T_{-\mathrm{b}} & T_{--}
+\end{pmatrix},
+$$
+
+where $T_{\mathrm{bb}}$ acts on bulk degrees of freedom, $T_{-\mathrm{b}}$ connects incoming boundary to bulk, $T_{\mathrm{b}+}$ connects bulk to outgoing boundary, $T_{--}$ is incoming boundary internal update (if any). Then under appropriate reversibility conditions, can obtain effective boundary transition matrix through Schur complement operation
+
+$$
+K_\Diamond
+=
+T_{--} + T_{-\mathrm{b}}\big( I - T_{\mathrm{bb}}\big)^{-1} T_{\mathrm{b}+},
+$$
+
+whose discrete path sum interpretation is: sum of all bulk internal paths from incoming boundary to outgoing boundary. This is consistent with path integral expression form of $\mathsf{K}_\Diamond$ in quantum case.
+
+\section{Boundary Computation and Discrete GHY-type Action}
+
+This section, on basis of time--information--complexity joint action, introduces discrete action for single causal diamond, giving relationship with boundary operator, thereby constructing GHY-type boundary--bulk structure in computational universe.
+
+\subsection{Diamond Action and Bulk--Boundary Decomposition}
+
+For given diamond $\Diamond$, consider control--information joint variables $(\theta_e,\phi_e)$ and corresponding discrete time step $h$ on event layer. Under discretization of previous continuous action
+
+$$
+\mathcal{A}_Q[\theta(\cdot),\phi(\cdot)]
+=
+\int
+\Big(
+\tfrac12 \alpha^2 G_{ab}\dot{\theta}^a\dot{\theta}^b
++
+\tfrac12 \beta^2 g_{ij}\dot{\phi}^i\dot{\phi}^j
+-
+\gamma\,U_Q(\phi)
+\Big)\,\mathrm{d}t,
+$$
+
+total action inside diamond can be written as
+
+$$
+\mathcal{A}_Q(\Diamond)
+=
+\sum_{e\in V_\Diamond}
+\Big(
+\tfrac12 \alpha^2 K_{\mathrm{comp}}(e)
++
+\tfrac12 \beta^2 K_{\mathrm{info}}(e)
+-
+\gamma\,U_Q(\phi_e)
+\Big),
+$$
+
+where $K_{\mathrm{comp}}(e),K_{\mathrm{info}}(e)$ come from corresponding velocity squared terms on local time steps.
+
+We hope to split $\mathcal{A}_Q(\Diamond)$ into ``pure bulk term + pure boundary term''. In classical GHY structure, variation of Einstein--Hilbert bulk action with boundary requires adding boundary extrinsic curvature term to have good variational property; in computational universe, we will prove: under condition of fixed boundary operator $\mathsf{K}_\Diamond$, minimization of internal bulk action $\mathcal{A}_{Q,\mathrm{bulk}}(\Diamond)$ equivalent to optimization problem with boundary operator constraint, whose Lagrange multiplier precisely plays role of discrete GHY-type boundary term.
+
+\subsection{Variation and Boundary Conditions}
+
+Consider variation of discrete path $(\theta_e,\phi_e)_{e\in V_\Diamond}$ inside diamond, while keeping boundary variables $(\theta_e,\phi_e)_{e\in\partial\Diamond}$ fixed. Variation of internal nodes gives discrete Euler--Lagrange equations, variation of boundary nodes produces boundary terms.
+
+Formally, variation of bulk action is
+
+$$
+\delta \mathcal{A}_{Q,\mathrm{bulk}}(\Diamond)
+=
+\sum_{e\in V_\Diamond\setminus\partial\Diamond}
+(\text{discrete Euler--Lagrange equation})\cdot \delta z_e
++
+\sum_{e\in\partial\Diamond}
+(\text{boundary term})\cdot \delta z_e.
+$$
+
+To make bulk variation well-behaved under condition of fixed boundary operator $\mathsf{K}_\Diamond$, need to add boundary term $\mathcal{A}_{Q,\partial}(\Diamond)$ to total action such that total variation contains only internal equations.
+
+\begin{proposition}[Existence of Discrete GHY-type Boundary Action]
+\label{prop:GHY-boundary}
+Under unified time scale and reversibility assumptions, there exists function $\mathcal{A}_{Q,\partial}(\Diamond)$ depending only on boundary variables and boundary operator $\mathsf{K}_\Diamond$, such that total action
+
+$$
+\mathcal{A}_{Q,\mathrm{tot}}(\Diamond)
+=
+\mathcal{A}_{Q,\mathrm{bulk}}(\Diamond)
++
+\mathcal{A}_{Q,\partial}(\Diamond)
+$$
+
+in variational problem with fixed boundary operator $\mathsf{K}_\Diamond$, its variation gives only internal Euler--Lagrange equations, not producing additional constraints on boundary degrees of freedom.
+\end{proposition}
+
+Proof in Appendix B.1. Construction idea is to view change of boundary operator as linear functional of boundary variable change, using Lagrange multiplier to fix $\mathsf{K}_\Diamond$, absorbing related multiplier terms into $\mathcal{A}_{Q,\partial}(\Diamond)$.
+
+\subsection{Minimization Principle and Boundary Operator}
+
+Therefore, under conditions of unified time scale and fixed boundary operator $\mathsf{K}_\Diamond$, computational evolution inside causal diamond is minimum solution of action $\mathcal{A}_{Q,\mathrm{tot}}(\Diamond)$. In other words:
+
+\begin{quote}
+In computational universe, under premise of ``given unified time scale and boundary operator'', internal optimal computational path is solution of discrete variational problem, whose Euler--Lagrange equations equivalent to compatibility conditions between bulk update operator and boundary operator.
+\end{quote}
+
+This provides foundation for establishing precise mathematical structure of \textbf{boundary determines bulk} in computational universe.
+
+\section{Continuous Limit: Control Manifold Diamond and Boundary Time Geometry}
+
+This section discusses how causal diamond and boundary operator in computational universe correspond to continuous small causal diamond and boundary time geometry in continuous limit of control manifold $(\mathcal{M},G)$ and unified time scale.
+
+\subsection{Diamond on Control Manifold}
+
+On continuous control manifold, consider extended manifold with time parameter
+
+$$
+\widetilde{\mathcal{M}}
+=
+\mathbb{R}_t \times \mathcal{M},
+\quad
+\widetilde{G}
+=
+-\mathrm{d}\tau^2 + G_{ab}(\theta)\mathrm{d}\theta^a\mathrm{d}\theta^b,
+$$
+
+where $\tau$ is ``intrinsic time'' coordinate under unified time scale. Given two points
+
+$$
+p = (\tau_{\mathrm{in}},\theta_{\mathrm{in}}),
+\quad
+q = (\tau_{\mathrm{out}},\theta_{\mathrm{out}}),
+\quad
+\tau_{\mathrm{out}}>\tau_{\mathrm{in}},
+$$
+
+define diamond on control manifold
+
+$$
+\Diamond_{\mathcal{M}}(p,q)
+=
+J^+(p)\cap J^-(q),
+$$
+
+where $J^\pm$ are causal future/past sets defined by $\widetilde{G}$.
+
+In discrete--continuous correspondence, causal diamond $\Diamond(e_{\mathrm{in}},e_{\mathrm{out}};T)$ in computational universe approximates finite grid approximation of $\Diamond_{\mathcal{M}}(p,q)$ in refinement limit.
+
+\subsection{Boundary Time Operator and Scattering}
+
+On diamond boundary, can define effective time translation operator or scattering matrix $S_\Diamond$, mapping wavefunction on incoming boundary to outgoing boundary. Previous works on unified time scale and scattering time scale show that trace of Wigner--Smith delay matrix $Q_\Diamond(\omega)$ on diamond gives local increment of unified time scale density on this diamond.
+
+In computational universe, continuous limit of boundary computation operator $\mathsf{K}_\Diamond$ is precisely a representation of $S_\Diamond$, while minimality of diamond action $\mathcal{A}_{Q,\mathrm{tot}}(\Diamond)$ corresponds to bulk minimization problem under fixed $S_\Diamond$ and unified time scale conditions, this is bridge between discrete GHY structure and continuous boundary time geometry.
+
+\appendix
+
+\section{Proof of Gauge Uniqueness of Boundary Operator}
+
+\subsection{Proof of Theorem~\ref{thm:boundary-unique}}
+
+\textbf{Theorem Restatement}
+
+Under conditions of given incoming embedding $\iota^-_\Diamond$ and outgoing projection $\Pi^+_\Diamond$, if
+
+$$
+U'_\Diamond
+=
+(V_{\mathrm{bulk}}\otimes\mathrm{id})\,U_\Diamond\,(W_{\mathrm{bulk}}\otimes\mathrm{id}),
+$$
+
+where $V_{\mathrm{bulk}},W_{\mathrm{bulk}}$ only act on $\mathcal{H}_{\mathrm{bulk},\Diamond}$, then
+
+$$
+\Pi^+_\Diamond U'_\Diamond \iota^-_\Diamond
+=
+\Pi^+_\Diamond U_\Diamond \iota^-_\Diamond.
+$$
+
+\begin{proof}
+By definition
+
+$$
+\mathsf{K}_\Diamond
+=
+\Pi^+_\Diamond U_\Diamond \iota^-_\Diamond,
+\quad
+\mathsf{K}'_\Diamond
+=
+\Pi^+_\Diamond U'_\Diamond \iota^-_\Diamond.
+$$
+
+Substituting expression for $U'_\Diamond$, we have
+
+$$
+\mathsf{K}'_\Diamond
+=
+\Pi^+_\Diamond
+(V_{\mathrm{bulk}}\otimes\mathrm{id})
+U_\Diamond
+(W_{\mathrm{bulk}}\otimes\mathrm{id})
+\iota^-_\Diamond.
+$$
+
+Note that $\iota^-_\Diamond$ embeds incoming boundary state into $\ket{0_{\mathrm{bulk}}}\otimes\ket{\psi^-}\otimes\ket{0_+}$, so
+
+$$
+(W_{\mathrm{bulk}}\otimes\mathrm{id})\iota^-_\Diamond\ket{\psi^-}
+=
+W_{\mathrm{bulk}}\ket{0_{\mathrm{bulk}}}\otimes\ket{\psi^-}\otimes\ket{0_+}.
+$$
+
+If reference bulk state chosen as some $W_{\mathrm{bulk}}$-invariant state (e.g., $W_{\mathrm{bulk}}$ only acts on complement space of bulk), then
+
+$$
+W_{\mathrm{bulk}}\ket{0_{\mathrm{bulk}}} = \ket{0_{\mathrm{bulk}}},
+$$
+
+thus
+
+$$
+(W_{\mathrm{bulk}}\otimes\mathrm{id})\iota^-_\Diamond
+=
+\iota^-_\Diamond.
+$$
+
+Similarly, for outgoing projection operator, if $\Pi^+_\Diamond$ only takes inner product or measurement on outgoing boundary degrees of freedom, while taking fixed reference state inner product on bulk degrees of freedom, then
+
+$$
+\Pi^+_\Diamond (V_{\mathrm{bulk}}\otimes\mathrm{id})
+=
+\Pi^+_\Diamond.
+$$
+
+Combining both gives
+
+$$
+\mathsf{K}'_\Diamond
+=
+\Pi^+_\Diamond U_\Diamond \iota^-_\Diamond
+=
+\mathsf{K}_\Diamond.
+$$
+
+Therefore boundary operator invariant under local bulk unitary transformations.
+\end{proof}
+
+\section{Construction of Discrete GHY-type Boundary Action}
+
+\subsection{Proof Idea of Proposition~\ref{prop:GHY-boundary}}
+
+Consider variation of internal variables $z_e = (\theta_e,\phi_e)$ inside diamond, while keeping boundary operator $\mathsf{K}_\Diamond$ fixed. Since $\mathsf{K}_\Diamond$ is combination of bulk update operator $U_\Diamond$ and boundary embedding/projection, its change with respect to $z_e$ can be written as some linear functional
+
+$$
+\delta \mathsf{K}_\Diamond
+=
+\sum_{e\in V_\Diamond}
+\mathcal{J}_e\,\delta z_e,
+$$
+
+where $\mathcal{J}_e$ is some matrix coefficient depending on $U_\Diamond$ and embedding/projection. Fixing $\mathsf{K}_\Diamond$ equivalent to constraint
+
+$$
+\sum_{e\in V_\Diamond}
+\mathcal{J}_e\,\delta z_e = 0.
+$$
+
+Introduce Lagrange multiplier $\Lambda$ in action variation to absorb this constraint as additional term
+
+$$
+\delta \mathcal{A}_{Q,\mathrm{bulk}}(\Diamond)
++
+\sum_{e\in V_\Diamond}
+\Tr\big(
+\Lambda^\dagger \mathcal{J}_e\,\delta z_e
+\big).
+$$
+
+Define Lagrange multiplier term as a whole as variation of boundary action
+
+$$
+\delta \mathcal{A}_{Q,\partial}(\Diamond)
+=
+\sum_{e\in V_\Diamond}
+\Tr\big(
+\Lambda^\dagger \mathcal{J}_e\,\delta z_e
+\big),
+$$
+
+then total action variation is
+
+$$
+\delta \mathcal{A}_{Q,\mathrm{tot}}(\Diamond)
+=
+\sum_{e\in V_\Diamond}
+(\text{Euler--Lagrange}_e + \text{multiplier term})\cdot \delta z_e.
+$$
+
+By choosing $\Lambda$ such that multiplier term cancels boundary contribution of bulk action on boundary nodes $e\in\partial\Diamond$, can achieve total variation under condition of fixed $\mathsf{K}_\Diamond$ gives only internal Euler--Lagrange equations without boundary degree of freedom constraints. This construction completely parallels role of continuous GHY boundary term.
+
+Detailed matrix expressions require spectral decomposition of $U_\Diamond$ and $\mathsf{K}_\Diamond$, not expanded item by item due to length limitation.
+
+\section{Naturality of Diamond and Boundary Operator Under Categorical Equivalence}
+
+Under framework of physical universe category--computational universe category equivalence, correspondence between small causal diamonds can be lifted to ``local object'' level through functors $F,G$.
+
+\begin{itemize}
+\item For small causal diamond $\Diamond(p,q) \subset M$ in physical universe, discretization functor $F$ produces causal diamond $\Diamond(e_{\mathrm{in}},e_{\mathrm{out}};T)$ in computational universe, whose boundary operator $\mathsf{K}_\Diamond$ equivalent to physical scattering operator $S_\Diamond$ under unified time scale mother scale.
+\item Conversely, for any causal diamond in computational universe, continuous limit functor $G$ produces small causal diamond in physical spacetime, whose boundary Hamiltonian corresponds to minimum value of diamond action $\mathcal{A}_{Q,\mathrm{tot}}(\Diamond)$.
+\end{itemize}
+
+This shows that \textbf{boundary computation and diamond structure are stable local invariants under categorical equivalence}: whether starting from physical universe or computational universe, understanding of natural objects of ``locally finite blocks'' and their boundary operators is consistent.
+
+\end{document}

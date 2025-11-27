@@ -1,0 +1,723 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Operators
+\DeclareMathOperator{\tr}{tr}
+
+% Title information
+\title{Time--Information--Complexity Unified Variational Principle\\
+in Computational Universes:\\
+Computational Worldlines on Control--Scattering Manifold\\
+and Task Information Manifold}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+In previous works on the ``computational universe'' series, we abstracted the universe as discrete object $U_{\mathrm{comp}} = (X,\mathsf{T},\mathsf{C},\mathsf{I})$, constructing discrete complexity geometry (complexity distance, volume growth, and discrete Ricci curvature based on configuration graph) and discrete information geometry (based on task-aware relative entropy and Fisher structure) on it, and gave continuous limit of complexity geometry under unified time scale scattering mother scale: a control manifold $\mathcal{M}$ with Riemannian metric $G$. However, these geometric structures still separately characterize ``time/resource cost'' and ``information quality/task-relevant states'', lacking a framework to unify both under a single variational principle.
+
+This paper, building on control manifold $(\mathcal{M},G)$ and task information manifold $(\mathcal{S}_Q,g_Q)$, introduces joint manifold
+
+$$
+\mathcal{E}_Q = \mathcal{M} \times \mathcal{S}_Q,
+$$
+
+constructing on it a time--information--complexity joint action $\mathcal{A}_Q$, thereby characterizing ``computational trajectories'' in computational universe as minimal curves on joint manifold (computational worldlines). Specifically, we first give action at discrete level
+
+$$
+\mathcal{A}_Q^{\mathrm{disc}}(\gamma) = \sum_k \big( \alpha\,\mathsf{C}(x_k,x_{k+1}) + \beta\,d_{\mathrm{info},Q}(x_k,x_{k+1}) - \gamma\,\Delta \mathsf{I}_Q(x_k,x_{k+1}) \big),
+$$
+
+proving that under appropriate scaling, this discrete action family $\Gamma$-converges as $h\to 0$ to continuous action
+
+$$
+\mathcal{A}_Q[\theta(\cdot),\phi(\cdot)]
+=
+\int_0^T
+\Big(
+\tfrac12 \alpha^2 G_{ab}(\theta)\dot{\theta}^a\dot{\theta}^b
++
+\tfrac12 \beta^2 g_{ij}(\phi)\dot{\phi}^i\dot{\phi}^j
+-
+\gamma\,U_Q(\phi)
+\Big)\,\mathrm{d}t,
+$$
+
+where $\theta(t)\in\mathcal{M}$ is control trajectory, $\phi(t)\in\mathcal{S}_Q$ is task information state, $U_Q$ is task-related information potential function (e.g., negative information quality).
+
+Then we derive Euler--Lagrange equations on joint manifold $\mathcal{E}_Q$, proving that minimal trajectories satisfy coupled ``geodesic equations with potential'': control part evolves along geodesics of $(\mathcal{M},G)$ but receives feedback from gradient of $U_Q$ with respect to $\phi$; information part evolves along geodesics of $(\mathcal{S}_Q,g_Q)$ but is modulated by control trajectory $\theta$. Furthermore, using standard variational methods and $\Gamma$-convergence theory, we prove: under unified time scale and local Lipschitz assumptions, discrete optimal computational paths converge in the limit to minimal worldlines on joint manifold, achieving rigorous correspondence between ``optimal algorithms in discrete computational universe'' and ``continuous time--information--complexity worldlines.''
+
+This paper concludes with discussion of minimization problems with resource constraints: maximizing task information quality under fixed time budget or complexity budget. We give equivalent Lagrange multiplier form, thereby characterizing ``optimal information acquisition strategy under given budget'' as a class of geodesic flows with effective potential. Results of this paper provide variational foundation at intrinsic dynamics level for subsequent construction of categorical equivalence between ``computational universe $\leftrightarrow$ physical universe.''
+\end{abstract}
+
+\noindent\textbf{Keywords:} Computational universe; Variational principle; Complexity geometry; Information geometry; Joint manifold; Computational worldline; Euler--Lagrange equations; $\Gamma$-convergence; Resource constraints
+
+\section{Introduction}
+
+From the ``computational universe'' perspective, the entire universe is abstracted as discrete dynamical system: one-step update relation $\mathsf{T}$ on configuration space $X$ and single-step cost $\mathsf{C}$ describe resources needed to go from one state to another; information quality function $\mathsf{I}$ evaluates at task level the ``goodness'' of a configuration relative to goals. Previous works showed that under axioms of finite information density and local update, $(X,\mathsf{T},\mathsf{C})$ can be viewed as complexity graph, constructing complexity distance, complexity ball volume, complexity dimension, and discrete Ricci curvature, thereby using discrete geometry to characterize ``problem difficulty'' and ``horizon structure''; simultaneously, through observation operator families and task-aware relative entropy, we defined information distance and information balls on configuration space, geometrizing ``task-relevant distinguishability.''
+
+Under unified time scale scattering mother scale, single-step cost of computational universe can be viewed as discrete sampling of actual physical time scale: for physically realizable computational processes, there exist control manifold $\mathcal{M}$ and scattering matrix family $S(\omega;\theta)$, such that control derivatives of group delay matrix $Q(\omega;\theta)$ induce complexity metric $G$, whereby discrete complexity distance approximates geodesic distance on $(\mathcal{M},G)$ in refinement limit. This result unifies discrete complexity geometry with physical time scale into a Riemannian geometric framework.
+
+However, to understand ``how best to compute in finite time,'' neither complexity geometry nor information geometry alone suffices:
+
+\begin{itemize}
+\item Complexity geometry concerns ``how far traveled, how much time/resource spent'';
+\item Information geometry concerns ``how far moved in task space, how much information gained'';
+\item The truly meaningful question is: under given time/complexity budget, how to reach best possible endpoint in information geometry.
+\end{itemize}
+
+This naturally leads to a joint variational problem: in joint space, for given task, find minimal/maximal trajectory considering both time cost and information benefit.
+
+This paper, building on control manifold $(\mathcal{M},G)$ and task information manifold $(\mathcal{S}_Q,g_Q)$, constructs joint manifold $\mathcal{E}_Q = \mathcal{M} \times \mathcal{S}_Q$, defining on it a time--information--complexity joint action $\mathcal{A}_Q$. Discrete computational paths become piecewise linear approximations on joint manifold, continuous computational worldlines are smooth curves on $\mathcal{E}_Q$. Using $\Gamma$-convergence and classical variational methods, we prove discrete optimal paths converge in the limit to continuous minimal worldlines, thereby geometrizing the problem of ``optimal algorithms'' as the problem of ``optimal worldlines.''
+
+\section{Unified Notation: Computational Universe, Complexity Geometry, and Information Geometry}
+
+This section briefly summarizes main objects and notation used in previous works for subsequent unified reasoning.
+
+\subsection{Computational Universe Object}
+
+A computational universe object is quadruple $U_{\mathrm{comp}} = (X,\mathsf{T},\mathsf{C},\mathsf{I})$, where:
+
+\begin{enumerate}
+\item $X$ is countable configuration set;
+\item $\mathsf{T} \subset X\times X$ is one-step update relation;
+\item $\mathsf{C}:X\times X\to[0,\infty]$ is single-step cost, with $\mathsf{C}(x,y)=\infty$ if $(x,y)\notin\mathsf{T}$, $\mathsf{C}(x,y) \in (0,\infty)$ if $(x,y)\in\mathsf{T}$, additive along paths;
+\item $\mathsf{I}:X\to\mathbb{R}$ is information quality function (may be task-dependent).
+\end{enumerate}
+
+Complexity distance defined as
+
+$$
+d_{\mathrm{comp}}(x,y) = \inf_{\gamma:x\to y} \mathsf{C}(\gamma),
+$$
+
+where path $\gamma = (x_0,\dots,x_n)$ satisfies $x_0=x,x_n=y$, and $(x_k,x_{k+1})\in\mathsf{T}$.
+
+\subsection{Complexity Geometry and Control Manifold}
+
+Under unified time scale framework, for physically realizable computational universe there exist control manifold $\mathcal{M}$ and scattering matrix family $S(\omega;\theta)$, whose group delay matrix $Q(\omega;\theta) = -\mathrm{i}\,S^\dagger\partial_\omega S$ has control derivatives inducing complexity metric
+
+$$
+G_{ab}(\theta) = \int_{\Omega} w(\omega)\,\tr\big( \partial_a Q(\omega;\theta)\,\partial_b Q(\omega;\theta) \big)\,\mathrm{d}\omega.
+$$
+
+Under appropriate positive definiteness conditions, $(\mathcal{M},G)$ is Riemannian manifold, discrete complexity distance converges to geodesic distance $d_G$ in refinement limit.
+
+\subsection{Task Information Manifold}
+
+Given task $Q$, through observation operator family $\mathcal{O} = \{O_j\}_{j\in J}$ define visible state $p_x^{(Q)} \in \Delta(Y_Q)$ of configuration $x$. Under appropriate regularity assumptions, these visible states can be embedded into some information manifold $\mathcal{S}_Q$:
+
+\begin{itemize}
+\item There exist mapping $\Phi_Q:X\to\mathcal{S}_Q$ and embedding $\Psi_Q:\mathcal{S}_Q \hookrightarrow \Delta(Y_Q)$, such that $\Psi_Q(\Phi_Q(x)) \approx p_x^{(Q)}$;
+\item Fisher information metric $g_Q$ given by second derivative of relative entropy, constructing Riemannian structure of $(\mathcal{S}_Q,g_Q)$;
+\item Information distance between configurations can be represented using Jensen--Shannon distance or Fisher geodesic distance, denoted $d_{\mathrm{info},Q}(x,y) \approx d_{\mathcal{S}_Q}(\Phi_Q(x),\Phi_Q(y))$.
+\end{itemize}
+
+We call $(\mathcal{S}_Q,g_Q,\Phi_Q)$ the information geometric data for task $Q$.
+
+\section{Joint Time--Information--Complexity Manifold}
+
+With above preparation, we construct joint manifold $\mathcal{E}_Q$ and its metric.
+
+\subsection{Definition of Joint Manifold}
+
+\begin{definition}[Joint Manifold]
+For given task $Q$, define joint manifold
+
+$$
+\mathcal{E}_Q = \mathcal{M} \times \mathcal{S}_Q.
+$$
+
+Its point $z = (\theta,\phi)$ simultaneously represents ``control state'' and ``task information state''. In continuous limit, state of an observer or algorithm in computational universe can be viewed as point in $\mathcal{E}_Q$.
+\end{definition}
+
+\subsection{Metric Structure}
+
+On $\mathcal{E}_Q$, we introduce product-type metric
+
+$$
+\mathbb{G} = \alpha^2 G \oplus \beta^2 g_Q,
+$$
+
+i.e., for tangent vector $v = (v^{\mathcal{M}},v^{\mathcal{S}_Q}) \in T_\theta\mathcal{M} \oplus T_\phi\mathcal{S}_Q$, define
+
+$$
+\mathbb{G}_z(v,v) = \alpha^2 G_\theta(v^{\mathcal{M}},v^{\mathcal{M}}) + \beta^2 g_{Q,\phi}(v^{\mathcal{S}_Q},v^{\mathcal{S}_Q}).
+$$
+
+Here $\alpha,\beta>0$ are weight parameters used to balance ``velocity'' measurement in complexity direction and information direction.
+
+Under this metric, velocity squared of joint trajectory
+
+$$
+z(t) = (\theta(t),\phi(t))
+$$
+
+is
+
+$$
+|\dot{z}(t)|_{\mathbb{G}}^2 = \alpha^2 G_{ab}(\theta(t))\dot{\theta}^a\dot{\theta}^b + \beta^2 g_{ij}(\phi(t))\dot{\phi}^i\dot{\phi}^j.
+$$
+
+Pure geometric length on joint manifold is
+
+$$
+L_{\mathbb{G}}[z] = \int_0^T \sqrt{|\dot{z}(t)|_{\mathbb{G}}^2}\,\mathrm{d}t.
+$$
+
+However, length alone is insufficient to encode ``information quality'' gain, we also need task-related potential function.
+
+\subsection{Information Potential Function}
+
+Let information quality function of task $Q$ on information manifold be written as $I_Q:\mathcal{S}_Q\to\mathbb{R}$, for example
+
+$$
+I_Q(\phi) = \mathsf{I}_Q(x) \quad \text{when} \ \phi = \Phi_Q(x).
+$$
+
+We introduce information potential function
+
+$$
+U_Q(\phi) = V(I_Q(\phi)),
+$$
+
+where $V:\mathbb{R}\to\mathbb{R}$ is monotone function, generally chosen as $V(u) = u$ or $V(u) = f_{\mathrm{sat}}(u)$ (saturation type). In this paper, for simplicity we directly take
+
+$$
+U_Q(\phi) = I_Q(\phi),
+$$
+
+viewing ``information quality'' as negative contribution of potential energy term (corresponding to higher information quality bringing lower action).
+
+\section{Discrete Joint Action and Continuous Limit}
+
+This section constructs joint action for task $Q$ at discrete level, proving its convergence to continuous action in refinement limit.
+
+\subsection{Discrete Joint Action}
+
+Consider discrete computational path
+
+$$
+\gamma = (x_0,x_1,\dots,x_n),
+$$
+
+where $(x_k,x_{k+1})\in\mathsf{T}$. Corresponding complexity increment is
+
+$$
+\Delta C_k = \mathsf{C}(x_k,x_{k+1}),
+$$
+
+information distance increment (under task $Q$) is
+
+$$
+\Delta D_k = d_{\mathrm{info},Q}(x_k,x_{k+1}),
+$$
+
+information quality increment is
+
+$$
+\Delta I_k = I_Q(\phi_{k+1}) - I_Q(\phi_k), \quad \phi_k = \Phi_Q(x_k).
+$$
+
+\begin{definition}[Discrete Joint Action]
+For task $Q$ and path $\gamma$, define discrete joint action
+
+$$
+\mathcal{A}_Q^{\mathrm{disc}}(\gamma)
+=
+\sum_{k=0}^{n-1}
+\Big(
+\alpha\,\Delta C_k
++
+\beta\,\Delta D_k
+-
+\gamma\,\Delta I_k
+\Big),
+$$
+
+where $\alpha,\beta,\gamma>0$ are weight parameters.
+\end{definition}
+
+Intuitive understanding: each step update simultaneously pays complexity cost $\alpha\,\Delta C_k$ and information adjustment cost $\beta\,\Delta D_k$, and gains information quality increment $\Delta I_k$, contributing $-\gamma\,\Delta I_k$ to action. Optimal path is one that minimizes $\mathcal{A}_Q^{\mathrm{disc}}$ under balance of all three.
+
+\subsection{Refinement and Standard Time Step}
+
+To connect discrete and continuous, we introduce discrete time step $h>0$, let path length $n \approx T/h$, and set scaling of single-step cost and information distance as
+
+$$
+\Delta C_k = h\,c(x_k,x_{k+1}) + o(h),
+\quad
+\Delta D_k = h\,d(x_k,x_{k+1}) + o(h),
+$$
+
+$$
+\Delta I_k = h\,\dot{I}_Q(t_k) + o(h),
+$$
+
+where $t_k = k h$, $c,d,\dot{I}_Q$ are respectively complexity velocity, information velocity, and information quality rate of change in continuous limit.
+
+Under above scaling, discrete action can be approximated as Riemann sum
+
+$$
+\mathcal{A}_Q^{\mathrm{disc}}(\gamma)
+\approx
+\sum_{k=0}^{n-1}
+h\Big(
+\alpha\,c_k
++
+\beta\,d_k
+-
+\gamma\,\dot{I}_Q(t_k)
+\Big)
+\to
+\int_0^T
+\big(
+\alpha c(t)
++
+\beta d(t)
+-
+\gamma \dot{I}_Q(t)
+\big)\,\mathrm{d}t.
+$$
+
+To match geometric structure, we represent $c(t),d(t)$ respectively using velocity norms on $(\mathcal{M},G)$ and $(\mathcal{S}_Q,g_Q)$.
+
+\subsection{Continuous Joint Action}
+
+Let control path be $\theta:[0,T]\to\mathcal{M}$, information path be $\phi:[0,T]\to\mathcal{S}_Q$, with corresponding velocity norms
+
+$$
+v_{\mathcal{M}}^2(t) = G_{ab}(\theta(t))\dot{\theta}^a(t)\dot{\theta}^b(t),
+$$
+
+$$
+v_{\mathcal{S}_Q}^2(t) = g_{ij}(\phi(t))\dot{\phi}^i(t)\dot{\phi}^j(t).
+$$
+
+We choose ``energy-type'' continuous action:
+
+\begin{definition}[Continuous Joint Action]
+
+$$
+\mathcal{A}_Q[\theta(\cdot),\phi(\cdot)]
+=
+\int_0^T
+\Big(
+\tfrac12 \alpha^2 v_{\mathcal{M}}^2(t)
++
+\tfrac12 \beta^2 v_{\mathcal{S}_Q}^2(t)
+-
+\gamma\,U_Q(\phi(t))
+\Big)\,\mathrm{d}t.
+$$
+
+where $U_Q(\phi) = I_Q(\phi)$ or some monotone transformation thereof.
+\end{definition}
+
+This is standard ``kinetic minus potential'' form: first two terms are kinetic energy on complexity and information geometry, latter term is task-related negative potential energy, minimal worldline maintains finite velocity while trying to enter regions of lower information potential energy.
+
+\section{Euler--Lagrange Equations and Computational Worldlines}
+
+This section derives Euler--Lagrange equations on joint manifold, giving dynamical form satisfied by minimal worldlines.
+
+\subsection{Lagrangian and Variation}
+
+Let Lagrangian be
+
+$$
+L(\theta,\dot{\theta};\phi,\dot{\phi})
+=
+\tfrac12 \alpha^2 G_{ab}(\theta)\dot{\theta}^a\dot{\theta}^b
++
+\tfrac12 \beta^2 g_{ij}(\phi)\dot{\phi}^i\dot{\phi}^j
+-
+\gamma\,U_Q(\phi).
+$$
+
+Varying $\theta^a$ and $\phi^i$ respectively gives Euler--Lagrange equations:
+
+For $\theta^a$:
+
+$$
+\frac{\mathrm{d}}{\mathrm{d}t}
+\big(
+\alpha^2 G_{ab}(\theta)\dot{\theta}^b
+\big)
+-
+\tfrac12 \alpha^2 (\partial_a G_{bc})(\theta)\dot{\theta}^b\dot{\theta}^c
+= 0,
+$$
+
+For $\phi^i$:
+
+$$
+\frac{\mathrm{d}}{\mathrm{d}t}
+\big(
+\beta^2 g_{ij}(\phi)\dot{\phi}^j
+\big)
+-
+\tfrac12 \beta^2 (\partial_i g_{jk})(\phi)\dot{\phi}^j\dot{\phi}^k
++
+\gamma\,\partial_i U_Q(\phi)
+= 0.
+$$
+
+where $\partial_a G_{bc} = \partial G_{bc} / \partial\theta^a$, $\partial_i g_{jk} = \partial g_{jk} / \partial\phi^i$.
+
+\subsection{Joint Geodesic--Potential Equations}
+
+In standard Riemannian geometry, geodesic equation can be written as
+
+$$
+\ddot{\theta}^a + \Gamma^a_{bc}(\theta)\dot{\theta}^b\dot{\theta}^c = 0,
+$$
+
+where $\Gamma^a_{bc}$ are Christoffel symbols of Levi--Civita connection. Here we rewrite control and information parts respectively in geodesic--potential form.
+
+For control variable $\theta^a$, let
+
+$$
+\Gamma^a_{bc}(\theta)
+=
+\tfrac12 G^{ad}
+\big(
+\partial_b G_{dc}
++
+\partial_c G_{db}
+-
+\partial_d G_{bc}
+\big),
+$$
+
+where $G^{ad}$ is inverse of metric matrix. Euler--Lagrange equation can be rewritten as
+
+$$
+\ddot{\theta}^a + \Gamma^a_{bc}(\theta)\dot{\theta}^b\dot{\theta}^c = 0.
+$$
+
+Since control part of Lagrangian contains no explicit potential energy, control trajectory is geodesic on $(\mathcal{M},G)$.
+
+For information variable $\phi^i$, similarly defining $\Gamma^i_{jk}(\phi)$ as Christoffel symbols of $g_Q$, Euler--Lagrange equation rewrites as
+
+$$
+\ddot{\phi}^i
++
+\Gamma^i_{jk}(\phi)\dot{\phi}^j\dot{\phi}^k
+=
+-\frac{\gamma}{\beta^2} g^{ij}(\phi)\partial_j U_Q(\phi).
+$$
+
+Right-hand-side term is covariant lift of potential energy gradient on information manifold, representing ``driving force'' of ``information potential'' on information trajectory.
+
+Therefore, joint worldline satisfies following coupled system:
+
+\begin{enumerate}
+\item Control part: evolves along geodesics of $(\mathcal{M},G)$;
+\item Information part: evolves along geodesics of $(\mathcal{S}_Q,g_Q)$, but driven away from geodesics by gradient of $U_Q$.
+\end{enumerate}
+
+This can be viewed as special case of ``geodesic with potential on complexity--information product manifold.''
+
+\section{$\Gamma$-Convergence for Discrete--Continuous Consistency}
+
+To prove discrete optimal paths converge in the limit to continuous minimal worldlines, we use $\Gamma$-convergence theory. Only structural theorem and proof idea given here, technical details placed in appendix.
+
+\subsection{Action Functional Family}
+
+Consider family of discrete time steps $h = T/n$, embed discrete path $\gamma^{(h)} = (x_0,\dots,x_n)$ into piecewise constant or piecewise linear curve $z^{(h)}:[0,T]\to\mathcal{E}_Q$, such that
+
+$$
+z^{(h)}(t) = (\theta^{(h)}(t),\phi^{(h)}(t)),
+\quad
+t\in[kh,(k+1)h),
+$$
+
+and $z^{(h)}(kh) = (\theta_k,\phi_k)$ corresponds to $x_k$. Define discrete action
+
+$$
+\mathcal{A}_Q^{(h)}[z^{(h)}]
+=
+\sum_{k=0}^{n-1}
+\Big(
+\tfrac12 \alpha^2 \frac{\Delta s_{\mathcal{M},k}^2}{h}
++
+\tfrac12 \beta^2 \frac{\Delta s_{\mathcal{S}_Q,k}^2}{h}
+-
+\gamma\,U_Q(\phi_k) h
+\Big),
+$$
+
+where $\Delta s_{\mathcal{M},k}^2 = d_{\mathcal{M}}(\theta_k,\theta_{k+1})^2$, $\Delta s_{\mathcal{S}_Q,k}^2 = d_{\mathcal{S}_Q}(\phi_k,\phi_{k+1})^2$.
+
+Under local consistency assumptions, $\Delta s_{\mathcal{M},k} \approx h\sqrt{G_{ab}(\theta)\dot{\theta}^a\dot{\theta}^b}$, $\Delta s_{\mathcal{S}_Q,k} \approx h\sqrt{g_{ij}(\phi)\dot{\phi}^i\dot{\phi}^j}$.
+
+\subsection{$\Gamma$-Convergence Theorem}
+
+\begin{theorem}[$\Gamma$-Convergence, Schematic]
+\label{thm:gamma}
+Under unified time scale and local regularity assumptions, discrete action functional family $\{\mathcal{A}_Q^{(h)}\}_{h>0}$ $\Gamma$-converges under appropriate topology (e.g., weak $H^1$ topology of $z^{(h)}\rightharpoonup z$) to continuous action functional
+
+$$
+\mathcal{A}_Q[z]
+=
+\int_0^T
+\Big(
+\tfrac12 \alpha^2 G_{ab}(\theta)\dot{\theta}^a\dot{\theta}^b
++
+\tfrac12 \beta^2 g_{ij}(\phi)\dot{\phi}^i\dot{\phi}^j
+-
+\gamma\,U_Q(\phi)
+\Big)\,\mathrm{d}t.
+$$
+
+In particular, any limit point of discrete minimal sequences is a minimal curve of continuous action.
+\end{theorem}
+
+Proof idea in Appendix B.2, based on standard ``energy-type functional discretization'' $\Gamma$-convergence framework: lower semicontinuity given by convex structure and weak topology lower semicontinuity, recovery sequence constructed through time discretization of continuous trajectory.
+
+\section{Optimal Computational Worldlines Under Resource Constraints}
+
+In practical problems, we often care about following optimization:
+
+\begin{itemize}
+\item Under given time budget $T$ or complexity budget $C_{\max}$, maximize terminal information quality $I_Q(\phi(T))$;
+\item Or under given terminal information quality requirement $I_{\mathrm{target}}$, minimize required time or complexity.
+\end{itemize}
+
+Using Lagrange multiplier method, resource constraints can be absorbed into joint action.
+
+For example, maximizing $I_Q(\phi(T))$ under given $T$, equivalent to minimizing under free endpoint condition
+
+$$
+\widetilde{\mathcal{A}}_Q[z]
+=
+\int_0^T
+\Big(
+\tfrac12 \alpha^2 v_{\mathcal{M}}^2
++
+\tfrac12 \beta^2 v_{\mathcal{S}_Q}^2
+\Big)\,\mathrm{d}t
+-
+\gamma\,I_Q(\phi(T)),
+$$
+
+which differs from previous action only in potential energy term. Corresponding Euler--Lagrange equations in bulk region same as before, but at endpoint add natural boundary condition
+
+$$
+\beta^2 g_{ij}(\phi(T))\dot{\phi}^j(T)
+=
+\gamma\,\partial_i I_Q(\phi(T)).
+$$
+
+This boundary condition can be viewed as ``endpoint reflection condition'': at endpoint, ratio of information velocity to information quality gradient controlled by parameter $\gamma/\beta^2$, reflecting preference strength for endpoint information quality.
+
+Similarly, minimizing time under given information quality target can be obtained through constraint $I_Q(\phi(T)) = I_{\mathrm{target}}$ and introducing multiplier $\lambda$ to get equivalent free problem, whereby obtaining set of geodesic--potential equations with global constraints.
+
+These variational problems provide geometric perspective for ``optimal algorithm design'': seeking minimal curves on joint manifold $\mathcal{E}_Q$ satisfying resource constraints and endpoint information constraints is precisely seeking optimal computational worldlines in computational universe.
+
+\appendix
+
+\section{Derivation of Euler--Lagrange Under Metric and Potential}
+
+\subsection{Details of Variational Derivation}
+
+Let
+
+$$
+L(\theta,\dot{\theta};\phi,\dot{\phi})
+=
+\tfrac12 \alpha^2 G_{ab}(\theta)\dot{\theta}^a\dot{\theta}^b
++
+\tfrac12 \beta^2 g_{ij}(\phi)\dot{\phi}^i\dot{\phi}^j
+-
+\gamma\,U_Q(\phi).
+$$
+
+For variation $\theta^a \mapsto \theta^a + \varepsilon \eta^a$ (with $\eta^a(T_0)=\eta^a(T_1)=0$) we have
+
+$$
+\delta L
+=
+\tfrac12 \alpha^2 (\partial_c G_{ab})\eta^c\dot{\theta}^a\dot{\theta}^b
++
+\alpha^2 G_{ab}\dot{\theta}^a\dot{\eta}^b.
+$$
+
+After integration
+
+$$
+\delta\mathcal{A}_Q
+=
+\int_{T_0}^{T_1}
+\alpha^2 G_{ab}\dot{\theta}^a\dot{\eta}^b
++
+\tfrac12 \alpha^2 (\partial_c G_{ab})\eta^c\dot{\theta}^a\dot{\theta}^b
+\,\mathrm{d}t.
+$$
+
+Integrating first term by parts
+
+$$
+\int_{T_0}^{T_1} \alpha^2 G_{ab}\dot{\theta}^a\dot{\eta}^b\,\mathrm{d}t
+=
+\big[
+\alpha^2 G_{ab}\dot{\theta}^a\eta^b
+\big]_{T_0}^{T_1}
+-
+\int_{T_0}^{T_1}
+\frac{\mathrm{d}}{\mathrm{d}t}
+\big(
+\alpha^2 G_{ab}\dot{\theta}^a
+\big)
+\eta^b\,\mathrm{d}t.
+$$
+
+Boundary term vanishes, combining gives
+
+$$
+\delta\mathcal{A}_Q
+=
+\int_{T_0}^{T_1}
+\Big(
+-\frac{\mathrm{d}}{\mathrm{d}t}
+(\alpha^2 G_{ab}\dot{\theta}^a)
++
+\tfrac12 \alpha^2 \partial_b G_{ac}\dot{\theta}^a\dot{\theta}^c
+\Big)\,\eta^b \,\mathrm{d}t.
+$$
+
+By arbitrariness of variation, we get
+
+$$
+\frac{\mathrm{d}}{\mathrm{d}t}
+(\alpha^2 G_{ab}\dot{\theta}^a)
+-
+\tfrac12 \alpha^2 \partial_b G_{ac}\dot{\theta}^a\dot{\theta}^c
+=0.
+$$
+
+Multiplying by $G^{db}$ gives geodesic equation form. Variation of $\phi^i$ completely similar, extra term from $-\gamma U_Q(\phi)$, yielding
+
+$$
+\frac{\mathrm{d}}{\mathrm{d}t}
+(\beta^2 g_{ij}\dot{\phi}^j)
+-
+\tfrac12 \beta^2 \partial_i g_{jk}\dot{\phi}^j\dot{\phi}^k
++
+\gamma\,\partial_i U_Q(\phi)
+=0.
+$$
+
+This completes the proof.
+
+\section{Technical Framework of $\Gamma$-Convergence}
+
+\subsection{Standard $\Gamma$-Convergence Result for Energy-Type Discrete Functionals}
+
+Let $H$ be Hilbert space, $\mathcal{F}_h:H\to\mathbb{R}\cup\{+\infty\}$ be functional family of form
+
+$$
+\mathcal{F}_h[u]
+=
+\sum_{k=0}^{n_h-1}
+\Big(
+\tfrac12 a_h^k \frac{(u_{k+1}-u_k)^2}{h}
++
+h\,V_h^k(u_k)
+\Big),
+$$
+
+under appropriate consistency assumptions, as $h\to 0$, $\mathcal{F}_h$ $\Gamma$-converges to
+
+$$
+\mathcal{F}[u]
+=
+\int_0^T
+\Big(
+\tfrac12 a(t)\dot{u}(t)^2
++
+V(t,u(t))
+\Big)\,\mathrm{d}t.
+$$
+
+Our discrete joint action $\mathcal{A}_Q^{(h)}$ belongs to vector version of such functional class, its $\Gamma$-convergence can be obtained by separately applying above scalar theory to control and information parts and combining. Key conditions include:
+
+\begin{enumerate}
+\item Second-order consistency of single-step cost and information distance:
+
+$$
+\frac{\Delta s_{\mathcal{M},k}^2}{h^2} \to G_{ab}(\theta)\dot{\theta}^a\dot{\theta}^b, \quad \frac{\Delta s_{\mathcal{S}_Q,k}^2}{h^2} \to g_{ij}(\phi)\dot{\phi}^i\dot{\phi}^j;
+$$
+
+\item Potential energy term $U_Q(\phi_k) h$ uniformly approximates integral term $\int U_Q(\phi(t))\mathrm{d}t$;
+
+\item Appropriate compactness conditions (e.g., energy boundedness) ensure minimal sequences have weakly convergent subsequences.
+\end{enumerate}
+
+Detailed technical derivation and corresponding literature framework not elaborated here.
+
+\subsection{Proof Idea of Theorem~\ref{thm:gamma}}
+
+\textbf{Lower semicontinuity direction:} For any weak limit $z$ and convergent sequence $z^{(h)}\rightharpoonup z$, by convexity and weak lower semicontinuity of kinetic energy terms we get
+
+$$
+\mathcal{A}_Q[z]
+\le
+\liminf_{h\to 0}
+\mathcal{A}_Q^{(h)}[z^{(h)}].
+$$
+
+\textbf{Recovery sequence direction:} For any smooth limit trajectory $z$, use time discretization to construct $z^{(h)}$ such that $\mathcal{A}_Q^{(h)}[z^{(h)}]\to \mathcal{A}_Q[z]$. Specific construction: sample $z$ at grid points $t_k = kh$ to get $z_k = z(t_k)$, define $z^{(h)}$ as piecewise linear interpolation, whereby both quadratic form of single-step increments and potential energy terms approximate corresponding integrals.
+
+In summary, $\Gamma$-convergence holds. By general theory of $\Gamma$-convergence: if $z^{(h)}$ is approximate minimal sequence of $\mathcal{A}_Q^{(h)}$, then any weak limit point $z$ is minimal point of $\mathcal{A}_Q$.
+
+\section{Supplementary Remarks on Categorical Structure}
+
+Although this paper does not systematically expand on categorical theory, here we provide brief supplement on connection between ``computational universe category $\leftrightarrow$ control--scattering category'' to illustrate naturality of joint variational principle at categorical level.
+
+\begin{enumerate}
+\item \textbf{Object level:} For each physically realizable computational universe $U_{\mathrm{comp}}$, construct control--scattering object $(\mathcal{M},G,S)$ and task information manifold $(\mathcal{S}_Q,g_Q)$, whose joint manifold $\mathcal{E}_Q$ and joint action $\mathcal{A}_Q$ constitute ``intrinsic dynamical geometric image'' of this object.
+
+\item \textbf{Morphism level:} Simulation mapping $f:U_{\mathrm{comp}}\rightsquigarrow U_{\mathrm{comp}}'$ can give through physical realization mappings $f_{\mathcal{M}},f_{\mathcal{S}_Q}$ between control manifolds and information manifolds, these mappings satisfy Lipschitz-type inequalities under metrics and joint action, thereby preserving basic structure of minimal worldlines.
+
+\item \textbf{Naturality of joint worldlines:} Images of simulations between different computational universes on joint manifold are family of ``deformed'' worldlines, $\Gamma$-convergence ensures that under appropriate limit, images of minimal worldlines remain minimal worldlines.
+\end{enumerate}
+
+This structure provides dynamical--variational intermediate layer for subsequent construction of ``categorical equivalence between physical universe category and computational universe category,'' making claim ``universe = computation'' hold not only at static structure level (configuration, update) but also at evolution level of time--information--complexity triple structure.
+
+\end{document}

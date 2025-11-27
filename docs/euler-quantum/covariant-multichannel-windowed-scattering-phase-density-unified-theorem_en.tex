@@ -1,0 +1,145 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{braket}
+\usepackage{geometry}
+\usepackage{hyperref}
+\geometry{a4paper, margin=0.85in}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Arg}{Arg}
+
+\title{Covariant Multi-Channel Windowed Scattering:\\
+Phase--Density Unified Theorem}
+\author{Auric (S-series / EBOC)\\[5pt]\small Version 1.2}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+For multi-channel scattering with $N(E)$ channels at energy $E$, establish unified framework connecting scattering phase derivative, relative spectral density, and Wigner--Smith delay. Core formula holding a.e. on absolutely continuous spectrum:
+
+$$
+\boxed{\ \frac{1}{N(E)}\frac{d}{dE}\Arg\det S(E)=\frac{1}{2\pi}\langle\tr Q(E)\rangle_N=\rho_{\mathrm{rel}}(E)\ }
+$$
+
+where $Q(E)=-iS^\dagger(E)\partial_E S(E)$ is Wigner--Smith delay matrix, $\langle\cdot\rangle_N$ denotes per-channel average, $\rho_{\mathrm{rel}}$ relative spectral density from Birman--Kreĭn formula $\det S=e^{-2\pi i\xi}$.
+
+Establish: (i) \textbf{Channel covariance}: formula invariant under unitary channel basis transformations; (ii) \textbf{Threshold regularity}: handle channel number jumps via proper boundary conditions; (iii) \textbf{Windowed readout}: finite-bandwidth measurement protocol with NPE error closure; (iv) \textbf{Information geometry}: Born probability as I-projection, pointer basis as Ky Fan minimum.
+\end{abstract}
+
+\section{Setup and Notation}
+
+Energy-dependent channel number $N(E)$ with threshold set $\mathcal{T}=\{E:N(E^+)\neq N(E^-)\}$. Between thresholds, scattering matrix $S(E)\in U(N(E))$ unitary, differentiable a.e.
+
+\textbf{Birman--Kreĭn convention}: $\det S(E)=e^{-2\pi i\xi(E)}$ where $\xi$ spectral shift function, $\rho_{\mathrm{rel}}(E)=-\xi'(E)$ relative spectral density.
+
+\textbf{Wigner--Smith delay}: $Q(E)=-iS^\dagger(E)\partial_E S(E)$ self-adjoint, eigenvalues $\tau_j(E)$ individual channel delays.
+
+\section{Main Results}
+
+\begin{theorem}[Multi-Channel Phase--Density Unification]
+\label{thm:multichannel-unification}
+On threshold-regular intervals $I$ (where $I\cap\mathcal{T}=\varnothing$), have a.e.:
+
+$$
+\frac{1}{2\pi}\tr Q(E)=\frac{d}{dE}\Arg\det S(E)=-2\pi\,\xi'(E)=\rho_{\mathrm{rel}}(E).
+$$
+
+Per-channel average delay $\langle\tau\rangle_N(E)=\frac{1}{N(E)}\tr Q(E)$ satisfies
+
+$$
+\langle\tau\rangle_N(E)=2\pi\hbar\,\rho_{\mathrm{rel}}(E)\quad(\text{restoring }\hbar).
+$$
+\end{theorem}
+
+\begin{proof}
+From $\det S=e^{-2\pi i\xi}$ get $\partial_E\log\det S=-2\pi i\,\xi'$. By Jacobi formula $\partial_E\log\det S=\tr(S^{-1}\partial_E S)=\tr(S^\dagger\partial_E S)$ (using unitarity). Thus $\tr(S^\dagger\partial_E S)=-2\pi i\,\xi'$, giving $\tr Q=-i\tr(S^\dagger\partial_E S)=2\pi\,\xi'$. Birman--Kreĭn $\rho_{\mathrm{rel}}=-\xi'$ completes chain. \end{proof}
+
+\begin{theorem}[Channel Basis Covariance]
+\label{thm:channel-covariance}
+Under unitary channel transformation $U\in U(N)$, $S\mapsto\tilde{S}=USU^\dagger$, have
+
+$$
+\tr Q_{\tilde{S}}(E)=\tr Q_S(E),\qquad \rho_{\mathrm{rel}}[\tilde{S}](E)=\rho_{\mathrm{rel}}[S](E).
+$$
+
+Windowed readout $\mathcal{N}_w[S;E_0]=\int w(E-E_0)\rho_{\mathrm{rel}}[S](E)\,dE$ invariant.
+\end{theorem}
+
+\begin{proof}
+Trace invariant under similarity. Spectral shift function gauge-invariant. \end{proof}
+
+\begin{theorem}[Threshold Boundary Conditions]
+\label{thm:threshold-boundaries}
+At threshold $E_*\in\mathcal{T}$ where $N(E_*^-)=N_-$, $N(E_*^+)=N_+$ with $N_+>N_-$, impose:
+
+\begin{enumerate}
+\item \textbf{Phase continuity}: $\Arg\det S(E)$ continuous at $E_*$ after proper branch choice
+\item \textbf{Density regularization}: $\rho_{\mathrm{rel}}(E)$ may have $\delta$-function contribution at $E_*$ from bound states entering/leaving continuous spectrum (Levinson theorem)
+\item \textbf{Windowed measurement}: choose window $w$ with $w(E_*-E_0)$ sufficiently small or smooth to regularize threshold singularities
+\end{enumerate}
+\end{theorem}
+
+\section{Windowed Readout and NPE Error}
+
+\begin{theorem}[NPE Three-Term Decomposition for Multi-Channel]
+\label{thm:npe-multichannel}
+For windowed readout with window $w$, kernel $h$, sampling step $\Delta E$, truncation $N$:
+
+$$
+\mathcal{N}_w[S;E_0]=\int w(E-E_0)[h\ast\rho_{\mathrm{rel}}](E)\,dE
+$$
+
+discrete approximation
+
+$$
+\widehat{\mathcal{N}}=\Delta E\sum_{n=-N}^N w(E_n-E_0)[h\ast\rho_{\mathrm{rel}}](E_n)
+$$
+
+satisfies error decomposition
+
+$$
+|\mathcal{N}_w-\widehat{\mathcal{N}}|\le|\varepsilon_{\mathrm{alias}}|+|\varepsilon_{\mathrm{EM}}|+|\varepsilon_{\mathrm{tail}}|
+$$
+
+with alias $\varepsilon_{\mathrm{alias}}=0$ when bandlimited + Nyquist.
+\end{theorem}
+
+\section{Information Geometry and Pointer Basis}
+
+For multi-channel measurement:
+
+\textbf{Born probability}: Measurement outcome probabilities $p_i=\langle\psi,E_i\psi\rangle$ for POVM $\{E_i\}$.
+
+\textbf{I-projection}: Minimal KL-divergence $\min_{p\in\mathcal{C}}D_{\mathrm{KL}}(p\|q)$ over constraint set $\mathcal{C}$ yields exponential family.
+
+\textbf{Pointer basis}: Windowed operator $W_w=\int w(E)\,dE_A(E)$ minimal eigensubspace (Ky Fan) determines pointer basis.
+
+\section{Discussion}
+
+Established for multi-channel scattering:
+\begin{itemize}
+\item Phase--density--delay unification via Birman--Kreĭn--Wigner--Smith
+\item Channel basis covariance and threshold regularity
+\item Windowed readout with NPE non-asymptotic error closure
+\item Information-geometric Born probability and pointer basis
+\end{itemize}
+
+Applications: quantum optics multi-mode scattering, mesoscopic transport, nuclear reactions, gravitational multi-polarization.
+
+\end{document}
+

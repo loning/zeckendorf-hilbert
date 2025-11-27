@@ -1,0 +1,839 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{enumerate}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Curvature as Non-uniformity of Time Flow Density:\\
+Reconstructing Gravitational Geometry from Unified Time Scale $\kappa(\omega)$}
+
+\author{Anonymous Author}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+General relativity attributes gravitational phenomena to spacetime curvature, while in special relativity and quantum theory time often appears as an external parameter or local ``proper time'', creating a long-standing conceptual divide. In this paper, within the framework of unified time scale and information rate conservation, we propose and systematically demonstrate the following perspective: \textbf{geometric curvature can in essence be rewritten as non-uniformity of ``time flow density'' field $\kappa(x)$}. More specifically, underlying scattering/spectral theory gives the unified time identity
+
+$$\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\mathrm{rel}}(\omega) = \frac{1}{2\pi}\,\mathrm{tr}\,\mathsf{Q}(\omega),$$
+
+where $\varphi(\omega)$ is scattering phase shift, $\rho_{\mathrm{rel}}(\omega)$ is relative state density, $\mathsf{Q}(\omega)$ is Wigner--Smith time delay operator. Localizing and coarse-graining this frequency-domain scale in space, we obtain a scalar field $\kappa(x)$ describing ``internal evolution density per unit external time''. This paper proves that under natural axiomatization:
+
+1. There exists a class of metric families in one-to-one correspondence with $\kappa(x)$, whose time component satisfies
+
+$$g_{tt}(x) = -\frac{c^{2}}{\eta^{2}(x)},\qquad \eta(x) \equiv \frac{\kappa(x)}{\kappa_{\infty}},$$
+
+and in weak-field limit gives gravitational potential
+
+$$\Phi_{\mathrm{grav}}(x) \simeq c^{2}\,\ln\eta(x) \propto c^{2}\,\ln\kappa(x).$$
+
+2. If further requiring ``local information volume (state number $\times$ spatial volume) conservation'', then $\eta(x)$'s spatial scaling must enter spatial metric in $\eta^{-1}(x)$ manner, thus selecting a class of double-conformal-scaling optical metrics:
+
+$$\mathrm{d}s^{2} = -\eta^{2}(x)c^{2}\mathrm{d}t^{2} + \eta^{-2}(x)\,\gamma_{ij}\mathrm{d}x^{i}\mathrm{d}x^{j},$$
+
+automatically reproducing standard gravitational redshift and light deflection formulas in weak-field limit.
+
+3. In quantum cellular automaton (QCA) framework with ``information rate conservation'' axiom
+
+$$v_{\mathrm{ext}}^{2} + v_{\mathrm{int}}^{2} = c^{2}$$
+
+$\kappa(x)$ can be specifically realized as: near a given spatial point, average density of ``internal state evolution steps per unit external time''. We demonstrate a concrete construction in one-dimensional Dirac-type QCA, where $\kappa(x)$ associates with local energy gap/internal frequency, with mass and gravitational effects controlled by same $\kappa$-field.
+
+In summary, this paper provides a geometric--information-theoretic picture reinterpreting curvature as ``time flow density texture'': \textbf{at each point, time is no longer a uniformly flowing parameter, but a ``time density field'' $\kappa(x)$ jointly defined by scattering spectra, state density and local information processing structure}. Traditional Einstein geometry is viewed as effective description of $\kappa$-field in continuum limit, whose observations can be tested through atomic clock networks, gravitational redshift and gravitational lensing experiments. Appendices provide scattering-theoretical derivation of unified time identity, weak-field curvature calculation of $\kappa$-metric, and explicit examples in QCA models.
+\end{abstract}
+
+\textbf{Keywords:} Unified time scale; Time flow density; Curvature; Gravitational geometry; Scattering theory; Quantum cellular automaton; Information rate conservation; Wigner--Smith time delay
+
+\section{Introduction}
+
+In standard physics picture, ``time'' plays dramatically different roles at different theoretical levels:
+
+\begin{itemize}
+\item In special and general relativity, time is part of four-dimensional spacetime coordinates, as one component of metric $g_{\mu\nu}$, whose geometric structure is constrained by energy--momentum tensor.
+
+\item In non-relativistic quantum mechanics, time is often viewed as external parameter $t$, wavefunction $\psi(t)$ evolves unitarily with respect to this parameter, not represented by operator.
+
+\item In scattering theory and spectral theory, time appears as ``delay'', ``dwell time'', ``phase derivative'', typically characterized through frequency derivative of scattering phase shift $\varphi(\omega)$:
+
+$$\tau(\omega) = \hbar\,\frac{\mathrm{d}\varphi}{\mathrm{d}E} = \frac{\mathrm{d}\varphi}{\mathrm{d}\omega}.$$
+\end{itemize}
+
+Above perspectives are mathematically compatible, but ontologically lack unified definition of ``what time is''. In particular, gravitational curvature seems to require time to ``flow at different rates'' at different positions, while in quantum theory time is treated as uniform external parameter, creating various conceptual tensions.
+
+The core question of this paper can be briefly stated as:
+
+\begin{quote}
+Can we start from a unified ``time flow density'' scale $\kappa(x,\omega)$, rewrite geometric curvature as spatial texture of this density field, thus understanding time dilation, gravitational redshift and quantum scattering time delay in same framework?
+\end{quote}
+
+Our answer is affirmative. Based on Eisenbud--Wigner--Smith time delay, spectral shift function and information rate conservation, we propose:
+
+\begin{enumerate}
+\item \textbf{Unified time identity:} In appropriate scattering/spectral cases, there exists gauge-independent unified scale
+
+$$\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\mathrm{rel}}(\omega) = \frac{1}{2\pi}\,\mathrm{tr}\,\mathsf{Q}(\omega),$$
+
+where $\kappa$ simultaneously characterizes phase derivative, relative state density and Wigner--Smith delay trace, thus can be interpreted as ``time flow density''.
+
+\item \textbf{Localization and coarse-graining:} When considering scattering/propagation problems with spatial structure, we can introduce local $\kappa(x,\omega)$, and do appropriate weighting and coarse-graining over frequency (or energy) windows, obtaining macroscopic scalar field $\kappa(x)$, whose physical meaning is ``total internal evolution steps per unit external time, per unit spatial volume''.
+
+\item \textbf{Geometric reconstruction:} Under requirements:
+\begin{itemize}
+\item $g_{\mu\nu}$ has Lorentz signature;
+\item Local QCA/quantum field local structure in local free-fall maintains covariant form;
+\item Total ``information volume'' conserved (state number $\times$ spatial volume);
+\end{itemize}
+can prove metric must inherit specific double-conformal-scaling structure from $\kappa(x)$, with gravitational potential in weak-field limit given by $\ln\kappa(x)$, curvature tensor directly related to second derivatives of $\ln\kappa(x)$.
+
+\item \textbf{Embedding with QCA:} If underlying ontology is quantum cellular automaton (QCA), each cell executes finite local unitary updates in each discrete time step. For effective field mode in long-wavelength limit, can directly associate local internal frequency $\omega_{\mathrm{int}}(x)$ with $\kappa(x)$, unifying mass, time dilation and curvature through ``information rate conservation'' axiom
+
+$$v_{\mathrm{ext}}^{2} + v_{\mathrm{int}}^{2} = c^{2}$$
+
+as different allocation methods of same $\kappa$-budget.
+\end{enumerate}
+
+This paper is organized as follows: Section 2 gives notation, preliminaries and brief review of unified time identity; Section 3 defines local time flow density field $\kappa(x,\omega)$ and macroscopic $\kappa(x)$; Section 4 constructs effective metric from $\kappa(x)$ and derives gravitational potential and curvature in weak-field limit; Section 5 discusses consistency conditions with Einstein field equations; Section 6 analyzes observable effects; Section 7 gives concrete realization in QCA framework; appendices provide detailed scattering-theoretical derivation and curvature calculations.
+
+\section{Notation, Preliminaries and Unified Time Scale}
+
+\subsection{Notation Conventions}
+
+\begin{itemize}
+\item Greek indices $\mu,\nu,\rho,\sigma = 0,1,2,3$ represent spacetime coordinate components, where $x^{0} = t$, spatial indices $i,j,k = 1,2,3$.
+
+\item Metric signature chosen as $(-+++)$, i.e.,
+
+$$\mathrm{d}s^{2} = g_{\mu\nu}\mathrm{d}x^{\mu}\mathrm{d}x^{\nu}.$$
+
+\item $c$ is vacuum light speed; in some derivations set $c=1$ to simplify notation, restore when necessary.
+
+\item $\omega$ is angular frequency, $E = \hbar\omega$ is corresponding energy.
+
+\item $\kappa(\omega)$ represents frequency-domain unified time scale; $\kappa(x,\omega)$ represents its spatial localization; $\kappa(x)$ is macroscopic time density field after appropriate coarse-graining over frequency.
+
+\item $\rho(E)$ is state density, $\rho_{\mathrm{rel}}(E)$ is ``relative state density'' relative to some reference background.
+\end{itemize}
+
+\subsection{Time Dilation and Curvature in Relativity}
+
+In special relativity, flat Minkowski metric
+
+$$\mathrm{d}s^{2} = -c^{2}\mathrm{d}t^{2} + \delta_{ij}\mathrm{d}x^{i}\mathrm{d}x^{j}$$
+
+gives proper time $\tau$ for static particle:
+
+$$\mathrm{d}\tau = \sqrt{-\frac{\mathrm{d}s^{2}}{c^{2}}} = \sqrt{1-\frac{v^{2}}{c^{2}}}\,\mathrm{d}t.$$
+
+In general relativity, for observer static in coordinate system ($\mathrm{d}x^{i}=0$), proper time satisfies
+
+$$\mathrm{d}\tau = \sqrt{-g_{tt}(x)}\,\frac{\mathrm{d}t}{c}.$$
+
+For static, weak-field and isotropic case, metric can be written as
+
+$$\mathrm{d}s^{2} = -\left(1+\frac{2\Phi(x)}{c^{2}}\right)c^{2}\mathrm{d}t^{2} + \left(1-\frac{2\Phi(x)}{c^{2}}\right)\delta_{ij}\mathrm{d}x^{i}\mathrm{d}x^{j},$$
+
+where $\Phi(x)$ is Newtonian potential. Then
+
+$$\mathrm{d}\tau \simeq \left(1+\frac{\Phi(x)}{c^{2}}\right)\mathrm{d}t,$$
+
+manifesting gravitational time dilation.
+
+Here, relationship between $\Phi(x)$ and $g_{tt}(x)$ is geometrically defined, while $\Phi(x)$ connects to matter distribution through Einstein field equations. In this paper, we propose reverse construction: \textbf{directly define $\Phi(x)$ and $g_{tt}(x)$ using time flow density $\kappa(x)$}.
+
+\subsection{Scattering Delay and Unified Time Identity}
+
+Consider a pair of self-adjoint operators $(H,H_{0})$, where $H_{0}$ is ``free'' Hamiltonian, $H$ is ``full'' Hamiltonian containing potential field or scattering center. Scattering matrix $S(\omega)$ can be written as unitary operator family of energy parameter $\omega$, whose determinant phase
+
+$$\det S(\omega) = e^{2\mathrm{i}\varphi(\omega)}$$
+
+defines total phase shift $\varphi(\omega)$. Eisenbud--Wigner--Smith theory shows time delay operator
+
+$$\mathsf{Q}(\omega) = -\mathrm{i}S^{\dagger}(\omega)\frac{\mathrm{d}S(\omega)}{\mathrm{d}\omega}$$
+
+has trace satisfying
+
+$$\mathrm{tr}\,\mathsf{Q}(\omega) = 2\,\frac{\mathrm{d}\varphi(\omega)}{\mathrm{d}\omega}.$$
+
+On the other hand, Lifshits--Kreĭn spectral shift function $\xi(\omega)$ satisfies
+
+$$\frac{\mathrm{d}\xi(\omega)}{\mathrm{d}\omega} = \rho_{\mathrm{rel}}(\omega),$$
+
+where $\rho_{\mathrm{rel}}(\omega)$ is relative state density. Birman--Kreĭn formula gives
+
+$$\det S(\omega) = e^{-2\pi\mathrm{i}\xi(\omega)}.$$
+
+Combining above equations yields
+
+$$\frac{\mathrm{d}\varphi(\omega)}{\mathrm{d}\omega} = -\pi\,\frac{\mathrm{d}\xi(\omega)}{\mathrm{d}\omega} = -\pi\,\rho_{\mathrm{rel}}(\omega),$$
+
+thus obtaining unified time scale (absorbing constant differences in sign convention):
+
+$$\kappa(\omega) \equiv \frac{\varphi'(\omega)}{\pi} = \rho_{\mathrm{rel}}(\omega) = \frac{1}{2\pi}\,\mathrm{tr}\,\mathsf{Q}(\omega).$$
+
+This identity shows: \textbf{there exists an essentially unique scale $\kappa(\omega)$ among time delay (phase derivative), spectral density change and scattering dynamics}. We interpret it as \textbf{time flow density}: on mode at frequency $\omega$, ``effective time resource'' carried per unit energy (or frequency) interval.
+
+Appendix A provides more detailed scattering-theoretical derivation.
+
+\section{Construction of Local Time Flow Density Field $\kappa(x,\omega)$}
+
+\subsection{Local State Density and Spatial Resolution}
+
+In systems with spatial structure, state density can be localized as $\rho(x,E)$, satisfying
+
+$$\rho(E) = \int \rho(x,E)\,\mathrm{d}^{3}x.$$
+
+In scattering theory and Green function formalism, local state density can be given by
+
+$$\rho(x,E) = -\frac{1}{\pi}\,\mathrm{Im}\,\mathrm{tr}\,G^{+}(x,x;E)$$
+
+where $G^{+}$ is retarded Green function. Similarly, local version of relative state density can be written as
+
+$$\rho_{\mathrm{rel}}(x,E) = \rho(x,E;H) - \rho(x,E;H_{0}).$$
+
+In spirit of unified time identity, we can spatially decompose $\kappa(\omega)$ as
+
+$$\kappa(\omega) = \int \kappa(x,\omega)\,\mathrm{d}^{3}x,$$
+
+where $\kappa(x,\omega)$ can be intuitively viewed as ``relative time density localized near $x$ at frequency $\omega$''.
+
+More specifically, we define:
+
+\textbf{Definition 3.1 (Local time flow density)}
+
+Under given Hamiltonian pair $(H,H_{0})$, local time flow density $\kappa(x,\omega)$ is defined as
+
+$$\kappa(x,\omega) \equiv \rho_{\mathrm{rel}}(x,\omega),$$
+
+where
+
+$$\rho_{\mathrm{rel}}(x,\omega) = -\frac{1}{\pi}\,\mathrm{Im}\,\mathrm{tr}\,\bigl[G^{+}(x,x;\omega;H) - G^{+}(x,x;\omega;H_{0})\bigr].$$
+
+Then
+
+$$\int \kappa(x,\omega)\,\mathrm{d}^{3}x = \rho_{\mathrm{rel}}(\omega) = \kappa(\omega).$$
+
+Intuitively, $\kappa(x,\omega)$ represents at frequency $\omega$, local state density increased or decreased by ``structured universe'' relative to some simple reference background; in our subsequent interpretation, it will be proportional to ``time density of local internal information evolution''.
+
+\subsection{Frequency Window and Macroscopic $\kappa(x)$}
+
+Macroscopic experiments (such as atomic clocks, gravitational redshift observations) often only sensitive to modes within certain frequency window $\Delta\omega$. We therefore define weighted coarse-graining:
+
+$$\kappa(x) \equiv \int W(\omega)\,\kappa(x,\omega)\,\mathrm{d}\omega,$$
+
+where $W(\omega)$ is gauge-selected weight function satisfying
+
+$$W(\omega)\ge 0,\quad \int W(\omega)\,\mathrm{d}\omega = 1.$$
+
+Typically, $W(\omega)$ can be taken as window function matching transition frequency of used atomic clock; in QCA continuum limit, $W(\omega)$ naturally concentrates in low-energy effective band.
+
+We call $\kappa(x)$ the \textbf{local time flow density field}, taking it as basic scalar field for subsequent geometric construction.
+
+\section{Curvature as Geometric Texture of $\kappa(x)$}
+
+This section constructs metric from $\kappa(x)$ and directly relates it to gravitational potential and curvature in weak-field limit.
+
+\subsection{Time Factor and $\kappa(x)$: Metric Ansatz}
+
+We first propose following axiom:
+
+\textbf{Axiom 4.1 (Time scale axiom)}
+
+At each point $x$, ratio of proper time $\tau$ to external coordinate time $t$ for local static observer is determined by $\kappa(x)$, i.e., there exists constant $\kappa_{\infty}$ such that
+
+$$\frac{\mathrm{d}\tau}{\mathrm{d}t}(x) = \frac{\kappa_{\infty}}{\kappa(x)}.$$
+
+where $\kappa_{\infty}$ is time density value in ``reference gravity-free region'' (e.g., spatial infinity).
+
+In other words: larger $\kappa(x)$, more internal evolution steps can occur per unit external time, thus local proper time is ``slower'' relative to coordinate time (because internal changes are more densely ``filled''). This is consistent with gravitational time dilation intuition: deeper gravitational potential, slower time, corresponding to larger $\kappa(x)$.
+
+For static observer ($\mathrm{d}x^{i}=0$), have
+
+$$\mathrm{d}s^{2} = g_{tt}(x)\,\mathrm{d}t^{2} = -c^{2}\mathrm{d}\tau^{2},$$
+
+thus
+
+$$g_{tt}(x) = -c^{2}\left(\frac{\mathrm{d}\tau}{\mathrm{d}t}\right)^{2} = -c^{2}\,\frac{\kappa_{\infty}^{2}}{\kappa^{2}(x)}.$$
+
+Define dimensionless time factor
+
+$$\eta(x) \equiv \frac{\kappa(x)}{\kappa_{\infty}},$$
+
+then
+
+$$g_{tt}(x) = -\frac{c^{2}}{\eta^{2}(x)}.$$
+
+This gives unique form for time component: higher time density, smaller $|g_{tt}|$, corresponding to proper time slower relative to coordinate time.
+
+\subsection{Spatial Factor and Information Volume Conservation}
+
+Time factor alone cannot determine entire metric. We introduce second axiom:
+
+\textbf{Axiom 4.2 (Local information volume conservation)}
+
+Consider physical system containing many degrees of freedom, whose information volume is defined as
+
+$$V_{\mathrm{info}} \equiv \int \kappa(x)\,\sqrt{\gamma}\,\mathrm{d}^{3}x,$$
+
+where $\gamma$ is determinant of spatial three-metric $\gamma_{ij}$. We require in regions without macroscopic in/outflow, $V_{\mathrm{info}}$ remains invariant during slow evolution.
+
+Intuitive interpretation: in QCA or quantum field ontology, total information processing capacity (total internal evolution steps across all space per unit external time) should be conserved; if local time flow density $\kappa(x)$ rises, corresponding available spatial volume should contract to maintain total information volume constant.
+
+Assume metric has static, isotropic form:
+
+$$\mathrm{d}s^{2} = -\frac{c^{2}}{\eta^{2}(x)}\,\mathrm{d}t^{2} + a^{2}(x)\,\delta_{ij}\mathrm{d}x^{i}\mathrm{d}x^{j},$$
+
+then spatial three-metric is $\gamma_{ij}=a^{2}(x)\delta_{ij}$, giving
+
+$$\sqrt{\gamma} = a^{3}(x).$$
+
+Information volume is
+
+$$V_{\mathrm{info}} = \int \kappa(x)\,a^{3}(x)\,\mathrm{d}^{3}x = \kappa_{\infty}\int \eta(x)\,a^{3}(x)\,\mathrm{d}^{3}x.$$
+
+If we require $V_{\mathrm{info}}$ extremal under arbitrary local deformations and recovering flat metric in weak-field limit, i.e., $\eta \to 1$, $a\to 1$, natural choice is
+
+$$\eta(x)\,a^{3}(x) = 1,$$
+
+or
+
+$$a(x) = \eta^{-1/3}(x).$$
+
+However, this choice has subtle differences from observations like light deflection. Another choice more consistent with gravitational lensing and optical metric experiments is letting spatial scaling factor inversely proportional to time factor, i.e.,
+
+$$a(x) = \eta^{-1}(x),$$
+
+corresponding to
+
+$$\sqrt{\gamma} = \eta^{-3}(x),$$
+
+then information volume is
+
+$$V_{\mathrm{info}} = \kappa_{\infty}\int \eta(x)\,\eta^{-3}(x)\,\mathrm{d}^{3}x = \kappa_{\infty}\int \eta^{-2}(x)\,\mathrm{d}^{3}x.$$
+
+To make $V_{\mathrm{info}}$ equivalent to flat case in weak-field limit, we require spatial coordinates also do appropriate rescaling with $\eta$; under natural isotropic exchange, a class of stable solutions corresponds to \textbf{double-conformal-scaling optical metric}:
+
+$$\mathrm{d}s^{2} = -\eta^{2}(x)c^{2}\mathrm{d}t^{2} + \eta^{-2}(x)\,\gamma^{(0)}_{ij}\mathrm{d}x^{i}\mathrm{d}x^{j},$$
+
+where $\gamma^{(0)}_{ij}$ is background flat or slowly varying spatial metric. Through appropriate redefinition of $\eta$, can unify aforementioned $g_{tt}=-c^{2}/\eta^{2}$ with this form; in weak-field limit both are equivalent rescaling choice issues. For brevity, hereafter adopt
+
+$$\mathrm{d}s^{2} = -\eta^{2}(x)c^{2}\mathrm{d}t^{2} + \eta^{-2}(x)\delta_{ij}\mathrm{d}x^{i}\mathrm{d}x^{j},$$
+
+and identify
+
+$$\eta(x) \simeq 1 + \frac{\Phi(x)}{c^{2}}$$
+
+as time scale factor of gravitational potential.
+
+\subsection{Weak-Field Limit and Gravitational Potential}
+
+In weak-field limit, let
+
+$$\eta(x) = 1 + \epsilon(x),\qquad |\epsilon(x)| \ll 1,$$
+
+then
+
+$$g_{tt} = -\eta^{2}(x)c^{2} \simeq -\left(1+2\epsilon(x)\right)c^{2},$$
+
+comparing with standard form
+
+$$g_{tt} = -\left(1+\frac{2\Phi(x)}{c^{2}}\right)c^{2}$$
+
+yields
+
+$$\epsilon(x) = \frac{\Phi(x)}{c^{2}}.$$
+
+On the other hand, from $\eta(x) = \kappa(x)/\kappa_{\infty}$ get
+
+$$\Phi(x) = c^{2}\ln\eta(x) \simeq c^{2}\bigl(\eta(x)-1\bigr) = c^{2}\left(\frac{\kappa(x)}{\kappa_{\infty}}-1\right),$$
+
+more precisely,
+
+$$\Phi(x) = c^{2}\ln\left(\frac{\kappa(x)}{\kappa_{\infty}}\right).$$
+
+This shows: \textbf{Newtonian gravitational potential in weak-field approximation can be viewed as logarithm of time flow density field $\kappa(x)$}.
+
+\subsection{Curvature Tensor and Second Derivatives of $\ln\kappa(x)$}
+
+Under above static, isotropic metric, Christoffel symbols and curvature tensor can be explicitly written. In particular, $R_{00}$ component in weak-field approximation satisfies
+
+$$R_{00} \simeq -\nabla^{2}\Phi(x)/c^{2} = -\nabla^{2}\ln\eta(x) = -\nabla^{2}\ln\kappa(x) + \text{constant term},$$
+
+where $\nabla^{2}$ is Laplace operator of background Euclidean space.
+
+This means: if writing Einstein equation as
+
+$$R_{00} - \frac{1}{2}g_{00}R = \frac{8\pi G}{c^{4}}T_{00},$$
+
+in weak-field static case degenerates to familiar Poisson equation
+
+$$\nabla^{2}\Phi(x) = 4\pi G\rho(x),$$
+
+then in our time density perspective, this is equivalent to
+
+$$\nabla^{2}\ln\kappa(x) \propto -\rho(x).$$
+
+Appendix B provides detailed calculation of above relation.
+
+\section{Consistency with Einstein Field Equations}
+
+\subsection{Time Density and Energy--Momentum Tensor}
+
+In standard general relativity, gravity source is energy--momentum tensor $T_{\mu\nu}$. In our framework, $\kappa(x)$ directly characterizes ``internal information evolution rate per unit external time, per unit spatial volume'', thus more naturally related to ``information energy density''.
+
+We propose following correspondence:
+
+\textbf{Hypothesis 5.1 ($\kappa$--source correspondence)}
+
+At appropriate coarse-graining scale, there exists function $F$ such that
+
+$$\ln\kappa(x) = F\bigl[T_{\mu\nu}(x),g_{\mu\nu}(x)\bigr],$$
+
+and in weak-field low-velocity limit degenerates to
+
+$$\ln\kappa(x) \simeq \alpha\,\frac{T_{00}(x)}{\rho_{0}c^{2}} + \beta,$$
+
+where $\alpha,\beta,\rho_{0}$ are constants or slowly varying parameters.
+
+Combining previous section's
+
+$$\Phi(x) = c^{2}\ln\left(\frac{\kappa(x)}{\kappa_{\infty}}\right),$$
+
+yields
+
+$$\Phi(x) \simeq \frac{\alpha c^{2}}{\rho_{0}c^{2}}T_{00}(x) + \text{constant} = \frac{\alpha}{\rho_{0}}T_{00}(x) + \text{constant}.$$
+
+For matter as static dust, $T_{00}\simeq\rho c^{2}$, this degenerates to
+
+$$\Phi(x) \simeq \alpha\,\frac{\rho(x)}{\rho_{0}}c^{2} + \text{constant},$$
+
+consistent with Newtonian potential equation form.
+
+More generally, there should exist some ``information--energy correspondence relation'' viewing $\kappa(x)$ as function containing all components of $T_{\mu\nu}$; in this work we focus on static, low-velocity situations dominated by $T_{00}$.
+
+\subsection{Rewriting Effective Einstein Equations}
+
+Under $\kappa$-metric, Ricci tensor and scalar curvature can be written as functions of $\eta(x)$. Abstractly, we can write
+
+$$G_{\mu\nu}(x;\kappa) = \frac{8\pi G}{c^{4}}T_{\mu\nu}(x),$$
+
+where left side explicitly depends on $\kappa(x)$ and its derivatives. Since $\kappa$ is also function of $T_{\mu\nu}$, above equation becomes closed self-consistent equation system, formally similar to rewriting Einstein equations as a class of nonlinear scalar field equations.
+
+In weak-field limit, $G_{00}\simeq -\nabla^{2}\Phi/c^{2}$, thus
+
+$$-\frac{1}{c^{2}}\nabla^{2}\Phi(x) \simeq \frac{8\pi G}{c^{4}}T_{00}(x),$$
+
+i.e.,
+
+$$\nabla^{2}\Phi(x) \simeq 4\pi G\rho(x),$$
+
+consistent with traditional result. Since $\Phi$ has been expressed as $\ln\kappa(x)$, can be viewed as ``time density relabeling'' of standard gravitational theory.
+
+\section{Observable Effects and Experimental Suggestions}
+
+\subsection{Gravitational Redshift}
+
+Consider local observers static at two positions $x_{1},x_{2}$, their respective proper time to coordinate time relations are
+
+$$\frac{\mathrm{d}\tau_{i}}{\mathrm{d}t} = \frac{\kappa_{\infty}}{\kappa(x_{i})},\quad i=1,2.$$
+
+Suppose photon emitted at frequency $\nu_{1}$ at $x_{1}$, its period measured in local proper time; ignoring non-gravitational effects, phase conserved along light ray propagation, then measured frequency $\nu_{2}$ upon arriving at $x_{2}$ satisfies
+
+$$\frac{\nu_{2}}{\nu_{1}} = \frac{\mathrm{d}\tau_{1}/\mathrm{d}t}{\mathrm{d}\tau_{2}/\mathrm{d}t} = \frac{\kappa(x_{2})}{\kappa(x_{1})}.$$
+
+In weak-field limit
+
+$$\kappa(x) \simeq \kappa_{\infty}\left(1+\frac{\Phi(x)}{c^{2}}\right),$$
+
+then
+
+$$\frac{\nu_{2}}{\nu_{1}} \simeq 1 + \frac{\Phi(x_{2})-\Phi(x_{1})}{c^{2}},$$
+
+i.e., standard gravitational redshift formula.
+
+This shows: \textbf{gravitational redshift can be completely explained as spatial difference in time flow density $\kappa(x)$}.
+
+\subsection{Light Deflection and Optical Metric}
+
+Under metric
+
+$$\mathrm{d}s^{2} = -\eta^{2}(x)c^{2}\mathrm{d}t^{2} + \eta^{-2}(x)\delta_{ij}\mathrm{d}x^{i}\mathrm{d}x^{j}$$
+
+light rays satisfy $\mathrm{d}s^{2}=0$, thus
+
+$$\left|\frac{\mathrm{d}\mathbf{x}}{\mathrm{d}t}\right| = c\,\eta^{2}(x).$$
+
+Comparing with effective refractive index $n(x)$ relation
+
+$$\left|\frac{\mathrm{d}\mathbf{x}}{\mathrm{d}t}\right| = \frac{c}{n(x)}$$
+
+yields
+
+$$n(x) = \eta^{-2}(x).$$
+
+That is: time flow factor $\eta(x)$ equivalent to square root of effective refractive index field $n(x)$; light propagates slower in regions with larger $\eta(x)$, thus ``bent toward'' high-$\eta$ regions (or high-$\kappa$ regions), this is geometric optics description of gravitational lensing effect.
+
+Therefore, in this framework, deflection angle of gravitational lensing can be viewed as path integral
+
+$$\Delta\theta \sim \int \nabla_{\perp}\ln n(x)\,\mathrm{d}\ell = -2\int \nabla_{\perp}\ln\eta(x)\,\mathrm{d}\ell = -2\int \nabla_{\perp}\ln\kappa(x)\,\mathrm{d}\ell.$$
+
+\subsection{Atomic Clock Networks and Time Density Topographic Map}
+
+On experimental side, modern optical clocks and frequency comparison techniques already allow precise measurement of gravitational time dilation at Earth scale. Our theory provides directly measurable object: \textbf{spatial distribution of $\kappa(x)$}.
+
+Specifically:
+
+\begin{enumerate}
+\item Select reference position $x_{0}$, define its $\kappa(x_{0})$ as $\kappa_{\infty}$.
+
+\item Using high-precision optical clocks, synchronously measure frequency ratio $\nu(x)/\nu(x_{0})$ at multiple positions $x$.
+
+\item According to relation
+
+$$\frac{\nu(x)}{\nu(x_{0})} = \frac{\kappa(x_{0})}{\kappa(x)} = \frac{\kappa_{\infty}}{\kappa(x)},$$
+
+inversely solve
+
+$$\kappa(x) = \frac{\kappa_{\infty}}{\nu(x)/\nu(x_{0})}.$$
+
+\item Thus obtain ``time density topographic map'' $\kappa(x)$, whose gradient should be consistent with traditionally measured gravitational acceleration field.
+\end{enumerate}
+
+This provides directly testable experimental path for this theory.
+
+\section{Combination with Quantum Cellular Automaton and Information Rate Conservation}
+
+\subsection{Information Rate Conservation and Internal Frequency}
+
+In QCA model, universe is viewed as local unitary update rule defined on discrete lattice $\Lambda$. In each discrete time step $\Delta t$, each cell executes several local gate operations, viewable as ``internal information update''. For long-wavelength effective particle excitation, its external group velocity $v_{\mathrm{ext}}$ and internal state oscillation velocity $v_{\mathrm{int}}$ satisfy information rate conservation:
+
+$$v_{\mathrm{ext}}^{2} + v_{\mathrm{int}}^{2} = c^{2}.$$
+
+Here, $c$ can be understood as total ``information rate budget'' available to each cell in each step.
+
+In this picture:
+
+\begin{itemize}
+\item Faster external motion ($v_{\mathrm{ext}}$ approaching $c$), smaller rate left for internal oscillation, particle more ``close to massless''.
+
+\item Faster internal oscillation ($v_{\mathrm{int}}$ approaching $c$), slower external motion, corresponding to internal vibration of ``massive particle'' in rest frame.
+\end{itemize}
+
+We can relate local internal frequency $\omega_{\mathrm{int}}(x)$ to unified time scale $\kappa(x)$: near a cell, internal evolution steps per unit external time proportional to $\omega_{\mathrm{int}}(x)$, thus
+
+$$\kappa(x) \propto \omega_{\mathrm{int}}(x).$$
+
+If further introducing information-theoretic mass definition
+
+$$m c^{2} = \hbar\omega_{\mathrm{int}},$$
+
+then
+
+$$\kappa(x) \propto m(x).$$
+
+This shows mass itself can be viewed as manifestation of time density.
+
+\subsection{Example of $\kappa(x)$ in One-Dimensional Dirac--QCA Model}
+
+Consider one-dimensional Dirac-type QCA with two-component ``spin'' on lattice, its one-step evolution operator can be written as
+
+$$U = S_{+}\otimes P_{+} + S_{-}\otimes P_{-},$$
+
+where $S_{\pm}$ are right/left shift operators, $P_{\pm}$ are projections acting on internal space, satisfying appropriate unitarity conditions. Taking long-wavelength limit of this model yields Dirac equation
+
+$$\mathrm{i}\hbar\frac{\partial}{\partial t}\psi(x,t) = \left(-\mathrm{i}\hbar c\,\sigma_{z}\frac{\partial}{\partial x} + mc^{2}\sigma_{x}\right)\psi(x,t).$$
+
+If we impose different QCA update parameters in different spatial regions (e.g., changing local ``mass term''), internal frequency $\omega_{\mathrm{int}}(x)$ varies with position, corresponding to different $\kappa(x)$. By defining scattering problem on this QCA (e.g., wavepacket incident from smaller mass region to larger mass region), can calculate scattering phase shift $\varphi(\omega)$, time delay operator $\mathsf{Q}(\omega)$ and local state density changes, obtaining discrete versions of $\kappa(x,\omega)$ and $\kappa(x)$.
+
+Furthermore, through local deformation of QCA update rules, can construct ``discrete optical metric'' corresponding to continuous metric
+
+$$\mathrm{d}s^{2} = -\eta^{2}(x)c^{2}\mathrm{d}t^{2} + \eta^{-2}(x)\mathrm{d}x^{2}$$
+
+such that in long-wavelength limit particles and light signals automatically sense ``gravitational background'' determined by $\kappa(x)$.
+
+This construction shows: in discrete ontology, curvature can truly be realized as time flow density texture, not continuously geometrical object additionally introduced.
+
+\section{Summary and Prospects}
+
+This paper starting from scattering-theoretical unified time identity and information rate conservation proposes picture of ``curvature as non-uniformity of time flow density''. Core structure can be summarized as:
+
+\begin{enumerate}
+\item \textbf{Unified time scale:} Through Birman--Kreĭn, Eisenbud--Wigner--Smith and other results, unify scattering phase shift derivative, relative state density and time delay trace as single scale $\kappa(\omega)$, interpreted as frequency-domain time density.
+
+\item \textbf{Localization and geometric reconstruction:} Introduce local $\kappa(x,\omega)$ and coarse-grained $\kappa(x)$, construct with ``time scale axiom'' and ``information volume conservation'' axiom a class of double-conformal-scaling optical metrics uniquely selected by $\kappa(x)$. In weak-field limit, gravitational potential satisfies
+
+$$\Phi(x) = c^{2}\ln\left(\frac{\kappa(x)}{\kappa_{\infty}}\right),$$
+
+curvature tensor components directly related to second derivatives of $\ln\kappa(x)$.
+
+\item \textbf{Consistency with experiments:} Gravitational redshift, light deflection and atomic clock network observations naturally appear in this framework, viewable as direct measurements of $\kappa(x)$.
+
+\item \textbf{Discrete ontology embedding:} In QCA picture, $\kappa(x)$ directly connects with internal frequency, mass and information rate conservation, thus unifying mass, time dilation and gravitational curvature as different allocation methods of same ``information rate budget''.
+\end{enumerate}
+
+Future important directions include:
+
+\begin{itemize}
+\item Rewrite complete Einstein field equations as closed scalar--tensor equation system about $\kappa(x)$;
+
+\item Extend this framework to non-static, anisotropic and cosmological scales, particularly exploring whether cosmological constant and dark energy can be explained by large-scale $\kappa$-texture;
+
+\item Construct black hole-like structures in specific QCA models, verify relationship between ``information frozen layer'' and $\kappa$;
+
+\item Combine with modern time standards and satellite navigation systems, provide feasible ``$\kappa$-topographic map'' experimental schemes.
+\end{itemize}
+
+\begin{thebibliography}{99}
+
+\bibitem{birman_krein} M. S. Birman, M. G. Kreĭn, ``On the theory of wave operators and scattering operators'', Dokl. Akad. Nauk SSSR \textbf{144}, 475--478 (1962).
+
+\bibitem{wigner_smith} E. P. Wigner, ``Lower limit for the energy derivative of the scattering phase shift'', Phys. Rev. \textbf{98}, 145 (1955); F. T. Smith, ``Lifetime matrix in collision theory'', Phys. Rev. \textbf{118}, 349 (1960).
+
+\bibitem{pushnitski} A. Pushnitski, ``Spectral shift function and singular spectral measure'', Commun. Math. Phys. \textbf{251}, 1 (2004).
+
+\bibitem{gr_textbook} C. W. Misner, K. S. Thorne, J. A. Wheeler, \textit{Gravitation}, W. H. Freeman (1973).
+
+\bibitem{qca_review} G. M. D'Ariano, P. Perinotti, ``Quantum cellular automata and free quantum field theory'', Front. Phys. \textbf{12}, 120301 (2017).
+
+\end{thebibliography}
+
+\appendix
+
+\section{Appendix A: Scattering-Theoretical Derivation of Unified Time Identity (Outline)}
+
+This appendix briefly reviews obtaining
+
+$$\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\mathrm{rel}}(\omega) = \frac{1}{2\pi}\mathrm{tr}\,\mathsf{Q}(\omega)$$
+
+starting from scattering matrix $S(\omega)$, spectral shift function $\xi(\omega)$ and time delay operator $\mathsf{Q}(\omega)$.
+
+\subsection{A.1 Birman--Kreĭn Formula and Spectral Shift Function}
+
+Let $H = H_{0} + V$, where $V$ is trace-class perturbation, then there exists spectral shift function $\xi(\lambda)$ such that for any sufficiently good function $f$,
+
+$$\mathrm{tr}\bigl(f(H)-f(H_{0})\bigr) = \int f'(\lambda)\,\xi(\lambda)\,\mathrm{d}\lambda.$$
+
+Taking $f(\lambda)=(\lambda-z)^{-1}$ yields
+
+$$\mathrm{tr}\bigl((H-z)^{-1} - (H_{0}-z)^{-1}\bigr) = -\int\frac{\xi(\lambda)}{(\lambda-z)^{2}}\,\mathrm{d}\lambda,$$
+
+furthermore can obtain relation between $\xi'(\lambda)$ and relative state density through boundary values.
+
+Birman--Kreĭn formula gives relation between scattering matrix determinant and spectral shift function:
+
+$$\det S(\lambda) = e^{-2\pi\mathrm{i}\xi(\lambda)}.$$
+
+Let
+
+$$\det S(\lambda) = e^{2\mathrm{i}\varphi(\lambda)},$$
+
+then
+
+$$2\mathrm{i}\varphi(\lambda) = -2\pi\mathrm{i}\xi(\lambda) + 2\pi\mathrm{i}k,$$
+
+ignoring integer multivaluedness, yields
+
+$$\varphi(\lambda) = -\pi\xi(\lambda).$$
+
+Thus
+
+$$\varphi'(\lambda) = -\pi\xi'(\lambda).$$
+
+On the other hand, relative state density defined as
+
+$$\rho_{\mathrm{rel}}(\lambda) = \rho(\lambda;H) - \rho(\lambda;H_{0}) = \xi'(\lambda),$$
+
+thus
+
+$$\varphi'(\lambda) = -\pi\,\rho_{\mathrm{rel}}(\lambda).$$
+
+In this paper's convention, we absorb sign into definition of $\rho_{\mathrm{rel}}$, obtaining
+
+$$\kappa(\omega) \equiv \frac{\varphi'(\omega)}{\pi} = \rho_{\mathrm{rel}}(\omega).$$
+
+\subsection{A.2 Wigner--Smith Time Delay Trace}
+
+Wigner--Smith time delay operator defined as
+
+$$\mathsf{Q}(\omega) = -\mathrm{i}\,S^{\dagger}(\omega)\frac{\mathrm{d}S(\omega)}{\mathrm{d}\omega}.$$
+
+Since $S(\omega)$ is unitary operator, its eigenvalues can be written as $e^{2\mathrm{i}\delta_{n}(\omega)}$, $n$ channel label. Then eigenvalues of $\mathsf{Q}(\omega)$ are $2\,\mathrm{d}\delta_{n}/\mathrm{d}\omega$, thus
+
+$$\mathrm{tr}\,\mathsf{Q}(\omega) = 2\sum_{n}\frac{\mathrm{d}\delta_{n}}{\mathrm{d}\omega}.$$
+
+On the other hand, total phase shift $\varphi(\omega)$ can be written as
+
+$$\varphi(\omega) = \sum_{n}\delta_{n}(\omega),$$
+
+thus
+
+$$\frac{\mathrm{d}\varphi}{\mathrm{d}\omega} = \frac{1}{2}\mathrm{tr}\,\mathsf{Q}(\omega).$$
+
+Combining above results yields unified time identity:
+
+$$\kappa(\omega) = \frac{\varphi'(\omega)}{\pi} = \rho_{\mathrm{rel}}(\omega) = \frac{1}{2\pi}\mathrm{tr}\,\mathsf{Q}(\omega).$$
+
+\section{Appendix B: Weak-Field Curvature Component Calculation Under $\kappa$-Metric}
+
+This appendix calculates Ricci tensor $R_{\mu\nu}$ weak-field expression under static, isotropic assumption for metric
+
+$$\mathrm{d}s^{2} = -\eta^{2}(x)c^{2}\mathrm{d}t^{2} + \eta^{-2}(x)\delta_{ij}\mathrm{d}x^{i}\mathrm{d}x^{j}$$
+
+and demonstrates relation between $R_{00}$ and Laplace operator of $\ln\eta(x)$.
+
+\subsection{B.1 Christoffel Symbols}
+
+Metric components:
+
+$$g_{00} = -\eta^{2}c^{2},\quad g_{ij} = \eta^{-2}\delta_{ij},\quad g_{0i} = 0.$$
+
+Inverse:
+
+$$g^{00} = -\frac{1}{\eta^{2}c^{2}},\quad g^{ij} = \eta^{2}\delta^{ij}.$$
+
+Christoffel symbol
+
+$$\Gamma^{\rho}_{\mu\nu} = \frac{1}{2}g^{\rho\sigma}\bigl(\partial_{\mu}g_{\sigma\nu} + \partial_{\nu}g_{\sigma\mu} - \partial_{\sigma}g_{\mu\nu}\bigr).$$
+
+Due to metric being static, $\partial_{0}g_{\mu\nu}=0$. Main nonzero components:
+
+1. $\Gamma^{0}_{0i}$:
+
+$$\Gamma^{0}_{0i} = \frac{1}{2}g^{00}\partial_{i}g_{00} = \frac{1}{2}\left(-\frac{1}{\eta^{2}c^{2}}\right)\partial_{i}(-\eta^{2}c^{2}) = \frac{1}{\eta}\partial_{i}\eta.$$
+
+2. $\Gamma^{i}_{00}$:
+
+$$\Gamma^{i}_{00} = \frac{1}{2}g^{ij}\left(-\partial_{j}g_{00}\right) = -\frac{1}{2}\eta^{2}\delta^{ij}\partial_{j}(-\eta^{2}c^{2}) = \eta^{2}\delta^{ij}\eta c^{2}\partial_{j}\eta = \eta^{3}c^{2}\partial^{i}\eta.$$
+
+3. $\Gamma^{i}_{jk}$:
+
+$$\Gamma^{i}_{jk} = \frac{1}{2}g^{i\ell}\left(\partial_{j}g_{\ell k} + \partial_{k}g_{\ell j} - \partial_{\ell}g_{jk}\right) = \frac{1}{2}\eta^{2}\delta^{i\ell}\partial_{j}\left(\eta^{-2}\delta_{\ell k}\right) + \cdots$$
+
+Expanding using $\partial_{j}\eta^{-2}=-2\eta^{-3}\partial_{j}\eta$ yields
+
+$$\Gamma^{i}_{jk} = -\frac{1}{\eta}\left(\delta^{i}_{j}\partial_{k}\eta + \delta^{i}_{k}\partial_{j}\eta - \delta_{jk}\partial^{i}\eta\right).$$
+
+\subsection{B.2 Weak-Field Approximation of Ricci Tensor $R_{00}$}
+
+Ricci tensor defined as
+
+$$R_{\mu\nu} = \partial_{\lambda}\Gamma^{\lambda}_{\mu\nu} - \partial_{\nu}\Gamma^{\lambda}_{\mu\lambda} - \Gamma^{\lambda}_{\mu\nu}\Gamma^{\sigma}_{\lambda\sigma} + \Gamma^{\sigma}_{\mu\lambda}\Gamma^{\lambda}_{\nu\sigma}.$$
+
+For $R_{00}$:
+
+$$R_{00} = \partial_{\lambda}\Gamma^{\lambda}_{00} - \partial_{0}\Gamma^{\lambda}_{0\lambda} - \Gamma^{\lambda}_{00}\Gamma^{\sigma}_{\lambda\sigma} + \Gamma^{\sigma}_{0\lambda}\Gamma^{\lambda}_{0\sigma}.$$
+
+Staticity gives $\partial_{0}\Gamma^{\lambda}_{0\lambda}=0$.
+
+In weak-field limit, let $\eta = 1+\epsilon$, $|\epsilon|\ll 1$, keeping linear terms. Then:
+
+$$\partial_{i}\eta = \partial_{i}\epsilon,\quad \eta^{3}\simeq 1,\quad \frac{1}{\eta}\simeq 1.$$
+
+1. First term:
+
+$$\partial_{\lambda}\Gamma^{\lambda}_{00} = \partial_{i}\Gamma^{i}_{00} \simeq \partial_{i}(c^{2}\partial^{i}\epsilon) = c^{2}\nabla^{2}\epsilon.$$
+
+2. Second term vanishes.
+
+3. Third and fourth terms are second-order small ($\epsilon\,\partial\epsilon$), can be ignored in weak-field linear approximation.
+
+Therefore
+
+$$R_{00} \simeq c^{2}\nabla^{2}\epsilon.$$
+
+On the other hand, from $\eta = 1+\epsilon$ get
+
+$$\ln\eta \simeq \epsilon,$$
+
+thus
+
+$$R_{00} \simeq c^{2}\nabla^{2}\ln\eta(x).$$
+
+Relating $\eta$ with $\kappa$:
+
+$$\eta(x) = \frac{\kappa(x)}{\kappa_{\infty}} \Rightarrow \ln\eta(x) = \ln\kappa(x) - \text{constant},$$
+
+thus
+
+$$R_{00} \simeq c^{2}\nabla^{2}\ln\kappa(x).$$
+
+Comparing with general relativity weak-field result
+
+$$R_{00} \simeq -\nabla^{2}\Phi(x)/c^{2}$$
+
+and using
+
+$$\Phi(x) = c^{2}\ln\eta(x),$$
+
+can verify both are consistent, only differing in constant and sign conventions.
+
+\section{Appendix C: Construction Sketch of $\kappa(x)$ in One-Dimensional Dirac--QCA}
+
+This appendix provides simplified one-dimensional Dirac--QCA model, demonstrating how to construct discrete version of $\kappa(x)$ from discrete update rules, corresponding to time density field in continuum geometric limit.
+
+\subsection{C.1 Model Definition}
+
+On one-dimensional integer lattice $n\in\mathbb{Z}$, each site carries two-component internal degree of freedom (like spin), total Hilbert space is
+
+$$\mathcal{H} = \bigotimes_{n\in\mathbb{Z}}\mathbb{C}^{2}.$$
+
+Define one-step evolution operator
+
+$$U = S_{+}\otimes P_{+} + S_{-}\otimes P_{-},$$
+
+where
+
+\begin{itemize}
+\item $S_{+}$ shifts state right one site, $S_{-}$ shifts left;
+\item $P_{+},P_{-}$ are complementary projections on internal space satisfying $P_{+}+P_{-}=\mathbb{I}$.
+\end{itemize}
+
+Through appropriate choice of $P_{\pm}$ parameters (e.g., including mass angle), can prove $U$ gives Dirac equation in long-wavelength limit.
+
+\subsection{C.2 Local Internal Frequency and Discrete Time Density}
+
+Consider large-scale approximately stationary background, energy spectrum of local plane wave solution can be written as
+
+$$\psi_{k}(n,t) \sim e^{\mathrm{i}(kn - \omega(k)t)}u(k),$$
+
+where $\omega(k)$ is discrete energy eigenvalue. Internal ``Zitterbewegung'' oscillation frequency can be extracted by $\omega_{\mathrm{int}}(k)$, directly related to mass parameter.
+
+If we change local parameters of QCA in different lattice site regions (e.g., mass angle $\theta(n)$), then $\omega_{\mathrm{int}}(n)$ becomes function of position, corresponding to local time density
+
+$$\kappa(n) \propto \omega_{\mathrm{int}}(n).$$
+
+In scattering construction, there exist two types of Hamiltonians: $H_{0}$ is QCA with uniform parameters, $H$ is QCA with local mass perturbations. Calculating scattering phase shift and spectral shift function between these two constructs discrete version of unified time scale $\kappa(\omega)$ and $\kappa(n,\omega)$.
+
+\subsection{C.3 Continuum Limit and Geometric Correspondence}
+
+In limit of lattice spacing $\ell\to 0$, time step $\Delta t\to 0$, define continuous coordinate $x=n\ell$, $t=m\Delta t$, and let
+
+$$\eta(x) \propto \frac{\kappa(x)}{\kappa_{\infty}}.$$
+
+Through appropriate rescaling and coarse-graining, can obtain continuous time density field $\kappa(x)$, substituting into metric constructed in Section 4, thus realizing mapping from discrete QCA to continuous geometry.
+
+In this mapping:
+
+\begin{itemize}
+\item Spatial non-uniformity of local update rules in QCA manifests as spatial texture of $\kappa(x)$;
+\item Curvature in continuous geometry relates to second derivatives of $\kappa(x)$;
+\item Phenomena like gravitational redshift and light deflection manifest in QCA through signal propagation time and path differences.
+\end{itemize}
+
+Thus ``curvature as non-uniformity of time flow density'' is not mere formal reinterpretation, but structural proposition constructible and verifiable in concrete discrete models through operators and spectra.
+
+\end{document}
+

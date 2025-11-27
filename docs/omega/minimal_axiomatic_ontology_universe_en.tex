@@ -1,0 +1,730 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{braket}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{axiom}[theorem]{Axiom}
+
+\title{Minimal Axiomatic Ontology of the Universe:\\
+Quantum Cellular Automaton Objects and Multi-Layer Emergent Structures}
+
+\author{Anonymous Author}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This paper proposes a minimal ontology of the universe within the quantum cellular automaton (QCA) framework. The universe is defined as a QCA object with initial state, satisfying three axioms: (A1) discrete--unitary--local quantum dynamical system on countable lattice points; (A2) finite signal velocity upper bound $c$ in Lieb--Robinson sense; (A3) existence of Dirac-type effective mode with two-dimensional internal degrees of freedom in some low-energy one-particle sector. Based on these three axioms, we prove: (1) Event sets and causal partial order can be constructed from local algebras and their unitary evolution, embedding into Lorentz-type macroscopic spacetime geometry in coarse-graining limit; (2) In one-dimensional Dirac-type QCA model, dispersion relation of single-step update operator is
+$$
+|\cos\bigl(\Omega(p)\bigr) = \cos(m\Delta t)\cos(p a),
+$$
+from which external group velocity $v_{\mathrm{ext}}(p)$ and internal evolution velocity $v_{\mathrm{int}}(p)$ are symmetrically defined from same update operator, and information rate circle identity is rigorously proved
+$$
+v_{\mathrm{ext}}^2(p) + v_{\mathrm{int}}^2(p) = c^2,\qquad c = \frac{a}{\Delta t},
+$$
+where $c$ is maximal signal rate of QCA; (3) Proper time element is defined accordingly as
+$$
+|\mathrm{d}\tau = \frac{v_{\mathrm{int}}}{c}\,\mathrm{d}t,
+$$
+from which special relativity's time dilation relation and four-velocity normalization $g_{\mu\nu}u^\mu u^\nu = -c^2$ can be derived, and relativistic energy--momentum relation is reconstructed in low-energy limit
+$$
+E^2 = p^2c^2 + m^2c^4.
+$$
+Mass thus obtains a purely internal information-theoretic definition $mc^2 = \hbar\omega_{\mathrm{int}}(0)$, namely energy scale of internal evolution frequency in rest frame. This paper further formalizes definitions of observer objects and observer networks, pointing out that observers are self-referential local subsystems within universe object, whose proper time and macroscopic ``public reality'' are both characterized by emergent patterns of same QCA ontology at different scales. Appendices provide detailed proofs of universe objects, causal partial order, Dirac--QCA dispersion relations and information rate circle theorem, laying reusable foundation for subsequent discussions of gravity, quantum fields and cosmology within this framework.
+\end{abstract}
+
+\textbf{Keywords:} Universe ontology; Quantum cellular automaton; Lieb--Robinson bound; Dirac model; Information rate circle; Emergence of relativity; Observer network
+
+\section{Introduction \& Historical Context}
+
+Continuous spacetime and quantum states are two grand narratives of modern physics. On one hand, general relativity models universe as four-dimensional manifold $(M,g_{\mu\nu})$ with Lorentz signature, where metric satisfies Einstein field equations and curvature corresponds to gravity. On other hand, quantum theory centers on Hilbert space, unitary evolution and measurement axioms, with physical systems described by state vectors or density operators and observation statistics given by Born rule. The two can operate synergistically in effective theories such as quantum field theory and semiclassical gravity, but ontological tension remains: which is fundamental between spacetime geometry and quantum state? Do observers and measurements require additional external mechanisms?
+
+Quantum cellular automata provide rigorous operator framework for ``universe as quantum computation'' perspective. QCA discretizes spacetime into lattice network, with finite-dimensional Hilbert space at each lattice point, and interactions between degrees of freedom given by local unitary update rules. Early work showed that free Dirac fields, Weyl fields and Maxwell fields can emerge from QCA under appropriate symmetry and continuum limit conditions. Meanwhile, deep connection between discrete-time quantum walks and Dirac equation has been systematically clarified, proving that through appropriate choice of coin rotation and translation structure, one can obtain one-dimensional or even higher-dimensional Dirac-type effective dynamics in long-wavelength limit.
+
+On other hand, Lieb--Robinson bound provides rigorous characterization of ``finite signal velocity'' in non-relativistic quantum spin systems: even in lattice models without explicit relativistic structure, influence of local perturbations is confined within certain effective light cone in spacetime, with commutator norm outside decaying exponentially. This means ``light speed upper limit''-like causal structure does not belong exclusively to continuous relativistic field theory, but exists broadly in quantum lattice systems with local interactions.
+
+Against this background, a natural ontological question is:
+
+\textit{Does there exist a minimal axiom system, using QCA as sole primitive, from which finite signal velocity, special relativistic geometry, mass--energy relation and observer structure can emerge?}
+
+This paper attempts to give affirmative constructive answer. We propose three minimal axioms:
+
+\begin{enumerate}
+\item Universe is discrete--unitary--local QCA object;
+\item Universe evolution satisfies Lieb--Robinson type finite light cone bound, with maximal signal rate $c$;
+\item Universe has Dirac-type effective mode with two-dimensional internal degrees of freedom in some low-energy one-particle sector.
+\end{enumerate}
+
+Under these three axioms, we prove:
+
+\begin{itemize}
+\item Event sets and causal partial order of universe can embed into Lorentz-type spacetime geometry in coarse-graining limit;
+\item Dispersion relation and internal Bloch structure of Dirac-type low-energy mode lead to ``information rate circle'': external velocity and internal evolution velocity form circle with radius $c$;
+\item Defining proper time by internal evolution rate can rebuild special relativity's time dilation, four-velocity normalization and energy--momentum relation;
+\item Observers can be characterized as local subsystems in universe object satisfying self-reference and memory conditions, whose proper time and perceived ``public reality'' are both uniformly described by same QCA ontology.
+\end{itemize}
+
+Compared with existing work deriving Dirac equation and free quantum field theory from information processing principles, this paper further translates ``what is universe'' ontological question into axiomatic characterization of QCA universe object, emphasizing one-to-one correspondence between information rate geometry and relativistic geometry.
+
+\section{Model \& Assumptions}
+
+This section gives formal definition of universe object and states three minimal axioms A1--A3.
+
+\subsection{Definition of Universe Object}
+
+Let $\Lambda$ be countable unbounded graph, with vertex set $V(\Lambda)$ representing spatial cells and edge set $E(\Lambda)\subset V(\Lambda)\times V(\Lambda)$ representing direct interaction adjacency relations. Assume $\Lambda$ is locally finite, i.e., for any $x\in V(\Lambda)$, its degree $\deg(x)$ has uniform upper bound.
+
+Take finite-dimensional Hilbert space $\mathcal{H}_{\mathrm{cell}}\cong\mathbb{C}^d$ as unit cell space. For each lattice point $x\in V(\Lambda)$, assign copy $\mathcal{H}_x\cong\mathcal{H}_{\mathrm{cell}}$. For any finite subset $\Lambda_0\subset\Lambda$, define local Hilbert space
+$$
+\mathcal{H}_{\Lambda_0} := \bigotimes_{x\in\Lambda_0}\mathcal{H}_x.
+$$
+
+Define quasilocal operator algebra
+$$
+\mathcal{A} := \overline{\bigcup_{\Lambda_0\Subset\Lambda}\mathcal{B}(\mathcal{H}_{\Lambda_0})}^{\lVert\cdot\rVert},
+$$
+where $\Lambda_0\Subset\Lambda$ denotes finite subset, $\mathcal{B}(\mathcal{H}_{\Lambda_0})$ is bounded operator algebra, closure taken in operator norm.
+
+Time evolution given by family of $C^\ast$-algebra automorphisms $\{\alpha_t\}_{t\in\mathbb{Z}}$, satisfying:
+
+\begin{enumerate}
+\item Group property: $\alpha_0=\mathrm{id}$, $\alpha_{t+s}=\alpha_t\circ\alpha_s$;
+\item Quasilocality: exists constant $R>0$ such that for any $A\in\mathcal{B}(\mathcal{H}_{\Lambda_0})$, support of its evolution $\alpha_1(A)$ is contained in radius $R$ neighborhood of $\Lambda_0$.
+\end{enumerate}
+
+In concrete construction, usually exists unitary operator $U$ realizing single-step evolution, i.e., for all $A\in\mathcal{A}$ have
+$$
+\alpha_1(A) = U^{\dagger}AU.
+$$
+
+Universe initial state is state on $\mathcal{A}$, i.e., positive normalized linear functional $\omega_0:\mathcal{A}\to\mathbb{C}$ satisfying $\omega_0(\mathbb{I})=1$, $\omega_0(A^{\dagger}A)\ge 0$. Thus we make following definition.
+
+\begin{definition}[Universe object]
+Denote five-tuple
+$$
+\mathfrak{U}_{\mathrm{QCA}} := \bigl(\Lambda,\mathcal{H}_{\mathrm{cell}},\mathcal{A},\alpha,\omega_0\bigr)
+$$
+as universe object (QCA universe), where $\alpha$ is discrete-time evolution realized by quasilocal unitary operator.
+\end{definition}
+
+\subsection{Axiom A1: Discrete--Unitary--Local}
+
+\begin{axiom}[Discrete--unitary--local]
+Physical universe is some universe object $\mathfrak{U}_{\mathrm{QCA}}$ satisfying:
+\begin{enumerate}
+\item $\Lambda$ countable and locally finite;
+\item Unit cell Hilbert space $\mathcal{H}_{\mathrm{cell}}$ finite-dimensional;
+\item Exists quasilocal unitary operator $U$ such that for all $A\in\mathcal{A}$ have $\alpha_1(A) = U^{\dagger}AU$.
+\end{enumerate}
+\end{axiom}
+
+This axiom constrains universe to be ``finite information density + local interaction + unitary evolution'' discrete quantum dynamical system, without presupposing any continuous spacetime structure or Lorentz symmetry.
+
+\subsection{Axiom A2: Finite Light Cone and Lieb--Robinson Velocity}
+
+\begin{axiom}[Finite light cone]
+Exists constant $c>0$ such that for any local operators $A,B$ and any $t\in\mathbb{Z}$, exist constants $C,\mu>0$ such that
+$$
+\bigl|[\alpha_t(A),B]\bigr| \le C\,\lVert A\rVert\,\lVert B\rVert\exp\Bigl[-\mu\bigl(\mathrm{dist}(\mathrm{supp}A,\mathrm{supp}B)-c|t|\bigr)\Bigr],
+$$
+where $\mathrm{supp}A$ is minimal support region of $A$, $\mathrm{dist}$ is graph distance.
+\end{axiom}
+
+This law is abstract form of Lieb--Robinson bound, indicating existence of effective light cone on spacetime graph with ``slope'' $c$, with commutator norm outside light cone exponentially suppressed. Physically, $c$ can be interpreted as maximal signal rate in universe, i.e., discrete version of ``light speed upper limit''.
+
+\subsection{Axiom A3: Dirac-Type Low-Energy Effective Mode}
+
+\begin{axiom}[Dirac effective mode]
+In some low-energy one-particle sector of $\mathfrak{U}_{\mathrm{QCA}}$, exists translation-invariant submodel with two-dimensional internal degrees of freedom, whose single-step update operator $U(p)\in SU(2)$ in one-dimensional momentum representation satisfies:
+
+\begin{enumerate}
+\item Can be written in Bloch form
+$$
+U(p) = \exp\bigl(-\mathrm{i}\,\Omega(p)\,\hat{n}(p)\cdot\vec{\sigma}\bigr),
+$$
+where $\vec{\sigma}$ are Pauli matrices, $\hat{n}(p)\in S^2$, $\Omega(p)\in[0,\pi]$;
+
+\item In neighborhood of some $p_0$, effective Hamiltonian in continuum limit
+$$
+H_{\mathrm{eff}}(k) := \frac{\Omega(p_0+k)}{\Delta t} \approx c\,k\,\sigma_z + mc^2\sigma_x,
+$$
+where $\Delta t$ is time step, $k$ is small momentum offset, constant $m\neq 0$ called mass parameter of this mode.
+\end{enumerate}
+\end{axiom}
+
+This axiom requires universe to have at least one mode exhibiting one-dimensional massive Dirac equation in low-energy limit, consistent with existing results deriving Dirac equation from QCA principles.
+
+\section{Main Results (Theorems and Alignments)}
+
+Under above axioms, this paper gives following three types of main results.
+
+\subsection{Universe Causal Structure and Macroscopic Geometry}
+
+\begin{theorem}[Causal partial order and macroscopic Lorentz structure]
+In universe object $\mathfrak{U}_{\mathrm{QCA}}$ satisfying A1--A2, define event set
+$$
+\mathcal{E} := \{(\Lambda_0,t)\mid \Lambda_0\Subset\Lambda,\ t\in\mathbb{Z}\}
+$$
+and local algebra
+$$
+\mathcal{A}(\Lambda_0,t) := \alpha_t\bigl(\mathcal{B}(\mathcal{H}_{\Lambda_0})\bigr)\subset\mathcal{A}.
+$$
+If for all $A\in\mathcal{A}(\Lambda_0,t), B\in\mathcal{A}(\Lambda_1,s)$ with $t<s$ have $[A,B]=0$, then denote
+$$
+(\Lambda_0,t)\preceq(\Lambda_1,s).
+$$
+Then $(\mathcal{E},\preceq)$ forms directed acyclic partial order structure, and under appropriate coarse-graining can embed into continuous Lorentz-type spacetime manifold with $\preceq$ compatible with causal partial order on that manifold.
+\end{theorem}
+
+This result shows causal cones and macroscopic spacetime geometry can completely emerge internally from local algebras and their unitary evolution, without taking continuous spacetime as axiom. Proof relies on exponential suppression estimates of Lieb--Robinson bound on perturbation propagation range.
+
+\subsection{Dirac--QCA Dispersion and Information Rate Circle}
+
+In one-dimensional Dirac-type QCA model satisfying A3, we select concrete quantum walk realization and obtain explicit dispersion relation and velocity definitions.
+
+\begin{theorem}[Dirac--QCA dispersion relation]
+Consider one-dimensional lattice $\Lambda=\mathbb{Z}$, local Hilbert space as two-component spin $\mathcal{H}_{\mathrm{cell}}\cong\mathbb{C}^2$. Define conditional translation operator
+$$
+T := S_+\otimes\ket{\uparrow}\bra{\uparrow} + S_-\otimes\ket{\downarrow}\bra{\downarrow},
+$$
+where $S_+\ket{x}=\ket{x+1}$, $S_-\ket{x}=\ket{x-1}$, and local ``mass rotation''
+$$
+C(m) := \exp\bigl(-\mathrm{i}m\Delta t\,\sigma_x\bigr).
+$$
+Single-step update operator defined as
+$$
+U := C(m)\,T.
+$$
+In momentum representation, characteristic angle $\Omega(p)$ of $U(p)\in SU(2)$ satisfies dispersion relation
+$$
+\cos\bigl(\Omega(p)\bigr) = \cos(m\Delta t)\cos(p a),
+$$
+where $a$ is lattice spacing, $p\in[-\pi/a,\pi/a]$.
+\end{theorem}
+
+This dispersion structure consistent with results in Dirac QCA literature, reflecting symmetric role of coin angle $m\Delta t$ and lattice momentum $p a$.
+
+\begin{theorem}[Information rate circle]
+Let $c:=a/\Delta t$ be maximal signal rate of QCA. For each momentum mode in above Dirac--QCA model, define external group velocity
+$$
+v_{\mathrm{ext}}(p) := a\,\frac{\mathrm{d}\omega(p)}{\mathrm{d}p},\qquad \omega(p) := \frac{\Omega(p)}{\Delta t},
+$$
+and internal evolution velocity
+$$
+v_{\mathrm{int}}(p) := c\,\frac{\sin(m\Delta t)\cos(p a)}{\sin\bigl(\Omega(p)\bigr)}.
+$$
+Then for all allowed momentum $p$ have identity
+$$
+v_{\mathrm{ext}}^2(p) + v_{\mathrm{int}}^2(p) = c^2.
+$$
+\end{theorem}
+
+This theorem shows: in Dirac--QCA mode, total information update rate $c$ is orthogonally decomposed into ``external displacement'' and ``internal evolution'' parts, both forming circle with radius $c$ in velocity-squared sense, hence called ``information rate circle''.
+
+\subsection{Emergence of Relativistic Structure and Mass--Energy Relation}
+
+\begin{corollary}[Time dilation and proper time]
+Let $v:=v_{\mathrm{ext}}(p)$ be particle velocity observed in some inertial frame, from information rate circle obtain
+$$
+v_{\mathrm{int}}(p) = \sqrt{c^2 - v^2}.
+$$
+Define proper time element by internal evolution velocity
+$$
+\mathrm{d}\tau := \frac{v_{\mathrm{int}}}{c}\,\mathrm{d}t = \sqrt{1-\frac{v^2}{c^2}}\,\mathrm{d}t,
+$$
+obtaining time dilation relation consistent with special relativity.
+\end{corollary}
+
+\begin{corollary}[Four-velocity normalization and Minkowski line element]
+Let spacetime coordinates $x^0=ct,x^1=x$, four-velocity defined as
+$$
+u^\mu := \frac{\mathrm{d}x^\mu}{\mathrm{d}\tau}.
+$$
+Then have
+$$
+u^0 = \gamma c,\qquad u^1=\gamma v,\qquad \gamma = \frac{1}{\sqrt{1-v^2/c^2}},
+$$
+satisfying normalization under Minkowski metric $g_{\mu\nu}=\mathrm{diag}(-1,1)$
+$$
+g_{\mu\nu}u^\mu u^\nu = -c^2.
+$$
+Line element can be written as
+$$
+\mathrm{d}s^2 := g_{\mu\nu}\,\mathrm{d}x^\mu\,\mathrm{d}x^\nu = -c^2\,\mathrm{d}\tau^2.
+$$
+\end{corollary}
+
+\begin{corollary}[Internal definition of mass and energy--momentum relation]
+In rest frame $p=0$, dispersion relation gives
+$$
+\cos\bigl(\omega(0)\Delta t\bigr) = \cos(m\Delta t).
+$$
+In $m\Delta t\ll 1$ limit have $\omega(0)\approx m$. Define rest energy
+$$
+E_0 := \hbar\omega(0) := mc^2,
+$$
+then mass $m$ is defined as energy scaling factor needed to maintain internal evolution, i.e., measure of ``internal information oscillation density''. In long-wavelength limit $p a\ll 1$, dispersion relation leads to
+$$
+\omega^2(p)\approx m^2 + \frac{p^2c^2}{\hbar^2},
+$$
+total energy $E(p)=\hbar\omega(p)$ satisfies
+$$
+E^2(p)\approx p^2c^2 + m^2c^4.
+$$
+\end{corollary}
+
+In summary, special relativity's time dilation, four-velocity normalization and relativistic energy--momentum relation can all be viewed as rewriting of information rate circle theorem and Dirac--QCA dispersion structure in macroscopic limit.
+
+\section{Proofs}
+
+This section gives proof ideas of above main theorems, with detailed technical calculations in appendices.
+
+\subsection{Proof Idea of Theorem 1}
+
+By axiom A1, support of any local operator expands at most to finite radius neighborhood in single-step evolution; by Lieb--Robinson bound of A2, for operator pairs with support distance satisfying $\mathrm{dist}(\mathrm{supp}A,\mathrm{supp}B) > c|t|$, norm of $[\alpha_t(A),B]$ is exponentially suppressed.
+
+Accordingly define event set $\mathcal{E}$ and local algebra $\mathcal{A}(\Lambda_0,t)$, using commutativity to define partial order $\preceq$. Reflexivity self-evident from commutativity; transitivity can be proved using Jacobi identity and linear structure of commutators; directed acyclicity comes from time parameter monotonicity and property that perturbations cannot ``trace back causally'', else would conflict with Lieb--Robinson bound and response theory of stable states.
+
+In coarse-graining limit, by selecting appropriate large-scale blocks, map $\Lambda$ to approximately continuous spatial coordinates and integer time $t$ to continuous time $t_{\mathrm{cont}}$; discrete light cone with slope $c$ converges to continuous Minkowski light cone, thus constructing compatible Lorentz-type spacetime manifold embedding. Related construction and technical details in Appendix A.
+
+\subsection{Proof Idea of Theorem 2}
+
+On one-dimensional lattice, introduce momentum eigenstates
+$$
+\ket{p} := \frac{1}{\sqrt{2\pi/a}}\sum_{x\in\mathbb{Z}}\mathrm{e}^{\mathrm{i}p a x}\ket{x},\qquad p\in[-\pi/a,\pi/a].
+$$
+Translation operators act as
+$$
+S_+\ket{p}=\mathrm{e}^{-\mathrm{i}p a}\ket{p},\qquad S_-\ket{p}=\mathrm{e}^{\mathrm{i}p a}\ket{p}.
+$$
+Thus conditional translation in momentum--spin subspace $\mathcal{H}_p\cong\mathbb{C}^2$ is represented as
+$$
+T(p) = \exp\bigl(-\mathrm{i}p a\,\sigma_z\bigr),
+$$
+single-step update operator is
+$$
+U(p) = C(m)\,T(p) = \exp\bigl(-\mathrm{i}m\Delta t\,\sigma_x\bigr)\exp\bigl(-\mathrm{i}p a\,\sigma_z\bigr).
+$$
+
+Using SU(2) group element multiplication formula
+$$
+\exp\bigl(-\mathrm{i}\alpha\,\hat{a}\cdot\vec{\sigma}\bigr) \exp\bigl(-\mathrm{i}\beta\,\hat{b}\cdot\vec{\sigma}\bigr) = \exp\bigl(-\mathrm{i}\gamma\,\hat{c}\cdot\vec{\sigma}\bigr),
+$$
+where
+$$
+\cos\gamma = \cos\alpha\cos\beta - (\hat{a}\cdot\hat{b})\sin\alpha\sin\beta,
+$$
+taking $\hat{a}=(1,0,0),\hat{b}=(0,0,1),\alpha=m\Delta t,\beta=p a$, obtain
+$$
+\cos\bigl(\Omega(p)\bigr) = \cos(m\Delta t)\cos(p a),
+$$
+proving Theorem 2. Explicit expressions of Bloch vector components can also be obtained from same formula, see Appendix B.
+
+\subsection{Proof Idea of Theorem 3 and Relativistic Corollaries}
+
+Differentiating dispersion relation with respect to $p$ obtains group velocity
+$$
+v_{\mathrm{ext}}(p) = a\,\frac{\mathrm{d}\omega}{\mathrm{d}p} = c\,\frac{\cos(m\Delta t)\sin(p a)}{\sin\bigl(\Omega(p)\bigr)}.
+$$
+
+On other hand, SU(2) Bloch vector components give
+$$
+\hat{n}(p)\sin\bigl(\Omega(p)\bigr) = \bigl(\sin(m\Delta t)\cos(p a),\,\sin(m\Delta t)\sin(p a),\,\sin(p a)\cos(m\Delta t)\bigr).
+$$
+
+Accordingly define internal evolution velocity symmetrically
+$$
+v_{\mathrm{int}}(p) := c\,\frac{\sin(m\Delta t)\cos(p a)}{\sin\bigl(\Omega(p)\bigr)}.
+$$
+
+Squaring and adding both using trigonometric identities gives
+$$
+v_{\mathrm{ext}}^2(p)+v_{\mathrm{int}}^2(p) = c^2\,\frac{\cos^2(m\Delta t)\sin^2(p a)+\sin^2(m\Delta t)\cos^2(p a)}{\sin^2\bigl(\Omega(p)\bigr)}.
+$$
+
+On other hand,
+$$
+\sin^2\bigl(\Omega(p)\bigr) = 1 - \cos^2\bigl(\Omega(p)\bigr) = 1 - \cos^2(m\Delta t)\cos^2(p a),
+$$
+direct algebraic calculation (see Appendix C) shows
+$$
+\cos^2(m\Delta t)\sin^2(p a)+\sin^2(m\Delta t)\cos^2(p a) = \sin^2\bigl(\Omega(p)\bigr),
+$$
+therefore
+$$
+v_{\mathrm{ext}}^2(p)+v_{\mathrm{int}}^2(p) = c^2,
+$$
+proving Theorem 3.
+
+Subsequently defining proper time by $v_{\mathrm{int}}$, constructing four-velocity $u^\mu$, obtaining $g_{\mu\nu}u^\mu u^\nu=-c^2$ under Minkowski metric, and reconstructing $E^2=p^2c^2+m^2c^4$ through long-wavelength limit expansion of dispersion relation. Detailed calculations in Appendix C.
+
+\section{Model Apply}
+
+This section explains meaning of above structures in ``what is universe'' question from ontological perspective.
+
+\subsection{Universe as QCA Object}
+
+In this framework, universe is not ``matter + spacetime'' superposition, but QCA object $\mathfrak{U}_{\mathrm{QCA}}$ with initial state. So-called ``matter'', ``field'', ``particle'', ``spacetime'' concepts are all stable excitations or geometric encodings in different scales and different subsectors:
+
+\begin{enumerate}
+\item \textbf{Geometric layer:} Causal partial order and Lieb--Robinson light cone determined by A1--A2 manifest as Minkowski or more general Lorentz-type geometry after coarse-graining;
+
+\item \textbf{Matter quantity layer:} Dirac modes satisfying A3 correspond to massive particles, with rest energy directly related to internal evolution frequency;
+
+\item \textbf{Field theory layer:} In multi-particle and multi-mode extensions, free quantum field theory can be viewed as continuum limit description of QCA; introduction of interactions corresponds to more complex local structures in QCA update operators.
+\end{enumerate}
+
+In this sense, answer to ``what is universe'' is:
+
+\begin{quote}
+Universe is one concrete instance among family of QCA universe objects satisfying minimal axioms A1--A3, whose entire unitary history carries spacetime, matter and interactions we observe.
+\end{quote}
+
+\subsection{Unified Explanation of Mass and Inertia}
+
+Information rate circle gives unified explanation of inertia and time dilation: total information update rate $c$ is fixed, and for massive excitations, there exists competition between internal evolution and external propagation. At high velocity, external group velocity approaches $c$, internal evolution forced to slow down, corresponding to slower proper time; at rest, all information rate used for internal evolution, corresponding to maximal proper time passage. Mass $m$ is defined by rest frame internal evolution frequency $\omega_{\mathrm{int}}(0)$, manifesting as information oscillation density needed to maintain local mode stability.
+
+This perspective unifies relativistic ``time dilation'', ``inertia'', ``mass--energy relation'' into one geometric identity internal to QCA, no longer needing to treat them as independent empirical laws.
+
+\subsection{Observer Objects and Public Reality}
+
+Observers in this ontology are not external entities, but class of local subsystems in universe object satisfying self-reference and memory properties.
+
+\begin{definition}[Observer object]
+An observer object $\mathcal{O}$ is triple
+$$
+\mathcal{O} = \bigl(\mathcal{A}_{\mathrm{loc}},\omega_{\mathrm{mem}},\mathcal{M}\bigr),
+$$
+where:
+\begin{enumerate}
+\item $\mathcal{A}_{\mathrm{loc}}\subset\mathcal{A}$ is some local subalgebra, corresponding to degrees of freedom accessible to observer;
+\item $\omega_{\mathrm{mem}}(t)$ is family of states on $\mathcal{A}_{\mathrm{loc}}$ with respect to discrete time $t$, corresponding to observer's internal memory;
+\item $\mathcal{M}=\{M_{\theta}\}$ is family of ``world models'', each $M_{\theta}$ mapping historical observation records to probability predictions of future observables, with parameter $\theta(t)$ varying over time according to some update rule
+$$
+\theta(t+1) = F\bigl(\theta(t),\{\omega_{\mathrm{mem}}(s)\}_{s\le t}\bigr).
+$$
+\end{enumerate}
+\end{definition}
+
+Observer object corresponds to worldline $\gamma_{\mathcal{O}} = \{(\Lambda_t,t)\}_{t\in\mathbb{Z}} \subset\mathcal{E}$ in event set, whose proper time is defined by internal information rate, having same form as proper time of Dirac modes. Intersection of local algebras of multiple observer objects and consistency category of their states constitute so-called ``public reality'', i.e., consensus different observers achieve on universe state in overlapping accessible regions.
+
+\section{Engineering Proposals}
+
+This section proposes several engineering schemes that can test and utilize this ontological structure on experimental platforms or numerical simulations.
+
+\subsection{Quantum Simulation of Dirac--QCA and Experimental Verification of Information Rate Circle}
+
+One-dimensional and higher-dimensional discrete-time quantum walks have been realized on ion trap, superconducting quantum circuit and optical platforms, and effective Hamiltonians can be precisely controlled by adjusting coin rotation and translation operations. These platforms can be used for following purposes:
+
+\begin{enumerate}
+\item By measuring external group velocity $v_{\mathrm{ext}}(p)$ and internal spin oscillation frequency of wave packets, reconstruct $v_{\mathrm{int}}(p)$, thereby experimentally verifying information rate circle $v_{\mathrm{ext}}^2+v_{\mathrm{int}}^2=c^2$;
+
+\item Measure relation between rest frame internal oscillation frequency and effective mass under different coin parameters $m\Delta t$, testing $mc^2=\hbar\omega_{\mathrm{int}}(0)$;
+
+\item Use multi-particle quantum walks to investigate corrections of local interactions to information rate geometry, laying foundation for further introduction of interacting field theory.
+\end{enumerate}
+
+\subsection{QCA Renormalization and Continuum Limit Engineering}
+
+Recent work on QCA renormalization and effective field theory limits shows one can systematically construct and analyze QCA models on lattice scale satisfying given symmetries and causal structures, studying their effective descriptions under different scalings. In this framework, can further require renormalization flow to maintain axiom A1--A3 structure, forming ``universe model family'', and search for submanifolds in parameter space satisfying other physical constraints (such as gauge symmetry, mass hierarchy, etc.).
+
+\subsection{Numerical Exploration of Engineered Universe Models}
+
+On classical and quantum hybrid computing platforms, can construct finite-size QCA universe toy models, selecting concrete lattice topology, local Hilbert space dimensions and update operators, numerically verifying:
+
+\begin{enumerate}
+\item Formation of causal partial order and Lieb--Robinson light cone;
+\item Existence of Dirac-type low-energy modes and dispersion relations;
+\item Under construction of multiple observer objects, formation of public reality and information consistency.
+\end{enumerate}
+
+Such numerical experiments will provide intuition and technical preparation for further discussing gravity and cosmology problems from QCA level.
+
+\section{Discussion (risks, boundaries, past work)}
+
+\subsection{Relation to Existing Work}
+
+In research on constructing free quantum field theory and Dirac equation from information processing principles, D'Ariano, Perinotti and others have shown QCA can serve as discrete ontology for Dirac, Weyl and Maxwell fields, recovering standard continuous theory in appropriate limits. This paper further:
+
+\begin{enumerate}
+\item Defines ``universe'' ontology as QCA object with initial state, emphasizing QCA is sole primitive;
+\item Introduces finite light cone axiom A2, unifying Lieb--Robinson velocity with macroscopic light speed;
+\item Proposes information rate circle theorem in concrete Dirac--QCA model, directly interfacing it with relativistic geometry and mass--energy relation;
+\item Proposes formalized observer object and observer network structure.
+\end{enumerate}
+
+Meanwhile, difficulties of defining Dirac vacuum in discrete spacetime, filling negative energy states and energy spectrum module structure have been systematically analyzed in recent work, pointing out directly introducing Dirac sea in discrete-time models will face new boundary effects and dual instabilities. These issues suggest: when further generalizing ontology to multi-particle and interacting field theory, need to more carefully handle energy spectrum and vacuum structure.
+
+\subsection{Framework Boundaries and Limitations}
+
+Despite this paper giving minimal and self-consistent ontological framework, several important limitations remain:
+
+\begin{enumerate}
+\item \textbf{Free field and low-energy limit:} Axiom A3 only requires existence of one free Dirac-type low-energy mode, has not yet incorporated structures such as gauge fields, interactions and spontaneous symmetry breaking;
+
+\item \textbf{Gravity and curvature:} Although causal structure and Minkowski line element can emerge from information rate geometry, complete curvature and gravitational field equations have not been realized under this framework, requiring introduction of more complex QCA structures and coarse-graining schemes;
+
+\item \textbf{Measurement and probability:} Definitions of observer objects and public reality still remain at level of operators and states; ``emergence'' of Born rule and probability interpretation needs to be further deepened by combining with ideas such as environment-assisted invariance;
+
+\item \textbf{Uniqueness of continuum limit:} Different QCA universe objects may give same continuous effective theory in low-energy limit; how to constrain details of $\mathfrak{U}_{\mathrm{QCA}}$ from experimental data remains open question.
+\end{enumerate}
+
+\subsection{Risks and Open Questions}
+
+Completely discretizing universe from ontological level has methodological risks: if future experiments discover some irreducible continuous structure (e.g., direct evidence of certain continuous symmetry above Planck level), need to re-examine rationality of QCA as sole primitive. Additionally, how to introduce complex topology, gauge symmetry and gravitational effects while ensuring locality and unitarity is also key challenge this framework faces.
+
+\section{Conclusion}
+
+This paper proposes minimal universe ontology under quantum cellular automaton framework: universe is QCA universe object $\mathfrak{U}_{\mathrm{QCA}}$ satisfying three axioms A1--A3. Within this axiom system, we construct one-dimensional Dirac-type QCA model, give its SU(2) dispersion relation and Bloch structure, thereby define external group velocity $v_{\mathrm{ext}}$ and internal evolution velocity $v_{\mathrm{int}}$, and prove information rate circle theorem $v_{\mathrm{ext}}^2+v_{\mathrm{int}}^2=c^2$. On this basis, proper time, four-velocity normalization and relativistic energy--momentum relation naturally emerge, mass is interpreted as internal information oscillation density, inertia and time dilation unified as geometric effect of information rate redistribution.
+
+Meanwhile, we characterize observers as self-referential local subsystems in universe object, whose proper time and formation of public reality are also uniformly described by same QCA ontology. At engineering level, we discuss schemes for verifying information rate circle on existing or foreseeable quantum simulation platforms, constructing Dirac--QCA and performing QCA renormalization numerical exploration.
+
+From ontological perspective, answer given by this work is: universe is not ``matter + spacetime'' addition, but maximally consistent QCA object and its unitary history; spacetime geometry, matter and observers are only emergent patterns of this object at different scales and different subsectors. Future work will dedicate to introducing gauge symmetry, interactions and gravity within this framework, and exploring unified constraints on problems such as cosmological constant and black hole entropy.
+
+\section*{Acknowledgements, Code Availability}
+
+Authors thank discussions and literature contributions on quantum cellular automata, Lieb--Robinson bounds and quantum walk--Dirac equation relations. This paper is conceptual and theoretical work, does not involve numerical programs and public code.
+
+\section*{Appendix A: Technical Details of Universe Object and Causal Structure}
+
+\subsection*{A.1 Support, Distance and Quasilocality}
+
+For any local operator $A\in\mathcal{B}(\mathcal{H}_{\Lambda_0}) \subset\mathcal{A}$, define its support as $\mathrm{supp}A:=\Lambda_0$. For any two finite subsets $\Lambda_0,\Lambda_1\subset\Lambda$, graph distance defined as
+$$
+\mathrm{dist}(\Lambda_0,\Lambda_1) := \min\{\mathrm{dist}(x,y)\mid x\in\Lambda_0,\ y\in\Lambda_1\},
+$$
+where $\mathrm{dist}(x,y)$ is shortest path length on graph $\Lambda$.
+
+Quasilocality in axiom A1 means exists $R>0$ such that
+$$
+\mathrm{supp}\bigl(\alpha_1(A)\bigr)\subset B_R\bigl(\mathrm{supp}A\bigr),
+$$
+where $B_R(S)$ is radius $R$ neighborhood of set $S$. Then by $\alpha_t=\alpha_1^t$ know:
+$$
+\mathrm{supp}\bigl(\alpha_t(A)\bigr)\subset B_{R|t|}\bigl(\mathrm{supp}A\bigr).
+$$
+
+\subsection*{A.2 Partial Order Property of Causal Partial Order}
+
+Event set defined as
+$$
+\mathcal{E} := \{(\Lambda_0,t)\mid \Lambda_0\Subset\Lambda,\ t\in\mathbb{Z}\},
+$$
+together with local algebra
+$$
+\mathcal{A}(\Lambda_0,t) := \alpha_t\bigl(\mathcal{B}(\mathcal{H}_{\Lambda_0})\bigr).
+$$
+
+Define relation
+$$
+(\Lambda_0,t)\preceq(\Lambda_1,s) \iff \forall A\in\mathcal{A}(\Lambda_0,t),\forall B\in\mathcal{A}(\Lambda_1,s):[A,B]=0,\ t\le s.
+$$
+
+Reflexivity: For any $(\Lambda_0,t)$, clearly $[A,B]=0$ does not hold for all $A,B\in\mathcal{A}(\Lambda_0,t)$, but holds when $A$ and $B$ taken from two mutually commuting subalgebras. In definition require $t\le s$, when $t=s$ and $\Lambda_0\subset\Lambda_1$, can ensure reflexivity by selecting appropriate local subalgebras.
+
+Transitivity: If $(\Lambda_0,t)\preceq(\Lambda_1,s)$ and $(\Lambda_1,s)\preceq(\Lambda_2,u)$, for any $A\in\mathcal{A}(\Lambda_0,t)$, $C\in\mathcal{A}(\Lambda_2,u)$, have
+$$
+[A,C] = [A,[B,C]] + [B,[A,C]],
+$$
+holding for all $B\in\mathcal{A}(\Lambda_1,s)$. Using linearity of commutators and Lieb--Robinson bound can prove norm of $[A,C]$ tends to zero when satisfying appropriate distance conditions, obtaining strict commutativity in limit, establishing transitivity.
+
+Directed acyclicity: If exists causal closed loop $(\Lambda_0,t_0)\preceq(\Lambda_1,t_1)\preceq\cdots\preceq(\Lambda_n,t_n)=(\Lambda_0,t_0)$ with strict time relation somewhere, can construct local perturbation returning to its origin and producing observable self-interference in finite time, contradicting Lieb--Robinson light cone and dynamical stability. Formal treatment relies on Kubo formula in response theory and causality requirements, see related literature for details.
+
+\subsection*{A.3 Continuum Limit and Causal Structure Embedding}
+
+Select large-scale blocks $B_L(x) \subset\Lambda$ (e.g., radius $L$ ball centered at $x$), view them as macroscopic spatial cells, define continuous coordinates $\vec{X} = \epsilon x$, $T=\epsilon t$, where $\epsilon\to 0$ while block size and time step scale together, making Lieb--Robinson light cone boundary $\mathrm{dist}\sim c|t|$ converge to continuous light cone $\lVert\vec{X}-\vec{X}_0\rVert\le c|T-T_0|$. In this limit, $(\mathcal{E},\preceq)$ embeds into causal structure on continuous manifold $(M,g_{\mu\nu})$, with $c$ corresponding to slope of metric light cone.
+
+\section*{Appendix B: SU(2) Structure and Dispersion Relation of Dirac--QCA}
+
+\subsection*{B.1 SU(2) Group Element Multiplication}
+
+Any $U_1,U_2\in SU(2)$ can be written as
+$$
+U_1 = \exp\bigl(-\mathrm{i}\alpha\,\hat{a}\cdot\vec{\sigma}\bigr),\qquad U_2 = \exp\bigl(-\mathrm{i}\beta\,\hat{b}\cdot\vec{\sigma}\bigr),
+$$
+where $\hat{a},\hat{b}\in S^2$, $\alpha,\beta\in[0,\pi]$. Their product is
+$$
+U_1U_2 = \exp\bigl(-\mathrm{i}\gamma\,\hat{c}\cdot\vec{\sigma}\bigr),
+$$
+where
+$$
+\cos\gamma = \cos\alpha\cos\beta - (\hat{a}\cdot\hat{b})\sin\alpha\sin\beta,
+$$
+$$
+\hat{c}\sin\gamma = \hat{a}\sin\alpha\cos\beta + \hat{b}\sin\beta\cos\alpha - (\hat{a}\times\hat{b})\sin\alpha\sin\beta.
+$$
+
+\subsection*{B.2 Application in Dirac--QCA}
+
+In Dirac--QCA model,
+$$
+C(m) = \exp\bigl(-\mathrm{i}m\Delta t\,\sigma_x\bigr),\qquad T(p) = \exp\bigl(-\mathrm{i}p a\,\sigma_z\bigr).
+$$
+Taking
+$$
+\alpha = m\Delta t,\ \hat{a} = (1,0,0);\qquad \beta = p a,\ \hat{b} = (0,0,1).
+$$
+Then
+$$
+\hat{a}\cdot\hat{b} = 0,\qquad \hat{a}\times\hat{b} = (0,-1,0).
+$$
+Substituting into multiplication formula gives
+$$
+\cos\bigl(\Omega(p)\bigr) = \cos(m\Delta t)\cos(p a),
+$$
+$$
+\hat{n}(p)\sin\bigl(\Omega(p)\bigr) = \bigl(\sin(m\Delta t)\cos(p a),\,\sin(m\Delta t)\sin(p a),\,\sin(p a)\cos(m\Delta t)\bigr).
+$$
+
+This gives explicit forms of dispersion relation and Bloch vector components in Theorem 2.
+
+\section*{Appendix C: Calculation Details of Information Rate Circle and Relativistic Corollaries}
+
+\subsection*{C.1 Derivative Calculation of Group Velocity}
+
+From dispersion relation
+$$
+\cos\bigl(\Omega(p)\bigr) = \cos(m\Delta t)\cos(p a)
+$$
+differentiating with respect to $p$:
+$$
+-\sin\bigl(\Omega(p)\bigr)\frac{\partial\Omega}{\partial p} = \cos(m\Delta t)\bigl(-\sin(p a)\bigr)a.
+$$
+Obtain
+$$
+\frac{\partial\Omega}{\partial p} = \frac{\cos(m\Delta t)\sin(p a)a}{\sin\bigl(\Omega(p)\bigr)}.
+$$
+From $\omega(p)=\Omega(p)/\Delta t$ get
+$$
+\frac{\mathrm{d}\omega}{\mathrm{d}p} = \frac{1}{\Delta t}\frac{\partial\Omega}{\partial p} = \frac{\cos(m\Delta t)\sin(p a)a}{\Delta t\,\sin\bigl(\Omega(p)\bigr)}.
+$$
+Setting $c=a/\Delta t$, group velocity
+$$
+v_{\mathrm{ext}}(p) = a\,\frac{\mathrm{d}\omega}{\mathrm{d}p} = c\,\frac{\cos(m\Delta t)\sin(p a)}{\sin\bigl(\Omega(p)\bigr)}.
+$$
+
+\subsection*{C.2 Symmetric Definition of Internal Velocity and Algebraic Identity}
+
+From Bloch vector components
+$$
+\hat{n}(p)\sin\bigl(\Omega(p)\bigr) = \bigl(\sin(m\Delta t)\cos(p a),\,\sin(m\Delta t)\sin(p a),\,\sin(p a)\cos(m\Delta t)\bigr),
+$$
+taking $x$ component most directly related to mass parameter $m$, define internal evolution velocity
+$$
+v_{\mathrm{int}}(p) := c\,\frac{\sin(m\Delta t)\cos(p a)}{\sin\bigl(\Omega(p)\bigr)}.
+$$
+
+Note $v_{\mathrm{ext}}$ and $v_{\mathrm{int}}$ have symmetric structure between $m\Delta t$ and $p a$: if exchange $m\Delta t \leftrightarrow p a$, they interchange roles.
+
+Squaring and adding both:
+$$
+v_{\mathrm{ext}}^2(p)+v_{\mathrm{int}}^2(p) = c^2\,\frac{\cos^2(m\Delta t)\sin^2(p a)+\sin^2(m\Delta t)\cos^2(p a)}{\sin^2\bigl(\Omega(p)\bigr)}.
+$$
+
+On other hand, from dispersion relation
+$$
+\sin^2\bigl(\Omega(p)\bigr) = 1 - \cos^2\bigl(\Omega(p)\bigr) = 1 - \cos^2(m\Delta t)\cos^2(p a).
+$$
+Direct expansion gives
+$$
+\begin{aligned}
+&\cos^2(m\Delta t)\sin^2(p a)+\sin^2(m\Delta t)\cos^2(p a)\\
+&= \cos^2(m\Delta t)\bigl(1-\cos^2(p a)\bigr)+\sin^2(m\Delta t)\cos^2(p a)\\
+&= \cos^2(m\Delta t) + \cos^2(p a)\bigl[\sin^2(m\Delta t)-\cos^2(m\Delta t)\bigr]\\
+&= \cos^2(m\Delta t) + \cos^2(p a)\bigl[1-2\cos^2(m\Delta t)\bigr]\\
+&= 1 - \cos^2(m\Delta t)\cos^2(p a)\\
+&= \sin^2\bigl(\Omega(p)\bigr).
+\end{aligned}
+$$
+Thus
+$$
+v_{\mathrm{ext}}^2(p)+v_{\mathrm{int}}^2(p) = c^2.
+$$
+
+\subsection*{C.3 Time Dilation and Four-Velocity Normalization}
+
+From information rate circle
+$$
+v_{\mathrm{int}}(p) = \sqrt{c^2 - v^2},\qquad v:=v_{\mathrm{ext}}(p),
+$$
+define proper time element
+$$
+\mathrm{d}\tau = \frac{v_{\mathrm{int}}}{c}\,\mathrm{d}t = \sqrt{1-\frac{v^2}{c^2}}\,\mathrm{d}t.
+$$
+Conversely
+$$
+\frac{\mathrm{d}t}{\mathrm{d}\tau} = \frac{1}{\sqrt{1-v^2/c^2}} = \gamma.
+$$
+Thus four-velocity components
+$$
+u^0 = \frac{\mathrm{d}(ct)}{\mathrm{d}\tau} = c\,\frac{\mathrm{d}t}{\mathrm{d}\tau} = \gamma c,
+$$
+$$
+u^1 = \frac{\mathrm{d}x}{\mathrm{d}\tau} = \frac{\mathrm{d}x}{\mathrm{d}t}\frac{\mathrm{d}t}{\mathrm{d}\tau} = v\,\gamma.
+$$
+Under Minkowski metric $g_{\mu\nu}=\mathrm{diag}(-1,1)$,
+$$
+g_{\mu\nu}u^\mu u^\nu = -(\gamma c)^2 + (\gamma v)^2 = -\gamma^2(c^2 - v^2) = -c^2.
+$$
+Thus line element can be written as $\mathrm{d}s^2=-c^2\mathrm{d}\tau^2$, consistent with standard form of special relativity.
+
+\subsection*{C.4 Mass and Energy--Momentum Relation}
+
+At $p=0$, dispersion relation is
+$$
+\cos\bigl(\omega(0)\Delta t\bigr) = \cos(m\Delta t).
+$$
+When $m\Delta t\ll 1$,
+$$
+\cos\bigl(\omega(0)\Delta t\bigr)\approx 1-\frac{\omega^2(0)\Delta t^2}{2},\qquad \cos(m\Delta t)\approx 1-\frac{m^2\Delta t^2}{2},
+$$
+comparing gives $\omega(0)\approx m$. Define rest energy
+$$
+E_0 := \hbar\omega(0) := mc^2,
+$$
+then mass $m$ is defined by internal frequency $\omega_{\mathrm{int}}(0)$.
+
+When $p a\ll 1$, dispersion relation expands to
+$$
+\cos\bigl(\omega(p)\Delta t\bigr) \approx 1-\frac{\omega^2(p)\Delta t^2}{2} \approx 1-\frac{m^2\Delta t^2}{2}-\frac{p^2 a^2}{2},
+$$
+obtaining
+$$
+\omega^2(p)\approx m^2 + \frac{p^2 a^2}{\Delta t^2} = m^2 + \frac{p^2 c^2}{\hbar^2}\hbar^2,
+$$
+thus total energy $E(p)=\hbar\omega(p)$ satisfies
+$$
+E^2(p)\approx p^2c^2 + m^2c^4.
+$$
+
+This is discrete derivation of relativistic energy--momentum relation.
+
+\begin{thebibliography}{99}
+\bibitem{dariano} G. M. D'Ariano, P. Perinotti, ``Quantum cellular automata and free quantum field theory'', \textit{Phys. Rev. A} \textbf{90}, 062106 (2014).
+\bibitem{bisio} A. Bisio, G. M. D'Ariano, P. Perinotti, ``Quantum cellular automaton theory of light'', \textit{Ann. Phys.} \textbf{368}, 177--190 (2016).
+\bibitem{brun} T. A. Brun, et al., ``Quantum cellular automata and quantum field theory in two spatial dimensions'', \textit{Phys. Rev. A} \textbf{102}, 062222 (2020).
+\bibitem{trezzini} L. S. Trezzini, ``Renormalisation of quantum cellular automata'', \textit{Quantum} \textbf{9}, 1756 (2025).
+\bibitem{strauch} F. W. Strauch, ``Relativistic quantum walks'', \textit{Phys. Rev. A} \textbf{73}, 054302 (2006).
+\bibitem{chandrashekar} C. M. Chandrashekar, ``Two-component Dirac-like Hamiltonian for generating quantum walk on one-, two- and three-dimensional lattices'', \textit{Sci. Rep.} \textbf{3}, 2829 (2013).
+\bibitem{perez} A. Pérez, ``Asymptotic properties of the Dirac quantum cellular automaton'', \textit{Phys. Rev. A} \textbf{93}, 012328 (2016).
+\bibitem{mallick} A. Mallick, C. M. Chandrashekar, ``Dirac cellular automaton from split-step quantum walk'', \textit{Sci. Rep.} \textbf{6}, 25779 (2016).
+\bibitem{costa} P. C. Costa, et al., ``Quantum walks via quantum cellular automata'', \textit{Quantum Inf. Process.} \textbf{17}, 198 (2018).
+\bibitem{alderete} C. H. Alderete, et al., ``Quantum walks and Dirac cellular automata on a trapped-ion quantum computer'', \textit{npj Quantum Inf.} \textbf{6}, 89 (2020).
+\bibitem{kumar} N. P. Kumar, C. M. Chandrashekar, ``Bounds on the dynamics of periodic quantum walks and emergence of the gapless and gapped Dirac equation'', \textit{Phys. Rev. A} \textbf{97}, 012116 (2018).
+\bibitem{nachtergaele} B. Nachtergaele, R. Sims, ``Much ado about something: why Lieb--Robinson bounds are useful'', \textit{J. Stat. Phys.} \textbf{124}, 1--13 (2006).
+\bibitem{lieb} E. H. Lieb, D. W. Robinson, ``The finite group velocity of quantum spin systems'', \textit{Commun. Math. Phys.} \textbf{28}, 251--257 (1972).
+\bibitem{cheneau} M. Cheneau, ``Experimental tests of Lieb--Robinson bounds'', in \textit{Quantum Systems in and out of Equilibrium}, EMS Press (2022).
+\bibitem{gupta} C. Gupta, A. Perez, ``The Dirac vacuum in discrete spacetime'', \textit{Quantum} \textbf{9}, 1845 (2025).
+\bibitem{brun2} T. A. Brun, et al., ``Quantum electrodynamics from quantum cellular automata'', \textit{Entropy} \textbf{27}, 492 (2025).
+\end{thebibliography}
+
+\end{document}

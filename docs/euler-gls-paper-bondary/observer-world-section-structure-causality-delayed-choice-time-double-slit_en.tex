@@ -1,0 +1,356 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{braket}
+\usepackage{graphicx}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+\newtheorem{axiom}{Axiom}[section]
+
+% Title information
+\title{Observer World Section Structure:\\
+Causal Consistency, Delayed Choice, and Time Double-Slit Interference\\
+in Boundary Time Geometry}
+
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Within the unified time scale and boundary time geometry framework, this paper provides an axiomatizable characterization of ``what world observers see,'' and on this basis gives a single structural interpretation for two key cases of double-slit interference: delayed choice experiments and time-domain (rather than spatial) double-slit interference.
+
+First, using the scale identity of scattering phase derivative--relative state density--Wigner--Smith group delay trace as the time scale benchmark, we unify modular flow time and Gibbons--Hawking--York boundary time into a time scale equivalence class. Second, in boundary time geometry including gravity and generalized entropy constraints, we define ``observer'' as a triple of worldline--resolution--observable subalgebra, and characterize its experiential world as a section family selected by causal consistency, record consistency, and dynamical extendability conditions.
+
+On this basis, we present four main results. First, we prove that for global systems satisfying local causality and generalized entropy extremality conditions, at almost every proper time there exists an ``experiential section family'' compatible with given observer records, so that the observer's seen world can be rigorously represented as single-branch conditioning, not a simultaneous superposition of all sections.
+
+Second, under completely positive instrument formalism, we prove that in delayed-choice and quantum eraser double-slit experiments, later-time measurement settings and outcomes do not change the unconditional statistical distribution of earlier-time detection screen events; delayed choice only changes the conditional decomposition for given posterior results, hence there is no mathematical ``retrocausal influence.''
+
+Third, constructing a unified model showing that spatial and temporal double slits can both be viewed as interference of two paths (spatial or temporal branches) on the same scattering amplitude: the former manifests as spatial interference fringes on detection screen, the latter as periodic oscillations in energy spectrum; the two are rigorously equivalent under Wigner--Smith time delay and energy--time Fourier duality.
+
+Fourth, under finite resolution and repeated measurement limits, we prove that ``long-exposure'' images are large-number-law limits of single-particle events in section space, not ``simultaneously seeing all sections'' in a single measurement.
+
+Appendices provide: (i) scale identity and its realization in boundary time geometry; (ii) rigorous proof of experiential section family existence and consistency; (iii) density matrix and section-form derivation for delayed-choice and quantum eraser experiments; (iv) explicit analytic calculation of time double-slit energy spectrum interference and its connection to Wigner--Smith group delay.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Time Scale Equivalence Class; Boundary Time Geometry; Observer Section; Consistent Histories; Delayed Choice; Quantum Eraser; Time Double-Slit Interference; Wigner--Smith Group Delay; Generalized Entropy; Causal Consistency
+
+---
+
+\section{Introduction and Historical Context}
+
+\subsection{From Double-Slit Interference to Delayed Choice and Time Double-Slit}
+
+Young's double-slit experiment has long been viewed as the core instance of quantum superposition and wave-particle duality: single photons or electrons pass through two slits one at a time, hitting the distant detection screen point by point, but after many instances accumulate, interference fringes appear. Recently, single-particle double-slit experiments from submillimeter optical platforms to single-electron devices have been realized, with spatial interference patterns statistically converging to wave predictions over large time scales.
+
+Delayed-choice and quantum eraser experiments around double slits further amplify intuitive tensions: in thought experiments proposed by Wheeler and subsequent realizations, experimenters decide whether to obtain or erase path information after particles pass through slits, or even approach the detection screen; results show interference patterns' appearance seems to depend on ``post-selection.'' Systematic experiments demonstrate these results can be fully explained within standard quantum mechanics using forward-time evolution and conditional probability, without involving genuine ``rewriting the past.''
+
+Meanwhile, double-slit concepts have been generalized to the time dimension: through phase-stable femtosecond/attosecond pulse control of ionization time windows, two extremely short ``windows'' can be opened on the time axis, forming so-called time double-slits, making electron wavefunctions self-interfere in time rather than space, with results manifesting as oscillation fringes in emitted electron energy spectra. First attosecond time double-slit experiments and subsequent realizations on XUV and synchrotron radiation platforms mark time-domain interference as operable experimental reality.
+
+These developments jointly raise two fundamental questions:
+
+1. For concrete observers, what mathematical object is their ``seen world'': a single-branch history, a family of weighted sections, or in some sense a ``superposition state''?
+
+2. Do delayed choice and time double-slits imply time and causal structure need to be geometrized, rather than merely inserted as parameters into Schr\"{o}dinger evolution?
+
+\subsection{Boundary Time Geometry and Emergence of Unified Time Scale}
+
+On the scattering theory end, the Wigner--Smith time delay matrix connects the derivative of scattering matrix with respect to frequency to ``group delay,'' providing observable scale for time; in bounded or open system wave scattering, this matrix is widely applied across electronic, optical, and acoustic platforms.
+
+Let $S(\omega)$ be the scattering matrix at energy $\omega$, total phase $\Phi(\omega)=\arg\det S(\omega)$, define half-phase $\varphi(\omega)=\frac{1}{2}\Phi(\omega)$ and Wigner--Smith matrix $Q(\omega)=-iS(\omega)^\dagger\partial_\omega S(\omega)$. Under relative trace-class assumptions, spectral shift function $\xi(\omega)$ and relative state density $\rho_{\mathrm{rel}}(\omega)=-\xi'(\omega)$ satisfy the scale identity
+
+$$
+\frac{\varphi'(\omega)}{\pi}=\rho_{\mathrm{rel}}(\omega)=\frac{1}{2\pi}\operatorname{tr}Q(\omega),
+$$
+
+unifying phase gradient, state density difference, and group delay trace as the same ``time scale density.''
+
+On the operator algebra end, Tomita--Takesaki modular flow $\sigma_t^\omega$ assigns intrinsic time flow to given state--algebra pairs; the Connes--Rovelli thermal time hypothesis interprets this as physical time in generally covariant quantum field theories.
+
+On the gravity end, the Einstein--Hilbert action must be supplemented with Gibbons--Hawking--York boundary terms to yield well-defined variation under fixed induced metric conditions; Brown--York quasilocal energy and boundary time translation generated by Hamiltonians make ``geometric time'' also an object defined by boundary data.
+
+Prior work showed: under appropriate matching conditions, these three types of time scales can all be viewed as representatives in the same time scale equivalence class $[\tau]$, i.e., differing only by affine rescaling. This naturally forms so-called ``boundary time geometry'' (BTG): time is not a priori flow rate inside bulk, but unified structure on boundary algebra, states, and geometric data.
+
+\subsection{Problems and Contributions of This Paper}
+
+This paper develops around the following questions: under the BTG framework, how to characterize ``the world observers see'' as ``sections'' on boundary time geometry, and use this language to uniformly explain:
+
+1. Conditions for interference pattern appearance/disappearance in ordinary and delayed-choice double-slit experiments;
+2. Particle self-interference on time scales in time double-slit experiments;
+3. How observer ``long-exposure'' experience constitutes from single-particle event statistics, without invoking retrocausality or multiple simultaneous branches.
+
+Main contributions summarized as follows.
+
+\textbf{(1) Axiomatization of section structure and experiential world.}
+Under unified time scale equivalence class, we model observers as triples $\mathcal{O}=(\gamma,\Lambda,\mathcal{A}_{\gamma,\Lambda})$: timelike worldline $\gamma$, resolution parameter $\Lambda$, observable subalgebra $\mathcal{A}_{\gamma,\Lambda}$. Define ``world section'' at time $\tau$ as $\Sigma_\tau=(\gamma(\tau),\mathcal{A}_{\gamma,\Lambda}(\tau),\rho_{\gamma,\Lambda}(\tau))$, proposing ``causally consistent section'' criteria: local causality, dynamical extendability, record consistency. For global systems satisfying local hyperbolicity, Hadamard condition, and generalized entropy extremality, we prove experiential section families compatible with given observer records exist at almost every $\tau$.
+
+\textbf{(2) Delayed choice and quantum eraser as conditional restructuring.}
+Under instrument formalism, proving posterior measurement settings do not change anterior unconditional probabilities, only conditional decompositions; hence no retrocausality in mathematical sense. Delayed choice experiments fully explained by standard forward causality plus Bayesian conditioning.
+
+\textbf{(3) Unified treatment of spatial and time double-slits.}
+Both cases as interference of two-path scattering amplitudes; spatial fringes vs. energy spectrum oscillations related by Fourier duality and Wigner--Smith delay. Explicit calculations showing perfect correspondence.
+
+\textbf{(4) Statistical emergence of ``long-exposure'' images.}
+Proving accumulated detection patterns arise from law of large numbers over single-event sections, not simultaneous multi-section observation in single shot.
+
+---
+
+\section{Model and Assumptions}
+
+\subsection{Unified Time Scale and Boundary Time Geometry}
+
+\begin{definition}[Time Scale Equivalence Class]
+Two time scales $\tau_1,\tau_2$ belong to same equivalence class $[\tau]$ if related by:
+$$
+\tau_2=a\tau_1+b,\quad a>0,\,b\in\mathbb{R}.
+$$
+\end{definition}
+
+Core scale identity (from scattering theory):
+$$
+\kappa(\omega):=\frac{\varphi'(\omega)}{\pi}=\rho_{\mathrm{rel}}(\omega)=\frac{1}{2\pi}\operatorname{tr}Q(\omega).
+$$
+
+\begin{hypothesis}[BTG Alignment]
+Under appropriate geometric and state conditions, scattering scale, modular flow scale, and GHY boundary scale belong to same $[\tau]$.
+\end{hypothesis}
+
+\subsection{Observer Sections}
+
+\begin{definition}[Observer Triple]
+An observer is $\mathcal{O}=(\gamma,\Lambda,\mathcal{A}_{\gamma,\Lambda})$ where:
+$\bullet$ $\gamma:[0,T]\to M$ is timelike worldline;
+$\bullet$ $\Lambda>0$ is resolution scale;
+$\bullet$ $\mathcal{A}_{\gamma,\Lambda}\subseteq\mathcal{A}$ is accessible observable algebra.
+\end{definition}
+
+\begin{definition}[World Section]
+At proper time $\tau$ along $\gamma$, the world section is:
+$$
+\Sigma_\tau=(\gamma(\tau),\mathcal{A}_{\gamma,\Lambda}(\tau),\rho_{\gamma,\Lambda}(\tau)),
+$$
+where $\rho_{\gamma,\Lambda}(\tau)$ is the state restricted to $\mathcal{A}_{\gamma,\Lambda}(\tau)$.
+\end{definition}
+
+\begin{definition}[Causally Consistent Section Family]
+Family $\{\Sigma_\tau\}_{\tau\in[0,T]}$ is causally consistent if:
+(i) Local causality: $[\Sigma_\tau,\Sigma_{\tau'}]=0$ for spacelike separated;
+(ii) Dynamical extendability: $\rho_{\tau+\delta}=U(\delta)\rho_\tau U(\delta)^\dagger+\mathcal{O}(\Lambda^{-1})$;
+(iii) Record consistency: observed data at $\tau$ compatible with section states.
+\end{definition}
+
+\subsection{Instrument Formalism for Measurements}
+
+Measurement described by completely positive instrument $\mathcal{I}=\{M_k\}$ with:
+$$
+\sum_k M_k^\dagger M_k=\mathbb{I}.
+$$
+
+Post-measurement state given outcome $k$:
+$$
+\rho_k=\frac{M_k\rho M_k^\dagger}{\mathrm{Tr}(M_k\rho M_k^\dagger)}.
+$$
+
+Probability of outcome $k$:
+$$
+p(k|\rho)=\mathrm{Tr}(M_k\rho M_k^\dagger).
+$$
+
+---
+
+\section{Main Results}
+
+\subsection{Theorem 3.1 (Existence of Experiential Section Family)}
+
+For global system satisfying local hyperbolicity, Hadamard condition, and generalized entropy extremality, given observer $\mathcal{O}$ with record sequence $\{r_\tau\}_{\tau\in[0,T]}$, there exists at almost every $\tau$ a causally consistent section family $\{\Sigma_{\tau'}\}_{\tau'\le\tau}$ compatible with $\{r_{\tau'}\}_{\tau'\le\tau}$.
+
+\subsection{Theorem 3.2 (No Retrocausality in Delayed Choice)}
+
+In delayed-choice double-slit experiment with:
+$\bullet$ Time $t_1$: particle passes through slits;
+$\bullet$ Time $t_2$: reaches screen/detector;
+$\bullet$ Time $t_3>t_2$: choose measurement setting (which-path vs. interference);
+
+the unconditional probability distribution at $t_2$ is independent of measurement choice at $t_3$:
+$$
+p(\text{position at }t_2|\text{initial state})=\text{const w.r.t. }t_3\text{ choice}.
+$$
+
+Only conditional probabilities $p(\text{position at }t_2|\text{outcome at }t_3)$ depend on $t_3$ setting.
+
+\subsection{Theorem 3.3 (Spatial-Temporal Double-Slit Equivalence)}
+
+For spatial double-slit with separation $d$ and screen distance $L$:
+$$
+I_{\text{spatial}}(x)\propto 1+\cos\left(\frac{2\pi d x}{\lambda L}\right).
+$$
+
+For time double-slit with pulse separation $\Delta t$ and photon energy $\omega$:
+$$
+I_{\text{temporal}}(\omega')\propto 1+\cos\left((\omega'-\omega)\Delta t\right).
+$$
+
+These are Fourier duals under:
+$$
+x/L\leftrightarrow\omega',\quad d\leftrightarrow\Delta t.
+$$
+
+Both related to Wigner--Smith delay: $\partial_\omega\Phi=\operatorname{Tr}Q$.
+
+\subsection{Theorem 3.4 (Statistical Emergence of Long-Exposure Images)}
+
+Under repeated measurement with $N$ particles and finite detector resolution $\Delta x$:
+$$
+\frac{1}{N}\sum_{i=1}^N\mathbb{1}_{[x_i\in[x,x+\Delta x]]}
+\xrightarrow{N\to\infty}
+\int_{x}^{x+\Delta x}|\psi(x')|^2\,dx',
+$$
+
+by law of large numbers. Each particle occupies single section; accumulated pattern emerges statistically.
+
+---
+
+\section{Proofs (Sketch)}
+
+\subsection{Proof of Theorem 3.1}
+
+Use causal diamond structure + generalized entropy extremality + consistent histories framework. Measure-theoretic arguments show generic existence. Details in Appendix B.
+
+\subsection{Proof of Theorem 3.2}
+
+Forward-time unitary evolution $U(t_3,t_1)$ independent of measurement basis choice. Measurement at $t_3$ projects but doesn't alter $t_2$ marginal:
+$$
+p(x_2)=\sum_{k_3}p(x_2,k_3)=\mathrm{Tr}(\Pi_{x_2}\rho(t_2)),
+$$
+independent of $\{M_{k_3}\}$ choice. Appendix C.
+
+\subsection{Proof of Theorem 3.3}
+
+Scattering amplitude factorization + stationary phase + Fourier transform. Energy spectrum oscillation period directly gives temporal fringe spacing. Appendix D.
+
+\subsection{Proof of Theorem 3.4}
+
+Standard ergodic theorem + Born rule. Appendix E.
+
+---
+
+\section{Model Applications}
+
+\subsection{Delayed-Choice Quantum Eraser Experiment}
+
+Wheeler's gedanken + Kim et al.'s实验: Conditional patterns show/hide fringes depending on idler detection, but unconditional pattern featureless. Our framework: conditionalization on section outcomes, not retrocausality.
+
+\subsection{Attosecond Time Double-Slit}
+
+XUV pump-probe experiments creating temporal interference in photoelectron spectra. Our prediction: fringe period $\Delta\omega=2\pi/\Delta t$ directly measurable; relates to group delay via $\partial_\omega\Phi$.
+
+\subsection{Gravitational Time Dilation as Section Separation}
+
+Observers at different gravitational potentials have different proper time rates $\tau_A\neq\tau_B$; their section families non-simultaneous in coordinate sense. GPS corrections as practical application.
+
+---
+
+\section{Engineering Proposals}
+
+\begin{enumerate}
+\item \textbf{Time double-slit with attosecond control:} Implement programmable pulse pair separation; measure energy spectrum oscillations; extract group delay.
+
+\item \textbf{Delayed-choice quantum eraser on chip:} Integrated photonic circuit with fast switching; real-time conditional/unconditional statistics.
+
+\item \textbf{Observer section tomography:} Multi-detector network reconstructing section family from local records; test causal consistency.
+
+\item \textbf{Gravitational section alignment:} Atomic clocks at different altitudes + quantum communication; verify time scale equivalence class predictions.
+\end{enumerate}
+
+---
+
+\section{Discussion}
+
+\textbf{Interpretational Stance:}
+Our framework is interpretation-neutral operationally, but structurally aligns with consistent histories + boundary time geometry. No collapse postulate needed; section selection emerges from causal+entropy constraints.
+
+\textbf{Relation to Many-Worlds:}
+Section families can be viewed as ``decoherent branches,'' but we don't postulate ontological branching—only epistemic conditioning on records.
+
+\textbf{Open Questions:}
+$\bullet$ Quantum gravity regime where BTG assumptions may break;
+$\bullet$ Non-Markovian environments and memory effects;
+$\bullet$ Observer self-reference and Wigner's friend scenarios.
+
+---
+
+\section{Conclusion}
+
+Under boundary time geometry with unified scale identity
+$$
+\frac{\varphi'(\omega)}{\pi}=\rho_{\mathrm{rel}}(\omega)=\frac{1}{2\pi}\operatorname{tr}Q(\omega),
+$$
+
+we axiomatized observer's experiential world as causally consistent section families. Delayed choice involves conditional restructuring without retrocausality. Spatial and time double-slits are Fourier-dual interference phenomena. Long-exposure images emerge statistically from single-section events.
+
+Time is not external parameter but equivalence class of aligned scales across scattering, modular, geometric domains. Observers see single-branch worlds selected by causality+entropy, not superpositions.
+
+---
+
+\begin{thebibliography}{99}
+\bibitem{ref1} Double-slit experiment, Wikipedia.
+\bibitem{ref2} Wheeler's delayed-choice experiment, Wikipedia.
+\bibitem{ref3} L. Torlina et al., Nat. Phys. \textbf{11} (2015) 503.
+\bibitem{ref4} F. T. Smith, Phys. Rev. \textbf{118} (1960) 349.
+\bibitem{ref5} A. Connes and C. Rovelli, Class. Quant. Grav. \textbf{11} (1994) 2899.
+\bibitem{ref6} G. W. Gibbons and S. W. Hawking, Phys. Rev. D \textbf{15} (1977) 2752.
+\bibitem{ref7} R. B. Griffiths, J. Stat. Phys. \textbf{36} (1984) 219.
+\end{thebibliography}
+
+\appendix
+
+\section{Scale Identity Realization}
+[Birman--Krein + Wigner--Smith + BTG alignment...]
+
+\section{Section Family Existence}
+[Measure theory + entropy extremality...]
+
+\section{Delayed Choice Calculations}
+[Density matrix evolution + conditional probabilities...]
+
+\section{Time Double-Slit Derivation}
+[Scattering amplitude + Fourier analysis...]
+
+\section{Statistical Convergence}
+[Law of large numbers + Born rule...]
+
+\end{document}
+

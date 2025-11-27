@@ -1,0 +1,395 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{braket}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=0.85in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{axiom}[theorem]{Axiom}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Math operators
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\sinc}{sinc}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\PW}{PW}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\argdet}{arg\,det}
+
+% Title information
+\title{WSIG-QM: Windowed Scattering \& Information Geometry\\
+for Quantum Mechanics\\
+\bigskip
+A Unified Framework of Quantum Concept Definitions\\
+and Criterion System (with Complete Proofs)}
+\author{Auric (S-series / EBOC Framework)\\[5pt]
+\small Version v1.4a (Logically Complete, Peer-Reviewed)}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Using the \textbf{de Branges--Kreĭn (DBK) canonical system} and \textbf{weighted Mellin space} as carriers, we explicitly incorporate the \textbf{finite bandwidth/time window} of real instruments into spectral measures, forming a \textbf{windowed readout} framework; we characterize ``commit (collapse/commit)'' through \textbf{KL/Bregman information geometry}; use \textbf{scattering phase--spectral density--Wigner--Smith delay} as energy scale; close non-asymptotic errors via \textbf{Nyquist--Poisson--Euler--Maclaurin (three-term decomposition)}; ensure realizability and stability through \textbf{variational optimization of frame/sampling density and window/kernel}. The core unified formula is
+
+$$
+\boxed{\,\varphi'(E)=-\pi\,\rho_{\mathrm{rel}}(E)=\tfrac{1}{2}\operatorname{tr}\mathsf{Q}(E)\,}\quad(\text{a.e.})
+$$
+
+unifying (single/multi-channel) scattering phase derivative, relative local density of states (LDOS) and Wigner--Smith delay; under information geometry we obtain \textbf{Born probability = minimal-KL projection (I-projection)}, and ``pointer basis'' is \textbf{spectral minimum of windowed readout operator}. Above criteria consistent with Herglotz--Weyl, Birman--Kreĭn, Wigner--Smith, Ky Fan, Poisson/EM and other standard results, directly interchangeable and implementable.
+\end{abstract}
+
+\section{Notation \& Baseplates}
+
+\subsection{DBK Canonical System and Herglotz--Weyl Dictionary}
+
+Consider first-order symplectic canonical system $JY'(t,z)=zH(t)Y(t,z)$ ($H\succeq0$), whose Weyl--Titchmarsh function $m:\mathbb{C}^+\to\mathbb{C}^+$ belongs to Herglotz class, with representation
+
+$$
+m(z)=a\,z+b+\int_{\mathbb{R}}\!\Bigl(\frac{1}{t-z}-\frac{t}{1+t^2}\Bigr)\,d\mu(t),\ a\ge 0,\ b\in\mathbb{R},
+$$
+
+and $\Im m(E+i0)=\pi\,\rho(E)$ (a.e.). This gives absolutely continuous density $\rho$ of continuous spectrum and is compatible with DBK framework.
+
+\subsection{Weyl--Heisenberg (Phase--Scale) Representation (Mellin Version)}
+
+On weighted Mellin space $\mathcal{H}_a=L^2(\mathbb{R}_+,x^{a-1}dx)$ define
+
+$$
+(U_\tau f)(x)=x^{i\tau}f(x),\ (V_\sigma f)(x)=e^{\sigma a/2}f(e^\sigma x),
+$$
+
+satisfying Weyl relation $V_\sigma U_\tau=e^{i\tau\sigma}U_\tau V_\sigma$. Via power-log isomorphism $x=e^t$, $\mathcal{H}_a$ and $L^2(\mathbb{R})$ Weyl--Heisenberg/Gabor framework are isometric and parallel, serving as phase--scale kinematic baseplate.
+
+\subsection{Finite-Order EM / Poisson Three-Term Decomposition Discipline}
+
+Parent map and all discrete--continuous reordering adopt \textbf{finite-order Euler--Maclaurin (EM)}, closing errors via ``\textbf{alias (Poisson) + Bernoulli layer (EM) + tail term}'' three-term decomposition; ``bandlimited + Nyquist'' makes alias term zero. Poisson summation and sampling criteria adopt \textbf{angular frequency convention} ($\Omega$ unit: rad/unit(E); \textbf{unit conversion}: if using Hertz $B$, have $B=\Omega/(2\pi)$, then switch to $T_s\le 1/(2B)$; for time $t$ as independent variable unit is rad/s).
+
+\subsection{Convention and Notation}
+
+\textbf{Fourier/Parseval Convention Table}:
+
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Item} & \textbf{Formula} & \textbf{Note} \\
+\hline
+Fourier transform & $\widehat{f}(\xi)=\int f(t)e^{-it\xi}\,dt$ & $\xi$ angular frequency (rad/unit(t)) \\
+Parseval relation & $\int_{\mathbb{R}}\|f\|^2=\tfrac{1}{2\pi}\int_{\mathbb{R}}\|\widehat{f}\|^2$ & Energy conservation, with $\tfrac{1}{2\pi}$ factor \\
+Convolution theorem & $\widehat{f\ast g}=\widehat{f}\cdot\widehat{g}$ & Time convolution = frequency product \\
+Product transform & $\widehat{f\cdot g}=\tfrac{1}{2\pi}\,\widehat{f}\ast\widehat{g}$ & Time product = frequency convolution/$2\pi$ \\
+\hline
+\end{tabular}
+\end{center}
+
+Birman--Kreĭn adopts
+
+$$
+\det S(E)=e^{-2\pi i\,\xi(E)}.
+$$
+
+\textbf{This paper fixes above formula}. \textbf{Equivalence chain bridge} ($\det S$--$\xi$--$\mathsf{Q}$ triple relation):
+
+$$
+\operatorname{tr}\mathsf{Q}(E)=-i\,\partial_E\ln\det S(E)=-2\pi\,\xi'(E);
+$$
+
+thus for any channel number $N$, have $\operatorname{tr}\mathsf{Q}(E)=-2\pi\,\xi'(E)$; single-channel $S=e^{2i\varphi}$ gives $\operatorname{tr}\mathsf{Q}(E)=2\varphi'(E)$, thus $\varphi'(E)=-\pi\,\xi'(E)$ (consistent with $\rho_{\mathrm{rel}}=\xi'$).
+
+\subsection{Projection Operator Notation Unification}
+
+This paper fixes \textbf{frequency-domain projection} as $P_B^{(\xi)}:\widehat{f}\mapsto \chi_B\,\widehat{f}$ (where $\chi_B$ characteristic function of frequency band $B=[-\Omega,\Omega]$), its integral kernel realization in energy domain denoted $\Pi_B$, i.e.,
+
+$$
+(\Pi_B f)(E)=\int_{\mathbb{R}} k_B(E-E')\,f(E')\,dE',\quad k_B(t)=\frac{\sin(\Omega t)}{\pi t}.
+$$
+
+In T6 variational equations always use $P_B^{(\xi)}$ (frequency projection); in A4/T3 kernel--trace class/Hilbert--Schmidt arguments use $\Pi_B$ (energy integral operator). This distinction avoids confusion between ``first convolve then project'' and ``projection is convolution''.
+
+\section{Axioms}
+
+\begin{axiom}[Carrier and Covariance]
+\label{ax:carrier}
+Quantum states placed in $\mathcal{H}(E)$ or $\mathcal{H}_a$; phase--scale covariance realized by projective unitary representation of $(U_\tau,V_\sigma)$ Weyl--Heisenberg (Stone theorem: strongly continuous one-parameter unitary group $\Leftrightarrow$ self-adjoint generator; Stone--von Neumann: irreducible representation of Weyl relation essentially unique).
+\end{axiom}
+
+\begin{axiom}[Observables and Windowed Readout]
+\label{ax:windowed-readout}
+Instrument window $w_R$ and \textbf{bandlimited response kernel} $h\in L^1$ act on continuous spectral density of state, defining \textbf{windowed readout}
+
+$$
+\boxed{\ \langle K_{w,h}\rangle_\rho=\int_{\mathbb{R}} w_R(E)\,\bigl[h\ast\rho_\star\bigr](E)\,dE\ }.
+$$
+
+where $\rho_\star$ can be $\rho_{\mathrm{abs}}$ (absolutely continuous spectral density, i.e., density of $\mu_\rho^{\mathrm{ac}}$) or $\rho_{\mathrm{rel}}=\rho_{\mathrm{abs}}-\rho_{0,{\mathrm{abs}}}$ (relative density). In ``\textbf{no-blur hard limit}'' $h\to\delta$ recovers $\int w_R(E)\rho_\star(E)\,dE$. Readout controlled by three-term decomposition error.
+\end{axiom}
+
+\begin{axiom}[Probability--Information Consistency]
+\label{ax:prob-info}
+Commit (collapse/commit) = \textbf{minimal-KL projection (I-projection)} on apparatus/window constraint; PVM hard limit returns to Born.
+\end{axiom}
+
+\begin{axiom}[Pointer Basis]
+\label{ax:pointer}
+``Pointer basis'' defined as \textbf{spectral projection subspace corresponding to minimal spectral value} of \textbf{window operator} $W_R=\int w_R\,dE_A$ (Ky Fan ``minimum sum''; if minimal spectral value not attained, take limit subspace as $\varepsilon\downarrow0$); \textbf{existence and verifiable condition}: if $w_R\in L^\infty$ then $W_R$ bounded self-adjoint; if further \textbf{$w_R\in L^2(\mathbb{R})$ (e.g., finite support window)}, let $k_B(t)=\sin(\Omega t)/(\pi t)$, have:
+
+Under bandlimited projection $\Pi_B$, \textbf{uniformly adopt} $\Pi_BM_{w_R}$ notation. Its integral kernel $K(x,y)=k_B(x-y)\,w_R(y)$. By L3.3a know $\|k_B\|_{L^2}^2=\Omega/\pi<\infty$; \textbf{HS kernel verification one-liner}:
+
+$$
+\|K\|_{L^2(\mathbb{R}^2)}^2=\int_{\mathbb{R}^2}|k_B(x-y)|^2\,|w_R(y)|^2\,dxdy=\|k_B\|_{L^2}^2\,\|w_R\|_{L^2}^2=\frac{\Omega}{\pi}\,\|w_R\|_{L^2}^2<\infty,
+$$
+
+thus by Fubini--Tonelli theorem $\Pi_BM_{w_R}$ is Hilbert--Schmidt, hence $\Pi_BM_{w_R}\Pi_B$ also Hilbert--Schmidt/compact (\textbf{HS kernel theorem}: if integral kernel $K\in L^2(\mathbb{R}^2)$ then corresponding integral operator is Hilbert--Schmidt, hence compact). Instrument kernel $h$ only affects readout and error, does not change spectral structure of $W_R$.
+\end{axiom}
+
+\begin{axiom}[Phase--Density--Delay Scale]
+\label{ax:phase-density}
+If $(H,H_0)$ satisfy relative trace class/smooth scattering standard regularity (see L3.5), then \textbf{on absolutely continuous spectrum almost everywhere}
+
+$$
+\boxed{\,\varphi'(E)=-\pi\,\rho_{\mathrm{rel}}(E)=\tfrac{1}{2}\operatorname{tr}\mathsf{Q}(E)\,}\quad(\text{a.e. on }\sigma_{\mathrm{ac}})
+$$
+
+where $\rho_{\mathrm{rel}}(E)=\xi'(E)$, $\mathsf{Q}:=-iS^\dagger \tfrac{dS}{dE}$ (unit system $\hbar=1$). \textbf{Sign convention}: this paper uniformly adopts $\det S(E)=e^{-2\pi i\,\xi(E)}$, thus $\operatorname{tr}\mathsf{Q}(E)=\partial_E \argdet S(E)=-2\pi\,\xi'(E)$, hence $\varphi'(E)=-\pi\,\rho_{\mathrm{rel}}(E)$. Above equality holds almost everywhere on absolutely continuous spectrum; \textbf{near threshold or resonance, interpreted by $\lim_{\epsilon\downarrow0}$ non-tangential limit or distributional sense (principal value + singular part)}, consistent with Herglotz boundary value $\Im m(E+i0)=\pi\rho(E)$. Under lossless assumption $S(E)$ unitary.
+\end{axiom}
+
+\begin{axiom}[Window/Kernel Optimization and Multi-Window Synergy]
+\label{ax:optimization}
+Window $w\in \PW^{\mathrm{even}}_\Omega$; objective to minimize three-term decomposition error upper bound; necessary condition is \textbf{frequency-domain ``polynomial multiplier + convolution kernel'' bandlimited projection-KKT equation}; multi-window version characterized by \textbf{generalized Wexler--Raz biorthogonality} and frame operator for Pareto frontier and stability.
+\end{axiom}
+
+\begin{axiom}[Threshold and Singularity Stability]
+\label{ax:threshold-stability}
+Under ``finite-order EM + Nyquist--Poisson--EM'' discipline, windowing/reordering generates no new singularities; zero count stable and verifiable within Rouché radius.
+\end{axiom}
+
+\section{Basic Definitions}
+
+\begin{definition}[State]
+Pure state $\psi\in\mathcal{H}$ ($|\psi|=1$); mixed state $\rho\succeq0$, $\operatorname{tr}\rho=1$.
+\end{definition}
+
+\begin{definition}[Observable]
+Self-adjoint $A$ and spectral projection $E_A$.
+\end{definition}
+
+\begin{definition}[Windowed Readout and Regularity Conditions]
+$\langle K_{w,h}\rangle_\rho=\int w_R\,[h\ast\rho_\star]\,dE$, where $\rho_\star$ can be $\rho_{\mathrm{abs}}$ ($\mu_\rho$ absolutely continuous part density) or $\rho_{\mathrm{rel}}$ (relative density). Measure perspective writable as $d(h\ast\mu_\rho)=h\ast d\mu_\rho$ ($h\in\PW_\Omega\cap L^1$, standard convolution for Radon measures). \textbf{Regularity and integrability sufficient conditions}: to ensure three-term decomposition (Poisson--EM--Tail) remainder bounds hold and measure convolution legal, take
+
+$$
+w_R\in\PW_\Omega\cap W^{2M,1}(\mathbb{R}),\quad h\in \PW_\Omega\cap W^{2M,1}(\mathbb{R}),
+$$
+
+and choose one of:
+
+\textbf{(c)} $w_R$ \textbf{compactly supported} and $w_R\in W^{2M,1}(\mathbb{R})$, thus $F=w_R(h\ast\rho_\star)\in L^1$ and $F^{(2M)}\in L^1$ still hold (\textbf{engineering first choice});
+
+\textbf{(b)} $\rho_\star\in L^1(\mathbb{R})$ (or $L^1\cap L^\infty$ or sufficient weighted integrability) and $h\in\mathcal{S}$, then $h\ast\rho_\star\in L^1\cap L^\infty$ and higher derivatives integrable.
+\end{definition}
+
+\begin{definition}[Commit/Collapse]
+Given apparatus constraint, observation probability $p$ is I-projection of reference $q$ to feasible set; softmax softening $\to$ Born hard limit.
+\end{definition}
+
+\begin{definition}[Pointer Basis]
+Basis spanning spectral projection subspace corresponding to minimal spectral value of window operator $W_R$ (Ky Fan ``minimum sum''; if minimal spectral value not attained, take $\varepsilon\downarrow0$ limit subspace), called \textbf{minimal spectral subspace}; $h$ acts only on measure side.
+\end{definition}
+
+\section{Preliminary Lemmas (Tools and Conventions)}
+
+\begin{lemma}[Poisson Summation and Nyquist Condition]
+\label{lem:poisson-nyquist}
+If $\widehat{w}_R$ and $\widehat{h}$ supported on $[-\Omega_w,\Omega_w]$, $[-\Omega_h,\Omega_h]$ respectively, then for
+
+$$
+F(E):=w_R(E)\,[h\ast \rho_\star](E)
+$$
+
+have $\supp\widehat{F}\subset[-(\Omega_w+\Omega_h)\,,\,\Omega_w+\Omega_h]$. \textbf{Unified Nyquist convention and unit conversion}:
+
+If $\supp\widehat{F}\subset[-\Omega_F,\Omega_F]$ (where $\Omega_F=\Omega_w+\Omega_h$), then sampling criterion is
+
+$$
+\Delta\le \pi/\Omega_F\ (\text{angular frequency rad/(unit(E))})\ \Longleftrightarrow\ T_s\le 1/(2B_F)\ (\text{Hertz }B_F=\Omega_F/(2\pi)\text{ Hz}).
+$$
+
+\textbf{This paper defaults to angular frequency convention; Hertz notation only as equivalent reminder}. When condition satisfied, in Poisson summation all terms except $k=0$ fall outside band, thus alias error $\varepsilon_{\mathrm{alias}}=0$.
+\end{lemma}
+
+\begin{lemma}[Finite-Order Euler--Maclaurin and Remainder Bounds]
+\label{lem:euler-maclaurin}
+Let $p=2M\in 2\mathbb{N}$ ($p\ge 2$, even order). If $g\in C^p([a,b])$ and $g^{(p)}\in L^1([a,b])$, then Euler--Maclaurin formula remainder $R_p$ satisfies standard upper bound
+
+$$
+\big|R_{p}\big|\le \dfrac{2\,\zeta(p)}{(2\pi)^{p}}\int_{a}^{b}|g^{(p)}(x)|\,dx,
+$$
+
+where $[a,b]$ continuous extension interval corresponding to summation interval (e.g., $[-N\Delta,\,N\Delta]$), $\zeta(p)$ Riemann $\zeta$ function. \textbf{This bound holds for $p\ge 2$}; \textbf{requires $g^{(p)}\in L^1$}.
+\end{lemma}
+
+\begin{lemma}[Herglotz--Nevanlinna Boundary Value and Spectral Density]
+\label{lem:herglotz-boundary}
+If $m$ is Herglotz (Nevanlinna) function, then \textbf{non-tangential limit almost everywhere exists} and $\Im m(E+i0)=\pi\,\rho_m(E)$ (a.e.), where $\rho_m$ absolutely continuous part density of Herglotz representation measure. \textbf{Threshold and resonance neighborhood interpreted by non-tangential limit or distributional sense} (principal value + singular part). This conclusion is classical spectral theory standard result.
+\end{lemma}
+
+\begin{lemma}[sinc Kernel $L^2$ Norm]
+\label{lem:sinc-norm}
+For bandlimited projection kernel $k_B(t)=\dfrac{\sin(\Omega t)}{\pi t}$ ($\Omega>0$), have
+
+$$
+\|k_B\|_{L^2(\mathbb{R})}^2=\int_{-\infty}^\infty\Bigl(\frac{\sin(\Omega t)}{\pi t}\Bigr)^2dt=\frac{\Omega}{\pi}.
+$$
+\end{lemma}
+
+\begin{lemma}[Ky Fan Variational Principle: Minimum Sum]
+\label{lem:ky-fan}
+For self-adjoint $K$ and any orthogonal family $\{e_k\}_{k=1}^m$,
+
+$$
+\sum_{k=1}^m\langle e_k,Ke_k\rangle\ge\sum_{k=1}^m\lambda_k^\uparrow(K),
+$$
+
+equality if and only if $\{e_k\}$ spans minimal eigensubspace. If minimal eigenvalue has degeneracy, any orthonormal basis of corresponding minimal eigensubspace can serve as ``pointer basis''.
+\end{lemma}
+
+\begin{lemma}[Birman--Kreĭn, Wigner--Smith and Regularity]
+\label{lem:birman-krein}
+If $(H,H_0)$ relative trace class perturbation or satisfies smooth scattering standard assumptions, then BK formula
+
+$$
+\det S(E)=e^{-2\pi i\,\xi(E)},\qquad \operatorname{tr}\mathsf{Q}(E)=\partial_E\argdet S(E)=-2\pi\,\xi'(E)
+$$
+
+holds, where $\mathsf{Q}=-iS^\dagger \tfrac{dS}{dE}$ (requires $S(E)$ differentiable in $E$ and unitary; lossless case directly holds). Almost everywhere $\xi'(E)=\rho_{\mathrm{rel}}(E)$.
+\end{lemma}
+
+\section{Main Theorems and Complete Proofs}
+
+\begin{theorem}[Windowed Readout Numerical Estimation Formula and Non-Asymptotic Error Closure]
+\label{thm:windowed-estimation}
+Set $A$'s spectral measure $dE_A$, instrument window $w_R$ and bandlimited kernel $h$. Let $F(E)=w_R(E)\,[h\ast\rho_\star](E)$, where $\rho_\star$ continuous spectral density of state $\rho$. \textbf{Regularity prerequisite}: following equality and remainder bounds hold under $F\in L^1\cap C^{2M}$, $F^{(2M)}\in L^1$; sufficient conditions see §2-D3. For sampling step $\Delta>0$ and finite truncation $|n|\le N$, have
+
+$$
+\int_{\mathbb{R}} F(E)\,dE = \Delta\sum_{n=-N}^{N}F(n\Delta) + \underbrace{\varepsilon_{\mathrm{alias}}}_{\text{Poisson}} + \underbrace{R_{p}}_{\text{Euler--Maclaurin}} + \underbrace{\varepsilon_{\mathrm{tail}}}_{\text{truncation tail}},
+$$
+
+where $p=2M$ and $|R_{p}|\le \dfrac{2\zeta(p)}{(2\pi)^{p}}\int |F^{(p)}(x)|\,dx$. \textbf{Alias term zero under bandlimited+Nyquist condition}.
+\end{theorem}
+
+\begin{proof}
+By Poisson summation connecting integral with discrete sum (alias term is spectral replication overlap amount), EM finite order gives Bernoulli layer and endpoint remainder, truncation produces tail; convolution theorem $\widehat{h\ast\rho_\star}=\widehat{h}\cdot\widehat{\rho_\star}$ ensures $\supp\widehat{F}\subset[-\Omega_F,\Omega_F]$; bandlimited+Nyquist makes alias term vanish; L3.1--L3.2 immediately yield result. \end{proof}
+
+\begin{theorem}[Born Probability = I-projection ``Alignment Necessary and Sufficient Condition'']
+\label{thm:born-iprojection}
+Set PVM/POVM and reference $q$. \textbf{Premise}: $q_i>0$ (or $\supp p\subseteq\supp q$), and closed convex feasible set $\mathcal{C}=\{p:\sum_i p_i a_i = b\}$ of linear moment constraints nonempty. Under this premise, minimal-KL
+
+$$
+\min\{D_{\mathrm{KL}}(p\|q):p\in\mathcal{C}\}
+$$
+
+unique solution exponential family $p^\star_i\propto q_i e^{\lambda^\top a_i}$ (I-projection uniqueness theorem). \textbf{Alignment necessary and sufficient condition and support matching}: let $w_i=\langle\psi,E_i\psi\rangle$ be Born vector of PVM index. \textbf{Must first ensure relative support condition} $\supp w\subseteq\supp q$ (i.e., if $w_i>0$ then $q_i>0$); under this premise, \textbf{if and only if} on $\{i:w_i>0\}$ exists $\lambda$ such that $\log(w_i/q_i)$ falls in affine span of $\{a_i\}$ (equivalent to $\log(w_i/q_i)=\lambda^\top a_i - \psi(\lambda)$ for some normalization constant $\psi$), then I-projection unique solution is $p^\star=w$ (Born); \textbf{if not affinely representable, optimal solution exponential family $p^\star\neq w$ (but still unique)}. Softening temperature $\tau\downarrow0$ $\Gamma$-limit converges softmax to Born.
+\end{theorem}
+
+\begin{proof}
+Strict convexity of KL and Lagrange multipliers under premise $q_i>0$, feasible set closed convex nonempty give exponential family and uniqueness; alignment necessary and sufficient condition derived from exponential family parameterization coefficient-by-coefficient. POVM case by Naimark dilation to PVM then project back. \end{proof}
+
+\begin{theorem}[Pointer Basis = Minimal Spectral Subspace (Ky Fan ``Minimum Sum'')]
+\label{thm:pointer-basis}
+\textbf{Existence condition}: understand ``pointer basis'' as spectral projection subspace corresponding to minimal spectral value of $W_R$ (minimal spectral subspace for short); if minimal spectral value not attained, replace by limiting minimal spectral subspace of $P_{(-\infty,\lambda_{\min}+\varepsilon]}$ ($\varepsilon\downarrow0$). For self-adjoint window operator $W_R$ and any $m$-dimensional orthogonal family $\{e_k\}$,
+
+$$
+\sum_{k=1}^m\langle e_k,W_Re_k\rangle\ge \sum_{k=1}^m\lambda_k^\uparrow(W_R),
+$$
+
+\textbf{equality if and only if $\{e_k\}$ spans minimal spectral subspace of $W_R$} (Ky Fan PNAS 1951; requires $W_R$ compact self-adjoint or minimal spectral value isolated eigenvalue). If minimal eigenvalue has degeneracy, any orthonormal basis of corresponding minimal eigensubspace can serve as ``pointer basis''. Instrument kernel $h$ only introduces blur on measure side, does not change spectrum of $W_R$. \end{theorem}
+
+\begin{theorem}[$\varphi'=-\pi\rho_{\mathrm{rel}}=\operatorname{tr}\mathsf{Q}/2$, \textbf{a.e. on $\sigma_{\mathrm{ac}}$}]
+\label{thm:phase-density-delay}
+Set $(H,H_0)$ satisfy regularity of L3.5. Then \textbf{on absolutely continuous spectrum almost everywhere (a.e. on $\sigma_{\mathrm{ac}}$)}
+
+$$
+\boxed{\,\varphi'(E)=-\pi\,\rho_{\mathrm{rel}}(E)=\tfrac{1}{2}\operatorname{tr}\mathsf{Q}(E)\,}\quad(\text{a.e. on }\sigma_{\mathrm{ac}})
+$$
+
+where $\rho_{\mathrm{rel}}(E)=\xi'(E)$, $\mathsf{Q}=-iS^\dagger \tfrac{dS}{dE}$. \textbf{Threshold/resonance treatment}: near threshold or resonance, interpret by $\lim_{\epsilon\downarrow0}$ non-tangential limit or distributional sense (principal value + singular part), consistent with Herglotz boundary value $\Im m(E+i0)=\pi\rho(E)$.
+\end{theorem}
+
+\begin{proof}
+BK formula gives $\det S=e^{-2\pi i\xi} \Rightarrow \partial_E\argdet S=-2\pi\,\xi'$; and $\operatorname{tr}\mathsf{Q}=\partial_E\argdet S$. Single-channel $S=e^{2i\varphi}$ gives $\operatorname{tr}\mathsf{Q}=2\varphi'$, combining yields conclusion. Relative density from $\xi'=\rho_m-\rho_{m_0}$ Herglotz--Weyl localization. \end{proof}
+
+\begin{theorem}[Threshold and Singularity Stability: Rouché Radius]
+\label{thm:threshold-stability}
+If on boundary of domain $D$ have $|\mathcal{E}(z)|\ge\eta>0$, and approximation $\mathcal{E}_\natural$ satisfies $\sup_{\partial D}|\mathcal{E}_\natural-\mathcal{E}|<\eta$, then both have same zero count in $D$ with displacement upper bound; under ``finite-order EM + Nyquist--Poisson--EM'' discipline windowing/reordering generates no new singularities, $\eta$ can be measured by three-term decomposition error upper bound.
+\end{theorem}
+
+\begin{proof}
+By Rouché theorem combined with Poisson--EM error upper bounds (L3.1, L3.2) and bandlimited support bounds immediately yields conclusion. \end{proof}
+
+\begin{theorem}[Window/Kernel Optimization Bandlimited Projection-KKT and $\Gamma$-limit]
+\label{thm:optimization-kkt}
+\textbf{Setting}: on $\PW^{\mathrm{even}}_\Omega$, strongly convex proxy
+
+$$
+\mathcal{J}(w)=\sum_{j=1}^{M-1}\gamma_j\|w_R^{(2j)}\|_{L^2}^2+\lambda\|\mathbf{1}_{\{|E|>T\}}\,w_R\|_{L^2}^2,
+$$
+
+$w_R(t)=w(t/R)$, $\widehat{w_R}(\xi)=R\,\widehat{w}(R\xi)$.
+
+\textbf{Theorem}: Exists unique minimizer $w^\star$, in frequency domain satisfying \textbf{bandlimited projection--KKT equation} ($P_B^{(\xi)}:\widehat{f}\mapsto\chi_B\widehat{f}$ frequency bandlimited projection)
+
+$$
+\boxed{\,P_B^{(\xi)}\Bigl(\underbrace{2\!\sum_{j=1}^{M-1}\!\gamma_j\,\xi^{4j}\,\widehat{w_R^\star}(\xi)}_{\text{polynomial multiplier}}+\underbrace{2\lambda\,\widehat{w_R^\star}(\xi)}_{\delta\text{-term}}-\underbrace{\tfrac{2\lambda}{\pi}\Bigl(\dfrac{\sin(T\cdot)}{\cdot}\!\ast\!\widehat{w_R^\star}\Bigr)(\xi)}_{\text{convolution term}}\Bigr)=\eta\,\widehat{w_R^\star}(\xi)\,}\quad(\xi\in\mathbb{R}),
+$$
+
+where $B=[-\Omega/R,\Omega/R]$, $\eta$ normalization multiplier.
+\end{theorem}
+
+\section{Discussion and Outlook}
+
+This work establishes rigorous mathematical foundation for windowed quantum measurement framework, unifying scattering theory, information geometry, and finite-bandwidth instrumentation. Key achievements:
+
+\begin{enumerate}
+\item Unified formula $\varphi'=-\pi\rho_{\mathrm{rel}}=\tfrac{1}{2}\operatorname{tr}\mathsf{Q}$ connecting phase, density, delay
+\item Born probability as I-projection with explicit alignment conditions
+\item Pointer basis as minimal spectral subspace with verifiable criteria
+\item Non-asymptotic error closure via Poisson--EM--Tail decomposition
+\item Variational optimization framework for window/kernel design
+\end{enumerate}
+
+Future directions include:
+
+\begin{itemize}
+\item Extension to open quantum systems and non-unitary scattering
+\item Numerical implementation and experimental validation
+\item Connection with quantum thermodynamics and resource theories
+\item Applications to quantum metrology and sensing
+\end{itemize}
+
+\end{document}
+

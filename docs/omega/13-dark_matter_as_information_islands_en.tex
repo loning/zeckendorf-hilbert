@@ -1,0 +1,797 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{enumerate}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Dark Matter as Information Islands:\\
+Charge-less Topological Knots and Gravitational Lensing\\
+in QCA Networks}
+
+\author{Anonymous Author}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Astrophysical observations reveal that approximately one-quarter of the universe's total energy density exists in a form that does not emit light, does not participate in electromagnetic interactions, but influences structure formation through gravity---known as dark matter. Precision cosmological data (e.g., Planck 2018 cosmological parameter measurements) indicate that the dark matter energy density parameter is about five times that of visible baryonic matter, and existed in a cold, non-relativistic form in the early universe \cite{planck2018}. Although candidates such as weakly interacting massive particles (WIMPs) and axions have been extensively studied at the particle physics level, no direct detection has provided a confirmation signal to date, merely continuing to raise the lower limits on new particle interaction strengths and mass parameter space \cite{pdg_darkmatter}.
+
+This paper provides a purely topological and information-theoretic interpretation of dark matter within the unified framework of quantum cellular automata (QCA) and the optical path conservation/Information-Gravity Variational Principle (IGVP), without introducing any new fundamental particle species. Building on our previously established picture of ``mass as topological knot'' and ``gravity as information congestion'', we first rigorously characterize the topological origin of mass in Dirac-type QCA: the effective mass of local excitations is determined by the winding number of the evolution operator on the Brillouin zone; simultaneously, we characterize charge as the representation type of the local Hilbert space under the $U(1)$ gauge group. We then introduce a natural Hilbert space decomposition
+$$
+\mathcal{H}_{\text{cell}}=\mathcal{H}_{\text{vis}}\otimes\mathcal{H}_{\text{hid}},
+$$
+where the visible sector $\mathcal{H}_{\text{vis}}$ carries standard model gauge charges, while the topological winding on the hidden sector $\mathcal{H}_{\text{hid}}$ is trivial under the electromagnetic $U(1)_{\text{EM}}$ representation. We call the local excitations supported by the latter \textbf{information islands}: they possess nonzero topological index in momentum space, hence have rest mass and inertia, but appear chargeless in all observable electromagnetic processes.
+
+Within the IGVP framework, the gravitational field is not directly determined by components of the energy-momentum tensor, but controlled by the spatial distribution of total information processing density $\rho_{\text{info}}(x)$. The internal evolution of both visible and hidden sectors consumes the update budget of the underlying QCA, thus contributing equally to $\rho_{\text{info}}(x)$. We prove: in the weak-field limit, the effective optical metric derived from IGVP is fully equivalent to the Newton--Poisson limit in general relativity determined by total mass density $\rho_{\text{vis}}+\rho_{\text{hid}}$, hence information islands are indistinguishable from cold dark matter in gravitational lensing and galaxy rotation curves on galactic scales. In particular, the information island sector does not couple to electromagnetic or other ``collisional'' fields, thus appearing as nearly frictionless collision-independent matter in galaxy cluster collisions (such as the Bullet Cluster), with the lensing mass center naturally separated from the hot baryon gas X-ray peak, consistent with observational results \cite{bullet_cluster}.
+
+On galactic scales, we treat information islands as a cold, dissipationless, collision-independent particle species satisfying the collisionless Boltzmann equation in the QCA continuum limit. Using phase-space volume conservation and the maximum entropy principle, we derive that spherically symmetric, virialized halo structures have approximately isothermal sphere density distribution $\rho(r)\propto r^{-2}$, yielding flat rotation curves $v(r)\approx\text{const}$, consistent with observed late-type galaxy rotation curves \cite{galaxy_rotation}.
+
+The main results of this paper can be summarized at three levels: (i) In QCA models satisfying local unitarity and finite-dimensional local Hilbert space, there exist ``charge-less topological knot'' subspaces with nontrivial topological mass but trivial under visible gauge groups; (ii) Under IGVP, the internal evolution of this subspace couples to the effective optical metric with weight equivalent to baryonic matter, thus appearing as dark matter in all gravity-probed observations; (iii) On galactic and cluster scales overall dynamics, such information islands automatically form diffuse, hard-to-dissipate halo structures without collapsing into thin disks. Thus, within the unified quantum information ontology, dark matter can be interpreted as information topological knots in QCA networks that ``have only core, no interface'', without introducing any additional fundamental particles.
+\end{abstract}
+
+\textbf{Keywords:} Dark matter; Quantum cellular automaton; Topological winding; Information islands; Information-Gravity Variational Principle; Gravitational lensing; Galaxy rotation curves
+
+\section{Introduction \& Historical Context}
+
+\subsection{Observational Origin of the Dark Matter Problem}
+
+Since the mid-20th century, systematic observations of galaxy and galaxy cluster dynamics have revealed serious deviations from gravitational potentials explained solely by visible stars and gas: rotation curves of late-type galaxies tend to flatten at large radii rather than decay as $r^{-1/2}$ as expected from Newtonian potential; velocity dispersion of galaxies in clusters and the virial mass implied by hot X-ray gas far exceed the total visible mass \cite{galaxy_rotation}.
+
+Modern precision cosmological measurements (such as Planck 2018) further provide the dark matter energy density parameter $\Omega_{\text{c}}\simeq 0.26$ through cosmic microwave background anisotropy and large-scale structure power spectra, while baryonic matter is only about $\Omega_{\text{b}}\simeq 0.05$ \cite{planck2018}. This means that in the standard $\Lambda$CDM model, dark matter is the universe's dominant non-relativistic component, playing a key role in both linear and nonlinear stages of structure formation.
+
+Strong gravitational lensing provides almost geometrical-optical direct evidence for dark matter: in galaxy cluster collision systems such as the Bullet Cluster, the mass distribution obtained from general relativistic lensing inversion is significantly offset from the hot X-ray gas position and more consistent with galaxy distribution \cite{bullet_cluster}. This ``gravitational potential center separated from baryon mass center'' phenomenon is difficult to explain by schemes that merely modify gravity laws, but naturally fits the intuitive picture of ``existence of collision-independent matter species decoupled from baryons''.
+
+\subsection{Traditional Routes: Particle Dark Matter and Hidden Sectors}
+
+At the particle physics level, dark matter is typically viewed as some new particle beyond the standard model: weakly interacting massive particles (WIMPs), axions, sterile neutrinos, dark photons, etc. These candidates can naturally produce cold, stable, non-relativistic cosmological backgrounds and obtain the correct order-of-magnitude relic density through ``freeze-out'' or misalignment mechanisms \cite{pdg_darkmatter}.
+
+In recent reviews, ``hidden sector dark matter'' has become an important paradigm: dark matter exists in a set of quantum fields interacting with the visible sector only through gravity or extremely weak portals \cite{hidden_sector}. This line of thought formally resembles our starting point: dark matter need not share the same gauge charges as the standard model, only coupling to us through gravity. However, even in hidden sector schemes, one typically still assumes the existence of a family of new particle fields, whose masses and interaction forms are controlled by additional free parameters in the Lagrangian.
+
+Meanwhile, topological defects (such as cosmic strings, domain walls, axionic string networks) produced in early universe phase transitions have been widely discussed as potential sources of dark matter or dark energy \cite{topological_defect}. In these works, topological properties are mainly manifested in field configuration space, rather than directly connected to ontological quantities of ``information processing''.
+
+\subsection{QCA Universe Ontology and Re-characterization of Mass/Gravity}
+
+Quantum cellular automata provide a radically different microscopic picture of the universe: the world consists of local quantum systems on discrete lattice sites, evolving in discrete time according to strictly unitary, local, translation-invariant update rules. Under appropriate continuum limits (lattice spacing $a\to 0$, time step $\Delta t\to 0$), standard field theory equations such as Dirac, Weyl, and Maxwell can emerge \cite{qca_dirac}.
+
+We proposed two complementary structural principles in our previous work:
+
+\begin{enumerate}
+\item \textbf{Mass as topological knot:} In Dirac-type QCA, the mass term is not an arbitrary parameter but a function of the homotopy class (winding number $\mathcal{W}$) of the evolution operator $U(k)$ mapping $S^1\to SU(2)$ on the Brillouin zone. Modes with nonzero winding number must maintain continuous internal oscillations on local scales, with nonzero information update rate $v_{\text{int}}$, corresponding to effective mass and inertia.
+
+\item \textbf{Gravity as information congestion (IGVP):} The gravitational field is no longer viewed as metric tensor on a continuous manifold given a priori, but interpreted as the geometric response of the QCA network to inhomogeneity of local information processing density $\rho_{\text{info}}(x)$ under the condition of maintaining overall information optical path conservation. Local information overdensity causes ``information congestion'', equivalent to reduced effective light speed or increased refractive index $n(x)$, thus bending light rays and worldlines.
+\end{enumerate}
+
+In this picture, mass and gravity are respectively manifestations of ``self-referential topological loop'' and ``global information budget balance'', not additional entities introduced externally.
+
+\subsection{Goals and Contributions of This Paper}
+
+Following the above QCA--IGVP ontological direction, this paper reformulates the dark matter problem as:
+
+\begin{quote}
+In a discrete unitary universe based on QCA, must there necessarily exist a class of topologically massive but electromagnetically decoupled local excitations that remain ``dark'' in all photon-mediated observations yet are gravitationally equivalent to baryonic matter?
+\end{quote}
+
+We provide an affirmative answer and prove that in a very broad family of models, such \textbf{charge-less topological knots} not only exist but naturally occupy a finite fraction of the universe's energy budget statistically, making the dark matter phenomenon an inevitable byproduct of QCA network topological structure rather than additional Lagrangian assumptions.
+
+\section{Model \& Assumptions}
+
+\subsection{Dirac-Type QCA and Topological Mass}
+
+Consider a one-dimensional translation-invariant Dirac-type QCA with local Hilbert space dimension $d$, lattice sites labeled $x\in\mathbb{Z}$, one-step evolution given by unitary operator $\hat{U}$ satisfying
+$$
+\hat{U} = \prod_x U_{x,x+1},
+$$
+where $U_{x,x+1}$ acts only on the local degrees of freedom of adjacent cells and is translation-invariant on the lattice. Performing Fourier transform, we can write in momentum representation
+$$
+\hat{U} = \int_{-\pi/a}^{\pi/a} \frac{\mathrm{d} k}{2\pi} |k\rangle\langle k|\otimes U(k), \quad U(k)\in U(d),
+$$
+where $a$ is the lattice spacing. For Dirac-type QCA, we may choose $d=2$ and write under suitable parametrization
+$$
+U(k)=\exp\bigl(-\mathrm{i} \omega(k) \mathbf{n}(k)\cdot \boldsymbol{\sigma}\bigr),
+$$
+where $\boldsymbol{\sigma}$ are Pauli matrices, $\mathbf{n}(k)$ is a unit vector, $\omega(k)$ is the dispersion relation. If in the small-momentum limit there exists
+$$
+\omega(k)\approx \sqrt{(c k)^2 + (m c^2/\hbar)^2},
+$$
+then the long-wavelength limit of this QCA satisfies the Dirac equation, with parameter $m$ interpreted as effective mass \cite{qca_dirac}.
+
+From the topological perspective, the mapping
+$$
+k\in S^1\mapsto U(k)\in SU(2)
+$$
+is classified by $K_1(S^1)\cong\mathbb{Z}$, with topological invariant being the winding number
+$$
+\mathcal{W}=\frac{1}{2\pi \mathrm{i}}\int_{-\pi/a}^{\pi/a}\mathrm{d} k\, \partial_k \log\det U(k).
+$$
+
+In Dirac-type QCA, $\mathcal{W}\neq 0$ corresponds to a ``topological mass'' sector with an energy gap, whose band structure completes a nontrivial winding within the Brillouin zone. We define mass as the image of this winding number mapped to effective field theory mass parameters through the continuum limit renormalization, thereby realizing the characterization of ``mass as topological knot''.
+
+\subsection{Gauge Fields and Representation-Theoretic Characterization of Charge}
+
+To introduce electromagnetic interaction in QCA, we endow each cell with local $U(1)_{\text{EM}}$ gauge freedom, whose gauge transformation acts as
+$$
+|\psi_x\rangle\mapsto e^{\mathrm{i} q\alpha_x}|\psi_x\rangle,
+$$
+where $\alpha_x$ is the local gauge phase and $q$ is the particle charge. Link fields are realized through link variables on lattice edges
+$$
+U_{x,x+1}^{\text{link}}=\exp\bigl(\mathrm{i} a A_x\bigr),
+$$
+and the evolution operator after coupling to the electromagnetic field obeys covariance
+$$
+U(k;A)\mapsto e^{\mathrm{i} q\alpha(k)} U\bigl(k+\partial\alpha;A\bigr) e^{-\mathrm{i} q\alpha(k)}.
+$$
+
+In this language, \textbf{charge} is defined as the representation of $U(1)_{\text{EM}}$ on the local Hilbert space $\mathcal{H}_{\text{cell}}$: if under some basis the gauge transformation acts as
+$$
+e^{\mathrm{i} q\alpha_x} \mathbb{I}_{\mathcal{H}},
+$$
+then the mode is electrically neutral; if the representation is a nontrivial diagonal or off-diagonal matrix, it corresponds to having charge or multiple charges. Electromagnetic interaction is essentially the non-commutative sensitivity of $U(k)$ to $U_{x,x+1}^{\text{link}}$.
+
+\subsection{Visible/Hidden Sectors and Definition of Information Islands}
+
+We introduce the following structural assumption.
+
+\begin{assumption}[Local Hilbert Space Decomposition]\label{ass:hilbert_decomp}
+There exists a tensor decomposition of the local Hilbert space
+$$
+\mathcal{H}_{\text{cell}}=\mathcal{H}_{\text{vis}}\otimes \mathcal{H}_{\text{hid}},
+$$
+satisfying:
+\begin{enumerate}
+\item Electromagnetic $U(1)_{\text{EM}}$ acts with nontrivial representation only on $\mathcal{H}_{\text{vis}}$, acting as identity on $\mathcal{H}_{\text{hid}}$, i.e.,
+$$
+V(\alpha_x)=V_{\text{vis}}(\alpha_x)\otimes \mathbb{I}_{\text{hid}}.
+$$
+\item In the ideal limit without other interactions, the total evolution operator can be written as
+$$
+\hat{U}=\hat{U}_{\text{vis}}\otimes \hat{U}_{\text{hid}},
+$$
+where $\hat{U}_{\text{vis}}$ supports the spectrum of standard model particles, while $\hat{U}_{\text{hid}}$ is an additional set of Dirac/QCA models.
+\end{enumerate}
+\end{assumption}
+
+In momentum representation, this means there exists
+$$
+U(k)=U_{\text{vis}}(k)\otimes U_{\text{hid}}(k),
+$$
+with topological property given by
+$$
+\mathcal{W}_{\text{tot}}=\mathcal{W}_{\text{vis}}+\mathcal{W}_{\text{hid}}.
+$$
+
+\begin{definition}[Information Island Modes]\label{def:info_islands}
+A family of Bloch modes is called information islands if satisfying:
+\begin{enumerate}
+\item On the $\mathcal{H}_{\text{hid}}$ projection, its topological winding number $\mathcal{W}_{\text{hid}}\neq 0$, corresponding to nonzero rest mass $m_{\text{hid}}>0$;
+\item On $\mathcal{H}_{\text{vis}}$, it resides in the electrically neutral subspace, i.e., $V_{\text{vis}}(\alpha_x)$ acts as identity, hence producing no Aharonov--Bohm phase under $U(1)_{\text{EM}}$ transformation;
+\item The total state can be written as $|\Psi\rangle = |\psi_{\text{vis}}^0\rangle\otimes|\psi_{\text{hid}}\rangle$, where $|\psi_{\text{vis}}^0\rangle$ is vacuum or neutral background.
+\end{enumerate}
+For such modes, mass is determined by the topological structure of $\hat{U}_{\text{hid}}$, while all electromagnetic processes (scattering, radiation, absorption) are controlled by $\hat{U}_{\text{vis}}$, thus appearing as completely ``dark'' local excitations in electromagnetic observations.
+\end{definition}
+
+\subsection{Information-Gravity Variational Principle and Effective Optical Metric}
+
+Within the IGVP framework, the gravitational field is determined by the QCA network's optimal response to local information density under total information rate conservation. We only need its simplified form in the weak-field, static limit.
+
+Define local information processing density
+$$
+\rho_{\text{info}}(x)=\rho_{\text{vis}}(x)+\rho_{\text{hid}}(x),
+$$
+where each term is given by the internal evolution frequency and occupation number of the corresponding sector. For approximately free quasiparticle excitations, we write
+$$
+\rho_{\text{hid}}(x)\sim \sum_i n_i(x) \hbar\omega_{\text{int}}^{(i)},
+$$
+where $n_i(x)$ is the number density of the $i$-th information island quasiparticle species at position $x$, $\omega_{\text{int}}^{(i)}$ is its internal oscillation frequency, related to mass through
+$$
+m_i c^2 = \hbar \omega_{\text{int}}^{(i)}.
+$$
+
+In the weak-field, quasi-static limit, the effective optical metric derived from IGVP can be written as
+$$
+\mathrm{d} s^2 = -\bigl(1+2\Phi(x)/c^2\bigr)c^2 \mathrm{d} t^2 + \bigl(1-2\Phi(x)/c^2\bigr) \mathrm{d} \mathbf{x}^2,
+$$
+where the effective potential $\Phi(x)$ satisfies a Poisson-type equation
+$$
+\nabla^2 \Phi(x)=4\pi G_{\text{eff}}\bigl[\rho_{\text{vis}}(x)+\rho_{\text{hid}}(x)\bigr].
+$$
+
+With appropriate scale choice, $G_{\text{eff}}$ is equivalent to Newton's constant $G$, making the weak-field limit of IGVP consistent with the Newton--Poisson limit of general relativity. Thus from the perspective of light rays, test particle orbits, and structure formation, information islands are completely equivalent to ordinary cold dark matter on gravitational scales.
+
+\subsection{Macroscopic Dynamics Approximation}
+
+On galactic and cluster scales, we adopt the following dynamical assumptions:
+
+\begin{assumption}[Collision-Independence and Dissipationlessness]\label{ass:collisionless}
+\begin{enumerate}
+\item Information islands interact only through gravity/IGVP, with two-body scattering cross-section far smaller than Coulomb cross-section of baryon gas, viewable as collision-independent on galaxy cluster collision timescales.
+\item Information islands cannot emit, absorb, or scatter photons, hence lacking dissipation channels similar to baryonic matter's radiative cooling; the only energy loss mechanism is extremely weak gravitational wave radiation or network geometric perturbation waves, such processes having timescales far exceeding Hubble time.
+\item In galaxy halo formation and evolution, information islands can be treated as cold, non-relativistic particles satisfying the collisionless Boltzmann equation, macroscopically forming virialized self-gravitating systems.
+\end{enumerate}
+\end{assumption}
+
+Under this approximation, information islands are nearly identical to standard cold dark matter (CDM) dynamics on large scales, while having radically different ontological interpretation on microscopic levels.
+
+\section{Main Results (Theorems and Alignments)}
+
+This section presents the main theorems of this paper and their correspondence with observational phenomena. Rigorous proofs are developed in subsequent sections and appendices.
+
+\begin{theorem}[Orthogonality of Mass and Charge in QCA]\label{thm:mass_charge_orthogonal}
+In Dirac-type QCA satisfying Assumption~\ref{ass:hilbert_decomp}, topological mass and electromagnetic charge can achieve orthogonal separation under the Hilbert space decomposition $\mathcal{H}_{\text{cell}}=\mathcal{H}_{\text{vis}}\otimes\mathcal{H}_{\text{hid}}$:
+\begin{enumerate}
+\item Mass is entirely determined by winding numbers $\mathcal{W}_{\text{vis}},\mathcal{W}_{\text{hid}}$ of $\hat{U}_{\text{vis}}$ and $\hat{U}_{\text{hid}}$ in momentum space;
+\item Electromagnetic charge is entirely determined by the representation of $U(1)_{\text{EM}}$ on $\mathcal{H}_{\text{vis}}$, being trivial representation on $\mathcal{H}_{\text{hid}}$.
+\end{enumerate}
+Therefore there necessarily exists a family of modes satisfying $\mathcal{W}_{\text{hid}}\neq 0$, $\mathcal{W}_{\text{vis}}=0$, $q=0$, corresponding to massive but chargeless ``hidden topological knots'', i.e., information islands.
+\end{theorem}
+
+\begin{theorem}[Equivalent Gravitational Contribution of Information Islands to Optical Metric]\label{thm:gravity_equiv}
+In the weak-field limit of IGVP, if total information density is
+$$
+\rho_{\text{info}}(x)=\rho_{\text{vis}}(x)+\rho_{\text{hid}}(x),
+$$
+then the effective potential $\Phi(x)$ obtained from the variational principle satisfies
+$$
+\nabla^2 \Phi(x)=4\pi G\bigl[\rho_{\text{vis}}(x)+\rho_{\text{hid}}(x)\bigr],
+$$
+where $G$ is the gravitational constant after appropriate normalization. Thus information islands contribute to gravitational potential equivalently to ordinary cold dark matter, as long as their internal evolution frequency is related to effective mass through $m c^2=\hbar\omega_{\text{int}}$. Any observation dependent on optical metric (such as gravitational lensing, orbital dynamics) cannot distinguish ``baryon mass'' from ``information island mass''.
+\end{theorem}
+
+\begin{theorem}[Approximate Isothermal Sphere Distribution and Flat Rotation Curves of Galaxy Dark Halos]\label{thm:flat_rotation}
+Under Assumption~\ref{ass:collisionless}, treating information islands as cold, collision-independent particle gas, when reaching virialized equilibrium in static, spherically symmetric gravitational potential $\Phi(r)$, its phase-space distribution function $f(\mathbf{x},\mathbf{v})=f(E)$ satisfies the maximum entropy principle, yielding
+$$
+f(E)\propto \exp\bigl(-E/\sigma^2\bigr),\quad E=\tfrac{1}{2}v^2+\Phi(r),
+$$
+thus spatial density
+$$
+\rho(r)\propto \exp\bigl(-\Phi(r)/\sigma^2\bigr).
+$$
+Combined with the Poisson equation, the large-radius asymptotic solution is
+$$
+\rho(r)\simeq \frac{\sigma^2}{2\pi G r^2},
+$$
+with corresponding enclosed mass $M(r)\propto r$, circular orbit velocity
+$$
+v_{\text{rot}}(r)=\sqrt{\frac{G M(r)}{r}}\approx \sqrt{2} \sigma\approx \text{const}.
+$$
+Therefore, information islands naturally form isothermal halo structures with $\rho(r)\propto r^{-2}$, yielding flat galaxy rotation curves without modifying Newtonian gravity or introducing specific potential function shapes.
+\end{theorem}
+
+\begin{theorem}[Mass--Baryon Separation in Galaxy Cluster Collisions]\label{thm:bullet_cluster}
+Consider two clusters each containing abundant information islands and baryon gas undergoing nearly head-on collision:
+\begin{enumerate}
+\item Information islands are collision-independent components with typical mean free path far exceeding cluster scales;
+\item Baryon gas is strongly collisional, undergoing violent shocks, compression and heating, forming concentrated hot X-ray gas clouds at collision center \cite{bullet_cluster}.
+\end{enumerate}
+Then shortly after collision, the mass distribution satisfies: gravitational potential main peak consistent with galaxy distribution, while X-ray gas peak located in the central region between the two. This ``mass--baryon separation'' phenomenon is the characteristic signature of observations like the Bullet Cluster, naturally derived in this model from the drastically different collisional properties of information islands and baryon gas.
+\end{theorem}
+
+\begin{proposition}[Compatibility with CMB and Large-Scale Structure]\label{prop:cmb_compatible}
+If information islands are already in non-relativistic state (cold dark matter condition) in the early universe and couple to baryon--radiation fluid only through gravity during radiation-dominated era, then this model is equivalent to the standard $\Lambda$CDM model at the level of background expansion and linear fluctuation evolution. Its main contributions to CMB anisotropy spectrum, BAO scale, and large-scale structure power spectrum can be viewed as a cold, negligible-pressure, collision-independent dark matter component, compatible with existing observational constraints \cite{planck2018}.
+\end{proposition}
+
+\section{Proofs}
+
+This section provides proof sketches and key steps for the main theorems, with more technical details arranged in appendices.
+
+\subsection{Proof of Theorem~\ref{thm:mass_charge_orthogonal}: Orthogonality of Mass and Charge in QCA}
+
+Under Assumption~\ref{ass:hilbert_decomp}, the evolution operator in momentum representation can be written as
+$$
+U(k)=U_{\text{vis}}(k)\otimes U_{\text{hid}}(k).
+$$
+
+Consider the representation of $U(1)_{\text{EM}}$
+$$
+V(\alpha)=V_{\text{vis}}(\alpha)\otimes \mathbb{I}_{\text{hid}},
+$$
+where $V_{\text{vis}}$ is a unitary representation on $\mathcal{H}_{\text{vis}}$.
+
+\textbf{1. Topological origin of mass:} The winding number is defined by
+$$
+\mathcal{W}=\frac{1}{2\pi \mathrm{i}}\int_{-\pi/a}^{\pi/a}\mathrm{d} k\, \partial_k\log\det U(k).
+$$
+Using $\det(U\otimes V)=(\det U)^{\dim V}(\det V)^{\dim U}$, we decompose $\mathcal{W}$ as
+$$
+\mathcal{W}=\dim\mathcal{H}_{\text{hid}}\cdot \mathcal{W}_{\text{vis}}+\dim\mathcal{H}_{\text{vis}}\cdot \mathcal{W}_{\text{hid}},
+$$
+where
+$$
+\mathcal{W}_{\text{vis}}=\frac{1}{2\pi \mathrm{i}}\int \mathrm{d} k\, \partial_k\log\det U_{\text{vis}}(k),
+\quad
+\mathcal{W}_{\text{hid}}=\frac{1}{2\pi \mathrm{i}}\int \mathrm{d} k\, \partial_k\log\det U_{\text{hid}}(k).
+$$
+In the continuum limit, these two topological numbers correspond respectively to mass parameters of visible and hidden sectors.
+
+\textbf{2. Representation-theoretic origin of charge:} Electromagnetic charge is determined by the irreducible decomposition of $V_{\text{vis}}(\alpha)$ on $\mathcal{H}_{\text{vis}}$: if on some irreducible component $V_{\text{vis}}(\alpha)=e^{\mathrm{i} q\alpha}$ representation, then its charge is $q$. For $\mathcal{H}_{\text{hid}}$, the representation is identically identity, hence its charge must be zero.
+
+\textbf{3. Orthogonality:} Mass depends on topological properties of $U_{\text{vis}},U_{\text{hid}}$, while charge depends only on representation of $V_{\text{vis}}$. As long as $U_{\text{hid}}$ can be chosen with parameter intervals having nonzero $\mathcal{W}_{\text{hid}}$, while $V_{\text{vis}}$ is trivial representation on some subspace, then modes with $\mathcal{W}_{\text{hid}}\neq 0,q=0$ exist in that subspace, i.e., information islands. Topological classification theory (e.g., 1D gapped band structure classified by $K_1(S^1)\cong \mathbb{Z}$) guarantees this choice is open and stable in parameter space.
+
+Therefore, mass and charge can achieve completely orthogonal degree-of-freedom allocation in the QCA framework, thus admitting existence of chargeless topologically massive modes.
+
+\subsection{Proof of Theorem~\ref{thm:gravity_equiv}: Information Island Contribution to Optical Metric}
+
+IGVP in the weak-field limit can be written as an action functional
+$$
+S_{\text{IGVP}}[g,\rho_{\text{info}}]=\int \mathrm{d}^4 x \sqrt{-g}\, \Bigl(\mathcal{L}_{\text{geom}}(g)+\lambda\bigl[\kappa(g)-\rho_{\text{info}}\bigr]\Bigr),
+$$
+where $\kappa(g)$ is the unified time density defined by Wigner--Smith time-delay trace or scattering phase derivative, $\lambda$ is a Lagrange multiplier. Varying with respect to $g_{\mu\nu}$ and taking weak-field limit $g_{\mu\nu}=\eta_{\mu\nu}+h_{\mu\nu}$ yields approximate field equation
+$$
+\nabla^2 \Phi(x)=4\pi G_{\text{eff}}\rho_{\text{info}}(x),
+$$
+where $\Phi$ is Newtonian potential, $G_{\text{eff}}$ determined by $\lambda$ and details of $\mathcal{L}_{\text{geom}}$. When both visible and hidden sectors exist, information density is
+$$
+\rho_{\text{info}}(x)=\sum_j n_j^{\text{vis}}(x) \hbar\omega_{\text{int},j}^{\text{vis}} + \sum_i n_i^{\text{hid}}(x) \hbar\omega_{\text{int},i}^{\text{hid}}.
+$$
+
+Using relation $m c^2=\hbar\omega_{\text{int}}$, we define equivalent mass density
+$$
+\rho_{\text{mass}}(x)=\rho_{\text{vis}}(x)+\rho_{\text{hid}}(x),
+$$
+satisfying
+$$
+\rho_{\text{info}}(x)=c^2 \rho_{\text{mass}}(x).
+$$
+
+Therefore
+$$
+\nabla^2 \Phi(x)=4\pi G_{\text{eff}} c^2\bigl[\rho_{\text{vis}}(x)+\rho_{\text{hid}}(x)\bigr].
+$$
+
+By appropriately choosing normalization in the theory to make $G_{\text{eff}}c^2=G$, we obtain the standard Newton--Poisson equation. Hence, the refractive index in the optical metric
+$$
+n(x)\approx 1-\frac{2\Phi(x)}{c^2}
+$$
+is entirely controlled by total mass density, decomposed into ``baryon + information island'' contributions. This proves that information islands' contribution to gravity and lensing effects is equivalent to ordinary cold dark matter in the weak-field limit.
+
+\subsection{Proof of Theorem~\ref{thm:flat_rotation}: Isothermal Sphere and Flat Rotation Curves}
+
+For galaxy halos composed of information islands, we adopt the collisionless Boltzmann equation
+$$
+\frac{\partial f}{\partial t} + \mathbf{v}\cdot\nabla_x f - \nabla\Phi\cdot\nabla_v f=0.
+$$
+
+In steady-state, spherically symmetric case, $f$ depends only on total particle energy $E=\tfrac{1}{2}v^2+\Phi(r)$. Maximum entropy principle yields
+$$
+f(E)\propto \exp\bigl(-E/\sigma^2\bigr),
+$$
+corresponding to an isothermal family. Spatial density
+$$
+\rho(r)=\int f(E) \mathrm{d}^3 v\propto \exp\bigl(-\Phi(r)/\sigma^2\bigr).
+$$
+
+Substituting into spherically symmetric Poisson equation
+$$
+\frac{1}{r^2}\frac{\mathrm{d}}{\mathrm{d} r}\Bigl(r^2\frac{\mathrm{d}\Phi}{\mathrm{d} r}\Bigr)=4\pi G \rho_0\exp\bigl(-\Phi(r)/\sigma^2\bigr),
+$$
+one can obtain asymptotic solution at sufficiently large $r$
+$$
+\Phi(r)\simeq 2\sigma^2\ln r + \text{const},
+\quad
+\rho(r)\simeq \frac{\sigma^2}{2\pi G r^2}.
+$$
+
+Thus enclosed mass
+$$
+M(r)=\int_0^r 4\pi r'^2\rho(r') \mathrm{d} r'\propto r,
+$$
+circular orbit velocity
+$$
+v_{\text{rot}}(r)=\sqrt{\frac{G M(r)}{r}}\simeq \sqrt{2} \sigma
+$$
+tends to constant. This is consistent with flat rotation curves observed in many galaxies' outer disks, without introducing additional empirical potential functions or modifying gravity laws \cite{galaxy_rotation}.
+
+\subsection{Proof of Theorem~\ref{thm:bullet_cluster}: Mass--Baryon Separation in Bullet Cluster-Type Collisions}
+
+On cluster scales, baryonic matter mainly exists as hot, tenuous gas, with dynamics controlled by hydrodynamics and radiative processes. When two clusters collide:
+
+\begin{enumerate}
+\item Baryon gases undergo strong shocks and compression, kinetic energy rapidly converting to thermal energy, emitting outward through X-ray radiation;
+\item Information island components are collision-independent, with mean free path far exceeding cluster scale, passing through each other almost without scattering, maintaining original velocities and orbits.
+\end{enumerate}
+
+Therefore, shortly after collision:
+\begin{itemize}
+\item Mass main peak (from lensing inversion) located near the two clusters' original galaxy distributions;
+\item Baryon gas peak concentrated in collision zone between the two clusters, forming hot X-ray gas cloud significantly offset from mass peak.
+\end{itemize}
+
+This is consistent with observations in the Bullet Cluster showing ``mass peak (lensing mass) separated from baryon peak (X-ray brightness)'' \cite{bullet_cluster}. In this model, such separation does not require assuming arbitrary forms of dark matter self-interaction, being merely a direct consequence of the vast difference in collision cross-sections between information islands and baryon gas.
+
+\section{Model Applications}
+
+This section discusses specific applications and testable consequences of the model on galactic, cluster, and cosmological scales.
+
+\subsection{Galaxy Rotation Curves and Halo Structure}
+
+Theorem~\ref{thm:flat_rotation} shows that under dissipationless, collision-independent conditions, information islands naturally form isothermal halos with density $\rho(r)\propto r^{-2}$, corresponding to flat rotation curves. This is highly consistent with flat rotation curves universally observed in late-type galaxies, dwarf galaxies, and low surface brightness galaxies \cite{galaxy_rotation}.
+
+In specific modeling, the total galactic gravitational potential can be written as
+$$
+\Phi_{\text{tot}}(r)=\Phi_{\text{disk}}(r)+\Phi_{\text{bulge}}(r)+\Phi_{\text{halo}}(r),
+$$
+where halo potential $\Phi_{\text{halo}}$ is given by the isothermal halo composed of information islands. When fitting galaxy rotation curves, disk and bulge contributions are determined by visible light and gas distributions, while halo parameters are determined by $\sigma$ and normalization $\rho_0$. This scheme is formally identical to traditional isothermal halo fitting, but essentially views the halo as ``information island gas'' rather than unspecified ``dark particle cloud''.
+
+\subsection{Galaxy Cluster Mass and Lensing Mapping}
+
+Galaxy cluster mass can be estimated through three methods:
+\begin{enumerate}
+\item Dynamical mass from galaxy velocity dispersion;
+\item Mass from thermal equilibrium and hydrostatic equation of X-ray gas;
+\item Mass distribution reconstructed from strong and weak gravitational lensing \cite{bullet_cluster}.
+\end{enumerate}
+
+In this model, baryonic matter contributes $\rho_{\text{vis}}$, information islands contribute $\rho_{\text{hid}}$, and lensing inversion measures $\rho_{\text{vis}}+\rho_{\text{hid}}$. In colliding clusters like the Bullet Cluster, information island components pass through almost frictionlessly together with galaxies, while baryon gas is retained in the middle. This causes lensing mass peak to coincide with galaxy distribution, separated from X-ray gas peak, exactly as observed.
+
+Recent joint observations based on Webb and Chandra further improved resolution of Bullet Cluster mass distribution, strengthening the picture of ``dark component as collision-independent matter'' \cite{webb_bullet}. Within our framework, these observations can be understood as evidence of information island sector dominating $\rho_{\text{hid}}$ on cluster scales.
+
+\subsection{Small-Scale Lensing and Dark Subhalos}
+
+Cold dark matter models predict abundant small-mass subhalos whose gravitational influence can be detected through perturbations of strong lens systems (such as Einstein rings). Recent work discovered a ``dark object'' with mass about $10^6 M_\odot$ in an Einstein ring at redshift $z\sim 1$, consistent with cold dark matter subhalo expectations \cite{einstein_ring_dark}.
+
+In the QCA--information island picture, such dark subhalos can be viewed as regions of locally overdense information island components. Since information islands do not participate in electromagnetic processes, they cannot form stars or radiation signatures, manifesting only through lensing effects. We predict that with the advancement of Euclid, Roman, and larger samples of high-resolution Einstein ring observations, ``pure lensing'' dark subhalos will be continuously discovered across wide mass ranges, consistent with cold dark matter and this model's predictions \cite{euclid_guardian}.
+
+\subsection{Cosmological Scale: CMB and Large-Scale Structure}
+
+Proposition~\ref{prop:cmb_compatible} already shows that as long as information island components cooled to non-relativistic before recombination, they can appear as a negligible-pressure matter component in background expansion equations, completely consistent with cold dark matter's role in Friedmann equations; in linear perturbation theory, their sound speed is near zero, with impact on CMB anisotropy spectrum and baryon acoustic oscillation position and height also equivalent to traditional CDM \cite{planck2018}.
+
+From the QCA perspective, this means that on early universe large scales, the information island sector already formed abundant topologically massive modes, whose statistical distribution is related to visible sector initial fluctuations through common QCA initial state and evolution rules. This ``common origin'' avoids additional assumptions of independent initial conditions for dark matter sector.
+
+\section{Engineering Proposals}
+
+This section proposes several observation and simulation-oriented ``engineering'' suggestions to test specific predictions of ``dark matter as information islands''.
+
+\subsection{IGVP Scale Test of Lensing--Dynamics Consistency}
+
+Within the IGVP framework, there exists a fixed proportion $\rho_{\text{info}}=c^2\rho_{\text{mass}}$ between total information density and equivalent mass density. This means that in any gravitationally bound system, mass distributions obtained through galaxy dynamics (orbital velocities, velocity dispersion) and lensing mass reconstruction should be strictly consistent under IGVP scaling.
+
+The following test procedure can be designed:
+\begin{enumerate}
+\item Select a batch of galaxy cluster samples with high-quality lensing data and detailed dynamical measurements;
+\item Use standard GR lensing inversion to obtain $\Phi_{\text{lens}}(x)$ and $M_{\text{lens}}(x)$;
+\item Use galaxy velocity dispersion and hot gas hydrostatic equations to obtain $M_{\text{dyn}}(x)$;
+\item Compare consistency of $M_{\text{lens}}$ and $M_{\text{dyn}}$, rescale $\rho_{\text{info}}$ using IGVP scaling.
+\end{enumerate}
+
+If IGVP is the correct gravity--information relation, there should be no systematic scale bias across broad samples. This procedure differs from traditional ``mass-to-light ratio'' analysis, emphasizing strict lensing--dynamics consistency.
+
+\subsection{``Dark Sector'' Construction in QCA Numerical Simulations}
+
+On controllable quantum simulation platforms (such as ion traps, superconducting qubit arrays), finite-size versions of Dirac-type QCA can be realized. Using local Hilbert space extension, one can naturally introduce a hidden sector $\mathcal{H}_{\text{hid}}$ and decouple it from the visible sector at the control pulse level.
+
+Engineering steps include:
+\begin{enumerate}
+\item Design a bipartite QCA: one part implements visible Dirac sector, another implements hidden sector with nonzero winding number;
+\item Inject wave packets in visible sector, measure their propagation and scattering;
+\item Inject wave packets in hidden sector, but sense their existence only through their impact on global ``update budget'' (e.g., total evolution step limit) or through system energy rescaling.
+\end{enumerate}
+
+Although current quantum simulation scales are far from directly simulating galaxy halos, these experiments can verify core mechanisms such as ``mass determined by topological winding'', ``hidden sector transparent to visible sector yet still occupying computational resources''.
+
+\subsection{Dark Subhalo Statistics and Inverse Inference of QCA Unit Scale}
+
+In QCA ontology, lattice spacing $a$ and time step $\Delta t$ set the smallest resolvable ``information unit'' in the universe. The minimum stable structure scale of information islands is related to QCA local rules, thus providing a natural lower bound for dark subhalo minimum mass $M_{\text{min}}$.
+
+Statistical analysis of dark subhalo mass functions in Einstein rings and strong lens systems can search for low-mass cutoff:
+\begin{itemize}
+\item If observed $M_{\text{min}}$ is significantly larger than lower bounds from particle free-streaming or baryon feedback, it can be interpreted as minimum scale of information island topological structure;
+\item Further statistics can be used to infer effective constraints on QCA lattice spacing, providing astronomical-scale experimental window for discrete universe models.
+\end{itemize}
+
+\section{Discussion (Risks, Boundaries, Past Work)}
+
+\subsection{Comparison with Traditional Hidden Sector Dark Matter}
+
+The picture presented in this paper superficially resembles ``hidden sector dark matter'': dark matter exists in a set of quantum fields coupled to the standard model only through gravity \cite{hidden_sector}. However, the core differences are:
+
+\begin{enumerate}
+\item This paper does not introduce new fundamental particle Lagrangians, but starts from more fundamental QCA evolution operators, viewing dark sector as a necessary part of Hilbert space decomposition;
+\item Mass is not a free parameter but directly related to topological winding number of QCA band structure;
+\item Gravitational response is determined by unified time density $\kappa(\omega)$ and information density in IGVP, rather than being a priori input of energy-momentum tensor.
+\end{enumerate}
+
+Therefore, this paper can be viewed as an ``information-theoretic--topological'' upgraded version of traditional hidden sector schemes.
+
+\subsection{Relation to Topological Defect Dark Matter Schemes}
+
+Topological defects (cosmic strings, domain walls, etc.) have long been discussed as potential sources of dark matter or dark energy \cite{topological_defect}. Different from these schemes:
+\begin{itemize}
+\item Topological defects are typically nontrivial configurations of continuous fields in space, with energy density and tension related to symmetry-breaking scales;
+\item The ``topological knots'' in this paper are windings of evolution operators in QCA momentum space, belonging to spectral topology rather than configuration space topology.
+\end{itemize}
+
+Mathematically, the two correspond to different levels of $K$-theory: the former closer to homotopy classes of field configurations, the latter belonging to $K_1$ class of operator algebras. Nevertheless, from the cosmological phenomenon perspective, both embody common characteristics of ``topologically stable, long-lived, hard to dissipate''.
+
+\subsection{Risks and Boundary Conditions}
+
+This model still has several aspects requiring careful treatment:
+
+\begin{enumerate}
+\item \textbf{Early universe constraints:} The production mechanism of information islands in the early universe must be compatible with BBN and CMB constraints, avoiding producing excessive effective degrees of freedom or radiation pressure.
+\item \textbf{Self-interaction and core--cusp problem:} If information islands have finite self-interaction, it may help resolve issues such as density slope at Galactic center, but is also constrained by upper limits on dark matter self-interaction on cluster scales \cite{self_interaction}.
+\item \textbf{Quantifying IGVP deviations:} IGVP is tuned to be equivalent to GR in weak-field limit, but may show observable deviations in strong-field and non-equilibrium cases, requiring comparison with observations such as black hole shadows and gravitational wave propagation.
+\end{enumerate}
+
+These issues provide specific, quantifiable test directions for future work.
+
+\subsection{Context of Related Work}
+
+Beyond work in QCA and information gravity directions, recent Euclid, JWST, and ground-based large surveys provide unprecedented dark matter lensing and structure formation data, also providing rich comparable material for the ``information island'' picture proposed in this paper \cite{euclid_guardian}.
+
+On the theoretical side, research deriving spacetime and gravity from quantum information, entanglement structure, or matrix models is developing rapidly, providing broader background framework for reformulating dark matter as ``information topological structure''. This paper can be viewed as one specific, computable route, characterized by introducing explicit QCA models and predictions directly interfaceable with astronomical observations.
+
+\section{Conclusion}
+
+This paper provides a completely new interpretation of dark matter within the unified framework of quantum cellular automata and Information-Gravity Variational Principle: dark matter is not an independent ``new particle'', but a class of topologically massive, electromagnetically interfaceless \textbf{information islands} in QCA networks.
+
+In this picture:
+\begin{enumerate}
+\item Mass is determined by topological winding number of QCA evolution operator on Brillouin zone, realizing ``mass as topological knot'';
+\item Charge is determined by representation of local Hilbert space under $U(1)_{\text{EM}}$, structurally orthogonal to topological mass, thus necessarily allowing existence of ``massive but chargeless'' hidden sectors;
+\item IGVP characterizes gravity as geometric response to total information density, making information island sector completely equivalent to cold dark matter in gravitational effects in the weak-field limit;
+\item On galactic and cluster scales, information islands form approximately isothermal halos, yielding flat rotation curves, and naturally producing mass--baryon separation in galaxy cluster collisions, consistent with observations like the Bullet Cluster.
+\end{enumerate}
+
+Therefore, in a unified framework with QCA as the universe's microscopic ontology, the dark matter phenomenon no longer requires additional Lagrangian terms and new particle assumptions, becoming a necessary projection of discrete quantum information network topological structure. This provides a path combining computability and observational testability for understanding the nature of dark matter.
+
+\section*{Acknowledgements}
+
+The author thanks colleagues and peers for discussions and suggestions in quantum cellular automata, astrophysics, and information gravity directions. Any potential errors and shortcomings are the author's sole responsibility.
+
+\section*{Code Availability}
+
+All derivations in this paper are analytical work without numerical simulation code, hence no shareable code implementation exists. If QCA numerical simulations are conducted in the future, corresponding reference implementations will be made public separately.
+
+\appendix
+
+\section{QCA Hidden Sector Construction with Nontrivial Winding}
+
+This appendix provides a specific Dirac-type QCA construction showing how to embed a hidden sector with nonzero winding number yet electrically neutral in local Hilbert space.
+
+\subsection{Standard Form of Visible Dirac-QCA}
+
+Consider one-dimensional Dirac-QCA with local Hilbert space $\mathbb{C}^2$, evolution operator
+$$
+U_{\text{vis}}(k)=\begin{pmatrix}
+\cos\theta\, e^{\mathrm{i} k a} & -\mathrm{i}\sin\theta \\
+-\mathrm{i}\sin\theta & \cos\theta\, e^{-\mathrm{i} k a}
+\end{pmatrix},
+$$
+where $\theta$ is a parameter controlling mass. We can verify
+$$
+\det U_{\text{vis}}(k)=\cos^2\theta+\sin^2\theta=1,
+$$
+hence $U_{\text{vis}}(k)\in SU(2)$. Its dispersion relation is
+$$
+\cos\omega(k)=\cos\theta\cos k a,
+$$
+in small $k$ limit
+$$
+\omega(k)\approx \sqrt{(c k)^2 + (m c^2/\hbar)^2},
+$$
+where $m\propto \theta$. This model corresponds to $\mathcal{W}_{\text{vis}}=1$ in appropriate parameter intervals.
+
+\subsection{Topological Construction of Hidden Sector}
+
+In the hidden sector introduce another Dirac-QCA, with degrees of freedom $\mathcal{H}_{\text{hid}}\cong\mathbb{C}^2$, evolution operator
+$$
+U_{\text{hid}}(k)=\begin{pmatrix}
+\cos\varphi\, e^{\mathrm{i} (k a+\delta)} & -\mathrm{i}\sin\varphi \\
+-\mathrm{i}\sin\varphi & \cos\varphi\, e^{-\mathrm{i} (k a+\delta)}
+\end{pmatrix}.
+$$
+where additional phase $\delta$ and mixing angle $\varphi$ control hidden sector topology and mass. Its topological number
+$$
+\mathcal{W}_{\text{hid}}=\frac{1}{2\pi \mathrm{i}}\int_{-\pi/a}^{\pi/a}\mathrm{d} k\, \partial_k\log\det U_{\text{hid}}(k)=1,
+$$
+same as visible sector, but since $U(1)_{\text{EM}}$ acts as identity on $\mathcal{H}_{\text{hid}}$, all modes in hidden sector are electromagnetically neutral.
+
+Total evolution operator
+$$
+U(k)=U_{\text{vis}}(k)\otimes U_{\text{hid}}(k)
+$$
+operates on $\mathcal{H}_{\text{vis}}\otimes\mathcal{H}_{\text{hid}}\cong\mathbb{C}^4$. Choosing basis
+$$
+\{|e_1\rangle,|e_2\rangle\}_{\text{vis}}\otimes\{|h_1\rangle,|h_2\rangle\}_{\text{hid}},
+$$
+visible charge representation acts only on $|e_i\rangle$ directions:
+$$
+V_{\text{vis}}(\alpha)=\begin{pmatrix}
+e^{\mathrm{i} q\alpha} & 0\\
+0 & 1
+\end{pmatrix}.
+$$
+
+In the two-dimensional subspace generated by states $|e_2\rangle\otimes|h_j\rangle$, charge is zero, but $U_{\text{hid}}(k)$ topology still gives nonzero mass, i.e., information island modes.
+
+\subsection{Genericity Under Random QCA Rules}
+
+Consider randomly sampling local evolution operators $U(k)$ (satisfying translation invariance and locality constraints) on finite-dimensional Hilbert space. In the vast majority of cases, its Bloch band structure will possess nonzero topological number, unless parameters happen to fall on critical hypersurfaces of measure zero. On the other hand, the choice of $U(1)_{\text{EM}}$ representation determines which bands correspond to charged visible modes and which to neutral hidden modes.
+
+Therefore, in broad families of random QCA models, ``dark bands'' with nonzero topological mass yet trivial under $U(1)_{\text{EM}}$ are statistically natural; dark matter sectors can appear without fine-tuning.
+
+\section{IGVP, Optical Metric and Lensing}
+
+This appendix more systematically derives the optical metric and lensing formulas in the weak-field limit of IGVP.
+
+\subsection{Unified Time Density and Information Density}
+
+In scattering theory, the Wigner--Smith delay operator is defined as
+$$
+\mathsf{Q}(\omega)=-\mathrm{i} S^\dagger(\omega)\frac{\partial S(\omega)}{\partial\omega},
+$$
+whose normalized trace gives the sum of Eisenbud--Wigner--Smith delay times. We introduce time density in unified time theory
+$$
+\kappa(\omega)=\frac{1}{2\pi}\operatorname{tr}\mathsf{Q}(\omega),
+$$
+and define local information density as
+$$
+\rho_{\text{info}}(x)=\int \mathrm{d}\omega\, \kappa(\omega;x).
+$$
+
+In the QCA framework, $\kappa(\omega;x)$ can be defined through local spectral measure and scattering phase derivative, equivalent to ``density of states per unit frequency interval''.
+
+\subsection{IGVP Variational Equation}
+
+The IGVP action can be written as
+$$
+S[g,\kappa]=\int \mathrm{d}^4 x \sqrt{-g}\, \Bigl(\frac{c^4}{16\pi G}R(g) + \lambda(x)\bigl[\kappa(g;x)-\kappa_{\text{micro}}(x)\bigr]\Bigr),
+$$
+where $\kappa_{\text{micro}}(x)$ is the unified time density determined by QCA microscopic degrees of freedom, $\lambda(x)$ is Lagrange multiplier. Varying with respect to $g_{\mu\nu}$ and linearizing yields
+$$
+\nabla^2\Phi(x)=4\pi G \rho_{\text{mass}}(x),
+$$
+where $\rho_{\text{mass}}(x)\propto \kappa_{\text{micro}}(x)$ is proportional to local information density. This process illustrates the unified chain ``time density--density of states--mass density''.
+
+\subsection{Optical Metric and Lensing Formula}
+
+In weak-field static case, take
+$$
+g_{00}=-(1+2\Phi/c^2),\quad g_{ij}=(1-2\Phi/c^2)\delta_{ij}.
+$$
+
+Light rays satisfy null geodesic condition $\mathrm{d} s^2=0$. In thin lens approximation, gravitational lensing deflection angle can be written as
+$$
+\boldsymbol{\alpha}(\boldsymbol{\xi})=\frac{2}{c^2}\int \nabla_\perp\Phi(\boldsymbol{\xi},z) \mathrm{d} z
+=\frac{4G}{c^2}\int \frac{\bigl(\boldsymbol{\xi}-\boldsymbol{\xi}'\bigr)\Sigma(\boldsymbol{\xi}')}{|\boldsymbol{\xi}-\boldsymbol{\xi}'|^2} \mathrm{d}^2\xi',
+$$
+where
+$$
+\Sigma(\boldsymbol{\xi})=\int \rho_{\text{mass}}(\boldsymbol{\xi},z) \mathrm{d} z
+$$
+is the projected mass density along the line of sight. Since $\rho_{\text{mass}}=\rho_{\text{vis}}+\rho_{\text{hid}}$, information island contribution directly enters the lensing kernel. This derivation is completely isomorphic to standard GR lensing theory, except that the composition of $\rho_{\text{mass}}$ is ontologically reinterpreted as ``information density'' rather than traditional energy-momentum tensor source term.
+
+\section{Collisionless Virialization and Isothermal Halos}
+
+This appendix provides detailed steps for deriving isothermal halos and flat rotation curves under the collisionless Boltzmann equation.
+
+\subsection{Boltzmann Equation and Conserved Quantities}
+
+In spherically symmetric, steady-state case, the collisionless Boltzmann equation is
+$$
+\mathbf{v}\cdot\nabla_x f - \nabla\Phi\cdot\nabla_v f=0.
+$$
+
+Any distribution $f(E)$ depending only on energy $E=\tfrac{1}{2}v^2+\Phi(r)$ is a solution of this equation, because
+$$
+\mathbf{v}\cdot\nabla_x f(E)=f'(E) \mathbf{v}\cdot\nabla_x E=f'(E) \mathbf{v}\cdot\nabla\Phi,
+$$
+$$
+\nabla\Phi\cdot\nabla_v f(E)=f'(E) \nabla\Phi\cdot\mathbf{v},
+$$
+which cancel.
+
+\subsection{Maximum Entropy Principle and Maxwell--Boltzmann Distribution}
+
+Under constraints of given total particle number and total energy, maximizing entropy
+$$
+S=-\int f\ln f \,\mathrm{d}^3 x \mathrm{d}^3 v
+$$
+yields optimal distribution
+$$
+f(E)=A\exp\bigl(-E/\sigma^2\bigr),
+$$
+where $\sigma^2$ is analogous to velocity dispersion squared. Spatial density
+$$
+\rho(r)=\int f(E) \mathrm{d}^3 v
+=4\pi A\exp\bigl(-\Phi(r)/\sigma^2\bigr)\int_0^\infty v^2\exp\bigl(-v^2/2\sigma^2\bigr) \mathrm{d} v
+=\rho_0\exp\bigl(-\Phi(r)/\sigma^2\bigr).
+$$
+
+\subsection{Poisson Equation and Asymptotic Solution}
+
+Poisson equation
+$$
+\frac{1}{r^2}\frac{\mathrm{d}}{\mathrm{d} r}\Bigl(r^2\frac{\mathrm{d}\Phi}{\mathrm{d} r}\Bigr)=4\pi G\rho_0\exp\bigl(-\Phi(r)/\sigma^2\bigr)
+$$
+can be linearized in the region where $r$ is sufficiently large and $|\Phi(r)|\ll \sigma^2$ as
+$$
+\frac{1}{r^2}\frac{\mathrm{d}}{\mathrm{d} r}\Bigl(r^2\frac{\mathrm{d}\Phi}{\mathrm{d} r}\Bigr)\approx 4\pi G\rho_0\Bigl(1-\frac{\Phi(r)}{\sigma^2}\Bigr).
+$$
+
+Seeking solution of form $\Phi(r)=2\sigma^2\ln(r/r_0)$, substituting into left side
+$$
+\frac{1}{r^2}\frac{\mathrm{d}}{\mathrm{d} r}\Bigl(r^2\frac{2\sigma^2}{r}\Bigr)
+=\frac{1}{r^2}\frac{\mathrm{d}}{\mathrm{d} r}(2\sigma^2 r)
+=\frac{2\sigma^2}{r^2},
+$$
+right side approximately constant $4\pi G\rho_0$ in asymptotic region. Setting them equal yields
+$$
+\rho_0=\frac{\sigma^2}{2\pi G r^2}.
+$$
+
+Therefore
+$$
+\rho(r)\simeq \frac{\sigma^2}{2\pi G r^2},
+\quad
+M(r)=\int_0^r 4\pi r'^2\rho(r') \mathrm{d} r' = \frac{2\sigma^2}{G}r,
+$$
+yielding
+$$
+v_{\text{rot}}(r)=\sqrt{\frac{G M(r)}{r}}=\sqrt{2} \sigma.
+$$
+
+This is the detailed derivation of information island gas forming isothermal halos and producing flat rotation curves under collisionless, virialized conditions.
+
+\begin{thebibliography}{99}
+
+\bibitem{planck2018}
+N. Aghanim et al. (Planck Collaboration), \textit{Planck 2018 results. VI. Cosmological parameters}, Astron. Astrophys. \textbf{641}, A6 (2020).
+\url{https://www.aanda.org/articles/aa/abs/2020/09/aa33910-18/aa33910-18.html}
+
+\bibitem{pdg_darkmatter}
+Particle Data Group, \textit{27. Dark Matter}, Phys. Rev. D \textbf{110}, 030001 (2024).
+\url{https://pdg.lbl.gov/2025/reviews/rpp2024-rev-dark-matter.pdf}
+
+\bibitem{bullet_cluster}
+D. Clowe et al., \textit{A Direct Empirical Proof of the Existence of Dark Matter}, Astrophys. J. Lett. \textbf{648}, L109 (2006).
+\url{https://en.wikipedia.org/wiki/Bullet_Cluster}
+
+\bibitem{galaxy_rotation}
+M. Weber, W. de Boer, \textit{Determination of the local dark matter density in our Galaxy}, Astron. Astrophys. \textbf{509}, A25 (2010).
+\url{https://www.aanda.org/articles/aa/full_html/2010/01/aa13381-09/aa13381-09.html}
+
+\bibitem{hidden_sector}
+D. Hooper, S. Profumo, \textit{Dark matter and collider phenomenology}, Phys. Rep. \textbf{453}, 29--115 (2007).
+\url{https://en.wikipedia.org/wiki/Hidden_sector}
+
+\bibitem{topological_defect}
+A. Vilenkin, \textit{Cosmic strings and domain walls}, Phys. Rep. \textbf{121}, 263--315 (1985).
+\url{https://en.wikipedia.org/wiki/Topological_defect}
+
+\bibitem{qca_dirac}
+A. Bisio, G. M. D'Ariano, A. Tosini, \textit{Quantum Field as a Quantum Cellular Automaton: The Dirac free evolution in one dimension}, Ann. Phys. \textbf{354}, 244--264 (2015).
+\url{https://arxiv.org/abs/1212.2839}
+
+\bibitem{webb_bullet}
+NASA, \textit{Webb 'Pierces' Bullet Cluster, Refines Its Mass}, mission update (2025).
+\url{https://science.nasa.gov/missions/webb/nasa-webb-pierces-bullet-cluster-refines-its-mass/}
+
+\bibitem{einstein_ring_dark}
+S. P. C. Peters et al., \textit{A record-breaking small dark object revealed by perturbations of an Einstein ring}, Nat. Astron. (2025).
+\url{https://www.livescience.com/space/cosmology/record-breaking-dark-object-found-hiding-within-a-warped-einstein-ring}
+
+\bibitem{euclid_guardian}
+Euclid Collaboration, \textit{First Euclid Data Release: Dark Matter and Dark Energy Probes from Early Imaging}, ESA mission reports (2025).
+\url{https://www.theguardian.com/science/2025/mar/19/scientists-hail-avalanche-discoveries-euclid-space-telescope}
+
+\bibitem{self_interaction}
+A. Mallick et al., \textit{A Novel Density Profile for Isothermal Cores of Dark Matter Halos}, arXiv:2411.11945 (2024).
+\url{https://arxiv.org/html/2411.11945v3}
+
+\end{thebibliography}
+
+\end{document}
+

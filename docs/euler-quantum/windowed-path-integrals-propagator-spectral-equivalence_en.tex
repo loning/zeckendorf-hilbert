@@ -1,0 +1,305 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{braket}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=0.85in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{assumption}[theorem]{Assumption}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Math operators
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\PW}{PW}
+
+% Title information
+\title{Windowed Path Integrals:\\
+Spectral ``Window--Kernel'' Formulation\\
+and Rigorous Equivalence to Propagators}
+\author{Auric (S-series / EBOC Framework)\\[5pt]
+\small Version 0.8.1 · October 28, 2025}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Under WSIG-QM framework composed of \textbf{de Branges--Kreĭn (DBK) canonical system} and \textbf{Weyl--Heisenberg (including logarithmic/Mellin)} representation, this paper takes \textbf{spectral theorem + analytic Fourier duality} as main thread, giving rigorous mathematical characterization of \textbf{path integral = propagator kernel}, proving \textbf{windowed path integral theorem}: any realizable path integral-type observation equivalent to ``window--kernel--density'' convolution in energy domain; time domain precisely propagator time trace (or state-weighted kernel) Fourier dual under same window/kernel. For numerical implementation, discretization error \textbf{non-asymptotically} closes as ``\textbf{alias (Poisson) + Bernoulli layer (Euler--Maclaurin) + truncation}'' three-term decomposition; under \textbf{bandlimited + Nyquist} conditions alias term strictly zero. For phase scale, on absolutely continuous spectrum almost everywhere holds
+
+$$
+\varphi'(E)=\dfrac{1}{2}\operatorname{tr}\mathsf{Q}(E),\qquad
+\rho_{\mathrm{rel}}(E)=\dfrac{s_{\mathrm{BK}}}{2\pi}\operatorname{tr}\mathsf{Q}(E),\qquad
+\varphi(E)=s_{\mathrm{BK}}\,\pi\,\xi(E)\pmod{\pi},
+$$
+
+where $\mathsf{Q}(E)=-i\,S^\dagger(E)\, \dfrac{dS}{dE}(E)$ is Wigner--Smith delay matrix, $\rho_{\mathrm{rel}}=\xi'$ spectral shift density, $s_{\mathrm{BK}}$ BK notation version parameter (this paper adopts $s_{\mathrm{BK}}=+1$); this given by Birman--Kreĭn formula and relative scattering delay unification, closing path weight action phase with \textbf{measurable energy scale} unified. On information geometry side, \textbf{Born probability = minimal-KL (I-projection)} gives log-sum-exp soft potential convex dual semantics; single-window and multi-window synergy of \textbf{window/kernel} expressible as strongly convex/sparse optimization interfacing with frame--dual window theory. All above anchor standard criteria: spectral theorem and Stone theorem, Birman--Kreĭn formula, Wigner--Smith delay, Poisson summation and Euler--Maclaurin formula, Nyquist--Shannon sampling, Wexler--Raz biorthogonality and ``painless'' expansion etc.
+\end{abstract}
+
+\section{Notation and Conventions}
+
+\subsection{Fourier Convention}
+
+Take
+
+$$
+\widehat{f}(\xi)=\int_{\mathbb{R}} f(x)\,e^{-ix\xi}\,dx,\qquad
+f(x)=\frac{1}{2\pi}\int_{\mathbb{R}}\widehat{f}(\xi)\,e^{ix\xi}\,d\xi,
+$$
+
+using Parseval (zero-frequency equality and Plancherel jointly): $\displaystyle \int f\,\overline{g}=\frac{1}{2\pi}\int \widehat{f}\,\overline{\widehat{g}}$.
+
+\textbf{Quick reference card:} Under this convention, $\widehat{e^{+iEt_0}}(\xi)=2\pi\delta(\xi-t_0)$, $\widehat{e^{-iEt_0}}(\xi)=2\pi\delta(\xi+t_0)$; scaling $w_R(E)=w(E/R)$ gives $\widehat{w}_R(\xi)=R\,\widehat{w}(R\xi)$ (amplitude factor $R$, support shrinks to $1/R$ times). Angular frequency $\Omega$ corresponds to time bandwidth $\Omega$ (this paper uniformly takes this convention, different from some literature's $2\pi$ placement).
+
+\subsection{Dimensions and Constants}
+
+Uniformly take $\hbar=1$; when recovering substitute $t\mapsto t/\hbar$.
+
+\subsection{Spectrum and Propagator}
+
+$H$ self-adjoint operator, $E_H$ its spectral measure. For any \textbf{trace class operator} $\rho\in\mathfrak{S}_1(\mathcal{H})$ (where \textbf{state weight} means $\rho\ge 0$, \textbf{observable weight} means sign-finite trace class operator with $\operatorname{Tr}\rho=0$), define
+
+$$
+K_\rho(t):=\operatorname{Tr}\big(\rho\,e^{-iHt}\big)=\int_{\mathbb{R}} e^{-iEt}\,d\nu_\rho(E),\quad
+\nu_\rho(B):=\operatorname{Tr}\big(\rho\,E_H(B)\big).
+$$
+
+Under this assumption, $K_\rho(t)$ well-defined and is continuous bounded function.
+
+If absolutely continuous part of $\nu_\rho$ has density $\rho_{\mathrm{abs}}(E)$, its contribution satisfies (distributional sense) $\widehat{\rho_{\mathrm{abs}}}(t)=\int_{\mathbb{R}} e^{-iEt}\rho_{\mathrm{abs}}(E)\,dE$. Generally, $K_\rho(t)=\widehat{\rho_{\mathrm{abs}}}(t)+\widehat{\nu_{\mathrm{sing}}}(t)$; if and only if $\nu_\rho$ purely absolutely continuous, have $K_\rho=\widehat{\rho_{\mathrm{abs}}}$. This from spectral theorem and Stone theorem characterization of $e^{-itH}$.
+
+\subsection{Window and Kernel}
+
+Take \textbf{even window} $w_R(E)=w(E/R)$, where $w\in \PW^{\mathrm{even}}_\Omega$ (Paley--Wiener even function class of bandwidth $\Omega$), then $\widehat{w_R}(\xi)=R\,\widehat{w}(R\xi)$ also even function supported on $[-\Omega/R,\Omega/R]$.
+
+Test kernel $h\in W^{2M,1}(\mathbb{R})\cap L^1(\mathbb{R})$ (no evenness requirement, bandlimited if necessary), ensuring convolution and reordering.
+
+\subsection{Phase--Density--Delay Scale}
+
+Set scattering matrix relative to reference $H_0$ as $S(E)$ (single/multi-channel). This paper fixes Birman--Kreĭn notation
+
+$$
+\det S(E)=e^{+2\pi i\,\xi(E)}\quad (\text{a.e. }E),
+$$
+
+introducing Wigner--Smith delay matrix. \textbf{Dimension and $\hbar$ unification:} Define
+
+$$
+\mathsf{Q}_\hbar(E):=-i\,\hbar\,S^\dagger(E)\,\partial_E S(E),\qquad
+\mathsf{Q}(E):=\frac{1}{\hbar}\,\mathsf{Q}_\hbar(E)=-i\,S^\dagger(E)\,\partial_E S(E).
+$$
+
+Then for any a.e. differentiable scattering energy $E$,
+
+$$
+\operatorname{tr}\mathsf{Q}_\hbar(E)=2\,\hbar\,\varphi'(E)=2\pi\hbar\,\xi'(E),\qquad
+\rho_{\mathrm{rel}}(E)=\xi'(E)=\frac{1}{2\pi\hbar}\operatorname{tr}\mathsf{Q}_\hbar(E).
+$$
+
+Throughout text take $\hbar=1$, defaulting $\mathsf{Q}=\mathsf{Q}_\hbar/\hbar$, thus
+
+$$
+\xi'(E)=\dfrac{1}{2\pi}\operatorname{tr}\mathsf{Q}(E),\qquad
+\rho_{\mathrm{rel}}(E):=\xi'(E)=\dfrac{1}{2\pi}\operatorname{tr}\mathsf{Q}(E)\quad\text{(spectral shift density)}.
+$$
+
+Define total phase $\displaystyle \varphi(E):=\tfrac{1}{2}\,\arg\det S(E)$, choosing \textbf{continuous branch} consistent with BK notation, normalizing $\xi$ to vanish at reference energy region, making absolute value of $\xi(E)$ physically measurable. Then
+
+$$
+\varphi'(E)=\tfrac{1}{2}\,\operatorname{tr}\mathsf{Q}(E),\qquad
+\varphi(E)=s_{\mathrm{BK}}\,\pi\,\xi(E)\ \pmod{\pi},
+$$
+
+where $s_{\mathrm{BK}}=+1$ corresponds to this paper's version I notation ($\det S=e^{+2\pi i\xi}$). Thus
+
+$$
+\rho_{\mathrm{rel}}(E)=\xi'(E)=\frac{s_{\mathrm{BK}}}{2\pi}\operatorname{tr}\mathsf{Q}(E).
+$$
+
+\section{Path Integrals and Spectral Window/Kernel Dictionary}
+
+Propagator kernel in position eigenbasis
+
+$$
+K(x_f,t;x_i,0)=\langle x_f|e^{-iHt}|x_i\rangle
+=\int_{\mathbb{R}} e^{-iEt}\,d\mu_{x_f,x_i}(E),
+$$
+
+where $\mu_{x_f,x_i}$ corresponding spectral Stieltjes measure. Formal Feynman path integral precisely another representation of this kernel (consistent with kernel in rigorous framework). Therefore, choosing ``window'' $w_R(E)=e^{-iEt_0}$ and ``kernel'' $h=\delta$ (generalized function sense), time propagator $K(x_f,t_0;x_i,0)$ special case of energy-side windowed readout; $h\neq\delta$ corresponds to energy smoothing, time domain multiplying by $\widehat{h}$.
+
+In WSIG-QM context, this equivalent to: \textbf{all measurable path integral-type observations = energy-side ``window--kernel--density'' readouts}; time side propagator time trace/kernel Fourier dual under same window/kernel.
+
+\section{Windowed Path Integral Theorem: Energy--Time Dual Representation}
+
+\begin{assumption}[Reordering and Integrability Premise]
+\label{assum:reordering}
+To make Theorem~\ref{thm:windowed-pi} Fourier duality and reordering rigorously valid, assume:
+\begin{itemize}
+\item[(A1)] \textbf{Spectral density regularity:} $\rho_\star$ finite signed Borel measure;
+\item[(A2)] \textbf{Window function regularity:} $w_R\in L^\infty(\mathbb{R})\cap C^{2M}(\mathbb{R})$ even function, Paley--Wiener class $\PW^{\mathrm{even}}_\Omega$;
+\item[(A3)] \textbf{Kernel function regularity:} $h\in W^{2M,1}(\mathbb{R})\cap L^1(\mathbb{R})$, ensuring $h\ast\rho_\star$ well-defined distributionally;
+\item[(A4)] \textbf{Fubini/Tonelli interchangeability:} Under above conditions, $h\ast\rho_\star\in L^1(\mathbb{R})$ and $w_R\cdot(h\ast\rho_\star)\in L^1(\mathbb{R})$;
+\item[(A5)] \textbf{Stieltjes/distributional duality:} When $\rho_\star=\nu_\rho$ spectral measure, $K_{\rho_\star}(t)=\Tr(\rho e^{-iHt})$ guaranteed continuous bounded by Stone theorem;
+\item[(A6)] \textbf{Time-side EM smoothness (optional):} For $2M$-order Euler--Maclaurin correction time-side, require $G_t\in C^{2M}([-T,T])$.
+\end{itemize}
+\end{assumption}
+
+\begin{theorem}[Windowed Path Integral Duality]
+\label{thm:windowed-pi}
+Under Assumption~\ref{assum:reordering}, for self-adjoint $H$, spectral measure $E_H$, spectral density $\rho_\star$, window $w_R\in\PW^{\mathrm{even}}_\Omega$, kernel $h\in W^{2M,1}\cap L^1$, have \textbf{energy--time dual identities}:
+
+\textbf{Energy-domain identity:}
+$$
+\int_{\mathbb{R}} w_R(E)\,[h\ast\rho_\star](E)\,dE
+=\int_{\mathbb{R}} w_R(E)\,\bigl(\int_{\mathbb{R}} h(E-E')\,\rho_\star(E')\,dE'\bigr)\,dE
+$$
+
+\textbf{Time-domain Fourier dual:}
+$$
+=\frac{1}{2\pi}\int_{\mathbb{R}} \widehat{w_R}(-t)\,\widehat{h}(t)\,K_{\rho_\star}(t)\,dt,
+$$
+
+where $K_{\rho_\star}(t)=\int_{\mathbb{R}} e^{-iEt}\,\rho_\star(E)\,dE$ propagator time trace/kernel.
+
+When $\rho_\star=\nu_\rho$ from trace class $\rho$, have $K_{\rho_\star}(t)=\Tr(\rho e^{-iHt})$.
+\end{theorem}
+
+\begin{proof}
+By spectral theorem, Stone theorem and Parseval identity. Define $G(E):=w_R(E)\,[h\ast\rho_\star](E)$. Under assumptions have $G\in L^1(\mathbb{R})$. Apply Fourier transform:
+
+$$
+\widehat{G}(t)=\int_{\mathbb{R}} w_R(E)\,[h\ast\rho_\star](E)\,e^{-iEt}\,dE.
+$$
+
+By convolution theorem $\widehat{h\ast\rho_\star}=\widehat{h}\cdot\widehat{\rho_\star}$. By product-convolution duality:
+
+$$
+\widehat{G}(t)=\frac{1}{2\pi}\,\widehat{w_R}\ast(\widehat{h}\cdot\widehat{\rho_\star})(t)
+=\frac{1}{2\pi}\int_{\mathbb{R}}\widehat{w_R}(t-s)\,\widehat{h}(s)\,\widehat{\rho_\star}(s)\,ds.
+$$
+
+Change variable $s\to-s$ and use $w_R$ evenness ($\widehat{w_R}$ even), get time-domain identity. \end{proof}
+
+\section{Phase Scale Unification}
+
+\begin{theorem}[Scattering Phase--Density--Delay Scale Identity]
+\label{thm:phase-density-delay}
+Under scattering regularity (relative trace class or Hilbert--Schmidt, making $S(E)$ a.e. differentiable and BK formula applicable), on absolutely continuous spectrum a.e. have:
+
+$$
+\varphi'(E)=\tfrac{1}{2}\operatorname{tr}\mathsf{Q}(E),\qquad
+\xi'(E)=\tfrac{s_{\mathrm{BK}}}{2\pi}\operatorname{tr}\mathsf{Q}(E),\qquad
+\rho_{\mathrm{rel}}(E)=\xi'(E),
+$$
+
+where $\mathsf{Q}(E)=-i\,S^\dagger(E)\,\partial_E S(E)$ Wigner--Smith delay matrix, $s_{\mathrm{BK}}\in\{+1,-1\}$ BK notation version parameter, $\rho_{\mathrm{rel}}$ spectral shift density.
+
+For BK version I ($\det S=e^{+2\pi i\xi}$, $s_{\mathrm{BK}}=+1$), have function-level equality:
+
+$$
+\varphi(E)=\pi\,\xi(E),\qquad
+\rho_{\mathrm{rel}}(E)=\tfrac{1}{2\pi}\operatorname{tr}\mathsf{Q}(E).
+$$
+\end{theorem}
+
+\begin{proof}
+From Birman--Kreĭn formula $\det S(E)=e^{s_{\mathrm{BK}}\cdot 2\pi i\xi(E)}$, taking logarithmic derivative:
+
+$$
+\frac{d}{dE}\ln\det S(E)=\operatorname{tr}(S^{-1}\partial_E S)=\operatorname{tr}(S^\dagger\partial_E S)=s_{\mathrm{BK}}\cdot 2\pi i\,\xi'(E).
+$$
+
+By definition $\mathsf{Q}=-i S^\dagger\partial_E S$, thus $\operatorname{tr}\mathsf{Q}=i\operatorname{tr}(S^\dagger\partial_E S)=s_{\mathrm{BK}}\cdot 2\pi\,\xi'(E)$.
+
+For total phase $\varphi=\tfrac{1}{2}\arg\det S=s_{\mathrm{BK}}\cdot\pi\xi\pmod{\pi}$, differentiating gives $\varphi'=\tfrac{1}{2}\operatorname{tr}\mathsf{Q}$.
+
+Spectral shift density definition $\rho_{\mathrm{rel}}:=\xi'$ completes chain. \end{proof}
+
+\section{Non-Asymptotic Error Closure}
+
+\begin{theorem}[Poisson--EM--Tail Three-Term Decomposition]
+\label{thm:error-decomposition}
+For energy-domain integral $I=\int_{\mathbb{R}} F(E)\,dE$ where $F=w_R\cdot(h\ast\rho_\star)$, under:
+\begin{itemize}
+\item Bandlimited: $\supp\widehat{F}\subset[-\Omega_F,\Omega_F]$ where $\Omega_F=\Omega_w/R+\Omega_h$;
+\item Smoothness: $F\in C^{2M}(\mathbb{R})$, $F^{(2M)}\in L^1(\mathbb{R})$;
+\item Sampling: step $\Delta>0$, truncation $|n|\le N$;
+\end{itemize}
+
+have discretization approximation with error decomposition:
+
+$$
+I=\Delta\sum_{n=-N}^{N}F(n\Delta)+\underbrace{\varepsilon_{\mathrm{alias}}}_{\text{Poisson}}+\underbrace{R_{2M}}_{\text{EM remainder}}+\underbrace{\varepsilon_{\mathrm{tail}}}_{\text{truncation}},
+$$
+
+where:
+\begin{enumerate}
+\item \textbf{Alias term:} $\varepsilon_{\mathrm{alias}}=0$ when $\Delta\le\pi/\Omega_F$ (Nyquist);
+\item \textbf{EM remainder:} $|R_{2M}|\le \dfrac{2\zeta(2M)}{(2\pi)^{2M}}\int_{\mathbb{R}}|F^{(2M)}(x)|\,dx$;
+\item \textbf{Tail term:} $|\varepsilon_{\mathrm{tail}}|\le\int_{|E|>N\Delta}|F(E)|\,dE$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Apply Poisson summation formula: for $F$ bandlimited with $\supp\widehat{F}\subset[-\Omega_F,\Omega_F]$,
+
+$$
+\sum_{n\in\mathbb{Z}}F(n\Delta)=\frac{2\pi}{\Delta}\sum_{k\in\mathbb{Z}}\widehat{F}\Bigl(\frac{2\pi k}{\Delta}\Bigr).
+$$
+
+When $\Delta\le\pi/\Omega_F$, replicas at $k\neq 0$ fall outside support of $\widehat{F}$, thus alias vanishes. Apply $2M$-order Euler--Maclaurin to finite sum $\sum_{|n|\le N}$, obtaining Bernoulli correction terms and explicit remainder bound. Tail term from truncation at $\pm N$. \end{proof}
+
+\section{Discussion and Outlook}
+
+This work establishes:
+\begin{enumerate}
+\item Rigorous equivalence between path integrals and windowed spectral readouts via energy--time Fourier duality
+\item Phase--density--delay unification through Birman--Kreĭn formula
+\item Non-asymptotic error closure via Poisson--EM--tail three-term decomposition
+\item Nyquist sampling criterion for alias elimination
+\end{enumerate}
+
+Key formulas:
+\begin{itemize}
+\item Energy--time duality: $\int w_R(E)[h\ast\rho_\star](E)\,dE=\tfrac{1}{2\pi}\int\widehat{w_R}(-t)\widehat{h}(t)K_{\rho_\star}(t)\,dt$
+\item Phase scale: $\varphi'=\tfrac{1}{2}\tr\mathsf{Q}$, $\rho_{\mathrm{rel}}=\tfrac{s_{\mathrm{BK}}}{2\pi}\tr\mathsf{Q}$
+\item Error bound: $|\varepsilon|\le|\varepsilon_{\mathrm{alias}}|+|R_{2M}|+|\varepsilon_{\mathrm{tail}}|$
+\end{itemize}
+
+Future directions:
+\begin{itemize}
+\item Extension to non-Hermitian scattering and dissipative systems
+\item Numerical implementation and benchmarking
+\item Applications to quantum field theory and gravitational systems
+\item Connection with quantum information and entanglement measures
+\end{itemize}
+
+\end{document}
+

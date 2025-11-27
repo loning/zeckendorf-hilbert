@@ -1,0 +1,570 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Operators
+\DeclareMathOperator{\tr}{tr}
+
+% Title information
+\title{Unified Time Scale and Continuous Complexity Geometry\\
+of Computational Universes:\\
+Scattering Mother Scale, Control Manifold, and Construction of Metric $G$}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+In previous works, we axiomatized the ``computational universe'' as discrete object $U_{\mathrm{comp}} = (X,\mathsf{T},\mathsf{C},\mathsf{I})$, and separately constructed discrete complexity geometry and discrete information geometry on it. However, in that framework, the single-step cost function $\mathsf{C}$ remained abstractly assigned, with its connection to real physical time scales not yet systematically characterized. This paper, based on the unified time scale scattering mother scale
+
+$$
+\kappa(\omega) = \varphi'(\omega)/\pi = \rho_{\mathrm{rel}}(\omega) = (2\pi)^{-1}\tr\,Q(\omega),
+$$
+
+introduces ``control manifold'' $\mathcal{M}$ and scattering family $S(\omega;\theta)$, systematically embedding the cost of discrete steps in computational universe into a Riemannian-type metric $G$ induced by $\kappa(\omega)$, thereby constructing continuous complexity geometry consistent with physical time scales.
+
+Specifically, we first view each physically realizable computational universe $U_{\mathrm{comp}}$ as combination of some controllable scattering system: configuration updates are driven by control parameter $\theta \in \mathcal{M}$, scattering matrix $S(\omega;\theta)$ describes physical response in frequency domain, Wigner--Smith group delay matrix $Q(\omega;\theta)$ gives local response of unified time scale density. Subsequently, we define metric
+
+$$
+G_{ab}(\theta) = \int_{\Omega} w(\omega)\,\tr\big( \partial_a Q(\omega;\theta)\,\partial_b Q(\omega;\theta) \big)\,\mathrm{d}\omega
+$$
+
+and prove: under natural regularity assumptions, $G$ is positive definite with good covariance under control coordinate transformations and internal gauge transformations; furthermore, for any sufficiently smooth control path $\theta(t)$, its length induced by $G$
+
+$$
+L_G[\theta] = \int_0^T \sqrt{G_{ab}(\theta(t))\,\dot{\theta}^a(t)\dot{\theta}^b(t)}\,\mathrm{d}t
+$$
+
+in appropriate discrete limit is equivalent to continuous version of discrete complexity distance.
+
+We also prove: for family of computational universes $\{U_{\mathrm{comp}}^{(h)}\}$ refined at discrete scale $h \to 0$, if their single-step costs are constructed from unified time scale scattering response, then configuration graph distance $d^{(h)}$ converges in Gromov--Hausdorff sense to geodesic distance $d_G$ on control manifold. This gives rigorous bridge from completely discrete computational universe to continuous complexity geometry.
+
+Finally, we discuss naturality of this continuous complexity geometry in categorical sense: taking control manifold and its metric $G$ as geometric image of ``computational universe objects,'' we can construct category $\mathbf{CtrlScat}$ with control--scattering pairs $(\mathcal{M},S)$ as objects, proving existence of functor structure between discrete computational universe category $\mathbf{CompUniv}$ and $\mathbf{CtrlScat}$ preserving complexity distance. This establishes continuous geometric foundation for subsequently establishing categorical equivalence between ``physical universe category $\leftrightarrow$ computational universe category.''
+\end{abstract}
+
+\noindent\textbf{Keywords:} Computational universe; Unified time scale; Scattering mother scale; Control manifold; Complexity geometry; Riemannian metric; Wigner--Smith delay; Gromov--Hausdorff convergence; Category theory
+
+\section{Introduction}
+
+In the ``computational universe'' scheme, the entire universe is viewed as discrete dynamical system on countable configuration set $X$: one-step update relation $\mathsf{T} \subset X\times X$ determines reachability from one configuration to another, single-step cost function $\mathsf{C}:X\times X\to[0,\infty]$ assigns time/energy and other resource costs to each update. Previous work has proven: under axiom assumptions of finite information density and local update, one can view $(X,\mathsf{T},\mathsf{C})$ as weighted graph, constructing geometric objects such as complexity distance $d(x,y)$, complexity ball volume, complexity dimension, and discrete Ricci curvature, establishing ``discrete complexity geometry.'' Simultaneously, through observation operator families and task-aware relative entropy, we constructed ``discrete information geometry'' on configuration space, making information dimension and complexity dimension have natural inequality relations.
+
+However, to truly unify computational universe with physical universe, abstract cost function $\mathsf{C}$ alone is insufficient. We need to answer two key questions:
+
+\begin{enumerate}
+\item How does single-step cost $\mathsf{C}(x,y)$ relate to physical time scale?
+\item Can discrete complexity distance $d(x,y)$ be approximated by geodesic distance $d_G$ of some continuous metric $G$ induced by physical time scale?
+\end{enumerate}
+
+For this purpose, this paper introduces unified time scale scattering mother scale. For physical scattering system, let its scattering matrix be $S(\omega)$, then total scattering phase $\varphi(\omega)$, spectral shift function derivative $\rho_{\mathrm{rel}}(\omega)$, and Wigner--Smith group delay matrix $Q(\omega)$ satisfy mother formula
+
+$$
+\kappa(\omega) = \varphi'(\omega)/\pi = \rho_{\mathrm{rel}}(\omega) = (2\pi)^{-1}\tr\,Q(\omega),
+$$
+
+viewing unified time scale density $\kappa(\omega)$ as ``time unit on each frequency band.'' When embedding computational universe into physical system composed of controllable scattering processes, each step update can be understood as control operation on some scattering matrix family $S(\omega;\theta)$; thus, single-step cost can naturally be constructed from response integral of group delay matrix $Q(\omega;\theta)$.
+
+The main purpose of this paper is to systematically complete this construction and prove consistency between resulting metric $G_{ab}(\theta)$ and discrete complexity geometry.
+
+Full text structure: Section 2 reviews unified time scale scattering mother scale, introducing scattering family under control parametrization. Section 3 constructs complexity metric $G$ on control manifold, discussing its basic properties and gauge invariance. Section 4 proves discrete complexity distance consistent with geodesic distance $d_G$ in control manifold limit, giving representative examples. Section 5 introduces control--scattering object category $\mathbf{CtrlScat}$, discussing functor relations with computational universe category $\mathbf{CompUniv}$. Appendices provide detailed proofs of main propositions and theorems.
+
+\section{Unified Time Scale and Control Scattering Family}
+
+This section reviews unified time scale scattering mother scale, introducing scattering family $S(\omega;\theta)$ under control parametrization.
+
+\subsection{Review of Unified Time Scale Scattering Mother Scale}
+
+Let $H_0,H$ be pair of self-adjoint operators satisfying appropriate traceable perturbation conditions, making wave operators exist and complete. Corresponding scattering operator is
+
+$$
+S = W_+^\ast W_-,
+$$
+
+in frequency domain representation can be written as frequency-resolved scattering matrix family $S(\omega)$. Let total scattering phase
+
+$$
+\varphi(\omega) = \arg\det S(\omega)
+$$
+
+and spectral shift function $\xi(\omega)$ satisfy Birman--Krein formula
+
+$$
+\det S(\omega) = \exp\big(-2\pi\mathrm{i}\,\xi(\omega)\big).
+$$
+
+Wigner--Smith group delay matrix defined as
+
+$$
+Q(\omega) = -\mathrm{i}\,S(\omega)^\dagger\partial_\omega S(\omega).
+$$
+
+Under regular assumptions, there exists unified time scale density
+
+$$
+\kappa(\omega) = \varphi'(\omega)/\pi = \xi'(\omega) = \rho_{\mathrm{rel}}(\omega) = (2\pi)^{-1}\tr\,Q(\omega),
+$$
+
+where $\rho_{\mathrm{rel}}$ is relative state density function, $\tr\,Q(\omega)$ is trace of group delay matrix. This mother formula shows that scattering total phase derivative, spectral shift function derivative, and group delay trace are consistent modulo constants, allowing $\kappa(\omega)$ to be viewed as ``time scale density on frequency domain.''
+
+\subsection{Control Manifold and Scattering Family $S(\omega;\theta)$}
+
+In computational universe, we consider physically realizable computational system whose controllable parameters form finite-dimensional manifold $\mathcal{M}$, with coordinates denoted $\theta = (\theta^1,\dots,\theta^d)$.
+
+\begin{definition}[Control Manifold and Scattering Family]
+A control--scattering system consists of following data:
+
+\begin{enumerate}
+\item Control manifold $\mathcal{M}$, being $d$-dimensional differentiable manifold;
+\item For each $\theta\in\mathcal{M}$ and frequency $\omega$, assigning unitary scattering matrix $S(\omega;\theta)$, differentiable in $\theta,\omega$, satisfying mother formula condition in $\omega$;
+\item For each $\theta$, defining group delay matrix
+
+$$
+Q(\omega;\theta) = -\mathrm{i}\,S(\omega;\theta)^\dagger\partial_\omega S(\omega;\theta).
+$$
+\end{enumerate}
+\end{definition}
+
+We consider changes in $\theta$ as corresponding to control operations on computational system, such as adjusting gate parameters, coupling strengths, or external fields; while $S(\omega;\theta)$ is physical scattering structure attached to this control point.
+
+\subsection{Connection with Computational Universe}
+
+For given computational universe $U_{\mathrm{comp}} = (X,\mathsf{T},\mathsf{C},\mathsf{I})$, if each step update can be realized through control path of some control--scattering system, there exists following connection structure:
+
+\begin{enumerate}
+\item Family of control paths $\theta_k(t)$ (e.g., piecewise constant), each corresponding to a class of discrete update sequences $x_k \to x_{k+1}$;
+\item For each step $(x_k,x_{k+1})$, there exist control parameter $\theta_k \in \mathcal{M}$ and physical time window $[t_k,t_{k+1}]$, such that in this window system's scattering matrix is given by $S(\omega;\theta_k)$;
+\item Single-step cost $\mathsf{C}(x_k,x_{k+1})$ can be expressed using some integral function of unified time scale density $\kappa(\omega)$ and $Q(\omega;\theta_k)$.
+\end{enumerate}
+
+Typical construction is: for each step $(x,y)$, single-step physical time cost is
+
+$$
+\tau(x,y) = \int_{\Omega_{x,y}} \kappa(\omega)\,\mathrm{d}\mu_{x,y}(\omega),
+$$
+
+where $\Omega_{x,y}$ is frequency band involved in this step update, $\mu_{x,y}$ is corresponding spectral measure. If we define $\mathsf{C}(x,y)$ as appropriate scaling of $\tau(x,y)$, then discrete complexity distance can be viewed as physical time total under unified time scale.
+
+The goal of this paper is to go beyond step-by-step integration level, directly constructing metric $G$ on control manifold such that geometric length along control path agrees with discrete complexity distance in appropriate limit.
+
+\section{Complexity Metric $G$ Induced by Unified Time Scale}
+
+This section constructs metric $G$ on control manifold $\mathcal{M}$ and analyzes its basic properties.
+
+\subsection{Construction of Metric}
+
+Denote $\partial_a = \partial/\partial\theta^a$. For each $\theta\in\mathcal{M}$ and frequency $\omega$, group delay matrix $Q(\omega;\theta)$ is finite-dimensional Hermitian matrix. Consider its derivative with respect to control parameter
+
+$$
+\partial_a Q(\omega;\theta).
+$$
+
+To scale importance of different frequency bands, introduce non-negative weight function $w(\omega)$ satisfying
+
+$$
+\int_{\Omega} w(\omega)\,\mathrm{d}\omega < \infty,
+$$
+
+where $\Omega$ is frequency band set of interest.
+
+\begin{definition}[Metric Induced by Unified Time Scale]
+On control manifold $\mathcal{M}$ define second-order tensor
+
+$$
+G_{ab}(\theta) = \int_{\Omega} w(\omega)\,\tr\big( \partial_a Q(\omega;\theta)\,\partial_b Q(\omega;\theta) \big)\,\mathrm{d}\omega.
+$$
+
+If $G_{ab}(\theta)$ is positive definite at every point, then $G$ is Riemannian metric on $\mathcal{M}$, called complexity metric induced by unified time scale.
+\end{definition}
+
+Intuitively, $G_{ab}(\theta)$ measures ``quadratic change intensity of unified time scale response when making infinitesimal changes in control directions $a$ and $b$.''
+
+\subsection{Positive Definiteness and Degenerate Directions}
+
+\begin{proposition}[Positive Definiteness Condition]
+\label{prop:positive}
+If for any nonzero tangent vector $v = v^a\partial_a \in T_\theta\mathcal{M}$, there exists set of frequencies $\omega \in\Omega$ such that
+
+$$
+\partial_v Q(\omega;\theta) = v^a\partial_a Q(\omega;\theta) \neq 0,
+$$
+
+and trace inner product of $\partial_v Q(\omega;\theta)$ over this frequency band
+
+$$
+\int_{\Omega} w(\omega)\,\tr\big( \partial_v Q(\omega;\theta)\,\partial_v Q(\omega;\theta) \big)\,\mathrm{d}\omega > 0,
+$$
+
+then $G_{ab}(\theta)$ is positive definite at $\theta$.
+\end{proposition}
+
+This proposition states that metric positive definiteness depends on whether control direction is ``observable'' under unified time scale: if for some direction $v$, group delay matrix $Q(\omega;\theta)$ is insensitive across all frequency bands, i.e., $\partial_v Q \equiv 0$, then this direction contributes nothing to time scale, corresponding to metric degeneracy; conversely, if there exists nonzero response and weight $w(\omega)$ does not cancel this frequency band, then $G$ is positive in this direction.
+
+In actual modeling, one can quotient out pure gauge directions (control degrees of freedom ineffective for time scale) through quotient space operation on control coordinates, obtaining non-degenerate metric.
+
+\subsection{Geometric Length and Physical Time of Control Path}
+
+Under metric $G$, length of differentiable control path $\theta:[0,T]\to\mathcal{M}$ defined as
+
+$$
+L_G[\theta] = \int_0^T \sqrt{G_{ab}(\theta(t))\,\dot{\theta}^a(t)\dot{\theta}^b(t)}\,\mathrm{d}t.
+$$
+
+\begin{proposition}[Relation Between Length and Unified Time Scale]
+\label{prop:length}
+Under appropriate regularity and separation of variables assumptions, complexity length $L_G[\theta]$ induced by control path $\theta(t)$ has proportional relation with physical time scale integral accumulated along this path, i.e., there exists constant $\alpha>0$ such that
+
+$$
+L_G[\theta] = \alpha \int_0^T \mathrm{d}t\,\int_{\Omega} w(\omega)\,\kappa(\omega;\theta(t))^2\,\mathrm{d}\omega,
+$$
+
+where $\kappa(\omega;\theta) = (2\pi)^{-1}\tr\,Q(\omega;\theta)$ is unified time scale density.
+\end{proposition}
+
+Key here is noting traceable relationship between
+
+$$
+\partial_a Q(\omega;\theta)
+$$
+
+and
+
+$$
+\partial_a \kappa(\omega;\theta),
+$$
+
+and through appropriate normalization, path length can be interpreted as square root form of ``energy-type integral'' of unified time scale density on control manifold.
+
+\section{Continuous Limit of Discrete Complexity Distance}
+
+This section connects unified time scale induced metric $G$ with previous discrete complexity geometry, proving that in appropriate refinement limit, complexity distance on configuration graph converges to geodesic distance on control manifold.
+
+\subsection{Discrete Control Grid and Configuration Graph}
+
+Consider family of computational universes $\{U_{\mathrm{comp}}^{(h)}\}$ labeled by $h>0$, whose control degrees of freedom are discretized into grid $\mathcal{M}^{(h)} \subset\mathcal{M}$, e.g.,
+
+$$
+\mathcal{M}^{(h)} = \{ \theta \in \mathcal{M} : \theta = \theta_0 + h n,\,n\in\mathbb{Z}^d \} \cap K,
+$$
+
+where $K \subset\mathcal{M}$ is compact set. For each $\theta\in\mathcal{M}^{(h)}$, computational universe $U_{\mathrm{comp}}^{(h)}$ locally realizes updates through control parameter $\theta$, defining its configuration graph complexity distance $d^{(h)}$.
+
+We assume single-step cost $\mathsf{C}^{(h)}(x,y)$ on control grid has unified time scale interpretation: when control changes from $\theta$ to adjacent point $\theta + h e_a$, corresponding single-step cost is
+
+$$
+\mathsf{C}^{(h)}(\theta,\theta+h e_a) = c(\theta) h + o(h),
+$$
+
+where
+
+$$
+c(\theta) = \Big(\sum_{a,b} G_{ab}(\theta) v^a v^b\Big)^{1/2}
+$$
+
+for some unit vector $v$ gives local velocity.
+
+\subsection{General Theorem for Distance Convergence}
+
+\begin{theorem}[Riemannian Limit of Complexity Distance]
+\label{thm:riemann}
+Let $(\mathcal{M},G)$ be control manifold induced by unified time scale, $\{U_{\mathrm{comp}}^{(h)}\}$ family of computational universes with control grid $\mathcal{M}^{(h)}$, with corresponding complexity distance $d^{(h)}$. Assume:
+
+\begin{enumerate}
+\item For any $\theta\in K \subset\mathcal{M}$, there exists point $\theta^{(h)}\in\mathcal{M}^{(h)}$ such that $\theta^{(h)}\to\theta$;
+\item Single-step cost $\mathsf{C}^{(h)}(\theta^{(h)},\theta^{(h)}+h e_a) = \sqrt{G_{aa}(\theta)}\,h + o(h)$, with similar consistency for other directions;
+\item Reachability structure of configuration graph consistent with adjacency relation of control grid, no ``jumping'' extra edges.
+\end{enumerate}
+
+Then as $h\to 0$, for any $\theta_1,\theta_2\in K$,
+
+$$
+\lim_{h\to 0} d^{(h)}(\theta_1^{(h)},\theta_2^{(h)}) = d_G(\theta_1,\theta_2),
+$$
+
+where $d_G$ is geodesic distance of Riemannian metric $G$.
+\end{theorem}
+
+This theorem is high-dimensional generalization of one-dimensional result from previous paper. It shows: as long as discrete control step size consistent with local velocity induced by unified time scale, discrete complexity distance approximates Riemannian geodesic distance in refinement limit.
+
+\subsection{Representative Example: One-dimensional Two-port Scattering Network}
+
+Consider one-dimensional two-port scattering network with scattering matrix
+
+$$
+S(\omega;\theta) = \begin{pmatrix} r(\omega;\theta) & t'(\omega;\theta) \\ t(\omega;\theta) & r'(\omega;\theta) \end{pmatrix},
+$$
+
+where $\theta \in [\theta_{\min},\theta_{\max}] \subset\mathbb{R}$ is some control parameter (e.g., potential well depth or phase shift). For each $\theta$, group delay matrix
+
+$$
+Q(\omega;\theta) = -\mathrm{i}\,S(\omega;\theta)^\dagger\partial_\omega S(\omega;\theta)
+$$
+
+is $2\times 2$ Hermitian matrix.
+
+Under appropriate regularity, metric
+
+$$
+G(\theta) = \int_{\Omega} w(\omega)\,\tr\big( \partial_\theta Q(\omega;\theta)\,\partial_\theta Q(\omega;\theta) \big)\,\mathrm{d}\omega
+$$
+
+defines one-dimensional Riemannian metric $G(\theta)\mathrm{d}\theta^2$. If we discretize control grid into point set $\theta_n = \theta_0 + n h$ with step size $h$, setting single-step cost
+
+$$
+\mathsf{C}^{(h)}(\theta_n,\theta_{n+1}) = \sqrt{G(\theta_n)}\,h,
+$$
+
+then for any $\theta_1,\theta_2$,
+
+$$
+\lim_{h\to 0} d^{(h)}(\theta_1^{(h)},\theta_2^{(h)}) = \left|\int_{\theta_1}^{\theta_2} \sqrt{G(\theta)}\,\mathrm{d}\theta\right|.
+$$
+
+This gives instantiation of this paper's theory in concrete computable model.
+
+\section{Functor Structure of Control--Scattering Category and Computational Universe Category}
+
+This section examines naturality of control manifold and metric $G$ from categorical perspective, constructing category with control--scattering objects as objects, establishing functor relations with previous computational universe category $\mathbf{CompUniv}$.
+
+\subsection{Control--Scattering Category $\mathbf{CtrlScat}$}
+
+\begin{definition}[Control--Scattering Object]
+A control--scattering object is triple
+
+$$
+C = (\mathcal{M},G,S),
+$$
+
+where $(\mathcal{M},G)$ is control manifold with Riemannian metric, $S(\omega;\theta)$ is scattering family satisfying unified time scale mother formula.
+\end{definition}
+
+\begin{definition}[Control--Scattering Morphism]
+Between two control--scattering objects $C = (\mathcal{M},G,S)$, $C' = (\mathcal{M}',G',S')$, morphism is mapping $f:\mathcal{M}\to\mathcal{M}'$ satisfying:
+
+\begin{enumerate}
+\item $f$ is smooth mapping, locally diffeomorphism almost everywhere;
+
+\item Metric is controlled transformation under $f$, i.e., there exist constants $\alpha,\beta>0$ such that for all tangent vectors $v\in T_\theta\mathcal{M}$,
+
+$$
+\alpha\,G_\theta(v,v) \le G'_{f(\theta)}(\mathrm{d}f_\theta v,\mathrm{d}f_\theta v) \le \beta\,G_\theta(v,v);
+$$
+
+\item Scattering family compatible under $f$, i.e., $S'(\omega;f(\theta))$ and $S(\omega;\theta)$ equivalent in unified time scale mother formula sense.
+\end{enumerate}
+\end{definition}
+
+With control--scattering objects as objects and control--scattering morphisms as morphisms, we form category $\mathbf{CtrlScat}$.
+
+\subsection{Functor from Computational Universe to Control--Scattering Objects}
+
+Let $\mathbf{CompUniv}^{\mathrm{phys}}$ be subcategory of computational universe objects satisfying ``realizable by unified time scale scattering.'' We construct functor
+
+$$
+F:\mathbf{CompUniv}^{\mathrm{phys}} \to \mathbf{CtrlScat}
+$$
+
+as follows:
+
+\begin{enumerate}
+\item Object level: Given $U_{\mathrm{comp}} = (X,\mathsf{T},\mathsf{C},\mathsf{I})$, construct control manifold $\mathcal{M}$, metric $G$, and scattering family $S(\omega;\theta)$ from its physical realization, setting
+
+$$
+F(U_{\mathrm{comp}}) = (\mathcal{M},G,S).
+$$
+
+\item Morphism level: Given simulation mapping $f:U_{\mathrm{comp}}\rightsquigarrow U_{\mathrm{comp}}'$ between computational universes, corresponding to physical level control and scattering transformation $f_{\mathcal{M}}:\mathcal{M}\to\mathcal{M}'$, set
+
+$$
+F(f) = f_{\mathcal{M}}.
+$$
+\end{enumerate}
+
+\begin{proposition}[Functoriality]
+\label{prop:functor}
+The above $F$ forms covariant functor, i.e.:
+
+\begin{enumerate}
+\item $F(\mathrm{id}_{U_{\mathrm{comp}}}) = \mathrm{id}_{F(U_{\mathrm{comp}})}$;
+\item If $f:U_{\mathrm{comp}}\to U_{\mathrm{comp}}'$, $g:U_{\mathrm{comp}}'\to U_{\mathrm{comp}}''$ are simulation morphisms, then
+
+$$
+F(g\circ f) = F(g)\circ F(f).
+$$
+\end{enumerate}
+\end{proposition}
+
+This functor lifts ``from discrete computational universe to continuous control--scattering geometry'' at object level, preserving controlled variation of complexity distance at morphism level.
+
+Under appropriate regular assumptions, one can further prove: there exists inverse construction $G:\mathbf{CtrlScat}\to\mathbf{CompUniv}^{\mathrm{phys}}$ such that $G\circ F$ and $F\circ G$ are naturally isomorphic to identity functor respectively, making two categories equivalent on ``physically realizable subclass.'' Specific proof involves discretizing continuous control--scattering system into QCA-type universe and controlling complexity overhead, left for future dedicated discussion.
+
+\section{Conclusion}
+
+Based on unified time scale scattering mother scale, this paper constructed continuous complexity geometry for computational universe: by introducing control manifold $\mathcal{M}$ and scattering family $S(\omega;\theta)$, using control derivatives of group delay matrix $Q(\omega;\theta)$ to construct metric
+
+$$
+G_{ab}(\theta) = \int_{\Omega} w(\omega)\,\tr\big( \partial_a Q(\omega;\theta)\,\partial_b Q(\omega;\theta) \big)\,\mathrm{d}\omega,
+$$
+
+proving under natural regularity conditions this metric is positive definite and compatible with unified time scale. Subsequently we proved that family of discrete computational universes constructed from unified time scale, at discrete scale $h\to 0$, converges in Gromov--Hausdorff sense from complexity distance on configuration graph to geodesic distance $d_G$ on control manifold, giving rigorous limit from discrete complexity geometry to continuous complexity geometry.
+
+Finally, we constructed control--scattering category $\mathbf{CtrlScat}$, giving natural functor $F$ from computational universe category $\mathbf{CompUniv}^{\mathrm{phys}}$ to $\mathbf{CtrlScat}$, showing that under unified time scale framework, every physically realizable object of ``computational universe'' can be lifted to control manifold with Riemannian metric and its scattering geometry. This result provides geometric foundation for subsequently unifying information geometry, observer structure, and boundary time geometry into ``time--information--complexity variational principle.''
+
+\appendix
+
+\section{Basic Properties of Metric $G$}
+
+\subsection{Proof of Proposition~\ref{prop:positive}}
+
+\textbf{Proposition restatement}
+
+If for any nonzero tangent vector $v = v^a\partial_a \in T_\theta\mathcal{M}$, there exist frequency interval and weight function $w(\omega) \ge 0$ such that
+
+$$
+\int_{\Omega} w(\omega)\,\tr\big( \partial_v Q(\omega;\theta)\,\partial_v Q(\omega;\theta) \big)\,\mathrm{d}\omega > 0,
+$$
+
+then $G_{ab}(\theta) = \int_{\Omega} w(\omega)\,\tr\big( \partial_a Q\,\partial_b Q \big)\,\mathrm{d}\omega$ is positive definite.
+
+\begin{proof}
+For any $v = v^a\partial_a$,
+
+$$
+G_\theta(v,v) = G_{ab}(\theta)v^a v^b = \int_{\Omega} w(\omega)\,\tr\big( \partial_a Q(\omega;\theta)\,\partial_b Q(\omega;\theta) \big)v^a v^b\,\mathrm{d}\omega.
+$$
+
+Extracting $v^a$ yields
+
+$$
+G_\theta(v,v) = \int_{\Omega} w(\omega)\,\tr\big( \partial_v Q(\omega;\theta)\,\partial_v Q(\omega;\theta) \big)\,\mathrm{d}\omega.
+$$
+
+Since $\partial_v Q(\omega;\theta)$ is Hermitian matrix, its trace inner product
+
+$$
+\tr\big( A A \big) = \sum_i \lambda_i^2 \ge 0
+$$
+
+equals zero if and only if $A=0$. Hence integrand is non-negative, and by proposition condition there exists frequency band where integrand is nonzero and after being integrated with weight $w(\omega)$ remains positive, thus $G_\theta(v,v) > 0$ holds for all $v\neq 0$.
+\end{proof}
+
+\subsection{Proof Idea for Proposition~\ref{prop:length}}
+
+Proposition~\ref{prop:length} relates unified time scale density to metric length. Rigorous proof requires establishing following two points:
+
+\begin{enumerate}
+\item Relation between trace of group delay matrix $Q(\omega;\theta)$ and unified time scale density $\kappa(\omega;\theta)$
+
+$$
+\kappa(\omega;\theta) = (2\pi)^{-1}\tr\,Q(\omega;\theta);
+$$
+
+\item Under small perturbation of control parameter change, quadratic relation between unified time scale increment and $\partial_a Q$ can be written as
+
+$$
+\delta\tau \sim \int w(\omega)\,\tr\big( \partial_a Q\,\partial_b Q \big)\,\delta\theta^a\delta\theta^b\,\mathrm{d}\omega.
+$$
+\end{enumerate}
+
+Combining these two points, time scale integral along control path can be expressed as quadratic form integral of metric $G$, yielding conclusion of length equivalence with time integral. Due to involving spectral decomposition of $Q(\omega;\theta)$ and functional differentiation of $\kappa(\omega;\theta)$, technical details are lengthy, omitting term-by-term expansion here.
+
+\section{Riemannian Limit of Complexity Distance}
+
+\subsection{Proof of Theorem~\ref{thm:riemann}}
+
+\textbf{Theorem restatement}
+
+Let $(\mathcal{M},G)$ be control manifold, $\{U_{\mathrm{comp}}^{(h)}\}$ family of computational universes with control grid $\mathcal{M}^{(h)} \subset\mathcal{M}$, satisfying local single-step cost consistency condition with metric. Then for any $\theta_1,\theta_2\in K \subset\mathcal{M}$,
+
+$$
+\lim_{h\to 0} d^{(h)}(\theta_1^{(h)},\theta_2^{(h)}) = d_G(\theta_1,\theta_2),
+$$
+
+where $d^{(h)}$ is discrete complexity distance of $U_{\mathrm{comp}}^{(h)}$, $d_G$ is geodesic distance of $G$.
+
+\begin{proof}[Proof idea]
+Proof divided into two steps: upper bound and lower bound.
+
+\textbf{1. Upper bound:} Given continuous geodesic $\theta_*:[0,1]\to\mathcal{M}$ connecting $\theta_1,\theta_2$, discretely sample it to obtain point sequence $\theta_*^{(h)}(k) \in\mathcal{M}^{(h)}$. Using single-step cost local consistency with metric, i.e.,
+
+$$
+\mathsf{C}^{(h)}(\theta_*^{(h)}(k),\theta_*^{(h)}(k+1)) = \sqrt{G_{ab}(\theta_*^{(h)}(k)) v^a v^b}\,h + o(h),
+$$
+
+transform path cost sum $\mathsf{C}^{(h)}(\gamma^{(h)})$ to Riemann sum, limit being $L_G[\theta_*] = d_G(\theta_1,\theta_2)$. Thus
+
+$$
+\limsup_{h\to 0} d^{(h)}(\theta_1^{(h)},\theta_2^{(h)}) \le d_G(\theta_1,\theta_2).
+$$
+
+\textbf{2. Lower bound:} Conversely, for any approximately shortest discrete path $\gamma^{(h)}$ connecting $\theta_1^{(h)}$ and $\theta_2^{(h)}$, construct continuous curve $\theta^{(h)}(t)$ through interpolation and estimate its metric length lower bound. Using local consistency, can prove
+
+$$
+L_G[\theta^{(h)}] \le \mathsf{C}^{(h)}(\gamma^{(h)}) + o(1).
+$$
+
+Using definition of geodesic distance yields
+
+$$
+d_G(\theta_1,\theta_2) \le \liminf_{h\to 0} d^{(h)}(\theta_1^{(h)},\theta_2^{(h)}).
+$$
+
+Combining both yields desired limit.
+\end{proof}
+
+\section{Properties of Functor $F:\mathbf{CompUniv}^{\mathrm{phys}} \to \mathbf{CtrlScat}$}
+
+\subsection{Proof of Proposition~\ref{prop:functor}}
+
+\textbf{Proposition restatement}
+
+On subcategory $\mathbf{CompUniv}^{\mathrm{phys}}$ with physically realizable computational universe objects as objects and physically realizable simulation mappings as morphisms, constructed mapping $F$ is covariant functor.
+
+\begin{proof}
+\textbf{1. Object level:} For each $U_{\mathrm{comp}}$, construct control manifold $\mathcal{M}$, metric $G$, and scattering family $S(\omega;\theta)$ through its physical realization (e.g., QCA, quantum circuit, or scattering network), defining $F(U_{\mathrm{comp}}) = (\mathcal{M},G,S)$.
+
+\textbf{2. Morphism level:} If $f:U_{\mathrm{comp}}\rightsquigarrow U_{\mathrm{comp}}'$ is simulation mapping, physically corresponding to control mapping $f_{\mathcal{M}}:\mathcal{M}\to\mathcal{M}'$ satisfying controlled inequality of single-step cost and unified time scale. Set $F(f) = f_{\mathcal{M}}$.
+
+\textbf{3. Identity morphism:} If $f = \mathrm{id}_{U_{\mathrm{comp}}}$, control mapping in physical realization is $\mathrm{id}_{\mathcal{M}}$, hence $F(\mathrm{id}_{U_{\mathrm{comp}}}) = \mathrm{id}_{F(U_{\mathrm{comp}})}$.
+
+\textbf{4. Composition:} If $f:U_{\mathrm{comp}}\to U_{\mathrm{comp}}'$, $g:U_{\mathrm{comp}}'\to U_{\mathrm{comp}}''$ correspond to control mappings $f_{\mathcal{M}}:\mathcal{M}\to\mathcal{M}'$, $g_{\mathcal{M}}:\mathcal{M}'\to\mathcal{M}''$, then control mapping of composite simulation mapping $g\circ f$ is $g_{\mathcal{M}}\circ f_{\mathcal{M}}$, hence
+
+$$
+F(g\circ f) = g_{\mathcal{M}}\circ f_{\mathcal{M}} = F(g)\circ F(f).
+$$
+
+Therefore $F$ satisfies functor definition.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,965 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{assumption}{Assumption}
+
+% Operators
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\Hess}{Hess}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\sign}{sign}
+
+% Title information
+\title{Geometrization of Observer Consensus: \\
+Conflict Metrics, Information Geometry, and Boundary Time Structure}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+In the timeless block universe perspective, the universe is modeled as a topological structure consisting of a causal partial order, while any concrete observer can only access a finite region and carries a predictive model about the global causal network. Descriptions by different observers of the same causal region generate conflicts at multiple levels: directed cycles appear when locally gluing partial orders, time scale functions are inconsistent, generalized entropy arrows and modular flow directions are inconsistent, and there is $\mathbb{Z}_2$ sector mismatch in the Null--Modular double cover. This paper constructs a unified ``consensus geometry space'' embedding observers' statistical models, causal sets, time scales, and boundary states into a product manifold with a Riemannian metric, and defines a total potential energy function encoding the above conflict metrics as geometric potential. Under the synergy of linear and nonlinear information geometry, causal set geometry, and quantum state space geometry, we prove: under well-posedness assumptions such as completeness and strong convexity, the gradient flow of this potential gives a natural ``consensus dynamics'' making all conflict metrics monotonically decrease and converge to a ``consensus manifold.'' On the consensus manifold, local partial orders can be consistently glued into a global causal partial order, unified mother scale functions differ only by affine rescaling, generalized entropy arrows and modular flow directions agree in overlapping regions, and all observers inhabit the same $\mathbb{Z}_2$ topological sector. Finally, we couple this geometrization framework with boundary time geometry, unified time scales, and Null--Modular double covers, proposing applications and engineering implementation pathways in multi-observer quantum field theory, holographic information, and multi-agent systems.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Causal network; Information geometry; Riemannian consensus; Boundary time geometry; Modular flow; Bures metric; Null--Modular double cover; Multi-observer systems
+
+\section{Introduction and Historical Context}
+
+\subsection{Timeless Picture of Time and Causality}
+
+In classical relativity, spacetime is characterized as a Lorentzian manifold with causal cone structure, where time appears as a manifold parameter; while in the causal set approach, space and time are replaced by a discrete set of events and their partial ordering, with geometry determined by ``order + counting.'' This perspective strips ``time'' from fundamental structure, retaining only the causal partial order $(E,\preceq)$ between events, with time arrows and scales derived from partial order and metric structure.
+
+At the intersection of quantum field theory and gravity, boundary methods and holographic thinking show that much dynamical information can be compressed to boundaries: the energy derivative of the scattering matrix yields Wigner--Smith group delay and phase time, defining scattering time scales; the Gibbons--Hawking--York boundary term and Brown--York quasilocal quantities indicate that well-defined variation of gravitational action and energy definition are ``boundary phenomena'' at crucial levels. Moreover, Tomita--Takesaki modular theory and the Connes--Rovelli thermal time hypothesis characterize time as an intrinsic modular flow parameter of state--algebra pairs, providing an algebraic foundation for ``boundary time geometry.''
+
+\subsection{Information Geometry, Quantum State Geometry, and Consensus Algorithms}
+
+In statistics and information theory, the Fisher information metric and the information geometry developed by Amari--Nagaoka view parametrized statistical models as Riemannian manifolds with the Fisher--Rao metric, providing a natural geometric background for divergences and gradient flows. In quantum state space, the Bures metric and quantum Fisher information provide natural Riemannian structure for density matrix spaces, closely related to quantum estimation theory and geometric phases.
+
+On the other hand, average consensus algorithms in multi-agent systems have been generalized from Euclidean space to Riemannian manifolds, forming Riemannian consensus theory. Tron et al. constructed Riemannian consensus algorithms for Fr\'echet means on manifolds with bounded curvature and gave convergence conditions; subsequent work analyzed pathologies and limitations of gradient flow consensus in more general settings. These studies revealed early mathematical structures for ``achieving consensus on curved geometry.''
+
+\subsection{Multi-Observer, Consistency, and Boundary Time Geometry}
+
+In the block universe or causal set picture, there exists a conceptual tension: on one hand, the universe's causal network itself is viewed as a global structure independent of observers; on the other hand, any actual observer can only access a finite causal region, obtain finite-precision boundary scattering data or modular flow information, thus can only construct incomplete predictions of the global structure. Judgments by different observers about the same causal region---causal order, time scales, generalized entropy arrows, topological sectors---may be inconsistent.
+
+Traditionally, for multi-observer consistency, much discussion focuses on: under given dynamical laws, how to recover a common macroscopic geometry from local observations; in multi-agent learning, how to enable all agents to converge to the same model through communication and update algorithms. However, elevating these problems to the ``boundary time geometry'' context requires simultaneously handling:
+
+\begin{enumerate}
+\item Information geometry on statistical model spaces;
+\item Combinatorial geometry on causal set moduli spaces;
+\item Hilbert geometry on mother scale function spaces;
+\item Bures geometry and modular flow structure on boundary quantum state spaces;
+\item $\mathbb{Z}_2$ topological sectors on Null--Modular double covers.
+\end{enumerate}
+
+The goal of this paper is: within the unified time scale and boundary time geometry framework, to provide a rigorous geometric characterization of multi-observer conflicts and consensus, construct a ``consensus geometry space,'' and define a natural potential and gradient flow on it, such that ``resolving conflicts'' corresponds to a geometric contraction process on this space.
+
+\subsection{Main Contributions}
+
+Against the above background, this paper's contributions can be summarized as:
+
+\begin{enumerate}
+\item Propose a family of quantitative metrics for multi-observer conflicts, separately characterizing statistical model divergence, causal partial order gluing conflicts, mother scale function inconsistency, mismatch between generalized entropy arrows and modular flow directions, and $\mathbb{Z}_2$ sector mismatch in Null--Modular double covers.
+\item Construct a unified consensus geometry space $\mathcal{M}$, gluing statistical manifolds, causal set moduli spaces, mother scale Hilbert spaces, and boundary state spaces through weighted direct sum metrics to form a Riemannian manifold suitable for describing multi-observer states.
+\item Define on $(\mathcal{M},G)$ a total potential energy function $F$ encoding the above conflict metrics; prove that along the gradient flow $\dot{X} = -\grad_G F$, potential energy decreases monotonically, and under strong convexity and completeness conditions converges exponentially to a ``consensus manifold'' $\mathcal{M}_{\mathrm{cons}}$.
+\item On the consensus manifold, give a geometric--physical characterization of ``complete consensus'': there exists a global causal partial order, unified mother scale, unified entropy arrow and modular flow, unified $\mathbb{Z}_2$ sector, and all observer states can be embedded in the same boundary time geometry and Null--Modular structure.
+\item Through simple models, demonstrate the application potential of this framework in finite causal sets, multi-agent learning, and boundary scattering networks, and propose preliminary engineering implementation schemes.
+\end{enumerate}
+
+\section{Model and Assumptions}
+
+\subsection{Universe Causal Network and Causal Sets}
+
+Let $E$ be the set of all events in the universe. The causal relation is given by a partial order $\preceq \subset E \times E$ satisfying:
+
+\begin{enumerate}
+\item Reflexivity: for any $e \in E$, we have $e \preceq e$;
+\item Antisymmetry: if $e \preceq f$ and $f \preceq e$, then $e = f$;
+\item Transitivity: if $e \preceq f$ and $f \preceq g$, then $e \preceq g$.
+\end{enumerate}
+
+The pair $(E,\preceq)$ is called the universe causal network or causal set. Similar to causal set theory, under appropriate assumptions one can relate $(E,\preceq)$ to continuous spacetime geometry, but this paper does not presuppose a specific continuum limit, using only partial order structure.
+
+For any event $e \in E$, define its causal future and past as
+
+$$
+J^+(e) := \{f \in E \mid e \preceq f\},\quad
+J^-(e) := \{f \in E \mid f \preceq e\}.
+$$
+
+The topology generated by the set family $\{J^+(e) \cap J^-(f) \mid e \preceq f\}$ is called the Alexandrov topology, viewing the causal set as a topological space.
+
+\subsection{Observers, Local Horizons, and Predictive Models}
+
+Define the observer set $\mathcal{O} = \{O_1,\dots,O_N\}$. For each observer $O_i$:
+
+\begin{enumerate}
+\item There exists a visible event subset $E_i \subset E$, called its causal horizon;
+\item On $E_i$ a local partial order $\preceq_i \subset E_i \times E_i$ is given, satisfying partial order axioms;
+\item A predictive model about the global causal network is provided.
+\end{enumerate}
+
+Predictive models have two equivalent representations:
+
+\begin{itemize}
+\item Probabilistic representation: on the space of candidate causal networks $\mathsf{Cau}$, a probability measure is given
+
+$$
+\mu_i \colon \mathsf{Cau} \to [0,1],\quad
+\sum_{\mathcal{C} \in \mathsf{Cau}} \mu_i(\mathcal{C}) = 1,
+$$
+
+where $\mathcal{C} = (E,\preceq^{(\mathcal{C})})$ is a candidate causal structure;
+
+\item Parametric representation: there exists a statistical model $p_\theta$ and parameter manifold $\Theta$, with observer model specified by parameter point $\theta_i \in \Theta$.
+\end{itemize}
+
+One can convert between the two representations via the map $\theta_i \mapsto \mu_i$. The statistical model $(\Theta,p_\theta)$ is equipped with the Fisher--Rao metric, making $\Theta$ a statistical manifold.
+
+\begin{definition}[Observer State]
+The state of observer $O_i$ at a ``consensus step parameter'' $\tau$ is defined as the quadruple
+
+$$
+X_i(\tau) := (E_i,\preceq_i,\theta_i(\tau),\omega_i(\tau)),
+$$
+
+where $\theta_i(\tau) \in \Theta$ is its statistical model parameter, and $\omega_i(\tau)$ is its state on the boundary algebra (to be specified below).
+\end{definition}
+
+The multi-observer state family $\{X_i(\tau)\}$ constitutes a multiple local description of the universe causal network.
+
+\subsection{Unified Time Scale and Mother Scale Function}
+
+In the unified time scale and boundary time geometry framework, the total scattering semi-phase $\varphi(\omega)$, relative state density $\rho_{\mathrm{rel}}(\omega)$, and the trace of the Wigner--Smith delay operator $Q(\omega) = -\mathrm{i} S^\dagger(\omega) \partial_\omega S(\omega)$ are unified as the mother scale density function
+
+$$
+\kappa(\omega)
+= \frac{\varphi'(\omega)}{\pi}
+= \rho_{\mathrm{rel}}(\omega)
+= \frac{1}{2\pi} \tr Q(\omega),
+$$
+
+where $S(\omega)$ is the scattering matrix. This scale simultaneously encodes scattering delay, state density, and group delay, is the core scale object of boundary time geometry, and is compatible with recent studies of Wigner time delay and group delay.
+
+Different observers, through their accessible scattering experiments and boundary states, can reconstruct local mother scale functions $\kappa_i(\omega)$ on some energy window $I \subset \mathbb{R}$. Ideally, there exist constants $a_i > 0, b_i \in \mathbb{R}$ such that
+
+$$
+\kappa_i(\omega) = a_i \kappa(\omega) + b_i.
+$$
+
+To eliminate affine freedom, rescaling of each $\kappa_i$ on $I$ is needed.
+
+\subsection{Boundary Algebra, Modular Flow, and Null--Modular Double Cover}
+
+Let the boundary observable algebra be a $C^*$ or von Neumann algebra $\mathcal{A}_\partial$, with states $\omega_i$ being positive normalized linear functionals. Tomita--Takesaki theory guarantees a one-to-one correspondence with modular groups $\{\sigma_t^{(\omega_i)}\}$, whose generator is the modular Hamiltonian $K^{(i)}$, i.e.,
+
+$$
+\frac{\mathrm{d}}{\mathrm{d}t} \sigma_t^{(\omega_i)}(A)\Big|_{t=0}
+= \mathrm{i}[K^{(i)},A].
+$$
+
+The Connes--Rovelli thermal time hypothesis views the modular parameter $t$ as a time scale, making time an intrinsic object of the state--algebra pair. The modular Hamiltonian allows affine transformation $K^{(i)} \mapsto aK^{(i)} + b\mathbf{1}$ without changing physical interpretation.
+
+On small causal diamonds and their Null boundaries, changes in generalized entropy $S_{\mathrm{gen}}$ together with modular flow direction characterize the ``time arrow.'' The Null--Modular double cover lifts the geometry and modular flow of small causal diamonds to a $\mathbb{Z}_2$ double cover space, whose sector is determined by the cohomology class $[K] \in H^2(Y,\partial Y;\mathbb{Z}_2)$. The sectors seen by different observers in their respective covering regions $U_i$ are denoted $[K_i]$.
+
+\section{Main Results: Theorems and Alignments}
+
+Under the above models and assumptions, this section presents the main results of this paper. We first construct conflict metrics, then define the consensus geometry space and potential energy function, and finally state the theorem on gradient flow convergence to the consensus manifold.
+
+\subsection{Construction of Conflict Metrics}
+
+\begin{definition}[Model Divergence and Consensus Speed]
+For two observers $O_i, O_j$, let $\mu_i, \mu_j$ be their probability measures on $\mathsf{Cau}$. Define the Kullback--Leibler divergence
+
+$$
+D_{\mathrm{KL}}(\mu_i \| \mu_j)
+:= \sum_{\mathcal{C} \in \mathsf{Cau}} \mu_i(\mathcal{C})
+\log\frac{\mu_i(\mathcal{C})}{\mu_j(\mathcal{C})},
+$$
+
+and the Jensen--Shannon divergence
+
+$$
+D_{\mathrm{JS}}(\mu_i,\mu_j)
+:= \frac{1}{2} D_{\mathrm{KL}}(\mu_i \| \bar{\mu})
++ \frac{1}{2} D_{\mathrm{KL}}(\mu_j \| \bar{\mu}),
+\quad
+\bar{\mu} = \tfrac{1}{2}(\mu_i + \mu_j).
+$$
+
+If observer states evolve with parameter $\tau$, i.e., $\mu_i = \mu_i(\tau)$, define consensus speed as
+
+$$
+v_{ij}(\tau)
+:= -\frac{\mathrm{d}}{\mathrm{d}\tau}
+D_{\mathrm{JS}}\bigl(\mu_i(\tau),\mu_j(\tau)\bigr).
+$$
+\end{definition}
+
+\begin{definition}[Cycle-Breaking Cost]
+Let $R := \bigcup_{i=1}^N \preceq_i$ be the merged relation of local partial orders, and $\preceq_{\mathrm{glue}}$ its transitive closure. Assign to each directed edge $e \to f \in R$ a weight $w(e \to f) \geq 0$. The cycle-breaking cost is defined as
+
+$$
+V_{\mathrm{cycle}}
+:= \min\left\{
+\sum_{(e \to f) \in S} w(e \to f)
+\ \Big|
+S \subset R,\,
+R \setminus S \text{ has transitive closure that is a partial order}
+\right\}.
+$$
+
+Clearly $V_{\mathrm{cycle}} \geq 0$, and $V_{\mathrm{cycle}} = 0$ if and only if $\preceq_{\mathrm{glue}}$ itself is a partial order.
+\end{definition}
+
+\begin{definition}[Rescaled Mother Scale and Scale Divergence]
+On energy window $I \subset \mathbb{R}$, choose weight function $w(\omega) > 0$ integrable. For observer $O_i$, choose $a_i > 0, b_i$ such that
+
+$$
+\int_I \bigl(\kappa_i(\omega) - a_i\kappa_{\mathrm{ref}}(\omega) - b_i\bigr)^2 w(\omega)\,\mathrm{d}\omega
+$$
+
+is minimized, where $\kappa_{\mathrm{ref}}$ is a reference scale. Denote the rescaled scale
+
+$$
+\kappa_i^{\mathrm{ren}}(\omega)
+:= a_i\kappa_i(\omega) + b_i,
+$$
+
+and the average scale
+
+$$
+\bar{\kappa}(\omega)
+:= \frac{1}{N}\sum_{i=1}^N \kappa_i^{\mathrm{ren}}(\omega).
+$$
+
+Define the scale divergence
+
+$$
+\Delta_\kappa^2
+:= \int_I
+\left(
+\frac{1}{N}\sum_{i=1}^N
+\bigl(\kappa_i^{\mathrm{ren}}(\omega) - \bar{\kappa}(\omega)\bigr)^2
+\right)
+w(\omega)\,\mathrm{d}\omega.
+$$
+\end{definition}
+
+\begin{definition}[Entropy Arrow Mismatch Rate and Modular Flow Difference]
+On overlapping Null generators, let $\lambda$ be an affine parameter, and $S_{\mathrm{gen}}^{(i)}(\lambda)$ the generalized entropy computed by observer $O_i$. Define the entropy arrow mismatch rate
+
+$$
+\Xi_{ij}
+:= \frac{
+\int_{\mathrm{overlap}}
+\mathbf{1}\Bigl(
+\sign\partial_\lambda S_{\mathrm{gen}}^{(i)}
+\neq
+\sign\partial_\lambda S_{\mathrm{gen}}^{(j)}
+\Bigr)\,\mathrm{d}\mu
+}{
+\int_{\mathrm{overlap}}\mathrm{d}\mu
+},
+$$
+
+where $\mathrm{d}\mu$ is a natural measure and $\mathbf{1}(\cdot)$ is the indicator function.
+
+The difference of modular Hamiltonians $K^{(i)}, K^{(j)}$ in overlapping regions is defined as
+
+$$
+\Delta_{\mathrm{mod}}^{(ij)}
+:= \inf_{a>0,b\in\mathbb{R}}
+\bigl\|K^{(i)} - aK^{(j)} - b\mathbf{1}\bigr\|,
+$$
+
+where the norm can be operator norm or Hilbert--Schmidt norm.
+\end{definition}
+
+\begin{definition}[Topological Sector Conflict Metric]
+Let $[K_i] \in H^2(Y,\partial Y;\mathbb{Z}_2)$ be the Null--Modular double cover sector of observer $O_i$. Define the topological sector count
+
+$$
+\Delta_{\mathrm{topo}}
+:= \#\{[K_i] \mid i=1,\dots,N\},
+$$
+
+and the pairwise indicator function
+
+$$
+\delta_{\mathrm{topo}}^{(ij)}
+:= \begin{cases}
+0, & [K_i] = [K_j],\\[2pt]
+1, & [K_i] \neq [K_j].
+\end{cases}
+$$
+
+When $\Delta_{\mathrm{topo}} = 1$, all observers are in the same $\mathbb{Z}_2$ sector.
+\end{definition}
+
+\subsection{Consensus Geometry Space and Potential Energy Function}
+
+The statistical model family $\{p_\theta \mid \theta \in \Theta\}$ under the Fisher--Rao metric
+
+$$
+g^{\mathrm{FR}}_{ab}(\theta)
+:= \mathbb{E}_\theta\bigl[
+\partial_a\log p_\theta(X)\,\partial_b\log p_\theta(X)
+\bigr]
+$$
+
+forms a Riemannian statistical manifold $(\Theta,g^{\mathrm{FR}})$.
+
+Assume there exists a causal set moduli space $(\mathcal{C},d_{\mathrm{C}})$ with a Riemannian structure $g^{\mathrm{C}}$ compatible with the metric; the mother scale function space is the Hilbert space
+
+$$
+\mathcal{H}_\kappa = L^2(I,w(\omega)\,\mathrm{d}\omega),
+$$
+
+equipped with standard inner product and metric $g^\kappa$; the boundary state space in finite dimension can be taken as the set of density matrices $\mathcal{S}$, equipped with Bures metric $d_{\mathrm{Bures}}$ and corresponding Riemannian structure $g^{\mathrm{Bures}}$.
+
+\begin{definition}[Consensus Geometry Space and Total Metric]
+For $N$ observers, define
+
+$$
+\mathcal{M}
+:= \Theta^N \times \mathcal{C} \times \mathcal{H}_\kappa^N \times \mathcal{S}^N,
+$$
+
+with general element denoted
+
+$$
+X = (\theta_1,\dots,\theta_N;\ \mathcal{C};\ \kappa_1,\dots,\kappa_N;\ \rho_1,\dots,\rho_N).
+$$
+
+On $\mathcal{M}$ define the total metric
+
+$$
+G
+:= \alpha\bigoplus_{i=1}^N g^{\mathrm{FR}}_{(i)}
++ \beta\,g^{\mathrm{C}}
++ \gamma\bigoplus_{i=1}^N g^\kappa_{(i)}
++ \delta\bigoplus_{i=1}^N g^{\mathrm{Bures}}_{(i)},
+$$
+
+where $\alpha,\beta,\gamma,\delta > 0$ are weight parameters.
+\end{definition}
+
+\begin{definition}[Consensus Potential Energy Function]
+Given weights $w_{ij}^{\mathrm{model}}, w_{ij}^{\Xi}, w_{ij}^{\mathrm{mod}} \geq 0$ and $\lambda_{\mathrm{poset}}, \lambda_\kappa, \lambda_{\mathrm{topo}} > 0$, define
+
+$$
+F_{\mathrm{model}}
+:= \sum_{1 \leq i < j \leq N} w_{ij}^{\mathrm{model}}
+D_{\mathrm{JS}}(\theta_i,\theta_j),
+$$
+
+$$
+F_{\mathrm{poset}}
+:= \lambda_{\mathrm{poset}} V_{\mathrm{cycle}}(\mathcal{C};\{\preceq_i\}),
+\quad
+F_{\kappa}
+:= \lambda_\kappa\Delta_\kappa^2(\{\kappa_i\}),
+$$
+
+$$
+F_{\mathrm{mod}}
+:= \sum_{1 \leq i < j \leq N}
+\bigl(
+w_{ij}^{\Xi}\,\Xi_{ij}
++ w_{ij}^{\mathrm{mod}}\,\Delta_{\mathrm{mod}}^{(ij)}
+\bigr),
+\quad
+F_{\mathrm{topo}}
+:= \lambda_{\mathrm{topo}}\bigl(\Delta_{\mathrm{topo}} - 1\bigr)^2.
+$$
+
+The total potential is defined as
+
+$$
+F := F_{\mathrm{model}}
++ F_{\mathrm{poset}}
++ F_{\kappa}
++ F_{\mathrm{mod}}
++ F_{\mathrm{topo}}.
+$$
+\end{definition}
+
+\begin{definition}[Consensus Manifold]
+The consensus manifold is defined as
+
+$$
+\mathcal{M}_{\mathrm{cons}}
+:= \{X \in \mathcal{M} \mid F(X) = 0\}.
+$$
+\end{definition}
+
+By construction, $F \geq 0$, and $F = 0$ if and only if $F_{\mathrm{model}} = F_{\mathrm{poset}} = F_\kappa = F_{\mathrm{mod}} = F_{\mathrm{topo}} = 0$. This extremal condition corresponds to a ``complete consensus'' state, whose geometric and physical meaning will be analyzed later and in appendices.
+
+\subsection{Consensus Gradient Flow and Convergence Theorem}
+
+On $(\mathcal{M},G)$ consider the gradient flow of potential $F$.
+
+\begin{definition}[Consensus Gradient Flow]
+Given initial state $X(0) \in \mathcal{M}$, the consensus gradient flow is defined as
+
+$$
+\frac{\mathrm{d}}{\mathrm{d}\tau}X(\tau)
+= -\grad_G F\bigl(X(\tau)\bigr),\quad
+X(0)\ \text{given},
+$$
+
+where $\grad_G$ is the gradient with respect to metric $G$.
+\end{definition}
+
+\begin{proposition}[Potential Monotonicity]
+Along the consensus gradient flow,
+
+$$
+\frac{\mathrm{d}}{\mathrm{d}\tau}F\bigl(X(\tau)\bigr)
+= -\bigl|\grad_G F\bigl(X(\tau)\bigr)\bigr|_G^2
+\leq 0.
+$$
+\end{proposition}
+
+The proof relies on the general formula for gradient flows on Riemannian manifolds, given in Appendix A. Its direct implication is: the consensus evolution process always lowers total conflict potential energy along the ``steepest descent direction.''
+
+To discuss convergence, we introduce the following assumptions.
+
+\begin{assumption}[Completeness and Strong Convexity]
+\begin{enumerate}
+\item $(\mathcal{M},G)$ is a complete Riemannian manifold;
+\item Potential $F \colon \mathcal{M} \to [0,\infty)$ is a $C^2$ function and bounded below;
+\item There exists constant $m > 0$ such that on some geodesically convex subset containing the gradient flow trajectory, for any tangent vector $v \in T_X\mathcal{M}$,
+
+$$
+\Hess_G F(X)[v,v]
+   \geq m\,G_X(v,v),
+$$
+
+i.e., $F$ is $m$-strongly convex on that subset;
+\item The consensus manifold $\mathcal{M}_{\mathrm{cons}}$ is nonempty and is a closed geodesically convex subset.
+\end{enumerate}
+\end{assumption}
+
+Under this assumption, we obtain the following main result.
+
+\begin{theorem}[Exponential Convergence of Consensus Gradient Flow]
+\label{thm:convergence}
+When Assumption~1 holds, for any initial value $X(0) \in \mathcal{M}$, the consensus gradient flow has a unique global solution $X(\tau)$. Along this solution:
+
+\begin{enumerate}
+\item Potential $F\bigl(X(\tau)\bigr)$ decreases monotonically and converges to a minimum $F_\ast \geq 0$;
+\item If $F_\ast = 0$, then there exists a unique point $X_\ast \in \mathcal{M}_{\mathrm{cons}}$ such that
+
+$$
+\dist_G\bigl(X(\tau),X_\ast\bigr)
+   \leq C\mathrm{e}^{-m\tau},
+$$
+
+where constant $C > 0$ depends only on initial conditions and local geometry of $F$.
+\end{enumerate}
+\end{theorem}
+
+This theorem shows that under appropriately constructed geometry and potential, the process of ``multi-observer conflict resolution'' can be understood as a gradient flow line on the consensus geometry space, along which all conflict metrics decrease monotonically and converge exponentially to a point on the consensus manifold.
+
+\begin{proposition}[Equivalence of Cycle-Breaking Cost and Global Partial Order]
+\label{prop:cycle}
+Under local consistency conditions (judgments on overlapping regions $E_i \cap E_j$ by each $\preceq_i$ are consistent), the following are equivalent:
+
+\begin{enumerate}
+\item $V_{\mathrm{cycle}} = 0$;
+\item $\preceq_{\mathrm{glue}}$ is a partial order;
+\item There exists a global partial order $\preceq$ such that for all $i$, $\preceq|_{E_i} = \preceq_i$.
+\end{enumerate}
+
+Thus, vanishing of cycle-breaking cost is equivalent to the existence of a global causal structure compatible with all local perspectives.
+\end{proposition}
+
+The proof of Proposition~\ref{prop:cycle} is in Appendix B.
+
+\begin{proposition}[Geometric--Physical Meaning of Simultaneous Vanishing of Conflict Metrics]
+\label{prop:consensus}
+If at some state $X \in \mathcal{M}$ we have
+
+$$
+F_{\mathrm{model}} = F_{\mathrm{poset}} = F_\kappa
+= F_{\mathrm{mod}} = F_{\mathrm{topo}} = 0,
+$$
+
+then there exist:
+
+\begin{enumerate}
+\item A global causal partial order $(E,\preceq)$ simultaneously accommodating all local partial orders;
+\item A unified statistical model parameter point $\theta_\ast \in \Theta$ representing all observers' probabilistic models;
+\item A unified mother scale function $\kappa_\ast(\omega)$ consistent with each observer's rescaled scale;
+\item A unified Null--Modular double cover sector $[K]$, with all observers in this sector;
+\item In this background, a compatible family of boundary states $\{\rho_i\}$ whose differences no longer introduce macroscopic causal and time geometric conflicts.
+\end{enumerate}
+\end{proposition}
+
+Detailed argument for Proposition~\ref{prop:consensus} is in Appendix C.
+
+\section{Proofs}
+
+This section gives proof structures and key points for the above main results, placing technical details in appendices.
+
+\subsection{Proof Outline for Proposition~1}
+
+On Riemannian manifold $(\mathcal{M},G)$, the gradient is defined by
+
+$$
+G_X(\grad_G F(X),V)
+= \mathrm{d}F_X(V),
+\quad\forall V \in T_X\mathcal{M}.
+$$
+
+Along gradient flow $\dot{X} = -\grad_G F(X)$, we have
+
+$$
+\frac{\mathrm{d}}{\mathrm{d}\tau}F\bigl(X(\tau)\bigr)
+= \mathrm{d}F_{X(\tau)}(\dot{X}(\tau))
+= G_{X(\tau)}\bigl(\grad_G F(X(\tau)),-\grad_G F(X(\tau))\bigr)
+= -|\grad_G F(X(\tau))|_G^2 \leq 0.
+$$
+
+Thus $F$ is non-increasing along flow lines and reaches a minimum in the limit.
+
+\subsection{Proof Structure for Theorem~\ref{thm:convergence}}
+
+Theorem~\ref{thm:convergence} belongs to the general theory of gradient flows of strongly convex functions on complete Riemannian manifolds, and can be divided into three steps:
+
+\begin{enumerate}
+\item Under Lipschitz conditions, use ODE theory and the Hopf--Rinow theorem to prove global existence and uniqueness of gradient flows;
+\item Use strong convexity and Hessian lower bound to prove existence and uniqueness of minimum point;
+\item Use strong convexity and gradient flow equation to derive exponential convergence estimates for function value and Riemannian distance.
+\end{enumerate}
+
+Complete proof details are in Appendix A.
+
+\subsection{Proof Structure for Proposition~\ref{prop:cycle}}
+
+The definition of cycle-breaking cost $V_{\mathrm{cycle}}$ directly corresponds to the combinatorial problem of ``minimum edge deletion to make graph acyclic.'' Under local consistency conditions, one can prove:
+
+\begin{itemize}
+\item If $V_{\mathrm{cycle}} = 0$, no edge deletion is needed, and transitive closure $\preceq_{\mathrm{glue}}$ is itself a partial order;
+\item If there exists a global partial order $\preceq$ compatible with all local partial orders, then the graph of $\preceq$ contains $R$, its transitive closure must be acyclic, hence $V_{\mathrm{cycle}} = 0$.
+\end{itemize}
+
+This gives equivalence between cycle-breaking cost and global partial order existence. Detailed argument is in Appendix B.
+
+\subsection{Proof Outline for Proposition~\ref{prop:consensus}}
+
+Decompose the condition that all conflict metrics simultaneously vanish:
+
+\begin{enumerate}
+\item $F_{\mathrm{model}} = 0$ implies all $\theta_i$ represent consistent probability models;
+\item $F_{\mathrm{poset}} = 0$ implies existence of global partial order $\preceq$;
+\item $F_\kappa = 0$ implies all scales are consistent after rescaling;
+\item $F_{\mathrm{mod}} = 0$ implies entropy arrows and modular flows can be aligned via affine rescaling on overlapping regions;
+\item $F_{\mathrm{topo}} = 0$ implies existence of unique sector $[K]$.
+\end{enumerate}
+
+Unifying these conclusions yields the geometric--physical picture in Proposition~\ref{prop:consensus}. Details are in Appendix C.
+
+\section{Model Applications}
+
+This section demonstrates concrete applicability of the consensus geometry framework through two simplified models.
+
+\subsection{Model One: Finite Causal Set and Discrete Statistical Model}
+
+Consider finite event set $E_n = \{1,\dots,n\}$, with candidate causal network space $\mathsf{Cau}_n$ being the set of all partial orders on $E_n$. Take Dirichlet family as statistical model:
+
+$$
+\Theta = \Delta^{M-1},\quad
+p_\theta(\mathcal{C}) = \theta_{k(\mathcal{C})},\quad
+\mathsf{Cau}_n = \{\mathcal{C}_1,\dots,\mathcal{C}_M\}.
+$$
+
+Each observer $O_i$ gives a Dirichlet parameter $\theta_i$ through local observations, the Fisher--Rao metric in simple cases agrees with standard Fisher information, and $\Theta$ becomes a probability simplex with Fisher metric.
+
+For the causal partial order part: each observer gives partial order $\preceq_i$ on $E_i \subseteq E_n$, the merged relation $R$ and cycle-breaking cost $V_{\mathrm{cycle}}$ can be computed explicitly by graph algorithms. Gradient descent of cycle-breaking cost corresponds to reweighting on $R$ or correcting local partial orders to eliminate directed cycles.
+
+Time scales and boundary states in this finite model can use simple scalars and finite-dimensional density matrix approximations, reducing $\mathcal{H}_\kappa$ and $\mathcal{S}$ to finite-dimensional Euclidean spaces. Then $(\mathcal{M},G)$ approaches a constrained Euclidean space, and gradient flow can be implemented with standard optimization algorithms.
+
+This model is suitable for numerical experiments: given $\mathsf{Cau}_n$ and initial $\theta_i, \preceq_i, \kappa_i, \rho_i$, one can directly integrate the gradient flow, observe monotonic decrease of potential $F$ and its components, verifying convergence predictions of Theorem~\ref{thm:convergence}.
+
+\subsection{Model Two: Riemannian Consensus and Boundary Scattering Network}
+
+Consider a boundary scattering network of $N$ nodes, each corresponding to a local observer holding local scattering matrix $S_i(\omega)$ and reconstructed scale function $\kappa_i(\omega)$, while exchanging neighboring scattering data through network structure.
+
+For simplicity, take $\kappa_i$ belonging to a finite-dimensional function subspace, e.g., spanned by orthogonal basis $\{\phi_k(\omega)\}_{k=1}^K$, writing
+
+$$
+\kappa_i(\omega) = \sum_{k=1}^K c_{ik}\phi_k(\omega)
+$$
+
+viewing this as vector $c_i \in \mathbb{R}^K$, and adopting standard inner product on $\mathbb{R}^K$. Then $\mathcal{H}_\kappa^N$ reduces to $KN$-dimensional Euclidean space, $F_\kappa$ becomes a quadratic function of $\{c_i\}$, and its gradient flow is a linear consensus algorithm.
+
+For the statistical model part, one can choose Gaussian processes or exponential family models, making parameter space $\Theta$ have natural Riemannian structure. Combining with results of Tron et al. on Riemannian consensus, one can view the descent of $F_{\mathrm{model}}$ as consensus evolution on Riemannian manifolds, providing geometric consistency algorithms for multi-node scattering networks.
+
+Evolution of boundary states $\rho_i$ proceeds under the Bures metric, whose steepest descent direction corresponds to ``optimal deformation'' guided by quantum Fisher information, connected to quantum parameter estimation and geometric quantum control.
+
+\section{Engineering Proposals}
+
+From an engineering perspective, this paper's geometric framework can provide design principles for consistency protocols in multi-observer physical systems and multi-agent learning systems.
+
+\subsection{Consensus Geometry in Multi-Detector Gravitational Wave/FRB Arrays}
+
+Consider a spatially distributed detector array for measuring gravitational waves or fast radio bursts (FRB) phase and arrival times. Each detector $O_i$:
+
+\begin{itemize}
+\item Locally reconstructs a time scale $\kappa_i(\omega)$ corresponding to its instrument response and propagation delays;
+\item Establishes statistical model $p_{\theta_i}$ on candidate event space, describing priors and posteriors on source location and propagation medium;
+\item On effective ``boundary algebra'' gives data-compressed density matrix $\rho_i$, e.g., using Gaussian state approximation.
+\end{itemize}
+
+Based on this paper's consensus geometry space, one can:
+
+\begin{enumerate}
+\item Design distributed gradient flow algorithms that, under network communication topology constraints, make $\{\theta_i,\kappa_i,\rho_i\}$ gradually approach consensus, reconstructing unified source parameters and time scales without central control;
+\item Use cycle-breaking cost $V_{\mathrm{cycle}}$ and topological metric $\Delta_{\mathrm{topo}}$ as quality control indicators to detect systematic biases or topological misclassifications in certain detectors;
+\item Use Bures metric to optimize quantum/Gaussian state weighting schemes in multi-detector data fusion, maximizing overall information gain.
+\end{enumerate}
+
+\subsection{Causal Consensus in Multi-Agent Reinforcement Learning}
+
+In multi-agent reinforcement learning systems, agents explore in shared environments and update their respective causal models (e.g., policy causal graphs, environment dynamics models). This paper's framework provides the following engineering insights:
+
+\begin{enumerate}
+\item Embed each agent's causal model parameters in statistical manifold $\Theta$, using Fisher--Rao metric to guide model updates;
+\item Use cycle-breaking cost $V_{\mathrm{cycle}}$ as constraint when merging multi-agent causal graphs, avoiding causal cycles from different perspectives;
+\item Use scale divergence $\Delta_\kappa$ and Bures distance $d_{\mathrm{Bures}}$ to define ``time consistency'' and ``state consistency'' regularization terms, explicitly penalizing deviations in time scales and state estimates among agents in training objectives;
+\item Through gradient flow of consensus potential $F$, implement a ``geometric consistency--performance optimization'' joint algorithm.
+\end{enumerate}
+
+\subsection{Experimental Schemes and Numerical Validation}
+
+For numerical validation, one can progressively advance from the following levels:
+
+\begin{enumerate}
+\item Pure information geometry level: implement consensus gradient flow in simple exponential families and finite causal set models, verifying monotonic decrease of model divergence and cycle-breaking cost;
+\item Riemannian consensus level: simulate multi-agent parameter consensus on positive curvature or non-positive curvature manifolds, comparing this paper's potential construction with existing Riemannian consensus algorithms;
+\item Quantum state and Bures geometry level: implement consensus flow lines under Bures metric in finite-dimensional density matrix space, analyzing relations with quantum Fisher information and optimal estimation.
+\end{enumerate}
+
+\section{Discussion: Risks, Boundaries, Past Work}
+
+\subsection{Limitations of Geometric and Potential Construction}
+
+This paper's geometrization framework relies on several key assumptions:
+
+\begin{enumerate}
+\item Smoothness and completeness of statistical manifold $(\Theta,g^{\mathrm{FR}})$, which holds in finite-dimensional regular models but requires additional conditions in non-regular or infinite-dimensional models;
+\item Metric structure of causal set moduli space $(\mathcal{C},d_{\mathrm{C}})$ is rather abstract; actually constructing $d_{\mathrm{C}}$ with good geometric properties remains an open problem;
+\item Technical complexity of Bures metric in infinite dimension, and correspondence with concrete physical implementations.
+\end{enumerate}
+
+Moreover, the strong convexity assumption for potential function $F$ is usually difficult to satisfy globally. Riemannian consensus literature shows that on nonlinear manifolds, gradient consensus flows may exhibit multiplicity of extrema and pathological behavior, requiring constraints from local curvature and topology.
+
+\subsection{Relation to Causal Set and Boundary Time Geometry Work}
+
+Causal set theory emphasizes ``order + counting = geometry''; this paper continues this line, viewing ``multi-observer consensus'' as geometric contraction on causal set moduli space. Differently, this paper introduces unified time scales and boundary time geometry, unifying time scales with modular flow, generalized entropy with Null--Modular double covers into the same structure, making causality, time, and topology align simultaneously in the consensus process.
+
+In boundary gravity and holography directions, recent work on Gibbons--Hawking--York boundary terms, generalized boundary terms, and holographic boundary conditions provides richer technical background for the ``boundary as unified stage'' viewpoint. This paper's framework adds a ``multi-observer consensus'' dimension to these boundary structures.
+
+\subsection{Risks and Open Problems}
+
+\begin{enumerate}
+\item \textbf{Non-convexity and multiplicity of minima}: In complex physical systems, total potential $F$ is likely to have multiple local minima corresponding to different ``consensus phases.'' How to characterize transitions and stability between these phases is a natural problem.
+\item \textbf{Dynamics of topological sectors}: Changes in $\Delta_{\mathrm{topo}}$ often involve topological transformations, whose realization in continuous dynamics requires careful handling and may introduce irreversibility or instantaneous jumps.
+\item \textbf{Connection with experience}: This paper mainly constructs a geometric--axiomatic framework; how to interface it with real-world experiments and observations (e.g., multi-detector astrophysical observations, multi-agent system logs) still requires further exploration.
+\end{enumerate}
+
+\section{Conclusion}
+
+This paper constructs a geometrization theory for conflicts and consensus among multi-observers in the unified framework of ``timeless causal network'' and ``boundary time geometry.'' Through:
+
+\begin{itemize}
+\item Embedding observers' statistical models, local causal partial orders, mother scale functions, and boundary states in a unified consensus geometry space $(\mathcal{M},G)$;
+\item Defining conflict metrics such as model divergence, cycle-breaking cost, scale divergence, entropy arrow and modular flow differences, topological sector mismatches, and encoding them as total potential function $F$;
+\item Proving that under completeness and strong convexity assumptions, consensus gradient flow $\dot{X} = -\grad_G F(X)$ points toward consensus manifold $\mathcal{M}_{\mathrm{cons}}$ and makes potential converge exponentially;
+\end{itemize}
+
+This paper provides a unified way to understand ``observers resolving conflicts and reaching consensus'' as a geometric contraction process. On the consensus manifold, global causal network, unified mother scale, entropy arrow and modular flow structure, and Null--Modular double cover sectors are mutually compatible, forming a boundary time geometry shared by multi-observers.
+
+Future work will include: implementing this geometric framework in concrete physical and engineering systems, analyzing non-convexity and structure of multiple consensus phases, and incorporating dynamics of topological sectors into a more complete causality--time--topology unified theory.
+
+\section*{Acknowledgements, Code Availability}
+
+This work did not use publicly available code to implement concrete numerical experiments; relevant numerical implementation schemes are given conceptually in the ``Engineering Proposals'' section. If complete code is implemented in future work, links and explanations will be provided in public repositories.
+
+\begin{thebibliography}{99}
+
+\bibitem{amari00}
+S.-I. Amari, H. Nagaoka, \emph{Methods of Information Geometry}, AMS--Oxford, 2000.
+
+\bibitem{suzuki14}
+M. Suzuki, ``Information Geometry and Statistical Manifold,'' arXiv:1410.3369, 2014.
+
+\bibitem{bures69}
+D. Bures, ``An extension of Kakutani's theorem on infinite product measures to the tensor product of semifinite *-algebras,'' \emph{Trans. Amer. Math. Soc.}, 1969.
+
+\bibitem{helstrom67}
+C. W. Helstrom, ``Minimum mean-squared error of estimates in quantum statistics,'' \emph{Phys. Lett. A}, 1967.
+
+\bibitem{spehner23}
+D. Spehner, ``Bures geodesics and quantum metrology,'' \emph{Quantum} 7, 1715 (2023).
+
+\bibitem{tron12}
+R. Tron, A. A. Sarlette, R. Sepulchre, ``Riemannian Consensus for Manifolds with Bounded Curvature,'' \emph{CDC 2011} / arXiv:1202.0030.
+
+\bibitem{markdahl21}
+J. Markdahl, S. E. Tuna, J. M. Hendrickx, ``Pathologies of consensus seeking gradient descent flows on manifolds,'' \emph{Automatica} 132, 2021.
+
+\bibitem{mi23}
+L. Mi, J. Gon\c{c}alves, M. Dahl, ``Riemannian polarization of multi-agent gradient flows,'' 2023.
+
+\bibitem{chen13}
+S. Chen, X. Liu, ``Consensus on complete Riemannian manifolds in finite time,'' \emph{J. Math. Anal. Appl.}, 2013.
+
+\bibitem{sorkin91}
+R. D. Sorkin, ``Spacetime and Causal Sets,'' in \emph{Relativity and Gravitation: Classical and Quantum}, World Scientific, 1991.
+
+\bibitem{dribus13}
+B. F. Dribus, ``On the Axioms of Causal Set Theory,'' arXiv:1311.2148, 2013.
+
+\bibitem{baron25}
+S. Baron, ``Causal Set Theory is (Strongly) Causal,'' \emph{Found. Phys.}, 2025.
+
+\bibitem{bourgain13}
+R. Bourgain, D. Faccio, ``Direct measurement of the Wigner time delay for light,'' \emph{Opt. Lett.} 38, 1963 (2013).
+
+\bibitem{fetic24}
+B. Feti\'c et al., ``Wigner time delay revisited,'' \emph{Ann. Phys.} 460, 2024.
+
+\bibitem{gibbons77}
+G. W. Gibbons, S. W. Hawking, ``Action integrals and partition functions in quantum gravity,'' \emph{Phys. Rev. D} 15, 2752 (1977).
+
+\bibitem{york72}
+J. W. York, ``Role of conformal three-geometry in the dynamics of gravitation,'' \emph{Phys. Rev. Lett.} 28, 1082 (1972); ``Quasilocal energy in general relativity,'' 1992.
+
+\bibitem{bhattacharya23}
+K. Bhattacharya, ``Boundary terms and Brown--York quasi-local parameters in GR and ST gravity,'' 2023.
+
+\bibitem{parvizi25}
+A. Parvizi et al., ``Freelance holography, part I: Setting boundary conditions in holography,'' \emph{SciPost Phys.} 19, 043 (2025).
+
+\bibitem{teimouri16}
+A. Teimouri, S. Talaganis, J. Edholm, A. Mazumdar, ``Generalised boundary terms for higher derivative theories of gravity,'' \emph{JHEP} 08, 144 (2016).
+
+\bibitem{sun14}
+K. Sun, G. Lebanon, S. Sra, ``An Information Geometry of Statistical Manifold Learning,'' \emph{AISTATS 2014}.
+
+\end{thebibliography}
+
+\appendix
+
+\section{Technical Proof of Gradient Flow Convergence}
+
+Let $(\mathcal{N},h)$ be a complete Riemannian manifold, and $f \colon \mathcal{N} \to \mathbb{R}$ a $C^2$ function. The gradient flow is defined as
+
+$$
+\frac{\mathrm{d}}{\mathrm{d}\tau}x(\tau)
+= -\grad_h f\bigl(x(\tau)\bigr).
+$$
+
+\subsection{Uniqueness of Minimum Point}
+
+Assume there exists $m > 0$ such that for all $x \in \mathcal{N}$ and $v \in T_x\mathcal{N}$,
+
+$$
+\Hess_h f(x)[v,v] \geq m\,h_x(v,v),
+$$
+
+i.e., $f$ is $m$-strongly convex. If $x_\ast, y_\ast$ are two minimum points, then $\grad_h f(x_\ast) = \grad_h f(y_\ast) = 0$, and $f(x_\ast) = f(y_\ast)$. Take geodesic $\gamma:[0,1] \to \mathcal{N}$ connecting $x_\ast, y_\ast$, and consider $g(s) := f(\gamma(s))$. Then
+
+$$
+g''(s)
+= \Hess_h f\bigl(\dot{\gamma}(s),\dot{\gamma}(s)\bigr)
+\geq m\,h(\dot{\gamma}(s),\dot{\gamma}(s)) \geq 0.
+$$
+
+Thus $g$ is strongly convex, and unless $x_\ast = y_\ast$, it cannot attain minimum at both interval endpoints, so the minimum point is unique.
+
+\subsection{Existence and Uniqueness of Gradient Flow Solution}
+
+If $\grad_h f$ is Lipschitz on bounded sets, then through ODE theory on Riemannian manifolds, one can construct local solutions near any initial value. Completeness and gradient boundedness guarantee the solution cannot escape to infinity in finite time, so the solution extends to all $\tau \geq 0$.
+
+\subsection{Exponential Convergence Estimate}
+
+Let $x(\tau)$ be a gradient flow solution, and $x_\ast$ the unique minimum point. Define
+
+$$
+\Phi(\tau) := f(x(\tau)) - f(x_\ast) \geq 0.
+$$
+
+Strong convexity and Taylor expansion give
+
+$$
+f(y) \geq f(x)
++ \langle\grad_h f(x),\exp_x^{-1}y\rangle_h
++ \frac{m}{2}|\exp_x^{-1}y|_h^2.
+$$
+
+Taking $x = x(\tau), y = x_\ast$, noting $\grad_h f(x_\ast) = 0$, we get
+
+$$
+\Phi(\tau)
+\leq -\langle\grad_h f(x(\tau)),\exp_{x(\tau)}^{-1}x_\ast\rangle_h
+- \frac{m}{2}|\exp_{x(\tau)}^{-1}x_\ast|_h^2.
+$$
+
+On the other hand,
+
+$$
+\frac{\mathrm{d}}{\mathrm{d}\tau}\Phi(\tau)
+= \langle\grad_h f(x(\tau)),\dot{x}(\tau)\rangle_h
+= -|\grad_h f(x(\tau))|_h^2.
+$$
+
+Combining the above estimates, we obtain
+
+$$
+\frac{\mathrm{d}}{\mathrm{d}\tau}\Phi(\tau)
+\leq -2m\Phi(\tau),
+$$
+
+hence
+
+$$
+\Phi(\tau) \leq \mathrm{e}^{-2m\tau}\Phi(0).
+$$
+
+Further using strong convexity, one can relate $\Phi(\tau)$ with Riemannian distance $\dist_h(x(\tau),x_\ast)$, obtaining
+
+$$
+\dist_h(x(\tau),x_\ast) \leq C\mathrm{e}^{-m\tau},
+$$
+
+where $C$ depends only on initial conditions and local geometry of $f$. This completes the proof framework for Theorem~\ref{thm:convergence}.
+
+\section{Cycle-Breaking Cost and Global Partial Order Existence}
+
+Given event set $E$ and local partial order family $\{\preceq_i\}_{i=1}^N$, the merged relation
+
+$$
+R = \bigcup_{i=1}^N \preceq_i
+$$
+
+has transitive closure denoted $\preceq_{\mathrm{glue}}$. Assume for all $i,j$, judgments on overlapping region $E_i \cap E_j$ are consistent, i.e.,
+
+$$
+x \preceq_i y \iff x \preceq_j y,\quad
+\forall x,y \in E_i \cap E_j.
+$$
+
+\subsection{Equivalence of Zero Cycle-Breaking Cost and Transitive Closure Being Partial Order}
+
+By definition of cycle-breaking cost:
+
+$$
+V_{\mathrm{cycle}}
+= \min\left\{\sum_{(e \to f) \in S}w(e \to f)\mid
+S \subset R,\ R \setminus S \text{ has transitive closure that is partial order}\right\}.
+$$
+
+Clearly, if there exists a directed cycle, at least one edge must be deleted, so $V_{\mathrm{cycle}} > 0$; conversely, if $\preceq_{\mathrm{glue}}$ is already a partial order, no edge deletion is needed, taking $S = \varnothing$ suffices, so $V_{\mathrm{cycle}} = 0$. Thus
+
+$$
+V_{\mathrm{cycle}} = 0
+\iff \preceq_{\mathrm{glue}}\ \text{is a partial order}.
+$$
+
+\subsection{Equivalence of Transitive Closure Being Partial Order and Global Partial Order Existence}
+
+Define global relation $\preceq := \preceq_{\mathrm{glue}}$. Clearly restriction $\preceq|_{E_i}$ contains $\preceq_i$. Since local partial orders are consistent on overlapping regions, any relation derived within $E_i$ from other $\preceq_j$ must be compatible with $\preceq_i$, hence $\preceq|_{E_i} = \preceq_i$. Therefore, if $\preceq_{\mathrm{glue}}$ is a partial order, it is a global partial order realizing all local partial orders.
+
+Conversely, if there exists global partial order $\widehat{\preceq}$ satisfying $\widehat{\preceq}|_{E_i} = \preceq_i$, then the graph of $\widehat{\preceq}$ contains $R$, its transitive closure is itself, and since $\widehat{\preceq}$ is a partial order, it is acyclic, hence $V_{\mathrm{cycle}} = 0$.
+
+In summary, Proposition~\ref{prop:cycle} is proved.
+
+\section{Geometric and Physical Meaning of Simultaneous Vanishing of Conflict Metrics}
+
+Assume at some state $X \in \mathcal{M}$, all conflict metrics simultaneously vanish:
+
+$$
+F_{\mathrm{model}} = F_{\mathrm{poset}} = F_\kappa
+= F_{\mathrm{mod}} = F_{\mathrm{topo}} = 0.
+$$
+
+\subsection{Consistency of Statistical Models}
+
+$F_{\mathrm{model}} = 0$ means for all $i,j$, we have $D_{\mathrm{JS}}(\theta_i,\theta_j) = 0$. Jensen--Shannon divergence is zero if and only if the two distributions are almost everywhere identical, hence all $p_{\theta_i}$ are consistent. In parameter space $\Theta$, this means there exists unique parameter point $\theta_\ast$ such that $\theta_i = \theta_\ast$ for all $i$.
+
+\subsection{Existence of Global Causal Partial Order}
+
+$F_{\mathrm{poset}} = 0$ i.e., $V_{\mathrm{cycle}} = 0$; under local consistency assumptions, Appendix B shows there exists global partial order $\preceq$ embedding all local partial orders $\preceq_i$. Thus there exists global causal network $(E,\preceq)$ whose restriction to each observer horizon $E_i$ is the partial order structure.
+
+\subsection{Unified Mother Scale and Time Scale Consensus}
+
+$F_\kappa = 0$ means scale divergence $\Delta_\kappa = 0$, i.e., for all $\omega \in I$,
+
+$$
+\kappa_i^{\mathrm{ren}}(\omega) = \bar{\kappa}(\omega).
+$$
+
+Thus there exists unified mother scale function $\kappa_\ast(\omega) := \bar{\kappa}(\omega)$ such that each observer's local scale coincides with it after appropriate affine rescaling. In the unified time scale framework, this corresponds to all observers adopting the same scale identity among scattering phase derivative, relative state density, and group delay.
+
+\subsection{Consistency of Entropy Arrow and Modular Flow Direction}
+
+$F_{\mathrm{mod}} = 0$ implies for all $i,j$, $\Xi_{ij} = 0$ and $\Delta_{\mathrm{mod}}^{(ij)} = 0$. The former means on overlapping Null generators, $\partial_\lambda S_{\mathrm{gen}}^{(i)}$ and $\partial_\lambda S_{\mathrm{gen}}^{(j)}$ have consistent signs, so entropy arrow directions agree; the latter means there exist $a_{ij} > 0, b_{ij} \in \mathbb{R}$ such that $K^{(i)} = a_{ij}K^{(j)} + b_{ij}\mathbf{1}$. Through transitivity, one can choose global coefficients $a_i > 0, b_i \in \mathbb{R}$ such that all $K^{(i)}$ are affinely equivalent to some unified modular Hamiltonian $K_\ast$.
+
+Thus in consensus state, all observers achieve consistency in modular flow and generalized entropy arrow, making time arrow definition a global boundary time geometric structure.
+
+\subsection{Consistency of Null--Modular Double Cover Sector}
+
+$F_{\mathrm{topo}} = 0$ gives $\Delta_{\mathrm{topo}} = 1$, i.e., all $[K_i]$ are identical. By $\mathbb{Z}_2$ principal bundle classification in cohomology, this shows there exists a global double cover sector $[K]$ such that $[K_i] = [K]|_{U_i}$. This means Null--Modular double cover topological structure is compatible over all observer horizons, with no sector mismatch on consensus manifold.
+
+\subsection{Summary}
+
+Combining C.1--C.5, we give the following picture:
+
+\begin{itemize}
+\item There exists unified statistical model point $\theta_\ast$ describing all observers' probabilistic predictions of causal network;
+\item There exists unified global causal partial order $\preceq$ accommodating all local partial orders;
+\item There exists unified mother scale function $\kappa_\ast(\omega)$ and unified modular Hamiltonian $K_\ast$, after appropriate prefactors and zero-point choices, all observers' time scales and modular flows align with them;
+\item There exists unified Null--Modular double cover sector $[K]$;
+\end{itemize}
+
+Thus multi-observer system is in a state completely consistent at all levels of causality, time, entropy, and topology. This state geometrically corresponds to a point or orbit on consensus manifold $\mathcal{M}_{\mathrm{cons}}$, the limiting form of ``observer consensus geometrization'' in this framework.
+
+\end{document}

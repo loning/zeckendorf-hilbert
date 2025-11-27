@@ -1,0 +1,928 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{braket}
+\usepackage{graphicx}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+\newtheorem{axiom}{Axiom}[section]
+
+% Title information
+\title{Time as Generalized Entropy Optimal Path:\\
+Reconstruction of Time Arrow on Causally Consistent History Space}
+
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This paper proposes a unified framework that reconstructs ``time'' as the optimal path of a generalized entropy functional. We no longer view time as a predetermined one-dimensional parameter, but define the ``time arrow'' as an extendable path on the causally consistent history space that makes a certain class of generalized entropy functional take an extremum (under appropriate constraints, a minimum), along with its parametrization equivalence class. Specifically, on a given causal structure and observable algebra, we construct the following three levels:
+
+\textbf{(1) Structural Level}: View ``world history'' as a curve family $\gamma : I \to \mathcal C$ on configuration space, where $\mathcal C$ is the state space satisfying field equations and constraint conditions; introduce the causally consistent subspace $\mathsf{Cons} \subset \mathsf{Paths}(\mathcal C)$, composed of paths satisfying local causality, record extendability, and conservation laws.
+
+\textbf{(2) Functional Level}: On $\mathsf{Cons}$, define the ``generalized entropy functional''
+\begin{equation*}
+\mathcal S_{\mathrm{gen}}[\gamma]
+=
+\alpha S_{\mathrm{th}}[\gamma]
++
+\beta S_{\mathrm{ent}}[\gamma]
++
+\gamma D_{\mathrm{rel}}[\gamma]
++
+\lambda \mathcal B[\gamma],
+\end{equation*}
+where $S_{\mathrm{th}}$ is coarse-grained thermodynamic entropy, $S_{\mathrm{ent}}$ is entanglement entropy or generalized entropy, $D_{\mathrm{rel}}$ is relative entropy-type divergence, and $\mathcal B$ is a boundary term from boundary geometry or extrinsic curvature. The coefficients $\alpha,\beta,\gamma,\lambda$ are determined by physical scenarios and scale choices.
+
+\textbf{(3) Time Level}: Define the \textbf{time arrow} as the path family $\gamma^\star$ that makes $\mathcal S_{\mathrm{gen}}$ satisfy the extremum principle on $\mathsf{Cons}$ with non-negative local entropy production rate, and define the time scale equivalence class as all monotonic reparametrizations
+\begin{equation*}
+t \longmapsto f(t),\qquad f \in \mathrm{Diff}_+^1(I),
+\end{equation*}
+under orbits. Thus, time is no longer an external parameter, but the solution to a ``causal consistency + generalized entropy optimization'' problem.
+
+At the scattering and spectral theory end, we introduce the unified scale mother ruler
+$$
+\kappa(\omega)
+=
+\frac{\varphi'(\omega)}{\pi}
+=
+\rho_{\mathrm{rel}}(\omega)
+=
+\frac{1}{2\pi}\operatorname{tr}Q(\omega),
+$$
+where $S(\omega)$ is the scattering matrix, $Q(\omega)=-i S(\omega)^\dagger \partial_\omega S(\omega)$ is the Wigner--Smith delay operator, $\varphi(\omega)=\tfrac12 \arg\det S(\omega)$ is the total half-phase, and $\rho_{\mathrm{rel}}$ is the relative state density. We prove that in a well-posed scattering--geometry--information setting, $\kappa(\omega)$ can be used to concretize the ``time cost'' of the generalized entropy functional as a spectral integral, thereby obtaining an observable time scale proxy.
+
+At the information and causal end, taking relative entropy monotonicity and QNEC/QFC-type inequalities as consistency constraints, we prove: if local flux and entropy flow satisfy a set of natural convexity and positivity conditions, then under given causal structure and boundary data, the causally consistent history that minimizes $\mathcal S_{\mathrm{gen}}$ is unique under monotonic reparametrization, thereby reconstructing the time arrow as the ``causally extendable path with minimum generalized entropy cost.'' This framework provides a unified variational interpretation for thermodynamic second law, entanglement entropy growth, scattering group delay, and cosmological redshift.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Time Arrow; Generalized Entropy; Causal Structure; Relative Entropy; Scattering Phase; Wigner--Smith Time Delay; Scale Unification; Causally Consistent History
+
+---
+
+\section{Introduction}
+
+\subsection{Restating the Problem of Time}
+
+In classical and quantum theory, ``time'' is traditionally viewed as a predetermined parameter: in general relativity it is the proper parameter of timelike curves or Killing/ADM time, in quantum theory it is the evolution parameter of the Schrödinger equation, and in statistical physics it is the time index of Markov processes. However, once we simultaneously consider the following three classes of facts:
+
+\begin{enumerate}
+\item \textbf{Irreversibility} and ``arrow of time'' in thermodynamics and information theory;
+\item \textbf{Generalized entropy conditions} in general relativity (such as generalized entropy monotonicity, quantum null energy condition, quantum focusing condition);
+\item \textbf{Scale identity} among phase--delay--state density in scattering theory and spectral theory,
+\end{enumerate}
+
+we find: time is more like some ``selected structure'' rather than a background parameter written in the world equations from the beginning.
+
+The starting point of this paper is: given causal structure and observable algebras, can we characterize time as \textbf{the solution to an optimization problem}---among all causally consistent history paths, select the extremal path of a certain class of \textbf{generalized entropy functionals} and its monotonic parametrization equivalence class as the essence of time arrow and time scale?
+
+\subsection{Core Idea of This Paper}
+
+The core idea of this paper can be briefly summarized as a variational principle:
+
+\begin{quote}
+On a given causally consistent history space, the real world corresponds to the path that makes a certain class of generalized entropy functional $\mathcal S_{\mathrm{gen}}$ take an extremum (under natural assumptions, a minimum); the so-called ``time arrow'' is precisely the monotonic parametrization equivalence class on these extremal paths where the local entropy production rate is non-negative.
+\end{quote}
+
+Unlike the traditional ``time arrow = entropy increase'' narrative, here:
+\begin{itemize}
+\item We do not presuppose ``entropy must inevitably increase with time,'' but define ``time'' itself as ``the path parameter that extremizes the generalized entropy functional'';
+\item We are not limited to thermodynamic entropy, but introduce \textbf{generalized entropy}: including thermal entropy, entanglement entropy, relative entropy, and boundary geometric terms;
+\item We require that paths not only satisfy dynamical equations, but also meet \textbf{causal consistency}, \textbf{record extendability}, and \textbf{information monotonicity} constraints.
+\end{itemize}
+
+More specifically, this paper will:
+\begin{enumerate}
+\item Construct the causally consistent history space and generalized entropy functional;
+\item Prove that under natural convexity and bound constraints, the minimal history is unique under monotonic reparametrization;
+\item Through the scale mother ruler in scattering theory
+\begin{equation*}
+\kappa(\omega)
+=
+\frac{\varphi'(\omega)}{\pi}
+=
+\rho_{\mathrm{rel}}(\omega)
+=
+\frac{1}{2\pi}\operatorname{tr}Q(\omega),
+\end{equation*}
+unify the abstract time scale with observable phase derivatives, group delays, and state densities;
+\item Discuss the relationship among local observers, measurement records, and time perception.
+\end{enumerate}
+
+\subsection{Article Structure}
+
+The structure of the full text is as follows: Section 2 gives the formalization of causal structure, history space, and generalized entropy functional, and proposes the axiomatic reconstruction of time. Section 3 presents the main theorem: under well-posed conditions, the generalized entropy functional's minimal causally consistent history is unique under monotonic reparametrization, thus defining the time arrow and time scale equivalence class. Section 4 introduces the scale mother ruler $\kappa(\omega)$ in the scattering and spectral theory context, embeds it into the generalized entropy framework, and gives the observable realization of time scale. Section 5 discusses the relationship among local observers, records, and ``subjective time.'' Section 6 provides simplified models to illustrate how the framework works. Appendices give strict proofs of main theorems and technical details.
+
+---
+
+\section{Causally Consistent History Space and Generalized Entropy Functional}
+
+\subsection{Spacetime, Causality, and Observable Algebra}
+
+Let $(M,g)$ be a Lorentzian manifold with globally hyperbolic structure, having the standard causal structure $J^\pm(\cdot)$. Let $\mathcal A$ be the observable algebra associated with $M$ (e.g., a net of $C^\ast$-algebras satisfying Haag--Kastler axioms, or restricted algebra on scattering channels), and $\omega$ a state on it.
+
+We consider the structural triple satisfying the following properties:
+$$
+\mathsf{Data}=(M,g;\mathcal A,\omega;\mathcal C),
+$$
+where $\mathcal C$ is the ``effective state space,'' composed of states (or state equivalence classes) satisfying field equations and constraint conditions, which can be viewed as an appropriate completion of some configuration space or phase space.
+
+\subsection{World History as Path: History Space and Causal Consistency}
+
+\begin{definition}[History]
+A continuous curve
+$$
+\gamma:I\to \mathcal C,\qquad I\subset\mathbb R\ \text{is an interval},
+$$
+is called a \textbf{world history} or \textbf{history path}. Denote all such curves as $\mathsf{Paths}(\mathcal C)$.
+\end{definition}
+
+\begin{definition}[Causally Consistent History]
+Given $\mathsf{Data}$, a history $\gamma\in\mathsf{Paths}(\mathcal C)$ is called \textbf{causally consistent} if the following structure exists:
+\begin{enumerate}
+\item For each point $\gamma(t)$, there exists a corresponding spatial slice or Cauchy section $\Sigma_t\subset M$ such that $t_1<t_2 \Rightarrow \Sigma_{t_1}\subset J^-(\Sigma_{t_2})$;
+\item The state evolution $\gamma(t)$ induces restricted states $\omega_t$ on $\mathcal A(\Sigma_t)$ satisfying local causality (e.g., satisfying Einstein causality, microlocality conditions);
+\item There exists a family of ``record subalgebras'' $\mathcal R_t\subset \mathcal A(\Sigma_t)$ such that for any $t_1<t_2$, the record distribution in $\mathcal R_{t_1}$ can be traceback-reconstructed from records in $\mathcal R_{t_2}$ (record extendability).
+\end{enumerate}
+Denote the set of all causally consistent histories as
+$$
+\mathsf{Cons}(\mathcal C)\subset\mathsf{Paths}(\mathcal C).
+$$
+\end{definition}
+
+The above definition abstracts the basic requirements of ``world history, causality, and recording'': not only must evolution itself conform to causal structure, but it must also allow robust reconstruction of past records, which is crucial when defining the time arrow.
+
+\subsection{Generalized Entropy Functional and Time Cost}
+
+We introduce a generalized entropy functional defined on the causally consistent history space.
+
+\begin{definition}[Generalized Entropy Functional]
+For $\gamma\in \mathsf{Cons}(\mathcal C)$, define
+\begin{equation*}
+\mathcal S_{\mathrm{gen}}[\gamma]
+=
+\alpha S_{\mathrm{th}}[\gamma]
++
+\beta S_{\mathrm{ent}}[\gamma]
++
+\gamma D_{\mathrm{rel}}[\gamma]
++
+\lambda \mathcal B[\gamma],
+\end{equation*}
+where:
+\begin{enumerate}
+\item $S_{\mathrm{th}}[\gamma] = \int_I \sigma_{\mathrm{th}}(\gamma(t),\dot\gamma(t))\,\mathrm dt$ is the integral of coarse-grained thermodynamic entropy density along the path;
+\item $S_{\mathrm{ent}}[\gamma] = \int_I \sigma_{\mathrm{ent}}(\gamma(t))\,\mathrm dt$ can be taken as the integral of entanglement entropy or generalized entropy density;
+\item $D_{\mathrm{rel}}[\gamma] = \int_I d(\omega_t|\omega_t^{(0)})\,\mathrm dt$, where $d$ is the relative entropy density and $\omega_t^{(0)}$ is a reference state;
+\item $\mathcal B[\gamma]$ is a functional of boundary geometric behavior, typically written as
+\begin{equation*}
+\mathcal B[\gamma]=\int_{\partial M[\gamma]} \mathcal L_{\mathrm{bdy}}(h,K)\,\mathrm d\Sigma,
+\end{equation*}
+where $h$ is the induced metric and $K$ is the extrinsic curvature.
+\end{enumerate}
+The coefficients $\alpha,\beta,\gamma,\lambda$ are determined by physical scenarios and scale choices (e.g., unified time scale).
+\end{definition}
+
+\begin{hypothesis}[Positivity and Convexity]
+\begin{enumerate}
+\item $\sigma_{\mathrm{th}}$ and $\sigma_{\mathrm{ent}}$ are convex and non-negative in velocity variables;
+\item The relative entropy density $d(\cdot|\cdot)$ is strictly convex in the first variable and satisfies monotonicity;
+\item The boundary functional $\mathcal B$ is lower semicontinuous on the allowed boundary variation space and has a good lower bound.
+\end{enumerate}
+\end{hypothesis}
+
+Under these conditions, $\mathcal S_{\mathrm{gen}}$ is a well-defined lower-bounded functional on $\mathsf{Cons}(\mathcal C)$.
+
+\subsection{Axiomatic Reconstruction of Time Arrow and Time Scale}
+
+We now present this paper's axiomatic scheme for time.
+
+\begin{axiom}[Causal Priority]
+Physically allowed world histories must belong to the causally consistent history space $\mathsf{Cons}(\mathcal C)$.
+\end{axiom}
+
+\begin{axiom}[Generalized Entropy Optimization]
+The real world corresponds to the history family that makes the generalized entropy functional
+$$
+\mathcal S_{\mathrm{gen}}:\mathsf{Cons}(\mathcal C)\to \mathbb R
+$$
+take an extremum under given boundary and initial state constraints, i.e., there exists
+$$
+\gamma^\star\in \mathsf{Cons}(\mathcal C),\quad
+\mathcal S_{\mathrm{gen}}[\gamma^\star]
+=\inf\{\mathcal S_{\mathrm{gen}}[\gamma] \mid \gamma\in\mathsf{Admissible}\},
+$$
+where $\mathsf{Admissible} \subset \mathsf{Cons}(\mathcal C)$ is composed of initial states, constraint conditions, and energy/flux bounds.
+\end{axiom}
+
+\begin{axiom}[Time Arrow Condition]
+On the minimal history $\gamma^\star$, there exists a monotonic parameter $t$ such that the local entropy production rate
+\begin{equation*}
+\dot s_{\mathrm{loc}}(t):=
+\frac{\mathrm d}{\mathrm dt}
+\left(
+\alpha s_{\mathrm{th}}(t)
++
+\beta s_{\mathrm{ent}}(t)
++
+\gamma d_t
+\right)
+\ge 0
+\quad\text{almost everywhere},
+\end{equation*}
+where $s_{\mathrm{th}},s_{\mathrm{ent}},d_t$ are local densities along the history. This monotonic direction defines the time arrow.
+\end{axiom}
+
+\begin{definition}[Time Scale Equivalence Class]
+Let $\gamma^\star:I\to\mathcal C$ be the minimal history. If $f:I\to I'$ is a strictly monotonic differentiable bijection, then $\tilde\gamma=\gamma^\star\circ f^{-1}$ is another parametrization of the same history. Two parametrizations $t$ and $t'$ are said to belong to the same \textbf{time scale equivalence class} if there exists $f\in\mathrm{Diff}_+^1$ such that $t'=f(t)$. Denote this equivalence class as $[t]$.
+\end{definition}
+
+Thus, time is no longer a predetermined ``background axis,'' but a structure defined by the minimal history and its monotonic reparametrization equivalence class.
+
+---
+
+\section{Existence of Minimal History and Geometric Uniqueness of Time Arrow}
+
+The goal of this section is: under reasonable assumptions, prove that the minimal point of the generalized entropy functional $\mathcal S_{\mathrm{gen}}$ on the causally consistent history space exists and is unique under monotonic reparametrization, thereby mathematically supporting the claim ``time = generalized entropy optimal path.''
+
+\subsection{Variational Setting and Topological Structure}
+
+Consider the function space
+$$
+\mathsf{Paths}(\mathcal C)=\{\gamma:I\to\mathcal C \mid \gamma\ \text{absolutely continuous}\},
+$$
+endowed with, e.g., a topology combining $W^{1,1}$ or $C^0$ with $L^1$. Assume:
+\begin{enumerate}
+\item $\mathcal C$ is a complete separable metric space;
+\item $\mathsf{Cons}(\mathcal C) \subset \mathsf{Paths}(\mathcal C)$ is closed in the above topology;
+\item $\mathsf{Admissible}\subset \mathsf{Cons}(\mathcal C)$, given by boundary conditions and energy/flux constraints, is closed and has appropriate compactness (e.g., through Arzelà--Ascoli or Dunford--Pettis type conditions).
+\end{enumerate}
+
+In this setting, the generalized entropy functional $\mathcal S_{\mathrm{gen}}$ is lower semicontinuous and satisfies the following properties.
+
+\begin{proposition}[Lower Bound and Compactness]
+Under Hypothesis 2.3.2 and the above topological assumptions, there exists a constant $C$ such that for all $\gamma\in\mathsf{Admissible}$,
+$$
+\mathcal S_{\mathrm{gen}}[\gamma]\ge -C.
+$$
+Moreover, for any $s\in\mathbb R$, the set
+$$
+\{\gamma\in\mathsf{Admissible} \mid \mathcal S_{\mathrm{gen}}[\gamma]\le s\}
+$$
+is relatively compact in the chosen topology.
+\end{proposition}
+
+\textit{Proof outline}: Using the lower bound and convexity of relative entropy and entropy density, provide energy-type estimates for velocity and state, then apply standard compactness theorems.
+
+\subsection{Existence of Minimal Point}
+
+\begin{theorem}[Existence of Generalized Entropy Minimal History]
+Under the above assumptions, the generalized entropy functional $\mathcal S_{\mathrm{gen}}$ attains a minimum on $\mathsf{Admissible}$, i.e., there exists $\gamma^\star\in\mathsf{Admissible}$ such that
+$$
+\mathcal S_{\mathrm{gen}}[\gamma^\star]
+=\inf\{\mathcal S_{\mathrm{gen}}[\gamma] \mid \gamma\in\mathsf{Admissible}\}.
+$$
+\end{theorem}
+
+\textit{Proof outline}: Take a minimizing sequence $(\gamma_n) \subset \mathsf{Admissible}$ such that $\mathcal S_{\mathrm{gen}}[\gamma_n]\to\inf$. By Proposition 3.1.1's compactness, there exists a subsequence (still denoted $\gamma_n$) converging to $\gamma^\star\in\mathsf{Admissible}$ in the chosen topology. Using lower semicontinuity,
+$$
+\mathcal S_{\mathrm{gen}}[\gamma^\star]
+\le\liminf_{n\to\infty}\mathcal S_{\mathrm{gen}}[\gamma_n]
+=\inf,
+$$
+thus $\gamma^\star$ is the minimal point.
+
+Complete rigorous proof in Appendix A.
+
+\subsection{Local Euler--Lagrange Equation and Entropy Production Rate}
+
+On the minimal history $\gamma^\star$, for local variation $\delta\gamma$ (preserving initial/final conditions and causal consistency), consider the first-order variation
+$$
+\delta\mathcal S_{\mathrm{gen}}[\gamma^\star;\delta\gamma]
+=0.
+$$
+
+Formally, if writing the density as Lagrangian type
+$$
+\mathcal L(\gamma,\dot\gamma)
+=
+\alpha \sigma_{\mathrm{th}}(\gamma,\dot\gamma)
++
+\beta \sigma_{\mathrm{ent}}(\gamma)
++
+\gamma d(\omega(\gamma)|\omega^{(0)}(\gamma))
++
+\lambda\mathcal l_{\mathrm{bdy}}(\gamma,\dot\gamma),
+$$
+the minimal path satisfies the Euler--Lagrange equation
+$$
+\frac{\mathrm d}{\mathrm dt}
+\left(
+\frac{\partial\mathcal L}{\partial \dot\gamma}
+\right)
+-
+\frac{\partial\mathcal L}{\partial \gamma}
+=0,
+$$
+plus effective ``mechanical equations'' from causal constraints and record constraints. The entropy production rate can be written as
+$$
+\dot s_{\mathrm{loc}}(t)
+=
+\alpha\dot s_{\mathrm{th}}(t)
++
+\beta\dot s_{\mathrm{ent}}(t)
++
+\gamma\dot d_t.
+$$
+
+In many physical scenarios (such as non-equilibrium thermodynamics consistent with local equilibrium, quantum channels consistent with complete positivity and conservation, and gravitational backgrounds satisfying QNEC/QFC conditions), it can be proven that $\dot s_{\mathrm{loc}}(t)\ge0$ almost everywhere, thereby providing a variational interpretation for the time arrow.
+
+\subsection{Uniqueness and Time Scale Equivalence Class}
+
+To extract the ``time arrow'' from the minimal path, we need to prove that the minimal path is unique under monotonic reparametrization.
+
+\begin{hypothesis}[Strict Convexity and Topological Irreducibility]
+\begin{enumerate}
+\item For almost every $t$, the generalized entropy density
+\begin{equation*}
+(\gamma,\dot\gamma)\mapsto
+\alpha \sigma_{\mathrm{th}}(\gamma,\dot\gamma)
++
+\beta \sigma_{\mathrm{ent}}(\gamma)
++
+\gamma d(\omega(\gamma)|\omega^{(0)}(\gamma))
+\end{equation*}
+is strictly convex in $\dot\gamma$;
+\item The causally consistent history space $\mathsf{Cons}(\mathcal C)$ is ``topologically irreducible'' under given initial/final constraints: any two feasible paths that induce almost everywhere identical record distributions at each time slice are equivalent under monotonic reparametrization.
+\end{enumerate}
+\end{hypothesis}
+
+Under this assumption we have:
+
+\begin{theorem}[Monotonic Reparametrization Uniqueness of Minimal Causally Consistent History]
+Under the above assumptions, if $\gamma_1,\gamma_2\in\mathsf{Admissible}$ are both minimal points of $\mathcal S_{\mathrm{gen}}$, then there exists a strictly monotonic differentiable bijection $f$ such that
+$$
+\gamma_2(t)=\gamma_1(f^{-1}(t)),
+$$
+i.e., the two minimal histories differ only by a monotonic reparametrization, thus belonging to the same time scale equivalence class $[t]$.
+\end{theorem}
+
+\textit{Proof key points}: Strict convexity ensures that if two different minimal paths exist, the interpolated path between them will lower the functional value, contradiction; topological irreducibility ensures the freedom of ``different parametrizations'' is exactly the monotonic reparametrization group $\mathrm{Diff}_+^1$. See Appendix A for details.
+
+This shows that the ``time scale equivalence class'' is a structure uniquely selected by generalized entropy optimization, providing a geometric--variational definition of time.
+
+---
+
+\section{Scale Mother Ruler in Scattering Theory and Observable Realization of Time Cost}
+
+To connect the above abstract time structure with observables, we now turn to scattering--spectral theory and introduce the scale mother ruler $\kappa(\omega)$.
+
+\subsection{Scattering Matrix, Group Delay, and Relative State Density}
+
+Consider a class of static or steady-state scattering systems whose scattering matrix $S(\omega)$ is a unitary matrix on frequency $\omega$ satisfying appropriate differentiability. Define the Wigner--Smith delay operator
+$$
+Q(\omega)=-i S(\omega)^\dagger \partial_\omega S(\omega),
+$$
+whose trace
+$$
+\tau(\omega)
+:=
+\operatorname{tr}Q(\omega)
+$$
+gives the total group delay. On the other hand, define the total scattering phase
+$$
+\Phi(\omega)
+=\arg\det S(\omega),\qquad
+\varphi(\omega)=\frac12\Phi(\omega),
+$$
+then the half-phase derivative
+$$
+\frac{\varphi'(\omega)}{\pi}
+$$
+can be connected to the relative state density $\rho_{\mathrm{rel}}(\omega)$ and the group delay trace. By Birman--Kreĭn type formulas and Friedel type relations,
+$$
+\frac{\varphi'(\omega)}{\pi}
+=
+\rho_{\mathrm{rel}}(\omega)
+=
+\frac{1}{2\pi}\operatorname{tr}Q(\omega),
+$$
+holds rigorously within the applicable range.
+
+\begin{definition}[Scale Mother Ruler]
+Define the frequency scale mother ruler
+\begin{equation*}
+\kappa(\omega)
+=
+\frac{\varphi'(\omega)}{\pi}
+=
+\rho_{\mathrm{rel}}(\omega)
+=
+\frac{1}{2\pi}\operatorname{tr}Q(\omega).
+\end{equation*}
+On one hand, this quantity can be measured by scattering phase derivatives; on the other hand, it can be measured by group delay trace or state density difference, thus having clear scale meaning in experiments and theory.
+\end{definition}
+
+\subsection{Time Cost and Coupling with Scale Mother Ruler}
+
+Suppose a class of physical processes can be described in frequency space by a measure $\mu_\gamma$ induced by history $\gamma$: for each $\omega$, let $\mu_\gamma(\mathrm d\omega)$ describe the weight and flux of that frequency mode in history $\gamma$. Then we can define a class of ``spectral time cost'' functionals
+$$
+\mathcal T[\gamma]
+=
+\int \kappa(\omega)\,\mu_\gamma(\mathrm d\omega).
+$$
+
+In many scattering or open system scenarios, it can be proven that $\mathcal T[\gamma]$ is equivalent to or bounded-controlled by some terms in the generalized entropy functional $\mathcal S_{\mathrm{gen}}[\gamma]$, e.g.:
+\begin{itemize}
+\item If $D_{\mathrm{rel}}[\gamma]$ is the relative entropy between incident/outgoing states, its density can be expressed through relative state density $\rho_{\mathrm{rel}}(\omega)$, thus
+\begin{equation*}
+D_{\mathrm{rel}}[\gamma]
+\approx
+\int f(\kappa(\omega))\,\mu_\gamma(\mathrm d\omega),
+\end{equation*}
+holds for some convex function $f$;
+\item If the boundary term $\mathcal B[\gamma]$ is related to scattering cross-section or reflection phase, it can also be written as an integral over eigenfrequencies.
+\end{itemize}
+
+This means that, at the scattering--spectral end, part of the generalized entropy functional can be written as a spectral integral weighted by the scale mother ruler, so time cost has directly observable scale proxies.
+
+\subsection{Scattering Realization of Time Arrow}
+
+Combining the minimal history $\gamma^\star$ of Section 3 with the scattering scale mother ruler, we obtain:
+
+\begin{proposition}[Minimality of Scattering Time Cost]
+Suppose the relative entropy and boundary terms in the generalized entropy functional $\mathcal S_{\mathrm{gen}}[\gamma]$ can be written as
+\begin{equation*}
+\gamma D_{\mathrm{rel}}[\gamma]
++
+\lambda \mathcal B[\gamma]
+=
+\int g(\omega)\,\kappa(\omega)\,\mu_\gamma(\mathrm d\omega)
++
+C[\gamma],
+\end{equation*}
+where $g$ is a non-negative function and $C[\gamma]$ does not contain $\kappa$. Then for the minimal history $\gamma^\star$, the spectral time cost
+$$
+\mathcal T[\gamma]
+=
+\int \kappa(\omega)\,\mu_\gamma(\mathrm d\omega)
+$$
+is minimized under the same constraints, i.e.,
+$$
+\mathcal T[\gamma^\star]
+\le
+\mathcal T[\gamma],\quad
+\forall\gamma\in\mathsf{Admissible},
+$$
+holds under appropriate technical conditions.
+\end{proposition}
+
+At this point, the ``time arrow'' is not only defined on the abstract history space, but can also be indirectly read and verified in scattering experiments by measuring phase derivatives, group delays, and state densities.
+
+---
+
+\section{Local Observers, Records, and ``Subjective Time''}
+
+\subsection{Observer Section and Record Subalgebra}
+
+In actual observation, specific observers only interact with part of the world. Let the observer's worldline be $\Gamma_{\mathrm{obs}} \subset M$, with associated accessible algebra $\mathcal A_{\mathrm{obs}} \subset \mathcal A$. On each causal slice $\Sigma_t$, the record subalgebra accessible to the observer is
+$$
+\mathcal R_t^{\mathrm{obs}}
+=
+\mathcal A_{\mathrm{obs}}\cap \mathcal A(\Sigma_t).
+$$
+
+Along the minimal history $\gamma^\star$, the ``experiential time series'' seen by the observer is the state family $\omega_t^{\mathrm{obs}}$ obtained from restricting states to $\mathcal R_t^{\mathrm{obs}}$.
+
+\subsection{Subjective Time and Local Entropy Production}
+
+For a given observer, we can define their ``subjective time scale'' equivalence class: all monotonic parametrizations that make the local entropy production rate
+\begin{equation*}
+\dot s_{\mathrm{loc}}^{\mathrm{obs}}(t)
+=
+\frac{\mathrm d}{\mathrm dt}
+\left(\alpha s_{\mathrm{th}}^{\mathrm{obs}}(t)
++
+\beta s_{\mathrm{ent}}^{\mathrm{obs}}(t)
++
+\gamma d_t^{\mathrm{obs}}\right)
+\ge 0
+\end{equation*}
+where each quantity is entropy density and relative entropy density local to $\mathcal R_t^{\mathrm{obs}}$.
+
+On the minimal history $\gamma^\star$, under common conditions (such as local completely positive evolution, unidirectional information loss, continuous record accumulation), it can be proven that:
+\begin{enumerate}
+\item For ``most'' observers, their subjective time arrow aligns with the global time arrow;
+\item Subjective time scale is a projection of the global time scale equivalence class: it may be coarser in some reparametrization freedoms, but compatible in arrow direction.
+\end{enumerate}
+
+This provides a geometric--entropic explanation for ``why the time arrow is consistent among different observers'': it comes from the minimal history structure they are commonly embedded in and the shared generalized entropy optimization principle.
+
+\subsection{Delayed Choice and Temporal Interference Restatement (Conceptual)}
+
+In double-slit interference and delayed-choice experiments, the common narrative is: measurement choice ``retroactively changes'' the particle's path. This paper's framework can provide another description:
+\begin{itemize}
+\item World history has a family of candidate paths under causal consistency and generalized entropy optimization;
+\item Before specifying measurement arrangement, the corresponding $\mathsf{Admissible}$ set is larger, containing different types of subfamilies such as ``interference preservation'' and ``path information revealing'';
+\item Once measurement arrangement and record structure are determined, the constraint set $\mathsf{Admissible}$ is tightened, leaving only certain types of histories as generalized entropy minimal candidates;
+\item In this sense, ``delayed choice'' changes the feasible set of allowed histories and their generalized entropy structure, rather than retroactively modifying already occurred events.
+\end{itemize}
+
+In temporal interference experiments, particles interfere ``on the time scale,'' which can be viewed as coherent superposition of different time delay paths in history space, whose ``visibility'' depends on whether the record structure allows distinguishing these paths into different causally consistent history families.
+
+---
+
+\section{Example: Two-Level System and Simplified Cosmological Model}
+
+This section provides two simplified models to illustrate how the generalized entropy optimal path concretely generates the time arrow.
+
+\subsection{Two-Level System and Environmental Scattering}
+
+Consider a two-level system coupled with environmental scattering, Hamiltonian
+$$
+H=H_S+H_E+H_{\mathrm{int}},
+$$
+where $H_S$ is the two-level system, $H_E$ is the environment, and $H_{\mathrm{int}}$ is the interaction term such that scattering matrix $S(\omega)$ exists.
+
+\begin{enumerate}
+\item \textbf{Configuration space}: $\mathcal C$ is taken as the effective density operator space of system + environment (under appropriate truncation).
+\item \textbf{History space}: $\gamma:I\to\mathcal C$ describes system + environment evolution; causal consistency conditions require evolution realized by completely positive trace-preserving map families, with records robustly preserved in the environment.
+\item \textbf{Generalized entropy functional}:
+\begin{equation*}
+\mathcal S_{\mathrm{gen}}[\gamma]
+=
+\alpha \int S_{\mathrm{vN}}(\rho_S(t))\,\mathrm dt
++
+\gamma \int D(\rho_{SE}(t)|\rho_S(t)\otimes\rho_E^{(0)})\,\mathrm dt
++
+\lambda \mathcal B[\gamma],
+\end{equation*}
+where $S_{\mathrm{vN}}$ is von Neumann entropy and $D$ is quantum relative entropy.
+\item \textbf{Scattering scale}: Environmental scattering process gives $S(\omega)$ and $Q(\omega)$, thereby defining $\kappa(\omega)$, and constructing spectral time cost
+$$
+\mathcal T[\gamma]
+=
+\int \kappa(\omega)\,\mu_\gamma(\mathrm d\omega).
+$$
+\end{enumerate}
+
+By comparing two types of paths:
+\begin{itemize}
+\item ``Rapid decoherence + clear record path'';
+\item ``Slow decoherence + vague record path'',
+\end{itemize}
+it can be proven that under natural coefficient choices, the former has smaller $\mathcal S_{\mathrm{gen}}$, thus favored by the variational principle, while its time arrow is consistent with the direction of record accumulation in the environment.
+
+Detailed calculations and estimates in Appendix B.
+
+\subsection{Simplified FRW Cosmological Model}
+
+Consider a homogeneous isotropic FRW universe with metric
+$$
+\mathrm ds^2=-\mathrm dt^2+a(t)^2\mathrm d\vec x^2,
+$$
+with matter fields satisfying energy conditions and QNEC-type conditions. Take $\mathcal C$ as an appropriately coarse-grained cosmic state space (e.g., Gaussian state family after scalar field mode expansion truncation).
+
+Construct the generalized entropy functional
+\begin{align*}
+\mathcal S_{\mathrm{gen}}[\gamma]
+&=
+\alpha \int S_{\mathrm{th}}(a(t),\rho(t))\,\mathrm dt
++
+\beta \int S_{\mathrm{ent}}(\mathcal I(t))\,\mathrm dt\\
+&\quad+
+\gamma \int D(\rho(t)|\rho_{\mathrm{ref}}(t))\,\mathrm dt
++
+\lambda \mathcal B_{\mathrm{GHY}}[a(\cdot)],
+\end{align*}
+where $\mathcal B_{\mathrm{GHY}}$ is a GHY-type term on the FRW boundary. At this point, the minimal history $\gamma^\star$ is closely associated with the evolution of $a(t)$. Under appropriate conditions, it can be proven that: the selected time arrow is consistent with the ``cosmic time'' commonly adopted in FRW models, and the monotonicity of ``cosmological redshift'' can be interpreted as a scale consequence of generalized entropy optimization, rather than an additional assumption.
+
+---
+
+\section{Conclusion and Discussion}
+
+This paper proposes a unified framework that reconstructs time as the ``generalized entropy optimal path.'' By introducing the generalized entropy functional $\mathcal S_{\mathrm{gen}}$ on the causally consistent history space and proving the existence and monotonic reparametrization uniqueness of minimal history under strict convexity and compactness assumptions, we provide a mathematical definition of ``time = causal consistency + generalized entropy optimization.'' Further, through the scale mother ruler in scattering theory
+$$
+\kappa(\omega)
+=
+\frac{\varphi'(\omega)}{\pi}
+=
+\rho_{\mathrm{rel}}(\omega)
+=
+\frac{1}{2\pi}\operatorname{tr}Q(\omega),
+$$
+we unify the abstract time cost with observable phase derivatives, group delays, and state densities, thereby providing testable experimental proxies for time scale.
+
+At the observer and record level, this paper shows how local ``subjective time'' emerges as a projection of globally generalized entropy optimal history, and why different observers' time arrows remain consistent under common circumstances. Through simplified two-level system and FRW cosmological models, we demonstrate the explanatory power of this framework for microscopic and macroscopic time phenomena.
+
+Future directions include: docking this framework with more precise quantum field theory and holographic gravity models; proving convexity and minimality of generalized entropy functionals under QNEC/QFC conditions in rigorous mathematical sense; and designing time arrow testing schemes with $\kappa(\omega)$ as scale mother ruler in specific scattering experiments.
+
+---
+
+\appendix
+
+\section{Details of Existence and Uniqueness Proofs for Minimal History}
+
+\subsection{Function Space and Topology Choice}
+
+Let $I=[0,1]$ without loss of generality. Take configuration space $\mathcal C$ as a separable metric space with metric $d_{\mathcal C}$. Define path space
+$$
+\mathsf{Paths}(\mathcal C)
+=
+\left\{
+\gamma:I\to \mathcal C
+\mid
+\gamma\ \text{absolutely continuous},\
+\int_0^1|\dot\gamma(t)|\,\mathrm dt<\infty
+\right\},
+$$
+where $|\dot\gamma(t)|$ is defined through chosen measurable selection embedding or local coordinates. Endow with topology
+$$
+\mathrm d(\gamma_1,\gamma_2)
+=
+\sup_{t\in I}d_{\mathcal C}(\gamma_1(t),\gamma_2(t))
++
+\int_0^1
+\rho(\dot\gamma_1(t),\dot\gamma_2(t))\,\mathrm dt,
+$$
+where $\rho$ is a metric on velocity space. Assume causally consistent set $\mathsf{Cons}(\mathcal C)$ is closed in this topology, and feasible set
+$$
+\mathsf{Admissible}
+=
+\{\gamma\in\mathsf{Cons}(\mathcal C) \mid \gamma(0)=\gamma_0,\ \gamma(1)=\gamma_1,\ \text{satisfies energy/flux bounds}\}
+$$
+is closed and has appropriate compactness (e.g., through uniform velocity bounds and Arzelà--Ascoli).
+
+\subsection{Lower Bound and Lower Semicontinuity of Generalized Entropy Functional}
+
+Write
+$$
+\mathcal S_{\mathrm{gen}}[\gamma]
+=
+\int_0^1
+\mathcal L(\gamma(t),\dot\gamma(t))\,\mathrm dt,
+$$
+where
+$$
+\mathcal L(\gamma,\dot\gamma)
+=
+\alpha \sigma_{\mathrm{th}}(\gamma,\dot\gamma)
++
+\beta \sigma_{\mathrm{ent}}(\gamma)
++
+\gamma d(\omega(\gamma)|\omega^{(0)}(\gamma))
++
+\lambda\mathcal l_{\mathrm{bdy}}(\gamma,\dot\gamma).
+$$
+
+\textbf{Lemma A.2.1 (Lower Bound)}
+
+If there exist constants $c_0,c_1>0$ such that
+$$
+\mathcal L(\gamma,\dot\gamma)
+\ge
+c_0|\dot\gamma|-c_1,
+$$
+then for any $\gamma\in\mathsf{Admissible}$,
+$$
+\mathcal S_{\mathrm{gen}}[\gamma]\ge -c_1.
+$$
+
+\textit{Proof}: Direct integral estimate.
+
+\textbf{Lemma A.2.2 (Lower Semicontinuity)}
+
+If $\mathcal L$ is Carathéodory type in $(\gamma,\dot\gamma)$ (convex in velocity variable and satisfies appropriate growth conditions), then $\mathcal S_{\mathrm{gen}}$ is a lower semicontinuous functional in the chosen topology.
+
+\textit{Proof}: Standard variational result, see conditions of Tonelli type existence theorems.
+
+\subsection{Proof of Minimal Point Existence}
+
+\textbf{Proposition A.3.1 (Relative Compactness of Minimizing Sequence)}
+
+Let $(\gamma_n) \subset\mathsf{Admissible}$ be a minimizing sequence, i.e.,
+$$
+\lim_{n\to\infty}\mathcal S_{\mathrm{gen}}[\gamma_n]
+=
+\inf\mathcal S_{\mathrm{gen}}.
+$$
+
+By Lemma A.2.1, $\mathcal S_{\mathrm{gen}}[\gamma_n]$ has uniform lower bound. From lower bound and growth conditions, velocities $\dot\gamma_n$ have uniform bounds in $L^1$. By Dunford--Pettis or corresponding compactness theorem and Arzelà--Ascoli, we can take a subsequence such that $\gamma_n$ converges to some $\gamma^\star \in\mathsf{Admissible}$ in $\mathsf{Paths}(\mathcal C)$.
+
+\textbf{Theorem A.3.2 (Minimal Point Existence)}
+
+By Lemma A.2.2's lower semicontinuity,
+$$
+\mathcal S_{\mathrm{gen}}[\gamma^\star]
+\le
+\liminf_{n\to\infty}\mathcal S_{\mathrm{gen}}[\gamma_n]
+=
+\inf\mathcal S_{\mathrm{gen}},
+$$
+thus $\gamma^\star$ is the minimal point.
+
+\subsection{Uniqueness Proof}
+
+Assume Hypothesis 3.4.1 holds. Let $\gamma_1,\gamma_2\in\mathsf{Admissible}$ both be minimal points and not related by monotonic reparametrization. Construct interpolation
+$$
+\gamma_\theta(t)
+=
+\mathrm{Geo}_\theta(\gamma_1(t),\gamma_2(t)),
+\qquad \theta\in[0,1],
+$$
+where $\mathrm{Geo}_\theta$ is geodesic interpolation or convex combination on $\mathcal C$. Since $\mathcal L$ is strictly convex in velocity,
+$$
+\mathcal S_{\mathrm{gen}}[\gamma_\theta]
+<
+(1-\theta)\mathcal S_{\mathrm{gen}}[\gamma_1]
++
+\theta \mathcal S_{\mathrm{gen}}[\gamma_2],
+$$
+unless $\dot\gamma_1(t)=\dot\gamma_2(t)$ almost everywhere and $\gamma_1(t)=\gamma_2(t)$ almost everywhere under the same parametrization. By minimality $\mathcal S_{\mathrm{gen}}[\gamma_1]=\mathcal S_{\mathrm{gen}}[\gamma_2]=\inf$, the above formula can only hold with equality, so the two paths are almost everywhere identical in velocity and position.
+
+The remaining freedom comes from parametrization: if different parametrizations exist such that the record distributions at each slice are the same while path point sets are the same, the topological irreducibility assumption ensures they differ only by a monotonic reparametrization, yielding Theorem 3.4.2.
+
+---
+
+\section{Relative Entropy Monotonicity and Positivity of Local Entropy Production Rate}
+
+\subsection{Relative Entropy and Generalized Entropy Terms}
+
+Given two states $\rho,\sigma$ for the same algebra, quantum relative entropy
+$$
+D(\rho|\sigma)
+=
+\operatorname{Tr}\left(\rho(\log\rho-\log\sigma)\right)
+$$
+satisfies the following properties:
+\begin{enumerate}
+\item $D(\rho|\sigma)\ge0$, and $D(\rho|\sigma)=0$ if and only if $\rho=\sigma$;
+\item Monotonicity under completely positive trace-preserving map $\Phi$:
+$$
+D(\Phi(\rho)|\Phi(\sigma))
+\le
+D(\rho|\sigma).
+$$
+\end{enumerate}
+
+On history $\gamma(t)$, if local evolution is generated by completely positive trace-preserving semigroup, the rate of change of relative entropy term over time is non-positive, i.e.,
+$$
+\frac{\mathrm d}{\mathrm dt}
+D(\rho_t|\sigma_t)
+\le 0,
+$$
+thus in the generalized entropy functional, $-\gamma D_{\mathrm{rel}}[\gamma]$ can be understood as positive ``entropy cost.''
+
+\subsection{Local Entropy Production Rate}
+
+Consider local entropy density
+$$
+s_{\mathrm{loc}}(t)
+=
+\alpha s_{\mathrm{th}}(t)
++
+\beta s_{\mathrm{ent}}(t)
++
+\gamma d_t,
+$$
+under local equilibrium conditions and energy conditions,
+$$
+\dot s_{\mathrm{loc}}(t)\ge 0\quad\text{almost everywhere},
+$$
+typically arising from:
+\begin{enumerate}
+\item Non-negative thermodynamic entropy production;
+\item Monotonic non-decrease of entanglement entropy in certain expansion processes;
+\item Monotonicity of relative entropy under recovery maps or coarse-graining.
+\end{enumerate}
+
+These properties are combined into the time arrow condition (Axiom 2.4.3) in this paper's framework.
+
+---
+
+\section{Standard Derivation Outline of Scattering Scale Mother Ruler}
+
+This appendix provides a standard derivation outline of the scale mother ruler
+$$
+\kappa(\omega)
+=
+\frac{\varphi'(\omega)}{\pi}
+=
+\rho_{\mathrm{rel}}(\omega)
+=
+\frac{1}{2\pi}\operatorname{tr}Q(\omega).
+$$
+
+\subsection{Birman--Kreĭn Formula and Relative Spectral Shift}
+
+Let $H_0$ be the free Hamiltonian and $H=H_0+V$ the scattering Hamiltonian, satisfying appropriate trace class conditions. Define the relative spectral shift function $\xi(\lambda)$ whose derivative $\xi'(\lambda)$ gives the relative state density
+$$
+\rho_{\mathrm{rel}}(\lambda)
+=
+\xi'(\lambda).
+$$
+
+The Birman--Kreĭn formula gives
+$$
+\det S(\lambda)
+=
+e^{-2\pi i \xi(\lambda)},
+$$
+thus
+$$
+\Phi(\lambda)
+=\arg\det S(\lambda)
+=-2\pi \xi(\lambda)+2\pi k,\quad k\in\mathbb Z.
+$$
+
+Taking continuous branch and defining half-phase $\varphi(\lambda)=\tfrac12\Phi(\lambda)$,
+$$
+\frac{\varphi'(\lambda)}{\pi}
+=
+-\xi'(\lambda)
+=
+\rho_{\mathrm{rel}}(\lambda),
+$$
+obtaining the first equality under appropriate sign and convention choices.
+
+\subsection{Wigner--Smith Delay Operator and Trace Formula}
+
+The Wigner--Smith delay operator is defined as
+$$
+Q(\lambda)
+=
+-i S(\lambda)^\dagger \partial_\lambda S(\lambda),
+$$
+if $S(\lambda)$ is sufficiently smooth in $\lambda$, then
+$$
+\operatorname{tr}Q(\lambda)
+=
+-i \operatorname{tr}\left(S(\lambda)^\dagger \partial_\lambda S(\lambda)\right)
+=
+-i\partial_\lambda \log\det S(\lambda)
+=
+-i\partial_\lambda(i\Phi(\lambda))
+=
+\Phi'(\lambda).
+$$
+
+By $\varphi=\tfrac12\Phi$,
+$$
+\varphi'(\lambda)
+=\frac12\Phi'(\lambda)
+=\frac12\operatorname{tr}Q(\lambda),
+$$
+thus
+$$
+\frac{\varphi'(\lambda)}{\pi}
+=
+\frac{1}{2\pi}\operatorname{tr}Q(\lambda).
+$$
+
+Combining C.1 and C.2 yields the scale mother ruler identity
+$$
+\kappa(\omega)
+=
+\frac{\varphi'(\omega)}{\pi}
+=
+\rho_{\mathrm{rel}}(\omega)
+=
+\frac{1}{2\pi}\operatorname{tr}Q(\omega),
+$$
+providing a solid spectral--scattering foundation for embedding the unified time scale into the generalized entropy optimal path framework in this paper.
+
+\end{document}
+

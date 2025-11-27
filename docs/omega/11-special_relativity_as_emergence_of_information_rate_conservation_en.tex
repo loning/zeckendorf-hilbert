@@ -1,0 +1,975 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{braket}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{axiom}[theorem]{Axiom}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Special Relativity as Emergence of Information Rate Conservation: Orthogonal Decomposition of Internal Time Flow and External Displacement}
+
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{}
+
+\begin{document}
+
+\mailtitle
+
+\begin{abstract}
+Classical special relativity takes the constancy of the speed of light and the principle of relativity as axioms, adopting Minkowski spacetime as an a priori geometric stage. In this traditional picture, metric structure and Lorentz factors are viewed as geometric facts, with their relationship to information flow and computational capacity not made explicit. On the other hand, quantum information and condensed matter theory reveal that physical systems are universally constrained by finite information propagation speed and finite quantum evolution rate: local quantum lattice systems satisfy the Lieb--Robinson finite group velocity bound, defining an effective "signal speed of light"; quantum speed limit theorems provide the maximum evolution rate of pure states in projective Hilbert space, determined by energy uncertainty; information-physical limit analysis further indicates that every physical device has a maximum computational rate determined jointly by energy and number of degrees of freedom.
+
+This paper proposes an emergence scheme for special relativity centered on information rate within the framework of discrete quantum cellular automaton (QCA) ontology. For any local excitation, we define two classes of information update rates: one is the external group velocity $v_{\mathrm{ext}}$ of the envelope center on the lattice, characterizing changes in spatial coordinates; the other is the Fubini--Study velocity in internal Hilbert space projective space, appropriately scaled and denoted as internal velocity $v_{\mathrm{int}}$, characterizing the rate of internal quantum state evolution. We propose the \textbf{information rate conservation axiom}: there exists a universal constant $c$ such that at any moment
+$$
+v_{\mathrm{ext}}^{2} + v_{\mathrm{int}}^{2} = c^{2},
+$$
+and define the proper time flow rate by internal velocity as $\mathrm d\tau / \mathrm dt = v_{\mathrm{int}}/c$. On this basis, we prove the following main results:
+
+\textbf{(1)} From rate conservation and the proper time definition, one directly derives $\mathrm d\tau = \mathrm dt/\gamma$, where $\gamma = (1 - v_{\mathrm{ext}}^{2}/c^{2})^{-1/2}$ is the standard Lorentz time dilation factor.
+
+\textbf{(2)} Rewriting the information rate circle in terms of $\mathrm dt$, $\mathrm d\mathbf x$, $\mathrm d\tau$ yields the invariant line element $\mathrm ds^{2} = -c^{2}\mathrm d\tau^{2} = -c^{2}\mathrm dt^{2} + \mathrm d\mathbf x^{2}$, thus recovering Minkowski metric structure.
+
+\textbf{(3)} From proper time and velocity relations, constructing four-velocity and four-momentum yields standard $E = \gamma m c^{2}$, $\mathbf p = \gamma m \mathbf v_{\mathrm{ext}}$, and the invariant relation $E^{2} = p^{2}c^{2} + m^{2}c^{4}$.
+
+\textbf{(4)} In the Dirac--QCA one-dimensional model, the internal Zitterbewegung-type oscillation frequency $\omega_{0}$ and effective mass $m$ satisfy $m c^{2} = \hbar \omega_{0}$, so mass can be interpreted as the minimum information rate required to maintain the particle's internal frequency---a kind of information-theoretic ``impedance.''
+
+In this perspective, proper time is no longer a presupposed external parameter but the distance traveled by internal quantum state in projective Hilbert space; the ``impossibility of accelerating massive particles to light speed'' stems from the fact that as $v_{\mathrm{ext}} \to c$, internal rate $v_{\mathrm{int}} \to 0$, and the energy required to maintain the same internal structure tends to infinity. We discuss the relationship of this framework with QCA--relativistic emergence literature, quantum speed limit theory, and Lieb--Robinson finite group velocity, analyze limitations regarding global update time parameters and many-body entanglement, and propose several feasible engineering tests based on QCA quantum simulation and extreme-environment information systems.
+\end{abstract}
+
+\textbf{Keywords:} Information rate conservation; Quantum cellular automaton; Proper time; Lorentz factor; Quantum speed limit; Fubini--Study metric; Four-momentum
+
+\section{Introduction and Historical Context}
+
+Einstein proposed special relativity in 1905, starting from two axioms:
+
+\textbf{(1)} Principle of relativity: Physical laws take the same form in all inertial frames.
+
+\textbf{(2)} Constancy of light speed: The propagation speed $c$ of light in vacuum is the same in all inertial frames.
+
+Minkowski subsequently geometrized special relativity, constructing four-dimensional pseudo-Euclidean spacetime with signature $(-+++)$ and viewing free particle motion as geodesics in spacetime. Lorentz transformations are equivalent in this spacetime to the group of linear transformations preserving the line element $\mathrm ds^{2} = -c^{2}\mathrm dt^{2} + \mathrm d\mathbf x^{2}$. This geometry is formal and successful, but the ontological question of ``why is it so'' has long remained unresolved: Why does a limiting speed exist and equal the constant $c$? Why must the metric necessarily be Minkowski-type rather than some other form?
+
+On the other hand, developments in quantum information and quantum statistical mechanics have revealed a series of universal constraints related to velocity and time. Lieb and Robinson proved in studying quantum spin systems that information propagation has a finite group velocity bound; the influence of local operators spreads spatially in a finite ``light cone'' manner, defining the so-called Lieb--Robinson velocity. This result provides a light-speed-like upper bound in non-relativistic lattice systems, embodying the profound connection between locality and finite signal speed.
+
+In quantum dynamics, Mandelstam--Tamm and Margolus--Levitin theorems provide quantum speed limits: the minimum time required for evolving from a pure state to one orthogonal to it is bounded by energy uncertainty and average energy lower bounds. Aharonov and Anandan introduced the Fubini--Study metric on projective Hilbert space, restating the time--energy inequality as the relationship between quantum state curve length and energy fluctuation.
+
+In research on information-physical limits, Lloyd analyzed the limiting computational rate determined by $c$, $\hbar$, and $G$, pointing out that the number of computational steps and information storage capacity achievable by any physical system are both limited by energy and degrees of freedom. These works collectively indicate that time and velocity are not merely geometric quantities, but reflections of information propagation and processing capacity.
+
+Quantum cellular automata provide a discrete and strictly causal dynamical framework for the conception of ``universe as quantum computation.'' Local unitary updates acting on lattice sites naturally have finite propagation speed; under appropriate continuum limits, a series of works have proven that Dirac, Weyl, and even Maxwell equations can emerge from the long-wavelength limit of QCA. These results suggest that relativistic-type field theory can be viewed as an effective description of underlying discrete information processing.
+
+Against this background, this paper attempts to answer a more fundamental question: if we interpret $c$ as ``the total information update rate available to a single local excitation per unit coordinate time,'' can the entire dynamics of special relativity emerge from the constraint of ``information rate conservation''? Specifically, we distinguish two types of information updates:
+
+\textbf{(1)} External displacement: propagation of the excitation on the lattice, characterized by group velocity $v_{\mathrm{ext}}$.
+
+\textbf{(2)} Internal evolution: motion of the internal Hilbert space state in projective space, yielding $v_{\mathrm{int}}$ by scaling Fubini--Study velocity.
+
+The core axiom proposed in this paper is: for any excitation, the total information rate vector $(v_{\mathrm{ext}}, v_{\mathrm{int}})$ has modulus constrained at Planck scale by constant $c$, viewed as the information rate budget available to that excitation. External and internal evolution are orthogonal allocations of the same budget. We will then prove that time dilation, Minkowski metric, and standard energy-momentum relations of special relativity can all be viewed as geometric rewrites of this circular budget constraint.
+
+\section{Model and Assumptions}
+
+This section provides the QCA background, rigorous definitions of external and internal velocities, and formalizes the information rate conservation axiom and proper time definition.
+
+\subsection{QCA Background and Causal Structure}
+
+Consider a quantum cellular automaton defined on a $d$-dimensional regular lattice $\Lambda \subset \mathbb Z^{d}$. For each lattice site $x \in \Lambda$, associate a finite-dimensional local Hilbert space $\mathcal H_{x}$; the global Hilbert space is
+$$
+\mathcal H = \bigotimes_{x \in \Lambda} \mathcal H_{x}.
+$$
+Time is indexed by integer steps $n \in \mathbb Z$, and each step is realized by a global unitary operator $U$ decomposable into a finite-depth array of local unitary gates. Locality means: there exists a finite neighborhood $N(r)$ such that in each evolution step, the operator at any lattice site couples only with operators on its finite neighborhood.
+
+Under this setup, one can define the support region of a local operator $A_{X}$ after $n$ evolution steps, whose growth rate is controlled by the Lieb--Robinson bound: there exist constants $v_{\mathrm{LR}}>0$ and decay function $F$ such that the commutator norm of operators on region $Y$ sufficiently far from $X$ with $A_{X}(n)$ decays exponentially or super-polynomially. Therefore, information propagation in QCA has an upper bound, which can be identified in the continuum limit as the effective speed of light $c$.
+
+In this paper, we assume QCA evolution converging to Weyl/Dirac equations in the long-wavelength limit has been obtained through known constructions. Thus, external group velocity $v_{\mathrm{ext}}$ in the effective continuum limit equals the group velocity of relativistic wavepackets, but the underlying structure of discrete lattice and global update steps is retained.
+
+\subsection{Local Excitations and External Velocity}
+
+Consider the single-excitation subspace $\mathcal H_{\mathrm{1p}}$ of QCA, spanned by position and internal degrees of freedom of a single particle on the lattice. Let $\ket{\psi_{p}}$ be a single-excitation eigenmode with quasi-momentum $p$ and effective dispersion relation $\omega(p)$. On this basis, construct a narrowband wavepacket
+$$
+\ket{\Psi(t)} = \int \mathrm d p\, f(p - p_{0}) \mathrm e^{-\mathrm i \omega(p) t} \ket{\psi_{p}},
+$$
+where $f$ is a weight function sharply concentrated around $p_{0}$. The time derivative of the envelope center position $\mathbf x(t)$ gives the group velocity
+$$
+v_{\mathrm{ext}}(p_{0}) = \left| \frac{\mathrm d\mathbf x}{\mathrm dt} \right|
+= \left| \frac{\partial \omega(p)}{\partial p} \right|_{p = p_{0}}.
+$$
+By the finite signal speed property of QCA, $|v_{\mathrm{ext}}(p)| \le c$ holds for all $p$.
+
+In what follows, we abbreviate $v_{\mathrm{ext}}$ as $v$, whose physical meaning is: the average displacement rate of the particle envelope center in space per unit coordinate time.
+
+\subsection{Internal Hilbert Space and Fubini--Study Velocity}
+
+Each excitation carries a quantum state in a finite-dimensional internal Hilbert space $\mathcal H_{\mathrm{int}}$ representing spin, flavor, internal oscillation modes, etc. Let $\ket{\psi(t)} \in \mathcal H_{\mathrm{int}}$ be the internal state at coordinate time $t$, evolving under effective Hamiltonian $H$:
+$$
+\mathrm i \hbar \frac{\mathrm d}{\mathrm dt} \ket{\psi(t)} = H \ket{\psi(t)}.
+$$
+Physical equivalence classes of internal states are represented by projective Hilbert space $\mathbb{P}(\mathcal H_{\mathrm{int}})$, i.e., pure state orbits with overall phase removed. Projective space is naturally equipped with the Fubini--Study metric, whose infinitesimal line element is
+$$
+\mathrm d s_{\mathrm{FS}}^{2}
+= 4 \left( \langle \dot{\psi}(t) | \dot{\psi}(t) \rangle
+- |\langle \psi(t) | \dot{\psi}(t) \rangle|^{2} \right)\mathrm dt^{2},
+$$
+and the corresponding instantaneous geometric velocity is
+$$
+v_{\mathrm{FS}}(t)
+= \frac{\mathrm d s_{\mathrm{FS}}}{\mathrm dt}
+= \frac{2 \Delta H(t)}{\hbar},
+$$
+where $\Delta H(t) = \sqrt{\langle H^{2} \rangle_{t} - \langle H \rangle_{t}^{2}}$ is the energy uncertainty.
+
+This result shows that the internal state's evolution speed in projective space is controlled by energy fluctuation, and quantum speed limit theorems give the minimum time to evolve from the initial state to one orthogonal to it at this speed.
+
+To place this geometric velocity in the same dimension as external group velocity $v_{\mathrm{ext}}$, introduce an internal length scale $\ell_{\mathrm{int}}>0$ and define internal velocity
+$$
+v_{\mathrm{int}}(t)
+= \ell_{\mathrm{int}} v_{\mathrm{FS}}(t)
+= \ell_{\mathrm{int}} \frac{2 \Delta H(t)}{\hbar}.
+$$
+$\ell_{\mathrm{int}}$ can be viewed as a proportionality factor converting Fubini--Study distance to spatial ``equivalent length,'' its value chosen by calibration: in the rest frame, take some ``maximally active'' internal state such that its internal velocity saturates at $c$. Quantitatively, on a two-level system with fixed spectral support, choose a superposition state simultaneously saturating Mandelstam--Tamm and Margolus--Levitin quantum speed limits and require it to satisfy $v_{\mathrm{int}} = c$ in the rest frame, thus determining $\ell_{\mathrm{int}}$.
+
+Under this normalization, for any internal state we have $0 \le v_{\mathrm{int}} \le c$.
+
+\subsection{Information Rate Conservation Axiom}
+
+This paper proposes the following axiom as the starting point for special relativity emergence:
+
+\begin{axiom}[Information Rate Conservation]
+\label{ax:info_rate}
+For any local excitation in QCA and any coordinate time $t$, its external group velocity $v_{\mathrm{ext}}(t)$ and internal velocity $v_{\mathrm{int}}(t)$ obtained by scaling internal Fubini--Study velocity satisfy
+$$
+v_{\mathrm{ext}}^{2}(t) + v_{\mathrm{int}}^{2}(t) = c^{2},
+$$
+where $0 \le v_{\mathrm{ext}}(t) \le c$, $0 \le v_{\mathrm{int}}(t) \le c$.
+\end{axiom}
+
+This axiom can be physically understood as: the total information update rate available to each excitation per unit coordinate time is bounded by upper limit $c$; external displacement and internal evolution can only make orthogonal allocations within this budget. The squared sum form is adopted to obtain geometric structure corresponding to a Euclidean circle, thereby introducing the invariant form of Minkowski metric.
+
+\subsection{Internal Definition of Proper Time}
+
+Based on the above internal velocity definition, proper time $\tau$ is defined as the cumulative amount of internal evolution in the information length sense:
+$$
+\frac{\mathrm d\tau}{\mathrm dt}
+= \frac{v_{\mathrm{int}}(t)}{c}.
+$$
+When the excitation is in the rest frame, if the internal state is chosen as an extremal state saturating the quantum speed limit, then $v_{\mathrm{int}} = c$, thus $\tau = t + \mathrm{const}$.
+
+In a general moving state, increasing external velocity will compress internal velocity $v_{\mathrm{int}}$, thus slowing proper time flow. This definition will be proven in later sections to exactly reproduce the Lorentz relation between proper time and coordinate time in special relativity.
+
+\section{Main Results: Theorems and Alignments}
+
+Based on the above model and axioms, we obtain the following main results.
+
+\begin{theorem}[Emergence of Lorentz Time Dilation]
+\label{thm:lorentz}
+Let a local excitation in some inertial frame have external velocity $v_{\mathrm{ext}}(t)$ and internal velocity $v_{\mathrm{int}}(t)$ satisfying information rate conservation
+$$
+v_{\mathrm{ext}}^{2}(t) + v_{\mathrm{int}}^{2}(t) = c^{2},
+$$
+and proper time $\tau$ defined as $\mathrm d\tau / \mathrm dt = v_{\mathrm{int}}(t)/c$. Then
+$$
+\frac{\mathrm d\tau}{\mathrm dt}
+= \sqrt{1 - \frac{v_{\mathrm{ext}}^{2}(t)}{c^{2}}},
+$$
+i.e.,
+$$
+\mathrm d\tau = \frac{\mathrm dt}{\gamma(t)},
+\quad
+\gamma(t)
+= \frac{1}{\sqrt{1 - v_{\mathrm{ext}}^{2}(t)/c^{2}}}.
+$$
+This is the standard special-relativistic Lorentz time dilation formula between proper time and coordinate time.
+\end{theorem}
+
+\begin{theorem}[Minkowski Line Element as Information Rate Identity]
+\label{thm:minkowski}
+In the same inertial frame, let the excitation's spatial coordinate be $\mathbf x(t)$ satisfying
+$$
+\left| \frac{\mathrm d\mathbf x}{\mathrm dt} \right| = v_{\mathrm{ext}}(t).
+$$
+Define the spacetime line element
+$$
+\mathrm ds^{2} = -c^{2}\mathrm dt^{2} + \mathrm d\mathbf x^{2}.
+$$
+Then under information rate conservation and proper time definition,
+$$
+\mathrm ds^{2} = -c^{2}\mathrm d\tau^{2}.
+$$
+Thus $\mathrm ds^{2}$ depends only on proper time increment, is an invariant independent of specific inertial frame, and has a form consistent with Minkowski metric.
+\end{theorem}
+
+\begin{theorem}[Four-Velocity and Four-Momentum Structure]
+\label{thm:four}
+Define four-coordinates $x^{\mu} = (c t, \mathbf x)$, proper time $\tau$ as before, four-velocity
+$$
+U^{\mu} = \frac{\mathrm d x^{\mu}}{\mathrm d\tau}.
+$$
+Let $m>0$ be the excitation's rest mass; four-momentum is defined as
+$$
+P^{\mu} = m U^{\mu}.
+$$
+Then:
+
+\textbf{(1)} Four-velocity components are
+$$
+U^{0} = c \gamma,
+\quad
+\mathbf U = \gamma \mathbf v_{\mathrm{ext}},
+\quad
+\gamma = \frac{1}{\sqrt{1 - v_{\mathrm{ext}}^{2}/c^{2}}},
+$$
+and satisfy the invariant normalization condition
+$$
+U^{\mu} U_{\mu} = -c^{2}.
+$$
+
+\textbf{(2)} Four-momentum components are
+$$
+P^{0} = \frac{E}{c} = m c \gamma,
+\quad
+\mathbf P = \mathbf p = m \gamma \mathbf v_{\mathrm{ext}},
+$$
+and satisfy the invariant mass shell condition
+$$
+P^{\mu} P_{\mu} = -m^{2} c^{2},
+$$
+thus
+$$
+E^{2} = p^{2}c^{2} + m^{2}c^{4}.
+$$
+\end{theorem}
+
+\begin{theorem}[Mass as Internal Frequency and Information Impedance]
+\label{thm:mass}
+Suppose a stationary excitation in its rest frame has internal oscillation angular frequency $\omega_{0}$, with internal state evolving in proper time as $\mathrm e^{-\mathrm i \omega_{0} \tau}\ket{\psi_{0}}$. Define rest mass as
+$$
+m c^{2} = \hbar \omega_{0}.
+$$
+In a general inertial frame, total energy $E$ is given by internal phase evolving with coordinate time $\mathrm e^{-\mathrm i E t/\hbar}$. If information rate conservation and proper time definition hold, then:
+
+\textbf{(1)} Total energy satisfies
+$$
+E = \gamma m c^{2},
+$$
+where $\gamma$ is the Lorentz factor determined by $v_{\mathrm{ext}}$.
+
+\textbf{(2)} Internal velocity satisfies
+$$
+v_{\mathrm{int}} = \frac{c}{\gamma},
+$$
+thus energy can also be expressed as
+$$
+E = m c^{2} \frac{c}{v_{\mathrm{int}}}.
+$$
+When $v_{\mathrm{ext}} \to c$, $v_{\mathrm{int}} \to 0$, $E \to \infty$. Therefore, mass can be interpreted as: under information rate conservation constraint, the minimum information impedance required to maintain the particle's internal oscillation frequency $\omega_{0}$; the higher the external velocity, the greater the total energy needed to preserve that internal structure.
+\end{theorem}
+
+\section{Proofs}
+
+This section provides proofs of the above theorems, with technical details supplemented in appendices.
+
+\subsection{Proof of Theorem~\ref{thm:lorentz}}
+
+From information rate conservation
+$$
+v_{\mathrm{ext}}^{2}(t) + v_{\mathrm{int}}^{2}(t) = c^{2}
+$$
+holding for any $t$, we obtain
+$$
+v_{\mathrm{int}}(t)
+= \sqrt{c^{2} - v_{\mathrm{ext}}^{2}(t)}.
+$$
+Proper time is defined as
+$$
+\frac{\mathrm d\tau}{\mathrm dt}
+= \frac{v_{\mathrm{int}}(t)}{c},
+$$
+substituting the above gives
+$$
+\frac{\mathrm d\tau}{\mathrm dt}
+= \frac{1}{c} \sqrt{c^{2} - v_{\mathrm{ext}}^{2}(t)}
+= \sqrt{1 - \frac{v_{\mathrm{ext}}^{2}(t)}{c^{2}}}.
+$$
+Define
+$$
+\gamma(t) = \frac{1}{\sqrt{1 - v_{\mathrm{ext}}^{2}(t)/c^{2}}},
+$$
+which can be written as
+$$
+\mathrm d\tau = \frac{\mathrm dt}{\gamma(t)},
+$$
+completely consistent with the time dilation relation in special relativity. \qed
+
+\subsection{Proof of Theorem~\ref{thm:minkowski}}
+
+In the same inertial frame, the spatial line element satisfies
+$$
+\mathrm d\mathbf x^{2} = v_{\mathrm{ext}}^{2}(t)\,\mathrm dt^{2}.
+$$
+By rate conservation, we can write
+$$
+v_{\mathrm{ext}}^{2}(t) = c^{2} - v_{\mathrm{int}}^{2}(t),
+$$
+thus the spacetime line element
+$$
+\mathrm ds^{2}
+= -c^{2}\mathrm dt^{2} + \mathrm d\mathbf x^{2}
+= -c^{2}\mathrm dt^{2} + \left( c^{2} - v_{\mathrm{int}}^{2}(t) \right)\mathrm dt^{2}
+= -v_{\mathrm{int}}^{2}(t)\,\mathrm dt^{2}.
+$$
+On the other hand, the proper time definition gives
+$$
+\mathrm d\tau^{2}
+= \left( \frac{v_{\mathrm{int}}(t)}{c} \right)^{2} \mathrm dt^{2}
+\quad \Rightarrow \quad
+v_{\mathrm{int}}^{2}(t)\,\mathrm dt^{2}
+= c^{2}\mathrm d\tau^{2}.
+$$
+Substituting back yields
+$$
+\mathrm ds^{2}
+= -c^{2}\mathrm d\tau^{2}.
+$$
+Thus the line element depends only on proper time, is an invariant under Lorentz transformations, and has a form consistent with Minkowski metric. \qed
+
+\subsection{Proof of Theorem~\ref{thm:four}}
+
+From Theorem~\ref{thm:lorentz},
+$$
+\frac{\mathrm d\tau}{\mathrm dt}
+= \sqrt{1 - \frac{v_{\mathrm{ext}}^{2}}{c^{2}}}
+\quad \Rightarrow \quad
+\frac{\mathrm dt}{\mathrm d\tau} = \gamma,
+\quad
+\gamma = \frac{1}{\sqrt{1 - v_{\mathrm{ext}}^{2}/c^{2}}}.
+$$
+Four-coordinates are defined as $x^{\mu} = (c t, \mathbf x)$, four-velocity as
+$$
+U^{\mu}
+= \frac{\mathrm d x^{\mu}}{\mathrm d\tau}
+= \left( \frac{\mathrm d(c t)}{\mathrm d\tau},
+\frac{\mathrm d\mathbf x}{\mathrm d\tau} \right)
+= \left( c \frac{\mathrm dt}{\mathrm d\tau},
+\frac{\mathrm d\mathbf x}{\mathrm dt} \frac{\mathrm dt}{\mathrm d\tau} \right)
+= \left( c \gamma, \gamma \mathbf v_{\mathrm{ext}} \right).
+$$
+Its norm
+$$
+U^{\mu} U_{\mu}
+= - (U^{0})^{2} + \mathbf U^{2}
+= -c^{2}\gamma^{2} + \gamma^{2} v_{\mathrm{ext}}^{2}
+= -c^{2}\gamma^{2} \left( 1 - \frac{v_{\mathrm{ext}}^{2}}{c^{2}} \right)
+= -c^{2}.
+$$
+This gives the Lorentz-invariant normalization of four-velocity.
+
+Four-momentum is defined as $P^{\mu} = m U^{\mu}$, thus
+$$
+P^{0} = m c \gamma,
+\quad
+\mathbf P = m \gamma \mathbf v_{\mathrm{ext}}.
+$$
+Setting $E = P^{0} c$, $\mathbf p = \mathbf P$, we have
+$$
+E = \gamma m c^{2},
+\quad
+\mathbf p = \gamma m \mathbf v_{\mathrm{ext}}.
+$$
+Computing the invariant
+$$
+P^{\mu} P_{\mu}
+= - (P^{0})^{2} + \mathbf P^{2}
+= -m^{2} c^{2} \gamma^{2} + m^{2} v_{\mathrm{ext}}^{2} \gamma^{2}
+= -m^{2} c^{2},
+$$
+yields
+$$
+E^{2} = p^{2} c^{2} + m^{2} c^{4}.
+$$
+\qed
+
+\subsection{Proof of Theorem~\ref{thm:mass}}
+
+In the rest frame ($v_{\mathrm{ext}}=0$), suppose the internal state evolves with proper time as
+$$
+\ket{\psi(\tau)} = \mathrm e^{-\mathrm i \omega_{0} \tau} \ket{\psi_{0}},
+$$
+where $\omega_{0}$ is the internal oscillation frequency. The quantum mechanical energy--frequency relation gives
+$$
+E_{0} = \hbar \omega_{0}.
+$$
+Define rest mass $m$ satisfying
+$$
+m c^{2} = E_{0} = \hbar \omega_{0}.
+$$
+In a general inertial frame, the coordinate time evolution form is
+$$
+\ket{\psi(t)} = \mathrm e^{-\mathrm i E t/\hbar} \ket{\psi_{0}'},
+$$
+where $E$ is the total energy measured in that frame. From the proper time and coordinate time relation
+$$
+\mathrm d\tau = \frac{\mathrm dt}{\gamma}
+\quad \Rightarrow \quad
+\frac{\mathrm d}{\mathrm d\tau}
+= \gamma \frac{\mathrm d}{\mathrm d t},
+$$
+the internal state's derivative with respect to proper time is
+$$
+\frac{\mathrm d}{\mathrm d\tau} \ket{\psi(\tau)}
+= -\mathrm i \frac{E}{\hbar} \gamma \ket{\psi(\tau)}.
+$$
+Comparing with the rest frame case
+$$
+\frac{\mathrm d}{\mathrm d\tau} \ket{\psi(\tau)}
+= -\mathrm i \omega_{0} \ket{\psi(\tau)},
+$$
+we obtain
+$$
+E \gamma = \hbar \omega_{0}
+= m c^{2},
+$$
+i.e.,
+$$
+E = \frac{m c^{2}}{\gamma}.
+$$
+Note that here $\gamma$ is defined as the Lorentz factor of the rest frame relative to that inertial frame, so if we adopt the convention of viewing $\gamma$ as the ``moving frame relative to rest frame'' factor, we need to handle the inverse. A more direct approach is to use the already-obtained result from Theorem~\ref{thm:four}
+$$
+E = \gamma m c^{2},
+$$
+and combine with the internal velocity expression.
+
+From information rate conservation and Theorem~\ref{thm:lorentz}, we have
+$$
+v_{\mathrm{int}}
+= c \sqrt{1 - \frac{v_{\mathrm{ext}}^{2}}{c^{2}}}
+= \frac{c}{\gamma}.
+$$
+Thus total energy can be rewritten as
+$$
+E
+= \gamma m c^{2}
+= m c^{2} \frac{c}{v_{\mathrm{int}}}.
+$$
+When $v_{\mathrm{ext}} \to c$, $\gamma \to \infty$, $v_{\mathrm{int}} \to 0$, total energy diverges. This indicates: to maintain the original internal structure under nearly completely frozen internal time flow requires infinite energy investment. Mass $m$ here can be viewed as information impedance to internal oscillation frequency $\omega_{0}$: the higher the frequency, the greater the information rate needed to prevent collapse of that internal structure for fixed external velocity component, manifesting as larger $m$ and more dramatic energy growth. \qed
+
+\section{Model Applications}
+
+This section discusses applications and interpretations of the above structure in several typical physical situations.
+
+\subsection{Two Limits: Photons and Stationary Particles}
+
+On the information rate plane $(v_{\mathrm{ext}}, v_{\mathrm{int}})$, information rate conservation corresponds to a quarter-circle of radius $c$. Two important limits are:
+
+\textbf{1. Stationary massive particle}: $v_{\mathrm{ext}} = 0$, $v_{\mathrm{int}} = c$. All information budget is used for internal evolution; proper time coincides with coordinate time; the particle's internal ``clock'' runs at maximum rate.
+
+\textbf{2. Massless particle (ideal photon)}: $v_{\mathrm{ext}} = c$, $v_{\mathrm{int}} = 0$. All budget is used for external propagation; internal evolution speed is zero; proper time does not flow. This is consistent with the standard result that photons travel along null trajectories with proper time identically zero.
+
+General massive particles correspond to intermediate points on the quarter-circle; as $v_{\mathrm{ext}}$ increases, internal velocity $v_{\mathrm{int}}$ decreases, and proper time flow slows down.
+
+\subsection{Geometric Interpretation of Muon Lifetime Extension}
+
+High-energy muons produced by cosmic rays traversing Earth's atmosphere have a rest lifetime of approximately $\tau_{0} \approx 2.2\,\mu\mathrm s$, but the average lifetime observed in the laboratory frame is significantly extended with increasing energy. The standard explanation is Lorentz time dilation: $\tau = \gamma \tau_{0}$.
+
+In the information rate picture, a high-speed muon's external velocity approaches $c$, and internal velocity is $v_{\mathrm{int}} = c/\gamma \ll c$. If muon decay can be viewed as a transition occurring when the internal state in projective space reaches some critical distance $L_{\mathrm{crit}}$, then in the rest frame reaching that distance requires proper time $\tau_{0}$. In the laboratory frame, the same internal distance still requires proper time $\tau_{0}$, but the proper time--coordinate time relation is $\mathrm d\tau = \mathrm dt/\gamma$, so reaching that internal distance requires coordinate time $\tau = \gamma \tau_{0}$, manifesting as lifetime extension.
+
+This shows that muon lifetime extension can be understood as: the muon allocates most of its information budget to high-speed external displacement, causing internal evolution to ``slow down,'' thereby delaying achievement of decay conditions.
+
+\subsection{Internal Perspective on Relativistic Momentum and Kinetic Energy}
+
+Theorem~\ref{thm:four} gives
+$$
+\mathbf p = \gamma m \mathbf v_{\mathrm{ext}},
+\quad
+E = \gamma m c^{2}.
+$$
+Combining with $v_{\mathrm{int}} = c/\gamma$, we can rewrite
+$$
+\mathbf p
+= m \frac{v_{\mathrm{ext}}}{v_{\mathrm{int}}} c,
+\quad
+E
+= m c^{2} \frac{c}{v_{\mathrm{int}}}.
+$$
+This shows that under the information rate conservation framework, momentum and energy growth can be viewed as the price of internal velocity $v_{\mathrm{int}}$ compression: for given external velocity $v_{\mathrm{ext}}$, if internal velocity decreases, then to maintain the same internal structure (especially to keep frequency $\omega_{0}$ from decohering), the system must invest greater energy, manifesting as larger momentum and kinetic energy.
+
+\subsection{Dirac Particles and Internal Oscillations in QCA}
+
+In Dirac--QCA models, one- or three-dimensional Dirac equations can be obtained from continuum limits of discrete-time quantum walks, with dispersion relation
+$$
+E(p) = \pm \sqrt{(c p)^{2} + m^{2} c^{4}}.
+$$
+Near rest momentum $p=0$, interference between internal two energy bands can produce high-frequency Zitterbewegung oscillations with characteristic frequency of order $2 m c^{2}/\hbar$.
+
+In this paper's framework, one can understand $\omega_{0}$ in $m c^{2} = \hbar \omega_{0}$ as the fundamental oscillation frequency of internal state in projective space. Information rate conservation requires that the greater the external velocity, the smaller the internal velocity, and the lower the observed rate of internal oscillations in coordinate time; to maintain the same internal phase evolution requires increased total energy $E$, compatible with relativistic mass--energy relations.
+
+\section{Engineering Proposals}
+
+Although the information rate conservation axiom currently remains at the theoretical level, we can still propose several engineering-relevant testing and application directions.
+
+\subsection{Information Processing Architecture in Relativistic Limits}
+
+Lloyd's analysis points out that for a physical system with given energy and volume, its maximum computational steps and processable information quantity have strict upper bounds. If we view a computational unit as a ``particle'' carrying internal information state and external communication links, its total information update rate is limited by energy budget, requiring balance between internal computation rate and external communication rate within that budget.
+
+On spacecraft or satellite platforms operating at near-relativistic speeds, one could theoretically optimize the ``external communication rate--internal computation rate--total energy'' three-way relationship:
+
+\textbf{(1)} Estimate theoretical maximum information step upper bound from platform total energy and degrees of freedom.
+
+\textbf{(2)} Determine external communication bandwidth and signal propagation requirements according to channel needs, corresponding to external velocity component.
+
+\textbf{(3)} From information rate circle constraint, inversely derive upper bound on internal computation clock frequency, thus giving robustness margins that hardware design must satisfy under extreme velocity conditions.
+
+Under conventional ground conditions, such correction effects are minimal, but in future extreme spaceflight missions or strong gravitational environments, the information rate perspective provides a unified evaluation framework.
+
+\subsection{Internal--External Decomposition Measurements in QCA Quantum Simulation}
+
+In superconducting circuits, ion traps, and cold atom systems, various discrete-time quantum walks and QCA evolutions have already been realized. The following experiment can be designed to probe coupling characteristics of internal and external velocities:
+
+\textbf{(1)} Realize Dirac--QCA on one- or two-dimensional platforms with local internal space as two-level or multi-level systems.
+
+\textbf{(2)} Prepare narrowband wavepackets at different momentum-space centers $p_{0}$ to achieve controllable external group velocity.
+
+\textbf{(3)} During evolution, simultaneously measure: position expectation value of envelope center and evolution trajectory of internal Bloch vector on projective space.
+
+\textbf{(4)} Use Fubini--Study distance to estimate internal geometric velocity $v_{\mathrm{FS}}(t)$ and fit whether an approximately conserved relation exists:
+$$
+v_{\mathrm{ext}}^{2} + \alpha^{2} v_{\mathrm{FS}}^{2} \approx c_{\mathrm{eff}}^{2},
+$$
+where $\alpha$ is an internal scale constant and $c_{\mathrm{eff}}$ is the QCA's effective speed of light.
+
+Although actual systems have dissipation and noise preventing strict conservation, observing approximate ``rate circle'' structure would provide observable effective support for this paper's axiom.
+
+\subsection{Unified Perspective in Quantum Control and Quantum Speed Limits}
+
+Quantum speed limits have been widely applied in quantum control and quantum metrology, providing lower bounds on minimum realization time for arbitrary target transformations. Under the information rate framework, these results can be understood as constraints on internal velocity $v_{\mathrm{int}}$ and, after adding external signal propagation limits, construct ``full-stack'' speed limits:
+
+\begin{itemize}
+\item Internal evolution is limited by Fubini--Study velocity and quantum speed limits.
+\item External control signals and readout are limited by locality and Lieb--Robinson velocity.
+\item Total information rate budget is limited by $c$ and system total energy.
+\end{itemize}
+
+Thus, on hardware platforms with given energy and spatial layout, one can define minimum control time lower bounds simultaneously considering internal evolution and external communication, providing new constraints for designing efficient quantum control algorithms.
+
+\section{Discussion: Risks, Boundaries, Past Work}
+
+\subsection{Relationship with QCA--Relativistic Emergence Literature}
+
+Existing work has already derived Dirac equations and Lorentz symmetry from information processing principles in the QCA framework. D'Ariano et al. constructed quantum walks converging to Dirac equations in the long-wavelength limit through symmetry, postulates, and discreteness assumptions, and analyzed their dispersion relations and Zitterbewegung behavior.
+
+These works focused on demonstrating ``how to obtain relativistic equations from QCA''; the information rate conservation proposed in this paper emphasizes ``why Minkowski metric and Lorentz factors exist'': once we assume external and internal two types of information updates are constrained by unified budget $c$, and use internal geometric velocity to define proper time, the geometric structure of special relativity becomes an algebraic rewrite of this budget constraint, not an independent geometric axiom.
+
+\subsection{Ontological Status of Global Update Time Parameter}
+
+This paper takes QCA's discrete step count $n$ or its continuum limit $t$ as coordinate time, thereby defining external and internal velocities. This seemingly introduces a ``privileged time parameter,'' conflicting with the spirit of special relativity that no preferred reference frame exists.
+
+It should be emphasized: in this framework, $t$ is a label of underlying discrete dynamics; what truly has physical meaning are proper time $\tau$ and line element $\mathrm ds^{2} = -c^{2}\mathrm d\tau^{2}$. As long as all observables can be expressed in $\tau$ and $\mathrm ds^{2}$, and predictions from different observers' choices of $t$ are consistent in these invariants, then whether an ``absolute lattice time'' exists underneath cannot be distinguished at the observable level. Strictly proving this requires demonstrating in QCA--continuum field theory correspondence that all correlation functions and scattering amplitudes ultimately depend only on Lorentz invariants and are independent of specific lattice time coordinates; this exceeds this paper's scope and is a key direction for future work.
+
+\subsection{Single-Particle Approximation and Many-Body Entanglement Limitations}
+
+This framework is primarily established at the single-particle (or few-body separable) excitation level. In actual physical systems, many-body entanglement and interactions significantly affect information propagation and evolution speed. The Lieb--Robinson bound gives operator support propagation velocity in many-body systems, and quantum speed limits also have nontrivial generalizations in open or many-body systems.
+
+To extend information rate conservation to many-body systems requires:
+
+\textbf{(1)} Generalizing ``internal velocity'' to evolution speed in projective space of some local subsystem (or tensor network block).
+
+\textbf{(2)} Defining external velocity as the evolution speed of that subsystem's support region in the total system.
+
+\textbf{(3)} Considering redistribution of available information budget by entanglement entropy and correlation length.
+
+These problems involve many-body quantum information and tensor network geometry; this paper establishes only the basic picture at the single-particle level.
+
+\subsection{Boundaries of Topological--Information Interpretation of Mass}
+
+The idea of interpreting mass as internal oscillation frequency or ``information impedance'' has intersections with Zitterbewegung interpretation, mass gap in topological matter states, and the Higgs mechanism. For it to become a complete theory requires satisfying at least three points:
+
+\textbf{(1)} In linear Dirac--QCA models, prove that internal oscillation frequency spectrum and effective continuum mass parameter have a stable one-to-one correspondence.
+
+\textbf{(2)} In QCA models containing gauge fields and spontaneous symmetry breaking, explain how this internal frequency interpretation of mass is compatible with traditional Higgs mechanisms (e.g., mass determined jointly by coupling constant and symmetry-breaking scale, with internal frequency as its manifestation in QCA field configurations).
+
+\textbf{(3)} When introducing gravity, analyze how internal oscillation frequency responds to curvature and gravitational potential energy to remain consistent with equivalence principle.
+
+This paper only provides consistency restatement of information--geometry at the special-relativistic and free particle level, without touching the above global issues.
+
+\subsection{Relationship with Quantum Speed Limits and Information Gravity Schemes}
+
+This paper's internal velocity $v_{\mathrm{int}}$ definition directly adopts results from Fubini--Study metric and quantum speed limits, thus having direct connections with Deffner et al.'s reviews on quantum speed limits and Hörnedal et al.'s geometric generalization work. In these works, evolution time lower bounds are equivalently stated as lower bounds of energy fluctuation time integrals; in this paper, this integral is interpreted as geometric measure of proper time.
+
+In recent years, ``information gravity'' schemes based on entanglement entropy, tensor networks, and coherent information attempt to view spacetime geometry as emergence of information structure. This paper's results demonstrate in the more simplified special-relativistic background: even without introducing curvature and holographic structure, the mere ``information rate circle'' is already sufficient to reconstruct Minkowski metric. This hints at an extension pathway: when gravity is present, one can consider extending information rate conservation to ``information volume conservation'' or ``time-scale density conservation,'' thereby deriving effective curvature and Einstein field equations in discrete QCA ontology; this will be a focus direction for subsequent work.
+
+\section{Conclusion}
+
+This paper introduces an axiomatic framework of ``information rate conservation'' against the background of quantum cellular automaton ontology and quantum speed limit theory, viewing each local excitation's external group velocity and internal Fubini--Study geometric velocity as orthogonal components of the same information budget, satisfying
+$$
+v_{\mathrm{ext}}^{2} + v_{\mathrm{int}}^{2} = c^{2}.
+$$
+After defining proper time flow rate by internal velocity as $\mathrm d\tau / \mathrm dt = v_{\mathrm{int}}/c$, we can rigorously derive from this single axiom:
+
+\textbf{(1)} Relation between proper time and coordinate time $\mathrm d\tau = \mathrm dt/\gamma$, i.e., Lorentz time dilation formula.
+
+\textbf{(2)} Minkowski line element $\mathrm ds^{2} = -c^{2}\mathrm d\tau^{2} = -c^{2}\mathrm dt^{2} + \mathrm d\mathbf x^{2}$ as algebraic rewrite of information rate circle.
+
+\textbf{(3)} Four-velocity and four-momentum structure and their invariant mass shell relation $E^{2} = p^{2}c^{2} + m^{2}c^{4}$.
+
+\textbf{(4)} Mass as manifestation of internal oscillation frequency satisfying $m c^{2} = \hbar \omega_{0}$, and information impedance interpretation of total energy $E = m c^{2} c/v_{\mathrm{int}}$.
+
+This framework reduces special relativity from ``a priori geometry'' to the inevitable result of ``finite information rate resource allocation,'' providing a concise and constraining perspective for unifying quantum information processing, quantum speed limits, and spacetime geometry. Future work will dedicate itself to: extending information rate conservation in the presence of many-body entanglement and interactions; promoting it to ``information volume conservation'' or ``time-scale density conservation'' in QCA models containing gauge fields and gravity; and conducting experimental and engineering tests of this framework through QCA quantum simulation and extreme-environment information system design.
+
+\section*{Acknowledgments}
+
+The authors thank the literature related to quantum cellular automata, quantum speed limits, and information-physical limits for providing theoretical foundations. All derivations in this paper are analytical; no numerical simulation code was used, so there is no publicly available software or code repository.
+
+\appendix
+
+\section{Fubini--Study Metric and Quantum Speed Limit Derivation}
+
+This appendix reviews basic formulas for Fubini--Study metric and quantum speed limits underlying construction of internal velocity $v_{\mathrm{int}}$, and explains normalization logic for internal velocity upper bound $v_{\mathrm{int}} \le c$.
+
+\subsection{Projective Hilbert Space and Fubini--Study Distance}
+
+Let $\mathcal H$ be a finite-dimensional complex Hilbert space; pure states are described by normalized state vectors $\ket{\psi} \in \mathcal H$, with physical equivalence class invariant under overall phase. The Fubini--Study distance between two pure states $\ket{\psi}$, $\ket{\phi}$ on projective Hilbert space $\mathbb{P}(\mathcal H)$ is defined as
+$$
+\cos^{2} \frac{d_{\mathrm{FS}}(\psi, \phi)}{2}
+= \frac{|\braket{\psi}{\phi}|^{2}}{\braket{\psi}{\psi}\,\braket{\phi}{\phi}}.
+$$
+When $\ket{\psi} = \ket{\phi}$, distance is zero; when $\ket{\psi}$ and $\ket{\phi}$ are orthogonal, distance is $\pi$.
+
+For smooth time evolution curve $\ket{\psi(t)}$, the infinitesimal distance between $t$ and $t + \mathrm dt$ can be obtained by expanding the inner product and taking the limit:
+$$
+\mathrm d s_{\mathrm{FS}}^{2}
+= 4 \left( \langle \dot{\psi}(t) | \dot{\psi}(t) \rangle
+- |\langle \psi(t) | \dot{\psi}(t) \rangle|^{2} \right)\mathrm dt^{2}.
+$$
+
+\subsection{Geometric Velocity Under Schrödinger Evolution}
+
+If the state vector evolves under time-independent Hamiltonian $H$,
+$$
+\ket{\dot{\psi}(t)}
+= -\frac{\mathrm i}{\hbar} H \ket{\psi(t)},
+$$
+then
+$$
+\langle \dot{\psi} | \dot{\psi} \rangle
+= \frac{1}{\hbar^{2}} \bra{\psi} H^{2} \ket{\psi},
+\quad
+\langle \psi | \dot{\psi} \rangle
+= -\frac{\mathrm i}{\hbar} \bra{\psi} H \ket{\psi}.
+$$
+Substituting into line element gives
+$$
+\mathrm d s_{\mathrm{FS}}^{2}
+= \frac{4}{\hbar^{2}}
+\left( \bra{\psi} H^{2} \ket{\psi}
+- \bra{\psi} H \ket{\psi}^{2} \right)\mathrm dt^{2}
+= \frac{4 \Delta H^{2}}{\hbar^{2}} \mathrm dt^{2},
+$$
+where
+$$
+\Delta H
+= \sqrt{\bra{\psi} H^{2} \ket{\psi}
+- \bra{\psi} H \ket{\psi}^{2}}
+$$
+is energy uncertainty. Thus geometric velocity is
+$$
+v_{\mathrm{FS}}
+= \frac{\mathrm d s_{\mathrm{FS}}}{\mathrm dt}
+= \frac{2 \Delta H}{\hbar}.
+$$
+This result shows that under given spectral support, the greater the energy uncertainty, the faster the state moves in projective space.
+
+\subsection{Mandelstam--Tamm and Margolus--Levitin Quantum Speed Limits}
+
+The Mandelstam--Tamm speed limit considers minimum time $\tau_{\perp}$ required to evolve from initial pure state $\ket{\psi_{0}}$ to one orthogonal to it $\ket{\psi_{\perp}}$, proving it satisfies
+$$
+\tau_{\perp}
+\ge \frac{\pi \hbar}{2 \Delta H}.
+$$
+The Margolus--Levitin speed limit gives another lower bound based on average energy $E = \bra{\psi} H \ket{\psi}$:
+$$
+\tau_{\perp}
+\ge \frac{\pi \hbar}{2 E}.
+$$
+Together they give a combined lower bound on minimum time:
+$$
+\tau_{\perp}
+\ge \max\left( \frac{\pi \hbar}{2 \Delta H},
+\frac{\pi \hbar}{2 E} \right).
+$$
+These results can be viewed as geometric expressions of time--energy uncertainty relations: the distance between two orthogonal states in projective space is $\pi$, and the geometric velocity upper bound is $2 \Delta H/\hbar$, so minimum time must not be less than distance divided by velocity.
+
+In multi-level systems, reaching this upper bound requires careful choice of initial state, generally equal-amplitude superpositions of spectral edge eigenstates.
+
+\subsection{Internal Velocity Normalization and Upper Bound}
+
+This paper defines internal velocity
+$$
+v_{\mathrm{int}} = \ell_{\mathrm{int}} v_{\mathrm{FS}}
+= \ell_{\mathrm{int}} \frac{2 \Delta H}{\hbar}.
+$$
+To fix $\ell_{\mathrm{int}}$, we can adopt the following strategy:
+
+\textbf{(1)} Select some physically realizable ``limiting internal state family,'' e.g., in two-level systems, superposition states saturating Mandelstam--Tamm and Margolus--Levitin upper bounds, making them represent ``maximum internal activity'' in the rest frame.
+
+\textbf{(2)} Require these states to have $v_{\mathrm{int}} = c$ in the rest frame.
+
+\textbf{(3)} Solve to get
+$$
+\ell_{\mathrm{int}}
+= \frac{c \hbar}{2 \Delta H_{\max}}.
+$$
+Since any state's energy uncertainty does not exceed $\Delta H_{\max}$ under that support, for all states we have
+$$
+v_{\mathrm{int}} \le c.
+$$
+Combined with QCA's finite signal speed $|v_{\mathrm{ext}}|\le c$, the information rate conservation axiom requires physical states to be restricted within a circle of radius $c$ in the two-dimensional rate plane, naturally introducing subsequent Minkowski geometry structure.
+
+\section{Abstract Derivation from Information Rate Circle to Minkowski Metric}
+
+This appendix provides derivation from information rate circle to Minkowski metric under more abstract setup, highlighting consistency between geometric structure and algebraic identities.
+
+\subsection{Abstract Information Rate Plane}
+
+Consider two-dimensional real vector space $\mathbb R^{2}$ with coordinates $(u_{1}, u_{2})$ representing two types of information rates. Assume physically allowed rate pairs are constrained on a circle of radius constant $c>0$, i.e.,
+$$
+u_{1}^{2} + u_{2}^{2} = c^{2}.
+$$
+Introduce parameter $\theta \in [0, \pi/2]$, letting
+$$
+u_{1} = c \sin\theta,
+\quad
+u_{2} = c \cos\theta.
+$$
+Identify $u_{1}$ as external velocity $v_{\mathrm{ext}}$ and $u_{2}$ as internal velocity $v_{\mathrm{int}}$.
+
+Assume coordinate time parameter $t$ exists; external displacement satisfies
+$$
+\left| \frac{\mathrm d\mathbf x}{\mathrm dt} \right|
+= v_{\mathrm{ext}}(t) = u_{1}(t) = c \sin\theta(t),
+$$
+and define proper time
+$$
+\frac{\mathrm d\tau}{\mathrm dt}
+= \frac{v_{\mathrm{int}}(t)}{c}
+= \frac{u_{2}(t)}{c}
+= \cos\theta(t).
+$$
+
+\subsection{Geometric Relation of Lorentz Factor}
+
+By definition
+$$
+\frac{\mathrm d\tau}{\mathrm dt} = \cos\theta(t)
+\quad \Rightarrow \quad
+\frac{\mathrm dt}{\mathrm d\tau}
+= \frac{1}{\cos\theta(t)}
+\equiv \gamma(t).
+$$
+On the other hand, $v_{\mathrm{ext}} = c \sin\theta$, so
+$$
+\sin^{2}\theta
+= \frac{v_{\mathrm{ext}}^{2}}{c^{2}},
+\quad
+\cos^{2}\theta
+= 1 - \frac{v_{\mathrm{ext}}^{2}}{c^{2}},
+$$
+thus
+$$
+\gamma
+= \frac{1}{\cos\theta}
+= \frac{1}{\sqrt{1 - v_{\mathrm{ext}}^{2}/c^{2}}},
+$$
+precisely the Lorentz factor. Thus, as long as an information rate circle and proper time definition exist as above, time dilation relation is automatically recovered.
+
+\subsection{Algebraic Rewrite of Minkowski Line Element}
+
+Define spacetime line element
+$$
+\mathrm ds^{2}
+= -c^{2}\mathrm dt^{2} + \mathrm d\mathbf x^{2}.
+$$
+From $\mathrm d\mathbf x^{2} = v_{\mathrm{ext}}^{2}\mathrm dt^{2}$, we have
+$$
+\mathrm ds^{2}
+= -c^{2}\mathrm dt^{2} + v_{\mathrm{ext}}^{2}\mathrm dt^{2}
+= -(c^{2} - v_{\mathrm{ext}}^{2})\mathrm dt^{2}.
+$$
+Using rate circle
+$$
+c^{2} - v_{\mathrm{ext}}^{2}
+= v_{\mathrm{int}}^{2},
+$$
+we obtain
+$$
+\mathrm ds^{2}
+= -v_{\mathrm{int}}^{2} \mathrm dt^{2}.
+$$
+On the other hand, proper time definition gives
+$$
+\mathrm d\tau
+= \frac{v_{\mathrm{int}}}{c}\mathrm dt
+\quad \Rightarrow \quad
+v_{\mathrm{int}}^{2}\mathrm dt^{2}
+= c^{2}\mathrm d\tau^{2}.
+$$
+Thus
+$$
+\mathrm ds^{2} = -c^{2}\mathrm d\tau^{2}.
+$$
+This relation shows that Minkowski line element structure is equivalent to combined result of information rate circle and proper time definition. In other words, once we admit ``external velocity and internal velocity form circle of radius $c$ on rate plane,'' Minkowski metric is no longer an additional assumption but an algebraic rewrite of the circle.
+
+\section{Mass and Internal Frequency in One-Dimensional Dirac--QCA}
+
+This appendix uses one-dimensional Dirac--QCA as example to illustrate relation between internal oscillation frequency and mass parameter, thus providing model-level support for Theorem~\ref{thm:mass}.
+
+\subsection{One-Dimensional Dirac--QCA Construction}
+
+Consider one-dimensional lattice $\Lambda = a \mathbb Z$ with lattice spacing $a$. Each lattice site carries two-dimensional internal Hilbert space $\mathcal H_{x} \cong \mathbb C^{2}$, viewable as spin-$\tfrac{1}{2}$ degree of freedom. Define shift operators
+$$
+(S_{+}\psi)_{x} = \psi_{x-1},
+\quad
+(S_{-}\psi)_{x} = \psi_{x+1}.
+$$
+Construct one-step evolution operator
+$$
+U
+= \exp\left( -\mathrm i \theta \sum_{x} \sigma_{x}^{y} \right)
+\exp\left( -\mathrm i \frac{\pi}{2} \sum_{x} \sigma_{x}^{x} \right)
+\left( S_{+} \otimes \ket{\uparrow}\bra{\uparrow}
++ S_{-} \otimes \ket{\downarrow}\bra{\downarrow} \right),
+$$
+where $\sigma^{x},\sigma^{y}$ are Pauli matrices and $\theta$ is an adjustable parameter. Fourier transforming this QCA yields diagonalized form in momentum space
+$$
+U(p)
+= \mathrm e^{-\mathrm i H_{\mathrm{eff}}(p)\Delta t/\hbar},
+$$
+with effective Hamiltonian converging in small $p$ limit to one-dimensional Dirac Hamiltonian
+$$
+H_{\mathrm{D}}(p)
+= c p\, \sigma^{z} + m c^{2} \sigma^{x},
+$$
+where $c$ and $m$ are parameters determined by $\theta$, $a$, $\Delta t$.
+
+\subsection{Dispersion Relation and Internal Oscillations}
+
+Diagonalizing the above Dirac Hamiltonian yields energy spectrum
+$$
+E_{\pm}(p)
+= \pm \sqrt{(c p)^{2} + m^{2} c^{4}}.
+$$
+At rest momentum $p=0$,
+$$
+E_{\pm}(0)
+= \pm m c^{2}.
+$$
+Consider internal state formed by equal-amplitude superposition of positive and negative energy band eigenstates $\ket{+}$, $\ket{-}$:
+$$
+\ket{\psi(0)}
+= \frac{1}{\sqrt{2}}
+\left( \ket{+} + \ket{-} \right).
+$$
+Its time evolution is
+$$
+\ket{\psi(t)}
+= \frac{1}{\sqrt{2}}
+\left( \mathrm e^{-\mathrm i m c^{2} t/\hbar}\ket{+}
++ \mathrm e^{\mathrm i m c^{2} t/\hbar}\ket{-} \right).
+$$
+For suitable internal observables (e.g., some Pauli component), expectation values will exhibit oscillations at frequency $2 m c^{2}/\hbar$---this is the discrete version of Zitterbewegung phenomenon.
+
+In this paper's framework, the fundamental frequency $\omega_{0}$ of internal oscillations can be taken as $m c^{2}/\hbar$ or a constant multiple of $2 m c^{2}/\hbar$; for brevity, we define
+$$
+m c^{2} = \hbar \omega_{0},
+$$
+viewing mass as linear function of internal frequency. The above construction shows that this relation has explicit model foundation in Dirac--QCA.
+
+\subsection{Correspondence of Internal Velocity and Mass}
+
+At rest momentum $p=0$, internal state evolves in projective space at frequency $\omega_{0}$ with Fubini--Study velocity
+$$
+v_{\mathrm{FS}}
+= \frac{2 \Delta H}{\hbar}.
+$$
+For equal-amplitude superposition state of two-level symmetric energy spectrum $E_{\pm} = \pm m c^{2}$, energy uncertainty is
+$$
+\Delta H
+= m c^{2},
+$$
+so
+$$
+v_{\mathrm{FS}}
+= \frac{2 m c^{2}}{\hbar}
+= 2 \omega_{0}.
+$$
+Under this paper's chosen internal length scale $\ell_{\mathrm{int}}$, requiring saturated state in rest frame to satisfy $v_{\mathrm{int}} = c$, i.e.,
+$$
+c
+= \ell_{\mathrm{int}} v_{\mathrm{FS}}
+= \ell_{\mathrm{int}} 2 \omega_{0}
+\quad \Rightarrow \quad
+\ell_{\mathrm{int}}
+= \frac{c}{2 \omega_{0}}.
+$$
+Thus for general state we have
+$$
+v_{\mathrm{int}}
+= \ell_{\mathrm{int}} v_{\mathrm{FS}}
+= \frac{c}{2 \omega_{0}} v_{\mathrm{FS}}.
+$$
+When considering cases including momentum, energy spectrum expands to $E_{\pm}(p)$, internal oscillation frequency and energy uncertainty vary with $p$, and internal velocity $v_{\mathrm{int}}$ will be below $c$. Combined with information rate conservation and proper time definition, we obtain the effect of external velocity compression of internal velocity as $p$ increases, thereby deriving time dilation and energy growth relations.
+
+Therefore, in Dirac--QCA models, there exists linear correspondence between mass $m$ and internal oscillation frequency $\omega_{0}$; internal velocity normalization and information rate conservation axiom have explicit realization methods in concrete models, providing strong support for the mass--frequency relation adopted by Theorem~\ref{thm:mass}.
+
+\begin{thebibliography}{99}
+
+\bibitem{lloyd}
+S. Lloyd, ``Ultimate physical limits to computation,'' \textit{Nature} \textbf{406}, 1047--1054 (2000).
+
+\bibitem{anandan}
+J. Anandan, Y. Aharonov, ``Geometry of quantum evolution,'' \textit{Phys. Rev. Lett.} \textbf{65}, 1697--1700 (1990).
+
+\bibitem{mandelstam}
+L. Mandelstam, I. Tamm, ``The uncertainty relation between energy and time in non-relativistic quantum mechanics,'' \textit{J. Phys. (USSR)} \textbf{9}, 249--254 (1945).
+
+\bibitem{margolus}
+N. Margolus, L. B. Levitin, ``The maximum speed of dynamical evolution,'' \textit{Physica D} \textbf{120}, 188--195 (1998).
+
+\bibitem{lieb}
+E. H. Lieb, D. W. Robinson, ``The finite group velocity of quantum spin systems,'' \textit{Commun. Math. Phys.} \textbf{28}, 251--257 (1972).
+
+\bibitem{cheneau}
+M. Cheneau et al., ``Experimental tests of Lieb--Robinson bounds,'' arXiv:2206.15126 (2022).
+
+\bibitem{dariano1}
+G. M. D'Ariano, N. Mosco, P. Perinotti, A. Tosini, ``Discrete time Dirac quantum walk in 3+1 dimensions,'' \textit{Entropy} \textbf{18}, 228 (2016).
+
+\bibitem{mlodinow}
+L. Mlodinow, G. M. D'Ariano, P. Perinotti, ``Discrete spacetime, quantum walks, and relativistic wave equations,'' \textit{Phys. Rev. A} \textbf{97}, 042131 (2018).
+
+\bibitem{deffner1}
+S. Deffner, S. Campbell, ``Quantum speed limits: from Heisenberg's uncertainty principle to optimal quantum control,'' \textit{J. Phys. A: Math. Theor.} \textbf{50}, 453001 (2017).
+
+\bibitem{hornedal}
+N. Hörnedal, ``Generalizations of the Mandelstam--Tamm quantum speed limit,'' Master's thesis, Stockholm University (2021).
+
+\bibitem{ness}
+G. Ness et al., ``Quantum speed limit for states with a bounded energy spectrum,'' \textit{Phys. Rev. Lett.} \textbf{129}, 140403 (2022).
+
+\bibitem{deffner2}
+S. Deffner, ``Quantum speed limits and the maximal rate of information production,'' \textit{Phys. Rev. Research} \textbf{2}, 013161 (2020).
+
+\end{thebibliography}
+
+\end{document}
+

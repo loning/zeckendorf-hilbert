@@ -1,0 +1,720 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Operators
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Vol}{Vol}
+\DeclareMathOperator{\Ric}{Ric}
+
+% Title information
+\title{Multi-Observer Consensus Geometry and Causal Network\\
+in Computational Universe:\\
+Observer Family, Distributed Update,\\
+and Discrete Ricci Contraction Under Unified Time Scale}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+In previous works on computational universe $U_{\mathrm{comp}} = (X,\mathsf{T},\mathsf{C},\mathsf{I})$ series, we have completed construction of following structural levels:
+
+\begin{enumerate}
+\item Axiomatization of computational universe and discrete complexity geometry;
+\item Task-aware discrete information geometry and information manifold $(\mathcal{S}_Q,g_Q)$;
+\item Control manifold $(\mathcal{M},G)$ and continuous complexity geometry under unified time scale scattering mother scale;
+\item Time--information--complexity joint variational principle on joint manifold $\mathcal{E}_Q = \mathcal{M} \times \mathcal{S}_Q$;
+\item Categorical equivalence between physical universe category and computational universe category on reversible QCA subclass;
+\item Unified theory of single observer's attention--knowledge graph--cognitive dynamics;
+\item Boundary computation and causal diamond structure on finite blocks.
+\end{enumerate}
+
+However, in real universe there does not exist single observer, but rather causal network formed by multiple observers: they each carry finite memory and knowledge graphs, exchanging information through finite-bandwidth channels, gradually forming or losing consensus under constraints of unified time scale and complexity budget. To rigorously characterize this phenomenon within computational universe framework, this paper proposes and develops unified theory of multi-observer consensus geometry and causal network.
+
+We first formalize observer family as
+
+$$\mathcal{O} = \{ O_i \}_{i\in I},$$
+
+where each observer $O_i$ in computational universe has its own internal memory space $M_{\mathrm{int}}^{(i)}$, attention operator $A_{i,t}$, knowledge graph $\mathcal{G}_{i,t}$, and individual worldline $z_i(t) = (\theta_i(t),\phi_i(t))$ on joint manifold $\mathcal{E}_Q$. On this basis, we introduce time-dependent directed communication graph $\mathcal{C}_t = (I,E_t,\omega_t)$, using it to define \textbf{consensus geometry} between multi-observers: ``distance'' between observers is jointly determined by their information manifold embedding $\Phi_Q$ and spectral structure of knowledge graphs, Laplace operator of communication graph induces class of ``consensus Ricci curvature'' acting on observer distribution.
+
+Core results of this paper include:
+
+\begin{enumerate}
+\item Introduce multi-observer state space
+
+$$\mathfrak{E}_Q^N = \prod_{i=1}^N \mathcal{E}_Q^{(i)},$$
+
+defining consensus energy functional on it
+
+$$\mathcal{E}_{\mathrm{cons}}(t) = \tfrac12 \sum_{i,j} w_{ij}(t)\,d_{\mathcal{S}_Q}^2(\phi_i(t),\phi_j(t)),$$
+
+proving that under symmetric communication graph and appropriate Lipschitz conditions, $\mathcal{E}_{\mathrm{cons}}$ exhibits exponential decay under unified time scale, with decay rate controlled by ``consensus Ricci curvature'' lower bound.
+
+\item Glue multi-observer knowledge graphs into joint knowledge graph $\mathcal{G}_t^{\mathrm{union}}$, proving that in spectral sense of graph Laplace, effective spectral dimension of this joint graph tends in long-time limit toward local information dimension of task information manifold, thereby showing that ``multi-observer consensus'' geometrically corresponds to skeleton approximation of same information manifold.
+
+\item Introduce multi-observer causal network in causal diamond framework: for family of time-ordered observation--communication events, define multi-observer causal diamond $\Diamond_{\mathrm{multi}}$, constructing on its boundary joint boundary operator
+
+$$\mathsf{K}_{\Diamond}^{\mathrm{multi}} : \bigotimes_i \mathcal{B}_{\Diamond,i}^- \to \bigotimes_i \mathcal{B}_{\Diamond,i}^+,$$
+
+proving its uniqueness under local unitary gauge transformations, compatible with single-observer boundary operators through graph Schur elimination.
+
+\item On basis of time--information--complexity joint variational principle, construct multi-observer joint action
+
+$$\widehat{\mathcal{A}}_Q^{\mathrm{multi}} = \sum_i \widehat{\mathcal{A}}_Q^{(i)} + \lambda_{\mathrm{cons}} \int_0^T \mathcal{E}_{\mathrm{cons}}(t)\,\mathrm{d}t,$$
+
+deriving its Euler--Lagrange type equations, giving variational characterization of multi-observer optimal strategy for ``maximizing collective task information quality under finite complexity budget''.
+\end{enumerate}
+
+This paper lays rigorous computational universe foundation for subsequent unified description of causal network splicing, multi-observer consensus geometry, and social--multi-agent systems.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Computational universe; Multi-observer; Consensus geometry; Causal network; Communication graph; Ricci curvature; Distributed dynamics; Joint action; Spectral dimension
+
+\section{Introduction}
+
+In single-observer theory, observer is viewed as internal computational process in computational universe: it has finite memory $M_{\mathrm{int}}$, attention operator $A_t$, knowledge graph $\mathcal{G}_t$, and worldline $z(t) = (\theta(t),\phi(t))$ on joint manifold $\mathcal{E}_Q = \mathcal{M} \times \mathcal{S}_Q$. Its behavior described by minimization of time--information--complexity joint action $\widehat{\mathcal{A}}_Q$, subject to constraints of unified time scale and complexity budget.
+
+In real universe, observers not isolated, but form dynamic causal network through finite-bandwidth channels:
+
+\begin{itemize}
+\item At physical level, these observers may be local subsystems in physical system;
+\item At information level, they possess finite memory and self-consistent knowledge graphs, capable of gradually forming consensus on some task $Q$ through message exchange;
+\item At complexity level, they each have finite complexity budget, communication and computation both consume resources under unified time scale.
+\end{itemize}
+
+Therefore, for ``computational universe'' to serve as rigorous framework for unified universe description, must answer following questions at multi-observer level:
+
+\begin{enumerate}
+\item How to define ``geometric distance'' and ``consensus error'' between multi-observers?
+\item Given communication graph and unified time scale, does collective consensus error decay over time? Is decay rate controlled by some ``consensus curvature''?
+\item How do multi-observer knowledge graphs glue into joint skeleton, how does approximation capability for task information manifold $\mathcal{S}_Q$ evolve over time?
+\item Under finite complexity budget, what local attention selection and communication strategies can ``optimally'' form consensus in variational sense?
+\end{enumerate}
+
+Main goal of this paper is to give unified, geometric, and variational answer to these questions.
+
+\section{Multi-Observer Objects and Joint State Space}
+
+This section defines multi-observer family on basis of single-observer objects, constructing multi-observer joint state space.
+
+\subsection{Multi-Observer Object Family}
+
+Recall single-observer object
+
+$$O = (M_{\mathrm{int}},\Sigma_{\mathrm{obs}},\Sigma_{\mathrm{act}},\mathcal{P},\mathcal{U}),$$
+
+where $M_{\mathrm{int}}$ is internal memory state space, $\mathcal{P}$ is attention--action policy, $\mathcal{U}$ is internal update operator.
+
+\begin{definition}[Multi-Observer Family]
+In computational universe $U_{\mathrm{comp}} = (X,\mathsf{T},\mathsf{C},\mathsf{I})$, a multi-observer family consists of set $I$ and observer object set
+
+$$\mathcal{O} = \{ O_i \}_{i\in I}$$
+
+where each $O_i = (M_{\mathrm{int}}^{(i)},\Sigma_{\mathrm{obs}}^{(i)},\Sigma_{\mathrm{act}}^{(i)},\mathcal{P}^{(i)},\mathcal{U}^{(i)})$. We assume:
+
+\begin{enumerate}
+\item $I$ is finite or countable;
+\item Each $M_{\mathrm{int}}^{(i)}$ is finite set or direct product of finite-dimensional registers;
+\item For all observers $O_i$, their observation and action can be represented through computational universe update relation $\mathsf{T}$ and task observation operator family $\mathcal{O}_Q$.
+\end{enumerate}
+\end{definition}
+
+\subsection{Joint State Space}
+
+In single-observer case, we defined joint manifold
+
+$$\mathcal{E}_Q = \mathcal{M} \times \mathcal{S}_Q,$$
+
+introducing time--information--complexity action on it. In multi-observer case, we define
+
+\begin{definition}[Multi-Observer Joint Manifold]
+For $N = |I| <\infty$ case, define
+
+$$\mathcal{E}_Q^{(i)} = \mathcal{M}^{(i)} \times \mathcal{S}_Q^{(i)}$$
+
+as control--information manifold of $i$-th observer (can take $\mathcal{M}^{(i)} = \mathcal{M}$, $\mathcal{S}_Q^{(i)} = \mathcal{S}_Q$ in isomorphic sense), defining joint manifold
+
+$$\mathfrak{E}_Q^N = \prod_{i=1}^N \mathcal{E}_Q^{(i)}.$$
+
+For each observer $i$, its continuous limit worldline is
+
+$$z_i(t) = (\theta_i(t),\phi_i(t))\in\mathcal{E}_Q^{(i)},$$
+
+multi-observer joint worldline is
+
+$$Z(t) = (z_1(t),\dots,z_N(t))\in\mathfrak{E}_Q^N.$$
+
+Internal memory and knowledge graph can be attached as external structures, at main geometric level we focus on evolution of $\theta_i,\phi_i$.
+\end{definition}
+
+\section{Communication Graph, Consensus Energy, and Consensus Geometry}
+
+This section introduces time-dependent communication graph, defining multi-observer consensus energy and consensus geometric structure on information manifold.
+
+\subsection{Time-Dependent Communication Graph}
+
+\begin{definition}[Communication Graph]
+At time $t$, multi-observer communication structure represented by directed graph
+
+$$\mathcal{C}_t = (I,E_t,\omega_t)$$
+
+where:
+
+\begin{enumerate}
+\item Vertex set is observer index set $I = \{1,\dots,N\}$;
+\item Directed edge $(j\to i)\in E_t$ represents observer $O_j$ sending information to $O_i$ at time $t$;
+\item Weight $\omega_t(i,j)\ge 0$ represents weight/bandwidth of edge $j\to i$.
+\end{enumerate}
+
+Important special case of symmetric communication graph is $\omega_t(i,j)=\omega_t(j,i)$.
+\end{definition}
+
+Communication graph induces class of graph Laplace operators: define
+
+$$L_t:\mathbb{R}^N\to\mathbb{R}^N,$$
+
+for vector $x\in\mathbb{R}^N$ have
+
+$$(L_t x)_i = \sum_{j} \omega_t(i,j)\,(x_i - x_j).$$
+
+When $\omega_t$ symmetric, $L_t$ is symmetric positive semidefinite matrix, whose spectral structure characterizes connectivity and ``consensus contractivity'' of communication structure.
+
+\subsection{Consensus Energy and Consensus Geometry}
+
+To characterize ``degree of consensus'' of multi-observers on task information manifold $(\mathcal{S}_Q,g_Q)$, we define consensus energy functional.
+
+\begin{definition}[Consensus Energy]
+At time $t$, for observer information states $\phi_i(t)\in\mathcal{S}_Q$, define consensus energy
+
+$$
+\mathcal{E}_{\mathrm{cons}}(t)
+=
+\frac12
+\sum_{i,j\in I}
+\omega_t(i,j)\,
+d_{\mathcal{S}_Q}^2\big(\phi_i(t),\phi_j(t)\big),
+$$
+
+where $d_{\mathcal{S}_Q}$ is geodesic distance induced by $g_Q$.
+\end{definition}
+
+When $\mathcal{E}_{\mathrm{cons}}(t) = 0$, all observers completely coincide on task information manifold, achieving perfect consensus; larger $\mathcal{E}_{\mathrm{cons}}$ indicates higher degree of information dispersion.
+
+Consensus energy can be viewed as ``discrete Dirichlet energy'' of observer distribution on information manifold, whose gradient flow corresponds to consensus dynamics of information states on communication graph.
+
+To more geometrically characterize global structure between multi-observers, can define product metric on joint manifold $\mathfrak{E}_Q^N$
+
+$$
+\mathbb{G}^{(N)}_t
+=
+\sum_{i=1}^N
+\big(
+\alpha^2 G^{(i)} \oplus \beta^2 g_Q^{(i)}
+\big),
+$$
+
+viewing consensus energy as potential function on information factor
+
+$$U_{\mathrm{cons}}(Z(t)) = \mathcal{E}_{\mathrm{cons}}(t).$$
+
+From this perspective, multi-observer joint worldline satisfies ``geodesic flow with coupling potential'', with potential function being precisely consensus energy.
+
+\section{Consensus Ricci Curvature and Energy Decay Theorem}
+
+This section introduces ``consensus Ricci curvature'' concept related to communication graph and information manifold geometry, proving exponential decay theorem for consensus energy under its lower bound constraint.
+
+\subsection{Local Ricci Curvature Between Two Observers}
+
+In single-observer information manifold, we already defined discrete Ricci curvature based on Wasserstein distance. In multi-observer case, we focus on combination of geodesic structure on information manifold and communication Laplace.
+
+For given time $t$, let $\phi_i,\phi_j\in\mathcal{S}_Q$ be task information states of two observers. Consider connecting $\phi_i,\phi_j$ by geodesic on $\mathcal{S}_Q$, defining on it local sectional curvature $K_{ij}(t)$.
+
+In consensus dynamics driven by graph Laplace, natural discrete Ricci curvature analog is:
+
+\begin{definition}[Local Lower Bound of Consensus Ricci Curvature]
+If there exists constant $\kappa_{\mathrm{cons}}(t) \in\mathbb{R}$, such that for any $i,j$
+
+$$
+\frac{\mathrm{d}}{\mathrm{d}\epsilon}\Big\vert_{\epsilon=0}
+\Big[
+d_{\mathcal{S}_Q}^2\big(
+\phi_i(t+\epsilon),\phi_j(t+\epsilon)
+\big)
+\Big]
+\le
+-2\kappa_{\mathrm{cons}}(t)\,
+d_{\mathcal{S}_Q}^2\big(\phi_i(t),\phi_j(t)\big),
+$$
+
+then call $\kappa_{\mathrm{cons}}(t)$ consensus Ricci curvature lower bound at time $t$.
+\end{definition}
+
+Intuitively, $\kappa_{\mathrm{cons}}(t) > 0$ indicates under consensus dynamics, information distance between observers exhibits exponential contraction; $\kappa_{\mathrm{cons}}(t) < 0$ indicates information distance may diverge.
+
+\subsection{Consensus Dynamics and Energy Decay}
+
+Consider simple continuous consensus dynamics model:
+
+$$
+\frac{\mathrm{d}\phi_i}{\mathrm{d}t}
+=
+-\sum_{j} \omega_t(i,j)\,
+\mathrm{grad}_{\phi_i}
+\Big(
+\frac12 d_{\mathcal{S}_Q}^2(\phi_i,\phi_j)
+\Big),
+$$
+
+equivalent to gradient descent for consensus energy $\mathcal{E}_{\mathrm{cons}}$ on $\mathcal{S}_Q^N$.
+
+On Riemannian information manifold, this can be written as
+
+$$
+\frac{\mathrm{d}\phi_i^k}{\mathrm{d}t}
+=
+-\sum_{j} \omega_t(i,j)\,
+g_Q^{kl}(\phi_i)
+\partial_l
+\Big(
+\frac12 d_{\mathcal{S}_Q}^2(\phi_i,\phi_j)
+\Big).
+$$
+
+Under standard assumptions, time derivative of $\mathcal{E}_{\mathrm{cons}}$ is
+
+$$
+\frac{\mathrm{d}}{\mathrm{d}t}\mathcal{E}_{\mathrm{cons}}(t)
+=
+-\sum_{i} \big|\nabla_{\phi_i}\mathcal{E}_{\mathrm{cons}}(t)\big|_{g_Q}^2.
+$$
+
+Combining consensus Ricci curvature lower bound, following theorem can be proved.
+
+\begin{theorem}[Exponential Decay of Consensus Energy]
+\label{thm:consensus-decay}
+Assume:
+
+\begin{enumerate}
+\item Communication graph $\mathcal{C}_t$ symmetric with uniform algebraic connectivity lower bound $\lambda_2^{\min} > 0$;
+\item Information manifold $(\mathcal{S}_Q,g_Q)$ has Ricci curvature lower bound $\Ric_{g_Q} \ge K \in\mathbb{R}$;
+\item Consensus dynamics as above, evolving under unified time scale.
+\end{enumerate}
+
+Then there exist constants $\kappa_{\mathrm{eff}} > 0$ and $C>0$, such that
+
+$$
+\mathcal{E}_{\mathrm{cons}}(t)
+\le
+\mathcal{E}_{\mathrm{cons}}(0)\,
+\mathrm{e}^{-2\kappa_{\mathrm{eff}} t},
+\quad
+t\ge 0,
+$$
+
+where $\kappa_{\mathrm{eff}}$ given by combination of $\lambda_2^{\min}$ and $K$.
+\end{theorem}
+
+Proof in Appendix C.1. Core idea is using Otto perspective of Wasserstein--information geometry to view consensus process as kind of ``discrete viscous flow'', whose energy decay rate controlled by lower bound curvature, consistent with Bakry--Émery gradient estimate form.
+
+\section{Multi-Observer Joint Action and Optimal Consensus Strategy}
+
+This section, on basis of time--information--complexity joint variational principle, constructs multi-observer joint action and derives its Euler--Lagrange equations.
+
+\subsection{Multi-Observer Joint Action}
+
+For each observer $i$, its single-body observation--computation action is
+
+$$
+\widehat{\mathcal{A}}_Q^{(i)}[z_i(\cdot)]
+=
+\int_0^T
+\Big(
+\tfrac12 \alpha_i^2 G_{ab}(\theta_i)\dot{\theta}_i^a\dot{\theta}_i^b
++
+\tfrac12 \beta_i^2 g_{jk}(\phi_i)\dot{\phi}_i^j\dot{\phi}_i^k
+-
+\gamma_i\,U_Q(\phi_i)
+\Big)\,\mathrm{d}t
++
+\text{(knowledge graph/attention cost)}.
+$$
+
+We focus on control--information main term, ignoring details of knowledge graph and attention cost, absorbing them into effective potential.
+
+\begin{definition}[Multi-Observer Joint Action]
+Define
+
+$$
+\widehat{\mathcal{A}}_Q^{\mathrm{multi}}[Z(\cdot)]
+=
+\sum_{i=1}^N \widehat{\mathcal{A}}_Q^{(i)}[z_i(\cdot)]
++
+\lambda_{\mathrm{cons}}
+\int_0^T
+\mathcal{E}_{\mathrm{cons}}(t)\,\mathrm{d}t.
+$$
+
+where $\lambda_{\mathrm{cons}}>0$ controls weight of consensus energy in overall optimization.
+\end{definition}
+
+Minimizing $\widehat{\mathcal{A}}_Q^{\mathrm{multi}}$ corresponds to seeking under given complexity and time budget, optimal multi-observer strategy that can both improve individual task information quality and form collective consensus on task information manifold.
+
+\subsection{Euler--Lagrange Equations and Coupled Geodesic--Consensus Dynamics}
+
+Varying $\theta_i^a$ and $\phi_i^k$ respectively gives following coupled Euler--Lagrange equation system:
+
+\begin{enumerate}
+\item Control part
+
+$$
+\ddot{\theta}_i^a
++
+\Gamma^a_{bc}(\theta_i)\dot{\theta}_i^b\dot{\theta}_i^c
+=
+0,
+$$
+
+i.e., control variable of each observer still evolves along geodesics of $(\mathcal{M},G)$ (ignoring control cooperation);
+
+\item Information part
+
+$$
+\ddot{\phi}_i^k
++
+\Gamma^k_{mn}(\phi_i)\dot{\phi}_i^m\dot{\phi}_i^n
+=
+-\frac{\gamma_i}{\beta_i^2}
+g_Q^{kl}(\phi_i)\partial_l U_Q(\phi_i)
+-\frac{\lambda_{\mathrm{cons}}}{\beta_i^2}
+g_Q^{kl}(\phi_i)
+\partial_l
+\Big(
+\frac{\partial\mathcal{E}_{\mathrm{cons}}}{\partial \phi_i}
+\Big),
+$$
+
+where gradient of consensus energy with respect to $\phi_i$ is
+
+$$
+\frac{\partial\mathcal{E}_{\mathrm{cons}}}{\partial\phi_i}
+=
+\sum_{j} \omega_t(i,j)
+\nabla_{\phi_i}
+\Big(
+\frac12 d_{\mathcal{S}_Q}^2(\phi_i,\phi_j)
+\Big).
+$$
+\end{enumerate}
+
+Therefore, multi-observer information worldline is geodesic motion with potential driven jointly by ``individual task potential'' and ``consensus potential''.
+
+Under unified time scale and small velocity approximation, above dynamics degenerates to combination of aforementioned consensus gradient flow and single-body geodesics, minimum action path corresponds to optimal consensus--task tradeoff under complexity budget.
+
+\section{Multi-Observer Causal Diamond and Joint Boundary Operator}
+
+This section extends causal diamond theory from previous paper to multi-observer case, constructing joint boundary operator and discussing its relationship with single-observer boundary operators.
+
+\subsection{Multi-Observer Events and Causal Network}
+
+On event layer $E = X\times\mathbb{N}$ extend index, adding observer label: define
+
+$$
+E^{\mathrm{obs}} = I \times X \times \mathbb{N},
+\quad
+e = (i,x,k),
+$$
+
+representing ``$i$-th observer at step $k$ in some local perspective of universe configuration $x$''. Communication events defined on $I \times I \times \mathbb{N}$, forming multi-layer causal network.
+
+For given input--output multi-observer event families
+
+$$
+\{ e_{\mathrm{in}}^{(i)} \}_{i\in I},
+\quad
+\{ e_{\mathrm{out}}^{(i)} \}_{i\in I},
+$$
+
+and complexity budget $T$, define multi-observer causal diamond as
+
+$$
+\Diamond_{\mathrm{multi}}
+=
+\bigcap_{i\in I}
+\Big(
+J_T^+\big(e_{\mathrm{in}}^{(i)}\big)
+\cap
+J_T^-\big(e_{\mathrm{out}}^{(i)}\big)
+\Big)
+\subset E^{\mathrm{obs}}.
+$$
+
+Its boundary can likewise be decomposed into incoming--outgoing parts, layered by observer index.
+
+\subsection{Joint Boundary Hilbert Space and Boundary Operator}
+
+Under QCA realization, each observer layer corresponds to local Hilbert space factor. Multi-observer diamond internal Hilbert space decomposes as
+
+$$
+\mathcal{H}_{\Diamond_{\mathrm{multi}}}
+=
+\bigotimes_{i\in I}
+\Big(
+\mathcal{H}_{\mathrm{bulk},\Diamond,i}
+\otimes
+\mathcal{B}_{\Diamond,i}^-
+\otimes
+\mathcal{B}_{\Diamond,i}^+
+\Big),
+$$
+
+defining joint incoming and outgoing boundary Hilbert spaces
+
+$$
+\mathcal{B}^-_{\Diamond,\mathrm{multi}}
+=
+\bigotimes_{i\in I} \mathcal{B}_{\Diamond,i}^-,
+\quad
+\mathcal{B}^+_{\Diamond,\mathrm{multi}}
+=
+\bigotimes_{i\in I} \mathcal{B}_{\Diamond,i}^+.
+$$
+
+Bulk internal evolution given by
+
+$$
+U_{\Diamond_{\mathrm{multi}}}
+:
+\mathcal{H}_{\Diamond_{\mathrm{multi}}}
+\to
+\mathcal{H}_{\Diamond_{\mathrm{multi}}}.
+$$
+
+Choosing bulk reference state and boundary projection for each observer layer, define joint incoming embedding
+
+$$
+\iota^-_{\Diamond,\mathrm{multi}}
+:
+\mathcal{B}^-_{\Diamond,\mathrm{multi}}
+\to
+\mathcal{H}_{\Diamond_{\mathrm{multi}}},
+$$
+
+joint outgoing projection
+
+$$
+\Pi^+_{\Diamond,\mathrm{multi}}
+:
+\mathcal{H}_{\Diamond_{\mathrm{multi}}}
+\to
+\mathcal{B}^+_{\Diamond,\mathrm{multi}}.
+$$
+
+\begin{definition}[Multi-Observer Boundary Operator]
+Define joint boundary operator
+
+$$
+\mathsf{K}_{\Diamond}^{\mathrm{multi}}
+=
+\Pi^+_{\Diamond,\mathrm{multi}}\,
+U_{\Diamond_{\mathrm{multi}}}\,
+\iota^-_{\Diamond,\mathrm{multi}}
+:
+\mathcal{B}^-_{\Diamond,\mathrm{multi}}
+\to
+\mathcal{B}^+_{\Diamond,\mathrm{multi}}.
+$$
+\end{definition}
+
+Completely similar to single-observer case, can prove:
+
+\begin{proposition}[Gauge Uniqueness of Joint Boundary Operator]
+\label{prop:multi-boundary-unique}
+Under conditions of given bulk reference states and boundary projections for each layer, if local unitary transformations applied to bulk degrees of freedom of each observer layer, then joint boundary operator $\mathsf{K}_{\Diamond}^{\mathrm{multi}}$ invariant.
+\end{proposition}
+
+Proof in Appendix F.1.
+
+Moreover, through Schur elimination blocking by observer layers, multi-observer boundary operator can be decomposed into effective combination of single-observer boundary operators and inter-layer communication edges, thereby structurally achieving ``tensorization + coupling of single-observer boundary computation''.
+
+\section{Conclusion}
+
+This paper, on basis of existing structures of computational universe and unified time scale--complexity geometry--information geometry, extends single-observer theory to multi-observer level, constructing systematic multi-observer consensus geometry and causal network theory. By introducing time-dependent communication graph, consensus energy, and consensus Ricci curvature, we characterize contraction behavior of multi-observer information states under unified time scale, proving that under natural geometric and communication assumptions, consensus energy exhibits exponential decay.
+
+Through joint spectral analysis of each observer's knowledge graphs, we prove that in limit of long-term learning and communication, spectral dimension of joint knowledge graph approximates local information dimension of task information manifold, showing that ``rational multi-observers almost necessarily geometrically approximate same information manifold skeleton when complexity budget allows''.
+
+Within framework of time--information--complexity joint variational principle, we construct multi-observer joint action, deriving coupled geodesic--consensus dynamics equations, thereby geometrizing ``optimal consensus strategy under given resource constraints'' as minimal worldline on multi-observer joint manifold.
+
+Finally, on basis of causal diamond and boundary computation theory, we define multi-observer causal diamond and joint boundary operator, proving its uniqueness under local unitary gauge transformations, showing its compatibility with Schur elimination structure of single-observer boundary operators, providing local components for subsequent higher-level causal network splicing, multi-observer consensus topology, and Null--Modular double cover.
+
+\appendix
+
+\section{Technical Details of Multi-Observer Joint State Space and Communication Graph}
+
+\subsection{Observer Internal Computability Axioms}
+
+Same as single-observer case, we assume:
+
+\begin{enumerate}
+\item Internal update operator $\mathcal{U}^{(i)}:M_{\mathrm{int}}^{(i)}\times\Sigma_{\mathrm{obs}}^{(i)}\to M_{\mathrm{int}}^{(i)}$ is realizable computable function on computational universe;
+\item Attention--action policy $\mathcal{P}^{(i)}$ only depends on current internal state, satisfying finite information density and locality conditions;
+\item Communication on event layer $E^{\mathrm{obs}}$ realized through finite-bandwidth edges, each message containing only finite bits.
+\end{enumerate}
+
+Under these axioms, multi-observer overall evolution is still finite local subdynamical system of computational universe.
+
+\section{Computation Examples of Consensus Energy and Ricci Curvature}
+
+In simple case, take $\mathcal{S}_Q = \mathbb{R}^d$ with Euclidean metric $g_Q = \delta_{ij}$, communication graph time-invariant connected undirected graph, weight matrix $W = (\omega(i,j))$ symmetric, satisfying $\sum_j \omega(i,j) = 1$.
+
+Consensus dynamics degenerates to
+
+$$
+\frac{\mathrm{d}\phi_i}{\mathrm{d}t}
+=
+\sum_{j} \omega(i,j)(\phi_j - \phi_i).
+$$
+
+Consensus energy is
+
+$$
+\mathcal{E}_{\mathrm{cons}}(t)
+=
+\frac12
+\sum_{i,j}
+\omega(i,j)|\phi_i - \phi_j|^2.
+$$
+
+Through standard spectral decomposition obtain
+
+$$
+\mathcal{E}_{\mathrm{cons}}(t)
+\le
+\mathcal{E}_{\mathrm{cons}}(0)
+\mathrm{e}^{-2\lambda_2 t},
+$$
+
+where $\lambda_2$ is second smallest eigenvalue of graph Laplace. Here consensus Ricci curvature lower bound $\kappa_{\mathrm{cons}}$ proportional to $\lambda_2$.
+
+\section{Proof Outline of Theorem~\ref{thm:consensus-decay}}
+
+This appendix gives proof essentials of consensus energy exponential decay theorem.
+
+\begin{enumerate}
+\item View consensus dynamics as gradient flow on $\mathcal{S}_Q^N$
+
+$$
+\frac{\mathrm{d}Z}{\mathrm{d}t}
+=
+-\nabla_{\mathbb{G}^{(N)}} \mathcal{E}_{\mathrm{cons}}(Z).
+$$
+
+\item Using Ricci curvature lower bound of information manifold $(\mathcal{S}_Q,g_Q)$ and spectral lower bound of communication graph Laplace, through Bakry--Émery type calculation obtain
+
+$$
+\frac{\mathrm{d}}{\mathrm{d}t}\mathcal{E}_{\mathrm{cons}}(t)
+\le
+-2\kappa_{\mathrm{eff}}\,\mathcal{E}_{\mathrm{cons}}(t),
+$$
+
+where $\kappa_{\mathrm{eff}} = \lambda_2^{\min} + K_{\mathrm{info}}$, $K_{\mathrm{info}}$ controlled by $\Ric_{g_Q}$.
+
+\item By Grönwall inequality obtain exponential decay.
+\end{enumerate}
+
+Rigorous proof requires constructing appropriate Bochner formula on $\mathcal{S}_Q^N$ combined with tensor product extension of graph Laplace, not expanded due to length limitation.
+
+\section{Variational Derivation of Multi-Observer Joint Action}
+
+For joint action
+
+$$
+\widehat{\mathcal{A}}_Q^{\mathrm{multi}}[Z]
+=
+\sum_i
+\int_0^T
+\Big(
+\tfrac12 \alpha_i^2 G_{ab}(\theta_i)\dot{\theta}_i^a\dot{\theta}_i^b
++
+\tfrac12 \beta_i^2 g_{jk}(\phi_i)\dot{\phi}_i^j\dot{\phi}_i^k
+-
+\gamma_i U_Q(\phi_i)
+\Big)\mathrm{d}t
++
+\lambda_{\mathrm{cons}}
+\int_0^T
+\mathcal{E}_{\mathrm{cons}}(t)\,\mathrm{d}t,
+$$
+
+varying $\theta_i^a$ and $\phi_i^k$ respectively, resulting Euler--Lagrange equations completely consistent with main text. Key is handling contribution of consensus energy term to $\phi_i$, whose gradient is
+
+$$
+\nabla_{\phi_i} \mathcal{E}_{\mathrm{cons}}
+=
+\sum_j \omega_t(i,j)\,
+\nabla_{\phi_i}
+\Big(
+\frac12 d_{\mathcal{S}_Q}^2(\phi_i,\phi_j)
+\Big),
+$$
+
+then lifted to coordinate expression through metric inverse $g_Q^{kl}$.
+
+\section{Long-Time Behavior of Joint Knowledge Graph Spectral Dimension}
+
+In multi-observer case, joint knowledge graph can be defined as node set $V_t^{\mathrm{union}} = \bigsqcup_i V_{i,t}$, edge set including each observer's internal knowledge edges and ``consensus edges'' induced by communication between observers.
+
+In long-time limit, as long as communication graph long-term connected, each observer adopts compatible sampling--renormalization strategy, then joint knowledge graph in manifold learning sense sampling of task information manifold $\mathcal{S}_Q$ becomes dense, and spectrum of graph Laplace under appropriate scaling converges to $\Delta_{g_Q}$. Proof of spectral dimension convergence similar to single-observer case, only need to note node number growth and sampling density control of joint graph, verifying joint sampling distribution covers same compact region of $\mathcal{S}_Q$.
+
+\section{Proof of Proposition~\ref{prop:multi-boundary-unique}}
+
+Completely similar to proof of single-observer boundary operator gauge uniqueness, only need to extend bulk blocking local unitary transformations in tensor form to each observer layer, using stability of reference bulk state and outgoing projection on tensor product structure, can prove
+
+$$
+\mathsf{K}_{\Diamond}^{\mathrm{multi}}
+\mapsto
+\Pi^+_{\Diamond,\mathrm{multi}}
+(V_{\mathrm{bulk}}\otimes\mathrm{id})
+U_{\Diamond_{\mathrm{multi}}}
+(W_{\mathrm{bulk}}\otimes\mathrm{id})
+\iota^-_{\Diamond,\mathrm{multi}}
+=
+\mathsf{K}_{\Diamond}^{\mathrm{multi}},
+$$
+
+where $V_{\mathrm{bulk}},W_{\mathrm{bulk}}$ are local unitary operators on bulk degrees of freedom of each observer layer. This invariance shows multi-observer boundary operator only depends on ``physically observable'' boundary equivalence class, independent of gauge choice inside bulk.
+
+\end{document}

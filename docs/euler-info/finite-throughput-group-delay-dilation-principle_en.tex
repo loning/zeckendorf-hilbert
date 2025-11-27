@@ -1,0 +1,322 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Title information
+\title{Finite Throughput--Group Delay Dilation Principle:\\
+Unifying Bandwidth, Time Delay, and Redshift via WSIG--EBOC--RCA's ``Window--Scale--Gauge''}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today\\
+\small Version: 1.5}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We establish a rigorous theory unifying ``finite throughput--queueing delay--apparent dilation (redshift)'' within windowed scattering and information geometry (WSIG) scale system. In pure theoretical language of operator--measure--function, using ``trinity'' scale identity $\varphi'(E)/\pi=\rho_{\rm rel}(E)=-\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)$ as mother scale, define observer window's Toeplitz/Berezin compression $K_{w,h}$ and its readout functional, characterize ``finite throughput'' abstract form via passivity and causality-preserving scattering axioms. Prove three main theorems: (T1) \textbf{Throughput--Delay Dilation Theorem}: Under passive load monotonicity, any windowed group delay readout monotonically non-decreasing with load; when baseline readout $\Phi_w[\lambda_0]>0$, induces Mellin dilation of energy and time scales scale-equivalent to redshift factor $1+z_w=\Delta_w\ge1$; (T2) \textbf{Group Delay--Bandwidth Product Upper Bound}: Windowed energy spectrum total readout upper-bounded by product of ``group delay flux'' and ``effective bandwidth constant'', with non-asymptotic error bound from Nyquist--Poisson--Euler--Maclaurin (NPE) three-term closure; (T3) \textbf{Scale Gauge Equivalence}: Cosmological expansion and internal resolution enhancement scale-equivalent to gauge pairing $a(t)=R(t)^{-1}$, all readouts remaining invariant on same mother scale. Further provide ``front slope--group delay'' correspondence at reversible cellular automaton (RCA) dynamics layer, embedding queueing--throughput--delay discrete dynamics into EBOC static block encoding. Throughout use only finite-order Euler--Maclaurin and Poisson discipline, maintaining ``singularity non-increasing/poles = principal scales'' error control; any numerical and experimental interfacing relegated to appendices.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Finite throughput; Group delay dilation; WSIG; EBOC; RCA; NPE error closure; Redshift equivalence; Scale gauge
+
+\section*{Notation \& Axioms / Conventions}
+
+\begin{enumerate}
+\item \textbf{Scale Identity (Trinity):} For absolutely continuous spectrum a.e.
+\begin{equation}
+\boxed{\ \frac{\varphi'(E)}{\pi}=\rho_{\rm rel}(E)=-\frac{1}{2\pi}\operatorname{tr}\mathsf Q(E)\ },\qquad
+\mathsf Q(E)=-\,i\,S(E)^\dagger S'(E),\ S(E)\in U(N),
+\end{equation}
+where $\varphi$ is total scattering phase, $\rho_{\rm rel}$ relative state density (Birman--Kreĭn perspective), $\mathsf Q$ Wigner--Smith group delay matrix. By Birman--Kreĭn formula $\det S(E)=\exp(-2\pi i\,\xi(E))$ and $-i\,\partial_E\log\det S(E)=\operatorname{tr}\mathsf Q(E)$ obtain $\operatorname{tr}\mathsf Q(E)=-2\pi\,\xi'(E)$, thus above holds ($\xi$ spectral shift function).
+
+\item \textbf{Observer Window and Compression:} Take non-negative weight window $w\in L^1(\mathbb R)\cap L^\infty$ and smoother $h$ (approximating identity, Carleson regular). Define Toeplitz/Berezin compression $K_{w,h}$ acting on energy spectrum symbol $F(E)$ windowed readout
+\begin{equation}
+\langle F\rangle_{w}:=\int_{\mathbb R} w(E)\,\operatorname{tr}F(E)\,dE,\qquad
+\langle F\rangle_{w,h}:=\operatorname{tr}(K_{w,h}F),
+\end{equation}
+differing under NPE discipline only by finite-order Poisson+Euler--Maclaurin error. Characterization of Toeplitz/Berezin and Carleson embedding see recent developments in weighted Bergman/Hardy systems.
+
+\item \textbf{Passivity and Monotonicity:} Load represented by unitarity-preserving scattering family $S_\lambda(E)\in U(N)$ ($\lambda\in[0,1]$). Passivity axiom written as
+\begin{equation}
+\partial_\lambda \mathsf Q_\lambda(E)\succeq 0\ \text{ a.e.}
+\end{equation}
+Throughout derivations use only this Loewner monotonicity, no longer claim sign equivalence with $\partial_\lambda\rho_{\rm rel}$. Supportable by monotonicity of spectral shift function $\xi(E;\lambda)$ for monotonically coupled self-adjoint spectral pairs $(H_\lambda=H_0+\lambda V,\ V\ge0)$ with $\lambda$.
+
+\item \textbf{NPE Three-Term Closure (Finite-Order):} Discrete--continuous error decomposition
+\begin{equation}
+\mathcal E_{\rm total}=\mathcal E_{\rm alias}+\mathcal E_{\rm BL}+\mathcal E_{\rm tail},
+\end{equation}
+where $\mathcal E_{\rm alias}$ from Poisson spectral aliasing, $\mathcal E_{\rm BL}$ finite-order Euler--Maclaurin boundary layer term, $\mathcal E_{\rm tail}$ controlled by window decay and target function step. Standard references for Poisson and Euler--Maclaurin (including Bernoulli constants) see cited sources.
+
+\item \textbf{Scale Gauge:} Dual gauge of external scale factor $a(t)$ and internal resolution constant $R(t)$
+\begin{equation}
+a(t)=R(t)^{-1},\qquad \kappa(t):=\dot a/a=-\dot R/R,
+\end{equation}
+implements Mellin dilation on energy mother scale, redshift satisfies $1+z=a(t_0)/a(t_e)=R(t_e)/R(t_0)$.
+\end{enumerate}
+
+\section{Windowed Readout, Group Delay Flux, and Effective Bandwidth}
+
+Define windowed group delay flux
+\begin{equation}
+\Phi_w:=\frac{1}{2\pi}\int_{\mathbb R} w(E)\,\operatorname{tr}\mathsf Q(E)\,dE
+=-\langle \rho_{\rm rel}\rangle_w.
+\end{equation}
+Define window's effective bandwidth constant
+\begin{equation}
+B_w:=|w|_{L^1}\cdot|\widehat{w}|_{\rm pack},
+\end{equation}
+where $\widehat{w}$ corresponding Fourier--Mellin transform, $|\cdot|_{\rm pack}$ controlled by Nyquist/Landau density (for bandlimited or tight frame window families can be given by upper/lower bound constants). If $0\preceq F(E)\preceq \alpha(E)\mathbf 1$, then
+\begin{equation}
+\langle F\rangle_w\le N\,|\alpha|_{L^\infty(\operatorname{supp}w)}\cdot |w|_{L^1}.
+\end{equation}
+General case $\mathsf Q$ not necessarily positive, thus cannot take $F=(2\pi)^{-1}\mathsf Q$; can use
+\begin{equation}
+\boxed{\ \Big|\Big\langle \tfrac{1}{2\pi}\mathsf Q\Big\rangle_w\Big|
+\le \frac{N}{2\pi}\,\big|\mathsf Q\big|_{L^\infty(\operatorname{supp}w)}\,|w|_{L^1}\ }
+\end{equation}
+as crude upper bound. Necessary conditions for sampling/frame density and bandwidth packing see Landau and subsequent generalizations.
+
+\section{Throughput Abstraction: Operator--Measure--Function Paradigm}
+
+Let observation triple $(\mathcal H,w,S)$. Write scale measure $d\mu_{\mathsf Q}:=(2\pi)^{-1}\operatorname{tr}\mathsf Q(E)\,dE$. Define energy readout
+\begin{equation}
+\mathscr R_w:=\int w(E)\,\rho_{\rm rel}(E)\,dE
+=-\frac{1}{2\pi}\int w(E)\,\operatorname{tr}\mathsf Q(E)\,dE
+=-\int w(E)\,d\mu_{\mathsf Q}(E)=-\Phi_w.
+\end{equation}
+``Finite throughput'' abstracted as Carleson-type constraint on $\mu_{\mathsf Q}$: exists constant $C_{\rm th}$ and energy domain partition $\{\Omega_k\}$ such that
+\begin{equation}
+|\mu_{\mathsf Q}|(\Omega_k)\le C_{\rm th}\,\Lambda(\Omega_k),
+\end{equation}
+where $\Lambda$ reference measure induced by window family (given by Nyquist density or frame density). Corresponding Toeplitz/Berezin type embedding in weighted function spaces characterizable by Carleson condition.
+
+\section{Main Theorem I: Throughput--Delay Dilation Theorem}
+
+\begin{theorem}[Load Monotonicity and Dilation Factor]
+Let $S_\lambda(E)$ satisfy passivity axiom $\partial_\lambda \mathsf Q_\lambda(E)\succeq 0$ a.e., and window $w\ge 0$ compactly supported or satisfying frame regularity and NPE conditions. Then for any $0\le \lambda_0<\lambda_1\le 1$,
+\begin{equation}
+\Phi_w[\lambda_1]-\Phi_w[\lambda_0]
+=\frac{1}{2\pi}\!\int w(E)\,\operatorname{tr}\big(\mathsf Q_{\lambda_1}(E)-\mathsf Q_{\lambda_0}(E)\big)\,dE\ \ge 0.
+\end{equation}
+Define scale's ``delay dilation factor'' (\textbf{when $\Phi_w[\lambda_0]>0$})
+\begin{equation}
+\Delta_w(\lambda_1,\lambda_0):=\frac{\Phi_w[\lambda_1]}{\Phi_w[\lambda_0]}\ \ge\ 1.
+\end{equation}
+General case always-valid statement is
+\begin{equation}
+\Phi_w[\lambda_1]-\Phi_w[\lambda_0]\ \ge\ 0,
+\end{equation}
+equivalent to $\mathscr R_w$'s non-increasing (because $\mathscr R_w=-\Phi_w$). By Trinity, $\Delta_w$ simultaneously characterizes phase density derivative and relative state density elongation, inducing energy scale--time scale Mellin dilation, equivalent to redshift factor $1+z_w=\Delta_w(\lambda_1,\lambda_0)\ge1$. Root lies in spectral shift function $\xi(E;\lambda)$ monotonic with non-negative coupling, and $\operatorname{tr}\mathsf Q(E)=-2\pi\,\partial_E\xi(E)$.
+\end{theorem}
+\begin{proof}
+Loewner order monotonicity at each $E$ and $w\ge0$ integration immediately yields non-decreasing. By Birman--Kreĭn and Trinity linear relations, monotonicity equivalently transmitted between $\varphi'$ and $\operatorname{tr}\mathsf Q$; on $\rho_{\rm rel}$ differs only by fixed negative sign ($\rho_{\rm rel}=-\tfrac{1}{2\pi}\operatorname{tr}\mathsf Q$), thus above non-decreasing unified expressed as $\Phi_w$.
+\end{proof}
+
+\begin{corollary}[Window--Band Domain Locality]
+If $w$ supported on bandlimited region $\Omega$, then $z_w$ is local redshift for that domain; for mutually non-overlapping $\{\Omega_j\}$ with decomposition windows $\{w_j\}$ forming tight frame,
+\begin{equation}
+1+z_{\rm global}=\sum_j \omega_j\,(1+z_{w_j}),\qquad
+\omega_j=\frac{\Phi_{w_j}[\lambda_0]}{\sum_k \Phi_{w_k}[\lambda_0]},
+\end{equation}
+giving global dilation as weighted combination of local dilations; if baseline state $\mu_{\mathsf Q}[\lambda_0]$ is non-negative measure (equivalent to $\Phi_{w_j}[\lambda_0]\ge0$ for all $j$), this combination is convex combination.
+\end{corollary}
+
+\section{Main Theorem II: Group Delay--Bandwidth Product Upper Bound}
+
+\begin{theorem}[Finite Window Energy Spectrum Conservation Upper Bound]
+Under §2's Carleson-type throughput constraint, window family tight frame, and NPE validity, for any $S(E)$ and window $w$
+\begin{equation}
+\boxed{\ \big|\Phi_w\big|\ \le\ C_{\rm frame}\,C_{\rm th}\,B_w\,\big(1+\big|\varepsilon_{\rm NPE}\big|\big)\ },
+\end{equation}
+where $C_{\rm frame}$ given by window family upper/lower bound constants, $B_w$ effective bandwidth constant, $\varepsilon_{\rm NPE}$ finite-order error term satisfying
+\begin{equation}
+|\varepsilon_{\rm NPE}|\ \le\ C_1\,\mathcal E_{\rm alias}+C_2\,\mathcal E_{\rm BL}^{(m)}+C_3\,\mathcal E_{\rm tail}^{(\beta)}.
+\end{equation}
+\end{theorem}
+\begin{proof}[Proof Sketch]
+Along Berezin compression commutator inequalities and Carleson embedding control $\mu_{\mathsf Q}$, window family frame upper/lower bounds connect local energy spectrum with global readout, finally use finite-order Poisson dealiasing and Euler--Maclaurin boundary layer absorb discrete--continuous difference; singularity non-increasing ensures principal scale poles not amplified.
+\end{proof}
+
+\begin{corollary}[Optimal Window's Variational Tendency]
+Under fixed $C_{\rm th}$ and resource constraints $|w|_{L^1}\,,|\widehat w|_{\rm pack}$, $w^\star$ maximizing $\Phi_w$ tends toward tight frame and near-minimum uncertainty window; if bandlimited domain invariant, $w^\star$ nearly constant amplitude within domain, minimum boundary layer cost at boundaries. Its frame/density conditions compatible with Wexler--Raz biorthogonality and Balian--Low obstructions.
+\end{corollary}
+
+\section{Main Theorem III: Scale Gauge Equivalence and Redshift = Resolution Enhancement}
+
+\begin{theorem}[Gauge Equivalence]
+Let $a(t),R(t)$ satisfy $a(t)=R(t)^{-1}$ and $\kappa(t)=\dot a/a=-\dot R/R$. On Trinity mother scale, for any window $w$ and energy readout
+\begin{equation}
+\mathscr R_w(t)=\int w(E)\,\rho_{\rm rel}(E;t)\,dE=-\frac{1}{2\pi}\int w(E)\,\operatorname{tr}\mathsf Q(E;t)\,dE,
+\end{equation}
+exists Mellin dilation invariance
+\begin{equation}
+\mathscr R_w(t_0)=\mathscr R_{(1+z)^{-1}\,w\circ \mathcal D_{1+z}}(t_e),\qquad \mathcal D_{1+z}:E\mapsto \frac{E}{1+z},\quad 1+z=\frac{a(t_0)}{a(t_e)}=\frac{R(t_e)}{R(t_0)}.
+\end{equation}
+Thus ``expansion'' and ``resolution enhancement'' merely gauge restatements under same mother scale, not changing any windowed readout's ontological meaning.
+\end{theorem}
+
+\begin{corollary}[Redshift--Delay Pairing]
+If load $\lambda$ related to gauge $a$ such that $\partial_\lambda \mathsf Q\succeq 0$ and $d\lambda$ induces $da/a=d\lambda\cdot \eta(\lambda)$ gain, then T1's $\Delta_w$ and T3's $1+z$ unify: $1+z_w=\Delta_w$.
+\end{corollary}
+
+\section{Discrete Dynamics Interface: RCA Front Slope and Group Delay}
+
+Under EBOC static block encoding, let one-dimensional reversible cellular automaton $\mathcal A$'s spacetime diagram as two-dimensional SFT. Let its front slope $c_{\rm RCA}$ be average velocity of coherent defect propagation. WSIG scale embedding yields energy axis--lattice scale isomorphism, making
+\begin{equation}
+c_{\rm RCA}=\left(\frac{dx}{dt}\right)_{\rm eff}\propto \Big(\tfrac{1}{N}\operatorname{tr}\mathsf Q\Big)^{-1},
+\end{equation}
+i.e., group delay trace reciprocal determines RCA's effective advancement rate; passive load increases $\operatorname{tr}\mathsf Q$, thus lowering $c_{\rm RCA}$, manifesting as discrete dynamics ``deceleration'' and continuous scale ``redshift'' isomorphism. Foundational properties of reversibility, information velocity, and light cone bounds see classical CA theory surveys.
+
+\section{Error Theory and ``Singularity Non-Increasing/Poles = Principal Scales''}
+
+\begin{proposition}[Finite-Order NPE Closure]
+If window $w$ has $m$-order smoothness and $\beta$-order decay, under Landau density condition,
+\begin{equation}
+\big|\mathscr R^{\rm disc}\!*\!w-\mathscr R^{\rm cont}\!*\!w\big|
+\le C(m,\beta)\!\left(\!\sum_{\ell\ne 0}\!|\widehat w(\ell f_s)|+\!\sum_{j=1}^m\!\frac{|B_{2j}|}{(2j)!}|\partial^{(2j-1)}w|_{L^1}\!+\!\!\int_{|E|>E_{\max}}\! |w(E)\,\rho_{\rm rel}(E)|\,dE\!\right)\!,
+\end{equation}
+where $B_{2j}$ Bernoulli constants; if $\rho_{\rm rel}$ contains only finite poles and window operation does not excite new singularities, error terms do not elevate singularity, principal scale determined by poles.
+\end{proposition}
+
+\section{Multi-Port Structure and Statistical Characterization}
+
+Let $\{\tau_j(E)\}_{j=1}^N$ be eigenvalues of $\mathsf Q(E)$ (proper delay times), then
+\begin{equation}
+\Phi_w=\frac{1}{2\pi}\sum_{j=1}^N \int w(E)\,\tau_j(E)\,dE,\qquad
+\partial_\lambda \tau_j(E)\ge 0\ \text{ a.e.}
+\end{equation}
+Statistical level distributions and moment generating functions in chaotic cavities and non-ideal coupling given by random matrix theory, supporting ``total group delay = eigentime sum'' decomposition and its extreme fluctuation laws.
+
+\section{Counterpoint with Communication Capacity Intuition (Pure Theoretical Restatement)}
+
+Using $\mu_{\mathsf Q}$'s Carleson constraint to represent ``finite throughput'', corresponding to finite total group delay per unit resource block. T1 gives ``load $\uparrow$ $\Rightarrow$ delay readout $\uparrow$''; T2 upper-bounds total readout as ``group delay flux $\times$ effective bandwidth constant''. If using scale time constant $\mathcal T_w:=\Phi_w/|w|_{L^1}$ as apparent period elongation, when $\Phi_w[\lambda_0]>0$ have
+\begin{equation}
+\frac{\mathcal T_w[\lambda_1]}{\mathcal T_w[\lambda_0]}\ =\ \Delta_w(\lambda_1,\lambda_0)\ =\ 1+z_w.
+\end{equation}
+General case, only $\ \mathcal T_w[\lambda_1]-\mathcal T_w[\lambda_0]\ \ge\ 0\ $ (equivalent to $\Phi_w$ non-decreasing) holds, giving scale equivalence ``redshift = effective delay stretching'', no probabilistic assumptions or experimental vocabulary needed.
+
+\section{Gauge Group and Invariance}
+
+Define Mellin--Heisenberg gauge group $\mathcal G$ action on window and readout
+\begin{equation}
+g\cdot w(E)=\chi\,w(\chi E),\qquad
+g\cdot \rho_{\rm rel}(E)=\rho_{\rm rel}(E/\chi),
+\end{equation}
+then windowed readout under Trinity mother scale satisfies
+\begin{equation}
+\langle \rho_{\rm rel}\rangle_{g\cdot w}=\langle g\cdot \rho_{\rm rel}\rangle_{w}.
+\end{equation}
+Scale gauge $a=R^{-1}$ is one-dimensional subgroup of $\mathcal G$, equivalent to T3.
+
+\section*{Appendix A: Theorem T2 Proof Outline}
+
+Start with Berezin compression $K_{w,h}$ and self-adjoint symbol $F(E)=(2\pi)^{-1}\mathsf Q(E)$. Carleson embedding yields
+\begin{equation}
+\big|\operatorname{tr}(K_{w,h}F)\big|\ \le\ C_{\rm th}\,|K_{w,h}|_{\rm Car}\ \lesssim\ C_{\rm th}\,C_{\rm frame}\,B_w.
+\end{equation}
+where $|K_{w,h}|_{\rm Car}$ controlled by window family frame density and $\widehat w$ packing degree; then use finite-order Poisson dealiasing, Euler--Maclaurin absorb boundary layer and tail term,
+\begin{equation}
+\Phi_w=\langle F\rangle_w=\operatorname{tr}(K_{w,h}F)+O(\varepsilon_{\rm NPE}),\qquad
+\big|\Phi_w\big|\ \le\ C_{\rm th}\,C_{\rm frame}\,B_w\,\big(1+\big|\varepsilon_{\rm NPE}\big|\big).
+\end{equation}
+When $w$ bandlimited and window family nearly tight, $|K_{w,h}|_{\rm Car}$ upper/lower bounds merge, bound can be tight.
+
+\section*{Appendix B: RCA's Constructive Scale}
+
+In one-dimensional reversible CA's local rule and SFT encoding framework, introduce energy axis scale map $\Theta:\mathbb Z^2\to \mathbb R$, making each characteristic direction's discrete velocity satisfy with scale group delay
+\begin{equation}
+c_{\rm RCA}(\theta)=\frac{\Delta x}{\Delta t}\ \propto\ \Big(\frac{1}{N}\operatorname{tr}\mathsf Q\big(\Theta(\theta)\big)\Big)^{-1}.
+\end{equation}
+(If and only if choosing unified space/time unit gauge, proportionality constant can be normalized.) Passivity makes $\operatorname{tr}\mathsf Q$ monotonically increasing, thus $c_{\rm RCA}$ monotonically decreasing; this decrease isomorphic with T1's $\Delta_w\ge1$, giving ``non-acceleration--non-increase'' type reversible dynamics readout. Foundational theorems on reversibility, information light cone, and velocity upper bounds see cited sources.
+
+\section*{Appendix C: NPE Error Budget (Finite-Order Recipe)}
+
+\begin{enumerate}
+\item \textbf{Poisson Dealiasing:} Choose sampling rate $f_s$ satisfying Landau density condition, control
+\begin{equation}
+\mathcal E_{\rm alias}\le \sum_{\ell\ne 0}\big|\widehat w(\cdot+\ell f_s)\big|.
+\end{equation}
+
+\item \textbf{Euler--Maclaurin Boundary Layer ($m$ order):} Take $m$ such that $\partial^{(2m)}w$ and $\partial^{(2m)}\rho_{\rm rel}$ integrable, error
+\begin{equation}
+\mathcal E_{\rm BL}^{(m)}\ \lesssim\ \sum_{j=1}^m \frac{|B_{2j}|}{(2j)!}\,|\partial^{(2j-1)}w|_{L^1}\,|\partial^{(2j-1)}\rho_{\rm rel}|_{L^\infty(\operatorname{supp}w)}.
+\end{equation}
+
+\item \textbf{Tail Term:} Energy domain truncation $E_{\max}$, $\mathcal E_{\rm tail}^{(\beta)}\le |w\cdot\mathbf 1_{|E|>E_{\max}}|_{L^1}\,|\rho_{\rm rel}|_{L^\infty}$, controlled by $w$'s $\beta$-order decay to required precision.
+\end{enumerate}
+
+\section*{Terminology Cards (Fixed)}
+
+\begin{itemize}
+\item \textbf{Card A (Scale Identity):} $\displaystyle \frac{\varphi'(E)}{\pi}=\rho_{\rm rel}(E)=-\frac{1}{2\pi}\mathrm{tr}\,\mathsf Q(E)$; readouts uniformly executed on mother scale.
+\item \textbf{Card B (Finite-Order EM and ``Poles = Principal Scales''):} Use only finite-order Euler--Maclaurin and Poisson; error theory follows ``singularity non-increasing/poles = principal scales''.
+\end{itemize}
+
+\begin{thebibliography}{99}
+
+\bibitem{Pushnitski}
+A. Pushnitski, arXiv:1006.0639v1 [math.SP], 2010.
+
+\bibitem{Toeplitz}
+``Toeplitz Operators and Carleson Measures for Weighted...'', Springer, 2023.
+
+\bibitem{Spectral}
+arXiv:math/9909076v1 [math.SP], 1999.
+
+\bibitem{Fourier}
+Stein-Shakarchi, \textit{Fourier Analysis}.
+
+\bibitem{Weinberg}
+``Observational Probes of Cosmic Acceleration'', NED Caltech.
+
+\bibitem{Landau}
+``Necessary density conditions for sampling...'', YMSC Tsinghua archive.
+
+\bibitem{Wexler}
+``Gabor Time-Frequency Lattices and the Wexler-Raz Identity'', Springer.
+
+\bibitem{Kari}
+``Theory of cellular automata: A survey'', IBISC Univ-Evry.
+
+\bibitem{Quantum}
+``Quantum Mechanical Time-Delay Matrix in Chaotic Scattering'', Phys. Rev. Lett.
+
+\bibitem{NIST}
+NIST DLMF §2.10 Sums and Sequences.
+
+\end{thebibliography}
+
+\end{document}
+

@@ -1,0 +1,465 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{braket}
+\usepackage{graphicx}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Windowed Formulation of Phase--Spectral-Shift--DOS--Cosmological-Constant}
+
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We establish equivalence chain centered on \textbf{generalized scattering phase}, connecting Kontsevich--Vishik (KV) determinant phase, generalized Kreĭn spectral shift, density-of-states difference (DOS difference), and Wigner--Smith (WS) trace identity, providing rigorous \textbf{variable and factor accounting} under even-dimensional asymptotically hyperbolic/conformally compact (AH/CCM) and static-patch de Sitter (dS) geometry. Under strict Lifshits--Kreĭn (LK) trace formula and relative trace-class assumptions, we prove substitution relation between heat kernel difference Laplace representation and DOS slope under \textbf{frequency variable}
+
+$$
+\Delta K(s)\;=\;\int_0^\infty e^{-s\omega^2}\,\Theta'(\omega)\,d\omega,
+$$
+
+where $\Theta(\omega)=\frac{1}{2\pi}\arg\det_{\rm KV}S(\omega)$, $\Theta'=\Delta\rho_\omega=-\partial_\omega\xi_\omega$. We propose family of \textbf{logarithmic frequency windows} $W$ with Mellin-nullification conditions, establishing \textbf{windowed Tauberian theorem}: under non-trapping, no zero-energy resonance, analytic Fredholm and operator-Lipschitz assumptions, small-$s$ heat kernel finite part equivalent to logarithmic window average of $\Theta'$ at scale $\mu\sim s^{-1/2}$, with error upper bound. This defines \textbf{windowed integration law}
+
+$$
+\partial_{\ln \mu}\,\Lambda_{\phi,W}(\mu)=\kappa_\Lambda\,\Xi_W(\mu),\qquad
+\Xi_W(\mu)=\int_{\mathbb{R}}\omega\,\Theta''(\omega)\,W\!\big(\ln(\omega/\mu)\big)\,d\ln\omega
+=\frac{1}{2\pi}\!\int\omega\,\partial_\omega{\rm Tr}\,Q(\omega)\,W\,d\ln\omega,
+$$
+
+providing dimensionally consistent constant separation: $\kappa_{\rm HK}$ (heat kernel--windowing ratio) and $\kappa_\Lambda$ (dimensional factor mapping $\langle\Theta'\rangle_W$ to cosmological constant). For \textbf{open channels} (horizon/absorption), respectively establish provable conditions for $\partial_\omega\arg\det_{\rm KV}\widehat{S}=-i\,{\rm Tr}\,\widehat{S}^\dagger\partial_\omega\widehat{S}$ via \textbf{extended unitarization} and \textbf{relative determinant}, preserving WS-trace equality. Demonstrate $\kappa$ extraction procedure with one-dimensional $\delta$ potential as solvable template and static-patch dS scalar as computable template. Propose minimal reproducible observation pipeline based on \textbf{FRB baseband} complex phase, providing closed-form formulas for second-order phase kernel variance scaling, dispersion/multipath leakage kernel, and injection--recovery efficacy analysis. Above theorems and engineering schemes jointly constitute verifiable ``windowed formulation''.
+
+\textbf{Keywords}: Generalized scattering phase; KV determinant; generalized Kreĭn spectral shift; Lifshits--Kreĭn trace formula; Wigner--Smith trace; heat kernel finite part; Tauberian; logarithmic window; relative determinant; static-patch de Sitter; FRB baseband
+\end{abstract}
+
+\section{Introduction and Historical Background}
+
+On even-dimensional AH/CCM geometry, Guillarmou defines KV determinant via renormalized trace (Kontsevich--Vishik trace, TR) yielding
+
+$$
+\arg\det_{\rm KV}S\!\Big(\tfrac{n}{2}+i\omega\Big)=-2\pi\,\xi(\omega)\quad(\mathrm{mod}\ 2\pi),
+$$
+
+where $\xi$ is generalized Kreĭn spectral function; its logarithmic derivative couples to TR-trace of scattering operator $S$, providing geometrized version of ``phase = spectral shift''. This framework compatible with Friedel--Lloyd--Birman--Kreĭn (BK) relation, rigorously formulated in \textbf{even-dimensional} AH/CCM scenarios.
+
+Sá Barreto--Wang prove: on non-trapping AH, $S(\omega)$ is Fourier integral operator (FIO) quantizing scattering relation, ensuring differentiability, symbol and kernel regularity for $\omega>0$, laying foundation for differentiable framework of WS-trace and KV-det.
+
+Peller characterizes function classes applicable to Lifshits--Kreĭn trace formula: for operator-Lipschitz $f$,
+
+$$
+{\rm Tr}\!\left(f(H)-f(H_0)\right)=\int f'(\lambda)\,\xi_E(\lambda)\,d\lambda,
+$$
+
+holds under relative trace-class (or weaker relative class-trace) conditions. This paper places $f(\lambda)=e^{-s\lambda}$, through substitution $\lambda=\omega^2$, connecting heat kernel difference with frequency-domain DOS slope.
+
+In electromagnetic multiport systems, trace of WS time-delay matrix $Q=-i\,S^\dagger\partial_\omega S$ equivalent to total phase derivative:
+$\partial_\omega\arg\det S={\rm Tr}\,Q$. This equality measurable at both experimental and algorithmic levels, constituting observation-end interface.
+
+In black hole/static-patch dS scenarios, ``\textbf{relative DOS--partition function--phase shift}'' provides computable paradigm removing continuous spectrum divergence, combining scattering phase with one-loop free energy/partition function. This paper uses this as template for \textbf{acyclic calibration} of absolute constants.
+
+This paper's goal is complete alignment of above chain on \textbf{frequency variable}, establishing Tauberian theorem for \textbf{logarithmic frequency windowing}, rigorously stating differentiability of KV-det under \textbf{open channels} and trace formula applicability domain, proposing implementable FRB baseband observation test.
+
+\section{Model and Assumptions}
+
+\subsection{Geometry and Operators}
+
+We work on two types of backgrounds:
+
+\begin{itemize}
+\item \textbf{Even-dimensional AH/CCM}: $(X^{n+1},g)$ even-dimensional conformally compact scattering geometry, satisfying \textbf{non-trapping} and \textbf{no zero-energy resonance/embedded eigenvalue}. Laplace-type operator $H=-\Delta_g+V$ (with regular potential) and reference operator $H_0$ form relative pair.
+\item \textbf{Static-patch de Sitter (dS)}: Take static-patch region with horizon as boundary, adopt physical ``in/out'' channels, construct \textbf{extended channels} $\mathbb{S}$ or \textbf{relative operator} $\widehat{S}:=SS_{\rm ref}^{-1}$.
+\end{itemize}
+
+For AH/CCM, $S(\omega)$ is FIO with kernel smooth in $\omega$; for dS, extends to unitary after extended channels.
+
+\subsection{KV Determinant and Generalized Kreĭn}
+
+Denote $\Phi(\omega):=\arg\det_{\rm KV}S(\omega)$, $\Theta(\omega):=\Phi(\omega)/(2\pi)$. Guillarmou establishes
+
+$$
+\Phi(\omega)=-2\pi\,\xi_\omega(\omega)\quad(\mathrm{mod}\ 2\pi),\qquad
+\Theta'(\omega)=-\partial_\omega\xi_\omega(\omega).
+$$
+
+where $\xi_\omega(\omega):=\xi_E(\lambda)\big|_{\lambda=\omega^2}$.
+
+\subsection{DOS and Variable Transformation}
+
+In energy variable $\lambda$, $\Delta\rho_E(\lambda)=-\xi_E'(\lambda)$. In frequency variable $\omega$,
+
+$$
+\Delta\rho_\omega(\omega)=2\omega\,\Delta\rho_E(\omega^2)=-\partial_\omega\xi_\omega(\omega).
+$$
+
+Define
+
+$$
+\boxed{\ \Theta'(\omega)=\Delta\rho_\omega(\omega),\qquad
+{\rm Tr}\,Q(\omega)=\partial_\omega\Phi(\omega)=2\pi\,\Delta\rho_\omega(\omega)\ }.
+$$
+
+Last equality is WS-trace.
+
+\subsection{Window Family and Mellin-Nullification}
+
+Take compactly supported window $W\in C_0^\infty(\mathbb{R})$, define logarithmic window average
+
+$$
+\langle f\rangle_W(\mu)=\int_{\mathbb{R}} f(\mu e^u)\,W(u)\,du\;=\;\int_0^\infty f(\omega)\,W\!\big(\ln(\omega/\mu)\big)\,d\ln\omega.
+$$
+
+Denote Mellin transform $\widehat{W}(z)=\int_{\mathbb{R}}e^{zu}W(u)\,du$. If $f(\omega)\sim \sum_k c_k\,\omega^{\beta_k}+\sum_{m,j} d_{m,j}\,\omega^{\tilde{\beta}_m}(\ln\omega)^j$ has high-frequency power-logarithmic asymptotics, require window to satisfy
+
+$$
+\widehat{W}(\beta_k)=0,\qquad \frac{d^j}{dz^j}\widehat{W}(z)\big|_{z=\tilde{\beta}_m}=0\ \ (0\le j\le J_m),
+$$
+
+nullifying power and logarithmic power terms.
+
+\section{Main Results}
+
+\begin{theorem}[1: Phase--Spectral-Shift--DOS--WS Unification]
+Under assumptions of 2.1, for $\omega>0$,
+
+$$
+\Theta'(\omega)=\Delta\rho_\omega(\omega)=-\partial_\omega \xi_\omega(\omega),\qquad
+{\rm Tr}\,Q(\omega)=\partial_\omega\Phi(\omega)=2\pi\,\Delta\rho_\omega(\omega).
+$$
+
+Moreover, $\Phi(\omega)=-2\pi\,\xi_\omega(\omega)\,(\mathrm{mod}\ 2\pi)$.
+
+\emph{Proof in §4.1.}
+\end{theorem}
+
+\begin{theorem}[2: Heat Kernel--Frequency Domain Substitution, No Extra $2\omega$]
+Assume $f(\lambda)=e^{-s\lambda}$ satisfying LK conditions, then heat kernel difference
+
+$$
+\Delta K(s):={\rm Tr}\big(e^{-sH}-e^{-sH_0}\big)=\int_0^\infty e^{-s\omega^2}\,\Theta'(\omega)\,d\omega,
+$$
+
+holds when $\xi_E(0^+)=0$ or interpreting small-$\lambda$ endpoint via Hadamard finite part.
+
+\emph{Proof in §4.2.}
+
+\textbf{Note}: If writing in energy variable as $\int_0^\infty e^{-s\lambda}\,\Delta\rho_E(\lambda)\,d\lambda$, through substitution $\lambda=\omega^2$ and $\Delta\rho_\omega=2\omega\,\Delta\rho_E$ canceling Jacobian, right side \textbf{contains no extra $2\omega$}, dimensionally self-consistent.
+\end{theorem}
+
+\begin{theorem}[3: Windowed Tauberian Theorem: Small-$s$ Finite Part $\leftrightarrow$ Logarithmic Window Average]
+Assume $\Theta'(\omega)$ possesses finite number of power-logarithmic asymptotic terms and controlled remainder as $\omega\to\infty$, with Mellin transform analytic bounded in strip $\Re z>-\alpha$. Take window family $W$ making $\widehat{W}$ nullify at above powers and logarithmic power indices. Then there exist constants $C_W>0$ and $\alpha'>0$ such that
+
+$$
+\operatorname{fp}_{s\to 0^+}\Delta K(s)
+\;=\;\kappa_{\rm HK}\,C_W\cdot \big\langle \Theta'\big\rangle_W\!\Big(\mu=\frac{1}{\sqrt{s}}\Big)
+\;+\;O\!\big(s^{\alpha'}\big),
+$$
+
+where $\kappa_{\rm HK}$ only depends on dimension, field content and chosen regularization scheme.
+
+\emph{Proof in §4.3.}
+\end{theorem}
+
+\begin{corollary}[3.1: Windowed Integration Law]
+Define $\Lambda_{\phi,W}(\mu):=\kappa_\Lambda\,\langle\Theta'\rangle_W(\mu)$ ($\kappa_\Lambda$ has $M^3$ dimension, in $D=4$ making $\Lambda\sim M^2$ self-consistent), then
+
+$$
+\boxed{\ \partial_{\ln\mu}\Lambda_{\phi,W}(\mu)=\kappa_\Lambda\,\Xi_W(\mu),\quad
+\Xi_W(\mu)=\int \omega\,\Theta''(\omega)\,W\big(\ln(\omega/\mu)\big)\,d\ln\omega
+=\frac{1}{2\pi}\!\int\omega\,\partial_\omega{\rm Tr}\,Q\,W\,d\ln\omega\ }.
+$$
+
+\emph{Proof in §4.4.}
+\end{corollary}
+
+\begin{theorem}[4: Open Channels: Extended Unitarization and Relative Determinant]
+Assume static-patch dS/black hole scattering operator through \textbf{channel extension} becomes $\mathbb{S}(\omega)$ unitary and differentiable, or there exists reference propagator $S_{\rm ref}$ making $\widehat{S}=SS_{\rm ref}^{-1}$ satisfy $\widehat{S}-\mathbf{1}\in\mathfrak{S}_1$, $\partial_\omega\widehat{S}\in\mathfrak{S}_1$. Then
+
+$$
+\partial_\omega \arg\det_{\rm KV}\widehat{S}(\omega)=-i\,{\rm Tr}\big(\widehat{S}^\dagger\partial_\omega \widehat{S}\big),
+$$
+
+differing from phase given by $\mathbb{S}$ route only by constant, thus equivalent at $\Xi_W$ level.
+
+\emph{Proof in §4.5.}
+\end{theorem}
+
+\begin{theorem}[5: Threshold Finite Part and Even-Dimensional Logarithmic Terms]
+Under assumptions of 2.1 and \textbf{no zero-energy resonance} condition, $\Theta'(\omega)$ possesses Hadamard finite part at $\omega\to 0^+$; even-dimensional $\omega^m\log\omega$ type terms can be nullified by above window family, with finite part and windowed limit commuting.
+
+\emph{Proof in §4.6.}
+\end{theorem}
+
+\section{Proofs}
+
+\subsection{Proof of Theorem 1}
+
+(i) \textbf{KV--Kreĭn equivalence}: Guillarmou proves on even-dimensional AH/CCM
+
+$$
+-2\pi i\,\partial_z\xi(z)=\mathrm{TR}\!\left(\partial_z S\!\big(\tfrac{n}{2}+iz\big)S^{-1}\!\big(\tfrac{n}{2}+iz\big)\right),
+$$
+
+thus $\arg\det_{\rm KV}S(\tfrac{n}{2}+i\omega)=-2\pi\,\xi(\omega)\,(\mathrm{mod}\ 2\pi)$. This yields $\Theta'=-\partial_\omega\xi_\omega$.
+
+(ii) \textbf{DOS--spectral shift}: Lifshits--Kreĭn defines $\Delta\rho_E=-\xi_E'$, variable substitution yields $\Delta\rho_\omega=2\omega\Delta\rho_E(\omega^2)=-\partial_\omega\xi_\omega$.
+
+(iii) \textbf{WS-trace}: For unitary $S$, $Q=-i S^\dagger\partial_\omega S$, ${\rm Tr}\,Q=\partial_\omega\arg\det S$. Substituting $\Phi=2\pi\Theta$ yields ${\rm Tr}\,Q=2\pi\,\Theta'$. Electromagnetic multiport version holds in measurable framework.
+
+Three steps combined yield proposition.
+
+\subsection{Proof of Theorem 2}
+
+By LK trace formula (Peller) for relative pair $(H,H_0)$ with $f(\lambda)=e^{-s\lambda}$,
+
+$$
+\Delta K(s)=\mathrm{Tr}\big(f(H)-f(H_0)\big)=\int_0^\infty f'(\lambda)\,\xi_E(\lambda)\,d\lambda.
+$$
+
+Integration by parts yields
+
+$$
+\Delta K(s)=\Big[-e^{-s\lambda}\xi_E(\lambda)\Big]_{0^+}^{\infty}+\int_0^\infty e^{-s\lambda}\,\Delta\rho_E(\lambda)\,d\lambda.
+$$
+
+High-energy end $e^{-s\lambda}\to 0$ vanishes; low-energy end requires $\xi_E(0^+)=0$ or Hadamard finite part interpretation (Theorem 5). Substituting $\lambda=\omega^2$, $d\lambda=2\omega\,d\omega$ with $\Delta\rho_\omega=2\omega\Delta\rho_E(\omega^2)$ canceling Jacobian yields
+
+$$
+\Delta K(s)=\int_0^\infty e^{-s\omega^2}\,\Delta\rho_\omega(\omega)\,d\omega=\int_0^\infty e^{-s\omega^2}\,\Theta'(\omega)\,d\omega.
+$$
+
+Proof complete.
+
+\subsection{Proof of Theorem 3 (Windowed Tauberian)}
+
+Three steps.
+
+(a) \textbf{Frequency domain decomposition and window Mellin-nullification}. Assume
+
+$$
+\Theta'(\omega)=\sum_{k=1}^K c_k\,\omega^{\beta_k}+\sum_{m}\sum_{j=0}^{J_m} d_{m,j}\,\omega^{\tilde{\beta}_m}(\ln\omega)^j+r(\omega),
+$$
+
+$r$'s Mellin transform analytic bounded in $\Re z>-\alpha$. Take $W\in C_0^\infty$ making $\widehat{W}(\beta_k)=0$, $\frac{d^j}{dz^j}\widehat{W}(z)|_{z=\tilde{\beta}_m}=0$. Then
+
+$$
+\langle\Theta'\rangle_W(\mu)=\langle r\rangle_W(\mu).
+$$
+
+(b) \textbf{Laplace saddle and scale matching}. Denote $u=\ln(\omega/\mu)$, then
+
+$$
+\Delta K(s)=\int_{\mathbb{R}} e^{-s\mu^2 e^{2u}}\,\Theta'(\mu e^u)\,du
+\approx \Theta'(\mu)\!\int_{\mathbb{R}} e^{-s\mu^2 e^{2u}}\,du+\cdots
+$$
+
+Take $\mu=s^{-1/2}$ placing saddle at $u=0$. By stationary phase/saddle approximation, there exist $C_W$ and $\alpha'>0$ such that
+
+$$
+\operatorname{fp}_{s\to 0}\Delta K(s)=\kappa_{\rm HK}\,C_W\,\langle\Theta'\rangle_W(\mu=s^{-1/2})+O(s^{\alpha'}).
+$$
+
+($C_W$ can write as constant multiple of $\int e^{-e^{2u}}W(u)\,du$; exact coefficient determined by regularization and window normalization.)
+
+(c) \textbf{OL constant and relative class-trace stability}. By Peller's OL estimate, OL constant of $f(\lambda)=e^{-s\lambda}$ bounded as $s\downarrow 0$ (specifically depends on Besov norm), combined with relative class-trace assumption yielding error bound consistency.
+
+Combined above proves theorem.
+
+\subsection{Proof of Corollary 3.1 (Windowed Integration Law)}
+
+Differentiating $\langle\Theta'\rangle_W(\mu)=\int \Theta'(\omega)W(\ln(\omega/\mu))\,d\ln\omega$:
+
+$$
+\partial_{\ln\mu}\langle\Theta'\rangle_W=-\!\int \Theta'(\omega)\,\partial_{\ln\omega}W\,d\ln\omega
+=\int \omega\,\Theta''(\omega)\,W\,d\ln\omega.
+$$
+
+Using $\partial_\omega{\rm Tr}\,Q=2\pi\,\Theta''$ yields statement.
+
+\subsection{Proof of Theorem 4 (Open Channels)}
+
+(i) \textbf{Extended channels}: In static-patch dS, view horizon as in/out scattering channels extending to unitary $\mathbb{S}$. Unitarity and differentiability ensure $\partial_\omega\arg\det \mathbb{S}={\rm Tr}\,Q_{\rm ext}$.
+
+(ii) \textbf{Relative determinant}: Choose reference $S_{\rm ref}$ (Rindler/outer region) making $\widehat{S}-\mathbf{1}$, $\partial_\omega\widehat{S} \in\mathfrak{S}_1$. KV determinant differentiable with
+
+$$
+\partial_\omega\log\det_{\rm KV}\widehat{S}=\mathrm{TR}\!\left(\widehat{S}^{-1}\partial_\omega\widehat{S}\right)=-i\,{\rm Tr}\big(\widehat{S}^\dagger\partial_\omega\widehat{S}\big),
+$$
+
+equality holding relies on $\widehat{S}$'s quasi-unitarity and ideal class conditions. Differs from phase given by $\mathbb{S}$ only by constant, equivalent at $\Xi_W$ level.
+
+\subsection{Proof of Theorem 5 (Threshold Finite Part)}
+
+AH/CCM spectrum at $\omega\to 0$ contains $\omega^m\log\omega$ form terms. Non-trapping and no zero-energy resonance ensure resolvent threshold control, FIO structure yields kernel singularity order; accordingly $\Theta'(\omega)$ possesses Hadamard finite part. After window family satisfies logarithmic nullification, finite part and windowed limit commute, proof complete.
+
+\section{Modeled Examples}
+
+\subsection{One-Dimensional $\delta$ Potential (Solvable Verification)}
+
+Let $V(x)=\alpha\,\delta(x)$. Partial wave degenerates, scattering phase $\delta(\omega)=\arctan(-\alpha/2\omega)$. Thus
+
+$$
+\Phi(\omega)=2\,\delta(\omega),\quad \Theta'(\omega)=\frac{1}{2\pi}\partial_\omega\Phi
+=\frac{1}{\pi}\frac{\alpha}{4\omega^2+\alpha^2}.
+$$
+
+Substituting into Theorem 2 verifies closed-form computability consistency of $\Delta K(s)=\int_0^\infty e^{-s\omega^2}\Theta'(\omega)\,d\omega$; take window with $\widehat{W}(0)=1$, $\widehat{W}(1)=0$, numerically verify windowed Tauberian error order $O(s^{\alpha'})$.
+
+\subsection{Static-Patch dS Scalar Template ($\kappa$ Extraction)}
+
+Following Albrychiewicz--Neiman, for massless scalar greybody factor/transmission phase $\delta_\ell(\omega)$ and relative DOS written as partial wave sum, $\Theta'(\omega)=\sum_\ell (2\ell+1)\delta'_\ell(\omega)/\pi$. Law--Parmentier's ``relative DOS--partition function'' yields consistency with one-loop free energy. Numerically compute $\langle\Theta'\rangle_W(\mu)$ on low-frequency cutoff $\omega\le \mu$, matching with small-$s$ heat kernel finite part (Seeley--DeWitt bulk term), extract
+
+$$
+\kappa_{\rm HK}=\frac{\operatorname{fp}_{s\to 0}\Delta K(s)}{C_W\,\langle\Theta'\rangle_W(s^{-1/2})},\qquad
+\kappa_\Lambda\ \text{determined by dimensional matching},
+$$
+
+as numerical demonstration of ``acyclic calibration''.
+
+\section{Engineering Scheme (FRB Baseband)}
+
+\subsection{Observable Kernel}
+
+Reconstruct system transfer $\widehat{S}(\omega)=H_{\rm sys}(\omega)H_{\rm ref}(\omega)^{-1}$ from cross-spectrum/multiport network, take $\Phi(\omega)=\arg\det_{\rm KV}\widehat{S}$, define
+
+$$
+\widehat{\Theta}(\omega)=\frac{\Phi(\omega)}{2\pi},\quad
+\widehat{\Xi}_W(\mu)=\int \omega\,\partial_\omega^2\widehat{\Theta}(\omega)\,W(\ln(\omega/\mu))\,d\ln\omega
+=\frac{1}{2\pi}\!\int\omega\,\partial_\omega {\rm Tr}\,\widehat{Q}\,W\,d\ln\omega.
+$$
+
+WS-trace's electromagnetic measurability provides direct estimator for this construction.
+
+\subsection{Leakage Kernel and Variance}
+
+Phase-level residual dispersion $\phi_{\rm DM}=K_{\rm DM}\,\omega^{-1}$ and thin-screen broadening $\phi_{\rm sca}=K_{\rm sca}\,\omega^{-3}$ induce
+
+$$
+\Xi_{\rm DM}=\omega\,\partial_\omega^2\phi_{\rm DM}=+\,2K_{\rm DM}\,\omega^{-2},\qquad
+\Xi_{\rm sca}=+\,12K_{\rm sca}\,\omega^{-3}.
+$$
+
+Second-order derivative noise amplification: if phase noise spectrum near-white with channel width $\Delta\omega$, discrete second-order difference operator yields
+
+$$
+\mathrm{Var}\big[\widehat{\Xi}(\omega)\big]\;\simeq\; C\,\frac{\omega^{2}}{\Delta\omega^{4}}\ \sigma_\phi^2(\omega),
+$$
+
+$C$ determined by discrete kernel spectral norm. After windowing provides closed-form upper bound for $\mathrm{Var}[\widehat{\Xi}_W]$ by $W$'s $L^2$ norm.
+
+\subsection{Data, Pipeline, and Efficacy}
+
+CHIME/FRB published approximately 140 baseband events containing coherent dedispersion and polarization information, satisfying phase-level access; we provide minimal reproducible pipeline: read and calibrate → relative determinant → phase unwrapping → regularized differentiation (Tikhonov/TV on $\ln\omega$ axis) → windowing → shape consistency test/upper limit. Injection--recovery experiment: inject $\Xi_{\rm inj}(\omega)=A\,\omega^{-1}\psi(\ln\omega)$ and $\omega^{-2}$, $\omega^{-3}$ templates, compare recovery bias--variance with Fisher-CR lower bound, assess sample stacking efficacy curve.
+
+\section{Discussion: Risks, Boundaries, Related Work}
+
+Mathematical core of this framework is \textbf{even-dimensional} KV--Kreĭn equivalence and FIO structure of AH/CCM; odd dimensions require alternative introduction. Threshold $\log$ terms and open channel differentiability require strict relative class-trace and branch continuity. In black hole/static-patch dS, ``relative DOS--partition function'' provides computable anchor. Observation-wise, $\Xi$'s second-order derivative noise amplification and dispersion/multipath leakage need windowing and regularization control. This paper's ``windowing law'' is \textbf{structural equality}, absolute numerical mapping depends on $\kappa_{\rm HK}$, $\kappa_\Lambda$ calibration.
+
+\section{Conclusion}
+
+This paper rigorously aligns ``phase--spectral-shift--DOS--WS--heat-kernel'' chain on frequency variable, providing substitution theorem without extra $2\omega$ and \textbf{logarithmic frequency windowing} Tauberian theorem, establishing windowed integration law maintaining measurable WS-trace equality under open channels. Demonstrate $\kappa$ extraction route with $\delta$ potential and static-patch dS templates, providing minimal reproducible scheme for FRB baseband. This framework connects spectral geometry with observable phase analysis as verifiable methodology.
+
+\appendix
+
+\section{Notation and Factor Accounting}
+
+\begin{itemize}
+\item Frequency/energy: $\lambda=\omega^2$, $d\lambda=2\omega\,d\omega$.
+\item Spectral shift/DOS: $\Delta\rho_E=-\xi_E'$, $\Delta\rho_\omega(\omega)=2\omega\,\Delta\rho_E(\omega^2)$.
+\item Scattering phase: $\Phi=\arg\det_{\rm KV}S$, $\Theta=\Phi/2\pi$.
+\item Core identities:
+  $$
+  \Theta'=\Delta\rho_\omega=-\partial_\omega\xi_\omega,\quad
+  {\rm Tr}\,Q=\partial_\omega\Phi=2\pi\,\Delta\rho_\omega,\quad
+  \Delta K(s)=\int_0^\infty e^{-s\omega^2}\,\Theta'(\omega)\,d\omega.
+  $$
+\item Logarithmic window average: $\langle f\rangle_W(\mu)=\int f(\omega)\,W(\ln(\omega/\mu))\,d\ln\omega$, $d\ln\omega=d\omega/\omega$.
+\item Observable kernel: $\Xi_W(\mu)=\partial_{\ln\mu}\langle\Theta'\rangle_W=\int \omega\,\Theta''\,W\,d\ln\omega=\frac{1}{2\pi}\int \omega\,\partial_\omega{\rm Tr}\,Q\,W\,d\ln\omega$.
+\end{itemize}
+
+\section{LK Trace Formula and Operator-Lipschitz}
+
+\begin{proposition}[B.1 (LK)]
+For self-adjoint pair $(H,H_0)$ satisfying relative class-trace assumption making $f(H)-f(H_0)\in\mathfrak{S}_1$, with $f$ operator-Lipschitz, then
+$\mathrm{Tr}\big(f(H)-f(H_0)\big)=\int f'(\lambda)\xi_E(\lambda)\,d\lambda$.
+
+\textbf{Proof essentials}: Peller's OL criterion ($f\in B^1_{\infty 1}$) combined with Helffer--Sjöstrand representation; Hilbert--Schmidt estimate of resolvent difference ensures class-trace. For $f(\lambda)=e^{-s\lambda}$, its OL constant bounded as $s\downarrow0$.
+\end{proposition}
+
+\section{Window Family Construction and Mellin-Nullification}
+
+Take smooth compact window $W$ with $\int W=1$. To nullify power laws $\omega^{\beta_k}$ and $\omega^{\tilde{\beta}_m}(\ln\omega)^j$, require
+
+$$
+\widehat{W}(\beta_k)=0,\qquad \frac{d^j}{dz^j}\widehat{W}(z)\big|_{z=\tilde{\beta}_m}=0.
+$$
+
+Construction method: start with mother window $W_0$, form finite linear combination $W=\sum_\ell a_\ell\,W_0(\cdot-u_\ell)$, coefficients determined by nullification linear equations. Mellin-wavelet (logarithmic axis partition of unity) framework ensures numerical stability.
+
+\section{KV-det Differentiability for Open Channels}
+
+\begin{proposition}[D.1]
+Assume reference $S_{\rm ref}$ makes $\widehat{S}=SS_{\rm ref}^{-1}$ satisfy $\widehat{S}-\mathbf{1}\in\mathfrak{S}_1$, $\partial_\omega\widehat{S}\in\mathfrak{S}_1$, with $\widehat{S}$ quasi-unitary. Then KV determinant exists with
+
+$$
+\partial_\omega\log\det_{\rm KV}\widehat{S}=\mathrm{TR}\big(\widehat{S}^{-1}\partial_\omega\widehat{S}\big)=-i\,{\rm Tr}\big(\widehat{S}^\dagger\partial_\omega\widehat{S}\big).
+$$
+
+\textbf{Proof essentials}: TR multiplicative property and logarithmic derivative definition; quasi-unitarity reduces TR to trace. Static-patch dS with Rindler/outer region as reference satisfies ideal class conditions.
+\end{proposition}
+
+\section{Threshold $\omega\to 0$ Finite Part}
+
+\begin{proposition}[E.1]
+Non-trapping and no zero-energy resonance imply resolvent threshold controllability, $\Theta'$'s logarithmic singularity at most finite order. For even-dimensional $\omega^m\log\omega$ terms, choosing $\widehat{W}$ nullifying at corresponding indices and their derivatives yields
+$\operatorname{fp}_{\omega\to 0}\Theta'=\lim_{\mu\downarrow 0}\langle\Theta'\rangle_W(\mu)$.
+
+\textbf{Proof essentials}: FIO structure and analytic Fredholm theory yield kernel threshold form; windowed limit commutes with finite part by dominated convergence and nullification conditions.
+\end{proposition}
+
+\section{FRB Pipeline Discrete Implementation and Error Propagation}
+
+\textbf{F.1 Phase unwrapping and relative determinant}: Multi-beam difference, cross-polarization and injection noise give reference $H_{\rm ref}$, ensuring continuous $\Phi(\omega)$ via principal value phase and branch patching.
+
+\textbf{F.2 Second-derivative regularization}: On $\ln\omega$ axis use Tikhonov/TV, regularization parameter take L-curve or GCV. Second-order difference kernel $D^{(2)}$ spectral norm $|D^{(2)}|\sim \Delta\omega^{-2}$, thus
+
+$$
+\mathrm{Var}\big[\widehat{\Xi}(\omega)\big]\simeq C\,\omega^2\Delta\omega^{-4}\sigma_\phi^2(\omega).
+$$
+
+\textbf{F.3 Leakage kernel}:
+Dispersion $\phi_{\rm DM}=K_{\rm DM}\omega^{-1}\Rightarrow \Xi_{\rm DM}=+\,2K_{\rm DM}\omega^{-2}$ (positive sign);
+Thin-screen broadening $\phi_{\rm sca}=K_{\rm sca}\omega^{-3}\Rightarrow \Xi_{\rm sca}=+\,12K_{\rm sca}\omega^{-3}$.
+After windowing
+
+$$
+\widehat{\Xi}_{W}=\Xi_W+\langle \Xi_{\rm DM}\rangle_W+\langle \Xi_{\rm sca}\rangle_W+\mathrm{noise},
+$$
+
+shape separability ensured by power index difference and windowed frequency band decomposition.
+
+\textbf{F.4 Injection--recovery}: Inject $\Xi_{\rm inj}(\omega)$ ($\omega^{-1}$, $\omega^{-2}$, $\omega^{-3}$) into public baseband, recover $\widehat{\Xi}_W$ through full pipeline, report $|\widehat{A}/A-1|$ versus window width relationship and Fisher-CR lower bound.
+
+\section*{End of Main Text and Appendices}
+
+\end{document}
+

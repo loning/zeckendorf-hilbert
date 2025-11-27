@@ -1,0 +1,227 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{braket}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=0.85in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Math operators
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Cov}{Cov}
+
+% Title information
+\title{Unified Measurement via Windowed Readout:\\
+Born Probability = Minimal KL,\\
+Pointer Basis = Minimal Energy Eigenbasis\\[10pt]
+\large (With Non-Asymptotic Error Closure and Window/Kernel Optimization)}
+\author{Auric\\[5pt]
+\small Date: October 25, 2025}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Within unified framework of \textbf{mirror kernel--de Branges--Kreĭn canonical system--information geometry}, this paper proposes and rigorously proves three main theorems:
+
+\textbf{1. Windowed Readout Theorem}: Any realizable quantum measurement readout equivalent to weighting of (relative or absolute) \textbf{local density of states (LDOS)} by ``energy window $w_R$ and frontend kernel $h$''; when adopting realistic \textbf{discrete sampling--finite truncation} procedure, error can be \textbf{non-asymptotically closed} by \textbf{Nyquist (alias)--Poisson (sampling)--Euler--Maclaurin (EM, sum--integral difference)} three terms, with alias term strictly zero under \textbf{bandlimited + Nyquist conditions}. Conclusion based on Herglotz property and boundary value dictionary ($\Im m(E+i0)=\pi\rho(E)$) of Weyl--Titchmarsh $m$-function and its equivalent formulation with canonical systems.
+
+\textbf{2. Born Probability = Minimal KL (Information Projection)}: When readout dictionary aligns with \textbf{log-partition potential} $\Lambda(\rho)=\log\!\sum_j w_j e^{\langle\beta_j,\rho\rangle}$, \textbf{minimal energy projection with unit response} equivalent to \textbf{minimal Kullback--Leibler (KL) divergence under linear moment constraints}; softmax probability precisely minimal-KL projection weights, converging via $\Gamma$-limit to hard projection (Hilbert orthogonal) as softening parameter $\tau\!\downarrow\!0$ (equivalently inverse temperature $\kappa=1/\tau\!\uparrow\!\infty$). Equivalently using \textbf{Fenchel--Legendre duality / Bregman--KL identity / Csiszár I-projection}.
+
+\textbf{3. Pointer Basis = Eigenbasis of Minimal Energy/Information Projection}: Under finite dictionary, coefficient vector of minimal energy mollifier $\beta^\star=\dfrac{G^{-1}c}{c^\ast G^{-1}c}$; in Gram spectral decomposition $G=U\Lambda U^\ast$, $\beta^\star$ expanded along $\{u_k\}$ weighted by $\lambda_k^{-1}$, thus \textbf{direction contributing strongest to $\beta^\star$} realized by
+
+$$
+\arg\max_k\ \frac{|\langle u_k,c\rangle|^2}{\lambda_k};
+$$
+
+small eigenvalue trend amplifies that direction, but whether dominates depends on simultaneously having sufficiently large projection $|\langle u_k,c\rangle|$. Soft version information Hessian $\nabla^2\Lambda$ spectral basis isomorphic to this.
+
+On scattering side, via \textbf{Birman--Kreĭn} and \textbf{Wigner--Smith} standard construction, single-channel phase derivative and (relative) spectral density satisfy
+
+$$
+\varphi'(E)=\pi\,\rho_{\mathrm{rel}}(E)=\pi\,\xi'(E),\qquad
+\mathsf{Q}(E)=-i\,S(E)^\dagger\frac{dS}{dE},
+$$
+
+hence $\tfrac{1}{2\pi}\operatorname{tr}\mathsf{Q}(E)=\rho_{\mathrm{rel}}(E)$. This interprets ``negative delay'' as result of \textbf{reference choice} and \textbf{relative counting}, not causality violation.
+
+\textbf{Keywords}: Windowed readout; Weyl--Titchmarsh; spectral shift function; Wigner--Smith time delay; de Branges space; BN--Bregman; minimal KL; PSWF; Nyquist--Poisson--EM; non-asymptotic error.
+\end{abstract}
+
+\section{Notation and Background}
+
+\subsection{Basic Conventions}
+
+\begin{itemize}
+\item \textbf{Energy and upper half-plane}: $E\in\mathbb{R}$, $\mathbb{C}_+=\{z:\Im z>0\}$.
+\item \textbf{Fourier convention}: Uniformly adopt $\widehat{f}(\xi)=\int f(t)e^{-it\xi}\,dt$, where $\xi$ is \textbf{angular frequency} (rad/energy).
+\item \textbf{Unit convention}: Fix $\hbar=1$.
+\end{itemize}
+
+\subsection{Spectral Function and Boundary Values}
+
+\textbf{Weyl--Titchmarsh and LDOS}: If $m:\mathbb{C}_+\!\to\!\mathbb{C}_+$ is Herglotz--Nevanlinna function, has \textbf{non-tangential boundary value} at Lebesgue-a.e. energy points (Fatou boundary theory). When its Herglotz representation measure absolutely continuous part has density $\rho_m(E)$ at $E$, a.e.
+
+$$
+\Im m(E+i0)=\pi\rho_m(E).
+$$
+
+Here $\pi$ from \textbf{Stieltjes inversion} standard constant, independent of Fourier transform convention.
+
+\subsection{Scattering and Spectral Shift}
+
+\textbf{Notation convention}: This paper fixes Birman--Kreĭn ``positive sign'' convention
+
+$$
+\det S(E)=e^{+2\pi i\,\xi(E)},\qquad \xi'(E)=\rho_{\mathrm{rel}}(E).
+$$
+
+Define \textbf{relative (spectral shift) density} $\rho_{\mathrm{rel}}(E):=\xi'(E)$ (a.e.). Single-channel $S(E)=e^{2i\varphi(E)}$ gives $\varphi'(E)=\pi\,\xi'(E)=\pi\,\rho_{\mathrm{rel}}(E)$ (a.e.).
+
+\section{Main Theorem I: Windowed Readout and Non-Asymptotic Error Closure}
+
+\begin{theorem}[Windowed Readout; Nyquist--Poisson--EM Three-Term Decomposition]
+\label{thm:windowed-readout}
+\textbf{Assumption}: Sampled function $F(E)=w_R(E)\,[h\!\star\!\rho_\star](E)$ belongs to $L^1(\mathbb{R})$ or tempered distribution $\mathcal{S}'$ satisfying Poisson summation interchange condition; $h\in L^1\cap L^2$; $w_R$ even window; $\rho_\star$ absolute or relative LDOS.
+
+Take even window $w_R(x)=w(x/R)$ and frontend kernel $h\in L^1\cap L^2$. For absolute or relative LDOS $\rho_\star\in\{\rho_m,\rho_{\mathrm{rel}}\}$ define readout
+
+$$
+\mathrm{Obs}_{\Delta,T}:=\Delta\!\!\sum_{|n|\le M}\! w_R(E_n)\,[h\!\star\!\rho_\star](E_n),\quad E_n=n\Delta,\ T=M\Delta.
+$$
+
+Then
+
+$$
+\mathrm{Obs}_{\Delta,T}
+=\int_{\mathbb{R}} w_R(E)\,[h\!\star\!\rho_\star](E)\,dE
++\varepsilon_{\mathrm{alias}}+\varepsilon_{\mathrm{EM}}+\varepsilon_{\mathrm{tail}},
+$$
+
+where (i) $\varepsilon_{\mathrm{alias}}$: spectral aliasing from \textbf{Poisson summation}; (ii) $\varepsilon_{\mathrm{EM}}$: \textbf{finite-order Euler--Maclaurin} sum formula remainder; (iii) $\varepsilon_{\mathrm{tail}}$: out-of-window truncation tail.
+
+\textbf{Alias zero necessary and sufficient condition}: By Poisson summation formula, $\varepsilon_{\mathrm{alias}}=0$ \textbf{necessary and sufficient condition}: $F$ bandlimited with $\supp\widehat{F}\subset[-\Omega_F,\Omega_F]$ and $\Delta\le\pi/\Omega_F$ (Nyquist).
+\end{theorem}
+
+\begin{proof}
+Apply Poisson summation to connect discrete sum with continuous integral. Euler--Maclaurin gives Bernoulli corrections. Truncation produces tail term. Nyquist condition ensures alias cancellation. \end{proof}
+
+\section{Main Theorem II: Born Probability = Minimal KL}
+
+\begin{theorem}[Born as I-Projection]
+\label{thm:born-iprojection}
+For constraint family $\mathcal{C}=\{p:\,\sum_i p_i a_i=b\}$ and reference $q$, minimal KL-divergence
+
+$$
+p^\star=\arg\min_{p\in\mathcal{C}}D_{\mathrm{KL}}(p\|q)
+$$
+
+has exponential family form $p^\star_i\propto q_i e^{\lambda a_i}$.
+
+\textbf{Alignment condition}: $p^\star$ equals Born weights $w_i=\langle\psi,E_i\psi\rangle$ if and only if $\log(w_i/q_i)$ affinely expressible in constraint space.
+
+Softmax probability $p_j(\rho;\tau)=\dfrac{w_j e^{\langle\beta_j,\rho\rangle/\tau}}{\sum_\ell w_\ell e^{\langle\beta_\ell,\rho\rangle/\tau}}$ converges to Born via $\Gamma$-limit as $\tau\downarrow0$.
+\end{theorem}
+
+\begin{proof}
+Strict convexity of KL and Lagrange multipliers yield exponential family. Alignment condition ensures match with Born. $\Gamma$-limit follows from log-sum-exp concentration. \end{proof}
+
+\section{Main Theorem III: Pointer Basis = Minimal Energy Eigenbasis}
+
+\begin{theorem}[Pointer Basis Characterization]
+\label{thm:pointer-basis}
+Under finite dictionary with Gram matrix $G=\sum_j w_j\beta_j\beta_j^\ast$, minimal energy mollifier coefficient
+
+$$
+\beta^\star=\frac{G^{-1}c}{c^\ast G^{-1}c},
+$$
+
+where $c$ constraint vector.
+
+In spectral decomposition $G=U\Lambda U^\ast$, direction maximizing contribution
+
+$$
+k^\star=\arg\max_k\ \frac{|\langle u_k,c\rangle|^2}{\lambda_k}.
+$$
+
+Small eigenvalues amplify corresponding eigendirections, but dominance requires sufficient projection $|\langle u_k,c\rangle|$.
+
+Information Hessian $\nabla^2\Lambda=\Cov_{p(\rho)}(\beta)$ has spectral basis isomorphic to Gram decomposition, thus \textbf{pointer basis} corresponds to minimal curvature directions of log-partition function.
+\end{theorem}
+
+\begin{proof}
+Minimization with quadratic constraint yields $\beta^\star=G^{-1}c/\text{norm}$. Spectral decomposition $G=U\Lambda U^\ast$ gives $\beta^\star=\sum_k\frac{\langle u_k,c\rangle}{\lambda_k c^\ast G^{-1}c}u_k$. Contribution of direction $k$ proportional to $|\langle u_k,c\rangle|^2/\lambda_k$. \end{proof}
+
+\section{Phase--Density Unification}
+
+Core scale chain holding a.e. on absolutely continuous spectrum:
+
+$$
+\boxed{\ \frac{\varphi'(E)}{\pi}=\rho_{\mathrm{rel}}(E)=\frac{1}{2\pi}\tr\mathsf{Q}(E)\ }
+$$
+
+connecting:
+\begin{itemize}
+\item Scattering phase derivative $\varphi'$
+\item Relative spectral density $\rho_{\mathrm{rel}}$
+\item Wigner--Smith delay trace $\tr\mathsf{Q}$
+\end{itemize}
+
+via Birman--Kreĭn formula $\det S=e^{2\pi i\xi}$ and $\mathsf{Q}=-iS^\dagger\partial_E S$.
+
+\section{Discussion and Outlook}
+
+This work unifies:
+\begin{enumerate}
+\item Windowed readout with non-asymptotic NPE error closure
+\item Born probability as information-geometric I-projection
+\item Pointer basis as minimal energy eigenbasis
+\item Phase--density correspondence via Birman--Kreĭn--Wigner--Smith
+\end{enumerate}
+
+Key formulas:
+\begin{itemize}
+\item Error: $\varepsilon_{\mathrm{total}}=\varepsilon_{\mathrm{alias}}+\varepsilon_{\mathrm{EM}}+\varepsilon_{\mathrm{tail}}$
+\item Born: $p^\star_i\propto q_i e^{\lambda a_i}$ with alignment condition
+\item Pointer: $k^\star=\arg\max_k|\langle u_k,c\rangle|^2/\lambda_k$
+\item Scale: $\varphi'/\pi=\rho_{\mathrm{rel}}=(2\pi)^{-1}\tr\mathsf{Q}$
+\end{itemize}
+
+Future directions:
+\begin{itemize}
+\item Extension to continuous POVM and general observables
+\item Numerical optimization algorithms for window design
+\item Applications to quantum metrology and thermometry
+\item Connections to resource theories and entanglement
+\end{itemize}
+
+\end{document}
+

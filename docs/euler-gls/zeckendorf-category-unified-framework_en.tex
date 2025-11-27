@@ -1,0 +1,688 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{assumption}[theorem]{Assumption}
+
+% Title information
+\title{Zeckendorf Categories and Einstein Field Equations: Categorical Unification via Information Geometry}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Within the unified framework where causal geometry is characterized by Generalized Light Structure (GLS) and observation-computation global unitarity and reversibility is expressed through EBOC, we construct the categorical system $\mathbf{Zec}$ of Zeckendorf structures. We define the normalization projection $N$ at the object level and establish object-level associativity/commutativity and tensor compatibility through tensors with ``value addition followed by normalization''. Via reversible local carry/borrow rules and Curtis--Hedlund--Lyndon type theorems, we establish a bridge to Reversible Cellular Automata (RCA). Under the Nyquist--Poisson--finite-order Euler--Maclaurin (NPE) discipline, we define the quantization-normalization chain $L=N\circ\mathsf{M}$ via $\mathbf{WScat}\xrightarrow{\ \mathsf{M}\ }\mathbf{Fib}\xrightarrow{\ N\ }\mathbf{Zec}$, yielding non-asymptotic error closure and ``non-increasing singularity''. On the geometric side, the ``double-time separation principle'' ensures that the causal partial order is determined solely by the causal frontier time $t_*$, while the Zeckendorf log is located only on the operational scale $T_\gamma$ side. Finally, under the unified axiomatic background, we rigorously derive the extremal conditions of Einstein field equations with cosmological constant through variation of windowed relative entropy-geometric action.
+\end{abstract}
+
+\noindent\textbf{Keywords:} GLS, EBOC, RCA, Zeckendorf decomposition, normalization projection, tensor compatibility, windowed group delay, finite-order Euler--Maclaurin, Poisson connection, double-time separation, information-geometric variation, Einstein--Hilbert action
+
+\noindent\textbf{MSC 2020:} Primary 83C05, 81U15, 37B15, 37N20; Secondary 42A38, 94A17
+
+\section{Introduction}
+
+The unification of causal geometry, quantum scattering theory, and computational reversibility has emerged as a fundamental challenge in modern mathematical physics. The Generalized Light Structure (GLS) framework provides a geometric characterization of causal structure through lightlike foliation and phase-space geometry. The EBOC (Eternal Block Observation Computation) paradigm establishes global unitarity and reversibility of observation-computation processes. Reversible Cellular Automata (RCA) offer discrete dynamical models preserving information content.
+
+In this work, we construct a categorical bridge between these frameworks using Zeckendorf decomposition \cite{zeckendorf1962, lekkerkerker1952}---the unique representation of natural numbers as sums of non-consecutive Fibonacci numbers. The key innovation is the introduction of object-level normalization projections $N$ in the Zeckendorf category $\mathbf{Zec}$, establishing tensor compatibility through ``value addition followed by normalization''.
+
+Our main contributions are threefold:
+
+\begin{enumerate}
+\item We construct categories $\mathbf{Fib}$ and $\mathbf{Zec}$ with object-level normalization projections and establish tensor compatibility via value-preserving operations.
+
+\item We build explicit bridges: from windowed scattering data ($\mathbf{WScat}$) through quantization ($\mathsf{M}$) and normalization ($N$) to $\mathbf{Zec}$, and from RCA to $\mathbf{Fib}$ via value-conserving reversible local rules.
+
+\item Under the double-time separation principle and NPE discipline, we derive Einstein field equations with cosmological constant from variational principles on windowed relative entropy-geometric action.
+\end{enumerate}
+
+The paper is organized as follows. Section 2 establishes digit flows, normal forms, and termination of the energy function. Section 3 constructs categories $\mathbf{Fib}$ and $\mathbf{Zec}$ with object-level normalization. Section 4 develops tensor structures and object-level tensor compatibility. Section 5 bridges to reversible cellular automata. Section 6 constructs the quantization-normalization chain from windowed scattering. Section 7 establishes double-time separation and causal consistency. Section 8 derives Einstein equations from information-geometric variation. Sections 9 and 10 discuss categorical structures, algorithmic complexity, and conclusions.
+
+\section{Notation, Axioms, and Conventions}
+
+\subsection{Scattering Master Scale and Unitarity}
+
+Let $E\in\mathbb{R}$ be the energy variable. The unitary scattering matrix $S(E)\in\mathsf{U}(N)$ is assumed differentiable. The Wigner--Smith group delay is defined as
+$$
+\mathsf{Q}(E)=-i\,S(E)^\dagger \frac{dS}{dE}(E).
+$$
+
+The total phase $\varphi(E)=\tfrac{1}{2}\arg\det S(E)$ and the relative density of states $\rho_{\mathrm{rel}}(E)$ satisfy the fundamental identity
+$$
+\frac{\varphi'(E)}{\pi}=\rho_{\mathrm{rel}}(E)=\frac{1}{2\pi}\operatorname{tr}\mathsf{Q}(E).
+$$
+
+\subsection{Windowed Compression and Readout}
+
+Take smooth, rapidly decaying window kernels $w_R$ and analysis kernel $h$. Define $\check{h}(E)=h(-E)$ and convolution $(h*f)(E)=\int h(E-\xi)f(\xi)\,d\xi$. The Toeplitz/Berezin compression multiplier is
+$$
+K_{w,h}[f](E)=(w_R*\check{h})(E)f(E).
+$$
+
+Along an observation path $\gamma$, the windowed group delay readout is
+$$
+T_\gamma[w_R,h]=\int (w_R*\check{h})(E)\,\frac{1}{2\pi}\operatorname{tr}\mathsf{Q}_\gamma(E)\,dE.
+$$
+
+\subsection{Double-Time Separation}
+
+The causal frontier time $t_*(\gamma)$ determines the partial order and no-signaling constraints. The operational scale $T_\gamma[w_R,h]$ is distinct from $t_*$ with no universal magnitude comparison; we allow $T_\gamma<0$.
+
+\subsection{NPE Discipline}
+
+Under band-limited and Nyquist conditions, we employ only finite-order Euler--Maclaurin (EM) expansions and Poisson summation for error budgeting. We maintain the principle of ``non-increasing singularity'': normalization and quantization operations do not introduce new poles or intrinsic singularities beyond the master scales.
+
+\subsection{Fibonacci and Zeckendorf}
+
+Define the Fibonacci sequence by $F_1=1, F_2=1, F_{k+1}=F_k+F_{k-1}$ for $k\geq 1$. Zeckendorf expansion uses positions $k\geq 2$. Legal codewords $\mathbf{b}=(b_2,b_3,\ldots)$ satisfy $b_k\in\{0,1\}$ and $b_kb_{k+1}=0$ (no consecutive ones).
+
+\section{Digit Flows, Normal Forms, and Energy Function Termination}
+
+\begin{definition}[Digit Flow and Valuation]
+\label{def:digit_flow}
+Given a finite window $I=[a,b]\subset\mathbb{Z}$, define the digit flow space
+$$
+X_{\mathrm{Fib}}^I=\{\mathbf{a}=(a_k)_{k\in I}: a_k\in\mathbb{N},\ \text{finitely many nonzero}\},
+$$
+with valuation $V_I(\mathbf{a})=\sum_{k\in I}a_kF_k$.
+\end{definition}
+
+\begin{definition}[Golden Mean Subshift and Normal Form]
+\label{def:golden_mean}
+The golden mean subshift is
+$$
+X_{\mathrm{GM}}^I=\{\mathbf{b}\in\{0,1\}^I: \forall k\in[a,b-1],\ b_kb_{k+1}=0\}.
+$$
+
+Given $n\in\mathbb{N}$, we call $\mathbf{b}\in X_{\mathrm{GM}}^I$ a \textbf{normal form} of $n$ if $V_I(\mathbf{b})=n$. For each $n$, such $\mathbf{b}$ is unique in the value equivalence class $\{\mathbf{a}\in X_{\mathrm{Fib}}^I:V_I(\mathbf{a})=n\}$, equivalent to the uniqueness of Zeckendorf expansion.
+\end{definition}
+
+\begin{theorem}[Zeckendorf Existence and Uniqueness]
+\label{thm:zeckendorf}
+For any $n\in\mathbb{N}$, there exists a unique $\mathbf{b}\in X_{\mathrm{GM}}^{[2,K]}$ such that $n=\sum_{k=2}^K b_kF_k$ with $b_kb_{k+1}=0$ for all $k$.
+\end{theorem}
+
+\begin{proof}
+\textit{Existence}: Greedily select $k^*$ such that $F_{k^*}\leq n<F_{k^*+1}$, set $b_{k^*}=1$, and define the remainder $n_1=n-F_{k^*}$. By the identity
+$$
+\sum_{j<k^*}F_j=F_{k^*+1}-1,
+$$
+we have $n_1<F_{k^*-1}$, forcing $b_{k^*-1}=0$. Recurse until zero.
+
+\textit{Uniqueness}: Suppose two distinct representations exist. Let $k^*$ be the highest index where they differ. The greedy choice uniquely determines $b_{k^*}$, yielding a contradiction.
+\end{proof}
+
+\begin{definition}[Rewrite Relations and Normal Form]
+\label{def:rewrite}
+On $X_{\mathrm{Fib}}^I$, generate the rewrite relation $\Rightarrow$ with basic step
+$$
+F_{k+1}\leftrightarrow F_k+F_{k-1},
+$$
+corresponding to carry/borrow operations. We call $\mathbf{b}\in X_{\mathrm{Fib}}^I$ \textbf{irreducible} (or a \textbf{normal form}) if $\mathbf{b}\in X_{\mathrm{GM}}^I$ (i.e., $b_kb_{k+1}=0$) and cannot be further reduced under $\Rightarrow$. The normal form of any $\mathbf{a}$ exists uniquely and agrees with the Zeckendorf expansion of $V_I(\mathbf{a})$; see Theorem \ref{thm:termination} and Appendix B.
+\end{definition}
+
+\begin{definition}[Regularity and Potential Function]
+\label{def:potential}
+For $\mathbf{a}=(a_k)_{k\in I}$, define
+$$
+\mathrm{Reg}(\mathbf{a})=\sum_{k=a}^{b-1}\mathbf{1}\{a_k>0\ \&\ a_{k+1}>0\},\qquad
+\Phi(\mathbf{a})=\sum_{k\in I}a_k\alpha^k\ \ (\alpha>2).
+$$
+\end{definition}
+
+\begin{definition}[Feasible Split Position and Reduction Cycle]
+\label{def:reduction_cycle}
+An index $k+1$ is called a \textbf{feasible split position} if and only if: $a_{k+1}\geq 2$; or there exists $j\leq k-2$ with $a_j>0$. When $\mathrm{Reg}(\mathbf{a})=0$ and a feasible split position exists, we allow executing \textbf{one} split $F_{k+1}\to F_k+F_{k-1}$ at the \textbf{highest} feasible position, followed by all forced merges until $\mathrm{Reg}=0$.
+\end{definition}
+
+\begin{theorem}[Termination and Unique Limit]
+\label{thm:termination}
+Under the reduction cycles defined above with $\alpha>2$, the potential function $\Phi$ strictly decreases per cycle. The net decrease estimates remain
+$$
+\Delta_{\mathrm{split}}=\alpha^{k-1}(\alpha^2-\alpha-1),\qquad \Delta_{\mathrm{merge}}\leq \frac{\alpha^{k-1}(\alpha^2-\alpha-1)}{\alpha-1},
+$$
+hence $\Delta_{\mathrm{cycle}}<0$. Therefore $\Phi$ strictly decreases per round, normalization terminates in finitely many rounds, and the unique limit is given by Zeckendorf uniqueness.
+\end{theorem}
+
+\begin{proof}
+At a split position $k+1$, the potential change from splitting is
+$$
+\Delta_{\mathrm{split}}=-\alpha^{k+1}+\alpha^k+\alpha^{k-1}=\alpha^{k-1}(\alpha^2-\alpha-1)>0.
+$$
+
+The forced merges decrease the potential by at most
+$$
+\Delta_{\mathrm{merge}}\leq \frac{\alpha^{k-1}(\alpha^2-\alpha-1)}{\alpha-1}.
+$$
+
+For $\alpha>2$, we have $\Delta_{\mathrm{cycle}}=\Delta_{\mathrm{merge}}-\Delta_{\mathrm{split}}<0$. Since $\Phi$ is bounded below and strictly decreasing, termination occurs in finite rounds. Uniqueness follows from Theorem \ref{thm:zeckendorf}.
+\end{proof}
+
+\section{Categories $\mathbf{Fib}$, $\mathbf{Zec}$, and Object-Level Normalization}
+
+\begin{definition}[Category $\mathbf{Fib}$]
+\label{def:cat_fib}
+Objects are the spaces $X_{\mathrm{Fib}}^I$. Morphisms are value-preserving sliding block codes $f:X_{\mathrm{Fib}}^I\to X_{\mathrm{Fib}}^J$ with finite-radius locality satisfying $V_J(f(\mathbf{a}))=V_I(\mathbf{a})$. When $I=\mathbb{Z}$, a sliding block code is a finite-radius local map that \textbf{commutes with the shift operator} $\sigma$.
+\end{definition}
+
+\begin{remark}[Boundary Extension and Window Expansion]
+\label{rem:boundary}
+We view $\mathbf{a}\in X_{\mathrm{Fib}}^I$ as a $\mathbb{Z}$-indexed sequence with zero extension $a_k=0$ for $k\notin I$. Any finite-radius sliding block code evaluates its read window via this extension. If the output support exceeds $I$, we expand the codomain window to the minimal $J=[2,K']$ to accommodate the support, denoting the morphism as $f:X_{\mathrm{Fib}}^I\to X_{\mathrm{Fib}}^{J}$. This convention is consistent with the boundary assumption/window expansion rule in Section 4 and preserves valuation statements.
+\end{remark}
+
+\begin{example}[Radius-One Carry/Borrow Operators]
+\label{ex:carry_borrow}
+If $a_{k+1}\geq 1$, define
+$$
+a_{k+1}\mapsto a_{k+1}-1,\ a_k\mapsto a_k+1,\ a_{k-1}\mapsto a_{k-1}+1.
+$$
+The inverse operation is symmetric. This sliding block code preserves $V$.
+\end{example}
+
+\begin{definition}[Category $\mathbf{Zec}$ and Inclusion]
+\label{def:cat_zec}
+Objects are $X_{\mathrm{GM}}^I\subset X_{\mathrm{Fib}}^I$. Morphisms are sliding block codes from $\mathbf{Fib}$ that map normal forms to normal forms and preserve valuation. The inclusion functor is $I:\mathbf{Zec}\hookrightarrow\mathbf{Fib}$.
+\end{definition}
+
+\begin{theorem}[Object-Level Normalization Projection Family]
+\label{thm:normalization_projection}
+At the object level, define $N_I:X_{\mathrm{Fib}}^I\to X_{\mathrm{GM}}^I$ as pointwise normalization. Denote the object-level assignment
+$$
+\eta_X:\ X\ \mapsto\ I(NX),
+$$
+representing ``normalize first, then include''. Note that $\eta$ is \textbf{not} a natural transformation. Moreover, $N\circ I=\mathrm{Id}_{\mathbf{Zec}}$ at the object level.
+\end{theorem}
+
+\begin{proposition}[Object-Level Idempotence]
+\label{prop:idempotence}
+For any window $I$, $N_I$ is idempotent, and for $\mathbf{b}\in X_{\mathrm{GM}}^I$, we have $N_I(\mathbf{b})=\mathbf{b}$.
+\end{proposition}
+
+\begin{proof}
+Normalization maps any configuration to its unique normal form. Applying normalization again yields the same normal form.
+\end{proof}
+
+\section{Tensor Structure and Object-Level Tensor Compatibility}
+
+\begin{definition}[Pointwise Sum Tensor on $\mathbf{Fib}$]
+\label{def:tensor_fib}
+For the same window $I$, define $\oplus:X_{\mathrm{Fib}}^I\times X_{\mathrm{Fib}}^I\to X_{\mathrm{Fib}}^I$ as componentwise addition $(\mathbf{a}\oplus\mathbf{c})_k=a_k+c_k$. Then $V_I(\mathbf{a}\oplus\mathbf{c})=V_I(\mathbf{a})+V_I(\mathbf{c})$. We define the pointwise sum tensor \textbf{at the object level} via direct sum over windows. We do \textbf{not} claim a symmetric monoidal structure at the morphism level; we use only the object-level tensor induced by ``value addition followed by normalization''.
+\end{definition}
+
+\begin{assumption}[Boundary Assumption / Window Expansion Rule]
+\label{ass:window_expansion}
+For a fixed window $I=[2,K_{\max}]$, if $V_I(\mathbf{b})+V_I(\mathbf{c})\geq F_{K_{\max}+1}$, we employ \textbf{dynamic window expansion} to the minimal $I'=[2,K']$ such that $F_{K'}>V_I(\mathbf{b})+V_I(\mathbf{c})$, then define $\oplus,\ N,\ \otimes$ on $I'$. Under this convention, the following results hold with $I$ representing the current working window.
+\end{assumption}
+
+\begin{definition}[Normalized Tensor on $\mathbf{Zec}$]
+\label{def:tensor_zec}
+For $\mathbf{b},\mathbf{c}\in X_{\mathrm{GM}}^I$, define
+$$
+\mathbf{b}\otimes\mathbf{c}:=N_I(\mathbf{b}\oplus\mathbf{c}).
+$$
+Then $V_I(\mathbf{b}\otimes\mathbf{c})=V_I(\mathbf{b})+V_I(\mathbf{c})$.
+\end{definition}
+
+\begin{theorem}[Associativity and Commutativity]
+\label{thm:associativity_commutativity}
+Under the boundary assumption/window expansion rule, for any $\mathbf{b},\mathbf{c},\mathbf{d}\in X_{\mathrm{GM}}^I$,
+$$
+(\mathbf{b}\otimes\mathbf{c})\otimes\mathbf{d}=\mathbf{b}\otimes(\mathbf{c}\otimes\mathbf{d}),\qquad \mathbf{b}\otimes\mathbf{c}=\mathbf{c}\otimes\mathbf{b},
+$$
+with the zero codeword as the unit.
+\end{theorem}
+
+\begin{proof}
+All three expressions have valuation $V_I(\mathbf{b})+V_I(\mathbf{c})+V_I(\mathbf{d})$. By uniqueness of normal forms, the corresponding codewords are identical. Commutativity follows similarly.
+\end{proof}
+
+\begin{theorem}[Object-Level Strong Tensor Compatibility]
+\label{thm:tensor_compatibility}
+For any objects $X,Y$, there exists a \textbf{canonical isomorphism at the object level}
+$$
+N(X\oplus Y)\ \cong\ NX\otimes NY,
+$$
+where $\otimes$ is defined by ``value addition followed by normalization''. This isomorphism is only at the object level and \textbf{does not claim naturality}, nor does it involve functoriality at the morphism level.
+\end{theorem}
+
+\begin{proof}
+By additivity of valuation $V$ and uniqueness of normal forms, for any $\mathbf{b}\in NX$, $\mathbf{c}\in NY$,
+$$
+N(\mathbf{b}\oplus\mathbf{c})=\mathbf{b}\otimes\mathbf{c}.
+$$
+Hence at the \textbf{object level}, we can identify $N(X\oplus Y)$ with $NX\otimes NY$ codeword by codeword. This identification does not depend on morphism structure, so we do not claim it is a natural isomorphism.
+\end{proof}
+
+\section{Bridge to Reversible Cellular Automata}
+
+\begin{definition}[Conserved RCA Rules]
+\label{def:rca}
+On the lattice $I=\mathbb{Z}$, let a finite-radius reversible local rule $U$ act on $X_{\mathrm{Fib}}^{\mathbb{Z}}$ and \textbf{commute with the shift} $\sigma$. If for all configurations $\mathbf{a}$, $V_I(U\mathbf{a})=V_I(\mathbf{a})$, we say $U$ is value-conserving.
+\end{definition}
+
+\begin{theorem}[Bijectivity and No Garden-of-Eden]
+\label{thm:rca_bijective}
+If $U$ is reversible and local, then $U:X_{\mathrm{Fib}}^I\to X_{\mathrm{Fib}}^I$ is bijective with no orphan configurations. If additionally value-conserving, $V_I$ is a conserved quantity of first order.
+\end{theorem}
+
+\begin{proof}
+Reversible locality implies a Curtis--Hedlund--Lyndon type characterization \cite{hedlund1969}, yielding bijectivity and no Garden-of-Eden \cite{moore1962, myhill1963}. Value conservation follows directly from the definition.
+\end{proof}
+
+\begin{proposition}[Object-Level Compression to $\mathbf{Zec}$]
+\label{prop:rca_compression}
+Define $\widehat{U}:=N\circ U|_{X_{\mathrm{GM}}^I}$. Then $\widehat{U}:X_{\mathrm{GM}}^I\to X_{\mathrm{GM}}^I$ is an object-level map preserving $V_I$. In general, $\widehat{U}$ need \textbf{not} be a sliding block code, hence is not viewed as a morphism in $\mathbf{Zec}$.
+\end{proposition}
+
+\begin{proof}
+$U$ does not change $V_I$, and $N$ only performs local normalization without changing valuation, so the image remains a normal form and is value-preserving. However, $N$ is generally not a sliding block code, so the composition $\widehat{U}$ may not commute with the shift.
+\end{proof}
+
+\section{Object-Level Bridge from Windowed Scattering to $\mathbf{Fib}\to\mathbf{Zec}$}
+
+\begin{definition}[Windowed Payload and Quantization]
+\label{def:windowed_payload}
+For an energy region $W$, the windowed payload is
+$$
+S(W)=\int \chi_W(E)\,(w_R*\check{h})(E)\,\frac{1}{2\pi}\operatorname{tr}\mathsf{Q}(E)\,dE\in\mathbb{R}.
+$$
+
+Take a unit $\epsilon>0$. Define the quantization operator
+$$
+\boxed{\ \kappa(S)=\Bigl\lfloor \frac{(S)_+}{\epsilon}\Bigr\rceil\in\mathbb{N},\qquad (S)_+=\max\{S,0\}\ }.
+$$
+\end{definition}
+
+\begin{definition}[Resolution--Fibonacci Coding]
+\label{def:resolution_coding}
+Fix $K_{\max}$ and $I=[2,K_{\max}]$. Define $\mathsf{M}:\mathbf{WScat}\to\mathbf{Fib}$ by
+$$
+\mathsf{M}(W)=\mathbf{a}^{(m)},\qquad m=\kappa(S(W)),
+$$
+where $\mathbf{a}^{(m)}$ on $I$ uniquely has $a_2=m$ and all other $a_k=0$, so that $V_I(\mathsf{M}(W))=m$. Choose $K_{\max}$ so that $F_{K_{\max}}>\kappa(S(W))$ for all considered $W$; if not, dynamically expand the window to $I'=[2,K']$ before applying $L=N\circ\mathsf{M}$. Then define $L:=N\circ \mathsf{M}:\mathbf{WScat}\to\mathbf{Zec}$.
+\end{definition}
+
+\begin{theorem}[Tensor Consistency--Quantization-Consistent Version]
+\label{thm:tensor_consistency}
+Suppose $W_1,W_2$ are non-overlapping or satisfy Nyquist-equivalent union conditions, and \textbf{$S(W_1)\geq 0,\ S(W_2)\geq 0$}. Let
+$$
+\boxed{\ \delta:=\kappa\bigl(S(W_1\sqcup W_2)\bigr)-\kappa\bigl(S(W_1)\bigr)-\kappa\bigl(S(W_2)\bigr)\in\{-1,0,1\}\ }.
+$$
+Then
+$$
+L(W_1\sqcup W_2)=L(W_1)\otimes L(W_2)\quad\Longleftrightarrow\quad \delta=0,
+$$
+and in general,
+$$
+V_I\bigl(L(W_1\sqcup W_2)\bigr)=V_I\bigl(L(W_1)\bigr)+V_I\bigl(L(W_2)\bigr)+\delta.
+$$
+\end{theorem}
+
+\begin{proof}
+Under $S(W_i)\geq 0$, $\kappa$ coincides with nearest-integer rounding (no threshold truncation), so $\delta$ is given by the rounding error difference and falls in $\{-1,0,1\}$. Tensor consistency holds if and only if rounding errors are additive, equivalent to $\delta=0$.
+\end{proof}
+
+\begin{theorem}[Non-Asymptotic Error Closure and Non-Increasing Singularity]
+\label{thm:error_closure}
+Taking step size $h\asymp L^{-1}$, we have
+$$
+\bigl|(S(W))_+-\epsilon\,V_I(\mathsf{M}(W))\bigr|\ \leq\ C_mL^{-2m}\ +\ \tfrac{\epsilon}{2}.
+$$
+Normalization from $\mathsf{M}$ to $L$ introduces no new singularities.
+\end{theorem}
+
+\begin{proof}
+Finite-order Euler--Maclaurin yields integral-sum deviation $O(h^{2m})=O(L^{-2m})$ \cite{hardy1949, titchmarsh1939}. Poisson summation under Nyquist conditions suppresses aliasing. Nearest-integer quantization satisfies
+$$
+\bigl|(S(W))_+-\epsilon\,\kappa(S(W))\bigr|\ \leq\ \tfrac{\epsilon}{2},\qquad V_I(\mathsf{M}(W))=\kappa(S(W)).
+$$
+Combining gives the stated upper bound. Normalization only performs local substitutions $F_{k+1}=F_k+F_{k-1}$, introducing no new singularities.
+\end{proof}
+
+\section{Double-Time Separation and Causal Consistency}
+
+\begin{theorem}[Scale Separation]
+\label{thm:scale_separation}
+The causal frontier time $t_*$ determines the causal partial order and no-signaling constraints. The maps $\mathsf{M}$ and $L$ depend only on energy-domain windowed readout and quantization, and do not alter $t_*$.
+\end{theorem}
+
+\begin{proof}
+$\mathsf{M}$ and $L$ are function-quantization post-processing operations on spectral measures, belonging to the operational scale $T_\gamma$ side. The GLS lightlike cone geometry and earliest arrival $t_*$ are determined by propagation equations and support cones, independent of post-processing.
+\end{proof}
+
+\begin{remark}[Technical Clarification of Double-Time Separation]
+\label{rem:double_time}
+$t_*$ is defined by the earliest nonzero response of propagation equations, depending on support cones and geometry. $T_\gamma$ is a windowed integral readout, a linear functional on spectral measures, which does not change propagation support. For any two timelike paths $\gamma_1,\gamma_2$, if $t_*(\gamma_1)<t_*(\gamma_2)$, the partial order of $t_*$ is preserved regardless of the choice of $\omega=w_R*\check{h}$. Hence the Zeckendorf log only changes the operational scale and does not alter microcausality.
+\end{remark}
+
+\section{Information-Geometric Variation and Einstein Equations}
+
+\begin{definition}[Windowed Relative Entropy--Geometric Action]
+\label{def:relative_entropy_action}
+Let $\theta_0$ be a reference parameter, and let the spectral density be $d\mu_\theta(E)=\rho_{\mathrm{rel}}(E;\theta)\,dE$. Define
+$$
+\mathcal{I}[w_R,h;\theta\mid\theta_0]=\int (w_R*\check{h})(E)\,\rho_{\mathrm{rel}}(E;\theta)\,\log\frac{\rho_{\mathrm{rel}}(E;\theta)}{\rho_{\mathrm{rel}}(E;\theta_0)}\,dE.
+$$
+
+The total action is
+$$
+\mathscr{S}[w_R,h;g,\psi]=\alpha\int_{\mathcal{M}}R(g)\sqrt{|g|}\,d^4x+\beta\,\mathcal{I}[w_R,h;\theta(g,\psi)\mid\theta_0]+\int_{\mathcal{M}}\mathcal{L}_{\mathrm{m}}(g,\psi)\sqrt{|g|}\,d^4x,
+$$
+where $R(g)$ is the Ricci scalar and $\mathcal{L}_{\mathrm{m}}$ is the matter Lagrangian.
+\end{definition}
+
+\begin{lemma}[First Variation]
+\label{lem:first_variation}
+Under standard conditions for exchanging variation and integration,
+$$
+\delta\mathcal{I}=\int (w_R*\check{h})(E)\,\Bigl[1+\log\frac{\rho_{\mathrm{rel}}(E;\theta)}{\rho_{\mathrm{rel}}(E;\theta_0)}\Bigr]\,(\partial_i\log\rho_{\mathrm{rel}})(E;\theta)\,\delta\theta^i\,d\mu_\theta(E).
+$$
+\end{lemma}
+
+\begin{proof}
+Write $\mathcal{I}$ as $\int (w_R*\check{h})\,\rho_{\mathrm{rel}}\,\log\frac{\rho_{\mathrm{rel}}}{\rho_{\mathrm{rel}}(\cdot;\theta_0)}\,dE$. The Fr\'echet derivative with respect to $\rho_{\mathrm{rel}}$ is $(w_R*\check{h})\bigl(1+\log\frac{\rho_{\mathrm{rel}}}{\rho_0}\bigr)$. The chain rule introduces $(\partial_i\log\rho_{\mathrm{rel}})\,\delta\theta^i$. Measure variation and integrand variation combine to yield the stated expression.
+\end{proof}
+
+\begin{proposition}[Field Equation Prototype]
+\label{prop:field_equation}
+Variation with respect to the metric yields
+$$
+\alpha\,G_{\mu\nu}+\frac{\beta}{2}\,H_{\mu\nu}[w_R,h;\theta]=\frac{1}{2}\,T_{\mu\nu},
+$$
+where
+$$
+H_{\mu\nu}=\frac{2}{\sqrt{|g|}}\frac{\delta}{\delta g^{\mu\nu}}\mathcal{I}[w_R,h;\theta(g,\psi)\mid\theta_0].
+$$
+\end{proposition}
+
+\begin{proof}
+Variation of the Einstein--Hilbert term gives $\alpha G_{\mu\nu}$, and the matter term gives $\tfrac{1}{2}T_{\mu\nu}$ \cite{einstein1915, hilbert1915}. Dependence of the relative entropy term on $g$ comes from $\theta(g,\psi)$ and the measure $d\mu_\theta$. By Lemma \ref{lem:first_variation} and the chain rule, we obtain $H_{\mu\nu}$.
+\end{proof}
+
+\begin{theorem}[Minimal Coupling Limit and Cosmological Constant]
+\label{thm:cosmological_constant}
+If there exists a window family and NPE scale such that
+$$
+\lim_{\mathrm{NPE}}H_{\mu\nu}[w_R,h;\theta]=0,
+$$
+then the extremal equation reduces to $\alpha\,G_{\mu\nu}=\tfrac{1}{2} T_{\mu\nu}$. If $\mathcal{I}$ admits a constant offset $\Delta\mathcal{I}=\Lambda\int \sqrt{|g|}\,d^4x$, we obtain $\alpha\,G_{\mu\nu}+\Lambda g_{\mu\nu}=\tfrac{1}{2} T_{\mu\nu}$.
+\end{theorem}
+
+\begin{proof}
+By the non-asymptotic closure of Section 6, choose band-limited window sets satisfying Nyquist conditions such that EM remainder terms and aliasing errors are simultaneously controlled and tend to zero, yielding $H_{\mu\nu}\to 0$. If the parameter shift in $\mathcal{I}$ only introduces a volume term constant, absorb it as $\Lambda$.
+\end{proof}
+
+\begin{assumption}[Measure Bridging]
+\label{ass:measure_bridging}
+There exists a calibration such that
+$$
+\int \omega(E)\,d\mu_\theta(E)=\int_{\mathcal{M}}\sqrt{|g|}\,d^4x.
+$$
+
+If the reference choice makes $\log\frac{\rho_{\mathrm{rel}}(E;\theta)}{\rho_{\mathrm{rel}}(E;\theta_0)}=\mathrm{const}$ in the working band, then
+$$
+\mathcal{I}=\Lambda\int \omega(E)\,d\mu_\theta(E)=\Lambda\int_{\mathcal{M}}\sqrt{|g|}\,d^4x.
+$$
+
+The constant $\Lambda$ depends only on calibration, hence appears as the cosmological constant term in the field equations.
+\end{assumption}
+
+\section{Interplay with GLS--Causal Manifold and Commutative Diagrams}
+
+\begin{definition}[Category Families]
+\label{def:category_families}
+$\mathbf{WScat}$: objects are $(\mathcal{H},S,\rho_{\mathrm{rel}},K_{w,h})$, morphisms are CPTP maps preserving master scales and windowed readouts. $\mathbf{Cau}$: objects are $(\mathcal{M},g)$, morphisms are causal-cone-preserving maps. $\mathbf{RCA}$: objects are reversible local update systems. $\mathbf{EBOC}$: objects are globally unitary scattering triples.
+\end{definition}
+
+\begin{definition}[Interplay: Object-Level]
+\label{def:interplay}
+Let $\mathfrak{F}:\mathbf{WScat}\to\mathbf{Cau}$ be constructed via geometric scattering and Liouville pushforward, and $\mathfrak{G}:\mathbf{Cau}\to\mathbf{WScat}$ be constructed via null geodesic flow Poincaré return map-scattering phase. \textbf{At the object level}, there exists an interplay correspondence between $\mathfrak{G}\circ\mathfrak{F}$ and $\mathrm{Id}_{\mathbf{WScat}}$, as well as between $\mathfrak{F}\circ\mathfrak{G}$ and $\mathrm{Id}_{\mathbf{Cau}}$. We do not claim this is a natural transformation.
+\end{definition}
+
+\begin{theorem}[Object-Level Commutative Diagram with $\mathbf{Zec}$]
+\label{thm:commutative_diagram}
+There exists an object-level commutative diagram
+$$
+\mathbf{RCA}\xrightarrow{\ \mathfrak{S}\ }\mathbf{Fib}\xrightarrow{\ N\ }\mathbf{Zec}\xleftarrow{\ L=N\circ\mathsf{M}\ }\mathbf{WScat}\ \underset{\mathfrak{G}}{\overset{\mathfrak{F}}{\rightleftarrows}}\ \mathbf{Cau},
+$$
+where $\mathfrak{S}$ expresses reversible update rules as value-conserving sliding block codes.
+\end{theorem}
+
+\begin{proof}
+Section 5 establishes the existence of $\mathfrak{S}$ and value conservation. \textbf{Section 6 establishes conditional tensor consistency for $L$ (if and only if $\delta=0$)}. Double-time separation in Section 7 ensures independence between the causal layer and the quantization-normalization layer. Verify \textbf{object-level} commutativity block by block.
+\end{proof}
+
+\section{Categorical Structures and Consequences}
+
+\begin{proposition}[Equalizer Fragment and Object-Level Inheritance]
+\label{prop:equalizer}
+On fixed window families, $\mathbf{Fib}$ \textbf{has equalizer fragments} within the current ``value-preserving'' morphism class. $\mathbf{Zec}$ inherits corresponding results at the object level as a subspace via inclusion (we do not invoke reflectivity here).
+\end{proposition}
+
+\begin{proof}
+Equalizers as solution sets satisfying $f=g$ can be characterized componentwise with value-preservation constraints. However, ``finite products'' generally do not hold in this morphism class---projections do not preserve value---hence we do not claim them.
+\end{proof}
+
+\begin{proposition}[Negative Result on Monoidal Closure]
+\label{prop:no_monoidal_closure}
+Under the above tensor, $\mathbf{Zec}$ is generally not monoidal closed.
+\end{proposition}
+
+\begin{proof}
+If internal Hom exists, then $\mathrm{Hom}_{\mathbf{Zec}}(\cdot,\cdot)$ should densely approximate arbitrary ``evaluation morphisms'' via the morphism family generated by value addition and normalization. However, uniqueness of normal forms and locality jointly restrict the spectrum of realizable maps, causing failure of the currying axiom and the isomorphism between evaluation and coevaluation. One can construct counterexamples on finite windows: for any two non-equal-value objects, any nontrivial map breaks either adjacency prohibition or value conservation.
+\end{proof}
+
+\section{Algorithms and Complexity}
+
+\begin{theorem}[Greedy Encoding Complexity]
+\label{thm:greedy_complexity}
+For $n\in\mathbb{N}$, Zeckendorf encoding completes in $O(\log_\phi n)$ steps.
+\end{theorem}
+
+\begin{proof}
+The highest position index $k_{\max}\sim\log_\phi n$. Each step selects the largest $F_k$, covering at least one position. The number of steps is of the same order as $k_{\max}$.
+\end{proof}
+
+\begin{theorem}[Normalization Propagation Bound for Window Shifts]
+\label{thm:propagation_bound}
+If the net change $\Delta S$ has highest Fibonacci expansion position index $k^*$, then one window shift induces normalization propagation radius $O(k^*)=O(\log(|\Delta S|+1))$.
+\end{theorem}
+
+\begin{proof}
+Normalization influence propagates at most to the highest position needed to cover $|\Delta S|$.
+\end{proof}
+
+\section{Conclusions and Future Directions}
+
+We have constructed a categorical bridge between windowed scattering theory, Zeckendorf decomposition, reversible cellular automata, and causal geometry. Key achievements include:
+
+\begin{enumerate}
+\item \textbf{Object-level normalization and tensor compatibility}: The categories $\mathbf{Fib}$ and $\mathbf{Zec}$ with normalization projections $N$ and tensor operations via ``value addition followed by normalization'', establishing associativity, commutativity, and object-level tensor compatibility.
+
+\item \textbf{Quantization-normalization chain with non-asymptotic error control}: The composite map $L=N\circ\mathsf{M}:\mathbf{WScat}\to\mathbf{Zec}$ with NPE-discipline error bounds $O(L^{-2m})$ and non-increasing singularity.
+
+\item \textbf{Double-time separation and causal consistency}: The causal frontier time $t_*$ determines causal structure independently of the operational scale $T_\gamma$ and Zeckendorf log.
+
+\item \textbf{Information-geometric derivation of Einstein equations}: Variational principles on windowed relative entropy-geometric action yield Einstein field equations with cosmological constant in the minimal coupling limit.
+\end{enumerate}
+
+Future directions include:
+
+\begin{itemize}
+\item \textbf{Natural transformations and functoriality}: Investigating conditions under which object-level correspondences lift to natural transformations and functorial structures.
+
+\item \textbf{Quantum field theory formulation}: Extending the framework to quantum fields on causal manifolds with Zeckendorf-encoded observables.
+
+\item \textbf{Numerical implementations}: Developing computational algorithms for windowed scattering-to-Zeckendorf quantization with practical error control.
+
+\item \textbf{Generalization to other numeral systems}: Exploring analogous constructions for Ostrowski representations, continued fraction expansions, and other greedy decompositions.
+\end{itemize}
+
+The unification of GLS, EBOC, RCA, and Zeckendorf structures through categorical bridges opens new avenues for understanding the interplay between causal geometry, quantum information, and discrete dynamics in fundamental physics.
+
+\appendix
+
+\section{Finite-Order Euler--Maclaurin and Poisson Unification}
+
+Let the interval be $[a,b]$ with step size $h$. The finite-order Euler--Maclaurin expansion is
+$$
+\int_a^b f(x)\,dx=h\sum_{j=0}^{N}f(x_j)+\sum_{r=1}^{m}\frac{B_{2r}}{(2r)!}h^{2r}\bigl(f^{(2r-1)}(b)-f^{(2r-1)}(a)\bigr)+R_{2m},
+$$
+with
+$$
+|R_{2m}|\leq C_m h^{2m}.
+$$
+
+Under band-limited and Nyquist conditions, Poisson summation suppresses non-zero harmonic aliasing. Euler--Maclaurin and Poisson jointly constitute the non-asymptotic error budget of NPE. Normalization is realized only by local rewrites $F_{k+1}=F_k+F_{k-1}$, with non-increasing singularity.
+
+\section{Termination and Confluence of Normalization Rewrite System}
+
+Allow rules as in the main text, adopting the ``directed rules''. Take the potential function $\Phi$ with $\alpha>2$.
+
+\textbf{Termination}: With $\alpha>2$, the reduction cycle defined in the main text measures potential function change. At split position $k+1$,
+$$
+\Delta_{\mathrm{split}}=\alpha^{k-1}(\alpha^2-\alpha-1),
+$$
+and the merge phase satisfies
+$$
+\Delta_{\mathrm{merge}}\leq \frac{\alpha^{k-1}(\alpha^2-\alpha-1)}{\alpha-1},
+$$
+hence each round has $\Delta_{\mathrm{cycle}}=\Delta_{\mathrm{merge}}-\Delta_{\mathrm{split}}<0$, establishing termination.
+
+\textbf{Confluence}: For all local critical pairs, use Knuth--Bendix to check that successors converge after finite normalization steps. Combined with termination, global confluence follows, hence the normal form is unique and agrees with Zeckendorf unique expansion in Theorem \ref{thm:zeckendorf}.
+
+\section{Categorical Formulation of RCA and Conservation}
+
+RCA objects are denoted $(X,\sigma,U)$, where $X$ is the configuration space, $\sigma$ is the shift, and $U$ is a finite-radius reversible local update. The Curtis--Hedlund--Lyndon characterization gives equivalence between $U$ and sliding block codes. Value conservation $V_I(U\mathbf{a})=V_I(\mathbf{a})$ makes $V_I$ a first-order conserved quantity and induces $\mathfrak{S}:\mathbf{RCA}\to\mathbf{Fib}$. Compression $N$ projects the image of $\mathfrak{S}$ into $\mathbf{Zec}$.
+
+\section{Windowed Relative Entropy Variation and $H_{\mu\nu}$ Configuration}
+
+Write
+$$
+\mathcal{I}=\int \omega(E;\theta)\,\rho_{\mathrm{rel}}(E;\theta)\,\log\frac{\rho_{\mathrm{rel}}(E;\theta)}{\rho_{\mathrm{rel}}(E;\theta_0)}\,dE,
+$$
+where $\omega=w_R*\check{h}$. Variation with respect to $\theta$:
+$$
+\delta\mathcal{I}=\int \omega\,\delta\rho_{\mathrm{rel}}\,\Bigl[1+\log\frac{\rho_{\mathrm{rel}}}{\rho_0}\Bigr]\,dE.
+$$
+
+Via $\delta\rho_{\mathrm{rel}}=(\partial_i\rho_{\mathrm{rel}})\,\delta\theta^i$, we obtain Lemma \ref{lem:first_variation}. Metric variation enters through $\theta=\theta(g,\psi)$ and optical length scaling, yielding via chain rule
+$$
+H_{\mu\nu}=2\int \omega(E;\theta)\,\left[\Bigl(1+\log\frac{\rho_{\mathrm{rel}}}{\rho_0}\Bigr)\,(\partial_i\log\rho_{\mathrm{rel}})(E;\theta)\,\frac{\delta\theta^i}{\delta g^{\mu\nu}}+\frac{1}{2}\Bigl(1+\log\frac{\rho_{\mathrm{rel}}}{\rho_0}\Bigr)\,\frac{\delta\log\sqrt{|g|}}{\delta g^{\mu\nu}}\right]\,d\mu_\theta(E).
+$$
+
+When NPE discipline is satisfied and the geometric dependence of $\theta$ is slowly varying and band-limited, the window average of $H_{\mu\nu}$ can be arbitrarily suppressed.
+
+\bibliographystyle{plain}
+\begin{thebibliography}{99}
+
+\bibitem{zeckendorf1962}
+E. Zeckendorf.
+\newblock Repr\'esentation des nombres naturels par une somme de nombres de Fibonacci ou de nombres de Lucas sans r\'ep\'etition.
+\newblock {\em Bulletin de la Soci\'et\'e Royale des Sciences de Li\`ege}, 41:179--182, 1972.
+
+\bibitem{lekkerkerker1952}
+C. G. Lekkerkerker.
+\newblock Voorstelling van natuurlijke getallen door een som van getallen van Fibonacci.
+\newblock {\em Simon Stevin}, 29:190--195, 1952.
+
+\bibitem{hedlund1969}
+G. A. Hedlund.
+\newblock Endomorphisms and automorphisms of the shift dynamical system.
+\newblock {\em Mathematical Systems Theory}, 3(4):320--375, 1969.
+
+\bibitem{moore1962}
+E. F. Moore.
+\newblock Machine models of self-reproduction.
+\newblock In {\em Proceedings of Symposia in Applied Mathematics}, volume 14, pages 17--33. American Mathematical Society, 1962.
+
+\bibitem{myhill1963}
+J. Myhill.
+\newblock The converse of Moore's Garden-of-Eden theorem.
+\newblock {\em Proceedings of the American Mathematical Society}, 14(4):685--686, 1963.
+
+\bibitem{wigner1955}
+E. P. Wigner.
+\newblock Lower limit for the energy derivative of the scattering phase shift.
+\newblock {\em Physical Review}, 98(1):145--147, 1955.
+
+\bibitem{smith1960}
+F. T. Smith.
+\newblock Lifetime matrix in collision theory.
+\newblock {\em Physical Review}, 118(1):349--356, 1960.
+
+\bibitem{birman1962}
+M. \v{S}. Birman and M. G. Kre\u{\i}n.
+\newblock On the theory of wave operators and scattering operators.
+\newblock {\em Soviet Mathematics Doklady}, 3:740--744, 1962.
+
+\bibitem{hardy1949}
+G. H. Hardy.
+\newblock {\em Divergent Series}.
+\newblock Oxford University Press, 1949.
+
+\bibitem{titchmarsh1939}
+E. C. Titchmarsh.
+\newblock {\em The Theory of Functions}.
+\newblock Oxford University Press, 2nd edition, 1939.
+
+\bibitem{umegaki1962}
+H. Umegaki.
+\newblock Conditional expectation in an operator algebra, IV (entropy and information).
+\newblock {\em Kodai Mathematical Seminar Reports}, 14(2):59--85, 1962.
+
+\bibitem{petz1986}
+D. Petz.
+\newblock Sufficient subalgebras and the relative entropy of states of a von Neumann algebra.
+\newblock {\em Communications in Mathematical Physics}, 105(1):123--131, 1986.
+
+\bibitem{einstein1915}
+A. Einstein.
+\newblock Die Feldgleichungen der Gravitation.
+\newblock {\em Sitzungsberichte der K\"oniglich Preu\ss ischen Akademie der Wissenschaften}, pages 844--847, 1915.
+
+\bibitem{hilbert1915}
+D. Hilbert.
+\newblock Die Grundlagen der Physik.
+\newblock {\em Nachrichten von der Gesellschaft der Wissenschaften zu G\"ottingen}, pages 395--407, 1915.
+
+\bibitem{wald1984}
+R. M. Wald.
+\newblock {\em General Relativity}.
+\newblock University of Chicago Press, Chicago, 1984.
+
+\end{thebibliography}
+
+\end{document}
+

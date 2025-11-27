@@ -1,0 +1,974 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{braket}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{axiom}[theorem]{Axiom}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Inertial Geometry from Information Rate Conservation: Microscopic Unification of Mass, Time Dilation, and Energy--Frequency Relations}
+
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{}
+
+\begin{document}
+
+\mailtitle
+
+\begin{abstract}
+In traditional formulations, time dilation and ``relativistic mass'' increase in special relativity are usually viewed as two independent kinematic effects, while quantum mechanics directly relates energy to frequency through the Planck relation $E=\hbar \omega$. For a massive particle, when its velocity approaches the speed of light, total energy grows rapidly, corresponding to growth of plane wave phase frequency $\omega$; yet proper time flow of the same particle exhibits Lorentz dilation, with internal clocks appearing to ``slow down.'' This image of ``slower clock corresponding to greater energy'' creates tension at the intuitive level. This paper introduces a two-dimensional ``information rate circle'' within the framework of quantum cellular automata (QCA) and information rate conservation (optical path conservation): viewing total information update rate as constant $c$ and making an orthogonal decomposition between ``external spatial displacement velocity'' $v_{\mathrm{ext}}$ and ``internal state evolution velocity'' $v_{\mathrm{int}}$, satisfying $v_{\mathrm{ext}}^{2}+v_{\mathrm{int}}^{2}=c^{2}$. Under this structure, rest mass $m_{0}$ is characterized as the Compton frequency $\omega_{0}=m_{0}c^{2}/\hbar$ of internal quantum state in the rest frame, while the moving state corresponds to resource reallocation between the two frequency components of ``internal evolution'' and ``external translation'' in Hilbert space. We prove that: total frequency of plane matter wave satisfies $\omega_{\mathrm{tot}}=\gamma \omega_{0}$; internal ``clock frequency'' undergoes redshift with velocity as $\omega_{\mathrm{clock}}=\omega_{0}/\gamma$; and these two frequency types are both uniformly embedded in the frequency identity $\omega_{\mathrm{tot}}^{2}=\omega_{0}^{2}+\omega_{\mathrm{space}}^{2}$ induced by energy--momentum relation $E^{2}=m_{0}^{2}c^{4}+p^{2}c^{2}$. On the information rate circle, this corresponds to a simple rule of inertial geometry: when external velocity approaches $c$, internal evolution velocity $v_{\mathrm{int}}\to 0$, and corresponding effective inertial impedance $m_{\mathrm{eff}}\propto v_{\mathrm{int}}^{-3}$ diverges. Inertia is thus interpreted as ``energy cost required to maintain topological structure from collapsing in the internal-time freezing limit.'' This framework gives geometric and information-theoretic unification between $E=m c^{2}$ and $E=\hbar \omega$ without modifying any verified relativistic and quantum mechanical predictions.
+\end{abstract}
+
+\textbf{Keywords:} Information rate conservation; Quantum cellular automaton; Inertial geometry; Compton clock; Relativistic time dilation; Energy--frequency correspondence; Fubini--Study metric
+
+\section{Introduction and Historical Context}
+
+\subsection{Apparent Contradiction of Mass, Time, and Frequency}
+
+Special relativity centers on the energy--momentum relation
+$$
+E^{2}=m_{0}^{2}c^{4}+p^{2}c^{2},
+$$
+defining $m_{0}$ as a Lorentz invariant, while ``relativistic mass'' $\gamma m_{0}$ mainly served as a pedagogical convenience in early teaching; its physical content has gradually been weakened or abandoned in modern literature, shifting to emphasizing invariant mass and covariant description of four-momentum.
+
+On the other hand, quantum theory directly relates energy to frequency through the Planck relation
+$$
+E = \hbar \omega.
+$$
+For a plane wave solution of a free particle $\psi \sim \exp[\mathrm{i}(k x-\omega t)]$, total energy is determined by temporal phase frequency $\omega$. De Broglie further proposed that every particle with rest mass $m_{0}$ carries an intrinsic oscillation frequency in its rest frame:
+$$
+\omega_{0}=\frac{m_{0}c^{2}}{\hbar},
+$$
+now commonly called the Compton frequency or ``internal clock.''
+
+This gives rise to an apparently contradictory picture:
+
+\begin{itemize}
+\item Relativity predicts: when a particle moves with velocity $v$, its proper time satisfies $\mathrm{d}\tau = \mathrm{d}t/\gamma$, i.e., the internal clock runs ``slower'' relative to laboratory time.
+\item Under the quantum wave picture, total energy $E=\gamma m_{0}c^{2}$ corresponds to plane wave phase frequency $\omega_{\mathrm{tot}}=E/\hbar=\gamma \omega_{0}$ which increases with $\gamma$, i.e., ``frequency becomes faster.''
+\end{itemize}
+
+If ``frequency'' is naively understood as ``rhythm of internal oscillations of the particle,'' then ``time slowing'' and ``total frequency increasing'' seem mutually contradictory. Indeed, there has been extensive discussion and experimental proposals regarding the relationship between de Broglie internal clock, Compton frequency, and matter wave frequency, including ``rocks are clocks'' and detection of Compton clocks in atomic interferometers.
+
+\subsection{Quantum Cellular Automata and Discrete Relativistic Dynamics}
+
+Quantum cellular automata (QCA) model the universe as discrete, local, and strictly unitary update rules acting on lattice sites $\Lambda\subset\mathbb{Z}^{d}$, whose continuum limits can give rise to field equations such as Dirac, Weyl, and Maxwell. In particular, one-dimensional Dirac-type QCA has been constructed and proven to precisely reproduce the evolution operator and dispersion relation of the free Dirac equation in the long-wavelength limit.
+
+In Feynman's ``checkerboard model,'' propagation of spin-$1/2$ fermions is represented as path sums on spacetime lattice points advancing at light speed and weighted by mass parameters at turning points; this model likewise yields the Dirac equation in the continuum limit. These works indicate:
+
+\textbf{(1)} Free relativistic particle dynamics can emerge in discrete, finite-information frameworks.
+
+\textbf{(2)} Mass parameters are naturally connected to local structures such as ``turning rate'' and ``internal flip rate'' in discrete models.
+
+This provides a natural entry point for understanding inertia and mass from information and computation perspectives.
+
+\subsection{Quantum Evolution Geometry and Internal ``Evolution Speed''}
+
+Another important clue comes from quantum state space geometry. Anandan and Aharonov pointed out that on projective Hilbert space $\mathbb{P}(\mathcal{H})$, quantum state evolution can be described by Fubini--Study metric geodesic length, with evolution ``velocity'' satisfying
+$$
+\frac{\mathrm{d}s}{\mathrm{d}t} = \frac{2}{\hbar}\Delta H,
+$$
+where $\Delta H$ is energy uncertainty. These results, together with quantum speed limits (Mandelstam--Tamm and Margolus--Levitin bounds), indicate that under fixed energy resources, the evolution ``rate'' of quantum states has an upper bound.
+
+If we understand ``internal time flow'' as ``rate at which states evolve in Hilbert space,'' then for a given free particle, its available evolution ``bandwidth'' can be viewed as finite resource. When this resource is used more to change spatial position (external motion), the share for internal phase/spin/topological structure evolution must necessarily decrease.
+
+\subsection{Goals and Contributions of This Paper}
+
+Against the above background, this paper introduces the concept of ``information rate conservation'': viewing global evolution of a massive particle as information rate allocation between ``external position degrees of freedom'' and ``internal state degrees of freedom,'' and assuming there exists a universal upper bound $c$ such that
+$$
+v_{\mathrm{ext}}^{2}+v_{\mathrm{int}}^{2}=c^{2},
+$$
+where $v_{\mathrm{ext}}$ is external group velocity and $v_{\mathrm{int}}$ characterizes the ``rate'' of internal quantum state evolution under Fubini--Study metric, both jointly forming a two-dimensional ``information rate circle.'' On this basis, this paper achieves the following:
+
+\textbf{(1)} Provides an inertial geometry model starting from QCA and quantum evolution geometry, viewing special-relativistic time dilation as reallocation of information rate between internal and external components.
+
+\textbf{(2)} Proves that for Dirac-type free particles, plane wave total frequency, spatial frequency, and rest Compton frequency satisfy $\omega_{\mathrm{tot}}^{2}=\omega_{0}^{2}+\omega_{\mathrm{space}}^{2}$, obtaining concise parametric relations $\omega_{\mathrm{tot}}=\gamma \omega_{0}$ and $\omega_{\mathrm{clock}}=\omega_{0}/\gamma$ on the information rate circle.
+
+\textbf{(3)} Starting from classical relativistic mechanics, rewrites longitudinal effective inertial mass $m_{\mathrm{eff}}=\gamma^{3}m_{0}$ as $m_{\mathrm{eff}}\propto v_{\mathrm{int}}^{-3}$, thus interpreting inertia as ``topological impedance in the internal time freezing limit.''
+
+\textbf{(4)} Combined with existing Compton clock experiments and matter wave interference experiments, discusses how to test this ``inertial geometry--information rate'' picture and its possible correction terms at the experimental level.
+
+This paper's position is: without modifying verified energy--momentum relations and quantum measurement rules, but imposing a unified geometric--information-theoretic interpretation on these relations, making ``mass--frequency--time dilation'' integrate into one.
+
+\section{Model and Assumptions}
+
+\subsection{Dirac--QCA Effective Model and Free Particle Sector}
+
+Consider a Dirac-type quantum cellular automaton on one-dimensional space, with lattice set $\Lambda=\Delta x\,\mathbb{Z}$; each lattice site carries internal Hilbert space $\mathcal{H}_{\mathrm{cell}}\cong\mathbb{C}^{2}$, corresponding to left-right propagation modes or spin up/down two internal degrees of freedom. Overall Hilbert space is
+$$
+\mathcal{H}=\bigotimes_{n\in\Lambda}\mathcal{H}_{\mathrm{cell}}^{(n)}.
+$$
+Evolution is given by local unitary operator $U$, viewable as combination of ``internal rotation'' and ``conditional translation.'' Existing research has shown that under conditions of homogeneity, locality, and discrete causality, one can construct such a QCA class whose effective Hamiltonian on the single-particle sector in the long-wavelength limit is
+$$
+H = c \alpha \hat{p} + \beta m_{0}c^{2},
+$$
+where $\hat{p}$ is one-dimensional momentum operator, $\alpha,\beta$ are Pauli matrices satisfying $\alpha^{2}=\beta^{2}=\mathbb{I}$ and anticommutation relation $\{\alpha,\beta\}=0$.
+
+This Hamiltonian's eigenvalues on plane wave basis $\psi_{p}(x)\sim \exp(\mathrm{i}px/\hbar)$ are
+$$
+E(p)=\pm\sqrt{m_{0}^{2}c^{4}+p^{2}c^{2}},
+$$
+the standard energy--momentum dispersion relation.
+
+Therefore, in subsequent derivations, we need only use this energy--momentum relation and QCA's discrete ontology as conceptual background, without depending on specific cell rule details.
+
+\subsection{Information Rate Circle and ``Internal--External'' Decomposition}
+
+We introduce the following basic axiom.
+
+\begin{axiom}[Information Rate Conservation]
+\label{ax:info_rate}
+For any free particle, on one of its worldlines parametrized by some external reference time $t$, there exist two non-negative functions $v_{\mathrm{ext}}(t)$ and $v_{\mathrm{int}}(t)$, denoted respectively as ``external displacement rate'' and ``internal state evolution rate,'' satisfying
+$$
+v_{\mathrm{ext}}^{2}(t)+v_{\mathrm{int}}^{2}(t)=c^{2}.
+$$
+where:
+
+\begin{itemize}
+\item $v_{\mathrm{ext}}(t)$ in the continuum limit equals the group velocity of particle center position $v(t)=\partial E/\partial p$.
+\item $v_{\mathrm{int}}(t)$ characterizes the quantum state evolution rate in the ``internal degrees of freedom'' direction of the same particle, with dimensions of velocity, obtained linearly from Fubini--Study evolution velocity $\mathrm{d}s/\mathrm{d}t$ via a fixed scale factor.
+\end{itemize}
+\end{axiom}
+
+This relation geometrically constrains $(v_{\mathrm{ext}},v_{\mathrm{int}})$ to a two-dimensional circle of radius $c$, hence called the ``information rate circle.''
+
+To remain consistent with special relativity, we identify external velocity as
+$$
+v_{\mathrm{ext}}=v,
+$$
+and accordingly define
+$$
+v_{\mathrm{int}}(v) := \sqrt{c^{2}-v^{2}} = c\sqrt{1-\beta^{2}},\quad \beta:=\frac{v}{c}.
+$$
+This definition gives $v_{\mathrm{int}}=c$ in the rest frame $(v=0)$, i.e., all information rate is used for internal evolution; while in the limit $v\to c$, $v_{\mathrm{int}}\to 0$, corresponding to the extreme case of ``internal time freezing.''
+
+\subsection{Time Dilation and Internal ``Clock Frequency''}
+
+In special relativity, proper time $\tau$ and laboratory time $t$ satisfy
+$$
+\frac{\mathrm{d}\tau}{\mathrm{d}t}=\sqrt{1-\beta^{2}}=\frac{1}{\gamma},\quad \gamma:=\frac{1}{\sqrt{1-\beta^{2}}}.
+$$
+Comparing with the above, we can naturally view
+$$
+\frac{v_{\mathrm{int}}}{c} = \frac{\mathrm{d}\tau}{\mathrm{d}t}
+$$
+as the normalized rate of ``internal time'' flow per unit laboratory time. That is, the magnitude of internal velocity $v_{\mathrm{int}}$ is equivalent to measuring proper time flow rate.
+
+If in the rest frame the particle carries Compton frequency
+$$
+\omega_{0}=\frac{m_{0}c^{2}}{\hbar},
+$$
+then along the worldline parametrized by proper time, its internal phase can be written as
+$$
+\varphi(\tau)=\omega_{0}\tau.
+$$
+From the laboratory time $t$ perspective, the observable ``internal clock frequency'' is
+$$
+\omega_{\mathrm{clock}}:=\frac{\mathrm{d}\varphi}{\mathrm{d}t}
+=\omega_{0}\frac{\mathrm{d}\tau}{\mathrm{d}t}
+=\omega_{0}\frac{v_{\mathrm{int}}}{c}
+=\frac{\omega_{0}}{\gamma}.
+$$
+This is precisely the frequency form of time dilation: the internal clock of a moving particle undergoes redshift relative to laboratory time.
+
+\subsection{Energy--Frequency Relation and Spatial Frequency Component}
+
+On the other hand, in momentum eigenstates, the plane wave solution of Dirac particles has phase
+$$
+\psi(x,t)\sim\exp\left[\frac{\mathrm{i}}{\hbar}\left(p x-E t\right)\right]
+=\exp\left[\mathrm{i}\left(k x-\omega_{\mathrm{tot}}t\right)\right],
+$$
+where
+$$
+k:=\frac{p}{\hbar},\qquad \omega_{\mathrm{tot}}:=\frac{E}{\hbar}.
+$$
+From the energy--momentum relation:
+$$
+\omega_{\mathrm{tot}}^{2}=\frac{E^{2}}{\hbar^{2}}
+=\frac{m_{0}^{2}c^{4}+p^{2}c^{2}}{\hbar^{2}}
+=\left(\frac{m_{0}c^{2}}{\hbar}\right)^{2}
++\left(\frac{pc}{\hbar}\right)^{2}
+=\omega_{0}^{2}+\omega_{\mathrm{space}}^{2},
+$$
+where
+$$
+\omega_{\mathrm{space}}:=c|k|=\frac{pc}{\hbar}
+$$
+can be interpreted as ``spatial direction frequency component,'' corresponding to spatial oscillations brought by the wave vector.
+
+This frequency identity has close parallelism with the information rate circle: $\omega_{0}$ plays the role of ``rest internal frequency,'' corresponding to $v_{\mathrm{int}}$ at rest; $\omega_{\mathrm{space}}$ corresponds to external momentum and group velocity.
+
+In what follows, we will show how to unify $\omega_{\mathrm{tot}}$, $\omega_{0}$, $\omega_{\mathrm{space}}$ and $v_{\mathrm{ext}}$, $v_{\mathrm{int}}$ under QCA's internal--external degrees of freedom decomposition into a framework of ``inertial geometry.''
+
+\section{Main Results: Theorems and Alignments}
+
+This section presents main theorems and structural conclusions of this paper.
+
+\subsection{Inertial Geometry Theorem: Geometric Rewrite of Time Dilation}
+
+\begin{theorem}[Inertial Geometry and Time Dilation]
+\label{thm:inert}
+Under Axiom~\ref{ax:info_rate} (information rate conservation), defining external velocity as $v_{\mathrm{ext}}=v$ and internal velocity as
+$$
+v_{\mathrm{int}}=\sqrt{c^{2}-v^{2}},
+$$
+the following statements are equivalent:
+
+\textbf{(1)} Special-relativistic time dilation formula
+$$
+\mathrm{d}\tau=\mathrm{d}t\sqrt{1-\frac{v^{2}}{c^{2}}},
+$$
+i.e., $\mathrm{d}\tau/\mathrm{d}t=v_{\mathrm{int}}/c$.
+
+\textbf{(2)} The particle's velocity vector in the two-dimensional ``information rate plane''
+$$
+\mathbf{u}=(v_{\mathrm{ext}},v_{\mathrm{int}})
+$$
+has fixed modulus $|\mathbf{u}|=c$.
+
+In other words, time dilation can be understood as: when an object's motion speed in external space increases, internal evolution speed is forced to decrease on a circle of radius $c$.
+\end{theorem}
+
+\subsection{Frequency Geometry Theorem: Coordination of Internal Clock and Total Frequency}
+
+\begin{theorem}[Frequency Geometry and Energy--Momentum Relation]
+\label{thm:freq}
+For a plane wave state of a free Dirac particle, define rest Compton frequency
+$$
+\omega_{0}=\frac{m_{0}c^{2}}{\hbar},
+$$
+total frequency
+$$
+\omega_{\mathrm{tot}}=\frac{E}{\hbar},
+$$
+and spatial frequency
+$$
+\omega_{\mathrm{space}}=\frac{pc}{\hbar}.
+$$
+Then there holds frequency identity
+$$
+\omega_{\mathrm{tot}}^{2}=\omega_{0}^{2}+\omega_{\mathrm{space}}^{2}.
+$$
+Furthermore, defining internal ``clock frequency''
+$$
+\omega_{\mathrm{clock}}:=\frac{\omega_{0}}{\gamma}
+=\omega_{0}\frac{v_{\mathrm{int}}}{c},
+$$
+then total frequency and internal clock frequency satisfy
+$$
+\omega_{\mathrm{tot}}=\gamma \omega_{0}
+=\frac{\omega_{0}^{2}}{\omega_{\mathrm{clock}}},
+$$
+i.e.,
+$$
+\omega_{\mathrm{clock}}\cdot \omega_{\mathrm{tot}}=\omega_{0}^{2}.
+$$
+This shows:
+
+\begin{itemize}
+\item For given invariant $\omega_{0}$, when internal clock slows down in laboratory time ($\omega_{\mathrm{clock}}$ decreases), total frequency $\omega_{\mathrm{tot}}$ necessarily increases.
+\item Frequency ``slowing'' and ``speeding'' actually point to two different projections: internal clock and external plane wave phase.
+\end{itemize}
+\end{theorem}
+
+\subsection{Information Geometric Expression of Inertial Mass Amplification}
+
+In relativistic mechanics, acceleration $a_{\parallel}$ along velocity direction and applied force $F_{\parallel}$ satisfy
+$$
+F_{\parallel}=m_{0}\gamma^{3}a_{\parallel},
+$$
+from which one can define longitudinal effective inertia
+$$
+m_{\mathrm{eff}}^{\parallel}:=\gamma^{3}m_{0}.
+$$
+Using $v_{\mathrm{int}}=c/\gamma$, this can be rewritten as
+$$
+m_{\mathrm{eff}}^{\parallel}
+=m_{0}\left(\frac{c}{v_{\mathrm{int}}}\right)^{3}.
+$$
+
+\begin{theorem}[Inertia as Inverse Cube of Internal Time Rate]
+\label{thm:inertia}
+Under the information rate circle framework, longitudinal effective inertial mass varies as the inverse cube of internal evolution velocity $v_{\mathrm{int}}$:
+$$
+m_{\mathrm{eff}}^{\parallel}\propto v_{\mathrm{int}}^{-3}.
+$$
+Therefore, when $v\to c$, $v_{\mathrm{int}}\to 0$, and $m_{\mathrm{eff}}^{\parallel}\to\infty$. From an information-theoretic perspective, this corresponds to: in the limit of nearly frozen internal time, for a system to maintain stability of its own topology and quantum correlation structure, its response rigidity to external forces tends to infinity.
+\end{theorem}
+
+\subsection{Energy--Internal Rate Identity and Unification of $E=\hbar\omega$}
+
+Starting from time dilation relation $\mathrm{d}\tau/\mathrm{d}t=v_{\mathrm{int}}/c$ and invariant $m_{0}$, one can define an energy quantity directly related to internal rate:
+$$
+E_{\mathrm{tot}}
+:= m_{0}c^{2}\frac{\mathrm{d}t}{\mathrm{d}\tau}
+= m_{0}c^{2}\frac{c}{v_{\mathrm{int}}}
+=\frac{m_{0}c^{3}}{v_{\mathrm{int}}}.
+$$
+On the other hand, from energy--momentum relation, $E_{\mathrm{tot}}=\gamma m_{0}c^{2}= \hbar \omega_{\mathrm{tot}}$.
+
+\begin{theorem}[Energy--Internal Rate Identity]
+\label{thm:energy}
+Under the information rate circle framework, total energy of a free particle can be written both as
+$$
+E_{\mathrm{tot}}=\gamma m_{0}c^{2},
+$$
+and as
+$$
+E_{\mathrm{tot}}=\frac{m_{0}c^{3}}{v_{\mathrm{int}}},
+$$
+compatible with the Planck relation
+$$
+E_{\mathrm{tot}}=\hbar \omega_{\mathrm{tot}}.
+$$
+This establishes
+$$
+\omega_{\mathrm{tot}}
+=\frac{E_{\mathrm{tot}}}{\hbar}
+=\frac{m_{0}c^{3}}{\hbar v_{\mathrm{int}}}
+=\gamma \omega_{0}.
+$$
+This shows:
+
+\begin{itemize}
+\item $E=m c^{2}$ and $E=\hbar \omega$ are essentially two ways of writing the same identity in different variables.
+\item The information rate circle gives a triple unification among ``energy--frequency--internal time rate.''
+\end{itemize}
+\end{theorem}
+
+Proofs of these theorems will be given in subsequent Proofs section and appendices.
+
+\section{Proofs}
+
+This section provides main derivations of above theorems, with more technical operator and geometric arguments moved to appendices.
+
+\subsection{Proof of Theorem~\ref{thm:inert}: Minkowski Geometry and Circular Reparametrization}
+
+Four-velocity is defined as
+$$
+u^{\mu}=\frac{\mathrm{d}x^{\mu}}{\mathrm{d}\tau}
+=(\gamma c,\gamma v).
+$$
+Its Minkowski norm satisfies
+$$
+u^{\mu}u_{\mu}
+=-c^{2}\gamma^{2}+v^{2}\gamma^{2}
+=-c^{2}.
+$$
+Let
+$$
+v_{\mathrm{ext}}:=v,\qquad
+v_{\mathrm{int}}:=c\sqrt{1-\frac{v^{2}}{c^{2}}}.
+$$
+Then
+$$
+v_{\mathrm{ext}}^{2}+v_{\mathrm{int}}^{2}
+=v^{2}+c^{2}\left(1-\frac{v^{2}}{c^{2}}\right)
+=c^{2}.
+$$
+On the other hand, from time dilation
+$$
+\frac{\mathrm{d}\tau}{\mathrm{d}t}
+=\sqrt{1-\frac{v^{2}}{c^{2}}}
+=\frac{v_{\mathrm{int}}}{c},
+$$
+we see the relation between $\mathrm{d}\tau/\mathrm{d}t$ and $v_{\mathrm{int}}$ is precisely the radial projection of the information rate circle. Thus, Minkowski four-velocity identity and information rate circle are just different parametrizations of the same constraint. This completes Theorem~\ref{thm:inert}. \qed
+
+\subsection{Proof of Theorem~\ref{thm:freq}: Minkowski Geometry of Frequency}
+
+Energy--momentum relation
+$$
+E^{2}=m_{0}^{2}c^{4}+p^{2}c^{2}
+$$
+divided on both sides by $\hbar^{2}$ gives
+$$
+\left(\frac{E}{\hbar}\right)^{2}
+=\left(\frac{m_{0}c^{2}}{\hbar}\right)^{2}
++\left(\frac{pc}{\hbar}\right)^{2}.
+$$
+Let
+$$
+\omega_{\mathrm{tot}}:=\frac{E}{\hbar},\quad
+\omega_{0}:=\frac{m_{0}c^{2}}{\hbar},\quad
+\omega_{\mathrm{space}}:=\frac{pc}{\hbar},
+$$
+we obtain
+$$
+\omega_{\mathrm{tot}}^{2}
+=\omega_{0}^{2}+\omega_{\mathrm{space}}^{2}.
+$$
+On the other hand, velocity can be written as
+$$
+v = \frac{\partial E}{\partial p}
+=\frac{pc^{2}}{E}
+=\frac{\omega_{\mathrm{space}}c^{2}/c}{\omega_{\mathrm{tot}}}
+=c\frac{\omega_{\mathrm{space}}}{\omega_{\mathrm{tot}}}.
+$$
+Thus $\beta=v/c=\omega_{\mathrm{space}}/\omega_{\mathrm{tot}}$. From this:
+$$
+\gamma=\frac{1}{\sqrt{1-\beta^{2}}}
+=\frac{\omega_{\mathrm{tot}}}{\omega_{0}},
+$$
+hence
+$$
+\omega_{\mathrm{tot}}=\gamma \omega_{0}.
+$$
+Writing time dilation as $\mathrm{d}\tau/\mathrm{d}t=1/\gamma$, internal clock frequency
+$$
+\omega_{\mathrm{clock}}=\omega_{0}\frac{\mathrm{d}\tau}{\mathrm{d}t}
+=\frac{\omega_{0}}{\gamma}
+$$
+obviously satisfies
+$$
+\omega_{\mathrm{clock}}\cdot \omega_{\mathrm{tot}}
+=\left(\frac{\omega_{0}}{\gamma}\right)\cdot(\gamma \omega_{0})
+=\omega_{0}^{2}.
+$$
+Theorem~\ref{thm:freq} follows. \qed
+
+\subsection{Proof of Theorem~\ref{thm:inertia}: Relativistic Dynamics and Internal Rate Rewrite}
+
+Relativistic mechanics along velocity direction gives
+$$
+F_{\parallel}=\frac{\mathrm{d}}{\mathrm{d}t}(\gamma m_{0}v)
+=m_{0}\gamma^{3}a_{\parallel},
+$$
+a standard textbook result. Introducing
+$$
+m_{\mathrm{eff}}^{\parallel}:=\gamma^{3}m_{0},
+$$
+we have
+$$
+F_{\parallel}=m_{\mathrm{eff}}^{\parallel}a_{\parallel}.
+$$
+Using
+$$
+v_{\mathrm{int}}
+=c\sqrt{1-\frac{v^{2}}{c^{2}}}
+=\frac{c}{\gamma},
+$$
+we obtain
+$$
+\gamma=\frac{c}{v_{\mathrm{int}}},\quad
+\gamma^{3}=\left(\frac{c}{v_{\mathrm{int}}}\right)^{3},
+$$
+thus
+$$
+m_{\mathrm{eff}}^{\parallel}
+=\gamma^{3}m_{0}
+=m_{0}\left(\frac{c}{v_{\mathrm{int}}}\right)^{3}.
+$$
+When $v\to c$, $v_{\mathrm{int}}\to 0$; from the above equation we directly see $m_{\mathrm{eff}}^{\parallel}$ diverges, i.e., Theorem~\ref{thm:inertia}. \qed
+
+\subsection{Proof of Theorem~\ref{thm:energy}: Triple Identity of Energy--Internal Rate--Frequency}
+
+From time dilation
+$$
+\frac{\mathrm{d}t}{\mathrm{d}\tau}=\gamma
+$$
+and
+$$
+E_{\mathrm{tot}}=\gamma m_{0}c^{2},
+$$
+this can be viewed as
+$$
+E_{\mathrm{tot}}
+= m_{0}c^{2}\frac{\mathrm{d}t}{\mathrm{d}\tau}.
+$$
+On the other hand, from $v_{\mathrm{int}}=c/\gamma$ we have
+$$
+\frac{\mathrm{d}t}{\mathrm{d}\tau}
+=\frac{c}{v_{\mathrm{int}}},
+$$
+substituting gives
+$$
+E_{\mathrm{tot}}
+=m_{0}c^{2}\frac{c}{v_{\mathrm{int}}}
+=\frac{m_{0}c^{3}}{v_{\mathrm{int}}}.
+$$
+Also from the Planck relation
+$$
+E_{\mathrm{tot}}=\hbar \omega_{\mathrm{tot}},
+$$
+together with $\omega_{0}=m_{0}c^{2}/\hbar$ and $\gamma=c/v_{\mathrm{int}}$, we can write
+$$
+\omega_{\mathrm{tot}}
+=\frac{E_{\mathrm{tot}}}{\hbar}
+=\frac{m_{0}c^{3}}{\hbar v_{\mathrm{int}}}
+=\frac{c}{v_{\mathrm{int}}}\frac{m_{0}c^{2}}{\hbar}
+=\gamma \omega_{0},
+$$
+consistent with Theorem~\ref{thm:freq}, completing the closed loop of energy--internal rate--frequency triple identity. \qed
+
+\section{Model Applications}
+
+This section discusses applications of the information rate circle and inertial geometry in specific physical scenarios.
+
+\subsection{Geometric Interpretation of Compton Clock and Matter Wave Clock Experiments}
+
+Recent important experiments use atomic interferometers and frequency combs to view matter wave Compton frequency as a time standard, realizing ``timing by mass'' schemes, so-called ``Compton frequency clocks'' or ``matter wave clocks.'' These experiments show that mass $m$ can be measured with high precision via frequency $\omega_{0}=m c^{2}/\hbar$, and this frequency follows relativistic time dilation corrections at different velocities.
+
+In information rate geometry:
+
+\begin{itemize}
+\item Stationary atoms correspond to $v_{\mathrm{ext}}=0$, $v_{\mathrm{int}}=c$; internal clock frequency is $\omega_{\mathrm{clock}}=\omega_{0}$.
+\item When atoms move with velocity $v$, internal clock frequency drops to $\omega_{\mathrm{clock}}=\omega_{0}/\gamma$, manifesting as slower phase change of interference fringes with time.
+\item Meanwhile, matter wave total frequency $\omega_{\mathrm{tot}}=\gamma \omega_{0}$ increases, with spatial frequency $\omega_{\mathrm{space}}=pc/\hbar$ determined by momentum.
+\end{itemize}
+
+Phase differences actually measured by interferometers can be viewed as appropriate combinations of $\omega_{\mathrm{tot}}$ and $\omega_{\mathrm{clock}}$, while the information rate circle provides geometric constraints between the two, allowing results from different experimental configurations to be uniformly projected onto the $(v_{\mathrm{ext}},v_{\mathrm{int}})$ plane.
+
+\subsection{Geometric Significance of Mass Parameters in Dirac--QCA}
+
+In one-dimensional Dirac--QCA models, local updates can be written as combinations of ``internal rotation'' angle $\theta$ and conditional translation, with effective mass in the continuum limit determined by $\theta$, e.g.,
+$$
+m_{0}c^{2} \propto \frac{\hbar}{\Delta t}\sin\theta.
+$$
+Plane wave mode dispersion relations typically take form
+$$
+\cos(\omega \Delta t)
+=\cos\theta\cos(k\Delta x)+\cdots.
+$$
+In the small-$k$ limit, this dispersion converges to
+$$
+\omega^{2}
+\approx \left(\frac{m_{0}c^{2}}{\hbar}\right)^{2}
++c^{2}k^{2},
+$$
+i.e., $\omega_{\mathrm{tot}}^{2}=\omega_{0}^{2}+\omega_{\mathrm{space}}^{2}$.
+
+In information rate circle language, $\theta$ controls ``coupling angle'' between internal rotation and external displacement:
+
+\begin{itemize}
+\item When $\theta$ approaches $0$, mass approaches zero; modes propagate mainly at $v_{\mathrm{ext}}\approx c$, $v_{\mathrm{int}}\approx 0$, corresponding to approximately massless particles.
+\item When $\theta$ approaches $\pi/2$, mass is extreme; modes hardly propagate spatially, $v_{\mathrm{ext}}\approx 0$, $v_{\mathrm{int}}\approx c$, corresponding to highly localized heavy particles.
+\item Intermediate cases correspond to combinations at different inclination angles on the information rate circle.
+\end{itemize}
+
+This gives geometric interpretation of mass as ``information rate allocation rule'': the greater the mass, the more the system tends to use resources for internal evolution rather than external propagation.
+
+\subsection{Restatement of Relativistic Mass Picture}
+
+Traditional ``relativistic mass'' language views $\gamma m_{0}$ as ``moving mass''; while convenient formally, it easily causes misunderstanding of ``object becoming heavier,'' inconsistent with modern habit of emphasizing invariant mass.
+
+In information rate geometry, one can replace ``mass increase'' narrative with the following triple:
+
+\textbf{(1)} Invariant mass $m_{0}$ is topological marker of particle identity, corresponding to rest Compton frequency $\omega_{0}$.
+
+\textbf{(2)} Moving state only changes allocation of $(v_{\mathrm{ext}},v_{\mathrm{int}})$ on information rate circle, causing internal clock frequency $\omega_{\mathrm{clock}}=\omega_{0}v_{\mathrm{int}}/c$ to redshift and total frequency $\omega_{\mathrm{tot}}=\gamma \omega_{0}$ to blueshift.
+
+\textbf{(3)} Effective inertia $m_{\mathrm{eff}}^{\parallel}=\gamma^{3}m_{0}$ is a parameter in force--acceleration relation; its growth reflects ``after internal time rate becomes small, system response rigidity to external perturbations rises.''
+
+This expression avoids naive misleading of ``mass really becoming greater,'' emphasizing inertia as an emergent property of internal time geometry.
+
+\section{Engineering Proposals}
+
+This section proposes several engineering and experimental schemes that can test or utilize information rate geometry.
+
+\subsection{Separate Measurement of $\omega_{\mathrm{clock}}$ and $\omega_{\mathrm{tot}}$ in Matter Wave Clocks}
+
+Atomic interference experiments can already measure Compton frequency related to mass and phase shifts related to motion state with extreme precision. In information rate geometry, the product $\omega_{\mathrm{clock}}\omega_{\mathrm{tot}}=\omega_{0}^{2}$ is a unique prediction:
+
+\begin{itemize}
+\item By comparing interference fringe drift of stationary and moving atoms, one can extract laboratory time frequency of $\omega_{\mathrm{clock}}$.
+\item Using energy--frequency relation and momentum control, one can independently determine $\omega_{\mathrm{tot}}$.
+\item If both can be obtained on the same experimental platform and their product verified to remain approximately constant at different velocities, this would be indirect support for information rate geometry.
+\end{itemize}
+
+Any systematic effect deviating from this relation could point to correction terms from QCA discrete structure or gravitational effects.
+
+\subsection{Information Rate Breakpoint in QCA Quantum Simulation}
+
+Implementing Dirac--QCA or related quantum walk models on controllable quantum platforms (superconducting qubits, trapped ions, optical lattice atoms, etc.) has become a direction in quantum simulation. By adjusting internal rotation angles and step sizes, one can scan different modes from near-light-speed propagation to highly localized.
+
+Under information rate geometry, the following experiment can be designed:
+
+\textbf{(1)} Select a parameter family making effective group velocity $v_{\mathrm{ext}}$ approach maximum value; observe whether state vector evolution rate in internal degrees of freedom (e.g., rotation frequency on Bloch sphere) significantly decreases.
+
+\textbf{(2)} At different parameters, measure minimum time required for same initial state to evolve to orthogonal state, comparing with quantum speed limit $t_{\perp}\geq \pi\hbar/(2\Delta E)$ to check scaling relation between ``internal rate upper bound $c$'' and energy dispersion.
+
+\textbf{(3)} Explore whether numerical behavior similar to inertia amplification appears at extreme parameters approaching ``internal rate freezing.''
+
+These experiments can directly observe information rate allocation between internal and external degrees of freedom in closed systems, providing microscopic support for this paper's geometric picture.
+
+\subsection{``Inertial Geometry'' Calibration in High-Speed Beams}
+
+In high-energy accelerators, charged particle beams approaching light speed exhibit typical relativistic dynamics; traditional analysis focuses on $\gamma$ factor energy and momentum scaling. If precise spin precession or internal state interference measurements are introduced in the same apparatus, there is opportunity to simultaneously measure:
+
+\begin{itemize}
+\item Energy frequency corresponding to $\omega_{\mathrm{tot}}=\gamma \omega_{0}$.
+\item Internal clock frequency corresponding to $\omega_{\mathrm{clock}}=\omega_{0}/\gamma$ (e.g., via Rabi oscillation period or spin echo).
+\end{itemize}
+
+By fitting scaling relations of these two frequency types in different $\gamma$ intervals, one can explicitly reconstruct $(v_{\mathrm{ext}},v_{\mathrm{int}})$ curve on information rate circle, checking whether it is consistent with $v_{\mathrm{ext}}^{2}+v_{\mathrm{int}}^{2}=c^{2}$ and whether deviations appear at extreme high-$\gamma$ intervals.
+
+\section{Discussion: Risks, Boundaries, Past Work}
+
+\subsection{Relationship with Existing ``Internal Clock'' and Zitterbewegung Pictures}
+
+De Broglie early proposed the idea of ``particles carrying internal clocks,'' interpreting mass as internal oscillation frequency $\omega_{0}=m c^{2}/\hbar$. This picture was deepened in Hestenes et al.'s Zitterbewegung interpretation, viewing Dirac electrons as structures with internal rotation and helical trajectories, with mass and spin originating from internal periodic motion.
+
+This paper's inertial geometry framework is spiritually close to these works:
+
+\begin{itemize}
+\item Both view mass as scale of some internal periodicity.
+\item Both emphasize deep connection between internal time flow and external motion.
+\end{itemize}
+
+Differences are:
+
+\textbf{(1)} This paper makes no geometric assumptions about specific spatial trajectories of internal motion (such as helical models), but abstracts internal ``evolution speed'' as geometric quantity in state space via Fubini--Study metric and quantum speed limits.
+
+\textbf{(2)} We emphasize resource conservation relation $v_{\mathrm{ext}}^{2}+v_{\mathrm{int}}^{2}=c^{2}$ between external motion and internal evolution, interpreting inertia divergence as limit of ``internal time rate approaching zero,'' rather than unstable behavior in specific mechanical models.
+
+Thus, the information rate circle can be viewed as a geometric and information-theoretic upgrade of the ``internal clock'' idea.
+
+\subsection{Relationship with ``Relativistic Mass'' Controversy}
+
+Modern textbooks often advocate abandoning ``relativistic mass,'' shifting to emphasizing invariant mass and energy--momentum four-vector. However, in teaching and intuitive understanding, ``increased resistance at high speeds'' remains a highly perceptible fact.
+
+Information rate geometry's position in this controversy can be summarized as:
+
+\begin{itemize}
+\item Mathematically fully follows invariant mass and four-momentum formalism, introducing no new mass parameters.
+\item Conceptually introduces ``effective inertia'' $m_{\mathrm{eff}}^{\parallel}=\gamma^{3}m_{0}$ as coefficient in force--acceleration relation, but explicitly indicates it is not ``object's own mass,'' but a function of internal time rate $v_{\mathrm{int}}$.
+\item Thus, so-called ``becoming heavier'' is merely geometric-informational phenomenon of ``after internal time is compressed, system response rigidity to external disturbances rises.''
+\end{itemize}
+
+This perspective provides a new compromise for conceptual clarification of ``relativistic mass'' without changing any experimental predictions.
+
+\subsection{Testable Deviations of QCA and Discrete Structure}
+
+This paper axiomatically introduces information rate circle, using Dirac--QCA as underlying schematic model. Whether the real universe is supported at Planck scale by QCA or other discrete structures currently has no consensus.
+
+Conservative version of this framework is only viewed as geometric rewrite of existing continuum theory, introducing no new predictions at testable scales; while its radical version allows minor deviations of information rate circle at extremely high energy or short distance, e.g.,
+$$
+v_{\mathrm{ext}}^{2}+v_{\mathrm{int}}^{2}
+=c^{2}\bigl(1+\varepsilon(p,\Lambda_{\mathrm{QCA}})\bigr),
+$$
+where $\Lambda_{\mathrm{QCA}}$ is discrete lattice scale and $\varepsilon$ is small function growing with momentum. Such deviations might be amplified in ultra-high-energy cosmic rays, gravitational wave propagation, or precision clock experiments.
+
+This paper does not quantify these deviations in specific models, but provides a geometric skeleton that can be embedded; subsequent work can fill in with specific QCA constructions and experimental constraints.
+
+\subsection{Boundaries and Potential Risks}
+
+\begin{itemize}
+\item This paper assumes internal evolution rate can be linearly related to energy uncertainty via Fubini--Study metric and scaled to $c$. Uniqueness and universality of this scaling still require more precise axiomatic discussion and experimental calibration.
+\item Frequency and time rate are both observer-dependent quantities; this paper adopts information rate circle expression in single inertial frame, not yet providing complete tensorization in generally covariant framework.
+\item In strong gravitational fields or non-inertial frames, time dilation couples with gravitational redshift; generalization of information rate circle should involve effective optical metric and decomposition under local inertial frames---a broader ``gravity--information geometry'' topic.
+\end{itemize}
+
+\section{Conclusion}
+
+Against the background of quantum cellular automata and quantum evolution geometry, this paper introduces the structure of ``information rate conservation,'' viewing evolution of a massive particle as allocation of finite information update rate between two orthogonal dimensions of external spatial displacement and internal state evolution. By defining information rate circle
+$$
+v_{\mathrm{ext}}^{2}+v_{\mathrm{int}}^{2}=c^{2},
+$$
+and associating $v_{\mathrm{ext}}$ with group velocity and $v_{\mathrm{int}}$ with proper time flow rate, this paper achieves the following unification:
+
+\textbf{(1)} Time dilation is rewritten as geometric projection of information rate between internal and external components; Minkowski four-velocity hyperbolic structure corresponds to simple constraint on two-dimensional circle.
+
+\textbf{(2)} Relation among rest Compton frequency $\omega_{0}$, matter wave total frequency $\omega_{\mathrm{tot}}$, and spatial frequency $\omega_{\mathrm{space}}$ as $\omega_{\mathrm{tot}}^{2}=\omega_{0}^{2}+\omega_{\mathrm{space}}^{2}$ is interpreted as ``inertial geometry'' in frequency space; complementarity between internal clock frequency $\omega_{\mathrm{clock}}=\omega_{0}/\gamma$ and total frequency $\omega_{\mathrm{tot}}=\gamma \omega_{0}$ resolves intuitive contradiction of ``time slowing yet frequency speeding.''
+
+\textbf{(3)} Effective inertia $m_{\mathrm{eff}}^{\parallel}=\gamma^{3}m_{0}$ in relativistic dynamics is rewritten as $m_{\mathrm{eff}}^{\parallel}=m_{0}(c/v_{\mathrm{int}})^{3}$, interpreting inertia divergence as ``energy cost of maintaining topological structure in internal time freezing limit.''
+
+\textbf{(4)} Combined with Compton clock experiments, matter wave interference, and QCA quantum simulation, proposes a series of engineering schemes that can be used to test or utilize inertial geometry picture.
+
+Under this framework, $E=m c^{2}$ and $E=\hbar \omega$ are no longer independent formulas from two theoretical systems, but projections of the same information geometric structure in different variables. Mass is topological label of Compton frequency, time dilation is reallocation of information rate, inertia is response rigidity of internal time geometry to external perturbations.
+
+\section*{Acknowledgments}
+
+The authors thank public literature and experimental results on relativistic mass, Compton clocks, and quantum cellular automata for providing necessary historical and technical background for this paper.
+
+\section*{Code Availability}
+
+All derivations in this paper are based on analytical calculations and standard relativity and quantum mechanics tools, independent of numerical simulation code. Common algebraic software can be used for numerical verification and symbolic derivation if needed.
+
+\begin{thebibliography}{99}
+
+\bibitem{debroglie}
+L. de Broglie, \textit{Recherches sur la théorie des quanta}, Ann. Phys. (1924).
+
+\bibitem{bisio}
+A. Bisio, G. M. D'Ariano, A. Tosini, ``Quantum field as a quantum cellular automaton: the Dirac free evolution in one dimension,'' \textit{Ann. Phys.} \textbf{354}, 244--264 (2015).
+
+\bibitem{feynman_chess}
+R. P. Feynman, ``The Feynman checkerboard,'' see e.g., GN Ord, ``The Feynman chessboard model in 3+1 dimensions,'' \textit{Front. Phys.} (2023).
+
+\bibitem{anandan}
+J. Anandan, Y. Aharonov, ``Geometry of quantum evolution,'' \textit{Phys. Rev. Lett.} \textbf{65}, 1697--1700 (1990).
+
+\bibitem{lan}
+S.-Y. Lan et al., ``A Clock Directly Linking Time to a Particle's Mass,'' \textit{Science} \textbf{339}, 554--557 (2013).
+
+\bibitem{venugopal}
+V. Venugopal, ``de Broglie Wavelength and Frequency of Scattered Electrons in the Compton Effect,'' arXiv:1202.4572 (2012).
+
+\bibitem{hestenes}
+D. Hestenes, ``Zitterbewegung Modeling,'' (2005); ``Quantum mechanics of the electron particle clock,'' arXiv:1910.10478 (2019).
+
+\bibitem{osche}
+G. R. Osche et al., ``Electron channeling resonance and de Broglie's internal clock,'' \textit{Ann. Fond. Louis de Broglie} \textbf{36} (2011).
+
+\bibitem{hecht}
+F. Hecht, ``Einstein Never Approved of Relativistic Mass,'' \textit{Phys. Teach.} \textbf{47}, 336--341 (2009).
+
+\bibitem{brown}
+P. M. Brown, ``On the concept of mass in relativity,'' arXiv:0709.0687 (2007).
+
+\bibitem{ma_info}
+H. Ma, ``Universal Conservation of Information Celerity,'' preprint (2025).
+
+\end{thebibliography}
+
+\appendix
+
+\section{Dirac--QCA Hamiltonian and Operator Proof of Frequency Orthogonality}
+
+This appendix provides operator-form proof of frequency orthogonal relation in Theorem~\ref{thm:freq} and demonstrates its connection with Dirac--QCA effective Hamiltonian.
+
+\subsection{Dirac Hamiltonian Square and Energy--Momentum Relation}
+
+Consider one-dimensional Dirac-type Hamiltonian
+$$
+H = c \alpha \hat{p} + \beta m_{0}c^{2},
+$$
+where $\alpha,\beta$ are $2\times 2$ Pauli matrices satisfying
+$$
+\alpha^{2}=\beta^{2}=\mathbb{I},\qquad
+\{\alpha,\beta\}=\alpha\beta+\beta\alpha=0.
+$$
+Computing $H^{2}$:
+$$
+\begin{aligned}
+H^{2}
+&= c^{2}\alpha \hat{p}\cdot\alpha \hat{p}
++ c\alpha \hat{p}\cdot\beta m_{0}c^{2}
++ \beta m_{0}c^{2}\cdot c \alpha \hat{p}
++ \beta^{2}m_{0}^{2}c^{4} \\
+&= c^{2}\alpha^{2} \hat{p}^{2}
++ c m_{0}c^{2}\hat{p}\left(\alpha\beta+\beta\alpha\right)
++ \beta^{2}m_{0}^{2}c^{4}.
+\end{aligned}
+$$
+Using $\alpha^{2}=\beta^{2}=\mathbb{I}$ and $\{\alpha,\beta\}=0$, middle cross term completely cancels, yielding
+$$
+H^{2}
+= c^{2}\hat{p}^{2}+m_{0}^{2}c^{4}.
+$$
+On momentum eigenstate $\hat{p}\psi_{p}=p\psi_{p}$, $H^{2}\psi_{p}=E^{2}\psi_{p}$, from which we obtain
+$$
+E^{2}=c^{2}p^{2}+m_{0}^{2}c^{4},
+$$
+the standard energy--momentum relation. This derivation remains valid in Dirac--QCA's continuum limit, as QCA's one-step evolution operator $U$ has effective representation $U=\exp(-\mathrm{i}H\Delta t/\hbar)$.
+
+\subsection{Frequency Orthogonal Relation}
+
+Dividing both sides of above by $\hbar^{2}$ gives
+$$
+\left(\frac{E}{\hbar}\right)^{2}
+=\left(\frac{m_{0}c^{2}}{\hbar}\right)^{2}
++\left(\frac{pc}{\hbar}\right)^{2}.
+$$
+Let
+$$
+\omega_{\mathrm{tot}}:=\frac{E}{\hbar},\quad
+\omega_{0}:=\frac{m_{0}c^{2}}{\hbar},\quad
+\omega_{\mathrm{space}}:=\frac{pc}{\hbar},
+$$
+we obtain
+$$
+\omega_{\mathrm{tot}}^{2}
+=\omega_{0}^{2}+\omega_{\mathrm{space}}^{2},
+$$
+precisely the ``Pythagorean relation'' in frequency space. It embodies orthogonality of ``mass term'' and ``momentum term'' in the Hamiltonian at operator level: anticommutation relation ensures no cross term appears in $H^{2}$, thus preserving right triangle algebraic structure.
+
+\subsection{Correspondence with Information Rate Geometry}
+
+In information rate circle, $v_{\mathrm{ext}}$ and $v_{\mathrm{int}}$ satisfy
+$$
+v_{\mathrm{ext}}^{2}+v_{\mathrm{int}}^{2}=c^{2}.
+$$
+Via energy--momentum relation, velocity and frequency can be connected:
+$$
+v=c\frac{\omega_{\mathrm{space}}}{\omega_{\mathrm{tot}}},\quad
+\gamma=\frac{\omega_{\mathrm{tot}}}{\omega_{0}},\quad
+v_{\mathrm{int}}=c\sqrt{1-\frac{v^{2}}{c^{2}}}
+=\frac{c}{\gamma}
+=c\frac{\omega_{0}}{\omega_{\mathrm{tot}}}.
+$$
+Therefore
+$$
+\left(\frac{v_{\mathrm{ext}}}{c}\right)^{2}
+=\left(\frac{\omega_{\mathrm{space}}}{\omega_{\mathrm{tot}}}\right)^{2},\quad
+\left(\frac{v_{\mathrm{int}}}{c}\right)^{2}
+=\left(\frac{\omega_{0}}{\omega_{\mathrm{tot}}}\right)^{2}.
+$$
+This shows that geometric structure of information rate circle in velocity space completely parallels orthogonal relation of $\omega_{0}$ and $\omega_{\mathrm{space}}$ in frequency space, further supporting rationality of ``inertial geometry'' as unified description.
+
+\section{Detailed Derivation of Longitudinal Effective Inertia}
+
+This appendix provides detailed expansion of derivation of $F_{\parallel}=m_{0}\gamma^{3}a_{\parallel}$ and gives its rewrite in information rate variables.
+
+\subsection{Relativistic Momentum and Acceleration Decomposition}
+
+Relativistic momentum is defined as
+$$
+\mathbf{p}=\gamma m_{0}\mathbf{v}.
+$$
+Acceleration along velocity direction
+$$
+a_{\parallel}
+:=\frac{\mathrm{d}v}{\mathrm{d}t},
+$$
+applied force
+$$
+F_{\parallel}
+:=\frac{\mathrm{d}p}{\mathrm{d}t}.
+$$
+Computing
+$$
+\begin{aligned}
+F_{\parallel}
+&=\frac{\mathrm{d}}{\mathrm{d}t}(\gamma m_{0}v) \\
+&= m_{0}\left(\gamma \frac{\mathrm{d}v}{\mathrm{d}t}
++v\frac{\mathrm{d}\gamma}{\mathrm{d}t}\right).
+\end{aligned}
+$$
+From
+$$
+\gamma=\frac{1}{\sqrt{1-\beta^{2}}},\quad \beta=\frac{v}{c},
+$$
+we get
+$$
+\frac{\mathrm{d}\gamma}{\mathrm{d}t}
+=\frac{\mathrm{d}\gamma}{\mathrm{d}\beta}\frac{\mathrm{d}\beta}{\mathrm{d}t}
+=\frac{\beta \gamma^{3}}{c}\frac{\mathrm{d}v}{\mathrm{d}t}
+=\frac{\gamma^{3}v}{c^{2}}a_{\parallel}.
+$$
+Substituting
+$$
+F_{\parallel}
+=m_{0}\left(\gamma a_{\parallel}
++v\frac{\gamma^{3}v}{c^{2}}a_{\parallel}\right)
+=m_{0}\left(\gamma+\gamma^{3}\frac{v^{2}}{c^{2}}\right)a_{\parallel}.
+$$
+Using
+$$
+\gamma^{2}=\frac{1}{1-\beta^{2}}
+\Rightarrow \gamma^{2}-1=\frac{\beta^{2}}{1-\beta^{2}}=\gamma^{2}\frac{v^{2}}{c^{2}},
+$$
+i.e.,
+$$
+\gamma^{2}\frac{v^{2}}{c^{2}}=\gamma^{2}-1,
+$$
+then
+$$
+\gamma+\gamma^{3}\frac{v^{2}}{c^{2}}
+=\gamma+\gamma(\gamma^{2}-1)
+=\gamma^{3}.
+$$
+Thus
+$$
+F_{\parallel}=m_{0}\gamma^{3}a_{\parallel},
+$$
+the origin of longitudinal effective inertial mass $m_{\mathrm{eff}}^{\parallel}=\gamma^{3}m_{0}$.
+
+\subsection{Rewrite Using Internal Rate $v_{\mathrm{int}}$}
+
+Information rate circle gives
+$$
+v_{\mathrm{int}}
+=c\sqrt{1-\frac{v^{2}}{c^{2}}}
+=\frac{c}{\gamma},
+$$
+thus
+$$
+\gamma=\frac{c}{v_{\mathrm{int}}},\quad
+\gamma^{3}=\left(\frac{c}{v_{\mathrm{int}}}\right)^{3}.
+$$
+Hence
+$$
+m_{\mathrm{eff}}^{\parallel}
+=\gamma^{3}m_{0}
+=m_{0}\left(\frac{c}{v_{\mathrm{int}}}\right)^{3}.
+$$
+This shows sensitive dependence of $m_{\mathrm{eff}}^{\parallel}$ on internal rate $v_{\mathrm{int}}$: when $v_{\mathrm{int}}$ decreases due to high external velocity, effective inertia grows rapidly cubically.
+
+In information geometric picture, this means:
+
+\begin{itemize}
+\item Large effective inertia does not indicate ``more matter,'' but indicates internal time flow compressed to extremely low rate, making any attempt to change its external motion state have to ``lever'' a nearly frozen internal structure, thus appearing extremely difficult.
+\end{itemize}
+
+\section{Internal Evolution Speed and Fubini--Study Metric}
+
+This appendix explains how to relate internal velocity $v_{\mathrm{int}}$ to evolution speed in quantum state space and discusses its relationship with quantum speed limits.
+
+\subsection{Fubini--Study Evolution Velocity}
+
+In projective Hilbert space $\mathbb{P}(\mathcal{H})$, evolution of state vector $|\psi(t)\rangle$ independent of overall phase can be characterized by Fubini--Study line element
+$$
+\mathrm{d}s^{2}
+=4\left(1-|\langle\psi(t)|\psi(t+\mathrm{d}t)\rangle|^{2}\right).
+$$
+Anandan--Aharonov proved that for evolution driven by Hamiltonian $H$, evolution ``velocity'' satisfies
+$$
+\frac{\mathrm{d}s}{\mathrm{d}t}
+=\frac{2}{\hbar}\Delta H,
+$$
+where $\Delta H=\sqrt{\langle H^{2}\rangle-\langle H\rangle^{2}}$ is energy uncertainty. This relation shows: under given energy dispersion resources, geometric evolution rate of state in $\mathbb{P}(\mathcal{H})$ is limited. When system approaches quantum speed limit, its evolution speed approaches $2\Delta H/\hbar$.
+
+\subsection{Internal Velocity Scaling and Saturation}
+
+For single-particle sector of free Dirac particles, overall Hilbert space can be split into ``external'' (position) and ``internal'' (spin/particle--antiparticle) two parts of degrees of freedom. Under high symmetry, energy uncertainty can be expected to be mainly determined by internal structure, while group velocity is related to external momentum.
+
+One can then define internal evolution velocity
+$$
+v_{\mathrm{int}}
+:=\ell_{\mathrm{int}}\frac{\mathrm{d}s}{\mathrm{d}t}
+=\ell_{\mathrm{int}}\frac{2}{\hbar}\Delta H_{\mathrm{int}},
+$$
+where $\ell_{\mathrm{int}}$ is a fixed length scale used to convert dimensionless geometric velocity to quantity with velocity dimensions. Choose $\ell_{\mathrm{int}}$ such that at rest
+$$
+v_{\mathrm{int}}(v=0)=c,
+$$
+establishing one-to-one correspondence between internal evolution velocity and $v_{\mathrm{int}}$ in information rate circle. In continuum limit, Dirac--QCA naturally provides such length and time units (lattice spacing and step size), so internal evolution velocity can be viewed as ratio of ``Fubini--Study distance traversed by internal state change per step'' to step size.
+
+When system energy is entirely contributed by rest mass, internal evolution approaches quantum speed limit, $v_{\mathrm{int}}\approx c$; when most system energy converts to external momentum, internal evolution velocity decreases, $v_{\mathrm{int}}<c$, corresponding to deflection on information rate circle.
+
+\subsection{Quantum Speed Limit and Information Rate Upper Bound}
+
+Quantum speed limit gives minimum time required to evolve from one state to orthogonal state:
+$$
+t_{\perp}\geq\max\left(\frac{\pi\hbar}{2\Delta E},\frac{\pi\hbar}{2\bar{E}}\right),
+$$
+where $\Delta E$ and $\bar{E}$ are energy uncertainty and average energy respectively. If internal degrees of freedom are viewed as subsystem mainly responsible for state orthogonal change, upper bound of internal evolution velocity $v_{\mathrm{int}}$ can be viewed as geometric embodiment of quantum speed limit.
+
+Information rate circle assumes $v_{\mathrm{int}}\leq c$ as absolute upper bound, saturating this bound at rest. This assumption is formally compatible with quantum speed limit concept:
+
+\begin{itemize}
+\item Stationary particle internal evolution approaches extreme speed, able to complete state distinction in minimum time.
+\item Moving particle allocates part of ``velocity budget'' to external displacement, thus internal evolution slows, corresponding to longer state orthogonal time.
+\end{itemize}
+
+This picture provides natural quantum information background for information rate circle, also pointing out that future more refined quantum speed limit experiments can further test this framework.
+
+\end{document}
+

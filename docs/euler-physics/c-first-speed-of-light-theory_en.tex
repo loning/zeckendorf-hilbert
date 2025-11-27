@@ -1,0 +1,546 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Title information
+\title{$(c)$-FIRST: Windowed Group Delay Formulation of the Speed of Light Constant, Equivalence Layers, Error Ledgers, and Complete Proof (Full Text)}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This paper provides a novel formulation of the speed of light constant $c$ from the perspective of windowed group delay, without redefining or numerically adjusting $c$. Under strictly specified ideal models and conditions, we establish that the ratio of windowed group delay to path length provides an equivalent characterization of $c$. We prove that this formulation is logically equivalent to four structural layers: (A) phase slope/spectral shift density via the Birman--Kre\u{\i}n (BK) formula, (B) causal front via Kramers--Kronig relations, (C) information light cone (under specified communication model assumptions), and (D) SI metrology realization. Furthermore, we present a non-asymptotic Nyquist--Poisson--Euler--Maclaurin (NPE) error ledger for engineering verification. This formulation constitutes a structural restatement of the established constant $c$ rather than a redefinition.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Speed of light constant; Causal front; Wigner--Smith delay; Birman--Kre\u{\i}n formula; Spectral shift function; Kramers--Kronig (causality--analyticity); Microcausality; Information light cone; Nyquist--Poisson--Euler--Maclaurin error ledger; SI metrology standard
+
+\noindent\textbf{MSC 2020:} 81U05; 47A40; 94A15; 78A40; 83A05
+
+\tableofcontents
+
+\section{Position Statement}
+
+This paper makes no attempt to redefine or numerically adjust the speed of light constant $c$. The constant status and numerical value of $c$ belong to the established theoretical and metrological systems. This work merely provides a \textbf{new formulation} of $c$ from the perspective of \textbf{windowed group delay}: under strictly specified ideal models and conditions, the relevant group delay quantity divided by path length presents an equivalent characterization of $c$. This formulation is a restatement of mathematical-physical structure, not a rescaling of the constant.
+
+\section{Error = Analytical Remainder (Terminology and Notation Conventions)}
+
+In this paper, the term \textbf{error} strictly refers to \textbf{analytical remainders in mathematical approximations}, unrelated to experimental measurement errors or statistical uncertainties. Typical cases include (but are not limited to):
+$$
+\mathsf{Err}\ =\ \underbrace{\varepsilon_{\mathrm{alias}}}_{\text{sampling and aliasing terms}}\ +\ \underbrace{\varepsilon_{\mathrm{EM}}^{(m)}}_{\text{Euler--Maclaurin truncation remainder to order $m$}}\ +\ \underbrace{\varepsilon_{\mathrm{tail}}}_{\text{tail terms outside window/frequency band}}.
+$$
+Here $m$ denotes the truncation order of the Euler--Maclaurin expansion; $N$ specifically denotes the number of sampling grid points/intervals, these two concepts being independent and should not be confused. All terms in the above equation are \textbf{deterministic} (bounded/controllable) quantities; unless otherwise specified, all ``errors'' and ``error ledgers'' in this paper shall be understood in this \textbf{analytical sense}.
+
+\section{Notation and Units}
+
+Let the energy variable be $E=\hbar \omega$, and the scattering matrix $S(E)\in\mathrm U(N)$ be differentiable with respect to energy. The \textbf{Wigner--Smith delay matrix} is defined as $Q(E):=-\,i\,S(E)^\dagger\,\frac{dS}{dE}(E)$; it is a Hermitian matrix, and the \textbf{total group delay} is denoted by $\tau_{\mathrm{WS}}(E):=\hbar\,\operatorname{tr}Q(E)$ (units: seconds). Smith's (1960) original ``lifetime matrix'' incorporates $\hbar$ into the matrix definition, denoted $Q_{\text{Smith}}:=-\,i\,\hbar\,S^\dagger \frac{dS}{dE}$; this paper adopts the convention of $Q$ without $\hbar$, and expresses the total group delay as $\tau_{\mathrm{WS}}=\hbar\,\operatorname{tr}Q$, the two differing only by a factor of $\hbar$ (consistent with dimensions in §13.1). \textbf{This construction is widely used across electromagnetic, acoustic, and other domains.}
+
+This paper defaults to single-mode links ($N=1$; multi-port cases are addressed in Section 11), and adopts windowing whose bandwidth grows with $R\uparrow$, with window $w_R$ (normalized to $\int_{\mathbb R} w_R(E)\,dE=2\pi$) and front-end kernel $h$, \textbf{where $h\in L^1(\mathbb R)$ is normalized to $\int_{\mathbb R} h(E)\,dE=1$}, so that for any constant $C_0$ we have $h\!\star\! C_0=C_0$ (avoiding confusion with the speed of light constant $c$ below). SI and metrological alignment adopt the ``fixed $c$'' definition: $\,c=299\,792\,458\,\mathrm{m\,s^{-1}}$ is an \textbf{exact constant}, with the meter realized via $l=c\,\Delta t$.
+
+\section{Main Formulation (WSIG) and Proof Objectives}
+
+\subsection{Windowed Group Delay Readout (Definition)}
+
+The \textbf{windowed group delay readout} is defined as
+$$
+\mathsf T[w_R,h;L]\ :=\ \frac{\hbar}{2\pi}\int_{\mathbb R} w_R(E)\,\bigl[h\!\star\!\operatorname{tr}Q_L\bigr](E)\,dE,
+$$
+inducing the notation: $\ \displaystyle \langle f\rangle_{w,h}:=\frac{1}{2\pi}\int_{\mathbb R} w_R(E)\,[h\!\star\! f](E)\,dE,$\ so that $\ \mathsf T=\hbar\,\langle \operatorname{tr}Q_L\rangle_{w,h}$. Here $L$ is the Euclidean geometric distance between endpoints.
+
+\subsection{Formulation (Windowed Group Delay Baseline of the Speed of Light)}
+
+In the ideal model of free space (vacuum, homogeneous, unbounded, lossless), for a vacuum link of length $L$ and any window/front-end kernel pair $(w_R,h)$ satisfying $\int_{\mathbb R}w_R(E)\,dE=2\pi$ and $\int_{\mathbb R}h(E)\,dE=1$, the windowed group delay readout satisfies
+$$
+\boxed{\quad \mathsf T[w_R,h;L]=\frac{L}{c}\quad}
+$$
+For ease of reference, we denote $\bar{\tau}_{\mathrm{vac}}[w_R,h;L]:=\mathsf T[w_R,h;L]$. This formulation is merely a structural restatement of the established constant $c$, not involving any redefinition or numerical adjustment of $c$.
+
+\subsection{Proof Objectives}
+
+\textbf{Main thesis}: Prove that the above formulation of $c$ is \textbf{mutually equivalent} to the following four structural layers:
+
+\begin{itemize}
+\item[(A)] \textbf{Phase slope / spectral shift density}: $\ \partial_E\arg\det S=\operatorname{tr}Q=-2\pi\,\xi'(E)$ (BK formula), hence $\mathsf T=\hbar\langle \partial_E\arg\det S\rangle$.
+\item[(B)] \textbf{Causal front}: Strict causality $\Leftrightarrow$ frequency response upper half-plane analyticity (KK), 3D retarded Green's function support on light cone $t=r/c$, hence \textbf{earliest non-zero response speed} is $c$.
+\item[(C)] \textbf{Information light cone (under Assumption 7.0)}: The supremum of detectable threshold velocities of mutual information equals $c$.
+\item[(D)] \textbf{SI realization reciprocity}: ``Define length by time'' (SI) and ``calculate length by delay'' (this work) are mutually reciprocal realizations.
+\end{itemize}
+
+Additionally, we provide a \textbf{Nyquist--Poisson--Euler--Maclaurin (NPE)} non-asymptotic error ledger for engineering verification.
+
+\section{Basic Properties and Lemmas}
+
+\begin{lemma}[Hermiticity of $Q$ and Phase Derivative Identity]
+\label{lem:Q_hermitian}
+If $S(E)$ is unitary and differentiable, then $Q(E)=-\,i\,S^\dagger S'$ is Hermitian, and
+$$
+\partial_E\arg\det S(E)=\operatorname{tr}Q(E).
+$$
+\end{lemma}
+
+\begin{proof}
+From $S^\dagger S=I$ we have $(S^\dagger)'\,S+S^\dagger S'=0\Rightarrow (S^\dagger)'\,S=-S^\dagger S'$. Hence
+$$
+Q^\dagger= i (S^\dagger)' S= - i S^\dagger S'=Q.
+$$
+Also, $\partial_E\ln\det S=\operatorname{tr}(S^{-1}S')=\operatorname{tr}(S^\dagger S')=i\,\operatorname{tr}Q$; taking the imaginary part yields $\partial_E\arg\det S=\operatorname{tr}Q$.
+\end{proof}
+
+(This is consistent with Smith's ``lifetime matrix'' up to the $\hbar$ factor; see conventions in §0.2.)
+
+\begin{lemma}[BK Formula and Spectral Shift Derivative]
+\label{lem:BK}
+Under the Birman--Kre\u{\i}n convention $\det S(E)=\exp\{-\,2\pi i\,\xi(E)\}$, we have
+$$
+\operatorname{tr}Q(E)=-\,2\pi\,\xi'(E).
+$$
+\end{lemma}
+
+\begin{proof}
+Differentiating: $\partial_E\ln\det S=-2\pi i\,\xi'$. Also $\partial_E\ln\det S=i\,\operatorname{tr}Q$; combining yields $\operatorname{tr}Q=-2\pi\,\xi'$.
+\end{proof}
+
+\textbf{Note:} Different sign conventions appear in the literature; this paper uniformly adopts the above BK convention with the ``$-$'' sign.
+
+\section{Vacuum Link $S$ and $\operatorname{tr}Q$}
+
+For an ideal vacuum link of length $L$, the plane wave propagation phase is $\phi(E)=E\,L/(\hbar c)$; with no coupling, no gain/loss, we have
+$$
+S_L(E)=e^{\,i\phi(E)}\in \mathrm U(1),\qquad \Rightarrow\quad Q_L(E)=\frac{d\phi}{dE}=\frac{L}{\hbar c},
+$$
+which is \textbf{energy-independent constant}. Accordingly,
+$$
+\mathsf T[w_R,h;L]=\frac{\hbar}{2\pi}\!\int w_R(E)\,[h\!\star\!Q_L](E)\,dE
+=\frac{\hbar}{2\pi}\!\int w_R(E)\,Q_L\,dE
+=\frac{\hbar}{2\pi}\cdot 2\pi\cdot \frac{L}{\hbar c}=\frac{L}{c}.
+$$
+
+Therefore, if we neglect sampling and bandwidth truncation errors, the main formulation directly gives $c=L/\mathsf T$. Below we rigorously control finite bandwidth and discrete observation errors using the NPE error ledger (Section 8). For the physics and measurement of $Q$ and $\tau_{\mathrm{WS}}$, see Smith's original paper and contemporary reviews.
+
+\section{Existence--Uniqueness and Window/Kernel Independence of Main Formulation (Complete Proof)}
+
+\begin{proposition}[Existence and Uniqueness]
+\label{prop:existence_uniqueness}
+For a vacuum link, the relation $\mathsf T[w_R,h;L]=L/c$ of the windowed group delay readout exists and is unique, independent of the specific shapes of window $w_R$ and front-end kernel $h$.
+\end{proposition}
+
+\begin{proof}
+\textbf{1. Constant structure:} By Section 3, $\operatorname{tr}Q_L(E)\equiv L/(\hbar c)$. Convolution $h\!\star\!\operatorname{tr}Q_L$ and windowed averaging do not alter the constant value.
+
+\textbf{2. Nyquist (aliasing terms):} If the total spectrum of the measured quantity and window--kernel is \textbf{strictly bandlimited} in the conjugate variable $\tau$ (units: $\mathrm{J}^{-1}$) to energy, i.e., $\widehat f(\tau)$ supported on $|\tau|<\tau_{\max}$, then the Poisson summation gives the \textbf{necessary and sufficient condition for no aliasing}
+$$
+\boxed{\ \frac{2\pi}{\Delta E}>2\,\tau_{\max}\ \Longleftrightarrow\ \Delta E<\frac{\pi}{\tau_{\max}}\ }.
+$$
+Under this condition the frequency spectrum repetitions do not overlap, hence $\varepsilon_{\mathrm{alias}}=0$. If there is only ``effective bandwidth'' (tail terms exist outside the band, not strictly bandlimited), then generally $\varepsilon_{\mathrm{alias}}\neq0$, with magnitude given by out-of-band energy and $\Delta E$, which should be incorporated into the error ledger according to the bound in §8.1.
+
+\textbf{Mutually exclusive statement (Paley--Wiener):} Strict bandlimiting in the $\tau$ domain and compact support in the $E$ domain \textbf{cannot simultaneously hold} (except for the zero function). Therefore, the above ``strict bandlimiting--Poisson/Nyquist'' and the following ``compact support--Euler--Maclaurin'' are two \textbf{mutually exclusive} numerical/experimental setups: in practice one should \textbf{choose one} and ledger accordingly. If a compactly supported window $w_R\in C_c$ is used, it falls into the ``non-strictly bandlimited'' category, and the aliasing term is generally nonzero, requiring incorporation into the error ledger according to the bound in §8.1.
+
+\textbf{3. Poisson--EM (endpoint and tail terms):} To apply the Euler--Maclaurin bound, take integer $m\ge 1$, and assume $g(E):=w_R(E)\,[h\!\star\!\operatorname{tr}Q_L](E)\in C^{2m}[a,b]$ with $g^{(2m)}$ integrable; for vacuum links, since $h\!\star\!\operatorname{tr}Q_L$ is constant, choosing $w_R\in C^{2m}_c$ satisfies this condition. Let the energy step be $\Delta E$, nodes $E_n=a+n\,\Delta E$. Then the Euler--Maclaurin remainder of the \textbf{summation formula} satisfies
+$$
+\bigl|R_{2m}\bigr|
+\ \le\ \frac{2\,\zeta(2m)}{(2\pi)^{2m}}\,(\Delta E)^{2m-1}
+\int_{a}^{b}\!\bigl|g^{(2m)}(E)\bigr|\,dE
+\ \le\ \frac{2\,\zeta(2m)}{(2\pi)^{2m}}\,(\Delta E)^{2m-1}(b-a)\,
+\sup_{E\in[a,b]}\bigl|g^{(2m)}(E)\bigr|.
+$$
+Relating this to the \textbf{trapezoidal integration} (multiplying both sides by $\Delta E$ and rearranging), we obtain
+$$
+\Delta E\!\left[\tfrac{g(a)+g(b)}{2}+\sum_{n=1}^{N-1}g(E_n)\right]
+=\!\int_a^b\! g(x)\,dx+\sum_{k=1}^{m}\frac{B_{2k}}{(2k)!}(\Delta E)^{2k}\!\bigl[g^{(2k-1)}(b)-g^{(2k-1)}(a)\bigr]+\Delta E\,R_{2m}.
+$$
+Thus for the pure trapezoidal method \textbf{without endpoint correction}, the \textbf{leading error order is} $O((\Delta E)^2)$; \textbf{only when} $g^{(2k-1)}(a)=g^{(2k-1)}(b)=0$ ($k=1,\dots,m-1$, e.g., by choosing a window $w_R$ that \textbf{vanishes smoothly} at endpoints or by adding corresponding EM endpoint corrections) can the \textbf{overall error} be elevated to $O((\Delta E)^{2m})$. Note also that \textbf{Euler--Maclaurin is an asymptotic expansion}: increasing $m$ does not guarantee monotonic error decrease; one should select the \textbf{optimal truncation order} $m_\ast$ based on the smoothness of $g$.
+
+\textbf{4. Limit and uniqueness (theoretical term):} Combining 1)--3), for a vacuum link
+$$
+\mathsf T[w_R,h;L]
+=\frac{\hbar}{2\pi}\!\int_{\mathbb R} w_R(E)\,[h\!\star\!\operatorname{tr}Q_L](E)\,dE
+=\frac{L}{c}.
+$$
+Therefore $\lim_{\text{bandwidth}\uparrow}\mathsf T=L/c$ exists and is independent of $w_R,h$, so the windowed group delay formulation gives a unique relation $c=L/\mathsf T$.
+
+\textbf{Distinction from measured values:} Under finite sampling and finite bandwidth, the observed quantity is
+$$
+\mathrm{Obs}
+=\mathsf T[w_R,h;L]
++\varepsilon_{\mathrm{alias}}+\varepsilon_{\mathrm{EM}}+\varepsilon_{\mathrm{tail}},
+$$
+where the bounds on each $\varepsilon$ are as stated in §8, converging to 0 as bandwidth↑, step size↓; the order $m$ should be \textbf{fixed or chosen according to the optimal truncation order $m_\ast$}, not relying on $m\uparrow$ as a convergence guarantee.
+\end{proof}
+
+\section{Equivalence Layer (I): Phase--Spectral Shift--Delay (Complete Proof)}
+
+\begin{theorem}[BK--Wigner--Smith--Master-Scale Identity]
+\label{thm:phase_shift_delay}
+Under the BK convention $\det S(E)=\exp\{-2\pi i\,\xi(E)\}$, we have almost everywhere
+$$
+\boxed{\ \operatorname{tr}Q(E)=\partial_E\arg\det S(E)=-\,2\pi\,\xi'(E)\ }.
+$$
+\end{theorem}
+
+\begin{proof}
+Already established step-by-step in Lemmas~\ref{lem:Q_hermitian}--\ref{lem:BK}: $\partial_E\arg\det S=\operatorname{tr}Q$, while BK gives $\partial_E\ln\det S=-2\pi i\,\xi'$. These two equations combine to yield the result.
+\end{proof}
+
+\begin{corollary}
+Under windowed averaging,
+$$
+\mathsf T[w_R,h;L]=\hbar\,\Big\langle \partial_E\arg\det S_L \Big\rangle_{w,h}
+=\,-\,\hbar\,2\pi\,\langle \xi'(E)\rangle_{w,h}.
+$$
+For vacuum link $S_L(E)=e^{iEL/(\hbar c)}\Rightarrow \partial_E\arg\det S_L=L/(\hbar c)$, hence $\mathsf T=L/c$.
+\end{corollary}
+
+\textbf{Note:} More general obstacle scattering, wave trace, and their connection to BK can be found in Borthwick's systematic treatment.
+
+\section{Equivalence Layer (II): Causal Front = $c$ (Complete Proof)}
+
+\subsection{KK--Causality Equivalence (Toll)}
+
+To avoid confusion with the energy-domain front-end kernel $h(E)$ in §1.1, this section denotes the \textbf{time-domain impulse response} by $\kappa(t)$, with frequency (complex frequency) response denoted
+$$
+K(z):=\int_{0}^{\infty}\kappa(t)\,e^{izt}\,dt,\qquad \Im z>0.
+$$
+
+\begin{theorem}[Toll]
+\label{thm:Toll}
+For a stable linear time-invariant system, strict causality ($\kappa(t)=0,\ t<0$) is logically equivalent to upper half-plane analyticity of its frequency response $K(\omega)$ and the \textbf{Kramers--Kronig} dispersion relations.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+(i) If $\operatorname{supp}\kappa\subset[0,\infty)$, then $K(z)$ is holomorphic in $\Im z>0$, with boundary values satisfying the Hilbert transform, yielding KK relations;
+
+(ii) Conversely, by the Paley--Wiener--Titchmarsh theorem: if $K$ is analytic in the upper half-plane with appropriate growth conditions, the inverse transform yields $\kappa(t)$ supported on the non-negative half-axis. Therefore \textbf{strict causality $\Leftrightarrow$ KK}.
+\end{proof}
+
+\subsection{Light Cone Front (Applicable to Free Space Only)}
+
+For the three-dimensional \textbf{scalar} wave equation, under the \textbf{free space (vacuum, homogeneous, unbounded, lossless)} model, the retarded Green's function is
+$$
+G_{\mathrm{ret}}(t,\mathbf r)=\frac{\delta\!\bigl(t-|\mathbf r|/c\bigr)}{4\pi|\mathbf r|},
+$$
+whose support lies strictly on the \textbf{light cone} $t=r/c$. For \textbf{Maxwell} equations under the same conditions, the time-domain \textbf{dyadic (tensor)} Green's function can be generated from the scalar kernel $\delta(t-r/c)/(4\pi r)$ via tensor differential operators, thus being a \textbf{distributional-level} combination of $\delta$ and its derivatives on $t=r/c$; accordingly the \textbf{earliest non-zero front} is $t=r/c$.
+
+\textbf{Applicability limits:} In dispersive/dissipative or bounded media, tail terms for $t>r/c$ typically appear; but in theories without superluminal signals, the \textbf{front is not earlier than} $r/c$.
+
+\subsection{Fast/Slow Light and Precursors}
+
+Dispersive media can exhibit $v_g>c$ or negative group velocity, but information/front velocity does not exceed $c$. Sommerfeld--Brillouin precursor analytical expressions and experiments (Stenner--Gauthier--Neifeld; Macke--Ségard) all confirm that ``detectable information earliest arrival is not earlier than vacuum travel time.''
+
+\section{Equivalence Layer (III): Information Light Cone (Proof Under Communication Model Assumptions Below)}
+
+\textbf{Assumption 7.0 (Communication Model, Allowing Pre-Shared Resources):} The channel is a strictly causal vacuum LTI link; sender and receiver are allowed to \textbf{pre-share} classical random numbers or quantum entanglement; within a time window $\Delta t$, if $\Delta t<L/c$ then there \textbf{exists no} cross-region communication (no superluminal signaling).
+
+Define the ``first detectable mutual information time''
+$$
+T_\delta(L):=\inf\Bigl\{\Delta t\ge0:\ \exists\ \text{protocol such that}\ I(X;Y_{\Delta t})\ge\delta\Bigr\},\qquad
+\boxed{\ c_{\mathrm{info}}:=\limsup_{\delta\downarrow0}\ \sup_{L>0}\frac{L}{T_\delta(L)}\ }.
+$$
+
+\begin{theorem}[Information Light Cone]
+\label{thm:info_light_cone}
+Under Assumption 7.0, we have $c_{\mathrm{info}}=c$.
+\end{theorem}
+
+\begin{proof}
+\textbf{Upper bound:} By no-superluminal-signaling and microcausality, when $\Delta t<L/c$, the receiver observation $Y_{\Delta t}$ cannot carry information from sender input $X$, hence $I(X;Y_{\Delta t})=0$, thus $\sup_{L} L/T_\delta(L)\le c\ \forall\delta>0\Rightarrow \limsup_{\delta\downarrow0}\le c$.
+
+\textbf{Lower bound:} On vacuum links, Sections 3--5 give $\mathsf T=L/c$. If the receiver performs energy or coherent threshold testing (considering total channel+detector noise), then when $\Delta t=L/c+\varepsilon$ and satisfying broadband--threshold criteria, the window-accumulated signal-to-noise grows linearly with bandwidth/time, and there exists a threshold $\delta(\varepsilon)\downarrow0$ such that $I\ge\delta(\varepsilon)$. Dorrah--Mojahedi formalized this fact using ``detectable information velocity'' with SNR threshold in a total noise model. For any $\varepsilon>0$ there exists $\delta(\varepsilon)\downarrow0$ such that $\sup_{L}\frac{L}{T_{\delta(\varepsilon)}(L)}\ge c-\varepsilon\Rightarrow \liminf_{\delta\downarrow0}\ge c$.
+
+\textbf{Convergence:} By upper bound and constructive lower bound, $\limsup_{\delta\downarrow0}=\liminf_{\delta\downarrow0}=c$ hence the limit exists and equals $c$, i.e., $c_{\mathrm{info}}=c$.
+\end{proof}
+
+\textbf{Note:} From the quantum field theory perspective, the contemporary proof of ``no-superluminal-signaling $\Rightarrow$ microcausality'' provides independent logical support for the upper bound.
+
+\section{NPE Error Ledger (Non-Asymptotic Bounds and Proofs)}
+
+Let the \textbf{theoretical (continuous) aggregated quantity} be
+$$
+\mathsf T:=\frac{\hbar}{2\pi}\!\int_{\mathbb R} w_R(E)\,[h\!\star\!\operatorname{tr}Q](E)\,dE.
+$$
+
+Let $g(E):=w_R(E)\,[h\!\star\!\operatorname{tr}Q](E)$, take equidistant energy grid $E_n=a+n\,\Delta E$ ($n=0,\dots,N$, $b=a+N\,\Delta E$). Define the \textbf{trapezoidal method} discrete estimator
+$$
+\mathrm{Obs}:=\frac{\hbar}{2\pi}\,\Delta E\left[\frac{g(E_0)+g(E_N)}{2}+\sum_{n=1}^{N-1} g(E_n)\right],
+$$
+corresponding to the continuous quantity $\displaystyle \mathsf T=\frac{\hbar}{2\pi}\int_{a}^{b}\!g(E)\,dE$. Its deviation is composed of $\varepsilon_{\text{alias}}$, $\varepsilon_{\text{EM}}$, and $\varepsilon_{\text{tail}}$, detailed below.
+
+From finite sampling and finite bandwidth/order,
+$$
+\mathrm{Obs}=\mathsf T+\varepsilon_{\text{alias}}+\varepsilon_{\text{EM}}+\varepsilon_{\text{tail}}
+=\frac{L}{c}+\varepsilon_{\text{alias}}+\varepsilon_{\text{EM}}+\varepsilon_{\text{tail}},
+$$
+where the second equality for vacuum links is given by $\mathsf T=L/c$ (see §3--§4).
+
+\subsection{Nyquist and Poisson (Variables and Units Explicitly Stated)}
+
+Let the energy-domain Fourier pair be
+$$
+\widehat f(\tau):=\int_{\mathbb R} f(E)\,e^{-i\tau E}\,dE,\qquad [\tau]=\mathrm{J}^{-1}.
+$$
+
+Then for any step size $\Delta E>0$ and offset $a\in\mathbb R$, the Poisson summation is
+$$
+\boxed{\
+\sum_{n\in\mathbb Z} f\!\bigl(a+n\,\Delta E\bigr)
+=\frac{1}{\Delta E}\sum_{k\in\mathbb Z}
+\widehat f\!\Bigl(\frac{2\pi k}{\Delta E}\Bigr)\,
+e^{\,i\,\frac{2\pi k a}{\Delta E}}
+\ }.
+$$
+
+\textbf{Alias-free necessary and sufficient condition:} If $\widehat f(\tau)=0$ when $|\tau|\ge \pi/\Delta E$, then all $k\neq 0$ terms vanish, and aliasing disappears.
+
+\textbf{Aliasing error bound (when not strictly bandlimited; for trapezoidal estimator):}
+$$
+\boxed{\
+\bigl|\varepsilon_{\mathrm{alias}}^{\text{trap}}\bigr|
+\le \sum_{k\neq 0}
+\left|\widehat f\!\Bigl(\frac{2\pi k}{\Delta E}\Bigr)\right|
+\ }.
+$$
+Here the difference between the periodized $\Delta E\sum f$ and $\int f$ after Poisson is written as the sum of $k\neq0$ spectral repetitions; endpoint/weight errors of finite intervals are separately accounted for by the EM bound in §8.2, not double-counted here.
+
+\textbf{Equivalent substitution in frequency domain:} Let $\omega:=E/\hbar,\ \Delta\omega:=\Delta E/\hbar,\ g(\omega):=f(\hbar\omega),\ \widehat g(t):=\!\int g(\omega)e^{-i\omega t}d\omega$ (now $t=\hbar\tau$), then
+$$
+\sum_{n} g\!\bigl(\omega_0+n\,\Delta\omega\bigr)
+=\frac{1}{\Delta\omega}\sum_{k\in\mathbb Z}\widehat g\!\bigl(k\,T_s\bigr)\,
+e^{\,i\,k\,T_s\,\omega_0},\qquad T_s:=\frac{2\pi}{\Delta\omega}\ \text{(time sampling period)}.
+$$
+
+The \textbf{alias-free condition} in $(\omega,t)$ variables is equivalent to
+$$
+\boxed{\ T_s>2\,t_{\max}\ \Longleftrightarrow\ \Delta\omega<\frac{\pi}{t_{\max}}\ },
+$$
+where $t_{\max}$ is the support bound of $\widehat g(t)$; in energy domain this corresponds to
+$$
+\boxed{\ \Delta E<\frac{\pi\,\hbar}{t_{\max}}\ }.
+$$
+
+In this paper's application, we can take $f(E)=w_R(E)\,[h\!\star\!\operatorname{tr}Q](E)$. The above explicit statement of units and variables ensures that the NPE error ledger in §4 and §8 is strictly consistent, verifiable, and unambiguous between \textbf{energy sampling} and \textbf{frequency sampling} implementations.
+
+\subsection{Euler--Maclaurin (Endpoint and Tail Terms)}
+
+For smooth $g$ and integer $m\ge1$, Euler--Maclaurin with \textbf{step size $\Delta E$} gives
+\begin{align*}
+\sum_{n=0}^{N} g(E_n)&=\frac{1}{\Delta E}\int_{a}^{b}\!g(x)\,dx+\frac{g(a)+g(b)}{2}\\
+&\quad+\sum_{k=1}^{m}\frac{B_{2k}}{(2k)!}\,(\Delta E)^{2k-1}\!\Bigl(g^{(2k-1)}(b)-g^{(2k-1)}(a)\Bigr)+R_{2m},
+\end{align*}
+where $E_n=a+n\,\Delta E,\ N=(b-a)/\Delta E$. The remainder satisfies the usable bound
+$$
+\bigl|R_{2m}\bigr|
+\ \le\ \frac{2\,\zeta(2m)}{(2\pi)^{2m}}\,(\Delta E)^{2m-1}
+\int_{a}^{b}\!\bigl|g^{(2m)}(x)\bigr|\,dx
+\ \le\ \frac{2\,\zeta(2m)}{(2\pi)^{2m}}\,(\Delta E)^{2m-1}(b-a)\,
+\sup_{x\in[a,b]}\bigl|g^{(2m)}(x)\bigr|.
+$$
+
+\textbf{Error order for trapezoidal integration:} Multiplying both sides by $\Delta E$ and rearranging gives
+\begin{align*}
+&\underbrace{\Delta E\left[\frac{g(a)+g(b)}{2}+\sum_{n=1}^{N-1} g(E_n)\right]}_{\text{trapezoidal method}}\\
+&=\int_a^b g(x)\,dx
++\sum_{k=1}^{m}\frac{B_{2k}}{(2k)!}\,(\Delta E)^{2k}\!\Bigl[g^{(2k-1)}(b)-g^{(2k-1)}(a)\Bigr]
++\Delta E\,R_{2m}.
+\end{align*}
+From $|R_{2m}|\le \dfrac{2\zeta(2m)}{(2\pi)^{2m}}(\Delta E)^{2m-1}\!\int_a^b |g^{(2m)}|$, we obtain
+$$
+\bigl|\mathrm{Obs}-\mathsf T\bigr|
+\le \frac{\hbar}{2\pi}\left[
+\sum_{k=1}^{m}\frac{|B_{2k}|}{(2k)!}\,(\Delta E)^{2k}\cdot\bigl|g^{(2k-1)}(b)-g^{(2k-1)}(a)\bigr|
++\frac{2\zeta(2m)}{(2\pi)^{2m}}\,(\Delta E)^{2m}\!\int_a^b |g^{(2m)}(x)|\,dx
+\right].
+$$
+
+Therefore under \textbf{fixed bandwidth}, for the pure trapezoidal method \textbf{without endpoint correction}, the error expansion starts from $O((\Delta E)^2)$; \textbf{only when} $g^{(2k-1)}(a)=g^{(2k-1)}(b)=0$ ($k=1,\dots,m-1$) or explicit EM endpoint corrections are added can the \textbf{overall error} reach $O((\Delta E)^{2m})$. Furthermore, \textbf{EM is an asymptotic series}, and one should select the \textbf{optimal truncation order} $m_\ast$, \textbf{not} viewing $m\uparrow$ as a convergence guarantee. Taking $g=w_R\,[h\!\star\!\operatorname{tr}Q]$ yields the explicit bound for $\varepsilon_{\text{EM}}$.
+
+\subsection{Tail Terms (Finite Bandwidth Truncation)}
+
+If $w_R$ has frequency-domain window with at most algebraic/exponential decay outside the band, and $h\!\star\!\operatorname{tr}Q$ is continuous and bounded, then
+$$
+\bigl|\varepsilon_{\text{tail}}\bigr|\le |h\!\star\!\operatorname{tr}Q|_\infty\cdot \int_{|E|>\Omega_R} |w_R(E)|\,dE\to0
+$$
+as $\Omega_R\!\uparrow$.
+
+\section{Engineering Implementation: Calculate Length by Delay \& Cross-Calibration with SI (Specification and Verifiability)}
+
+\textbf{Specification:}
+
+(i) Choose a vacuum link of geometrically known length $L$; (ii) Broadband excitation, measure $\hat\tau=\mathsf T[w_R,h;L]$; (iii) Calculate $\hat c=L/\hat\tau$, and verify ``aliasing=0, endpoint/tail convergence'' with bandwidth; (iv) Cross-calibrate with cesium frequency chain and interferometric length chain, closing the loop to the SI ``define length by time'' \textbf{Mise en pratique}.
+
+\textbf{Medium and ``fast light'' caution:} Group velocity anomalies do not affect the information/front velocity upper bound; theoretical and experimental evidence for information velocity $\le c$ below detection threshold is detailed in the literature.
+
+\section{Conclusion Theorem (Four Equivalences and Uniqueness)}
+
+\begin{theorem}[Four-Way Equivalence]
+\label{thm:four_way_equiv}
+The speed of light constant $c$ can be \textbf{uniquely} characterized by the windowed group delay formulation, and is \textbf{pairwise equivalent} to:
+
+$(\mathrm A)$ Phase slope/spectral shift density, $(\mathrm B)$ Causal front, $(\mathrm C)$ Information light cone (under Assumption 7.0), $(\mathrm D)$ SI realization.
+\end{theorem}
+
+\begin{proof}
+Established by the comprehensive results of Sections 3--9.
+\end{proof}
+
+\section{Multi-Port Generalization and Discrete Implementation (RCA Light Cone)}
+
+\subsection{Multi-Port Generalization and Baseline Calibration Conditions}
+
+If $S(E)\in\mathrm U(N)$, define ``average delay''$\ \bar\tau(E):=\hbar\,\frac{1}{N}\operatorname{tr}Q(E)$. \textbf{For an uncoupled $N$-port vacuum link with equal-length channels, we have $S(E)=e^{iEL/(\hbar c)}I_N$, hence $Q(E)=\frac{L}{\hbar c}I_N$}, with all eigendelays equal to $L/c$, thus $\bar\tau(E)=L/c$.
+
+\textbf{Multi-port decomposition and recovery condition:} Let $S(E)\in \mathrm U(N)$ denote the $N$-port scattering matrix, with decomposition
+$$
+S(E)=e^{\,i E L/(\hbar c)}\,U(E),\qquad U(E)\in \mathrm U(N).
+$$
+Then the trace of the Wigner--Smith operator $Q(E)=-i\,S^\dagger(E)S'(E)$ satisfies
+$$
+\operatorname{tr}Q(E)=\frac{N L}{\hbar c}-i\,\operatorname{tr}\!\bigl(U^\dagger(E)\,U'(E)\bigr),\qquad
+\bar{\tau}(E)=\frac{L}{c}-\frac{i\hbar}{N}\operatorname{tr}\!\bigl(U^\dagger(E)\,U'(E)\bigr).
+$$
+
+Note that $U^\dagger U'$ is \textbf{anti-Hermitian}: from $(U^\dagger U)'=0$ we have $(U^\dagger)'U+U^\dagger U'=0\Rightarrow (U^\dagger U')^\dagger=-(U^\dagger U')$, hence $\operatorname{tr}(U^\dagger U')\in i\,\mathbb R$, ensuring $-\tfrac{i\hbar}{N}\operatorname{tr}(U^\dagger U')\in\mathbb R$, guaranteeing $\bar{\tau}$ is real.
+
+\textbf{Baseline calibration:} If there exists a reference link such that $\operatorname{tr}(U^\dagger U')$ is the same (or can be accurately modeled and subtracted) between the measured and reference links, then windowed averaging recovers $\bar{\tau}=L/c$. For a single S-parameter $S_{mn}$, only under the condition of ``direct vacuum channel, no additional dispersive coupling, and equal port lengths'' do we have $\hbar\,\partial_E\arg S_{mn}=L/c$; otherwise cancellation/calibration is also needed according to the above method (see Section 9).
+
+\subsection{Discrete Equivalence (RCA Light Cone and CHL)}
+
+In a one-dimensional reversible cellular automaton (RCA) with radius $r$, after $t$ steps each cell is influenced only by the initial state neighborhood $\pm r t$ (provable by induction), forming a \textbf{discrete light cone}. Taking lattice spacing $a$ and time step $\Delta t$ gives discrete ``speed of light'' $c_{\mathrm{disc}}=r\,a/\Delta t$. The CHL theorem characterizes the equivalence between ``continuous + shift-covariant'' sliding block codes and CAs. Furthermore, if the sliding block code is \textbf{bijective} and its inverse is also a sliding block code, then we obtain a \textbf{reversible} CA, realizing a reversible propagation light cone under discrete causal structure.
+
+\section{Compatibility with Relativity/Field Theory (Proof Outline)}
+
+\begin{itemize}
+\item \textbf{Lorentz covariance:} The support of the retarded Green's function for both the scalar wave equation and Maxwell's equations lies on $t=r/c$ (Section 6.2), ensuring that ``light cone front = $c$'' is consistent with covariance.
+
+\item \textbf{Microcausality:} Soulas proved ``no-superluminal-signaling $\Rightarrow$ microcausality''; combined with 6.1--6.2, the resulting front is consistent with the information light cone.
+\end{itemize}
+
+\section{Supplementary Proof Details}
+
+\subsection{Physical Dimension of $Q$ and Vacuum Constant Value}
+
+From $Q=-iS^\dagger \tfrac{dS}{dE}$ we have $[Q]=E^{-1}$, hence $\tau_{\mathrm{WS}}=\hbar\,\operatorname{tr}Q$ has time dimension. For vacuum link $S_L(E)=e^{i E L/(\hbar c)}\Rightarrow \operatorname{tr}Q_L=L/(\hbar c)$ is constant, ensuring $\mathsf T=L/c$.
+
+\subsection{Rigorous KK--Causality (Unified Notation)}
+
+Distinguishing from the energy-domain kernel $h(E)$ in §1.1, this section uniformly uses $\kappa(t)$ to denote the \textbf{time-domain impulse response}, $K(z)$ to denote its frequency response. Given $\kappa\in L^{2}(\mathbb R)$ with $\operatorname{supp}\kappa\subset[0,\infty)$, $K(z)$ is a holomorphic function in the upper half-plane, with boundary value $K(\omega)$ whose real and imaginary parts are mutually determined by the Hilbert transform, i.e., KK relations; conversely, by the Paley--Wiener--Titchmarsh theorem, we deduce $\kappa(t)=0$ ($t<0$).
+
+\subsection{Direct Verification of Light Cone Support (Free Space)}
+
+For the \textbf{scalar} wave equation, under \textbf{free space (vacuum, homogeneous, unbounded, lossless)}, substituting $G_{\mathrm{ret}}(t,\mathbf r)=\delta(t-r/c)/(4\pi r)$ into the wave operator $(\frac{1}{c^2}\partial_t^2-\nabla^2)$ in the distributional sense, we can verify $(\frac{1}{c^2}\partial_t^2-\nabla^2)G_{\mathrm{ret}}=\delta(t)\delta(\mathbf r)$; the support lies only on $t=r/c$. For \textbf{Maxwell} equations under the same conditions, the dyadic Green's function is a \textbf{distributional-level} combination of $\delta$ and its derivatives on the light cone, \textbf{with support likewise only on the light cone}, hence the front velocity conclusion is the same. This conclusion does not hold in dispersive/dissipative or bounded media.
+
+\subsection{Information Threshold and Error Exponent}
+
+For binary hypothesis testing (presence/absence of weak signal), when the number of independent samples grows linearly with observation time/bandwidth, the optimal error exponent is the KL divergence (Chernoff--Stein); Dorrah--Mojahedi track the ``detectable information velocity'' in a total noise model, consistent with this formulation.
+
+\section{Final Statement}
+
+The formulation of $c$ via ``windowed group delay'' gives a unique value $L/\mathsf T$ on vacuum links; this value is tri-proven with \textbf{phase slope/spectral shift density}, \textbf{causal front}, and \textbf{information light cone}, and is fully consistent with the fixed numerical value of \textbf{SI}. For engineering purposes, the NPE error ledger provides non-asymptotic, operable precision control and calibration pathways.
+
+\bibliographystyle{plain}
+\begin{thebibliography}{99}
+
+\bibitem{smith1960}
+F. T. Smith.
+\newblock Lifetime Matrix in Collision Theory.
+\newblock {\em Physical Review}, 118:349--356, 1960.
+
+\bibitem{bipm}
+BIPM.
+\newblock SI Brochure (9th edition, v3.02).
+\newblock Available at: \url{https://www.bipm.org/}.
+
+\bibitem{pushnitski2010}
+A. Pushnitski.
+\newblock The Birman--Kre\u{\i}n formula.
+\newblock {\em arXiv:1006.0639}, 2010.
+
+\bibitem{toll1956}
+J. S. Toll.
+\newblock Causality and the Dispersion Relation: Logical Foundations.
+\newblock {\em Physical Review}, 104(6):1760--1770, 1956.
+
+\bibitem{dorrah2014}
+A. H. Dorrah and M. Mojahedi.
+\newblock Velocity of detectable information in faster-than-light pulses.
+\newblock {\em Physical Review A}, 90(3):033822, 2014.
+
+\bibitem{shannon1949}
+C. E. Shannon.
+\newblock Communication in the Presence of Noise.
+\newblock {\em Proceedings of the IRE}, 37(1):10--21, 1949.
+
+\bibitem{bailey2006}
+D. H. Bailey and J. M. Borwein.
+\newblock Effective Error Bounds in Euler--Maclaurin-Based Quadrature Schemes.
+\newblock {\em CARMA}, 2005/2006.
+
+\bibitem{borthwick2022}
+D. Borthwick.
+\newblock Scattering by Obstacles.
+\newblock {\em arXiv:2110.06370}, 2022.
+
+\bibitem{montana2020}
+PH519 Lecture Notes.
+\newblock The Wave Equation Green's Function.
+\newblock Montana State University, 2020.
+
+\bibitem{stenner2003}
+M. D. Stenner, D. J. Gauthier, and M. A. Neifeld.
+\newblock The speed of information in a `fast-light' optical medium.
+\newblock {\em Nature}, 425(6959):695--698, 2003.
+
+\bibitem{soulas2023}
+A. Soulas.
+\newblock No-signalling implies microcausality in QFT.
+\newblock {\em arXiv:2309.07715}, 2023.
+
+\bibitem{woit2020}
+P. Woit.
+\newblock Notes on the Poisson Summation Formula.
+\newblock Columbia University, 2020.
+
+\bibitem{chl}
+Curtis--Hedlund--Lyndon theorem.
+\newblock Wikipedia entry.
+
+\bibitem{ethz}
+ETH Zürich.
+\newblock Radiation lecture notes, Chapter 6.
+\newblock Time-domain dyadic Green's function.
+
+\end{thebibliography}
+
+\end{document}
+

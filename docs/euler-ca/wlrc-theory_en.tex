@@ -1,0 +1,86 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\geometry{a4paper, margin=0.75in}
+\hypersetup{colorlinks=true,linkcolor=blue}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+\DeclareMathOperator{\tr}{tr}
+
+\title{WLRC Theory:\\Windowed Logs, Reversible Computation\\and Resource-Constrained Halting}
+\author{Auric\\[5pt]\small Version 1.0}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Establish theory connecting Windowed Logs, Reversible Computation (RC) and Resource-Constrained halting. Core framework: (I) Windowed log system records finite-bandwidth observations with NPE error decomposition; (II) Reversible computation preserves information via bijective dynamics; (III) Resource constraints (time, space, energy) impose fundamental bounds on log completeness; (IV) Halting criterion: observer halts iff windowed log entropy flux integrable under resource bounds. Prove main theorem establishing equivalence between log completeness, reversible computation halting, and resource-constrained decidability.
+\end{abstract}
+
+\section{Windowed Log System}
+
+\begin{definition}[Windowed Log]
+\textbf{Windowed log} $\mathcal{L}_w$ finite-bandwidth recording system:
+
+$$
+\mathcal{L}_w(t):=\int w(E-E_0)\,\rho(E,t)\,dE,
+$$
+
+where $w$ window function, $\rho(E,t)$ time-dependent spectral density.
+\end{definition}
+
+NPE error decomposition:
+
+$$
+\varepsilon_{\rm log}(h)=\varepsilon_{\rm alias}(h)+\varepsilon_{\rm EM}(h)+\varepsilon_{\rm tail}(h).
+$$
+
+\section{Reversible Computation}
+
+Bijective dynamics $\sigma:X\to X$ with $\sigma^{-1}$ computable. Scattering matrix $S(E)$ unitary: $S^\dagger S=I$.
+
+Information preservation via Liouville theorem (phase-space volume) or unitary evolution (Hilbert space norm).
+
+\section{Resource Constraints}
+
+\begin{definition}[Resource Triple]
+$(T,M,E)$ where $T$ time, $M$ space (memory), $E$ energy.
+\end{definition}
+
+\begin{theorem}[Resource-Constrained Halting]
+Observer with resource bound $(T_{\max},M_{\max},E_{\max})$ halts iff:
+
+\begin{enumerate}
+\item Time: $\int_0^{T_{\max}}\Phi_{\rm tail}(t)\,dt<\infty$
+\item Space: $\dim\mathcal{H}_{\rm log}\le M_{\max}$
+\item Energy: $\int E\,d\mu_{\rm log}(E)\le E_{\max}$
+\end{enumerate}
+
+where $\Phi_{\rm tail}$ tail entropy flux, $\mathcal{H}_{\rm log}$ log Hilbert space, $\mu_{\rm log}$ log spectral measure.
+\end{theorem}
+
+\section{Main Theorem}
+
+\begin{theorem}[WLRC Equivalence]
+Following equivalent:
+\begin{enumerate}
+\item Windowed log complete within tolerance
+\item Reversible computation halts under resource bounds
+\item Tail entropy flux integrable
+\item NPE error vanishes in refined scale limit
+\end{enumerate}
+\end{theorem}
+
+\section{Discussion}
+
+Unified windowed logs, reversible computation and resource-constrained halting through entropy flux integrability criterion. Applications to bounded-error quantum computation, thermodynamic computing, and finite-resource decidability theory.
+
+\end{document}

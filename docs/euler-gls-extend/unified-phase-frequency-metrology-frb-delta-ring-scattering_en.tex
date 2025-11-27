@@ -1,0 +1,474 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{braket}
+\usepackage{graphicx}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Cross-Platform Metrological Paradigm for Unified Phase--Frequency Readout: Windowed Upper Limits on FRB Vacuum Polarization, Spectral--Scattering Equivalence and Identifiability of $\delta$-Ring--AB Flux, and Critical Coupling Metrology for Scattering Topological Invariants}
+
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Propose unified metrological paradigm using "phase--frequency" as sole readout, penetrating three classes of systems with disparate scales and physical backgrounds: fast radio burst (FRB) propagation at cosmological distances, point interactions ($\delta$ potential) and Aharonov--Bohm (AB) flux coupling in cold atom/electronics one-dimensional ring systems, and scattering topological invariants for condensed matter class D endpoints. Under unified \textbf{kernel--windowing--generalized least squares/Fisher} syntax provide: First, self-consistent estimation of refractive index modification order via curved spacetime QED one-loop effective action, constructing reproducible \textbf{windowed upper limiter}; on FRW background scale upper limit phase residual scale below observational threshold, yielding only rigorous upper bounds. Second, rigorously prove equivalence between spectral quantization trigonometric equation on ring
+
+$$
+\cos\theta=\cos(kL)+\frac{\alpha_\delta}{k}\sin(kL)
+$$
+
+and "\textbf{amplitude-corrected} phase closure formula"
+
+$$
+\cos\gamma(k)=|t(k)|\,\cos\theta,\qquad
+\gamma=kL-\arctan\!\frac{\alpha_\delta}{k},\quad
+|t(k)|=\frac{k}{\sqrt{k^2+\alpha_\delta^2}}
+$$
+
+fully equivalent, degenerating to pure phase closure only in limit $|t|\to1$; provide \textbf{structural identifiability} theorem that $\{k_n(\theta)\}$ alone can \textbf{uniquely invert} $\alpha_\delta\equiv mg/\hbar^2$, with closed-form sensitivity, ill-conditioning avoidance criteria, and first-order equivalentization of narrow potential width. Third, on class D endpoints use $\mathcal Q=\mathrm{sgn}\det r(0)$ as topological criterion, propose under \textbf{near-unitary} premise unified finite-size (exponential) and contact/boundary (algebraic) bias extrapolation regression
+
+$$
+J_c(L)=J_c+\beta e^{-L/\xi}+\gamma/L,
+$$
+
+provide linear response mapping to cQED readout (cavity frequency shift and additional loss). Proofs and engineering protocols for above conclusions provided with paper, directly reproducible and transplantable to similar platforms.
+\end{abstract}
+
+\textbf{Keywords}: Phase--frequency metrology; fast radio burst; curved spacetime QED; windowed upper limits; $\delta$ potential; Aharonov--Bohm effect; self-adjoint extension; scattering topological invariant; Majorana; cQED
+
+\section{Introduction \& Historical Context}
+
+Metrological schemes using "phase--frequency" as single observable naturally span multiple frontiers: in cosmological electromagnetic propagation, phase frequency perturbations record geometry and medium; in one-dimensional quantum rings, phase shifts quantify scattering and geometric coherence; in condensed matter scattering metrology, low-energy reflection subblock phase and determinant characterize topological number. Curved spacetime QED one-loop effective action indicates vacuum polarization introduces only minute refractive index correction on weak curvature backgrounds, satisfying high-frequency causality and analyticity; this makes FRB \textbf{carrier phase} naturally a channel for setting \textbf{upper limits}, not realistic detection. $\delta$-ring problem under self-adjoint extension $U(2)$ framework yields rigorous spectral--scattering equivalence unifying with AB flux; topological endpoints implementable via single-end reflection matrix zero-energy criterion for near-field metrology of non-local topology. Above backgrounds increasingly clear in recent literature; this paper's goal is condensing into \textbf{unified metrological syntax and reproducible recipes}.
+
+\section{Model \& Assumptions}
+
+\subsection{Unified Observation Equation, Weights, and Windowing}
+
+Across three platforms, observables abstractable as phase-type readout $m(\omega)$ on frequency. Unified expression
+
+$$
+m(\omega)=\int_{\mathcal{P}} \mathcal{K}(\omega,\chi)\,x(\chi)\,{\rm d}\chi+\sum_{p=0}^{P-1} a_p\,\Pi_p(\omega)+\epsilon(\omega),
+\tag{2.1}
+$$
+
+where $\mathcal{K}$ is observation kernel, $\chi$ denotes propagation parameter (e.g., conformal coordinate), geometric phase, or energy scale; $x(\chi)$ is target function (or windowed parameter); $\Pi_p$ are systematic/foreground basis functions, $a_p$ their amplitudes; $\epsilon$ is noise process, covariance $C_\phi(\omega,\omega')$. On discrete frequency axis adopt weighted inner product
+
+$$
+\langle f,g\rangle \equiv \sum_{ij} f(\omega_i)\,[C_\phi^{-1}]_{ij}\,g(\omega_j).
+\tag{2.2}
+$$
+
+Define weighted Gram--Schmidt orthonormalized frequency windows $W_j(\omega)$, construct design matrix with $A_{j\mu}=\langle W_j,\,\mathcal{K}(\cdot,\chi_\mu)\rangle$; generalized least squares (GLS) and Fisher information
+
+$$
+\hat{\boldsymbol{\theta}}=(A^\top A)^{-1}A^\top \mathbf{y},\qquad F=A^\top A,
+\tag{2.3}
+$$
+
+where $\mathbf{y}_j=\langle W_j,m\rangle$, $\boldsymbol{\theta}$ are windowed parameters (or coefficients of $x(\chi)$ in piecewise constant basis). Classical CRB for single-frequency phase in white noise limit degenerates to $\sigma_\phi\ge (2N\rho)^{-1/2}$, signal processing reference for this paper's upper limit derivation.
+
+\subsection{Platform-Specific Assumptions and Kernels}
+
+\begin{itemize}
+\item \textbf{FRB propagation}: Along conformal coordinate $\chi$ (${\rm d}\ell=a(\eta){\rm d}\chi$) integration, local frequency $\omega_{\rm loc}=(1+z)\omega_{\rm obs}$ cancels with scale factor, thus
+
+$$
+\boxed{\ \mathcal{K}_{\rm FRB}(\omega_{\rm obs},\chi)=\omega_{\rm obs}/c\ },
+\tag{2.4}
+$$
+
+taking $x(\chi)\equiv \delta n(\chi)$ (refractive index correction) as windowed target kernel. This form guarantees high-frequency causality $n(\omega\to\infty)\to 1$ and worldline--Penrose limit analyticity constraint.
+
+\item \textbf{$\delta$-ring + AB flux}: Observable is eigenwavevector $k(\theta)$ satisfying quantization condition, $\alpha_\delta\equiv mg/\hbar^2$ represents point interaction strength, geometric length $L$ is ring circumference, $\theta=2\pi\Phi/\Phi_0$ is flux phase. Kernel function manifests in dispersion relation and boundary conditions, see Section 4.
+
+\item \textbf{Topological scattering}: Observable is characteristic phase of zero-energy reflection matrix $r(0)$ or sign of its determinant; kernel $\mathcal{K}$ from scattering--topology mapping and input--output linear response, see Section 6.
+\end{itemize}
+
+\section{Main Results (Theorems and Alignments)}
+
+\begin{theorem}[A: FRB--Windowed Upper Limit and Order of Magnitude for One-Loop Vacuum Polarization]
+Curved spacetime QED under weak curvature background provides one-loop correction order of magnitude for refractive index
+
+$$
+\delta n \sim \frac{\alpha_{\rm em}}{\pi}\,\lambda_e^2\,\mathcal{R},
+\tag{3.1}
+$$
+
+taking FRW upper bound $|\mathcal R|\sim H_0^2/c^2$, phase accumulation upper limit for 1 GHz, 1 Gpc
+
+$$
+\Delta \phi \sim \frac{\omega_{\rm obs} L}{c}\,\delta n \approx 1.2\times 10^{-53}\ {\rm rad}.
+\tag{3.2}
+$$
+
+Therefore under any realistic baseband data volume and noise, can only provide windowed upper limit for $x(\chi)=\delta n(\chi)$, not effective detection. Proof in Appendix A.
+\end{theorem}
+
+\begin{theorem}[B: $\delta$-Ring--Equivalence of Trigonometric Equation and Amplitude-Corrected Phase Formula]
+For one-dimensional ring $\delta$ potential (strength $g$) and AB flux $\theta$, eigenwavevector $k$ satisfies
+
+$$
+\boxed{\ \cos\theta=\cos(kL)+\frac{\alpha_\delta}{k}\sin(kL)\ },
+\tag{3.3}
+$$
+
+which is fully equivalent to
+
+$$
+\boxed{\ \cos\gamma(k)=|t(k)|\,\cos\theta,\
+\gamma(k)=kL-\arctan\!\frac{\alpha_\delta}{k},\
+|t(k)|=\frac{k}{\sqrt{k^2+\alpha_\delta^2}}\ }
+\tag{3.4}
+$$
+
+and degenerates to pure phase closure $\cos\gamma=\cos\theta$ only in limit $|t(k)|\to 1$ (weak scattering or transmission resonance). Proof in Appendix B.
+\end{theorem}
+
+\begin{theorem}[C: $\delta$-Ring--Structural Identifiability from $\{k_n(\theta)\}$ Alone]
+Under spectral observation $\{k_n(\theta)\}$ at fixed $(L,\theta)$, can uniquely invert $\alpha_\delta=mg/\hbar^2$, but cannot separate individual values of $m$ and $g$. If introducing second independent readout type (e.g., energy spectrum $E_n=\hbar^2 k_n^2/(2m)$ or absolute potential strength $g_{\rm eff}=\int V\,{\rm d}x$ calibration), then at generic points $(m,g)$ Jacobian full rank and decoupling possible. Proof in Appendix B.
+\end{theorem}
+
+\begin{theorem}[D: $\delta$-Ring--Implicit Function Sensitivity and Ill-Conditioning]
+Let
+
+$$
+f(k,\alpha_\delta,\theta)=\cos(kL)+\frac{\alpha_\delta}{k}\sin(kL)-\cos\theta,
+\tag{3.5}
+$$
+
+then
+
+$$
+\frac{\partial k}{\partial \alpha_\delta}
+=\frac{ \dfrac{\sin(kL)}{k} }
+{ L\sin(kL)-\dfrac{\alpha_\delta}{k}L\cos(kL)+\dfrac{\alpha_\delta}{k^2}\sin(kL) }.
+\tag{3.6}
+$$
+
+Ill-conditioned domain given by $\partial f/\partial k=0$; when $|\alpha_\delta|/k\ll 1$ approximately $\sin(kL)\simeq (\alpha_\delta/k)\cos(kL)$. Proof in Appendix B.
+\end{theorem}
+
+\begin{theorem}[E: First-Order Equivalentization of $\delta$-Potential Finite Width]
+For narrow potential $V(x)$ (width $w\ll L$) with $\int V\,{\rm d}x=g$ fixed, in $(kw)\ll1$ region, effective strength on ring
+
+$$
+\alpha_\delta^{\rm eff}(k)=\frac{m}{\hbar^2}\,g\left[1+\eta_2[V]\,(kw)^2+\mathcal O\!\big((kw)^4\big)\right],
+\tag{3.7}
+$$
+
+where shape factor $\eta_2[V]$ determined by second moment of $V$; rectangular and Gaussian potentials respectively have $\eta_2=\tfrac{1}{3},\ \tfrac{1}{2}$. Proof and numerical comparison in Appendix B.
+\end{theorem}
+
+\begin{theorem}[F: Topological Scattering Invariant--Near-Unitary Extrapolation]
+Under near-unitary premise ($|r^\dagger r-\mathbb 1|\le \varepsilon_\star$), finite length $L$, contact imperfection, and weak dissipation introduce bias to critical coupling $J_c$, unified by
+
+$$
+\boxed{\ J_c(L)=J_c+\beta e^{-L/\xi}+\gamma/L\ }
+\tag{3.8}
+$$
+
+extrapolation regression absorption, where exponential term corresponds to endpoint state coupling overlap, algebraic term corresponds to contact/boundary effects. $\mathcal Q=\mathrm{sgn}\det r(0)$ flip provides $J_c(L)$ observation trajectory. Proof in Appendix C.
+\end{theorem}
+
+\begin{theorem}[G: cQED Redundant Readout and Scattering Invariant Consistency]
+Single-port weak coupling, input--output relation gives
+
+$$
+r(\omega)=\frac{1-Z_0Y(\omega)}{1+Z_0Y(\omega)}\approx 1-2Z_0Y(\omega),
+\quad
+\delta\omega_c\propto g_{\rm cav}^2\,\mathrm{Re}\,\chi(\omega_c),\
+\kappa_{\rm add}\propto g_{\rm cav}^2\,\mathrm{Im}\,\chi(\omega_c),
+\tag{3.9}
+$$
+
+where $\chi$ is endpoint subsystem linear response. For appropriate detuning $|\omega_c-\omega_{\rm cont}|\gtrsim 3\kappa$, zero crossings of $\{\delta\omega_c,\kappa_{\rm add}\}$ consistent with $\mathcal Q$ flip. Proof in Appendix C.
+\end{theorem}
+
+\section{Proofs}
+
+\subsection{Proof of Theorem A (FRB)}
+
+QED effective action on curved background writable as
+
+$$
+\mathcal{L}_{\rm eff}=-\frac{1}{4} F_{\mu\nu}F^{\mu\nu}
++\frac{1}{m_e^2}\left(a R F_{\mu\nu}F^{\mu\nu}
++b R_{\mu\nu}F^{\mu\alpha}F^{\ \nu}_{\alpha}
++c R_{\mu\nu\alpha\beta}F^{\mu\nu}F^{\alpha\beta}\right)+\cdots,
+\tag{4.1}
+$$
+
+linearized dispersion relation provides refractive index correction $\delta n\propto (\alpha_{\rm em}/\pi)\lambda_e^2 \mathcal R$. On FRW, taking $|\mathcal R|\sim H_0^2/c^2$, integrating along $\chi$ with kernel Eq. (2.4),
+
+$$
+\Delta\phi=\int_0^{\chi_s}\frac{\omega_{\rm obs}}{c}\,\delta n(\chi)\,{\rm d}\chi
+\le \frac{\omega_{\rm obs} L}{c}\,\max_{\chi}\delta n(\chi),
+\tag{4.2}
+$$
+
+substituting constants $(\alpha_{\rm em}/\pi)\simeq 2.32\times 10^{-3}$, $\lambda_e=3.8616\times 10^{-13}\ {\rm m}$, $|\mathcal R|\simeq 5.4\times10^{-53}\ {\rm m^{-2}}$ and $\omega_{\rm obs}L/c\simeq 6.46\times10^{26}$ (1 GHz/1 Gpc), obtain $\Delta\phi\approx 1.2\times 10^{-53}$ rad. Hollowood--Shore worldline--Penrose limit guarantees $n(\omega\to\infty)\to1$; this paper's constructed windowed kernel satisfies this causality/analyticity constraint.
+
+\subsection{Proof of Theorem B ($\delta$-Ring)}
+
+From straight-line $\delta$ potential scattering amplitude $t=\dfrac{k}{k+i\alpha_\delta}$ and $|t|=\dfrac{1}{\sqrt{1+(\alpha_\delta/k)^2}}$, expanding transfer matrix trace condition $\mathrm{tr}\,T=2\cos\theta$ yields
+
+$$
+\cos\theta=\cos(kL)+\frac{\alpha_\delta}{k}\sin(kL).
+\tag{4.3}
+$$
+
+On the other hand
+
+$$
+\cos(kL)+\frac{\alpha_\delta}{k}\sin(kL)
+=\Re\!\Big[(\cos kL+i\sin kL)\,\Big(1-i\frac{\alpha_\delta}{k}\Big)\Big]
+=\sqrt{1+(\alpha_\delta/k)^2}\,\cos\Big(kL-\arctan\frac{\alpha_\delta}{k}\Big),
+\tag{4.4}
+$$
+
+i.e., $\cos\gamma=|t|\,\cos\theta$, proved.
+
+\subsection{Proof of Theorem C (Identifiability)}
+
+Spectral equation (3.3) contains only combined parameter $\alpha_\delta=mg/\hbar^2$; if $(m_1,g_1)\ne (m_2,g_2)$ exists but $m_1g_1=m_2g_2$, then for any $(\theta,n)$ yields identical $\{k_n\}$. Therefore $\{k_n(\theta)\}$ alone uniquely determines $\alpha_\delta$, while $m$, $g$ non-separable. If adding energy spectrum $E_n=\hbar^2 k_n^2/(2m)$, then
+
+$$
+J=\begin{pmatrix}
+\partial f/\partial m & \partial f/\partial g\\
+\partial E/\partial m & \partial E/\partial g
+\end{pmatrix}
+=\begin{pmatrix}
+\frac{\partial f}{\partial \alpha_\delta}\frac{\partial \alpha_\delta}{\partial m} & \frac{\partial f}{\partial \alpha_\delta}\frac{\partial \alpha_\delta}{\partial g}\\[4pt]
+-\frac{\hbar^2 k^2}{2m^2} & 0
+\end{pmatrix},
+\tag{4.5}
+$$
+
+at generic points $\det J\ne 0$ (except degenerate subsets like $k=0$), thus $(m,g)$ decoupling possible, proved.
+
+\subsection{Proof of Theorem D (Sensitivity)}
+
+By implicit function theorem
+
+$$
+\frac{\partial k}{\partial \alpha_\delta}=-\frac{f_{\alpha_\delta}}{f_k},
+\quad
+f_{\alpha_\delta}=\frac{1}{k}\sin(kL),\
+f_k=-L\sin(kL)+\alpha_\delta\Big(\frac{L}{k}\cos(kL)-\frac{1}{k^2}\sin(kL)\Big),
+\tag{4.6}
+$$
+
+obtain Eq. (3.6). Ill-conditioned domain satisfies $f_k=0$, when $|\alpha_\delta|/k\ll 1$ approximately $\sin(kL)\simeq (\alpha_\delta/k)\cos(kL)$, proved.
+
+\subsection{Proof of Theorem E (Finite Width)}
+
+Let narrow potential $V(x)=V_0 u(x/w)$ ($\int u=1$) with $g=V_0 w$ fixed, transfer matrix low-energy expansion at $kw\ll 1$ yields
+
+$$
+t^{-1}(k)=1+i\frac{\alpha_\delta}{k}+\eta_2[V]\,(kw)^2+\mathcal O\big((kw)^4\big),
+\tag{4.7}
+$$
+
+equivalentizing to $\alpha_\delta\to \alpha_\delta^{\rm eff}(k)$ replacement. Calculate second moment for rectangular/Gaussian $u$ comparing with solvable models, obtain $\eta_2=\tfrac{1}{3},\ \tfrac{1}{2}$. Numerical verification in Appendix B Figure B2.
+
+\subsection{Proof of Theorems F and G (Topological Scattering and cQED)}
+
+Class D system topological number via single-end reflection matrix zero-energy criterion $\mathcal Q=\mathrm{sgn}\det r(0)$. Finite length coupling leads to zero mode energy splitting $\propto e^{-L/\xi}$, contact/boundary introduces $1/L$ scaling; under near-unitary assumption, $\det r(0)$ sign flip trajectory $J_c(L)$ thus exhibits Eq. (3.8) shape. On the other hand, input--output gives $r\approx 1-2Z_0Y$, while $Y\propto g_{\rm cav}^2 \chi$; when cavity mode sufficiently detuned from continuum, $\chi(0)$ sign change produces zero crossing in $\{\delta\omega_c,\kappa_{\rm add}\}$, consistent with $\mathcal Q$ flip, proved.
+
+\section{Model Apply}
+
+\subsection{FRB "Windowed Upper Limiter"}
+
+\begin{itemize}
+\item \textbf{Kernel and weights}: Adopt $\mathcal K_{\rm FRB}=\omega_{\rm obs}/c$, $\Pi_p(\omega)\in\{1,\ \omega,\ \omega^{-1},\ \log\omega\}$. $C_\phi$ by three-channel bootstrap estimation: off-source, off-band, sidelobe.
+\item \textbf{Orthogonal windows}: On discrete frequency axis $\{\log\omega_i\}$, use $C_\phi^{-1}$ weighted Gram--Schmidt obtaining $W_j$, whitening test $\langle W_j,W_\ell\rangle\simeq \delta_{j\ell}$.
+\item \textbf{Upper limits}: For windowed parameters $\boldsymbol{\theta}$ adopt GLS and profile-likelihood parallel computing 95\% upper limit band, providing scaling curve with bandwidth/event number and systematic basis envelope; use "whether includes $\omega^{-1}$" as robustness switch taking envelope.
+\end{itemize}
+
+\subsection{$\delta$-Ring Inversion and Ill-Conditioning Avoidance}
+
+\begin{itemize}
+\item \textbf{Inversion}: With Eq. (3.3) $f=0$ as target, use Eq. (3.6) as Newton step iteration inverting $\hat\alpha_\delta$.
+\item \textbf{Ill-conditioned domain}: Plot gray region $|f_k|<\tau$ in $(kL,\alpha_\delta/k)$ plane ($\tau\sim 10^{-2}$), experimental point selection avoids domain.
+\item \textbf{Finite width}: For given $w$ and potential shape, use Eq. (3.7) correcting $\hat\alpha_\delta$, propagate $\eta_2$ uncertainty to covariance.
+\end{itemize}
+
+\subsection{Topological Extrapolation and cQED Redundancy}
+
+\begin{itemize}
+\item \textbf{Extrapolation regression}: Measure $\mathcal Q$ flip $J_c(L_i)$ on $\{L_i\}$, regress $(J_c,\beta,\gamma,\xi)$ via Eq. (3.8), compare "exponential/algebraic/composite" three models using AIC/BIC.
+\item \textbf{Near-unitary quality control}: Weight by $\varepsilon_i=|r_i^\dagger r_i-\mathbb 1|$ or enter regression as covariate, report $J_c$ sensitivity to $\varepsilon$.
+\item \textbf{cQED consistency}: Under detuning $|\omega_c-\omega_{\rm cont}|\gtrsim 3\kappa$, use $\{\delta\omega_c,\kappa_{\rm add}\}$ zero crossings as redundant evidence, cross-validate with $\mathcal Q$ flip.
+\end{itemize}
+
+\section{Engineering Proposals}
+
+\begin{itemize}
+\item \textbf{FRB}: Release minimized script loading public baseband examples, complete coherent dedispersion, structure-maximized DM, three-channel bootstrap covariance, weighted window orthonormalization and 95\% upper limit plotting, attach "whether includes $\omega^{-1}$ basis" robustness comparison.
+\item \textbf{$\delta$-ring}: Provide $\{k_n(\theta)\}$ inversion $\alpha_\delta$ executable script, plot ill-conditioned domain gray map and $\partial k/\partial\alpha_\delta$ contours; provide finite width correction and error propagation example.
+\item \textbf{Topological + cQED}: Release scripts for extracting $\mathcal Q$ from $r(\omega)$, regressing $J_c(L)$ with model comparison, and $\{\delta\omega_c,\kappa_{\rm add}\}$ consistency test with $\mathcal Q$.
+\end{itemize}
+
+\section{Discussion (Risks, Boundaries, Past Work)}
+
+\textbf{FRB}: At FRW background order of magnitude, one-loop vacuum polarization phase effect unmeasurable; this paper positions as "windowed upper limiter", emphasizing kernel--metric selection consistency and systematic envelope, avoiding bias setting.
+
+\textbf{$\delta$-ring}: Strictly limit "pure phase closure" to limit $|t|\to 1$, avoiding misuse at generic $\theta$; finite width equivalentization requires use within $kw\ll1$ region.
+
+\textbf{Topological}: Near-unitary threshold and model selection key to extrapolation reliability, recommend using residual structure and cross-validation suppressing overfitting.
+
+\section{Conclusion}
+
+Using unified phase--frequency readout and "kernel--windowing--GLS/Fisher" syntax, established reproducible metrological recipes for three platforms: FRB side provides rigorous windowed upper limiter; $\delta$-ring side proves spectral--scattering amplitude-corrected phase equivalence, structural identifiability and closed-form sensitivity with finite width correction; topological scattering side implements critical coupling metrology via near-unitary extrapolation and cQED redundancy. Supporting engineering protocols and minimal scripts make paradigm easily transferable to similar systems.
+
+\section*{Acknowledgements, Code Availability}
+
+Thank related public data and literature providing reproducible benchmarks. Supporting code and minimal data examples released under general license, including environment lockfiles, unit checks, and injection--recovery tests. FRB scripts with $\delta$-ring, topological extrapolation scripts adopt unified I/O conventions and random seeds ensuring reproducibility. Data usage and citation follow respective dataset policies.
+
+\section*{References}
+
+1. Drummond, I. T., Hathrell, S. J., "QED vacuum polarization in a background gravitational field," \emph{Phys. Rev. D} \textbf{22}, 343 (1980).
+
+2. Hollowood, T. J., Shore, G. M., "The causal structure of QED in curved spacetime: Analyticity and the refractive index," \emph{JHEP} \textbf{12}, 091 (2008); related works (2008--2009).
+
+3. CHIME/FRB Collaboration, "Updating the First CHIME/FRB Catalog of Fast Radio Bursts with Baseband Data," \emph{ApJ} \textbf{969}, 145 (2024).
+
+4. Hessels, J. W. T., \emph{et al.}, "FRB 121102 Bursts Show Complex Time--Frequency Structure," \emph{ApJL} \textbf{876}, L23 (2019).
+
+5. Castillo-Sánchez, M., Gutiérrez-Vega, J. C., "Quantum solutions for the delta ring and delta shell," \emph{Am. J. Phys.} \textbf{93}, 557--565 (2025).
+
+6. Fülöp, T., Tsutsui, I., "A Free Particle on a Circle with Point Interaction," \emph{Phys. Lett. A} \textbf{264}, 366--374 (2000).
+
+7. Fulga, I., Hassler, F., Akhmerov, A. R., Beenakker, C. W. J., "Scattering formula for the topological quantum number of a disordered multi-mode wire," \emph{Phys. Rev. B} \textbf{83}, 155429 (2011).
+
+8. Araya Day, J., \emph{et al.}, "Identifying biases of the Majorana scattering invariant," \emph{SciPost Phys. Core} \textbf{8}, 047 (2025).
+
+9. Dmytruk, O., Trif, M., "Microwave detection of gliding Majorana zero modes," \emph{Phys. Rev. B} \textbf{107}, 115418 (2023).
+
+10. Rife, D. C., Boorstyn, R. R., "Single-tone parameter estimation from discrete-time observations," \emph{IEEE Trans. Inf. Theory} \textbf{20}, 591--598 (1974).
+
+\appendix
+
+\section{FRB: One-Loop Vacuum Polarization Scale, Kernel--Metric Consistency, and Windowed Upper Limit}
+
+\subsection{One-Loop Effective Action and Scale}
+
+From Eq. (4.1) linearize Maxwell equations, under weak curvature and geometric optics approximation, dispersion relation $k^2=n^2\omega^2/c^2$ yields
+
+$$
+n(\omega,\chi)=1+\delta n(\chi)+\mathcal O(\mathcal R^2),\qquad
+\delta n(\chi)\approx\frac{\alpha_{\rm em}}{\pi}\lambda_e^2\,\mathcal R(\chi).
+$$
+
+FRW background $R_{\mu\nu\alpha\beta}$ low-order contractions provide $|\mathcal R|\sim H_0^2/c^2$.
+
+\subsection{Kernel--Metric Consistency (Redshift Cancellation)}
+
+Phase increment along geodesic
+
+$$
+{\rm d}\phi=\frac{\omega_{\rm loc}}{c}\,\delta n(\chi)\,{\rm d}\ell
+=\frac{(1+z)\omega_{\rm obs}}{c}\,\delta n(\chi)\,a(\eta)\,{\rm d}\chi
+=\frac{\omega_{\rm obs}}{c}\,\delta n(\chi)\,{\rm d}\chi,
+$$
+
+i.e., when integrating in conformal coordinates $(1+z)$ and $a$ exactly cancel, obtaining kernel Eq. (2.4). This form automatically satisfies causality requirement $n(\omega\to\infty)\to 1$.
+
+\subsection{Fisher/GLS Windowed Upper Limit}
+
+Expand $\delta n(\chi)$ on piecewise constant basis, define $A_{j\mu}=\langle W_j, \omega_{\rm obs}/c\rangle \Delta\chi_\mu$, then
+
+$$
+F=A^\top A,\qquad
+\boldsymbol{\sigma}_{\rm UL}=1.96\,\sqrt{{\rm diag}(F^{-1})},
+$$
+
+take upper limit envelope over different systematic basis choices (whether includes $\omega^{-1}$, $\log\omega$).
+
+\section{$\delta$-Ring: Boundary Conditions, Equivalence, Identifiability, Sensitivity, and Finite Width}
+
+\subsection{Boundary Condition and Trigonometric Equation}
+
+Straight-line $\delta$ potential boundary condition
+
+$$
+\psi'(0^+)-\psi'(0^-)=2\alpha_\delta\,\psi(0),\qquad \alpha_\delta=mg/\hbar^2,
+$$
+
+combined with free propagation segment transfer matrix yields single-lap trace condition $\mathrm{tr}\,T=2\cos\theta$, simplifying to Eq. (3.3).
+
+\subsection{Equivalence Three-Line Derivation}
+
+Using
+
+$$
+\Re\Big[e^{ikL}\Big(1-i\frac{\alpha_\delta}{k}\Big)\Big]
+=\cos(kL)+\frac{\alpha_\delta}{k}\sin(kL)
+=\sqrt{1+(\alpha_\delta/k)^2}\,\cos\Big(kL-\arctan\frac{\alpha_\delta}{k}\Big),
+$$
+
+obtain Eq. (3.4), where $|t|=(1+(\alpha_\delta/k)^2)^{-1/2}$.
+
+\subsection{Identifiability (Rank)}
+
+Construct observation equations $\{f=0,E=\hbar^2k^2/(2m)\}$ Jacobian for $(m,g)$, avoiding degenerate strips like $k=0$ and strong scattering ensures full rank (Eq. 4.5).
+
+\subsection{Sensitivity and Ill-Conditioned Domain}
+
+From Eq. (4.6) obtain implicit function derivative and ill-conditioning condition $f_k=0$. Experimental design uses criterion $|f_k|>\tau$ for point selection, $\tau\sim 10^{-2}$--$10^{-3}$.
+
+\subsection{Finite Width Equivalentization and Numerical Comparison}
+
+For $V(x)=V_0 u(x/w)$, under low-energy expansion at $kw\ll 1$,
+
+$$
+t^{-1}(k)=1+i\frac{\alpha_\delta}{k}+\eta_2[V]\,(kw)^2+\cdots,
+$$
+
+where
+
+$$
+\eta_2[V]=\frac{1}{w^2}\,\frac{\int x^2 V(x)\,{\rm d}x}{\int V(x)\,{\rm d}x}\ \ \text{(after normalization and comparison calibration)}.
+$$
+
+Numerical scan verification for rectangular ($\eta_2=1/3$) and Gaussian ($\eta_2=1/2$) potentials, relative error $\le 1\%$ in $kw\le 0.2$ region. Solvable model results consistent with expansion in overlap region.
+
+\section{Topological Scattering Invariant and cQED}
+
+\subsection{$\mathcal Q=\mathrm{sgn}\det r(0)$ Scattering Criterion}
+
+Under class D symmetry constraint, $\mathcal Q$ via single-end reflection matrix zero-energy determinant sign; boundary/contact and finite size introduced bias under near-unitarity viewable as translation of $J_c$.
+
+\subsection{Extrapolation Regression and Model Comparison}
+
+Fit $J_c(L)$ using Eq. (3.8), compare "exponential/algebraic/composite" three models via AIC/BIC; when $\varepsilon=|r^\dagger r-\mathbb 1|>\varepsilon_\star$, incorporate into regression as weight or covariate relaxing uncertainty.
+
+\subsection{cQED Linear Response Mapping}
+
+Single-port $r\simeq 1-2Z_0Y$, while $Y\propto g_{\rm cav}^2\chi$; when $|\omega_c-\omega_{\rm cont}|\gtrsim 3\kappa$, $\chi$ sign change at zero energy produces zero crossing in $\delta\omega_c$ and $\kappa_{\rm add}$, consistent with $\mathcal Q$ flip. Instantiated microwave--Majorana scheme serves as style reference.
+
+\end{document}
+
+

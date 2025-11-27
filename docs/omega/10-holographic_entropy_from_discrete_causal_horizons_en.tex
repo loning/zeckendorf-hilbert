@@ -1,0 +1,847 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{braket}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{axiom}[theorem]{Axiom}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Holographic Entropy from Discrete Causal Horizons: A Unitary Solution to the Black Hole Information Paradox in Quantum Cellular Automata}
+
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+The black hole information paradox originates from the tension between the causal isolation of event horizons in general relativity and the global unitarity of quantum theory. In the semiclassical framework, black holes are treated as thermodynamic systems with temperature $T_H$ and entropy $S_{\mathrm{BH}} = k_B A / (4 \ell_P^2)$, where $A$ is the horizon area. Hawking radiation exhibits a nearly thermal spectrum in the semiclassical limit, implying that a black hole formed from the collapse of a pure state would evolve into a mixed state upon complete evaporation, thus manifesting an apparent violation of unitarity.
+
+This paper presents and analyzes a microscopic model of black holes within the discrete ontology of quantum cellular automata (QCA) and the framework of information rate conservation $v_{\mathrm{ext}}^2 + v_{\mathrm{int}}^2 = c^2$. The core idea is that the horizon is not a geometrically absolute causal boundary, but rather a critical layer in the QCA network where the external information transport rate $v_{\mathrm{ext}}$ is suppressed and the internal phase evolution rate $v_{\mathrm{int}}$ saturates, termed the ``information freezing layer.'' On this discrete horizon, local connections (links) crossing the surface carry all entanglement and information channels between the interior and exterior regions.
+
+After explicitly defining the QCA universe model, optical metric, and discrete horizon, we prove:
+
+\textbf{(1)} For any QCA network satisfying local finite degree and Planck-scale lattice spacing $a \sim \ell_P$, the number of links crossing the horizon $N_{\mathrm{link}}$ scales with area as $N_{\mathrm{link}} \propto A / \ell_P^2$.
+
+\textbf{(2)} If each link is approximately in a maximally entangled state at black hole equilibrium, the von Neumann entropy seen by external observers is
+$$
+S_{\mathrm{BH}} = \ln 2 \cdot N_{\mathrm{link}} \propto \frac{A}{\ell_P^2}.
+$$
+
+\textbf{(3)} Identifying links as punctures in a spin network of $\mathrm{SU}(2)$, adopting the loop quantum gravity area spectrum $A_j = 8 \pi \gamma \ell_P^2 \sqrt{j(j+1)}$ with $j = 1/2$ and taking the Immirzi parameter $\gamma = \ln 2 / (\pi \sqrt{3})$ recovers the Bekenstein--Hawking entropy formula $S_{\mathrm{BH}} = k_B A / (4 \ell_P^2)$, consistent with existing black hole entropy counting results.
+
+Furthermore, treating the black hole and radiation as a pure-state system on a finite-dimensional Hilbert space, and assuming QCA evolution is a strictly unitary discrete-time evolution operator $U$, we utilize the Page theorem and the fast scrambling hypothesis to derive the Page curve for radiation entropy: the radiation entanglement entropy increases monotonically with time in the early stage, reaches a peak when the accessible Hilbert space dimensions of the black hole and radiation become comparable, and subsequently declines to zero as evaporation continues, ensuring the final radiation state is pure. This resolves the information paradox within this framework.
+
+We embed this QCA black hole model into the unified scheme of optical metrics and information volume conservation, demonstrating that the holographic entropy law can be viewed as the continuum extrapolation of an entanglement-counting theorem on discrete causal horizons in QCA. We conclude by discussing connections to loop quantum gravity, AdS/CFT, and analog black hole experiments, and propose several testable observations and simulations, including searches for non-thermal correlations in Hawking radiation and measurements of entanglement structure on analog black hole platforms.
+\end{abstract}
+
+\textbf{Keywords:} Black hole information paradox; Quantum cellular automaton; Holographic principle; Bekenstein--Hawking entropy; Entanglement entropy; Page curve; Loop quantum gravity
+
+\section{Introduction and Historical Context}
+
+Black hole thermodynamics establishes a precise connection between geometric area and entropy. Bekenstein first proposed that black holes must carry entropy proportional to their horizon area to preserve the generalized second law during matter absorption, and estimated the order of magnitude of the entropy--area relation. Subsequently, Hawking calculated in quantum field theory on curved backgrounds that a static black hole should radiate at temperature
+$$
+T_H = \frac{\hbar \kappa}{2 \pi k_B c},
+$$
+where $\kappa$ is the surface gravity. Combined with the first and second laws of thermodynamics, this uniquely determines the black hole entropy as
+$$
+S_{\mathrm{BH}} = \frac{k_B A}{4 \ell_P^2},
+$$
+where $\ell_P = \sqrt{G \hbar / c^3}$ is the Planck length.
+
+In the semiclassical framework, Hawking radiation in scenarios without back-reaction or reflecting walls approximately takes the form of blackbody radiation, with a density matrix that appears to external observers as a thermal mixed state. If a black hole originates from the collapse of an initial pure state and evaporates completely, semiclassical calculations suggest that the pure state would irreversibly evolve into a mixed state, violating quantum unitarity. This tension is known as the black hole information paradox.
+
+Numerous candidate solutions have been proposed: black hole complementarity emphasizes complementary descriptions of events by different observers to prevent inconsistency; the firewall proposal suggests a violent high-energy wall at the horizon to maintain entanglement monotonicity; ER=EPR conjectures that entangled pairs across the horizon are realized by nontrivial Einstein--Rosen bridges; and recent ``island formula'' and quantum extremal surface approaches recover the Page curve through semiclassical gravitational path integrals. However, these proposals typically rest on an intrinsically continuous spacetime manifold.
+
+On the other hand, quantum cellular automata and discrete quantum walks provide discrete frameworks for describing quantum fields and relativistic dynamics. In these frameworks, the universe is modeled as local unitary update rules acting on spatial lattice sites, and equations such as Dirac and Maxwell can emerge in the long-wavelength limit from QCA. This naturally suggests a discrete ontology: at the Planck scale, spacetime is not a smooth manifold but a network of coupled quantum units.
+
+In such discrete models, the geometric concepts of event horizons and singularities require reinterpretation. If the underlying dynamics are strictly unitary local updates, there is no mathematical ``information absorption endpoint''; any apparent irreversibility must arise from ignoring partial degrees of freedom. Meanwhile, the black hole entropy--area law and the holographic principle hint that the interior volume degrees of freedom are, in some sense, compressed onto the two-dimensional surface of the horizon.
+
+This paper builds upon the previously proposed ``information rate conservation'' and ``optical metric'' frameworks to introduce a discrete-horizon QCA model providing a unified description of black hole entropy and Hawking radiation. The core steps include:
+
+\textbf{(1)} Defining external group velocity $v_{\mathrm{ext}}$ and internal phase evolution velocity $v_{\mathrm{int}}$ in QCA, and adopting the mother-scale identity $v_{\mathrm{ext}}^2 + v_{\mathrm{int}}^2 = c^2$ as the axiomatic expression of information rate conservation.
+
+\textbf{(2)} Constructing an optical refractive index field $n(x)$ via local information processing density $\rho_{\mathrm{info}}$ and relating $v_{\mathrm{ext}}$ to $n(x)$, thereby defining the discrete horizon as an isosurface where $n(x)$ exceeds a critical value.
+
+\textbf{(3)} Proving that the number of discrete connections crossing the horizon is proportional to area, and identifying black hole entropy as the entanglement entropy of this connection set under a maximal entanglement assumption.
+
+\textbf{(4)} Viewing connections as spin network punctures, borrowing established loop quantum gravity results for area spectrum and Immirzi parameter to recover the $1/4$ coefficient.
+
+\textbf{(5)} Under the assumption of finite-dimensional Hilbert space and fast scrambling, analyzing radiation entanglement entropy evolution over time using the Page theorem, obtaining a Page curve consistent with unitarity requirements, and showing that the information paradox no longer arises in this discrete model.
+
+The greatest difference from existing continuum frameworks is that this paper fundamentally models the black hole horizon as an ``information freezing layer'' in the QCA network, rather than a zero-thickness smooth surface in continuum geometry. Black hole entropy is no longer an ancillary property of geometric quantities, but the statistical outcome of the count of cross-boundary entanglement channels in the discrete network.
+
+\section{Model and Assumptions}
+
+This section provides rigorous definitions of the QCA universe model, optical metric, and discrete horizon used in this paper, and lists key assumptions.
+
+\subsection{QCA Universe and Information Rate Conservation}
+
+Let space consist of a three-dimensional regular lattice $\Lambda \cong a \mathbb{Z}^3$ with lattice spacing $a$ of order Planck scale $a \sim \ell_P$. Each lattice site $x \in \Lambda$ is associated with a finite-dimensional Hilbert space $\mathcal{H}_x \cong \mathbb{C}^d$, and the global Hilbert space is the tensor product
+$$
+\mathcal{H} = \bigotimes_{x \in \Lambda} \mathcal{H}_x.
+$$
+The discrete time step is $\Delta t$, and one step of QCA evolution is realized by a unitary operator $U: \mathcal{H} \to \mathcal{H}$ satisfying strict locality: there exists a finite radius $R$ such that any local operator $O_x$ evolved as $U^\dagger O_x U$ is supported only within a finite neighborhood of radius $R$ centered at $x$. This locality defines a finite propagation speed
+$$
+c = \frac{R a}{\Delta t},
+$$
+which can be identified with the speed of light in the continuum limit.
+
+Consider a local excitation described as a wavepacket in the long-wavelength limit, whose group velocity in coarse-grained coordinates is denoted $v_{\mathrm{ext}}$, while the phase precession rate in internal degrees of freedom (``coin'' or internal spin space) is denoted $v_{\mathrm{int}}$. In previous work, it has been shown that in Dirac-type QCA one can construct an information rate vector $(v_{\mathrm{ext}}, v_{\mathrm{int}})$ satisfying
+$$
+v_{\mathrm{ext}}^2 + v_{\mathrm{int}}^2 = c^2,
+$$
+and by using $\tau$ as the internal phase evolution parameter, standard special-relativistic proper time and four-velocity normalization can be recovered. We take this relation as the axiomatic statement of information rate conservation:
+
+\begin{axiom}[Information Rate Conservation]
+\label{ax:info_rate}
+For any distinguishable local excitation, the external propagation rate $v_{\mathrm{ext}}$ and internal phase rate $v_{\mathrm{int}}$ satisfy
+$$
+v_{\mathrm{ext}}^2 + v_{\mathrm{int}}^2 = c^2.
+$$
+\end{axiom}
+
+Intuitively, if $v_{\mathrm{ext}}$ approaches $c$, the excitation is approximately massless and propagates nearly at the speed of light between lattice sites; if $v_{\mathrm{ext}}$ approaches $0$, the excitation hardly propagates in position space but undergoes phase flips and self-referential evolution in the internal Hilbert space at a rate approaching $c$.
+
+\subsection{Local Information Density and Optical Refractive Index}
+
+Define the local information processing density $\rho_{\mathrm{info}}(x)$ at each lattice site as the number of effective unitary degrees of freedom that can be implemented per unit time on that cell, normalized to a dimensionless quantity, and assume an upper bound $\rho_{\max}$, corresponding to the case where the cell is filled with local maximal entanglement.
+
+We adopt a simple but sufficiently expressive refractive index model relating gravitational redshift, defining the effective refractive index $n(x)$ as
+$$
+n(x) = \frac{1}{1 - \rho_{\mathrm{info}}(x) / \rho_{\max}}.
+$$
+When $\rho_{\mathrm{info}} \ll \rho_{\max}$, $n(x) \approx 1$; when $\rho_{\mathrm{info}} \to \rho_{\max}$, $n(x) \to \infty$. Optical path conservation and standard optical metric theory imply that the local effective speed of light satisfies
+$$
+c_{\mathrm{eff}}(x) = \frac{c}{n(x)}.
+$$
+In the long-wavelength continuum limit of QCA, one can construct an optical metric
+$$
+\mathrm{d}s^2 = - \eta^2(x) c^2 \mathrm{d}t^2 + \eta^{-2}(x) \gamma_{ij}(x) \mathrm{d}x^i \mathrm{d}x^j,
+$$
+where $\eta(x)$ is equivalent to $n(x)$ and $\gamma_{ij}$ is the three-dimensional spatial metric. Here we retain only the relation $c_{\mathrm{eff}}(x) = c/n(x)$ to characterize the suppression of external group velocity.
+
+Combining Axiom~\ref{ax:info_rate}, we can write the local external group velocity as
+$$
+\lvert v_{\mathrm{ext}}(x) \rvert = \frac{c}{n(x)} = c \left(1 - \frac{\rho_{\mathrm{info}}(x)}{\rho_{\max}}\right).
+$$
+When $\rho_{\mathrm{info}}(x) \to \rho_{\max}$, $\lvert v_{\mathrm{ext}}(x) \rvert \to 0$ and $v_{\mathrm{int}}(x) \to c$.
+
+\subsection{Discrete Horizon and Information Freezing Layer}
+
+Under the above setup, we give the definition of the black hole horizon in this paper.
+
+\begin{definition}[Discrete Horizon]
+\label{def:disc_hor}
+Let $N_{\mathrm{crit}} > 1$ be a given critical refractive index. The discrete horizon $\mathcal{H}$ is defined as the approximate discrete set on lattice sites of closed isosurface families satisfying
+$$
+n(x) \geq N_{\mathrm{crit}}
+$$
+in the continuum limit.
+\end{definition}
+
+On the QCA network, the horizon corresponds to a shell region of thickness about one to several lattice spacings:
+$$
+\mathcal{H}_\Delta = \{ x \in \Lambda : N_{\mathrm{crit}} \leq n(x) < N_{\mathrm{crit}} + \delta \},
+$$
+where $\delta \ll N_{\mathrm{crit}}$.
+
+\begin{definition}[Information Freezing Layer]
+\label{def:freeze}
+When $n(x)$ is sufficiently large that $\lvert v_{\mathrm{ext}}(x) \rvert \ll c$ and $v_{\mathrm{int}}(x) \approx c$, the shell is called the information freezing layer. In this region, spatial migration of excitations is nearly blocked, while phase and entanglement evolution in the internal Hilbert space proceeds at a rate approaching $c$.
+\end{definition}
+
+\begin{assumption}[Volume Freezing and Boundary Storage]
+\label{assump:freeze}
+For regions satisfying
+$$
+n(x) \geq N_{\mathrm{crit}},
+$$
+the effective dynamics of the QCA satisfy:
+
+\textbf{(i)} Information propagating from the external region along the radial direction to the information freezing layer finds outward group velocity approaching zero, making it difficult to propagate further into the ``interior volume'' region.
+
+\textbf{(ii)} Conversely, cells inside the freezing layer can undergo high-frequency entanglement rearrangement and energy--information redistribution through local unitary coupling.
+
+Therefore, from the viewpoint of external observers, the interior volume degrees of freedom are dynamically ``projected'' onto a two-dimensional information storage array on the freezing layer. This assumption is qualitatively consistent with the holographic principle.
+\end{assumption}
+
+\subsection{Cross-Horizon Connections and Hilbert Space Decomposition}
+
+Partition the lattice set along the freezing layer surface $\Sigma$ into the exterior region $\mathrm{Out}$, interior region $\mathrm{In}$, and freezing layer $\mathcal{H}_\Delta$. The Hilbert spaces of the exterior and freezing layer can be written as
+$$
+\mathcal{H}_{\mathrm{out}} = \bigotimes_{x \in \mathrm{Out}} \mathcal{H}_x,\quad
+\mathcal{H}_{\mathcal{H}} = \bigotimes_{x \in \mathcal{H}_\Delta} \mathcal{H}_x.
+$$
+Consider the local adjacency graph of the QCA, and denote by $\mathcal{L}$ the set of all nearest-neighbor connections crossing the freezing layer, where each connection $\ell \in \mathcal{L}$ connects one exterior lattice site to one freezing-layer lattice site.
+
+\begin{definition}[Horizon Connections]
+\label{def:hor_link}
+The horizon connection set $\mathcal{L}$ is defined as all edges satisfying:
+
+\textbf{(i)} One end belongs to $\mathrm{Out}$, the other to $\mathcal{H}_\Delta$.
+
+\textbf{(ii)} The two endpoints have a direct coupling term in the adjacency graph.
+\end{definition}
+
+The connection count
+$$
+N_{\mathrm{link}} = \lvert \mathcal{L} \rvert
+$$
+will be the key counting object for black hole entropy.
+
+In the ``freezing--boundary storage'' limit, the relevant part of the Hilbert space can be written as
+$$
+\mathcal{H}_{\mathcal{H}} \otimes \mathcal{H}_{\mathrm{out}} \cong \bigotimes_{\ell \in \mathcal{L}} \left( \mathcal{H}_{\ell}^{(\mathrm{in})} \otimes \mathcal{H}_{\ell}^{(\mathrm{out})} \right) \otimes \mathcal{H}_{\mathrm{rest}},
+$$
+where $\mathcal{H}_{\ell}^{(\mathrm{in})}$ and $\mathcal{H}_{\ell}^{(\mathrm{out})}$ are the local subspaces at the two ends of the connection, and $\mathcal{H}_{\mathrm{rest}}$ contains all degrees of freedom irrelevant to cross-boundary entanglement.
+
+This paper will focus primarily on the entanglement structure on $\mathcal{L}$ and prove that black hole entropy can be given by the entanglement von Neumann entropy of these connections.
+
+\section{Main Results: Theorems and Alignments}
+
+Under the above model and assumptions, the core results of this paper can be summarized in the following four theorems.
+
+\begin{theorem}[Holographic Storage on Discrete Horizon]
+\label{thm:holo}
+In a QCA universe with bounded local degree, finite lattice spacing, and satisfying the information rate conservation axiom, suppose there exists a closed freezing layer $\mathcal{H}_\Delta$ defining the black hole horizon, and propagation modes in the interior region are strongly suppressed dynamically. Then, for the operator algebra accessible to external observers, all information in the black hole interior can equivalently be encoded in the degrees of freedom supported by the connection set $\mathcal{L}$ on the freezing layer.
+
+That is, there exists an isomorphism
+$$
+\mathcal{H}_{\mathrm{BH}} \cong \bigotimes_{\ell \in \mathcal{L}} \mathcal{H}_{\ell}^{(\mathrm{in})} \otimes \mathcal{H}_{\mathrm{aux}},
+$$
+where $\mathcal{H}_{\mathrm{BH}}$ is the effective black hole Hilbert space visible to external observers, and $\mathcal{H}_{\mathrm{aux}}$ does not directly entangle with the exterior.
+\end{theorem}
+
+\begin{theorem}[Connection Count and Area Law]
+\label{thm:area}
+Suppose the QCA network near the freezing layer has an approximately isotropic connection graph on large scales and has finite average degree. Then, for a sufficiently large horizon surface $\Sigma$, the number of connections crossing the freezing layer satisfies
+$$
+N_{\mathrm{link}} = \eta \frac{A}{a^2} + o\left(\frac{A}{a^2}\right),
+$$
+where $A$ is the continuum-limit surface area of $\Sigma$, and $\eta$ is a dimensionless geometric factor depending only on the local lattice structure.
+\end{theorem}
+
+\begin{theorem}[Entanglement Origin of Black Hole Entropy]
+\label{thm:entropy}
+Under the conditions of Theorems~\ref{thm:holo} and~\ref{thm:area}, if at equilibrium each connection in the freezing layer is approximately in a maximally entangled state, and correlations among connections can be regarded as disordered on large scales, then the von Neumann entropy of the black hole as seen by external observers is
+$$
+S_{\mathrm{BH}} = k_B \ln 2 \cdot N_{\mathrm{link}} \approx k_B \eta \ln 2 \frac{A}{a^2}.
+$$
+Identifying the lattice spacing with the Planck length $a = \ell_P$ and choosing the geometric factor $\eta$ to match the standard value of the Immirzi parameter in loop quantum gravity, we recover
+$$
+S_{\mathrm{BH}} = \frac{k_B A}{4 \ell_P^2}.
+$$
+\end{theorem}
+
+\begin{theorem}[Unitary Evaporation and Page Curve]
+\label{thm:page}
+Suppose the black hole--radiation joint system at any time $t$ can be described by a pure state $\lvert \Psi(t) \rangle$ on a finite-dimensional Hilbert space
+$$
+\mathcal{H}_{\mathrm{tot}} = \mathcal{H}_{\mathrm{BH}}(t) \otimes \mathcal{H}_{\mathrm{rad}}(t),
+$$
+given by unitary iteration of the global QCA evolution operator. If the internal dynamics on the freezing layer are fast scrambling, and assuming at each stage $\lvert \Psi(t) \rangle$ is close to a Haar-random pure state for the given dimension pair $(d_{\mathrm{BH}}(t), d_{\mathrm{rad}}(t))$, then the von Neumann entropy of the radiation approximately satisfies
+$$
+S_{\mathrm{rad}}(t) \approx k_B \min\left( \ln d_{\mathrm{BH}}(t), \ln d_{\mathrm{rad}}(t) \right),
+$$
+thus yielding a Page curve that first rises, then falls, ultimately returning to zero. When the black hole fully evaporates, $d_{\mathrm{BH}} \to 1$, radiation entropy $S_{\mathrm{rad}} \to 0$, and the joint system remains in a pure state, so the information paradox no longer appears in this framework.
+\end{theorem}
+
+Proofs of the above theorems are given in subsequent sections and appendices.
+
+\section{Proofs}
+
+This section provides proof outlines for each theorem, with technical details and complete derivations of related mathematical tools deferred to appendices.
+
+\subsection{Proof of Theorem~\ref{thm:holo}: Holographic Storage on Freezing Layer}
+
+The proof relies on the locality and causal structure of QCA.
+
+\textbf{Step 1. Causal cones and accessibility}
+
+For any local operator $O_{\mathrm{out}}$ in the exterior region, its Heisenberg picture evolution $O_{\mathrm{out}}(t) = U^{-t} O_{\mathrm{out}} U^t$ has support restricted to the causal cone based on the initial support of that operator. The near-zero propagation speed in the information freezing layer means that, on finite time scales, the contribution from the interior volume region to external observational operators can be neglected, while contributions from the freezing layer degrees of freedom dominate.
+
+\textbf{Step 2. Effective operator algebra compression}
+
+More precisely, consider the operator algebra $\mathcal{A}_{\mathrm{out}}$ accessible to external observers. Any $A \in \mathcal{A}_{\mathrm{out}}$ time-evolved in the Heisenberg picture can be written as
+$$
+A(t) = U^{-t} A U^t = A_{\mathcal{H}}(t) \otimes \mathbb{I}_{\mathrm{bulk}} + \text{small terms},
+$$
+where $A_{\mathcal{H}}(t)$ is supported on the freezing layer and exterior, with the effect of interior volume degrees of freedom suppressed by a small parameter (controlled jointly by $v_{\mathrm{ext}}/c$ and evolution time).
+
+\textbf{Step 3. Stinespring structure and encoding map}
+
+In this limit, one can construct a CPTP map encoding the interior volume Hilbert space $\mathcal{H}_{\mathrm{bulk}}$ degrees of freedom onto auxiliary degrees of freedom $\mathcal{H}_{\mathrm{aux}} \subset \mathcal{H}_{\mathcal{H}}$ on the freezing layer, such that expectation values of external operators remain unchanged:
+$$
+\operatorname{tr}_{\mathrm{bulk}}\left( \rho_{\mathrm{BH}} A_{\mathrm{out}} \right)
+= \operatorname{tr}_{\mathrm{aux}}\left( \tilde{\rho}_{\mathcal{H}} A_{\mathrm{out}} \right).
+$$
+By the Stinespring dilation theorem and operator algebra isomorphism, there exists a Hilbert space equivalence
+$$
+\mathcal{H}_{\mathrm{BH}} \cong \bigotimes_{\ell \in \mathcal{L}} \mathcal{H}_{\ell}^{(\mathrm{in})} \otimes \mathcal{H}_{\mathrm{aux}},
+$$
+yielding the conclusion of Theorem~\ref{thm:holo}.
+
+Details of the construction are given in Appendix A.1.
+
+\subsection{Proof of Theorem~\ref{thm:area}: Connection Count Proportional to Area}
+
+This theorem is essentially a geometric--combinatorial statement holding on lattice networks with finite degree and uniformity.
+
+\textbf{Step 1. Local isotropy assumption}
+
+Assume the connection graph near the freezing layer is approximately uniformly isotropic on sufficiently large scales, i.e., the average degree $\deg(x)$ of each lattice site is statistically constant $d_0$, and connection directions are uniformly distributed on the sphere.
+
+\textbf{Step 2. Surface area discretization}
+
+View the approximate discretization of the continuum surface $\Sigma$ on the lattice as the set of all lattice sites with distance less than $a/2$ from the surface. The cardinality $N_{\Sigma}$ of this set satisfies
+$$
+N_{\Sigma} = \zeta \frac{A}{a^2} + o\left(\frac{A}{a^2}\right),
+$$
+where $\zeta$ is a constant related to the lattice type (cubic, body-centered cubic, etc.).
+
+\textbf{Step 3. Cross-boundary connection count}
+
+For each lattice site on $\Sigma$, count the connections pointing inward and outward. Because average degree is finite and there are no long-range connections, the total number of cross-boundary connections is proportional to $N_{\Sigma}$, i.e.,
+$$
+N_{\mathrm{link}} = \eta N_{\Sigma} = \eta \zeta \frac{A}{a^2} + o\left(\frac{A}{a^2}\right).
+$$
+Merging $\eta \zeta$ into $\eta$ gives the expression of Theorem~\ref{thm:area}.
+
+This reasoning shares its origin with the ``number of surface atoms $\propto$ surface area'' calculation in solid-state physics. Detailed derivation is in Appendix A.2.
+
+\subsection{Proof of Theorem~\ref{thm:entropy}: Entanglement Entropy and Area Law}
+
+Based on Theorems~\ref{thm:holo} and~\ref{thm:area}, we view cross-boundary connections as entangled two-system subspaces.
+
+\textbf{Step 1. Entropy contribution from a single connection}
+
+Assume the Hilbert space on each connection $\ell$ is $\mathbb{C}^2 \otimes \mathbb{C}^2$, corresponding to a pair of qubits, naturally in a Bell-type maximally entangled state. Tracing out the exterior, the reduced density matrix of a single exterior qubit is
+$$
+\rho_{\ell}^{(\mathrm{out})} = \frac{1}{2} \mathbb{I}_2,
+$$
+with von Neumann entropy
+$$
+S_{\ell} = - k_B \operatorname{tr}\left( \rho_{\ell}^{(\mathrm{out})} \ln \rho_{\ell}^{(\mathrm{out})} \right) = k_B \ln 2.
+$$
+
+\textbf{Step 2. Multi-connection tensor product and independence}
+
+In the fast-scrambling limit on the freezing layer, entanglement on different connections can be approximately treated as statistically independent, and their joint state as seen externally is a tensor product density matrix
+$$
+\rho_{\mathrm{out}} = \bigotimes_{\ell \in \mathcal{L}} \rho_{\ell}^{(\mathrm{out})},
+$$
+so total entropy is
+$$
+S_{\mathrm{BH}} = \sum_{\ell \in \mathcal{L}} S_{\ell} = k_B \ln 2 \cdot N_{\mathrm{link}}.
+$$
+
+\textbf{Step 3. Matching with the area law}
+
+Substituting the result of Theorem~\ref{thm:area},
+$$
+N_{\mathrm{link}} \approx \eta \frac{A}{a^2},
+$$
+we obtain
+$$
+S_{\mathrm{BH}} \approx k_B \eta \ln 2 \frac{A}{a^2}.
+$$
+Taking the natural lattice spacing $a = \ell_P$, the specific value of $\eta$ can be fixed by a more microscopic spin network model.
+
+\textbf{Step 4. Consistency with loop quantum gravity area spectrum}
+
+In the loop quantum gravity framework, the horizon is punctured by a spin network, and the area eigenvalue is
+$$
+A_j = 8 \pi \gamma \ell_P^2 \sqrt{j(j+1)},
+$$
+where $\gamma$ is the Immirzi parameter. If we identify each qubit connection in QCA as a $j = 1/2$ puncture, the single-puncture area is
+$$
+A_{1/2} = 4 \pi \gamma \sqrt{3} \ell_P^2,
+$$
+with spin state space dimension $2j+1 = 2$, corresponding to entropy $\ln 2$. Counting the number of punctures $N = A / A_{1/2}$, the total entropy is
+$$
+S = N k_B \ln 2 = \frac{A}{4 \ell_P^2} k_B
+$$
+if and only if
+$$
+\gamma = \frac{\ln 2}{\pi \sqrt{3}}.
+$$
+This value is consistent with recent derivations based on loop quantum gravity and Landauer's principle, showing that the present QCA model is compatible with such work regarding entropy--area relation.
+
+This completes the proof of Theorem~\ref{thm:entropy}. Detailed spin network counting and discussion of the Immirzi parameter are in Appendix B.
+
+\subsection{Proof of Theorem~\ref{thm:page}: Unitary Evaporation and Page Curve}
+
+This theorem relies on two elements: global unitarity of QCA and average entropy results for Haar-random pure states.
+
+\textbf{Step 1. Finite-dimensional pure state and von Neumann entropy symmetry}
+
+For any pure state $\lvert \Psi \rangle \in \mathcal{H}_{\mathrm{BH}} \otimes \mathcal{H}_{\mathrm{rad}}$, we have
+$$
+S\left( \rho_{\mathrm{BH}} \right) = S\left( \rho_{\mathrm{rad}} \right),
+$$
+where $\rho_{\mathrm{BH}}$ and $\rho_{\mathrm{rad}}$ are reduced states after tracing out the other subsystem. The global QCA evolution
+$$
+\lvert \Psi(t+1) \rangle = U \lvert \Psi(t) \rangle
+$$
+ensures the pure-state property of the joint system is always maintained.
+
+\textbf{Step 2. Page theorem and average entropy}
+
+Page calculated that for a two-system with Hilbert space dimensions $d_{\mathrm{BH}} \leq d_{\mathrm{rad}}$, if a random pure state is drawn from the Haar measure, the average entropy of the smaller subsystem is approximately
+$$
+\overline{S} \approx k_B \left( \ln d_{\mathrm{BH}} - \frac{d_{\mathrm{BH}}}{2 d_{\mathrm{rad}}} \right),
+$$
+which approaches the maximum value $k_B \ln d_{\mathrm{BH}}$ when $d_{\mathrm{rad}} \gg d_{\mathrm{BH}}$.
+
+\textbf{Step 3. Fast scrambling hypothesis and typical state approximation}
+
+Because the local unitary coupling on the freezing layer is highly non-integrable, we assume the dynamics between the black hole interior and horizon are fast scrambling, with characteristic time $t_*$ satisfying
+$$
+t_* \sim \beta \ln S_{\mathrm{BH}},
+$$
+where $\beta$ is a constant related to the Hawking temperature and QCA microscopic time step. Long-time evolved typical states of fast-scrambling systems can be well approximated by Haar-random pure states, a viewpoint supported by the Hayden--Preskill protocol and subsequent work.
+
+\textbf{Step 4. Dimension evolution and Page curve}
+
+As evaporation proceeds, the effective dimension $d_{\mathrm{BH}}(t)$ of the black hole Hilbert space decreases monotonically as the horizon area shrinks, while the external radiation subspace $d_{\mathrm{rad}}(t)$ increases monotonically. Using
+$$
+S_{\mathrm{rad}}(t) \approx k_B \min\left( \ln d_{\mathrm{BH}}(t), \ln d_{\mathrm{rad}}(t) \right),
+$$
+we see that when $d_{\mathrm{rad}} < d_{\mathrm{BH}}$, radiation entropy grows with time; when $d_{\mathrm{rad}} > d_{\mathrm{BH}}$, radiation entropy is limited by the dimension of the smaller subsystem and must decrease as $d_{\mathrm{BH}}$ decreases, automatically yielding a Page curve with a peak.
+
+\textbf{Step 5. Final purity and information conservation}
+
+When the black hole fully evaporates, $\dim \mathcal{H}_{\mathrm{BH}} = 1$, so $\rho_{\mathrm{BH}}$ must be a pure state, $S_{\mathrm{BH}} = 0$. By entropy symmetry we must have $S_{\mathrm{rad}} = 0$, indicating all information is ultimately encoded in the radiation in pure-state form. Information is never lost in the QCA's unitary evolution; it is only distributed in a highly scrambled manner in a large-dimensional radiation Hilbert space during intermediate stages.
+
+The above logic completes the proof of Theorem~\ref{thm:page}. A more refined functional form of entropy versus time can refer to Page's numerical calculations and subsequent improvements; Appendix C gives a simple parametric model and discusses its applicability in the QCA context.
+
+\section{Model Application}
+
+This section applies the above general results to a simplified static, spherically symmetric black hole model, demonstrating how to construct a discrete horizon in the QCA framework, estimate connection count, and correspond to Schwarzschild geometry in the continuum limit.
+
+\subsection{Static Spherically Symmetric Discrete Horizon}
+
+Consider embedding in QCA an approximately spherically symmetric high-information-density region whose continuum-limit geometry can be described by the Schwarzschild metric
+$$
+\mathrm{d}s^2 = -\left(1 - \frac{2GM}{r c^2}\right) c^2 \mathrm{d}t^2
++ \left(1 - \frac{2GM}{r c^2}\right)^{-1} \mathrm{d}r^2 + r^2 \mathrm{d}\Omega^2.
+$$
+In the optical metric approximation, the refractive index is written as
+$$
+n(r) = \left(1 - \frac{2GM}{r c^2}\right)^{-1/2},
+$$
+which diverges at the Schwarzschild radius $r_s = 2GM / c^2$. In the QCA model, $\rho_{\mathrm{info}}(r)$ increases monotonically as $r$ decreases and approaches $\rho_{\max}$ near some radius $r_h$.
+
+Defining the discrete horizon at $r = r_h$, the corresponding area is
+$$
+A = 4 \pi r_h^2.
+$$
+On the discrete lattice, the set of lattice sites near the horizon satisfying $\lvert \lVert x \rVert - r_h \rvert < a/2$ has cardinality $N_{\Sigma}$ approximately
+$$
+N_{\Sigma} \approx \frac{A}{a^2}.
+$$
+
+\subsection{Connection Count and Entropy Estimate}
+
+Adopting the result of Theorem~\ref{thm:area}, the cross-boundary connection count is
+$$
+N_{\mathrm{link}} \approx \eta \frac{A}{a^2} = \eta \frac{4 \pi r_h^2}{a^2}.
+$$
+Assigning $k_B \ln 2$ entanglement entropy to each connection, we obtain
+$$
+S_{\mathrm{BH}} \approx 4 \pi \eta k_B \ln 2 \frac{r_h^2}{a^2}.
+$$
+Identifying $a$ with $\ell_P$ and tuning $\eta$ such that
+$$
+4 \pi \eta \ln 2 = \frac{1}{4},
+$$
+recovers
+$$
+S_{\mathrm{BH}} = \frac{k_B A}{4 \ell_P^2}.
+$$
+More finely, identifying connections with spin network punctures and fixing the Immirzi parameter via loop quantum gravity's microscopic counting, $\eta$ need not be viewed as an arbitrary fitting parameter but is determined by spin network topology and statistical weights. This correspondence is developed in Appendix B.
+
+\subsection{Temperature and Surface Gravity in QCA}
+
+In the QCA model, the internal phase frequency $\omega_{\mathrm{int}}$ on the freezing layer is related to the effective temperature observed externally. Using the unified time identity and the relation between local density of states and scattering phase derivative, the Hawking temperature can be interpreted as a characteristic scale of the group delay spectrum of freezing layer modes. This part involves work on unified time scales and scattering time delay, not expanded here; we only point out:
+
+\textbf{(1)} The trace of the group delay matrix $\mathsf{Q}(\omega)$ for modes on the freezing layer determines the local time-scale density $\kappa(\omega)$.
+
+\textbf{(2)} For a freezing layer in approximate thermal equilibrium, the Hawking temperature can be determined by the relation between spectral population of corresponding modes and $\kappa(\omega)$, thereby matching surface gravity $\kappa$.
+
+This indicates that black hole temperature can also be explained in the frequency-domain scattering description of QCA and remains consistent with geometric surface gravity.
+
+\section{Engineering Proposals}
+
+Although Hawking radiation from astrophysical black holes is extremely weak and difficult to observe directly, the QCA black hole model nevertheless yields several engineering predictions testable in analog systems and numerical simulations.
+
+\subsection{Non-thermal Correlations on Analog Black Hole Platforms}
+
+Analog black hole experiments (such as acoustic horizons in Bose--Einstein condensates) have already observed approximately thermal Hawking radiation spectra and entanglement correlations of phonon pairs across the horizon. In the QCA model, highly entangled discrete connections exist on the freezing layer, and outward leakage radiation should carry detectable non-Gaussian correlations and many-body entanglement structures.
+
+\textbf{Suggestions:}
+
+\textbf{(1)} In analog black hole experiments, detect hidden correlations deviating from purely thermal distributions by measuring higher-order correlation functions and quantum Fisher information of radiation modes.
+
+\textbf{(2)} Use quantum tomography and machine learning methods to reconstruct the effective density matrix and verify whether many-body entanglement patterns consistent with QCA model predictions exist.
+
+\subsection{Quantum Simulation and Realization of Discrete Horizons}
+
+On discrete-time quantum walk and quantum circuit platforms, Dirac-type QCA simulations have been realized, and relativistic effects such as Zitterbewegung have been observed. On programmable quantum computing platforms, the following experiment can be constructed:
+
+\textbf{(1)} Design a two- or three-dimensional QCA with high-density local unitary gates arranged in the central region to simulate the information freezing layer, with low-density regions on the periphery.
+
+\textbf{(2)} Prepare an initial pure-state wavepacket collapsing into the central region, and record the evolution of the external ``radiation'' quantum state over discrete time.
+
+\textbf{(3)} After sufficient time steps, perform complete tomography or shadow measurements on the external subsystem to verify whether the external radiation evolves from an early approximately thermal state to a pure state, and reconstruct the Page curve.
+
+This scheme provides a concrete path for ``simulating'' the black hole Page curve under conditions of finite qubit count and controllable noise, echoing recent model studies on traceable Page curves.
+
+\subsection{Optical Simulation of Information Freezing Layer}
+
+On optical platforms, effective ``optical black holes'' can be constructed via spatial refractive index modulation, where refractive index variation with radius causes light ray deflection and capture. To test parts of the QCA optical metric's predictions, one can:
+
+\textbf{(1)} Use metamaterials to construct media with strong refractive index gradients, approximately designing refractive index as $n(r) = 1 / (1 - \rho_{\mathrm{eff}}(r)/\rho_{\max})$.
+
+\textbf{(2)} Study beam group velocity slowdown and reflection--transmission properties near the ``freezing layer'' region, verifying embodiment of information rate conservation in analog systems.
+
+Although such experiments cannot directly simulate quantum entanglement structure, they can verify partial macroscopic effects of the refractive index--information density relation.
+
+\section{Discussion: Risks, Boundaries, Past Work}
+
+\subsection{Comparison with Existing Black Hole Entropy Theories}
+
+The entropy--area derivation given in this paper has correspondences with multiple existing theories:
+
+\textbf{(1) With loop quantum gravity:} Both describe the horizon as discrete geometry composed of spin network punctures and recover $S_{\mathrm{BH}} = A/(4\ell_P^2)$ via microscopic state counting. The present QCA model can be viewed as providing a dynamical realization of this picture in time discreteness and causal locality.
+
+\textbf{(2) With AdS/CFT and Cardy formula:} In the AdS/CFT framework, black hole entropy is given by the state density of the boundary conformal field theory, with the Cardy formula providing a powerful tool for two-dimensional cases. The ``freezing layer'' here can be viewed as a kind of discretized boundary theory, with connection degrees of freedom corresponding to high-energy modes in the boundary field theory.
+
+\textbf{(3) With ``dirty black holes'' and Wald entropy:} For generalized gravity theories, Wald entropy and Noether charges provide a systematic framework for extending the entropy--area relation. In the QCA model, if the underlying update rules correspond in the effective continuum limit to a non-Einstein--Hilbert Lagrangian, the connection count coefficient and its relation to $\ell_P$ may receive corrections, corresponding to additional terms in Wald entropy in the discrete picture.
+
+\subsection{Compatibility and Differences with Information Paradox Schemes}
+
+Compared to other information paradox schemes, the distinctive feature of this work is:
+
+\textbf{(1)} The model assumes from the outset that global evolution is strictly unitary, allowing no non-unitary ``collapse'' or information absorption.
+
+\textbf{(2)} The ``impassability'' of the horizon applies only to low-energy long-wavelength observers; for an ``omniscient observer'' with access to the complete Hilbert space and QCA update rules, there is no true information isolation.
+
+\textbf{(3)} The firewall controversy stems from the tension between exterior--interior and exterior--radiation entanglement. In the QCA model, all entanglement channels visible to the exterior are concentrated in a finite-thickness freezing layer, whose local structure may serve as an ``intermediate layer'' simultaneously satisfying smooth horizon and unitarity.
+
+This picture is not necessarily contradictory with black hole complementarity, ER=EPR, or the island formula; it is more like a lift of them onto discrete ontology: the nontrivial topology and entanglement relations described by ER=EPR can be realized at the level of QCA network topology and connection count; the ``quantum extremal surface'' in the island formula can be viewed as the optimal freezing layer extremizing some information measure.
+
+\subsection{Model Boundaries and Potential Risks}
+
+This framework depends on several nontrivial assumptions:
+
+\textbf{(1)} The underlying universe can indeed be well described at Planck scale by a QCA universe model, rather than continuum field theory or other discrete structures.
+
+\textbf{(2)} The functional relation between optical refractive index and information density remains valid in strong gravitational fields; its form may need refinement in a more detailed QCA--GR correspondence.
+
+\textbf{(3)} Whether fast scrambling and Haar random state approximation hold in the real black hole background remains an open question, despite substantial evidence that large black holes behave as efficient information scramblers.
+
+Additionally, treating connections as independent maximally entangled channels ignores possible many-body constraints and long-range correlations; more refined analysis may need tools from random tensor networks and entanglement webs.
+
+\section{Conclusion}
+
+This paper presents a discrete-horizon model within the quantum cellular automaton and optical path conservation frameworks, providing a unified description of the black hole entropy--area law and the information paradox. The main conclusions can be summarized as follows:
+
+\textbf{(1)} In a QCA universe satisfying information rate conservation and having bounded local degree, the black hole horizon can be defined as an information freezing layer---a critical shell where external group velocity $v_{\mathrm{ext}}$ approaches zero and internal phase rate $v_{\mathrm{int}}$ approaches $c$.
+
+\textbf{(2)} The connection set $\mathcal{L}$ crossing the freezing layer carries all entanglement and information channels between interior and exterior regions. On the operator algebra visible externally, black hole interior information can be equivalently encoded in these connection degrees of freedom, forming a discrete holographic storage structure.
+
+\textbf{(3)} Under local isotropy and maximal entanglement assumptions, the cross-boundary connection count $N_{\mathrm{link}}$ scales with area as $N_{\mathrm{link}} \propto A / \ell_P^2$; each connection contributes $k_B \ln 2$ entanglement entropy, yielding $S_{\mathrm{BH}} \propto A$. Identifying connections with $\mathrm{SU}(2)$ spin network punctures and adopting the standard loop quantum gravity area spectrum and Immirzi parameter results precisely recovers the Bekenstein--Hawking entropy formula.
+
+\textbf{(4)} Under finite-dimensional Hilbert space and fast scrambling assumptions, QCA's unitary evolution ensures the black hole--radiation joint system remains in a pure state. Using Page's average entropy result, we prove radiation entropy evolves over time as a Page curve that first rises then falls, ultimately returning to zero, so the information paradox naturally disappears in this model.
+
+This discrete-horizon--QCA picture indicates that black hole entropy can be strictly understood as entanglement-connection counting on discrete causal horizons, not an ancillary property of continuum geometry; Hawking radiation is encrypted information flow leaking outward from high-dimensional entangled states on the freezing layer via QCA scattering mechanisms. This framework provides new quantitative support for the view ``spacetime emerges from quantum information,'' and offers concrete paths for simulating and testing black hole information dynamics in controlled quantum systems.
+
+\section*{Acknowledgments}
+
+The authors thank the research communities in quantum information, quantum gravity, and analog gravity for systematic achievements on topics including black hole entropy, Page curve, and quantum cellular automata.
+
+This paper is primarily theoretical analysis; all derivations are completed at the analytic level, with no numerical simulation code used. Quantum circuits and pseudocode demonstrating QCA--black hole toy models may be provided in subsequent work.
+
+\begin{thebibliography}{99}
+
+\bibitem{bekenstein}
+J. D. Bekenstein, ``Black holes and entropy,'' \textit{Phys. Rev. D} \textbf{7}, 2333 (1973).
+
+\bibitem{hawking}
+S. W. Hawking, ``Particle creation by black holes,'' \textit{Commun. Math. Phys.} \textbf{43}, 199 (1975).
+
+\bibitem{bardeen}
+J. M. Bardeen, B. Carter, S. W. Hawking, ``The four laws of black hole mechanics,'' \textit{Commun. Math. Phys.} \textbf{31}, 161 (1973).
+
+\bibitem{bousso}
+R. Bousso, ``The holographic principle,'' \textit{Rev. Mod. Phys.} \textbf{74}, 825 (2002).
+
+\bibitem{page1}
+D. N. Page, ``Average entropy of a subsystem,'' \textit{Phys. Rev. Lett.} \textbf{71}, 1291 (1993).
+
+\bibitem{page2}
+D. N. Page, ``Time dependence of Hawking radiation entropy,'' \textit{J. Cosmol. Astropart. Phys.} \textbf{09}, 028 (2013).
+
+\bibitem{hayden}
+P. Hayden, J. Preskill, ``Black holes as mirrors: quantum information in random subsystems,'' \textit{J. High Energy Phys.} \textbf{09}, 120 (2007).
+
+\bibitem{thooft}
+G. 't Hooft, ``Dimensional reduction in quantum gravity,'' \textit{Conf. Proc. C} \textbf{930308}, 284 (1993).
+
+\bibitem{susskind}
+L. Susskind, ``The world as a hologram,'' \textit{J. Math. Phys.} \textbf{36}, 6377 (1995).
+
+\bibitem{ashtekar}
+A. Ashtekar, J. Baez, A. Corichi, K. Krasnov, ``Quantum geometry and black hole entropy,'' \textit{Phys. Rev. Lett.} \textbf{80}, 904 (1998).
+
+\bibitem{krasnov}
+K. Krasnov, ``On the constant that fixes the area spectrum in canonical quantum gravity,'' \textit{Class. Quantum Grav.} \textbf{15}, L47 (1998).
+
+\bibitem{ghosh}
+A. Ghosh, A. Perez, ``Black hole entropy and isolated horizons thermodynamics,'' \textit{Phys. Rev. Lett.} \textbf{107}, 241301 (2011).
+
+\bibitem{abreu}
+E. M. C. Abreu et al., ``On the role of Barrow's fractal entropy in loop quantum gravity,'' \textit{Europhys. Lett.} \textbf{137}, 10003 (2022).
+
+\bibitem{neto}
+J. Ananias Neto, R. Thibes, ``Revisiting the Immirzi parameter: Landauer's principle and alternative entropy frameworks in loop quantum gravity,'' \textit{Eur. Phys. J. C} \textbf{85}, 918 (2025).
+
+\bibitem{dariano}
+G. M. D'Ariano, ``Quantum field as a quantum cellular automaton I: the Dirac free evolution in one dimension,'' \textit{Phys. Lett. A} \textbf{376}, 697 (2012).
+
+\bibitem{mallick}
+A. Mallick, C. M. Chandrashekar, ``Dirac cellular automaton from split-step quantum walk,'' \textit{Sci. Rep.} \textbf{6}, 25779 (2016).
+
+\bibitem{brun}
+T. A. Brun, M. C. Kimberley, ``Quantum cellular automata and quantum field theory in two spatial dimensions,'' \textit{Phys. Rev. A} \textbf{102}, 062222 (2020).
+
+\bibitem{huerta}
+C. Huerta Alderete et al., ``Quantum walks and Dirac cellular automata on a programmable trapped-ion quantum computer,'' \textit{Commun. Phys.} \textbf{3}, 89 (2020).
+
+\bibitem{arrighi}
+P. Arrighi, S. Facchini, M. Forets, ``Discrete Lorentz covariance for quantum walks and quantum cellular automata,'' \textit{New J. Phys.} \textbf{16}, 093007 (2014).
+
+\bibitem{steinhauer}
+J. Steinhauer, ``Observation of quantum Hawking radiation and its entanglement in an analogue black hole,'' \textit{Nat. Phys.} \textbf{12}, 959 (2016); J. R. Muñoz de Nova et al., ``Observation of thermal Hawking radiation and its temperature in an analogue black hole,'' \textit{Nature} \textbf{569}, 688 (2019).
+
+\bibitem{unruh}
+W. G. Unruh, ``Experimental black-hole evaporation?,'' \textit{Phys. Rev. Lett.} \textbf{46}, 1351 (1981).
+
+\bibitem{visser}
+M. Visser, ``Dirty black holes: entropy versus area,'' \textit{Phys. Rev. D} \textbf{48}, 583 (1993).
+
+\bibitem{arefeva}
+I. Aref'eva et al., ``Complete evaporation of black holes and Page curves,'' \textit{Symmetry} \textbf{15}, 170 (2023).
+
+\bibitem{wang}
+X. Wang, R. Li, J. Wang, ``Page curves for a family of exactly solvable evaporating black holes,'' \textit{Phys. Rev. D} \textbf{103}, 126026 (2021).
+
+\bibitem{cadoni}
+M. Cadoni, E. Franzin, S. Mignemi, ``Unitarity and Page curve for evaporation of 2D AdS black hole,'' \textit{Phys. Rev. D} \textbf{105}, 024027 (2022).
+
+\end{thebibliography}
+
+\appendix
+
+\section{QCA Formalism and Causal Compression}
+
+\subsection{External Operator Algebra and Equivalent Encoding on Freezing Layer}
+
+This appendix provides a more detailed construction of the Hilbert space equivalence in Theorem~\ref{thm:holo}.
+
+Let $\mathcal{A}_{\mathrm{out}}$ be the bounded operator algebra on the exterior region, generated by local operators supported in the $\mathrm{Out}$ region and their limits. Consider the Heisenberg evolution of QCA:
+$$
+\Phi_t: \mathcal{A}_{\mathrm{out}} \to \mathcal{B}(\mathcal{H}),\quad \Phi_t(A) = U^{-t} A U^t.
+$$
+Due to locality, there exist constants $C$ and velocity $v_c$ (of order $c$) such that a Lieb--Robinson-type inequality holds: for any operators $A,B$ with spatial distance $\mathrm{dist}(\mathrm{supp} A, \mathrm{supp} B) > 0$, we have
+$$
+\lVert [\Phi_t(A), B] \rVert \leq C \lVert A \rVert \lVert B \rVert \exp\left( -\mu [\mathrm{dist}(\mathrm{supp} A, \mathrm{supp} B) - v_c t]_+ \right),
+$$
+where $[\cdot,\cdot]$ is the commutator, $[\cdot]_+$ is the positive part, and $\mu>0$.
+
+Inside the freezing layer, external group velocity $\lvert v_{\mathrm{ext}} \rvert$ is suppressed, so signals propagating from the interior volume region to the exterior require time scales far longer than the observation time $T$. Thus, in the time window $t \leq T$, the interior volume region can be viewed as ``causally silent,'' and its effect on the external operator algebra can be compressed via a CPTP map onto auxiliary degrees of freedom on the freezing layer.
+
+More precisely, fix time window $[0,T]$ and consider the evolved operator family $\Phi_t(\mathcal{A}_{\mathrm{out}})$. Define
+$$
+\mathcal{H}_{\mathrm{eff}} = \mathcal{H}_{\mathrm{out}} \otimes \mathcal{H}_{\mathcal{H}},
+$$
+and projection
+$$
+P: \mathcal{H} \to \mathcal{H}_{\mathrm{eff}},
+$$
+tracing out interior volume degrees of freedom. Since feedback from the interior to the exterior is exponentially suppressed in time $T$, one can prove there exists a CPTP map
+$$
+\mathcal{E}: \mathcal{B}(\mathcal{H}_{\mathrm{eff}}) \to \mathcal{B}(\mathcal{H}_{\mathrm{eff}})
+$$
+such that for any $A \in \mathcal{A}_{\mathrm{out}}$,
+$$
+\left\lVert P \Phi_t(A) P - \mathcal{E}^t(P A P) \right\rVert \leq \epsilon(T),
+$$
+where $\epsilon(T)$ is controlled by $T$.
+
+To an external observer, within accuracy $\epsilon(T)$, the interior volume can be effectively treated as an environment system $\mathcal{H}_{\mathrm{aux}}$ on the freezing layer. The Stinespring representation theorem guarantees the existence of
+$$
+\mathcal{H}_{\mathrm{BH}} \cong \bigotimes_{\ell \in \mathcal{L}} \mathcal{H}_{\ell}^{(\mathrm{in})} \otimes \mathcal{H}_{\mathrm{aux}},
+$$
+corresponding to the statement of Theorem~\ref{thm:holo}.
+
+\subsection{Geometric Estimation of Connection Count}
+
+In the case of cubic lattice structure, lattice sites near the freezing layer can be approximately viewed as a two-dimensional discrete mesh attached to the continuum surface $\Sigma$, with lattice spacing $a$.
+
+\textbf{(1)} Partition $\Sigma$ into area elements $\Delta A = a^2$, each corresponding to one or several lattice sites.
+
+\textbf{(2)} For a simple cubic lattice, each lattice site on average has one normal connection crossing the surface (pointing inward or outward) and several tangent connections. Cross-boundary connections mainly come from normal edges.
+
+\textbf{(3)} For sufficiently large $A$, edge effects can be neglected, and the cross-boundary connection count is approximately
+$$
+N_{\mathrm{link}} \approx \frac{A}{a^2}.
+$$
+More general lattice types only change the geometric constant prefactor.
+
+This estimate is consistent with the standard result ``number of surface atoms $\sim A / a^2$'' in solid-state physics.
+
+\section{Spin Network Picture and the 1/4 Coefficient}
+
+This appendix connects the QCA connection model to the loop quantum gravity spin network horizon model, explaining why the $1/4$ coefficient can be recovered under natural assumptions.
+
+\subsection{Area Spectrum and Immirzi Parameter}
+
+In loop quantum gravity, the eigenvalue spectrum of the area operator is
+$$
+A = 8 \pi \gamma \ell_P^2 \sum_i \sqrt{j_i (j_i + 1)},
+$$
+where the sum runs over all spin network edges puncturing the horizon, and $j_i$ is the corresponding spin quantum number.
+
+If we assume that in the large-area limit, the main contribution comes from $j = 1/2$ punctures, then the single-puncture area contribution is
+$$
+A_{1/2} = 4 \pi \gamma \sqrt{3} \ell_P^2.
+$$
+The internal edge state space dimension corresponding to the puncture is
+$$
+\dim \mathcal{H}_{1/2} = 2j+1 = 2,
+$$
+so each puncture can contribute entropy $k_B \ln 2$.
+
+Writing the total puncture count as
+$$
+N = \frac{A}{A_{1/2}} = \frac{A}{4 \pi \gamma \sqrt{3} \ell_P^2},
+$$
+the total entropy is
+$$
+S = N k_B \ln 2 = \frac{k_B \ln 2}{4 \pi \gamma \sqrt{3}} \frac{A}{\ell_P^2}.
+$$
+Requiring $S = k_B A / (4 \ell_P^2)$ gives
+$$
+\gamma = \frac{\ln 2}{\pi \sqrt{3}}.
+$$
+Recent work shows this value can be independently obtained via Landauer's principle and information erasure cost, strengthening its physical interpretation.
+
+\subsection{Identification of QCA Connections with Spin Punctures}
+
+In the present QCA model, the Hilbert space on each connection $\ell$ is taken as $\mathcal{H}_{\ell}^{(\mathrm{in})} \otimes \mathcal{H}_{\ell}^{(\mathrm{out})}$, where each factor is a two-level system. Identifying
+$$
+\mathcal{H}_{\ell}^{(\mathrm{in})} \cong \mathcal{H}^{(j=1/2)}
+$$
+with the spin-$1/2$ representation, then:
+
+\textbf{(1)} Each connection corresponds to one spin network edge puncture on the horizon, contributing area $A_{1/2}$.
+
+\textbf{(2)} Each connection contributes one bit of maximal entanglement entropy $k_B \ln 2$.
+
+Thus the QCA connection network on the horizon is isomorphic in state counting to the loop quantum gravity spin network model. The black hole entropy--area relation can be viewed as two expressions of the same counting problem in different languages.
+
+\subsection{Non-$j=1/2$ Modes and Correction Terms}
+
+In more general cases, high-spin $j>1/2$ punctures and many-body constraints bring logarithmic corrections to the leading term. Existing research shows $-\alpha \ln A$ corrections appear in loop quantum gravity black hole entropy, with coefficient depending on the microscopic model.
+
+In the QCA connection model, these corrections can be understood as:
+
+\textbf{(1)} Some connections correspond to higher-dimensional local Hilbert spaces (multi-level systems or multiple line coincidences).
+
+\textbf{(2)} Global constraints exist inside the freezing layer (such as total spin, topological number conservation), reducing the allowed entanglement configuration count.
+
+These effects do not change the leading area term $A / (4 \ell_P^2)$ but yield logarithmic or power corrections at subleading order, corresponding to signatures of different quantum gravity schemes.
+
+\section{Page Curve in a Finite-Dimensional QCA Toy Model}
+
+To concretely demonstrate realization of the Page curve in the QCA context, consider the following simple model:
+
+\textbf{(1)} Take the initial black hole Hilbert space dimension $d_{\mathrm{BH}}(0) = 2^N$, corresponding to $N$ connections or $N$ freezing-layer bits.
+
+\textbf{(2)} At each discrete time step, release one qubit from the black hole to radiation, sufficiently entangling it with already radiated qubits and remaining black hole degrees of freedom via a random unitary gate.
+
+\subsection{Iterative Process}
+
+After the $k$-th step, the black hole has $N-k$ remaining qubits, and radiation has $k$ qubits. Under the fast scrambling assumption, the joint state
+$$
+\lvert \Psi_k \rangle \in \left(\mathbb{C}^2\right)^{\otimes (N-k)} \otimes \left(\mathbb{C}^2\right)^{\otimes k}
+$$
+can be approximately viewed as a Haar-random pure state.
+
+By the Page theorem, if $k \leq N/2$, then radiation entropy is approximately
+$$
+S_{\mathrm{rad}}(k) \approx k_B \left( k \ln 2 - \frac{1}{2} \right),
+$$
+while when $k \geq N/2$, the smaller subsystem is the black hole, and radiation entropy becomes
+$$
+S_{\mathrm{rad}}(k) \approx k_B \left( (N-k) \ln 2 - \frac{1}{2} \right).
+$$
+After normalization, a symmetric Page curve is obtained, reaching a peak $\approx k_B (N \ln 2 - 1/2)$ at $k = N/2$, then linearly declining as $k$ increases, with final state $k=N$ having $S_{\mathrm{rad}}(N) \approx 0$.
+
+\subsection{Correspondence with Continuous-Time Evaporation}
+
+In continuous-time models, black hole mass $M(t)$ and horizon area $A(t)$ slowly decrease with Hawking radiation. The Page curve of radiation entropy over time can be obtained by viewing $k$ as the number of released effective degrees of freedom and interpolating with continuous parameter $t$. Recent work's numerical simulations show that, under the assumption of unitary evaporation and fast scrambling, such simplified models yield Page curves qualitatively consistent with more sophisticated gravity--quantum field theory models.
+
+\subsection{Realization in QCA Context}
+
+In QCA, the above toy model can be realized as follows:
+
+\textbf{(1)} Initialize $N$ cells in the freezing layer to a highly entangled state, isolated from the external environment.
+
+\textbf{(2)} At each time step, map one freezing-layer cell's degrees of freedom to an external radiation link via a local unitary gate, while applying sufficiently deep local random circuits inside the freezing layer to achieve fast scrambling.
+
+\textbf{(3)} After each step, perform complete tomography on the external radiation subsystem, computing von Neumann entropy to obtain the discrete Page curve.
+
+This process can be realized on any programmable quantum computing platform, providing a feasible path for testing the quantitative relationship among ``freezing layer--connection--Page curve.''
+
+\section{Remarks on Extensions and Open Problems}
+
+\textbf{(1) Rotating and charged black holes}
+
+For Kerr and Reissner--Nordström black holes, horizon structure and temperature--angular momentum--charge relations are more complex. The QCA model can simulate these effects by introducing anisotropy in angular momentum and charge flow density on the freezing layer; the connection count and entropy--area relation are expected to retain the leading form.
+
+\textbf{(2) Multiple horizons and inner horizon stability}
+
+In cases with inner horizons (e.g., Reissner--Nordström, Kerr--Newman), multiple freezing layers can be constructed, and the topological structure and information transport of connection networks on them can be analyzed. The discrete model may provide a new perspective on microscopic mechanisms of ``mass inflation'' and inner horizon instability.
+
+\textbf{(3) Relation to the island formula}
+
+Recent island formulas reconstruct radiation entropy calculations by introducing ``quantum extremal surfaces.'' The freezing layer in QCA can be viewed as a kind of discrete extremal surface, whose position is jointly determined by information rate and entanglement structure. How to unify the variational problems of the two into a discrete--continuum hybrid extremal problem is a direction worth deep investigation in the future.
+
+\textbf{(4) Observational constraints and complexity bounds}
+
+Although information is strictly preserved in QCA, decoding information in black hole radiation may require exponentially large circuit complexity. How to introduce complexity geometry and ``computability'' boundaries in this framework will be an important bridge connecting the information paradox and computational complexity theory.
+
+\end{document}
+

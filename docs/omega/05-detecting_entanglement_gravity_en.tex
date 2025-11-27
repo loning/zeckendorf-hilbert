@@ -1,0 +1,734 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{braket}
+\usepackage{graphicx}
+\usepackage{bm}
+\usepackage{booktabs}
+
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\title{Detecting Entanglement Gravity: Distinguishing Energy-Sourced and Information-Sourced Gravity using High-Q Superconducting Cavities}
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+In the standard framework of General Relativity, the gravitational field is completely determined by the energy-momentum tensor $T_{\mu\nu}$; in the weak-field limit, as long as the energy density and pressure distribution remain unchanged, gravitational effects are independent of the entanglement structure of quantum states. In contrast, a series of works based on entropy, entanglement, and holographic principles suggest that Einstein's equations can be derived from local entropy balance or vacuum entanglement structure, hinting that spacetime geometry may be fundamentally determined by quantum information. Building on the previous "conservation of optical path--conservation of information volume" framework, this paper introduces a phenomenological "entanglement gravity" term: local von Neumann entropy density or entanglement entropy density $\rho_{\text{ent}}$ affects the Shapiro-type phase delay of light by modifying the optical refractive index $n(x)$.
+
+To experimentally distinguish "energy gravity" from "information gravity," we propose a class of table-top experiments: using high-Q superconducting microwave cavities, while keeping the expected electromagnetic field energy $\langle H\rangle$ inside the cavity constant, periodically switch between low-entanglement coherent states and highly entangled squeezed states or multi-mode cluster states, and measure the additional optical path length and phase delay via a high-finesse Fabry--Perot probe beam passing near the cavity. This paper constructs an optical metric model containing an information-gravity coupling constant $\lambda_{\text{ent}}$, and proves that under weak-field and paraxial approximations, the phase difference between modulated states satisfies
+$$
+|\Delta\Phi \simeq \lambda_{\text{ent}}\,\mathcal{G}\,\Delta s_{\text{ent}},
+$$
+where $\Delta s_{\text{ent}}$ is the change in entanglement entropy surface density inside the cavity, and $\mathcal{G}$ is a geometric factor determined by cavity geometry and probe beam path. Further combining contemporary superconducting cavity Q-factors and laser interferometry techniques, for typical parameters ($Q\sim 10^{9\text{--}10}$, $\Delta S_{\text{ent}}\sim 10\text{--}10^2$ bit, finesse $\mathcal F\sim 10^5$), we estimate the expected signal magnitude and noise budget. Results show that under reasonable geometric configurations and lock-in schemes, if $\lambda_{\text{ent}}$ is not lower than a critical value, the corresponding phase modulation amplitude can reach $\Delta\Phi\sim 10^{-9}\,\text{rad}$ scale, approaching the phase sensitivity limit of current laser interferometry and squeezed-light readout chains. Conversely, if no differential phase signal modulated at the entanglement frequency is observed, direct experimental upper bounds can be imposed on $\lambda_{\text{ent}}$, thereby providing the first quantitative constraint on "whether entanglement itself serves as a gravitational source" experimentally.
+\end{abstract}
+
+\textbf{Keywords:} Entanglement Gravity; Conservation of Optical Path; Shapiro Delay; Superconducting Microwave Cavities; Quantum Optics; Table-top Gravity Experiments
+
+\section{Introduction \& Historical Context}
+
+General Relativity describes gravity as four-dimensional spacetime geometry with Lorentzian signature, where the metric $g_{\mu\nu}$ is determined by Einstein's equations
+$$
+G_{\mu\nu} = \frac{8\pi G}{c^4} T_{\mu\nu}.
+$$
+The right-hand side of this equation is uniquely given by the energy-momentum tensor $T_{\mu\nu}$, and in this framework, the gravitational source is "energy-momentum" rather than independent information quantities or entanglement structures. In the weak-field limit, the metric can be written as $g_{\mu\nu}=\eta_{\mu\nu}+h_{\mu\nu}$, where $h_{\mu\nu}$ is directly related to the Newtonian potential $\Phi$. Classical Shapiro time delay experiments precisely verify the light speed modification and optical path delay produced by this energy-sourced gravity.
+
+On the other hand, research on "whether gravity and spacetime originate from entropy and entanglement" has developed continuously over the past three decades. Jacobson derived Einstein's equations from the thermodynamic equilibrium relation $\delta Q = T \delta S$ at local Rindler horizons, interpreting them as an "equation of state." Ryu--Takayanagi and subsequent works show that in AdS/CFT holographic correspondence, the entanglement entropy of conformal field theory subregions equals the area of corresponding minimal surfaces in anti-de Sitter space, revealing a precise quantitative connection between quantum entanglement and geometric area. Van Raamsdonk further proposed that macroscopic connected spacetime can be viewed as the "glue" of underlying quantum degrees of freedom's entanglement structure, with reduced entanglement leading to geometric "tearing" or "breaking" of spacetime regions. Verlinde's entropic gravity scheme more directly views gravity as an entropic force related to information, entropy, and holographic screens.
+
+These works jointly point to a picture: spacetime geometry and gravitational field are, in some sense, emergent descriptions of quantum information and entanglement structures, and Einstein's equations can be understood as macroscopic approximations of some "entanglement equilibrium condition." However, most establish indirect connections between "geometry ↔ entropy/entanglement" at the theoretical level; experiments directly testing "whether entanglement serves as an independent gravitational source" remain absent.
+
+Recently, Bose et al. and Marletto--Vedral et al. proposed the famous BMV-type table-top experimental scheme: using gravitational interaction to produce observable spontaneous entanglement between mass superposition states, thereby proving "if two quantum systems become entangled through a field interaction, then that field must be a quantum entity." This approach uses "entanglement as witness" to infer the quantum nature of the gravitational field, but does not claim that entanglement itself contributes additionally to gravitational strength. Subsequent analyses further discuss the feasibility and limitations of this scheme under locality, quantum field theory modeling, and classical field reformulations.
+
+Differently, this paper considers a more radical possibility: beyond the energy-momentum tensor, there exists an "information gravity source" related to local entanglement structure or information processing density. In the previous "conservation of information volume--optical metric" framework, we proposed that in the weak-field limit, an effective refractive index field $n(x)$ can encode metric perturbations, where $n(x)$ is determined by local information volume or information processing rate. If this framework is correct, then under conditions of constant energy density, purely changing local entanglement structure should in principle cause observable optical path changes.
+
+Experimentally, to decouple "energy" and "entanglement" as two types of gravitational sources under controlled conditions requires satisfying the following:
+
+1. High-precision locking of energy expectation value $\langle H\rangle$ can be achieved;
+2. Entanglement entropy or von Neumann entropy can be modulated significantly while keeping $\langle H\rangle$ essentially constant;
+3. Extremely weak refractive index or optical path changes can be measured near the target volume.
+
+High-Q superconducting microwave cavities and modern quantum optics techniques precisely provide such a platform. In recent years, work based on superconducting RF cavities and three-dimensional cavity QED has achieved microwave cavity quality factors $Q>10^{10}$ at temperatures around 10 mK, maintaining quantum state coherence over millisecond or longer timescales, providing stable carriers for highly entangled optical fields such as multi-mode squeezed states and cluster states. Meanwhile, in interferometry, relying on high-finesse optical cavities and squeezed light injection, phase sensitivity approaching the quantum limit has been achieved in gravitational wave detectors like LIGO.
+
+In this technical context, this paper proposes and analyzes the following question: Near a high-Q superconducting microwave cavity with highly stable total energy, if switching periodically between low-entanglement and high-entanglement states, will a probe beam passing through this region exhibit additional Shapiro-type phase delay, beyond standard GR predictions, modulated at the entanglement frequency? Observing such a differential signal would support the hypothesis that "information/entanglement serves as an independent gravitational source"; failure to observe it would impose experimental upper limits on relevant coupling constants.
+
+The structure below: Section 2 constructs the optical metric model of information gravity and gives basic assumptions; Section 3 presents main results, showing in theorem form that under fixed energy conditions, entanglement entropy modulation necessarily leads to optical path modulation; Section 4 combines superconducting microwave cavities with high-finesse optical cavities to provide numerical estimates and parameter constraints; Section 5 discusses experimental engineering implementation and noise budget; Section 6 discusses risks and relationships with existing work; finally concluding with prospects, and detailed derivations of optical metrics, Shapiro phase, and error budget are provided in appendices.
+
+\section{Model \& Assumptions}
+
+\subsection{Optical Metric Model of Information Gravity}
+
+Under weak-field static approximation, the standard GR line element can be written as
+$$
+\mathrm d s^2 = -\left(1+\frac{2\Phi(\mathbf x)}{c^2}\right)c^2\,\mathrm d t^2
++\left(1-\frac{2\Psi(\mathbf x)}{c^2}\right)\mathrm d\mathbf x^2,
+$$
+where $\Phi \simeq \Psi$ is the Newtonian potential, satisfying
+$$
+\nabla^2 \Phi(\mathbf x) = 4\pi G \rho_E(\mathbf x),
+$$
+with $\rho_E$ being energy density. For paraxial propagating light rays, an effective refractive index can be introduced:
+$$
+n_{\text{GR}}(\mathbf x) \simeq 1 - \frac{\Phi(\mathbf x)}{c^2},
+$$
+and Shapiro delay comes from increased optical path due to $n_{\text{GR}}>1$.
+
+In the "conservation of optical path--conservation of information volume" framework, we introduce an additional "information gravity potential" $\Phi_{\text{ent}}$, and assume the total effective potential
+$$
+\Phi_{\text{eff}} = \Phi_E + \Phi_{\text{ent}},
+$$
+where $\Phi_E$ is the conventional potential determined by $T_{\mu\nu}$, and $\Phi_{\text{ent}}$ is directly related to local entanglement entropy density. Thus the total refractive index
+$$
+n(\mathbf x) \simeq 1 - \frac{\Phi_{\text{eff}}(\mathbf x)}{c^2}
+= 1 - \frac{\Phi_E(\mathbf x)}{c^2} - \frac{\Phi_{\text{ent}}(\mathbf x)}{c^2}.
+$$
+
+The phenomenological assumption adopted in this paper is: there exists a coupling compatible with the Bekenstein--Hawking area-entropy relation, linking entanglement entropy surface density $s_{\text{ent}}(\mathbf x)$ to $\Phi_{\text{ent}}$:
+$$
+\Phi_{\text{ent}}(\mathbf x)
+= - \lambda_{\text{ent}}\,c^2\,\frac{\ell_{\text P}^2}{L_*}\,s_{\text{ent}}(\mathbf x),
+$$
+where $\ell_{\text P}$ is the Planck length, $L_*$ is the macroscopic coarse-graining scale (taken as cavity linear size in this experiment), $\lambda_{\text{ent}}$ is a dimensionless coupling constant, and $s_{\text{ent}}$ has units of bit/$\text{m}^2$. Thus, the refractive index correction contributed by information gravity is
+$$
+\delta n_{\text{ent}}(\mathbf x)
+= \frac{\Phi_{\text{ent}}(\mathbf x)}{c^2}
+= -\lambda_{\text{ent}}\,\frac{\ell_{\text P}^2}{L_*}\,s_{\text{ent}}(\mathbf x).
+$$
+
+This form is inspired by black hole entropy $S = A/(4\ell_{\text P}^2)$ where "each $\mathcal O(\ell_{\text P}^2)$ area element corresponds to $\mathcal O(1)$ bit," using $\ell_{\text P}^2 s_{\text{ent}}$ as dimensionless entanglement "overdensity," while $L_*$ brings surface density to the appropriate scale for potential. Its physical meaning can be understood as: in a given macroscopic volume, if boundary entanglement entropy surface density exceeds a baseline value, light path must be slowed (equivalent to local time dilation) to "free up computational resources," thereby achieving conservation of information volume.
+
+\subsection{Cavity Model and Entanglement Entropy Density}
+
+Consider a superconducting microwave cavity with length $L_{\text{cav}}$ and cross-sectional area $A_{\text{cav}}$, supporting a set of discrete modes $\{\hat a_k\}$, with total Hamiltonian
+$$
+\hat H = \sum_k \hbar\omega_k\left(\hat a_k^\dagger \hat a_k + \tfrac 12\right).
+$$
+
+In this paper, we only focus on two macroscopically tunable cavity quantities:
+
+1. Energy expectation value
+   $$
+   E_0 = \langle \hat H\rangle;
+   $$
+
+2. Entanglement entropy surface density under a natural partition (e.g., left-right plates, different polarization or frequency modes)
+   $$
+   s_{\text{ent}} = \frac{S_{\text{ent}}}{A_{\text{cav}}},\qquad
+   S_{\text{ent}} = -\operatorname{tr}\big(\hat\rho_A\log \hat\rho_A\big),
+   $$
+   where $\hat\rho_A$ is the reduced density operator obtained by tracing over one side's degrees of freedom.
+
+Experimentally, we switch between two macroscopically distinguishable states:
+
+\begin{itemize}
+\item State A (baseline state): multi-mode coherent state
+  $$
+  \ket{A}=\bigotimes_{k}\ket{\alpha_k},
+  $$
+  whose von Neumann entropy and entanglement entropy are approximately zero, $S_{\text{ent}}^{(A)}\simeq 0$;
+
+\item State B (test state): multi-mode entangled state, such as multiple pairs of two-mode squeezed vacuum states or cluster states
+  $$
+  \ket{B} = \bigotimes_{j=1}^M \ket{\text{TMSV}(r_j)},
+  $$
+  by choosing squeezing parameters $r_j$ and mode number $M$, adjust total photon number $\langle\hat N\rangle = \sum_k \langle \hat a_k^\dagger\hat a_k\rangle$ to match state A, thereby ensuring
+  $$
+  \langle A|\hat H|A\rangle
+  =\langle B|\hat H|B\rangle
+  = E_0.
+  $$
+\end{itemize}
+
+In these two states, energy density $\rho_E=E_0/(A_{\text{cav}}L_{\text{cav}})$ remains constant, while entanglement entropy surface density jumps from $s_{\text{ent}}^{(A)}\approx 0$ to $s_{\text{ent}}^{(B)}\gg 0$. Define
+$$
+\Delta s_{\text{ent}} = s_{\text{ent}}^{(B)} - s_{\text{ent}}^{(A)},
+\qquad
+\Delta S_{\text{ent}} = S_{\text{ent}}^{(B)} - S_{\text{ent}}^{(A)}.
+$$
+
+Substituting the above into the information gravity refractive index correction gives the refractive index difference between states A and B:
+$$
+\Delta n_{\text{ent}}
+= n_B - n_A
+= -\lambda_{\text{ent}}\,\frac{\ell_{\text P}^2}{L_*}\,\Delta s_{\text{ent}}
+= -\lambda_{\text{ent}}\,\frac{\ell_{\text P}^2}{L_*A_{\text{cav}}}\,\Delta S_{\text{ent}}.
+$$
+
+In the experimental scenario below, we take $L_*$ as $L_{\text{cav}}$, and assume cavity refractive index is transversely uniform, so $\Delta n_{\text{ent}}$ can be viewed as the average correction through a narrow optical path passing through the cavity center.
+
+\subsection{Probe Beam Path and Shapiro-Type Phase Delay}
+
+Consider a probe beam with wavelength $\lambda_p$ passing through the cavity effective region along an approximately straight optical path, forming part of a high-finesse Fabry--Perot optical cavity. Let the geometric length of single-pass through the cavity be $L_{\text{pass}}$ (for complete traversal through cavity, take $L_{\text{pass}}\simeq L_{\text{cav}}$; for grazing edge passage, take smaller value). Under weak refraction approximation, single-pass additional phase delay
+$$
+\delta\phi_{\text{single}}
+= k_p\int_{\text{path}} \Delta n_{\text{ent}}(l)\,\mathrm d l
+\simeq k_p\,\Delta n_{\text{ent}}\,L_{\text{pass}},
+$$
+where $k_p = 2\pi/\lambda_p$.
+
+If the probe beam makes $N$ round trips in the F-P cavity, the total additional phase delay is
+$$
+\Delta\Phi
+= N\,\delta\phi_{\text{single}}
+\simeq \frac{2\pi N L_{\text{pass}}}{\lambda_p}
+\left(-\lambda_{\text{ent}}\frac{\ell_{\text P}^2}{L_{\text{cav}}A_{\text{cav}}}\,\Delta S_{\text{ent}}\right).
+$$
+
+This gives the basic form of Shapiro-type phase modulation induced by information gravity under fixed energy conditions.
+
+\section{Main Results (Theorems and Alignments)}
+
+To facilitate direct correspondence with experimental design, this section presents three core results based on the preceding model, organized in theorem form.
+
+\subsection{Theorem 1 (Phase Modulation Induced by Entanglement Entropy Modulation under Fixed Energy)}
+
+\textbf{Assumptions:}
+
+\begin{enumerate}
+\item When the electromagnetic field inside the cavity switches between state A and state B, it satisfies
+   $$
+   \langle A|\hat H|A\rangle
+   =\langle B|\hat H|B\rangle=E_0,
+   $$
+   i.e., the same energy expectation value;
+
+\item Cavity geometry is fixed, $L_{\text{cav}}$, $A_{\text{cav}}$ unchanged;
+
+\item Information gravity is given by refractive index correction
+   $$
+   \Delta n_{\text{ent}}
+   = -\lambda_{\text{ent}}\,\frac{\ell_{\text P}^2}{L_{\text{cav}}A_{\text{cav}}}\,\Delta S_{\text{ent}};
+   $$
+
+\item Probe beam makes $N\simeq 2\mathcal F/\pi$ round trips in the F-P cavity, where $\mathcal F$ is the finesse, with refractive index correction existing only in the region of length $L_{\text{pass}}$ along the optical path.
+\end{enumerate}
+
+\textbf{Then:} The total phase difference induced by switching between states A and B is
+$$
+\Delta\Phi
+= -\lambda_{\text{ent}}\,\mathcal G\,\Delta S_{\text{ent}},
+$$
+where the geometric factor is
+$$
+\mathcal G
+= \frac{2\pi N L_{\text{pass}}}{\lambda_p}\,
+\frac{\ell_{\text P}^2}{L_{\text{cav}}A_{\text{cav}}}.
+$$
+
+In other words, under fixed energy conditions, all phase modulation related to information gravity is linearly proportional to entanglement entropy change $\Delta S_{\text{ent}}$, independent of energy itself.
+
+\subsection{Theorem 2 (Upper Bound of GR Contribution under Energy Mismatch)}
+
+\textbf{Assumptions:}
+
+\begin{enumerate}
+\item In actual experiments, energy locking has residual mismatch $\delta E = E_B - E_A$, satisfying $|\delta E|\ll E_0$;
+
+\item GR's energy-sourced gravity contribution modifies refractive index via Newtonian potential
+   $$
+   \Delta n_{\text{GR}}
+   \simeq -\frac{\Delta\Phi_E}{c^2}
+   \simeq -\frac{G\,\delta M}{c^2R},
+   $$
+   where $\delta M = \delta E/c^2$, $R$ is typical distance from probe beam path to cavity center;
+
+\item Other conditions same as Theorem 1.
+\end{enumerate}
+
+\textbf{Then:} The upper bound of additional phase difference introduced by GR is
+$$
+|\Delta\Phi_{\text{GR}}|
+\lesssim \frac{2\pi N L_{\text{pass}}}{\lambda_p}\,
+\frac{G|\delta E|}{c^4 R}.
+$$
+
+For typical parameters $E_0\sim 10^{-11}\,\text{J}$, $|\delta E|/E_0\lesssim 10^{-9}$, $R\sim 0.1\,\text{m}$, we obtain
+$$
+|\Delta\Phi_{\text{GR}}|
+\lesssim 10^{-15}\,\text{rad},
+$$
+far below the information gravity target signal $\Delta\Phi\sim 10^{-9}\,\text{rad}$ scale. Therefore, as long as energy locking reaches $10^{-9}$ relative precision, GR contribution can be neglected in this experimental scheme.
+
+\subsection{Theorem 3 (Experimental Constraint on Information Gravity Coupling Constant)}
+
+Let the noise spectral density for phase modulation of the measurement system during integration time $T$ be $S_\Phi^{1/2}$. Then analytically, under the condition of not observing a significant spectral line at modulation frequency $f_{\text{mod}}$, the $1\sigma$ upper bound on $\lambda_{\text{ent}}$ is
+$$
+|\lambda_{\text{ent}}|
+\lesssim \frac{S_\Phi^{1/2}}{\mathcal G\,|\Delta S_{\text{ent}}|}\,T^{-1/2}.
+$$
+
+For typical parameters
+$$
+\Delta S_{\text{ent}}\sim 10\text{--}10^2,\quad
+\mathcal F\sim 10^5,\quad
+L_{\text{pass}}\sim L_{\text{cav}}\sim 0.1\,\text{m},\quad
+A_{\text{cav}}\sim 10^{-4}\,\text{m}^2,
+$$
+and laser interferometry chain phase noise $S_\Phi^{1/2}\sim 10^{-10}\,{\text{rad}}/\sqrt{\text{Hz}}$, with effective integration time $T\sim 10^3\,\text{s}$, $|\lambda_{\text{ent}}|$ can be constrained within a finite range. If a phase signal modulated at $\Delta S_{\text{ent}}$ frequency is observed, the effective value of $\lambda_{\text{ent}}$ can be fitted from data and compared with other experimental and astrophysical constraints.
+
+\section{Proofs}
+
+This section derives the above three theorems. Since information gravity itself is a new hypothesis, the starting point of derivation is the standard relation between optical metric and Shapiro delay, and the phenomenological coupling in Section 2.
+
+\subsection{Derivation of Theorem 1: Linear Relation between Optical Path and Entanglement Entropy}
+
+From the definition in Section 2.3, the single-pass phase of probe light is
+$$
+\phi = k_p \int_{\text{path}} n(l)\,\mathrm d l
+\simeq k_p L_{\text{geom}} + k_p \int_{\text{path}} \delta n(l)\,\mathrm d l,
+$$
+where $L_{\text{geom}}$ is geometric optical path, $\delta n$ is small deviation from gravitational equivalent refractive index correction. When comparing states A and B, geometric optical path and GR energy source component are the same (completely identical under ideal fixed energy assumption), with difference only from information gravity correction $\Delta n_{\text{ent}}$. Thus single-pass phase difference
+$$
+\delta\phi_{\text{single}}
+= k_p\int_{\text{path}} \Delta n_{\text{ent}}(l)\,\mathrm d l.
+$$
+
+Assuming refractive index in cavity region can be viewed as constant $\Delta n_{\text{ent}}$, path length is $L_{\text{pass}}$, then
+$$
+\delta\phi_{\text{single}}
+\simeq k_p\Delta n_{\text{ent}}L_{\text{pass}}
+= \frac{2\pi}{\lambda_p}
+\left(-\lambda_{\text{ent}}\frac{\ell_{\text P}^2}{L_{\text{cav}}A_{\text{cav}}}\,\Delta S_{\text{ent}}\right)
+L_{\text{pass}}.
+$$
+
+Considering $N$ round trips in F-P cavity, effective phase amplification is
+$$
+\Delta\Phi = N\,\delta\phi_{\text{single}}
+= -\lambda_{\text{ent}}\,\frac{2\pi N L_{\text{pass}}}{\lambda_p}
+\frac{\ell_{\text P}^2}{L_{\text{cav}}A_{\text{cav}}}\,\Delta S_{\text{ent}}
+= -\lambda_{\text{ent}}\,\mathcal G\,\Delta S_{\text{ent}},
+$$
+consistent with the form stated in Theorem 1.
+
+\subsection{Derivation of Theorem 2: Upper Bound of GR Phase from Energy Mismatch}
+
+For a local energy correction $\delta E$, approximately viewing it as a mass perturbation $\delta M=\delta E/c^2$, its Newtonian potential correction at distance $R$ is
+$$
+\Delta\Phi_E \simeq -\frac{G\delta M}{R}
+= -\frac{G\delta E}{c^2 R}.
+$$
+
+From refractive index-potential relation $n\simeq 1 - \Phi/c^2$, we get
+$$
+\Delta n_{\text{GR}}
+= -\frac{\Delta\Phi_E}{c^2}
+\simeq \frac{G\delta E}{c^4R}.
+$$
+
+Thus upper bound of single-pass phase difference is
+$$
+\delta\phi_{\text{GR,single}}
+\simeq k_p\Delta n_{\text{GR}}L_{\text{pass}}
+\lesssim \frac{2\pi}{\lambda_p}\frac{G|\delta E|}{c^4R}L_{\text{pass}},
+$$
+
+Total phase difference
+$$
+|\Delta\Phi_{\text{GR}}|
+\lesssim N\,|\delta\phi_{\text{GR,single}}|
+\lesssim \frac{2\pi N L_{\text{pass}}}{\lambda_p}\,
+\frac{G|\delta E|}{c^4R}.
+$$
+
+Substituting typical numerical values gives the order of magnitude stated in Theorem 2. Since $|\delta E|$ can be locked to extremely low levels through active feedback and SQUID readout, this term's contribution can be safely viewed as secondary systematic error.
+
+\subsection{Derivation of Theorem 3: Statistical Constraint on Coupling Constant}
+
+Let the single-sided power spectral density for phase in the detection chain be $S_\Phi(f)$, which can be viewed as constant $S_\Phi$ near modulation frequency $f_{\text{mod}}$. Within integration time $T$, statistical error of narrow-band spectral line fitting follows
+$$
+\sigma_\Phi \simeq S_\Phi^{1/2}T^{-1/2}.
+$$
+
+If no significant spectral line is observed, the $1\sigma$ upper bound of actual phase modulation amplitude $|\Delta\Phi|$ can be taken as $\sigma_\Phi$. From the linear relation in Theorem 1
+$$
+|\Delta\Phi| = |\lambda_{\text{ent}}|\,|\mathcal G\,\Delta S_{\text{ent}}|,
+$$
+thus
+$$
+|\lambda_{\text{ent}}|
+\lesssim \frac{\sigma_\Phi}{|\mathcal G\,\Delta S_{\text{ent}}|}
+\simeq \frac{S_\Phi^{1/2}}{\mathcal G\,|\Delta S_{\text{ent}}|}\,T^{-1/2}.
+$$
+
+This gives the statistical upper bound form of Theorem 3.
+
+\section{Model Apply}
+
+This section, under the above theoretical framework, combines realistic feasible experimental parameters to estimate signal magnitude and discuss potential constraint strength on $\lambda_{\text{ent}}$.
+
+\subsection{Typical Geometry and Cavity Parameters}
+
+Consider the following representative design:
+
+\begin{itemize}
+\item Superconducting microwave cavity: length $L_{\text{cav}} = 0.1\,\text{m}$, cross-sectional area $A_{\text{cav}} = \pi (1\,\text{cm})^2 \simeq 3.1\times 10^{-4}\,\text{m}^2$;
+
+\item Cavity quality factor: $Q\sim 10^{9\text{--}10}$, frequency $\omega_c/2\pi\sim 10\,\text{GHz}$, corresponding single-photon energy $h\nu\sim 6.6\times 10^{-24}\,\text{J}$;
+
+\item Average photon number $\langle \hat N\rangle \sim 10^{12}$, then total energy $E_0\sim 6.6\times 10^{-12}\,\text{J}$, energy density $\rho_E\sim 2\times 10^{-9}\,\text{J}/\text{m}^3$, conventional GR gravitational effect extremely weak;
+
+\item Probe light: wavelength $\lambda_p=1064\,\text{nm}$, compatible with LIGO-class technology;
+
+\item Probe beam path: passing through cavity center, single-pass effective length $L_{\text{pass}}\simeq 0.1\,\text{m}$;
+
+\item F-P cavity finesse: $\mathcal F = 10^5$, then number of round trips
+  $$
+  N\simeq \frac{2\mathcal F}{\pi}\simeq 6.4\times 10^4,
+  $$
+  effective optical path $L_{\text{eff}} = N L_{\text{pass}}\simeq 6.4\times 10^3\,\text{m}$.
+\end{itemize}
+
+Under such geometry, the geometric factor
+$$
+\mathcal G
+= \frac{2\pi N L_{\text{pass}}}{\lambda_p}\,
+\frac{\ell_{\text P}^2}{L_{\text{cav}}A_{\text{cav}}}.
+$$
+
+Substituting numerical values $\ell_{\text P}^2\simeq 2.6\times 10^{-70}\,\text{m}^2$, $\lambda_p\simeq 10^{-6}\,\text{m}$, $L_{\text{cav}}=L_{\text{pass}}=0.1\,\text{m}$, $A_{\text{cav}}\simeq 3\times 10^{-4}\,\text{m}^2$,
+$$
+\frac{2\pi N L_{\text{pass}}}{\lambda_p}
+\sim 2\pi \times 6.4\times 10^4\times \frac{0.1}{10^{-6}}
+\sim 4\times 10^{10},
+$$
+$$
+\frac{\ell_{\text P}^2}{L_{\text{cav}}A_{\text{cav}}}
+\sim \frac{2.6\times 10^{-70}}{0.1\times 3\times 10^{-4}}
+\sim 10^{-66},
+$$
+thus
+$$
+\mathcal G \sim 4\times 10^{10}\times 10^{-66}\sim 4\times 10^{-56}\,\text{rad/bit}.
+$$
+
+At this scale, even with $\Delta S_{\text{ent}}\sim 10^2$, if $\lambda_{\text{ent}}\sim 1$, the resulting phase modulation
+$$
+\Delta\Phi\sim \lambda_{\text{ent}}\mathcal G\Delta S_{\text{ent}}
+\sim 4\times 10^{-54}\,\text{rad},
+$$
+far below any feasible experimental sensitivity. Thus if the coupling coefficient directly adopts $\ell_{\text P}^2$ scale, experiments cannot measure it at laboratory scales.
+
+This reflects the huge hierarchical gap between Planck scale and laboratory scale, consistent with the general difficulty of observing traditional quantum gravity effects in table-top experiments.
+
+However, in the emergent picture of information gravity, $\lambda_{\text{ent}}$ need not necessarily be of the same order as Planck scale. If underlying QCA or other discrete ontology exhibits amplified effective information gravity coupling macroscopically (e.g., due to collective effects of many-body entanglement), then $\lambda_{\text{ent}}$ could be much larger than 1, making $\Delta\Phi$ fall within measurable range.
+
+To quantify this, we can write $\lambda_{\text{ent}}$ as
+$$
+\lambda_{\text{ent}}
+= 10^{\Gamma},
+$$
+then
+$$
+\Delta\Phi \sim 4\times 10^{-54}\times 10^{\Gamma}\times \left(\frac{\Delta S_{\text{ent}}}{10^2}\right)\,\text{rad}.
+$$
+
+If expecting $\Delta\Phi\sim 10^{-9}\,\text{rad}$, then need
+$$
+10^{-9} \sim 4\times 10^{-54} \times 10^{\Gamma}
+\quad\Rightarrow\quad
+\Gamma \sim 45.
+$$
+
+In other words, this experiment under the above parameters can detect or exclude whether $\lambda_{\text{ent}}$ is around $10^{45}$ magnitude. This seems huge, but since $\lambda_{\text{ent}}$ is a completely new effective parameter, currently lacking any experimental evidence constraint, its theoretical natural value is unclear.
+
+\subsection{Comparison with Phase Sensitivity}
+
+Taking LIGO and other interferometric devices as reference, under conditions of introducing frequency-dependent squeezed light, single-frequency phase noise spectral density can reach $S_\Phi^{1/2}\sim 10^{-10}\,\text{rad}/\sqrt{\text{Hz}}$ or even lower. Under integration time $T\sim 10^3\text{--}10^4\,\text{s}$, statistical error
+$$
+\sigma_\Phi\sim S_\Phi^{1/2}T^{-1/2}\sim 10^{-11\text{--}12}\,\text{rad}.
+$$
+
+Therefore, once $\Delta\Phi \gtrsim 10^{-10}\,\text{rad}$, it can be detected with $> 5\sigma$ significance. Conversely, if no spectral line is observed below this threshold, Theorem 3 gives
+$$
+|\lambda_{\text{ent}}|
+\lesssim 10^{44\text{--}45},
+$$
+corresponding to direct experimental upper bound on information gravity coupling.
+
+\section{Engineering Proposals}
+
+This section discusses engineering elements and optional routes needed to implement the above scheme.
+
+\subsection{Source Cavity Design: High-Q Superconducting Microwave Cavity}
+
+The source cavity needs to simultaneously satisfy three requirements: high Q-factor, large volume, and good coupling with qubits/nonlinear elements. One realistic feasible scheme is to adapt superconducting RF cavities used in accelerators, applying their surface treatment and flux expulsion technology to quantum information scenarios, achieving $Q>10^{10}$ three-dimensional cavities. Cavities can adopt elliptical or cylindrical geometry, with designed mode frequency at 5--10 GHz, convenient for integration with existing Josephson junction-based quantum circuits.
+
+To prepare highly entangled states, several nonlinear elements (such as SQUIDs, three-wave mixers) need to be coupled to the cavity to achieve parametric down-conversion and Kerr nonlinearity, thereby synthesizing multi-mode squeezed states and cluster states. Corresponding drive and readout circuits need to couple to room-temperature electronics through waveguides and coaxial cables.
+
+\subsection{Probe Beam Path and Optical Cavity}
+
+For the detection arm, we recommend using 1064 nm laser, compatible with conventional high-power single-frequency Nd:YAG lasers, convenient for using mature mirror and coating technologies. The optical path passes through vacuum channels near the cavity center, or grazes the cavity outer wall tangentially to reduce microwave impact on optical elements.
+
+The probe beam simultaneously forms a high-finesse optical F-P cavity, with cavity length of 3--10 m, to achieve high finesse in limited space. End mirrors use ultra-low-loss high-reflectivity mirrors, adopting multi-stage suspension and active vibration isolation to suppress vibration noise. Locking scheme can adopt PDH technique, combined with intrinsic squeezed light injection to further reduce shot noise.
+
+\subsection{Quantum State Modulation and Energy Locking}
+
+In the source cavity, switching between states A and B can be achieved by controlling nonlinear drive pulses:
+
+\begin{itemize}
+\item Preparing coherent state A: turn off squeezing drive, inject coherent light of determined amplitude into cavity only through linear drive;
+
+\item Preparing entangled state B: turn on parametric down-conversion drive, generate target squeezed or cluster state at stable operating point, while adjusting intensity so total photon number matches state A.
+\end{itemize}
+
+Average photon number in cavity can be measured perturbatively through weakly coupled detection line outside cavity, monitored in real-time with SQUID or quantum non-demolition measurement scheme, and through feedback loop adjust drive intensity, locking $|\delta E|/E_0$ at $10^{-9}$ scale.
+
+State switching frequency $f_{\text{mod}}$ should avoid mechanical resonances and environmental noise peaks, such as selecting 10--100 Hz range, and use lock-in amplification technique in detection chain to extract phase spectrum at that frequency.
+
+\subsection{Engineering Suppression of Noise and Systematic Errors}
+
+Main noise sources include:
+
+\begin{enumerate}
+\item Thermal noise: through mK-level dilution refrigerator, lower cavity and support structure temperature to 10--20 mK;
+
+\item Vibration noise: adopt multi-stage suspension and active control platform, reduce ground vibration impact on optical cavity length;
+
+\item Shot noise: reduce phase uncertainty through squeezed light injection and increased optical power;
+
+\item Non-gravitational refractive effects: such as Kerr effect, electromagnetic cross-coupling, etc., need quantitative suppression through material selection, geometric arrangement, and control experiments.
+\end{enumerate}
+
+Detailed quantitative analysis of these noise and error sources is provided in Appendix B.
+
+\section{Discussion (Risks, Boundaries, Past Work)}
+
+\subsection{Relationship with BMV Experiment}
+
+The goal of BMV experiment is to produce entanglement between mass superposition states through gravitational interaction, thereby demonstrating the quantum nature of the gravitational field. In those schemes, gravity is always determined by energy-momentum, and entanglement merely serves as "witness of whether the medium is quantized." Conversely, the information gravity hypothesis proposed in this paper holds that even with energy-momentum remaining constant, pure entanglement structure changes may serve as additional gravitational sources. Thus the two types of experiments probe different levels of physics:
+
+\begin{itemize}
+\item BMV: classical source → entanglement effect → must field be quantized;
+
+\item This paper: entanglement source → gravitational effect → is gravity sensitive to entanglement itself.
+\end{itemize}
+
+If both BMV-type experiments and this paper's scheme obtain positive results, it will support the strong picture that "gravity is both a quantum field and has independent response to entanglement itself."
+
+\subsection{Comparison with Entropic Gravity and Thermodynamic Derivations}
+
+A common theme of works by Jacobson, Verlinde, and others is: Einstein's equations can be viewed as macroscopic results of some entropy balance or entropic force. However, these derivations ultimately still use energy-momentum tensor as source, with entanglement or information mainly appearing through global quantities like black hole entropy and horizon entropy. The information gravity model in this paper assumes there exists additional coupling at local level, making entanglement entropy density appear directly in weak-field linear metric or optical refractive index.
+
+This assumption goes beyond the safe boundary of traditional thermodynamic derivations and must be constrained through precision experiments. If results show $|\lambda_{\text{ent}}|$ extremely small, it supports "existing thermodynamic-geometric relations already sufficiently describe gravitational sources," with information gravity having observable effects only under extreme conditions; if results show $|\lambda_{\text{ent}}|$ non-zero within reasonable range, the structure of the right-hand side of Einstein's equations needs re-examination, possibly introducing information or entanglement-related terms.
+
+\subsection{Potential Confusion from Standard Physics Interpretations}
+
+Even if phase modulation synchronized with entangled state switching is observed, standard physics mechanism interpretations must be carefully excluded, including but not limited to:
+
+\begin{itemize}
+\item Kerr-type optical nonlinearity: microwave field in cavity may change probe light phase velocity through third-order nonlinearity of material refractive index;
+
+\item Electromagnetic force-induced deformation: cavity field strength changes cause mechanical stress, thereby weakly changing optical cavity length;
+
+\item Temperature fluctuation: slight dissipation differences caused by different drive schemes lead to local temperature changes.
+\end{itemize}
+
+These effects can be controlled through material selection (such as vacuum cavity), geometric isolation (physical separation of optical path and microwave field), precise temperature control, and control experiments. Meanwhile, in control experiments, energy drive sequence can be kept unchanged, only causing entangled state decoherence through phase noise; if phase signal disappears with entanglement while not reappearing under same total energy change, it helps distinguish information gravity from above standard effects.
+
+\subsection{Theoretical Risks and Boundaries}
+
+The information gravity hypothesis faces multiple theoretical challenges:
+
+\begin{enumerate}
+\item Macroscopic consistency: if $\lambda_{\text{ent}}$ is too large, it may produce observable modifications at astrophysical or cosmological scales, conflicting with existing gravity experiments and observations;
+
+\item Locality problem: entanglement entropy is a non-local quantity, how it serves as local gravitational source needs more rigorous field theory or QCA ontology clarification;
+
+\item Dynamical closure: need to construct field equations self-consistent over all spacetime, unifying energy-momentum and information-entanglement sources, ensuring energy conservation and general covariance.
+\end{enumerate}
+
+Therefore, this experimental scheme is more suitable as "preliminary exploration and constraint" on information gravity hypothesis, rather than direct test of complete theory. If experiment gives non-zero signal, new round of theoretical development will be needed to explain observations and construct self-consistent dynamical framework; if giving null result, such coupling can be excluded in wide parameter space, providing counterexample for information-geometry relations.
+
+\section{Conclusion}
+
+Based on "conservation of optical path--conservation of information volume" thinking, this paper proposes a phenomenological model treating entanglement entropy density as potential gravitational source, and designs a class of table-top experimental schemes: using high-Q superconducting microwave cavities to modulate cavity entanglement degree under fixed energy conditions, measuring additional Shapiro-type phase delay of probe beam passing through this region via high-finesse Fabry--Perot optical cavity.
+
+At theoretical level, we introduce information gravity coupling constant $\lambda_{\text{ent}}$, construct
+$$
+\Phi_{\text{ent}}(\mathbf x)
+= - \lambda_{\text{ent}}\,c^2\,\frac{\ell_{\text P}^2}{L_*}\,s_{\text{ent}}(\mathbf x),
+$$
+and prove that under weak-field and paraxial approximations, total phase modulation is linearly related to entanglement entropy change:
+$$
+\Delta\Phi
+= -\lambda_{\text{ent}}\,\mathcal G\,\Delta S_{\text{ent}}.
+$$
+
+At experimental level, combining existing superconducting microwave cavity and interferometry techniques, we estimate signal magnitude and noise budget under typical parameters. Results show that under reasonable geometry and lock-in schemes, if $\lambda_{\text{ent}}$ is large enough, corresponding phase modulation can reach $10^{-9}\,\text{rad}$ scale, comparable with sensitivity of today's laser interferometry and squeezed light chains; if corresponding spectral line is not observed, upper bound of $\mathcal O(10^{44\text{--}45})$ magnitude can be imposed on $\lambda_{\text{ent}}$, giving direct experimental constraint on information gravity hypothesis.
+
+Regardless of outcome, such experiments will take substantial step on the fundamental question "whether energy is the only gravitational source": either providing evidence for direct role of quantum information in gravitational source structure, or limiting possible forms of information-geometry coupling through rigorous null result, thereby providing boundary conditions for future theories unifying spacetime and information.
+
+\section{Acknowledgements}
+
+This work was inspired by extensive research on gravity-entanglement relations, superconducting microwave cavity quantum information processing, and laser interferometry in recent years. Numerical estimates and parameter scans can be reproduced through simple Python scripts, and relevant code can be provided upon reasonable request.
+
+\begin{thebibliography}{99}
+\bibitem{Shapiro1964} I. I. Shapiro, "Fourth Test of General Relativity," \textit{Phys. Rev. Lett.} \textbf{13}, 789--791 (1964).
+\bibitem{Anderson1975} J. D. Anderson \textit{et al.}, "Experimental test of general relativity using time delay of signals to Mariner 6 and Mariner 7," \textit{Astrophys. J.} \textbf{200}, 221--230 (1975).
+\bibitem{Jacobson1995} T. Jacobson, "Thermodynamics of spacetime: The Einstein equation of state," \textit{Phys. Rev. Lett.} \textbf{75}, 1260--1263 (1995).
+\bibitem{Ryu2006} S. Ryu and T. Takayanagi, "Holographic derivation of entanglement entropy from AdS/CFT," \textit{Phys. Rev. Lett.} \textbf{96}, 181602 (2006).
+\bibitem{VanRaamsdonk2010} M. Van Raamsdonk, "Building up spacetime with quantum entanglement," \textit{Gen. Relativ. Gravit.} \textbf{42}, 2323--2329 (2010).
+\bibitem{Verlinde2011} E. P. Verlinde, "On the origin of gravity and the laws of Newton," \textit{J. High Energy Phys.} \textbf{04}, 029 (2011).
+\bibitem{Bose2017} S. Bose \textit{et al.}, "Spin entanglement witness for quantum gravity," \textit{Phys. Rev. Lett.} \textbf{119}, 240401 (2017).
+\bibitem{Marletto2017} C. Marletto and V. Vedral, "Gravitationally induced entanglement between two massive particles is sufficient evidence of quantum effects in gravity," \textit{Phys. Rev. Lett.} \textbf{119}, 240402 (2017).
+\bibitem{Martin2023} E. Martín-Martínez \textit{et al.}, "What gravity mediated entanglement can really tell us about quantum gravity," \textit{Phys. Rev. D} \textbf{108}, L101702 (2023).
+\bibitem{Romanenko2014} A. Romanenko and A. Grassellino, "Ultra-high quality factors in superconducting niobium cavities in the low microwave field regime," \textit{Appl. Phys. Lett.} \textbf{105}, 234103 (2014).
+\bibitem{Romanenko2017} A. Romanenko \textit{et al.}, "Understanding quality factor degradation in superconducting niobium cavities at low microwave field amplitudes," \textit{Phys. Rev. Lett.} \textbf{119}, 264801 (2017).
+\bibitem{Krasnok2024} A. Krasnok \textit{et al.}, "Superconducting microwave cavities and qubits for quantum information systems," \textit{Adv. Quantum Technol.} (2024).
+\bibitem{Oelker2014} E. Oelker \textit{et al.}, "Squeezed light for advanced gravitational wave detectors and beyond," \textit{Opt. Express} \textbf{22}, 21106--21121 (2014).
+\bibitem{McCuller2020} L. McCuller \textit{et al.}, "Frequency-dependent squeezing for advanced LIGO," \textit{Phys. Rev. Lett.} \textbf{124}, 171102 (2020).
+\bibitem{Aasi2013} J. Aasi \textit{et al.}, "Enhanced sensitivity of the LIGO gravitational wave detector by using squeezed states of light," \textit{Nat. Photonics} \textbf{7}, 613--619 (2013).
+\bibitem{Tsupko2019} O. Y. Tsupko \textit{et al.}, "An examination of geometrical and potential time delays in gravitational lensing," \textit{Mon. Not. R. Astron. Soc.} \textbf{485}, 2194--2205 (2019).
+\bibitem{CompanionWork} For other works related to conservation of information volume, optical metric, and QCA universe, see companion papers and preprints from the same research program.
+\end{thebibliography}
+
+\appendix
+
+\section{Optical Metric and Shapiro Phase under Conservation of Optical Path}
+
+Under weak-field static case, Schwarzschild metric can be expanded as
+$$
+\mathrm d s^2
+= -\left(1+\frac{2\Phi}{c^2}\right)c^2\mathrm d t^2
++ \left(1-\frac{2\Phi}{c^2}\right)(\mathrm d r^2 + r^2\mathrm d\Omega^2),
+$$
+where $\Phi(r)=-GM/r$ is Newtonian potential. For paraxial propagating light, setting $\mathrm d s^2=0$ gives radial coordinate light speed
+$$
+\frac{\mathrm d r}{\mathrm d t}
+= c\sqrt{\frac{1+2\Phi/c^2}{1-2\Phi/c^2}}
+\simeq c\left(1 + \frac{2\Phi}{c^2}\right),
+$$
+thus relative to flat spacetime, light propagation time
+$$
+\Delta t
+= \int\left(\frac{1}{v_{\text{coord}}}-\frac{1}{c}\right)\mathrm d r
+\simeq -\frac{2}{c^3}\int \Phi(r)\,\mathrm d r,
+$$
+which is the standard form of Shapiro time delay.
+
+To correspond with refractive index form, introduce effective refractive index
+$$
+n(r) = \frac{c}{v_{\text{coord}}(r)}
+\simeq 1 - \frac{2\Phi(r)}{c^2},
+$$
+then optical path
+$$
+\mathcal L = \int n(r)\,\mathrm d r
+\simeq L_{\text{geom}} - \frac{2}{c^2}\int \Phi(r)\,\mathrm d r,
+$$
+phase
+$$
+\phi = k\mathcal L,
+\quad k=\frac{2\pi}{\lambda}.
+$$
+
+Information gravity hypothesis extends potential $\Phi$ to $\Phi_{\text{eff}}=\Phi_E+\Phi_{\text{ent}}$ on this basis, adopting linear superposition approximation for weak field, thus
+$$
+\phi = k\int\left(1-\frac{2\Phi_E}{c^2}-\frac{2\Phi_{\text{ent}}}{c^2}\right)\mathrm d r.
+$$
+
+Since experimental design ensures $\Phi_E$ remains unchanged between states A and B as much as possible, differential phase is mainly determined by $\Phi_{\text{ent}}$. If $\Phi_{\text{ent}}$ is approximately constant in finite space segment, we get
+$$
+\delta\phi_{\text{single}}
+\simeq k\Delta n_{\text{ent}}L_{\text{pass}},
+$$
+from main text, and accumulates into total phase $\Delta\Phi$ in F-P cavity.
+
+\section{Noise and Systematic Error Budget}
+
+The table below gives estimates and suppression strategies for main noise and systematic error sources, corresponding to engineering discussion in main text.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{@{}p{3cm}p{3cm}p{4cm}p{3cm}@{}}
+\toprule
+Noise/Error Source & Physical Mechanism & Suppression Strategy & Expected Residual (rad) \\
+\midrule
+GR phase from energy mismatch & Slight total energy difference changes refractive index via Newtonian potential & SQUID real-time photon number monitoring, closed-loop feedback locking $|\delta E|/E_0<10^{-9}$ & $\lesssim 10^{-15}$ \\
+Thermal noise & Brownian motion of cavity walls and mirrors causes optical cavity length fluctuation & mK-level dilution refrigeration, low-loss materials, mechanical Q enhancement & $\sim 10^{-11\text{--}10}$ \\
+Vibration noise & Ground vibration and mechanical resonance couple to mirror position & Multi-stage suspension, active isolation, select $f_{\text{mod}}$ far from resonance & $\sim 10^{-10}$ \\
+Shot noise & Limited probe photon number causes measurement phase uncertainty & Increase optical power, introduce squeezed light & $\sim 10^{-11}$ \\
+Kerr effect & Strong microwave field in cavity changes refractive index via medium nonlinearity & Select vacuum cavity or extremely low nonlinearity materials, geometrically separate optical path and high-field region & $\lesssim 10^{-11}$ \\
+Temperature fluctuation & Drive sequence differences cause local temperature rise & High thermal conductivity support, steady-state drive design, temperature monitoring and feedback & $\lesssim 10^{-11}$ \\
+Electronic noise & Electronic noise in photodetection and lock-in amplifier & Low-noise amplifier, shielding and grounding, digital signal processing & $\lesssim 10^{-11}$ \\
+Total synthetic estimate & Noise sources viewed as uncorrelated random variables & Quadrature sum square root addition & $\sim 10^{-10}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Under integration time $T\sim 10^3\text{--}10^4\,\text{s}$, statistical error corresponding to noise spectral density can be reduced to $10^{-11\text{--}12}\,\text{rad}$, providing about two orders of magnitude safety margin for target signal threshold $10^{-9}\,\text{rad}$.
+
+\section{Order of Magnitude Estimate for Energy Gravity Effect in Cavity}
+
+To illustrate the small degree of conventional energy gravity effect in this experiment, consider equivalent mass and gravitational potential of electromagnetic field in cavity under typical parameters:
+
+\begin{itemize}
+\item Total energy $E_0\sim 6.6\times 10^{-12}\,\text{J}$;
+\item Equivalent mass $M_{\text{EM}}=E_0/c^2\sim 7.3\times 10^{-29}\,\text{kg}$;
+\item Typical cavity scale $R\sim 0.1\,\text{m}$.
+\end{itemize}
+
+Newtonian potential
+$$
+|\Phi_E|\sim \frac{GM_{\text{EM}}}{R}
+\sim \frac{6.7\times 10^{-11}\times 7.3\times 10^{-29}}{0.1}
+\sim 5\times 10^{-39}\,\text{J/kg}.
+$$
+
+Relative to $c^2\sim 9\times 10^{16}\,\text{m}^2/\text{s}^2$, dimensionless potential
+$$
+\left|\frac{\Phi_E}{c^2}\right|
+\sim 5\times 10^{-56},
+$$
+
+corresponding refractive index correction
+$$
+\Delta n_{\text{GR}} \sim 10^{-56}.
+$$
+
+Even accumulating $L_{\text{eff}}\sim 10^4\,\text{m}$ optical path in F-P cavity, total phase
+$$
+\Delta\Phi_{\text{GR}}
+\sim \frac{2\pi L_{\text{eff}}}{\lambda_p}\Delta n_{\text{GR}}
+\lesssim 10^{-42}\,\text{rad},
+$$
+
+completely undetectable.
+
+Therefore, any phase modulation observable in this experiment, synchronized with state switching frequency, cannot be explained by conventional GR energy gravity, and must originate from non-standard mechanisms (or experimental systematic errors).
+
+\section{Example Construction of Entanglement Entropy}
+
+To give concrete construction example of $\Delta S_{\text{ent}}\sim 10\text{--}10^2$, consider realizing $M$ pairs of two-mode squeezed vacuum states in cavity
+$$
+\ket{\text{TMSV}(r)}
+= \exp\left[r(\hat a\hat b - \hat a^\dagger\hat b^\dagger)\right]\ket{0,0},
+$$
+each pair's reduced entropy is
+$$
+S_{\text{pair}}(r)
+= \cosh^2 r\log(\cosh^2 r)
+- \sinh^2 r\log(\sinh^2 r),
+$$
+average photon number
+$$
+\langle \hat n_a + \hat n_b\rangle
+= 2\sinh^2 r.
+$$
+
+Taking $r\sim 1$, $\sinh^2 r\sim 1.4$, each pair contributes photon number $\sim 3$, corresponding entanglement entropy $S_{\text{pair}}\sim 2$ bit scale (in appropriate basis). By taking $M\sim 5\text{--}50$ mode pairs, can realize $\Delta S_{\text{ent}}\sim 10\text{--}10^2$ range, while total photon number $\sim 3M$ matches with same-scale coherent state, thereby significantly changing entanglement structure while energy locking.
+
+More complex cluster states or graph states can introduce higher many-body entanglement degree under same total photon number, but since entanglement entropy definition depends on chosen degrees of freedom partition, its specific contribution to information gravity needs to correspond with "natural partition" of underlying QCA or field theory ontology. This paper only uses two-mode squeezed state as example, showing that under existing circuit QED technology, $\Delta S_{\text{ent}}\sim 10\text{--}10^2$ range is fully achievable.
+
+\end{document}
+

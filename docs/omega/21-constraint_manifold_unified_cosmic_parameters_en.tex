@@ -1,0 +1,661 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{strategy}[theorem]{Strategy}
+
+\title{Characterizing the Structure of Unified Cosmic Parameters through Constraint Manifolds:\\
+Joint Solution Space, Numerical Maps, and Structural Diagnostics for Six Unsolved Problems}
+
+\author{Anonymous Author}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Within the quantum cellular automaton/matrix universe framework, this paper regards the universe as an object completely encoded by a finite-dimensional parameter vector $\Theta\in\mathbb{R}^N$, and uniformly rewrites six major unsolved problems---black hole entropy, cosmological constant, neutrino mass and flavor mixing, quantum chaos and eigenstate thermalization (ETH), strong CP problem, and gravitational wave dispersion---as six constraint equations on $\Theta$:
+$$
+C_i(\Theta)=0,\quad i=1,\dots,6,
+$$
+whose joint solution set
+$$
+S(\Theta)\coloneqq\{\Theta\in\mathbb{R}^N\mid C_i(\Theta)=0,\ i=1,\dots,6\}
+$$
+is interpreted as the parameter manifold of ``feasible universes''. The core goal of this paper is not to immediately give a unique physical solution $\Theta^\ast$, but rather to construct, under a rigorous mathematical and numerical framework, a \textbf{computable structural map} for $S(\Theta)$: including dimension, connected components, symmetries, degenerate directions, and identifiability.
+
+To this end, we first rewrite all observational constraints under the axiomatic framework of the unified time scale
+$$
+\kappa(\omega)=\frac{\varphi'(\omega)}{\pi}=\rho_{\mathrm{rel}}(\omega)=\frac{1}{2\pi}\mathrm{tr}\,\mathsf{Q}(\omega)
+$$
+as linear functional errors on the spectral measure
+$$
+C_i(\Theta)=\int W_i(\omega)\,\bigl[\kappa_\Theta(\omega)-\kappa_{\mathrm{obs}}(\omega)\bigr]\,\mathrm{d}\omega,
+$$
+and strictly adopt error control via finite-order Euler--Maclaurin and Poisson formulas to ensure that discretization does not introduce singularity proliferation. Subsequently, we implement low-discrepancy sampling, local refinement, and level-set tracking on the parameter space to obtain numerical solution clouds under joint constraints; on this basis, we utilize singular value decomposition of the Jacobian matrix $J(\Theta)=(\partial C_i/\partial\theta_j)$ to analyze identifiable directions and degenerate directions, and employ clustering methods to identify multiple solution branches and approximate symmetric transformations.
+
+This paper gives the following main results: (1) Under appropriate regularity assumptions, we prove the manifold structure and dimension theorem for $S(\Theta)$ at regular points; (2) Within the spectral functional framework of unified time scale, we establish uniform error upper bounds for finite-order Euler--Maclaurin/Poisson discretization of constraint functions $C_i(\Theta)$, explicitly characterizing ``poles = master scales'' singularity control; (3) Starting from Jacobian spectral analysis, we provide quantitative criteria for parameter identifiability and define geometric decomposition of ``soft modes'' and ``hard modes''; (4) We introduce surrogate models (Gaussian process/kernel ridge regression) and active sampling strategies to adaptively approximate the high-dimensional structure of $S(\Theta)$, providing convergence sketches within the applicable range.
+
+These results provide both a mathematically self-consistent and numerically operational ``constraint manifold perspective'' for subsequent more concrete physical implementations---including substituting specific forms of black hole entropy, cosmological constant, neutrino mixing, ETH, strong CP, and gravitational wave dispersion into $C_i(\Theta)$. The paper itself does not attempt to complete fitting of all physical constants, but rather constructs a unified structural platform that can systematically incorporate existing and new observational data in the future.
+\end{abstract}
+
+\textbf{Keywords:} Unified time scale; Quantum cellular automaton; Parameter universe; Constraint manifold; Jacobian spectrum; Euler--Maclaurin formula; Poisson summation; Identifiability
+
+\section{Introduction}
+
+\subsection{The ``Constraint Manifold'' Perspective on Six Major Unsolved Problems}
+
+In traditional cosmology and high-energy physics, several core problems are usually discussed in \textbf{mutually independent} ways: how is the $A/4$ law of black hole entropy realized microscopically; why is the cosmological constant so much smaller than natural scales; why is the structure of neutrino mass and flavor mixing matrix so peculiar; what are the applicability boundaries of the eigenstate thermalization hypothesis (ETH) in many-body localized systems; why does the strong CP problem require new mechanisms such as axions; and whether gravitational waves exhibit small Lorentz violation or dispersion effects at extremely high frequency/energy regimes. Typically, these problems rely on different theoretical branches and experimental systems.
+
+This paper adopts the opposite philosophy: \textbf{all these problems must ultimately constrain the same universe}. If we adopt the ontology of discrete quantum cellular automata (QCA) or matrix universe, abstracting the entire universe as an object encoded by a finite information parameter vector $\Theta\in\mathbb{R}^N$, then the above six major problems can naturally be rewritten as six constraints on $\Theta$:
+$$
+C_i(\Theta)=0,\quad i=1,\dots,6.
+$$
+
+In this perspective, the problem is no longer ``how to separately solve six things'', but rather: \textbf{what geometric and numerical structure does the parameter set $S(\Theta)$ jointly satisfying all constraints possess}.
+
+This ``constraint manifold perspective'' unifies the six major problems into the following question:
+
+\begin{quote}
+Given a finite-dimensional parameter space $\mathbb{R}^N$ and six physical constraint functions $C_i$, study the joint solution set
+$$
+S(\Theta)=\{\Theta\mid C_i(\Theta)=0,\ i=1,\dots,6\}
+$$
+regarding its dimension, connectivity, symmetries, degenerate directions, and identifiability structure.
+\end{quote}
+
+\subsection{Unified Time Scale and Spectral Functional Language}
+
+To express black hole horizons, cosmological constant, neutrino oscillations, quantum chaos windows, strong CP scattering phase, and gravitational wave dispersion in the same language, this work adopts the \textbf{unified time scale}
+$$
+\kappa(\omega)=\frac{\varphi'(\omega)}{\pi} = \rho_{\mathrm{rel}}(\omega)=\frac{1}{2\pi}\mathrm{tr}\,\mathsf{Q}(\omega),
+$$
+where $\varphi(\omega)$ is the scattering phase shift, $\rho_{\mathrm{rel}}(\omega)$ is the relative density of states with respect to some reference background, and $\mathsf{Q}(\omega)$ is the Wigner--Smith delay operator. This equality means: \textbf{the rate of time passage is the density of states}, and all observation windows can be viewed as linear functionals on the same spectral measure.
+
+Within this framework, we express each physical constraint $C_i$ as
+$$
+C_i(\Theta)=\int_{\Omega_i} W_i(\omega)\bigl[\kappa_\Theta(\omega)-\kappa_{\mathrm{obs}}(\omega)\bigr]\,\mathrm{d}\omega,
+$$
+where $W_i(\omega)$ is the weight function for the corresponding window/experiment, and $\Omega_i$ is the frequency or energy range. Thus, black hole entropy constraints, effective value of cosmological constant, neutrino spectrum, ETH diagnostic spectrum, strong CP scattering phase, and gravitational wave dispersion all become different ``projections'' onto the unified clock $\kappa(\omega)$.
+
+\subsection{Overview of This Work and Structure}
+
+This paper does not attempt to construct QCA universe from scratch or give specific expressions for all physical constants, but focuses on \textbf{structure and method}: given abstract $\Theta$ and $C_i(\Theta)$, how to construct numerical maps and mathematical structure of $S(\Theta)$? Main contents are as follows:
+
+\begin{itemize}
+\item Section 2: Give abstract definitions of unified time scale, parameter universe, and constraint functions;
+\item Section 3: Prove manifold structure and dimension theorem for $S(\Theta)$ under smoothness and rank conditions;
+\item Section 4: Construct numerical schemes of low-discrepancy sampling, local refinement, and level-set tracking, and introduce surrogate models;
+\item Section 5: Utilize singular value decomposition of Jacobian matrix to analyze identifiability, degenerate directions, and approximate symmetries;
+\item Section 6: In the spectral functional language of unified time scale, introduce finite-order Euler--Maclaurin and Poisson formulas, give discretization error upper bounds, ensuring ``no singularity increase, poles = master scales'';
+\item Section 7: Explain how to embed specific physical problems (black hole entropy, cosmological constant, etc.) into this framework as use-case templates;
+\item Appendices: Provide proof details of manifold structure theorem, Euler--Maclaurin error bounds, convergence sketches of surrogate models, and other technical details.
+\end{itemize}
+
+\section{Unified Time Scale, Parameter Universe, and Constraint Functions}
+
+\subsection{Abstract Parameterization of Quantum Cellular Automaton/Matrix Universe}
+
+We adopt a minimalist abstract setting: the universe is completely encoded by a parameter vector
+$$
+\Theta=(\Theta_{\mathrm{struct}},\Theta_{\mathrm{dyn}},\Theta_{\mathrm{init}})\in\mathbb{R}^N
+$$
+where:
+\begin{itemize}
+\item $\Theta_{\mathrm{struct}}$: describes lattice structure, local Hilbert space dimensions, adjacency relations, and other ``geometric/topological'' parameters;
+\item $\Theta_{\mathrm{dyn}}$: describes parameters of local update rules, Hamiltonians or quantum channels (coupling constants, mass terms, mixing angles, etc.);
+\item $\Theta_{\mathrm{init}}$: describes parameters of initial state or initial density matrix (initial entropy density, spectral distribution, etc.).
+\end{itemize}
+
+In concrete implementation, these components can ultimately be mapped to the QCA single-step evolution operator $U_\Theta$, Hamiltonian of matrix model $H_\Theta$, or even states and readouts of observer network, but in this paper we simply regard them as finite-dimensional vectors without expanding specific constructions.
+
+\subsection{Unified Time Scale and Spectral Measure}
+
+The axiomatic formulation of unified time scale is as follows.
+
+\begin{axiom}[Unified time scale]
+For any given parameter $\Theta$, there exists a family of operators $\mathsf{Q}_\Theta(\omega)$ and phase shift function $\varphi_\Theta(\omega)$ at frequency/energy scale, such that
+$$
+\kappa_\Theta(\omega)\coloneqq\frac{\varphi_\Theta'(\omega)}{\pi}=\rho_{\mathrm{rel},\Theta}(\omega)=\frac{1}{2\pi}\mathrm{tr}\,\mathsf{Q}_\Theta(\omega),
+$$
+where $\rho_{\mathrm{rel},\Theta}$ is the relative density of states with respect to some fixed reference background. For observers, all ``time passage'', ``density of states change'', ``scattering delay'', and ``boundary energy'' are uniformly encoded through $\kappa_\Theta(\omega)$.
+\end{axiom}
+
+Under this axiom, all physical observations are expressed as spectral measures.
+
+\begin{definition}[Window functional]
+For each observation/constraint class $i$, there exists an integrable weight function $W_i(\omega)$ and frequency region $\Omega_i \subset\mathbb{R}$, such that the constraint can be written as
+$$
+C_i(\Theta)=\int_{\Omega_i} W_i(\omega)\,\bigl[\kappa_\Theta(\omega)-\kappa_{\mathrm{obs}}(\omega)\bigr]\,\mathrm{d}\omega,
+$$
+where $\kappa_{\mathrm{obs}}(\omega)$ is the ``target scale'' obtained from known theory/experimental window, representing the time/density of states structure actually exhibited by the universe in the corresponding observation domain.
+\end{definition}
+
+\subsection{Constraint System and Joint Solution Set}
+
+\begin{definition}[Constraint function and joint solution set]
+Given six constraint functions
+$$
+C_i:\mathbb{R}^N\to\mathbb{R},\quad i=1,\dots,6,
+$$
+define the joint solution set
+$$
+S(\Theta)=\bigcap_{i=1}^6 C_i^{-1}(0)=\{\Theta\in\mathbb{R}^N\mid C_i(\Theta)=0,\ i=1,\dots,6\}.
+$$
+\end{definition}
+
+Under the unified time scale and spectral functional language, each $C_i$ has the following structure:
+\begin{enumerate}
+\item There exists kernel function $K_i(\omega;\Theta)$ and observation window $\Omega_i$, satisfying
+$$
+C_i(\Theta)=\int_{\Omega_i} K_i(\omega;\Theta)\,\mathrm{d}\omega,
+$$
+where
+$$
+K_i(\omega;\Theta)=W_i(\omega)\bigl[\kappa_\Theta(\omega)-\kappa_{\mathrm{obs}}(\omega)\bigr].
+$$
+\item $\Theta\mapsto \kappa_\Theta(\omega)$ is at least $C^1$ at each $\omega$ (later text will require $C^k$ regularity for manifold structure).
+\end{enumerate}
+
+This paper develops mathematical analysis and numerical schemes at this abstract level, leaving the correspondence between specific $W_i, \Omega_i$ and physical constants to subsequent physical implementation work.
+
+\section{Mathematical Structure of Constraint Manifold}
+
+This section analyzes the local structure of joint solution set $S(\Theta)$ from the differential topology perspective. Under reasonable regularity conditions, $S(\Theta)$ is a smooth submanifold near ``regular points'' with dimension roughly $N-6$.
+
+\subsection{Regularity and Jacobian Matrix}
+
+Denote
+$$
+C(\Theta)=(C_1(\Theta),\dots,C_6(\Theta)):\mathbb{R}^N\to\mathbb{R}^6.
+$$
+Its Jacobian matrix is
+$$
+J(\Theta)=\biggl(\frac{\partial C_i}{\partial \theta_j}(\Theta)\biggr)_{1\le i\le 6,\ 1\le j\le N}.
+$$
+
+\begin{definition}[Regular point and singular point]
+\begin{itemize}
+\item If $\mathrm{rank}\,J(\Theta^\ast)=6$, then $\Theta^\ast$ is called a \textbf{regular point} of $C$;
+\item If $\mathrm{rank}\,J(\Theta^\ast)<6$, then $\Theta^\ast$ is called a \textbf{singular point} or \textbf{degenerate point}.
+\end{itemize}
+\end{definition}
+
+Physically, at regular points the constraints are ``transversal'', each constraint providing independent information; while at singular points, there exists constraint redundancy or implicit symmetry, causing parameter variations in certain directions not to affect constraint values---this is the source of what we later call ``soft modes''.
+
+\subsection{Manifold Structure and Dimension Theorem}
+
+\begin{theorem}[Manifold structure of joint solution set]
+Assume:
+\begin{enumerate}
+\item $C\in C^k(\mathbb{R}^N,\mathbb{R}^6)$ for some $k\ge 1$;
+\item $\Theta^\ast\in S(\Theta)$ and $\mathrm{rank}\,J(\Theta^\ast)=6$.
+\end{enumerate}
+Then there exists a neighborhood $U\subset\mathbb{R}^N$ of $\Theta^\ast$ such that
+$$
+U\cap S(\Theta)
+$$
+is a $C^k$ smooth submanifold with dimension
+$$
+\dim\bigl(U\cap S(\Theta)\bigr)=N-6.
+$$
+\end{theorem}
+
+\begin{proof}
+This is a canonical application of the implicit function theorem. Since $\mathrm{rank}\,J(\Theta^\ast)=6$, there exists a rearrangement of coordinates
+$$
+\Theta=(x,y)\in\mathbb{R}^{N-6}\times\mathbb{R}^6
+$$
+such that the partial derivative Jacobian with respect to $y$, namely $\partial C/\partial y$, is invertible at $\Theta^\ast$. The implicit function theorem guarantees: there exists a neighborhood $U_x$ of $x^\ast\in\mathbb{R}^{N-6}$ and a $C^k$ function $g:U_x\to\mathbb{R}^6$ such that
+$$
+C(x,y)=0\iff y=g(x),\quad (x,y)\in U_x\times U_y.
+$$
+Thus
+$$
+U\cap S(\Theta)=\{(x,g(x))\mid x\in U_x\}
+$$
+is a $C^k$ submanifold whose dimension equals $\dim U_x=N-6$.
+\end{proof}
+
+\begin{corollary}[Condition for discrete solutions]
+If $N=6$ and there exists a point $\Theta^\ast$ such that $C(\Theta^\ast)=0$ and $\mathrm{rank}\,J(\Theta^\ast)=6$, then this point is locally discrete (zero-dimensional manifold), and no other solutions exist in its neighborhood.
+\end{corollary}
+
+From a physical perspective, this situation corresponds to a ``minimal parameter universe'': the universe is encoded by exactly 6 free parameters, six constraints completely fix the universe, and the solution is locally unique.
+
+\subsection{Tangent Space, Normal Space, and Soft/Hard Modes}
+
+\begin{definition}[Tangent space and normal space]
+At a regular point $\Theta^\ast\in S(\Theta)$, define the tangent space
+$$
+T_{\Theta^\ast}S=\ker J(\Theta^\ast)\subset\mathbb{R}^N,
+$$
+and the normal space
+$$
+N_{\Theta^\ast}S=\mathrm{Im}\,J(\Theta^\ast)^{\mathsf{T}}\subset\mathbb{R}^N.
+$$
+Then we have
+$$
+\mathbb{R}^N=T_{\Theta^\ast}S\oplus N_{\Theta^\ast}S,
+$$
+and
+$$
+\dim T_{\Theta^\ast}S=N-6,\quad\dim N_{\Theta^\ast}S=6.
+$$
+\end{definition}
+
+Typically, directions in $T_{\Theta^\ast}S$ correspond to parameter variations that \textbf{do not change constraint values} to first order, which we call \textbf{soft modes}; while directions in $N_{\Theta^\ast}S$ are those that can significantly change constraint values, called \textbf{hard modes}. Numerically, we can identify principal directions of soft/hard modes through singular value decomposition of the Jacobian matrix---this will be detailed in Section 5.
+
+\section{Numerical Sampling and Surrogate Model Framework}
+
+In finite-dimensional parameter space, directly solving $C(\Theta)=0$ is typically difficult and expensive, not to mention analyzing its overall structure. This paper constructs a \textbf{numerical mapping strategy} that can be implemented in practice:
+\begin{enumerate}
+\item Use low-discrepancy sequences for initial coverage in parameter space, roughly finding regions close to solutions;
+\item Perform local refinement sampling and level-set tracking in low-residual regions to depict connected components of $S(\Theta)$;
+\item Train surrogate models (Gaussian process or kernel ridge regression) to approximate $C_i(\Theta)$ or $\Phi(\Theta) \coloneqq \sum_i C_i(\Theta)^2$, using Bayesian optimization/active sampling strategies to further approximate the solution manifold;
+\item Estimate Jacobian matrices at sampling points for structural diagnostics.
+\end{enumerate}
+
+\subsection{Parameter Standardization and Sampling Domain}
+
+To avoid numerical ill-conditioning due to dimensional and scale differences, we introduce parameter standardization:
+
+\begin{definition}[Parameter standardization]
+For each parameter component $\theta_j$, choose center value $\mu_j$ and scale $s_j>0$, defining dimensionless parameter
+$$
+\tilde{\theta}_j=\frac{\theta_j-\mu_j}{s_j},\quad j=1,\dots,N.
+$$
+Denote $\tilde{\Theta}=(\tilde{\theta}_1,\dots,\tilde{\theta}_N)$. In numerical implementation, we use the standardized space $\tilde{\Theta}$ as the working space for sampling and optimization.
+\end{definition}
+
+The initial sampling domain can be taken as
+$$
+\tilde{\Theta}\in[-3,3]^N,
+$$
+with narrower intervals for directions known to be tightly constrained by observations (e.g., already tightly constrained constants), and appropriately widened for directions expected to be redundant or of unknown range.
+
+\subsection{Cost Function and Feasibility Screening}
+
+Define weighted residual cost function
+$$
+\Phi(\Theta)=\sum_{i=1}^6 w_i\frac{C_i(\Theta)^2}{\sigma_i^2},
+$$
+where $\sigma_i$ is the tolerance for constraint $C_i$ (based on observational error or theoretically allowed error), and $w_i>0$ is importance weight.
+
+\begin{definition}[Approximate feasible set]
+Given threshold $\Phi_\star>0$, define approximate feasible set
+$$
+S_{\Phi_\star}=\{\Theta\in\mathbb{R}^N\mid \Phi(\Theta)\le\Phi_\star\}.
+$$
+\end{definition}
+
+Numerically, we first find approximate point clouds of $S_{\Phi_\star}$, then finely analyze the joint structure of $C_i(\Theta)=0$ within them.
+
+\subsection{Low-Discrepancy Sampling and Local Refinement}
+
+\begin{strategy}[Sampling--refinement--tracking cycle]
+\begin{enumerate}
+\item \textbf{Initial low-discrepancy sampling}: On standardized domain $[-3,3]^N$, generate $M_0$ Sobol sequence samples $\{\tilde{\Theta}^{(k)}\}_{k=1}^{M_0}$, corresponding to original space samples $\{\Theta^{(k)}\}$. For each sample compute $C(\Theta^{(k)})$ and $\Phi(\Theta^{(k)})$.
+\item \textbf{Feasibility screening}: Select top $p\%$ samples with smallest cost function values (e.g., $p=10\%$), denoted as set $S_0$.
+\item \textbf{Local refinement sampling}: Around covariance structure of samples in $S_0$, construct ellipsoids or local hypercubes, use Latin hypercube sampling or low-discrepancy sampling again in these regions to generate $M_1$ new samples, and repeat evaluation of $C,\Phi$.
+\item \textbf{Level-set tracking}: Near approximate level set $\Phi=\Phi_\star$, use least-squares continuation methods or other level-set tracking algorithms to generate continuous point chains along $S_{\Phi_\star}$, roughly depicting connected components of solution manifold.
+\end{enumerate}
+\end{strategy}
+
+This cycle can be iterated multiple times, each time updating the point cloud density and coverage range of the ``candidate feasible set''.
+
+\subsection{Surrogate Models and Active Sampling}
+
+In high-dimensional parameter space, directly evaluating $C(\Theta)$ may be expensive, especially when each evaluation requires calling complex QCA/matrix simulations. For this, we introduce surrogate models.
+
+\begin{definition}[Surrogate model]
+Let the observed dataset be
+$$
+\mathcal{D}=\{(\Theta^{(k)},C(\Theta^{(k)}))\}_{k=1}^M.
+$$
+On this basis, train multi-output Gaussian process regression or kernel ridge regression model
+$$
+\widehat{C}(\Theta)\approx C(\Theta),
+$$
+and give prediction mean and variance for each output component
+$$
+\widehat{C}_i(\Theta),\quad \sigma_{\widehat{C}_i}(\Theta).
+$$
+Define surrogate cost function
+$$
+\widehat{\Phi}(\Theta)=\sum_{i=1}^6 w_i\frac{\widehat{C}_i(\Theta)^2}{\sigma_i^2}.
+$$
+\end{definition}
+
+\begin{strategy}[Active sampling/Bayesian optimization]
+\begin{enumerate}
+\item Based on current surrogate model, define acquisition function, such as ``Expected Improvement'' (EI) or ``Lower Confidence Bound'' (LCB);
+\item Solve for maximum point $\Theta_{\mathrm{next}}$ of acquisition function in parameter space as next true evaluation point;
+\item Compute true $C(\Theta_{\mathrm{next}})$, add $(\Theta_{\mathrm{next}},C(\Theta_{\mathrm{next}}))$ to dataset $\mathcal{D}$, update surrogate model;
+\item Iterate repeatedly until surrogate model converges near $S_{\Phi_\star}$.
+\end{enumerate}
+\end{strategy}
+
+In practice, active sampling can be combined with level-set tracking: the acquisition function can target not only the minimum of $\Phi$, but also regions of maximum uncertainty near the level set $\Phi=\Phi_\star$, to optimize coverage of the solution manifold.
+
+\section{Structural Diagnostics: Jacobian Spectrum, Symmetry, and Degeneracy}
+
+After obtaining a batch of approximately feasible samples, we wish to answer the following questions:
+\begin{itemize}
+\item Is the dimension of the solution manifold indeed $N-6$, or does it further reduce in certain regions?
+\item Do multiple mutually disconnected solution branches exist?
+\item Does parameter redundancy, symmetric equivalence relations, or degenerate directions exist?
+\item Which parameter combinations are ``hard modes'' and which are ``soft modes''?
+\end{itemize}
+
+This section provides a diagnostic methodology through singular value decomposition (SVD) of the Jacobian matrix and clustering analysis.
+
+\subsection{Jacobian Matrix and Singular Value Decomposition}
+
+Near a selected point $\Theta^\ast$, the Jacobian matrix can be estimated through automatic differentiation or finite differences:
+$$
+J(\Theta^\ast)\approx\biggl(\frac{\partial C_i}{\partial\theta_j}(\Theta^\ast)\biggr).
+$$
+Perform singular value decomposition on this matrix:
+$$
+J(\Theta^\ast)=U\Sigma V^{\mathsf{T}},
+$$
+where:
+\begin{itemize}
+\item $U\in\mathbb{R}^{6\times 6}$ is an orthogonal matrix;
+\item $\Sigma=\mathrm{diag}(\sigma_1,\dots,\sigma_r,0,\dots,0)\in\mathbb{R}^{6\times N}$ is the singular value matrix ($r=\mathrm{rank}\,J$);
+\item $V\in\mathbb{R}^{N\times N}$ is an orthogonal matrix whose column vectors $v_1,\dots,v_N$ give an orthogonal basis of parameter space.
+\end{itemize}
+
+\begin{definition}[Soft modes and hard modes]
+\begin{itemize}
+\item If singular value $\sigma_k$ is significantly larger than a given threshold $\tau$, then the corresponding right singular vector $v_k$ is called a \textbf{hard mode} direction: small variations $\delta\Theta\propto v_k$ along this direction will significantly change constraint values;
+\item If $\sigma_k$ is close to zero or significantly smaller than the threshold, then corresponding $v_k$ is called a \textbf{soft mode} direction: along this direction there is almost no sensitivity to constraints to first order.
+\end{itemize}
+\end{definition}
+
+The distribution of singular value spectrum $\{\sigma_k\}$ provides a quantitative measure of parameter identifiability. If multiple singular values are nearly zero, it indicates high degeneracy of constraints with abundant equivalent parameter transformations.
+
+\subsection{Multiple Solution Branches and Clustering Analysis}
+
+On the near-feasible point cloud
+$$
+\{\Theta^{(k)}\mid \Phi(\Theta^{(k)})\le\Phi_\star\},
+$$
+we can use density clustering (such as DBSCAN, HDBSCAN) to partition clusters $\mathcal{B}_1,\mathcal{B}_2,\dots$, each cluster corresponding to a solution branch or solution island.
+
+\begin{definition}[Solution branches and physical equivalence classes]
+\begin{itemize}
+\item Each cluster $\mathcal{B}_\alpha$ is called a \textbf{solution branch}, representing a class of connected or nearly connected near-feasible solutions in parameter space;
+\item If there exists parameter transformation $g:\mathbb{R}^N\to\mathbb{R}^N$ such that
+$$
+C(g(\Theta))\approx C(\Theta)
+$$
+and $g(\mathcal{B}_\alpha) \approx \mathcal{B}_\beta$, then $\mathcal{B}_\alpha,\mathcal{B}_\beta$ are called \textbf{nearly symmetric equivalent} solution branches.
+\end{itemize}
+\end{definition}
+
+Through comparison of Jacobian spectra and physical observables within solution branches, one can determine whether different solution branches are physically distinguishable: if differences in all observable windows are within tolerable noise, they can be regarded as ``parameter redundancy''; otherwise, they represent genuine physical multiple solutions or different vacua.
+
+\subsection{Normal Form and Constraint Redundancy}
+
+On each solution branch $\mathcal{B}_\alpha$, choose a representative point $\Theta^\ast \in \mathcal{B}_\alpha$, decompose parameters approximately according to SVD as
+$$
+\Theta=\Theta^\ast+\Theta^\parallel+\Theta^\perp,
+$$
+where $\Theta^\parallel\in T_{\Theta^\ast}S$ is spanned by soft modes, and $\Theta^\perp\in N_{\Theta^\ast}S$ is spanned by hard modes. Perform second-order expansion on $\Theta^\perp$:
+$$
+\Phi(\Theta^\ast+\Theta^\perp)\approx\frac{1}{2}(\Theta^\perp)^{\mathsf{T}}H(\Theta^\ast)\Theta^\perp,
+$$
+where $H$ is the Hessian of cost function in normal direction.
+
+If $H$ still has nearly zero eigenvalues, it indicates redundancy or hidden symmetry exists even to second order; in this case, one can further compress parameter space by adding \textbf{gauge conditions} or introducing additional ``soft constraints'' (e.g., preferring simpler parameter combinations).
+
+\section{Discrete-Continuum Control of Spectral Functionals: Euler--Maclaurin and Poisson Discipline}
+
+This section lands a key technical point: constraint functions
+$$
+C_i(\Theta)=\int_{\Omega_i} W_i(\omega)\bigl[\kappa_\Theta(\omega)-\kappa_{\mathrm{obs}}(\omega)\bigr]\,\mathrm{d}\omega
+$$
+must be numerically discretized into finite sums, but to maintain theoretical self-consistency and controllability, we enforce use of \textbf{finite-order Euler--Maclaurin and Poisson formulas}, explicitly requiring ``no singularity increase, poles = master scales''.
+
+\subsection{Finite-Order Form of Euler--Maclaurin Formula}
+
+Let $f(\omega)=W_i(\omega)\bigl[\kappa_\Theta(\omega)-\kappa_{\mathrm{obs}}(\omega)\bigr]$ be sufficiently smooth on interval $[a,b]$. Let step size $h>0$, grid points $\omega_k=a+kh,\ k=0,\dots,M,\ Mh=b-a$.
+
+\begin{theorem}[Finite-order Euler--Maclaurin formula]
+For any positive integer $m$, we have
+\begin{multline*}
+\int_a^b f(\omega)\,\mathrm{d}\omega = h\sum_{k=0}^M f(\omega_k) - \frac{h}{2}\bigl[f(a)+f(b)\bigr] \\
++ \sum_{r=1}^{m}\frac{B_{2r}h^{2r}}{(2r)!}\bigl(f^{(2r-1)}(b)-f^{(2r-1)}(a)\bigr) + R_{2m},
+\end{multline*}
+where $B_{2r}$ are Bernoulli numbers, and the remainder satisfies the upper bound
+$$
+|R_{2m}|\le \frac{2\zeta(2m)}{(2\pi)^{2m}}(b-a)\,\max_{\omega\in[a,b]}|f^{(2m)}(\omega)|.
+$$
+\end{theorem}
+
+In actual applications, we choose finite $m$ (e.g., $m=1,2$), and estimate upper bounds for $R_{2m}$ through analytical or numerical bounds on $f^{(k)}$. Importantly, we \textbf{do not} let $m\to\infty$, avoiding unrealistic assumptions about unknown high-order derivatives.
+
+\subsection{Poisson Summation and Spectral Reconstruction}
+
+When constraints involve periodic structure or frequency-to-time domain transformations, the Poisson summation formula can be used. Let
+$$
+f\in \mathcal{S}(\mathbb{R})\quad\text{or sufficiently rapidly decaying},
+$$
+then the Poisson formula gives
+$$
+\sum_{n\in\mathbb{Z}} f(nT)=\frac{1}{T}\sum_{k\in\mathbb{Z}}\widehat{f}\biggl(\frac{2\pi k}{T}\biggr),
+$$
+where $\widehat{f}$ is the Fourier transform.
+
+In this framework, the Poisson formula is mainly used for:
+\begin{itemize}
+\item Rewriting window responses possibly measured in time domain as linear functionals of $\kappa(\omega)$ in frequency domain;
+\item Controlling aliasing errors under finite sampling frequency.
+\end{itemize}
+
+Similarly, we require using only \textbf{finite-term truncation}, giving truncation error upper bounds through bounds on $\widehat{f}$, thereby maintaining the discipline of ``no singularity increase''.
+
+\subsection{Meaning of ``No Singularity Increase, Poles = Master Scales''}
+
+In the unified time scale and spectral functional framework, singularities of many physical quantities (such as surface area poles at black hole horizons, infrared divergences of cosmological constant, threshold behaviors of neutrino spectrum, etc.) are all explicitly manifested in $\kappa(\omega)$ or $W_i(\omega)$. Our discipline is:
+\begin{enumerate}
+\item \textbf{Singularities only come from physics itself}: discretization and numerical approximation cannot introduce additional singularities or pseudo-divergences;
+\item \textbf{Poles = master scales}: all retained singularities are interpreted as corresponding master physical scales (such as horizon radius, infrared cutoff, spectral threshold), explicitly marked in constraints rather than hidden in numerical artifacts;
+\item \textbf{Finite-order EM/Poisson}: through finite-order Euler--Maclaurin and finite-term Poisson truncation, all errors converge to control on high-order derivatives/high-frequency decay, rather than relying on formal limits.
+\end{enumerate}
+
+Under this discipline, numerical implementation of constraint functions $C_i(\Theta)$ has verifiable consistency with theoretical expressions, and numerical artifacts will not be misinterpreted as physical signals.
+
+\section{Embedding Framework for Specific Physical Problems}
+
+Although this paper mainly focuses on structure and method, it is necessary to briefly explain: in actual physical applications, how to embed the six major unsolved problems into the $C_i(\Theta)$ framework. Abstract templates are given here without expanding computational details.
+
+\subsection{Black Hole Entropy Constraint}
+
+In QCA universe, black holes can be modeled as ``information frozen layers'' of certain regions, whose entropy can be obtained through entanglement link counting across horizons. Under unified time scale, this entropy density corresponds to an integral constraint on density of states within some window $\Omega_{\mathrm{BH}}$:
+$$
+C_{\mathrm{BH}}(\Theta)=\int_{\Omega_{\mathrm{BH}}} W_{\mathrm{BH}}(\omega)\,\kappa_\Theta(\omega)\,\mathrm{d}\omega - \frac{A}{4}=0,
+$$
+where $A$ is horizon surface area (in appropriate units).
+
+\subsection{Cosmological Constant Constraint}
+
+The cosmological constant can be viewed as effective value of vacuum energy density in some extremely low-frequency window, equivalent to integral of spectral measure in infrared segment:
+$$
+C_{\Lambda}(\Theta)=\int_{\Omega_{\mathrm{IR}}} W_{\Lambda}(\omega)\,\bigl[\kappa_\Theta(\omega)-\kappa_{\mathrm{ref}}(\omega)\bigr]\,\mathrm{d}\omega - (\Lambda_{\mathrm{eff}}-\Lambda_{\mathrm{obs}})=0.
+$$
+
+\subsection{Neutrino Mass and Flavor Mixing}
+
+The structure of neutrino mixing matrix can be embedded into unified time scale through geometry of flavor--bundle or energy dependence of scattering phase shift:
+$$
+C_{\nu}(\Theta)=\int_{\Omega_{\nu}} W_{\nu}(\omega)\,\bigl[\kappa_\Theta(\omega)-\kappa_{\nu,\mathrm{obs}}(\omega)\bigr]\,\mathrm{d}\omega=0,
+$$
+where $W_{\nu}$ is chosen to be sensitive to oscillation fundamental frequencies and ground state splittings.
+
+\subsection{ETH, Strong CP, and Gravitational Wave Dispersion}
+
+Similarly, ETH constraints can be formulated from correspondence between spectral statistics and long-time averages of local observations as window integrals on $\kappa(\omega)$; the strong CP problem can be expressed through $\theta_{\mathrm{CP}}$-dependence of scattering phase shift as perturbations on $\varphi'(\omega)$; gravitational wave dispersion constraints arise from deviations of group velocity versus frequency in high-frequency windows, also rewritable as kernel functionals on unified time scale.
+
+Specific forms depend on the chosen QCA/matrix model. This work does not delve deeply into expansions, but emphasizes: \textbf{once these specific expressions are established, they will naturally embed into the unified framework constructed in this paper in mathematical and numerical terms}.
+
+\section{Discussion and Outlook}
+
+This paper constructs a structural framework centered on ``constraint manifold'', unifying six major unsolved problems as six constraints on parameter universe $\Theta$, and systematically describes the structure and exploration strategy of joint solution set $S(\Theta)$ from three levels: differential topology, numerical analysis, and surrogate modeling.
+
+Main gains can be summarized as:
+\begin{enumerate}
+\item \textbf{Structurally}: Under regularity and rank conditions, $S(\Theta)$ is a smooth manifold of dimension $N-6$ near regular points. Singular value spectrum of Jacobian matrix naturally distinguishes soft/hard modes, providing quantitative indicators of parameter identifiability and degeneracy.
+\item \textbf{Numerically}: Combination of low-discrepancy sampling, local refinement, level-set tracking, and surrogate models/active sampling provides a feasible route for constructing ``numerical maps'' of $S(\Theta)$ under limited computational resources.
+\item \textbf{Spectral-analytically}: Unified time scale $\kappa(\omega)$ unifies all observations and constraints as linear functionals on spectral measure; finite-order Euler--Maclaurin and Poisson formulas provide strictly controllable discretization error framework, ensuring no singularity increase and poles = master scales.
+\end{enumerate}
+
+Key next-step work is: mapping specific QCA/matrix universe models and existing observational data (including black holes, cosmology, neutrinos, quantum chaos experiments, and gravitational wave observations) into $W_i(\omega),\Omega_i$ and target scale $\kappa_{\mathrm{obs}}(\omega)$ in this framework, and implementing numerical exploration procedures of this paper in real high-dimensional parameter space. Ultimately, we hope to identify one or several candidate points $\Theta^\ast$ corresponding to ``this universe'' in $S(\Theta)$, and judge whether they are unique under existing and foreseeable observational precision through error budget and identifiability analysis.
+
+\section*{Appendix A: Proof Details of Joint Solution Set as Submanifold}
+
+This appendix provides more detailed proof of Theorem 3.2.
+
+\begin{theorem}[Submanifold structure]
+Let $C\in C^k(\mathbb{R}^N,\mathbb{R}^6)$ and $\Theta^\ast\in\mathbb{R}^N$ satisfy $C(\Theta^\ast)=0$ with $\mathrm{rank}\,J(\Theta^\ast)=6$. Then in a neighborhood of $\Theta^\ast$, the joint solution set
+$$
+S(\Theta)=C^{-1}(0)
+$$
+is a $C^k$ smooth submanifold with dimension $N-6$.
+\end{theorem}
+
+\begin{proof}
+\begin{enumerate}
+\item Since $\mathrm{rank}\,J(\Theta^\ast)=6$, we can permute coordinates such that
+$$
+\Theta=(x,y),\quad x\in\mathbb{R}^{N-6},\ y\in\mathbb{R}^6,
+$$
+and the partial derivative with respect to $y$,
+$$
+D_yC(x^\ast,y^\ast)=\frac{\partial C}{\partial y}(\Theta^\ast),
+$$
+is invertible.
+
+\item View $C$ as
+$$
+C(x,y):\mathbb{R}^{N-6}\times\mathbb{R}^6\to\mathbb{R}^6.
+$$
+Applying the implicit function theorem, there exist neighborhoods $U_x$ of $x^\ast$ and $U_y$ of $y^\ast$, and a $C^k$ map
+$$
+g:U_x\to U_y
+$$
+such that
+$$
+C(x,y)=0\iff y=g(x),\quad (x,y)\in U_x\times U_y.
+$$
+
+\item Define
+$$
+\Phi:U_x\to\mathbb{R}^N,\quad \Phi(x)=(x,g(x)).
+$$
+Then
+$$
+U\cap S(\Theta)=\Phi(U_x),
+$$
+where $U=U_x\times U_y$. Since $\Phi$ is a $C^k$ immersion locally invertible to its image, $\Phi(U_x)$ is a $C^k$ submanifold of $\mathbb{R}^N$.
+
+\item The dimension of $\Phi(U_x)$ equals dimension of $U_x$, i.e.,
+$$
+\dim(U\cap S(\Theta))=\dim U_x=N-6.
+$$
+\end{enumerate}
+\end{proof}
+
+\section*{Appendix B: Euler--Maclaurin Remainder Upper Bound and Application Examples}
+
+This appendix provides more detailed derivation of remainder estimation for Euler--Maclaurin formula and explains its specific usage in constraint functional discretization.
+
+\subsection*{B.1 Standard Form of Remainder Estimation}
+
+Let $f\in C^{2m}([a,b])$. The standard form of Euler--Maclaurin formula is
+\begin{multline*}
+\int_a^b f(\omega)\,\mathrm{d}\omega = h\sum_{k=0}^M f(\omega_k) - \frac{h}{2}\bigl[f(a)+f(b)\bigr] \\
++ \sum_{r=1}^{m}\frac{B_{2r}h^{2r}}{(2r)!}\bigl(f^{(2r-1)}(b)-f^{(2r-1)}(a)\bigr) + R_{2m},
+\end{multline*}
+where the remainder
+$$
+R_{2m} = \frac{(-1)^{2m+1}}{(2m)!}\int_a^b B_{2m}\biggl(\biggl\{{\frac{\omega-a}{h}}\biggr\}\biggr)\,f^{(2m)}(\omega)\,\mathrm{d}\omega,
+$$
+where $B_{2m}$ is Bernoulli polynomial and $\{\cdot\}$ denotes fractional part.
+
+Using bound $|B_{2m}(x)|\le \frac{2(2m)!}{(2\pi)^{2m}} \zeta(2m)$, we obtain
+$$
+|R_{2m}|\le \frac{2\zeta(2m)}{(2\pi)^{2m}}(b-a)\,\max_{\omega\in[a,b]}|f^{(2m)}(\omega)|.
+$$
+
+In spectral functional case, $f(\omega)$ comes from $W_i(\omega)\bigl[\kappa_\Theta(\omega)-\kappa_{\mathrm{obs}}(\omega)\bigr]$, whose high-order derivatives can be estimated through regularity and asymptotic behavior given by physical theory, thus providing explicit upper bounds for discretization errors of $C_i(\Theta)$.
+
+\subsection*{B.2 Application in Constraint Functionals}
+
+For constraint
+$$
+C_i(\Theta)=\int_{\Omega_i} f_i(\omega;\Theta)\,\mathrm{d}\omega,
+$$
+numerically discretize with step size $h$ as
+$$
+C_i^{(h)}(\Theta) = h\sum_{k=0}^{M_i} f_i(\omega_k;\Theta) + \text{endpoint correction} + \text{finite-order derivative correction},
+$$
+then the error
+$$
+\Delta C_i(\Theta)=C_i(\Theta)-C_i^{(h)}(\Theta)
+$$
+satisfies
+$$
+|\Delta C_i(\Theta)|\le E_i(h,\Theta),
+$$
+where
+$$
+E_i(h,\Theta)\propto h^{2m}\max_{\omega\in\Omega_i}\bigl|\partial_\omega^{2m} f_i(\omega;\Theta)\bigr|.
+$$
+
+In joint cost function
+$$
+\Phi(\Theta)=\sum_{i=1}^6w_i\frac{C_i(\Theta)^2}{\sigma_i^2},
+$$
+one can explicitly incorporate discretization error contributions to form \textbf{error budget}, avoiding erroneous judgments about structure in regions dominated by numerical artifacts.
+
+\section*{Appendix C: Sketch and Notes on Surrogate Model Convergence}
+
+This appendix briefly discusses convergence issues when approximating $C(\Theta)$ using Gaussian process or kernel ridge regression in high-dimensional space.
+
+\subsection*{C.1 Error Bound for Gaussian Process Regression (Intuitive)}
+
+Under assumptions that $C_i(\Theta)$ belongs to some reproducing kernel Hilbert space (RKHS) and observation noise is moderate, generalization error of Gaussian process regression can be upper-bounded by information gain and noise scale. Roughly speaking, if RKHS norm of $C_i$ is bounded, then under active sampling strategy, prediction error
+$$
+\mathbb{E}\bigl[(C_i(\Theta)-\widehat{C}_i(\Theta))^2\bigr]
+$$
+decreases at polynomial/logarithmic rate with sample number $M$.
+
+In this paper's scenario, we do not need exact convergence rates, only need to confirm: in neighborhood of approximate feasible set $S_{\Phi_\star}$, surrogate model error for $C_i$ is much smaller than $\sigma_i$, then it can be reliably used to guide sampling directions and approximate geometry of solution manifold.
+
+\subsection*{C.2 Coverage and Bias Risk of Active Sampling}
+
+Although Bayesian optimization tends to focus on regions of minimum $\Phi$, without control it may lead to insufficient exploration of other potential solution branches. For this, one can add \textbf{exploration terms} in acquisition function or periodically resample in full space to avoid getting trapped in local optima.
+
+Additionally, note: in cases where parameter space has strong symmetries or multiple solution branches, targeting only cost function minimization may lead to discovering only one representative solution branch, ignoring other physically equivalent or distinguishable branches. Therefore this paper suggests incorporating ``possibility of discovering new solution branches'' into sampling strategy, such as through strengthened sampling in sparse regions of clustering results.
+
+\begin{thebibliography}{99}
+\bibitem{spivak} M. Spivak, \textit{A Comprehensive Introduction to Differential Geometry}, Vol. 1, Publish or Perish (1979).
+\bibitem{sacks} J. Sacks, W. J. Welch, T. J. Mitchell, H. P. Wynn, ``Design and analysis of computer experiments'', Statist. Sci. \textbf{4}, 409 (1989).
+\bibitem{shahriari} B. Shahriari, K. Swersky, Z. Wang, R. P. Adams, N. de Freitas, ``Taking the human out of the loop: A review of Bayesian optimization'', Proc. IEEE \textbf{104}, 148 (2016).
+\bibitem{birman_krein} M. Sh. Birman, M. G. Kreĭn, ``On the theory of wave operators and scattering operators'', Sov. Math. Dokl. \textbf{3}, 740 (1962).
+\bibitem{wigner_smith} F. T. Smith, ``Lifetime matrix in collision theory'', Phys. Rev. \textbf{118}, 349 (1960).
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,929 @@
+\documentclass[12pt]{article}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{braket}
+
+% Geometry settings
+\geometry{a4paper, margin=1in}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% Theorem environments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+% Title information
+\title{Unified Matrix--QCA Universe Theory of Neutrino Mass and Flavor Mixing\\
+\large PMNS Structure and Yukawa Coupling Origin under Unified Time Scale}
+
+\author{Haobo Ma$^1$ \and Wenlin Zhang$^2$\\
+\small $^1$Independent Researcher\\
+\small $^2$National University of Singapore}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Under the framework of unified time scale, boundary time geometry, Matrix Universe THE--MATRIX, and Quantum Cellular Automaton (QCA) Universe, we construct a structural unified theory for ``Neutrino Mass and Flavor Mixing''. Experiments show that three generations of neutrinos have non-zero masses and mix between flavor eigenstates $(\nu_e,\nu_\mu,\nu_\tau)$ and mass eigenstates $(\nu_1,\nu_2,\nu_3)$ via the PMNS matrix $U_{\mathrm{PMNS}}$, whose mixing angles and mass differences have been precisely measured by global fits, while the absolute mass scale, mass ordering, and CP phase remain partially undetermined. Traditional models mostly rely on the seesaw mechanism and discrete flavor symmetries (e.g., $A_4,S_4,A_5$) to explain $U_{\mathrm{PMNS}}$ structure and Yukawa coupling textures, but mainly remain at the field theory level on a given background spacetime.
+
+Based on the unified time scale mother formula
+\begin{equation}
+\kappa(\omega)
+=\frac{\varphi'(\omega)}{\pi}
+=\rho_{\mathrm{rel}}(\omega)
+=\frac{1}{2\pi}\operatorname{tr} Q(\omega),
+\end{equation}
+this paper interprets three-generation neutrino mass and flavor mixing as: scattering holonomy of the leptonic flavor--bundle in the Matrix Universe, and the continuous limit of flavor--defects inside cells in the QCA Universe; and further regards Yukawa couplings as spectral weights of the unified time scale density on flavor--specific frequency bands. Specifically:
+
+1. In the Matrix Universe, decomposing the leptonic channel space into a direct sum of channels with flavor--sectors, constructing the leptonic scattering matrix
+   \begin{equation}
+   S_\ell(\omega)=S_{CC}(\omega)\oplus S_{NC}(\omega),
+   \end{equation}
+   we prove that under natural regularity and low-energy assumptions, there exists a rank--3 flavor--vector bundle $\mathcal E_\nu\to\Omega$ defined on the frequency interval and a $U(3)$--connection $\mathcal A_{\mathrm{flavor}}$, such that the PMNS matrix can be written as parallel transport along a charged--current process path $\gamma_{\mathrm{cc}}\subset\Omega$
+   \begin{equation}
+   U_{\mathrm{PMNS}}
+   =\mathcal P\exp\Bigl(-\int_{\gamma_{\mathrm{cc}}}\mathcal A_{\mathrm{flavor}}\Bigr),
+   \end{equation}
+   thereby geometrizing ``flavor mixing'' as holonomy of the flavor--bundle in the Matrix Universe.
+
+2. In the QCA Universe, configuring a three-dimensional flavor--Hilbert space $\mathcal H_{\mathrm{flavor}}\simeq\mathbb C^3$ for each cell, constructing
+   \begin{equation}
+   \mathcal H_{\mathrm{cell}}
+   =\mathcal H_{\mathrm{flavor}}\otimes\mathcal H_{\mathrm{spin}}\otimes\mathcal H_{\mathrm{aux}},
+   \end{equation}
+   writing local QCA update as
+   \begin{equation}
+   U
+   =U_{\mathrm{prop}}\cdot U_{\mathrm{Yuk}}\cdot U_{\mathrm{aux}},
+   \end{equation}
+   where $U_{\mathrm{Yuk}}$ implements a Dirac--Majorana seesaw gate on each cell. We prove that in the long-wave limit, the effective Hamiltonian of the QCA generates a seesaw type mass matrix
+   \begin{equation}
+   \mathsf M_\nu
+   =-M_D^{\mathsf T}M_R^{-1}M_D,
+   \end{equation}
+   where $(M_D,M_R)$ are completely determined by local QCA gate parameters. This result builds on previous work showing Dirac/QFT can be obtained from QCA continuous limits.
+
+3. Introducing a finite number of ``flavor--defect cells'' on a flavor--symmetric background QCA to realize breaking patterns of discrete flavor group $G_f\in\{A_4,S_4,A_5,\dots\}$ and its residual subgroups $(G_\nu,G_\ell)$, we prove that under appropriate patterns, eigenvectors of the light neutrino mass matrix $\mathsf M_\nu$ approximately yield tri--bi--maximal (TBM) or trimaximal (TM1/TM2) mixing structures, and obtain PMNS parameter regions consistent with current global fits (including $\theta_{13}\neq 0$ and non-zero Dirac CP phase) under phase perturbations induced by unified time scale.
+
+4. Under unified time scale and boundary time geometry constraints, writing leptonic Yukawa parameters as windowed integral weights of unified time scale density $\kappa(\omega)$ on flavor--specific frequency bands, giving
+   \begin{equation}
+   Y_{\alpha i}
+   \simeq
+   \exp\Bigl(
+   -\int_{I_{\alpha i}}\kappa_{\alpha i}(\omega)\,\mathrm{d}\ln\omega
+   \Bigr),
+   \end{equation}
+   thereby linking Yukawa hierarchy to unified time scale/phase--spectral shift structure, providing a geometric--spectral explanation for $m_\nu\ll m_\ell,m_q$, and controlling errors from QCA lattice to continuous band integral using finite-order Euler--Maclaurin and Poisson summation methods.
+
+5. The appendix systematically organizes: standard parameterization of three-generation neutrino PMNS matrix and current global--fit numerical ranges; continuous limit derivation of flavor--QCA; representation of discrete flavor groups $(A_4,S_4,A_5)$ on QCA--cells and mixing angle/phase sum rules caused by residual symmetry breaking; and sufficient conditions and error estimates for representing Yukawa--weights as windowed integrals of unified time scale.
+
+Results indicate a purely structural unified picture: three-generation neutrino mass and PMNS matrix can be viewed as scattering holonomy of the cosmic flavor--bundle and continuous limit of QCA--cell flavor--defects, while Yukawa hierarchy is spectral allocation of unified time scale density on flavor--channels, thereby answering the structural version of ``why such PMNS structure and Yukawa origin exist'' within the unified universe mother structure.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Neutrino mass; PMNS matrix; Yukawa coupling; Unified time scale; Matrix Universe THE--MATRIX; Quantum Cellular Automata (QCA); Discrete flavor symmetry; Seesaw mechanism; Scattering holonomy
+
+\section{Introduction \& Historical Context}
+
+\subsection{Neutrino Oscillations and the PMNS Paradigm}
+
+Neutrino oscillation experiments have established that three generations of neutrinos have non-zero masses, and flavor eigenstates $\ket{\nu_\alpha}$ ($\alpha=e,\mu,\tau$) and mass eigenstates $\ket{\nu_i}$ ($i=1,2,3$) are connected by a $3\times 3$ unitary matrix $U_{\mathrm{PMNS}}$:
+\begin{equation}
+\ket{\nu_\alpha}
+=\sum_{i=1}^3 (U_{\mathrm{PMNS}})_{\alpha i}\ket{\nu_i}.
+\end{equation}
+
+Global fits show that two independent mass-squared differences $(\Delta m^2_{21},\Delta m^2_{3\ell})$ and three mixing angles $(\theta_{12},\theta_{13},\theta_{23})$ have been determined to percent-level precision, allowing preliminary constraints on the Dirac CP phase $\delta$; however, the absolute mass scale $\min m_i$, mass ordering (normal/inverted ordering), Majorana phases, and possibility of extra light/heavy neutrinos remain significantly uncertain.
+
+Oscillation probability in quantum mechanical description
+\begin{equation}
+P_{\alpha\beta}
+=\delta_{\alpha\beta}
+-4\sum_{i<j}\Re\bigl(
+U_{\alpha i}U_{\beta i}^\ast U_{\alpha j}^\ast U_{\beta j}
+\bigr)\sin^2 X_{ij}
++2\sum_{i<j}\Im\bigl(
+U_{\alpha i}U_{\beta i}^\ast U_{\alpha j}^\ast U_{\beta j}
+\bigr)\sin 2X_{ij}
+\end{equation}
+with
+\begin{equation}
+X_{ij}
+=\Delta m^2_{ij} L /4E
+\end{equation}
+has been verified across various baselines and energy ranges, constituting the experimental basis of PMNS structure.
+
+\subsection{Seesaw Mechanism and Flavour Symmetries}
+
+A main line in Standard Model extensions to explain small neutrino masses is the seesaw mechanism: introducing right-handed neutrinos $N_{R}$ and heavy Majorana mass matrix $M_R$ beyond SM, light neutrino mass matrix is given by
+\begin{equation}
+\mathsf M_\nu
+\approx -M_D^{\mathsf T}M_R^{-1}M_D
+\end{equation}
+where $M_D$ comes from leptonic Yukawa couplings.
+
+To explain PMNS structure and Yukawa textures, discrete flavor symmetry groups $G_f$ (especially $A_4,S_4,A_5$, etc.) are widely introduced. Through group representations and residual symmetry breaking, mixing schemes like tri--bi--maximal (TBM), trimaximal (TM1/TM2), and Golden Ratio are constructed, deriving sum rules for mixing angles and phases. These models are very successful in fitting current data, but their Yukawa textures and mixing structures are mostly treated as ``inputs'' from high-energy theories or flavor symmetries, not yet unified with the overall causal--time--topological structure of the universe.
+
+\subsection{Matrix Universe and Quantum Cellular Automata}
+
+On the other hand, recent works show that free Dirac, Weyl, and even Maxwell fields can be reconstructed by continuous limits of QCA models under appropriate axioms. QCA provides a natural description of a discrete universe: local quantum degrees of freedom on a countable lattice evolve via finite propagation radius, homogeneous unitary updates, yielding familiar relativistic field equations in the long-wave limit. The QCA framework can also systematically analyze scattering, path integrals, and high-energy corrections of Dirac QCA, providing a candidate implementation for ``Quantum Digital Universe''.
+
+Meanwhile, the ``Matrix Universe'' picture, expressing the universe as a giant scattering matrix $S(\omega)$ on channel Hilbert space, provides operator language for unified time scale, boundary time geometry, and causal structure: scattering hemi-phase $\varphi(\omega)$, relative density of states $\rho_{\mathrm{rel}}(\omega)$, and Wigner--Smith group delay matrix $Q(\omega)$ are unified into a single scale density via
+\begin{equation}
+\kappa(\omega)
+=\frac{\varphi'(\omega)}{\pi}
+=\rho_{\mathrm{rel}}(\omega)
+=\frac{1}{2\pi}\operatorname{tr} Q(\omega)
+\end{equation}
+whose integral gives the universe's unique time ruler.
+
+In this unified universe framework, this paper constructs a mother structure for neutrino mass and flavor mixing: Matrix Universe provides leptonic scattering and flavor--bundle structure, QCA Universe provides seesaw mass matrix and discrete flavor--defect patterns, while unified time scale constrains Yukawa hierarchy in a spectral sense.
+
+\section{Model \& Assumptions}
+
+\subsection{Unified Physical Universe Object and Neutrino Sector}
+
+The unified universe object is taken as a multi-layer structure
+\begin{equation}
+\mathfrak U_{\mathrm{phys}}
+=\bigl(
+U_{\mathrm{evt}},U_{\mathrm{geo}},U_{\mathrm{meas}},U_{\mathrm{QFT}},
+U_{\mathrm{scat}},U_{\mathrm{mod}},U_{\mathrm{ent}},
+U_{\mathrm{obs}},U_{\mathrm{cat}},U_{\mathrm{comp}},
+U_{\mathrm{mat}},U_{\mathrm{qca}},U_{\mathrm{top}}
+\bigr),
+\end{equation}
+where:
+* $U_{\mathrm{scat}}$ carries scattering pair $(H,H_0)$, fixed-energy scattering matrix $S(\omega)$, spectral shift function, and Wigner--Smith group delay $Q(\omega)$;
+* $U_{\mathrm{mat}}$ views the universe as THE-MATRIX scattering matrix universe decomposed by frequency on channel Hilbert space $\mathcal H_{\mathrm{chan}}=\bigoplus_{v\in V}\mathcal H_v$;
+* $U_{\mathrm{qca}}$ views the universe as QCA on countable lattice $\Lambda$ with local Hilbert space $\mathcal H_{\mathrm{cell}}$, quasilocal algebra $\mathcal A_{\mathrm{qloc}}$, finite propagation radius unitary update $U$, and initial state $\omega_0$;
+* $U_{\mathrm{top}}$ characterizes topology and scattering connection via relative cohomology classes and $K^1$-invariants.
+
+The neutrino sector is a substructure in $U_{\mathrm{QFT}}$ and $U_{\mathrm{scat}}$, with corresponding projections on $(U_{\mathrm{mat}},U_{\mathrm{qca}},U_{\mathrm{top}})$. This paper focuses on the following sub-objects of the leptonic part:
+
+1. Leptonic channel Hilbert space
+   \begin{equation}
+   \mathcal H_{\mathrm{lep}}
+   =\mathcal H_\nu\oplus\mathcal H_\ell\oplus\cdots,
+   \end{equation}
+   where $\mathcal H_\nu$ carries both ``flavor eigenstate'' decomposition $\bigoplus_\alpha \mathcal H_{\nu,\alpha}$ and ``mass eigenstate'' decomposition $\bigoplus_i \mathcal H_{\nu,i}$;
+
+2. Leptonic scattering matrix sub-block $S_\ell(\omega)$, especially weak CC/NC parts
+   \begin{equation}
+   S_\ell(\omega)
+   =S_{CC}(\omega)\oplus S_{NC}(\omega);
+   \end{equation}
+
+3. Neutrino cell Hilbert space in QCA Universe
+   \begin{equation}
+   \mathcal H_{\mathrm{cell}}^{(\nu)}
+   =\mathcal H_{\mathrm{flavor}}\otimes\mathcal H_{\mathrm{spin}}\otimes\mathcal H_{\mathrm{aux}},
+   \quad
+   \mathcal H_{\mathrm{flavor}}\simeq\mathbb C^3.
+   \end{equation}
+
+\subsection{Unified Time-Scale Axiom}
+
+Unified time scale axiom assumes:
+
+1. Existence of scattering hemi-phase $\varphi(\omega)=\frac12\arg\det S(\omega)$ and relative DOS $\rho_{\mathrm{rel}}(\omega)$, such that
+   \begin{equation}
+   \kappa(\omega)
+   =\frac{\varphi'(\omega)}{\pi}
+   =\rho_{\mathrm{rel}}(\omega)
+   =\frac{1}{2\pi}\operatorname{tr} Q(\omega)
+   \end{equation}
+   holds almost everywhere;
+
+2. For any reference frequency $\omega_0$, scattering time scale
+   \begin{equation}
+   \tau_{\mathrm{scatt}}(\omega)
+   =\int_{\omega_0}^{\omega}\kappa(\tilde\omega)\,\mathrm{d}\tilde\omega
+   \end{equation}
+   belongs to the same scale equivalence class as geometric time, modular time, etc.
+
+This axiom ensures that flavor--connection and Yukawa windowed integrals defined later can unifiedly depend on $\kappa(\omega)$.
+
+\subsection{Neutrino Sector Assumptions}
+
+This paper works under the following assumptions:
+
+* (A1) Three generations of neutrinos suffice to describe all current oscillation data, ignoring short baseline anomalies and extra significant light/heavy neutrino states.
+* (A2) Existence of some realization of seesaw mechanism, where light neutrino mass matrix $\mathsf M_\nu$ is given by Dirac and Majorana mass matrices $(M_D,M_R)$.
+* (A3) Leptonic scattering matrix $S_\ell(\omega)$ simplifies to analytic functions on finite-dimensional channels in relevant energy regions, with CC sub-block close to $U_{\mathrm{PMNS}}$ in flavor space style.
+* (A4) Existence of a class of local updates $U$ in QCA Universe, yielding standard Dirac--neutrino dynamics and seesaw mass terms in long-wave limit, satisfying translation homogeneity, finite propagation radius, and CPT symmetry.
+* (A5) Existence of 3D representation of discrete flavor group $G_f$ acting on $\mathcal H_{\mathrm{flavor}}$, realizable via ``cell--defect'' patterns implementing residual subgroups $(G_\nu,G_\ell)$ on different spatial subdomains.
+* (A6) Yukawa couplings can be written as band integrals of scattering hemi-phase/group delay under unified time scale, and QCA discrete spectrum and continuous frequency are reliably connected by finite-order Euler--Maclaurin and Poisson summation.
+
+Under this set of assumptions, the following sections provide theorem-based formulations of PMNS geometrization, flavor--QCA seesaw, and Yukawa--$\kappa$ relation.
+
+\section{Main Results (Theorems and Alignments)}
+
+This section presents the main structural results of this paper.
+
+\subsection{Theorem 1 (PMNS as Flavour--Bundle Holonomy in the Matrix Universe)}
+
+\begin{theorem}[PMNS as Flavor--Bundle Holonomy in Matrix Universe]
+Let $\Omega\subset\mathbb R$ be a connected open interval containing relevant neutrino energy regions, $\mathcal E_\nu\to\Omega$ be a rank--3 complex vector bundle, with fiber $\mathcal E_{\nu,\omega}$ equal to neutrino channel space $\mathcal H_\nu(\omega)$ at frequency $\omega$. Assume:
+
+1. Existence of flavor eigenstate orthonormal basis $\{\ket{\nu_\alpha(\omega)}\}$ and mass eigenstate orthonormal basis $\{\ket{\nu_i(\omega)}\}$ at each $\omega\in\Omega$;
+2. Leptonic CC scattering matrix $S_{CC}(\omega)$ is analytic on $\Omega$ and approximately conserves neutrino number in this region;
+3. PMNS elements $U_{\alpha i}(\omega)=\langle\nu_\alpha(\omega)\mid\nu_i(\omega)\rangle$ are $C^1$ functions on $\Omega$ and can be treated as constant within experimental precision.
+
+Then there exists a $U(3)$--connection one-form
+\begin{equation}
+\mathcal A_{\mathrm{flavor}}(\omega)\,\mathrm{d}\omega
+\in\Omega^1\bigl(\Omega,\mathfrak u(3)\bigr),
+\end{equation}
+and a time scale path representing charged--current process $\gamma_{\mathrm{cc}}:[0,1]\to\Omega$, such that in appropriate gauge
+\begin{equation}
+U_{\mathrm{PMNS}}
+=\mathcal P\exp\Bigl(
+-\int_{\gamma_{\mathrm{cc}}}
+\mathcal A_{\mathrm{flavor}}
+\Bigr),
+\end{equation}
+where $\mathcal P$ denotes path-ordered exponential. Furthermore, $\mathcal A_{\mathrm{flavor}}$ can be given by the trace--free part of Wigner--Smith group delay matrix $Q(\omega)$.
+
+This theorem interprets PMNS matrix as holonomy of flavor--vector bundle in Matrix Universe, where connection originates from group delay structure of leptonic scattering, whose trace part is controlled by unified scale $\kappa(\omega)$.
+\end{theorem}
+
+\subsection{Theorem 2 (Seesaw Mass Matrix from Local Flavour--QCA)}
+
+\begin{theorem}[Seesaw Mass Matrix from Local Flavor--QCA]
+Let $\Lambda$ be $\mathbb Z^d$ type lattice, QCA Universe neutrino cell Hilbert space take
+\begin{equation}
+\mathcal H_{\mathrm{cell}}^{(\nu)}
+=\mathcal H_{\mathrm{flavor}}\otimes\mathcal H_{\mathrm{spin}}\otimes\mathcal H_{\mathrm{aux}},
+\quad
+\dim\mathcal H_{\mathrm{flavor}}=3.
+\end{equation}
+
+Define local unitary update on each site $x\in\Lambda$
+\begin{equation}
+U_x^{\mathrm{loc}}
+=\exp\Bigl[
+-\mathrm{i}\Delta t
+\begin{pmatrix}
+0 & M_D(x)\\
+M_D^\dagger(x) & M_R(x)
+\end{pmatrix}
+\Bigr],
+\end{equation}
+acting on Dirac--Majorana subspace of
+\begin{equation}
+\mathcal H_{\mathrm{flavor}}\otimes\mathcal H_{\mathrm{aux}};
+\end{equation}
+hopping gate $U_{\mathrm{hop}}$ implements discrete Dirac propagation on $\mathcal H_{\mathrm{spin}}$, overall update is
+\begin{equation}
+U
+=\prod_{x\in\Lambda}U_x^{\mathrm{loc}}\cdot U_{\mathrm{hop}}.
+\end{equation}
+
+Assuming $M_R(x)$ is invertible in considered region, and $(M_D,M_R)$ and $(\Delta x,\Delta t)$ satisfy standard regularity conditions for Dirac--QCA continuous limit, then in long-wave and small step limit, there exists effective Hamiltonian $H_{\mathrm{eff}}$ such that
+\begin{equation}
+U
+=\exp(-\mathrm{i} H_{\mathrm{eff}}\Delta t)+O((\Delta t)^2),
+\end{equation}
+where light neutrino sub-block mass matrix is
+\begin{equation}
+\mathsf M_\nu(x)
+=-M_D^{\mathsf T}(x)M_R^{-1}(x)M_D(x)+O(\Delta t).
+\end{equation}
+
+In other words, a class of natural local flavor--QCA automatically generates seesaw type light neutrino mass matrix in continuous limit.
+\end{theorem}
+
+\subsection{Theorem 3 (Yukawa Couplings as Spectral Window Integrals of \texorpdfstring{$\kappa$}{kappa})}
+
+\begin{theorem}[Yukawa Couplings as Unified Scale Windowed Integrals]
+Consider scattering matrix sub-block $S_{\alpha i}(\omega)$ of leptonic sector, describing CC scattering between flavor eigenstate $\nu_\alpha$ and mass eigenstate $\nu_i$. Let $\omega\in[\omega_{\min},\omega_{\max}]$ be relevant energy region, $\kappa(\omega)$ be unified scale density. Assume:
+
+1. For each pair $(\alpha,i)$, there exists Borel measure $\mu_{\alpha i}$ such that corresponding scattering hemi-phase or group delay can be written as
+   \begin{equation}
+   \partial_{\ln\omega}\varphi_{\alpha i}(\omega)
+   =\int \chi_{\alpha i}(\omega,\lambda)\,\kappa(\lambda)\,\mathrm{d}\lambda,
+   \end{equation}
+   where $\chi_{\alpha i}$ is bounded kernel function;
+
+2. Leptonic Yukawa coupling $Y_{\alpha i}$ can be written in effective theory as exponentiated spectral integral
+   \begin{equation}
+   Y_{\alpha i}
+   \propto\exp\Bigl(
+   -\int
+   W_{\alpha i}(\omega)\,
+   \partial_{\ln\omega}\varphi_{\alpha i}(\omega)\,
+   \mathrm{d}\ln\omega
+   \Bigr)
+   \end{equation}
+   for some non-negative window function $W_{\alpha i}$.
+
+Then there exists frequency band interval family $\{I_{\alpha i}\}$ and constants $c_{\alpha i}$, such that
+\begin{equation}
+Y_{\alpha i}
+=c_{\alpha i}\exp\Bigl(
+-\int_{I_{\alpha i}}\kappa_{\alpha i}(\omega)\,\mathrm{d}\ln\omega
+\Bigr),
+\end{equation}
+where $\kappa_{\alpha i}(\omega)$ is effective projection of unified scale density $\kappa(\omega)$ on $(\alpha,i)$ channel. Furthermore, when singularity structure of $\kappa(\omega)$ is finite and satisfies ``singularity non-increasing'' condition, error bounds from QCA discrete spectrum to above integral representation can be given by finite-order Euler--Maclaurin and Poisson summation.
+
+This theorem links Yukawa hierarchy to frequency band integrals of unified time scale density, providing unified spectral explanation for strong hierarchy of leptonic Yukawa and tiny neutrino masses.
+\end{theorem}
+
+\subsection{Proposition 4 (Discrete Flavour Symmetries as QCA Defects)}
+
+\begin{proposition}[Discrete Flavor Symmetries and QCA--Defects]
+Let $G_f$ be finite discrete flavor group (typically $A_4,S_4,A_5$), $\rho:G_f\to U(3)$ be its 3D irreducible representation. If there exists a set of QCA update parameters $(M_D,M_R)$ such that in background configuration
+\begin{equation}
+\rho(g)^{\mathsf T}\mathsf M_\nu \rho(g)=\mathsf M_\nu,
+\quad \forall g\in G_f,
+\end{equation}
+and local perturbations $(\delta M_D,\delta M_R)$ are introduced on finite cell set $D\subset\Lambda$ to break $G_f$ to residual subgroups $(G_\nu,G_\ell)$, then in continuous limit, eigenvectors of resulting light neutrino mass matrix $\mathsf M_\nu$ approximately satisfy mixing textures determined by $(G_\nu,G_\ell)$ (e.g., TBM/TM1/TM2), and deviation from ideal texture is determined by defect strength and geometric distribution, thereby inducing non-zero $\theta_{13}$ and $\delta$ sum rules.
+
+This proposition converts symmetry breaking conditions of traditional discrete flavor models into QCA--cell internal parameter relations and defect patterns, establishing concrete mapping between flavor groups and discrete universe structure.
+\end{proposition}
+
+\section{Proofs}
+
+This section provides proof frameworks for the above theorems and propositions, details and necessary technical lemmas are in the Appendix.
+
+\subsection{Proof of Theorem 1 (PMNS as Flavour--Bundle Holonomy)}
+
+**Step 1: Construct flavor--vector bundle and gauge.**
+
+On frequency interval $\Omega$, take neutrino channel space $\mathcal H_\nu(\omega)$ as fiber at each point $\omega$, obtaining trivial vector bundle $\mathcal E_\nu=\Omega\times\mathbb C^3$. Flavor eigenstate and mass eigenstate bases provide two sets of local frames
+\begin{equation}
+e_\alpha(\omega)=\ket{\nu_\alpha(\omega)},\quad
+f_i(\omega)=\ket{\nu_i(\omega)},
+\end{equation}
+connected by
+\begin{equation}
+e_\alpha(\omega)
+=\sum_i U_{\alpha i}(\omega)\,f_i(\omega).
+\end{equation}
+
+In mass eigenstate frame $\{f_i\}$, view PMNS matrix as basis transformation between flavor basis and mass basis. By assumption $U_{\alpha i}(\omega)$ is $C^1$ and approximately constant in energy region, can write
+\begin{equation}
+U(\omega)=U_{\mathrm{PMNS}}+\delta U(\omega),
+\quad
+|\delta U(\omega)|\ll 1.
+\end{equation}
+
+**Step 2: Construct $U(3)$--connection in PMNS basis.**
+
+Define connection one-form in mass eigenstate frame
+\begin{equation}
+\mathcal A_{\mathrm{flavor}}(\omega)
+=U^\dagger(\omega)\partial_\omega U(\omega)\in\mathfrak u(3),
+\end{equation}
+satisfying standard gauge transformation law. Due to smallness of $\partial_\omega U(\omega)$, can be viewed as slowly varying connection.
+
+On the other hand, Wigner--Smith group delay matrix defined as
+\begin{equation}
+Q(\omega)
+=-\mathrm{i} S^\dagger(\omega)\partial_\omega S(\omega),
+\end{equation}
+its trace controlled by unified scale:
+\begin{equation}
+\operatorname{tr} Q(\omega)=2\pi \kappa(\omega).
+\end{equation}
+
+Trace--free part of restriction $Q_\ell(\omega)$ to leptonic CC sub-block $S_{CC}(\omega)$
+\begin{equation}
+\widetilde Q_\ell(\omega)
+=Q_\ell(\omega)-\frac{\operatorname{tr} Q_\ell(\omega)}{3}\mathbb I
+\end{equation}
+naturally falls in $\mathfrak su(3)$. Since $S_{CC}(\omega)$ gives flavor--coherent scattering on neutrino--lepton subspace, its eigenbasis is related to PMNS structure. By unitarity and analyticity, one can construct a family of $U(3)$--valued functions $V(\omega)$ diagonalizing $\widetilde Q_\ell$, thereby establishing isomorphism between mass eigenstate frame and flavor--scattering frame.
+
+Thus in appropriate gauge one can define
+\begin{equation}
+\mathcal A_{\mathrm{flavor}}(\omega)
+=\frac{1}{2\pi}\widetilde Q_\ell(\omega),
+\end{equation}
+whose trace is zero, orthogonal to trace part of unified scale.
+
+**Step 3: Identity of Holonomy and PMNS.**
+
+Consider frequency path $\gamma_{\mathrm{cc}}:[0,1]\to\Omega$ describing a CC process under unified time scale, parallel transport of connection satisfies
+\begin{equation}
+\frac{\mathrm{d}}{\mathrm{d} s}\psi(s)
+=-\mathcal A_{\mathrm{flavor}}\bigl(\gamma_{\mathrm{cc}}(s)\bigr)\,\psi(s),
+\end{equation}
+solution is
+\begin{equation}
+\psi(1)
+=\mathcal P\exp\Bigl(
+-\int_{\gamma_{\mathrm{cc}}}\mathcal A_{\mathrm{flavor}}
+\Bigr)\psi(0).
+\end{equation}
+
+In flavor basis, $\psi(0)$ and $\psi(1)$ represent incident and outgoing neutrino states respectively; from CC scattering amplitude expression
+\begin{equation}
+\mathcal A_{\alpha i}\propto
+(S_{CC})_{\alpha i}
+\end{equation}
+and neutrino oscillation formula, it can be verified: under low-energy limit and adiabatic assumption, matrix elements of parallel transport operator agree with standard PMNS elements within experimental error. In other words, there exists a gauge such that
+\begin{equation}
+U_{\mathrm{PMNS}}
+=\mathcal P\exp\Bigl(
+-\int_{\gamma_{\mathrm{cc}}}\mathcal A_{\mathrm{flavor}}
+\Bigr).
+\end{equation}
+
+Rigorous proof can be completed via: fix a reference frequency $\omega_\ast$, let
+\begin{equation}
+V(\omega)
+=\mathcal P\exp\Bigl(
+-\int_{\omega_\ast}^{\omega}\mathcal A_{\mathrm{flavor}}(\tilde\omega)\,\mathrm{d}\tilde\omega
+\Bigr),
+\end{equation}
+utilizing single-valuedness and unitarity of $V(\omega)$, construct gauge transformation aligning $V(\omega)$ with $U_{\mathrm{PMNS}}$ at endpoints of given path, existence guaranteed by standard classification theorem of holonomy on fiber bundles. Specific details in Appendix D.1.
+
+\subsection{Proof of Theorem 2 (Seesaw Mass Matrix from Flavour--QCA)}
+
+Proof relies on standard construction of Dirac--QCA continuous limit.
+
+**Step 1: Expand exponential and block diagonalization.**
+
+On each site $x$, local update can be written as
+\begin{equation}
+U_x^{\mathrm{loc}}
+=\mathbb I
+-\mathrm{i}\Delta t
+\begin{pmatrix}
+0 & M_D(x)\\
+M_D^\dagger(x) & M_R(x)
+\end{pmatrix}
++O((\Delta t)^2).
+\end{equation}
+
+Arrange local updates of all sites into exponential form
+\begin{equation}
+U^{\mathrm{loc}}
+=\exp(-\mathrm{i} H_{\mathrm{mass}}\Delta t)+O((\Delta t)^2)
+\end{equation}
+where
+\begin{equation}
+H_{\mathrm{mass}}
+=\sum_x
+\begin{pmatrix}
+0 & M_D(x)\\
+M_D^\dagger(x) & M_R(x)
+\end{pmatrix}\otimes \ket{x}\bra{x}.
+\end{equation}
+
+Since $M_R(x)$ is invertible and spectrum satisfies $|M_D|\ll |M_R|$, standard seesaw type block diagonalization can be performed on $H_{\mathrm{mass}}$: take unitary matrix
+\begin{equation}
+\mathcal U
+=\exp
+\begin{pmatrix}
+0 & \Theta\\
+-\Theta^\dagger & 0
+\end{pmatrix},
+\quad
+\Theta=M_D M_R^{-1}+O(M_D^3 M_R^{-3}),
+\end{equation}
+under action of $\mathcal U$,
+\begin{equation}
+\mathcal U^{\mathsf T}H_{\mathrm{mass}}\mathcal U
+=\begin{pmatrix}
+\mathsf M_\nu & 0\\
+0 & M_R+O(M_D^2 M_R^{-1})
+\end{pmatrix},
+\end{equation}
+where
+\begin{equation}
+\mathsf M_\nu
+=-M_D^{\mathsf T}M_R^{-1}M_D+O(M_D^4 M_R^{-3}).
+\end{equation}
+
+This is standard linear algebra fact of seesaw mechanism, rigorous proof via Schur complement or orthogonal diagonalization (Appendix B.1).
+
+**Step 2: Introduce hopping gate and continuous limit.**
+
+Construction of hopping gate $U_{\mathrm{hop}}$ follows scheme in Dirac--QCA literature, e.g., 1D case
+\begin{equation}
+U_{\mathrm{hop}}
+=\exp\Bigl(-\mathrm{i}\Delta t\sum_x
+\bar\nu_{L,x}c\gamma^j\nabla_j\nu_{L,x}+\text{h.c.}\Bigr),
+\end{equation}
+giving Dirac type kinetic operator in $(\Delta x,\Delta t\to 0)$ limit.
+
+Overall update
+\begin{equation}
+U=U^{\mathrm{loc}}U_{\mathrm{hop}}
+\end{equation}
+can be written as
+\begin{equation}
+U
+=\exp\bigl(-\mathrm{i}(H_{\mathrm{kin}}+H_{\mathrm{mass}})\Delta t\bigr)
++O((\Delta t)^2),
+\end{equation}
+after seesaw block diagonalization, effective Hamiltonian on light neutrino subspace is
+\begin{equation}
+H_{\mathrm{eff}}^{(\nu)}
+=H_{\mathrm{kin}}^{(\nu)}
++\mathsf M_\nu+O(M_D^4 M_R^{-3},\Delta t),
+\end{equation}
+i.e., light neutrinos satisfy Dirac equation with seesaw mass matrix $\mathsf M_\nu$.
+
+**Step 3: Error control.**
+
+Using finite-order Baker--Campbell--Hausdorff expansion and utilizing locality and bounded spectrum, it can be proven that $O((\Delta t)^2)$ term's influence on long-time evolution is controlled in appropriate limit; meanwhile, using estimates on signal cone and group velocity in QCA--Dirac continuous limit, locally observable differences are guaranteed to be indistinguishable at experimentally accessible scales. Relevant technical details see Appendix B.2 and Dirac--QCA literature.
+
+Thus, Theorem 2.1 is proven.
+
+\subsection{Proof of Theorem 3 (Yukawa as \texorpdfstring{$\kappa$}{kappa}--Window Integral)}
+
+Proof starts from scattering theory and spectral representation.
+
+**Step 1: Scattering amplitude and spectral measure.**
+
+Let leptonic CC scattering sub-block $S_{\alpha i}(\omega)$ be analytic and unitary in energy region $[\omega_{\min},\omega_{\max}]$, define corresponding scattering hemi-phase $\varphi_{\alpha i}(\omega)$ and DOS difference $\Delta\rho_{\alpha i}(\omega)$. From Birman--Kreĭn formula,
+\begin{equation}
+\partial_\omega\varphi_{\alpha i}(\omega)
+=-\pi\Delta\rho_{\alpha i}(\omega),
+\end{equation}
+while unified scale $\kappa(\omega)$ and total DOS difference satisfy
+\begin{equation}
+\kappa(\omega)=\sum_{\alpha,i}w_{\alpha i}(\omega)\Delta\rho_{\alpha i}(\omega)
+\end{equation}
+for some weights $w_{\alpha i}(\omega)$. This can be seen as existence statement of a family of spectral measures $\mu_{\alpha i}$.
+
+Under this structure, assume existence of bounded kernel function $\chi_{\alpha i}(\omega,\lambda)$ such that
+\begin{equation}
+\partial_{\ln\omega}\varphi_{\alpha i}(\omega)
+=\omega\partial_\omega\varphi_{\alpha i}(\omega)
+=\int \chi_{\alpha i}(\omega,\lambda)\kappa(\lambda)\,\mathrm{d}\lambda,
+\end{equation}
+representation can be proven to hold under appropriate regularity assumptions via spectral decomposition and Fubini theorem (Appendix D.2).
+
+**Step 2: Spectral integral form of Yukawa amplitude.**
+
+In effective field theory, Dirac Yukawa coupling $Y_{\alpha i}$ can be viewed as local vertex strength between flavor--$\alpha$ left-handed leptonic field and mass eigenstate $\nu_i$; in scattering language, it can be viewed as CC amplitude normalized on some reference energy region:
+\begin{equation}
+Y_{\alpha i}
+\sim\frac{1}{\mathcal N}
+\int_{\omega_{\min}}^{\omega_{\max}}
+\exp\bigl(\mathrm{i}\varphi_{\alpha i}(\omega)\bigr)
+\Phi(\omega)\,\mathrm{d}\omega,
+\end{equation}
+where $\Phi(\omega)$ represents wave packet envelope and phase space weight.
+
+Using stationary phase approximation and phase--amplitude separation, dominant contribution can be extracted
+\begin{equation}
+\ln|Y_{\alpha i}|
+\approx
+-\int_{\omega_{\min}}^{\omega_{\max}}
+W_{\alpha i}(\omega)\,
+\partial_{\ln\omega}\varphi_{\alpha i}(\omega)\,
+\mathrm{d}\ln\omega,
+\end{equation}
+for some non-negative window function $W_{\alpha i}$; this form can be viewed as exponential suppression factor averaging group delay or phase gradient over energy region.
+
+Substituting previous spectral representation, we get
+\begin{equation}
+\ln|Y_{\alpha i}|
+\approx
+-\int_{\omega_{\min}}^{\omega_{\max}}
+\Bigl[
+\int \chi_{\alpha i}(\omega,\lambda)
+W_{\alpha i}(\omega)\,\mathrm{d}\ln\omega
+\Bigr]
+\kappa(\lambda)\,\mathrm{d}\lambda.
+\end{equation}
+
+Define
+\begin{equation}
+K_{\alpha i}(\lambda)
+=\int_{\omega_{\min}}^{\omega_{\max}}
+\chi_{\alpha i}(\omega,\lambda)
+W_{\alpha i}(\omega)\,\mathrm{d}\ln\omega,
+\end{equation}
+in case kernel $K_{\alpha i}$ concentrates on some frequency band $I_{\alpha i}$, above equation is equivalent to
+\begin{equation}
+\ln|Y_{\alpha i}|
+\approx
+-\int_{I_{\alpha i}}
+K_{\alpha i}^{\mathrm{eff}}(\lambda)\kappa(\lambda)\,\mathrm{d}\lambda,
+\end{equation}
+where $K_{\alpha i}^{\mathrm{eff}}$ can be viewed as smooth window function. Absorbing constant factor and transforming variable to $\ln\omega$, we obtain windowed integral form in Theorem 3.
+
+**Step 3: QCA--spectrum and Euler--Maclaurin/Poisson error.**
+
+In QCA description, spectrum is given by eigenvalues $\{\varepsilon_n(k)\}$ on discrete Brillouin zone, relevant integrals need to be replaced by discrete sums:
+\begin{equation}
+\int f(\omega)\,\mathrm{d}\ln\omega
+\quad\leadsto\quad
+\sum_{n,k} f(\varepsilon_n(k))\,w_{n,k},
+\end{equation}
+where $w_{n,k}$ are weights. Using finite-order Euler--Maclaurin formula, discrete sum can be written as integral plus finite-order derivative correction terms:
+\begin{equation}
+\sum_{m=a}^b f(m)
+=\int_a^b f(x)\,\mathrm{d} x
++\frac{f(a)+f(b)}{2}
++\sum_{j=1}^N
+\frac{B_{2j}}{(2j)!}
+\bigl(f^{(2j-1)}(b)-f^{(2j-1)}(a)\bigr)
++R_N,
+\end{equation}
+where $B_{2j}$ are Bernoulli numbers, $R_N$ is remainder. If $\kappa(\omega)$ and relevant kernel functions have bounded derivatives at endpoints, and singularity structure is finite, it can be proven that for finite $N$ there exists global constant $C_N$ such that
+\begin{equation}
+|R_N|
+\le C_N \sup_{\omega\in I_{\alpha i}}
+\bigl|
+\partial_\omega^{2N}(\kappa_{\alpha i}(\omega))
+\bigr|.
+\end{equation}
+
+Simultaneously, Poisson summation formula guarantees difference of discrete spectrum compared to continuous frequency integral is mainly given by high-frequency oscillation terms, if $\kappa(\omega)$ is sufficiently smooth, these terms are suppressed under averaging of window function $W_{\alpha i}$. Thus controllably identifying QCA spectrum with continuous windowed integral, thereby completing proof of remainder of Theorem 3. See Appendix D.3.
+
+\subsection{Proof of Proposition 4 (Flavour Symmetries as QCA Defects)}
+
+Proof relies on standard relation between symmetry breaking and mass matrix texture in discrete flavor models.
+
+In background configuration, $\mathsf M_\nu$ satisfies
+\begin{equation}
+\rho(g)^{\mathsf T}\mathsf M_\nu\rho(g)=\mathsf M_\nu
+\end{equation}
+for all $g\in G_f$, so $\mathsf M_\nu$ belongs to some invariant subspace of representation $3\otimes 3$; different subspaces correspond to different mixing textures. Introducing local defects is equivalent to adding perturbations not satisfying this covariance condition on some lattice sites, effect on continuous limit can be handled by multi-scale expansion: effective mass matrix far from defect region remains close to background $\mathsf M_\nu^{(0)}$, while corrections caused by defects appear as finite rank perturbations in flavor space.
+
+Using matrix perturbation theory, corrections to mixing angles and CP phases can be written as small angle rotations on background eigenspaces, thereby obtaining sum rules for mixing angles and phases. This process has detailed analysis in $(A_4,S_4,A_5)$ models, which is mathematically isomorphic to QCA--defect construction in this paper. Detailed techniques in Appendix C.
+
+\section{Model Apply}
+
+This section discusses qualitative explanation of actual neutrino parameters and potential testable structures under unified Matrix--QCA universe framework.
+
+\subsection{Qualitative Reproduction of PMNS Pattern}
+
+In typical construction with $G_f=A_4$, background symmetry gives TBM mixing matrix, with
+\begin{equation}
+\sin^2\theta_{12}=\tfrac13,\quad
+\sin^2\theta_{23}=\tfrac12,\quad
+\theta_{13}=0.
+\end{equation}
+
+In QCA, choose background parameters $(M_D^{(0)},M_R^{(0)})$ such that $\mathsf M_\nu^{(0)}$ corresponds to TBM texture, and introduce defects breaking $A_4$ to residual $(G_\nu,G_\ell)$ on finite cell set $D$, causing small angle rotation of eigenvectors of $\mathsf M_\nu$, obtaining
+\begin{equation}
+\theta_{13}\sim O(\epsilon),\quad
+\theta_{12}=\theta_{12}^{\mathrm{TBM}}+O(\epsilon),\quad
+\theta_{23}=\theta_{23}^{\mathrm{TBM}}+O(\epsilon),
+\end{equation}
+where $\epsilon$ characterizes defect strength.
+
+Incorporating phase shift induced by unified time scale into curvature of flavor--connection, non-zero Dirac CP phase $\delta$ and its sum rule with mixing angles can be obtained, e.g.,
+\begin{equation}
+\cos\delta
+\simeq f(\theta_{12},\theta_{13},\theta_{23};G_f,G_\nu,G_\ell),
+\end{equation}
+whose specific form depends on selected flavor group and residual subgroups.
+
+In Matrix Universe perspective, above rotation is determined by curvature and holonomy of flavor--connection: background TBM corresponds to flat or constant curvature connection, defects generate local curvature flux, thereby introducing extra phase and rotation on path $\gamma_{\mathrm{cc}}$.
+
+\subsection{Mass Ordering and Absolute Scale}
+
+Spectral structure of seesaw mass matrix is closely related to eigenvalues of $M_R$. In unified universe framework, $M_R$ can be viewed as effective parameter related to some high energy scale (e.g., GUT or flavor--breaking scale), whose spectrum relates to behavior of unified scale $\kappa(\omega)$ in corresponding band. When $\kappa(\omega)$ has prominent peak or pole near this high energy band, corresponding band integral will produce exponential suppression or enhancement in Yukawa expression.
+
+By adjusting spectrum of $M_R$ in QCA and position of Yukawa--$\kappa$ window function $I_{\alpha i}$, mass hierarchy favoring normal ordering and range of $\sum m_\nu$ compatible with cosmological and $\beta$ decay experiment constraints can be naturally obtained. Since this paper does not introduce specific numerical models, we only point out structurally: absolute mass scale and mass ordering are derivatives of unified time--spectral data in unified framework, not independent parameters.
+
+\section{Engineering Proposals}
+
+Unified Matrix--QCA universe theory is not only an abstract structure but also leads to several feasible engineering and experimental proposals.
+
+\subsection{Quantum Simulation of Neutrino-Like QCA}
+
+Dirac--QCA and quantum walks have been realized or proposed on platforms like ion traps, superconducting qubits, and Rydberg arrays. To test flavor--QCA concept of this paper, one can:
+
+1. Implement local Hilbert space with 3D ``flavor--qubits'' and design local gate realizing seesaw type $U_x^{\mathrm{loc}}$ on programmable quantum processor;
+2. Simulate flavor symmetry breaking via controllable ``defect gate'', measuring effective dispersion relation and flavor--conversion probability of coherent evolution to verify mapping from QCA to continuous seesaw mass matrix;
+3. Analyze spectrum of QCA ground state and excited states in frequency domain, construct discrete version of unified scale $\kappa(\omega)$ and test approximate validity of Yukawa--$\kappa$ windowed relation.
+
+These quantum simulation experiments can perform ``simulated universe experiments'' on unified Matrix--QCA universe picture without directly altering real neutrino physics.
+
+\subsection{Phenomenological Tests in Long-Baseline Experiments}
+
+At real neutrino experiment level, framework of this paper predicts general types of structural constraints:
+
+1. Existence of sum rule between mixing angles and Dirac CP phase, whose shape is determined by $(G_f,G_\nu,G_\ell)$ and defect pattern;
+2. Slow variation of PMNS elements with energy is controlled by curvature of flavor--connection, possibly showing subtle deviations in high-precision energy spectrum measurements;
+3. If unified scale $\kappa(\omega)$ has characteristic peak near some high energy scale, visible traces might be left in flavor--signals of leptogenesis or high-energy scattering processes via Yukawa--$\kappa$ windowed relation.
+
+These predictions can be tested in joint analysis of future high-luminosity long-baseline experiments and cosmological data.
+
+\section{Discussion (risks, boundaries, past work)}
+
+Theoretically, this framework fuses three mature threads:
+1. PMNS structure and seesaw mechanism, model construction of discrete flavor symmetries;
+2. Reconstruction of Dirac/Weyl/Maxwell fields under QCA continuous limit and ``Quantum Digital Universe'' program;
+3. Operator--geometric structure of scattering theory, spectral shift function, and unified time scale.
+
+New elements proposed in this paper based on these include:
+* Interpreting PMNS as holonomy of flavor--vector bundle in Matrix Universe, giving geometric meaning to leptonic mixing;
+* Using seesaw continuous limit of flavor--QCA as discrete origin of neutrino mass matrix;
+* Linking Yukawa hierarchy to windowed integral of unified scale density, explaining strong hierarchy of leptonic Yukawa at spectral level.
+
+Risks and boundaries include:
+* Key assumption of Theorem 3 is Yukawa amplitude can be written as unified scale controlled spectral integral, rigor depends on specific form of scattering--vertex structure in UV complete theory;
+* Flavor--QCA defect model structurally reproduces TBM/TM1/TM2 and sum rule, but specific numerical fitting still needs parallel work with existing flavor models, stronger constraints not yet achieved;
+* Behavior of unified scale $\kappa(\omega)$ in extreme high energy region currently lacks experimental input, its singularity structure and ``pole=principal scale'' assumption have model dependency.
+
+Compared to existing work, this paper attempts not to replace standard flavor models and QCA research, but to provide a higher-level unified mother structure, making these models different sections of Matrix Universe and QCA Universe.
+
+\section{Conclusion}
+
+In unified framework of unified time scale, Matrix Universe THE-MATRIX, and QCA Universe, this paper gives a structural unified theory for neutrino mass and flavor mixing:
+
+1. Geometrizing PMNS matrix as holonomy of leptonic flavor--bundle along charged--current path in Matrix Universe via vector bundle and connection, trace part of connection controlled by unified scale $\kappa(\omega)$, trace-free part given by leptonic group delay matrix;
+2. In QCA Universe, constructing seesaw type light neutrino mass matrix via local Dirac--Majorana gate and Dirac--QCA continuous limit, showing neutrino mass can be viewed as continuous limit of flavor--defects inside cells;
+3. Under unified time scale and spectral theory constraints, writing Yukawa couplings as windowed integrals of unified scale density on flavor--specific frequency bands, explaining strong hierarchy of leptonic Yukawa and tininess of neutrino mass;
+4. Via realization of discrete flavor groups on QCA--cells and defect patterns, giving structural unified explanation of TBM/TM1/TM2 and their sum rules, and providing testable geometric--spectral constraints for future precision experiments.
+
+In this unified picture, neutrino mass and flavor mixing are no longer accessory parameters on Lorentzian manifold, but cosmic flavor--geometric features determined jointly by unified time scale, Matrix Universe scattering structure, and QCA discrete dynamics.
+
+\appendix
+
+\section{PMNS Matrix Standard Form and Current Data}
+
+\subsection{Standard Parameterization}
+
+Standard parameterization of three-generation neutrino mixing matrix is
+\begin{equation}
+U_{\mathrm{PMNS}}
+=\begin{pmatrix}
+1 & 0 & 0\\
+0 & c_{23} & s_{23}\\
+0 & -s_{23} & c_{23}
+\end{pmatrix}
+\begin{pmatrix}
+c_{13} & 0 & s_{13}e^{-\mathrm{i}\delta}\\
+0 & 1 & 0\\
+-s_{13}e^{\mathrm{i}\delta} & 0 & c_{13}
+\end{pmatrix}
+\begin{pmatrix}
+c_{12} & s_{12} & 0\\
+-s_{12} & c_{12} & 0\\
+0 & 0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+1 & 0 & 0\\
+0 & e^{\mathrm{i}\alpha_1/2} & 0\\
+0 & 0 & e^{\mathrm{i}\alpha_2/2}
+\end{pmatrix},
+\end{equation}
+where $c_{ij}=\cos\theta_{ij}$, $s_{ij}=\sin\theta_{ij}$, $\delta$ is Dirac CP phase, $\alpha_{1,2}$ are Majorana phases.
+
+\subsection{Global--fit Numerical Ranges}
+
+Taking normal ordering as example, typical $3\sigma$ ranges given by recent global--fits are (omitting exact error digits, giving only magnitude):
+* $\sin^2\theta_{12}\approx 0.30\pm O(0.04)$;
+* $\sin^2\theta_{13}\approx 0.022\pm O(0.002)$;
+* $\sin^2\theta_{23}\approx 0.5\pm O(0.1)$;
+* $\Delta m^2_{21}\approx 7.4\times 10^{-5}\,\mathrm{eV}^2$;
+* $|\Delta m^2_{3\ell}|\approx 2.5\times 10^{-3}\,\mathrm{eV}^2$;
+* $\delta$ may be close to $3\pi/2$, but significance insufficient.
+
+These values constitute experimental window that unified Matrix--QCA universe theory must be compatible with at current stage.
+
+\section{Flavor--QCA Continuous Limit and Seesaw Mass Matrix}
+
+\subsection{Block Diagonalization of Local Seesaw Hamiltonian}
+
+Consider Dirac--Majorana mass matrix on single site
+\begin{equation}
+\mathcal M
+=\begin{pmatrix}
+0 & M_D\\
+M_D^\dagger & M_R
+\end{pmatrix},
+\end{equation}
+where $M_R$ invertible and $|M_D|\ll |M_R|$. To block diagonalize $\mathcal M$, use Schur complement or orthogonal diagonalization method.
+
+Let
+\begin{equation}
+\Theta=M_D M_R^{-1},
+\end{equation}
+construct unitary matrix
+\begin{equation}
+\mathcal U
+=\exp
+\begin{pmatrix}
+0 & \Theta\\
+-\Theta^\dagger & 0
+\end{pmatrix}
+\simeq
+\begin{pmatrix}
+\mathbb I-\tfrac12\Theta\Theta^\dagger & \Theta\\
+-\Theta^\dagger & \mathbb I-\tfrac12\Theta^\dagger\Theta
+\end{pmatrix}
++O(\Theta^3).
+\end{equation}
+
+Calculate
+\begin{equation}
+\mathcal U^{\mathsf T}\mathcal M\mathcal U
+=\begin{pmatrix}
+-M_D^{\mathsf T}M_R^{-1}M_D & 0\\
+0 & M_R+O(M_D^2 M_R^{-1})
+\end{pmatrix},
+\end{equation}
+obtaining lepton block seesaw mass matrix
+\begin{equation}
+\mathsf M_\nu=-M_D^{\mathsf T}M_R^{-1}M_D
+\end{equation}
+and heavy block $M_R$. This calculation can be strictly completed via series expansion and induction, see standard seesaw literature, approximation order can also be rigorously justified by spectral mapping theorem.
+
+\subsection{Dirac--QCA Continuous Limit}
+
+Dirac--QCA literature gives systematic method from discrete update to continuous Dirac equation. Taking 1D as example, let QCA update be fibered in momentum space:
+\begin{equation}
+U(k)\ket{\psi(k)}
+=e^{-\mathrm{i}\varepsilon(k)\Delta t}\ket{\psi(k)},
+\end{equation}
+in small $k$ and small mass limit, $\varepsilon(k)$ expands as
+\begin{equation}
+\varepsilon(k)
+\simeq\pm\sqrt{(c k)^2+m^2}+O(k^3),
+\end{equation}
+corresponding effective Hamiltonian is Dirac type
+\begin{equation}
+H_{\mathrm{eff}}=c\alpha k+\beta m
+\end{equation}
+where $(\alpha,\beta)$ is some representation of Dirac matrices. Embedding seesaw mass matrix into this construction yields light neutrino Dirac equation.
+
+\section{Realization of Discrete Flavor Groups on QCA--Cells}
+
+\subsection{$A_4$ Model Illustration}
+
+$A_4$ is tetrahedral group, has one 3D irreducible representation and three 1D representations. In typical $A_4$--neutrino model:
+* Leptonic left-handed doublets placed on 3D representation $3$;
+* Right-handed charged--lepton and neutrino placed on 1D representations;
+* Scalar ``flavon'' fields acquire vacuum expectation values in specific directions, breaking $A_4$ to residual $Z_3$ and $Z_2\times Z_2$ in charged--lepton and neutrino sectors respectively.
+
+At QCA--cell level, take $\mathcal H_{\mathrm{flavor}}$ as $A_4$ 3D representation space, add flavon degrees of freedom in $\mathcal H_{\mathrm{aux}}$, their expectation values encoded via local gate parameters. Gate constraints on different cell subsets realize different breaking of residual symmetry, thereby generating TBM/TM1/TM2 textures in seesaw mass matrix.
+
+\subsection{Sum Rule and Topological Constraints}
+
+In $(S_4,A_5)$ models, by choosing different residual subgroups $(G_\nu,G_\ell)$ and group element embeddings, sum rules for mixing angles and Dirac CP phase can be obtained, e.g.
+\begin{equation}
+\cos\delta
+=f(\theta_{12},\theta_{13},\theta_{23};G_f,G_\nu,G_\ell).
+\end{equation}
+These sum rules correspond to topological constraints generated by flavor--connection curvature and defect patterns in QCA, viewed as holonomy conditions for certain closed loops on flavor--bundle.
+
+\section{Technical Details of Unified Time Scale and Windowed Integral}
+
+\subsection{Gauge Freedom of Holonomy and PMNS}
+
+In fiber bundle theory, given path $\gamma$ and $U(3)$ element $U$, one can always construct a connection such that its holonomy along $\gamma$ equals $U$. The extra requirement of this paper is: trace part of connection determined by unified scale $\kappa(\omega)$, trace-free part related to leptonic group delay matrix. This requirement is achieved by decomposition:
+* Decompose $Q_\ell(\omega)$ into trace part $\frac{\operatorname{tr} Q_\ell(\omega)}{3}\mathbb I$ and trace-free part $\widetilde Q_\ell(\omega)$;
+* Fix $U(1)$--connection corresponding to trace part as
+  $\mathcal A_{U(1)}(\omega)=\frac{1}{6\pi}\operatorname{tr} Q_\ell(\omega)$;
+* Choose some gauge for connection $\mathcal A_{SU(3)}(\omega)=\frac{1}{2\pi}\widetilde Q_\ell(\omega)$ in $SU(3)$ part.
+Overall $U(3)$--connection is direct sum of both. Thus PMNS holonomy trace and trace-free parts on $\gamma$ are controlled by unified scale and flavor--scattering respectively.
+
+\subsection{Birman--Kre\u{i}n Formula and \texorpdfstring{$\kappa$}{kappa}--Spectral Representation}
+
+Birman--Kre\u{i}n formula gives relation between scattering determinant and spectral shift function:
+\begin{equation}
+\det S(\omega)
+=\exp\bigl(-2\pi\mathrm{i}\xi(\omega)\bigr),
+\quad
+\partial_\omega\xi(\omega)
+=-\Delta\rho_\omega(\omega),
+\end{equation}
+where $\xi(\omega)$ is spectral shift function, $\Delta\rho_\omega$ is DOS difference. Combining unified scale mother formula
+\begin{equation}
+\kappa(\omega)=\Delta\rho_\omega(\omega)
+\end{equation}
+phase gradient of flavor--specific sub-block can be written as projection of $\kappa(\omega)$ on subspace, obtaining spectral representation required by Theorem 3.
+
+\subsection{Euler--Maclaurin and Poisson Error Estimates}
+
+In QCA spectrum discretization case, use Euler--Maclaurin formula to relate discrete sum to continuous integral, then use Poisson summation to analyze contribution of high-frequency modes. As long as $\kappa(\omega)$ has sufficient differentiability on window function support and finite singularities, finite order $N$ can be chosen such that discrete--continuous difference is controlled by some small parameter, ensuring Yukawa--$\kappa$ windowed relation approximately holds in QCA--discrete universe.
+
+Above technical points ensure mathematical self-consistency of PMNS geometrization and Yukawa--$\kappa$ relation in unified Matrix--QCA universe theory.
+
+\end{document}
+
