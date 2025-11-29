@@ -9,9 +9,12 @@
 | 论文简称 | 标题 | 目标期刊 | 期刊状态 | arXiv状态 | 最后更新 |
 |---------|------|---------|---------|----------|---------|
 | IGVP | Einstein Equations from Information-Geometric Variational Principle | JHEP | 已提交 | 已提交 | 2025-11 |
-| RBIT | Resource-Bounded Incompleteness Theory | JSL | 已提交 | 已提交 | - |
-| EBOC | Static-Block Cellular Automata: Information Laws | Nature Comm. | 已提交 | 已被拒 | 2025-11 |
-| Self-Ref | Self-Referential Scattering and the Birth of Fermions | SciPost Physics | 已提交 | 已被拒 | - |
+| RBIT | Resource-Bounded Incompleteness Theory | JSL | 已提交 https://ef.msp.org/status.php?p_id=233614&cr=036F917BF3 | 已提交 | - |
+| EBOC | Static-Block Cellular Automata: Information Laws | Nature Comm. | 已被拒 无原因 上线research square (nature 预印本平台)： https://www.researchsquare.com/article/rs-8157787/v1 | 已被拒 | 2025-nov-29 |
+| Self-Ref | Self-Referential Scattering and the Birth of Fermions | SciPost Physics | 已提交 https://scipost.org/submissions/scipost_202511_00037v1/ | 已被拒 | - |
+| omega/minimal | Information rate circle in Dirac quantum walks | Physical Review A | 已提交 https://authors.aps.org/Submissions/submissions/es2025nov29_549 |  -  | 2025-nov-29 |
+| omega/03+14+17 | Cosmological Phase Transitions and Gravitational Wave Signature from Topological Mass Generation in Quantum Cellular Automata | Physical Review Letters | 已提交 | - | 2025-nov-29 |
+| AI-safety | Universal Catastrophic Safety Undecidability and Capability--Risk Upper Bound Frontier: Unified Theorems, Complexity Positioning, and Engineering Pathways | NeurlIPS 2026暂未开启收稿 改投JMLR（机器学习顶刊） | 在补充图片和实验验证 待提交 | na | 2025-nov-29 |
 
 ---
 
